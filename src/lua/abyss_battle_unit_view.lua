@@ -3,6 +3,7 @@ local Combat = require("abyss_combat")
 local Theme = require("abyss_theme")
 local number = require("abyss_numbers").integer
 local M = {}
+local NativeGeometry=require('abyss_native_battle_geometry')
 local C, L, S = Theme.color, Theme.layout, Theme.space
 
 function M.geometry(portrait,player)
@@ -39,7 +40,17 @@ local function portraitVisible(box, icon)
 end
 
 function M.new(picture, tint, ink, statusKind)
-    local function portraitParts(box, actor, portrait, icon, width, selected, targetWidth)
+    local function targetCorners(box,portrait,selected,source)
+        local width=source and source.hitWidth or portrait
+        local height=source and source.hitHeight or portrait
+        for _,x in ipairs({-1,1})do for _,y in ipairs({-1,1})do
+            for _,axis in ipairs({'H','V'})do
+                local corner=box:GetChild('target'..axis..x..'_'..y)
+                corner:SetVisible(selected==true);corner:SetAnchoredPosition(x*width/2,y*height/2)
+            end
+        end end
+    end
+    local function portraitParts(box, actor, portrait, icon, width, selected, targetWidth,source)
         for _, name in ipairs({"plate", "border", "portrait"}) do
             local delta = name == "border" and S.border * 2 or 0
             box:GetChild(name):SetSizeDelta(portrait + delta, portrait + delta)
@@ -50,20 +61,14 @@ function M.new(picture, tint, ink, statusKind)
         box:GetChild("impact"):SetSizeDelta(portrait, portrait)
         box:GetChild("shield"):SetSizeDelta(portrait, portrait)
         box:GetChild("floating"):SetSizeDelta(width + S.xl, L.nativeText.lineHeight * 2)
-        picture(box:GetChild("portrait"), type(icon)=='table' and icon.id or icon)
+        if not NativeGeometry.enabled() then picture(box:GetChild("portrait"), type(icon)=='table' and icon.id or icon)end
         -- The traveler bust must stay readable; dyeing it with the Geo swatch made every portrait the element icon.
         tint(box:GetChild("portrait"), box.name == "hero" and C.buttonPressedText or C.text)
         -- STS shows the player as the character art plus powers/stance UI; never a glyph on the body.
         -- The 105292 placeholder read as a stray stance arrow, so hide it (real art comes from battlePose).
-        box:GetChild("portrait"):SetVisible(portraitVisible(box,icon))
+        box:GetChild("portrait"):SetVisible(not NativeGeometry.enabled() and portraitVisible(box,icon))
         tint(box:GetChild("border"), selected and C.goldBright or C.line)
-        for _, x in ipairs({-1,1}) do for _, y in ipairs({-1,1}) do
-            for _, axis in ipairs({'H','V'}) do
-                local corner=box:GetChild('target'..axis..x..'_'..y)
-                corner:SetVisible(selected == true)
-                corner:SetAnchoredPosition(x*portrait/2,y*portrait/2)
-            end
-        end end
+        targetCorners(box,portrait,selected,source)
         box:GetChild("name").text = actor.name or "旅行者"
         box:GetChild("name"):SetAnchoredPosition(0,M.geometry(portrait,box.name=='hero').nameY)
         box:GetChild("name"):SetSizeDelta(width, L.nativeText.lineHeight)
@@ -164,13 +169,13 @@ function M.new(picture, tint, ink, statusKind)
         end
     end
 
-    local function statuses(box, actor, portrait, width)
+    local function statuses(box, actor, portrait, width,source)
         local si, entries, row = L.statusIcon, Combat.statusView(actor), box:GetChild("statusRow")
         local pitch = si.size + si.gap
         local perRow = si.perRow
         local slots = perRow * si.rows
         local layout = {entries = entries, pitch = pitch, perRow = perRow, slots = slots, shown = math.min(#entries, slots)}
-        local firstY=M.geometry(portrait,box.name=='hero').firstStatusY
+        local firstY=source and source.healthY-source.healthHeight/2-L.battleUnit.statusGap-si.size/2 or M.geometry(portrait,box.name=='hero').firstStatusY
         row:SetAnchoredPosition(0,firstY-(si.rows-1)*pitch/2)
         local lines=math.ceil(layout.shown/perRow)
         local target=row:GetChild("hit")
@@ -183,15 +188,16 @@ function M.new(picture, tint, ink, statusKind)
     end
 
     return function(box, actor, portrait, icon, width, selected, targetWidth, source)
-        portraitParts(box, actor, portrait, icon, width, selected, targetWidth)
+        source=source or NativeGeometry.get(actor)
+        portraitParts(box, actor, portrait, icon, width, selected, targetWidth,source)
         -- Widen the Block chip for native digits rather than shrinking its text.
         local blocked = actor.block > 0
         local chip = math.max(L.blockBadge.size, #number(actor.block) * Theme.font.body + L.blockBadge.padding * 2)
         local geometry=M.geometry(portrait,box.name=='hero')
-        local barWidth,barX,y=source and source.hitWidth or geometry.healthWidth,source and source.healthX or 0,source and source.healthY or geometry.healthY
+        local barWidth,barX,y=source and (source.healthWidth or source.hitWidth) or geometry.healthWidth,source and source.healthX or 0,source and source.healthY or geometry.healthY
         healthParts(box, actor, barWidth, barX, y, blocked, source)
         blockParts(box, actor, barWidth, barX, y, blocked, chip, source)
-        if not source then statuses(box, actor, portrait, width)end
+        if not source or source.native and box.name=='hero' then statuses(box, actor, portrait, width,source)end
         if source then box:GetChild("name"):SetVisible(false)end
     end
 end

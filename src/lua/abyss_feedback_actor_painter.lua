@@ -6,6 +6,7 @@ local Theme = require("abyss_theme")
 local ActorMotion = require("abyss_actor_motion")
 local SkillFeedback = require("abyss_skill_feedback")
 local M = {}
+local NativeGeometry=require('abyss_native_battle_geometry')
 local T,C,L,S = Theme.motion,Theme.color,Theme.layout,Theme.space
 local OVERSHOOT,FLASH = 1/3,0.85
 local function clamp(x) return x < 0 and 0 or x > 1 and 1 or x end
@@ -181,6 +182,12 @@ local function numberScale(sample)
     local scale = frozen and peak or 1 + (peak - 1) * (1 - easeOut(after / T.fast))
     return scale
 end
+local function contactWindow(ctx,id,box,impact,shield,effect,sample)
+    if NativeGeometry.enabled()then impact:SetVisible(false);shield:SetVisible(false);return 0 end
+    local window=paintImpact(ctx,id,impact,effect,sample)
+    paintShield(ctx,box,shield,sample)
+    return window
+end
 local function paintNumber(ctx,id,box,effect,sample,window)
     local age,style=sample.age,sample.style
     -- Number: pops on contact, holds through the hit-stop, settles, rises and fades.
@@ -292,13 +299,13 @@ function M.paint(ctx,id, dt, shakes)
             lost=hurts(effect.kind) and (effect.detail.amount or 0)>0,heavy=effect.style.weight=='heavy'}
         local impact,shield=box:GetChild('impact'),box:GetChild('shield')
         x,y,ink,flash=paintMotion(id,effect,sample,shakes,x,y,ink,flash)
-        local window=paintImpact(ctx,id,impact,effect,sample)
-        paintShield(ctx,box,shield,sample)
+        local window=contactWindow(ctx,id,box,impact,shield,effect,sample)
         paintNumber(ctx,id,box,effect,sample,window)
     end
     y,sx,sy,ink,flash,alpha=paintDying(ctx,id,box,dt,y,sx,sy,ink,flash,alpha)
     local escaping=ctx.state.escaping[id]
     if escaping then x,sx=Escape.pose(escaping,x,sx)end
+    if NativeGeometry.enabled()then return end
     local portrait = box:GetChild("portrait")
     portrait:SetAnchoredPosition(x, y)
     portrait:SetLocalScale(sx, sy, 1)

@@ -1,0 +1,28 @@
+{
+  "source": "knowledge/samples/gil/mh3id60oxiqw_信号地形.gil",
+  "sourceSha256": "d81e47fadd34ce94200311df838a730c5bbb28af34925bd7daf76b6981fe71f8",
+  "tutorial": "https://act.mihoyo.com/ys/ugc/tutorial/course/detail/mh3id60oxiqw",
+  "download": "https://act-webstatic.mihoyo.com/ugc-tutorial/course/cn/zh-cn/mh3id60oxiqw/95c43e23-4f6b-4a63-b978-aaa8f66c225c.gil",
+  "rights": "Official tutorial scenery and game assets remain subject to HoYoverse creator terms; MCP MIT does not relicense them. Do not separately redistribute the raw official sample.",
+  "preview": "Official signal tutorial video at 45 seconds; local .artifacts/arena-source/signal-45.jpg",
+  "sourceStaticCount": 93,
+  "profiles": {
+    "complete": {"offset": [0, 0, 0], "yaw": 0, "cutaway": false},
+    "combatCamera": {"offset": [4, 0, 6.251], "yaw": 180, "cutaway": true, "nearFacadeZ": -1}
+  },
+  "contactPlatform": {
+    "sourceGuid": 1077936130,
+    "assetId": 20001310,
+    "sourcePosition": [0, -4.99, 6.251],
+    "sourceRotation": [0, -90, 0],
+    "sourceScale": [2.5, 2, 2],
+    "catalogSizeMetres": [5, 2.5, 5],
+    "nativeCollision": true,
+    "transformedBoundsXZ": {"min": [-1, -6.25], "max": [9, 6.25]},
+    "standingHeightStatus": "unverified; catalogue full height does not determine model pivot",
+    "officialAuthoredSpawn": [0, 0, 3.434],
+    "requiredFeet": [[0, 0.4, 0], [3.2, 0.4, 0], [4.35, 0.4, 0.45], [5.5, 0.4, 0], [6.65, 0.4, 0.45], [7.8, 0.4, 0]],
+    "evidence": "Offline authored transform, catalog model dimensions and native collision flag; actual standing height still needs client confirmation"
+  },
+  "validation": {"officialImport": "not_run", "contactSurface": "not_run", "currentCameraCapture": "not_run", "phone": "not_run"}
+}

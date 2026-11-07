@@ -22,6 +22,23 @@ end
 -- Track the last native writer, including pooled handles reused by another map/view.
 -- Tokens have no control back-reference; weak keys do not retain retired handles.
 local roomSizes=setmetatable({},{__mode='k'})
+local roomColours=setmetatable({},{__mode='k'})
+local function roomColour(fx,control,ink)
+    fx.sizeOwner=fx.sizeOwner or {}
+    local alpha=math.floor(ink.a*fx.alpha+.5)
+    local painted=roomColours[control]
+    if painted and painted.owner==fx.sizeOwner and painted.factory==fx.colour
+        and painted.r==ink.r and painted.g==ink.g and painted.b==ink.b
+        and painted.a==alpha and control.alive~=false then return end
+    -- Revoke before either the colour factory or native property can re-enter.
+    local pending={};roomColours[control]=pending
+    local r,g,b,factory=ink.r,ink.g,ink.b,fx.colour
+    local ok,why=pcall(function()control.imageColor=factory(r,g,b,alpha)end)
+    local current=roomColours[control]==pending
+    roomColours[control]=nil
+    if not ok then error(why,0)end
+    if current then roomColours[control]={owner=fx.sizeOwner,factory=factory,r=r,g=g,b=b,a=alpha}end
+end
 local function roomSize(fx,control,size)
     fx.sizeOwner=fx.sizeOwner or {}
     local painted=roomSizes[control]
@@ -40,7 +57,7 @@ function M.paintRoom(fx)
     roomSize(fx,icon,iconSize)
     -- oscillateColor drives color.a for reachable rooms.
     local ink = fx.ink
-    if ink then icon.imageColor = fx.colour(ink.r, ink.g, ink.b, math.floor(ink.a * fx.alpha + .5)) end
+    if ink then roomColour(fx,icon,ink) end
     local ringSize = fx.size * Layout.sts.circlePerScale * (fx.scale * .95 + .2)
     roomSize(fx,ring,ringSize)
 end

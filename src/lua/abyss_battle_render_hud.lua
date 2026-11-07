@@ -5,6 +5,7 @@ local Run = require("abyss_run")
 local Theme = require("abyss_theme")
 local PotionView = require("abyss_battle_potion_view")
 local UnitView = require("abyss_battle_unit_view")
+local NativeGeometry=require('abyss_native_battle_geometry')
 local RelicNames = require("abyss_relic_names")
 local M = {}
 local C, L, S = Theme.color, Theme.layout, Theme.space
@@ -186,6 +187,13 @@ function M.install(owner, _ownership, host, dependencies)
         dependencies.tint(icon:GetChild("core"), charged and L.energy.elementColour or C.energyEmpty)
         dependencies.ink(dependencies.child("energy"), L.energy.numberColour)
     end
+    local function renderPlayerUnit(frame)
+        local hero=dependencies.child("hero")
+        local geometry=NativeGeometry.get(frame.player)
+        local lift=not geometry and UnitView.noticeLift(frame.player,L.player.portrait,L.player.position[2],true) or 0
+        hero:SetAnchoredPosition(geometry and geometry.x or L.player.position[1],geometry and geometry.y or L.player.position[2]+lift)
+        host.unit(hero,frame.player,geometry and geometry.portrait or L.player.portrait,Theme.icon.player,L.battleUnit.nameWidth,false,nil,geometry)
+    end
     local function renderPilesAndTurn(frame)
         local battle = frame.battle
         dependencies.label("draw", battle and tostring(#battle.draw) or "0")
@@ -197,10 +205,7 @@ function M.install(owner, _ownership, host, dependencies)
         end
         dependencies.label("statuses", frame.fighting and battle.phase ~= "player" and not owner.busy and "敌方回合" or "")
         if frame.fighting then
-            local hero=dependencies.child("hero")
-            local lift=UnitView.noticeLift(frame.player,L.player.portrait,L.player.position[2],true)
-            hero:SetAnchoredPosition(L.player.position[1],L.player.position[2]+lift)
-            host.unit(hero,frame.player,L.player.portrait,Theme.icon.player,L.battleUnit.nameWidth,false)
+            renderPlayerUnit(frame)
         end
     end
     local function renderResult(frame)

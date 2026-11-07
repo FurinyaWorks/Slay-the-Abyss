@@ -221,9 +221,10 @@ local function activeTargets(mode,characterOpen,stopped,character,preloadSelecti
         selectScene=choosing or warm,battleScene=mode=='battle',menuScene=mode=='menu' and not choosing}
 end
 -- cardTemplates: ready-card image/container template indices, used when only the cards flag is on.
-function M.new(stage,report,flags,cardTemplates)
+function M.new(stage,report,flags,cardTemplates,options)
     local selecting=type(flags)=='table' and flags.selectionAvatar==true
-    local fighting=type(flags)=='table' and flags.battlePortrait==true
+    local nativeBattle=type(options)=='table' and options.nativeBattle==true
+    local fighting=not nativeBattle and type(flags)=='table' and flags.battlePortrait==true
     local carding=type(flags)=='table' and flags.cards==true
     local landing=type(flags)=='table' and flags.menuBackground==true
     if not selecting and not fighting and not carding and not landing then return nil end
@@ -239,7 +240,7 @@ function M.new(stage,report,flags,cardTemplates)
         -- Bottom-most layout slot (first child): behind every hand/monster/HUD control.
         for _,entry in ipairs({{'selectScene','characterPanel',{'border','face'}},{'battleScene','battlePanel',{}},{'menuScene','menuPanel',{}}})do
             local panel=stage:GetChild(entry[2]);local host=panel and panel:GetChild('lowpolyScene')
-            if host then
+            if host and not (nativeBattle and entry[1]=='battleScene') then
                 local cover={};for _,name in ipairs(entry[3])do cover[#cover+1]=panel:GetChild(name)end
                 rows[#rows+1]={name=entry[1],adapter=controller(host,Asset.lowpolyLand,Asset.lowpolyLand.width,templates),fallback=cover,active=false}
             end

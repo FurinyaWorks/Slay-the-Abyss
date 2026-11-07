@@ -149,6 +149,8 @@ function M.new(stage, platform, present, complete)
     local function tint(box, c, alpha) box.imageColor = colour(c, alpha) end
     local function actor(id)
         if id == "player" then
+            local geometry=require('abyss_native_battle_geometry').get(self.shadow.player)
+            if geometry then return self.shadow.player,stage:GetChild("hero"),geometry.x,geometry.y end
             local lift=UnitView.noticeLift(self.shadow.player,L.player.portrait,L.player.position[2],true)
             return self.shadow.player,stage:GetChild("hero"),L.player.position[1],L.player.position[2]+lift
         end
@@ -200,7 +202,7 @@ function M.new(stage, platform, present, complete)
             pcall(function() local c = box:GetChild(part) c:SetLocalScale(1, 1, 1) if not part:find("^block") then c:SetAnchoredPosition(0, 0) end end)
         end
         tint(box:GetChild("portrait"), name == "hero" and C.buttonPressedText or C.text)
-        if name == "hero" and platform.portraits then platform.portraits:battlePose(0,0,1,1) end
+        if name == "hero" and platform.portraits and not require('abyss_native_battle_geometry').enabled() then platform.portraits:battlePose(0,0,1,1) end
     end
     function self.bindEnemySlot(slot,id)
         if self.slotOwners[slot]~=id then resetUnit('enemy'..slot) self.slotOwners[slot]=id end
