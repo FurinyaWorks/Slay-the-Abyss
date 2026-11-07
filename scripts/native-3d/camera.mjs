@@ -41,13 +41,17 @@ export function projectBody(feet,{width,height},camera=battleCamera){
   return {x:(left+right)/2,y:(bottom+top)/2,width:right-left,height:top-bottom,left,right,bottom,top};
 }
 const identifier=value=>{if(!/^[A-Za-z_$][\w$]*$/.test(value))throw Error('Invalid graph variable identifier');return value;};
+export function hudStatusSource(ids,player='player'){
+ identifier(player);
+ return ids.map(id=>`f.modifyUiControlStatusWithinTheInterfaceLayout(${player},${id}n,UIControlGroupStatus.Off);`).join('\n');
+}
 export function cameraStartupSource({cameraName,minimapIds,player='player'}={}){
   if(typeof cameraName!=='string'||!cameraName)throw Error('Camera template name required');
   if(!Array.isArray(minimapIds)||!minimapIds.length||minimapIds.some(id=>!Number.isSafeInteger(id)||id<=0))throw Error('Actual minimap control identities required');
   identifier(player);
   return `f.resetPlayerCameraToFollowEntity(${player});
 f.switchMainCameraTemplate([${player}],${JSON.stringify(cameraName)});
-${minimapIds.map(id=>`f.modifyUiControlStatusWithinTheInterfaceLayout(${player},${id}n,UIControlGroupStatus.Hidden);`).join('\n')}`;
+${hudStatusSource(minimapIds,player)}`;
 }
 export async function prepareBattleCamera({call,mapPath,writeViewpoint=setCameraViewpoint}={}){
   if(typeof call!=='function'||!mapPath)throw Error('Camera preparation requires call and mapPath');
@@ -70,7 +74,7 @@ export async function prepareBattleCamera({call,mapPath,writeViewpoint=setCamera
   const ui=await invoke('scene_list_interface');
   const minimaps=ui.layouts?.flatMap(layout=>(layout.controls??[]).filter(control=>control.name==='小地图'&&control.kind==='builtIn').map(control=>({...control,layoutId:layout.layoutId})))??[];
   if(!minimaps.length)throw Error('Actual native minimap control not found');
-  const hiddenNames=['小地图','造物生命值条','角色生命值条'];
+  const hiddenNames=['小地图','造物生命值条','角色生命值条','技能区','摇杆','队伍信息','挣扎按钮'];
   const hiddenGroups=ui.layouts.flatMap(layout=>(layout.controls??[]).filter(control=>hiddenNames.includes(control.name)&&control.kind==='builtIn'));
   for(const name of hiddenNames)if(!hiddenGroups.some(control=>control.name===name))throw Error('Actual native HUD group missing: '+name);
   const viewpoint=await writeViewpoint({mapPath,outputPath:join(dirname(mapPath),'battle-character-camera.gil'),name:actual.name,offset:battleViewpoint});
@@ -78,6 +82,7 @@ export async function prepareBattleCamera({call,mapPath,writeViewpoint=setCamera
     ||viewpoint.after?.offset?.length!==3||viewpoint.after.offset.some((n,i)=>n!==Math.fround(battleViewpoint[i])))throw Error('Character camera viewpoint readback differs');
   mapPath=viewpoint.mapPath;
   return {mapPath,camera:actual,viewpoint,followTarget:'player',minimaps,hiddenGroups,
+    hudSource:hudStatusSource(hiddenGroups.map(item=>item.id),'hudPlayer'),
     startupSource:cameraStartupSource({cameraName:actual.name,minimapIds:hiddenGroups.map(item=>item.id)}),
     requiredEnumImport:'UIControlGroupStatus',projection:{...battleCamera,position:cameraPosition()},
     evidence:{method:'fixed_character_camera_with_character_space_offset_and_native_projection',cameraGuide:'mhfua005zpeg',nodeGuide:'mhw66orrrfkm',

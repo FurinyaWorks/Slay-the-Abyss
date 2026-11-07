@@ -13,16 +13,16 @@ test('playable origin rejects the editor template parking altitude reported by o
  assert.throws(()=>validateLabAnchor([0,2000.4,0]),/parking coordinates/);
 });
 
-function harness(maxActors,projected=false){
+function harness(maxActors,projected=false,hudSource=''){
   const graphs=Object.fromEntries(['server','unit','decision','attack','hit','idle','skill_attack','skill_hit'].map((name,index)=>[name,{graphId:index+1,name:'_GSTS_'+name}]));
   const prefabs=nativeModels.map((p,index)=>({...p,prefabId:1082130433+index}));
-  const handlers={},ack=[],positions=[],heroFeet=[0,2.4,0],timers=[],units=[],variables=new Map([[100,{LAB_lastseq:0n}]]);let next=1000;
+  const handlers={},ack=[],positions=[],hudWrites=[],heroFeet=[0,2.4,0],timers=[],units=[],variables=new Map([[100,{LAB_lastseq:0n}]]);let next=1000;
   const owner=()=>({onSignal(name,callback){handlers[name]=callback;return this},on(name,callback){handlers[name]=callback;return this}});
-  const sources=nativeGraphSources({graphs,prefabs,statusId:200,anchor:labAnchor,maxActors,
+  const sources=nativeGraphSources({graphs,prefabs,statusId:200,anchor:labAnchor,maxActors,hudSource,
     ...(projected?{positions:Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)),cameraFollowOffset:battleViewpoint}:{})});
   for(const source of sources.slice(0,2)){
     const code=source.code.replace(/^import .*$/gm,'').replace(/ as (const|bigint\[\]|string\[\]|number\[\])/g,'');
-    vm.runInNewContext(code,{g:{server:owner},defineSignal:name=>name});
+    vm.runInNewContext(code,{g:{server:owner},defineSignal:name=>name,UIControlGroupStatus:{Off:'off'}});
   }
   const f={getSelfEntity:()=>100,getCustomVariable:(id,key)=>({asType:()=>variables.get(id)?.[key]??0n}),
     setCustomVariable:(id,key,value)=>{if(!variables.has(id))variables.set(id,{});variables.get(id)[key]=value},
@@ -30,6 +30,7 @@ function harness(maxActors,projected=false){
     sendSignal:(signal,_player,...values)=>{if(signal==='client:LAB3D_POSITION')positions.push(values);else ack.push({message:values[0],seq:values[1]});},
     playTimedEffects:(asset,entity)=>{assert.equal(asset,7);assert.ok(entity>0);},
     assemblyList:values=>values,
+    modifyUiControlStatusWithinTheInterfaceLayout:(...args)=>hudWrites.push(args),
     getEntitiesWithSpecifiedPrefabOnTheField:prefab=>units.filter(p=>p.prefab===Number(prefab)).map(p=>p.id),
     getEntityLocationAndRotation:id=>({location:id===901?heroFeet:units.find(u=>u.id===id).position}),
     split3dVector:v=>({xComponent:v[0],yComponent:v[1],zComponent:v[2]}),
@@ -39,7 +40,7 @@ function harness(maxActors,projected=false){
     queryEntityFaction:()=>1,modifyEntityFaction(){},addUnitStatus(){},createDictionary:()=>({}),
     startTimer:(id,name,_loop,intervals)=>timers.push({id,name,intervals}),stopTimer(){}};
   let seq=0n;
-  return {prefabs,sources,ack,positions,heroFeet,timers,units,variables,f,handlers,
+  return {prefabs,sources,ack,positions,hudWrites,heroFeet,timers,units,variables,f,handlers,
     command:(command,model=1,actor=1,sequence=++seq)=>{handlers.LAB3D_COMMAND({params:{command,model:BigInt(model),actor:BigInt(actor),seq:sequence}},f);return ack.at(-1)},
     ready:unit=>handlers.whenTimerIsTriggered({eventSourceEntity:unit.id,timerName:'LAB_READY'},f),
     finish:(unit,action)=>handlers.whenSkillNodeIsCalled({callerEntity:unit.id,parameter1:'LAB_'+action},f)};
@@ -59,6 +60,12 @@ test('three enemy slots coexist and hide all removes every native actor',()=>{
  assert.equal(h.units.length,3);assert.equal(new Set(h.units.map(u=>u.position[0])).size,3);
  assert.equal(new Set(h.units.map(u=>u.position[2])).size,1);
  assert.equal(h.command('hide',1,0).message,'hidden');assert.equal(h.units.length,0);
+});
+test('native HUD off state is reasserted once the creature actually becomes ready',()=>{
+ const h=harness(5,true,'f.modifyUiControlStatusWithinTheInterfaceLayout(hudPlayer,71n,UIControlGroupStatus.Off);');
+ h.command('show',1,1);assert.equal(h.hudWrites.length,0);
+ h.ready(h.units[0]);assert.deepEqual(h.hudWrites,[[900,71n,'off']]);
+ assert.equal(h.positions.filter(v=>v[0]===1n).length,1,'HUD update preserves actual entity projection receipt');
 });
 test('five enemy slots stay distinct, reject slot six, and clean up together',()=>{
  const h=harness(5);

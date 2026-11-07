@@ -11,7 +11,15 @@ test('presentation mappings have unique assets, declared planning envelopes and 
  assert.equal(new Set(productionModels.map(m=>m.model)).size,9);
  assert.equal(new Set(productionModels.map(m=>m.asset)).size,9);
  const ids=new Set(productionModels.map(m=>m.model));
- for(const m of productionModels){assert.ok(m.scale>0&&m.scale<=1.1);assert.ok(m.body.height>=1.7&&m.body.height<=2.2);assert.ok(m.body.width>0);assert.match(m.bodyEvidence,/not measured/);}
+ for(const m of productionModels){
+  assert.ok(m.scale>0&&m.scale<=1.1);
+  if(m.model===4||m.model===5){
+   // Recorded native idle silhouettes: water79px, geo102px. No mesh scaling change.
+   assert.deepEqual(m.body,{width:1,height:m.model===4?.75:.9});
+   assert.equal(m.scale,m.model===4?.9:.85);
+  }else assert.ok(m.body.height>=1.7&&m.body.height<=2.2);
+  assert.ok(m.body.width>0);assert.match(m.bodyEvidence,/not measured/);
+ }
  for(const id of Object.keys(enemyModels))assert.ok(ids.has(modelForEnemy(id)));
  for(const id of Object.keys(silhouetteFallbacks))assert.ok(Object.hasOwn(enemyModels,id));
  assert.equal(modelForEnemy('unknown_future_enemy'),1);

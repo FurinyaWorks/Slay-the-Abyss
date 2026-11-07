@@ -115,7 +115,7 @@ export function nativeSkillRequests(model,graphs){
   });
 }
 
-export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statusId,floorId,anchor,maxActors=3,cameraSource='',positions,playerSkillId,cameraFollowOffset}){
+export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statusId,floorId,anchor,maxActors=3,cameraSource='',hudSource='',positions,playerSkillId,cameraFollowOffset}){
   validateActorCount(maxActors);
   const spacing=maxActors>1?6/(maxActors-1):0;
   const slotPositions=Array.from({length:maxActors-1},(_,i)=>`if(slot===${i+2}n)slotX=${anchor[0]+3.5+(i+1)*spacing};`).join('else ');
@@ -187,6 +187,7 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
 .on('whenTimerIsTriggered',(evt,f)=>{
  const unit=evt.eventSourceEntity,seq=f.getCustomVariable(unit,'LAB_seq').asType('int');
  if(evt.timerName==='LAB_READY'){f.setCustomVariable(unit,'LAB_busy',0n,true);
+ ${hudSource?`for(const hudPlayer of f.getListOfPlayerEntitiesOnTheField()){${hudSource}}`:''}
  ${positions?reportPosition('unit',"f.getCustomVariable(unit,'LAB_actor').asType('int')",'seq'):''}
  ${positions?`if(f.getCustomVariable(unit,'LAB_actor').asType('int')===1n){for(const player of f.getListOfPlayerEntitiesOnTheField())for(const hero of f.getAllCharacterEntitiesOfSpecifiedPlayer(player)){${cameraFollowOffset?reportPosition('hero','-1n','seq',cameraFollowOffset):''}${reportPosition('hero','0n','seq')}}}`:''}
  ${ack("'ready'","seq")}}
@@ -279,7 +280,7 @@ export async function prepareNativeScene({call,mapPath,anchor=labAnchor,outputPa
     await invoke('scene_set_creature_logic',{prefab:p.prefabId,decisionGraphId:graphs.decision.graphId,skills,sharedCooldownSeconds:0,logic:{sightDistance:0.01,chainRadius:0.01,territoryRadius:20}});
   }
   const sources=nativeGraphSources({graphs,prefabs:seeded.prefabs,statusId:safe.statusId,playerStatusId:playerSafe.statusId,floorId:floor?.prefabId,anchor,maxActors,
-   cameraSource:camera?.startupSource,cameraFollowOffset:productionCamera?battleWorldFocusOffset:undefined,positions:productionCamera?Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)):undefined,playerSkillId:playerSkill?.skillId});
+   cameraSource:camera?.startupSource,hudSource:camera?.hudSource,cameraFollowOffset:productionCamera?battleWorldFocusOffset:undefined,positions:productionCamera?Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)):undefined,playerSkillId:playerSkill?.skillId});
   const compiled=await invoke('write_graphs',{graphs:sources});
   if(compiled.failed||compiled.errors?.length||compiled.written?.length!==sources.length)throw Error(`Native graph compilation incomplete: ${JSON.stringify(compiled)}`);
   assertCompiledBudget(compiled.written);

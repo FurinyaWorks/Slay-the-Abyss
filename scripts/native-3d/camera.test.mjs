@@ -31,10 +31,10 @@ test('fixed character camera resets unsupported object follow before explicit ac
   const f={resetPlayerCameraToFollowEntity:player=>calls.push(['reset',player]),
     switchMainCameraTemplate:(players,name)=>calls.push(['select',Array.from(players),name]),
     modifyUiControlStatusWithinTheInterfaceLayout:(...args)=>hidden.push(args)};
-  for(let i=0;i<2;i++)vm.runInNewContext(code,{f,player:20,UIControlGroupStatus:{Hidden:'hidden'}});
+  for(let i=0;i<2;i++)vm.runInNewContext(code,{f,player:20,UIControlGroupStatus:{Off:'off'}});
   assert.deepEqual(calls,[['reset',20],['select',[20],'battle"template'],['reset',20],['select',[20],'battle"template']]);
   assert.doesNotMatch(code,/\.createPrefab|\.setPlayerCameraToFollowEntity/);
-  assert.deepEqual(hidden,[[20,77n,'hidden'],[20,77n,'hidden']]);
+  assert.deepEqual(hidden,[[20,77n,'off'],[20,77n,'off']]);
   assert.throws(()=>cameraStartupSource({cameraName:'x',minimapIds:[]}),/identities/);
 });
 function harness(options={}){
@@ -44,7 +44,7 @@ function harness(options={}){
     calls.push({name,args});
     if(name==='scene_list_cameras')return {cameras:[changed&&!options.badReadback?{...camera,distance:10,fieldOfView:42,fixedView:{yaw:battleTemplateYaw,pitch:12,ignoreCollision:true}}:camera]};
     if(name==='scene_set_camera'){changed=true;return {mapPath:'camera-copy.gil'};}
-    if(name==='scene_list_interface')return {layouts:[{layoutId:9,controls:options.noMinimap?[]:[{id:71,name:'小地图',kind:'builtIn'},{id:72,name:'造物生命值条',kind:'builtIn'},{id:73,name:'角色生命值条',kind:'builtIn'}]}]};
+    if(name==='scene_list_interface')return {layouts:[{layoutId:9,controls:options.noMinimap?[]:['小地图','造物生命值条','角色生命值条','技能区','摇杆','队伍信息','挣扎按钮'].map((name,i)=>({id:71+i,name,kind:'builtIn'}))}]};
     throw Error('unexpected '+name);
   };
   const writeViewpoint=async args=>{assert.equal(args.mapPath,'camera-copy.gil');assert.deepEqual(args.offset,battleViewpoint);return {mapPath:'viewpoint-copy.gil',after:{mode:2,followRotation:options.badViewpoint===true,offset:battleViewpoint.map(Math.fround)}};};
@@ -58,9 +58,11 @@ test('preparation verifies offset readback without creating an unsupported objec
   assert.deepEqual(battleViewpoint,[0,-.45,3]);
   assert.equal(result.minimaps[0].id,71);assert.equal(result.evidence.officialImport,'not_run');
   assert.ok(!h.calls.some(item=>item.name==='scene_add_prefab'));
-  assert.match(result.startupSource,/71n,UIControlGroupStatus.Hidden/);
-  assert.match(result.startupSource,/72n,UIControlGroupStatus.Hidden/);
-  assert.match(result.startupSource,/73n,UIControlGroupStatus.Hidden/);
+  assert.match(result.startupSource,/71n,UIControlGroupStatus.Off/);
+  assert.match(result.startupSource,/72n,UIControlGroupStatus.Off/);
+  assert.match(result.startupSource,/73n,UIControlGroupStatus.Off/);
+  assert.match(result.hudSource,/hudPlayer,77n,UIControlGroupStatus.Off/);
+  assert.doesNotMatch(result.hudSource,/resetPlayerCamera|switchMainCamera/);
 });
 test('missing minimap and stale camera readback fail without declaring configuration success',async()=>{
   for(const [options,pattern]of [[{badReadback:true},/readback differs/],[{noMinimap:true},/minimap control/]]){

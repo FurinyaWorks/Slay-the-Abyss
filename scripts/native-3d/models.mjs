@@ -12,8 +12,9 @@ export const productionModels=Object.freeze([
   model({model:1,name:'遗迹守卫',asset:30005001,idle:5001001,attack:5001002,attackSeconds:3.58,hit:5001011,hitSeconds:2.16,scale:.5,role:'heavy-construct'},1.35,2.2),
   model({model:2,name:'大型风史莱姆',asset:30005003,idle:5003001,attack:5003002,attackSeconds:2.28,hit:null,scale:.85,role:'flying-creature'},1.25,1.7),
   model({model:3,name:'打手丘丘人',asset:30007001,idle:7001007,attack:7001012,attackSeconds:2.15,hit:null,scale:1.1,role:'small-melee'},1.05,1.85),
-  model({model:4,name:'大型水史莱姆',asset:30005006,idle:5006001,attack:5006002,attackSeconds:2.76,hit:null,scale:.9,role:'fluid-creature'},1.3,1.7),
-  model({model:5,name:'大型岩史莱姆',asset:30005008,idle:5008001,attack:5008002,attackSeconds:2.76,hit:null,scale:.85,role:'armoured-creature'},1.3,1.7),
+  // Idle envelopes calibrated against native run3acddd0c, 1600x900. Mesh/scale unchanged.
+  model({model:4,name:'大型水史莱姆',asset:30005006,idle:5006001,attack:5006002,attackSeconds:2.76,hit:null,scale:.9,role:'fluid-creature'},1,.75),
+  model({model:5,name:'大型岩史莱姆',asset:30005008,idle:5008001,attack:5008002,attackSeconds:2.76,hit:null,scale:.85,role:'armoured-creature'},1,.9),
   model({model:6,name:'盗宝团·斥候',asset:30006009,idle:6009002,attack:6009004,attackSeconds:2.33,hit:null,scale:1,role:'light-humanoid'},.95,1.8),
   model({model:7,name:'镀金旅团·沙中净水',asset:30006012,idle:6012002,attack:6012003,attackSeconds:3.66,hit:null,scale:1,role:'caster'},1.05,1.85),
   model({model:8,name:'火斧丘丘暴徒',asset:30005002,idle:5002001,attack:5002003,attackSeconds:4.28,hit:null,scale:.65,role:'heavy-melee',motionRisk:'Known clip includes a near-three-metre lunge before scaling; actual lane recovery must be verified.'},1.4,2.1),
