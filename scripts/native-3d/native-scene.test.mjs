@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
+import {battleViewpoint,enemyFeet} from './camera.mjs';
 import {mkdtempSync,readFileSync,existsSync} from 'node:fs';
 import {join,resolve} from 'node:path';
 import {tmpdir} from 'node:os';
@@ -12,12 +13,13 @@ test('playable origin rejects the editor template parking altitude reported by o
  assert.throws(()=>validateLabAnchor([0,2000.4,0]),/parking coordinates/);
 });
 
-function harness(maxActors){
+function harness(maxActors,projected=false){
   const graphs=Object.fromEntries(['server','unit','decision','attack','hit','idle','skill_attack','skill_hit'].map((name,index)=>[name,{graphId:index+1,name:'_GSTS_'+name}]));
   const prefabs=nativeModels.map((p,index)=>({...p,prefabId:1082130433+index}));
-  const handlers={},ack=[],timers=[],units=[],variables=new Map([[100,{LAB_lastseq:0n}]]);let next=1000;
+  const handlers={},ack=[],positions=[],heroFeet=[0,2.4,0],timers=[],units=[],variables=new Map([[100,{LAB_lastseq:0n}]]);let next=1000;
   const owner=()=>({onSignal(name,callback){handlers[name]=callback;return this},on(name,callback){handlers[name]=callback;return this}});
-  const sources=nativeGraphSources({graphs,prefabs,statusId:200,anchor:labAnchor,maxActors});
+  const sources=nativeGraphSources({graphs,prefabs,statusId:200,anchor:labAnchor,maxActors,
+    ...(projected?{positions:Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)),cameraFollowOffset:battleViewpoint}:{})});
   for(const source of sources.slice(0,2)){
     const code=source.code.replace(/^import .*$/gm,'').replace(/ as (const|bigint\[\]|string\[\]|number\[\])/g,'');
     vm.runInNewContext(code,{g:{server:owner},defineSignal:name=>name});
@@ -25,21 +27,32 @@ function harness(maxActors){
   const f={getSelfEntity:()=>100,getCustomVariable:(id,key)=>({asType:()=>variables.get(id)?.[key]??0n}),
     setCustomVariable:(id,key,value)=>{if(!variables.has(id))variables.set(id,{});variables.get(id)[key]=value},
     getListOfPlayerEntitiesOnTheField:()=>[900],getAllCharacterEntitiesOfSpecifiedPlayer:()=>[901],
-    sendSignal:(_signal,_player,message,seq)=>ack.push({message,seq}),
+    sendSignal:(signal,_player,...values)=>{if(signal==='client:LAB3D_POSITION')positions.push(values);else ack.push({message:values[0],seq:values[1]});},
     playTimedEffects:(asset,entity)=>{assert.equal(asset,7);assert.ok(entity>0);},
     assemblyList:values=>values,
     getEntitiesWithSpecifiedPrefabOnTheField:prefab=>units.filter(p=>p.prefab===Number(prefab)).map(p=>p.id),
+    getEntityLocationAndRotation:id=>({location:id===901?heroFeet:units.find(u=>u.id===id).position}),
+    split3dVector:v=>({xComponent:v[0],yComponent:v[1],zComponent:v[2]}),
     create3dVector:(x,y,z)=>[x,y,z],createPrefab:(prefab,position)=>{const id=next++;units.push({id,prefab,position});variables.set(id,{});return id},
     removeEntity:id=>{units.splice(units.findIndex(u=>u.id===id),1)},
     destroyEntity:id=>{units.splice(units.findIndex(u=>u.id===id),1)},
     queryEntityFaction:()=>1,modifyEntityFaction(){},addUnitStatus(){},createDictionary:()=>({}),
     startTimer:(id,name,_loop,intervals)=>timers.push({id,name,intervals}),stopTimer(){}};
   let seq=0n;
-  return {prefabs,sources,ack,timers,units,variables,f,handlers,
+  return {prefabs,sources,ack,positions,heroFeet,timers,units,variables,f,handlers,
     command:(command,model=1,actor=1,sequence=++seq)=>{handlers.LAB3D_COMMAND({params:{command,model:BigInt(model),actor:BigInt(actor),seq:sequence}},f);return ack.at(-1)},
     ready:unit=>handlers.whenTimerIsTriggered({eventSourceEntity:unit.id,timerName:'LAB_READY'},f),
     finish:(unit,action)=>handlers.whenSkillNodeIsCalled({callerEntity:unit.id,parameter1:'LAB_'+action},f)};
 }
+
+test('character-camera focus receipts use actual grounded hero plus world viewpoint',()=>{
+ const h=harness(5,true);h.command('show',1,1);h.ready(h.units[0]);
+ const focus=h.positions.find(v=>v[0]===-1n),hero=h.positions.find(v=>v[0]===0n);
+ assert.deepEqual(focus.slice(2),h.heroFeet.map((v,i)=>v+battleViewpoint[i]));
+ assert.deepEqual(hero.slice(2),h.heroFeet);
+ h.heroFeet[0]=1;h.heroFeet[1]=3;h.ready(h.units[0]);
+ assert.deepEqual(h.positions.filter(v=>v[0]===-1n).at(-1).slice(2),h.heroFeet.map((v,i)=>v+battleViewpoint[i]));
+});
 
 test('three enemy slots coexist and hide all removes every native actor',()=>{
  const h=harness();for(let slot=1;slot<=3;slot++){assert.equal(h.command('show',slot,slot).message,'created:initializing_4.5s');h.ready(h.units.at(-1));}

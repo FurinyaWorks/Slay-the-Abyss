@@ -2,7 +2,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {dirname,join,resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
-import {prepareBattleCamera,enemyFeet} from './camera.mjs';
+import {prepareBattleCamera,enemyFeet,battleViewpoint} from './camera.mjs';
 import {assertGraphBudget,assertCompiledBudget} from './graph-budget.mjs';
 
 const toolRoot=process.env.MILIASTRA_MCP_ROOT||'D:/MiliastraTools/genshin-miliastra-mcp';
@@ -95,8 +95,8 @@ const head="/// <reference types=\"genshin-ts\" />\nimport {g,defineSignal} from
 const clientHead=head+"import {TargetEntity} from 'genshin-ts/definitions/client_enums'\n";
 const signals=`const COMMAND=defineSignal('LAB3D_COMMAND',[['command','str'],['model','int'],['actor','int'],['seq','int']] as const)\nconst ACK=defineSignal('client:LAB3D_ACK',[['player','entity'],['message','str'],['seq','int']] as const)\n`;
 const positionSignal="const POSITION=defineSignal('client:LAB3D_POSITION',[['player','entity'],['actor','int'],['seq','int'],['x','float'],['y','float'],['z','float']] as const)\n";
-const reportPosition=(target,actor,seq)=>`const actualPosition=f.split3dVector(f.getEntityLocationAndRotation(${target}).location);
-for(const positionPlayer of f.getListOfPlayerEntitiesOnTheField())f.sendSignal(POSITION,positionPlayer,${actor},${seq},actualPosition.xComponent,actualPosition.yComponent,actualPosition.zComponent);`;
+const reportPosition=(target,actor,seq,offset=[0,0,0])=>`{const actualPosition=f.split3dVector(f.getEntityLocationAndRotation(${target}).location);
+for(const positionPlayer of f.getListOfPlayerEntitiesOnTheField())f.sendSignal(POSITION,positionPlayer,${actor},${seq},actualPosition.xComponent+${offset[0]},actualPosition.yComponent+${offset[1]},actualPosition.zComponent+${offset[2]});}`;
 const ack=(message,seq)=>`for(const player of f.getListOfPlayerEntitiesOnTheField())f.sendSignal(ACK,player,${message},${seq});`;
 
 function validateActorCount(maxActors){
@@ -112,7 +112,7 @@ export function nativeSkillRequests(model,graphs){
   });
 }
 
-export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statusId,floorId,anchor,maxActors=3,cameraSource='',positions,playerSkillId,cameraAnchorPrefabId}){
+export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statusId,floorId,anchor,maxActors=3,cameraSource='',positions,playerSkillId,cameraFollowOffset}){
   validateActorCount(maxActors);
   const spacing=maxActors>1?6/(maxActors-1):0;
   const slotPositions=Array.from({length:maxActors-1},(_,i)=>`if(slot===${i+2}n)slotX=${anchor[0]+3.5+(i+1)*spacing};`).join('else ');
@@ -184,9 +184,8 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
 .on('whenTimerIsTriggered',(evt,f)=>{
  const unit=evt.eventSourceEntity,seq=f.getCustomVariable(unit,'LAB_seq').asType('int');
  if(evt.timerName==='LAB_READY'){f.setCustomVariable(unit,'LAB_busy',0n,true);
- ${cameraAnchorPrefabId?`for(const cameraEntity of f.getEntitiesWithSpecifiedPrefabOnTheField(${cameraAnchorPrefabId})){${reportPosition('cameraEntity','-1n','seq')}}`:''}
  ${positions?reportPosition('unit',"f.getCustomVariable(unit,'LAB_actor').asType('int')",'seq'):''}
- ${positions?`if(f.getCustomVariable(unit,'LAB_actor').asType('int')===1n){for(const player of f.getListOfPlayerEntitiesOnTheField())for(const hero of f.getAllCharacterEntitiesOfSpecifiedPlayer(player)){${reportPosition('hero','0n','seq')}}}`:''}
+ ${positions?`if(f.getCustomVariable(unit,'LAB_actor').asType('int')===1n){for(const player of f.getListOfPlayerEntitiesOnTheField())for(const hero of f.getAllCharacterEntitiesOfSpecifiedPlayer(player)){${cameraFollowOffset?reportPosition('hero','-1n','seq',cameraFollowOffset):''}${reportPosition('hero','0n','seq')}}}`:''}
  ${ack("'ready'","seq")}}
  if(evt.timerName==='LAB_TIMEOUT'&&f.getCustomVariable(unit,'LAB_busy').asType('int')===1n){f.setCustomVariable(unit,'LAB_command',0n,true);f.setCustomVariable(unit,'LAB_busy',0n,true);${ack("'error:animation_timeout'","seq")}}
 })
@@ -218,6 +217,7 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
  ${ack("'completed:attack'","seq")}})
 .on('whenTimerIsTriggered',(evt,f)=>{if(evt.timerName!=='LAB_PLAYER_POSITION')return;
  const unit=evt.eventSourceEntity,seq=f.getCustomVariable(unit,'LAB_player_seq').asType('int');
+ ${cameraFollowOffset?reportPosition('unit','-1n','seq',cameraFollowOffset):''}
  ${reportPosition('unit','0n','seq')}
 })`});
    records.push({...graphs.skill_player,code:clientHead+`g.characterSkill({id:${graphs.skill_player.graphId},name:'${graphs.skill_player.name}',prefix:false}).on('start',(_evt,f)=>{f.notifyServerNodeGraph('LAB_player_attack','','');})`});
@@ -276,7 +276,7 @@ export async function prepareNativeScene({call,mapPath,anchor=labAnchor,outputPa
     await invoke('scene_set_creature_logic',{prefab:p.prefabId,decisionGraphId:graphs.decision.graphId,skills,sharedCooldownSeconds:0,logic:{sightDistance:0.01,chainRadius:0.01,territoryRadius:20}});
   }
   const sources=nativeGraphSources({graphs,prefabs:seeded.prefabs,statusId:safe.statusId,playerStatusId:playerSafe.statusId,floorId:floor?.prefabId,anchor,maxActors,
-   cameraSource:camera?.startupSource,cameraAnchorPrefabId:camera?.anchorPrefabId,positions:productionCamera?Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)):undefined,playerSkillId:playerSkill?.skillId});
+   cameraSource:camera?.startupSource,cameraFollowOffset:productionCamera?battleViewpoint:undefined,positions:productionCamera?Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)):undefined,playerSkillId:playerSkill?.skillId});
   const compiled=await invoke('write_graphs',{graphs:sources});
   if(compiled.failed||compiled.errors?.length||compiled.written?.length!==sources.length)throw Error(`Native graph compilation incomplete: ${JSON.stringify(compiled)}`);
   assertCompiledBudget(compiled.written);

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
-import {planningGroundY,battleCamera,cameraPosition,projectWorld,projectBody,enemyFeet,prepareBattleCamera,cameraStartupSource} from './camera.mjs';
+import {planningGroundY,battleCamera,battleViewpoint,cameraPosition,projectWorld,projectBody,enemyFeet,prepareBattleCamera,cameraStartupSource} from './camera.mjs';
 
 test('declared 1.7m hero and five staggered enemies remain readable above hand and below header',()=>{
   const player=projectBody(battleCamera.playerFeet,{width:.8,height:1.7});
@@ -25,18 +25,17 @@ test('projector uses vertical FOV and yaw/pitch basis with centred Y-up UI coord
   assert.throws(()=>projectWorld([NaN,0,0]),/finite/);
   assert.throws(()=>projectBody([0,0,0],{width:0,height:2}),/dimensions/);
 });
-test('public follow/UI node snippet reuses hidden empty anchor and targets read-back control IDs',()=>{
-  const code=cameraStartupSource({anchorPrefabId:123,cameraName:'battle"template',minimapIds:[77]});
-  const anchors=[],hidden=[],follow=[];let created=0;
-  const f={getEntitiesWithSpecifiedPrefabOnTheField:()=>anchors,
-    getAllCharacterEntitiesOfSpecifiedPlayer:()=>[40],getEntityLocationAndRotation:()=>({location:[0,battleCamera.playerFeet[1],0]}),
-    split3dVector:v=>({yComponent:v[1]}),create3dVector:(...values)=>values,
-    createPrefab:(id,at)=>{assert.equal(id,123);assert.deepEqual(Array.from(at),Array.from(battleCamera.focus));created++;anchors.push(55);return 55;},
-    setPlayerCameraToFollowEntity:(...args)=>follow.push(args),modifyUiControlStatusWithinTheInterfaceLayout:(...args)=>hidden.push(args)};
-  for(let i=0;i<2;i++)vm.runInNewContext(code.replaceAll(' as bigint[]',''),{f,stage:10,player:20,UIControlGroupStatus:{Hidden:'hidden'}});
-  assert.equal(created,1);assert.deepEqual(follow,[[20,55,'battle"template'],[20,55,'battle"template']]);
+test('fixed character camera resets unsupported object follow before explicit activation',()=>{
+  const code=cameraStartupSource({cameraName:'battle"template',minimapIds:[77]});
+  const hidden=[],calls=[];
+  const f={resetPlayerCameraToFollowEntity:player=>calls.push(['reset',player]),
+    switchMainCameraTemplate:(players,name)=>calls.push(['select',Array.from(players),name]),
+    modifyUiControlStatusWithinTheInterfaceLayout:(...args)=>hidden.push(args)};
+  for(let i=0;i<2;i++)vm.runInNewContext(code,{f,player:20,UIControlGroupStatus:{Hidden:'hidden'}});
+  assert.deepEqual(calls,[['reset',20],['select',[20],'battle"template'],['reset',20],['select',[20],'battle"template']]);
+  assert.doesNotMatch(code,/\.createPrefab|\.setPlayerCameraToFollowEntity/);
   assert.deepEqual(hidden,[[20,77n,'hidden'],[20,77n,'hidden']]);
-  assert.throws(()=>cameraStartupSource({anchorPrefabId:1,cameraName:'x',minimapIds:[]}),/identities/);
+  assert.throws(()=>cameraStartupSource({cameraName:'x',minimapIds:[]}),/identities/);
 });
 function harness(options={}){
   let changed=false;const calls=[];
@@ -46,22 +45,16 @@ function harness(options={}){
     if(name==='scene_list_cameras')return {cameras:[changed&&!options.badReadback?{...camera,distance:10,fieldOfView:42,fixedView:{yaw:0,pitch:12,ignoreCollision:true}}:camera]};
     if(name==='scene_set_camera'){changed=true;return {mapPath:'camera-copy.gil'};}
     if(name==='scene_list_interface')return {layouts:[{layoutId:9,controls:options.noMinimap?[]:[{id:71,name:'小地图',kind:'builtIn'},{id:72,name:'造物生命值条',kind:'builtIn'},{id:73,name:'角色生命值条',kind:'builtIn'}]}]};
-    if(name==='scene_add_prefab')return {mapPath:'anchor-copy.gil',prefabId:99};
-    if(name==='scene_add_components'){assert.equal(args.prefab,99);assert.equal(args.solid,false);return {mapPath:'anchor-nonsolid-copy.gil'};}
-    if(name==='scene_list_prefabs')return {prefabs:[{prefabId:99,assetId:10005018}]};
     throw Error('unexpected '+name);
   };
-  const verifyAnchor=async(path,id)=>{assert.equal(path,'anchor-nonsolid-copy.gil');assert.equal(id,99);return {solid:options.badCollision===true,componentKind:5,contentBytes:0};};
-  return {calls,call,verifyAnchor};
+  const writeViewpoint=async args=>{assert.equal(args.mapPath,'camera-copy.gil');assert.deepEqual(args.offset,battleViewpoint);return {mapPath:'viewpoint-copy.gil',after:{mode:2,followRotation:options.badViewpoint===true,offset:battleViewpoint.map(Math.fround)}};};
+  return {calls,call,writeViewpoint};
 }
-test('preparation uses returned candidate copies and verifies public camera/anchor readbacks',async()=>{
+test('preparation verifies offset readback without creating an unsupported object anchor',async()=>{
   const h=harness(),result=await prepareBattleCamera({...h,mapPath:'input.gil'});
-  assert.equal(result.mapPath,'anchor-nonsolid-copy.gil');assert.equal(result.anchorPrefabId,99);
-  assert.equal(result.anchorCollision.solid,false);
+  assert.equal(result.mapPath,'viewpoint-copy.gil');assert.equal(result.followTarget,'player');
   assert.equal(result.minimaps[0].id,71);assert.equal(result.evidence.officialImport,'not_run');
-  assert.equal(h.calls.find(item=>item.name==='scene_add_prefab').args.mapPath,'camera-copy.gil');
-  assert.equal(h.calls.find(item=>item.name==='scene_add_components').args.mapPath,'anchor-copy.gil');
-  assert.equal(h.calls.at(-1).args.mapPath,'anchor-nonsolid-copy.gil');
+  assert.ok(!h.calls.some(item=>item.name==='scene_add_prefab'));
   assert.match(result.startupSource,/71n,UIControlGroupStatus.Hidden/);
   assert.match(result.startupSource,/72n,UIControlGroupStatus.Hidden/);
   assert.match(result.startupSource,/73n,UIControlGroupStatus.Hidden/);
@@ -72,6 +65,6 @@ test('missing minimap and stale camera readback fail without declaring configura
     assert.ok(!h.calls.some(item=>item.name==='scene_add_prefab'));
   }
 });
-test('rejected collision readback cannot return a configured battle camera',async()=>{
-  const h=harness({badCollision:true});await assert.rejects(prepareBattleCamera({...h,mapPath:'input.gil'}),/collision readback/);
+test('rejected offset readback cannot return a configured battle camera',async()=>{
+  const h=harness({badViewpoint:true});await assert.rejects(prepareBattleCamera({...h,mapPath:'input.gil'}),/viewpoint readback/);
 });

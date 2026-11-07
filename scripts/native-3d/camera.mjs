@@ -1,14 +1,14 @@
 // Camera setup uses public scene tools and official follow-entity/UI nodes only.
 // No unmeasured GIL camera fields are written here.
-import {readFileSync} from 'node:fs';
-import {join} from 'node:path';
-import {pathToFileURL} from 'node:url';
+import {dirname,join} from 'node:path';
+import {setCameraViewpoint} from './camera-viewpoint.mjs';
 // Explicit provisional feet plane; arena pivot/collision top is not yet measured.
 // Do not derive an exact support height from the catalogue's full bounding-box height.
 export const planningGroundY=.4;
 export const battleCamera=Object.freeze({focus:Object.freeze([3,1.3,0]),distance:10,fieldOfView:42,yaw:0,pitch:12,
   canvas:Object.freeze([1280,720]),playerFeet:Object.freeze([0,planningGroundY,0]),minActorY:-125,maxActorY:220,
   groundHeightStatus:'unverified'});
+export const battleViewpoint=Object.freeze(battleCamera.focus.map((value,i)=>value-battleCamera.playerFeet[i]));
 const radians=n=>n*Math.PI/180;
 export function cameraPosition(camera=battleCamera){
   const yaw=radians(camera.yaw),pitch=radians(camera.pitch);
@@ -37,31 +37,15 @@ export function projectBody(feet,{width,height},camera=battleCamera){
   return {x:(left+right)/2,y:(bottom+top)/2,width:right-left,height:top-bottom,left,right,bottom,top};
 }
 const identifier=value=>{if(!/^[A-Za-z_$][\w$]*$/.test(value))throw Error('Invalid graph variable identifier');return value;};
-export function cameraStartupSource({anchorPrefabId,cameraName,minimapIds,stage='stage',player='player'}={}){
-  if(!Number.isSafeInteger(anchorPrefabId)||anchorPrefabId<=0||typeof cameraName!=='string'||!cameraName)throw Error('Camera prefab identity and template name required');
+export function cameraStartupSource({cameraName,minimapIds,player='player'}={}){
+  if(typeof cameraName!=='string'||!cameraName)throw Error('Camera template name required');
   if(!Array.isArray(minimapIds)||!minimapIds.length||minimapIds.some(id=>!Number.isSafeInteger(id)||id<=0))throw Error('Actual minimap control identities required');
-  identifier(stage);identifier(player);
-  return `const battleCameraAnchors=f.getEntitiesWithSpecifiedPrefabOnTheField(${anchorPrefabId});
-let cameraFocusY=${battleCamera.focus[1]};
-const cameraCharacters=f.getAllCharacterEntitiesOfSpecifiedPlayer(${player});
-if(cameraCharacters.length>0){const cameraFeet=f.split3dVector(f.getEntityLocationAndRotation(cameraCharacters[0]).location);cameraFocusY=cameraFeet.yComponent+${battleCamera.focus[1]-battleCamera.playerFeet[1]};}
-const battleCameraAnchor=battleCameraAnchors.length>0?battleCameraAnchors[0]:f.createPrefab(${anchorPrefabId},f.create3dVector(${battleCamera.focus[0]},cameraFocusY,${battleCamera.focus[2]}),[0,0,0],${stage},false,1,[] as bigint[]);
-f.setPlayerCameraToFollowEntity(${player},battleCameraAnchor,${JSON.stringify(cameraName)});
+  identifier(player);
+  return `f.resetPlayerCameraToFollowEntity(${player});
+f.switchMainCameraTemplate([${player}],${JSON.stringify(cameraName)});
 ${minimapIds.map(id=>`f.modifyUiControlStatusWithinTheInterfaceLayout(${player},${id}n,UIControlGroupStatus.Hidden);`).join('\n')}`;
 }
-// Read only the native-collision block already documented/written by MCP scene-save.mjs.
-// TEMPLATE components=7, kind=5, body=15; solid:false is an explicitly empty body.
-export async function readAnchorCollision(mapPath,prefabId){
-  const toolRoot=process.env.MILIASTRA_MCP_ROOT||'D:/MiliastraTools/genshin-miliastra-mcp';
-  const {container,fields,one}=await import(pathToFileURL(join(toolRoot,'src/scene/wire.mjs')));
-  const root=container(readFileSync(mapPath));
-  const entries=fields(one(root,4)).filter(f=>f.id===1&&f.wire===2&&Number(one(f.data,1,0))===prefabId);
-  if(entries.length!==1)throw Error('Expected exactly one camera anchor prefab');
-  const collision=fields(entries[0].data).filter(f=>f.id===7&&f.wire===2&&Number(one(f.data,1,0))===5);
-  if(collision.length!==1||one(collision[0].data,15).length!==0)throw Error('Camera anchor native collision is not explicitly disabled');
-  return {solid:false,componentKind:5,contentBytes:0};
-}
-export async function prepareBattleCamera({call,mapPath,verifyAnchor=readAnchorCollision}={}){
+export async function prepareBattleCamera({call,mapPath,writeViewpoint=setCameraViewpoint}={}){
   if(typeof call!=='function'||!mapPath)throw Error('Camera preparation requires call and mapPath');
   async function invoke(name,args={}){
     const result=await call(name,{...args,mapPath});
@@ -85,16 +69,14 @@ export async function prepareBattleCamera({call,mapPath,verifyAnchor=readAnchorC
   const hiddenNames=['小地图','造物生命值条','角色生命值条'];
   const hiddenGroups=ui.layouts.flatMap(layout=>(layout.controls??[]).filter(control=>hiddenNames.includes(control.name)&&control.kind==='builtIn'));
   for(const name of hiddenNames)if(!hiddenGroups.some(control=>control.name===name))throw Error('Actual native HUD group missing: '+name);
-  const anchor=await invoke('scene_add_prefab',{asset:10005018,name:'ABYSS_battle_camera_anchor'});
-  await invoke('scene_add_components',{prefab:anchor.prefabId,solid:false});
-  const anchorCollision=await verifyAnchor(mapPath,anchor.prefabId);
-  if(anchorCollision?.solid!==false)throw Error('Camera anchor collision readback differs');
-  const prefabs=await invoke('scene_list_prefabs');
-  if(!prefabs.prefabs?.some(item=>item.prefabId===anchor.prefabId&&item.assetId===10005018))throw Error('Empty-model camera anchor readback failed');
-  return {mapPath,camera:actual,anchorPrefabId:anchor.prefabId,anchorCollision,minimaps,hiddenGroups,
-    startupSource:cameraStartupSource({anchorPrefabId:anchor.prefabId,cameraName:actual.name,minimapIds:hiddenGroups.map(item=>item.id)}),
+  const viewpoint=await writeViewpoint({mapPath,outputPath:join(dirname(mapPath),'battle-character-camera.gil'),name:actual.name,offset:battleViewpoint});
+  if(viewpoint.after?.mode!==2||viewpoint.after?.followRotation!==false
+    ||viewpoint.after?.offset?.length!==3||viewpoint.after.offset.some((n,i)=>n!==Math.fround(battleViewpoint[i])))throw Error('Character camera viewpoint readback differs');
+  mapPath=viewpoint.mapPath;
+  return {mapPath,camera:actual,viewpoint,followTarget:'player',minimaps,hiddenGroups,
+    startupSource:cameraStartupSource({cameraName:actual.name,minimapIds:hiddenGroups.map(item=>item.id)}),
     requiredEnumImport:'UIControlGroupStatus',projection:{...battleCamera,position:cameraPosition()},
-    evidence:{method:'official_set_player_camera_to_follow_entity',cameraGuide:'mhfua005zpeg',nodeGuide:'mhw66orrrfkm',
-      emptyModelSource:'installed asset-catalog:10005018 空模型',minimapSource:'actual scene_list_interface',
+    evidence:{method:'fixed_character_camera_with_world_viewpoint_offset',cameraGuide:'mhfua005zpeg',nodeGuide:'mhw66orrrfkm',
+      minimapSource:'actual scene_list_interface',
       avatarAppearance:'current native player avatar; no unverified Traveler ID override',officialImport:'not_run',projectionCalibration:'not_run'}};
 }
