@@ -1,7 +1,7 @@
 -- Independent CARD RewardItems; normal-room Prayer Wheel and Singing Bowl.
 -- Generation consumes the shared card RNG in source order, never a rarity reroll.
 local M={}
-local function owns(run,id)return require('abyss_relic_hooks').owns(run,id)end
+local function owns(run,id)return require('abyss_relic_queries').hooks.owns(run,id)end
 function M.managed(run)
  return run.rewards and run.rewards.cardRewardGroups~=nil or owns(run,'singing_bowl')or owns(run,'prayer_wheel')
 end
@@ -28,7 +28,7 @@ function M.prepareExtra(run)
   local cards,rng,offset,upgrades=require('abyss_card_pool').prepareRewards(run)
   run.cardRng,run.cardRarityOffset=rng,offset
   local group={cards=cards,cardUpgrades=upgrades,resolved=false}
-  require('abyss_relic_hooks').previewCardReward(run,group,true)
+  require('abyss_relic_family_combat').common.previewCardReward(run,group,true)
   groups[#groups+1]=group
  end
  M.sync(run)
