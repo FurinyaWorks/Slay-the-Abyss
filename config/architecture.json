@@ -1,5 +1,7 @@
 {
   "layers": {
+    "abyss_native_battle": "ui",
+    "abyss_native_battle_config": "ui",
     "abyss_relic_combat_hooks": "core",
     "abyss_relic_family_combat": "core",
     "abyss_purge_candidates": "core",
