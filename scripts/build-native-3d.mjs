@@ -4,6 +4,7 @@ import {pathToFileURL} from 'node:url';
 import {randomUUID} from 'node:crypto';
 import {connect,data} from './native-3d/rpc.mjs';
 import {prepareNativeScene} from './native-3d/native-scene.mjs';
+import {prepareCameraProjection} from './native-3d/camera-projection.mjs';
 import {embeddedScripts} from './native-script-inventory.mjs';
 import {writeScriptBatch} from './native-script-batch.mjs';
 import {runNativeClientCheck} from './native-client-check.mjs';
@@ -62,6 +63,16 @@ export function instrumentNativeEntry(source,buildId){
                     callback(params[1], params[2], params[3], params[4], params[5])
                 end)
             end,
+            sampleCamera = function(sequence)
+                local signal = game.ServerSignal('LAB3D_CAMERA_REQUEST')
+                signal:AddInt(sequence)
+                signal:SendSignal()
+            end,
+            registerCamera = function(callback)
+                script:RegisterServerSignalHandler('LAB3D_CAMERA', function(_, params)
+                    callback(params[1], params[2], params[3], params[4], params[5])
+                end)
+            end,
         })
         nativeBattle:resize(width, height)
         canvasWidth, canvasHeight = width, height`);
@@ -98,6 +109,11 @@ export async function buildNative3d({productionReceipt,output='.artifacts/native
    const path=join(workspace,`${receipt.operations.length+1}-${name}.json`);writeExclusive(path,result);
    receipt.operations.push({name,response:fileRecord(path)});return data(result);
   }});mapPath=native.mapPath;receipt.nativeScene=native;
+  receipt.cameraProjection=await prepareCameraProjection({mapPath,call:async(name,args)=>{
+   const result=await client.callTool({name,arguments:args},undefined,{timeout:120000});
+   const path=join(workspace,`${receipt.operations.length+1}-${name}.json`);writeExclusive(path,result);
+   receipt.operations.push({name,response:fileRecord(path)});return data(result);
+  }});mapPath=receipt.cameraProjection.mapPath;
   const before=embeddedScripts({mapPath,includeSource:true},wire).scripts;
   const inventory=new Map(before.map(s=>[s.name,s.source]));
   for(const name of readdirSync('src/lua').filter(n=>n.endsWith('.lua'))){

@@ -2,7 +2,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {dirname,join,resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
-import {prepareBattleCamera,enemyFeet,battleViewpoint} from './camera.mjs';
+import {prepareBattleCamera,enemyFeet,battleWorldFocusOffset} from './camera.mjs';
 import {assertGraphBudget,assertCompiledBudget} from './graph-budget.mjs';
 
 const toolRoot=process.env.MILIASTRA_MCP_ROOT||'D:/MiliastraTools/genshin-miliastra-mcp';
@@ -279,7 +279,7 @@ export async function prepareNativeScene({call,mapPath,anchor=labAnchor,outputPa
     await invoke('scene_set_creature_logic',{prefab:p.prefabId,decisionGraphId:graphs.decision.graphId,skills,sharedCooldownSeconds:0,logic:{sightDistance:0.01,chainRadius:0.01,territoryRadius:20}});
   }
   const sources=nativeGraphSources({graphs,prefabs:seeded.prefabs,statusId:safe.statusId,playerStatusId:playerSafe.statusId,floorId:floor?.prefabId,anchor,maxActors,
-   cameraSource:camera?.startupSource,cameraFollowOffset:productionCamera?battleViewpoint:undefined,positions:productionCamera?Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)):undefined,playerSkillId:playerSkill?.skillId});
+   cameraSource:camera?.startupSource,cameraFollowOffset:productionCamera?battleWorldFocusOffset:undefined,positions:productionCamera?Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)):undefined,playerSkillId:playerSkill?.skillId});
   const compiled=await invoke('write_graphs',{graphs:sources});
   if(compiled.failed||compiled.errors?.length||compiled.written?.length!==sources.length)throw Error(`Native graph compilation incomplete: ${JSON.stringify(compiled)}`);
   assertCompiledBudget(compiled.written);

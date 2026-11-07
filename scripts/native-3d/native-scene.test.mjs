@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
-import {battleViewpoint,enemyFeet} from './camera.mjs';
+import {battleWorldFocusOffset as battleViewpoint,enemyFeet} from './camera.mjs';
 import {mkdtempSync,readFileSync,existsSync} from 'node:fs';
 import {join,resolve} from 'node:path';
 import {tmpdir} from 'node:os';

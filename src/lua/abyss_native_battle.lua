@@ -13,7 +13,7 @@ function M.attach(view,root,api)
  local config=api.config or require('abyss_native_battle_config')
  Geometry.configure(true)
  local self={clock=0,queue={},slots={},showing={},masked={},recent={},recentOrder={},worlds={},maxActors=config.maxActors or 3}
- self.camera=config.camera
+ if config.camera then self.camera={};for key,value in pairs(config.camera)do self.camera[key]=value end end
  local stage=child(root,'stage')
  local panel=child(stage,'battlePanel')
  local fail
@@ -57,7 +57,7 @@ function M.attach(view,root,api)
   return true
  end
  local function cleanup()
-  self.queue={};self.pending=nil;self.showing={};self.ready=false;self.slots={};self.worlds={};self.recent={};self.recentOrder={};restore();Geometry.clear()
+  self.queue={};self.pending=nil;self.showing={};self.ready=false;self.slots={};self.worlds={};self.recent={};self.recentOrder={};self.sampleCameraPending=nil;restore();Geometry.clear()
   if self.owned then enqueue('hide',0)end
  end
  fail=function(reason,hideFailed)
@@ -78,8 +78,52 @@ function M.attach(view,root,api)
   return not enemy.escaped and not enemy.isDying and (enemy.hp>0 or enemy.halfDead or enemy.awakenedRebirthPending)
  end
  local function bindWorld(actor,feet,body)
+  local ok,rect=pcall(Projection.body,feet,body,self.camera,self.uiHeight,self.uiWidth)
+  if not ok then log('native_projection_rejected '..tostring(rect));return false end
   self.worlds[actor.id]={actor=actor,feet=feet,body=body}
-  Geometry.bind(actor,Projection.body(feet,body,self.camera,self.uiHeight))
+  Geometry.bind(actor,rect)
+  return true
+ end
+ local function reproject(camera)
+  camera=camera or self.camera
+  local pending={}
+  for _,record in pairs(self.worlds)do
+   local ok,rect=pcall(Projection.body,record.feet,record.body,camera,self.uiHeight,self.uiWidth)
+   if not ok then log('native_projection_rejected '..tostring(rect));return false end
+   pending[#pending+1]={actor=record.actor,rect=rect}
+  end
+  self.camera=camera
+  for _,record in ipairs(pending)do Geometry.bind(record.actor,record.rect)end
+  self.geometryDirty=true
+  return true
+ end
+ local function sampleCamera()
+  if self.destroyed or not self.battle or not api.sampleCamera then return end
+  self.sampleCameraPending=true
+ end
+ local function flushCameraSample()
+  if not self.sampleCameraPending or self.destroyed or not self.battle then return end
+  self.sampleCameraPending=nil
+  self.cameraSampleSequence=(self.cameraSampleSequence or 0)+1
+  self.cameraSamples={}
+  local ok,why=pcall(api.sampleCamera,self.cameraSampleSequence)
+  if not ok or why==false then log('camera_sample_unverified '..tostring(why))end
+ end
+ function self.cameraPoint(_owner,sequence,point,x,y,z)
+  if self.destroyed or not self.battle or sequence~=self.cameraSampleSequence or type(point)~='number' or point%1~=0 or point<0 or point>3 then return false end
+  for i=1,3 do local v=({x,y,z})[i];if type(v)~='number' or v~=v or math.abs(v)==math.huge then return false end end
+  self.cameraSamples[point+1]={x,y,z}
+  local samples=self.cameraSamples
+  if not(samples[1] and samples[2] and samples[3] and samples[4])then return true end
+  local function minus(a,b)return {a[1]-b[1],a[2]-b[2],a[3]-b[3]}end
+  local ok,basis=pcall(Projection.fromSamples,{origin=minus({2*samples[1][1],2*samples[1][2],2*samples[1][3]},samples[2]),
+   forward=minus(samples[2],samples[1]),rightStep=minus(samples[3],samples[1]),upStep=minus(samples[4],samples[1])})
+  if not ok then log('camera_sample_rejected '..tostring(basis));return false end
+  local camera={};for key,value in pairs(self.camera)do camera[key]=value end
+  camera.nativeBasis=basis
+  if not reproject(camera)then return false end
+  log('native_camera_projected '..tostring(sequence))
+  return true
  end
  local function reconcile(battle)
   if not battle or self.failedBattle==battle or self.suspended then return end
@@ -138,24 +182,30 @@ function M.attach(view,root,api)
    if sequence<(self.cameraPositionSeq or 0)then return false end
    self.cameraPositionSeq=sequence
    local camera={};for key,value in pairs(self.camera)do camera[key]=value end
-   camera.focus={x,y,z};self.camera=camera
-   for _,record in pairs(self.worlds)do Geometry.bind(record.actor,Projection.body(record.feet,record.body,camera,self.uiHeight))end
+   camera.focus={x,y,z}
+   if not reproject(camera)then return false end
    self.geometryDirty=true
    return true
   end
   local slot=actor~=0 and self.slots[actor] or nil
   if actor~=0 and (not slot or request.actor~=actor or request.slot~=slot or sequence<(slot.positionSeq or 0))then return false end
   if actor==0 and sequence<(self.heroPositionSeq or 0)then return false end
-  if actor==0 then self.heroPositionSeq=sequence;bindWorld(self.battle.player,{x,y,z},config.heroBody)
-  else slot.positionSeq=sequence;bindWorld(slot.actor,{x,y,z},config.bodies[slot.model])end
+  if actor==0 then
+   if not bindWorld(self.battle.player,{x,y,z},config.heroBody)then return false end
+   self.heroPositionSeq=sequence;sampleCamera()
+  else
+   if not bindWorld(slot.actor,{x,y,z},config.bodies[slot.model])then return false end
+   slot.positionSeq=sequence
+  end
   self.geometryDirty=true
   return true
  end
  function self.resize(_owner,width,height)
   if not config.camera then return end
   local scale=math.min(width/1280,height/720)
-  self.uiHeight=height/scale
-  for _,record in pairs(self.worlds)do Geometry.bind(record.actor,Projection.body(record.feet,record.body,self.camera,self.uiHeight))end
+  self.uiHeight=height/scale;self.uiWidth=width/scale
+  reproject()
+  sampleCamera()
   if self.battle then self.geometryDirty=true end
  end
  local function pump()
@@ -185,6 +235,7 @@ function M.attach(view,root,api)
    complete(request)
    local slot=self.slots[request.actor]
    if slot and slot==request.slot then slot.ready=true;self.ready=true;safeMasks()end
+   if not self.sampledBattle then self.sampledBattle=self.battle;sampleCamera()end
   elseif message=='hidden' and request.command=='hide'then
    complete(request);self.owned=false
   elseif message=='completed:'..request.command then complete(request)
@@ -245,11 +296,12 @@ function M.attach(view,root,api)
   local run=view.run
   local battle=run and run.phase=='combat' and run.combat or nil
   if battle~=self.battle or run~=self.run then
-   cleanup();self.battle=battle;self.run=run;self.failedBattle=nil
+   cleanup();self.battle=battle;self.run=run;self.failedBattle=nil;self.sampledBattle=nil
    reconcile(battle)
    if battle then
     if config.projections and config.projections.hero then Geometry.bind(battle.player,config.projections.hero)end
     if config.camera and config.heroFeet then bindWorld(battle.player,config.heroFeet,config.heroBody)end
+    sampleCamera()
     safeMasks()
     if view.refresh then view:refresh()end
    end
@@ -261,6 +313,7 @@ function M.attach(view,root,api)
    else fail('ack timeout',pending.command=='hide')end
   end
   pump()
+  flushCameraSample()
   if self.geometryDirty then
    self.geometryDirty=nil
    if view.refresh then view:refresh()end
@@ -282,6 +335,7 @@ function M.attach(view,root,api)
  end
  if api.register then api.register(function(message,sequence)return self:ack(message,sequence)end)end
  if api.registerPosition then api.registerPosition(function(...)return self:position(...)end)end
+ if api.registerCamera then api.registerCamera(function(...)return self:cameraPoint(...)end)end
  return self
 end
 return M

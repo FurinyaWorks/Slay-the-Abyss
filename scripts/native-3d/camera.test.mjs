@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
-import {planningGroundY,battleCamera,battleViewpoint,cameraPosition,projectWorld,projectBody,enemyFeet,prepareBattleCamera,cameraStartupSource} from './camera.mjs';
+import {planningGroundY,battleCamera,battleViewpoint,battleTemplateYaw,cameraPosition,projectWorld,projectBody,enemyFeet,prepareBattleCamera,cameraStartupSource} from './camera.mjs';
 
 test('declared 1.7m hero and five staggered enemies remain readable above hand and below header',()=>{
   const player=projectBody(battleCamera.playerFeet,{width:.8,height:1.7});
@@ -42,7 +42,7 @@ function harness(options={}){
   const camera={cameraId:1,name:'camera',distance:18,fieldOfView:55};
   const call=async(name,args)=>{
     calls.push({name,args});
-    if(name==='scene_list_cameras')return {cameras:[changed&&!options.badReadback?{...camera,distance:10,fieldOfView:42,fixedView:{yaw:0,pitch:12,ignoreCollision:true}}:camera]};
+    if(name==='scene_list_cameras')return {cameras:[changed&&!options.badReadback?{...camera,distance:10,fieldOfView:42,fixedView:{yaw:battleTemplateYaw,pitch:12,ignoreCollision:true}}:camera]};
     if(name==='scene_set_camera'){changed=true;return {mapPath:'camera-copy.gil'};}
     if(name==='scene_list_interface')return {layouts:[{layoutId:9,controls:options.noMinimap?[]:[{id:71,name:'小地图',kind:'builtIn'},{id:72,name:'造物生命值条',kind:'builtIn'},{id:73,name:'角色生命值条',kind:'builtIn'}]}]};
     throw Error('unexpected '+name);
@@ -53,6 +53,9 @@ function harness(options={}){
 test('preparation verifies offset readback without creating an unsupported object anchor',async()=>{
   const h=harness(),result=await prepareBattleCamera({...h,mapPath:'input.gil'});
   assert.equal(result.mapPath,'viewpoint-copy.gil');assert.equal(result.followTarget,'player');
+  assert.equal(h.calls.find(c=>c.name==='scene_set_camera').args.fixedView.yaw,90);
+  assert.equal(battleCamera.yaw,0,'world projection yaw differs from the engine template convention');
+  assert.deepEqual(battleViewpoint,[0,-.45,3]);
   assert.equal(result.minimaps[0].id,71);assert.equal(result.evidence.officialImport,'not_run');
   assert.ok(!h.calls.some(item=>item.name==='scene_add_prefab'));
   assert.match(result.startupSource,/71n,UIControlGroupStatus.Hidden/);

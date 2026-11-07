@@ -8,7 +8,11 @@ export const planningGroundY=.4;
 export const battleCamera=Object.freeze({focus:Object.freeze([3,1.3,0]),distance:10,fieldOfView:42,yaw:0,pitch:12,
   canvas:Object.freeze([1280,720]),playerFeet:Object.freeze([0,planningGroundY,0]),minActorY:-125,maxActorY:220,
   groundHeightStatus:'unverified'});
-export const battleViewpoint=Object.freeze(battleCamera.focus.map((value,i)=>value-battleCamera.playerFeet[i]));
+// Native inverse-projection runs: template 0 -> world yaw90; -90 -> world180.
+// Offsets stay in character (spawn yaw90) space, independently of camera yaw.
+export const battleTemplateYaw=90;
+export const battleViewpoint=Object.freeze([0,-.45,3]);
+export const battleWorldFocusOffset=Object.freeze(battleCamera.focus.map((value,i)=>value-battleCamera.playerFeet[i]));
 const radians=n=>n*Math.PI/180;
 export function cameraPosition(camera=battleCamera){
   const yaw=radians(camera.yaw),pitch=radians(camera.pitch);
@@ -57,11 +61,11 @@ export async function prepareBattleCamera({call,mapPath,writeViewpoint=setCamera
   if(before.cameras?.length!==1)throw Error('One explicit battle camera template required');
   const camera=before.cameras[0];
   await invoke('scene_set_camera',{name:camera.name,distance:battleCamera.distance,fieldOfView:battleCamera.fieldOfView,
-    fixedView:{yaw:battleCamera.yaw,pitch:battleCamera.pitch,ignoreCollision:true}});
+    fixedView:{yaw:battleTemplateYaw,pitch:battleCamera.pitch,ignoreCollision:true}});
   const readback=await invoke('scene_list_cameras');
   const actual=readback.cameras?.find(item=>item.cameraId===camera.cameraId);
   if(actual?.distance!==battleCamera.distance||actual?.fieldOfView!==battleCamera.fieldOfView
-    ||actual?.fixedView?.yaw!==battleCamera.yaw||actual?.fixedView?.pitch!==battleCamera.pitch||actual?.fixedView?.ignoreCollision!==true)
+    ||actual?.fixedView?.yaw!==battleTemplateYaw||actual?.fixedView?.pitch!==battleCamera.pitch||actual?.fixedView?.ignoreCollision!==true)
     throw Error('Battle camera readback differs');
   const ui=await invoke('scene_list_interface');
   const minimaps=ui.layouts?.flatMap(layout=>(layout.controls??[]).filter(control=>control.name==='小地图'&&control.kind==='builtIn').map(control=>({...control,layoutId:layout.layoutId})))??[];
@@ -76,7 +80,7 @@ export async function prepareBattleCamera({call,mapPath,writeViewpoint=setCamera
   return {mapPath,camera:actual,viewpoint,followTarget:'player',minimaps,hiddenGroups,
     startupSource:cameraStartupSource({cameraName:actual.name,minimapIds:hiddenGroups.map(item=>item.id)}),
     requiredEnumImport:'UIControlGroupStatus',projection:{...battleCamera,position:cameraPosition()},
-    evidence:{method:'fixed_character_camera_with_world_viewpoint_offset',cameraGuide:'mhfua005zpeg',nodeGuide:'mhw66orrrfkm',
+    evidence:{method:'fixed_character_camera_with_character_space_offset_and_native_projection',cameraGuide:'mhfua005zpeg',nodeGuide:'mhw66orrrfkm',
       minimapSource:'actual scene_list_interface',
       avatarAppearance:'current native player avatar; no unverified Traveler ID override',officialImport:'not_run',projectionCalibration:'not_run'}};
 }
