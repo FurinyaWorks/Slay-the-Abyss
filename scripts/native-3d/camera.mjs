@@ -41,17 +41,17 @@ export function projectBody(feet,{width,height},camera=battleCamera){
   return {x:(left+right)/2,y:(bottom+top)/2,width:right-left,height:top-bottom,left,right,bottom,top};
 }
 const identifier=value=>{if(!/^[A-Za-z_$][\w$]*$/.test(value))throw Error('Invalid graph variable identifier');return value;};
-export function hudStatusSource(ids,player='player'){
+export function hudStatusSource(ids,player='player',logicIds=[]){
  identifier(player);
- return ids.map(id=>`f.modifyUiControlStatusWithinTheInterfaceLayout(${player},${id}n,UIControlGroupStatus.Off);`).join('\n');
+ return ids.map(id=>`f.modifyUiControlStatusWithinTheInterfaceLayout(${player},${id}n,UIControlGroupStatus.${logicIds.includes(id)?'Hidden':'Off'});`).join('\n');
 }
-export function cameraStartupSource({cameraName,minimapIds,player='player'}={}){
+export function cameraStartupSource({cameraName,minimapIds,player='player',logicIds=[]}={}){
   if(typeof cameraName!=='string'||!cameraName)throw Error('Camera template name required');
   if(!Array.isArray(minimapIds)||!minimapIds.length||minimapIds.some(id=>!Number.isSafeInteger(id)||id<=0))throw Error('Actual minimap control identities required');
   identifier(player);
   return `f.resetPlayerCameraToFollowEntity(${player});
 f.switchMainCameraTemplate([${player}],${JSON.stringify(cameraName)});
-${hudStatusSource(minimapIds,player)}`;
+${hudStatusSource(minimapIds,player,logicIds)}`;
 }
 export async function prepareBattleCamera({call,mapPath,writeViewpoint=setCameraViewpoint}={}){
   if(typeof call!=='function'||!mapPath)throw Error('Camera preparation requires call and mapPath');
@@ -81,9 +81,10 @@ export async function prepareBattleCamera({call,mapPath,writeViewpoint=setCamera
   if(viewpoint.after?.mode!==2||viewpoint.after?.followRotation!==false
     ||viewpoint.after?.offset?.length!==3||viewpoint.after.offset.some((n,i)=>n!==Math.fround(battleViewpoint[i])))throw Error('Character camera viewpoint readback differs');
   mapPath=viewpoint.mapPath;
+  const skillUiIds=hiddenGroups.filter(item=>item.name==='技能区').map(item=>item.id);
   return {mapPath,camera:actual,viewpoint,followTarget:'player',minimaps,hiddenGroups,
-    hudSource:hudStatusSource(hiddenGroups.map(item=>item.id),'hudPlayer'),
-    startupSource:cameraStartupSource({cameraName:actual.name,minimapIds:hiddenGroups.map(item=>item.id)}),
+    hudSource:hudStatusSource(hiddenGroups.map(item=>item.id),'hudPlayer',skillUiIds),
+    startupSource:cameraStartupSource({cameraName:actual.name,minimapIds:hiddenGroups.map(item=>item.id),logicIds:skillUiIds}),
     requiredEnumImport:'UIControlGroupStatus',projection:{...battleCamera,position:cameraPosition()},
     evidence:{method:'fixed_character_camera_with_character_space_offset_and_native_projection',cameraGuide:'mhfua005zpeg',nodeGuide:'mhw66orrrfkm',
       minimapSource:'actual scene_list_interface',

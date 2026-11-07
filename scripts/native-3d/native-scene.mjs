@@ -95,6 +95,7 @@ const head="/// <reference types=\"genshin-ts\" />\nimport {g,defineSignal} from
 const clientHead=head+"import {TargetEntity} from 'genshin-ts/definitions/client_enums'\n";
 const signals=`const COMMAND=defineSignal('LAB3D_COMMAND',[['command','str'],['model','int'],['actor','int'],['seq','int']] as const)\nconst ACK=defineSignal('client:LAB3D_ACK',[['player','entity'],['message','str'],['seq','int']] as const)\n`;
 const positionSignal="const POSITION=defineSignal('client:LAB3D_POSITION',[['player','entity'],['actor','int'],['seq','int'],['x','float'],['y','float'],['z','float']] as const)\n";
+const playerEndpointSignal="const PLAYER_ENDPOINT=defineSignal('LAB3D_PLAYER_ENDPOINT',[['seq','int']] as const);\n";
 const reportPosition=(target,actor,seq,offset=[0,0,0])=>{
   const value=actor==='-1n'?'actualFocusPosition':actor==='0n'?'actualHeroPosition':'actualUnitPosition';
   return `const ${value}=f.split3dVector(f.getEntityLocationAndRotation(${target}).location);
@@ -115,9 +116,11 @@ export function nativeSkillRequests(model,graphs){
   });
 }
 
-export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statusId,floorId,anchor,maxActors=3,cameraSource='',hudSource='',positions,playerSkillId,cameraFollowOffset}){
+export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statusId,floorId,anchor,maxActors=3,cameraSource='',hudSource='',positions,playerSkillId,playerCameraName,cameraFollowOffset}){
   validateActorCount(maxActors);
   const spacing=maxActors>1?6/(maxActors-1):0;
+  const recover=(unit,player)=>`f.teleportPlayer(${player},f.create3dVector(${anchor[0]},f.getCustomVariable(${unit},'LAB_player_safe_y').asType('float'),${anchor[2]}),[0,90,0]);
+ ${playerCameraName?`f.resetPlayerCameraToFollowEntity(${player});f.switchMainCameraTemplate([${player}],${JSON.stringify(playerCameraName)});`:''}`;
   const slotPositions=Array.from({length:maxActors-1},(_,i)=>`if(slot===${i+2}n)slotX=${anchor[0]+3.5+(i+1)*spacing};`).join('else ');
   const placed=positions?`let slotZ=${positions[0][2]};${positions.map((v,i)=>`if(slot===${i+1}n){slotX=${v[0]};slotZ=${v[2]};}`).join('')}`:'';
   const createUnit=p=>`if(evt.params.model===${p.model}n){
@@ -157,7 +160,20 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
  if(slot<0n||slot>${maxActors}n){${ack("'unsupported:actor'","sequence")}return;}
  ${playerSkillId?`if(slot===0n&&command==='attack'){
  for(const player of f.getListOfPlayerEntitiesOnTheField())for(const character of f.getAllCharacterEntitiesOfSpecifiedPlayer(player)){
- f.setCustomVariable(character,'LAB_player_seq',sequence,true);f.castSkillFromSpecifiedPanelSlot(character as any,CharacterSkillSlot.Skill1E,false);
+ if(f.getCustomVariable(character,'LAB_player_quarantined').asType('bool')){
+  f.playTimedEffects(7,character,'GI_RootNode',false,false,[0,1,0],[0,0,0],1,false);
+  ${ack("'unsupported:player_animation_vfx_fallback'","sequence")}return;
+ }
+ if(!f.getCustomVariable(character,'LAB_player_recover_pending').asType('bool')){
+  const safe=f.split3dVector(f.getEntityLocationAndRotation(character).location);
+  f.setCustomVariable(character,'LAB_player_safe_x',safe.xComponent,true);f.setCustomVariable(character,'LAB_player_safe_y',safe.yComponent,true);f.setCustomVariable(character,'LAB_player_safe_z',safe.zComponent,true);
+ }
+ const previous=f.getCustomVariable(character,'LAB_player_seq').asType('int');
+ if(previous>0n){f.stopTimer(character,f.dataTypeConversion(-previous,'str'));f.stopTimer(character,f.dataTypeConversion(previous,'str'));}
+ f.setCustomVariable(character,'LAB_player_seq',sequence,true);f.setCustomVariable(character,'LAB_player_recover_pending',true,true);
+ f.setCustomVariable(character,'LAB_player_endpoint_seen',false,true);
+ f.startTimer(character,f.dataTypeConversion(-sequence,'str'),false,[2.5]);
+ f.castSkillFromSpecifiedPanelSlot(character as any,CharacterSkillSlot.Skill1E,false);
  ${ack("'requested:player_skill'","sequence")}}
  return;}`:''}
  ${playerSkillId?`if(slot===0n&&command==='hit'){
@@ -166,7 +182,13 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
  if(slot===0n&&command!=='hide'){${ack("'unsupported:player_animation'","sequence")}return;}
  if(command==='show'||command==='reset'||command==='hide'){
   for(const prefab of ${prefabList})for(const unit of f.getEntitiesWithSpecifiedPrefabOnTheField(prefab)){if(slot===0n||f.getCustomVariable(unit,'LAB_actor').asType('int')===slot)f.removeEntity(unit);}
-  if(command==='hide'){${ack("'hidden'","sequence")}return;}
+  if(command==='hide'){
+   ${playerSkillId?`if(slot===0n)for(const player of f.getListOfPlayerEntitiesOnTheField())for(const character of f.getAllCharacterEntitiesOfSpecifiedPlayer(player)){
+    if(f.getCustomVariable(character,'LAB_player_recover_pending').asType('bool')){${recover('character','player')}
+     f.startTimer(character,f.dataTypeConversion(f.getCustomVariable(character,'LAB_player_seq').asType('int'),'str'),false,[0.08]);
+    }
+   }`:''}
+   ${ack("'hidden'","sequence")}return;}
   ${prefabs.map(createUnit).join('\n')}
   ${ack("'unsupported:model'","sequence")}return;
  }
@@ -211,20 +233,34 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
   for(const [key,number] of [['attack',1],['hit',2],['idle',0]])records.push({...graphs[key],code:clientHead+`g.creationStatus({id:${graphs[key].graphId},name:'${graphs[key].name}',prefix:false}).on('start1',(_evt,f)=>{${number?`f.executeSkill(true,${number}n);`:`f.executeSkill(f.getCustomVariable(TargetEntity.Self,'LAB_command').asType('int')===1n,1n);f.executeSkill(f.getCustomVariable(TargetEntity.Self,'LAB_command').asType('int')===2n,2n);`}f.tacticStandStill(true,'stand',false);})`});
   for(const action of ['attack','hit'])records.push({...graphs[`skill_${action}`],code:clientHead+`g.creationSkill({id:${graphs[`skill_${action}`].graphId},name:'${graphs[`skill_${action}`].name}',prefix:false}).on('start',(_evt,f)=>{f.notifyServerNodeGraph('LAB_${action}','','');})`});
   if(playerSkillId){
-   records.push({...graphs.player,code:head+signals+positionSignal+`g.server({id:${graphs.player.graphId},name:'${graphs.player.name}'})
-.on('whenSkillNodeIsCalled',(evt,f)=>{if(evt.parameter1!=='LAB_player_attack')return;
- const unit=evt.callerEntity,seq=f.getCustomVariable(unit,'LAB_player_seq').asType('int');
+   records.push({...graphs.player,code:head+signals+positionSignal+playerEndpointSignal+`g.server({id:${graphs.player.graphId},name:'${graphs.player.name}'})
+.onSignal(PLAYER_ENDPOINT,(evt,f)=>{
+ const unit=f.getSelfEntity(),seq=f.getCustomVariable(unit,'LAB_player_seq').asType('int');
+ if(evt.params.seq!==seq||!f.getCustomVariable(unit,'LAB_player_recover_pending').asType('bool'))return;
+ f.setCustomVariable(unit,'LAB_player_endpoint_seen',true,true);
  const player=f.getPlayerEntityToWhichTheCharacterBelongs(unit as any);
- const grounded=f.split3dVector(f.getEntityLocationAndRotation(unit).location);
- f.teleportPlayer(player,f.create3dVector(${anchor[0]},grounded.yComponent,${anchor[2]}),[0,90,0]);
- f.startTimer(unit,'LAB_PLAYER_POSITION',false,[0.08]);
+ ${recover('unit','player')}
+ f.startTimer(unit,f.dataTypeConversion(seq,'str'),false,[0.08]);
  ${ack("'completed:attack'","seq")}})
-.on('whenTimerIsTriggered',(evt,f)=>{if(evt.timerName!=='LAB_PLAYER_POSITION')return;
+.on('whenTimerIsTriggered',(evt,f)=>{
  const unit=evt.eventSourceEntity,seq=f.getCustomVariable(unit,'LAB_player_seq').asType('int');
+ if(evt.timerName===f.dataTypeConversion(-seq,'str')){
+  if(!f.getCustomVariable(unit,'LAB_player_recover_pending').asType('bool'))return;
+  const player=f.getPlayerEntityToWhichTheCharacterBelongs(unit as any);
+  ${recover('unit','player')}
+  f.setCustomVariable(unit,'LAB_player_recover_pending',false,true);
+  f.startTimer(unit,f.dataTypeConversion(seq,'str'),false,[0.08]);
+  if(!f.getCustomVariable(unit,'LAB_player_endpoint_seen').asType('bool')){
+   f.setCustomVariable(unit,'LAB_player_quarantined',true,true);
+   ${ack("'error:player_endpoint_timeout'","seq")}
+  }
+  return;
+ }
+ if(evt.timerName!==f.dataTypeConversion(seq,'str'))return;
  ${cameraFollowOffset?reportPosition('unit','-1n','seq',cameraFollowOffset):''}
  ${reportPosition('unit','0n','seq')}
 })`});
-   records.push({...graphs.skill_player,code:clientHead+`g.characterSkill({id:${graphs.skill_player.graphId},name:'${graphs.skill_player.name}',prefix:false}).on('start',(_evt,f)=>{f.notifyServerNodeGraph('LAB_player_attack','','');})`});
+   records.push({...graphs.skill_player,code:clientHead+playerEndpointSignal+`g.characterSkill({id:${graphs.skill_player.graphId},name:'${graphs.skill_player.name}',prefix:false}).on('start',(_evt,f)=>{f.sendSignalToServerNodeGraph(PLAYER_ENDPOINT,f.getCustomVariable(f.getSelfEntity(),'LAB_player_seq').asType('int'));})`});
   }
   return records.map(({graphId,code})=>({graphId,code}));
 }
@@ -266,7 +302,8 @@ export async function prepareNativeScene({call,mapPath,anchor=labAnchor,outputPa
   if(productionCamera){
    graphs.player=await invoke('scene_add_graph',{name:'LAB3D_player',kind:'server',attachToPrefab:'character'});
    graphs.skill_player=await invoke('scene_add_graph',{name:'LAB3D_player_attack',kind:'characterSkill'});
-   await invoke('scene_add_components',{prefab:'character',variables:[{name:'LAB_player_seq',type:'integer',value:0}]});
+   await invoke('scene_add_signal',{name:'LAB3D_PLAYER_ENDPOINT',parameters:[{name:'seq',type:'integer'}]});
+   await invoke('scene_add_components',{prefab:'character',variables:[{name:'LAB_player_seq',type:'integer',value:0},{name:'LAB_player_recover_pending',type:'boolean',value:false},{name:'LAB_player_endpoint_seen',type:'boolean',value:false},{name:'LAB_player_quarantined',type:'boolean',value:false},...['x','y','z'].map(axis=>({name:'LAB_player_safe_'+axis,type:'float',value:0}))]});
    playerSkill=await invoke('scene_add_skill',{name:'ABYSS_native_card_attack',graphId:graphs.skill_player.graphId,type:'normal',animation:1001,graphAtMs:1832,
     effect:{asset:10002152,attachPoint:'GI_WeaponR',ms:1833.333}});
   }
@@ -280,7 +317,7 @@ export async function prepareNativeScene({call,mapPath,anchor=labAnchor,outputPa
     await invoke('scene_set_creature_logic',{prefab:p.prefabId,decisionGraphId:graphs.decision.graphId,skills,sharedCooldownSeconds:0,logic:{sightDistance:0.01,chainRadius:0.01,territoryRadius:20}});
   }
   const sources=nativeGraphSources({graphs,prefabs:seeded.prefabs,statusId:safe.statusId,playerStatusId:playerSafe.statusId,floorId:floor?.prefabId,anchor,maxActors,
-   cameraSource:camera?.startupSource,hudSource:camera?.hudSource,cameraFollowOffset:productionCamera?battleWorldFocusOffset:undefined,positions:productionCamera?Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)):undefined,playerSkillId:playerSkill?.skillId});
+   cameraSource:camera?.startupSource,hudSource:camera?.hudSource,cameraFollowOffset:productionCamera?battleWorldFocusOffset:undefined,positions:productionCamera?Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)):undefined,playerSkillId:playerSkill?.skillId,playerCameraName:camera?.camera?.name});
   const compiled=await invoke('write_graphs',{graphs:sources});
   if(compiled.failed||compiled.errors?.length||compiled.written?.length!==sources.length)throw Error(`Native graph compilation incomplete: ${JSON.stringify(compiled)}`);
   assertCompiledBudget(compiled.written);

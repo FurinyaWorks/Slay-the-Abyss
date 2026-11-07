@@ -61,6 +61,8 @@ test('preparation verifies offset readback without creating an unsupported objec
   assert.match(result.startupSource,/71n,UIControlGroupStatus.Off/);
   assert.match(result.startupSource,/72n,UIControlGroupStatus.Off/);
   assert.match(result.startupSource,/73n,UIControlGroupStatus.Off/);
+  assert.match(result.startupSource,/74n,UIControlGroupStatus.Hidden/);
+  assert.match(result.hudSource,/hudPlayer,74n,UIControlGroupStatus.Hidden/);
   assert.match(result.hudSource,/hudPlayer,77n,UIControlGroupStatus.Off/);
   assert.doesNotMatch(result.hudSource,/resetPlayerCamera|switchMainCamera/);
 });

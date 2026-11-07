@@ -139,6 +139,77 @@ test('fixed decision keeps one status while live command conditions select skill
  }
 });
 
+function playerRecoveryHarness(){
+ const names=['server','unit','decision','attack','hit','idle','skill_attack','skill_hit','player','skill_player'];
+ const graphs=Object.fromEntries(names.map((name,index)=>[name,{graphId:index+1,name:'_GSTS_'+name}]));
+ const sources=nativeGraphSources({graphs,prefabs:[],statusId:1,anchor:labAnchor,playerSkillId:30,playerCameraName:'actual camera',cameraFollowOffset:battleViewpoint});
+ const handlers={},variables=new Map(),timers=new Map(),stopped=[],teleports=[],casts=[],cameras=[],acks=[],positions=[],effects=[];
+ const feet=[0,.3,0];let seq=0n;
+ const owner=({id})=>{const h=handlers[id]={};return {on(name,fn){h[name]=fn;return this},onSignal(name,fn){h[name]=fn;return this}};};
+ for(const source of sources.filter(s=>s.graphId===graphs.server.graphId||s.graphId===graphs.player.graphId)){
+  vm.runInNewContext(source.code.replace(/^import .*$/gm,'').replace(/ as (const|any|bigint\[\]|string\[\]|number\[\])/g,''),{g:{server:owner},defineSignal:name=>name,CharacterSkillSlot:{Skill1E:1}});
+ }
+ let skillStart;
+ const playerSkill=sources.find(s=>s.graphId===graphs.skill_player.graphId);
+ vm.runInNewContext(playerSkill.code.replace(/^import .*$/gm,'').replace(/ as const/g,''),{
+  g:{characterSkill:()=>({on(_event,fn){skillStart=fn;return this}})},defineSignal:name=>name});
+ const f={getSelfEntity:()=>901,getCustomVariable:(id,key)=>({asType:()=>variables.get(id+':'+key)??0n}),setCustomVariable:(id,key,v)=>variables.set(id+':'+key,v),
+  getListOfPlayerEntitiesOnTheField:()=>[900],getAllCharacterEntitiesOfSpecifiedPlayer:()=>[901],getPlayerEntityToWhichTheCharacterBelongs:()=>900,
+  getEntityLocationAndRotation:()=>({location:feet}),split3dVector:v=>({xComponent:v[0],yComponent:v[1],zComponent:v[2]}),create3dVector:(...v)=>v,
+  assemblyList:v=>v,getEntitiesWithSpecifiedPrefabOnTheField:()=>[],
+  dataTypeConversion:value=>String(value),startTimer:(id,name,_loop,intervals)=>timers.set(id+':'+name,intervals),stopTimer:(id,name)=>{stopped.push(name);timers.delete(id+':'+name)},
+  castSkillFromSpecifiedPanelSlot:(...v)=>casts.push(v),teleportPlayer:(player,where,rotation)=>{teleports.push({player,where,rotation});feet.splice(0,3,...where)},
+  playTimedEffects:(...v)=>effects.push(v),
+  resetPlayerCameraToFollowEntity:player=>cameras.push(['reset',player]),switchMainCameraTemplate:(players,name)=>cameras.push(['select',...players,name]),
+  sendSignal:(name,_player,...values)=>{if(name==='client:LAB3D_POSITION')positions.push(values);else acks.push(values)}};
+ const stage={...f,getSelfEntity:()=>100};
+ return {feet,variables,timers,stopped,teleports,casts,cameras,acks,positions,effects,
+  command:command=>handlers[graphs.server.graphId].LAB3D_COMMAND({params:{command,actor:0n,model:1n,seq:++seq}},stage),
+  endpoint:sequence=>handlers[graphs.player.graphId].LAB3D_PLAYER_ENDPOINT({params:{seq:sequence}},f),
+  skillStart:()=>skillStart({}, {...f,sendSignalToServerNodeGraph:(signal,seq)=>handlers[graphs.player.graphId][signal]({params:{seq}},f)}),
+  timer:name=>handlers[graphs.player.graphId].whenTimerIsTriggered({timerName:name,eventSourceEntity:901},f)};
+}
+test('lethal cleanup hide keeps the character watchdog alive and restores saved Y even without endpoint',()=>{
+ const h=playerRecoveryHarness();h.command('attack');assert.equal(h.timers.get('901:-1')[0],2.5);
+ h.feet[1]=-4;h.command('hide');assert.equal(h.feet[1],.3);
+ assert.equal(h.variables.get('901:LAB_player_recover_pending'),true);
+ assert.ok(h.timers.has('901:-1'),'hide must retain the final restoration obligation');
+ h.feet[1]=-5;h.timer('-1');assert.equal(h.feet[1],.3);assert.equal(h.variables.get('901:LAB_player_recover_pending'),false);
+ assert.ok(h.acks.some(([message,seq])=>message==='error:player_endpoint_timeout'&&seq===1n));
+ assert.ok(!h.acks.some(([message])=>message==='completed:attack'),'watchdog restoration is not animation completion');
+ assert.deepEqual(h.cameras.at(-1),['select',900,'actual camera']);
+ assert.equal(h.timers.get('901:1')[0],.08);h.timer('1');
+ assert.deepEqual(h.positions.find(p=>p[0]===0n).slice(2),[0,.3,0]);
+});
+test('successive attacks preserve the original safe Y and reject stale endpoint and timer sequences',()=>{
+ const h=playerRecoveryHarness();h.command('attack');h.feet[1]=-4;h.command('attack');
+ assert.equal(h.variables.get('901:LAB_player_safe_y'),.3);assert.ok(h.stopped.includes('-1'));
+ h.endpoint(1n);h.timer('-1');assert.equal(h.teleports.length,0,'retired action cannot reset the current attack');
+ h.endpoint(2n);assert.equal(h.feet[1],.3);assert.equal(h.variables.get('901:LAB_player_recover_pending'),true);
+ h.feet[1]=-5;h.timer('-2');assert.equal(h.feet[1],.3);assert.equal(h.variables.get('901:LAB_player_recover_pending'),false);
+ const count=h.teleports.length;h.endpoint(2n);assert.equal(h.teleports.length,count,'endpoint after final recovery is a no-op');
+});
+test('timed-out E is quarantined before another attack so its real late skill callback cannot complete the next action',()=>{
+ const h=playerRecoveryHarness();h.command('attack');h.feet[1]=-4;h.timer('-1');
+ assert.equal(h.variables.get('901:LAB_player_quarantined'),true);
+ const values=new Map(h.variables),teleports=h.teleports.length;
+ h.command('attack');assert.equal(h.casts.length,1,'quarantined attack must never cast another E');
+ assert.equal(h.effects.length,1);assert.equal(h.effects[0][0],7);
+ for(const [key,value]of values)if(key.startsWith('901:'))assert.equal(h.variables.get(key),value,'fallback must not update character recovery state');
+ h.skillStart();assert.equal(h.variables.get('901:LAB_player_seq'),1n);
+ assert.equal(h.teleports.length,teleports,'late real skill callback must not move the player');
+ assert.ok(!h.acks.some(([message])=>message==='completed:attack'));
+ assert.ok(h.acks.some(([message,seq])=>message==='unsupported:player_animation_vfx_fallback'&&seq===2n));
+ h.command('hide');h.command('attack');assert.equal(h.casts.length,1);assert.equal(h.effects.length,2);
+ assert.equal(h.variables.get('901:LAB_player_quarantined'),true,'hide cannot lift session quarantine');
+});
+test('normal real skill endpoint keeps native E enabled for the next action',()=>{
+ const h=playerRecoveryHarness();h.command('attack');h.skillStart();
+ assert.ok(h.acks.some(([message,seq])=>message==='completed:attack'&&seq===1n));
+ h.timer('-1');assert.notEqual(h.variables.get('901:LAB_player_quarantined'),true);
+ h.command('attack');assert.equal(h.casts.length,2);assert.equal(h.effects.length,0);
+});
+
 const base=resolve('.artifacts/native-3d-base/base.gil');
 test('official-seed adaptation writes a new GIL and preserves the input bytes',{skip:!existsSync(base)},async()=>{
  const input=readFileSync(base),dir=mkdtempSync(join(tmpdir(),'abyss-native-scene-'));
