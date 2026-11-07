@@ -43,8 +43,12 @@ test('deck entry is an STS-style fanned card stack with a same-ink count pip ins
   assert.match(view,/refreshDeckEntry\(run\)/);
 });
 
-test('nonbattle potion entry shows readable count and retains passive compatibility silhouettes without new actions',()=>{
+test('nonbattle potion entry keeps its native button and count without 760 permanently hidden slot controls',()=>{
   const open=entry('potionEntry'),hit=child(open,'hit');
+  const size=c=>1+(c.children??[]).reduce((n,item)=>n+size(item),0);
+  const count=size(gameLayout().controls.find(c=>c.name==='potionEntry'));
+  assert.equal(count,15,'count-only entry has no unused miniature bottle geometry');
+  assert.equal(775-count,760,'audited previous entry had 20 hidden 38-control slots');
   assert.equal(open.children.length,1);assert.equal(hit.kind,'presetButton');assert.equal(hit.focusable,true);
   for(const name of states){
     const state=child(hit,name);assert.equal(child(state,'label').visible,true);
@@ -52,17 +56,7 @@ test('nonbattle potion entry shows readable count and retains passive compatibil
     assert.equal(face.image,theme.image.rect);
     assert.equal(child(state,'label').text.fontSize,theme.font.label);
     assert.equal(child(state,'label').text.minFontSize,theme.font.label);
-    assert.equal(state.children.filter(c=>/^slot[1-5]$/.test(c.name)).length,5);
-    assert.ok(state.children.every(c=>c.kind==='container'||c.name==='label'||c.name==='entryFace'),'only approved count plate, caption and passive slots');
-    for(let i=1;i<=5;i++){
-      const slot=child(state,`slot${i}`);
-      assert.deepEqual(slot.size,[34.667,34.667]);
-      assert.equal(child(slot,'border').image,theme.image.disc);assert.equal(child(slot,'plate').image,theme.image.disc);
-      assert.deepEqual(child(slot,'bottle').size,[16,16]);
-      assert.equal(child(slot,'bottle').image,theme.icon.potion.fire_potion);
-      assert.equal(child(slot,'bottle').visible,false);
-      assert.equal(slot.children.some(c=>c.kind==='cursorArea'||c.kind==='presetButton'),false,'slots are not new use buttons');
-    }
+    assert.deepEqual(state.children.map(c=>c.name),['entryFace','label']);
   }
 });
 

@@ -26,7 +26,7 @@ local entry=root:GetChild('potionEntry'):GetChild('open'):GetChild('hit')
 for _,state in ipairs({'normal','hover','pressed','disabled'})do
  local face=entry:GetChild(state)
  assert(face:GetChild('label').text=='药水 5/5')
- for i=1,5 do assert(not face:GetChild('slot'..i).visible)end
+ for i=1,5 do assert(face:GetChild('slot'..i)==nil,'count-only entry does not allocate miniature slots')end
 end
 assert(entry.click())
 local potionPanel=root:GetChild('potionPanel')
