@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-07 13:57'
-updated_date: '2026-11-07 15:12'
+updated_date: '2026-11-07 15:25'
 labels: []
 dependencies: []
 documentation:
@@ -43,4 +43,6 @@ ordinal: 166000
 用户本轮退回旧候选：347/347官方外部Lua与e8a961fe一致；真实日志证明battle立绘4389控件仍生成。已定位直接render/feedback恢复2D及目标仍旧坐标两根因，新增真实出牌点选/拖拽扣第二敌人HP回归及零旧工厂创建合同；不是以模型出现判验收。
 
 用户实机退回后已修正源2D残留和目标坐标，复用官方91件遗迹；新包4da4f751/e31fb5ca已生成，349模块读回0error347warning。独审40afaeb8通过源码范围，真实新客户端和手机仍未验收，已让用户选择自行导入或本轮20分钟测试窗口，未操作键鼠。
+
+用户官方校验再次阻断：4da4f751的LAB3D_server原始1366/折算3019>3000；工具write_graphs早已返回超限warning但构建只验written，确认漏门禁。正在合并九模型重复查询/动作分支，并为编译回执与最终GIL全部图增加双计数硬拒绝（上限仍3000），旧包保持未验收。
 <!-- SECTION:NOTES:END -->

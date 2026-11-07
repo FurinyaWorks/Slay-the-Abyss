@@ -3,6 +3,7 @@ import {dirname,join,resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 import {prepareBattleCamera,enemyFeet} from './camera.mjs';
+import {assertGraphBudget,assertCompiledBudget} from './graph-budget.mjs';
 
 const toolRoot=process.env.MILIASTRA_MCP_ROOT||'D:/MiliastraTools/genshin-miliastra-mcp';
 const load=name=>import(pathToFileURL(join(toolRoot,'src',name)));
@@ -126,9 +127,11 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
    f.addUnitStatus(character,character,${playerStatusId},1n,f.createDictionary([] as string[],[] as number[]));}}
   f.setCustomVariable(unit,'LAB_actor',slot,true);f.setCustomVariable(unit,'LAB_seq',sequence,true);
   f.setCustomVariable(unit,'LAB_command',0n,true);f.setCustomVariable(unit,'LAB_busy',1n,true);
+  f.setCustomVariable(unit,'LAB_hasHit',${Boolean(p.hit)},true);
   f.startTimer(unit,'LAB_READY',false,[4.5]);
   ${ack("'created:initializing_4.5s'","sequence")}return;
   }`;
+  const prefabList=`f.assemblyList([${prefabs.map(p=>p.prefabId+'n').join(',')}],'config_id')`;
   const server=head+signals+`g.server({id:${graphs.server.graphId},name:'${graphs.server.name}'})
 .on('whenEntityIsCreated',(evt,f)=>{
  ${floorId?`f.createPrefab(${floorId},[${anchor[0]+4},${anchor[1]-0.35},${anchor[2]+2}],[0,0,0],evt.eventSourceEntity,false,1,[] as bigint[]);`:''}
@@ -159,22 +162,22 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
  ${ack("'completed:hit'","sequence")}return;}`:''}
  if(slot===0n&&command!=='hide'){${ack("'unsupported:player_animation'","sequence")}return;}
  if(command==='show'||command==='reset'||command==='hide'){
-  ${prefabs.map(p=>`for(const unit of f.getEntitiesWithSpecifiedPrefabOnTheField(${p.prefabId})){if(slot===0n||f.getCustomVariable(unit,'LAB_actor').asType('int')===slot)f.removeEntity(unit);}`).join('\n')}
+  for(const prefab of ${prefabList})for(const unit of f.getEntitiesWithSpecifiedPrefabOnTheField(prefab)){if(slot===0n||f.getCustomVariable(unit,'LAB_actor').asType('int')===slot)f.removeEntity(unit);}
   if(command==='hide'){${ack("'hidden'","sequence")}return;}
   ${prefabs.map(createUnit).join('\n')}
   ${ack("'unsupported:model'","sequence")}return;
  }
  let found=false;
- ${prefabs.map(p=>`for(const unit of f.getEntitiesWithSpecifiedPrefabOnTheField(${p.prefabId})){
+ for(const prefab of ${prefabList})for(const unit of f.getEntitiesWithSpecifiedPrefabOnTheField(prefab)){
  if(f.getCustomVariable(unit,'LAB_actor').asType('int')===slot){
   found=true;
   if(command==='death'){f.destroyEntity(unit);${ack("'completed:death'","sequence")}}
   else if(command==='idle'){f.setCustomVariable(unit,'LAB_command',0n,true);f.setCustomVariable(unit,'LAB_busy',0n,true);${ack("'completed:idle'","sequence")}}
   else if(f.getCustomVariable(unit,'LAB_busy').asType('int')!==0n){${ack("'busy:wait_ready_or_animation'","sequence")}}
-  else if(command==='hit'&&${p.hit===null?'true':'false'}){f.playTimedEffects(7,unit,'GI_RootNode',false,false,[0,1,0],[0,0,0],1,false);${ack("'completed:hit'","sequence")}}
+  else if(command==='hit'&&!f.getCustomVariable(unit,'LAB_hasHit').asType('bool')){f.playTimedEffects(7,unit,'GI_RootNode',false,false,[0,1,0],[0,0,0],1,false);${ack("'completed:hit'","sequence")}}
   else{f.setCustomVariable(unit,'LAB_seq',sequence,true);f.setCustomVariable(unit,'LAB_busy',1n,true);f.setCustomVariable(unit,'LAB_command',command==='attack'?1n:2n,true);f.startTimer(unit,'LAB_TIMEOUT',false,[8]);${ack("'requested:await_skill_event'","sequence")}}
  }
- }`).join('\n')}
+ }
  if(!found){${ack("'missing_actor:show_first'","sequence")}}
 })`;
   const unit=head+signals+positionSignal+`g.server({id:${graphs.unit.graphId},name:'${graphs.unit.name}'})
@@ -264,7 +267,7 @@ export async function prepareNativeScene({call,mapPath,anchor=labAnchor,outputPa
     effect:{asset:10002152,attachPoint:'GI_WeaponR',ms:1833.333}});
   }
   for(const p of seeded.prefabs){
-    await invoke('scene_add_components',{prefab:p.prefabId,variables:[{name:'LAB_actor',type:'integer',value:0},{name:'LAB_seq',type:'integer',value:0},{name:'LAB_command',type:'integer',value:0},{name:'LAB_busy',type:'integer',value:0}]});
+    await invoke('scene_add_components',{prefab:p.prefabId,variables:[{name:'LAB_actor',type:'integer',value:0},{name:'LAB_seq',type:'integer',value:0},{name:'LAB_command',type:'integer',value:0},{name:'LAB_busy',type:'integer',value:0},{name:'LAB_hasHit',type:'boolean',value:false}]});
     const skills=[];
     for(const request of nativeSkillRequests(p,graphs)){
       const skill=await invoke('scene_add_creature_skill',request.args);
@@ -276,8 +279,10 @@ export async function prepareNativeScene({call,mapPath,anchor=labAnchor,outputPa
    cameraSource:camera?.startupSource,cameraAnchorPrefabId:camera?.anchorPrefabId,positions:productionCamera?Array.from({length:maxActors},(_,i)=>enemyFeet(i+1)):undefined,playerSkillId:playerSkill?.skillId});
   const compiled=await invoke('write_graphs',{graphs:sources});
   if(compiled.failed||compiled.errors?.length||compiled.written?.length!==sources.length)throw Error(`Native graph compilation incomplete: ${JSON.stringify(compiled)}`);
+  assertCompiledBudget(compiled.written);
   const inspected=await invoke('inspect_map');
+  const graphBudget=assertGraphBudget(inspected.graphs);
   for(const graph of Object.values(graphs))if(!inspected.graphs.some(r=>r.id===graph.graphId&&r.nodeCount>0))throw Error('Native graph readback incomplete');
-  return {mapPath,anchor,prefabs:seeded.prefabs,graphs,sources,statusId:safe.statusId,playerStatusId:playerSafe.statusId,floor,camera,playerSkill,provenance:seeded.provenance,
+  return {mapPath,anchor,prefabs:seeded.prefabs,graphs,sources,graphBudget,statusId:safe.statusId,playerStatusId:playerSafe.statusId,floor,camera,playerSkill,provenance:seeded.provenance,
     capabilities:{models:seeded.prefabs.map(p=>({model:p.model,name:p.name,idle:'native_standing',attack:true,hit:Boolean(p.hit),death:'destroyEntity_effect_not_clip'})),playerAnimation:false,actors:maxActors,initializationSeconds:4.5,commands:['show','hide','reset','idle','attack','hit','death'],damageAuthority:'existing_lua_only',animationReceipt:'skill_endpoint_not_visual_confirmation',officialImport:'not_run',phone:'not_run'}};
 }

@@ -16,6 +16,7 @@ import {sourceInputs,payloadDigest} from './build-native-candidate.mjs';
 import {artBuildOptionsFromReceipt} from './art-features.mjs';
 import {excludedProductionModules} from './native-candidate-scripts.mjs';
 import {gitSourceIdentity} from './release-notes.mjs';
+import {assertGraphBudget} from './native-3d/graph-budget.mjs';
 
 export function assertBaseSnapshot(receipt,currentInputs){
  // These files only run after the complete base GIL exists. Their own hashes
@@ -115,6 +116,8 @@ export async function buildNative3d({productionReceipt,output='.artifacts/native
    {name:'abyss_native_battle',source:readFileSync(resolve('src/lua/abyss_native_battle.lua'),'utf8')},
    {name:'abyss_native_battle_config',source:'return '+toLua(config)+'\n'}];
   mapPath=writeScriptBatch(mapPath,updates,workspace,{...wire,clientScriptRecord,luaSyntaxError});
+  const {inspectBytes}=await load('adapter.mjs');
+  receipt.graphBudget=assertGraphBudget(inspectBytes(readFileSync(mapPath)).graphs);
   const actual=embeddedScripts({mapPath,includeSource:true},wire).scripts;
   const expected=new Map(before.map(s=>[s.name,s.source]));for(const s of updates)expected.set(s.name,s.source);
   if(actual.length!==expected.size||actual.some(s=>expected.get(s.name)!==s.source))throw Error('Embedded source readback mismatch');
