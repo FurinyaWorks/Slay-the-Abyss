@@ -2,6 +2,7 @@ import {monsterPowerTemplateName,monsterActorBindingModule,monsterActorTemplateN
 import {normalizeArtFeatures,artFeatureBuildArgs,artBuildOptionsFromReceipt} from './art-features.mjs';
 import {portraitRuntimeInputs,portraitModule} from './official-portraits.mjs';
 import {lightweightInputs} from './lightweight-2d-profile.mjs';
+import {uiProfileFromReceipt} from './ui-profile.mjs';
 import {readyArtImageTemplate,readyArtGroupTemplate} from './art/ready-card-runtime.mjs';
 import {backgroundInputs, backgroundModule, backgroundTemplate} from './official-background.mjs';
 // Local offline tools only. Never calls a save mutation, import or playtest API.
@@ -15,7 +16,7 @@ import { releaseSourceFiles } from './release-notes.mjs';
 
 export function auditUiBuildArgs(receipt,{registryPath,deferExperimentalInventory=false}={}) {
   const options=receipt===undefined?{artFeatures:normalizeArtFeatures()}:artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory});
-  return ['scripts/build-ui.mjs',...artFeatureBuildArgs(options.artFeatures),...(options.lightweight2d?['--lightweight-2d']:[]),...(options.legacyCardFrames?['--legacy-card-frames']:[]),...(options.nativeCardArt?
+  return ['scripts/build-ui.mjs',...artFeatureBuildArgs(options.artFeatures),...(uiProfileFromReceipt(receipt)?['--native-page-lifecycle']:[]),...(options.lightweight2d?['--lightweight-2d']:[]),...(options.legacyCardFrames?['--legacy-card-frames']:[]),...(options.nativeCardArt?
     [`--native-card-art-registry=${registryPath??options.nativeCardArt.registry}`,...options.nativeCardArt.hosts.map(host=>`--native-card-art-host=${host}`)]:[])];
 }
 

@@ -11,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import {fixtureMapBytes,installNativeToolchainFixture,readFixtureScripts} from './helpers/native-toolchain-fixture.mjs';
 import {sha256} from '../scripts/evidence-files.mjs';
+import {uiProfileSource} from '../scripts/ui-profile.mjs';
 
 const builder = fileURLToPath(new URL('../scripts/build-native-candidate.mjs', import.meta.url));
 const existing = { id: 1073741899, name: '_GSTS_ABYSS_SETTLEMENT', type: 20000, writable: true };
@@ -19,6 +20,7 @@ const uiModules = Object.keys(generatedRuntimeModules).filter(name=>generatedRun
 // Artwork binding and template contracts have separate opt-in integration tests.
 const templates = [readyArtTemplates().find(template=>template.name===readyArtGroupTemplate),monsterActorTemplate(null),enemyPowerTemplate()];
 const generatedSource = name => name === artFeatureModule ? artFeaturesSource({})
+  : name === 'abyss_ui_profile' ? uiProfileSource()
   : name === 'abyss_monster_art_data' ? '-- Generated from the bounded native monster registry.\nreturn {}\n' : 'return {}';
 // Fake only the MCP boundary: execute the actual CLI and inspect its calls.
 const sdk = `
