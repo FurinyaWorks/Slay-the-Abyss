@@ -169,10 +169,10 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
   f.setCustomVariable(character,'LAB_player_safe_x',safe.xComponent,true);f.setCustomVariable(character,'LAB_player_safe_y',safe.yComponent,true);f.setCustomVariable(character,'LAB_player_safe_z',safe.zComponent,true);
  }
  const previous=f.getCustomVariable(character,'LAB_player_seq').asType('int');
- if(previous>0n){f.stopTimer(character,f.dataTypeConversion(-previous,'str'));f.stopTimer(character,f.dataTypeConversion(previous,'str'));}
+ if(previous>0n){f.stopTimer(character,f.dataTypeConversion(f.subtraction(0n,previous),'str'));f.stopTimer(character,f.dataTypeConversion(previous,'str'));}
  f.setCustomVariable(character,'LAB_player_seq',sequence,true);f.setCustomVariable(character,'LAB_player_recover_pending',true,true);
  f.setCustomVariable(character,'LAB_player_endpoint_seen',false,true);
- f.startTimer(character,f.dataTypeConversion(-sequence,'str'),false,[2.5]);
+ f.startTimer(character,f.dataTypeConversion(f.subtraction(0n,sequence),'str'),false,[2.5]);
  f.castSkillFromSpecifiedPanelSlot(character as any,CharacterSkillSlot.Skill1E,false);
  ${ack("'requested:player_skill'","sequence")}}
  return;}`:''}
@@ -244,7 +244,7 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
  ${ack("'completed:attack'","seq")}})
 .on('whenTimerIsTriggered',(evt,f)=>{
  const unit=evt.eventSourceEntity,seq=f.getCustomVariable(unit,'LAB_player_seq').asType('int');
- if(evt.timerName===f.dataTypeConversion(-seq,'str')){
+ if(evt.timerName===f.dataTypeConversion(f.subtraction(0n,seq),'str')){
   if(!f.getCustomVariable(unit,'LAB_player_recover_pending').asType('bool'))return;
   const player=f.getPlayerEntityToWhichTheCharacterBelongs(unit as any);
   ${recover('unit','player')}

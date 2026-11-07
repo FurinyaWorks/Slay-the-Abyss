@@ -157,7 +157,7 @@ function playerRecoveryHarness(){
   getListOfPlayerEntitiesOnTheField:()=>[900],getAllCharacterEntitiesOfSpecifiedPlayer:()=>[901],getPlayerEntityToWhichTheCharacterBelongs:()=>900,
   getEntityLocationAndRotation:()=>({location:feet}),split3dVector:v=>({xComponent:v[0],yComponent:v[1],zComponent:v[2]}),create3dVector:(...v)=>v,
   assemblyList:v=>v,getEntitiesWithSpecifiedPrefabOnTheField:()=>[],
-  dataTypeConversion:value=>String(value),startTimer:(id,name,_loop,intervals)=>timers.set(id+':'+name,intervals),stopTimer:(id,name)=>{stopped.push(name);timers.delete(id+':'+name)},
+  subtraction:(a,b)=>a-b,dataTypeConversion:value=>String(value),startTimer:(id,name,_loop,intervals)=>timers.set(id+':'+name,intervals),stopTimer:(id,name)=>{stopped.push(name);timers.delete(id+':'+name)},
   castSkillFromSpecifiedPanelSlot:(...v)=>casts.push(v),teleportPlayer:(player,where,rotation)=>{teleports.push({player,where,rotation});feet.splice(0,3,...where)},
   playTimedEffects:(...v)=>effects.push(v),
   resetPlayerCameraToFollowEntity:player=>cameras.push(['reset',player]),switchMainCameraTemplate:(players,name)=>cameras.push(['select',...players,name]),
