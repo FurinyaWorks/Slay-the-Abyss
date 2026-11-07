@@ -43,6 +43,7 @@ export function instrumentNativeEntry(source,buildId){
  text=once(text,'        view:resize(width, height)\n        canvasWidth, canvasHeight = width, height',`        view:resize(width, height)
         nativeBattle = require('abyss_native_battle').attach(view, script.object, {
             config = require('abyss_native_battle_config'),
+            keyEvents = Enum.KeyEventType,
             send = function(command, model, actor, sequence)
                 local signal = game.ServerSignal('LAB3D_COMMAND')
                 signal:AddString(command)
@@ -66,7 +67,7 @@ export function instrumentNativeEntry(source,buildId){
         canvasWidth, canvasHeight = width, height`);
  text=once(text,'            view:resize(width, height)','            view:resize(width, height)\n            if nativeBattle then nativeBattle:resize(width, height) end');
  text=once(text,'        view:update(dt)','        view:update(dt)\n        if nativeBattle then nativeBattle:update(dt) end');
- text=once(text,'function OnDestroy()', 'function OnDestroy()\n    if nativeBattle then pcall(function()nativeBattle:destroy()end);nativeBattle=nil end');
+ text=once(text,'function OnDestroy()', 'function OnDestroy()\n    if nativeBattle then pcall(function()nativeBattle:destroy(true)end);nativeBattle=nil end');
  text=once(text,'    script:EnableUpdate(false)\n    pcall(function()', '    if nativeBattle then pcall(function()nativeBattle:destroy()end);nativeBattle=nil end\n    script:EnableUpdate(false)\n    pcall(function()');
  return `print("ABYSS_BUILD ${buildId}")\nprint("ABYSS_NATIVE_3D ${buildId}")\n${text}`;
 }

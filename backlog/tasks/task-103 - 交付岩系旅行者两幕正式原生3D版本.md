@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-07 13:57'
-updated_date: '2026-11-07 16:20'
+updated_date: '2026-11-07 16:46'
 labels: []
 dependencies: []
 documentation:
@@ -37,6 +37,8 @@ ordinal: 166000
 6. 用户1073741926实机镜头/模型错位：核对日志与真实客户端源码，修正模板激活及物件镜头组件合同；实际站位与HUD同镜头校准后才交新GIL，不删栏杆掩盖镜头错误。
 
 7. 按用户要求先核查外部工具：复用UGC Camera的viewpoint_offset schema，仅在副本做字段级写入与独立读回；优先角色固定镜头+视点偏移，避免缺组件的物件镜头。无可用替代或离线改动完成后再申请真机窗口。
+
+8. 先建立只读原生取图与本轮可视交互闭环，不再把离线通过直接交用户。用官方视口投影/逆投影探针测真实相机；同时让原生Enter/N社交键透传，仅消费回合制不需的角色操作，实际按键效果需同候选定点验证。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes

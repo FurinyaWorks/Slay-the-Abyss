@@ -1,5 +1,6 @@
 {
   "layers": {
+    "abyss_native_social_input": "ui",
     "abyss_native_battle": "ui",
     "abyss_native_battle_geometry": "ui",
     "abyss_native_projection": "ui",

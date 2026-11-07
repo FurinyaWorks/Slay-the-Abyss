@@ -20,6 +20,11 @@ function M.attach(view,root,api)
  local function log(message)
   if api.log then api.log(message)else print('ABYSS_NATIVE_BATTLE '..message)end
  end
+ if api.keyEvents then
+  local why
+  self.releaseInput,why=require('abyss_native_social_input').attach(root,api.keyEvents)
+  log(why and ('social_input_unverified '..why) or 'native_social_passthrough')
+ end
  local function restore()
   for c,value in pairs(self.masked)do
    if c.alive~=false then pcall(c.SetVisible,c,value)end
@@ -261,8 +266,9 @@ function M.attach(view,root,api)
    if view.refresh then view:refresh()end
   end
  end
- function self.destroy(_owner)
+ function self.destroy(_owner,engineDestroyed)
   if self.destroyed then return end
+  if self.releaseInput then self.releaseInput(engineDestroyed)end
   cleanup()
   -- Fire best-effort cleanup while the owning signal sender is still alive.
   if self.owned then pump()end

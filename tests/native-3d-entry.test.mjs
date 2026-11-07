@@ -15,6 +15,8 @@ test('3D candidate retains the production entry and campaign; bridges updates an
  assert.match(source,/competition-two-act/);
  assert.match(source,/nativeBattle:update\(dt\)/);
  assert.match(source,/nativeBattle:destroy\(\)/);
+ assert.match(source,/nativeBattle:destroy\(true\)/);
+ assert.match(source,/keyEvents = Enum.KeyEventType/);
  assert.ok(source.indexOf("require('abyss_native_battle_geometry').configure(true)")<source.indexOf('view = GameUI.new'));
  assert.match(source,/templates, \{nativeBattle=true\}/);
  assert.match(source,/LAB3D_POSITION/);
