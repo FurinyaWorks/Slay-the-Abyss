@@ -10,8 +10,9 @@ import {runNativeClientCheck} from './native-client-check.mjs';
 import {fileRecord,writeExclusive,prepareOutputDirectory,sha256} from './evidence-files.mjs';
 import {toLua} from './build-lua-data.mjs';
 import {installOfficialArena} from './native-3d/arena.mjs';
-import {battleCamera,projectBody,enemyFeet} from './native-3d/camera.mjs';
-import {productionModels,enemyModels} from './native-3d/models.mjs';
+import {productionModels} from './native-3d/models.mjs';
+import {nativeBattleConfig} from './native-3d/config.mjs';
+import {verifyNativeConfig} from './native-3d/config-check.mjs';
 import {sourceInputs,payloadDigest} from './build-native-candidate.mjs';
 import {artBuildOptionsFromReceipt} from './art-features.mjs';
 import {excludedProductionModules} from './native-candidate-scripts.mjs';
@@ -106,12 +107,7 @@ export async function buildNative3d({productionReceipt,output='.artifacts/native
    if(embedded!==readFileSync(resolve('src/lua',name),'utf8'))throw Error('Base embedded source differs from checkout: '+module);
   }
   const entry=before.find(s=>s.name==='abyss_ui');if(!entry)throw Error('Missing production entry');
-  const perModel=Object.fromEntries(productionModels.map(m=>[m.model,Array.from({length:5},(_,i)=>projectBody(enemyFeet(i+1),m.body))]));
-  const config={buildId,maxActors:5,defaultModel:1,models:native.capabilities.models,enemyModels,
-   bodies:Object.fromEntries(productionModels.map(m=>[m.model,m.body])),heroBody:{width:.8,height:1.7},heroFeet:battleCamera.playerFeet,
-   worldFeet:Array.from({length:5},(_,i)=>enemyFeet(i+1)),
-   projections:{hero:projectBody(battleCamera.playerFeet,{width:.8,height:1.7}),slots:perModel[1],models:perModel},
-   camera:native.camera.projection,presentationStatus:'native-targets-and-official-arena-awaiting-client-calibration'};
+  const config=nativeBattleConfig(buildId,native);
   const updates=[{name:'abyss_ui',source:instrumentNativeEntry(entry.source,buildId)},
    {name:'abyss_native_battle',source:readFileSync(resolve('src/lua/abyss_native_battle.lua'),'utf8')},
    {name:'abyss_native_battle_config',source:'return '+toLua(config)+'\n'}];
@@ -123,6 +119,7 @@ export async function buildNative3d({productionReceipt,output='.artifacts/native
   if(actual.length!==expected.size||actual.some(s=>expected.get(s.name)!==s.source))throw Error('Embedded source readback mismatch');
   receipt.modules=actual.map(s=>({name:s.name,sha256:sha256(s.source),bytes:Buffer.byteLength(s.source)}));
   writeExclusive(join(workspace,'scripts.json'),{mapPath,scripts:actual});
+  receipt.serializedConfigRuntime=verifyNativeConfig(actual,workspace);
   const check=runNativeClientCheck({mapPath},toolRoot);writeExclusive(join(workspace,'client-check.json'),check);
   receipt.clientCheck=check;if(check.ok!==true||check.errors!==0)throw Error('Static client check failed');
   for(const input of receipt.inputs)if(fileRecord(input.path).sha256!==input.sha256)throw Error('Build input changed');

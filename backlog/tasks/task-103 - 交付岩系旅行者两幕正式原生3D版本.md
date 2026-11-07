@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-07 13:57'
-updated_date: '2026-11-07 15:31'
+updated_date: '2026-11-07 15:42'
 labels: []
 dependencies: []
 documentation:
@@ -31,6 +31,8 @@ ordinal: 166000
 
 <!-- SECTION:PLAN:BEGIN -->
 1. 以用户1073741923实机截图/日志为失败基线，从渲染源停用2D角色怪物及4389控件立绘。2. 原生镜头和actor ID投影统一点选、拖牌、药水、HP状态意图；动作失败保持3D。3. 复用官方91件遗迹成品及原平坦碰撞平台，隐藏小地图，不用鼠标手搭或2D Simulator冒充3D。4. 单GIL真实写入读回、独审及原生客户端校准；未通过不称完成。
+
+5. 修正最终GIL中模型配置的数字索引，构建成功前真实加载回读Lua覆盖全部模型槽位与投影生命周期；旧坏包须被同门禁拒绝。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
