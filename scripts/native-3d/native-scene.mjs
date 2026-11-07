@@ -131,7 +131,7 @@ export function nativeGraphSources({graphs,prefabs,statusId,playerStatusId=statu
   f.startTimer(unit,'LAB_READY',false,[4.5]);
   ${ack("'created:initializing_4.5s'","sequence")}return;
   }`;
-  const prefabList=`f.assemblyList([${prefabs.map(p=>p.prefabId+'n').join(',')}],'config_id')`;
+  const prefabList=`f.assemblyList([${prefabs.map(p=>p.prefabId+'n').join(',')}],'prefab_id')`;
   const server=head+signals+`g.server({id:${graphs.server.graphId},name:'${graphs.server.name}'})
 .on('whenEntityIsCreated',(evt,f)=>{
  ${floorId?`f.createPrefab(${floorId},[${anchor[0]+4},${anchor[1]-0.35},${anchor[2]+2}],[0,0,0],evt.eventSourceEntity,false,1,[] as bigint[]);`:''}
