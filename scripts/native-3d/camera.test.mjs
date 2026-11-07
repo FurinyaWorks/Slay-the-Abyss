@@ -45,7 +45,7 @@ function harness(options={}){
     calls.push({name,args});
     if(name==='scene_list_cameras')return {cameras:[changed&&!options.badReadback?{...camera,distance:10,fieldOfView:42,fixedView:{yaw:0,pitch:12,ignoreCollision:true}}:camera]};
     if(name==='scene_set_camera'){changed=true;return {mapPath:'camera-copy.gil'};}
-    if(name==='scene_list_interface')return {layouts:[{layoutId:9,controls:options.noMinimap?[]:[{id:71,name:'小地图',kind:'builtIn'}]}]};
+    if(name==='scene_list_interface')return {layouts:[{layoutId:9,controls:options.noMinimap?[]:[{id:71,name:'小地图',kind:'builtIn'},{id:72,name:'造物生命值条',kind:'builtIn'},{id:73,name:'角色生命值条',kind:'builtIn'}]}]};
     if(name==='scene_add_prefab')return {mapPath:'anchor-copy.gil',prefabId:99};
     if(name==='scene_add_components'){assert.equal(args.prefab,99);assert.equal(args.solid,false);return {mapPath:'anchor-nonsolid-copy.gil'};}
     if(name==='scene_list_prefabs')return {prefabs:[{prefabId:99,assetId:10005018}]};
@@ -63,6 +63,8 @@ test('preparation uses returned candidate copies and verifies public camera/anch
   assert.equal(h.calls.find(item=>item.name==='scene_add_components').args.mapPath,'anchor-copy.gil');
   assert.equal(h.calls.at(-1).args.mapPath,'anchor-nonsolid-copy.gil');
   assert.match(result.startupSource,/71n,UIControlGroupStatus.Hidden/);
+  assert.match(result.startupSource,/72n,UIControlGroupStatus.Hidden/);
+  assert.match(result.startupSource,/73n,UIControlGroupStatus.Hidden/);
 });
 test('missing minimap and stale camera readback fail without declaring configuration success',async()=>{
   for(const [options,pattern]of [[{badReadback:true},/readback differs/],[{noMinimap:true},/minimap control/]]){

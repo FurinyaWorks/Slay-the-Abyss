@@ -82,14 +82,17 @@ export async function prepareBattleCamera({call,mapPath,verifyAnchor=readAnchorC
   const ui=await invoke('scene_list_interface');
   const minimaps=ui.layouts?.flatMap(layout=>(layout.controls??[]).filter(control=>control.name==='小地图'&&control.kind==='builtIn').map(control=>({...control,layoutId:layout.layoutId})))??[];
   if(!minimaps.length)throw Error('Actual native minimap control not found');
+  const hiddenNames=['小地图','造物生命值条','角色生命值条'];
+  const hiddenGroups=ui.layouts.flatMap(layout=>(layout.controls??[]).filter(control=>hiddenNames.includes(control.name)&&control.kind==='builtIn'));
+  for(const name of hiddenNames)if(!hiddenGroups.some(control=>control.name===name))throw Error('Actual native HUD group missing: '+name);
   const anchor=await invoke('scene_add_prefab',{asset:10005018,name:'ABYSS_battle_camera_anchor'});
   await invoke('scene_add_components',{prefab:anchor.prefabId,solid:false});
   const anchorCollision=await verifyAnchor(mapPath,anchor.prefabId);
   if(anchorCollision?.solid!==false)throw Error('Camera anchor collision readback differs');
   const prefabs=await invoke('scene_list_prefabs');
   if(!prefabs.prefabs?.some(item=>item.prefabId===anchor.prefabId&&item.assetId===10005018))throw Error('Empty-model camera anchor readback failed');
-  return {mapPath,camera:actual,anchorPrefabId:anchor.prefabId,anchorCollision,minimaps,
-    startupSource:cameraStartupSource({anchorPrefabId:anchor.prefabId,cameraName:actual.name,minimapIds:minimaps.map(item=>item.id)}),
+  return {mapPath,camera:actual,anchorPrefabId:anchor.prefabId,anchorCollision,minimaps,hiddenGroups,
+    startupSource:cameraStartupSource({anchorPrefabId:anchor.prefabId,cameraName:actual.name,minimapIds:hiddenGroups.map(item=>item.id)}),
     requiredEnumImport:'UIControlGroupStatus',projection:{...battleCamera,position:cameraPosition()},
     evidence:{method:'official_set_player_camera_to_follow_entity',cameraGuide:'mhfua005zpeg',nodeGuide:'mhw66orrrfkm',
       emptyModelSource:'installed asset-catalog:10005018 空模型',minimapSource:'actual scene_list_interface',
