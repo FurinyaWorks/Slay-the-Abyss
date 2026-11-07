@@ -18,6 +18,7 @@ import { contentFiles } from './validate-data.mjs';
 import { loadReleaseNotes, releaseInputPaths, releaseBuildArgs } from './release-notes.mjs';
 import { nativeCardArtArgs, prepareNativeCardArt, attachNativeCardArt, bindNativeArtPresentation, nativeArtReceipt } from './card-art-samples.mjs';
 import {loadPerformancePack} from './art/performance-pack.mjs';
+import {writeLightweightProfile} from './lightweight-2d-profile.mjs';
 
 export function assertNativeUiCapacity(layout) {
   const checkFonts = (control, path) => {
@@ -63,12 +64,13 @@ function rejectInputOutputAliases(outputDirectory, extraInputs = []) {
     resolve('data/presentation/ui_theme.json'), ...(existsSync('data/presentation/native-monster-art.json')?[resolve('data/presentation/native-monster-art.json')]:[]), resolve('data/presentation/traveler.zh-CN.json'),
     resolve('data/presentation/narrative.zh-CN.json'),
     // Imported battle/native layout modules read this theme relative to their source.
-    fileURLToPath(new URL('../data/presentation/ui_theme.json', import.meta.url)), ...releaseInputPaths()];
+    fileURLToPath(new URL('../data/presentation/ui_theme.json', import.meta.url)),
+    fileURLToPath(new URL('./art/lightweight-2d-assets.mjs', import.meta.url)), ...releaseInputPaths()];
   const identities = inputs.map(input => ({ input, realPath: realpathSync.native(input),
     stat: statSync(input, { bigint: true }) }));
   const outputs = ['abyss_theme.lua', 'map-ui.json', 'abyss_map_layout.lua', 'abyss_map_controls.lua',
     'abyss_narrative.lua', 'abyss_presentation.lua', 'battle-ui.json', 'game-ui.json', 'abyss_ui_layout.lua',
-    'game-ui-templates.json', 'abyss_ui_templates.lua', 'native-card-art-receipt.json', `${backgroundModule}.lua`,
+    'game-ui-templates.json', 'abyss_ui_templates.lua', 'native-card-art-receipt.json', 'lightweight-2d.json', `${backgroundModule}.lua`,
     'abyss_ready_card_binding.lua','abyss_ready_card_assets.lua','abyss_traveler_portrait_assets.lua',`${artFeatureModule}.lua`,'abyss_monster_art_data.lua','abyss_monster_actor_binding.lua','art-performance.json','art-render-v2.json'];
   for (const file of outputs) {
     const output = join(outputDirectory, file);
@@ -125,6 +127,8 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   if (art) bindNativeArtPresentation(cards,art);
 
   mkdirSync(outputDirectory, { recursive: true });
+  if(options.lightweight2d===true)writeLightweightProfile(outputDirectory);
+  else rmSync(join(outputDirectory,'lightweight-2d.json'),{force:true});
   if(performance)writeFileSync(join(outputDirectory,'art-performance.json'),JSON.stringify(performance));
   else rmSync(join(outputDirectory,'art-performance.json'),{force:true});
   writeFileSync(join(outputDirectory,'art-render-v2.json'),JSON.stringify({profile:'native-v2',hiddenBuild:true,cache:true,revealGroupsPerFrame:4}));
@@ -148,12 +152,12 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try {
-    const args = process.argv.slice(2), experimentalCharacters = args.includes('--experimental-characters');
-    const features=artFeatureArgs(args.filter(arg => arg !== '--experimental-characters'));
+    const args = process.argv.slice(2), experimentalCharacters = args.includes('--experimental-characters'),lightweight2d=args.includes('--lightweight-2d');
+    const features=artFeatureArgs(args.filter(arg => !['--experimental-characters','--lightweight-2d'].includes(arg)));
     const native = nativeCardArtArgs(features.args);
     const { paths, options } = releaseBuildArgs(native.args);
     if (paths.length > 1) throw new Error('Expected at most one output directory');
-    buildUI(paths[0], undefined, { experimentalCharacters, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
+    buildUI(paths[0], undefined, { experimentalCharacters, lightweight2d, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
     console.log('Native battle UI and Traveler display module built.');
   }
   catch (error) { console.error(error.message); process.exitCode = 1; }

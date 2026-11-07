@@ -38,7 +38,7 @@ function build(root) {
   const cwd = process.cwd();
   try { process.chdir(root); buildUI('out'); } finally { process.chdir(cwd); }
 }
-for (const mode of ['hardlink', 'symlink']) for (const input of inputs) for (const output of [...outputs,'art-performance.json']) {
+for (const mode of ['hardlink', 'symlink']) for (const input of inputs) for (const output of [...outputs,'art-performance.json','lightweight-2d.json']) {
   test(`UI build rejects ${output} ${mode} to ${input} before writing`, t => fixture(root => {
     const source = join(root, 'data', input), target = join(root, 'out', output);
     try { if (mode === 'hardlink') linkSync(source, target); else symlinkSync(source, target, 'file'); }

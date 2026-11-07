@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - Furinya
 created_date: '2026-10-31 23:38'
-updated_date: '2026-11-07 03:47'
+updated_date: '2026-11-07 19:35'
 labels:
   - 待验
 milestone: m-8
@@ -72,4 +72,6 @@ ordinal: 136000
 M9第二批复验战斗refresh绘制2→1、五张静止牌300更新几何方法7500→0、药水drag候选2100→1500；所有输入/失败/重入及有序旧新轨迹保留。见docs/evidence/m9-runtime-20261103/README.md。仅工程事实，无官方同候选手机证据，AC3及状态不变。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-08 Owner明确授权PR557定向轻量2D完整候选实验及本轮键鼠；task:pick仍HOLD，保持To Do与未验手机AC，不绕过Sprint正式集成。独立树feat/lightweight-2d基于develop d8a57cae；复用TASK100证据归口，启动/艺术计数先行，完整候选、独审及官方设备分层验收。
 <!-- SECTION:NOTES:END -->
