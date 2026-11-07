@@ -1,5 +1,6 @@
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
+import {rewardQueryPlanningProof} from './helpers/reward-query-planning-source-inverse.mjs';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -160,8 +161,11 @@ test('current timing records preserve all measured corrections without duplicate
  }
  assert.equal(timings.jsCalibration.runId,41097231681);assert.equal(timings.jsCalibration.runAttempt,1);
  assert.equal(timings.jsCalibration.headSha,'568d47a8f51164ed9e3cfb0656f57f2d832ed546');
+ // Retain all original nine-floor assertions against their complete historical bytes.
+ const historicalTimings=JSON.parse(rewardQueryPlanningProof.beforeSource);
  let localFloorCount=0;
- for(const [file,entry]of Object.entries(timings.jsPlanning.localLowerBounds)){
+ for(const [file,entry]of Object.entries(historicalTimings.jsPlanning.localLowerBounds)){
+  assert.deepEqual(timings.jsPlanning.localLowerBounds[file],entry,'every original floor remains exact in the live union');
   if(file==='tests/run-max-hp-config-inverse.test.mjs'){
    assert.equal(entry.environment,'hosted Windows');assert.equal(entry.durationMs,889638);
    assert.equal(entry.kind,'Planning-only cross-platform floor from a complete successful hosted Windows same-file observation; not a Linux measurement or censored elapsed-time sample.');
@@ -178,7 +182,14 @@ test('current timing records preserve all measured corrections without duplicate
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,9);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(historicalTimings.jsPlanning.localLowerBounds).length,9);
+ const rewardFile='tests/reward-query-boundary.test.mjs';
+ const expectedFloors={...historicalTimings.jsPlanning.localLowerBounds,[rewardFile]:timings.jsPlanning.localLowerBounds[rewardFile]};
+ assert.deepEqual(timings.jsPlanning.localLowerBounds,expectedFloors);assert.equal(Object.keys(expectedFloors).length,10);
+ for(const platform of ['win32','linux','unknown-platform']){
+  assert.equal(timings.js[platform]?.[rewardFile],undefined,'local floor must not fabricate hosted measurements');
+  assert.equal(jsPlanningWeights([rewardFile],platform)[rewardFile],50216);
+ }
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 
