@@ -15,6 +15,16 @@ import {productionModels,enemyModels} from './native-3d/models.mjs';
 import {sourceInputs,payloadDigest} from './build-native-candidate.mjs';
 import {artBuildOptionsFromReceipt} from './art-features.mjs';
 import {excludedProductionModules} from './native-candidate-scripts.mjs';
+import {gitSourceIdentity} from './release-notes.mjs';
+
+export function assertBaseSnapshot(receipt,currentInputs){
+ // These files only run after the complete base GIL exists. Their own hashes
+ // belong to the assembly receipt; rules, data and base/UI build inputs may not drift.
+ const baseOnly=rows=>rows.filter(row=>row.path!=='scripts/build-native-3d.mjs'&&!row.path.startsWith('scripts/native-3d/'));
+ if(!Array.isArray(receipt.inputs)||payloadDigest(receipt.inputs)!==receipt.payloadDigest
+  ||payloadDigest(baseOnly(receipt.inputs))!==payloadDigest(baseOnly(currentInputs)))
+  throw Error('Base source snapshot is stale; rebuild the complete production candidate before 3D assembly');
+}
 
 function once(source,anchor,replacement){
  if(source.split(anchor).length!==2)throw Error('Production integration anchor changed: '+anchor);
@@ -64,12 +74,11 @@ export async function buildNative3d({productionReceipt,output='.artifacts/native
  if(original.statuses?.staticCheck!=='pass'||fileRecord(original.mapPath).sha256!==original.candidate.sha256)
   throw Error('Base candidate is unchecked or changed');
  const baseOptions=artBuildOptionsFromReceipt(original);
- if(payloadDigest(sourceInputs(root,baseOptions))!==original.payloadDigest)
-  throw Error('Base source snapshot is stale; rebuild the complete production candidate before 3D assembly');
+ assertBaseSnapshot(original,sourceInputs(root,baseOptions));
  const buildId=randomUUID(),workspace=join(prepareOutputDirectory(root,output),buildId);mkdirSync(workspace);
  let mapPath=join(workspace,'base.gil');copyFileSync(original.mapPath,mapPath);
  const receipt={schemaVersion:1,kind:'native-3d-production-candidate',buildId,base:fileRecord(productionReceipt),
-  sourceCommit:original.sourceCommit,sourceDirty:original.sourceDirty,basePayloadDigest:original.payloadDigest,liveWriteEnabled:false,operations:[],
+  ...gitSourceIdentity(root),baseSourceCommit:original.sourceCommit,basePayloadDigest:original.payloadDigest,liveWriteEnabled:false,operations:[],
   inputs:['scripts/build-native-3d.mjs',...readdirSync('scripts/native-3d').filter(n=>/\.(mjs|json)$/.test(n)).map(n=>'scripts/native-3d/'+n),
    ...readdirSync('src/lua').filter(n=>n.endsWith('.lua')).map(n=>'src/lua/'+n)].map(p=>fileRecord(resolve(p))),
   statuses:{staticCheck:'not_run',officialImport:'not_run',runtimeReady:'not_run',pc:'not_run',mobile:'not_run'}};
@@ -90,7 +99,10 @@ export async function buildNative3d({productionReceipt,output='.artifacts/native
   const inventory=new Map(before.map(s=>[s.name,s.source]));
   for(const name of readdirSync('src/lua').filter(n=>n.endsWith('.lua'))){
    const module=name.slice(0,-4);if(excludedProductionModules.includes(module))continue;
-   if(inventory.get(module)!==readFileSync(resolve('src/lua',name),'utf8'))throw Error('Base embedded source differs from checkout: '+module);
+   let embedded=inventory.get(module);
+   const marker=`print("ABYSS_BUILD ${original.buildId}")\n`;
+   if(module==='abyss_ui'&&embedded?.startsWith(marker))embedded=embedded.slice(marker.length);
+   if(embedded!==readFileSync(resolve('src/lua',name),'utf8'))throw Error('Base embedded source differs from checkout: '+module);
   }
   const entry=before.find(s=>s.name==='abyss_ui');if(!entry)throw Error('Missing production entry');
   const perModel=Object.fromEntries(productionModels.map(m=>[m.model,Array.from({length:5},(_,i)=>projectBody(enemyFeet(i+1),m.body))]));

@@ -4,7 +4,8 @@ import {readFileSync,mkdtempSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import luaparse from 'luaparse';
-import {instrumentNativeEntry,buildNative3d} from '../scripts/build-native-3d.mjs';
+import {instrumentNativeEntry,buildNative3d,assertBaseSnapshot} from '../scripts/build-native-3d.mjs';
+import {payloadDigest} from '../scripts/build-native-candidate.mjs';
 import {artFeatureReceipt} from '../scripts/art-features.mjs';
 import {fileRecord} from '../scripts/evidence-files.mjs';
 test('3D candidate retains the production entry and campaign; bridges updates and teardown',()=>{
@@ -27,4 +28,12 @@ test('stale base snapshot is refused before starting MCP or writing a candidate'
  writeFileSync(mapPath,'stale-input-guard');
  writeFileSync(receiptPath,JSON.stringify({mapPath,candidate:fileRecord(mapPath),statuses:{staticCheck:'pass'},artFeatures:artFeatureReceipt({}),payloadDigest:'stale'}));
  await assert.rejects(buildNative3d({productionReceipt:receiptPath}),/Base source snapshot is stale/);
+});
+test('base guard covers rules, data and UI builder while assembly files have a separate snapshot',()=>{
+ const inputs=['src/lua/abyss_native_battle.lua','data/cards.json','scripts/build-ui.mjs','scripts/native-3d/camera.mjs','scripts/build-native-3d.mjs'].map(path=>({path,sha256:'before',bytes:1}));
+ const receipt={inputs,payloadDigest:payloadDigest(inputs)};
+ const changed=path=>inputs.map(row=>row.path===path?{...row,sha256:'after'}:row);
+ for(const path of ['src/lua/abyss_native_battle.lua','data/cards.json','scripts/build-ui.mjs'])assert.throws(()=>assertBaseSnapshot(receipt,changed(path)),/stale/);
+ for(const path of ['scripts/native-3d/camera.mjs','scripts/build-native-3d.mjs'])assert.doesNotThrow(()=>assertBaseSnapshot(receipt,changed(path)));
+ assert.throws(()=>assertBaseSnapshot({...receipt,payloadDigest:'tampered'},inputs),/stale/);
 });
