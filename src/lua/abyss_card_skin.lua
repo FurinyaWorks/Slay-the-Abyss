@@ -136,6 +136,6 @@ function M.apply(box,definition,platform,look)
     tint(box:GetChild('nameRule'),(rarities[definition.rarity] or rarities.basic)[4])
     costs(box,definition,look,accent,platform,tint)
     if platform.color then box:GetChild('type').fontColor=platform.color(accent.r,accent.g,accent.b,255)end
-    blockedState(box,look)
+    if look.blockedIndicator~=false then blockedState(box,look)end
 end
 return M

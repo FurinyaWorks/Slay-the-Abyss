@@ -6,7 +6,7 @@ local M={}
 local Controller=require('abyss_controller')
 local function find(entries,id)for _,entry in ipairs(entries)do if entry.id==id then return entry end end end
 -- Read-only count entry. Physical slot controls belong to the management modal.
-function M.refreshEntry(hit,run,platform)
+function M.refreshEntry(hit,run,_platform)
     local capacity=run and Run.potionCapacity(run) or 0
     local caption=run and '药水 '..Run.potionCount(run)..'/'..capacity or '药水'
     for _,state in ipairs({'normal','hover','pressed','disabled'})do
@@ -44,36 +44,36 @@ function M.new(root,clickEvent,platform,allowed,onChange,onClose)
         end
         return table.concat(result,'；')
     end
-    function self:render()
-        if not self.visible then return end
-        self.generation=self.generation+1
-        if not currentSelection()then self.selected=nil end
-        local capacity=Run.potionCapacity(self.run)
+    function self.render(owner)
+        if not owner.visible then return end
+        owner.generation=owner.generation+1
+        if not currentSelection()then owner.selected=nil end
+        local capacity=Run.potionCapacity(owner.run)
         for slot=1,Theme.layout.battlePotions.count do
-            local id=self.run.potions[slot]
-            local definition=id and find(self.run.data.potions.potions,id)
+            local id=owner.run.potions[slot]
+            local definition=id and find(owner.run.data.potions.potions,id)
             child('slot'..slot):SetVisible(slot<=capacity)
             caption('slot'..slot,'槽 '..slot..'\n'..(definition and definition.name or '空槽'))
             local hit=child('slot'..slot):GetChild('hit');hit.interactable=slot<=capacity and definition~=nil;hit.raycastTarget=hit.interactable
         end
-        local selected=self.selected
-        child('detail').text=selected and detail(find(self.run.data.potions.potions,selected.id)) or '尚未选择药水。'
-        local view=selected and Run.potionView(self.run)[selected.slot]
+        local selected=owner.selected
+        child('detail').text=selected and detail(find(owner.run.data.potions.potions,selected.id)) or '尚未选择药水。'
+        local view=selected and Run.potionView(owner.run)[selected.slot]
         local discard=child('discard'):GetChild('hit');discard.interactable=view and view.canDiscard~=false or false;discard.raycastTarget=discard.interactable
-        local use=child('use'):GetChild('hit');use.interactable=self.run.phase~='combat' and view and view.canUse or false;use.raycastTarget=use.interactable
+        local use=child('use'):GetChild('hit');use.interactable=owner.run.phase~='combat' and view and view.canUse or false;use.raycastTarget=use.interactable
         if view and view.reason=='potion_event_restricted' then
             child('detail').text=child('detail').text..'\n此事件中不能使用或丢弃药水。'
         end
     end
-    function self:open(run)
-        if self.visible or not allowed(run)then return false end
-        self.visible,self.run,self.selected=true,run,nil
-        root:SetVisible(true);root:SetAsLastSibling();self:render();return true
+    function self.open(owner,run)
+        if owner.visible or not allowed(run)then return false end
+        owner.visible,owner.run,owner.selected=true,run,nil
+        root:SetVisible(true);root:SetAsLastSibling();owner:render();return true
     end
-    function self:close()
-        if not self.visible then return false end
-        self.visible,self.run,self.selected=false,nil,nil
-        self.generation=self.generation+1;root:SetVisible(false);return true
+    function self.close(owner)
+        if not owner.visible then return false end
+        owner.visible,owner.run,owner.selected=false,nil,nil
+        owner.generation=owner.generation+1;root:SetVisible(false);return true
     end
     local function bind(name,action)
         local hit=child(name):GetChild('hit')

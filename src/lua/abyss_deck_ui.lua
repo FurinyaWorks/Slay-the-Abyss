@@ -234,7 +234,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         local base=instance.upgraded and printed.upgrade and printed.upgrade.cost or printed.cost
         local selected=false
         for _,uid in ipairs(self.choiceSelected or {}) do if uid==instance.uid then selected=true end end
-        CardSkin.apply(face,definition,platform,{cost=definition.cost,baseCost=base,selected=selected})
+        CardSkin.apply(face,definition,platform,{cost=definition.cost,baseCost=base,selected=selected,blockedIndicator=false})
         control:GetChild("uid").text = selected and '已选择' or ''
         local hit=control:GetChild('hit')
         hit:SetVisible(true)

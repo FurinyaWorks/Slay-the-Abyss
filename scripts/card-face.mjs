@@ -78,14 +78,17 @@ export function cardFaceChildren(theme, context, interactive = true) {
     text(node?'description':'label', frame([0,-top+card.textBox[1]/2+s.border],card.textBox), '', f.card),
     orb('roleRing',frame([0,-h/2],[16,16]),c.cardWell),
     {name:'roleMark',kind:'container',position:[0,-h/2],size:[11,11],children:Object.keys(theme.cardSkin.roles).map(role=>({name:role,kind:'container',size:[11,11],children:emblem(role,picture,c.energy,c.cardWell)}))},
+    // Deck faces are selected or inspected, so their hosts omit blocked indicators.
     // One native opacity layer: overlapping rounded parts would darken the centre twice.
     // Rounded alpha clipping remains an explicit platform verification gap.
+    ...(context === 'deck' ? [] : [
     hidden(plate('blockedVeil',frame([0,0],[w-blocked.inset*2,h-blocked.inset*2]),blocked.veil)),
     hidden({name:'blockedPill',kind:'container',position:[0,blocked.pillY],size:[...blocked.pill],children:
       [0,blocked.stroke].map((inset,index)=>({name:index?'body':'edge',kind:'container',size:[...blocked.pill],children:
         roundedParts(blocked.pill[0]-inset*2,blocked.pill[1]-inset*2,blocked.pillRadius-inset,index?blocked.body:blocked.edge,picture,plate,frame)}))}),
     hidden(picture('blockedLock',[-blocked.pill[0]/2+blocked.padding+blocked.lock[0]/2,blocked.pillY,...blocked.lock],icon.lock,blocked.text)),
     hidden(text('blockedReason',frame([(blocked.lock[0]+blocked.gap)/2,blocked.pillY],[blocked.pill[0]-blocked.padding*2-blocked.lock[0]-blocked.gap,l.nativeText.lineHeight]),'',f.minimum,blocked.text)),
+    ]),
     hidden(orb('costHalo',frame(disc,[d+12,d+12]),c.positive,image.ring)),
     // Dark coin with a coloured ring and coloured numeral.
     orb('costCore', frame(disc,[d+trim.costRing,d+trim.costRing]), c.cardWell),

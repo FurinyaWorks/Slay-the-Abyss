@@ -4,7 +4,7 @@ import {cardFaceChildren} from '../scripts/card-face.mjs';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 
 test('blocked cards retain the source inset veil and lock/reason capsule without shrinking native text',()=>{
- for(const context of ['battle','deck','node']){
+ for(const context of ['battle','node']){
   const face=cardFaceChildren(nativeTheme,context),parts=Object.fromEntries(face.map(c=>[c.name,c]));
   assert(parts.blockedVeil,'source blocked-card veil is required');
   assert.equal(parts.blockedVeil.visible,false);
