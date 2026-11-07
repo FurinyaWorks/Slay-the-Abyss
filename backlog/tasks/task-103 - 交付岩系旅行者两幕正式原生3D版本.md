@@ -5,9 +5,11 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-07 13:57'
-updated_date: '2026-11-07 14:08'
+updated_date: '2026-11-07 14:16'
 labels: []
 dependencies: []
+documentation:
+  - docs/backlog-details/NATIVE-3D-INTEGRATION-20261107.md
 priority: medium
 ordinal: 166000
 ---
@@ -35,4 +37,6 @@ ordinal: 166000
 
 <!-- SECTION:NOTES:BEGIN -->
 独立分支feat/native-3d-production基于d8a57cae；正式GameUI/Run离线菜单至奖励回图已通过mock桥，原生5槽图11项通过；地图静止300帧同值颜色写入300→1，未宣称FPS。独审发现runtime同源、死亡历史容量和ready身份竞态，正在修正；完整构建曾因输入变更被拒绝，未冒称候选完成。
+
+首个正式集成GIL已生成：e8a961fe/46309f66，347模块读回、静态0error345warning。PR556源码独审通过，Full待；PC/手机未验收。实际候选路径、失败历史和剩余三种通用外观等边界见附件，已申请本轮20分钟桌面窗口，未获回复前不操作。
 <!-- SECTION:NOTES:END -->
