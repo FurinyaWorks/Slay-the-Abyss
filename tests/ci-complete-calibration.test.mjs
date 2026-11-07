@@ -1,3 +1,4 @@
+import {potionCallbackFloorKey,verifiedPotionCallbackFloor,prePotionCallbackPlanningSource} from './helpers/potion-callback-planning.mjs';
 import {runCatalogFloorKey,verifiedRunCatalogFloor} from './helpers/run-catalog-planning.mjs';
 import {beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
 import test from 'node:test';
@@ -380,4 +381,16 @@ test('only two exact current source identities enter the unchanged pure historic
    source.replace('not a Linux measurement or censored elapsed-time sample.','a Linux measurement and censored elapsed-time sample.')].filter(value=>value!==source);
   for(const mutant of mutants){assert.equal(preCurrentCiPlacementSource(path,mutant),mutant);assert.equal(project(path,mutant),mutant);assert.notEqual(hash(mutant),b.beforeSha256);}
  }
+});
+
+test('Potion timing outer projection preserves the complete Run catalogue epoch and rejects drift without live reads',()=>{
+ const source=read('scripts/ci-test-timings.json'),prior=read('tests/helpers/potion-callback-planning-before.json');
+ assert.equal(hash(prior),'39ad201a4b9bf0486820a23a95937a879a47092e2e07cf7ee848acd4a8f0ff14');
+ for(const value of [source,source.replaceAll('\n','\r\n')])assert.equal(prePotionCallbackPlanningSource(path,value),prior);
+ for(const value of [prior,null,undefined,{},17,source+'\n',source.slice(1),source.replace('"durationMs": 29232','"durationMs": 26662'),source.replace('"durationMs": 71327','"durationMs": 71326'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999')]){
+  assert.equal(prePotionCallbackPlanningSource(path,value),value);
+ }
+ assert.equal(prePotionCallbackPlanningSource('foreign',source),source);
+ const expected=JSON.parse(source);delete expected.jsPlanning.localLowerBounds[potionCallbackFloorKey];
+ assert.equal(JSON.stringify(expected,null,2)+'\n',prior,'no observed map, worker safety, matrix, unknown weight, or prior floor changes');
 });

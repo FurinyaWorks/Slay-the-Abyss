@@ -113,6 +113,7 @@ const responsibilityRoots = {
   'src/lua/abyss_colorless_catalog.lua': [],
   'src/lua/abyss_card_capability.lua': [],
   'src/lua/abyss_run_card_catalog.lua': [],
+  'src/lua/abyss_relic_potion_hooks.lua': [],
   'src/lua/abyss_relic_combat_hooks.lua': [],
   'src/lua/abyss_relic_family_combat.lua': [],
   'src/lua/abyss_purge_candidates.lua': [],
@@ -240,6 +241,7 @@ const completeResponsibility = file => responsibilityHelper(file)
   || file==='src/lua/abyss_card_capability.lua'
   || file==='src/lua/abyss_run_card_catalog.lua'
   || file==='src/lua/abyss_codex_relic.lua'
+  || file==='src/lua/abyss_relic_potion_hooks.lua'
   || file==='src/lua/abyss_relic_combat_hooks.lua'
   || file==='src/lua/abyss_relic_family_combat.lua'
   || file==='src/lua/abyss_purge_candidates.lua'
@@ -247,6 +249,7 @@ const completeResponsibility = file => responsibilityHelper(file)
   || file==='src/lua/abyss_actor_power_rules.lua'
   || file==='src/lua/abyss_card_actions.lua' || file==='src/lua/abyss_game_ui.lua';
 export function reviewModuleSize(sources, budgets = {'src/lua/abyss_run.lua': 1000, 'src/lua/abyss_nodes.lua': 1000,
+  'src/lua/abyss_relic_potion_hooks.lua':1000,
   'src/lua/abyss_relic_combat_hooks.lua':1000,
   'src/lua/abyss_relic_family_combat.lua':1000,
   'src/lua/abyss_purge_candidates.lua':1000,

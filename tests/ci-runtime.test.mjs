@@ -1,3 +1,4 @@
+import {potionCallbackFloorKey,verifiedPotionCallbackFloor} from './helpers/potion-callback-planning.mjs';
 import {runCatalogFloorKey,verifiedRunCatalogFloor} from './helpers/run-catalog-planning.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
@@ -192,6 +193,8 @@ test('current timing records preserve all measured corrections without duplicate
    assert.match(entry.kind,/not hosted or Linux measurement/);
   }else if(file===runCatalogFloorKey){
    assert.deepEqual(entry,verifiedRunCatalogFloor());
+  }else if(file===potionCallbackFloorKey){
+   assert.deepEqual(entry,verifiedPotionCallbackFloor());
   }else{
    assert.match(entry.environment,/local/);assert.match(entry.kind,/not .*hosted/);localFloorCount++;
   }
