@@ -95,8 +95,11 @@ const head="/// <reference types=\"genshin-ts\" />\nimport {g,defineSignal} from
 const clientHead=head+"import {TargetEntity} from 'genshin-ts/definitions/client_enums'\n";
 const signals=`const COMMAND=defineSignal('LAB3D_COMMAND',[['command','str'],['model','int'],['actor','int'],['seq','int']] as const)\nconst ACK=defineSignal('client:LAB3D_ACK',[['player','entity'],['message','str'],['seq','int']] as const)\n`;
 const positionSignal="const POSITION=defineSignal('client:LAB3D_POSITION',[['player','entity'],['actor','int'],['seq','int'],['x','float'],['y','float'],['z','float']] as const)\n";
-const reportPosition=(target,actor,seq,offset=[0,0,0])=>`{const actualPosition=f.split3dVector(f.getEntityLocationAndRotation(${target}).location);
-for(const positionPlayer of f.getListOfPlayerEntitiesOnTheField())f.sendSignal(POSITION,positionPlayer,${actor},${seq},actualPosition.xComponent+${offset[0]},actualPosition.yComponent+${offset[1]},actualPosition.zComponent+${offset[2]});}`;
+const reportPosition=(target,actor,seq,offset=[0,0,0])=>{
+  const value=actor==='-1n'?'actualFocusPosition':actor==='0n'?'actualHeroPosition':'actualUnitPosition';
+  return `const ${value}=f.split3dVector(f.getEntityLocationAndRotation(${target}).location);
+for(const positionPlayer of f.getListOfPlayerEntitiesOnTheField())f.sendSignal(POSITION,positionPlayer,${actor},${seq},${value}.xComponent+${offset[0]},${value}.yComponent+${offset[1]},${value}.zComponent+${offset[2]});`;
+};
 const ack=(message,seq)=>`for(const player of f.getListOfPlayerEntitiesOnTheField())f.sendSignal(ACK,player,${message},${seq});`;
 
 function validateActorCount(maxActors){
