@@ -23,8 +23,8 @@ end
 function M.attach(root,keys)
  local ok,api=pcall(ports,root)
  if not ok or not api then return unchanged,'native_key_api_unavailable' end
- local events=eventsFor(keys)
- if not events then return unchanged,'native_key_enum_incomplete' end
+ local valid,events=pcall(eventsFor,keys)
+ if not valid or not events then return unchanged,'native_key_enum_incomplete' end
  local pending,enabled,released={},false,false
  local function consume()return enabled end
  -- Pass true from the engine-destroy callback: no property read on expired handles.

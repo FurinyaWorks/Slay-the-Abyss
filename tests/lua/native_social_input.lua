@@ -74,6 +74,23 @@ test('partial registration and partial property write roll back owned callbacks'
   release()
  end
 end)
+test('throwing native enum proxy preserves the barrier without failing startup',function()
+ local root,_,s=fixture()
+ local release,why=Input.attach(root,setmetatable({},{__index=function()error('expired enum')end}))
+ assert(why=='native_key_enum_incomplete' and s.barrier==true and s.adds==0)
+ assert(release())
+end)
+test('native owner reports and retries failed input cleanup after destruction',function()
+ local root,keys,s=fixture();local logs={}
+ local owner=require('abyss_native_battle').attach({},{},{config={}})
+ owner:destroy()
+ owner=require('abyss_native_battle').attach({},root,{config={},keyEvents=keys,log=function(line)logs[#logs+1]=line end})
+ s.failRemove=true;owner:destroy()
+ assert(owner.destroyed and owner.releaseInput,'owner lost retryable input cleanup')
+ assert(logs[#logs]:match('social_input_cleanup_failed'))
+ owner:destroy();assert(not owner.releaseInput)
+ for _,list in pairs(s.listeners)do assert(#list==0)end
+end)
 test('failed listener retirement remains retryable without removing foreign callbacks',function()
  local root,keys,s=fixture();local release=Input.attach(root,keys);s.failRemove=true
  local ok=release();assert(ok==false and s.barrier==true)

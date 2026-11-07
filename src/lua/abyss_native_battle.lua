@@ -267,8 +267,11 @@ function M.attach(view,root,api)
   end
  end
  function self.destroy(_owner,engineDestroyed)
+  if self.releaseInput then
+   local released,why=self.releaseInput(engineDestroyed)
+   if released then self.releaseInput=nil else log('social_input_cleanup_failed '..tostring(why))end
+  end
   if self.destroyed then return end
-  if self.releaseInput then self.releaseInput(engineDestroyed)end
   cleanup()
   -- Fire best-effort cleanup while the owning signal sender is still alive.
   if self.owned then pump()end
