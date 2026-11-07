@@ -1,15 +1,17 @@
 ---
 id: TASK-103
 title: 交付岩系旅行者两幕正式原生3D版本
-status: In Progress
+status: To Do
 assignee:
   - Furinya
 created_date: '2026-11-07 13:57'
-updated_date: '2026-11-07 16:46'
-labels: []
+updated_date: '2026-11-07 19:36'
+labels:
+  - HOLD
 dependencies: []
 documentation:
   - docs/backlog-details/NATIVE-3D-CAMERA-20261108.md
+  - docs/backlog-details/NATIVE-3D-PAUSED-20261108.md
 priority: medium
 ordinal: 166000
 ---
@@ -17,7 +19,7 @@ ordinal: 166000
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-用户本轮明确批准正式3D路线，保留Lua规则与2D卡牌，复用553及自维护MCP，独立分支保留稳定2D回退。
+2026-11-08用户暂停3D并要求提交现状交接，当前优先回到2D；本任务HOLD，未经重新授权不恢复开发或验收。保留原正式3D范围（Lua规则、2D卡牌、岩系两幕）及全部未勾验收项，不把阶段成果记作完整交付。源码和候选在独立分支保全，稳定2D不受影响。
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
@@ -59,4 +61,14 @@ ordinal: 166000
 用户实机启动body=nil已定位为GIL配置两处数字键被序列化成字符串。64ad7d60改数组并增加最终GIL真实配置运行硬门禁；旧包和两处负对照均拒绝。新cd8ac1b5/6fc14577单包已生成，349模块，9模型5槽门禁通过，最大图1576；离线独审通过，官方ready及PC/手机仍未验收，详见docs/backlog-details/NATIVE-3D-CONFIG-20261107.md。
 
 已按用户要求先核查工具：UGC Camera公开offset schema可用，实际副本写入且社区protobuf独立读回；已接入角色镜头+世界偏移并移除空anchor。19184737完整候选593811f3/6c165e2e构建通过，349模块、9x5配置、最大图1554。原生画面/站位未验，不占桌面；证据docs/backlog-details/NATIVE-3D-CAMERA-20261108.md。
+
+本轮管理员同级宿主已完成真实原生视口探针两次。首轮world yaw90，模板-90后world yaw180，确认角度方向与角色空间偏移；完整原生取样矩阵已接入正式源码，目标/HP共用，显式请求非逐帧。24项JS与Lua位置/矩阵/整局离线回归通过，实际新增图61/21折算节点。新完整GIL重建中，原生画面、社交键与手机仍未验收。
+
+完整候选723a4158已新导入1930，350/350客户端源码匹配，原生运行3acddd0c成功收齐本候选ready与native_camera_projected1/4/5/6。真机点选左敌11→5→0并退场、拖牌右敌31→25、敌方伤害10并进入下一玩家回合，日志无脚本错误。场景/左右构图已观察，发现史莱姆HP偏高和native绿条重复；922e4812按真实画面修4/5模型包络并关闭无用HUD，新包3dab389b/ddd618d0构建通过待实测。Enter透传但未见聊天面板，不记通过；初始可见false对照被OnStart覆盖，无因果结论。PC全两幕/实体手机仍未验收。
+
+1931/3dab389b已350/350源码匹配，原生a030：领奖14金币99→113、选牌加入卡组10→11、回图后进入第2层商店，流程真实连接。发现最终致死后原生镜头持续钻地，日志无Lua错误，候选被保留为失败证据；正在补E攻击前safeY和character独立恢复watchdog，技能区仅Hidden。另760+396确定不可见UI控件减负已独审提交b9ab3df4/88daea42，布局净减1156，未把离线计数冒充FPS。原生手机/全两幕仍未验收。
+
+用户已明确将实体手机实测安排到稍后，本轮继续PC与整包，手机不记通过。最新8d16bc98/e4981a80单GIL502809dc已真实GTS编译、最大1667折算、9x5配置运行通过，新导入1932且350/350源码匹配；PC最后击杀与连续战斗复测进行中。
+
+2026-11-08用户明确暂停3D，优先回到2D；本任务退回To Do并标记HOLD，不再主动开发或验收，全部AC未勾。冻结源码8d16bc98，完整GIL502809dc已官方导入1932且350/350源码一致，最终击杀镜头恢复及连续战斗未做新候选实测。完整交接docs/backlog-details/NATIVE-3D-PAUSED-20261108.md；PR556保持草稿，无自动合并。宿主已停止并归还键鼠。
 <!-- SECTION:NOTES:END -->
