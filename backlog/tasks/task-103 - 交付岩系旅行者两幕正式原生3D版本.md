@@ -5,11 +5,11 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-07 13:57'
-updated_date: '2026-11-07 14:44'
+updated_date: '2026-11-07 15:12'
 labels: []
 dependencies: []
 documentation:
-  - docs/backlog-details/NATIVE-3D-INTEGRATION-20261107.md
+  - docs/backlog-details/NATIVE-3D-TARGETS-20261107.md
 priority: medium
 ordinal: 166000
 ---
@@ -41,4 +41,6 @@ ordinal: 166000
 首个正式集成GIL已生成：e8a961fe/46309f66，347模块读回、静态0error345warning。PR556源码独审通过，Full待；PC/手机未验收。实际候选路径、失败历史和剩余三种通用外观等边界见附件，已申请本轮20分钟桌面窗口，未获回复前不操作。
 
 用户本轮退回旧候选：347/347官方外部Lua与e8a961fe一致；真实日志证明battle立绘4389控件仍生成。已定位直接render/feedback恢复2D及目标仍旧坐标两根因，新增真实出牌点选/拖拽扣第二敌人HP回归及零旧工厂创建合同；不是以模型出现判验收。
+
+用户实机退回后已修正源2D残留和目标坐标，复用官方91件遗迹；新包4da4f751/e31fb5ca已生成，349模块读回0error347warning。独审40afaeb8通过源码范围，真实新客户端和手机仍未验收，已让用户选择自行导入或本轮20分钟测试窗口，未操作键鼠。
 <!-- SECTION:NOTES:END -->
