@@ -1,4 +1,4 @@
-import {readFileSync,writeFileSync,mkdirSync,copyFileSync} from 'node:fs';
+import {readFileSync,mkdirSync,copyFileSync,readdirSync} from 'node:fs';
 import {resolve,join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {randomUUID} from 'node:crypto';
@@ -9,6 +9,12 @@ import {writeScriptBatch} from './native-script-batch.mjs';
 import {runNativeClientCheck} from './native-client-check.mjs';
 import {fileRecord,writeExclusive,prepareOutputDirectory,sha256} from './evidence-files.mjs';
 import {toLua} from './build-lua-data.mjs';
+import {installOfficialArena} from './native-3d/arena.mjs';
+import {battleCamera,projectBody,enemyFeet} from './native-3d/camera.mjs';
+import {productionModels,enemyModels} from './native-3d/models.mjs';
+import {sourceInputs,payloadDigest} from './build-native-candidate.mjs';
+import {artBuildOptionsFromReceipt} from './art-features.mjs';
+import {excludedProductionModules} from './native-candidate-scripts.mjs';
 
 function once(source,anchor,replacement){
  if(source.split(anchor).length!==2)throw Error('Production integration anchor changed: '+anchor);
@@ -17,6 +23,10 @@ function once(source,anchor,replacement){
 export function instrumentNativeEntry(source,buildId){
  if(!/^[a-f0-9-]{36}$/.test(buildId))throw Error('Invalid build identity');
  let text=source.replace(/\r\n/g,'\n').replace(/^print\("ABYSS_BUILD [a-f0-9-]+"\)\n/,'');
+ text=once(text,'        local GameUI = require("abyss_game_ui")',`        require('abyss_native_battle_geometry').configure(true)
+        local GameUI = require("abyss_game_ui")`);
+ text=once(text,'require("abyss_traveler_portraits").new(stage, print, flags, templates)',
+  'require("abyss_traveler_portraits").new(stage, print, flags, templates, {nativeBattle=true})');
  text=once(text,'local view, Viewport, background, cardArt, portraits','local nativeBattle\nlocal view, Viewport, background, cardArt, portraits');
  text=once(text,'        view:resize(width, height)\n        canvasWidth, canvasHeight = width, height',`        view:resize(width, height)
         nativeBattle = require('abyss_native_battle').attach(view, script.object, {
@@ -34,8 +44,15 @@ export function instrumentNativeEntry(source,buildId){
                     callback(params[1], params[2])
                 end)
             end,
+            registerPosition = function(callback)
+                script:RegisterServerSignalHandler('LAB3D_POSITION', function(_, params)
+                    callback(params[1], params[2], params[3], params[4], params[5])
+                end)
+            end,
         })
+        nativeBattle:resize(width, height)
         canvasWidth, canvasHeight = width, height`);
+ text=once(text,'            view:resize(width, height)','            view:resize(width, height)\n            if nativeBattle then nativeBattle:resize(width, height) end');
  text=once(text,'        view:update(dt)','        view:update(dt)\n        if nativeBattle then nativeBattle:update(dt) end');
  text=once(text,'function OnDestroy()', 'function OnDestroy()\n    if nativeBattle then pcall(function()nativeBattle:destroy()end);nativeBattle=nil end');
  text=once(text,'    script:EnableUpdate(false)\n    pcall(function()', '    if nativeBattle then pcall(function()nativeBattle:destroy()end);nativeBattle=nil end\n    script:EnableUpdate(false)\n    pcall(function()');
@@ -46,11 +63,15 @@ export async function buildNative3d({productionReceipt,output='.artifacts/native
  const root=process.cwd(),original=JSON.parse(readFileSync(productionReceipt,'utf8'));
  if(original.statuses?.staticCheck!=='pass'||fileRecord(original.mapPath).sha256!==original.candidate.sha256)
   throw Error('Base candidate is unchecked or changed');
+ const baseOptions=artBuildOptionsFromReceipt(original);
+ if(payloadDigest(sourceInputs(root,baseOptions))!==original.payloadDigest)
+  throw Error('Base source snapshot is stale; rebuild the complete production candidate before 3D assembly');
  const buildId=randomUUID(),workspace=join(prepareOutputDirectory(root,output),buildId);mkdirSync(workspace);
  let mapPath=join(workspace,'base.gil');copyFileSync(original.mapPath,mapPath);
  const receipt={schemaVersion:1,kind:'native-3d-production-candidate',buildId,base:fileRecord(productionReceipt),
   sourceCommit:original.sourceCommit,sourceDirty:original.sourceDirty,basePayloadDigest:original.payloadDigest,liveWriteEnabled:false,operations:[],
-  inputs:['scripts/build-native-3d.mjs','scripts/native-3d/native-scene.mjs','scripts/native-3d/rpc.mjs','src/lua/abyss_native_battle.lua'].map(p=>fileRecord(resolve(p))),
+  inputs:['scripts/build-native-3d.mjs',...readdirSync('scripts/native-3d').filter(n=>/\.(mjs|json)$/.test(n)).map(n=>'scripts/native-3d/'+n),
+   ...readdirSync('src/lua').filter(n=>n.endsWith('.lua')).map(n=>'src/lua/'+n)].map(p=>fileRecord(resolve(p))),
   statuses:{staticCheck:'not_run',officialImport:'not_run',runtimeReady:'not_run',pc:'not_run',mobile:'not_run'}};
  const toolRoot=process.env.MILIASTRA_MCP_ROOT||'D:/MiliastraTools/genshin-miliastra-mcp';
  const load=name=>import(pathToFileURL(join(toolRoot,'src',name)));
@@ -58,17 +79,26 @@ export async function buildNative3d({productionReceipt,output='.artifacts/native
  const client=await connect(workspace);
  try{
   for(const uri of ['miliastra://workflow','miliastra://platform-rules'])writeExclusive(join(workspace,uri.split('//')[1]+'.json'),await client.readResource({uri}));
-  const native=await prepareNativeScene({mapPath,maxActors:5,call:async(name,args)=>{
+  const arena=await installOfficialArena({mapPath,outputPath:join(workspace,'official-arena.gil')});
+  mapPath=arena.mapPath;receipt.arena=arena;
+  const native=await prepareNativeScene({mapPath,maxActors:5,models:productionModels,addFloor:false,productionCamera:true,call:async(name,args)=>{
    const result=await client.callTool({name,arguments:args},undefined,{timeout:120000});
    const path=join(workspace,`${receipt.operations.length+1}-${name}.json`);writeExclusive(path,result);
    receipt.operations.push({name,response:fileRecord(path)});return data(result);
   }});mapPath=native.mapPath;receipt.nativeScene=native;
   const before=embeddedScripts({mapPath,includeSource:true},wire).scripts;
+  const inventory=new Map(before.map(s=>[s.name,s.source]));
+  for(const name of readdirSync('src/lua').filter(n=>n.endsWith('.lua'))){
+   const module=name.slice(0,-4);if(excludedProductionModules.includes(module))continue;
+   if(inventory.get(module)!==readFileSync(resolve('src/lua',name),'utf8'))throw Error('Base embedded source differs from checkout: '+module);
+  }
   const entry=before.find(s=>s.name==='abyss_ui');if(!entry)throw Error('Missing production entry');
-  const config={buildId,maxActors:5,defaultModel:1,models:native.capabilities.models,
-   enemyModels:{acid_slime_l:2,acid_slime_m:2,acid_slime_s:2,spike_slime_l:2,spike_slime_m:2,spike_slime_s:2,slime_boss:2,
-    cultist:3,mad_gremlin:3,sneaky_gremlin:3,fat_gremlin:3,shield_gremlin:3,wizard_gremlin:3,torch_head:3},
-   presentationStatus:'first-integration-awaiting-device-acceptance'};
+  const perModel=Object.fromEntries(productionModels.map(m=>[m.model,Array.from({length:5},(_,i)=>projectBody(enemyFeet(i+1),m.body))]));
+  const config={buildId,maxActors:5,defaultModel:1,models:native.capabilities.models,enemyModels,
+   bodies:Object.fromEntries(productionModels.map(m=>[m.model,m.body])),heroBody:{width:.8,height:1.7},heroFeet:battleCamera.playerFeet,
+   worldFeet:Array.from({length:5},(_,i)=>enemyFeet(i+1)),
+   projections:{hero:projectBody(battleCamera.playerFeet,{width:.8,height:1.7}),slots:perModel[1],models:perModel},
+   camera:native.camera.projection,presentationStatus:'native-targets-and-official-arena-awaiting-client-calibration'};
   const updates=[{name:'abyss_ui',source:instrumentNativeEntry(entry.source,buildId)},
    {name:'abyss_native_battle',source:readFileSync(resolve('src/lua/abyss_native_battle.lua'),'utf8')},
    {name:'abyss_native_battle_config',source:'return '+toLua(config)+'\n'}];

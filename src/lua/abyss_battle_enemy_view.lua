@@ -2,6 +2,7 @@
 local Actors=require('abyss_actor')
 local SourceGeometry=require('abyss_monster_source_geometry')
 local Theme=require('abyss_theme')
+local NativeGeometry=require('abyss_native_battle_geometry')
 local M={}
 local L=Theme.layout
 local function pendingFeedback(feedback,actor)
@@ -30,6 +31,8 @@ end
 -- monster floor rises 60 source px to keep bodies, HP bars and block above resting cards.
 M.floorY=400
 function M.geometry(actor)
+ local native=NativeGeometry.get(actor)
+ if native then return native end
  local source=SourceGeometry.resolve(actor)
  local sx,sy=Theme.canvas.base[1]/1920,Theme.canvas.base[2]/1080
  local x=(1440+source.x)*sx-Theme.canvas.base[1]/2

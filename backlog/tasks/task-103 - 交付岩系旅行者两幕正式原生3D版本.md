@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-07 13:57'
-updated_date: '2026-11-07 14:16'
+updated_date: '2026-11-07 14:44'
 labels: []
 dependencies: []
 documentation:
@@ -30,7 +30,7 @@ ordinal: 166000
 ## Implementation Plan
 
 <!-- SECTION:PLAN:BEGIN -->
-1. 提取553桥与装配。2. 接正式Run生命周期。3. 优化安全UI热点并构建单GIL读回。4. 独审及设备实测，缺项保持未完成。
+1. 以用户1073741923实机截图/日志为失败基线，从渲染源停用2D角色怪物及4389控件立绘。2. 原生镜头和actor ID投影统一点选、拖牌、药水、HP状态意图；动作失败保持3D。3. 复用官方91件遗迹成品及原平坦碰撞平台，隐藏小地图，不用鼠标手搭或2D Simulator冒充3D。4. 单GIL真实写入读回、独审及原生客户端校准；未通过不称完成。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -39,4 +39,6 @@ ordinal: 166000
 独立分支feat/native-3d-production基于d8a57cae；正式GameUI/Run离线菜单至奖励回图已通过mock桥，原生5槽图11项通过；地图静止300帧同值颜色写入300→1，未宣称FPS。独审发现runtime同源、死亡历史容量和ready身份竞态，正在修正；完整构建曾因输入变更被拒绝，未冒称候选完成。
 
 首个正式集成GIL已生成：e8a961fe/46309f66，347模块读回、静态0error345warning。PR556源码独审通过，Full待；PC/手机未验收。实际候选路径、失败历史和剩余三种通用外观等边界见附件，已申请本轮20分钟桌面窗口，未获回复前不操作。
+
+用户本轮退回旧候选：347/347官方外部Lua与e8a961fe一致；真实日志证明battle立绘4389控件仍生成。已定位直接render/feedback恢复2D及目标仍旧坐标两根因，新增真实出牌点选/拖拽扣第二敌人HP回归及零旧工厂创建合同；不是以模型出现判验收。
 <!-- SECTION:NOTES:END -->

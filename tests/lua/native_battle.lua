@@ -1,5 +1,11 @@
 package.path='src/lua/?.lua;'..package.path
 local Native=require('abyss_native_battle')
+local Geometry=require('abyss_native_battle_geometry')
+local projections={hero={x=-300,y=20,width=120,height=200},slots={}}
+for i=1,5 do projections.slots[i]={x=40+(i-1)*110,y=30,width=100,height=180}end
+local function configuration(values)
+ values=values or {};values.projections=projections;return values
+end
 local writes=0
 local function control(children)
  local c={children=children or {},activeInHierarchy=true}
@@ -15,16 +21,18 @@ local called=0
 local feedback={start=function()called=called+1 end}
 local view={battleUI={feedback=feedback},refresh=function()end}
 local requests,callback={},nil
-local adapter=Native.attach(view,root,{config={maxActors=3,models={{model=1},{model=2}},enemyModels={slime=2}},
+local adapter=Native.attach(view,root,{config=configuration({maxActors=3,models={{model=1},{model=2}},enemyModels={slime=2}}),
  send=function(command,model,actor,seq)requests[#requests+1]={command=command,model=model,actor=actor,seq=seq}end,
  register=function(fn)callback=fn end,log=function()end})
-local function battle(id)return {enemies={{id=id,definitionId='slime',hp=10}},events={}}end
+local function battle(id)return {player={id='player',hp=10},enemies={{id=id,definitionId='slime',hp=10}},events={}}end
 local a=battle('slime1');view.run={phase='combat',combat=a}
 adapter:update(.01)
 assert(#requests==1 and requests[1].command=='show' and requests[1].model==2,'real battle model must be mapped per actor')
-assert(portrait.activeInHierarchy,'2D art remains until ready')
+assert(Geometry.enabled() and Geometry.get(a.player).x==-300,'native mode binds the real player projection immediately')
+assert(Geometry.get(a.enemies[1]).x==40,'actor projection is bound by identity before native ready')
 callback('ready',requests[1].seq)
-assert(not portrait.activeInHierarchy and hp.activeInHierarchy and intent.activeInHierarchy and hit.activeInHierarchy,'only artwork is masked')
+assert(adapter.slots[1].ready and hp.activeInHierarchy and intent.activeInHierarchy and hit.activeInHierarchy,'ready does not disable HUD or target surfaces')
+assert(portrait.activeInHierarchy,'plain mock controls do not run the source renderer; no actor-mask claim')
 local steady=writes
 for _=1,100 do adapter:update(.01)end
 assert(writes==steady and #requests==1,'idle update must not rewrite UI or rebuild entities')
@@ -35,7 +43,7 @@ adapter:update(.01)
 assert(requests[2].command=='hit' and requests[2].actor==1)
 local oldseq=requests[2].seq
 view.run.phase='map';adapter:update(.01)
-assert(portrait.activeInHierarchy,'exit restores artwork immediately')
+assert(Geometry.enabled() and not Geometry.get(a.enemies[1]),'exit clears projections while retaining native source policy')
 assert(requests[3].command=='hide' and requests[3].actor==0,'exit removes every native slot')
 assert(not callback('completed:hit',oldseq),'late action ack cannot affect next lifecycle')
 callback('hidden',requests[3].seq)
@@ -60,17 +68,17 @@ callback('ready',requests[7].seq)
 adapter:update(15)
 assert(not adapter.pending,'ready clears pending action')
 adapter:destroy()
-assert(feedback.start~=adapter.feedbackWrapper and portrait.activeInHierarchy,'destroy restores wrapped feedback and art')
+assert(feedback.start~=adapter.feedbackWrapper and not Geometry.enabled(),'destroy restores wrapped feedback and releases native mode')
 assert(not callback('ready',requests[5].seq),'destroyed runtime rejects callbacks')
-local failed=Native.attach(view,root,{config={maxActors=3,models={{model=1}}},send=function()return false end,log=function()end})
+local failed=Native.attach(view,root,{config=configuration({maxActors=3,models={{model=1}}}),send=function()return false end,log=function()end})
 failed:update(.1)
-assert(portrait.activeInHierarchy,'send failure must retain playable 2D UI')
+assert(Geometry.enabled() and Geometry.get(b.enemies[1]) and failed.failedBattle==b,'send failure retains native presentation geometry and rule ownership')
 failed:destroy()
 do
  local racingBattle=battle('first')
  local racingView={run={phase='combat',combat=racingBattle},battleUI={feedback={start=function()end}},refresh=function()end}
  local racingCallback,racingRequests=nil,{}
- local racing=Native.attach(racingView,root,{config={maxActors=3},
+ local racing=Native.attach(racingView,root,{config=configuration({maxActors=3}),
   send=function(command,model,actor,seq)racingRequests[#racingRequests+1]={command=command,seq=seq}end,
   register=function(fn)racingCallback=fn end,log=function()end})
  racing:update(.01)
@@ -81,19 +89,19 @@ do
  racingBattle.enemies[1]={id='replacement',definitionId='slime',hp=10}
  racingView.battleUI.feedback:start({enemies={{hp=10}}},racingBattle,#racingBattle.events+1)
  racingCallback('ready',firstRequest.seq)
- assert(not racing.slots[1].ready and portrait.activeInHierarchy,'retired show ack must not ready replacement in same slot')
+ assert(not racing.slots[1].ready and Geometry.get(racingBattle.enemies[1]),'retired show ack cannot ready replacement or discard its projection')
  racing:update(.01)
  assert(racingRequests[2].command=='death','stale queued attack is skipped before FIFO death cleanup');racingCallback('completed:death',racingRequests[2].seq)
  racing:update(.01)
  assert(racingRequests[3].command=='show');racingCallback('ready',racingRequests[3].seq)
- assert(racing.slots[1].ready and not portrait.activeInHierarchy,'replacement art waits for its own ready')
+ assert(racing.slots[1].ready,'replacement waits for its own native ready')
  racing:destroy()
 end
 do
  local absentBattle=battle('never_shown')
  local absentView={run={phase='combat',combat=absentBattle},battleUI={feedback={start=function()end}}}
  local absentCallback
- local absent=Native.attach(absentView,root,{config={maxActors=3},send=function()end,
+ local absent=Native.attach(absentView,root,{config=configuration({maxActors=3}),send=function()end,
   register=function(fn)absentCallback=fn end,log=function()end})
  absent:update(.01)
  absentCallback('ready',absent.pending.seq)
@@ -110,20 +118,56 @@ do
  assert(absent.failedBattle==absentBattle,'missing actor during show remains a real presentation failure')
  absent:destroy()
 end
-print('native battle lifecycle: mapped models, ready masks, idle no writes, real feedback, exit, stale ack, summons, teardown, send failure (offline mock only)')
+do
+ local actionBattle=battle('action_enemy')
+ local actionFeedback={start=function()end}
+ local actionView={run={phase='combat',combat=actionBattle},battleUI={feedback=actionFeedback}}
+ local actionCallback,actionRequests=nil,{}
+ local actions=Native.attach(actionView,root,{config=configuration({maxActors=3}),
+  send=function(command,model,actor,seq)actionRequests[#actionRequests+1]={command=command,seq=seq}end,
+  register=function(fn)actionCallback=fn end,log=function()end})
+ actions:update(.01);actionCallback('ready',actions.pending.seq)
+ local projection=Geometry.get(actionBattle.enemies[1])
+ for _,command in ipairs({'attack','hit'})do
+  for _,failure in ipairs({'error','timeout'})do
+   local event=command=='attack' and {kind='intent',detail={enemy='action_enemy'}}
+    or {kind='damage',detail={target='action_enemy',amount=1}}
+   actionBattle.events[#actionBattle.events+1]=event
+   actionFeedback:start({},actionBattle,#actionBattle.events);actions:update(.01)
+   assert(actions.pending and actions.pending.command==command)
+   local sequence=actions.pending.seq
+   local count=#actionRequests
+   if failure=='error'then actionCallback('error:animation_timeout',sequence)else actions:update(14.01)end
+   assert(not actions.pending and not actions.failedBattle,'native action failure cannot disable subsequent presentation commands')
+   assert(#actionRequests==count and Geometry.enabled() and Geometry.get(actionBattle.enemies[1])==projection,'action error/timeout cannot hide models or restore legacy art')
+   assert(not actionCallback('completed:'..command,sequence),'late completion after action failure is stale')
+  end
+ end
+ for _,request in ipairs(actionRequests)do assert(request.command~='hide','only lifecycle exit may hide the arena')end
+ actions:destroy()
+end
+print('native battle lifecycle: mapped models/projections, native-only policy, idle no writes, real feedback, exit, stale ack, summons, teardown, send failure (offline mock only)')
 
 -- Existing production controls and real Run commands remain playable with the adapter.
 package.path='build/lua/?.lua;'..package.path
 local F=dofile('tests/lua/support/game_ui_fixture.lua')
 local host,stage=F.fixture()
 local nativeCallback,nativeRequests=nil,{}
-local integrated=Native.attach(host,stage.parent,{config={maxActors=3,models={{model=1}}},
+local integrated=Native.attach(host,stage.parent,{config=configuration({maxActors=3,models={{model=1}}}),
  send=function(command,model,actor,seq)nativeRequests[#nativeRequests+1]={command=command,seq=seq,actor=actor}end,
  register=function(fn)nativeCallback=fn end,log=function()end})
+local faultedActions,timedOutActions=0,0
 local function tick()
  integrated:update(.01)
  local p=integrated.pending
- if p then nativeCallback(p.command=='show' and 'ready' or p.command=='hide' and 'hidden' or 'completed:'..p.command,p.seq)end
+ if not p then return end
+ if (p.command=='attack' or p.command=='hit') and faultedActions==0 then
+  faultedActions=1;nativeCallback('error:animation_timeout',p.seq)
+  assert(Geometry.enabled() and not integrated.failedBattle,'action error cannot restore 2D or stop the real run')
+ elseif (p.command=='attack' or p.command=='hit') and timedOutActions==0 then
+  timedOutActions=1;integrated:update(14.01)
+  assert(Geometry.enabled() and not integrated.failedBattle,'action timeout cannot restore 2D or stop the real run')
+ else nativeCallback(p.command=='show' and 'ready' or p.command=='hide' and 'hidden' or 'completed:'..p.command,p.seq)end
 end
 local update=host.update
 host.update=function(owner,dt)local result=update(owner,dt);tick();return result end
@@ -138,7 +182,7 @@ local actor=F.actorControl(stage:GetChild('battlePanel'),'enemy1')
 assert(actor:GetChild('portrait').visible==false,'real dynamic actor surface is found through its actor id')
 assert(actor:GetChild('hp').visible~=false,'real HP surface remains usable')
 host:refresh()
-assert(actor:GetChild('portrait').visible==false,'host refresh reapplies art masks')
+assert(actor:GetChild('portrait').visible==false,'host source render suppresses legacy art')
 assert(host.run==originalRun and host.run.combat==originalBattle,'native presentation keeps original run and combat identities')
 F.win(host,stage)
 assert(host.run.phase=='reward','normal card/turn controls finish a real battle')
@@ -151,6 +195,7 @@ if host.run.phase=='reward' and host.run.rewards.manualContinue then
 end
 assert(host.run==originalRun and host.mode=='map' and host.run.phase=='map','real reward returns to same-run map')
 assert(host.run.deck[#host.run.deck].cardId==picked,'reward uses the real card transaction')
+assert(faultedActions==1 and timedOutActions==1,'real rules remain playable after native action error and 14-second timeout')
 local hasAction,hasHide=false,false
 for _,request in ipairs(nativeRequests)do
  if request.command=='hit' or request.command=='attack'then hasAction=true end
@@ -164,7 +209,7 @@ do
  local boss=Combat.new(F.Data,{enemies={'slime_boss'},deck={},seed=42,hp=500,maxHp=500})
  local bossView={run={phase='combat',combat=boss},battleUI={feedback={start=function()end}},refresh=function()end}
  local bossCallback
- local bossNative=Native.attach(bossView,root,{config={maxActors=5},send=function()end,
+ local bossNative=Native.attach(bossView,root,{config=configuration({maxActors=5}),send=function()end,
   register=function(fn)bossCallback=fn end,log=function()end})
  local function settle()
   for _=1,40 do

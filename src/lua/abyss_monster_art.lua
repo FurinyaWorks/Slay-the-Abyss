@@ -1,6 +1,7 @@
 -- Each drawable actor owns its source-art surface independently.
 local CardDisplay=require('abyss_card_display')
 local M={}
+local NativeGeometry=require('abyss_native_battle_geometry')
 local bindings=setmetatable({},{__mode='k'})
 -- Failed writes still have an owner, but never a paintable pose binding.
 local owners=setmetatable({},{__mode='k'})
@@ -24,6 +25,7 @@ end
 function M.pose(box,x,y,sx,sy,colour,alpha)
  local state=bindings[box]
  if not state then return end
+ if NativeGeometry.enabled()then state.root:SetVisible(false);return end
  state.poseState={x,y,sx,sy,colour,alpha}
  state.root:SetAnchoredPosition(state.x+x-state.origin[1],state.y+y-state.origin[2])
  state.root:SetLocalScale(sx,sy,1)
@@ -45,7 +47,7 @@ local function newPool(stage,platform,data,poolIndex,actorBox)
   if not self.root then return end
   if self.box then
    bindings[self.box]=nil;owners[self.box]=nil
-   self.box:GetChild('portrait'):SetVisible(true)
+   self.box:GetChild('portrait'):SetVisible(not NativeGeometry.enabled())
   end
   CardDisplay.clearNativeArt(self.host)
   self.root:SetVisible(false)
@@ -54,7 +56,7 @@ local function newPool(stage,platform,data,poolIndex,actorBox)
  function view:select(rows)
   assert(not self.engineDestroyed,'monster art engine destroyed')
   local wanted,wantedId,wantedAsset
-  if self.root and self.data.enabled and self.platform.nativeMonsterArtEnabled~=false then
+  if not NativeGeometry.enabled() and self.root and self.data.enabled and self.platform.nativeMonsterArtEnabled~=false then
    for slot,entry in ipairs(rows)do
     local identity=self.data.bindings and self.data.bindings[entry.actor.definitionId]
     local asset=self.data.assets and self.data.assets[identity] or (entry.actor.definitionId==self.data.asset.enemyId and self.data.asset)
@@ -98,6 +100,7 @@ function M.new(stage,platform,data,surfaces)
  function view:clear()for box in pairs(self.pools)do self:release(box)end end
  function view:select(rows)
   assert(not self.engineDestroyed,'monster art engine destroyed')
+  if NativeGeometry.enabled()then self:clear();return end
   local wanted={}
   for _,entry in ipairs(rows)do
    local box=assert(surfaces:find(entry.id),'missing monster instance surface')

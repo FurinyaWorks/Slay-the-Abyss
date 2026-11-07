@@ -5,6 +5,18 @@ local Theme=require('abyss_theme')
 local Surfaces=require('abyss_monster_power_surfaces')
 local number=require('abyss_numbers').integer
 local M={}
+local function powerGeometry(platform,g,index)
+ local mobile=platform.touchScreen and platform.touchScreen()
+ local s=g.sourceScale
+ if g.native then
+  return s,48,((index-1)%2-.5)*48,g.healthY-48-math.floor((index-1)/2)*48,36
+ end
+ local pitch=(mobile and 55 or 48)*s
+ local x=g.healthX-g.hitWidth/2+(10+(index-1)*(mobile and 55 or 48))*s
+ local iconSize=48*s*(mobile and 1.17 or 1)
+ local y=g.healthY-math.max(g.healthHeight,Theme.font.small)/2-Theme.space.s-iconSize/2
+ return s,pitch,x,y,iconSize
+end
 function M.new(platform,picture,tint,ink,onCreate,onRetire)
  local self={pools={},missingIcons={}}
  local function valid()assert(not self.engineDestroyed,'monster power publication cancelled')end
@@ -13,11 +25,7 @@ function M.new(platform,picture,tint,ink,onCreate,onRetire)
  end
  local function paint(box,entry,index,g)
   local mobile=platform.touchScreen and platform.touchScreen()
-  local s=g.sourceScale;local pitch=(mobile and 55 or 48)*s
-  local x=g.healthX-g.hitWidth/2+(10+(index-1)*(mobile and 55 or 48))*s
-  local iconSize=48*s*(mobile and 1.17 or 1)
-  -- Native icons have no transparent atlas padding: keep their full rectangle below HP.
-  local y=g.healthY-math.max(g.healthHeight,Theme.font.small)/2-Theme.space.s-iconSize/2
+  local s,pitch,x,y,iconSize=powerGeometry(platform,g,index)
   native(box,'SetAnchoredPosition',x,y)
   for _,name in ipairs({'edge','body','badge'})do native(box,'GetChild',name):SetVisible(false)end
   local icon=native(box,'GetChild','icon');native(icon,'SetVisible',true)

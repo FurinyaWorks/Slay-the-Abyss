@@ -26,6 +26,7 @@ function harness(maxActors){
     setCustomVariable:(id,key,value)=>{if(!variables.has(id))variables.set(id,{});variables.get(id)[key]=value},
     getListOfPlayerEntitiesOnTheField:()=>[900],getAllCharacterEntitiesOfSpecifiedPlayer:()=>[901],
     sendSignal:(_signal,_player,message,seq)=>ack.push({message,seq}),
+    playTimedEffects:(asset,entity)=>{assert.equal(asset,7);assert.ok(entity>0);},
     getEntitiesWithSpecifiedPrefabOnTheField:prefab=>units.filter(p=>p.prefab===prefab).map(p=>p.id),
     create3dVector:(x,y,z)=>[x,y,z],createPrefab:(prefab,position)=>{const id=next++;units.push({id,prefab,position});variables.set(id,{});return id},
     removeEntity:id=>{units.splice(units.findIndex(u=>u.id===id),1)},
@@ -80,9 +81,9 @@ test('stale commands and busy initialization cannot replay animation',()=>{
  h.finish(unit,'attack');assert.equal(h.ack.at(-1).message,'completed:attack');
  assert.equal(h.variables.get(unit.id).LAB_command,0n);assert.equal(h.variables.get(unit.id).LAB_busy,0n);
 });
-test('unsupported clip does not block next command and player animation is explicit',()=>{
+test('missing hit clip uses native hit VFX without blocking the next animation',()=>{
  const h=harness();h.command('show',2);const unit=h.units[0];h.ready(unit);
- assert.equal(h.command('hit',2).message,'unsupported:hit');
+ assert.equal(h.command('hit',2).message,'completed:hit');
  assert.equal(h.command('attack',2).message,'requested:await_skill_event');h.finish(unit,'attack');
  assert.equal(h.command('attack',2,0).message,'unsupported:player_animation');
  assert.equal(h.command('death',2).message,'completed:death');assert.equal(h.units.length,0);
