@@ -54,9 +54,9 @@ export function sourceInputs(root,{artFeatures,nativeCardArt,readyCardArt,lightw
   return files.sort().map(path=>{const {sha256,bytes}=fileRecord(join(root,path),root);return {path,sha256,bytes};});
 }
 export const payloadDigest = inputs => sha256(JSON.stringify(inputs));
-function prepareBuild(root, directory, {releaseCandidate,workKey,nativeCardArt,readyCardArt,artFeatures,lightweight2d}) {
+function prepareBuild(root, directory, {releaseCandidate,workKey,nativeCardArt,readyCardArt,artFeatures,lightweight2d,legacyCardFrames}) {
   for(const args of [['scripts/build-lua-data.mjs','data',join(directory,'abyss_data.lua')],
-    ['scripts/build-ui.mjs',directory,...artFeatureBuildArgs(artFeatures),`--work-key=${workKey}`,...(lightweight2d?['--lightweight-2d']:[]),...(readyCardArt===false?['--no-ready-card-art']:[]),...(releaseCandidate?['--release-candidate']:[]),
+    ['scripts/build-ui.mjs',directory,...artFeatureBuildArgs(artFeatures),`--work-key=${workKey}`,...(lightweight2d?['--lightweight-2d']:[]),...(legacyCardFrames?['--legacy-card-frames']:[]),...(readyCardArt===false?['--no-ready-card-art']:[]),...(releaseCandidate?['--release-candidate']:[]),
       ...(nativeCardArt?[`--native-card-art-registry=${nativeCardArt.registry}`,
         ...nativeCardArt.hosts.map(host=>`--native-card-art-host=${host}`)]:[])]]) {
     const result=spawnSync(process.execPath,args,{cwd:root,encoding:'utf8',timeout:60000,maxBuffer:4*1024*1024});
@@ -69,10 +69,11 @@ function checkTree(control) {
 }
 export async function buildNativeCandidate({baseMap,output='build/candidates',root=process.cwd(),client,createClient,
   prepare,writeScripts,generatedModules=generatedRuntimeModules,sourceCommit,mcpVersion='injected-test-client',playtest=false,decodeLog,
-  releaseCandidate=false,workKey='alpha-test',nativeCardArt,readyCardArt,artFeatures,lightweight2d=false}={}) {
+  releaseCandidate=false,workKey='alpha-test',nativeCardArt,readyCardArt,artFeatures,lightweight2d=false,legacyCardFrames=false}={}) {
   root=resolve(root);
   const flags=resolveArtFeatures({artFeatures,readyCardArt,nativeCardArt});
   if(typeof lightweight2d!=='boolean'||lightweight2d&&(releaseCandidate||prepare||nativeCardArt||!flags.menuBackground||!flags.selectionAvatar||!flags.battlePortrait||flags.cards||flags.monsters))throw Error('Bounded 2D is a fixed-flags non-release experiment');
+  if(typeof legacyCardFrames!=='boolean'||legacyCardFrames&&!lightweight2d)throw Error('Legacy card comparison requires the bounded 2D experiment');
   if(prepare && nativeCardArt!==undefined)throw new Error('Custom prepare cannot be combined with native art options');
   if(nativeCardArt!==undefined) {
     if(!nativeCardArt || typeof nativeCardArt!=='object' || Array.isArray(nativeCardArt)
@@ -102,7 +103,7 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
   const receipt={schemaVersion:1,buildId,artFeatures:artFeatureReceipt(flags),sourceCommit,sourceDirty:dirtyResult.status===0?Boolean(dirtyResult.stdout.trim()):null,
     payloadDigest:digest,startedAt:new Date().toISOString(),mcpVersion,inputs,baseMap:base,outputs:[],
     liveWriteEnabled:false,statuses:{staticCheck:'not_run',officialImport:'not_run',playtest:'not_run'}};
-  if(lightweight2d)receipt.experimentalProfile=lightweightProfile;
+  if(lightweight2d){receipt.experimentalProfile=lightweightProfile;receipt.experimentalUi=legacyCardFrames?'legacy-card-frames':'flat-card-frames';}
   let releaseNotes;
   if(releaseCandidate || existsSync(join(root,'package.json'))) {
     if(releaseCandidate && !Object.hasOwn(generatedModules,'abyss_narrative'))throw new Error('Release candidate must package the generated narrative module');
@@ -123,7 +124,7 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
     return data;
   }
   try {
-    if(prepare)await prepare(generated);else prepareBuild(root,generated,{releaseCandidate,workKey,nativeCardArt,readyCardArt,artFeatures:flags,lightweight2d});
+    if(prepare)await prepare(generated);else prepareBuild(root,generated,{releaseCandidate,workKey,nativeCardArt,readyCardArt,artFeatures:flags,lightweight2d,legacyCardFrames});
     if(Object.hasOwn(generatedModules,artFeatureModule)&&readFileSync(join(generated,artFeatureModule+'.lua'),'utf8')!==artFeaturesSource(flags))throw Error('Generated art feature configuration differs from candidate');
     if(art) {
       if(payloadDigest(art.inputPaths.map(path=>fileRecord(path,root)))!==payloadDigest(artInputs))throw new Error('Native art input changed during preparation');
@@ -354,13 +355,13 @@ export async function buildNativeCandidateFromToolchain(options) {
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href) {
   try {
-    const args=process.argv.slice(2),playtest=args.includes('--playtest'),lightweight2d=args.includes('--lightweight-2d');
-    const features=artFeatureArgs(args.filter(arg=>!['--playtest','--lightweight-2d'].includes(arg)));
+    const args=process.argv.slice(2),playtest=args.includes('--playtest'),lightweight2d=args.includes('--lightweight-2d'),legacyCardFrames=args.includes('--legacy-card-frames');
+    const features=artFeatureArgs(args.filter(arg=>!['--playtest','--lightweight-2d','--legacy-card-frames'].includes(arg)));
     const native=nativeCardArtArgs(features.args);
     const {paths,options}=releaseBuildArgs(native.args);
     const [baseMap,output]=paths;
     if(!baseMap||paths.length>2)throw new Error('Usage: node scripts/build-native-candidate.mjs <base.gil> [output-directory] [--playtest] [--release-candidate] [--work-key=alpha-test] [--native-card-art-registry=<file> --native-card-art-count=0|1|5|10 | --native-card-art-host=<host>]');
-    const receipt=await buildNativeCandidateFromToolchain({baseMap,output,playtest,lightweight2d,...options,artFeatures:withCandidateArtDefaults(features.artFeatures,{cardsDecided:native.nativeCardArt!==undefined||native.readyCardArt!==undefined}),nativeCardArt:native.nativeCardArt,readyCardArt:native.readyCardArt});
+    const receipt=await buildNativeCandidateFromToolchain({baseMap,output,playtest,lightweight2d,legacyCardFrames,...options,artFeatures:withCandidateArtDefaults(features.artFeatures,{cardsDecided:native.nativeCardArt!==undefined||native.readyCardArt!==undefined}),nativeCardArt:native.nativeCardArt,readyCardArt:native.readyCardArt});
     console.log(`Candidate receipt: ${receipt.receiptPath}\nStatic check passed. Official import/gameplay require separate evidence.`);
   }catch(error){console.error(error.message);process.exitCode=1;}
 }

@@ -55,6 +55,35 @@ function firstImage(controls) {
   }
 }
 
+test('native default minimum font twenty is omitted without hiding other values or metadata',()=>{
+ assert.deepEqual(audit(input=>{
+  firstText(input.expected.ui.controls).text.minFontSize=20;
+  delete firstText(input.actual.ui.interface.controls).text.minFontSize;
+ }).issues,[]);
+ for(const value of [0,14,19,21])assert.ok(audit(input=>{
+  firstText(input.expected.ui.controls).text.minFontSize=value;
+  delete firstText(input.actual.ui.interface.controls).text.minFontSize;
+ }).issues.some(x=>x.code==='UI_MISMATCH'));
+ assert.ok(audit(input=>{
+  input.expected.ui.controls[0].metadata={minFontSize:20};
+  input.actual.ui.interface.controls[0].metadata={};
+ }).issues.some(x=>x.code==='UI_MISMATCH'));
+});
+test('native empty child lists are omitted without hiding nonempty children or opaque payloads',()=>{
+ assert.deepEqual(audit(input=>{
+  const a=firstText(input.expected.ui.controls),b=firstText(input.actual.ui.interface.controls);
+  a.children=[];delete b.children;
+ }).issues,[]);
+ assert.ok(audit(input=>{
+  const a=firstText(input.expected.ui.controls),b=firstText(input.actual.ui.interface.controls);
+  a.children=[{name:'unexpected',kind:'image',size:[1,1]}];delete b.children;
+ }).issues.some(x=>x.code==='UI_MISMATCH'));
+ assert.ok(audit(input=>{
+  input.expected.ui.controls[0].metadata={children:[]};
+  input.actual.ui.interface.controls[0].metadata={};
+ }).issues.some(x=>x.code==='UI_MISMATCH'));
+});
+
 test('native omitted image ink equals only opaque white, with byte-rounded source alpha', () => {
   for (const opacity of [undefined, 1, 0.999]) {
     assert.deepEqual(audit(input => {

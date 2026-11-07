@@ -35,11 +35,14 @@ test('lightweight profile refuses release mode, custom preparation and mismatche
  for(const options of [{releaseCandidate:true},{prepare:()=>{}},{artFeatures:{...flags,cards:true}},{artFeatures:{...flags,selectionAvatar:false}}]){
   await assert.rejects(buildNativeCandidate({lightweight2d:true,artFeatures:flags,...options}),/fixed-flags non-release/);
  }
+ await assert.rejects(buildNativeCandidate({legacyCardFrames:true}),/requires the bounded/);
 });
 test('full experimental inventory validation is deferred only until the pinned audit source is available',()=>{
  const receipt={artFeatures:artFeatureReceipt(flags),experimentalProfile:'bounded-2d-v1',officialBackground:{},
   officialPortraits:{...lightweightInventory(),inputs:portraitRuntimeInputs(flags).map(path=>({path}))}};
  assert.equal(artBuildOptionsFromReceipt(receipt).lightweight2d,true);
+ assert.equal(artBuildOptionsFromReceipt({...receipt,experimentalUi:'legacy-card-frames'}).legacyCardFrames,true);
+ assert.throws(()=>artBuildOptionsFromReceipt({...receipt,experimentalUi:'invented-style'}),/Invalid experimental UI/);
  receipt.officialPortraits.assets[0].artworkSha256='a'.repeat(64);
  assert.throws(()=>artBuildOptionsFromReceipt(receipt),/differs.*assets/);
  assert.equal(artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory:true}).lightweight2d,true);

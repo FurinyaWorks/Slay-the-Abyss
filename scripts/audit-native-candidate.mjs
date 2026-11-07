@@ -15,7 +15,7 @@ import { releaseSourceFiles } from './release-notes.mjs';
 
 export function auditUiBuildArgs(receipt,{registryPath,deferExperimentalInventory=false}={}) {
   const options=receipt===undefined?{artFeatures:normalizeArtFeatures()}:artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory});
-  return ['scripts/build-ui.mjs',...artFeatureBuildArgs(options.artFeatures),...(options.lightweight2d?['--lightweight-2d']:[]),...(options.nativeCardArt?
+  return ['scripts/build-ui.mjs',...artFeatureBuildArgs(options.artFeatures),...(options.lightweight2d?['--lightweight-2d']:[]),...(options.legacyCardFrames?['--legacy-card-frames']:[]),...(options.nativeCardArt?
     [`--native-card-art-registry=${registryPath??options.nativeCardArt.registry}`,...options.nativeCardArt.hosts.map(host=>`--native-card-art-host=${host}`)]:[])];
 }
 

@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - Furinya
 created_date: '2026-10-31 23:38'
-updated_date: '2026-11-07 19:35'
+updated_date: '2026-11-07 20:24'
 labels:
   - 待验
 milestone: m-8
@@ -74,4 +74,6 @@ M9第二批复验战斗refresh绘制2→1、五张静止牌300更新几何方法
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
 
 2026-11-08 Owner明确授权PR557定向轻量2D完整候选实验及本轮键鼠；task:pick仍HOLD，保持To Do与未验手机AC，不绕过Sprint正式集成。独立树feat/lightweight-2d基于develop d8a57cae；复用TASK100证据归口，启动/艺术计数先行，完整候选、独审及官方设备分层验收。
+
+本轮已提交初版PR558，真实官方早期菜单/选角ready及操作通过；源码GIL独立读回又发现14051静态控件和旧底BGM挂载。追加独立flat卡框切片（语义父/图标/文字/输入不变）将静态减至11111，A原艺术原框/B轻量艺术原框/C轻量艺术flat框分别打包隔离因素；空底消除遗留图。新增默认投影审计RED→GREEN保留非默认/增删/额外图负控。实体手机AC3仍未验，状态不变。
 <!-- SECTION:NOTES:END -->

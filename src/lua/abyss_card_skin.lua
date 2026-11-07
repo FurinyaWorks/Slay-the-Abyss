@@ -9,6 +9,8 @@ local phases=setmetatable({},{__mode='k'})
 local activeHalos=setmetatable({},{__mode='k'})
 local decorations=setmetatable({},{__mode='k'})
 local pillWidths=setmetatable({},{__mode='k'})
+-- Store only a boolean; a cached child handle could retain its weak-key parent.
+local flatGroups=setmetatable({},{__mode='k'})
 -- Native entry selects approved gold UI independently of illustration flags; nil keeps the legacy palette for isolated previews.
 local premium=nil
 function M.configure(value)premium=value=='premium' and config.premium or nil end
@@ -27,7 +29,20 @@ local function painter(platform)
     -- NodeUI permits hosts without Color; keep generated colours and update visibility/text.
     return function(control,c)if platform.color then control.imageColor=platform.color(c.r,c.g,c.b,c.a or 255)end end
 end
+local function flatPart(group)
+    local flat=flatGroups[group]
+    if flat==nil then
+        flat=false
+        if group.GetChildren then
+            for _,child in ipairs(group:GetChildren())do if child.name=='flat' then flat=true;break end end
+        end
+        flatGroups[group]=flat
+    end
+    if flat then return group:GetChild('flat')end
+end
 local function paint(group,names,c,tint)
+    local flat=flatPart(group)
+    if flat then tint(flat,c);return end
     for _,name in ipairs(names)do tint(group:GetChild(name),c)end
 end
 local function identity(definition)
@@ -98,6 +113,8 @@ local blockedCopy={insufficient_energy='能量不足',invalid_target='请选择�
     not_player_turn='本回合不能打出',unplayable_card='本回合不能打出',normality_limit='本回合不能打出',entangled='本回合不能打出',
     requires_only_attacks='条件未满足',requires_empty_draw_pile='条件未满足'}
 local function sizeRounded(group,w,h,r)
+    local flat=flatPart(group)
+    if flat then flat:SetSizeDelta(w,h);return end
     group:GetChild('vertical'):SetSizeDelta(w-r*2,h)
     group:GetChild('horizontal'):SetSizeDelta(w,h-r*2)
     for _,x in ipairs({-1,1})do for _,y in ipairs({-1,1})do

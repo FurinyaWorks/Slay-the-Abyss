@@ -19,6 +19,7 @@ import { loadReleaseNotes, releaseInputPaths, releaseBuildArgs } from './release
 import { nativeCardArtArgs, prepareNativeCardArt, attachNativeCardArt, bindNativeArtPresentation, nativeArtReceipt } from './card-art-samples.mjs';
 import {loadPerformancePack} from './art/performance-pack.mjs';
 import {writeLightweightProfile} from './lightweight-2d-profile.mjs';
+import {compactBoundedCardFaces} from './lightweight-card-layout.mjs';
 
 export function assertNativeUiCapacity(layout) {
   const checkFonts = (control, path) => {
@@ -93,6 +94,7 @@ function rejectInputOutputAliases(outputDirectory, extraInputs = []) {
 
 export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYSS_PYTHON || 'python', options = {}) {
   // Preflight the entire batch before any generated file can be changed.
+  if(options.legacyCardFrames===true&&options.lightweight2d!==true)throw Error('Legacy card comparison requires the bounded 2D experiment');
   const flags = resolveArtFeatures(options);
   const art = prepareNativeCardArt(options.nativeCardArt?.count===0?undefined:options.nativeCardArt);
   const readyArt = flags.cards && !art;
@@ -118,6 +120,9 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   if(readyArt){attachReadyCardHosts(battle);attachReadyCardHosts(layout);attachReadyCardHosts(templates[0]);}
   if (art) { attachNativeCardArt(battle,art,{battleOnly:true}); attachNativeCardArt(layout,art); }
   attachMonsterArt(battle,monsterArt);attachMonsterArt(layout,monsterArt);
+  if(options.lightweight2d===true&&!options.legacyCardFrames){
+    compactBoundedCardFaces(battle);compactBoundedCardFaces(layout,templates);
+  }
   for (const tree of [battle, layout, ...templates]) assertNativeUiCapacity(tree);
   const rendered = spawnSync(python, ['tools/render_traveler_cards.py', 'data/cards.json', 'data/presentation/traveler.zh-CN.json'],
     { encoding: 'utf8', timeout: 15000, maxBuffer: 1024 * 1024, env: { ...process.env, PYTHONUTF8: '1' } });
@@ -152,12 +157,12 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try {
-    const args = process.argv.slice(2), experimentalCharacters = args.includes('--experimental-characters'),lightweight2d=args.includes('--lightweight-2d');
-    const features=artFeatureArgs(args.filter(arg => !['--experimental-characters','--lightweight-2d'].includes(arg)));
+    const args = process.argv.slice(2), experimentalCharacters = args.includes('--experimental-characters'),lightweight2d=args.includes('--lightweight-2d'),legacyCardFrames=args.includes('--legacy-card-frames');
+    const features=artFeatureArgs(args.filter(arg => !['--experimental-characters','--lightweight-2d','--legacy-card-frames'].includes(arg)));
     const native = nativeCardArtArgs(features.args);
     const { paths, options } = releaseBuildArgs(native.args);
     if (paths.length > 1) throw new Error('Expected at most one output directory');
-    buildUI(paths[0], undefined, { experimentalCharacters, lightweight2d, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
+    buildUI(paths[0], undefined, { experimentalCharacters, lightweight2d, legacyCardFrames, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
     console.log('Native battle UI and Traveler display module built.');
   }
   catch (error) { console.error(error.message); process.exitCode = 1; }
