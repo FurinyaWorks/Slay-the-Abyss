@@ -16,3 +16,7 @@ TASK-103 / PR556。用户1073741926实机截图显示人物居中、敌人挤在
 实际工具试写：6fc14577副本field4由[0,0,0]变为[3,.9,0]，field13由true改为false；用独立protobufjs加载社区ViewpointOffset定义读回一致。探针SHA256为0beb0cc1b4819bdfc100d39b0c44cbe2ef14afae4860c12e24dd1624ce2a7e2c，原文件不变；工具证据在.artifacts/native-position-audit/camera-offset-tool-proof.json。该探针仍含旧节点接线，不作为可玩交付包。
 
 已接入正式装配：移除空物件锚点，恢复跟随真实角色并显式激活固定模板，关闭偏移随角色旋转；ready及玩家攻击结束时使用实际角色位置+世界视点偏移回传camera focus，避免落地高度变化后继续使用规划Y。26项相关合同通过，包括实际官方镜头副本只改指定字段、失败拒绝、原文件不改、角色实际地面高度更新。源码与最终GIL仍需独审、实际编译/读回；配置成功不证明构图、跟随基准点和实际碰撞正确。官方新ready、真实站位/HUD、PC/实体手机保持未验收；不申请桌面输入直到工具替代工作完成。
+
+实际装配结果：首次GTS编译拒绝裸Block，构建中止，失败证据保留在.artifacts/native-character-camera/1be1cb6c-a8fc-466b-a520-c2138210705a/；19184737改为不同actor类型的唯一局部变量名，保持回传内容，原12项路由合同通过，增量独审通过。
+
+最终构建buildId593811f3-de1f-4909-bb82-a480f43dc6c0，源码19184737aef7db5fbe59798aca05b716317743ef；10张新增图全部真实编译写入。最终完整GIL 15,712,849 bytes，SHA256为6c165e2e74e18edd73f283008845779ba7eb85944f0abf22e9b0dd0ae3f8d5a4，根副本F:\New folder\.artifacts\杀戮原塔2-角色镜头候选-19184737.gil。349模块读回、9模型5槽配置门禁通过，静态0错误347告警；全部12图最大927原始/1554折算，unit82/272、player48/105。最终GIL再次直接读回offset[3,.8999999761581421,0]、mode2、followRotation=false。完整收据及调用位于工作树.artifacts/native-character-camera-final/同buildId/。此为离线检查通过的完整候选，未验原生画面；不把它称为已修复用户截图或最终成熟游戏。

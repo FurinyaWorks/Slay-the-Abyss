@@ -5,11 +5,11 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-07 13:57'
-updated_date: '2026-11-07 16:11'
+updated_date: '2026-11-07 16:20'
 labels: []
 dependencies: []
 documentation:
-  - docs/backlog-details/NATIVE-3D-CONFIG-20261107.md
+  - docs/backlog-details/NATIVE-3D-CAMERA-20261108.md
 priority: medium
 ordinal: 166000
 ---
@@ -55,4 +55,6 @@ ordinal: 166000
 官方3019节点阻断已完成源码修正和实际最终GIL读回：新920a6acb/3eb87205，主图949原始/1576折算，余1424，其余最大281。新增编译与最终全图3000硬门禁，旧3019包实际回归拒绝；不减少九模型/场景/规则。当前候选官方再校验与实机仍未验收。
 
 用户实机启动body=nil已定位为GIL配置两处数字键被序列化成字符串。64ad7d60改数组并增加最终GIL真实配置运行硬门禁；旧包和两处负对照均拒绝。新cd8ac1b5/6fc14577单包已生成，349模块，9模型5槽门禁通过，最大图1576；离线独审通过，官方ready及PC/手机仍未验收，详见docs/backlog-details/NATIVE-3D-CONFIG-20261107.md。
+
+已按用户要求先核查工具：UGC Camera公开offset schema可用，实际副本写入且社区protobuf独立读回；已接入角色镜头+世界偏移并移除空anchor。19184737完整候选593811f3/6c165e2e构建通过，349模块、9x5配置、最大图1554。原生画面/站位未验，不占桌面；证据docs/backlog-details/NATIVE-3D-CAMERA-20261108.md。
 <!-- SECTION:NOTES:END -->
