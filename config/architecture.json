@@ -1,5 +1,6 @@
 {
   "layers": {
+    "abyss_v25_texture_runtime": "platform",
     "abyss_v25_turn_notice": "ui",
     "abyss_v25_menu_view": "ui",
     "abyss_relic_potion_hooks": "core",

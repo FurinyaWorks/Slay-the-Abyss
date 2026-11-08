@@ -1,8 +1,9 @@
-local view, Viewport, background, cardArt, portraits
+local view, Viewport, background, cardArt, portraits, v25Textures, nativeStage
 local canvasWidth, canvasHeight
 local attempted = false
 local function failed(phase, reason)
     pcall(function()require('abyss_card_skin').clearSurface()end)
+    if v25Textures then pcall(function()v25Textures:clear()end)end
     print("ABYSS_UI failed " .. phase .. ": " .. tostring(reason))
     if portraits then pcall(function()portraits:release()end) end
     if cardArt then pcall(cardArt.clear) end
@@ -76,6 +77,7 @@ function OnStart()
         Viewport = require("abyss_viewport")
         local width, height = game.GetUICanvasSize()
         local stage = Viewport.apply(script.object, width, height)
+        nativeStage=stage
         print("ABYSS_UI viewport_ready")
         local flags = artFeatures()
         local createEasterEggArt
@@ -99,8 +101,10 @@ function OnStart()
         -- Approved gold chrome is pure UI; it remains independent of deferred card illustrations and select fan.
         optionalArt('cardChrome', function()require("abyss_card_skin").configure('premium')end)
         optionalArt('v25CardSurface',function()
-            require('abyss_card_skin').configureSurface(require('abyss_v25_card_assets'),{
+            local binding=require('abyss_v25_card_assets')
+            v25Textures=require('abyss_v25_texture_runtime').new(binding,{
                 instantiate=game.InstantiateClientUIControl,destroy=game.DestroyClientUIControl})
+            require('abyss_card_skin').configureSurface(binding,v25Textures:surfaceApi())
         end)
         if flags.menuBackground then
             createEasterEggArt=function()
@@ -200,6 +204,10 @@ function OnUpdate(dt)
             canvasWidth, canvasHeight = width, height
         end
         view:update(dt)
+        if v25Textures then
+            v25Textures:syncMask(nativeStage)
+            if v25Textures:update() then view:refresh()end
+        end
         if cardArt then cardArt.update() end
     end)
     if not ok then failed("update", reason) end
@@ -207,10 +215,12 @@ end
 
 function OnDestroy()
     pcall(function()require('abyss_card_skin').destroySurface()end)
+    if v25Textures then pcall(function()v25Textures:onDestroy()end)end
     if view then pcall(function()view:onEngineDestroy()end) end
     if cardArt then cardArt.onEngineDestroy() end
     if portraits then portraits:onEngineDestroy() end
     if background then background:onEngineDestroy() end
     background, portraits, cardArt, view = nil, nil, nil, nil
+    v25Textures,nativeStage=nil,nil
     script:EnableUpdate(false)
 end

@@ -62,6 +62,22 @@ export function compileUiMask({root=process.cwd(),input,sourceSha256,width,heigh
 function level(nodes,prefix,size){
  const out=[];for(let i=0;i<nodes.length;i+=60)out.push({name:prefix+(out.length+1),kind:'container',position:[0,0],size:[...size],visible:true,focusable:false,children:nodes.slice(i,i+60)});return out;
 }
+// Validation/probe helper only; production returns an empty host and the exact
+// CSS-derived RGBA rectangle data, not thousands of serialized image controls.
+export function expandUiMaskTexture(name,data){
+ if(!isDeepStrictEqual(data?.display?.position,[0,0])||!isDeepStrictEqual(data.display?.size,[data.width,data.height]))throw Error('Invalid complete mask display geometry');
+ decodeRgbaRectangles({...data,encoding:'xywh-rgba-hex24'});
+ const images=[];
+ for(let i=0;i<data.count;i++){
+  const row=data.blocks.slice(i*24,(i+1)*24),[x,y,w,h]=[0,4,8,12].map(p=>parseInt(row.slice(p,p+4),16)),a=parseInt(row.slice(22),16);
+  if(!a)continue;
+  images.push({name:'alpha'+i,kind:'image',image:100001,position:[-data.width/2+x+w/2,data.height/2-y-h/2],size:[w,h],colour:'#'+row.slice(16,22),opacity:a/255,visible:true,focusable:false});
+ }
+ if(images.length!==data.drawCount)throw Error('Visible mask rectangle count differs');
+ const size=[data.width,data.height];let groups=level(images,'group',size),depth=0;
+ while(groups.length>60)groups=level(groups,'page'+(++depth)+'_',size);
+ return {name,kind:'container',position:[0,0],size,visible:false,focusable:false,children:groups};
+}
 export function prepareUiMask(file,{root=process.cwd(),expected,python=process.env.ABYSS_PYTHON??process.env.MILIASTRA_PYTHON??'python',name=v25UiMaskTemplate}={}){
  const record=fileRecord(resolve(root,file),root),pack=JSON.parse(readFileSync(record.path,'utf8'));
  if(pack.schemaVersion!==1||pack.profile!=='css-source-alpha-tint-exact-v1'||pack.licenseScope!=='private-local-only'||pack.sourceRgbPreserved!==false||pack.cssMaskAlphaExact!==true||pack.fullBounds!==true||pack.sampling!=='none')throw Error('Invalid CSS mask contract');
@@ -74,16 +90,9 @@ export function prepareUiMask(file,{root=process.cwd(),expected,python=process.e
  const compiledExpected=compileRgbaRectangles({width:s.width,height:s.height,rgba:tintPixels(source.rgba,pack.tint)});
  const rgba=decodeRgbaRectangles(pack.asset);
  if(JSON.stringify(compiledExpected)!==JSON.stringify(pack.asset)||!alpha(rgba).equals(alpha(source.rgba)))throw Error('Compiled mask differs from fresh source alpha and CSS tint');
- const images=[];
- for(let i=0;i<pack.asset.count;i++){
-  const row=pack.asset.blocks.slice(i*24,(i+1)*24),[x,y,w,h]=[0,4,8,12].map(p=>parseInt(row.slice(p,p+4),16)),a=parseInt(row.slice(22),16);
-  if(!a)continue;
-  images.push({name:'alpha'+i,kind:'image',image:100001,position:[-s.width/2+x+w/2,s.height/2-y-h/2],size:[w,h],colour:pack.tint,opacity:a/255,visible:true,focusable:false});
- }
- const size=[s.width,s.height];let groups=level(images,'group',size),depth=0;
- while(groups.length>60)groups=level(groups,'page'+(++depth)+'_',size);
- const template={name,kind:'container',position:[0,0],size,visible:true,focusable:false,children:groups};
- return {template,pack,inputs:[record,source.record],verification:{sourceAlphaSha256:s.alphaSha256,tintedRgbaSha256:compiledExpected.rgbaSha256,sourceAlphaRoundtrip:true,visibleRectangles:images.length,rectanglesIncludingTransparent:pack.asset.count}};
+ const size=[s.width,s.height],template={name,kind:'container',position:[0,0],size,visible:false,focusable:false,children:[]};
+ const textureData={[name]:{width:s.width,height:s.height,blocks:pack.asset.blocks,count:pack.asset.count,drawCount:pack.asset.drawCount,display:{position:[0,0],size:[...size]}}};
+ return {template,textureData,pack,inputs:[record,source.record],verification:{sourceAlphaSha256:s.alphaSha256,tintedRgbaSha256:compiledExpected.rgbaSha256,sourceAlphaRoundtrip:true,visibleRectangles:pack.asset.drawCount,rectanglesIncludingTransparent:pack.asset.count}};
 }
 
 export function prepareV25UiMasks(file,{root=process.cwd()}={}){
@@ -115,8 +124,12 @@ export function attachV25UiMasks(layout,prepared){
  const stage=children(layout).some(node=>node.name==='stage')?child(layout,'stage'):layout;
  const selected=child(child(child(stage,'characterPanel'),'v25Roster'),'selected');
  const host=child(selected,'v25Constellation');
- if(children(host).length)throw Error('V25 constellation already bound');
+ const data=prepared.textureData?.[v25UiMaskTemplate];
+ if(!data||data.width!==512||data.height!==512||!isDeepStrictEqual(data.display,{position:[0,0],size:[512,512]}))throw Error('V25 constellation requires complete 512 texture data');
+ if(children(host).length||host.visible===true)throw Error('V25 constellation already bound');
  host.size=[...prepared.contract.displaySize];host.visible=true;
- host.children=[{name:'sourceMask',kind:'reference',position:[0,0],size:[512,512],scale:prepared.contract.displaySize.map(value=>value/512),template:v25UiMaskTemplate,focusable:false}];
+ // The runtime creates its 512-root at the first selection reveal. A static
+ // reference to the deliberately empty template is not a ready texture.
+ host.children=[];
  return layout;
 }

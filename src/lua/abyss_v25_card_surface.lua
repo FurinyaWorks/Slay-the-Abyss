@@ -1,6 +1,6 @@
 -- Own prebuilt decorative template roots only; no card text, inputs or rules.
--- Template roots must start hidden. Native allocation itself is synchronous but
--- may reenter Lua; all returned roots are checked against their frame lease.
+-- Roots start hidden. Allocation may reenter Lua; an optional ready(control)
+-- gates asynchronously built pixels without retaining an old presentation look.
 local M={}
 local function alive(control)
     if type(control)~='table' and type(control)~='userdata' then return false end
@@ -17,6 +17,7 @@ local function invoke(control,name,value)
     return ok and result~=false and alive(control)
 end
 local function weak(value)return setmetatable({value},{__mode='v'})end
+local function pairAlive(list)return alive(list[1]) and alive(list[2])end
 local function templateId(value)
     return type(value)=='number' and value>0 and value<math.huge and value%1==0
 end
@@ -78,7 +79,7 @@ function M.new(config,api)
         leases[row.id]=nil
         local box=row.box[1]
         if box and index[box]==row.id then index[box]=nil end
-        local current,pending=row.current,row.pending;row.current={};row.pending={};row.ready=false
+        local current,pending=row.current,row.pending;row.current={};row.pending={};row.ready=false;row.staged=false
         enqueue(current);enqueue(pending)
         conceal(row.host[1])
     end
@@ -88,16 +89,17 @@ function M.new(config,api)
         return rows
     end
     local function current(row,token)
-        return not dead and opened and epoch==token.epoch and frame==token.frame
-            and leases[row.id]==row and alive(row.box[1]) and alive(row.host[1])
+        local valid=alive(row.box[1]) and alive(row.host[1])
+        return valid and not dead and opened and epoch==token.epoch and frame==token.frame
+            and leases[row.id]==row
     end
     function self.beginFrame(_)
         if dead then return nil end
         frame=frame+1;opened=true;return frame
     end
     local function retain(row,activeScopes)
-        if not row.ready or not alive(row.box[1]) or not alive(row.host[1])then return false end
-        if not alive(row.current[1]) or not alive(row.current[2])then return false end
+        if not alive(row.box[1]) or not alive(row.host[1])then return false end
+        if not (row.ready and pairAlive(row.current) or row.staged and pairAlive(row.pending))then return false end
         if activeScopes and row.scope then return activeScopes[row.scope]==true end
         return row.used==frame
     end
@@ -144,7 +146,7 @@ function M.new(config,api)
         end
         local host=row.host[1]
         if not invoke(host,'SetActive',true) or not current(row,token)then return false end
-        return invoke(host,'SetVisible',true) and current(row,token)
+        return invoke(host,'SetVisible',true) and pairAlive(row.pending) and current(row,token)
     end
     local function acquire(box,host)
         local row=leases[index[box]]
@@ -158,22 +160,80 @@ function M.new(config,api)
         return row
     end
     local function reusable(row,shell,mana)
-        return row.ready and row.shell==shell and row.mana==mana and alive(row.current[1]) and alive(row.current[2])
+        return row.ready and row.shell==shell and row.mana==mana and pairAlive(row.current)
+    end
+    local function controlReady(control)
+        if not alive(control)then return false,false end
+        local ok,ready=pcall(function()
+            if type(api.ready)~='function'then return true end
+            return api.ready(control)==true
+        end)
+        local valid=ok and alive(control)
+        return valid and ready,valid
+    end
+    local function pairReady(row,token,list)
+        local ready=true
+        for i=1,2 do
+            if not current(row,token)then return false,false end
+            local complete,valid=controlReady(list[i])
+            if not valid or not current(row,token)then return false,false end
+            if not complete then ready=false end
+        end
+        if not pairAlive(list) or not current(row,token)then return false,false end
+        return ready,true
+    end
+    local function liveLease(row)
+        if not row then return false end
+        local valid=alive(row.box[1]) and alive(row.host[1])
+        return valid and not dead and leases[row.id]==row
     end
     function self.isReady(_,box)
         local row=leases[index[box]]
-        return not dead and row~=nil and alive(row.box[1]) and alive(row.host[1])
-            and reusable(row,row.shell,row.mana) or false
+        if not liveLease(row) or not reusable(row,row.shell,row.mana)then return false end
+        local leaseEpoch,leaseFrame=epoch,frame
+        for i=1,2 do
+            local ready,valid=controlReady(row.current[i])
+            if not ready or not valid then return false end
+            if not liveLease(row) or epoch~=leaseEpoch or frame~=leaseFrame then return false end
+        end
+        return pairAlive(row.current) and liveLease(row)
+    end
+    local function complete(row,token)
+        local ready,valid=pairReady(row,token,row.pending)
+        if not valid then return false end
+        if not ready then
+            return false,conceal(row.host[1]) and current(row,token)
+        end
+        if not publish(row,token)then return false end
+        row.current=row.pending;row.pending={};row.ready=true;row.staged=false
+        return true
     end
     local function replace(row,token,shell,mana)
         if not conceal(row.host[1]) or not current(row,token)then return false end
-        row.pending={}
+        enqueue(row.pending);row.pending={};row.staged=false;row.ready=false
+        if not drain() or not current(row,token)then return false end
+        row.shell=shell;row.mana=mana
         if not allocate(row,token,shell) or not allocate(row,token,mana)then return false end
         enqueue(row.current);row.current={};row.ready=false
         if not drain() or not current(row,token)then return false end
-        if not publish(row,token)then return false end
-        row.current=row.pending;row.pending={};row.shell=shell;row.mana=mana;row.ready=true
-        return true
+        row.staged=true
+        return complete(row,token)
+    end
+    local function reuse(row,token)
+        local ready,valid=pairReady(row,token,row.current)
+        if not valid then return false end
+        local host=row.host[1]
+        if not ready then
+            row.pending=row.current;row.current={};row.ready=false;row.staged=true
+            return false,conceal(host) and current(row,token)
+        end
+        return invoke(host,'SetActive',true) and current(row,token)
+            and invoke(host,'SetVisible',true) and pairAlive(row.current) and current(row,token)
+    end
+    local function resume(row,token,shell,mana)
+        if reusable(row,shell,mana)then return reuse(row,token)end
+        if row.staged and row.shell==shell and row.mana==mana then return complete(row,token)end
+        return replace(row,token,shell,mana)
     end
     local function apply(box,definition,scope)
         if scope~=nil and (type(scope)~='string' or scope=='')then return false end
@@ -186,17 +246,13 @@ function M.new(config,api)
         if not row then return false end
         row.scope=scope
         local token={epoch=epoch,frame=frame}
-        if reusable(row,shell,mana)then
-            return invoke(host,'SetActive',true) and current(row,token)
-                and invoke(host,'SetVisible',true) and current(row,token)
-        end
-        return replace(row,token,shell,mana)
+        return resume(row,token,shell,mana)
     end
     function self.apply(_,box,definition,scope)
         if not enabled or dead or busy or closing or cleaning then return false end
         busy=true
-        local ok,ready=pcall(apply,box,definition,scope)
-        if not ok or not ready then
+        local ok,ready,pending=pcall(apply,box,definition,scope)
+        if not ok or not ready and not pending then
             local row=leases[index[box]];if row then retire(row)end
             drain()
             -- A setter may release this owner, then complete its stale write.

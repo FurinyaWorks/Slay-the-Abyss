@@ -24,8 +24,9 @@ export function v25PrivateInputs(file,root=process.cwd()){
   return actual;
  })];
 }
-export function v25CardBindingSource(prepared,indices){
- if(!prepared||!indices)return '-- Generated private card surface configuration.\nreturn {enabled=false}\n';
+export function v25CardBindingSource(prepared,indices,options={}){
+ if((!prepared||!indices)&&!options.masks)return '-- Generated private card surface configuration.\nreturn {enabled=false}\n';
+ indices={...indices,...options.maskIndices};
  const used=new Map();
  const index=name=>{
   const value=indices[name];
@@ -34,11 +35,26 @@ export function v25CardBindingSource(prepared,indices){
   used.set(value,name);
   return value;
  };
- const variants=Object.fromEntries(Object.entries(prepared.binding.variants).map(([kind,rarities])=>[kind,
-  Object.fromEntries(Object.entries(rarities).map(([rarity,name])=>[rarity,index(name)]))]));
- return `-- Generated private card surface configuration.\nreturn ${toLua({schemaVersion:1,enabled:true,variants,
-  manaTemplateId:index(prepared.binding.manaTemplateId),sourceManifestSha256:prepared.sourceManifestSha256})}\n`;
+ const variants=prepared?Object.fromEntries(Object.entries(prepared.binding.variants).map(([kind,rarities])=>[kind,
+  Object.fromEntries(Object.entries(rarities).map(([rarity,name])=>[rarity,index(name)]))])):{};
+ const value={schemaVersion:1,enabled:!!prepared,...(prepared?{variants,
+  manaTemplateId:index(prepared.binding.manaTemplateId),sourceManifestSha256:prepared.sourceManifestSha256}:{})};
+ const data={...prepared?.textureData,...options.masks?.textureData};
+ if(Object.keys(data).length){
+  const {imageTemplateId,groupTemplateId}=options;
+  if(![imageTemplateId,groupTemplateId].every(id=>Number.isSafeInteger(id)&&id>0)
+   ||imageTemplateId===groupTemplateId)throw Error('Packed V25 textures require distinct image and group templates');
+  value.textures=Object.fromEntries(Object.entries(data).map(([name,texture])=>[index(name),texture]));
+  if(used.has(imageTemplateId)||used.has(groupTemplateId))throw Error('Packed V25 texture templates alias a root');
+  value.renderProfile='source-rgba-packed-v1';value.imageTemplateId=imageTemplateId;value.groupTemplateId=groupTemplateId;
+  if(options.masks){
+   const names=Object.keys(options.masks.textureData??{});
+   if(names.length!==1)throw Error('Packed V25 UI mask requires its one source texture');
+   value.uiMask={templateId:index(names[0]),hostName:'v25Constellation',displaySize:[118,118]};
+  }
+ }
+ return `-- Generated private card surface configuration.\nreturn ${toLua(value)}\n`;
 }
-export function writeV25CardBinding(directory,prepared,indices){
- const source=v25CardBindingSource(prepared,indices);writeFileSync(join(directory,v25CardModule+'.lua'),source);return source;
+export function writeV25CardBinding(directory,prepared,indices,options){
+ const source=v25CardBindingSource(prepared,indices,options);writeFileSync(join(directory,v25CardModule+'.lua'),source);return source;
 }

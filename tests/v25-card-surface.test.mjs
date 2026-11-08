@@ -159,3 +159,122 @@ b.alive=false;assert(s:endFrame(token,{deck=true}) and alive()==0)
 local nextBox=box();hook=function()s:endFrame(nil,{deck=true})end
 assert(not s:apply(nextBox,{type='attack',rarity='basic'},'deck'));hook=nil;assert(alive()==0)
 `));
+
+test('ten legal async card pairs retain one pending allocation until both roots finish, then fresh apply publishes',()=>vm(`
+api.ready=function(c)return c.complete==true end
+local cards={};local token=s:beginFrame()
+for i=1,10 do
+ cards[i]=box();assert(not s:apply(cards[i],{type='attack',rarity='basic'},'battle'))
+ assert(not s:isReady(cards[i]) and not cards[i].surface.visible)
+end
+assert(#created==20 and alive()==20,'pending pairs were retired as failures')
+assert(s:endFrame(token,{battle=true}) and alive()==20)
+for cycle=1,3 do
+ token=s:beginFrame()
+ for _,b in ipairs(cards)do assert(not s:apply(b,{type='attack',rarity='basic'},'battle'))end
+ assert(s:endFrame(token,{battle=true}) and #created==20 and alive()==20,'pending apply rebuilt roots')
+end
+created[1].complete=true
+assert(not s:apply(cards[1],{type='attack',rarity='basic'},'battle') and not cards[1].surface.visible,'half-ready pair published')
+for _,c in ipairs(created)do c.complete=true end
+assert(not s:isReady(cards[1]),'completion alone published an old look without fresh apply')
+token=s:beginFrame()
+for _,b in ipairs(cards)do
+ assert(s:apply(b,{type='attack',rarity='basic'},'battle') and s:isReady(b) and b.surface.visible)
+ assert(b.name.text=='普通攻击' and b.cost.text=='1' and b.hit.interactable)
+end
+assert(s:endFrame(token,{battle=true}) and #created==20 and alive()==20)
+assert(s:clear() and alive()==0)
+`));
+
+test('pending type changes release the old pair and same-slot reuse never republishes a cancelled allocation',()=>vm(`
+api.ready=function(c)return c.complete==true end
+local b=box();assert(not s:apply(b,{type='attack',rarity='basic'},'deck'))
+local oldShell,oldMana=created[1],created[2];assert(alive()==2)
+assert(not s:apply(b,{type='skill',rarity='common'},'deck'))
+assert(#created==4 and alive()==2 and not oldShell.alive and not oldMana.alive,'old pending type survived')
+oldShell.complete=true;oldMana.complete=true
+assert(not s:apply(b,{type='skill',rarity='common'},'deck') and #created==4 and not b.surface.visible)
+created[3].complete=true;created[4].complete=true
+assert(s:apply(b,{type='skill',rarity='common'},'deck') and #created==4)
+created[3].complete=false
+assert(not s:isReady(b),'ready=false still reported a ready surface')
+assert(not s:apply(b,{type='skill',rarity='common'},'deck') and #created==4 and not b.surface.visible)
+created[3].complete=true;assert(s:apply(b,{type='skill',rarity='common'},'deck') and #created==4)
+assert(s:release(b) and alive()==0)
+assert(not s:apply(b,{type='power',rarity='common'},'deck') and #created==6)
+`));
+
+test('pending scopes survive cached idle frames but page hide and twenty scene cycles cancel all roots',()=>vm(`
+api.ready=function(c)return c.complete==true end
+local b=box();local token=s:beginFrame();assert(not s:apply(b,{type='attack',rarity='basic'},'deck'))
+assert(s:endFrame(token,{deck=true}) and alive()==2)
+token=s:beginFrame();assert(s:endFrame(token,{deck=true}) and alive()==2,'active cached scope lost pending roots')
+token=s:beginFrame();assert(not s:apply(b,{type='attack',rarity='basic'},'deck'))
+assert(s:endFrame(token,{deck=false}) and alive()==0 and not b.surface.visible,'hidden page retained pending roots')
+for cycle=1,20 do
+ local cards={};token=s:beginFrame()
+ for i=1,10 do cards[i]=box();assert(not s:apply(cards[i],{type='skill',rarity='common'},'battle'))end
+ assert(s:endFrame(token,{battle=true}) and alive()==20)
+ token=s:beginFrame();assert(s:endFrame(token,{battle=false}) and alive()==0,'scene cycle leaked pending roots')
+end
+local owner=box();token=s:beginFrame();assert(not s:apply(owner,{type='power',rarity='common'},'deck'))
+owner.alive=false;assert(s:endFrame(token,{deck=true}) and alive()==0,'dead owner preserved pending roots')
+`));
+
+test('async allocation or readiness reentry cannot keep half pairs or resurrect cancelled owners',()=>vm(`
+api.ready=function(c)return c.complete==true end
+local b=box();hook=function()s:endFrame(nil,{deck=true})end
+assert(not s:apply(b,{type='attack',rarity='basic'},'deck'));hook=nil
+assert(alive()==0 and not b.surface.visible,'half allocation retained by active scope')
+for _,method in ipairs({'clear','release','onDestroy'})do
+ local owner=Surface.new(config,api);local face=box()
+ assert(not owner:apply(face,{type='attack',rarity='basic'},'deck'))
+ local once=false
+ api.ready=function(c)if not once then once=true;owner[method](owner)end;return true end
+ assert(not owner:apply(face,{type='attack',rarity='basic'},'deck'))
+ assert(alive()==0 and not face.surface.visible,'readiness callback resurrected '..method)
+ api.ready=function(c)return c.complete==true end
+ if method=='onDestroy'then assert(not owner:apply(face,{type='attack',rarity='basic'},'deck'))
+ else assert(not owner:apply(face,{type='attack',rarity='basic'},'deck'));assert(owner:clear())end
+end
+`));
+
+test('pending rarity changes and rejected cleanup keep exact ownership without rebuilding failed releases',()=>vm(`
+api.ready=function(c)return c.complete==true end
+local b=box();assert(not s:apply(b,{type='attack',rarity='basic'},'battle'))
+local old=created[1];assert(not s:apply(b,{type='attack',rarity='rare'},'battle'))
+assert(not old.alive and #created==4 and created[3].name==13 and alive()==2,'pending rarity used old shell')
+failDestroy=true;assert(not s:clear() and alive()==2 and not b.surface.visible)
+assert(not s:apply(b,{type='attack',rarity='rare'},'battle') and #created==4,'failed release caused new pending allocation')
+failDestroy=false;assert(s:clear() and alive()==0)
+assert(not s:apply(b,{type='attack',rarity='rare'},'battle') and #created==6)
+api.ready=function()error('synthetic ready failure')end
+assert(not s:apply(b,{type='attack',rarity='rare'},'battle') and alive()==0,'ready exception retained broken pixels')
+`));
+
+test('isReady rejects a queried child that dies while its ready callback returns true',()=>vm(`
+local b=box();assert(s:apply(b,{type='attack',rarity='basic'}))
+api.ready=function(c)if c==created[1]then c.alive=false end;return true end
+assert(not s:isReady(b),'ready query ignored child validity')
+`));
+
+test('a sibling readiness callback cannot leave a dead first root published or reported ready',()=>vm(`
+for _,query in ipairs({'isReady','apply'})do
+ local owner=Surface.new(config,api);local b=box();api.ready=nil
+ assert(owner:apply(b,{type='attack',rarity='basic'}));local shell,mana=created[#created-1],created[#created]
+ api.ready=function(c)if c==mana then shell.alive=false end;return true end
+ if query=='isReady'then assert(not owner:isReady(b),'sibling death escaped final ready query')
+ else assert(not owner:apply(b,{type='attack',rarity='basic'}) and not b.surface.visible,'sibling death escaped reuse')end
+ assert(owner:clear())
+end
+`));
+
+test('the final host publish setter cannot report a pair whose shell died during that setter',()=>vm(`
+local b=box();local original=b.surface.SetVisible
+b.surface.SetVisible=function(self,value)
+ if value then created[1].alive=false end
+ return original(self,value)
+end
+assert(not s:apply(b,{type='attack',rarity='basic'}) and not b.surface.visible and alive()==0,'publish setter left dead pair ready')
+`));

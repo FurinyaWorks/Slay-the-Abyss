@@ -1,7 +1,7 @@
 import {prepareMonsterArt} from './monster-art.mjs';
 import {portraitInventory,portraitRuntimeInputs} from './official-portraits.mjs';
 import {lightweightInventory,lightweightProfile} from './lightweight-2d-profile.mjs';
-import {v25ChromeFromReceipt,v25CardAssetsFromReceipt,v25UiMasksFromReceipt} from './v25-profile.mjs';
+import {v25ChromeFromReceipt,v25CardAssetsFromReceipt,v25UiMasksFromReceipt,validateV25TextureReceipt} from './v25-profile.mjs';
 // Candidate-local developer flags. Never player settings or a remote service.
 import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -69,6 +69,7 @@ export function verifyArtFeatureReceipt(receipt) {
  return expected.flags;
 }
 export function artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory=false}={}) {
+ validateV25TextureReceipt(receipt);
  const v25BattleChrome=v25ChromeFromReceipt(receipt);
  const v25CardAssets=v25CardAssetsFromReceipt(receipt);
  const v25UiMasks=v25UiMasksFromReceipt(receipt);

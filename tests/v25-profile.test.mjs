@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {v25ChromeArgs,validateV25Chrome,v25ChromeFromReceipt,v25CardAssetsFromReceipt} from '../scripts/v25-profile.mjs';
+import {v25ChromeArgs,validateV25Chrome,v25ChromeFromReceipt,v25CardAssetsFromReceipt,validateV25TextureReceipt} from '../scripts/v25-profile.mjs';
 import {v25CardBindingSource,assertV25CardPreparation} from '../scripts/v25-card-binding.mjs';
 import {artFeatureReceipt,artBuildOptionsFromReceipt} from '../scripts/art-features.mjs';
 import {auditUiBuildArgs} from '../scripts/audit-native-candidate.mjs';
@@ -86,4 +86,33 @@ test('candidate source snapshot and emitted templates must match the first priva
  assert.throws(()=>assertV25CardPreparation(prepared,[record],[]),/emitted template/);
  assert.throws(()=>assertV25CardPreparation(prepared,[record],[template,template]),/emitted template/);
  assert.throws(()=>assertV25CardPreparation(prepared,[record],[{...template,visible:true}]),/emitted template/);
+});
+
+test('packed RGBA textures bind every original block once to distinct candidate roots',()=>{
+ const texture={width:2,height:1,blocks:'00000000000100010a141e80'+'000100000001000100000000',count:2,drawCount:1,
+  display:{position:[.5,0],size:[2,1]}};
+ const prepared={sourceManifestSha256:'a'.repeat(64),binding:{variants:{attack:{basic:'shell'}},manaTemplateId:'mana'},
+  textureData:{shell:texture,mana:{...texture,display:{position:[-66,93.5],size:[2,1]}}}};
+ const masks={textureData:{mask:{...texture,width:512,height:512,display:{position:[0,0],size:[512,512]}}}};
+ const options={masks,maskIndices:{mask:5},imageTemplateId:6,groupTemplateId:7};
+ const source=v25CardBindingSource(prepared,{shell:3,mana:4},options);
+ assert.match(source,/source-rgba-packed-v1/);assert.match(source,/uiMask/);
+ assert.equal(source.split(texture.blocks).length-1,3,'each complete texture is stored once, including zero-alpha RGB');
+ for(const broken of [{...options,imageTemplateId:3},{...options,groupTemplateId:6},{...options,imageTemplateId:0},
+  {...options,maskIndices:{mask:4}}])assert.throws(()=>v25CardBindingSource(prepared,{shell:3,mana:4},broken),/template|binding/i);
+ const maskOnly=v25CardBindingSource(undefined,undefined,options);
+ assert.match(maskOnly,/enabled.*false/);assert.match(maskOnly,/uiMask/);
+});
+
+test('packed texture receipts reject shared-root aliases and unbound profiles before loading private files',()=>{
+ const receipt={experimentalBattleChrome:'v25-layered-v1',v25CardAssets:{templateIndices:{shell:3,mana:4}},
+  v25UiMasks:{templateIndices:{mask:5}},v25TextureRuntime:{profile:'source-rgba-packed-v1',imageTemplateIndex:6,containerTemplateIndex:7}};
+ assert.doesNotThrow(()=>validateV25TextureReceipt(receipt));
+ for(const patch of [{imageTemplateIndex:3},{containerTemplateIndex:6},{profile:'compact-v1'},{imageTemplateIndex:0},{extra:true}]){
+  const broken={...receipt,v25TextureRuntime:{...receipt.v25TextureRuntime,...patch}};
+  assert.throws(()=>validateV25TextureReceipt(broken),/packed V25 texture/);
+ }
+ assert.throws(()=>validateV25TextureReceipt({...receipt,v25CardAssets:undefined,v25UiMasks:undefined}));
+ assert.throws(()=>validateV25TextureReceipt({...receipt,experimentalBattleChrome:undefined}));
+ assert.doesNotThrow(()=>validateV25TextureReceipt({experimentalBattleChrome:'v25-layered-v1'}),'old exact-source candidates retain their pinned producer recipe');
 });

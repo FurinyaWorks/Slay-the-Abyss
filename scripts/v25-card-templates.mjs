@@ -1,5 +1,5 @@
-// Native template preparation only. Private texture data stays in caller-owned
-// build artifacts; templates are instantiated lazily by the runtime integrator.
+// Native empty-host preparation plus complete lossless runtime rectangle data.
+// Private texture data stays in caller-owned build artifacts, never public code.
 import {readFileSync} from 'node:fs';
 import {resolve,relative,isAbsolute} from 'node:path';
 import {isDeepStrictEqual} from 'node:util';
@@ -87,6 +87,17 @@ function template(name,images){
  // Container bounds describe coordinates; no mask clips the card's source overflow.
  return {name,kind:'container',position:[0,0],size:[...logicalSize],visible:false,focusable:false,children:pages};
 }
+function rectangleData(asset){
+ return {width:asset.width,height:asset.height,blocks:asset.blocks,count:asset.count,drawCount:asset.drawCount,
+  display:structuredClone(asset.display)};
+}
+// Validation/probe helper only. Production preparation never emits this expanded
+// tree: runtime binds the same full rectangle data to the candidate-local host.
+export function expandV25CardTexture(name,data){
+ if(!pair(data?.display?.position)||!isDeepStrictEqual(data.display?.size,[data.width,data.height]))throw Error('Invalid V25 texture display geometry');
+ decodeRgbaRectangles({...data,encoding:'xywh-rgba-hex24'});
+ return template(name,frame(data));
+}
 function assetMetadata(asset,name){
  return {templateName:name,width:asset.width,height:asset.height,count:asset.count,drawCount:asset.drawCount,
   sourceSha256:asset.sourceSha256,rgbaSha256:asset.rgbaSha256,blocksSha256:asset.blocksSha256,
@@ -98,22 +109,30 @@ export function prepareV25CardTemplates(file,{root=process.cwd()}={}){
  if(pack.schemaVersion!==1||pack.profile!=='v25-source-rgba-lossless-v1'||pack.licenseScope!=='private-local-only'||pack.sourceSiteVersion!==25
   ||!pack.assets||Array.isArray(pack.assets))throw Error('Expected pinned private lossless V25 card assets');
  const records=readInputs(pack,sourceFile,root),keys=requiredKeys(pack);
- for(const key of keys){geometry(pack.assets[key]);decodeRgbaRectangles(pack.assets[key]);}
+ for(const key of keys){
+  const asset=pack.assets[key];geometry(asset);decodeRgbaRectangles(asset);
+  // Empty hosts must retain the expanded builder's visible-count guard. A
+  // forged drawCount must not truncate the runtime while RGBA still hashes.
+  let visible=0;for(let i=0;i<asset.count;i++)if(parseInt(asset.blocks.slice(i*24+22,i*24+24),16)>0)visible++;
+  if(visible!==asset.drawCount)throw Error('Visible rectangle count differs from the source');
+ }
  const contract=sourceContract(pack,records,root);
  // Freshly reconstruct PNG pixels from the pinned source, so recomputed hashes
  // on a modified/lossy compiled file cannot masquerade as original source RGBA.
  const fresh=compilePrivateCardAssets({inputRoot:contract.inputRoot,manifest:contract.relativeManifest,manifestSha256:contract.manifestSha256,keys});
- const templates=[],assets={},names=new Map();
+ const templates=[],assets={},textureData={},names=new Map();
  for(const key of keys){
   const asset=pack.assets[key],original=fresh.assets[key];
   if(asset.sourceSha256!==original.sourceSha256||asset.rgbaSha256!==original.rgbaSha256||!isDeepStrictEqual(asset.display,original.display)
    ||!isDeepStrictEqual(asset.logicalCardSourceTopLeft,original.logicalCardSourceTopLeft))throw Error('Compiled RGBA or geometry differs from the pinned PNG source');
   const name='AbyssV25Card'+(templates.length+1);names.set(key,name);
-  templates.push(template(name,frame(asset)));assets[key]=assetMetadata(asset,name);
+  // Keep only one empty candidate-bound host per variant. Every source block,
+  // including transparent RGBA identity, remains in the private runtime data.
+  templates.push(template(name,[]));textureData[name]=rectangleData(asset);assets[key]=assetMetadata(asset,name);
  }
  const variants=Object.fromEntries(kinds.map(kind=>[kind,Object.fromEntries(rarities.map(rarity=>[rarity,names.get(pack.cardShells.variants[kind][rarity])]))]));
  for(const record of records.values())if(fileRecord(record.path,root).sha256!==record.sha256)throw Error('V25 source hash changed during template preparation');
- return {templates,binding:{schemaVersion:1,enabled:true,variants,manaTemplateId:names.get(pack.cardShells.mana)},
+ return {templates,textureData,binding:{schemaVersion:1,enabled:true,variants,manaTemplateId:names.get(pack.cardShells.mana)},
   inputs:[...records.values()],sourceManifestSha256:contract.manifestSha256,assets,
   privateInputRoot:contract.inputRoot,manifestRelativePath:contract.relativeManifest,
   verification:{sourceRgba:'fresh PNG decode and byte-exact rectangle validation',nativeImport:'not_run',devicePerformance:'not_run'}};

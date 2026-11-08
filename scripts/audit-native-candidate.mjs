@@ -119,7 +119,7 @@ export async function auditNativeCandidate(options) {
     const template = save('template.json', getClientUi({ mapPath, template: 'AbyssDeckCard' }));
     const background = flags.menuBackground
       ? save('background-template.json', getClientUi({mapPath,template:backgroundTemplate})) : undefined;
-    const runtimeNames=[...(flags.cards||portraits||flags.menuBackground?[readyArtImageTemplate]:[]),readyArtGroupTemplate,monsterActorTemplateName,monsterPowerTemplateName,...Object.keys(buildReceipt?.v25CardAssets?.templateIndices??{}),...Object.keys(buildReceipt?.v25UiMasks?.templateIndices??{})];
+    const runtimeNames=[...(flags.cards||portraits||flags.menuBackground||buildReceipt?.v25CardAssets||buildReceipt?.v25UiMasks?[readyArtImageTemplate]:[]),readyArtGroupTemplate,monsterActorTemplateName,monsterPowerTemplateName,...Object.keys(buildReceipt?.v25CardAssets?.templateIndices??{}),...Object.keys(buildReceipt?.v25UiMasks?.templateIndices??{})];
     const runtimeTemplates=runtimeNames.map(name=>save(name+'.json',getClientUi({mapPath,template:name})));
     const inspected = save('inspect.json', inspectFile(mapPath));
     const checked = save('static-check.json', checkClientScripts({ mapPath }));
@@ -136,7 +136,7 @@ export async function auditNativeCandidate(options) {
       'src/lua', 'data', 'scripts', 'tools', ...releaseSourceFiles, ...assetInputs]) });
     prepareAuditStaticRegistry(snapshot,buildReceipt,selection);
     const v25Private=artOptions.v25CardAssets?prepareAuditV25CardInputs({snapshot,receipt:buildReceipt,root:repo}):null;
-    const v25Masks=artOptions.v25UiMasks?prepareAuditV25UiMasks({snapshot,receipt:buildReceipt,root:repo}):null;
+    const v25Masks=artOptions.v25UiMasks?await prepareAuditV25UiMasks({snapshot,receipt:buildReceipt,root:repo}):null;
     if(v25Masks)save('v25-ui-mask-locators.json',v25Masks.locatorRebase);
     if(v25Private)save('v25-private-locators.json',v25Private.locatorRebase);
     // Geometry identity belongs to the requested source epoch, never the tool checkout.
@@ -188,9 +188,19 @@ export async function auditNativeCandidate(options) {
       const {bindMonsterActorTemplates}=await import(pathToFileURL(join(snapshot,'scripts/monster-art.mjs')));
       bindMonsterActorTemplates(join(snapshot,'build/lua'),{actor,group,power});
     }
-    if(v25Private){
+    if(v25Private||v25Masks){
+      if(buildReceipt.v25TextureRuntime){
+        const runtime=buildReceipt.v25TextureRuntime;
+        if(runtime.profile!=='source-rgba-packed-v1'
+          ||runtime.imageTemplateIndex!==runtimeTemplates.find(row=>row.template?.name===readyArtImageTemplate)?.templateIndex
+          ||runtime.containerTemplateIndex!==runtimeTemplates.find(row=>row.template?.name===readyArtGroupTemplate)?.templateIndex)
+          throw Error('Packed V25 textures require same-candidate shared templates');
+      }
       const {writeV25CardBinding}=await import(pathToFileURL(join(snapshot,'scripts/v25-card-binding.mjs')));
-      writeV25CardBinding(join(snapshot,'build/lua'),v25Private.prepared,buildReceipt.v25CardAssets.templateIndices);
+      writeV25CardBinding(join(snapshot,'build/lua'),v25Private?.prepared,buildReceipt.v25CardAssets?.templateIndices,
+        {masks:v25Masks?.prepared,maskIndices:buildReceipt.v25UiMasks?.templateIndices,
+          imageTemplateId:runtimeTemplates.find(row=>row.template?.name===readyArtImageTemplate)?.templateIndex,
+          groupTemplateId:runtimeTemplates.find(row=>row.template?.name===readyArtGroupTemplate)?.templateIndex});
     }
     const modules = deployment.map(({ name, sourceFile }) => {
       const source = readFileSync(sourceFile, 'utf8');
@@ -201,8 +211,9 @@ export async function auditNativeCandidate(options) {
     const expectedTemplate = expectedTemplates.find(template => template.name === 'AbyssDeckCard');
     const expectedRuntimeTemplates=runtimeNames.map(name=>({
       template:expectedTemplates.find(row=>row.name===name),templateIndex:buildReceipt?.v25CardAssets?.templateIndices[name]??buildReceipt?.v25UiMasks?.templateIndices[name]??(name===monsterPowerTemplateName?buildReceipt?.monsterActors?.powerTemplateIndex:
-        name===monsterActorTemplateName?buildReceipt?.monsterActors?.templateIndex:name===readyArtImageTemplate?sharedReceipt?.imageTemplateIndex:
-        sharedReceipt?.containerTemplateIndex??buildReceipt?.monsterActors?.containerTemplateIndex)}));
+        name===monsterActorTemplateName?buildReceipt?.monsterActors?.templateIndex:name===readyArtImageTemplate?
+        buildReceipt?.v25TextureRuntime?.imageTemplateIndex??sharedReceipt?.imageTemplateIndex:
+        buildReceipt?.v25TextureRuntime?.containerTemplateIndex??sharedReceipt?.containerTemplateIndex??buildReceipt?.monsterActors?.containerTemplateIndex)}));
     const expectedBackgroundTemplate = expectedTemplates.find(template => template.name === backgroundTemplate);
     const expectedBackground = expectedBackgroundTemplate ? {template:expectedBackgroundTemplate,
       templateIndex:buildReceipt?.officialBackground?.templateIndex} : undefined;

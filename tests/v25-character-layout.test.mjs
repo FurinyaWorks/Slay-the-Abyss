@@ -10,7 +10,7 @@ import {mkdirSync,mkdtempSync,readFileSync,writeFileSync,rmSync,symlinkSync} fro
 import {resolve,join,dirname} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {compileUiMask,prepareUiMask,prepareV25UiMasks,attachV25UiMasks,assertV25UiMaskPreparation,v25UiMaskTemplate} from '../scripts/v25-ui-mask-assets.mjs';
+import {compileUiMask,prepareUiMask,prepareV25UiMasks,attachV25UiMasks,assertV25UiMaskPreparation,v25UiMaskTemplate,expandUiMaskTexture} from '../scripts/v25-ui-mask-assets.mjs';
 import {compileRgbaRectangles,decodeRgbaRectangles} from '../scripts/v25-private-card-assets.mjs';
 import {rebasePrivateUiMask} from '../scripts/v25-ui-mask-audit-inputs.mjs';
 
@@ -37,7 +37,15 @@ test('private UI mask preserves source alpha and complete bounds with an explici
  const f=maskFixture(t),pack=compileUiMask(f.options),prepared=prepareUiMask(f.options.outputFile,{root:f.root,python:f.python,expected:f.options});
  assert.equal(pack.sourceRgbPreserved,false);assert.equal(pack.source.alphaSha256,sha(Buffer.from([0,128,255,255,0,7])));
  const rgba=decodeRgbaRectangles(pack.asset);for(let i=0;i<6;i++)assert.deepEqual([...rgba.subarray(i*4,i*4+3)],[255,224,162]);
- assert.deepEqual(prepared.template.size,[3,2]);assert.equal(prepared.template.visible,true);assertNativeUiCapacity(prepared.template);
+ assert.deepEqual(prepared.template.size,[3,2]);assert.equal(prepared.template.visible,false);assert.deepEqual(prepared.template.children,[]);assertNativeUiCapacity(prepared.template);
+ const data=prepared.textureData[v25UiMaskTemplate];
+ assert.deepEqual(data,{width:3,height:2,blocks:pack.asset.blocks,count:pack.asset.count,drawCount:pack.asset.drawCount,display:{position:[0,0],size:[3,2]}});
+ assert.ok(decodeRgbaRectangles({...data,encoding:'xywh-rgba-hex24'}).equals(rgba));
+ const expanded=expandUiMaskTexture(v25UiMaskTemplate,data),images=all(expanded).filter(n=>n.kind==='image');assertNativeUiCapacity(expanded);
+ assert.equal(images.length,4);assert.deepEqual(images.map(n=>n.position),[[0,.5],[1,.5],[-1,-.5],[1,-.5]]);
+ assert.deepEqual(images.map(n=>n.opacity),[128/255,1,1,7/255]);assert.ok(images.every(n=>n.colour==='#ffe0a2'));
+ assert.throws(()=>expandUiMaskTexture(v25UiMaskTemplate,{...data,drawCount:1}),/count/);
+ assert.throws(()=>expandUiMaskTexture(v25UiMaskTemplate,{...data,display:{position:[1,0],size:[3,2]}}),/geometry/);
  assert.ok(readFileSync(f.input).equals(f.bytes));
  assert.throws(()=>prepareUiMask(f.options.outputFile,{root:f.root,python:f.python}),/caller contract/);
  assert.throws(()=>prepareUiMask(f.options.outputFile,{root:f.root,python:f.python,expected:{...f.options,tint:'#FFFFFF'}}),/caller contract/);
@@ -73,14 +81,20 @@ test('isolated UI-mask audit copies pinned bytes and changes only its private PN
  assert.throws(()=>rebasePrivateUiMask({snapshot:alias,receipt,root:f.root,expected:f.options,python:f.python}),/isolated/);
 });
 
-test('constellation reference uses the complete 512 canvas at the measured 118 display size',()=>{
+test('empty constellation host retains complete 512 texture geometry for the measured 118 runtime display',()=>{
  const layout=build();applyV25CharacterLayout(layout,theme());
- const prepared={contract:{displaySize:[118,118]},inputs:[{path:'p',sha256:'a',bytes:1}],templates:[{name:v25UiMaskTemplate,kind:'container',size:[512,512],visible:true,children:[]}]};
+ const rgba=Buffer.alloc(512*512*4);rgba.set([255,224,162,128],0);rgba.set([255,224,162,255],rgba.length-4);
+ const encoded=compileRgbaRectangles({width:512,height:512,rgba}),data={width:512,height:512,blocks:encoded.blocks,count:encoded.count,drawCount:encoded.drawCount,display:{position:[0,0],size:[512,512]}};
+ const prepared={contract:{displaySize:[118,118]},inputs:[{path:'p',sha256:'a',bytes:1}],textureData:{[v25UiMaskTemplate]:data},templates:[{name:v25UiMaskTemplate,kind:'container',size:[512,512],visible:false,children:[]}]};
  const inputs=all(layout).filter(n=>['cursorArea','presetButton'].includes(n.kind));attachV25UiMasks(layout,prepared);
  const host=child(child(child(panel(layout),'v25Roster'),'selected'),'v25Constellation');
  assert.equal(host.visible,true);assert.deepEqual(host.size,[118,118]);
- assert.deepEqual(host.children[0].size,[512,512]);assert.deepEqual(host.children[0].scale,[118/512,118/512]);assert.deepEqual(host.children[0].position,[0,0]);
- assert.equal(host.children[0].template,v25UiMaskTemplate);assert.deepEqual(all(layout).filter(n=>['cursorArea','presetButton'].includes(n.kind)),inputs);
+ assert.deepEqual(host.children,[]);assert.equal(host.children.find(n=>n.name==='sourceMask'),undefined);
+ assert.deepEqual(data.display,{position:[0,0],size:[512,512]});assert.equal(host.size[0]/data.width,118/512);assert.equal(host.size[1]/data.height,118/512);
+ assert.deepEqual(host.position,[0,0]);assert.ok(decodeRgbaRectangles({...data,encoding:'xywh-rgba-hex24'}).equals(rgba));
+ const expanded=expandUiMaskTexture(v25UiMaskTemplate,data),images=all(expanded).filter(n=>n.kind==='image');
+ assert.deepEqual(images.map(n=>n.position),[[-255.5,255.5],[255.5,-255.5]]);assert.deepEqual(images.map(n=>n.opacity),[128/255,1]);
+ assert.deepEqual(all(layout).filter(n=>['cursorArea','presetButton'].includes(n.kind)),inputs);
  assertNativeUiCapacity(layout);assert.throws(()=>attachV25UiMasks(layout,prepared),/already/);
  assert.throws(()=>assertV25UiMaskPreparation(prepared,[],prepared.templates),/snapshot/);
  assertV25UiMaskPreparation(prepared,prepared.inputs,prepared.templates);

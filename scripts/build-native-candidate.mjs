@@ -169,7 +169,7 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
       .map(({name,sourceFile})=>[name,sourceFile]));
     if(!modules.has('abyss_ui'))throw new Error('Missing entry module abyss_ui');
     const dynamicCards=flags.cards&&!art,portraits=flags.selectionAvatar||flags.battlePortrait;
-    const sharedTemplates=flags.cards||portraits||flags.menuBackground;
+    const sharedTemplates=flags.cards||portraits||flags.menuBackground||!!v25Cards||!!v25Masks;
     const blockedTemplates=[...(!flags.menuBackground?[backgroundTemplate]:[]),...(!sharedTemplates?[readyArtImageTemplate]:[])];
     if(templates.some(template=>blockedTemplates.includes(template.name)))throw Error('Disabled artwork must not register templates');
     const blockedHosts=[...(!flags.monsters?['monsterArt','monsterSamples']:[]),...(!flags.cards?['artSamples']:[]),...(!flags.menuBackground?['officialBackground','lowpolyScene']:[]),...(!flags.selectionAvatar?['officialAvatar']:[]),...(!flags.battlePortrait?['officialFigure']:[])];
@@ -245,13 +245,19 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
     }
     if(v25Cards){
       if(!modules.has(v25CardModule))throw Error('Private V25 card templates lack their binding module');
-      writeV25CardBinding(generated,v25Cards,v25TemplateIndices);
       receipt.v25CardAssets={assetFile:fileRecord(resolve(root,v25CardAssets)),inputs:v25Cards.inputs,sourceManifestSha256:v25Cards.sourceManifestSha256,templateIndices:v25TemplateIndices};
     }
     if(v25Masks){
       receipt.v25UiMasks={assetFile:v25Masks.assetFile,inputs:v25Masks.inputs,templateIndices:maskTemplateIndices,verification:v25Masks.verification};
       v25UiMasksFromReceipt(receipt);
       if(allTemplateIds.filter(index=>index===maskTemplateIndices[v25UiMaskTemplate]).length!==1)throw Error('Duplicate native V25 UI mask template binding');
+    }
+    if(v25Cards||v25Masks){
+      if(!modules.has(v25CardModule))throw Error('Private V25 textures lack their binding module');
+      writeV25CardBinding(generated,v25Cards,v25TemplateIndices,{masks:v25Masks,maskIndices:maskTemplateIndices,
+        imageTemplateId:readyTemplates.image?.templateIndex,groupTemplateId:readyTemplates.group?.templateIndex});
+      receipt.v25TextureRuntime={profile:'source-rgba-packed-v1',imageTemplateIndex:readyTemplates.image?.templateIndex,
+        containerTemplateIndex:readyTemplates.group?.templateIndex};
     }
     if(flags.menuBackground&&!receipt.officialBackground)throw Error('Official background runtime has no bound template');
     if(readyTemplates.image||readyTemplates.group){

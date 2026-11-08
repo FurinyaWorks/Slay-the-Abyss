@@ -62,7 +62,7 @@ function checkSnapshot(snapshot){
 function plainDirectory(root,path){
  const state=entry(path);
  if(!state)return false;
- if(!state.isDirectory())throw Error('Audit output parent must be a directory');
+ if(!state.isDirectory())throw Error('Audit snapshot output parent must be a plain directory, not an alias');
  const physical=inside(root,path);
  if(identity(physical)!==identity(path))throw Error('Audit output parent cannot be an alias');
  return true;
@@ -113,6 +113,7 @@ export function prepareAuditV25CardInputs({snapshot,receipt,root=process.cwd()}=
  const rebasedFile=fileRecord(plan.output,target.path),copyPrepared=prepareV25CardTemplates(rebasedFile.path,{root:target.path});
  const templateSha256=sha256(JSON.stringify(prepared.templates));
  if(templateSha256!==sha256(JSON.stringify(copyPrepared.templates))||!isDeepStrictEqual(prepared.binding,copyPrepared.binding)
+  ||!isDeepStrictEqual(prepared.textureData,copyPrepared.textureData)
   ||prepared.sourceManifestSha256!==copyPrepared.sourceManifestSha256)throw Error('Rebased V25 templates differ from original pinned sources');
  for(const input of prepared.inputs)if(!sameRecord(fileRecord(input.path,originalRoot),input))throw Error('Original private source changed during audit copy');
  checkSnapshot(target);

@@ -1,5 +1,15 @@
 // A development slice, not a claim that V25 artwork or devices are accepted.
 export const v25ChromeProfile='v25-layered-v1';
+export function validateV25TextureReceipt(receipt){
+ const value=receipt?.v25TextureRuntime;
+ if(value===undefined)return;
+ const ids=[value.imageTemplateIndex,value.containerTemplateIndex];
+ const roots=[...Object.values(receipt.v25CardAssets?.templateIndices??{}),...Object.values(receipt.v25UiMasks?.templateIndices??{})];
+ if(!v25ChromeFromReceipt(receipt)||!roots.length||value.profile!=='source-rgba-packed-v1'
+  ||Object.keys(value).sort().join(',')!=='containerTemplateIndex,imageTemplateIndex,profile'
+  ||!ids.every(id=>Number.isSafeInteger(id)&&id>0)||new Set([...roots,...ids]).size!==roots.length+2)
+  throw Error('Invalid packed V25 texture runtime receipt');
+}
 export function validateV25Chrome({v25BattleChrome=false,lightweight2d=false,releaseCandidate=false,v25CardAssets,v25UiMasks}={}) {
   if(v25CardAssets!==undefined&&(!v25BattleChrome||typeof v25CardAssets!=='string'||!v25CardAssets||v25CardAssets.includes('\0')))throw Error('Private V25 card assets require explicit V25 chrome and a file');
   if(v25UiMasks!==undefined&&(!v25BattleChrome||typeof v25UiMasks!=='string'||!v25UiMasks||v25UiMasks.includes('\0')))throw Error('Private V25 UI masks require explicit V25 chrome and a file');

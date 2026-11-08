@@ -1,6 +1,6 @@
 import {resolveArtFeatures,artFeatureArgs,writeArtFeatures,artFeatureModule} from './art-features.mjs';
 import {portraitRuntimeInputs,portraitSources,attachOfficialPortraits,attachLowpolyScenes,writePortraitModule} from './official-portraits.mjs';
-import {attachReadyCardHosts,readyArtTemplates,writeReadyCardAssets,prepareReadyCardAssets,readyArtGroupTemplate,writeReadyArtBinding,readyArtSourceInputs} from './art/ready-card-runtime.mjs';
+import {attachReadyCardHosts,readyArtTemplates,writeReadyCardAssets,prepareReadyCardAssets,readyArtGroupTemplate,readyArtImageTemplate,writeReadyArtBinding,readyArtSourceInputs} from './art/ready-card-runtime.mjs';
 import { backgroundInputs, backgroundSources, backgroundModule, attachOfficialBackground, writeBackgroundModule } from './official-background.mjs';
 import {prepareMonsterArt,attachMonsterArt,monsterActorTemplate,writeMonsterActorBinding} from './monster-art.mjs';
 import { spawnSync } from 'node:child_process';
@@ -153,6 +153,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   const genericTemplates=readyArtTemplates();
   templates.push(...(flags.cards||flags.menuBackground||flags.selectionAvatar||flags.battlePortrait?genericTemplates:genericTemplates.filter(t=>t.name===readyArtGroupTemplate)),
     monsterActorTemplate(monsterArt),enemyPowerTemplate());
+  if((v25Cards||v25Masks)&&!templates.some(t=>t.name===readyArtImageTemplate))templates.push(genericTemplates.find(t=>t.name===readyArtImageTemplate));
   if(readyArt){attachReadyCardHosts(battle);attachReadyCardHosts(layout);attachReadyCardHosts(templates[0]);}
   if (art) { attachNativeCardArt(battle,art,{battleOnly:true}); attachNativeCardArt(layout,art); }
   attachMonsterArt(battle,monsterArt);attachMonsterArt(layout,monsterArt);
