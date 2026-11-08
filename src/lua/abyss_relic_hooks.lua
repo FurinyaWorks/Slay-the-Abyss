@@ -52,8 +52,9 @@ local function equipmentUpgrade(run,id,api)
  end
 end
 
-function M.onEquip(run,id,upgradeApi)
- id=M.localId(id)
+-- Admission is deliberately ordered: earlier families may write before a later
+-- family refuses, and bottled choices retain the candidate table itself.
+local function admitEquipment(run,id)
  require('abyss_uncommon_relics').onEquip(run,id)
  local bottled=(id=='bottled_flame' or id=='bottled_lightning' or id=='bottled_tornado') and require('abyss_uncommon_relics').bottleCandidates(run,id)
  if bottled and #bottled>0 then
@@ -65,9 +66,11 @@ function M.onEquip(run,id,upgradeApi)
  if not ok then return false,why end
  ok,why=require('abyss_shop_relics').onEquip(run,id)
  if ok==false then return false,why end
+ return true
+end
+
+local function initializeEquipCounter(run,id)
  if id=='nloths_mask' then counters(run).nloths_mask=1
- elseif id=='necronomicon'then return require('abyss_act2_event_relics').onEquip(run,id,upgradeApi)
- elseif id=='lizard_tail' then require('abyss_lizard_tail').onObtain(run)
  elseif id=='neows_lament' then counters(run).neows_lament=3
  elseif id=='omamori' then counters(run).omamori=2
  elseif id=='maw_bank' then counters(run).maw_bank=0
@@ -78,26 +81,45 @@ function M.onEquip(run,id,upgradeApi)
   assert(run.unknown and run.unknown.chances,'missing unknown-room state')
   run.unknown.chances.tinyChestCount=0
  elseif id=='circlet' then
-  -- Source constructor starts at one. The owner handles repeat obtains rather
-  -- than calling onEquip twice; preserve its already incremented count.
+  -- Source constructor starts at one; the owner handles repeat obtains.
   local c=counters(run);if c.circlet==nil then c.circlet=1 end
- elseif id=='potion_belt' then
-  local slots=run.potionSlots or (run.data and run.data.rules.player.potionSlots)
-  assert(integer(slots) and slots+2<=2147483647,'invalid potion capacity')
-  run.potionSlots=slots+2
+ else return false end
+ return true
+end
+
+local function equipPotionCapacity(run)
+ local slots=run.potionSlots or (run.data and run.data.rules.player.potionSlots)
+ assert(integer(slots) and slots+2<=2147483647,'invalid potion capacity')
+ run.potionSlots=slots+2
+end
+
+local function previewEggRewards(run)
+ -- Egg onEquip visits combat rewards, not Dream Catcher or shop shelves.
+ if run.phase=='reward' and run.rewards and not run.rewards.cardResolved then M.previewCardReward(run,run.rewards)end
+ local event=run.nodeFlow and run.nodeFlow.event
+ if event and event.id=='sensory_stone' and event.rewardScreenOpen then
+  for _,reward in ipairs(event.rewards or {})do if not reward.claimed then M.previewCardReward(run,reward)end end
+ end
+end
+
+local function equipPermanentBenefit(run,id,upgradeApi)
+ if id=='potion_belt' then equipPotionCapacity(run)
  elseif id=='strawberry' or id=='pear' or id=='mango' or id=='lees_waffle' then
   require('abyss_max_hp_relics').equip(run,id,M.hpChanged)
  elseif id=='old_coin' then M.gainGold(run,300)
  elseif id=='whetstone' or id=='war_paint' then equipmentUpgrade(run,id,upgradeApi)
- elseif id=='toxic_egg' or id=='molten_egg' or id=='frozen_egg' then
-  -- ToxicEgg2/MoltenEgg2.onEquip visit CombatRewardScreen.rewards only. Dream Catcher
-  -- opens CardRewardScreen directly; neither it nor old shop shelves belongs here.
-  if run.phase=='reward' and run.rewards and not run.rewards.cardResolved then M.previewCardReward(run,run.rewards)end
-  local event=run.nodeFlow and run.nodeFlow.event
-  if event and event.id=='sensory_stone' and event.rewardScreenOpen then
-   for _,reward in ipairs(event.rewards or {})do if not reward.claimed then M.previewCardReward(run,reward)end end
-  end
+ elseif id=='toxic_egg' or id=='molten_egg' or id=='frozen_egg' then previewEggRewards(run)
  end
+end
+
+function M.onEquip(run,id,upgradeApi)
+ id=M.localId(id)
+ local ok,why=admitEquipment(run,id)
+ if not ok then return false,why end
+ if initializeEquipCounter(run,id) then return true
+ elseif id=='necronomicon'then return require('abyss_act2_event_relics').onEquip(run,id,upgradeApi)
+ elseif id=='lizard_tail' then require('abyss_lizard_tail').onObtain(run)
+ else equipPermanentBenefit(run,id,upgradeApi)end
  return true
 end
 
