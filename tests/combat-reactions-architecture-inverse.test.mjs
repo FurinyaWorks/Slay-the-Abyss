@@ -1,3 +1,4 @@
+import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,copyFileSync,mkdirSync,mkdtempSync,rmSync,unlinkSync} from 'node:fs';
@@ -72,6 +73,7 @@ test('reaction inverse never hides partial registrations, boundary drift, duplic
 });
 test('warm reaction projection freshly binds linked config and exposes disk mutation or deletion',async t=>{
  const root=mkdtempSync(join(tmpdir(),'reaction-architecture-inverse-'));
+ copyIntegrationSourceClosure(root);
  t.after(()=>rmSync(root,{recursive:true,force:true}));
  mkdirSync(join(root,'tests/helpers'),{recursive:true});mkdirSync(join(root,'config'));
  copyFileSync('tests/helpers/architecture-source-format.mjs',join(root,'tests/helpers/architecture-source-format.mjs'));

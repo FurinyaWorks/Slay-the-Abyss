@@ -1,3 +1,4 @@
+import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,copyFileSync,mkdirSync,mkdtempSync,rmSync,symlinkSync} from 'node:fs';
@@ -21,7 +22,7 @@ function copy(root,path){const target=join(root,path);mkdirSync(dirname(target),
 // Freeze the old read-count probes after explicit native-epoch admission. The
 // retirement tests below still copy actual current modules, not these old bytes.
 function copyHistorical(root,path){copy(root,path);if(path===host||path==='src/lua/abyss_game_ui_view.lua')writeFileSync(join(root,path),read(path));}
-function isolated(t){const root=mkdtempSync(join(tmpdir(),'game-ui-source-proof-'));t.after(()=>rmSync(root,{recursive:true,force:true}));return root;}
+function isolated(t){const root=mkdtempSync(join(tmpdir(),'game-ui-source-proof-'));copyIntegrationSourceClosure(root);t.after(()=>rmSync(root,{recursive:true,force:true}));return root;}
 
 test('one complete extraction restores immutable full Host/config and authenticates each fresh owner',()=>{
  assert.equal(proof.baseCommit,'78e4e746a7f05754f0d838999c466cd88630368c');
