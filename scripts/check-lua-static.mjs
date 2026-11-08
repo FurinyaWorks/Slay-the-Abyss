@@ -110,6 +110,8 @@ const responsibilityRoots = {
       'watcherFinalExpungerHits','watcherFinalRagnarok','watcherFinalDamageHit']
       .map(name=>`effectHandlers.${name}`)].map(name=>`function '${name}'`),
   'src/lua/abyss_inventory.lua': [],
+  'src/lua/abyss_colorless_catalog.lua': [],
+  'src/lua/abyss_card_capability.lua': [],
   'src/lua/abyss_relic_combat_hooks.lua': [],
   'src/lua/abyss_relic_family_combat.lua': [],
   'src/lua/abyss_purge_candidates.lua': [],
@@ -149,6 +151,7 @@ const responsibilityRoots = {
       'awakenedAction','capturedSharpHide','dispose','effectBatch'].map(name=>`function 'actionHandlers.${name}'`),
   ],
   'src/lua/abyss_colorless_cards.lua': [
+    "function 'catalogIndex'","function 'catalogNewIndex'",
     ...['eligibleKill','rewardGreed','growRitual','resolveKill','M.apply',
       ...['apotheosis','shackles','impatience','enlightenment','discovery','madness',
         'generateColorless','generateDraw','transmutation','deepBreath','deepBreathShuffle',
@@ -232,6 +235,8 @@ const responsibilityHelper = file => /^src\/lua\/abyss_(?:effects_.+|combat_effe
 const completeResponsibility = file => responsibilityHelper(file)
   || file==='src/lua/abyss_turn_power_phases.lua'
   || file==='src/lua/abyss_inventory.lua'
+  || file==='src/lua/abyss_colorless_catalog.lua'
+  || file==='src/lua/abyss_card_capability.lua'
   || file==='src/lua/abyss_codex_relic.lua'
   || file==='src/lua/abyss_relic_combat_hooks.lua'
   || file==='src/lua/abyss_relic_family_combat.lua'

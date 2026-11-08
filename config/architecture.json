@@ -103,6 +103,7 @@
     "abyss_potion_fairy": "core",
     "abyss_class_card_pools": "core",
     "abyss_colorless_cards": "core",
+    "abyss_colorless_catalog": "core",
     "abyss_act2_summons": "core",
     "abyss_act2_stasis": "core",
     "abyss_action_queue": "core",
@@ -446,6 +447,12 @@
       "from": ["abyss_event_combat", "abyss_event_combat_routes", "abyss_potion_rewards"],
       "forbiddenTargets": ["abyss_relic_hooks", "abyss_boss_relics", "abyss_uncommon_relics", "abyss_shop_relics", "abyss_run"],
       "reason": "Reward preparation consumes shared query/preview slots; permanent relic commands and transaction ownership remain in Session."
+    },
+    {
+      "id": "colorless-catalog-independence",
+      "from": ["abyss_combat_catalog", "abyss_colorless_catalog"],
+      "forbiddenTargets": ["abyss_colorless_cards", "abyss_actor", "abyss_combat", "abyss_card_actions", "abyss_relic_combat_hooks", "abyss_relic_family_combat"],
+      "reason": "Definition registration and detached encounter catalogs cannot import combat execution or lifecycle owners. Full AST transitive closure is guarded by colorless-catalog.test.mjs."
     },
     {
       "id": "relic-combat-session-independence",

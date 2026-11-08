@@ -25,8 +25,8 @@ const floorPath='docs/evidence/pr521-run-max-planning-floor-20261106.json',floor
 const localFloorPath='docs/evidence/power-shop-planning-20261107.json',localFloorBytes=read(localFloorPath),localFloorReceipt=JSON.parse(localFloorBytes),localFloorKey='tests/power-shop-boundaries.test.mjs';
 // Added after the frozen #521 placement receipts. Never use these files to
 // reconstruct historical shard assignments or invent historical measurements.
-const postPlacementJs=['tests/act1-choice-responsibilities.test.mjs','tests/defect-plan-responsibilities.test.mjs','tests/intent-visibility-cache.test.mjs','tests/inventory-responsibilities.test.mjs','tests/m7-core-final.test.mjs','tests/pr-quality-evidence.test.mjs','tests/repository-costs.test.mjs','tests/runtime-path-baseline.test.mjs','tests/session-reward-capabilities.test.mjs','tests/session-reward-source-inverse.test.mjs','tests/watcher-final-execution.test.mjs','tests/power-shop-boundaries.test.mjs'];
-const postPlacementLua=['tests/lua/intent_visibility_cache.lua','tests/lua/watcher_final_execution_boundaries.lua'];
+const postPlacementJs=['tests/card-capability-responsibilities.test.mjs','tests/colorless-catalog-source.test.mjs','tests/colorless-catalog.test.mjs','tests/intent-visibility-cache.test.mjs','tests/m7-core-final.test.mjs','tests/pr-quality-evidence.test.mjs','tests/repository-costs.test.mjs','tests/runtime-path-baseline.test.mjs','tests/act1-choice-responsibilities.test.mjs','tests/defect-plan-responsibilities.test.mjs','tests/inventory-responsibilities.test.mjs','tests/session-reward-capabilities.test.mjs','tests/session-reward-source-inverse.test.mjs','tests/watcher-final-execution.test.mjs','tests/power-shop-boundaries.test.mjs'];
+const postPlacementLua=['tests/lua/colorless_catalog_contract.lua','tests/lua/intent_visibility_cache.lua','tests/lua/watcher_final_execution_boundaries.lua'];
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
 const placementJs=()=>discoverJs().filter(file=>!postPlacementJs.includes(file));
 const placementLua=()=>currentLua().filter(file=>!postPlacementLua.includes(file));
