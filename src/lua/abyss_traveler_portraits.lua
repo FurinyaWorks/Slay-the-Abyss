@@ -27,16 +27,30 @@ local M = {}
 local owners = setmetatable({}, {__mode='k'})
 local CANCELLED = {}
 local function integer(n) return type(n)=='number' and n>0 and n<math.huge and n%1==0 end
+local function compactProfile(data)
+    return data.renderProfile=='compact-v1' or data.renderProfile=='bounded-2d-v1'
+end
+local function digest(value)
+    return type(value)=='string' and #value==64 and value:match('^[a-f0-9]+$')~=nil
+end
+local function validateBounded(data,width)
+    assert(data.width==width and integer(data.count) and data.count<=60 and #data.rows==data.count
+        and digest(data.sourceSha256) and digest(data.jsonSha256),'unexpected bounded portrait data')
+end
 -- Breakthrough low-poly rows: 20 fields, official primitive/sprite IDs, rotX/rotY squash.
 local function lowpoly(data)
     return type(data)=='table' and data.renderProfile=='lowpoly-v1' and integer(data.width) and integer(data.height)
         and integer(data.count) and data.count<=2304 and #data.rows==data.count and type(data.jsonSha256)=='string'
 end
 local function validate(data, width, count, source, json)
-    local compact=data.renderProfile=='compact-v1' or data.renderProfile=='selection-budget-v1'
-    local expected=compact and data.count or count
-    assert(type(data)=='table' and data.width==width and expected>0 and expected<=(compact and 2304 or count) and #data.rows==expected
-        and data.sourceSha256==source and data.jsonSha256==json,'unexpected frozen portrait data')
+    assert(type(data)=='table','unexpected portrait data')
+    if data.renderProfile=='bounded-2d-v1' then validateBounded(data,width)
+    else
+        local compact=compactProfile(data) or data.renderProfile=='selection-budget-v1'
+        local expected=compact and data.count or count
+        assert(data.width==width and expected>0 and expected<=(compact and 2304 or count) and #data.rows==expected
+            and data.sourceSha256==source and data.jsonSha256==json,'unexpected frozen portrait data')
+    end
     local r=data.root
     assert(#r==13 and r[1]==0 and r[2]==0 and r[3]==width and r[4]==width and r[5]==.5 and r[6]==.5
         and r[7]==.5 and r[8]==.5 and r[9]==.5 and r[10]==.5 and r[11]==1 and r[12]==1 and r[13]==0,'unexpected portrait ROOT')
@@ -100,7 +114,7 @@ local function controller(host, data, display, templates, options)
     local function image(token,c,r)
         local tri=data.renderProfile=='lowpoly-v1'
         assert(tri and #r==20 and integer(r[1]) or #r==18 and r[1]==100001,'unexpected portrait image row')
-        if data.renderProfile=='compact-v1' or data.rectanglesOnly then
+        if compactProfile(data) or data.rectanglesOnly then
             -- Shared template supplies the white image and identity transforms.
             c.imageType=Enum.ImageType.Stretch;check(token)
             call(token,c,'SetSizeDelta',r[4],r[5]);call(token,c,'SetAnchoredPosition',r[2],r[3])
@@ -123,7 +137,7 @@ local function controller(host, data, display, templates, options)
         if working or phase=='destroyed' or phase=='failed' or phase=='release_failed'then return false end
         if host.alive==false then self:destroy();return false end
         if phase=='building' or phase=='revealing' or phase=='ready'then
-            if data.cache or data.renderProfile=='compact-v1' then host:SetActive(true);host:SetVisible(phase~='building')end
+            if data.cache or compactProfile(data) then host:SetActive(true);host:SetVisible(phase~='building')end
             return true
         end
         if not integer(Asset.imagePrefabId) or not integer(Asset.containerPrefabId)
@@ -185,7 +199,7 @@ local function controller(host, data, display, templates, options)
         -- Only the battle portrait opts into scene-boundary failure recovery.
         -- Other cached adapters retain their explicit-release retry policy.
         if retryFailedOnPause and (phase=='failed' or phase=='release_failed')then return self:release()end
-        if not data.cache and data.renderProfile~='compact-v1' then return self:release()end
+        if not data.cache and not compactProfile(data) then return self:release()end
         if phase=='destroyed' or host.alive==false then return false end
         host:SetVisible(false);host:SetActive(false);return true
     end
@@ -292,6 +306,19 @@ function M.new(stage,report,flags,cardTemplates)
     if #rows==0 then return nil end
     local timeBudget=selecting and Asset.avatar96.runtimeV2 or fighting and Asset.battle133.runtimeV2 or carding or landing
     local self,busy,destroyed,painting,epoch={},false,false,false,0
+    local fallbackVisibility=setmetatable({},{__mode='k'})
+    local function paintFallback(control,visible,phase)
+        local setter=control.SetVisible
+        local painted=fallbackVisibility[control]
+        if painted and painted.visible==visible and painted.phase==phase and painted.setter==setter
+            and control.visible==visible then return end
+        -- Invalidate before a native call: rejected or overlapping writes are not promises.
+        fallbackVisibility[control]=nil
+        local ok,result=pcall(setter,control,visible)
+        if ok and result~=false and control.alive~=false and control.visible==visible then
+            fallbackVisibility[control]={visible=visible,phase=phase,setter=setter}
+        end
+    end
     local function paint()
         if destroyed or painting then return end
         painting=true
@@ -301,10 +328,12 @@ function M.new(stage,report,flags,cardTemplates)
             for _,c in ipairs((row.name~='selection' or row.active)and row.fallback or {})do
                 if destroyed then painting=false;return end
                 if c and c.alive~=false then
-                    pcall(c.SetVisible,c,not ready and fallbackVisible)
+                    paintFallback(c,not ready and fallbackVisible,s.phase)
                     if destroyed then painting=false;return end
                     -- A native setter may synchronously release. Its old hide must not win.
-                    if ready and (not row.active or row.adapter:status().phase~='ready')then pcall(c.SetVisible,c,fallbackVisible)end
+                    if ready and (not row.active or row.adapter:status().phase~='ready')then
+                        paintFallback(c,fallbackVisible,row.adapter:status().phase)
+                    end
                 end
             end
             if row.name=='selection' and ready then

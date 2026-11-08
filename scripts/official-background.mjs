@@ -2,6 +2,7 @@ import {readFileSync, writeFileSync, existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {toLua} from './build-lua-data.mjs';
+import {isLightweightProfile,boundedAssets} from './lightweight-2d-profile.mjs';
 
 export const backgroundModule = 'abyss_menu_background_asset';
 export const backgroundTemplate = 'AbyssOfficialBackgroundImage';
@@ -30,6 +31,12 @@ export function writeBackgroundModule(directory, {root=process.cwd(), templateIn
   if(!Number.isSafeInteger(templateIndex)||templateIndex<0)throw Error('Invalid official background templateIndex');
   if(!Number.isSafeInteger(containerTemplateIndex)||containerTemplateIndex<0)throw Error('Invalid official background containerTemplateIndex');
   if(!enabled){const source='-- Disabled optional drawing.\nreturn {enabled=false,imagePrefabId=0}\n';writeFileSync(join(directory,`${backgroundModule}.lua`),source);return source;}
+  if(isLightweightProfile(directory)){
+    const rows=boundedAssets().lowpolyLand.rows.filter(r=>r[0]===100001).map(r=>r.slice(0,18).map((v,i)=>i>=1&&i<=4?v*480/1280:v));
+    const data={width:480,height:270,count:rows.length,rows,renderProfile:'compact-v1',cache:true,runtimeV2:true,rectanglesOnly:true};
+    const source=`-- Bounded original background for the optional gallery.\nreturn ${toLua({imagePrefabId:templateIndex,containerPrefabId:containerTemplateIndex,renderProfile:'compact-v1',data})}\n`;
+    writeFileSync(join(directory,`${backgroundModule}.lua`),source);return source;
+  }
   const [adapter,data]=backgroundSources(root);
   const compactPath=join(directory,'art-performance.json');
   if(existsSync(compactPath)){
@@ -63,6 +70,10 @@ export function bindBackgroundTemplate(directory, result, options = {}) {
 }
 export function backgroundRuntimeInventory(directory) {
   if(!existsSync(join(directory,`${backgroundModule}.lua`))||readFileSync(join(directory,`${backgroundModule}.lua`),'utf8').includes('enabled=false'))return undefined;
+  if(isLightweightProfile(directory)){
+    const images=boundedAssets().lowpolyLand.rows.filter(r=>r[0]===100001).length;
+    return {asset:'original-bounded-gallery',renderProfile:'bounded-2d-v1',images,instances:1,peakDynamicControls:images+2,maxDirectDynamicChildren:60,measurement:'offline-runtime-control-contract-not-official-capacity'};
+  }
   if(existsSync(join(directory,'art-performance.json'))){
     const a=JSON.parse(readFileSync(join(directory,'art-performance.json'),'utf8')).assets.background;
     const controls=a.count+Math.ceil(a.count/60)+Math.ceil(a.count/3600);

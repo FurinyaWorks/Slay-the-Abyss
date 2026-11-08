@@ -1,3 +1,10 @@
+import {ciEpoch} from './helpers/integration-ci-epochs.mjs';
+import {potionCallbackFloorKey,verifiedPotionCallbackFloor,prePotionCallbackPlanningSource} from './helpers/potion-callback-planning.mjs';
+import {endTurnFloorKey,verifiedEndTurnFloor} from './helpers/end-turn-planning.mjs';
+import {prePresencePlanningSource,presencePlanningBefore} from './helpers/actor-presence-planning-source-inverse.mjs';
+import {rewardQueryPlanningProof,preRewardQueryPlanningSource} from './helpers/reward-query-planning-source-inverse.mjs';
+import {assertRewardQueryPlanningReceipt,assertRewardQueryPlanningProjection} from './helpers/reward-query-planning-contract.mjs';
+import {runCatalogFloorKey,verifiedRunCatalogFloor} from './helpers/run-catalog-planning.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -20,7 +27,10 @@ historicalTest('scheduler inverse preserves the frozen runner for LF/CRLF and re
   for (const text of [source, source.replaceAll('\n', '\r\n')]) assert.equal(sha(originalLuaRunner(text)), original);
   const epoch=readFileSync('scripts/test-lua.mjs','utf8').replaceAll('\r\n','\n');
   assert.equal(sha(originalLuaRunner(epoch)),original,'the complete original runner traverses the exact historical layer');
-  for(const drift of [epoch+'\n-- unrelated drift\n',epoch.replace('60000 : 30000','60000 : 60000')]){
+  const defaultDrift=epoch.includes('luaTimeoutMs.heavy : luaTimeoutMs.default')
+    ? epoch.replace('luaTimeoutMs.heavy : luaTimeoutMs.default','luaTimeoutMs.heavy : luaTimeoutMs.heavy')
+    : epoch.replace('60000 : 30000','60000 : 60000');
+  for(const drift of [epoch+'\n-- unrelated drift\n',defaultDrift]){
     assert.notEqual(drift,epoch);
     assert.throws(()=>originalLuaRunner(drift),/exact original-deadline historical fixture dispatch/);
   }
@@ -173,12 +183,35 @@ test('current timing records preserve all measured corrections without duplicate
    assert.equal(sourceRecord.step.status,'completed');assert.equal(sourceRecord.step.conclusion,'success');assert.equal(sourceRecord.conclusion,'cancelled');
    assert.equal(entry.sourceLog,observation.logPath);assert.equal(entry.sourceLogSha256,observation.logSha256);assert.equal(entry.sourceJobId,observation.jobId);assert.equal(entry.sourceRunId,sourceRecord.runId);assert.equal(entry.sourceHeadSha,sourceRecord.headSha);
    assert.equal(receipt.censoredLinuxSource.measurementImported,false);assert.equal(timings.js.linux[file],254137,'retain the actual Linux observation independently of the cross-platform planning floor');
+  }else if(file==='tests/power-shop-boundaries.test.mjs'){
+   // This candidate's complete local observation is additional to the eight
+   // frozen local floors and the independently sourced hosted planning floor.
+   assert.equal(entry.environment,'local Windows');assert.equal(entry.durationMs,68586);
+   assert.equal(entry.sourceReceipt,'docs/evidence/power-shop-planning-20261107.json');
+   const bytes=readFileSync(entry.sourceReceipt,'utf8').replaceAll('\r\n','\n');
+   assert.equal(createHash('sha256').update(bytes).digest('hex'),'52570c893c538ac0c5ab592e3b6d89afe883495ea6624fa4f35abaad3053f8f7');
+   assert.equal(entry.sourceReceiptSha256,createHash('sha256').update(bytes).digest('hex'));
+   const receipt=JSON.parse(bytes),run=receipt.completedRun;
+   assert.equal(receipt.file,file);assert.equal(Math.ceil(run.durationMs),entry.durationMs);
+   assert.equal(run.tests,8);assert.equal(run.passed,8);assert.equal(run.failed,0);assert.equal(run.skipped,0);
+   assert.equal(entry.sourceLogSha256,createHash('sha256').update(run.rawTap).digest('hex'));
+   assert.match(entry.kind,/not hosted or Linux measurement/);
+  }else if(file===runCatalogFloorKey){
+   assert.deepEqual(entry,verifiedRunCatalogFloor());
+  }else if(file===potionCallbackFloorKey){
+   assert.deepEqual(entry,verifiedPotionCallbackFloor());
+  }else if(file===endTurnFloorKey){
+   assert.deepEqual(entry,verifiedEndTurnFloor());
+  }else if(file==='tests/actor-presence.test.mjs'){
+   assert.deepEqual(entry,ciEpoch('actor').timings.jsPlanning.localLowerBounds['tests/actor-presence.test.mjs']);
+  }else if(file==='tests/reward-query-boundary.test.mjs'){
+   assert.deepEqual(entry,JSON.parse(rewardQueryPlanningProof.afterSource).jsPlanning.localLowerBounds['tests/reward-query-boundary.test.mjs']);
   }else{
    assert.match(entry.environment,/local/);assert.match(entry.kind,/not .*hosted/);localFloorCount++;
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,9);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,15);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 

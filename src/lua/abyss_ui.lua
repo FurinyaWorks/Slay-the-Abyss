@@ -138,10 +138,15 @@ function OnStart()
             end
         end
         local isTest, testPlay = pcall(function()return game.IsTestPlay()end)
+        local uiProfile=require('abyss_ui_profile')
+        assert(type(uiProfile)=='table' and uiProfile.schemaVersion==1 and type(uiProfile.nativePageLifecycle)=='boolean','invalid UI profile')
+        for key in pairs(uiProfile)do assert(key=='schemaVersion' or key=='nativePageLifecycle','unknown UI profile field '..tostring(key))end
+        local nativePageLifecycle=uiProfile.nativePageLifecycle
         local build = require('abyss_narrative').build
         local alpha = type(build)=='table' and build.workKey=='alpha-test'
         view = GameUI.new(stage, Data, Presentation, Enum.CursorEventType.CursorClick,
             { background = background, portraits = portraits, cardArt = cardArt, music = music, campaign = true, campaignProfile = "competition-two-act",
+              nativePageLifecycle = nativePageLifecycle,
               -- Native OnUpdate timing has not been verified across mobile
               -- foreground/background transitions. Do not publish it as accurate
               -- elapsed time; retain the internal Host counter unchanged.

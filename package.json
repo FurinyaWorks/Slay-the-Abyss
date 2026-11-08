@@ -38,7 +38,8 @@
     "test:fast": "node scripts/test-affected.mjs --fast",
     "test:related": "node scripts/test-affected.mjs",
     "check:platform-load": "npm run build:data && npm run build:ui && node scripts/platform-load.mjs daily",
-    "verify:platform-load": "node scripts/platform-load.mjs release"
+    "verify:platform-load": "node scripts/platform-load.mjs release",
+    "build:game": "node scripts/build-game.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",
