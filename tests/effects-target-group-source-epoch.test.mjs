@@ -4,7 +4,7 @@ import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {standaloneEffectsTargetGroupEpoch as sourceEpoch,preEffectsTargetGroupEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {standaloneEffectsTargetGroupEpoch as sourceEpoch,preEffectsTargetGroupEpoch} from './helpers/combined-epoch/pre-defect-source-epoch.mjs';
 import {effectsTargetGroupEpoch} from './helpers/effects-target-group-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_effects.lua',proof=sourceEpoch.proof,prior=preEffectsTargetGroupEpoch.proof;
@@ -54,7 +54,7 @@ test('isolated authenticated helper closure retains the exact Effects target gro
  const directory=mkdtempSync(join(tmpdir(),'silent-epoch-closure-'));
  try{
   copyIntegrationSourceClosure(directory);
-  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).standaloneEffectsTargetGroupEpoch;
+  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/pre-defect-source-epoch.mjs')).href)).standaloneEffectsTargetGroupEpoch;
   assert.deepEqual(isolated.proof,proof);
   assert.equal(isolated.preCombinedSource(path,raw(path),{target:'effectsTargetGroupPrior',readSource:raw}),prior.current[path].source);
   assert.throws(()=>isolated.preCombinedSource(path,raw(path),{target:'effectsTargetGroupPrior',readSource:p=>p===path?raw(p)+'\n':raw(p)}),/linked owner identity/);
@@ -70,7 +70,7 @@ test('unknown source targets are rejected rather than gaining an identity fallba
 });
 
 test('configuration layout admission preserves exact tokens and freshly authenticates all 46 current raw owners',async()=>{
- const {standaloneEffectsTargetGroupEpoch:sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {standaloneEffectsTargetGroupEpoch:sourceEpoch}=await import('./helpers/combined-epoch/pre-defect-source-epoch.mjs');
  const proof=sourceEpoch.proof,path='config/architecture.json',source=proof.current[path].source;
  const raw=p=>proof.current[p]?.source??null,expected=proof.targets.actor.files[path].source;
  assert.equal(proof.owners.length,46);
@@ -98,7 +98,7 @@ test('outer foreign-source fallback preserves invalid raw-reader semantics',()=>
 
 // Combined published stack is checked separately from the three frozen siblings.
 test('published Flow Silent and Effects stack retains all predecessor bindings and authenticates 48 raw owners',async()=>{
- const {preRelicEquipEpoch:combined,standaloneWatcherFlowEpoch:flow,standaloneSilentTacticsEpoch:silent,standaloneEffectsTargetGroupEpoch:effects}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {preRelicEquipEpoch:combined,standaloneWatcherFlowEpoch:flow,standaloneSilentTacticsEpoch:silent,standaloneEffectsTargetGroupEpoch:effects}=await import('./helpers/combined-epoch/pre-defect-source-epoch.mjs');
  const proof=combined.proof,raw=p=>proof.current[p]?.source??null;
  const changed=['src/lua/abyss_watcher_flow_cards.lua','src/lua/abyss_silent_tactics_cards.lua','src/lua/abyss_effects.lua'];
  assert.equal(proof.owners.length,48);assert.equal(new Set(proof.owners).size,48);
@@ -125,7 +125,7 @@ test('published Flow Silent and Effects stack retains all predecessor bindings a
 });
 
 test('combined outer stack keeps foreign bytes non-authorizing and rejects invalid readers and unknown targets',async()=>{
- const {preRelicEquipEpoch:combined}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {preRelicEquipEpoch:combined}=await import('./helpers/combined-epoch/pre-defect-source-epoch.mjs');
  const proof=combined.proof,raw=p=>proof.current[p]?.source??null;
  for(const path of ['src/lua/abyss_watcher_flow_cards.lua','src/lua/abyss_silent_tactics_cards.lua','src/lua/abyss_effects.lua']){
   for(const target of Object.keys(proof.targets))for(const source of ['foreign source',null,{},17])for(const readSource of [null,false,0,{}])assert.equal(combined.preCombinedSource(path,source,{target,readSource}),source);
@@ -148,11 +148,11 @@ test('combined outer stack keeps foreign bytes non-authorizing and rejects inval
 });
 
 test('isolated complete combined helper closure uses all three published owners with no live fallback',async()=>{
- const {preRelicEquipEpoch:combined}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {preRelicEquipEpoch:combined}=await import('./helpers/combined-epoch/pre-defect-source-epoch.mjs');
  const directory=mkdtempSync(join(tmpdir(),'published-combined-closure-'));
  try{
   copyIntegrationSourceClosure(directory);
-  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).preRelicEquipEpoch;
+  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/pre-defect-source-epoch.mjs')).href)).preRelicEquipEpoch;
   assert.deepEqual(isolated.proof,combined.proof);
   const raw=p=>isolated.proof.current[p]?.source??null;
   for(const file of ['src/lua/abyss_watcher_flow_cards.lua','src/lua/abyss_silent_tactics_cards.lua','src/lua/abyss_effects.lua']){

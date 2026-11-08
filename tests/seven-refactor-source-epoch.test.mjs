@@ -28,7 +28,7 @@ test('foreign and predecessor inputs remain opaque without linked reads',()=>{
  }
 });
 test('every advertised composed target preserves foreign bytes without linked reads',async()=>{
- const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {sourceEpoch}=await import('./helpers/combined-epoch/pre-defect-source-epoch.mjs');
  for(const target of Object.keys(sourceEpoch.proof.targets)){
   const source=read('config/architecture.json')+'\n-- foreign';let calls=0;
   assert.equal(sourceEpoch.preCombinedSource('config/architecture.json',source,{target,readSource(){calls++;throw Error('unexpected');}}),source);
@@ -48,12 +48,12 @@ test('facades preserve original invalid-reader semantics while public reader fac
    else assert.equal(project('config/architecture.json',source,{readSource}),source,file);
   }
  }
- const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {sourceEpoch}=await import('./helpers/combined-epoch/pre-defect-source-epoch.mjs');
  assert.throws(()=>sourceEpoch.combinedReader(null,'actor'),/reader/);
 });
 
 test('configuration layout admission preserves exact tokens and freshly authenticates all 45 raw owners',async()=>{
- const {preEffectsTargetGroupEpoch:sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {preEffectsTargetGroupEpoch:sourceEpoch}=await import('./helpers/combined-epoch/pre-defect-source-epoch.mjs');
  const proof=sourceEpoch.proof,path='config/architecture.json',source=proof.current[path].source;
  const raw=p=>proof.current[p]?.source??null,expected=proof.targets.actor.files[path].source;
  assert.equal(proof.owners.length,45);

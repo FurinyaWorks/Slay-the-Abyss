@@ -1,0 +1,15 @@
+{
+  "pairedExecutions": 1898,
+  "scenarioConfigurations": 130,
+  "matching": true,
+  "mutantsKilled": 5,
+  "files": {
+    "independent-current-raw.log.gz": "3d569ef3393c49bf68a4d4a9958d122d13e4c916d20f57d86650ce2dd0348508",
+    "independent-current.log.gz": "056501379cbfbc20237508ca4bc67486ee77cb18095d622fa37aa89d18a30834",
+    "independent-mutations.json": "8fad61dc6fc2c528e8a995e232a20bea09b1baef422770dcba1fa57f888dbbc3",
+    "independent-old-raw.log.gz": "f637845cf8fdd8e2a59fae47ad2ae1d72f98924f84aee5ae523d89be598ceec2",
+    "independent-old.log.gz": "056501379cbfbc20237508ca4bc67486ee77cb18095d622fa37aa89d18a30834",
+    "independent-probe.lua": "d356bf531b6a8132bc2467d186837ac36407199d2284af01959901707256de4d",
+    "independent-probe.py": "7e6aa2536ebb7b92cfef88cd98ca065d3591a5ea58c527cced49fde66eceaa9d"
+  }
+}

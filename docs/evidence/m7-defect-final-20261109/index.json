@@ -1,0 +1,444 @@
+{
+  "schemaVersion": 1,
+  "status": "BLOCKED",
+  "baseSha": "6f017ff875baa2de80a121e507634a2d859fecfa",
+  "developObserved": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "dependsOnPr": 573,
+  "productionCheckpoint": "f4a3671d320d41d0e9479faffd897cf2a58d8bbc",
+  "productionCheckpointTree": "b302608639c59bf00e6aaca648c8afe3d12c5084",
+  "sourceSha256": "77abe4a82a37118273585830e1bd4c49e07b0367de77f06dc388b7ca862f5544",
+  "behavior": {
+    "testsPassed": 19,
+    "completeGraphCheckpointsEachVM": 1351,
+    "edgeCheckpointsEachVM": 1019,
+    "originalLuaFixturesEachVM": 7,
+    "assertionKilledSemanticMutants": 10,
+    "finalSerialDurationMs": 89851.803683,
+    "inputHashesBeforeAfter": {
+      "trackedIncludingTest": 352,
+      "generated": 17,
+      "total": 369
+    },
+    "serializationEquivalentBytes": 14316567
+  },
+  "complexity": {
+    "testsPassed": 3,
+    "priorResponsibilityTestsPassed": 19,
+    "beforeExecute": 39,
+    "afterExecute": 13,
+    "newHelpers": 8,
+    "helperCC": [
+      6,
+      3,
+      2,
+      5,
+      5,
+      4,
+      4,
+      5
+    ],
+    "hardLimit": 15
+  },
+  "source": {
+    "currentTestsPassed": 11,
+    "historicalCombinedTestsPassed": 81,
+    "effectsHistoricalTestsPassed": 11,
+    "definitionIdentityTestsPassed": 3,
+    "transitiveTestsPassed": 15,
+    "uniqueTestsPassed": 121,
+    "currentFreshRawOwners": 50,
+    "bindings": 339,
+    "preservedHistoricalOwners": [
+      45,
+      46,
+      48,
+      49
+    ],
+    "finalCurrentDurationMs": 12527.775739,
+    "conservativePriorDurationMs": 13783.175184
+  },
+  "ci": {
+    "status": "BLOCKED",
+    "tests": 75,
+    "passed": 74,
+    "failed": 1,
+    "failure": "Unchanged complete POSIX planning performance target exceeded.",
+    "inventory": {
+      "js": 797,
+      "lua": 1410
+    },
+    "newFloorsMs": {
+      "behavior": 89852,
+      "source": 13784
+    },
+    "previousFloorsPreserved": 28,
+    "windowsWithReserveMs": 1791774,
+    "posixWithReserveMs": 1202485,
+    "reserveMs": 60000,
+    "windowsHeadroomMs": 8226,
+    "posixOverBudgetMs": 2485,
+    "budgetsWorkersConcurrencyWorkflowsChanged": false
+  },
+  "engineering": {
+    "coverage": {
+      "modules": 338,
+      "functions": 5260,
+      "measurements": 5598,
+      "expectedMeasurements": 5598
+    },
+    "ccAbove30": 34,
+    "ccAbove15": 210,
+    "maxCC": 61,
+    "sccMembers": [
+      68,
+      11,
+      2
+    ],
+    "sccInternalReferences": [
+      513,
+      44,
+      2
+    ],
+    "allReferences": 1929,
+    "dependencyPairs": 1558,
+    "governedResponsibilityMeasurements": 2076,
+    "defect": [
+      {
+        "name": "generate",
+        "line": 215,
+        "complexity": 6
+      },
+      {
+        "name": "applyFinalPower",
+        "line": 223,
+        "complexity": 3
+      },
+      {
+        "name": "recurOrb",
+        "line": 228,
+        "complexity": 2
+      },
+      {
+        "name": "scrapeDrawn",
+        "line": 234,
+        "complexity": 5
+      },
+      {
+        "name": "recoverZeroCost",
+        "line": 239,
+        "complexity": 5
+      },
+      {
+        "name": "recoverDiscard",
+        "line": 245,
+        "complexity": 4
+      },
+      {
+        "name": "fissionOrbs",
+        "line": 250,
+        "complexity": 4
+      },
+      {
+        "name": "rebootPiles",
+        "line": 255,
+        "complexity": 5
+      },
+      {
+        "name": "M.execute",
+        "line": 264,
+        "complexity": 13
+      }
+    ]
+  },
+  "review": {
+    "reviewId": "m7-defect-final-execute-independent-review-20261109",
+    "conclusion": "blocked",
+    "productionBehaviorSource": "pass",
+    "independentPairedExecutions": 1898,
+    "independentSemanticMutantsKilled": 5,
+    "unresolved": [
+      "POSIX-COMPLETE-INVENTORY-BUDGET"
+    ]
+  },
+  "limitations": [
+    "Draft-only delivery, not merge-ready. Current complete POSIX planning target is failing by2485ms; retained unchanged.",
+    "No hosted Full, Windows runtime, official import, live-device or deployment evidence. Earlier #564 Full does not cover this source.",
+    "Prerequisite chain remains Draft and unmerged; administrator normal admission remains pending.",
+    "Earlier101460.89047ms and final89851.803683ms use different harness versions and potentially different concurrent work, not a controlled performance benchmark.",
+    "An initial /usr/bin/time wrapper exited127 before tests; its raw log was overwritten, so complete retention is not claimed. Actual test development interruption and failures are separately retained.",
+    "Backlog doctor retains five existing duplicate-ID groups.",
+    "Engineering report revision labels reflect the base commit while source hashes bind the actual measured working-tree bytes."
+  ],
+  "artifacts": [
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/backlog-delivery.log.gz",
+      "bytes": 361,
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/backlog.log.gz",
+      "bytes": 361,
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/baseline-engineering.json.gz",
+      "bytes": 380355,
+      "sha256": "75725a00bb39ecd048b26ab94f24827ecc2ba6df16eb54f609e39fa4e215e6ba"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-before-serialization-inputs.log.gz",
+      "bytes": 562,
+      "sha256": "e89155f959d3c4392c5d945a70e116d81b08c108c561a6ef9d1f119e5c34d632"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-before-serialization-optimization.log.gz",
+      "bytes": 1344,
+      "sha256": "101ce47d25408b322d725f54ce4463b96357db1f0d67dbdbd30aadcda5b40299"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-before-serialization-receipt.json",
+      "bytes": 2493,
+      "sha256": "8cc23c8a2d200727e718db9eda0507acfbd7bb56416e9c4ba9416d5676aa6e69"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-before-serialization-vm.mjs.gz",
+      "bytes": 1448,
+      "sha256": "c62ca09f298c0d9299bb551bfc0378c42b24a43e4cff2b597a9b4933f352e555"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-coverage.json",
+      "bytes": 3271,
+      "sha256": "2208145603239fcfcf0328a74414fd279d0214fa052f1bb808bfbbbefeb5d661"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-dynamic.log.gz",
+      "bytes": 287,
+      "sha256": "67f2d8aef903f2237c6680497b6d22d2f31d6120546f7f457cb5dc687108926c"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-edges-initial.log.gz",
+      "bytes": 775,
+      "sha256": "00aaff10be9ddaed1765b88c4d370b1b7923054a165cd5125d26d4a5e501ffe1"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-final-receipt.json",
+      "bytes": 41776,
+      "sha256": "7c7d1c1ae17307642c63bf2874acdd7d3ef2110ce92a7426c235ec9744c78608"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-final.log.gz",
+      "bytes": 35839,
+      "sha256": "c5fa9b35090c5077a20b82e5c944696eb08f25b331870623faa7b4e08b906606"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-initial-interrupted.log.gz",
+      "bytes": 209,
+      "sha256": "1e89b8159ac19b833821b389e1fc7cac4345d6bdd6aa99a4173d43abcf3c73d9"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-serialization-equivalence.log.gz",
+      "bytes": 2782,
+      "sha256": "496282621dc6e52e6b9147f4b5befba5bb3dc56428bd437a73721db8a2fdac38"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/behavior-serialization-graph.jsonl.gz",
+      "bytes": 375025,
+      "sha256": "743d63f0aa745085977bb4960fd1011bb8f069c9e9c9db68dc320cef91db0fda"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/build.log.gz",
+      "bytes": 215,
+      "sha256": "cb0850d7d2927e55ae2554736360775bca88bb02a9b0c38bb0829f01b1da2472"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/ci-final-budget-blocked.log.gz",
+      "bytes": 3697,
+      "sha256": "7602a32a009ac5e2c59cf6f8b86c02fa673440295c060a802703afc2808c1baa"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/ci-final-identities.sha256",
+      "bytes": 777,
+      "sha256": "a855b655fdbb7e0effe8019358eca11722439c24f64f89b493d84ba070a2506b"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/ci-final-result.json",
+      "bytes": 1059,
+      "sha256": "68f61612648bddb0c41c523cbc12f887c8c6edf206dc3905872530a203dd7fb4"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/ci-initial-failure.log.gz",
+      "bytes": 2897,
+      "sha256": "849b0a4421877ea4b66bde50a1ecf22b5aac7241e18d1bb69d36a504cc39b1ee"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/ci-planning-receipt.json",
+      "bytes": 342362,
+      "sha256": "c5976aa9c9dc4da6b9cb9b389ee48f912bd7e45035f0c322f379b96ac2c0c997"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/ci-source-cost-intermediate-failure.log.gz",
+      "bytes": 50001,
+      "sha256": "a6cc45738cf3b2b7685a97b76a2d82d387f6b07a843c376ee32b2fc54c28aafd"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/ci-source-final.log.gz",
+      "bytes": 2474,
+      "sha256": "2fb2409a1c2763021e3cf1f659d6b22259b6379a9b5eb3587dbac2ab9be69503"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/complexity-initial.log.gz",
+      "bytes": 437,
+      "sha256": "8d53ec59e1fb30aa23bb1852b961187defc7d4bc673a8b9ae1a1ca691403220d"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/complexity.log.gz",
+      "bytes": 705,
+      "sha256": "c0504aff08b5fe3be79ba8c50229fa8b9ff4b18334e25008b941a9dc5631c386"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/current-engineering.json.gz",
+      "bytes": 380823,
+      "sha256": "f8612e82aba918f7518653c7778286e2b468d99c213cbf8b811267bce807ce19"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/definition-identities.log.gz",
+      "bytes": 280,
+      "sha256": "84f67844626926c7b636ba7e620731456a6f55c67130c1eb199ff8f20886d261"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/doctor.log.gz",
+      "bytes": 1843,
+      "sha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/engineering.log.gz",
+      "bytes": 279,
+      "sha256": "07714856a5a6322b243a9d6e4bd388de00b1f94ffe822e5291604bf56022ffa7"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/guidance-delivery.log.gz",
+      "bytes": 287,
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/guidance.log.gz",
+      "bytes": 287,
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/independent-current-raw.log.gz",
+      "bytes": 39635,
+      "sha256": "3d569ef3393c49bf68a4d4a9958d122d13e4c916d20f57d86650ce2dd0348508"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/independent-current.log.gz",
+      "bytes": 39526,
+      "sha256": "056501379cbfbc20237508ca4bc67486ee77cb18095d622fa37aa89d18a30834"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/independent-mutations.json",
+      "bytes": 1578,
+      "sha256": "8fad61dc6fc2c528e8a995e232a20bea09b1baef422770dcba1fa57f888dbbc3"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/independent-old-raw.log.gz",
+      "bytes": 39634,
+      "sha256": "f637845cf8fdd8e2a59fae47ad2ae1d72f98924f84aee5ae523d89be598ceec2"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/independent-old.log.gz",
+      "bytes": 39526,
+      "sha256": "056501379cbfbc20237508ca4bc67486ee77cb18095d622fa37aa89d18a30834"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/independent-probe-result.json",
+      "bytes": 826,
+      "sha256": "bb8cef123d9064e3929a876b78fd1952cf9763bcdb82a79db986752788685a5b"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/independent-probe.lua",
+      "bytes": 4976,
+      "sha256": "d356bf531b6a8132bc2467d186837ac36407199d2284af01959901707256de4d"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/independent-probe.py",
+      "bytes": 3993,
+      "sha256": "7e6aa2536ebb7b92cfef88cd98ca065d3591a5ea58c527cced49fde66eceaa9d"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/independent-review.json",
+      "bytes": 13902,
+      "sha256": "92b74e37064d0b2419d28b19635d932d5aa01bafebd7d2950e351a69f2ff51b4"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/metrics.json",
+      "bytes": 2211,
+      "sha256": "125dd89cb500b5f07cbffe3b7bae65762fa2de3e078f57d75b4a803582a203fd"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/prior-responsibilities.log.gz",
+      "bytes": 913,
+      "sha256": "c12c5cd6749eff0bb1ee47c26253219c129e58a41ffdf1401b030bcc3ac705a8"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-consumers.log.gz",
+      "bytes": 2907,
+      "sha256": "08da215bd0494c76b06d44d904f7e6e452b3fcf0b588dc24f21ab3d62612c13c"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-final-consumers.json",
+      "bytes": 17003,
+      "sha256": "129e8f540a2f4c75469bf960573a82b2c50e955ccaf6646eaf3baba471d29755"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-final-identities.json",
+      "bytes": 2039,
+      "sha256": "b0b408a902377a9ff328bfd4c2e6fda5bee558d1fc386272def63446e65dd816"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-final-receipt.json",
+      "bytes": 2882,
+      "sha256": "8c661e6a9805d8e84d844de29fc411eebc3985db28c8815dbd3a97d99e6d0b88"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-final.log.gz",
+      "bytes": 655,
+      "sha256": "d620ff8e6e0ab0f9f4fce1a26d9fdf7268b76f14f43deed45e0be37c69d5daba"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-history-identity.json",
+      "bytes": 2233,
+      "sha256": "6f5fd637016bab851ad744df63473edeaf97f8d3411039cb76de340285a04a22"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-initial-failure.log.gz",
+      "bytes": 5364,
+      "sha256": "8206567f212d451a8d55f514a4c301650f3216575db09e7f25891f86f58fc376"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-isolated-consumers.log.gz",
+      "bytes": 2172,
+      "sha256": "76b1a14f2f226f8cf00dc78c8505c9943c1cbffe60698bb61a807dae6ad4e340"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-isolated-effects.log.gz",
+      "bytes": 685,
+      "sha256": "3bf76bfedd52601f9498677224994f8a802d776a2d467d92782c3a73d16dc921"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-receipt.json",
+      "bytes": 2564,
+      "sha256": "61789dd81b6a4f03b8fb5bfe4fa76004a0a69336fbaf5a4ebd4b0e452091c55b"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source-transitive.log.gz",
+      "bytes": 973,
+      "sha256": "6431f5719d108f26251fa7f0396f63774aab7782c7b1441edae137984c8ad5d4"
+    },
+    {
+      "path": "docs/evidence/m7-defect-final-20261109/source.log.gz",
+      "bytes": 658,
+      "sha256": "088068b9873e844f8e5e3ce45b6a1d2c7ff304ceb1b18ce212cd1f0c653292cf"
+    }
+  ]
+}

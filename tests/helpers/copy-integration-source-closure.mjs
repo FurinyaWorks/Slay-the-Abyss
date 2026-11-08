@@ -7,6 +7,10 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 const bytes=readFileSync(new URL('./integration-source-closure.json',import.meta.url));
 assert.equal(hash(bytes),'800fcc9efd889f482259d0e1e9f1501f0e9597ac05552622ede00dd3dcdb4a94','complete integration helper closure identity');
 const files={...JSON.parse(bytes),...{
+  "tests/helpers/combined-epoch/pre-defect-source-epoch.mjs": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+  "tests/helpers/defect-final-source-epoch.json.gz": "a656584db182a608b75f66a46a8d31ae4d4bbaba6c64d376d1d47a011c7833ce",
+  "tests/helpers/defect-final-source-epoch.mjs": "8088008202072d1ce22492383861fe5ccb2b57d2bd9d1b06abb6653f835c2137",
+
   "tests/helpers/silent-final-source-epoch.json.gz": "8d70652c025b8075e2a03936f12c2509dbca427abd555e472f197b1ac4850b49",
   "tests/helpers/silent-final-source-epoch.mjs": "62621989d65db4db12a6b7251fc8216bbd5851b196c87d28f0cffd222d8a28b4",
   "tests/helpers/relic-equip-source-epoch.json.gz": "c7f30e9773f4f08d3cf33e1ece1a1be425fa04389d0144bb285ff70643d06863",
@@ -21,7 +25,7 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/actor-presence-source-inverse.mjs": "9f90f6908fe07fffa80dc254723f64e5e64162e4197ef0651c51d21483babb28",
   "tests/helpers/colorless-catalog-source-inverse.mjs": "173ba6f9a97a5f87ccd4e338975013637902f97c5f8c5e1cb60524455aa41316",
   "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb",
-  "tests/helpers/combined-epoch/source-epoch.mjs": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+  "tests/helpers/combined-epoch/source-epoch.mjs": "81422aac13c89d3c3fa8d31f1afdff609af1f46f071a4c9d37288591cf20760f",
   "tests/helpers/core-lifecycle-source-inverse.mjs": "e7a0f431a72eb1d30332802ffc1a0f7d9d2bd82ae6255e58bad0b3fbc3d8e16f",
   "tests/helpers/defect-plan-source-inverse.mjs": "daf313bc97c097b02ab790f0384a383cfd42690cddf0ef982fa231ddc4404c24",
   "tests/helpers/end-turn-responsibilities-source-inverse.mjs": "b38d08a2214f2878e7390dcb574e50404f405dbf42e1dd76b51f3372404ac146",

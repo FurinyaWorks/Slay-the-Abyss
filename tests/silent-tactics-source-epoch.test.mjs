@@ -4,7 +4,7 @@ import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {standaloneSilentTacticsEpoch as sourceEpoch,preSilentTacticsEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {standaloneSilentTacticsEpoch as sourceEpoch,preSilentTacticsEpoch} from './helpers/combined-epoch/pre-defect-source-epoch.mjs';
 import {silentTacticsEpoch} from './helpers/silent-tactics-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_silent_tactics_cards.lua',proof=sourceEpoch.proof,prior=preSilentTacticsEpoch.proof;
@@ -49,7 +49,7 @@ test('isolated authenticated helper closure retains the exact Silent tactics epo
  const directory=mkdtempSync(join(tmpdir(),'silent-epoch-closure-'));
  try{
   copyIntegrationSourceClosure(directory);
-  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).standaloneSilentTacticsEpoch;
+  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/pre-defect-source-epoch.mjs')).href)).standaloneSilentTacticsEpoch;
   assert.deepEqual(isolated.proof,proof);
   assert.equal(isolated.preCombinedSource(path,raw(path),{target:'silentTacticsPrior',readSource:raw}),prior.current[path].source);
   assert.throws(()=>isolated.preCombinedSource(path,raw(path),{target:'silentTacticsPrior',readSource:p=>p===path?raw(p)+'\n':raw(p)}),/linked owner identity/);

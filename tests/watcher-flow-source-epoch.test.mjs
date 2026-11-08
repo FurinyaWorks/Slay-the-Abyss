@@ -4,7 +4,7 @@ import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {standaloneWatcherFlowEpoch as sourceEpoch,preWatcherFlowEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {standaloneWatcherFlowEpoch as sourceEpoch,preWatcherFlowEpoch} from './helpers/combined-epoch/pre-defect-source-epoch.mjs';
 import {watcherFlowEpoch} from './helpers/watcher-flow-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_watcher_flow_cards.lua',proof=sourceEpoch.proof,prior=preWatcherFlowEpoch.proof;
@@ -49,7 +49,7 @@ test('isolated authenticated helper closure retains the exact Flow epoch and rej
  const directory=mkdtempSync(join(tmpdir(),'flow-epoch-closure-'));
  try{
   copyIntegrationSourceClosure(directory);
-  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).standaloneWatcherFlowEpoch;
+  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/pre-defect-source-epoch.mjs')).href)).standaloneWatcherFlowEpoch;
   assert.deepEqual(isolated.proof,proof);
   assert.equal(isolated.preCombinedSource(path,raw(path),{target:'watcherFlowPrior',readSource:raw}),prior.current[path].source);
   assert.throws(()=>isolated.preCombinedSource(path,raw(path),{target:'watcherFlowPrior',readSource:p=>p===path?raw(p)+'\n':raw(p)}),/linked owner identity/);

@@ -1,0 +1,31 @@
+{
+  "testFile": "tests/defect-final-execute.test.mjs",
+  "tests": 19,
+  "pass": 19,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "durationMs": 101460.89047,
+  "beforeAfterInputHashes": {
+    "src/lua/abyss_defect_final_cards.lua": "77abe4a82a37118273585830e1bd4c49e07b0367de77f06dc388b7ca862f5544",
+    "tests/defect-final-execute.test.mjs": "353e601af4ec137fb2b0a05e92cbf575b6583d22a09995b73508e22f8d835d5b",
+    "tests/helpers/defect-final-execute-edges.lua": "c706681bc3072c139318fbb1b6143ae1649adb9bb0e5551452b0b7af77ca6f5a",
+    "tests/helpers/defect-final-execute-vm.mjs": "1746a2e31d8678d04b497d4574bacdb4f884e0df6a3ef006988746b16f594c12",
+    "tests/fixtures/defect-final-execute-before.lua": "df100051b93665ecc88dea658f9c3bfdf24148907fd740c50ca0166852f9be71"
+  },
+  "retainedAndSharedHashesCapturedDuringRun": {
+    "tests/lua/defect_final_actions.lua": "16e2700c079a2e8ab2110a464247c5c9c78e81405d7e2c500d864f79b42f4df4",
+    "tests/lua/defect_final_generation.lua": "3e7c661ef27a57811ed50af6fbb9bc1172319068dd2ae93e1e07e300f3dd41aa",
+    "tests/lua/defect_final_defenses.lua": "d1c9bed5d88b677be281ba2796e28d61ee067b7edd5d10d2d3b17b9745decd6d",
+    "tests/lua/defect_final_powers.lua": "f6c10479dcad75efed2d26576c9569e89d682914130da7b5d4659b389d42acab",
+    "tests/lua/defect_final_matrix.lua": "b1958565f65d74bc53109dec0544adbd2f4ea3a35c209782b4bd89db78fa035c",
+    "tests/lua/defect_final_end_cleanup.lua": "70d64e343e9f4eb99d9a7f76e7785b0093c89c3e5c10f951855a9fd7e5b52e3c",
+    "tests/lua/defect_genetic_copies.lua": "444bcfe56b0e431ec351b97ac3ef0939c04b4cea5efa9e9ad2226f5da44cc891",
+    "tests/helpers/lua-graph-observer.mjs": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f",
+    "scripts/build-lua-data.mjs": "2a04be0449e7fd43404662e4998c7d0541761708f50043f966e66ac7c5ed67d1"
+  },
+  "scope": "Complete successful earlier harness version; not a hosted measurement. Additional retained/shared input hashes were collected during the run, not before launch. Preserve this cost and version identity even if an independently verified lossless harness transformation changes the final measured cost. This observation does not lower any existing planning floor.",
+  "sourceLog": "docs/evidence/m7-defect-final-20261109/behavior-before-serialization-optimization.log.gz",
+  "sourceLogSha256": "101ce47d25408b322d725f54ce4463b96357db1f0d67dbdbd30aadcda5b40299",
+  "sourceLogUncompressedSha256": "dcb7a8facc18e5dea28951276d9ec0c5fd753d7c7188cc446aa027780f87dd42"
+}

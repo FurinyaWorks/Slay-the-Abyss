@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T21:27:00Z'
+updated_date: '2026-11-08T22:28:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -27,6 +27,7 @@ documentation:
   - docs/backlog-details/M7-PUBLISHED-COMBINATION-20261109.md
   - docs/backlog-details/M7-RELIC-EQUIP-20261109.md
   - docs/backlog-details/M7-SILENT-FINAL-20261109.md
+  - docs/backlog-details/M7-DEFECT-FINAL-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -91,6 +92,8 @@ ordinal: 162000
 第19轮：继续既有Owner授权任务，鲜查develop 7821a7f4及开放PR无生产重叠后，在已公开组合#570 cbabad34基础上拆分RelicHooks.onEquip的委派准入、计数初始化、永久升级与奖励预览职责。保持动态公开槽、原调用/RNG/部分写入/错误顺序；完整旧新图与负控、全部新helper CC15、共享来源和CI合同集成后独审并及时远端保全，不重复Full或操作用户电脑，不改owner/status/AC。
 
 第21轮接续主控已授权M7职责治理：鲜查develop7821a7f4与开放PR占用后，在#572 d2ed1bbf依赖树仅拆分Silent final M.apply的触发、造牌、回合能力与伤害执行职责。保留公开动态槽、完整状态/别名/RNG/错误及部分写入；冻结旧源，新增职责CC15、真实语义负控和独立深审后及时远端保全与Draft交付。不重复Full、不改原分支/owner/status/AC、不操作用户设备。
+
+第22轮按Owner持续架构授权接续同一任务，不另认领：task:pick因既有In Progress为HOLD，已核实开放PR未涉及DefectFinal.execute。以最新develop 7821及公开#573 6f017完整祖先链建隔离树，按动作执行职责拆解execute CC39，保持旧分支读序、双created、返回值、RNG、队列及部分失败。冻结完整旧源，双独立VM及真实语义负控；新增helper含嵌套受原CC15门禁。组合来源新epoch保留49-owner历史合同，按实测评估CI成本，独立深审后及时远端Draft接续；不重跑Full、不准入/合并、不改owner/status/AC或用户设备。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -163,4 +166,6 @@ Silent final最终行为16/16，46301ms；两侧各848完整图、九个具名�
 成本最终收口更保守：保留较早成功46616ms与final46301ms的不同测试版边界，behavior floor46617；来源完整9/9为10937ms floor。最终794JS/1410Lua预测Windows1785094、POSIX1194369（含60秒预留），余14906/5631ms。CI runtime/完整校准46/46，首轮44/45历史wrapper装配失败原日志保留；上条规划数字由本条替代，预算/旧floor/owner/status/AC均不变。
 
 第21轮独立深审PASS/unresolved[]，额外CI消费者16/16后共62个不同CI用例通过；传递source14/14及timings路由2/2补齐。生产、合同及成本已冻结，完整日志与原失败均归档，待精确远端最终身份/Draft交付。无Hosted Full、正常准入或合后证据，任务与AC保持。
+
+第22轮已实做DefectFinal.execute职责拆分并远端保全f4a3671d，接续#573。execute CC39→13、8helper最大6；全338模块5598/5598，>30为35→34，>15为211→210，SCC68/11/2不变。行为19/19、双VM各1351完整图、10具名语义变异通过；来源121不同用例、当前50owner鲜读及历史档案保留。真实CC3/3及原职责19/19通过。最终串行行为89.852秒；完整797JS/1410Lua含60秒预留预测POSIX1202485，超过原目标2485ms，成本准入仍BLOCKED。保留原预算/并发/worker与真实失败，不重复Full、ready、入队或合并；当前仅Draft交付准备，不改owner/status/AC。
 <!-- SECTION:NOTES:END -->
