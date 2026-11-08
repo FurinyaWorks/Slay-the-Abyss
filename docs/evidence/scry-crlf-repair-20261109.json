@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-08T14:20:36.529170+00:00",
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "pullRequest": 564,
+  "baseHead": "50584b5d6ebc6812bedb3a644e9eec13d2cb90cb",
+  "baseTree": "b8b556a8c0c9bd5ec9e0c307d98357ed0a185bd6",
+  "changedExecutableFiles": {
+    "tests/scry-choice-responsibilities.test.mjs": {
+      "sha256": "f5f90e3117836f99a0d5ca52aee330e1eda81d0064a1246d03951c0aaa679f0c",
+      "gitBlob": "be3e2f5b43d9880c2d63a7dfe5e0095f589a954d"
+    }
+  },
+  "failure": {
+    "runId": 42455945611,
+    "jobId": 128655021399,
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42455945611/job/128655021399",
+    "test": "Scry.choose semantic negative control: current/reverse-selection",
+    "reportedJobTests": 224,
+    "reportedJobPass": 223,
+    "reportedJobFail": 1,
+    "rootCause": "Literal LF-only mutation target did not match the CRLF current source; assert.notEqual rejected the unchanged mutant before VM execution."
+  },
+  "change": "Match exactly one selected-card loop with its original LF or CRLF delimiter; retain the original VM and semantic diagnostic. Add before/current × LF/CRLF byte-precise rejection regressions plus missing/duplicate target guards.",
+  "verification": {
+    "platform": "Linux",
+    "node": "v24.22.1",
+    "baselineLf": {
+      "pass": 8,
+      "fail": 0,
+      "durationMs": 3101.723265
+    },
+    "baselineRealCrlf": {
+      "command": "node --test --test-concurrency=1 --test-name-pattern='current/reverse-selection' tests/scry-choice-responsibilities.test.mjs",
+      "pass": 0,
+      "fail": 1,
+      "failureMatchesHosted": true
+    },
+    "repairedLf": {
+      "pass": 13,
+      "fail": 0,
+      "skipped": 0,
+      "durationMs": 3376.364317
+    },
+    "repairedRealCrlf": {
+      "pass": 13,
+      "fail": 0,
+      "skipped": 0,
+      "durationMs": 3526.427908,
+      "checkout": "git -c core.autocrlf=true worktree add --detach <isolated-path> 50584b5d6ebc6812bedb3a644e9eec13d2cb90cb",
+      "rawProductionCrlf": 144,
+      "rawProductionBareLf": 0
+    },
+    "ciCalibration": {
+      "pass": 18,
+      "fail": 0,
+      "skipped": 0,
+      "durationMs": 3583.493646
+    },
+    "verifyBacklog": "passed",
+    "checkGuidance": "passed",
+    "nodeSyntaxCheck": "passed",
+    "gitDiffCheck": "passed",
+    "independentReview": "pass"
+  },
+  "artifacts": {
+    "scry-crlf-repair-20261109-logs.json.gz": {
+      "sha256": "1c928ad9f224dfc7df9c29b9572f7a8f59aa35ab36adcd3824dc12be983c01a8",
+      "uncompressedSha256": "10757fe635a0299a0e8fbfd08b7c1ed2786feb97a46dc56a036dd68aa2cc0cd7",
+      "perLogSha256": {
+        "scry-before-lf.log": "1148681866975830f60e6ee52148b87c1a9faa2b31806aa915a229170cc0a7a2",
+        "scry-before-crlf.log": "01a79f256702d07337c3917065a7d0f9bd5b758e0506b68fb972812fa62040c3",
+        "scry-after-lf.log": "b4772e1a93f2e4635642f897b0aef7ecdd96b2fb1d02334367289e400ba70338",
+        "scry-after-crlf.log": "84ed4cfa3e9051964d220f774d2901fc796b575fd9d5f33f3499e8956cdf75cc",
+        "scry-backlog.log": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+        "scry-guidance.log": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+        "scry-ci-calibration.log": "2cc81e367903b201f318180e82321568725200098fa2d93c6b4e1993cbbb576c"
+      }
+    },
+    "scry-crlf-repair-20261109-review.json": {
+      "sha256": "7e1819937295ff899a42383b8218571f5b1ea288ff2c5c4006e794cb13c00775"
+    }
+  },
+  "unchanged": [
+    "Production Lua and frozen baseline",
+    "Graph observers, VM harness and original assertions",
+    "Quality workflows, budgets, thresholds and planning floors",
+    "TASK-88 owner, status and all acceptance criteria",
+    "PR #567 branch and contents"
+  ],
+  "limits": [
+    "Focused Linux LF/real-CRLF checks are not Windows runtime or whole-PR Full approval.",
+    "Hosted Full on the final published HEAD and normal admission remain pending.",
+    "No Full rerun or dispatch, merge, release, official import, ready or device validation was performed.",
+    "Independent review is scoped to this test repair, not the entire historical PR."
+  ]
+}

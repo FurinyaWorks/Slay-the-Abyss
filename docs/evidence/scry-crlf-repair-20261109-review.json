@@ -1,0 +1,38 @@
+{
+  "reviewId": "native-independent-review:/root/repair_scry_blocker/review_scry_crlf",
+  "reviewer": "/root/repair_scry_blocker/review_scry_crlf",
+  "reviewedAt": "2026-11-08T14:19:45.294520+00:00",
+  "scope": "Uncommitted minimal CRLF repair only; not whole PR or merge approval",
+  "baselineHeadSha": "50584b5d6ebc6812bedb3a644e9eec13d2cb90cb",
+  "reviewedFile": "tests/scry-choice-responsibilities.test.mjs",
+  "reviewedFileSha256": "f5f90e3117836f99a0d5ca52aee330e1eda81d0064a1246d03951c0aaa679f0c",
+  "conclusion": "pass",
+  "unresolved": [],
+  "findings": [
+    "Unique mutation target guard rejects absent or duplicate targets before replacement.",
+    "Regex accepts LF and CRLF and retains matched EOL without normalizing source bytes.",
+    "Four before/current and LF/CRLF cases assert exact expected mutated bytes and a real Lua selection-order assertion failure.",
+    "Existing differential and semantic negative-control assertions are unchanged.",
+    "Git diff against baseline contains only this test file; production, frozen fixture and helpers are unchanged.",
+    "Repository Backlog overview and task-execution guidance read via supplied cached CLI."
+  ],
+  "validation": [
+    {
+      "command": "node --test tests/scry-choice-responsibilities.test.mjs",
+      "result": "13 passed; 0 failed; 0 skipped"
+    },
+    {
+      "command": "git diff --check",
+      "result": "pass"
+    },
+    {
+      "command": "Read raw autocrlf checkout production bytes",
+      "result": "144 CRLF / 144 LF"
+    }
+  ],
+  "limits": [
+    "Focused Linux validation only, not hosted Windows or Full.",
+    "Read baseline CRLF failure log; did not execute repaired autocrlf checkout.",
+    "No publication, device interaction, or repository edits performed by reviewer."
+  ]
+}
