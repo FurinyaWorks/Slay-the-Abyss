@@ -744,13 +744,13 @@
     "kitBytes": "VERIFIED_28_RAW_128_LUA",
     "sourceRecovery": "VERIFIED_91_FROZEN_FILES",
     "offline": "按各trace指定测试和本地证据；不替代候选验收",
-    "officialImport": "FAIL_06e049f5_LEVEL_STORAGE_70.51413_OF_20_MB",
-    "newReady": "NOT_REACHED_06e049f5_CAPACITY_CHECK_FAILED",
+    "officialImport": "2be5219e build1ab94c8a entered playtest; newer dirty source fixes NOT_OFFICIALLY_TESTED",
+    "newReady": "2be5219e two fresh ready records; first run failed at t253 SetAnchoredPosition got inf; second run reached battle victory",
     "screenComparisons": "UNVERIFIED",
     "interactionsVideo": "UNVERIFIED",
     "sameDeviceFrameTimeMemoryCapacity": "UNVERIFIED",
     "twentySceneResourceRelease": "UNVERIFIED",
-    "twoDDecision": "CONFIRMED_STATIC_CAPACITY_FAILURE; targeted packed-RGBA repair pending exact-candidate official retest; no 3D switch yet",
+    "twoDDecision": "UNDECIDED_ROUTE; current delivery NO_GO for visual gaps/runtime failure/reported stalls; targeted fixes require same-candidate official retest",
     "deliveryGoNoGo": "NO_GO_FOR_FINAL_ACCEPTANCE",
     "reviewEvidence": [
       ".artifacts/ci565-01754/integration-review.md：主控owned接线独立复审；profile/cache/audit比较合同31/31，非我方compiler/helper独审",
@@ -894,6 +894,29 @@
         "clientVersion": "NOT_PROVIDED",
         "ready": "NOT_REACHED",
         "performance": "NOT_MEASURED"
+      },
+      {
+        "kind": "owner-2be5219e-script-playtest",
+        "sourceCommit": "2be5219ec796436fe5dbb574a6d17de00dc4cb5a",
+        "buildId": "1ab94c8a-1505-4c1b-b143-fa41c32228dd",
+        "candidateSha256": "9f00ced0de4913273259624a7e7aac44309c9b718f3a41ce546161f19643311a",
+        "evidence": {
+          "path": ".artifacts/v25-user-playtest-20261108/collection-20261108T092705738Z/debug-01-2026-11-08_16-52-26.gia",
+          "sha256": "4f578b8999d4fb95bbafbcfa27449f923cd4140d450b18fea99b321b7751be09"
+        },
+        "association": "Fresh ABYSS_BUILD marker and normalized 356/356 external Lua source match; decoded print records, not a full input/video trace",
+        "officialCapacity": "NO_NEW_NUMERIC_READING",
+        "ready": "TWO_NEW_READY_SESSIONS",
+        "result": "FIRST_SESSION_RUNTIME_ERROR_AT_T253; SECOND_SESSION_REAL_PLAYS_ENEMY_TURNS_AND_VICTORY",
+        "ownerFeedback": [
+          "map colours differ",
+          "constellation loads slowly",
+          "incomplete UI",
+          "severe card interaction stalls"
+        ],
+        "instrumentedFrameTimes": "NOT_MEASURED",
+        "mobile": "NOT_MEASURED",
+        "releaseDecision": "NO_GO_CURRENT_CANDIDATE"
       }
     ],
     "visualEncodingProbe": {
@@ -924,5 +947,120 @@
       },
       "boundary": "离线编码检查优化，不构成游戏帧时、内存、官方容量或最终Go；helper/mcp源hash同时纳入候选多次输入快照。"
     }
-  ]
+  ],
+  "ownerPlaytestRepairs": {
+    "scope": "Reviewed source fixes only; full current GIL and official device acceptance pending",
+    "items": [
+      {
+        "id": "enemy-name-finite-decay",
+        "source": {
+          "file": "src/lua/abyss_battle_enemy_view.lua",
+          "sha256": "0cf94c52da41f2d2380c266e26735352cd92e8d78ec567d662b88d11716288ff",
+          "record": "fade/nameStep/exp10Out"
+        },
+        "verification": "Exact old packaged code dt225 overflows Y; analytic decay stays finite. Independent9 and related51 green. Actual Simulator hover/exit/dt225 and enemy turn continued without error.",
+        "boundary": "Official log does not include the failing dt/hover stack; unique real-event causality is not proven; no device FPS claim."
+      },
+      {
+        "id": "native-basic-shape-capability",
+        "source": {
+          "file": "src/lua/abyss_traveler_portraits.lua",
+          "sha256": "97a0704c4226ce5f0cce9a92c91509fbe457d35818f4d60ff48e4157cbb3c265",
+          "record": "image; activeTargets V25 selection warm gate"
+        },
+        "relatedSource": {
+          "file": "src/lua/abyss_card_display.lua",
+          "sha256": "2bf4bb124ffcf2b9856cdd8a1a976255ef1deffe42301da8467d9a77b8fdde59",
+          "record": "basic shape image mode capability"
+        },
+        "verification": "Actual SDK0.5.2 rejects imageType for basic shapes100001..100006; those writes omitted, gallery strict write/readback retained. V25 hidden selection no longer starts art.",
+        "boundary": "Official2be5 portraits did reach ready, so the SDK imageType failure is not asserted as the official crash cause."
+      },
+      {
+        "id": "card-surface-component-ownership",
+        "source": {
+          "file": "src/lua/abyss_v25_card_surface.lua",
+          "sha256": "7b1c98cc9617969a02d50a47da396bf321ccf8138aa163ebedee5428d8d04e1a",
+          "record": "retainComponents/replace/complete/publish"
+        },
+        "verification": "Real Runtime binding reproduced retained mana destroyed through old-current alias; unchanged components now transferred exclusively. Strict mana-on-top reorder covers failure/throw and reentry. Independent exact hash review-7b1c98cc.json passed.",
+        "boundary": "Synchronous destruction of changed shells remains expensive; this does not prove fluid interaction."
+      },
+      {
+        "id": "pending-only-texture-build-quota",
+        "source": {
+          "file": "src/lua/abyss_v25_texture_runtime.lua",
+          "sha256": "c51efa3684bc06c7de11c61f982eef7db483f2d3aa1251b3904320421a8fe7c1",
+          "record": "update"
+        },
+        "verification": "Ready leases retain validation but no longer consume pending construction slots. Original64-step/8ms admission checks preserved; independent6 tests and combined57 source tests green.",
+        "boundary": "No hard whole-frame8ms bound; native calls, ready validation and current cleanup are not preemptible."
+      },
+      {
+        "id": "v25-map-live-theme",
+        "source": {
+          "file": "sts-map-restore.css",
+          "sha256": "d0aa50eb665e04ae63e8741362acfd6ab5db371e5203777f9f4342696880fdc7",
+          "record": "27-30 path/traveled/reachable;31/34-39 node state inks"
+        },
+        "projectEntry": [
+          {
+            "file": "data/presentation/ui_theme.json",
+            "sha256": "6784ddb098e4c1ecc2b02b7ceeb2484a29b801cd8e3280c6a82b9ff7a109756e",
+            "record": "v25Battle.color.mapCanvas/node and layout.map.presentation"
+          },
+          {
+            "file": "src/lua/abyss_map_ui.lua",
+            "sha256": "c0b82572e7dc676f0af68b0680215480c278a9e2be3f8218d5577a37eba22ca4",
+            "record": "roomInk optional available token, legacy fallback"
+          }
+        ],
+        "verification": "Generated theme→real MapUI writers and real Map.choose validated all state colours/widths/alpha. Actual Simulator natural map shows the new palette.",
+        "boundary": "Source mask glyphs, dashes, paper grain and edge materials remain visibly different; whole-screen parity NOT_ACCEPTED."
+      },
+      {
+        "id": "v25-transparent-text-line-bounds",
+        "projectEntry": [
+          {
+            "file": "scripts/v25-character-layout.mjs",
+            "sha256": "4adb8c190b63f0fbc239494425245492c3f374d5faa8ddf14add866ec1966076",
+            "record": "8 evidenced one-line text heights"
+          },
+          {
+            "file": "scripts/v25-map-layout.mjs",
+            "sha256": "bff21afebc6a1a1e160321939e401e6f31e70c2b83902fe37bc6b59b705361c8",
+            "record": "legend title transparent height"
+          },
+          {
+            "file": "scripts/v25-layout.mjs",
+            "sha256": "0d1a3acc74c87e6e8adb41b9613458e90c0a559533dfbc54ed61f2f270c5f24b",
+            "record": "oneLineTextBox/rebuildV25CardFaces/applyV25BattleLayout"
+          }
+        ],
+        "verification": "Actual SDK height-only probes turn8 selection+8 battle+1 legend nonempty zero-line fields into visible lines. Centre/width/font/align retained. Current Host10 legal hands/2 dynamic enemies/real play and enemy turn covered independently.",
+        "boundary": "Full official candidate font layout not yet verified; SDK tofu glyphs and coarse portrait art remain unresolved."
+      }
+    ],
+    "actualSimulator": {
+      "adapter": "Actual candidate356 Lua and17 templates plus explicitly hashed7 source overrides/current generated layout; no rule-state injection",
+      "sdkCorrection": "Private GPL-3.0-only SDK0.5.2 userdata identity cache correction; installed package unchanged. This is a tool correction, not a game-source fix.",
+      "evidence": ".artifacts/v25-simulator-debug/runtime-session-03",
+      "runSeed": 23705,
+      "observed": "Menu→selection→Neow+8maxHP→map→jaw_worm44HP; real pointer drag dealt6 and spent1 energy; enemy hit11, next player turn; artificialdt225 stayed finite",
+      "performance": "Manual-clock software simulator is NOT PC/mobile display performance; current source still has unaccepted image quality/loading gaps"
+    },
+    "localChecks": {
+      "related": "128 total:127 pass/1 Windows symlink EPERM, zero skips (before final text/theme integration)",
+      "finalTextTheme": "11/11",
+      "surfaceRuntime": "57/57",
+      "nativeContract": "6/6",
+      "mutations": "Original M1-M4 all killed_by_assertion",
+      "ci": "Existing draft PR565 Full is red; sampled historical linked-source fixture failures retained, no gate bypass"
+    },
+    "rejectedProbes": [
+      "118/148/236 mask display sampling has measurable alpha differences; not adopted as pixel-equivalent",
+      "Multilevel contour approximation increased controls and changed support; not adopted",
+      "Native static-template encoding: omitted device/default fields have no source-backed semantic equivalence; not adopted"
+    ]
+  }
 }

@@ -57,7 +57,8 @@ function legendPaper(theme){
 
 function styleLegend(legend,theme){
  legend.position=[486,22.5];legend.size=[266,333];
- const title=must(legend,'title');title.position=[0,129];title.size=[230,40];
+ // Transparent bounds only: SDK font26 needs 41.7px for one line; preserve the source centre/font.
+ const title=must(legend,'title');title.position=[0,129];title.size=[230,52];
  Object.assign(title.text,{content:'图例',fontSize:26,minFontSize:26,colour:'#1D2C32'});
  const rows=[['event','未知'],['shop','商人'],['treasure','宝箱'],['camp','休息'],['combat','敌人'],['elite','精英']];
  rows.forEach(([kind,label],i)=>{

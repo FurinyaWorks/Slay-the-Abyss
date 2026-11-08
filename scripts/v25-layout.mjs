@@ -28,6 +28,11 @@ function child(node,name){
  if(!control)throw Error('V25 layout missing '+name);
  return control;
 }
+function oneLineTextBox(control){
+ // Native text needs transparent vertical room beyond its glyph line. Preserve
+ // the reviewed centre, width and typography; only remove evidenced clipping.
+ control.size[1]=Math.max(control.size[1],control.text.fontSize*2);
+}
 export function rebuildV25CardFaces(node,theme){
  const parts=children(node);
  if(parts.some(n=>n.name==='skin')&&parts.some(n=>n.name==='cost')&&parts.some(n=>n.name==='name')){
@@ -43,6 +48,7 @@ export function rebuildV25CardFaces(node,theme){
    const index=next?node.children.findIndex(item=>item.name===next.name):node.children.length;
    node.children.splice(index,0,extra);
   }
+  if(theme.presentationProfile==='v25-reference')oneLineTextBox(child(node,'cost'));
   node.size=[...theme.layout.card.size];
   return;
  }
@@ -50,6 +56,7 @@ export function rebuildV25CardFaces(node,theme){
 }
 export function applyV25BattleLayout(layout,theme){
  const root=rootOf(layout);if(!root)throw Error('V25 layout requires a battle root');
+ if(theme.presentationProfile==='v25-reference')for(const name of ['title','player','piles'])oneLineTextBox(child(root,name));
  const l=theme.layout,hero=child(root,'hero'),energy=child(root,'energyIcon');
  hero.position=[...l.player.position];
   // The V25 resting pose names the player in the HUD; a second line at the feet

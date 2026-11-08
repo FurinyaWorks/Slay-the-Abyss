@@ -56,7 +56,10 @@ function M.position(_,_,actor)
  return g.x,L.battleUnit.nameWidth,g.portrait,g.hitWidth,g.y
 end
 local function fade(value,dt,speed)
- if value~=0 then value=value+(0-value)*dt*speed;if math.abs(value)<.01 then value=0 end end
+ -- Exact decay preserves the [0,1] state domain for any legal frame delta.
+ -- Euler overshoot made alpha negative after a long frame; exp10Out then
+ -- exponentiated that state into an infinite native name Y coordinate.
+ if value~=0 then value=value*math.exp(-dt*speed);if value<.01 then value=0 end end
  return value
 end
 function M.exp10Out(a)return 1-(2^(-10*a)-2^-10)/(1-2^-10)end

@@ -126,6 +126,32 @@ test('approved header, live properties and relic hierarchy occupy the measured s
  assert.deepEqual(child(d,'officialSelectionFigure').scale,[1380/133,1380/133]);
 });
 
+test('native single-line character fields fit actual glyph lines without moving CSS centres or changing fonts and writers',()=>{
+ const l=build(),p=panel(l),d=child(p,'details');
+ const dynamic=['name','relic','relicText','deckTitle'];
+ for(const name of dynamic)child(d,name).text.content='真实动态字段 '+name;
+ applyV25CharacterLayout(l,theme());
+ const cases=[
+  [child(p,'title'),[123.625,25.65625,150,29.6875],27,54],
+  [child(d,'name'),[75,126,503,66.25],53,106],
+  [child(d,'relic'),[165,430.53125,350,39.140625],29,58],
+  [child(d,'relicText'),[165,472.671875,420,27.1875],17,34],
+  [child(d,'deckTitle'),[75,632,280,24],14,28],
+  [child(d,'relicTag'),[165,405.53125,350,22],18,36],
+  [child(p,'v25HeadingEmblem'),[43,15,43,51],51,102],
+  [child(child(child(p,'v25Roster'),'selected'),'spark'),null,21,42],
+ ];
+ for(const [node,rectangle,font,height]of cases){
+  assert.deepEqual(node.position,rectangle?frame(...rectangle).position:[62,12],node.name+' centre');
+  assert.deepEqual(node.size,[rectangle?.[2]??24,height],node.name+' transparent native bounds');
+  assert.equal(node.text.fontSize,font);assert.equal(node.text.minFontSize,font);
+  assert.equal(node.text.autoSize,true);assert.equal(node.text.valign,'middle');
+ }
+ for(const name of dynamic)assert.equal(child(d,name).text.content,'真实动态字段 '+name,'dynamic writer content changed');
+ assert.deepEqual(child(d,'stats').size,[145,34]);assert.deepEqual(child(d,'v25Story').size,[503,71.28125]);
+ assert.deepEqual(child(p,'hint').size,[503,28]);
+});
+
 test('red back and cyan start use the existing hit and label with four distinct native flag states',()=>{
  const layout=build(),p=panel(layout),identities={};
  for(const name of ['cancel','confirm'])identities[name]=child(child(p,name),'hit');

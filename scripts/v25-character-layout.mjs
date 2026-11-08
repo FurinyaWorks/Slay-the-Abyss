@@ -6,7 +6,7 @@ export const v25CharacterReference=Object.freeze({
  cssSha256:'9a6d137a3297559f638e5323db424506ae394c7942cdf334551936ac0d74d17d',
  background:{file:'menu-reference-background.png',sha256:'fdc94718cbc2ab52a8107bc8bd35971cec51ba18c5271e9e927c822d9a7dca39'},
  constellation:{file:'constellation-exact.png',sha256:'5780bc541d322b369b61f656908da59bdeee7f3ad83988edca8be23776720ecd'},
- unverified:['background-binding','constellation-binding','full-resolution-portrait','native-font-and-gradient-parity','native-flag-curve-parity'],
+ unverified:['background-binding','constellation-binding','full-resolution-portrait','native-font-and-gradient-parity','native-flag-curve-parity','native-text-height-device-parity'],
 });
 const children=node=>node?.controls??node?.children??[];
 function child(node,name){
@@ -30,6 +30,13 @@ function placeText(control,rectangle,font,colour){
  Object.assign(control,frame(...rectangle));
  control.text={...control.text,fontSize:font,minFontSize:font,align:'left',valign:'middle',colour};
 }
+// Source CSS rectangles still determine each centre/width/font below. Actual
+// BeyondSimulator0.5.2 glyph layout needs line-height plus a font inset: the
+// tight CSS single-line boxes reported visibleLineCount=0. Only the eight
+// reproduced fields get larger transparent native bounds (2*font); no font,
+// text, input, writer, position or autoSize change. Official device parity is
+// still unverified; this is not a change to the approved visual rectangles.
+function nativeSingleLine(control){control.size[1]=Math.max(control.size[1],control.text.fontSize*2);return control;}
 function rounded(name,w,h,radius,colour,theme){
  return group(name,[w,h],[image('vertical',[0,0],[w-2*radius,h],theme.image.rect,colour),
   image('horizontal',[0,0],[w,h-2*radius],theme.image.rect,colour),
@@ -86,7 +93,7 @@ function roster(theme){
   rounded('rim',124,124,9,'#FFE0A2',theme),rounded('gold',118,118,6,'#B68B4D',theme),
   rounded('body',112,112,4,'#303341',theme),
   {...group('v25Constellation',[110,110]),visible:false},
-  {...text('spark',[0,0,24,26],'✦',21,'#FFF2CE'),position:[62,12]},
+  {...nativeSingleLine(text('spark',[0,0,24,26],'✦',21,'#FFF2CE')),position:[62,12]},
  ],frame(399,515,124,124).position);
  const locked=Array.from({length:3},(_,i)=>{
   const lock=group('lock',[30,35],[
@@ -106,7 +113,10 @@ function detailsLayout(details,theme){
   relic:[[165,430.53125,350,39.140625],29,'#F4D9A7'],relicText:[[165,472.671875,420,27.1875],17,'#E8D1B2'],
   deckTitle:[[75,632,280,24],14,'#E6CDB0'],deckSummary:[[75,661,280,36],14,'#E8D1B2'],
   portraitNote:[[400,674,600,28],14,'#B7ADA0']};
- for(const [name,[rectangle,font,colour]]of Object.entries(spec))placeText(child(details,name),rectangle,font,colour);
+ for(const [name,[rectangle,font,colour]]of Object.entries(spec)){
+  const control=child(details,name);placeText(control,rectangle,font,colour);
+  if(['name','relicTag','relic','relicText','deckTitle'].includes(name))nativeSingleLine(control);
+ }
  Object.assign(child(details,'deckRule'),frame(75,381.53125,430,1));child(details,'deckRule').colour='#DEC29A';
  upsert(details,text('v25Story',[75,287.25,503,71.28125],typeof theme.v25Character?.story==='string'?theme.v25Character.story:'',23,'#EEDBBF'));
  const iconId=value=>typeof value==='object'?value.id:value;
@@ -132,9 +142,9 @@ export function applyV25CharacterLayout(layout,theme){
  // No old scene host: the legacy portrait scene owner otherwise reactivates it.
  panel.children=children(panel).filter(node=>node.name!=='lowpolyScene');
  const background={...group('v25Background',[1280,720]),visible:false};upsert(panel,background,0);
- placeText(child(panel,'title'),[123.625,25.65625,150,29.6875],27,'#F3DEC0');child(panel,'title').text.content='选择角色';
+ placeText(child(panel,'title'),[123.625,25.65625,150,29.6875],27,'#F3DEC0');nativeSingleLine(child(panel,'title'));child(panel,'title').text.content='选择角色';
  placeText(child(panel,'hint'),[75,76,503,28],14,'#E8D1B2');
- upsert(panel,text('v25HeadingEmblem',[43,15,43,51],'✦',51,'#ECD6B6'));
+ upsert(panel,nativeSingleLine(text('v25HeadingEmblem',[43,15,43,51],'✦',51,'#ECD6B6')));
  upsert(panel,image('v25HeadingDivider',frame(104,23.5,1,34).position,[1,34],theme.image.rect,'#E8D1B4',{opacity:.55}));
  upsert(panel,image('v25HeadingRule',frame(261.734375,39.5,146,2).position,[146,2],theme.image.rect,'#CCAA7A'));
  detailsLayout(details,theme);upsert(panel,roster(theme));

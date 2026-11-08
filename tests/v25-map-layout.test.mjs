@@ -62,3 +62,10 @@ test('duplicate or malformed map refuses before changing input',()=>{
  const prior=structuredClone(broken);assert.throws(()=>applyV25MapLayout(broken,nativeTheme),/title/);assert.deepEqual(broken,prior);
  assert.match(v25MapSource.stylesSha256,/^[0-9a-f]{64}$/);assert(v25MapSource.differences.includes('grain'));
 });
+
+test('map legend title retains source centre and font while fitting one native glyph line',()=>{
+ const layout=mapLayout();applyV25MapLayout(layout,nativeTheme);
+ const title=find(find(layout,'typeLegend'),'title');
+ assert.deepEqual(title.position,[0,129]);assert.equal(title.text.fontSize,26);assert.equal(title.text.minFontSize,26);
+ assert.equal(title.text.content,'图例');assert.deepEqual(title.size,[230,52]);
+});

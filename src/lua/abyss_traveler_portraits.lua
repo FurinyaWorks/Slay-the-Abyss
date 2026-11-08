@@ -200,13 +200,16 @@ local function controller(host, data, display, templates, options)
         assert(tri and #r==20 and integer(r[1]) or #r==18 and r[1]==100001,'unexpected portrait image row')
         if compactProfile(data) or data.rectanglesOnly then
             -- Shared template supplies the white image and identity transforms.
-            c.imageType=Enum.ImageType.Stretch;check(token)
+            -- Basic shape 100001 has no imageType field. Its rectangle is sized
+            -- directly; gallery nine-slice modes do not apply to this resource.
             call(token,c,'SetSizeDelta',r[4],r[5]);call(token,c,'SetAnchoredPosition',r[2],r[3])
             c.imageColor=rowColour(r);check(token)
             call(token,c,'SetVisible',true);return
         end
         call(token,c,'SetImage',Enum.ImageSource.StaticReference,r[1])
-        c.imageType=Enum.ImageType.Stretch;check(token);assert(c.imageType==Enum.ImageType.Stretch,'imageType rejected')
+        if r[1]<100001 or r[1]>100006 then
+            c.imageType=Enum.ImageType.Stretch;check(token);assert(c.imageType==Enum.ImageType.Stretch,'imageType rejected')
+        end
         call(token,c,'SetAnchorMin',r[8],r[9]);call(token,c,'SetAnchorMax',r[10],r[11]);call(token,c,'SetPivot',r[6],r[7])
         call(token,c,'SetSizeDelta',r[4],r[5]);call(token,c,'SetLocalScale',r[12],r[13],1)
         call(token,c,'SetLocalRotation',tri and r[19] or 0,tri and r[20] or 0,r[14]);call(token,c,'SetAnchoredPosition',r[2],r[3])
@@ -490,6 +493,9 @@ function M.new(stage,report,flags,cardTemplates)
     function self.sync(_,mode,characterOpen,stopped,character,preloadSelection)
         if busy or destroyed then return false end
         busy=true;local token=epoch
+        -- V25 opens the selection artwork on demand. The legacy host's warm
+        -- hint must not allocate hidden figures during its title screen.
+        if profile then preloadSelection=false end
         local wanted=activeTargets(mode,characterOpen,stopped,character,preloadSelection)
         for _,row in ipairs(rows)do
             local accepted=true

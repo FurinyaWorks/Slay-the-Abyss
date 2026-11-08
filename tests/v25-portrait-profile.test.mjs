@@ -91,6 +91,23 @@ assert(math.abs(selectionHost.SetLocalScaleValue[1]-1380/133)<.000001,'legacy po
 `);
 });
 
+test('V25 title never preloads hidden selection figures even when the legacy host requests warming',()=>{
+ withPortraitVm(`
+Asset.v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(nativeTheme))}
+local selectionHost=tree();local frame=tree();frame:SetSizeDelta(440,440)
+local note=tree();note.text=''
+stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
+ portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
+local a=Portraits.new(stage,nil,{selectionAvatar=true})
+assert(a:sync('menu',false,false,'ironclad',true))
+for _=1,20 do a:tick()end
+assert(a:status().selection.owned==0 and a:status().avatar.owned==0 and LiveCount()==0,'hidden selection was eagerly built')
+assert(a:sync('menu',true,false,'ironclad',true));a:tick()
+assert(a:status().selection.owned>0,'visible selection did not begin source drawing')
+assert(a:release() and LiveCount()==0)
+`,{runtimeV2:true});
+});
+
 test('invalid V25 reference identity and bounded replacement fail before host allocation',()=>{
  for(const extra of ["Asset.v25PortraitProfile.sourceSha256=string.rep('0',64)","Asset.v25PortraitProfile.battleDisplay=0", "Asset.battle133.renderProfile='bounded-2d-v1'"]){
   withPortraitVm(`Asset.v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(nativeTheme))}\n${extra}\nlocal ok=pcall(Portraits.new,stage,nil,{battlePortrait=true});assert(not ok,'invalid V25 config accepted');assert(LiveCount()==0)`);

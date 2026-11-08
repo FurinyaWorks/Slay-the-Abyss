@@ -62,6 +62,53 @@ local function fixture()
  return f
 end
 
+test('basic shape images expose no imageType field and still preserve full RGBA geometry',function()
+ local f=fixture();local writes=0
+ f.createHook=function(c)if c.id==41 then
+  setmetatable(c,{__index=function(_,key)if key=='imageType'then return nil end end,
+   __newindex=function(self,key,value)if key=='imageType'then writes=writes+1;error('cannot set imageType, no such field')end;rawset(self,key,value)end})
+ end end
+ local s=Texture.new(f.binding,f.api);local root=s:surfaceApi().instantiate(11,f.control('parent'))
+ f:finish(s,root);assert(s:surfaceApi().ready(root) and writes==0)
+ local images=f:images();assert(#images==3 and images[2].imageColor[4]==128)
+ assert(s:clear() and f:live()==0)
+end)
+
+test('all six basic geometry resources keep detailed native transforms without a mode field',function()
+ local f=fixture();local writes=0;local rows={}
+ f.createHook=function(c)if c.id==41 then setmetatable(c,{__newindex=function(self,key,value)
+  if key=='imageType'then writes=writes+1;error('shape has no mode')end;rawset(self,key,value)
+ end})end end
+ for id=100001,100006 do rows[#rows+1]={id,id-100001,0,1,2,.5,.5,.5,.5,.5,.5,1,1,0,10,20,30,128,0,0}end
+ local p=Portrait.createController(f.control('host'),{width=8,height=8,rows=rows,renderProfile='lowpoly-v1'},8,
+  {imagePrefabId=41,containerPrefabId=73})
+ assert(p:begin());for _=1,30 do p:step()end
+ assert(p:status().phase=='ready' and #f:images()==6 and writes==0)
+ for _,image in ipairs(f:images())do assert(image.width==1 and image.height==2 and image.imageColor[4]==128)end
+ assert(p:release() and f:live()==0)
+end)
+
+test('gallery resources retain strict supported mode writes and reject a failed mode setter',function()
+ for _,reject in ipairs({false,true})do
+  local f=fixture();local writes=0
+  f.createHook=function(c)if c.id==41 then
+   local mode
+   setmetatable(c,{__index=function(_,key)if key=='imageType'then return mode end end,
+    __newindex=function(self,key,value)if key=='imageType'then
+     writes=writes+1;if reject then error('gallery mode rejected')end;mode=value
+    else rawset(self,key,value)end end})
+  end end
+  local rows={{106057,0,0,1,2,.5,.5,.5,.5,.5,.5,1,1,0,10,20,30,128,0,0}}
+  local p=Portrait.createController(f.control('host'),{width=2,height=2,rows=rows,renderProfile='lowpoly-v1'},2,
+   {imagePrefabId=41,containerPrefabId=73})
+  assert(p:begin());for _=1,10 do p:step()end
+  assert(writes==1)
+  if reject then assert(p:status().phase=='failed' and f:live()==0)
+  else assert(p:status().phase=='ready' and f:images()[1].imageType==Enum.ImageType.Stretch)end
+  assert(p:release() and f:live()==0)
+ end
+end)
+
 test('disabled binding preserves default startup and original API without loading a factory',function()
  local loaded,loader=package.loaded.abyss_traveler_portraits,package.preload.abyss_traveler_portraits
  package.loaded.abyss_traveler_portraits=nil;package.preload.abyss_traveler_portraits=function()error('disabled renderer required portraits')end
@@ -116,6 +163,22 @@ test('update shares 64 controller steps or eight milliseconds globally',function
  f.api.clock=function()return 0 end -- the owner captures the supplied clock once
  f.methodHook=function()f.clock=f.clock+.001 end;s:update();assert(steps>0 and steps<64,'eight millisecond budget ignored')
  f.methodHook=nil;assert(s:clear() and f:live()==0)
+end)
+
+test('ready surfaces do not consume the construction quota of a newly visible texture',function()
+ local f=fixture();local steps=0;local factory=f.api.createController
+ f.api.createController=function(...)local c=factory(...);local step=c.step
+  c.step=function(...)steps=steps+1;return step(...)end;return c
+ end
+ local s=Texture.new(f.binding,f.api);local api=s:surfaceApi();local roots={}
+ for i=1,16 do roots[i]=api.instantiate(11,f.control('ready'..i));f:finish(s,roots[i])end
+ f.binding.textures[13]={width=3,height=2,count=100,drawCount=100,
+  display={position={0,0},size={3,2}},blocks=string.rep(hex(0,0,1,1,1,2,3,255),100)}
+ local nextRoot=api.instantiate(13,f.control('newlyVisible'));steps=0
+ s:update();assert(steps==64,'ready roots diluted the single pending texture construction quota')
+ assert(not api.ready(nextRoot),'test source unexpectedly finished in one quota')
+ for _,root in ipairs(roots)do assert(api.ready(root) and root.alive,'ready texture was rebuilt or retired')end
+ assert(s:clear() and f:live()==0)
 end)
 
 test('mask waits for real page visibility and releases all roots over twenty transitions',function()

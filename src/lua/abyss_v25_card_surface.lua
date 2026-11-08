@@ -12,6 +12,7 @@ local function invoke(control,name,value)
     local ok,result=pcall(function()
         local method=control[name]
         if type(method)~='function'then return false end
+        if value==nil then return method(control)end
         return method(control,value)
     end)
     return ok and result~=false and alive(control)
@@ -43,8 +44,11 @@ function M.new(config,api)
     local opened,dead,busy,closing,cleaning=false,false,false,false,false
     local self={}
     local function enqueue(list)
-        for _,control in ipairs(list)do
-            if not queued[control] and alive(control)then
+        -- A replacement can retain only slot 2 while slot 1 is allocated.
+        -- Visit both owned component slots even when the pair is sparse.
+        for i=1,2 do
+            local control=list[i]
+            if control and not queued[control] and alive(control)then
                 queued[control]=true;garbage[#garbage+1]=control
             end
         end
@@ -131,9 +135,9 @@ function M.new(config,api)
         local ok,host=pcall(function()return box:GetChild('v25Surface')end)
         if ok and alive(host)then return host end
     end
-    local function allocate(row,token,id)
+    local function allocate(row,token,id,slot)
         local ok,control=pcall(api.instantiate,id,row.host[1])
-        if ok and alive(control)then row.pending[#row.pending+1]=control end
+        if ok and alive(control)then row.pending[slot]=control end
         if not ok or not alive(control)then return false end
         if not current(row,token)then enqueue({control});return false end
         if not invoke(control,'SetVisible',false) or not current(row,token)then return false end
@@ -204,18 +208,44 @@ function M.new(config,api)
         if not ready then
             return false,conceal(row.host[1]) and current(row,token)
         end
+        if row.orderPending then
+            -- Retained mana predates a newly allocated shell. Restore the
+            -- original painter order before either component can be published.
+            if not invoke(row.pending[2],'SetAsLastSibling')or not current(row,token)then return false end
+            row.orderPending=false
+        end
         if not publish(row,token)then return false end
         row.current=row.pending;row.pending={};row.ready=true;row.staged=false
         return true
     end
+    local function enqueueObsolete(list,kept)
+        for i=1,2 do
+            local control=list[i]
+            if control~=kept[1] and control~=kept[2]then enqueue({control})end
+        end
+    end
+    local function retainComponents(row,token,shell,mana)
+        local source=row.staged and row.pending or row.current
+        local kept={}
+        if row.shell==shell and alive(source[1])then kept[1]=source[1]end
+        if row.mana==mana and alive(source[2])then kept[2]=source[2]end
+        if not current(row,token)then return false end
+        local previous,pending=row.current,row.pending
+        row.current={};row.pending=kept;row.staged=false;row.ready=false
+        row.orderPending=kept[2]~=nil and kept[1]==nil
+        -- Transfer ownership before any alive/destroy observation can reenter.
+        -- The runtime may return an existing (parent,template) root; retained
+        -- components must never also enter the obsolete destruction queue.
+        enqueueObsolete(previous,kept);enqueueObsolete(pending,kept)
+        return current(row,token)
+    end
     local function replace(row,token,shell,mana)
         if not conceal(row.host[1]) or not current(row,token)then return false end
-        enqueue(row.pending);row.pending={};row.staged=false;row.ready=false
+        if not retainComponents(row,token,shell,mana)then return false end
         if not drain() or not current(row,token)then return false end
         row.shell=shell;row.mana=mana
-        if not allocate(row,token,shell) or not allocate(row,token,mana)then return false end
-        enqueue(row.current);row.current={};row.ready=false
-        if not drain() or not current(row,token)then return false end
+        if not row.pending[1] and not allocate(row,token,shell,1)then return false end
+        if not row.pending[2] and not allocate(row,token,mana,2)then return false end
         row.staged=true
         return complete(row,token)
     end

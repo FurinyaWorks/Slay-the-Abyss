@@ -3335,7 +3335,43 @@
     "font": { "card": 14, "cardName": 16, "cost": 25 },
     "motion": { "hoverLift": 80, "hoverScale": 1.22 },
     "cardSkin": { "text": { "title": "#FFFFFF", "body": "#FFF6E2" }, "costText": "#FFF8E7", "typeInk": "#595959", "artWells": { "attack": "#551C24", "skill": "#1A3042", "power": "#252536" } },
+    "color": {
+      "mapCanvas": {
+        "available": "#17212B",
+        "visited": "#17212B",
+        "far": "#575757",
+        "currentRing": "#25373E",
+        "kind": {
+          "combat": "#26363C",
+          "elite": "#26363C",
+          "camp": "#26363C",
+          "shop": "#26363C",
+          "event": "#26363C",
+          "treasure": "#26363C",
+          "boss": "#26363C"
+        }
+      },
+      "node": {
+        "current": "#17212B",
+        "path": "#5D625E",
+        "pathTaken": "#26373E",
+        "reachable": "#26373E"
+      }
+    },
     "layout": {
+      "map": {
+        "presentation": {
+          "pathWidth": 2,
+          "lockedPathWidth": 1.85,
+          "takenPathWidth": 2.1,
+          "futureOpacity": 0.72,
+          "farFutureOpacity": 0.72,
+          "takenOpacity": 1,
+          "nextOpacity": 1,
+          "lockedOpacity": 1,
+          "farLockedOpacity": 1
+        }
+      },
       "v25TurnNotice": { "position": [0, 43], "size": [1280, 100], "duration": 1.7, "enterEnd": 0.2, "exitStart": 0.65, "travel": 40, "titleSize": 37, "subtitleSize": 16, "titleInk": "#ECD193", "subtitleInk": "#C0B9A4", "shadeInk": "#03080CCD", "shadowInk": "#000000CC", "swordInk": { "edge": "#334947", "left": "#8DACA4", "right": "#AFC3B2", "guard": "#829A88", "handle": "#80958B" } },
       "player": { "position": [-324, -37], "portrait": 210 },
       "enemyRow": { "floorY": 330 },

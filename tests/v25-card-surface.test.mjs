@@ -19,6 +19,7 @@ local function control(name,parent)
  local c={name=name,parent=parent,alive=true,visible=false,active=false}
  function c:SetVisible(value) if failMethod=='visible' then return false end;assert(self.alive);self.visible=value end
  function c:SetActive(value) if failMethod=='active' then error('active failure')end;assert(self.alive);self.active=value end
+ function c:SetAsLastSibling(...)assert(select('#',...)==0 and self.alive);self.raised=true end
  return c
 end
 local function box()
@@ -53,11 +54,11 @@ assert(s:clear() and alive()==0 and #destroyed==2)
 assert(destroyed[1]==created[2] and destroyed[2]==created[1],'not reverse release')
 `));
 
-test('changing type/rarity replaces both roots and retires the previous lease',()=>vm(`
+test('changing type/rarity replaces the shell and retains the unchanged mana component',()=>vm(`
 local b=box();assert(s:apply(b,{type='attack',rarity='common'}));local first,second=created[1],created[2]
 assert(s:apply(b,{type='skill',rarity='common'}))
-assert(#created==4 and created[3].name==21 and not first.alive and not second.alive and alive()==2)
-assert(destroyed[1]==second and destroyed[2]==first)
+assert(#created==3 and created[3].name==21 and not first.alive and second.alive and alive()==2)
+assert(#destroyed==1 and destroyed[1]==first)
 assert(s:release(b) and alive()==0 and not b.surface.visible)
 assert(s:apply(b,{type='power',rarity='common'}) and alive()==2)
 `));
@@ -67,7 +68,7 @@ local b=box();failCreate=2
 assert(not s:apply(b,{type='attack',rarity='basic'}))
 assert(not b.surface.visible and alive()==0 and b.name.text=='普通攻击')
 failCreate=nil;assert(s:apply(b,{type='attack',rarity='basic'}))
-failCreate=#created+2
+failCreate=#created+1 -- Only the changed shell needs a new allocation.
 assert(not s:apply(b,{type='attack',rarity='rare'}))
 assert(not b.surface.visible and alive()==0,'old wrong-type surface covers legacy fallback')
 failCreate=nil;failMethod='active';assert(not s:apply(b,{type='attack',rarity='common'}));assert(alive()==0)
@@ -187,22 +188,22 @@ assert(s:endFrame(token,{battle=true}) and #created==20 and alive()==20)
 assert(s:clear() and alive()==0)
 `));
 
-test('pending type changes release the old pair and same-slot reuse never republishes a cancelled allocation',()=>vm(`
+test('pending type changes release the old shell and same-slot reuse never republishes a cancelled allocation',()=>vm(`
 api.ready=function(c)return c.complete==true end
 local b=box();assert(not s:apply(b,{type='attack',rarity='basic'},'deck'))
 local oldShell,oldMana=created[1],created[2];assert(alive()==2)
 assert(not s:apply(b,{type='skill',rarity='common'},'deck'))
-assert(#created==4 and alive()==2 and not oldShell.alive and not oldMana.alive,'old pending type survived')
+assert(#created==3 and alive()==2 and not oldShell.alive and oldMana.alive,'old shell survived or shared mana was lost')
 oldShell.complete=true;oldMana.complete=true
-assert(not s:apply(b,{type='skill',rarity='common'},'deck') and #created==4 and not b.surface.visible)
-created[3].complete=true;created[4].complete=true
-assert(s:apply(b,{type='skill',rarity='common'},'deck') and #created==4)
+assert(not s:apply(b,{type='skill',rarity='common'},'deck') and #created==3 and not b.surface.visible)
+created[3].complete=true
+assert(s:apply(b,{type='skill',rarity='common'},'deck') and #created==3)
 created[3].complete=false
 assert(not s:isReady(b),'ready=false still reported a ready surface')
-assert(not s:apply(b,{type='skill',rarity='common'},'deck') and #created==4 and not b.surface.visible)
-created[3].complete=true;assert(s:apply(b,{type='skill',rarity='common'},'deck') and #created==4)
+assert(not s:apply(b,{type='skill',rarity='common'},'deck') and #created==3 and not b.surface.visible)
+created[3].complete=true;assert(s:apply(b,{type='skill',rarity='common'},'deck') and #created==3)
 assert(s:release(b) and alive()==0)
-assert(not s:apply(b,{type='power',rarity='common'},'deck') and #created==6)
+assert(not s:apply(b,{type='power',rarity='common'},'deck') and #created==5)
 `));
 
 test('pending scopes survive cached idle frames but page hide and twenty scene cycles cancel all roots',()=>vm(`
@@ -244,11 +245,11 @@ test('pending rarity changes and rejected cleanup keep exact ownership without r
 api.ready=function(c)return c.complete==true end
 local b=box();assert(not s:apply(b,{type='attack',rarity='basic'},'battle'))
 local old=created[1];assert(not s:apply(b,{type='attack',rarity='rare'},'battle'))
-assert(not old.alive and #created==4 and created[3].name==13 and alive()==2,'pending rarity used old shell')
+assert(not old.alive and #created==3 and created[3].name==13 and alive()==2,'pending rarity used old shell')
 failDestroy=true;assert(not s:clear() and alive()==2 and not b.surface.visible)
-assert(not s:apply(b,{type='attack',rarity='rare'},'battle') and #created==4,'failed release caused new pending allocation')
+assert(not s:apply(b,{type='attack',rarity='rare'},'battle') and #created==3,'failed release caused new pending allocation')
 failDestroy=false;assert(s:clear() and alive()==0)
-assert(not s:apply(b,{type='attack',rarity='rare'},'battle') and #created==6)
+assert(not s:apply(b,{type='attack',rarity='rare'},'battle') and #created==5)
 api.ready=function()error('synthetic ready failure')end
 assert(not s:apply(b,{type='attack',rarity='rare'},'battle') and alive()==0,'ready exception retained broken pixels')
 `));

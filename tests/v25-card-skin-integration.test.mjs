@@ -23,6 +23,7 @@ local H=dofile('tests/lua/support/battle_gesture_fixture.lua')
 local F=H.F
 local Skin=require('abyss_card_skin')
 local created,failMana={},false
+local siblings=setmetatable({},{__mode='k'})
 local config={enabled=true,variants={attack={basic=11,common=12,uncommon=13,rare=14},
  skill={basic=21,common=22,uncommon=23,rare=24},power={basic=31,common=32,uncommon=33,rare=34}},manaTemplateId=99}
 local wrapped=setmetatable({},{__mode='k'})
@@ -47,6 +48,13 @@ local api={instantiate=function(id,parent)
  local node=F.control({name='syntheticSurface'..(#created+1),kind='container',visible=false,size={4,4},
   children={{name='sample',kind='image',size={4,4},image=100001,colour='#FFFFFF'}}},parent)
  node.SetActive=activate;node.templateId=id;created[#created+1]=node;parent.children[node.name]=node
+ siblings[parent]=siblings[parent]or {};table.insert(siblings[parent],node)
+ node.SetAsLastSibling=function(self,...)
+  assert(select('#',...)==0 and self.alive,'invalid native sibling reorder')
+  local list=siblings[self.parent]
+  for i,c in ipairs(list)do if c==self then table.remove(list,i);break end end
+  list[#list+1]=self
+ end
  return node
 end,destroy=destroy}
 local function living()local n=0;for _,node in ipairs(created)do if node.alive then n=n+1 end end;return n end
@@ -66,7 +74,9 @@ local function boundedSlots()
 end
 local function roots(face)
  local host=face:GetChild('v25Surface');local list={}
- for _,node in ipairs(created)do if node.alive and node.parent==host then list[#list+1]=node end end
+ -- Observe native sibling order, not allocation chronology: a retained mana
+ -- may be older than its new shell and still must draw above it.
+ for _,node in ipairs(siblings[host]or {})do if node.alive then list[#list+1]=node end end
  return list,host
 end
 local function ready(face,definition)

@@ -159,8 +159,17 @@ local function advance(s,row)
 end
 local function update(s)
  if s.updating or s.closing or s.cleaning then return false end
- local rows=snapshot(s);if #rows==0 then return false end
+ local all=snapshot(s);if #all==0 then return false end
  s.updating=true;local token=s.epoch;local start=s.clock();local changed,idle=false,0
+ -- Keep validating ready leases once, but reserve the bounded construction
+ -- quota for unfinished surfaces. Cached frames must not delay a new frame.
+ local rows={}
+ for _,row in ipairs(all)do
+  if s.records[row.serial]==row and not row.retired then
+   if row.ready then advance(s,row)else rows[#rows+1]=row end
+  end
+ end
+ if #rows==0 then s.updating=false;return false end
  for _=1,64 do
   if s.clock()-start>=.008 then break end
   s.cursor=s.cursor%#rows+1;local row=rows[s.cursor]
