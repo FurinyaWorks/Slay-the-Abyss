@@ -138,11 +138,8 @@ local function xAmount(state,context)
  assert(context.chemicalX==nil or context.chemicalX==false or context.chemicalX==0,'Chemical X not supported')
  return check(n+require('abyss_relic_queries').shop.xBonus(state))
 end
--- All plan arrays are in execution order; the host reverses pushes to TOP.
--- Context functions are call-local. Plans contain only serialisable records.
-function M.planEffect(state,effect,context)
- context=context or {};local op=effect.op
- local plan={top={},bottom={},consumeAllEnergy=false}
+-- Each planner owns one kind of queue decision; reads stay at action time.
+local function planTargetStatuses(state,effect,plan,op)
  if op=='piercingWail'then
   check(effect.value);assert(type(effect.targets)=='table','unprepared Piercing Wail')
   for _,t in ipairs(effect.targets)do
@@ -152,12 +149,6 @@ function M.planEffect(state,effect,context)
   for _,t in ipairs(effect.targets)do
    if t.restore then plan.top[#plan.top+1]=e('applyStatus',effect.value,{status='shackled',targetId=t.targetId})end
   end
- elseif op=='allOutDiscard'then
-  assert(effect.value==1,'unsupported random discard count')
-  plan.top[1]=e('randomManualDiscard',1)
- elseif op=='concentrateDiscard'then
-  assert(effect.value==2 or effect.value==3,'unsupported Concentrate count')
-  plan.top={e('requestDiscard',effect.value),e('energy',2)}
  elseif op=='cripplingPoison'then
   check(effect.value)
   for _,enemy in ipairs(state.enemies)do
@@ -166,12 +157,35 @@ function M.planEffect(state,effect,context)
     plan.top[#plan.top+1]=e('applyStatus',2,{status='weak',targetId=enemy.id})
    end
   end
+ end
+end
+local function planHandActions(state,effect,context,plan,op)
+ if op=='allOutDiscard'then
+  assert(effect.value==1,'unsupported random discard count')
+  plan.top[1]=e('randomManualDiscard',1)
+ elseif op=='concentrateDiscard'then
+  assert(effect.value==2 or effect.value==3,'unsupported Concentrate count')
+  plan.top={e('requestDiscard',effect.value),e('energy',2)}
  elseif op=='escapePlan'then
   plan.top[1]=e('drawWithFollowup',1,{blockAmount=check(effect.blockAmount),skillOnly=true})
  elseif op=='expertise'then
   local n=math.max(0,check(effect.value)-#state.hand)
   if n>0 then plan.top[1]=e('draw',n)end
- elseif op=='finisherDamage' or op=='flechettesDamage'then
+ elseif op=='unload'then
+  for i=#state.hand,1,-1 do
+   local card=state.hand[i]
+   if definition(state,card,context).type~='attack'then
+    plan.top[#plan.top+1]=e('discardSpecific',0,{uid=uid(card.uid),incrementFirst=true})
+   end
+  end
+ elseif op=='stormOfSteel'then
+  assert(type(effect.upgraded)=='boolean','invalid Storm upgrade')
+  local n=check(#state.hand)
+  plan.top={e('requestDiscard',n),e('generateShivs',n,{upgraded=effect.upgraded})}
+ end
+end
+local function planAttackHits(state,effect,context,plan,op)
+ if op=='finisherDamage' or op=='flechettesDamage'then
   check(effect.value);check(effect.normalAmount)
   local n=0
   if op=='finisherDamage'then
@@ -181,7 +195,15 @@ function M.planEffect(state,effect,context)
    for _,card in ipairs(state.hand)do if definition(state,card,context).type=='skill'then n=n+1 end end
   end
   for _=1,n do plan.top[#plan.top+1]=e('damage',effect.value,{normalAmount=effect.normalAmount})end
- elseif op=='skewer'then
+ elseif op=='glassKnife'then
+  check(effect.value);check(effect.normalAmount)
+  local instance=assert(context.instance,'missing Glass Knife instance')
+  assert(instance.cardId=='glass_knife','wrong Glass Knife instance');uid(instance.uid)
+  plan.top={e('damage',effect.value,{normalAmount=effect.normalAmount}),e('damage',effect.value,{normalAmount=effect.normalAmount}),e('reduceGlassKnife',2,{uid=instance.uid})}
+ end
+end
+local function planEnergyActions(state,effect,context,plan,op)
+ if op=='skewer'then
   check(effect.value);check(effect.normalAmount)
   local n=xAmount(state,context)
   if n>0 then
@@ -195,22 +217,21 @@ function M.planEffect(state,effect,context)
    plan.bottom={status('strength',-n),status('weak',n)}
    plan.consumeAllEnergy=context.freeToPlayOnce~=true
   end
- elseif op=='glassKnife'then
-  check(effect.value);check(effect.normalAmount)
-  local instance=assert(context.instance,'missing Glass Knife instance')
-  assert(instance.cardId=='glass_knife','wrong Glass Knife instance');uid(instance.uid)
-  plan.top={e('damage',effect.value,{normalAmount=effect.normalAmount}),e('damage',effect.value,{normalAmount=effect.normalAmount}),e('reduceGlassKnife',2,{uid=instance.uid})}
- elseif op=='unload'then
-  for i=#state.hand,1,-1 do
-   local card=state.hand[i]
-   if definition(state,card,context).type~='attack'then
-    plan.top[#plan.top+1]=e('discardSpecific',0,{uid=uid(card.uid),incrementFirst=true})
-   end
-  end
- elseif op=='stormOfSteel'then
-  assert(type(effect.upgraded)=='boolean','invalid Storm upgrade')
-  local n=check(#state.hand)
-  plan.top={e('requestDiscard',n),e('generateShivs',n,{upgraded=effect.upgraded})}
+ end
+end
+-- All plan arrays are in execution order; the host reverses pushes to TOP.
+-- Context functions are call-local. Plans contain only serialisable records.
+function M.planEffect(state,effect,context)
+ context=context or {};local op=effect.op
+ local plan={top={},bottom={},consumeAllEnergy=false}
+ if op=='piercingWail' or op=='cripplingPoison'then
+  planTargetStatuses(state,effect,plan,op)
+ elseif op=='allOutDiscard' or op=='concentrateDiscard' or op=='escapePlan' or op=='expertise' or op=='unload' or op=='stormOfSteel'then
+  planHandActions(state,effect,context,plan,op)
+ elseif op=='finisherDamage' or op=='flechettesDamage' or op=='glassKnife'then
+  planAttackHits(state,effect,context,plan,op)
+ elseif op=='skewer' or op=='malaise'then
+  planEnergyActions(state,effect,context,plan,op)
  else return nil end
  return plan
 end
