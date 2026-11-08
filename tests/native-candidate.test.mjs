@@ -10,6 +10,12 @@ import { sha256 } from '../scripts/evidence-files.mjs';
 import {uiProfileSource,uiProfileReceipt} from '../scripts/ui-profile.mjs';
 
 const script = new URL('../scripts/build-native-candidate.mjs', import.meta.url);
+test('canonical production modules and the native candidate recipe include the same generated bindings',async()=>{
+ const {generatedModules}=await import('../scripts/native-candidate-scripts.mjs');
+ const {generatedRuntimeModules}=await import(script);
+ assert.deepEqual([...generatedModules].sort(),Object.keys(generatedRuntimeModules).sort());
+ assert.ok(generatedModules.includes('abyss_v25_card_assets'),'default and V25 packages both require the generated enabled/disabled binding');
+});
 
 test('encoder source and checker projection are hashed before and during packaging',async t=>{
  const {sourceInputs}=await import(script),f=await fixture(t);
@@ -113,6 +119,7 @@ test('every production entry parameter is registered by both native package rout
   await f.run();
   const {candidateScriptFiles}=await import('../scripts/native-candidate-scripts.mjs');
   const generated=join(f.root,'generated');mkdirSync(generated);
+  writeFileSync(join(generated,'abyss_v25_card_assets.lua'),'return {enabled=false}');
   for(const name of ['abyss_ui_profile','abyss_art_features','abyss_monster_actor_binding','abyss_monster_art_data', 'abyss_data','abyss_original_v4_data','abyss_map_layout','abyss_narrative','abyss_presentation','abyss_theme','abyss_menu_background_asset', 'abyss_ready_card_binding', 'abyss_ready_card_assets', 'abyss_traveler_portrait_assets'])
     writeFileSync(join(generated,name+'.lua'),'return {}');
   const packaged=candidateScriptFiles(join(f.root,'src/lua'),generated).find(row=>row.name==='abyss_ui');

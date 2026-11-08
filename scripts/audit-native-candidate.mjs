@@ -144,7 +144,9 @@ export async function auditNativeCandidate(options) {
     for (const script of ['build-lua-data.mjs', 'build-ui.mjs']) writeFileSync(join(output, `${script}.log`),
       run(process.execPath, script==='build-ui.mjs'?auditUiBuildArgs(buildReceipt,{registryPath,deferExperimentalInventory:true,v25CardAssetsPath:v25Private?.v25CardAssetsPath}):[`scripts/${script}`], { cwd: snapshot }));
     const { candidateScriptFiles } = await import(pathToFileURL(join(snapshot, 'scripts/native-candidate-scripts.mjs')));
-    const deployment = candidateScriptFiles(join(snapshot, 'src/lua'), join(snapshot, 'build/lua'));
+    // Reproduce the actual producer's module recipe at the pinned source epoch.
+    const {generatedRuntimeModules}=await import(pathToFileURL(join(snapshot,'scripts/build-native-candidate.mjs')));
+    const deployment = candidateScriptFiles(join(snapshot, 'src/lua'), join(snapshot, 'build/lua'),Object.keys(generatedRuntimeModules));
     const uiBgmParameter = deployment.find(script => script.name === 'abyss_ui')?.variables?.find(variable => variable.name === 'nativeBgmEnabled');
     if(flags.menuBackground) {
       if(buildReceipt?.sourceCommit!==sourceSha || buildReceipt?.candidate?.sha256!==before
