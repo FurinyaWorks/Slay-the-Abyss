@@ -5247,6 +5247,18 @@
         "sourceLogSha256": "2c6376cb852312812e6813dc88e02c196955da52282624036cdc61780dbeaed6",
         "sourceReceipt": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-planning.json",
         "sourceReceiptSha256": "99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58"
+      },
+      "tests/effects-target-group.test.mjs": {
+        "durationMs": 7662,
+        "environment": "cloud Linux local",
+        "coverage": "5/5 complete file passed; 0 failed, cancelled or skipped. Includes independent old/new complete VMs, 306 snapshots each and 11 semantic mutants.",
+        "kind": "Local complete-run planning floor only; not hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 7661.276801,
+        "sourceLog": "docs/evidence/m7-effects-target-group-20261109/behavior-final.log.gz",
+        "sourceLogSha256": "a8212eeb561ca1fb79669333c936867e43cffaa621d279b5c392302c26858fe4",
+        "sourceLogUncompressedSha256": "0b64f5530975fb458e44679d7e014f2e69b56d10fdb51363c814c5a9ca5d553f",
+        "sourceReceipt": "docs/evidence/m7-effects-target-group-20261109/behavior-receipt.json",
+        "sourceReceiptSha256": "ed8a7599f1c1dabc43e291a2a801a004c8cb07aaed60d03bbb0a1dce5a38d0ea"
       }
     }
   },

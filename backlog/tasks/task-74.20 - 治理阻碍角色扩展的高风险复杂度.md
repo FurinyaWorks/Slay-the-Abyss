@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T02:19:00Z'
+updated_date: '2026-11-08T18:29:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -21,6 +21,7 @@ documentation:
   - docs/backlog-details/M7-DEFECT-UTILITY-PLANNING-20261108.md
   - docs/backlog-details/M7-DEFECT-REFACTOR-INTEGRATION-20261108.md
   - docs/backlog-details/M7-SEVEN-CURRENT-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-EFFECTS-TARGET-GROUP-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -71,6 +72,8 @@ ordinal: 162000
 本轮在隔离本地树保全整合已独审的六项合流12950b1c与Defect utility 27b2ccc9；不改生产输入字节，逐项合并共享来源/成本合同，重新采集组合SCC/CC、定向行为与真实库存预算，独审后本地提交。全部旧计划/证据保留，不重复Full、不上传或操作用户电脑，不改owner/status/AC。
 
 2026-11-08 接续七项已有本地重构：基于已合#560的a0c35db8进行真实增量适配，保全两侧来源、合同与原始证据。只做定向测试及独立深审，不重复Full；从当前基线形成单父线性提交，明确批准后可按Ruleset正常上传及提PR，仍不得绕过质量门禁。
+
+第18轮：仅拆分 abyss_effects.targetGroup 的图发现、稠密成员与相邻配对校验；保留读取顺序和错误时机。冻结 develop 7821a7f 原始源码，增加独立 VM 差分、语义负对照及 CC15 可执行守卫；不改任务状态或负责人。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -121,4 +124,6 @@ Shivs.startTurn本地职责片：CC33→6，5个新helper最大13，全模块20�
 最终补记：来源定向106个不同用例已有最新通过证据，初次79中3个测试适配问题已定点纠正；独审通过代码/来源安全边界复核，精确提交身份另存。按真实证据补3项成本floor，原19项不变；17/14完整库存含60秒预留最大1771239/1179021ms，原目标余28761/20979ms。后两项仅成功测试用例成本下界，非全文件实测；原失败/中止均保存，不伪称Full。
 
 发布前develop前移至#561b7ed1830，无src/data/scripts/config变动。本轮在新隔离树保全其全部档案及更强历史来源/退休安全合同，仅解决7个非生产文本冲突；45变动owner鲜读与旧epoch linked owner检查并存。最终单父基于b7，原a0度量和320独审按原身份保留；仅定向helper/负控复验，不重复完整行为/工程采集，不改owner/status/AC。
+
+2026-11-09 Effects目标分组验证按图遍历、数组/成员/成对职责拆分，targetGroup CC33→7，六helper最大9；338模块5561测量，CC>30 40→39、>15 216→215，SCC68/11/2不变。独立旧新VM306完整图、11非超时语义负控及真实CC超限负控通过，5/5完整7661ms；旧Shockwave71/71、core7/7、门禁19/19。生产已远端549e92a保全，与本地eba2449同tree。以#564 f256为前置接续其原修复，保留独立基线失败，最终组合证据与审查另附；不重复Full、不提前验收AC。详见本轮附件。
 <!-- SECTION:NOTES:END -->

@@ -52,6 +52,7 @@ export function preCiCompleteCalibrationSource(path,source){
 // Only the complete merged source may enter either immutable original epoch.
 // Removing extra floors is never a generic drift-masking fallback.
 export function originalPlanningSource(path,source,epoch='develop'){
+ source=preEffectsTargetGroupPlanningSource(path,source);
  source=preGameUiLocalPlanningSource(path,prePartialCasePlanningSource(path,source));
  if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='aca81cae4ade8e6ddb1590bc6afae965f0a55dd0ff3052aec2d3a555e5c8f7a8')return source;
  const value=JSON.parse(source);
@@ -86,5 +87,18 @@ export function prePartialCasePlanningSource(path,source){
  }
  const prior=JSON.stringify(value,null,2)+'\n';
  assert.equal(hash(prior),'b12d89163c76dabdf09e7af728fab0aceada1b0409e8b15898baad59749d61e1','all twenty prior floors and every observation remain byte-identical');
+ return prior;
+}
+
+// Exact complete outer planning epoch; no existing observations or execution limits change.
+export const effectsTargetGroupPlanningKey="tests/effects-target-group.test.mjs";
+export const effectsTargetGroupPlanningFloor=Object.freeze({"durationMs":7662,"environment":"cloud Linux local","coverage":"5/5 complete file passed; 0 failed, cancelled or skipped. Includes independent old/new complete VMs, 306 snapshots each and 11 semantic mutants.","kind":"Local complete-run planning floor only; not hosted measurement, execution permission or timeout change.","nodeReportedDurationMs":7661.276801,"sourceLog":"docs/evidence/m7-effects-target-group-20261109/behavior-final.log.gz","sourceLogSha256":"a8212eeb561ca1fb79669333c936867e43cffaa621d279b5c392302c26858fe4","sourceLogUncompressedSha256":"0b64f5530975fb458e44679d7e014f2e69b56d10fdb51363c814c5a9ca5d553f","sourceReceipt":"docs/evidence/m7-effects-target-group-20261109/behavior-receipt.json","sourceReceiptSha256":"ed8a7599f1c1dabc43e291a2a801a004c8cb07aaed60d03bbb0a1dce5a38d0ea"});
+export function preEffectsTargetGroupPlanningSource(path,source){
+ if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=="aa5a35f348c759ef3aa14411aa0d52e7c7d9fd02b9086fb7a369b1aad7abd75d")return source;
+ const value=JSON.parse(source);
+ assert.deepEqual(value.jsPlanning.localLowerBounds[effectsTargetGroupPlanningKey],effectsTargetGroupPlanningFloor);
+ delete value.jsPlanning.localLowerBounds[effectsTargetGroupPlanningKey];
+ const prior=JSON.stringify(value,null,2)+'\n';
+ assert.equal(hash(prior),"54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56",'every prior floor, observation and execution safety input remains byte-identical');
  return prior;
 }

@@ -181,7 +181,8 @@ const responsibilityRoots = {
   'src/lua/abyss_run_potions.lua': ["function 'potionCandidate'"],
   'src/lua/abyss_run_potion_candidate.lua': [],
   'src/lua/abyss_effects.lua': ["function 'M.apply'", "function 'continueEffects'", "function 'applyOne'",
-    ...['denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',
+    ...['visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',
+      'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',
       'nonConditionalOpSupported','selectionAmountsSupported','mantraAmountSupported',
       'effectMetadataSupported','supported','M.supported'].map(name=>`function '${name}'`)],
   'src/lua/abyss_combat.lua': [

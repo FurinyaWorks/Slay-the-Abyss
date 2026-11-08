@@ -43,57 +43,83 @@ coreOps.enemyDazedDraw=true
 clearedAfterDamage.enemyDazedDraw=true
 clearedAfterDamage.awakenedVoid=true
 
-local function targetGroup(effects)
-    local found, misplaced, cyclic = false, false, false
-    local seen, active = {}, {}
-    local pending = {{value=effects}}
-    while #pending > 0 do
-        local visit = table.remove(pending)
-        local value = visit.value
-        if type(value) == "table" then
-            if visit.leaving then active[value] = nil
-            else
-                if value.targetGroup ~= nil then
-                    found = true
-                    if not visit.topMember then misplaced = true end
-                end
-                if active[value] then cyclic = true
-                elseif not seen[value] then
-                    seen[value], active[value] = true, true
-                    pending[#pending + 1] = {value=value, leaving=true}
-                    for key, child in pairs(value) do
-                        pending[#pending + 1] = {value=key}
-                        pending[#pending + 1] = {value=child, topMember=value == effects and type(key) == "number"}
-                    end
-                end
+local function visitTargetGroup(effects, visit, graph)
+    local value = visit.value
+    if type(value) ~= "table" then return end
+    if visit.leaving then graph.active[value] = nil
+    else
+        if value.targetGroup ~= nil then
+            graph.found = true
+            if not visit.topMember then graph.misplaced = true end
+        end
+        if graph.active[value] then graph.cyclic = true
+        elseif not graph.seen[value] then
+            graph.seen[value], graph.active[value] = true, true
+            graph.pending[#graph.pending + 1] = {value=value, leaving=true}
+            for key, child in pairs(value) do
+                graph.pending[#graph.pending + 1] = {value=key}
+                graph.pending[#graph.pending + 1] = {value=child, topMember=value == effects and type(key) == "number"}
             end
         end
     end
-    if not found then return nil end
-    if misplaced or cyclic then return nil, "invalid_target_group" end
+end
+
+local function discoverTargetGroup(effects)
+    local graph = {found=false, misplaced=false, cyclic=false, seen={}, active={}, pending={{value=effects}}}
+    while #graph.pending > 0 do
+        visitTargetGroup(effects, table.remove(graph.pending), graph)
+    end
+    return graph
+end
+
+local function targetGroupCount(effects)
     local count = 0
     for key in pairs(effects) do
-        if type(key) ~= "number" or key % 1 ~= 0 or key < 1 then return nil, "invalid_target_group" end
+        if type(key) ~= "number" or key % 1 ~= 0 or key < 1 then return nil end
         count = count + 1
     end
+    return count
+end
+
+local function validTargetGroupMember(effect, allowed)
+    if effect.targetGroup ~= "weak_then_vulnerable" or effect.op ~= "applyStatusAll"
+        or type(effect.value) ~= "number" or effect.value < 1 or effect.value > 2147483647
+        or effect.value % 1 ~= 0 then return false end
+    for key in pairs(effect) do if not allowed[key] then return false end end
+    return true
+end
+
+local function targetGroupMembers(effects, count)
     local members = {}
     local allowed = { op=true, status=true, value=true, targetGroup=true }
     for i = 1, count do
         local effect = effects[i]
-        if type(effect) ~= "table" then return nil, "invalid_target_group" end
+        if type(effect) ~= "table" then return nil end
         if effect.targetGroup ~= nil then
-            if effect.targetGroup ~= "weak_then_vulnerable" or effect.op ~= "applyStatusAll"
-                or type(effect.value) ~= "number" or effect.value < 1 or effect.value > 2147483647
-                or effect.value % 1 ~= 0 then return nil, "invalid_target_group" end
-            for key in pairs(effect) do if not allowed[key] then return nil, "invalid_target_group" end end
+            if not validTargetGroupMember(effect, allowed) then return nil end
             members[#members + 1] = i
         end
     end
-    if #members ~= 2 or members[2] ~= members[1] + 1 then return nil, "invalid_target_group" end
+    return members
+end
+
+local function validTargetGroupPair(effects, members)
+    if #members ~= 2 or members[2] ~= members[1] + 1 then return false end
     local first, second = effects[members[1]], effects[members[2]]
     if first.status ~= "weak" or second.status ~= "vulnerable" or first.value ~= second.value then
-        return nil, "invalid_target_group"
+        return false
     end
+    return true
+end
+
+local function targetGroup(effects)
+    local graph = discoverTargetGroup(effects)
+    if not graph.found then return nil end
+    if graph.misplaced or graph.cyclic then return nil, "invalid_target_group" end
+    local count = targetGroupCount(effects)
+    if not count then return nil, "invalid_target_group" end
+    local members = targetGroupMembers(effects, count)
+    if not members or not validTargetGroupPair(effects, members) then return nil, "invalid_target_group" end
     return members[1]
 end
 

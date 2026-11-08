@@ -1,0 +1,62 @@
+{
+  "reviewId": "independent-effects-target-group-20261109-r1",
+  "reviewedHeadSha": "eba244948d6116aeb478b409095680f5c3f8cdc9",
+  "reviewedBaseSha": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "conclusion": "pass",
+  "unresolved": [],
+  "scope": "Independent production, behavior, complexity gate and exact source/CI overlay review. Auxiliary files were uncommitted at review; file hashes bind these reviewed bytes. Final integrated commit requires head binding and combination-diff review.",
+  "sourceHashes": {
+    "src/lua/abyss_effects.lua": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228",
+    "scripts/check-lua-static.mjs": "10d11c5f5294ac48929d9d4946cb7b92d18881507c09b5825e1dd2b8a813715c",
+    "tests/effects-target-group.test.mjs": "54c591a4abda74ff21c5a304c88a7f0de3f609678264c09a72411a13b7b9c07c",
+    "tests/effects-target-group-source-epoch.test.mjs": "e0b99445854ac52d92b343fb1e28ff89af9565f8f5a000ad1fefa1fce6bfd593",
+    "tests/helpers/effects-target-group-before.json": "f6f1940e7e391533877beeb7f2eb6778a812e201f5cc36364990c6c44ac5c54e",
+    "tests/helpers/effects-target-group-scenarios.lua": "472d7477b74e25d5a7f24e2849bb1c15d951963c0a57fa16cc56331dc965441b",
+    "tests/helpers/effects-target-group-vm.mjs": "7de4ae2e6fa6566fa0a7d5eba68b3787ec70beaa3a48f09c542b4eac90756a99",
+    "tests/helpers/effects-target-group-source-epoch.mjs": "fbd1791691b86465c6ec60d5f1a339e0b20478ed17ce0cabd0e75af8a46ac6ac",
+    "tests/helpers/effects-target-group-source-epoch.json.gz": "f22d0328aedd7b7e9c785482271483f9f083c5c6abd7cd55d19933b24a48c0c2",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "0ac5e8fab94f7b4af9200324d10887d83e90f421910c779a14571513eb9f3700",
+    "tests/helpers/copy-integration-source-closure.mjs": "e364f3dbfd21ac146e32b3915bc1bfdf293efd33c679c3eaf6bc0e7c6f0537bd",
+    "scripts/ci-test-timings.json": "be57317ff00b89f66d4987001617bbb84a2ca301ee117da7fec01c16932fd69e",
+    "tests/ci-complete-calibration.test.mjs": "1bd229124ddd5f421c2f1e1c3b9873effb70fbb0fcc6d830e7948df3f7484fb1",
+    "tests/ci-runtime.test.mjs": "cf3a86a0593c5157428ef7dfb5df54a8d42edf77f28be3dc9b10aad34866c4a4",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "617261e77f0c8437e09f8c5c30cba8317428bdb4c0214c44443ce488d5991dbe"
+  },
+  "findings": [
+    "No production semantic discrepancy found: graph key/value traversal, marker reads before seen/active guards, leaving behavior, LIFO pairs order, dynamic field reads, result arity and legacy mutation/error timing preserved.",
+    "All seven helpers governed at CC15, nested functions included. Synthetic tests supplemented by genuine pinned Luacheck measurement for old CC33, each over-budget helper and anonymous nested CC17.",
+    "Old/current fresh VM graphs include actual valid application and partial energy mutation before later failure; 11 distinct semantic mutants are killed without counting instruction-budget exhaustion as semantic success.",
+    "Exact source overlay preserves prior provenance and historical bytes, revalidates all46 owners, rejects unknown targets, and preserves raw reader ownership.",
+    "New CI timing floor is complete local-run planning evidence only; exact inverse restores prior timing bytes without changing execution thresholds."
+  ],
+  "tests": [
+    {
+      "command": "node --test tests/effects-target-group-source-epoch.test.mjs",
+      "execution": "independent",
+      "result": "6/6 pass",
+      "log": "build/m7-effects-review/source-epoch-final.log"
+    },
+    {
+      "command": "node --test --test-name-pattern='frozen full Git|pinned Luacheck|every target-group helper' tests/effects-target-group.test.mjs",
+      "execution": "independent",
+      "result": "3/3 pass",
+      "log": "build/m7-effects-review/independent-gate.log"
+    },
+    {
+      "command": "node --test tests/effects-target-group.test.mjs",
+      "execution": "implementer final log independently reviewed",
+      "result": "5/5 pass,7581.258805ms;306 snapshots;11 semantic mutants",
+      "log": "build/effects-target-group-tests-next.log"
+    },
+    {
+      "command": "earlier independent whole behavior run",
+      "execution": "independent",
+      "result": "interrupted after >90s silence, exit130; not a pass; superseded by corrected bounded fixture and final implementer run"
+    }
+  ],
+  "limitations": [
+    "No Full, hosted, merge, candidate-import or device acceptance claim.",
+    "Known inherited Game UI timing source identity mismatch is separate dependency work; no unrelated dependency fix included.",
+    "A later f256 source-contract integration needs only targeted combination review if production byte identity is retained."
+  ]
+}

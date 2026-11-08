@@ -1,3 +1,4 @@
+import {preEffectsTargetGroupPlanningSource,effectsTargetGroupPlanningKey,effectsTargetGroupPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {prePartialCasePlanningSource,partialCasePlanningFloors,originalPlanningSource,preGameUiLocalPlanningSource,gameUiLocalPlanningKey,gameUiLocalPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciEpoch} from './helpers/integration-ci-epochs.mjs';
 import {potionCallbackFloorKey,verifiedPotionCallbackFloor,prePotionCallbackPlanningSource} from './helpers/potion-callback-planning.mjs';
@@ -204,6 +205,8 @@ test('current timing records preserve all measured corrections without duplicate
    assert.equal(run.tests,8);assert.equal(run.passed,8);assert.equal(run.failed,0);assert.equal(run.skipped,0);
    assert.equal(entry.sourceLogSha256,createHash('sha256').update(run.rawTap).digest('hex'));
    assert.match(entry.kind,/not hosted or Linux measurement/);
+  }else if(file===effectsTargetGroupPlanningKey){
+   assert.deepEqual(entry,effectsTargetGroupPlanningFloor);
   }else if(Object.hasOwn(partialCasePlanningFloors,file)){
    assert.deepEqual(entry,partialCasePlanningFloors[file]);
   }else if(file===gameUiLocalPlanningKey){
@@ -238,7 +241,7 @@ test('current timing records preserve all measured corrections without duplicate
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,22);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,23);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 
@@ -348,7 +351,7 @@ test('complete local Game UI run raises only its planning floor and preserves ev
  for(const mutate of [r=>r.file='tests/other.test.mjs',r=>r.sourceIdentity.baseHead=identity.sourceCommit,r=>r.sourceIdentity.files[key]=hash(readFileSync(key))]){
   const wrong=structuredClone(receipt);mutate(wrong);assert.throws(()=>assertHistoricalSource(historical,wrong));
  }
- const path='scripts/ci-test-timings.json',source=prePartialCasePlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),prior=preGameUiLocalPlanningSource(path,source);
+ const path='scripts/ci-test-timings.json',source=prePartialCasePlanningSource(path,preEffectsTargetGroupPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'))),prior=preGameUiLocalPlanningSource(path,source);
  assert.notEqual(source,prior);const old=JSON.parse(prior),expected=structuredClone(old);
  assert.equal(Object.keys(old.jsPlanning.localLowerBounds).length,19);assert.equal(old.jsPlanning.localLowerBounds[key],undefined);
  expected.jsPlanning.localLowerBounds[key]=floor;
@@ -387,7 +390,7 @@ test('partial successful source cases provide lower bounds without claiming thei
   assert.equal(floor.durationMs,Math.ceil(observation.durationMs));assert.equal(observation.planningFloorMs,floor.durationMs);
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,floor.durationMs));
  }
- const path='scripts/ci-test-timings.json',source=readFileSync(path,'utf8').replaceAll('\r\n','\n'),prior=prePartialCasePlanningSource(path,source);
+ const path='scripts/ci-test-timings.json',source=preEffectsTargetGroupPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),prior=prePartialCasePlanningSource(path,source);
  assert.notEqual(prior,source);const expected=JSON.parse(prior);
  assert.equal(Object.keys(expected.jsPlanning.localLowerBounds).length,20);
  for(const key of keys)assert.equal(expected.jsPlanning.localLowerBounds[key],undefined);
