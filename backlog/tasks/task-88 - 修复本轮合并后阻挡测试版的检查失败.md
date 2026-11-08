@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-10-30 11:45
-updated_date: '2026-11-08T03:19:00Z'
+updated_date: '2026-11-08T03:31:00Z'
 labels: []
 dependencies: []
 priority: medium
@@ -75,4 +75,6 @@ PR377最新整合承接PR378事件与PR381必要修复：目录hash与原生怪�
 同一修复PR增量合入已独审f90dd1ec的22路径来源facade兼容片，原代码字节不改；unknown无效reader/严格输入token与真实CRLF hash修复。组合新来源6/6、隔离加core6/6通过，三个合同全文件16/27仍11失败，完整证据保留；不重复无关回放或Full、不改生产/预算/门禁。
 
 facade合流发布前发现合法proof下非法JSON token会被误当空白布局，先红后修：仅加语法门槛，继续严格token和raw owner验签；五类非法输入原字节透传且零读取。新回归7/7、隔离加core6/6通过，独审确认该阻断已解决；原失败及补正证据保留，残余11项和Full边界不变。
+
+三来源合同剩余11项已按历史/当前双层修复：冻结6/4owner精确次数、首错和SHA原断言保留；当前全host×完整45owner矩阵及原old/before/invalid reader/配置负控恢复，独立33/33。GameUI原收据346输入精确匹配3205985a，修历史身份错配不改收据/77215ms floor/当前14项测试。最终限定组合46/46，0skip；Full与平台仍待，任务和AC不变。
 <!-- SECTION:NOTES:END -->

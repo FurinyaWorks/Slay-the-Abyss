@@ -30,3 +30,13 @@
 组合定向：原补丁新来源回归 6/6、五个隔离用例加 core lifecycle 6/6 通过；原三个来源合同全文件从 12/27 改善为 16/27，**仍有 11 项失败**，包括历史 owner 数量/epoch fixture 与 retirement 错误标签，明确留待后续切片。前一轮 39 项证据保持原版本，未重复不受影响的 Reward/预算回放，也未运行 Full。
 
 发布前合成有效 proof 发现通用 projector 会把 `1 2` / `tr ue` 等非法 token 删除空白后误认当前来源，已保留红灯证据。补正仅在配置布局匹配前用 JSON.parse 验语法，仍以原 token 文本比较身份，不重序列化、不放宽重复 key、escape、顺序或 linked owner hash。新增数字、负数、指数、boolean、null 五类负控，原字节透传且零 linked 读取（包含 null reader）。完整新回归 7/7、隔离加 core 6/6 再次通过；原补丁其余 19 文件与先前 15 份测试代码字节不变，原残余 11 项与 Full 边界不变。
+
+## 历史与当前合同分层结清
+
+前述 11 项来源失败已经修复，失败证据仍按原版本保留。原 6/4-owner 的完整源码、精确读取次数、首个错误顺序与所有负控使用已有 manifest 认证的对应历史 after 源，并逐一对原 proof SHA 复核，不改冻结实现或 oracle。当前入口单独覆盖全部 Actor 5、Potion 3、Reward 4 个 host（Reward 与 M7 双入口）及完整 45-owner 集合，逐项破坏、缺失、null、Buffer、throw、原 old/before 场景后都恢复；无效 reader、当前配置布局拒绝、重复读取和历史/当前未知输入也保留。owner 集合从当前 proof 读取，不把 45 写死，未来组合必须重新验证完整集合。
+
+退休合同同时保留冻结 catalog 的原错误与当前准备/执行顺序：准备先验证 leaf，已准备的 cleanup 先验证 catalog；任何一侧失败都不删除任一文件，另验仅 catalog 损坏。别名、重定向和真实盘上漂移/删除负控保留。
+
+Game UI 计时收据另修身份错配：其 346 个输入逐一匹配后来保存的 `3205985a`，记录的是历史 13 项完整测试，不是当前新增保护后的 14 项文件。新增完整历史原文及 commit/tree/blob/SHA 交叉认证，拒绝当前文件或重算摘要冒充旧来源。原 receipt、log、77215ms planning floor、当前测试与执行预算均不改；[来源明细](../evidence/game-ui-planning-source-contract-20261108.md)。
+
+最终限定组合 46/46 通过（3 个 source 文件 33 项，ci-runtime 13 项），无跳过；来源片独立 33/33、收据片独立原 case 及新增身份负控通过。源码、diff、Backlog 与指引检查通过。本节取代“仍 11 项来源失败”的当前状态，不抹掉先前失败，也不代表其余 Quality、Full、Windows 或官方/设备验收通过；没有重跑未改的 Game UI 行为回放、Reward 图回放或本地 Full。

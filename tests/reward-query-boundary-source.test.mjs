@@ -9,10 +9,14 @@ import {rewardQueryBoundaryProof as proof,preRewardQueryBoundarySource as projec
 import {preM7FinalSource,m7FinalReader} from './helpers/m7-core-final-source-inverse.mjs';
 import {preRelicQuerySource} from './helpers/relic-query-source-inverse.mjs';
 import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
+import {preRewardQueryBoundarySource as frozenProject,rewardQueryBoundaryReader as frozenReader} from './helpers/epochs/reward/tests/helpers/reward-query-boundary-source-inverse.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
 const paths=Object.keys(proof.files),config='config/architecture.json';
-const current=Object.fromEntries(paths.map(p=>[p,read(p)]));
+// The four-source proof describes the original reward epoch; today's configuration has additional approved boundaries.
+const current=Object.fromEntries(paths.map(p=>[p,sourceEpoch.proof.targets.reward.files[p].source]));
+const historicalRead=p=>current[p];
 const before=Object.fromEntries(paths.map(p=>[p,proof.files[p].beforeSource]));
 const boundary={id:'reward-query-consumer-boundary',from:['abyss_relic_card_rewards','abyss_relic_choices','abyss_relic_pending'],forbiddenTargets:['abyss_relic_hooks'],reason:'Reward query consumers read the existing Queries and Family.common capability slots directly on every call. Their Run imports retain real initialized reward transactions and permanent inventory commands.'};
 
@@ -44,21 +48,28 @@ test('complete d8 Git sources permit only six capability reads, one boundary and
  for(const name of boundary.from)assert(prior.deferredImports.some(e=>e.from===name&&e.to==='abyss_run'),'retain initialized Run transaction: '+name);
 });
 
-test('LF CRLF and exact configuration token layouts restore complete frozen sources through the old entry',()=>{
+test('LF CRLF and exact configuration token layouts restore complete frozen reward sources',()=>{
  for(const path of paths)for(const input of [current[path],current[path].replaceAll('\n','\r\n')]){
-  assert.equal(project(path,input),before[path]);assert.equal(preM7FinalSource(path,input),before[path]);
-  assert.equal(project(path,input,{readSource:p=>current[p].replaceAll('\n','\r\n')}),before[path]);
+  assert.equal(frozenProject(path,input,{readSource:historicalRead}),before[path]);
+  assert.equal(frozenProject(path,input,{readSource:p=>current[p].replaceAll('\n','\r\n')}),before[path]);
  }
  for(const input of [JSON.stringify(JSON.parse(current[config])),JSON.stringify(JSON.parse(current[config]),null,'\t'),current[config]+'\n\t ']){
-  assert.equal(project(config,input),before[config]);assert.equal(preM7FinalSource(config,input),before[config]);
+  assert.equal(frozenProject(config,input,{readSource:historicalRead}),before[config]);
  }
- assert.equal(hash(preRelicQuerySource(config,current[config])),'68d46e73d734f9684326b24ba040706d768349ce9a552daf52006bb900bfaabf','the original 391 epoch remains reachable');
+});
+
+test('the current reward and final M7 entries retain LF CRLF layout and the older relic epoch',()=>{
+ for(const path of paths)for(const input of [read(path),read(path).replaceAll('\n','\r\n')])for(const consume of [project,preM7FinalSource]){
+  assert.equal(consume(path,input),before[path]);
+  assert.equal(consume(path,input,{readSource:p=>read(p).replaceAll('\n','\r\n')}),before[path]);
+ }
+ for(const input of [JSON.stringify(JSON.parse(read(config))),JSON.stringify(JSON.parse(read(config)),null,'\t'),read(config)+'\n\t '])for(const consume of [project,preM7FinalSource])assert.equal(consume(config,input),before[config]);
+ assert.equal(hash(preRelicQuerySource(config,read(config))),'68d46e73d734f9684326b24ba040706d768349ce9a552daf52006bb900bfaabf','the original 391 epoch remains reachable');
 });
 
 test('unknown original partial raw and duplicate escaped reordered inputs preserve identity with zero linked IO',()=>{
  let reads=0;const options={readSource(){reads++;throw Error('must not read');}};
- for(const path of paths){
-  const source=current[path];
+ for(const path of paths)for(const source of [current[path],read(path)]){
   const variants=[before[path],source.slice(1),source+source,source+'\n-- foreign\n',undefined,null,false,17,{},Buffer.from(source),''];
   if(path===config){
    variants.push(source.replace('"reward-query-consumer-boundary"','"reward-query-consumer-boun\\u0064ary"'));
@@ -73,7 +84,8 @@ test('unknown original partial raw and duplicate escaped reordered inputs preser
 });
 
 test('each warm projection freshly authenticates all three owners and configuration after drift missing and recovery',()=>{
- for(const consume of [project,preM7FinalSource])for(const host of paths)for(const linked of paths){
+ const project=frozenProject,reader=frozenReader;
+ for(const consume of [project])for(const host of paths)for(const linked of paths){
   let mode='good',reads=[];
   const readSource=p=>{reads.push(p);if(p===linked){
    if(mode==='throw')throw Error('reader sentinel');
@@ -102,11 +114,11 @@ test('each warm projection freshly authenticates all three owners and configurat
 test('reader wrappers never retain successful permissions and later same-call configuration drift is rejected',()=>{
  let reads=0,corrupt=false;
  const raw=p=>{reads++;return current[p]+(corrupt&&p===config?'\n':'');};
- const wrapped=m7FinalReader(m7FinalReader(raw));assert.equal(m7FinalReader(wrapped),wrapped);
+ const wrapped=frozenReader(frozenReader(raw));assert.equal(frozenReader(wrapped),wrapped);
  for(const path of paths){assert.equal(wrapped(path),before[path]);corrupt=true;assert.throws(()=>wrapped(path),/linked owner/);corrupt=false;}
  assert(reads>0);
  let configReads=0;
- assert.throws(()=>preRelicQuerySource(config,current[config],{readSource:p=>{
+ assert.throws(()=>preRelicQuerySource(config,read(config),{readSource:p=>{
   const value=read(p);return p===config&&++configReads>1?value+'\n':value;
  }}),/linked owner/,'the old inner proof must reread the new outer closure instead of reusing the initial permission');
  assert(configReads>1);
@@ -136,4 +148,33 @@ console.log('ISOLATED_REWARD_QUERY_SOURCE_PASS');`;
   const negative=spawnSync(process.execPath,['--input-type=module','-e',"import './tests/helpers/reward-query-boundary-source-inverse.mjs'"],{cwd:root,encoding:'utf8',timeout:30000,maxBuffer:1024*1024});
   assert.ifError(negative.error);assert.notEqual(negative.status,0);assert.match(negative.stderr,/complete reward query boundary source proof/);
  }finally{rmSync(root,{recursive:true,force:true});}
+});
+
+
+test('current reward and M7 wrappers freshly reject every expanded owner and recover after each fault',()=>{
+ const sources=Object.fromEntries(sourceEpoch.proof.owners.map(p=>[p,read(p)]));
+ for(const [consume,wrap]of [[project,reader],[preM7FinalSource,m7FinalReader]])for(const host of paths){
+  let bad=null,mode='good',seen=[];
+  const raw=p=>{seen.push(p);if(p===bad){
+   if(mode==='throw')throw Error('expanded reader sentinel');
+   if(mode==='missing')return undefined;if(mode==='null')return null;
+   if(mode==='before')return before[p];
+   if(mode==='buffer')return Buffer.from(sources[p]);if(mode==='changed')return sources[p]+'\n';
+  }return sources[p]??read(p);};
+  const wrapped=wrap(wrap(raw));assert.equal(wrap(wrapped),wrapped);
+  assert.equal(wrapped(host),before[host]);seen=[];
+  const check=()=>assert.equal(consume(host,read(host),{readSource:wrapped}),before[host]);
+  check();const first=[...seen];for(const owner of sourceEpoch.proof.owners)assert(first.includes(owner),'fresh current owner: '+owner);
+  seen=[];check();assert.deepEqual(seen,first,'warm calls repeat the complete raw-read sequence');
+  for(bad of sourceEpoch.proof.owners)for(mode of ['changed','missing','null','buffer','throw',...(paths.includes(bad)?['before']:[])]){
+   seen=[];assert.throws(check,error=>{assert.match(error.message,/linked owner/);assert(error.message.includes(bad));if(mode==='throw')assert.match(error.message,/expanded reader sentinel/);return true;});
+   assert(seen.includes(bad));
+   // When the host itself is changed, a reader must preserve unknown input bytes.
+   if(bad!==host)assert.throws(()=>wrapped(host),/linked owner/);
+   const previous=mode;mode='good';check();assert.equal(wrapped(host),before[host]);mode=previous;
+  }
+  for(const readSource of [null,{},'invalid'])assert.throws(()=>consume(host,read(host),{readSource}),/linked (?:owner )?reader/);
+  const formatted=JSON.stringify(JSON.parse(read(config)));
+  assert.throws(()=>consume(host,read(host),{readSource:p=>p===config?formatted:read(p)}),/linked owner/,'current linked raw configuration must retain exact bytes');
+ }
 });

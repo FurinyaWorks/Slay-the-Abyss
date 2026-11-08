@@ -10,9 +10,13 @@ import {preM7FinalSource,m7FinalReader} from './helpers/m7-core-final-source-inv
 import {preRelicQuerySource,relicQueryReader} from './helpers/relic-query-source-inverse.mjs';
 import {prepareRound3CatalogModuleRetirement as retireHistoricalCatalog} from './helpers/round3-catalog-source-inverse.mjs';
 import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
+import {prePotionCallbackSource as frozenProject,potionCallbackReader as frozenReader} from './helpers/epochs/potion/tests/helpers/potion-callback-source-inverse.mjs';
+import {prepareRound3CatalogModuleRetirement as frozenCatalogRetirement,round3CatalogProof} from './helpers/epochs/develop/tests/helpers/round3-catalog-source-inverse.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const owners=Object.keys(proof.files),originals=owners.filter(p=>Object.hasOwn(proof.files[p],'beforeSource'));
+const historicalRead=path=>{const source=sourceEpoch.proof.targets.potion.files[path]?.source;assert.equal(hash(source),proof.files[path].afterSha256,'authenticated original potion after source: '+path);return source;};
 const leaf='src/lua/abyss_relic_potion_hooks.lua',config='config/architecture.json';
 const isolated=t=>{const directory=mkdtempSync(join(tmpdir(),'potion-callback-source-'));t.after(()=>rmSync(directory,{recursive:true,force:true}));return directory;};
 function write(root,path,source){const target=join(root,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,source);return target;}
@@ -37,6 +41,8 @@ test('the immutable archive authenticates all 333 complete sources without inven
 });
 
 test('every exact entry freshly reads each of the four raw owners once through nested readers',()=>{
+ // The original 4-owner contract is tested against its authenticated epoch, not today's wider closure.
+ const project=frozenProject,potionCallbackReader=frozenReader,read=historicalRead;
  for(const path of originals)for(const wrapper of [r=>r,potionCallbackReader,r=>potionCallbackReader(potionCallbackReader(r))]){
   const counts=new Map(),reader=wrapper(p=>{counts.set(p,(counts.get(p)??0)+1);return read(p);});
   for(let repeat=1;repeat<=2;repeat++){
@@ -52,6 +58,8 @@ test('every exact entry freshly reads each of the four raw owners once through n
 });
 
 test('warm source authorization rejects changed, missing and non-string raw owners rather than caching permission',()=>{
+ // The original 4-owner contract is tested against its authenticated epoch, not today's wider closure.
+ const project=frozenProject,potionCallbackReader=frozenReader,read=historicalRead;
  for(const path of originals)for(const bad of owners)for(const kind of ['changed','old','missing','null','buffer','throw']){
   let broken=false;
   const raw=p=>{
@@ -70,6 +78,8 @@ test('warm source authorization rejects changed, missing and non-string raw owne
 });
 
 test('linked owner failures stop in exact owner order and preserve the first error',()=>{
+ // The original 4-owner contract is tested against its authenticated epoch, not today's wider closure.
+ const project=frozenProject,potionCallbackReader=frozenReader,read=historicalRead;
  for(const path of originals)for(const bad of owners)for(const kind of ['identity','missing']){
   const seen=[],reader=p=>{
    seen.push(p);
@@ -163,6 +173,43 @@ test('the existing historical retirement entry handles potion callback leaf pres
  const cleanup=retireHistoricalCatalog(root);write(root,leaf,read(leaf)+'\n');
  assert.throws(cleanup,/unreviewed potion callback/);assert(existsSync(join(root,leaf))&&existsSync(join(root,catalog)));
  write(root,catalog,read(catalog)+'\n');
- assert.throws(cleanup,/unreviewed catalog module destination/);assert.throws(()=>retireHistoricalCatalog(root),/unreviewed catalog module destination/);
+ assert.throws(cleanup,/complete retirement catalog identity/);
+ // Preparation authenticates leaf closures before catalog bytes; a prepared cleanup checks catalog first.
+ assert.throws(()=>retireHistoricalCatalog(root),/unreviewed potion callback module destination/);
  assert(existsSync(join(root,leaf))&&existsSync(join(root,catalog)));
+ write(root,leaf,read(leaf));assert.throws(()=>retireHistoricalCatalog(root),/complete retirement catalog identity/);
+ assert(existsSync(join(root,leaf))&&existsSync(join(root,catalog)));
+});
+
+
+test('the frozen catalog retirement retains its original identity errors before and after preparation',t=>{
+ const catalog='src/lua/abyss_combat_catalog.lua',source=potionCallbackBefore.files.abyss_combat_catalog.source;
+ assert.equal(hash(source),round3CatalogProof.files[catalog].afterSha256);
+ const root=isolated(t),target=write(root,catalog,source),cleanup=frozenCatalogRetirement(root);
+ write(root,catalog,source+'\n');
+ assert.throws(cleanup,/unreviewed catalog module destination/);
+ assert.throws(()=>frozenCatalogRetirement(root),/unreviewed catalog module destination/);
+ assert(existsSync(target));write(root,catalog,source);frozenCatalogRetirement(root)();assert(!existsSync(target));
+});
+
+test('the current potion facade freshly rejects every expanded raw owner after warm nested reads',()=>{
+ const current=Object.fromEntries(sourceEpoch.proof.owners.map(p=>[p,read(p)]));
+ for(const path of originals){
+  let bad=null,mode='good',seen=[];
+  const raw=p=>{seen.push(p);if(p===bad){
+   if(mode==='throw')throw Error('expanded reader sentinel');
+   if(mode==='missing')return undefined;if(mode==='null')return null;
+   if(mode==='old')return proof.files[p].beforeSource;
+   if(mode==='buffer')return Buffer.from(current[p]);if(mode==='changed')return current[p]+'\n';
+  }return current[p]??read(p);};
+  const wrapped=potionCallbackReader(potionCallbackReader(raw));assert.equal(potionCallbackReader(wrapped),wrapped);
+  const check=()=>assert.equal(project(path,read(path),{readSource:wrapped}),proof.files[path].beforeSource);
+  check();const first=[...seen];for(const owner of sourceEpoch.proof.owners)assert(first.includes(owner),'fresh current owner: '+owner);
+  seen=[];check();assert.deepEqual(seen,first,'warm calls repeat the complete raw-read sequence');
+  for(bad of sourceEpoch.proof.owners)for(mode of ['changed','missing','null','buffer','throw',...(Object.hasOwn(proof.files,bad)?['old']:[])]){
+   seen=[];assert.throws(check,error=>{assert.match(error.message,/linked owner/);assert(error.message.includes(bad));if(mode==='throw')assert.match(error.message,/expanded reader sentinel/);return true;});
+   assert(seen.includes(bad));const previous=mode;mode='good';check();mode=previous;
+  }
+ }
+ for(const readSource of [null,{},'invalid'])for(const path of originals)assert.throws(()=>project(path,read(path),{readSource}),/linked (?:owner )?reader/);
 });

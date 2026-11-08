@@ -20,6 +20,7 @@ import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { gunzipSync } from 'node:zlib';
 import { originalLuaRunner } from './helpers/ci-lua-runner-inverse.mjs';
 import {readBeforeMobileQaSource} from './helpers/mobile-qa-source-inverse.mjs';
 import { partition, jsShard, jsPlanningWeights, discoverJs, timings } from '../scripts/ci-shards.mjs';
@@ -315,7 +316,38 @@ test('complete local Game UI run raises only its planning floor and preserves ev
  assert.equal(Number(log.match(/ℹ duration_ms ([\d.]+)/)[1]),receipt.nodeReportedDurationMs);
  assert.equal(receipt.nodeReportedDurationMs,77214.241194);assert.equal(floor.nodeReportedDurationMs,receipt.nodeReportedDurationMs);
  assert.equal(floor.durationMs,Math.ceil(receipt.nodeReportedDurationMs));assert.equal(receipt.planningFloorMs,floor.durationMs);
- assert.equal(receipt.sourceIdentity.files[key],hash(readFileSync(key)));
+ // This receipt measured an uncommitted candidate based on #560, not today's
+ // test. Commit 3205985a later retained all 346 recorded input hashes exactly.
+ // Keep its complete measured test as data; the current Game UI suite still
+ // executes independently, including the combined-retirement regression.
+ const archive=readFileSync('tests/fixtures/game-ui-planning-historical-source.json.gz');
+ assert.equal(hash(archive),'be2f351b3cf80f6c10928308863b7f4f3bf0d3a729cb892923651995de75bcd5');
+ const historical=JSON.parse(gunzipSync(archive));
+ const identity={schemaVersion:1,sourceCommit:'3205985a38e0eb88ab6f894e74fe68c3e3789131',sourceTree:'4f11016d4badfa25024645c0a65e49b2a11aa94d',baseCommit:'a0c35db8d3c7242437f4dff0df373749b0d84985',file:key,sourceSha256:'bf6e9f1bb709548f1185f13120512a8c7e8411cfef92bd290982fe1724ef17f0',gitBlob:'05b38520531db07556dde3f1fd3a1ab1deb8b595'};
+ const gitBlob=bytes=>createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
+ function assertHistoricalSource(binding,observation=receipt){
+  const {source,...metadata}=binding;assert.deepEqual(metadata,identity,'exact measured candidate, distinct from its #560 base');
+  assert.equal(typeof source,'string');const bytes=Buffer.from(source);
+  assert.equal(hash(bytes),identity.sourceSha256,'complete original measured test bytes');
+  assert.equal(gitBlob(bytes),identity.gitBlob,'original measured test Git blob');
+  assert.equal(observation.file,key);assert.equal(observation.sourceIdentity.baseHead,identity.baseCommit);
+  assert.equal(observation.sourceIdentity.files[key],hash(bytes),'receipt authenticates the historical source, never a newer test');
+ }
+ assertHistoricalSource(historical);
+ const caseNames=[...historical.source.matchAll(/^test\('([^']+)'/gm)].map(match=>match[1]);
+ assert.equal(caseNames.length,receipt.tests);
+ for(const name of caseNames)assert.ok(log.includes('✔ '+name+' ('),'each measured historical case remains in the original log');
+ for(const source of [readFileSync(key,'utf8'),historical.source+'\n',historical.source.replace('originalReads,paths.length*paths.length*2','originalReads,0')]){
+  assert.notEqual(source,historical.source);
+  assert.throws(()=>assertHistoricalSource({...historical,source}),/original measured test bytes/);
+  const bytes=Buffer.from(source);
+  assert.throws(()=>assertHistoricalSource({...historical,source,sourceSha256:hash(bytes),gitBlob:gitBlob(bytes)}),/exact measured candidate/);
+ }
+ for(const field of ['sourceCommit','sourceTree','baseCommit','file','sourceSha256','gitBlob'])
+  assert.throws(()=>assertHistoricalSource({...historical,[field]:field==='sourceCommit'?identity.baseCommit:'wrong source'}),/exact measured candidate/);
+ for(const mutate of [r=>r.file='tests/other.test.mjs',r=>r.sourceIdentity.baseHead=identity.sourceCommit,r=>r.sourceIdentity.files[key]=hash(readFileSync(key))]){
+  const wrong=structuredClone(receipt);mutate(wrong);assert.throws(()=>assertHistoricalSource(historical,wrong));
+ }
  const path='scripts/ci-test-timings.json',source=prePartialCasePlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),prior=preGameUiLocalPlanningSource(path,source);
  assert.notEqual(source,prior);const old=JSON.parse(prior),expected=structuredClone(old);
  assert.equal(Object.keys(old.jsPlanning.localLowerBounds).length,19);assert.equal(old.jsPlanning.localLowerBounds[key],undefined);
