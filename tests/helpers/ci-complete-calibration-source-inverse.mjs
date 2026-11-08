@@ -52,6 +52,7 @@ export function preCiCompleteCalibrationSource(path,source){
 // Only the complete merged source may enter either immutable original epoch.
 // Removing extra floors is never a generic drift-masking fallback.
 export function originalPlanningSource(path,source,epoch='develop'){
+ source=preSilentTacticsPlanningSource(path,source);
  source=preGameUiLocalPlanningSource(path,prePartialCasePlanningSource(path,source));
  if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='aca81cae4ade8e6ddb1590bc6afae965f0a55dd0ff3052aec2d3a555e5c8f7a8')return source;
  const value=JSON.parse(source);
@@ -86,5 +87,18 @@ export function prePartialCasePlanningSource(path,source){
  }
  const prior=JSON.stringify(value,null,2)+'\n';
  assert.equal(hash(prior),'b12d89163c76dabdf09e7af728fab0aceada1b0409e8b15898baad59749d61e1','all twenty prior floors and every observation remain byte-identical');
+ return prior;
+}
+
+// Exact complete outer planning epoch, preserving every prior floor and observation.
+export const silentTacticsPlanningKey="tests/silent-tactics-planning.test.mjs";
+export const silentTacticsPlanningFloor=Object.freeze({"durationMs":21636,"environment":"cloud Linux local","coverage":"12/12 complete file passed; 0 failed, cancelled or skipped. Includes independent old/new VMs and original Combat fixture.","kind":"Local complete-run planning floor only; not hosted measurement, execution permission or timeout change.","nodeReportedDurationMs":21635.944135,"sourceLog":"docs/evidence/m7-silent-tactics-20261109/behavior-final.log.gz","sourceLogSha256":"65196bba152dd0ab7c83ecc4ab69d785fe9560ac1069dc37b8ff61205b00b764","sourceLogUncompressedSha256":"71565f0ad153f1f33987f070501d9c0bfeda014515f35b59de0097bb8192ac7c","sourceReceipt":"docs/evidence/m7-silent-tactics-20261109/behavior-receipt.json","sourceReceiptSha256":"8420d4211ac076a603623b538766af49209910733de05a7f8105918e7bcf9bd9"});
+export function preSilentTacticsPlanningSource(path,source){
+ if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='9c088a8c3a6d4c553e58e85ef10f89f049e0f39dad14c494885568bd9352f310')return source;
+ const value=JSON.parse(source);
+ assert.deepEqual(value.jsPlanning.localLowerBounds[silentTacticsPlanningKey],silentTacticsPlanningFloor);
+ delete value.jsPlanning.localLowerBounds[silentTacticsPlanningKey];
+ const prior=JSON.stringify(value,null,2)+'\n';
+ assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56','all prior floors, observations and execution safety inputs remain byte-identical');
  return prior;
 }

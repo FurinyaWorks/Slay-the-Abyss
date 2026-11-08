@@ -1,3 +1,4 @@
+import {extendSilentTacticsEpoch} from '../silent-tactics-source-epoch.mjs';
 import {extendSevenRefactorEpoch} from '../seven-refactor-source-epoch.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -16,4 +17,5 @@ const proof={schemaVersion:1,normalization:packed.normalization,currentCommit:pa
 // Unchanged linked owners retain their original epoch's fresh validation;
 // the complete production tree is independently authenticated by the live test.
 proof.owners=packed.owners.filter(path=>Object.values(proof.targets).some(target=>target.files[path]?.sha256!==proof.current[path]?.sha256));
-export const sourceEpoch=extendSevenRefactorEpoch(createSourceEpochProjector(proof));
+export const preSilentTacticsEpoch=extendSevenRefactorEpoch(createSourceEpochProjector(proof));
+export const sourceEpoch=extendSilentTacticsEpoch(preSilentTacticsEpoch);

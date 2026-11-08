@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T02:19:00Z'
+updated_date: '2026-11-08T17:31:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -21,6 +21,7 @@ documentation:
   - docs/backlog-details/M7-DEFECT-UTILITY-PLANNING-20261108.md
   - docs/backlog-details/M7-DEFECT-REFACTOR-INTEGRATION-20261108.md
   - docs/backlog-details/M7-SEVEN-CURRENT-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-SILENT-TACTICS-PLANNING-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -71,6 +72,8 @@ ordinal: 162000
 本轮在隔离本地树保全整合已独审的六项合流12950b1c与Defect utility 27b2ccc9；不改生产输入字节，逐项合并共享来源/成本合同，重新采集组合SCC/CC、定向行为与真实库存预算，独审后本地提交。全部旧计划/证据保留，不重复Full、不上传或操作用户电脑，不改owner/status/AC。
 
 2026-11-08 接续七项已有本地重构：基于已合#560的a0c35db8进行真实增量适配，保全两侧来源、合同与原始证据。只做定向测试及独立深审，不重复Full；从当前基线形成单父线性提交，明确批准后可按Ruleset正常上传及提PR，仍不得绕过质量门禁。
+
+2026-11-09 接续主控明确授权的 Silent tactics 动作计划职责：仅在当前 develop 7821a7f4 上拆分 planEffect 的目标状态、手牌/弃牌、重复攻击及 X 能量规划，原公开接口、动态读序、错误、队列与 RNG 不变；冻结完整旧源并用独立双 VM/全图及原 Combat 夹具验证。与 #564/#565/#566/#567 生产范围无交集；保留 Furinya、In Progress 与未验 AC，独审后先持久保存实验分支，待前置真实合入再按最新基线完成来源合同集成及正常 Full。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -121,4 +124,6 @@ Shivs.startTurn本地职责片：CC33→6，5个新helper最大13，全模块20�
 最终补记：来源定向106个不同用例已有最新通过证据，初次79中3个测试适配问题已定点纠正；独审通过代码/来源安全边界复核，精确提交身份另存。按真实证据补3项成本floor，原19项不变；17/14完整库存含60秒预留最大1771239/1179021ms，原目标余28761/20979ms。后两项仅成功测试用例成本下界，非全文件实测；原失败/中止均保存，不伪称Full。
 
 发布前develop前移至#561b7ed1830，无src/data/scripts/config变动。本轮在新隔离树保全其全部档案及更强历史来源/退休安全合同，仅解决7个非生产文本冲突；45变动owner鲜读与旧epoch linked owner检查并存。最终单父基于b7，原a0度量和320独审按原身份保留；仅定向helper/负控复验，不重复完整行为/工程采集，不改owner/status/AC。
+
+2026-11-09 Silent tactics单一职责片已实做：planEffect CC34→15，四helper最大11，全模块CC15。独立旧新VM各585场景/1170完整图、16语义负控及原Combat各60例通过；来源outer46 owner鲜读、完整5559测量，CC>30 40→39，SCC68/11/2不变。源码已远端保全07400300（与本地8e1同树）；完整验证/失败/独审见新增附件。仅新增真实21636ms floor，未重复Full；#564已负责的GameUI历史收据问题不复制修复，待前置实际合入后整合#567及本片并按正常门禁验收。owner/status/AC保持。
 <!-- SECTION:NOTES:END -->

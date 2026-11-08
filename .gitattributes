@@ -357,3 +357,11 @@ docs/evidence/mobile-readability-20261101/** -text
 docs/evidence/raiden-v4-verification-20261103/*.json text eol=lf
 tests/raiden-v4-verification.test.mjs text eol=lf
 tests/lua/support/raiden_v4_*.lua text eol=lf
+
+# Silent tactics source epoch helpers are authenticated by exact bytes.
+tests/helpers/silent-tactics-source-epoch.mjs text eol=lf
+tests/helpers/silent-tactics-source-epoch.json.gz -text
+docs/evidence/m7-silent-tactics-20261109/*.json text eol=lf
+docs/evidence/m7-silent-tactics-20261109/*.mjs text eol=lf
+docs/evidence/m7-silent-tactics-20261109/*.log text eol=lf
+docs/evidence/m7-silent-tactics-20261109/*.gz -text

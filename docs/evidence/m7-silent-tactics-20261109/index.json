@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "m7-silent-tactics-local-slice",
+  "sourceSlice": "07400300eb467ff249ec122e6f28b1d79fae0276",
+  "sameLocalSourceTree": "52e0308177a20773770ab442bd9b330d9575ebe1",
+  "baseCommit": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "productionFilesChanged": [
+    "src/lua/abyss_silent_tactics_cards.lua"
+  ],
+  "independentReview": "review.json",
+  "metrics": "metrics.json",
+  "behavior": "behavior-receipt.json",
+  "planning": "planning.json",
+  "fullRun": false,
+  "merged": false,
+  "pendingPrerequisites": [
+    564,
+    567
+  ],
+  "latestChecks": {
+    "behavior": "12/12",
+    "sourceEpoch": "6/6",
+    "priorSourceAndComposition": "42/42",
+    "completeCiCalibration": "19/19",
+    "runtimeAndSourceCombined": "37/38; existing GameUI historical-source mismatch remains for #564",
+    "architecture": "pass",
+    "luaStatic": "pass; 14 unchanged warnings",
+    "guidance": "pass after restoring original sparse checkout file",
+    "backlogVerifier": "pass",
+    "backlogDoctor": "existing 5 duplicate-ID groups; not claimed pass"
+  },
+  "files": {
+    "architecture.log": "4aa70c7bb1907e6ffdd0c47ce897b54654be5c9d77cf9254257c25c94f9462fe",
+    "backlog-doctor.log.gz": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+    "backlog-final-check.log.gz": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "backlog-final.log.gz": "c276d5bff2ee16a2e108e899c956f18011ebf4a22a399e4cc7a60523fd02deec",
+    "backlog.log.gz": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "baseline-engineering.json.gz": "35d2f26e473f73e3e1021cdbcd541b338c9dfd3c0347eaea396dd2ecd0a9cd7d",
+    "baseline-quality.log": "42d23f1d34c9cb1bac23cc03c825e592dcc1f669305602ebfeccf0782103ceb7",
+    "behavior-final.log.gz": "65196bba152dd0ab7c83ecc4ab69d785fe9560ac1069dc37b8ff61205b00b764",
+    "behavior-first.log.gz": "0234d8d20fad3d98628d10b81a84783612ffa45e81b0295a297358338968bc27",
+    "behavior-receipt.json": "8420d4211ac076a603623b538766af49209910733de05a7f8105918e7bcf9bd9",
+    "ci-final.log.gz": "bf45971e1a3ee12f2ab7bc69f5d35be6dcd904e3a0b6ae8543f4e596378413ac",
+    "ci-first.log.gz": "af8a59d1cf0edf74bdbc13d0e24912ac3434ca3d75e2a131938bc808951c9ec5",
+    "ci-runtime.log.gz": "1954dca14716e1fa0f5af751413de74264091a8d6d119f976dd4d1dc75bdf600",
+    "contracts-final.log.gz": "91436080941454c08e7bb14b243a8030a4bcffc9a3f8baeb210755ec0e0defc6",
+    "current-engineering.json.gz": "2bd35fe174a1823d0eeb0ac6a48836abf0105b1bf50edf99e7a579c36adf582c",
+    "current-quality.log": "4c721aeb6ae8be444dc75da1ca7f0ef796bbad384230ecd2be21d2a4d26af5a5",
+    "forecast.mjs": "40fa147f9c1c0f1f632d669b4bc83fbeef74293c3a0f649ae2566ec339371674",
+    "guidance-final.log.gz": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "guidance.log.gz": "64e0b3082f5223f4b73931564231198287926be4861a3da6a555520447d2f111",
+    "lua-static.log": "66e893bd18330d658c54da7d5e6293040bd8f8a28f1f301ab16060fe7b49504c",
+    "metrics.json": "e01868f7ee4afa54e863ded351cc03b4eca6d73b55d8bfad07b53616a35274c9",
+    "planning.json": "58758001be7b4e78303344b737424d7bfae2481ebc7f2f76e2208ee043cc74c5",
+    "review.json": "142af113fcb468dfeaea040d42682d5336784485c7b503019c114e604b3d8c0b",
+    "source-final.log.gz": "291d32e5c886784880e81458fcb3e7092d384cfa52b8169de5a0697f8acfa762",
+    "source-first.log.gz": "e1e32c44ed23573ead382a720a3d33d6adababcbc76913d8ea8c8a8cc1b0a4bd",
+    "source-last.log.gz": "0d864175c867e6d448aea5f16fc7d6a767d26cdce8368291a0749bcfe493f4ba"
+  }
+}

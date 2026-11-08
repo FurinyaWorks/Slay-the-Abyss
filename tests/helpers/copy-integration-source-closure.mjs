@@ -7,10 +7,12 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 const bytes=readFileSync(new URL('./integration-source-closure.json',import.meta.url));
 assert.equal(hash(bytes),'800fcc9efd889f482259d0e1e9f1501f0e9597ac05552622ede00dd3dcdb4a94','complete integration helper closure identity');
 const files={...JSON.parse(bytes),...{
+  "tests/helpers/silent-tactics-source-epoch.json.gz": "046c798aed3ded45bf29ad696c777551102f74066a262174af3d9990bdabb1c7",
+  "tests/helpers/silent-tactics-source-epoch.mjs": "072238af7862d9b43629fcd502a1bab26a1c3940b2786b59356ab3235e6167f6",
   "tests/helpers/act1-choice-source-inverse.mjs": "2dc7aabc696dfdd3b68eff19c116a9cecc500fe6d9bf9262deed79408f050fe4",
   "tests/helpers/actor-presence-source-inverse.mjs": "89cf1c39ba61fc8c4ef7c9e16d53c6e2c912239168dcc58413630e473cf50b05",
   "tests/helpers/colorless-catalog-source-inverse.mjs": "5e0118aa4c50135104f902a462911669e679d6dd42bc445efba18f0875374027",
-  "tests/helpers/combined-epoch/source-epoch.mjs": "8d6129e036bfe6299574ff3abfd31b6d46ae4e06ff1b8e4c7aa55224d313e9cf",
+  "tests/helpers/combined-epoch/source-epoch.mjs": "1f3b82c7ef808260ca67d2c84254f0e6000567c4a5656004429ab33f426ac28a",
   "tests/helpers/core-lifecycle-source-inverse.mjs": "49aca7a83025c0bbbe889bf6c7a53eb9d8abb4077414c699621599520bf0da17",
   "tests/helpers/defect-plan-source-inverse.mjs": "eaa96b668c7fd8fa188f08c84fb7a002623624be9d68f992e6c8e11044279f0b",
   "tests/helpers/end-turn-responsibilities-source-inverse.mjs": "236f3fd2c31bb4675b4b98a428f0545f4a6a522c4d207dd67cb22b2d0ebb52ed",

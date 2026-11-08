@@ -5247,6 +5247,18 @@
         "sourceLogSha256": "2c6376cb852312812e6813dc88e02c196955da52282624036cdc61780dbeaed6",
         "sourceReceipt": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-planning.json",
         "sourceReceiptSha256": "99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58"
+      },
+      "tests/silent-tactics-planning.test.mjs": {
+        "durationMs": 21636,
+        "environment": "cloud Linux local",
+        "coverage": "12/12 complete file passed; 0 failed, cancelled or skipped. Includes independent old/new VMs and original Combat fixture.",
+        "kind": "Local complete-run planning floor only; not hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 21635.944135,
+        "sourceLog": "docs/evidence/m7-silent-tactics-20261109/behavior-final.log.gz",
+        "sourceLogSha256": "65196bba152dd0ab7c83ecc4ab69d785fe9560ac1069dc37b8ff61205b00b764",
+        "sourceLogUncompressedSha256": "71565f0ad153f1f33987f070501d9c0bfeda014515f35b59de0097bb8192ac7c",
+        "sourceReceipt": "docs/evidence/m7-silent-tactics-20261109/behavior-receipt.json",
+        "sourceReceiptSha256": "8420d4211ac076a603623b538766af49209910733de05a7f8105918e7bcf9bd9"
       }
     }
   },

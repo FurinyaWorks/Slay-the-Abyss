@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-source-and-targeted-review",
+  "conclusion": "pass",
+  "unresolved": [],
+  "notMergeAdmission": true,
+  "baseCommit": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "localSourceSlice": "8e1d7d95f6bfb91ddfe308849998fb0e93f30496",
+  "publishedSourceSlice": "07400300eb467ff249ec122e6f28b1d79fae0276",
+  "sourceSliceTree": "52e0308177a20773770ab442bd9b330d9575ebe1",
+  "filesSha256": {
+    "src/lua/abyss_silent_tactics_cards.lua": "dc60eda7b81c0bb7386a3c30653a13e982c307646451807ade10c69e4e19b641",
+    "scripts/check-lua-static.mjs": "61b3588acbea2e47e2812903acfbbe149eac1858fbb6a0ed86d38fe96074df8d",
+    "scripts/ci-test-timings.json": "9c088a8c3a6d4c553e58e85ef10f89f049e0f39dad14c494885568bd9352f310",
+    "tests/silent-tactics-planning.test.mjs": "1d00498ba1c76c38e88b2d854122a0e0272edecb5310333b8cf39dfd7c0e53f5",
+    "tests/lua/silent_tactics_planning.lua": "2f18ff3867c0ae3b507a2eb6aad4be514b8a033decac0c1c7dfa9f65a33fbf72",
+    "tests/fixtures/silent-tactics-planning-before.lua": "8ea7cc9fcd64559b999431997613ae02f394de2eaa6cd04947e2695ff3d48d76",
+    "tests/silent-tactics-source-epoch.test.mjs": "e0c0b4cc30c2f12f247b871e006bbf6b0deb7726b464c4a5f893735622d04ea0",
+    "tests/helpers/silent-tactics-source-epoch.mjs": "072238af7862d9b43629fcd502a1bab26a1c3940b2786b59356ab3235e6167f6",
+    "tests/helpers/silent-tactics-source-epoch.json.gz": "046c798aed3ded45bf29ad696c777551102f74066a262174af3d9990bdabb1c7",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "1f3b82c7ef808260ca67d2c84254f0e6000567c4a5656004429ab33f426ac28a",
+    "tests/helpers/copy-integration-source-closure.mjs": "312af56337cbe1ebb793e4a3bbb4a469fc2a83a06e83d0ea81a9e37ceeaf1ee0",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "b7d9616ede0f1ac0749e0fbe2f6a9dafcb4479c9a7719ad885916f19ff4246fd",
+    "tests/ci-complete-calibration.test.mjs": "73dcfb86b1b8334be85d3bd292c188d8ab61c0df9eff007d42c8b0902de28422",
+    "tests/ci-runtime.test.mjs": "37c58f63033f14a8e6c84da19eb4c9b641cf40ce81de4e810bc23890ea75df78",
+    ".gitattributes": "1ec8c4b614ccf799ca3113a7be01516342148c9e5b5f48b5db9b239a4b95627b"
+  },
+  "reviews": [
+    {
+      "reviewId": "silent-plan-independent-review-20261108-01",
+      "conclusion": "pass",
+      "scope": "Production branch bodies and four original deliverable files. Independent AST equivalence of 12 branch bodies covering 13 operations. Frozen Git blob equality, old/new 585-scene graph comparison.",
+      "checks": "2 targeted cases passed; no Full."
+    },
+    {
+      "reviewId": "silent-plan-integration-review-20261108-02",
+      "conclusion": "pass",
+      "scope": "Complete-module CC15, exact source outer epoch, every 46 fresh raw owners, predecessor metadata, composed readers and authenticated isolated helper closure.",
+      "checks": "5 epoch cases passed; no repeated behavior/Full."
+    },
+    {
+      "reviewId": "silent-plan-ci-review-20261109-03",
+      "conclusion": "changes_requested",
+      "issue": "New raw-hashed evidence JSON/MJS needed LF attributes under Windows autocrlf.",
+      "checks": "4 CI cases passed; fresh forecast exactly matched planning.json; log and receipt hashes confirmed."
+    },
+    {
+      "reviewId": "silent-plan-final-incremental-review-20261109-04",
+      "conclusion": "pass",
+      "resolves": "silent-plan-ci-review-20261109-03",
+      "scope": "LF/-text attributes, remote source identity binding, current CI floor registration and two explicit historical projections, real Luacheck rejection of original monolith and four over-limit helpers.",
+      "checks": "6 source/gate cases and 2 related runtime cases passed."
+    }
+  ],
+  "limits": [
+    "No Full, Windows runtime, native queue or post-merge verification.",
+    "Existing develop GameUI receipt mismatch is fixed by pending #564, not changed or waived here.",
+    "No combined review with pending #567.",
+    "Remote source commit/tree identity verified by publishing coordinator; independent reviewer verified exact bound source bytes and local source-slice Git identity."
+  ]
+}
