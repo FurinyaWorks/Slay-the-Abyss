@@ -49,6 +49,7 @@ import {analyzeSources} from '../scripts/check-architecture.mjs';
 import {dependencyCycles} from '../scripts/lua-quality-metrics.mjs';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
+import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
 const roots=['M.planEffect','change',...['growClaws','loseSteamBlock','reduceStreamlineCost','aggregateEnergy','autoShields','blizzardDamage','chaosOrbs','chillOrbs','randomEngineAttack','engineRandomRounds','sunderDamage','engineSunderRefund','tempestOrbs','engineChannelRounds','engineEvokeRounds'].map(n=>'planHandlers.'+n)];
 test('every pure planner and nested callback retains the same CC15 hard limit',()=>{
  for(const name of roots){
@@ -80,9 +81,15 @@ test('Defect source proof authenticates fresh owners, original Git identity and 
  assert.equal(preDefectPlanSource('foreign/'+file,current,{readSource:raw}),current);assert.equal(reads,0);
  const dir=mkdtempSync(join(tmpdir(),'defect-plan-crlf-'));
  try{
-  for(const name of ['defect-plan-source-inverse.mjs','defect-plan-before.lua'])writeFileSync(join(dir,name),read('tests/helpers/'+name).replaceAll('\n','\r\n'));
-  const module=await import(pathToFileURL(join(dir,'defect-plan-source-inverse.mjs')).href);assert.equal(module.defectPlanBefore,before);
-  assert.equal(module.preDefectPlanSource(file,current.replaceAll('\n','\r\n')),before);
+  const raw=copyCurrentSourceFixture(dir,{crlf:true});
+  const module=await import(pathToFileURL(join(dir,'tests/helpers/defect-plan-source-inverse.mjs')).href);assert.equal(module.defectPlanBefore,before);
+  const input=current.replaceAll('\n','\r\n');
+  for(const options of [undefined,{readSource:raw}]){
+   assert.equal(module.preDefectPlanSource(file,input,options),before);
+   writeFileSync(join(dir,file),input+'\r\n');assert.throws(()=>module.preDefectPlanSource(file,input,options),/linked owner identity/);
+   rmSync(join(dir,file));assert.throws(()=>module.preDefectPlanSource(file,input,options),/linked owner missing/);
+   writeFileSync(join(dir,file),input);assert.equal(module.preDefectPlanSource(file,input,options),before);
+  }
  }finally{rmSync(dir,{recursive:true,force:true});}
 });
 test('Defect current owner composes into the unchanged full historical lifecycle source',async()=>{

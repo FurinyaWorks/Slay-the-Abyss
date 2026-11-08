@@ -40,3 +40,16 @@
 Game UI 计时收据另修身份错配：其 346 个输入逐一匹配后来保存的 `3205985a`，记录的是历史 13 项完整测试，不是当前新增保护后的 14 项文件。新增完整历史原文及 commit/tree/blob/SHA 交叉认证，拒绝当前文件或重算摘要冒充旧来源。原 receipt、log、77215ms planning floor、当前测试与执行预算均不改；[来源明细](../evidence/game-ui-planning-source-contract-20261108.md)。
 
 最终限定组合 46/46 通过（3 个 source 文件 33 项，ci-runtime 13 项），无跳过；来源片独立 33/33、收据片独立原 case 及新增身份负控通过。源码、diff、Backlog 与指引检查通过。本节取代“仍 11 项来源失败”的当前状态，不抹掉先前失败，也不代表其余 Quality、Full、Windows 或官方/设备验收通过；没有重跑未改的 Game UI 行为回放、Reward 图回放或本地 Full。
+
+## 剩余 catalog、Defect 与 Power/Shop 来源切片
+
+已在上述最终代码上再次真实复现：catalog/pure-cache 原 17 项有 7 项失败，Defect 与 Power/Shop 两项源码用例都失败。现修复四个测试文件，未改 helper 或生产源：
+
+- Defect CRLF 隔离用例复制经过认证的完整 helper 依赖与当前源码；默认模块相对 reader 和显式临时 reader 都实测文件漂移、删除、恢复，不从 live 树借源码。
+- Power/Shop 保留原五 owner 的冻结 after SHA 与完整 before 证明、原错误及配置合同；另外逐一验证当前所有原 host、完整动态 owner 的故障和恢复，以及未知输入、无效 reader 和 linked raw 配置不放宽。
+- 原 98fef catalog/cache 用例绑定原冻结 helper，保留所有历史 hash、次数、缺失、别名、重定向、不误删和错误顺序断言。当前完整 owner 矩阵单独使用已有 GameUI/lifecycle before 证明作为独立预期，不以待测函数生成 oracle。
+- 逐层验证表明认证 develop 的 config/combat 只到既有 GameUI/lifecycle 中间 epoch，与隔离完整 develop 输入运行冻结 helper 一致；这不冒充原 round-three before，也未扩展共享来源链。当前 retirement 独立检查真实别名、准备后重定向、双损坏先后顺序及失败不删除。
+
+新加完整矩阵首次 23/23 通过但耗时 82.9 秒。实测瓶颈是完整嵌套链每次约 2,567–5,600 次 hash，不是重复磁盘读。发布前只调整新矩阵的恢复组合：全部 host×owner×5 故障和 UI 双拒绝保持，每 owner 完整恢复，config 另外逐故障恢复；首次/热调用完整 raw 序列、原 17 项与退休负控全部保留。两个矩阵从 51.6/25.9 秒降至 11.7/5.9 秒，没有缓存授权或改 floor。
+
+最终四文件只选相关来源用例 26/26、0skip（30.545s），原完整历史 17 项均在内；未选取昂贵 Lua 图回放。另 ci-runtime/complete-timing 合同 13/13。此前失败、首次完整通过与优化后的证据均保留。已复现的上述 9 项来源失败全部解决，但仍等待精确新 HEAD 的 Hosted Full，不宣称整个项目 CI、Windows 或设备验收已通过。

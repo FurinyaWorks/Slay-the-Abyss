@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-10-30 11:45
-updated_date: '2026-11-08T03:31:00Z'
+updated_date: '2026-11-08T03:46:00Z'
 labels: []
 dependencies: []
 priority: medium
@@ -77,4 +77,6 @@ PR377最新整合承接PR378事件与PR381必要修复：目录hash与原生怪�
 facade合流发布前发现合法proof下非法JSON token会被误当空白布局，先红后修：仅加语法门槛，继续严格token和raw owner验签；五类非法输入原字节透传且零读取。新回归7/7、隔离加core6/6通过，独审确认该阻断已解决；原失败及补正证据保留，残余11项和Full边界不变。
 
 三来源合同剩余11项已按历史/当前双层修复：冻结6/4owner精确次数、首错和SHA原断言保留；当前全host×完整45owner矩阵及原old/before/invalid reader/配置负控恢复，独立33/33。GameUI原收据346输入精确匹配3205985a，修历史身份错配不改收据/77215ms floor/当前14项测试。最终限定组合46/46，0skip；Full与平台仍待，任务和AC不变。
+
+接续最新树实复现catalog/cache原17项7失败、Defect/PowerShop源用例2失败；四测试历史/当前分层及完整隔离闭包修复后限定26/26、0skip，另CI计划合同13/13。当前catalog明确只达既有GameUI/lifecycle中间epoch，旧98原before断言不变。新矩阵保留所有故障/owner恢复及config逐类恢复，将额外成本降下，不缓存授权、不改helper/floor/预算。原失败与首次82.9秒结果保留；完整CI及平台仍待。
 <!-- SECTION:NOTES:END -->
