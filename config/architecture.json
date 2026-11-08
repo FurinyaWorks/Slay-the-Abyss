@@ -243,6 +243,8 @@
     "abyss_menu_background": "ui",
     "abyss_menu_background_asset": "ui",
     "abyss_ui": "platform",
+    "abyss_ui_profile": "platform",
+    "abyss_native_pages": "ui",
     "abyss_unknown": "core",
     "abyss_viewport": "ui",
     "abyss_copy": "core",

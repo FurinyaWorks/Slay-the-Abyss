@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "status": "OFFLINE_NATIVE_CALL_DIAGNOSIS_ONLY",
+  "sourceCommit": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "runtimeSource": "src/lua/abyss_traveler_portraits.lua",
+  "runtimeSha256": "6b0227c6e03a4e2358cd6508d0203c6a8b91471d5f3af049215490b71a429a64",
+  "lowpolySource": "art/lowpoly-select/select-lowpoly.json",
+  "lowpolySha256": "afa2154db602e3503e0758307d300b4100c77dad5e427470218b1221d970a2a1",
+  "flags": {
+    "cards": false,
+    "menuBackground": true,
+    "selectionAvatar": true,
+    "battlePortrait": true,
+    "monsters": false
+  },
+  "method": "Executed the actual source module in Fengari with the current portrait literal data, selection-budget avatar and lowpoly JSON; counted mock native creation, destruction, visibility and pose calls. No generated build directory was changed.",
+  "assetControls": {
+    "selectionHero": {"images": 2011, "groupsAndPages": 35, "total": 2046},
+    "selectionAvatar": {"images": 457, "groupsAndPages": 9, "total": 466},
+    "scenePerPage": {"images": 362, "groupsAndPages": 8, "total": 370, "instances": 3},
+    "battleHero": {"images": 4315, "groupsAndPages": 74, "total": 4389}
+  },
+  "observations": {
+    "menuAfterPreload": {"created": 3252, "destroyed": 0},
+    "stableMenu300Ticks": {"fallbackVisibilityWrites": 2400},
+    "hotSelection": {"created": 0},
+    "battleAfterLoad": {"created": 8011, "destroyed": 0},
+    "stableBattle300TicksAndPoses": {"fallbackVisibilityWrites": 4200, "poseWrites": 600},
+    "after20MapBattleRoundTrips": {"created": 8011, "destroyed": 0},
+    "release": {"created": 8011, "destroyed": 8011}
+  },
+  "findings": [
+    "The title page starts hidden selection-art preload, including its hidden scene, before finishing every currently visible scene because rows are processed in insertion order.",
+    "Art construction is already bounded to 64 creations per tick. Menu art requires at least 51 such callbacks and the first battle adds 4759 controls, requiring at least 75 callbacks. These are callback lower bounds, not measured elapsed time.",
+    "The successful art cache is bounded in the observed 20 transitions and explicitly releases all 8011 controls; no repeated creation or unbounded leak was observed in this mock path.",
+    "The portrait owner's paint method repeats unchanged fallback visibility on every tick and again on battlePose. Successful setter caching can remove this redundant work without changing the pose animation."
+  ],
+  "repairVerification": {
+    "test": "node tests/portrait-paint-cache.test.mjs",
+    "red": {"tests": 13, "passed": 8, "failed": 5},
+    "green": {"tests": 13, "passed": 13, "failed": 0},
+    "adjacentFirstRun": {"test": "node tests/official-portraits-lifecycle.test.mjs", "tests": 23, "passed": 21, "failed": 2, "reason": "The first cache skipped same-value setters at lifecycle boundaries. Existing reentry regressions caught this; cache identity now includes phase and the native setter."},
+    "adjacentFinalRun": {"test": "node tests/official-portraits-lifecycle.test.mjs", "tests": 23, "passed": 23, "failed": 0},
+    "stableFallbackVisibilityWritesAfterRepair": 0,
+    "boundaries": ["setter false", "setter throw", "external visibility writer", "synchronous release", "engine teardown", "bounded original profile validation"]
+  },
+  "limitations": [
+    "Mock native calls are not official creation/rendering cost, FPS, GPU frames, phone memory or startup latency.",
+    "Counts exclude static layout controls and enemy surfaces. All-off TASK-100 Host measurements alone do not cover these enabled-art paths.",
+    "Official import, current ready logs, official capacity, PC and physical Android performance remain UNVERIFIED.",
+    "The sandbox rejected node --test child creation with spawn EPERM. Direct node execution ran the same node:test files and emitted the TAP results recorded above."
+  ]
+}

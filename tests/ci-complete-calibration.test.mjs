@@ -212,6 +212,10 @@ test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 L
 
 test('current Full35 keeps exact coverage; forecast performance targets are advisory',t=>{
  const js=discoverJs(),lua=currentLua();
+ const nativePages='tests/native-page-lifecycle.test.mjs';
+ assert.ok(js.includes(nativePages),'current Full must include the newly added runtime test');
+ assert.ok(postPlacementJs.includes(nativePages),'new runtime test must be unmeasured post-placement, not historical evidence');
+ assert.ok(!placementJs().includes(nativePages),'historical reconstruction must exclude the later runtime test');
  assert.deepEqual(js.filter(file=>postPlacementJs.includes(file)).sort(),postPlacementJs);
  assert.deepEqual(lua.filter(file=>postPlacementLua.includes(file)),postPlacementLua);
  assert.equal(js.length,placement.inventory.js+postPlacementJs.length);

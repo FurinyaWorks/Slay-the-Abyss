@@ -9,6 +9,7 @@ import { loadContent } from './validate-data.mjs';
 import { luaString, toLua } from './build-lua-data.mjs';
 import { runLua } from './test-lua.mjs';
 import { candidateScriptFiles } from './native-candidate-scripts.mjs';
+import {uiProfileSource} from './ui-profile.mjs';
 
 const categories = ['cards', 'sharedCards', 'generatedCards', 'enemies', 'encounters', 'events', 'relics', 'potions', 'bosses'];
 const ids = rows => rows.map(row => row.id).sort();
@@ -84,6 +85,7 @@ export function inspectLaunchRuntime(root = process.cwd(), data = loadContent(re
     // Inspect the actual packager's source-module discovery without building a
     // candidate. Its generated-file preflight only needs isolated metadata
     // placeholders; none of these values are executed or deployed.
+    writeFileSync(join(directory,'abyss_ui_profile.lua'),uiProfileSource(false));
     for (const name of ['abyss_art_features', 'abyss_monster_actor_binding', 'abyss_monster_art_data', 'abyss_data', 'abyss_original_v4_data', 'abyss_map_layout', 'abyss_narrative', 'abyss_presentation', 'abyss_theme', 'abyss_menu_background_asset', 'abyss_ready_card_binding', 'abyss_ready_card_assets', 'abyss_traveler_portrait_assets'])
       writeFileSync(join(directory, `${name}.lua`), '-- deployment metadata inspection only\n');
     const deployment = candidateScriptFiles(sourceDirectory, directory).map(row => row.name);

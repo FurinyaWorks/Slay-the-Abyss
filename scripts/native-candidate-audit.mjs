@@ -29,7 +29,9 @@ export function normalizeUi(value, context = Array.isArray(value) ? 'controls' :
     const item = value[name];
     if (context === 'control' && (name === 'mask' && value.fill || name === 'position' && JSON.stringify(item) === '[0,0]'
       || name === 'visible' && item === true || name === 'rotation' && item === 0
-      || name === 'scale' && ['[1,1]', '[1,1,1]'].includes(JSON.stringify(item)) || name === 'focusable' && item === false)
+      || name === 'scale' && ['[1,1]', '[1,1,1]'].includes(JSON.stringify(item)) || name === 'focusable' && item === false
+      // The native reader emits child lists only when nonempty.
+      || name === 'children' && Array.isArray(item) && item.length === 0)
       || ['control', 'text'].includes(context) && name === 'opacity' && item === 1
       // Native image/text ink is packed as ARGB, so values rounding to 255
       // have the same omitted opaque default as an explicit opacity of 1.
@@ -45,6 +47,8 @@ export function normalizeUi(value, context = Array.isArray(value) ? 'controls' :
       // The native reader omits text ink only when its ARGB is 0xffffffff.
       // Keep opacity separate, and never apply this default to opaque metadata.
       || context === 'text' && (name === 'autoSize' && item === false || name === 'content' && item === ''
+        // scene-save writes minFontSize ?? 20 and omits exactly 20 on readback.
+        || name === 'minFontSize' && item === 20
         || name === 'colour' && typeof item === 'string' && item.toLowerCase() === '#ffffff')) continue;
     const next = context === 'control' && name === 'children' ? 'controls'
       : context === 'control' && ['text', 'grid'].includes(name) ? name

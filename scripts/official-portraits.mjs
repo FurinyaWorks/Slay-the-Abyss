@@ -3,6 +3,7 @@ import {join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {toLua} from './build-lua-data.mjs';
 import {createRequire} from 'node:module';
+import {isLightweightProfile,lightweightInventory,boundedPortraitSource} from './lightweight-2d-profile.mjs';
 
 export const portraitModule='abyss_traveler_portrait_assets';
 const base='art/characters/traveler-geo/portraits';
@@ -140,6 +141,11 @@ export function lowpolySelectLiterals(root=process.cwd(),{selectionAvatar=false,
 }
 export function writePortraitModule(directory,{root=process.cwd(),imageTemplateIndex=0,containerTemplateIndex=0,selectionAvatar=true,battlePortrait=true,cards=false,menuBackground=false}={}) {
  if(!validIndex(imageTemplateIndex,true)||!validIndex(containerTemplateIndex,true))throw Error('Invalid portrait templateIndex');
+ if(isLightweightProfile(directory)){
+  if(!selectionAvatar||!battlePortrait||!menuBackground||cards)throw Error('Bounded 2D requires fixed experiment art flags');
+  const source=boundedPortraitSource(imageTemplateIndex,containerTemplateIndex);
+  writeFileSync(join(directory,`${portraitModule}.lua`),source);return source;
+ }
  const lowpoly=lowpolySelectLiterals(root,{selectionAvatar,cards,menuBackground});
  if(!selectionAvatar&&!battlePortrait){const source=lowpoly.length?`-- Disabled portraits; low-poly select fan / scene backgrounds only.\nreturn {imagePrefabId=${imageTemplateIndex},containerPrefabId=${containerTemplateIndex},\n${lowpoly.join(',\n')}\n}\n`:'-- Disabled optional drawings.\nreturn {imagePrefabId=0,containerPrefabId=0}\n';writeFileSync(join(directory,`${portraitModule}.lua`),source);return source;}
  const compactPath=join(directory,'art-performance.json');
@@ -181,6 +187,7 @@ export function portraitInventory({selectionAvatar=true,battlePortrait=true,card
  return combineInventory(legacy,lowpoly?lowpolyInventory('return {'+lowpolySelectLiterals(process.cwd(),{selectionAvatar,cards,menuBackground}).join(',')+'}'):[]);
 }
 export function portraitRuntimeInventory(directory) {
+ if(isLightweightProfile(directory))return lightweightInventory();
  if(!existsSync(join(directory,`${portraitModule}.lua`)))return undefined;
  const source=readFileSync(join(directory,`${portraitModule}.lua`),'utf8');
  const flags={selectionAvatar:/\bavatar96=/.test(source),battlePortrait:/\bbattle133=/.test(source)};
