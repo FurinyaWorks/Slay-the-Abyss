@@ -1,3 +1,4 @@
+import {extendRelicEquipEpoch} from '../relic-equip-source-epoch.mjs';
 import {extendWatcherFlowEpoch} from '../watcher-flow-source-epoch.mjs';
 import {extendSilentTacticsEpoch} from '../silent-tactics-source-epoch.mjs';
 import {extendEffectsTargetGroupEpoch} from '../effects-target-group-source-epoch.mjs';
@@ -28,4 +29,7 @@ export const standaloneSilentTacticsEpoch=extendSilentTacticsEpoch(preSilentTact
 export const standaloneEffectsTargetGroupEpoch=extendEffectsTargetGroupEpoch(preEffectsTargetGroupEpoch);
 // All three published production owners are authenticated together on every call.
 // Generic provenance remains Seven's; additional source identities are namespaced.
-export const sourceEpoch=extendEffectsTargetGroupEpoch(extendSilentTacticsEpoch(standaloneWatcherFlowEpoch));
+export const preRelicEquipEpoch=extendEffectsTargetGroupEpoch(extendSilentTacticsEpoch(standaloneWatcherFlowEpoch));
+
+// Equipment extends the frozen published 48-owner stack without replacing it.
+export const sourceEpoch=extendRelicEquipEpoch(preRelicEquipEpoch);

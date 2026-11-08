@@ -5283,6 +5283,18 @@
         "sourceLogUncompressedSha256": "0b64f5530975fb458e44679d7e014f2e69b56d10fdb51363c814c5a9ca5d553f",
         "sourceReceipt": "docs/evidence/m7-effects-target-group-20261109/behavior-receipt.json",
         "sourceReceiptSha256": "ed8a7599f1c1dabc43e291a2a801a004c8cb07aaed60d03bbb0a1dce5a38d0ea"
+      },
+      "tests/relic-equip-responsibilities.test.mjs": {
+        "durationMs": 7908,
+        "environment": "cloud Linux local",
+        "coverage": "15/15 complete file passed; 0 failed, cancelled or skipped. Includes 143 full-graph checkpoints and 10 semantic mutants.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 7907.592055,
+        "sourceLog": "docs/evidence/m7-relic-equip-20261109/behavior.log.gz",
+        "sourceLogSha256": "c30404b16c0fddbb00ae1fd3ece792503b44ff965e3dd2d9cb46b5c1c3459883",
+        "sourceLogUncompressedSha256": "2f47cafcef466482c0a6f87c5d0c3eeba992be690cca90c5e6ac7644a26d82c8",
+        "sourceReceipt": "docs/evidence/m7-relic-equip-20261109/behavior-receipt.json",
+        "sourceReceiptSha256": "3a11b8b354f9f6ec395fa29fb34939b900c216c26dabf08d7e9c09dd17627be9"
       }
     }
   },

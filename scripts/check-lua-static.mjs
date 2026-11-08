@@ -135,6 +135,9 @@ const responsibilityRoots = {
   'src/lua/abyss_relic_queries.lua': [],
   ...Object.fromEntries(['relic_hooks','uncommon_relics','rare_relics','boss_relics','shop_relics']
     .map(name=>[`src/lua/abyss_${name}.lua`,["function 'queryIndex'","function 'queryNewIndex'"]])),
+  'src/lua/abyss_relic_hooks.lua': ['queryIndex','queryNewIndex','M.onEquip',
+    'admitEquipment','initializeEquipCounter','equipPotionCapacity','previewEggRewards',
+    'equipPermanentBenefit'].map(name=>`function '${name}'`),
   'src/lua/abyss_actor_power_rules.lua': [],
   'src/lua/abyss_combat_reactions.lua': ["function 'M.enqueue'", "function 'M.enqueueReaction'"],
   'src/lua/abyss_actor.lua': [

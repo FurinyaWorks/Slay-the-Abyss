@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T19:01:00Z'
+updated_date: '2026-11-08T19:30:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -25,6 +25,7 @@ documentation:
   - docs/backlog-details/M7-SILENT-TACTICS-PLANNING-20261109.md
   - docs/backlog-details/M7-EFFECTS-TARGET-GROUP-20261109.md
   - docs/backlog-details/M7-PUBLISHED-COMBINATION-20261109.md
+  - docs/backlog-details/M7-RELIC-EQUIP-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -85,6 +86,8 @@ ordinal: 162000
 2026-11-09 接续主控明确授权的 Silent tactics 动作计划职责：仅在当前 develop 7821a7f4 上拆分 planEffect 的目标状态、手牌/弃牌、重复攻击及 X 能量规划，原公开接口、动态读序、错误、队列与 RNG 不变；冻结完整旧源并用独立双 VM/全图及原 Combat 夹具验证。与 #564/#565/#566/#567 生产范围无交集；保留 Furinya、In Progress 与未验 AC，独审后先持久保存实验分支，待前置真实合入再按最新基线完成来源合同集成及正常 Full。
 
 第18轮：仅拆分 abyss_effects.targetGroup 的图发现、稠密成员与相邻配对校验；保留读取顺序和错误时机。冻结 develop 7821a7f 原始源码，增加独立 VM 差分、语义负对照及 CC15 可执行守卫；不改任务状态或负责人。
+
+第19轮：继续既有Owner授权任务，鲜查develop 7821a7f4及开放PR无生产重叠后，在已公开组合#570 cbabad34基础上拆分RelicHooks.onEquip的委派准入、计数初始化、永久升级与奖励预览职责。保持动态公开槽、原调用/RNG/部分写入/错误顺序；完整旧新图与负控、全部新helper CC15、共享来源和CI合同集成后独审并及时远端保全，不重复Full或操作用户电脑，不改owner/status/AC。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -145,4 +148,8 @@ Watcher Flow 已在 #564@50584b5 上接入完整外层来源epoch及隔离闭包
 2026-11-09 Effects目标分组验证按图遍历、数组/成员/成对职责拆分，targetGroup CC33→7，六helper最大9；338模块5561测量，CC>30 40→39、>15 216→215，SCC68/11/2不变。独立旧新VM306完整图、11非超时语义负控及真实CC超限负控通过，5/5完整7661ms；旧Shockwave71/71、core7/7、门禁19/19。生产已远端549e92a保全，与本地eba2449同tree。以#564 f256为前置接续其原修复，保留独立基线失败，最终组合证据与审查另附；不重复Full、不提前验收AC。详见本轮附件。
 
 2026-11-09 已实际组合公开#564/#567/#568/#569，三份生产字节及原档保留，先远端保全0df91e5e。338模块5570/5570鲜采：CC>30 40→37、>15 216→213、最大61；SCC68/11/2不变。48-owner组合鲜读与历史45/46合同并存，CI39/39；788JS/1410Lua含预留预测1779486/1187400ms。独立复审无未解决项，原失败日志保留。完整组合证据见M7-PUBLISHED-COMBINATION-20261109；前置管理员准入未解，不重复Full、未ready/入队/合并，owner/status/AC保持。
+
+第19轮已实际拆分RelicHooks.onEquip：CC47→5，五新helper最大13；全338模块5575测量，>30为37→36，>15为213→212，SCC68/11/2及依赖不变。新旧完整图15/15、143检查点、10语义负控及真实CC门禁3/3通过，原八Lua文件通过。生产已远端保全582afa16并核blob，接续#570；共享来源/CI复验与独审收口后保持Draft正常交付，不重复Full。原equipmentUpgrade16/onEnterRoom17残余及失败记录保留，owner/status/AC不变。
+
+Relic装备最终共享来源75/75与CI58个唯一测试通过，791JS/1410Lua原预算预测1781066/1189539ms；原14项装备/奖励/maxHP补测通过。独立深审PASS、无未解决项，1728暖LF/CRLF漂移负控及856行额外轨迹一致；原来源/CI失败均保留。待精确远端HEAD与正常托管准入，仍不勾AC。
 <!-- SECTION:NOTES:END -->
