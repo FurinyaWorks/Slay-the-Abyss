@@ -17,7 +17,7 @@ local function start(config,broken,previous)
  requested={};updates=false;configured=0;cleared=0;views=0;dead=0;released=0;params={};options=nil
  backgrounds={};viewDeaths=0;cardDeaths=0
  local function owner()return {release=function()released=released+1 end,onEngineDestroy=function()dead=dead+1 end}end
- modules={abyss_monster_actor_binding={templateIndex=31,containerTemplateIndex=32,powerTemplateIndex=33,enabled=true},abyss_art_features=config,abyss_data={},abyss_presentation={},abyss_theme={sound={}},
+ modules={abyss_ui_profile={schemaVersion=1,nativePageLifecycle=false},abyss_monster_actor_binding={templateIndex=31,containerTemplateIndex=32,powerTemplateIndex=33,enabled=true},abyss_art_features=config,abyss_data={},abyss_presentation={},abyss_theme={sound={}},
   abyss_viewport={apply=function()return {GetChild=function()error('all-off has no custom hosts')end}end},
   abyss_narrative={build={}},abyss_game_ui={new=function(_,_,p,_,o)presentation=p;options=o;views=views+1;return {
    resize=function()end,update=function()end,disable=function()end,
@@ -75,6 +75,14 @@ for mask=0,31 do
  end
  OnDestroy();assert(not updates and dead==(flags.menuBackground and 1 or 0)+((flags.selectionAvatar or flags.battlePortrait or flags.cards or flags.menuBackground) and 1 or 0))
  assert(viewDeaths==1 and cardDeaths==(flags.cards and 1 or 0),'entry must retire view and enabled card runtime')
+end
+`));
+
+test('missing or malformed mandatory UI profile remains fail-closed instead of an artwork fallback',()=>vm(setup+`
+for _,bad in ipairs({false,{schemaVersion=0,nativePageLifecycle=false},{schemaVersion=1,nativePageLifecycle='true'},
+ {schemaVersion=1,nativePageLifecycle=false,unknown=true}})do
+ local ok=pcall(start,snapshot(),function(m)if bad==false then m.abyss_ui_profile=nil else m.abyss_ui_profile=bad end end)
+ assert(not ok and not updates and views==0,'mandatory profile failure was silently defaulted or bypassed')
 end
 `));
 test('missing and malformed configuration fail closed and default world retires old card runtime',()=>vm(setup+`

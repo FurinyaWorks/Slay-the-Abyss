@@ -23,7 +23,7 @@ const placementPath='docs/evidence/pr521-ci-placement-20261106.json',placementBy
 const floorPath='docs/evidence/pr521-run-max-planning-floor-20261106.json',floorBytes=read(floorPath),floorReceipt=JSON.parse(floorBytes),floorKey='tests/run-max-hp-config-inverse.test.mjs';
 // Added after the frozen #521 placement receipts. Never use these files to
 // reconstruct historical shard assignments or invent historical measurements.
-const postPlacementJs=['tests/intent-visibility-cache.test.mjs','tests/lightweight-2d-profile.test.mjs','tests/lightweight-card-layout.test.mjs','tests/m7-core-final.test.mjs','tests/portrait-paint-cache.test.mjs','tests/pr-quality-evidence.test.mjs','tests/repository-costs.test.mjs','tests/runtime-path-baseline.test.mjs'];
+const postPlacementJs=['tests/intent-visibility-cache.test.mjs','tests/lightweight-2d-profile.test.mjs','tests/lightweight-card-layout.test.mjs','tests/m7-core-final.test.mjs','tests/native-page-lifecycle.test.mjs','tests/portrait-paint-cache.test.mjs','tests/pr-quality-evidence.test.mjs','tests/repository-costs.test.mjs','tests/runtime-path-baseline.test.mjs'];
 const postPlacementLua=['tests/lua/intent_visibility_cache.lua'];
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
 const placementJs=()=>discoverJs().filter(file=>!postPlacementJs.includes(file));
@@ -201,6 +201,10 @@ test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 L
 
 test('current Full35 includes all post-placement files once at explicit unknown costs within unchanged budgets',()=>{
  const js=discoverJs(),lua=currentLua();
+ const nativePages='tests/native-page-lifecycle.test.mjs';
+ assert.ok(js.includes(nativePages),'current Full must include the newly added runtime test');
+ assert.ok(postPlacementJs.includes(nativePages),'new runtime test must be unmeasured post-placement, not historical evidence');
+ assert.ok(!placementJs().includes(nativePages),'historical reconstruction must exclude the later runtime test');
  assert.deepEqual(js.filter(file=>postPlacementJs.includes(file)).sort(),postPlacementJs);
  assert.deepEqual(lua.filter(file=>postPlacementLua.includes(file)),postPlacementLua);
  assert.equal(js.length,placement.inventory.js+postPlacementJs.length);
