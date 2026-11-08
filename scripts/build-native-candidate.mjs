@@ -25,6 +25,7 @@ import {validateUiProfileOptions,uiProfileArgs,uiProfileModule,uiProfileSource,u
 import {validateV25Chrome,v25ChromeArgs,v25ChromeProfile} from './v25-profile.mjs';
 import {prepareV25CardTemplates} from './v25-card-templates.mjs';
 import {v25CardModule,v25PrivateInputs,writeV25CardBinding,assertV25CardPreparation} from './v25-card-binding.mjs';
+import {loadNativeUiEncoder} from './native-ui-encoder.mjs';
 
 export const generatedRuntimeModules = {
   [v25CardModule]:'scripts/build-ui.mjs',
@@ -33,7 +34,7 @@ export const generatedRuntimeModules = {
   [artFeatureModule]:'scripts/build-ui.mjs', [backgroundModule]:'scripts/build-ui.mjs', [portraitModule]:'scripts/build-ui.mjs', abyss_ready_card_binding:'scripts/build-ui.mjs', abyss_ready_card_assets:'scripts/build-ui.mjs',
   abyss_monster_actor_binding:'scripts/build-ui.mjs', abyss_monster_art_data:'scripts/build-ui.mjs', abyss_presentation:'scripts/build-ui.mjs', abyss_map_layout:'scripts/build-ui.mjs', abyss_narrative:'scripts/build-ui.mjs',
 };
-export function sourceInputs(root,{artFeatures,nativeCardArt,readyCardArt,lightweight2d=false,v25CardAssets}={}) {
+export function sourceInputs(root,{artFeatures,nativeCardArt,readyCardArt,lightweight2d=false,v25CardAssets,toolchainIdentity}={}) {
   const flags=resolveArtFeatures({artFeatures,nativeCardArt,readyCardArt});
   const staticOptions=nativeCardArt?.count>0?{registry:nativeCardArt.registry,hosts:Array.from({length:nativeCardArt.count},(_,i)=>`battlePanel/card${i+1}`)}:nativeCardArt;
   const staticInputs=flags.cards&&staticOptions?prepareNativeCardArt(staticOptions,{root}).inputPaths.map(path=>relative(root,path).replaceAll('\\','/')):[];
@@ -57,7 +58,12 @@ export function sourceInputs(root,{artFeatures,nativeCardArt,readyCardArt,lightw
     const registry=prepareMonsterArt(JSON.parse(readFileSync(join(root,'data/presentation/native-monster-art.json'),'utf8')));
     files.push(...monsterSourceInputs,...Object.values(registry.additionalAssets??{}).flatMap(asset=>asset.sourceInputs.map(record=>record.path)));
   }
-  return [...files.sort().map(path=>{const {sha256,bytes}=fileRecord(join(root,path),root);return {path,sha256,bytes};}),...(v25CardAssets?v25PrivateInputs(v25CardAssets,root):[])];
+  const encoderInputs=toolchainIdentity?['source','helper'].map(key=>{
+    const actual=fileRecord(toolchainIdentity[key+'Path']);
+    if(actual.sha256!==toolchainIdentity[key+'Sha256']||actual.bytes!==toolchainIdentity[key+'Bytes'])throw Error('Native UI encoder input changed: '+key);
+    return actual;
+  }):[];
+  return [...files.sort().map(path=>{const {sha256,bytes}=fileRecord(join(root,path),root);return {path,sha256,bytes};}),...encoderInputs,...(v25CardAssets?v25PrivateInputs(v25CardAssets,root):[])];
 }
 export const payloadDigest = inputs => sha256(JSON.stringify(inputs));
 function prepareBuild(root, directory, {releaseCandidate,workKey,nativeCardArt,readyCardArt,artFeatures,lightweight2d,legacyCardFrames,nativePageLifecycle,v25BattleChrome,v25CardAssets}) {
@@ -76,7 +82,7 @@ function checkTree(control) {
 }
 export async function buildNativeCandidate({baseMap,output='build/candidates',root=process.cwd(),client,createClient,
   prepare,writeScripts,generatedModules=generatedRuntimeModules,sourceCommit,mcpVersion='injected-test-client',playtest=false,decodeLog,
-  releaseCandidate=false,workKey='alpha-test',nativeCardArt,readyCardArt,artFeatures,lightweight2d=false,legacyCardFrames=false,nativePageLifecycle=false,v25BattleChrome=false,v25CardAssets}={}) {
+  releaseCandidate=false,workKey='alpha-test',nativeCardArt,readyCardArt,artFeatures,lightweight2d=false,legacyCardFrames=false,nativePageLifecycle=false,v25BattleChrome=false,v25CardAssets,toolchainIdentity}={}) {
   validateV25Chrome({v25BattleChrome,lightweight2d,releaseCandidate,v25CardAssets});
   if(v25BattleChrome&&prepare)throw Error('V25 battle chrome requires the actual UI builder');
   validateUiProfileOptions({nativePageLifecycle,lightweight2d,releaseCandidate,v25BattleChrome});
@@ -108,7 +114,8 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
   const outputRoot=prepareOutputDirectory(root,output);
   const buildId=randomUUID(),workspace=join(outputRoot,buildId); mkdirSync(workspace); inside(root,workspace);
   const generated=join(workspace,'generated'),payload=join(workspace,'payload'); mkdirSync(generated);mkdirSync(payload);
-  const inputOptions={artFeatures:flags,nativeCardArt,readyCardArt,lightweight2d,v25CardAssets};
+  if(toolchainIdentity)toolchainIdentity=structuredClone(toolchainIdentity);
+  const inputOptions={artFeatures:flags,nativeCardArt,readyCardArt,lightweight2d,v25CardAssets,toolchainIdentity};
   const inputs=sourceInputs(root,inputOptions),digest=payloadDigest(inputs);
   assertV25CardPreparation(v25Cards,inputs);
   sourceCommit??=spawnSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).stdout?.trim();
@@ -119,6 +126,7 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
     liveWriteEnabled:false,statuses:{staticCheck:'not_run',officialImport:'not_run',playtest:'not_run'}};
   if(lightweight2d){receipt.experimentalProfile=lightweightProfile;receipt.experimentalUi=legacyCardFrames?'legacy-card-frames':'flat-card-frames';}
   if(v25BattleChrome)receipt.experimentalBattleChrome=v25ChromeProfile;
+  if(toolchainIdentity)receipt.toolchainIdentity=toolchainIdentity;
   let releaseNotes;
   if(releaseCandidate || existsSync(join(root,'package.json'))) {
     if(releaseCandidate && !Object.hasOwn(generatedModules,'abyss_narrative'))throw new Error('Release candidate must package the generated narrative module');
@@ -351,9 +359,11 @@ export async function buildNativeCandidateFromToolchain(options) {
     const {Client}=await import(pathToFileURL(join(sdk,'index.js'))),{StdioClientTransport}=await import(pathToFileURL(join(sdk,'stdio.js')));
     const {inspectDebugLog}=await import(pathToFileURL(join(toolRoot,'src/debug-log.mjs')));
     const {luaSyntaxError}=await import(pathToFileURL(join(toolRoot,'src/client-check.mjs')));
-    const {clientScriptRecord,addClientUi,addClientTemplate}=await import(pathToFileURL(join(toolRoot,'src/scene-save.mjs')));
+    const {native,identity}=await loadNativeUiEncoder(toolRoot);
+    const {clientScriptRecord,addClientUi,addClientTemplate}=native;
     const {container,fields,field,one,replace,wrap}=await import(pathToFileURL(join(toolRoot,'src/scene/wire.mjs')));
     const receipt=await buildNativeCandidate({...options,
+      toolchainIdentity:identity,
       writeScripts:async(mapPath,updates,workspace)=>{
         return writeScriptBatch(mapPath,updates,workspace,{container,fields,field,one,replace,wrap,clientScriptRecord,luaSyntaxError});
       },

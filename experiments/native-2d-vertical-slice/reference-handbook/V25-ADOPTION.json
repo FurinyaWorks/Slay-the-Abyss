@@ -733,6 +733,34 @@
         "change": "真实GIL编码拦截control.opacity文本和image描述对象。改为原生text.opacity并解析deck.id，预检加入两条负控；普通事件runtime SetVisible不重写font alpha。",
         "conclusion": "定向通过，旧e726候选的build fail和已写中间副本保留；新源码完整GIL/最终读回尚未完成"
       }
-    ]
-  }
+    ],
+    "visualEncodingProbe": {
+      "path": "F:/New folder/.artifacts/v25-raster-approx/visual-review.json",
+      "adopted": false,
+      "conclusion": "有限3档背景矩形误差编码出现块化，全部拒绝；标题最小误差仅离线假设，不当原生或性能通过，不判2D失败"
+    }
+  },
+  "toolchainAdaptations": [
+    {
+      "source": {
+        "file": "genshin-miliastra-mcp/src/scene-save.mjs",
+        "sha256": "efed8c468683c7984f626e67bf74b4a35ffc326e0bfe6a2a36ff05591229b34f",
+        "bytes": 340450,
+        "record": "checkClientScripts / listClientScripts.carried / clientProblems / addClientUi"
+      },
+      "projectEntry": [
+        "scripts/native-ui-encoder.mjs",
+        "scripts/native-client-check.mjs",
+        "scripts/build-native-candidate.mjs",
+        "scripts/audit-native-candidate.mjs"
+      ],
+      "use": "原checker、interface/clientTrees/template/mount与全部诊断保留；仅把模块×UI重复遍历换成已用section50脚本投影。原安装文件不改；source与helper各自随机query隔离并校验实际加载字节，hook finally撤销，非单锚点拒绝。",
+      "verification": {
+        "tests": "Node22/24、helper预缓存A→磁盘B及加载漂移/并发隔离负控；构建/审计46项通过",
+        "originalCheckerComparison": ".artifacts/v25-review-checker-56cb5f2a-10fc-4820-a6ab-f994d7ad03ef/result.json：三组完整deepEqual覆盖7类真实错误",
+        "completeUiReadback": ".artifacts/v25-ui-preflight-e20f2e3a-89c9-45e2-bc11-b4569f7a0564/typed-result.json：完整UI同原有typed比较合同一致，GIL未修改；非完整候选audit或实机"
+      },
+      "boundary": "离线编码检查优化，不构成游戏帧时、内存、官方容量或最终Go；helper/mcp源hash同时纳入候选多次输入快照。"
+    }
+  ]
 }

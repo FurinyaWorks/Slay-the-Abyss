@@ -11,6 +11,19 @@ import {uiProfileSource,uiProfileReceipt} from '../scripts/ui-profile.mjs';
 
 const script = new URL('../scripts/build-native-candidate.mjs', import.meta.url);
 
+test('encoder source and checker projection are hashed before and during packaging',async t=>{
+ const {sourceInputs}=await import(script),f=await fixture(t);
+ const sourcePath=join(f.root,'encoder.mjs'),helperPath=join(f.root,'checker.mjs');
+ writeFileSync(sourcePath,'encoder');writeFileSync(helperPath,'checker');
+ const identity={sourcePath,sourceSha256:sha256('encoder'),sourceBytes:7,helperPath,helperSha256:sha256('checker'),helperBytes:7};
+ const inputs=sourceInputs(f.root,{toolchainIdentity:identity});
+ assert.ok(inputs.some(row=>row.path===sourcePath&&row.sha256===identity.sourceSha256));
+ const receipt=await f.run({toolchainIdentity:identity});assert.deepEqual(receipt.toolchainIdentity,identity);
+ writeFileSync(sourcePath,'changed');
+ assert.throws(()=>sourceInputs(f.root,{toolchainIdentity:identity}),/encoder input changed/);
+ await assert.rejects(f.run({toolchainIdentity:identity}),/encoder input changed/);
+});
+
 async function fixture(t, overrides = {}) {
   const mod = await import(script);
   assert.equal(typeof mod.buildNativeCandidate, 'function', 'builder must be importable without CLI side effects');

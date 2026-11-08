@@ -100,6 +100,9 @@ export function controlTreeStats(controls) {
   visit(controls); return { count, maxChildren };
 }
 
+export function nativeControlsEqual(source,actual){
+  return equivalent(normalizeUi(source,'controls',true),normalizeUi(actual),'controls');
+}
 export function compareNativeCandidate({ actual, expected, sourceSha, candidateBefore, candidateAfter, bgm = false }) {
   requireSourceSha(sourceSha);
   const issues = [], add = (code, detail) => issues.push({ code, detail });
@@ -116,7 +119,7 @@ export function compareNativeCandidate({ actual, expected, sourceSha, candidateB
   if (new Set(modules.map(module => module.name)).size !== modules.length) add('MODULE_DUPLICATE', 'Script names must be unique');
   const sourceControls = expected.ui.controls, controls = actual.ui.interface.controls;
   const sourceStats = controlTreeStats(sourceControls), stats = controlTreeStats(controls);
-  if (!equivalent(normalizeUi(sourceControls, 'controls', true), normalizeUi(controls), 'controls')) add('UI_MISMATCH', 'Controls differ from same-source generated UI');
+  if (!nativeControlsEqual(sourceControls,controls)) add('UI_MISMATCH', 'Controls differ from same-source generated UI');
   if (!equivalent(normalizeUi(expected.template, 'control', true), normalizeUi(actual.template.template), 'control')) add('TEMPLATE_MISMATCH', 'Deck template differs from same-source generated template');
   if (expected.background) {
     if (!Number.isSafeInteger(expected.background.templateIndex) || expected.background.templateIndex<=0

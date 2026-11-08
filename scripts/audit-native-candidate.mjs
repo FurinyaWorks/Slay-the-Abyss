@@ -4,6 +4,8 @@ import {portraitRuntimeInputs,portraitModule} from './official-portraits.mjs';
 import {lightweightInputs} from './lightweight-2d-profile.mjs';
 import {uiProfileFromReceipt} from './ui-profile.mjs';
 import {prepareAuditV25CardInputs} from './v25-card-audit-inputs.mjs';
+import {loadNativeUiEncoder} from './native-ui-encoder.mjs';
+import {embeddedScripts} from './native-script-inventory.mjs';
 import {readyArtImageTemplate,readyArtGroupTemplate} from './art/ready-card-runtime.mjs';
 import {backgroundInputs, backgroundModule, backgroundTemplate} from './official-background.mjs';
 // Local offline tools only. Never calls a save mutation, import or playtest API.
@@ -103,10 +105,15 @@ export async function auditNativeCandidate(options) {
     try {
       for (const uri of ['miliastra://workflow', 'miliastra://platform-rules']) save(`${uri.split('//')[1]}.json`, await client.readResource({ uri }));
     } finally { await client.close(); }
-    const { listClientScripts, getClientUi, checkClientScripts } = await load('src/scene-save.mjs');
+    const {native,identity}=await loadNativeUiEncoder(toolRoot);
+    if(buildReceipt?.toolchainIdentity)for(const key of ['adapter','sourceSha256','sourceBytes','helperSha256','helperBytes','anchorCount']){
+      if(buildReceipt.toolchainIdentity[key]!==identity[key])throw Error('Native UI encoder identity differs: '+key);
+    }
+    save('native-ui-encoder.json',identity);
+    const { getClientUi, checkClientScripts } = native;
     const { inspectFile } = await load('src/adapter.mjs');
     const { container, fields, one } = await load('src/scene/wire.mjs');
-    const scripts = save('scripts.json', listClientScripts({ mapPath, includeSource: true }));
+    const scripts = save('scripts.json', embeddedScripts({ mapPath, includeSource: true },{container,fields,one}));
     const ui = save('ui.json', getClientUi({ mapPath, ui: 'SlayTheAbyss' }));
     const template = save('template.json', getClientUi({ mapPath, template: 'AbyssDeckCard' }));
     const background = flags.menuBackground

@@ -76,7 +76,7 @@ function styleReturn(button){
  for(const node of children(button))if(node.kind==='image')node.visible=false;
  const label=must(button,'label'),hit=must(button,'hit');
  label.position=[-5,0];label.size=[152,52];
- Object.assign(label.text,{fontSize:27,minFontSize:27,colour:'#F5DFA0',outline:true,outlineColour:'#291B14'});
+ Object.assign(label.text,{fontSize:27,minFontSize:27,colour:'#F5DFA0',outlineColour:'#291B14',outlineOpacity:1});
  if(label.text.content==='返回菜单')label.text.content='返回';
  hit.size=[184,52];
  const chrome=group('v25ReturnFlag',[184,52],[
