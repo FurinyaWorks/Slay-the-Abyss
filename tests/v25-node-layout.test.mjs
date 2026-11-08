@@ -25,6 +25,8 @@ test('V25 node surfaces retain all original objects, paths, live text and legal 
  assert(t.layout.nativeNode.event.options.title[3]>=18*2,'runtime option placement must retain the transparent native text height');
  const contents=new Map(Object.values(before).filter(n=>n.text).map((n,i)=>{n.text.content='live '+i;return[n,n.text.content];}));
  applyV25NodeLayout(layout,t);const after=paths(layout);
+ assert(!('opacity'in find(layout,'eventView').children.find(n=>n.name==='caption')),'native text cannot use image opacity');
+ assert.equal(find(layout,'eventView').children.find(n=>n.name==='caption').text.opacity,0,'caption alpha must survive runtime SetVisible(true)');
  for(const[path,node]of Object.entries(before))assert.equal(after[path],node,path);
  for(const[node,copy]of contents)assert.equal(node.text.content,copy);
  const root=find(layout,'nodePanel');assert.equal(root.children[0].name,'v25NodeBackdrop');

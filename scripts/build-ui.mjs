@@ -36,6 +36,8 @@ import {writeV25CardBinding,v25CardModule} from './v25-card-binding.mjs';
 
 export function assertNativeUiCapacity(layout) {
   const checkFonts = (control, path) => {
+    if(control.opacity!==undefined&&control.kind!=='image')throw Error(`${path}: opacity requires an image control`);
+    if(control.image!==undefined&&(!Number.isSafeInteger(control.image)||control.image<0))throw Error(`${path}: image requires a resolved numeric resource ID`);
     for (const key of ['fontSize', 'minFontSize']) {
       const value = control.text?.[key];
       if (value !== undefined && (!Number.isInteger(value) || value < 14)) {

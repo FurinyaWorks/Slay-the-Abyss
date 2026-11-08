@@ -122,7 +122,7 @@ function styleShop(panel,theme){
  const removal=must(panel,'removal');setRect(removal,l.removal);must(removal,'hit').size=l.removal.slice(2);framedSkin(removal);
  for(const state of ['normal','hover','pressed','disabled','selected'])must(removal,state).colour=({normal:'#68656C',hover:'#827C86',pressed:'#4B4851',disabled:'#403F42',selected:'#817277'})[state];
  must(removal,'v25BaseMaterial').colour='#68656C';
- removal.children.push(image('deckMark',0,-44,76,92,theme.icon.deck,'#CBB16A',{opacity:.8}));
+ removal.children.push(image('deckMark',0,-44,76,92,theme.icon.deck.id??theme.icon.deck,'#CBB16A',{opacity:.8}));
  setRect(must(removal,'name'),[0,64,128,74]);type(must(removal,'name'),19,'#EED689');must(removal,'icon').visible=false;
  setRect(must(removal,'description'),[0,13,135,32]);type(must(removal,'description'),14,'#EEE1C5');
  setRect(must(panel,'removalPrice'),[l.removal[0],l.removalPriceY,100,40]);
@@ -157,7 +157,7 @@ function styleEvent(panel,theme){
  const plate=must(panel,'plate');setRect(plate,theme.layout.nativeNode.event.plate);plate.colour='#020504';
  // Put the well/ribbon after the black field while preserving all original paths.
  const at=panel.children.indexOf(border);panel.children.splice(at,1);panel.children.splice(panel.children.indexOf(plate)+1,0,border);
- must(panel,'glow').opacity=0;must(panel,'caption').opacity=0;const art=must(panel,'art');setRect(art,theme.layout.nativeNode.event.art);art.opacity=.25;
+ must(panel,'glow').opacity=0;must(panel,'caption').text.opacity=0;const art=must(panel,'art');setRect(art,theme.layout.nativeNode.event.art);art.opacity=.25;
  const name=must(panel,'name');setRect(name,theme.layout.nativeNode.event.name);type(name,27,'#F0CF60');
  setRect(must(panel,'body'),theme.layout.nativeNode.event.body);type(must(panel,'body'),21,'#EDEEDF',{align:'left',valign:'top'});
  const o=theme.layout.nativeNode.event.options;

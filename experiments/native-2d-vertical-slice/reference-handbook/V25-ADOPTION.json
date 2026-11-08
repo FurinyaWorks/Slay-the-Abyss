@@ -454,8 +454,8 @@
         "limits": "不移植浏览器gold/hp/sold/campDone演示状态；保留四事件选项/商人/分页选择；无冻结宝箱截图，不认领宝箱视觉对齐",
         "projectImplementation": {
           "path": "scripts/v25-node-layout.mjs",
-          "sha256": "ca1249f4e28fdf8ec985de2e89fe15e6613bcfc9bf43a7d359ed9963d465b3aa",
-          "bytes": 20433
+          "sha256": "fc28f57fd8496136aa83f4f25a2b3137faa9a74959cfbc9de4dc029b145a3914",
+          "bytes": 20458
         }
       },
       {
@@ -718,6 +718,20 @@
         "skipped": 0,
         "change": "普通事件18字号标题的主题透明高度28改36，避免runtime placeOptions覆盖静态保护；原700×60点击区/选项数/交易不变",
         "conclusion": "完整相关组176通过后的一行布局修正及定向6项通过，不宣称后续完整CI或原生字形已验"
+      },
+      {
+        "kind": "native-encoder-interface-fix",
+        "log": {
+          "path": "F:\\New folder\\.worktrees\\v25-port\\.artifacts\\v25-native-fields-fix-final.log",
+          "sha256": "002f600f9415033f1b18a44841b9eedfae4bf3d6d4133f33001d2efc4319af40",
+          "bytes": 4127
+        },
+        "tests": 41,
+        "pass": 41,
+        "fail": 0,
+        "skipped": 0,
+        "change": "真实GIL编码拦截control.opacity文本和image描述对象。改为原生text.opacity并解析deck.id，预检加入两条负控；普通事件runtime SetVisible不重写font alpha。",
+        "conclusion": "定向通过，旧e726候选的build fail和已写中间副本保留；新源码完整GIL/最终读回尚未完成"
       }
     ]
   }
