@@ -20,7 +20,7 @@ local function rewardCards(owner,key,cards,upgrades,rows,group,run)
   rows[#rows+1]={card={cardId=id,upgraded=upgrades and upgrades[i]==true},group=group,
    token={owner=owner,key=key,kind='card',index=group,choice=i}}
  end
- if run and require('abyss_relic_hooks').owns(run,'singing_bowl')then
+ if run and require('abyss_relic_queries').hooks.owns(run,'singing_bowl')then
   rows[#rows+1]={title=group and '第'..group..'组：增加2点生命上限'or'增加2点生命上限',
    description='放弃本组卡牌，增加2点生命上限并普通回复2点生命。',
    token={owner=owner,key=key,kind='card',index=group,choice='bowl'}}
@@ -65,7 +65,7 @@ function M.view(run)
     rows[#rows+1]={card={cardId=id,upgraded=group.cardUpgrades and group.cardUpgrades[j]==true},group=i,
      description='第'..i..'组卡牌奖励。',token={owner=owner,key=key,kind='card',index=i,choice=j}}
    end
-   if require('abyss_relic_hooks').owns(run,'singing_bowl')then
+   if require('abyss_relic_queries').hooks.owns(run,'singing_bowl')then
     rows[#rows+1]={title='第'..i..'组：增加2点生命上限',description='放弃本组卡牌，增加2点生命上限并普通回复2点生命。',
      token={owner=owner,key=key,kind='card',index=i,choice='bowl'}}
    end

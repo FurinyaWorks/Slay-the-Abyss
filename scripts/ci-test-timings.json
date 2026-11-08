@@ -5118,6 +5118,66 @@
         "sourceJobId": 127755728122,
         "sourceReceipt": "docs/evidence/pr521-run-max-planning-floor-20261106.json",
         "sourceReceiptSha256": "503e94c83632f032d6b160ae24ec6b3d33f8d91c4c0f734d91056f4371a750b0"
+      },
+      "tests/power-shop-boundaries.test.mjs": {
+        "durationMs": 68586,
+        "environment": "local Windows",
+        "coverage": "8/8 complete file passed; 0 skipped; stable complete-graph observer",
+        "kind": "Local complete-run planning estimate only; not hosted or Linux measurement.",
+        "sourceLog": "build/power-shop-stable-run.log",
+        "sourceLogSha256": "9a6df9196a37baf2152bd7a02dad5dda1112924330adff1d89512c51b9a3e79c",
+        "sourceReceipt": "docs/evidence/power-shop-planning-20261107.json",
+        "sourceReceiptSha256": "52570c893c538ac0c5ab592e3b6d89afe883495ea6624fa4f35abaad3053f8f7"
+      },
+      "tests/run-catalog-responsibilities.test.mjs": {
+        "durationMs": 71327,
+        "environment": "local cloud Linux",
+        "coverage": "14/14 complete file passed; 0 skipped; complete-graph observer",
+        "kind": "Local complete-run planning estimate only; not a hosted Linux or Windows measurement.",
+        "sourceLog": "build/catalog-final-tests.log",
+        "sourceLogSha256": "93be917d80bf8d66c844b590c237d97c3812ab9e2ac6f6ac225b46a5bf1f8853",
+        "sourceReceipt": "docs/evidence/run-catalog-planning-20261107.json",
+        "sourceReceiptSha256": "7f9979256080cee4e4df92c8d97a45fbf82228d2891e999720d8f270f74ec7e3"
+      },
+      "tests/potion-callback.test.mjs": {
+        "durationMs": 29232,
+        "environment": "local cloud Linux",
+        "coverage": "10/10 complete file passed; 0 skipped; 31 complete-graph checkpoints",
+        "kind": "Local complete-run planning estimate only; not a hosted Linux or Windows measurement.",
+        "sourceLog": "build/potion-catalog-delivery/potion-complete.log",
+        "sourceLogSha256": "385c2fb5042e1a2040c5134382fb1a4504d402e7b82790120f2fde8e780445d6",
+        "sourceReceipt": "docs/evidence/potion-callback-planning-20261107.json",
+        "sourceReceiptSha256": "436eaef9eea243cd593671d924535a78794f0c65e28b983adf4d9f99b66702c1"
+      },
+      "tests/end-turn-responsibilities.test.mjs": {
+        "durationMs": 21279,
+        "environment": "local cloud Linux",
+        "coverage": "12/12 complete file passed; 0 skipped; complete-graph observer",
+        "kind": "Local complete-run planning estimate only; not a hosted Linux or Windows measurement.",
+        "sourceLog": "build/end-turn-first-tests.log",
+        "sourceLogSha256": "1be350bbc484314e255f0b2cbd916747a5144c5dc959f2730c7525fb758bd4de",
+        "sourceReceipt": "docs/evidence/end-turn-planning-20261107.json",
+        "sourceReceiptSha256": "2f59e5322ec6abfc7b9cc168734ea0f5333197a9f39ee4d75237ed6d9ddbf537"
+      },
+      "tests/actor-presence.test.mjs": {
+        "durationMs": 31053,
+        "environment": "local Linux",
+        "coverage": "Complete successful local file: 12 tests passed, zero failed, cancelled, skipped or todo; wall-clock CLI observation, not hosted CI or a Full pass.",
+        "kind": "Planning-only complete local file observation; not hosted Windows or hosted Linux measurement.",
+        "sourceReceipt": "docs/evidence/actor-presence-planning-floor-20261107.json",
+        "sourceReceiptSha256": "27ea7d19f419b325db620e2eaa993af51740defd7eeb67e94f2778bff349e632",
+        "sourceHeadSha": "9624804b44d4773a40c557f02e0b13b3a31f2497"
+      },
+      "tests/reward-query-boundary.test.mjs": {
+        "durationMs": 50216,
+        "environment": "local Linux execution workspace",
+        "coverage": "Complete unfiltered node:test file: 9 passed, 0 failed, 0 cancelled, 0 skipped; four independent old/current VM graph pairs and three expected semantic mutation failures. Measured before the separately recorded assertion-only strengthening; the current whole file was not remeasured.",
+        "kind": "Planning-only local lower bound from a complete successful same-file run; not a hosted measurement.",
+        "sourceLog": "build/reward-query-boundary/behavior-complete.log",
+        "sourceLogSha256": "680f7d80e953216908a10cd8052cc29b7469621c29078794b8c17c42c7abb089",
+        "sourceReceipt": "tests/fixtures/reward-query-planning-floor.json.gz",
+        "sourceReceiptSha256": "040106c48fb3cd7c6ae9fcde72d09a5ac9c0f57b8c97036e37a682bb9525becf",
+        "sourceInputsSha256": "cd5c2595ef50f3407b1a14b7148c996591a04634670b4d6148312a57621005ae"
       }
     }
   },

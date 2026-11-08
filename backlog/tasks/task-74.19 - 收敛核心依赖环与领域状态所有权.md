@@ -4,8 +4,8 @@ title: 收敛核心依赖环与领域状态所有权
 status: In Progress
 assignee:
   - Furinya
-created_date: '2026-11-06 01:46'
-updated_date: '2026-11-06 12:02'
+created_date: 2026-11-06 01:46
+updated_date: '2026-11-07T13:41:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -42,6 +42,8 @@ ordinal: 161000
 6.仅收口当前PR521：按Full42176327678逐项修复drain、旧语义变异定位与历史预算输入适配，保留原oracle、case、断言和预算；对本轮真实超时仅用已完成成功文件实测校正分配并采用可容纳全库存的最小布局。独立复审、新SHA完整CI、原生队列和实际合后验收完成后结束，不开启下一架构切片或新任务。
 
 本轮最终有界切片：将Codex选牌生成与提交移回现有Combat选择事务owner，Codex仅保留开选和校验，消除其回导CardActions；原状态、RNG、事件与晚失败回滚逐字对照，保留完整图与残余，不扩大架构范围。
+
+2026-11-07接续主控指派的未占用奖励查询切片：仅RelicCardRewards、RelicChoices、RelicPending六处现有owns/preview调用改用已共享的Queries/Family.common能力槽，保留每次动态字段读取及Run真实事务；不改provider公开表/元表。以d8完整源码、三consumer新outer、独立新旧VM全图和窄来源/架构负控验证。预计Session环内引用62→56、唯一对41→38，成员15和Combat81不降，不冒称SCC成员收益。已核14在途PR及本地未发成果，task:pick因既有In Progress为HOLD，不新领不改owner/status/AC，不用用户电脑、不重复Full、不碰Act3中止交付。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -68,4 +70,6 @@ D5来源扩展34项及独立有界审查PASS：23个391完整before另核Git blo
 本轮最终有界Codex切片已将生成、升级、插牌与完成移回Combat既有选择快照事务，Codex只做开选/校验。固定全图333模块1920引用；Combat SCC82→81、内部626→623位置/402→400对，Session15/62/41不变。原Act2遗物及Codex晚失败回滚通过；完整图和源码身份见docs/evidence/m7-final-core-20261106.json。独审/实际合前后Full仍待，不勾交付AC。
 
 最终本地完整收据补证：新8/8及原35-owner4/4通过；V4/Codex两个独立旧新VM合计79完整状态图检查点、每侧52,016,680字节一致，含V4直接execute付款后和伤害后部分写入、原错误对象。当前候选只提供本轮集成，不另开PR；独审及实际Full/队列/合后证据由主控同一候选绑定，AC仍不提前完成。
+
+奖励查询职责切片已实做六处调用归属迁移，三provider与Run事务不改。fresh完整333模块5386/5386测量：Combat81/623/400保持，Session15/62/41→15/56/38；1920引用位置不变、全图唯一对1546→1548是目标分流，CC>15=237、CC>30=58/max75均无降幅。4组独立旧新VM215点、每侧29218426字节全图相同，原卡奖励与商店fixture保留，9项通过；独审建议将3负控绑定完整专属消息，仅复跑该3项通过。源码6项、旧source/库存42项、旧m7来源1项全绿。最初stale deferred已精确移除且保留原败；UI窄测首次缺生成theme，补正常build:theme/build:ui后原两项通过。完整文件真实wall50215.1983ms保留为50216ms本地planning下界，不冒称Hosted或当前更强断言版本整文件重测。独审/精确提交/正常门禁继续，未合并不勾AC，不用设备、不重复Full。
 <!-- SECTION:NOTES:END -->

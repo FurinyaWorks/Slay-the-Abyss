@@ -1,3 +1,4 @@
+import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,copyFileSync,mkdirSync,mkdtempSync,rmSync,unlinkSync} from 'node:fs';
@@ -64,10 +65,11 @@ test('missing, duplicate, partial or foreign LivingWall policy never enters any 
 
 test('warm LivingWall projections freshly bind linked policy bytes, including guard removal and deletion',async t=>{
  const root=mkdtempSync(join(tmpdir(),'living-wall-architecture-'));
+ copyIntegrationSourceClosure(root);
  t.after(()=>rmSync(root,{recursive:true,force:true}));
  mkdirSync(join(root,'tests/helpers'),{recursive:true});mkdirSync(join(root,'config'));
  copyFileSync('tests/helpers/architecture-source-format.mjs',join(root,'tests/helpers/architecture-source-format.mjs'));
- for(const name of ['game-ui-extraction-source-inverse.mjs','game-ui-extraction-source-layer.json','core-lifecycle-source-inverse.mjs','actor-lifecycle-before.lua','combat-lifecycle-before.json','relic-query-source-inverse.mjs','relic-query-baseline-391306af.json.gz','query-living-wall-before.lua','relic-lifecycle-baseline-391306af.json.gz','relic-lifecycle-architecture-source-inverse.json','m7-core-final-source-inverse.mjs','m7-core-final-before.json.gz'])copyFileSync('tests/helpers/'+name,join(root,'tests/helpers',name));
+ for(const name of ['game-ui-extraction-source-inverse.mjs','game-ui-extraction-source-layer.json','core-lifecycle-source-inverse.mjs','actor-lifecycle-before.lua','combat-lifecycle-before.json','relic-query-source-inverse.mjs','relic-query-baseline-391306af.json.gz','query-living-wall-before.lua','relic-lifecycle-baseline-391306af.json.gz','relic-lifecycle-architecture-source-inverse.json','m7-core-final-source-inverse.mjs','m7-core-final-before.json.gz','reward-query-boundary-source-inverse.mjs','reward-query-boundary-before.json','actor-presence-source-inverse.mjs','actor-presence-source-proof.json','colorless-catalog-before-2ad07111.json.gz','end-turn-responsibilities-source-inverse.mjs','potion-callback-source-inverse.mjs','potion-callback-source-proof.json','colorless-catalog-source-inverse.mjs','colorless-catalog-source-proof.json','defect-plan-source-inverse.mjs','defect-plan-before.lua','act1-choice-source-inverse.mjs','act1-choice-before.lua','inventory-responsibilities-source-inverse.mjs','session-reward-source-inverse.mjs','session-reward-source-proof.json','watcher-final-execution-source-inverse.mjs','watcher-final-execution-before.lua','power-shop-source-inverse.mjs','power-shop-before-2c85.json.gz'])copyFileSync('tests/helpers/'+name,join(root,'tests/helpers',name));
  const file=join(root,path);writeFileSync(file,source);
  const {preLivingWallCopyArchitecture:outer,preCombatReactionArchitecture:reaction}=await import(pathToFileURL(join(root,'tests/helpers/architecture-source-format.mjs')));
  const prior=outer(path,source);

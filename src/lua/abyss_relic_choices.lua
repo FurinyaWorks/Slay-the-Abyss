@@ -7,7 +7,7 @@ function M.createCardReward(run)
  local cards,rng,offset,upgrades=require('abyss_card_pool').prepareRewards(owner)
  run.cardRng,run.cardRarityOffset=rng,offset
  local reward={cards=cards,cardUpgrades=upgrades,cardResolved=false}
- require('abyss_relic_hooks').previewCardReward(run,reward,true)
+ require('abyss_relic_family_combat').common.previewCardReward(run,reward,true)
  return reward
 end
 function M.openRewards(run,id,items)
@@ -33,7 +33,7 @@ function M.claim(run,token,index,choice)
   local reward=item.reward
   if choice~='bowl'and (type(choice)~='number'or choice%1~=0 or choice<0 or choice>#reward.cards)then return false,'invalid_reward_choice'end
   if choice=='bowl' then
-   if not require('abyss_relic_hooks').owns(run,'singing_bowl')then return false,'missing_singing_bowl'end
+   if not require('abyss_relic_queries').hooks.owns(run,'singing_bowl')then return false,'missing_singing_bowl'end
    ok,detail=api.increaseMaxHp(run,2)
   elseif choice==0 then ok,detail=true,'skipped'
   else ok,detail=api.obtainCard(run,reward.cards[choice],{upgraded=reward.cardUpgrades and reward.cardUpgrades[choice]==true})end

@@ -14,7 +14,7 @@ const inputs = ['cards.json', 'statuses.json', 'enemies.json', 'relics.json', 'p
   'presentation/native-monster-art.json', 'presentation/ui_theme.json', 'presentation/traveler.zh-CN.json', 'presentation/narrative.zh-CN.json'];
 const outputs = ['abyss_theme.lua', 'map-ui.json', 'abyss_map_layout.lua', 'abyss_map_controls.lua',
   'abyss_narrative.lua', 'abyss_presentation.lua', 'battle-ui.json', 'game-ui.json', 'abyss_ui_layout.lua',
-  'game-ui-templates.json', 'abyss_ui_templates.lua', 'abyss_menu_background_asset.lua',
+  'game-ui-templates.json', 'abyss_ui_templates.lua', 'abyss_ui_profile.lua', 'abyss_menu_background_asset.lua',
   'abyss_ready_card_binding.lua','abyss_ready_card_assets.lua','abyss_traveler_portrait_assets.lua','abyss_monster_art_data.lua','abyss_art_features.lua','abyss_monster_actor_binding.lua','art-render-v2.json'];
 function fixture(action, cli = false) {
   const root = mkdtempSync(join(tmpdir(), 'abyss-ui-input-'));
@@ -34,11 +34,21 @@ function fixture(action, cli = false) {
   } finally { rmSync(root, { recursive: true, force: true }); }
 }
 const cliFixture = action => fixture(action, true);
+for(const mode of ['hardlink','symlink'])test(`UI CLI rejects profile generator alias ${mode} before any write`,t=>cliFixture(root=>{
+  const input=join(root,'scripts/ui-profile.mjs'),target=join(root,'out/abyss_ui_profile.lua'),before=readFileSync(input);
+  try{if(mode==='hardlink')linkSync(input,target);else symlinkSync(input,target,'file');}
+  catch(error){if(mode==='symlink'&&['EPERM','EACCES','ENOSYS'].includes(error.code)){t.skip(`Symlink unavailable: ${error.code}`);return;}throw error;}
+  const result=spawnSync(process.execPath,['scripts/build-ui.mjs','out'],{cwd:root,encoding:'utf8'});
+  assert.notEqual(result.status,0,'profile generator alias was accepted');
+  assert.match(result.stderr,/Output must not overwrite an input file/);
+  assert.deepEqual(readFileSync(input),before,'isolated profile generator was overwritten');
+  assert.deepEqual(readdirSync(join(root,'out')),['abyss_ui_profile.lua'],'partial generated files escaped preflight');
+}));
 function build(root) {
   const cwd = process.cwd();
   try { process.chdir(root); buildUI('out'); } finally { process.chdir(cwd); }
 }
-for (const mode of ['hardlink', 'symlink']) for (const input of inputs) for (const output of [...outputs,'art-performance.json']) {
+for (const mode of ['hardlink', 'symlink']) for (const input of inputs) for (const output of [...outputs,'art-performance.json','lightweight-2d.json']) {
   test(`UI build rejects ${output} ${mode} to ${input} before writing`, t => fixture(root => {
     const source = join(root, 'data', input), target = join(root, 'out', output);
     try { if (mode === 'hardlink') linkSync(source, target); else symlinkSync(source, target, 'file'); }

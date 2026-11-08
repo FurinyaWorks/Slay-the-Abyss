@@ -1,6 +1,8 @@
 import {monsterPowerTemplateName,monsterActorBindingModule,monsterActorTemplateName} from './monster-art.mjs';
 import {normalizeArtFeatures,artFeatureBuildArgs,artBuildOptionsFromReceipt} from './art-features.mjs';
 import {portraitRuntimeInputs,portraitModule} from './official-portraits.mjs';
+import {lightweightInputs} from './lightweight-2d-profile.mjs';
+import {uiProfileFromReceipt} from './ui-profile.mjs';
 import {readyArtImageTemplate,readyArtGroupTemplate} from './art/ready-card-runtime.mjs';
 import {backgroundInputs, backgroundModule, backgroundTemplate} from './official-background.mjs';
 // Local offline tools only. Never calls a save mutation, import or playtest API.
@@ -12,15 +14,15 @@ import { compareNativeCandidate, requireSourceSha, sha256, candidateEntrySource 
 import { exportedCandidatePath, newEvidenceDirectory } from './native-audit-paths.mjs';
 import { releaseSourceFiles } from './release-notes.mjs';
 
-export function auditUiBuildArgs(receipt,{registryPath}={}) {
-  const options=receipt===undefined?{artFeatures:normalizeArtFeatures()}:artBuildOptionsFromReceipt(receipt);
-  return ['scripts/build-ui.mjs',...artFeatureBuildArgs(options.artFeatures),...(options.nativeCardArt?
+export function auditUiBuildArgs(receipt,{registryPath,deferExperimentalInventory=false}={}) {
+  const options=receipt===undefined?{artFeatures:normalizeArtFeatures()}:artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory});
+  return ['scripts/build-ui.mjs',...artFeatureBuildArgs(options.artFeatures),...(uiProfileFromReceipt(receipt)?['--native-page-lifecycle']:[]),...(options.lightweight2d?['--lightweight-2d']:[]),...(options.legacyCardFrames?['--legacy-card-frames']:[]),...(options.nativeCardArt?
     [`--native-card-art-registry=${registryPath??options.nativeCardArt.registry}`,...options.nativeCardArt.hosts.map(host=>`--native-card-art-host=${host}`)]:[])];
 }
 
 // Choose only from pinned Git paths, never read the current checkout's artwork.
-export function auditAssetInputs(receipt) {
-  const options=receipt===undefined?{artFeatures:normalizeArtFeatures()}:artBuildOptionsFromReceipt(receipt);
+export function auditAssetInputs(receipt,{deferExperimentalInventory=false}={}) {
+  const options=receipt===undefined?{artFeatures:normalizeArtFeatures()}:artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory});
   const flags=options.artFeatures,portable=new Map();
   const safePath=value=>typeof value==='string'&&value&&!value.startsWith('-')&&!value.startsWith(':')&&!value.includes('\0')&&!isAbsolute(value)&&!value.split(/[\\/]/).includes('..')&&!/^[A-Za-z]:/.test(value);
   for(const record of receipt?.nativeCardArt?.inputs??[]){
@@ -33,7 +35,7 @@ export function auditAssetInputs(receipt) {
   const registryPath=options.nativeCardArt?portable.get(receipt.nativeCardArt.registry.path):undefined;
   if(options.nativeCardArt&&!registryPath)throw Error('Static registry lacks portable source provenance');
   return {paths:[...(flags.monsters?receipt.nativeMonsterArt.inputs.map(row=>row.path):[]),...(flags.menuBackground?backgroundInputs:[]),...(flags.cards&&!options.nativeCardArt?['art/cards/traveler-geo']:[]),
-    ...portraitRuntimeInputs(flags),...portable.values()],registryPath,portable};
+    ...portraitRuntimeInputs(flags),...(options.lightweight2d?lightweightInputs:[]),...portable.values()],registryPath,portable};
 }
 export function prepareAuditStaticRegistry(snapshot,receipt,selection) {
   if(!selection.registryPath)return;
@@ -85,7 +87,7 @@ export async function auditNativeCandidate(options) {
   }
   let report;
   try {
-    const artOptions=buildReceipt===undefined?{artFeatures:normalizeArtFeatures()}:artBuildOptionsFromReceipt(buildReceipt);
+    const artOptions=buildReceipt===undefined?{artFeatures:normalizeArtFeatures()}:artBuildOptionsFromReceipt(buildReceipt,{deferExperimentalInventory:true});
     const flags=artOptions.artFeatures,dynamicCards=flags.cards&&!artOptions.nativeCardArt,portraits=flags.selectionAvatar||flags.battlePortrait;
     if(buildReceipt&&(buildReceipt.sourceCommit!==sourceSha||buildReceipt.candidate?.sha256!==before))throw Error('Art features require matching same-candidate receipt');
     const resolved = run('git', ['rev-parse', `${sourceSha}^{commit}`], { encoding: 'utf8' }).trim();
@@ -120,12 +122,17 @@ export async function auditNativeCandidate(options) {
       value: fields(one(one(field.data, 4), 106)).some(value => value.id === 1 && value.value === 1n), encodedHex: field.raw.toString('hex') }));
     const parameters = save('parameters.json', { script: 'abyss_ui', records });
     const snapshot = join(output, 'source'); mkdirSync(snapshot);
-    const selection=auditAssetInputs(buildReceipt),assetInputs=selection.paths,registryPath=selection.registryPath;
+    const selection=auditAssetInputs(buildReceipt,{deferExperimentalInventory:true}),assetInputs=selection.paths,registryPath=selection.registryPath;
     run('tar', ['-xf', '-', '-C', snapshot], { input: run('git', ['archive', sourceSha, '--',
       'src/lua', 'data', 'scripts', 'tools', ...releaseSourceFiles, ...assetInputs]) });
     prepareAuditStaticRegistry(snapshot,buildReceipt,selection);
+    // Geometry identity belongs to the requested source epoch, never the tool checkout.
+    if(artOptions.lightweight2d){
+      const pinned=await import(pathToFileURL(join(snapshot,'scripts/art-features.mjs')));
+      pinned.artBuildOptionsFromReceipt(buildReceipt);
+    }
     for (const script of ['build-lua-data.mjs', 'build-ui.mjs']) writeFileSync(join(output, `${script}.log`),
-      run(process.execPath, script==='build-ui.mjs'?auditUiBuildArgs(buildReceipt,{registryPath}):[`scripts/${script}`], { cwd: snapshot }));
+      run(process.execPath, script==='build-ui.mjs'?auditUiBuildArgs(buildReceipt,{registryPath,deferExperimentalInventory:true}):[`scripts/${script}`], { cwd: snapshot }));
     const { candidateScriptFiles } = await import(pathToFileURL(join(snapshot, 'scripts/native-candidate-scripts.mjs')));
     const deployment = candidateScriptFiles(join(snapshot, 'src/lua'), join(snapshot, 'build/lua'));
     const uiBgmParameter = deployment.find(script => script.name === 'abyss_ui')?.variables?.find(variable => variable.name === 'nativeBgmEnabled');

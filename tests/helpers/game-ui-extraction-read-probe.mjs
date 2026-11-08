@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,rmSync} from 'node:fs';
 import {createTracing} from 'node:trace_events';
-import {preGameUiExtractionSource as project,gameUiExtractionProof as proof,gameUiExtractionAddedPaths as added} from './game-ui-extraction-source-inverse.mjs';
+import {preGameUiExtractionSource as project,preNativePageSource,gameUiExtractionProof as proof,gameUiExtractionAddedPaths as added} from './game-ui-extraction-source-inverse.mjs';
 const mode=process.argv[2],path='config/architecture.json',source=readFileSync(path,'utf8');
+// This fixture was explicitly admitted through the native epoch before copy;
+// measured reads below remain the unchanged historical extraction contract.
+assert.equal(preNativePageSource(path,source),source,'probe starts after native epoch');
 const trace=createTracing({categories:['node.fs.sync']});
 if(mode==='foreign'){
  const policy=JSON.parse(source);policy.unreviewed=true;const input=JSON.stringify(policy);

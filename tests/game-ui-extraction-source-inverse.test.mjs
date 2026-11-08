@@ -1,3 +1,4 @@
+import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,copyFileSync,mkdirSync,mkdtempSync,rmSync,symlinkSync} from 'node:fs';
@@ -5,19 +6,23 @@ import {join,dirname,resolve,relative,isAbsolute} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 import {spawnSync} from 'node:child_process';
-import {gameUiExtractionProof as proof,gameUiExtractionAddedPaths as added,preGameUiExtractionSource as project,gameUiExtractionReader,prepareGameUiExtractionModuleRetirement as prepare} from './helpers/game-ui-extraction-source-inverse.mjs';
+import {gameUiExtractionProof as proof,gameUiExtractionAddedPaths as added,preGameUiExtractionSource as project,preNativePageSource,gameUiExtractionReader,prepareGameUiExtractionModuleRetirement as prepare} from './helpers/game-ui-extraction-source-inverse.mjs';
 import {preCoreLifecycleSource} from './helpers/core-lifecycle-source-inverse.mjs';
 import {preRelicQuerySource} from './helpers/relic-query-source-inverse.mjs';
 // Keep the existing two/four-owner contracts in their original source epochs.
-const read=p=>preRelicQuerySource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
+const nativeRead=p=>preNativePageSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
+const read=p=>preRelicQuerySource(p,nativeRead(p),{readSource:nativeRead});
 const host='src/lua/abyss_game_ui.lua',architecture='config/architecture.json';
 const paths=Object.keys(proof.files);
 const lifecycleSources=['src/lua/abyss_actor.lua','src/lua/abyss_combat.lua','src/lua/abyss_actor_power_rules.lua'];
-const lifecycleHelpers=['tests/helpers/core-lifecycle-source-inverse.mjs','tests/helpers/actor-lifecycle-before.lua','tests/helpers/combat-lifecycle-before.json','tests/helpers/relic-query-source-inverse.mjs','tests/helpers/relic-query-baseline-391306af.json.gz','tests/helpers/query-living-wall-before.lua','tests/helpers/relic-lifecycle-baseline-391306af.json.gz','tests/helpers/relic-lifecycle-architecture-source-inverse.json','tests/helpers/m7-core-final-source-inverse.mjs','tests/helpers/m7-core-final-before.json.gz'];
+const lifecycleHelpers=['tests/helpers/core-lifecycle-source-inverse.mjs','tests/helpers/actor-lifecycle-before.lua','tests/helpers/combat-lifecycle-before.json','tests/helpers/relic-query-source-inverse.mjs','tests/helpers/relic-query-baseline-391306af.json.gz','tests/helpers/query-living-wall-before.lua','tests/helpers/relic-lifecycle-baseline-391306af.json.gz','tests/helpers/relic-lifecycle-architecture-source-inverse.json','tests/helpers/m7-core-final-source-inverse.mjs','tests/helpers/m7-core-final-before.json.gz','tests/helpers/reward-query-boundary-source-inverse.mjs','tests/helpers/reward-query-boundary-before.json','tests/helpers/actor-presence-source-inverse.mjs','tests/helpers/actor-presence-source-proof.json','tests/helpers/colorless-catalog-before-2ad07111.json.gz','tests/helpers/end-turn-responsibilities-source-inverse.mjs','tests/fixtures/end-turn-responsibilities-before.lua','tests/helpers/potion-callback-source-inverse.mjs','tests/helpers/potion-callback-source-proof.json','tests/helpers/colorless-catalog-source-inverse.mjs','tests/helpers/colorless-catalog-source-proof.json','tests/helpers/defect-plan-source-inverse.mjs','tests/helpers/defect-plan-before.lua','tests/helpers/act1-choice-source-inverse.mjs','tests/helpers/act1-choice-before.lua','tests/helpers/inventory-responsibilities-source-inverse.mjs','tests/fixtures/inventory-responsibilities-before.lua','tests/helpers/session-reward-source-inverse.mjs','tests/helpers/session-reward-source-proof.json','tests/helpers/watcher-final-execution-source-inverse.mjs','tests/helpers/watcher-final-execution-before.lua','tests/helpers/power-shop-source-inverse.mjs','tests/helpers/power-shop-before-2c85.json.gz'];
 const lifecycleReads=4;
-const originalInputs=()=>Object.fromEntries(paths.map(path=>[path,preCoreLifecycleSource(path,read(path))]));
+const originalInputs=()=>Object.fromEntries(paths.map(path=>[path,preCoreLifecycleSource(path,read(path),{readSource:nativeRead})]));
 function copy(root,path){const target=join(root,path);mkdirSync(dirname(target),{recursive:true});if(path===architecture||lifecycleSources.includes(path))writeFileSync(target,read(path));else copyFileSync(path,target);}
-function isolated(t){const root=mkdtempSync(join(tmpdir(),'game-ui-source-proof-'));t.after(()=>rmSync(root,{recursive:true,force:true}));return root;}
+// Freeze the old read-count probes after explicit native-epoch admission. The
+// retirement tests below still copy actual current modules, not these old bytes.
+function copyHistorical(root,path){copy(root,path);if(path===host||path==='src/lua/abyss_game_ui_view.lua')writeFileSync(join(root,path),read(path));}
+function isolated(t){const root=mkdtempSync(join(tmpdir(),'game-ui-source-proof-'));copyIntegrationSourceClosure(root);t.after(()=>rmSync(root,{recursive:true,force:true}));return root;}
 
 test('one complete extraction restores immutable full Host/config and authenticates each fresh owner',()=>{
  assert.equal(proof.baseCommit,'78e4e746a7f05754f0d838999c466cd88630368c');
@@ -147,7 +152,7 @@ test('injected readers at shared consumer seams never fall back to live owners',
 
 test('actual detached filesystem owners reject warm drift and deletion separately for every module',async t=>{
  const root=isolated(t);
- for(const path of [...paths,...lifecycleSources,...lifecycleHelpers,'tests/helpers/game-ui-extraction-source-inverse.mjs','tests/helpers/game-ui-extraction-source-layer.json'])copy(root,path);
+ for(const path of [...paths,...lifecycleSources,...lifecycleHelpers,'tests/helpers/game-ui-extraction-source-inverse.mjs','tests/helpers/game-ui-extraction-source-layer.json'])copyHistorical(root,path);
  const {preGameUiExtractionSource:detached}=await import(pathToFileURL(join(root,'tests/helpers/game-ui-extraction-source-inverse.mjs')));
  for(const input of [host,architecture])for(const owner of paths){
   const source=read(input),file=join(root,owner),original=read(owner),expected=detached(input,source);
@@ -170,6 +175,20 @@ test('retirement verifies the full isolated destination before deleting, and rev
  writeFileSync(file,original+'\n-- changed after prepare\n');assert.throws(retire,/retirement module/);
  for(const path of added)assert.doesNotThrow(()=>readFileSync(join(root,path)));
  writeFileSync(file,original);retire();for(const path of added)assert.throws(()=>readFileSync(join(root,path)),/ENOENT/);
+ // Current native view bytes are admissible only with a fresh complete three-
+ // owner source snapshot, and deferred deletion must reauthenticate it.
+ const live=join(root,'native-live'),destination=join(root,'native-copy');
+ const nativeOwners=[architecture,host,'src/lua/abyss_game_ui_view.lua'];
+ for(const path of nativeOwners){const target=join(live,path);mkdirSync(dirname(target),{recursive:true});copyFileSync(path,target);}
+ for(const path of added){const target=join(destination,path);mkdirSync(dirname(target),{recursive:true});copyFileSync(path,target);}
+ const nativeRetire=prepare(destination,{sourceRoot:live});
+ for(const owner of nativeOwners){
+  const path=join(live,owner),original=readFileSync(path,'utf8');
+  writeFileSync(path,original+'\n');assert.throws(nativeRetire,/retirement module/);
+  for(const module of added)assert.doesNotThrow(()=>readFileSync(join(destination,module)));
+  writeFileSync(path,original);
+ }
+ nativeRetire();for(const path of added)assert.throws(()=>readFileSync(join(destination,path)),/ENOENT/);
 });
 
 test('retirement rejects a destination or nested owner junction aliasing the live source',t=>{
@@ -227,7 +246,7 @@ test('real filesystem traces distinguish foreign/old inputs from fresh equivalen
  const root=isolated(t),reads={},opens={};
  for(const mode of ['foreign','old','equivalent','warm-drift','warm-missing']){
   const directory=join(root,mode);mkdirSync(directory);
-  for(const path of [...paths,...lifecycleSources,...lifecycleHelpers,'tests/helpers/game-ui-extraction-source-inverse.mjs','tests/helpers/game-ui-extraction-source-layer.json','tests/helpers/game-ui-extraction-read-probe.mjs'])copy(directory,path);
+  for(const path of [...paths,...lifecycleSources,...lifecycleHelpers,'tests/helpers/game-ui-extraction-source-inverse.mjs','tests/helpers/game-ui-extraction-source-layer.json','tests/helpers/game-ui-extraction-read-probe.mjs'])copyHistorical(directory,path);
   const trace=join(root,mode+'.trace.json');
   const result=spawnSync(process.execPath,['--trace-event-file-pattern='+trace,'tests/helpers/game-ui-extraction-read-probe.mjs',mode],{cwd:directory,encoding:'utf8',timeout:30000,maxBuffer:1024*1024,windowsHide:true});
   assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);

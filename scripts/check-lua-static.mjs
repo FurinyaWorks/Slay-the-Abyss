@@ -94,6 +94,28 @@ export function reviewRenderComplexity(diagnostics, sources) {
 // Budget only this governance slice and every extracted responsibility module.
 // Unrelated pre-existing Combat/UI hotspots keep their diagnostic reports.
 const responsibilityRoots = {
+  'src/lua/abyss_turn_power_phases.lua': [],
+  'src/lua/abyss_shop.lua': ["function 'selectShopCard'"],
+  'src/lua/abyss_defect_engine_cards.lua': ['M.planEffect','change',
+    ...["growClaws", "loseSteamBlock", "reduceStreamlineCost", "aggregateEnergy", "autoShields", "blizzardDamage", "chaosOrbs", "chillOrbs", "randomEngineAttack", "engineRandomRounds", "sunderDamage", "engineSunderRefund", "tempestOrbs", "engineChannelRounds", "engineEvokeRounds"]
+      .map(name=>`planHandlers.${name}`)].map(name=>`function '${name}'`),
+  'src/lua/abyss_act1_events.lua': ['M.choose','bonfireReward','bonfireCurseReward',
+    ...['sssserpent','big_fish','accursed_blacksmith','scrap_ooze','transmogrifier','bonfire']
+      .map(name=>`choiceHandlers.${name}`)].map(name=>`function '${name}'`),
+  'src/lua/abyss_watcher_final_cards.lua': ['M.execute',
+    ...['gainWatcherFinalPower','watcherFinalEndTurnEarly','watcherFinalSkipEnemiesTurn',
+      'watcherFinalEstablishment','watcherFinalOmega','watcherFinalGenerate','watcherFinalWish',
+      'watcherFinalLessonLearned','watcherFinalMeditate','watcherFinalDeusExMachina',
+      'watcherFinalSpiritShield','watcherFinalConjureBlade','watcherFinalJudgment',
+      'watcherFinalExpungerHits','watcherFinalRagnarok','watcherFinalDamageHit']
+      .map(name=>`effectHandlers.${name}`)].map(name=>`function '${name}'`),
+  'src/lua/abyss_inventory.lua': [],
+  'src/lua/abyss_colorless_catalog.lua': [],
+  'src/lua/abyss_card_capability.lua': [],
+  'src/lua/abyss_run_card_catalog.lua': [],
+  'src/lua/abyss_relic_potion_hooks.lua': [],
+  'src/lua/abyss_end_turn_powers.lua': [],
+  'src/lua/abyss_actor_presence.lua': [],
   'src/lua/abyss_relic_combat_hooks.lua': [],
   'src/lua/abyss_relic_family_combat.lua': [],
   'src/lua/abyss_purge_candidates.lua': [],
@@ -104,6 +126,7 @@ const responsibilityRoots = {
   'src/lua/abyss_actor_power_rules.lua': [],
   'src/lua/abyss_combat_reactions.lua': ["function 'M.enqueue'", "function 'M.enqueueReaction'"],
   'src/lua/abyss_actor.lua': [
+    "function 'presenceIndex'", "function 'presenceNewIndex'",
     ...['M.status','M.applyPower','M.addStatus','M.endTurn'].map(name=>`function '${name}'`),
     ...['updatePlayerStatusOrder','updateMonsterStatusOrder','markRoundDebuffApplication',
       'preparePowerAmount','rememberConstrictedSource','rememberPostDrawPower',
@@ -133,6 +156,7 @@ const responsibilityRoots = {
       'awakenedAction','capturedSharpHide','dispose','effectBatch'].map(name=>`function 'actionHandlers.${name}'`),
   ],
   'src/lua/abyss_colorless_cards.lua': [
+    "function 'catalogIndex'","function 'catalogNewIndex'",
     ...['eligibleKill','rewardGreed','growRitual','resolveKill','M.apply',
       ...['apotheosis','shackles','impatience','enlightenment','discovery','madness',
         'generateColorless','generateDraw','transmutation','deepBreath','deepBreathShuffle',
@@ -210,11 +234,19 @@ const responsibilityRoots = {
   'src/lua/abyss_node_ui_treasure.lua': [],
   'src/lua/abyss_game_ui.lua': ["function 'M.new'"],
 };
-// Existing catalog/seed/red-card contracts are separate, unchanged responsibilities.
+// Existing seed/red-card contracts are separate, unchanged responsibilities.
 // All Run orchestration and newly extracted Run helpers receive the full budget.
 const responsibilityHelper = file => /^src\/lua\/abyss_(?:effects_.+|combat_effect.*|combat_catalog|combat_reactions|combat_native_play|combat_queued_play|act2_ai_.+|character_presentation_.+|feedback_.+|node_ui(?:_.+)?|game_ui_.+|run(?:_(?!(?:card_catalog|red_card_contract|seed)\.lua$).+)?|nodes(?:_.+)?)\.lua$/.test(file);
 const completeResponsibility = file => responsibilityHelper(file)
+  || file==='src/lua/abyss_turn_power_phases.lua'
+  || file==='src/lua/abyss_inventory.lua'
+  || file==='src/lua/abyss_colorless_catalog.lua'
+  || file==='src/lua/abyss_card_capability.lua'
+  || file==='src/lua/abyss_run_card_catalog.lua'
+  || file==='src/lua/abyss_end_turn_powers.lua'
+  || file==='src/lua/abyss_actor_presence.lua'
   || file==='src/lua/abyss_codex_relic.lua'
+  || file==='src/lua/abyss_relic_potion_hooks.lua'
   || file==='src/lua/abyss_relic_combat_hooks.lua'
   || file==='src/lua/abyss_relic_family_combat.lua'
   || file==='src/lua/abyss_purge_candidates.lua'
@@ -222,6 +254,7 @@ const completeResponsibility = file => responsibilityHelper(file)
   || file==='src/lua/abyss_actor_power_rules.lua'
   || file==='src/lua/abyss_card_actions.lua' || file==='src/lua/abyss_game_ui.lua';
 export function reviewModuleSize(sources, budgets = {'src/lua/abyss_run.lua': 1000, 'src/lua/abyss_nodes.lua': 1000,
+  'src/lua/abyss_relic_potion_hooks.lua':1000,
   'src/lua/abyss_relic_combat_hooks.lua':1000,
   'src/lua/abyss_relic_family_combat.lua':1000,
   'src/lua/abyss_purge_candidates.lua':1000,

@@ -9,6 +9,7 @@ local number = require("abyss_numbers").integer
 local NeowHistory=require('abyss_neow_history')
 local EndingHistory=require('abyss_ending_history')
 local Acts=require('abyss_acts')
+local NativePages=require('abyss_native_pages')
 local M = {}
 local function building(status)
     return status and (status.phase=='building' or status.phase=='revealing')
@@ -231,8 +232,10 @@ function M.suspendBattle(self,openingCovered)
         end
 end
 
-function M.refreshPageVisibility(menu,self,suspendBattle,child,refreshMapResources)
+function M.refreshPageVisibility(menu,self,suspendBattle,child,refreshMapResources,nativePageLifecycle)
+    local syncNative=nativePageLifecycle==true and NativePages.new(child,self) or nil
     return function(run,inMenu,deckOpen,potionOpen,blocked)
+            if syncNative then syncNative(run) end
             menu:SetVisible(inMenu and not self.characterOpen and not self.easterEggOpen)
             self.battleUI:setActive(self.mode == "battle" and not deckOpen and not potionOpen and not blocked,
                 suspendBattle(run,deckOpen,potionOpen))

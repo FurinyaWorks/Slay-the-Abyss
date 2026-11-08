@@ -26,6 +26,12 @@ test('architecture projection rejects removed registration, wrong owner, duplica
   for(const variant of [JSON.stringify(missing),JSON.stringify(wrong),source.replace('"'+key+'":', '"'+key+'": "core", "'+key+'":')])
    assert.equal(preCardOriginSource(path,variant),variant);
  }
+ for(const [key,value]of [['abyss_ui_profile','ui'],['abyss_native_pages','platform']]){
+  const wrong=structuredClone(policy);wrong.layers[key]=value;
+  const missing=structuredClone(policy);delete missing.layers[key];
+  for(const changed of [JSON.stringify(wrong),JSON.stringify(missing),source.replace('"'+key+'":','"'+key+'": "core", "'+key+'":')])
+   assert.equal(preCardOriginSource(path,changed),changed,'new registration mutation must remain exposed');
+ }
  const reordered=structuredClone(policy);reordered.deferredImports.reverse();
  const variant=JSON.stringify(reordered);assert.equal(preCardOriginSource(path,variant),variant);
  for(const variant of [JSON.stringify(policy),JSON.stringify(policy,null,'\t'),source+'\n\t '])
