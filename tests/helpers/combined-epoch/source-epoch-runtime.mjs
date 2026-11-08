@@ -5,14 +5,34 @@ import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 const normalize=s=>s.replaceAll('\r\n','\n');
 const hash=s=>createHash('sha256').update(s).digest('hex');
+// Only pure computations over complete immutable strings are memoized. Readers,
+// owner authorization and projection results never enter these bounded caches.
+function cacheStringCalculation(calculate){
+ const cache=new Map(),limit=2*1024*1024;let retained=0;
+ return source=>{
+  if(cache.has(source))return cache.get(source);
+  const result=calculate(source);
+  if(source.length<=limit){
+   while(cache.size>=256||retained+source.length>limit){
+    const first=cache.keys().next().value;retained-=first.length;cache.delete(first);
+   }
+   cache.set(source,result);retained+=source.length;
+  }
+  return result;
+ };
+}
+const sourceHash=cacheStringCalculation(source=>hash(normalize(source)));
 // Input layout permission never applies to linked raw owners. Preserve every
 // token, including string escapes, key order and duplicates, without reserialization.
 const tokens=s=>s.replace(/"(?:\\.|[^"\\])*"|[ \t\r\n]+/g,t=>t.startsWith('"')?t:'');
-function sameConfigLayout(source,current){
+function configLayoutMatcher(current){
+ const currentTokens=tokens(current);
+ return cacheStringCalculation(source=>{
  // Whitespace inside a number or keyword is not JSON layout. Parsing is only
  // a syntax gate; the original token text still decides identity.
  try{JSON.parse(source);}catch{return false;}
- return tokens(source)===tokens(current);
+ return tokens(source)===currentTokens;
+ });
 }
 const validPath=p=>p==='config/architecture.json'||/^src\/lua\/[A-Za-z0-9_-]+\.lua$/.test(p);
 function freeze(value){if(value&&typeof value==='object'){for(const v of Object.values(value))freeze(v);Object.freeze(value);}return value;}
@@ -40,6 +60,8 @@ export function createSourceEpochProjector(input,{root=process.cwd(),allowConfig
   }
  }
  freeze(proof);
+ const sameConfigLayout=allowConfigLayout&&proof.current['config/architecture.json']
+  ?configLayoutMatcher(proof.current['config/architecture.json'].source):()=>false;
  const readers=new WeakMap(),readLive=path=>{
   try{return readFileSync(resolve(root,path),'utf8');}catch(error){if(error.code==='ENOENT')return null;throw error;}
  };
@@ -49,12 +71,12 @@ export function createSourceEpochProjector(input,{root=process.cwd(),allowConfig
   const destination=requireTarget(target),current=proof.current[path],before=destination.files[path];
   // New witnesses are retained here; retirement belongs to a separate checked
   // materializer. Unknown/original/foreign bytes never authorize owner reads.
-  if(typeof source!=='string'||!current||!before||current.sha256===before.sha256||(hash(normalize(source))!==current.sha256&&(!allowConfigLayout||path!=='config/architecture.json'||!sameConfigLayout(source,current.source))))return source;
+  if(typeof source!=='string'||!current||!before||current.sha256===before.sha256||(sourceHash(source)!==current.sha256&&(!allowConfigLayout||path!=='config/architecture.json'||!sameConfigLayout(source))))return source;
   assert.equal(typeof readSource,'function','linked owner reader');readSource=rawReader(readSource);
   for(const owner of proof.owners){
    let actual;try{actual=readSource(owner);}catch(error){assert.fail('combined linked owner missing: '+owner+': '+String(error?.message??error));}
    const binding=proof.current[owner];
-   assert(binding===null?actual===null||actual===undefined:typeof actual==='string'&&hash(normalize(actual))===binding.sha256,'combined linked owner identity: '+owner);
+   assert(binding===null?actual===null||actual===undefined:typeof actual==='string'&&sourceHash(actual)===binding.sha256,'combined linked owner identity: '+owner);
   }
   return before.source;
  }

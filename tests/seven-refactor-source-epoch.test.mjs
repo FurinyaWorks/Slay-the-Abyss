@@ -94,3 +94,53 @@ test('configuration layout never repairs invalid number or keyword tokens',async
  const strict=createSourceEpochProjector(proof);reads=0;
  assert.equal(strict.preCombinedSource(path,layout,{target:'prior',readSource:raw}),layout);assert.equal(reads,0);
 });
+
+test('pure source calculations reuse exact strings but every projection freshly reads its owners',async()=>{
+ const crypto=(await import('node:crypto')).default,{syncBuiltinESMExports}=await import('node:module');
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ const path='config/architecture.json',source='{"cacheFreshness":1}\n';
+ const bind=source=>({source,sha256:createHash('sha256').update(source).digest('hex')});
+ const proof={schemaVersion:1,normalization:'LF',currentCommit:'a'.repeat(40),owners:[path],current:{[path]:bind(source)},
+  targets:{prior:{commit:'b'.repeat(40),files:{[path]:bind('{}\n')}}}};
+ const project=createSourceEpochProjector(proof,{allowConfigLayout:true});
+ const originalHash=crypto.createHash,originalParse=JSON.parse;let hashes=0,parses=0,reads=0,actual=source;
+ try{
+  crypto.createHash=(...args)=>{hashes++;return originalHash(...args);};syncBuiltinESMExports();
+  JSON.parse=(...args)=>{parses++;return originalParse(...args);};
+  const run=input=>project.preCombinedSource(path,input,{target:'prior',readSource:()=>{reads++;return actual;}});
+  assert.equal(run(source),'{}\n');assert.equal(hashes,1);assert.equal(reads,1);
+  assert.equal(run(source),'{}\n');assert.equal(hashes,1);assert.equal(reads,2);
+  const layout='{ "cacheFreshness" : 1 }\n';
+  assert.equal(run(layout),'{}\n');assert.equal(parses,1);assert.equal(reads,3);
+  assert.equal(run(layout),'{}\n');assert.equal(parses,1);assert.equal(reads,4);
+  actual=source.replace('1','2');assert.throws(()=>run(layout),/linked owner identity/);assert.equal(reads,5);
+  actual=null;assert.throws(()=>run(layout),/linked owner identity/);assert.equal(reads,6);
+  actual=source.replaceAll('\n','\r\n');assert.equal(run(layout),'{}\n');assert.equal(reads,7);
+  assert.throws(()=>project.preCombinedSource(path,layout,{target:'prior',readSource:null}),/linked owner reader/);
+  const foreign=layout.replace('1','2');assert.equal(run(foreign),foreign);assert.equal(reads,7);
+  assert.equal(run(foreign),foreign);assert.equal(reads,7);assert.equal(parses,2);
+ }finally{crypto.createHash=originalHash;JSON.parse=originalParse;syncBuiltinESMExports();}
+});
+
+test('pure hash memoization evicts by both entry count and retained complete string length',async()=>{
+ const crypto=(await import('node:crypto')).default,{syncBuiltinESMExports}=await import('node:module');
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ const path='src/lua/cache_bound.lua',source='return "cache-bound-current"\n';
+ const bind=source=>({source,sha256:createHash('sha256').update(source).digest('hex')});
+ const project=createSourceEpochProjector({schemaVersion:1,normalization:'LF',currentCommit:'a'.repeat(40),owners:[path],current:{[path]:bind(source)},
+  targets:{prior:{commit:'b'.repeat(40),files:{[path]:bind('return nil\n')}}}});
+ const originalHash=crypto.createHash;let hashes=0,reads=0;
+ const run=input=>project.preCombinedSource(path,input,{target:'prior',readSource:()=>{reads++;return source;}});
+ try{
+  crypto.createHash=(...args)=>{hashes++;return originalHash(...args);};syncBuiltinESMExports();
+  const first='cache-entry-bound-0';run(first);run(first);assert.equal(hashes,1);
+  for(let i=1;i<=256;i++)run('cache-entry-bound-'+i);
+  assert.equal(hashes,257);run(first);assert.equal(hashes,258,'oldest complete input recomputed');
+  const large='cache-character-bound-'+'.'.repeat(1024*1024);
+  const before=hashes;run(large+'a');run(large+'b');run(large+'a');
+  assert.equal(hashes-before,3,'entry limit alone cannot retain over two million code units');
+  const oversized='cache-oversized-'+'.'.repeat(2*1024*1024);
+  const previous=hashes;run(oversized);run(oversized);assert.equal(hashes-previous,2,'oversized input is not retained');
+  assert.equal(reads,0,'foreign source computations never authorize linked reads');
+ }finally{crypto.createHash=originalHash;syncBuiltinESMExports();}
+});

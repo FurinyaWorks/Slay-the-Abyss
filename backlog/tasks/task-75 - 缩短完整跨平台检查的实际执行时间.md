@@ -4,8 +4,8 @@ title: 缩短完整跨平台检查的实际执行时间
 status: In Progress
 assignee:
   - Furinya
-created_date: '2026-10-28 03:47'
-updated_date: '2026-11-05 00:48'
+created_date: 2026-10-28 03:47
+updated_date: '2026-11-08T19:55:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -50,6 +50,8 @@ ordinal: 120000
 2026-11-03 M9持续收口：从当前hosted原始runs/jobs采集wall、queue、runner-minutes和取消执行，先定位无损去重/权重偏差，保留全部文件覆盖与原deadline；实现、独审、精确HEAD Full和实际合入后CI及真实前后耗时均完成才收口。
 
 2026-11-05复采同SHA队列/push原始run/jobs与最新100个Quality样本，区分已证明的工程AC与稳定Full30分钟/自然Fast20样本剩余出口；保持In Progress。
+
+2026-11-09 辅助切片：在已公开#571组合上定位#564 Full暴露的三个历史来源合同慢测，仅优化可证明等价的重复计算；完整断言、鲜读owner、原预算与矩阵保持，定向前后测量和独立审查后及时发布，不重复Full或占用用户电脑。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
