@@ -1,6 +1,6 @@
 # 2026-11-08 紧急集成记录
 
-Owner 本轮授权冻结新增功能，以唯一临时分支 `feat/emergency-integration-20261108` 统一 develop。负责人 Furinya；Backlog TASK-88.1。当前记录随实际验证更新，未完成事项不作通过声明。
+Owner 本轮授权冻结新增功能，以唯一最终交付分支 `feat/emergency-integration-final`（PR #560）统一 develop。负责人 Furinya；Backlog TASK-88.1。原组合树在 #559 保留，因线性历史门禁失败后将同tree整理为develop单父提交，未强推、未更改历史门禁。当前记录随实际验证更新，未完成事项不作通过声明。
 
 ## 不可变起点和恢复
 
@@ -58,6 +58,8 @@ Owner 本轮授权冻结新增功能，以唯一临时分支 `feat/emergency-int
 - 轻量2D/UI四文件40/40通过；构建模式3/3、选测预检23/23通过。
 - 架构338模块/1930边通过；数据验证通过。
 - LFS真实子进程验证超时/卡住，原日志和终止记录保留，不计通过。
-- 完整CI、组合历史源码合同、完整GIL读回及当前设备实测尚待；旧F候选ready/PC证据不转移给当前候选。未进行本轮桌面输入，手机/官方容量保持UNVERIFIED。
+- 完整CI、组合历史源码合同仍在收口，原#559历史门禁失败及#560初轮TASK-88.1优先级遗漏失败保留；后者已用CLI修正，未修改断言。原Full失败不能借定向绿灯改写。
+- Enhanced完整GIL构建与351模块构建器读回通过：buildId `052805cb-5dc5-4f6d-ad90-48b1286dc675`，干净源码 `4d1e2f0324eaec76568c87bd9e949cf2a5e02a27`，12,163,708字节，SHA256 `4b5cff1a61907f0f6314c38f14f40d61407454121d6d061eb6ce1bab355c9f2e`。路径 `build/integration-enhanced/052805cb-5dc5-4f6d-ad90-48b1286dc675/candidate.gil`。后续线性提交和测试证明收口不改此候选生产Lua、数据、构建输入；独立整包审计另记。
+- Owner再次明确本轮优先立即合并和清理、CI并行，不占用原神；本轮不再申请桌面测试。官方导入/ready/手机/官方容量保持UNVERIFIED，旧F证据不转移。
 
 PR关闭、分支删除、最终develop SHA、规则恢复读回及候选身份以本页后续实际收口记录为准；当前不声明完成。

@@ -5,9 +5,11 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-08 01:12'
+updated_date: '2026-11-08 01:32'
 labels: []
 dependencies: []
 parent_task_id: TASK-88
+priority: medium
 ordinal: 165000
 ---
 
