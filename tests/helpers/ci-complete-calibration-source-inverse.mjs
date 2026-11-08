@@ -52,6 +52,8 @@ export function preCiCompleteCalibrationSource(path,source){
 // Only the complete merged source may enter either immutable original epoch.
 // Removing extra floors is never a generic drift-masking fallback.
 export function originalPlanningSource(path,source,epoch='develop'){
+ source=preCombinedPlanningSource(path,source);
+ source=preWatcherFlowPlanningSource(path,preSilentTacticsPlanningSource(path,preEffectsTargetGroupPlanningSource(path,source)));
  source=preGameUiLocalPlanningSource(path,prePartialCasePlanningSource(path,source));
  if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='aca81cae4ade8e6ddb1590bc6afae965f0a55dd0ff3052aec2d3a555e5c8f7a8')return source;
  const value=JSON.parse(source);
@@ -86,5 +88,73 @@ export function prePartialCasePlanningSource(path,source){
  }
  const prior=JSON.stringify(value,null,2)+'\n';
  assert.equal(hash(prior),'b12d89163c76dabdf09e7af728fab0aceada1b0409e8b15898baad59749d61e1','all twenty prior floors and every observation remain byte-identical');
+ return prior;
+}
+
+// Exact outer planning epoch; all previous sources and observations remain frozen.
+export const watcherFlowPlanningKey="tests/watcher-flow-planning.test.mjs";
+export const savedWatcherFlowPlanningFloor=Object.freeze({"durationMs":51776,"environment":"cloud Linux local","coverage":"11/11 complete file passed; 0 failed, cancelled or skipped. Saved pre-integration slice run.","kind":"Local complete-run planning floor only; not a hosted measurement, current integration pass, execution permission or timeout change.","nodeReportedDurationMs":51775.185427,"sourceLog":"docs/evidence/m7-watcher-flow-targeted-final-20261108.log.gz","sourceLogSha256":"53d4055898de21c7584806acbcf739d88decc4ee40d248f436a03b778a1125d4","sourceLogUncompressedSha256":"e17ba6aeda94b106701f3e9eb18e6a3adc15c41eb3a5949365634e38b8aba7e9","sourceReceipt":"docs/evidence/m7-watcher-flow-planning-20261108.json","sourceReceiptSha256":"e69e5441c4c90cfb03786859c9aa76a45e92f87c532745ae60397c4af2de33d9"});
+export const watcherFlowPlanningFloor=Object.freeze({"durationMs":55668,"environment":"cloud Linux local","coverage":"11/11 complete file passed; 0 failed, cancelled or skipped. Current local integration run.","kind":"Local complete-run planning floor only; not a hosted measurement, current integration pass, execution permission or timeout change.","nodeReportedDurationMs":55667.073989,"sourceLog":"docs/evidence/watcher-flow-integration-behavior-20261109.log.gz","sourceLogSha256":"b50a5e0bdc257b8e00636ff64b5dda76130ef72a43b239864764a28733da8add","sourceLogUncompressedSha256":"437f163287d7db816e0ce584709eeb904122f55a92c7d8a2a6484ed067e8b941","sourceReceipt":"docs/evidence/watcher-flow-integration-behavior-20261109.json","sourceReceiptSha256":"2171cef97972a096779972244ccfbe248caba188d0ce83e208203c39ec7a7fc5"});
+export function preWatcherFlowPlanningSource(path,source){
+ if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||!['fa041e8a3ed7b10e0498491eb5ba1aba18af019db76ffa746fe85268ae562e34','20a43c9723de6f8b85a28ef863e0cdb977cc1432a8ceb25ac794d0bd6cff6543'].includes(hash(source.replaceAll('\r\n','\n'))))return source;
+ const value=JSON.parse(source);
+ assert.deepEqual(value.jsPlanning.localLowerBounds[watcherFlowPlanningKey],hash(source.replaceAll('\r\n','\n'))==='fa041e8a3ed7b10e0498491eb5ba1aba18af019db76ffa746fe85268ae562e34'?savedWatcherFlowPlanningFloor:watcherFlowPlanningFloor);
+ delete value.jsPlanning.localLowerBounds[watcherFlowPlanningKey];
+ const prior=JSON.stringify(value,null,2)+'\n';
+ assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56','every old floor, raw observation, worker-safety and deadline input remains byte-identical');
+ return prior;
+}
+
+export const silentTacticsPlanningKey="tests/silent-tactics-planning.test.mjs";
+export const silentTacticsPlanningFloor=Object.freeze({"durationMs":21636,"environment":"cloud Linux local","coverage":"12/12 complete file passed; 0 failed, cancelled or skipped. Includes independent old/new VMs and original Combat fixture.","kind":"Local complete-run planning floor only; not hosted measurement, execution permission or timeout change.","nodeReportedDurationMs":21635.944135,"sourceLog":"docs/evidence/m7-silent-tactics-20261109/behavior-final.log.gz","sourceLogSha256":"65196bba152dd0ab7c83ecc4ab69d785fe9560ac1069dc37b8ff61205b00b764","sourceLogUncompressedSha256":"71565f0ad153f1f33987f070501d9c0bfeda014515f35b59de0097bb8192ac7c","sourceReceipt":"docs/evidence/m7-silent-tactics-20261109/behavior-receipt.json","sourceReceiptSha256":"8420d4211ac076a603623b538766af49209910733de05a7f8105918e7bcf9bd9"});
+export function preSilentTacticsPlanningSource(path,source){
+ if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='9c088a8c3a6d4c553e58e85ef10f89f049e0f39dad14c494885568bd9352f310')return source;
+ const value=JSON.parse(source);
+ assert.deepEqual(value.jsPlanning.localLowerBounds[silentTacticsPlanningKey],silentTacticsPlanningFloor);
+ delete value.jsPlanning.localLowerBounds[silentTacticsPlanningKey];
+ const prior=JSON.stringify(value,null,2)+'\n';
+ assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56','all prior floors, observations and execution safety inputs remain byte-identical');
+ return prior;
+}
+
+export const effectsTargetGroupPlanningKey="tests/effects-target-group.test.mjs";
+export const effectsTargetGroupPlanningFloor=Object.freeze({"durationMs":7662,"environment":"cloud Linux local","coverage":"5/5 complete file passed; 0 failed, cancelled or skipped. Includes independent old/new complete VMs, 306 snapshots each and 11 semantic mutants.","kind":"Local complete-run planning floor only; not hosted measurement, execution permission or timeout change.","nodeReportedDurationMs":7661.276801,"sourceLog":"docs/evidence/m7-effects-target-group-20261109/behavior-final.log.gz","sourceLogSha256":"a8212eeb561ca1fb79669333c936867e43cffaa621d279b5c392302c26858fe4","sourceLogUncompressedSha256":"0b64f5530975fb458e44679d7e014f2e69b56d10fdb51363c814c5a9ca5d553f","sourceReceipt":"docs/evidence/m7-effects-target-group-20261109/behavior-receipt.json","sourceReceiptSha256":"ed8a7599f1c1dabc43e291a2a801a004c8cb07aaed60d03bbb0a1dce5a38d0ea"});
+export function preEffectsTargetGroupPlanningSource(path,source){
+ if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=="aa5a35f348c759ef3aa14411aa0d52e7c7d9fd02b9086fb7a369b1aad7abd75d")return source;
+ const value=JSON.parse(source);
+ assert.deepEqual(value.jsPlanning.localLowerBounds[effectsTargetGroupPlanningKey],effectsTargetGroupPlanningFloor);
+ delete value.jsPlanning.localLowerBounds[effectsTargetGroupPlanningKey];
+ const prior=JSON.stringify(value,null,2)+'\n';
+ assert.equal(hash(prior),"54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56",'every prior floor, observation and execution safety input remains byte-identical');
+ return prior;
+}
+
+// Only this complete combined identity can project to frozen sibling planning epochs.
+// Arbitrary source, partial floor sets and changed execution inputs pass through untouched.
+export function preCombinedPlanningSource(path,source,epoch='base'){
+ if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba')return source;
+ const targets={base:'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56',flow:'20a43c9723de6f8b85a28ef863e0cdb977cc1432a8ceb25ac794d0bd6cff6543',silent:'9c088a8c3a6d4c553e58e85ef10f89f049e0f39dad14c494885568bd9352f310',effects:'aa5a35f348c759ef3aa14411aa0d52e7c7d9fd02b9086fb7a369b1aad7abd75d'};
+ assert.ok(Object.hasOwn(targets,epoch),'known frozen sibling planning epoch');
+ const value=JSON.parse(source);
+ for(const [name,key,floor]of [['flow',watcherFlowPlanningKey,watcherFlowPlanningFloor],['silent',silentTacticsPlanningKey,silentTacticsPlanningFloor],['effects',effectsTargetGroupPlanningKey,effectsTargetGroupPlanningFloor]]){
+  assert.deepEqual(value.jsPlanning.localLowerBounds[key],floor);
+  if(name!==epoch)delete value.jsPlanning.localLowerBounds[key];
+ }
+ const prior=JSON.stringify(value,null,2)+'\n';
+ assert.equal(hash(prior),targets[epoch],'complete original sibling planning bytes');
+ return prior;
+}
+
+// Historical receipt source proof, gated by both complete merged and published identities.
+export function preCombinedGateSource(path,source,epoch){
+ if(path!=='scripts/check-lua-static.mjs'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='8253029479f041be7ec8235fcff181f941f9e3190412c587a3b06904452903c1')return source;
+ const targets={"flow": "c90c522a35efa86a444d973d6c90d0e42c7e02cc4bd1d4a49e5e94fdd331fa51", "silent": "61b3588acbea2e47e2812903acfbbe149eac1858fbb6a0ed86d38fe96074df8d", "effects": "10d11c5f5294ac48929d9d4946cb7b92d18881507c09b5825e1dd2b8a813715c"},edits={"flow": [["  'src/lua/abyss_silent_tactics_cards.lua': [],\n", ""], ["    ...['visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',\n      'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n", "    ...['denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n"], ["  || file==='src/lua/abyss_silent_tactics_cards.lua'\n", ""]], "silent": [["  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']\n    .map(name=>`function '${name}'`),\n", ""], ["    ...['visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',\n      'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n", "    ...['denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n"]], "effects": [["  'src/lua/abyss_silent_tactics_cards.lua': [],\n  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']\n    .map(name=>`function '${name}'`),\n", ""], ["  || file==='src/lua/abyss_silent_tactics_cards.lua'\n", ""]]};
+ assert.ok(Object.hasOwn(targets,epoch),'known frozen sibling gate epoch');
+ let prior=source.replaceAll('\r\n','\n');
+ for(const [from,to]of edits[epoch]){
+  assert.equal(prior.split(from).length,2,'one exact gate slice');
+  prior=prior.replace(from,to);
+ }
+ assert.equal(hash(prior),targets[epoch],'complete published sibling gate bytes');
  return prior;
 }

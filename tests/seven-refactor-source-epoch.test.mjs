@@ -53,7 +53,7 @@ test('facades preserve original invalid-reader semantics while public reader fac
 });
 
 test('configuration layout admission preserves exact tokens and freshly authenticates all 45 raw owners',async()=>{
- const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {preEffectsTargetGroupEpoch:sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
  const proof=sourceEpoch.proof,path='config/architecture.json',source=proof.current[path].source;
  const raw=p=>proof.current[p]?.source??null,expected=proof.targets.actor.files[path].source;
  assert.equal(proof.owners.length,45);

@@ -94,6 +94,9 @@ export function reviewRenderComplexity(diagnostics, sources) {
 // Budget only this governance slice and every extracted responsibility module.
 // Unrelated pre-existing Combat/UI hotspots keep their diagnostic reports.
 const responsibilityRoots = {
+  'src/lua/abyss_silent_tactics_cards.lua': [],
+  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']
+    .map(name=>`function '${name}'`),
   'src/lua/abyss_scry.lua': ['M.choose','allowedCandidates','selectedCards','hasWeaveQueue','discardSelected']
     .map(name=>`function '${name}'`),
   'src/lua/abyss_shivs.lua': [],
@@ -181,7 +184,8 @@ const responsibilityRoots = {
   'src/lua/abyss_run_potions.lua': ["function 'potionCandidate'"],
   'src/lua/abyss_run_potion_candidate.lua': [],
   'src/lua/abyss_effects.lua': ["function 'M.apply'", "function 'continueEffects'", "function 'applyOne'",
-    ...['denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',
+    ...['visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',
+      'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',
       'nonConditionalOpSupported','selectionAmountsSupported','mantraAmountSupported',
       'effectMetadataSupported','supported','M.supported'].map(name=>`function '${name}'`)],
   'src/lua/abyss_combat.lua': [
@@ -247,6 +251,7 @@ const responsibilityRoots = {
 // All Run orchestration and newly extracted Run helpers receive the full budget.
 const responsibilityHelper = file => /^src\/lua\/abyss_(?:effects_.+|combat_effect.*|combat_catalog|combat_reactions|combat_native_play|combat_queued_play|act2_ai_.+|character_presentation_.+|feedback_.+|node_ui(?:_.+)?|game_ui_.+|run(?:_(?!(?:card_catalog|red_card_contract|seed)\.lua$).+)?|nodes(?:_.+)?)\.lua$/.test(file);
 const completeResponsibility = file => responsibilityHelper(file)
+  || file==='src/lua/abyss_silent_tactics_cards.lua'
   || file==='src/lua/abyss_shivs.lua'
   || file==='src/lua/abyss_act3_ai.lua'
   || file==='src/lua/abyss_turn_power_phases.lua'

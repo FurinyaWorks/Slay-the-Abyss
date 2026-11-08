@@ -7,11 +7,17 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 const bytes=readFileSync(new URL('./integration-source-closure.json',import.meta.url));
 assert.equal(hash(bytes),'800fcc9efd889f482259d0e1e9f1501f0e9597ac05552622ede00dd3dcdb4a94','complete integration helper closure identity');
 const files={...JSON.parse(bytes),...{
+  "tests/helpers/silent-tactics-source-epoch.json.gz": "046c798aed3ded45bf29ad696c777551102f74066a262174af3d9990bdabb1c7",
+  "tests/helpers/silent-tactics-source-epoch.mjs": "1961b7399f1ec8ece9bfc598f9660f5fdc20c669cac3e967a2d4979296b597cf",
+  "tests/helpers/watcher-flow-source-epoch.json.gz": "9e81602d086a81680830cf179a5d9f9f041bd56e0938b2d82eb196e50f73c015",
+  "tests/helpers/watcher-flow-source-epoch.mjs": "dad47d3abfb21ce4922a2482142ac2f702644aaa4775558c4c5b06458196cccd",
+  "tests/helpers/effects-target-group-source-epoch.mjs": "8affe1c65d7a096fc5546375bcb19bb404923be2c94528e3e443b4095ef7c488",
+  "tests/helpers/effects-target-group-source-epoch.json.gz": "f22d0328aedd7b7e9c785482271483f9f083c5c6abd7cd55d19933b24a48c0c2",
   "tests/helpers/act1-choice-source-inverse.mjs": "b939c672c5aa354a510152ea08aaaf2f8dca168e2f31f7ededc2f8430993228e",
   "tests/helpers/actor-presence-source-inverse.mjs": "9f90f6908fe07fffa80dc254723f64e5e64162e4197ef0651c51d21483babb28",
   "tests/helpers/colorless-catalog-source-inverse.mjs": "173ba6f9a97a5f87ccd4e338975013637902f97c5f8c5e1cb60524455aa41316",
   "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "49c0d122395270c531de0a5dda7c8b1d7b0b31c79bb4f4a5dbbac70ffb5d9d72",
-  "tests/helpers/combined-epoch/source-epoch.mjs": "578f79dfe654971770df11b539d178fb4a579c1ccbb26b1c03a5b2d64a617208",
+  "tests/helpers/combined-epoch/source-epoch.mjs": "ead581cd9f4342753bf9971b94c2dd79048ff2b152e330bf5702e465d9158f10",
   "tests/helpers/core-lifecycle-source-inverse.mjs": "e7a0f431a72eb1d30332802ffc1a0f7d9d2bd82ae6255e58bad0b3fbc3d8e16f",
   "tests/helpers/defect-plan-source-inverse.mjs": "daf313bc97c097b02ab790f0384a383cfd42690cddf0ef982fa231ddc4404c24",
   "tests/helpers/end-turn-responsibilities-source-inverse.mjs": "b38d08a2214f2878e7390dcb574e50404f405dbf42e1dd76b51f3372404ac146",

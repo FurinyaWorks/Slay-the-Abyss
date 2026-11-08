@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-complete-test-file",
+  "sourceSliceCommit": "8e1d7d95f6bfb91ddfe308849998fb0e93f30496",
+  "baseCommit": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "file": "tests/silent-tactics-planning.test.mjs",
+  "fileSha256": "1d00498ba1c76c38e88b2d854122a0e0272edecb5310333b8cf39dfd7c0e53f5",
+  "targeted": {
+    "tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 21635.944135,
+    "casesPerVm": 585,
+    "graphsPerVm": 1170,
+    "semanticMutationsKilled": 16,
+    "realCombatCasesEachVm": 60
+  },
+  "sourceLog": "docs/evidence/m7-silent-tactics-20261109/behavior-final.log.gz",
+  "sourceLogSha256": "65196bba152dd0ab7c83ecc4ab69d785fe9560ac1069dc37b8ff61205b00b764",
+  "sourceLogUncompressedSha256": "71565f0ad153f1f33987f070501d9c0bfeda014515f35b59de0097bb8192ac7c",
+  "hostedPassClaim": false,
+  "fullPassClaim": false,
+  "firstFailure": "The new test incorrectly expected 37 original Combat cases; both VMs actually completed 60. Corrected only the new count assertion, then complete file passed. Original test and behavior unchanged. First failing log preserved."
+}

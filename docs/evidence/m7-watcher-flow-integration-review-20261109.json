@@ -1,0 +1,96 @@
+{
+  "reviewId": "/root/integrate_recovered_work/review_flow_integration",
+  "reviewedBaseSha": "50584b5d6ebc6812bedb3a644e9eec13d2cb90cb",
+  "reviewedHeadSha": "b0d2020f40aad599f6d3be9fefdb763a945997ac",
+  "worktreeDirty": true,
+  "reviewedAt": "2026-11-08T14:06:23.815682+00:00",
+  "scope": "WatcherFlow production/source epoch integration, historical boundaries, isolated helper closure, and final CI planning/inventory code",
+  "conclusion": "pass",
+  "fileSha256": {
+    ".gitattributes": "03993220acf3c10add4c6b5e2a97964d8f081cc27a187f8ce3af874d5d51f816",
+    "src/lua/abyss_watcher_flow_cards.lua": "019fc60e728ffad81405b24323545b05718f452ae20c756f67fc6f56ce9e0217",
+    "tests/helpers/watcher-flow-source-epoch.mjs": "4d4ebaea17fa372184fa603cad890c47b5e323f1611029c3151150ffde4891c6",
+    "tests/helpers/watcher-flow-source-epoch.json.gz": "9e81602d086a81680830cf179a5d9f9f041bd56e0938b2d82eb196e50f73c015",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "569ad6d210512517b96fea2435660b403d530c1833c5f95773c57f08391735d3",
+    "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "49c0d122395270c531de0a5dda7c8b1d7b0b31c79bb4f4a5dbbac70ffb5d9d72",
+    "tests/helpers/combined-epoch/source-epoch.json.gz": "2085260a5aabde4476411172eb0b2e6fd3afcaa991a3cafc52f3ab0e98755c73",
+    "tests/helpers/seven-refactor-source-epoch.mjs": "adee26f0be88462722cd374430150bf7e519c359df87f852f93708629b60b942",
+    "tests/helpers/seven-refactor-source-epoch.json.gz": "98ce5a13a217c5b20bbbddf93811d5fc2dda4117bb465c33c5ad4c979608c4bd",
+    "tests/helpers/integration-source-closure.json": "800fcc9efd889f482259d0e1e9f1501f0e9597ac05552622ede00dd3dcdb4a94",
+    "tests/helpers/copy-integration-source-closure.mjs": "86f6608813ca60b4c6ec301d43849d6edddff675c5991a859d7c89ceb005a1de",
+    "tests/seven-refactor-source-epoch.test.mjs": "c8dbaf03e69facd6d0109ac90618459811113c45630e78103ee8a919293b778a",
+    "tests/watcher-flow-source-epoch.test.mjs": "a78f454059b1ce265dc6d127c0427962babd83bfd40bf71fc704c38ac1a35853",
+    "scripts/ci-test-timings.json": "20a43c9723de6f8b85a28ef863e0cdb977cc1432a8ceb25ac794d0bd6cff6543",
+    "tests/ci-complete-calibration.test.mjs": "0d0b2196eca6cb11fabd37c2b3b68b5dffcdc036ef40752e6779c37716f475bc",
+    "tests/ci-runtime.test.mjs": "12a8a037083036b892b874f2ba068f3fd4de632e524520dad7317de5308aa9ff",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "c7faa85f32268d428ff9401623db991b639e113421280218cfd7486ca5996c9d",
+    "docs/evidence/watcher-flow-integration-behavior-20261109.json": "2171cef97972a096779972244ccfbe248caba188d0ce83e208203c39ec7a7fc5",
+    "docs/evidence/watcher-flow-integration-behavior-20261109.log.gz": "b50a5e0bdc257b8e00636ff64b5dda76130ef72a43b239864764a28733da8add"
+  },
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=1 tests/watcher-flow-source-epoch.test.mjs tests/seven-refactor-source-epoch.test.mjs",
+      "passed": 11,
+      "failed": 1,
+      "failure": "Flow preservation deepEqual at watcher-flow-source-epoch.test.mjs:15: outer prior missing mode and rawGitBlob metadata"
+    },
+    {
+      "check": "all 339 non-null current production bindings agree with normalized live files; 46 owners, 15 historical targets",
+      "result": "pass"
+    },
+    {
+      "check": "Flow prior/source match git show base 50584b5 and saved c24ef4e respectively",
+      "result": "pass"
+    },
+    {
+      "check": "git diff base frozen epochs, combined gzip, seven gzip, closure JSON",
+      "result": "unchanged"
+    },
+    {
+      "command": "node --test --test-concurrency=1 tests/watcher-flow-source-epoch.test.mjs tests/seven-refactor-source-epoch.test.mjs",
+      "passed": 12,
+      "failed": 0,
+      "durationMs": 5577.473182,
+      "result": "pass after full metadata preservation repair"
+    },
+    {
+      "command": "node --test --test-name-pattern='Watcher Flow saved|pre-Flow current|current complete Flow|current Full36' tests/ci-complete-calibration.test.mjs",
+      "passed": 4,
+      "failed": 0,
+      "durationMs": 2198.728385
+    }
+  ],
+  "findings": [
+    {
+      "severity": "blocking",
+      "file": "tests/watcher-flow-source-epoch.test.mjs",
+      "line": 15,
+      "detail": "New archive prior binding omits mode/rawGitBlob, failing complete predecessor preservation. Preserve full prior binding and update identity hashes.",
+      "resolved": true,
+      "resolution": "New archive now retains mode/rawGitBlob before and after; exact module/copy hashes refreshed; original assertion unchanged."
+    }
+  ],
+  "limitations": [
+    "Full and publication not authorized; not run.",
+    "Flow full behavior suite performed by coordinator, authenticated receipt reviewed without duplicating execution.",
+    "CI worker final full four-file targeted rerun and updated summary receipt were pending at review; independent focused current/historical CI tests passed.",
+    "backlog instructions overview/task-execution unavailable: backlog executable absent from PATH."
+  ],
+  "unresolved": [],
+  "sourceReview": [
+    "Frozen historical epoch archives and integration-source-closure.json unchanged from base.",
+    "All 339 live non-null source bindings independently compared; Flow bytes independently matched base and saved production commits.",
+    "Current facade authenticates all 46 raw owners on each admitted projection; warm drift/missing owner failures covered.",
+    "CRLF normalization, opaque/original no-read behavior, invalid-reader error preservation and composed reader raw ownership passed.",
+    "New helper archive/module are included with exact fresh hashes in existing isolated copy allowlist; path/realpath safeguards unchanged; isolated import passed.",
+    "Historical 45-owner test explicitly bound to preWatcherFlowEpoch without weakening assertions; current 46-owner coverage added."
+  ],
+  "ciReview": [
+    "Only one local planning floor added, rounded up to 55668 from authenticated complete 11/11 local integration run (55667.073989 ms).",
+    "Saved 51776 intermediate and pre-Flow exact source preserved by SHA256-gated inverse, never generic field removal.",
+    "Hosted observations, raw worker safety timings, workflow, concurrency, performance targets, unknown fallback and execution guards unchanged.",
+    "New inventory 784 JS / 1409 Lua covered; frozen original placement inventory and pre-Flow forecasts independently reproducible.",
+    "Current forecasts including 60000 reserve: Windows 1775788 ms below 1800000; POSIX 1183709 ms below 1200000. Planning only, not Full execution evidence.",
+    "New behavior receipt source/log hashes authenticated by independent targeted test."
+  ]
+}

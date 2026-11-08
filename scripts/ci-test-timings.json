@@ -5247,6 +5247,42 @@
         "sourceLogSha256": "2c6376cb852312812e6813dc88e02c196955da52282624036cdc61780dbeaed6",
         "sourceReceipt": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-planning.json",
         "sourceReceiptSha256": "99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58"
+      },
+      "tests/watcher-flow-planning.test.mjs": {
+        "durationMs": 55668,
+        "environment": "cloud Linux local",
+        "coverage": "11/11 complete file passed; 0 failed, cancelled or skipped. Current local integration run.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, current integration pass, execution permission or timeout change.",
+        "nodeReportedDurationMs": 55667.073989,
+        "sourceLog": "docs/evidence/watcher-flow-integration-behavior-20261109.log.gz",
+        "sourceLogSha256": "b50a5e0bdc257b8e00636ff64b5dda76130ef72a43b239864764a28733da8add",
+        "sourceLogUncompressedSha256": "437f163287d7db816e0ce584709eeb904122f55a92c7d8a2a6484ed067e8b941",
+        "sourceReceipt": "docs/evidence/watcher-flow-integration-behavior-20261109.json",
+        "sourceReceiptSha256": "2171cef97972a096779972244ccfbe248caba188d0ce83e208203c39ec7a7fc5"
+      },
+      "tests/silent-tactics-planning.test.mjs": {
+        "durationMs": 21636,
+        "environment": "cloud Linux local",
+        "coverage": "12/12 complete file passed; 0 failed, cancelled or skipped. Includes independent old/new VMs and original Combat fixture.",
+        "kind": "Local complete-run planning floor only; not hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 21635.944135,
+        "sourceLog": "docs/evidence/m7-silent-tactics-20261109/behavior-final.log.gz",
+        "sourceLogSha256": "65196bba152dd0ab7c83ecc4ab69d785fe9560ac1069dc37b8ff61205b00b764",
+        "sourceLogUncompressedSha256": "71565f0ad153f1f33987f070501d9c0bfeda014515f35b59de0097bb8192ac7c",
+        "sourceReceipt": "docs/evidence/m7-silent-tactics-20261109/behavior-receipt.json",
+        "sourceReceiptSha256": "8420d4211ac076a603623b538766af49209910733de05a7f8105918e7bcf9bd9"
+      },
+      "tests/effects-target-group.test.mjs": {
+        "durationMs": 7662,
+        "environment": "cloud Linux local",
+        "coverage": "5/5 complete file passed; 0 failed, cancelled or skipped. Includes independent old/new complete VMs, 306 snapshots each and 11 semantic mutants.",
+        "kind": "Local complete-run planning floor only; not hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 7661.276801,
+        "sourceLog": "docs/evidence/m7-effects-target-group-20261109/behavior-final.log.gz",
+        "sourceLogSha256": "a8212eeb561ca1fb79669333c936867e43cffaa621d279b5c392302c26858fe4",
+        "sourceLogUncompressedSha256": "0b64f5530975fb458e44679d7e014f2e69b56d10fdb51363c814c5a9ca5d553f",
+        "sourceReceipt": "docs/evidence/m7-effects-target-group-20261109/behavior-receipt.json",
+        "sourceReceiptSha256": "ed8a7599f1c1dabc43e291a2a801a004c8cb07aaed60d03bbb0a1dce5a38d0ea"
       }
     }
   },

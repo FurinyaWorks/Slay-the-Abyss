@@ -1,3 +1,6 @@
+import {preCombinedGateSource,preCombinedPlanningSource,preSilentTacticsPlanningSource,silentTacticsPlanningKey,silentTacticsPlanningFloor,preEffectsTargetGroupPlanningSource,effectsTargetGroupPlanningKey,effectsTargetGroupPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
+import {gunzipSync} from 'node:zlib';
+import {preWatcherFlowPlanningSource,watcherFlowPlanningKey,watcherFlowPlanningFloor,savedWatcherFlowPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {prePartialCasePlanningSource,partialCasePlanningFloors,originalPlanningSource,preGameUiLocalPlanningSource,gameUiLocalPlanningKey,gameUiLocalPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciEpoch} from './helpers/integration-ci-epochs.mjs';
 import {potionCallbackFloorKey,verifiedPotionCallbackFloor,prePotionCallbackPlanningSource} from './helpers/potion-callback-planning.mjs';
@@ -47,8 +50,8 @@ const floorPath='docs/evidence/pr521-run-max-planning-floor-20261106.json',floor
 const localFloorPath='docs/evidence/power-shop-planning-20261107.json',localFloorBytes=read(localFloorPath),localFloorReceipt=JSON.parse(localFloorBytes),localFloorKey='tests/power-shop-boundaries.test.mjs';
 // Added after the frozen #521 placement receipts. Never use these files to
 // reconstruct historical shard assignments or invent historical measurements.
-const postPlacementJs=["tests/act1-choice-responsibilities.test.mjs","tests/act3-ai-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/class-potion-orb-boundary.test.mjs","tests/class-potion-orb-source-inverse.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-integration-source.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/defect-utility-planning.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/enemy-ai-lifecycle.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/scry-choice-responsibilities.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/seven-refactor-source-epoch.test.mjs","tests/shiv-turn-responsibilities.test.mjs","tests/watcher-actor-boundary.test.mjs","tests/watcher-actor-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs","tests/watcher-potion-integration-source.test.mjs"];
-const postPlacementLua=["tests/lua/actor_presence_contract.lua","tests/lua/colorless_catalog_contract.lua","tests/lua/defect_utility_planning.lua","tests/lua/enemy_ai_lifecycle.lua","tests/lua/intent_visibility_cache.lua","tests/lua/potion_callback_contract.lua","tests/lua/watcher_final_execution_boundaries.lua"];
+const postPlacementJs=["tests/act1-choice-responsibilities.test.mjs","tests/act3-ai-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/class-potion-orb-boundary.test.mjs","tests/class-potion-orb-source-inverse.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-integration-source.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/defect-utility-planning.test.mjs","tests/effects-target-group-source-epoch.test.mjs","tests/effects-target-group.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/enemy-ai-lifecycle.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/scry-choice-responsibilities.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/seven-refactor-source-epoch.test.mjs","tests/shiv-turn-responsibilities.test.mjs","tests/silent-tactics-planning.test.mjs","tests/silent-tactics-source-epoch.test.mjs","tests/watcher-actor-boundary.test.mjs","tests/watcher-actor-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs","tests/watcher-flow-planning.test.mjs","tests/watcher-flow-source-epoch.test.mjs","tests/watcher-potion-integration-source.test.mjs"].sort();
+const postPlacementLua=["tests/lua/actor_presence_contract.lua","tests/lua/colorless_catalog_contract.lua","tests/lua/defect_utility_planning.lua","tests/lua/enemy_ai_lifecycle.lua","tests/lua/intent_visibility_cache.lua","tests/lua/potion_callback_contract.lua","tests/lua/silent_tactics_planning.lua","tests/lua/watcher_final_execution_boundaries.lua","tests/lua/watcher_flow_planning.lua"].sort();
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
 const placementJs=()=>discoverJs().filter(file=>!postPlacementJs.includes(file));
 const placementLua=()=>currentLua().filter(file=>!postPlacementLua.includes(file));
@@ -234,7 +237,16 @@ test('current Full36 retains full coverage and reports performance targets under
  assert.equal(lua.length,placement.inventory.lua+postPlacementLua.length);
  for(const platform of ['win32','linux'])for(const file of postPlacementJs){
   assert.equal(currentTimings.js[platform][file],undefined,'new files have no fabricated hosted measurements');
-  if(file===localFloorKey){
+  if(file===silentTacticsPlanningKey){
+   assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],silentTacticsPlanningFloor);
+   assert.equal(currentJsPlanningWeights([file],platform)[file],21636);
+  }else if(file===effectsTargetGroupPlanningKey){
+   assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],effectsTargetGroupPlanningFloor);
+   assert.equal(currentJsPlanningWeights([file],platform)[file],10000);
+  }else if(file===watcherFlowPlanningKey){
+   assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],watcherFlowPlanningFloor);
+   assert.equal(currentJsPlanningWeights([file],platform)[file],55668);
+  }else if(file===localFloorKey){
    assert.equal(currentTimings.jsPlanning.localLowerBounds[file].durationMs,68586,'one complete local measurement supplies a planning floor, not hosted data');
    assert.equal(currentJsPlanningWeights([file],platform)[file],68586);
   }else if(file===runCatalogFloorKey){
@@ -270,7 +282,7 @@ test('current Full36 retains full coverage and reports performance targets under
   const jsBins=Array.from({length:count},(_,i)=>currentJsShard(js,`${i+1}/${count}`,platform).files);
   assert.deepEqual(jsBins.flat().sort(),[...js].sort());assert.equal(new Set(jsBins.flat()).size,js.length);
   if(platform==='linux'){
-   const forecast=Math.max(...loads)+60000;assert.equal(forecast,1179021);assert.ok(forecast<budget,'complete POSIX inventory fits the unchanged performance target including reserve');t.diagnostic(`POSIX forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
+   const forecast=Math.max(...loads)+60000;assert.equal(forecast,1187400);assert.ok(forecast<budget,'complete POSIX inventory fits the unchanged performance target including reserve');t.diagnostic(`POSIX forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
    continue;
   }
   const planning={...currentTimings,windowsJsShardMs:loads};
@@ -280,7 +292,7 @@ test('current Full36 retains full coverage and reports performance targets under
   const safety=file=>currentTimings.lua[file]??currentTimings.unknownLuaMs;
   const combined=bins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);
    return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);});
-  const forecast=Math.max(...combined)+60000;assert.equal(forecast,1771239);assert.ok(forecast<budget,'complete Windows inventory fits the unchanged performance target including reserve');t.diagnostic(`Windows forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<2700000,'forecast must fit the separately authorized 45-minute execution guard');
+  const forecast=Math.max(...combined)+60000;assert.equal(forecast,1779486);assert.ok(forecast<budget,'complete Windows inventory fits the unchanged performance target including reserve');t.diagnostic(`Windows forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<2700000,'forecast must fit the separately authorized 45-minute execution guard');
  }
 });
 
@@ -402,12 +414,15 @@ test('current 129 placement raises reconstruct exact timings while preserving al
  for(const [key,floor]of [[defectUtilityPlanningKey,defectUtilityPlanningFloor],[enemyAiPlanningKey,enemyAiPlanningFloor],[classPotionPlanningKey,classPotionPlanningFloor],[watcherPlanningKey,watcherPlanningFloor]])expected.jsPlanning.localLowerBounds[key]=floor;
  expected.jsPlanning.localLowerBounds[gameUiLocalPlanningKey]=gameUiLocalPlanningFloor;
  Object.assign(expected.jsPlanning.localLowerBounds,partialCasePlanningFloors);
+ expected.jsPlanning.localLowerBounds[watcherFlowPlanningKey]=watcherFlowPlanningFloor;
+ expected.jsPlanning.localLowerBounds[silentTacticsPlanningKey]=silentTacticsPlanningFloor;
+ expected.jsPlanning.localLowerBounds[effectsTargetGroupPlanningKey]=effectsTargetGroupPlanningFloor;
  assert.deepEqual(currentTimings,expected);
  for(const platform of ['win32','linux'])for(const [file,value]of Object.entries(after.js[platform]))assert.ok(currentTimings.js[platform][file]>=value);
  const luaBlock=s=>s.slice(s.indexOf('  "lua": {'),s.indexOf('  "jsSource":'));
  assert.equal(luaBlock(read(path)),luaBlock(binding.afterSource),'literal worker-safety bytes remain frozen');
  for(const key of ['lua','luaShard','luaShardCalibrationUpdates','initialMs','unknownJsMs','unknownLuaMs'])assert.deepEqual(currentTimings[key],after[key],key+' remains unchanged');
- const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);for(const key of Object.keys(partialCasePlanningFloors))delete priorFloors[key];delete priorFloors[gameUiLocalPlanningKey];delete priorFloors[floorKey];delete priorFloors[localFloorKey];delete priorFloors[runCatalogFloorKey];delete priorFloors[potionCallbackFloorKey];delete priorFloors[endTurnFloorKey];delete priorFloors['tests/actor-presence.test.mjs'];delete priorFloors['tests/reward-query-boundary.test.mjs'];for(const key of [defectUtilityPlanningKey,enemyAiPlanningKey,classPotionPlanningKey,watcherPlanningKey])delete priorFloors[key];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
+ const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);delete priorFloors[watcherFlowPlanningKey];delete priorFloors[silentTacticsPlanningKey];delete priorFloors[effectsTargetGroupPlanningKey];for(const key of Object.keys(partialCasePlanningFloors))delete priorFloors[key];delete priorFloors[gameUiLocalPlanningKey];delete priorFloors[floorKey];delete priorFloors[localFloorKey];delete priorFloors[runCatalogFloorKey];delete priorFloors[potionCallbackFloorKey];delete priorFloors[endTurnFloorKey];delete priorFloors['tests/actor-presence.test.mjs'];delete priorFloors['tests/reward-query-boundary.test.mjs'];for(const key of [defectUtilityPlanningKey,enemyAiPlanningKey,classPotionPlanningKey,watcherPlanningKey])delete priorFloors[key];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
  for(const platform of ['win32','linux'])assert.equal(currentJsPlanningWeights([floorKey],platform)[floorKey],889638);
  assert.equal(placement.forecast.reserveMs,60000);assert.deepEqual(placement.forecast.budgets,{win32:1800000,linux:1200000});assert.equal(placement.forecast.workers,2);assert.equal(placement.forecast.concurrencyCapUnchanged,12);
 });
@@ -570,4 +585,136 @@ test('merged planning source authenticates both complete original epochs without
   }
   assert.equal(originalPlanningSource('foreign/'+path,source,epoch),source);
  }
+});
+
+
+test('Watcher Flow saved complete local run supplies only one authenticated planning floor',()=>{
+ const source=preCombinedPlanningSource(path,readFileSync(path,'utf8'),'flow'),prior=preWatcherFlowPlanningSource(path,source);
+ assert.notEqual(source,prior);
+ assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56');
+ const floor=savedWatcherFlowPlanningFloor,bytes=readFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+ assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+ const receiptBytes=readFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+ assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+ assert.deepEqual(receipt.targeted,{tests:11,passed:11,failed:0,skipped:0,durationMs:51775.185427,semanticMutationsKilled:6,realCombatCasesEachVm:28});
+ for(const line of ['tests 11','pass 11','fail 0','cancelled 0','skipped 0','duration_ms 51775.185427'])assert.ok(log.includes('ℹ '+line));
+ assert.equal(floor.durationMs,Math.ceil(receipt.targeted.durationMs));
+ const current=JSON.parse(source),previous=JSON.parse(prior);delete current.jsPlanning.localLowerBounds[watcherFlowPlanningKey];
+ assert.deepEqual(current,previous,'no changes outside the single additional planning floor');
+ for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preWatcherFlowPlanningSource(path,input),prior);
+ for(const input of [source+'\n',source.slice(1),source.replace('"durationMs": 55668','"durationMs": 55667'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),prior,null,undefined,{},42])assert.equal(preWatcherFlowPlanningSource(path,input),input);
+ assert.equal(preWatcherFlowPlanningSource('foreign',source),source);
+});
+
+
+test('pre-Flow current-integration inventory and planning forecasts remain reproducible without new files',()=>{
+ const historical=JSON.parse(preCombinedPlanningSource(path,readFileSync(path,'utf8')));
+ const js=discoverJs().filter(file=>![watcherFlowPlanningKey,'tests/watcher-flow-source-epoch.test.mjs',silentTacticsPlanningKey,'tests/silent-tactics-source-epoch.test.mjs',effectsTargetGroupPlanningKey,'tests/effects-target-group-source-epoch.test.mjs'].includes(file));
+ const lua=currentLua().filter(file=>!['tests/lua/watcher_flow_planning.lua','tests/lua/silent_tactics_planning.lua'].includes(file));
+ assert.equal(js.length,782);assert.equal(lua.length,1408);
+ for(const [platform,count,expected,budget]of [['win32',17,1771239,1800000],['linux',14,1179021,1200000]]){
+  const weights=Object.fromEntries(js.map(file=>[file,Math.max(historical.js[platform][file]??historical.unknownJsMs,historical.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+  const loads=partition(js,`1/${count}`,weights,historical.unknownJsMs,Array.from({length:count},(_,i)=>i===0?historical.initialMs[platform][0]:0)).loads;
+  let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const bins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...historical,windowsJsShardMs:loads},2));
+   const cost=file=>historical.luaShard[file]??historical.lua[file]??historical.unknownLuaMs,safety=file=>historical.lua[file]??historical.unknownLuaMs;
+   maximum=Math.max(...bins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
+  }
+  assert.equal(maximum+60000,expected);assert.ok(expected<budget);
+ }
+});
+
+
+test('current complete Flow integration run monotonically raises the saved planning floor',()=>{
+ const floor=watcherFlowPlanningFloor,bytes=readFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+ assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+ const receiptBytes=readFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+ assert.deepEqual(receipt.previousSavedFloor,savedWatcherFlowPlanningFloor);
+ assert.deepEqual(receipt.summary,{tests:11,passed:11,failed:0,cancelled:0,skipped:0,durationMs:55667.073989});
+ for(const line of ['tests 11','pass 11','fail 0','cancelled 0','skipped 0','duration_ms 55667.073989'])assert.ok(log.includes('ℹ '+line));
+ for(const [file,digest]of Object.entries(receipt.sourceFiles))assert.equal(hash(preCombinedGateSource(file,readFileSync(file,'utf8'),'flow')),digest);
+ assert.equal(floor.durationMs,Math.ceil(receipt.summary.durationMs));assert.equal(floor.durationMs,55668);assert.ok(floor.durationMs>savedWatcherFlowPlanningFloor.durationMs);
+ const current=preCombinedPlanningSource(path,readFileSync(path,'utf8'),'flow'),previous=JSON.parse(current);previous.jsPlanning.localLowerBounds[watcherFlowPlanningKey]=savedWatcherFlowPlanningFloor;
+ const savedSource=JSON.stringify(previous,null,2)+'\n';assert.equal(hash(savedSource),'fa041e8a3ed7b10e0498491eb5ba1aba18af019db76ffa746fe85268ae562e34');
+ assert.equal(preWatcherFlowPlanningSource(path,savedSource),preWatcherFlowPlanningSource(path,current));
+});
+
+test('Silent tactics complete local run contributes only an authenticated planning floor',()=>{
+ const source=preCombinedPlanningSource(path,readFileSync(path,'utf8'),'silent'),prior=preSilentTacticsPlanningSource(path,source),floor=silentTacticsPlanningFloor;
+ assert.notEqual(source,prior);assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56');
+ const bytes=readFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+ assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+ const receiptBytes=readFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+ assert.deepEqual(receipt.targeted,{tests:12,passed:12,failed:0,skipped:0,cancelled:0,durationMs:21635.944135,casesPerVm:585,graphsPerVm:1170,semanticMutationsKilled:16,realCombatCasesEachVm:60});
+ for(const line of ['tests 12','pass 12','fail 0','cancelled 0','skipped 0','duration_ms 21635.944135'])assert.ok(log.includes('ℹ '+line));
+ assert.equal(floor.durationMs,Math.ceil(receipt.targeted.durationMs));
+ const current=JSON.parse(source),previous=JSON.parse(prior);delete current.jsPlanning.localLowerBounds[silentTacticsPlanningKey];assert.deepEqual(current,previous);
+ for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preSilentTacticsPlanningSource(path,input),prior);
+ for(const input of [source+'\n',source.slice(1),source.replace('"durationMs": 21636','"durationMs": 21635'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),prior,null,undefined,{},42])assert.equal(preSilentTacticsPlanningSource(path,input),input);
+ assert.equal(preSilentTacticsPlanningSource('foreign',source),source);
+});
+
+test('Effects target group complete local run adds only an authenticated conservative planning floor',()=>{
+ const source=preCombinedPlanningSource(path,readFileSync(path,'utf8'),'effects'),prior=preEffectsTargetGroupPlanningSource(path,source),floor=effectsTargetGroupPlanningFloor;
+ assert.notEqual(source,prior);assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56');
+ const bytes=readFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+ assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+ const receiptBytes=readFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+ assert.deepEqual(receipt.targeted,{tests:5,passed:5,failed:0,skipped:0,cancelled:0,durationMs:7661.276801,scenarios:51,entryPoints:3,checkpoints:2,snapshotsPerVm:306,semanticMutationsKilled:11});
+ for(const line of ['tests 5','pass 5','fail 0','cancelled 0','skipped 0','duration_ms 7661.276801'])assert.ok(log.includes('ℹ '+line));
+ for(const [file,sha]of Object.entries(receipt.sourceIdentity.files))assert.equal(hash(preCombinedGateSource(file,readFileSync(file,'utf8').replaceAll('\r\n','\n'),'effects')),sha,file);
+ assert.equal(floor.durationMs,Math.ceil(receipt.targeted.durationMs));
+ for(const platform of ['win32','linux'])assert.equal(currentJsPlanningWeights([effectsTargetGroupPlanningKey],platform)[effectsTargetGroupPlanningKey],10000);
+ const current=JSON.parse(source),previous=JSON.parse(prior);delete current.jsPlanning.localLowerBounds[effectsTargetGroupPlanningKey];assert.deepEqual(current,previous);
+ for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preEffectsTargetGroupPlanningSource(path,input),prior);
+ for(const input of [source+'\n',source.slice(1),source.replace('"durationMs": 7662','"durationMs": 7661'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),prior,null,undefined,{},42])assert.equal(preEffectsTargetGroupPlanningSource(path,input),input);
+ assert.equal(preEffectsTargetGroupPlanningSource('foreign',source),source);
+});
+
+
+test('combined planning projection authenticates exact sibling bytes and rejects partial or foreign drift',()=>{
+ const source=readFileSync(path,'utf8'),base=preCombinedPlanningSource(path,source);
+ assert.equal(hash(source.replaceAll('\r\n','\n')),'db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba');
+ for(const [epoch,key,floor,inverse]of [['flow',watcherFlowPlanningKey,watcherFlowPlanningFloor,preWatcherFlowPlanningSource],['silent',silentTacticsPlanningKey,silentTacticsPlanningFloor,preSilentTacticsPlanningSource],['effects',effectsTargetGroupPlanningKey,effectsTargetGroupPlanningFloor,preEffectsTargetGroupPlanningSource]]){
+  const isolated=preCombinedPlanningSource(path,source,epoch);
+  assert.equal(inverse(path,isolated),base);
+  assert.deepEqual(JSON.parse(isolated).jsPlanning.localLowerBounds[key],floor);
+  for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preCombinedPlanningSource(path,input,epoch),isolated);
+  const partial=JSON.parse(source);delete partial.jsPlanning.localLowerBounds[key];
+  for(const input of [source+'\n',source.slice(1),JSON.stringify(partial,null,2)+'\n',source.replace('"durationMs": '+floor.durationMs,'"durationMs": '+(floor.durationMs-1)),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),isolated,base,null,undefined,{},42])assert.equal(preCombinedPlanningSource(path,input,epoch),input);
+  assert.equal(preCombinedPlanningSource('foreign',source,epoch),source);
+ }
+ assert.throws(()=>preCombinedPlanningSource(path,source,'unknown'),/known frozen sibling/);
+});
+
+test('isolated published sibling inventories and forecasts remain independently reproducible',()=>{
+ for(const [epoch,ownJs,ownLua,windows,posix]of [['flow',[watcherFlowPlanningKey,'tests/watcher-flow-source-epoch.test.mjs'],['tests/lua/watcher_flow_planning.lua'],1775788,1183709],['silent',[silentTacticsPlanningKey,'tests/silent-tactics-source-epoch.test.mjs'],['tests/lua/silent_tactics_planning.lua'],1773802,1181278],['effects',[effectsTargetGroupPlanningKey,'tests/effects-target-group-source-epoch.test.mjs'],[],1772722,1180447]]){
+ const historical=JSON.parse(preCombinedPlanningSource(path,readFileSync(path,'utf8'),epoch));
+ const js=discoverJs().filter(file=>![watcherFlowPlanningKey,'tests/watcher-flow-source-epoch.test.mjs',silentTacticsPlanningKey,'tests/silent-tactics-source-epoch.test.mjs',effectsTargetGroupPlanningKey,'tests/effects-target-group-source-epoch.test.mjs'].includes(file)||ownJs.includes(file));
+ const lua=currentLua().filter(file=>!['tests/lua/watcher_flow_planning.lua','tests/lua/silent_tactics_planning.lua'].includes(file)||ownLua.includes(file));
+ assert.equal(js.length,784);assert.equal(lua.length,1408+ownLua.length);
+ for(const [platform,count,expected,budget]of [['win32',17,windows,1800000],['linux',14,posix,1200000]]){
+  const weights=Object.fromEntries(js.map(file=>[file,Math.max(historical.js[platform][file]??historical.unknownJsMs,historical.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+  const loads=partition(js,`1/${count}`,weights,historical.unknownJsMs,Array.from({length:count},(_,i)=>i===0?historical.initialMs[platform][0]:0)).loads;
+  let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const bins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...historical,windowsJsShardMs:loads},2));
+   const cost=file=>historical.luaShard[file]??historical.lua[file]??historical.unknownLuaMs,safety=file=>historical.lua[file]??historical.unknownLuaMs;
+   maximum=Math.max(...bins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
+  }
+  assert.equal(maximum+60000,expected);assert.ok(expected<budget);
+ }
+ }
+});
+
+test('combined gate receipt projection rejects drift and authenticates all three published siblings',()=>{
+ const file='scripts/check-lua-static.mjs',source=readFileSync(file,'utf8');
+ for(const epoch of ['flow','silent','effects']){
+  const prior=preCombinedGateSource(file,source,epoch);assert.notEqual(prior,source);
+  assert.equal(preCombinedGateSource(file,source.replaceAll('\n','\r\n'),epoch),prior);
+  for(const input of [source+'\n',source.slice(1),source.replace('visitTargetGroup','foreignHelper'),prior,null,undefined,{},42])assert.equal(preCombinedGateSource(file,input,epoch),input);
+  assert.equal(preCombinedGateSource('foreign',source,epoch),source);
+ }
+ assert.throws(()=>preCombinedGateSource(file,source,'unknown'),/known frozen sibling/);
 });
