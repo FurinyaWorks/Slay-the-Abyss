@@ -203,56 +203,81 @@ function M.prepare(combat,s,e)
  end
  return e
 end
-function M.apply(combat,s,item)
- local e=item.effect;local k=e.kind
- if k=='gainSilentFinalPower'then A().applyPower(s,s.player,e.status,e.value,s.player)
- elseif k=='potionShivs'then require('abyss_silent_potions').shivs(s,e.value)
- elseif k=='trigger'then
+-- Action handlers keep effect reads and lazy imports inside their original branches.
+local actionHandlers={}
+function actionHandlers.gainSilentFinalPower(_combat,s,e,_item)
+  A().applyPower(s,s.player,e.status,e.value,s.player)
+end
+function actionHandlers.potionShivs(_combat,s,e,_item)
+  require('abyss_silent_potions').shivs(s,e.value)
+end
+function actionHandlers.trigger(combat,s,e,item)
   local a=e.action
   if a.op=='cardTriggerDamageAll'then require('abyss_card_triggers').resolveDamageAll(s,a,combat)
   elseif a.op=='cardTriggerStorm'then
    for _,entry in ipairs(require('abyss_card_triggers').expandStorm(s,a))do actions().enqueue(s,{op='silentFinal',kind='trigger',action=entry.effect},nil,nil,nil,true)end
   else combat.applyEffects(s,{a},s.player,item.target,item.instance)end
- elseif k=='choke'then
+end
+function actionHandlers.choke(_combat,s,e,_item)
   for _,enemy in ipairs(s.enemies)do if enemy.id==e.targetId and A().isActive(enemy)then
    local before=enemy.hp;A().loseHp(s,enemy,e.value);require('abyss_enemy_ai').hpLost(s,enemy,before,true);break
   end end
- elseif k=='setup'or k=='nightmare'then selection(combat,s,k)
- elseif k=='bulletTime'then
+end
+function actionHandlers.setup(combat,s,_e,_item,k)
+  selection(combat,s,k)
+end
+actionHandlers.nightmare=actionHandlers.setup
+function actionHandlers.bulletTime(combat,s,_e,_item)
   A().applyNoDraw(s,s.player)
   for _,c in ipairs(s.hand)do if combat.cardDefinition(s,c).cost>=0 then c.costForTurn=0 end end
- elseif k=='copyHand'then
+end
+function actionHandlers.copyHand(combat,s,e,_item)
   for _=1,e.value do
    local c=actions().fresh(combat,s,e.template.cardId,e.template)
    actions().created(combat,s,c);actions().created(combat,s,c)
    actions().toHand(s,c)
   end
- elseif k=='distraction'then
+end
+function actionHandlers.distraction(combat,s,e,_item)
   assert(e.cardId,'uncaptured Distraction');local c=actions().fresh(combat,s,e.cardId)
   c.costForTurn=0;actions().created(combat,s,c);actions().created(combat,s,c)
   actions().toHand(s,c)
- elseif k=='doppelganger'then
+end
+function actionHandlers.doppelganger(_combat,s,e,_item)
   local n=(e.energyOnUse or (s.pendingPlay and s.pendingPlay.energyOnUse)or 0)+e.value
   for _,id in ipairs(s.relics or {})do if id=='chemical_x'or id=='Chemical X'then n=n+2 end end
   if n>0 then A().applyPower(s,s.player,'energized',n,s.player);A().applyPower(s,s.player,'draw_next_turn',n,s.player)end
- elseif k=='phantasmalGain'then
+end
+function actionHandlers.phantasmalGain(_combat,s,e,_item)
   local n=(s.player.statuses.double_damage or 0)>0 and e.value or 1
   A().applyPower(s,s.player,'double_damage',n,s.player)
   s.player.statuses.phantasmal=s.player.statuses.phantasmal-1
   if s.player.statuses.phantasmal<=0 then remove(s,'phantasmal')end
- elseif k=='remove'then remove(s,e.status);if e.status=='nightmare'then s.nightmareTemplate=nil;s.player.nightmareCardName=nil end
- elseif k=='tools'then combat.draw(s,e.value);assert(require('abyss_discard').begin(s,e.value))
- elseif k=='startPower'then
+end
+function actionHandlers.remove(_combat,s,e,_item)
+  remove(s,e.status);if e.status=='nightmare'then s.nightmareTemplate=nil;s.player.nightmareCardName=nil end
+end
+function actionHandlers.tools(combat,s,e,_item)
+  combat.draw(s,e.value);assert(require('abyss_discard').begin(s,e.value))
+end
+function actionHandlers.startPower(combat,s,e,_item)
   if e.status=='nightmare'then
    M.apply(combat,s,{effect={kind='copyHand',value=e.value,template=copy(s.nightmareTemplate)}})
    remove(s,'nightmare');s.nightmareTemplate=nil;s.player.nightmareCardName=nil
   else M.apply(combat,s,{effect={kind='phantasmalGain',value=e.value}})end
- elseif k=='corpseDamage'then
+end
+function actionHandlers.corpseDamage(combat,s,e,_item)
   local reactions={};for _,enemy in ipairs(s.enemies)do if A().isActive(enemy)then combat.damage(s,nil,enemy,e.value,true,reactions)end end
   A().resolveDamageReactions(s,reactions,combat.retaliate)
- elseif k=='alchemize'then
+end
+function actionHandlers.alchemize(_combat,s,e,_item)
   local id=assert(e.potionId,'uncaptured Alchemize')
   actions().enqueue(s,{op='obtainPotion',id=id,unavailable=not s.catalog.potions[id]})
+end
+function M.apply(combat,s,item)
+ local e=item.effect;local k=e.kind
+ local handler=actionHandlers[k]
+ if handler then handler(combat,s,e,item,k)
  else error('unknown Silent final action '..tostring(k))end
 end
 return M
