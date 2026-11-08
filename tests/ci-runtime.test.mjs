@@ -2,6 +2,7 @@ import {potionCallbackFloorKey,verifiedPotionCallbackFloor} from './helpers/poti
 import {runCatalogFloorKey,verifiedRunCatalogFloor} from './helpers/run-catalog-planning.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
+import {rewardQueryPlanningProof} from './helpers/reward-query-planning-source-inverse.mjs';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -165,8 +166,11 @@ test('current timing records preserve all measured corrections without duplicate
  }
  assert.equal(timings.jsCalibration.runId,41097231681);assert.equal(timings.jsCalibration.runAttempt,1);
  assert.equal(timings.jsCalibration.headSha,'568d47a8f51164ed9e3cfb0656f57f2d832ed546');
+ // Retain all original nine-floor assertions against their complete historical bytes.
+ const historicalTimings=JSON.parse(rewardQueryPlanningProof.beforeSource);
  let localFloorCount=0;
- for(const [file,entry]of Object.entries(timings.jsPlanning.localLowerBounds)){
+ for(const [file,entry]of Object.entries(historicalTimings.jsPlanning.localLowerBounds)){
+  assert.deepEqual(timings.jsPlanning.localLowerBounds[file],entry,'every original floor remains exact in the live union');
   if(file==='tests/run-max-hp-config-inverse.test.mjs'){
    assert.equal(entry.environment,'hosted Windows');assert.equal(entry.durationMs,889638);
    assert.equal(entry.kind,'Planning-only cross-platform floor from a complete successful hosted Windows same-file observation; not a Linux measurement or censored elapsed-time sample.');

@@ -2,6 +2,8 @@ import {potionCallbackFloorKey,verifiedPotionCallbackFloor,prePotionCallbackPlan
 import {runCatalogFloorKey,verifiedRunCatalogFloor} from './helpers/run-catalog-planning.mjs';
 import {beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
 import test from 'node:test';
+import {rewardQueryPlanningProof,preRewardQueryPlanningSource} from './helpers/reward-query-planning-source-inverse.mjs';
+import {assertRewardQueryPlanningReceipt,assertRewardQueryPlanningProjection} from './helpers/reward-query-planning-contract.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -18,6 +20,11 @@ const path='scripts/ci-test-timings.json',binding=proof.files[path],before=JSON.
 // The three original contracts own the frozen 16/12 calibration, including its
 // unmeasured files. Current placement is checked separately below.
 const timings=after;
+// Frozen d8 placement receipts are reconstructed from their exact historical epoch.
+// The live union and budgets below use currentTimings/currentJsShard directly.
+const placementTimings=JSON.parse(rewardQueryPlanningProof.beforeSource);
+const placementWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(placementTimings.js[platform][file]??placementTimings.unknownJsMs,placementTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+const placementShard=(files,value,platform)=>partition(files,value,placementWeights(files,platform),placementTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?placementTimings.initialMs[platform][0]:0));
 const {qualityShardMatrices,qualityShardJobs}=await import('data:text/javascript,'+encodeURIComponent(proof.files['scripts/ci-quality-shape.mjs'].afterSource));
 const historicalFullQualityJobs=['check','presentation','engineering-posix',...qualityShardJobs,'impact','fast'];
 const jsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(timings.js[platform][file]??timings.unknownJsMs,timings.jsPlanning?.localLowerBounds?.[file]?.durationMs??0)]));
@@ -163,16 +170,16 @@ test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 L
  assert.equal(currentFullQualityJobs.length,35);assert.equal(new Set(currentFullQualityJobs).size,35);
  const js=placementJs(),lua=placementLua();
  assert.equal(js.length,741);assert.equal(lua.length,1401);
- const totalJs=platform=>Object.values(currentJsPlanningWeights(js,platform)).reduce((sum,n)=>sum+n,0)+(currentTimings.initialMs[platform]?.[0]??0);
- const rawWork=lua.reduce((sum,file)=>sum+(currentTimings.luaShard[file]??currentTimings.lua[file]??currentTimings.unknownLuaMs)/((currentTimings.lua[file]??currentTimings.unknownLuaMs)<10000?2:1),0);
+ const totalJs=platform=>Object.values(placementWeights(js,platform)).reduce((sum,n)=>sum+n,0)+(placementTimings.initialMs[platform]?.[0]??0);
+ const rawWork=lua.reduce((sum,file)=>sum+(placementTimings.luaShard[file]??placementTimings.lua[file]??placementTimings.unknownLuaMs)/((placementTimings.lua[file]??placementTimings.unknownLuaMs)<10000?2:1),0);
  assert.ok((totalJs('win32')+rawWork)/16+60000>1800000,'even ideal old Windows16 distribution exceeds its unchanged budget');
  assert.ok(totalJs('linux')/12+60000>1200000,'even ideal old POSIX12 distribution exceeds its unchanged budget');
  const maxima={},priorMaxima={};
  for(const [platform,count,budget]of [['win32',17,1800000],['linux',13,1200000]]){
-  const loads=currentJsShard(js,`1/${count}`,platform).loads;
-  const priorWeights=Object.fromEntries(js.map(file=>[file,Math.max(currentTimings.js[platform][file]??currentTimings.unknownJsMs,after.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
-  const priorLoads=partition(js,`1/${count}`,priorWeights,currentTimings.unknownJsMs,Array.from({length:count},(_,i)=>i===0?currentTimings.initialMs[platform][0]:0)).loads;
-  const jsBins=Array.from({length:count},(_,i)=>currentJsShard(js,`${i+1}/${count}`,platform).files);
+  const loads=placementShard(js,`1/${count}`,platform).loads;
+  const priorWeights=Object.fromEntries(js.map(file=>[file,Math.max(placementTimings.js[platform][file]??placementTimings.unknownJsMs,after.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+  const priorLoads=partition(js,`1/${count}`,priorWeights,placementTimings.unknownJsMs,Array.from({length:count},(_,i)=>i===0?placementTimings.initialMs[platform][0]:0)).loads;
+  const jsBins=Array.from({length:count},(_,i)=>placementShard(js,`${i+1}/${count}`,platform).files);
   assert.deepEqual(jsBins.flat().sort(),[...js].sort());assert.equal(new Set(jsBins.flat()).size,741);
   if(platform==='linux'){
    priorMaxima[platform]=Math.max(...priorLoads)+60000;
@@ -181,11 +188,11 @@ test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 L
    continue;
   }
   assert.deepEqual(loads,priorLoads,'the global floor does not raise the already observed Windows cost');
-  const planning={...currentTimings,windowsJsShardMs:loads};
+  const planning={...placementTimings,windowsJsShardMs:loads};
   const bins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,planning,2));
   assert.deepEqual(bins.flat().sort(),[...lua].sort());assert.equal(new Set(bins.flat()).size,1401);
-  const cost=f=>currentTimings.luaShard[f]??currentTimings.lua[f]??currentTimings.unknownLuaMs;
-  const safety=f=>currentTimings.lua[f]??currentTimings.unknownLuaMs;
+  const cost=f=>placementTimings.luaShard[f]??placementTimings.lua[f]??placementTimings.unknownLuaMs;
+  const safety=f=>placementTimings.lua[f]??placementTimings.unknownLuaMs;
   const combined=bins.map((bin,i)=>{const pool=[0,0];for(const f of bin.filter(f=>safety(f)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(f);
    return loads[i]+bin.filter(f=>safety(f)>=10000).reduce((sum,f)=>sum+cost(f),0)+Math.max(...pool);});
   maxima[platform]=Math.max(...combined)+60000;
@@ -290,7 +297,7 @@ test('current placement authenticates 1458 complete successful assigned files wi
  assert.equal(d5.durationMs,461486.846292);assert.equal(d5.success,true);assert.equal(d5.jsStepConclusion,'cancelled');
 });
 
-test('current 129 placement raises reconstruct exact timings while preserving all old floors and raw worker safety bytes',()=>{
+test('historical 129 placement raises reconstruct exact timings while preserving all old floors and raw worker safety bytes',()=>{
  const expected=structuredClone(after),changes=[],raisedCounts={win32:0,linux:0};
  for(const row of placement.observations){
   const map=expected.js[row.platform],hadOwnBefore=Object.hasOwn(map,row.file),oldMs=map[row.file]??after.unknownJsMs,newMs=Math.max(oldMs,Math.ceil(row.durationMs));
@@ -299,8 +306,8 @@ test('current 129 placement raises reconstruct exact timings while preserving al
  assert.equal(changes.length,129);assert.deepEqual(raisedCounts,{win32:70,linux:59});assert.deepEqual(changes,placement.changes);
  assert.equal(placement.raisedCount,129);assert.deepEqual(placement.raisedCounts,raisedCounts);
  assert.equal(placement.previousMapSha256,hash(JSON.stringify(after.js)));assert.equal(placement.resultingMapSha256,hash(JSON.stringify(expected.js)));
- const update=currentTimings.jsCalibrationUpdates.at(-1);
- assert.deepEqual(currentTimings.jsCalibrationUpdates.slice(0,-1),after.jsCalibrationUpdates);
+ const update=placementTimings.jsCalibrationUpdates.at(-1);
+ assert.deepEqual(placementTimings.jsCalibrationUpdates.slice(0,-1),after.jsCalibrationUpdates);
  assert.equal(update.runId,placement.sourceRun.id);assert.equal(update.runAttempt,1);assert.equal(update.headSha,placement.sourceRun.headSha);assert.equal(update.treeSha,placement.sourceRun.treeSha);assert.equal(update.conclusion,'failure');
  assert.deepEqual(update.sourceRecords,placement.sourceRecords);assert.deepEqual(update.observedFileCounts,placement.observedFileCounts);assert.equal(update.observationCount,1458);assert.deepEqual(update.raisedCounts,raisedCounts);
  assert.deepEqual(update.excludedFailedCounts,{win32:7,linux:6});assert.deepEqual(update.excludedUnfinishedCounts,{win32:0,linux:11});
@@ -322,7 +329,7 @@ test('current 129 placement raises reconstruct exact timings while preserving al
  assert.equal(censored.plannedCount,58);assert.equal(censored.completedCount,44);assert.equal(censored.firstUncompletedFile,floorKey);
  assert.deepEqual(censored.completeSuccessfulPrefix.map(row=>row.file),censored.plannedFiles.slice(0,44));assert.equal(censored.plannedFiles[44],floorKey);
  assert.equal(censored.censoredWindowMs,629181);assert.equal(censored.measurementImported,false);assert.equal(censored.censoringIsNotRuntimeOrPass,true);
- assert.equal(currentTimings.js.linux[floorKey],254137,'the unfinished Linux duration never replaces its previous complete observation');
+ assert.equal(placementTimings.js.linux[floorKey],254137,'the unfinished Linux duration never replaces its previous complete observation');
  assert.equal(floorReceipt.planningEffect.previousEffectiveLinuxMs,254137);assert.equal(floorReceipt.planningEffect.previousEffectiveWindowsMs,889638);assert.equal(floorReceipt.planningEffect.newFloorMs,889638);
  assert.deepEqual(floorReceipt.planningEffect.additionalTotalWorkMs,{linux:635501,win32:0});
  expected.jsPlanning.model=after.jsPlanning.model.replace('explicit local lower bounds.','explicit local and cross-platform planning floors.');
@@ -359,7 +366,7 @@ test('current 129 placement raises reconstruct exact timings while preserving al
  assert.equal(placement.forecast.reserveMs,60000);assert.deepEqual(placement.forecast.budgets,{win32:1800000,linux:1200000});assert.equal(placement.forecast.workers,2);assert.equal(placement.forecast.concurrencyCapUnchanged,12);
 });
 
-test('only two exact current source identities enter the unchanged pure historical CI chain and all byte drift remains visible',()=>{
+test('only two exact historical placement source identities enter the unchanged pure historical CI chain and all byte drift remains visible',()=>{
  const identities={
   'scripts/ci-test-timings.json':'4dfaee014d798258f16ff2f24043b15e0451ac56645d87e5fb94f50f169cd871',
   'scripts/ci-quality-shape.mjs':'0d6c82c2a7e7db82e276eb563978d5253d9a225039329e171ed3f907f98609d1',

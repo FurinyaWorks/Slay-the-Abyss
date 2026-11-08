@@ -402,11 +402,6 @@
     },
     {
       "from": "abyss_relic_choices",
-      "to": "abyss_relic_hooks",
-      "reason": "Relic callbacks load the already initialized runtime only when an actual obtain, choice, damage or card action executes; no module initialization import."
-    },
-    {
-      "from": "abyss_relic_choices",
       "to": "abyss_shop_relics",
       "reason": "Relic callbacks load the already initialized runtime only when an actual obtain, choice, damage or card action executes; no module initialization import."
     },
@@ -1012,6 +1007,18 @@
         "abyss_relic_family_combat"
       ],
       "reason": "Targetability and encounter presence are read-only. AI decision, summon planning and discard-refund gates consume those predicates without importing Actor lifecycle execution. The full AST closure is guarded by actor-presence.test.mjs, including deferred edges."
+    },
+    {
+      "id": "reward-query-consumer-boundary",
+      "from": [
+        "abyss_relic_card_rewards",
+        "abyss_relic_choices",
+        "abyss_relic_pending"
+      ],
+      "forbiddenTargets": [
+        "abyss_relic_hooks"
+      ],
+      "reason": "Reward query consumers read the existing Queries and Family.common capability slots directly on every call. Their Run imports retain real initialized reward transactions and permanent inventory commands."
     }
   ]
 }

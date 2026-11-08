@@ -5167,6 +5167,17 @@
         "sourceReceipt": "docs/evidence/actor-presence-planning-floor-20261107.json",
         "sourceReceiptSha256": "27ea7d19f419b325db620e2eaa993af51740defd7eeb67e94f2778bff349e632",
         "sourceHeadSha": "9624804b44d4773a40c557f02e0b13b3a31f2497"
+      },
+      "tests/reward-query-boundary.test.mjs": {
+        "durationMs": 50216,
+        "environment": "local Linux execution workspace",
+        "coverage": "Complete unfiltered node:test file: 9 passed, 0 failed, 0 cancelled, 0 skipped; four independent old/current VM graph pairs and three expected semantic mutation failures. Measured before the separately recorded assertion-only strengthening; the current whole file was not remeasured.",
+        "kind": "Planning-only local lower bound from a complete successful same-file run; not a hosted measurement.",
+        "sourceLog": "build/reward-query-boundary/behavior-complete.log",
+        "sourceLogSha256": "680f7d80e953216908a10cd8052cc29b7469621c29078794b8c17c42c7abb089",
+        "sourceReceipt": "tests/fixtures/reward-query-planning-floor.json.gz",
+        "sourceReceiptSha256": "040106c48fb3cd7c6ae9fcde72d09a5ac9c0f57b8c97036e37a682bb9525becf",
+        "sourceInputsSha256": "cd5c2595ef50f3407b1a14b7148c996591a04634670b4d6148312a57621005ae"
       }
     }
   },

@@ -4,8 +4,8 @@ title: 收敛核心依赖环与领域状态所有权
 status: In Progress
 assignee:
   - Furinya
-created_date: '2026-11-06 01:46'
-updated_date: '2026-11-07 10:00'
+created_date: 2026-11-06 01:46
+updated_date: '2026-11-07T13:41:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -43,9 +43,7 @@ ordinal: 161000
 
 本轮最终有界切片：将Codex选牌生成与提交移回现有Combat选择事务owner，Codex仅保留开选和校验，消除其回导CardActions；原状态、RNG、事件与晚失败回滚逐字对照，保留完整图与残余，不扩大架构范围。
 
-2026-11-07 Actor 交付接续：以最新 develop d8a57cae 建独立完整树，保留 #540 看板、归档与 roadmap 更新。移入已审 489425c1 Actor 切片，验证完整 Lua/config 与旧输入逐字一致后复用原行为/指标；重跑来源、完整库存/预算、guidance、backlog/doctor 窄测。仅准备唯一首次 Draft PR，不触发 Full、ready、队列或合并，不混其他切片，不改负责人/状态/AC。
-
-2026-11-07下一独立切片：核对实际develop2ad07111、开放540–545及活动工作树，5个生产路径无占用。把Actor的isActive/isPresent只读查询归独立Presence叶，Actor保留固定普通动态槽，Act2决策/召唤及Silent弃牌能量仅消费存活查询，战斗写入owner保持。冻结同源before和完整图/动态/失败行为，接禁止回导及CC15，窄测与独审后交整合；不重复Full，不改负责人/状态/AC。
+2026-11-07接续主控指派的未占用奖励查询切片：仅RelicCardRewards、RelicChoices、RelicPending六处现有owns/preview调用改用已共享的Queries/Family.common能力槽，保留每次动态字段读取及Run真实事务；不改provider公开表/元表。以d8完整源码、三consumer新outer、独立新旧VM全图和窄来源/架构负控验证。预计Session环内引用62→56、唯一对41→38，成员15和Combat81不降，不冒称SCC成员收益。已核14在途PR及本地未发成果，task:pick因既有In Progress为HOLD，不新领不改owner/status/AC，不用用户电脑、不重复Full、不碰Act3中止交付。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -73,9 +71,5 @@ D5来源扩展34项及独立有界审查PASS：23个391完整before另核Git blo
 
 最终本地完整收据补证：新8/8及原35-owner4/4通过；V4/Codex两个独立旧新VM合计79完整状态图检查点、每侧52,016,680字节一致，含V4直接execute付款后和伤害后部分写入、原错误对象。当前候选只提供本轮集成，不另开PR；独审及实际Full/队列/合后证据由主控同一候选绑定，AC仍不提前完成。
 
-2026-11-07 Actor presence 独立切片：只读目标/在场谓词移至无依赖叶，AI决策/召唤规划/弃牌退款退出Combat SCC；基线2ad07111实测81/623/400→78/608/391，Session15不变，CC>30仍58/最大75。行为12、旧Actor10、原Act2 34、新来源10、旧来源42、库存8通过，独立深审无阻塞。详情见 docs/backlog-details/M7-ACTOR-PRESENCE-20261107.md；本地行为31.053秒仅为规划成本，整合需保留真实floor，尚未Full/合并，整体AC不变。
-
-Actor presence独立交付补齐真实完整12/12本地31053ms规划floor，保留9旧floors及timings、布局/worker/历史证据。当前748JS/1403Lua，含60秒规划上限Win1714151/POSIX1194287；新来源/库存/拒绝合同32/32。生产9624804字节保持，当前基线与实际CI/合并待验，不勾AC；和#545兼容另树准备。
-
-Actor 首次交付移到 develop d8a57cae：#540 共98个路径保持新基线，实际无文本冲突；原30个非Backlog文件逐字移入，333/334 Lua与8份config、3275输入完整身份核验通过。新来源/CI29、六历史来源42、guidance/backlog/sprint58及doctor通过；748JS/1403Lua完整17/13分片预测仍Win1714151/POSIX1194287（原30/20分钟预算）。复用原完整VM/指标，不触发Full、ready或队列；仅准备首次Draft，精确HEAD独审/托管仍待，状态/AC不变。接续证据见docs/evidence/actor-presence-latest-base-20261107.json。
+奖励查询职责切片已实做六处调用归属迁移，三provider与Run事务不改。fresh完整333模块5386/5386测量：Combat81/623/400保持，Session15/62/41→15/56/38；1920引用位置不变、全图唯一对1546→1548是目标分流，CC>15=237、CC>30=58/max75均无降幅。4组独立旧新VM215点、每侧29218426字节全图相同，原卡奖励与商店fixture保留，9项通过；独审建议将3负控绑定完整专属消息，仅复跑该3项通过。源码6项、旧source/库存42项、旧m7来源1项全绿。最初stale deferred已精确移除且保留原败；UI窄测首次缺生成theme，补正常build:theme/build:ui后原两项通过。完整文件真实wall50215.1983ms保留为50216ms本地planning下界，不冒称Hosted或当前更强断言版本整文件重测。独审/精确提交/正常门禁继续，未合并不勾AC，不用设备、不重复Full。
 <!-- SECTION:NOTES:END -->
