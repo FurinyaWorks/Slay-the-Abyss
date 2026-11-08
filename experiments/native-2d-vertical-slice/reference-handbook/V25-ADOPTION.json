@@ -1,29 +1,31 @@
 {
   "schemaVersion": 1,
-  "scope": "本轮HUD切片，非完整V25采用/性能验收",
+  "scope": "V25第二批实现来源追踪：战斗HUD/场景/卡壳模板、肖像宿主、选角、地图、节点和主菜单/结算接入。非完整可玩交付、逐屏视觉或设备性能验收",
   "kitVerification": {
     "exactLuaScripts": 128,
     "samples": 28,
-    "failures": []
+    "failures": [],
+    "method": "本地tools/verify_kit.py本轮重新执行；未执行样本脚本",
+    "runtimeCertification": false
   },
   "samples": [
     {
       "id": "jelly-ui",
       "sourceSha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
-      "decision": "改造采用",
-      "record": "main/0000.json.gz；22依赖；UI身份/父链501/504与图片分量96/97",
-      "projectEntry": "scripts/v25-battle-chrome.mjs",
-      "verification": "V25 battle chrome结构/四态与完整构建布局通过；官方读回和视觉仍待验",
-      "reason": "吸收底板/边框/高光/内容的分层，独立实现官方基础图元，不复制样本代码或纹理；四态沿现有presetButton"
+      "decision": "分层机制借鉴，独立实现",
+      "record": "main/0000.json.gz root.1[0].19[0].1[0] ID1073741887；22直接子；dependencies/0000.json.gz图片96/97，身份501/父链504",
+      "projectEntry": "scripts/v25-battle-chrome.mjs:turnChrome/energyChrome/pileChrome；scripts/v25-character-layout.mjs:flagButton",
+      "verification": "结构/四态测试已有；原件无Lua，不由图片父链推断点击回调；官方读回和视觉待验",
+      "reason": "借鉴装饰分层；官方图元独立重建V25，不复制22层到每按钮，不照搬未知96/97序列化"
     },
     {
       "id": "ui-kit",
       "sourceSha256": "a1c998c9de0e3dc806d2b3c2abeef8a34c00d898966f22b3960f69965eb63d8f",
-      "decision": "待核",
-      "record": null,
-      "projectEntry": null,
-      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
-      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+      "decision": "结构对照，未直接复用",
+      "record": "main/0001.json.gz 红色卡牌模版 ID1073743194 recordType61；dependencies/0007.json.gz文本ID1073743195；0008-0028边框/渐变/底层图片38",
+      "projectEntry": "scripts/card-face.mjs:cardFaceChildren；scripts/v25-card-templates.mjs:prepareV25CardTemplates",
+      "verification": "已核动态文本独立于22装饰层；此常规UI未直接作为客户端模板导入",
+      "reason": "只对照内容/装饰分离；卡壳采用冻结V25原PNG，不拿样本红/蓝卡替代；recordType61不等于可直接InstantiateClientUIControl"
     },
     {
       "id": "tutorial",
@@ -37,38 +39,41 @@
     {
       "id": "lowload-characters",
       "sourceSha256": "cdb23c74278e99340a6d43cfe7b57cb2291b4eabf8400eefb4f72acc767c2d66",
-      "decision": "待核",
-      "record": null,
+      "decision": "已核结构，未替代V25人物",
+      "record": "main/0102.json.gz root.1[102] 荧Lumine ID1073744826，recordType61，42依赖，组件15/12/23/56",
       "projectEntry": null,
-      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
-      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+      "verification": "真实记录已读；无本轮角色素材接入",
+      "reason": "与果冻recordType70/图片96/97不同，不能自动当客户端模板；现有133px人物采样仍未达V25原稿验收"
     },
     {
       "id": "pixel-scripts",
       "sourceSha256": "64258bd23fffb3983158e33c31f8ea4003ae936d5abf380be6a7f798373740db",
-      "decision": "待核",
-      "record": null,
-      "projectEntry": null,
-      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
-      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+      "decision": "模板与生命周期机制借鉴，独立实现",
+      "record": "scripts/092-1073741917.lua：ReleaseControls184、DrawRect194、BuildImage217、OnStart247、OnDestroy264",
+      "projectEntry": "scripts/v25-card-templates.mjs:prepareV25CardTemplates；src/lua/abyss_v25_card_surface.lua:allocate/retire/drain/onDestroy",
+      "verification": "真实10资产lossless模板结构、源RGBA及合成生命周期/重入负控已测；官方性能未验",
+      "reason": "借鉴静态矩形/实际模板ID/实例所有权/失败释放；未复制DRAWS/全画布缩放，不用64格人物替代V25",
+      "scriptSha256": "a0e427b0cc34b0f0135b0ef41eadd37782053cb81665e684024794c1842ae979"
     },
     {
       "id": "xiangqi",
       "sourceSha256": "a3150bb79d896f7a8dc321b21f08c26b77576a728b02c5dd8eea748d175cee69",
-      "decision": "待核",
-      "record": null,
-      "projectEntry": null,
-      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
-      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+      "decision": "Tween未直接采用",
+      "record": "scripts/001-1073741827.lua：PlayTweensParallel203-236、KillAllAnims238-245、AnimateMove1735-1782、OnDestroy1994-2011",
+      "projectEntry": "src/lua/abyss_battle_card_view.lua:lerpSnap/advancePose；src/lua/abyss_feedback.lua",
+      "verification": "已读先监听后Play/全正常完成才续接/Kill(false)；本轮无Tween同条件A/B",
+      "reason": "保留原插值与按牌UID/战斗身份管理的输入事务；无充分证据证明整体换Tween更好，不认领已移植",
+      "scriptSha256": "f7ccb0eb897772939c432da22128c4dce8f17f9070289a5915c935aafeb12716"
     },
     {
       "id": "badapple",
       "sourceSha256": "7b45a1a34b0380202db135dd79fb2c2b6e2caef9379d3590fccc5ab267707963",
-      "decision": "待核",
-      "record": null,
-      "projectEntry": null,
-      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
-      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+      "decision": "池化与差分机制借鉴，独立实现",
+      "record": "scripts/000-1073741826.lua：createRectangle711、drawFrame725-749、decodeStep752、OnUpdate777、OnDestroy813-839",
+      "projectEntry": "src/lua/abyss_v25_card_surface.lua:reusable/replace/beginFrame/endFrame/release；src/lua/abyss_battle_card_view.lua:sameHandValues/applyHandPose",
+      "verification": "固定10手牌、换定义替换、稳定刷新、牌库/奖励释放fixture已测；20次实机切场/内存未测",
+      "reason": "借鉴按槽懒建/仅变化属性提交/倒序销毁；未移植视频/解码器/4612块上限；不跳过出牌伤害领奖语义，不认领平台预算",
+      "scriptSha256": "dbe30b4c46c8e20f86916f8a8956e5be7649b8e4eac9336492a05ad3dce946ef"
     },
     {
       "id": "rpg",
@@ -145,11 +150,11 @@
     {
       "id": "lumine",
       "sourceSha256": "e11d41d5e7409a4cf6799a0d1f1d4e8b6bd22e9dcfa4ff55121b9d4b773d2e2c",
-      "decision": "待核",
-      "record": null,
+      "decision": "场景像素模型不作为客户端UI采用",
+      "record": "main/0000.json.gz root.1[0] recordType1 body11、192依赖；dependencies/0000.json.gz起为recordType28 body21装饰物；index.ui为空",
       "projectEntry": null,
-      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
-      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+      "verification": "真实世界实体/装饰物记录已读，未转为ImageControl模板",
+      "reason": "世界造型与客户端UI不是同一资源路线；不以体积或装饰数证明低成本，也不拿模型替代V25认可立绘"
     },
     {
       "id": "sand-and-puppet",
@@ -181,11 +186,11 @@
     {
       "id": "klee-dynamic",
       "sourceSha256": "e037a0d8b0a1f80c7935135ab670a19bd78112c62e1ed0e911403021b57d683e",
-      "decision": "待核",
-      "record": null,
+      "decision": "表情帧组已核，未作为攻击动画采用",
+      "record": "dependencies/0000.json.gz root.2[0].13[0].1[0].1[0].3：当前动作/待机/开心/斜眼/伤心；dependencies/0002.json.gz：当前动作序列/展示动作/做动作；main0001/0002是11-20及1-10组",
       "projectEntry": null,
-      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
-      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+      "verification": "实际原件图已读；无本轮攻击/受击/死亡动画接入或官方播放证明",
+      "reason": "表情帧组不证明现成攻击动作、骨骼、仅驻留一帧或低成本图集；战斗反馈继续由项目动作队列显示"
     },
     {
       "id": "characters-117",
@@ -262,20 +267,458 @@
   ],
   "privateV25": {
     "differences": [
-      "尚用旧主题host坐标/尺寸",
-      "CSS渐变和模糊为基础图层/soft-edge近似，待同候选视觉对照",
-      "尚未移植完整背景、立绘、卡壳和其余页面"
+      "战斗/卡牌/人物宿主、选角和地图已按V25重定位；字体、SVG滤镜/渐变、曲线/混合仍有原生近似，逐屏对照未通过",
+      "卡壳lossless1x编译和10唯一模板已实现；每壳6751-8871可见矩形、mana846，官方容量/冷启动/帧时间未验证，不能认定低负载",
+      "当前人物仍为已有133px/64色采样；放大不恢复原稿，背景/选角星图未全量绑定",
+      "启动/主菜单及其余页面未完成全量对齐；节点/结算模块状态另列，不冒充完整两幕新表现交付",
+      "缺当前完整候选官方导入/新ready、逐屏录像、同设备真实性能和20切场资源证据，保持UNVERIFIED；缺证不算2D失败"
     ],
     "sourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
     "sourceSha256": "bee6138f43655ffc62ce0c0860bfacf6050fbae7bd702227a472c571c0e13f92",
     "projectEntry": "scripts/v25-battle-chrome.mjs",
     "record": "dist/sts-battle-restore.css：energy、end-turn、pile选择器",
-    "method": "按源布局及色彩独立重建有限原生图层；不含私有纹理"
+    "method": "源PNG私有本地lossless编译；公开模块按冻结V25布局/色彩独立重建原生结构；规则/RNG/输入事务继续由原Lua唯一结算",
+    "baseline": {
+      "siteVersion": 25,
+      "sourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+      "manifestSha256": "f104bb096395744a620601d9e86a813574bb6bc4e3a73a84e2fbd6fe0eed9fea",
+      "sourceAuthoritySha256": "c092c27f327f1750cc02cd18bb6e0de149aebd543f3e3bc4c58f7f6c1b697388",
+      "recoveredFiles": 91,
+      "recoveryReceiptSha256": "f1bba2ef9d646375bc5555f33434b27f077bccf6a12756de5ed45a9c9040e3df",
+      "licenseScope": "原始私源/PNG/编译数据仅本地.artifacts/build；保留NOTICE/ASSET-PROVENANCE/FONT-LICENSES；本JSON仅hash/定位"
+    },
+    "traces": [
+      {
+        "id": "battle-hud-layout",
+        "sources": [
+          {
+            "path": "sts-battle-restore.css",
+            "sha256": "bee6138f43655ffc62ce0c0860bfacf6050fbae7bd702227a472c571c0e13f92",
+            "record": "energy/end-turn/pile/card/hero/enemy选择器"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-layout.mjs:v25Theme/applyV25BattleLayout/rebuildV25CardFaces",
+          "scripts/v25-battle-chrome.mjs:applyV25BattleChrome",
+          "data/presentation/ui_theme.json:v25Battle"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-layout.test.mjs",
+            "tests/v25-battle-chrome.test.mjs",
+            "tests/v25-battle-runtime.test.mjs"
+          ],
+          "status": "已接buildUI；结构及Run/Combat宿主fixture已有验证"
+        },
+        "limits": "原生字体/soft-edge/四态实机与同状态截图待验"
+      },
+      {
+        "id": "battle-scene",
+        "sources": [
+          {
+            "path": "battle.js",
+            "sha256": "b81d1dbf57874df0efdf68bff2894b256bda954fc8e2f235a657085f518a1ec7",
+            "record": "scene(false):72，1280x676分层SVG"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-battle-scene.mjs:buildV25BattleSceneGeometry/nativeShape/applyV25BattleScene"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-battle-scene.test.mjs"
+          ],
+          "status": "已接buildUI；规范几何与原生投影结构已有测试"
+        },
+        "limits": "12段曲线/原生fade-glow-vignette近似；mask/拼缝/原稿视觉未官方验收"
+      },
+      {
+        "id": "private-lossless-card-shells",
+        "sources": [
+          {
+            "path": "private-card-skins/manifest.json",
+            "sha256": "f8bb8c01dbe0ecdb6818efe612e7882e7b27f4f0b2ba4647ea9ca8dc2fe7a623",
+            "record": "assets/cardShells；仅取asset.source原PNG RGBA，忽略旧sampleSize/blocks"
+          },
+          {
+            "path": "private-card-skins/cardShell_attack_common-raster.png",
+            "sha256": "cf5bc089273450670ee4a2acfcd0543e8b84e8bbef446427698d14ed81f52c6a",
+            "record": "159x210，logical150x210，crop[4,0]，display[0.5,0]；其余9项逐输入hash保留私有pack.inputs"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-private-card-assets.mjs:compileRgbaRectangles/decodeRgbaRectangles/compilePrivateCardAssets",
+          "scripts/v25-card-templates.mjs:prepareV25CardTemplates",
+          "scripts/v25-card-audit-inputs.mjs:prepareAuditV25CardInputs",
+          "scripts/build-native-candidate.mjs:66输入digest/实际ID绑定",
+          "scripts/audit-native-candidate.mjs:locator重定位/全模板读回比较"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-private-card-assets.test.mjs",
+            "tests/v25-card-templates.test.mjs",
+            "tests/v25-card-audit-inputs.test.mjs",
+            "tests/v25-card-surface.test.mjs",
+            "tests/v25-card-skin-integration.test.mjs",
+            "tests/v25-profile.test.mjs"
+          ],
+          "status": "10真实资产lossless重解码RGBA一致；65依赖+编译JSON共66输入；alpha/孔洞/越界/hash/别名/重定位负控已有验证"
+        },
+        "limits": "默认原稿无降采样/STD16；原PNG与编译数据不入Git；高控件量仍待实机；此manifest旧采样blocks不是采用基准"
+      },
+      {
+        "id": "character-and-portrait",
+        "sources": [
+          {
+            "path": "character-reference.js",
+            "sha256": "f8e43d290bb1d44012529678391ade58a60627f83ea7efa5f38ff8f03bda8d7b",
+            "record": "renderCharacterReference:43，roster/details/confirm/cancel"
+          },
+          {
+            "path": "character-reference.css",
+            "sha256": "9a6d137a3297559f638e5323db424506ae394c7942cdf334551936ac0d74d17d",
+            "record": ".character-reference布局/旗帜/星图/全身像"
+          },
+          {
+            "path": "traveler-battle.png",
+            "sha256": "4851e4aae6c43799ec31e2b2ebd06f9b00cf07161f26e71d72a6ec89191ad98e",
+            "record": "共享源身份；当前133px采样不等于原分辨率"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-character-layout.mjs:applyV25CharacterLayout/flagButton/roster",
+          "scripts/v25-portrait-profile.mjs:applyV25PortraitProfile/v25PortraitRuntimeProfile",
+          "src/lua/abyss_traveler_portraits.lua:v25Profile/nativeTransition/controller"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-character-layout.test.mjs",
+            "tests/v25-portrait-profile.test.mjs",
+            "tests/portrait-paint-cache.test.mjs"
+          ],
+          "status": "buildUI与运行时display/anchor已接；装饰宿主pause/restore原生active读回/重入负控已有验证"
+        },
+        "limits": "原背景/星图未绑定；采样人物不能冒充原稿；只停装饰宿主，不停根Lua"
+      },
+      {
+        "id": "map",
+        "sources": [
+          {
+            "path": "app.js",
+            "sha256": "66fb1f1e7ca018c600b67ea4b05f9010c32198d34c5c5a7d989bcc75a1dad75e",
+            "record": "map(host,v):42"
+          },
+          {
+            "path": "sts-map-restore.css",
+            "sha256": "d0aa50eb665e04ae63e8741362acfd6ab5db371e5203777f9f4342696880fdc7",
+            "record": "mapscroll/atlas/map-legend/ribbon"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-map-layout.mjs:applyV25MapLayout/styleLegend/styleReturn",
+          "src/lua/abyss_map_ui.lua:既有滚动/节点池/路线命令"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-map-layout.test.mjs",
+            "tests/v25-map-return.test.mjs"
+          ],
+          "status": "已接buildUI；路线/滚动保留，返回Run事务fixture已有验证"
+        },
+        "limits": "纸纹turbulence/破边/Kreon字体仍有差异；未改两幕生成/RNG或删节点省负载"
+      },
+      {
+        "id": "rooms-module",
+        "sources": [
+          {
+            "path": "genshin-rooms.js",
+            "sha256": "5169706502ca4c958999b48417c5d463ef732bcdf5e1aa50a840e4b1c9e21452",
+            "record": "renderRoom:29，shop/camp/event/rewards"
+          },
+          {
+            "path": "genshin-rooms.css",
+            "sha256": "abf9e5188e076062646153358bbfa16b498adf0e08b90d92a0fb1b5801760100",
+            "record": ".gr-*"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-node-layout.mjs:v25NodeThemePatch/applyV25NodeLayout/applyV25RewardLayout",
+          "scripts/build-ui.mjs:gameLayout节点与standalone battle奖励接入"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-node-layout.test.mjs"
+          ],
+          "status": "节点/theme/gameLayout与standalone battle奖励布局已接；综合176项175通过，唯一红为另一结果fixture且已定向修复；真实房间/奖励候选实机未验"
+        },
+        "limits": "不移植浏览器gold/hp/sold/campDone演示状态；保留四事件选项/商人/分页选择；无冻结宝箱截图，不认领宝箱视觉对齐",
+        "projectImplementation": {
+          "path": "scripts/v25-node-layout.mjs",
+          "sha256": "ca1249f4e28fdf8ec985de2e89fe15e6613bcfc9bf43a7d359ed9963d465b3aa",
+          "bytes": 20433
+        }
+      },
+      {
+        "id": "results-module",
+        "sources": [
+          {
+            "path": "results.js",
+            "sha256": "06d9106dd7abf47f4b840b2bfb9002f8d3379a049d8766e20177fea3dd1ca334",
+            "record": "renderResults:6"
+          },
+          {
+            "path": "results.css",
+            "sha256": "fd155f1e98942f7eff6eacc35c0ca619705cd3f94aca12a22297c8f51cc8ace8",
+            "record": "result-banner/result-stats/result-actions"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-result-layout.mjs:applyV25ResultLayout/v25ResultRuntimeLayout",
+          "src/lua/abyss_v25_menu_view.lua:present/resultValues/entrance"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-result-layout.test.mjs"
+          ],
+          "status": "已接buildUI/theme及共享menu控制器；present读取原Run的遗物/生命/金币/楼层/牌组，六行入场与画像同步已实现；当前候选完整结算未验"
+        },
+        "limits": "不复制RESULT_SAMPLES或重算分数；六行真实数据/胜败主体/实时HUD/字体纸张与同候选实机待验"
+      },
+      {
+        "id": "main-menu",
+        "sources": [
+          {
+            "path": "menus.js",
+            "sha256": "a9f861917e697d5f5f25650abafdc3eef5f7ac6593d9ef015a62bbeab638f114",
+            "record": "renderMenu:44 / bindReferenceMenuMotion"
+          },
+          {
+            "path": "menu-reference.css",
+            "sha256": "97218a083a1d29f7a9b742155fdb689629a4c7b7e649c7c43292dcc2174a60fd",
+            "record": ".mr-mainlinks/.mr-option"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-menu-layout.mjs:applyV25MenuLayout/v25MenuRuntimeLayout",
+          "src/lua/abyss_v25_menu_view.lua:button/pointer/present",
+          "src/lua/abyss_game_ui_input.lua:既有开始与退出事务"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-profile.test.mjs",
+            "tests/v25-layout.test.mjs"
+          ],
+          "status": "buildUI/theme和menu controller接入已读回源码；四态装饰指针适配已实现；本菜单新增真实交互fixture/官方导入仍需主控验证"
+        },
+        "limits": "原塔楼与logo私有图尚未绑定；原生字体/渐变未视觉验收；图鉴/游戏记录保持锁定，不假造可用入口或浏览器示例存档"
+      }
+    ]
   },
   "preserved": [
     "Run/Combat/RNG/输入事务未改",
     "原手牌插值与动作队列未换Tween",
     "10牌及合法敌人数未缩减"
   ],
-  "deviceValidation": "UNVERIFIED"
+  "deviceValidation": "UNVERIFIED",
+  "adoptionSemantics": "机制借鉴/结构对照是独立实现与已读原件的对应关系，不是逐行复用或样本运行认证；未核样本保持待核；未知操作码不推断完整语义",
+  "techniques": [
+    {
+      "id": "native-four-states",
+      "decision": "复用项目四态；V25装饰独立实现",
+      "sources": [
+        {
+          "path": "scripts/ui-layout.mjs",
+          "sha256": "111005ca81903cd286c1cee9410e10d06c173af416b4b0a87d8fc0ba45ef31a5",
+          "record": "button：presetButton.states normal/hover/pressed/disabled"
+        }
+      ],
+      "projectEntry": [
+        "scripts/v25-battle-chrome.mjs:applyV25BattleChrome",
+        "scripts/v25-character-layout.mjs:flagButton"
+      ],
+      "verification": {
+        "tests": [
+          "tests/v25-battle-chrome.test.mjs",
+          "tests/v25-battle-runtime.test.mjs",
+          "tests/v25-character-layout.test.mjs"
+        ],
+        "status": "离线结构/宿主fixture已有验证；官方同候选画面、设备性能未验"
+      },
+      "boundary": "jelly-ui只证实装饰父链，不证实四态事件；实机拖出/取消复位待验"
+    },
+    {
+      "id": "native-mask-layer-order",
+      "decision": "复用原生fill/mask；场景裁切独立实现",
+      "sources": [
+        {
+          "path": "scripts/ui-layout.mjs",
+          "sha256": "111005ca81903cd286c1cee9410e10d06c173af416b4b0a87d8fc0ba45ef31a5",
+          "record": "unit：hpGhost/hpFill mask=true、horizontal fill"
+        },
+        {
+          "path": "battle.js",
+          "sha256": "b81d1dbf57874df0efdf68bff2894b256bda954fc8e2f235a657085f518a1ec7",
+          "record": "scene(false):72，墙柱/拱门/地面层次"
+        }
+      ],
+      "projectEntry": [
+        "scripts/v25-battle-scene.mjs:nativeShape/applyV25BattleScene"
+      ],
+      "verification": {
+        "tests": [
+          "tests/v25-battle-scene.test.mjs",
+          "tests/native-candidate-audit.test.mjs"
+        ],
+        "status": "离线结构/宿主fixture已有验证；官方同候选画面、设备性能未验"
+      },
+      "boundary": "未把未知96/97字段当认证mask schema；100003右半裁切/pivot/共享边混合需官方读回；PNG孔洞保留"
+    },
+    {
+      "id": "templates-owner-lifecycle",
+      "decision": "静态外观/实例所有权分离，独立实现",
+      "sources": [
+        {
+          "path": "extracted/pixel-scripts/scripts/092-1073741917.lua",
+          "sha256": "a0e427b0cc34b0f0135b0ef41eadd37782053cb81665e684024794c1842ae979",
+          "record": "DrawRect194/BuildImage217/ReleaseControls184/OnDestroy264"
+        }
+      ],
+      "projectEntry": [
+        "scripts/v25-card-templates.mjs:prepareV25CardTemplates",
+        "scripts/v25-card-binding.mjs:v25CardBindingSource/assertV25CardPreparation",
+        "src/lua/abyss_v25_card_surface.lua:allocate/publish/current/retire/drain"
+      ],
+      "verification": {
+        "tests": [
+          "tests/v25-card-templates.test.mjs",
+          "tests/v25-card-surface.test.mjs",
+          "tests/v25-card-skin-integration.test.mjs",
+          "tests/v25-profile.test.mjs"
+        ],
+        "status": "离线结构/宿主fixture已有验证；官方同候选画面、设备性能未验"
+      },
+      "boundary": "模板实际ID、原生文字、迟到setter/分配释放失败负控已有；预置UI不复制10套卡壳，但每个可见牌槽实例仍有成本；真实20切场未测"
+    },
+    {
+      "id": "pool-diff-page-lifecycle",
+      "decision": "固定槽缓存与差分提交，独立实现",
+      "sources": [
+        {
+          "path": "extracted/badapple/scripts/000-1073741826.lua",
+          "sha256": "dbe30b4c46c8e20f86916f8a8956e5be7649b8e4eac9336492a05ad3dce946ef",
+          "record": "createRectangle711、drawFrame725位置/尺寸/显隐缓存、OnDestroy813"
+        }
+      ],
+      "projectEntry": [
+        "src/lua/abyss_v25_card_surface.lua:reusable/replace/endFrame/release",
+        "src/lua/abyss_battle_card_view.lua:sameHandValues/applyHandPose",
+        "src/lua/abyss_traveler_portraits.lua:controller/nativeTransition/cleanup",
+        "src/lua/abyss_game_ui_lifecycle.lua:disable/onEngineDestroy"
+      ],
+      "verification": {
+        "tests": [
+          "tests/v25-card-skin-integration.test.mjs",
+          "tests/portrait-paint-cache.test.mjs",
+          "tests/v25-portrait-profile.test.mjs"
+        ],
+        "status": "离线结构/宿主fixture已有验证；官方同候选画面、设备性能未验"
+      },
+      "boundary": "稳定刷新复用、10牌/定义替换/关闭释放及装饰宿主pause原生active读回负控已有；缓存停用不等于释放，不停止根Lua，不采用视频跳帧规则"
+    }
+  ],
+  "validationBoundary": {
+    "kitBytes": "VERIFIED_28_RAW_128_LUA",
+    "sourceRecovery": "VERIFIED_91_FROZEN_FILES",
+    "offline": "按各trace指定测试和本地证据；不替代候选验收",
+    "officialImport": "UNVERIFIED_CURRENT_INTEGRATED_V25",
+    "newReady": "UNVERIFIED_CURRENT_INTEGRATED_V25",
+    "screenComparisons": "UNVERIFIED",
+    "interactionsVideo": "UNVERIFIED",
+    "sameDeviceFrameTimeMemoryCapacity": "UNVERIFIED",
+    "twentySceneResourceRelease": "UNVERIFIED",
+    "twoDDecision": "CONTINUE_IMPLEMENTATION_AND_VALIDATION：未证明明确平台瓶颈，不因缺证转3D",
+    "deliveryGoNoGo": "NO_GO_FOR_FINAL_ACCEPTANCE",
+    "reviewEvidence": [
+      ".artifacts/ci565-01754/integration-review.md：主控owned接线独立复审；profile/cache/audit比较合同31/31，非我方compiler/helper独审",
+      ".artifacts/ci565-01754/current-registration-17-final.log：历史分片/测量合同19/19，新增测试仍未测量，不是实际Full用时"
+    ],
+    "verificationRounds": [
+      {
+        "kind": "integration-regression",
+        "log": {
+          "path": ".artifacts/v25-integration-validation.log",
+          "sha256": "0633a4b5bc97f071f6cfd8d8bc0dcce4d552147a20edfa799240556d9f43b8da",
+          "bytes": 19608
+        },
+        "tests": 176,
+        "pass": 175,
+        "fail": 1,
+        "skipped": 0,
+        "failure": "tests/v25-result-layout.test.mjs unbound fixture继承批准support文案，但该负控要求空绑定；期望空字符串而得到批准文案",
+        "conclusion": "此轮并非全绿；不得表述为176项单轮通过"
+      },
+      {
+        "kind": "focused-fix-retest",
+        "log": {
+          "path": ".artifacts/v25-result-validation-final.log",
+          "sha256": "fa42abda6c6d8004f020eadbda3d65876b72135acd7ad2f5400296d82bb58715",
+          "bytes": 684
+        },
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "skipped": 0,
+        "change": "unbound fixture明确传入v25Result:{}，保留空绑定原断言；生产批准文案不删除",
+        "conclusion": "修复后结果布局5项新鲜复验通过；未重跑176项，不合并计数冒充单轮全绿"
+      },
+      {
+        "kind": "engineering",
+        "log": {
+          "path": ".artifacts/v25-engineering-current.log",
+          "sha256": "81c6ff24f34e14008cc8f2bd44cb20c81759555ac0e01002d65d3756c5b33e05",
+          "bytes": 1722
+        },
+        "modules": 340,
+        "measurements": "5638/5638",
+        "mutationControls": "M1-M4均killed_by_assertion",
+        "nativeUiContracts": "6/6通过，零skip",
+        "conclusion": "工程检查通过；不代表当前完整候选官方导入、画质或性能验收"
+      },
+      {
+        "kind": "guidance-backlog-calibration",
+        "source": "集成负责人本轮执行回报；calibration日志另见reviewEvidence",
+        "guidance": "PASS",
+        "backlog": "PASS",
+        "calibration": "19/19 PASS",
+        "conclusion": "指引/任务/历史测量合同通过；新增测试仍属未实测，保留冻结原件"
+      },
+      {
+        "kind": "frozen-integration-retest",
+        "log": {
+          "path": "F:\\New folder\\.worktrees\\v25-port\\.artifacts\\v25-integration-validation-final.log",
+          "sha256": "355fe3cebdeaef357860a67b996e98f6cd94a6a208d8b1d0dbcaa08c1c970252",
+          "bytes": 18409
+        },
+        "tests": 176,
+        "pass": 176,
+        "fail": 0,
+        "skipped": 0,
+        "conclusion": "同一冻结源码完整重跑相关组通过；不是完整CI或官方实机验收"
+      },
+      {
+        "kind": "event-title-runtime-bound-retest",
+        "log": {
+          "path": "F:\\New folder\\.worktrees\\v25-port\\.artifacts\\v25-node-text-height-final.log",
+          "sha256": "15b4f194779c594c20c183918c0856ec0a8680c0c741fcbadccb28771b705f07",
+          "bytes": 748
+        },
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "skipped": 0,
+        "change": "普通事件18字号标题的主题透明高度28改36，避免runtime placeOptions覆盖静态保护；原700×60点击区/选项数/交易不变",
+        "conclusion": "完整相关组176通过后的一行布局修正及定向6项通过，不宣称后续完整CI或原生字形已验"
+      }
+    ]
+  }
 }

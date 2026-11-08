@@ -49,6 +49,28 @@ const localFloorPath='docs/evidence/power-shop-planning-20261107.json',localFloo
 // reconstruct historical shard assignments or invent historical measurements.
 const postPlacementJs=["tests/act1-choice-responsibilities.test.mjs","tests/act3-ai-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/class-potion-orb-boundary.test.mjs","tests/class-potion-orb-source-inverse.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-integration-source.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/defect-utility-planning.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/enemy-ai-lifecycle.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/scry-choice-responsibilities.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/seven-refactor-source-epoch.test.mjs","tests/shiv-turn-responsibilities.test.mjs","tests/watcher-actor-boundary.test.mjs","tests/watcher-actor-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs","tests/watcher-potion-integration-source.test.mjs"];
 const postPlacementLua=["tests/lua/actor_presence_contract.lua","tests/lua/colorless_catalog_contract.lua","tests/lua/defect_utility_planning.lua","tests/lua/enemy_ai_lifecycle.lua","tests/lua/intent_visibility_cache.lua","tests/lua/potion_callback_contract.lua","tests/lua/watcher_final_execution_boundaries.lua"];
+// V25 tests have no rows in the frozen placement observations. Register the
+// current files explicitly instead of letting discovery rewrite that inventory.
+const currentV25Js=[
+ 'tests/evidence-native-junction.test.mjs',
+ 'tests/v25-battle-chrome.test.mjs',
+ 'tests/v25-battle-runtime.test.mjs',
+ 'tests/v25-battle-scene.test.mjs',
+ 'tests/v25-card-audit-inputs.test.mjs',
+ 'tests/v25-card-skin-integration.test.mjs',
+ 'tests/v25-card-surface.test.mjs',
+ 'tests/v25-card-templates.test.mjs',
+ 'tests/v25-character-layout.test.mjs',
+ 'tests/v25-layout.test.mjs',
+ 'tests/v25-map-layout.test.mjs',
+ 'tests/v25-map-return.test.mjs',
+ 'tests/v25-node-layout.test.mjs',
+ 'tests/v25-portrait-profile.test.mjs',
+ 'tests/v25-private-card-assets.test.mjs',
+ 'tests/v25-profile.test.mjs',
+ 'tests/v25-result-layout.test.mjs',
+];
+postPlacementJs.push(...currentV25Js);postPlacementJs.sort();
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
 const placementJs=()=>discoverJs().filter(file=>!postPlacementJs.includes(file));
 const placementLua=()=>currentLua().filter(file=>!postPlacementLua.includes(file));
@@ -69,6 +91,21 @@ const postCalibrationLua=['tests/lua/actor_lifecycle.lua','tests/lua/actor_lifec
   ...Array.from({length:9},(_,i)=>'parasite_'+String(i+1).padStart(2,'0')),
   ...Array.from({length:11},(_,i)=>'uncommon_'+String(i+1).padStart(2,'0'))]
   .map(group=>'tests/lua/relic_lifecycle_'+group+'.lua')].sort();
+
+test('V25 tests stay outside frozen observations and each missing registration is rejected',()=>{
+ const current=discoverJs(),v25=current.filter(file=>/^tests\/v25.*\.test\.mjs$/.test(file)||file==='tests/evidence-native-junction.test.mjs').sort();
+ assert.deepEqual(v25,currentV25Js);
+ const historical=placementJs();assert.equal(historical.length,placement.inventory.js);
+ for(const file of currentV25Js){
+  assert.ok(!historical.includes(file));
+  for(const platform of ['win32','linux']){
+   assert.equal(timings.js[platform][file],undefined,'V25 cannot acquire fabricated frozen observations');
+   assert.equal(placementTimings.js[platform][file],undefined,'V25 cannot acquire a historical placement measurement');
+  }
+  const omitted=postPlacementJs.filter(value=>value!==file),contaminated=current.filter(value=>!omitted.includes(value));
+  assert.throws(()=>assert.equal(contaminated.length,placement.inventory.js),'omitting any V25 registration must fail the original inventory contract');
+ }
+});
 
 test('complete native successful rows authenticate every observed file and only raise effective placement costs',()=>{
  assert.equal(e.lockedObservationsSha256,'a80b5fe95fcfb0b4d5fedf839045100466423f3129c000ce2eef642cc31c421d');
@@ -265,12 +302,15 @@ test('current Full36 retains full coverage and reports performance targets under
   assert.equal(currentTimings.lua[file],undefined,'new fixtures have no fabricated worker-safety measurements');
   assert.equal(currentTimings.luaShard[file],undefined,'new fixtures have no fabricated placement measurements');
  }
- for(const [platform,count,budget]of [['win32',17,1800000],['linux',14,1200000]]){
-  const loads=currentJsShard(js,`1/${count}`,platform).loads;
-  const jsBins=Array.from({length:count},(_,i)=>currentJsShard(js,`${i+1}/${count}`,platform).files);
-  assert.deepEqual(jsBins.flat().sort(),[...js].sort());assert.equal(new Set(jsBins.flat()).size,js.length);
+ // Keep the original forecasts bound to their original inventory. Newly added
+ // unmeasured V25 files still participate in a separate complete-current plan.
+ const preV25Js=js.filter(file=>!currentV25Js.includes(file));
+ for(const [platform,count,budget]of [['win32',17,1800000],['linux',14,1200000]])for(const [label,inventory]of [['pre-V25',preV25Js],['current',js]]){
+  const loads=currentJsShard(inventory,`1/${count}`,platform).loads;
+  const jsBins=Array.from({length:count},(_,i)=>currentJsShard(inventory,`${i+1}/${count}`,platform).files);
+  assert.deepEqual(jsBins.flat().sort(),[...inventory].sort());assert.equal(new Set(jsBins.flat()).size,inventory.length);
   if(platform==='linux'){
-   const forecast=Math.max(...loads)+60000;assert.equal(forecast,1179021);assert.ok(forecast<budget,'complete POSIX inventory fits the unchanged performance target including reserve');t.diagnostic(`POSIX forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
+   const forecast=Math.max(...loads)+60000;if(label==='pre-V25')assert.equal(forecast,1179021);assert.ok(forecast<budget,'complete POSIX inventory fits the unchanged performance target including reserve');t.diagnostic(`POSIX ${label} forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
    continue;
   }
   const planning={...currentTimings,windowsJsShardMs:loads};
@@ -280,7 +320,7 @@ test('current Full36 retains full coverage and reports performance targets under
   const safety=file=>currentTimings.lua[file]??currentTimings.unknownLuaMs;
   const combined=bins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);
    return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);});
-  const forecast=Math.max(...combined)+60000;assert.equal(forecast,1771239);assert.ok(forecast<budget,'complete Windows inventory fits the unchanged performance target including reserve');t.diagnostic(`Windows forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<2700000,'forecast must fit the separately authorized 45-minute execution guard');
+  const forecast=Math.max(...combined)+60000;if(label==='pre-V25')assert.equal(forecast,1771239);assert.ok(forecast<budget,'complete Windows inventory fits the unchanged performance target including reserve');t.diagnostic(`Windows ${label} forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<2700000,'forecast must fit the separately authorized 45-minute execution guard');
  }
 });
 

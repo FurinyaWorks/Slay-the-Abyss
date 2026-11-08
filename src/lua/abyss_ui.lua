@@ -2,6 +2,7 @@ local view, Viewport, background, cardArt, portraits
 local canvasWidth, canvasHeight
 local attempted = false
 local function failed(phase, reason)
+    pcall(function()require('abyss_card_skin').clearSurface()end)
     print("ABYSS_UI failed " .. phase .. ": " .. tostring(reason))
     if portraits then pcall(function()portraits:release()end) end
     if cardArt then pcall(cardArt.clear) end
@@ -97,6 +98,10 @@ function OnStart()
         require("abyss_card_art_runtime").configure(nil)
         -- Approved gold chrome is pure UI; it remains independent of deferred card illustrations and select fan.
         optionalArt('cardChrome', function()require("abyss_card_skin").configure('premium')end)
+        optionalArt('v25CardSurface',function()
+            require('abyss_card_skin').configureSurface(require('abyss_v25_card_assets'),{
+                instantiate=game.InstantiateClientUIControl,destroy=game.DestroyClientUIControl})
+        end)
         if flags.menuBackground then
             createEasterEggArt=function()
                 local factory=require('abyss_traveler_portraits').createController
@@ -201,6 +206,7 @@ function OnUpdate(dt)
 end
 
 function OnDestroy()
+    pcall(function()require('abyss_card_skin').destroySurface()end)
     if view then pcall(function()view:onEngineDestroy()end) end
     if cardArt then cardArt.onEngineDestroy() end
     if portraits then portraits:onEngineDestroy() end

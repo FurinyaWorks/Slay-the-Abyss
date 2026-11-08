@@ -1,7 +1,41 @@
 local Run = require("abyss_run")
 local CharacterSelect = require("abyss_character_select")
 local Controller = require("abyss_controller")
+local Theme = require('abyss_theme')
+local V25View=require('abyss_v25_menu_view')
 local M = {}
+
+local function mapReturnCovered(self)
+    return self.characterOpen or self.easterEggOpen or self.controlsOpen
+        or self.deckUI.visible or self.potionUI.visible
+        or self.choiceUI and self.choiceUI.visible
+end
+
+function M.mapReturnAvailable(self)
+    if Theme.presentationProfile~='v25-reference' then return false end
+    if self.disabled or self.settlementRequested or self.settlementBusy then return false end
+    if mapReturnCovered(self) then return false end
+    -- Closing the route preview remains safe while its caller is suspended.
+    if self.routeOpen then return self.exitOpen==true end
+    if self.exitOpen or self.menuOpen then return false end
+    return self.mode=='map' and self.run~=nil and self.map~=nil and self.run.phase=='map'
+        and not self.battleUI.busy and not self.motion.deathReveal
+end
+
+local function mapReturnIdentity(self)
+    local map,run=self.map or {},self.run or {}
+    return {map=self.map,mapAct=map.act,mapFloor=map.floor,mapNode=map.currentNodeId,mapSignature=map.sourceSignature,
+        runAct=run.act,phase=run.phase,roomGeneration=run.roomGeneration,mode=self.mode,routeOpen=self.routeOpen==true,
+        choiceGeneration=self.choiceUI and self.choiceUI.generation}
+end
+
+local function sameMapReturn(self,token)
+    if not token then return false end
+    local current=mapReturnIdentity(self)
+    for key,value in pairs(current)do if token[key]~=value then return false end end
+    for key,value in pairs(token)do if current[key]~=value then return false end end
+    return true
+end
 
 function M.dismissFromOutside(controller,self)
     return function()
@@ -12,14 +46,21 @@ function M.dismissFromOutside(controller,self)
         end
 end
 
+local function bindV25Hover(box,hit,cursor,available)
+    if Theme.presentationProfile~='v25-reference' or not cursor.CursorEnter then return end
+    if not box:GetChild('v25Face') and not box:GetChild('v25MenuFace')then return end
+    hit:AddCursorEventListener(cursor.CursorEnter,function()V25View.pointer(box,'enter',available())end)
+end
+
 function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owner)
     return function(box, kind, action, enabled, order, group, onFocus)
             local hit = box:GetChild("hit")
             local held, released, observed
-            local menuAction = kind == "start" or kind == "settle" or kind=='egg_open'
+            local menuAction = kind == "start" or kind == "settle" or kind=='egg_open' or kind=='titleQuit'
             local rewardAction = kind == "combatRewards"
             local characterAction = kind:match("^character_")~=nil
             local resourceAction = kind:match('^resource_')~=nil
+            local mapReturn = kind=='mapReturn'
             local cursor = platform.cursorEvents or {}
             local runMenuAction = kind:sub(1, 4) == 'run_'
             local function eggAvailable()
@@ -27,6 +68,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                 return kind=='egg_open' and self.easterEgg:refresh()
             end
             local function menuAvailable()
+                if kind=='titleQuit'then return self.mode=='menu' and not self.exitOpen and not self.characterOpen end
                 if menuAction then
                     if self.exitOpen or self.deckUI.visible then return false end
                     return self.mode == "victory" or self.mode == "defeat"
@@ -59,6 +101,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
             local function modalAvailable()
                 if menuAction and self.motion.deathReveal then return false end
                 if kind == 'routeClose' then return self.exitOpen and self.routeOpen == true end
+                if mapReturn then return M.mapReturnAvailable(self) end
                 if kind == 'helpClose' then return self.exitOpen and self.controlsOpen == true end
                 if self.controlsOpen then return false end
                 return runMenuAvailable()
@@ -69,15 +112,24 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                 if self.easterEggOpen or kind=='egg_open' or kind=='egg_close' then return eggAvailable()end
                 return modalAvailable()
             end
+            local function currentMapReturn(token)
+                return token.menuGeneration==owner.menuGeneration and token.deckGeneration==self.deckUI.generation
+                    and token.potionGeneration==self.potionUI.generation and sameMapReturn(self,token.mapReturn)
+            end
+            local function currentReward(token)
+                return not rewardAction or token.menuGeneration==owner.menuGeneration
+                    and token.pending==self.run.pendingCombatRewards and token.rewardGeneration==self.rewardReturnGeneration
+            end
             local function current(token)
                 return token and token.generation == owner.exitGeneration and token.run == self.run
                     and (not resourceAction or token.deckGeneration==self.deckUI.generation and token.mode==self.mode
                         and token.potionGeneration==self.potionUI.generation)
                     and (not menuAction and not characterAction or token.menuGeneration == owner.menuGeneration) and available()
-                    and (not rewardAction or token.menuGeneration == owner.menuGeneration and token.pending == self.run.pendingCombatRewards
-                        and token.rewardGeneration == self.rewardReturnGeneration)
+                    and currentReward(token)
+                    and (not mapReturn or currentMapReturn(token))
             end
             local function touch(event) return event and event.touchId end
+            bindV25Hover(box,hit,cursor,available)
             if cursor.CursorDown and cursor.CursorUp then
                 hit:AddCursorEventListener(cursor.CursorDown, function(event)
                     if held and not current(held) then held = nil end
@@ -86,23 +138,30 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                     observed, held, released = true, nil, nil
                     if available() then held = {generation=owner.exitGeneration,menuGeneration=owner.menuGeneration,run=self.run,touch=touch(event),
                         deckGeneration=self.deckUI.generation,potionGeneration=self.potionUI.generation,mode=self.mode,
-                        pending=self.run and self.run.pendingCombatRewards,rewardGeneration=self.rewardReturnGeneration} end
+                        pending=self.run and self.run.pendingCombatRewards,rewardGeneration=self.rewardReturnGeneration,
+                        mapReturn=mapReturn and mapReturnIdentity(self) or nil} end
+                    V25View.pointer(box,'down',held~=nil)
                 end)
                 hit:AddCursorEventListener(cursor.CursorUp, function(event)
                     if not held or held.touch ~= touch(event) then return end
                     released = current(held) and held or nil
                     held = nil
+                    V25View.pointer(box,'up',available())
                 end)
                 for _, event in pairs({cursor.CursorExit, cursor.CursorEndDrag}) do
                     if event then hit:AddCursorEventListener(event, function(pointer)
                         local pointerOwner = held or released
-                        if not pointer or pointerOwner and pointerOwner.touch == touch(pointer) then held, released = nil, nil end
+                        if not pointer or pointerOwner and pointerOwner.touch == touch(pointer) then
+                            held,released=nil,nil
+                        end
+                        if not pointerOwner or not pointer or pointerOwner.touch==touch(pointer)then V25View.pointer(box,'exit',available())end
                     end) end
                 end
             end
             Controller.bind(controller,hit,function()
                 if kind=='egg_close' then return 'easterEgg'end
                 if characterAction then return 'characters' end
+                if mapReturn then return self.routeOpen and 'exit' or 'map' end
                 if runMenuAction or kind=='routeClose' or kind=='cancel' or kind=='confirm' or kind=='help' or kind=='helpClose' then return 'exit' end
                 return self.mode
             end,action,available,order or (kind=='cancel' and 1 or kind=='open' and 200 or 100),group,onFocus)
@@ -157,6 +216,10 @@ function M.installMenu(self,child,clickEvent,resourceHint,bindCommand,start,sett
     -- Source menu actions use the same pointer ownership as exit actions, and also
     -- expire whenever their menu/run context is hidden or replaced.
     bindCommand(start, "start", function() return self:start() end)
+    local quit=child('menuPanel'):GetChild('titleQuit')
+    if Theme.presentationProfile=='v25-reference' and quit then
+        bindCommand(quit,'titleQuit',function()return self:openExit()end,nil,190)
+    end
     bindCommand(settlement, "settle", function() return self:settle() end)
     if self.easterEgg then
         local egg=self.easterEgg
@@ -211,7 +274,11 @@ function M.installGuide(self,exitPanel,clickEvent,bindCommand,dismissFromOutside
         self:refresh()
         return true
     end, canViewRoute)
-    bindCommand(child('mapPanel'):GetChild('previewBack'), 'routeClose', function() return self:closeExit() end)
+    local v25=Theme.presentationProfile=='v25-reference'
+    bindCommand(child('mapPanel'):GetChild('previewBack'),v25 and 'mapReturn' or 'routeClose',function()
+        if v25 and not self.routeOpen then return self:openMenu() end
+        return self:closeExit()
+    end)
 end
 
 function M.installCharacters(self,characterPanel,clickEvent,bindCommand,selectionChanged,controller)

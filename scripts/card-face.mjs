@@ -38,7 +38,7 @@ export function cardFaceChildren(theme, context, interactive = true) {
   const iconSize = Math.min(card.artIcon, card.art);
   const trim = card.trim, blocked = theme.cardSkin.blocked;
   // The cost straddles the top-left corner; the title banner and frame carry rarity.
-  const disc = [-w / 2 + d / 2 - trim.costOverhang, top - d / 2 + trim.costOverhang];
+  const disc = card.costPosition??[-w / 2 + d / 2 - trim.costOverhang, top - d / 2 + trim.costOverhang];
   const typeY = top - card.nameBand - card.art - card.typeLine / 2 - b;
   const bandBottom = top - b - card.nameBand;
   const picture = (name, values, id, colour = c.text) => ({...plate(name,values,colour),image:id});
@@ -67,6 +67,7 @@ export function cardFaceChildren(theme, context, interactive = true) {
           windowParts(kind,w-b*2-inset*2,card.art-inset*2,index?c.cardWell:c.energy,picture,plate,frame)
         }))})),
     ]},
+    ...(theme.presentationProfile==='v25-reference'?[{name:'v25Surface',kind:'container',position:[0,0],size:[w,h],visible:false,children:[]}]:[]),
     text('name', frame(card.title.position,[card.title.width,Math.max(card.nameBand,l.nativeText.lineHeight)]), '', f.cardName,theme.cardSkin.text.title),
     ...(node ? Object.entries(icon.cardArt).map(([kind,id]) => hidden(picture(`art_${kind}`,[0,artY,iconSize,iconSize],id)))
       : [picture('art',[0,artY,iconSize,iconSize],icon.cardArt.attack)]),

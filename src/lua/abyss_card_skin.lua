@@ -1,6 +1,55 @@
 -- Shared read-only native card decoration. All colours and dimensions come from Theme.
 local Theme=require('abyss_theme')
 local M={}
+local surface,surfaceEnabled=nil,false
+local surfaceVisibility=setmetatable({},{__mode='k'})
+local surfaceHasCost=setmetatable({},{__mode='k'})
+local surfaceDecorations
+local function restoreSurfaceDecorations()
+    for box in pairs(surfaceVisibility)do
+        if box.alive~=false then
+            surfaceDecorations(box,false)
+            for _,name in ipairs({'costCore','costDisc'})do box:GetChild(name):SetVisible(surfaceHasCost[box]==true)end
+        end
+    end
+    surfaceVisibility=setmetatable({},{__mode='k'})
+    surfaceHasCost=setmetatable({},{__mode='k'})
+end
+function M.configureSurface(value,api)
+    surfaceEnabled=false
+    local released=not surface or surface:onDestroy()
+    restoreSurfaceDecorations()
+    if not released then return false end
+    surface=require('abyss_v25_card_surface').new(value,api)
+    surfaceEnabled=type(value)=='table' and value.enabled==true
+    return true
+end
+function M.beginFrame()
+    if surface and not surfaceEnabled then surface:clear()end
+    if surface then return surface:beginFrame()end
+end
+function M.endFrame(token,scopes)
+    if not surface then return end
+    surface:endFrame(token,scopes)
+    for box,ready in pairs(surfaceVisibility)do
+        if ready and box.alive~=false and not surface:isReady(box)then
+            surfaceDecorations(box,false)
+            for _,name in ipairs({'costCore','costDisc'})do box:GetChild(name):SetVisible(surfaceHasCost[box]==true)end
+        end
+    end
+end
+function M.clearSurface()
+    local released=not surface or surface:clear()
+    restoreSurfaceDecorations()
+    return released
+end
+function M.destroySurface()
+    surfaceEnabled=false
+    local released=not surface or surface:onDestroy()
+    restoreSurfaceDecorations()
+    if released then surface=nil end
+    return released
+end
 local config=Theme.cardSkin
 local roundNames={'vertical','horizontal','corner-1_-1','corner-1_1','corner1_-1','corner1_1'}
 local windowNames={skill=roundNames,power={'arch','base'},attack={'upper','point'}}
@@ -70,7 +119,8 @@ local function window(box,definition,accent,tint)
         local group=box:GetChild('skin'):GetChild(kind);group:SetVisible(kind==shape)
         if kind==shape then
             paint(group:GetChild('edge'),names,accent,tint)
-            paint(group:GetChild('well'),names,mix(Theme.color.cardWell,accent,.05),tint)
+            local well=config.artWells and config.artWells[shape] or mix(Theme.color.cardWell,accent,.05)
+            paint(group:GetChild('well'),names,well,tint)
         end
     end
     paint(box:GetChild('tagEdge'),roundNames,accent,tint)
@@ -95,14 +145,24 @@ local function costState(look)
     if type(current)~='number' or type(base)~='number' then return false,0,0 end
     return current>=0 and base>=0 and current~=base,current,base
 end
-local function costs(box,definition,look,accent,platform,tint)
+local function costVisibility(box,hasCost,nativeSurface)
+    for _,name in ipairs({'costCore','costDisc','cost'})do
+        box:GetChild(name):SetVisible(hasCost and (name=='cost' or not nativeSurface))
+    end
+end
+local function costNumberTone(tone,changed,look)
+    if changed or (look.dim==true and look.blockReason=='insufficient_energy')then return tone end
+    return config.costText or tone
+end
+local function costs(box,definition,look,accent,platform,tint,nativeSurface)
     local changed,current,base=costState(look)
     local tone=accent
     if changed or look.dim then tone=costTone(current,base,look.dim==true and look.blockReason=='insufficient_energy',accent)end
     tint(box:GetChild('costDisc'),tone);tint(box:GetChild('costHalo'),tone)
-    if platform.color then box:GetChild('cost').fontColor=platform.color(tone.r,tone.g,tone.b,255)end
+    local numberTone=costNumberTone(tone,changed,look)
+    if platform.color then box:GetChild('cost').fontColor=platform.color(numberTone.r,numberTone.g,numberTone.b,255)end
     local hasCost=definition.cost~=-2
-    for _,name in ipairs({'costCore','costDisc','cost'})do box:GetChild(name):SetVisible(hasCost)end
+    costVisibility(box,hasCost,nativeSurface)
     activeHalos[box]=changed and hasCost
     box:GetChild('costHalo'):SetVisible(changed and hasCost)
     local direction=box:GetChild('costDirection');direction:SetVisible(changed and hasCost)
@@ -139,6 +199,17 @@ local function blockedState(box,look)
     reason:SetSizeDelta(width-style.padding*2-style.lock[1]-style.gap,Theme.layout.nativeText.lineHeight)
     pillWidths[box]=width
 end
+surfaceDecorations=function(box,ready)
+    if surfaceVisibility[box]==ready then return end
+    for _,name in ipairs({'roundShadow','roundFrame','roundBody','nameBand','nameRule','roleRing','roleMark','tagEdge','tagBody'})do
+        box:GetChild(name):SetVisible(not ready)
+    end
+    local skin=box:GetChild('skin')
+    skin:GetChild('gloss'):SetVisible(not ready)
+    for i=1,config.bandSteps do skin:GetChild('band'..i):SetVisible(not ready)end
+    for kind in pairs(windowNames)do skin:GetChild(kind):GetChild('edge'):SetVisible(not ready)end
+    surfaceVisibility[box]=ready
+end
 function M.apply(box,definition,platform,look)
     look=look or {}
     local role=identity(definition)
@@ -151,8 +222,12 @@ function M.apply(box,definition,platform,look)
     end
     local rarities=config.rarities
     tint(box:GetChild('nameRule'),(rarities[definition.rarity] or rarities.basic)[4])
-    costs(box,definition,look,accent,platform,tint)
-    if platform.color then box:GetChild('type').fontColor=platform.color(accent.r,accent.g,accent.b,255)end
+    local nativeSurface=surfaceEnabled and surface:apply(box,definition,look.surfaceScope)
+    if surfaceEnabled then surfaceHasCost[box]=definition.cost~=-2 end
+    if surfaceEnabled then surfaceDecorations(box,nativeSurface)end
+    costs(box,definition,look,accent,platform,tint,nativeSurface)
+    local typeInk=config.typeInk or accent
+    if platform.color then box:GetChild('type').fontColor=platform.color(typeInk.r,typeInk.g,typeInk.b,255)end
     blockedState(box,look)
 end
 return M

@@ -99,7 +99,7 @@ function M.install(ctx)
             ctx.tint(box:GetChild("nameRule"), C.rarity[definition.rarity] or C.line)
             ctx.ink(box:GetChild("cost"), look.dim and C.textMuted or look.changed and C.positive or C.energy)
             CardSkin.apply(box,definition,ctx.options,{dim=look.dim,selected=look.selected,cost=cost,baseCost=look.changed and printedCost or definition.cost,
-                reason=reason,overlayCovered=covered})
+                reason=reason,overlayCovered=covered,surfaceScope='node'})
         end
         writeCardFrame()
         ctx.show(box:GetChild("glow"), look.selected)

@@ -3,6 +3,7 @@ import {normalizeArtFeatures,artFeatureBuildArgs,artBuildOptionsFromReceipt} fro
 import {portraitRuntimeInputs,portraitModule} from './official-portraits.mjs';
 import {lightweightInputs} from './lightweight-2d-profile.mjs';
 import {uiProfileFromReceipt} from './ui-profile.mjs';
+import {prepareAuditV25CardInputs} from './v25-card-audit-inputs.mjs';
 import {readyArtImageTemplate,readyArtGroupTemplate} from './art/ready-card-runtime.mjs';
 import {backgroundInputs, backgroundModule, backgroundTemplate} from './official-background.mjs';
 // Local offline tools only. Never calls a save mutation, import or playtest API.
@@ -14,9 +15,9 @@ import { compareNativeCandidate, requireSourceSha, sha256, candidateEntrySource 
 import { exportedCandidatePath, newEvidenceDirectory } from './native-audit-paths.mjs';
 import { releaseSourceFiles } from './release-notes.mjs';
 
-export function auditUiBuildArgs(receipt,{registryPath,deferExperimentalInventory=false}={}) {
+export function auditUiBuildArgs(receipt,{registryPath,deferExperimentalInventory=false,v25CardAssetsPath}={}) {
   const options=receipt===undefined?{artFeatures:normalizeArtFeatures()}:artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory});
-  return ['scripts/build-ui.mjs',...artFeatureBuildArgs(options.artFeatures),...(options.v25BattleChrome?['--v25-battle-chrome']:[]),...(uiProfileFromReceipt(receipt)?['--native-page-lifecycle']:[]),...(options.lightweight2d?['--lightweight-2d']:[]),...(options.legacyCardFrames?['--legacy-card-frames']:[]),...(options.nativeCardArt?
+  return ['scripts/build-ui.mjs',...artFeatureBuildArgs(options.artFeatures),...(options.v25CardAssets?[`--v25-card-assets=${v25CardAssetsPath??options.v25CardAssets}`]:[]),...(options.v25BattleChrome?['--v25-battle-chrome']:[]),...(uiProfileFromReceipt(receipt)?['--native-page-lifecycle']:[]),...(options.lightweight2d?['--lightweight-2d']:[]),...(options.legacyCardFrames?['--legacy-card-frames']:[]),...(options.nativeCardArt?
     [`--native-card-art-registry=${registryPath??options.nativeCardArt.registry}`,...options.nativeCardArt.hosts.map(host=>`--native-card-art-host=${host}`)]:[])];
 }
 
@@ -110,7 +111,7 @@ export async function auditNativeCandidate(options) {
     const template = save('template.json', getClientUi({ mapPath, template: 'AbyssDeckCard' }));
     const background = flags.menuBackground
       ? save('background-template.json', getClientUi({mapPath,template:backgroundTemplate})) : undefined;
-    const runtimeNames=[...(flags.cards||portraits||flags.menuBackground?[readyArtImageTemplate]:[]),readyArtGroupTemplate,monsterActorTemplateName,monsterPowerTemplateName];
+    const runtimeNames=[...(flags.cards||portraits||flags.menuBackground?[readyArtImageTemplate]:[]),readyArtGroupTemplate,monsterActorTemplateName,monsterPowerTemplateName,...Object.keys(buildReceipt?.v25CardAssets?.templateIndices??{})];
     const runtimeTemplates=runtimeNames.map(name=>save(name+'.json',getClientUi({mapPath,template:name})));
     const inspected = save('inspect.json', inspectFile(mapPath));
     const checked = save('static-check.json', checkClientScripts({ mapPath }));
@@ -126,13 +127,15 @@ export async function auditNativeCandidate(options) {
     run('tar', ['-xf', '-', '-C', snapshot], { input: run('git', ['archive', sourceSha, '--',
       'src/lua', 'data', 'scripts', 'tools', ...releaseSourceFiles, ...assetInputs]) });
     prepareAuditStaticRegistry(snapshot,buildReceipt,selection);
+    const v25Private=artOptions.v25CardAssets?prepareAuditV25CardInputs({snapshot,receipt:buildReceipt,root:repo}):null;
+    if(v25Private)save('v25-private-locators.json',v25Private.locatorRebase);
     // Geometry identity belongs to the requested source epoch, never the tool checkout.
     if(artOptions.lightweight2d){
       const pinned=await import(pathToFileURL(join(snapshot,'scripts/art-features.mjs')));
       pinned.artBuildOptionsFromReceipt(buildReceipt);
     }
     for (const script of ['build-lua-data.mjs', 'build-ui.mjs']) writeFileSync(join(output, `${script}.log`),
-      run(process.execPath, script==='build-ui.mjs'?auditUiBuildArgs(buildReceipt,{registryPath,deferExperimentalInventory:true}):[`scripts/${script}`], { cwd: snapshot }));
+      run(process.execPath, script==='build-ui.mjs'?auditUiBuildArgs(buildReceipt,{registryPath,deferExperimentalInventory:true,v25CardAssetsPath:v25Private?.v25CardAssetsPath}):[`scripts/${script}`], { cwd: snapshot }));
     const { candidateScriptFiles } = await import(pathToFileURL(join(snapshot, 'scripts/native-candidate-scripts.mjs')));
     const deployment = candidateScriptFiles(join(snapshot, 'src/lua'), join(snapshot, 'build/lua'));
     const uiBgmParameter = deployment.find(script => script.name === 'abyss_ui')?.variables?.find(variable => variable.name === 'nativeBgmEnabled');
@@ -158,7 +161,7 @@ export async function auditNativeCandidate(options) {
         ||buildReceipt?.officialPortraits?.containerTemplateIndex!==runtimeTemplates?.[1]?.templateIndex)
         throw Error('Portrait runtime requires matching same-candidate template binding');
       const {bindPortraitTemplates}=await import(pathToFileURL(join(snapshot,'scripts/official-portraits.mjs')));
-      bindPortraitTemplates(join(snapshot,'build/lua'),{image:runtimeTemplates[0],container:runtimeTemplates[1]},{root:snapshot,...flags});
+      bindPortraitTemplates(join(snapshot,'build/lua'),{image:runtimeTemplates[0],container:runtimeTemplates[1]},{root:snapshot,...flags,v25BattleChrome:artOptions.v25BattleChrome});
     }
     if(!deployment.some(module=>module.name===monsterActorBindingModule))throw Error('Missing monster actor runtime binding');
     {
@@ -173,6 +176,10 @@ export async function auditNativeCandidate(options) {
       const {bindMonsterActorTemplates}=await import(pathToFileURL(join(snapshot,'scripts/monster-art.mjs')));
       bindMonsterActorTemplates(join(snapshot,'build/lua'),{actor,group,power});
     }
+    if(v25Private){
+      const {writeV25CardBinding}=await import(pathToFileURL(join(snapshot,'scripts/v25-card-binding.mjs')));
+      writeV25CardBinding(join(snapshot,'build/lua'),v25Private.prepared,buildReceipt.v25CardAssets.templateIndices);
+    }
     const modules = deployment.map(({ name, sourceFile }) => {
       const source = readFileSync(sourceFile, 'utf8');
       return { name, source: name === 'abyss_ui' ? candidateEntrySource(source, buildReceipt, before) : source };
@@ -181,9 +188,9 @@ export async function auditNativeCandidate(options) {
     const expectedTemplates = JSON.parse(readFileSync(join(snapshot, 'build/lua/game-ui-templates.json'), 'utf8'));
     const expectedTemplate = expectedTemplates.find(template => template.name === 'AbyssDeckCard');
     const expectedRuntimeTemplates=runtimeNames.map(name=>({
-      template:expectedTemplates.find(row=>row.name===name),templateIndex:name===monsterPowerTemplateName?buildReceipt?.monsterActors?.powerTemplateIndex:
+      template:expectedTemplates.find(row=>row.name===name),templateIndex:buildReceipt?.v25CardAssets?.templateIndices[name]??(name===monsterPowerTemplateName?buildReceipt?.monsterActors?.powerTemplateIndex:
         name===monsterActorTemplateName?buildReceipt?.monsterActors?.templateIndex:name===readyArtImageTemplate?sharedReceipt?.imageTemplateIndex:
-        sharedReceipt?.containerTemplateIndex??buildReceipt?.monsterActors?.containerTemplateIndex}));
+        sharedReceipt?.containerTemplateIndex??buildReceipt?.monsterActors?.containerTemplateIndex)}));
     const expectedBackgroundTemplate = expectedTemplates.find(template => template.name === backgroundTemplate);
     const expectedBackground = expectedBackgroundTemplate ? {template:expectedBackgroundTemplate,
       templateIndex:buildReceipt?.officialBackground?.templateIndex} : undefined;

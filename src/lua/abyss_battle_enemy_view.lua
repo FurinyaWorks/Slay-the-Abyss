@@ -28,7 +28,7 @@ end
 -- Native anchored coordinates are centered and Y-up. Control slots never enter this transform.
 -- STS floorY is 340 for a 0.7-scale hand; this hand is taller (208/720), so the
 -- monster floor rises 60 source px to keep bodies, HP bars and block above resting cards.
-M.floorY=400
+M.floorY=L.enemyRow.floorY or 400
 function M.geometry(actor)
  local source=SourceGeometry.resolve(actor)
  local sx,sy=Theme.canvas.base[1]/1920,Theme.canvas.base[2]/1080

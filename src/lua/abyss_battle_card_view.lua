@@ -281,7 +281,7 @@ function M.new(view, controls)
         local base=card.instance and context.battle.catalog.cards[card.instance.cardId] or card.definition
         local printed=card.upgraded and base.upgrade and base.upgrade.cost or base.cost
         CardSkin.apply(box,card.definition,controls.platform,{dim=not card.playable,selected=card.selected or hovered,
-            cost=card.definition.cost,baseCost=printed,blockReason=card.blockReason})
+            cost=card.definition.cost,baseCost=printed,blockReason=card.blockReason,surfaceScope='battle'})
     end
 
     local function renderSlot(context, i, aimUid, aimTarget)

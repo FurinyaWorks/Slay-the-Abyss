@@ -3319,5 +3319,32 @@
       "padding": 7,
       "glyphScale": 1.35
     }
+  },
+  "v25Result": {
+    "supportHeading": "当前暂无存档功能",
+    "supportBody": "存档功能需作者达到创作者 4 级后开放，喜欢的话欢迎点赞支持。帮助作者提升等级。"
+  },
+  "v25Character": {
+    "story": "岩层深处传来了异常的共鸣。\n旅行者，深入遗迹，阻止深渊的侵蚀。",
+    "relicImageId": 102005
+  },
+  "v25Battle": {
+    "presentationProfile": "v25-reference",
+    "sourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+    "font": { "card": 14, "cardName": 16, "cost": 25 },
+    "motion": { "hoverLift": 80, "hoverScale": 1.22 },
+    "cardSkin": { "text": { "title": "#FFFFFF" }, "costText": "#FFF8E7", "typeInk": "#595959", "artWells": { "attack": "#752327", "skill": "#1B343E", "power": "#69343B" } },
+    "layout": {
+      "player": { "position": [-324, -37], "portrait": 210 },
+      "enemyRow": { "floorY": 330 },
+      "hpBar": { "size": [154, 11] },
+      "battleUnit": { "heroFoot": 0, "heroNameGap": 0, "heroNameLine": 0, "heroHealthGap": 5, "heroHealthWidth": 154 },
+      "energy": { "position": [-511, -233], "size": 86, "numberSize": 29, "rimColour": "#514247", "shellColour": "#24262A", "faceColour": "#FFE35DC0", "lightColour": "#FFF7A680", "elementColour": "#FFE35D30" },
+      "endTurn": { "position": [454.5, -220], "size": [143, 56], "numberSize": 18, "faceColour": "#243942", "textColour": "#E2DFD0" },
+      "drawPile": { "position": [-585.5, -311.5], "size": [65, 67] },
+      "hand": { "y": -290, "maxWidth": 694, "spacingMax": 124, "spacingMin": 60 },
+      "pileBadge": { "visual": { "diameter": 28, "offset": [20, -14], "font": 19, "textWidth": 36 } },
+      "card": { "size": [150, 210], "costPosition": [-66, 93.5], "nameBand": 37.8, "art": 77.7, "typeLine": 16.8, "textBox": [114, 61], "title": { "position": [0, 79.8], "width": 138 }, "artIcon": 44 }
+    }
   }
 }
