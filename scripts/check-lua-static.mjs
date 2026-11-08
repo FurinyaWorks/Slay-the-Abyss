@@ -96,6 +96,20 @@ export function reviewRenderComplexity(diagnostics, sources) {
 const responsibilityRoots = {
   'src/lua/abyss_turn_power_phases.lua': [],
   'src/lua/abyss_shop.lua': ["function 'selectShopCard'"],
+  'src/lua/abyss_defect_engine_cards.lua': ['M.planEffect','change',
+    ...["growClaws", "loseSteamBlock", "reduceStreamlineCost", "aggregateEnergy", "autoShields", "blizzardDamage", "chaosOrbs", "chillOrbs", "randomEngineAttack", "engineRandomRounds", "sunderDamage", "engineSunderRefund", "tempestOrbs", "engineChannelRounds", "engineEvokeRounds"]
+      .map(name=>`planHandlers.${name}`)].map(name=>`function '${name}'`),
+  'src/lua/abyss_act1_events.lua': ['M.choose','bonfireReward','bonfireCurseReward',
+    ...['sssserpent','big_fish','accursed_blacksmith','scrap_ooze','transmogrifier','bonfire']
+      .map(name=>`choiceHandlers.${name}`)].map(name=>`function '${name}'`),
+  'src/lua/abyss_watcher_final_cards.lua': ['M.execute',
+    ...['gainWatcherFinalPower','watcherFinalEndTurnEarly','watcherFinalSkipEnemiesTurn',
+      'watcherFinalEstablishment','watcherFinalOmega','watcherFinalGenerate','watcherFinalWish',
+      'watcherFinalLessonLearned','watcherFinalMeditate','watcherFinalDeusExMachina',
+      'watcherFinalSpiritShield','watcherFinalConjureBlade','watcherFinalJudgment',
+      'watcherFinalExpungerHits','watcherFinalRagnarok','watcherFinalDamageHit']
+      .map(name=>`effectHandlers.${name}`)].map(name=>`function '${name}'`),
+  'src/lua/abyss_inventory.lua': [],
   'src/lua/abyss_relic_combat_hooks.lua': [],
   'src/lua/abyss_relic_family_combat.lua': [],
   'src/lua/abyss_purge_candidates.lua': [],
@@ -217,6 +231,7 @@ const responsibilityRoots = {
 const responsibilityHelper = file => /^src\/lua\/abyss_(?:effects_.+|combat_effect.*|combat_catalog|combat_reactions|combat_native_play|combat_queued_play|act2_ai_.+|character_presentation_.+|feedback_.+|node_ui(?:_.+)?|game_ui_.+|run(?:_(?!(?:card_catalog|red_card_contract|seed)\.lua$).+)?|nodes(?:_.+)?)\.lua$/.test(file);
 const completeResponsibility = file => responsibilityHelper(file)
   || file==='src/lua/abyss_turn_power_phases.lua'
+  || file==='src/lua/abyss_inventory.lua'
   || file==='src/lua/abyss_codex_relic.lua'
   || file==='src/lua/abyss_relic_combat_hooks.lua'
   || file==='src/lua/abyss_relic_family_combat.lua'

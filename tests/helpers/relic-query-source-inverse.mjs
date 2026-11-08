@@ -1,10 +1,14 @@
+import {preDefectPlanSource,defectPlanReader} from './defect-plan-source-inverse.mjs';
+import {preAct1ChoiceSource,act1ChoiceReader} from './act1-choice-source-inverse.mjs';
 // Exact outer epoch for read-only relic queries. Frozen source strings may be
 // retained; authorization always comes from a new read of every linked owner.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
+import {preInventoryResponsibilitiesSource,inventoryResponsibilitiesReader} from './inventory-responsibilities-source-inverse.mjs';
 import {preM7FinalSource,m7FinalReader} from './m7-core-final-source-inverse.mjs';
+import {preWatcherExecutionSource,watcherExecutionReader} from './watcher-final-execution-source-inverse.mjs';
 const normalize=s=>s.replaceAll('\r\n','\n');
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const archive=readFileSync(new URL('./relic-query-baseline-391306af.json.gz',import.meta.url));
@@ -92,6 +96,14 @@ function inputIdentity(path,source){
  }catch{return false;}
 }
 export function preRelicQuerySource(path,source,{readSource=readLive}={}){
+ let extractionRaw=rawReaders.get(readSource)??readSource;
+ source=preDefectPlanSource(path,source,{readSource:extractionRaw});
+ extractionRaw=defectPlanReader(extractionRaw);
+ source=preAct1ChoiceSource(path,source,{readSource:extractionRaw});
+ extractionRaw=act1ChoiceReader(extractionRaw);
+ source=preInventoryResponsibilitiesSource(path,source,{readSource:extractionRaw});
+ source=preWatcherExecutionSource(path,source,{readSource:extractionRaw});
+ readSource=watcherExecutionReader(inventoryResponsibilitiesReader(extractionRaw));
  readSource=m7FinalReader(rawReaders.get(readSource)??readSource);
  source=preM7FinalSource(path,source,{readSource});
  if(!Object.hasOwn(files[path]??{},'beforeSha256')||!inputIdentity(path,source))return source;

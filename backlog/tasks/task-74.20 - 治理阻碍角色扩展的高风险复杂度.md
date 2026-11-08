@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-06 01:46'
-updated_date: '2026-11-07 04:11'
+updated_date: '2026-11-08 01:10'
 labels: []
 milestone: m-7
 dependencies: []
@@ -42,7 +42,14 @@ ordinal: 162000
 
 本轮最终有界切片：按既有剩余风险建议，仅治理original_v4 validateEffects/apply/executeRoot及新helper，保持支付、唯一快照、逐效果、角色结算与AI flush顺序。全函数含匿名/初始化同口径复采并对新职责执行CC15，冻结旧源、全状态与失败对照后独立复审。
 
-2026-11-07按Owner继续治理：在Shop原模块分开selectShopCard源池随机重抽与cardOffer报价预览，保留全部RNG/动态槽位/缺实现及晚失败回滚；不建新执行框架。原CC32预计分为10/23，后者metadata缺省布尔逻辑有具体理由保留，以固定Luacheck实际复采为准。Inventory三热点保持待治理，不因本次两个切片收尾而宣称58处已完成。
+本轮继续既有任务的空闲Watcher最终卡效果执行切片：以2c85bc61冻结完整源，按效果执行/队列延续职责将M.execute局部派发移为私有执行表；状态提交仍属Combat及原模块，全部入口与新helper受CC15。保留动态公开字段、require时机、随机/别名/部分失败/选择暂停语义，完整图旧新对照、真语义负控、独审后交同轮集成，不改Inventory与事件归属切片。
+
+本轮经主控分配继续空闲Inventory职责：在2c85bc61冻结完整原源，按开场组装、效果准入、逐效果执行拆分私有职责，原候选状态与Run提交者不变；全模块及新增helper纳入CC15，完整旧新图、加载顺序与语义负控后独立深审。与Watcher/Event切片文件不重叠，不宣称重新领取或关闭整项AC。
+
+承接PR542原始记录（原切片范围，非当前并集验收）：
+2026-11-07 用户要求持续治理。当前有界切片在Watcher现有模块内按真实卡牌效果职责拆execute，保留动态owner、返回值、队列/RNG/部分失败轨迹；与Session奖励能力统一提交，避开PR541的Power与商店改动，按原门禁验收。
+
+协调#542/#543：只保留#543的Watcher effectHandlers实现及CC15根，移植#542独有5组场景、CRLF/依赖/实测合同并保留原9组、4负控和全部来源断言；精确错误源位置映射保留完整正文和table身份。当前组合验证前不关闭原PR、不声称已合并。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -64,5 +71,22 @@ D5同源全采333模块5370/5370测量，CC>15降至240、>30仍61、最大75、
 
 最终三入口CC为validateEffects10、apply8、executeRoot11；17个入口/helper全部纳入CC15，新helper最大15，Codex全模块及新提交helper同门禁。新增8项最终8/8，原35-owner来源4/4保持，当前本轮集成候选待精确独审/Full，不启动下一切片。
 
-Shop已分离源池随机重抽与报价预览，CC32变为私有selector10/商品构造23，后者metadata缺省语义有明确保留理由；全库>30为58→57，最大75不变。8项独立双VM差分、4组商店oracle、19项受影响核心及26项静态合同通过；其余热点继续治理，不宣称M7完成。附件见M7-POWER-SHOP-20261107。
+Watcher效果执行切片本地完成：execute75→2、16私有executor最大13，全17职责受CC15；333模块/5401测量，>30=58→57、>15=237→236、max75→69，SCC81/15及内部边均保持。新17项全过，9组双VM全图217检查点/每侧86,658,777字节相等，18操作全触达；4真实语义负控、原150卡执行/Run晚失败回滚、N35旧合同及新桥通过。独立深审通过，精确提交/同轮集成/托管Full与合后未验，不勾AC；证据见M7-WATCHER-EXECUTION-20261107。
+
+Inventory空闲协作切片本地完成：energyBonus/opening/validate/apply CC20/33/34/53→4/9/6/6，全模块36测量最高14并纳入CC15；同口径全库>15=237→233、>30=58→55，最大75与SCC81+15不变。99完整检查点、每侧27776302字节旧新图相等，4真实语义负控有效；新13/13、原13份Lua及历史来源4/4、完整CI库存8/8通过。内存争用kill保留，最终改为独立有界VM通过；不重复Full，交主控统一集成/精确独审/远端与合后验收，AC不勾。详见docs/backlog-details/M7-INVENTORY-RESPONSIBILITIES-20261107.md。
+
+失败记录措辞校正：两次早期同进程回放仅确证整文件异常结束、无逐项输出；与共享内存紧张同时发生但未单独确证kill根因。最终有界VM通过，不以此声称性能根因已修复。
+
+Watcher与Inventory已在最新develop 2ad07111统一集成：全库CC>30为58→54、>15为237→232、最大75→69，333模块5428/5428测量，SCC81/15不变。Power独立候选及三片验证保全，但在途#541已承接重叠职责，本PR不重复Power；共享门禁、来源桥与#539 CI库存保留并集。两片精确窄测/独审与远端门禁按本轮收据验收，未合并不勾AC。见docs/backlog-details/M7-CARD-EFFECTS-INTEGRATION-20261107.md。
+
+承接PR542原始记录（原切片范围，非当前并集验收）：
+2026-11-07 Watcher execute由75降至2，新效果handler与永久升级helper最高13并纳入同一CC15门禁。对最新2ad07111全仓5386→5403项完整测量，CC>30为58→57，CC>15为237→236，最大75→69；残余未宣布完成。独立切片214旧新检查点及独审通过，组合来源/CRLF复核已过，PR及完整合前后CI待正常准入。证据docs/evidence/m7-session-watcher-20261107.json。
+
+Watcher/Inventory与Session单一并集：采用PR543真实Watcher实现，原9+PR542独有5场景全部保留，270完整图检查点一致；两侧不同变异合并为6项并绑定精确assert。全库CC>30仍58→54、>15=237→232、max75→69；完整333模块5428项测量。只补来源隔离依赖/CI库存，旧断言及预算不动；逐文件承接与失败/复测证据见M7-SESSION-INVENTORY-SUPERSET-20261107。待精确独审/远端门禁，AC未勾。
+
+2026-11-07 按Owner持续架构指派，在PR543精确939e0820上独立推进Act1事件选择职责：choose CC69→13，六事件handler与Bonfire奖励/永久移除边界保留，新增职责全纳入CC15。相对该候选全库CC>30为54→53、>15为232→230、max69→64；SCC81/12不变。完整原事件与39组边界差分、源码闭包和本轮独审证据见docs/evidence/m7-act1-choice-responsibilities-20261107.json。依赖PR543尚未合，未启动重复Full、不勾AC，不声称主线已完成。
+
+2026-11-07 接续Owner指定架构治理，在PR546精确35d392bc上拆分Defect纯效果规划：planEffect CC64→3，15种职责handler最高14及2别名，纯输入/原提交者/动态依赖保持。全库333模块5451测量，相对该候选CC>30为53→52、>15为230→229、max64→61；SCC81/12与所有require边不变。547完整图检查点、每侧31579585字节一致，47项唯一必要定向验证通过。独审发现历史N35 read投影遗漏后，仅补新epoch投影并完整原4项通过，旧35/144/151/295计数未改。证据docs/evidence/m7-defect-plan-responsibilities-20261107.json。依赖前置仍未合并，不勾AC或虚报架构完成；不重复Full。
+
+紧急集成保留本片职责及复杂度门禁并集；不借用来源绿灯。
 <!-- SECTION:NOTES:END -->

@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-06 01:46'
-updated_date: '2026-11-07 04:33'
+updated_date: '2026-11-08 01:10'
 labels: []
 milestone: m-7
 dependencies: []
@@ -43,7 +43,10 @@ ordinal: 161000
 
 本轮最终有界切片：将Codex选牌生成与提交移回现有Combat选择事务owner，Codex仅保留开选和校验，消除其回导CardActions；原状态、RNG、事件与晚失败回滚逐字对照，保留完整图与残余，不扩大架构范围。
 
-2026-11-07按Owner继续治理：将Power静态phase/ID元数据从TurnPowers执行器移入无依赖叶模块，PowerOrder不再为静态名单反向载入Actor和职业执行器。保留执行器M.phases动态读取、初始化scheduledIds快照和双序簿协作；先固定完整旧源及冷加载/实际阶段合同，再源码实施、AST传递防回退、独立深审和正常Full/队列/合后验收。
+承接PR542原始记录（原切片范围，非当前并集验收）：
+2026-11-07 用户明确继续架构治理。本线仅接 Session 奖励准备能力切片：potion_rewards、event_combat、event_combat_routes 直接消费已有遗物只读查询/奖励预览固定槽，不加载完整 Session 命令门面；保留普通动态替换、nil恢复及RNG/状态/错误轨迹。先红后绿依赖防回退与旧新完整来源对照，复采完整SCC/CC；协调者统一集成公共历史来源层和门禁，不改原认领、不覆盖Combat/Watcher并行切片。
+
+协调#542/#543重复Watcher切片：以#543单一Watcher实现保留Inventory，承接#542独有Session三源码/来源桥与双方测试并集；保留独立历史证据，CI库存补全，组合窄测/独审后以单一superset交付。未合依赖#541不混入；不新增领取或勾AC。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -71,9 +74,12 @@ D5来源扩展34项及独立有界审查PASS：23个391完整before另核Git blo
 
 最终本地完整收据补证：新8/8及原35-owner4/4通过；V4/Codex两个独立旧新VM合计79完整状态图检查点、每侧52,016,680字节一致，含V4直接execute付款后和伤害后部分写入、原错误对象。当前候选只提供本轮集成，不另开PR；独审及实际Full/队列/合后证据由主控同一候选绑定，AC仍不提前完成。
 
-接续既有Furinya任务，不重复认领；新隔离树feat/inventory-boundaries基于最新develop 2c85bc61。539保持原HEAD独立Full。先做Power元数据反向边和Shop选牌/报价分层，未完成AC保持未勾。
+承接PR542原始记录（原切片范围，非当前并集验收）：
+2026-11-07 Session 奖励能力切片在自有隔离树实现：药水奖励与两类事件战斗准备直接消费已有查询/预览槽，未新增生产模块。实际同算法SCC 81/15→81/12，Session内部位置62→52；333模块5385/5385完整测量，CC>30=58、>15=237、最大75不变，14旧告警。84旧新VM完整图检查点逐字相等，既有事件8项与新来源3项通过；精确独审及组合历史来源/Full交付继续，所有AC保持未勾。技术证据 docs/evidence/m7-session-reward-capabilities-20261107.json。
 
-Power静态元数据已从执行器抽为无依赖叶；实际冷加载先红后绿，当前334模块SCC81→74，Session15保持，双序簿2环明确保留。全量源码/边/函数及694旧新状态检查点见docs/backlog-details/M7-POWER-SHOP-20261107.md和docs/evidence/m7-power-shop-20261107.json；未提前勾AC，继续独审和正常PR/合后Full。
+2026-11-07 最新基线2ad07111统一接入Session奖励能力与Watcher职责切片。实采SCC81/15→81/12；未触及并行PR541的Power/商店源码，Power显示顺序成果保留待其后接续。N35与Session来源7/7、隔离闭包4/4及静态/指引/Backlog通过；组合精确独审与PR Full、正常入队和合后Full继续，不勾AC。
 
-已从实际#539合后develop2ad07111建立线性feat/power-shop，保留原31b历史。最新全量基线333模块/5386测量/SCC81-15，候选334/5388/SCC74-15-2，14旧告警无新增；唯一库存冲突取并集，747JS/1402Lua的原预算校准8/8通过，待精确独审与正常Full/队列/合后交付。
+PR542/543并集已在隔离树实际完成：Session三源码及能力/来源合同原字节保留；最终同口径SCC81/15→81/12，Session内部位置62→52、唯一对41→31。104种测试分批最终通过，首轮5项隔离依赖缺失已补清单并保留失败；40owner独审320正常/480异常探针通过。待最终精确独审、远端superset读回及托管/合后Full，不提前关闭被承接PR或勾AC。
+
+紧急集成保留Power/Shop及Session/Watcher/Inventory/Event并集，组合验证另记。
 <!-- SECTION:NOTES:END -->
