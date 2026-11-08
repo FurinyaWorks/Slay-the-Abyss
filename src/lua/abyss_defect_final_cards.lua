@@ -211,45 +211,48 @@ function M.recycle(state,card,queue)
  if energy>0 then push(queue,state,{op='energy',value=energy})end
  require('abyss_exhaust').move(state,card,'hand',queue,{onExhaustRelics=state.onExhaustRelics or {}})
 end
-function M.execute(combat,state,effect,queue)
- local action=effect.action
- if action=='generate'or action=='white_noise'then
+-- Execute responsibilities retain their original action ordering and mutation boundaries.
+local function generate(combat,state,effect,action)
   local actions=require('abyss_card_actions');local id=assert(effect.cardId,'unprepared generated Power');local card=actions.fresh(combat,state,id)
   if action=='white_noise'then card.costForTurn=0 end
   actions.created(combat,state,card);actions.created(combat,state,card)
   if (state.player.statuses.corruption or 0)~=0 then require('abyss_corruption').created(state,card)end
   local pile=#state.hand<state.rules.player.maxHand and'hand'or'discard'
   actions.toHand(state,card);Events.emit(state,'cards_created',{source=state.player.id,cardId=card.cardId,amount=1,pile=pile})
- elseif action=='power'then
+end
+local function applyFinalPower(state,effect)
   local old=state.player.statuses[effect.status]
   Actor.applyPower(state,state.player,effect.status,effect.value,state.player)
   if effect.status=='rebound'and old==nil then state.reboundJustEvoked=true end
- elseif action=='genetic'then genetic(state,effect.value)
- elseif action=='recursion'then
+end
+local function recurOrb(state,queue)
   local first=assert(state.orbs).balls[1]
   if first then
    push(queue,state,e('rechannel',1,{ball=first}));push(queue,state,{op='evokeOrb',value=1})
   end
- elseif action=='rechannel'then require('abyss_orbs').rechannel(state,effect.ball,combat)
- elseif action=='recycle'then return require('abyss_hand_choice').begin(state,'recycle',1,queue)
- elseif action=='scrape'then
+end
+local function scrapeDrawn(combat,state,effect,queue)
   local drawn=combat.draw(state,effect.value);local discard={}
   for _,c in ipairs(drawn)do if combat.cardDefinition(state,c).cost~=0 and not c.freeToPlayOnce then discard[#discard+1]=c.uid end end
   for i=#discard,1,-1 do push(queue,state,{op='discardSpecific',uid=discard[i],incrementFirst=false})end
- elseif action=='all_for_one'then
+end
+local function recoverZeroCost(combat,state,queue)
   for _,c in ipairs(state.discard)do
    local base=c.combatCost or combat.combatBaseCost(state,c)
    if base==0 or c.freeToPlayOnce then push(queue,state,e('discard_to_hand',1,{uid=c.uid}),true)end
   end
- elseif action=='discard_to_hand'then
+end
+local function recoverDiscard(state,effect)
   if #state.hand<state.rules.player.maxHand then for i,c in ipairs(state.discard)do if c.uid==effect.uid then
    table.remove(state.discard,i);state.hand[#state.hand+1]=c;break
   end end end
- elseif action=='fission'then
+end
+local function fissionOrbs(state,effect,queue)
   local count=#assert(state.orbs).balls;push(queue,state,{op='draw',value=count});push(queue,state,{op='energy',value=count})
   if effect.value==1 then for _=1,state.orbs.slots do push(queue,state,{op='evokeOrb',value=1})end
   else for i=#state.orbs.balls,1,-1 do state.orbs.balls[i]=nil end end
- elseif action=='reboot'then
+end
+local function rebootPiles(state,effect,queue)
   assert(state.shuffleRng and state.cardRandomRng,'Reboot requires source RNG streams')
   Random.shuffle(state.shuffleRng,state.discard)
   for _,c in ipairs(state.discard)do state.draw[#state.draw+1]=c end
@@ -257,6 +260,20 @@ function M.execute(combat,state,effect,queue)
   while #state.hand>0 do state.draw[#state.draw+1]=table.remove(state.hand,Random.randomInt(state.cardRandomRng,#state.hand-1)+1)end
   Random.shuffle(state.shuffleRng,state.draw);push(queue,state,{op='draw',value=effect.value})
   Events.emit(state,'reshuffle')
+end
+function M.execute(combat,state,effect,queue)
+ local action=effect.action
+ if action=='generate'or action=='white_noise'then generate(combat,state,effect,action)
+ elseif action=='power'then applyFinalPower(state,effect)
+ elseif action=='genetic'then genetic(state,effect.value)
+ elseif action=='recursion'then recurOrb(state,queue)
+ elseif action=='rechannel'then require('abyss_orbs').rechannel(state,effect.ball,combat)
+ elseif action=='recycle'then return require('abyss_hand_choice').begin(state,'recycle',1,queue)
+ elseif action=='scrape'then scrapeDrawn(combat,state,effect,queue)
+ elseif action=='all_for_one'then recoverZeroCost(combat,state,queue)
+ elseif action=='discard_to_hand'then recoverDiscard(state,effect)
+ elseif action=='fission'then fissionOrbs(state,effect,queue)
+ elseif action=='reboot'then rebootPiles(state,effect,queue)
  else error('unknown final Defect action: '..tostring(action))end
  return true
 end
