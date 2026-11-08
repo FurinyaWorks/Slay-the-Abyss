@@ -365,7 +365,7 @@ test('only two exact current source identities enter the unchanged pure historic
   'scripts/ci-quality-shape.mjs':'0d6c82c2a7e7db82e276eb563978d5253d9a225039329e171ed3f907f98609d1',
  };
  for(const [path,digest]of Object.entries(identities)){
-  const source=read(path),b=proof.files[path];assert.equal(hash(source),digest);
+  const source=prePresencePlanningSource(path,read(path)),b=proof.files[path];assert.equal(hash(source),digest);
   for(const input of [source,source.replaceAll('\n','\r\n')]){
    assert.equal(preCurrentCiPlacementSource(path,input),b.afterSource);assert.equal(project(path,input),b.beforeSource);
    const legacy=path.endsWith('.json')?preCiHostTimingSource(path,b.beforeSource):preCiWindowsShapeSource(path,b.beforeSource);

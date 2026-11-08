@@ -1,5 +1,6 @@
 import {preColorlessCatalogSource,colorlessCatalogReader,prepareColorlessCatalogRetirement} from './colorless-catalog-source-inverse.mjs';
 import {preparePotionCallbackRetirement} from './potion-callback-source-inverse.mjs';
+import {prepareActorPresenceRetirement} from './actor-presence-source-inverse.mjs';
 import {preIntegrationSource,prepareIntegrationRetirement} from './pr372-integration-source.mjs';
 import {preNativeMonsterArtSource} from './native-monster-art-source-inverse.mjs';
 // Exact outer replay of the reviewed catalog boundary. Historical bytes stay frozen.
@@ -61,6 +62,7 @@ export function prepareRound3CatalogModuleRetirement(directory,{sourceRoot=proce
  assert.equal(hash(normalize(priorTarget())),round3CatalogProof.files[added].afterSha256,
   'unreviewed catalog module destination');
  const retirePotion=preparePotionCallbackRetirement(directory,{sourceRoot});
+ const retirePresence=prepareActorPresenceRetirement(directory,{sourceRoot});
  return ()=>{
   assert.equal(realpathSync(target),realTarget,'catalog module destination changed after preparation');
   assert.notEqual(realTarget,realpathSync(liveModule),'catalog retirement requires a separate historical module');
@@ -68,6 +70,7 @@ export function prepareRound3CatalogModuleRetirement(directory,{sourceRoot=proce
    'unreviewed catalog module destination');
   retireColorless();
   retirePotion();
+  retirePresence();
   rmSync(target);
  };
 }

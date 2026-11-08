@@ -115,6 +115,7 @@ const responsibilityRoots = {
   'src/lua/abyss_run_card_catalog.lua': [],
   'src/lua/abyss_relic_potion_hooks.lua': [],
   'src/lua/abyss_end_turn_powers.lua': [],
+  'src/lua/abyss_actor_presence.lua': [],
   'src/lua/abyss_relic_combat_hooks.lua': [],
   'src/lua/abyss_relic_family_combat.lua': [],
   'src/lua/abyss_purge_candidates.lua': [],
@@ -125,6 +126,7 @@ const responsibilityRoots = {
   'src/lua/abyss_actor_power_rules.lua': [],
   'src/lua/abyss_combat_reactions.lua': ["function 'M.enqueue'", "function 'M.enqueueReaction'"],
   'src/lua/abyss_actor.lua': [
+    "function 'presenceIndex'", "function 'presenceNewIndex'",
     ...['M.status','M.applyPower','M.addStatus','M.endTurn'].map(name=>`function '${name}'`),
     ...['updatePlayerStatusOrder','updateMonsterStatusOrder','markRoundDebuffApplication',
       'preparePowerAmount','rememberConstrictedSource','rememberPostDrawPower',
@@ -242,6 +244,7 @@ const completeResponsibility = file => responsibilityHelper(file)
   || file==='src/lua/abyss_card_capability.lua'
   || file==='src/lua/abyss_run_card_catalog.lua'
   || file==='src/lua/abyss_end_turn_powers.lua'
+  || file==='src/lua/abyss_actor_presence.lua'
   || file==='src/lua/abyss_codex_relic.lua'
   || file==='src/lua/abyss_relic_potion_hooks.lua'
   || file==='src/lua/abyss_relic_combat_hooks.lua'

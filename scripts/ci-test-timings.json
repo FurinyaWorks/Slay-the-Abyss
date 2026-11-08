@@ -5158,6 +5158,15 @@
         "sourceLogSha256": "1be350bbc484314e255f0b2cbd916747a5144c5dc959f2730c7525fb758bd4de",
         "sourceReceipt": "docs/evidence/end-turn-planning-20261107.json",
         "sourceReceiptSha256": "2f59e5322ec6abfc7b9cc168734ea0f5333197a9f39ee4d75237ed6d9ddbf537"
+      },
+      "tests/actor-presence.test.mjs": {
+        "durationMs": 31053,
+        "environment": "local Linux",
+        "coverage": "Complete successful local file: 12 tests passed, zero failed, cancelled, skipped or todo; wall-clock CLI observation, not hosted CI or a Full pass.",
+        "kind": "Planning-only complete local file observation; not hosted Windows or hosted Linux measurement.",
+        "sourceReceipt": "docs/evidence/actor-presence-planning-floor-20261107.json",
+        "sourceReceiptSha256": "27ea7d19f419b325db620e2eaa993af51740defd7eeb67e94f2778bff349e632",
+        "sourceHeadSha": "9624804b44d4773a40c557f02e0b13b3a31f2497"
       }
     }
   },

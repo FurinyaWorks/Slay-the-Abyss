@@ -8,6 +8,7 @@ import {gunzipSync} from 'node:zlib';
 import {prePowerShopSource} from './power-shop-source-inverse.mjs';
 import {preColorlessCatalogSource,colorlessCatalogReader} from './colorless-catalog-source-inverse.mjs';
 import {prePotionCallbackSource,potionCallbackReader} from './potion-callback-source-inverse.mjs';
+import {preActorPresenceSource,actorPresenceReader} from './actor-presence-source-inverse.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const normalize=s=>s.replaceAll('\r\n','\n');
 const archive=readFileSync(new URL('./m7-core-final-before.json.gz',import.meta.url));
@@ -39,6 +40,10 @@ export function preM7FinalSource(path,source,{readSource=readLive}={}){
  if(!matches(path,source))return source;
  assert.equal(typeof readSource,'function','final M7 linked reader must be a function');
  readSource=potionCallbackReader(readSource);
+ source=preActorPresenceSource(path,source,{readSource});
+ if(!matches(path,source))return source;
+ assert.equal(typeof readSource,'function','final M7 linked reader must be a function');
+ readSource=actorPresenceReader(readSource);
  for(const owner of Object.keys(files)){
   let current;try{current=readSource(owner);}catch(error){assert.fail('final M7 linked owner missing: '+owner+': '+String(error?.message??error));}
   assert(matches(owner,current),'final M7 linked owner identity: '+owner);
