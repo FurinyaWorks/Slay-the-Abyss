@@ -53,3 +53,48 @@ Game UI 计时收据另修身份错配：其 346 个输入逐一匹配后来保�
 新加完整矩阵首次 23/23 通过但耗时 82.9 秒。实测瓶颈是完整嵌套链每次约 2,567–5,600 次 hash，不是重复磁盘读。发布前只调整新矩阵的恢复组合：全部 host×owner×5 故障和 UI 双拒绝保持，每 owner 完整恢复，config 另外逐故障恢复；首次/热调用完整 raw 序列、原 17 项与退休负控全部保留。两个矩阵从 51.6/25.9 秒降至 11.7/5.9 秒，没有缓存授权或改 floor。
 
 最终四文件只选相关来源用例 26/26、0skip（30.545s），原完整历史 17 项均在内；未选取昂贵 Lua 图回放。另 ci-runtime/complete-timing 合同 13/13。此前失败、首次完整通过与优化后的证据均保留。已复现的上述 9 项来源失败全部解决，但仍等待精确新 HEAD 的 Hosted Full，不宣称整个项目 CI、Windows 或设备验收已通过。
+
+## Hosted Windows 原始收据字节修复
+
+PR #564 的 `b07ff33d` 在 [Quality 42444249243 的 Windows rules 3](https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42444249243/job/128619904740) 实际出现两项 `ci-runtime` 失败。GameUI 完整收据与 partial-case 收据的 actual SHA 分别为 `a25cfa…`、`6eb2f0…`，逐字节核对后恰好等于冻结 Git blob 从 LF 转成 CRLF 的摘要。原来的 SHA、时长、历史来源身份没有变化，缺口是四个被原始字节认证的证据文件没有 checkout 保护。
+
+修复仅给两份 JSON 与各自原日志增加四条精确 `.gitattributes -text`，保持原始 Git blob、原 SHA、全部断言、planning floor、运行预算和 workflow 不变，不在校验前归一化字节或重新生成证据。真实 `git -c core.autocrlf=true worktree add` 检出旧头后复现完全相同的两处 SHA 失败（11/13）；检出修复 `acdd0e80` 后原完整 `ci-runtime` 13/13、零跳过，2.634 秒。四个证据文件实际 checkout SHA 全部恢复为原 Git blob SHA，日志也分别通过其原始哈希断言。
+
+这是 Linux 云环境中真实 Git CRLF checkout 的针对性验证，不冒充 Windows runtime、Full 或平台验收。现有 Hosted Full 保持运行收集其他真实结果，没有取消、重复触发或提前 ready；精确新头 Hosted 和正常准入仍待。原失败与实际检出红绿日志保存在本轮证据 JSON 中。
+
+## 同一 Hosted Full 的后续实际失败
+
+保持 `42444249243` 的原 HEAD 运行，按各完成分片的真实日志继续修复，未为每个小补丁重复触发 Full。[本轮定向证据](../evidence/mainline-hosted-repairs-20261108.json) 保留失败作业链接、各版本独审、原红灯与中间失败、最终定向原日志；不以局部通过改写原失败状态。
+
+- Act1 与 EndTurn 的旧 reader/错误合同混入当前 facade。分别恢复精确 `35d392bc`、`3c8b0fbb` 原完整 helper 链，保留原源码、读序、错误、旧 oracle；当前真实 raw-owner 全集另逐项破坏和恢复。Act1 固定历史 45-owner 另认证，当前数量不写死；EndTurn 原 35-owner/40-read 保留。定向分别 5 项与 4 项通过，没有重跑不受影响的行为图。
+- Windows 分片测试漏同步 #560 已批准的 `!cancelled()` 语义。旧 `always()` 及完整历史 workflow hash 原断言保留；当前实际执行 aggregate shell，所有非成功分片、impact 失败和未知模式仍失败关闭。Windows/POSIX/impact/summary 合同 19/19，workflow 本身不改。
+- 特殊 event JSON 的完整映射没有漏夹具。旧测试误把完整映射当作 90 秒 advisory 必须执行的集合。现在仍断言两个 route 在真实完整图内，未知输入触发 Full、图各根只枚举一次，已知与混合输入的反馈相同；另实证超预算延期、无重复、映射子集和原 90 秒上限。两个定向文件 130/130；选择器和预算不改。
+- Ready-art 与 art-feature 的 98fef 原输入误执行当前 helper，native-art 身份及退休错误顺序因此不匹配。复用并逐 Git blob/SHA 认证原闭包，原 2 项、9 项正文与全部历史 hash/别名/重定向/不误删断言保留。当前明确支持的 Host/config 中间目标及完整动态 owners 单独验证；未支持的当前 art 链仍精确拒绝，不冒称整条链可逆。最终 LF/真实 CRLF 分别 7/7、15/15。
+- Relic 的隔离测试只改 cwd，但已加载 facade 按 import.meta.url 读取 live 树。现真正加载临时目录完整原 N35 链，原 31×35 盘上改/删/恢复循环逐字不变；当前 31 个入口对完整动态 raw owners 另做真实磁盘负控。Colorless 原四 owner 的源码/hash/blob、读序、次数和错误独立保留，当前三个入口、三种 reader、完整动态 owners 的五类故障另测。真实 CRLF 检出最终 Relic 5/5、Colorless 7/7。
+
+### 两个经实测的成本问题
+
+POSIX10 在 30 分钟硬守护附近取消；最后完成文件与串行计划指向接下来的 Nodes 配置来源测试，但未捕获托管具体 case/堆栈，不能据空白日志断言卡在哪一项。本地仅首个旧配置 case 就有约 69.8 万次命名 helper 调用、11.97 秒，主要是历史输入穿当前多层 token/layout 投影。改为认证的 113 个原 98fef 输入闭包后，原 5 项正文、87 mutants、全部 hash/缺失/错误断言不减，并明确保留当前支持目标与真实旧链拒绝。最终完整文件 8/8、32.050 秒，低于原 Linux 51.813/Windows 84.906 秒观测权重，未改任何权重或守护。
+
+Relic 的完整旧上下文方案实测 297.716 秒，其中旧 fresh-reader 矩阵占 265.329 秒。原前三项正文及 35/144/151/295 次读取断言不变，仅把历史输入绑定到已认证的原 N35 上下文后，该矩阵降为 10.734 秒。该 target 包含 334 份逐字对应 d8a57cae 的原 Git 输入，另 5 份是既有认证闭包扩展，不称为 339 份 d8 原文件。完整真实 CRLF 文件为 55.010 秒，其中当前动态磁盘矩阵 38.577 秒。原规划 Linux 29.498/Windows 52.731 秒仍低于此次本地结果，这一风险明确保留，未偷偷改 floor，也不把 Linux+CRLF 称为 Windows 性能证据。
+
+Windows Act1 边界 1/4 旧侧、3/4 新侧确实撞到原 30 秒 spawn 限制。一次原预算采样显示 sink 对已 canonical JSON 重复解析/编码约占 1.884 秒；最小修复只消除这段纯重复工作，label 转义、完整 UTF-8 字节、行末、双独立 VM、39 个边界分组、原 30 秒/内存/输出限制均不改。原 142,129,464 字节与候选 old/current 完整 Buffer 逐字一致，3/4 的 127,756,610 字节双侧也一致；framing 探针、原 1/3 两组及三个原语义 mutants 共 6/6。这只证明减少实测成本，不能宣称 Windows 超时已根治，仍须新精确 HEAD 的 Hosted 验证。
+
+本节没有修改生产 Lua、共享来源投影层、冻结 proof、CI workflow、规划权重或执行阈值。所有当前矩阵在本修复树实际覆盖 45-owner 全集；后续 50-owner 架构组合必须再验受影响用例。现有失败 Full、下一精确头 Full、正常准入、合并与官方/设备证据分别保留状态，TASK-88 不提前完成。
+
+
+### 原 Full 结束与 Roster 剩余分片
+
+原 `42444249243` 已在 2026-11-08 05:27:02 UTC 自然结束为 failure：31 个测试分片中 15 成功、11 失败、5 超时取消；两个汇总按规则失败关闭。本轮没有取消、rerun、dispatch 或提前 ready。完整作业状态及全部 18 份失败/取消日志摘要随证据保存，旧失败不因本地修复而改成成功。
+
+Windows15 明确中断在 `competition-roster-config-composition.test.mjs`，POSIX13 的最后完成文件及串行下一项也指向它。首次 25 秒诊断没有有效结束采样；修正的 15 秒连续 V8 采样实际看到 token 正则与 `sameConfigLayout → preCombinedSource`，最后读数 280，不称为数十万读取。现复用 113 项原闭包，仅加 12 项认证输入（9 个现有引用、3 份原 helper，压缩 4,654 字节），125 项全部逐一匹配原 `98fef95d` Git SHA256/blob。原 5 项连续正文和 258×4＝1,032 个原变异逐字保留，当前完整动态 owner、首错、恢复和独立 develop 目标另测，不支持的旧桥仍明确拒绝。
+
+Roster 完整 LF 8/8、71.677 秒；真实 Git CRLF 检出 8/8、74.827 秒，均零跳过，独立复审通过。原 Windows 217.707 秒、Linux 173.509 秒规划观测与执行守护不改；本地结果不冒充 Windows 性能认证。
+
+
+汇总另有八项 checkout receipt 报错，经只读实证并非新的收据缺失：失败分片令 metadata 校验先失败，`publish-full-quality` 因此不加载收据，后续校验空对象产生这组连锁诊断。实际 `quality-42444249243-1-check` artifact 未过期，ZIP digest、run/head/base、测试 merge tree 与父序全部匹配；用实际 API 元数据直接验证为 `receiptErrors=[]`。只读重放逐项重现原 27 个错误且零 artifact 请求，反事实全绿元数据可走完真实收据加载但仅为模拟。既有 publisher 回归 16/16，未改门禁、workflow 或诊断代码，不把模拟称为托管通过。
+
+
+Windows2 明确在 `run-max-hp-config-inverse.test.mjs` 超时中断，POSIX2 的串行下一项也是该文件。RunMax 同样复用 113 项精确原闭包，不改任何 shared helper 或吸收未合入的旧 kernel 提案；原 5 项正文、107 个变异、全部 hash/错误断言完整保留，另测当前完整动态 owners 与独立 develop 目标。最初外部 120/180 秒诊断短窗口均未完成，这不是仓库门槛，日志保留。按原执行约束自然完成后，LF 8/8、286.420 秒，真实 CRLF 8/8、288.242 秒；原 107 个变异分别占 250.304/249.832 秒，均零跳过。
+
+上述 RunMax 用时高于旧 Linux 254.137 秒观测，仍低于既有 Windows/跨平台规划 floor 889.638 秒；没有改 floor 或任何执行阈值，也没有把本机结果等同于托管超时根治。当前源闭包和原历史合同均通过独立复审；新精确 HEAD 的 Full、正常准入与合并仍待。

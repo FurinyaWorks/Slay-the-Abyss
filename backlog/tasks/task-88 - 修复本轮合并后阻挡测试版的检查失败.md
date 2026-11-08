@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-10-30 11:45
-updated_date: '2026-11-08T03:46:00Z'
+updated_date: '2026-11-08T05:41:00Z'
 labels: []
 dependencies: []
 priority: medium
@@ -37,6 +37,10 @@ ordinal: 130000
 2026-11-07接续合后Full42327242610唯一rawLua超时：原9–11组三场景/六fresh Host、30秒/1MiB/1GiB全部保留。当前未能稳定复现，不强加缓存/拆片；只给现有runner补本次私有阶段收据和可靠清理，独审与当前组合正常Full继续定位真实失败。
 
 2026-11-08基于b7ed1830与Quality42437108038原始日志：先修复隔离source helper仅复制入口而漏掉epochs与证明依赖的闭包缺口，保留实时owner漂移、删除、原始证明损坏负控。与#562共享wrappers分工，独立树定向测试和独审，不重复Full；先保留预算合同失败；核实#541明确政策及遗漏的c29a4cff独审修复后，只承接同一已批准合同，不改运行器或执行阈值，历史真实超时风险仍单独追踪。
+
+2026-11-08继续处理#564真实Windows失败：核验两份收据及原日志在Git checkout转换后的原始SHA；仅保留精确四文件的Git字节，不改原哈希/断言/预算，真实core.autocrlf checkout红绿验证及独审后合回同PR。当前Full不中断、不重复触发。
+
+保持#564原Full完整收集实际失败后统一增量修复：历史epoch/当前raw owner分层、真实隔离目录、Windows证据字节、调度反馈语义与实测纯重复成本。每片独审并保留原红灯与所有原断言，不重复Full，不改生产/预算/质量门禁；精确最终头再走正常准入。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -79,4 +83,10 @@ facade合流发布前发现合法proof下非法JSON token会被误当空白布�
 三来源合同剩余11项已按历史/当前双层修复：冻结6/4owner精确次数、首错和SHA原断言保留；当前全host×完整45owner矩阵及原old/before/invalid reader/配置负控恢复，独立33/33。GameUI原收据346输入精确匹配3205985a，修历史身份错配不改收据/77215ms floor/当前14项测试。最终限定组合46/46，0skip；Full与平台仍待，任务和AC不变。
 
 接续最新树实复现catalog/cache原17项7失败、Defect/PowerShop源用例2失败；四测试历史/当前分层及完整隔离闭包修复后限定26/26、0skip，另CI计划合同13/13。当前catalog明确只达既有GameUI/lifecycle中间epoch，旧98原before断言不变。新矩阵保留所有故障/owner恢复及config逐类恢复，将额外成本降下，不缓存授权、不改helper/floor/预算。原失败与首次82.9秒结果保留；完整CI及平台仍待。
+
+#564当前Full在Windows rules3实际两项收据SHA失败，根因精确为checkout将两JSON及其原日志转CRLF。只给四精确文件加-text，原证据/哈希/断言/预算不改。真实core.autocrlf checkout的ci-runtime从11/13变13/13、零skip，独审中。现有Full不中断；未ready、未重跑，也未冒充Windows运行或完整CI通过。
+
+同一Hosted Full后续失败已按原日志处理，证据见mainline-hosted-repairs-20261108.json。原历史源码/负控/退休不误删与当前动态全集分开验证；Nodes和Relic真实历史投影放大已在不减原矩阵下显著降低。Act1仅省受控JSON重复工作，142MB完整原图逐字保全，原30秒不改，Windows是否仍超时待新Hosted。Relic本地CRLF55秒高于旧规划29.5/52.7秒风险保留，无floor改动。当前Full未取消/重跑，原失败不改绿，最终Full/正常准入/合并/官方设备仍未验，全部AC保持未勾。
+
+原Full42444249243自然结束failure，31分片15成功/11失败/5取消；未重触发。最后Roster与RunMax保持125/113原Git输入及1032/107原变异，LF/真实CRLF均8项全过并独审。RunMax286/288秒高于旧Linux254秒但原889.638秒floor不变；所有托管超时是否根治仍待新头Full。汇总receipt连锁错误经实际artifact/重放证实不是新缺口，不改门禁。当前23路径增量统一发布；TASK-88及全部AC保持未完成，证据见M7-MAINLINE-CI-REPAIR-20261108与mainline-hosted-repairs-20261108.json。
 <!-- SECTION:NOTES:END -->

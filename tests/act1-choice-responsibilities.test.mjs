@@ -16,9 +16,10 @@ test('Act1 local choices have a CC15 dispatcher and event-owned handlers',()=>{
 });
 
 import {mkdtempSync,rmSync,mkdirSync,writeFileSync} from 'node:fs';
-import {join} from 'node:path';
+import {join,dirname} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
 import {act1ChoiceBefore as before,preAct1ChoiceSource,act1ChoiceReader} from './helpers/act1-choice-source-inverse.mjs';
 import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
 function replay(source,fixture,group){
@@ -33,6 +34,32 @@ function replay(source,fixture,group){
   return {...JSON.parse(result.stdout),graph:readFileSync(output)};
  }finally{rmSync(dir,{recursive:true,force:true});}
 }
+test('Act1 graph framing preserves original complete bytes for escaped labels and graph values',()=>{
+ mkdirSync('build/act1-choice',{recursive:true});
+ const dir=mkdtempSync('build/act1-choice/framing-'),fixture=join(dir,'probe.lua');
+ try{
+  writeFileSync(fixture,String.raw`local label='label "quote" \\ backslash\n\t\0 中文 😀'
+local owner={value='中文\0😀',words={'0000000000000000','0000000000000063'},counter=0}
+local key={};local callback=function()end
+local thread=coroutine.create(function()end)
+local root=setmetatable({owner=owner,alias=owner,[key]=key,[true]=false,[0]='zero',[-1]='negative',callback=callback,thread=thread,returns=table.pack(false,nil,'error \"body\"\nline',nil)}, {__index={meta='kept'}})
+root.self=root
+ACT1_GRAPH_WRITE(root,label)
+owner.counter=1;owner.words[2]='0000000000000064';root.alias={value=owner.value};root.returns=table.pack(false,nil,'error \"body\"\nline')
+ACT1_GRAPH_WRITE(root,'mutation')
+ACT1_GRAPH_WRITE(nil,'empty')
+`);
+  const result=replay(read(file),fixture);
+  assert.equal(result.status,0,result.error);assert.equal(result.checkpoints,3);assert.deepEqual(result.logs,[]);
+  // Captured from the unmodified 5a16da0a VM before removing its JSON roundtrip.
+  // Covers label escaping, full definitions, aliases, RNG words and return arity.
+  assert.equal(result.bytes,2180);assert.equal(result.graph.length,2180);
+  assert.equal(createHash('sha256').update(result.graph).digest('hex'),'e17ea907c393e5d4e29df9ff781b989309f4dc2a8ae42ccfd36997707cab0d24');
+  for(const line of result.graph.toString().trimEnd().split('\n')){
+   const {label,graph}=JSON.parse(line);assert.equal(line,JSON.stringify({label,graph}),'original JSON framing');
+  }
+ }finally{rmSync(dir,{recursive:true,force:true});}
+});
 for(const fixture of ['tests/lua/act1_event_content.lua','tests/lua/scrap_ooze.lua','tests/lua/transmogrifier.lua'])test(`${fixture}: old/current VMs retain complete graphs, aliases, RNG, returns and assertions`,t=>{
  const old=replay(before,fixture),current=replay(read(file),fixture);
  assert.equal(old.status,0,old.error);assert.equal(current.status,0,current.error);
@@ -91,11 +118,101 @@ test('actual CRLF source and helper checkout retain the frozen LF Git identity',
   assert.throws(()=>module.preAct1ChoiceSource(file,source,{readSource}),/linked owner missing/);
  }finally{rmSync(dir,{recursive:true,force:true});}
 });
-test('Act1 current source enters the unchanged historical chain and rereads a mutable owner',async()=>{
- const {preRelicQuerySource}=await import('./helpers/relic-query-source-inverse.mjs');
- const source=read(file);assert.equal(preRelicQuerySource(file,source),before);
- const reader=act1ChoiceReader(p=>read(p));assert.equal(preRelicQuerySource(file,source,{readSource:reader}),before);
- assert.throws(()=>preRelicQuerySource(file,source,{readSource:p=>read(p)+(p===file?'\n':'')}),/linked owner/);
+test('original Act1 chain preserves exact Git sources, reader unwrapping and one-owner read order',async()=>{
+ // #560 separated branch epochs. Run the original #546 chain on its own
+ // authenticated inputs, never on a facade's projected current configuration.
+ const bytes=readFileSync('tests/fixtures/act1-original-chain-35d392bc.json.gz');
+ const hash=source=>createHash('sha256').update(source).digest('hex');
+ assert.equal(hash(bytes),'26cc10419f2685b19fcf24d6d01a878f3914b485e0c4d49f8165d25bf1da3200');
+ const validate=archive=>{
+  assert.equal(archive.schemaVersion,1);assert.equal(archive.sourceCommit,'35d392bcf3049a214970127dbf587a4adae8fd9e','original chain commit');
+  return Object.fromEntries(Object.entries(archive.files).map(([path,binding])=>{
+   assert.match(path,/^tests\/(helpers|fixtures)\/[A-Za-z0-9._-]+$/);
+   assert.notEqual(Object.hasOwn(binding,'existing'),Object.hasOwn(binding,'source'),'one complete original source per path');
+   if(binding.existing)assert.match(binding.existing,/^tests\/helpers\/epochs\/[A-Za-z0-9]+\/tests\/(helpers|fixtures)\/[A-Za-z0-9._-]+$/);
+   const source=binding.existing?readFileSync(binding.existing):Buffer.from(binding.source);
+   assert.equal(hash(source),binding.sha256,'original complete helper: '+path);
+   assert.equal(createHash('sha1').update(`blob ${source.length}\0`).update(source).digest('hex'),binding.gitBlob,'original helper Git blob: '+path);
+   return [path,source];
+  }));
+ };
+ const archive=JSON.parse(gunzipSync(bytes)),inputs=validate(archive);
+ for(const [key,value,message]of [['sourceCommit','0'.repeat(40),/original chain commit/],['sha256','0'.repeat(64),/original complete helper/],['gitBlob','0'.repeat(40),/original helper Git blob/]]){
+  const invalid=structuredClone(archive);
+  if(key==='sourceCommit')invalid[key]=value;else invalid.files['tests/helpers/relic-query-source-inverse.mjs'][key]=value;
+  assert.throws(()=>validate(invalid),message,'metadata cannot relabel an original helper');
+ }
+ const corrupt=structuredClone(archive);corrupt.files['tests/helpers/relic-query-source-inverse.mjs'].source+='\n';
+ assert.throws(()=>validate(corrupt),/original complete helper/);
+ const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const target=sourceEpoch.proof.targets.act1;assert.equal(target.commit,archive.sourceCommit);
+ const dir=mkdtempSync(join(tmpdir(),'act1-original-chain-')),cwd=process.cwd();
+ try{
+  for(const [path,source]of Object.entries(inputs)){
+   mkdirSync(dirname(join(dir,path)),{recursive:true});writeFileSync(join(dir,path),source);
+  }
+  const source=target.files[file].source;assert.equal(source,read(file));
+  for(const path of [file,'config/architecture.json']){
+   mkdirSync(dirname(join(dir,path)),{recursive:true});writeFileSync(join(dir,path),target.files[path].source);
+  }
+  const {preRelicQuerySource:original}=await import(pathToFileURL(join(dir,'tests/helpers/relic-query-source-inverse.mjs')).href);
+  const {act1ChoiceReader:wrap}=await import(pathToFileURL(join(dir,'tests/helpers/act1-choice-source-inverse.mjs')).href);
+  process.chdir(dir);assert.equal(original(file,source),before);
+  let live=source,reads=[];const raw=p=>{reads.push(p);assert.equal(p,file);return live;};
+  const wrapped=wrap(raw);assert.equal(wrap(wrapped),wrapped);
+  for(const readSource of [raw,wrapped]){
+   live=source;reads=[];assert.equal(original(file,source,{readSource}),before);assert.deepEqual(reads,[file]);
+   for(live of [source+'\n',before,null,undefined]){
+    reads=[];assert.throws(()=>original(file,source,{readSource}),/Act1 choice linked owner identity/);assert.deepEqual(reads,[file]);
+   }
+   live=source;reads=[];assert.equal(original(file,source,{readSource}),before);assert.deepEqual(reads,[file]);
+   for(const unknown of [source+'\n',before,null,undefined]){
+    reads=[];assert.equal(original(file,unknown,{readSource}),unknown);assert.deepEqual(reads,[]);
+   }
+  }
+  assert.throws(()=>original(file,source,{readSource(){throw Error('missing');}}),/Act1 choice linked owner missing/);
+  writeFileSync(file,source+'\n');assert.throws(()=>original(file,source),/Act1 choice linked owner identity/);
+  writeFileSync(file,source);assert.equal(original(file,source),before);
+  rmSync(file);assert.throws(()=>original(file,source),/Act1 choice linked owner missing/);
+ }finally{process.chdir(cwd);rmSync(dir,{recursive:true,force:true});}
+});
+test('Act1 current source enters the unchanged historical chain and rereads every raw owner',async()=>{
+ const {preRelicQuerySource,relicQueryReader}=await import('./helpers/relic-query-source-inverse.mjs');
+ const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const source=read(file),owners=sourceEpoch.proof.owners;
+ // Forty-five belongs to the frozen #562 union, not the evolving live tree.
+ const {sevenRefactorEpoch}=await import('./helpers/seven-refactor-source-epoch.mjs');
+ const archived=readFileSync('tests/helpers/combined-epoch/source-epoch.json.gz');
+ assert.equal(createHash('sha256').update(archived).digest('hex'),'2085260a5aabde4476411172eb0b2e6fd3afcaa991a3cafc52f3ab0e98755c73');
+ const packed=JSON.parse(gunzipSync(archived)),digest=key=>packed.bindings[key]?.sha256;
+ const combinedOwners=packed.owners.filter(path=>Object.values(packed.targets).some(target=>digest(target.files[path])!==digest(packed.current[path])));
+ const historicalOwners=[...new Set([...combinedOwners,...sevenRefactorEpoch.proof.owners])];
+ assert.equal(historicalOwners.length,45,'unchanged authenticated #562 owner union');
+ assert.deepEqual(historicalOwners.filter(owner=>!owners.includes(owner)),[],'current coverage retains every original owner');
+ assert.equal(preRelicQuerySource(file,source),before);
+ let changed,reads=[],replacement;
+ const raw=p=>{reads.push(p);return p===changed?replacement:read(p);};
+ const wrapped=relicQueryReader(raw);assert.equal(relicQueryReader(wrapped),wrapped);
+ for(const readSource of [raw,wrapped]){
+  changed=undefined;reads=[];assert.equal(preRelicQuerySource(file,source,{readSource}),before);assert.deepEqual(reads,owners);
+  for(const owner of owners)for(replacement of [read(owner)+'\n',null,undefined]){
+   changed=owner;reads=[];assert.throws(()=>preRelicQuerySource(file,source,{readSource}),/combined linked owner identity/);
+   assert.deepEqual(reads,owners.slice(0,owners.indexOf(owner)+1),'fresh reads stop at the actual bad owner');
+  }
+  changed=file;replacement=before;reads=[];
+  assert.throws(()=>preRelicQuerySource(file,source,{readSource}),/combined linked owner identity/,'original Act1 bytes cannot authorize a current raw owner');
+  assert.deepEqual(reads,owners.slice(0,owners.indexOf(file)+1));
+  // Layout tolerance is for the input argument only, never a real raw owner.
+  changed='config/architecture.json';replacement=JSON.stringify(JSON.parse(read(changed)));
+  assert.throws(()=>preRelicQuerySource(file,source,{readSource}),/combined linked owner identity: config\/architecture.json/);
+  changed=undefined;reads=[];assert.equal(preRelicQuerySource(file,source,{readSource}),before);assert.deepEqual(reads,owners);
+ }
+ assert.throws(()=>preRelicQuerySource(file,source,{readSource:p=>{if(p===file)throw Error('missing');return read(p);}}),/combined linked owner missing/);
+ // A reader for another target is projected data, not this facade's raw owner.
+ // Accepting it would silently combine #546 architecture with the current tree.
+ const act1Reader=act1ChoiceReader(p=>read(p));
+ assert.equal(act1Reader('config/architecture.json'),sourceEpoch.proof.targets.act1.files['config/architecture.json'].source);
+ assert.throws(()=>preRelicQuerySource(file,source,{readSource:act1Reader}),/combined linked owner identity: config\/architecture.json/);
 });
 for(const [name,from,to,fixture,expected] of [
  ['serpent gold',"Run.gainGold(staged,175)","Run.gainGold(staged,176)",'tests/lua/act1_event_content.lua','275.0 ~= 274'],

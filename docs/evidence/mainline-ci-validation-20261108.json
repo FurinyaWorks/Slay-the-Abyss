@@ -356,5 +356,111 @@
       "reason": "No repeated filesystem input reading during authorization. Complete legacy projection repeatedly hashes full owner chains. This only groups the new prepublication test recovery combinations; it does not cache authorization or change helpers, budgets or floors."
     },
     "claim": "These four source-test files now pass their relevant 26 cases. Unselected behavior, Full, Windows and device acceptance remain separate."
+  },
+  "windowsPlanningReceiptBytes": {
+    "sourceHead": "c32d336a615cb207b1866f34e9675703f2008335",
+    "codeHead": "acdd0e80c97b43c18cb4710959479cb3567abdb3",
+    "codeTree": "d1b0587b069587c6ef59a9161f2dec958d0921fe",
+    "hosted": {
+      "runId": 42444249243,
+      "head": "b07ff33de564c7ea134bf1acdba6c759183ffa3c",
+      "jobId": 128619904740,
+      "jobName": "rules (3/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42444249243/job/128619904740",
+      "conclusion": "failure",
+      "failures": [
+        "complete local Game UI run raises only its planning floor and preserves every original observation",
+        "partial successful source cases provide lower bounds without claiming their failed batch or whole files passed"
+      ],
+      "rawLogSha256": "101bf8b6c4614049b8ce4890d7d54200f550159b7a67e135184afe72aa4535b1"
+    },
+    "rootCause": "The two raw-byte-authenticated JSON receipts and their separately authenticated original logs lacked checkout-byte protection. core.autocrlf=true changed LF Git blobs to CRLF. Both observed Windows actual receipt hashes exactly equal the changed bytes; no timing or source identity changed.",
+    "change": "Only four exact .gitattributes -text entries; original receipts, logs, hashes, tests, planning floors, runtime policy and workflows remain unchanged.",
+    "files": [
+      {
+        "path": "docs/evidence/seven-current-integration-20261108/game-ui-extraction-planning.json",
+        "gitBlob": "890e254267556a0493393fa0d9db65912c765955",
+        "originalSha256": "0a7cb353d3a795706a33a3049e65d730be31861083eba807fd5019684c6feb30",
+        "beforeCheckoutSha256": "a25cfa3739179f2d4fe6a92e074681630e2acf5dc95422b55589b69744e0b279",
+        "afterCheckoutSha256": "0a7cb353d3a795706a33a3049e65d730be31861083eba807fd5019684c6feb30",
+        "originalBytes": 39155,
+        "beforeCheckoutBytes": 39534,
+        "afterCheckoutBytes": 39155,
+        "attribute": "-text",
+        "beforeContainsCrlf": true,
+        "afterContainsCrlf": false
+      },
+      {
+        "path": "docs/evidence/seven-current-integration-20261108/game-ui-extraction-local.log",
+        "gitBlob": "4992c0fa35a2ba112caadd83620abe70f981345a",
+        "originalSha256": "1779bc98d11ed261d6b2e96256a6030df337c978d95356b18ce8cf1041c2f326",
+        "beforeCheckoutSha256": "c0cfaffc3ef55453bb94da13e8aa2d666fc5f3021103a487806936ad258fa6b9",
+        "afterCheckoutSha256": "1779bc98d11ed261d6b2e96256a6030df337c978d95356b18ce8cf1041c2f326",
+        "originalBytes": 1732,
+        "beforeCheckoutBytes": 1754,
+        "afterCheckoutBytes": 1732,
+        "attribute": "-text",
+        "beforeContainsCrlf": true,
+        "afterContainsCrlf": false
+      },
+      {
+        "path": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-planning.json",
+        "gitBlob": "898dde2b41a59736750b59c50a172261e350d109",
+        "originalSha256": "99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58",
+        "beforeCheckoutSha256": "6eb2f06080bae2963629145d8203287637eb4f252d661d9d64e250e50488bc44",
+        "afterCheckoutSha256": "99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58",
+        "originalBytes": 1802,
+        "beforeCheckoutBytes": 1837,
+        "afterCheckoutBytes": 1802,
+        "attribute": "-text",
+        "beforeContainsCrlf": true,
+        "afterContainsCrlf": false
+      },
+      {
+        "path": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-cases.log",
+        "gitBlob": "1fdcb67c4f3306effe1d69742b7264aabf4450d1",
+        "originalSha256": "2c6376cb852312812e6813dc88e02c196955da52282624036cdc61780dbeaed6",
+        "beforeCheckoutSha256": "4389d1b894af53dd71b36ae7b141a4841f458b1cea0f376f7e29b0c3e4ae83e5",
+        "afterCheckoutSha256": "2c6376cb852312812e6813dc88e02c196955da52282624036cdc61780dbeaed6",
+        "originalBytes": 12003,
+        "beforeCheckoutBytes": 12138,
+        "afterCheckoutBytes": 12003,
+        "attribute": "-text",
+        "beforeContainsCrlf": true,
+        "afterContainsCrlf": false
+      }
+    ],
+    "command": [
+      "node",
+      "--test",
+      "tests/ci-runtime.test.mjs"
+    ],
+    "before": {
+      "actualGitCheckout": "git -c core.autocrlf=true worktree add --detach <path> c32d336a615cb207b1866f34e9675703f2008335",
+      "tests": 13,
+      "pass": 11,
+      "fail": 2,
+      "skip": 0,
+      "durationMs": 2706.382639,
+      "log": {
+        "file": "pr564-ci-runtime-crlf-before.log",
+        "sha256": "63edb1db73ec5b1e32516c67cf54de0a8f5f618372a804b96ecea3f92063e6b1",
+        "raw": "✔ [historical 98fef source contract] scheduler inverse preserves the frozen runner for LF/CRLF and rejects unrelated changes (296.199795ms)\n✔ weighted scheduling balances unequal files deterministically and rejects unsafe inputs (0.735301ms)\n✔ platform gates reserve their measured first-shard cost for every valid shard count (0.548929ms)\n✔ all current JS and Lua files are scheduled exactly once; new unmeasured files cannot disappear (147.439525ms)\n✔ platform-native placement covers every current file once and unknown platforms retain the conservative fallback (53.493936ms)\n✔ workflow uses the same balanced plan for materialization and execution without changing concurrency (0.535008ms)\n✔ real executor preserves test failure, continues later files, reports timings and includes added files (285.363066ms)\n✔ current timing records preserve all measured corrections without duplicate JSON keys (182.272721ms)\n✔ [historical 98fef source contract] fresh relic base retains its complete accepted scheduling measurements (182.364368ms)\n✔ Enemy AI local planning floor is exact, conservatively rounded and cannot rewrite hosted or safety evidence (34.023107ms)\n✔ combined planning epoch preserves both complete input maps and rejects any drift (45.008242ms)\n✖ complete local Game UI run raises only its planning floor and preserves every original observation (1.331547ms)\n✖ partial successful source cases provide lower bounds without claiming their failed batch or whole files passed (0.527579ms)\nℹ tests 13\nℹ suites 0\nℹ pass 11\nℹ fail 2\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2706.382639\n\n✖ failing tests:\n\ntest at tests/ci-runtime.test.mjs:302:1\n✖ complete local Game UI run raises only its planning floor and preserves every original observation (1.331547ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  + actual - expected\n  \n  + 'a25cfa3739179f2d4fe6a92e074681630e2acf5dc95422b55589b69744e0b279'\n  - '0a7cb353d3a795706a33a3049e65d730be31861083eba807fd5019684c6feb30'\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/repair-windows-receipts-crlf-before-20261108/tests/ci-runtime.test.mjs:306:9)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 'a25cfa3739179f2d4fe6a92e074681630e2acf5dc95422b55589b69744e0b279',\n    expected: '0a7cb353d3a795706a33a3049e65d730be31861083eba807fd5019684c6feb30',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\ntest at tests/ci-runtime.test.mjs:368:1\n✖ partial successful source cases provide lower bounds without claiming their failed batch or whole files passed (0.527579ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  + actual - expected\n  \n  + '6eb2f06080bae2963629145d8203287637eb4f252d661d9d64e250e50488bc44'\n  - '99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58'\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/repair-windows-receipts-crlf-before-20261108/tests/ci-runtime.test.mjs:374:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: '6eb2f06080bae2963629145d8203287637eb4f252d661d9d64e250e50488bc44',\n    expected: '99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n"
+      }
+    },
+    "after": {
+      "actualGitCheckout": "git -c core.autocrlf=true worktree add --detach <path> acdd0e80c97b43c18cb4710959479cb3567abdb3",
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "skip": 0,
+      "durationMs": 2633.561163,
+      "log": {
+        "file": "pr564-ci-runtime-crlf-after.log",
+        "sha256": "fe62175c27127b7adb7567fc42e0eedd4e60798009ad380f09c3c268a8bf7634",
+        "raw": "✔ [historical 98fef source contract] scheduler inverse preserves the frozen runner for LF/CRLF and rejects unrelated changes (292.224763ms)\n✔ weighted scheduling balances unequal files deterministically and rejects unsafe inputs (0.643993ms)\n✔ platform gates reserve their measured first-shard cost for every valid shard count (0.600097ms)\n✔ all current JS and Lua files are scheduled exactly once; new unmeasured files cannot disappear (160.636365ms)\n✔ platform-native placement covers every current file once and unknown platforms retain the conservative fallback (50.071168ms)\n✔ workflow uses the same balanced plan for materialization and execution without changing concurrency (0.991478ms)\n✔ real executor preserves test failure, continues later files, reports timings and includes added files (284.813741ms)\n✔ current timing records preserve all measured corrections without duplicate JSON keys (171.715614ms)\n✔ [historical 98fef source contract] fresh relic base retains its complete accepted scheduling measurements (182.31656ms)\n✔ Enemy AI local planning floor is exact, conservatively rounded and cannot rewrite hosted or safety evidence (34.634958ms)\n✔ combined planning epoch preserves both complete input maps and rejects any drift (41.854115ms)\n✔ complete local Game UI run raises only its planning floor and preserves every original observation (24.711635ms)\n✔ partial successful source cases provide lower bounds without claiming their failed batch or whole files passed (15.134245ms)\nℹ tests 13\nℹ suites 0\nℹ pass 13\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2633.561163\n"
+      }
+    },
+    "claim": "Linux Node24.22.1 with a real CRLF Git checkout only, not a Windows runtime or full Quality success. Existing Hosted Full kept running without cancellation, readiness change or rerun. Exact final-head Hosted validation and normal admission remain pending."
   }
 }

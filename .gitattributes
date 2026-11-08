@@ -362,3 +362,16 @@ tests/lua/support/raiden_v4_*.lua text eol=lf
 tests/helpers/seven-refactor-source-epoch.mjs text eol=lf
 tests/helpers/seven-refactor-source-epoch.json.gz -text
 tests/fixtures/defect-utility-planning-before.lua text eol=lf
+
+# Planning receipts authenticate the original raw bytes of both JSON and logs.
+# Keep these four frozen Git blobs unchanged in core.autocrlf checkouts.
+docs/evidence/seven-current-integration-20261108/game-ui-extraction-planning.json -text
+docs/evidence/seven-current-integration-20261108/game-ui-extraction-local.log -text
+docs/evidence/seven-current-integration-20261108/source-inverse-partial-planning.json -text
+docs/evidence/seven-current-integration-20261108/source-inverse-partial-cases.log -text
+
+# Ready-art original helper provenance is authenticated as complete raw bytes.
+tests/fixtures/ready-art-original-helper-sources.json text eol=lf
+
+# Art-feature retirement extends the same byte-authenticated original helper closure.
+tests/fixtures/art-feature-original-helper-sources.json text eol=lf
