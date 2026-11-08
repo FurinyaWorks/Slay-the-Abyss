@@ -182,6 +182,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   if (art) bindNativeArtPresentation(cards,art);
 
   mkdirSync(outputDirectory, { recursive: true });
+  writeFileSync(join(outputDirectory,'abyss_component_binding.lua'),'-- Original-component comparison is opt-in.\nreturn {schemaVersion=1,enabled=false}\n');
   writeV25CardBinding(outputDirectory);
   writeFileSync(join(outputDirectory,uiProfileModule+'.lua'),uiProfileSource(nativePageLifecycle));
   if(options.lightweight2d===true)writeLightweightProfile(outputDirectory);

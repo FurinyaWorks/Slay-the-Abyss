@@ -27,8 +27,10 @@ import {prepareV25UiMasks,v25UiMaskInputs,assertV25UiMaskPreparation,v25UiMaskTe
 import {prepareV25CardTemplates} from './v25-card-templates.mjs';
 import {v25CardModule,v25PrivateInputs,writeV25CardBinding,assertV25CardPreparation} from './v25-card-binding.mjs';
 import {loadNativeUiEncoder} from './native-ui-encoder.mjs';
+import {prepareComponentControlLayout,assertComponentControlOutput,componentBindingSource} from './native-component-profile.mjs';
 
 export const generatedRuntimeModules = {
+  abyss_component_binding:'scripts/build-ui.mjs',
   [v25CardModule]:'scripts/build-ui.mjs',
   [uiProfileModule]:'scripts/build-ui.mjs',
   abyss_data:'scripts/build-lua-data.mjs', abyss_original_v4_data:'scripts/build-lua-data.mjs', abyss_theme:'scripts/build-ui.mjs',
@@ -84,7 +86,7 @@ function checkTree(control) {
 }
 export async function buildNativeCandidate({baseMap,output='build/candidates',root=process.cwd(),client,createClient,
   prepare,writeScripts,generatedModules=generatedRuntimeModules,sourceCommit,mcpVersion='injected-test-client',playtest=false,decodeLog,
-  releaseCandidate=false,workKey='alpha-test',nativeCardArt,readyCardArt,artFeatures,lightweight2d=false,legacyCardFrames=false,nativePageLifecycle=false,v25BattleChrome=false,v25CardAssets,v25UiMasks,toolchainIdentity}={}) {
+  releaseCandidate=false,workKey='alpha-test',nativeCardArt,readyCardArt,artFeatures,lightweight2d=false,legacyCardFrames=false,nativePageLifecycle=false,v25BattleChrome=false,v25CardAssets,v25UiMasks,toolchainIdentity,componentWidgets}={}) {
   validateV25Chrome({v25BattleChrome,lightweight2d,releaseCandidate,v25CardAssets,v25UiMasks});
   if(v25BattleChrome&&prepare)throw Error('V25 battle chrome requires the actual UI builder');
   validateUiProfileOptions({nativePageLifecycle,lightweight2d,releaseCandidate,v25BattleChrome});
@@ -93,6 +95,7 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
   const v25Cards=v25CardAssets?prepareV25CardTemplates(v25CardAssets,{root}):null;
   const v25Masks=v25UiMasks?prepareV25UiMasks(v25UiMasks,{root}):null;
   const flags=resolveArtFeatures({artFeatures,readyCardArt,nativeCardArt});
+  if(componentWidgets && (!prepare || releaseCandidate || Object.values(flags).some(Boolean) || lightweight2d || v25BattleChrome || nativePageLifecycle))throw Error('Original components require a dedicated non-release prepare with all legacy artwork disabled');
   if(v25BattleChrome&&flags.selectionAvatar!==flags.battlePortrait)throw Error('V25 portraits require paired selection and battle source assets');
   if(typeof lightweight2d!=='boolean'||lightweight2d&&(releaseCandidate||prepare||nativeCardArt||!flags.menuBackground||!flags.selectionAvatar||!flags.battlePortrait||flags.cards||flags.monsters))throw Error('Bounded 2D is a fixed-flags non-release experiment');
   if(typeof legacyCardFrames!=='boolean'||legacyCardFrames&&!lightweight2d)throw Error('Legacy card comparison requires the bounded 2D experiment');
@@ -162,6 +165,11 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
       .includes(`["codeVersion"]=${toLua(releaseNotes.build.version)}`))throw new Error('Bundled code version differs from candidate provenance');
     const layout=JSON.parse(readFileSync(join(generated,'game-ui.json'),'utf8'));
     const templates=JSON.parse(readFileSync(join(generated,'game-ui-templates.json'),'utf8'));
+    if(componentWidgets){
+      const binding=JSON.parse(readFileSync(join(generated,'native-component-binding.json'),'utf8'));
+      assertComponentControlOutput(layout,templates,binding,componentWidgets);
+      if(readFileSync(join(generated,'abyss_component_binding.lua'),'utf8')!==componentBindingSource(binding))throw Error('Original-component Lua binding differs from validated semantic contract');
+    }
     assertV25CardPreparation(v25Cards,inputs,templates);
     assertV25UiMaskPreparation(v25Masks,inputs,templates);
     layout.controls.forEach(checkTree);templates.forEach(checkTree);
@@ -198,7 +206,8 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
           inputs:records.map(({path})=>({...fileRecord(join(root,path),root),path}))};
       }
       const actorTemplates=templates.filter(template=>template.name===monsterActorTemplateName);
-      if(actorTemplates.length!==1||JSON.stringify(actorTemplates[0])!==JSON.stringify(monsterActorTemplate(monster)))throw Error('Monster actor template differs from candidate features or source');
+      const expectedActor=componentWidgets?prepareComponentControlLayout({controls:[{name:'stage',kind:'container',children:[]}]},[monsterActorTemplate(monster)],componentWidgets).templates[0]:monsterActorTemplate(monster);
+      if(actorTemplates.length!==1||JSON.stringify(actorTemplates[0])!==JSON.stringify(expectedActor))throw Error('Monster actor template differs from candidate features or source');
       const expected=`-- Generated from the bounded native monster registry.\nreturn ${toLua(monster??{})}\n`;
       if(readFileSync(join(generated,'abyss_monster_art_data.lua'),'utf8')!==expected)throw Error('Monster artwork payload differs from candidate features or source');
     }

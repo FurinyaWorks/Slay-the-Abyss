@@ -247,6 +247,8 @@
     "abyss_menu_background_asset": "ui",
     "abyss_ui": "platform",
     "abyss_ui_profile": "platform",
+    "abyss_component_bridge": "ui",
+    "abyss_component_binding": "ui",
     "abyss_native_pages": "ui",
     "abyss_unknown": "core",
     "abyss_viewport": "ui",
