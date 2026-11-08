@@ -1,0 +1,17 @@
+{
+  "command": "node --cpu-prof tests/core-architecture-inverse.test.mjs",
+  "sourceHead": "8660380c1611c75c260db22d39ee65bfd8223a8d",
+  "totalSampledSeconds": 454.145457,
+  "topAggregatedSelfSecondsRounded": {
+    "source-epoch-runtime.mjs tokens": 188.434,
+    "token RegExp": 98.656,
+    "source-epoch-runtime.mjs sameConfigLayout": 67.534,
+    "crypto hash update": 36.278,
+    "source-epoch-runtime.mjs token callback": 19.613,
+    "garbage collector": 8.011
+  },
+  "rawProfileStoredInRepository": false,
+  "note": "Raw CPU profile is 237 MiB and intentionally not added to the repository. Aggregate values are rounded; regex samples can include callers outside the named runtime.",
+  "rawProfileSha256": "15f30250ee2150243a38505ba3633a43c04a89ff5c08fcace8e7bba4522896e5",
+  "rawProfileBytes": 247774653
+}

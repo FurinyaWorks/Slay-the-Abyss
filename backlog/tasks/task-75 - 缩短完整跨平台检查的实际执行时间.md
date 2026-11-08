@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-10-28 03:47
-updated_date: '2026-11-08T19:55:00Z'
+updated_date: '2026-11-08T20:10:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -92,4 +92,6 @@ PR370首头5d66abfc的run41009713098 impact 05:40:13创建、05:52:29开始、05
 第二批精确纯投影去重与真实成本采集见docs/backlog-details/TASK-75-81-M9-CI-20261103.md；原Task77本机66.238→11.695秒但不外推托管Full。保留完整矩阵、断言、原预算和关联源每次重读；当前组合及合后官方CI继续核对。
 
 2026-11-05已复核PR514最终a245、base a308、实际squash78e4e746及相同tree；PR Full41914042810、merge_group41918738466及push41923895912和对应Licenses成功。本轮独立复审40项/35语义变异及新增scry负例PASS；主控原工程门禁和119项CI合同通过。证据见docs/backlog-details/M7-CLOSEOUT-20261105.md及docs/evidence/m7-closeout-20261105/。本轮新独审不补造合前reviewId或schema5历史收据；M7稳定耗时/Fast样本与设备仍未完成。 原三个AC证据齐全；章程稳定Full≤30min仍未达（1802s/1984s），保持In Progress，不冒称M7性能达标。
+
+2026-11-09 来源纯计算去重：三个原慢测7/7通过且测试体未动；同机core原2项447.719s→47.035s（原轮带CPU采样），Max HP本轮61.419s，architecture-format仍464.486s。仅缓存完整字符串LF摘要与token计算，每次48-owner鲜读、所有旧oracle/预算/矩阵保持。独审9/9及8208差分通过，剩余慢点定位冻结旧epoch，不扩大本片。远端先保全4cd0697a；证据见docs/backlog-details/CI-SOURCE-CALCULATION-20261109.md。只完成本地定向验证，未重复Full、未准入或合并，TASK75仍In Progress。
 <!-- SECTION:NOTES:END -->
