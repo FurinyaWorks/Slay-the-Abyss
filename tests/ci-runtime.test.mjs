@@ -1,3 +1,4 @@
+import {runCatalogFloorKey,verifiedRunCatalogFloor} from './helpers/run-catalog-planning.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -189,12 +190,14 @@ test('current timing records preserve all measured corrections without duplicate
    assert.equal(run.tests,8);assert.equal(run.passed,8);assert.equal(run.failed,0);assert.equal(run.skipped,0);
    assert.equal(entry.sourceLogSha256,createHash('sha256').update(run.rawTap).digest('hex'));
    assert.match(entry.kind,/not hosted or Linux measurement/);
+  }else if(file===runCatalogFloorKey){
+   assert.deepEqual(entry,verifiedRunCatalogFloor());
   }else{
    assert.match(entry.environment,/local/);assert.match(entry.kind,/not .*hosted/);localFloorCount++;
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,10);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,11);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 

@@ -112,6 +112,7 @@ const responsibilityRoots = {
   'src/lua/abyss_inventory.lua': [],
   'src/lua/abyss_colorless_catalog.lua': [],
   'src/lua/abyss_card_capability.lua': [],
+  'src/lua/abyss_run_card_catalog.lua': [],
   'src/lua/abyss_relic_combat_hooks.lua': [],
   'src/lua/abyss_relic_family_combat.lua': [],
   'src/lua/abyss_purge_candidates.lua': [],
@@ -229,7 +230,7 @@ const responsibilityRoots = {
   'src/lua/abyss_node_ui_treasure.lua': [],
   'src/lua/abyss_game_ui.lua': ["function 'M.new'"],
 };
-// Existing catalog/seed/red-card contracts are separate, unchanged responsibilities.
+// Existing seed/red-card contracts are separate, unchanged responsibilities.
 // All Run orchestration and newly extracted Run helpers receive the full budget.
 const responsibilityHelper = file => /^src\/lua\/abyss_(?:effects_.+|combat_effect.*|combat_catalog|combat_reactions|combat_native_play|combat_queued_play|act2_ai_.+|character_presentation_.+|feedback_.+|node_ui(?:_.+)?|game_ui_.+|run(?:_(?!(?:card_catalog|red_card_contract|seed)\.lua$).+)?|nodes(?:_.+)?)\.lua$/.test(file);
 const completeResponsibility = file => responsibilityHelper(file)
@@ -237,6 +238,7 @@ const completeResponsibility = file => responsibilityHelper(file)
   || file==='src/lua/abyss_inventory.lua'
   || file==='src/lua/abyss_colorless_catalog.lua'
   || file==='src/lua/abyss_card_capability.lua'
+  || file==='src/lua/abyss_run_card_catalog.lua'
   || file==='src/lua/abyss_codex_relic.lua'
   || file==='src/lua/abyss_relic_combat_hooks.lua'
   || file==='src/lua/abyss_relic_family_combat.lua'

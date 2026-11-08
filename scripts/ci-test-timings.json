@@ -5128,6 +5128,16 @@
         "sourceLogSha256": "9a6df9196a37baf2152bd7a02dad5dda1112924330adff1d89512c51b9a3e79c",
         "sourceReceipt": "docs/evidence/power-shop-planning-20261107.json",
         "sourceReceiptSha256": "52570c893c538ac0c5ab592e3b6d89afe883495ea6624fa4f35abaad3053f8f7"
+      },
+      "tests/run-catalog-responsibilities.test.mjs": {
+        "durationMs": 71327,
+        "environment": "local cloud Linux",
+        "coverage": "14/14 complete file passed; 0 skipped; complete-graph observer",
+        "kind": "Local complete-run planning estimate only; not a hosted Linux or Windows measurement.",
+        "sourceLog": "build/catalog-final-tests.log",
+        "sourceLogSha256": "93be917d80bf8d66c844b590c237d97c3812ab9e2ac6f6ac225b46a5bf1f8853",
+        "sourceReceipt": "docs/evidence/run-catalog-planning-20261107.json",
+        "sourceReceiptSha256": "7f9979256080cee4e4df92c8d97a45fbf82228d2891e999720d8f270f74ec7e3"
       }
     }
   },

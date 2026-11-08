@@ -1,3 +1,4 @@
+import {runCatalogFloorKey,verifiedRunCatalogFloor} from './helpers/run-catalog-planning.mjs';
 import {beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -25,7 +26,7 @@ const floorPath='docs/evidence/pr521-run-max-planning-floor-20261106.json',floor
 const localFloorPath='docs/evidence/power-shop-planning-20261107.json',localFloorBytes=read(localFloorPath),localFloorReceipt=JSON.parse(localFloorBytes),localFloorKey='tests/power-shop-boundaries.test.mjs';
 // Added after the frozen #521 placement receipts. Never use these files to
 // reconstruct historical shard assignments or invent historical measurements.
-const postPlacementJs=['tests/card-capability-responsibilities.test.mjs','tests/colorless-catalog-source.test.mjs','tests/colorless-catalog.test.mjs','tests/intent-visibility-cache.test.mjs','tests/m7-core-final.test.mjs','tests/pr-quality-evidence.test.mjs','tests/repository-costs.test.mjs','tests/runtime-path-baseline.test.mjs','tests/act1-choice-responsibilities.test.mjs','tests/defect-plan-responsibilities.test.mjs','tests/inventory-responsibilities.test.mjs','tests/session-reward-capabilities.test.mjs','tests/session-reward-source-inverse.test.mjs','tests/watcher-final-execution.test.mjs','tests/power-shop-boundaries.test.mjs'];
+const postPlacementJs=['tests/run-catalog-responsibilities.test.mjs','tests/card-capability-responsibilities.test.mjs','tests/colorless-catalog-source.test.mjs','tests/colorless-catalog.test.mjs','tests/intent-visibility-cache.test.mjs','tests/m7-core-final.test.mjs','tests/pr-quality-evidence.test.mjs','tests/repository-costs.test.mjs','tests/runtime-path-baseline.test.mjs','tests/act1-choice-responsibilities.test.mjs','tests/defect-plan-responsibilities.test.mjs','tests/inventory-responsibilities.test.mjs','tests/session-reward-capabilities.test.mjs','tests/session-reward-source-inverse.test.mjs','tests/watcher-final-execution.test.mjs','tests/power-shop-boundaries.test.mjs'].sort();
 const postPlacementLua=['tests/lua/colorless_catalog_contract.lua','tests/lua/intent_visibility_cache.lua','tests/lua/watcher_final_execution_boundaries.lua'];
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
 const placementJs=()=>discoverJs().filter(file=>!postPlacementJs.includes(file));
@@ -212,6 +213,9 @@ test('current Full35 keeps exact coverage; forecast performance targets are advi
   if(file===localFloorKey){
    assert.equal(currentTimings.jsPlanning.localLowerBounds[file].durationMs,68586,'one complete local measurement supplies a planning floor, not hosted data');
    assert.equal(currentJsPlanningWeights([file],platform)[file],68586);
+  }else if(file===runCatalogFloorKey){
+   assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],verifiedRunCatalogFloor());
+   assert.equal(currentJsPlanningWeights([file],platform)[file],verifiedRunCatalogFloor().durationMs);
   }else{
    assert.equal(currentTimings.jsPlanning.localLowerBounds[file],undefined,'other new files have no fabricated planning floors');
    assert.equal(currentJsPlanningWeights([file],platform)[file],currentTimings.unknownJsMs);
@@ -341,20 +345,22 @@ test('current 129 placement raises reconstruct exact timings while preserving al
  assert.equal(oldLocal.rejectedPlanningForecast.linuxMaxPlusReserveMs,1201367);assert.match(oldLocal.reason,/not a controlled speed comparison/);
  expected.jsPlanning.localLowerBounds[localFloorKey]={durationMs:68586,environment:'local Windows',coverage:'8/8 complete file passed; 0 skipped; stable complete-graph observer',
   kind:'Local complete-run planning estimate only; not hosted or Linux measurement.',sourceLog:localRun.path,sourceLogSha256:localRun.sha256,sourceReceipt:localFloorPath,sourceReceiptSha256:hash(localFloorBytes)};
- assert.equal(JSON.stringify(expected,null,2)+'\n',read(path),'after the original 129 raises and nine floors, only the sourced local planning estimate may change complete timing bytes');
+ assert.equal(hash(JSON.stringify(expected,null,2)+'\n'),'1832a5f395318af201322666f31f601ffb183c0870fcc6fa62a5d8e48af0922d','the complete Power/Shop timing epoch stays immutable');
+ expected.jsPlanning.localLowerBounds[runCatalogFloorKey]=verifiedRunCatalogFloor();
+ assert.equal(JSON.stringify(expected,null,2)+'\n',read(path),'only independently sourced Power/Shop and Run catalogue floors extend the original epoch');
  assert.deepEqual(currentTimings,expected);
  for(const platform of ['win32','linux'])for(const [file,value]of Object.entries(after.js[platform]))assert.ok(currentTimings.js[platform][file]>=value);
  const luaBlock=s=>s.slice(s.indexOf('  "lua": {'),s.indexOf('  "jsSource":'));
  assert.equal(luaBlock(read(path)),luaBlock(binding.afterSource),'literal worker-safety bytes remain frozen');
  for(const key of ['lua','luaShard','luaShardCalibrationUpdates','initialMs','unknownJsMs','unknownLuaMs'])assert.deepEqual(currentTimings[key],after[key],key+' remains unchanged');
- const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);delete priorFloors[floorKey];delete priorFloors[localFloorKey];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
+ const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);delete priorFloors[floorKey];delete priorFloors[localFloorKey];delete priorFloors[runCatalogFloorKey];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
  for(const platform of ['win32','linux'])assert.equal(currentJsPlanningWeights([floorKey],platform)[floorKey],889638);
  assert.equal(placement.forecast.reserveMs,60000);assert.deepEqual(placement.forecast.budgets,{win32:1800000,linux:1200000});assert.equal(placement.forecast.workers,2);assert.equal(placement.forecast.concurrencyCapUnchanged,12);
 });
 
 test('only two exact current source identities enter the unchanged pure historical CI chain and all byte drift remains visible',()=>{
  const identities={
-  'scripts/ci-test-timings.json':'1832a5f395318af201322666f31f601ffb183c0870fcc6fa62a5d8e48af0922d',
+  'scripts/ci-test-timings.json':'4dfaee014d798258f16ff2f24043b15e0451ac56645d87e5fb94f50f169cd871',
   'scripts/ci-quality-shape.mjs':'0d6c82c2a7e7db82e276eb563978d5253d9a225039329e171ed3f907f98609d1',
  };
  for(const [path,digest]of Object.entries(identities)){

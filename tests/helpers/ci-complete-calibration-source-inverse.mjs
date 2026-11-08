@@ -14,7 +14,7 @@ for(const binding of Object.values(ciCompleteCalibrationProof.files)){
  assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(binding.beforeSource)}\0`).update(binding.beforeSource).digest('hex'),binding.beforeGitBlob);
 }
 const currentPlacementSha256=Object.freeze({
- 'scripts/ci-test-timings.json':'1832a5f395318af201322666f31f601ffb183c0870fcc6fa62a5d8e48af0922d',
+ 'scripts/ci-test-timings.json':'4dfaee014d798258f16ff2f24043b15e0451ac56645d87e5fb94f50f169cd871',
  'scripts/ci-quality-shape.mjs':'0d6c82c2a7e7db82e276eb563978d5253d9a225039329e171ed3f907f98609d1',
 });
 // This placement-only bridge returns the existing complete approved source.
