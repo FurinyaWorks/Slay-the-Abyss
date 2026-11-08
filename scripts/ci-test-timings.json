@@ -5148,6 +5148,16 @@
         "sourceLogSha256": "385c2fb5042e1a2040c5134382fb1a4504d402e7b82790120f2fde8e780445d6",
         "sourceReceipt": "docs/evidence/potion-callback-planning-20261107.json",
         "sourceReceiptSha256": "436eaef9eea243cd593671d924535a78794f0c65e28b983adf4d9f99b66702c1"
+      },
+      "tests/end-turn-responsibilities.test.mjs": {
+        "durationMs": 21279,
+        "environment": "local cloud Linux",
+        "coverage": "12/12 complete file passed; 0 skipped; complete-graph observer",
+        "kind": "Local complete-run planning estimate only; not a hosted Linux or Windows measurement.",
+        "sourceLog": "build/end-turn-first-tests.log",
+        "sourceLogSha256": "1be350bbc484314e255f0b2cbd916747a5144c5dc959f2730c7525fb758bd4de",
+        "sourceReceipt": "docs/evidence/end-turn-planning-20261107.json",
+        "sourceReceiptSha256": "2f59e5322ec6abfc7b9cc168734ea0f5333197a9f39ee4d75237ed6d9ddbf537"
       }
     }
   },
