@@ -1,6 +1,7 @@
 import {prepareMonsterArt} from './monster-art.mjs';
 import {portraitInventory,portraitRuntimeInputs} from './official-portraits.mjs';
 import {lightweightInventory,lightweightProfile} from './lightweight-2d-profile.mjs';
+import {v25ChromeFromReceipt} from './v25-profile.mjs';
 // Candidate-local developer flags. Never player settings or a remote service.
 import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -68,6 +69,7 @@ export function verifyArtFeatureReceipt(receipt) {
  return expected.flags;
 }
 export function artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory=false}={}) {
+ const v25BattleChrome=v25ChromeFromReceipt(receipt);
  const flags=verifyArtFeatureReceipt(receipt?.artFeatures),native=receipt.nativeCardArt;
  const lightweight2d=receipt.experimentalProfile===lightweightProfile;
  if(receipt.experimentalProfile!==undefined&&!lightweight2d||lightweight2d&&(!flags.menuBackground||!flags.selectionAvatar||!flags.battlePortrait||flags.cards||flags.monsters))throw Error('Invalid experimental artwork profile');
@@ -101,7 +103,7 @@ export function artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory=f
  }
 
  if(native&&(typeof native.registry?.path!=='string'||!native.registry.path||!Array.isArray(native.hosts)||!native.hosts.length))throw Error('Invalid static card artwork receipt');
- return {artFeatures:flags,...(lightweight2d?{lightweight2d:true}:{}),...(receipt.experimentalUi==='legacy-card-frames'?{legacyCardFrames:true}:{}),...(native?{nativeCardArt:{registry:native.registry.path,hosts:[...native.hosts]}}:{})};
+ return {artFeatures:flags,...(v25BattleChrome?{v25BattleChrome:true}:{}),...(lightweight2d?{lightweight2d:true}:{}),...(receipt.experimentalUi==='legacy-card-frames'?{legacyCardFrames:true}:{}),...(native?{nativeCardArt:{registry:native.registry.path,hosts:[...native.hosts]}}:{})};
 }
 export function readArtFeatures(directory) {
  const source=readFileSync(join(directory,artFeatureModule+'.lua'),'utf8');

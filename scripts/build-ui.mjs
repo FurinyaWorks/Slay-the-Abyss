@@ -21,6 +21,8 @@ import {loadPerformancePack} from './art/performance-pack.mjs';
 import {writeLightweightProfile} from './lightweight-2d-profile.mjs';
 import {compactBoundedCardFaces} from './lightweight-card-layout.mjs';
 import {validateUiProfileOptions,uiProfileArgs,uiProfileModule,uiProfileSource} from './ui-profile.mjs';
+import {validateV25Chrome,v25ChromeArgs} from './v25-profile.mjs';
+import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
 
 export function assertNativeUiCapacity(layout) {
   const checkFonts = (control, path) => {
@@ -96,6 +98,7 @@ function rejectInputOutputAliases(outputDirectory, extraInputs = []) {
 
 export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYSS_PYTHON || 'python', options = {}) {
   // Preflight the entire batch before any generated file can be changed.
+  const v25BattleChrome=validateV25Chrome(options);
   const nativePageLifecycle=validateUiProfileOptions(options);
   if(options.legacyCardFrames===true&&options.lightweight2d!==true)throw Error('Legacy card comparison requires the bounded 2D experiment');
   const flags = resolveArtFeatures(options);
@@ -123,6 +126,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   if(readyArt){attachReadyCardHosts(battle);attachReadyCardHosts(layout);attachReadyCardHosts(templates[0]);}
   if (art) { attachNativeCardArt(battle,art,{battleOnly:true}); attachNativeCardArt(layout,art); }
   attachMonsterArt(battle,monsterArt);attachMonsterArt(layout,monsterArt);
+  if(v25BattleChrome){applyV25BattleChrome(battle,theme);applyV25BattleChrome(layout,theme);}
   if(options.lightweight2d===true&&!options.legacyCardFrames){
     compactBoundedCardFaces(battle);compactBoundedCardFaces(layout,templates);
   }
@@ -161,12 +165,13 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try {
-    const profile=uiProfileArgs(process.argv.slice(2)),args = profile.args, experimentalCharacters = args.includes('--experimental-characters'),lightweight2d=args.includes('--lightweight-2d'),legacyCardFrames=args.includes('--legacy-card-frames');
+    const chrome=v25ChromeArgs(process.argv.slice(2));
+    const profile=uiProfileArgs(chrome.args),args = profile.args, experimentalCharacters = args.includes('--experimental-characters'),lightweight2d=args.includes('--lightweight-2d'),legacyCardFrames=args.includes('--legacy-card-frames');
     const features=artFeatureArgs(args.filter(arg => !['--experimental-characters','--lightweight-2d','--legacy-card-frames'].includes(arg)));
     const native = nativeCardArtArgs(features.args);
     const { paths, options } = releaseBuildArgs(native.args);
     if (paths.length > 1) throw new Error('Expected at most one output directory');
-    buildUI(paths[0], undefined, { experimentalCharacters, lightweight2d, legacyCardFrames, nativePageLifecycle:profile.nativePageLifecycle, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
+    buildUI(paths[0], undefined, { v25BattleChrome:chrome.v25BattleChrome, experimentalCharacters, lightweight2d, legacyCardFrames, nativePageLifecycle:profile.nativePageLifecycle, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
     console.log('Native battle UI and Traveler display module built.');
   }
   catch (error) { console.error(error.message); process.exitCode = 1; }

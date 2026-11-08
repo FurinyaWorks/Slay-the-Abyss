@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "scope": "本轮HUD切片，非完整V25采用/性能验收",
+  "kitVerification": {
+    "exactLuaScripts": 128,
+    "samples": 28,
+    "failures": []
+  },
+  "samples": [
+    {
+      "id": "jelly-ui",
+      "sourceSha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
+      "decision": "改造采用",
+      "record": "main/0000.json.gz；22依赖；UI身份/父链501/504与图片分量96/97",
+      "projectEntry": "scripts/v25-battle-chrome.mjs",
+      "verification": "V25 battle chrome结构/四态与完整构建布局通过；官方读回和视觉仍待验",
+      "reason": "吸收底板/边框/高光/内容的分层，独立实现官方基础图元，不复制样本代码或纹理；四态沿现有presetButton"
+    },
+    {
+      "id": "ui-kit",
+      "sourceSha256": "a1c998c9de0e3dc806d2b3c2abeef8a34c00d898966f22b3960f69965eb63d8f",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "tutorial",
+      "sourceSha256": "51a3c2f9e74bc8d5705feb04d01659e96929dde9403596f2f53790130d55d8a8",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "lowload-characters",
+      "sourceSha256": "cdb23c74278e99340a6d43cfe7b57cb2291b4eabf8400eefb4f72acc767c2d66",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "pixel-scripts",
+      "sourceSha256": "64258bd23fffb3983158e33c31f8ea4003ae936d5abf380be6a7f798373740db",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "xiangqi",
+      "sourceSha256": "a3150bb79d896f7a8dc321b21f08c26b77576a728b02c5dd8eea748d175cee69",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "badapple",
+      "sourceSha256": "7b45a1a34b0380202db135dd79fb2c2b6e2caef9379d3590fccc5ab267707963",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "rpg",
+      "sourceSha256": "e4fe16b355d3d8f5681214603c61637a335faac5c1a90b5ecc3d0195cb6ad83a",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "witch-parkour",
+      "sourceSha256": "73efb3d470c327a1989ef12d88c494103651d68dd8ccada8996859d915ee3144",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "mondstadt",
+      "sourceSha256": "562fe3448954bfd147f5ce4220dfd5473b6287d59e8c5ca52d445ca86094ea25",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "furina-summons",
+      "sourceSha256": "829d87d01d6815098a30522f8de977c41610044fb93c815ef9459d28f190b7f8",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "mouse-pick",
+      "sourceSha256": "11363e6055d936b800423583465fa8de33a73f81b0328cb249fe480eee3c86a7",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "camera-v2",
+      "sourceSha256": "0e7ac038c0b0905195caeb994e8c6b355b9cffa37f90606ca1296d726bd08486",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "sword",
+      "sourceSha256": "4745ebeb22feadc959c790f2b02535fab588203cb61d3f5d0398ad3d554c9cd0",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "buildings",
+      "sourceSha256": "c6cc8d6ca357b52a807733e9d1ffef52e45e51a13e92e62a3dcdb57ea536a4f0",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "lumine",
+      "sourceSha256": "e11d41d5e7409a4cf6799a0d1f1d4e8b6bd22e9dcfa4ff55121b9d4b773d2e2c",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "sand-and-puppet",
+      "sourceSha256": "ca9bb03208807d29ee7c5242abe2204d39a696636c53c836a4c965a2cdf1d854",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "slimes",
+      "sourceSha256": "6a5171436464e2365f9564a6676d0f884b2b1e52164bd9448ffc1db4a1fb37cd",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "mages-hilichurls",
+      "sourceSha256": "e491c9ed62b09368cc0a603bfcef8a80c1585a18ec49bfd45bbfbf37f4bdb5da",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "klee-dynamic",
+      "sourceSha256": "e037a0d8b0a1f80c7935135ab670a19bd78112c62e1ed0e911403021b57d683e",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "characters-117",
+      "sourceSha256": "9c1097d38053a1b7250062260823ccf5f9eb8534016688e5cddd44eef7bbdcbd",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "paimon-dynamic",
+      "sourceSha256": "239a2688eff3b55f6d418985ff413bb058f7499483c39f66e77f810bc73a48b5",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "klee-multi",
+      "sourceSha256": "dbec03690b9c7b03194cff648b2b6fe319f7ecf330fad6d94f222e88cf7ee9b9",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "audetta-idle",
+      "sourceSha256": "bfc59f42c8a074a5756cd81832e4ad8ebeecbe681d66ec772a60639f5068b080",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "spade",
+      "sourceSha256": "e22ca3fbf611a5e8edd2abf9d8e44e446a18e65d29e235e9310b59725acf37d0",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "heart",
+      "sourceSha256": "dcab692605a1690bfec5ff42fe692d5383cfdb7ad1c3710496a9329b2c0d4d7e",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "sky-frame",
+      "sourceSha256": "cb21a10e2f3ac2453ee6dae2ae84fd370575709e6c801a8db83f238e1368f528",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "dragon-dialogue",
+      "sourceSha256": "4086f1fd26d390300cbd0125b37ca946e817865edd14f885fb1426a20a6d4123",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    }
+  ],
+  "privateV25": {
+    "differences": [
+      "尚用旧主题host坐标/尺寸",
+      "CSS渐变和模糊为基础图层/soft-edge近似，待同候选视觉对照",
+      "尚未移植完整背景、立绘、卡壳和其余页面"
+    ],
+    "sourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+    "sourceSha256": "bee6138f43655ffc62ce0c0860bfacf6050fbae7bd702227a472c571c0e13f92",
+    "projectEntry": "scripts/v25-battle-chrome.mjs",
+    "record": "dist/sts-battle-restore.css：energy、end-turn、pile选择器",
+    "method": "按源布局及色彩独立重建有限原生图层；不含私有纹理"
+  },
+  "preserved": [
+    "Run/Combat/RNG/输入事务未改",
+    "原手牌插值与动作队列未换Tween",
+    "10牌及合法敌人数未缩减"
+  ],
+  "deviceValidation": "UNVERIFIED"
+}
