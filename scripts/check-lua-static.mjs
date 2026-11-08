@@ -94,6 +94,8 @@ export function reviewRenderComplexity(diagnostics, sources) {
 // Budget only this governance slice and every extracted responsibility module.
 // Unrelated pre-existing Combat/UI hotspots keep their diagnostic reports.
 const responsibilityRoots = {
+  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']
+    .map(name=>`function '${name}'`),
   'src/lua/abyss_scry.lua': ['M.choose','allowedCandidates','selectedCards','hasWeaveQueue','discardSelected']
     .map(name=>`function '${name}'`),
   'src/lua/abyss_shivs.lua': [],

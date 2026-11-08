@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T02:19:00Z'
+updated_date: '2026-11-08T14:07:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -21,6 +21,7 @@ documentation:
   - docs/backlog-details/M7-DEFECT-UTILITY-PLANNING-20261108.md
   - docs/backlog-details/M7-DEFECT-REFACTOR-INTEGRATION-20261108.md
   - docs/backlog-details/M7-SEVEN-CURRENT-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-WATCHER-FLOW-PLANNING-20261108.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -71,6 +72,10 @@ ordinal: 162000
 本轮在隔离本地树保全整合已独审的六项合流12950b1c与Defect utility 27b2ccc9；不改生产输入字节，逐项合并共享来源/成本合同，重新采集组合SCC/CC、定向行为与真实库存预算，独审后本地提交。全部旧计划/证据保留，不重复Full、不上传或操作用户电脑，不改owner/status/AC。
 
 2026-11-08 接续七项已有本地重构：基于已合#560的a0c35db8进行真实增量适配，保全两侧来源、合同与原始证据。只做定向测试及独立深审，不重复Full；从当前基线形成单父线性提交，明确批准后可按Ruleset正常上传及提PR，仍不得绕过质量门禁。
+
+2026-11-08 本轮从最新develop 7821a7f4接续未占用WatcherFlow计划职责：仅按普通伤害、姿态、X费用、Power、弃牌回收拆分planEffect，保留动态读取、验证及队列顺序；withCards32与既有Actor依赖列为残余。冻结旧源、独立双VM图/错误轨迹与真实语义负控，新增职责受CC15，窄来源接线及独审后仅本地保存。不重复Full、不上传、不操作用户设备，不改owner/status/AC。
+
+2026-11-09 按Owner及时集成要求，将已独审WatcherFlow c24ef4e无冲突叠加当前PR564 50584b5，补精确来源epoch与隔离闭包、新测试真实成本及完整库存；定向复验和独立审查后按原权限发布依赖PR564的draft PR，不重复Full、不绕过保护、不改owner/status/AC。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -121,4 +126,8 @@ Shivs.startTurn本地职责片：CC33→6，5个新helper最大13，全模块20�
 最终补记：来源定向106个不同用例已有最新通过证据，初次79中3个测试适配问题已定点纠正；独审通过代码/来源安全边界复核，精确提交身份另存。按真实证据补3项成本floor，原19项不变；17/14完整库存含60秒预留最大1771239/1179021ms，原目标余28761/20979ms。后两项仅成功测试用例成本下界，非全文件实测；原失败/中止均保存，不伪称Full。
 
 发布前develop前移至#561b7ed1830，无src/data/scripts/config变动。本轮在新隔离树保全其全部档案及更强历史来源/退休安全合同，仅解决7个非生产文本冲突；45变动owner鲜读与旧epoch linked owner检查并存。最终单父基于b7，原a0度量和320独审按原身份保留；仅定向helper/负控复验，不重复完整行为/工程采集，不改owner/status/AC。
+
+2026-11-08 WatcherFlow纯计划职责本地完成：planEffect32→12，5 helper最大8且纳入CC15；338模块5560完整测量，CC>30为40→39、>15为216→215，SCC68/11/2和14旧警告不变。334例668完整图点及原28例Combat双VM一致，最终11/11含6语义负控，独审另137例通过。当前历史完整树身份窄测真实失败；共享epoch/隔离闭包由#564占用未改，来源接线与新51,776ms规划下界待整合。无上传/PR/Full/合并或设备验收，owner/status/AC保持；见M7-WATCHER-FLOW-PLANNING-20261108及机器附件。
+
+Watcher Flow 已在 #564@50584b5 上接入完整外层来源epoch及隔离闭包，解决原共享来源阻断；46 owners/339非空绑定。原来源45/45、新epoch5/5、行为11/11（55667.073989ms，规划下界55668）、CI41/41、独立来源12/12及CI4/4通过。保留首轮元数据缺失失败和所有冻结来源；784 JS/1409 Lua预算预测1775788/1183709ms。详见 docs/backlog-details/M7-WATCHER-FLOW-PLANNING-20261108.md 和 docs/evidence/m7-watcher-flow-integration-20261109.json。Draft PR发布待完成；#564前置CRLF失败未解决，未重复Full、未合并或设备验收，owner/status/AC不变。
 <!-- SECTION:NOTES:END -->

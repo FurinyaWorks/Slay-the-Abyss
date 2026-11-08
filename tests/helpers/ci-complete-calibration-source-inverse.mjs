@@ -52,6 +52,7 @@ export function preCiCompleteCalibrationSource(path,source){
 // Only the complete merged source may enter either immutable original epoch.
 // Removing extra floors is never a generic drift-masking fallback.
 export function originalPlanningSource(path,source,epoch='develop'){
+ source=preWatcherFlowPlanningSource(path,source);
  source=preGameUiLocalPlanningSource(path,prePartialCasePlanningSource(path,source));
  if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='aca81cae4ade8e6ddb1590bc6afae965f0a55dd0ff3052aec2d3a555e5c8f7a8')return source;
  const value=JSON.parse(source);
@@ -86,5 +87,19 @@ export function prePartialCasePlanningSource(path,source){
  }
  const prior=JSON.stringify(value,null,2)+'\n';
  assert.equal(hash(prior),'b12d89163c76dabdf09e7af728fab0aceada1b0409e8b15898baad59749d61e1','all twenty prior floors and every observation remain byte-identical');
+ return prior;
+}
+
+// Exact outer planning epoch; all previous sources and observations remain frozen.
+export const watcherFlowPlanningKey="tests/watcher-flow-planning.test.mjs";
+export const savedWatcherFlowPlanningFloor=Object.freeze({"durationMs":51776,"environment":"cloud Linux local","coverage":"11/11 complete file passed; 0 failed, cancelled or skipped. Saved pre-integration slice run.","kind":"Local complete-run planning floor only; not a hosted measurement, current integration pass, execution permission or timeout change.","nodeReportedDurationMs":51775.185427,"sourceLog":"docs/evidence/m7-watcher-flow-targeted-final-20261108.log.gz","sourceLogSha256":"53d4055898de21c7584806acbcf739d88decc4ee40d248f436a03b778a1125d4","sourceLogUncompressedSha256":"e17ba6aeda94b106701f3e9eb18e6a3adc15c41eb3a5949365634e38b8aba7e9","sourceReceipt":"docs/evidence/m7-watcher-flow-planning-20261108.json","sourceReceiptSha256":"e69e5441c4c90cfb03786859c9aa76a45e92f87c532745ae60397c4af2de33d9"});
+export const watcherFlowPlanningFloor=Object.freeze({"durationMs":55668,"environment":"cloud Linux local","coverage":"11/11 complete file passed; 0 failed, cancelled or skipped. Current local integration run.","kind":"Local complete-run planning floor only; not a hosted measurement, current integration pass, execution permission or timeout change.","nodeReportedDurationMs":55667.073989,"sourceLog":"docs/evidence/watcher-flow-integration-behavior-20261109.log.gz","sourceLogSha256":"b50a5e0bdc257b8e00636ff64b5dda76130ef72a43b239864764a28733da8add","sourceLogUncompressedSha256":"437f163287d7db816e0ce584709eeb904122f55a92c7d8a2a6484ed067e8b941","sourceReceipt":"docs/evidence/watcher-flow-integration-behavior-20261109.json","sourceReceiptSha256":"2171cef97972a096779972244ccfbe248caba188d0ce83e208203c39ec7a7fc5"});
+export function preWatcherFlowPlanningSource(path,source){
+ if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||!['fa041e8a3ed7b10e0498491eb5ba1aba18af019db76ffa746fe85268ae562e34','20a43c9723de6f8b85a28ef863e0cdb977cc1432a8ceb25ac794d0bd6cff6543'].includes(hash(source.replaceAll('\r\n','\n'))))return source;
+ const value=JSON.parse(source);
+ assert.deepEqual(value.jsPlanning.localLowerBounds[watcherFlowPlanningKey],hash(source.replaceAll('\r\n','\n'))==='fa041e8a3ed7b10e0498491eb5ba1aba18af019db76ffa746fe85268ae562e34'?savedWatcherFlowPlanningFloor:watcherFlowPlanningFloor);
+ delete value.jsPlanning.localLowerBounds[watcherFlowPlanningKey];
+ const prior=JSON.stringify(value,null,2)+'\n';
+ assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56','every old floor, raw observation, worker-safety and deadline input remains byte-identical');
  return prior;
 }

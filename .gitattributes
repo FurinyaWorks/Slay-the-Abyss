@@ -375,3 +375,7 @@ tests/fixtures/ready-art-original-helper-sources.json text eol=lf
 
 # Art-feature retirement extends the same byte-authenticated original helper closure.
 tests/fixtures/art-feature-original-helper-sources.json text eol=lf
+
+# WatcherFlow source epoch helpers are authenticated by exact bytes.
+tests/helpers/watcher-flow-source-epoch.mjs text eol=lf
+tests/helpers/watcher-flow-source-epoch.json.gz -text

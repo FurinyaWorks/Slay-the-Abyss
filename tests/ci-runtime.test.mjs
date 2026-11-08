@@ -1,4 +1,4 @@
-import {prePartialCasePlanningSource,partialCasePlanningFloors,originalPlanningSource,preGameUiLocalPlanningSource,gameUiLocalPlanningKey,gameUiLocalPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
+import {preWatcherFlowPlanningSource,watcherFlowPlanningKey,watcherFlowPlanningFloor,prePartialCasePlanningSource,partialCasePlanningFloors,originalPlanningSource,preGameUiLocalPlanningSource,gameUiLocalPlanningKey,gameUiLocalPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciEpoch} from './helpers/integration-ci-epochs.mjs';
 import {potionCallbackFloorKey,verifiedPotionCallbackFloor,prePotionCallbackPlanningSource} from './helpers/potion-callback-planning.mjs';
 import {endTurnFloorKey,verifiedEndTurnFloor} from './helpers/end-turn-planning.mjs';
@@ -230,6 +230,8 @@ test('current timing records preserve all measured corrections without duplicate
   }else if(file===classPotionPlanningKey){
    assert.deepEqual(entry,classPotionPlanningFloor);assert.equal(entry.durationMs,180000);
    assert.ok(entry.durationMs>=162004.675552,'retain conservative full-file local planning floor');
+  }else if(file===watcherFlowPlanningKey){
+   assert.deepEqual(entry,watcherFlowPlanningFloor);assert.equal(entry.durationMs,55668);
   }else if(file===watcherPlanningKey){
    assert.deepEqual(entry,watcherPlanningFloor);assert.equal(entry.durationMs,30000);
    assert.ok(entry.durationMs>=21763.220989+1218.265678);
@@ -238,7 +240,7 @@ test('current timing records preserve all measured corrections without duplicate
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,22);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,23);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 
@@ -348,7 +350,7 @@ test('complete local Game UI run raises only its planning floor and preserves ev
  for(const mutate of [r=>r.file='tests/other.test.mjs',r=>r.sourceIdentity.baseHead=identity.sourceCommit,r=>r.sourceIdentity.files[key]=hash(readFileSync(key))]){
   const wrong=structuredClone(receipt);mutate(wrong);assert.throws(()=>assertHistoricalSource(historical,wrong));
  }
- const path='scripts/ci-test-timings.json',source=prePartialCasePlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),prior=preGameUiLocalPlanningSource(path,source);
+ const path='scripts/ci-test-timings.json',source=prePartialCasePlanningSource(path,preWatcherFlowPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'))),prior=preGameUiLocalPlanningSource(path,source);
  assert.notEqual(source,prior);const old=JSON.parse(prior),expected=structuredClone(old);
  assert.equal(Object.keys(old.jsPlanning.localLowerBounds).length,19);assert.equal(old.jsPlanning.localLowerBounds[key],undefined);
  expected.jsPlanning.localLowerBounds[key]=floor;
@@ -387,7 +389,7 @@ test('partial successful source cases provide lower bounds without claiming thei
   assert.equal(floor.durationMs,Math.ceil(observation.durationMs));assert.equal(observation.planningFloorMs,floor.durationMs);
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,floor.durationMs));
  }
- const path='scripts/ci-test-timings.json',source=readFileSync(path,'utf8').replaceAll('\r\n','\n'),prior=prePartialCasePlanningSource(path,source);
+ const path='scripts/ci-test-timings.json',source=preWatcherFlowPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),prior=prePartialCasePlanningSource(path,source);
  assert.notEqual(prior,source);const expected=JSON.parse(prior);
  assert.equal(Object.keys(expected.jsPlanning.localLowerBounds).length,20);
  for(const key of keys)assert.equal(expected.jsPlanning.localLowerBounds[key],undefined);

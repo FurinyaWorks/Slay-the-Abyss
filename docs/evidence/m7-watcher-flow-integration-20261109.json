@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "status": "local_integration_pass_publication_pending",
+  "base": {
+    "pr": 564,
+    "sha": "50584b5d6ebc6812bedb3a644e9eec13d2cb90cb"
+  },
+  "savedSliceSha": "c24ef4e02173d2a160382f09d32f2dec82eed5fc",
+  "cherryPickedHeadSha": "b0d2020f40aad599f6d3be9fefdb763a945997ac",
+  "candidate": "dirty local integration on cherry-picked head; not a published or merged SHA",
+  "source": {
+    "originalTestsPassed": 45,
+    "newEpochTestsPassed": 5,
+    "freshOwners": 46,
+    "nonnullProductionBindings": 339,
+    "frozenArchivesUnchanged": true
+  },
+  "behavior": {
+    "testsPassed": 11,
+    "durationMs": 55667.073989,
+    "planningFloorMs": 55668,
+    "receipt": "docs/evidence/watcher-flow-integration-behavior-20261109.json"
+  },
+  "ci": {
+    "testsPassed": 41,
+    "inventory": {
+      "js": 784,
+      "lua": 1409
+    },
+    "forecastIncluding60000MsReserve": {
+      "windows": 1775788,
+      "posix": 1183709
+    },
+    "receipt": "docs/evidence/m7-watcher-flow-ci-integration-20261108.json"
+  },
+  "independentReview": {
+    "reviewId": "/root/integrate_recovered_work/review_flow_integration",
+    "conclusion": "pass",
+    "sourceTestsPassed": 12,
+    "ciTestsPassed": 4,
+    "path": "docs/evidence/m7-watcher-flow-integration-review-20261109.json",
+    "sha256": "7a6815a1ecb506c6a00abfb57042e561d6a0d64f4702536fcd2cce039420d85a",
+    "unresolved": []
+  },
+  "preservedFailure": "Initial new epoch suite passed 4/5: prior binding omitted mode/rawGitBlob. Full metadata preserved and exact hashes updated; original assertion retained. Final 5/5 and independent 12/12 passed. Raw review retains its separate first 11/12 failure and limitations.",
+  "logs": [
+    {
+      "path": "docs/evidence/m7-watcher-flow-integration-source-original-20261109.log.gz",
+      "sha256": "b747ca5e5cd5d56e39cd1c89d1e4483273db4517979f5c7850959860f6c52dd4",
+      "uncompressedSha256": "4371641ef2985e150b82e1bdbf0e168cec81ac92178d9341350c54b59b446f7a",
+      "summary": {
+        "tests": 45,
+        "pass": 45,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "duration_ms": 4941.098829
+      }
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-integration-source-epoch-first-20261109.log.gz",
+      "sha256": "e60115608f208c6bd968608f75102aae131924c699b489d2e6763a1ec1358ae7",
+      "uncompressedSha256": "1aa59c3329c491020ce4bc9eee65e8d7ac2a1f390f8344e0e02714112f7b61c0",
+      "summary": {
+        "tests": 5,
+        "pass": 4,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "duration_ms": 3405.023256
+      }
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-integration-source-epoch-final-20261109.log.gz",
+      "sha256": "2ca5d9fdbc356c64b403aff6b672661655eb255e56a64f729df753b1c4d7388f",
+      "uncompressedSha256": "6dc288a360f96976b08d82b8dc5565ecf0b271926ba9bf76b08e4566f5536ed4",
+      "summary": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "duration_ms": 4024.669507
+      }
+    }
+  ],
+  "remaining": [
+    "Draft PR publication pending.",
+    "#564 remains a prerequisite with its reported CRLF failure unresolved.",
+    "No Hosted Full rerun, merge, official import, device execution or release claim.",
+    "TASK-74.20 owner, status and acceptance criteria unchanged."
+  ],
+  "finalDocumentationChecks": [
+    {
+      "command": "npm run verify:backlog",
+      "exitCode": 0,
+      "logSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "log": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n\n> slay-the-abyss@1.0.0 verify:backlog\n> node scripts/verify-backlog-roadmap.mjs\n\n任务编号、首发排期、负责人及仅岩系旅行者前两幕规划范围检查通过；当前任务均有优先级、未完成High不超过5项；不认证运行时准入、平台或实机。\n"
+    },
+    {
+      "command": "npm run check:guidance",
+      "exitCode": 0,
+      "logSha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "log": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n\n> slay-the-abyss@1.0.0 check:guidance\n> node scripts/check-agent-guidance.mjs\n\n{\n  \"errors\": [],\n  \"metrics\": [\n    {\n      \"file\": \"AGENTS.md\",\n      \"lines\": 41,\n      \"characters\": 2985\n    },\n    {\n      \"file\": \"CLAUDE.md\",\n      \"lines\": 5,\n      \"characters\": 150\n    },\n    {\n      \"file\": \".cursor/rules/miliastra.mdc\",\n      \"lines\": 6,\n      \"characters\": 82\n    }\n  ]\n}\n"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-complete-file-planning-floor",
+  "file": "tests/watcher-flow-planning.test.mjs",
+  "command": "node --test --test-concurrency=1 tests/watcher-flow-planning.test.mjs",
+  "summary": {
+    "tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 55667.073989
+  },
+  "planningFloorMs": 55668,
+  "sourceLog": "docs/evidence/watcher-flow-integration-behavior-20261109.log.gz",
+  "sourceLogSha256": "b50a5e0bdc257b8e00636ff64b5dda76130ef72a43b239864764a28733da8add",
+  "sourceLogUncompressedSha256": "437f163287d7db816e0ce584709eeb904122f55a92c7d8a2a6484ed067e8b941",
+  "sourceFiles": {
+    "tests/watcher-flow-planning.test.mjs": "a23aa69433998b6426a40a79f256c23f8c4bc813b3fd6ea28bad9b2e36f763c1",
+    "src/lua/abyss_watcher_flow_cards.lua": "019fc60e728ffad81405b24323545b05718f452ae20c756f67fc6f56ce9e0217",
+    "tests/lua/watcher_flow_planning.lua": "a3442d79c37d19024ba636bb5b2a7b19eafad454078a69d03665143d7a3313f8",
+    "tests/helpers/watcher-flow-source-inverse.mjs": "57115ae66144a796e2854d5d72948dd29a8b3df848d70c5ae943b85ba03406b9",
+    "tests/helpers/watcher-flow-vm.mjs": "9291b2ba0cea78bc583245135d01ba9fa189bf703e8aee77119efae995a20100"
+  },
+  "previousSavedFloor": {
+    "durationMs": 51776,
+    "environment": "cloud Linux local",
+    "coverage": "11/11 complete file passed; 0 failed, cancelled or skipped. Saved pre-integration slice run.",
+    "kind": "Local complete-run planning floor only; not a hosted measurement, current integration pass, execution permission or timeout change.",
+    "nodeReportedDurationMs": 51775.185427,
+    "sourceLog": "docs/evidence/m7-watcher-flow-targeted-final-20261108.log.gz",
+    "sourceLogSha256": "53d4055898de21c7584806acbcf739d88decc4ee40d248f436a03b778a1125d4",
+    "sourceLogUncompressedSha256": "e17ba6aeda94b106701f3e9eb18e6a3adc15c41eb3a5949365634e38b8aba7e9",
+    "sourceReceipt": "docs/evidence/m7-watcher-flow-planning-20261108.json",
+    "sourceReceiptSha256": "e69e5441c4c90cfb03786859c9aa76a45e92f87c532745ae60397c4af2de33d9"
+  },
+  "actualHostedFullPassClaim": false
+}
