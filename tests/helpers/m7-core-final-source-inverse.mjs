@@ -13,7 +13,7 @@ export function preM7FinalSource(path,source,{readSource=live}={}){
  const capability=preIntegratedCapabilitySource(path,source,{readSource:readSource===live?sevenRefactorEpoch.combinedReader(readSource,'localSeven'):readSource});
  if(capability!==source)return capability;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'develop',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'develop')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'develop'):readSource)});
 }
 const readers=new WeakMap();
 export function m7FinalReader(readSource=live){

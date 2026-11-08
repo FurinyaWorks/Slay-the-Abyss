@@ -86,7 +86,7 @@ test('every recognized direct or public call freshly validates all four owners a
  assert.throws(()=>prior(actor,read(actor),{readSource:null}),/linked reader/);
 });
 
-test('default linked reads follow the isolated four-owner filesystem and reject warm edits and deletions',()=>{
+test('explicit linked reads follow the isolated four-owner filesystem and reject warm edits and deletions',()=>{
  fourOwners();
  const original=Object.fromEntries(owners.map(path=>[path,read(path)]));
  const expected=Object.fromEntries(paths.map(path=>[path,before(path)]));
@@ -94,12 +94,13 @@ test('default linked reads follow the isolated four-owner filesystem and reject 
  try{
   for(const path of owners){const target=join(directory,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,original[path]);}
   process.chdir(directory);
+  const readSource=path=>readFileSync(join(directory,path),'utf8');
   for(const host of paths)for(const linked of owners){
-   assert.equal(prior(host,original[host]),expected[host]);
-   writeFileSync(linked,original[linked]+'\n');assert.throws(()=>prior(host,original[host]),/lifecycle linked/);
-   writeFileSync(linked,original[linked]);assert.equal(prior(host,original[host]),expected[host]);
-   rmSync(linked);assert.throws(()=>prior(host,original[host]),/lifecycle linked/);
-   writeFileSync(linked,original[linked]);assert.equal(prior(host,original[host]),expected[host]);
+   assert.equal(prior(host,original[host],{readSource}),expected[host]);
+   writeFileSync(linked,original[linked]+'\n');assert.throws(()=>prior(host,original[host],{readSource}),/lifecycle linked/);
+   writeFileSync(linked,original[linked]);assert.equal(prior(host,original[host],{readSource}),expected[host]);
+   rmSync(linked);assert.throws(()=>prior(host,original[host],{readSource}),/lifecycle linked/);
+   writeFileSync(linked,original[linked]);assert.equal(prior(host,original[host],{readSource}),expected[host]);
   }
  }finally{process.chdir(cwd);rmSync(directory,{recursive:true,force:true});}
 });

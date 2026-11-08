@@ -17,12 +17,12 @@ export function extendSevenRefactorEpoch(original){
  const proof={...prior,currentCommitRole:outer.currentCommitRole,currentTreeCommitted:false,sourceSliceCommit:outer.sourceSliceCommit,collectedBaseCommit:outer.collectedBaseCommit,currentCommit:outer.currentCommit,current:{...prior.current,...outer.current},
   owners:[...new Set([...prior.owners,...outer.owners])],
   targets:{...prior.targets,sevenPrior:{commit:outer.targets.prior.commit,files:prior.current}}};
- const current=createSourceEpochProjector(proof),live=p=>readFileSync(p,'utf8'),readers=new WeakMap();
+ const current=createSourceEpochProjector(proof,{allowConfigLayout:true}),live=p=>readFileSync(p,'utf8'),readers=new WeakMap();
  function preCombinedSource(path,source,{target,readSource=live}={}){
   readSource=readers.get(readSource)?.raw??readSource;
   const projected=current.preCombinedSource(path,source,{target,readSource});
   if(projected!==source||target==='sevenPrior'||prior.current[path]?.sha256===current.proof.current[path]?.sha256)return projected;
-  return original.preCombinedSource(path,source,{target,readSource:current.combinedReader(readSource,'sevenPrior')});
+  return original.preCombinedSource(path,source,{target,readSource:typeof readSource==='function'?current.combinedReader(readSource,'sevenPrior'):readSource});
  }
  function combinedReader(readSource=live,target){
   assert.equal(typeof readSource,'function','linked reader must be a function');

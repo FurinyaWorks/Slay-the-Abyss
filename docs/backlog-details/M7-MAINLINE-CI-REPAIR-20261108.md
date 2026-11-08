@@ -22,3 +22,11 @@
 ## 新基线接续
 
 发布前 #563 六个 2D 说明文件与 #562 七项重构已合入 develop `7821a7f44b518c09f6b565860e04e4823bc95153`。本切片 19 个路径与该基线增量无交集，无冲突线性接续，15 份测试代码字节不变。最终组合重新定向验证：隔离 5/5（10.166s）、预算 25/25（6.075s）、Reward 全文件 9/9（50.332s）均通过，日志见 [本轮证据](../evidence/mainline-ci-validation-20261108.json)。没有重跑 Full，原残余与验收边界不变。
+
+## 精确来源 facade 兼容补丁
+
+将已独审 `f90dd1ece53bccb1db5684d00c73e5ab65552a4c` 的 22 路径无冲突增量合入本 PR，不另开 PR。先完整保持该片代码字节，再修复发布前发现的输入语法缺口：未知输入保留原 helper 对无效 reader 的透明语义；仅输入配置允许严格 token 相同的空白布局变化，45 个 linked raw owner 仍每次完整哈希认证。Windows 新增 helper/冻结 Lua witness 精确 LF，gzip 保持 -text，不更改任何 proof 字节；core lifecycle 隔离用例改为明确的临时目录 reader。
+
+组合定向：原补丁新来源回归 6/6、五个隔离用例加 core lifecycle 6/6 通过；原三个来源合同全文件从 12/27 改善为 16/27，**仍有 11 项失败**，包括历史 owner 数量/epoch fixture 与 retirement 错误标签，明确留待后续切片。前一轮 39 项证据保持原版本，未重复不受影响的 Reward/预算回放，也未运行 Full。
+
+发布前合成有效 proof 发现通用 projector 会把 `1 2` / `tr ue` 等非法 token 删除空白后误认当前来源，已保留红灯证据。补正仅在配置布局匹配前用 JSON.parse 验语法，仍以原 token 文本比较身份，不重序列化、不放宽重复 key、escape、顺序或 linked owner hash。新增数字、负数、指数、boolean、null 五类负控，原字节透传且零 linked 读取（包含 null reader）。完整新回归 7/7、隔离加 core 6/6 再次通过；原补丁其余 19 文件与先前 15 份测试代码字节不变，原残余 11 项与 Full 边界不变。

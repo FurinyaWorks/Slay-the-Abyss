@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-10-30 11:45
-updated_date: '2026-11-08T03:06:00Z'
+updated_date: '2026-11-08T03:19:00Z'
 labels: []
 dependencies: []
 priority: medium
@@ -71,4 +71,8 @@ PR377最新整合承接PR378事件与PR381必要修复：目录hash与原生怪�
 2026-11-08按b7ed1830合后Quality真实日志修复五个隔离helper闭包、Reward完整当前模块装配及#541遗漏的七份预算合同；独审通过，专项5/25/9项通过，原SCC上限保留。未改生产源码/预算/CI阈值、不跑Full；三份来源合同仍15项失败交共享wrapper协调者，当前Full、合并、候选与设备均未验。证据见docs/backlog-details/M7-MAINLINE-CI-REPAIR-20261108.md，任务继续In Progress。
 
 发布前#563/#562合后develop前移7821a7f4，本切片19路径零交集线性接续，15份已审测试代码字节不变。最终组合仅重验受影响39项（隔离5、预算25、Reward9）全部通过，Full与其余来源合同仍待，不改变任务状态或AC。
+
+同一修复PR增量合入已独审f90dd1ec的22路径来源facade兼容片，原代码字节不改；unknown无效reader/严格输入token与真实CRLF hash修复。组合新来源6/6、隔离加core6/6通过，三个合同全文件16/27仍11失败，完整证据保留；不重复无关回放或Full、不改生产/预算/门禁。
+
+facade合流发布前发现合法proof下非法JSON token会被误当空白布局，先红后修：仅加语法门槛，继续严格token和raw owner验签；五类非法输入原字节透传且零读取。新回归7/7、隔离加core6/6通过，独审确认该阻断已解决；原失败及补正证据保留，残余11项和Full边界不变。
 <!-- SECTION:NOTES:END -->

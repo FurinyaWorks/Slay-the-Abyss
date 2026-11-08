@@ -357,3 +357,8 @@ docs/evidence/mobile-readability-20261101/** -text
 docs/evidence/raiden-v4-verification-20261103/*.json text eol=lf
 tests/raiden-v4-verification.test.mjs text eol=lf
 tests/lua/support/raiden_v4_*.lua text eol=lf
+
+# Seven-refactor helper and compressed proof are authenticated as complete bytes.
+tests/helpers/seven-refactor-source-epoch.mjs text eol=lf
+tests/helpers/seven-refactor-source-epoch.json.gz -text
+tests/fixtures/defect-utility-planning-before.lua text eol=lf

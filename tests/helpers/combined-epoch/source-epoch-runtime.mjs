@@ -5,6 +5,15 @@ import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 const normalize=s=>s.replaceAll('\r\n','\n');
 const hash=s=>createHash('sha256').update(s).digest('hex');
+// Input layout permission never applies to linked raw owners. Preserve every
+// token, including string escapes, key order and duplicates, without reserialization.
+const tokens=s=>s.replace(/"(?:\\.|[^"\\])*"|[ \t\r\n]+/g,t=>t.startsWith('"')?t:'');
+function sameConfigLayout(source,current){
+ // Whitespace inside a number or keyword is not JSON layout. Parsing is only
+ // a syntax gate; the original token text still decides identity.
+ try{JSON.parse(source);}catch{return false;}
+ return tokens(source)===tokens(current);
+}
 const validPath=p=>p==='config/architecture.json'||/^src\/lua\/[A-Za-z0-9_-]+\.lua$/.test(p);
 function freeze(value){if(value&&typeof value==='object'){for(const v of Object.values(value))freeze(v);Object.freeze(value);}return value;}
 function validateBinding(binding){
@@ -14,7 +23,7 @@ function validateBinding(binding){
  assert.equal(hash(binding.source),binding.sha256,'source identity SHA256');
  if(binding.gitBlob)assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(binding.source)}\0`).update(binding.source).digest('hex'),binding.gitBlob,'source identity Git blob');
 }
-export function createSourceEpochProjector(input,{root=process.cwd()}={}){
+export function createSourceEpochProjector(input,{root=process.cwd(),allowConfigLayout=false}={}){
  // Clone once to prevent the caller changing proof data after validation.
  const proof=JSON.parse(JSON.stringify(input));
  assert.equal(proof.schemaVersion,1);assert.equal(proof.normalization,'LF');
@@ -40,7 +49,7 @@ export function createSourceEpochProjector(input,{root=process.cwd()}={}){
   const destination=requireTarget(target),current=proof.current[path],before=destination.files[path];
   // New witnesses are retained here; retirement belongs to a separate checked
   // materializer. Unknown/original/foreign bytes never authorize owner reads.
-  if(typeof source!=='string'||!current||!before||current.sha256===before.sha256||hash(normalize(source))!==current.sha256)return source;
+  if(typeof source!=='string'||!current||!before||current.sha256===before.sha256||(hash(normalize(source))!==current.sha256&&(!allowConfigLayout||path!=='config/architecture.json'||!sameConfigLayout(source,current.source))))return source;
   assert.equal(typeof readSource,'function','linked owner reader');readSource=rawReader(readSource);
   for(const owner of proof.owners){
    let actual;try{actual=readSource(owner);}catch(error){assert.fail('combined linked owner missing: '+owner+': '+String(error?.message??error));}

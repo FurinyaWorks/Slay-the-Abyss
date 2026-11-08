@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preAct1ChoiceSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'act1',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'act1')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'act1'):readSource)});
 }
 const readers=new WeakMap();
 export function act1ChoiceReader(readSource=live){

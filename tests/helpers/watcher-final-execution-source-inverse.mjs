@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preWatcherExecutionSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'watcher',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'watcher')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'watcher'):readSource)});
 }
 const readers=new WeakMap();
 export function watcherExecutionReader(readSource=live){
