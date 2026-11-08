@@ -1,3 +1,4 @@
+import {prePartialCasePlanningSource,partialCasePlanningFloors,originalPlanningSource,preGameUiLocalPlanningSource,gameUiLocalPlanningKey,gameUiLocalPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciEpoch} from './helpers/integration-ci-epochs.mjs';
 import {potionCallbackFloorKey,verifiedPotionCallbackFloor,prePotionCallbackPlanningSource} from './helpers/potion-callback-planning.mjs';
 import {endTurnFloorKey,verifiedEndTurnFloor} from './helpers/end-turn-planning.mjs';
@@ -5,6 +6,12 @@ import {prePresencePlanningSource,presencePlanningBefore} from './helpers/actor-
 import {rewardQueryPlanningProof,preRewardQueryPlanningSource} from './helpers/reward-query-planning-source-inverse.mjs';
 import {assertRewardQueryPlanningReceipt,assertRewardQueryPlanningProjection} from './helpers/reward-query-planning-contract.mjs';
 import {runCatalogFloorKey,verifiedRunCatalogFloor} from './helpers/run-catalog-planning.mjs';
+import {preDefectIntegrationPlanningSource} from './helpers/defect-integration-planning-source-inverse.mjs';
+import {defectUtilityPlanningKey,defectUtilityPlanningFloor} from './helpers/defect-utility-planning-source-inverse.mjs';
+import {preEnemyIntegrationPlanningSource,enemyOnlyPlanningSource,enemyIntegrationPlanningProof} from './helpers/enemy-integration-planning-source-inverse.mjs';
+import {enemyAiPlanningKey,enemyAiPlanningFloor,enemyAiPlanningProof,preEnemyAiPlanningSource} from './helpers/enemy-ai-planning-source-inverse.mjs';
+import {watcherPlanningKey,watcherPlanningFloor} from './helpers/watcher-planning-source-inverse.mjs';
+import {classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -196,6 +203,10 @@ test('current timing records preserve all measured corrections without duplicate
    assert.equal(run.tests,8);assert.equal(run.passed,8);assert.equal(run.failed,0);assert.equal(run.skipped,0);
    assert.equal(entry.sourceLogSha256,createHash('sha256').update(run.rawTap).digest('hex'));
    assert.match(entry.kind,/not hosted or Linux measurement/);
+  }else if(Object.hasOwn(partialCasePlanningFloors,file)){
+   assert.deepEqual(entry,partialCasePlanningFloors[file]);
+  }else if(file===gameUiLocalPlanningKey){
+   assert.deepEqual(entry,gameUiLocalPlanningFloor);
   }else if(file===runCatalogFloorKey){
    assert.deepEqual(entry,verifiedRunCatalogFloor());
   }else if(file===potionCallbackFloorKey){
@@ -206,16 +217,154 @@ test('current timing records preserve all measured corrections without duplicate
    assert.deepEqual(entry,ciEpoch('actor').timings.jsPlanning.localLowerBounds['tests/actor-presence.test.mjs']);
   }else if(file==='tests/reward-query-boundary.test.mjs'){
    assert.deepEqual(entry,JSON.parse(rewardQueryPlanningProof.afterSource).jsPlanning.localLowerBounds['tests/reward-query-boundary.test.mjs']);
+  }else if(file===defectUtilityPlanningKey){
+   assert.deepEqual(entry,defectUtilityPlanningFloor);
+   const evidence=readFileSync(entry.sourceLog,'utf8').replaceAll('\r\n','\n');
+   assert.equal(createHash('sha256').update(evidence).digest('hex'),entry.sourceLogSha256);
+   assert.match(evidence,/tests 11/);assert.match(evidence,/pass 11/);assert.match(evidence,/fail 0/);assert.match(evidence,/skipped 0/);
+   assert.equal(Number(evidence.match(/duration_ms ([\d.]+)/)?.[1]),entry.nodeReportedDurationMs);
+   assert.ok(entry.durationMs>=entry.nodeReportedDurationMs);
+  }else if(file===enemyAiPlanningKey){
+   assert.deepEqual(entry,enemyAiPlanningFloor);
+  }else if(file===classPotionPlanningKey){
+   assert.deepEqual(entry,classPotionPlanningFloor);assert.equal(entry.durationMs,180000);
+   assert.ok(entry.durationMs>=162004.675552,'retain conservative full-file local planning floor');
+  }else if(file===watcherPlanningKey){
+   assert.deepEqual(entry,watcherPlanningFloor);assert.equal(entry.durationMs,30000);
+   assert.ok(entry.durationMs>=21763.220989+1218.265678);
   }else{
    assert.match(entry.environment,/local/);assert.match(entry.kind,/not .*hosted/);localFloorCount++;
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,15);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,22);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 
 historicalTest('fresh relic base retains its complete accepted scheduling measurements', () => {
   assert.equal(createHash('sha256').update(preIntegrationSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8')).replaceAll('\r\n','\n')).digest('hex'),
     '4039efc1bc954f541bcacac619550daa1231a4b3894ebe6568697d2f10af7ad8', 'exact acb09e46 scheduling contract; no obsolete PR366 correction reapplied');
+});
+
+test('Enemy AI local planning floor is exact, conservatively rounded and cannot rewrite hosted or safety evidence',()=>{
+ const path=enemyAiPlanningProof.path,source=enemyOnlyPlanningSource(path,preDefectIntegrationPlanningSource(path,originalPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'),'seven')));
+ const previous=preEnemyAiPlanningSource(path,source),old=JSON.parse(previous);
+ assert.equal(createHash('sha256').update(source).digest('hex'),enemyAiPlanningProof.afterSha256);
+ assert.equal(createHash('sha256').update(previous).digest('hex'),enemyAiPlanningProof.beforeSha256);
+ assert.equal(preEnemyAiPlanningSource(path,source.replaceAll('\n','\r\n')),previous);
+ const expected=structuredClone(old);expected.jsPlanning.localLowerBounds[enemyAiPlanningKey]=enemyAiPlanningFloor;
+ assert.equal(JSON.stringify(expected,null,2)+'\n',source,'only one local planning entry changes; all maps, safety values and old floors retain exact bytes');
+ assert.equal(enemyAiPlanningFloor.environment,'cloud Linux local');
+ assert.equal(enemyAiPlanningFloor.nodeReportedDurationMs,27916.657737);
+ assert.equal(enemyAiPlanningFloor.durationMs,30000);
+ assert.equal(enemyAiPlanningFloor.durationMs,Math.ceil(enemyAiPlanningFloor.nodeReportedDurationMs/5000)*5000);
+ assert.equal(enemyAiPlanningFloor.sourceLogSha256,'64d2062d9dad8b5443bddeab4165c2a74e58a08196c7bfb2fb6ccc4c0cd9bf0e');
+ assert.equal(enemyAiPlanningFloor.coverage,'11/11 complete file passed; no selected or skipped groups');
+ for(const platform of ['win32','linux','unknown']){
+  assert.equal(timings.js[platform]?.[enemyAiPlanningKey],undefined,'local estimate never fabricates hosted data');
+  assert.equal(jsPlanningWeights([enemyAiPlanningKey],platform)[enemyAiPlanningKey],30000);
+ }
+ for(const input of [previous,null,undefined,{},source+'\n',source.slice(1),
+  source.replace('"durationMs": 30000','"durationMs": 30001'),
+  source.replace('"durationMs": 30000','"durationMs": 30000.0'),
+  source.replace('"cloud Linux local"','"hosted Windows"'),
+  source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),
+  source.replace('"durationMs": 30000','"durationMs": 30000, "durationMs": 30000')])
+  assert.equal(preEnemyAiPlanningSource(path,input),input,'foreign, partial and old epochs stay visible');
+ assert.equal(preEnemyAiPlanningSource('foreign/'+path,source),source);
+ assert.ok(Object.isFrozen(enemyAiPlanningFloor)&&Object.isFrozen(enemyAiPlanningProof));
+});
+
+
+test('combined planning epoch preserves both complete input maps and rejects any drift',()=>{
+ const path=enemyIntegrationPlanningProof.path,source=preDefectIntegrationPlanningSource(path,originalPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'),'seven'));
+ const parent=preEnemyIntegrationPlanningSource(path,source),enemy=enemyOnlyPlanningSource(path,source);
+ assert.notEqual(source,parent);assert.notEqual(source,enemy);
+ assert.equal(createHash('sha256').update(source).digest('hex'),enemyIntegrationPlanningProof.combinedSha256);
+ const expected=JSON.parse(parent);expected.jsPlanning.localLowerBounds[enemyAiPlanningKey]=enemyAiPlanningFloor;
+ assert.equal(JSON.stringify(expected,null,2)+'\n',source);
+ const fromEnemy=JSON.parse(enemy);fromEnemy.jsPlanning.localLowerBounds[classPotionPlanningKey]=classPotionPlanningFloor;fromEnemy.jsPlanning.localLowerBounds[watcherPlanningKey]=watcherPlanningFloor;
+ assert.deepEqual(JSON.parse(source),fromEnemy,'no measured map, cost, floor or safety value is lost');
+ for(const project of [preEnemyIntegrationPlanningSource,enemyOnlyPlanningSource]){
+  assert.equal(project(path,source.replaceAll('\n','\r\n')),project(path,source));
+  assert.equal(project('foreign/'+path,source),source);
+  for(const input of [null,undefined,{},42,parent,enemy,source+'\n',source.slice(1),
+   source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),
+   source.replace('"durationMs": 180000','"durationMs": 179999'),
+   source.replace('"durationMs": 30000','"durationMs": 29999'),
+   source.replace('"cloud Linux local"','"hosted Windows"'),
+   source.replace('"durationMs": 180000','"durationMs": 180000, "durationMs": 180000')])
+   assert.equal(project(path,input),input,'partial, altered and other epochs stay visible');
+ }
+});
+
+test('complete local Game UI run raises only its planning floor and preserves every original observation',()=>{
+ const key=gameUiLocalPlanningKey,floor=gameUiLocalPlanningFloor;
+ const receiptBytes=readFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+ const hash=value=>createHash('sha256').update(value).digest('hex');
+ assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+ assert.equal(receipt.kind,'local-complete-file-planning-floor');
+ assert.equal(receipt.file,key);
+ assert.deepEqual(receipt.command,['timeout','90','node','--test',key]);
+ assert.deepEqual([receipt.status,receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped,receipt.todo],[0,13,13,0,0,0,0]);
+ assert.equal(receipt.actualFullPassClaim,false);assert.equal(receipt.hostedMeasurementClaim,false);
+ const logBytes=readFileSync(receipt.sourceLog),log=logBytes.toString().replaceAll('\r\n','\n');
+ assert.equal(hash(logBytes),receipt.sourceLogSha256);assert.equal(receipt.sourceLogSha256,floor.sourceLogSha256);
+ for(const [label,value]of [['tests',13],['pass',13],['fail',0],['cancelled',0],['skipped',0],['todo',0]])
+  assert.match(log,new RegExp('ℹ '+label+' '+value+'(?:\\n|$)'));
+ assert.equal(Number(log.match(/ℹ duration_ms ([\d.]+)/)[1]),receipt.nodeReportedDurationMs);
+ assert.equal(receipt.nodeReportedDurationMs,77214.241194);assert.equal(floor.nodeReportedDurationMs,receipt.nodeReportedDurationMs);
+ assert.equal(floor.durationMs,Math.ceil(receipt.nodeReportedDurationMs));assert.equal(receipt.planningFloorMs,floor.durationMs);
+ assert.equal(receipt.sourceIdentity.files[key],hash(readFileSync(key)));
+ const path='scripts/ci-test-timings.json',source=prePartialCasePlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),prior=preGameUiLocalPlanningSource(path,source);
+ assert.notEqual(source,prior);const old=JSON.parse(prior),expected=structuredClone(old);
+ assert.equal(Object.keys(old.jsPlanning.localLowerBounds).length,19);assert.equal(old.jsPlanning.localLowerBounds[key],undefined);
+ expected.jsPlanning.localLowerBounds[key]=floor;
+ assert.equal(JSON.stringify(expected,null,2)+'\n',source);
+ for(const platform of ['win32','linux']){
+  assert.equal(timings.js[platform][key],10000,'retain actual old observations separately from the new local planning floor');
+  assert.equal(jsPlanningWeights([key],platform)[key],Math.max(timings.js[platform][key],floor.durationMs));
+ }
+ assert.equal(preGameUiLocalPlanningSource(path,source.replaceAll('\n','\r\n')),prior);
+ assert.equal(preGameUiLocalPlanningSource('foreign/'+path,source),source);
+ for(const mutant of [prior,null,undefined,{},42,source+'\n',source.slice(1),source.replace('"durationMs": 77215','"durationMs": 77214'),source.replace('"durationMs": 77215','"durationMs": 77215, "durationMs": 77215'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999')]){
+  assert.equal(preGameUiLocalPlanningSource(path,mutant),mutant);
+  if(typeof mutant==='string'&&mutant!==prior)assert.equal(originalPlanningSource(path,mutant),mutant);
+ }
+});
+
+test('partial successful source cases provide lower bounds without claiming their failed batch or whole files passed',()=>{
+ const hash=value=>createHash('sha256').update(value).digest('hex');
+ const keys=Object.keys(partialCasePlanningFloors);
+ assert.deepEqual(keys,['tests/combat-reactions-architecture-inverse.test.mjs','tests/compendium-source-inverse.test.mjs']);
+ for(const [file,floor]of Object.entries(partialCasePlanningFloors)){
+  const bytes=readFileSync(floor.sourceReceipt),receipt=JSON.parse(bytes);
+  assert.equal(hash(bytes),floor.sourceReceiptSha256);
+  assert.equal(receipt.kind,'successful-case-planning-lower-bounds');
+  assert.deepEqual(receipt.batchSummary,{tests:79,passed:76,failed:3,skipped:0,cancelled:0,nodeReportedDurationMs:116739.773333});
+  assert.equal(receipt.fullFileCompletionClaim,false);assert.equal(receipt.actualFullPassClaim,false);assert.equal(receipt.hostedMeasurementClaim,false);
+  const raw=readFileSync(receipt.sourceLog),text=raw.toString().replaceAll('\r\n','\n');
+  assert.equal(hash(raw),receipt.sourceLogSha256);assert.equal(hash(raw),floor.sourceLogSha256);
+  for(const [label,value]of [['tests',79],['pass',76],['fail',3],['skipped',0]])assert.match(text,new RegExp('ℹ '+label+' '+value+'(?:\n|$)'));
+  const observation=receipt.observations.find(row=>row.file===file);
+  assert.ok(observation);assert.equal(observation.caseName,floor.sourceCase);
+  assert.equal(observation.durationMs,floor.caseDurationMs);
+  assert.equal(observation.rawSuccessLine,'✔ '+floor.sourceCase+' ('+floor.caseDurationMs+'ms)');
+  assert.ok(text.includes(observation.rawSuccessLine+'\n'));
+  assert.ok(readFileSync(file,'utf8').includes("test('"+floor.sourceCase+"'"),'explicit unique named case belongs to the declared file');
+  assert.equal(floor.durationMs,Math.ceil(observation.durationMs));assert.equal(observation.planningFloorMs,floor.durationMs);
+  for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,floor.durationMs));
+ }
+ const path='scripts/ci-test-timings.json',source=readFileSync(path,'utf8').replaceAll('\r\n','\n'),prior=prePartialCasePlanningSource(path,source);
+ assert.notEqual(prior,source);const expected=JSON.parse(prior);
+ assert.equal(Object.keys(expected.jsPlanning.localLowerBounds).length,20);
+ for(const key of keys)assert.equal(expected.jsPlanning.localLowerBounds[key],undefined);
+ Object.assign(expected.jsPlanning.localLowerBounds,partialCasePlanningFloors);
+ assert.equal(JSON.stringify(expected,null,2)+'\n',source,'only two explicitly partial lower bounds change; no measured maps, prior floors or policy changes');
+ assert.equal(prePartialCasePlanningSource(path,source.replaceAll('\n','\r\n')),prior);
+ assert.equal(prePartialCasePlanningSource('foreign',source),source);
+ for(const input of [prior,null,undefined,{},42,source+'\n',source.slice(1),source.replace('"durationMs": 80063','"durationMs": 80062'),source.replace('"durationMs": 42675','"durationMs": 42674'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999')]){
+  assert.equal(prePartialCasePlanningSource(path,input),input);
+  if(typeof input==='string'&&input!==prior)assert.equal(originalPlanningSource(path,input),input);
+ }
 });

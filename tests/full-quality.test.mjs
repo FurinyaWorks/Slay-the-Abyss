@@ -18,27 +18,27 @@ function fixture(){return {repo,runId:7,attempt:1,number:510,head:sha('a'),base:
  checkoutArtifact:{id:200,name:'quality-7-1-check',expired:false,workflow_run:{id:7,head_sha:sha('a')}}};}
 test('Full gate accepts the exact running aggregate only after every actual shard succeeds',()=>assert.deepEqual(fullGateErrors(fixture()),[]));
 
-test('Full publisher cannot certify old 27/28/30/33-job shapes or a forged/missing current actual shard',()=>{
+test('Full publisher cannot certify old 27/28/30/33/35-job shapes or a forged/missing current actual shard',()=>{
  for(const mutate of [
-  ...[[13,9],[14,9],[16,9],[16,12]].map(([windows,posix])=>e=>{
+  ...[[13,9],[14,9],[16,9],[16,12],[17,13]].map(([windows,posix])=>e=>{
    const win=e.jobs.find(j=>j.name.startsWith('rules (')),linux=e.jobs.find(j=>j.name.startsWith('engineering-posix ('));
    assert(win&&linux,'current matrices supply complete legacy-shape samples');
    e.jobs=e.jobs.filter(j=>!j.name.startsWith('rules (')&&!j.name.startsWith('engineering-posix ('));
    e.jobs.push(...Array.from({length:windows},(_,i)=>({...win,id:1000+i,name:`rules (${i+1}/${windows})`})),...Array.from({length:posix},(_,i)=>({...linux,id:2000+i,name:`engineering-posix (${i+1}/${posix})`})));
   }),
-  e=>e.jobs=e.jobs.filter(j=>j.name!=='engineering-posix (13/13)'),
-  e=>e.jobs.push({...e.jobs.find(j=>j.name==='engineering-posix (13/13)'),id:3000}),
-  e=>e.jobs.find(j=>j.name==='engineering-posix (13/13)').name='engineering-posix (13/12)',
+  e=>e.jobs=e.jobs.filter(j=>j.name!=='engineering-posix (14/14)'),
+  e=>e.jobs.push({...e.jobs.find(j=>j.name==='engineering-posix (14/14)'),id:3000}),
+  e=>e.jobs.find(j=>j.name==='engineering-posix (14/14)').name='engineering-posix (14/13)',
   e=>e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)'),
   e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (17/17)'),id:900}),
   e=>e.jobs.find(job=>job.name==='rules (17/17)').id=e.jobs.find(job=>job.name==='rules (16/17)').id,
   e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (17/17)'),id:3001,name:'rules (18/17)'}),
   e=>e.jobs.find(job=>job.name==='rules (17/17)').name='rules (17/16)',
   e=>{const sample=e.jobs.find(job=>job.name==='rules (1/17)');assert(sample,'actual current first shard exists');e.jobs=e.jobs.filter(job=>!job.name.startsWith('rules ('));e.jobs.push(...Array.from({length:13},(_,i)=>({...sample,id:700+i,name:`rules (${i+1}/13)`})));},
-  e=>{e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)');e.jobTotal=35;e.matrix={windows:17,posix:13};},
+  e=>{e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)');e.jobTotal=36;e.matrix={windows:17,posix:14};},
   e=>e.checkout.tested=sha('f'),
  ]){
-  const e=fixture();assert.equal(e.jobs.length,35);mutate(e);
+  const e=fixture();assert.equal(e.jobs.length,36);mutate(e);
   assert(fullGateErrors(e).length,String(mutate));let posted;
   const result=publishFullQuality(e,(...args)=>{posted=args.find(arg=>arg.startsWith('state=')).slice(6);return JSON.stringify({state:posted,context:'full-quality'});});
   assert.equal(result.state,'failure');assert.equal(posted,'failure');

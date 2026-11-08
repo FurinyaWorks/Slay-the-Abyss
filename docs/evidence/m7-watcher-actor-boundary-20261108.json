@@ -1,0 +1,122 @@
+{
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "production": [
+    "src/lua/abyss_watcher_attack_cards.lua",
+    "src/lua/abyss_combat_queued_play.lua"
+  ],
+  "metrics": {
+    "before": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "requirePositions": 1920,
+      "modulePairs": 1546,
+      "cycles": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75
+    },
+    "after": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5054,
+        "measurements": 5387,
+        "expectedMeasurements": 5387
+      },
+      "requirePositions": 1920,
+      "modulePairs": 1545,
+      "cycles": [
+        {
+          "members": 80,
+          "positions": 619,
+          "pairs": 396
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75
+    }
+  },
+  "apiMigration": "Internal Halt prepareEffect now receives a per-call lazy Actor host. Ordinary effects still need no capability. Sole production caller and one direct test call updated. No compatibility claim for external two-argument Halt calls. Frozen historical protocol is paired with the complete frozen Watcher module.",
+  "validation": {
+    "uniqueTestsWithLatestPass": 73,
+    "behaviorTests": 10,
+    "sourceBoundaryAndHistorical": 38,
+    "ciAndPlanningAdditionalUnique": 18,
+    "m9Protocol": 6,
+    "m7Epoch": 1,
+    "behavior": "Two separate old/current VM pairs execute unchanged assertions for watcher_attack_build (23 cases) and watcher_early_turn_autoplay. Complete reachable graphs including aliases, metatables and return arity compare exactly. Additional frozen-protocol Halt pair passes.",
+    "failedRunsPreserved": [
+      "behavior first 8/9: test confused reviewedDeferred policy flag with syntactic deferred position; corrected assert verifies both physical Actor imports and the lazy source line; rerun1/1.",
+      "CI first18/22: new floor required historical-only projection, current exact-floor assertion and old floor count preservation; final22/22.",
+      "Guidance first missing sparse .codebuddy/.cursor paths; hydrated tracked folders, final pass.",
+      "First Backlog append did not execute because sparse checkout omitted backlog. Hydrated tracked backlog and ran CLI successfully."
+    ],
+    "doctor": "exit1, original five duplicate-ID groups and legacy completed directory, not green",
+    "fullSuite": false,
+    "hostedForThisHead": false,
+    "device": false
+  },
+  "planning": {
+    "inventory": {
+      "js": 748,
+      "lua": 1402
+    },
+    "forecastOnly": true,
+    "workerCount": 2,
+    "concurrency": 12,
+    "reserveMs": 60000,
+    "floors": 10,
+    "platforms": {
+      "linux": {
+        "shards": 13,
+        "budgetMs": 1200000,
+        "maxPlusReserveMs": 1194206,
+        "spareMs": 5794
+      },
+      "win32": {
+        "shards": 17,
+        "budgetMs": 1800000,
+        "maxPlusReserveMs": 1713421,
+        "spareMs": 86579
+      }
+    }
+  },
+  "sourceBinding": {
+    "allSourceHashesMatchCurrent": true,
+    "measurementRevision": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+    "meaning": "Measurement collected before local commit; final exact source digests bind unchanged production bytes."
+  },
+  "publication": {
+    "attempted": false,
+    "pr": null,
+    "merged": false,
+    "reason": "Prior public upload denial; no new authorization and no alternate route attempted."
+  },
+  "files": {
+    "planning.json": "cd7c1230598fff3551648307effdfb5a1f16593f0d1d205719b374d7d6343aff",
+    "remote-occupancy.json": "622c6b1078294965e776a58578f6716ea9f5632763628d9e715479a18b19cb88",
+    "baseline-engineering.json.gz": "9e92a164cb5a685dab6cdb3843ac266d16560042593d7e81aa90728b99eded04",
+    "validation-logs.json.gz": "84c6b739f274c57b351f85f8a9e0cb58e30fc070fb82f9f662b9b10835d40ea9",
+    "current-engineering.json.gz": "4281653d2ceb7f71109a81e46e2bfadbb3ab16a48adc858077d73c7e88edc1b3"
+  }
+}

@@ -62,49 +62,8 @@ function M.preBattle(state, enemy, random)
     if enemy.ai and enemy.ai.kind == "louse" then Louse.preBattle(state, enemy, random, Actors.applyPower) end
 end
 
-function M.initialize(state, enemy, random)
-    if EventEnemies.owns(enemy)then return EventEnemies.initialize(state,enemy,random)end
-    if Act4.owns(enemy)then return Act4.initialize(state,enemy,random)end
-    if Darklings.owns(enemy)then return Darklings.initialize(state,enemy,random)end
-    if Awakened.owns(enemy)then return Awakened.initialize(state,enemy,random)end
-    if enemy.ai and enemy.ai.kind=='giant_head' then return GiantHead.initialize(state,enemy,random) end
-    if enemy.ai and enemy.ai.kind=='nemesis'then return Nemesis.initialize(state,enemy,random)end
-    if Reptomancer.owns(enemy)then return Reptomancer.initialize(state,enemy,random)end
-    if enemy.ai and enemy.ai.kind=="act3_boss" then return Act3Bosses.initialize(state,enemy,random) end
-    if enemy.ai and enemy.ai.kind=="act1_boss" then return Act1Bosses.initialize(state,enemy,random) end
-    if enemy.ai and enemy.ai.kind == 'act3' then return Act3.initialize(state,enemy,random) end
-    if enemy.ai and enemy.ai.kind == 'act2' then return Act2.initialize(state,enemy,random) end
-    if enemy.ai and enemy.ai.kind == "looter" then return Looter.initialize(state, enemy, random) end
-    if not enemy.ai then return end -- legacy enemies retain the declared cycle
-    if enemy.ai.kind == "rolled_attack" or enemy.ai.kind == "opening_roll_attack" then return rollAttack(state, enemy, random) end
-    if enemy.ai.kind == "shield_gremlin" then
-        random(state, enemy.ai.rollRange)
-        select(enemy, enemy.ai.protectIntent)
-        return
-    end
-    if enemy.ai.kind == "mad_gremlin" then
-        rollAttack(state, enemy, random)
-        Actors.applyPower(state, enemy, "angry", enemy.ai.angryStacks, enemy)
-        return
-    end
-    if enemy.ai.kind == "charge_then_attack" then
-        -- Wizard's inherited init rolls once although getMove fixes Charge.
-        -- Its later charge/attack transitions use SetMove, not RollMove.
-        random(state, enemy.ai.rollRange)
-        enemy.aiCharge = enemy.ai.initialCharge
-        select(enemy, enemy.ai.chargeIntent)
-        return
-    end
-    if enemy.ai.kind == "jaw_worm" then return JawWorm.initialize(state, enemy, random) end
-    if enemy.ai.kind == "gremlin_nob" then return GremlinNob.initialize(state, enemy, random) end
-    if enemy.ai.kind == "blue_slaver" then return BlueSlaver.initialize(state, enemy, random) end
-    if enemy.ai.kind == "red_slaver" then return RedSlaver.initialize(state, enemy, random) end
-    if enemy.ai.kind == "acid_slime_s" then return AcidSlimeS.initialize(state, enemy, random) end
-    if enemy.ai.kind == "sentry" then return Sentry.initialize(state, enemy, random, Actors.applyPower) end
-    if enemy.ai.kind == "spike_slime_m" or enemy.ai.kind == "spike_slime_l" then return SpikeSlimeM.initialize(state, enemy, random) end
-    if enemy.ai.kind == "acid_slime_m" or enemy.ai.kind == "acid_slime_l" then return AcidSlimeM.initialize(state, enemy, random) end
-    if enemy.ai.kind == "fungi_beast" then return FungiBeast.initialize(state, enemy, random, Actors.applyPower) end
-    if enemy.ai.kind == "louse" then return Louse.initialize(state, enemy, random) end
+-- Scripted openings own phase counters, inherited opening rolls and powers.
+local function initializeScriptedPolicy(state, enemy, random)
     if enemy.ai.kind == "ritual_then_attack" then
         -- Inherited init calls rollMove even though the first move is Ritual.
         random(state, enemy.ai.rollRange)
@@ -124,6 +83,62 @@ function M.initialize(state, enemy, random)
     enemy.aiPhase, enemy.aiTurns, enemy.aiCycle = "sleep", 0, 1
     select(enemy, enemy.ai.sleepIntent)
     Actors.block(state, enemy, enemy.ai.sleepBlock, true)
+end
+
+-- Dedicated Act 1 policies keep their own move histories and sampling rules.
+local function initializeAct1Policy(state, enemy, random)
+    if enemy.ai.kind == "jaw_worm" then return JawWorm.initialize(state, enemy, random) end
+    if enemy.ai.kind == "gremlin_nob" then return GremlinNob.initialize(state, enemy, random) end
+    if enemy.ai.kind == "blue_slaver" then return BlueSlaver.initialize(state, enemy, random) end
+    if enemy.ai.kind == "red_slaver" then return RedSlaver.initialize(state, enemy, random) end
+    if enemy.ai.kind == "acid_slime_s" then return AcidSlimeS.initialize(state, enemy, random) end
+    if enemy.ai.kind == "sentry" then return Sentry.initialize(state, enemy, random, Actors.applyPower) end
+    if enemy.ai.kind == "spike_slime_m" or enemy.ai.kind == "spike_slime_l" then return SpikeSlimeM.initialize(state, enemy, random) end
+    if enemy.ai.kind == "acid_slime_m" or enemy.ai.kind == "acid_slime_l" then return AcidSlimeM.initialize(state, enemy, random) end
+    if enemy.ai.kind == "fungi_beast" then return FungiBeast.initialize(state, enemy, random, Actors.applyPower) end
+    if enemy.ai.kind == "louse" then return Louse.initialize(state, enemy, random) end
+    return initializeScriptedPolicy(state, enemy, random)
+end
+
+-- Fixed opening moves still differ in inherited rolls and constructor state.
+local function initializeOpeningPolicy(state, enemy, random)
+    if enemy.ai.kind == "rolled_attack" or enemy.ai.kind == "opening_roll_attack" then return rollAttack(state, enemy, random) end
+    if enemy.ai.kind == "shield_gremlin" then
+        random(state, enemy.ai.rollRange)
+        select(enemy, enemy.ai.protectIntent)
+        return
+    end
+    if enemy.ai.kind == "mad_gremlin" then
+        rollAttack(state, enemy, random)
+        Actors.applyPower(state, enemy, "angry", enemy.ai.angryStacks, enemy)
+        return
+    end
+    if enemy.ai.kind == "charge_then_attack" then
+        -- Wizard's inherited init rolls once although getMove fixes Charge.
+        -- Its later charge/attack transitions use SetMove, not RollMove.
+        random(state, enemy.ai.rollRange)
+        enemy.aiCharge = enemy.ai.initialCharge
+        select(enemy, enemy.ai.chargeIntent)
+        return
+    end
+    return initializeAct1Policy(state, enemy, random)
+end
+
+function M.initialize(state, enemy, random)
+    if EventEnemies.owns(enemy)then return EventEnemies.initialize(state,enemy,random)end
+    if Act4.owns(enemy)then return Act4.initialize(state,enemy,random)end
+    if Darklings.owns(enemy)then return Darklings.initialize(state,enemy,random)end
+    if Awakened.owns(enemy)then return Awakened.initialize(state,enemy,random)end
+    if enemy.ai and enemy.ai.kind=='giant_head' then return GiantHead.initialize(state,enemy,random) end
+    if enemy.ai and enemy.ai.kind=='nemesis'then return Nemesis.initialize(state,enemy,random)end
+    if Reptomancer.owns(enemy)then return Reptomancer.initialize(state,enemy,random)end
+    if enemy.ai and enemy.ai.kind=="act3_boss" then return Act3Bosses.initialize(state,enemy,random) end
+    if enemy.ai and enemy.ai.kind=="act1_boss" then return Act1Bosses.initialize(state,enemy,random) end
+    if enemy.ai and enemy.ai.kind == 'act3' then return Act3.initialize(state,enemy,random) end
+    if enemy.ai and enemy.ai.kind == 'act2' then return Act2.initialize(state,enemy,random) end
+    if enemy.ai and enemy.ai.kind == "looter" then return Looter.initialize(state, enemy, random) end
+    if not enemy.ai then return end -- legacy enemies retain the declared cycle
+    return initializeOpeningPolicy(state, enemy, random)
 end
 
 -- Both large slimes share the source damage override, not their turn RNG policy.
@@ -149,48 +164,28 @@ function M.hpLost(state, enemy, before, damageCall)
     Events.emit(state, "enemy_wake", { enemy = enemy.id, reason = "hp_loss" })
 end
 
-function M.advance(state, enemy, random)
-    if EventEnemies.owns(enemy)then return EventEnemies.advance(state,enemy,random)end
-    if Act4.owns(enemy)then return Act4.advance(state,enemy,random)end
-    if enemy.ai and enemy.ai.kind=='giant_head' then return GiantHead.advance(state,enemy,random) end
-    if enemy.ai and enemy.ai.kind=='nemesis'then return Nemesis.advance(state,enemy,random)end
-    if Reptomancer.owns(enemy)then return Reptomancer.advance(state,enemy,random)end
-    if enemy.ai and enemy.ai.kind == 'act3' then return Act3.advance(state,enemy,random) end
-    if enemy.ai and enemy.ai.kind == 'act2' then return Act2.advance(state,enemy,random) end
-    if not enemy.ai then
-        enemy.intentIndex = enemy.intentIndex % #enemy.intents + 1
-    elseif enemy.ai.kind == "rolled_attack" then return rollAttack(state, enemy, random)
-    elseif enemy.ai.kind == "opening_roll_attack" or enemy.ai.kind == "mad_gremlin" then select(enemy, enemy.ai.attackIntent)
-    elseif enemy.ai.kind == "shield_gremlin" then
-        -- Protect chooses its next move from the living group. Once Bash is
-        -- selected, later actions set Bash directly and never roll again.
-        if enemy.intents[enemy.intentIndex].id == enemy.ai.protectIntent then
-            local alive = 0
-            for _, ally in ipairs(state.enemies) do if Actors.isActive(ally) then alive = alive + 1 end end
-            select(enemy, alive > 1 and enemy.ai.protectIntent or enemy.ai.attackIntent)
-        else select(enemy, enemy.ai.attackIntent) end
-    elseif enemy.ai.kind == "charge_then_attack" then
-        if enemy.intents[enemy.intentIndex].id == enemy.ai.chargeIntent then
-            enemy.aiCharge = enemy.aiCharge + 1
-        end
-        select(enemy, enemy.aiCharge == enemy.ai.chargeLimit and enemy.ai.attackIntent or enemy.ai.chargeIntent)
-    elseif enemy.ai.kind == "jaw_worm" then return JawWorm.advance(state, enemy, random)
-    elseif enemy.ai.kind == "gremlin_nob" then return GremlinNob.advance(state, enemy, random)
-    elseif enemy.ai.kind == "blue_slaver" then return BlueSlaver.advance(state, enemy, random)
-    elseif enemy.ai.kind == "red_slaver" then return RedSlaver.advance(state, enemy, random)
-    elseif enemy.ai.kind == "acid_slime_s" then return AcidSlimeS.advance(state, enemy)
-    elseif enemy.ai.kind == "sentry" then return Sentry.advance(state, enemy, random)
-    elseif enemy.ai.kind == "spike_slime_m" or enemy.ai.kind == "spike_slime_l" then return SpikeSlimeM.advance(state, enemy, random)
-    elseif enemy.ai.kind == "acid_slime_m" or enemy.ai.kind == "acid_slime_l" then return AcidSlimeM.advance(state, enemy, random)
-    elseif enemy.ai.kind == "fungi_beast" then return FungiBeast.advance(state, enemy, random)
-    elseif enemy.ai.kind == "louse" then return Louse.advance(state, enemy, random)
-    elseif enemy.ai.kind == "ritual_then_attack" then
-        -- Both Ritual and Strike enqueue RollMoveAction; its result is ignored.
-        random(state, enemy.ai.rollRange)
-        enemy.aiPhase = "attacking"
-        select(enemy, enemy.ai.attackIntent)
-    elseif enemy.ai.kind == "guardian" then return Guardian.advance(state, enemy)
-    elseif enemy.aiPhase == "sleep" then
+-- Protect can fall back to Bash once; later Bash actions never roll.
+local function advanceShield(state, enemy)
+    -- Protect chooses its next move from the living group. Once Bash is
+    -- selected, later actions set Bash directly and never roll again.
+    if enemy.intents[enemy.intentIndex].id == enemy.ai.protectIntent then
+        local alive = 0
+        for _, ally in ipairs(state.enemies) do if Actors.isActive(ally) then alive = alive + 1 end end
+        select(enemy, alive > 1 and enemy.ai.protectIntent or enemy.ai.attackIntent)
+    else select(enemy, enemy.ai.attackIntent) end
+end
+
+-- Wizard's SetMove counter is independent of the queued-roll policies.
+local function advanceCharge(enemy)
+    if enemy.intents[enemy.intentIndex].id == enemy.ai.chargeIntent then
+        enemy.aiCharge = enemy.aiCharge + 1
+    end
+    select(enemy, enemy.aiCharge == enemy.ai.chargeLimit and enemy.ai.attackIntent or enemy.ai.chargeIntent)
+end
+
+-- Lagavulin's natural wake, stun recovery and awake cycle consume different rolls.
+local function advanceSleepCycle(state, enemy, random)
+    if enemy.aiPhase == "sleep" then
         enemy.aiTurns = enemy.aiTurns + 1
         if enemy.aiTurns < enemy.ai.sleepTurns then
             random(state, enemy.ai.rollRange)
@@ -210,6 +205,50 @@ function M.advance(state, enemy, random)
         enemy.aiCycle = enemy.aiCycle % #enemy.ai.awakeCycle + 1
         select(enemy, enemy.ai.awakeCycle[enemy.aiCycle])
     end
+end
+
+local function advanceAct1Policy(state, enemy, random)
+    if enemy.ai.kind == "jaw_worm" then return JawWorm.advance(state, enemy, random)
+    elseif enemy.ai.kind == "gremlin_nob" then return GremlinNob.advance(state, enemy, random)
+    elseif enemy.ai.kind == "blue_slaver" then return BlueSlaver.advance(state, enemy, random)
+    elseif enemy.ai.kind == "red_slaver" then return RedSlaver.advance(state, enemy, random)
+    elseif enemy.ai.kind == "acid_slime_s" then return AcidSlimeS.advance(state, enemy)
+    elseif enemy.ai.kind == "sentry" then return Sentry.advance(state, enemy, random)
+    elseif enemy.ai.kind == "spike_slime_m" or enemy.ai.kind == "spike_slime_l" then return SpikeSlimeM.advance(state, enemy, random)
+    elseif enemy.ai.kind == "acid_slime_m" or enemy.ai.kind == "acid_slime_l" then return AcidSlimeM.advance(state, enemy, random)
+    elseif enemy.ai.kind == "fungi_beast" then return FungiBeast.advance(state, enemy, random)
+    elseif enemy.ai.kind == "louse" then return Louse.advance(state, enemy, random)
+    elseif enemy.ai.kind == "ritual_then_attack" then
+        -- Both Ritual and Strike enqueue RollMoveAction; its result is ignored.
+        random(state, enemy.ai.rollRange)
+        enemy.aiPhase = "attacking"
+        select(enemy, enemy.ai.attackIntent)
+    elseif enemy.ai.kind == "guardian" then return Guardian.advance(state, enemy)
+    else advanceSleepCycle(state, enemy, random) end
+end
+
+-- Fixed moves use SetMove except for explicitly rolled attacks.
+local function advanceFixedPolicy(state, enemy, random)
+    if enemy.ai.kind == "rolled_attack" then return rollAttack(state, enemy, random)
+    elseif enemy.ai.kind == "opening_roll_attack" or enemy.ai.kind == "mad_gremlin" then select(enemy, enemy.ai.attackIntent)
+    elseif enemy.ai.kind == "shield_gremlin" then
+        advanceShield(state, enemy)
+    elseif enemy.ai.kind == "charge_then_attack" then
+        advanceCharge(enemy)
+    else return advanceAct1Policy(state, enemy, random) end
+end
+
+function M.advance(state, enemy, random)
+    if EventEnemies.owns(enemy)then return EventEnemies.advance(state,enemy,random)end
+    if Act4.owns(enemy)then return Act4.advance(state,enemy,random)end
+    if enemy.ai and enemy.ai.kind=='giant_head' then return GiantHead.advance(state,enemy,random) end
+    if enemy.ai and enemy.ai.kind=='nemesis'then return Nemesis.advance(state,enemy,random)end
+    if Reptomancer.owns(enemy)then return Reptomancer.advance(state,enemy,random)end
+    if enemy.ai and enemy.ai.kind == 'act3' then return Act3.advance(state,enemy,random) end
+    if enemy.ai and enemy.ai.kind == 'act2' then return Act2.advance(state,enemy,random) end
+    if not enemy.ai then
+        enemy.intentIndex = enemy.intentIndex % #enemy.intents + 1
+    else return advanceFixedPolicy(state, enemy, random) end
 end
 
 -- Only these source-verified policies enqueue RollMoveAction during takeTurn.

@@ -1,0 +1,570 @@
+{
+  "checkedAt": "2026-11-08T01:23:52.728Z",
+  "results": [
+    {
+      "pr": 558,
+      "head": "27bf37874fd67b6027f0039d4d588baf1cd81972",
+      "runs": [
+        {
+          "id": 42430301413,
+          "name": "Licenses",
+          "head": "27bf37874fd67b6027f0039d4d588baf1cd81972",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42430301413"
+        },
+        {
+          "id": 42430301399,
+          "name": "Quick feedback",
+          "head": "27bf37874fd67b6027f0039d4d588baf1cd81972",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42430301399"
+        },
+        {
+          "id": 42430301411,
+          "name": "Quality",
+          "head": "27bf37874fd67b6027f0039d4d588baf1cd81972",
+          "status": "completed",
+          "conclusion": "failure",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42430301411"
+        }
+      ]
+    },
+    {
+      "pr": 557,
+      "head": "061702b20d17ecc4f7e9612f7262ad5040e73b9a",
+      "runs": [
+        {
+          "id": 42405749514,
+          "name": "Quick feedback",
+          "head": "061702b20d17ecc4f7e9612f7262ad5040e73b9a",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42405749514"
+        },
+        {
+          "id": 42405749707,
+          "name": "Licenses",
+          "head": "061702b20d17ecc4f7e9612f7262ad5040e73b9a",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42405749707"
+        },
+        {
+          "id": 42405749487,
+          "name": "Quality",
+          "head": "061702b20d17ecc4f7e9612f7262ad5040e73b9a",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42405749487"
+        }
+      ]
+    },
+    {
+      "pr": 556,
+      "head": "d80743f9d38fa451a753c21316733fc02879953e",
+      "runs": [
+        {
+          "id": 42407188240,
+          "name": "Quick feedback",
+          "head": "d80743f9d38fa451a753c21316733fc02879953e",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42407188240"
+        },
+        {
+          "id": 42407188262,
+          "name": "Licenses",
+          "head": "d80743f9d38fa451a753c21316733fc02879953e",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42407188262"
+        },
+        {
+          "id": 42407188158,
+          "name": "Quality",
+          "head": "d80743f9d38fa451a753c21316733fc02879953e",
+          "status": "completed",
+          "conclusion": "failure",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42407188158"
+        }
+      ]
+    },
+    {
+      "pr": 555,
+      "head": "1c83c4547cbdb40bd8062bce83a49aba14b4e407",
+      "runs": [
+        {
+          "id": 42380032853,
+          "name": "Licenses",
+          "head": "1c83c4547cbdb40bd8062bce83a49aba14b4e407",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42380032853"
+        },
+        {
+          "id": 42380032719,
+          "name": "Quick feedback",
+          "head": "1c83c4547cbdb40bd8062bce83a49aba14b4e407",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42380032719"
+        },
+        {
+          "id": 42380032814,
+          "name": "Quality",
+          "head": "1c83c4547cbdb40bd8062bce83a49aba14b4e407",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42380032814"
+        }
+      ]
+    },
+    {
+      "pr": 554,
+      "head": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+      "runs": [
+        {
+          "id": 42366826822,
+          "name": "Quality",
+          "head": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+          "status": "completed",
+          "conclusion": "failure",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42366826822"
+        },
+        {
+          "id": 42366826809,
+          "name": "Quick feedback",
+          "head": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42366826809"
+        },
+        {
+          "id": 42366826865,
+          "name": "Licenses",
+          "head": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42366826865"
+        }
+      ]
+    },
+    {
+      "pr": 553,
+      "head": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+      "runs": [
+        {
+          "id": 42374122955,
+          "name": "Licenses",
+          "head": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+          "status": "completed",
+          "conclusion": "failure",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42374122955"
+        },
+        {
+          "id": 42374122951,
+          "name": "Quick feedback",
+          "head": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42374122951"
+        },
+        {
+          "id": 42374122953,
+          "name": "Quality",
+          "head": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42374122953"
+        }
+      ]
+    },
+    {
+      "pr": 552,
+      "head": "a3507ef25308eb951585a4d54c225e04121a785a",
+      "runs": [
+        {
+          "id": 42365945792,
+          "name": "Quick feedback",
+          "head": "a3507ef25308eb951585a4d54c225e04121a785a",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42365945792"
+        },
+        {
+          "id": 42365945791,
+          "name": "Quality",
+          "head": "a3507ef25308eb951585a4d54c225e04121a785a",
+          "status": "completed",
+          "conclusion": "failure",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42365945791"
+        },
+        {
+          "id": 42365945782,
+          "name": "Licenses",
+          "head": "a3507ef25308eb951585a4d54c225e04121a785a",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42365945782"
+        }
+      ]
+    },
+    {
+      "pr": 551,
+      "head": "962e5fe3e82e3844b0b60d3a7e79983d7d19c6b9",
+      "runs": [
+        {
+          "id": 42363348347,
+          "name": "Licenses",
+          "head": "962e5fe3e82e3844b0b60d3a7e79983d7d19c6b9",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42363348347"
+        },
+        {
+          "id": 42363348361,
+          "name": "Quick feedback",
+          "head": "962e5fe3e82e3844b0b60d3a7e79983d7d19c6b9",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42363348361"
+        },
+        {
+          "id": 42363348387,
+          "name": "Quality",
+          "head": "962e5fe3e82e3844b0b60d3a7e79983d7d19c6b9",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42363348387"
+        }
+      ]
+    },
+    {
+      "pr": 550,
+      "head": "110425281a3d3baf3973c8abc7bf622052dfdd4c",
+      "runs": []
+    },
+    {
+      "pr": 549,
+      "head": "3c8b0fbba73332354e1f030662fcf3169f03e8d6",
+      "runs": [
+        {
+          "id": 42361622498,
+          "name": "Quality",
+          "head": "3c8b0fbba73332354e1f030662fcf3169f03e8d6",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42361622498"
+        },
+        {
+          "id": 42361622396,
+          "name": "Licenses",
+          "head": "3c8b0fbba73332354e1f030662fcf3169f03e8d6",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42361622396"
+        },
+        {
+          "id": 42361622408,
+          "name": "Quick feedback",
+          "head": "3c8b0fbba73332354e1f030662fcf3169f03e8d6",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42361622408"
+        }
+      ]
+    },
+    {
+      "pr": 548,
+      "head": "ec93cd91fff1a643e43933ccd721466e42165410",
+      "runs": [
+        {
+          "id": 42364592632,
+          "name": "Licenses",
+          "head": "ec93cd91fff1a643e43933ccd721466e42165410",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42364592632"
+        },
+        {
+          "id": 42364592657,
+          "name": "Quick feedback",
+          "head": "ec93cd91fff1a643e43933ccd721466e42165410",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42364592657"
+        },
+        {
+          "id": 42364592584,
+          "name": "Quality",
+          "head": "ec93cd91fff1a643e43933ccd721466e42165410",
+          "status": "completed",
+          "conclusion": "failure",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42364592584"
+        }
+      ]
+    },
+    {
+      "pr": 547,
+      "head": "10bd71b00fb24c0bf0e9d7d0c5a14ad6e2207c5d",
+      "runs": []
+    },
+    {
+      "pr": 546,
+      "head": "35d392bcf3049a214970127dbf587a4adae8fd9e",
+      "runs": []
+    },
+    {
+      "pr": 545,
+      "head": "90c5a89a5765545f689abc6e03f27e1f3f7cccbf",
+      "runs": [
+        {
+          "id": 42343242137,
+          "name": "Quick feedback",
+          "head": "90c5a89a5765545f689abc6e03f27e1f3f7cccbf",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42343242137"
+        },
+        {
+          "id": 42343242050,
+          "name": "Licenses",
+          "head": "90c5a89a5765545f689abc6e03f27e1f3f7cccbf",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42343242050"
+        },
+        {
+          "id": 42343242059,
+          "name": "Quality",
+          "head": "90c5a89a5765545f689abc6e03f27e1f3f7cccbf",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42343242059"
+        }
+      ]
+    },
+    {
+      "pr": 544,
+      "head": "eb47852bc6aa65718b858af72d9d86249fef47ce",
+      "runs": [
+        {
+          "id": 42345447219,
+          "name": "Licenses",
+          "head": "eb47852bc6aa65718b858af72d9d86249fef47ce",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42345447219"
+        },
+        {
+          "id": 42345447215,
+          "name": "Quick feedback",
+          "head": "eb47852bc6aa65718b858af72d9d86249fef47ce",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42345447215"
+        },
+        {
+          "id": 42345447239,
+          "name": "Quality",
+          "head": "eb47852bc6aa65718b858af72d9d86249fef47ce",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42345447239"
+        }
+      ]
+    },
+    {
+      "pr": 543,
+      "head": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+      "runs": [
+        {
+          "id": 42341631228,
+          "name": "Licenses",
+          "head": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42341631228"
+        },
+        {
+          "id": 42341631227,
+          "name": "Quick feedback",
+          "head": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42341631227"
+        },
+        {
+          "id": 42341631285,
+          "name": "Quality",
+          "head": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42341631285"
+        }
+      ]
+    },
+    {
+      "pr": 542,
+      "head": "e750311b6aae38124e68f84b465f0bcf4c5be867",
+      "runs": [
+        {
+          "id": 42340473737,
+          "name": "Quality",
+          "head": "e750311b6aae38124e68f84b465f0bcf4c5be867",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42340473737"
+        },
+        {
+          "id": 42340282165,
+          "name": "Licenses",
+          "head": "e750311b6aae38124e68f84b465f0bcf4c5be867",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42340282165"
+        },
+        {
+          "id": 42340282047,
+          "name": "Quality",
+          "head": "e750311b6aae38124e68f84b465f0bcf4c5be867",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42340282047"
+        },
+        {
+          "id": 42340282086,
+          "name": "Quick feedback",
+          "head": "e750311b6aae38124e68f84b465f0bcf4c5be867",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42340282086"
+        }
+      ]
+    },
+    {
+      "pr": 541,
+      "head": "cc4cce701d44b57b70cf9a6fc1c5d5e629629ddd",
+      "runs": [
+        {
+          "id": 42343902584,
+          "name": "Quick feedback",
+          "head": "cc4cce701d44b57b70cf9a6fc1c5d5e629629ddd",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42343902584"
+        },
+        {
+          "id": 42343902585,
+          "name": "Licenses",
+          "head": "cc4cce701d44b57b70cf9a6fc1c5d5e629629ddd",
+          "status": "completed",
+          "conclusion": "success",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42343902585"
+        },
+        {
+          "id": 42343902580,
+          "name": "Quality",
+          "head": "cc4cce701d44b57b70cf9a6fc1c5d5e629629ddd",
+          "status": "completed",
+          "conclusion": "failure",
+          "event": "pull_request",
+          "attempt": 1,
+          "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42343902580"
+        }
+      ]
+    }
+  ]
+}

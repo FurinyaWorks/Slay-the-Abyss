@@ -5178,6 +5178,75 @@
         "sourceReceipt": "tests/fixtures/reward-query-planning-floor.json.gz",
         "sourceReceiptSha256": "040106c48fb3cd7c6ae9fcde72d09a5ac9c0f57b8c97036e37a682bb9525becf",
         "sourceInputsSha256": "cd5c2595ef50f3407b1a14b7148c996591a04634670b4d6148312a57621005ae"
+      },
+      "tests/class-potion-orb-boundary.test.mjs": {
+        "durationMs": 180000,
+        "environment": "local Linux",
+        "coverage": "17 potion boundary cases including 13 independent old/current VM graph comparisons; first complete local run 162004.675552 ms, 16 passed and one negative-control expected-message mismatch subsequently corrected.",
+        "kind": "Conservative planning-only floor; not a hosted measurement or a full-pass claim."
+      },
+      "tests/watcher-actor-boundary.test.mjs": {
+        "durationMs": 30000,
+        "environment": "local Linux",
+        "coverage": "9 original boundary cases took 21763.220989 ms (8 passed, 1 graph assertion failed); graph assertion corrected and rerun separately. One added frozen-Halt protocol case took 1218.265678 ms including runner. Both unchanged behavior fixture pairs passed.",
+        "kind": "Conservative planning-only floor; not a hosted observation or full-pass claim."
+      },
+      "tests/enemy-ai-lifecycle.test.mjs": {
+        "durationMs": 30000,
+        "environment": "cloud Linux local",
+        "coverage": "11/11 complete file passed; no selected or skipped groups",
+        "kind": "Conservative local complete-run planning estimate; not hosted or Windows measurement, execution permission or timeout change.",
+        "sourceLog": "build/enemy-ai-evidence/targeted-final-local-keys.log",
+        "sourceLogSha256": "64d2062d9dad8b5443bddeab4165c2a74e58a08196c7bfb2fb6ccc4c0cd9bf0e",
+        "baseHead": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+        "sourceRevision": "Enemy AI responsibility slice over base head; uncommitted at capture",
+        "nodeReportedDurationMs": 27916.657737
+      },
+      "tests/defect-utility-planning.test.mjs": {
+        "durationMs": 20000,
+        "environment": "cloud Linux local",
+        "coverage": "11/11 complete file passed; no selected or skipped groups",
+        "kind": "Conservative local complete-run planning estimate; not hosted or Windows measurement, execution permission or timeout change.",
+        "sourceLog": "docs/evidence/defect-utility-planning-local-20261108.log",
+        "sourceLogSha256": "9ce747d58fc9ded4d1ebecdeaea7579d2ca169630eee36499033643ed30cfe0f",
+        "baseHead": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+        "sourceRevision": "Defect utility responsibility slice over base head; uncommitted at capture",
+        "nodeReportedDurationMs": 15812.642915
+      },
+      "tests/game-ui-extraction-source-inverse.test.mjs": {
+        "durationMs": 77215,
+        "environment": "cloud Linux local",
+        "coverage": "13/13 complete file passed; 0 skipped; single-file Node execution.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 77214.241194,
+        "sourceLog": "docs/evidence/seven-current-integration-20261108/game-ui-extraction-local.log",
+        "sourceLogSha256": "1779bc98d11ed261d6b2e96256a6030df337c978d95356b18ce8cf1041c2f326",
+        "sourceReceipt": "docs/evidence/seven-current-integration-20261108/game-ui-extraction-planning.json",
+        "sourceReceiptSha256": "0a7cb353d3a795706a33a3049e65d730be31861083eba807fd5019684c6feb30"
+      },
+      "tests/combat-reactions-architecture-inverse.test.mjs": {
+        "durationMs": 80063,
+        "environment": "cloud Linux local",
+        "coverage": "One successful named case in a 79-test batch (76 passed, 3 failed); not a full-file duration or completion claim.",
+        "kind": "Partial-case local planning lower bound; not hosted measurement, execution permission or timeout change.",
+        "sourceCase": "reaction architecture inverse restores complete prior bytes through LF, CRLF and layout variants",
+        "caseDurationMs": 80062.022369,
+        "sourceLog": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-cases.log",
+        "sourceLogSha256": "2c6376cb852312812e6813dc88e02c196955da52282624036cdc61780dbeaed6",
+        "sourceReceipt": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-planning.json",
+        "sourceReceiptSha256": "99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58"
+      },
+      "tests/compendium-source-inverse.test.mjs": {
+        "durationMs": 42675,
+        "environment": "cloud Linux local",
+        "coverage": "One successful named case in a 79-test batch (76 passed, 3 failed); not a full-file duration or completion claim.",
+        "kind": "Partial-case local planning lower bound; not hosted measurement, execution permission or timeout change.",
+        "sourceCase": "Runtime host projection recognizes complete before/after bytes but rejects partial, duplicate and foreign edits",
+        "caseDurationMs": 42674.303005,
+        "sourceLog": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-cases.log",
+        "sourceLogSha256": "2c6376cb852312812e6813dc88e02c196955da52282624036cdc61780dbeaed6",
+        "sourceReceipt": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-planning.json",
+        "sourceReceiptSha256": "99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58"
       }
     }
   },

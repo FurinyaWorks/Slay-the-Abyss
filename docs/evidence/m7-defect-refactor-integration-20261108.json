@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "kind": "Local seven-slice integration preservation and targeted verification; not PR admission, hosted Full or merge evidence.",
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "inputHeads": [
+    "12950b1ca474e7c0a57ff68e1de1780090194c71",
+    "27b2ccc969795001581a32a2900b9e0474712876"
+  ],
+  "metrics": {
+    "baseline": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "diagnostics": 14,
+      "requirePositions": 1920,
+      "modulePairs": 1546,
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75,
+      "revision": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ]
+    },
+    "combined": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5081,
+        "measurements": 5414,
+        "expectedMeasurements": 5414
+      },
+      "diagnostics": 14,
+      "requirePositions": 1919,
+      "modulePairs": 1546,
+      "ccAbove15": 232,
+      "ccAbove30": 52,
+      "maxCC": 75,
+      "revision": "12950b1ca474e7c0a57ff68e1de1780090194c71",
+      "scc": [
+        {
+          "members": 79,
+          "positions": 615,
+          "pairs": 394
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ]
+    }
+  },
+  "preservation": {
+    "inputs": [
+      "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "12950b1ca474e7c0a57ff68e1de1780090194c71",
+      "27b2ccc969795001581a32a2900b9e0474712876"
+    ],
+    "preservedCount": 7392,
+    "productionCount": 333,
+    "managedFiles": [
+      "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+      "scripts/ci-test-timings.json",
+      "tests/ci-complete-calibration.test.mjs",
+      "tests/ci-runtime.test.mjs",
+      "tests/class-potion-orb-source-inverse.test.mjs",
+      "tests/watcher-actor-source-inverse.test.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/helpers/m7-core-final-source-inverse.mjs"
+    ],
+    "allInputBacklogPlansNotesDocsPreserved": true,
+    "ownerStatusAcPreserved": true
+  },
+  "validation": {
+    "initialCI": {
+      "passed": 24,
+      "failed": 2,
+      "durationMs": 2522.145313,
+      "cause": "Old Enemy planning probes rejected unknown combined timing bytes. Exact complete-byte projection added at original inputs; original assertions/helpers preserved."
+    },
+    "finalSourceCI": {
+      "passed": 41,
+      "failed": 0,
+      "durationMs": 3731.854312
+    },
+    "behavior": {
+      "passed": 32,
+      "failed": 0,
+      "durationMs": 68321.555156
+    },
+    "shardsDelivery": {
+      "passed": 65,
+      "failed": 0,
+      "durationMs": 4602.858185
+    },
+    "m7Epoch": {
+      "passed": 1,
+      "failed": 0,
+      "durationMs": 166.527479
+    },
+    "nativeUI": {
+      "passed": 6,
+      "failed": 0,
+      "durationMs": 18275.117587
+    },
+    "criticalMutations": "4 killed_by_assertion",
+    "builds": [
+      "data",
+      "theme",
+      "ui"
+    ],
+    "engineering": "fresh baseline and combined pass",
+    "syntax": "pass",
+    "guidance": "pass",
+    "verifyBacklog": "pass",
+    "doctor": "exit 1; historical five duplicate ID groups and legacy completed folder advisory remain, not repaired"
+  },
+  "planning": {
+    "js": 757,
+    "lua": 1404,
+    "floors": 13,
+    "workers": 2,
+    "concurrency": 12,
+    "reserveMs": 60000,
+    "platforms": {
+      "win32": {
+        "shards": 17,
+        "budgetMs": 1800000,
+        "maxWithReserveMs": 1731986,
+        "slackMs": 68014
+      },
+      "linux": {
+        "shards": 14,
+        "budgetMs": 1200000,
+        "maxWithReserveMs": 1133907,
+        "slackMs": 66093
+      }
+    },
+    "forecastOnly": true
+  },
+  "publication": {
+    "attempted": false,
+    "newPR": null,
+    "mergedToDevelop": false,
+    "hostedFull": false,
+    "localFull": false,
+    "reason": "Prior public source/planning upload denial remains. No new explicit authorization, retry or alternate upload route."
+  },
+  "independentReview": "Stored separately to bind final staged tree and final commit without self reference.",
+  "limits": [
+    "No full suite duplicated.",
+    "No user computer, Codex, GUI, official import, ready or device evidence.",
+    "No task AC or milestone completion.",
+    "Historical doctor failure remains.",
+    "No current remote admission or merge-ready claim."
+  ],
+  "artifacts": [
+    {
+      "path": "docs/evidence/defect-integration-20261108/baseline-engineering.json.gz",
+      "bytes": 369393,
+      "sha256": "d4bb03fbe5dc7d10c4d80dbaacb6f48e7ead38ca5c6c0a4cce1825bef874670a"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/current-engineering.json.gz",
+      "bytes": 371100,
+      "sha256": "8fbef095447b0b52c59fb356c9e0a436e46d6ad351631f1f539459e39b8f081c"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/planning.json",
+      "bytes": 158253,
+      "sha256": "f52cc53737e9cb27fd0c7de959d48dd6c4f1c881cdf76f85c53923770a20b0cd"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/preservation.json",
+      "bytes": 1012563,
+      "sha256": "d956eb823114fd8599c7748bf020dc3c104fee3bbd3871f7f1339f0d883a78e8"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/metrics.json",
+      "bytes": 1091,
+      "sha256": "981d71181a0894bdea44caa1b814a1e810439838d861227bb5b14b5f0901c416"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/pr-files.json",
+      "bytes": 30177,
+      "sha256": "5f4669f4bb16f31cc1bc5b58fde4d0d047038ecff410fc517b772b68cfc79faf"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/final-remote-readback.json",
+      "bytes": 3753,
+      "sha256": "7490198fea71c003637a8e7d124f2fe94bd392efcdea9d159753dde651e359cd"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/emergency-pr559.json",
+      "bytes": 15043,
+      "sha256": "9131130898928081d4f38d4e964e03498e6633ccd25d0ac7d77d265ae09853d0"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/remote-occupancy.json",
+      "bytes": 14422,
+      "sha256": "676dbc1c527a8867398271edc8ab1df52b3c14a4ad1f883f1a08ac38d08eca63"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/exact-pr-ci.json",
+      "bytes": 18691,
+      "sha256": "30147b50e541fed5eb6363acce38e1da148716998ea72c5f1949d45d11c13824"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/validation-logs.json.gz",
+      "bytes": 21473,
+      "sha256": "456287f9dffa0e71dff5bd246a0904c373ddbab69906dcbaefd55c068dc44da8"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/forecast.mjs",
+      "bytes": 2700,
+      "sha256": "92168834f8f7e5dd4c502ead340b0a8d2f3e2dcf2f76655e3f32c19031432f8e"
+    },
+    {
+      "path": "docs/evidence/defect-integration-20261108/preservation-check.py",
+      "bytes": 2857,
+      "sha256": "a1b9617d0dcd1cd13fdcbfc5d589d9096c2a9de236fea0fa38526fb1d3f2ff9d"
+    }
+  ]
+}

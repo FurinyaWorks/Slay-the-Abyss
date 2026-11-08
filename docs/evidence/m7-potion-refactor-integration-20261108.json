@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "sourceCommits": [
+    "fc2300e4e40e261fc57c36110aef70334aec66fb",
+    "7c561b2d5d631e2e349a79f2ec64bcff528d2031"
+  ],
+  "status": "local verified integration; final commit binding outside this self-referential artifact",
+  "metrics": {
+    "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+    "baseline": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "warnings": 14,
+      "requirePositions": 1920,
+      "modulePairs": 1546,
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ]
+    },
+    "combined": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5068,
+        "measurements": 5401,
+        "expectedMeasurements": 5401
+      },
+      "warnings": 14,
+      "requirePositions": 1919,
+      "modulePairs": 1547,
+      "ccAbove15": 234,
+      "ccAbove30": 55,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 80,
+          "positions": 619,
+          "pairs": 398
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ]
+    }
+  },
+  "validation": {
+    "behavior": {
+      "tests": 47,
+      "passed": 47,
+      "failed": 0,
+      "durationMs": 166219.505999
+    },
+    "ciCalibrationPosixDelivery": {
+      "tests": 51,
+      "passed": 51
+    },
+    "ciConsumers": {
+      "tests": 39,
+      "passed": 39
+    },
+    "sourceConsumers": {
+      "tests": 31,
+      "passed": 31
+    },
+    "ciInventoryAndComplexity": {
+      "tests": 39,
+      "initialPassed": 38,
+      "initialFailed": 1,
+      "latestPassed": 39,
+      "correctedTest": "current timing records preserve all measured corrections without duplicate JSON keys",
+      "correction": "Existing eight local floor count wrongly included the new potion floor. Exact known potion key/floor now asserted separately; old eight and run-max contracts remain."
+    },
+    "m7SourceEpoch": {
+      "tests": 1,
+      "passed": 1
+    },
+    "nativeContract": {
+      "tests": 6,
+      "passed": 6
+    },
+    "uniqueTestsAbove": 214,
+    "mutation": "4/4 registered mutants killed by assertions; not repository-wide mutation score",
+    "engineering": "333 modules; 5401/5401 measurements; original 14 warnings; source digests match current files",
+    "initialEngineeringBlock": "Missing local Luacheck executable; preserved error log, copied exact already-installed pinned tool from prior reviewed cloud worktree, then passed. No source or threshold change.",
+    "guidance": "pass",
+    "backlog": "pass",
+    "doctor": "exit1; same existing five duplicate ID groups and legacy completed directory; not counted green",
+    "sourceCommandNote": "First source selection named three nonexistent files which Node did not execute; only actual31 tests counted. Correct m7 source-epoch test executed separately1/1 and ci-runtime/inventory contracts separately39 cases."
+  },
+  "budget": {
+    "js": 751,
+    "lua": 1402,
+    "localAndCrossPlatformFloors": 10,
+    "potionFloorMs": 180000,
+    "reserveMs": 60000,
+    "windowsShards": 17,
+    "posixShards": 14,
+    "concurrencyCap": 12,
+    "luaWorkers": 2,
+    "windowsMaxPlusReserveMs": 1723977,
+    "windowsBudgetMs": 1800000,
+    "windowsSpareMs": 76023,
+    "posixOld13MaxPlusReserveMs": 1208051,
+    "posixMaxPlusReserveMs": 1126045,
+    "posixBudgetMs": 1200000,
+    "posixSpareMs": 73955,
+    "forecastOnly": true
+  },
+  "preserved": [
+    "all historical source files/archives/evidence",
+    "all original observations and floors",
+    "all runtime timeouts and job budgets",
+    "frozen schema2 Full15 and 17/13 Full35 history",
+    "original worker safety and concurrency",
+    "all six product source modules exactly equal to reviewed branch versions"
+  ],
+  "notPerformed": [
+    "public source or planning upload",
+    "remote branch/PR",
+    "hosted Full or Full rerun",
+    "merge or auto-merge",
+    "user computer/Codex operations",
+    "official import/ready/device tests"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/m7-potion-integration-ci-first-20261108.log.gz",
+      "sha256": "ca4ef25b42e39d428eb847369f574190e1825a9cd738b9e298b3703b81e9a39c"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-ci-consumers-20261108.log.gz",
+      "sha256": "8d68da2490b773a345c6af71fef339cb0efd1bf173074c76e0e523135d55ddca"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-behavior-20261108.log.gz",
+      "sha256": "4d4f270bf521220227b223ab86cc78c69529c7bcffd2c705e7ce5dc0ec5c2d2f"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-sources-20261108.log.gz",
+      "sha256": "015972f9c0fdb69b90d9872125c315b852bd06c57df2e19a1b040a09b72fd31e"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-inventory-20261108.log.gz",
+      "sha256": "a74f67f5089482aa2ee0b44a71861b7ba1adeaa5b8747a61701a372dc480f72d"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-m7-source-20261108.log.gz",
+      "sha256": "f0ca9008e8acb9920c7fce0e89af0f3b3d808aa8563d0a8c7c3e4ce6f2758c98"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-timing-correction-20261108.log.gz",
+      "sha256": "f3a061d356909586bfa08a704bf8c766a99d31028fa54440d8a076d4a8c2eefa"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-engineering-20261108.log.gz",
+      "sha256": "fedc26c7da0a19f726d0c8d07844e44c8ecc2a0aee2061782e980d31f2e8e802"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-engineering-current-20261108.log.gz",
+      "sha256": "44f9c74a10dc0dde5b4cc4bbff34698115ef06f7c877c7a7803f0ea15c4742d1"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-guidance-20261108.log.gz",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-backlog-20261108.log.gz",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-doctor-20261108.log.gz",
+      "sha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-test-strength-20261108.log.gz",
+      "sha256": "6425302086dc561a1ddfcd0924d735a3ac2a646e2fc378d27d1f09488a1b54a1"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-build-20261108.log.gz",
+      "sha256": "d70340fa8eb66eb8cb502d4298744070031895f76c0ffe064452e5eeec31b834"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-native-contract-20261108.log.gz",
+      "sha256": "eddc894557f3bd68233d667ab2be5fa83bb7f191137697749f450ca47bfc9ae0"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-guidance-final-20261108.log.gz",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e"
+    },
+    {
+      "path": "docs/evidence/m7-potion-integration-backlog-final-20261108.log.gz",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719"
+    }
+  ]
+}

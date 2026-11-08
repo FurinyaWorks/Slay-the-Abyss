@@ -156,11 +156,12 @@ local function appendEffect(actions,e)
     else actions[#actions+1]={kind='effect',effect=e}end
 end
 
+local function watcherActorHost()return require('abyss_actor')end
 local function effectActions(combat,state,effects,advanced,target,instance,uid)
     if not advanced then return {{kind='effect',effect={op='effectBatch',effects=effects}}}end
     local actions={}
     for _,effect in ipairs(effects)do
-        for _,prepared in ipairs(require('abyss_watcher_attack_cards').prepareEffect(state,effect))do
+        for _,prepared in ipairs(require('abyss_watcher_attack_cards').prepareEffect(state,effect,watcherActorHost))do
             appendEffect(actions,prepareQueued(combat,state,prepared,target,instance,uid))
         end
     end

@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-11-07T23:19:08.689Z",
+  "develop": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "openPullRequests": [
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/558",
+      "title": "perf(2d): 有界角色与简化卡框构建完整两幕候选"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/556",
+      "title": "chore(3d): 暂停迁移并保留源码与候选交接"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/557",
+      "title": "docs(experiment): 原生轻量2D完整竖切、社区样本矩阵与实机验收合同"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/553",
+      "title": "feat(experiment): 同档对照原生3D、Tween、拼装与奖励UI"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/555",
+      "title": "refactor(m7): 解耦奖励查询与会话命令依赖"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/554",
+      "title": "refactor(m7): 分离卡牌升级规则并修复原始API兼容"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/551",
+      "title": "refactor(m7): 分离 Actor 状态查询并解除三项循环依赖"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/549",
+      "title": "refactor: separate owner end power planning and effects"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/548",
+      "title": "refactor(m7): 拆清 Run 卡目录合并职责"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/552",
+      "title": "refactor(m7): 线性接续 Run 卡目录职责"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/550",
+      "title": "refactor(m7): 解耦药水遗物回调"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/544",
+      "title": "fix(tooling): 补齐共享及自定义LFS缓存识别"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/541",
+      "title": "refactor(core): 解耦Power与商店职责并修复CI超时机制"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/547",
+      "title": "refactor(m7): 拆分 Defect 纯效果规划职责"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/543",
+      "title": "refactor(m7): 整合Session、Watcher与Inventory职责"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/546",
+      "title": "refactor(m7): 拆分 Act1 事件选择职责"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/545",
+      "title": "refactor(m7): 分离无色目录与卡能力准入职责"
+    },
+    {
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/542",
+      "title": "refactor(m7): 拆清奖励查询与 Watcher 执行职责"
+    }
+  ],
+  "publicationAttempted": false,
+  "mergedToDevelop": false
+}

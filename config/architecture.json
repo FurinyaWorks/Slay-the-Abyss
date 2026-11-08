@@ -488,11 +488,6 @@
       "reason": "Original monster Power list bookkeeping runs only inside initialized constructor/action/removal calls; no module-load execution."
     },
     {
-      "from": "abyss_class_potions",
-      "to": "abyss_orbs",
-      "reason": "Only a resolving Capacity potion action imports the initialized orb host; registration is data only."
-    },
-    {
       "from": "abyss_defect_final_cards",
       "to": "abyss_card_capability",
       "reason": "Random generation validates the complete candidate pool only at use/start hook runtime."
@@ -781,6 +776,16 @@
       "from": "abyss_writhing_mass",
       "to": "abyss_relic_family_combat",
       "reason": "Only an actual Parasite obtain invokes common before/onObtainCard rules with its owner-matched permanent health adapter."
+    },
+    {
+      "from": "abyss_card_actions",
+      "to": "abyss_orbs",
+      "reason": "The card-action queue host supplies the explicit deferred Orb execution capability only when a class-potion action needs it."
+    },
+    {
+      "from": "abyss_combat_effect_dispatch",
+      "to": "abyss_orbs",
+      "reason": "The Combat effect queue host supplies the explicit deferred Orb execution capability for Darkness resolution; no load-time import."
     }
   ],
   "dependencyBoundaries": [
@@ -1021,6 +1026,19 @@
         "abyss_relic_hooks"
       ],
       "reason": "Reward query consumers read the existing Queries and Family.common capability slots directly on every call. Their Run imports retain real initialized reward transactions and permanent inventory commands."
+    },
+    {
+      "id": "watcher-attack-planning",
+      "from": [
+        "abyss_watcher_attack_cards"
+      ],
+      "forbiddenTargets": [
+        "abyss_actor",
+        "abyss_combat",
+        "abyss_combat_queued_play",
+        "abyss_card_actions"
+      ],
+      "reason": "Watcher attack plans contain data; the queued-play host supplies lazy Actor arithmetic for Halt snapshots."
     }
   ]
 }

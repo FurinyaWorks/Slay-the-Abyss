@@ -32,18 +32,19 @@ function M.validate(effect)
   or (effect.kind=='divinity'or effect.kind=='stance')and effect.value==0
   or effect.kind=='darkness'and (effect.value==1 or effect.value==2)
 end
-function M.apply(combat,state,effect)
+-- The queue host supplies the deferred Orb capability; potion policy never loads Combat.
+function M.apply(combat,state,effect,orbHost)
  assert(M.validate(effect),'invalid class potion effect')
  if effect.kind=='focus'then
   combat.applyEffects(state,{{op='gainStatus',status='focus',value=effect.value}},state.player,state.player)
  elseif effect.kind=='capacity'then
-  local Orbs=require('abyss_orbs')
+  local Orbs=orbHost()
   if not state.orbs then Orbs.init(state,0)end
   Orbs.gainSlots(state,effect.value)
  elseif effect.kind=='miracle'then
   combat.applyEffects(state,{{op='makeTempCardInHand',card='miracle',value=effect.value}},state.player)
  elseif effect.kind=='darkness'then
-  if not state.orbs then require('abyss_orbs').init(state,0)end
+  if not state.orbs then orbHost().init(state,0)end
   combat.resolvePotionActions(state,{{op='classPotionDarkness',kind='batch',value=effect.value}})
  elseif effect.kind=='stance'then
   combat.resolvePotionActions(state,{{op='potionStanceChoice'}})
@@ -54,8 +55,8 @@ end
 -- Essence's single action calls channelOrb synchronously for every slot. Full
 -- requests enqueue TOP evocation/channel pairs; only already queued DAMAGE
 -- evocations survive clearPostCombatActions, never the replacement channels.
-function M.darkness(combat,state,effect,queue)
- local Orbs=require('abyss_orbs')
+function M.darkness(combat,state,effect,queue,orbHost)
+ local Orbs=orbHost()
  local function request()
   local o=Orbs.snapshot(state)
   if o.slots==0 then return end

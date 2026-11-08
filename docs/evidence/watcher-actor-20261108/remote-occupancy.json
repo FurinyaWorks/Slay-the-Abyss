@@ -1,0 +1,265 @@
+{
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "develop": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "latestDevelopRuns": [
+    {
+      "id": 42357700827,
+      "head": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42357700827"
+    },
+    {
+      "id": 42357700833,
+      "head": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42357700833"
+    },
+    {
+      "id": 42338740217,
+      "head": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42338740217"
+    }
+  ],
+  "openPrs": [
+    {
+      "number": 558,
+      "title": "perf(2d): 用有界原创图元构建完整两幕候选并消除闲置显隐写入",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/558"
+    },
+    {
+      "number": 556,
+      "title": "chore(3d): 暂停迁移并保留源码与候选交接",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/556"
+    },
+    {
+      "number": 557,
+      "title": "docs(experiment): 原生轻量2D完整竖切、社区样本矩阵与实机验收合同",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/557"
+    },
+    {
+      "number": 553,
+      "title": "feat(experiment): 同档对照原生3D、Tween、拼装与奖励UI",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/553"
+    },
+    {
+      "number": 555,
+      "title": "refactor(m7): 解耦奖励查询与会话命令依赖",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/555"
+    },
+    {
+      "number": 554,
+      "title": "refactor(m7): 分离卡牌升级规则并修复原始API兼容",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/554"
+    },
+    {
+      "number": 551,
+      "title": "refactor(m7): 分离 Actor 状态查询并解除三项循环依赖",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/551"
+    },
+    {
+      "number": 549,
+      "title": "refactor: separate owner end power planning and effects",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/549"
+    },
+    {
+      "number": 548,
+      "title": "refactor(m7): 拆清 Run 卡目录合并职责",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/548"
+    },
+    {
+      "number": 552,
+      "title": "refactor(m7): 线性接续 Run 卡目录职责",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/552"
+    },
+    {
+      "number": 550,
+      "title": "refactor(m7): 解耦药水遗物回调",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/550"
+    },
+    {
+      "number": 544,
+      "title": "fix(tooling): 补齐共享及自定义LFS缓存识别",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/544"
+    },
+    {
+      "number": 541,
+      "title": "refactor(core): 解耦Power与商店职责并修复CI超时机制",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/541"
+    },
+    {
+      "number": 547,
+      "title": "refactor(m7): 拆分 Defect 纯效果规划职责",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/547"
+    },
+    {
+      "number": 543,
+      "title": "refactor(m7): 整合Session、Watcher与Inventory职责",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/543"
+    },
+    {
+      "number": 546,
+      "title": "refactor(m7): 拆分 Act1 事件选择职责",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/546"
+    },
+    {
+      "number": 545,
+      "title": "refactor(m7): 分离无色目录与卡能力准入职责",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/545"
+    },
+    {
+      "number": 542,
+      "title": "refactor(m7): 拆清奖励查询与 Watcher 执行职责",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/542"
+    }
+  ],
+  "sourceOwnership": [
+    {
+      "number": 556,
+      "paths": [
+        "src/lua/abyss_battle_enemy_view.lua",
+        "src/lua/abyss_battle_render_hud.lua",
+        "src/lua/abyss_battle_unit_view.lua",
+        "src/lua/abyss_card_skin.lua",
+        "src/lua/abyss_character_select_view.lua",
+        "src/lua/abyss_choice_ui.lua",
+        "src/lua/abyss_deck_ui.lua",
+        "src/lua/abyss_feedback.lua",
+        "src/lua/abyss_feedback_actor_painter.lua",
+        "src/lua/abyss_map_ui.lua",
+        "src/lua/abyss_monster_art.lua",
+        "src/lua/abyss_monster_power_view.lua",
+        "src/lua/abyss_native_battle.lua",
+        "src/lua/abyss_native_battle_config.lua",
+        "src/lua/abyss_native_battle_geometry.lua",
+        "src/lua/abyss_native_projection.lua",
+        "src/lua/abyss_native_social_input.lua",
+        "src/lua/abyss_potion_discard_ui.lua",
+        "src/lua/abyss_traveler_portraits.lua"
+      ]
+    },
+    {
+      "number": 557,
+      "paths": []
+    },
+    {
+      "number": 553,
+      "paths": []
+    },
+    {
+      "number": 555,
+      "paths": [
+        "src/lua/abyss_relic_card_rewards.lua",
+        "src/lua/abyss_relic_choices.lua",
+        "src/lua/abyss_relic_pending.lua"
+      ]
+    },
+    {
+      "number": 554,
+      "paths": [
+        "src/lua/abyss_act2_stasis.lua",
+        "src/lua/abyss_card_upgrade.lua",
+        "src/lua/abyss_combat.lua",
+        "src/lua/abyss_warrior_status_cards.lua"
+      ]
+    },
+    {
+      "number": 551,
+      "paths": [
+        "src/lua/abyss_act2_ai_moves.lua",
+        "src/lua/abyss_act2_summons.lua",
+        "src/lua/abyss_actor.lua",
+        "src/lua/abyss_actor_presence.lua",
+        "src/lua/abyss_silent_discard_cards.lua"
+      ]
+    },
+    {
+      "number": 549,
+      "paths": [
+        "src/lua/abyss_end_turn_powers.lua"
+      ]
+    },
+    {
+      "number": 548,
+      "paths": [
+        "src/lua/abyss_run_card_catalog.lua"
+      ]
+    },
+    {
+      "number": 552,
+      "paths": [
+        "src/lua/abyss_run_card_catalog.lua"
+      ]
+    },
+    {
+      "number": 550,
+      "paths": [
+        "src/lua/abyss_relic_hooks.lua",
+        "src/lua/abyss_relic_potion_hooks.lua",
+        "src/lua/abyss_run_potion_candidate.lua"
+      ]
+    },
+    {
+      "number": 544,
+      "paths": []
+    },
+    {
+      "number": 541,
+      "paths": [
+        "src/lua/abyss_power_order.lua",
+        "src/lua/abyss_shop.lua",
+        "src/lua/abyss_turn_power_phases.lua",
+        "src/lua/abyss_turn_powers.lua"
+      ]
+    },
+    {
+      "number": 547,
+      "paths": [
+        "src/lua/abyss_defect_engine_cards.lua"
+      ]
+    },
+    {
+      "number": 543,
+      "paths": [
+        "src/lua/abyss_event_combat.lua",
+        "src/lua/abyss_event_combat_routes.lua",
+        "src/lua/abyss_inventory.lua",
+        "src/lua/abyss_potion_rewards.lua",
+        "src/lua/abyss_watcher_final_cards.lua"
+      ]
+    },
+    {
+      "number": 546,
+      "paths": [
+        "src/lua/abyss_act1_events.lua"
+      ]
+    },
+    {
+      "number": 545,
+      "paths": [
+        "src/lua/abyss_card_capability.lua",
+        "src/lua/abyss_colorless_cards.lua",
+        "src/lua/abyss_colorless_catalog.lua",
+        "src/lua/abyss_combat_catalog.lua"
+      ]
+    },
+    {
+      "number": 542,
+      "paths": [
+        "src/lua/abyss_event_combat.lua",
+        "src/lua/abyss_event_combat_routes.lua",
+        "src/lua/abyss_potion_rewards.lua",
+        "src/lua/abyss_watcher_final_cards.lua"
+      ]
+    },
+    {
+      "number": 558,
+      "paths": [
+        "src/lua/abyss_traveler_portraits.lua"
+      ]
+    }
+  ]
+}

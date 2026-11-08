@@ -67,7 +67,7 @@ test("Bowling preparation freezes separate hits and ignores dead or escaped enem
 end)
 test("Halt snapshots each Dexterity/Frail calculation and chooses stance later",function()
     local s=battle({"halt"});s.player.statuses.dexterity=2;s.player.statuses.frail=1
-    local preparedEffect=Cards.prepareEffect(s,{op="halt",value=3,wrathValue=9})[1]
+    local preparedEffect=Cards.prepareEffect(s,{op="halt",value=3,wrathValue=9},function()return require('abyss_actor')end)[1]
     eq(preparedEffect.value,3);eq(preparedEffect.wrathValue,8)
     s.player.statuses.dexterity=20;s.player.stance="Wrath"
     local p=Cards.planEffect(s,preparedEffect);eq(#p,1);eq(p[1].effect.value,11);eq(p[1].effect.fixed,true)

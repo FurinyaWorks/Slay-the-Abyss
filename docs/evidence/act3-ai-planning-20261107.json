@@ -1,0 +1,58 @@
+{
+  "js": 747,
+  "lua": 1402,
+  "unknownJsMs": 10000,
+  "oldFloorCount": 9,
+  "reserveMs": 60000,
+  "workers": 2,
+  "concurrencyCapUnchanged": 12,
+  "platforms": {
+    "win32": {
+      "shards": 17,
+      "loads": [
+        1651530,
+        1651570,
+        1651442,
+        1651442,
+        1651566,
+        1651638,
+        1651224,
+        1651453,
+        1651283,
+        1651394,
+        1651395,
+        1651718,
+        1651337,
+        1651431,
+        1651485,
+        1651321,
+        1651422
+      ],
+      "maxPlusReserveMs": 1711718,
+      "budgetMs": 1800000,
+      "spareMs": 88282
+    },
+    "linux": {
+      "shards": 13,
+      "loads": [
+        1131898,
+        1131889,
+        1131889,
+        1131898,
+        1131889,
+        1131889,
+        1131889,
+        1131889,
+        1131898,
+        1131898,
+        1131888,
+        1131888,
+        1131888
+      ],
+      "maxPlusReserveMs": 1191898,
+      "budgetMs": 1200000,
+      "spareMs": 8102
+    }
+  },
+  "limitations": "Planning only, not Hosted CI or observed job duration."
+}

@@ -1,0 +1,368 @@
+{
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "allUniqueFilesPreservedExactly": true,
+  "files": [
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/backlog-details/M7-ACT3-AI-RESPONSIBILITIES-20261107.md",
+      "sha256": "f92ebaee4c55a14fc0800e289263b05c150964a139096e0005be3b0fadd1f806"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/backlog-details/M7-LOCAL-RESPONSIBILITY-INTEGRATION-20261108.md",
+      "sha256": "25278bb90cacc29942b0b77080d11b21a3128b612ff303c2def89ebbf919236c"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/backlog-details/M7-SCRY-CHOICE-RESPONSIBILITIES-20261107.md",
+      "sha256": "1cbe3d2ca695ccb70b5181a3ef4545a8ce16cfb561c3e061e75cf39c4891eca0"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/backlog-details/M7-SHIV-TURN-RESPONSIBILITIES-20261107.md",
+      "sha256": "afef77ca57ed2f023e615b089fc168d086522e3c1ae6d78788f28ee4a60531fd"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/act3-ai-planning-20261107.json",
+      "sha256": "c36473ed95965fe719c62847d94cf80ace4805faffd12054b30b4e5bf1225005"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-act3-ai-baseline-engineering-20261107.json.gz",
+      "sha256": "51d693cfdc62e0196d234c73b7b2056031b5e3df8740b4e31798c219a1c25ef3"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-act3-ai-current-engineering-20261107.json.gz",
+      "sha256": "50e836089df3d1b56710beed929fac685b3b8424c4bab5cb305b2fd11ac9c60e"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-act3-ai-responsibilities-20261107.json",
+      "sha256": "547cc6383626a4a4b1fec785e456c0d5faa1a391b24ed520aa9b450b81ccc8c7"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-local-refactors-baseline-engineering-20261108.json.gz",
+      "sha256": "e2d82c32359ae748844bc2e7e315ca836fc9dcfa9bb2b059aec0613cfe4b18ad"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-local-refactors-current-engineering-20261108.json.gz",
+      "sha256": "fdcf4710d7c1f191459deaa4c24c92d75595c43324034830dfc874f04a3a981c"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-local-refactors-validation-20261108.json.gz",
+      "sha256": "6225ecdb1945f76263a46332fd605d649c3784dd2e96dc98cb337f84f586febb"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-local-responsibility-integration-20261108.json",
+      "sha256": "73f2382b4746f4d0065790916caa8c04f2b0ffc7274210ca84d56e47dd8b9407"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-scry-choice-baseline-engineering-20261107.json.gz",
+      "sha256": "f1ad1612374296ed39d4733bb622b601d60a0f04d97dd9fef2a1b339285ff036"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-scry-choice-combat-graph-20261107.json.gz",
+      "sha256": "eda653d524e3fddd8b25e7582082440a686a4a42e5045bc77b554887fe977739"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-scry-choice-current-engineering-20261107.json.gz",
+      "sha256": "45a45e563aa79cc9c1f00661b74bf1eff1bf5e4b1e6ef381a95d3e265a3111df"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-scry-choice-direct-graph-20261107.json.gz",
+      "sha256": "c0771e822ff7e87879df7b399504520ed9d02a4bb667fbd9233824bda37ae8fe"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-scry-choice-responsibilities-20261107.json",
+      "sha256": "fe7681bff9d141318be9c3ef7b435c30ddb7312b066904be18870830bc85de7c"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-shiv-turn-baseline-engineering-20261107.json.gz",
+      "sha256": "51d3ef9cecbc33642a97a44b10a4b7be5e513222f16bb3d099b3dc8d104bd186"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-shiv-turn-combat-graph-20261107.json.gz",
+      "sha256": "ba23d1cbf39ebda86bcb32931ee00d23608194a45a6b279cf4c5559a82000f0a"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-shiv-turn-current-engineering-20261107.json.gz",
+      "sha256": "79b453ee8b1dbdcfbb23c694efd1717a6a08898b3542eb1277fda315d372de8d"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-shiv-turn-direct-graph-20261107.json.gz",
+      "sha256": "81678d5df1e94aeba0393bc6a9b1b1ea9b77ff6b572d99b5148f875ffce2f38a"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "docs/evidence/m7-shiv-turn-responsibilities-20261107.json",
+      "sha256": "2c8f11e1337d20d4771afc49abac303c0e6e5100e1348aa9ddd5f87cf8091867"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "scripts/check-lua-static.mjs",
+      "sha256": "849515cbe777465274a5d396d0a30dfef409ffbffc02075f23f054b52723d2a0"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "src/lua/abyss_act3_ai.lua",
+      "sha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "src/lua/abyss_scry.lua",
+      "sha256": "5bad4886300de2d8a46105185f49869ac8b0c61114cb109b1243932f3cfca6c4"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "src/lua/abyss_shivs.lua",
+      "sha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/act3-ai-responsibilities.test.mjs",
+      "sha256": "3bd0fc322053704ab369d7c12fc882340048022b4e1ac4c6b88e5238b74a2711"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/fixtures/act3-ai-before.lua",
+      "sha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/fixtures/scry-choice-before.lua",
+      "sha256": "786a5b20a63abaf08f1251402238e410fedf4aefab47abd75a38ab9fc3f1d4a5"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/fixtures/shiv-turn-before.lua",
+      "sha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/helpers/act3-ai-responsibilities.lua",
+      "sha256": "aca8dda4ed2ad13ed60dd540a48d2ea52d48a7e347605e67cef9ac49d43f70f5"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/helpers/act3-ai-responsibilities.mjs",
+      "sha256": "939dc24786b73045ad6b331902352fc02d92d66af2f56edcb201e225666d15c7"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/helpers/scry-choice-responsibilities.lua",
+      "sha256": "0e3c521cf3a3dbbd328db3c802c659dbbe49f8fc540fbe3a17daa96be77c4cbe"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/helpers/scry-choice-responsibilities.mjs",
+      "sha256": "67a2a8a1a8008740a9c27dac6ea403d6b366ee9732f3c72456f9ea3876f7e3f1"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/helpers/shiv-turn-responsibilities.lua",
+      "sha256": "56610cdf349a2382ea0391ba350ab6b3e1860260756fdd309305015617ad0249"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/helpers/shiv-turn-responsibilities.mjs",
+      "sha256": "9eec1196817b7eeb7894528f50862939968f84a40820c6af8c79b01352094290"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/responsibility-complexity.test.mjs",
+      "sha256": "400e87dc5926bef71dd0804e9abec7fbca6b93e47fe2ab5b40743df475cb3249"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/scry-choice-responsibilities.test.mjs",
+      "sha256": "a6ad737a95173bb50ad16883e6a951bb7b24dcd56f9b5a1034dfe1e2f8d98585"
+    },
+    {
+      "from": "fc2300e4e40e261fc57c36110aef70334aec66fb",
+      "path": "tests/shiv-turn-responsibilities.test.mjs",
+      "sha256": "505ffcef75655c195969942a2dadfcfdaf6537ddf4d07af1c4b6c7b9f0c4ce13"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "config/architecture.json",
+      "sha256": "e76b585d9bcb486f3d53059dde1d79a13e46917d5bc8dae4f95638096a706c5e"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/backlog-details/M7-CLASS-POTION-ORB-BOUNDARY-20261108.md",
+      "sha256": "6c01d337ffca37c6683a6e8c27ef21fffbd05e9a99610bb41cc4cb9f0af42ee3"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-backlog-20261108.log.gz",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-baseline-engineering-20261108.json.gz",
+      "sha256": "3f18a7647ad857183936e5148fef323b7e0cf05d386869546711292536dd023b"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-baseline-engineering-20261108.log.gz",
+      "sha256": "ba06848364e52e4a0b70fbc18526e4bf1a881d67c608754552da69cf3ac28211"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-boundary-20261108.json",
+      "sha256": "0eb1ba26e1ad4d0d5c37d50f562caafa598eeaa5eb2e002e0e55b8da71df61c4"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-ci-consumers-20261108.log.gz",
+      "sha256": "7a7595b7f29c2e1991a76a7959414c2038e635d07d9d897f7f41bb245c2033a2"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-ci-final-blocked-20261108.log.gz",
+      "sha256": "32b36118aa2e3a2b7c89ac3b294b0821cd669a81704438c592a77002f00ca0f4"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-current-engineering-20261108.json.gz",
+      "sha256": "9b0047728270f8c4505cd9e9a7f6f7a46d58b4187e4e1bf9fb20342273217d26"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-guidance-20261108.log.gz",
+      "sha256": "387dbf6a34fef2720dbcf4ff588ee6744a9f6f24eadb4a3425c19f713893eca5"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-guidance-materialized-20261108.log.gz",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-source-consumers-20261108.log.gz",
+      "sha256": "b3a4c04c8980feff452b8da420b4653b1d5bf3f86d3ecac25974a15c72cf8236"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-source-first-20261108.log.gz",
+      "sha256": "7f58791cf4d41784d097e488981a8a7cebc35df7cf16de6361ebff06205464d2"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-source-inverse-20261108.log.gz",
+      "sha256": "bd91666fd93053b664d31fbb30a846314666a7ad031fdae69c634b914ad522b4"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-targeted-correction-20261108.log.gz",
+      "sha256": "c8018964ce9f3a78b4be09d85523b3948a8cb243dc3e62230a3bcdfb13f7185e"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "docs/evidence/m7-class-potion-orb-targeted-first-20261108.log.gz",
+      "sha256": "9852b7869775fc75034794f3f1cb5c9d8ee640c116702a60811fedc63a132cac"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "scripts/ci-test-timings.json",
+      "sha256": "331342d5f9a9f56a39b4cfb7b18d03629704648d9972e04900b3e9ff18727c46"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "src/lua/abyss_card_actions.lua",
+      "sha256": "8248d11eb5ab15c46763ef722b72aff3ac5dbde2c5e6b4da7b3103f5066ae4f4"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "src/lua/abyss_class_potions.lua",
+      "sha256": "4cb57fc32fef1c086c5ee726008ce016fcb85b0f5b1c60a3c69a7a34180fd5b9"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "src/lua/abyss_combat_effect_dispatch.lua",
+      "sha256": "5bf02c9a8800e10abed38f7718f62f77c150ff6739132bf57a4127846d1d0ca7"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/class-potion-orb-boundary.test.mjs",
+      "sha256": "8efb5ef2b662ac967b712dbf97693daf69ac6fcb8d1c77e819ede37cbd28d2ce"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/class-potion-orb-source-inverse.test.mjs",
+      "sha256": "078184f5610a3ada1955c7d3ee01f95a2c70942f7366e08cf893b69f377d9bb0"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/combat-reactions-architecture-inverse.test.mjs",
+      "sha256": "8c3444cf88890baae63d1c02d2cf9314e6b44115fbb2480600ac4088aaa1144b"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/compendium-source-inverse.test.mjs",
+      "sha256": "bb4915f0aa97d65880c66798826631b81fb82eea08e43a9c916c4471ac3f8791"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/fixtures/class-potion-orb-before.json.gz",
+      "sha256": "5bd98d551db3dae6b436b20bc9c78d4dc50b0b70442dded20405d792e0bcacc3"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/game-ui-extraction-source-inverse.test.mjs",
+      "sha256": "8f299bd15dd015007bb5bec730d20a66c85e76795bf21cb54bdf5e864e0ad758"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/helpers/class-potion-orb-source-inverse.mjs",
+      "sha256": "55bba5c3ddbef8e72566b3ad0025634b31168eca628a9ac67a49696cbe8f5bc0"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/helpers/class-potion-orb-vm.mjs",
+      "sha256": "1e0bfb55cdbbd0ac9a80fdc936dab3480bfcb4e43afa46df6f69f77d83464950"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/helpers/class-potion-planning-source-inverse.mjs",
+      "sha256": "b1504e7e2c886059efc709e585f4a44bb7bf90f243363af048bf63565a730ef4"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/helpers/m7-core-final-source-inverse.mjs",
+      "sha256": "a3c2ad7189f7ca408b963e1993de33b47454700d4771646f283a8384e6023b8f"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/living-wall-architecture-inverse.test.mjs",
+      "sha256": "b94f09ee15db421560e8ba73429096ff59aa84a0c3bcc5b48d7cf39fab06182a"
+    },
+    {
+      "from": "7c561b2d5d631e2e349a79f2ec64bcff528d2031",
+      "path": "tests/lua/class_potion_darkness_queue.lua",
+      "sha256": "032ac174eca9726a7bfa7162db3a78b8660885de5cc08f509a4a62a3ac10113d"
+    }
+  ],
+  "all333MeasuredSourcesMatch": true,
+  "exceptions": [
+    "Backlog append only through CLI; task owner/status/AC retained",
+    "tests/ci-complete-calibration.test.mjs union and separate current POSIX14 vs historical POSIX13",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs adds exact outer POSIX14 epoch"
+  ],
+  "workflowBytesUnchangedFromBase": true
+}

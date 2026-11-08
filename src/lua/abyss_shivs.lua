@@ -117,29 +117,33 @@ function M.applyInfiniteBlades(state, value)
     return Actors.applyPower(state, state.player, "infinite_blades", 1, state.player)
 end
 
--- Invoke in the source start-of-turn Power slot, before the ordinary draw.
--- The shared generator is a call-stack argument, never persisted in state.
-function M.startTurn(state, generate)
-    if not Actors.isActive(state.player) then return false end
+-- Keep the full scan: dynamic Actor hooks are observed for every enemy.
+local function hasActiveEnemies(state)
     local active = false
     for _, enemy in ipairs(state.enemies) do if Actors.isActive(enemy) then active = true end end
-    if not active then return false end
-    local count = state.player.statuses.infinite_blades or 0
-    assert(layerInteger(count), "invalid Infinite Blades amount")
-    if count == 0 then return false end
-    assert(type(generate) == "function", "missing shared Shiv generator")
-    local bonus, before = amount(state), {}
+    return active
+end
+
+local function existingUids(state)
+    local before = {}
     for _, pile in ipairs({state.hand,state.draw,state.discard,state.exhaust}) do
         for _, card in ipairs(pile) do before[card.uid] = true end
     end
-    local eventCount = #state.events
-    local uids = generate(state, count, false)
+    return before
+end
+
+local function validateGeneratedCount(uids, count)
     assert(type(uids) == "table" and getmetatable(uids) == nil and #uids == count,
         "generator returned wrong Shiv count")
     for key in pairs(uids) do
         assert(type(key) == "number" and key % 1 == 0 and key >= 1 and key <= count,
             "generator returned malformed UIDs")
     end
+end
+
+-- Generation owns the actual insertion, including overflow into discard.
+-- Resolve only those two destinations, then validate all UIDs before stamping.
+local function generatedShivs(state, uids, before)
     local byUid, seen = {}, {}
     for _, pile in ipairs({state.hand,state.discard}) do
         for _, card in ipairs(pile) do byUid[card.uid] = card end
@@ -150,9 +154,12 @@ function M.startTurn(state, generate)
             and card and card.cardId == "shiv" and card.upgraded == ((state.player.statuses.master_reality or 0)>0), "invalid generated Shiv")
         seen[uid] = true
     end
-    for _, uid in ipairs(uids) do byUid[uid].shivAccuracyBonus = bonus end
-    -- Preserve each generation frame's original pile count/order; only stamp
-    -- the new instances already present in that detached historical frame.
+    return byUid, seen
+end
+
+-- Preserve each generation frame's original pile count/order; only stamp
+-- the new instances already present in that detached historical frame.
+local function stampGenerationFrames(state, eventCount, seen, bonus)
     for i = eventCount + 1, #state.events do
         local event = state.events[i]
         if event.kind == "silent_generate" then
@@ -163,6 +170,24 @@ function M.startTurn(state, generate)
             end
         end
     end
+end
+
+-- Invoke in the source start-of-turn Power slot, before the ordinary draw.
+-- The shared generator is a call-stack argument, never persisted in state.
+function M.startTurn(state, generate)
+    if not Actors.isActive(state.player) then return false end
+    if not hasActiveEnemies(state) then return false end
+    local count = state.player.statuses.infinite_blades or 0
+    assert(layerInteger(count), "invalid Infinite Blades amount")
+    if count == 0 then return false end
+    assert(type(generate) == "function", "missing shared Shiv generator")
+    local bonus, before = amount(state), existingUids(state)
+    local eventCount = #state.events
+    local uids = generate(state, count, false)
+    validateGeneratedCount(uids, count)
+    local byUid, seen = generatedShivs(state, uids, before)
+    for _, uid in ipairs(uids) do byUid[uid].shivAccuracyBonus = bonus end
+    stampGenerationFrames(state, eventCount, seen, bonus)
     return true, uids
 end
 

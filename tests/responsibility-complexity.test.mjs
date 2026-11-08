@@ -275,3 +275,51 @@ test('the extracted wording formatter is required and restoring the old local ho
   assert.ok(reviewResponsibilityComplexity(diagnostics,sources,policy).errors.some(e=>e.message.includes('289 exceeds 15')));
   assert.ok(reviewResponsibilityComplexity(diagnostics.filter(r=>r.file!==formatter),{[adapter]:sources[adapter]},policy).errors.some(e=>e.message.includes('module missing')));
 });
+
+test('Scry confirmation stages and their nested callbacks are required and bounded without hiding pile validation',()=>{
+  const path='src/lua/abyss_scry.lua';
+  for(const name of ['M.choose','allowedCandidates','selectedCards','hasWeaveQueue','discardSelected']){
+    const source=`function ${name}() return function() end end`;
+    const rows=[row(path,1,1,'main chunk',1),row(path,1,1,`function '${name}'`,16),
+      row(path,1,source.indexOf('function()')+1,'function',16)];
+    const report=reviewResponsibilityComplexity(rows,{[path]:source});
+    assert.ok(report.errors.some(e=>e.file===path&&e.message===`Responsibility complexity 16 exceeds 15: function '${name}'`),name);
+    assert.ok(report.errors.some(e=>e.file===path&&e.message==='Responsibility complexity 16 exceeds 15: function'),name+' nested');
+    assert.ok(reviewResponsibilityComplexity([],{[path]:source}).errors.some(e=>e.file===path&&e.message.includes(name)&&e.message.includes('missing')),name+' absent');
+  }
+});
+
+test('the complete Shiv responsibility includes future helpers, nested functions and its chunk',()=>{
+  const path='src/lua/abyss_shivs.lua';
+  const source='local function futureHelper() return function() end end';
+  const diagnostics=[row(path,1,1,'main chunk',1),
+    row(path,1,7,"function 'futureHelper'",15),
+    row(path,1,source.indexOf('function()')+1,'function',1)];
+  const report=()=>reviewResponsibilityComplexity(diagnostics,{[path]:source}).errors.filter(e=>e.file===path);
+  assert.deepEqual(report(),[]);
+  for(const diagnostic of diagnostics){
+    const original=diagnostic.message;
+    diagnostic.message=original.replace(/\(\d+ > 0\)/,'(16 > 0)');
+    assert.ok(report().some(e=>e.message.includes('16 exceeds 15')));
+    diagnostic.message=original;
+  }
+  diagnostics.pop();
+  assert.ok(report().some(e=>e.message.includes('Incomplete responsibility')));
+  assert.ok(reviewResponsibilityComplexity([],{}).errors.some(e=>e.file===path&&e.message.includes('missing')));
+});
+
+test('the complete Act3 AI responsibility budgets future helpers, nested callbacks and its chunk',()=>{
+ const path='src/lua/abyss_act3_ai.lua',source='local function future() return function() end end';
+ const rows=[row(path,1,1,'main chunk',1),row(path,1,7,"function 'future'",15),row(path,1,source.indexOf('function()')+1,'function',15)];
+ const errors=d=>reviewResponsibilityComplexity(d,{[path]:source}).errors.filter(e=>e.file===path);
+ assert.deepEqual(errors(rows),[]);
+ for(let index=0;index<rows.length;index++){
+  const modified=rows.map(r=>({...r}));modified[index].message=modified[index].message.replace(/\(\d+ > 0\)/,'(16 > 0)');
+  assert.ok(errors(modified).some(e=>e.message.includes('16 exceeds 15')));
+ }
+ assert.ok(errors(rows.slice(1)).some(e=>e.message.includes('Incomplete')));
+ assert.ok(reviewResponsibilityComplexity([],{}).errors.some(e=>e.file===path&&e.message.includes('module missing')));
+ const legacy='function M.advance() end';
+ assert.ok(reviewResponsibilityComplexity([row(path,1,1,'main chunk',1),row(path,1,1,"function 'M.advance'",46)],{[path]:legacy})
+  .errors.some(e=>e.file===path&&e.message.includes('46 exceeds 15')));
+});

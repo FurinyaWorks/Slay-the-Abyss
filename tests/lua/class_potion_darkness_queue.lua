@@ -29,8 +29,8 @@ local p=fresh();local old=p.combat;old.orbs.slots=2;old.orbs.balls={{kind='light
 local pots,orbs,cardRng=p.potions,old.orbs,old.cardRandomRng
 local before={hp=old.enemies[1].hp,life=old.player.hp,energy=old.energy,events=#old.events,nextUid=old.nextUid,card=R.snapshot(cardRng),potion=R.snapshot(old.potionRng)}
 local original=P.darkness;local reached=false
-P.darkness=function(combat,candidate,effect,queue)
- local ok,why=pcall(original,combat,candidate,effect,queue)
+P.darkness=function(combat,candidate,effect,queue,orbHost)
+ local ok,why=pcall(original,combat,candidate,effect,queue,orbHost)
  if not ok then
   eq(candidate.enemies[1].hp,before.hp-8);eq(candidate.cardRandomRng.counter,before.card.counter+1);eq(candidate.orbChannelCounts.dark,1)
   reached=true;error(why)

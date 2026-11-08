@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-07T23:19:10.171895+00:00",
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "mergeParents": [
+    "126e5f9c9ba0c64cf2195acea70cfaa4293ebf45",
+    "1f4548549d0911d27776b5072fa6fde279b889f3"
+  ],
+  "scope": "Exact production union; additive shared static, CI inventory and complete timing epochs",
+  "status": "local integration verified; final independent commit/tree binding saved outside this self-excluding receipt",
+  "metrics": {
+    "baseline": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "diagnostics": 14,
+      "requirePositions": 1920,
+      "modulePairs": 1546,
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75,
+      "collectorDurationMs": 2849,
+      "revision": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "createdAt": "2026-11-07T23:15:55.610Z",
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ]
+    },
+    "combined": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5077,
+        "measurements": 5410,
+        "expectedMeasurements": 5410
+      },
+      "diagnostics": 14,
+      "requirePositions": 1919,
+      "modulePairs": 1546,
+      "ccAbove15": 233,
+      "ccAbove30": 53,
+      "maxCC": 75,
+      "collectorDurationMs": 2714,
+      "revision": "126e5f9c9ba0c64cf2195acea70cfaa4293ebf45",
+      "createdAt": "2026-11-07T23:14:22.269Z",
+      "scc": [
+        {
+          "members": 79,
+          "positions": 615,
+          "pairs": 394
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ]
+    }
+  },
+  "revisionNote": "Combined collection ran before merge commit. Parent revision string is not a measurement of parent bytes; complete module/input hashes bind collected current bytes.",
+  "preservation": {
+    "files": 4499,
+    "productionFiles": 333,
+    "originalFrozenEvidence": true,
+    "originalHelpers": true,
+    "originalAssertions": true,
+    "managedSharedTests": [
+      "tests/ci-complete-calibration.test.mjs",
+      "tests/ci-runtime.test.mjs",
+      "tests/class-potion-orb-source-inverse.test.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/watcher-actor-source-inverse.test.mjs"
+    ]
+  },
+  "validation": {
+    "enemyAndWatcherBehavior": {
+      "passed": 21,
+      "durationMs": 29266.421746
+    },
+    "ci": {
+      "passed": 21,
+      "durationMs": 1813.959151
+    },
+    "sourceInitial": {
+      "passed": 25,
+      "failed": 2,
+      "durationMs": 3330.748775,
+      "cause": "two old floor tests correctly rejected unknown combined timing bytes"
+    },
+    "sourceAndDeliveryCorrected": {
+      "passed": 48,
+      "durationMs": 219.600454,
+      "correction": "Only exact complete integration epoch projection before the two old floor assertions; original helpers and all assertions retained"
+    },
+    "ciShapeQueue": {
+      "passed": 53,
+      "durationMs": 1597.806647
+    },
+    "m7Epoch": {
+      "passed": 1,
+      "durationMs": 139.563063
+    },
+    "luaIntegration": {
+      "files": 4,
+      "passedGroups": 70,
+      "filesList": [
+        "queued_enemy_roll.lua",
+        "queued_enemy_status.lua",
+        "act3_shapes.lua",
+        "act3_orb_walker.lua"
+      ]
+    },
+    "criticalMutationOperatorsKilledByAssertion": 4,
+    "nativeUiContracts": {
+      "passed": 6,
+      "durationMs": 16859.286999
+    },
+    "engineering": "baseline and combined freshly passed",
+    "builds": [
+      "data",
+      "theme",
+      "ui"
+    ],
+    "backlog": "pass",
+    "guidance": "pass",
+    "doctor": "exit1: same five duplicate-ID groups and legacy completed directory; not green",
+    "independentReview": "precommit pass, no unresolved findings; final binding outside receipt"
+  },
+  "planning": {
+    "forecastOnly": true,
+    "js": 755,
+    "lua": 1403,
+    "floors": 12,
+    "windowsShards": 17,
+    "posixShards": 14,
+    "workers": 2,
+    "concurrency": 12,
+    "reserveMs": 60000,
+    "windowsMaxPlusReserveMs": 1729245,
+    "windowsSpareMs": 70755,
+    "posixMaxPlusReserveMs": 1131758,
+    "posixSpareMs": 68242,
+    "oldPosix13MaxPlusReserveMs": 1214202
+  },
+  "notPerformed": [
+    "publication or retry of denied source/planning upload",
+    "new PR",
+    "hosted or local Full",
+    "merge into develop",
+    "user computer, Codex or GUI input",
+    "official import, real ready or device validation",
+    "task AC completion"
+  ],
+  "setupNotes": [
+    "backlog command initially absent from PATH, used existing pinned tools/backlog-cli installation",
+    "no engineering/data/theme/ui infrastructure failure",
+    "a nonexistent delivery-evidence filename did not select a test; actual delivery.test.mjs separately ran and passed"
+  ],
+  "artifacts": [
+    {
+      "path": "docs/evidence/enemy-integration-20261108/baseline-engineering.json.gz",
+      "sha256": "58d79fd94dec0d8695d57700229a64d3a93859949d03c9f774a1ce0152fe95d1",
+      "bytes": 369390
+    },
+    {
+      "path": "docs/evidence/enemy-integration-20261108/combined-engineering.json.gz",
+      "sha256": "942fd17630be606a64f90ef7c68db156de6339459031b9659c77b64ecf054623",
+      "bytes": 370842
+    },
+    {
+      "path": "docs/evidence/enemy-integration-20261108/metrics.json",
+      "sha256": "182e7506b5adff091c07b87f55158adcbc9f1156be0ce86735dbec81eda82f5d",
+      "bytes": 94543
+    },
+    {
+      "path": "docs/evidence/enemy-integration-20261108/open-pr-files.json",
+      "sha256": "794d8f6d291b6e3a601d0f0b9bc71a0dfc4e5d6553afcc1f2874d07eb2081964",
+      "bytes": 33940
+    },
+    {
+      "path": "docs/evidence/enemy-integration-20261108/planning.json",
+      "sha256": "a36241980732258e1973a27b1ee9b3fee7137b4873a8e4a25718f00a890e9a5a",
+      "bytes": 195611
+    },
+    {
+      "path": "docs/evidence/enemy-integration-20261108/preservation.json.gz",
+      "sha256": "748545f6c796335935a4f295e02ef39c5e3376229e2beb9c6e13be509e01ff21",
+      "bytes": 157357
+    },
+    {
+      "path": "docs/evidence/enemy-integration-20261108/remote-occupancy.json",
+      "sha256": "69f3d99723b01b85740a9f679d4ce1cca144d6e7f25d109c50f0c5fc7dbe8474",
+      "bytes": 116734
+    },
+    {
+      "path": "docs/evidence/enemy-integration-20261108/validation-logs.json.gz",
+      "sha256": "85599c2c689bdae9bdd972b5aad7a171d589ba4d4c8f18fba5e2c2d1fbc54b32",
+      "bytes": 23853
+    },
+    {
+      "path": "docs/evidence/enemy-integration-20261108/final-remote-readback.json",
+      "sha256": "c42b8412d88e9fddd0412ce18f5a095390379945957ff2e0673181e1112b58a0",
+      "bytes": 3056
+    }
+  ]
+}

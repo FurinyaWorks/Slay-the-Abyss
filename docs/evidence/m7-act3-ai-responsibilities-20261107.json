@@ -1,0 +1,454 @@
+{
+  "schemaVersion": 1,
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "source": "src/lua/abyss_act3_ai.lua",
+  "frozenGitBlob": "52d75363ee955865ed9bce82f6e02d98339a8700",
+  "metrics": {
+    "baseline": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "errors": [],
+      "warningCount": 14,
+      "positions": 1920,
+      "pairs": 1546,
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "module": {
+        "file": "src/lua/abyss_act3_ai.lua",
+        "sha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19",
+        "lines": 90,
+        "functions": [
+          {
+            "id": "$",
+            "name": "<chunk>",
+            "kind": "chunk",
+            "constructorName": false,
+            "line": 1,
+            "column": 1,
+            "endLine": 90,
+            "lines": 90,
+            "complexity": 1
+          },
+          {
+            "id": "$/select#1",
+            "name": "select",
+            "kind": "function",
+            "constructorName": false,
+            "line": 5,
+            "column": 7,
+            "endLine": 8,
+            "lines": 4,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.advance#1",
+            "name": "M.advance",
+            "kind": "function",
+            "constructorName": false,
+            "line": 9,
+            "column": 1,
+            "endLine": 54,
+            "lines": 46,
+            "complexity": 46
+          },
+          {
+            "id": "$/M.initialize#1",
+            "name": "M.initialize",
+            "kind": "function",
+            "constructorName": false,
+            "line": 55,
+            "column": 1,
+            "endLine": 63,
+            "lines": 9,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.preBattle#1",
+            "name": "M.preBattle",
+            "kind": "function",
+            "constructorName": false,
+            "line": 64,
+            "column": 1,
+            "endLine": 73,
+            "lines": 10,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.beforeAction#1",
+            "name": "M.beforeAction",
+            "kind": "function",
+            "constructorName": false,
+            "line": 74,
+            "column": 1,
+            "endLine": 84,
+            "lines": 11,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.afterAction#1",
+            "name": "M.afterAction",
+            "kind": "function",
+            "constructorName": false,
+            "line": 86,
+            "column": 1,
+            "endLine": 89,
+            "lines": 4,
+            "complexity": 2
+          }
+        ]
+      }
+    },
+    "current": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5057,
+        "measurements": 5390,
+        "expectedMeasurements": 5390
+      },
+      "errors": [],
+      "warningCount": 14,
+      "positions": 1920,
+      "pairs": 1546,
+      "ccAbove15": 236,
+      "ccAbove30": 57,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "module": {
+        "file": "src/lua/abyss_act3_ai.lua",
+        "sha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2",
+        "lines": 105,
+        "functions": [
+          {
+            "id": "$",
+            "name": "<chunk>",
+            "kind": "chunk",
+            "constructorName": false,
+            "line": 1,
+            "column": 1,
+            "endLine": 105,
+            "lines": 105,
+            "complexity": 1
+          },
+          {
+            "id": "$/select#1",
+            "name": "select",
+            "kind": "function",
+            "constructorName": false,
+            "line": 5,
+            "column": 7,
+            "endLine": 8,
+            "lines": 4,
+            "complexity": 3
+          },
+          {
+            "id": "$/advanceMaw#1",
+            "name": "advanceMaw",
+            "kind": "function",
+            "constructorName": false,
+            "line": 11,
+            "column": 7,
+            "endLine": 25,
+            "lines": 15,
+            "complexity": 8
+          },
+          {
+            "id": "$/advanceSpireGrowth#1",
+            "name": "advanceSpireGrowth",
+            "kind": "function",
+            "constructorName": false,
+            "line": 27,
+            "column": 7,
+            "endLine": 35,
+            "lines": 9,
+            "complexity": 9
+          },
+          {
+            "id": "$/advanceShape#1",
+            "name": "advanceShape",
+            "kind": "function",
+            "constructorName": false,
+            "line": 38,
+            "column": 7,
+            "endLine": 48,
+            "lines": 11,
+            "complexity": 13
+          },
+          {
+            "id": "$/advanceOrbWalker#1",
+            "name": "advanceOrbWalker",
+            "kind": "function",
+            "constructorName": false,
+            "line": 50,
+            "column": 7,
+            "endLine": 56,
+            "lines": 7,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.advance#1",
+            "name": "M.advance",
+            "kind": "function",
+            "constructorName": false,
+            "line": 58,
+            "column": 1,
+            "endLine": 69,
+            "lines": 12,
+            "complexity": 14
+          },
+          {
+            "id": "$/M.initialize#1",
+            "name": "M.initialize",
+            "kind": "function",
+            "constructorName": false,
+            "line": 70,
+            "column": 1,
+            "endLine": 78,
+            "lines": 9,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.preBattle#1",
+            "name": "M.preBattle",
+            "kind": "function",
+            "constructorName": false,
+            "line": 79,
+            "column": 1,
+            "endLine": 88,
+            "lines": 10,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.beforeAction#1",
+            "name": "M.beforeAction",
+            "kind": "function",
+            "constructorName": false,
+            "line": 89,
+            "column": 1,
+            "endLine": 99,
+            "lines": 11,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.afterAction#1",
+            "name": "M.afterAction",
+            "kind": "function",
+            "constructorName": false,
+            "line": 101,
+            "column": 1,
+            "endLine": 104,
+            "lines": 4,
+            "complexity": 2
+          }
+        ]
+      }
+    }
+  },
+  "differential": {
+    "matrix": {
+      "mode": "matrix",
+      "checkpoints": 1680,
+      "bytes": 11201694,
+      "sha256": "debbd28aed0586d31c70fe954cbaa69eb389dae43179d38e0e04448aa5361fae",
+      "beforeSourceSha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19",
+      "afterSourceSha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2",
+      "exactAllowedErrors": {
+        "before": {
+          "src/lua/abyss_act3_ai.lua:12: unsupported Act3 AI": "unsupported Act3 AI"
+        },
+        "after": {
+          "src/lua/abyss_act3_ai.lua:61: unsupported Act3 AI": "unsupported Act3 AI"
+        }
+      },
+      "rawErrorLocationMap": [],
+      "errorComparison": "Only the complete unsupported-policy assertion maps to canonical coordinates; all other errors remain raw."
+    },
+    "contracts": {
+      "mode": "contracts",
+      "checkpoints": 52,
+      "bytes": 151575,
+      "sha256": "b62421b3089bfea8bd3073a551a4e4c7c5e6c76a996c2e80bd6f2f088c6ea86e",
+      "beforeSourceSha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19",
+      "afterSourceSha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2",
+      "exactAllowedErrors": {
+        "before": {
+          "src/lua/abyss_act3_ai.lua:12: unsupported Act3 AI": "unsupported Act3 AI"
+        },
+        "after": {
+          "src/lua/abyss_act3_ai.lua:61: unsupported Act3 AI": "unsupported Act3 AI"
+        }
+      },
+      "rawErrorLocationMap": [
+        {
+          "before": "src/lua/abyss_act3_ai.lua:12: unsupported Act3 AI",
+          "after": "src/lua/abyss_act3_ai.lua:61: unsupported Act3 AI"
+        },
+        {
+          "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent laser",
+          "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent laser"
+        },
+        {
+          "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent roar",
+          "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent roar"
+        },
+        {
+          "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent tackle",
+          "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent tackle"
+        },
+        {
+          "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent daze",
+          "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent daze"
+        },
+        {
+          "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack",
+          "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack"
+        },
+        {
+          "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack",
+          "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack"
+        },
+        {
+          "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack",
+          "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack"
+        }
+      ],
+      "errorComparison": "Only the complete unsupported-policy assertion maps to canonical coordinates; all other errors remain raw."
+    }
+  },
+  "negativeControls": {
+    "runs": 10,
+    "variants": [
+      "before",
+      "current"
+    ],
+    "mutations": [
+      "maw-historical-frame",
+      "orb-third-repeat",
+      "spike-limit",
+      "transient-roll",
+      "primary-rng-boundary"
+    ],
+    "result": "all killed by the specific fixture assertion"
+  },
+  "failuresRetained": [
+    {
+      "scope": "new negative-control fixture",
+      "reason": "Transient fixture initially placed roar at intent slot 1, masking the intended extra-RNG assertion with unknown-intent error",
+      "resolution": "Make the fixture match Transient slot-1 attack; both source variants now fail specifically on excess draws."
+    },
+    {
+      "scope": "first static policy test",
+      "reason": "Registering the required module did not by itself activate whole-module budgeting",
+      "resolution": "Added completeResponsibility predicate and preserved chunk/helper/nested red controls; actual source now all 11 measurements are budgeted."
+    },
+    {
+      "scope": "initial original integration run",
+      "reason": "Generated theme absent in this new worktree",
+      "resolution": "Build theme and UI in this worktree before final integration rerun."
+    },
+    {
+      "scope": "overlapped static sample",
+      "reason": "Author temporarily substituted frozen source during baseline sampling while an independent own static command ran",
+      "resolution": "Discarded mixed-source static report and reran only after current production source restoration; future comparison uses injected in-memory sources, not live source replacement."
+    },
+    {
+      "scope": "initial CI inventory checks",
+      "reason": "New JS file was missing from explicit post-placement unknown inventory",
+      "resolution": "Registered the new file; preserved all historical observations, budgets, floors and source inverses."
+    }
+  ],
+  "delivery": {
+    "publicationAttempted": false,
+    "pullRequest": null,
+    "hostedCI": "not_run",
+    "merge": "not_done",
+    "fullLocalCheck": "not_run",
+    "officialImport": "not_run",
+    "nativeDevice": "not_run",
+    "reason": "Prior destination publication denial remains unresolved; this slice is local only. No alternative upload was attempted."
+  },
+  "originalSourceStaticRed": {
+    "measured": 7,
+    "errors": [
+      {
+        "file": "src/lua/abyss_act3_ai.lua",
+        "line": 9,
+        "column": 1,
+        "code": "W561",
+        "message": "Responsibility complexity 46 exceeds 15: function 'M.advance'"
+      }
+    ]
+  },
+  "checks": {
+    "differentialAndHardGate": {
+      "passed": 29,
+      "failed": 0
+    },
+    "existingIntegration": {
+      "passed": 13,
+      "failed": 0,
+      "durationMs": 61883.245991
+    },
+    "ciInventoryAndHistory": {
+      "passed": 17,
+      "failed": 0
+    },
+    "luaStatic": {
+      "passed": true,
+      "governedMeasurements": 1780,
+      "historicalWarnings": 14
+    },
+    "architecture": {
+      "passed": true,
+      "modules": 333,
+      "positions": 1920
+    },
+    "guidance": "passed",
+    "backlogRoadmap": "passed",
+    "backlogDoctor": {
+      "status": "failed",
+      "existingDuplicateGroups": 5
+    },
+    "independentReview": {
+      "status": "pass",
+      "report": "external author handoff includes review ID, exact commit and file hashes"
+    }
+  },
+  "logSha256": {
+    "act3-ai-targeted.log": "6ca3fefed4a9b5e6f348f2233dfa530e4c0cd9dad8da6ace12967c82b8bcd933",
+    "act3-ai-current-regression.log": "b7013d1b113ebfe04620676f658401fd487b0cd607cc340c80659c1b7334d901",
+    "act3-ai-ci-final.log": "bd435432001049b2dd48b8e429e756c674bd22eea6deead7d1616350e03b300c",
+    "act3-ai-final-static.log": "1cc3ae902fc1a81e05949336238b8e364f4a6ccbf1b682e70da38de1e47d830b",
+    "act3-ai-architecture.log": "507f0495bc945a2d7c5881a0f47b2fb4b847505015b2a7cb0bb6def0ed24798c",
+    "act3-ai-guidance.log": "2c1da80a78bb962dd8ba9ae5ee2d4d83118184f78882bb9ea582eb66ffbcdf14",
+    "act3-ai-backlog.log": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+    "act3-ai-doctor.log": "41ec373ed9871a1bdc86d07865141fe89ca39d8163789d12e940e8783de30ecc"
+  }
+}

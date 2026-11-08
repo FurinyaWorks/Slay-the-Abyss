@@ -83,7 +83,8 @@ end
 
 -- Construction-time snapshots. Returned effects are independent pure data.
 -- Host must expand Bowling Bash here, not recount after its first damage.
-function M.prepareEffect(state,effect)
+-- The execution host supplies Actor arithmetic only when Halt needs it.
+function M.prepareEffect(state,effect,actorHost)
     local out=copy(effect)
     if effect.op=="bowlingBash" then
         checked(effect.value);local effects={}
@@ -93,7 +94,7 @@ function M.prepareEffect(state,effect)
         return effects
     elseif effect.op=="halt" then
         checked(effect.value);checked(effect.wrathValue)
-        local Actors=require("abyss_actor")
+        local Actors=actorHost()
         out.value=checked(Actors.blockAmount(state,state.player,effect.value))
         out.wrathValue=checked(Actors.blockAmount(state,state.player,effect.wrathValue))
         out.prepared=true

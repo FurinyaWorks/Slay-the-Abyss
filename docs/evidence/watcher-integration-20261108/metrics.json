@@ -1,0 +1,109 @@
+{
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "baseline": {
+    "coverage": {
+      "modules": 333,
+      "functions": 5053,
+      "measurements": 5386,
+      "expectedMeasurements": 5386
+    },
+    "warnings": 14,
+    "requirePositions": 1920,
+    "modulePairs": 1546,
+    "scc": [
+      {
+        "members": 81,
+        "positions": 623,
+        "pairs": 400
+      },
+      {
+        "members": 15,
+        "positions": 62,
+        "pairs": 41
+      }
+    ],
+    "ccAbove15": 237,
+    "ccAbove30": 58,
+    "maxCC": 75
+  },
+  "fourSlices": {
+    "coverage": {
+      "modules": 333,
+      "functions": 5068,
+      "measurements": 5401,
+      "expectedMeasurements": 5401
+    },
+    "warnings": 14,
+    "requirePositions": 1919,
+    "modulePairs": 1547,
+    "scc": [
+      {
+        "members": 80,
+        "positions": 619,
+        "pairs": 398
+      },
+      {
+        "members": 15,
+        "positions": 62,
+        "pairs": 41
+      }
+    ],
+    "ccAbove15": 234,
+    "ccAbove30": 55,
+    "maxCC": 75
+  },
+  "watcherAlone": {
+    "coverage": {
+      "modules": 333,
+      "functions": 5054,
+      "measurements": 5387,
+      "expectedMeasurements": 5387
+    },
+    "warnings": 14,
+    "requirePositions": 1920,
+    "modulePairs": 1545,
+    "scc": [
+      {
+        "members": 80,
+        "positions": 619,
+        "pairs": 396
+      },
+      {
+        "members": 15,
+        "positions": 62,
+        "pairs": 41
+      }
+    ],
+    "ccAbove15": 237,
+    "ccAbove30": 58,
+    "maxCC": 75
+  },
+  "combined": {
+    "coverage": {
+      "modules": 333,
+      "functions": 5069,
+      "measurements": 5402,
+      "expectedMeasurements": 5402
+    },
+    "warnings": 14,
+    "requirePositions": 1919,
+    "modulePairs": 1546,
+    "scc": [
+      {
+        "members": 79,
+        "positions": 615,
+        "pairs": 394
+      },
+      {
+        "members": 15,
+        "positions": 62,
+        "pairs": 41
+      }
+    ],
+    "ccAbove15": 234,
+    "ccAbove30": 55,
+    "maxCC": 75
+  },
+  "reportRevision": "35850732cf99450624d23e28418a366e3a9c5d2f",
+  "reportRevisionNote": "Collected before integration commit; final complete source and input hashes bind the exact committed bytes. Report revision is the parent, not a measurement of parent bytes."
+}
