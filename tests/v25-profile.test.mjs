@@ -54,6 +54,19 @@ test('private card assets stay explicit, local and bound to V25 development mode
  assert.equal(v25CardAssetsFromReceipt(receipt),'a.json');
  assert.ok(auditUiBuildArgs(receipt,{v25CardAssetsPath:'isolated.json'}).includes('--v25-card-assets=isolated.json'));
 });
+
+test('private V25 UI masks require an explicit source pack and survive audit reconstruction',()=>{
+ assert.deepEqual(v25ChromeArgs(['--v25-ui-masks=build/mask.private.json','--v25-battle-chrome']),
+  {args:[],v25BattleChrome:true,v25UiMasks:'build/mask.private.json'});
+ for(const args of [['--v25-ui-masks='],['--v25-ui-masks=a','--v25-ui-masks=b']])assert.throws(()=>v25ChromeArgs(args));
+ assert.throws(()=>validateV25Chrome({v25UiMasks:'a.json'}));
+ assert.throws(()=>validateV25Chrome({v25BattleChrome:true,v25UiMasks:'a.json',releaseCandidate:true}));
+ const invalid={experimentalBattleChrome:'v25-layered-v1',artFeatures:artFeatureReceipt({}),v25UiMasks:{}};
+ assert.throws(()=>artBuildOptionsFromReceipt(invalid),/mask/i);
+ const receipt={...invalid,v25UiMasks:{assetFile:{path:'mask.json',sha256:'a'.repeat(64)},inputs:[],templateIndices:{AbyssV25SelectionConstellation:12}}};
+ assert.equal(artBuildOptionsFromReceipt(receipt).v25UiMasks,'mask.json');
+ assert.ok(auditUiBuildArgs(receipt,{v25UiMasksPath:'isolated-mask.json'}).includes('--v25-ui-masks=isolated-mask.json'));
+});
 test('template bindings cannot enable a partial or unbound private surface',()=>{
  const prepared={sourceManifestSha256:'a'.repeat(64),binding:{variants:{attack:{basic:'shell'}},manaTemplateId:'mana'}};
  assert.match(v25CardBindingSource(),/enabled=false/);

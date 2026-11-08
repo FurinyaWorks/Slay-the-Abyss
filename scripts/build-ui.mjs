@@ -24,6 +24,7 @@ import {validateUiProfileOptions,uiProfileArgs,uiProfileModule,uiProfileSource} 
 import {validateV25Chrome,v25ChromeArgs} from './v25-profile.mjs';
 import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
 import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
+import {prepareV25UiMasks,attachV25UiMasks} from './v25-ui-mask-assets.mjs';
 import {v25Theme,applyV25BattleLayout,rebuildV25CardFaces} from './v25-layout.mjs';
 import {applyV25BattleScene} from './v25-battle-scene.mjs';
 import {applyV25PortraitProfile} from './v25-portrait-profile.mjs';
@@ -118,6 +119,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   const v25BattleChrome=validateV25Chrome(options);
   if(v25BattleChrome&&options.performanceArt)throw Error('V25 reference mode cannot use compact art sampling');
   const v25Cards=options.v25CardAssets?prepareV25CardTemplates(options.v25CardAssets,{root:process.cwd()}):null;
+  const v25Masks=options.v25UiMasks?prepareV25UiMasks(options.v25UiMasks):null;
   const nativePageLifecycle=validateUiProfileOptions(options);
   if(options.legacyCardFrames===true&&options.lightweight2d!==true)throw Error('Legacy card comparison requires the bounded 2D experiment');
   const flags = resolveArtFeatures(options);
@@ -129,7 +131,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   const performance=compact?loadPerformancePack():null;
   if(flags.menuBackground)backgroundSources();
   portraitSources(process.cwd(),flags);
-  rejectInputOutputAliases(outputDirectory, [...(v25Cards?.inputs.map(row=>row.path)??[]),...(flags.menuBackground?backgroundInputs:[]),...portraitRuntimeInputs(flags), ...(readyArt?readyArtSourceInputs():[]), ...(art?.inputPaths??[])].map(path=>resolve(path)));
+  rejectInputOutputAliases(outputDirectory, [...(v25Cards?.inputs.map(row=>row.path)??[]),...(v25Masks?.inputs.map(row=>row.path)??[]),...(flags.menuBackground?backgroundInputs:[]),...portraitRuntimeInputs(flags), ...(readyArt?readyArtSourceInputs():[]), ...(art?.inputPaths??[])].map(path=>resolve(path)));
   // The optional-art identity scan above also protects grass sources before decoding.
   const monsterArt=flags.monsters?prepareMonsterArt(options.monsterArt):null;
   if(flags.monsters&&!monsterArt)throw Error('Enabled monster artwork requires its registry');
@@ -140,6 +142,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   const battle = battleLayout(), layout = withViewport(gameLayout(undefined, options), theme);
   const templates = [deckCardTemplate()];
   if(v25Cards)templates.push(...v25Cards.templates);
+  if(v25Masks)templates.push(...v25Masks.templates);
   if(v25BattleChrome){
     applyV25BattleLayout(battle,theme);applyV25BattleLayout(layout,theme);
     rebuildV25CardFaces(layout,theme);
@@ -159,6 +162,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
     applyV25BattleScene(battle,theme);applyV25BattleScene(layout,theme);
     applyV25PortraitProfile(layout,theme);
     applyV25CharacterLayout(layout,theme);
+    attachV25UiMasks(layout,v25Masks);
     applyV25MapLayout(layout,theme);
     applyV25NodeLayout(layout,theme);
     applyV25RewardLayout(battle,theme);
@@ -213,7 +217,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
     const native = nativeCardArtArgs(features.args);
     const { paths, options } = releaseBuildArgs(native.args);
     if (paths.length > 1) throw new Error('Expected at most one output directory');
-    buildUI(paths[0], undefined, { v25BattleChrome:chrome.v25BattleChrome,v25CardAssets:chrome.v25CardAssets, experimentalCharacters, lightweight2d, legacyCardFrames, nativePageLifecycle:profile.nativePageLifecycle, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
+    buildUI(paths[0], undefined, { v25BattleChrome:chrome.v25BattleChrome,v25CardAssets:chrome.v25CardAssets,v25UiMasks:chrome.v25UiMasks, experimentalCharacters, lightweight2d, legacyCardFrames, nativePageLifecycle:profile.nativePageLifecycle, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
     console.log('Native battle UI and Traveler display module built.');
   }
   catch (error) { console.error(error.message); process.exitCode = 1; }

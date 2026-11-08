@@ -3325,6 +3325,7 @@
     "supportBody": "存档功能需作者达到创作者 4 级后开放，喜欢的话欢迎点赞支持。帮助作者提升等级。"
   },
   "v25Character": {
+    "constellation": { "sourceSha256": "5780bc541d322b369b61f656908da59bdeee7f3ad83988edca8be23776720ecd", "sourceSize": [512,512], "displaySize": [118,118], "colour": "#FFE0A2" },
     "story": "岩层深处传来了异常的共鸣。\n旅行者，深入遗迹，阻止深渊的侵蚀。",
     "relicImageId": 102005
   },

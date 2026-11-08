@@ -289,6 +289,16 @@
     },
     "traces": [
       {
+        "id": "selection-constellation-source-mask",
+        "sources": [
+          { "path": "constellation-exact.png", "sha256": "5780bc541d322b369b61f656908da59bdeee7f3ad83988edca8be23776720ecd", "record": "512×512完整alpha，alpha SHA256 9e10d467d9e6ae6f958a99d04fdcfb2d990c2c9c5177e6e4192aa444ef34be84；bounds[64,66,452,449]不裁切/重居中" },
+          { "path": "character-reference.css", "sha256": "9a6d137a3297559f638e5323db424506ae394c7942cdf334551936ac0d74d17d", "record": "53选中124框/border3；58 cr-constellation原alpha×#FFE0A2，实际DOM内容118×118、中心stage[461,577]" }
+        ],
+        "projectEntry": ["scripts/v25-ui-mask-assets.mjs:compileUiMask/prepareUiMask/prepareV25UiMasks/attachV25UiMasks", "scripts/v25-private-card-assets.mjs:复用compileRgbaRectangles/decodeRgbaRectangles", "scripts/v25-profile.mjs:显式v25UiMasks非RC参数及收据", "scripts/build-ui.mjs/build-native-candidate.mjs:私有输入snapshot/实际template ID/reference", "scripts/v25-ui-mask-audit-inputs.mjs:rebasePrivateUiMask/prepareAuditV25UiMasks；audit-native-candidate.mjs:全模板比较"],
+        "verification": { "sourceRgbPreserved": false, "sourceAlphaExact": true, "sampling": "none", "derivedTintedRgbaSha256": "ac22a7e0dad4592d6fd793c89aece38b0c0113971cb04ccec447b36dafde301d", "tests": "63项相关通过；独立7负控覆盖篡改tint/合法重hash的alpha/decoder期间换源/物理alias/receipt漂移/全模板删节点改alpha改ID/cache禁用；真实原PNG静态template和reference经原encoder写读一致", "privateGeometry": "F:/New folder/.artifacts/v25-constellation-computed/geometry.json", "privateIntegratedUi": ".artifacts/v25-ui-mask-integrated-f20a40a3-50ce-4c1e-833f-8729569a91dd/result.json" },
+        "limits": "RGBA无损指CSS派生金色mask，不等于原灰RGB。静态template共19639节点是结构计数，不是低负载证明。无Lua逐帧创建；同候选原生显示/首次显示/资源释放与官方容量/设备性能仍未验"
+      },
+      {
         "id": "battle-turn-notice",
         "sources": [{ "path": "battle.js", "sha256": "b81d1dbf57874df0efdf68bff2894b256bda954fc8e2f235a657085f518a1ec7", "record": "turnBanner:155；css turn-announcement/turnReveal:68，1.7s、20%/65%、±40px；非动作等待" }],
         "projectEntry": ["scripts/v25-turn-notice-layout.mjs:applyV25TurnNoticeLayout", "src/lua/abyss_v25_turn_notice.lua:M.new/bind/playerTurn/update/reset", "src/lua/abyss_feedback.lua:bindIdle/bannerStep/update/reset", "data/presentation/ui_theme.json:v25Battle.layout.v25TurnNotice"],
