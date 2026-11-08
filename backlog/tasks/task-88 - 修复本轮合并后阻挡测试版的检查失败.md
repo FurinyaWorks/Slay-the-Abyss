@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-10-30 11:45
-updated_date: '2026-11-08T05:41:00Z'
+updated_date: '2026-11-08T15:12:00Z'
 labels: []
 dependencies: []
 priority: medium
@@ -41,6 +41,8 @@ ordinal: 130000
 2026-11-08继续处理#564真实Windows失败：核验两份收据及原日志在Git checkout转换后的原始SHA；仅保留精确四文件的Git字节，不改原哈希/断言/预算，真实core.autocrlf checkout红绿验证及独审后合回同PR。当前Full不中断、不重复触发。
 
 保持#564原Full完整收集实际失败后统一增量修复：历史epoch/当前raw owner分层、真实隔离目录、Windows证据字节、调度反馈语义与实测纯重复成本。每片独审并保留原红灯与所有原断言，不重复Full，不改生产/预算/质量门禁；精确最终头再走正常准入。
+
+2026-11-08定位Full42489554698 POSIX3/14：Battle配置历史合同耗时1121.5秒，保留3例全部断言及变异，复用已认证98fef原始helper闭包并单独检查当前公开入口；只做有界定向验证与独审，不改预算、调度或重跑Full。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -89,4 +91,8 @@ facade合流发布前发现合法proof下非法JSON token会被误当空白布�
 同一Hosted Full后续失败已按原日志处理，证据见mainline-hosted-repairs-20261108.json。原历史源码/负控/退休不误删与当前动态全集分开验证；Nodes和Relic真实历史投影放大已在不减原矩阵下显著降低。Act1仅省受控JSON重复工作，142MB完整原图逐字保全，原30秒不改，Windows是否仍超时待新Hosted。Relic本地CRLF55秒高于旧规划29.5/52.7秒风险保留，无floor改动。当前Full未取消/重跑，原失败不改绿，最终Full/正常准入/合并/官方设备仍未验，全部AC保持未勾。
 
 原Full42444249243自然结束failure，31分片15成功/11失败/5取消；未重触发。最后Roster与RunMax保持125/113原Git输入及1032/107原变异，LF/真实CRLF均8项全过并独审。RunMax286/288秒高于旧Linux254秒但原889.638秒floor不变；所有托管超时是否根治仍待新头Full。汇总receipt连锁错误经实际artifact/重放证实不是新缺口，不改门禁。当前23路径增量统一发布；TASK-88及全部AC保持未完成，证据见M7-MAINLINE-CI-REPAIR-20261108与mainline-hosted-repairs-20261108.json。
+
+Full42489554698 POSIX3/14原日志：56文件中52完成，Battle历史配置合同1121.5秒占已完成耗时70.9%，Task77执行中取消。只将Battle原3例改用已有113项Git blob核实的98fef闭包，断言/变异原文不变；新增来源损坏/CRLF及当前公开入口拒绝验证。定向5/5通过59.8秒、语法/指引/Backlog/diff通过，独审无阻塞；首次新增负控诊断不匹配已保留并修正。详见docs/evidence/battle-config-cost-20261108.json；不证明整片时限或当前Full通过，未改任何预算或重跑Full。
+
+补正Battle新增CRLF负控：主控发现已CRLF引用再次展开会形成CRCRLF；隔离树96项真实CRLF引用复现失败，再以先归一化后展开修复，LF/实际CRLF专项各1/1通过，保留红绿日志。原3例不变，不重跑昂贵回放；独审重新确认，旧测试SHA审查被新SHA9c00e81a替代。非原生Windows执行，证据见原Battle成本JSON的crlfCorrection。
 <!-- SECTION:NOTES:END -->
