@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "scope": "recoverable isolated refactor experiment; disabled in default develop",
+  "recoveryBase": "a0c35db8d3c7242437f4dff0df373749b0d84985",
+  "originalSourceBase": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "sourceHeads": {
+    "delivery": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+    "runtime": "1786d84bfb7481634541b9fda61650881d9d4804"
+  },
+  "sourceTrees": {
+    "delivery": "1b87dea73029b35da60639d3ac940d5dd4d7bea7",
+    "runtime": "cc745a5c8b8b4c858e55e43bf2a81943fe216f86"
+  },
+  "changedSourceFiles": [
+    "src/lua/abyss_combat.lua",
+    "src/lua/abyss_card_upgrade.lua"
+  ],
+  "originalSourceRetained": [
+    "src/lua/abyss_warrior_status_cards.lua",
+    "src/lua/abyss_act2_stasis.lua"
+  ],
+  "rulesChanged": false,
+  "sccReductionClaim": 0,
+  "completeGraphCheckpoints": 3,
+  "graphBytesPerSide": 404257,
+  "rawGraphSha256": "fe00c0c1ea5d93e261b0d824c58a4b1678dfd53e0ff9f5431cf0521924885803",
+  "tested": {
+    "rawApi": true,
+    "originalUpgradeGroups": 11,
+    "warriorStatusGroups": 29,
+    "stasisSourceCases": 3,
+    "relicDynamic": true,
+    "relicHooksTurns": true,
+    "uiUpgradeOrigins": "FAILED: generated UI modules absent in isolated copy; not runtime pass"
+  },
+  "files": {
+    "card-upgrade-minimal.patch": "66332ba369d0d36c4265fa909dcad20b8cba007a2228d6eb2dd5146dbecf60f5",
+    "evidence/case-act2_stasis_source_order.log": "933f29abad826b6627948cdc231615e12e0a9a6e2f203826b71e94813eb09315",
+    "evidence/case-card_upgrade_origins.log": "11b1fac7ace980fb2d00fdf0c8384e59a11f10067f6d1ef6a7a2cf95dcc8e1c8",
+    "evidence/case-card_upgrade_ownership_contract.log": "dfd9dc37f16b880c86732aa4aa98b463f06bbfe39f536d6435e6505eabf9eaa0",
+    "evidence/case-relic_lifecycle_dynamic.log": "3e5845792e90166a66e017d176e8c670e04e3719b6bd2ad497da588cd50693da",
+    "evidence/case-relic_lifecycle_hooks_turns.log": "44d7f6e5b0f1645cc14000143cd5b9c5c826cb0c673cc1678e296df40a1fb081",
+    "evidence/case-results.jsonl": "a4343052bf955f2b8425517d0653fa7e023468e9e08c58f80e79c5d40ed191e8",
+    "evidence/case-warrior_status_build.log": "2ca7df38e35a5955752d1c0d12d030e9569e529eb1636360bd67c4adbabe83cc",
+    "evidence/green-original-upgrade.log": "15a75b352e0db1ae1dac0ca50e542c724b2577d1ffba6afa9f9194d6ebab941e",
+    "evidence/green-raw-api.log": "7e6a67728becc8d2a700aad62cd88344e722dfb5539dc81d3cac37be9388472c",
+    "evidence/green-raw-relic-differential.log": "fd1dd4f3288c4f700a158b1a8bed723d7099832a99dc617714ba183cc4fd7f18",
+    "evidence/raw-relic-differential.json.gz": "7ca75d18ebfae182da1e1fa5bedde08bed2b5492e8798cb63712f3d426b63455",
+    "evidence/red-raw-api.log": "5cd796f1d2926a57330c48e6cdf437bdc53c2b94a4431be27cf5dc0afae446ce",
+    "evidence/red-result.json": "79bca086be2dc6c5c61ba605da42111cb116b001511b07e30034393e28a69740",
+    "fixtures/card_upgrade_ownership_contract.lua": "57b47b3a6dc066c4f6679f05cfbed8f086766e8e5243d2701f79bfc30547ab05",
+    "original-delivery.patch.gz": "cb539551d5dd50558eadb291de2447ea3a4927a3c33a98f2883ca848d20924a1",
+    "original-runtime.patch.gz": "06d046e3a52506490c826c7dfcbedd5d86b75f749e2a7570c8957a9623a0b56e",
+    "proposal-identity.json": "d0b2a92c715a7c0086b19608287a9824f154be4129677b0536a6432ab7bcc437",
+    "raw-relic-probe.lua": "6d2af8b319acd0a39ac7d61a14d74565e30d8ac105fc15d15558ebf6e749ec58",
+    "README.md": "5aac6c9d9cb8251b93b95ae438a53074ba2a134d60e6446ec664a3282143db4f",
+    "verify-raw-relic.mjs": "eb9f8dc3484f9420ee05fd57f78b1ef72f54970cc6f2ecd18ebd4b8804df8b32"
+  },
+  "originalPatches": {
+    "delivery": {
+      "file": "original-delivery.patch.gz",
+      "sha256": "cb539551d5dd50558eadb291de2447ea3a4927a3c33a98f2883ca848d20924a1",
+      "uncompressedSha256": "63f60d8c21abf710f376148924e57436da01a7b286c93d3c0923e13ed789fd5f",
+      "uncompressedBytes": 3329897,
+      "compressedBytes": 1165419
+    },
+    "runtime": {
+      "file": "original-runtime.patch.gz",
+      "sha256": "06d046e3a52506490c826c7dfcbedd5d86b75f749e2a7570c8957a9623a0b56e",
+      "uncompressedSha256": "3068ecafd8d2b4869c104051349970e2ce7dfde8f803ca627d7f49b6b65218bb",
+      "uncompressedBytes": 3335528,
+      "compressedBytes": 1166600
+    }
+  },
+  "fixtures": {
+    "fixtures/card_upgrade_ownership_contract.lua": {
+      "sourceHead": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+      "gitBlob": "ae1c78fe6da64237566be0a86660ead558f84915",
+      "sha256": "57b47b3a6dc066c4f6679f05cfbed8f086766e8e5243d2701f79bfc30547ab05"
+    }
+  }
+}

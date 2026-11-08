@@ -5,6 +5,7 @@ import {sourceEpoch} from './combined-epoch/source-epoch.mjs';
 import {readFileSync} from 'node:fs';
 const live=p=>readFileSync(p,'utf8');
 export function preRelicQuerySource(path,source,{readSource=live}={}){
+ readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'develop',readSource});
  return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'develop')});
 }

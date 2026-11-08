@@ -1,11 +1,27 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {preSessionRewardSource,sessionRewardReader,sessionRewardProof} from './helpers/session-reward-source-inverse.mjs';
-import {preM7FinalSource} from './helpers/m7-core-final-source-inverse.mjs';
+import {preSessionRewardSource as originalSession,sessionRewardReader,sessionRewardProof} from './helpers/epochs/sessionReward/tests/helpers/session-reward-source-inverse.mjs';
+import {preM7FinalSource as originalM7} from './helpers/epochs/develop/tests/helpers/m7-core-final-source-inverse.mjs';
+import {preSessionRewardSource as combinedSession} from './helpers/session-reward-source-inverse.mjs';
+import {preM7FinalSource as combinedM7} from './helpers/m7-core-final-source-inverse.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 const files=sessionRewardProof.files;
 const paths=[...Object.keys(files),...Object.keys(sessionRewardProof.linked)];
-const current=Object.fromEntries(paths.map(path=>[path,readFileSync(path,'utf8').replaceAll('\r\n','\n')]));
+// Preserve the original slice's exact read-count and byte contracts in its
+// immutable source epoch. The actual combined tree is independently checked below.
+const historicalRead=path=>sourceEpoch.proof.targets.sessionReward.files[path]?.source;
+const preSessionRewardSource=(path,source,options={})=>originalSession(path,source,{readSource:historicalRead,...options});
+const current=Object.fromEntries(paths.map(path=>[path,historicalRead(path)]));
+const preM7FinalSource=(path,source)=>originalM7(path,preSessionRewardSource(path,source,{readSource:historicalRead}),{readSource:historicalRead});
+
+test('current combined Session and M7 projections preserve the original complete before sources',()=>{
+ for(const [path,file]of Object.entries(files)){
+  const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(combinedSession(path,actual),file.beforeSource,path);
+  assert.equal(combinedM7(path,actual),file.beforeSource,path);
+ }
+});
 test('exact Session reward sources return the complete prior Git identities',()=>{
  for(const [path,file]of Object.entries(files)){
   const read=[];const reader=p=>(read.push(p),current[p]);

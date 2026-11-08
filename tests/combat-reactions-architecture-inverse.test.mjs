@@ -11,26 +11,31 @@ import {preCardOriginSource} from './helpers/card-origin-source-inverse.mjs';
 import {preCompendiumSource} from './helpers/compendium-source-inverse.mjs';
 import {preGameUiExtractionSource} from './helpers/game-ui-extraction-source-inverse.mjs';
 import * as extractionEpoch from './helpers/game-ui-extraction-source-inverse.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 const path='config/architecture.json';
+// Keep the original native-page hunk/oracle test in its immutable three-owner
+// source epoch. The actual integrated tree is admitted separately below.
+const nativePaths=[path,'src/lua/abyss_game_ui.lua','src/lua/abyss_game_ui_view.lua'];
+const nativeSources=Object.fromEntries(nativePaths.map(p=>[p,sourceEpoch.proof.targets.native.files[p].source]));
 const source=preGameUiExtractionSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'));
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const prior='3cc15d6f573fa5a5c637c2d2a4ef9086f444bb761a64ee1e6aef80dad40d0cc5';
 
 test('native-page outer epoch removes only reviewed registrations and preserves complete external bytes',()=>{
  assert.equal(typeof extractionEpoch.preNativePageSource,'function','missing strict native-page outer epoch');
- const current=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+ const current=nativeSources[path],nativeRead=p=>nativeSources[p];
  const delta='    "abyss_ui_profile": "platform",\n    "abyss_native_pages": "ui",\n';
  const before=current.replace(delta,'');
  assert.equal(hash(before),'0e75d9e1f08cfb7738215b9a31cce141f03cc2469077bce0db3376fe1f446a9c');
  for(const variant of [current,current.replaceAll('\n','\r\n'),JSON.stringify(JSON.parse(current)),JSON.stringify(JSON.parse(current),null,'\t')])
-  assert.equal(extractionEpoch.preNativePageSource(path,variant),before);
+  assert.equal(extractionEpoch.preNativePageSource(path,variant,{readSource:nativeRead}),before);
  const bad=[current.replace(delta,''),current.replace('"abyss_ui_profile": "platform"','"abyss_ui_profile": "ui"'),
   current.replace('"abyss_native_pages": "ui"','"abyss_native_pages": "platform"'),current.replace(delta,delta+delta),
   current.replace(delta,'').replace('  "layers": {\n','  "layers": {\n'+delta),
   current.replace(delta,delta.split('\n').filter(Boolean).reverse().join('\n')+'\n'),current+'-- unrelated\n',
   current.replace('"abyss_actor": "core"','"abyss_actor": "ui"')];
- for(const variant of bad)assert.equal(extractionEpoch.preNativePageSource(path,variant),variant,'foreign native epoch was hidden');
- const linked=Object.fromEntries([path,'src/lua/abyss_game_ui.lua','src/lua/abyss_game_ui_view.lua'].map(p=>[p,readFileSync(p,'utf8')]));
+ for(const variant of bad)assert.equal(extractionEpoch.preNativePageSource(path,variant,{readSource:nativeRead}),variant,'foreign native epoch was hidden');
+ const linked={...nativeSources};
  const readSource=p=>{assert.ok(Object.hasOwn(linked,p));return linked[p];};
  assert.equal(extractionEpoch.preNativePageSource(path,current,{readSource}),before);
  for(const p of Object.keys(linked)){
@@ -38,6 +43,17 @@ test('native-page outer epoch removes only reviewed registrations and preserves 
   assert.equal(extractionEpoch.preNativePageSource(path,current,{readSource}),current,'warm linked foreign bytes were normalized away');
   delete linked[p];assert.equal(extractionEpoch.preNativePageSource(path,current,{readSource}),current,'warm missing owner was cached');
   linked[p]=saved;
+ }
+});
+
+test('combined native-page admission preserves the old oracle and freshly binds every integrated owner',()=>{
+ const current=readFileSync(path,'utf8').replaceAll('\r\n','\n'),expected=nativeSources[path].replace('    "abyss_ui_profile": "platform",\n    "abyss_native_pages": "ui",\n','');
+ const raw=p=>readFileSync(p,'utf8');
+ assert.equal(hash(expected),'0e75d9e1f08cfb7738215b9a31cce141f03cc2469077bce0db3376fe1f446a9c');
+ assert.equal(extractionEpoch.preNativePageSource(path,current,{readSource:raw}),expected);
+ for(const owner of sourceEpoch.proof.owners){
+  assert.throws(()=>extractionEpoch.preNativePageSource(path,current,{readSource:p=>raw(p)+(p===owner?'\n-- combined owner drift\n':'')}),/linked owner/);
+  assert.throws(()=>extractionEpoch.preNativePageSource(path,current,{readSource:p=>{if(p===owner)throw Error('combined missing owner '+owner);return raw(p);}}),/linked owner missing/);
  }
 });
 test('reaction architecture inverse restores complete prior bytes through LF, CRLF and layout variants',()=>{
@@ -80,8 +96,8 @@ test('warm reaction projection freshly binds linked config and exposes disk muta
  for(const name of ['game-ui-extraction-source-inverse.mjs','game-ui-extraction-source-layer.json','core-lifecycle-source-inverse.mjs','actor-lifecycle-before.lua','combat-lifecycle-before.json','relic-query-source-inverse.mjs','relic-query-baseline-391306af.json.gz','query-living-wall-before.lua','relic-lifecycle-baseline-391306af.json.gz','relic-lifecycle-architecture-source-inverse.json','m7-core-final-source-inverse.mjs','m7-core-final-before.json.gz','reward-query-boundary-source-inverse.mjs','reward-query-boundary-before.json','actor-presence-source-inverse.mjs','actor-presence-source-proof.json','colorless-catalog-before-2ad07111.json.gz','end-turn-responsibilities-source-inverse.mjs','potion-callback-source-inverse.mjs','potion-callback-source-proof.json','colorless-catalog-source-inverse.mjs','colorless-catalog-source-proof.json','defect-plan-source-inverse.mjs','defect-plan-before.lua','act1-choice-source-inverse.mjs','act1-choice-before.lua','inventory-responsibilities-source-inverse.mjs','session-reward-source-inverse.mjs','session-reward-source-proof.json','watcher-final-execution-source-inverse.mjs','watcher-final-execution-before.lua','power-shop-source-inverse.mjs','power-shop-before-2c85.json.gz'])copyFileSync('tests/helpers/'+name,join(root,'tests/helpers',name));
  // The existing owner carries the inline outer epoch; copy its linked owners too.
  mkdirSync(join(root,'src/lua'),{recursive:true});
- for(const name of ['abyss_game_ui.lua','abyss_game_ui_view.lua'])copyFileSync('src/lua/'+name,join(root,'src/lua',name));
- const file=join(root,path),native=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+ for(const name of ['abyss_game_ui.lua','abyss_game_ui_view.lua'])writeFileSync(join(root,'src/lua',name),nativeSources['src/lua/'+name]);
+ const file=join(root,path),native=nativeSources[path];
  writeFileSync(file,native);
  const {preNativePageSource:nativeProject}=await import(pathToFileURL(join(root,'tests/helpers/game-ui-extraction-source-inverse.mjs')));
  const nativeBefore=native.replace('    "abyss_ui_profile": "platform",\n    "abyss_native_pages": "ui",\n','');

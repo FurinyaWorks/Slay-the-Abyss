@@ -1,0 +1,712 @@
+diff --git "a/backlog/tasks/task-75.7 - \351\231\215\344\275\216\345\256\214\346\225\264\345\233\236\346\273\232\345\277\253\347\205\247\347\232\204\350\241\250\345\210\206\351\205\215\345\274\200\351\224\200.md" "b/backlog/tasks/task-75.7 - \351\231\215\344\275\216\345\256\214\346\225\264\345\233\236\346\273\232\345\277\253\347\205\247\347\232\204\350\241\250\345\210\206\351\205\215\345\274\200\351\224\200.md"
+new file mode 100644
+index 0000000000000000000000000000000000000000..110ff41a4a6a31e7915f4f1de36c4e7e32ef486a
+--- /dev/null
++++ "b/backlog/tasks/task-75.7 - \351\231\215\344\275\216\345\256\214\346\225\264\345\233\236\346\273\232\345\277\253\347\205\247\347\232\204\350\241\250\345\210\206\351\205\215\345\274\200\351\224\200.md"	
+@@ -0,0 +1,39 @@
++---
++id: TASK-75.7
++title: 降低完整回滚快照的表分配开销
++status: In Progress
++assignee:
++  - Furinya
++created_date: '2026-11-06 06:56'
++updated_date: '2026-11-06 07:08'
++labels: []
++milestone: m-7
++dependencies: []
++references:
++  - docs/plans/2026-11-06-snapshot-flat-design.md
++  - docs/plans/2026-11-06-snapshot-flat-implementation.md
++parent_task_id: TASK-75
++priority: medium
++type: enhancement
++ordinal: 162000
++---
++
++## Description
++
++<!-- SECTION:DESCRIPTION:BEGIN -->
++托管Jaw Worm完整尾段触及原30秒aggregate；本轮画像Snapshot.capture约占81%，守卫减冗余仅约1.8%整体收益。Owner已批准完整图扁平快照设计，目标减少内部容器分配而保持全部回滚语义，禁止裁剪状态、缓存旧快照或放宽预算。
++<!-- SECTION:DESCRIPTION:END -->
++
++## Acceptance Criteria
++<!-- AC:BEGIN -->
++- [ ] #1 固定原Snapshot完整源码oracle，旧新完整原图、别名、环、table-key、falsy值、返回错误和owner单次生命周期等价，真实语义负控检出
++- [ ] #2 每次仍捕获全部可达raw图，不排除子树或复用旧许可；仅内部键值缓冲与表边界改变，原公开API和原表恢复保持
++- [ ] #3 同环境前后配对保留全部384轮16种子及rollback，完整轨迹与输入身份一致；保留失败及较慢样本，有实测净收益才采用
++- [ ] #4 独立深审、当前精确HEAD原Full与队列及合后验证通过，原30秒/2worker/输出预算及有效回归保持
++<!-- AC:END -->
++
++## Implementation Plan
++
++<!-- SECTION:PLAN:BEGIN -->
++按Owner批准先记录设计与独立旧源码身份，建立完整raw图和owner合同及负控；实现扁平键值缓冲与表边界，只改变私有表示。配对真实Jaw尾段和完整回滚轨迹、相关事务回归，维护历史来源精确逆投影；独立深审后按原门禁集成。
++<!-- SECTION:PLAN:END -->
+diff --git a/docs/MILESTONES.md b/docs/MILESTONES.md
+index 5683d56832d4e8f40e1cbf20feb8d6e23ea4dca9..a899754fd6ef96e5f49fc46ac3559ed7b503cf61 100644
+--- a/docs/MILESTONES.md
++++ b/docs/MILESTONES.md
+@@ -246,6 +246,7 @@ M7 是当前工程优先阶段；M8 是下一产品阶段：修正用户可感
+ - TASK-75.4：按完整成功实测校正新增Host回归分配成本，保留原预算并复验完整CI。
+ - TASK-75.5：完整负载下Windows由13扩14片，保留原预算及全部来源、队列、交付门禁。
+ - TASK-75.6：补全同源码成功JS及raw Lua分配成本，Windows16/POSIX12片并复验完整33项作业及实际合后证据。
++- TASK-75.7：降低完整回滚快照内部表分配，保持完整图、owner和原预算并实测验收。
+ - TASK-75：完整跨平台检查吞吐、精确覆盖与实际Runner耗时。
+ - TASK-81：影响选测安全、真实Fast样本与完整回归。
+ - TASK-81.1：补齐事件源码合同的相关选测漏边，保留高风险Full与原断言。
+diff --git a/docs/plans/2026-11-06-snapshot-flat-design.md b/docs/plans/2026-11-06-snapshot-flat-design.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..ba67e5e4a49ff3e2925856b72dc94f9fceb7a987
+--- /dev/null
++++ b/docs/plans/2026-11-06-snapshot-flat-design.md
+@@ -0,0 +1,39 @@
++# 完整回滚快照的扁平存储设计
++
++关联 TASK-75.7。Owner 本轮已明确选择“批准扁平快照设计”，约束为保留 API、每次完整 raw 图、字段/别名/环/table-key、owner 及回滚语义，不排除子树、不缓存旧快照、不放宽预算。
++
++## 问题与范围
++
++托管 Full `42171049773` 的 Windows12 在 Jaw Worm 原30秒 aggregate deadline 失败。完整用例仍为16种子、384轮及一次失败回滚；没有游戏断言失败证据。本机画像中 `Snapshot.capture` 约占81%，共享数据守卫约3.2%；守卫小改的交错样本整体均值收益约1.8%，不足以独立证明超时已解决。
++
++仅优化 `src/lua/abyss_snapshot.lua` 的私有快照表示。保留原图遍历与公开能力，不修改游戏规则、随机顺序、调用方所有权、worker数、输出限制或30秒预算。
++
++固定 before：`c20f9898462194d5f720f901274898e171a17ed5:src/lua/abyss_snapshot.lua`，1956字节，Git blob `446db705ac66a87450bf32bf9d6cff2bbaec7d1e`，SHA256 `8952ff07bea54c924d9a04200acce11be26cbb4bc66096de72a1b6a39e079b63`。完整原文作独立 oracle，后续不刷新它来消除差异。
++
++## 方案选择
++
++- 采用：完整图扁平键值缓冲与表边界索引，减少逐表快照容器分配；代价是需深审恢复边界与完整行为差分。
++- 较小备选：保留逐表表示，只减少类型/查找调用。改动风险较小，但未量化足够收益，Owner 已选择扁平方案。
++
++## 表示与数据流
++
++1. 每次 capture 创建本次调用私有的 visited、pending、原表顺序、边界及键值缓冲；不共享跨调用对象。
++2. 仍以 `next` 遍历每个可达原表，保留键和值的原始类型、值与引用。table-key 与 table-value 都入队，visited 保持环及共享引用的单次发现。
++3. 将每张表的全部键值顺序写入同一稠密缓冲；记录原表与该表结尾偏移。空表也有记录。
++4. restore 逐原表清空当前 raw 字段，再按其边界用原始键值 rawset。恢复原对象，不替换任何外部可见表。
++5. 保持原实现的 raw 图及元表可见性，不额外执行 `__pairs`、`__index`、`__newindex` 或 `__eq`。
++
++## 能力与错误
++
++`capture(root, target)`、`ownedRestore(owner, target)`、`release(owner)` 签名、返回值和一次性 owner 消费不变。只有实际捕获的目标可登记 owner；普通 restore 原有重复调用语义保持。非法 root/target、失败回滚与错误对象传播继续按旧行为验证。
++
++## 验证与采用条件
++
++- 独立旧/新实例比较完整图，包括空表、字段添加删除、false/0/空串、函数引用、环、共享引用、table-key、深图、原元表可见性与重复/嵌套快照。
++- owner 正常、复用、跨目标、未捕获目标及 release 的完整生命周期；真实 Run/Combat 晚失败仍恢复原引用、队列、事件与随机。
++- 真实语义负控必须检测遗漏键、边界错位、false值丢失或 owner错误，不用测试镜像当前实现。
++- 同机器、同输入与原预算交错运行 before/after，保留更慢及失败样本。Jaw Worm全部384轮、16种子、回滚与守卫频率保持，原始可观察轨迹逐项对照。
++- 仅在有净收益且所有正确性合同通过后采用；否则保留旧实现并如实记录，不删断言或调高预算。
++- 历史来源适配保留原 hash/完整集合/fresh owner；最终独立深审、精确 Full、原生队列及实际合后验证仍必需。
++
++本设计不声明已获得托管提速、官方 LuaHost/设备性能或 M7 验收。
+diff --git a/docs/plans/2026-11-06-snapshot-flat-implementation.md b/docs/plans/2026-11-06-snapshot-flat-implementation.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..a33a36ec0e783b38fa6ec8615b2c18f2b958b46e
+--- /dev/null
++++ b/docs/plans/2026-11-06-snapshot-flat-implementation.md
+@@ -0,0 +1,92 @@
++# 完整快照扁平存储 Implementation Plan
++
++> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
++
++**Goal:** 减少完整回滚快照内部容器分配，保持原公开能力和完整 raw 图语义，并降低真实 Jaw Worm 尾段成本。
++
++**Architecture:** 每次 capture 私有持有 visited/pending、原表顺序、表结束偏移和稠密键值缓冲；每条原始键值都记录，table-key 与 table-value 继续遍历。restore 清空并恢复原表，owner 注册/单次消费/release 不变，不裁剪或缓存旧图。
++
++**Tech Stack:** Lua5.3/Fengari0.1.5、固定Node24.18.0、现有node:test/图比较/源码投影门禁；Backlog CLI 为任务记录。
++
++---
++
++执行树：`feat/snapshot-flat`，设计提交 `7149e93e`，起始 develop `c20f9898`。已批准设计见 `2026-11-06-snapshot-flat-design.md`。主控拥有元数据、共享投影、配置和最终集成；实现 worker 仅写下列 snapshot 源码/新测试，独审只读。暂不发布独立Full，最终与修复主线的候选小批集成。
++
++## Task 1：冻结 before 与完整图合同
++
++**Files:**
++- Create `tests/fixtures/snapshot-flat/before.lua`
++- Create `tests/lua/snapshot_flat.lua`
++- Create `tests/snapshot-flat.test.mjs`
++- 必要时复用现有图编码 helper；确需新桥接时仅 `tests/helpers/snapshot-flat-vm.mjs`
++
++1. 从设计记录的 Git blob 完整提取1956字节旧模块，校验SHA256/Git blob，不刷新oracle。
++2. 在独立旧/新实例或VM中执行相同场景并比较完整图及返回/错误观察：空表、false/0/空串、添加/删除、别名/环、table-key、深图、函数值、原元表可见性、重复/嵌套恢复、有效及错误target、owner复用/跨目标/release。
++3. 用真实保留容器计数建立性能RED：从restore闭包递归观察私有table/function upvalues，排除原图和全局环境；比较不同宽度原图，扁平表示的保留容器数量应不随原表数增长。配合功能测试，不能让no-op或漏子树因数量少而通过。
++4. 执行旧实现，确认行为合同正常且容器增长断言失败；错误来自真实旧结构，不是环境/缺文件。
++
++Run（在固定Node24环境）：
++`node --test tests/snapshot-flat.test.mjs`
++
++## Task 2：实现私有扁平表示
++
++**Files:** Modify `src/lua/abyss_snapshot.lua`；测试同Task1。
++
++保持原type/key分类及完整发现逻辑，核心存储和恢复按以下边界实现；不新增可变数据缓存：
++
++```lua
++local seen,pending={[root]=true},{root}
++local originals,ends,entries={},{},{}
++local top,entryCount,kind=1,0,type
++local keyTables={}
++while top>0 do
++    local original=pending[top];pending[top]=nil;top=top-1
++    originals[#originals+1]=original
++    for k,v in next,original do
++        entryCount=entryCount+1;entries[entryCount]=k
++        entryCount=entryCount+1;entries[entryCount]=v
++        local tableKey=keyTables[k]
++        if tableKey==nil then tableKey=kind(k)=='table';keyTables[k]=tableKey end
++        if tableKey and not seen[k] then
++            seen[k]=true;top=top+1;pending[top]=k
++        end
++        if kind(v)=='table' and not seen[v] then
++            seen[v]=true;top=top+1;pending[top]=v
++        end
++    end
++    ends[#originals]=entryCount
++end
++local function restore()
++    local first=1
++    for index=1,#originals do
++        local original=originals[index]
++        for k in next,original do rawset(original,k,nil) end
++        for position=first,ends[index],2 do
++            rawset(original,entries[position],entries[position+1])
++        end
++        first=ends[index]+1
++    end
++end
++```
++
++1. 保持root断言；target存在时以seen作原可达性断言，原weak owner注册和返回数量/函数身份不变。
++2. 运行Task1到GREEN；以真实语义负控检测漏key/value、false丢失、边界错位、跳过table-key及owner错误。
++3. 运行已有snapshot/Run/Combat完整晚失败回滚合同；不新增状态字段或不可变子树排除。
++
++## Task 3：闭合来源与回归
++
++**Files:** 主控按现有真实消费者修对应 `tests/helpers/*snapshot*source-inverse.mjs` 及其原测试；具体路径先由只读检索确认，不创建平行来源系统。
++
++1. 在现有完整来源入口外层登记唯一完整新模块→固定before的精确逆投影，沿用旧hash、old oracle和fresh读取。
++2. LF/CRLF、部分修改、额外漂移、跨路径及重复登记均有真实拒绝证据；未知输入不获得旧身份。
++3. 新JS/Lua入口在既有 `tests/ci-complete-calibration.test.mjs` 显式列为未测；历史725/1356记录、timings、worker资格、原预算和完整唯一集合不变。
++4. 执行受影响旧消费者、`check:architecture`、固定静态/复杂度和关键回滚变异；共享文件由主控串行编辑。
++
++## Task 4：真实性能与交付
++
++**Files:** 仅必要的有界benchmark helper和原任务附件；原Jaw fixture/哈希/轮数不变。
++
++1. 同环境交错before/after真实384轮尾段，冻结全部输入身份、2worker、1MiB输出和原30000ms aggregate；保留慢样本/失败。
++2. 核对384有序轮次、16seed、rollback/untouched各一次，全部18次共享数据守卫和语义输出相等；分开snapshot、guard和总wall，避免重叠相加。
++3. 无净收益就保留旧生产实现，不用计数下降冒充托管修复；有收益后完成独立完整深审。
++4. 更新TASK75.7本轮证据，按风险小批集成到当前主线修复候选。精确HEAD Full、原生队列、实际squash树及push Full通过后才完成交付AC；旧失败保留。
+diff --git a/src/lua/abyss_snapshot.lua b/src/lua/abyss_snapshot.lua
+index 446db705ac66a87450bf32bf9d6cff2bbaec7d1e..eed7b855e5ff99807d5758c950bb03156efea1f5 100644
+--- a/src/lua/abyss_snapshot.lua
++++ b/src/lua/abyss_snapshot.lua
+@@ -6,32 +6,37 @@ local M={}
+ local owners=setmetatable({},{__mode='k'})
+ function M.capture(root,target)
+     assert(type(root)=='table','snapshot requires a table')
+-    local saved,pending={[root]={}},{root}
+-    local top,kind=1,type
++    local seen,pending={[root]=true},{root}
++    local originals,ends,entries={},{},{}
++    local top,entryCount,kind=1,0,type
+     local keyTables={}
+     while top>0 do
+         local original=pending[top];pending[top]=nil;top=top-1
+-        local values=saved[original]
++        originals[#originals+1]=original
+         for k,v in next,original do
+-            values[k]=v
++            entries[entryCount+1]=k;entries[entryCount+2]=v;entryCount=entryCount+2
+             local tableKey=keyTables[k]
+             if tableKey==nil then tableKey=kind(k)=='table';keyTables[k]=tableKey end
+-            if tableKey and not saved[k] then
+-                saved[k]={};top=top+1;pending[top]=k
++            if tableKey and not seen[k] then
++                seen[k]=true;top=top+1;pending[top]=k
+             end
+-            if kind(v)=='table' and not saved[v] then
+-                saved[v]={};top=top+1;pending[top]=v
++            if kind(v)=='table' and not seen[v] then
++                seen[v]=true;top=top+1;pending[top]=v
+             end
+         end
++        ends[#originals]=entryCount -- empty tables still have a boundary
+     end
+     local function restore()
+-        for original,values in next,saved do
++        local first=1
++        for i=1,#originals do
++            local original=originals[i]
+             for k in next,original do rawset(original,k,nil) end
+-            for k,v in next,values do rawset(original,k,v) end
++            for j=first,ends[i],2 do rawset(original,entries[j],entries[j+1]) end
++            first=ends[i]+1
+         end
+     end
+     if target~=nil then
+-        assert(type(target)=='table' and saved[target],'snapshot target is not captured')
++        assert(type(target)=='table' and seen[target],'snapshot target is not captured')
+         owners[restore]=target
+         return restore,restore
+     end
+diff --git a/tests/fixtures/snapshot-flat/before.lua b/tests/fixtures/snapshot-flat/before.lua
+new file mode 100644
+index 0000000000000000000000000000000000000000..446db705ac66a87450bf32bf9d6cff2bbaec7d1e
+--- /dev/null
++++ b/tests/fixtures/snapshot-flat/before.lua
+@@ -0,0 +1,51 @@
++-- Short-lived rollback closures stay on the call stack, never in saved state.
++-- Restore contents of original tables so external card/pile references survive.
++local M={}
++-- Opaque, call-stack-only capabilities. A nested command may reuse the exact
++-- complete parent preimage, never an immutable-subtree shortcut or stale save.
++local owners=setmetatable({},{__mode='k'})
++function M.capture(root,target)
++    assert(type(root)=='table','snapshot requires a table')
++    local saved,pending={[root]={}},{root}
++    local top,kind=1,type
++    local keyTables={}
++    while top>0 do
++        local original=pending[top];pending[top]=nil;top=top-1
++        local values=saved[original]
++        for k,v in next,original do
++            values[k]=v
++            local tableKey=keyTables[k]
++            if tableKey==nil then tableKey=kind(k)=='table';keyTables[k]=tableKey end
++            if tableKey and not saved[k] then
++                saved[k]={};top=top+1;pending[top]=k
++            end
++            if kind(v)=='table' and not saved[v] then
++                saved[v]={};top=top+1;pending[top]=v
++            end
++        end
++    end
++    local function restore()
++        for original,values in next,saved do
++            for k in next,original do rawset(original,k,nil) end
++            for k,v in next,values do rawset(original,k,v) end
++        end
++    end
++    if target~=nil then
++        assert(type(target)=='table' and saved[target],'snapshot target is not captured')
++        owners[restore]=target
++        return restore,restore
++    end
++    return restore
++end
++function M.ownedRestore(owner,target)
++    local captured=type(owner)=='function' and owners[owner]
++    if captured and rawequal(captured,target)then
++        owners[owner]=nil -- one nested play only; never a reusable savepoint
++        return owner
++    end
++end
++function M.release(owner)
++    if type(owner)~='function' or owners[owner]==nil then return false end
++    owners[owner]=nil;return true
++end
++return M
+diff --git a/tests/helpers/snapshot-flat-vm.mjs b/tests/helpers/snapshot-flat-vm.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..bb35a26dea73d62839198f3539fbb70209f7762a
+--- /dev/null
++++ b/tests/helpers/snapshot-flat-vm.mjs
+@@ -0,0 +1,41 @@
++import {createRequire} from 'node:module';
++import {readFileSync} from 'node:fs';
++import {installLuaGraphObserver} from './lua-graph-observer.mjs';
++
++const require=createRequire(import.meta.url);
++const {lua,lauxlib,lualib,to_luastring,to_jsstring}=require('fengari');
++const fixture=readFileSync(new URL('../lua/snapshot_flat.lua',import.meta.url),'utf8');
++const referenceTags=new Set(['table','function','userdata','thread']);
++
++// A fresh VM/module/observer per source; no package.loaded or owner state crosses
++// the oracle/candidate boundary. Reconstruct every complete checkpoint from the
++// existing observer's stable-ID stream, including detached original objects.
++export function runSnapshotFlat(source,{mode='contract',iterations=40}={}){
++ const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);
++ const trace=[],definitions=new Map();let error=null;
++ installLuaGraphObserver(L,'SNAPSHOT_GRAPH',(label,bytes)=>{
++  const graph=JSON.parse(bytes);
++  for(const definition of graph.definitions)definitions.set(definition[1],definition);
++  const reachable=new Map();
++  function visit(value){
++   if(!Array.isArray(value)||!referenceTags.has(value[0]))return;
++   const id=value[1];if(reachable.has(id))return;
++   const definition=definitions.get(id);
++   if(!definition)throw Error(`missing graph definition ${id}`);
++   reachable.set(id,definition);
++   for(const [key,field]of definition[2]){visit(key);visit(field);}
++   visit(definition[3]);
++  }
++  visit(graph.root);
++  trace.push({label,graph:{root:graph.root,definitions:[...reachable.values()].sort((a,b)=>a[1]-b[1])}});
++ });
++ const stringGlobal=(name,value)=>{lua.lua_pushstring(L,to_luastring(value));lua.lua_setglobal(L,to_luastring(name));};
++ stringGlobal('SNAPSHOT_SOURCE',source);
++ stringGlobal('SNAPSHOT_MODE',mode);
++ lua.lua_pushinteger(L,iterations);lua.lua_setglobal(L,to_luastring('SNAPSHOT_ITERATIONS'));
++ try{
++  if(lauxlib.luaL_loadbuffer(L,to_luastring(fixture),null,to_luastring('@tests/lua/snapshot_flat.lua'))!==lua.LUA_OK
++   ||lua.lua_pcall(L,0,0,0)!==lua.LUA_OK)error=to_jsstring(lua.lua_tostring(L,-1));
++ }finally{lua.lua_close(L);}
++ return {trace,error};
++}
+diff --git a/tests/lua/snapshot_flat.lua b/tests/lua/snapshot_flat.lua
+new file mode 100644
+index 0000000000000000000000000000000000000000..d6d0f76561bb094d74cc76f5551a0fbfcc0a1f0a
+--- /dev/null
++++ b/tests/lua/snapshot_flat.lua
+@@ -0,0 +1,235 @@
++-- The Node bridge injects one complete source into a fresh VM. This file also
++-- runs under the ordinary Lua runner, retaining its functional assertions.
++local M=SNAPSHOT_SOURCE and assert(load(SNAPSHOT_SOURCE,'=snapshot-module'))() or require('abyss_snapshot')
++local mode=SNAPSHOT_MODE or 'contract'
++local function observe(label,value)
++ if SNAPSHOT_GRAPH_WRITE then SNAPSHOT_GRAPH_WRITE(value,label,true)end
++end
++local function result(label,fn,...)
++ local values=table.pack(pcall(fn,...))
++ if not values[1]and type(values[2])=='string'then
++  -- Only source-location provenance differs between injected and normal runners.
++  values[2]=values[2]:gsub('^snapshot%-module:%d+: ',''):gsub('^%./src/lua/abyss_snapshot%.lua:%d+: ','')
++ end
++ observe('api:'..label,values)
++ return table.unpack(values,1,values.n)
++end
++local function same(a,b)return rawequal(a,b)or type(a)=='number'and type(b)=='number'and a~=a and b~=b end
++local function fields(node,expected)
++ for k,v in next,expected do assert(same(rawget(node,k),v),'raw original field/identity must restore')end
++ for k in next,node do assert(rawget(expected,k)~=nil,'new raw field must disappear')end
++end
++
++-- Count retained private tables without naming their variables or assuming a
++-- layout. Exclude the complete original raw graph (including opaque functions)
++-- and _ENV, then follow table keys/values and function upvalues transitively.
++local function containers(restore,root)
++ local excluded,queue={}, {root}
++ while #queue>0 do
++  local node=table.remove(queue)
++  if not excluded[node]then
++   excluded[node]=true
++   if type(node)=='table'then for k,v in next,node do
++    if type(k)=='table'or type(k)=='function'then queue[#queue+1]=k end
++    if type(v)=='table'or type(v)=='function'then queue[#queue+1]=v end
++   end end
++  end
++ end
++ local visited,count={},0
++ local function visit(value)
++  local kind=type(value)
++  if(kind~='table'and kind~='function')or excluded[value]or visited[value]then return end
++  visited[value]=true
++  if kind=='table'then
++   count=count+1;for k,v in next,value do visit(k);visit(v)end
++  else
++   local index=1
++   while true do
++    local name,upvalue=debug.getupvalue(value,index);if not name then break end
++    if name~='_ENV'then visit(upvalue)end;index=index+1
++   end
++  end
++ end
++ visit(restore);return count
++end
++local function widthCase(width)
++ local root={};for i=1,width do root[i]={value=i,enabled=false}end
++ local restore=M.capture(root)
++ local count=containers(restore,root)
++ for i=1,width do root[i].value=-1;root[i].enabled=true;root[i].added=true end
++ restore()
++ for i=1,width do fields(root[i],{value=i,enabled=false})end
++ return count
++end
++if mode=='containers'then
++ observe('containers',{narrow=widthCase(32),wide=widthCase(128)})
++ return
++end
++if mode=='benchmark'then
++ local root={};for i=1,128 do root[i]={value=i,enabled=false,shared=root}end
++ local captureTime,restoreTime=0,0
++ for i=1,SNAPSHOT_ITERATIONS do
++  local start=os.clock();local restore=M.capture(root);captureTime=captureTime+os.clock()-start
++  root[1].value=-1;start=os.clock();restore();restoreTime=restoreTime+os.clock()-start
++  assert(root[1].value==1 and root[128].shared==root,'benchmark full restore')
++ end
++ observe('benchmark',{capture=captureTime,restore=restoreTime,iterations=SNAPSHOT_ITERATIONS})
++ return
++end
++
++-- Empty boundaries, raw scalars, function/thread references and every legal
++-- key class used here. No expected state is derived from snapshot internals.
++do
++ local root={};observe('empty:before',root)
++ local ok,restore=result('capture-empty',M.capture,root);assert(ok and type(restore)=='function')
++ root.added=false;observe('empty:changed',root)
++ local restored,unexpected=result('restore-empty',restore);assert(restored and unexpected==nil)
++ observe('empty:restored',root);fields(root,{})
++ local fn=function()return 'callback'end;local thread=coroutine.create(fn);local nan=0/0
++ local child,empty={},{}
++ local expected={disabled=false,zero=0,negativeZero=-0.0,fraction=3.5,text='',binary='a\0b',nan=nan,inf=math.huge,negative=-math.huge,
++  callback=fn,thread=thread,userdata=io.stdout,child=child,empty=empty,[false]='false-key',[true]=false,[0]='zero-key',['']='empty-key',[fn]=thread,[thread]=fn,[io.stdout]=false}
++ for k,v in next,expected do root[k]=v end
++ local view={root=root,child=child,empty=empty,callback=fn,thread=thread}
++ observe('scalars:before',view)
++ restore=M.capture(root)
++ for k in next,root do rawset(root,k,nil)end
++ root.new={};child.added=true;empty.added=1
++ observe('scalars:changed',view);restore();observe('scalars:restored',view)
++ fields(root,expected);fields(child,{});fields(empty,{})
++ assert(1/root.negativeZero==-math.huge,'negative zero remains a legal scalar')
++ assert(root.callback==fn and root.callback()=='callback'and root.thread==thread and rawequal(root.userdata,io.stdout),'opaque reference identity')
++ root.zero=-1;root.disabled=nil;restore();observe('scalars:repeated',view);fields(root,expected)
++end
++
++-- Deterministic complete graphs: aliases, cycles, key-only components, empty
++-- nodes, and data/catalog fields which are ordinary mutable reachable state.
++for seed=1,6 do
++ local nodes={};for i=1,24 do nodes[i]={id=i,enabled=false}end
++ local root={data=nodes[1],catalog=nodes[1]}
++ local keyOnly,keyChild={},{}
++ keyOnly.child=keyChild;keyOnly.self=keyOnly;keyChild.parent=keyOnly
++ root[keyOnly]='key-only';root.self=root
++ local expected={}
++ for i,node in ipairs(nodes)do
++  local key=nodes[(i*7+seed)%#nodes+1]
++  node.self=node;node.next=nodes[i%#nodes+1];node.shared=nodes[1];node[key]=nodes[(i*11+seed)%#nodes+1]
++  expected[i]={id=i,enabled=false,self=node,next=node.next,shared=nodes[1],[key]=node[key]}
++ end
++ local view={root=root,nodes=nodes,keyOnly=keyOnly,keyChild=keyChild}
++ local prefix='graph-'..seed
++ observe(prefix..':before',view)
++ local ok,restore,owner=result(prefix..'-capture',M.capture,root,keyOnly)
++ assert(ok and restore==owner,'capture returns identical restore/owner functions')
++ for _,node in ipairs(nodes)do for k in next,node do rawset(node,k,nil)end;node.extra={};node[{}]=false end
++ root.data={};root.catalog=nil;root.self=false;keyOnly.child=nil;keyOnly.self=nil;keyChild.parent=nil
++ observe(prefix..':changed',view)
++ assert(select('#',restore())==0,'restore return arity');observe(prefix..':restored',view)
++ for i,node in ipairs(nodes)do fields(node,expected[i])end
++ fields(root,{data=nodes[1],catalog=nodes[1],self=root,[keyOnly]='key-only'})
++ fields(keyOnly,{self=keyOnly,child=keyChild});fields(keyChild,{parent=keyOnly})
++ assert(M.release(owner),'owner remains releasable after ordinary restore')
++end
++
++-- The graph traversal is iterative. Leaf-first anchors let the shared graph
++-- observer serialize the entire deep graph without using a deep JS call stack.
++do
++ local root={id=0};local current=root;local chain={root};local depth=2048
++ for i=1,depth do current.next={id=i};current=current.next;chain[#chain+1]=current end
++ local view={}
++ for i=#chain,1,-1 do view[string.format('node%05d',#chain-i)]=chain[i]end
++ observe('deep:before',view);local restore=M.capture(root)
++ for i,node in ipairs(chain)do node.id=-i;node.next=nil;node.added=false end
++ observe('deep:changed',view);restore();observe('deep:restored',view)
++ for i,node in ipairs(chain)do fields(node,{id=i-1,next=chain[i+1]})end
++end
++
++-- Metatables are not raw edges. Neither metamethods nor meta-only children are
++-- traversed. A metatable reached through a raw edge is an ordinary table.
++do
++ local calls=0
++ local function trap()calls=calls+1;error('snapshot invoked a metamethod')end
++ local metaOnly={value=1}
++ local mt={__index=trap,__newindex=trap,__pairs=trap,__len=trap,metaOnly=metaOnly}
++ local root=setmetatable({enabled=false},mt)
++ local view={root=root,mt=mt,metaOnly=metaOnly}
++ observe('meta:before',view);local restore=M.capture(root)
++ rawset(root,'enabled',true);rawset(root,'added',1);metaOnly.value=2
++ restore();observe('meta:restored',view)
++ fields(root,{enabled=false});assert(getmetatable(root)==mt and metaOnly.value==2 and calls==0,'raw visibility and meta-only boundary')
++ local replacement={replacement=true};setmetatable(root,replacement)
++ restore();observe('meta:replacement',view)
++ assert(getmetatable(root)==replacement,'restore does not replace metatables')
++ rawset(root,'rawMeta',mt);restore=M.capture(root);metaOnly.value=3;mt.added=true
++ restore();observe('meta:raw-reachable',view)
++ assert(metaOnly.value==2 and rawget(mt,'added')==nil,'raw-reachable metatable subtree restores')
++end
++
++-- Independent and nested savepoints remain usable in any order; ownership
++-- consumption never changes the ordinary reusable restore closure.
++do
++ local child={value=1};local root={child=child};local other={value=9}
++ local outer,owner=M.capture(root,child);local independent=M.capture(other)
++ child.value=2;local inner=M.capture(root);child.value=3;other.value=10
++ observe('nested:changed',{root=root,other=other})
++ inner();assert(child.value==2,'inner savepoint');observe('nested:inner',{root=root,other=other})
++ outer();independent();assert(child.value==1 and other.value==9,'independent outer savepoints')
++ observe('nested:outer',{root=root,other=other})
++ inner();assert(child.value==2,'nested restore survives outer restore');outer()
++ assert(M.ownedRestore(owner,child)==outer,'ordinary restore cannot consume owner')
++ assert(M.ownedRestore(owner,child)==nil,'owner single consume')
++ child.value=-1;outer();assert(child.value==1,'consumed owner does not disable restore')
++end
++
++-- Observe pcall status, complete return tuples (including zero vs nil), error
++-- text, closure identity, wrong targets and all owner/release lifecycle edges.
++do
++ local fn=function()end;local thread=coroutine.create(fn)
++ for index,value in ipairs({false,0,'',fn,thread,io.stdout})do
++  local ok,err=result('invalid-root-'..index,M.capture,value)
++  assert(not ok and err=='snapshot requires a table','invalid root error')
++ end
++ local ok,err=result('invalid-root-nil',M.capture,nil)
++ assert(not ok and err=='snapshot requires a table','nil root error')
++ local child,keyOnly={},{};local root={child=child,[keyOnly]=false};local other={}
++ for index,value in ipairs({false,0,'',fn,thread,io.stdout,other})do
++  ok,err=result('invalid-target-'..index,M.capture,root,value)
++  assert(not ok and err=='snapshot target is not captured','invalid/unreachable target error')
++ end
++ local hidden={};local mt={hidden=hidden};setmetatable(root,mt)
++ ok,err=result('meta-only-target',M.capture,root,hidden)
++ assert(not ok and err=='snapshot target is not captured','meta-only target is not raw reachable')
++ local returns=table.pack(M.capture(root,nil));assert(returns.n==1,'nil target returns one value')
++ local restore,owner=M.capture(root,keyOnly)
++ assert(restore==owner and select('#',M.capture(root,root))==2,'target arity and function identity')
++ result('target-functions',function()return restore,owner,restore==owner end)
++ for index,value in ipairs({false,0,'',fn,thread,io.stdout,{},restore})do
++  local success,returned=result('wrong-owner-'..index,M.ownedRestore,value,other)
++  assert(success and returned==nil,'wrong owner returns zero values')
++ end
++ result('nil-owner',M.ownedRestore,nil,keyOnly)
++ assert(M.ownedRestore(nil,keyOnly)==nil,'nil owner')
++ result('cross-target',M.ownedRestore,owner,child);assert(M.ownedRestore(owner,child)==nil,'cross target cannot consume')
++ result('nil-target',M.ownedRestore,owner,nil)
++ result('ordinary-restore',restore)
++ ok,returns=result('consume',M.ownedRestore,owner,keyOnly);assert(ok and returns==restore,'key-only owner')
++ ok,returns=result('consume-twice',M.ownedRestore,owner,keyOnly);assert(ok and returns==nil,'owner single consume')
++ ok,returns=result('release-consumed',M.release,owner);assert(ok and returns==false,'consumed release')
++ local _,fresh=M.capture(root,child)
++ ok,returns=result('release',M.release,fresh);assert(ok and returns==true,'fresh release')
++ ok,returns=result('release-twice',M.release,fresh);assert(ok and returns==false,'release once')
++ ok,returns=result('consume-released',M.ownedRestore,fresh,child);assert(ok and returns==nil,'released owner cannot consume')
++ for index,value in ipairs({false,0,'',fn,thread,io.stdout,{}})do
++  ok,returns=result('release-invalid-'..index,M.release,value);assert(ok and returns==false,'invalid release')
++ end
++ result('release-nil',M.release,nil)
++ local equalMeta={__eq=function()return true end};setmetatable(child,equalMeta)
++ local twin=setmetatable({},equalMeta);local owned,token=M.capture(root,child)
++ assert(child==twin and not rawequal(child,twin),'fixture exercises table __eq')
++ ok,returns=result('equal-not-identical-target',M.ownedRestore,token,twin);assert(ok and returns==nil,'owner target must be raw-identical')
++ assert(M.ownedRestore(token,child)==owned,'wrong equal target cannot consume owner')
++ local _,otherOwner=M.capture(other,other)
++ assert(M.ownedRestore(otherOwner,root)==nil and M.ownedRestore(otherOwner,other)==otherOwner,'cross-graph owner')
++end
++observe('contract:complete',{complete=true})
++if not SNAPSHOT_GRAPH_WRITE then print('SNAPSHOT_FLAT_CONTRACT_PASS')end
+diff --git a/tests/snapshot-flat.test.mjs b/tests/snapshot-flat.test.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..6166a07259d439d56364ef560c60d79d6b7b3221
+--- /dev/null
++++ b/tests/snapshot-flat.test.mjs
+@@ -0,0 +1,108 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
++import {createHash} from 'node:crypto';
++import {runSnapshotFlat} from './helpers/snapshot-flat-vm.mjs';
++
++const before=readFileSync(new URL('./fixtures/snapshot-flat/before.lua',import.meta.url));
++const current=()=>readFileSync(new URL('../src/lua/abyss_snapshot.lua',import.meta.url),'utf8').replaceAll('\r\n','\n');
++const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
++function evidence(name,value){
++ if(process.env.SNAPSHOT_FLAT_EVIDENCE!=='1')return;
++ mkdirSync('build/snapshot-flat-evidence',{recursive:true});
++ writeFileSync(`build/snapshot-flat-evidence/${name}.json`,JSON.stringify(value)+'\n');
++}
++const field=(graph,key)=>{
++ const root=graph.definitions.find(def=>def[1]===graph.root[1]);
++ return root[2].find(([k])=>k[0]==='string'&&k[1]===key)?.[1]?.[1];
++};
++function contract(source){
++ const run=runSnapshotFlat(source);
++ assert.equal(run.error,null,run.error);
++ assert.equal(run.trace.at(-1)?.label,'contract:complete','complete matrix ran');
++ for(const prefix of ['empty','scalars',...Array.from({length:6},(_,i)=>`graph-${i+1}`),'deep']){
++  const initial=run.trace.find(frame=>frame.label===`${prefix}:before`);
++  const restored=run.trace.find(frame=>frame.label===`${prefix}:restored`);
++  assert.ok(initial&&restored,`${prefix} full graph checkpoints`);
++  assert.deepEqual(restored.graph,initial.graph,`${prefix}: every original object, raw field, key and reference restores`);
++ }
++ return run.trace;
++}
++
++test('frozen full 1956-byte oracle is exactly c20f9898462194d5f720f901274898e171a17ed5, never refreshed',()=>{
++ assert.equal(before.length,1956);
++ assert.equal(sha(before),'8952ff07bea54c924d9a04200acce11be26cbb4bc66096de72a1b6a39e079b63');
++ assert.equal(createHash('sha1').update(`blob ${before.length}\0`).update(before).digest('hex'),'446db705ac66a87450bf32bf9d6cff2bbaec7d1e');
++ const suffix='function M.ownedRestore(owner,target)';
++ assert.equal(current().slice(current().indexOf(suffix)),before.toString('utf8').slice(before.toString('utf8').indexOf(suffix)),'owner and release remain byte-identical');
++});
++test('isolated old/new VMs agree on complete original graphs and API return/error observations',t=>{
++ const oracle=contract(before.toString('utf8')),candidate=contract(current());
++ assert.deepEqual(candidate,oracle,'every complete checkpoint and API tuple agrees with the frozen source');
++ const inputs=Object.fromEntries(['tests/lua/snapshot_flat.lua','tests/helpers/snapshot-flat-vm.mjs','tests/helpers/lua-graph-observer.mjs','tests/snapshot-flat.test.mjs']
++  .map(path=>[path,sha(readFileSync(path,'utf8').replaceAll('\r\n','\n'))]));
++ const identity={node:process.version,platform:process.platform,arch:process.arch,beforeBase:'c20f9898462194d5f720f901274898e171a17ed5',beforeSha256:sha(before),afterSha256:sha(current()),inputs,checkpoints:oracle.length,traceSha256:sha(JSON.stringify(oracle))};
++ evidence('identity',identity);
++ evidence('contract',{...identity,oracle,candidate});
++ t.diagnostic(`full trace checkpoints=${oracle.length}; sha256=${sha(JSON.stringify(oracle))}; deep=2048; graphSeeds=1..6`);
++});
++test('retained private containers do not grow with original graph width',t=>{
++ const counts=source=>{
++  const run=runSnapshotFlat(source,{mode:'containers'});assert.equal(run.error,null,run.error);
++  const graph=run.trace[0].graph;return {narrow:Number(field(graph,'narrow')),wide:Number(field(graph,'wide'))};
++ };
++ const oracle=counts(before.toString('utf8')),candidate=counts(current());
++ evidence('containers',{widths:[32,128],oracle,candidate});
++ t.diagnostic(`width=32/128; frozen=${JSON.stringify(oracle)}; candidate=${JSON.stringify(candidate)}`);
++ assert.ok(oracle.wide>oracle.narrow,'frozen source proves this observation detects per-original retained containers');
++ assert.ok(candidate.narrow>0,'functional restore retains a real preimage');
++ assert.equal(candidate.wide,candidate.narrow,'private retained container count must be width-independent');
++});
++
++function replaceOnce(source,from,to){
++ assert.equal(source.split(from).length,2,`unique live negative-control anchor: ${from}`);
++ return source.replace(from,to);
++}
++test('real semantic negative controls reject no-op, edge/boundary/falsy/cycle and owner regressions',t=>{
++ const source=current(),rejected=[];
++ const start=source.indexOf('    local function restore()');
++ const end=source.indexOf('    if target~=nil then',start);
++ assert.ok(start>0&&end>start,'complete restore region exists');
++ const mutants=[
++  ['no-op zero-container restore',source.slice(0,start)+'    local function restore()end\n'+source.slice(end)],
++  ['wrong table boundary',replaceOnce(source,'ends[#originals]=entryCount','ends[#originals]=entryCount-2')],
++  ['drop false value',replaceOnce(source,'entries[entryCount+2]=v','entries[entryCount+2]=v~=false and v or nil')],
++  ['omit table-key-only subtree',replaceOnce(source,'if tableKey and not seen[k] then','if false and tableKey and not seen[k] then')],
++  ['omit data/catalog value subtree',replaceOnce(source,"if kind(v)=='table' and not seen[v] then","if k~='data' and k~='catalog' and kind(v)=='table' and not seen[v] then")],
++  ['lose cycle reference',replaceOnce(source,'entries[entryCount+2]=v','entries[entryCount+2]=not rawequal(v,original) and v')],
++  ['retain new raw fields',replaceOnce(source,'for k in next,original do rawset(original,k,nil) end','for k in next,original do end')],
++  ['reusable owner',replaceOnce(source,'owners[owner]=nil -- one nested play only','owners[owner]=captured -- one nested play only')],
++  ['release without invalidation',replaceOnce(source,'owners[owner]=nil;return true','owners[owner]=owners[owner];return true')],
++  ['ordinary restore consumes owner',replaceOnce(source,'        local first=1','        owners[restore]=nil;local first=1')],
++  ['cross-target consumption',replaceOnce(source,'if captured and rawequal(captured,target)then','if captured then')],
++  ['metamethod equality instead of identity',replaceOnce(source,'rawequal(captured,target)','captured==target')],
++ ];
++ for(const [name,mutant]of mutants){
++  const run=runSnapshotFlat(mutant);
++  assert.ok(run.error,`${name}: actual functional contract must fail`);
++  assert.match(run.error,/raw original field\/identity must restore|new raw field must disappear|owner|fresh release|release once|wrong owner|raw-identical|table index is nil/,`${name}: semantic failure, not a load error`);
++  rejected.push({name,error:run.error,checkpoints:run.trace.length,traceSha256:sha(JSON.stringify(run.trace))});
++ }
++ evidence('negative-controls',rejected);
++ t.diagnostic(`semantic negative controls rejected=${rejected.length}/${mutants.length}; ${rejected.map(value=>value.name).join('; ')}`);
++});
++
++test('optional paired local capture/restore initial measurement', {skip:process.env.SNAPSHOT_FLAT_BENCHMARK!=='1'},t=>{
++ const samples=[];
++ for(let pair=0;pair<4;pair++){
++  const order=pair%2?['after','before']:['before','after'];
++  for(const side of order){
++   const run=runSnapshotFlat(side==='before'?before.toString('utf8'):current(),{mode:'benchmark',iterations:120});
++   assert.equal(run.error,null,run.error);
++   const graph=run.trace[0].graph;
++   samples.push({pair,side,captureSeconds:Number(field(graph,'capture')),restoreSeconds:Number(field(graph,'restore')),iterations:Number(field(graph,'iterations'))});
++  }
++ }
++ evidence('local-benchmark',{node:process.version,samples});
++ t.diagnostic(`local initial capture/restore only (128 children, paired alternating order): ${JSON.stringify(samples)}`);
++});

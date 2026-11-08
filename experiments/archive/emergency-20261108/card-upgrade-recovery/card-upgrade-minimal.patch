@@ -1,0 +1,139 @@
+diff --git a/src/lua/abyss_combat.lua b/src/lua/abyss_combat.lua
+--- a/src/lua/abyss_combat.lua
++++ b/src/lua/abyss_combat.lua
+@@ -22,6 +22,7 @@
+ local ShopRelicsQueries=require('abyss_relic_queries').shop
+ local Awakened=require('abyss_awakened_one')
+ local Darklings=require('abyss_darklings')
++local CardUpgrade=require('abyss_card_upgrade')
+ local M = { addStatus = Actors.addStatus, addTemporaryStrength = Actors.addTemporaryStrength,
+     statusView = Actors.statusView, block = Actors.block,
+     attackAmount = Actors.attackAmount,intentAttackAmount=Actors.intentAttackAmount,intentAttackPreview=Actors.intentAttackPreview,
+@@ -538,28 +539,13 @@
+     return finishCardDefinition(state,instance,card)
+ end
+ function M.canUpgrade(state,instance)
+-    local d=state.catalog.cards[instance.cardId]
+-    return M.validSearingBlowCopy(instance) and d and d.type~='status' and d.type~='curse' and d.upgrade~=nil and (not instance.upgraded or d.repeatable==true)
++    return CardUpgrade.canUpgrade(state,instance,M)
++end
++local function upgradeBloodForBlood(state,instance)
++    require('abyss_warrior_status_cards').onUpgrade(state,instance)
+ end
+ function M.upgrade(state,instance)
+-    if not M.canUpgrade(state,instance) then return false end
+-    local def=state.catalog.cards[instance.cardId]
+-    if instance.cardId=='blood_for_blood' and not instance.upgraded then
+-        if instance.combatCost==nil then instance.combatCost=M.combatBaseCost(state,instance) end
+-        if instance.turnCost==nil and instance.costForTurn~=nil then instance.turnCost=instance.costForTurn end
+-        require('abyss_warrior_status_cards').onUpgrade(state,instance)
+-        instance.costOverride,instance.costReduction=nil,nil
+-        if instance.costForTurn~=nil then instance.costForTurn=instance.turnCost end
+-    elseif def.upgrade.cost~=nil and (instance.costOverride~=nil or instance.costForTurn~=nil) then
+-        local before=M.combatBaseCost(state,instance)
+-        local turn=instance.costForTurn or before
+-        local diff=turn-before
+-        local nextCost=def.upgrade.cost
+-        instance.costOverride=nil
+-        if turn>0 then instance.costForTurn=math.max(0,nextCost+diff) end
+-    end
+-    instance.upgrades=(instance.upgrades or (instance.upgraded and 1 or 0))+1
+-    instance.upgraded=true;return true
++    return CardUpgrade.upgrade(state,instance,M,upgradeBloodForBlood)
+ end
+ 
+ -- Read-only display numbers for one hand card, from the same modifier arithmetic
+diff --git a/src/lua/abyss_card_upgrade.lua b/src/lua/abyss_card_upgrade.lua
+--- /dev/null
++++ b/src/lua/abyss_card_upgrade.lua
+@@ -0,0 +1,90 @@
++-- Card-instance upgrade eligibility, cost and metadata rules only.
++-- Hosts retain card selection, custody, queues and transaction rollback.
++-- Legacy entry points supply their actual public raw table per call. Never
++-- capture or register it here; dynamic host slots and the lazy Blood hook keep
++-- their original lookup and partial-write order.
++local copy=require('abyss_copy').copy
++local M={}
++local MAX=2147483647
++local function integer(n,lo) return type(n)=='number' and n==n and n%1==0 and n>=(lo or 0) and n<=MAX end
++
++function M.combatBaseCost(state, instance)
++    local def=assert(state.catalog.cards[instance.cardId])
++    if def.costMode=='all_energy' then return -1 end
++    local cost=instance.upgraded and def.upgrade and def.upgrade.cost or def.cost
++    if instance.costOverride~=nil then cost=instance.costOverride end
++    if instance.cardId=='masterful_stab'then cost=instance.combatCost or (instance.costOverride~=nil and cost or cost+(instance.masterfulLosses or 0))end
++    if instance.cardId=='blood_for_blood' then cost=math.max(0,cost-(instance.costReduction or 0)) end
++    return cost
++end
++
++-- SearingBlow(int n) keeps timesUpgraded but resets baseDamage/upgraded.
++-- A source makeCopy constructor records this count-only baseline; ordinary
++-- instances without it retain the original cumulative upgrade formula.
++function M.validSearingBlowCopy(instance)
++    local base=instance.searingBlowCopyUpgrades
++    if base==nil then return true end
++    local n=instance.upgrades
++    return instance.cardId=='searing_blow' and type(base)=='number' and base%1==0 and base>=0 and base<=2147483647
++        and type(n)=='number' and n%1==0 and n>=base and n<=2147483647
++        and type(instance.upgraded)=='boolean' and instance.upgraded==(n>base)
++end
++
++local function resolved(s,c)
++ local d=copy(assert(s.catalog.cards[c.cardId],'unknown status-build card'))
++ if c.upgraded then for k,v in pairs(d.upgrade or {}) do d[k]=copy(v) end end;return d
++end
++local function cost(s,c)
++ local d=resolved(s,c);local base=c.combatCost or d.cost;local turn=c.turnCost
++ if turn==nil then turn=base end
++ assert(integer(base) and integer(turn),'invalid Blood for Blood cost metadata');return base,turn
++end
++M.statusDefinition=resolved
++M.bloodCost=cost
++
++-- Host invokes before changing the upgraded flag. Catalog upgrade damage is
++-- still applied by ordinary definition merging, never copied into the instance.
++function M.onUpgrade(s,c)
++ assert(c.cardId=='blood_for_blood' and not c.upgraded,'invalid Blood for Blood upgrade')
++ local base,turn=cost(s,c);local rawBase=base<4 and base-1 or 3
++ c.combatCost=math.max(0,rawBase);c.turnCost=turn>0 and math.max(0,rawBase+turn-base) or 0
++ return true
++end
++
++function M.canUpgrade(state,instance,host)
++    local api=host or M
++    local d=state.catalog.cards[instance.cardId]
++    return api.validSearingBlowCopy(instance) and d and d.type~='status' and d.type~='curse' and d.upgrade~=nil and (not instance.upgraded or d.repeatable==true)
++end
++local function upgradeBloodCost(state,instance,api,onBloodUpgrade)
++    if instance.combatCost==nil then instance.combatCost=api.combatBaseCost(state,instance) end
++    if instance.turnCost==nil and instance.costForTurn~=nil then instance.turnCost=instance.costForTurn end
++    onBloodUpgrade(state,instance)
++    instance.costOverride,instance.costReduction=nil,nil
++    if instance.costForTurn~=nil then instance.costForTurn=instance.turnCost end
++end
++
++local function upgradeRetainedCost(state,instance,def,api)
++    local before=api.combatBaseCost(state,instance)
++    local turn=instance.costForTurn or before
++    local diff=turn-before
++    local nextCost=def.upgrade.cost
++    instance.costOverride=nil
++    if turn>0 then instance.costForTurn=math.max(0,nextCost+diff) end
++end
++
++function M.upgrade(state,instance,host,onBloodUpgrade)
++    local api=host or M
++    if not api.canUpgrade(state,instance) then return false end
++    if onBloodUpgrade==nil then onBloodUpgrade=M.onUpgrade end
++    local def=state.catalog.cards[instance.cardId]
++    if instance.cardId=='blood_for_blood' and not instance.upgraded then
++        upgradeBloodCost(state,instance,api,onBloodUpgrade)
++    elseif def.upgrade.cost~=nil and (instance.costOverride~=nil or instance.costForTurn~=nil) then
++        upgradeRetainedCost(state,instance,def,api)
++    end
++    instance.upgrades=(instance.upgrades or (instance.upgraded and 1 or 0))+1
++    instance.upgraded=true;return true
++end
++
++return M

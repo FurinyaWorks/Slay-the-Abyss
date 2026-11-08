@@ -1,7 +1,7 @@
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,writeFileSync,copyFileSync,mkdirSync,mkdtempSync,rmSync,symlinkSync} from 'node:fs';
+import {readFileSync,writeFileSync,copyFileSync,mkdirSync,mkdtempSync,rmSync,symlinkSync,linkSync} from 'node:fs';
 import {join,dirname,resolve,relative,isAbsolute} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
@@ -9,6 +9,7 @@ import {spawnSync} from 'node:child_process';
 import {gameUiExtractionProof as proof,gameUiExtractionAddedPaths as added,preGameUiExtractionSource as project,preNativePageSource,gameUiExtractionReader,prepareGameUiExtractionModuleRetirement as prepare} from './helpers/game-ui-extraction-source-inverse.mjs';
 import {preCoreLifecycleSource} from './helpers/core-lifecycle-source-inverse.mjs';
 import {preRelicQuerySource} from './helpers/relic-query-source-inverse.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 // Keep the existing two/four-owner contracts in their original source epochs.
 const nativeRead=p=>preNativePageSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
 const read=p=>preRelicQuerySource(p,nativeRead(p),{readSource:nativeRead});
@@ -179,7 +180,9 @@ test('retirement verifies the full isolated destination before deleting, and rev
  // owner source snapshot, and deferred deletion must reauthenticate it.
  const live=join(root,'native-live'),destination=join(root,'native-copy');
  const nativeOwners=[architecture,host,'src/lua/abyss_game_ui_view.lua'];
- for(const path of nativeOwners){const target=join(live,path);mkdirSync(dirname(target),{recursive:true});copyFileSync(path,target);}
+ // Preserve the independent original three-owner native source epoch. Current
+ // combined owners receive their own complete fresh-closure checks below.
+ for(const path of nativeOwners){const target=join(live,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,sourceEpoch.proof.targets.native.files[path].source);}
  for(const path of added){const target=join(destination,path);mkdirSync(dirname(target),{recursive:true});copyFileSync(path,target);}
  const nativeRetire=prepare(destination,{sourceRoot:live});
  for(const owner of nativeOwners){
@@ -189,6 +192,27 @@ test('retirement verifies the full isolated destination before deleting, and rev
   writeFileSync(path,original);
  }
  nativeRetire();for(const path of added)assert.throws(()=>readFileSync(join(destination,path)),/ENOENT/);
+});
+
+test('combined retirement freshly authenticates every changed source owner and refuses hard-link aliases',t=>{
+ const build=resolve('build');mkdirSync(build,{recursive:true});
+ const root=mkdtempSync(join(build,'combined-retirement-'));
+ t.after(()=>{const rel=relative(build,root);assert(rel&&!isAbsolute(rel)&&!rel.startsWith('..'));rmSync(root,{recursive:true,force:true});});
+ const live=join(root,'combined-live'),destination=join(root,'combined-copy');
+ for(const path of sourceEpoch.proof.owners){const target=join(live,path);mkdirSync(dirname(target),{recursive:true});copyFileSync(path,target);}
+ for(const path of added){const target=join(destination,path);mkdirSync(dirname(target),{recursive:true});copyFileSync(path,target);}
+ const retire=prepare(destination,{sourceRoot:live});
+ for(const owner of sourceEpoch.proof.owners){
+  const file=join(live,owner),original=readFileSync(file,'utf8');
+  writeFileSync(file,original+'\n-- late combined owner drift\n');assert.throws(retire,/retirement module/);
+  for(const path of added)assert.doesNotThrow(()=>readFileSync(join(destination,path)),'no deletion before complete source admission');
+  writeFileSync(file,original);rmSync(file);assert.throws(retire,/retirement module/);writeFileSync(file,original);
+ }
+ retire();for(const path of added)assert.throws(()=>readFileSync(join(destination,path)),/ENOENT/);
+ const hardCopy=join(root,'hard-copy'),path=added[0],target=join(hardCopy,path);
+ mkdirSync(dirname(target),{recursive:true});linkSync(resolve(path),target);
+ assert.throws(()=>prepare(hardCopy,{sourceRoot:process.cwd()}),/single link|aliases source/);
+ assert.equal(readFileSync(target,'utf8'),readFileSync(path,'utf8'));
 });
 
 test('retirement rejects a destination or nested owner junction aliasing the live source',t=>{
@@ -246,6 +270,7 @@ test('real filesystem traces distinguish foreign/old inputs from fresh equivalen
  const root=isolated(t),reads={},opens={};
  for(const mode of ['foreign','old','equivalent','warm-drift','warm-missing']){
   const directory=join(root,mode);mkdirSync(directory);
+  copyIntegrationSourceClosure(directory);
   for(const path of [...paths,...lifecycleSources,...lifecycleHelpers,'tests/helpers/game-ui-extraction-source-inverse.mjs','tests/helpers/game-ui-extraction-source-layer.json','tests/helpers/game-ui-extraction-read-probe.mjs'])copyHistorical(directory,path);
   const trace=join(root,mode+'.trace.json');
   const result=spawnSync(process.execPath,['--trace-event-file-pattern='+trace,'tests/helpers/game-ui-extraction-read-probe.mjs',mode],{cwd:directory,encoding:'utf8',timeout:30000,maxBuffer:1024*1024,windowsHide:true});

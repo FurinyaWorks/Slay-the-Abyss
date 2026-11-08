@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-08 01:12'
-updated_date: '2026-11-08 01:32'
+updated_date: '2026-11-08 02:04'
 labels: []
 dependencies: []
 parent_task_id: TASK-88
@@ -24,4 +24,12 @@ ordinal: 165000
 
 <!-- SECTION:PLAN:BEGIN -->
 1. 冻结盘点；2. 统一集成；3. 组合验证与候选；4. develop正式合入和清理
+
+Owner追加全部收口：修复并消化#554；将其余来源写入可恢复隔离档案，清理所有非主线远程分支；修复合后历史回放/退休及CI，保留2D默认。
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Owner追加全量收口：五公开实验222路径已恢复逐blob验证；#554原两支及最小raw修复实验归档，不动默认API；私UI保留本地bundle。修复组合35-owner鲜读、UI退休/隔离、旧native/Session分层与跨平台102 helper身份；本轮UI/组合52、Session4、CI23等通过。最终远端目标0PR与develop/master两支，Full排队单独跟踪。
+<!-- SECTION:NOTES:END -->

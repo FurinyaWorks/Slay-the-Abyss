@@ -62,4 +62,15 @@ Owner 本轮授权冻结新增功能，以唯一最终交付分支 `feat/emergen
 - Enhanced完整GIL构建与351模块构建器读回通过：buildId `052805cb-5dc5-4f6d-ad90-48b1286dc675`，干净源码 `4d1e2f0324eaec76568c87bd9e949cf2a5e02a27`，12,163,708字节，SHA256 `4b5cff1a61907f0f6314c38f14f40d61407454121d6d061eb6ce1bab355c9f2e`。路径 `build/integration-enhanced/052805cb-5dc5-4f6d-ad90-48b1286dc675/candidate.gil`。后续线性提交和测试证明收口不改此候选生产Lua、数据、构建输入；独立整包审计另记。
 - Owner再次明确本轮优先立即合并和清理、CI并行，不占用原神；本轮不再申请桌面测试。官方导入/ready/手机/官方容量保持UNVERIFIED，旧F证据不转移。
 
-PR关闭、分支删除、最终develop SHA、规则恢复读回及候选身份以本页后续实际收口记录为准；当前不声明完成。
+## Owner追加全部收口
+
+Owner在#560后要求剩余来源也全部处理，本轮不再保留非主线远程待命分支。当前基线为 `a0c35db8d3c7242437f4dff0df373749b0d84985`；后续最终squash身份、远端删除与保护恢复读回同步到收口PR评论及本地最终收据。
+
+- 五个公开实验完整保存在 [隔离恢复档案](../experiments/archive/emergency-20261108/README.md)：原base、HEAD、完整binary patch、逐文件Git blob及摘要齐全，222个变更路径实际恢复逐blob相等。Sapphire中已被后续组合改写的旧核心不覆盖当前源码；3D不启用。
+- #554 delivery/runtime完整无损补丁、原失败、最小raw API修复实验及对象图保存在 [CardUpgrade恢复实验](../experiments/archive/emergency-20261108/card-upgrade-recovery/README.md)。原11组升级、29组WarriorStatus、3个Stasis及真实56字段/nil元表对照通过；UI来源前置失败保留。该职责实验归档关闭，不修改当前兼容生产API。
+- 私有UI `3073e556`完整历史继续保存在已验证的本地 `integration-result.bundle` 和原独立工作树；不将私源公开归档。清理远端不删除这些本地源码、素材、候选或未提交任务。
+- 组合源码授权只鲜读全部35个变动owner，原epoch的旧linked owner继续鲜读；完整当前339路径另作独立身份认证。不缓存授权、不改旧oracle。
+- 修复GameUI退休与隔离默认reader，删除前重验字节、真实路径、目录身份、单链接及inode；硬链接负控在源码同卷真实执行。旧读取次数0/0/30/15/14保持。
+- 修复所有根facade的LF和gzip二进制属性。102个helper暂存Git blob与固定闭包摘要逐项相等，不以仅Windows工作副本相等充数。
+- 本轮UI/组合52项、Session4项、Combat原失败及新增负控、CI调度23项通过；五文件旧回放20项已通过，原5失败中的Combat2及Session3全部定点修复。独立审查另保留成功后漂移旧linked owner的拒绝证据。源码、数据和生产打包未改，两份已交付GIL继续对应同一构建输入。
+- GitHub develop Full排队不计通过；删除已关闭#560对应的旧PR作业，仅保留当前基线必需验证。本轮仍不占用原神/桌面，不发布。

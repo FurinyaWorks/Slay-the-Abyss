@@ -1,0 +1,4386 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-11-08",
+  "developSha": "a0c35db8d3c7242437f4dff0df373749b0d84985",
+  "sources": [
+    {
+      "sourceBranch": "origin/feat/snapshot-flat",
+      "sourceSha": "27b889bc7f60f51cb7b1e2a14e2281388051d73b",
+      "baseSha": "c20f9898462194d5f720f901274898e171a17ed5",
+      "developAuditSha": "a0c35db8d3c7242437f4dff0df373749b0d84985",
+      "files": [
+        {
+          "path": "backlog/tasks/task-75.7 - 降低完整回滚快照的表分配开销.md",
+          "status": "A",
+          "sourceBlob": "110ff41a4a6a31e7915f4f1de36c4e7e32ef486a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/MILESTONES.md",
+          "status": "M",
+          "sourceBlob": "a899754fd6ef96e5f49fc46ac3559ed7b503cf61",
+          "developBlob": "ded19ebaf8bb5d1af92b87bbc6cb88786c37f299",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/plans/2026-11-06-snapshot-flat-design.md",
+          "status": "A",
+          "sourceBlob": "ba67e5e4a49ff3e2925856b72dc94f9fceb7a987",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/plans/2026-11-06-snapshot-flat-implementation.md",
+          "status": "A",
+          "sourceBlob": "a33a36ec0e783b38fa6ec8615b2c18f2b958b46e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_snapshot.lua",
+          "status": "M",
+          "sourceBlob": "eed7b855e5ff99807d5758c950bb03156efea1f5",
+          "developBlob": "446db705ac66a87450bf32bf9d6cff2bbaec7d1e",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/fixtures/snapshot-flat/before.lua",
+          "status": "A",
+          "sourceBlob": "446db705ac66a87450bf32bf9d6cff2bbaec7d1e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/helpers/snapshot-flat-vm.mjs",
+          "status": "A",
+          "sourceBlob": "bb35a26dea73d62839198f3539fbb70209f7762a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/snapshot_flat.lua",
+          "status": "A",
+          "sourceBlob": "d6d0f76561bb094d74cc76f5551a0fbfcc0a1f0a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/snapshot-flat.test.mjs",
+          "status": "A",
+          "sourceBlob": "6166a07259d439d56364ef560c60d79d6b7b3221",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        }
+      ],
+      "localBundle": {
+        "filename": "integration-result.bundle",
+        "sha256": "ffbaa2cc349229fad3cef28efeabe581a278c18de48da0691526498e4655eab2",
+        "sourceHeadPresent": true
+      },
+      "preservation": "public-isolated-binary-patch",
+      "archiveFile": "experiments/archive/emergency-20261108/snapshot-flat.patch",
+      "archiveSha256": "9a1b7f99744dd7c95446ebf1482edfa49c82d7b2de4a202dcb23708455e80b03",
+      "archiveBytes": 42053,
+      "parseChecked": true,
+      "restoreValidation": {
+        "branch": "origin/feat/snapshot-flat",
+        "baseSha": "c20f9898462194d5f720f901274898e171a17ed5",
+        "sourceSha": "27b889bc7f60f51cb7b1e2a14e2281388051d73b",
+        "restoredBlobsVerified": 9,
+        "changedPaths": 9,
+        "applyCheck": true,
+        "fullApply": true
+      }
+    },
+    {
+      "sourceBranch": "origin/feat/sapphire-budget",
+      "sourceSha": "e4324d2a1e05bd7c7065949617e0143b2d163777",
+      "baseSha": "dedb9ed5af52fc595031d64d3e8fd84bc908b2c8",
+      "developAuditSha": "a0c35db8d3c7242437f4dff0df373749b0d84985",
+      "files": [
+        {
+          "path": "backlog/tasks/task-100 - 建立主要运行时路径的同源性能基准.md",
+          "status": "A",
+          "sourceBlob": "2c51493931c1562677773a501945ab3f00a3798a",
+          "developBlob": "9afb30e00266b61cc214e9f57cd07aab07b6597d",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "backlog/tasks/task-101 - 量化并削减仓库LFS及冷构建成本.md",
+          "status": "A",
+          "sourceBlob": "a540fb1ee8225aead7ef68c8200a343946180ab0",
+          "developBlob": "5f0c70716800761e1ee4450518296addbfb85d01",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "backlog/tasks/task-74 - 缩短完整检查并拆清超大模块职责.md",
+          "status": "M",
+          "sourceBlob": "7df66cf4ce112969b001c74e3b9361d71f3d77d6",
+          "developBlob": "5b0a33f3ffa5e2ff620a6bbb05321728f5606834",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "backlog/tasks/task-74.17 - 拆清GameUI构造生命周期并约束完整函数跨度.md",
+          "status": "M",
+          "sourceBlob": "de5d22d5e2e6f0a033445c9e7e620fd4c842b926",
+          "developBlob": "de5d22d5e2e6f0a033445c9e7e620fd4c842b926",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "backlog/tasks/task-74.18 - 拆清卡牌队列drain与刷新职责.md",
+          "status": "M",
+          "sourceBlob": "c53bd055fc0d19fffec769e172cd4b6afac04e1a",
+          "developBlob": "c53bd055fc0d19fffec769e172cd4b6afac04e1a",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "backlog/tasks/task-74.19 - 收敛核心依赖环与领域状态所有权.md",
+          "status": "A",
+          "sourceBlob": "a213eb637bba8d87d6747d38fea4a1317a51d2c7",
+          "developBlob": "3bc48d6ac55386ee9b2e30766e4193cfd254edd5",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "status": "A",
+          "sourceBlob": "bd32c13e7e120ac9973e81d68a4c709b06205167",
+          "developBlob": "625086d09ef7c01d6f973261946f58caccf8d659",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "backlog/tasks/task-75.6 - 补全当前完整成本并修好队列整体预算.md",
+          "status": "M",
+          "sourceBlob": "051f3b57cdc7db310b5bf27c100dc805f000eda8",
+          "developBlob": "d355dd6a348af275ec715f451c7619eddb4730f8",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "config/architecture.json",
+          "status": "M",
+          "sourceBlob": "ad1880710f0b186d3532517d8f51496622141963",
+          "developBlob": "a41659bed1228789b882bd6cb79e88f8dbe70142",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/HANDOFF.md",
+          "status": "M",
+          "sourceBlob": "ac3c1551b43897be93478dbeb4b4a2e9eb8e35a7",
+          "developBlob": "bcbf9f032f43dd220d265e3f3576caf4b998664a",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/MILESTONES.md",
+          "status": "M",
+          "sourceBlob": "70bc12783d9accaf1221198d35c6bd97e4d62101",
+          "developBlob": "ded19ebaf8bb5d1af92b87bbc6cb88786c37f299",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/SPRINT_EXECUTION.md",
+          "status": "M",
+          "sourceBlob": "bb0126a04a9425633a7fbb8564be48c72cb9ef2e",
+          "developBlob": "e8e979bc6ca81172d571607540c8b8f45ad7e4ef",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/M7-COMPLEXITY-AUDIT-20261106.md",
+          "status": "A",
+          "sourceBlob": "10e150d0e1faa26e1d3343ee3dd900333db45638",
+          "developBlob": "10e150d0e1faa26e1d3343ee3dd900333db45638",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "docs/backlog-details/M7-CORE-LIFECYCLE-20261106.md",
+          "status": "A",
+          "sourceBlob": "4021959b7d8117f8098a266bf3977af6c85f1487",
+          "developBlob": "4cbabfd929f509f8397f4e9127bdd8275fc6d2a8",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/M7-DELIVERY-20261106.md",
+          "status": "A",
+          "sourceBlob": "fd5c21e3caf1ccc0e18117e45cd695b6bc402c6d",
+          "developBlob": "fd5c21e3caf1ccc0e18117e45cd695b6bc402c6d",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "docs/backlog-details/M7-DEPENDENCY-AUDIT-20261106.md",
+          "status": "A",
+          "sourceBlob": "8cb0a3a7893c1ed71148958a75fc0df5122e8131",
+          "developBlob": "8cb0a3a7893c1ed71148958a75fc0df5122e8131",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "docs/backlog-details/M7-SCOPE-GAP-20261105.md",
+          "status": "M",
+          "sourceBlob": "d8597796fe0661736fcf5b8d72914130b951141e",
+          "developBlob": "d8597796fe0661736fcf5b8d72914130b951141e",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "docs/evidence/m7-architecture-baseline-20261106.json",
+          "status": "A",
+          "sourceBlob": "36c67213058d000912b5ce114103fe30cdb6f7ca",
+          "developBlob": "36c67213058d000912b5ce114103fe30cdb6f7ca",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "docs/evidence/m7-core-lifecycle-20261106.json",
+          "status": "A",
+          "sourceBlob": "1055045e18e7d9b9b1df0361e7c15fe0dd3fd1e7",
+          "developBlob": "1055045e18e7d9b9b1df0361e7c15fe0dd3fd1e7",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "scripts/check-lua-static.mjs",
+          "status": "M",
+          "sourceBlob": "83f7f11b5b16e1b1e4334bf0f099c0cb6115a723",
+          "developBlob": "3d3e84f14a3e7fd7b03e2fbde610fa7022a1bc12",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_actor.lua",
+          "status": "M",
+          "sourceBlob": "d9a6dce2f2ba6392f7927405c2aae2337acd0d20",
+          "developBlob": "437cf78b984ac355b7e69e0bb21c443b947598f3",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_actor_power_rules.lua",
+          "status": "A",
+          "sourceBlob": "d9b1245cbebea29327f64403fc93826bd1a95f36",
+          "developBlob": "d9b1245cbebea29327f64403fc93826bd1a95f36",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "src/lua/abyss_combat.lua",
+          "status": "M",
+          "sourceBlob": "4a409fe9de6f870ba33a82943c6b082ba43b6b44",
+          "developBlob": "2f0c4d6ca051f2df93f386e300e6b28c79bdf943",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/actor-lifecycle.test.mjs",
+          "status": "A",
+          "sourceBlob": "561a028d241ac7100e471bf89e9b3922ad079c42",
+          "developBlob": "561a028d241ac7100e471bf89e9b3922ad079c42",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/actor-power-rules-boundary.test.mjs",
+          "status": "A",
+          "sourceBlob": "8a69f8186497d4c2dcbe1f8d9d43fb620136207a",
+          "developBlob": "8a69f8186497d4c2dcbe1f8d9d43fb620136207a",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/ci-complete-calibration.test.mjs",
+          "status": "M",
+          "sourceBlob": "1f66c4947b23dd4c955be6e22beccda64a0ae71d",
+          "developBlob": "5337a22cace00ef072f26465c0fb55b296d4283c",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/combat-lifecycle.test.mjs",
+          "status": "A",
+          "sourceBlob": "b37141e9fc100eee458d43853fda3481cfe13525",
+          "developBlob": "b37141e9fc100eee458d43853fda3481cfe13525",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/combat-reactions-architecture-inverse.test.mjs",
+          "status": "M",
+          "sourceBlob": "570721a95ea3e8ef442dde768c9d1775c8ba5dbd",
+          "developBlob": "931a04bf3eac61e35181c2fea4681506ac404666",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/compendium-source-inverse.test.mjs",
+          "status": "M",
+          "sourceBlob": "34af9bb8d1dfed8db883525c6b042c5634bae8f2",
+          "developBlob": "23b8ef2314ebe815c7fd0f9584133eea3ec57809",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/core-lifecycle-complexity.test.mjs",
+          "status": "A",
+          "sourceBlob": "34f05952ff10fd7f01b929a17e366ad48daf8586",
+          "developBlob": "34f05952ff10fd7f01b929a17e366ad48daf8586",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/core-lifecycle-source-inverse.test.mjs",
+          "status": "A",
+          "sourceBlob": "1f8ecdce8401c0eb8c34366d1ae81b1c9e128a45",
+          "developBlob": "c31a16fa11b1066fc21a7ae53325b34422045a8f",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/game-ui-extraction-source-inverse.test.mjs",
+          "status": "M",
+          "sourceBlob": "a20fb2ecfaf5a34c16f6f4a2cd36cdf4c24a3edc",
+          "developBlob": "0efdd5024865cb0ce0309b1283da419bcf8dc70c",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/helpers/actor-lifecycle-before.lua",
+          "status": "A",
+          "sourceBlob": "1b797fba5a6971e95cdeb4670dc0e846778fe0dd",
+          "developBlob": "1b797fba5a6971e95cdeb4670dc0e846778fe0dd",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/helpers/actor-lifecycle.mjs",
+          "status": "A",
+          "sourceBlob": "fa6070a863527ce43c7639e9d65f96fe1ade499e",
+          "developBlob": "fa6070a863527ce43c7639e9d65f96fe1ade499e",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/helpers/combat-lifecycle-before.json",
+          "status": "A",
+          "sourceBlob": "0d982d526ada39fe01f3fbb6b6c1093c311ee8c3",
+          "developBlob": "0d982d526ada39fe01f3fbb6b6c1093c311ee8c3",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/helpers/combat-lifecycle-input.mjs",
+          "status": "A",
+          "sourceBlob": "f64db82a08a0002d225ba3c3ff8cb71c56205c05",
+          "developBlob": "f64db82a08a0002d225ba3c3ff8cb71c56205c05",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/helpers/core-lifecycle-source-inverse.mjs",
+          "status": "A",
+          "sourceBlob": "cbcd0cffdd4c1cb2578f2cd87432bf979cc3ea9a",
+          "developBlob": "3469d31ae49e7b29ce670670a36cc426b8064578",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/helpers/game-ui-extraction-source-inverse.mjs",
+          "status": "M",
+          "sourceBlob": "22f5a7b78c87cd62293e48ac10ed2097d43c2220",
+          "developBlob": "cc34e4932fdbe023061d8e970afb937a9764bbb8",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/helpers/historical-presentation-runner.mjs",
+          "status": "M",
+          "sourceBlob": "bef1d0d92f5e5a99851460082628ead9db0ec9fb",
+          "developBlob": "d34853c437ef983ab901b65859094d4d9f1ac324",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/helpers/historical-sapphire-entry.mjs",
+          "status": "M",
+          "sourceBlob": "cd7d55e919c7b0cd06ee35f7971a3ff344b449f1",
+          "developBlob": "735ed98081a5267d41b7f4ad08cd2755ba7e8a3b",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/living-wall-architecture-inverse.test.mjs",
+          "status": "M",
+          "sourceBlob": "b873449b52aad89638d8f82f02ec30f9d4af4b89",
+          "developBlob": "4a8f929dee06aa012930a4779e01dba033ee41d4",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua-runner-cli-continuation.test.mjs",
+          "status": "M",
+          "sourceBlob": "3cef6e9bf4d0fc1738890551d3f231c1a2b3d47b",
+          "developBlob": "f87ab46ee985f9a2f7bb85d11d43de07b12549ff",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/actor_lifecycle.lua",
+          "status": "A",
+          "sourceBlob": "78e8a7c1c8e73a1431695e3450887ff1c4440a38",
+          "developBlob": "78e8a7c1c8e73a1431695e3450887ff1c4440a38",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/lua/actor_lifecycle_rules.lua",
+          "status": "A",
+          "sourceBlob": "ef730dc9cbef79a093a8ceeaeb2c41375d0207f2",
+          "developBlob": "ef730dc9cbef79a093a8ceeaeb2c41375d0207f2",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/lua/combat-lifecycle.lua",
+          "status": "A",
+          "sourceBlob": "59b3df79a803ac5f1da87d2fc197158322cf57ab",
+          "developBlob": "59b3df79a803ac5f1da87d2fc197158322cf57ab",
+          "sameBlobInDevelop": true
+        },
+        {
+          "path": "tests/lua/sapphire_treasure.lua",
+          "status": "M",
+          "sourceBlob": "2b5102765d6dcd02f916c6eff3a69bb23bc0dcfb",
+          "developBlob": "ca3ffcb0ed22d5c30ab7ecf5c716315664a95678",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/sapphire_treasure_slice_6.lua",
+          "status": "A",
+          "sourceBlob": "c6a45be5b1de18608223c5d4050ebc7a8cb23b6e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/quick-feedback.test.mjs",
+          "status": "M",
+          "sourceBlob": "b918d6a8e03ea572e1f472932886c30834ef27f0",
+          "developBlob": "cbc27e9aba5ce6b8600c1889fd1f712c34502257",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/responsibility-complexity.test.mjs",
+          "status": "M",
+          "sourceBlob": "0669205f9bbed8ee13de3aa73c93c858f23fd883",
+          "developBlob": "797a8f3a47dc063c8e612c363d9487cd5270412f",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/sapphire-modern-partition.test.mjs",
+          "status": "M",
+          "sourceBlob": "e23bf8c3c1240e0d343db65fe82e39b7c130f96d",
+          "developBlob": "dd7449efc0837b05c468d1f3067f11b394b98cb0",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/sapphire-treasure.test.mjs",
+          "status": "M",
+          "sourceBlob": "6342c5eac15b5c730e3d8f4c9a0d62ddc595806e",
+          "developBlob": "49ef2c9e4dacb077e90c1425121c39d7c29ae582",
+          "sameBlobInDevelop": false
+        }
+      ],
+      "localBundle": {
+        "filename": "integration-result.bundle",
+        "sha256": "ffbaa2cc349229fad3cef28efeabe581a278c18de48da0691526498e4655eab2",
+        "sourceHeadPresent": true
+      },
+      "preservation": "public-isolated-binary-patch",
+      "archiveFile": "experiments/archive/emergency-20261108/sapphire-budget.patch",
+      "archiveSha256": "cebed3efd4e8c5d8732e50b4f6c374354b42567f531f99658f078e5b26d81a9f",
+      "archiveBytes": 484486,
+      "parseChecked": true,
+      "restoreValidation": {
+        "branch": "origin/feat/sapphire-budget",
+        "baseSha": "dedb9ed5af52fc595031d64d3e8fd84bc908b2c8",
+        "sourceSha": "e4324d2a1e05bd7c7065949617e0143b2d163777",
+        "restoredBlobsVerified": 51,
+        "changedPaths": 51,
+        "applyCheck": true,
+        "fullApply": true
+      }
+    },
+    {
+      "sourceBranch": "origin/feat/native-3d-lab",
+      "sourceSha": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+      "baseSha": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "developAuditSha": "a0c35db8d3c7242437f4dff0df373749b0d84985",
+      "files": [
+        {
+          "path": "backlog/tasks/task-102 - 验证同档菜单驱动原生3D卡牌战斗.md",
+          "status": "A",
+          "sourceBlob": "5b3c8f8da814973ea82a1c7ebd808d246f5787e4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/TASK-51.md",
+          "status": "M",
+          "sourceBlob": "d43ac29c056edc6805fb1dc3dc0cef58802d3ba4",
+          "developBlob": "491082356307c66db522a769c5a48737afba8f3e",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/plans/2026-11-07-native-3d-lab.md",
+          "status": "A",
+          "sourceBlob": "17927b5ed7d6e6db3627ad633db932fc92925d79",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/EXPANSION-RESULTS.md",
+          "status": "A",
+          "sourceBlob": "12cb93f22a79a0c82720b6333a31c09fc3867c7b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/NATIVE-CAPABILITIES.md",
+          "status": "A",
+          "sourceBlob": "afec0dc76f582c49806633ee0d15ade25befbbcd",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/README.md",
+          "status": "A",
+          "sourceBlob": "a1b75aeef01d83768a1b2e0d702a8565162578ad",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/REAL-CLIENT-RESULTS.md",
+          "status": "A",
+          "sourceBlob": "13ee8e66f314c32b3654834e26e4945002695f6b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/RESULTS.md",
+          "status": "A",
+          "sourceBlob": "beea7469a1ebfb23e16ffb1c2eed64362eb28b75",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/REVIEW.md",
+          "status": "A",
+          "sourceBlob": "54071bf8f57a00a2401dd2544dcd5273f5739c2c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/TWEEN-EXPERIMENT.md",
+          "status": "A",
+          "sourceBlob": "dfa53a71713761b7389355743b6dd44172928f69",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/NATIVE-EFFECT.md",
+          "status": "A",
+          "sourceBlob": "ac9c835df352e4ef1eaeca12c187a3385918dd54",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/README.md",
+          "status": "A",
+          "sourceBlob": "6773e08ace2d8834c8aab76483102d089849c973",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/native-effect-evidence.json",
+          "status": "A",
+          "sourceBlob": "24b24aa3c1d16b945ce63ab36409e0f814747c07",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/native-effect.mjs",
+          "status": "A",
+          "sourceBlob": "6097c173e463f6a7d1d24ff956c84e4d1e0066ec",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/native-hit-thumb.jpg",
+          "status": "A",
+          "sourceBlob": "78b10ef8f923da03da479193f1ebf768492df463",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/plate-colour_03.jpg",
+          "status": "A",
+          "sourceBlob": "6cb3efb407747573750c822b37e622d44b0a6d49",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/probe.mjs",
+          "status": "A",
+          "sourceBlob": "e1623fb658130f2a0d7c1f9e3c05703a20b2ad05",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/runtime.lua",
+          "status": "A",
+          "sourceBlob": "377c60d08d729d30ef396aedce8a405b771cd751",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/specimen-receipt.json",
+          "status": "A",
+          "sourceBlob": "6af94c5a32377804de56b4ed9fd392749a87d484",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/specimen-template.json",
+          "status": "A",
+          "sourceBlob": "21acbca998b36d7611b640538e3b33e9e8ec00f7",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/specimen.mjs",
+          "status": "A",
+          "sourceBlob": "489803c4f3a9dea1069e8bba62ecb3bc3c70b2d5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/specimen.test.mjs",
+          "status": "A",
+          "sourceBlob": "5514f2cb41ea5cab6bf87eb76bfdde76a7a8ed23",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/assets/test-toggle.lua",
+          "status": "A",
+          "sourceBlob": "cc3f4b350ea971fc5a5089f665b47a2abf0f57d6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/build.mjs",
+          "status": "A",
+          "sourceBlob": "613eb373094812daf217bac4f9a9bcb1871626f4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/card-tween.lua",
+          "status": "A",
+          "sourceBlob": "4b560cd4c12d98f92da3fd8c33c368f6e9c46f3e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/card-tween.mjs",
+          "status": "A",
+          "sourceBlob": "480a0584a16b78f170f8a49ae851ce30ebf5cbe3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/card-tween.test.mjs",
+          "status": "A",
+          "sourceBlob": "f527c310cf36706985c7fafc1b70d4c53f30f13f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/coverage/README.md",
+          "status": "A",
+          "sourceBlob": "194704a36091c468631fbe1947337acdfa10066e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/coverage/build.mjs",
+          "status": "A",
+          "sourceBlob": "56289fa56477c0cd9bfc67e5d511a96228aaebb9",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/coverage/catalog.lua",
+          "status": "A",
+          "sourceBlob": "4d71a8ce419cebd124e78c725fa7e289c007c333",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/coverage/catalog.tsv",
+          "status": "A",
+          "sourceBlob": "aa77e34e89b1f1dfb778593e3b49ca29c591d6b4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/coverage/enemy-coverage.csv",
+          "status": "A",
+          "sourceBlob": "a526193a66e4cf3cdde90c6d2270b03389eb8e65",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/coverage/enemy-coverage.json",
+          "status": "A",
+          "sourceBlob": "8cf3a0c97f2c8e531e510c769a5b2dfb9f113d85",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/coverage/mapping.mjs",
+          "status": "A",
+          "sourceBlob": "6f42d865c6c31efacc95d1c06ae7c82186133b42",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/coverage/phase-coverage.csv",
+          "status": "A",
+          "sourceBlob": "1f1e61dea40ea7e085437de5e1c0caaac868a931",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/coverage/verify.mjs",
+          "status": "A",
+          "sourceBlob": "0b78613ca9e10b858f0cd187fc628903ff592ba2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/evidence-summary.json",
+          "status": "A",
+          "sourceBlob": "cdd588fe50f3ce9a953ab9c3fee0bb4d18940cf1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/expand.mjs",
+          "status": "A",
+          "sourceBlob": "b02cfd56e3fd67778729765a69941cdd5243e45c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/expansion-layout.mjs",
+          "status": "A",
+          "sourceBlob": "12748adde4356aa62a58ccf86d82e017c0097f7d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/expansion-runtime.lua",
+          "status": "A",
+          "sourceBlob": "978e25d36fba35615b9459536f9eda0318804662",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/layout.mjs",
+          "status": "A",
+          "sourceBlob": "020145f4bac5d651956df96ed2a2b88a47c451a8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/motion-probe.mjs",
+          "status": "A",
+          "sourceBlob": "3f28e155e7a3401412ac4f22af4120ccf58f8f79",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/native-scene.mjs",
+          "status": "A",
+          "sourceBlob": "d8011fcd3e974b64fca4cd3c1a6fd08adb9d8444",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/native-scene.test.mjs",
+          "status": "A",
+          "sourceBlob": "9c34cb4cd8ddba816a906ae93bf0a1a0a475eb34",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/rpc.mjs",
+          "status": "A",
+          "sourceBlob": "a1e58c54b68bc61979358a030d0133b2f5388e16",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/runtime.lua",
+          "status": "A",
+          "sourceBlob": "4042642f2553d98a30b35cb7e228153de9f464e8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/selector/README.md",
+          "status": "A",
+          "sourceBlob": "19552c908e599d802465e0fc882f40e5877f9d52",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/selector/check.mjs",
+          "status": "A",
+          "sourceBlob": "e6748780bfd2dafebc6f0c56152aa89c72e3cca6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/selector/evidence.json",
+          "status": "A",
+          "sourceBlob": "ed1ae9c19eccad617342954e109dc5b20e8f4366",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/selector/fixture.lua",
+          "status": "A",
+          "sourceBlob": "810243325b5420d49286d713167a1791eb9fc3dc",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/selector/install.mjs",
+          "status": "A",
+          "sourceBlob": "a18ee38f3974172392a72392f5a4b22634d867d6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/selector/runtime.lua",
+          "status": "A",
+          "sourceBlob": "5fefeff0ca706aa628845eb02ad7c87bec6843b0",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/selector/runtime.test.lua",
+          "status": "A",
+          "sourceBlob": "e5774e955cd7eb3928143d40e45ebf14e1dea615",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/selector/selector.test.mjs",
+          "status": "A",
+          "sourceBlob": "4980fa926e212a6a82f1cd613f849bdd3aace15e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/.gitignore",
+          "status": "A",
+          "sourceBlob": "a47f082c7ddadd57401e29bc2ff2294895aa1ad6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/README.md",
+          "status": "A",
+          "sourceBlob": "f81b4fef10c6c7750fb3f6051a5df04e3eed7595",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/hexaghost.mjs",
+          "status": "A",
+          "sourceBlob": "47e5a58baaa1d024dc78e1c6bb42aeb9bf254d8e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/hexaghost.test.mjs",
+          "status": "A",
+          "sourceBlob": "6abe47d424a137aedb88943e6f319b76a8ab4826",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/preview/angle.png",
+          "status": "A",
+          "sourceBlob": "cbaddfff91b82baef098d9f6cb5a3760ae56c493",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/preview/front.png",
+          "status": "A",
+          "sourceBlob": "bd14808938fcb3ba988c5d0847973fb14294e1b0",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/preview/receipt.json",
+          "status": "A",
+          "sourceBlob": "e77953e8d8b3e4670af467d5c3d092226baa30ee",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/preview/side.png",
+          "status": "A",
+          "sourceBlob": "5e39421e5355934a71fafb27cecce8c563e50f3a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/preview/top.png",
+          "status": "A",
+          "sourceBlob": "a693a000ac5813a422d1a9f9c6a418711426e96b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/shapes/probe.mjs",
+          "status": "A",
+          "sourceBlob": "88d3ed15a86248f01026203d44dab830a6657d14",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/tests/build.test.mjs",
+          "status": "A",
+          "sourceBlob": "9b2ea708ec38c4698a54adb113a1ca9dc9086ffe",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/tests/card-tween.lua",
+          "status": "A",
+          "sourceBlob": "62b9462d277a6c66c4f19015c4cba364a66991d6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/tests/expansion.lua",
+          "status": "A",
+          "sourceBlob": "203a1881ddbbed9d74a33c82947f1dc5c95f5552",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/tests/expansion.test.mjs",
+          "status": "A",
+          "sourceBlob": "5c5bec1f7dd49a31a472e1568cc318828f67ad65",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/tests/production.lua",
+          "status": "A",
+          "sourceBlob": "109337615318dcebc35f513d60f1a8bf55cc0a59",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/tests/runtime.lua",
+          "status": "A",
+          "sourceBlob": "2a7020aff0c21f3077e4b07ae4aac6795bab6d96",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/ui-readback.mjs",
+          "status": "A",
+          "sourceBlob": "a489fe2c1af1608c291af9345c15e57c84154ce6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/native-3d-lab/upstream-shapes.mjs",
+          "status": "A",
+          "sourceBlob": "73e9bc9e189dd52a82c7dae7d9ef80e559b4af78",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-candidate-audit.mjs",
+          "status": "M",
+          "sourceBlob": "ab0bf8f98e1639308253629e6956c7c48b0b7a4e",
+          "developBlob": "219103b52c4e91c72f9a1ea75c9be76e0fdf6727",
+          "sameBlobInDevelop": false
+        }
+      ],
+      "localBundle": {
+        "filename": "integration-result.bundle",
+        "sha256": "ffbaa2cc349229fad3cef28efeabe581a278c18de48da0691526498e4655eab2",
+        "sourceHeadPresent": true
+      },
+      "preservation": "public-isolated-binary-patch",
+      "archiveFile": "experiments/archive/emergency-20261108/native-3d-lab.patch",
+      "archiveSha256": "c3c4a561b516bb96ec44351681e51f19a7ad0c3b65e904340533feaccea7ce06",
+      "archiveBytes": 633440,
+      "parseChecked": true,
+      "restoreValidation": {
+        "branch": "origin/feat/native-3d-lab",
+        "baseSha": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+        "sourceSha": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+        "restoredBlobsVerified": 73,
+        "changedPaths": 73,
+        "applyCheck": true,
+        "fullApply": true
+      }
+    },
+    {
+      "sourceBranch": "origin/feat/native-3d-production",
+      "sourceSha": "d80743f9d38fa451a753c21316733fc02879953e",
+      "baseSha": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "developAuditSha": "a0c35db8d3c7242437f4dff0df373749b0d84985",
+      "files": [
+        {
+          "path": "backlog/tasks/task-103 - 交付岩系旅行者两幕正式原生3D版本.md",
+          "status": "A",
+          "sourceBlob": "fb8a534e7782cdf848c7ca2b17d8e31d40599b90",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "config/architecture.json",
+          "status": "M",
+          "sourceBlob": "ebc4c7e2e6c07630ada9c5777fd9ccec20a9bcbf",
+          "developBlob": "a41659bed1228789b882bd6cb79e88f8dbe70142",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/HANDOFF.md",
+          "status": "M",
+          "sourceBlob": "6267560841edf4eae9e2dc06a65a2024333b37a2",
+          "developBlob": "bcbf9f032f43dd220d265e3f3576caf4b998664a",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/NATIVE-3D-CAMERA-20261108.md",
+          "status": "A",
+          "sourceBlob": "1b12d6ab9d4dec64e572c3f5d3ccdb097387255c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/NATIVE-3D-CONFIG-20261107.md",
+          "status": "A",
+          "sourceBlob": "a21c22d254f335e9dda7a97f399a6929a6e08e9e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/NATIVE-3D-INTEGRATION-20261107.md",
+          "status": "A",
+          "sourceBlob": "75c74168246adac755bd13474450eb322f57f9f6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/NATIVE-3D-MAP-COLOUR-20261107.md",
+          "status": "A",
+          "sourceBlob": "4d6edaf76e337f90797d546a35397e7e7a7e8840",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/NATIVE-3D-NODE-BUDGET-20261107.md",
+          "status": "A",
+          "sourceBlob": "83b013db8d8578f6c339c39cf4a4d12aa7892cdb",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/NATIVE-3D-PAUSED-20261108.md",
+          "status": "A",
+          "sourceBlob": "800e6e9e272ace561f39c9173f3f556b2aa742ba",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/NATIVE-3D-TARGETS-20261107.md",
+          "status": "A",
+          "sourceBlob": "06615c42e9d2235676a055cfa088d4b6b123cd2c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/legal/licenses/UGC-Gia-Gil-ProtoBuf-MIT.txt",
+          "status": "A",
+          "sourceBlob": "f34a71220df9cf64d0c117f79096fd812176fdef",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/plans/2026-11-07-native-3d-production.md",
+          "status": "A",
+          "sourceBlob": "593f83ade6ca4192226450ea7566aff83c75c7d8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/build-native-3d.mjs",
+          "status": "A",
+          "sourceBlob": "becbd8d7e98085b64e496e3f59d58c474924fd9a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/card-face.mjs",
+          "status": "M",
+          "sourceBlob": "eddeb013f8df00bc7a7ba5e70c2e2eab6f082334",
+          "developBlob": "e823ff7bde4ed38124f7c82d2bac83d00d09f34d",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/arena-scene.json",
+          "status": "A",
+          "sourceBlob": "08e532a87203e2829f8e7557db3c884ee384ce1e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/arena.mjs",
+          "status": "A",
+          "sourceBlob": "b21e4c35c4fd0dda184547e8291da092d3b1ecb5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/arena.test.mjs",
+          "status": "A",
+          "sourceBlob": "246ee521639af3afb9a36959eb1a3a98030b686e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/camera-projection.mjs",
+          "status": "A",
+          "sourceBlob": "9c25aa7c4983b08a3168731e4564cbf93f887dbf",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/camera-projection.test.mjs",
+          "status": "A",
+          "sourceBlob": "4ae896000ab5a0e36b9bb32b11ca1a721cffa8e0",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/camera-viewpoint.mjs",
+          "status": "A",
+          "sourceBlob": "04c54c8d5ceb81f1e552845ce7ba989e877b58c1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/camera-viewpoint.test.mjs",
+          "status": "A",
+          "sourceBlob": "97e2fecf90d7c56d0b8a33147e4c0dd31835a5c3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/camera.mjs",
+          "status": "A",
+          "sourceBlob": "6d216d61ccde24dc0e24b7ee8db1c555ac2af685",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/camera.test.mjs",
+          "status": "A",
+          "sourceBlob": "bf03ecaf6f57441e4eec2a2b76eafe607690617f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/config-check.mjs",
+          "status": "A",
+          "sourceBlob": "76274c6a7653f6e1146ccabefe09a4af21f45f01",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/config.mjs",
+          "status": "A",
+          "sourceBlob": "4f39bb8ab87f3a8788b6f22c4b6efcd728162a94",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/graph-budget.mjs",
+          "status": "A",
+          "sourceBlob": "78d4711108519d6cecf0308acab4a70770e9e1b3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/models.mjs",
+          "status": "A",
+          "sourceBlob": "e60d123dc7842b89158067436b503c0ccd7bdf4c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/models.test.mjs",
+          "status": "A",
+          "sourceBlob": "80cc6e73d32b5a4396e110bee16928bac985032d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/native-scene.mjs",
+          "status": "A",
+          "sourceBlob": "4c51d8a6f7ffcc594595110f73040609dca90353",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/native-scene.test.mjs",
+          "status": "A",
+          "sourceBlob": "947550a29d89ab1b77e914a533d19a2fa096bfec",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/observe.mjs",
+          "status": "A",
+          "sourceBlob": "4169ee4663d96844a0fe2dc90258a9487fc5b49f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/rpc.mjs",
+          "status": "A",
+          "sourceBlob": "a1e58c54b68bc61979358a030d0133b2f5388e16",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/viewport-probe.mjs",
+          "status": "A",
+          "sourceBlob": "5ed6728caea58b46a0c9570680d4fa038005b8a1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-3d/viewport-probe.test.mjs",
+          "status": "A",
+          "sourceBlob": "871c4f9eacc7a400def0e165b2f04726455696d7",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/potion-discard-layout.mjs",
+          "status": "M",
+          "sourceBlob": "67bf4d833d52872419cb6ed54111b8dd6332f164",
+          "developBlob": "e5650fbb07ad67767e7a8a38487802f5558bf94d",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_enemy_view.lua",
+          "status": "M",
+          "sourceBlob": "e3738cfb44da00d3f519ad08c5b1b91c645c413f",
+          "developBlob": "71b6a2cd2e5f7969d853822d44c432938d47e77b",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_render_hud.lua",
+          "status": "M",
+          "sourceBlob": "dd292b2224b6a946c619117f2435c078e922133c",
+          "developBlob": "11962d15fd29b7798cd3d28a3fd08fcb1f2f99d5",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_unit_view.lua",
+          "status": "M",
+          "sourceBlob": "bd6cef623e2807d0aeeea506df254be599d17d12",
+          "developBlob": "07d8f49ba51fccca7a5e32e39ab534588fe4b2d6",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_card_skin.lua",
+          "status": "M",
+          "sourceBlob": "42cd14e0e28dff6777260c4be2bddc46a14e8d61",
+          "developBlob": "9c62d8ce1f89621b932b33588026de2ef56b58af",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_character_select_view.lua",
+          "status": "M",
+          "sourceBlob": "2fc78eb6c3ddfac4529b6bb5093b174cb0e704be",
+          "developBlob": "5495a0ed3fe644af03a50965cab90727b9f54f51",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_choice_ui.lua",
+          "status": "M",
+          "sourceBlob": "949ab4c7451c919ccf32c9d78ad05d463e7a46f6",
+          "developBlob": "784d8788561d4da88184d35b7491a09e4cd017cc",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_deck_ui.lua",
+          "status": "M",
+          "sourceBlob": "7481a8a51fd53d7ff0094dcd88d3d64e62e02f3e",
+          "developBlob": "aa077e72e87bf4d5d2d4cdc35b0f2e73910739dd",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_feedback.lua",
+          "status": "M",
+          "sourceBlob": "f34ce1872217b375b168d5820a416a4902f09176",
+          "developBlob": "ff9d7f38c9a53d56676fcb22dbd32848a8cf1335",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_feedback_actor_painter.lua",
+          "status": "M",
+          "sourceBlob": "ff9148ddd32bcbcc041ba663b6ecbed60c5b69df",
+          "developBlob": "ba431dffe1bd038f4975293e4bf18f25027eb25b",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_map_ui.lua",
+          "status": "M",
+          "sourceBlob": "584b3b97de3837e999cfcb78aeb429f0accede78",
+          "developBlob": "1f252870aa1a4060e99e485d652a8a8209dd5f45",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_monster_art.lua",
+          "status": "M",
+          "sourceBlob": "39865fc9ee9d957effa4d0d282b40fae117222b5",
+          "developBlob": "a28504c7cccb762acd9387308d6853c41ac175cb",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_monster_power_view.lua",
+          "status": "M",
+          "sourceBlob": "e18b5ba7cd1f16c8f0849738ac55147ca4119d5f",
+          "developBlob": "ce7e3f358c6508a9a49e836f6fef36b8b131d361",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_native_battle.lua",
+          "status": "A",
+          "sourceBlob": "727304094a09df1179299d593a8a74f88226eb85",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_native_battle_config.lua",
+          "status": "A",
+          "sourceBlob": "e72af28552fb217c6677b3f19c556e75676c1da6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_native_battle_geometry.lua",
+          "status": "A",
+          "sourceBlob": "cf2bdd46653b4b4633c8220c4bee7c1a97ae8b03",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_native_projection.lua",
+          "status": "A",
+          "sourceBlob": "50f0f442fb78387e7f23a461a7e23c8f4422edd2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_native_social_input.lua",
+          "status": "A",
+          "sourceBlob": "51e2f144a40bb479afeb29b1694b5a8890ae27bb",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_potion_discard_ui.lua",
+          "status": "M",
+          "sourceBlob": "fdce2c27abd2230b8906aaf24fdff2e4b2b4cf28",
+          "developBlob": "759079f0ac8dca7b6e31d6d10e1d923b1995fc5f",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_traveler_portraits.lua",
+          "status": "M",
+          "sourceBlob": "929a7e82220ace5ea66154e511d5226b50678459",
+          "developBlob": "3c19c6a0392081b51cb8cbb91de58b00b6ebe719",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/card-blocked-source.test.mjs",
+          "status": "M",
+          "sourceBlob": "ceeaf11f93c2369007570fa5f6676aba5fb53868",
+          "developBlob": "c415615a9107868fd717bd7a95c8f4e617226b7a",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/card-readonly-controls.test.mjs",
+          "status": "A",
+          "sourceBlob": "d865e357e72a27df1c580cde9277b8cf7a303389",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/card_readonly_controls.lua",
+          "status": "A",
+          "sourceBlob": "c90cfd892ec2121cd2fe14c17fd11d63f4d5381e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/map_room_colour_cache.lua",
+          "status": "A",
+          "sourceBlob": "c8bf80f5baebb826f48503d277264f900043c5d5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/map_utility_header.lua",
+          "status": "M",
+          "sourceBlob": "115e2cb11bc5960cbc8593ba85aa2e4758ff1e01",
+          "developBlob": "9a290670b307b5a1a55d7e94b18c98516147807f",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/mobile_typography.lua",
+          "status": "M",
+          "sourceBlob": "14a6d54667f1a81a0ff48b4171a8fa3e1576fd49",
+          "developBlob": "7b9fc6561de29d77f6a15ae603100d98ae9da16f",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/native_battle.lua",
+          "status": "A",
+          "sourceBlob": "835d5380b80ba04307228b5acae6181d94523616",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/native_battle_geometry.lua",
+          "status": "A",
+          "sourceBlob": "79161a7ad92c193fd00657a83c3b41d5585f40fc",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/native_portrait_allocation.lua",
+          "status": "A",
+          "sourceBlob": "363adf33cbfc0b3a460755914fb483e80b59b286",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/native_position.lua",
+          "status": "A",
+          "sourceBlob": "8db22d4be564a1c1a63d0c984198b1ed13c3327a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/native_projection.lua",
+          "status": "A",
+          "sourceBlob": "aa049a247b86be5352f1873dccd4a29079dce7bc",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/native_social_input.lua",
+          "status": "A",
+          "sourceBlob": "d45f682e9b9ba147a89746cec23ac39cb31362f7",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/native_spawn_batch.lua",
+          "status": "A",
+          "sourceBlob": "25ebfa78769ba2865a6078debc8740131d6cab77",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/map-utility-header.test.mjs",
+          "status": "M",
+          "sourceBlob": "b33e62b8b261e0461ee4290d9fba004bdfdbbe2f",
+          "developBlob": "8fe081781666d3d290d1bc925e3ca6f58877274f",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/native-3d-entry.test.mjs",
+          "status": "A",
+          "sourceBlob": "4971df47d31a4c1f186984bdeea97543f63ba4c8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/native-graph-budget.test.mjs",
+          "status": "A",
+          "sourceBlob": "0bdef06f8bf355b1a2c00344420f1fa8200bb710",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/native-observer.test.mjs",
+          "status": "A",
+          "sourceBlob": "bb1efd146b27d34d5ab2917c72bb238b8670ebed",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/native-serialized-config.test.mjs",
+          "status": "A",
+          "sourceBlob": "efac2fb8bb2ad457a869273714589ae6f5808bf2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        }
+      ],
+      "localBundle": {
+        "filename": "integration-result.bundle",
+        "sha256": "ffbaa2cc349229fad3cef28efeabe581a278c18de48da0691526498e4655eab2",
+        "sourceHeadPresent": true
+      },
+      "preservation": "public-isolated-binary-patch",
+      "archiveFile": "experiments/archive/emergency-20261108/native-3d-production.patch",
+      "archiveSha256": "084d87c116a721a0707a10d8cb695c6ae65145ec2269ebb1595508a17eacd030",
+      "archiveBytes": 303294,
+      "parseChecked": true,
+      "restoreValidation": {
+        "branch": "origin/feat/native-3d-production",
+        "baseSha": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+        "sourceSha": "d80743f9d38fa451a753c21316733fc02879953e",
+        "restoredBlobsVerified": 72,
+        "changedPaths": 72,
+        "applyCheck": true,
+        "fullApply": true
+      }
+    },
+    {
+      "sourceBranch": "origin/feat/traveler-idle-lab-20261106",
+      "sourceSha": "c89c32f226bde970c0ac431380512f2a8afff47a",
+      "baseSha": "dedb9ed5af52fc595031d64d3e8fd84bc908b2c8",
+      "developAuditSha": "a0c35db8d3c7242437f4dff0df373749b0d84985",
+      "files": [
+        {
+          "path": "experiments/traveler-idle-lab/.gitignore",
+          "status": "A",
+          "sourceBlob": "b7a7472b9014125fccf084c3da571c546f50d158",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/PUBLICATION.md",
+          "status": "A",
+          "sourceBlob": "7e78b60bf29420039abcfe14076009b8cfd9748a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/README.md",
+          "status": "A",
+          "sourceBlob": "047814d19a949b0508aadba974172c75ba113535",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/REVIEW.md",
+          "status": "A",
+          "sourceBlob": "9316aa819b7c44522bba1b4cd8470d2301b2885e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/build.mjs",
+          "status": "A",
+          "sourceBlob": "13cfb85f114735d6a808db87604f923eef4b6168",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/demo.mp4",
+          "status": "A",
+          "sourceBlob": "35d0a25ecc52cdb4e55587b10f8bd197d8026262",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/idle.lua",
+          "status": "A",
+          "sourceBlob": "545ded6f0ca851162bb70b45710bc06ded33d7e1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/import/0-Traveler and Stonebloom Idle Lab · 服务器控件模板.gia",
+          "status": "A",
+          "sourceBlob": "fbec12f35d40f4e21e29ced91e35a52ef41f2031",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/import/1-Traveler and Stonebloom Idle Lab · 脚本.gia",
+          "status": "A",
+          "sourceBlob": "52a955b4a1cc4a15a4c8cd3cb09bbf387283466d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/inventory.json",
+          "status": "A",
+          "sourceBlob": "501c3a4cb78994564ed7bac65292e6b596d94ec2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/preview-receipt.json",
+          "status": "A",
+          "sourceBlob": "fa7aa40dda8efe5c15ff412a85a2d80e1199168e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/preview.png",
+          "status": "A",
+          "sourceBlob": "3c4eeb9a0649d5f41da92440ab0f4902c1774116",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/rpc.mjs",
+          "status": "A",
+          "sourceBlob": "3c8a568c38d9980ad00e40ce3c780a147441b44e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/sample.save.json",
+          "status": "A",
+          "sourceBlob": "287daaa854217accee58a072cf8b26054829ec89",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/seed.save.json",
+          "status": "A",
+          "sourceBlob": "144696572c0e71dd0ce2fa55407b2f1efed5b5ee",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/verification.json",
+          "status": "A",
+          "sourceBlob": "220aff395852a85c88ca8cccac314068966854ed",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "experiments/traveler-idle-lab/verify.mjs",
+          "status": "A",
+          "sourceBlob": "be3a114324ed9362dd4fb65a0c527b872efe2f81",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        }
+      ],
+      "localBundle": {
+        "filename": "integration-result.bundle",
+        "sha256": "ffbaa2cc349229fad3cef28efeabe581a278c18de48da0691526498e4655eab2",
+        "sourceHeadPresent": true
+      },
+      "preservation": "public-isolated-binary-patch",
+      "archiveFile": "experiments/archive/emergency-20261108/traveler-idle-lab.patch",
+      "archiveSha256": "8f167aa943d6e5b7fae36259057f1583dfda91d90a29ceb957dca53b29e81553",
+      "archiveBytes": 967958,
+      "parseChecked": true,
+      "restoreValidation": {
+        "branch": "origin/feat/traveler-idle-lab-20261106",
+        "baseSha": "dedb9ed5af52fc595031d64d3e8fd84bc908b2c8",
+        "sourceSha": "c89c32f226bde970c0ac431380512f2a8afff47a",
+        "restoredBlobsVerified": 17,
+        "changedPaths": 17,
+        "applyCheck": true,
+        "fullApply": true
+      }
+    },
+    {
+      "sourceBranch": "origin/feat/ui-production",
+      "sourceSha": "3073e556cd1b3337569f94ca9397e932d9d7993e",
+      "baseSha": "de218e5c4d8a8f71c9641e3499c8d6943c0b82ea",
+      "developAuditSha": "a0c35db8d3c7242437f4dff0df373749b0d84985",
+      "files": [
+        {
+          "path": ".gitattributes",
+          "status": "M",
+          "sourceBlob": "56bf9b290a74f7c24aafd6931214aaf60957971c",
+          "developBlob": "1f7ba6c84673b42a9177f110c6e230ff7bc3d766",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/manifest.json",
+          "status": "A",
+          "sourceBlob": "715bd4df9f37aecb4f4d34c7aaa5e5572e747427",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/battleBackground.svg",
+          "status": "A",
+          "sourceBlob": "f1af35eed368717d7e11675073227340b77add88",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/characterBack.svg",
+          "status": "A",
+          "sourceBlob": "45d8dc029899f6ee22c5bb490cbb852625d8171f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/characterStart.svg",
+          "status": "A",
+          "sourceBlob": "0843fc8effb29ab5639a7ffa2cc4372ee2a18e3c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/mapBackdrop.png",
+          "status": "A",
+          "sourceBlob": "2b7efe58da47e2197843133bc5a7b7812dad9077",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/mapBackdrop.svg",
+          "status": "A",
+          "sourceBlob": "cb08d3cc58a64101c513df4f68725e063f7b3ec3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/mapLegend.png",
+          "status": "A",
+          "sourceBlob": "b9d12d542f58235ce658e6007be533cce84d8bf3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/mapLegend.svg",
+          "status": "A",
+          "sourceBlob": "0b9949bcacecd98f3d8f8e04a7010d667e8b6b43",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/mapPaper.png",
+          "status": "A",
+          "sourceBlob": "7f25bd248832d838cd167bc0470b4256178bdb5c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/mapPaper.svg",
+          "status": "A",
+          "sourceBlob": "fdc9de7b5c4bbc6bacf3f939e8aefe1f2c1d06c9",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/resultRibbon.svg",
+          "status": "A",
+          "sourceBlob": "524068fc6242038d2c93e147147c82f37fadedf9",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/roomBlessingScene-browser.png",
+          "status": "A",
+          "sourceBlob": "089af5f5cbbc61e7e118db89721613f66c955ae8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/roomBlessingScene.svg",
+          "status": "A",
+          "sourceBlob": "89453290d33045b06704a0754e4429aedd2973ed",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/roomCampScene.svg",
+          "status": "A",
+          "sourceBlob": "e6eaf5df53eb3cc665c53252927c748f85b3c8c9",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/roomEventOption.svg",
+          "status": "A",
+          "sourceBlob": "212a4f49bc833a08ef81c9bff29c315aea9b63f6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/roomEventTitle.svg",
+          "status": "A",
+          "sourceBlob": "6aa240e48384c2a19a5499c32fa7a37c2322c766",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/roomLeaveBanner.svg",
+          "status": "A",
+          "sourceBlob": "1cdbcfe185395d860999e442d18d69895da685cd",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/roomRewardTitle.svg",
+          "status": "A",
+          "sourceBlob": "e5ee076dbc801434751448a8b9e5b240a26b3868",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/roomShopSheet.svg",
+          "status": "A",
+          "sourceBlob": "0582e4320d692b76488ad98f963053da39586ea4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/approved-ui/sources/roomSkipBanner.svg",
+          "status": "A",
+          "sourceBlob": "5077a9dbbdaecbfe24c2a4cf1cb9d8996a11d3f6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/NOTICE.md",
+          "status": "A",
+          "sourceBlob": "668b828b96710bf559d687e8a9b03fd68189cdc6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_common-full-browser.png",
+          "status": "A",
+          "sourceBlob": "761d53d973f532fae550a36e9721550298b07026",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_common-raster.png",
+          "status": "A",
+          "sourceBlob": "28272ad72c81a0c996b4e15d275d561fe995edb0",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_common-sample.png",
+          "status": "A",
+          "sourceBlob": "fbbf30626152ae5e7c30f23d0f7e9031533da208",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_common.html",
+          "status": "A",
+          "sourceBlob": "8e72184dd48284a43cdd98a15edd30eb84b2b4c1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_rare-full-browser.png",
+          "status": "A",
+          "sourceBlob": "36d05e122d63926515a14516b360a20b1208556b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_rare-raster.png",
+          "status": "A",
+          "sourceBlob": "1adbd83d8121631eaa56428597849365958d9a73",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_rare-sample.png",
+          "status": "A",
+          "sourceBlob": "24cbc8d457f971f15c071a4fc7981d40f331de13",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_rare.html",
+          "status": "A",
+          "sourceBlob": "076aa95d7bd0ffc01de3084333607db11fdc66c1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_uncommon-full-browser.png",
+          "status": "A",
+          "sourceBlob": "0479a3f04c85a8f4026d63bac69f4b3a4170d189",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_uncommon-raster.png",
+          "status": "A",
+          "sourceBlob": "7bcee8337245e79930d144ebe8f0be4e5b11ace7",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_uncommon-sample.png",
+          "status": "A",
+          "sourceBlob": "8a703380997133c5677908a28884a77215375aa8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_attack_uncommon.html",
+          "status": "A",
+          "sourceBlob": "9a42e037963ea9a93b20f4932da4771a307b9a86",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_mana-full-browser.png",
+          "status": "A",
+          "sourceBlob": "1572b7ed3fd5b5181cf6dbc52c76af9c91339d7f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_mana-raster.png",
+          "status": "A",
+          "sourceBlob": "346c20e9dca55ffd9ed5a9fec346c2fe00a3c24e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_mana-sample.png",
+          "status": "A",
+          "sourceBlob": "346c20e9dca55ffd9ed5a9fec346c2fe00a3c24e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_mana.html",
+          "status": "A",
+          "sourceBlob": "149f34f8a8a573d4aa4008c42b1bcb3b08b1b2cd",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_common-full-browser.png",
+          "status": "A",
+          "sourceBlob": "0028868d178f7f028ab1fba1853775a0196dc4bf",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_common-raster.png",
+          "status": "A",
+          "sourceBlob": "e774e68d232a9d2558ef557c36cc4593830efb3d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_common-sample.png",
+          "status": "A",
+          "sourceBlob": "24267729db9c9f9945c7ee271b83a7cc7821c3dd",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_common.html",
+          "status": "A",
+          "sourceBlob": "ed97b75548ca41945fa97b0ae8c9c462c55edf05",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_rare-full-browser.png",
+          "status": "A",
+          "sourceBlob": "7bca697ce18578644a36be4ce19d9d2842d3d8c1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_rare-raster.png",
+          "status": "A",
+          "sourceBlob": "7f494a1bdea6f18f050a6f050748d8aba3ead3de",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_rare-sample.png",
+          "status": "A",
+          "sourceBlob": "3ef5aa100f2c00426eeeef5823cf3ad7d28e5214",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_rare.html",
+          "status": "A",
+          "sourceBlob": "e1b00064d335f38502501f04d7f37e9e6e938f29",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_uncommon-full-browser.png",
+          "status": "A",
+          "sourceBlob": "99ea57beda17a139fed3371db1871cfc55ae7775",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_uncommon-raster.png",
+          "status": "A",
+          "sourceBlob": "81a77d2f090506e8305d29734ab33a79e57ec573",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_uncommon-sample.png",
+          "status": "A",
+          "sourceBlob": "c8313868e5edca512a55803caa9a65d89f6f8d74",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_power_uncommon.html",
+          "status": "A",
+          "sourceBlob": "f3ae5340de0f74c6b6a28e046f1892f91bb250a1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_common-full-browser.png",
+          "status": "A",
+          "sourceBlob": "9f6397f281ba167ab2ee740b744d8af7c92b4401",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_common-raster.png",
+          "status": "A",
+          "sourceBlob": "53a5b726991795af94cf61b175e7d38fddd7e6c8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_common-sample.png",
+          "status": "A",
+          "sourceBlob": "170d3cf6b46fe989a21a99d46ed9be38eaff5640",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_common.html",
+          "status": "A",
+          "sourceBlob": "21b072c8e492f89fdebcdd27618d5571c3298433",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_rare-full-browser.png",
+          "status": "A",
+          "sourceBlob": "44cef475d292e68f8a6e6c3f577277ea27db9f52",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_rare-raster.png",
+          "status": "A",
+          "sourceBlob": "dcef3552efa35be31f40f9e0567a28af6735bfc3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_rare-sample.png",
+          "status": "A",
+          "sourceBlob": "47d89bc16fd62e5d63b814ce72d35d13b7f6d9ee",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_rare.html",
+          "status": "A",
+          "sourceBlob": "dfc2886030fc58f9e745932a0fffac763693b7ed",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_uncommon-full-browser.png",
+          "status": "A",
+          "sourceBlob": "75dbafc1dfa612480d521a3bb8612e2d1c3975e7",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_uncommon-raster.png",
+          "status": "A",
+          "sourceBlob": "1a32360fd4d6ce6acd380f565f9bb6a6ead447ea",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_uncommon-sample.png",
+          "status": "A",
+          "sourceBlob": "4817d146aa005e69e8aca5d14d58fbbe0cb3407f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/card-skins/cardShell_skill_uncommon.html",
+          "status": "A",
+          "sourceBlob": "d75c5c06eba0c6f16099bd8fa7ef067f0fbf3ea5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterGoldIcon-full.png",
+          "status": "A",
+          "sourceBlob": "0e1d973bbfcd7674b7ed8a4105b21757af6c894a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterGoldIcon-raster.png",
+          "status": "A",
+          "sourceBlob": "c68b91c67428a52a04f456c3b8663936ac44d166",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterGoldIcon.html",
+          "status": "A",
+          "sourceBlob": "ce4430c480e69c7904f1911396227998b3b5bee2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterHeaderRule-full.png",
+          "status": "A",
+          "sourceBlob": "9b4dcec8b90e4d5b28b8fdd6a29d5c224d9e5075",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterHeaderRule-raster.png",
+          "status": "A",
+          "sourceBlob": "2bce65d7a2fcbae6c9644559d64ca488b79c30c6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterHeaderRule.html",
+          "status": "A",
+          "sourceBlob": "daf2f2f009ba7c4d417e8de80a7053d08b8d0e3d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterHealthIcon-full.png",
+          "status": "A",
+          "sourceBlob": "d54c39eb4c033ab32b46195a4b580feb51d678bf",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterHealthIcon-raster.png",
+          "status": "A",
+          "sourceBlob": "0b3c4063ce19c084d2cd5207aa6d86630960134f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterHealthIcon.html",
+          "status": "A",
+          "sourceBlob": "bf759ea39dd3e971e93dee31f0c41aed878256f6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterRelicIcon-full.png",
+          "status": "A",
+          "sourceBlob": "de31e98d9e7915005420dd17b4b7fb7d732e612b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterRelicIcon-raster.png",
+          "status": "A",
+          "sourceBlob": "cb786a2ed0bd8d70002ddde51563df244b94fe64",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterRelicIcon.html",
+          "status": "A",
+          "sourceBlob": "6dbeac8f99aaa2b01db0ec18b4e880f27f62a4f9",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterRoster-full.png",
+          "status": "A",
+          "sourceBlob": "00b1dcdb7e2be0e601ff7a78673839ea6943d702",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterRoster-raster.png",
+          "status": "A",
+          "sourceBlob": "5e8d3220e2622ac8161fe54a60430ecf247f9901",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterRoster.html",
+          "status": "A",
+          "sourceBlob": "ddb34d4b6084b8e3d69b55479f00a13ef88954a5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-assets/characterSelected-native.png",
+          "status": "A",
+          "sourceBlob": "c405e0b997488acaf9e45d2f62f4e2e5f6efae73",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-sources/character-gold.svg",
+          "status": "A",
+          "sourceBlob": "31c99d8bdee06e9714e918027a44ffe66aa3b8b6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-sources/character-header-rule.svg",
+          "status": "A",
+          "sourceBlob": "27879c0bf560ab69205e8daa1f6b139805693220",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-sources/character-health.svg",
+          "status": "A",
+          "sourceBlob": "2633809ce2fdd685ff45cde24d5d6598b5a45b79",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-sources/character-relic.svg",
+          "status": "A",
+          "sourceBlob": "4155f8a414a63e403f9ab9d4c63cde28fba2a036",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-sources/character-roster.svg",
+          "status": "A",
+          "sourceBlob": "63b45b6e8f01b4f49d7f6ac825d5766e62fc00eb",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/character-sources/provenance.json",
+          "status": "A",
+          "sourceBlob": "640e0fac8e254db5848b6e7d6ed781591dc4e874",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/battleBackground.png",
+          "status": "A",
+          "sourceBlob": "c95ebdacf1d0b15598f0fd388eb9a30c5dd11dc8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/battleFigure.png",
+          "status": "A",
+          "sourceBlob": "fc9e6241f1005b850cf6215495a2b554b389c7bb",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_attack_common.png",
+          "status": "A",
+          "sourceBlob": "f8278545d1019240d4c3949400a062eacbe4054a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_attack_rare.png",
+          "status": "A",
+          "sourceBlob": "cb8480fb95e7b1ab6ab7b6d79b37da32c5d2a007",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_attack_uncommon.png",
+          "status": "A",
+          "sourceBlob": "e842f33979357ad8f958ec7341327bc89fb19e3e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_mana.png",
+          "status": "A",
+          "sourceBlob": "35b692b284bd7bcdfeed392bfc144008b7682528",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_power_common.png",
+          "status": "A",
+          "sourceBlob": "2f84def8a5c107ab7c18549afa4a5c6e972d90b6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_power_rare.png",
+          "status": "A",
+          "sourceBlob": "f28f5c993485f7d8701b6f1ed5061d2665f3536a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_power_uncommon.png",
+          "status": "A",
+          "sourceBlob": "885e09f47743ccab7158090d813059e21e18f64b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_skill_common.png",
+          "status": "A",
+          "sourceBlob": "c2ec420309d554e0cf566447cb619ac6fcdb9f57",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_skill_rare.png",
+          "status": "A",
+          "sourceBlob": "2d442282e91f2692d2cc1a3a592888c6a4058b66",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/cardShell_skill_uncommon.png",
+          "status": "A",
+          "sourceBlob": "f089bba880954d79c5e792813f3f0cc6d0ff1ac3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/characterBack.png",
+          "status": "A",
+          "sourceBlob": "3345fd098f854ad13ed112be4719607647c2257d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/characterGoldIcon.png",
+          "status": "A",
+          "sourceBlob": "d40fbf32b75bd179a1dbe8759848cfe4b5102453",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/characterHeaderRule.png",
+          "status": "A",
+          "sourceBlob": "923c842274a1a25c8dab1e2a74ca504e510a434a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/characterHealthIcon.png",
+          "status": "A",
+          "sourceBlob": "3ff9683e64d60a3fc450a44d96b0bc4d73b24ba2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/characterRelicIcon.png",
+          "status": "A",
+          "sourceBlob": "a2f6c982ec90a804fbf5a9a94ad6818a399e8884",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/characterRoster.png",
+          "status": "A",
+          "sourceBlob": "246ceb11bfe8224587162a4ebe8cbd7e408e5284",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/characterStart.png",
+          "status": "A",
+          "sourceBlob": "287709a331d98754f7a5e0758668cacf11335fe7",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapBackdrop.png",
+          "status": "A",
+          "sourceBlob": "0dc347291d87b15f245ceed7228c808aff3d590a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapGlyph_boss.png",
+          "status": "A",
+          "sourceBlob": "d5d350aed07334b105d2b4ceb92981591fd7e9e5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapGlyph_camp.png",
+          "status": "A",
+          "sourceBlob": "3e45040cfc38aa4ec961999e605c506ed1f6a5e9",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapGlyph_combat.png",
+          "status": "A",
+          "sourceBlob": "e462eddb44b862961b0efdeaf5947ed14e3c4dde",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapGlyph_elite.png",
+          "status": "A",
+          "sourceBlob": "51a9990d15e01b896ba4fc91a47c3ee52dc000bf",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapGlyph_event.png",
+          "status": "A",
+          "sourceBlob": "07e536459ad75d87eeb9dec2bb3668efeb2c03f4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapGlyph_shop.png",
+          "status": "A",
+          "sourceBlob": "f083703b8aee6eba0be52a19a78766939f9d84bf",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapGlyph_treasure.png",
+          "status": "A",
+          "sourceBlob": "db19c6a1bae434f5c92901878d363d4aaea834a7",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapLegend.png",
+          "status": "A",
+          "sourceBlob": "10c26318b8d71c65ead96d73e1ebba4e45994430",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/mapPaper.png",
+          "status": "A",
+          "sourceBlob": "3b98f0b7d53d14fdae627dd5f7bbb37266739909",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/menuScene.png",
+          "status": "A",
+          "sourceBlob": "8446a182f6aa7ae7e38aa19e18b0bfa7e6fc670e",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/resultAtmosphere.png",
+          "status": "A",
+          "sourceBlob": "fa9e10a217d324889f3cde1a6a623fede09bb1c6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/resultPrimaryButton.png",
+          "status": "A",
+          "sourceBlob": "db158faba68818e31bbb6416981778d70c8668fc",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/resultRibbon.png",
+          "status": "A",
+          "sourceBlob": "9dd2569c1b57fb6dfb6c13a5f02ea7a08a429c2f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/resultSecondaryButton.png",
+          "status": "A",
+          "sourceBlob": "b1a6a55733361a77f03022b798912953b4261b68",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/resultSubject.png",
+          "status": "A",
+          "sourceBlob": "65c5088deb72a4ebb616a1b50829946b1e2caae7",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/roomCampScene.png",
+          "status": "A",
+          "sourceBlob": "d665f9c3ed55a9505f3b7fd363fbe3e08ccfac25",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/roomEventOption.png",
+          "status": "A",
+          "sourceBlob": "894ba53e3490c34c1c78aa03d194bc713f456b11",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/roomEventTitle.png",
+          "status": "A",
+          "sourceBlob": "4f7d684a9814abddea0bd3487774667729b85bff",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/roomLeaveBanner.png",
+          "status": "A",
+          "sourceBlob": "761e172727dde0613a1f4d1280f35e3a9120b0b2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/roomRewardTitle.png",
+          "status": "A",
+          "sourceBlob": "45aff43032a4b2416a9eceba74cde9b9b74511f2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/roomShopSheet.png",
+          "status": "A",
+          "sourceBlob": "798c4032fc39c3530eb12344b1117f64ef2c35f1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/roomSkipBanner.png",
+          "status": "A",
+          "sourceBlob": "bd538fbefbf9388c136063337dfe7164c66de672",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/runMenuButtons.png",
+          "status": "A",
+          "sourceBlob": "6fea206e9a6011a745846b96fbd8a5f9210d2d59",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/selectionAvatar.png",
+          "status": "A",
+          "sourceBlob": "603ae90eed01ad18b32b91b604c57e76151f4dbc",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/selectionScene.png",
+          "status": "A",
+          "sourceBlob": "bd272f811d0fa51b99c0b5ac6e4a50807b7b5254",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/compressed-v1/victoryEasterEgg.png",
+          "status": "A",
+          "sourceBlob": "fa3380b71323d262f25fb53a26c9e138958e214a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyph-sources/mapGlyph_boss.svg",
+          "status": "A",
+          "sourceBlob": "d91d97c8c029fade50eb00056fd4008f66b2640f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyph-sources/mapGlyph_camp.svg",
+          "status": "A",
+          "sourceBlob": "93c7409a6f2f66a40ee1d90239c6a8192b8cd22d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyph-sources/mapGlyph_combat.svg",
+          "status": "A",
+          "sourceBlob": "5221dec725b3b0f9bcba5d9e04ab0110f5c2e958",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyph-sources/mapGlyph_elite.svg",
+          "status": "A",
+          "sourceBlob": "6d6ce6ad9b8dcc8c54471bac96a5d035c43ab418",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyph-sources/mapGlyph_event.svg",
+          "status": "A",
+          "sourceBlob": "8e8ae7b8ebb7baca601f877e7c248f75bc555f0f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyph-sources/mapGlyph_shop.svg",
+          "status": "A",
+          "sourceBlob": "85df43e5c82b8266557c38abecffdc6fa5fa88e4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyph-sources/mapGlyph_treasure.svg",
+          "status": "A",
+          "sourceBlob": "446788270dc8658ba51991ff8414b278c15451ef",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyph-sources/private-map-glyph-provenance.json",
+          "status": "A",
+          "sourceBlob": "747358f863122c4a901a6cf69e234c6f0180fe1d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_boss-full.png",
+          "status": "A",
+          "sourceBlob": "c2b6c953a6bf634670914c474c2386b04a4957b5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_boss-raster.png",
+          "status": "A",
+          "sourceBlob": "da79d24f2ee827af3fed6180433b61c03d5fc746",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_boss.html",
+          "status": "A",
+          "sourceBlob": "568697a7476249218e19a3d979ef591cc6a3d18c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_camp-full.png",
+          "status": "A",
+          "sourceBlob": "23944449857012a2b664c0886a7e0f156ab843f2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_camp-raster.png",
+          "status": "A",
+          "sourceBlob": "0b8ba34c3071ba3e3e9eb282d031956a10d6b4ee",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_camp.html",
+          "status": "A",
+          "sourceBlob": "41268541ff78ddfad2c24f382040fe3e92c3ccd6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_combat-full.png",
+          "status": "A",
+          "sourceBlob": "6e6a6212f5a57cf047cce2c8017506440a3a2d3c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_combat-raster.png",
+          "status": "A",
+          "sourceBlob": "a303ca6ccb69253a24c4ce7f2bfed7838d9f09e0",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_combat.html",
+          "status": "A",
+          "sourceBlob": "9584871c78988f5a4c0549ccfe94ab3c386ec4f5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_elite-full.png",
+          "status": "A",
+          "sourceBlob": "15d678031b8aecd094501ebc3944a291e7837ff0",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_elite-raster.png",
+          "status": "A",
+          "sourceBlob": "32ba64a1ebbb17744c64bbdacba76b87c123d8cc",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_elite.html",
+          "status": "A",
+          "sourceBlob": "18ac4517e4148ee7d0ea5bf1da8014b97a616d90",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_event-full.png",
+          "status": "A",
+          "sourceBlob": "2c458ede062de85e1a557e858ce3330d84816218",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_event-raster.png",
+          "status": "A",
+          "sourceBlob": "e908c58455499ec0b8f702bf4069434db6d46e03",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_event.html",
+          "status": "A",
+          "sourceBlob": "74efde6d1987794ac4b239b143b915a7b71e28f8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_shop-full.png",
+          "status": "A",
+          "sourceBlob": "7c48588b7d4e8107f7697d57f2b2a0cf80596af3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_shop-raster.png",
+          "status": "A",
+          "sourceBlob": "c8e97b9c83b48672826eae1f48e289ff80d5f666",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_shop.html",
+          "status": "A",
+          "sourceBlob": "95c869fb8add0d4b171ab5f5040cb3b15372cf06",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_treasure-full.png",
+          "status": "A",
+          "sourceBlob": "cb8a66e18e18ea2e1bdb576148d97bf875cfaec6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_treasure-raster.png",
+          "status": "A",
+          "sourceBlob": "b0fafc824482e9cbf1f9036ded926b3169b0d477",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/map-glyphs/mapGlyph_treasure.html",
+          "status": "A",
+          "sourceBlob": "706b5e07c12d44c5792ceb90da487e028c411900",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/ASSET-PROVENANCE.md",
+          "status": "A",
+          "sourceBlob": "c3a132eebb903daab5eb6b5a964cc1e0154f93ec",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/FONT-LICENSES.txt",
+          "status": "A",
+          "sourceBlob": "b3a4c71c0db19d1b7f66e9a4d648dba05e905aad",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/battle.js",
+          "status": "A",
+          "sourceBlob": "3339a3845243b9625f9425a469f1b75c9468031d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/character-reference.css",
+          "status": "A",
+          "sourceBlob": "4e3400f5b089acbb37ed99f249d18bbfacc76b06",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/character-reference.js",
+          "status": "A",
+          "sourceBlob": "cf5faff63bfe8cfb1d7f331212785c78faad332c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/constellation-exact.png",
+          "status": "A",
+          "sourceBlob": "175c495eab524d3c67a699c9b0124b858849fed1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/genshin-rooms.css",
+          "status": "A",
+          "sourceBlob": "89725c8795100effcc8f97bd23e77505a5532682",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/geo-body-filter.svg",
+          "status": "A",
+          "sourceBlob": "d7aa92c08f6d8dcdfbf74392d942cf6a2dd1e993",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/geo-card-zhongli-attack.svg",
+          "status": "A",
+          "sourceBlob": "5f3107aaa22d826714cd23d9c63d8507318051cc",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/geo-card-zhongli-power.svg",
+          "status": "A",
+          "sourceBlob": "e5b741635ffed410b66b521eeda65e730a9248a8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/geo-card-zhongli-skill.svg",
+          "status": "A",
+          "sourceBlob": "8d0bf21d98fbc0c5d156b2282b0b7c0c5e9401af",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/geo-cost-icon-priority.svg",
+          "status": "A",
+          "sourceBlob": "800569a38c6b57b343cd66ed231eaf3f87f656df",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/geo-orb-filter.svg",
+          "status": "A",
+          "sourceBlob": "6978b7433439794372ab7a236a80fbd2164db87c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/icon-geo.png",
+          "status": "A",
+          "sourceBlob": "1eced56998cbd9b40f83f62151521e86ec41c003",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/ingame-menu.css",
+          "status": "A",
+          "sourceBlob": "f47e5c2d863b9c3284de4da7d06c25b4c1829e24",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/ingame-menu.js",
+          "status": "A",
+          "sourceBlob": "eb58631e19965fdf5bc69de4f823435a401babd6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/project-card-theme.css",
+          "status": "A",
+          "sourceBlob": "bbbed4d9300bf57556d48d9792224244abd499cd",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/refine-map.css",
+          "status": "A",
+          "sourceBlob": "5178e19e9117e1f3fe8cebbc33e2797672031299",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/results.css",
+          "status": "A",
+          "sourceBlob": "de8f0b154f24ddcfc861cddc02686ae1ff780e30",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/results.js",
+          "status": "A",
+          "sourceBlob": "776314278317d1764e39576d70133a400fc8f0a5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-battle-restore.css",
+          "status": "A",
+          "sourceBlob": "8d273047c73deb0c444713ce09e4422f11157f7a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-card-red-orb.png",
+          "status": "A",
+          "sourceBlob": "0f27ab10c54a58500ebf01191e853dfccaf09547",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-banner_common.png",
+          "status": "A",
+          "sourceBlob": "6d5f7fdd20dd1df32101e8c16b3d79c56f5f6f1c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-banner_rare.png",
+          "status": "A",
+          "sourceBlob": "45ce3e70b7556ed1555ec13834055e1e3b835a31",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-banner_uncommon.png",
+          "status": "A",
+          "sourceBlob": "eecc6974eae6efe504f2fef2538a1a0a115aec6f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-frame_common_attack.png",
+          "status": "A",
+          "sourceBlob": "b496e383f7009b95bd48d71f3b1c4179b260a86a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-frame_common_power.png",
+          "status": "A",
+          "sourceBlob": "9ae0fde82f4692a48204b0745de86dc7f33d8283",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-frame_common_skill.png",
+          "status": "A",
+          "sourceBlob": "28a41bd4cd71207ec59ba70d8a168e85ec3cc2ce",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-frame_rare_attack.png",
+          "status": "A",
+          "sourceBlob": "0284e049ae916002a951c7306338411bd1c18107",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-frame_rare_power.png",
+          "status": "A",
+          "sourceBlob": "3db7b23d38dd237563cc421d1271b8223281ceeb",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-frame_rare_skill.png",
+          "status": "A",
+          "sourceBlob": "be74861ad510be5ee7c515cd6f7d4370be229e1b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-frame_uncommon_attack.png",
+          "status": "A",
+          "sourceBlob": "efebb819d11f7cf14873c21aba63ba3c1c730ead",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-frame_uncommon_power.png",
+          "status": "A",
+          "sourceBlob": "7b3f60a84de152ea948cd0490bc820116e8acff6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/sts-rarity-frame_uncommon_skill.png",
+          "status": "A",
+          "sourceBlob": "64b4dbb552aa000f148603739b0b8c161745ac5f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/style.css",
+          "status": "A",
+          "sourceBlob": "e20a2b4f5ac168e1116a96862769aab83d2a4e93",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/traveler-battle.png",
+          "status": "A",
+          "sourceBlob": "06ba2ef2093a9e50884ce72853662feab11e6b11",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/reference-v25/victory-easter-egg.png",
+          "status": "A",
+          "sourceBlob": "cd88c6d61faf42b4344b4b53cae00afa3297bf3a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultAtmosphere-full.png",
+          "status": "A",
+          "sourceBlob": "221e9b056e273ea2a431c59be91d60b2a1da2d3d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultAtmosphere-raster.png",
+          "status": "A",
+          "sourceBlob": "838047ddbcacf6a3576823b3f1388a503b37d37c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultAtmosphere-sample.png",
+          "status": "A",
+          "sourceBlob": "b02418078bace12a8290926738437cd5b3ec5bc4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultAtmosphere.html",
+          "status": "A",
+          "sourceBlob": "651cf508c7a5b3bbc4414d0594e899eb67977cf0",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultPrimaryButton-full.png",
+          "status": "A",
+          "sourceBlob": "35c5aa17c6aa85d184d39c7b9ec40b71f524c555",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultPrimaryButton-raster.png",
+          "status": "A",
+          "sourceBlob": "cf9f7bf066e087440be6d5a22bf2020f18849117",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultPrimaryButton-sample.png",
+          "status": "A",
+          "sourceBlob": "cf9f7bf066e087440be6d5a22bf2020f18849117",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultPrimaryButton.html",
+          "status": "A",
+          "sourceBlob": "b8f589c92cd64a47787fb044ae29cf9d598a68ce",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultSecondaryButton-full.png",
+          "status": "A",
+          "sourceBlob": "1b8ae00a4142fe3cef47e3e3765c449f7f71e267",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultSecondaryButton-raster.png",
+          "status": "A",
+          "sourceBlob": "f3ef04b2c5ff98728428af76f7d78d023c67b8b5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultSecondaryButton-sample.png",
+          "status": "A",
+          "sourceBlob": "f3ef04b2c5ff98728428af76f7d78d023c67b8b5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultSecondaryButton.html",
+          "status": "A",
+          "sourceBlob": "39a02a04f91697009850d737d50fb2d08f350866",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultSubject-full.png",
+          "status": "A",
+          "sourceBlob": "a958275bcb27a97ef0d70012e98b447a97a82f34",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultSubject-raster.png",
+          "status": "A",
+          "sourceBlob": "f14a99b12e4b9b6fb54013db0cdaa7bbda4fd869",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultSubject-sample.png",
+          "status": "A",
+          "sourceBlob": "64b65646fb67d0e412d0260e8684a6bcc14fb685",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/resultSubject.html",
+          "status": "A",
+          "sourceBlob": "352f00b801a755a672ad65fe8ed00c4ff959cf24",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/specs.json",
+          "status": "A",
+          "sourceBlob": "8751b261c95d676798b8400af42e868260018759",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/victoryEasterEgg-css-full.png",
+          "status": "A",
+          "sourceBlob": "60944a0621c57a57794ac7b9874c08a2b47c0345",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/victoryEasterEgg-css-raster.png",
+          "status": "A",
+          "sourceBlob": "3072643f6fb96813c4846baa0beaf84de73f588b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/victoryEasterEgg-css.html",
+          "status": "A",
+          "sourceBlob": "3dd9b458e41a34eb77bdd636b08ef56f968b2c53",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/result-assets/victoryEasterEgg-sample.png",
+          "status": "A",
+          "sourceBlob": "bb3db21af248ce62a0455a93eb5e0048fdbb668f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/run-menu-assets/runMenuButtons-full.png",
+          "status": "A",
+          "sourceBlob": "2b35fb7cc8b751eae30c2dbdb6244cfb3054a342",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/run-menu-assets/runMenuButtons-raster.png",
+          "status": "A",
+          "sourceBlob": "d4e4e55b1ea5428c931eca373ff6fb9af4cbbf0c",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/run-menu-assets/runMenuButtons.html",
+          "status": "A",
+          "sourceBlob": "1278c7f47ee79a1f48ae89ab2bfe47d5c0216e73",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/run-menu-sources/provenance.json",
+          "status": "A",
+          "sourceBlob": "a625391b70809ffe10c97300892b5262eefb6d66",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/run-menu-sources/run-menu-buttons.svg",
+          "status": "A",
+          "sourceBlob": "5b9ee56111b8f0a322736c80481c51b872e80a40",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/battleDiscardPile.html",
+          "status": "A",
+          "sourceBlob": "2106b369ac56f29ad885990759c74f9536b662de",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/battleDiscardPile.png",
+          "status": "A",
+          "sourceBlob": "4a0819d73372ce560b9d0d135f1245e906b96689",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/battleDrawPile.html",
+          "status": "A",
+          "sourceBlob": "7c4b3bf468995c3ea71962fb3f8d63ec3f17e49b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/battleDrawPile.png",
+          "status": "A",
+          "sourceBlob": "627f4c367221edaf3b162dd1817f4907876b50fa",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/battleEndTurn.html",
+          "status": "A",
+          "sourceBlob": "2e570af4df8fcfd9c2b191d5342d9c095c72b7fa",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/battleEndTurn.png",
+          "status": "A",
+          "sourceBlob": "f79ed1ad585447b5fa146e1a67d3b2e1bcfc593f",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/battleEnergyOrb.html",
+          "status": "A",
+          "sourceBlob": "c626c485ee331e717e27baf04cc065cefed1869a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/battleEnergyOrb.png",
+          "status": "A",
+          "sourceBlob": "614c95e57489f9f92477254243b0d576f33130b2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/pileBack.html",
+          "status": "A",
+          "sourceBlob": "20a196ba9e79c152a08c80f9cfc85f5157ab4d66",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "art/presentation/local-approved-card-skins/inputs/v25-battle-controls/pileBack.png",
+          "status": "A",
+          "sourceBlob": "2bfc33b60eb27fb084c9289ec9402a23a01c7bab",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "backlog/tasks/task-4 - UI-反馈-音效特效-多设备预览.md",
+          "status": "M",
+          "sourceBlob": "d6a79fbbf54b82530b152f7ba9288699f3ae8426",
+          "developBlob": "e33e7a520583b91f802fe8343d46c846bc50b587",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "backlog/tasks/task-4.21 - 定位玩家反馈的手机卡顿与加载慢.md",
+          "status": "M",
+          "sourceBlob": "235c1418bb06ff42a0c5b8b6fb73fa756a1cd4f7",
+          "developBlob": "b1905d8615248d7aa1afa37eb04d052c580a5f61",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "config/sprint-intake.json",
+          "status": "M",
+          "sourceBlob": "a870c5076886dafbb0726c8d347f63e1da75114d",
+          "developBlob": "6ee45b9156ee8025f0f09b81e0bd1f2b0f45316a",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "data/presentation/ui_theme.json",
+          "status": "M",
+          "sourceBlob": "2b631584f34d73c59486c7cdbe6a13dbc7c56ee4",
+          "developBlob": "33c186cc994c7717848997b39f30589ab5950042",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/HANDOFF.md",
+          "status": "M",
+          "sourceBlob": "39cdf8564120f6f407699f360c314ab152af04a9",
+          "developBlob": "bcbf9f032f43dd220d265e3f3576caf4b998664a",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/PLATFORM_LOAD.md",
+          "status": "M",
+          "sourceBlob": "d43cc787a4a42c38712028ff6e990edb67367582",
+          "developBlob": "7a64e531a748a6eb647997580ea4e719924de456",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/SPRINT_EXECUTION.md",
+          "status": "M",
+          "sourceBlob": "72686313f69a700000d58fabea1eb1aeb6315e26",
+          "developBlob": "e8e979bc6ca81172d571607540c8b8f45ad7e4ef",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/UI-LATEST-ASSET-INTEGRATION-20261107.md",
+          "status": "A",
+          "sourceBlob": "5471a1e35790367b8a2796c1028f22bfcc5cb12a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/UI-MAP-PRODUCTION-20261107.md",
+          "status": "A",
+          "sourceBlob": "b8463255bc8427b7d4b01dca325363899bf98d49",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/UI-OWNER-BUGS-20261107.md",
+          "status": "A",
+          "sourceBlob": "215898fb78bafeccf2b6d62856a582bbfe311ef9",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/UI-OWNER-FOLLOWUP-20261107.md",
+          "status": "A",
+          "sourceBlob": "bd4be5e3246885a2e3b352ad24d375bd7c08e717",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/UI-PRODUCTION-20261107.md",
+          "status": "A",
+          "sourceBlob": "49e5bb2546e0d17066049d47b70c0d0002374861",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/backlog-details/UI-SESSION-HANDOFF-20261107.md",
+          "status": "A",
+          "sourceBlob": "c19321b896a550c816c9c688ad9307b074f49779",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/design/UI_BATTLE_INTEGRATION_20261107.md",
+          "status": "A",
+          "sourceBlob": "dd7df4df50969b8000577e37b4a861661d50c9b4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/design/UI_DESIGN.md",
+          "status": "M",
+          "sourceBlob": "9f418284628a4ce58c13b4ff40b9a9c147b94d60",
+          "developBlob": "06bca3255cfea709927e257d620da94abd04c972",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/reviews/UI-BATTLE-20261107.md",
+          "status": "A",
+          "sourceBlob": "6e14f6120d12847eb38e6bc1f96021cbfc92b45a",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/reviews/UI-MAP-20261107.md",
+          "status": "A",
+          "sourceBlob": "19208ff491e92fbd4259bf41ef7afc72d46f7f91",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "docs/reviews/UI-ROOMS-20261107.md",
+          "status": "A",
+          "sourceBlob": "47b31b24d5c347ef7a30ba3cc9e87fe9bcfcf7ef",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/approved-node-scenes.mjs",
+          "status": "A",
+          "sourceBlob": "40d9c4cac3c76a1bf13117c8f291de6bcd2c4251",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/approved-ui-preview.lua",
+          "status": "A",
+          "sourceBlob": "2a8576b8d317e318bbc78b6d04daf9889b884950",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/approved-ui-preview.mjs",
+          "status": "A",
+          "sourceBlob": "e034cec7abe2227da63ff7894b779f513813f3e3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/art/build-approved-ui-assets.py",
+          "status": "A",
+          "sourceBlob": "3c91397e4ab17569f799d410580526bd07aadff8",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/art/repack-approved-ui-assets.py",
+          "status": "A",
+          "sourceBlob": "51f8e504d09fbdc4f092d47ea627c8eb308ca021",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/audit-native-candidate.mjs",
+          "status": "M",
+          "sourceBlob": "00bf060f288495e96685641df4173b5c57fdccce",
+          "developBlob": "3d4ad51703f6808612af64d0abe004928ebd0b3d",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/build-ui.mjs",
+          "status": "M",
+          "sourceBlob": "142d45f8ded773499b34b6ce39f847f8e250f371",
+          "developBlob": "95805bbdd590e6ce5b78ad3454dc45f14f2922cd",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/card-face.mjs",
+          "status": "M",
+          "sourceBlob": "8034b569fa18c9718e359a04f4959d86d750c600",
+          "developBlob": "e823ff7bde4ed38124f7c82d2bac83d00d09f34d",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/character-ui-layout.mjs",
+          "status": "M",
+          "sourceBlob": "c04bab27bb77562a04890036acc78ae8d952a2e5",
+          "developBlob": "514b7fc47d93c8fd910dfaceb1eab96baf63a272",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/deck-ui-layout.mjs",
+          "status": "M",
+          "sourceBlob": "37c74b1145712c9731aa58bfd18bf61c908015e4",
+          "developBlob": "82d373db0a27429ab0a32e2517507d040852e5d6",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/exit-ui-layout.mjs",
+          "status": "M",
+          "sourceBlob": "6fd2c07f72b1e51534dbdcc9ffecdc49bdf524e7",
+          "developBlob": "45764634eef680ad75acdfe4fae241de66a083d2",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/game-ui-layout.mjs",
+          "status": "M",
+          "sourceBlob": "9597de28af9a612332074b68419a16f8bbfcb2bb",
+          "developBlob": "615dc5f6a4499e77a8f1e099029956c589efd70a",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/map-ui-layout.mjs",
+          "status": "M",
+          "sourceBlob": "694371ffe27637fe282b900e7861e24fda261a5a",
+          "developBlob": "413770e17cbbd6f5bf19ad22fed55af33713a2f3",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/native-candidate-audit.mjs",
+          "status": "M",
+          "sourceBlob": "d0a879386b7e6261295d4bb6f0bf31c175261a03",
+          "developBlob": "219103b52c4e91c72f9a1ea75c9be76e0fdf6727",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/node-ui-layout.mjs",
+          "status": "M",
+          "sourceBlob": "461cb1643aaab73aaade0b9ac9aa2c21baf7b271",
+          "developBlob": "7164d8f6cb33c8e25f5261c4d7138b9e2112e1cc",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/node-ui-preview.mjs",
+          "status": "M",
+          "sourceBlob": "410d3c1dec9850dd8ac227bb1fa4fa0fc67d6a4d",
+          "developBlob": "f31d5c9ffc91ac31b660b8d100ef0e270db26434",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/official-portraits.mjs",
+          "status": "M",
+          "sourceBlob": "0fdf1a27efc856574285e11f4e23c2bcc62f4261",
+          "developBlob": "cabc1fce48e07af26c01f85e3728e657d34dab15",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/potion-discard-layout.mjs",
+          "status": "M",
+          "sourceBlob": "2cc795235a2710ac5ff7f32d6a24dadfb2edc408",
+          "developBlob": "e5650fbb07ad67767e7a8a38487802f5558bf94d",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/relic-view-layout.mjs",
+          "status": "M",
+          "sourceBlob": "e345779a32e701e868b9c2bd19d8e886fe3e9cba",
+          "developBlob": "e202e9757fed990d4f9b6dabbdc3bb4c721f2aa6",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/ui-layout.mjs",
+          "status": "M",
+          "sourceBlob": "87b5c7fdb0ed0df30847a04d35317f272563b437",
+          "developBlob": "d06c59a95d584397488155566123cc331c18bc88",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "scripts/victory-easter-egg-layout.mjs",
+          "status": "M",
+          "sourceBlob": "95355669f38ff100bcf954741b2cefed6a31fb08",
+          "developBlob": "78770897221038b17e2dc777fa90a62b39a72802",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_aim_arrow.lua",
+          "status": "M",
+          "sourceBlob": "51151aed5c5aa3565a42b48672f1f698655739d9",
+          "developBlob": "5f16e1f8d8627371ac4a3473f034edd5d0b044e3",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_card_layout.lua",
+          "status": "M",
+          "sourceBlob": "e772df431a68d79b6b9ca22b82fe6fa315fb8cf8",
+          "developBlob": "f26bec30d55a3fd34014bd7801b2a4ae8a4597f7",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_card_view.lua",
+          "status": "M",
+          "sourceBlob": "c2f8883e42869c1e5fb6ccb3e0961c8a7be1d7e7",
+          "developBlob": "693d85024f12ae692e3a5272437435f36e740ee0",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_details.lua",
+          "status": "M",
+          "sourceBlob": "e5f28d2101a3e10911bd3c57a43d57a2b6546e86",
+          "developBlob": "7fbf8c3b85e50d043480c9e48e8a7f4079d63a05",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_enemy_view.lua",
+          "status": "M",
+          "sourceBlob": "b51637d453b48ea551f3747c40bf06cd16a22824",
+          "developBlob": "71b6a2cd2e5f7969d853822d44c432938d47e77b",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_render_actors.lua",
+          "status": "M",
+          "sourceBlob": "4abdbe817587736245f1153597ef5a0a06152f8a",
+          "developBlob": "d61d734f594b82d0570267cc8f38b88d85d18060",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_render_hud.lua",
+          "status": "M",
+          "sourceBlob": "556d53f4b600928bb22fe1c2fcb5a4c68ac08a49",
+          "developBlob": "11962d15fd29b7798cd3d28a3fd08fcb1f2f99d5",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_battle_targeting.lua",
+          "status": "M",
+          "sourceBlob": "1f22fe2e5394f1c4714c11e040f366bc158c0f71",
+          "developBlob": "95c986a631bdf9cdb58073f150852c50f0ff1c8a",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_card_display.lua",
+          "status": "M",
+          "sourceBlob": "9a1d241959278097bb88665fcb112ad9fc32ddec",
+          "developBlob": "38797b9042a5f90b5c78d77a23596a3f27a49d96",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_card_skin.lua",
+          "status": "M",
+          "sourceBlob": "3f5e98b1030d19abefafec4fb4fb5982eff3f8de",
+          "developBlob": "9c62d8ce1f89621b932b33588026de2ef56b58af",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_character_select.lua",
+          "status": "M",
+          "sourceBlob": "808fde77a0b3b5bdf3427a774732a72fd1577530",
+          "developBlob": "014a449e590a7c1182fd40efe7bcd88a7801986a",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_character_select_view.lua",
+          "status": "M",
+          "sourceBlob": "05daedf8d404041760d93711aefd5ab88774b2d1",
+          "developBlob": "5495a0ed3fe644af03a50965cab90727b9f54f51",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_deck_ui.lua",
+          "status": "M",
+          "sourceBlob": "af7e490af5e3aa7789cd06c5dd3737c66bcce7d3",
+          "developBlob": "aa077e72e87bf4d5d2d4cdc35b0f2e73910739dd",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_game_ui.lua",
+          "status": "M",
+          "sourceBlob": "4e3eb37766623650f84b258bef33e5e94b089146",
+          "developBlob": "8b8f56f4033a87bfece857c0f91f9f3e4c8e42b4",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_game_ui_input.lua",
+          "status": "M",
+          "sourceBlob": "0a6a830469b8724c0335eb973186d18689e96f4a",
+          "developBlob": "6eb097d815ad911ca7d9228979bc7744c56fe9f4",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_game_ui_lifecycle.lua",
+          "status": "M",
+          "sourceBlob": "ba74617c7b63bad49d1a0910d26e78d966c2221f",
+          "developBlob": "caa211f16567fe3cdbb0a2fbd13ff16298d60b1b",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_game_ui_menu_view.lua",
+          "status": "M",
+          "sourceBlob": "6b4abdbcb0d09f9c84407dc34939834020a64d0c",
+          "developBlob": "393d76d870109ea0eb1c01e1dbf1d10ffb7e6fd8",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_game_ui_overlays.lua",
+          "status": "M",
+          "sourceBlob": "0aa04a6e5693929cbcd504c05a2ae33e26c55f63",
+          "developBlob": "8dc2650845bf9ae0353275e155ebcbf7327b0e24",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_game_ui_view.lua",
+          "status": "M",
+          "sourceBlob": "3ccbff5e79a48bfcb1e842a162f70d5580f9b531",
+          "developBlob": "101b0de81bf8c0c4e1d589b87f6f7a1d10864843",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_map_ui.lua",
+          "status": "M",
+          "sourceBlob": "b0bfbead4175cb38003851902a37ef073c6ca23b",
+          "developBlob": "1f252870aa1a4060e99e485d652a8a8209dd5f45",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_merchant.lua",
+          "status": "M",
+          "sourceBlob": "cf0b4fbcc8ea35f0d48701b06c4f80c5ecb79e34",
+          "developBlob": "afbf26dadb4b565564ebda7f14073d0924509cff",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_node_ui.lua",
+          "status": "M",
+          "sourceBlob": "6c2c6378551d4ec70b0423f279b5fc11fe3e1663",
+          "developBlob": "145540f5b65f1ba88f983646d661fb2648f0a25c",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_node_ui_events.lua",
+          "status": "M",
+          "sourceBlob": "97eabe89fd7d52a753385f67d83f578e571e9606",
+          "developBlob": "c2091efe414cb90a3f4a139ef7e26af49f4dceae",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_node_ui_feedback.lua",
+          "status": "M",
+          "sourceBlob": "0dfb220ac15c0f5994cc5c0a74ac4625e7ff1c12",
+          "developBlob": "7991a57634767e2395935df4b40d486262d9cbe9",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_node_ui_shop.lua",
+          "status": "M",
+          "sourceBlob": "1789ce9c5d442b34f1becdf0bf67832c30f0b5e2",
+          "developBlob": "6c942a7f5a59f6acc46b8dc6c6844a763e43efb9",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_potion_discard_ui.lua",
+          "status": "M",
+          "sourceBlob": "b2924cd480aceacd57cf48d8ec7565097d95c2ca",
+          "developBlob": "759079f0ac8dca7b6e31d6d10e1d923b1995fc5f",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_shop_selection.lua",
+          "status": "M",
+          "sourceBlob": "61de2ea450995430ddc7a0b945148deac4ed757a",
+          "developBlob": "64fe14d2e84bf65bfe32c4610634a9f4b9fda49c",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_traveler_portraits.lua",
+          "status": "M",
+          "sourceBlob": "25ae873fb91d5b65c680519dff1f240a619e3751",
+          "developBlob": "3c19c6a0392081b51cb8cbb91de58b00b6ebe719",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "src/lua/abyss_ui.lua",
+          "status": "M",
+          "sourceBlob": "d52d86d522f068d5976d345cad4d4b4f752f955c",
+          "developBlob": "cbb99d8b864f5a9b682794fd0c4bf528f36b3e66",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/aim-visual-parity.test.mjs",
+          "status": "M",
+          "sourceBlob": "6346813c8cab667f08d5a2b836cc048fe8993c3d",
+          "developBlob": "7309c5ff6b889d7c8c86328164f605a78fdb4872",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/approved-card-palette.test.mjs",
+          "status": "A",
+          "sourceBlob": "44d56b20c94528c62cb4251d8d0b666f5d05d228",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/approved-energy-orb.test.mjs",
+          "status": "M",
+          "sourceBlob": "70556b587fc6bee6e65a8290c499a63dd0439548",
+          "developBlob": "cd120fc2526167a3438ddfbff340a87c8bf50ac9",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/approved-hand-glow.test.mjs",
+          "status": "A",
+          "sourceBlob": "2e0d666bda0eb8a2504537ae9c4850ee831ff997",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/approved-main-unit.test.mjs",
+          "status": "M",
+          "sourceBlob": "214fc5f63f73992093cf60622ddbcaa79371db78",
+          "developBlob": "d79afcacbb2fff6a2e7670a4e7ecb02e857644d1",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/approved-map-production.test.mjs",
+          "status": "A",
+          "sourceBlob": "23e6991736a86a11d63678def8ce718489e71374",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/approved-menu-production.test.mjs",
+          "status": "A",
+          "sourceBlob": "e9e44e6c368beb77450df5f4567157fb31a00cb6",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/approved-reward-production.test.mjs",
+          "status": "A",
+          "sourceBlob": "1f2d85b8ec8772cbff17c1cfce3931793b743d3d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/approved-ui-art-runtime.test.mjs",
+          "status": "A",
+          "sourceBlob": "40b441e902187a7d330843bfae9c255a88518c48",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/art-feature-flags-runtime.test.mjs",
+          "status": "M",
+          "sourceBlob": "cab25b4334eabd2c65590b5bd3f1d8c9fa7a00d4",
+          "developBlob": "c4cb6a54df4859d0652f433f15eb2d4b70b62e53",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/art-features-receipts.test.mjs",
+          "status": "M",
+          "sourceBlob": "d5f05d6a5557b7758829e5ffcdaa57f069812e3a",
+          "developBlob": "59787573901fb3be21da16bd991fcf851a031113",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/audit-source-line-endings.test.mjs",
+          "status": "A",
+          "sourceBlob": "33109d6d724de1eae7e9a6448f78cd248c0b6b1d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/card-face-source-parity.test.mjs",
+          "status": "M",
+          "sourceBlob": "424f1cb06e5c485bbd17a47862f4ae41c5a100b3",
+          "developBlob": "3ebc3c80242f09b0a1fd5dd0939d62e075dba585",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/card-face.test.mjs",
+          "status": "M",
+          "sourceBlob": "ece5ebc1d472c66660eeb2e949aedd99ee24d1ac",
+          "developBlob": "8711d789e1279a6161176d403575ae1726b47521",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/card-title-source-parity.test.mjs",
+          "status": "M",
+          "sourceBlob": "92e526a37db6e7298e85407c4506f8a9cb8a8050",
+          "developBlob": "88c4cfee241672a5c855e2c379828c9670763753",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/character-ui-layout.test.mjs",
+          "status": "M",
+          "sourceBlob": "df5b94266e50d835ea39d30d11ab9199ec7f0126",
+          "developBlob": "8e34f0a0f83fe5672f6da3e1776d34e0dd0a3768",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/deck-browse-filters.test.mjs",
+          "status": "M",
+          "sourceBlob": "3e03290d670929f0725d5c13f22b1108d421ede6",
+          "developBlob": "09722ef02d42b28e1bba22efeb92f01149f6874f",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/deck-ui-layout.test.mjs",
+          "status": "M",
+          "sourceBlob": "89fa8c3b85eae5785fb557d88493f5d933ec68ab",
+          "developBlob": "7b6ab41060f83b9495828c3cd30641c0b0c32ee1",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/dynamic-approved-drawings.test.mjs",
+          "status": "A",
+          "sourceBlob": "b89cccef5532acab7a9728722ea5cc5a9e4d9d21",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/dynamic-drawing-overlay-cache.test.mjs",
+          "status": "A",
+          "sourceBlob": "d262889fc0646ec23e3389bb29a12f86df3d4b01",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/enemy-visible-hitbox.test.mjs",
+          "status": "A",
+          "sourceBlob": "f8397436d8398508bd82e28bbc034242bb388304",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/exit-entry-discovery.test.mjs",
+          "status": "A",
+          "sourceBlob": "3bcc27227bc8ba7f2c197f1449920c909b34c5f4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/exit-ui-layout.test.mjs",
+          "status": "M",
+          "sourceBlob": "83ab0f12b7c15fa6cd8ff6dd68f65935eabaf802",
+          "developBlob": "c06e21c7709a257100d90b387149a62398e65e2c",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/game-ui-extraction-source-inverse.test.mjs",
+          "status": "M",
+          "sourceBlob": "05151305f1c25d92f6545c9e6b5f416a6fda4773",
+          "developBlob": "0efdd5024865cb0ce0309b1283da419bcf8dc70c",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/helpers/card-title-source-parity.lua",
+          "status": "M",
+          "sourceBlob": "5496a3f84197ce89fee003b421d9d8bd7ac74901",
+          "developBlob": "7a85eac3e8fac797e6312f783f9d048ec4bae2db",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/helpers/game-ui-extraction-source-inverse.mjs",
+          "status": "M",
+          "sourceBlob": "0b1039ecc1a0562f06163681b7b91ab223720c6f",
+          "developBlob": "cc34e4932fdbe023061d8e970afb937a9764bbb8",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/helpers/opt-in-art-fixture.mjs",
+          "status": "M",
+          "sourceBlob": "e1a4e412ed116ac26d22540413361c50dfdc9d1c",
+          "developBlob": "5949991485f609580dbd328824d8ba4f5562b9e8",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/helpers/portrait-runtime-vm.mjs",
+          "status": "M",
+          "sourceBlob": "a259b3f9ca225e3e783e1fa9d288ef34751f23bc",
+          "developBlob": "7cc8747cd9a3fc2c8739c55440f3535d3a576f49",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/hero-visual-slots.test.mjs",
+          "status": "M",
+          "sourceBlob": "fdf87c8520dee5376f404ede0067de6a079f2b98",
+          "developBlob": "0cd900e5c0d36c2132ea3d71198031c2db370d57",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/latest-card-geometry.test.mjs",
+          "status": "A",
+          "sourceBlob": "adb0f14784d88cfbbbc68ff55d3aead58b2ff692",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/latest-character-layout.test.mjs",
+          "status": "A",
+          "sourceBlob": "fd205ee150340bc331973a27069fbfbcbd2f8e38",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/latest-exit-layout.test.mjs",
+          "status": "A",
+          "sourceBlob": "a6a60e94d4b4e3fa5813b916e02d6af5162406b1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/latest-hud-production.test.mjs",
+          "status": "A",
+          "sourceBlob": "92d7a5f16c99611ec584d52a1c5a8f332f1c04e9",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/latest-menu-flow.test.mjs",
+          "status": "A",
+          "sourceBlob": "ed6a2ec5f2bf6985c9d0643719363d0a5a1ccce1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lowpoly-select-flags.test.mjs",
+          "status": "M",
+          "sourceBlob": "ec4b1c2c4bf44d176d6af9233c2b4aef3c7de361",
+          "developBlob": "a140eb9a0ce3d571d21951ff5ec4b8e940af2faa",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/aim_visual_parity.lua",
+          "status": "M",
+          "sourceBlob": "8f28993949df00af44db43afa2db1b5872548dcd",
+          "developBlob": "fc939759778f289a6a407cd402d196a4f35289a3",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/approved_aim_cache.lua",
+          "status": "A",
+          "sourceBlob": "9063a6e825df7543e957f3c70e0ea987d4153e8d",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/approved_energy_orb.lua",
+          "status": "M",
+          "sourceBlob": "71891e933d8336aa8ada692270e6ab10ed4af1e7",
+          "developBlob": "6a484ee503507e1b5e65de9febf75d5f00174e9c",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/approved_map_production.lua",
+          "status": "A",
+          "sourceBlob": "3b4b3e21cfe1a034b4d72feaa27e33968644b436",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/approved_menu_motion.lua",
+          "status": "A",
+          "sourceBlob": "e1bb0bf08280c911d986b64dbeff02c869f78606",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/approved_opening.lua",
+          "status": "M",
+          "sourceBlob": "d94b25071fabbe6ef7044bb3906a1f83b47bfa59",
+          "developBlob": "b5fe0a9ef15dad42d9b5490595d119b921d4db50",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/card_preview.lua",
+          "status": "M",
+          "sourceBlob": "500926c167df21623b1d5aef0aa59cfcad001160",
+          "developBlob": "e64e93c445e81460bc33e5854bfefd5f88356f50",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/card_rarity_semantics.lua",
+          "status": "M",
+          "sourceBlob": "226855062d67b2037d791c99f77b3f7f5a4b5255",
+          "developBlob": "4904162522d3c3a7fced0ee40c508fd9d968acec",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/card_title_layout.lua",
+          "status": "M",
+          "sourceBlob": "5cf780aae416e0d800060899bc237cc5def60e19",
+          "developBlob": "72e2eb161affb4ec5092994555525226525799f6",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/deck_browse_filters.lua",
+          "status": "M",
+          "sourceBlob": "8f8189b8d936cfa12d3953eb96261fa5760cf490",
+          "developBlob": "fd0aaf6a0417085972357ac76648be57be441df3",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/enemy_visible_hitbox.lua",
+          "status": "A",
+          "sourceBlob": "c753c8172c50ba4cafee14310b3f4cbbb4bcb002",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/exit_entry_discovery.lua",
+          "status": "A",
+          "sourceBlob": "93ec401923ec387d4cfd4c8fb3971fc5df989911",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/game_ui.lua",
+          "status": "M",
+          "sourceBlob": "851bb891b29b8096f751aa3ba12ee699b047a638",
+          "developBlob": "6aaf81015db853651c6111ae35d94667019448a0",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/game_ui_exit.lua",
+          "status": "M",
+          "sourceBlob": "cbf9a80d32f12eaeff367a6f7f1328b99abc334e",
+          "developBlob": "115a727fd6a7d5990a0289b7614c01cc4f72bb34",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/game_ui_pile_entry.lua",
+          "status": "M",
+          "sourceBlob": "581d2a9779c48e12e456c5b7ce7370fa087f90bd",
+          "developBlob": "0fff6a1df84a3e6b8d384e723a89f6b7671f4de9",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/latest_character_reference.lua",
+          "status": "A",
+          "sourceBlob": "bd17c7624179af4362995ae87ecabdda704911bd",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/latest_menu_flow.lua",
+          "status": "A",
+          "sourceBlob": "1984b6dfa618ec4c230a212c3a500dd9e4d387d2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/latest_run_menu_exit.lua",
+          "status": "A",
+          "sourceBlob": "5097c16cf8f0e53b7f4244bbc9ae891bc77f15e5",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/m3_ui_polish.lua",
+          "status": "M",
+          "sourceBlob": "0fb6f93a6028205fc9a5d0468a208e86aa767932",
+          "developBlob": "c18b9658c746d1f237425d37922d66dae11c0f41",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/potion_drag_parity.lua",
+          "status": "M",
+          "sourceBlob": "18c7d2beed111ae8cf04e3662c8e0f384dd3c820",
+          "developBlob": "1fcf3cc6ed82a9b6d62492cbc1d5c38997f4b3cb",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/resource_hints.lua",
+          "status": "M",
+          "sourceBlob": "c19576dc994c89be51cb0a7c5e86ddf4f61a9cff",
+          "developBlob": "80075959e865bca311c75a43502d5af3f7376982",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/route_preview_presentation.lua",
+          "status": "A",
+          "sourceBlob": "7d3479abea04537bd16d77db02c33bcfa8bb5640",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/selected_hand_safe_area.lua",
+          "status": "M",
+          "sourceBlob": "c08bce9dbfa679f1d4129c5b2821514fc6288dc0",
+          "developBlob": "653b72eefcf0ef0866c3b0a528e12836d380a2b8",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/shop_selection.lua",
+          "status": "M",
+          "sourceBlob": "5722d858cc99d82ca521ba098232a23afbe7f7fa",
+          "developBlob": "f5eae9d39518503402ed12cd573fae05276da555",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/approved_hand_glow.lua",
+          "status": "A",
+          "sourceBlob": "57b3518a5fb40f34a8fcabfb786459c8329690b1",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/approved_reward_asset_lifecycle.lua",
+          "status": "A",
+          "sourceBlob": "c9989f10bd798aa8c4d934a16dc4d2991ab08be4",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/approved_reward_skip.lua",
+          "status": "A",
+          "sourceBlob": "0c7e30fb632472542cc7af53760cae715949cf72",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/approved_total_mutation_budget.lua",
+          "status": "A",
+          "sourceBlob": "d12577e8c4526df809a68f6c17aeeb41844cfec2",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/art_feature_flags_entry.lua",
+          "status": "M",
+          "sourceBlob": "a91aae6e5cd258107305d086811fa64ff25ced5f",
+          "developBlob": "b4ef726677ac1a61c3a1d69d592964d8414d19bf",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/card_blocked_display.lua",
+          "status": "M",
+          "sourceBlob": "9cad1ec4bf3c30ddd375f6c19cac2f5b9391fb52",
+          "developBlob": "4b316bca435b3cab2c0287f30c5c1af0ab5b7915",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/dynamic_approved_drawings.lua",
+          "status": "A",
+          "sourceBlob": "e481529354a726ea5e26a686f4953c4d513225ed",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/native_wrapper_identity.lua",
+          "status": "A",
+          "sourceBlob": "7451beecc31dda61e2bf86cc9d2f8365fe0ec558",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/node_ui_cases.lua",
+          "status": "M",
+          "sourceBlob": "06d23d4bce2e307ce26228d8a5f1ce2232ea0193",
+          "developBlob": "b1bf514f051f6c29f6cb9d8b7cff26f80034b1a5",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/shared_card_shell_gameplay.lua",
+          "status": "A",
+          "sourceBlob": "1cfc3229b4ea43de3f7e9cf328f070422c3c9196",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/lua/support/shared_victory_art_lifecycle.lua",
+          "status": "A",
+          "sourceBlob": "de8d5e47a113667da908b34faff7f45aaf5c5a27",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/native-candidate-audit.test.mjs",
+          "status": "M",
+          "sourceBlob": "82eafa73b365507aaf1afd903b4c9a66115da224",
+          "developBlob": "a8202cf1d48cfdc1cb728647b97aeadab935da93",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/native-container-opacity.test.mjs",
+          "status": "A",
+          "sourceBlob": "72818470ef1c250af921c7660b5a491e2ed00096",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/native-monster-actor-template.test.mjs",
+          "status": "M",
+          "sourceBlob": "aa8605b41c56fe2f8ea5a9559fcc1c2ed921bf7c",
+          "developBlob": "003b39fdeb7a051620a9c6c29df4a916de00e87e",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/native-ui-theme.test.mjs",
+          "status": "M",
+          "sourceBlob": "01ce34825577678ae3281f7510aa481926f1f681",
+          "developBlob": "a565a4bfad06ef79900cebd249321996458ef84c",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/neow-readable-layout.test.mjs",
+          "status": "M",
+          "sourceBlob": "8ae846224d22f5c2a9edd2fadf71253e8b7448b2",
+          "developBlob": "56f8b8c8f6e1e262ae11d5682b98a8da472a021a",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/node-ui-layout.test.mjs",
+          "status": "M",
+          "sourceBlob": "555da167fe4fea0d0f751b44f45136ed0cc67d92",
+          "developBlob": "64eeaee264942287937c73617ea43f892d772365",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/official-portraits-build.test.mjs",
+          "status": "M",
+          "sourceBlob": "15d5bdcf191c9f1153665e5df5ca6b40dfe9dd79",
+          "developBlob": "05eb8ed0fd6cc41d020c26030c230f3c007655b1",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/pile-view-layout.test.mjs",
+          "status": "M",
+          "sourceBlob": "dfb631799928aa44e1f08e2dc34a5346004cfd5b",
+          "developBlob": "73e7adbf597f7080e6da969746199983431f928d",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/platform-load.test.mjs",
+          "status": "M",
+          "sourceBlob": "397f91a8ad09f3bf49dcd8f2dc2a0bd383cedad6",
+          "developBlob": "73007ff8d1c749638cf1be97f20b42eae92f37db",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/prebuilt-scenes.test.mjs",
+          "status": "A",
+          "sourceBlob": "338d62f7c4821019d1b8ce80e92a8b5839b044c3",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/resource-hints.test.mjs",
+          "status": "M",
+          "sourceBlob": "ceb46164034972bcc7af302cb7d26cff0d6a18ce",
+          "developBlob": "529e798ae9940dbb4af9e47a8ac8b1ac4d3ed426",
+          "sameBlobInDevelop": false
+        },
+        {
+          "path": "tests/test_approved_ui_asset_conversion.py",
+          "status": "A",
+          "sourceBlob": "a33e955960fe1249fb46677620397294586bcc8b",
+          "developBlob": null,
+          "sameBlobInDevelop": false
+        }
+      ],
+      "localBundle": {
+        "filename": "integration-result.bundle",
+        "sha256": "ffbaa2cc349229fad3cef28efeabe581a278c18de48da0691526498e4655eab2",
+        "sourceHeadPresent": true
+      },
+      "preservation": "private-local-bundle-only",
+      "reason": "local-approved-card-skins/NOTICE.md prohibits public distribution; branch includes private approved Sites v25 HTML/PNG sources",
+      "archiveFile": null
+    }
+  ]
+}
