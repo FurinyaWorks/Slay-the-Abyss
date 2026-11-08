@@ -69,7 +69,7 @@ function M.install(ctx)
             ctx.ink(box:GetChild("name"), Theme.cardSkin.text.title)
             local text=CardDisplay.permanentText(display,definition,instance)
             CardDisplay.writeBody(box:GetChild("description"),type(text)=='string' and text or '',box)
-            ctx.ink(box:GetChild("description"), C.text)
+            ctx.ink(box:GetChild("description"), Theme.cardSkin.text.body or C.text)
         end
         writeCardCopy()
         -- Presentation costs can be strings; format the numeric rule value.
@@ -83,7 +83,7 @@ function M.install(ctx)
         writeCardCost()
         local function writeCardArt()
             for art in pairs(Theme.icon.cardArt) do box:GetChild("art_" .. art):SetVisible(art == kind) end
-            CardDisplay.writeArt(box:GetChild("art_" .. kind), definition, ctx.picture)
+            CardDisplay.writeArt(box:GetChild("art_" .. kind), definition, ctx.picture,box)
             if ctx.self.visible then
                 CardDisplay.writeNativeArt(box,definition,display.nativeArt,ctx.options,box:GetChild('art_'..kind),instance.uid)
                 ctx.artFaces[box]=true -- Pending pools also belong to this page's lifetime.

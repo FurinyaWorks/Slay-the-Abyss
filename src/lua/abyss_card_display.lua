@@ -3,6 +3,7 @@ local integer = require('abyss_numbers').integer
 local Theme = require('abyss_theme')
 local NativeArtRuntime = require('abyss_card_art_runtime')
 local M = {}
+local bodyFrames=setmetatable({},{__mode='k'})
 -- Install presentation-only art metadata atomically after real native binding.
 function M.bindNativeAssets(presentation, assets)
     assert(type(presentation)=='table' and type(assets)=='table','native artwork registry required')
@@ -24,7 +25,7 @@ function M.art(definition)
 end
 -- Native portraits opt in with their source dimensions. Type/legacy icons stay
 -- square; a native ID alone is not evidence of a full-card illustration.
-function M.writeArt(control,definition,picture)
+function M.writeArt(control,definition,picture,face)
     local image,status,source=M.art(definition)
     local card=Theme.layout.card
     local width,height=math.min(card.artIcon,card.art),math.min(card.artIcon,card.art)
@@ -39,6 +40,11 @@ function M.writeArt(control,definition,picture)
     end
     picture(control,image)
     control:SetSizeDelta(width,height)
+    local content=card.v25Content
+    if content and face and bodyFrames[face]~=true then
+        local position=content.icons[definition.type] or content.icons.attack
+        control:SetAnchoredPosition(position[1],position[2])
+    end
 end
 -- Candidate-only binding into controls already owned by the real card face.
 -- Weak keys do not keep recycled native controls alive. Failed versions wait
@@ -260,28 +266,53 @@ function M.writeTitle(control,name,upgraded,upgrades,typeControl,typeText)
     if typeControl then typeControl.text=typeText..(marker~='' and ' '..marker or '') end
     return fits
 end
-local bodyFrames=setmetatable({},{__mode='k'})
+local function bodyArtPosition(name,y,content)
+    if not content then return 0,y end
+    if name=='artPlate' or name=='artWell' then return 0,content.windows.attack.position[2]end
+    local position=content.icons[name:match('^art_(.+)$')] or content.icons.attack
+    return position[1],position[2]
+end
+local function bodyArtSize(part,name,height,content)
+    local card=Theme.layout.card
+    if name=='artPlate' or name=='artWell' then
+        if content then
+            local size=content.windows.attack.size;part:SetSizeDelta(size[1],size[2])
+        else part:SetSizeDelta(card.size[1]-Theme.space.border*2,height)end
+    else part:SetLocalScale(height/card.art,height/card.art,1)end
+end
+local function bodyArtParts(box,height,y,content)
+    for _,name in ipairs({'artPlate','artWell','art','art_attack','art_skill','art_power','art_status','art_curse'})do
+        local ok,part=pcall(box.GetChild,box,name)
+        if ok and part and part.alive~=false then
+            part:SetAnchoredPosition(bodyArtPosition(name,y,content))
+            bodyArtSize(part,name,height,content)
+        end
+    end
+end
+local function bodyTypeWindows(box,height,y,content)
+    local card=Theme.layout.card
+    local reference=card.v25Content
+    for _,kind in ipairs({'attack','skill','power'})do
+        local part=box:GetChild('skin'):GetChild(kind)
+        local base=reference and reference.windows[kind].size[2] or card.art
+        local scale=content and 1 or height/base
+        if content then
+            local position=content.windows[kind].position;part:SetAnchoredPosition(position[1],position[2])
+        else part:SetAnchoredPosition(0,y)end
+        part:SetLocalScale(1,scale,1)
+    end
+end
 local function bodyFrame(box,compact)
     if bodyFrames[box]==compact or not compact and bodyFrames[box]==nil then return end
     bodyFrames[box]=compact
     local card,S=Theme.layout.card,Theme.space
+    local content
+    if not compact then content=card.v25Content end
     local height=compact and card.longTextArt or card.art
     local y=card.size[2]/2-card.nameBand-height/2-S.border
-    for _,name in ipairs({'artPlate','artWell','art','art_attack','art_skill','art_power','art_status','art_curse'})do
-        local ok,part=pcall(box.GetChild,box,name)
-        if not ok then part=nil end
-        if part and part.alive~=false then
-            part:SetAnchoredPosition(0,y)
-            if name=='artPlate' or name=='artWell' then
-                part:SetSizeDelta(card.size[1]-S.border*2,height)
-            else part:SetLocalScale(height/card.art,height/card.art,1)end
-        end
-    end
-    for _,kind in ipairs({'attack','skill','power'})do
-        local part=box:GetChild('skin'):GetChild(kind)
-        part:SetAnchoredPosition(0,y);part:SetLocalScale(1,height/card.art,1)
-    end
+    bodyArtParts(box,height,y,content);bodyTypeWindows(box,height,y,content)
     local typeY=card.size[2]/2-card.nameBand-height-card.typeLine/2-S.border
+    if content then typeY=content.typePosition[2]end
     for _,name in ipairs({'type','typeEdge','typeTag','tagEdge','tagBody'})do box:GetChild(name):SetAnchoredPosition(0,typeY)end
 end
 -- Body budget keeps the reviewed 1.3x line step; wrapping itself now follows
@@ -298,7 +329,8 @@ function M.writeBody(control,text,face)
     if compact then box=card.longTextBox;font,fits=M.fitBody(text,box)end
     if control.SetSizeDelta then
         control:SetSizeDelta(box[1],box[2])
-        control:SetAnchoredPosition(0,-card.size[2]/2+box[2]/2+(compact and Theme.space.xs or Theme.space.border))
+        local position=not compact and card.v25Content and card.v25Content.bodyPosition
+        control:SetAnchoredPosition(0,position and position[2] or -card.size[2]/2+box[2]/2+(compact and Theme.space.xs or Theme.space.border))
     end
     if face then bodyFrame(face,compact)end
     control.text,control.fontSize=text,font

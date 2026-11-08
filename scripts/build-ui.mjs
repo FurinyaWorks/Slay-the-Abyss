@@ -23,6 +23,7 @@ import {compactBoundedCardFaces} from './lightweight-card-layout.mjs';
 import {validateUiProfileOptions,uiProfileArgs,uiProfileModule,uiProfileSource} from './ui-profile.mjs';
 import {validateV25Chrome,v25ChromeArgs} from './v25-profile.mjs';
 import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
+import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
 import {v25Theme,applyV25BattleLayout,rebuildV25CardFaces} from './v25-layout.mjs';
 import {applyV25BattleScene} from './v25-battle-scene.mjs';
 import {applyV25PortraitProfile} from './v25-portrait-profile.mjs';
@@ -38,6 +39,9 @@ export function assertNativeUiCapacity(layout) {
   const checkFonts = (control, path) => {
     if(control.opacity!==undefined&&control.kind!=='image')throw Error(`${path}: opacity requires an image control`);
     if(control.image!==undefined&&(!Number.isSafeInteger(control.image)||control.image<0))throw Error(`${path}: image requires a resolved numeric resource ID`);
+    for(const [key,value] of [['colour',control.colour],['text.colour',control.text?.colour],['text.background',control.text?.background],['text.outlineColour',control.text?.outlineColour]]){
+      if(value!==undefined&&!/^#[0-9a-fA-F]{6}$/.test(value))throw Error(`${path}: ${key} requires six RGB digits (#rrggbb); use its separate opacity field`);
+    }
     for (const key of ['fontSize', 'minFontSize']) {
       const value = control.text?.[key];
       if (value !== undefined && (!Number.isInteger(value) || value < 14)) {
@@ -151,6 +155,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   attachMonsterArt(battle,monsterArt);attachMonsterArt(layout,monsterArt);
   if(v25BattleChrome){
     applyV25BattleChrome(battle,theme);applyV25BattleChrome(layout,theme);
+    applyV25TurnNoticeLayout(battle,theme);applyV25TurnNoticeLayout(layout,theme);
     applyV25BattleScene(battle,theme);applyV25BattleScene(layout,theme);
     applyV25PortraitProfile(layout,theme);
     applyV25CharacterLayout(layout,theme);

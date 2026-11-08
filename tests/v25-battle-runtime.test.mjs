@@ -9,6 +9,89 @@ import {buildLuaData,luaString,toLua} from '../scripts/build-lua-data.mjs';
 
 const require=createRequire(import.meta.url);
 
+test('V25 turn notices follow the real battle without extending its action gate or surviving a page exit',t=>{
+ const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});
+ const directory=mkdtempSync(join(root,'v25-turn-notice-'));
+ t.after(()=>rmSync(directory,{recursive:true,force:true}));
+ buildLuaData('data',join(directory,'abyss_data.lua'));
+ buildUI(directory,undefined,{v25BattleChrome:true});
+ const modules=readdirSync(directory).filter(name=>name.endsWith('.lua')).map(name=>name.slice(0,-4));
+ const source=`
+local generated=${luaString(directory.replaceAll('\\','/'))}
+package.path=generated..'/?.lua;src/lua/?.lua'
+for _,name in ipairs(${toLua(modules)})do package.preload[name]=assert(loadfile(generated..'/'..name..'.lua'))end
+local H=dofile('tests/lua/support/battle_gesture_fixture.lua')
+local h,u,p,event,tap,drain,toggle,root=H.setup({'defend','defend','defend','defend','defend','defend'},{'cultist'})
+local notice=assert(p:GetChild('feedback'):GetChild('v25TurnNotice'),'missing V25 turn notice')
+local title,subtitle=notice:GetChild('title'),notice:GetChild('subtitle')
+assert(notice.visible and title.text=='战斗开始' and not subtitle.visible)
+local battle,hp,energy,turn=h.run.combat,h.run.combat.player.hp,h.run.combat.energy,h.run.combat.turn
+h:update(.34)
+assert(notice.visible and notice.x==0 and title.fontColor.a==255,'entry keyframe did not reach its source pose')
+local writes=0;local move=notice.SetAnchoredPosition
+notice.SetAnchoredPosition=function(self,...)writes=writes+1;return move(self,...)end
+for _=1,6 do h:update(.05)end
+assert(writes==0,'held notice repainted an unchanged transform')
+assert(battle==h.run.combat and hp==battle.player.hp and energy==battle.energy and turn==battle.turn,'decorative clock mutated combat')
+assert(not u.busy,'start decoration acquired the action gate')
+tap('card1',89);tap('playArea',89)
+assert(notice.visible and title.text=='战斗开始','first ordinary card cancelled the independent notice')
+drain()
+toggle();assert(not notice.visible,'deck page retained a battle announcement')
+h:update(0);assert(not notice.visible,'return to same battle replayed its start')
+tap('endTurn',90)
+local sawPlayer=false
+for _=1,400 do
+ h:update(.02)
+ if notice.visible and title.text=='玩家回合' then
+  sawPlayer=true;assert(subtitle.visible and subtitle.text=='第 2 回合');break
+ end
+end
+assert(sawPlayer and battle.turn==2,'committed player turn never reached the V25 notice')
+while u.busy do h:update(.02)end
+assert(notice.visible,'1.7s decoration was incorrectly tied to the shorter action gate')
+h:update(2);assert(not notice.visible,'long frame failed to expire the notice')
+assert(not p:GetChild('feedback'):GetChild('banner').visible)
+local Notice=require('abyss_v25_turn_notice')
+local view=Notice.new(p:GetChild('feedback'),{color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end})
+local other={turn=1};view:bind(other);view:update(.34)
+view:reset();view:update(.1);assert(not notice.visible,'cancelled instance wrote after reset')
+view:bind(other);assert(not notice.visible,'same battle restarted after reset')
+for i=1,20 do view:bind({turn=1});view:update(.1);view:bind(nil);assert(not notice.visible)end
+for _,method in ipairs({'SetAnchoredPosition','SetVisible'})do
+ local original=notice[method];local fired=false
+ notice[method]=function(self,value,...)
+  if not fired and (method~='SetVisible' or value==true)then fired=true;view:bind(nil)end
+  return original(self,value,...)
+ end
+ view:bind({turn=1})
+ assert(fired and not notice.visible,'synchronous cancellation revived a stale notice: '..method)
+ view:update(.1);assert(not notice.visible)
+ notice[method]=original
+end
+local original=notice.SetAnchoredPosition;local replacement={turn=2};local fired=false
+notice.SetAnchoredPosition=function(self,...)
+ if not fired then fired=true;view:bind(replacement)end
+ return original(self,...)
+end
+view:bind({turn=1});notice.SetAnchoredPosition=original;view:update(.34)
+assert(notice.visible and title.text=='玩家回合' and subtitle.text=='第 2 回合' and notice.x==0,'older setter overwrote a replacement battle')
+view:reset()
+notice.SetAnchoredPosition=function()error('native setter failed once')end
+local accepted=pcall(view.bind,view,{turn=1});assert(not accepted,'native setter failure was swallowed')
+notice.SetAnchoredPosition=original
+view:reset();view:bind({turn=1});view:update(.34)
+assert(notice.visible and notice.x==0,'failed setter permanently locked the renderer')
+print('V25_TURN_NOTICE_PASS')
+`;
+ const result=spawnSync(process.execPath,[require.resolve('fengari-node-cli/src/lua-cli.js'),'-e',source],{
+  cwd:process.cwd(),encoding:'utf8',maxBuffer:2*1024*1024,timeout:30000,
+  env:{...process.env,LUA_INIT:'',LUA_INIT_5_3:''},
+ });
+ assert.equal(result.status,0,result.stdout+result.stderr+String(result.error??''));
+ assert.match(result.stdout,/V25_TURN_NOTICE_PASS/);
+});
+
 test('isolated V25 build runs energy transitions, layered button refresh and pile/reward input in the real Lua Host',t=>{
  const temporaryRoot=resolve('.artifacts/test-tmp');mkdirSync(temporaryRoot,{recursive:true});
  const directory=mkdtempSync(join(temporaryRoot,'v25-runtime-'));

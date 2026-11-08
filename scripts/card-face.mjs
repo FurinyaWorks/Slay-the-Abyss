@@ -2,15 +2,20 @@ import { nativeControls } from './native-ui-theme.mjs';
 import { cardLightning } from './card-lightning.mjs';
 
 // Native-library composition, not CSS clipping. The triangle is rotated by the importer.
-function roundedParts(w,h,r,colour,picture,plate,frame) {
+function roundedParts(w,h,r,colour,picture,plate,frame,ry=r) {
   return [plate('vertical',frame([0,0],[w-2*r,h]),colour),
-    plate('horizontal',frame([0,0],[w,h-2*r]),colour),
-    ...[-1,1].flatMap(x=>[-1,1].map(y=>picture('corner'+x+'_'+y,[x*(w/2-r),y*(h/2-r),r*2,r*2],100002,colour)))];
+    plate('horizontal',frame([0,0],[w,h-2*ry]),colour),
+    ...[-1,1].flatMap(x=>[-1,1].map(y=>picture('corner'+x+'_'+y,[x*(w/2-r),y*(h/2-ry),r*2,ry*2],100002,colour)))];
 }
-function windowParts(kind,w,h,colour,picture,plate,frame) {
-  if(kind==='skill')return roundedParts(w,h,11,colour,picture,plate,frame);
+function windowParts(kind,w,h,colour,picture,plate,frame,reference) {
+  if(kind==='skill')return roundedParts(w,h,reference?.cornerFraction?w*reference.cornerFraction:11,colour,picture,plate,frame,reference?.cornerFraction?h*reference.cornerFraction:11);
+  if(kind==='power'&&reference?.ellipse)return [picture('arch',[0,0,w,h],100002,colour),
+    {...plate('base',frame([0,0],[1,1]),colour),visible:false}];
   if(kind==='power')return [picture('arch',[0,h*.16,w,h*.68],100002,colour),
     plate('base',frame([0,-h*.17],[w,h*.66]),colour)];
+  if(reference?.shoulder){const shoulder=reference.shoulder;return [
+    plate('upper',frame([0,h*(1-shoulder)/2],[w,h*shoulder]),colour),
+    {...picture('point',[0,-h*shoulder/2,w,h*(1-shoulder)],100003,colour),rotation:180}];}
   return [plate('upper',frame([0,h*.08],[w,h*.84]),colour),
     {...picture('point',[0,-h*.42,w,h*.16],100003,colour),rotation:180}];
 }
@@ -32,16 +37,20 @@ export function cardFaceChildren(theme, context, interactive = true) {
   const { text, plate, frame, hit } = nativeControls(theme);
   const { color: c, font: f, layout: l, space: s, image, icon } = theme;
   const card = l.card, [w, h] = card.size, b = s.border, top = h / 2, d = card.costDisc;
+  const reference=card.v25Content,defaultWindow=reference?.windows.attack;
   const node = context === 'node';
   const nameY = top - card.nameBand / 2 - b;
-  const artY = top - card.nameBand - card.art / 2 - b;
+  const artY = defaultWindow?.position[1]??top - card.nameBand - card.art / 2 - b;
+  const artWidth=defaultWindow?.size[0]??w-b*2,artHeight=defaultWindow?.size[1]??card.art;
+  const iconY=reference?.icons.attack[1]??artY;
   const iconSize = Math.min(card.artIcon, card.art);
   const trim = card.trim, blocked = theme.cardSkin.blocked;
   // The cost straddles the top-left corner; the title banner and frame carry rarity.
   const disc = card.costPosition??[-w / 2 + d / 2 - trim.costOverhang, top - d / 2 + trim.costOverhang];
-  const typeY = top - card.nameBand - card.art - card.typeLine / 2 - b;
+  const typeY = reference?.typePosition[1]??top - card.nameBand - card.art - card.typeLine / 2 - b;
   const bandBottom = top - b - card.nameBand;
   const picture = (name, values, id, colour = c.text) => ({...plate(name,values,colour),image:id});
+  const flowingText=(...args)=>{const control=text(...args);if(reference)control.text.valign='top';return control;};
   const hidden = control => ({...control, visible:false});
   const orb = (name, values, colour, id = image.disc) => ({...plate(name, values, colour), image:id});
   // STS AbstractCard.renderGlow: the hot card wears a wide soft halo; a 4px rim read as unselected.
@@ -57,26 +66,26 @@ export function cardFaceChildren(theme, context, interactive = true) {
     plate('nameBand', frame([0,nameY],[w-b*2,card.nameBand]), c.rarityBand.basic),
     plate('nameRule', frame([0,bandBottom],[w-b*2,b]), c.rarity.basic),
     // artPlate is the picture's 1px keyline; artWell is the dark window inside it.
-    plate('artPlate', frame([0,artY],[w-b*2,card.art]), c.cardType.attack),
-    plate('artWell', frame([0,artY],[w-b*2-trim.keyline*2,card.art-trim.keyline*2]), c.cardWell),
+    plate('artPlate', frame([0,artY],[artWidth,artHeight]), c.cardType.attack),
+    plate('artWell', frame([0,artY],[artWidth-trim.keyline*2,artHeight-trim.keyline*2]), c.cardWell),
     {name:'skin',kind:'container',size:[w,h],children:[
       ...Array.from({length:theme.cardSkin.bandSteps},(_,i)=>plate('band'+(i+1),frame([0,nameY+card.nameBand/2-(i+.5)*card.nameBand/theme.cardSkin.bandSteps],[w-b*2,card.nameBand/theme.cardSkin.bandSteps+.1]),c.rarityBand.basic)),
       plate('gloss',frame([0,top-b-1],[w-b*2,1]),c.text),
-      ...['attack','skill','power'].map(kind=>({name:kind,kind:'container',position:[0,artY],size:[w-b*2,card.art],children:
-        [0,1.5].map((inset,index)=>({name:index?'well':'edge',kind:'container',size:[w-b*2,card.art],children:
-          windowParts(kind,w-b*2-inset*2,card.art-inset*2,index?c.cardWell:c.energy,picture,plate,frame)
-        }))})),
+      ...['attack','skill','power'].map(kind=>{const spec=reference?.windows[kind],width=spec?.size[0]??w-b*2,height=spec?.size[1]??card.art;return {name:kind,kind:'container',position:spec?[...spec.position]:[0,artY],size:[width,height],children:
+        [0,1.5].map((inset,index)=>({name:index?'well':'edge',kind:'container',size:[width,height],children:
+          windowParts(kind,width-inset*2,height-inset*2,index?c.cardWell:c.energy,picture,plate,frame,spec)
+        }))};}),
     ]},
     ...(theme.presentationProfile==='v25-reference'?[{name:'v25Surface',kind:'container',position:[0,0],size:[w,h],visible:false,children:[]}]:[]),
-    text('name', frame(card.title.position,[card.title.width,Math.max(card.nameBand,l.nativeText.lineHeight)]), '', f.cardName,theme.cardSkin.text.title),
-    ...(node ? Object.entries(icon.cardArt).map(([kind,id]) => hidden(picture(`art_${kind}`,[0,artY,iconSize,iconSize],id)))
-      : [picture('art',[0,artY,iconSize,iconSize],icon.cardArt.attack)]),
+    flowingText('name', frame(card.title.position,[card.title.width,Math.max(card.nameBand,l.nativeText.lineHeight)]), '', f.cardName,theme.cardSkin.text.title),
+    ...(node ? Object.entries(icon.cardArt).map(([kind,id]) => hidden(picture(`art_${kind}`,[0,reference?.icons[kind]?.[1]??iconY,iconSize,iconSize],id)))
+      : [picture('art',[0,iconY,iconSize,iconSize],icon.cardArt.attack)]),
     // Type pill on the picture's lower edge, wide enough for a moved "＋2" marker.
     hidden(plate('typeEdge', frame([0,typeY],[trim.typeTag[0]+trim.keyline*2,trim.typeTag[1]+trim.keyline*2]), c.gold)),
     hidden(plate('typeTag', frame([0,typeY],trim.typeTag), c.cardWell)),
     ...[['tagEdge',trim.typeTag[0]+trim.keyline*2,trim.typeTag[1]+trim.keyline*2,c.gold],['tagBody',...trim.typeTag,c.cardWell]].map(([name,width,height,colour])=>({name,kind:'container',position:[0,typeY],size:[width,height],children:roundedParts(width,height,height/2,colour,picture,plate,frame)})),
     text('type', frame([0,typeY],[w-s.s,l.nativeText.lineHeight]), '', f.minimum, c.gold),
-    text(node?'description':'label', frame([0,-top+card.textBox[1]/2+s.border],card.textBox), '', f.card),
+    flowingText(node?'description':'label', frame(reference?.bodyPosition??[0,-top+card.textBox[1]/2+s.border],card.textBox), '', f.card,theme.cardSkin.text.body??c.text),
     orb('roleRing',frame([0,-h/2],[16,16]),c.cardWell),
     {name:'roleMark',kind:'container',position:[0,-h/2],size:[11,11],children:Object.keys(theme.cardSkin.roles).map(role=>({name:role,kind:'container',size:[11,11],children:emblem(role,picture,c.energy,c.cardWell)}))},
     // One native opacity layer: overlapping rounded parts would darken the centre twice.

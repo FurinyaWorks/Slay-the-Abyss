@@ -96,6 +96,40 @@ local function check(name,body)
  if ok then print('V25_SKIN_'..name..'_PASS')else failures=failures+1;print('V25_SKIN_'..name..'_FAIL '..tostring(why))end
 end
 
+check('FINAL_CONTENT_GEOMETRY',function()
+ local h,u,p=setup({'strike','defend','inflame','strike','defend','inflame'},{'cultist'})
+ F.Combat.draw(h.run.combat,20);h:refresh()
+ local Display=require('abyss_card_display');local seen={}
+ local function picture(control,id)control:SetImage('static',id)end
+ for i,instance in ipairs(h.run.combat.hand)do
+  local definition=F.Combat.cardDefinition(h.run.combat,instance);local kind=definition.type
+  local face=p:GetChild('card'..i);local label=face:GetChild('label');local art=face:GetChild('art')
+  local spec=H.F.Theme.layout.card.v25Content
+  assert(spec,'missing final-CSS card frames')
+  assert(label.y==spec.bodyPosition[2],'normal runtime body position overwrote the frozen frame')
+  assert(art.y==spec.icons[kind][2],'live card art reset to the old generic centre')
+  local well=face:GetChild('skin'):GetChild(kind):GetChild('well')
+  local fill=well:GetChild(kind=='skill' and 'vertical' or kind=='power' and 'arch' or 'upper').imageColor
+  local expected=H.F.Theme.cardSkin.artWells[kind]
+  assert(fill.r==expected.r and fill.g==expected.g and fill.b==expected.b,'wrong final source well colour')
+  Display.writeBody(label,string.rep('完整正文不能丢失。',40),face)
+  assert(label.sizeDeltaY==H.F.Theme.layout.card.longTextBox[2],'long-text fallback was removed')
+  for name,window in pairs(spec.windows)do
+   local group=face:GetChild('skin'):GetChild(name)
+   assert(math.abs(group.scale[2]*window.size[2]-H.F.Theme.layout.card.longTextArt)<.00001,'long-text type window did not respect its actual source height')
+  end
+  Display.writeBody(label,'测试正文。',face);Display.writeArt(art,definition,picture,face)
+  assert(label.y==spec.bodyPosition[2] and art.y==spec.icons[kind][2],'long-text return lost source content position')
+  assert(face:GetChild('artPlate').y==spec.windows.attack.position[2],'compatibility window restored to the icon centre')
+  for name,window in pairs(spec.windows)do
+   local group=face:GetChild('skin'):GetChild(name)
+   assert(group.y==window.position[2] and group.scale[2]==1,'long-text return kept a compressed type window')
+  end
+  seen[kind]=true
+ end
+ assert(seen.attack and seen.skill and seen.power,'actual rules did not exercise all three card types')
+end)
+
 check('TEN_CARDS_COST_RESTORE',function()
  local deck={};for i=1,20 do deck[#deck+1]='defend'end;for i=1,10 do deck[#deck+1]='strike'end
  local h,u,p,event,tap,drain=setup(deck,{'cultist'})
@@ -221,5 +255,5 @@ assert(failures==0,tostring(failures)..' V25 card-skin integration cases failed'
   env:{...process.env,LUA_PATH:`${directory.replaceAll('\\','/')}/?.lua;./src/lua/?.lua`,LUA_PATH_5_3:`${directory.replaceAll('\\','/')}/?.lua;./src/lua/?.lua`,LUA_INIT:'',LUA_INIT_5_3:''},
  });
  assert.equal(result.status,0,result.stdout+result.stderr+String(result.error??''));
- for(const name of ['TEN_CARDS_COST_RESTORE','PILE_REOPEN','FAILURE_FALLBACK','REWARD_MAP_RELEASE','DEAD_TEMPLATE_CACHED_FACE','WRAPPER_RELEASE_RETRY'])assert.match(result.stdout,new RegExp(`V25_SKIN_${name}_PASS`));
+ for(const name of ['FINAL_CONTENT_GEOMETRY','TEN_CARDS_COST_RESTORE','PILE_REOPEN','FAILURE_FALLBACK','REWARD_MAP_RELEASE','DEAD_TEMPLATE_CACHED_FACE','WRAPPER_RELEASE_RETRY'])assert.match(result.stdout,new RegExp(`V25_SKIN_${name}_PASS`));
 });

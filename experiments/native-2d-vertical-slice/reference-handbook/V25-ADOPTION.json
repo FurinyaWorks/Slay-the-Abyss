@@ -289,6 +289,23 @@
     },
     "traces": [
       {
+        "id": "battle-turn-notice",
+        "sources": [{ "path": "battle.js", "sha256": "b81d1dbf57874df0efdf68bff2894b256bda954fc8e2f235a657085f518a1ec7", "record": "turnBanner:155；css turn-announcement/turnReveal:68，1.7s、20%/65%、±40px；非动作等待" }],
+        "projectEntry": ["scripts/v25-turn-notice-layout.mjs:applyV25TurnNoticeLayout", "src/lua/abyss_v25_turn_notice.lua:M.new/bind/playerTurn/update/reset", "src/lua/abyss_feedback.lua:bindIdle/bannerStep/update/reset", "data/presentation/ui_theme.json:v25Battle.layout.v25TurnNotice"],
+        "verification": { "tests": ["tests/v25-battle-runtime.test.mjs", "tests/v25-layout.test.mjs"], "status": "缺控件/取消复活/首牌误取消/单次setter错误均已红绿；独立原encoder对21节点UI写读同原typed合同一致，独立重入和Host探针通过；完整新候选和官方逐屏未验" },
+        "limits": "固定树无新增点击/原生分配；CSS ease数值重建，图片fade、交叉剑轮廓、原生字体与字距需同候选官方对照，不以离线测试宣称V25等效"
+      },
+      {
+        "id": "final-card-content-geometry",
+        "sources": [
+          { "path": "project-card-theme.css", "sha256": "354502472f3142a5dd2b76f39f60e7c854ce18d61f3e148a41e30284f867a819", "record": "62–71最终84%×41%窗口、78%肩部/6%圆角；76–78实际字体；82–85能力53.5%椭圆及56%图标" },
+          { "path": "sts-battle-restore.css", "sha256": "bee6138f43655ffc62ce0c0860bfacf6050fbae7bd702227a472c571c0e13f92", "record": "58 native-card-icon 44×44/50%/45%/translate；最终CSS覆盖后以真实DOM为准" }
+        ],
+        "projectEntry": ["data/presentation/ui_theme.json:v25Battle.layout.card.v25Content/cardSkin", "scripts/card-face.mjs:windowParts/flowingText/cardFaceChildren", "src/lua/abyss_card_display.lua:writeArt/bodyFrame/bodyTypeWindows/writeBody", "src/lua/abyss_battle_card_view.lua/abyss_deck_ui.lua/abyss_node_ui_faces.lua:共享正文及图标入口"],
+        "verification": { "privateRecord": "F:/New folder/.artifacts/v25-card-computed-geometry/geometry.json", "privateRecordSha256": "866c6d1212d7d35e83295805b08aade596a4327588aff4874e054125583a2287", "method": "原版实际5牌CDP border quad逆仿射，91/91原件hash一致；无注入新牌。攻击/技能126×86.09375、图标Y36.875、正文Y-59.8515625。静态和真实Host三牌型/长文恢复已有红绿；原交易断言全部保留" },
+        "limits": "源实际字体13.5/12/8.5005与自定义Sans/Type仍不等于当前16/14/14；未降低14字号门槛。Power几何来自最终CSS声明，原默认DOM无Power。长文仍保留完整正文fallback，固定纹理下的实际视觉/字体/阴影/遮罩须官方核验"
+      },
+      {
         "id": "battle-hud-layout",
         "sources": [
           {
@@ -643,6 +660,20 @@
       ".artifacts/ci565-01754/current-registration-17-final.log：历史分片/测量合同19/19，新增测试仍未测量，不是实际Full用时"
     ],
     "verificationRounds": [
+      {
+        "kind": "pinned-full-candidate-17b6b079",
+        "sourceCommit": "17b6b079e48bbb7043d247b0ea06fa74e1ec2722", "sourceDirty": false,
+        "buildId": "d4315046-5ef4-4eb7-90ac-c1f346e4b406", "candidateSha256": "d58a28437c5ee4f30e7fa58b88082a420c48e4fdee67acc040277eec50479d43",
+        "audit": { "path": ".artifacts/v25-pinned-17b6b079/audit.json", "sha256": "796b7cbfe48e4e5f7528236b69414976eeb5db53c62ccb6c66f553a639e8be16", "bytes": 209652 },
+        "conclusion": "354模块、完整UI、全部模板/图及66私有输入重建读回通过，候选hash前后不变；此历史候选不覆盖随后新增的回合提示及最终卡内容几何，不是官方导入或实机"
+      },
+      {
+        "kind": "turn-notice-and-final-card-content",
+        "log": { "path": ".artifacts/v25-content-final-alignment.log", "sha256": "a2b8614250e9d8758b484bc7c27889051d38cfa87531690f44ec79d9425bdeb9", "bytes": 4338 },
+        "tests": 41, "pass": 41, "fail": 0, "skipped": 0,
+        "engineering": { "path": ".artifacts/v25-content-engineering-alignment.log", "sha256": "dbfc1ea145954f2f3d849ea3ee7ced3396fc6680e261719498b2668a40f64ac0", "bytes": 1720 },
+        "conclusion": "相关组和工程通过；原复杂度15及字号14门槛不改，所有失败探针保留。新HEAD完整GIL/官方设备仍待"
+      },
       {
         "kind": "integration-regression",
         "log": {
