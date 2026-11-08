@@ -1,5 +1,6 @@
 import {preFormalEntrySource} from './support/formal-entry-source-inverse.mjs';
 import test from 'node:test';
+import {preLuaTimeoutPolicySource} from './helpers/lua-timeout-policy-source-inverse.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -87,5 +88,24 @@ test('PR266 keeps all four class matrices and the original per-process deadline'
  assert.deepEqual(suites[1].ranges,[[1,1],[2,2],[3,3],[4,4]]);
  assert.equal([160,180,180,200].reduce((a,b)=>a+b),720);
  assert.equal(currentRenderVariants.reduce((a,b)=>a+b),736,'current basic and upgrade variants include both admitted curses');
- assert.match(readCurrent('scripts/test-lua.mjs'),/timeout \?\?= normalizedScript\.endsWith\('tests\/lua\/encounter_coverage\.lua'\) \? 120000 : mapProperties \? 120000 : fixture \|\| composedHost \? 60000 : 30000;/);
+ validateCurrentRunner(readCurrent('scripts/test-lua.mjs'));
+});
+
+function validateCurrentRunner(source){
+ const previous=preLuaTimeoutPolicySource('scripts/test-lua.mjs',source);
+ assert.notEqual(previous,source,'complete reviewed central Lua timeout policy');
+ assert.match(previous,/timeout \?\?= normalizedScript\.endsWith\('tests\/lua\/encounter_coverage\.lua'\) \? 120000 : mapProperties \? 120000 : fixture \|\| composedHost \? 60000 : 30000;/,'complete previous fixture classification remains intact');
+}
+
+test('PR266 current policy rejects classification drift and explicit timeout overrides',()=>{
+ const source=readCurrent('scripts/test-lua.mjs');
+ for(const [before,after]of [
+  ['luaTimeoutMs.heavy : luaTimeoutMs.default','luaTimeoutMs.heavy : luaTimeoutMs.heavy'],
+  ['fixture || composedHost','composedHost'],
+  ['timeout ??=','timeout ='],
+ ]){
+  const changed=source.replace(before,after);
+  assert.notEqual(changed,source,'negative control changes actual runner: '+before);
+  assert.throws(()=>validateCurrentRunner(changed),/complete reviewed central Lua timeout policy/);
+ }
 });

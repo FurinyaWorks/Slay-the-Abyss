@@ -4,8 +4,8 @@ title: 修复本轮合并后阻挡测试版的检查失败
 status: In Progress
 assignee:
   - Furinya
-created_date: '2026-10-30 11:45'
-updated_date: '2026-11-07 05:15'
+created_date: 2026-10-30 11:45
+updated_date: '2026-11-08T03:06:00Z'
 labels: []
 dependencies: []
 priority: medium
@@ -35,6 +35,8 @@ ordinal: 130000
 2026-10-30从98fef95d真实失败收口：动态actor/Power控件夹具迁移，死亡控件退役后意图更新保持源序且活actor缺失仍失败；修复独立淡出结束后死亡音效丢失，保留事件/RNG/输入断言。当前源码回归、完整CI、候选与设备分别验收，不把旧取消记录当通过。
 
 2026-11-07接续合后Full42327242610唯一rawLua超时：原9–11组三场景/六fresh Host、30秒/1MiB/1GiB全部保留。当前未能稳定复现，不强加缓存/拆片；只给现有runner补本次私有阶段收据和可靠清理，独审与当前组合正常Full继续定位真实失败。
+
+2026-11-08基于b7ed1830与Quality42437108038原始日志：先修复隔离source helper仅复制入口而漏掉epochs与证明依赖的闭包缺口，保留实时owner漂移、删除、原始证明损坏负控。与#562共享wrappers分工，独立树定向测试和独审，不重复Full；先保留预算合同失败；核实#541明确政策及遗漏的c29a4cff独审修复后，只承接同一已批准合同，不改运行器或执行阈值，历史真实超时风险仍单独追踪。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -65,4 +67,8 @@ PR377最新整合承接PR378事件与PR381必要修复：目录hash与原生怪�
 实际develop2ad的合后Full42338740273在Sapphire历史JS第一片失败：原30秒含源包与构建，Lua仅余8436ms。保留原始失败；修复真实junction归属识别并补原测试阶段诊断，1730输出/原哈希、21原场景/5片/每片30秒不变。当前架构组合49/49通过；本机阶段记录不冒充托管根因或根治，继续正常Full验证，AC不提前勾。附件见docs/evidence/m7-launch-source-20261107.json。
 
 精确独审发现新增诊断前缓存剩余预算的细微漂移，已恢复runLua呼叫处实时remaining()，只补测受影响的分组与全部原Sapphire21场景2/2通过。首次49项与严格预算补测分别保留版本身份，未用旧日志冒充新头；托管Full仍待。
+
+2026-11-08按b7ed1830合后Quality真实日志修复五个隔离helper闭包、Reward完整当前模块装配及#541遗漏的七份预算合同；独审通过，专项5/25/9项通过，原SCC上限保留。未改生产源码/预算/CI阈值、不跑Full；三份来源合同仍15项失败交共享wrapper协调者，当前Full、合并、候选与设备均未验。证据见docs/backlog-details/M7-MAINLINE-CI-REPAIR-20261108.md，任务继续In Progress。
+
+发布前#563/#562合后develop前移7821a7f4，本切片19路径零交集线性接续，15份已审测试代码字节不变。最终组合仅重验受影响39项（隔离5、预算25、Reward9）全部通过，Full与其余来源合同仍待，不改变任务状态或AC。
 <!-- SECTION:NOTES:END -->

@@ -4,6 +4,7 @@ import {historicalTest} from './helpers/historical-baseline-inputs.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import {preLuaTimeoutPolicySource} from './helpers/lua-timeout-policy-source-inverse.mjs';
 import { originalLuaRunner } from './helpers/ci-lua-runner-inverse.mjs';
 import {originalMainPotionFixture,assertMainPotionActionHelper} from './helpers/main-potion-fixture-inverse.mjs';
 
@@ -88,11 +89,33 @@ historicalTest('potion context inverse and coverage guards reject lost assertion
   assert.throws(() => validateRunner(longerDeadline), /unchanged runner and deadlines/);
 });
 
+function validateCurrentRunner(source) {
+  assert.doesNotMatch(source,/battle_ui_potion_target_context/,'no current family-specific timeout exception');
+  // Only the complete reviewed runner and freshly read policy owner may map
+  // back to the ordinary classification; retain the historical oracle above.
+  const previous=preLuaTimeoutPolicySource('scripts/test-lua.mjs',source);
+  assert.notEqual(previous,source,'complete reviewed central Lua timeout policy');
+  assert.match(previous,/fixture \|\| composedHost \? 60000 : 30000;/,'context fixtures retain the ordinary classification');
+}
+
 test('current potion context discovery and wrappers retain both complete ranges and the ordinary budget',()=>{
   validatePartitions(ranges,read(tail));
   const discovered=readdirSync('tests/lua').filter(name=>/^battle_ui_potion_target_context(?:_slice_\d+)?\.lua$/.test(name)).map(name=>'tests/lua/'+name).sort();
   assert.deepEqual(discovered,[entry,tail]);
   const runner=read('scripts/test-lua.mjs');
-  assert.doesNotMatch(runner,/battle_ui_potion_target_context/);
-  assert.match(runner,/fixture \|\| composedHost \? 60000 : 30000;/);
+  validateCurrentRunner(runner);
+});
+
+test('current potion context budget rejects classification drift, timeout overrides and a missing wrapper',()=>{
+  const source=read('scripts/test-lua.mjs');
+  for(const [before,after]of [
+    ['luaTimeoutMs.heavy : luaTimeoutMs.default','luaTimeoutMs.heavy : luaTimeoutMs.heavy'],
+    ['fixture || composedHost','composedHost'],
+    ['timeout ??=','timeout ='],
+  ]){
+    const changed=source.replace(before,after);
+    assert.notEqual(changed,source,'negative control changes actual runner: '+before);
+    assert.throws(()=>validateCurrentRunner(changed),/complete reviewed central Lua timeout policy/);
+  }
+  assert.throws(()=>validatePartitions(ranges,''),/executable tail wrapper/);
 });

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,mkdtempSync,mkdirSync,writeFileSync,existsSync,rmSync,symlinkSync,renameSync,copyFileSync} from 'node:fs';
+import {readFileSync,mkdtempSync,mkdirSync,writeFileSync,existsSync,rmSync,symlinkSync,renameSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
@@ -9,6 +9,7 @@ import {potionCallbackBefore,potionCallbackSourceProof as proof,prePotionCallbac
 import {preM7FinalSource,m7FinalReader} from './helpers/m7-core-final-source-inverse.mjs';
 import {preRelicQuerySource,relicQueryReader} from './helpers/relic-query-source-inverse.mjs';
 import {prepareRound3CatalogModuleRetirement as retireHistoricalCatalog} from './helpers/round3-catalog-source-inverse.mjs';
+import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const owners=Object.keys(proof.files),originals=owners.filter(p=>Object.hasOwn(proof.files[p],'beforeSource'));
@@ -120,10 +121,8 @@ test('the final M7 outer seam and existing relic chain preserve their exact olde
 
 test('a detached source-only import observes actual file drift and deletion after warmup',async t=>{
  const root=isolated(t);
- for(const path of owners)write(root,path,read(path));
- for(const name of ['potion-callback-source-inverse.mjs','potion-callback-source-proof.json','colorless-catalog-before-2ad07111.json.gz'])copyFileSync('tests/helpers/'+name,write(root,'tests/helpers/'+name,''));
+ const raw=copyCurrentSourceFixture(root);
  const {prePotionCallbackSource:detached}=await import(pathToFileURL(join(root,'tests/helpers/potion-callback-source-inverse.mjs')));
- const raw=p=>readFileSync(join(root,p),'utf8');
  for(const owner of owners){
   const path=originals[0],source=read(path);
   assert.equal(detached(path,source,{readSource:raw}),proof.files[path].beforeSource);

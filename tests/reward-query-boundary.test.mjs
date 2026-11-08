@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
+import {readFileSync,readdirSync,mkdirSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {checkArchitecture,analyzeSources} from '../scripts/check-architecture.mjs';
 import {dependencyCycles} from '../scripts/lua-quality-metrics.mjs';
@@ -11,8 +12,13 @@ test('reward query consumers use capabilities and retain actual Run transaction 
  assert.deepEqual(graph.edges.filter(e=>consumers.includes(e.from)&&e.to==='abyss_relic_hooks'),[],'[REWARD_BOUNDARY] mixed Session facade returned');
  for(const from of consumers)assert(graph.edges.some(e=>e.from===from&&e.to==='abyss_run'),'real transaction owner must remain visible');
  const cycle=dependencyCycles(graph.nodes,graph.edges).find(c=>c.members.includes('abyss_run'));
- assert.equal(cycle.members.length,15);assert.equal(cycle.edges.length,56);
- assert.equal(new Set(cycle.edges.map(e=>e.from+':'+e.to)).size,38);
+ // SCC size may shrink as unrelated command owners are separated. The real
+ // boundary is that query providers cannot join the Run transaction cycle.
+ assert((cycle?.members.length??0)<=15,'Run cycle cannot exceed the original member budget');
+ assert((cycle?.edges.length??0)<=56,'Run cycle cannot exceed the original require-position budget');
+ assert(new Set((cycle?.edges??[]).map(e=>e.from+':'+e.to)).size<=38,'Run cycle cannot exceed the original module-pair budget');
+ for(const from of consumers)assert(graph.edges.some(e=>e.from===from&&e.to==='abyss_relic_queries'),'query capability owner must remain visible');
+ for(const provider of ['abyss_relic_queries','abyss_relic_family_combat'])assert(!cycle?.members.includes(provider),'[REWARD_BOUNDARY] query provider joined Run transaction cycle: '+provider);
 });
 test('reward query architecture rule rejects immediate and deferred facade regression',()=>{
  const policy=JSON.parse(readFileSync('config/architecture.json','utf8'));
@@ -35,9 +41,24 @@ for(const group of ['cold','dynamic','cards','shop'])test(`independent ${group} 
  buildLuaData();const rows=[];
  for(const variant of ['old','current']){
   const {result,directory}=run(variant,group);assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);
-  const receipt=JSON.parse(result.stdout);assert(receipt.checkpoints>0);rows.push({receipt,graph:readFileSync(directory+'/graph.jsonl')});
+  const manifest=JSON.parse(readFileSync(directory+'/source-manifest.json','utf8'));
+  const hash=s=>createHash('sha256').update(s).digest('hex');
+  assert.equal(manifest.variant,variant);assert.equal(manifest.group,group);assert.equal(manifest.mutation,'none');
+  const proof=JSON.parse(readFileSync('tests/helpers/reward-query-boundary-before.json','utf8'));
+  const files=Object.fromEntries(readdirSync('src/lua').filter(n=>n.endsWith('.lua')).sort().map(name=>{
+   const path='src/lua/'+name;
+   const source=variant==='old'&&proof.files[path]?proof.files[path].beforeSource:readFileSync(path,'utf8').replaceAll('\r\n','\n');
+   return [path,{sha256:hash(source),bytes:Buffer.byteLength(source)}];
+  }));
+  assert.deepEqual(manifest.files,files,'VM loads the complete actual dependency context with only the historical reward owners substituted');
+  if(variant==='current'){
+   assert.deepEqual(Object.keys(manifest.files),Object.keys(rows[0].manifest.files),'both VMs contain every current module, including new dependencies');
+   const changed=Object.keys(files).filter(path=>files[path].sha256!==rows[0].manifest.files[path].sha256);
+   assert.deepEqual(changed,consumers.map(name=>'src/lua/'+name+'.lua'),'only the three reward owners differ between independent VMs');
+  }
+  const receipt=JSON.parse(result.stdout);assert(receipt.checkpoints>0);rows.push({receipt,manifest,graph:readFileSync(directory+'/graph.jsonl')});
  }
- assert.equal(rows[0].receipt.checkpoints,rows[1].receipt.checkpoints);assert.deepEqual(rows[0].graph,rows[1].graph,'complete values/aliases/returns/error/RNG graph differs');
+ assert.equal(rows[0].receipt.checkpoints,rows[1].receipt.checkpoints);assert(rows[0].graph.equals(rows[1].graph),'complete values/aliases/returns/error/RNG graph differs');
 });
 const expectedKills={
  'managed-bowl':'[REWARD_BOUNDARY] Bowl owns is not Prayer Wheel: false ~= true',

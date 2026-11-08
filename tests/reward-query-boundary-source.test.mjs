@@ -1,13 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,writeFileSync,mkdirSync,mkdtempSync,copyFileSync,rmSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
-import {join,dirname} from 'node:path';
+import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {rewardQueryBoundaryProof as proof,preRewardQueryBoundarySource as project,rewardQueryBoundaryReader as reader} from './helpers/reward-query-boundary-source-inverse.mjs';
 import {preM7FinalSource,m7FinalReader} from './helpers/m7-core-final-source-inverse.mjs';
 import {preRelicQuerySource} from './helpers/relic-query-source-inverse.mjs';
+import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
 const paths=Object.keys(proof.files),config='config/architecture.json';
@@ -114,9 +115,7 @@ test('reader wrappers never retain successful permissions and later same-call co
 test('an isolated copied helper has a complete closure and cannot borrow live owners after warm edits or deletion',()=>{
  const root=mkdtempSync(join(tmpdir(),'reward-query-source-'));
  try{
-  for(const path of [...paths,'tests/helpers/reward-query-boundary-source-inverse.mjs','tests/helpers/reward-query-boundary-before.json']){
-   mkdirSync(dirname(join(root,path)),{recursive:true});copyFileSync(path,join(root,path));
-  }
+  copyCurrentSourceFixture(root);
   const script=`
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,rmSync} from 'node:fs';
@@ -132,7 +131,7 @@ for(const host of paths)for(const linked of paths){
 console.log('ISOLATED_REWARD_QUERY_SOURCE_PASS');`;
   const result=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:root,encoding:'utf8',timeout:30000,maxBuffer:1024*1024});
   assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);assert.match(result.stdout,/ISOLATED_REWARD_QUERY_SOURCE_PASS/);
-  const proofPath=join(root,'tests/helpers/reward-query-boundary-before.json');
+  const proofPath=join(root,'tests/helpers/epochs/reward/tests/helpers/reward-query-boundary-before.json');
   writeFileSync(proofPath,readFileSync(proofPath,'utf8').replace('d8a57cae','e8a57cae'));
   const negative=spawnSync(process.execPath,['--input-type=module','-e',"import './tests/helpers/reward-query-boundary-source-inverse.mjs'"],{cwd:root,encoding:'utf8',timeout:30000,maxBuffer:1024*1024});
   assert.ifError(negative.error);assert.notEqual(negative.status,0);assert.match(negative.stderr,/complete reward query boundary source proof/);

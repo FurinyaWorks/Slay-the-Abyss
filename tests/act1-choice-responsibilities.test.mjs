@@ -20,6 +20,7 @@ import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {act1ChoiceBefore as before,preAct1ChoiceSource,act1ChoiceReader} from './helpers/act1-choice-source-inverse.mjs';
+import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
 function replay(source,fixture,group){
  mkdirSync('build/act1-choice',{recursive:true});
  const dir=mkdtempSync('build/act1-choice/vm-');
@@ -79,10 +80,15 @@ test('every extracted Act1 root and nested callback keeps the existing CC15 hard
 test('actual CRLF source and helper checkout retain the frozen LF Git identity',async()=>{
  const dir=mkdtempSync(join(tmpdir(),'act1-crlf-'));
  try{
-  for(const name of ['act1-choice-source-inverse.mjs','act1-choice-before.lua'])writeFileSync(join(dir,name),read('tests/helpers/'+name).replaceAll('\n','\r\n'));
-  const module=await import(pathToFileURL(join(dir,'act1-choice-source-inverse.mjs')).href);
+  const readSource=copyCurrentSourceFixture(dir,{crlf:true});
+  const module=await import(pathToFileURL(join(dir,'tests/helpers/act1-choice-source-inverse.mjs')).href);
   assert.equal(module.act1ChoiceBefore,before);
-  assert.equal(module.preAct1ChoiceSource(file,read(file).replaceAll('\n','\r\n')),before);
+  const source=readSource(file);
+  assert.equal(module.preAct1ChoiceSource(file,source,{readSource}),before);
+  writeFileSync(join(dir,file),source+'\r\n');
+  assert.throws(()=>module.preAct1ChoiceSource(file,source,{readSource}),/linked owner/);
+  rmSync(join(dir,file));
+  assert.throws(()=>module.preAct1ChoiceSource(file,source,{readSource}),/linked owner missing/);
  }finally{rmSync(dir,{recursive:true,force:true});}
 });
 test('Act1 current source enters the unchanged historical chain and rereads a mutable owner',async()=>{
