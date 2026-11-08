@@ -1,0 +1,15 @@
+{
+  "base": "a0c35db8d3c7242437f4dff0df373749b0d84985",
+  "sourcePr": 554,
+  "sourceHead": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+  "sourceRuntimeHead": "1786d84bfb7481634541b9fda61650881d9d4804",
+  "changedProduction": [
+    "src/lua/abyss_combat.lua",
+    "src/lua/abyss_card_upgrade.lua"
+  ],
+  "retainedOriginal": [
+    "src/lua/abyss_warrior_status_cards.lua",
+    "src/lua/abyss_act2_stasis.lua"
+  ],
+  "sccReductionClaim": 0
+}

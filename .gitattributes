@@ -1,7 +1,13 @@
 # Golden evidence is byte-hashed; keep it identical on Windows and Linux.
 tests/helpers/epochs/** text eol=lf
+tests/helpers/epochs/**/*.gz -text
+tests/helpers/combined-epoch/*.gz -text
 tests/helpers/combined-epoch/*.mjs text eol=lf
 tests/helpers/integration-source-closure.json text eol=lf
+tests/helpers/*-source-inverse.mjs text eol=lf
+tests/helpers/m7-core-final-source-inverse.mjs text eol=lf
+tests/helpers/relic-query-source-inverse.mjs text eol=lf
+tests/helpers/game-ui-extraction-source-inverse.mjs text eol=lf
 # Frozen independent reviews include byte-hashed logs and unified patches.
 # Preserve their Git blob bytes; patch context spaces and raw log endings
 # are evidence, not whitespace mistakes in production source.
