@@ -109,13 +109,9 @@ function M.prepareEffect(state,effect,target)
     end
     return out
 end
--- Pure queue plan. Arrays contain effect records in execution order. The host
--- reverses top while pushing to TOP, and appends bottom in its listed order.
--- consumeAllEnergy is an instruction to the host, never a mutation here.
-function M.planEffect(state,effect,context)
-    context=context or {}
-    local op=effect.op
-    local plan={top={},bottom={},consumeAllEnergy=false}
+-- Orb-derived plans inspect the live filled slots at action time. Barrage
+-- keeps one NORMAL hit per slot; Compile Driver counts distinct orb kinds.
+local function planOrbEffects(state,effect,plan,op)
     if op=='barrageDamage' then
         assert(state.orbs and integer(effect.normalAmount),'unprepared Barrage')
         assert(integer(effect.value),'invalid Barrage base')
@@ -131,20 +127,30 @@ function M.planEffect(state,effect,context)
             if not seen[ball.kind] then seen[ball.kind]=true;count=count+1 end
         end
         if count>0 then plan.top[1]=e('draw',count) end
-    elseif op=='weakIfAttacking' then
-        assert(integer(effect.value),'invalid eye attack debuff')
-        local target=assert(context.target,'eye attack target missing')
-        local intent=target.intents and target.intents[target.intentIndex]
-        assert(intent and type(intent.effects)=='table','missing target intent')
-        local attacking=false
-        for _,entry in ipairs(intent.effects) do
-            if entry.op=='damage' or entry.op=='damageAll' then
-                assert(integer(entry.value),'invalid intent base damage')
-                attacking=true
-            end
+    end
+end
+
+-- Go for the Eyes depends on the current target intent, not its displayed
+-- label. Validate every damage entry, including entries after the first hit.
+local function planIntentDebuff(effect,context,plan)
+    assert(integer(effect.value),'invalid eye attack debuff')
+    local target=assert(context.target,'eye attack target missing')
+    local intent=target.intents and target.intents[target.intentIndex]
+    assert(intent and type(intent.effects)=='table','missing target intent')
+    local attacking=false
+    for _,entry in ipairs(intent.effects) do
+        if entry.op=='damage' or entry.op=='damageAll' then
+            assert(integer(entry.value),'invalid intent base damage')
+            attacking=true
         end
-        if attacking then plan.top[1]=e('applyStatus',effect.value,{status='weak'}) end
-    elseif op=='doubleEnergy' then
+    end
+    if attacking then plan.top[1]=e('applyStatus',effect.value,{status='weak'}) end
+end
+
+-- Energy plans describe consumption; only the host spends it. X uses the
+-- captured amount unless absent/-1 and reads the current relic bonus once.
+local function planEnergyEffects(state,effect,context,plan,op)
+    if op=='doubleEnergy' then
         assert(effect.value==1 and integer(state.energy),'invalid double energy')
         -- Global source 999 energy cap is owned by the host energy operation.
         -- Avoid wrapping arithmetic here: this is an addition amount, not a sum.
@@ -162,11 +168,33 @@ function M.planEffect(state,effect,context)
             plan.bottom[1]=e('xBlockRounds',effect.blockAmount,{remaining=amount,fixed=true})
             plan.consumeAllEnergy=context.freeToPlayOnce~=true
         end
+    end
+end
+
+-- FTL reads the pre-play count captured by its host. Draw is TOP while the
+-- already prepared NORMAL hit stays BOTTOM, even when the threshold is met.
+local function planHistoryAttack(effect,context,plan)
+    assert(integer(effect.value) and integer(effect.normalAmount) and integer(effect.threshold),'unprepared FTL')
+    assert(integer(context.cardsPlayedBefore),'missing FTL turn history')
+    if context.cardsPlayedBefore<effect.threshold then plan.top[1]=e('draw',1) end
+    plan.bottom[1]=e('damage',effect.value,{normalAmount=effect.normalAmount})
+end
+
+-- Pure queue plan. Arrays contain effect records in execution order. The host
+-- reverses top while pushing to TOP, and appends bottom in its listed order.
+-- consumeAllEnergy is an instruction to the host, never a mutation here.
+function M.planEffect(state,effect,context)
+    context=context or {}
+    local op=effect.op
+    local plan={top={},bottom={},consumeAllEnergy=false}
+    if op=='barrageDamage' or op=='compileDriverDraw' then
+        planOrbEffects(state,effect,plan,op)
+    elseif op=='weakIfAttacking' then
+        planIntentDebuff(effect,context,plan)
+    elseif op=='doubleEnergy' or op=='xBlock' then
+        planEnergyEffects(state,effect,context,plan,op)
     elseif op=='ftlDamage' then
-        assert(integer(effect.value) and integer(effect.normalAmount) and integer(effect.threshold),'unprepared FTL')
-        assert(integer(context.cardsPlayedBefore),'missing FTL turn history')
-        if context.cardsPlayedBefore<effect.threshold then plan.top[1]=e('draw',1) end
-        plan.bottom[1]=e('damage',effect.value,{normalAmount=effect.normalAmount})
+        planHistoryAttack(effect,context,plan)
     else return nil end
     return plan
 end

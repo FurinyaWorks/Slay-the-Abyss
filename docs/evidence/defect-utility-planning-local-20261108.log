@@ -1,0 +1,19 @@
+✔ utility planner frozen complete source remains authenticated to develop d8a57cae (1.122916ms)
+✔ independent old/new VMs preserve plans, input graphs, validation order, dynamic reads and original errors (1361.231163ms)
+✔ the unchanged 52-case combat regression runs against old and current utility implementations (6699.795383ms)
+✔ every utility function and chunk has a complete CC15 measurement, including all new responsibilities (754.64856ms)
+✔ differential rejects semantic mutation: distinct orb count (818.116233ms)
+✔ differential rejects semantic mutation: late intent validation (836.758327ms)
+✔ differential rejects semantic mutation: X capture fallback (1350.760617ms)
+✔ differential rejects semantic mutation: X free spending (1293.296296ms)
+✔ differential rejects semantic mutation: FTL threshold (1347.982547ms)
+✔ differential rejects semantic mutation: FTL queue priority (1241.126068ms)
+✔ exact single-source inverse preserves frozen history and does not bless drift, fragments, other files or nonstrings (1.673757ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15812.642915

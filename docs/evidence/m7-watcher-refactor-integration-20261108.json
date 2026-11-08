@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-07T21:22:45.501879+00:00",
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "mergeParents": [
+    "35850732cf99450624d23e28418a366e3a9c5d2f",
+    "28c4881f911c32b9e46dfe1a9f048fc08b5182b2"
+  ],
+  "scope": "Local exact-union integration only; publication denied earlier and not retried.",
+  "status": "local_validated_independently_reviewed_pending_commit",
+  "metrics": {
+    "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+    "baseline": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "warnings": 14,
+      "requirePositions": 1920,
+      "modulePairs": 1546,
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75
+    },
+    "fourSlices": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5068,
+        "measurements": 5401,
+        "expectedMeasurements": 5401
+      },
+      "warnings": 14,
+      "requirePositions": 1919,
+      "modulePairs": 1547,
+      "scc": [
+        {
+          "members": 80,
+          "positions": 619,
+          "pairs": 398
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "ccAbove15": 234,
+      "ccAbove30": 55,
+      "maxCC": 75
+    },
+    "watcherAlone": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5054,
+        "measurements": 5387,
+        "expectedMeasurements": 5387
+      },
+      "warnings": 14,
+      "requirePositions": 1920,
+      "modulePairs": 1545,
+      "scc": [
+        {
+          "members": 80,
+          "positions": 619,
+          "pairs": 396
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75
+    },
+    "combined": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5069,
+        "measurements": 5402,
+        "expectedMeasurements": 5402
+      },
+      "warnings": 14,
+      "requirePositions": 1919,
+      "modulePairs": 1546,
+      "scc": [
+        {
+          "members": 79,
+          "positions": 615,
+          "pairs": 394
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "ccAbove15": 234,
+      "ccAbove30": 55,
+      "maxCC": 75
+    },
+    "reportRevision": "35850732cf99450624d23e28418a366e3a9c5d2f",
+    "reportRevisionNote": "Collected before integration commit; final complete source and input hashes bind the exact committed bytes. Report revision is the parent, not a measurement of parent bytes."
+  },
+  "budget": {
+    "forecastOnly": true,
+    "js": 754,
+    "lua": 1402,
+    "floors": 11,
+    "potionFloorMs": 180000,
+    "watcherFloorMs": 30000,
+    "windowsShards": 17,
+    "posixShards": 14,
+    "concurrency": 12,
+    "luaWorkers": 2,
+    "reserveMs": 60000,
+    "windowsMaxPlusReserveMs": 1726945,
+    "windowsSpareMs": 73055,
+    "posixMaxPlusReserveMs": 1129615,
+    "posixSpareMs": 70385,
+    "oldPosix13MaxPlusReserveMs": 1211895
+  },
+  "validation": {
+    "uniqueSelectedTestsWithLatestPass": 154,
+    "watcherBehavior": {
+      "passed": 10,
+      "durationMs": 22863.990914
+    },
+    "potionNarrow": {
+      "passed": 4,
+      "durationMs": 3226.277467,
+      "excluded": "13 unchanged large potion differential fixture pairs not repeated; original complete logs preserved"
+    },
+    "sourceEpochsAndConsumers": {
+      "first": {
+        "passed": 38,
+        "failed": 2,
+        "durationMs": 3797.721282
+      },
+      "corrected": {
+        "passed": 40,
+        "failed": 0,
+        "durationMs": 3758.678724
+      },
+      "reviewRegression": {
+        "redPassed": 0,
+        "redFailed": 1,
+        "redDurationMs": 103.379918,
+        "finalCombinedPassed": 5,
+        "finalCombinedDurationMs": 337.893977,
+        "note": "Exact unrounded runner durations in full retained logs, summary rounded where worker reported rounded figures."
+      }
+    },
+    "ciAndDelivery": {
+      "firstPassed": 17,
+      "firstFailed": 1,
+      "finalPassed": 92,
+      "finalFailed": 0,
+      "finalDurationMs": 1575.420579
+    },
+    "m7SourceEpoch": {
+      "passed": 1
+    },
+    "nativeUiContract": {
+      "passed": 6,
+      "durationMs": 17138.875513
+    },
+    "criticalMutationOperators": {
+      "killedByAssertion": 4,
+      "notRepositoryWideScore": true
+    },
+    "engineering": {
+      "passed": true,
+      "collectorPhaseDurationMs": 2638
+    },
+    "guidance": "pass",
+    "backlog": "pass",
+    "doctor": "exit1: unchanged five duplicate-ID groups and legacy completed directory; not green"
+  },
+  "review": {
+    "conclusion": "pass",
+    "unresolved": [],
+    "note": "Independent report outside commit binds exact final head after commit, avoiding a self-reference. One mixed-epoch source projection defect reproduced, fixed, and independently verified.",
+    "reportPath": "watcher-integration-independent-review.json"
+  },
+  "preserved": {
+    "allOriginalProductionBytes": true,
+    "allOriginalFrozenArchivesAndBehaviorTests": true,
+    "allOriginalEvidenceBytes": true,
+    "oldTestAssertionsKept": true,
+    "allMeasuredTimingMapsAndFloors": true
+  },
+  "setupNotes": [
+    "Initial sparse path hydration without --ignore-skip-worktree-bits did not execute; next tracked checkout used flag. Initial copy without -r did not copy directory; corrected recursive copy used existing pinned tool.",
+    "Initial PR empty-query returned11, explicit repo is:pr is:open returned18; fetched all18 paginated file lists; no8 production-file overlap.",
+    "First CI run correctly rejected new integration test not yet written by source worker; final actual inventory passed."
+  ],
+  "notPerformed": [
+    "public upload",
+    "PR creation",
+    "Hosted Full",
+    "full local suite",
+    "auto-merge",
+    "merge to develop",
+    "user device or GUI",
+    "official import",
+    "ready verification",
+    "device acceptance"
+  ],
+  "artifacts": {
+    "docs/evidence/watcher-integration-20261108/current-engineering.json.gz": "263b6839d9e41dcd3cb324734e6e427a578259353f497b7e92d2093e5f8556bf",
+    "docs/evidence/watcher-integration-20261108/metrics.json": "b98f038f639375ad2d3f697b357c41dfb44ece31d4837fb2a47c4abd3af0dfb8",
+    "docs/evidence/watcher-integration-20261108/planning.json": "1d0a02ab6b0bf4d14d16f55d7e0fc8013ff2d87235f3954c1e422e3552e2a7bb",
+    "docs/evidence/watcher-integration-20261108/preservation.json": "800b13cad446f8595e4cfe942d00c1fadc18390e2f2ec43b0dc103831ee35eb1",
+    "docs/evidence/watcher-integration-20261108/remote-occupancy.json": "e121b6e4fd282f8e418805531167a9abc9190e7206bd233489079184ce652a00",
+    "docs/evidence/watcher-integration-20261108/validation-logs.json.gz": "dcdc53f822ad42fa107c8b58fe48904af72622f89676e2e786e68115aac3c576"
+  },
+  "logs": [
+    {
+      "path": "../watcher-integration-backlog-final.log",
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-backlog.log",
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-behavior.log",
+      "sha256": "c16027c6a1234862ce375700db1b5677f11b6f5efb9e1cecfe1e6021bc8c913c",
+      "nodeDurationMs": [
+        22863.990914
+      ]
+    },
+    {
+      "path": "../watcher-integration-build-data.log",
+      "sha256": "bb5c2e2187876b22928387e9516481bace63dbb7ea77573e29714d9a136f730a",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-build-theme.log",
+      "sha256": "e17994af45bf645ffcc4371a5ec7432198509ab37e0d981e711cd06d31eea820",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-build-ui.log",
+      "sha256": "700b6af7e4ba8ae4c28ee2bfaeb5f2315c8e671dbf0c81dba8db6b47e676aff8",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-ci-final.log",
+      "sha256": "721f4c8927828bf3aa383f99062f654bb328508ba8584c7ec14603fb51dcb4de",
+      "nodeDurationMs": [
+        1575.420579
+      ]
+    },
+    {
+      "path": "../watcher-integration-ci-first.log",
+      "sha256": "2dce2a86c75d5f64421951a03b019311be595ecab7640e230404a3cdee228292",
+      "nodeDurationMs": [
+        1606.906778
+      ]
+    },
+    {
+      "path": "../watcher-integration-doctor.log",
+      "sha256": "41ec373ed9871a1bdc86d07865141fe89ca39d8163789d12e940e8783de30ecc",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-engineering.log",
+      "sha256": "b8bc9d6b7fc337e8bdc54b5100bb6b3809da11580a01ec1b6e03ae423c34530f",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-finalization-guide.log",
+      "sha256": "ca69a65e140a7b9fe9a33f7fa9273ac5136e74c81a8a5ba472d8d757c9800af6",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-guidance-final.log",
+      "sha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-guidance.log",
+      "sha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-m7-epoch.log",
+      "sha256": "b9212ebc4565ddaa96a651409d85fb280e5bfe33bc11f8b13fc86c3815d13165",
+      "nodeDurationMs": [
+        157.278545
+      ]
+    },
+    {
+      "path": "../watcher-integration-mutations.log",
+      "sha256": "a28cf344bc4f1d5e3fb7538abfa3e294acaa9a6709a8f206c8497ab361ce8908",
+      "nodeDurationMs": []
+    },
+    {
+      "path": "../watcher-integration-native-contract.log",
+      "sha256": "773876913c01baf64f6568f369499e671d8c25dd7aa50c57b6610cb354ba4ae9",
+      "nodeDurationMs": [
+        17138.875513
+      ]
+    },
+    {
+      "path": "../watcher-integration-potion-narrow.log",
+      "sha256": "5b6bc75ebc37c8aa94eb067dab9d0414efb82fc28483225e3f4c8c5175c75192",
+      "nodeDurationMs": [
+        3226.277467
+      ]
+    },
+    {
+      "path": "/tmp/m7-source-logs/source-1.log",
+      "sha256": "8d67a890276cfd8dce3ae00ec1d3d7c6d702ff4bdbdb34175ac4e6d7914777c3",
+      "nodeDurationMs": [
+        3797.721282
+      ]
+    },
+    {
+      "path": "/tmp/m7-source-logs/source-2.log",
+      "sha256": "0f262a83a0b2fca8d5eea827dc2b4b5617fda092b9c8d31d70570e8066e1b9e1",
+      "nodeDurationMs": [
+        3758.678724
+      ]
+    },
+    {
+      "path": "/tmp/m7-source-logs/standalone-config-green-final.log",
+      "sha256": "21052cd488973edf6f97c52fa1a3095589672e700bcdc35d82a773ccff6c2c3c",
+      "nodeDurationMs": [
+        337.893977
+      ]
+    },
+    {
+      "path": "/tmp/m7-source-logs/standalone-config-green.log",
+      "sha256": "5b92d4352b94890f26aaf412ab9865e6fafb2db3006d3720c05042046123108d",
+      "nodeDurationMs": [
+        366.195643
+      ]
+    },
+    {
+      "path": "/tmp/m7-source-logs/standalone-config-red.log",
+      "sha256": "b06f2d28a3c223a9e4898e950257f70977109746b00d608ca5c9468c726fa25d",
+      "nodeDurationMs": [
+        103.379918
+      ]
+    }
+  ]
+}

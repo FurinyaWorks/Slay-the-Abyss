@@ -30,6 +30,7 @@ local function relicActions(combat,state,effect)
     end
     return false
 end
+local function classPotionOrbHost()return require('abyss_orbs')end
 local function reactions(c)
     local M,state,action,queue=c.combat,c.state,c.action,c.queue
     local ending,result=endingReactions(M,state,action.effect)
@@ -55,7 +56,7 @@ local function reactions(c)
         return true,require('abyss_silent_final_cards').beginRetain(state)and 'pause'or true
     end
     if action.effect.op=='classPotionDarkness'then
-        return true,require('abyss_class_potions').darkness(M,state,action.effect,queue)
+        return true,require('abyss_class_potions').darkness(M,state,action.effect,queue,classPotionOrbHost)
     end
     return false
 end

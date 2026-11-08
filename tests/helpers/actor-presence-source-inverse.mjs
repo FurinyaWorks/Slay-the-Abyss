@@ -3,8 +3,9 @@ export * from './epochs/actor/tests/helpers/actor-presence-source-inverse.mjs';
 import { preActorPresenceSource as original } from './epochs/actor/tests/helpers/actor-presence-source-inverse.mjs';
 import {sourceEpoch} from './combined-epoch/source-epoch.mjs';
 import {readFileSync} from 'node:fs';
-const live=p=>readFileSync(p,'utf8');
+const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preActorPresenceSource(path,source,{readSource=live}={}){
+ readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'actor',readSource});
  return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'actor')});
 }

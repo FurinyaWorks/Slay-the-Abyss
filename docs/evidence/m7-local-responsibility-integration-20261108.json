@@ -1,0 +1,1268 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-three-slice-responsibility-integration",
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "sourceCommits": [
+    "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+    "8d3ce9db78408640430be9ef619ace54e5c3721f",
+    "4fe31ed4a3aa240cc21e438dceb04483e5e4337c"
+  ],
+  "productionPaths": [
+    "src/lua/abyss_scry.lua",
+    "src/lua/abyss_shivs.lua",
+    "src/lua/abyss_act3_ai.lua"
+  ],
+  "preservation": {
+    "uniqueFiles": [
+      {
+        "path": "docs/backlog-details/M7-SCRY-CHOICE-RESPONSIBILITIES-20261107.md",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "1cbe3d2ca695ccb70b5181a3ef4545a8ce16cfb561c3e061e75cf39c4891eca0"
+      },
+      {
+        "path": "docs/evidence/m7-scry-choice-baseline-engineering-20261107.json.gz",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "f1ad1612374296ed39d4733bb622b601d60a0f04d97dd9fef2a1b339285ff036"
+      },
+      {
+        "path": "docs/evidence/m7-scry-choice-combat-graph-20261107.json.gz",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "eda653d524e3fddd8b25e7582082440a686a4a42e5045bc77b554887fe977739"
+      },
+      {
+        "path": "docs/evidence/m7-scry-choice-current-engineering-20261107.json.gz",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "45a45e563aa79cc9c1f00661b74bf1eff1bf5e4b1e6ef381a95d3e265a3111df"
+      },
+      {
+        "path": "docs/evidence/m7-scry-choice-direct-graph-20261107.json.gz",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "c0771e822ff7e87879df7b399504520ed9d02a4bb667fbd9233824bda37ae8fe"
+      },
+      {
+        "path": "docs/evidence/m7-scry-choice-responsibilities-20261107.json",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "fe7681bff9d141318be9c3ef7b435c30ddb7312b066904be18870830bc85de7c"
+      },
+      {
+        "path": "src/lua/abyss_scry.lua",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "5bad4886300de2d8a46105185f49869ac8b0c61114cb109b1243932f3cfca6c4"
+      },
+      {
+        "path": "tests/fixtures/scry-choice-before.lua",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "786a5b20a63abaf08f1251402238e410fedf4aefab47abd75a38ab9fc3f1d4a5"
+      },
+      {
+        "path": "tests/helpers/scry-choice-responsibilities.lua",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "0e3c521cf3a3dbbd328db3c802c659dbbe49f8fc540fbe3a17daa96be77c4cbe"
+      },
+      {
+        "path": "tests/helpers/scry-choice-responsibilities.mjs",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "67a2a8a1a8008740a9c27dac6ea403d6b366ee9732f3c72456f9ea3876f7e3f1"
+      },
+      {
+        "path": "tests/scry-choice-responsibilities.test.mjs",
+        "sourceCommit": "68f6b914b15cc2189399b2a82b28fcdc677bbec4",
+        "sha256": "a6ad737a95173bb50ad16883e6a951bb7b24dcd56f9b5a1034dfe1e2f8d98585"
+      },
+      {
+        "path": "docs/backlog-details/M7-SHIV-TURN-RESPONSIBILITIES-20261107.md",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "afef77ca57ed2f023e615b089fc168d086522e3c1ae6d78788f28ee4a60531fd"
+      },
+      {
+        "path": "docs/evidence/m7-shiv-turn-baseline-engineering-20261107.json.gz",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "51d3ef9cecbc33642a97a44b10a4b7be5e513222f16bb3d099b3dc8d104bd186"
+      },
+      {
+        "path": "docs/evidence/m7-shiv-turn-combat-graph-20261107.json.gz",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "ba23d1cbf39ebda86bcb32931ee00d23608194a45a6b279cf4c5559a82000f0a"
+      },
+      {
+        "path": "docs/evidence/m7-shiv-turn-current-engineering-20261107.json.gz",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "79b453ee8b1dbdcfbb23c694efd1717a6a08898b3542eb1277fda315d372de8d"
+      },
+      {
+        "path": "docs/evidence/m7-shiv-turn-direct-graph-20261107.json.gz",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "81678d5df1e94aeba0393bc6a9b1b1ea9b77ff6b572d99b5148f875ffce2f38a"
+      },
+      {
+        "path": "docs/evidence/m7-shiv-turn-responsibilities-20261107.json",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "2c8f11e1337d20d4771afc49abac303c0e6e5100e1348aa9ddd5f87cf8091867"
+      },
+      {
+        "path": "src/lua/abyss_shivs.lua",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565"
+      },
+      {
+        "path": "tests/fixtures/shiv-turn-before.lua",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e"
+      },
+      {
+        "path": "tests/helpers/shiv-turn-responsibilities.lua",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "56610cdf349a2382ea0391ba350ab6b3e1860260756fdd309305015617ad0249"
+      },
+      {
+        "path": "tests/helpers/shiv-turn-responsibilities.mjs",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "9eec1196817b7eeb7894528f50862939968f84a40820c6af8c79b01352094290"
+      },
+      {
+        "path": "tests/shiv-turn-responsibilities.test.mjs",
+        "sourceCommit": "8d3ce9db78408640430be9ef619ace54e5c3721f",
+        "sha256": "505ffcef75655c195969942a2dadfcfdaf6537ddf4d07af1c4b6c7b9f0c4ce13"
+      },
+      {
+        "path": "docs/backlog-details/M7-ACT3-AI-RESPONSIBILITIES-20261107.md",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "f92ebaee4c55a14fc0800e289263b05c150964a139096e0005be3b0fadd1f806"
+      },
+      {
+        "path": "docs/evidence/act3-ai-planning-20261107.json",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "c36473ed95965fe719c62847d94cf80ace4805faffd12054b30b4e5bf1225005"
+      },
+      {
+        "path": "docs/evidence/m7-act3-ai-baseline-engineering-20261107.json.gz",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "51d693cfdc62e0196d234c73b7b2056031b5e3df8740b4e31798c219a1c25ef3"
+      },
+      {
+        "path": "docs/evidence/m7-act3-ai-current-engineering-20261107.json.gz",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "50e836089df3d1b56710beed929fac685b3b8424c4bab5cb305b2fd11ac9c60e"
+      },
+      {
+        "path": "docs/evidence/m7-act3-ai-responsibilities-20261107.json",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "547cc6383626a4a4b1fec785e456c0d5faa1a391b24ed520aa9b450b81ccc8c7"
+      },
+      {
+        "path": "src/lua/abyss_act3_ai.lua",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2"
+      },
+      {
+        "path": "tests/act3-ai-responsibilities.test.mjs",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "3bd0fc322053704ab369d7c12fc882340048022b4e1ac4c6b88e5238b74a2711"
+      },
+      {
+        "path": "tests/fixtures/act3-ai-before.lua",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19"
+      },
+      {
+        "path": "tests/helpers/act3-ai-responsibilities.lua",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "aca8dda4ed2ad13ed60dd540a48d2ea52d48a7e347605e67cef9ac49d43f70f5"
+      },
+      {
+        "path": "tests/helpers/act3-ai-responsibilities.mjs",
+        "sourceCommit": "4fe31ed4a3aa240cc21e438dceb04483e5e4337c",
+        "sha256": "939dc24786b73045ad6b331902352fc02d92d66af2f56edcb201e225666d15c7"
+      }
+    ],
+    "sharedFiles": [
+      "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+      "scripts/check-lua-static.mjs",
+      "tests/ci-complete-calibration.test.mjs",
+      "tests/responsibility-complexity.test.mjs"
+    ],
+    "originalBranchesUntouched": true
+  },
+  "metrics": {
+    "baseline": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "errors": [],
+      "warnings": 14,
+      "positions": 1920,
+      "pairs": 1546,
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "targets": {
+        "src/lua/abyss_act3_ai.lua": {
+          "lines": 90,
+          "sha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19",
+          "functions": [
+            {
+              "name": "<chunk>",
+              "complexity": 1
+            },
+            {
+              "name": "select",
+              "complexity": 3
+            },
+            {
+              "name": "M.advance",
+              "complexity": 46
+            },
+            {
+              "name": "M.initialize",
+              "complexity": 8
+            },
+            {
+              "name": "M.preBattle",
+              "complexity": 8
+            },
+            {
+              "name": "M.beforeAction",
+              "complexity": 8
+            },
+            {
+              "name": "M.afterAction",
+              "complexity": 2
+            }
+          ]
+        },
+        "src/lua/abyss_scry.lua": {
+          "lines": 121,
+          "sha256": "786a5b20a63abaf08f1251402238e410fedf4aefab47abd75a38ab9fc3f1d4a5",
+          "functions": [
+            {
+              "name": "<chunk>",
+              "complexity": 1
+            },
+            {
+              "name": "integer",
+              "complexity": 5
+            },
+            {
+              "name": "dense",
+              "complexity": 7
+            },
+            {
+              "name": "live",
+              "complexity": 7
+            },
+            {
+              "name": "piles",
+              "complexity": 19
+            },
+            {
+              "name": "M.begin",
+              "complexity": 12
+            },
+            {
+              "name": "M.choose",
+              "complexity": 38
+            }
+          ]
+        },
+        "src/lua/abyss_shivs.lua": {
+          "lines": 191,
+          "sha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+          "functions": [
+            {
+              "name": "<chunk>",
+              "complexity": 1
+            },
+            {
+              "name": "integer",
+              "complexity": 5
+            },
+            {
+              "name": "layerInteger",
+              "complexity": 5
+            },
+            {
+              "name": "amount",
+              "complexity": 2
+            },
+            {
+              "name": "instances",
+              "complexity": 7
+            },
+            {
+              "name": "M.withCardDefinitions",
+              "complexity": 3
+            },
+            {
+              "name": "M.withInfiniteBladesDefinition",
+              "complexity": 3
+            },
+            {
+              "name": "M.created",
+              "complexity": 3
+            },
+            {
+              "name": "M.onApplied",
+              "complexity": 2
+            },
+            {
+              "name": "M.applyAccuracy",
+              "complexity": 8
+            },
+            {
+              "name": "M.onDrawOrDiscard",
+              "complexity": 3
+            },
+            {
+              "name": "M.removeAccuracy",
+              "complexity": 3
+            },
+            {
+              "name": "M.applyInfiniteBlades",
+              "complexity": 4
+            },
+            {
+              "name": "M.startTurn",
+              "complexity": 33
+            },
+            {
+              "name": "M.adaptDefinition",
+              "complexity": 8
+            }
+          ]
+        }
+      }
+    },
+    "current": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5066,
+        "measurements": 5399,
+        "expectedMeasurements": 5399
+      },
+      "errors": [],
+      "warnings": 14,
+      "positions": 1920,
+      "pairs": 1546,
+      "ccAbove15": 234,
+      "ccAbove30": 55,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "targets": {
+        "src/lua/abyss_act3_ai.lua": {
+          "lines": 105,
+          "sha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2",
+          "functions": [
+            {
+              "name": "<chunk>",
+              "complexity": 1
+            },
+            {
+              "name": "select",
+              "complexity": 3
+            },
+            {
+              "name": "advanceMaw",
+              "complexity": 8
+            },
+            {
+              "name": "advanceSpireGrowth",
+              "complexity": 9
+            },
+            {
+              "name": "advanceShape",
+              "complexity": 13
+            },
+            {
+              "name": "advanceOrbWalker",
+              "complexity": 8
+            },
+            {
+              "name": "M.advance",
+              "complexity": 14
+            },
+            {
+              "name": "M.initialize",
+              "complexity": 8
+            },
+            {
+              "name": "M.preBattle",
+              "complexity": 8
+            },
+            {
+              "name": "M.beforeAction",
+              "complexity": 8
+            },
+            {
+              "name": "M.afterAction",
+              "complexity": 2
+            }
+          ]
+        },
+        "src/lua/abyss_scry.lua": {
+          "lines": 144,
+          "sha256": "5bad4886300de2d8a46105185f49869ac8b0c61114cb109b1243932f3cfca6c4",
+          "functions": [
+            {
+              "name": "<chunk>",
+              "complexity": 1
+            },
+            {
+              "name": "integer",
+              "complexity": 5
+            },
+            {
+              "name": "dense",
+              "complexity": 7
+            },
+            {
+              "name": "live",
+              "complexity": 7
+            },
+            {
+              "name": "piles",
+              "complexity": 19
+            },
+            {
+              "name": "M.begin",
+              "complexity": 12
+            },
+            {
+              "name": "allowedCandidates",
+              "complexity": 11
+            },
+            {
+              "name": "selectedCards",
+              "complexity": 9
+            },
+            {
+              "name": "hasWeaveQueue",
+              "complexity": 7
+            },
+            {
+              "name": "discardSelected",
+              "complexity": 8
+            },
+            {
+              "name": "M.choose",
+              "complexity": 10
+            }
+          ]
+        },
+        "src/lua/abyss_shivs.lua": {
+          "lines": 216,
+          "sha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+          "functions": [
+            {
+              "name": "<chunk>",
+              "complexity": 1
+            },
+            {
+              "name": "integer",
+              "complexity": 5
+            },
+            {
+              "name": "layerInteger",
+              "complexity": 5
+            },
+            {
+              "name": "amount",
+              "complexity": 2
+            },
+            {
+              "name": "instances",
+              "complexity": 7
+            },
+            {
+              "name": "M.withCardDefinitions",
+              "complexity": 3
+            },
+            {
+              "name": "M.withInfiniteBladesDefinition",
+              "complexity": 3
+            },
+            {
+              "name": "M.created",
+              "complexity": 3
+            },
+            {
+              "name": "M.onApplied",
+              "complexity": 2
+            },
+            {
+              "name": "M.applyAccuracy",
+              "complexity": 8
+            },
+            {
+              "name": "M.onDrawOrDiscard",
+              "complexity": 3
+            },
+            {
+              "name": "M.removeAccuracy",
+              "complexity": 3
+            },
+            {
+              "name": "M.applyInfiniteBlades",
+              "complexity": 4
+            },
+            {
+              "name": "hasActiveEnemies",
+              "complexity": 3
+            },
+            {
+              "name": "existingUids",
+              "complexity": 3
+            },
+            {
+              "name": "validateGeneratedCount",
+              "complexity": 7
+            },
+            {
+              "name": "generatedShivs",
+              "complexity": 13
+            },
+            {
+              "name": "stampGenerationFrames",
+              "complexity": 6
+            },
+            {
+              "name": "M.startTurn",
+              "complexity": 6
+            },
+            {
+              "name": "M.adaptDefinition",
+              "complexity": 8
+            }
+          ]
+        }
+      }
+    }
+  },
+  "rawEngineering": {
+    "baseline": {
+      "path": "docs/evidence/m7-local-refactors-baseline-engineering-20261108.json.gz",
+      "sha256": "e2d82c32359ae748844bc2e7e315ca836fc9dcfa9bb2b059aec0613cfe4b18ad",
+      "uncompressedSha256": "e6c34a140edec5a68d9b661197034d6dfe20bf2ebe21c1baf2533050043743ce"
+    },
+    "current": {
+      "path": "docs/evidence/m7-local-refactors-current-engineering-20261108.json.gz",
+      "sha256": "fdcf4710d7c1f191459deaa4c24c92d75595c43324034830dfc874f04a3a981c",
+      "uncompressedSha256": "49b207afe1c51e9794335c6a593776c2ab31d030bacf97f321d9bd57b8fb67f4"
+    }
+  },
+  "behavior": {
+    "finalUniqueDifferentialAndGateTests": 49,
+    "firstPass": 48,
+    "firstFail": 1,
+    "firstFailure": "Scry Combat lacked generated abyss_data in new worktree.",
+    "resolvedBy": "Original build:data/theme/ui, then Scry file8/8; no source change.",
+    "originalAct3Tests": 13,
+    "originalLuaFixtures": [
+      "watcher_scry",
+      "run_choice_transactions_scry",
+      "watcher_flow_build",
+      "silent_shivs",
+      "watcher_master_reality_shivs"
+    ],
+    "graphManifests": {
+      "shiv/direct-manifest.json": {
+        "mode": "direct",
+        "checkpoints": 155,
+        "bytes": 575203,
+        "sha256": "ce12fee384dd94cd0dc1a0315bdbbcbd47634a3cdc4f7871df3634badf9cfb9a",
+        "beforeSourceSha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+        "afterSourceSha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+        "exactAllowedErrors": {
+          "before": {
+            "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:130: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:149: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          },
+          "after": {
+            "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:183: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:153: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          }
+        },
+        "rawErrorLocationMap": [
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          }
+        ],
+        "errorComparison": "Only complete allowlisted assertion error strings map to canonical coordinates; all other errors remain raw."
+      },
+      "shiv/combat-manifest.json": {
+        "mode": "combat",
+        "checkpoints": 6,
+        "bytes": 781601,
+        "sha256": "80fa87cefbf63307664a8432ff01053f6d93f34fd59eaa4531919083a8e22b85",
+        "beforeSourceSha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+        "afterSourceSha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+        "exactAllowedErrors": {
+          "before": {
+            "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:130: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:149: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          },
+          "after": {
+            "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:183: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:153: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          }
+        },
+        "rawErrorLocationMap": [],
+        "errorComparison": "Only complete allowlisted assertion error strings map to canonical coordinates; all other errors remain raw."
+      },
+      "act3/matrix-manifest.json": {
+        "mode": "matrix",
+        "checkpoints": 1680,
+        "bytes": 11201694,
+        "sha256": "debbd28aed0586d31c70fe954cbaa69eb389dae43179d38e0e04448aa5361fae",
+        "beforeSourceSha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19",
+        "afterSourceSha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2",
+        "exactAllowedErrors": {
+          "before": {
+            "src/lua/abyss_act3_ai.lua:12: unsupported Act3 AI": "unsupported Act3 AI"
+          },
+          "after": {
+            "src/lua/abyss_act3_ai.lua:61: unsupported Act3 AI": "unsupported Act3 AI"
+          }
+        },
+        "rawErrorLocationMap": [],
+        "errorComparison": "Only the complete unsupported-policy assertion maps to canonical coordinates; all other errors remain raw."
+      },
+      "act3/contracts-manifest.json": {
+        "mode": "contracts",
+        "checkpoints": 52,
+        "bytes": 151575,
+        "sha256": "b62421b3089bfea8bd3073a551a4e4c7c5e6c76a996c2e80bd6f2f088c6ea86e",
+        "beforeSourceSha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19",
+        "afterSourceSha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2",
+        "exactAllowedErrors": {
+          "before": {
+            "src/lua/abyss_act3_ai.lua:12: unsupported Act3 AI": "unsupported Act3 AI"
+          },
+          "after": {
+            "src/lua/abyss_act3_ai.lua:61: unsupported Act3 AI": "unsupported Act3 AI"
+          }
+        },
+        "rawErrorLocationMap": [
+          {
+            "before": "src/lua/abyss_act3_ai.lua:12: unsupported Act3 AI",
+            "after": "src/lua/abyss_act3_ai.lua:61: unsupported Act3 AI"
+          },
+          {
+            "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent laser",
+            "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent laser"
+          },
+          {
+            "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent roar",
+            "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent roar"
+          },
+          {
+            "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent tackle",
+            "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent tackle"
+          },
+          {
+            "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent daze",
+            "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent daze"
+          },
+          {
+            "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack",
+            "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack"
+          },
+          {
+            "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack",
+            "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack"
+          },
+          {
+            "before": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack",
+            "after": "src/lua/abyss_act3_ai.lua:7: unknown Act3 intent attack"
+          }
+        ],
+        "errorComparison": "Only the complete unsupported-policy assertion maps to canonical coordinates; all other errors remain raw."
+      },
+      "scry/direct-manifest.json": {
+        "mode": "direct",
+        "checkpoints": 147,
+        "bytes": 213153,
+        "sha256": "22f88472a3e6049094b762fabf332c72b7c44ea60eb54e93682ca61ec37cc3c3",
+        "beforeSourceSha256": "786a5b20a63abaf08f1251402238e410fedf4aefab47abd75a38ab9fc3f1d4a5",
+        "afterSourceSha256": "5bad4886300de2d8a46105185f49869ac8b0c61114cb109b1243932f3cfca6c4",
+        "missingEventsError": {
+          "before": "src/lua/abyss_scry.lua:103: missing scry events",
+          "after": "src/lua/abyss_scry.lua:113: missing scry events"
+        }
+      },
+      "scry/combat-manifest.json": {
+        "mode": "combat",
+        "checkpoints": 8,
+        "bytes": 400827,
+        "sha256": "c35dbfdf1bdc3380826e7efb338725c09bd9711dfce73552fddc4c29eb0de919",
+        "beforeSourceSha256": "786a5b20a63abaf08f1251402238e410fedf4aefab47abd75a38ab9fc3f1d4a5",
+        "afterSourceSha256": "5bad4886300de2d8a46105185f49869ac8b0c61114cb109b1243932f3cfca6c4",
+        "missingEventsError": {
+          "before": "src/lua/abyss_scry.lua:103: missing scry events",
+          "after": "src/lua/abyss_scry.lua:113: missing scry events"
+        }
+      }
+    },
+    "independentCombinedCheckpoints": 213
+  },
+  "ciPlanning": {
+    "js": 749,
+    "lua": 1402,
+    "unknownJsMs": 10000,
+    "oldFloorCount": 9,
+    "reserveMs": 60000,
+    "workers": 2,
+    "concurrencyCapUnchanged": 12,
+    "platforms": {
+      "win32": {
+        "shards": 17,
+        "loads": [
+          1652498,
+          1652826,
+          1652563,
+          1652675,
+          1652667,
+          1652753,
+          1652634,
+          1652546,
+          1652669,
+          1652802,
+          1652466,
+          1652440,
+          1652489,
+          1652471,
+          1652674,
+          1652615,
+          1652608
+        ],
+        "maxPlusReserveMs": 1712826,
+        "budgetMs": 1800000,
+        "spareMs": 87174
+      },
+      "linux": {
+        "shards": 13,
+        "loads": [
+          1133425,
+          1133429,
+          1133427,
+          1133425,
+          1133428,
+          1133435,
+          1133425,
+          1133425,
+          1133435,
+          1133434,
+          1133434,
+          1133434,
+          1133434
+        ],
+        "maxPlusReserveMs": 1193435,
+        "budgetMs": 1200000,
+        "spareMs": 6565
+      }
+    },
+    "limitations": "Planning only, not Hosted CI or observed job duration."
+  },
+  "checks": {
+    "engineering": "pass",
+    "ciInventoryAndHistory": "17/17",
+    "guidance": "pass after original sparse guidance files materialized",
+    "backlogRoadmap": "pass",
+    "backlogDoctor": "existing failure: 5 duplicate ID groups",
+    "full": "not run"
+  },
+  "occupancy": {
+    "checkedAt": "2026-11-07T17:17:07.604Z",
+    "develop": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+    "openPrCount": 16,
+    "prs": [
+      {
+        "number": 556,
+        "head": "e1855786f5227a3aee038673785ff92e38b9b259",
+        "base": "develop",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": []
+      },
+      {
+        "number": 555,
+        "head": "1c83c4547cbdb40bd8062bce83a49aba14b4e407",
+        "base": "develop",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 554,
+        "head": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+        "base": "develop",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs",
+          "tests/responsibility-complexity.test.mjs"
+        ]
+      },
+      {
+        "number": 553,
+        "head": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+        "base": "develop",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": []
+      },
+      {
+        "number": 552,
+        "head": "a3507ef25308eb951585a4d54c225e04121a785a",
+        "base": "develop",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 551,
+        "head": "962e5fe3e82e3844b0b60d3a7e79983d7d19c6b9",
+        "base": "develop",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 550,
+        "head": "110425281a3d3baf3973c8abc7bf622052dfdd4c",
+        "base": "feat/run-catalog-responsibilities",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 549,
+        "head": "3c8b0fbba73332354e1f030662fcf3169f03e8d6",
+        "base": "develop",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 548,
+        "head": "ec93cd91fff1a643e43933ccd721466e42165410",
+        "base": "develop",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 547,
+        "head": "10bd71b00fb24c0bf0e9d7d0c5a14ad6e2207c5d",
+        "base": "feat/session-cc",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 546,
+        "head": "35d392bcf3049a214970127dbf587a4adae8fd9e",
+        "base": "feat/m7-card-effect-responsibilities",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 545,
+        "head": "90c5a89a5765545f689abc6e03f27e1f3f7cccbf",
+        "base": "develop",
+        "draft": true,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 544,
+        "head": "eb47852bc6aa65718b858af72d9d86249fef47ce",
+        "base": "develop",
+        "draft": false,
+        "productionOverlap": [],
+        "sharedOverlap": []
+      },
+      {
+        "number": 543,
+        "head": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+        "base": "develop",
+        "draft": false,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      },
+      {
+        "number": 542,
+        "head": "e750311b6aae38124e68f84b465f0bcf4c5be867",
+        "base": "develop",
+        "draft": false,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs"
+        ]
+      },
+      {
+        "number": 541,
+        "head": "cc4cce701d44b57b70cf9a6fc1c5d5e629629ddd",
+        "base": "develop",
+        "draft": false,
+        "productionOverlap": [],
+        "sharedOverlap": [
+          "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "scripts/check-lua-static.mjs",
+          "tests/ci-complete-calibration.test.mjs"
+        ]
+      }
+    ],
+    "finalReadback": "develop and all16 PR heads unchanged at final readback"
+  },
+  "review": {
+    "reviewId": "local-independent-integration-20261108-213graphs-27gates",
+    "scopedTests": "27/27",
+    "combinedGraphCheckpoints": 213,
+    "blockingFindings": [],
+    "finalIdentity": "Bound in external review receipt after local commit; not an admission claim."
+  },
+  "validationLogArchive": {
+    "path": "docs/evidence/m7-local-refactors-validation-20261108.json.gz",
+    "sha256": "6225ecdb1945f76263a46332fd605d649c3784dd2e96dc98cb337f84f586febb",
+    "logs": [
+      {
+        "name": "local-refactors-baseline-engineering.log",
+        "sha256": "f9403103c68b818534f50d8c28156146cbb0fc69a2421514336d6b0cfe961eab"
+      },
+      {
+        "name": "local-refactors-current-engineering.log",
+        "sha256": "d65128c8b06145d5b49c9396539918a9e6d37698edeacd4f4471037f182eabd5"
+      },
+      {
+        "name": "local-refactors-differential-and-gates.log",
+        "sha256": "bc57e42480383ed480b3ad2b899c59a2f8f42d0b0b3a943cc97d44bf5dc4910c"
+      },
+      {
+        "name": "local-refactors-scry-generated-data-rerun.log",
+        "sha256": "e990248876293919dcf820738c1fb274d312b95a99ae068ae87f3867ae8839e9"
+      },
+      {
+        "name": "local-refactors-act3-existing-regression.log",
+        "sha256": "ce91eec952d940edc7736639a23f47750e83eeac23f8868d0c7bc84e9c1f22bd"
+      },
+      {
+        "name": "local-refactors-scry-shiv-existing-regression.log",
+        "sha256": "27808defb53697d06a47f0875681f9efa10675666913d9beb951b96199022cae"
+      },
+      {
+        "name": "local-refactors-ci-inventory.log",
+        "sha256": "f77ac7a54f4f21b5ed1de55cb96ce1e8b90b7f8cbc3cf82d2bbec9204bb464fb"
+      },
+      {
+        "name": "local-refactors-guidance.log",
+        "sha256": "2c1da80a78bb962dd8ba9ae5ee2d4d83118184f78882bb9ea582eb66ffbcdf14"
+      },
+      {
+        "name": "local-refactors-guidance-after-materialization.log",
+        "sha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db"
+      },
+      {
+        "name": "local-refactors-backlog-final.log",
+        "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+      },
+      {
+        "name": "local-refactors-doctor.log",
+        "sha256": "41ec373ed9871a1bdc86d07865141fe89ca39d8163789d12e940e8783de30ecc"
+      },
+      {
+        "name": "local-refactors-build-data.log",
+        "sha256": "bb5c2e2187876b22928387e9516481bace63dbb7ea77573e29714d9a136f730a"
+      },
+      {
+        "name": "local-refactors-build-theme.log",
+        "sha256": "e17994af45bf645ffcc4371a5ec7432198509ab37e0d981e711cd06d31eea820"
+      },
+      {
+        "name": "local-refactors-build-ui.log",
+        "sha256": "700b6af7e4ba8ae4c28ee2bfaeb5f2315c8e671dbf0c81dba8db6b47e676aff8"
+      }
+    ]
+  },
+  "publication": {
+    "attemptedThisRound": false,
+    "pr": null,
+    "hostedCi": null,
+    "merged": false,
+    "blocker": "Prior public-repository source/planning upload denials unresolved; no retry or alternate route."
+  },
+  "limitations": [
+    "Only local verification and independent integration review.",
+    "No Full rerun or exact remote-head admission.",
+    "No user computer, Codex, GUI, official import, ready or device verification.",
+    "SCC reduction zero; maximum CC75 remains.",
+    "Other open PRs not integrated; shared files need reconciliation when their bases move.",
+    "TASK-74.20 owner/status and all four unchecked AC preserved."
+  ]
+}

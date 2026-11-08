@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-11-08T01:25:51.031Z",
+  "develop": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "pulls": [
+    {
+      "number": 559,
+      "head": "9b49c8da45de05648b69acb9b9793c0e3f811608",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/559"
+    },
+    {
+      "number": 558,
+      "head": "27bf37874fd67b6027f0039d4d588baf1cd81972",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/558"
+    },
+    {
+      "number": 557,
+      "head": "061702b20d17ecc4f7e9612f7262ad5040e73b9a",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/557"
+    },
+    {
+      "number": 555,
+      "head": "1c83c4547cbdb40bd8062bce83a49aba14b4e407",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/555"
+    },
+    {
+      "number": 554,
+      "head": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/554"
+    },
+    {
+      "number": 552,
+      "head": "a3507ef25308eb951585a4d54c225e04121a785a",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/552"
+    },
+    {
+      "number": 551,
+      "head": "962e5fe3e82e3844b0b60d3a7e79983d7d19c6b9",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/551"
+    },
+    {
+      "number": 550,
+      "head": "110425281a3d3baf3973c8abc7bf622052dfdd4c",
+      "base": "0bc050279aae90b8e423a0d02f0c8ca56bf0331b",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/550"
+    },
+    {
+      "number": 549,
+      "head": "3c8b0fbba73332354e1f030662fcf3169f03e8d6",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/549"
+    },
+    {
+      "number": 547,
+      "head": "10bd71b00fb24c0bf0e9d7d0c5a14ad6e2207c5d",
+      "base": "35d392bcf3049a214970127dbf587a4adae8fd9e",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/547"
+    },
+    {
+      "number": 546,
+      "head": "35d392bcf3049a214970127dbf587a4adae8fd9e",
+      "base": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/546"
+    },
+    {
+      "number": 545,
+      "head": "90c5a89a5765545f689abc6e03f27e1f3f7cccbf",
+      "base": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/545"
+    },
+    {
+      "number": 544,
+      "head": "eb47852bc6aa65718b858af72d9d86249fef47ce",
+      "base": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "draft": false,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/544"
+    },
+    {
+      "number": 543,
+      "head": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+      "base": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "draft": false,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/543"
+    },
+    {
+      "number": 541,
+      "head": "cc4cce701d44b57b70cf9a6fc1c5d5e629629ddd",
+      "base": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "draft": false,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/541"
+    }
+  ]
+}

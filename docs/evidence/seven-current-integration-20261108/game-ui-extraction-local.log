@@ -1,0 +1,22 @@
+GAME_UI_EXTRACTION_FS_READS {"reads":{"foreign":0,"old":0,"equivalent":30,"warm-drift":15,"warm-missing":14},"opens":{"foreign":0,"old":0,"equivalent":30,"warm-drift":15,"warm-missing":15}}
+✔ one complete extraction restores immutable full Host/config and authenticates each fresh owner (9331.970985ms)
+✔ foreign and old epochs perform zero linked reads, including duplicate keys and escaped JSON tokens (135.090516ms)
+✔ configuration owner names never waive complete tokens or fresh linked validation (4732.888226ms)
+✔ nested linked readers keep fresh raw identities across composed historical boundaries (2357.114545ms)
+✔ actual current Host reaches every direct and transitive consumer with frozen historical results (33810.168636ms)
+✔ injected readers at shared consumer seams never fall back to live owners (16094.759801ms)
+✔ actual detached filesystem owners reject warm drift and deletion separately for every module (2538.520712ms)
+✔ retirement verifies the full isolated destination before deleting, and revalidates deferred cleanup (69.508702ms)
+✔ retirement rejects a destination or nested owner junction aliasing the live source (25.042452ms)
+✔ retirement accepts real repository-local historical copies and preserves every live owner (29.443745ms)
+✔ retirement rejects live Lua directories and source ancestors before any deletion (1.973181ms)
+✔ repository-local cleanup rejects nested symlink escapes and revalidates all targets before deletion (22.71301ms)
+✔ real filesystem traces distinguish foreign/old inputs from fresh equivalent and warm owner reads (6984.626331ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77214.241194

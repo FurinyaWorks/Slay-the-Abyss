@@ -71,27 +71,27 @@ test('queue full requires every shard, immutable receipt and actual native admis
  }
 });
 
-test('native queue rejects old 13/9, 14/9, 16/9 or 16/12 green jobs, missing rules17 or POSIX13, duplicates and forged totals or source receipts',()=>{
+test('native queue rejects old 13/9, 14/9, 16/9, 16/12 or 17/13 green jobs, missing rules17 or POSIX14, duplicates and forged totals or source receipts',()=>{
  for(const mutate of [
-  ...[[13,9],[14,9],[16,9],[16,12]].map(([windows,posix])=>e=>{
+  ...[[13,9],[14,9],[16,9],[16,12],[17,13]].map(([windows,posix])=>e=>{
    const win=e.jobs.find(j=>j.name.startsWith('rules (')),linux=e.jobs.find(j=>j.name.startsWith('engineering-posix ('));
    assert(win&&linux,'current matrices supply complete legacy-shape samples');
    e.jobs=e.jobs.filter(j=>!j.name.startsWith('rules (')&&!j.name.startsWith('engineering-posix ('));
    e.jobs.push(...Array.from({length:windows},(_,i)=>({...win,id:1000+i,name:`rules (${i+1}/${windows})`})),...Array.from({length:posix},(_,i)=>({...linux,id:2000+i,name:`engineering-posix (${i+1}/${posix})`})));
   }),
-  e=>e.jobs=e.jobs.filter(j=>j.name!=='engineering-posix (13/13)'),
-  e=>e.jobs.push({...e.jobs.find(j=>j.name==='engineering-posix (13/13)'),id:3000}),
-  e=>e.jobs.find(j=>j.name==='engineering-posix (13/13)').name='engineering-posix (13/12)',
+  e=>e.jobs=e.jobs.filter(j=>j.name!=='engineering-posix (14/14)'),
+  e=>e.jobs.push({...e.jobs.find(j=>j.name==='engineering-posix (14/14)'),id:3000}),
+  e=>e.jobs.find(j=>j.name==='engineering-posix (14/14)').name='engineering-posix (14/13)',
   e=>e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)'),
   e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (17/17)'),id:900}),
   e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (17/17)'),id:3001,name:'rules (18/17)'}),
   e=>e.jobs.find(job=>job.name==='rules (17/17)').id=e.jobs.find(job=>job.name==='rules (16/17)').id,
   e=>e.jobs.find(job=>job.name==='rules (17/17)').name='rules (17/16)',
   e=>{const sample=e.jobs.find(job=>job.name==='rules (1/17)');assert(sample,'actual current first shard exists');e.jobs=e.jobs.filter(job=>!job.name.startsWith('rules ('));e.jobs.push(...Array.from({length:13},(_,i)=>({...sample,id:700+i,name:`rules (${i+1}/13)`})));},
-  e=>{e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)');e.jobTotal=35;e.event.merge_group.matrix={windows:17,posix:13};},
+  e=>{e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)');e.jobTotal=36;e.event.merge_group.matrix={windows:17,posix:14};},
   e=>e.checkout.checkout.head=sha('f'),
  ]){
-  const e=fixture();assert.equal(e.jobs.length,35);mutate(e);
+  const e=fixture();assert.equal(e.jobs.length,36);mutate(e);
   assert(queueFullErrors(e).length,String(mutate));
  }
 });

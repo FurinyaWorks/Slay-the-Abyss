@@ -4,13 +4,23 @@ title: 治理阻碍角色扩展的高风险复杂度
 status: In Progress
 assignee:
   - Furinya
-created_date: '2026-11-06 01:46'
-updated_date: '2026-11-07 09:29'
+created_date: 2026-11-06 01:46
+updated_date: '2026-11-08T02:19:00Z'
 labels: []
 milestone: m-7
 dependencies: []
 documentation:
   - docs/backlog-details/M7-CORE-LIFECYCLE-20261106.md
+  - docs/backlog-details/M7-SCRY-CHOICE-RESPONSIBILITIES-20261107.md
+  - docs/backlog-details/M7-SHIV-TURN-RESPONSIBILITIES-20261107.md
+  - docs/backlog-details/M7-ACT3-AI-RESPONSIBILITIES-20261107.md
+  - docs/backlog-details/M7-LOCAL-RESPONSIBILITY-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-POTION-REFACTOR-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-ENEMY-AI-RESPONSIBILITIES-20261108.md
+  - docs/backlog-details/M7-ENEMY-AI-REFACTOR-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-DEFECT-UTILITY-PLANNING-20261108.md
+  - docs/backlog-details/M7-DEFECT-REFACTOR-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-SEVEN-CURRENT-INTEGRATION-20261108.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -43,6 +53,24 @@ ordinal: 162000
 本轮最终有界切片：按既有剩余风险建议，仅治理original_v4 validateEffects/apply/executeRoot及新helper，保持支付、唯一快照、逐效果、角色结算与AI flush顺序。全函数含匿名/初始化同口径复采并对新职责执行CC15，冻结旧源、全状态与失败对照后独立复审。
 
 2026-11-07 Owner接续EndTurnPower独立切片：核d8a57cae与PR541–548、Act3目录在途不重叠，按回合末Power规划、虚拟状态与动作执行拆责，保持完整调度/事件/RNG/异常轨迹及动态接口，全模块CC15，窄测和独审后交付；不改owner/status/AC。
+
+本轮仅本地整合已独审的Scry 68f6b914、Shivs 8d3ce9db及Act3 AI 4fe31ed4。最新develop仍为d8a57cae；16个开放PR无三个生产文件重叠。保留三片源码和原始证据，公共CC硬门禁、测试库存与任务记录加法合并，重新采集全库SCC/CC并跑必要定向测试、独立深审与本地提交。不得重试远端上传或绕过原Full/精确SHA准入；不重复全量、不改owner/status/AC。
+
+本轮独立Scry选择切片：在最新develop d8a57cae与开放PR/本地树占用核对后，仅分离choose的候选验证、选择收集、Weave前置条件及弃牌提交职责。保留错误、别名、回调和队列顺序；完整旧新差分与真实语义负控、新helper CC15、定向回归、独审及精确HEAD CI后按原流程交付。SCC不预报减少，不接触既有Act3/药水/中毒切片。
+
+本轮接续未占用Shivs.startTurn：从最新develop d8a57cae分离敌人存活扫描、旧UID收集、生成合同验证与历史帧Accuracy补值职责。保持完整遍历、动态调用、错误/部分写入顺序及原生成器owner；新旧完整图差分、真语义负控和全模块CC15后独审。仅本地验证，目的地授权未补齐前不发布，不重复Full、不改owner/status/AC。
+
+本轮接续未占用 Act3.advance：基于 develop d8a57cae，按 Maw 出招与历史帧替换、Spire Growth 历史决策、Shapes 决策和 Orb Walker 防连招职责拆分。保持每次随机消费、动态加载、状态写入与错误先后，冻结原源码并做完整图差分及真实语义负控，全模块 CC15。仅本地验证与独审，未获得新目的地授权前不发布，不重复 Full；owner、status 和 AC 保持。
+
+在隔离本地树保全整合126e5f9c与1f454854，保留全部生产/历史证据，重测组合SCC/CC并验证来源、库存和预算；只做定向检查及独审，不重复Full、不上传或操作用户设备。
+
+本轮从 d8a57cae 独立接续 Enemy AI 初始化与推进职责，避开 #541–558 及本地 126e5f9c 的源码占用；保持策略优先级、RNG和失败语义，使用冻结旧版差分、定向回归、完整工程测量和独立复审。仅本地提交，不重试已拒绝的公开上传。
+
+2026-11-08 继续已授权 M7 本地职责治理：确认 develop、开放 PR 与本地12950b1c占用后，仅整理未占用 Defect utility 的队列计划职责，按充能球派生、意图条件、X费用与出牌历史划分内部 helper，保留公开 API、验证顺序、动态读取和不可变计划。冻结完整旧源，双 VM 定向差分、负控与完整 SCC/CC 采样，独审后仅本地提交，不重复 Full 或重试公开上传；不重复认领或勾 AC。
+
+本轮在隔离本地树保全整合已独审的六项合流12950b1c与Defect utility 27b2ccc9；不改生产输入字节，逐项合并共享来源/成本合同，重新采集组合SCC/CC、定向行为与真实库存预算，独审后本地提交。全部旧计划/证据保留，不重复Full、不上传或操作用户电脑，不改owner/status/AC。
+
+2026-11-08 接续七项已有本地重构：基于已合#560的a0c35db8进行真实增量适配，保全两侧来源、合同与原始证据。只做定向测试及独立深审，不重复Full；从当前基线形成单父线性提交，明确批准后可按Ruleset正常上传及提PR，仍不得绕过质量门禁。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -65,4 +93,32 @@ D5同源全采333模块5370/5370测量，CC>15降至240、>30仍61、最大75、
 最终三入口CC为validateEffects10、apply8、executeRoot11；17个入口/helper全部纳入CC15，新helper最大15，Codex全模块及新提交helper同门禁。新增8项最终8/8，原35-owner来源4/4保持，当前本轮集成候选待精确独审/Full，不启动下一切片。
 
 2026-11-07 EndTurnPower独立切片完成：prepare55→4、apply34→12，全模块38项最大12并纳入CC15；333模块5414测量，>30为58→56、>15为237→233，SCC81/15不变。新12/12共391完整图检查点、3语义负控，原N35 4/4、隔离26/26、CI与admission19/19及8旧Lua通过；独立44行为/76门禁负控及真实完整回滚通过。21,279ms完整文件floor保留旧预算，独立提交和托管Full仍待，不勾AC。见docs/backlog-details/M7-END-TURN-RESPONSIBILITIES-20261107.md。
+
+Scry.choose独立职责片已完成本地验证：choose CC38→10，4新helper最大11，完整5390测量下CC>30 58→57、>15 237→236，SCC81/15不变。旧回归18+2+28、新完整图8/8及真实语义负控通过；完整新文件wall2.361s低于unknown10s，保留全部旧成本。独审精确HEAD、Hosted及合后验收仍待，AC不勾。详见docs/backlog-details/M7-SCRY-CHOICE-RESPONSIBILITIES-20261107.md。
+
+Shivs.startTurn本地职责片：CC33→6，5个新helper最大13，全模块20项函数/初始化测量受CC15；完整5391/5391，>30为58→57、>15为237→236，SCC81/15不变。原Shivs25组与MasterReality集成、完整旧新图及8个双侧语义负控通过，原14警告无新增。当前本地独审及精确提交绑定收口，目的地授权不足故不尝试远端发布、不重复Full，状态/owner/AC保持。详见docs/backlog-details/M7-SHIV-TURN-RESPONSIBILITIES-20261107.md。
+
+本轮Act3 AI出招职责本地完成：advance CC46→14，四helper最大13，全模块11项受CC15；完整5390/5390，>30为58→57、>15为237→236，SCC81/15不变。1732个旧新完整图检查点与10个双侧语义负控通过，新差分/门禁29、既有集成13、CI库存17通过；独审另验第二次Copy失败和回调改图，未见阻断。Backlog doctor仍有5组既有重号，未算通过。仅本地验证、独审及提交，未重试远端发布、未跑Full，status/owner/AC保持；详见docs/backlog-details/M7-ACT3-AI-RESPONSIBILITIES-20261107.md。
+
+本轮本地整合三片，生产源及32个独有文件保持给定独审提交字节。全库新采5399/5399测量，>30为58→55、>15为237→234、最大75；SCC81/15与1920引用位置/1546依赖对不变。公共CC门禁加法保留，49个差分/门禁最终通过（首次缺生成数据的Scry单项已补构建重跑8/8），既有Act3 13项和Scry/Shivs五个完整夹具通过；CI库存/历史成本17项通过。独审隔离同时切换三模块213图检查点及27门禁通过，精确提交绑定另存。749JS/1402Lua按原unknown成本，Windows/POSIX含60秒预留最大1712826/1193435ms；仍只是规划。guidance稀疏缺失文件按原HEAD补齐后通过；Backlog doctor保留原5组重号失败。没有远端写入、PR、Full、合并或实机证据；任务owner/status/AC保持。
+
+2026-11-08 与职业药水边界在隔离本地组合承接，原Scry/Shiv/Act3源码及所有独有证据逐字保留。最终完整测量确认本组合CC>30仍55，SCC80/15为药水真实收益，不混入其他开放PR。POSIX14交付形状与历史来源合同已核，不代表托管CI或合并准入；详见M7-POTION-REFACTOR-INTEGRATION-20261108。
+
+2026-11-08 四项职责与 Watcher 边界本地合流复测：CC>30 仍55，CC>15 仍234，最大75；Watcher 只贡献 SCC 80→79，不冒算 CC 降幅。全部既有生产、测试及证据保留，精确组合报告见 M7-WATCHER-REFACTOR-INTEGRATION-20261108.md。未上传、Hosted Full 或合并，原 owner/status/AC 保持。
+
+本轮独立接续Enemy AI初始化/推进职责，CC40→21、43→13，8新helper均≤15，原门禁不放宽；全库CC>30从58降至56，>15从237降至236，SCC仍81/15，不借本地合流数字。79组旧新图/别名/RNG/失败差分、7语义负控及11真实Lua夹具142项通过，原历史来源37项、关键变异4项、原生UI6项通过。初始化21作为明确路由残余；独审和本地提交收口中，不勾整项AC。公开上传限制保持，无新PR或合入。详见新增附件。
+
+2026-11-08 Enemy AI与已有五项职责本地保全合流：333生产源逐字并集，真实5410/5410完整测量，CC>30 58→53、>15 237→233，SCC79/15；相对126e5f9c仅Enemy贡献CC降幅2/1。行为21、四Lua集成70组、来源/CI/交付定向回归通过，初始两项规划历史输入失败保留并修正。独审收口并精确绑定本地提交；未上传、Full或合并，原owner/status/AC保持。完整指标与限制见M7-ENEMY-AI-REFACTOR-INTEGRATION-20261108。
+
+2026-11-08 本地 Defect utility 队列规划按充能球、意图、能量与历史职责拆分，planEffect CC37→8，整个模块≤15；全库CC>30 58→57、CC>15 237→236，完整SCC仍81/15，未宣称降环。新185例差分/52例旧新Combat/6负控及来源、库存验证通过，独审6825例无缺陷。仅本地提交，不上传或重复Full，原owner/状态/AC保持；见M7-DEFECT-UTILITY-PLANNING-20261108。
+
+2026-11-08 保全七项本地合流：Defect utility与12950b1c合并，333生产源逐字保留，新采5414/5414测量，CC>30 58→52、>15 237→232、SCC79/15、最大75。相对六项仅Defect贡献CC各减1，不冒算降环。当前行为32、来源/库存41、分片/交付65及离线原生UI6项通过，原失败日志与所有历史证据保留；精确独审和本地提交绑定另存。未上传、Full或合入，owner/status/AC保持。详见M7-DEFECT-REFACTOR-INTEGRATION-20261108。
+
+最终只读核对新增统一集成PR #559（9b49c8da），develop仍d8a57cae；本地七项10个生产文件无交集，共享来源/成本合同有交集。当前仅完成既有保全提交，供统一流程后续接续；没有操作#559或开始新功能。
+
+2026-11-08 七项接续#560当前基线a0c35db8，338模块全源同算法实测SCC70/11/2→68/11/2，大环521/330→513/324位置/依赖对；CC>30为46→40、>15为221→216，最大61、14旧警告保持。5555/5555测量，10个本地重构生产源逐字保留，其余主线源码不覆盖。行为首轮78/79，唯一旧333模块库存断言已保留原333+明确5个主线新增并定点通过；CI104项、关键变异4项、原生UI6项通过，Full未重复。完整库存782JS/1408Lua规划在原目标内，保留19项floor和既有执行保护；独审和精确提交身份见本轮附件。全部历史任务计划/证据保留；尚无本提交托管Full、合入或实机验收，owner/status/AC不变。
+
+最终补记：来源定向106个不同用例已有最新通过证据，初次79中3个测试适配问题已定点纠正；独审通过代码/来源安全边界复核，精确提交身份另存。按真实证据补3项成本floor，原19项不变；17/14完整库存含60秒预留最大1771239/1179021ms，原目标余28761/20979ms。后两项仅成功测试用例成本下界，非全文件实测；原失败/中止均保存，不伪称Full。
+
+发布前develop前移至#561b7ed1830，无src/data/scripts/config变动。本轮在新隔离树保全其全部档案及更强历史来源/退休安全合同，仅解决7个非生产文本冲突；45变动owner鲜读与旧epoch linked owner检查并存。最终单父基于b7，原a0度量和320独审按原身份保留；仅定向helper/负控复验，不重复完整行为/工程采集，不改owner/status/AC。
 <!-- SECTION:NOTES:END -->

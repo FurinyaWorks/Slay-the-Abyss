@@ -483,7 +483,10 @@ function actionHandlers.timeEater(combat,state,item)return TimeEater.execute(com
 function actionHandlers.reptomancerSuicide(_,state,item)return require('abyss_reptomancer').cleanup(Actors,state,item.effect)end
 function actionHandlers.enemyAction(combat,state,item)return combat.resolveEnemyAction(state,item.effect,item.source)end
 function actionHandlers.staticRetaliation(combat,state,item)return combat.staticRetaliation(state,item.effect)end
-function actionHandlers.classPotion(combat,state,item)return require('abyss_class_potions').apply(combat,state,item.effect)end
+local function classPotionOrbHost()return require('abyss_orbs')end
+function actionHandlers.classPotion(combat,state,item)
+ return require('abyss_class_potions').apply(combat,state,item.effect,classPotionOrbHost)
+end
 function actionHandlers.silentFinal(combat,state,item)return require('abyss_silent_final_cards').apply(combat,state,item)end
 function actionHandlers.discover(combat,state,item)return require('abyss_potion_discovery').begin(combat,state,item.effect)end
 function actionHandlers.colorless(combat,state,item)return require('abyss_colorless_cards').apply(combat,state,item)end

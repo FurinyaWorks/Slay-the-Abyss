@@ -1,12 +1,14 @@
 // Current cost and provenance checks stay outside the pure historical projection.
 import assert from 'node:assert/strict';
+import {runInNewContext} from 'node:vm';
+import {prePosix14ShapeSource} from './ci-complete-calibration-source-inverse.mjs';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {rewardQueryPlanningProof as proof,preRewardQueryPlanningSource} from './reward-query-planning-source-inverse.mjs';
 import {discoverJs,partition,timings,jsShard,jsPlanningWeights} from '../../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../../scripts/test-lua.mjs';
-import {qualityShardMatrices} from '../../scripts/ci-quality-shape.mjs';
+import {qualityShardMatrices as liveQualityShardMatrices} from '../../scripts/ci-quality-shape.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex'),read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
 const file='tests/reward-query-boundary.test.mjs';
 const expectedKills={
@@ -33,6 +35,14 @@ function forecast(source,js,lua,platform,count){
 const liveContext={read,readFileSync,readdirSync,timings,discoverJs,jsShard,jsPlanningWeights};
 export function assertRewardQueryPlanningReceipt({epoch}={}){
  const {read,readFileSync,readdirSync,timings,discoverJs,jsShard,jsPlanningWeights}=epoch??liveContext;
+ // The authenticated original receipt owns its original matrix, not the later
+ // integration's live shape. Current callers still inspect the live matrix.
+ let qualityShardMatrices=liveQualityShardMatrices;
+ if(epoch){
+  const shape=prePosix14ShapeSource('scripts/ci-quality-shape.mjs',liveContext.read('scripts/ci-quality-shape.mjs'));
+  assert.equal(hash(shape),'0d6c82c2a7e7db82e276eb563978d5253d9a225039329e171ed3f907f98609d1','complete original 17/13 shape, with only exact approved outer epoch accepted');
+  qualityShardMatrices=structuredClone(runInNewContext(shape.replaceAll('export const ','const ')+'\nqualityShardMatrices;',Object.create(null),{timeout:1000}));
+ }
  const bytes=readFileSync(proof.receipt.path);assert.equal(hash(bytes),proof.receipt.sha256);
  assert.equal(hash(bytes),'040106c48fb3cd7c6ae9fcde72d09a5ac9c0f57b8c97036e37a682bb9525becf');
  const receipt=JSON.parse(gunzipSync(bytes)),observation=receipt.observation;

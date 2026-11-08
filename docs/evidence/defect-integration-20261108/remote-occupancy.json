@@ -1,0 +1,402 @@
+{
+  "checkedAt": "2026-11-08T01:18:43.798Z",
+  "develop": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "pulls": [
+    {
+      "number": 558,
+      "title": "perf(2d): 构建轻量可玩候选并停用隐藏原生页面",
+      "head": "27bf37874fd67b6027f0039d4d588baf1cd81972",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/558"
+    },
+    {
+      "number": 557,
+      "title": "docs(experiment): 原生轻量2D完整竖切、社区样本矩阵与实机验收合同",
+      "head": "061702b20d17ecc4f7e9612f7262ad5040e73b9a",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/557"
+    },
+    {
+      "number": 556,
+      "title": "chore(3d): 暂停迁移并保留源码与候选交接",
+      "head": "d80743f9d38fa451a753c21316733fc02879953e",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/556"
+    },
+    {
+      "number": 555,
+      "title": "refactor(m7): 解耦奖励查询与会话命令依赖",
+      "head": "1c83c4547cbdb40bd8062bce83a49aba14b4e407",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/555"
+    },
+    {
+      "number": 554,
+      "title": "refactor(m7): 分离卡牌升级规则并修复原始API兼容",
+      "head": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/554"
+    },
+    {
+      "number": 553,
+      "title": "feat(experiment): 同档对照原生3D、Tween、拼装与奖励UI",
+      "head": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/553"
+    },
+    {
+      "number": 552,
+      "title": "refactor(m7): 线性接续 Run 卡目录职责",
+      "head": "a3507ef25308eb951585a4d54c225e04121a785a",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/552"
+    },
+    {
+      "number": 551,
+      "title": "refactor(m7): 分离 Actor 状态查询并解除三项循环依赖",
+      "head": "962e5fe3e82e3844b0b60d3a7e79983d7d19c6b9",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/551"
+    },
+    {
+      "number": 550,
+      "title": "refactor(m7): 解耦药水遗物回调",
+      "head": "110425281a3d3baf3973c8abc7bf622052dfdd4c",
+      "base": "0bc050279aae90b8e423a0d02f0c8ca56bf0331b",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/550"
+    },
+    {
+      "number": 549,
+      "title": "refactor: separate owner end power planning and effects",
+      "head": "3c8b0fbba73332354e1f030662fcf3169f03e8d6",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/549"
+    },
+    {
+      "number": 548,
+      "title": "refactor(m7): 拆清 Run 卡目录合并职责",
+      "head": "ec93cd91fff1a643e43933ccd721466e42165410",
+      "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/548"
+    },
+    {
+      "number": 547,
+      "title": "refactor(m7): 拆分 Defect 纯效果规划职责",
+      "head": "10bd71b00fb24c0bf0e9d7d0c5a14ad6e2207c5d",
+      "base": "35d392bcf3049a214970127dbf587a4adae8fd9e",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/547"
+    },
+    {
+      "number": 546,
+      "title": "refactor(m7): 拆分 Act1 事件选择职责",
+      "head": "35d392bcf3049a214970127dbf587a4adae8fd9e",
+      "base": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/546"
+    },
+    {
+      "number": 545,
+      "title": "refactor(m7): 分离无色目录与卡能力准入职责",
+      "head": "90c5a89a5765545f689abc6e03f27e1f3f7cccbf",
+      "base": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "draft": true,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/545"
+    },
+    {
+      "number": 544,
+      "title": "fix(tooling): 补齐共享及自定义LFS缓存识别",
+      "head": "eb47852bc6aa65718b858af72d9d86249fef47ce",
+      "base": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "draft": false,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/544"
+    },
+    {
+      "number": 543,
+      "title": "refactor(m7): 整合Session、Watcher与Inventory职责",
+      "head": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+      "base": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "draft": false,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/543"
+    },
+    {
+      "number": 542,
+      "title": "refactor(m7): 拆清奖励查询与 Watcher 执行职责",
+      "head": "e750311b6aae38124e68f84b465f0bcf4c5be867",
+      "base": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "draft": false,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/542"
+    },
+    {
+      "number": 541,
+      "title": "refactor(core): 解耦Power与商店职责并修复CI超时机制",
+      "head": "cc4cce701d44b57b70cf9a6fc1c5d5e629629ddd",
+      "base": "2ad07111e3d5b5cb52b4229860b3b780941e29a9",
+      "draft": false,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/541"
+    }
+  ],
+  "runs": [
+    {
+      "id": 42430301413,
+      "head": "27bf37874fd67b6027f0039d4d588baf1cd81972",
+      "name": "Licenses",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42430301413",
+      "updated": "2026-11-08T00:34:02Z"
+    },
+    {
+      "id": 42430301411,
+      "head": "27bf37874fd67b6027f0039d4d588baf1cd81972",
+      "name": "Quality",
+      "status": "in_progress",
+      "conclusion": null,
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42430301411",
+      "updated": "2026-11-08T01:07:29Z"
+    },
+    {
+      "id": 42430301399,
+      "head": "27bf37874fd67b6027f0039d4d588baf1cd81972",
+      "name": "Quick feedback",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42430301399",
+      "updated": "2026-11-08T00:35:49Z"
+    },
+    {
+      "id": 42426490309,
+      "head": "da6acaee7d9450e8645d017f823295a43688c21c",
+      "name": "Quick feedback",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42426490309",
+      "updated": "2026-11-07T23:45:25Z"
+    },
+    {
+      "id": 42426490265,
+      "head": "da6acaee7d9450e8645d017f823295a43688c21c",
+      "name": "Quality",
+      "status": "completed",
+      "conclusion": "failure",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42426490265",
+      "updated": "2026-11-08T00:13:19Z"
+    },
+    {
+      "id": 42426490245,
+      "head": "da6acaee7d9450e8645d017f823295a43688c21c",
+      "name": "Licenses",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42426490245",
+      "updated": "2026-11-07T23:43:11Z"
+    },
+    {
+      "id": 42411146398,
+      "head": "311089f9531be771c03017f8b0667a35268e82dd",
+      "name": "Quick feedback",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42411146398",
+      "updated": "2026-11-07T20:29:18Z"
+    },
+    {
+      "id": 42411146331,
+      "head": "311089f9531be771c03017f8b0667a35268e82dd",
+      "name": "Quality",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42411146331",
+      "updated": "2026-11-07T21:09:28Z"
+    },
+    {
+      "id": 42411146327,
+      "head": "311089f9531be771c03017f8b0667a35268e82dd",
+      "name": "Licenses",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42411146327",
+      "updated": "2026-11-07T20:27:54Z"
+    },
+    {
+      "id": 42408526012,
+      "head": "a0a01e2296fb3324194d25f820e5cb5876825b33",
+      "name": "Quality",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42408526012",
+      "updated": "2026-11-07T20:28:58Z"
+    },
+    {
+      "id": 42408526002,
+      "head": "a0a01e2296fb3324194d25f820e5cb5876825b33",
+      "name": "Licenses",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42408526002",
+      "updated": "2026-11-07T19:58:40Z"
+    },
+    {
+      "id": 42408525995,
+      "head": "a0a01e2296fb3324194d25f820e5cb5876825b33",
+      "name": "Quick feedback",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42408525995",
+      "updated": "2026-11-07T20:03:51Z"
+    },
+    {
+      "id": 42407188262,
+      "head": "d80743f9d38fa451a753c21316733fc02879953e",
+      "name": "Licenses",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42407188262",
+      "updated": "2026-11-07T19:42:06Z"
+    },
+    {
+      "id": 42407188240,
+      "head": "d80743f9d38fa451a753c21316733fc02879953e",
+      "name": "Quick feedback",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42407188240",
+      "updated": "2026-11-07T19:39:24Z"
+    },
+    {
+      "id": 42407188158,
+      "head": "d80743f9d38fa451a753c21316733fc02879953e",
+      "name": "Quality",
+      "status": "completed",
+      "conclusion": "failure",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42407188158",
+      "updated": "2026-11-07T20:46:48Z"
+    },
+    {
+      "id": 42405749707,
+      "head": "061702b20d17ecc4f7e9612f7262ad5040e73b9a",
+      "name": "Licenses",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42405749707",
+      "updated": "2026-11-07T19:32:30Z"
+    },
+    {
+      "id": 42405749514,
+      "head": "061702b20d17ecc4f7e9612f7262ad5040e73b9a",
+      "name": "Quick feedback",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42405749514",
+      "updated": "2026-11-07T19:22:44Z"
+    },
+    {
+      "id": 42405749487,
+      "head": "061702b20d17ecc4f7e9612f7262ad5040e73b9a",
+      "name": "Quality",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42405749487",
+      "updated": "2026-11-07T20:14:55Z"
+    },
+    {
+      "id": 42405166675,
+      "head": "8d16bc98efc3d859b2491110f20de8cc93d4197a",
+      "name": "Quality",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42405166675",
+      "updated": "2026-11-07T19:51:32Z"
+    },
+    {
+      "id": 42405166674,
+      "head": "8d16bc98efc3d859b2491110f20de8cc93d4197a",
+      "name": "Quick feedback",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42405166674",
+      "updated": "2026-11-07T19:14:19Z"
+    },
+    {
+      "id": 42405166658,
+      "head": "8d16bc98efc3d859b2491110f20de8cc93d4197a",
+      "name": "Licenses",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42405166658",
+      "updated": "2026-11-07T19:13:59Z"
+    },
+    {
+      "id": 42404394192,
+      "head": "b85e3f9f2df0bb9e53f24e4ca160b311d438fc50",
+      "name": "Quality",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42404394192",
+      "updated": "2026-11-07T19:14:43Z"
+    },
+    {
+      "id": 42404394181,
+      "head": "b85e3f9f2df0bb9e53f24e4ca160b311d438fc50",
+      "name": "Licenses",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42404394181",
+      "updated": "2026-11-07T19:04:39Z"
+    },
+    {
+      "id": 42404394164,
+      "head": "b85e3f9f2df0bb9e53f24e4ca160b311d438fc50",
+      "name": "Quick feedback",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42404394164",
+      "updated": "2026-11-07T19:04:59Z"
+    },
+    {
+      "id": 42402013731,
+      "head": "b9ab3df44100c75b03667447ddf05988879b5490",
+      "name": "Quick feedback",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42402013731",
+      "updated": "2026-11-07T18:35:52Z"
+    }
+  ]
+}

@@ -3,8 +3,9 @@ export * from './epochs/reward/tests/helpers/reward-query-boundary-source-invers
 import { preRewardQueryBoundarySource as original } from './epochs/reward/tests/helpers/reward-query-boundary-source-inverse.mjs';
 import {sourceEpoch} from './combined-epoch/source-epoch.mjs';
 import {readFileSync} from 'node:fs';
-const live=p=>readFileSync(p,'utf8');
+const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preRewardQueryBoundarySource(path,source,{readSource=live}={}){
+ readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'reward',readSource});
  return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'reward')});
 }

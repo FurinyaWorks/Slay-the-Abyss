@@ -1,0 +1,230 @@
+{
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "metrics": {
+    "baseline": {
+      "artifact": "docs/evidence/m7-class-potion-orb-baseline-engineering-20261108.json.gz",
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "warnings": 14,
+      "positions": 1920,
+      "pairs": 1546,
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ]
+    },
+    "current": {
+      "artifact": "docs/evidence/m7-class-potion-orb-current-engineering-20261108.json.gz",
+      "coverage": {
+        "modules": 333,
+        "functions": 5055,
+        "measurements": 5388,
+        "expectedMeasurements": 5388
+      },
+      "warnings": 14,
+      "positions": 1919,
+      "pairs": 1547,
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 80,
+          "positions": 619,
+          "pairs": 398
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ]
+    }
+  },
+  "changedProductionSources": [
+    "src/lua/abyss_card_actions.lua",
+    "src/lua/abyss_class_potions.lua",
+    "src/lua/abyss_combat_effect_dispatch.lua"
+  ],
+  "all333MeasuredSourceHashesMatchCurrent": true,
+  "removedSccMembers": [
+    "abyss_class_potions"
+  ],
+  "addedDependencies": [
+    [
+      "abyss_card_actions",
+      "abyss_orbs"
+    ],
+    [
+      "abyss_combat_effect_dispatch",
+      "abyss_orbs"
+    ]
+  ],
+  "removedDependencies": [
+    [
+      "abyss_class_potions",
+      "abyss_orbs"
+    ]
+  ],
+  "notClaimed": [
+    "hosted Full",
+    "merged",
+    "official import",
+    "real ready",
+    "device testing",
+    "SCC eliminated",
+    "CC reduction"
+  ],
+  "testArtifacts": [
+    {
+      "path": "docs/evidence/m7-class-potion-orb-targeted-first-20261108.log.gz",
+      "uncompressedSha256": "16eea3c941b82528f58efe4e32e0fd81682911102af10aebe9fefd677eed85cd",
+      "uncompressedBytes": 13857
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-targeted-correction-20261108.log.gz",
+      "uncompressedSha256": "e774d638b900be7c46c4104144a613b0406af37584f3afa7298789edd775020e",
+      "uncompressedBytes": 361
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-baseline-engineering-20261108.log.gz",
+      "uncompressedSha256": "f9403103c68b818534f50d8c28156146cbb0fc69a2421514336d6b0cfe961eab",
+      "uncompressedBytes": 353
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-source-inverse-20261108.log.gz",
+      "uncompressedSha256": "ad17273c6c956ecca91f5a9a2e5d82bb21a4ef2332e271b72623a21830c3ae2c",
+      "uncompressedBytes": 638
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-source-first-20261108.log.gz",
+      "uncompressedSha256": "efbf447554e507c26135409b882037d52f5ec8261c14615c16b98bd2cf44174d",
+      "uncompressedBytes": 6346
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-source-consumers-20261108.log.gz",
+      "uncompressedSha256": "708410fb81f90e5549617a9599d2f2e724881e9422a7095920612b7373857f6e",
+      "uncompressedBytes": 3224
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-ci-consumers-20261108.log.gz",
+      "uncompressedSha256": "e4713ee59a4fbd83f0dd59bec1308a3cb6ca075e873cc485034483e36de81c95",
+      "uncompressedBytes": 2363
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-ci-final-blocked-20261108.log.gz",
+      "uncompressedSha256": "961bf41fa2196593f1129161d21bed741f1fd908a8f84a9e75ec18f53c0ca260",
+      "uncompressedBytes": 2204
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-guidance-20261108.log.gz",
+      "uncompressedSha256": "2c1da80a78bb962dd8ba9ae5ee2d4d83118184f78882bb9ea582eb66ffbcdf14",
+      "uncompressedBytes": 523
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-backlog-20261108.log.gz",
+      "uncompressedSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "uncompressedBytes": 382
+    },
+    {
+      "path": "docs/evidence/m7-class-potion-orb-guidance-materialized-20261108.log.gz",
+      "uncompressedSha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "uncompressedBytes": 482
+    }
+  ],
+  "verification": {
+    "potionBoundary": {
+      "first": {
+        "passed": 16,
+        "failed": 1,
+        "durationMs": 162004.675552
+      },
+      "correction": {
+        "passed": 2,
+        "failed": 0,
+        "durationMs": 3333.483589
+      },
+      "latestUniqueTests": {
+        "passed": 17,
+        "failed": 0
+      },
+      "allExistingFixturesCompared": 13,
+      "comparison": "fresh old/current Lua VMs; complete reachable graphs and aliases at each observed Run boundary, original fixture assertions unchanged except parameter forwarding",
+      "firstFailure": "new negative-control expectation did not match exact existing fixture error text; actual mutant was already killed",
+      "fix": "expect exact tests/lua/class_potion_focus_capacity.lua:23: potion_effect_failed; product source unchanged"
+    },
+    "sourceInverse": {
+      "passed": 5
+    },
+    "coreRelicSource": {
+      "passed": 8
+    },
+    "isolatedSourceConsumers": {
+      "passed": 26
+    },
+    "ciHistoricalConsumers": {
+      "passed": 18
+    },
+    "completeCalibration": {
+      "passed": 7,
+      "failed": 1,
+      "failure": "current POSIX13 inventory cost exceeds unchanged original budget"
+    },
+    "engineering": "pass",
+    "guidance": {
+      "latest": "pass",
+      "earlier": "failed because sparse checkout omitted .codebuddy skill and .cursor rule; exact tracked directories materialized, no file edits"
+    },
+    "backlog": "pass"
+  },
+  "deliveryBlocker": {
+    "state": "unresolved",
+    "kind": "current POSIX13 planning budget",
+    "budgetMs": 1200000,
+    "safetyReserveMs": 60000,
+    "localFloorMs": 180000,
+    "observedLocalWholeFileMs": 162004.675552,
+    "maximumWithReserveMs": 1205745,
+    "baselineMaximumWithReserveMs": 1191130,
+    "baselineTotalMs": 14704590,
+    "currentTotalMs": 14894590,
+    "currentAverageMs": 1145737.69,
+    "splitSimulation": {
+      "maximumWithReserveMs": 1206667,
+      "averageWithReserveMs": 1206660.77,
+      "conclusion": "even ideal balance is over budget; no test splitting performed"
+    },
+    "unchanged": [
+      "all prior observations and floors",
+      "time budget",
+      "matrix",
+      "workers",
+      "original assertion"
+    ],
+    "notAttempted": [
+      "remote upload",
+      "PR",
+      "hosted Full",
+      "merge"
+    ]
+  },
+  "independentReview": {
+    "initial": "approve production boundary, source/test bridges and independent probes; final exact-commit binding pending",
+    "probeSourceSha256": "2778c48c5531fe44745dccd52ce018b4c04106e3adf4bcf2a076485a87bec418"
+  }
+}

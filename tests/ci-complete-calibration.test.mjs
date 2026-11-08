@@ -1,3 +1,4 @@
+import {prePartialCasePlanningSource,partialCasePlanningFloors,originalPlanningSource,preGameUiLocalPlanningSource,gameUiLocalPlanningKey,gameUiLocalPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciEpoch} from './helpers/integration-ci-epochs.mjs';
 import {potionCallbackFloorKey,verifiedPotionCallbackFloor,prePotionCallbackPlanningSource} from './helpers/potion-callback-planning.mjs';
 import {endTurnFloorKey,verifiedEndTurnFloor} from './helpers/end-turn-planning.mjs';
@@ -6,19 +7,30 @@ import {rewardQueryPlanningProof,preRewardQueryPlanningSource} from './helpers/r
 import {assertRewardQueryPlanningReceipt,assertRewardQueryPlanningProjection} from './helpers/reward-query-planning-contract.mjs';
 import {runCatalogFloorKey,verifiedRunCatalogFloor} from './helpers/run-catalog-planning.mjs';
 import {beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
+import {preDefectIntegrationPlanningSource,defectOnlyPlanningSource,defectIntegrationPlanningProof} from './helpers/defect-integration-planning-source-inverse.mjs';
+import {defectUtilityPlanningKey,defectUtilityPlanningFloor,defectUtilityPlanningProof,preDefectUtilityPlanningSource} from './helpers/defect-utility-planning-source-inverse.mjs';
+import {preEnemyIntegrationPlanningSource,enemyOnlyPlanningSource,enemyIntegrationPlanningProof} from './helpers/enemy-integration-planning-source-inverse.mjs';
+import {enemyAiPlanningKey,enemyAiPlanningFloor,enemyAiPlanningProof,preEnemyAiPlanningSource} from './helpers/enemy-ai-planning-source-inverse.mjs';
+import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from './helpers/watcher-planning-source-inverse.mjs';
+import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
+import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
 import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-shape-source-inverse.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as currentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
-const hash=s=>createHash('sha256').update(s).digest('hex'),read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
+const hash=s=>createHash('sha256').update(s).digest('hex'),read=p=>originalPlanningSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
+const currentTimings=actualCurrentTimings;
+// Frozen 17/13 contracts retain their original complete shape and job identity.
+const frozenShapeSource=prePosix14ShapeSource('scripts/ci-quality-shape.mjs',read('scripts/ci-quality-shape.mjs'));
+const {qualityShardMatrices:frozenQualityShardMatrices,qualityShardJobs:frozenQualityShardJobs}=await import('data:text/javascript,'+encodeURIComponent(frozenShapeSource));
+const frozenFullQualityJobs=['check','presentation','engineering-posix',...frozenQualityShardJobs,'impact','fast'];
 const path='scripts/ci-test-timings.json',binding=proof.files[path],before=JSON.parse(binding.beforeSource),after=JSON.parse(binding.afterSource),e=proof.evidence;
 // The three original contracts own the frozen 16/12 calibration, including its
 // unmeasured files. Current placement is checked separately below.
@@ -35,8 +47,8 @@ const floorPath='docs/evidence/pr521-run-max-planning-floor-20261106.json',floor
 const localFloorPath='docs/evidence/power-shop-planning-20261107.json',localFloorBytes=read(localFloorPath),localFloorReceipt=JSON.parse(localFloorBytes),localFloorKey='tests/power-shop-boundaries.test.mjs';
 // Added after the frozen #521 placement receipts. Never use these files to
 // reconstruct historical shard assignments or invent historical measurements.
-const postPlacementJs=["tests/act1-choice-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs"];
-const postPlacementLua=["tests/lua/actor_presence_contract.lua","tests/lua/colorless_catalog_contract.lua","tests/lua/intent_visibility_cache.lua","tests/lua/potion_callback_contract.lua","tests/lua/watcher_final_execution_boundaries.lua"];
+const postPlacementJs=["tests/act1-choice-responsibilities.test.mjs","tests/act3-ai-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/class-potion-orb-boundary.test.mjs","tests/class-potion-orb-source-inverse.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-integration-source.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/defect-utility-planning.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/enemy-ai-lifecycle.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/scry-choice-responsibilities.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/seven-refactor-source-epoch.test.mjs","tests/shiv-turn-responsibilities.test.mjs","tests/watcher-actor-boundary.test.mjs","tests/watcher-actor-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs","tests/watcher-potion-integration-source.test.mjs"];
+const postPlacementLua=["tests/lua/actor_presence_contract.lua","tests/lua/colorless_catalog_contract.lua","tests/lua/defect_utility_planning.lua","tests/lua/enemy_ai_lifecycle.lua","tests/lua/intent_visibility_cache.lua","tests/lua/potion_callback_contract.lua","tests/lua/watcher_final_execution_boundaries.lua"];
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
 const placementJs=()=>discoverJs().filter(file=>!postPlacementJs.includes(file));
 const placementLua=()=>currentLua().filter(file=>!postPlacementLua.includes(file));
@@ -163,12 +175,12 @@ test('historical physical Windows16 POSIX12 Full33 covers final inventory under 
 });
 
 test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 Lua files within unchanged budgets',()=>{
- assert.deepEqual(currentQualityShardMatrices.windows,Array.from({length:17},(_,i)=>i+1));
- assert.deepEqual(currentQualityShardMatrices.posix,Array.from({length:13},(_,i)=>i+1));
- assert.equal(read('scripts/ci-quality-shape.mjs'),proof.files['scripts/ci-quality-shape.mjs'].afterSource.replace('length:16','length:17').replace('length:12','length:13'));
- assert.equal(currentQualityShardJobs.length,30);
- assert.deepEqual(currentFullQualityJobs,['check','presentation','engineering-posix',...Array.from({length:17},(_,i)=>`rules (${i+1}/17)`),...Array.from({length:13},(_,i)=>`engineering-posix (${i+1}/13)`),'impact','fast']);
- assert.equal(currentFullQualityJobs.length,35);assert.equal(new Set(currentFullQualityJobs).size,35);
+ assert.deepEqual(frozenQualityShardMatrices.windows,Array.from({length:17},(_,i)=>i+1));
+ assert.deepEqual(frozenQualityShardMatrices.posix,Array.from({length:13},(_,i)=>i+1));
+ assert.equal(frozenShapeSource,proof.files['scripts/ci-quality-shape.mjs'].afterSource.replace('length:16','length:17').replace('length:12','length:13'));
+ assert.equal(frozenQualityShardJobs.length,30);
+ assert.deepEqual(frozenFullQualityJobs,['check','presentation','engineering-posix',...Array.from({length:17},(_,i)=>`rules (${i+1}/17)`),...Array.from({length:13},(_,i)=>`engineering-posix (${i+1}/13)`),'impact','fast']);
+ assert.equal(frozenFullQualityJobs.length,35);assert.equal(new Set(frozenFullQualityJobs).size,35);
  const js=placementJs(),lua=placementLua();
  assert.equal(js.length,741);assert.equal(lua.length,1401);
  const totalJs=platform=>Object.values(placementWeights(js,platform)).reduce((sum,n)=>sum+n,0)+(placementTimings.initialMs[platform]?.[0]??0);
@@ -211,9 +223,11 @@ test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 L
  const workflow=beforeExecutionTimeoutWorkflow(read('.github/workflows/quality.yml'));assert.match(workflow,/max-parallel: 12/);assert.match(workflow,/timeout-minutes: 20/);assert.match(workflow,/local-special' && 75 \|\| 30/);
 });
 
-test('current Full35 retains full coverage and reports performance targets under unchanged execution guards',t=>{
+test('current Full36 retains full coverage and reports performance targets under unchanged execution guards',t=>{
  const workflow=read('.github/workflows/quality.yml');assert.match(workflow,/timeout-minutes: \$\{\{ inputs.runner_pool == 'local-special' && 75 \|\| 45 \}\}/);assert.match(workflow,/runs-on: ubuntu-24.04\n    timeout-minutes: 30/);
  const js=discoverJs(),lua=currentLua();
+ assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:17},(_,i)=>i+1),posix:Array.from({length:14},(_,i)=>i+1)});
+ assert.equal(currentQualityShardJobs.length,31);assert.equal(currentFullQualityJobs.length,36);assert.equal(new Set(currentFullQualityJobs).size,36);
  assert.deepEqual(js.filter(file=>postPlacementJs.includes(file)).sort(),postPlacementJs);
  assert.deepEqual(lua.filter(file=>postPlacementLua.includes(file)),postPlacementLua);
  assert.equal(js.length,placement.inventory.js+postPlacementJs.length);
@@ -238,6 +252,10 @@ test('current Full35 retains full coverage and reports performance targets under
   }else if(file==='tests/reward-query-boundary.test.mjs'){
    assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],JSON.parse(rewardQueryPlanningProof.afterSource).jsPlanning.localLowerBounds['tests/reward-query-boundary.test.mjs']);
    assert.equal(currentJsPlanningWeights([file],platform)[file],JSON.parse(rewardQueryPlanningProof.afterSource).jsPlanning.localLowerBounds['tests/reward-query-boundary.test.mjs'].durationMs);
+  }else if([defectUtilityPlanningKey,enemyAiPlanningKey,classPotionPlanningKey,watcherPlanningKey].includes(file)){
+   const floor=({[defectUtilityPlanningKey]:defectUtilityPlanningFloor,[enemyAiPlanningKey]:enemyAiPlanningFloor,[classPotionPlanningKey]:classPotionPlanningFloor,[watcherPlanningKey]:watcherPlanningFloor})[file];
+   assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],floor);
+   assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(currentTimings.unknownJsMs,floor.durationMs));
   }else{
    assert.equal(currentTimings.jsPlanning.localLowerBounds[file],undefined,'other new files have no fabricated planning floors');
    assert.equal(currentJsPlanningWeights([file],platform)[file],currentTimings.unknownJsMs);
@@ -247,12 +265,12 @@ test('current Full35 retains full coverage and reports performance targets under
   assert.equal(currentTimings.lua[file],undefined,'new fixtures have no fabricated worker-safety measurements');
   assert.equal(currentTimings.luaShard[file],undefined,'new fixtures have no fabricated placement measurements');
  }
- for(const [platform,count,budget]of [['win32',17,1800000],['linux',13,1200000]]){
+ for(const [platform,count,budget]of [['win32',17,1800000],['linux',14,1200000]]){
   const loads=currentJsShard(js,`1/${count}`,platform).loads;
   const jsBins=Array.from({length:count},(_,i)=>currentJsShard(js,`${i+1}/${count}`,platform).files);
   assert.deepEqual(jsBins.flat().sort(),[...js].sort());assert.equal(new Set(jsBins.flat()).size,js.length);
   if(platform==='linux'){
-   const forecast=Math.max(...loads)+60000;t.diagnostic(`POSIX forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
+   const forecast=Math.max(...loads)+60000;assert.equal(forecast,1179021);assert.ok(forecast<budget,'complete POSIX inventory fits the unchanged performance target including reserve');t.diagnostic(`POSIX forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
    continue;
   }
   const planning={...currentTimings,windowsJsShardMs:loads};
@@ -262,7 +280,7 @@ test('current Full35 retains full coverage and reports performance targets under
   const safety=file=>currentTimings.lua[file]??currentTimings.unknownLuaMs;
   const combined=bins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);
    return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);});
-  const forecast=Math.max(...combined)+60000;t.diagnostic(`Windows forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<2700000,'forecast must fit the separately authorized 45-minute execution guard');
+  const forecast=Math.max(...combined)+60000;assert.equal(forecast,1771239);assert.ok(forecast<budget,'complete Windows inventory fits the unchanged performance target including reserve');t.diagnostic(`Windows forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<2700000,'forecast must fit the separately authorized 45-minute execution guard');
  }
 });
 
@@ -381,12 +399,15 @@ test('current 129 placement raises reconstruct exact timings while preserving al
  expected.jsPlanning.localLowerBounds['tests/actor-presence.test.mjs']=ciEpoch('actor').timings.jsPlanning.localLowerBounds['tests/actor-presence.test.mjs'];
  expected.jsPlanning.localLowerBounds['tests/reward-query-boundary.test.mjs']=JSON.parse(rewardQueryPlanningProof.afterSource).jsPlanning.localLowerBounds['tests/reward-query-boundary.test.mjs'];
  assert.equal(JSON.stringify(expected,null,2)+'\n',read(path),'only independently sourced Power/Shop and Run catalogue floors extend the original epoch');
+ for(const [key,floor]of [[defectUtilityPlanningKey,defectUtilityPlanningFloor],[enemyAiPlanningKey,enemyAiPlanningFloor],[classPotionPlanningKey,classPotionPlanningFloor],[watcherPlanningKey,watcherPlanningFloor]])expected.jsPlanning.localLowerBounds[key]=floor;
+ expected.jsPlanning.localLowerBounds[gameUiLocalPlanningKey]=gameUiLocalPlanningFloor;
+ Object.assign(expected.jsPlanning.localLowerBounds,partialCasePlanningFloors);
  assert.deepEqual(currentTimings,expected);
  for(const platform of ['win32','linux'])for(const [file,value]of Object.entries(after.js[platform]))assert.ok(currentTimings.js[platform][file]>=value);
  const luaBlock=s=>s.slice(s.indexOf('  "lua": {'),s.indexOf('  "jsSource":'));
  assert.equal(luaBlock(read(path)),luaBlock(binding.afterSource),'literal worker-safety bytes remain frozen');
  for(const key of ['lua','luaShard','luaShardCalibrationUpdates','initialMs','unknownJsMs','unknownLuaMs'])assert.deepEqual(currentTimings[key],after[key],key+' remains unchanged');
- const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);delete priorFloors[floorKey];delete priorFloors[localFloorKey];delete priorFloors[runCatalogFloorKey];delete priorFloors[potionCallbackFloorKey];delete priorFloors[endTurnFloorKey];delete priorFloors['tests/actor-presence.test.mjs'];delete priorFloors['tests/reward-query-boundary.test.mjs'];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
+ const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);for(const key of Object.keys(partialCasePlanningFloors))delete priorFloors[key];delete priorFloors[gameUiLocalPlanningKey];delete priorFloors[floorKey];delete priorFloors[localFloorKey];delete priorFloors[runCatalogFloorKey];delete priorFloors[potionCallbackFloorKey];delete priorFloors[endTurnFloorKey];delete priorFloors['tests/actor-presence.test.mjs'];delete priorFloors['tests/reward-query-boundary.test.mjs'];for(const key of [defectUtilityPlanningKey,enemyAiPlanningKey,classPotionPlanningKey,watcherPlanningKey])delete priorFloors[key];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
  for(const platform of ['win32','linux'])assert.equal(currentJsPlanningWeights([floorKey],platform)[floorKey],889638);
  assert.equal(placement.forecast.reserveMs,60000);assert.deepEqual(placement.forecast.budgets,{win32:1800000,linux:1200000});assert.equal(placement.forecast.workers,2);assert.equal(placement.forecast.concurrencyCapUnchanged,12);
 });
@@ -397,7 +418,7 @@ test('only two exact current source identities enter the unchanged pure historic
   'scripts/ci-quality-shape.mjs':'0d6c82c2a7e7db82e276eb563978d5253d9a225039329e171ed3f907f98609d1',
  };
  for(const [path,digest]of Object.entries(identities)){
-  const source=read(path),b=proof.files[path];assert.equal(hash(source),digest);
+  const source=prePosix14ShapeSource(path,read(path)),b=proof.files[path];assert.equal(hash(source),digest);
   for(const input of [source,source.replaceAll('\n','\r\n')]){
    assert.equal(preCurrentCiPlacementSource(path,input),b.afterSource);assert.equal(project(path,input),b.beforeSource);
    const legacy=path.endsWith('.json')?preCiHostTimingSource(path,b.beforeSource):preCiWindowsShapeSource(path,b.beforeSource);
@@ -489,3 +510,64 @@ test('original Actor placement forecast retains its exact complete slice and unc
 });
 test('original reward-query whole-file provenance retains its measured source identity and costs',()=>{assertRewardQueryPlanningReceipt({epoch:ciEpoch('reward')});});
 test('original reward-query timing pure projection rejects every byte drift',()=>{assertRewardQueryPlanningProjection({project,preCurrentCiPlacementSource,preIntegrationSource,epoch:ciEpoch('reward')});});
+
+test('only exact POSIX14 source enters the frozen 17/13 epoch without accepting drift or cross-file sources',()=>{
+ const path='scripts/ci-quality-shape.mjs',source=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+ assert.equal(source,frozenShapeSource.replace('length:13','length:14'));
+ for(const input of [source,source.replaceAll('\n','\r\n')]){
+  assert.equal(prePosix14ShapeSource(path,input),frozenShapeSource);
+  assert.equal(preCurrentCiPlacementSource(path,input),proof.files[path].afterSource);
+  assert.equal(project(path,input),proof.files[path].beforeSource);
+ }
+ for(const input of [undefined,null,{},42,frozenShapeSource,source+'\n',source.slice(1),source.replace('length:14','length:15'),source.replace('length:17','length:18')])
+  assert.equal(prePosix14ShapeSource(path,input),input);
+ for(const wrongPath of ['foreign','scripts/ci-test-timings.json'])assert.equal(prePosix14ShapeSource(wrongPath,source),source);
+});
+
+test('Enemy AI planning layer authenticates complete current bytes and rejects unrelated drift',()=>{
+ const source=enemyOnlyPlanningSource(path,preDefectIntegrationPlanningSource(path,originalPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'),'seven'))),prior=preEnemyAiPlanningSource(path,source);
+ assert.equal(hash(source),enemyAiPlanningProof.afterSha256);
+ assert.equal(hash(prior),enemyAiPlanningProof.beforeSha256);
+ assert.notEqual(source,prior);
+ for(const input of [source,source.replaceAll('\n','\r\n')]){
+  assert.equal(preEnemyAiPlanningSource(path,input),prior);
+  assert.equal(preCurrentCiPlacementSource(path,input),binding.afterSource);
+ }
+ for(const changed of [source+'\n',source.replace('"durationMs": 30000','"durationMs": 29999'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999')]){
+  assert.notEqual(changed,source);assert.equal(preEnemyAiPlanningSource(path,changed),changed);
+  assert.equal(preCurrentCiPlacementSource(path,changed),changed);
+ }
+});
+
+test('Defect utility planning layer authenticates complete current bytes and rejects unrelated drift',()=>{
+ const source=defectOnlyPlanningSource(path,originalPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'),'seven')),prior=preDefectUtilityPlanningSource(path,source);
+ assert.equal(hash(source),defectUtilityPlanningProof.afterSha256);
+ assert.equal(hash(prior),defectUtilityPlanningProof.beforeSha256);
+ assert.notEqual(source,prior);
+ for(const input of [source,source.replaceAll('\n','\r\n')]){
+  assert.equal(preDefectUtilityPlanningSource(path,input),prior);
+  assert.equal(preCurrentCiPlacementSource(path,input),binding.afterSource);
+ }
+ for(const changed of [source+'\n',source.replace('"durationMs": 20000','"durationMs": 19999'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999')]){
+  assert.notEqual(changed,source);assert.equal(preDefectUtilityPlanningSource(path,changed),changed);
+  assert.equal(preCurrentCiPlacementSource(path,changed),changed);
+ }
+});
+
+
+test('merged planning source authenticates both complete original epochs without masking drift',()=>{
+ const source=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+ for(const epoch of ['develop','seven']){
+  const original=originalPlanningSource(path,source,epoch);
+  assert.notEqual(original,source);
+  assert.equal(originalPlanningSource(path,source.replaceAll('\n','\r\n'),epoch),original);
+  const current=JSON.parse(source),prior=JSON.parse(original);
+  for(const key of Object.keys(prior).filter(key=>key!=='jsPlanning'))assert.deepEqual(current[key],prior[key]);
+  for(const [key,value]of Object.entries(prior.jsPlanning.localLowerBounds))assert.deepEqual(current.jsPlanning.localLowerBounds[key],value);
+  for(const mutant of [source+'\n',source.slice(1),source.replace('"durationMs": 180000','"durationMs": 179999'),source.replace('"durationMs": 68586','"durationMs": 68585'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),null,undefined,{},42,original]){
+   assert.equal(originalPlanningSource(path,mutant,epoch),mutant);
+   if(typeof mutant==='string'&&mutant!==original)assert.equal(project(path,mutant),mutant);
+  }
+  assert.equal(originalPlanningSource('foreign/'+path,source,epoch),source);
+ }
+});

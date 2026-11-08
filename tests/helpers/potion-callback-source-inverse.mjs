@@ -3,8 +3,9 @@ export * from './epochs/potion/tests/helpers/potion-callback-source-inverse.mjs'
 import { prePotionCallbackSource as original } from './epochs/potion/tests/helpers/potion-callback-source-inverse.mjs';
 import {sourceEpoch} from './combined-epoch/source-epoch.mjs';
 import {readFileSync} from 'node:fs';
-const live=p=>readFileSync(p,'utf8');
+const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function prePotionCallbackSource(path,source,{readSource=live}={}){
+ readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'potion',readSource});
  return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'potion')});
 }

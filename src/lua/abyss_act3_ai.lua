@@ -6,51 +6,66 @@ local function select(enemy,id)
  for i,intent in ipairs(enemy.intents)do if intent.id==id then enemy.intentIndex=i;return end end
  error('unknown Act3 intent '..tostring(id))
 end
+-- Maw owns its turn counter and replaces the changing move so previously
+-- emitted frames keep their intent/effect graph.
+local function advanceMaw(enemy,n)
+ enemy.mawTurn=enemy.mawTurn+1
+ local id
+ if not enemy.mawRoared then id='roar'
+ elseif n<50 and enemy.act3Last~='nom'then id='nom'
+ elseif enemy.act3Last=='slam'or enemy.act3Last=='nom'then id='drool'
+ else id='slam'end
+ local intents={}
+ for i,move in ipairs(enemy.intents)do
+  if move.id=='nom'then move=Copy(move);move.effects[1].times=math.floor(enemy.mawTurn/2)end
+  intents[i]=move
+ end
+ enemy.intents=intents
+ enemy.act3Last=id;select(enemy,id)
+end
+
+local function advanceSpireGrowth(state,enemy,n)
+ local twiceTackle=enemy.act3Last=='tackle'and enemy.act3Previous=='tackle'
+ local twiceSmash=enemy.act3Last=='smash'and enemy.act3Previous=='smash'
+ local id
+ if n<50 and not twiceTackle then id='tackle'
+ elseif (state.player.statuses.constricted or 0)<=0 and enemy.act3Last~='constrict'then id='constrict'
+ elseif not twiceSmash then id='smash'else id='tackle'end
+ enemy.act3Previous,enemy.act3Last=enemy.act3Last,id;select(enemy,id)
+end
+
+-- Shapes share the primary roll, but only Repulsor and Spiker retain last move.
+local function advanceShape(policy,enemy,n)
+ if policy=='repulsor'then
+  local id=n<20 and enemy.act3Last~='attack'and 'attack'or 'daze'
+  enemy.act3Last=id;select(enemy,id)
+ elseif policy=='spiker'then
+  local id=enemy.spikeCount>5 and 'attack'or n<50 and enemy.act3Last~='attack'and 'attack'or 'spike'
+  enemy.act3Last=id;select(enemy,id)
+ else
+  select(enemy,enemy.exploderTurns<2 and 'attack'or 'wait')
+ end
+end
+
+local function advanceOrbWalker(enemy,n)
+ local preferred=n<40 and 'claw' or 'laser'
+ local twice=enemy.act3Last==preferred and enemy.act3Previous==preferred
+ local id=twice and (preferred=='claw' and 'laser' or 'claw')or preferred
+ enemy.act3Previous,enemy.act3Last=enemy.act3Last,id
+ select(enemy,id)
+end
+
 function M.advance(state,enemy,random)
  local policy=enemy.ai.policy
  if policy=='writhing_mass'then return require('abyss_writhing_mass').advance(state,enemy,random)end
  assert(policy=='orb_walker'or policy=='repulsor'or policy=='spiker'or policy=='exploder'
   or policy=='maw'or policy=='spire_growth'or policy=='transient','unsupported Act3 AI')
  local n=random(state,100)-1
- if policy=='transient'then select(enemy,'attack');return
- elseif policy=='maw'then
-  enemy.mawTurn=enemy.mawTurn+1
-  local id
-  if not enemy.mawRoared then id='roar'
-  elseif n<50 and enemy.act3Last~='nom'then id='nom'
-  elseif enemy.act3Last=='slam'or enemy.act3Last=='nom'then id='drool'
-  else id='slam'end
-  -- Frames keep the old intent graph. Replace the changing move instead of
-  -- mutating its effects through a previously emitted presentation frame.
-  local intents={}
-  for i,move in ipairs(enemy.intents)do
-   if move.id=='nom'then move=Copy(move);move.effects[1].times=math.floor(enemy.mawTurn/2)end
-   intents[i]=move
-  end
-  enemy.intents=intents
-  enemy.act3Last=id;select(enemy,id);return
- elseif policy=='spire_growth'then
-  local twiceTackle=enemy.act3Last=='tackle'and enemy.act3Previous=='tackle'
-  local twiceSmash=enemy.act3Last=='smash'and enemy.act3Previous=='smash'
-  local id
-  if n<50 and not twiceTackle then id='tackle'
-  elseif (state.player.statuses.constricted or 0)<=0 and enemy.act3Last~='constrict'then id='constrict'
-  elseif not twiceSmash then id='smash'else id='tackle'end
-  enemy.act3Previous,enemy.act3Last=enemy.act3Last,id;select(enemy,id);return
- elseif policy=='repulsor'then
-  local id=n<20 and enemy.act3Last~='attack'and 'attack'or 'daze'
-  enemy.act3Last=id;select(enemy,id);return
- elseif policy=='spiker'then
-  local id=enemy.spikeCount>5 and 'attack'or n<50 and enemy.act3Last~='attack'and 'attack'or 'spike'
-  enemy.act3Last=id;select(enemy,id);return
- elseif policy=='exploder'then
-  select(enemy,enemy.exploderTurns<2 and 'attack'or 'wait');return
- end
- local preferred=n<40 and 'claw' or 'laser'
- local twice=enemy.act3Last==preferred and enemy.act3Previous==preferred
- local id=twice and (preferred=='claw' and 'laser' or 'claw')or preferred
- enemy.act3Previous,enemy.act3Last=enemy.act3Last,id
- select(enemy,id)
+ if policy=='transient'then select(enemy,'attack')
+ elseif policy=='maw'then advanceMaw(enemy,n)
+ elseif policy=='spire_growth'then advanceSpireGrowth(state,enemy,n)
+ elseif policy=='repulsor'or policy=='spiker'or policy=='exploder'then advanceShape(policy,enemy,n)
+ else advanceOrbWalker(enemy,n)end
 end
 function M.initialize(state,enemy,random)
  if enemy.ai.policy=='writhing_mass'then return require('abyss_writhing_mass').initialize(state,enemy,random)end

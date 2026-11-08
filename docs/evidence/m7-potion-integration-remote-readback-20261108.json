@@ -1,0 +1,597 @@
+{
+  "checkedAt": "2026-11-07T19:15:47.945Z",
+  "develop": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "prs": [
+    {
+      "number": 541,
+      "head": "cc4cce701d44b57b70cf9a6fc1c5d5e629629ddd",
+      "state": "open",
+      "title": "refactor(core): 解耦Power与商店职责并修复CI超时机制"
+    },
+    {
+      "number": 542,
+      "head": "e750311b6aae38124e68f84b465f0bcf4c5be867",
+      "state": "open",
+      "title": "refactor(m7): 拆清奖励查询与 Watcher 执行职责"
+    },
+    {
+      "number": 543,
+      "head": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+      "state": "open",
+      "title": "refactor(m7): 整合Session、Watcher与Inventory职责"
+    },
+    {
+      "number": 544,
+      "head": "eb47852bc6aa65718b858af72d9d86249fef47ce",
+      "state": "open",
+      "title": "fix(tooling): 补齐共享及自定义LFS缓存识别"
+    },
+    {
+      "number": 545,
+      "head": "90c5a89a5765545f689abc6e03f27e1f3f7cccbf",
+      "state": "open",
+      "title": "refactor(m7): 分离无色目录与卡能力准入职责"
+    },
+    {
+      "number": 546,
+      "head": "35d392bcf3049a214970127dbf587a4adae8fd9e",
+      "state": "open",
+      "title": "refactor(m7): 拆分 Act1 事件选择职责"
+    },
+    {
+      "number": 547,
+      "head": "10bd71b00fb24c0bf0e9d7d0c5a14ad6e2207c5d",
+      "state": "open",
+      "title": "refactor(m7): 拆分 Defect 纯效果规划职责"
+    },
+    {
+      "number": 548,
+      "head": "ec93cd91fff1a643e43933ccd721466e42165410",
+      "state": "open",
+      "title": "refactor(m7): 拆清 Run 卡目录合并职责"
+    },
+    {
+      "number": 549,
+      "head": "3c8b0fbba73332354e1f030662fcf3169f03e8d6",
+      "state": "open",
+      "title": "refactor: separate owner end power planning and effects"
+    },
+    {
+      "number": 550,
+      "head": "110425281a3d3baf3973c8abc7bf622052dfdd4c",
+      "state": "open",
+      "title": "refactor(m7): 解耦药水遗物回调"
+    },
+    {
+      "number": 551,
+      "head": "962e5fe3e82e3844b0b60d3a7e79983d7d19c6b9",
+      "state": "open",
+      "title": "refactor(m7): 分离 Actor 状态查询并解除三项循环依赖"
+    },
+    {
+      "number": 552,
+      "head": "a3507ef25308eb951585a4d54c225e04121a785a",
+      "state": "open",
+      "title": "refactor(m7): 线性接续 Run 卡目录职责"
+    },
+    {
+      "number": 553,
+      "head": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+      "state": "open",
+      "title": "feat(experiment): 同档对照原生3D、Tween、拼装与奖励UI"
+    },
+    {
+      "number": 554,
+      "head": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+      "state": "open",
+      "title": "refactor(m7): 分离卡牌升级规则并修复原始API兼容"
+    },
+    {
+      "number": 555,
+      "head": "1c83c4547cbdb40bd8062bce83a49aba14b4e407",
+      "state": "open",
+      "title": "refactor(m7): 解耦奖励查询与会话命令依赖"
+    },
+    {
+      "number": 556,
+      "head": "8d16bc98efc3d859b2491110f20de8cc93d4197a",
+      "state": "open",
+      "title": "fix(3d): 统一原生战斗目标、复用遗迹并加固GIL构建"
+    }
+  ],
+  "ci": [
+    {
+      "number": 541,
+      "head": "cc4cce701d44b57b70cf9a6fc1c5d5e629629ddd",
+      "runs": [
+        {
+          "id": 42343902584,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 438,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343902584/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343902584/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42343902585,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1103,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343902585/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343902585/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42343902580,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_number": 1822,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343902580/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343902580/logs",
+          "workflow_id": 392977706
+        }
+      ]
+    },
+    {
+      "number": 542,
+      "head": "e750311b6aae38124e68f84b465f0bcf4c5be867",
+      "runs": [
+        {
+          "id": 42340473737,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_number": 1815,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42340473737/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42340473737/logs",
+          "workflow_id": 392977706
+        },
+        {
+          "id": 42340282165,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1096,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42340282165/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42340282165/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42340282047,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_number": 1812,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42340282047/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42340282047/logs",
+          "workflow_id": 392977706
+        },
+        {
+          "id": 42340282086,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 431,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42340282086/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42340282086/logs",
+          "workflow_id": 398979684
+        }
+      ]
+    },
+    {
+      "number": 543,
+      "head": "939e0820d46c4cecda571df779cfb4e9cd15aa13",
+      "runs": [
+        {
+          "id": 42341631228,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1099,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42341631228/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42341631228/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42341631227,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 434,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42341631227/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42341631227/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42341631285,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_number": 1818,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42341631285/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42341631285/logs",
+          "workflow_id": 392977706
+        }
+      ]
+    },
+    {
+      "number": 544,
+      "head": "eb47852bc6aa65718b858af72d9d86249fef47ce",
+      "runs": [
+        {
+          "id": 42345447219,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1105,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42345447219/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42345447219/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42345447215,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 440,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42345447215/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42345447215/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42345447239,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1824,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42345447239/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42345447239/logs",
+          "workflow_id": 392977706
+        }
+      ]
+    },
+    {
+      "number": 545,
+      "head": "90c5a89a5765545f689abc6e03f27e1f3f7cccbf",
+      "runs": [
+        {
+          "id": 42343242137,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 436,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343242137/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343242137/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42343242050,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1101,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343242050/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343242050/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42343242059,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_number": 1820,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343242059/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42343242059/logs",
+          "workflow_id": 392977706
+        }
+      ]
+    },
+    {
+      "number": 546,
+      "head": "35d392bcf3049a214970127dbf587a4adae8fd9e",
+      "runs": []
+    },
+    {
+      "number": 547,
+      "head": "10bd71b00fb24c0bf0e9d7d0c5a14ad6e2207c5d",
+      "runs": []
+    },
+    {
+      "number": 548,
+      "head": "ec93cd91fff1a643e43933ccd721466e42165410",
+      "runs": [
+        {
+          "id": 42364592632,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1111,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42364592632/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42364592632/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42364592657,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 444,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42364592657/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42364592657/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42364592584,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_number": 1830,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42364592584/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42364592584/logs",
+          "workflow_id": 392977706
+        }
+      ]
+    },
+    {
+      "number": 549,
+      "head": "3c8b0fbba73332354e1f030662fcf3169f03e8d6",
+      "runs": [
+        {
+          "id": 42361622498,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1828,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42361622498/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42361622498/logs",
+          "workflow_id": 392977706
+        },
+        {
+          "id": 42361622396,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1109,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42361622396/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42361622396/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42361622408,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 442,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42361622408/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42361622408/logs",
+          "workflow_id": 398979684
+        }
+      ]
+    },
+    {
+      "number": 550,
+      "head": "110425281a3d3baf3973c8abc7bf622052dfdd4c",
+      "runs": []
+    },
+    {
+      "number": 551,
+      "head": "962e5fe3e82e3844b0b60d3a7e79983d7d19c6b9",
+      "runs": [
+        {
+          "id": 42363348347,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1110,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42363348347/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42363348347/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42363348361,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 443,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42363348361/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42363348361/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42363348387,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_number": 1829,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42363348387/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42363348387/logs",
+          "workflow_id": 392977706
+        }
+      ]
+    },
+    {
+      "number": 552,
+      "head": "a3507ef25308eb951585a4d54c225e04121a785a",
+      "runs": [
+        {
+          "id": 42365945792,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 445,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42365945792/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42365945792/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42365945791,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_number": 1831,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42365945791/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42365945791/logs",
+          "workflow_id": 392977706
+        },
+        {
+          "id": 42365945782,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1112,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42365945782/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42365945782/logs",
+          "workflow_id": 396870603
+        }
+      ]
+    },
+    {
+      "number": 553,
+      "head": "71ef036069d1f964f9e85c81ab8a8f424112efe4",
+      "runs": [
+        {
+          "id": 42374122955,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_number": 1119,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42374122955/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42374122955/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42374122951,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 452,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42374122951/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42374122951/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42374122953,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1838,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42374122953/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42374122953/logs",
+          "workflow_id": 392977706
+        }
+      ]
+    },
+    {
+      "number": 554,
+      "head": "e7a5020a9acc543f842958fb863a12fe0fedd47e",
+      "runs": [
+        {
+          "id": 42366826822,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_number": 1833,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42366826822/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42366826822/logs",
+          "workflow_id": 392977706
+        },
+        {
+          "id": 42366826809,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 447,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42366826809/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42366826809/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42366826865,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1114,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42366826865/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42366826865/logs",
+          "workflow_id": 396870603
+        }
+      ]
+    },
+    {
+      "number": 555,
+      "head": "1c83c4547cbdb40bd8062bce83a49aba14b4e407",
+      "runs": [
+        {
+          "id": 42380032853,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1120,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42380032853/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42380032853/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42380032719,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 453,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42380032719/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42380032719/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42380032814,
+          "name": "Quality",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_number": 1839,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42380032814/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42380032814/logs",
+          "workflow_id": 392977706
+        }
+      ]
+    },
+    {
+      "number": 556,
+      "head": "8d16bc98efc3d859b2491110f20de8cc93d4197a",
+      "runs": [
+        {
+          "id": 42405166658,
+          "name": "Licenses",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1136,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42405166658/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42405166658/logs",
+          "workflow_id": 396870603
+        },
+        {
+          "id": 42405166674,
+          "name": "Quick feedback",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 469,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42405166674/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42405166674/logs",
+          "workflow_id": 398979684
+        },
+        {
+          "id": 42405166675,
+          "name": "Quality",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 1855,
+          "jobs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42405166675/jobs",
+          "logs_url": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/runs/42405166675/logs",
+          "workflow_id": 392977706
+        }
+      ]
+    }
+  ]
+}

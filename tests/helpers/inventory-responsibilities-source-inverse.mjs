@@ -3,8 +3,9 @@ export * from './epochs/inventory/tests/helpers/inventory-responsibilities-sourc
 import { preInventoryResponsibilitiesSource as original } from './epochs/inventory/tests/helpers/inventory-responsibilities-source-inverse.mjs';
 import {sourceEpoch} from './combined-epoch/source-epoch.mjs';
 import {readFileSync} from 'node:fs';
-const live=p=>readFileSync(p,'utf8');
+const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preInventoryResponsibilitiesSource(path,source,{readSource=live}={}){
+ readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'inventory',readSource});
  return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'inventory')});
 }

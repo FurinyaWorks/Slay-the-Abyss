@@ -3,7 +3,7 @@ export * from './epochs/develop/tests/helpers/round3-catalog-source-inverse.mjs'
 import { preRound3CatalogSource as original } from './epochs/develop/tests/helpers/round3-catalog-source-inverse.mjs';
 import {sourceEpoch} from './combined-epoch/source-epoch.mjs';
 import {readFileSync} from 'node:fs';
-const live=p=>readFileSync(p,'utf8');
+const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 function unusedOriginalFacade(path,source,{readSource=live}={}){
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'develop',readSource});
  return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'develop')});

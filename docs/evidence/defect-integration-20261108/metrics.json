@@ -1,0 +1,56 @@
+{
+  "baseline": {
+    "coverage": {
+      "modules": 333,
+      "functions": 5053,
+      "measurements": 5386,
+      "expectedMeasurements": 5386
+    },
+    "diagnostics": 14,
+    "requirePositions": 1920,
+    "modulePairs": 1546,
+    "ccAbove15": 237,
+    "ccAbove30": 58,
+    "maxCC": 75,
+    "revision": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+    "scc": [
+      {
+        "members": 81,
+        "positions": 623,
+        "pairs": 400
+      },
+      {
+        "members": 15,
+        "positions": 62,
+        "pairs": 41
+      }
+    ]
+  },
+  "combined": {
+    "coverage": {
+      "modules": 333,
+      "functions": 5081,
+      "measurements": 5414,
+      "expectedMeasurements": 5414
+    },
+    "diagnostics": 14,
+    "requirePositions": 1919,
+    "modulePairs": 1546,
+    "ccAbove15": 232,
+    "ccAbove30": 52,
+    "maxCC": 75,
+    "revision": "12950b1ca474e7c0a57ff68e1de1780090194c71",
+    "scc": [
+      {
+        "members": 79,
+        "positions": 615,
+        "pairs": 394
+      },
+      {
+        "members": 15,
+        "positions": 62,
+        "pairs": 41
+      }
+    ]
+  }
+}

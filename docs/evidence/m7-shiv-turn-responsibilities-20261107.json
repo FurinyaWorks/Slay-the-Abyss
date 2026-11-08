@@ -1,0 +1,1463 @@
+{
+  "schemaVersion": 1,
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "kind": "local-only-responsibility-refactor",
+  "productionPaths": [
+    "src/lua/abyss_shivs.lua"
+  ],
+  "occupancy": {
+    "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+    "prs": [
+      {
+        "number": 556,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/556",
+        "productionPaths": [
+          "src/lua/abyss_battle_enemy_view.lua",
+          "src/lua/abyss_battle_render_hud.lua",
+          "src/lua/abyss_battle_unit_view.lua",
+          "src/lua/abyss_feedback.lua",
+          "src/lua/abyss_feedback_actor_painter.lua",
+          "src/lua/abyss_map_ui.lua",
+          "src/lua/abyss_monster_art.lua",
+          "src/lua/abyss_monster_power_view.lua",
+          "src/lua/abyss_native_battle.lua",
+          "src/lua/abyss_native_battle_config.lua",
+          "src/lua/abyss_native_battle_geometry.lua",
+          "src/lua/abyss_native_projection.lua",
+          "src/lua/abyss_traveler_portraits.lua"
+        ]
+      },
+      {
+        "number": 553,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/553",
+        "productionPaths": []
+      },
+      {
+        "number": 555,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/555",
+        "productionPaths": [
+          "src/lua/abyss_relic_card_rewards.lua",
+          "src/lua/abyss_relic_choices.lua",
+          "src/lua/abyss_relic_pending.lua"
+        ]
+      },
+      {
+        "number": 554,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/554",
+        "productionPaths": [
+          "src/lua/abyss_act2_stasis.lua",
+          "src/lua/abyss_card_upgrade.lua",
+          "src/lua/abyss_combat.lua",
+          "src/lua/abyss_warrior_status_cards.lua"
+        ]
+      },
+      {
+        "number": 551,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/551",
+        "productionPaths": [
+          "src/lua/abyss_act2_ai_moves.lua",
+          "src/lua/abyss_act2_summons.lua",
+          "src/lua/abyss_actor.lua",
+          "src/lua/abyss_actor_presence.lua",
+          "src/lua/abyss_silent_discard_cards.lua"
+        ]
+      },
+      {
+        "number": 549,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/549",
+        "productionPaths": [
+          "src/lua/abyss_end_turn_powers.lua"
+        ]
+      },
+      {
+        "number": 548,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/548",
+        "productionPaths": [
+          "src/lua/abyss_run_card_catalog.lua"
+        ]
+      },
+      {
+        "number": 552,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/552",
+        "productionPaths": [
+          "src/lua/abyss_run_card_catalog.lua"
+        ]
+      },
+      {
+        "number": 550,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/550",
+        "productionPaths": [
+          "src/lua/abyss_relic_hooks.lua",
+          "src/lua/abyss_relic_potion_hooks.lua",
+          "src/lua/abyss_run_potion_candidate.lua"
+        ]
+      },
+      {
+        "number": 544,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/544",
+        "productionPaths": []
+      },
+      {
+        "number": 541,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/541",
+        "productionPaths": [
+          "src/lua/abyss_power_order.lua",
+          "src/lua/abyss_shop.lua",
+          "src/lua/abyss_turn_power_phases.lua",
+          "src/lua/abyss_turn_powers.lua"
+        ]
+      },
+      {
+        "number": 547,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/547",
+        "productionPaths": [
+          "src/lua/abyss_defect_engine_cards.lua"
+        ]
+      },
+      {
+        "number": 543,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/543",
+        "productionPaths": [
+          "src/lua/abyss_event_combat.lua",
+          "src/lua/abyss_event_combat_routes.lua",
+          "src/lua/abyss_inventory.lua",
+          "src/lua/abyss_potion_rewards.lua",
+          "src/lua/abyss_watcher_final_cards.lua"
+        ]
+      },
+      {
+        "number": 546,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/546",
+        "productionPaths": [
+          "src/lua/abyss_act1_events.lua"
+        ]
+      },
+      {
+        "number": 545,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/545",
+        "productionPaths": [
+          "src/lua/abyss_card_capability.lua",
+          "src/lua/abyss_colorless_cards.lua",
+          "src/lua/abyss_colorless_catalog.lua",
+          "src/lua/abyss_combat_catalog.lua"
+        ]
+      },
+      {
+        "number": 542,
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/542",
+        "productionPaths": [
+          "src/lua/abyss_event_combat.lua",
+          "src/lua/abyss_event_combat_routes.lua",
+          "src/lua/abyss_potion_rewards.lua",
+          "src/lua/abyss_watcher_final_cards.lua"
+        ]
+      }
+    ],
+    "selectedPath": "src/lua/abyss_shivs.lua",
+    "productionOverlap": []
+  },
+  "otherLocalShivProductionChanges": [],
+  "metrics": {
+    "baseline": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "errors": [],
+      "positions": 1920,
+      "pairs": 1546,
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "shivs": {
+        "file": "src/lua/abyss_shivs.lua",
+        "sha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+        "lines": 191,
+        "functions": [
+          {
+            "id": "$",
+            "name": "<chunk>",
+            "kind": "chunk",
+            "constructorName": false,
+            "line": 1,
+            "column": 1,
+            "endLine": 191,
+            "lines": 191,
+            "complexity": 1
+          },
+          {
+            "id": "$/integer#1",
+            "name": "integer",
+            "kind": "function",
+            "constructorName": false,
+            "line": 7,
+            "column": 7,
+            "endLine": 9,
+            "lines": 3,
+            "complexity": 5
+          },
+          {
+            "id": "$/layerInteger#1",
+            "name": "layerInteger",
+            "kind": "function",
+            "constructorName": false,
+            "line": 10,
+            "column": 7,
+            "endLine": 12,
+            "lines": 3,
+            "complexity": 5
+          },
+          {
+            "id": "$/amount#1",
+            "name": "amount",
+            "kind": "function",
+            "constructorName": false,
+            "line": 13,
+            "column": 7,
+            "endLine": 17,
+            "lines": 5,
+            "complexity": 2
+          },
+          {
+            "id": "$/instances#1",
+            "name": "instances",
+            "kind": "function",
+            "constructorName": false,
+            "line": 18,
+            "column": 7,
+            "endLine": 32,
+            "lines": 15,
+            "complexity": 7
+          },
+          {
+            "id": "$/M.withCardDefinitions#1",
+            "name": "M.withCardDefinitions",
+            "kind": "function",
+            "constructorName": false,
+            "line": 33,
+            "column": 1,
+            "endLine": 44,
+            "lines": 12,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.withInfiniteBladesDefinition#1",
+            "name": "M.withInfiniteBladesDefinition",
+            "kind": "function",
+            "constructorName": false,
+            "line": 47,
+            "column": 1,
+            "endLine": 58,
+            "lines": 12,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.created#1",
+            "name": "M.created",
+            "kind": "function",
+            "constructorName": false,
+            "line": 61,
+            "column": 1,
+            "endLine": 66,
+            "lines": 6,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.onApplied#1",
+            "name": "M.onApplied",
+            "kind": "function",
+            "constructorName": false,
+            "line": 70,
+            "column": 1,
+            "endLine": 73,
+            "lines": 4,
+            "complexity": 2
+          },
+          {
+            "id": "$/M.applyAccuracy#1",
+            "name": "M.applyAccuracy",
+            "kind": "function",
+            "constructorName": false,
+            "line": 74,
+            "column": 1,
+            "endLine": 94,
+            "lines": 21,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.onDrawOrDiscard#1",
+            "name": "M.onDrawOrDiscard",
+            "kind": "function",
+            "constructorName": false,
+            "line": 95,
+            "column": 1,
+            "endLine": 100,
+            "lines": 6,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.removeAccuracy#1",
+            "name": "M.removeAccuracy",
+            "kind": "function",
+            "constructorName": false,
+            "line": 104,
+            "column": 1,
+            "endLine": 110,
+            "lines": 7,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.applyInfiniteBlades#1",
+            "name": "M.applyInfiniteBlades",
+            "kind": "function",
+            "constructorName": false,
+            "line": 112,
+            "column": 1,
+            "endLine": 118,
+            "lines": 7,
+            "complexity": 4
+          },
+          {
+            "id": "$/M.startTurn#1",
+            "name": "M.startTurn",
+            "kind": "function",
+            "constructorName": false,
+            "line": 122,
+            "column": 1,
+            "endLine": 167,
+            "lines": 46,
+            "complexity": 33
+          },
+          {
+            "id": "$/M.adaptDefinition#1",
+            "name": "M.adaptDefinition",
+            "kind": "function",
+            "constructorName": false,
+            "line": 171,
+            "column": 1,
+            "endLine": 190,
+            "lines": 20,
+            "complexity": 8
+          }
+        ]
+      }
+    },
+    "current": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5058,
+        "measurements": 5391,
+        "expectedMeasurements": 5391
+      },
+      "errors": [],
+      "positions": 1920,
+      "pairs": 1546,
+      "ccAbove15": 236,
+      "ccAbove30": 57,
+      "maxCC": 75,
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "shivs": {
+        "file": "src/lua/abyss_shivs.lua",
+        "sha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+        "lines": 216,
+        "functions": [
+          {
+            "id": "$",
+            "name": "<chunk>",
+            "kind": "chunk",
+            "constructorName": false,
+            "line": 1,
+            "column": 1,
+            "endLine": 216,
+            "lines": 216,
+            "complexity": 1
+          },
+          {
+            "id": "$/integer#1",
+            "name": "integer",
+            "kind": "function",
+            "constructorName": false,
+            "line": 7,
+            "column": 7,
+            "endLine": 9,
+            "lines": 3,
+            "complexity": 5
+          },
+          {
+            "id": "$/layerInteger#1",
+            "name": "layerInteger",
+            "kind": "function",
+            "constructorName": false,
+            "line": 10,
+            "column": 7,
+            "endLine": 12,
+            "lines": 3,
+            "complexity": 5
+          },
+          {
+            "id": "$/amount#1",
+            "name": "amount",
+            "kind": "function",
+            "constructorName": false,
+            "line": 13,
+            "column": 7,
+            "endLine": 17,
+            "lines": 5,
+            "complexity": 2
+          },
+          {
+            "id": "$/instances#1",
+            "name": "instances",
+            "kind": "function",
+            "constructorName": false,
+            "line": 18,
+            "column": 7,
+            "endLine": 32,
+            "lines": 15,
+            "complexity": 7
+          },
+          {
+            "id": "$/M.withCardDefinitions#1",
+            "name": "M.withCardDefinitions",
+            "kind": "function",
+            "constructorName": false,
+            "line": 33,
+            "column": 1,
+            "endLine": 44,
+            "lines": 12,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.withInfiniteBladesDefinition#1",
+            "name": "M.withInfiniteBladesDefinition",
+            "kind": "function",
+            "constructorName": false,
+            "line": 47,
+            "column": 1,
+            "endLine": 58,
+            "lines": 12,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.created#1",
+            "name": "M.created",
+            "kind": "function",
+            "constructorName": false,
+            "line": 61,
+            "column": 1,
+            "endLine": 66,
+            "lines": 6,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.onApplied#1",
+            "name": "M.onApplied",
+            "kind": "function",
+            "constructorName": false,
+            "line": 70,
+            "column": 1,
+            "endLine": 73,
+            "lines": 4,
+            "complexity": 2
+          },
+          {
+            "id": "$/M.applyAccuracy#1",
+            "name": "M.applyAccuracy",
+            "kind": "function",
+            "constructorName": false,
+            "line": 74,
+            "column": 1,
+            "endLine": 94,
+            "lines": 21,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.onDrawOrDiscard#1",
+            "name": "M.onDrawOrDiscard",
+            "kind": "function",
+            "constructorName": false,
+            "line": 95,
+            "column": 1,
+            "endLine": 100,
+            "lines": 6,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.removeAccuracy#1",
+            "name": "M.removeAccuracy",
+            "kind": "function",
+            "constructorName": false,
+            "line": 104,
+            "column": 1,
+            "endLine": 110,
+            "lines": 7,
+            "complexity": 3
+          },
+          {
+            "id": "$/M.applyInfiniteBlades#1",
+            "name": "M.applyInfiniteBlades",
+            "kind": "function",
+            "constructorName": false,
+            "line": 112,
+            "column": 1,
+            "endLine": 118,
+            "lines": 7,
+            "complexity": 4
+          },
+          {
+            "id": "$/hasActiveEnemies#1",
+            "name": "hasActiveEnemies",
+            "kind": "function",
+            "constructorName": false,
+            "line": 121,
+            "column": 7,
+            "endLine": 125,
+            "lines": 5,
+            "complexity": 3
+          },
+          {
+            "id": "$/existingUids#1",
+            "name": "existingUids",
+            "kind": "function",
+            "constructorName": false,
+            "line": 127,
+            "column": 7,
+            "endLine": 133,
+            "lines": 7,
+            "complexity": 3
+          },
+          {
+            "id": "$/validateGeneratedCount#1",
+            "name": "validateGeneratedCount",
+            "kind": "function",
+            "constructorName": false,
+            "line": 135,
+            "column": 7,
+            "endLine": 142,
+            "lines": 8,
+            "complexity": 7
+          },
+          {
+            "id": "$/generatedShivs#1",
+            "name": "generatedShivs",
+            "kind": "function",
+            "constructorName": false,
+            "line": 146,
+            "column": 7,
+            "endLine": 158,
+            "lines": 13,
+            "complexity": 13
+          },
+          {
+            "id": "$/stampGenerationFrames#1",
+            "name": "stampGenerationFrames",
+            "kind": "function",
+            "constructorName": false,
+            "line": 162,
+            "column": 7,
+            "endLine": 173,
+            "lines": 12,
+            "complexity": 6
+          },
+          {
+            "id": "$/M.startTurn#1",
+            "name": "M.startTurn",
+            "kind": "function",
+            "constructorName": false,
+            "line": 177,
+            "column": 1,
+            "endLine": 192,
+            "lines": 16,
+            "complexity": 6
+          },
+          {
+            "id": "$/M.adaptDefinition#1",
+            "name": "M.adaptDefinition",
+            "kind": "function",
+            "constructorName": false,
+            "line": 196,
+            "column": 1,
+            "endLine": 215,
+            "lines": 20,
+            "complexity": 8
+          }
+        ]
+      }
+    }
+  },
+  "behavior": {
+    "direct": {
+      "manifest": {
+        "mode": "direct",
+        "checkpoints": 155,
+        "bytes": 575203,
+        "sha256": "ce12fee384dd94cd0dc1a0315bdbbcbd47634a3cdc4f7871df3634badf9cfb9a",
+        "beforeSourceSha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+        "afterSourceSha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+        "exactAllowedErrors": {
+          "before": {
+            "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:130: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:149: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          },
+          "after": {
+            "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:183: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:153: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          }
+        },
+        "rawErrorLocationMap": [
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          }
+        ],
+        "errorComparison": "Only complete allowlisted assertion error strings map to canonical coordinates; all other errors remain raw."
+      },
+      "archive": "docs/evidence/m7-shiv-turn-direct-graph-20261107.json.gz",
+      "archiveSha256": "81678d5df1e94aeba0393bc6a9b1b1ea9b77ff6b572d99b5148f875ffce2f38a"
+    },
+    "combat": {
+      "manifest": {
+        "mode": "combat",
+        "checkpoints": 6,
+        "bytes": 781601,
+        "sha256": "80fa87cefbf63307664a8432ff01053f6d93f34fd59eaa4531919083a8e22b85",
+        "beforeSourceSha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+        "afterSourceSha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+        "exactAllowedErrors": {
+          "before": {
+            "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:130: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:149: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          },
+          "after": {
+            "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:183: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:153: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          }
+        },
+        "rawErrorLocationMap": [],
+        "errorComparison": "Only complete allowlisted assertion error strings map to canonical coordinates; all other errors remain raw."
+      },
+      "archive": "docs/evidence/m7-shiv-turn-combat-graph-20261107.json.gz",
+      "archiveSha256": "ba23d1cbf39ebda86bcb32931ee00d23608194a45a6b279cf4c5559a82000f0a"
+    }
+  },
+  "testSummary": {
+    "baseline": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+    "testArtifacts": [
+      {
+        "path": "tests/shiv-turn-responsibilities.test.mjs",
+        "bytes": 2855,
+        "sha256": "505ffcef75655c195969942a2dadfcfdaf6537ddf4d07af1c4b6c7b9f0c4ce13"
+      },
+      {
+        "path": "tests/helpers/shiv-turn-responsibilities.mjs",
+        "bytes": 2958,
+        "sha256": "9eec1196817b7eeb7894528f50862939968f84a40820c6af8c79b01352094290"
+      },
+      {
+        "path": "tests/helpers/shiv-turn-responsibilities.lua",
+        "bytes": 14724,
+        "sha256": "56610cdf349a2382ea0391ba350ab6b3e1860260756fdd309305015617ad0249"
+      },
+      {
+        "path": "tests/fixtures/shiv-turn-before.lua",
+        "bytes": 9302,
+        "sha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e"
+      }
+    ],
+    "productionSource": {
+      "path": "src/lua/abyss_shivs.lua",
+      "bytes": 10064,
+      "sha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565"
+    },
+    "graphObserver": {
+      "path": "tests/helpers/lua-graph-observer.mjs",
+      "bytes": 5905,
+      "sha256": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f"
+    },
+    "logs": [
+      {
+        "path": "build/shiv-turn-evidence/initial-run-recovered.json",
+        "bytes": 1556,
+        "sha256": "9de1c57c373ad9720a9dd260657c29814e00741546fdf8671b7bceba6f061cf2"
+      },
+      {
+        "path": "build/shiv-turn-evidence/pass-2.log",
+        "bytes": 951,
+        "sha256": "3488f987d1728072c8ed783c64cdb28b1ffb2b80edb0e82f4e2e7b0baa0e50bd"
+      },
+      {
+        "path": "build/shiv-turn-evidence/direct-pass-3.log",
+        "bytes": 876,
+        "sha256": "f211fc50eff4b0cc821fba6501a54668cb31669034a4d15e42bb5e7161432b49"
+      },
+      {
+        "path": "build/shiv-turn-evidence/exact-map-location-failure.log",
+        "bytes": 13411,
+        "sha256": "e08b3a69e2d4e7924c1ffbe3e8b3de9436e24148d576f36e4bee70125f1c0b58"
+      },
+      {
+        "path": "build/shiv-turn-evidence/direct-final.log",
+        "bytes": 874,
+        "sha256": "210118349be058cb56ccef084968e5790cc5db89b477fdd9ed784af0fa321ad9"
+      },
+      {
+        "path": "build/shiv-turn-evidence/combat-final.log",
+        "bytes": 202,
+        "sha256": "287534a51635fae29c3529118400e6e5bb9f3adc6bc2ce9ec93fee62b0500fc2"
+      }
+    ],
+    "runs": [
+      {
+        "log": "initial-run-recovered.json",
+        "wallSeconds": 2.639,
+        "passed": 6,
+        "failed": 4,
+        "scope": "complete new file",
+        "cause": "fixture masking two semantic negative controls on both variants"
+      },
+      {
+        "log": "pass-2.log",
+        "wallSeconds": 2.674,
+        "passed": 10,
+        "failed": 0,
+        "scope": "complete new file after shared fixture correction"
+      },
+      {
+        "log": "direct-pass-3.log",
+        "wallSeconds": 1.484,
+        "passed": 9,
+        "failed": 0,
+        "scope": "direct + eight negatives after actor-hook coverage"
+      },
+      {
+        "log": "exact-map-location-failure.log",
+        "wallSeconds": 1.854,
+        "passed": 8,
+        "failed": 1,
+        "scope": "direct + eight negatives",
+        "cause": "exact map incorrectly selected diagnostic continuation instead of assert call line; no production change"
+      },
+      {
+        "log": "direct-final.log",
+        "wallSeconds": 1.54,
+        "passed": 9,
+        "failed": 0,
+        "scope": "final direct + eight negatives after exact assertion-line mapping"
+      },
+      {
+        "log": "combat-final.log",
+        "command": "SHIV_TURN_EVIDENCE=build/shiv-turn-evidence node --test --test-concurrency=1 --test-name-pattern='frozen full-graph differential: combat' tests/shiv-turn-responsibilities.test.mjs",
+        "wallSeconds": 1.684,
+        "passed": 1,
+        "failed": 0,
+        "scope": "final Combat only, final helper and exact assertion-location allowlist"
+      }
+    ],
+    "finalEvidence": {
+      "direct": {
+        "mode": "direct",
+        "checkpoints": 155,
+        "bytes": 575203,
+        "sha256": "ce12fee384dd94cd0dc1a0315bdbbcbd47634a3cdc4f7871df3634badf9cfb9a",
+        "beforeSourceSha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+        "afterSourceSha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+        "exactAllowedErrors": {
+          "before": {
+            "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:130: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:149: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          },
+          "after": {
+            "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:183: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:153: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          }
+        },
+        "rawErrorLocationMap": [
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount",
+            "after": "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount",
+            "after": "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:130: missing shared Shiv generator",
+            "after": "src/lua/abyss_shivs.lua:183: missing shared Shiv generator"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count",
+            "after": "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs",
+            "after": "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          },
+          {
+            "before": "src/lua/abyss_shivs.lua:149: invalid generated Shiv",
+            "after": "src/lua/abyss_shivs.lua:153: invalid generated Shiv"
+          }
+        ],
+        "errorComparison": "Only complete allowlisted assertion error strings map to canonical coordinates; all other errors remain raw."
+      },
+      "combat": {
+        "mode": "combat",
+        "checkpoints": 6,
+        "bytes": 781601,
+        "sha256": "80fa87cefbf63307664a8432ff01053f6d93f34fd59eaa4531919083a8e22b85",
+        "beforeSourceSha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+        "afterSourceSha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+        "exactAllowedErrors": {
+          "before": {
+            "src/lua/abyss_shivs.lua:128: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:130: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:140: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:149: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          },
+          "after": {
+            "src/lua/abyss_shivs.lua:181: invalid Infinite Blades amount": "src/lua/abyss_shivs.lua:<line>: invalid Infinite Blades amount",
+            "src/lua/abyss_shivs.lua:15: unsupported Accuracy amount": "src/lua/abyss_shivs.lua:<line>: unsupported Accuracy amount",
+            "src/lua/abyss_shivs.lua:183: missing shared Shiv generator": "src/lua/abyss_shivs.lua:<line>: missing shared Shiv generator",
+            "src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count": "src/lua/abyss_shivs.lua:<line>: generator returned wrong Shiv count",
+            "src/lua/abyss_shivs.lua:139: generator returned malformed UIDs": "src/lua/abyss_shivs.lua:<line>: generator returned malformed UIDs",
+            "src/lua/abyss_shivs.lua:153: invalid generated Shiv": "src/lua/abyss_shivs.lua:<line>: invalid generated Shiv"
+          }
+        },
+        "rawErrorLocationMap": [],
+        "errorComparison": "Only complete allowlisted assertion error strings map to canonical coordinates; all other errors remain raw."
+      }
+    },
+    "verificationBoundary": "No Full, no remote writes. Final suite is covered by direct-final.log (9/9) plus combat-final.log (1/1), both using final helper. Last complete-file wall was 2.674 seconds before final direct-only additions; do not present the sum of targeted walls as a complete-file measurement."
+  },
+  "runHistory": {
+    "baseline": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+    "files": {
+      "tests/shiv-turn-responsibilities.test.mjs": "505ffcef75655c195969942a2dadfcfdaf6537ddf4d07af1c4b6c7b9f0c4ce13",
+      "tests/helpers/shiv-turn-responsibilities.mjs": "9eec1196817b7eeb7894528f50862939968f84a40820c6af8c79b01352094290",
+      "tests/helpers/shiv-turn-responsibilities.lua": "56610cdf349a2382ea0391ba350ab6b3e1860260756fdd309305015617ad0249",
+      "tests/fixtures/shiv-turn-before.lua": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+      "src/lua/abyss_shivs.lua": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565"
+    },
+    "runs": [
+      {
+        "log": "initial-run-recovered.json",
+        "wallSeconds": 2.639,
+        "passed": 6,
+        "failed": 4,
+        "scope": "complete new file",
+        "cause": "fixture masking two semantic negative controls on both variants"
+      },
+      {
+        "log": "pass-2.log",
+        "wallSeconds": 2.674,
+        "passed": 10,
+        "failed": 0,
+        "scope": "complete new file after shared fixture correction"
+      },
+      {
+        "log": "direct-pass-3.log",
+        "wallSeconds": 1.484,
+        "passed": 9,
+        "failed": 0,
+        "scope": "direct + eight negatives after actor-hook coverage"
+      },
+      {
+        "log": "exact-map-location-failure.log",
+        "wallSeconds": 1.854,
+        "passed": 8,
+        "failed": 1,
+        "scope": "direct + eight negatives",
+        "cause": "exact map incorrectly selected diagnostic continuation instead of assert call line; no production change"
+      },
+      {
+        "log": "direct-final.log",
+        "wallSeconds": 1.54,
+        "passed": 9,
+        "failed": 0,
+        "scope": "final direct + eight negatives after exact assertion-line mapping"
+      },
+      {
+        "log": "combat-final.log",
+        "command": "SHIV_TURN_EVIDENCE=build/shiv-turn-evidence node --test --test-concurrency=1 --test-name-pattern='frozen full-graph differential: combat' tests/shiv-turn-responsibilities.test.mjs",
+        "wallSeconds": 1.684,
+        "passed": 1,
+        "failed": 0,
+        "scope": "final Combat only, final helper and exact assertion-location allowlist"
+      }
+    ],
+    "verificationBoundary": "No Full, no remote writes. Final suite is covered by direct-final.log (9/9) plus combat-final.log (1/1), both using final helper. Last complete-file wall was 2.674 seconds before final direct-only additions; do not present the sum of targeted walls as a complete-file measurement."
+  },
+  "recoveredInitialResult": {
+    "provenance": "Reconstructed from preserved tool output after test.log was overwritten by the second run; not the original on-disk log.",
+    "wallSeconds": 2.639,
+    "tests": 10,
+    "pass": 6,
+    "fail": 4,
+    "passed": [
+      "direct full-graph differential",
+      "combat full-graph differential",
+      "before/duplicate-uid",
+      "before/captured-accuracy",
+      "current/duplicate-uid",
+      "current/captured-accuracy"
+    ],
+    "failures": [
+      {
+        "test": "before/existing-uid",
+        "error": "AssertionError [ERR_ASSERTION]: Expected \"actual\" to be strictly unequal to: 0",
+        "actual": 0,
+        "expected": 0,
+        "operator": "notStrictEqual"
+      },
+      {
+        "test": "before/historical-frame",
+        "error": "AssertionError [ERR_ASSERTION]: Expected \"actual\" to be strictly unequal to: 0",
+        "actual": 0,
+        "expected": 0,
+        "operator": "notStrictEqual"
+      },
+      {
+        "test": "current/existing-uid",
+        "error": "AssertionError [ERR_ASSERTION]: Expected \"actual\" to be strictly unequal to: 0",
+        "actual": 0,
+        "expected": 0,
+        "operator": "notStrictEqual"
+      },
+      {
+        "test": "current/historical-frame",
+        "error": "AssertionError [ERR_ASSERTION]: Expected \"actual\" to be strictly unequal to: 0",
+        "actual": 0,
+        "expected": 0,
+        "operator": "notStrictEqual"
+      }
+    ],
+    "cause": "Fixture masked both negative controls. Existing Shiv omitted upgraded=false; old frame lacked later-generated UID. Both corrected without changing production.",
+    "productionRegression": false
+  },
+  "logs": {
+    "shiv-baseline-engineering.log": "{\"coverage\":{\"modules\":333,\"functions\":5053,\"measurements\":5386,\"expectedMeasurements\":5386},\"errors\":[]}\n",
+    "shiv-current-engineering.log": "Architecture passed: 333 modules, 1920 edges; build/architecture.json\nLuacheck 1.2.0: no new diagnostics; 14 explicit historical warnings. Battle render <=10; every scoped function <=15; 1789 governed responsibility measurements.\n{\"baseline\":{\"coverage\":{\"modules\":333,\"functions\":5053,\"measurements\":5386,\"expectedMeasurements\":5386},\"errors\":[],\"positions\":1920,\"pairs\":1546,\"ccAbove15\":237,\"ccAbove30\":58,\"maxCC\":75,\"scc\":[{\"members\":81,\"positions\":623,\"pairs\":400},{\"members\":15,\"positions\":62,\"pairs\":41}],\"shivs\":{\"file\":\"src/lua/abyss_shivs.lua\",\"sha256\":\"f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e\",\"lines\":191,\"functions\":[{\"id\":\"$\",\"name\":\"<chunk>\",\"kind\":\"chunk\",\"constructorName\":false,\"line\":1,\"column\":1,\"endLine\":191,\"lines\":191,\"complexity\":1},{\"id\":\"$/integer#1\",\"name\":\"integer\",\"kind\":\"function\",\"constructorName\":false,\"line\":7,\"column\":7,\"endLine\":9,\"lines\":3,\"complexity\":5},{\"id\":\"$/layerInteger#1\",\"name\":\"layerInteger\",\"kind\":\"function\",\"constructorName\":false,\"line\":10,\"column\":7,\"endLine\":12,\"lines\":3,\"complexity\":5},{\"id\":\"$/amount#1\",\"name\":\"amount\",\"kind\":\"function\",\"constructorName\":false,\"line\":13,\"column\":7,\"endLine\":17,\"lines\":5,\"complexity\":2},{\"id\":\"$/instances#1\",\"name\":\"instances\",\"kind\":\"function\",\"constructorName\":false,\"line\":18,\"column\":7,\"endLine\":32,\"lines\":15,\"complexity\":7},{\"id\":\"$/M.withCardDefinitions#1\",\"name\":\"M.withCardDefinitions\",\"kind\":\"function\",\"constructorName\":false,\"line\":33,\"column\":1,\"endLine\":44,\"lines\":12,\"complexity\":3},{\"id\":\"$/M.withInfiniteBladesDefinition#1\",\"name\":\"M.withInfiniteBladesDefinition\",\"kind\":\"function\",\"constructorName\":false,\"line\":47,\"column\":1,\"endLine\":58,\"lines\":12,\"complexity\":3},{\"id\":\"$/M.created#1\",\"name\":\"M.created\",\"kind\":\"function\",\"constructorName\":false,\"line\":61,\"column\":1,\"endLine\":66,\"lines\":6,\"complexity\":3},{\"id\":\"$/M.onApplied#1\",\"name\":\"M.onApplied\",\"kind\":\"function\",\"constructorName\":false,\"line\":70,\"column\":1,\"endLine\":73,\"lines\":4,\"complexity\":2},{\"id\":\"$/M.applyAccuracy#1\",\"name\":\"M.applyAccuracy\",\"kind\":\"function\",\"constructorName\":false,\"line\":74,\"column\":1,\"endLine\":94,\"lines\":21,\"complexity\":8},{\"id\":\"$/M.onDrawOrDiscard#1\",\"name\":\"M.onDrawOrDiscard\",\"kind\":\"function\",\"constructorName\":false,\"line\":95,\"column\":1,\"endLine\":100,\"lines\":6,\"complexity\":3},{\"id\":\"$/M.removeAccuracy#1\",\"name\":\"M.removeAccuracy\",\"kind\":\"function\",\"constructorName\":false,\"line\":104,\"column\":1,\"endLine\":110,\"lines\":7,\"complexity\":3},{\"id\":\"$/M.applyInfiniteBlades#1\",\"name\":\"M.applyInfiniteBlades\",\"kind\":\"function\",\"constructorName\":false,\"line\":112,\"column\":1,\"endLine\":118,\"lines\":7,\"complexity\":4},{\"id\":\"$/M.startTurn#1\",\"name\":\"M.startTurn\",\"kind\":\"function\",\"constructorName\":false,\"line\":122,\"column\":1,\"endLine\":167,\"lines\":46,\"complexity\":33},{\"id\":\"$/M.adaptDefinition#1\",\"name\":\"M.adaptDefinition\",\"kind\":\"function\",\"constructorName\":false,\"line\":171,\"column\":1,\"endLine\":190,\"lines\":20,\"complexity\":8}]}},\"current\":{\"coverage\":{\"modules\":333,\"functions\":5058,\"measurements\":5391,\"expectedMeasurements\":5391},\"errors\":[],\"positions\":1920,\"pairs\":1546,\"ccAbove15\":236,\"ccAbove30\":57,\"maxCC\":75,\"scc\":[{\"members\":81,\"positions\":623,\"pairs\":400},{\"members\":15,\"positions\":62,\"pairs\":41}],\"shivs\":{\"file\":\"src/lua/abyss_shivs.lua\",\"sha256\":\"d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565\",\"lines\":216,\"functions\":[{\"id\":\"$\",\"name\":\"<chunk>\",\"kind\":\"chunk\",\"constructorName\":false,\"line\":1,\"column\":1,\"endLine\":216,\"lines\":216,\"complexity\":1},{\"id\":\"$/integer#1\",\"name\":\"integer\",\"kind\":\"function\",\"constructorName\":false,\"line\":7,\"column\":7,\"endLine\":9,\"lines\":3,\"complexity\":5},{\"id\":\"$/layerInteger#1\",\"name\":\"layerInteger\",\"kind\":\"function\",\"constructorName\":false,\"line\":10,\"column\":7,\"endLine\":12,\"lines\":3,\"complexity\":5},{\"id\":\"$/amount#1\",\"name\":\"amount\",\"kind\":\"function\",\"constructorName\":false,\"line\":13,\"column\":7,\"endLine\":17,\"lines\":5,\"complexity\":2},{\"id\":\"$/instances#1\",\"name\":\"instances\",\"kind\":\"function\",\"constructorName\":false,\"line\":18,\"column\":7,\"endLine\":32,\"lines\":15,\"complexity\":7},{\"id\":\"$/M.withCardDefinitions#1\",\"name\":\"M.withCardDefinitions\",\"kind\":\"function\",\"constructorName\":false,\"line\":33,\"column\":1,\"endLine\":44,\"lines\":12,\"complexity\":3},{\"id\":\"$/M.withInfiniteBladesDefinition#1\",\"name\":\"M.withInfiniteBladesDefinition\",\"kind\":\"function\",\"constructorName\":false,\"line\":47,\"column\":1,\"endLine\":58,\"lines\":12,\"complexity\":3},{\"id\":\"$/M.created#1\",\"name\":\"M.created\",\"kind\":\"function\",\"constructorName\":false,\"line\":61,\"column\":1,\"endLine\":66,\"lines\":6,\"complexity\":3},{\"id\":\"$/M.onApplied#1\",\"name\":\"M.onApplied\",\"kind\":\"function\",\"constructorName\":false,\"line\":70,\"column\":1,\"endLine\":73,\"lines\":4,\"complexity\":2},{\"id\":\"$/M.applyAccuracy#1\",\"name\":\"M.applyAccuracy\",\"kind\":\"function\",\"constructorName\":false,\"line\":74,\"column\":1,\"endLine\":94,\"lines\":21,\"complexity\":8},{\"id\":\"$/M.onDrawOrDiscard#1\",\"name\":\"M.onDrawOrDiscard\",\"kind\":\"function\",\"constructorName\":false,\"line\":95,\"column\":1,\"endLine\":100,\"lines\":6,\"complexity\":3},{\"id\":\"$/M.removeAccuracy#1\",\"name\":\"M.removeAccuracy\",\"kind\":\"function\",\"constructorName\":false,\"line\":104,\"column\":1,\"endLine\":110,\"lines\":7,\"complexity\":3},{\"id\":\"$/M.applyInfiniteBlades#1\",\"name\":\"M.applyInfiniteBlades\",\"kind\":\"function\",\"constructorName\":false,\"line\":112,\"column\":1,\"endLine\":118,\"lines\":7,\"complexity\":4},{\"id\":\"$/hasActiveEnemies#1\",\"name\":\"hasActiveEnemies\",\"kind\":\"function\",\"constructorName\":false,\"line\":121,\"column\":7,\"endLine\":125,\"lines\":5,\"complexity\":3},{\"id\":\"$/existingUids#1\",\"name\":\"existingUids\",\"kind\":\"function\",\"constructorName\":false,\"line\":127,\"column\":7,\"endLine\":133,\"lines\":7,\"complexity\":3},{\"id\":\"$/validateGeneratedCount#1\",\"name\":\"validateGeneratedCount\",\"kind\":\"function\",\"constructorName\":false,\"line\":135,\"column\":7,\"endLine\":142,\"lines\":8,\"complexity\":7},{\"id\":\"$/generatedShivs#1\",\"name\":\"generatedShivs\",\"kind\":\"function\",\"constructorName\":false,\"line\":146,\"column\":7,\"endLine\":158,\"lines\":13,\"complexity\":13},{\"id\":\"$/stampGenerationFrames#1\",\"name\":\"stampGenerationFrames\",\"kind\":\"function\",\"constructorName\":false,\"line\":162,\"column\":7,\"endLine\":173,\"lines\":12,\"complexity\":6},{\"id\":\"$/M.startTurn#1\",\"name\":\"M.startTurn\",\"kind\":\"function\",\"constructorName\":false,\"line\":177,\"column\":1,\"endLine\":192,\"lines\":16,\"complexity\":6},{\"id\":\"$/M.adaptDefinition#1\",\"name\":\"M.adaptDefinition\",\"kind\":\"function\",\"constructorName\":false,\"line\":196,\"column\":1,\"endLine\":215,\"lines\":20,\"complexity\":8}]}}}\n",
+    "shiv-current-static.log": "Luacheck 1.2.0: no new diagnostics; 14 explicit historical warnings. Battle render <=10; every scoped function <=15; 1789 governed responsibility measurements.\n",
+    "shiv-original-regression.log": "ok silent shivs 1 - real Accuracy card updates old Shiv base without double counting false\nok silent shivs 2 - real Accuracy card updates old Shiv base without double counting true\nok silent shivs 3 - Accuracy refreshes hand draw discard and exhaust independently\nok silent shivs 4 - new Shiv captures current Accuracy and upgraded variant adds only two\nok silent shivs 5 - upgrading an existing Accuracy-stamped Shiv retains its captured bonus\nok silent shivs 6 - removing Accuracy preserves existing bases but later constructors use zero\nok silent shivs 7 - new application after removal overwrites old bonus rather than accumulating it\nok silent shivs 8 - hand draw-discard hook refreshes hand only while Power exists\nok silent shivs 9 - Strength Weak Vulnerable Wrath apply after stored base and general bonus\nok silent shivs 10 - catalog stays immutable and real generator stamps Accuracy\nok silent shivs 11 - invalid application and malformed card pile fail before changing status\nok silent shivs 12 - actual Accuracy then Blade Dance stamps and plays three independent boosted Shivs\nok silent shivs 13 - failure after actual Accuracy effects restores original Shiv instances in four piles\nok silent shivs 14 - Infinite Blades real Power applies one layer without immediate Shiv false\nok silent shivs 15 - Infinite Blades real Power applies one layer without immediate Shiv true\nok silent shivs 16 - stacked Infinite Blades generates per layer and retains no callback in state\nok silent shivs 17 - explicit pre-draw hook fills final hand slot before ordinary draw\nok silent shivs 18 - Infinite Blades full-hand output goes to discard and carries Accuracy\nok silent shivs 19 - Infinite Blades real generator and Accuracy produce a playable eight-damage Shiv\nok silent shivs 20 - Infinite Blades empty absent and dead cases remain explicit\nok silent shivs 21 - eleven Infinite Blades layers legally generate ten in hand and one in discard with Accuracy\nok silent shivs 22 - Infinite Blades uses full shared endTurn then generates before draw false\nok silent shivs 23 - Infinite Blades uses full shared endTurn then generates before draw true\nok silent shivs 24 - upgraded Innate reaches opening hand after the same shuffle; basic is not forced\nok silent shivs 25 - actual Accuracy plus Infinite Blades generates an eight-damage Shiv next full turn\nSILENT_SHIVS_PASS 25\nLua fixture tests/lua/silent_shivs.lua: 3139 ms\nWATCHER_MASTER_REALITY_SHIVS both input versions, Accuracy, overflow, identity and Infinite Blades passed\nLua fixture tests/lua/watcher_master_reality_shivs.lua: 1181 ms\n",
+    "shiv-static-contract.log": "✔ the complete Shiv responsibility includes future helpers, nested functions and its chunk (4.95364ms)\n✔ native turn orchestration and every extracted stage remain bounded and required (3.007067ms)\n✔ presentation extractions are required and their nested callbacks remain budgeted (0.640338ms)\n✔ scoped responsibility budgets include nested callbacks and preserve unrelated hotspots (1.984951ms)\n✔ every extracted helper and anonymous function receives the same budget (0.725817ms)\n✔ potion candidate helpers cannot move branching outside the responsibility budget (0.329719ms)\n✔ every extracted card action helper is required and bounded with its nested functions (202.277091ms)\n✔ combat play, turn and constructor stages are required, bounded and fully measured (306.648144ms)\n✔ Actor damage and status stages plus nested callbacks cannot escape the production CC15 policy (35.825904ms)\n✔ effect support responsibilities remain required and bounded with their nested callbacks (6.087916ms)\n✔ restoring the original Run potion candidate hotspot fails the production policy (0.2515ms)\n✔ missing entries, missing measurements, duplicate positions and unknown formats fail closed (0.546787ms)\n✔ each AST function needs its own measurement even when counts remain equal (0.401437ms)\n✔ Luacheck Unicode codepoint columns map to the byte AST on the same line (1.744318ms)\n✔ shared combat catalog and nested helpers retain the responsibility budget (0.466716ms)\n✔ main chunk and a function at the first source position are distinct measurements (0.251641ms)\n✔ the extracted wording formatter is required and restoring the old local hotspot is also budgeted (0.862725ms)\nℹ tests 17\nℹ suites 0\nℹ pass 17\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 663.608402\n",
+    "shiv-ci-inventory.log": "✔ complete native successful rows authenticate every observed file and only raise effective placement costs (48.224197ms)\n✔ only complete approved sources reverse 16/12 to 14/9 to 13/9 and new timing to d580 to original 8e epoch (12.828163ms)\n✔ historical physical Windows16 POSIX12 Full33 covers final inventory under original budgets and unchanged setup reserve (81.747753ms)\n✔ frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 Lua files within unchanged budgets (73.414028ms)\n✔ current Full35 includes all post-placement files once at explicit unknown costs within unchanged budgets (69.38279ms)\n✔ current placement authenticates 1458 complete successful assigned files without claiming failed containing jobs passed (47.927168ms)\n✔ current 129 placement raises reconstruct exact timings while preserving all old floors and raw worker safety bytes (13.324863ms)\n✔ only two exact current source identities enter the unchanged pure historical CI chain and all byte drift remains visible (15.908073ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 592.31516\n",
+    "shiv-guidance.log": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n\n> slay-the-abyss@1.0.0 check:guidance\n> node scripts/check-agent-guidance.mjs\n\n{\n  \"errors\": [],\n  \"metrics\": [\n    {\n      \"file\": \"AGENTS.md\",\n      \"lines\": 41,\n      \"characters\": 2985\n    },\n    {\n      \"file\": \"CLAUDE.md\",\n      \"lines\": 5,\n      \"characters\": 150\n    },\n    {\n      \"file\": \".cursor/rules/miliastra.mdc\",\n      \"lines\": 6,\n      \"characters\": 82\n    }\n  ]\n}\n",
+    "shiv-backlog.log": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n\n> slay-the-abyss@1.0.0 verify:backlog\n> node scripts/verify-backlog-roadmap.mjs\n\n任务编号、首发排期、负责人及仅岩系旅行者前两幕规划范围检查通过；当前任务均有优先级、未完成High不超过5项；不认证运行时准入、平台或实机。\n",
+    "shiv-doctor.log": "WARNING: 5 duplicate task ID groups affect 10 files.\nSome task views may hide files and ID-based commands are blocked until the collision is repaired.\n  TASK-25.3:\n    - backlog/archive/tasks/task-25.3 - 首发卡牌框与图标制作（实机门槛后）.md\n    - backlog/tasks/task-25.3 - 制作并实测精修怪物与Boss样本.md\n  TASK-25.4:\n    - backlog/archive/tasks/task-25.4 - 首发荧肖像与卡图制作（先确认原生或低图元替代）.md\n    - backlog/tasks/task-25.4 - 补齐所有场景共享卡框的原稿设计.md\n  TASK-61:\n    - backlog/archive/tasks/task-61 - 接入原创四角色战斗与正常流程.md\n    - backlog/tasks/task-61 - E2：第二幕.md\n  TASK-64:\n    - backlog/archive/tasks/task-64 - 整合原创四角色并完成生产回归.md\n    - backlog/tasks/task-64 - 获得三钥匙并打通隐藏第四幕.md\n  TASK-69:\n    - backlog/archive/tasks/task-69 - 交付原创四角色并合入远端.md\n    - backlog/completed/task-69 - 厘清代码和素材的授权边界.md\nRun 'backlog doctor' to preview a safe, human-readable repair.\n\nRepair preview (no files changed):\n  backlog/archive/tasks/task-25.3 - 首发卡牌框与图标制作（实机门槛后）.md\n    TASK-25.3 -> TASK-25.6\n    new path: backlog/archive/tasks/task-25.6 - 首发卡牌框与图标制作（实机门槛后）.md\n  backlog/archive/tasks/task-25.4 - 首发荧肖像与卡图制作（先确认原生或低图元替代）.md\n    TASK-25.4 -> TASK-25.7\n    new path: backlog/archive/tasks/task-25.7 - 首发荧肖像与卡图制作（先确认原生或低图元替代）.md\n  backlog/archive/tasks/task-61 - 接入原创四角色战斗与正常流程.md\n    TASK-61 -> TASK-102\n    new path: backlog/archive/tasks/task-102 - 接入原创四角色战斗与正常流程.md\n  backlog/archive/tasks/task-64 - 整合原创四角色并完成生产回归.md\n    TASK-64 -> TASK-103\n    new path: backlog/archive/tasks/task-103 - 整合原创四角色并完成生产回归.md\n  backlog/archive/tasks/task-69 - 交付原创四角色并合入远端.md\n    TASK-69 -> TASK-104\n    new path: backlog/archive/tasks/task-104 - 交付原创四角色并合入远端.md\n\nReferences requiring human review after repair:\n  backlog/archive/tasks/task-69 - 交付原创四角色并合入远端.md:19 [TASK-69]\n    交付附件V4的四位原创角色，每人完整75张牌，接入既有正常游戏流程并合入远端develop。技术与证据见 docs/backlog-details/task-69.md。\n  backlog/tasks/task-15 - M3-遭遇池：普通-14-组-19-变体-精英-3-Boss.md:26 [TASK-61]\n    第一幕19种普通变体、3精英的AI、数值和特殊能力实现已交付。逐招式自然实机原AC4完整迁入TASK-47；第二至四幕新增敌人仍归TASK-61/62/64，不混入本切片完成声明。\n  backlog/tasks/task-47 - M3-冻结第一幕首发内容清单与逐项可获得-可执行验收.md:125 [TASK-61, TASK-64]\n    2026-10-26用户明确第二、第三和隐藏第四幕均纳入M3，不能继续按第一幕或投稿后可选范围收口。原DRAFT-2/6已原生提升TASK-61/62，TASK-63共享跨幕核心、TASK-64钥匙/终幕，均归m-4。用户已授权本轮独立工作树离线开发/任务更新暂免认领；不改远端paused，不提交推送合并或操作桌面。固定基线45ba918，章节、职业与四层证据缺口继续保留。\n  backlog/tasks/task-47 - M3-冻结第一幕首发内容清单与逐项可获得-可执行验收.md:208 [TASK-61, TASK-64]\n    2026-10-26用户明确第二、第三和隐藏第四幕均纳入M3，不能继续按第一幕或投稿后可选范围收口。原DRAFT-2/6已原生提升TASK-61/62，TASK-63共享跨幕核心、TASK-64钥匙/终幕，均归m-4。用户已授权本轮独立工作树离线开发/任务更新暂免认领；不改远端paused，不提交推送合并或操作桌面。固定基线45ba918，章节、职业与四层证据缺口继续保留。\n  backlog/tasks/task-62 - E5：第三幕和三幕连续冒险.md:18 [TASK-61]\n    - TASK-61\nThese references are not changed automatically because the original ID is ambiguous.\n\n93 archived task files stored outside backlog/archive/tasks:\n  backlog/completed/task-1 - 定玩法与一页设计文档.md\n  backlog/completed/task-10 - M1-战斗界面：手牌-能量-血条-格挡-敌人意图.md\n  backlog/completed/task-10.1.1 - 单卡原生Lua导出链路实机门槛.md\n  backlog/completed/task-10.2 - 独立审查-TASK-10-原生战斗UI与构建资源.md\n  backlog/completed/task-10.3 - 修复本机MCP试玩前台切换阻断.md\n  ... and 88 more\nThey are moved into backlog/archive/tasks once the duplicate task IDs above are repaired. File names and task IDs stay the same.\n\nRun 'backlog doctor --fix' to apply this repair after reviewing the preview.\n",
+    "combat-final.log": "✔ Shivs.startTurn frozen full-graph differential: combat (1380.852696ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1609.395984\nwall=1.684\n",
+    "direct-final.log": "✔ Shivs.startTurn frozen full-graph differential: direct (460.2867ms)\n✔ Shivs.startTurn semantic negative control: before/duplicate-uid (99.177215ms)\n✔ Shivs.startTurn semantic negative control: before/existing-uid (125.685086ms)\n✔ Shivs.startTurn semantic negative control: before/historical-frame (128.906755ms)\n✔ Shivs.startTurn semantic negative control: before/captured-accuracy (89.357568ms)\n✔ Shivs.startTurn semantic negative control: current/duplicate-uid (87.228776ms)\n✔ Shivs.startTurn semantic negative control: current/existing-uid (67.919416ms)\n✔ Shivs.startTurn semantic negative control: current/historical-frame (103.217004ms)\n✔ Shivs.startTurn semantic negative control: current/captured-accuracy (77.418465ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1470.140091\nwall=1.540\n",
+    "direct-pass-3.log": "✔ Shivs.startTurn frozen full-graph differential: direct (425.493309ms)\n✔ Shivs.startTurn semantic negative control: before/duplicate-uid (122.255832ms)\n✔ Shivs.startTurn semantic negative control: before/existing-uid (103.446035ms)\n✔ Shivs.startTurn semantic negative control: before/historical-frame (108.694997ms)\n✔ Shivs.startTurn semantic negative control: before/captured-accuracy (87.123475ms)\n✔ Shivs.startTurn semantic negative control: current/duplicate-uid (67.670972ms)\n✔ Shivs.startTurn semantic negative control: current/existing-uid (82.366278ms)\n✔ Shivs.startTurn semantic negative control: current/historical-frame (106.566384ms)\n✔ Shivs.startTurn semantic negative control: current/captured-accuracy (79.21568ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1401.527654\nwall=1.484\n",
+    "exact-map-location-failure.log": "✖ Shivs.startTurn frozen full-graph differential: direct (714.340576ms)\n✔ Shivs.startTurn semantic negative control: before/duplicate-uid (95.797301ms)\n✔ Shivs.startTurn semantic negative control: before/existing-uid (100.91359ms)\n✔ Shivs.startTurn semantic negative control: before/historical-frame (116.637344ms)\n✔ Shivs.startTurn semantic negative control: before/captured-accuracy (114.564289ms)\n✔ Shivs.startTurn semantic negative control: current/duplicate-uid (68.251879ms)\n✔ Shivs.startTurn semantic negative control: current/existing-uid (73.420986ms)\n✔ Shivs.startTurn semantic negative control: current/historical-frame (82.980343ms)\n✔ Shivs.startTurn semantic negative control: current/captured-accuracy (102.875702ms)\nℹ tests 9\nℹ suites 0\nℹ pass 8\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1777.200311\n\n✖ failing tests:\n\ntest at tests/shiv-turn-responsibilities.test.mjs:11:39\n✖ Shivs.startTurn frozen full-graph differential: direct (714.340576ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  ... Skipped lines\n  \n    {\n      error: null,\n      graphs: [\n        {\n          graph: {\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count'\n  -                   'src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count'\n  -                   'src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count'\n  -                   'src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:136: generator returned wrong Shiv count'\n  -                   'src/lua/abyss_shivs.lua:137: generator returned wrong Shiv count'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:139: generator returned malformed UIDs'\n  -                   'src/lua/abyss_shivs.lua:140: generator returned malformed UIDs'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:139: generator returned malformed UIDs'\n  -                   'src/lua/abyss_shivs.lua:140: generator returned malformed UIDs'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:139: generator returned malformed UIDs'\n  -                   'src/lua/abyss_shivs.lua:140: generator returned malformed UIDs'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:139: generator returned malformed UIDs'\n  -                   'src/lua/abyss_shivs.lua:140: generator returned malformed UIDs'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:139: generator returned malformed UIDs'\n  -                   'src/lua/abyss_shivs.lua:140: generator returned malformed UIDs'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  ...\n                      'string',\n  +                   'src/lua/abyss_shivs.lua:153: invalid generated Shiv'\n  -                   'src/lua/abyss_shivs.lua:149: invalid generated Shiv'\n                    ]\n                  ],\n                  [\n                    [\n                      'string',\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-shiv-turn-responsibilities-20261107/tests/shiv-turn-responsibilities.test.mjs:15:9)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.start (node:internal/test_runner/test:1262:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {\n      status: 0,\n      error: null,\n      graphs: [\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object],\n        ... 55 more items\n      ],\n      rawErrors: undefined\n    },\n    expected: {\n      status: 0,\n      error: null,\n      graphs: [\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object], [Object], [Object],\n        [Object], [Object], [Object], [Object],\n        ... 55 more items\n      ],\n      rawErrors: undefined\n    },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\nwall=1.854\n",
+    "pass-2.log": "✔ Shivs.startTurn frozen full-graph differential: direct (456.492927ms)\n✔ Shivs.startTurn frozen full-graph differential: combat (1252.458503ms)\n✔ Shivs.startTurn semantic negative control: before/duplicate-uid (85.675242ms)\n✔ Shivs.startTurn semantic negative control: before/existing-uid (59.693577ms)\n✔ Shivs.startTurn semantic negative control: before/historical-frame (85.147161ms)\n✔ Shivs.startTurn semantic negative control: before/captured-accuracy (82.347441ms)\n✔ Shivs.startTurn semantic negative control: current/duplicate-uid (72.267301ms)\n✔ Shivs.startTurn semantic negative control: current/existing-uid (73.979891ms)\n✔ Shivs.startTurn semantic negative control: current/historical-frame (79.726984ms)\n✔ Shivs.startTurn semantic negative control: current/captured-accuracy (101.121422ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2594.891295\nwall=2.674\n",
+    "test.log": "✔ Shivs.startTurn frozen full-graph differential: direct (456.492927ms)\n✔ Shivs.startTurn frozen full-graph differential: combat (1252.458503ms)\n✔ Shivs.startTurn semantic negative control: before/duplicate-uid (85.675242ms)\n✔ Shivs.startTurn semantic negative control: before/existing-uid (59.693577ms)\n✔ Shivs.startTurn semantic negative control: before/historical-frame (85.147161ms)\n✔ Shivs.startTurn semantic negative control: before/captured-accuracy (82.347441ms)\n✔ Shivs.startTurn semantic negative control: current/duplicate-uid (72.267301ms)\n✔ Shivs.startTurn semantic negative control: current/existing-uid (73.979891ms)\n✔ Shivs.startTurn semantic negative control: current/historical-frame (79.726984ms)\n✔ Shivs.startTurn semantic negative control: current/captured-accuracy (101.121422ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2594.891295\nwall=2.674\n"
+  },
+  "planning": {
+    "js": 747,
+    "lua": 1402,
+    "unknownJsMs": 10000,
+    "oldFloorCount": 9,
+    "reserveMs": 60000,
+    "workers": 2,
+    "concurrencyCapUnchanged": 12,
+    "platforms": {
+      "win32": {
+        "shards": 17,
+        "loads": [
+          1651530,
+          1651570,
+          1651442,
+          1651442,
+          1651566,
+          1651638,
+          1651224,
+          1651453,
+          1651283,
+          1651394,
+          1651395,
+          1651718,
+          1651337,
+          1651431,
+          1651485,
+          1651321,
+          1651422
+        ],
+        "maxPlusReserveMs": 1711718,
+        "budgetMs": 1800000,
+        "spareMs": 88282
+      },
+      "linux": {
+        "shards": 13,
+        "loads": [
+          1131898,
+          1131889,
+          1131889,
+          1131898,
+          1131889,
+          1131889,
+          1131889,
+          1131889,
+          1131898,
+          1131898,
+          1131888,
+          1131888,
+          1131888
+        ],
+        "maxPlusReserveMs": 1191898,
+        "budgetMs": 1200000,
+        "spareMs": 8102
+      }
+    },
+    "limitations": "Planning only, not Hosted CI or observed job duration."
+  },
+  "unchangedInputsSha256": {
+    "scripts/ci-test-timings.json": "a5841ddaa53d8bc810f9c16ae342ed2de8cb5479bbcb073562d2c6c921ed1b24",
+    "scripts/ci-quality-shape.mjs": "0d6c82c2a7e7db82e276eb563978d5253d9a225039329e171ed3f907f98609d1",
+    "config/architecture.json": "0e75d9e1f08cfb7738215b9a31cce141f03cc2469077bce0db3376fe1f446a9c",
+    ".luacheckrc": "f2bc756320d54d486697a0f56a701242fcefd5519d3ed37a937dbd16bbc17fc0",
+    "config/luacheck-baseline.json": "9fa90ea0ec3a02019c446eda12ff3786fbb1d74071e251d840584ebb1963843d",
+    "tests/helpers/lua-graph-observer.mjs": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f",
+    "scripts/build-lua-data.mjs": "2a04be0449e7fd43404662e4998c7d0541761708f50043f966e66ac7c5ed67d1",
+    "package-lock.json": "b3f3cbd334fee96bcebeb6645c909a9b64425d0d704fd179b4279b19e1cf2ed9"
+  },
+  "independentPrecommitProbe": {
+    "pass": true,
+    "cases": [
+      {
+        "fail": "none",
+        "trace": "get:state:player|active1:player|get:state:enemies|get:enemies:1|active1:e1|get:enemies:2|active2:e2|get:enemies:3|active2:e3|get:enemies:4|get:state:player|get:status:infinite_blades|get:state:player|get:status:accuracy|get:state:hand|get:state:draw|get:state:discard|get:state:exhaust|get:hand:1|get:old:uid|get:hand:2|get:discard:1|get:state:events|len:events|generate:2:false|put:hand:2:table:<identity>|put:discard:1:table:<identity>|put:events:1:table:<identity>|get:state:hand|get:state:discard|get:hand:1|get:old:uid|get:hand:2|get:new1:uid|get:hand:3|get:discard:1|get:new2:uid|get:discard:2|get:new1:cardId|get:new1:upgraded|get:state:player|get:status:master_reality|get:new2:cardId|get:new2:upgraded|get:state:player|get:status:master_reality|put:new1:shivAccuracyBonus:4|put:new2:shivAccuracyBonus:4|get:state:events|len:events|get:state:events|get:events:1|get:frame1:uid|put:frame1:shivAccuracyBonus:4|get:frame2:uid|put:frame2:shivAccuracyBonus:4|ok:true|fault:false|arity:3"
+      },
+      {
+        "fail": "scan",
+        "trace": "get:state:player|active1:player|get:state:enemies|get:enemies:1|active1:e1|get:enemies:2|active2:e2|get:enemies:3|active2:e3|ok:false|fault:true|arity:2"
+      },
+      {
+        "fail": "new1",
+        "trace": "get:state:player|active1:player|get:state:enemies|get:enemies:1|active1:e1|get:enemies:2|active2:e2|get:enemies:3|active2:e3|get:enemies:4|get:state:player|get:status:infinite_blades|get:state:player|get:status:accuracy|get:state:hand|get:state:draw|get:state:discard|get:state:exhaust|get:hand:1|get:old:uid|get:hand:2|get:discard:1|get:state:events|len:events|generate:2:false|put:hand:2:table:<identity>|put:discard:1:table:<identity>|put:events:1:table:<identity>|get:state:hand|get:state:discard|get:hand:1|get:old:uid|get:hand:2|get:new1:uid|get:hand:3|get:discard:1|get:new2:uid|get:discard:2|get:new1:cardId|get:new1:upgraded|get:state:player|get:status:master_reality|get:new2:cardId|get:new2:upgraded|get:state:player|get:status:master_reality|put:new1:shivAccuracyBonus:4|ok:false|fault:true|arity:2"
+      },
+      {
+        "fail": "new2",
+        "trace": "get:state:player|active1:player|get:state:enemies|get:enemies:1|active1:e1|get:enemies:2|active2:e2|get:enemies:3|active2:e3|get:enemies:4|get:state:player|get:status:infinite_blades|get:state:player|get:status:accuracy|get:state:hand|get:state:draw|get:state:discard|get:state:exhaust|get:hand:1|get:old:uid|get:hand:2|get:discard:1|get:state:events|len:events|generate:2:false|put:hand:2:table:<identity>|put:discard:1:table:<identity>|put:events:1:table:<identity>|get:state:hand|get:state:discard|get:hand:1|get:old:uid|get:hand:2|get:new1:uid|get:hand:3|get:discard:1|get:new2:uid|get:discard:2|get:new1:cardId|get:new1:upgraded|get:state:player|get:status:master_reality|get:new2:cardId|get:new2:upgraded|get:state:player|get:status:master_reality|put:new1:shivAccuracyBonus:4|put:new2:shivAccuracyBonus:4|ok:false|fault:true|arity:2"
+      },
+      {
+        "fail": "frame1",
+        "trace": "get:state:player|active1:player|get:state:enemies|get:enemies:1|active1:e1|get:enemies:2|active2:e2|get:enemies:3|active2:e3|get:enemies:4|get:state:player|get:status:infinite_blades|get:state:player|get:status:accuracy|get:state:hand|get:state:draw|get:state:discard|get:state:exhaust|get:hand:1|get:old:uid|get:hand:2|get:discard:1|get:state:events|len:events|generate:2:false|put:hand:2:table:<identity>|put:discard:1:table:<identity>|put:events:1:table:<identity>|get:state:hand|get:state:discard|get:hand:1|get:old:uid|get:hand:2|get:new1:uid|get:hand:3|get:discard:1|get:new2:uid|get:discard:2|get:new1:cardId|get:new1:upgraded|get:state:player|get:status:master_reality|get:new2:cardId|get:new2:upgraded|get:state:player|get:status:master_reality|put:new1:shivAccuracyBonus:4|put:new2:shivAccuracyBonus:4|get:state:events|len:events|get:state:events|get:events:1|get:frame1:uid|put:frame1:shivAccuracyBonus:4|ok:false|fault:true|arity:2"
+      },
+      {
+        "fail": "frame2",
+        "trace": "get:state:player|active1:player|get:state:enemies|get:enemies:1|active1:e1|get:enemies:2|active2:e2|get:enemies:3|active2:e3|get:enemies:4|get:state:player|get:status:infinite_blades|get:state:player|get:status:accuracy|get:state:hand|get:state:draw|get:state:discard|get:state:exhaust|get:hand:1|get:old:uid|get:hand:2|get:discard:1|get:state:events|len:events|generate:2:false|put:hand:2:table:<identity>|put:discard:1:table:<identity>|put:events:1:table:<identity>|get:state:hand|get:state:discard|get:hand:1|get:old:uid|get:hand:2|get:new1:uid|get:hand:3|get:discard:1|get:new2:uid|get:discard:2|get:new1:cardId|get:new1:upgraded|get:state:player|get:status:master_reality|get:new2:cardId|get:new2:upgraded|get:state:player|get:status:master_reality|put:new1:shivAccuracyBonus:4|put:new2:shivAccuracyBonus:4|get:state:events|len:events|get:state:events|get:events:1|get:frame1:uid|put:frame1:shivAccuracyBonus:4|get:frame2:uid|put:frame2:shivAccuracyBonus:4|ok:false|fault:true|arity:2"
+      }
+    ]
+  },
+  "independentProbeSource": "import {createRequire} from 'node:module';import{readFileSync,writeFileSync}from'node:fs';import{execFileSync}from'node:child_process';import assert from'node:assert/strict';\nconst root='/workspace/scratch/c1a4970a76e0/m7-shiv-turn-responsibilities-20261107';const require=createRequire(root+'/package.json');const{lua,lauxlib,lualib,to_luastring,to_jsstring}=require('fengari');\nconst old=execFileSync('git',['show','d8a57cae2a867200ca8e588abc0d368e6cdb3799:src/lua/abyss_shivs.lua'],{cwd:root,encoding:'utf8'}),now=readFileSync(root+'/src/lua/abyss_shivs.lua','utf8');\nconst fixture=`\nlocal log={}; local function note(x)log[#log+1]=x end\nlocal fault={marker='fault'}\nlocal A={}; package.preload.abyss_actor=function()return A end\npackage.preload.abyss_events=function()return {} end\npackage.preload.abyss_copy=function()return {} end\nlocal S=assert(load(SOURCE,'@src/lua/abyss_shivs.lua'))()\nlocal function proxy(t,label)\n return setmetatable({},{__index=function(_,k) note('get:'..label..':'..tostring(k));return t[k]end,\n __newindex=function(_,k,v)note('put:'..label..':'..tostring(k)..':'..tostring(v)); if label==FAIL then error(fault,0)end;t[k]=v end,\n __len=function()note('len:'..label);return #t end})\nend\nlocal statuses=proxy({infinite_blades=2,accuracy=4},'status')\nlocal p={id='player',statuses=statuses};local e1={id='e1'};local e2={id='e2'};local e3={id='e3'}\nA.isActive=function(actor)note('active1:'..actor.id);if actor==e1 then A.isActive=function(a)note('active2:'..a.id);if FAIL=='scan' and a==e3 then error(fault,0)end;return false end end;return true end\nlocal hand=proxy({proxy({uid=1},'old')},'hand');local discard=proxy({},'discard')\nlocal events=proxy({},'events')\nlocal s=proxy({player=p,enemies=proxy({e1,e2,e3},'enemies'),hand=hand,draw={},discard=discard,exhaust={},events=events},'state')\nlocal function gen(t,n,up)\n note('generate:'..n..':'..tostring(up))\n local one=proxy({uid=5,cardId='shiv',upgraded=false},'new1');local two=proxy({uid=6,cardId='shiv',upgraded=false},'new2')\n hand[2]=one;discard[1]=two\n events[1]={kind='silent_generate',frame={hand={proxy({uid=5},'frame1')},draw={},discard={proxy({uid=6},'frame2')},exhaust={}}};\n return {5,6}\nend\n-- Avoid addresses in write logs while retaining callback counts/order.\nlocal r=table.pack(pcall(S.startTurn,s,gen));note('ok:'..tostring(r[1]));note('fault:'..tostring(r[2]==fault));note('arity:'..r.n)\nreturn (table.concat(log,'|'):gsub('table: 0x%x+','table:<identity>'))\n`;\nfunction run(source,fail){const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);lua.lua_pushstring(L,to_luastring(source));lua.lua_setglobal(L,to_luastring('SOURCE'));lua.lua_pushstring(L,to_luastring(fail));lua.lua_setglobal(L,to_luastring('FAIL'));const code=lauxlib.luaL_dostring(L,to_luastring(fixture));assert.equal(code,0,to_jsstring(lua.lua_tostring(L,-1)));const out=to_jsstring(lua.lua_tostring(L,-1));lua.lua_close(L);return out;}\nconst cases=[];for(const fail of['none','scan','new1','new2','frame1','frame2']){const before=run(old,fail),after=run(now,fail);assert.equal(after,before,fail);assert.ok(before.includes('active2:e3'));if(fail!=='none')assert.ok(before.includes('fault:true'));cases.push({fail,trace:before});}\nwriteFileSync('/tmp/shiv-independent-probe-results.json',JSON.stringify({pass:true,cases},null,2));console.log('Independent probes passed:',cases.length);\n",
+  "delivery": {
+    "publicationAttempted": false,
+    "reason": "Prior source-upload denial for this repository destination remains unresolved for this slice. A later authorization applies to Scry only. No retry or alternate channel was attempted.",
+    "pr": null,
+    "remoteHead": null,
+    "hostedCI": "not_run",
+    "merged": false,
+    "localIndependentReview": "Exact final head receipt is external to avoid circular commit identities.",
+    "fullRerun": false,
+    "userDeviceOrGUI": false,
+    "taskStatus": "In Progress; owner and AC unchanged"
+  }
+}

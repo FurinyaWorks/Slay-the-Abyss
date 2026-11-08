@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "kind": "successful-case-planning-lower-bounds",
+  "environment": "cloud Linux local",
+  "sourceLog": "docs/evidence/seven-current-integration-20261108/source-inverse-partial-cases.log",
+  "sourceLogSha256": "2c6376cb852312812e6813dc88e02c196955da52282624036cdc61780dbeaed6",
+  "batchSummary": {
+    "tests": 79,
+    "passed": 76,
+    "failed": 3,
+    "skipped": 0,
+    "cancelled": 0,
+    "nodeReportedDurationMs": 116739.773333
+  },
+  "observations": [
+    {
+      "file": "tests/combat-reactions-architecture-inverse.test.mjs",
+      "caseName": "reaction architecture inverse restores complete prior bytes through LF, CRLF and layout variants",
+      "durationMs": 80062.022369,
+      "rawSuccessLine": "✔ reaction architecture inverse restores complete prior bytes through LF, CRLF and layout variants (80062.022369ms)",
+      "planningFloorMs": 80063
+    },
+    {
+      "file": "tests/compendium-source-inverse.test.mjs",
+      "caseName": "Runtime host projection recognizes complete before/after bytes but rejects partial, duplicate and foreign edits",
+      "durationMs": 42674.303005,
+      "rawSuccessLine": "✔ Runtime host projection recognizes complete before/after bytes but rejects partial, duplicate and foreign edits (42674.303005ms)",
+      "planningFloorMs": 42675
+    }
+  ],
+  "semantics": "Each floor is the ceiling of the maximum known successful named top-level case duration for that file, not a sum, aggregate allocation or full-file execution measurement. The containing batch had three failures. Later fixes do not rewrite this raw evidence. Case names are matched to their owning test files. Only a local planning lower bound is claimed.",
+  "fullFileCompletionClaim": false,
+  "actualFullPassClaim": false,
+  "hostedMeasurementClaim": false
+}

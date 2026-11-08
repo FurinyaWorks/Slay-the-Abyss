@@ -1,0 +1,25 @@
+{
+  "inventory": {
+    "js": 748,
+    "lua": 1402
+  },
+  "forecastOnly": true,
+  "workerCount": 2,
+  "concurrency": 12,
+  "reserveMs": 60000,
+  "floors": 10,
+  "platforms": {
+    "linux": {
+      "shards": 13,
+      "budgetMs": 1200000,
+      "maxPlusReserveMs": 1194206,
+      "spareMs": 5794
+    },
+    "win32": {
+      "shards": 17,
+      "budgetMs": 1800000,
+      "maxPlusReserveMs": 1713421,
+      "spareMs": 86579
+    }
+  }
+}

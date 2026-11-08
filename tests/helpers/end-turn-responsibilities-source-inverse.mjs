@@ -3,8 +3,9 @@ export * from './epochs/endTurn/tests/helpers/end-turn-responsibilities-source-i
 import { preEndTurnResponsibilitiesSource as original } from './epochs/endTurn/tests/helpers/end-turn-responsibilities-source-inverse.mjs';
 import {sourceEpoch} from './combined-epoch/source-epoch.mjs';
 import {readFileSync} from 'node:fs';
-const live=p=>readFileSync(p,'utf8');
+const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preEndTurnResponsibilitiesSource(path,source,{readSource=live}={}){
+ readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'endTurn',readSource});
  return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'endTurn')});
 }

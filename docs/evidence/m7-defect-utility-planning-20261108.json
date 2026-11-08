@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-m7-defect-utility-responsibility",
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "productSha256": "921a0e333377d12bd54551b71d1af2d142fc404172df7bf62ba1d4351b33cfb5",
+  "metrics": {
+    "baseline": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5053,
+        "measurements": 5386,
+        "expectedMeasurements": 5386
+      },
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "requirePositions": 1920,
+      "modulePairs": 1546,
+      "ccAbove15": 237,
+      "ccAbove30": 58,
+      "maxCC": 75,
+      "diagnostics": 14,
+      "utility": {
+        "file": "src/lua/abyss_defect_utility_cards.lua",
+        "sha256": "e9372f029db58b62e4fff8f4889826607e8d114dcab2cfa00ca4f124fe29f670",
+        "lines": 173,
+        "functions": [
+          {
+            "id": "$",
+            "name": "<chunk>",
+            "kind": "chunk",
+            "constructorName": false,
+            "line": 1,
+            "column": 1,
+            "endLine": 173,
+            "lines": 173,
+            "complexity": 1
+          },
+          {
+            "id": "$/integer#1",
+            "name": "integer",
+            "kind": "function",
+            "constructorName": false,
+            "line": 6,
+            "column": 7,
+            "endLine": 8,
+            "lines": 3,
+            "complexity": 4
+          },
+          {
+            "id": "$/copy#1",
+            "name": "copy",
+            "kind": "function",
+            "constructorName": false,
+            "line": 9,
+            "column": 7,
+            "endLine": 12,
+            "lines": 4,
+            "complexity": 3
+          },
+          {
+            "id": "$/e#1",
+            "name": "e",
+            "kind": "function",
+            "constructorName": false,
+            "line": 13,
+            "column": 7,
+            "endLine": 15,
+            "lines": 3,
+            "complexity": 2
+          },
+          {
+            "id": "$/channel#1",
+            "name": "channel",
+            "kind": "function",
+            "constructorName": false,
+            "line": 16,
+            "column": 7,
+            "endLine": 16,
+            "lines": 1,
+            "complexity": 1
+          },
+          {
+            "id": "$/generated#1",
+            "name": "generated",
+            "kind": "function",
+            "constructorName": false,
+            "line": 17,
+            "column": 7,
+            "endLine": 17,
+            "lines": 1,
+            "complexity": 1
+          },
+          {
+            "id": "$/M.withCards#1",
+            "name": "M.withCards",
+            "kind": "function",
+            "constructorName": false,
+            "line": 68,
+            "column": 1,
+            "endLine": 94,
+            "lines": 27,
+            "complexity": 11
+          },
+          {
+            "id": "$/M.prepareEffect#1",
+            "name": "M.prepareEffect",
+            "kind": "function",
+            "constructorName": false,
+            "line": 97,
+            "column": 1,
+            "endLine": 111,
+            "lines": 15,
+            "complexity": 6
+          },
+          {
+            "id": "$/M.planEffect#1",
+            "name": "M.planEffect",
+            "kind": "function",
+            "constructorName": false,
+            "line": 115,
+            "column": 1,
+            "endLine": 172,
+            "lines": 58,
+            "complexity": 37
+          }
+        ]
+      }
+    },
+    "current": {
+      "coverage": {
+        "modules": 333,
+        "functions": 5057,
+        "measurements": 5390,
+        "expectedMeasurements": 5390
+      },
+      "scc": [
+        {
+          "members": 81,
+          "positions": 623,
+          "pairs": 400
+        },
+        {
+          "members": 15,
+          "positions": 62,
+          "pairs": 41
+        }
+      ],
+      "requirePositions": 1920,
+      "modulePairs": 1546,
+      "ccAbove15": 236,
+      "ccAbove30": 57,
+      "maxCC": 75,
+      "diagnostics": 14,
+      "utility": {
+        "file": "src/lua/abyss_defect_utility_cards.lua",
+        "sha256": "921a0e333377d12bd54551b71d1af2d142fc404172df7bf62ba1d4351b33cfb5",
+        "lines": 201,
+        "functions": [
+          {
+            "id": "$",
+            "name": "<chunk>",
+            "kind": "chunk",
+            "constructorName": false,
+            "line": 1,
+            "column": 1,
+            "endLine": 201,
+            "lines": 201,
+            "complexity": 1
+          },
+          {
+            "id": "$/integer#1",
+            "name": "integer",
+            "kind": "function",
+            "constructorName": false,
+            "line": 6,
+            "column": 7,
+            "endLine": 8,
+            "lines": 3,
+            "complexity": 4
+          },
+          {
+            "id": "$/copy#1",
+            "name": "copy",
+            "kind": "function",
+            "constructorName": false,
+            "line": 9,
+            "column": 7,
+            "endLine": 12,
+            "lines": 4,
+            "complexity": 3
+          },
+          {
+            "id": "$/e#1",
+            "name": "e",
+            "kind": "function",
+            "constructorName": false,
+            "line": 13,
+            "column": 7,
+            "endLine": 15,
+            "lines": 3,
+            "complexity": 2
+          },
+          {
+            "id": "$/channel#1",
+            "name": "channel",
+            "kind": "function",
+            "constructorName": false,
+            "line": 16,
+            "column": 7,
+            "endLine": 16,
+            "lines": 1,
+            "complexity": 1
+          },
+          {
+            "id": "$/generated#1",
+            "name": "generated",
+            "kind": "function",
+            "constructorName": false,
+            "line": 17,
+            "column": 7,
+            "endLine": 17,
+            "lines": 1,
+            "complexity": 1
+          },
+          {
+            "id": "$/M.withCards#1",
+            "name": "M.withCards",
+            "kind": "function",
+            "constructorName": false,
+            "line": 68,
+            "column": 1,
+            "endLine": 94,
+            "lines": 27,
+            "complexity": 11
+          },
+          {
+            "id": "$/M.prepareEffect#1",
+            "name": "M.prepareEffect",
+            "kind": "function",
+            "constructorName": false,
+            "line": 97,
+            "column": 1,
+            "endLine": 111,
+            "lines": 15,
+            "complexity": 6
+          },
+          {
+            "id": "$/planOrbEffects#1",
+            "name": "planOrbEffects",
+            "kind": "function",
+            "constructorName": false,
+            "line": 114,
+            "column": 7,
+            "endLine": 131,
+            "lines": 18,
+            "complexity": 15
+          },
+          {
+            "id": "$/planIntentDebuff#1",
+            "name": "planIntentDebuff",
+            "kind": "function",
+            "constructorName": false,
+            "line": 135,
+            "column": 7,
+            "endLine": 148,
+            "lines": 14,
+            "complexity": 7
+          },
+          {
+            "id": "$/planEnergyEffects#1",
+            "name": "planEnergyEffects",
+            "kind": "function",
+            "constructorName": false,
+            "line": 152,
+            "column": 7,
+            "endLine": 172,
+            "lines": 21,
+            "complexity": 11
+          },
+          {
+            "id": "$/planHistoryAttack#1",
+            "name": "planHistoryAttack",
+            "kind": "function",
+            "constructorName": false,
+            "line": 176,
+            "column": 7,
+            "endLine": 181,
+            "lines": 6,
+            "complexity": 4
+          },
+          {
+            "id": "$/M.planEffect#1",
+            "name": "M.planEffect",
+            "kind": "function",
+            "constructorName": false,
+            "line": 186,
+            "column": 1,
+            "endLine": 200,
+            "lines": 15,
+            "complexity": 8
+          }
+        ]
+      }
+    }
+  },
+  "planning": {
+    "inventory": {
+      "js": 747,
+      "lua": 1403
+    },
+    "reserveMs": 60000,
+    "localPlanningFloors": 10,
+    "platforms": {
+      "win32": {
+        "shards": 17,
+        "maxWithReserveMs": 1712789,
+        "budgetMs": 1800000,
+        "slackMs": 87211
+      },
+      "linux": {
+        "shards": 13,
+        "maxWithReserveMs": 1192667,
+        "budgetMs": 1200000,
+        "slackMs": 7333
+      }
+    },
+    "scope": "Planning only; not hosted performance or Full success."
+  },
+  "validation": {
+    "authorFile": "11/11",
+    "directDifferentialCases": 185,
+    "unchangedCombatCasesPerVM": 52,
+    "semanticMutants": 6,
+    "sourceAndInventory": "21/21",
+    "finalCIInventory": "18/18",
+    "independentDifferentialCases": 6825,
+    "independentIdentityCases": 16,
+    "doctorExit": 1
+  },
+  "publication": {
+    "attempted": false,
+    "newPR": null,
+    "mergedToDevelop": false,
+    "hostedFull": false,
+    "localFull": false
+  },
+  "artifacts": {
+    "docs/evidence/defect-utility-planning-local-20261108.log": {
+      "sha256": "9ce747d58fc9ded4d1ebecdeaea7579d2ca169630eee36499033643ed30cfe0f",
+      "bytes": 1176
+    },
+    "docs/evidence/m7-defect-utility-baseline-engineering-20261108.json.gz": {
+      "sha256": "e61634a0b317b58fd2e93b781388bfceda541a524562ab2c1b7132b8b77b7e36",
+      "bytes": 401827
+    },
+    "docs/evidence/m7-defect-utility-current-engineering-20261108.json.gz": {
+      "sha256": "4f61cccf5978587667e319b9be3139800f037faab96ca2a27f9c2d8a43f1d03f",
+      "bytes": 402088
+    }
+  }
+}

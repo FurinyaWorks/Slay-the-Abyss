@@ -3,8 +3,9 @@ export * from './epochs/defect/tests/helpers/defect-plan-source-inverse.mjs';
 import { preDefectPlanSource as original } from './epochs/defect/tests/helpers/defect-plan-source-inverse.mjs';
 import {sourceEpoch} from './combined-epoch/source-epoch.mjs';
 import {readFileSync} from 'node:fs';
-const live=p=>readFileSync(p,'utf8');
+const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preDefectPlanSource(path,source,{readSource=live}={}){
+ readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'defect',readSource});
  return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'defect')});
 }

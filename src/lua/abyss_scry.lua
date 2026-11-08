@@ -71,35 +71,45 @@ function M.begin(state,amount,queue)
     state.pendingScry={token=state.scrySerial,turn=state.turn,drawSize=n,candidateUids=uids}
     return "pause"
 end
-function M.choose(state,orderedUids,token)
-    if not live(state) then return false,"not_player_turn" end
-    local pending=state.pendingScry
-    if type(pending)~="table" or not integer(token,1,MAX) or pending.token~=token
-        or state.scrySerial~=token then return false,"stale_scry_token" end
+-- Read-only validation completes before the first selected card is moved.
+local function allowedCandidates(state,pending)
     local n=piles(state)
     local candidates=dense(pending.candidateUids)
     if not n or not candidates or candidates==0 or pending.turn~=state.turn or pending.drawSize~=n or candidates>n then
-        return false,"stale_scry_draw"
+        return nil
     end
     local allowed={}
     for i,uid in ipairs(pending.candidateUids) do
-        if not integer(uid,1,MAX) or allowed[uid] or state.draw[n-i+1].uid~=uid then return false,"stale_scry_draw" end
+        if not integer(uid,1,MAX) or allowed[uid] or state.draw[n-i+1].uid~=uid then return nil end
         allowed[uid]=true
     end
+    return allowed,candidates
+end
+
+local function selectedCards(state,orderedUids,candidates,allowed)
     local count=dense(orderedUids)
-    if not count or count>candidates then return false,"invalid_scry_count" end
+    if not count or count>candidates then return nil,"invalid_scry_count" end
     local seen,selected={},{ }
     for _,uid in ipairs(orderedUids) do
-        if not integer(uid,1,MAX) or seen[uid] or not allowed[uid] then return false,"invalid_scry_uid" end
+        if not integer(uid,1,MAX) or seen[uid] or not allowed[uid] then return nil,"invalid_scry_uid" end
         seen[uid]=true
         for _,card in ipairs(state.draw) do if card.uid==uid then selected[#selected+1]=card;break end end
     end
+    return selected
+end
+
+-- A missing queue matters only when this confirmation would recall Weave.
+local function hasWeaveQueue(state,selected)
     if not state.actionQueue then
         local needs=false
         for _,card in ipairs(state.discard) do if card.cardId=='weave' then needs=true end end
         for _,card in ipairs(selected) do if card.cardId=='weave' then needs=true end end
-        if needs then return false,'missing_weave_action_queue' end
+        if needs then return false end
     end
+    return true
+end
+
+local function discardSelected(state,selected)
     assert(type(state.events)=="table","missing scry events")
     -- Validation of every candidate and UID finishes before the first move.
     for _,card in ipairs(selected) do
@@ -111,6 +121,19 @@ function M.choose(state,orderedUids,token)
         if (state.player.statuses.accuracy or 0)>0 then require('abyss_shivs').onDrawOrDiscard(state) end
         Events.emit(state,"scry_discard",{uid=card.uid,cardId=card.cardId})
     end
+end
+
+function M.choose(state,orderedUids,token)
+    if not live(state) then return false,"not_player_turn" end
+    local pending=state.pendingScry
+    if type(pending)~="table" or not integer(token,1,MAX) or pending.token~=token
+        or state.scrySerial~=token then return false,"stale_scry_token" end
+    local allowed,candidates=allowedCandidates(state,pending)
+    if not allowed then return false,"stale_scry_draw" end
+    local selected,reason=selectedCards(state,orderedUids,candidates,allowed)
+    if not selected then return false,reason end
+    if not hasWeaveQueue(state,selected) then return false,'missing_weave_action_queue' end
+    discardSelected(state,selected)
     state.pendingScry=nil
     if state.actionQueue then
         local recalls=require('abyss_watcher_flow_cards').planScry(state,true)

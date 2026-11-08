@@ -1,0 +1,135 @@
+✔ native-page outer epoch removes only reviewed registrations and preserves complete external bytes (86.509079ms)
+✔ reaction architecture inverse restores complete prior bytes through LF, CRLF and layout variants (80062.022369ms)
+✔ reaction inverse never hides partial registrations, boundary drift, duplicates or reordered policy (25.321717ms)
+✔ warm reaction projection freshly binds linked config and exposes disk mutation or deletion (907.041772ms)
+✔ compendium inverse restores exact pre-change bytes and leaves unrelated edits visible (16851.80156ms)
+✔ compendium architecture inverse rejects incomplete, duplicate, reordered or wrong-layer registrations (20977.883915ms)
+✔ compendium projections bind every new owner and never accept drift in detached providers (31098.053779ms)
+✔ M9 projection accepts only the exact two core registrations and preserves unrelated drift (130.310219ms)
+✔ Runtime host projection recognizes complete before/after bytes but rejects partial, duplicate and foreign edits (42674.303005ms)
+✖ warm Runtime projections still reread actual linked host files and reject disk drift or deletion (1214.514762ms)
+✔ combined epoch authenticates the complete current production tree (10.986418ms)
+✔ preM7FinalSource: current source and configuration match original target projection (5.743529ms)
+✔ preM7FinalSource: foreign input stays opaque and performs no linked reads (0.260875ms)
+✔ preRelicQuerySource: current source and configuration match original target projection (111.737428ms)
+✔ preRelicQuerySource: foreign input stays opaque and performs no linked reads (0.180303ms)
+✔ preCoreLifecycleSource: current source and configuration match original target projection (379.555015ms)
+✔ preCoreLifecycleSource: foreign input stays opaque and performs no linked reads (0.762737ms)
+✔ preGameUiExtractionSource: current source and configuration match original target projection (576.713911ms)
+✔ preGameUiExtractionSource: foreign input stays opaque and performs no linked reads (0.23101ms)
+✔ preRound3CatalogSource: current source and configuration match original target projection (413.989138ms)
+✔ preRound3CatalogSource: foreign input stays opaque and performs no linked reads (0.240434ms)
+✖ prePowerShopSource: current source and configuration match original target projection (0.974388ms)
+✖ prePowerShopSource: foreign input stays opaque and performs no linked reads (0.084989ms)
+✔ preSessionRewardSource: current source and configuration match original target projection (17.57075ms)
+✔ preSessionRewardSource: foreign input stays opaque and performs no linked reads (0.07874ms)
+✔ preWatcherExecutionSource: current source and configuration match original target projection (4.206087ms)
+✔ preWatcherExecutionSource: foreign input stays opaque and performs no linked reads (0.103186ms)
+✔ preInventoryResponsibilitiesSource: current source and configuration match original target projection (4.210974ms)
+✔ preInventoryResponsibilitiesSource: foreign input stays opaque and performs no linked reads (0.077037ms)
+✔ preAct1ChoiceSource: current source and configuration match original target projection (4.345399ms)
+✔ preAct1ChoiceSource: foreign input stays opaque and performs no linked reads (0.100132ms)
+✔ preDefectPlanSource: current source and configuration match original target projection (3.885121ms)
+✔ preDefectPlanSource: foreign input stays opaque and performs no linked reads (0.109957ms)
+✔ preColorlessCatalogSource: current source and configuration match original target projection (11.189205ms)
+✔ preColorlessCatalogSource: foreign input stays opaque and performs no linked reads (0.09856ms)
+✔ prePotionCallbackSource: current source and configuration match original target projection (10.758001ms)
+✔ prePotionCallbackSource: foreign input stays opaque and performs no linked reads (0.083927ms)
+✔ preEndTurnResponsibilitiesSource: current source and configuration match original target projection (3.954747ms)
+✔ preEndTurnResponsibilitiesSource: foreign input stays opaque and performs no linked reads (0.129516ms)
+✔ preActorPresenceSource: current source and configuration match original target projection (11.230387ms)
+✔ preActorPresenceSource: foreign input stays opaque and performs no linked reads (0.150969ms)
+✔ preRewardQueryBoundarySource: current source and configuration match original target projection (10.159814ms)
+✔ preRewardQueryBoundarySource: foreign input stays opaque and performs no linked reads (0.064227ms)
+✔ root combined projection rejects fresh missing/foreign/late-linked drift after success (47.095135ms)
+✔ round3 absent catalog still retires Actor, Potion, and Colorless witnesses (2.091111ms)
+✔ round3 present catalog retires all witnesses and rechecks bytes before deletion (36.854884ms)
+✔ round3 retirement rejects live hardlinks and live source roots (1.223365ms)
+✔ only the complete LivingWall increment restores authenticated prior architecture and all older witnesses (104132.933838ms)
+✔ missing, duplicate, partial or foreign LivingWall policy never enters any historical inverse (37.113999ms)
+✔ warm LivingWall projections freshly bind linked policy bytes, including guard removal and deletion (1012.733655ms)
+✔ both outer entries authenticate foreign tokens before IO and reread reviewed linked inputs after warmup (9155.877648ms)
+✔ native turn orchestration and every extracted stage remain bounded and required (25.560312ms)
+✔ presentation extractions are required and their nested callbacks remain budgeted (2.147804ms)
+✔ scoped responsibility budgets include nested callbacks and preserve unrelated hotspots (3.440966ms)
+✔ every extracted helper and anonymous function receives the same budget (1.107553ms)
+✔ potion candidate helpers cannot move branching outside the responsibility budget (0.443106ms)
+✔ every extracted card action helper is required and bounded with its nested functions (301.317908ms)
+✔ combat play, turn and constructor stages are required, bounded and fully measured (571.720801ms)
+✔ Actor damage and status stages plus nested callbacks cannot escape the production CC15 policy (149.707679ms)
+✔ effect support responsibilities remain required and bounded with their nested callbacks (9.149092ms)
+✔ restoring the original Run potion candidate hotspot fails the production policy (0.372695ms)
+✔ missing entries, missing measurements, duplicate positions and unknown formats fail closed (0.497384ms)
+✔ each AST function needs its own measurement even when counts remain equal (0.337282ms)
+✔ Luacheck Unicode codepoint columns map to the byte AST on the same line (5.003997ms)
+✔ shared combat catalog and nested helpers retain the responsibility budget (0.344953ms)
+✔ main chunk and a function at the first source position are distinct measurements (0.212172ms)
+✔ the extracted wording formatter is required and restoring the old local hotspot is also budgeted (0.716827ms)
+✔ Scry confirmation stages and their nested callbacks are required and bounded without hiding pile validation (0.77144ms)
+✔ the complete Shiv responsibility includes future helpers, nested functions and its chunk (0.512968ms)
+✔ the complete Act3 AI responsibility budgets future helpers, nested callbacks and its chunk (0.704027ms)
+✔ seven-refactor exact outer epoch restores every complete predecessor owner (6.16798ms)
+✔ seven-refactor projection freshly rejects drift and missing owners after warming (6.731636ms)
+✔ foreign and predecessor inputs remain opaque without linked reads (0.651217ms)
+✔ every advertised composed target preserves foreign bytes without linked reads (1341.687147ms)
+✔ all six combined owners bind actual complete sources and preserve independent frozen identities (37.720272ms)
+✔ combined reads freshly authenticate all six owners on every call and reused wrapper (3.229756ms)
+✔ combined old, foreign, partial, duplicated and drifted inputs never authorize reads (0.898281ms)
+✔ every combined linked owner rejects drift, mixed epochs and missing sources after warmed projections (67.930797ms)
+✔ standalone config entry rejects every opposite-owner mixed epoch, drift and deletion after warmup (156.718897ms)
+ℹ tests 79
+ℹ suites 0
+ℹ pass 76
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 116739.773333
+
+✖ failing tests:
+
+test at tests/compendium-source-inverse.test.mjs:89:1
+✖ warm Runtime projections still reread actual linked host files and reject disk drift or deletion (1214.514762ms)
+  AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json
+      at Object.preCombinedSource (file:///tmp/compendium-runtime-duwhJM/tests/helpers/combined-epoch/source-epoch-runtime.mjs:48:4)
+      at preCombinedSource (file:///tmp/compendium-runtime-duwhJM/tests/helpers/seven-refactor-source-epoch.mjs:23:27)
+      at reader (file:///tmp/compendium-runtime-duwhJM/tests/helpers/seven-refactor-source-epoch.mjs:30:55)
+      at reader (file:///tmp/compendium-runtime-duwhJM/tests/helpers/epochs/develop/tests/helpers/core-lifecycle-source-inverse.mjs:79:49)
+      at validate (file:///tmp/compendium-runtime-duwhJM/tests/helpers/epochs/develop/tests/helpers/game-ui-extraction-source-inverse.mjs:46:16)
+      at preGameUiExtractionSource (file:///tmp/compendium-runtime-duwhJM/tests/helpers/epochs/develop/tests/helpers/game-ui-extraction-source-inverse.mjs:55:2)
+      at preGameUiExtractionSource (file:///tmp/compendium-runtime-duwhJM/tests/helpers/game-ui-extraction-source-inverse.mjs:10:9)
+      at preCompendiumSource (file:///tmp/compendium-runtime-duwhJM/tests/helpers/compendium-source-inverse.mjs:46:73)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-seven-refactors-current-20261108/tests/compendium-source-inverse.test.mjs:100:35)
+      at async Test.run (node:internal/test_runner/test:1409:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/integration-source-epoch.test.mjs:35:2
+✖ prePowerShopSource: current source and configuration match original target projection (0.974388ms)
+  ReferenceError [Error]: readers is not defined
+      at prePowerShopSource (file:///workspace/scratch/c1a4970a76e0/m7-seven-refactors-current-20261108/tests/helpers/power-shop-source-inverse.mjs:8:2)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-seven-refactors-current-20261108/tests/integration-source-epoch.test.mjs:38:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+      at run (node:internal/test_runner/harness:398:12)
+      at test (node:internal/test_runner/harness:407:12)
+      at file:///workspace/scratch/c1a4970a76e0/m7-seven-refactors-current-20261108/tests/integration-source-epoch.test.mjs:35:2
+
+test at tests/integration-source-epoch.test.mjs:42:2
+✖ prePowerShopSource: foreign input stays opaque and performs no linked reads (0.084989ms)
+  ReferenceError [Error]: readers is not defined
+      at prePowerShopSource (file:///workspace/scratch/c1a4970a76e0/m7-seven-refactors-current-20261108/tests/helpers/power-shop-source-inverse.mjs:8:2)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-seven-refactors-current-20261108/tests/integration-source-epoch.test.mjs:44:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

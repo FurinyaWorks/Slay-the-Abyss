@@ -1,0 +1,821 @@
+{
+  "base": "d8a57cae2a867200ca8e588abc0d368e6cdb3799",
+  "sourceCommits": [
+    "35850732cf99450624d23e28418a366e3a9c5d2f",
+    "28c4881f911c32b9e46dfe1a9f048fc08b5182b2"
+  ],
+  "branches": {
+    "35850732cf99450624d23e28418a366e3a9c5d2f": {
+      "changedFiles": 106,
+      "unchangedBytes": 92,
+      "files": [
+        {
+          "path": "backlog/tasks/task-74.19 - 收敛核心依赖环与领域状态所有权.md",
+          "sourceSha256": "57f2b53a1cee62744ad455525d3960b72ba6d5fa3d27e30ee309db215eda7cae",
+          "currentSha256": "26fa4588ca83cc3aaf6ab85df3a43ed29dfbe8ae0470f2f81426afbc5842628d",
+          "byteIdentical": false
+        },
+        {
+          "path": "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+          "sourceSha256": "8dbbcbd941a5264b46a9c51107ca5c06775e66777785dd394f83e2ae785521be",
+          "currentSha256": "a092dbb0647b1bb97e1bea2037d5335c8af96a15faea73e278bb1f55ea97e385",
+          "byteIdentical": false
+        },
+        {
+          "path": "config/architecture.json",
+          "sourceSha256": "e76b585d9bcb486f3d53059dde1d79a13e46917d5bc8dae4f95638096a706c5e",
+          "currentSha256": "eedbc5648d98b9ac7b3b2e4b4a668e51b3e5a71151345a287bc3f85504a56624",
+          "byteIdentical": false
+        },
+        {
+          "path": "docs/backlog-details/M7-ACT3-AI-RESPONSIBILITIES-20261107.md",
+          "sourceSha256": "f92ebaee4c55a14fc0800e289263b05c150964a139096e0005be3b0fadd1f806",
+          "currentSha256": "f92ebaee4c55a14fc0800e289263b05c150964a139096e0005be3b0fadd1f806",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/backlog-details/M7-CLASS-POTION-ORB-BOUNDARY-20261108.md",
+          "sourceSha256": "6c01d337ffca37c6683a6e8c27ef21fffbd05e9a99610bb41cc4cb9f0af42ee3",
+          "currentSha256": "6c01d337ffca37c6683a6e8c27ef21fffbd05e9a99610bb41cc4cb9f0af42ee3",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/backlog-details/M7-LOCAL-RESPONSIBILITY-INTEGRATION-20261108.md",
+          "sourceSha256": "25278bb90cacc29942b0b77080d11b21a3128b612ff303c2def89ebbf919236c",
+          "currentSha256": "25278bb90cacc29942b0b77080d11b21a3128b612ff303c2def89ebbf919236c",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/backlog-details/M7-POTION-REFACTOR-INTEGRATION-20261108.md",
+          "sourceSha256": "814bf4d62d4bea0d88246914280943875704b74a9bb6efd964255bd61a13cc1d",
+          "currentSha256": "814bf4d62d4bea0d88246914280943875704b74a9bb6efd964255bd61a13cc1d",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/backlog-details/M7-SCRY-CHOICE-RESPONSIBILITIES-20261107.md",
+          "sourceSha256": "1cbe3d2ca695ccb70b5181a3ef4545a8ce16cfb561c3e061e75cf39c4891eca0",
+          "currentSha256": "1cbe3d2ca695ccb70b5181a3ef4545a8ce16cfb561c3e061e75cf39c4891eca0",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/backlog-details/M7-SHIV-TURN-RESPONSIBILITIES-20261107.md",
+          "sourceSha256": "afef77ca57ed2f023e615b089fc168d086522e3c1ae6d78788f28ee4a60531fd",
+          "currentSha256": "afef77ca57ed2f023e615b089fc168d086522e3c1ae6d78788f28ee4a60531fd",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/act3-ai-planning-20261107.json",
+          "sourceSha256": "c36473ed95965fe719c62847d94cf80ace4805faffd12054b30b4e5bf1225005",
+          "currentSha256": "c36473ed95965fe719c62847d94cf80ace4805faffd12054b30b4e5bf1225005",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-act3-ai-baseline-engineering-20261107.json.gz",
+          "sourceSha256": "51d693cfdc62e0196d234c73b7b2056031b5e3df8740b4e31798c219a1c25ef3",
+          "currentSha256": "51d693cfdc62e0196d234c73b7b2056031b5e3df8740b4e31798c219a1c25ef3",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-act3-ai-current-engineering-20261107.json.gz",
+          "sourceSha256": "50e836089df3d1b56710beed929fac685b3b8424c4bab5cb305b2fd11ac9c60e",
+          "currentSha256": "50e836089df3d1b56710beed929fac685b3b8424c4bab5cb305b2fd11ac9c60e",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-act3-ai-responsibilities-20261107.json",
+          "sourceSha256": "547cc6383626a4a4b1fec785e456c0d5faa1a391b24ed520aa9b450b81ccc8c7",
+          "currentSha256": "547cc6383626a4a4b1fec785e456c0d5faa1a391b24ed520aa9b450b81ccc8c7",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-backlog-20261108.log.gz",
+          "sourceSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+          "currentSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-baseline-engineering-20261108.json.gz",
+          "sourceSha256": "3f18a7647ad857183936e5148fef323b7e0cf05d386869546711292536dd023b",
+          "currentSha256": "3f18a7647ad857183936e5148fef323b7e0cf05d386869546711292536dd023b",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-baseline-engineering-20261108.log.gz",
+          "sourceSha256": "ba06848364e52e4a0b70fbc18526e4bf1a881d67c608754552da69cf3ac28211",
+          "currentSha256": "ba06848364e52e4a0b70fbc18526e4bf1a881d67c608754552da69cf3ac28211",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-boundary-20261108.json",
+          "sourceSha256": "0eb1ba26e1ad4d0d5c37d50f562caafa598eeaa5eb2e002e0e55b8da71df61c4",
+          "currentSha256": "0eb1ba26e1ad4d0d5c37d50f562caafa598eeaa5eb2e002e0e55b8da71df61c4",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-ci-consumers-20261108.log.gz",
+          "sourceSha256": "7a7595b7f29c2e1991a76a7959414c2038e635d07d9d897f7f41bb245c2033a2",
+          "currentSha256": "7a7595b7f29c2e1991a76a7959414c2038e635d07d9d897f7f41bb245c2033a2",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-ci-final-blocked-20261108.log.gz",
+          "sourceSha256": "32b36118aa2e3a2b7c89ac3b294b0821cd669a81704438c592a77002f00ca0f4",
+          "currentSha256": "32b36118aa2e3a2b7c89ac3b294b0821cd669a81704438c592a77002f00ca0f4",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-current-engineering-20261108.json.gz",
+          "sourceSha256": "9b0047728270f8c4505cd9e9a7f6f7a46d58b4187e4e1bf9fb20342273217d26",
+          "currentSha256": "9b0047728270f8c4505cd9e9a7f6f7a46d58b4187e4e1bf9fb20342273217d26",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-guidance-20261108.log.gz",
+          "sourceSha256": "387dbf6a34fef2720dbcf4ff588ee6744a9f6f24eadb4a3425c19f713893eca5",
+          "currentSha256": "387dbf6a34fef2720dbcf4ff588ee6744a9f6f24eadb4a3425c19f713893eca5",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-guidance-materialized-20261108.log.gz",
+          "sourceSha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+          "currentSha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-source-consumers-20261108.log.gz",
+          "sourceSha256": "b3a4c04c8980feff452b8da420b4653b1d5bf3f86d3ecac25974a15c72cf8236",
+          "currentSha256": "b3a4c04c8980feff452b8da420b4653b1d5bf3f86d3ecac25974a15c72cf8236",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-source-first-20261108.log.gz",
+          "sourceSha256": "7f58791cf4d41784d097e488981a8a7cebc35df7cf16de6361ebff06205464d2",
+          "currentSha256": "7f58791cf4d41784d097e488981a8a7cebc35df7cf16de6361ebff06205464d2",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-source-inverse-20261108.log.gz",
+          "sourceSha256": "bd91666fd93053b664d31fbb30a846314666a7ad031fdae69c634b914ad522b4",
+          "currentSha256": "bd91666fd93053b664d31fbb30a846314666a7ad031fdae69c634b914ad522b4",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-targeted-correction-20261108.log.gz",
+          "sourceSha256": "c8018964ce9f3a78b4be09d85523b3948a8cb243dc3e62230a3bcdfb13f7185e",
+          "currentSha256": "c8018964ce9f3a78b4be09d85523b3948a8cb243dc3e62230a3bcdfb13f7185e",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-class-potion-orb-targeted-first-20261108.log.gz",
+          "sourceSha256": "9852b7869775fc75034794f3f1cb5c9d8ee640c116702a60811fedc63a132cac",
+          "currentSha256": "9852b7869775fc75034794f3f1cb5c9d8ee640c116702a60811fedc63a132cac",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-local-refactors-baseline-engineering-20261108.json.gz",
+          "sourceSha256": "e2d82c32359ae748844bc2e7e315ca836fc9dcfa9bb2b059aec0613cfe4b18ad",
+          "currentSha256": "e2d82c32359ae748844bc2e7e315ca836fc9dcfa9bb2b059aec0613cfe4b18ad",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-local-refactors-current-engineering-20261108.json.gz",
+          "sourceSha256": "fdcf4710d7c1f191459deaa4c24c92d75595c43324034830dfc874f04a3a981c",
+          "currentSha256": "fdcf4710d7c1f191459deaa4c24c92d75595c43324034830dfc874f04a3a981c",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-local-refactors-validation-20261108.json.gz",
+          "sourceSha256": "6225ecdb1945f76263a46332fd605d649c3784dd2e96dc98cb337f84f586febb",
+          "currentSha256": "6225ecdb1945f76263a46332fd605d649c3784dd2e96dc98cb337f84f586febb",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-local-responsibility-integration-20261108.json",
+          "sourceSha256": "73f2382b4746f4d0065790916caa8c04f2b0ffc7274210ca84d56e47dd8b9407",
+          "currentSha256": "73f2382b4746f4d0065790916caa8c04f2b0ffc7274210ca84d56e47dd8b9407",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-backlog-20261108.log.gz",
+          "sourceSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+          "currentSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-backlog-final-20261108.log.gz",
+          "sourceSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+          "currentSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-behavior-20261108.log.gz",
+          "sourceSha256": "4d4f270bf521220227b223ab86cc78c69529c7bcffd2c705e7ce5dc0ec5c2d2f",
+          "currentSha256": "4d4f270bf521220227b223ab86cc78c69529c7bcffd2c705e7ce5dc0ec5c2d2f",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-build-20261108.log.gz",
+          "sourceSha256": "d70340fa8eb66eb8cb502d4298744070031895f76c0ffe064452e5eeec31b834",
+          "currentSha256": "d70340fa8eb66eb8cb502d4298744070031895f76c0ffe064452e5eeec31b834",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-ci-consumers-20261108.log.gz",
+          "sourceSha256": "8d68da2490b773a345c6af71fef339cb0efd1bf173074c76e0e523135d55ddca",
+          "currentSha256": "8d68da2490b773a345c6af71fef339cb0efd1bf173074c76e0e523135d55ddca",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-ci-first-20261108.log.gz",
+          "sourceSha256": "ca4ef25b42e39d428eb847369f574190e1825a9cd738b9e298b3703b81e9a39c",
+          "currentSha256": "ca4ef25b42e39d428eb847369f574190e1825a9cd738b9e298b3703b81e9a39c",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-current-engineering-20261108.json.gz",
+          "sourceSha256": "11c0c3ed082544a474e0abae9485cffad4c4a0bcd62958766677f655af9caa7d",
+          "currentSha256": "11c0c3ed082544a474e0abae9485cffad4c4a0bcd62958766677f655af9caa7d",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-doctor-20261108.log.gz",
+          "sourceSha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+          "currentSha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-engineering-20261108.log.gz",
+          "sourceSha256": "fedc26c7da0a19f726d0c8d07844e44c8ecc2a0aee2061782e980d31f2e8e802",
+          "currentSha256": "fedc26c7da0a19f726d0c8d07844e44c8ecc2a0aee2061782e980d31f2e8e802",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-engineering-current-20261108.log.gz",
+          "sourceSha256": "44f9c74a10dc0dde5b4cc4bbff34698115ef06f7c877c7a7803f0ea15c4742d1",
+          "currentSha256": "44f9c74a10dc0dde5b4cc4bbff34698115ef06f7c877c7a7803f0ea15c4742d1",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-guidance-20261108.log.gz",
+          "sourceSha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+          "currentSha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-guidance-final-20261108.log.gz",
+          "sourceSha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+          "currentSha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-inventory-20261108.log.gz",
+          "sourceSha256": "a74f67f5089482aa2ee0b44a71861b7ba1adeaa5b8747a61701a372dc480f72d",
+          "currentSha256": "a74f67f5089482aa2ee0b44a71861b7ba1adeaa5b8747a61701a372dc480f72d",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-m7-source-20261108.log.gz",
+          "sourceSha256": "f0ca9008e8acb9920c7fce0e89af0f3b3d808aa8563d0a8c7c3e4ce6f2758c98",
+          "currentSha256": "f0ca9008e8acb9920c7fce0e89af0f3b3d808aa8563d0a8c7c3e4ce6f2758c98",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-metrics-20261108.json",
+          "sourceSha256": "109836a2829ecf9e229de70ee1f49d82909a78a4a30fae6f720b9d88155d7b11",
+          "currentSha256": "109836a2829ecf9e229de70ee1f49d82909a78a4a30fae6f720b9d88155d7b11",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-mutation-20261108.json.gz",
+          "sourceSha256": "e6d3376c51b64882e08374945fee00b7f7a38d08737d3a6f1b0cf3e4d95364f3",
+          "currentSha256": "e6d3376c51b64882e08374945fee00b7f7a38d08737d3a6f1b0cf3e4d95364f3",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-native-contract-20261108.log.gz",
+          "sourceSha256": "eddc894557f3bd68233d667ab2be5fa83bb7f191137697749f450ca47bfc9ae0",
+          "currentSha256": "eddc894557f3bd68233d667ab2be5fa83bb7f191137697749f450ca47bfc9ae0",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-planning-20261108.json",
+          "sourceSha256": "864f52b251d6d6f4f2d8b6b92b412045118ec376f23c0aed1891eee45aea90f8",
+          "currentSha256": "864f52b251d6d6f4f2d8b6b92b412045118ec376f23c0aed1891eee45aea90f8",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-preservation-20261108.json",
+          "sourceSha256": "1f32c771468ccc5bb4d4fd5b750fa21720759ae9e6fec6a694bbc67e52cfdd6c",
+          "currentSha256": "1f32c771468ccc5bb4d4fd5b750fa21720759ae9e6fec6a694bbc67e52cfdd6c",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-remote-readback-20261108.json",
+          "sourceSha256": "661d108548e7f172cab3f5af46a36f79482cffd92c63bce510f79f5bea824ac9",
+          "currentSha256": "661d108548e7f172cab3f5af46a36f79482cffd92c63bce510f79f5bea824ac9",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-sources-20261108.log.gz",
+          "sourceSha256": "015972f9c0fdb69b90d9872125c315b852bd06c57df2e19a1b040a09b72fd31e",
+          "currentSha256": "015972f9c0fdb69b90d9872125c315b852bd06c57df2e19a1b040a09b72fd31e",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-test-strength-20261108.log.gz",
+          "sourceSha256": "6425302086dc561a1ddfcd0924d735a3ac2a646e2fc378d27d1f09488a1b54a1",
+          "currentSha256": "6425302086dc561a1ddfcd0924d735a3ac2a646e2fc378d27d1f09488a1b54a1",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-integration-timing-correction-20261108.log.gz",
+          "sourceSha256": "f3a061d356909586bfa08a704bf8c766a99d31028fa54440d8a076d4a8c2eefa",
+          "currentSha256": "f3a061d356909586bfa08a704bf8c766a99d31028fa54440d8a076d4a8c2eefa",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-potion-refactor-integration-20261108.json",
+          "sourceSha256": "d1efc25f435bfb866d40659d530169d696c650a8969bf9dbc81775fbe283a471",
+          "currentSha256": "d1efc25f435bfb866d40659d530169d696c650a8969bf9dbc81775fbe283a471",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-scry-choice-baseline-engineering-20261107.json.gz",
+          "sourceSha256": "f1ad1612374296ed39d4733bb622b601d60a0f04d97dd9fef2a1b339285ff036",
+          "currentSha256": "f1ad1612374296ed39d4733bb622b601d60a0f04d97dd9fef2a1b339285ff036",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-scry-choice-combat-graph-20261107.json.gz",
+          "sourceSha256": "eda653d524e3fddd8b25e7582082440a686a4a42e5045bc77b554887fe977739",
+          "currentSha256": "eda653d524e3fddd8b25e7582082440a686a4a42e5045bc77b554887fe977739",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-scry-choice-current-engineering-20261107.json.gz",
+          "sourceSha256": "45a45e563aa79cc9c1f00661b74bf1eff1bf5e4b1e6ef381a95d3e265a3111df",
+          "currentSha256": "45a45e563aa79cc9c1f00661b74bf1eff1bf5e4b1e6ef381a95d3e265a3111df",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-scry-choice-direct-graph-20261107.json.gz",
+          "sourceSha256": "c0771e822ff7e87879df7b399504520ed9d02a4bb667fbd9233824bda37ae8fe",
+          "currentSha256": "c0771e822ff7e87879df7b399504520ed9d02a4bb667fbd9233824bda37ae8fe",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-scry-choice-responsibilities-20261107.json",
+          "sourceSha256": "fe7681bff9d141318be9c3ef7b435c30ddb7312b066904be18870830bc85de7c",
+          "currentSha256": "fe7681bff9d141318be9c3ef7b435c30ddb7312b066904be18870830bc85de7c",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-shiv-turn-baseline-engineering-20261107.json.gz",
+          "sourceSha256": "51d3ef9cecbc33642a97a44b10a4b7be5e513222f16bb3d099b3dc8d104bd186",
+          "currentSha256": "51d3ef9cecbc33642a97a44b10a4b7be5e513222f16bb3d099b3dc8d104bd186",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-shiv-turn-combat-graph-20261107.json.gz",
+          "sourceSha256": "ba23d1cbf39ebda86bcb32931ee00d23608194a45a6b279cf4c5559a82000f0a",
+          "currentSha256": "ba23d1cbf39ebda86bcb32931ee00d23608194a45a6b279cf4c5559a82000f0a",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-shiv-turn-current-engineering-20261107.json.gz",
+          "sourceSha256": "79b453ee8b1dbdcfbb23c694efd1717a6a08898b3542eb1277fda315d372de8d",
+          "currentSha256": "79b453ee8b1dbdcfbb23c694efd1717a6a08898b3542eb1277fda315d372de8d",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-shiv-turn-direct-graph-20261107.json.gz",
+          "sourceSha256": "81678d5df1e94aeba0393bc6a9b1b1ea9b77ff6b572d99b5148f875ffce2f38a",
+          "currentSha256": "81678d5df1e94aeba0393bc6a9b1b1ea9b77ff6b572d99b5148f875ffce2f38a",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-shiv-turn-responsibilities-20261107.json",
+          "sourceSha256": "2c8f11e1337d20d4771afc49abac303c0e6e5100e1348aa9ddd5f87cf8091867",
+          "currentSha256": "2c8f11e1337d20d4771afc49abac303c0e6e5100e1348aa9ddd5f87cf8091867",
+          "byteIdentical": true
+        },
+        {
+          "path": "scripts/check-lua-static.mjs",
+          "sourceSha256": "849515cbe777465274a5d396d0a30dfef409ffbffc02075f23f054b52723d2a0",
+          "currentSha256": "849515cbe777465274a5d396d0a30dfef409ffbffc02075f23f054b52723d2a0",
+          "byteIdentical": true
+        },
+        {
+          "path": "scripts/ci-quality-shape.mjs",
+          "sourceSha256": "5eb6a562172a05d764609759fe500315fb5c07c565d190271f0c57b2841a889d",
+          "currentSha256": "5eb6a562172a05d764609759fe500315fb5c07c565d190271f0c57b2841a889d",
+          "byteIdentical": true
+        },
+        {
+          "path": "scripts/ci-test-timings.json",
+          "sourceSha256": "331342d5f9a9f56a39b4cfb7b18d03629704648d9972e04900b3e9ff18727c46",
+          "currentSha256": "4f737b7c4391304e0a16f68b7b81c35747b5c57578702ba5899f91042109fd64",
+          "byteIdentical": false
+        },
+        {
+          "path": "src/lua/abyss_act3_ai.lua",
+          "sourceSha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2",
+          "currentSha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2",
+          "byteIdentical": true
+        },
+        {
+          "path": "src/lua/abyss_card_actions.lua",
+          "sourceSha256": "8248d11eb5ab15c46763ef722b72aff3ac5dbde2c5e6b4da7b3103f5066ae4f4",
+          "currentSha256": "8248d11eb5ab15c46763ef722b72aff3ac5dbde2c5e6b4da7b3103f5066ae4f4",
+          "byteIdentical": true
+        },
+        {
+          "path": "src/lua/abyss_class_potions.lua",
+          "sourceSha256": "4cb57fc32fef1c086c5ee726008ce016fcb85b0f5b1c60a3c69a7a34180fd5b9",
+          "currentSha256": "4cb57fc32fef1c086c5ee726008ce016fcb85b0f5b1c60a3c69a7a34180fd5b9",
+          "byteIdentical": true
+        },
+        {
+          "path": "src/lua/abyss_combat_effect_dispatch.lua",
+          "sourceSha256": "5bf02c9a8800e10abed38f7718f62f77c150ff6739132bf57a4127846d1d0ca7",
+          "currentSha256": "5bf02c9a8800e10abed38f7718f62f77c150ff6739132bf57a4127846d1d0ca7",
+          "byteIdentical": true
+        },
+        {
+          "path": "src/lua/abyss_scry.lua",
+          "sourceSha256": "5bad4886300de2d8a46105185f49869ac8b0c61114cb109b1243932f3cfca6c4",
+          "currentSha256": "5bad4886300de2d8a46105185f49869ac8b0c61114cb109b1243932f3cfca6c4",
+          "byteIdentical": true
+        },
+        {
+          "path": "src/lua/abyss_shivs.lua",
+          "sourceSha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+          "currentSha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/act3-ai-responsibilities.test.mjs",
+          "sourceSha256": "3bd0fc322053704ab369d7c12fc882340048022b4e1ac4c6b88e5238b74a2711",
+          "currentSha256": "3bd0fc322053704ab369d7c12fc882340048022b4e1ac4c6b88e5238b74a2711",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/ci-complete-calibration.test.mjs",
+          "sourceSha256": "f31de47367c72b879add84e50fe4f5ea2d665b5d348b6e0d23144ef15e8002b1",
+          "currentSha256": "e3eef2de6f194956e80c4f222c23adbfd72cfaa5edf3cb8981923ead18d90d29",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/ci-posix-shards.test.mjs",
+          "sourceSha256": "49223b0fa8c21f79848ddca0c278d5bc9b43c564faec1d0a23b187099d07af98",
+          "currentSha256": "49223b0fa8c21f79848ddca0c278d5bc9b43c564faec1d0a23b187099d07af98",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/ci-runtime.test.mjs",
+          "sourceSha256": "a793540ded72e13cded21fabec580f594e6ca571690852f9969c9e3fd0397d78",
+          "currentSha256": "653f3d6108b836111bbc7b994a7ef33ba1f4f500ef06adf5a2cea3b3853c1aff",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/class-potion-orb-boundary.test.mjs",
+          "sourceSha256": "8efb5ef2b662ac967b712dbf97693daf69ac6fcb8d1c77e819ede37cbd28d2ce",
+          "currentSha256": "8efb5ef2b662ac967b712dbf97693daf69ac6fcb8d1c77e819ede37cbd28d2ce",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/class-potion-orb-source-inverse.test.mjs",
+          "sourceSha256": "078184f5610a3ada1955c7d3ee01f95a2c70942f7366e08cf893b69f377d9bb0",
+          "currentSha256": "6a51153dd70e2c5a72e65d467423b744b65f1850c43a341b6d86b98deef9392a",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/combat-reactions-architecture-inverse.test.mjs",
+          "sourceSha256": "8c3444cf88890baae63d1c02d2cf9314e6b44115fbb2480600ac4088aaa1144b",
+          "currentSha256": "57b208657e67e85eb86235686543ea4c903f725a49276852d82cfc575448e676",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/compendium-source-inverse.test.mjs",
+          "sourceSha256": "bb4915f0aa97d65880c66798826631b81fb82eea08e43a9c916c4471ac3f8791",
+          "currentSha256": "997de8ede157d53fa94f1b68ffeefacd13ed7d5f18dc4165c5dfabfbab2982a8",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/delivery.test.mjs",
+          "sourceSha256": "d9cd28302a829290d45887467144d42623ab5360e136907af74021e75dc8f1c2",
+          "currentSha256": "d9cd28302a829290d45887467144d42623ab5360e136907af74021e75dc8f1c2",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/fixtures/act3-ai-before.lua",
+          "sourceSha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19",
+          "currentSha256": "34511b1e1bfa55fccaa6f77cb8d549f60722a95fecaf324613abe427731a5b19",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/fixtures/class-potion-orb-before.json.gz",
+          "sourceSha256": "5bd98d551db3dae6b436b20bc9c78d4dc50b0b70442dded20405d792e0bcacc3",
+          "currentSha256": "5bd98d551db3dae6b436b20bc9c78d4dc50b0b70442dded20405d792e0bcacc3",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/fixtures/scry-choice-before.lua",
+          "sourceSha256": "786a5b20a63abaf08f1251402238e410fedf4aefab47abd75a38ab9fc3f1d4a5",
+          "currentSha256": "786a5b20a63abaf08f1251402238e410fedf4aefab47abd75a38ab9fc3f1d4a5",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/fixtures/shiv-turn-before.lua",
+          "sourceSha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+          "currentSha256": "f96896a0280691c2ed5cb04f516d1bf9a92854be817dea922b9858d52a91a57e",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/full-quality.test.mjs",
+          "sourceSha256": "d870e122835bed066e4161e39ab689b61cd0bdd09ca6a26a9007695287e95df8",
+          "currentSha256": "d870e122835bed066e4161e39ab689b61cd0bdd09ca6a26a9007695287e95df8",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/game-ui-extraction-source-inverse.test.mjs",
+          "sourceSha256": "8f299bd15dd015007bb5bec730d20a66c85e76795bf21cb54bdf5e864e0ad758",
+          "currentSha256": "dc6f181ca840ac9b7eba263a9ad843f0af4f4955671bf4ec2821c0d4115ab65b",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/helpers/act3-ai-responsibilities.lua",
+          "sourceSha256": "aca8dda4ed2ad13ed60dd540a48d2ea52d48a7e347605e67cef9ac49d43f70f5",
+          "currentSha256": "aca8dda4ed2ad13ed60dd540a48d2ea52d48a7e347605e67cef9ac49d43f70f5",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/helpers/act3-ai-responsibilities.mjs",
+          "sourceSha256": "939dc24786b73045ad6b331902352fc02d92d66af2f56edcb201e225666d15c7",
+          "currentSha256": "939dc24786b73045ad6b331902352fc02d92d66af2f56edcb201e225666d15c7",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+          "sourceSha256": "b8f0af0ff4e9fb8f2c7707ddf57f7127bf9a4f729b87ad4a4c5afa2b69794225",
+          "currentSha256": "2ac45a98e1fcaa7bacb983e80b126cba737b3238e5fe58cb62443026eccf2f97",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/helpers/class-potion-orb-source-inverse.mjs",
+          "sourceSha256": "55bba5c3ddbef8e72566b3ad0025634b31168eca628a9ac67a49696cbe8f5bc0",
+          "currentSha256": "55bba5c3ddbef8e72566b3ad0025634b31168eca628a9ac67a49696cbe8f5bc0",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/helpers/class-potion-orb-vm.mjs",
+          "sourceSha256": "1e0bfb55cdbbd0ac9a80fdc936dab3480bfcb4e43afa46df6f69f77d83464950",
+          "currentSha256": "1e0bfb55cdbbd0ac9a80fdc936dab3480bfcb4e43afa46df6f69f77d83464950",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/helpers/class-potion-planning-source-inverse.mjs",
+          "sourceSha256": "b1504e7e2c886059efc709e585f4a44bb7bf90f243363af048bf63565a730ef4",
+          "currentSha256": "f756ecbd45e03e4ad755e04fd0d8cc3b4a310d0c0b3100f552080f5f79d15f07",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/helpers/m7-core-final-source-inverse.mjs",
+          "sourceSha256": "a3c2ad7189f7ca408b963e1993de33b47454700d4771646f283a8384e6023b8f",
+          "currentSha256": "2d5cef9eedbb176d04a0ef50ef5a9e43ecb3865e7f7f029750b1d775e76fc0c1",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/helpers/scry-choice-responsibilities.lua",
+          "sourceSha256": "0e3c521cf3a3dbbd328db3c802c659dbbe49f8fc540fbe3a17daa96be77c4cbe",
+          "currentSha256": "0e3c521cf3a3dbbd328db3c802c659dbbe49f8fc540fbe3a17daa96be77c4cbe",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/helpers/scry-choice-responsibilities.mjs",
+          "sourceSha256": "67a2a8a1a8008740a9c27dac6ea403d6b366ee9732f3c72456f9ea3876f7e3f1",
+          "currentSha256": "67a2a8a1a8008740a9c27dac6ea403d6b366ee9732f3c72456f9ea3876f7e3f1",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/helpers/shiv-turn-responsibilities.lua",
+          "sourceSha256": "56610cdf349a2382ea0391ba350ab6b3e1860260756fdd309305015617ad0249",
+          "currentSha256": "56610cdf349a2382ea0391ba350ab6b3e1860260756fdd309305015617ad0249",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/helpers/shiv-turn-responsibilities.mjs",
+          "sourceSha256": "9eec1196817b7eeb7894528f50862939968f84a40820c6af8c79b01352094290",
+          "currentSha256": "9eec1196817b7eeb7894528f50862939968f84a40820c6af8c79b01352094290",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/living-wall-architecture-inverse.test.mjs",
+          "sourceSha256": "b94f09ee15db421560e8ba73429096ff59aa84a0c3bcc5b48d7cf39fab06182a",
+          "currentSha256": "4fb764d22cdad68bb2c2d28508a66e835ecf031f3510051cb67659d25e595ec9",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/lua/class_potion_darkness_queue.lua",
+          "sourceSha256": "032ac174eca9726a7bfa7162db3a78b8660885de5cc08f509a4a62a3ac10113d",
+          "currentSha256": "032ac174eca9726a7bfa7162db3a78b8660885de5cc08f509a4a62a3ac10113d",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/merge-queue.test.mjs",
+          "sourceSha256": "8484a07e3dbde9861c3e99d869ba8e8fefe06da3ec11cc71c09d617dfce44fa6",
+          "currentSha256": "8484a07e3dbde9861c3e99d869ba8e8fefe06da3ec11cc71c09d617dfce44fa6",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/responsibility-complexity.test.mjs",
+          "sourceSha256": "400e87dc5926bef71dd0804e9abec7fbca6b93e47fe2ab5b40743df475cb3249",
+          "currentSha256": "400e87dc5926bef71dd0804e9abec7fbca6b93e47fe2ab5b40743df475cb3249",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/scry-choice-responsibilities.test.mjs",
+          "sourceSha256": "a6ad737a95173bb50ad16883e6a951bb7b24dcd56f9b5a1034dfe1e2f8d98585",
+          "currentSha256": "a6ad737a95173bb50ad16883e6a951bb7b24dcd56f9b5a1034dfe1e2f8d98585",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/shiv-turn-responsibilities.test.mjs",
+          "sourceSha256": "505ffcef75655c195969942a2dadfcfdaf6537ddf4d07af1c4b6c7b9f0c4ce13",
+          "currentSha256": "505ffcef75655c195969942a2dadfcfdaf6537ddf4d07af1c4b6c7b9f0c4ce13",
+          "byteIdentical": true
+        }
+      ]
+    },
+    "28c4881f911c32b9e46dfe1a9f048fc08b5182b2": {
+      "changedFiles": 27,
+      "unchangedBytes": 14,
+      "files": [
+        {
+          "path": "backlog/tasks/task-74.19 - 收敛核心依赖环与领域状态所有权.md",
+          "sourceSha256": "e1ae37e76518978b604fa0ff9f104d3d2017a7ac3011fdf261cd94026c785131",
+          "currentSha256": "26fa4588ca83cc3aaf6ab85df3a43ed29dfbe8ae0470f2f81426afbc5842628d",
+          "byteIdentical": false
+        },
+        {
+          "path": "config/architecture.json",
+          "sourceSha256": "1029141b94ce57d2a44b306174e8201afc85b372825af0546b69a46b61750c88",
+          "currentSha256": "eedbc5648d98b9ac7b3b2e4b4a668e51b3e5a71151345a287bc3f85504a56624",
+          "byteIdentical": false
+        },
+        {
+          "path": "docs/backlog-details/M7-WATCHER-ACTOR-BOUNDARY-20261108.md",
+          "sourceSha256": "eeae8f17fd4967db078f56965630837d854299828a089c54c2b9a58580e78bf0",
+          "currentSha256": "eeae8f17fd4967db078f56965630837d854299828a089c54c2b9a58580e78bf0",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/m7-watcher-actor-boundary-20261108.json",
+          "sourceSha256": "f6b03e587c69d5616199e7ab4cedeb4eb633349fb156665745fda9deeb80715d",
+          "currentSha256": "f6b03e587c69d5616199e7ab4cedeb4eb633349fb156665745fda9deeb80715d",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/watcher-actor-20261108/baseline-engineering.json.gz",
+          "sourceSha256": "9e92a164cb5a685dab6cdb3843ac266d16560042593d7e81aa90728b99eded04",
+          "currentSha256": "9e92a164cb5a685dab6cdb3843ac266d16560042593d7e81aa90728b99eded04",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/watcher-actor-20261108/current-engineering.json.gz",
+          "sourceSha256": "4281653d2ceb7f71109a81e46e2bfadbb3ab16a48adc858077d73c7e88edc1b3",
+          "currentSha256": "4281653d2ceb7f71109a81e46e2bfadbb3ab16a48adc858077d73c7e88edc1b3",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/watcher-actor-20261108/planning.json",
+          "sourceSha256": "cd7c1230598fff3551648307effdfb5a1f16593f0d1d205719b374d7d6343aff",
+          "currentSha256": "cd7c1230598fff3551648307effdfb5a1f16593f0d1d205719b374d7d6343aff",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/watcher-actor-20261108/remote-occupancy.json",
+          "sourceSha256": "622c6b1078294965e776a58578f6716ea9f5632763628d9e715479a18b19cb88",
+          "currentSha256": "622c6b1078294965e776a58578f6716ea9f5632763628d9e715479a18b19cb88",
+          "byteIdentical": true
+        },
+        {
+          "path": "docs/evidence/watcher-actor-20261108/validation-logs.json.gz",
+          "sourceSha256": "84c6b739f274c57b351f85f8a9e0cb58e30fc070fb82f9f662b9b10835d40ea9",
+          "currentSha256": "84c6b739f274c57b351f85f8a9e0cb58e30fc070fb82f9f662b9b10835d40ea9",
+          "byteIdentical": true
+        },
+        {
+          "path": "scripts/ci-test-timings.json",
+          "sourceSha256": "babd54a4b184c44070b64729fc0285625e69c567e390213f09aa474a7a8f5ab8",
+          "currentSha256": "4f737b7c4391304e0a16f68b7b81c35747b5c57578702ba5899f91042109fd64",
+          "byteIdentical": false
+        },
+        {
+          "path": "src/lua/abyss_combat_queued_play.lua",
+          "sourceSha256": "8cdb95b829af4572932daa356ca0456a385c5cad5afb7950da2f2b47a5152d15",
+          "currentSha256": "8cdb95b829af4572932daa356ca0456a385c5cad5afb7950da2f2b47a5152d15",
+          "byteIdentical": true
+        },
+        {
+          "path": "src/lua/abyss_watcher_attack_cards.lua",
+          "sourceSha256": "f34c4b292fa104724b98a05324ed931448ee21d9cf58ca946c8e33f6b22b4f00",
+          "currentSha256": "f34c4b292fa104724b98a05324ed931448ee21d9cf58ca946c8e33f6b22b4f00",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/ci-complete-calibration.test.mjs",
+          "sourceSha256": "0d06d0850de2e806335eec39906e171e019ffe322f888a1391bc4e44ad43dacb",
+          "currentSha256": "e3eef2de6f194956e80c4f222c23adbfd72cfaa5edf3cb8981923ead18d90d29",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/ci-runtime.test.mjs",
+          "sourceSha256": "5f3d5545bfa41bf6c05a9a2681de6a231bdfd2c3f0865f0ba3125c90f6e1e6e3",
+          "currentSha256": "653f3d6108b836111bbc7b994a7ef33ba1f4f500ef06adf5a2cea3b3853c1aff",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/combat-reactions-architecture-inverse.test.mjs",
+          "sourceSha256": "4062bdcbba2eb52f32e6cf1abd80b6a4f432fa4b97189f2c3d0de4c3eb1ff3ab",
+          "currentSha256": "57b208657e67e85eb86235686543ea4c903f725a49276852d82cfc575448e676",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/compendium-source-inverse.test.mjs",
+          "sourceSha256": "9c1d6d4bee4965d9a92ef4e5779d6dddd2bb10e0aaea9219f2e6b02e1fa1bf01",
+          "currentSha256": "997de8ede157d53fa94f1b68ffeefacd13ed7d5f18dc4165c5dfabfbab2982a8",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/fixtures/watcher-actor-before.json.gz",
+          "sourceSha256": "47f5750ba3ed1f804a18eb992b0944cb5adbd4ab5c43f1c4cf60827247c1af5e",
+          "currentSha256": "47f5750ba3ed1f804a18eb992b0944cb5adbd4ab5c43f1c4cf60827247c1af5e",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/game-ui-extraction-source-inverse.test.mjs",
+          "sourceSha256": "6587c053f0bc02b4b4972d22cc55ae00aef955682bf1049af77513211361bdaa",
+          "currentSha256": "dc6f181ca840ac9b7eba263a9ad843f0af4f4955671bf4ec2821c0d4115ab65b",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+          "sourceSha256": "309a70680674b40245f0f6d49c1855c305656410469d10a1c11773da6c547863",
+          "currentSha256": "2ac45a98e1fcaa7bacb983e80b126cba737b3238e5fe58cb62443026eccf2f97",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/helpers/m7-core-final-source-inverse.mjs",
+          "sourceSha256": "fbec077a4bb5f85fc60ffc5328b5db019886a2328bd22b71a75a3b8b2b0b8d42",
+          "currentSha256": "2d5cef9eedbb176d04a0ef50ef5a9e43ecb3865e7f7f029750b1d775e76fc0c1",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/helpers/watcher-actor-source-inverse.mjs",
+          "sourceSha256": "fa386ca691f8943af41becf2cb5896fee2d69bcdf84a8dfc297db050fde8f4f0",
+          "currentSha256": "fa386ca691f8943af41becf2cb5896fee2d69bcdf84a8dfc297db050fde8f4f0",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/helpers/watcher-actor-vm.mjs",
+          "sourceSha256": "2aaac612661e0ad41574af683faeafb88f734c279882e117165856b7cd6932c3",
+          "currentSha256": "2aaac612661e0ad41574af683faeafb88f734c279882e117165856b7cd6932c3",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/helpers/watcher-planning-source-inverse.mjs",
+          "sourceSha256": "18a0697522a08a11f3d9ff716071f7da464160bac350ff78121f5efc173c345d",
+          "currentSha256": "98fc14c19920f55c9aad39b9edddee089daca959ff72a90a6ce3a08cac88704b",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/living-wall-architecture-inverse.test.mjs",
+          "sourceSha256": "e2002aab5faa1e3d3d8e23e27add3030a0f6687089de7d2dd57d5c541c3e455c",
+          "currentSha256": "4fb764d22cdad68bb2c2d28508a66e835ecf031f3510051cb67659d25e595ec9",
+          "byteIdentical": false
+        },
+        {
+          "path": "tests/lua/watcher_attack_build.lua",
+          "sourceSha256": "84e45f3d4bc44d3f812f7e4458c55203b7692a66544a6a17448e88c2cbd189eb",
+          "currentSha256": "84e45f3d4bc44d3f812f7e4458c55203b7692a66544a6a17448e88c2cbd189eb",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/watcher-actor-boundary.test.mjs",
+          "sourceSha256": "e817756bbcf381cc25f3e226f3f095ad45af5750cf07dc04565190807c67178c",
+          "currentSha256": "e817756bbcf381cc25f3e226f3f095ad45af5750cf07dc04565190807c67178c",
+          "byteIdentical": true
+        },
+        {
+          "path": "tests/watcher-actor-source-inverse.test.mjs",
+          "sourceSha256": "f64ad8ad9388fc56a83872a062a1c47d07bfe7a12b98c47470c1ca2e5a5224bd",
+          "currentSha256": "d597c66a5c2b2d6ece198532b49a2c0e916c429a9d846d59e4bcf5c11727ca0f",
+          "byteIdentical": false
+        }
+      ]
+    }
+  },
+  "newFiles": [],
+  "note": "Every original changed path remains. Shared source/CI/test/backlog paths are explicit adapted union; no branch content is silently discarded. Full branch commits remain merge parents/ancestors."
+}
