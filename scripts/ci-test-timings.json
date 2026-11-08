@@ -5295,6 +5295,44 @@
         "sourceLogUncompressedSha256": "2f47cafcef466482c0a6f87c5d0c3eeba992be690cca90c5e6ac7644a26d82c8",
         "sourceReceipt": "docs/evidence/m7-relic-equip-20261109/behavior-receipt.json",
         "sourceReceiptSha256": "3a11b8b354f9f6ec395fa29fb34939b900c216c26dabf08d7e9c09dd17627be9"
+      },
+      "tests/silent-final-apply.test.mjs": {
+        "durationMs": 46617,
+        "environment": "cloud Linux local",
+        "coverage": "16/16 complete file passed; 0 failed, cancelled or skipped. Full behavior graph and semantic mutant coverage.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 46301.022236,
+        "sourceLog": "docs/evidence/m7-silent-final-20261109/behavior.log.gz",
+        "sourceLogSha256": "6924bb4a3b7d1713a97de64dc8bf7eabbf12484392ef900edcb1321da2693ce5",
+        "sourceLogUncompressedSha256": "4f85b9d113ece391aa15a76995fd74300235ef261d507af772869a1c47da2d10",
+        "sourceReceipt": "docs/evidence/m7-silent-final-20261109/behavior-receipt.json",
+        "sourceReceiptSha256": "eeeac5c795e5f54bc96b4922375fca1fc23c5b9c70dd4759f02b26c47d4c781d",
+        "priorCompleteRun": {
+          "nodeReportedDurationMs": 46616.416469,
+          "sourceLog": "docs/evidence/m7-silent-final-20261109/behavior-intermediate.log.gz",
+          "sourceLogSha256": "86c598b69cd6a3fbdac635321791dfc85ac3e9f4f144b03586595b4af42f8a69",
+          "scope": "Earlier complete successful test version, before deep-proxy and malformed-error probes. No test-source hash was captured for that run; retained only as a conservative cost lower bound. Final-version identity is bound separately by sourceReceipt."
+        }
+      },
+      "tests/silent-final-source-epoch.test.mjs": {
+        "durationMs": 10937,
+        "environment": "cloud Linux local",
+        "coverage": "9/9 complete file passed; 0 failed, cancelled or skipped. Includes live LF/CRLF reads and warm-owner drift for all 49 owners.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 10936.736773,
+        "sourceLog": "docs/evidence/m7-silent-final-20261109/source-standalone.log.gz",
+        "sourceLogSha256": "e7bd39f5e66f924f7cbf64c291fc58ea4fea0e23944c58398c033630224592ba",
+        "sourceLogUncompressedSha256": "1acfc2fcab2179cdfc66d8cfa75344ec42bc2204ebc7fc5b14d39a2f7b768b00",
+        "testSha256": "cafb4492b21ec529c905cea3d80b366b2eb02c096d22c4278fcbb2f930edb9e6",
+        "measurementScope": "Complete local run; other independent validation may have been active. Conservative planning cost, not an isolated or hosted benchmark.",
+        "inputSha256": {
+          "src/lua/abyss_silent_final_cards.lua": "21766502d620d7fb9885cc3884d79c557739bac3bf750b5105fe34aa18bf8fdb",
+          "tests/helpers/silent-final-source-epoch.mjs": "62621989d65db4db12a6b7251fc8216bbd5851b196c87d28f0cffd222d8a28b4",
+          "tests/helpers/silent-final-source-epoch.json.gz": "8d70652c025b8075e2a03936f12c2509dbca427abd555e472f197b1ac4850b49",
+          "tests/helpers/combined-epoch/source-epoch.mjs": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+          "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb",
+          "tests/helpers/copy-integration-source-closure.mjs": "98030ef27b74af88a111fea3d3560a85d2e01ec146fbd69eb1e2f0a4f1bcd1b4"
+        }
       }
     }
   },

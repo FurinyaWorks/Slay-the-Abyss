@@ -1,3 +1,4 @@
+import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
 import {relicEquipPlanningKey,relicEquipPlanningFloor} from './helpers/relic-equip-ci-source-inverse.mjs';
 import {preCombinedPlanningSource,preSilentTacticsPlanningSource,silentTacticsPlanningKey,silentTacticsPlanningFloor,preEffectsTargetGroupPlanningSource,effectsTargetGroupPlanningKey,effectsTargetGroupPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {preWatcherFlowPlanningSource,watcherFlowPlanningKey,watcherFlowPlanningFloor,prePartialCasePlanningSource,partialCasePlanningFloors,originalPlanningSource,preGameUiLocalPlanningSource,gameUiLocalPlanningKey,gameUiLocalPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
@@ -232,6 +233,10 @@ test('current timing records preserve all measured corrections without duplicate
   }else if(file===classPotionPlanningKey){
    assert.deepEqual(entry,classPotionPlanningFloor);assert.equal(entry.durationMs,180000);
    assert.ok(entry.durationMs>=162004.675552,'retain conservative full-file local planning floor');
+  }else if(file===silentFinalSourcePlanningKey){
+   assert.deepEqual(entry,silentFinalSourcePlanningFloor);
+  }else if(file===silentFinalPlanningKey){
+   assert.deepEqual(entry,silentFinalPlanningFloor);
   }else if(file===relicEquipPlanningKey){
    assert.deepEqual(entry,relicEquipPlanningFloor);
   }else if(file===silentTacticsPlanningKey){
@@ -248,7 +253,7 @@ test('current timing records preserve all measured corrections without duplicate
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,26);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 

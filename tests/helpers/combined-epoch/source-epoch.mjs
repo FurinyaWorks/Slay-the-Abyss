@@ -1,3 +1,4 @@
+import {extendSilentFinalEpoch} from '../silent-final-source-epoch.mjs';
 import {extendRelicEquipEpoch} from '../relic-equip-source-epoch.mjs';
 import {extendWatcherFlowEpoch} from '../watcher-flow-source-epoch.mjs';
 import {extendSilentTacticsEpoch} from '../silent-tactics-source-epoch.mjs';
@@ -32,4 +33,6 @@ export const standaloneEffectsTargetGroupEpoch=extendEffectsTargetGroupEpoch(pre
 export const preRelicEquipEpoch=extendEffectsTargetGroupEpoch(extendSilentTacticsEpoch(standaloneWatcherFlowEpoch));
 
 // Equipment extends the frozen published 48-owner stack without replacing it.
-export const sourceEpoch=extendRelicEquipEpoch(preRelicEquipEpoch);
+export const preSilentFinalEpoch=extendRelicEquipEpoch(preRelicEquipEpoch);
+// Final Silent execution extends, never replaces, every frozen historical stack.
+export const sourceEpoch=extendSilentFinalEpoch(preSilentFinalEpoch);

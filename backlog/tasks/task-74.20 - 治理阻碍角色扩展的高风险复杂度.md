@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T19:30:00Z'
+updated_date: '2026-11-08T21:27:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -26,6 +26,7 @@ documentation:
   - docs/backlog-details/M7-EFFECTS-TARGET-GROUP-20261109.md
   - docs/backlog-details/M7-PUBLISHED-COMBINATION-20261109.md
   - docs/backlog-details/M7-RELIC-EQUIP-20261109.md
+  - docs/backlog-details/M7-SILENT-FINAL-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -88,6 +89,8 @@ ordinal: 162000
 第18轮：仅拆分 abyss_effects.targetGroup 的图发现、稠密成员与相邻配对校验；保留读取顺序和错误时机。冻结 develop 7821a7f 原始源码，增加独立 VM 差分、语义负对照及 CC15 可执行守卫；不改任务状态或负责人。
 
 第19轮：继续既有Owner授权任务，鲜查develop 7821a7f4及开放PR无生产重叠后，在已公开组合#570 cbabad34基础上拆分RelicHooks.onEquip的委派准入、计数初始化、永久升级与奖励预览职责。保持动态公开槽、原调用/RNG/部分写入/错误顺序；完整旧新图与负控、全部新helper CC15、共享来源和CI合同集成后独审并及时远端保全，不重复Full或操作用户电脑，不改owner/status/AC。
+
+第21轮接续主控已授权M7职责治理：鲜查develop7821a7f4与开放PR占用后，在#572 d2ed1bbf依赖树仅拆分Silent final M.apply的触发、造牌、回合能力与伤害执行职责。保留公开动态槽、完整状态/别名/RNG/错误及部分写入；冻结旧源，新增职责CC15、真实语义负控和独立深审后及时远端保全与Draft交付。不重复Full、不改原分支/owner/status/AC、不操作用户设备。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -152,4 +155,12 @@ Watcher Flow 已在 #564@50584b5 上接入完整外层来源epoch及隔离闭包
 第19轮已实际拆分RelicHooks.onEquip：CC47→5，五新helper最大13；全338模块5575测量，>30为37→36，>15为213→212，SCC68/11/2及依赖不变。新旧完整图15/15、143检查点、10语义负控及真实CC门禁3/3通过，原八Lua文件通过。生产已远端保全582afa16并核blob，接续#570；共享来源/CI复验与独审收口后保持Draft正常交付，不重复Full。原equipmentUpgrade16/onEnterRoom17残余及失败记录保留，owner/status/AC不变。
 
 Relic装备最终共享来源75/75与CI58个唯一测试通过，791JS/1410Lua原预算预测1781066/1189539ms；原14项装备/奖励/maxHP补测通过。独立深审PASS、无未解决项，1728暖LF/CRLF漂移负控及856行额外轨迹一致；原来源/CI失败均保留。待精确远端HEAD与正常托管准入，仍不勾AC。
+
+第21轮已实做Silent final动作执行职责切片，生产远端检查点ce44fbfb接续#572。apply CC42→2，15个handler最大9；全338模块5590/5590，>30为36→35、>15为212→211，SCC68/11/2不变。真实CC门禁3/3及原职责19/19通过；行为、49-owner来源与CI独审收口中。原choose18保留，不重复Full、不改owner/status/AC。
+
+Silent final最终行为16/16，46301ms；两侧各848完整图、九个具名真实语义负控，原五Lua夹具均保留。49-owner当前来源61/61、历史31/31通过；实际46302ms规划floor后794JS/1410Lua预测Windows1785133、POSIX1194279含60秒预留，原预算不变。独立复查30行为/98暖LF-CRLF漂移通过；最终CI、独审与精确身份附于本轮证据，保留初次失败，不勾AC。
+
+成本最终收口更保守：保留较早成功46616ms与final46301ms的不同测试版边界，behavior floor46617；来源完整9/9为10937ms floor。最终794JS/1410Lua预测Windows1785094、POSIX1194369（含60秒预留），余14906/5631ms。CI runtime/完整校准46/46，首轮44/45历史wrapper装配失败原日志保留；上条规划数字由本条替代，预算/旧floor/owner/status/AC均不变。
+
+第21轮独立深审PASS/unresolved[]，额外CI消费者16/16后共62个不同CI用例通过；传递source14/14及timings路由2/2补齐。生产、合同及成本已冻结，完整日志与原失败均归档，待精确远端最终身份/Draft交付。无Hosted Full、正常准入或合后证据，任务与AC保持。
 <!-- SECTION:NOTES:END -->

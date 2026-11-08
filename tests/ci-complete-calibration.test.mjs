@@ -1,3 +1,4 @@
+import {preSilentFinalCiSource,silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
 import {preRelicEquipCiSource,relicEquipPlanningKey,relicEquipPlanningFloor} from './helpers/relic-equip-ci-source-inverse.mjs';
 import {preCombinedGateSource,preCombinedPlanningSource,preSilentTacticsPlanningSource,silentTacticsPlanningKey,silentTacticsPlanningFloor,preEffectsTargetGroupPlanningSource,effectsTargetGroupPlanningKey,effectsTargetGroupPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {gunzipSync} from 'node:zlib';
@@ -51,8 +52,9 @@ const floorPath='docs/evidence/pr521-run-max-planning-floor-20261106.json',floor
 const localFloorPath='docs/evidence/power-shop-planning-20261107.json',localFloorBytes=read(localFloorPath),localFloorReceipt=JSON.parse(localFloorBytes),localFloorKey='tests/power-shop-boundaries.test.mjs';
 // Added after the frozen #521 placement receipts. Never use these files to
 // reconstruct historical shard assignments or invent historical measurements.
+const silentFinalJs=["tests/silent-final-apply.test.mjs","tests/silent-final-apply-complexity.test.mjs","tests/silent-final-source-epoch.test.mjs"];
 const relicEquipJs=["tests/relic-equip-complexity.test.mjs","tests/relic-equip-responsibilities.test.mjs","tests/relic-equip-source-epoch.test.mjs"];
-const postPlacementJs=[...relicEquipJs,"tests/act1-choice-responsibilities.test.mjs","tests/act3-ai-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/class-potion-orb-boundary.test.mjs","tests/class-potion-orb-source-inverse.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-integration-source.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/defect-utility-planning.test.mjs","tests/effects-target-group-source-epoch.test.mjs","tests/effects-target-group.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/enemy-ai-lifecycle.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/scry-choice-responsibilities.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/seven-refactor-source-epoch.test.mjs","tests/shiv-turn-responsibilities.test.mjs","tests/silent-tactics-planning.test.mjs","tests/silent-tactics-source-epoch.test.mjs","tests/watcher-actor-boundary.test.mjs","tests/watcher-actor-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs","tests/watcher-flow-planning.test.mjs","tests/watcher-flow-source-epoch.test.mjs","tests/watcher-potion-integration-source.test.mjs"].sort();
+const postPlacementJs=[...silentFinalJs,...relicEquipJs,"tests/act1-choice-responsibilities.test.mjs","tests/act3-ai-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/class-potion-orb-boundary.test.mjs","tests/class-potion-orb-source-inverse.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-integration-source.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/defect-utility-planning.test.mjs","tests/effects-target-group-source-epoch.test.mjs","tests/effects-target-group.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/enemy-ai-lifecycle.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/scry-choice-responsibilities.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/seven-refactor-source-epoch.test.mjs","tests/shiv-turn-responsibilities.test.mjs","tests/silent-tactics-planning.test.mjs","tests/silent-tactics-source-epoch.test.mjs","tests/watcher-actor-boundary.test.mjs","tests/watcher-actor-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs","tests/watcher-flow-planning.test.mjs","tests/watcher-flow-source-epoch.test.mjs","tests/watcher-potion-integration-source.test.mjs"].sort();
 const postPlacementLua=["tests/lua/actor_presence_contract.lua","tests/lua/colorless_catalog_contract.lua","tests/lua/defect_utility_planning.lua","tests/lua/enemy_ai_lifecycle.lua","tests/lua/intent_visibility_cache.lua","tests/lua/potion_callback_contract.lua","tests/lua/silent_tactics_planning.lua","tests/lua/watcher_final_execution_boundaries.lua","tests/lua/watcher_flow_planning.lua"].sort();
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
 const placementJs=()=>discoverJs().filter(file=>!postPlacementJs.includes(file));
@@ -239,7 +241,13 @@ test('current Full36 retains full coverage and reports performance targets under
  assert.equal(lua.length,placement.inventory.lua+postPlacementLua.length);
  for(const platform of ['win32','linux'])for(const file of postPlacementJs){
   assert.equal(currentTimings.js[platform][file],undefined,'new files have no fabricated hosted measurements');
-  if(file===relicEquipPlanningKey){
+  if(file===silentFinalSourcePlanningKey){
+   assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],silentFinalSourcePlanningFloor);
+   assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(currentTimings.unknownJsMs,silentFinalSourcePlanningFloor.durationMs));
+  }else if(file===silentFinalPlanningKey){
+   assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],silentFinalPlanningFloor);
+   assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(currentTimings.unknownJsMs,silentFinalPlanningFloor.durationMs));
+  }else if(file===relicEquipPlanningKey){
    assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],relicEquipPlanningFloor);
    assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(currentTimings.unknownJsMs,relicEquipPlanningFloor.durationMs));
   }else if(file===silentTacticsPlanningKey){
@@ -287,7 +295,7 @@ test('current Full36 retains full coverage and reports performance targets under
   const jsBins=Array.from({length:count},(_,i)=>currentJsShard(js,`${i+1}/${count}`,platform).files);
   assert.deepEqual(jsBins.flat().sort(),[...js].sort());assert.equal(new Set(jsBins.flat()).size,js.length);
   if(platform==='linux'){
-   const forecast=Math.max(...loads)+60000;assert.equal(forecast,1189539);assert.ok(forecast<budget,'complete POSIX inventory fits the unchanged performance target including reserve');t.diagnostic(`POSIX forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
+   const forecast=Math.max(...loads)+60000;assert.equal(forecast,1194369);assert.ok(forecast<budget,'complete POSIX inventory fits the unchanged performance target including reserve');t.diagnostic(`POSIX forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
    continue;
   }
   const planning={...currentTimings,windowsJsShardMs:loads};
@@ -297,7 +305,7 @@ test('current Full36 retains full coverage and reports performance targets under
   const safety=file=>currentTimings.lua[file]??currentTimings.unknownLuaMs;
   const combined=bins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);
    return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);});
-  const forecast=Math.max(...combined)+60000;assert.equal(forecast,1781066);assert.ok(forecast<budget,'complete Windows inventory fits the unchanged performance target including reserve');t.diagnostic(`Windows forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<2700000,'forecast must fit the separately authorized 45-minute execution guard');
+  const forecast=Math.max(...combined)+60000;assert.equal(forecast,1785094);assert.ok(forecast<budget,'complete Windows inventory fits the unchanged performance target including reserve');t.diagnostic(`Windows forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<2700000,'forecast must fit the separately authorized 45-minute execution guard');
  }
 });
 
@@ -423,12 +431,14 @@ test('current 129 placement raises reconstruct exact timings while preserving al
  expected.jsPlanning.localLowerBounds[silentTacticsPlanningKey]=silentTacticsPlanningFloor;
  expected.jsPlanning.localLowerBounds[effectsTargetGroupPlanningKey]=effectsTargetGroupPlanningFloor;
  expected.jsPlanning.localLowerBounds[relicEquipPlanningKey]=relicEquipPlanningFloor;
+ expected.jsPlanning.localLowerBounds[silentFinalPlanningKey]=silentFinalPlanningFloor;
+ expected.jsPlanning.localLowerBounds[silentFinalSourcePlanningKey]=silentFinalSourcePlanningFloor;
  assert.deepEqual(currentTimings,expected);
  for(const platform of ['win32','linux'])for(const [file,value]of Object.entries(after.js[platform]))assert.ok(currentTimings.js[platform][file]>=value);
  const luaBlock=s=>s.slice(s.indexOf('  "lua": {'),s.indexOf('  "jsSource":'));
  assert.equal(luaBlock(read(path)),luaBlock(binding.afterSource),'literal worker-safety bytes remain frozen');
  for(const key of ['lua','luaShard','luaShardCalibrationUpdates','initialMs','unknownJsMs','unknownLuaMs'])assert.deepEqual(currentTimings[key],after[key],key+' remains unchanged');
- const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);delete priorFloors[relicEquipPlanningKey];delete priorFloors[watcherFlowPlanningKey];delete priorFloors[silentTacticsPlanningKey];delete priorFloors[effectsTargetGroupPlanningKey];for(const key of Object.keys(partialCasePlanningFloors))delete priorFloors[key];delete priorFloors[gameUiLocalPlanningKey];delete priorFloors[floorKey];delete priorFloors[localFloorKey];delete priorFloors[runCatalogFloorKey];delete priorFloors[potionCallbackFloorKey];delete priorFloors[endTurnFloorKey];delete priorFloors['tests/actor-presence.test.mjs'];delete priorFloors['tests/reward-query-boundary.test.mjs'];for(const key of [defectUtilityPlanningKey,enemyAiPlanningKey,classPotionPlanningKey,watcherPlanningKey])delete priorFloors[key];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
+ const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);delete priorFloors[silentFinalSourcePlanningKey];delete priorFloors[silentFinalPlanningKey];delete priorFloors[relicEquipPlanningKey];delete priorFloors[watcherFlowPlanningKey];delete priorFloors[silentTacticsPlanningKey];delete priorFloors[effectsTargetGroupPlanningKey];for(const key of Object.keys(partialCasePlanningFloors))delete priorFloors[key];delete priorFloors[gameUiLocalPlanningKey];delete priorFloors[floorKey];delete priorFloors[localFloorKey];delete priorFloors[runCatalogFloorKey];delete priorFloors[potionCallbackFloorKey];delete priorFloors[endTurnFloorKey];delete priorFloors['tests/actor-presence.test.mjs'];delete priorFloors['tests/reward-query-boundary.test.mjs'];for(const key of [defectUtilityPlanningKey,enemyAiPlanningKey,classPotionPlanningKey,watcherPlanningKey])delete priorFloors[key];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
  for(const platform of ['win32','linux'])assert.equal(currentJsPlanningWeights([floorKey],platform)[floorKey],889638);
  assert.equal(placement.forecast.reserveMs,60000);assert.deepEqual(placement.forecast.budgets,{win32:1800000,linux:1200000});assert.equal(placement.forecast.workers,2);assert.equal(placement.forecast.concurrencyCapUnchanged,12);
 });
@@ -533,7 +543,7 @@ test('original reward-query whole-file provenance retains its measured source id
 test('original reward-query timing pure projection rejects every byte drift',()=>{assertRewardQueryPlanningProjection({project,preCurrentCiPlacementSource,preIntegrationSource,epoch:ciEpoch('reward')});});
 
 test('only exact POSIX14 source enters the frozen 17/13 epoch without accepting drift or cross-file sources',()=>{
- const path='scripts/ci-quality-shape.mjs',source=preRelicEquipCiSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
+ const path='scripts/ci-quality-shape.mjs',source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))).replaceAll('\r\n','\n');
  assert.equal(source,frozenShapeSource.replace('length:13','length:14'));
  for(const input of [source,source.replaceAll('\n','\r\n')]){
   assert.equal(prePosix14ShapeSource(path,input),frozenShapeSource);
@@ -546,7 +556,7 @@ test('only exact POSIX14 source enters the frozen 17/13 epoch without accepting 
 });
 
 test('Enemy AI planning layer authenticates complete current bytes and rejects unrelated drift',()=>{
- const source=enemyOnlyPlanningSource(path,preDefectIntegrationPlanningSource(path,originalPlanningSource(path,preRelicEquipCiSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n'),'seven'))),prior=preEnemyAiPlanningSource(path,source);
+ const source=enemyOnlyPlanningSource(path,preDefectIntegrationPlanningSource(path,originalPlanningSource(path,preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))).replaceAll('\r\n','\n'),'seven'))),prior=preEnemyAiPlanningSource(path,source);
  assert.equal(hash(source),enemyAiPlanningProof.afterSha256);
  assert.equal(hash(prior),enemyAiPlanningProof.beforeSha256);
  assert.notEqual(source,prior);
@@ -561,7 +571,7 @@ test('Enemy AI planning layer authenticates complete current bytes and rejects u
 });
 
 test('Defect utility planning layer authenticates complete current bytes and rejects unrelated drift',()=>{
- const source=defectOnlyPlanningSource(path,originalPlanningSource(path,preRelicEquipCiSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n'),'seven')),prior=preDefectUtilityPlanningSource(path,source);
+ const source=defectOnlyPlanningSource(path,originalPlanningSource(path,preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))).replaceAll('\r\n','\n'),'seven')),prior=preDefectUtilityPlanningSource(path,source);
  assert.equal(hash(source),defectUtilityPlanningProof.afterSha256);
  assert.equal(hash(prior),defectUtilityPlanningProof.beforeSha256);
  assert.notEqual(source,prior);
@@ -577,7 +587,7 @@ test('Defect utility planning layer authenticates complete current bytes and rej
 
 
 test('merged planning source authenticates both complete original epochs without masking drift',()=>{
- const source=preRelicEquipCiSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
+ const source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))).replaceAll('\r\n','\n');
  for(const epoch of ['develop','seven']){
   const original=originalPlanningSource(path,source,epoch);
   assert.notEqual(original,source);
@@ -595,7 +605,7 @@ test('merged planning source authenticates both complete original epochs without
 
 
 test('Watcher Flow saved complete local run supplies only one authenticated planning floor',()=>{
- const source=preCombinedPlanningSource(path,preRelicEquipCiSource(path,readFileSync(path,'utf8')),'flow'),prior=preWatcherFlowPlanningSource(path,source);
+ const source=preCombinedPlanningSource(path,preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))),'flow'),prior=preWatcherFlowPlanningSource(path,source);
  assert.notEqual(source,prior);
  assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56');
  const floor=savedWatcherFlowPlanningFloor,bytes=readFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
@@ -614,8 +624,8 @@ test('Watcher Flow saved complete local run supplies only one authenticated plan
 
 
 test('pre-Flow current-integration inventory and planning forecasts remain reproducible without new files',()=>{
- const historical=JSON.parse(preCombinedPlanningSource(path,preRelicEquipCiSource(path,readFileSync(path,'utf8'))));
- const js=discoverJs().filter(file=>!relicEquipJs.includes(file)).filter(file=>![watcherFlowPlanningKey,'tests/watcher-flow-source-epoch.test.mjs',silentTacticsPlanningKey,'tests/silent-tactics-source-epoch.test.mjs',effectsTargetGroupPlanningKey,'tests/effects-target-group-source-epoch.test.mjs'].includes(file));
+ const historical=JSON.parse(preCombinedPlanningSource(path,preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8')))));
+ const js=discoverJs().filter(file=>!silentFinalJs.includes(file)).filter(file=>!relicEquipJs.includes(file)).filter(file=>![watcherFlowPlanningKey,'tests/watcher-flow-source-epoch.test.mjs',silentTacticsPlanningKey,'tests/silent-tactics-source-epoch.test.mjs',effectsTargetGroupPlanningKey,'tests/effects-target-group-source-epoch.test.mjs'].includes(file));
  const lua=currentLua().filter(file=>!['tests/lua/watcher_flow_planning.lua','tests/lua/silent_tactics_planning.lua'].includes(file));
  assert.equal(js.length,782);assert.equal(lua.length,1408);
  for(const [platform,count,expected,budget]of [['win32',17,1771239,1800000],['linux',14,1179021,1200000]]){
@@ -641,13 +651,13 @@ test('current complete Flow integration run monotonically raises the saved plann
  for(const line of ['tests 11','pass 11','fail 0','cancelled 0','skipped 0','duration_ms 55667.073989'])assert.ok(log.includes('ℹ '+line));
  for(const [file,digest]of Object.entries(receipt.sourceFiles))assert.equal(hash(preCombinedGateSource(file,readFileSync(file,'utf8'),'flow')),digest);
  assert.equal(floor.durationMs,Math.ceil(receipt.summary.durationMs));assert.equal(floor.durationMs,55668);assert.ok(floor.durationMs>savedWatcherFlowPlanningFloor.durationMs);
- const current=preCombinedPlanningSource(path,preRelicEquipCiSource(path,readFileSync(path,'utf8')),'flow'),previous=JSON.parse(current);previous.jsPlanning.localLowerBounds[watcherFlowPlanningKey]=savedWatcherFlowPlanningFloor;
+ const current=preCombinedPlanningSource(path,preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))),'flow'),previous=JSON.parse(current);previous.jsPlanning.localLowerBounds[watcherFlowPlanningKey]=savedWatcherFlowPlanningFloor;
  const savedSource=JSON.stringify(previous,null,2)+'\n';assert.equal(hash(savedSource),'fa041e8a3ed7b10e0498491eb5ba1aba18af019db76ffa746fe85268ae562e34');
  assert.equal(preWatcherFlowPlanningSource(path,savedSource),preWatcherFlowPlanningSource(path,current));
 });
 
 test('Silent tactics complete local run contributes only an authenticated planning floor',()=>{
- const source=preCombinedPlanningSource(path,preRelicEquipCiSource(path,readFileSync(path,'utf8')),'silent'),prior=preSilentTacticsPlanningSource(path,source),floor=silentTacticsPlanningFloor;
+ const source=preCombinedPlanningSource(path,preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))),'silent'),prior=preSilentTacticsPlanningSource(path,source),floor=silentTacticsPlanningFloor;
  assert.notEqual(source,prior);assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56');
  const bytes=readFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
@@ -662,7 +672,7 @@ test('Silent tactics complete local run contributes only an authenticated planni
 });
 
 test('Effects target group complete local run adds only an authenticated conservative planning floor',()=>{
- const source=preCombinedPlanningSource(path,preRelicEquipCiSource(path,readFileSync(path,'utf8')),'effects'),prior=preEffectsTargetGroupPlanningSource(path,source),floor=effectsTargetGroupPlanningFloor;
+ const source=preCombinedPlanningSource(path,preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))),'effects'),prior=preEffectsTargetGroupPlanningSource(path,source),floor=effectsTargetGroupPlanningFloor;
  assert.notEqual(source,prior);assert.equal(hash(prior),'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56');
  const bytes=readFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
@@ -680,7 +690,7 @@ test('Effects target group complete local run adds only an authenticated conserv
 
 
 test('combined planning projection authenticates exact sibling bytes and rejects partial or foreign drift',()=>{
- const source=preRelicEquipCiSource(path,readFileSync(path,'utf8')),base=preCombinedPlanningSource(path,source);
+ const source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))),base=preCombinedPlanningSource(path,source);
  assert.equal(hash(source.replaceAll('\r\n','\n')),'db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba');
  for(const [epoch,key,floor,inverse]of [['flow',watcherFlowPlanningKey,watcherFlowPlanningFloor,preWatcherFlowPlanningSource],['silent',silentTacticsPlanningKey,silentTacticsPlanningFloor,preSilentTacticsPlanningSource],['effects',effectsTargetGroupPlanningKey,effectsTargetGroupPlanningFloor,preEffectsTargetGroupPlanningSource]]){
   const isolated=preCombinedPlanningSource(path,source,epoch);
@@ -696,8 +706,8 @@ test('combined planning projection authenticates exact sibling bytes and rejects
 
 test('isolated published sibling inventories and forecasts remain independently reproducible',()=>{
  for(const [epoch,ownJs,ownLua,windows,posix]of [['flow',[watcherFlowPlanningKey,'tests/watcher-flow-source-epoch.test.mjs'],['tests/lua/watcher_flow_planning.lua'],1775788,1183709],['silent',[silentTacticsPlanningKey,'tests/silent-tactics-source-epoch.test.mjs'],['tests/lua/silent_tactics_planning.lua'],1773802,1181278],['effects',[effectsTargetGroupPlanningKey,'tests/effects-target-group-source-epoch.test.mjs'],[],1772722,1180447]]){
- const historical=JSON.parse(preCombinedPlanningSource(path,preRelicEquipCiSource(path,readFileSync(path,'utf8')),epoch));
- const js=discoverJs().filter(file=>!relicEquipJs.includes(file)).filter(file=>![watcherFlowPlanningKey,'tests/watcher-flow-source-epoch.test.mjs',silentTacticsPlanningKey,'tests/silent-tactics-source-epoch.test.mjs',effectsTargetGroupPlanningKey,'tests/effects-target-group-source-epoch.test.mjs'].includes(file)||ownJs.includes(file));
+ const historical=JSON.parse(preCombinedPlanningSource(path,preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8'))),epoch));
+ const js=discoverJs().filter(file=>!silentFinalJs.includes(file)).filter(file=>!relicEquipJs.includes(file)).filter(file=>![watcherFlowPlanningKey,'tests/watcher-flow-source-epoch.test.mjs',silentTacticsPlanningKey,'tests/silent-tactics-source-epoch.test.mjs',effectsTargetGroupPlanningKey,'tests/effects-target-group-source-epoch.test.mjs'].includes(file)||ownJs.includes(file));
  const lua=currentLua().filter(file=>!['tests/lua/watcher_flow_planning.lua','tests/lua/silent_tactics_planning.lua'].includes(file)||ownLua.includes(file));
  assert.equal(js.length,784);assert.equal(lua.length,1408+ownLua.length);
  for(const [platform,count,expected,budget]of [['win32',17,windows,1800000],['linux',14,posix,1200000]]){
@@ -726,13 +736,13 @@ test('combined gate receipt projection rejects drift and authenticates all three
 });
 
 test('Relic equip CI outer epoch preserves all old costs and exact gate bytes while rejecting partial drift',()=>{
- const source=readFileSync(path,'utf8'),prior=preRelicEquipCiSource(path,source);
+ const source=preSilentFinalCiSource(path,readFileSync(path,'utf8')),prior=preRelicEquipCiSource(path,source);
  assert.notEqual(source,prior);assert.equal(hash(prior),'db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba');
  const current=JSON.parse(source),previous=JSON.parse(prior);
  assert.deepEqual(current.jsPlanning.localLowerBounds[relicEquipPlanningKey],relicEquipPlanningFloor);
  delete current.jsPlanning.localLowerBounds[relicEquipPlanningKey];assert.deepEqual(current,previous);
  for(const file of [path,'scripts/check-lua-static.mjs']){
-  const source=readFileSync(file,'utf8'),before=preRelicEquipCiSource(file,source);assert.notEqual(before,source);
+  const source=preSilentFinalCiSource(file,readFileSync(file,'utf8')),before=preRelicEquipCiSource(file,source);assert.notEqual(before,source);
   for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preRelicEquipCiSource(file,input),before);
   for(const input of [source+'\n',source.slice(1),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999').replace("'RelicHooks.onEquip'","'foreign.onEquip'"),before,null,undefined,{},17]){
    if(input!==source)assert.equal(preRelicEquipCiSource(file,input),input);
@@ -759,7 +769,7 @@ test('Relic equip floor authenticates a complete saved local file without fabric
 });
 
 test('pre-Relic equip published Full36 inventory and forecasts remain independently reproducible',()=>{
- const historical=JSON.parse(preRelicEquipCiSource(path,readFileSync(path,'utf8'))),js=discoverJs().filter(file=>!relicEquipJs.includes(file)),lua=currentLua();
+ const historical=JSON.parse(preRelicEquipCiSource(path,preSilentFinalCiSource(path,readFileSync(path,'utf8')))),js=discoverJs().filter(file=>!silentFinalJs.includes(file)).filter(file=>!relicEquipJs.includes(file)),lua=currentLua();
  assert.equal(js.length,788);assert.equal(lua.length,1410);
  for(const [platform,count,expected]of [['win32',17,1779486],['linux',14,1187400]]){
   const weights=Object.fromEntries(js.map(file=>[file,Math.max(historical.js[platform][file]??historical.unknownJsMs,historical.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
@@ -772,4 +782,68 @@ test('pre-Relic equip published Full36 inventory and forecasts remain independen
   }
   assert.equal(maximum+60000,expected);
  }
+});
+
+test('Silent final CI outer epoch preserves exact predecessor costs and gate bytes and rejects drift',()=>{
+ const source=readFileSync(path,'utf8'),prior=preSilentFinalCiSource(path,source),current=JSON.parse(source),previous=JSON.parse(prior);
+ assert.notEqual(source,prior);
+ assert.deepEqual(current.jsPlanning.localLowerBounds[silentFinalPlanningKey],silentFinalPlanningFloor);
+ assert.deepEqual(current.jsPlanning.localLowerBounds[silentFinalSourcePlanningKey],silentFinalSourcePlanningFloor);
+ delete current.jsPlanning.localLowerBounds[silentFinalSourcePlanningKey];delete current.jsPlanning.localLowerBounds[silentFinalPlanningKey];assert.deepEqual(current,previous);
+ for(const file of [path,'scripts/check-lua-static.mjs']){
+  const source=readFileSync(file,'utf8'),before=preSilentFinalCiSource(file,source);assert.notEqual(before,source);
+  for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preSilentFinalCiSource(file,input),before);
+  for(const input of [source+'\n',source.slice(1),before,null,undefined,{},17])assert.equal(preSilentFinalCiSource(file,input),input);
+  assert.equal(preSilentFinalCiSource('foreign',source),source);
+ }
+ const partial=JSON.parse(source);delete partial.jsPlanning.localLowerBounds[relicEquipPlanningKey];
+ const text=JSON.stringify(partial,null,2)+'\n';assert.equal(preSilentFinalCiSource(path,text),text);
+});
+
+test('Silent final planning floor authenticates the complete saved local file without hosted observations',()=>{
+ const floor=silentFinalPlanningFloor,bytes=readFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+ assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+ const receiptBytes=readFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+ assert.equal(floor.durationMs,Math.ceil(Math.max(floor.nodeReportedDurationMs,floor.priorCompleteRun.nodeReportedDurationMs)));
+ const priorLog=readFileSync(floor.priorCompleteRun.sourceLog);assert.equal(hash(priorLog),floor.priorCompleteRun.sourceLogSha256);
+ for(const line of ['tests 16','pass 16','fail 0','cancelled 0','skipped 0','duration_ms '+floor.priorCompleteRun.nodeReportedDurationMs])assert.ok(gunzipSync(priorLog).toString().includes('ℹ '+line));
+ for(const line of ['tests '+receipt.tests,'pass '+receipt.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+ assert.ok(receipt.tests>0);assert.match(floor.kind,/not .*hosted/);
+ for(const platform of ['win32','linux']){assert.equal(actualCurrentTimings.js[platform][silentFinalPlanningKey],undefined);assert.equal(currentJsPlanningWeights([silentFinalPlanningKey],platform)[silentFinalPlanningKey],Math.max(10000,floor.durationMs));}
+ assert.equal(receipt.testFile,silentFinalPlanningKey);assert.deepEqual([receipt.pass,receipt.fail,receipt.cancelled,receipt.skipped],[receipt.tests,0,0,0]);
+ assert.equal(receipt.durationMs,floor.nodeReportedDurationMs);assert.equal(receipt.logSha256,floor.sourceLogUncompressedSha256);assert.equal(receipt.compressedLogSha256,floor.sourceLogSha256);
+ assert.equal(hash(readFileSync(receipt.sourcePath,'utf8').replaceAll('\r\n','\n')),receipt.sourceSha256);
+ assert.equal(hash(readFileSync(receipt.testFile,'utf8').replaceAll('\r\n','\n')),receipt.testSha256);
+ assert.equal(Object.keys(receipt.inputSha256).length,9);
+ for(const [file,sha]of Object.entries(receipt.inputSha256))assert.equal(hash(readFileSync(file,'utf8').replaceAll('\r\n','\n')),sha,file);
+});
+
+
+test('pre-Silent final published Full36 inventory and forecasts remain independently reproducible',()=>{
+ const historical=JSON.parse(preSilentFinalCiSource(path,readFileSync(path,'utf8'))),js=discoverJs().filter(file=>!silentFinalJs.includes(file)),lua=currentLua();
+ assert.equal(js.length,791);assert.equal(lua.length,1410);
+ for(const [platform,count,expected]of [['win32',17,1781066],['linux',14,1189539]]){
+  const weights=Object.fromEntries(js.map(file=>[file,Math.max(historical.js[platform][file]??historical.unknownJsMs,historical.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+  const loads=partition(js,`1/${count}`,weights,historical.unknownJsMs,Array.from({length:count},(_,i)=>i===0?historical.initialMs[platform][0]:0)).loads;
+  let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const bins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...historical,windowsJsShardMs:loads},2));
+   const cost=file=>historical.luaShard[file]??historical.lua[file]??historical.unknownLuaMs,safety=file=>historical.lua[file]??historical.unknownLuaMs;
+   maximum=Math.max(...bins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
+  }
+  assert.equal(maximum+60000,expected);
+ }
+});
+
+test('Silent final source-contract floor preserves the observed complete file cost above the unknown minimum',()=>{
+ const floor=silentFinalSourcePlanningFloor,bytes=readFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+ assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+ assert.equal(hash(readFileSync(silentFinalSourcePlanningKey,'utf8').replaceAll('\r\n','\n')),floor.testSha256);
+ assert.equal(Object.keys(floor.inputSha256).length,6);
+ for(const [file,sha]of Object.entries(floor.inputSha256)){const raw=readFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n')),sha,file);}
+ assert.match(floor.measurementScope,/not an isolated or hosted benchmark/);
+ assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));
+ for(const line of ['tests 9','pass 9','fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+ assert.match(floor.kind,/not .*hosted/);
+ for(const platform of ['win32','linux']){assert.equal(actualCurrentTimings.js[platform][silentFinalSourcePlanningKey],undefined);assert.equal(currentJsPlanningWeights([silentFinalSourcePlanningKey],platform)[silentFinalSourcePlanningKey],Math.max(10000,floor.durationMs));}
 });

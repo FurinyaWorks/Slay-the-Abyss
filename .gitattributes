@@ -406,3 +406,13 @@ docs/evidence/m7-published-combination-20261109/*.json text eol=lf
 docs/evidence/m7-published-combination-20261109/*.mjs text eol=lf
 docs/evidence/m7-published-combination-20261109/*.log text eol=lf
 docs/evidence/m7-published-combination-20261109/*.gz -text
+
+# Silent final action evidence and authenticated helper bytes.
+tests/helpers/silent-final-source-epoch.mjs text eol=lf
+tests/helpers/silent-final-source-epoch.json.gz -text
+tests/helpers/silent-final-ci-source-inverse.mjs text eol=lf
+tests/helpers/silent-final-ci-source-epoch.json.gz -text
+docs/evidence/m7-silent-final-20261109/*.json text eol=lf
+docs/evidence/m7-silent-final-20261109/*.mjs text eol=lf
+docs/evidence/m7-silent-final-20261109/*.log text eol=lf
+docs/evidence/m7-silent-final-20261109/*.gz -text

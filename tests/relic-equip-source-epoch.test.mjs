@@ -4,7 +4,7 @@ import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {sourceEpoch,preRelicEquipEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {preSilentFinalEpoch as sourceEpoch,preRelicEquipEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import {relicEquipEpoch} from './helpers/relic-equip-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_relic_hooks.lua',proof=sourceEpoch.proof,prior=preRelicEquipEpoch.proof;
@@ -52,7 +52,7 @@ test('isolated authenticated helper closure retains the exact Relic equip epoch 
  const directory=mkdtempSync(join(tmpdir(),'silent-epoch-closure-'));
  try{
   copyIntegrationSourceClosure(directory);
-  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).sourceEpoch;
+  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).preSilentFinalEpoch;
   assert.deepEqual(isolated.proof,proof);
   assert.equal(isolated.preCombinedSource(path,raw(path),{target:'relicEquipPrior',readSource:raw}),prior.current[path].source);
   assert.throws(()=>isolated.preCombinedSource(path,raw(path),{target:'relicEquipPrior',readSource:p=>p===path?raw(p)+'\n':raw(p)}),/linked owner identity/);
@@ -68,7 +68,7 @@ test('unknown source targets are rejected rather than gaining an identity fallba
 });
 
 test('configuration layout admission preserves exact tokens and freshly authenticates all 48 current raw owners',async()=>{
- const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {preSilentFinalEpoch:sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
  const proof=sourceEpoch.proof,path='config/architecture.json',source=proof.current[path].source;
  const raw=p=>proof.current[p]?.source??null,expected=proof.targets.actor.files[path].source;
  assert.equal(proof.owners.length,48);
