@@ -465,3 +465,13 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# WarriorStatus recovery keeps frozen source and authenticated helpers byte-exact.
+tests/fixtures/warrior-status-before.lua text eol=lf
+tests/helpers/warrior-status-preparation-vm.mjs text eol=lf
+tests/helpers/warrior-status-preparation-cases.lua text eol=lf
+tests/helpers/warrior-status-source-epoch.mjs text eol=lf
+tests/helpers/warrior-status-source-epoch.json.gz -text
+tests/helpers/warrior-status-ci-source-inverse.mjs text eol=lf
+tests/helpers/warrior-status-ci-source-epoch.json.gz -text
+docs/evidence/m7-warrior-status-recovery-20261109/** -text

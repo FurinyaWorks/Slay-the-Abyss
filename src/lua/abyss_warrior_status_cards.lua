@@ -64,11 +64,24 @@ local powers={
 }
 local powerIds={flame_barrier=true,evolve=true,fire_breathing=true}
 M.ops={limitBreak=true,exhaustNonAttacks=true,secondWind=true,fiendFire=true,gainStatusPower=true}
-function M.withCards(data)
- assert(type(data)=='table' and data.cards and data.cards.cards and data.statuses and data.statuses.statuses,'missing warrior status data')
- assert(not data.experimentalWarriorStatus,'warrior status data already prepared')
- local out,ids,statusIds=copy(data),{},{}
+-- Definition preparation is separate from effect planning/execution. Preserve
+-- the original card-before-status-before-Power validation and replacement order.
+local function indexCards(out)
+ local ids={}
  for _,c in ipairs(out.cards.cards) do assert(not ids[c.id],'duplicate source card');ids[c.id]=c end
+ return ids
+end
+local function replaceCard(out,existing,replacement)
+ if existing then
+  for i,old in ipairs(out.cards.cards) do if old==existing then out.cards.cards[i]=replacement;break end end
+ else out.cards.cards[#out.cards.cards+1]=replacement end
+end
+local function replacePower(out,existing,replacement)
+ if existing then
+  for i,old in ipairs(out.statuses.statuses) do if old==existing then out.statuses.statuses[i]=replacement;break end end
+ else out.statuses.statuses[#out.statuses.statuses+1]=replacement end
+end
+local function prepareNativeCards(out,ids)
  for _,c in ipairs(cards) do
   local existing=ids[c.id]
   if existing then
@@ -76,33 +89,44 @@ function M.withCards(data)
     and type(existing.effects)=='table','incompatible native status-build card: '..c.id)
   end
   local d=copy(c);d.color='red';d.experimental=true
-  if existing then
-   for i,old in ipairs(out.cards.cards) do if old==existing then out.cards.cards[i]=d;break end end
-  else out.cards.cards[#out.cards.cards+1]=d end
+  replaceCard(out,existing,d)
  end
+end
+local function validateStatusLifecycle(existing,c)
+ assert(existing.type=='status' and existing.cost==-2 and type(existing.effects)=='table' and next(existing.effects)==nil
+  and (existing.ethereal==true)==(c.ethereal==true) and not existing.exhaust,'incompatible reused status card: '..c.id)
+ if c.id=='burn' then
+  assert((existing.burnDamage==2 and existing.upgrade and existing.upgrade.burnDamage==4)
+   or (existing.burnDamage==nil and existing.endTurnDamage==2),'incompatible reused Burn lifecycle')
+ end
+end
+local function prepareStatusCards(out,ids)
  for _,c in ipairs(states) do
   local existing=ids[c.id]
-  if existing then
-   assert(existing.type=='status' and existing.cost==-2 and type(existing.effects)=='table' and next(existing.effects)==nil
-    and (existing.ethereal==true)==(c.ethereal==true) and not existing.exhaust,'incompatible reused status card: '..c.id)
-   if c.id=='burn' then
-    assert((existing.burnDamage==2 and existing.upgrade and existing.upgrade.burnDamage==4)
-     or (existing.burnDamage==nil and existing.endTurnDamage==2),'incompatible reused Burn lifecycle')
-   end
-   -- Normalize only the detached opt-in copy to this helper's lifecycle schema.
-   for i,old in ipairs(out.cards.cards) do if old==existing then out.cards.cards[i]=copy(c);break end end
-  else out.cards.cards[#out.cards.cards+1]=copy(c) end
+  if existing then validateStatusLifecycle(existing,c) end
+  -- Normalize only the detached opt-in copy to this helper's lifecycle schema.
+  replaceCard(out,existing,copy(c))
  end
+end
+local function preparePowers(out)
+ local statusIds={}
  for _,d in ipairs(out.statuses.statuses) do assert(not statusIds[d.id],'duplicate source status');statusIds[d.id]=d end
  for _,d in ipairs(powers) do
   local existing=statusIds[d.id]
   if existing then assert(existing.kind=='buff' and existing.stack=='intensity' and existing.decay=='none',
    'incompatible native status-build Power: '..d.id) end
   local c=copy(d);c.kind='buff';c.stack='intensity';c.decay='none'
-  if existing then
-   for i,old in ipairs(out.statuses.statuses) do if old==existing then out.statuses.statuses[i]=c;break end end
-  else out.statuses.statuses[#out.statuses.statuses+1]=c end
+  replacePower(out,existing,c)
  end
+end
+function M.withCards(data)
+ assert(type(data)=='table' and data.cards and data.cards.cards and data.statuses and data.statuses.statuses,'missing warrior status data')
+ assert(not data.experimentalWarriorStatus,'warrior status data already prepared')
+ local out=copy(data)
+ local ids=indexCards(out)
+ prepareNativeCards(out,ids)
+ prepareStatusCards(out,ids)
+ preparePowers(out)
  out.experimentalWarriorStatus=true;return out
 end
 local function amount(s,id) local n=s.player.statuses[id] or 0;assert(integer(n),'invalid status Power amount');return n end
