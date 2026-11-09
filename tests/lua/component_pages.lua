@@ -44,6 +44,7 @@ if ABYSS_COMPONENT_METHOD_PROBE then
 end
 assert(created==0,'H2: cold construction must not mount offscreen component pages')
 local menu=bridge.root:GetChild('menuPanel')
+local retiredVisibility=menu.SetVisible
 assert(menu:SetVisible(true)==true)
 assert(not stage.children.menuPanel.visible,'H1: a requested page must stay completely hidden')
 assert(stage.children.componentLoading.visible,'preparing must display a complete loading cover')
@@ -119,5 +120,6 @@ onCreate=function()bridge:onEngineDestroy()end
 bridge:step()
 bridge:onEngineDestroy()
 assert(not slot.alive and not pcall(setter,slot,0,0),'retired wrapper must not use borrowed native handles')
+assert(not pcall(retiredVisibility,menu,true),'retired page setter must reject a cached method')
 assert(callback()==true and invoked==1,'destroyed Host must consume stale callbacks')
 print('PASS component pages H1/H2/H3, rollback, retry, cancel and 20 switches; created='..created..' destroyed='..destroyed)

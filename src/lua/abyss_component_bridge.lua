@@ -262,6 +262,7 @@ end
 local function operation(owner,record,key)
     if key=='SetVisible' and record.page and record.page.native==record.native then
         return function(_,visible)
+            active(owner,record)
             local result=owner.pages:request(record.page,visible)
             if owner.loading then
                 assert(owner.loading:SetVisible(owner.pages:preparing())~=false,'component loading visibility rejected')
