@@ -2,9 +2,11 @@
 
 TASK-81。快速反馈、完整受影响回归、集成验收分层报告；性能验收仍须真实当前版本的样本，不沿用旧 PR 或取消运行的资格。
 
-普通 develop PR 使用完整受影响集合，不采用原 advisory 的90秒截断。Windows和POSIX均执行选中的完整JS文件和Lua夹具。所有原断言、子进程预算及失败语义保持。预计超过180秒的集合转完整回归，不删去超预算测试。只有明确列出的纯文字文件可免业务回归，仍执行治理、许可和presentation门禁。
+普通 develop PR 使用完整受影响集合，不采用原 advisory 的90秒截断。Windows和POSIX均执行选中的完整JS文件和Lua夹具。所有原断言、子进程预算及失败语义保持。180秒仅为反馈目标，`exceedsFastTarget` 明确报告超目标；已证明的完整选集不会因耗时扩大为整仓，也不截断慢测试。Fast 作业采用与 Full 相同的平台硬守护（Windows 45分钟、POSIX 30分钟），这是终止失控执行的上限，不是速度承诺；原夹具期限不变。只有明确列出的纯文字文件可免业务回归，仍执行治理、许可和presentation门禁。
 
 Lua 模块按 `config/architecture.json` 的现有层分类：已登记的 UI 职责与入口同样可规划完整受影响回归，不再仅识别六个入口文件。核心、未登记模块、数据、配置、依赖、工作流、未建模输入、删除或未映射文件均 Full。develop/master push、发版 PR 和手动运行均 Full；PR 带 ci:full 标签可强制 Full。现有 Full 矩阵和步骤完整保留。标签移除不会追认旧结果，应推送新提交重新规划。
+
+草稿 PR 继续使用现有 Quick feedback；正式 Quality 延后到 Ready，并验证其后的新提交。转回 Draft 会通过原 concurrency 取消过时 Quality，不额外建立调度器。草稿跳过不构成准入证据：Ready、精确 HEAD/BASE/attempt、双平台成功及独审仍须满足。Merge Queue、push、发布和手动验证不受草稿条件影响。
 
 Required Checks保留check、engineering-posix、presentation、inventory及independent-review。TASK-81.2将额外PR准入改为Actions来源的`pr-quality`：安全PR须双平台Fast、实际不可变checkout/完整选测计划收据及当前独审；高风险仍须PR Full。`full-quality`保留原义，Fast永不发布Full成功。Ruleset切换必须等实现经原门禁合入后读回，源码合入本身不代表远端配置已生效。
 
@@ -18,6 +20,6 @@ fast/advisory 对未知输入只提供可独立映射部分的反馈，并明确
 
 基准：真实GitHub run40708754842，SHA53fa164a，创建14:43:27至完成15:04:40 UTC，21分13秒（含排队）。原始jobs和ruleset保存在docs/evidence/ci-fast/。
 
-验收口径：按固定工作流版本采集自然PR运行，分别报告Fast/Full样本数、SHA、attempt、结论、创建到最后Required Check完成的耗时，以及各job排队/执行时间。P50/P90用nearest-rank；失败和取消单列，不从样本中静默删除，不用重跑历史SHA刷样本。Fast至少20个真实PR样本且覆盖源码、测试和纯文档后判断P50≤300秒、P90≤600秒；未达样本量只报告观测值，不宣布总体达标。M7本轮只验真实安全Fast入队和Full组合/合后阻断链路，不把Full总耗时≤1800秒作为收口目标，也不为此追加调优；原作业与子进程预算、完整回归和门禁保持。
+验收口径：按固定工作流版本采集自然PR运行，分别报告Fast/Full样本数、SHA、attempt、结论、创建到最后Required Check完成的耗时，以及各job排队/执行时间。P50/P90用nearest-rank；失败和取消单列，不从样本中静默删除，不用重跑历史SHA刷样本。Fast至少20个真实PR样本且覆盖源码、测试和纯文档后判断P50≤300秒、P90≤600秒；未达样本量只报告观测值，不宣布总体达标。M7本轮只验真实安全Fast入队和Full组合/合后阻断链路，不把Full总耗时≤1800秒作为收口目标，也不为此追加调优；Full 作业与所有子进程预算、完整回归和门禁保持。
 
 美术输入分两组：原六张审阅 PNG 仍仅由审阅测试/许可审计准备，预算 5983528 字节；运行时只准备固定三张卡牌预览和一张背景预览，独立上限 181870 字节。JS 测试会通过辅助模块/子进程开启美术，因此 Full 分片与 Fast 对非空 JS 集合保守准备这四项；纯文字、空集合、仅 Lua 和默认关闭美术的 presentation 构建不新增下载。两组共用本地 LFS 对象缓存，重叠三张预览不重复传输；读取前核对索引指针，读取后核对 PNG、长度及 SHA。这里的字节数是逻辑输入上限，不是实际计费读数。

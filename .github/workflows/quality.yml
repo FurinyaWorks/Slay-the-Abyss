@@ -2,7 +2,7 @@ name: Quality
 on:
   pull_request:
     branches: [develop, master]
-    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, labeled, unlabeled]
   merge_group:
     types: [checks_requested]
     branches: [develop]
@@ -22,6 +22,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   impact:
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-slim
     permissions:
       contents: read
@@ -98,7 +99,8 @@ jobs:
       matrix:
         os: [ubuntu-24.04, windows-2025]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 8
+    # Execution ceiling, not a speed target; slow affected tests stay affected.
+    timeout-minutes: ${{ matrix.os == 'windows-2025' && 45 || 30 }}
     defaults:
       run:
         shell: bash
@@ -370,7 +372,7 @@ jobs:
     # Preserve the required check name. A skipped/cancelled/missing shard must
     # never turn the aggregate green; fail-fast=false collects all shard results.
     needs: [impact, rules, fast, presentation, engineering-posix]
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && (github.event_name != 'pull_request' || github.event.pull_request.draft == false) }}
     runs-on: ubuntu-slim
     timeout-minutes: 2
     permissions:
@@ -420,6 +422,7 @@ jobs:
           FULL_NEEDS: ${{ toJSON(needs) }}
         run: node scripts/publish-merge-group.mjs
   presentation:
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     # These filesystem tests include symlinks; keep the local service unprivileged.
     runs-on: ubuntu-24.04
     timeout-minutes: 5
@@ -513,7 +516,7 @@ jobs:
   engineering-posix:
     # Preserve the required check name and reject every non-success outcome.
     needs: [impact, engineering-posix-shards, fast]
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && (github.event_name != 'pull_request' || github.event.pull_request.draft == false) }}
     runs-on: ubuntu-slim
     timeout-minutes: 2
     steps:
