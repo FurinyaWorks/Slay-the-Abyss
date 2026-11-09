@@ -1,0 +1,3 @@
+Quality reported: 338 modules; 5611/5611 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+Architecture passed: 338 modules, 1929 edges; build/architecture.json
+Luacheck 1.2.0: no new diagnostics; 14 explicit historical warnings. Battle render <=10; scoped functions <=15 (Enemy AI initialize <=21); 2099 governed responsibility measurements.

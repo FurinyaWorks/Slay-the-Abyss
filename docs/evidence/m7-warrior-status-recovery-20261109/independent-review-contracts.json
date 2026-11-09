@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "independent-warrior-recovery-contracts-20261109",
+  "reviewer": "/root/decouple_independent_m7/review_warrior_preparation",
+  "reviewedAt": "2026-11-09T04:34:28.315Z",
+  "reviewedBaseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "reviewedHeadSha": "707fe95cee42448259d855e1fd2cf41a646c03e2",
+  "sourceSliceCommit": "707fe95cee42448259d855e1fd2cf41a646c03e2",
+  "conclusion": "pass",
+  "unresolved": [],
+  "scope": "Code/contract review of exact current source and CI epoch wiring bytes. This is not a merge-readiness or hosted runtime budget approval.",
+  "releaseReadiness": "draft_only_pending_exact_head_hosted_full",
+  "inspectedFileSha256": {
+    "tests/helpers/warrior-status-source-epoch.mjs": "6982f52271afb5984720e62d247af0d4c2950cf13927f21874e7fb22f2521c2f",
+    "tests/helpers/warrior-status-source-epoch.json.gz": "ccb1b77ef534cbf88e1ddfd848e24cac3e4f27e6bce3d8587bf7a73c026cb9bf",
+    "tests/helpers/warrior-status-ci-source-inverse.mjs": "9e4960745f7d5a551c8352fadbb5aed984e23847b57821817ec53ac2977ba0cb",
+    "tests/helpers/warrior-status-ci-source-epoch.json.gz": "91c609c724aedcca71934d47399ea5dd8bdff2eb2c7f196298eca4c12581c38c",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "51c9eca30d7e8af72aeb6627c07c89cfce10d937af5e770b888fcbd5cab3d392",
+    "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb",
+    "tests/helpers/copy-integration-source-closure.mjs": "991317d28bdae299f6aee3d314e58b80d4b1c4aacb0dd8cb31186074a8b7dfbf",
+    "tests/warrior-status-source-epoch.test.mjs": "3d1e45b423a4b2a46596be849de8d89722cc0af436267436c5c321a477886fee",
+    "tests/encounter-formation-source-epoch.test.mjs": "f29491847f2e42774d6b7e31b2abb4bfdc2fd7d5e5c1b08ab682d7ea5b8e3a41",
+    "tests/ci-complete-calibration.test.mjs": "e41fab3eec415e8fc3d5305df35b6ecf89cb1e59220bd4d220aa37a1f987b3da"
+  },
+  "evidenceSha256": {
+    "independent-contract-probe.log": "947a386d1b1f9351842a67dd4853b55e17ad67baf219a87d4784687f65622c24",
+    "source-final.log": "e88d3c2e8168a4f67390434eedd774488219a4e6d9cf9cb4021876f78214e9e2",
+    "source-final-comment.log": "5cc53e3dbce468da8cfe416be5af1d8c409b412ed39c868228aeaa366518fc97",
+    "contracts-final-comment.log": "eb10e2a8e5d8476505f213e89518ab6af38d178cd3da52a32701b730ac5b4dad"
+  },
+  "checks": [
+    {
+      "name": "Independent narrow contract probe",
+      "status": "pass",
+      "log": ".artifacts/warrior-status-recovery/independent-contract-probe.log",
+      "details": "Fresh live configuration projection read exactly 52 raw owners; malformed readers and unknown targets rejected. Five CI historical bindings independently matched actual base Git bytes. Frozen JS inventory exactly equals 800 base root JS test paths. Warrior source binding matches recovered production Git commit."
+    },
+    {
+      "name": "Final source contract run reviewed",
+      "executor": "source contract worker; reviewer read final log rather than repeat suite",
+      "passed": 11,
+      "failed": 0,
+      "durationMs": 26460.886837,
+      "log": "source-final-comment.log"
+    },
+    {
+      "name": "Final broader contract run reviewed",
+      "executor": "source contract worker; reviewer read final log rather than repeat suite",
+      "passed": 99,
+      "failed": 0,
+      "durationMs": 31767.856793,
+      "log": "contracts-final-comment.log"
+    }
+  ],
+  "findings": [],
+  "reasoning": [
+    "Current facade adds one authenticated Warrior owner to previous 51. Full predecessor binding equality includes source, digest, Git blob, raw blob and mode. Prior metadata/targets remain intact; recovered commit identity is kept separate and currentTreeCommitted remains false rather than claiming a new full committed source epoch.",
+    "Historical formation tests use the explicit frozen preWarriorStatusEpoch; current tests independently exercise all 52 owners, real LF/CRLF reads, post-warm corruption/missing values, reader errors and config token identity. No owner authorization or projection result cache is introduced.",
+    "Unknown targets fail before identity fallback. Invalid readers fail for admitted current input; foreign inputs remain unchanged without reading owners, matching prior behavior. Reader retargeting unwraps tracked raw reader ownership.",
+    "Existing historical CI test bodies and assertions remain intact. Exact-byte/hash-gated adapters restore only five recorded changed files to actual base source. Unknown paths and foreign source bytes pass through unchanged, so arbitrary drift cannot be projected away.",
+    "Historical discovery excludes only two named new tests. A separate raw live inventory assertion covers all 802 JS and 1410 Lua, checks predecessor800 equality and complete unique current bins, and pins unchanged 17/15 shape, Full37 jobs, unknown 10000ms weights and +20000ms aggregate modeled cost.",
+    "No original archive, timing map, execution budget, workflow, worker count or reserve changed. Copied helper closure adds new archive/module pins and updates exactly the current facade digest."
+  ],
+  "performanceBoundary": {
+    "status": "unverified_hosted_budget_risk",
+    "unknownJsMs": 10000,
+    "sourceStandaloneObservedMs": [
+      33242.202516,
+      26460.886837
+    ],
+    "slowSourceClosureCaseMs": 15835.530895,
+    "preparationObservedMs": [
+      11690.152994,
+      4760.712088
+    ],
+    "staticWindowsForecastMs": 1795233,
+    "windowsBudgetMs": 1800000,
+    "staticWindowsMarginMs": 4767,
+    "staticPosixForecastMs": 1130140,
+    "posixBudgetMs": 1200000,
+    "note": "Both standalone source observations exceed the 10s unknown planning estimate substantially. The slow source run exceeds it by 23242.2ms, greater than the Windows aggregate modeled margin. Shard placement and host differences prevent treating this as a measured Windows overrun, but the static forecast cannot certify budget safety. Preserve all observed runs, keep draft, and require exact-head hosted Full before readiness. Do not relax budgets, fabricate floors or select only fastest observations."
+  },
+  "limitations": [
+    "No Full rerun, game/device execution or remote writes by reviewer.",
+    "Final integration HEAD and evidence archive still need identity-only binding.",
+    "Review approves contract preservation, not hosted performance or merge eligibility."
+  ]
+}

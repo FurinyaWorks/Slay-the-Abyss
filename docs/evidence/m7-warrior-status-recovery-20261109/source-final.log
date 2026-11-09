@@ -1,0 +1,19 @@
+✔ Warrior status outer epoch preserves every prior binding and exact frozen production byte (43.387899ms)
+✔ all advertised historical targets restore Warrior status from LF and CRLF without rewriting originals (9.477669ms)
+✔ current facade retains exact config identity and rechecks all 52 owners after warm success (12.464384ms)
+✔ foreign bytes never authorize reads and composed readers preserve explicit raw reader ownership (6.064527ms)
+✔ isolated authenticated helper closure retains the exact Warrior status epoch and rejects owner drift (15835.530895ms)
+✔ unknown source targets are rejected rather than gaining an identity fallback (0.927774ms)
+✔ configuration layout admission preserves exact tokens and freshly authenticates all 52 current raw owners (27.177671ms)
+✔ outer foreign-source fallback preserves invalid raw-reader semantics (0.959299ms)
+✔ live LF and CRLF raw owner reads authenticate 52 current owners on every call (426.230463ms)
+✔ outer metadata preserves the full predecessor and rejects altered predecessor metadata (1777.575514ms)
+✔ source and configuration reject unknown targets and malformed live readers after warm authorization (8.170769ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33242.202516

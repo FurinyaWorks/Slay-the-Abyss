@@ -1,0 +1,12 @@
+✔ Warrior recovery preserves exact predecessor CI receipt sources and rejects foreign inputs (3.843519ms)
+✔ Warrior status outer epoch preserves every prior binding and exact frozen production byte (48.629225ms)
+✔ isolated authenticated helper closure retains the exact Warrior status epoch and rejects owner drift (9429.125858ms)
+✔ outer metadata preserves the full predecessor and rejects altered predecessor metadata (1388.698777ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21174.392849

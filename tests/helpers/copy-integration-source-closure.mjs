@@ -7,6 +7,8 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 const bytes=readFileSync(new URL('./integration-source-closure.json',import.meta.url));
 assert.equal(hash(bytes),'800fcc9efd889f482259d0e1e9f1501f0e9597ac05552622ede00dd3dcdb4a94','complete integration helper closure identity');
 const files={...JSON.parse(bytes),...{
+  "tests/helpers/warrior-status-source-epoch.json.gz": "e632098a14246e0888f2fde9a86c30eaf99fdf3271962a11f59841c426fc3e56",
+  "tests/helpers/warrior-status-source-epoch.mjs": "0026c35a0670ebac262c1e38fcc56f8170fabf3802bdd89cf5ff37cc3ae8ce84",
   "tests/helpers/combined-epoch/pre-formation-source-epoch.mjs": "81422aac13c89d3c3fa8d31f1afdff609af1f46f071a4c9d37288591cf20760f",
   "tests/helpers/encounter-formation-source-epoch.json.gz": "6d082e4f921213a60a41ab1f0a4109a49645c1014cc83f315178937ca0885132",
   "tests/helpers/encounter-formation-source-epoch.mjs": "1c654029938e0d5eb0864adb2f76333d3e4a1ed1fe95d73e2e0c21a8fb376436",
@@ -28,7 +30,7 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/actor-presence-source-inverse.mjs": "9f90f6908fe07fffa80dc254723f64e5e64162e4197ef0651c51d21483babb28",
   "tests/helpers/colorless-catalog-source-inverse.mjs": "173ba6f9a97a5f87ccd4e338975013637902f97c5f8c5e1cb60524455aa41316",
   "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb",
-  "tests/helpers/combined-epoch/source-epoch.mjs": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+  "tests/helpers/combined-epoch/source-epoch.mjs": "51c9eca30d7e8af72aeb6627c07c89cfce10d937af5e770b888fcbd5cab3d392",
   "tests/helpers/core-lifecycle-source-inverse.mjs": "e7a0f431a72eb1d30332802ffc1a0f7d9d2bd82ae6255e58bad0b3fbc3d8e16f",
   "tests/helpers/defect-plan-source-inverse.mjs": "daf313bc97c097b02ab790f0384a383cfd42690cddf0ef982fa231ddc4404c24",
   "tests/helpers/end-turn-responsibilities-source-inverse.mjs": "b38d08a2214f2878e7390dcb574e50404f405dbf42e1dd76b51f3372404ac146",

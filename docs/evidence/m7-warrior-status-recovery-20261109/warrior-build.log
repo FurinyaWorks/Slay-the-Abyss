@@ -1,0 +1,31 @@
+ok warrior status 1 - independent definitions prepare twelve candidates and normalize shared status cards
+ok warrior status 2 - Second Wind prepares card Block once and plans all reversed exhausts before fixed blocks
+ok warrior status 3 - Fiend Fire plans an original hand-count number of random exhausts before identical NORMAL snapshots
+ok warrior status 4 - Fiend Fire one-card exhaustion still consumes random(0) via the real Exhaust dispatcher
+ok warrior status 5 - Limit Break plans signed and zero Strength while absent Strength does nothing
+ok warrior status 6 - Evolve and Fire Breathing plans retain acquisition order and different status/curse/NoDraw gates
+ok warrior status 7 - Flame Barrier plans NORMAL nonself owner retaliation regardless of HP damage and removes next start
+ok warrior status 8 - Blood for Blood damage notification excludes exhaust and cardInUse and counts hits rather than HP amount
+ok warrior status 9 - Blood for Blood creation modes and a zero-cost upgrade preserve source cost semantics
+WARRIOR_STATUS_COMPONENT_PASS9
+ok warrior status 10 - real wild_strike deals source damage then inserts the right status with source RNG
+ok warrior status 11 - real reckless_charge deals source damage then inserts the right status with source RNG
+ok warrior status 12 - real Wild Strike into an empty draw pile creates Wound without consuming insertion RNG
+ok warrior status 13 - real Intimidate applies Weak independently through Artifact and exhausts
+ok warrior status 14 - real Immolate adds Burn after nonlethal damage and final-kill cleanup cancels that tail
+ok warrior status 15 - real Limit Break doubles signed Strength and only the upgrade avoids self-exhaust
+ok warrior status 16 - real Sever Soul exhausts all nonattacks before its original NORMAL damage
+ok warrior status 17 - real Second Wind applies card Block modifiers once per nonattack and preserves Attack hand cards
+ok warrior status 18 - real Fiend Fire exhausts its whole other hand randomly and hits once per snapshot card
+ok warrior status 19 - real Flame Barrier retaliates through full Block and expires before the following player turn
+ok warrior status 20 - real Evolve and Fire Breathing draw tails run after the originating draw and disposal
+ok warrior status 21 - real status draw Power order controls whether extra draw survives the final kill with evolve first
+ok warrior status 22 - real status draw Power order controls whether extra draw survives the final kill with fire_breathing first
+ok warrior status 23 - real Blood for Blood drops one cost per positive enemy HP hit and pays the reduced upgrade cost
+ok warrior status 24 - real fully blocked and zero enemy damage do not reduce Blood for Blood
+ok warrior status 25 - real Flame Barrier and potion Thorns retaliate in reverse TOP order with flame_barrier acquired first
+ok warrior status 26 - real Flame Barrier and potion Thorns retaliate in reverse TOP order with thorns acquired first
+ok warrior status 27 - real paused Warcry retains native disposal then Void energy then draw-Power acquisition order with evolve first
+ok warrior status 28 - real paused Warcry retains native disposal then Void energy then draw-Power acquisition order with fire_breathing first
+ok warrior status 29 - real Battle Trance queues Void before both draw Powers then NoDraw blocks only the later Evolve draw
+WARRIOR_STATUS_BUILD_PASS29

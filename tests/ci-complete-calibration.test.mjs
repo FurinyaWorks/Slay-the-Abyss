@@ -23,7 +23,7 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as actualDiskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -31,8 +31,17 @@ import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs as actualDiscoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
+import {preWarriorStatusCiSource,warriorStatusCiProof} from './helpers/warrior-status-ci-source-inverse.mjs';
+const warriorStatusJs=['tests/warrior-status-preparation.test.mjs','tests/warrior-status-source-epoch.test.mjs'];
+// Historical complete inventories and receipts remain independently reproducible.
+const discoverJs=()=>actualDiscoverJs().filter(file=>!warriorStatusJs.includes(file));
+const diskReadFileSync=(file,encoding)=>{
+ const raw=actualDiskReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
+ const prior=preWarriorStatusCiSource(file,text);
+ return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
+};
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const rawReadFileSync=(file,encoding)=>{const value=diskReadFileSync(file,encoding);if(typeof value==='string')return preEncounterFormationCiSource(file,value);const text=value.toString('utf8'),prior=preEncounterFormationCiSource(file,text);return prior===text?value:Buffer.from(prior);};
@@ -243,7 +252,7 @@ test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 L
  const workflow=beforeExecutionTimeoutWorkflow(read('.github/workflows/quality.yml'));assert.match(workflow,/max-parallel: 12/);assert.match(workflow,/timeout-minutes: 20/);assert.match(workflow,/local-special' && 75 \|\| 30/);
 });
 
-test('current Full37 retains full coverage and reports performance targets under unchanged execution guards',t=>{
+test('historical Formation Full37 retains full coverage and reports performance targets under unchanged execution guards',t=>{
  const workflow=read('.github/workflows/quality.yml');assert.match(workflow,/timeout-minutes: \$\{\{ inputs.runner_pool == 'local-special' && 75 \|\| 45 \}\}/);assert.match(workflow,/runs-on: ubuntu-24.04\n    timeout-minutes: 30/);
  const js=discoverJs(),lua=currentLua();
  assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:17},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
@@ -1037,5 +1046,51 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
  assert.equal(currentTimings.unknownJsMs,10000);assert.equal(Object.keys(currentTimings.jsPlanning.localLowerBounds).length,32);
  for(const [key,floor]of Object.entries(encounterFormationPlanningFloors))assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[key],floor);
  const workflow=diskReadFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
+ assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+});
+
+
+test('Warrior recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
+ for(const [file,binding]of Object.entries(warriorStatusCiProof.files)){
+  const raw=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(raw),binding.afterSha256,file);
+  assert.equal(hash(binding.beforeSource),binding.beforeSha256,file);
+  for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preWarriorStatusCiSource(file,source),binding.beforeSource);
+  for(const source of [raw+'\n',raw.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preWarriorStatusCiSource(file,source),source);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preWarriorStatusCiSource(unknown,raw),raw);
+ }
+});
+
+test('current Warrior802 Full37 inventory adds only two unmeasured files under unchanged budgets',t=>{
+ const js=actualDiscoverJs(),lua=currentLua();
+ assert.equal(js.length,802);assert.equal(lua.length,1410);
+ assert.deepEqual(js.filter(file=>!discoverJs().includes(file)).sort(),[...warriorStatusJs].sort());
+ assert.deepEqual([...discoverJs()].sort(),warriorStatusCiProof.inventory.js);
+ assert.deepEqual(lua,Object.keys(warriorStatusCiProof.inventory.luaSha256));
+ for(const [file,sha]of Object.entries(warriorStatusCiProof.inventory.luaSha256))assert.equal(hash(actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n')),sha,file);
+ assert.equal(currentTimings.unknownJsMs,10000);
+ for(const platform of ['win32','linux'])for(const file of warriorStatusJs){
+  assert.equal(currentTimings.js[platform][file],undefined);
+  assert.equal(currentTimings.jsPlanning.localLowerBounds[file],undefined);
+  assert.equal(currentJsPlanningWeights([file],platform)[file],10000);
+ }
+ assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:17},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
+ assert.equal(currentFullQualityJobs.length,37);
+ for(const [platform,count,budget]of [['win32',17,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>currentJsShard(js,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,802);
+  const loads=bins[0].loads,old=currentJsShard(discoverJs(),`1/${count}`,platform).loads;
+  assert.equal(loads.reduce((a,b)=>a+b,0)-old.reduce((a,b)=>a+b,0),20000);
+  let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const luaBins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...currentTimings,windowsJsShardMs:loads},2));
+   assert.deepEqual(luaBins.flat().sort(),[...lua].sort());assert.equal(new Set(luaBins.flat()).size,1410);
+   const cost=file=>currentTimings.luaShard[file]??currentTimings.lua[file]??currentTimings.unknownLuaMs,safety=file=>currentTimings.lua[file]??currentTimings.unknownLuaMs;
+   maximum=Math.max(...luaBins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
+  }
+  const forecast=maximum+60000;assert.equal(forecast,platform==='win32'?1795233:1130140);t.diagnostic(`${platform} complete Warrior802 forecast ${forecast} ms; budget ${budget} ms; actual Full pass not claimed`);
+  assert.ok(forecast<budget);
+ }
+ const workflow=actualDiskReadFileSync('.github/workflows/quality.yml','utf8');
  assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
 });

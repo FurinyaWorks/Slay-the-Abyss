@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "cases": 26,
+  "startedAt": "2026-11-09T04:30:55.597Z",
+  "finishedAt": "2026-11-09T04:30:56.143Z",
+  "durationMs": 543.274991,
+  "sourceSha256": "095d6057d9a8be5f58202084db6113749ac1a8a56f152ce210b2a02959ca10ee",
+  "probeSha256": "0c7e558aaf479cf33b7647a925dafe3d6c5a76af387e19268d3c8f58418ba172",
+  "note": "Fresh execution after environment recovery; no reuse of lost logs."
+}

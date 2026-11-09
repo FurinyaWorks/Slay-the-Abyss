@@ -1,0 +1,310 @@
+{
+  "baseline": {
+    "revision": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+    "createdAt": "2026-11-09T04:26:30.630Z",
+    "coverage": {
+      "modules": 338,
+      "functions": 5266,
+      "measurements": 5604,
+      "expectedMeasurements": 5604
+    },
+    "over15": 209,
+    "over30": 33,
+    "sccSizes": [
+      68,
+      11,
+      2
+    ],
+    "edges": 1929,
+    "sha256": "03b3ad5adbfdfd3ba41cf55ecfda6d1674c05ff824b8d86543b421942b9f1f8f",
+    "warriorFunctions": [
+      {
+        "name": "<chunk>",
+        "line": 1,
+        "complexity": 1
+      },
+      {
+        "name": "integer",
+        "line": 9,
+        "complexity": 6
+      },
+      {
+        "name": "make",
+        "line": 10,
+        "complexity": 3
+      },
+      {
+        "name": "action",
+        "line": 11,
+        "complexity": 1
+      },
+      {
+        "name": "plan",
+        "line": 12,
+        "complexity": 1
+      },
+      {
+        "name": "power",
+        "line": 13,
+        "complexity": 1
+      },
+      {
+        "name": "generate",
+        "line": 14,
+        "complexity": 1
+      },
+      {
+        "name": "M.withCards",
+        "line": 67,
+        "complexity": 36
+      },
+      {
+        "name": "amount",
+        "line": 108,
+        "complexity": 2
+      },
+      {
+        "name": "resolved",
+        "line": 109,
+        "complexity": 4
+      },
+      {
+        "name": "M.adaptDefinition",
+        "line": 113,
+        "complexity": 4
+      },
+      {
+        "name": "M.prepareEffect",
+        "line": 121,
+        "complexity": 3
+      },
+      {
+        "name": "M.planEffect",
+        "line": 131,
+        "complexity": 15
+      },
+      {
+        "name": "M.exhaustRandomAny",
+        "line": 153,
+        "complexity": 4
+      },
+      {
+        "name": "M.applyPower",
+        "line": 161,
+        "complexity": 9
+      },
+      {
+        "name": "M.onDraw",
+        "line": 171,
+        "complexity": 20
+      },
+      {
+        "name": "M.onAttacked",
+        "line": 186,
+        "complexity": 7
+      },
+      {
+        "name": "M.planHook",
+        "line": 195,
+        "complexity": 3
+      },
+      {
+        "name": "cost",
+        "line": 199,
+        "complexity": 4
+      },
+      {
+        "name": "M.onHpLost",
+        "line": 204,
+        "complexity": 9
+      },
+      {
+        "name": "M.created",
+        "line": 220,
+        "complexity": 7
+      },
+      {
+        "name": "M.onUpgrade",
+        "line": 234,
+        "complexity": 6
+      }
+    ]
+  },
+  "final": {
+    "revision": "707fe95cee42448259d855e1fd2cf41a646c03e2",
+    "createdAt": "2026-11-09T04:31:04.602Z",
+    "coverage": {
+      "modules": 338,
+      "functions": 5273,
+      "measurements": 5611,
+      "expectedMeasurements": 5611
+    },
+    "over15": 208,
+    "over30": 32,
+    "sccSizes": [
+      68,
+      11,
+      2
+    ],
+    "edges": 1929,
+    "sha256": "0a2b182f9b73889659edd9ce2c252f0588b7ea24e7d17a09e381217d3c9e81f3",
+    "warriorFunctions": [
+      {
+        "name": "<chunk>",
+        "line": 1,
+        "complexity": 1
+      },
+      {
+        "name": "integer",
+        "line": 9,
+        "complexity": 6
+      },
+      {
+        "name": "make",
+        "line": 10,
+        "complexity": 3
+      },
+      {
+        "name": "action",
+        "line": 11,
+        "complexity": 1
+      },
+      {
+        "name": "plan",
+        "line": 12,
+        "complexity": 1
+      },
+      {
+        "name": "power",
+        "line": 13,
+        "complexity": 1
+      },
+      {
+        "name": "generate",
+        "line": 14,
+        "complexity": 1
+      },
+      {
+        "name": "indexCards",
+        "line": 69,
+        "complexity": 2
+      },
+      {
+        "name": "replaceCard",
+        "line": 74,
+        "complexity": 4
+      },
+      {
+        "name": "replacePower",
+        "line": 79,
+        "complexity": 4
+      },
+      {
+        "name": "prepareNativeCards",
+        "line": 84,
+        "complexity": 6
+      },
+      {
+        "name": "validateStatusLifecycle",
+        "line": 95,
+        "complexity": 11
+      },
+      {
+        "name": "prepareStatusCards",
+        "line": 103,
+        "complexity": 3
+      },
+      {
+        "name": "preparePowers",
+        "line": 111,
+        "complexity": 6
+      },
+      {
+        "name": "M.withCards",
+        "line": 122,
+        "complexity": 5
+      },
+      {
+        "name": "amount",
+        "line": 132,
+        "complexity": 2
+      },
+      {
+        "name": "resolved",
+        "line": 133,
+        "complexity": 4
+      },
+      {
+        "name": "M.adaptDefinition",
+        "line": 137,
+        "complexity": 4
+      },
+      {
+        "name": "M.prepareEffect",
+        "line": 145,
+        "complexity": 3
+      },
+      {
+        "name": "M.planEffect",
+        "line": 155,
+        "complexity": 15
+      },
+      {
+        "name": "M.exhaustRandomAny",
+        "line": 177,
+        "complexity": 4
+      },
+      {
+        "name": "M.applyPower",
+        "line": 185,
+        "complexity": 9
+      },
+      {
+        "name": "M.onDraw",
+        "line": 195,
+        "complexity": 20
+      },
+      {
+        "name": "M.onAttacked",
+        "line": 210,
+        "complexity": 7
+      },
+      {
+        "name": "M.planHook",
+        "line": 219,
+        "complexity": 3
+      },
+      {
+        "name": "cost",
+        "line": 223,
+        "complexity": 4
+      },
+      {
+        "name": "M.onHpLost",
+        "line": 228,
+        "complexity": 9
+      },
+      {
+        "name": "M.created",
+        "line": 244,
+        "complexity": 7
+      },
+      {
+        "name": "M.onUpgrade",
+        "line": 258,
+        "complexity": 6
+      }
+    ]
+  },
+  "comparison": {
+    "onlySourceChanged": [
+      "src/lua/abyss_warrior_status_cards.lua"
+    ],
+    "newProductionModules": 0,
+    "sccReductionClaim": false,
+    "fullRunClaim": false,
+    "sourceSliceCommit": "d7d0c299bbfaef70510e617211be547d8daa0c64",
+    "localSourceSliceCommit": "707fe95cee42448259d855e1fd2cf41a646c03e2",
+    "sourceTree": "e34ee0f00f4806a99f9fe82db27d2c114eeb6310"
+  }
+}

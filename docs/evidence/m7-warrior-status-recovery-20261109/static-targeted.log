@@ -1,0 +1,28 @@
+✔ lint baseline allows exact existing warnings but rejects new globals and tool errors (43.882666ms)
+✔ native turn orchestration and every extracted stage remain bounded and required (13.739209ms)
+✔ presentation extractions are required and their nested callbacks remain budgeted (1.185694ms)
+✔ scoped responsibility budgets include nested callbacks and preserve unrelated hotspots (4.198048ms)
+✔ every extracted helper and anonymous function receives the same budget (1.198524ms)
+✔ potion candidate helpers cannot move branching outside the responsibility budget (1.026092ms)
+✔ every extracted card action helper is required and bounded with its nested functions (386.68665ms)
+✔ combat play, turn and constructor stages are required, bounded and fully measured (770.514023ms)
+✔ Actor damage and status stages plus nested callbacks cannot escape the production CC15 policy (231.451245ms)
+✔ effect support responsibilities remain required and bounded with their nested callbacks (21.364568ms)
+✔ restoring the original Run potion candidate hotspot fails the production policy (0.398109ms)
+✔ missing entries, missing measurements, duplicate positions and unknown formats fail closed (0.879861ms)
+✔ each AST function needs its own measurement even when counts remain equal (1.20337ms)
+✔ Luacheck Unicode codepoint columns map to the byte AST on the same line (3.025791ms)
+✔ shared combat catalog and nested helpers retain the responsibility budget (0.719903ms)
+✔ main chunk and a function at the first source position are distinct measurements (0.193772ms)
+✔ the extracted wording formatter is required and restoring the old local hotspot is also budgeted (1.07625ms)
+✔ Scry confirmation stages and their nested callbacks are required and bounded without hiding pile validation (4.267776ms)
+✔ the complete Shiv responsibility includes future helpers, nested functions and its chunk (2.956261ms)
+✔ the complete Act3 AI responsibility budgets future helpers, nested callbacks and its chunk (0.631369ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2314.787449

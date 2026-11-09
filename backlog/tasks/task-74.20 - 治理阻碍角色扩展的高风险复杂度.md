@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T01:07:00Z'
+updated_date: '2026-11-09T04:36:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -105,6 +105,8 @@ ordinal: 162000
 2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
 
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
+
+2026-11-09 主控派工恢复 WarriorStatus.withCards 已审切片：云端恢复旧快照使未上传工作树、旧提交及日志不可读，不能沿用旧交付证明。基于当前已合#576的develop1eb28847，逐hash重建原生产与测试源码；保留所有主线变化，重新窄测、采集全库CC/SCC与独审，按授权及时发布。不重复Full，不改owner/status/AC。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -191,4 +193,6 @@ Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原PO
 已在独立树整合公开#574@841510b7与#575@d21be2fb，保全两父全部生产/历史证据。组合800JS/1410Lua复算Windows1794163（余5837）、POSIX15为1128812（余71188），旧14超5156保持可复现；仅4共享文本冲突，预算/floor/unknown/并发/worker不变。独审核8125非冲突原路径字节一致；当前定向测试和最终独审收口中，不重复Full或提前勾AC。
 
 POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入前后hash一致；历史/当前投影4370+6976比较重放一致。独审13455比较、17桥拒绝和40准入validator拒绝负控通过，原始失败保留。以原#575与#574为两父合并更新同PR；仅本地组合验证及规划通过，未跑本HEAD Hosted Full，继续Draft与正常准入，不勾AC。
+
+2026-11-09 WarriorStatus 恢复切片：基于已合 #576 的 develop 1eb28847，将 withCards 按索引、原生牌、状态生命周期、Power 职责拆分，CC36→5，7 个 helper 最高11；全库 >30 为33→32、>15为209→208，SCC68/11/2不变。源码已上传 d7d0c299（与本地已审707fe95c同树）；68图案例、6 mutants、26独立边界、原Lua29、静态20、source/CI110项通过。新52-owner/802JS合同保留旧51-owner/800JS历史与原预算。source窄测26.46/33.24秒高于10秒估值，Windows模型余量仅4.767秒，不能声称hosted预算安全；保持草稿并待精确HEAD门禁。不重复Full，不关闭整个任务。恢复后重新生成的证据见 docs/evidence/m7-warrior-status-recovery-20261109。
 <!-- SECTION:NOTES:END -->

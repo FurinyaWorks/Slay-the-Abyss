@@ -1,0 +1,17 @@
+✔ WarriorStatus preparation preserves independent full graph traces, detached copies, aliases and ordered failures (3377.340649ms)
+✔ WarriorStatus preparation detects real semantic regressions at named assertions (2585.003887ms)
+ℹ killed: empty source unchanged
+ℹ killed: native normalization
+ℹ killed: Burn normalization
+ℹ killed: final marker
+ℹ killed: legacy Burn outcome
+ℹ killed: definition order
+✔ WarriorStatus entry and every preparation helper have live CC15 protection, with the original CC36 rejected (5279.474923ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11690.152994

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "independent-warrior-recovery-production-20261109",
+  "reviewer": "/root/decouple_independent_m7/review_warrior_preparation",
+  "reviewedAt": "2026-11-09T04:31:56.906Z",
+  "reviewedBaseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "reviewedHeadSha": "707fe95cee42448259d855e1fd2cf41a646c03e2",
+  "conclusion": "pass",
+  "unresolved": [],
+  "scope": "Recovered production preparation extraction, frozen fixture, 68-case VM tests, six mutants, eight CC15 subjects, and newly executed independent 26-case probe. Integration source/CI epoch wiring still in progress and excluded from this production-only receipt.",
+  "inspectedFileSha256": {
+    "AGENTS.md": "4d1c98e8c8e089184f2a8169f5012ce08800758c2fc3f04b4c230203506155da",
+    ".gitattributes": "72a066a01c3b651931150e46f5b71eebd89c5a6682604f1259fe09a4b11b04e0",
+    "src/lua/abyss_warrior_status_cards.lua": "095d6057d9a8be5f58202084db6113749ac1a8a56f152ce210b2a02959ca10ee",
+    "src/lua/abyss_copy.lua": "099de1e77e190d4e61ababe30916b93656e7dbceb489755a121a021657911cc9",
+    "scripts/check-lua-static.mjs": "f82b9df07aafdc97921306031a32e190d6c2671a57c86c211fc5808e857bfdb2",
+    "tests/fixtures/warrior-status-before.lua": "554181c678d5387ca7de54095db78a37225c04acc23878bce0392d21acc33a63",
+    "tests/helpers/warrior-status-preparation-vm.mjs": "723c6e43135e568b27eebe350527f0b50b01ef7d5887c9719473a1787d4072a1",
+    "tests/helpers/warrior-status-preparation-cases.lua": "b9847d643a2486f76dfad565f0990e730ff19c43e3e6c8636e2993aabbe04b24",
+    "tests/helpers/lua-graph-observer.mjs": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f",
+    "tests/warrior-status-preparation.test.mjs": "2a15bccd64f3fc6b07776a82857b240774dbed76d2d57a75c4b87176576be577"
+  },
+  "checks": [
+    {
+      "name": "Fresh independent supplementary probe",
+      "status": "pass",
+      "cases": 26,
+      "summary": ".artifacts/warrior-status-recovery/independent-probe-result.json",
+      "log": ".artifacts/warrior-status-recovery/independent-probe-run.log"
+    },
+    {
+      "name": "Fresh targeted preparation test",
+      "status": "pass",
+      "passed": 3,
+      "failed": 0,
+      "differentialCases": 68,
+      "semanticMutantsKilled": 6,
+      "protectedFunctions": 8,
+      "durationMs": 4760.712088,
+      "log": ".artifacts/warrior-status-recovery/independent-preparation.log"
+    },
+    {
+      "name": "Historical fixture source authentication",
+      "status": "pass",
+      "detail": "Frozen before fixture exactly equals actual new base source Git bytes; SHA256 554181c678d5387ca7de54095db78a37225c04acc23878bce0392d21acc33a63"
+    }
+  ],
+  "findings": [],
+  "observations": [
+    {
+      "severity": "low",
+      "subject": "Planning-cost uncertainty",
+      "detail": "Parent first complete run 11690.152994ms exceeds the fixed unknownJsMs 10000 planning weight by 1690.152994ms. Independent fresh complete run is 4760.712088ms. Both measurements must remain visible; neither is a hosted CI sample. This is a default cost estimate, not a per-file timeout. Provisional Windows forecast 1795233ms has only 4767ms reserve below the unchanged 1800000ms target. One-file worst-observed delta alone leaves about 3076.8ms, but local variance and other test costs prevent a hosted budget guarantee. Do not inflate budgets or claim actual Full success."
+    }
+  ],
+  "reasoning": [
+    "Whole graph copy precedes index/validation and preserves aliases and cycles while stripping metatables. Original source remains unchanged on successful and failed preparation.",
+    "Native card then reused status then Power ordering and index snapshot semantics are retained. Existing definitions are replaced at their original slots; dynamic out.cards.cards/out.statuses.statuses accesses preserve malformed-list error bodies.",
+    "Burn lifecycle and duplicate/malformed validation retain original short-circuit behavior. Both reported malformed string-list errors now match in newly executed probes.",
+    "Private status literal copying is moved before replacement search without observable callbacks in production. Parent/module helpers remain private and non-preparation execution code is unchanged.",
+    "Default whole-source CC policy is exercised first; bounded synthetic controls use its eight subjects, and reject every missing/over-budget measurement plus historical CC36. No weakened production gate.",
+    "VM error translation changes line attribution only, with two explicit equivalent moved append statements; exact error body remains part of graph equality."
+  ],
+  "limitations": [
+    "This is new evidence from the recovered environment; no lost log, prior attestation or claimed historical execution was reused. Probe code was reconstructed verbatim from retained conversation tool input, then executed afresh.",
+    "No Full, live game, official import, device checks, publication or merge performed by this reviewer.",
+    "Final source epoch, CI wiring and final HEAD binding require a subsequent review receipt or additive update."
+  ]
+}
