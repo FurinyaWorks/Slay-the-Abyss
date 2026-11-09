@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-09 11:11'
-updated_date: '2026-11-09 04:10'
+updated_date: '2026-11-09 06:12'
 labels:
   - product-diagnosis
 milestone: m-7
@@ -43,6 +43,8 @@ Owner要求将“为什么一周多架构优化仍未提前定位游戏逐块出
 
 <!-- SECTION:PLAN:BEGIN -->
 1. 复用现有SDK与Host入口，冻结#565真实案例及候选/工具身份，保留异画质边界。2. 实现可重放菜单/选角/输入/20次切屏观测及轻量产品证据判定，缺失和无效实验触发UNVERIFIED/复核。3. 接入现有Backlog与Quality合同回归，验证假ready、伪配对、局部改善冒充完成等负控。4. 运行真实离线案例，保存证据和V25/设备未验项；独立复审、当前HEAD Full、Backlog校验后正常队列合并。
+
+5. 本轮CI多次停在Luacheck下载HTTP504：在既有curl调用加入原生有界重试，保留版本/哈希/65秒进程上限，用本地504恢复、持续失败及坏哈希反证；纳入当前PR独审及正常Full，避免反复排整轮补跑。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -55,4 +57,6 @@ Owner要求将“为什么一周多架构优化仍未提前定位游戏逐块出
 独审发现并修正旧路径只信phase日志、未绑定mount参数和实验观察器版本的问题；最终v2原始20次记录已冻结，初版两份保留superseded。旧路径从本候选literal资产派生并核实际完整图元树；新旧各41页/40输入有效，但两者均因同步长阻塞FAIL，旧包另复现完整结构前已可见。最终定向62/62、原CI库存/分片合同18/18通过。#581曾被并发关闭删分支，经本轮Owner授权恢复；当前等待新精确SHA独审与远端Full，不提前勾AC5。
 
 最终producer只剥离已知GIL来源路径和构建器UUID日志，完整源码/候选身份另绑定；真实#565完整save改目录/buildId的内存探针可比，实际Lua/资源/mount变化不可比。最终v3回放摘要与producer源码身份已冻结，前两版保留。定向63/63通过；CI库存合同仍沿原18/18，不重复Full。任务AC5继续等待当前HEAD独审和完整远端准入。
+
+正式Full42560668427首轮29回归分片成功，POSIX3/14和Windows6在Luacheck下载504前置失败；失败项补跑后POSIX3仍504。已保存四份job原始日志与摘要，未把未执行测试写成通过。最小纠偏为现有curl原生有界重试，版本/SHA/60秒下载与65秒进程上限均不变；真实loopback RED/GREEN及持续失败/404/坏哈希反例20/20通过，原测试库存和预算不变。新增下载源修复将随本PR重新独审及验证，不绕门禁。
 <!-- SECTION:NOTES:END -->
