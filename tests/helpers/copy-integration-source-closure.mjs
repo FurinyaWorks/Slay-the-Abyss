@@ -55,7 +55,7 @@ const files={...JSON.parse(bytes),...{
 },...{
   // Current component epoch overlay; the frozen closure and prior overlay above
   // retain their exact bytes and hashes for their original source epochs.
-  "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "c082e8dd14d0d91a9becefe73c8051a740deae0bca5ada1050c292f60348ea52",
+  "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "5341c965ce41e956f153caf90c2e2097ccaee447a2d1e53a5aa666d15a238882",
   "tests/helpers/combined-epoch/source-epoch.mjs": "7b469cc3098e8db2360bac4e4427757a47f7185221708be1cd66a7b029093601",
   "tests/helpers/component-ui-source-epoch.mjs": "311d47d5fc85c29021a124f53cf836d54121178685e23d2499f1d3e2d79cfba9",
   "tests/helpers/core-lifecycle-source-inverse.mjs": "9824634c2b83a02b8902b528d5417caf1d996dbd2fc35f2e8388c5b8d3e375a4",

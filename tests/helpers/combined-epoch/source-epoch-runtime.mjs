@@ -54,11 +54,18 @@ function assertReusableFrozenData(value,seen=new WeakSet(),active=new WeakSet())
  if(seen.has(value))return;
  assert(Object.isFrozen(value),'reused source data must be frozen');
  assert.equal(Object.getOwnPropertySymbols(value).length,0,'reused source data has no symbol keys');
- const prototype=Object.getPrototypeOf(value);
- assert(prototype===Object.prototype||prototype===Array.prototype||prototype===null,'reused source plain data');
+ const prototype=Object.getPrototypeOf(value),array=Array.isArray(value);
+ assert(array?prototype===Array.prototype:prototype===Object.prototype||prototype===null,'reused source plain data');
+ const descriptors=Object.getOwnPropertyDescriptors(value);
+ if(array)assert.equal(Object.keys(descriptors).length,value.length+1,'reused source complete JSON array');
  active.add(value);
- for(const descriptor of Object.values(Object.getOwnPropertyDescriptors(value))){
+ for(const [key,descriptor]of Object.entries(descriptors)){
   assert(Object.hasOwn(descriptor,'value'),'reused source data properties');
+  if(array&&key==='length')assert.equal(descriptor.enumerable,false,'reused source array length');
+  else{
+   assert.equal(descriptor.enumerable,true,'reused source enumerable JSON property');
+   if(array)assert(/^(0|[1-9][0-9]*)$/.test(key)&&Number(key)<value.length,'reused source JSON array index');
+  }
   assertReusableFrozenData(descriptor.value,seen,active);
  }
  active.delete(value);seen.add(value);
