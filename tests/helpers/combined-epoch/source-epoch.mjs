@@ -1,7 +1,7 @@
-// Preserve the complete Defect predecessor as an independently importable epoch.
-export * from './pre-formation-source-epoch.mjs';
-import {sourceEpoch as preEncounterFormationEpoch} from './pre-formation-source-epoch.mjs';
-import {extendEncounterFormationEpoch} from '../encounter-formation-source-epoch.mjs';
-export {preEncounterFormationEpoch};
-// Current public consumers authenticate all 51 changed raw owners on every call.
-export const sourceEpoch=extendEncounterFormationEpoch(preEncounterFormationEpoch);
+// Preserve the complete predecessor and all historical source identities.
+export * from './pre-flow-preparation-source-epoch.mjs';
+import {sourceEpoch as preWatcherFlowPreparationEpoch} from './pre-flow-preparation-source-epoch.mjs';
+import {extendWatcherFlowPreparationEpoch} from '../watcher-flow-preparation-source-epoch.mjs';
+export {preWatcherFlowPreparationEpoch};
+// Every projection freshly authenticates all 51 complete current owners.
+export const sourceEpoch=extendWatcherFlowPreparationEpoch(preWatcherFlowPreparationEpoch);

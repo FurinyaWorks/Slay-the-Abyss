@@ -9,9 +9,10 @@ import {watcherFlowEpoch} from './helpers/watcher-flow-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_watcher_flow_cards.lua',proof=sourceEpoch.proof,prior=preWatcherFlowEpoch.proof;
 const raw=p=>proof.current[p]?.source??null;
+import {sourceEpoch as currentEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 test('Flow outer epoch preserves every prior binding and exact frozen production byte',()=>{
  assert.equal(watcherFlowEpoch.proof.currentCommit,'c24ef4e02173d2a160382f09d32f2dec82eed5fc');
- assert.equal(raw(path),readFileSync(path,'utf8').replaceAll('\r\n','\n'));
+ assert.equal(raw(path),currentEpoch.preCombinedSource(path,readFileSync(path,'utf8'),{target:'watcherFlowPreparationPrior'}));
  assert.deepEqual(watcherFlowEpoch.proof.targets.prior.files[path],prior.current[path]);
  assert.deepEqual(proof.targets.watcherFlowPrior.files,prior.current);
  for(const [name,target]of Object.entries(prior.targets))assert.deepEqual(proof.targets[name],target,name);

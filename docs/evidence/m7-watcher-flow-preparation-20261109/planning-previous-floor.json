@@ -1,0 +1,12 @@
+{
+  "durationMs": 55668,
+  "environment": "cloud Linux local",
+  "coverage": "11/11 complete file passed; 0 failed, cancelled or skipped. Current local integration run.",
+  "kind": "Local complete-run planning floor only; not a hosted measurement, current integration pass, execution permission or timeout change.",
+  "nodeReportedDurationMs": 55667.073989,
+  "sourceLog": "docs/evidence/watcher-flow-integration-behavior-20261109.log.gz",
+  "sourceLogSha256": "b50a5e0bdc257b8e00636ff64b5dda76130ef72a43b239864764a28733da8add",
+  "sourceLogUncompressedSha256": "437f163287d7db816e0ce584709eeb904122f55a92c7d8a2a6484ed067e8b941",
+  "sourceReceipt": "docs/evidence/watcher-flow-integration-behavior-20261109.json",
+  "sourceReceiptSha256": "2171cef97972a096779972244ccfbe248caba188d0ce83e208203c39ec7a7fc5"
+}

@@ -465,3 +465,15 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# Watcher Flow card preparation source and evidence identity.
+tests/fixtures/watcher-flow-preparation-before.lua text eol=lf
+tests/helpers/watcher-flow-preparation-*.mjs text eol=lf
+tests/helpers/watcher-flow-preparation-*.lua text eol=lf
+tests/helpers/watcher-flow-preparation-*.gz -text
+tests/helpers/combined-epoch/pre-flow-preparation-source-epoch.mjs text eol=lf
+tests/watcher-flow-preparation*.test.mjs text eol=lf
+docs/evidence/m7-watcher-flow-preparation-20261109/*.json text eol=lf
+docs/evidence/m7-watcher-flow-preparation-20261109/*.mjs text eol=lf
+docs/evidence/m7-watcher-flow-preparation-20261109/*.md text eol=lf
+docs/evidence/m7-watcher-flow-preparation-20261109/*.gz -text

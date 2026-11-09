@@ -10,7 +10,9 @@ import {luaString} from '../scripts/build-lua-data.mjs';
 import {runStatic,reviewResponsibilityComplexity} from '../scripts/check-lua-static.mjs';
 import {measureSources,discoverSources} from '../scripts/lua-quality-metrics.mjs';
 import {preWatcherFlowSource,watcherFlowSourceProof as proof} from './helpers/watcher-flow-source-inverse.mjs';
+import {watcherFlowPreparationEpoch} from './helpers/watcher-flow-preparation-source-epoch.mjs';
 const file=proof.path;
+const planningSource=()=>watcherFlowPreparationEpoch.preCombinedSource(file,read(file),{target:'prior'});
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
 const before=read('tests/fixtures/watcher-flow-planning-before.lua');
 function replay(source,fixture='tests/lua/watcher_flow_planning.lua'){
@@ -24,7 +26,7 @@ function replay(source,fixture='tests/lua/watcher_flow_planning.lua'){
 const pass=r=>assert.equal(r.status,0,r.stdout+r.stderr);
 test('frozen complete source is authenticated and every unmodified responsibility is byte preserved',()=>{
  assert.equal(createHash('sha256').update(before).digest('hex'),proof.beforeSha256);
- const current=read(file);
+ const current=planningSource();
  assert.equal(current.split('-- These planners only')[0],before.split('function M.planEffect(')[0]);
  assert.equal(current.split('-- After the actual NORMAL damage')[1],before.split('-- After the actual NORMAL damage')[1]);
 });
@@ -64,7 +66,7 @@ for(const [name,from,to,diagnostic]of [
  assert.match(mutant.stdout+mutant.stderr,new RegExp(`\\[FLOW_PLAN\\] ${diagnostic}`));
 });
 test('standalone exact inverse preserves identity without accepting source drift or foreign inputs',()=>{
- const current=read(file);
+ const current=planningSource();
  for(const input of [current,current.replaceAll('\n','\r\n')])assert.equal(preWatcherFlowSource(file,input),before);
  for(const input of [before,current+'\n',current.slice(1),current+current,null,undefined,{},17])assert.equal(preWatcherFlowSource(file,input),input);
  assert.equal(preWatcherFlowSource('foreign/'+file,current),current);

@@ -5249,16 +5249,18 @@
         "sourceReceiptSha256": "99438fc4e37b780eaacab1f6f0a5ee6d7d48b35b3156d46de6e17ca8bf56ab58"
       },
       "tests/watcher-flow-planning.test.mjs": {
-        "durationMs": 55668,
+        "durationMs": 100196,
         "environment": "cloud Linux local",
-        "coverage": "11/11 complete file passed; 0 failed, cancelled or skipped. Current local integration run.",
-        "kind": "Local complete-run planning floor only; not a hosted measurement, current integration pass, execution permission or timeout change.",
-        "nodeReportedDurationMs": 55667.073989,
-        "sourceLog": "docs/evidence/watcher-flow-integration-behavior-20261109.log.gz",
-        "sourceLogSha256": "b50a5e0bdc257b8e00636ff64b5dda76130ef72a43b239864764a28733da8add",
-        "sourceLogUncompressedSha256": "437f163287d7db816e0ce584709eeb904122f55a92c7d8a2a6484ed067e8b941",
-        "sourceReceipt": "docs/evidence/watcher-flow-integration-behavior-20261109.json",
-        "sourceReceiptSha256": "2171cef97972a096779972244ccfbe248caba188d0ce83e208203c39ec7a7fc5"
+        "tests": 11,
+        "coverage": "11/11 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 100195.360976,
+        "sourceLog": "docs/evidence/m7-watcher-flow-preparation-20261109/planning.log.gz",
+        "sourceLogSha256": "a62a3a712afe3201dd376d4ba246a8b5c94243d69c74340bedcfc7547c93c51c",
+        "sourceLogUncompressedSha256": "d02958f0f289479ab658069b07acc759cafc668d8bae4b93fbeca2a335f08bbd",
+        "testSha256": "41fd5f0999ebd05e29d0ae251ee4b26cd5113d9bf53f3b49b08b1628345d6115",
+        "sourceReceipt": "docs/evidence/m7-watcher-flow-preparation-20261109/planning-receipt.json",
+        "sourceReceiptSha256": "f55bc881458613ca7f94edf1d3dfa10100fef29c5124b9b9a552e9634c5013b7"
       },
       "tests/silent-tactics-planning.test.mjs": {
         "durationMs": 21636,
@@ -6173,6 +6175,34 @@
         },
         "sourceReceipt": "docs/evidence/m7-formation-20261109/behavior-final-receipt.json",
         "sourceReceiptSha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc"
+      },
+      "tests/watcher-flow-preparation.test.mjs": {
+        "durationMs": 10349,
+        "environment": "cloud Linux local",
+        "tests": 3,
+        "coverage": "3/3 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 10348.194282,
+        "sourceLog": "docs/evidence/m7-watcher-flow-preparation-20261109/behavior-initial.log.gz",
+        "sourceLogSha256": "9cb36df73cbd953433de06dfbd7adb0739610af2300d9acea35ea586bbeee9f9",
+        "sourceLogUncompressedSha256": "65aea01f94ae294a181dd01e774efd64c21688a061bc9084dee88f7de0eacad1",
+        "testSha256": "5a8125dba9275913470b36d92a02989f767c5055777e98682786b461be8ee58e",
+        "sourceReceipt": "docs/evidence/m7-watcher-flow-preparation-20261109/behavior-receipt.json",
+        "sourceReceiptSha256": "5122e6f9dad057fdda9f8393e76770084b673f382390e4a714e02387d1fd7f17"
+      },
+      "tests/watcher-flow-preparation-source-epoch.test.mjs": {
+        "durationMs": 50618,
+        "environment": "cloud Linux local",
+        "tests": 11,
+        "coverage": "11/11 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 50617.079563,
+        "sourceLog": "docs/evidence/m7-watcher-flow-preparation-20261109/source.log.gz",
+        "sourceLogSha256": "731c35a0d8a0edf3de8774f8ac7e9e1a3bd6dbdddabc3d066540c3a9ea302cd5",
+        "sourceLogUncompressedSha256": "61dcf14ba950790c1b360e58ccbd9f9bb1b05f78518dded29977b43974a4fd3e",
+        "testSha256": "fe62a081a562f0210f494e0af68be70c9130e5813bb416f4ac37616967696014",
+        "sourceReceipt": "docs/evidence/m7-watcher-flow-preparation-20261109/source-receipt.json",
+        "sourceReceiptSha256": "91f7e38ebcc56351249c21a6fab603c336ea0952693a9949aeedaad696d40409"
       }
     }
   },

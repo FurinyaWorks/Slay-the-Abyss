@@ -1,3 +1,4 @@
+import {preWatcherFlowPreparationCiSource} from './watcher-flow-preparation-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource} from './encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource} from './posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource} from './defect-final-ci-source-inverse.mjs';
@@ -138,7 +139,7 @@ export function preEffectsTargetGroupPlanningSource(path,source){
 // Only this complete combined identity can project to frozen sibling planning epochs.
 // Arbitrary source, partial floor sets and changed execution inputs pass through untouched.
 export function preCombinedPlanningSource(path,source,epoch='base'){
- if(path==='scripts/ci-test-timings.json')source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,preDefectFinalCiSource(path,preEncounterFormationCiSource(path,source))));
+ if(path==='scripts/ci-test-timings.json')source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,preDefectFinalCiSource(path,preEncounterFormationCiSource(path,preWatcherFlowPreparationCiSource(path,source)))));
  if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba')return source;
  const targets={base:'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56',flow:'20a43c9723de6f8b85a28ef863e0cdb977cc1432a8ceb25ac794d0bd6cff6543',silent:'9c088a8c3a6d4c553e58e85ef10f89f049e0f39dad14c494885568bd9352f310',effects:'aa5a35f348c759ef3aa14411aa0d52e7c7d9fd02b9086fb7a369b1aad7abd75d'};
  assert.ok(Object.hasOwn(targets,epoch),'known frozen sibling planning epoch');
@@ -154,7 +155,7 @@ export function preCombinedPlanningSource(path,source,epoch='base'){
 
 // Historical receipt source proof, gated by both complete merged and published identities.
 export function preCombinedGateSource(path,source,epoch){
- if(path==='scripts/check-lua-static.mjs')source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,preDefectFinalCiSource(path,preEncounterFormationCiSource(path,source))));
+ if(path==='scripts/check-lua-static.mjs')source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,preDefectFinalCiSource(path,preEncounterFormationCiSource(path,preWatcherFlowPreparationCiSource(path,source)))));
  if(path!=='scripts/check-lua-static.mjs'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='8253029479f041be7ec8235fcff181f941f9e3190412c587a3b06904452903c1')return source;
  const targets={"flow": "c90c522a35efa86a444d973d6c90d0e42c7e02cc4bd1d4a49e5e94fdd331fa51", "silent": "61b3588acbea2e47e2812903acfbbe149eac1858fbb6a0ed86d38fe96074df8d", "effects": "10d11c5f5294ac48929d9d4946cb7b92d18881507c09b5825e1dd2b8a813715c"},edits={"flow": [["  'src/lua/abyss_silent_tactics_cards.lua': [],\n", ""], ["    ...['visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',\n      'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n", "    ...['denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n"], ["  || file==='src/lua/abyss_silent_tactics_cards.lua'\n", ""]], "silent": [["  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']\n    .map(name=>`function '${name}'`),\n", ""], ["    ...['visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',\n      'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n", "    ...['denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n"]], "effects": [["  'src/lua/abyss_silent_tactics_cards.lua': [],\n  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']\n    .map(name=>`function '${name}'`),\n", ""], ["  || file==='src/lua/abyss_silent_tactics_cards.lua'\n", ""]]};
  assert.ok(Object.hasOwn(targets,epoch),'known frozen sibling gate epoch');

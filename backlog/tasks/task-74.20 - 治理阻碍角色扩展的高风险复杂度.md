@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T01:07:00Z'
+updated_date: '2026-11-09T06:37:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -31,6 +31,7 @@ documentation:
   - docs/backlog-details/M7-DEFECT-COST-20261109.md
   - docs/backlog-details/M7-ENCOUNTER-FORMATION-20261109.md
   - docs/backlog-details/M7-FORMATION-POSIX15-INTEGRATION-20261109.md
+  - docs/evidence/m7-watcher-flow-preparation-20261109/README.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -105,6 +106,8 @@ ordinal: 162000
 2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
 
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
+
+2026-11-09 主控接续既有M7任务：避开#579/#581/#582/#583/#584及SilentPotions在途文件，隔离于develop 1eb28847治理WatcherFlow.withCards初始化复杂度。保留原生牌、衍生牌兼容校验、共享Vigor身份及次序；完整旧新输入/输出/错误对照，新增职责CC15及负控；来源与成本只作必要适配，独审后及时正常上传提草稿PR，不重复Full、不改owner/status/AC。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -191,4 +194,12 @@ Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原PO
 已在独立树整合公开#574@841510b7与#575@d21be2fb，保全两父全部生产/历史证据。组合800JS/1410Lua复算Windows1794163（余5837）、POSIX15为1128812（余71188），旧14超5156保持可复现；仅4共享文本冲突，预算/floor/unknown/并发/worker不变。独审核8125非冲突原路径字节一致；当前定向测试和最终独审收口中，不重复Full或提前勾AC。
 
 POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入前后hash一致；历史/当前投影4370+6976比较重放一致。独审13455比较、17桥拒绝和40准入validator拒绝负控通过，原始失败保留。以原#575与#574为两父合并更新同PR；仅本地组合验证及规划通过，未跑本HEAD Hosted Full，继续Draft与正常准入，不勾AC。
+
+2026-11-09 WatcherFlow.withCards职责切片已实际完成：入口CC32→5、六helper最大10，全338模块/5610测量，>CC30 33→32、>CC15 209→208，SCC68/11/2和14旧告警保持。原/新各129完整图、9语义负控和原Combat各28/28通过，独审另64边界图通过；来源51owner11/11默认堆通过，初版OOM及有界修复日志保留。生产已远端5cb327e4保全；完整测试/来源/成本合同与最终独审正常收口，不重复Full，不改owner/status/AC。证据见docs/evidence/m7-watcher-flow-preparation-20261109/README.md。
+
+WatcherFlow当前成本补记：原规划完整11/11实测100195.360976ms，保留不利样本并将当前floor提高到100196，旧55668历史收据不改。实际802JS/1410Lua预测Windows17为1800264ms，超原1800000预算264ms；POSIX15为1135841。保留预算失败、原分片和门槛，成本准入BLOCKED；此前58/58早于该样本纳入，不能冒充最终通过。完整证据仍及时上传同草稿线，不ready/入队/合并。
+
+WatcherFlow最终定向CI58项57通过/1失败，唯一失败Windows成本超264ms；全部历史、当前802/1410完整库存与三份成本收据断言通过。源码/来源独审通过，最终草稿只报告代码完成与成本BLOCKED，不称准入或合并完成。
+
+最终口径澄清：58项中其余57项通过，完整库存测试在Windows预算断言失败，后续POSIX及工作流断言未执行。POSIX1135841来自独立完整复算，不把失败测试的未执行部分称为通过。历史成本及三份收据测试均实际通过。
 <!-- SECTION:NOTES:END -->

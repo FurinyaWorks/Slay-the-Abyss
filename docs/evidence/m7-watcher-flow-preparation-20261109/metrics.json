@@ -1,0 +1,415 @@
+{
+  "base": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "before": {
+    "modules": 338,
+    "measurements": 5604,
+    "over30": 33,
+    "over15": 209,
+    "max": 61,
+    "scc": [
+      {
+        "members": 68,
+        "positions": 513
+      },
+      {
+        "members": 11,
+        "positions": 44
+      },
+      {
+        "members": 2,
+        "positions": 2
+      }
+    ],
+    "warnings": 14
+  },
+  "after": {
+    "modules": 338,
+    "measurements": 5610,
+    "over30": 32,
+    "over15": 208,
+    "max": 61,
+    "scc": [
+      {
+        "members": 68,
+        "positions": 513
+      },
+      {
+        "members": 11,
+        "positions": 44
+      },
+      {
+        "members": 2,
+        "positions": 2
+      }
+    ],
+    "warnings": 14
+  },
+  "sourceSha256": "70cc12dd3994914d8ac636d85de714a417930d28400f372e351d3ec7788049ef",
+  "sourceFile": "src/lua/abyss_watcher_flow_cards.lua",
+  "scoped": [
+    {
+      "id": "$",
+      "name": "<chunk>",
+      "kind": "chunk",
+      "constructorName": false,
+      "line": 1,
+      "column": 1,
+      "endLine": 302,
+      "lines": 302,
+      "complexity": 1
+    },
+    {
+      "id": "$/copy#1",
+      "name": "copy",
+      "kind": "function",
+      "constructorName": false,
+      "line": 8,
+      "column": 7,
+      "endLine": 12,
+      "lines": 5,
+      "complexity": 3
+    },
+    {
+      "id": "$/int#1",
+      "name": "int",
+      "kind": "function",
+      "constructorName": false,
+      "line": 13,
+      "column": 7,
+      "endLine": 15,
+      "lines": 3,
+      "complexity": 6
+    },
+    {
+      "id": "$/e#1",
+      "name": "e",
+      "kind": "function",
+      "constructorName": false,
+      "line": 16,
+      "column": 7,
+      "endLine": 16,
+      "lines": 1,
+      "complexity": 3
+    },
+    {
+      "id": "$/gain#1",
+      "name": "gain",
+      "kind": "function",
+      "constructorName": false,
+      "line": 17,
+      "column": 7,
+      "endLine": 17,
+      "lines": 1,
+      "complexity": 1
+    },
+    {
+      "id": "$/make#1",
+      "name": "make",
+      "kind": "function",
+      "constructorName": false,
+      "line": 18,
+      "column": 7,
+      "endLine": 20,
+      "lines": 3,
+      "complexity": 3
+    },
+    {
+      "id": "$/indexFlowInput#1",
+      "name": "indexFlowInput",
+      "kind": "function",
+      "constructorName": false,
+      "line": 79,
+      "column": 7,
+      "endLine": 84,
+      "lines": 6,
+      "complexity": 3
+    },
+    {
+      "id": "$/prepareFlowCard#1",
+      "name": "prepareFlowCard",
+      "kind": "function",
+      "constructorName": false,
+      "line": 85,
+      "column": 7,
+      "endLine": 92,
+      "lines": 8,
+      "complexity": 6
+    },
+    {
+      "id": "$/prepareNativeCards#1",
+      "name": "prepareNativeCards",
+      "kind": "function",
+      "constructorName": false,
+      "line": 93,
+      "column": 7,
+      "endLine": 99,
+      "lines": 7,
+      "complexity": 2
+    },
+    {
+      "id": "$/validateDerivative#1",
+      "name": "validateDerivative",
+      "kind": "function",
+      "constructorName": false,
+      "line": 100,
+      "column": 7,
+      "endLine": 104,
+      "lines": 5,
+      "complexity": 7
+    },
+    {
+      "id": "$/prepareDerivativeCards#1",
+      "name": "prepareDerivativeCards",
+      "kind": "function",
+      "constructorName": false,
+      "line": 105,
+      "column": 7,
+      "endLine": 120,
+      "lines": 16,
+      "complexity": 5
+    },
+    {
+      "id": "$/prepareFlowPowers#1",
+      "name": "prepareFlowPowers",
+      "kind": "function",
+      "constructorName": false,
+      "line": 121,
+      "column": 7,
+      "endLine": 136,
+      "lines": 16,
+      "complexity": 10
+    },
+    {
+      "id": "$/M.withCards#1",
+      "name": "M.withCards",
+      "kind": "function",
+      "constructorName": false,
+      "line": 137,
+      "column": 1,
+      "endLine": 145,
+      "lines": 9,
+      "complexity": 5
+    },
+    {
+      "id": "$/plan#1",
+      "name": "plan",
+      "kind": "function",
+      "constructorName": false,
+      "line": 146,
+      "column": 7,
+      "endLine": 146,
+      "lines": 1,
+      "complexity": 1
+    },
+    {
+      "id": "$/amount#1",
+      "name": "amount",
+      "kind": "function",
+      "constructorName": false,
+      "line": 147,
+      "column": 7,
+      "endLine": 150,
+      "lines": 4,
+      "complexity": 3
+    },
+    {
+      "id": "$/M.adaptDefinition#1",
+      "name": "M.adaptDefinition",
+      "kind": "function",
+      "constructorName": false,
+      "line": 151,
+      "column": 1,
+      "endLine": 155,
+      "lines": 5,
+      "complexity": 1
+    },
+    {
+      "id": "$/M.damageBonus#1",
+      "name": "M.damageBonus",
+      "kind": "function",
+      "constructorName": false,
+      "line": 156,
+      "column": 1,
+      "endLine": 159,
+      "lines": 4,
+      "complexity": 6
+    },
+    {
+      "id": "$/M.prepareEffect#1",
+      "name": "M.prepareEffect",
+      "kind": "function",
+      "constructorName": false,
+      "line": 160,
+      "column": 1,
+      "endLine": 169,
+      "lines": 10,
+      "complexity": 6
+    },
+    {
+      "id": "$/planDamage#1",
+      "name": "planDamage",
+      "kind": "function",
+      "constructorName": false,
+      "line": 171,
+      "column": 7,
+      "endLine": 185,
+      "lines": 15,
+      "complexity": 6
+    },
+    {
+      "id": "$/planStance#1",
+      "name": "planStance",
+      "kind": "function",
+      "constructorName": false,
+      "line": 186,
+      "column": 7,
+      "endLine": 191,
+      "lines": 6,
+      "complexity": 3
+    },
+    {
+      "id": "$/planCollect#1",
+      "name": "planCollect",
+      "kind": "function",
+      "constructorName": false,
+      "line": 192,
+      "column": 7,
+      "endLine": 199,
+      "lines": 8,
+      "complexity": 8
+    },
+    {
+      "id": "$/planPower#1",
+      "name": "planPower",
+      "kind": "function",
+      "constructorName": false,
+      "line": 200,
+      "column": 7,
+      "endLine": 212,
+      "lines": 13,
+      "complexity": 6
+    },
+    {
+      "id": "$/planRecall#1",
+      "name": "planRecall",
+      "kind": "function",
+      "constructorName": false,
+      "line": 213,
+      "column": 7,
+      "endLine": 220,
+      "lines": 8,
+      "complexity": 5
+    },
+    {
+      "id": "$/M.planEffect#1",
+      "name": "M.planEffect",
+      "kind": "function",
+      "constructorName": false,
+      "line": 221,
+      "column": 1,
+      "endLine": 231,
+      "lines": 11,
+      "complexity": 12
+    },
+    {
+      "id": "$/M.planWallop#1",
+      "name": "M.planWallop",
+      "kind": "function",
+      "constructorName": false,
+      "line": 233,
+      "column": 1,
+      "endLine": 237,
+      "lines": 5,
+      "complexity": 2
+    },
+    {
+      "id": "$/M.planHook#1",
+      "name": "M.planHook",
+      "kind": "function",
+      "constructorName": false,
+      "line": 239,
+      "column": 1,
+      "endLine": 254,
+      "lines": 16,
+      "complexity": 23
+    },
+    {
+      "id": "$/M.planUseCard#1",
+      "name": "M.planUseCard",
+      "kind": "function",
+      "constructorName": false,
+      "line": 255,
+      "column": 1,
+      "endLine": 259,
+      "lines": 5,
+      "complexity": 4
+    },
+    {
+      "id": "$/M.planAttacked#1",
+      "name": "M.planAttacked",
+      "kind": "function",
+      "constructorName": false,
+      "line": 260,
+      "column": 1,
+      "endLine": 266,
+      "lines": 7,
+      "complexity": 7
+    },
+    {
+      "id": "$/recall#1",
+      "name": "recall",
+      "kind": "function",
+      "constructorName": false,
+      "line": 267,
+      "column": 7,
+      "endLine": 273,
+      "lines": 7,
+      "complexity": 3
+    },
+    {
+      "id": "$/M.planStanceChange#1",
+      "name": "M.planStanceChange",
+      "kind": "function",
+      "constructorName": false,
+      "line": 274,
+      "column": 1,
+      "endLine": 279,
+      "lines": 6,
+      "complexity": 4
+    },
+    {
+      "id": "$/M.planScry#1",
+      "name": "M.planScry",
+      "kind": "function",
+      "constructorName": false,
+      "line": 282,
+      "column": 1,
+      "endLine": 285,
+      "lines": 4,
+      "complexity": 3
+    },
+    {
+      "id": "$/M.disposalPlan#1",
+      "name": "M.disposalPlan",
+      "kind": "function",
+      "constructorName": false,
+      "line": 286,
+      "column": 1,
+      "endLine": 291,
+      "lines": 6,
+      "complexity": 3
+    },
+    {
+      "id": "$/M.applicationPlan#1",
+      "name": "M.applicationPlan",
+      "kind": "function",
+      "constructorName": false,
+      "line": 293,
+      "column": 1,
+      "endLine": 301,
+      "lines": 9,
+      "complexity": 5
+    }
+  ],
+  "unchangedDependencies": true
+}
