@@ -1,48 +1,93 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {evaluateIntake,localToday} from '../scripts/check-task-intake.mjs';
-const policy={sprint:{id:'2026-11-03',start:'2026-11-03',end:'2026-11-09',primaryMilestone:'m-7'},
-  milestoneOrder:['m-7','m-8','m-9'],parallelTaskIds:['TASK-4.18'],blockedUntilOwnerApproval:['TASK-85','TASK-96']};
-const check=(id,milestone,status='To Do',today='2026-11-03')=>evaluateIntake({id,task:{id,milestone,status},policy,today});
-test('engineering task is eligible when genuinely unclaimed',()=>assert.equal(check('TASK-74','m-7').decision,'ALLOW'));
-test('TASK-85/96 never auto-claim in current sprint',()=>{for(const id of ['TASK-85','TASK-96'])assert.equal(check(id,'m-8').decision,'HOLD')});
-test('all other M8 and M9 default to hold',()=>{assert.equal(check('TASK-25','m-8').decision,'HOLD');assert.equal(check('TASK-97','m-9').decision,'HOLD')});
-test('explicit parallel M8 fix may start but not duplicate',()=>{assert.equal(check('TASK-4.18','m-8').decision,'ALLOW');assert.equal(check('TASK-4.18','m-8','In Progress').decision,'HOLD')});
-test('in-progress engineering never duplicates',()=>assert.equal(check('TASK-74','m-7','In Progress').decision,'HOLD'));
-test('calendar expiry does not move the phase automatically',()=>{assert.equal(check('TASK-74','m-7','To Do','2026-11-10').decision,'HOLD');assert.equal(check('TASK-97','m-9','To Do','2026-11-10').decision,'HOLD')});
-test('unknown task and invalid identity remain blocked',()=>{assert.equal(evaluateIntake({id:'TASK-74',task:null,policy,today:'2026-11-03'}).decision,'HOLD');assert.equal(check('TASK-xyz','m-7').decision,'HOLD')});
-test('Beijing date is YYYY-MM-DD in canonical order',()=>assert.equal(localToday('Asia/Shanghai',new Date('2026-11-03T00:00:00Z')),'2026-11-03'));
+import {mkdtempSync,mkdirSync,readFileSync,writeFileSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {evaluateIntake,loadTask} from '../scripts/check-task-intake.mjs';
 
-const attempt=patch=>evaluateIntake({id:'TASK-74',task:{id:'TASK-74',milestone:'m-7',status:'To Do'},policy:{...policy,...patch},today:'2026-11-03'});
-test('missing and malformed date windows fail closed',()=>{
-  for(const date of [undefined,null,'','2026-2-03','2026-02-30','garbage',20261103]) {
-    for(const key of ['start','end']) assert.equal(attempt({sprint:{...policy.sprint,[key]:date}}).decision,'HOLD',key+': '+date);
-  }
-  assert.equal(attempt({sprint:{...policy.sprint,start:'2026-11-10',end:'2026-11-01'}}).decision,'HOLD');
+const policy={schemaVersion:1,blockedUntilOwnerApproval:['TASK-85','TASK-96','TASK-97','TASK-62','TASK-64']};
+const check=(id,milestone,status='To Do',extra={})=>evaluateIntake({id,task:{id,milestone,status},policy,...extra});
+
+test('an unclaimed engineering task needs no Sprint or current date',()=>assert.equal(check('TASK-74','m-7').decision,'ALLOW'));
+test('milestone membership does not gate an otherwise eligible task',()=>{
+  for(const milestone of ['m-7','m-8','m-9','m-5',null]) assert.equal(check('TASK-25',milestone).decision,'ALLOW',String(milestone));
 });
-test('invalid policy shapes return HOLD without throwing',()=>{
-  for(const candidate of [null,{}, {sprint:{}}, {...policy,milestoneOrder:[]}, {...policy,milestoneOrder:['m-9','m-8','m-7']}, {...policy,sprint:{...policy.sprint,primaryMilestone:'m-42'}}, {...policy,parallelTaskIds:'TASK-74'}, {...policy,blockedUntilOwnerApproval:'TASK-85'}]) {
-    assert.equal(evaluateIntake({id:'TASK-74',task:{id:'TASK-74',milestone:'m-7',status:'To Do'},policy:candidate,today:'2026-11-03'}).decision,'HOLD');
+test('past, future and absent calendar inputs cannot close task intake',()=>{
+  for(const today of ['2026-11-02','2026-11-03','2026-11-10','2027-01-01',undefined]) {
+    assert.equal(check('TASK-25','m-8','To Do',{today}).decision,'ALLOW',String(today));
   }
 });
-test('invalid current date cannot bypass a valid window',()=>{
-  for(const today of ['','2026-11-3','2026-02-30']) assert.equal(check('TASK-74','m-7','To Do',today).decision,'HOLD');
+test('obsolete Sprint lanes and dates cannot restore an intake gate',()=>{
+  const legacy={...policy,sprint:{id:'old',start:'2026-11-03',end:'2026-11-09',primaryMilestone:'m-7'},
+    milestoneOrder:['m-7','m-8','m-9'],parallelTaskIds:[],historicalM8TaskIds:['TASK-4.9']};
+  for(const [id,milestone] of [['TASK-25','m-8'],['TASK-99','m-9'],['TASK-4.9','m-5']]) {
+    assert.equal(check(id,milestone,'To Do',{policy:legacy,today:'2026-11-10'}).decision,'ALLOW');
+  }
+});
+test('explicit Owner approvals survive removal of Sprint gates',()=>{
+  for(const id of ['TASK-85','TASK-96','TASK-97','TASK-62','TASK-64']) {
+    const result=check(id,'m-8');
+    assert.equal(result.decision,'HOLD',id);
+    assert.ok(result.reasons.includes('explicit Owner approval required'),id);
+  }
+});
+test('active, blocked and completed work cannot be claimed again in any milestone',()=>{
+  for(const milestone of ['m-7','m-8','m-9','m-5']) for(const status of ['In Progress','Blocked','Done',undefined,'']) {
+    const result=evaluateIntake({id:'TASK-4.18',task:{id:'TASK-4.18',milestone,status},policy});
+    assert.equal(result.decision,'HOLD',`${milestone}: ${status}`);
+    assert.ok(result.reasons.some(reason=>reason.includes('instead of duplicating')));
+  }
+});
+test('unknown tasks, mismatched records and invalid identities remain blocked',()=>{
+  for(const candidate of [
+    {id:'TASK-74',task:null},
+    {id:'TASK-74',task:{id:'TASK-75',status:'To Do'}},
+    ...['TASK-xyz','74','',undefined].map(id=>({id,task:{id,status:'To Do'}})),
+  ]) assert.equal(evaluateIntake({...candidate,policy}).decision,'HOLD');
+});
+test('missing or malformed approval policy fails closed without throwing',()=>{
+  for(const candidate of [null,{},[],{schemaVersion:1},{...policy,schemaVersion:2},
+    {...policy,blockedUntilOwnerApproval:null},{...policy,blockedUntilOwnerApproval:'TASK-85'},
+    {...policy,blockedUntilOwnerApproval:['not-a-task']},{...policy,blockedUntilOwnerApproval:[null]}]) {
+    const result=check('TASK-85','m-8','To Do',{policy:candidate});
+    assert.equal(result.decision,'HOLD');
+    assert.ok(result.reasons.includes('task intake policy invalid'));
+  }
 });
 
-test('historical M5 experience work is reachable only after explicit M8 refresh',()=>{
-  const historical={...policy,historicalM8TaskIds:['TASK-4.9','TASK-4.10']};
-  const evaluate=(id,status='To Do',milestone='m-5',p=historical)=>evaluateIntake({id,task:{id,milestone,status},policy:p,today:'2026-11-03'});
-  assert.equal(evaluate('TASK-4.9').decision,'HOLD');
-  const next={...historical,sprint:{...policy.sprint,primaryMilestone:'m-8'}};
-  assert.equal(evaluate('TASK-4.9','To Do','m-5',next).decision,'ALLOW');
-  assert.equal(evaluate('TASK-4.10','In Progress','m-5',next).decision,'HOLD');
-  assert.equal(evaluate('TASK-999','To Do','m-5',next).decision,'HOLD');
-  assert.equal(evaluate('TASK-4.9','To Do','m-6',next).decision,'HOLD');
-  assert.equal(attempt({historicalM8TaskIds:'TASK-74'}).decision,'HOLD');
+function fixture(t) {
+  const root=mkdtempSync(join(tmpdir(),'task-intake-'));
+  t.after(()=>rmSync(root,{recursive:true,force:true}));
+  for(const directory of ['config','backlog/tasks']) mkdirSync(join(root,directory),{recursive:true});
+  writeFileSync(join(root,'config/task-intake.json'),JSON.stringify(policy));
+  return root;
+}
+function writeTask(root,id,status='To Do',suffix='fixture') {
+  writeFileSync(join(root,`backlog/tasks/${id.toLowerCase()} - ${suffix}.md`),`---\nid: ${id}\nstatus: ${status}\nmilestone: m-8\n---\n`);
+}
+test('task loading rejects missing and duplicate task files',t=>{
+  const root=fixture(t);
+  assert.equal(loadTask('TASK-25',root),null);
+  writeTask(root,'TASK-25');
+  assert.deepEqual(loadTask('TASK-25',root),{id:'TASK-25',status:'To Do',milestone:'m-8'});
+  writeTask(root,'TASK-25','To Do','duplicate');
+  assert.equal(loadTask('TASK-25',root),null);
 });
-
-test('missing explicit approval policy cannot silently unlock guarded work',()=>{
-  const {blockedUntilOwnerApproval,...incomplete}=policy;
-  const result=evaluateIntake({id:'TASK-85',task:{id:'TASK-85',milestone:'m-8',status:'To Do'},policy:{...incomplete,sprint:{...policy.sprint,primaryMilestone:'m-8'}},today:'2026-11-03'});
-  assert.equal(result.decision,'HOLD');
+test('CLI reads the non-calendar policy and remains read-only for ALLOW and HOLD',t=>{
+  const root=fixture(t);
+  writeTask(root,'TASK-25');
+  writeTask(root,'TASK-85');
+  writeTask(root,'TASK-4.18','In Progress');
+  const script=fileURLToPath(new URL('../scripts/check-task-intake.mjs',import.meta.url));
+  for(const [id,status] of [['TASK-25',0],['TASK-85',1],['TASK-4.18',1]]) {
+    const path=join(root,`backlog/tasks/${id.toLowerCase()} - fixture.md`), before=readFileSync(path,'utf8');
+    const result=spawnSync(process.execPath,[script,id],{cwd:root,encoding:'utf8'});
+    assert.ifError(result.error);
+    assert.equal(result.status,status,result.stdout+result.stderr);
+    assert.match(result.stdout,new RegExp(`^${status?'HOLD':'ALLOW'} ${id.replaceAll('.','\\.')}\\n`));
+    if(!status) assert.match(result.stdout,/does not claim the task/);
+    assert.equal(readFileSync(path,'utf8'),before);
+  }
 });
