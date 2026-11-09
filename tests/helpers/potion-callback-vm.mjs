@@ -5,7 +5,7 @@ import {readFileSync,readdirSync,mkdirSync,writeFileSync,appendFileSync,mkdtempS
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {performance} from 'node:perf_hooks';
-import {potionCallbackBefore} from './potion-callback-source-inverse.mjs';
+import {potionCallbackBefore} from './epochs/potion/tests/helpers/potion-callback-source-inverse.mjs';
 import {installLuaGraphObserver} from './lua-graph-observer.mjs';
 import {luaString} from '../../scripts/build-lua-data.mjs';
 import {generatedRuntimeModules} from '../../scripts/build-native-candidate.mjs';

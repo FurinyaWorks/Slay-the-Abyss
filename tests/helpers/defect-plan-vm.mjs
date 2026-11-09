@@ -4,7 +4,7 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
 import {luaString} from '../../scripts/build-lua-data.mjs';
 import {installLuaGraphObserver} from './lua-graph-observer.mjs';
-import {comparableDefectPlanError,verifyDefectPlanErrorSites} from './defect-plan-source-inverse.mjs';
+import {comparableDefectPlanError,verifyDefectPlanErrorSites} from './epochs/defect/tests/helpers/defect-plan-source-inverse.mjs';
 const {lua,lauxlib,lualib,to_luastring,to_jsstring}=createRequire(import.meta.url)('fengari');
 const {source,fixture,mode,group,output}=JSON.parse(readFileSync(0,'utf8'));
 verifyDefectPlanErrorSites(readFileSync('src/lua/abyss_defect_engine_cards.lua','utf8'));

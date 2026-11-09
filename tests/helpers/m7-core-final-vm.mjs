@@ -1,6 +1,6 @@
 import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
-import {m7FinalBefore} from './m7-core-final-source-inverse.mjs';
+import {m7FinalBefore} from './epochs/develop/tests/helpers/m7-core-final-source-inverse.mjs';
 import {installLuaGraphObserver} from './lua-graph-observer.mjs';
 import {luaString} from '../../scripts/build-lua-data.mjs';
 const require=createRequire(import.meta.url);
