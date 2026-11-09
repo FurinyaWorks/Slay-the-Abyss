@@ -22,6 +22,7 @@ import {enemyAiPlanningKey,enemyAiPlanningFloor,enemyAiPlanningProof,preEnemyAiP
 import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from './helpers/watcher-planning-source-inverse.mjs';
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
+import {execFileSync} from 'node:child_process';
 import assert from 'node:assert/strict';
 import {readFileSync as actualDiskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -1105,6 +1106,8 @@ test('Golden Idol complete local floors authenticate actual files and preserve e
   assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);delete current.jsPlanning.localLowerBounds[key];
   const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
   assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+  const attribute=execFileSync('git',['check-attr','eol','--',floor.sourceReceipt],{encoding:'utf8'}).trim();
+  assert.equal(attribute,floor.sourceReceipt+': eol: lf','raw authenticated Golden Idol receipt must retain LF checkout bytes');
   const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
   assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
   assert.equal(receipt.test,key);assert.deepEqual([receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[floor.tests,floor.tests,0,0,0]);

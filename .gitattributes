@@ -478,3 +478,6 @@ tests/helpers/golden-idol-vm.mjs text eol=lf
 tests/helpers/golden-idol-cases.lua text eol=lf
 tests/golden-idol-responsibilities.test.mjs text eol=lf
 tests/helpers/golden-idol-ci-source-inverse.mjs text eol=lf
+
+# Golden Idol measured receipt is authenticated as exact raw Git bytes.
+docs/evidence/m7-golden-idol-20261109/source-receipt.json text eol=lf
