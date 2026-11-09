@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-09T04:35:59.047Z",
+  "status": "OFFLINE_V25_INPUT_AND_PRESSURE_VERIFIED_WITH_VISUAL_GAPS",
+  "latest": {
+    "buildId": "022017af-c7f5-47b8-8ca2-e1a80973ab4e",
+    "sourceCommit": "fc98f4e38ad1eaa2fb14a775f410f3dce9014158",
+    "sourceDirty": false,
+    "payloadDigest": "66c576206ade7676c0f0f160cb8858410154ee1a742cf73ce9a6536ac70827b1",
+    "gilSha256": "2c03f6a516430150f460f25d942c4ebe137411c49ece4bc66334d4ba729e278a",
+    "gilBytes": 19325077,
+    "artFeatures": {
+      "schemaVersion": 2,
+      "flags": {
+        "cards": false,
+        "menuBackground": true,
+        "selectionAvatar": true,
+        "battlePortrait": true,
+        "monsters": false
+      },
+      "configSha256": "ccbdd316ebb7fa3e136ad694977d4061a4f9ac6802fc638b089ea60dd4ad30f4"
+    },
+    "uiProfile": {
+      "schemaVersion": 1,
+      "nativePageLifecycle": false,
+      "configSha256": "f162e53dcf4da6e3e0e92c80f947844d85fb45ff5a4c77ecf189ebf594adfeb1"
+    },
+    "experimentalBattleChrome": "v25-layered-v1",
+    "packedV25TextureProfile": "source-rgba-packed-v1",
+    "packedV25CardTemplates": 10
+  },
+  "previousNatural": {
+    "buildId": "20539540-ad83-4c49-adf9-053fed46624a",
+    "sourceCommit": "e61b917a38e4ffaf360f391b57cc8f2565b46a58",
+    "sourceDirty": true,
+    "payloadDigest": "1474e3def9f65e8a327f481c15aafa7a0ed81ed70384b82d261e5bbf73bb5333",
+    "gilSha256": "d54707edceb4060147797008545bd852a40b1c1e1c7c3d37f749bc36524e90f6",
+    "gilBytes": 19320431,
+    "artFeatures": {
+      "schemaVersion": 2,
+      "flags": {
+        "cards": false,
+        "menuBackground": true,
+        "selectionAvatar": true,
+        "battlePortrait": true,
+        "monsters": false
+      },
+      "configSha256": "ccbdd316ebb7fa3e136ad694977d4061a4f9ac6802fc638b089ea60dd4ad30f4"
+    },
+    "uiProfile": {
+      "schemaVersion": 1,
+      "nativePageLifecycle": false,
+      "configSha256": "f162e53dcf4da6e3e0e92c80f947844d85fb45ff5a4c77ecf189ebf594adfeb1"
+    },
+    "experimentalBattleChrome": "v25-layered-v1",
+    "packedV25TextureProfile": "source-rgba-packed-v1",
+    "packedV25CardTemplates": 10
+  },
+  "rawReports": [
+    {
+      "path": "task-100-1-v25-sdk-natural-20261109.json.gz",
+      "sha256": "036a7c0e6cae7bfec8a2521da8ab3339fe05a12cb1db849b788e22fa9f48c4e4",
+      "bytes": 10231
+    },
+    {
+      "path": "task-100-1-v25-sdk-latest-pressure-20261109.json.gz",
+      "sha256": "d4525ddaa62c0ee4cc470c388b762315af6301677f399d848dcf450aafcdf184",
+      "bytes": 10424
+    }
+  ],
+  "latestAssertions": {
+    "ready": true,
+    "naturalInitialRouteAndCancel": true,
+    "explicitFixture": {
+      "seed": 17,
+      "encounter": "fungi_pair",
+      "sourceFormation": "2 Fungi Beasts",
+      "productionCoreConstructor": true,
+      "productionCoreDraw": 5,
+      "starterDeckUnchanged": true,
+      "cardPoolsAndBalanceUnchanged": true,
+      "hand": 10,
+      "enemies": 2,
+      "separateNativeHitX": [
+        1166.6666666666665,
+        866.6666666666665
+      ],
+      "allTenV25SurfacesPublished": true,
+      "cancelEnergy": "3/3",
+      "slot10Defense": {
+        "energy": "2/3",
+        "hand": 9,
+        "block": 5
+      },
+      "secondEnemyAttack": {
+        "energy": "1/3",
+        "enemyHp": [
+          "16/22",
+          "23/23"
+        ]
+      },
+      "bothEnemyIntentsExecuted": true,
+      "nextTurn": {
+        "energy": "3/3",
+        "hand": 5,
+        "heroHp": "87/88"
+      }
+    },
+    "runtimeFaults": 0,
+    "harnessErrors": 0
+  },
+  "previousNaturalAssertions": {
+    "normalSeed": 33815,
+    "cancelEnergy": "3/3",
+    "originalEnemyHp": 52,
+    "threeAttacks": true,
+    "enemyTurn": true,
+    "victory": true,
+    "rewardGold": "99 -> 112",
+    "returnedToMap": true,
+    "runtimeFaults": 0,
+    "harnessRejectedRequests": [
+      {
+        "serial": 89,
+        "action": "Extra endTurn request after victory",
+        "reason": "Target hidden; rejected by test harness. Preserved in raw trace."
+      }
+    ]
+  },
+  "sourcePreservation": {
+    "privateDesignVersion": 25,
+    "privateDesignCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+    "sourceFilesCopiedByteExact": 66,
+    "originalCardPackSha256": "ad2f6aa71dfe4b491ea35e221896ec5da79bab8962de465c66cb64ec0d89cd9a",
+    "relocatedCardPackSha256": "fccfc58ceb2fee961a18084f9c1c8d3cca4fe7fc8fb7c5321bb507f4ddc95634",
+    "originalMaskPackSha256": "0086c146aecc70b7cc48d586c34c45f7f3de02f985166169ecc5de7e7b2ac714",
+    "relocatedMaskPackSha256": "98ad677f91dcaf25edc8bcdd29d541e155fa1cbe8adc989b12c86eedee54ec2b",
+    "pathRelocationOnly": true,
+    "existingLosslessPreparation": {
+      "cards": 10,
+      "cardInputs": 66,
+      "maskTemplates": 1,
+      "maskAlphaFreshRoundtrip": true
+    },
+    "communityComponentMode": false
+  },
+  "coldPreparation": {
+    "previousFiveCardAt600Steps": {
+      "frame": 2112,
+      "canvas": [
+        1600,
+        900
+      ],
+      "sdkModelTreeNodes": 48867,
+      "fullyVisibleV25CardSurfaces": 0
+    },
+    "previousFiveCardAt1800Steps": {
+      "frame": 3312,
+      "canvas": [
+        1600,
+        900
+      ],
+      "sdkModelTreeNodes": 64672,
+      "fullyVisibleV25CardSurfaces": 5
+    },
+    "latestExplicitTenCardAt2400Steps": {
+      "frame": 2712,
+      "canvas": [
+        1600,
+        900
+      ],
+      "sdkModelTreeNodes": 100466,
+      "fullyVisibleV25CardSurfaces": 10
+    },
+    "interpretation": "Bounded SDK simulated-step observations, not measured device time/FPS; 5-card surfaces were still hidden after600 steps and all visible by1800. Ten-card explicit fixture all visible by2400 steps. Original RGBA data was retained."
+  },
+  "visualComparison": {
+    "status": "NOT_PASSED",
+    "originalSiteVersion": 25,
+    "originalDesignCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+    "sameSizedCapture": {
+      "reference": [
+        1280,
+        720
+      ],
+      "sdk": [
+        1280,
+        720
+      ],
+      "sdkPlatform": "TOUCHSCREEN software model, not real mobile; native PC SDK canvas is1600x900"
+    },
+    "differences": [
+      "Menu still uses existing low-poly scene/text title; original storm-tower background and gold logo are not bound.",
+      "Character retains all4315 original 133px source primitives; fidelity differs from the original high-resolution V25 portrait.",
+      "SDK/native fonts, unsupported glyphs and default blue preset-button backing differ from the HTML reference.",
+      "Layout/content differ in places: the current live starter deck is10; static original reference screens contain their original example states.",
+      "Packed source card shells and CSS-alpha constellation are preserved losslessly, but that does not certify full-screen original V25 parity."
+    ],
+    "references": [
+      {
+        "path": "v25/reference/menu.png",
+        "sha256": "b82de44d39d98fc64295e840850e547cf822d6da875b61f95e605f3fca19d26b",
+        "viewport": [
+          1280,
+          720
+        ]
+      },
+      {
+        "path": "v25/reference/character.png",
+        "sha256": "f32a0638139513e2227230a0f6fb17be6ca0103f138c1bff0ee94e3cdad1ed41",
+        "viewport": [
+          1280,
+          720
+        ]
+      },
+      {
+        "path": "v25/reference/battle.png",
+        "sha256": "8efd110ec9cc1e1630a989caf89db6ca62dda7aaafe319f73d4564a93eb25718",
+        "viewport": [
+          1280,
+          720
+        ]
+      },
+      {
+        "path": "v25/reference/map.png",
+        "sha256": "4caa6f23c486276bf75cd6ec9c650c8c9c47bf710054968cb27e7f0f48fd827f",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    ],
+    "images": [
+      {
+        "path": "v25/sdk-harness/viewport-1280/v25-menu-1280.png",
+        "sha256": "5b1718bbfb496c17e829446cb8c2619f7fd4f15e846c10b68f2af4daecc6f75d",
+        "width": 1280,
+        "height": 720,
+        "officialClient": false
+      },
+      {
+        "path": "v25/sdk-harness/viewport-1280/v25-character-1280.png",
+        "sha256": "bc4798969cb047d078bbd4cbf0beb94767598fcdd4989ddc6d8c63679d4e9905",
+        "width": 1280,
+        "height": 720,
+        "officialClient": false
+      },
+      {
+        "path": "v25/sdk-harness/play/v25-menu-pc.png",
+        "sha256": "4af12430ae8e89ea1a8f65c525aa94c18aa5c528be59647de93a6dcd8bf154de",
+        "width": 1600,
+        "height": 900,
+        "officialClient": false
+      },
+      {
+        "path": "v25/sdk-harness/play/v25-character-settled-pc.png",
+        "sha256": "9173bff62c27e64b824b6eb0f256fdc569bb186d87eb4949d65267a85392a051",
+        "width": 1600,
+        "height": 900,
+        "officialClient": false
+      },
+      {
+        "path": "v25/sdk-harness/play/v25-battle-1800frames-pc.png",
+        "sha256": "0914cf2de35459c76246c17c027c05990895e3aea1253d948ba2acd70714741d",
+        "width": 1600,
+        "height": 900,
+        "officialClient": false
+      },
+      {
+        "path": "v25/sdk-harness/play/v25-reward-return-map.png",
+        "sha256": "a06893aac688da26ff84b3b52f38fb50c0388168fbfe63009c5a4cf9cfcf3c38",
+        "width": 1600,
+        "height": 900,
+        "officialClient": false
+      },
+      {
+        "path": "v25/sdk-harness/latest-play/latest-v25-10cards-2fungi.png",
+        "sha256": "f9449d15b02f0d0d6080a7cb359d0589120da69a7eb4aa3f866c658ce0352b70",
+        "width": 1600,
+        "height": 900,
+        "officialClient": false
+      },
+      {
+        "path": "v25/sdk-harness/latest-play/latest-v25-pressure-input-enemy-turn.png",
+        "sha256": "431ecc8a88d8c77b483236ee067243ab8e374616a48cff75ea689359328421cd",
+        "width": 1600,
+        "height": 900,
+        "officialClient": false
+      }
+    ]
+  },
+  "boundaries": [
+    "No official import/ready, official capacity, PC/Android FPS/GPU/device-memory evidence; TASK-4.21 UNVERIFIED.",
+    "Latest full natural victory/reward route was not rerun; that trace belongs only to its preceding e61b917a candidate.",
+    "Pressure state assembly is explicit and separate from normal GIL gameplay; no claim that natural starter play immediately draws10 cards.",
+    "Earlier small_slimes fixture lacked source positions and overlapped enemies; it is retained only as a diagnostic, superseded by the latest proper-source-position fungi_pair proof.",
+    "artFeatures.cards=false disables legacy card art only; the separate packed V25 card texture path is enabled and all10 surfaces were observed visible.",
+    "SDK step counts and tree-node counts are not official UI load or GPU performance."
+  ]
+}

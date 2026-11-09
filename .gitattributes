@@ -470,3 +470,4 @@ tests/helpers/seven-refactor-source-epoch.mjs text eol=lf
 tests/fixtures/defect-utility-planning-before.lua text eol=lf
 tests/helpers/component-ui-source-epoch.mjs text eol=lf
 tests/helpers/component-ui-source-epoch.json.gz -text
+tests/helpers/component-ui-ci-source-epoch.json.gz -text

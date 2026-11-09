@@ -4,11 +4,12 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
 import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
+import {sourceEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
 test('seven-refactor exact outer epoch restores every complete predecessor owner',()=>{
  assert.equal(proof.owners.length,11);
  for(const path of proof.owners){
-  const source=componentEpoch.preCombinedSource(path,readFileSync(path,'utf8'),{target:'componentPrior'}).replaceAll('\r\n','\n');
+  const source=currentEpoch.preCombinedSource(path,readFileSync(path,'utf8'),{target:'watcherFlowPrior'}).replaceAll('\r\n','\n');
   assert.equal(source,read(path));
   for(const variant of [source,source.replaceAll('\n','\r\n')])
    assert.equal(epoch.preCombinedSource(path,variant,{target:'prior',readSource:read}),proof.targets.prior.files[path].source);
@@ -17,7 +18,7 @@ test('seven-refactor exact outer epoch restores every complete predecessor owner
 
 test('component UI outer epoch authenticates its exact committed slice and original predecessor',()=>{
  const current=componentEpoch.proof;
- assert.equal(current.currentCommit,'e61b917a38e4ffaf360f391b57cc8f2565b46a58');
+ assert.equal(current.currentCommit,'fc98f4e38ad1eaa2fb14a775f410f3dce9014158');
  assert.equal(current.currentTreeCommitted,true);
  assert.equal(current.owners.length,22);
  const readCurrent=path=>current.current[path]?.source??null;
@@ -28,8 +29,23 @@ test('component UI outer epoch authenticates its exact committed slice and origi
   // Added UI witnesses are retained; retirement is a separate checked action.
   assert.equal(projected,before?.source??readCurrent(path),path);
  }
+ for(const path of Object.keys(preComponentUiEpoch.proof.current))
+  assert.deepEqual(current.targets.componentPrior.files[path],preComponentUiEpoch.proof.current[path],path);
  for(const path of proof.owners)
-  assert.deepEqual(current.targets.componentPrior.files[path],proof.current[path],path);
+  assert.deepEqual(preComponentUiEpoch.proof.targets.watcherFlowPrior.files[path],proof.current[path],path);
+});
+
+test('component config accepts only input layout while freshly authenticating raw linked owners',()=>{
+ const current=componentEpoch.proof,path='config/architecture.json';
+ const raw=current.current[path].source,compact=JSON.stringify(JSON.parse(raw));
+ const readCurrent=owner=>current.current[owner]?.source??null;
+ assert.equal(componentEpoch.preCombinedSource(path,compact,{target:'componentPrior',readSource:readCurrent}),current.targets.componentPrior.files[path].source);
+ assert.throws(()=>componentEpoch.preCombinedSource(path,compact,{target:'componentPrior',readSource:owner=>owner===path?compact:readCurrent(owner)}),/linked owner identity/);
+ const foreign=compact.replace('"abyss_component_pages":"ui"','"abyss_component_pages":"platform"');
+ assert.notEqual(foreign,compact);
+ let reads=0;
+ assert.equal(componentEpoch.preCombinedSource(path,foreign,{target:'componentPrior',readSource(){reads++;throw Error('unexpected read');}}),foreign);
+ assert.equal(reads,0);
 });
 
 test('component UI authorization rejects every late owner drift and deletion after warming',()=>{
@@ -49,7 +65,10 @@ test('component UI foreign and predecessor inputs stay opaque without linked rea
  const current=componentEpoch.proof;
  for(const path of current.owners){
   const before=current.targets.componentPrior.files[path];
-  for(const source of [current.current[path].source+'\n',...(before?[before.source]:[])]){
+  const foreign=path==='config/architecture.json'
+   ?JSON.stringify({...JSON.parse(current.current[path].source),componentForeign:true})
+   :current.current[path].source+'\n';
+  for(const source of [foreign,...(before?[before.source]:[])]){
    let reads=0;
    assert.equal(componentEpoch.preCombinedSource(path,source,{target:'componentPrior',readSource(){reads++;throw Error('unexpected read');}}),source);
    assert.equal(reads,0,path);

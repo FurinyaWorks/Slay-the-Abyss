@@ -7,10 +7,10 @@ import {createHash} from 'node:crypto';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const archive=readFileSync(new URL('./component-ui-source-epoch.json.gz',import.meta.url));
-assert.equal(hash(archive),'a1be78c639a26b304a128b0076884060988bc13bac4f0fa20c1e7bc235bd60f8','component UI compressed identity');
+assert.equal(hash(archive),'2f581ff2b579c18557c9385ca1afb84d5504c7d2d4631ea3756c9e16423bbda9','component UI compressed identity');
 const bytes=gunzipSync(archive);
-assert.equal(hash(bytes),'8273bd941cc483d55b035f822825f798c98287b61f7acb6af490f8293424e4b0','component UI complete identity');
-export const componentUiSourceEpoch=createSourceEpochProjector(JSON.parse(bytes));
+assert.equal(hash(bytes),'a94bbbd1e248ac6690f4cb036376b4c45ca9ae050fdd92c8e18ba8117398a019','component UI complete identity');
+export const componentUiSourceEpoch=createSourceEpochProjector(JSON.parse(bytes),{allowConfigLayout:true});
 
 export function extendComponentUiEpoch(original){
  const outer=componentUiSourceEpoch.proof,prior=original.proof;
