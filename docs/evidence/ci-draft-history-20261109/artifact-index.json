@@ -1,0 +1,66 @@
+{
+  "repaired-summary-final.log.gz": {
+    "sha256": "8d4c15c0954c40bb3037791ee1cbb35d275614e310717e2f9dfb73f634030ae4",
+    "bytes": 4603
+  },
+  "guidance.log.gz": {
+    "sha256": "64e0b3082f5223f4b73931564231198287926be4861a3da6a555520447d2f111",
+    "bytes": 288
+  },
+  "guidance-pass.log.gz": {
+    "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "bytes": 287
+  },
+  "independent-report.md": {
+    "sha256": "08d2e222445325c6d2ca7f0cefbafdc3bc0cf259e463b91dffcbed1424894a25",
+    "bytes": 2975
+  },
+  "repaired-history.log.gz": {
+    "sha256": "456803b7a231c6d5cfd9f6c5b83709b1473c2bb617785bfa0be71eac4c88ef93",
+    "bytes": 5787
+  },
+  "backlog-doctor.log.gz": {
+    "sha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+    "bytes": 1843
+  },
+  "platform-wiring.log.gz": {
+    "sha256": "d5b1dc6e8b208ae319447816f4aeec560dbb039615820183bb2d5a8b024dcd7d",
+    "bytes": 302
+  },
+  "independent-probe.mjs": {
+    "sha256": "787f003d6ec642282cc801b33a21b2dbe201e5f5433be0549de8e4c13a76af16",
+    "bytes": 3357
+  },
+  "backlog-verify.log.gz": {
+    "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "bytes": 361
+  },
+  "validation.json": {
+    "sha256": "c762759c27f1241e194539399873cb4848ecee3439a5c84313964f9753b88ef3",
+    "bytes": 2405
+  },
+  "calibration-engineering.log.gz": {
+    "sha256": "13d78b08389298097c21bc1447ab402ffb4da0a6119c491ed37e2e506d9f492e",
+    "bytes": 2649
+  },
+  "initial-policy.log.gz": {
+    "sha256": "e6888988ea1b0bb1fbd29171e5c34a730124861ddaa948fc1c9ceb1531ddad1a",
+    "bytes": 1161
+  },
+  "initial-history.log.gz": {
+    "sha256": "6dec58928c91b80f51445f60f88c33a8c5bd6c72c514154aed9cbcd6d0ec84a0",
+    "bytes": 6480
+  },
+  "repaired-summary-pass.log.gz": {
+    "sha256": "deaf2bc4c623b79ad7f9555e2e2a2e966973ca83b5e13cc3fdaa6c11fde47f59",
+    "bytes": 496
+  },
+  "admission-regression.log.gz": {
+    "sha256": "72bb2fc700a8d847c40d8280b2c0c2c21732c2cc0f6c1aba389c4f3ef124533d",
+    "bytes": 3911
+  },
+  "independent-review.json": {
+    "sha256": "d11bc7009b7a1d420de2bbd214d0e4a1ac6e950632ee85997e419a3caaa1a5cb",
+    "bytes": 2487
+  }
+}

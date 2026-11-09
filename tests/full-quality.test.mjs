@@ -7,6 +7,7 @@ import {fullGateErrors,publishFullQuality,beginFullQuality,main} from '../script
 import {currentFullQualityJobs,qualityWorkflowPath} from '../scripts/verify-delivery.mjs';
 import {qualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {beforeAutoMergeWorkflow,beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
+import {beforeDraftQualityWorkflow} from './helpers/draft-quality-workflow.mjs';
 const sha=c=>c.repeat(40),repo='CHNISam/Slay-the-Abyss';
 function fixture(){return {repo,runId:7,attempt:1,number:510,head:sha('a'),base:sha('b'),tested:sha('d'),mode:'full',
  needs:{impact:{result:'success'},rules:{result:'success'},fast:{result:'skipped'},presentation:{result:'success'},'engineering-posix':{result:'success'}},
@@ -225,7 +226,7 @@ test('reviewed workflow inverse rejects partial wiring and preserves original ar
 });
 
 test('execution slack restores only the complete approved workflow edit for historical guards',()=>{
- const current=readFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
+ const current=beforeDraftQualityWorkflow(readFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n'));
  for(const eol of ['\n','\r\n']){
   const source=current.replaceAll('\n',eol),old=beforeExecutionTimeoutWorkflow(source);
   assert.notEqual(old,source);

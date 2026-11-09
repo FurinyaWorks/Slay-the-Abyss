@@ -4,11 +4,13 @@ title: 让安全Fast PR进入完整合并队列
 status: In Progress
 assignee:
   - Furinya
-created_date: '2026-11-06 15:41'
-updated_date: '2026-11-07 02:44'
+created_date: 2026-11-06 15:41
+updated_date: '2026-11-09T17:25:00Z'
 labels: []
 milestone: m-7
 dependencies: []
+documentation:
+  - docs/evidence/ci-draft-history-20261109/README.md
 parent_task_id: TASK-81
 priority: medium
 type: enhancement
@@ -33,6 +35,8 @@ TASK-81已有按影响选测，但当前develop Ruleset 25870651强制full-quali
 
 <!-- SECTION:PLAN:BEGIN -->
 接续#529；实现精确Fast收据与PR准入，保留高风险Full、队列完整Full及合后Full；独审和当前SHA CI通过后切换Ruleset，真实安全PR验证入队、squash与合后验收。
+
+2026-11-10 接续既有 PR584，不新增自主领取。鲜查12个开放PR与当前HEAD53b55d4d，独立复跑四个策略合同21/21，另复现历史工作流投影失败。仅补完整Draft/Fast工作流外层历史投影及LF/CRLF、部分/重复/漂移拒绝控制；保持正式工作流、旧档案/hash/断言、预算与全部队列门禁。定向原失败回归、独立复审后接续原PR；不重复Full、不改Owner/status/AC或用户设备。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -45,4 +49,6 @@ TASK-81已有按影响选测，但当前develop Ruleset 25870651强制full-quali
 2026-11-07已读回远端pr-quality/Strict/空bypass/SQUASH ALLGREEN队列。#538正常queue Full42323846768通过并实际合为2c85bc61，合后Full42327242610验收发现slice3超时。#539从该真实base直接Ready且精确独审，正常Quality42327477690实际Fast；尚待完整自动链路。Free计划与20个Full活跃槽已读回，资源排队和真实执行分开；未取消必要验证或改保护/预算。技术证据追加TASK-81.2附件，AC保持未勾。
 
 #539旧c7 Fast已完成8项合同，13分11秒，双平台执行33/27秒，原入口dry-run eligible。但#538合后Full Win1真实失败后没有发布授权、没有入队；将已审M7成果与阶段诊断正常追加539，新HEAD必须新独审/Full，旧Fast不冒充新组合或完整链路通过。
+
+PR584本地历史合同修复：六项Draft/Fast完整外层投影接入既有历史链，旧执行余量断言仅恢复实际历史输入边界；未改正式工作流、旧hash、预算或生产逻辑。176个不同定向用例通过；独立审查及533逐行变异、移动/重复/混合换行负控PASS。保留原4个复现失败及两次新负控夹具定位错误日志，verify:backlog和guidance通过；doctor仍报原5组重复ID和旧归档警告。精确新HEAD Hosted Full/队列/合后验收待验证，不重跑Full、不改AC。技术证据 docs/evidence/ci-draft-history-20261109/README.md。
 <!-- SECTION:NOTES:END -->

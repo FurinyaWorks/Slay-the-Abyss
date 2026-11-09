@@ -6,6 +6,8 @@ import { createHash } from 'node:crypto';
 import { compileFunction } from 'node:vm';
 import { originalWorkflow } from './helpers/ci-runtime-workflow.mjs';
 import { beforePlatformWorkflow } from './helpers/platform-load-wiring.mjs';
+import { beforeDraftQualityWorkflow, draftQualityWorkflowEdits } from './helpers/draft-quality-workflow.mjs';
+import { beforeAutoMergeWorkflow, beforeExecutionTimeoutWorkflow } from './helpers/auto-merge-workflow.mjs';
 
 const workflow = readFileSync('.github/workflows/quality.yml', 'utf8').replaceAll('\r\n', '\n');
 const job = (name,source=workflow) => source.match(new RegExp(`^  ${name}:\\n([\\s\\S]*?)(?=^  [\\w-]+:|(?![\\s\\S]))`, 'm'))[1];
@@ -68,6 +70,74 @@ test('draft Quality is deferred, Ready and integration retain the real gates', (
   assert.match(fast, /^    timeout-minutes: \$\{\{ matrix\.os == 'windows-2025' && 45 \|\| 30 \}\}$/m);
   assert.match(job('rules'), /timeout-minutes: \$\{\{ inputs\.runner_pool == 'local-special' && 75 \|\| 45 \}\}/);
   assert.match(job('engineering-posix-shards'), /^    timeout-minutes: 30$/m);
+});
+
+test('complete Draft/Fast projection restores exact develop workflow bytes with LF and CRLF', () => {
+  // Git blob 2d41d729 at develop 1eb28847, independently obtained before #584.
+  const expected = 'aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535';
+  for (const eol of ['\n', '\r\n']) {
+    const current = workflow.replaceAll('\n', eol);
+    const old = beforeDraftQualityWorkflow(current);
+    assert.notEqual(old, current);
+    assert.equal(createHash('sha256').update(old.replaceAll('\r\n', '\n')).digest('hex'), expected);
+    assert.equal(old.replaceAll(eol, ''), old.replaceAll(/\r?\n/g, ''), 'preserve uniform input endings');
+    assert.equal(beforeDraftQualityWorkflow(old), old, 'old snapshots pass through unchanged');
+    assert.equal(beforeDraftQualityWorkflow(old + '# unrelated\n'), old + '# unrelated\n');
+    assert.equal(beforeExecutionTimeoutWorkflow(current), beforeExecutionTimeoutWorkflow(old));
+    assert.equal(beforeAutoMergeWorkflow(current.replaceAll('\r\n', '\n')),
+      beforeAutoMergeWorkflow(old.replaceAll('\r\n', '\n')));
+    assert.equal(typeof beforeAutoMergeWorkflow(current.replaceAll('\r\n', '\n')), 'string');
+  }
+});
+
+test('Draft/Fast projection refuses every partial migration, duplicate and changed policy block', () => {
+  for (const eol of ['\n', '\r\n']) {
+    const current = workflow.replaceAll('\n', eol);
+    const edits = draftQualityWorkflowEdits.map(pair => pair.map(value => value.replaceAll('\n', eol)));
+    for (let mask = 1; mask < 2 ** edits.length; mask++) {
+      let partial = current;
+      for (let i = 0; i < edits.length; i++) if (mask & (1 << i)) partial = partial.replace(edits[i][1], edits[i][0]);
+      assert.notEqual(partial, current);
+      assert.equal(beforeDraftQualityWorkflow(partial), partial, 'partial migration ' + mask);
+    }
+    for (const [, after] of edits) {
+      const duplicate = current + after;
+      assert.equal(beforeDraftQualityWorkflow(duplicate), duplicate, 'duplicate reviewed block');
+      const altered = current.replace(after, after.replace(/\S/, '?'));
+      assert.notEqual(altered, current);
+      assert.equal(beforeDraftQualityWorkflow(altered), altered, 'edited reviewed block');
+    }
+    for (const altered of [
+      current.replace('converted_to_draft', 'closed'),
+      current.replace("matrix.os == 'windows-2025' && 45 || 30", "matrix.os == 'windows-2025' && 46 || 30"),
+      current.replace('draft == false', 'draft == true'),
+      current.replace('if: ${{ !cancelled() &&', 'if: ${{ always() &&'),
+    ]) {
+      assert.notEqual(altered, current);
+      assert.equal(beforeDraftQualityWorkflow(altered), altered);
+      assert.equal(beforeAutoMergeWorkflow(altered.replaceAll('\r\n', '\n')), null);
+    }
+  }
+});
+
+test('Draft/Fast projection preserves unrelated drift and never partially restores execution slack', () => {
+  for (const eol of ['\n', '\r\n']) {
+    const current = workflow.replaceAll('\n', eol);
+    for (const [from, to] of [['contents: read', 'contents: write'], ['max-parallel: 12', 'max-parallel: 13'],
+      ['npm run check:engineering', 'npm run check:missing']]) {
+      const drift = current.replace(from, to), projected = beforeDraftQualityWorkflow(drift);
+      assert.notEqual(drift, current);
+      assert.ok(projected.includes(to), 'unrelated bytes survive projection');
+      assert.notEqual(createHash('sha256').update(projected.replaceAll('\r\n', '\n')).digest('hex'),
+        'aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535');
+    }
+    for (const [from, to] of [['75 || 45', '75 || 46'], ['timeout-minutes: 30', 'timeout-minutes: 31'],
+      ['Files execute once.', 'Files execute twice.']]) {
+      const drift = current.replace(from, to);
+      assert.notEqual(drift, current);
+      assert.equal(beforeExecutionTimeoutWorkflow(drift), drift, 'incomplete inner migration remains wholly visible');
+    }
+  }
 });
 
 historicalTest('reviewed summary runner inverse retains the original complete workflow contract', () => {
