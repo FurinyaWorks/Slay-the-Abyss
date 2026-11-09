@@ -1,3 +1,4 @@
+import {preEffects48PlanningSource,effects48PlanningProof} from './helpers/effects48-planning-source-inverse.mjs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {preFlowLiveReaderSource,flowLiveReaderProof} from './helpers/flow-live-reader-source-inverse.mjs';
@@ -43,7 +44,7 @@ const watcherFlowPreparationJs=['tests/watcher-flow-preparation.test.mjs','tests
 const discoverJs=()=>actualDiscoverJs().filter(file=>!watcherFlowPreparationJs.includes(file));
 const diskReadFileSync=(file,encoding)=>{
  const raw=actualDiskReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
- const prior=preWindows18ShapeSource(file,preWatcherFlowPreparationCiSource(file,preFlowLiveReaderSource(file,text)));
+ const prior=preWindows18ShapeSource(file,preWatcherFlowPreparationCiSource(file,preFlowLiveReaderSource(file,preEffects48PlanningSource(file,text))));
  return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
 };
 // Frozen Formation800 shape keeps all published 17/15 assertions intact.
@@ -1062,7 +1063,7 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
 
 test('Watcher Flow preparation recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
  for(const [file,binding]of Object.entries(watcherFlowPreparationCiProof.files)){
-  const raw=preFlowLiveReaderSource(file,actualDiskReadFileSync(file,'utf8')).replaceAll('\r\n','\n');
+  const raw=preFlowLiveReaderSource(file,preEffects48PlanningSource(file,actualDiskReadFileSync(file,'utf8'))).replaceAll('\r\n','\n');
   assert.equal(hash(raw),binding.afterSha256,file);
   assert.equal(hash(binding.beforeSource),binding.beforeSha256,file);
   for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preWatcherFlowPreparationCiSource(file,source),binding.beforeSource);
@@ -1096,7 +1097,7 @@ test('current Watcher Flow preparation802 Full38 inventory adds only two files u
   const priorWeights=currentJsPlanningWeights(discoverJs(),platform),currentWeights=actualJsPlanningWeights(discoverJs(),platform);
   const increasedOldWork=Object.keys(priorWeights).reduce((sum,file)=>sum+currentWeights[file]-priorWeights[file],0);
   const planning='tests/watcher-flow-planning.test.mjs';
-  assert.equal(increasedOldWork,[planning,...Object.keys(flowLiveReaderProof.floors)].reduce((sum,file)=>sum+currentWeights[file]-priorWeights[file],0),'the adverse complete historical-test observation remains in current costs');
+  assert.equal(increasedOldWork,[planning,...Object.keys(flowLiveReaderProof.floors),effects48PlanningProof.key].reduce((sum,file)=>sum+currentWeights[file]-priorWeights[file],0),'the adverse complete historical-test observation remains in current costs');
   assert.equal(currentWeights[planning],Math.max(liveTimings.js[platform][planning]??liveTimings.unknownJsMs,watcherFlowPreparationPlanningFloors[planning].durationMs));
   let maximum=Math.max(...loads);
   if(platform==='win32'){
@@ -1116,7 +1117,7 @@ test('current Watcher Flow preparation802 Full38 inventory adds only two files u
 
 test('Watcher Flow preparation complete local floors authenticate actual files and preserve every prior observation',()=>{
  assert.deepEqual(Object.keys(watcherFlowPreparationPlanningFloors).sort(),[...watcherFlowPreparationJs,'tests/watcher-flow-planning.test.mjs'].sort());
- const current=JSON.parse(preFlowLiveReaderSource(path,actualDiskReadFileSync(path,'utf8')));
+ const current=JSON.parse(preFlowLiveReaderSource(path,preEffects48PlanningSource(path,actualDiskReadFileSync(path,'utf8'))));
  for(const [key,floor]of Object.entries(watcherFlowPreparationPlanningFloors)){
   assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);
   const prior=actualCurrentTimings.jsPlanning.localLowerBounds[key];
@@ -1161,13 +1162,13 @@ test('live-reader repair admits only three exact complete sources and preserves 
  const inputHash=(file,bytes)=>hash(file.endsWith('.gz')?bytes:bytes.toString('utf8').replaceAll('\r\n','\n'));
  assert.deepEqual(Object.keys(flowLiveReaderProof.files).sort(),[path,'tests/silent-final-source-epoch.test.mjs','tests/defect-final-source-epoch.test.mjs'].sort());
  for(const [file,binding]of Object.entries(flowLiveReaderProof.files)){
-  const source=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  const source=preEffects48PlanningSource(file,actualDiskReadFileSync(file,'utf8')).replaceAll('\r\n','\n');
   assert.equal(hash(source),binding.afterSha256);assert.equal(hash(binding.beforeSource),binding.beforeSha256);
   for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preFlowLiveReaderSource(file,input),binding.beforeSource);
   for(const input of [binding.beforeSource,source+'\n',source.slice(1),null,undefined,{},17])assert.equal(preFlowLiveReaderSource(file,input),input);
   for(const foreign of ['foreign','__proto__','constructor'])assert.equal(preFlowLiveReaderSource(foreign,source),source);
  }
- const current=JSON.parse(actualDiskReadFileSync(path,'utf8')),before=JSON.parse(flowLiveReaderProof.files[path].beforeSource);
+ const current=JSON.parse(preEffects48PlanningSource(path,actualDiskReadFileSync(path,'utf8'))),before=JSON.parse(flowLiveReaderProof.files[path].beforeSource);
  assert.equal(Object.keys(current.jsPlanning.localLowerBounds).length,34);
  for(const [key,floor]of Object.entries(flowLiveReaderProof.floors)){
   assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);
@@ -1200,4 +1201,34 @@ test('live-reader repair admits only three exact complete sources and preserves 
   current.jsPlanning.localLowerBounds[key]=before.jsPlanning.localLowerBounds[key];
  }
  assert.deepEqual(current,before,'only two observed floors rise; every other cost and guard remains unchanged');
+});
+
+test('Effects48 complete observation preserves all34 prior floors and admits only the exact new timing source',()=>{
+ const proof=effects48PlanningProof,{path,key,floor}=proof,source=actualDiskReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+ assert.equal(hash(source),proof.afterSha256);assert.equal(hash(proof.beforeSource),proof.beforeSha256);
+ for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preEffects48PlanningSource(path,input),proof.beforeSource);
+ for(const input of [proof.beforeSource,source+'\n',source.slice(1),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),null,undefined,{},17])assert.equal(preEffects48PlanningSource(path,input),input);
+ for(const foreign of ['foreign','__proto__','constructor',key])assert.equal(preEffects48PlanningSource(foreign,source),source);
+ const current=JSON.parse(source),before=JSON.parse(proof.beforeSource);
+ assert.equal(Object.keys(before.jsPlanning.localLowerBounds).length,34);assert.equal(Object.keys(current.jsPlanning.localLowerBounds).length,35);
+ assert.equal(before.jsPlanning.localLowerBounds[key],undefined);assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);
+ assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));assert.ok(floor.durationMs>before.unknownJsMs);
+ delete current.jsPlanning.localLowerBounds[key];assert.deepEqual(current,before,'all previous costs, floors and guard values remain identical');
+ const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+ assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+ for(const line of ['tests 11','pass 11','fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+ const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+ assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);assert.equal(receipt.test,key);
+ assert.deepEqual([receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[11,11,0,0,0]);
+ assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);assert.equal(receipt.sourceLogSha256,floor.sourceLogSha256);assert.equal(receipt.sourceLogUncompressedSha256,floor.sourceLogUncompressedSha256);
+ const inputHash=(file,b)=>hash(file.endsWith('.gz')?b:b.toString('utf8').replaceAll('\r\n','\n'));
+ assert.equal(receipt.inputSha256[key],floor.testSha256);
+ for(const [file,sha]of Object.entries(receipt.inputSha256))assert.equal(inputHash(file,actualDiskReadFileSync(file)),sha,file);
+ const directory=mkdtempSync(join(tmpdir(),'effects48-receipt-')),copy=join(directory,'source.test.mjs');
+ try{
+  const crlf=actualDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n');writeFileSync(copy,crlf);
+  assert.notEqual(hash(actualDiskReadFileSync(copy)),floor.testSha256);assert.equal(inputHash(key,actualDiskReadFileSync(copy)),floor.testSha256);
+  writeFileSync(copy,crlf+'\r\n// drift\r\n');assert.notEqual(inputHash(key,actualDiskReadFileSync(copy)),floor.testSha256);
+  assert.equal(inputHash(floor.sourceLog,bytes),floor.sourceLogSha256);assert.notEqual(inputHash(floor.sourceLog,Buffer.concat([bytes,Buffer.from('\r\n')])),floor.sourceLogSha256);
+ }finally{rmSync(directory,{recursive:true,force:true});}
 });

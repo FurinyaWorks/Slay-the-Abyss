@@ -1,0 +1,78 @@
+{
+  "reviewer": "Independent code reviewer",
+  "auditedPublishedHead": "3f633f3123d41e0a0d19955c91e7b9e226722b7a",
+  "equivalentLocalHead": "68751b8ba0121e9c02b0cde3b86edc2fedcf79a6",
+  "scopeCorrection": "Previous 41-file review missed a direct multi-owner frozen-proof/disk equality. Its no-additional-gap conclusion was incomplete; explicit raw-reader loops alone were insufficient.",
+  "newAffectedSites": [
+    {
+      "path": "tests/effects-target-group-source-epoch.test.mjs",
+      "originalLine": 109,
+      "test": "published Flow Silent and Effects stack retains all predecessor bindings and authenticates 48 raw owners",
+      "cause": "The changed array includes WatcherFlow and compares its frozen planning-era source directly with preparation-era disk bytes.",
+      "minimalRepair": "Project each disk input through standalone watcherFlowPreparationEpoch target prior, then normalize CRLF to LF; leave combined proof, all three assertions and proof-backed raw readers intact."
+    }
+  ],
+  "previouslyAdaptedSites": [
+    "watcher-flow-source-epoch.test.mjs:15 current outer prior projection",
+    "encounter-formation-source-epoch.test.mjs historicalLive outer prior reader",
+    "silent-final-source-epoch.test.mjs historicalLive standalone prior reader",
+    "defect-final-source-epoch.test.mjs historicalLive standalone prior reader",
+    "watcher-flow-planning.test.mjs historical-only preparation projection"
+  ],
+  "actualChecks": [
+    "Imported all thirteen exported epoch/projector objects and compared every declared owner with normalized real disk bytes; recorded owner inventory separately. Current 51-owner epoch has no mismatches.",
+    "Traced direct complete-current and owner-set assertions, explicit readSource callbacks, default live readers, dynamic/template imports, detached helper copies, and archived original-chain materialization.",
+    "Reviewed all current facade adapters: they import current combined epoch, while frozen tests explicitly supply frozen raw/target readers or stage the admitted historical owner bytes."
+  ],
+  "directClosureConsumers": [
+    "tests/silent-tactics-source-epoch.test.mjs",
+    "tests/compendium-source-inverse.test.mjs",
+    "tests/watcher-flow-preparation-source-epoch.test.mjs",
+    "tests/game-ui-extraction-source-inverse.test.mjs",
+    "tests/living-wall-architecture-inverse.test.mjs",
+    "tests/combat-reactions-architecture-inverse.test.mjs",
+    "tests/effects-target-group-source-epoch.test.mjs",
+    "tests/encounter-formation-source-epoch.test.mjs",
+    "tests/watcher-flow-source-epoch.test.mjs",
+    "tests/relic-equip-source-epoch.test.mjs",
+    "tests/relic-query-source-inverse.test.mjs",
+    "tests/defect-final-source-epoch.test.mjs",
+    "tests/silent-final-source-epoch.test.mjs"
+  ],
+  "currentFixtureConsumers": [
+    "tests/potion-callback-source.test.mjs",
+    "tests/defect-plan-responsibilities.test.mjs",
+    "tests/act1-choice-responsibilities.test.mjs",
+    "tests/actor-presence-source.test.mjs",
+    "tests/watcher-final-execution.test.mjs",
+    "tests/relic-query-source-inverse.test.mjs",
+    "tests/reward-query-boundary-source.test.mjs"
+  ],
+  "originalChainMaterializers": [
+    "tests/run-max-hp-config-inverse.test.mjs",
+    "tests/nodes-battle-max-hp-config-inverse.test.mjs",
+    "tests/battle-max-hp-config-inverse.test.mjs",
+    "tests/competition-roster-config-composition.test.mjs",
+    "tests/act1-choice-responsibilities.test.mjs",
+    "tests/end-turn-responsibilities.test.mjs",
+    "tests/art-feature-source-inverse.test.mjs",
+    "tests/ready-art-source-inverse.test.mjs"
+  ],
+  "classification": {
+    "frozenEpochClosures": "Eight direct epoch closures always pass proof-backed explicit readers. Relic-query stages historical N35 sources. Compendium/GameUI/reactions/LivingWall stage old admitted owner sets: old input follows original guards, not new current-owner authorization.",
+    "currentFixtures": "Seven consumers copy the current authenticated helper closure and complete current Lua/config tree; source epoch and owner bytes agree.",
+    "originalChains": "Archived helper bytes are authenticated and their owners are staged historically, supplied explicitly from frozen targets, or executed under historicalTest baseline; current acceptance tests use current facade separately.",
+    "dynamicTemplates": "Integration facade loop imports current adapters and target fixtures. Seven-refactor template loop compares foreign-input/invalid-reader semantics and performs no live owner reads.",
+    "unaffectedHistoricalOwnFileReads": "SilentTactics, Effects standalone and RelicEquip compare only their unchanged owned production file; their all-owner fault loops use proof-backed readers. SevenRefactor standalone owns eleven unchanged paths and excludes Flow.",
+    "currentCompleteTree": "Integration complete production-tree equality and cache/roster/run/nodes/current facade owner loops use current 51-owner epoch, which matches disk."
+  },
+  "validationPlan": [
+    "Run complete Effects epoch test file once after final patch; retain observed adverse timing if it raises its planning floor.",
+    "Add exact new source bridge tests and rerun only affected CI historical/cost consumers, preserving previous archives and complete previous floor objects.",
+    "Explicit LF and CRLF old-source equality for all three changed paths; appended/truncated Flow bytes must not acquire frozen identity; unknown paths must remain unchanged. Preserve original 48-owner read/fault tests.",
+    "Retain current 51-owner live acceptance tests unprojected. No Full rerun by reviewer."
+  ],
+  "limits": "This is a scoped source-read boundary audit, not an assertion that all repository tests or Hosted checks pass. Effects patch changed during review; this artifact is not its final hash-bound approval.",
+  "additionalLatentMismatchFindings": [],
+  "fullTestsRun": false
+}

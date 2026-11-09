@@ -6177,6 +6177,20 @@
         "testSha256": "fe62a081a562f0210f494e0af68be70c9130e5813bb416f4ac37616967696014",
         "sourceReceipt": "docs/evidence/m7-watcher-flow-preparation-20261109/source-receipt.json",
         "sourceReceiptSha256": "91f7e38ebcc56351249c21a6fab603c336ea0952693a9949aeedaad696d40409"
+      },
+      "tests/effects-target-group-source-epoch.test.mjs": {
+        "durationMs": 22618,
+        "environment": "cloud Linux local",
+        "tests": 11,
+        "coverage": "11/11 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 22617.633935,
+        "sourceLog": "docs/evidence/m7-watcher-flow-effects-reader-20261109/effects-source.log.gz",
+        "sourceLogSha256": "fee1ec8bd870cf9cb2d811a2547434d72a0fb678f38dcebd56a50e9001f28d9c",
+        "sourceLogUncompressedSha256": "133b2882c40aee0539bdb86fb1232167b2c24acd618e57d749cf0b69c7399ff9",
+        "testSha256": "dcbc496c213042d531d42550b1136a22705d1d517414c4418f3a1cc16f4b49ea",
+        "sourceReceipt": "docs/evidence/m7-watcher-flow-effects-reader-20261109/effects-receipt.json",
+        "sourceReceiptSha256": "eb167c1ca0f438baf50dfe658d480ac20ec8f2b014dacef72d15133fc03826ee"
       }
     }
   },

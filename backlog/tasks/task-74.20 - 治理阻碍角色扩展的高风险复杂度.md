@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T07:35:00Z'
+updated_date: '2026-11-09T08:33:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -34,6 +34,7 @@ documentation:
   - docs/evidence/m7-watcher-flow-preparation-20261109/README.md
   - docs/evidence/m7-watcher-flow-cost-20261109/README.md
   - docs/evidence/m7-watcher-flow-live-readers-20261109/README.md
+  - docs/evidence/m7-watcher-flow-effects-reader-20261109/README.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -214,4 +215,6 @@ Windows18接续定向验证已通过：五文件115/115，补强后交付/队列
 2026-11-09：继续核查#586 Hosted原始日志，发现Silent49历史磁盘reader遗漏新WatcherFlow投影，并静态确认Defect50同类路径；最小接入后完整9/9及11/11通过。保留较慢样本，将两floor上调19795/15585，其余32项保持。当前18Windows/15POSIX完整负载1704233/1136551ms，预算余95767/63449；同成本17片仍超898，前轮264反例原样保留。原生产源不变，精确历史桥接/独审与新HEAD Hosted继续收口，不冒称已合。
 
 2026-11-09：历史live-reader最终合同收口：CI历史合同/runtime两文件60/60通过，补充当前17片拒绝后仅calibration最终47/47（覆盖前次对应项，不叠计）；377保护文件不变，timings仅保留两项更慢样本。待独审及新精确HEAD Hosted，保持未合。
+
+2026-11-09：#586自然Hosted又发现Effects48直接owner字节比较遗漏；扩大13epoch/13闭包/7当前复制/8历史链审计后仅新增此处，按原48证明最小投影补齐。完整11/11，新增明确floor22618为第35项，原34项不动；最终CI61/61、间接9/9。当前18Windows/15POSIX模型1705020/1137392ms，仍低于原预算。已保留来源失败、十份Luacheck504和POSIX1原因未明取消日志；Hosted与合后未通过，不重跑Full或绕门禁。
 <!-- SECTION:NOTES:END -->

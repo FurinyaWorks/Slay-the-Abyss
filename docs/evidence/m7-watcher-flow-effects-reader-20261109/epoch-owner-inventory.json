@@ -1,0 +1,104 @@
+[
+  {
+    "name": "preDefectFinalEpoch",
+    "owners": 49,
+    "flowIsOwner": true,
+    "mismatches": [
+      "src/lua/abyss_watcher_flow_cards.lua"
+    ]
+  },
+  {
+    "name": "preEffectsTargetGroupEpoch",
+    "owners": 45,
+    "flowIsOwner": false,
+    "mismatches": [
+      "src/lua/abyss_relic_hooks.lua"
+    ]
+  },
+  {
+    "name": "preEncounterFormationEpoch",
+    "owners": 50,
+    "flowIsOwner": true,
+    "mismatches": [
+      "src/lua/abyss_watcher_flow_cards.lua"
+    ]
+  },
+  {
+    "name": "preRelicEquipEpoch",
+    "owners": 48,
+    "flowIsOwner": true,
+    "mismatches": [
+      "src/lua/abyss_relic_hooks.lua",
+      "src/lua/abyss_watcher_flow_cards.lua"
+    ]
+  },
+  {
+    "name": "preSilentFinalEpoch",
+    "owners": 48,
+    "flowIsOwner": true,
+    "mismatches": [
+      "src/lua/abyss_watcher_flow_cards.lua"
+    ]
+  },
+  {
+    "name": "preSilentTacticsEpoch",
+    "owners": 45,
+    "flowIsOwner": false,
+    "mismatches": [
+      "src/lua/abyss_relic_hooks.lua"
+    ]
+  },
+  {
+    "name": "preWatcherFlowEpoch",
+    "owners": 45,
+    "flowIsOwner": false,
+    "mismatches": [
+      "src/lua/abyss_relic_hooks.lua"
+    ]
+  },
+  {
+    "name": "preWatcherFlowPreparationEpoch",
+    "owners": 51,
+    "flowIsOwner": true,
+    "mismatches": [
+      "src/lua/abyss_watcher_flow_cards.lua"
+    ]
+  },
+  {
+    "name": "sourceEpoch",
+    "owners": 51,
+    "flowIsOwner": true,
+    "mismatches": []
+  },
+  {
+    "name": "standaloneEffectsTargetGroupEpoch",
+    "owners": 46,
+    "flowIsOwner": false,
+    "mismatches": [
+      "src/lua/abyss_relic_hooks.lua"
+    ]
+  },
+  {
+    "name": "standaloneSilentTacticsEpoch",
+    "owners": 46,
+    "flowIsOwner": false,
+    "mismatches": [
+      "src/lua/abyss_relic_hooks.lua"
+    ]
+  },
+  {
+    "name": "standaloneWatcherFlowEpoch",
+    "owners": 46,
+    "flowIsOwner": true,
+    "mismatches": [
+      "src/lua/abyss_relic_hooks.lua",
+      "src/lua/abyss_watcher_flow_cards.lua"
+    ]
+  },
+  {
+    "name": "sevenRefactorEpoch",
+    "owners": 11,
+    "flowIsOwner": false,
+    "mismatches": []
+  }
+]

@@ -493,3 +493,10 @@ tests/helpers/flow-live-reader-source-epoch.json.gz -text
 docs/evidence/m7-watcher-flow-live-readers-20261109/*.json text eol=lf
 docs/evidence/m7-watcher-flow-live-readers-20261109/*.md text eol=lf
 docs/evidence/m7-watcher-flow-live-readers-20261109/*.gz -text
+
+# Exact Effects48 planning bridge and retained source-boundary evidence.
+tests/helpers/effects48-planning-source-inverse.mjs text eol=lf
+tests/helpers/effects48-planning-source-epoch.json.gz -text
+docs/evidence/m7-watcher-flow-effects-reader-20261109/*.json text eol=lf
+docs/evidence/m7-watcher-flow-effects-reader-20261109/*.md text eol=lf
+docs/evidence/m7-watcher-flow-effects-reader-20261109/*.gz -text

@@ -5,6 +5,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {standaloneEffectsTargetGroupEpoch as sourceEpoch,preEffectsTargetGroupEpoch} from './helpers/combined-epoch/pre-defect-source-epoch.mjs';
+import {watcherFlowPreparationEpoch} from './helpers/watcher-flow-preparation-source-epoch.mjs';
 import {effectsTargetGroupEpoch} from './helpers/effects-target-group-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_effects.lua',proof=sourceEpoch.proof,prior=preEffectsTargetGroupEpoch.proof;
@@ -106,7 +107,15 @@ test('published Flow Silent and Effects stack retains all predecessor bindings a
  assert.equal(proof.currentCommit,preEffectsTargetGroupEpoch.proof.currentCommit);
  for(const [file,standalone]of changed.map((file,i)=>[file,[flow,silent,effects][i]])){
   assert.deepEqual(proof.current[file],standalone.proof.current[file]);
-  assert.equal(raw(file),readFileSync(file,'utf8').replaceAll('\r\n','\n'));
+  const live=readFileSync(file,'utf8').replaceAll('\r\n','\n');
+  for(const source of [live,live.replaceAll('\n','\r\n')])assert.equal(raw(file),watcherFlowPreparationEpoch.preCombinedSource(file,source,{target:'prior'}).replaceAll('\r\n','\n'));
+  if(file==='src/lua/abyss_watcher_flow_cards.lua'){
+   for(const source of [live+'\n',live.slice(1)]){
+    assert.equal(watcherFlowPreparationEpoch.preCombinedSource(file,source,{target:'prior'}),source);
+    assert.notEqual(source,raw(file),'drift cannot impersonate the frozen owner');
+   }
+   assert.equal(watcherFlowPreparationEpoch.preCombinedSource('foreign',live,{target:'prior'}),live);
+  }
  }
  for(const [name,target]of Object.entries(preEffectsTargetGroupEpoch.proof.targets))assert.deepEqual(proof.targets[name],target);
  for(const [file,binding]of Object.entries(preEffectsTargetGroupEpoch.proof.current))if(!changed.includes(file))assert.deepEqual(proof.current[file],binding);
