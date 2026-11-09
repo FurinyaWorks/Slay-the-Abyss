@@ -106,7 +106,7 @@ export function artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory=f
  }
 
  if(native&&(typeof native.registry?.path!=='string'||!native.registry.path||!Array.isArray(native.hosts)||!native.hosts.length))throw Error('Invalid static card artwork receipt');
- return {artFeatures:flags,...(v25CardAssets?{v25CardAssets}:{}),...(v25UiMasks?{v25UiMasks}:{}),...(v25BattleChrome?{v25BattleChrome:true}:{}),...(lightweight2d?{lightweight2d:true}:{}),...(receipt.experimentalUi==='legacy-card-frames'?{legacyCardFrames:true}:{}),...(native?{nativeCardArt:{registry:native.registry.path,hosts:[...native.hosts]}}:{})};
+ return {artFeatures:flags,...(receipt.toolchainIdentity?{toolchainIdentity:receipt.toolchainIdentity}:{}),...(v25CardAssets?{v25CardAssets}:{}),...(v25UiMasks?{v25UiMasks}:{}),...(v25BattleChrome?{v25BattleChrome:true}:{}),...(lightweight2d?{lightweight2d:true}:{}),...(receipt.experimentalUi==='legacy-card-frames'?{legacyCardFrames:true}:{}),...(native?{nativeCardArt:{registry:native.registry.path,hosts:[...native.hosts]}}:{})};
 }
 export function readArtFeatures(directory) {
  const source=readFileSync(join(directory,artFeatureModule+'.lua'),'utf8');

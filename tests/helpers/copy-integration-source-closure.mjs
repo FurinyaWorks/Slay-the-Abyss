@@ -58,8 +58,6 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "5341c965ce41e956f153caf90c2e2097ccaee447a2d1e53a5aa666d15a238882",
   "tests/helpers/combined-epoch/source-epoch.mjs": "7b469cc3098e8db2360bac4e4427757a47f7185221708be1cd66a7b029093601",
   "tests/helpers/component-ui-source-epoch.mjs": "311d47d5fc85c29021a124f53cf836d54121178685e23d2499f1d3e2d79cfba9",
-  "tests/helpers/core-lifecycle-source-inverse.mjs": "9824634c2b83a02b8902b528d5417caf1d996dbd2fc35f2e8388c5b8d3e375a4",
-  "tests/helpers/relic-query-source-inverse.mjs": "42fed61d4e8b2d34af9959d8b5713318973633b7b0890ee7bec4933cbc0d7afc",
   "tests/helpers/component-ui-source-epoch.json.gz": "df2a27ff146ecbee4fb01054eb1071458ffe491ece1bb50fa6fb33d19df74d4a"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){

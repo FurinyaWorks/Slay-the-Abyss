@@ -1,7 +1,7 @@
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,writeFileSync,copyFileSync,mkdirSync,mkdtempSync,rmSync} from 'node:fs';
+import {readFileSync,writeFileSync,copyFileSync,mkdirSync,mkdtempSync,rmSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {join,dirname} from 'node:path';
 import {tmpdir} from 'node:os';
@@ -92,7 +92,13 @@ test('warm Runtime projections still reread actual linked host files and reject 
  t.after(()=>rmSync(root,{recursive:true,force:true}));
  const owners=['src/lua/abyss_game_ui.lua','src/lua/abyss_compendium_catalog.lua','src/lua/abyss_relic_text.lua','src/lua/abyss_node_ui_faces.lua'];
  for(const path of [...owners,...gameUiExtractionAddedPaths,'src/lua/abyss_actor.lua','src/lua/abyss_combat.lua','src/lua/abyss_actor_power_rules.lua','config/architecture.json','tests/helpers/core-lifecycle-source-inverse.mjs','tests/helpers/actor-lifecycle-before.lua','tests/helpers/combat-lifecycle-before.json','tests/helpers/relic-query-source-inverse.mjs','tests/helpers/relic-query-baseline-391306af.json.gz','tests/helpers/query-living-wall-before.lua','tests/helpers/relic-lifecycle-baseline-391306af.json.gz','tests/helpers/relic-lifecycle-architecture-source-inverse.json','tests/helpers/m7-core-final-source-inverse.mjs','tests/helpers/m7-core-final-before.json.gz','tests/helpers/reward-query-boundary-source-inverse.mjs','tests/helpers/reward-query-boundary-before.json','tests/helpers/compendium-source-inverse.mjs','tests/helpers/architecture-source-format.mjs','tests/helpers/game-ui-extraction-source-inverse.mjs','tests/helpers/game-ui-extraction-source-layer.json','tests/helpers/actor-presence-source-inverse.mjs','tests/helpers/actor-presence-source-proof.json','tests/helpers/colorless-catalog-before-2ad07111.json.gz','tests/helpers/end-turn-responsibilities-source-inverse.mjs','tests/fixtures/end-turn-responsibilities-before.lua','tests/helpers/potion-callback-source-inverse.mjs','tests/helpers/potion-callback-source-proof.json','tests/helpers/colorless-catalog-source-inverse.mjs','tests/helpers/colorless-catalog-source-proof.json','tests/helpers/defect-plan-source-inverse.mjs','tests/helpers/defect-plan-before.lua','tests/helpers/act1-choice-source-inverse.mjs','tests/helpers/act1-choice-before.lua','tests/helpers/inventory-responsibilities-source-inverse.mjs','tests/fixtures/inventory-responsibilities-before.lua','tests/helpers/session-reward-source-inverse.mjs','tests/helpers/session-reward-source-proof.json','tests/helpers/watcher-final-execution-source-inverse.mjs','tests/helpers/watcher-final-execution-before.lua','tests/helpers/power-shop-source-inverse.mjs','tests/helpers/power-shop-before-2c85.json.gz']){
-  const target=join(root,path);mkdirSync(dirname(target),{recursive:true});if(path==='config/architecture.json'||path==='src/lua/abyss_actor.lua'||path==='src/lua/abyss_combat.lua'||path==='src/lua/abyss_game_ui.lua'||path==='src/lua/abyss_game_ui_view.lua')writeFileSync(target,read(path));else copyFileSync(path,target);
+  const target=join(root,path);mkdirSync(dirname(target),{recursive:true});
+  // The original warm Runtime fixture is an admitted historical source set,
+  // with matching frozen helpers, rather than mixed current component owners.
+  const frozen='tests/helpers/epochs/develop/'+path;
+  if(path.startsWith('src/lua/')||path==='config/architecture.json')writeFileSync(target,read(path));
+  else if(path.startsWith('tests/helpers/')&&existsSync(frozen))copyFileSync(frozen,target);
+  else copyFileSync(path,target);
  }
  const {preCompendiumSource:project}=await import(pathToFileURL(join(root,'tests/helpers/compendium-source-inverse.mjs')).href);
  const host=owners[0],source=read(host),file=join(root,host);

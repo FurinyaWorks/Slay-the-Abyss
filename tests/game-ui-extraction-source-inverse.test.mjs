@@ -22,7 +22,17 @@ const originalInputs=()=>Object.fromEntries(paths.map(path=>[path,preCoreLifecyc
 function copy(root,path){const target=join(root,path);mkdirSync(dirname(target),{recursive:true});if(path===architecture||lifecycleSources.includes(path))writeFileSync(target,read(path));else copyFileSync(path,target);}
 // Freeze the old read-count probes after explicit native-epoch admission. The
 // retirement tests below still copy actual current modules, not these old bytes.
-function copyHistorical(root,path){copy(root,path);if(path===host||path==='src/lua/abyss_game_ui_view.lua')writeFileSync(join(root,path),read(path));}
+function copyHistorical(root,path){
+ copy(root,path);
+ // Historical read-count fixtures use the byte-preserved helper epoch matching
+ // their admitted old owners. Current full-closure retirement is checked below.
+ if(path.startsWith('tests/helpers/')){
+  const epoch=path==='tests/helpers/game-ui-extraction-source-inverse.mjs'?'native':'develop';
+  const frozen='tests/helpers/epochs/'+epoch+'/'+path;
+  try{copyFileSync(frozen,join(root,path));}catch(error){if(error.code!=='ENOENT')throw error;}
+ }
+ if(path.startsWith('src/lua/'))writeFileSync(join(root,path),read(path));
+}
 function isolated(t){const root=mkdtempSync(join(tmpdir(),'game-ui-source-proof-'));copyIntegrationSourceClosure(root);t.after(()=>rmSync(root,{recursive:true,force:true}));return root;}
 
 test('one complete extraction restores immutable full Host/config and authenticates each fresh owner',()=>{
@@ -183,7 +193,7 @@ test('retirement verifies the full isolated destination before deleting, and rev
  // Preserve the independent original three-owner native source epoch. Current
  // combined owners receive their own complete fresh-closure checks below.
  for(const path of nativeOwners){const target=join(live,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,sourceEpoch.proof.targets.native.files[path].source);}
- for(const path of added){const target=join(destination,path);mkdirSync(dirname(target),{recursive:true});copyFileSync(path,target);}
+ for(const path of added){const target=join(destination,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,sourceEpoch.proof.targets.native.files[path].source);}
  const nativeRetire=prepare(destination,{sourceRoot:live});
  for(const owner of nativeOwners){
   const path=join(live,owner),original=readFileSync(path,'utf8');

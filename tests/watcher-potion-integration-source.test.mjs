@@ -6,7 +6,10 @@ import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {preClassPotionWatcherSource as prior,classPotionWatcherReader,preIntegratedCapabilitySource, classPotionWatcherSourceProof as proof,standaloneArchitectureSource} from './helpers/class-potion-watcher-source-inverse.mjs';
 import {preM7FinalSource,m7FinalReader} from './helpers/m7-core-final-source-inverse.mjs';
-const read=sevenRefactorEpoch.combinedReader(p=>readFileSync(p,'utf8').replaceAll('\r\n','\n'),'localSeven');
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+// Authenticate the complete live closure before entering the original Seven
+// epoch; its six-owner contracts and all injected-reader failures stay intact.
+const read=sevenRefactorEpoch.combinedReader(sourceEpoch.combinedReader(p=>readFileSync(p,'utf8').replaceAll('\r\n','\n'),'watcherFlowPrior'),'localSeven');
 const {before}=JSON.parse(gunzipSync(readFileSync('tests/fixtures/class-potion-watcher-before.json.gz')));
 const owners=Object.keys(proof),live=Object.fromEntries(owners.map(p=>[p,read(p)]));
 const hash=s=>createHash('sha256').update(s).digest('hex');

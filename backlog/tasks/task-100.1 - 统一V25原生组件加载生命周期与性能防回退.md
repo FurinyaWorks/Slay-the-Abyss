@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-09 11:10'
-updated_date: '2026-11-09 05:58'
+updated_date: '2026-11-09 06:06'
 labels: []
 milestone: m-7
 dependencies: []
@@ -54,5 +54,5 @@ P0 技术阻塞：千星原生 V25 组件方案减少了运行时逐图元组装
 
 最新develop接续后已补完原V25 clean fc98/022017af同候选的三VM十阶段基线、独立原生请求计数、自然seed33815胜利领奖回图及当轮截图；原图/布局/主题来源逐hash保护，压力seed17与自然路径分开。新发现的Pages迟到显示/重入清理已RED→GREEN并冻结a0c2，原3Lua、默认4/2负控、原32美术组合7项、真实SDK raw配对8项、完整工程与变异门禁通过；doctor/verify:backlog/check:guidance再次通过。当前继续修正真实Full日志暴露的源码证明原序及新旧CI接线，原断言/旧archive/预算保留；最终独审、当前Full及合后验证未完成，状态保持In Progress。
 
-最终clean aced9718同源SDK组件A/B各3×20通过：同原件/视觉/测量协议，init19539→14938、warm19539→16060、残留0。三暖态P95本轮全部升高但未越原1.25观察线，完整保留，不宣称暖态提速。结合fc98同候选原V25三VM十阶段/十手双敌压力、自然seed33815胜利领奖回图和截图、64来源/模板逐像素保护及正式生命周期负控，核验AC1/3/4/6；AC5与最终交付仍等最后HEAD独审/正常Full及合后读回。独审非枚举证明旁路已同攻击独立RED→GREEN，默认clone与旧assert/archive/预算保留。
+最终clean aced9718同源SDK组件A/B各3×20通过：同原件/视觉/测量协议，init19539→14938、warm19539→16060、残留0。三暖态P95本轮全部升高但未越原1.25观察线，完整保留，不宣称暖态提速。结合fc98同候选原V25三VM十阶段/十手双敌压力、自然seed33815胜利领奖回图和截图、64既有视觉源字节/LFS身份保持，选定私有卡面/遮罩另经PNG/RGBA验证及正式生命周期负控，核验AC1/3/4/6；AC5与最终交付仍等最后HEAD独审/正常Full及合后读回。独审非枚举证明旁路已同攻击独立RED→GREEN，默认clone与旧assert/archive/预算保留。
 <!-- SECTION:NOTES:END -->
