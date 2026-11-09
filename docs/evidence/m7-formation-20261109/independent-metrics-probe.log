@@ -1,0 +1,40 @@
+PASS independent metrics: complete 338-file Git base and current identities; only Formation measurements changed; exact dependency edges and SCC structure unchanged
+{
+  "reviewer": "EncounterFormation independent reviewer (not the implementer)",
+  "reviewedAt": "2026-11-08T23:53:40.336524+00:00",
+  "scope": "Read-only verification of existing metrics, not a new whole-library collection or Full run.",
+  "baseSha": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "baselineArchive": "docs/evidence/m7-defect-final-20261109/current-engineering.json.gz",
+  "baselineArchiveSha256": "f8612e82aba918f7518653c7778286e2b468d99c213cbf8b811267bce807ce19",
+  "currentArchiveSha256": "2abe4b92fceb9b67cf1d3648707328a45b93d27b8279cfce94bf13ad5d96db2c",
+  "all338BaselineSourcesReauthenticated": true,
+  "all338CurrentSourcesReauthenticated": true,
+  "allNonFormationModuleMeasurementsUnchanged": true,
+  "dependencyAndCycleStructuresUnchanged": true,
+  "baseline": {
+    "modules": 338,
+    "measurements": 5598,
+    "ccAbove30": 34,
+    "ccAbove15": 210,
+    "sccMembers": [
+      68,
+      11,
+      2
+    ],
+    "dependencyPairs": 1558,
+    "references": 1929
+  },
+  "current": {
+    "modules": 338,
+    "measurements": 5604,
+    "ccAbove30": 33,
+    "ccAbove15": 209,
+    "sccMembers": [
+      68,
+      11,
+      2
+    ],
+    "dependencyPairs": 1558,
+    "references": 1929
+  }
+}

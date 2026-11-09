@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T22:28:00Z'
+updated_date: '2026-11-09T00:02:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -28,6 +28,7 @@ documentation:
   - docs/backlog-details/M7-RELIC-EQUIP-20261109.md
   - docs/backlog-details/M7-SILENT-FINAL-20261109.md
   - docs/backlog-details/M7-DEFECT-FINAL-20261109.md
+  - docs/backlog-details/M7-ENCOUNTER-FORMATION-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -94,6 +95,8 @@ ordinal: 162000
 第21轮接续主控已授权M7职责治理：鲜查develop7821a7f4与开放PR占用后，在#572 d2ed1bbf依赖树仅拆分Silent final M.apply的触发、造牌、回合能力与伤害执行职责。保留公开动态槽、完整状态/别名/RNG/错误及部分写入；冻结旧源，新增职责CC15、真实语义负控和独立深审后及时远端保全与Draft交付。不重复Full、不改原分支/owner/status/AC、不操作用户设备。
 
 第22轮按Owner持续架构授权接续同一任务，不另认领：task:pick因既有In Progress为HOLD，已核实开放PR未涉及DefectFinal.execute。以最新develop 7821及公开#573 6f017完整祖先链建隔离树，按动作执行职责拆解execute CC39，保持旧分支读序、双created、返回值、RNG、队列及部分失败。冻结完整旧源，双独立VM及真实语义负控；新增helper含嵌套受原CC15门禁。组合来源新epoch保留49-owner历史合同，按实测评估CI成本，独立深审后及时远端Draft接续；不重跑Full、不准入/合并、不改owner/status/AC或用户设备。
+
+2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -168,4 +171,10 @@ Silent final最终行为16/16，46301ms；两侧各848完整图、九个具名�
 第21轮独立深审PASS/unresolved[]，额外CI消费者16/16后共62个不同CI用例通过；传递source14/14及timings路由2/2补齐。生产、合同及成本已冻结，完整日志与原失败均归档，待精确远端最终身份/Draft交付。无Hosted Full、正常准入或合后证据，任务与AC保持。
 
 第22轮已实做DefectFinal.execute职责拆分并远端保全f4a3671d，接续#573。execute CC39→13、8helper最大6；全338模块5598/5598，>30为35→34，>15为211→210，SCC68/11/2不变。行为19/19、双VM各1351完整图、10具名语义变异通过；来源121不同用例、当前50owner鲜读及历史档案保留。真实CC3/3及原职责19/19通过。最终串行行为89.852秒；完整797JS/1410Lua含60秒预留预测POSIX1202485，超过原目标2485ms，成本准入仍BLOCKED。保留原预算/并发/worker与真实失败，不重复Full、ready、入队或合并；当前仅Draft交付准备，不改owner/status/AC。
+
+EncounterFormation.assemble职责已拆分，生产先公开保全f0629567；入口CC31→8、6helper最大8，全338模块5604测量，>30 34→33、>15 210→209，SCC68/11/2不变。新行为14/14（7322ms规划），1532完整图/侧及11具名语义负控；三大原Lua另完整旧新17/17通过并保存77.623秒收据。来源新11、旧Defect11、当前全树38通过；真实CC3与原职责19通过，独立1884次执行/888故障前缀无阻塞。CI最终接线等#574POSIX15基线，不重复Full、不提前勾AC。完整证据与初次失败见新增附件。
+
+EncounterFormation已按公开fb04完成CI inverse与真实floor：runtime13/13、完整校准38/39，唯一原POSIX预算失败保持。800JS/1410Lua含60秒预留预测Windows1794163、POSIX1205156（超5156）；未复制另一线尚未发布的POSIX15，Draft整体BLOCKED。完整日志/hash与旧floor均保留，传递消费者补核及最终独审继续。
+
+Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原POSIX成本失败。静态91测试/151模块仅列闭包；直接加载fb04原helper，对5完整CI档案/27种来源/8路径/11导出作4255次输出与异常等价比较全部通过。保留原Defect档案、14shape和全部旧预算/成本。独审局部PASS、整体BLOCKED，不冒称可合入；最终上传与Draft身份附后。
 <!-- SECTION:NOTES:END -->

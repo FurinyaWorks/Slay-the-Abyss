@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "kind": "EncounterFormation complete discovered inventory planning forecast",
+  "sourceBaseCommit": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "currentTreeCommitted": false,
+  "currentTreeCommitRole": "Uncommitted additive slice; the sourceBaseCommit is the complete published predecessor, not the current tree.",
+  "inventory": {
+    "priorJs": 797,
+    "currentJs": 800,
+    "lua": 1410,
+    "addedJs": [
+      "tests/encounter-formation-complexity.test.mjs",
+      "tests/encounter-formation-responsibilities.test.mjs",
+      "tests/encounter-formation-source-epoch.test.mjs"
+    ],
+    "removedJs": [],
+    "addedLua": [],
+    "removedLua": []
+  },
+  "floorsMs": {
+    "tests/encounter-formation-responsibilities.test.mjs": 7322,
+    "tests/encounter-formation-source-epoch.test.mjs": 17342
+  },
+  "effectivePlanningCostsMs": {
+    "tests/encounter-formation-complexity.test.mjs": 10000,
+    "tests/encounter-formation-responsibilities.test.mjs": 10000,
+    "tests/encounter-formation-source-epoch.test.mjs": 17342
+  },
+  "priorMaximaPlusReserveMs": {
+    "win32": 1791774,
+    "linux": 1202485
+  },
+  "platforms": {
+    "win32": {
+      "count": 17,
+      "jsLoads": [
+        1114882,
+        1114886,
+        1114885,
+        1114887,
+        1114887,
+        1114886,
+        1114887,
+        1114887,
+        1114885,
+        1114884,
+        1114885,
+        1114882,
+        1114883,
+        1114881,
+        1114884,
+        1114887,
+        1114886
+      ],
+      "combinedLoads": [
+        1733506,
+        1733488,
+        1733554,
+        1733909,
+        1733647,
+        1733426,
+        1734049,
+        1733669,
+        1733676,
+        1733995,
+        1733620,
+        1733657,
+        1733561,
+        1733763,
+        1733567,
+        1734163,
+        1733794
+      ],
+      "reserveMs": 60000,
+      "budgetMs": 1800000,
+      "maximumPlusReserveMs": 1794163,
+      "overrunMs": 0
+    },
+    "linux": {
+      "count": 14,
+      "jsLoads": [
+        1145148,
+        1145148,
+        1145147,
+        1145156,
+        1145147,
+        1145148,
+        1145147,
+        1145148,
+        1145147,
+        1145147,
+        1145147,
+        1145147,
+        1145147,
+        1145148
+      ],
+      "combinedLoads": [
+        1145148,
+        1145148,
+        1145147,
+        1145156,
+        1145147,
+        1145148,
+        1145147,
+        1145148,
+        1145147,
+        1145147,
+        1145147,
+        1145147,
+        1145147,
+        1145148
+      ],
+      "reserveMs": 60000,
+      "budgetMs": 1200000,
+      "maximumPlusReserveMs": 1205156,
+      "overrunMs": 5156
+    }
+  },
+  "workers": 2,
+  "maxParallel": 12,
+  "unknownJsMs": 10000,
+  "shapeChanged": false,
+  "oldFloorsChanged": false,
+  "executionGuardsChanged": false,
+  "budgetsChanged": false,
+  "reserveChanged": false,
+  "oneTimeEvidence": "docs/evidence/m7-formation-20261109/retained-double-vm.mjs is outside normal test discovery and adds no recurring floor. All original 1410 Lua fixtures retain their exact identities and Full discovery.",
+  "status": "BLOCKED: POSIX forecast exceeds the unchanged 1200000 ms performance target by 5156 ms. The published predecessor already exceeded it by 2485 ms.",
+  "actualFullPassClaim": false,
+  "inputSha256": {
+    "scripts/ci-test-timings.json": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+    "scripts/ci-quality-shape.mjs": "5eb6a562172a05d764609759fe500315fb5c07c565d190271f0c57b2841a889d",
+    "scripts/ci-shards.mjs": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+    "scripts/test-lua.mjs": "57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703",
+    "tests/helpers/encounter-formation-ci-source-inverse.mjs": "cdd36e28746f39123ac955195877aa4ad9e4f09555e905b827f19e713d0840c9",
+    "tests/helpers/encounter-formation-ci-source-epoch.json.gz": "cd039ffe6b0f7fd2959776b84cf199290b3621b8a82266bc6929876e1ce46fbf",
+    "tests/ci-complete-calibration.test.mjs": "8274e7df91a6f3b0076100c65a89f7572c05a9a64fa953fd430866dcc10f8142",
+    "tests/ci-runtime.test.mjs": "c02f7cbc245ad0568207de6f6956ac3a65c2c9ba8939f9e2024e793ffc8bd3dd"
+  },
+  "completeFileReceipts": [
+    "docs/evidence/m7-formation-20261109/ci-calibration-receipt.json",
+    "docs/evidence/m7-formation-20261109/ci-runtime-receipt.json"
+  ]
+}

@@ -428,3 +428,15 @@ docs/evidence/m7-defect-final-20261109/*.lua text eol=lf
 docs/evidence/m7-defect-final-20261109/*.py text eol=lf
 docs/evidence/m7-defect-final-20261109/*.gz -text
 docs/evidence/m7-defect-final-20261109/*.sha256 text eol=lf
+
+# Encounter formation responsibility evidence and authenticated helper bytes.
+tests/helpers/encounter-formation-source-epoch.mjs text eol=lf
+tests/helpers/encounter-formation-source-epoch.json.gz -text
+tests/helpers/encounter-formation-ci-source-inverse.mjs text eol=lf
+tests/helpers/encounter-formation-ci-source-epoch.json.gz -text
+docs/evidence/m7-formation-20261109/*.json text eol=lf
+docs/evidence/m7-formation-20261109/*.mjs text eol=lf
+docs/evidence/m7-formation-20261109/*.lua text eol=lf
+docs/evidence/m7-formation-20261109/*.py text eol=lf
+docs/evidence/m7-formation-20261109/*.log text eol=lf
+docs/evidence/m7-formation-20261109/*.gz -text

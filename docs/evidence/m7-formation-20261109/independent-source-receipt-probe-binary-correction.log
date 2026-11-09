@@ -1,0 +1,23 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: tests/helpers/encounter-formation-source-epoch.json.gz
++ actual - expected
+
++ '6367f5a78bd7c405315119bd6f6e9ee5cc1ab1d267119972ca9723b66815d7be'
+- '6d082e4f921213a60a41ab1f0a4109a49645c1014cc83f315178937ca0885132'
+
+    at file:///workspace/scratch/c1a4970a76e0/m7-formation/docs/evidence/m7-formation-20261109/independent-source-receipt-probe.mjs:62:110
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '6367f5a78bd7c405315119bd6f6e9ee5cc1ab1d267119972ca9723b66815d7be',
+  expected: '6d082e4f921213a60a41ab1f0a4109a49645c1014cc83f315178937ca0885132',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

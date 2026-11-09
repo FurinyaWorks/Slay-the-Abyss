@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "docs/evidence/m7-formation-20261109/ci-boundary-equivalence.mjs"
+  ],
+  "sourceBaseCommit": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "scriptSha256": "a02fc5960c1e4cc8a0b820a25315427b26e72251aad67c1500f0532ae06df713",
+  "resultSha256": "67fe74dc87fb8ecab5bc99ec90f2f592c1053c98a6ebb31afc4a329473a4044b",
+  "sourceLog": "docs/evidence/m7-formation-20261109/ci-boundary-equivalence.log.gz",
+  "sourceLogSha256": "c29c4926b2d3d9274fb90f7569386892aae614513a40b25f0fde9060b914dcbe",
+  "sourceLogUncompressedSha256": "38bdfa26273407af17e6357ac041acaae3c92bab2279e53d5cef83ffb040612a",
+  "completeSourceInputs": 27,
+  "comparisons": 4255,
+  "downstreamTestFiles": 91,
+  "beforeAfterHashesMatched": true,
+  "equivalent": true,
+  "actualFullPassClaim": false
+}

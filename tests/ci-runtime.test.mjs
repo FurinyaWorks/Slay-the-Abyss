@@ -1,3 +1,4 @@
+import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
 import {relicEquipPlanningKey,relicEquipPlanningFloor} from './helpers/relic-equip-ci-source-inverse.mjs';
@@ -234,6 +235,8 @@ test('current timing records preserve all measured corrections without duplicate
   }else if(file===classPotionPlanningKey){
    assert.deepEqual(entry,classPotionPlanningFloor);assert.equal(entry.durationMs,180000);
    assert.ok(entry.durationMs>=162004.675552,'retain conservative full-file local planning floor');
+  }else if(Object.hasOwn(encounterFormationPlanningFloors,file)){
+   assert.deepEqual(entry,encounterFormationPlanningFloors[file]);
   }else if(Object.hasOwn(defectFinalPlanningFloors,file)){
    assert.deepEqual(entry,defectFinalPlanningFloors[file]);
   }else if(file===silentFinalSourcePlanningKey){
@@ -256,7 +259,7 @@ test('current timing records preserve all measured corrections without duplicate
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28+Object.keys(defectFinalPlanningFloors).length);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 
