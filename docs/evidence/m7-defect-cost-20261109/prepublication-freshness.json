@@ -1,0 +1,87 @@
+{
+  "checkedAtUtc": "2026-11-08T23:00:18.813Z",
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "develop": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "scope": "Read-only prepublication freshness; no workflow or admission action.",
+  "headBeforeRepair": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "matchingWorkflowRuns": 0,
+  "prs": [
+    {
+      "number": 574,
+      "head": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+      "base": "feat/m7-silent-final-responsibilities",
+      "draft": true,
+      "title": "refactor(core): 拆分 Defect final 执行职责（成本阻塞）"
+    },
+    {
+      "number": 573,
+      "head": "6f017ff875baa2de80a121e507634a2d859fecfa",
+      "base": "feat/ci-source-projection-cost",
+      "draft": true,
+      "title": "refactor(core): 拆分 Silent final 动作执行职责"
+    },
+    {
+      "number": 572,
+      "head": "d2ed1bbfdb1bc9e000870f38037592cc60ab4068",
+      "base": "feat/m7-relic-equip-responsibilities",
+      "draft": true,
+      "title": "perf(test): 去重历史来源证明的纯计算"
+    },
+    {
+      "number": 571,
+      "head": "8660380c1611c75c260db22d39ee65bfd8223a8d",
+      "base": "feat/m7-published-combination-20261109",
+      "draft": true,
+      "title": "refactor(core): 拆分 RelicHooks 装备职责"
+    },
+    {
+      "number": 570,
+      "head": "cbabad34d0957309cbda03e1ae467cd94371bf1c",
+      "base": "feat/repair-mainline-contracts",
+      "draft": true,
+      "title": "refactor(core): 集成三个已公开 M7 职责切片"
+    },
+    {
+      "number": 569,
+      "head": "a6efc662704c214b7a4ce4b0cac960bc01cc2477",
+      "base": "feat/repair-mainline-contracts",
+      "draft": true,
+      "title": "refactor(core): 拆分 Effects 目标分组验证职责"
+    },
+    {
+      "number": 568,
+      "head": "dae93d7108afcf9fb6fb4ed937133ac69346f8f2",
+      "base": "feat/watcher-flow-integration-20261109",
+      "draft": true,
+      "title": "refactor(core): 拆分 Silent tactics 动作计划职责"
+    },
+    {
+      "number": 567,
+      "head": "cb0b804c23e31280fab8e69a964e7ea2319134e2",
+      "base": "feat/repair-mainline-contracts",
+      "draft": true,
+      "title": "refactor(core): 集成 WatcherFlow 动作计划职责"
+    },
+    {
+      "number": 566,
+      "head": "d02386698115ba311b20759c091648ef4c8f6c9e",
+      "base": "develop",
+      "draft": false,
+      "title": "test(balance): add reproducible offline campaign batch audit"
+    },
+    {
+      "number": 565,
+      "head": "ae71692631e5a84c9716ea291dd1b32aa87281e0",
+      "base": "develop",
+      "draft": true,
+      "title": "feat(ui): 接入现成组件的完整游戏对照候选（实施中）"
+    },
+    {
+      "number": 564,
+      "head": "f256316c5b63adc7bbc1a72a8fedbc86f69079c6",
+      "base": "develop",
+      "draft": true,
+      "title": "test(ci): 修复合后隔离来源与回归装配合同"
+    }
+  ]
+}

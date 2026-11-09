@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "testFile": "tests/relic-equip-responsibilities.test.mjs",
+  "command": "node --test --test-concurrency=1 tests/relic-equip-responsibilities.test.mjs",
+  "tests": 15,
+  "pass": 15,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "durationMs": 7907.592055,
+  "logPath": "docs/evidence/m7-relic-equip-20261109/behavior.log.gz",
+  "logSha256": "2f47cafcef466482c0a6f87c5d0c3eeba992be690cca90c5e6ac7644a26d82c8",
+  "compressedLogSha256": "c30404b16c0fddbb00ae1fd3ece792503b44ff965e3dd2d9cb46b5c1c3459883",
+  "sourcePath": "src/lua/abyss_relic_hooks.lua",
+  "sourceSha256": "19b0ba4fcd2c5ca37219623868b8cdd978787e8861e50e2e43fefb8c70be2f2f",
+  "testSha256": "8ca20948a414eb943d50992cf1c8f59464189e82737b15ca3b02ad27ff7b1c22",
+  "baseSha": "cbabad34d0957309cbda03e1ae467cd94371bf1c",
+  "productionCheckpoint": "582afa16192b65f896973144c5ebc22bea6c1252",
+  "scope": "Local POSIX complete file only. No hosted Full or Windows runtime claim."
+}

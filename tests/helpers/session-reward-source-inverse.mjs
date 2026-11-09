@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preSessionRewardSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'sessionReward',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'sessionReward')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'sessionReward'):readSource)});
 }
 const readers=new WeakMap();
 export function sessionRewardReader(readSource=live){

@@ -1,0 +1,10 @@
+from pathlib import Path
+import subprocess,hashlib,gzip,json,re,time
+p=Path('docs/evidence/m7-formation-20261109');root=Path.cwd();file='tests/encounter-formation-responsibilities.test.mjs'
+paths=sorted(set([file,'tests/helpers/encounter-formation-edges.lua','tests/helpers/encounter-formation-vm.mjs','tests/helpers/lua-graph-observer.mjs','tests/fixtures/encounter-formation-before.lua','scripts/build-lua-data.mjs','package-lock.json','tests/lua/encounter_formations.lua']+[str(x)for x in Path('src/lua').rglob('*.lua')]+[str(x)for x in Path('build/lua').rglob('*.lua')]))
+h=lambda b:hashlib.sha256(b).hexdigest(); snap=lambda:{x:h(Path(x).read_bytes().replace(b'\r\n',b'\n'))for x in paths}
+before=snap();r=subprocess.run(['node','--test','--test-concurrency=1',file],stdout=subprocess.PIPE,stderr=subprocess.STDOUT);after=snap();raw=r.stdout
+p.joinpath('behavior-final.log.gz').write_bytes(gzip.compress(raw,mtime=0));print(raw.decode());print('status',r.returncode);assert before==after
+for k,n in [('tests',14),('pass',14),('fail',0),('skipped',0),('cancelled',0)]:assert re.search(r'(?:ℹ|#) '+k+' '+str(n)+r'\b',raw.decode())
+record={'command':['node','--test','--test-concurrency=1',file],'testFile':file,'tests':14,'pass':14,'fail':0,'cancelled':0,'skipped':0,'durationMs':float(re.search(r'duration_ms ([\d.]+)',raw.decode())[1]),'testSha256':before.pop(file),'inputSha256':{x:v for x,v in before.items()if not x.startswith('build/')},'generatedInputSha256':{x:v for x,v in before.items()if x.startswith('build/')},'beforeAfterHashesMatched':before=={x:v for x,v in after.items()if x!=file},'logSha256':h(raw),'compressedLogSha256':h(p.joinpath('behavior-final.log.gz').read_bytes()),'scope':'Complete final 14-test recurring behavior file. All original repository Lua tests remain unchanged and discovered by Full. Three additional large suites separately completed old/new in the retained-double-vm receipt.','checkpointRows':[json.loads(line.split(' ',1)[1])for line in raw.decode().splitlines()if line.startswith('FORMATION_GRAPHS ')]}
+p.joinpath('behavior-final-receipt.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')

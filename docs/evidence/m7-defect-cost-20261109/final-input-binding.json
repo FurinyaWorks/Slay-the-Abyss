@@ -1,0 +1,34 @@
+{
+  "baseRemoteSha": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "scope": "Final working-tree source bytes match the independently recorded before and after input maps. This is source binding, not a rerun or hosted certification.",
+  "checks": [
+    {
+      "receipt": "docs/evidence/m7-defect-cost-20261109/affected-ci-tools-receipt.json",
+      "inputCount": 3254,
+      "finalCandidateMatchesBothInputMaps": true,
+      "result": {
+        "tests": 210,
+        "pass": 210,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 10205.522692
+      }
+    },
+    {
+      "receipt": "docs/evidence/m7-defect-cost-20261109/transitive-source-contracts-receipt.json.gz",
+      "inputCount": 5117,
+      "finalCandidateMatchesBothInputMaps": true,
+      "result": {
+        "tests": 31,
+        "pass": 31,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 44824.118598
+      }
+    }
+  ]
+}

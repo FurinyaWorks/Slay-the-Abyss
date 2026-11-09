@@ -1,0 +1,3 @@
+PASS independent dynamic-capability differential: 1884 executions; 888 boundary fail-prefix pairs; 18 formations x 3 modes
+PASS independent admission/fallback: live supports, table source admitted into historical Wildlife fallback, selected aliases, failure before boundary access
+PASS independent reentrancy: nested assemble retains separate routing/result ownership

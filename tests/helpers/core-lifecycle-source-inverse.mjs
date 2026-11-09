@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preCoreLifecycleSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'develop',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'develop')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'develop'):readSource)});
 }
 const readers=new WeakMap();
 export function coreLifecycleReader(readSource=live){

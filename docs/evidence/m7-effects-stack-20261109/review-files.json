@@ -1,0 +1,9 @@
+{
+  "reviewId": "independent-effects-target-group-f256-combination-20261109-r2",
+  "files": {
+    "review-combination-byte-verification.json": "a89530948c00b1b1fef0e8ea9ec73e0fcc85b45d6a98e77237df9c07c1ba6513",
+    "review-combination-review.json": "a81042d26b488fa6032683c1d93a181b080ea3c7622034b2ae49c20dfaa2fc4f",
+    "review-combination-crlf.log.gz": "0a28842b35f2ab23145635c0a587496bffe3dece53fc9bc4cedac7e6022657e6",
+    "review-combination-targeted.log.gz": "ec8f9b5b8e0a7625dd84979d7f63205bc7bf6b91cd5f0ec868e306f7454894d5"
+  }
+}

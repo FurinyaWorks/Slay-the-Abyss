@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "localHead": "7c332f993b1c00ef185b5261e67261d008f87d12",
+    "remoteHead": "a2978e3797c21323c396bc24cd73ae8bee88815a",
+    "tree": "3b5224e54d701d6fc88ba8e479ec0fbe1ce701a1",
+    "base": "7821a7f44b518c09f6b565860e04e4823bc95153"
+  },
+  "failure": {
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42489554698/job/128759364490",
+    "shard": "3/14",
+    "selectedFiles": 56,
+    "completedFiles": 52,
+    "completedDurationMs": 1581024.455024,
+    "battleDurationMs": 1121540.712959,
+    "battleCasesMs": [
+      52640.931249,
+      751871.549236,
+      316995.794469
+    ],
+    "battleLinuxPlacementWeightMs": 46036,
+    "inFlightAtCancellation": "tests/task77-current-source-layers.test.mjs",
+    "notStarted": [
+      "tests/test-strength.test.mjs",
+      "tests/verify-official-client.test.mjs",
+      "tests/victory-relic-counter-source.test.mjs"
+    ],
+    "assertionFailuresObserved": 0
+  },
+  "diagnosis": [
+    "Historical 98fef source tests repeatedly traverse expanding current PR323/BattleLife/Integration adapters and linked-owner checks. The historical mutant and composition cases dominate the observed file cost.",
+    "The test file itself is unchanged relative to develop7821a7f. The 24.4x stale Linux planning-weight discrepancy is observed; this is not a controlled measurement of PR564-only regression or proof of an infrastructure transient.",
+    "Task77 was the next serial selected file after syntax-check, with no completion before cancellation. Its full cost and result are unknown."
+  ],
+  "change": [
+    "Use the already present authenticated original 98fef helper closure, matching the sibling Nodes config test. No fixture bytes change.",
+    "Original three test bodies, mutants, assertions and expected identities remain byte-identical.",
+    "Add original helper tamper/deletion/CRLF checks and explicit rejection through all three real current Battle facade calls on live source. Current owner admission is not cached."
+  ],
+  "provenance": {
+    "archive": "tests/fixtures/nodes-battle-original-chain-98fef95d.json.gz",
+    "sha256": "f904703b3e747713eba5297718f222a833bf84995c73fa0c8845723dfff11c96",
+    "originalCommit": "98fef95d047652aa6a8880241ddff28ef320a484",
+    "gitBlobsIndependentlyChecked": 113
+  },
+  "validation": {
+    "command": "timeout 120s node --test tests/battle-max-hp-config-inverse.test.mjs",
+    "exitCode": 0,
+    "passed": 5,
+    "failed": 0,
+    "durationMs": 59837.807185,
+    "testFileSha256": "16b132d18f5ebdcfc9a48048a4288da1ab9aa15a8d28ee3ef0538edb0bab01c1",
+    "log": "✔ [historical 98fef source contract] combined config removes only known Battle or Max HP additions to the unchanged complete accepted identities (1855.336638ms)\n✔ [historical 98fef source contract] combined projection rejects missing wrong-path unknown duplicated deleted reordered and unrelated inputs (19773.586672ms)\n✔ [historical 98fef source contract] combined source traverses the unchanged strict historical guards through either complete accepted config (8416.872374ms)\n✔ Battle config replay authenticates its original helper closure and rejects changed bytes (124.384497ms)\n✔ current Battle config facade rejects incompatible modern owners instead of borrowing historical admission (29033.146805ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 59837.807185\n",
+    "initialValidationFailure": {
+      "reason": "New provenance mutant added an inline field to an existing-file reference and correctly failed its shape guard before the expected hash guard. Corrected the mutation to change actual readInput bytes. Original three cases and live facade case passed.",
+      "log": "✔ [historical 98fef source contract] combined config removes only known Battle or Max HP additions to the unchanged complete accepted identities (1827.407173ms)\n✔ [historical 98fef source contract] combined projection rejects missing wrong-path unknown duplicated deleted reordered and unrelated inputs (19640.639691ms)\n✔ [historical 98fef source contract] combined source traverses the unchanged strict historical guards through either complete accepted config (8638.999502ms)\n✖ Battle config replay authenticates its original helper closure and rejects changed bytes (30.593266ms)\n✔ current Battle config facade rejects incompatible modern owners instead of borrowing historical admission (27345.509228ms)\nℹ tests 5\nℹ suites 0\nℹ pass 4\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 58230.921575\n\n✖ failing tests:\n\ntest at tests/battle-max-hp-config-inverse.test.mjs:96:1\n✖ Battle config replay authenticates its original helper closure and rejects changed bytes (30.593266ms)\n  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /original complete Nodes chain bytes/. Input:\n  \n  'AssertionError [ERR_ASSERTION]: one complete original input: tests/helpers/battle-max-hp-config-inverse.mjs'\n  \n      at TestContext.<anonymous> (file:///workspace/shared/pr564-battle-config-cost/tests/battle-max-hp-config-inverse.test.mjs:99:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: AssertionError [ERR_ASSERTION]: one complete original input: tests/helpers/battle-max-hp-config-inverse.mjs\n        at file:///workspace/shared/pr564-battle-config-cost/tests/battle-max-hp-config-inverse.test.mjs:22:10\n        at Array.map (<anonymous>)\n        at validateOriginalChain (file:///workspace/shared/pr564-battle-config-cost/tests/battle-max-hp-config-inverse.test.mjs:20:56)\n        at file:///workspace/shared/pr564-battle-config-cost/tests/battle-max-hp-config-inverse.test.mjs:99:21\n        at getActual (node:assert:611:5)\n        at strict.throws (node:assert:759:24)\n        at TestContext.<anonymous> (file:///workspace/shared/pr564-battle-config-cost/tests/battle-max-hp-config-inverse.test.mjs:99:10)\n        at Test.runInAsyncScope (node:async_hooks:227:14)\n        at Test.run (node:internal/test_runner/test:1402:25)\n        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),\n    expected: /original complete Nodes chain bytes/,\n    operator: 'throws',\n    diff: 'simple'\n  }\n"
+    },
+    "otherChecks": [
+      "node --check tests/battle-max-hp-config-inverse.test.mjs",
+      "git diff --check",
+      "npm run check:guidance",
+      "npm run verify:backlog"
+    ],
+    "scopeNote": "Full five-case result applies to pre-CRLF-correction SHA16b132d. Final narrow provenance correction validated separately below; original three cases unchanged."
+  },
+  "limits": [
+    "Local Linux/Node validation is not exact-head hosted CI or Windows execution.",
+    "No Full, dispatch, budget/floor, shard schedule, production or fixture changes. No VM tests repeated.",
+    "The local 59.8s result does not prove the entire shard fits or certify Task77. Normal exact-head CI remains required."
+  ],
+  "independentReview": {
+    "reviewId": "review_battle_config_cost",
+    "conclusion": "pass",
+    "unresolved": [],
+    "scope": "Original test bodies, archive source and dependency provenance, fresh current facade rejection, changed test bytes and correction; no production/budget/workflow changes."
+  },
+  "crlfCorrection": {
+    "reason": "Prior provenance case expanded already-CRLF referenced bytes again, creating CRCRLF. Parent review caught the missing actual-checkout-input case.",
+    "testSha256": "9c00e81a9272033fb181ad44c50f97bfba536cffb3009430ad845d49224514ed",
+    "fix": "Normalize CRLF to LF before expansion; test both original and already-CRLF readers. Gzip remains unchanged.",
+    "actualOnDiskCrlfReferenceFiles": 96,
+    "redLog": "✖ Battle config replay authenticates its original helper closure and rejects changed bytes (101.789319ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 697.394946\n\n✖ failing tests:\n\ntest at tests/battle-max-hp-config-inverse.test.mjs:96:1\n✖ Battle config replay authenticates its original helper closure and rejects changed bytes (101.789319ms)\n  AssertionError [ERR_ASSERTION]: original complete Nodes chain bytes: tests/fixtures/approved-node-ui-faces-layer.json\n  + actual - expected\n  \n  + '8b73831e280872f3ba37688a1fad6b44c13bd981bf0d6ded4880b1c698df80cb'\n  - 'd1e253724b880a9b1779588eb222153675044806ae83a3dba1d63b1fb0b9331b'\n  \n      at file:///workspace/shared/pr564-battle-crlf-check/tests/battle-max-hp-config-inverse.test.mjs:26:10\n      at Array.map (<anonymous>)\n      at validateOriginalChain (file:///workspace/shared/pr564-battle-crlf-check/tests/battle-max-hp-config-inverse.test.mjs:20:56)\n      at TestContext.<anonymous> (file:///workspace/shared/pr564-battle-crlf-check/tests/battle-max-hp-config-inverse.test.mjs:105:13)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.start (node:internal/test_runner/test:1262:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: '8b73831e280872f3ba37688a1fad6b44c13bd981bf0d6ded4880b1c698df80cb',\n    expected: 'd1e253724b880a9b1779588eb222153675044806ae83a3dba1d63b1fb0b9331b',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n",
+    "lfGreenLog": "✔ Battle config replay authenticates its original helper closure and rejects changed bytes (255.515742ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 957.832679\n",
+    "actualCrlfGreenLog": "✔ Battle config replay authenticates its original helper closure and rejects changed bytes (247.900796ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 856.060752\n",
+    "command": "timeout 30s node --test --test-name-pattern='Battle config replay authenticates' tests/battle-max-hp-config-inverse.test.mjs",
+    "validationScope": "Actual CRLF bytes on POSIX, not native Windows. No expensive/full replay repeated. Original three bodies byte-identical. Syntax and diff checks pass.",
+    "independentReview": {
+      "reviewId": "review_battle_config_cost",
+      "conclusion": "pass",
+      "supersedesPriorTestReview": true,
+      "unresolved": []
+    }
+  }
+}

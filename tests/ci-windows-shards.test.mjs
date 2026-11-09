@@ -106,8 +106,37 @@ test('current Windows matrix consumes the shared seventeen-shard shape without c
   for(const command of ['node scripts/ci-shards.mjs --prepare=','node scripts/ci-shards.mjs --shard='])
     assert.ok(rules.includes(command+'${{ matrix.shard }}/${{ strategy.job-total }}'));
   assert.ok(rules.includes("node scripts/test-lua.mjs --shard ${{ matrix.shard }}/${{ strategy.job-total }} --workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
-  assert.match(job('check'),/^    needs: \[impact, rules, fast, presentation, engineering-posix\]\n    if: always\(\)$/m);
+  assert.match(job('check'),/^    needs: \[impact, rules, fast, presentation, engineering-posix\]\n    if: \$\{\{ !cancelled\(\) \}\}$/m);
   assert.doesNotMatch(rules,/continue-on-error:|--test-name-pattern|--test-skip-pattern/);
+});
+
+test('current check releases cancelled runs and fails closed on every non-success selected result',()=>{
+  // #560 deliberately replaced always() only at the job gate. The historical
+  // always() contract above stays frozen; failure/skip still reaches this shell.
+  const check=job('check');
+  assert.match(check,/^    if: \$\{\{ !cancelled\(\) \}\}$/m);
+  assert.match(check,/^          RULES_RESULT: \$\{\{ needs.rules.result \}\}$/m);
+  assert.doesNotMatch(check,/continue-on-error:|\|\| true/);
+  const command=check.match(/^      - name: Require every regression shard\n        env:\n          RULES_RESULT: [^\n]+\n        run: \|\n((?:          .*\n)+)/m)?.[1];
+  assert.ok(command,'execute the actual aggregate gate, not a substitute predicate');
+  const substitutions={'needs.impact.result':'PLAN','needs.impact.outputs.mode':'MODE','needs.fast.result':'FAST'};
+  const shellCommand=command.replace(/\$\{\{ ([^}]+) \}\}/g,(_,name)=>{assert.ok(Object.hasOwn(substitutions,name),name);return '$'+substitutions[name];});
+  const shell=process.platform==='win32'?join(process.env.ProgramFiles,'Git','bin','bash.exe'):'/bin/sh';
+  const statuses=[undefined,'','skipped','cancelled','failure','timed_out','success'];
+  const execute=values=>{
+    const env={...process.env};for(const name of ['PLAN','MODE','FAST','RULES_RESULT'])delete env[name];
+    for(const [name,value]of Object.entries(values))if(value!==undefined)env[name]=value;
+    const actual=spawnSync(shell,['-e','-c',shellCommand],{env,encoding:'utf8',windowsHide:true,timeout:30000});
+    assert.ifError(actual.error);return actual.status===0;
+  };
+  for(const mode of ['full','fast'])for(const result of statuses){
+    const selected=mode==='full'?'RULES_RESULT':'FAST',unselected=mode==='full'?'FAST':'RULES_RESULT';
+    assert.equal(execute({PLAN:'success',MODE:mode,[selected]:result,[unselected]:'success'}),result==='success',mode+'/'+String(result));
+    assert.equal(execute({PLAN:'success',MODE:mode,[selected]:'success',[unselected]:result}),true,'unselected '+mode+'/'+String(result));
+  }
+  for(const result of statuses)for(const mode of ['full','fast'])
+    assert.equal(execute({PLAN:result,MODE:mode,FAST:'success',RULES_RESULT:'success'}),result==='success','impact '+String(result));
+  for(const mode of [undefined,'','unknown'])assert.equal(execute({PLAN:'success',MODE:mode,FAST:'success',RULES_RESULT:'success'}),false,'unknown routing cannot pass');
 });
 
 test('native Node eight-shard selection executes every current JS file name exactly once', t => {

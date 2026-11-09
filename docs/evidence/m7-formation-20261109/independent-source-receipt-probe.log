@@ -1,0 +1,64 @@
+PASS independent source: 339 live inputs, all prior targets/bindings preserved, exact former facade, 51-owner changed union, 19 fresh rejection probes including archive tamper
+PASS final receipts: all 4 logs, test files and recorded live/generated inputs match; 14/11/11/38 passed; retained 17-test source preserved exactly with only disclosed recurring-file reduction
+{
+  "reviewer": "EncounterFormation independent reviewer (not the implementer)",
+  "reviewedAt": "2026-11-08T23:53:57.165Z",
+  "scope": "Source/behavior local review only; no Full, merge, exact final commit or platform approval.",
+  "reviewedBaseHead": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "sourceSha256": "c31b3aa4711fcd53613e00e689c5e2ede15ecb0ba2fb89d9fa16b6fb8d3abd63",
+  "gateSha256": "b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066",
+  "sourceFacadeSha256": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+  "sourceOuterSha256": "1c654029938e0d5eb0864adb2f76333d3e4a1ed1fe95d73e2e0c21a8fb376436",
+  "owners": 51,
+  "negativeProbes": 19,
+  "reviewedReceipts": [
+    {
+      "name": "behavior-final",
+      "tests": 14,
+      "pass": 14,
+      "inputCount": 345,
+      "generatedInputCount": 17,
+      "durationMs": 7321.271067,
+      "receiptSha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc"
+    },
+    {
+      "name": "source",
+      "tests": 11,
+      "pass": 11,
+      "inputCount": 59,
+      "generatedInputCount": 0,
+      "durationMs": 17341.023952,
+      "receiptSha256": "4a80f128eaa794a38a4da9b8ad7d9caa21abd4c73fd7308466e977eaf601eda0"
+    },
+    {
+      "name": "source-defect-regression",
+      "tests": 11,
+      "pass": 11,
+      "inputCount": 59,
+      "generatedInputCount": 0,
+      "durationMs": 13067.297279,
+      "receiptSha256": "d3db4f713ad58100ef3697ac81b74be8775f0258146b642e149372d8bb029678"
+    },
+    {
+      "name": "source-integration",
+      "tests": 38,
+      "pass": 38,
+      "inputCount": 59,
+      "generatedInputCount": 0,
+      "durationMs": 7393.317591,
+      "receiptSha256": "ab57b5bde1896dc8e6442579149653a6f8e2aba918ce57d8c0ce20dc5b9eca43"
+    }
+  ],
+  "retained": {
+    "tests": 17,
+    "durationMs": 77623.482649,
+    "postRunHashLimitation": true,
+    "expectedCurrentDrift": [
+      {
+        "path": "tests/encounter-formation-responsibilities.test.mjs",
+        "expected": "e83c6efe4798f12c42e32d5343103586a272b2bd9f61234363b5050196f48646",
+        "actual": "3b738419197c308d6e9e0a52ad050e8b28c7d887d29245f6b2e7e941f6865671"
+      }
+    ]
+  }
+}

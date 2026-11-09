@@ -1,0 +1,111 @@
+{
+  "baseline": {
+    "coverage": {
+      "modules": 338,
+      "functions": 5252,
+      "measurements": 5590,
+      "expectedMeasurements": 5590
+    },
+    "ccAbove30": 35,
+    "ccAbove15": 211,
+    "maxCC": 61,
+    "sccMembers": [
+      68,
+      11,
+      2
+    ],
+    "sccInternalReferences": [
+      513,
+      44,
+      2
+    ],
+    "allReferences": 1929,
+    "dependencyPairs": 1558,
+    "governedResponsibilityMeasurements": 2067,
+    "defect": [
+      {
+        "name": "M.execute",
+        "line": 214,
+        "complexity": 39
+      }
+    ]
+  },
+  "current": {
+    "coverage": {
+      "modules": 338,
+      "functions": 5260,
+      "measurements": 5598,
+      "expectedMeasurements": 5598
+    },
+    "ccAbove30": 34,
+    "ccAbove15": 210,
+    "maxCC": 61,
+    "sccMembers": [
+      68,
+      11,
+      2
+    ],
+    "sccInternalReferences": [
+      513,
+      44,
+      2
+    ],
+    "allReferences": 1929,
+    "dependencyPairs": 1558,
+    "governedResponsibilityMeasurements": 2076,
+    "defect": [
+      {
+        "name": "generate",
+        "line": 215,
+        "complexity": 6
+      },
+      {
+        "name": "applyFinalPower",
+        "line": 223,
+        "complexity": 3
+      },
+      {
+        "name": "recurOrb",
+        "line": 228,
+        "complexity": 2
+      },
+      {
+        "name": "scrapeDrawn",
+        "line": 234,
+        "complexity": 5
+      },
+      {
+        "name": "recoverZeroCost",
+        "line": 239,
+        "complexity": 5
+      },
+      {
+        "name": "recoverDiscard",
+        "line": 245,
+        "complexity": 4
+      },
+      {
+        "name": "fissionOrbs",
+        "line": 250,
+        "complexity": 4
+      },
+      {
+        "name": "rebootPiles",
+        "line": 255,
+        "complexity": 5
+      },
+      {
+        "name": "M.execute",
+        "line": 264,
+        "complexity": 13
+      }
+    ]
+  },
+  "baseSha": "6f017ff875baa2de80a121e507634a2d859fecfa",
+  "remoteProductionCheckpoint": "f4a3671d320d41d0e9479faffd897cf2a58d8bbc",
+  "sourceSha256": "77abe4a82a37118273585830e1bd4c49e07b0367de77f06dc388b7ca862f5544",
+  "limits": [
+    "Local complete engineering collection only, not hosted Full.",
+    "No SCC reduction or deployment claim."
+  ]
+}

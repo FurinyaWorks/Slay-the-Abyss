@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "testFile": "tests/silent-final-apply.test.mjs",
+  "command": "node --test --test-concurrency=1 tests/silent-final-apply.test.mjs",
+  "tests": 16,
+  "pass": 16,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "durationMs": 46301.022236,
+  "logPath": "docs/evidence/m7-silent-final-20261109/behavior.log.gz",
+  "logSha256": "4f85b9d113ece391aa15a76995fd74300235ef261d507af772869a1c47da2d10",
+  "compressedLogSha256": "6924bb4a3b7d1713a97de64dc8bf7eabbf12484392ef900edcb1321da2693ce5",
+  "sourcePath": "src/lua/abyss_silent_final_cards.lua",
+  "sourceSha256": "21766502d620d7fb9885cc3884d79c557739bac3bf750b5105fe34aa18bf8fdb",
+  "testSha256": "64bd02fa0c0a41dbc5aedb16c369d7aae1cba42a79d7a4e133f40932fe5fa1e4",
+  "baseSha": "d2ed1bbfdb1bc9e000870f38037592cc60ab4068",
+  "productionCheckpoint": "ce44fbfbfd0b7be8bd18fd8f3399c75ec4c10e50",
+  "scope": "Local POSIX complete file only. No hosted Full or Windows runtime claim.",
+  "inputSha256": {
+    "tests/helpers/silent-final-apply-vm.mjs": "50d8bc937b8718e3ae0127ec7e040d85268b9ce91aca71d3c275f0cdb80c47de",
+    "tests/helpers/silent-final-apply-edges.lua": "7aff84f37a619338623aabeb355b04e65169efe04fcc8c145be2686c1c85c142",
+    "tests/fixtures/silent-final-apply-before.lua": "a8648acd0e294f142be20bc4e1561ceded10c1455ec8b493cc96c7e1f6d36fef",
+    "tests/helpers/lua-graph-observer.mjs": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f",
+    "tests/lua/silent_final_runtime.lua": "3b18d6ab1a2cad5adde7f27c11cb9321a39027dc5b333cb0357cb135a54a432c",
+    "tests/lua/silent_final_edges.lua": "7c7ce7be2075af641ae577e66f5060f52791c58bc95128c5a73c15b5e0f78d30",
+    "tests/lua/silent_final_potions.lua": "c84da8727d33ce9e3f50f47bf1abc7a46fa40a9f4e703153e4eb35e5af6dc0d4",
+    "tests/lua/silent_burst_retrieval.lua": "d04b01f0503b6a053cbb788b49492c83e7750d8c04374f416ce5111615ea229e",
+    "tests/lua/silent_corpse_artifact.lua": "e1907548d2763c41cd808441fe9f7f0f68f0bef19728c5cb5d18af7053049182"
+  }
+}

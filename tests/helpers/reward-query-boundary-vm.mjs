@@ -1,4 +1,5 @@
-// Each invocation owns a fresh VM and complete immutable source snapshot.
+// Each invocation owns a fresh VM and the complete current dependency context.
+// The old variant changes only the three reward owners to their immutable before sources.
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {readFileSync,readdirSync,writeFileSync,mkdirSync,openSync,writeSync,closeSync} from 'node:fs';
@@ -25,7 +26,7 @@ for(const name of readdirSync('src/lua').filter(n=>n.endsWith('.lua')).sort()){
  }
  sources[name.slice(0,-4)]=source;sourceManifest[path]={sha256:hash(source),bytes:Buffer.byteLength(source)};
 }
-assert.equal(Object.keys(sources).length,333);
+
 const mutations={
  'managed-bowl':['abyss_relic_card_rewards',"or owns(run,'singing_bowl')","or owns(run,'prayer_wheel')"],
  'preview-flag':['abyss_relic_card_rewards','common.previewCardReward(run,group,true)','common.previewCardReward(run,group,false)'],

@@ -18,7 +18,7 @@ export function preGameUiExtractionSource(path,source,{readSource=live}={}){
   return original(path,source,{readSource});
  }
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'develop',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'develop')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'develop'):readSource)});
 }
 const readers=new WeakMap();
 export function gameUiExtractionReader(readSource=live){
@@ -31,7 +31,7 @@ export function gameUiExtractionReader(readSource=live){
 import {preNativePageSource as nativeOriginal} from './epochs/native/tests/helpers/game-ui-extraction-source-inverse.mjs';
 export function preNativePageSource(path,source,{readSource=live}={}){
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'native',readSource});
- return nativeOriginal(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'native')});
+ return nativeOriginal(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'native'):readSource)});
 }
 
 const inside=(root,path)=>{const rel=relative(root,path);return rel!==''&&!isAbsolute(rel)&&rel!=='..'&&!rel.startsWith('../')&&!rel.startsWith('..\\');};

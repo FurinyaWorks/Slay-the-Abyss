@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "98fef95d047652aa6a8880241ddff28ef320a484",
+  "extends": "tests/fixtures/ready-art-original-helper-sources.json",
+  "entry": "tests/helpers/battle-life-source-inverse.mjs",
+  "files": {
+    "tests/fixtures/battle-life-source-layer.json": {
+      "sha256": "4d1e5af98f2c8fb31fa1e78d5b590636c3a9658e668d08d5dbac36667b19b8ad",
+      "gitBlob": "0ee2689faafa91d9f17d10e27b7192ef19a2bd02",
+      "copyFrom": "tests/fixtures/battle-life-source-layer.json"
+    },
+    "tests/fixtures/combat-relics-hud-inverse.json": {
+      "sha256": "38acee6d5598250bfe42ed578bcd2ecef30200677cbeabc55b59176521e91282",
+      "gitBlob": "eadbe805a5f6c795a28fdb1ffe78512ac168aae7",
+      "copyFrom": "tests/fixtures/combat-relics-hud-inverse.json"
+    },
+    "tests/fixtures/combat-vfx-upgrade-inverse.json": {
+      "sha256": "ea6445c08d0c178d2f41c297e672c9184513c04a38d097421584b9db83193265",
+      "gitBlob": "c6e117a952c582f07a1e2113f9b9f2f0a39465b9",
+      "copyFrom": "tests/fixtures/combat-vfx-upgrade-inverse.json"
+    },
+    "tests/fixtures/official-background-source-layer.json": {
+      "sha256": "db49c03e83dfb42f9d21fdda43a99af86d3be3c8bbd7352c7f4134225192dc07",
+      "gitBlob": "c0f4d98039652d702d21abebbf522b29910f6cc4",
+      "copyFrom": "tests/fixtures/official-background-source-layer.json"
+    },
+    "tests/fixtures/relic-completion-inverse.json": {
+      "sha256": "87baa37adcc1054e023966b4bda8f7d9ac0abb13e4c76a0b5f07a9020644e834",
+      "gitBlob": "6f5babf564b7b8855c4ff0b2f44b5287c71bb358",
+      "copyFrom": "tests/fixtures/relic-completion-inverse.json"
+    },
+    "tests/fixtures/round2-can-play-source-inverse.json": {
+      "sha256": "05f0361bfbd23927261073033a88785289cc236f24a9baa3d688707461c4d11c",
+      "gitBlob": "8b356886f2e546695e10d862cd8f4e1c8537c1e6",
+      "copyFrom": "tests/fixtures/round2-can-play-source-inverse.json"
+    },
+    "tests/helpers/battle-life-source-inverse.mjs": {
+      "sha256": "0d90edf36adec87b5f75ca564e06d709bd9e10ea62184744d56804bbcc5b4a43",
+      "gitBlob": "470745ef135db874e6b49a923c1d2536eefb36dc",
+      "source": "import {prepareBetaRetirement} from './beta-integration-source.mjs';\nimport {preIntegrationSource,prepareIntegrationRetirement} from './pr372-integration-source.mjs';\nimport {preCombatRelicsHudSource} from './combat-relics-hud-inverse.mjs';\nimport {preCombatVfxUpgradeSource} from './combat-vfx-upgrade-inverse.mjs';\nimport {preHandGestureAimSource,prepareHandGestureAimModuleRetirement} from './hand-gesture-aim-source-inverse.mjs';\nimport {preHandFanSource} from './hand-fan-source-inverse.mjs';\nimport {prepareArtFeatureRetirement} from './art-feature-source-inverse.mjs';\nimport {prepareRound3CatalogModuleRetirement} from './round3-catalog-source-inverse.mjs';\nimport {preBackgroundSource,prepareBackgroundRetirement} from './official-background-source-inverse.mjs';\nimport {preNativeMonsterArtSource,prepareNativeMonsterRetirement} from './native-monster-art-source-inverse.mjs';\nimport {preNativeEnemyThemeSource} from './native-enemy-theme-inverse.mjs';\nimport {preRelicRound2CompositionSource} from './relic-round2-composition.mjs';\nimport {preRound2CanPlaySource} from './round2-can-play-source-inverse.mjs';\nimport {preRound2UiSource,prepareRound2UiModuleRetirement} from './round2-ui-source-inverse.mjs';\n// Exact outer replay adapter for this presentation-only slice. Live tests load\n// current production modules; original historical witnesses stay immutable.\nimport assert from 'node:assert/strict';\nimport {preCiLuaCalibrationSource} from './ci-lua-calibration-inverse.mjs';\nimport {existsSync, readFileSync, rmSync} from 'node:fs';\nimport {join, resolve} from 'node:path';\nimport {createHash} from 'node:crypto';\nimport {preRelicCompletionSource,prepareRelicCompletionModuleRetirement} from './relic-completion-inverse.mjs';\n\nconst normalize = source => source.replaceAll('\\r\\n', '\\n');\nconst hash = source => createHash('sha256').update(source).digest('hex');\nconst bytes = normalize(readFileSync(new URL('../fixtures/battle-life-source-layer.json', import.meta.url), 'utf8'));\nassert.equal(hash(bytes), '4d1e5af98f2c8fb31fa1e78d5b590636c3a9658e668d08d5dbac36667b19b8ad', 'complete battle-life outer source identity');\nexport const battleLifeSourceLayer = JSON.parse(bytes);\nassert.equal(battleLifeSourceLayer.schemaVersion, 1);\nassert.equal(battleLifeSourceLayer.baseCommit, 'd4c4b25594798f9d2f4fc6b66a061532c2b71595');\nassert.equal(battleLifeSourceLayer.reviewedHead, 'd2c1148c4f20d16474edf688449e1daf269dc979');\nfor (const [path, binding] of Object.entries(battleLifeSourceLayer.files)) {\n  assert.match(path, /^(?:src\\/lua\\/[^/]+\\.lua|scripts\\/[^/]+\\.mjs|config\\/[^/]+\\.json|data\\/presentation\\/ui_theme\\.json|tests\\/ui-layout\\.test\\.mjs)$/);\n  assert.match(binding.afterSha256, /^[a-f0-9]{64}$/);\n  assert.ok(binding.beforeSha256 === null || /^[a-f0-9]{64}$/.test(binding.beforeSha256));\n  assert.ok(Array.isArray(binding.hunks));\n  if (binding.beforeSha256 === null) assert.deepEqual(binding.hunks, [], 'genuinely new module has no historical source');\n}\n\nexport function preBattleLifeOuterSource(path, source) {\n source=preIntegrationSource(path,source);\n  source=preNativeMonsterArtSource(path,source);\n  source=preCombatRelicsHudSource(path,source);\n  source=preCombatVfxUpgradeSource(path,source);\n  source = preHandGestureAimSource(path, source);\n  source = preHandFanSource(path, source);\n  source = preRelicRound2CompositionSource(path,source,'relic');\n  source = preRound2UiSource(path,source);\n  source = preNativeEnemyThemeSource(path,preBackgroundSource(path,source));\n  source = preCiLuaCalibrationSource(path, source);\n  source = preRound2CanPlaySource(path, source);\n  return preRelicCompletionSource(path,source);\n}\n\nexport function preBattleLifeSource(path, source) {\n  source = preBattleLifeOuterSource(path, source);\n  const binding = battleLifeSourceLayer.files[path];\n  if (!binding || typeof source !== 'string') return source;\n  const normalized = normalize(source);\n  // Partial/foreign/future source must still reach every unchanged strict guard.\n  if (hash(normalized) !== binding.afterSha256) return source;\n  if (binding.beforeSha256 === null) return null;\n  const lines = normalized.split('\\n');\n  for (const hunk of [...binding.hunks].reverse()) {\n    assert.deepEqual(lines.slice(hunk.at, hunk.at + hunk.after.length), hunk.after,\n      'exact battle-life inverse hunk and position: ' + path);\n    lines.splice(hunk.at, hunk.after.length, ...hunk.before);\n  }\n  const previous = lines.join('\\n');\n  assert.equal(hash(previous), binding.beforeSha256, 'complete pre-battle-life source recovered: ' + path);\n  return previous;\n}\n\nexport const battleLifeAddedPaths = Object.freeze(Object.entries(battleLifeSourceLayer.files)\n  .filter(([, binding]) => binding.beforeSha256 === null).map(([path]) => path));\n\n// Validate the complete new-module destination inventory before any caller\n// writes/deletes. Return a deferred cleanup so older materializers keep their\n// own full source/destination validation and exact historical ownership.\nexport function prepareBattleLifeModuleRetirement(directory, {sourceRoot = process.cwd()} = {}) {\n  assert.notEqual(resolve(directory), resolve(sourceRoot), 'battle-life retirement requires a separate historical destination');\n  const retireIntegration=prepareIntegrationRetirement(directory,{sourceRoot});\n  const retireBackground=prepareBackgroundRetirement(directory,{sourceRoot});\n  const retireRound2=prepareRound2UiModuleRetirement(directory,{sourceRoot});\n  const retireNativeMonster=prepareNativeMonsterRetirement(directory,{sourceRoot});\n  const retireHandGesture=prepareHandGestureAimModuleRetirement(directory,{sourceRoot});\n  const retireRound3=prepareRound3CatalogModuleRetirement(directory,{sourceRoot});\n  const retireRelics=prepareRelicCompletionModuleRetirement(directory,{sourceRoot});\n  const targets = [];\n  for (const path of battleLifeAddedPaths) {\n    const target = join(directory, path);\n    if (!existsSync(target)) continue;\n    assert.equal(hash(normalize(preRelicCompletionSource(path,preCombatVfxUpgradeSource(path,readFileSync(target, 'utf8'))))), battleLifeSourceLayer.files[path].afterSha256,\n      'unreviewed battle-life added module destination: ' + path);\n    targets.push(target);\n  }\n  return () => {\n    // Revalidate both newest owners before any composed historical deletion.\n    prepareArtFeatureRetirement(directory,{sourceRoot});\n    prepareBetaRetirement(directory,{sourceRoot});\n    retireRound3(); retireNativeMonster(); retireHandGesture(); retireIntegration();\n    for (const target of targets) rmSync(target); retireRound2(); retireBackground();retireRelics();\n  };\n}\n"
+    },
+    "tests/helpers/ci-lua-calibration-inverse.mjs": {
+      "sha256": "ce82ad30e7d692251058de88f7a0948e1f9980ebcbde9009f4a7a7813f694271",
+      "gitBlob": "fb34593d0bbddedf029499704cc9e4dc4f1fc973",
+      "copyFrom": "tests/helpers/ci-lua-calibration-inverse.mjs"
+    },
+    "tests/helpers/combat-relics-hud-inverse.mjs": {
+      "sha256": "614c741155b2fd75971ce95e1f1ba532468b881f8272962d9a722b4cea055d83",
+      "gitBlob": "b8f365c5914267fa0ab4633d2934fb1b7590d3d6",
+      "copyFrom": "tests/helpers/combat-relics-hud-inverse.mjs"
+    },
+    "tests/helpers/combat-vfx-upgrade-inverse.mjs": {
+      "sha256": "924e16c9f107a17e2cb010df0c9eb1c8bba15836fdd3be0bb728a12d9bab30bc",
+      "gitBlob": "3b26fb6783be26126205985cee78939157f27bce",
+      "copyFrom": "tests/helpers/combat-vfx-upgrade-inverse.mjs"
+    },
+    "tests/helpers/hand-fan-source-inverse.mjs": {
+      "sha256": "a9de5119c771b0419009ee8b0b54406120539d24e52dcbbdebe0146980bb2314",
+      "gitBlob": "c996c51b50486f47a17b6c68e69db3be58e1c7ac",
+      "copyFrom": "tests/helpers/hand-fan-source-inverse.mjs"
+    },
+    "tests/helpers/hand-fan-source-layer.json": {
+      "sha256": "d1fed0343521b54bc6c9c5cc342f1b3d35d4cc05a23caf1067fe01a56c87b71d",
+      "gitBlob": "78994243d825f2038c7ef6c14745303ff56b04aa",
+      "copyFrom": "tests/helpers/hand-fan-source-layer.json"
+    },
+    "tests/helpers/hand-gesture-aim-source-inverse.mjs": {
+      "sha256": "e0921e4a253b85abe71745caa318027287735e9c134554b77ef72336c74ddddd",
+      "gitBlob": "ba5859d91a07c50840aebc566bd04235105a3816",
+      "copyFrom": "tests/helpers/hand-gesture-aim-source-inverse.mjs"
+    },
+    "tests/helpers/hand-gesture-aim-source-layer.json": {
+      "sha256": "7478ca2465020478f6ff9ea5a9ba3f5136763a4f640968fcff4cff262f63bbab",
+      "gitBlob": "04ba9df86b850b2210c6ba963eb5748391a4952d",
+      "copyFrom": "tests/helpers/hand-gesture-aim-source-layer.json"
+    },
+    "tests/helpers/map-path-a11y-inverse.mjs": {
+      "sha256": "a239c3406e682965e9016e4445b2acdf66ec9c03ee5c6d87f3ae6f52315beb6e",
+      "gitBlob": "9488c910490c7e411250b46e264b12a0475c94e2",
+      "copyFrom": "tests/helpers/map-path-a11y-inverse.mjs"
+    },
+    "tests/helpers/native-enemy-theme-inverse.mjs": {
+      "sha256": "b0b2e28226c677f1cd5da276fe2c0c2d526871e198eb7dc855578bb6f9e9c287",
+      "gitBlob": "c5cba985f7f7677b4bc3e2ea25fbe2da879663d3",
+      "copyFrom": "tests/helpers/native-enemy-theme-inverse.mjs"
+    },
+    "tests/helpers/official-background-source-inverse.mjs": {
+      "sha256": "2d59646dcf927b4d8a9bf4d8297e7cc10ce6bc77cd1b711ef8b04aff93ef40e2",
+      "gitBlob": "9abd652505f07482fc33d937228f6f033fd7a731",
+      "copyFrom": "tests/helpers/official-background-source-inverse.mjs"
+    },
+    "tests/helpers/potion-manage-source-inverse.mjs": {
+      "sha256": "45535f1ec441269b05152f2dc7f63eb3deb323d79a07ca0fe2bc347f5116dbe5",
+      "gitBlob": "d14fb1e5f22ee98b4642c2366622421be43cd48c",
+      "copyFrom": "tests/helpers/potion-manage-source-inverse.mjs"
+    },
+    "tests/helpers/relic-completion-inverse.mjs": {
+      "sha256": "944456bc6ecf65eb426f6676da87dc6c76ac51cae011263354e4c411da70c45f",
+      "gitBlob": "c37a164c4ad3e6043ee05af8fe067cf485e9690a",
+      "copyFrom": "tests/helpers/relic-completion-inverse.mjs"
+    },
+    "tests/helpers/relic-round2-composition.json": {
+      "sha256": "0e5b4ed9669e05d61bea4f3afde1f76cc0c321d42d1a524717eaed2c0de3a233",
+      "gitBlob": "6293e586cbc9e22ddbc895b13a6f823d68733d8a",
+      "copyFrom": "tests/helpers/relic-round2-composition.json"
+    },
+    "tests/helpers/relic-round2-composition.mjs": {
+      "sha256": "75c21cb741f314c9211b9c67aca0a5b0c18247a3134aed7a3ec0d654cf3a5b10",
+      "gitBlob": "002463dd384dcbd3aaf14791a3bf5459bab9eba6",
+      "copyFrom": "tests/helpers/relic-round2-composition.mjs"
+    },
+    "tests/helpers/round2-can-play-source-inverse.mjs": {
+      "sha256": "ec2b89ffad6799fe83d50653d589d80f3f9ae607c3fa64d1731dc214db4b2ee8",
+      "gitBlob": "caa67184fea0c228dda08931177381b031a6e9c4",
+      "copyFrom": "tests/helpers/round2-can-play-source-inverse.mjs"
+    },
+    "tests/helpers/round2-ui-source-inverse.mjs": {
+      "sha256": "413c1525307252a88d4a3c755ae1fdf0f78e5de8bae4e5d05ca31d1a7e3828d1",
+      "gitBlob": "5f0d34cbd6eef386caa0e412a2878559e8c1eb56",
+      "source": "import {preIntegrationSource,prepareIntegrationRetirement} from './pr372-integration-source.mjs';\nimport {preCombatVfxUpgradeSource} from './combat-vfx-upgrade-inverse.mjs';\nimport {projectArtPerfSource} from './art-perf-source-composition.mjs';\nimport {preNativeMonsterArtSource} from './native-monster-art-source-inverse.mjs';\n// Test-only exact outer layer for the reviewed round-two presentation extraction.\n// Old witnesses keep their full bytes; unknown edits remain visible to their guards.\nimport assert from 'node:assert/strict';\nimport {preRelicRound2CompositionSource} from './relic-round2-composition.mjs';\nimport {readFileSync,existsSync,rmSync} from 'node:fs';\nimport {join,resolve} from 'node:path';\nimport {createHash} from 'node:crypto';\nconst normalize=source=>source.replaceAll('\\r\\n','\\n');\nconst hash=source=>createHash('sha256').update(source).digest('hex');\nconst bytes=normalize(readFileSync(new URL('./round2-ui-source-layer.json',import.meta.url),'utf8'));\nassert.equal(hash(bytes),'3ee6197fd8128898520bce5d3d002d8f384c140a52ede3557d3af0f89ff4b7e9','complete round-two UI outer source identity');\nexport const round2UiSourceLayer=JSON.parse(bytes);\nassert.equal(round2UiSourceLayer.schemaVersion,1);\nassert.equal(round2UiSourceLayer.baseCommit,'a7b03825b74cd6555efc3cf4c8dc7abacd114611');\nexport const round2UiAddedPaths=Object.freeze([\n  'src/lua/abyss_feedback_actor_painter.lua','src/lua/abyss_game_ui_menu_view.lua',\n]);\nassert.deepEqual(Object.keys(round2UiSourceLayer.files),[\n  'config/architecture.json','src/lua/abyss_feedback.lua','src/lua/abyss_game_ui.lua',...round2UiAddedPaths,\n]);\nfor(const [path,binding]of Object.entries(round2UiSourceLayer.files)){\n  assert.match(binding.afterSha256,/^[a-f0-9]{64}$/);\n  assert.ok(binding.beforeSha256===null||/^[a-f0-9]{64}$/.test(binding.beforeSha256));\n  assert.equal(binding.beforeSha256===null,round2UiAddedPaths.includes(path),'only the two new responsibilities have no historical source');\n  assert.ok(Array.isArray(binding.hunks));\n  if(binding.beforeSha256===null)assert.deepEqual(binding.hunks,[]);\n}\nexport function preRound2UiSource(path,source,{readSource=path=>projectArtPerfSource(path,preCombatVfxUpgradeSource(path,readFileSync(path,'utf8')),'perf')}={}){\n source=preIntegrationSource(path,source);\n  source=projectArtPerfSource(path,preNativeMonsterArtSource(path,source),'perf');\n  const binding=round2UiSourceLayer.files[path];\n  if(binding)source=preRelicRound2CompositionSource(path,source,'round2');\n  if(!binding||typeof source!=='string')return source;\n  const normalized=normalize(source);\n  if(hash(normalized)!==binding.afterSha256)return source;\n  // Every recognized current host/config binds both actual extracted modules.\n  // No current host gains historical permission if either responsibility drifts.\n  for(const added of round2UiAddedPaths){\n    let actual;\n    try{actual=readSource(added);}catch{assert.fail('unreviewed round-two UI linked module missing: '+added);}\n    assert.equal(typeof actual,'string','complete round-two UI linked source: '+added);\n    actual=preNativeMonsterArtSource(added,actual);\n    assert.equal(hash(normalize(actual)),round2UiSourceLayer.files[added].afterSha256,\n      'unreviewed round-two UI linked module drift: '+added);\n  }\n  if(binding.beforeSha256===null)return null;\n  const lines=normalized.split('\\n');\n  for(const hunk of [...binding.hunks].reverse()){\n    assert.deepEqual(lines.slice(hunk.at,hunk.at+hunk.after.length),hunk.after,'exact round-two UI inverse hunk and position: '+path);\n    lines.splice(hunk.at,hunk.after.length,...hunk.before);\n  }\n  const previous=lines.join('\\n');\n  assert.equal(hash(previous),binding.beforeSha256,'complete pre-round-two UI source recovered: '+path);\n  return previous;\n}\n\n// Validate the entire copied module inventory before returning any deletion.\n// This is only used by the existing historical materializer, never the live tree.\nexport function prepareRound2UiModuleRetirement(directory,{sourceRoot=process.cwd()}={}){\n  assert.notEqual(resolve(directory),resolve(sourceRoot),'round-two UI retirement requires a separate historical destination');\n  const targets=[];\n  for(const path of round2UiAddedPaths){\n    const target=join(directory,path);\n    if(!existsSync(target))continue;\n    assert.equal(hash(normalize(projectArtPerfSource(path,preCombatVfxUpgradeSource(path,readFileSync(target,'utf8')),'perf'))),round2UiSourceLayer.files[path].afterSha256,\n      'unreviewed round-two UI added module destination: '+path);\n    targets.push(target);\n  }\n  return ()=>{for(const target of targets)rmSync(target);};\n}\n"
+    },
+    "tests/helpers/round2-ui-source-layer.json": {
+      "sha256": "3ee6197fd8128898520bce5d3d002d8f384c140a52ede3557d3af0f89ff4b7e9",
+      "gitBlob": "c375a943dcfad09911b043c827c90f05e8181b98",
+      "copyFrom": "tests/helpers/round2-ui-source-layer.json"
+    }
+  }
+}

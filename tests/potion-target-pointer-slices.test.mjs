@@ -4,6 +4,7 @@ import {historicalTest} from './helpers/historical-baseline-inputs.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import {preLuaTimeoutPolicySource} from './helpers/lua-timeout-policy-source-inverse.mjs';
 import { originalLuaRunner } from './helpers/ci-lua-runner-inverse.mjs';
 import {originalMainPotionFixture,assertMainPotionActionHelper} from './helpers/main-potion-fixture-inverse.mjs';
 
@@ -88,6 +89,15 @@ historicalTest('potion pointer inverse and coverage guards reject lost assertion
   assert.throws(() => validateRunner(longerDeadline), /unchanged runner and deadlines/);
 });
 
+function validateCurrentRunner(source) {
+  assert.doesNotMatch(source,/battle_ui_potion_target_pointers/,'no current family-specific timeout exception');
+  // Bind the complete current runner and freshly read policy owner before
+  // checking the previous classification; the frozen budget oracle stays above.
+  const previous=preLuaTimeoutPolicySource('scripts/test-lua.mjs',source);
+  assert.notEqual(previous,source,'complete reviewed central Lua timeout policy');
+  assert.match(previous,/fixture \|\| composedHost \? 60000 : 30000;/,'pointer fixtures retain the ordinary classification');
+}
+
 test('current potion pointer coverage retains four executable ranges, raw discovery and the ordinary fixture budget',()=>{
   const wrappers=tails.map(read),source=read(entry);
   // Current coverage remains a live contract; only the complete old body,
@@ -102,6 +112,19 @@ test('current potion pointer coverage retains four executable ranges, raw discov
   assert.throws(()=>validatePartitions([[entry,1,3],...ranges.slice(1)],wrappers),/complete ranges/);
   assert.throws(()=>validatePartitions(ranges,wrappers.map(wrapper=>'-- '+wrapper)),/executable tail wrapper/);
   const runner=read('scripts/test-lua.mjs');
-  assert.doesNotMatch(runner,/battle_ui_potion_target_pointers/,'no current family-specific timeout exception');
-  assert.match(runner,/fixture \|\| composedHost \? 60000 : 30000;/,'current ordinary fixture budget remains 30 seconds');
+  validateCurrentRunner(runner);
+});
+
+test('current potion pointer budget rejects classification drift, timeout overrides and missing wrappers',()=>{
+  const source=read('scripts/test-lua.mjs');
+  for(const [before,after]of [
+    ['luaTimeoutMs.heavy : luaTimeoutMs.default','luaTimeoutMs.heavy : luaTimeoutMs.heavy'],
+    ['fixture || composedHost','composedHost'],
+    ['timeout ??=','timeout ='],
+  ]){
+    const changed=source.replace(before,after);
+    assert.notEqual(changed,source,'negative control changes actual runner: '+before);
+    assert.throws(()=>validateCurrentRunner(changed),/complete reviewed central Lua timeout policy/);
+  }
+  assert.throws(()=>validatePartitions(ranges,tails.slice(0,-1).map(read)),/executable tail wrapper/);
 });

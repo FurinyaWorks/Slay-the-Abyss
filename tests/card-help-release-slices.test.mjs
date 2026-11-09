@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {preLuaTimeoutPolicySource} from './helpers/lua-timeout-policy-source-inverse.mjs';
 import {readHistoricalBaselineSource} from './helpers/historical-baseline-inputs.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
@@ -53,8 +54,7 @@ test('eight original-budget card-help fixtures preserve the full source and all 
   const discovered = readdirSync('tests/lua').filter(name => /^card_help_release.*\.lua$/.test(name)).map(name => 'tests/lua/' + name).sort();
   assert.deepEqual(discovered, ranges.map(([path]) => path).sort(), 'raw Lua discovery includes all eight fixtures with no duplicate family');
   const runner = read('scripts/test-lua.mjs');
-  assert.doesNotMatch(runner, /card_help_release/, 'no family-specific timeout exception');
-  assert.match(runner, /fixture \|\| composedHost \? 60000 : 30000;/, 'keep the existing 30-second default fixture budget');
+  validateCurrentRunner(runner);
 });
 
 test('card-help source and coverage contracts reject deleted assertions, skipped ranges and inert wrappers', () => {
@@ -70,4 +70,29 @@ test('card-help source and coverage contracts reject deleted assertions, skipped
   assert.throws(() => validatePartitions(overlap, wrappers()), /complete ranges/);
   const inert = wrappers(); inert[ranges[1][0]] = '-- ' + inert[ranges[1][0]];
   assert.throws(() => validatePartitions(ranges, inert), /executable tail wrapper/);
+});
+
+function validateCurrentRunner(source) {
+  assert.doesNotMatch(source, /card_help_release/, 'no family-specific timeout exception');
+  // Bind the complete current runner and freshly read policy owner, preserving
+  // the reviewed ordinary classification without rewriting frozen source proof.
+  const previous = preLuaTimeoutPolicySource('scripts/test-lua.mjs', source);
+  assert.notEqual(previous, source, 'complete reviewed central Lua timeout policy');
+  assert.match(previous, /fixture \|\| composedHost \? 60000 : 30000;/, 'ordinary fixture classification remains intact');
+}
+
+test('current card-help budget rejects classification drift, timeout overrides and missing wrappers', () => {
+  const source = read('scripts/test-lua.mjs');
+  for (const [before, after] of [
+    ['luaTimeoutMs.heavy : luaTimeoutMs.default', 'luaTimeoutMs.heavy : luaTimeoutMs.heavy'],
+    ['fixture || composedHost', 'composedHost'],
+    ['timeout ??=', 'timeout ='],
+  ]) {
+    const changed = source.replace(before, after);
+    assert.notEqual(changed, source, 'negative control changes actual runner: ' + before);
+    assert.throws(() => validateCurrentRunner(changed), /complete reviewed central Lua timeout policy/);
+  }
+  const missing = wrappers();
+  delete missing[ranges.at(-1)[0]];
+  assert.throws(() => validatePartitions(ranges, missing), /executable tail wrapper/);
 });

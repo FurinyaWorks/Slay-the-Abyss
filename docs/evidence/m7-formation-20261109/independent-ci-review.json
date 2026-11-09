@@ -1,0 +1,87 @@
+{
+  "reviewer": "EncounterFormation independent reviewer (not the implementer)",
+  "reviewedAt": "2026-11-09T00:01:18.738Z",
+  "conclusion": "BLOCKED",
+  "scope": "CI source/floor/planning review; not an execution of Full. All supplied local consumer evidence reviewed; exact HEAD admission and Full remain pending.",
+  "baseSha": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "exactCiInverseBindings": 6,
+  "negativeCases": 60,
+  "inventory": {
+    "js": 800,
+    "lua": 1410
+  },
+  "floors": {
+    "tests/encounter-formation-source-epoch.test.mjs": {
+      "observedMs": 17341.023952,
+      "floorMs": 17342,
+      "effectiveMs": 17342
+    },
+    "tests/encounter-formation-responsibilities.test.mjs": {
+      "observedMs": 7321.271067,
+      "floorMs": 7322,
+      "effectiveMs": 10000
+    }
+  },
+  "forecasts": {
+    "win32": {
+      "count": 17,
+      "maximumPlusReserveMs": 1794163,
+      "budgetMs": 1800000,
+      "overrunMs": 0
+    },
+    "linux": {
+      "count": 14,
+      "maximumPlusReserveMs": 1205156,
+      "budgetMs": 1200000,
+      "overrunMs": 5156
+    }
+  },
+  "oldCostsAndExecutionShapeUnchanged": true,
+  "supplemental": {
+    "staticDownstreamTests": 91,
+    "staticTestsWereExecuted": false,
+    "fullInputs": 27,
+    "equivalenceComparisons": 4255,
+    "consumerFiles": [
+      "tests/ci-impact.test.mjs",
+      "tests/ci-posix-shards.test.mjs",
+      "tests/full-quality.test.mjs",
+      "tests/delivery.test.mjs",
+      "tests/merge-queue.test.mjs",
+      "tests/ui-regression-partitions.test.mjs"
+    ],
+    "consumerTests": 87,
+    "consumerPass": 87,
+    "consumerInputCount": 127,
+    "boundaryReceiptSha256": "cc47ed7c4cd3f034fd3999996bffb11d9c83a0047fe71c51bd65e184b8a5aaaa",
+    "consumerReceiptSha256": "1045a50a0623e15971bd6afd0c81b931c3c11f928f0974b59ac00ab659dd2e63"
+  },
+  "receipts": [
+    {
+      "name": "ci-runtime",
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "exitCode": 0,
+      "currentInputDrift": [],
+      "receiptSha256": "931891ae35129e3b9dce0ca14e15bee0568e428378e14c25043e1baa1c50b022"
+    },
+    {
+      "name": "ci-calibration",
+      "tests": 39,
+      "pass": 38,
+      "fail": 1,
+      "exitCode": 1,
+      "currentInputDrift": [],
+      "receiptSha256": "344cd2c14aafb4d6993f35a0aaccc8b09d48902aa5f1c56cab04c08351b4c2c0"
+    }
+  ],
+  "inputSha256": {
+    "scripts/ci-test-timings.json": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+    "tests/helpers/encounter-formation-ci-source-inverse.mjs": "cdd36e28746f39123ac955195877aa4ad9e4f09555e905b827f19e713d0840c9",
+    "tests/helpers/encounter-formation-ci-source-epoch.json.gz": "cd039ffe6b0f7fd2959776b84cf199290b3621b8a82266bc6929876e1ce46fbf",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "aef630705803ae3a49c29b99cd267975f6bb967bdfa9ead5b27a94002e12aff7",
+    "tests/ci-runtime.test.mjs": "c02f7cbc245ad0568207de6f6956ac3a65c2c9ba8939f9e2024e793ffc8bd3dd",
+    "tests/ci-complete-calibration.test.mjs": "8274e7df91a6f3b0076100c65a89f7572c05a9a64fa953fd430866dcc10f8142"
+  }
+}

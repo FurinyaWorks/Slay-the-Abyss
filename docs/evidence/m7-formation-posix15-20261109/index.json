@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "candidate": "Formation + POSIX15 real merge, supplemental evidence",
+  "parents": [
+    "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+    "841510b78172b923b1a613216b5c3dcb2c3e062e"
+  ],
+  "parentTrees": [
+    "a46ccfe3fe820617290aa1d3b9aae2ba345dd671",
+    "aabc61f3140e9e4803f3017dbaaa14b4b6ae7692"
+  ],
+  "finalIdentity": "Exact final local commit/tree and remote merge commit/tree require a separately stored post-commit attestation, avoiding circular self-hash claims.",
+  "localConclusion": "PASS",
+  "admission": "BLOCKED: exact HEAD Hosted Full37 and normal strict baseline/native admission not yet verified; Draft remains.",
+  "summary": {
+    "completeTests": {
+      "files": 23,
+      "pass": 245,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 101267.758538
+    },
+    "authorProjectionComparisons": [
+      4370,
+      6976
+    ],
+    "independentProjectionComparisons": 13455,
+    "independentBridgeNegatives": 17,
+    "independentValidatorNegatives": 40,
+    "jsInventory": 800,
+    "luaInventory": 1410,
+    "windowsForecastMs": 1794163,
+    "windowsHeadroomMs": 5837,
+    "posix15ForecastMs": 1128812,
+    "posix15HeadroomMs": 71188,
+    "posix14ForecastMs": 1205156,
+    "posix14ExcessMs": 5156,
+    "originalPathsPreserved": 8125,
+    "productionLuaPreserved": 338,
+    "existingFixturesPreserved": 331,
+    "existingEvidencePreserved": 1633
+  },
+  "unchangedConstraints": [
+    "Budgets, 60000ms reserve, unknown10000, all 32 current floors",
+    "Windows17, POSIX max-parallel12, Lua workers2, workflow and timeout policies",
+    "Original assertions, historical archives, actual failures and interruptions",
+    "TASK-74.20 owner/status and acceptance checks; normal required protections"
+  ],
+  "reusedNotRerun": [
+    "Formation behavior363 input hashes and three source receipts with60 each",
+    "Original Formation architecture metrics and deep-review results, with all338 production bytes unchanged"
+  ],
+  "notRun": [
+    "Hosted Full37",
+    "Broad91-file transitive source closure",
+    "Original PowerShell download suite: pwsh unavailable",
+    "Expensive stable Formation/legacy behavior VMs and full architecture measurement rerun",
+    "Official import, ready, devices, deploy or release"
+  ],
+  "artifacts": {
+    "docs/evidence/m7-formation-posix15-20261109/backlog-merge.json": {
+      "sha256": "2253547c157ea88db544eadeb251365165c92259f445a03648021d782a7fa41a",
+      "bytes": 2229
+    },
+    "docs/evidence/m7-formation-posix15-20261109/backlog.log.gz": {
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "bytes": 361
+    },
+    "docs/evidence/m7-formation-posix15-20261109/build.log.gz": {
+      "sha256": "d70340fa8eb66eb8cb502d4298744070031895f76c0ffe064452e5eeec31b834",
+      "bytes": 235
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-final-summary.json": {
+      "sha256": "3b40532ea61b805ab54dfa551d33163d7e29fa981b3ae8a04ee2bcd22ca5e3ab",
+      "bytes": 8229
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-initial-combination-failure.json": {
+      "sha256": "93dfd12b957611f8d551ab52419575bf22fe02c5ef20f15b0ecb7aaa88afcae5",
+      "bytes": 1317
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-initial-combination-failure.log.gz": {
+      "sha256": "8a749b48fd37bd824f512168d81308121a5a406986e04cec92fd50627e5ca393",
+      "bytes": 2322
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-initial-conflict-failure.json": {
+      "sha256": "eb7bc34cc300c420449aea407953c136f580aba4288574f2ad23d15cdb9102a8",
+      "bytes": 546
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-initial-conflict-failure.log.gz": {
+      "sha256": "2f092b5c93c77875a7bab8d89199f3b90c118fdb47d5bb63512bf552f2ccbcd8",
+      "bytes": 502
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning-receipt.json.gz": {
+      "sha256": "400c92417476f6341caeafae5739908fca314224871b7496e1fa0fa70b4f9669",
+      "bytes": 103704
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning-replay-receipt.json.gz": {
+      "sha256": "400c92417476f6341caeafae5739908fca314224871b7496e1fa0fa70b4f9669",
+      "bytes": 103704
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning-replay.log": {
+      "sha256": "6508c8e816fcc1d857dfd5cb1135fc5eabf3c032e52d59940b76ffe49ef3d1fe",
+      "bytes": 2513
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning.log": {
+      "sha256": "f09fb97c66811cf9acf970dd683fbf6f1f6ddc55a1380f54f3b5680c7b4bd88e",
+      "bytes": 2506
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning.mjs": {
+      "sha256": "a7d8b3fa48815a15c813e128a8aa7779d4fde5e8cae94a7a20620bad74231ac1",
+      "bytes": 6643
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-selected-complete-receipt.json.gz": {
+      "sha256": "00a06f5abed588dd94e69999ee612aadbad8bb48396537cc535dfc5d0ae3ac57",
+      "bytes": 341426
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-selected-complete.log.gz": {
+      "sha256": "867ccd85f3daaa3839870fe869a35d3011131789d6105554763f64f9c6f46e3f",
+      "bytes": 9921
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-verify-executed-source.py.gz": {
+      "sha256": "44f54c28cb1f59bbe331356a3fe55f18917fb50ee5d23c380836aba327498a82",
+      "bytes": 1408
+    },
+    "docs/evidence/m7-formation-posix15-20261109/ci-verify.py": {
+      "sha256": "eb3ba0fee6243be02b6fc1152e2061814ccc9fb98bb46ab41be9237446b3cc37",
+      "bytes": 3250
+    },
+    "docs/evidence/m7-formation-posix15-20261109/guidance.log.gz": {
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "bytes": 287
+    },
+    "docs/evidence/m7-formation-posix15-20261109/independent-merge-probe-receipt.json": {
+      "sha256": "305054caff9be14039732ee4c7d539700e89739dc64ab1439762927033b90768",
+      "bytes": 43456
+    },
+    "docs/evidence/m7-formation-posix15-20261109/independent-merge-probe.log": {
+      "sha256": "5591e8ab00040e555e9d30a72e75a55077c483fd760ed4a833c5440ebaf59643",
+      "bytes": 1260
+    },
+    "docs/evidence/m7-formation-posix15-20261109/independent-merge-probe.mjs": {
+      "sha256": "c86fe0e6819a304e831c62027f2bcf23af458d091a636baaaf1a5bf09e7c2201",
+      "bytes": 18737
+    },
+    "docs/evidence/m7-formation-posix15-20261109/independent-original-preservation.json": {
+      "sha256": "ca9255366aa1067d00843856de850c13b0580bcb253c7640c0c39aaf3f63c982",
+      "bytes": 609775
+    },
+    "docs/evidence/m7-formation-posix15-20261109/independent-receipt-audit.json": {
+      "sha256": "31a0469d7fd693e4f8a936d89fc68b89499f505b5808f0aefe2a8cf2789a587d",
+      "bytes": 4153
+    },
+    "docs/evidence/m7-formation-posix15-20261109/independent-review.json": {
+      "sha256": "1111fe2340149e3e99cd7dd48cf020490ade5bce1fca95e34cbe3bbaf7c7622f",
+      "bytes": 1490
+    },
+    "docs/evidence/m7-formation-posix15-20261109/independent-review.md": {
+      "sha256": "7d636ed64fba1700aa0894dd0656a5d88182596982277157a86685505084b6aa",
+      "bytes": 7606
+    },
+    "docs/evidence/m7-formation-posix15-20261109/initial-merge.log": {
+      "sha256": "2d1ef85bd018841403b3aa5a0b154352c65b8140e9fdd570b7b3ea1cb7af8d9a",
+      "bytes": 644
+    },
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-receipt.json.gz": {
+      "sha256": "2b444d4623366762436120bb752037ccb54374b4749f8aefdf5f3ce558564356",
+      "bytes": 222825
+    },
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-replay-receipt.json.gz": {
+      "sha256": "6781dbf81e44dd9ebc6b8d52ee8fbd25c856b4f9ef26eae90ba6b6dcbeb41f20",
+      "bytes": 222864
+    },
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-replay.log": {
+      "sha256": "05d99de70c0b8f435c169cc61c35c8b6c2bc052dcb6f9288ea33504e2eab3dbc",
+      "bytes": 481
+    },
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence.log": {
+      "sha256": "2df4a9f2e577fd2f421819766cdd0ef05ce36cd5d31316cbfe9ee8bd59978e3c",
+      "bytes": 474
+    },
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence.mjs": {
+      "sha256": "482bfb9950eb8443dab1cf85e80606037c2b434762cf4d3a1d5932c41947d863",
+      "bytes": 11582
+    },
+    "docs/evidence/m7-formation-posix15-20261109/retained-inputs.json": {
+      "sha256": "b71ad30bcfd1c01127860dd6185af21351c3abea1e116f28ac8931446441cef0",
+      "bytes": 117836
+    },
+    "docs/evidence/m7-formation-posix15-20261109/retained-inputs.log.gz": {
+      "sha256": "ddffe911f7bdc0421a0f21821e63b7d92978386fd3362995751124d8653fbfb5",
+      "bytes": 195
+    },
+    "docs/evidence/m7-formation-posix15-20261109/verify-retained-inputs.py": {
+      "sha256": "b03dee6c90658cdabd0800bdea1eebad2415374c5e07d7a1a20b9b9aa4ed9a03",
+      "bytes": 3605
+    }
+  }
+}

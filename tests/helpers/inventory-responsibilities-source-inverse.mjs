@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preInventoryResponsibilitiesSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'inventory',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'inventory')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'inventory'):readSource)});
 }
 const readers=new WeakMap();
 export function inventoryResponsibilitiesReader(readSource=live){

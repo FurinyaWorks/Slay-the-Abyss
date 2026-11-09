@@ -1,0 +1,199 @@
+{
+  "status": "PASS",
+  "conclusion": "pass",
+  "reviewId": "native-independent-review-silent-final-20261109",
+  "reviewedBaseSha": "d2ed1bbfdb1bc9e000870f38037592cc60ab4068",
+  "bindingMode": "Final working-tree file bytes bound by SHA256; exact committed tree attestation is separate. This report and future evidence index are excluded to avoid recursive binding.",
+  "scope": "Independent deep review of Silent final M.apply extraction, behavior tests, real CC gate, historical source authentication, CI planning and delivered documentation/evidence.",
+  "unresolved": [],
+  "findings": [
+    "Only original M.apply span is replaced. All 16 recognized action kinds retain branch bodies and evaluation/read/write/lazy-import order; setup/nightmare share one handler. Public dynamic M.apply recursion, zero-return arity, aliasing, table error identity and partial writes are preserved.",
+    "Final behavior 16/16 is bound to production, test and nine dependency input hashes. Independent old/new VMs compare 848 complete graph checkpoints each. Nine parsed semantic mutants fail exact named fixture assertions, with line-level provenance independently verified; infrastructure errors, signals and timeouts cannot count as kills.",
+    "Real pinned complexity tests pass 3/3; original apply CC42 and 32 inserted over-budget root/anonymous nested variants are rejected. All 16 roots covered; new helper maximum CC9, apply CC2. Byte-exact prefix/suffix and AST function inventory prevent missing a new helper; untouched choose CC18 remains explicit residual. Original responsibility tests 19/19 retained.",
+    "49 current raw owners are freshly authenticated with no authorization cache. Independent 98 LF/CRLF warm-reader drift checks pass. Every historical target metadata object and predecessor current binding is retained; prior relic tests target retained 48-owner epoch rather than weakening assertions.",
+    "Revised CI timings differ from exact base only by two local floors: behavior46617ms and source10937ms. All old timing records/floors/defaults, workflow, concurrency and budgets remain unchanged. New CI source inverse recovers exact base timing/gate under LF/CRLF and rejects foreign bytes. Earlier46616.416469ms complete-run source-version identity limitation is explicit, not represented as final-version proof.",
+    "Final CI46/46, source61/61, historical31/31, standalone source9/9 logs inspected. Inventory794JS/1410Lua; unchanged60s reserve gives Windows1785094ms and POSIX1194369ms forecasts. These are planning costs, not hosted-performance guarantees.",
+    "Documentation correctly retains prior failed/intermediate runs, ungoverned residual, unchanged SCCs, missing hosted Full/live-device evidence and admission limits. No lowered gate or fabricated old measurement found."
+  ],
+  "independentExecutedChecks": [
+    {
+      "command": "node docs/evidence/m7-silent-final-20261109/independent-probes.mjs",
+      "result": "PASS; 30 exact-base fresh-VM observations, including arbitrary kinds, tostring/table errors, captured kind, lazy require, no-return and dynamic recursion."
+    },
+    {
+      "command": "Independent inline Node owner-authentication/deep metadata probe",
+      "result": "PASS; 98 LF/CRLF owner drift cases; every prior target retained."
+    },
+    {
+      "command": "Independent inline Node revised CI inverse/floor/hash/provenance probe",
+      "result": "PASS; exact base timing map after removing two new floors; LF/CRLF exact inverse and foreign rejection; all source/behavior receipt hashes; prior successful-run cost limitation checked."
+    },
+    {
+      "command": "Independent exact semantic-mutant provenance probe",
+      "result": "PASS; nine errors matched actual fixture assertion lines and names."
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS."
+    }
+  ],
+  "reviewedImplementerRunEvidence": {
+    "behavior": {
+      "pass": 16,
+      "durationMs": 46301.022236,
+      "checkpointsPerVm": 848,
+      "semanticMutants": 9
+    },
+    "complexity": {
+      "pass": 3,
+      "durationMs": 3063.389869
+    },
+    "originalResponsibility": {
+      "pass": 19,
+      "durationMs": 1108.547064
+    },
+    "source": {
+      "pass": 61,
+      "durationMs": 35027.960502
+    },
+    "historicalSource": {
+      "pass": 31,
+      "durationMs": 46456.883501
+    },
+    "standaloneSource": {
+      "pass": 9,
+      "durationMs": 10936.736773
+    },
+    "ciRuntimeCalibration": {
+      "pass": 46,
+      "durationMs": 14618.437947
+    },
+    "additionalCiConsumers": {
+      "pass": 16,
+      "durationMs": 20915.816022
+    },
+    "transitiveSourceConsumers": {
+      "pass": 14,
+      "durationMs": 15571.570995
+    },
+    "timingRoutingConsumers": {
+      "pass": 2,
+      "durationMs": 6585.208479
+    }
+  },
+  "limitations": [
+    "No duplicate complete behavior/source/CI run by reviewer; final run logs and hashes reviewed alongside independent narrow probes.",
+    "No Full, hosted Windows/POSIX CI, official import, live game, screenshots or user computer verification.",
+    "Earlier slower complete behavior run lacks contemporaneous test-source hash and is used only as conservative planning cost; final run has exact input hashes.",
+    "Backlog CLI was absent from reviewer shell PATH. Reviewer did not alter task metadata; final task note was reviewed."
+  ],
+  "preliminaryReviewPreserved": {
+    "status": "PENDING_FINAL_BINDING",
+    "reviewId": "native-independent-review-silent-final-20261109",
+    "reviewedBaseSha": "d2ed1bbfdb1bc9e000870f38037592cc60ab4068",
+    "reviewScope": "Silent final apply refactor, dual-VM behavior/semantic negatives, measured responsibility gate, retained source epochs and CI accounting",
+    "observations": [
+      "Production diff retains all branch bodies and original evaluation order. Handler dispatch preserves arbitrary kinds, lazy imports, captured kind, dynamic public recursion and zero return arity.",
+      "Independent fresh-VM behavior probe passed 30 observations against git-extracted exact base.",
+      "Independent raw owner probe passed 98 LF/CRLF warm-reader drift checks. Complete retained prior target/current metadata deep-equal.",
+      "Inspected real-tool complexity log: 3/3 tests passed, original apply CC42 rejected; 16 required roots and all anonymous nested regressions rejected; current apply CC2/helper max CC9; choose CC18 remains out-of-scope residual."
+    ],
+    "independentRuns": [
+      "node docs/evidence/m7-silent-final-20261109/independent-probes.mjs",
+      "Inline Node source projector probe, recorded in independent-source-probes.json"
+    ],
+    "unresolved": [
+      "Behavior and CI files are still under active implementation; final focused results and exact final file binding are pending."
+    ],
+    "limitations": [
+      "No Full run, hosted CI, official import, live game or user computer validation.",
+      "Backlog command unavailable on PATH; reviewer made no Backlog changes."
+    ],
+    "preliminaryFileSha256": {
+      "src/lua/abyss_silent_final_cards.lua": "21766502d620d7fb9885cc3884d79c557739bac3bf750b5105fe34aa18bf8fdb",
+      "scripts/check-lua-static.mjs": "52d795ca4c025dad94ba1b179578982c1f484ef3447e3e06af8a70db03f10cf9",
+      "tests/helpers/silent-final-source-epoch.mjs": "62621989d65db4db12a6b7251fc8216bbd5851b196c87d28f0cffd222d8a28b4",
+      "tests/helpers/silent-final-source-epoch.json.gz": "8d70652c025b8075e2a03936f12c2509dbca427abd555e472f197b1ac4850b49",
+      "tests/helpers/combined-epoch/source-epoch.mjs": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+      "tests/helpers/copy-integration-source-closure.mjs": "98030ef27b74af88a111fea3d3560a85d2e01ec146fbd69eb1e2f0a4f1bcd1b4",
+      "tests/relic-equip-source-epoch.test.mjs": "cde81384f6f2b6ba4222acd33685fbe69cd1184f282afc94e938c0802ea19121",
+      "tests/silent-final-source-epoch.test.mjs": "cafb4492b21ec529c905cea3d80b366b2eb02c096d22c4278fcbb2f930edb9e6"
+    }
+  },
+  "boundFiles": {
+    ".gitattributes": "cf4707e8e9a85a5a3e17a67eb800245190fbd029cc0837d680347eed9ce57235",
+    "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md": "4bfb821162046df1127746efa5c8ade4883f92e112bace46aeb5f5f922c5cd4e",
+    "docs/backlog-details/M7-SILENT-FINAL-20261109.md": "380d522f50afc47bb666f8642673ec380bb066aa97c59d7179d30b1a82673862",
+    "docs/evidence/m7-silent-final-20261109/backlog-final.log.gz": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "docs/evidence/m7-silent-final-20261109/backlog.log.gz": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "docs/evidence/m7-silent-final-20261109/baseline-engineering.json.gz": "18894b8c36e7e8bde4b4410defdf160d840d9772fb04c36dcf2b9bbd571c0d23",
+    "docs/evidence/m7-silent-final-20261109/behavior-deep-failure.log.gz": "ec4760d37ea3e56dee35d71f0e652b0b7fdcae2da423132d6facd222def98673",
+    "docs/evidence/m7-silent-final-20261109/behavior-first.log.gz": "0291fc347bd17dc5963b60d52125a45b53b82165b14aa45666cb245023ebd6fb",
+    "docs/evidence/m7-silent-final-20261109/behavior-intermediate.log.gz": "86c598b69cd6a3fbdac635321791dfc85ac3e9f4f144b03586595b4af42f8a69",
+    "docs/evidence/m7-silent-final-20261109/behavior-receipt.json": "eeeac5c795e5f54bc96b4922375fca1fc23c5b9c70dd4759f02b26c47d4c781d",
+    "docs/evidence/m7-silent-final-20261109/behavior.log.gz": "6924bb4a3b7d1713a97de64dc8bf7eabbf12484392ef900edcb1321da2693ce5",
+    "docs/evidence/m7-silent-final-20261109/build.log.gz": "e461184e7c10c36a23f6caacf1997feb8860b040b169025c43f47bed60d0bd70",
+    "docs/evidence/m7-silent-final-20261109/ci-consumers.log.gz": "f77885ea66c9380311dc65cad6292cc86109cfe83aa5b07755caefe35f105aea",
+    "docs/evidence/m7-silent-final-20261109/ci-final-1.log.gz": "d49bd957166d57933c5ac9135ccb14638faa1ad848179bbf08a0a9942f25a698",
+    "docs/evidence/m7-silent-final-20261109/ci-final.log.gz": "52a45ec3a0c6a5d37a424619c7ac4511512677a87251e1f0c38b7998416cd0df",
+    "docs/evidence/m7-silent-final-20261109/ci-first.log.gz": "9c453588a4711684b184a1d27578b62df7b7f5f17a4bf1106e44ba72fc77d308",
+    "docs/evidence/m7-silent-final-20261109/ci-initial.log.gz": "9c453588a4711684b184a1d27578b62df7b7f5f17a4bf1106e44ba72fc77d308",
+    "docs/evidence/m7-silent-final-20261109/ci-routing-consumers.log.gz": "305f17f34e8674cbdbf9b478c4bdda2a255e5d9e44c32f847c8acc4ef58d7805",
+    "docs/evidence/m7-silent-final-20261109/ci-source-consumers.log.gz": "b93a3d820803f7034f87212f89af45d804cae0cbbfe310d51682aebd17b9f8b5",
+    "docs/evidence/m7-silent-final-20261109/complexity-initial.log.gz": "3f8e2a1af89dfe24a6e0e0633d0fdc74b0a4b2594bd2c86db4a061a0695e52e4",
+    "docs/evidence/m7-silent-final-20261109/complexity.log.gz": "3e8d292aa58fa3f42f152f92c7e5bd3f1d15ed7eabdcb458bc5069a83a2f1c4a",
+    "docs/evidence/m7-silent-final-20261109/current-engineering.json.gz": "a60375656d73b91227b3c8bdc80409a9fb8ae1e748dd6097513e646d9ac49bee",
+    "docs/evidence/m7-silent-final-20261109/doctor.log.gz": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+    "docs/evidence/m7-silent-final-20261109/engineering.log.gz": "1b3a58cd406fc491e81360f08ef04fb398cf21380d97da021c4a915aa2efbf33",
+    "docs/evidence/m7-silent-final-20261109/guidance.log.gz": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "docs/evidence/m7-silent-final-20261109/historical-source.log.gz": "df094b3e47c609657f64bf31128556964fcbb879cc1fb55f585acdf66c3d19f6",
+    "docs/evidence/m7-silent-final-20261109/independent-ci-final-probes.json": "16640ca81ea9af12cdad07fde0622b82caba24e9eeadfac8e920d311dee8ef1a",
+    "docs/evidence/m7-silent-final-20261109/independent-ci-probes.json": "2e17e09fbe5a90c5bea245a59fd6b8c84fc5774fd8fb7550fc4feb6e2e60fd4b",
+    "docs/evidence/m7-silent-final-20261109/independent-probes.json": "bda3c7c11ad57ae501f8e2edd2ab227814f4669cd116fedaa4cd963b171001d4",
+    "docs/evidence/m7-silent-final-20261109/independent-probes.mjs": "93750b446cedb8acccff10d0c23d64f0c1c105c70ca16c6654246f3bdd8c9fa0",
+    "docs/evidence/m7-silent-final-20261109/independent-source-probes.json": "4c052d764528435be6b689f14b5b2698b659cf4503f708a0986eff945097efab",
+    "docs/evidence/m7-silent-final-20261109/metrics.json": "7b009336629185bcdd5356666de8050e45874d5747878af79ebd5e1c7a5f6a21",
+    "docs/evidence/m7-silent-final-20261109/planning-final.json": "d9b6e9150775f2a015b9eb3bb557ed2cff1ccd94673f68a6a8b986090d35cd88",
+    "docs/evidence/m7-silent-final-20261109/responsibility-gate.log.gz": "8eeaa1081ce307175a0cc6e7093f955030f6793bf644cd9adb8474b1613f124f",
+    "docs/evidence/m7-silent-final-20261109/source-standalone.log.gz": "e7bd39f5e66f924f7cbf64c291fc58ea4fea0e23944c58398c033630224592ba",
+    "docs/evidence/m7-silent-final-20261109/source.log.gz": "ac40b63232aeb5c0deb3c9cc895c189ed4cb7f4b496a5c083a3045c199ed3a64",
+    "scripts/check-lua-static.mjs": "52d795ca4c025dad94ba1b179578982c1f484ef3447e3e06af8a70db03f10cf9",
+    "scripts/ci-test-timings.json": "41feac7798548de132d691e0f89230075ab665478950b5f958933978d8b25a1d",
+    "src/lua/abyss_silent_final_cards.lua": "21766502d620d7fb9885cc3884d79c557739bac3bf750b5105fe34aa18bf8fdb",
+    "tests/ci-complete-calibration.test.mjs": "50fd3f5e647c92f24ccb58d793304d847c9b287547b8474b8cee73667379d072",
+    "tests/ci-runtime.test.mjs": "3d56ac9b4fbbe7109a29ec6bc897a35ae79451e889fec57b1f2b6a8fdab3363f",
+    "tests/fixtures/silent-final-apply-before.lua": "a8648acd0e294f142be20bc4e1561ceded10c1455ec8b493cc96c7e1f6d36fef",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "97af08c4ddeb5b0cbbe3c7c092d3a17dfc3cc682f1a08adf69ac8e2930e68063",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+    "tests/helpers/copy-integration-source-closure.mjs": "98030ef27b74af88a111fea3d3560a85d2e01ec146fbd69eb1e2f0a4f1bcd1b4",
+    "tests/helpers/silent-final-apply-edges.lua": "7aff84f37a619338623aabeb355b04e65169efe04fcc8c145be2686c1c85c142",
+    "tests/helpers/silent-final-apply-vm.mjs": "50d8bc937b8718e3ae0127ec7e040d85268b9ce91aca71d3c275f0cdb80c47de",
+    "tests/helpers/silent-final-ci-source-epoch.json.gz": "061f63eb40dd03dfecb8bdaf60ecc722f49da40ed75645568666fa29bddf8c2e",
+    "tests/helpers/silent-final-ci-source-inverse.mjs": "545ec4e9a1474f42746ef64af14aa32b7a2c9ecdbd41cb737d9f4a6a51841016",
+    "tests/helpers/silent-final-source-epoch.json.gz": "8d70652c025b8075e2a03936f12c2509dbca427abd555e472f197b1ac4850b49",
+    "tests/helpers/silent-final-source-epoch.mjs": "62621989d65db4db12a6b7251fc8216bbd5851b196c87d28f0cffd222d8a28b4",
+    "tests/relic-equip-source-epoch.test.mjs": "cde81384f6f2b6ba4222acd33685fbe69cd1184f282afc94e938c0802ea19121",
+    "tests/silent-final-apply-complexity.test.mjs": "063b6b40e4e09b5811ec5ad42323cb87c515971f62062d4108befbfb8f2b87df",
+    "tests/silent-final-apply.test.mjs": "64bd02fa0c0a41dbc5aedb16c369d7aae1cba42a79d7a4e133f40932fe5fa1e4",
+    "tests/silent-final-source-epoch.test.mjs": "cafb4492b21ec529c905cea3d80b366b2eb02c096d22c4278fcbb2f930edb9e6"
+  },
+  "supplementalReview": {
+    "status": "PASS",
+    "unresolved": [],
+    "codeTestBytesUnchanged": true,
+    "changedDocumentation": [
+      "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+      "docs/backlog-details/M7-SILENT-FINAL-20261109.md"
+    ],
+    "addedEvidence": [
+      "ci-consumers.log.gz",
+      "ci-source-consumers.log.gz",
+      "ci-routing-consumers.log.gz"
+    ],
+    "ciConsumerPass": 16,
+    "distinctCiCasesIncludingOriginal46": 62,
+    "sourceConsumerPass": 14,
+    "routingConsumerPass": 2,
+    "verification": "Read all three complete logs; checked pass/fail/skip totals and exact distinct test names (46 + 16 disjoint). Main report and task note additions accurately describe only local directional evidence. Task status/owner/AC unchanged. Prior bound code/tests/evidence unchanged."
+  }
+}

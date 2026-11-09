@@ -6,6 +6,7 @@ import {join} from 'node:path';
 import {queueEventErrors,queueFullErrors,statusWriteResponse,main} from '../scripts/publish-merge-group.mjs';
 import {currentFullQualityJobs,qualityWorkflowPath} from '../scripts/verify-delivery.mjs';
 import {impact} from '../scripts/ci-impact.mjs';
+import {qualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {beforeNativeMergeQueueWorkflow} from './helpers/merge-queue-workflow.mjs';
 import {admissionFixture,admissionQuery} from './helpers/merge-queue-admission.mjs';
 
@@ -71,27 +72,27 @@ test('queue full requires every shard, immutable receipt and actual native admis
  }
 });
 
-test('native queue rejects old 13/9, 14/9, 16/9, 16/12 or 17/13 green jobs, missing rules17 or POSIX14, duplicates and forged totals or source receipts',()=>{
+test('native queue rejects old 13/9, 14/9, 16/9, 16/12, 17/13 or 17/14 green jobs, missing rules17 or POSIX15, duplicates and forged totals or source receipts',()=>{
  for(const mutate of [
-  ...[[13,9],[14,9],[16,9],[16,12],[17,13]].map(([windows,posix])=>e=>{
+  ...[[13,9],[14,9],[16,9],[16,12],[17,13],[17,14]].map(([windows,posix])=>e=>{
    const win=e.jobs.find(j=>j.name.startsWith('rules (')),linux=e.jobs.find(j=>j.name.startsWith('engineering-posix ('));
    assert(win&&linux,'current matrices supply complete legacy-shape samples');
    e.jobs=e.jobs.filter(j=>!j.name.startsWith('rules (')&&!j.name.startsWith('engineering-posix ('));
    e.jobs.push(...Array.from({length:windows},(_,i)=>({...win,id:1000+i,name:`rules (${i+1}/${windows})`})),...Array.from({length:posix},(_,i)=>({...linux,id:2000+i,name:`engineering-posix (${i+1}/${posix})`})));
   }),
-  e=>e.jobs=e.jobs.filter(j=>j.name!=='engineering-posix (14/14)'),
-  e=>e.jobs.push({...e.jobs.find(j=>j.name==='engineering-posix (14/14)'),id:3000}),
-  e=>e.jobs.find(j=>j.name==='engineering-posix (14/14)').name='engineering-posix (14/13)',
+  e=>e.jobs=e.jobs.filter(j=>j.name!=='engineering-posix (15/15)'),
+  e=>e.jobs.push({...e.jobs.find(j=>j.name==='engineering-posix (15/15)'),id:3000}),
+  e=>e.jobs.find(j=>j.name==='engineering-posix (15/15)').name='engineering-posix (15/14)',
   e=>e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)'),
   e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (17/17)'),id:900}),
   e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (17/17)'),id:3001,name:'rules (18/17)'}),
   e=>e.jobs.find(job=>job.name==='rules (17/17)').id=e.jobs.find(job=>job.name==='rules (16/17)').id,
   e=>e.jobs.find(job=>job.name==='rules (17/17)').name='rules (17/16)',
   e=>{const sample=e.jobs.find(job=>job.name==='rules (1/17)');assert(sample,'actual current first shard exists');e.jobs=e.jobs.filter(job=>!job.name.startsWith('rules ('));e.jobs.push(...Array.from({length:13},(_,i)=>({...sample,id:700+i,name:`rules (${i+1}/13)`})));},
-  e=>{e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)');e.jobTotal=36;e.event.merge_group.matrix={windows:17,posix:14};},
+  e=>{e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)');e.jobTotal=37;e.event.merge_group.matrix={windows:17,posix:15};},
   e=>e.checkout.checkout.head=sha('f'),
  ]){
-  const e=fixture();assert.equal(e.jobs.length,36);mutate(e);
+  const e=fixture();assert.equal(e.jobs.length,37);mutate(e);
   assert(queueFullErrors(e).length,String(mutate));
  }
 });
@@ -287,5 +288,16 @@ test('historical Quality projection rejects partial or changed queue wiring in L
  ]){
   assert.equal(beforeNativeMergeQueueWorkflow(drift.replaceAll('\n',eol)),null,
    'partial, duplicated or changed queue wiring must stay visible');
+ }
+});
+
+test('all thirty-two actual shard identities are mandatory for current native queue admission',()=>{
+ assert.equal(qualityShardJobs.length,32);
+ for(const name of qualityShardJobs)for(const mutation of ['missing','failure','cancelled','skipped','wrong-sha']){
+  const e=fixture(),job=e.jobs.find(job=>job.name===name);assert.ok(job);
+  if(mutation==='missing')e.jobs=e.jobs.filter(job=>job.name!==name);
+  else if(mutation==='wrong-sha')job.head_sha=sha('f');
+  else job.conclusion=mutation;
+  assert.ok(queueFullErrors(e).length,`${name}/${mutation} cannot certify queue Full`);
  }
 });

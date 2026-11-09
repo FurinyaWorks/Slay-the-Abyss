@@ -1,18 +1,50 @@
-import {preRosterConfigSource} from './helpers/competition-roster-config-composition.mjs';
-import test from 'node:test';
-import {historicalTest} from './helpers/historical-baseline-inputs.mjs';
+import test,{after} from 'node:test';
+import {historicalTest,createHistoricalBaseline,historicalInputPath} from './helpers/historical-baseline-inputs.mjs';
 import assert from 'node:assert/strict';
-import {readFileSync,readdirSync} from 'node:fs';
+import {readFileSync,readdirSync,writeFileSync,mkdirSync,rmSync} from 'node:fs';
+import {dirname,join} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {analyzeSources} from '../scripts/check-architecture.mjs';
-import {projectRunMaxHpConfig,preRunMaxHpConfig} from './helpers/run-max-hp-config-inverse.mjs';
-import {projectNodesBattleMaxHpConfig} from './helpers/nodes-battle-max-hp-config-inverse.mjs';
-import {preCoreArchitectureSource} from './helpers/core-architecture-inverse.mjs';
-import {preIntegratedNodeUiSource} from './helpers/approved-node-ui-refactor.mjs';
-import {preApprovedUiSource} from './helpers/approved-ui-inverse.mjs';
+
+// Historical source contracts execute their exact original helper closure.
+// The current public facade is exercised separately below on the live tree.
+const archiveBytes=readFileSync(new URL('./fixtures/nodes-battle-original-chain-98fef95d.json.gz',import.meta.url));
+const hash=s=>createHash('sha256').update(s).digest('hex');
+assert.equal(hash(archiveBytes),'f904703b3e747713eba5297718f222a833bf84995c73fa0c8845723dfff11c96');
+const archive=JSON.parse(gunzipSync(archiveBytes));
+const readOriginalInput=path=>readFileSync(new URL('../'+path,import.meta.url));
+function validateOriginalChain(value,readInput=readOriginalInput){
+ assert.equal(value.schemaVersion,1);assert.equal(value.sourceCommit,'98fef95d047652aa6a8880241ddff28ef320a484','original Run and Nodes config chain commit');
+ const manifest=Object.fromEntries(Object.entries(value.files).map(([path,binding])=>[path,binding.gitBlob]));
+ assert.equal(hash(JSON.stringify(manifest)),'c472b6d2420318936d59c4eb4a3e5aa2a9803bf29e283ab27d5b38a3e97b5ad0','complete original Run and Nodes config chain inventory');
+ return Object.fromEntries(Object.entries(value.files).map(([path,binding])=>{
+  historicalInputPath(process.cwd(),path);
+  assert.notEqual(Object.hasOwn(binding,'existing'),Object.hasOwn(binding,'source'),'one complete original input: '+path);
+  if(binding.existing)assert.equal(binding.existing,path,'original input reference stays at its authenticated path');
+  const raw=binding.existing?readInput(path):Buffer.from(binding.source);
+  const source=path.endsWith('.gz')?raw:Buffer.from(raw.toString('utf8').replaceAll('\r\n','\n'));
+  assert.equal(hash(source),binding.sha256,'original complete Run and Nodes chain bytes: '+path);
+  assert.equal(createHash('sha1').update(`blob ${source.length}\0`).update(source).digest('hex'),binding.gitBlob,'original Run and Nodes chain Git blob: '+path);
+  return [path,source];
+ }));
+}
+const originalInputs=validateOriginalChain(archive),originalRoot=createHistoricalBaseline().directory;
+after(()=>rmSync(originalRoot,{recursive:true,force:true}));
+// Replace only this private baseline's fixture link, never the real oracle.
+rmSync(join(originalRoot,'tests/fixtures'));
+for(const [path,source]of Object.entries(originalInputs)){
+ const target=historicalInputPath(originalRoot,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,source);
+}
+const previousCwd=process.cwd();let chain;
+try{
+ process.chdir(originalRoot);
+ chain=await Promise.all(['run-max-hp-config-inverse','competition-roster-config-composition','nodes-battle-max-hp-config-inverse','core-architecture-inverse','approved-node-ui-refactor','approved-ui-inverse'].map(name=>import(pathToFileURL(join(originalRoot,'tests/helpers/'+name+'.mjs')).href)));
+}catch(error){rmSync(originalRoot,{recursive:true,force:true});throw error;}finally{process.chdir(previousCwd);}
+const [{projectRunMaxHpConfig,preRunMaxHpConfig},{preRosterConfigSource},{projectNodesBattleMaxHpConfig},{preCoreArchitectureSource},{preIntegratedNodeUiSource},{preApprovedUiSource}]=chain;
 const path='config/architecture.json';
 const read=p=>preRosterConfigSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
-const hash=s=>createHash('sha256').update(s).digest('hex');
 const expected={live:'3476d3d6407f1a64c194add9937c48da1eb2ce6ba98cc90617feb3751aeb9c44',combined:'df2d58668d69864a61e3d177c8ab4183cedd11fb12bdb6f9e14312b008bf6f9b',run:'bc1a6dca0701091f73a8464de978a4b202597c70500c84c73f33a855a510240e'};
 const run=['abyss_run_initialization','abyss_run_transition','abyss_run_rooms','abyss_run_settlement','abyss_run_potions'];
 const nodes=['abyss_nodes_common','abyss_nodes_entry','abyss_nodes_events','abyss_nodes_sources'];
@@ -98,4 +130,70 @@ historicalTest('explicit Run proof rejects missing source wrong path unknown tar
  assert.throws(()=>project(source,'unknown'),/combined Run Max HP target/);
  const frozen=[['tests/fixtures/nodes-battle-max-hp-config-inverse.json','5e130a11180cb03714f315a21f5cf90a722374c2833dda033529851ad2809b92'],['tests/fixtures/battle-max-hp-config-inverse.json','79bca8cc4391e1906049dd815dd143267894f37425253ca6ac9a836d7aa21456']];
  for(const [file,expectedHash]of frozen)assert.equal(hash(read(file)),expectedHash);
+});
+
+test('original Run and Nodes config closure rejects relabeled, missing and changed inputs before import',()=>{
+ const invalid=structuredClone(archive);invalid.sourceCommit='0'.repeat(40);
+ assert.throws(()=>validateOriginalChain(invalid),/original Run and Nodes config chain commit/);
+ const helper='tests/helpers/competition-roster-config-composition.mjs';
+ for(const mutation of [value=>{delete value.files[helper];},value=>{value.files[helper].gitBlob='0'.repeat(40);}]){
+  const changed=structuredClone(archive);mutation(changed);assert.throws(()=>validateOriginalChain(changed),/complete original Run and Nodes config chain inventory/);
+ }
+ for(const mutation of [value=>{value.files[helper].source+='\n';},value=>{value.files[helper].sha256='0'.repeat(64);}]){
+  const changed=structuredClone(archive);mutation(changed);assert.throws(()=>validateOriginalChain(changed),/original complete Run and Nodes chain bytes/);
+ }
+ const wrong=structuredClone(archive),proof='tests/fixtures/run-max-hp-config-inverse.json';
+ wrong.files[proof].existing='tests/fixtures/battle-max-hp-config-inverse.json';
+ assert.throws(()=>validateOriginalChain(wrong),/original input reference stays/);
+ const missing=new Error('missing original Run and Nodes proof');
+ assert.throws(()=>validateOriginalChain(archive,file=>{if(file===proof)throw missing;return readOriginalInput(file);}),error=>error===missing,'read failures stay visible before import');
+ assert.throws(()=>validateOriginalChain(archive,file=>file===proof?Buffer.from('{}\n'):readOriginalInput(file)),/original complete Run and Nodes chain bytes/,'corrupt independent proof cannot authorize an old helper');
+ const crlf=validateOriginalChain(archive,file=>{const bytes=readOriginalInput(file);return file.endsWith('.gz')?bytes:Buffer.from(bytes.toString('utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n'));});
+ for(const [file,bytes]of Object.entries(originalInputs))assert.deepEqual(crlf[file],bytes,'checkout CRLF recovers the same complete Git bytes: '+file);
+ // Independent archive binding also authenticates the source presented to the
+ // original Run cases; the live tree must not be mislabeled as that source.
+ assert.notEqual(readFileSync(path,'utf8').replaceAll('\r\n','\n'),originalInputs[path].toString('utf8'));
+});
+
+test('current Run architecture admission uses its declared target and rereads every raw owner on each call',async()=>{
+ const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const raw=readFileSync(path,'utf8').replaceAll('\r\n','\n'),owners=sourceEpoch.proof.owners;
+ // Independent complete Git config at the declared develop target d8a57cae,
+ // not a hash obtained from the projector's own return value or current proof.
+ const targetHash='0e75d9e1f08cfb7738215b9a31cce141f03cc2469077bce0db3376fe1f446a9c';
+ let changed,replacement,reads=[];
+ const reader=file=>{reads.push(file);if(file===changed){if(replacement instanceof Error)throw replacement;return replacement;}return readFileSync(file,'utf8');};
+ const project=source=>sourceEpoch.preCombinedSource(path,source,{target:'develop',readSource:reader});
+ const accepted=project(raw);assert.equal(hash(accepted),targetHash);assert.notEqual(accepted,raw);
+ assert.notEqual(hash(accepted),expected.combined,'current develop target is not the ancient Run target');
+ assert.deepEqual(reads,owners,'complete fresh raw closure in admission order');
+ const layers=JSON.parse(raw).layers;
+ for(const name of [...run,...nodes,'abyss_max_hp_relics'])assert.equal(layers[name],'core','current registration: '+name);
+ for(const name of battle)assert.equal(layers[name],'ui','current registration: '+name);
+ for(const source of [raw,raw.replaceAll('\n','\r\n')]){
+  reads=[];assert.equal(project(source),accepted);assert.deepEqual(reads,owners,'warm calls still read the complete raw owner closure');
+ }
+ for(const owner of owners){
+  changed=owner;
+  for(replacement of [readFileSync(owner,'utf8')+'\n',null,new Error('missing current Run owner')]){
+   reads=[];assert.throws(()=>project(raw),error=>{
+    assert.ok(error.message.startsWith('combined linked owner '+(replacement instanceof Error?'missing: ':'identity: ')+owner),error.message);return true;
+   });
+   assert.deepEqual(reads,owners.slice(0,owners.indexOf(owner)+1),'first bad raw owner stops validation: '+owner);
+   changed=undefined;reads=[];assert.equal(project(raw),accepted);assert.deepEqual(reads,owners,'restoration validates afresh after every failure');changed=owner;
+  }
+ }
+ changed=undefined;
+ for(const unknown of [null,undefined,'',raw+'unreviewed',raw.replace('"abyss_run_initialization": "core"','"abyss_run_initialization": "ui"')]){
+  reads=[];assert.equal(project(unknown),unknown);assert.deepEqual(reads,[],'unknown input grants no owner reads');
+ }
+ reads=[];assert.equal(project(accepted),accepted);assert.deepEqual(reads,[],'old accepted bytes grant no current owner reads');
+ assert.throws(()=>sourceEpoch.preCombinedSource(path,raw,{target:'unknown',readSource:reader}),/unknown source target/);
+ assert.throws(()=>sourceEpoch.preCombinedSource(path,raw,{target:'develop',readSource:null}),/linked owner reader/);
+});
+
+test('legacy Run config bridges reject unsupported current owners rather than claiming an ancient Run target',async()=>{
+ const current=await import('./helpers/run-max-hp-config-inverse.mjs');
+ const raw=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+ assert.throws(()=>current.preRunMaxHpConfig(path,raw),/delivery linked source identity: src\/lua\/abyss_monster_intent_particle_view\.lua/,'current raw owners cannot borrow the original Run closure');
 });

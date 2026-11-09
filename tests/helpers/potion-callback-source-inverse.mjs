@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function prePotionCallbackSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'potion',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'potion')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'potion'):readSource)});
 }
 const readers=new WeakMap();
 export function potionCallbackReader(readSource=live){

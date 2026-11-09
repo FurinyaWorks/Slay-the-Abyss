@@ -1,0 +1,67 @@
+{
+  "reviewId": "independent-effects-target-group-f256-combination-20261109-r2",
+  "reviewedBaseSha": "f256316c5b63adc7bbc1a72a8fedbc86f69079c6",
+  "reviewedHeadSha": null,
+  "conclusion": "pass",
+  "unresolved": [],
+  "headBinding": "Pending final commit; reviewed code byte hashes frozen below.",
+  "priorReviewId": "independent-effects-target-group-20261109-r1",
+  "sourceHashes": {
+    ".gitattributes": "435e6ebb0189f4456d256aff3919db290fa0535fb405ba2ed4e7db8b5c243c12",
+    "scripts/check-lua-static.mjs": "10d11c5f5294ac48929d9d4946cb7b92d18881507c09b5825e1dd2b8a813715c",
+    "scripts/ci-test-timings.json": "aa5a35f348c759ef3aa14411aa0d52e7c7d9fd02b9086fb7a369b1aad7abd75d",
+    "src/lua/abyss_effects.lua": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228",
+    "tests/ci-complete-calibration.test.mjs": "5b39d0c8781785ad04089008a77741f9898068a3d6b07eb48bb89ee1edbb728c",
+    "tests/ci-runtime.test.mjs": "eec7e79ca944029a9abca58a0a294ab320f67743763231b47c3e41e6adae30e4",
+    "tests/effects-target-group-source-epoch.test.mjs": "2761ab57b0abdbaa95f34edbc72f667f2dd508e033fba1917e3d371e1bd4655f",
+    "tests/effects-target-group.test.mjs": "54c591a4abda74ff21c5a304c88a7f0de3f609678264c09a72411a13b7b9c07c",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "290a02dc1b1b71ed7efa48e414ea3dd528733ee6c7ebc6b633b699476008a51d",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "f58227d34592f58f370186f5eaf24ed9e6bcecbc298708bd3de5e179c69d549e",
+    "tests/helpers/copy-integration-source-closure.mjs": "60a7d4779869f87b40c7e34ca2ae88383d7a98c34f320145764076802b919796",
+    "tests/helpers/effects-target-group-before.json": "f6f1940e7e391533877beeb7f2eb6778a812e201f5cc36364990c6c44ac5c54e",
+    "tests/helpers/effects-target-group-scenarios.lua": "472d7477b74e25d5a7f24e2849bb1c15d951963c0a57fa16cc56331dc965441b",
+    "tests/helpers/effects-target-group-source-epoch.json.gz": "f22d0328aedd7b7e9c785482271483f9f083c5c6abd7cd55d19933b24a48c0c2",
+    "tests/helpers/effects-target-group-source-epoch.mjs": "8affe1c65d7a096fc5546375bcb19bb404923be2c94528e3e443b4095ef7c488",
+    "tests/helpers/effects-target-group-vm.mjs": "7de4ae2e6fa6566fa0a7d5eba68b3787ec70beaa3a48f09c542b4eac90756a99",
+    "tests/responsibility-complexity.test.mjs": "b1e99d86c83f5aa4ee0fbacdf3f9f1f9164530668efcb681907995b4ecf8715b",
+    "tests/seven-refactor-source-epoch.test.mjs": "bba7fa6fc36744e8f6d389010a0c02165c889b08719dcd04ba402f5780b30894"
+  },
+  "findings": [
+    "Production and all six behavior-receipt inputs identical to reviewed standalone final slice.",
+    "386 workflow/config/frozen epoch/fixture files independently verified against f256 Git blobs; Game UI historical proof retained.",
+    "Outer facade retains config-layout token admission,46 raw-owner validation and distinct prior45-owner contract.",
+    "Direct effects-path invalid-reader regression detected then fixed with type-guarded fallback; foreign-source/invalid-reader matrix now passes.",
+    "Closure retains f256 helper/runtime hashes and adds exact outer bindings; original archives unchanged.",
+    "Removing the single new local planning floor restores exact f256 timing bytes; budgets,Full,workflow and execution limits unchanged."
+  ],
+  "tests": [
+    {
+      "execution": "independent",
+      "command": "node --test --test-name-pattern='unknown source targets|configuration layout admission|foreign|invalid.reader' tests/effects-target-group-source-epoch.test.mjs tests/seven-refactor-source-epoch.test.mjs",
+      "result": "8/8 pass",
+      "log": "build/m7-effects-review/combination-targeted.log"
+    },
+    {
+      "execution": "independent",
+      "command": "node --test --test-name-pattern='all advertised historical targets' tests/effects-target-group-source-epoch.test.mjs",
+      "result": "1/1 pass with LF/CRLF input variants",
+      "log": "build/m7-effects-review/combination-crlf.log"
+    },
+    {
+      "execution": "author run independently inspected",
+      "result": "104/104 across9 source/CI suites including32/32 CI",
+      "log": "docs/evidence/m7-effects-stack-20261109/integration-verified.log.gz",
+      "logSha256": "660b95765104d829ae6437b3c7338e340179d4601d9c597c91db1f54f7e20581"
+    },
+    {
+      "execution": "independent",
+      "result": "6 behavior inputs,386 protected Git blobs and exact prior timing bytes verified",
+      "artifact": "build/m7-effects-review/combination-byte-verification.json"
+    }
+  ],
+  "limitations": [
+    "CRLF input validation on Linux is not Windows execution evidence.",
+    "No hosted Full,merge,official import,candidate or device acceptance claim.",
+    "Final head/tree binding required."
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "single-created": {
+    "killed": true,
+    "differentRows": [
+      "generate/0/0",
+      "generate/1/0",
+      "generate/3/0",
+      "generate/4/0",
+      "generate/5/0",
+      "generate/6/0",
+      "generate/8/0",
+      "generate/9/0",
+      "white_noise/0/0",
+      "white_noise/1/0",
+      "white_noise/3/0",
+      "white_noise/4/0",
+      "white_noise/5/0",
+      "white_noise/6/0",
+      "white_noise/8/0",
+      "white_noise/9/0"
+    ]
+  },
+  "recycle-tuple": {
+    "killed": true,
+    "differentRows": [
+      "recycle/0/0",
+      "recycle/1/0",
+      "recycle/3/0",
+      "recycle/4/0",
+      "recycle/5/0",
+      "recycle/6/0",
+      "recycle/7/0",
+      "recycle/8/0",
+      "recycle/9/0"
+    ]
+  },
+  "scrape-order": {
+    "killed": true,
+    "differentRows": [
+      "scrape/0/0",
+      "scrape/1/0",
+      "scrape/3/0",
+      "scrape/4/0",
+      "scrape/5/0",
+      "scrape/6/0",
+      "scrape/7/0",
+      "scrape/8/0",
+      "scrape/9/0"
+    ]
+  },
+  "fission-slots": {
+    "killed": true,
+    "differentRows": [
+      "fission/1/0",
+      "fission/3/0",
+      "fission/5/0",
+      "fission/9/0"
+    ]
+  },
+  "action-reread": {
+    "killed": true,
+    "differentRows": [
+      "generate/0/0",
+      "generate/1/0",
+      "generate/3/0",
+      "generate/4/0",
+      "generate/5/0",
+      "generate/6/0",
+      "generate/8/0",
+      "generate/9/0",
+      "white_noise/0/0",
+      "white_noise/1/0",
+      "white_noise/3/0",
+      "white_noise/4/0",
+      "white_noise/5/0",
+      "white_noise/6/0",
+      "white_noise/8/0",
+      "white_noise/9/0"
+    ]
+  }
+}

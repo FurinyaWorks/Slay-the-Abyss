@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {preLuaTimeoutPolicySource} from './helpers/lua-timeout-policy-source-inverse.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -35,8 +36,7 @@ test('budget split retains all original held and rollback bodies, source seeds, 
   .replace("assert(F.changedRewardActions(true,selected)==5,'five original released changes per slice')",'F.changedRewardActions(true)')),frozen.released);
  assert.notEqual(sha(restoreHelper(helper.replace("Run.new(H.F.Data,42)","Run.new(H.F.Data,43)"))),frozen.helper,'seed drift must be detected');
  assert.notEqual(sha(restoreRollback(original.replace('verify();eq(run.phase',"eq(run.phase"))),frozen.rollback,'removing rollback verification must be detected');
- assert.match(read('scripts/test-lua.mjs'),/timeout \?\?= normalizedScript\.endsWith\('tests\/lua\/encounter_coverage\.lua'\) \? 120000 : mapProperties \? 120000 : fixture \|\| composedHost \? 60000 : 30000;/,
-  'raw discovery keeps the original default 30s budget; these files have no timeout exception');
+ validateCurrentRunner(read('scripts/test-lua.mjs'));
 });
 
 test('budget split raw discovery and wrappers select every held/released control and rollback kind exactly once',()=>{
@@ -52,4 +52,23 @@ for(const file of [...held,...released,...rollback])test(`PR259 original coverag
  const result=runLua(lua+file,{timeout:30_000});
  assert.equal(result.status,0,result.stdout+result.stderr);
  assert.match(result.stdout,file.startsWith('run_turn')?/RUN_TURN_REWARD_ROLLBACK 2 passed; 0 failed/:/LOOTER_POTION_UI_(?:HELD|RELEASED) 1 passed 0 failed/);
+});
+
+function validateCurrentRunner(source){
+ const previous=preLuaTimeoutPolicySource('scripts/test-lua.mjs',source);
+ assert.notEqual(previous,source,'complete reviewed central Lua timeout policy');
+ assert.match(previous,/timeout \?\?= normalizedScript\.endsWith\('tests\/lua\/encounter_coverage\.lua'\) \? 120000 : mapProperties \? 120000 : fixture \|\| composedHost \? 60000 : 30000;/,'complete previous fixture classification remains intact');
+}
+
+test('PR259 current policy rejects classification drift and explicit timeout overrides',()=>{
+ const source=read('scripts/test-lua.mjs');
+ for(const [before,after]of [
+  ['luaTimeoutMs.heavy : luaTimeoutMs.default','luaTimeoutMs.heavy : luaTimeoutMs.heavy'],
+  ['fixture || composedHost','composedHost'],
+  ['timeout ??=','timeout ='],
+ ]){
+  const changed=source.replace(before,after);
+  assert.notEqual(changed,source,'negative control changes actual runner: '+before);
+  assert.throws(()=>validateCurrentRunner(changed),/complete reviewed central Lua timeout policy/);
+ }
 });

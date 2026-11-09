@@ -1,0 +1,108 @@
+{
+  "frozenBefore": {
+    "commit": "6f017ff875baa2de80a121e507634a2d859fecfa",
+    "blob": "16821c6065a7819bae767e1f6f511c497eba903a",
+    "sha256": "df100051b93665ecc88dea658f9c3bfdf24148907fd740c50ca0166852f9be71"
+  },
+  "testsPassed": 19,
+  "checkpointsEachIndependentVm": 1351,
+  "completeGraphCases": [
+    {
+      "fixture": "tests/helpers/defect-final-execute-edges.lua",
+      "checkpoints": 1019,
+      "bytes": 14332072
+    },
+    {
+      "fixture": "tests/lua/defect_final_actions.lua",
+      "checkpoints": 36,
+      "bytes": 10466981
+    },
+    {
+      "fixture": "tests/lua/defect_final_generation.lua",
+      "checkpoints": 23,
+      "bytes": 2900265
+    },
+    {
+      "fixture": "tests/lua/defect_final_defenses.lua",
+      "checkpoints": 24,
+      "bytes": 3545808
+    },
+    {
+      "fixture": "tests/lua/defect_final_powers.lua",
+      "checkpoints": 41,
+      "bytes": 5257446
+    },
+    {
+      "fixture": "tests/lua/defect_final_matrix.lua",
+      "checkpoints": 192,
+      "bytes": 58477921
+    },
+    {
+      "fixture": "tests/lua/defect_final_end_cleanup.lua",
+      "checkpoints": 10,
+      "bytes": 784142
+    },
+    {
+      "fixture": "tests/lua/defect_genetic_copies.lua",
+      "checkpoints": 6,
+      "bytes": 1511624
+    }
+  ],
+  "semanticMutants": [
+    {
+      "name": "double created hooks",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:87: double created hooks"
+    },
+    {
+      "name": "white noise cost",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:87: white noise cost"
+    },
+    {
+      "name": "rebound first application",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:88: rebound first application"
+    },
+    {
+      "name": "recursion queue identity",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:89: recursion queue identity"
+    },
+    {
+      "name": "scrape queue ordering",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:90: scrape queue ordering"
+    },
+    {
+      "name": "first discard match",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:91: first discard match"
+    },
+    {
+      "name": "fission slot count",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:92: fission slot count"
+    },
+    {
+      "name": "fission removes balls",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:92: fission removes balls"
+    },
+    {
+      "name": "reboot shuffle streams",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:93: reboot shuffle streams"
+    },
+    {
+      "name": "recycle return tuple",
+      "status": 2,
+      "error": "tests/helpers/defect-final-execute-edges.lua:85: recycle return tuple"
+    }
+  ],
+  "limitations": [
+    "Serial local independent VMs; not hosted, official import or real device evidence.",
+    "An initial development run was interrupted after three original fixtures; it is not a complete passing run.",
+    "Initial unavailable /usr/bin/time wrapper exited127 before tests; its raw log was overwritten by the succeeding Bash timing wrapper, so it is not claimed retained."
+  ]
+}

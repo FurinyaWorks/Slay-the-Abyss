@@ -1,0 +1,16 @@
+{
+  "reviewId": "independent-effects-target-group-production-20261109",
+  "reviewedBaseSha": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "reviewedHeadSha": "eba24494",
+  "scope": "production-only extraction; focused tests and integration review pending",
+  "conclusion": "pass",
+  "unresolved": [],
+  "sourceHashes": {
+    "src/lua/abyss_effects.lua": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228"
+  },
+  "findings": [
+    "Traversal preserves table-key visits, LIFO pair order, leaving frames, active versus seen distinction, and marker reads before alias/cycle guards.",
+    "Validation preserves dynamic field access count/order and pair checks; wrapper preserves nil/invalid_target_group returns.",
+    "No full CI, hosted delivery, merge or device claims."
+  ]
+}

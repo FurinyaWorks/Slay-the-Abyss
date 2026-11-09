@@ -88,6 +88,30 @@ test('full fallback does not become a partial success plan', () => {
   assert.deepEqual(selectQuickFeedback({ ...plan, full: true }, [], timings), { fast: [], lua: [], estimatedLuaMs: 0 });
 });
 
+test('event route mapping remains complete when transitive feedback exceeds the advisory estimate', () => {
+  const [reducers, enemies] = eventCombatRouteFixtures;
+  const sources = { [eventCombatRouteInput]: '{}', [reducers]: 'return true', [enemies]: 'return true' };
+  const changed = [eventCombatRouteInput, 'tests/fixtures/unknown.json'];
+  const weights = { lua: { [reducers]: 17135, [enemies]: 10000 } };
+  assert.deepEqual(selectQuickFeedback(selectQuickPlan(changed, sources), changed, weights),
+    { fast: [], lua: [enemies, reducers], estimatedLuaMs: 27135 });
+
+  const related = Array.from({ length: 10 }, (_, index) => `tests/lua/related-${index}.lua`);
+  for (const path of related) {
+    sources[path] = `return dofile('${enemies}')`;
+    weights.lua[path] = 8000;
+  }
+  const full = selectTests(changed, sources);
+  assert.equal(full.full, true, 'unknown input still requires the complete gate');
+  assert.deepEqual([full.fast, full.integration, full.lua], [[], [], []]);
+  const mapped = selectQuickPlan(changed, sources, full);
+  assert.deepEqual(mapped, selectTests([eventCombatRouteInput], sources));
+  assert.deepEqual(mapped.lua, [reducers, enemies, ...related], 'no mapped fixture is dropped before scheduling');
+  const feedback = selectQuickFeedback(mapped, changed, weights);
+  assert.deepEqual(feedback, { fast: [], lua: [...related, enemies], estimatedLuaMs: 90000 });
+  assert.ok(mapped.lua.includes(reducers), 'the complete route fixture remains deferred, not unmapped');
+});
+
 test('CI mapped subset remains useful beside unknown inputs while the normal selector still requires full regression', () => {
   const sources = { 'src/lua/abyss_value.lua': 'return {}', 'tests/lua/value.lua': 'return require("abyss_value")' };
   const changed = ['docs/HANDOFF.md', 'src/lua/abyss_value.lua'];
@@ -214,14 +238,31 @@ test('mixed inputs retain mapped feedback and complete-gate fallback with real g
 
 test('special event route JSON still loads its graph and retains feedback beside unknown input', context => {
   const unknown = 'tests/fixtures/unknown.json';
+  const alone = probeGraphReads(context, ['--ci-fast', '--plan', '--files', eventCombatRouteInput]);
   const result = probeGraphReads(context, ['--ci-fast', '--plan', '--files', eventCombatRouteInput, unknown]);
-  assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(result.reads, graphRoots);
-  const plan = JSON.parse(result.stdout);
+  for (const observed of [alone, result]) {
+    assert.equal(observed.status, 0, observed.stderr);
+    assert.deepEqual(observed.reads, graphRoots);
+  }
+  const direct = JSON.parse(alone.stdout), plan = JSON.parse(result.stdout);
+  assert.equal(direct.full, false);
+  // The complete mapping retains both routes. Advisory scheduling may defer
+  // them when cheaper transitive fixtures fill its unchanged 90-second estimate.
+  for (const fixture of eventCombatRouteFixtures) assert.ok(direct.lua.includes(fixture), fixture);
   assert.equal(plan.full, true);
   assert.equal(plan.reason, unmodelledReason(unknown));
   assert.deepEqual([plan.fast, plan.integration, plan.lua], [[], [], []]);
-  for (const fixture of eventCombatRouteFixtures) assert.ok(plan.feedback.lua.includes(fixture), fixture);
+  assert.deepEqual(plan.feedback, direct.feedback, 'unknown input cannot remove independently mapped feedback');
+  assert.ok(plan.feedback.lua.length > 0, 'the actual mapped subset remains available');
+  assert.equal(new Set(plan.feedback.lua).size, plan.feedback.lua.length);
+  for (const fixture of plan.feedback.lua) assert.ok(direct.lua.includes(fixture), fixture);
+  const measured = JSON.parse(readFileSync('scripts/ci-test-timings.json', 'utf8'));
+  const estimate = plan.feedback.lua.reduce((sum, fixture) => {
+    const weight = measured.lua[fixture];
+    return sum + (Number.isFinite(weight) && weight > 0 ? weight : 30000);
+  }, 0);
+  assert.equal(plan.feedback.estimatedLuaMs, estimate);
+  assert.ok(estimate <= 90000, 'feedback keeps the original advisory estimate');
 });
 
 test('local and CI advisory plans select the same real Lua feedback', () => {

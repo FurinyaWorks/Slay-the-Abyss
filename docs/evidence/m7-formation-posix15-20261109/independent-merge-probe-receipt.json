@@ -1,0 +1,972 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "Formation–POSIX15 independent merge review, 2026-11-09",
+  "conclusion": "PASS",
+  "scope": "Independent source preservation, three-way projection equivalence, planning and synthetic validator controls. Not hosted Full or actual execution of 800 JS/1410 Lua tests.",
+  "parents": {
+    "formation": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+    "posix15": "841510b78172b923b1a613216b5c3dcb2c3e062e",
+    "base": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b"
+  },
+  "parentTrees": {
+    "formation": "a46ccfe3fe820617290aa1d3b9aae2ba345dd671",
+    "posix15": "aabc61f3140e9e4803f3017dbaaa14b4b6ae7692",
+    "base": "d9e8e03bb5f79145020e7e861483359503a396b8"
+  },
+  "executionHead": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+  "executionTree": "a46ccfe3fe820617290aa1d3b9aae2ba345dd671",
+  "candidateCommitted": false,
+  "loaderProof": {
+    "formation": {
+      "commit": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+      "sourceSha256": "aef630705803ae3a49c29b99cd267975f6bb967bdfa9ead5b27a94002e12aff7",
+      "loaderSha256": "2b9db7acb92eefe204fef7ed7b52c41559a0e305ed1f60d2c9747e4f4458d9bd",
+      "transform": "Relative import URLs and import.meta.url only; projection code unchanged."
+    },
+    "posix15": {
+      "commit": "841510b78172b923b1a613216b5c3dcb2c3e062e",
+      "sourceSha256": "809b93f954772a0016c7b4e269804ac2098b186e71a676e1708f3363242b7c4a",
+      "loaderSha256": "a6cda4c0a7efd8b819738e7dd309c8e4878e7dd71c4f15c8fd941bd6325a507b",
+      "transform": "Relative import URLs and import.meta.url only; projection code unchanged."
+    },
+    "base": {
+      "commit": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+      "sourceSha256": "ed6dc42d5ec5ab0755dee2ca09ff9eea63afd5b709e6cbb08748bc0a3245a097",
+      "loaderSha256": "98c6ca1ba0e3e686a839e5223db103c95d037b4f8a9df0e189dbe1f6a998a810",
+      "transform": "Relative import URLs and import.meta.url only; projection code unchanged."
+    }
+  },
+  "sourceProjection": {
+    "completeSourceInputs": [
+      {
+        "path": "scripts/ci-test-timings.json",
+        "sha256": "6a3db2904d5529e4245cba597ff61618bbd76c674b5baec470845907318d1171",
+        "origins": [
+          "tests/helpers/encounter-formation-ci-source-epoch.json.gz",
+          "posix15 Git",
+          "base Git"
+        ]
+      },
+      {
+        "path": "scripts/check-lua-static.mjs",
+        "sha256": "9ed3c0153b621a5b6f8385ec4158d757e984443a8dbc428d0b001d4aa3829542",
+        "origins": [
+          "tests/helpers/encounter-formation-ci-source-epoch.json.gz",
+          "posix15 Git",
+          "base Git"
+        ]
+      },
+      {
+        "path": "src/lua/abyss_encounter_formation.lua",
+        "sha256": "de7afe27c70b14e724aa7f0ea67509e41df882e1e055904b82cc7be56916e8ec",
+        "origins": [
+          "tests/helpers/encounter-formation-ci-source-epoch.json.gz",
+          "posix15 Git",
+          "base Git"
+        ]
+      },
+      {
+        "path": "tests/helpers/combined-epoch/source-epoch.mjs",
+        "sha256": "81422aac13c89d3c3fa8d31f1afdff609af1f46f071a4c9d37288591cf20760f",
+        "origins": [
+          "tests/helpers/encounter-formation-ci-source-epoch.json.gz",
+          "posix15 Git",
+          "base Git"
+        ]
+      },
+      {
+        "path": "tests/helpers/copy-integration-source-closure.mjs",
+        "sha256": "f91af9e74d4d18b4af8572f2d46996e6f30c6d1440046519e19689dc9ab509c1",
+        "origins": [
+          "tests/helpers/encounter-formation-ci-source-epoch.json.gz",
+          "posix15 Git",
+          "base Git"
+        ]
+      },
+      {
+        "path": "tests/defect-final-source-epoch.test.mjs",
+        "sha256": "1204a76a70de7bbf5edbf529d6d8d3ad114327f910444584f7c3df2742af7ad7",
+        "origins": [
+          "tests/helpers/encounter-formation-ci-source-epoch.json.gz",
+          "posix15 Git",
+          "base Git"
+        ]
+      },
+      {
+        "path": "scripts/ci-quality-shape.mjs",
+        "sha256": "5eb6a562172a05d764609759fe500315fb5c07c565d190271f0c57b2841a889d",
+        "origins": [
+          "tests/helpers/posix15-shape-source-epoch.json.gz",
+          "formation Git",
+          "base Git"
+        ]
+      },
+      {
+        "path": "scripts/ci-quality-shape.mjs",
+        "sha256": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed",
+        "origins": [
+          "tests/helpers/posix15-shape-source-epoch.json.gz",
+          "working candidate",
+          "posix15 Git"
+        ]
+      },
+      {
+        "path": "scripts/ci-test-timings.json",
+        "sha256": "41feac7798548de132d691e0f89230075ab665478950b5f958933978d8b25a1d",
+        "origins": [
+          "tests/helpers/defect-final-ci-source-epoch.json.gz"
+        ]
+      },
+      {
+        "path": "scripts/check-lua-static.mjs",
+        "sha256": "52d795ca4c025dad94ba1b179578982c1f484ef3447e3e06af8a70db03f10cf9",
+        "origins": [
+          "tests/helpers/defect-final-ci-source-epoch.json.gz"
+        ]
+      },
+      {
+        "path": "tests/helpers/combined-epoch/source-epoch.mjs",
+        "sha256": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+        "origins": [
+          "tests/helpers/defect-final-ci-source-epoch.json.gz"
+        ]
+      },
+      {
+        "path": "tests/helpers/copy-integration-source-closure.mjs",
+        "sha256": "98030ef27b74af88a111fea3d3560a85d2e01ec146fbd69eb1e2f0a4f1bcd1b4",
+        "origins": [
+          "tests/helpers/defect-final-ci-source-epoch.json.gz"
+        ]
+      },
+      {
+        "path": "tests/silent-final-source-epoch.test.mjs",
+        "sha256": "cafb4492b21ec529c905cea3d80b366b2eb02c096d22c4278fcbb2f930edb9e6",
+        "origins": [
+          "tests/helpers/defect-final-ci-source-epoch.json.gz"
+        ]
+      },
+      {
+        "path": "scripts/ci-test-timings.json",
+        "sha256": "34942a4c0e27ed85dc957b310c2416ca83c0392b91ba5bd611783fa47c87f317",
+        "origins": [
+          "tests/helpers/silent-final-ci-source-epoch.json.gz"
+        ]
+      },
+      {
+        "path": "scripts/check-lua-static.mjs",
+        "sha256": "63af34a9b39f790b8eea7835610ce291a03c91604ae963b3a5346347ac365a52",
+        "origins": [
+          "tests/helpers/silent-final-ci-source-epoch.json.gz"
+        ]
+      },
+      {
+        "path": "scripts/ci-test-timings.json",
+        "sha256": "db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba",
+        "origins": [
+          "tests/helpers/relic-equip-ci-source-epoch.json.gz"
+        ]
+      },
+      {
+        "path": "scripts/check-lua-static.mjs",
+        "sha256": "8253029479f041be7ec8235fcff181f941f9e3190412c587a3b06904452903c1",
+        "origins": [
+          "tests/helpers/relic-equip-ci-source-epoch.json.gz"
+        ]
+      },
+      {
+        "path": "scripts/ci-test-timings.json",
+        "sha256": "d5804ac4b7a936f54f3dc479e2b4efa1d79b8b8bdf582748997a31dacc98723c",
+        "origins": [
+          "tests/fixtures/ci-complete-calibration.json.gz",
+          "formation export ciCompleteCalibrationProof",
+          "posix15 export ciCompleteCalibrationProof",
+          "base export ciCompleteCalibrationProof"
+        ]
+      },
+      {
+        "path": "scripts/ci-test-timings.json",
+        "sha256": "82e8812fd31a40ca6eb9ee89548fe293f833a8e650237218a99afb214357a604",
+        "origins": [
+          "tests/fixtures/ci-complete-calibration.json.gz",
+          "formation export ciCompleteCalibrationProof",
+          "posix15 export ciCompleteCalibrationProof",
+          "base export ciCompleteCalibrationProof"
+        ]
+      },
+      {
+        "path": "scripts/ci-quality-shape.mjs",
+        "sha256": "b847eec27387bda8087e57c0cdf98fe3cb9c7b262d6fb4fc76f482e2059306e1",
+        "origins": [
+          "tests/fixtures/ci-complete-calibration.json.gz",
+          "formation export ciCompleteCalibrationProof",
+          "posix15 export ciCompleteCalibrationProof",
+          "base export ciCompleteCalibrationProof"
+        ]
+      },
+      {
+        "path": "scripts/ci-quality-shape.mjs",
+        "sha256": "1bc06483031c68b1d0ea28ff2c4b918007c7378792a8b09df6d9ddbde46a3b88",
+        "origins": [
+          "tests/fixtures/ci-complete-calibration.json.gz",
+          "formation export ciCompleteCalibrationProof",
+          "posix15 export ciCompleteCalibrationProof",
+          "base export ciCompleteCalibrationProof"
+        ]
+      },
+      {
+        "path": "scripts/ci-test-timings.json",
+        "sha256": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+        "origins": [
+          "working candidate",
+          "formation Git"
+        ]
+      },
+      {
+        "path": "scripts/check-lua-static.mjs",
+        "sha256": "b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066",
+        "origins": [
+          "working candidate",
+          "formation Git"
+        ]
+      },
+      {
+        "path": "src/lua/abyss_encounter_formation.lua",
+        "sha256": "c31b3aa4711fcd53613e00e689c5e2ede15ecb0ba2fb89d9fa16b6fb8d3abd63",
+        "origins": [
+          "working candidate",
+          "formation Git"
+        ]
+      },
+      {
+        "path": "tests/helpers/combined-epoch/source-epoch.mjs",
+        "sha256": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+        "origins": [
+          "working candidate",
+          "formation Git"
+        ]
+      },
+      {
+        "path": "tests/helpers/copy-integration-source-closure.mjs",
+        "sha256": "944a6187604a28daf04f7b248239711f4c4ee6358f364d5efe856891eba79457",
+        "origins": [
+          "working candidate",
+          "formation Git"
+        ]
+      },
+      {
+        "path": "tests/defect-final-source-epoch.test.mjs",
+        "sha256": "e8163f25c261b4b16d0d9a5a3a5d73d8d2f5139017ca0bf255643c85ea060e15",
+        "origins": [
+          "working candidate",
+          "formation Git"
+        ]
+      },
+      {
+        "path": "tests/silent-final-source-epoch.test.mjs",
+        "sha256": "5f0f9a8ac18607ff0f0d8d8c5abb20a1a6deb9effed0023f2676d5d779621b47",
+        "origins": [
+          "working candidate",
+          "formation Git",
+          "posix15 Git",
+          "base Git"
+        ]
+      }
+    ],
+    "exportedFunctions": [
+      "originalPlanningSource",
+      "preCiCompleteCalibrationSource",
+      "preCombinedGateSource",
+      "preCombinedPlanningSource",
+      "preCurrentCiPlacementSource",
+      "preEffectsTargetGroupPlanningSource",
+      "preGameUiLocalPlanningSource",
+      "prePartialCasePlanningSource",
+      "prePosix14ShapeSource",
+      "preSilentTacticsPlanningSource",
+      "preWatcherFlowPlanningSource"
+    ],
+    "comparisons": 13455,
+    "throwingComparisons": 90,
+    "resultSha256": "b71525a431ac118248114e39fee102086ed82242410fe3c353b8abca9c2a25fe",
+    "bridgeControls": [
+      "scripts/ci-quality-shape.mjs: trailing byte",
+      "scripts/ci-quality-shape.mjs: first byte missing",
+      "scripts/ci-quality-shape.mjs: unknown path",
+      "scripts/ci-quality-shape.mjs: prototype path",
+      "scripts/ci-quality-shape.mjs: null",
+      "scripts/ci-quality-shape.mjs: object",
+      "scripts/ci-quality-shape.mjs: Windows drift",
+      "scripts/ci-quality-shape.mjs: POSIX drift",
+      "scripts/ci-test-timings.json: trailing byte",
+      "scripts/ci-test-timings.json: first byte missing",
+      "scripts/ci-test-timings.json: unknown path",
+      "scripts/ci-test-timings.json: prototype path",
+      "scripts/ci-test-timings.json: null",
+      "scripts/ci-test-timings.json: object",
+      "scripts/ci-test-timings.json: floor lowered",
+      "scripts/ci-test-timings.json: unknown cost lowered",
+      "scripts/ci-test-timings.json: older floor deleted"
+    ],
+    "upstreamModules": [
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/helpers/class-potion-planning-source-inverse.mjs",
+      "tests/helpers/defect-final-ci-source-inverse.mjs",
+      "tests/helpers/defect-integration-planning-source-inverse.mjs",
+      "tests/helpers/defect-utility-planning-source-inverse.mjs",
+      "tests/helpers/encounter-formation-ci-source-inverse.mjs",
+      "tests/helpers/enemy-ai-planning-source-inverse.mjs",
+      "tests/helpers/enemy-integration-planning-source-inverse.mjs",
+      "tests/helpers/posix15-shape-source-inverse.mjs",
+      "tests/helpers/pure-source-projection-cache.mjs",
+      "tests/helpers/relic-equip-ci-source-inverse.mjs",
+      "tests/helpers/silent-final-ci-source-inverse.mjs",
+      "tests/helpers/watcher-planning-source-inverse.mjs"
+    ],
+    "sourceArchives": [
+      "tests/fixtures/ci-complete-calibration.json.gz",
+      "tests/helpers/defect-final-ci-source-epoch.json.gz",
+      "tests/helpers/encounter-formation-ci-source-epoch.json.gz",
+      "tests/helpers/posix15-shape-source-epoch.json.gz",
+      "tests/helpers/relic-equip-ci-source-epoch.json.gz",
+      "tests/helpers/silent-final-ci-source-epoch.json.gz"
+    ]
+  },
+  "coverage": [
+    {
+      "kind": "win32 JS",
+      "count": 800,
+      "bins": [
+        49,
+        35,
+        43,
+        46,
+        47,
+        47,
+        48,
+        48,
+        47,
+        49,
+        48,
+        49,
+        49,
+        49,
+        49,
+        49,
+        48
+      ]
+    },
+    {
+      "kind": "linux JS",
+      "count": 800,
+      "bins": [
+        55,
+        35,
+        53,
+        54,
+        54,
+        55,
+        54,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "kind": "Windows Lua",
+      "count": 1410,
+      "bins": [
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        82,
+        83,
+        83,
+        83
+      ]
+    }
+  ],
+  "budget": {
+    "reserveMs": 60000,
+    "windowsTargetMs": 1800000,
+    "posixTargetMs": 1200000,
+    "windowsCurrentMs": 1794163,
+    "windowsHeadroomMs": 5837,
+    "posix14CurrentMs": 1205156,
+    "posix15CurrentMs": 1128812,
+    "posixHeadroomMs": 71188,
+    "posixTotalWorkMs": 16032072,
+    "prior797TotalWorkMs": 15994730,
+    "addedWorkMs": 37342,
+    "minRequiredPosixBins": 15,
+    "historic797Forecasts": {
+      "14": 1202485,
+      "15": 1126323
+    },
+    "loads14": [
+      1145148,
+      1145148,
+      1145147,
+      1145156,
+      1145147,
+      1145148,
+      1145147,
+      1145148,
+      1145147,
+      1145147,
+      1145147,
+      1145147,
+      1145147,
+      1145148
+    ],
+    "loads15": [
+      1068803,
+      1068812,
+      1068810,
+      1068812,
+      1068803,
+      1068812,
+      1068803,
+      1068802,
+      1068802,
+      1068803,
+      1068802,
+      1068802,
+      1068802,
+      1068802,
+      1068802
+    ]
+  },
+  "validatorControls": [
+    {
+      "validator": "full",
+      "mutation": "missing",
+      "errors": [
+        "Incomplete or failed Full job: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "full",
+      "mutation": "extra",
+      "errors": [
+        "Invalid Full job identity: engineering-posix (16/15)"
+      ]
+    },
+    {
+      "validator": "full",
+      "mutation": "old14",
+      "errors": [
+        "Invalid Full job identity: engineering-posix (1/14)",
+        "Invalid Full job identity: engineering-posix (2/14)",
+        "Invalid Full job identity: engineering-posix (3/14)",
+        "Invalid Full job identity: engineering-posix (4/14)",
+        "Invalid Full job identity: engineering-posix (5/14)",
+        "Invalid Full job identity: engineering-posix (6/14)",
+        "Invalid Full job identity: engineering-posix (7/14)",
+        "Invalid Full job identity: engineering-posix (8/14)",
+        "Invalid Full job identity: engineering-posix (9/14)",
+        "Invalid Full job identity: engineering-posix (10/14)",
+        "Invalid Full job identity: engineering-posix (11/14)",
+        "Invalid Full job identity: engineering-posix (12/14)",
+        "Invalid Full job identity: engineering-posix (13/14)",
+        "Invalid Full job identity: engineering-posix (14/14)",
+        "Incomplete or failed Full job: engineering-posix (1/15)",
+        "Incomplete or failed Full job: engineering-posix (2/15)",
+        "Incomplete or failed Full job: engineering-posix (3/15)",
+        "Incomplete or failed Full job: engineering-posix (4/15)",
+        "Incomplete or failed Full job: engineering-posix (5/15)",
+        "Incomplete or failed Full job: engineering-posix (6/15)",
+        "Incomplete or failed Full job: engineering-posix (7/15)",
+        "Incomplete or failed Full job: engineering-posix (8/15)",
+        "Incomplete or failed Full job: engineering-posix (9/15)",
+        "Incomplete or failed Full job: engineering-posix (10/15)",
+        "Incomplete or failed Full job: engineering-posix (11/15)",
+        "Incomplete or failed Full job: engineering-posix (12/15)",
+        "Incomplete or failed Full job: engineering-posix (13/15)",
+        "Incomplete or failed Full job: engineering-posix (14/15)",
+        "Incomplete or failed Full job: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "full",
+      "mutation": "wrongHead",
+      "errors": [
+        "Invalid Full job identity: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "full",
+      "mutation": "wrongRun",
+      "errors": [
+        "Invalid Full job identity: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "full",
+      "mutation": "duplicate",
+      "errors": [
+        "Invalid Full job identity: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "full",
+      "mutation": "forgedCount",
+      "errors": [
+        "Incomplete or failed Full job: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "full",
+      "mutation": "failure",
+      "errors": [
+        "Incomplete or failed Full job: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "full",
+      "mutation": "skipped",
+      "errors": [
+        "Incomplete or failed Full job: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "full",
+      "mutation": "cancelled",
+      "errors": [
+        "Incomplete or failed Full job: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "missing",
+      "errors": [
+        "Full job is missing or not successful: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "extra",
+      "errors": [
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (16/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "old14",
+      "errors": [
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (1/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (2/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (3/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (4/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (5/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (6/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (7/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (8/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (9/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (10/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (11/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (12/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (13/14)",
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (14/14)",
+        "Full job is missing or not successful: engineering-posix (1/15)",
+        "Full job is missing or not successful: engineering-posix (2/15)",
+        "Full job is missing or not successful: engineering-posix (3/15)",
+        "Full job is missing or not successful: engineering-posix (4/15)",
+        "Full job is missing or not successful: engineering-posix (5/15)",
+        "Full job is missing or not successful: engineering-posix (6/15)",
+        "Full job is missing or not successful: engineering-posix (7/15)",
+        "Full job is missing or not successful: engineering-posix (8/15)",
+        "Full job is missing or not successful: engineering-posix (9/15)",
+        "Full job is missing or not successful: engineering-posix (10/15)",
+        "Full job is missing or not successful: engineering-posix (11/15)",
+        "Full job is missing or not successful: engineering-posix (12/15)",
+        "Full job is missing or not successful: engineering-posix (13/15)",
+        "Full job is missing or not successful: engineering-posix (14/15)",
+        "Full job is missing or not successful: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "wrongHead",
+      "errors": [
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "wrongRun",
+      "errors": [
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "duplicate",
+      "errors": [
+        "Unknown, duplicate, stale or mismatched Full job: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "forgedCount",
+      "errors": [
+        "Full job is missing or not successful: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "failure",
+      "errors": [
+        "Full job is missing or not successful: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "skipped",
+      "errors": [
+        "Full job is missing or not successful: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merge-group",
+      "mutation": "cancelled",
+      "errors": [
+        "Full job is missing or not successful: engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "missing",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "extra",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (16/15)"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "old14",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (1/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (2/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (3/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (4/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (5/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (6/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (7/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (8/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (9/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (10/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (11/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (12/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (13/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (14/14)",
+        "Quality job engineering-posix (1/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (2/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (3/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (4/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (5/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (6/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (7/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (8/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (9/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (10/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (11/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (12/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (13/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (14/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "wrongHead",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "wrongRun",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "duplicate",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "forgedCount",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "failure",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "skipped",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "delivery",
+      "mutation": "cancelled",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "missing",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "extra",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (16/15)"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "old14",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (1/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (2/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (3/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (4/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (5/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (6/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (7/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (8/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (9/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (10/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (11/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (12/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (13/14)",
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (14/14)",
+        "Quality job engineering-posix (1/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (2/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (3/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (4/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (5/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (6/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (7/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (8/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (9/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (10/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (11/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (12/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (13/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (14/15) is missing, incomplete or does not have required conclusion success on its latest execution",
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "wrongHead",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "wrongRun",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "duplicate",
+      "errors": [
+        "Unexpected, duplicate or mismatched Quality job engineering-posix (15/15)"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "forgedCount",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "failure",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "skipped",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    },
+    {
+      "validator": "merged-delivery",
+      "mutation": "cancelled",
+      "errors": [
+        "Quality job engineering-posix (15/15) is missing, incomplete or does not have required conclusion success on its latest execution"
+      ]
+    }
+  ],
+  "unchangedExecutionContracts": [
+    {
+      "path": ".github/workflows/quality.yml",
+      "sha256": "aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535"
+    },
+    {
+      "path": ".github/workflows/licenses.yml",
+      "sha256": "7311ab67c84828fe7d7204fbcd647cc0b6767035ef628a7fce6ec62921866108"
+    },
+    {
+      "path": "scripts/ci-impact.mjs",
+      "sha256": "46439db10900aaa049df2619f7aee35ffc434bd6322f2316d1f1c0b830faba82"
+    },
+    {
+      "path": "scripts/ci-shards.mjs",
+      "sha256": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628"
+    },
+    {
+      "path": "scripts/test-lua.mjs",
+      "sha256": "57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703"
+    },
+    {
+      "path": "scripts/lua-workers.mjs",
+      "sha256": "699aa2e9e4c236c4be8fdc7b4a61f66877dbecf88d16b8ad0d488defee8d82a3"
+    },
+    {
+      "path": "scripts/ci-timeout-policy.mjs",
+      "sha256": "86884e7db31c299d1b3e908a9647d46379d958122dd519f52f92f5bce4fd8c3a"
+    },
+    {
+      "path": "scripts/publish-full-quality.mjs",
+      "sha256": "2aaeba6e5a41a9f33ce5d00dc015405f92a72efc6bb71b9e8171640a3d07f2d5"
+    },
+    {
+      "path": "scripts/publish-merge-group.mjs",
+      "sha256": "62e632b6df7670210cea301787e5488b7df7e0f67459f8374421edf3fd7a55e8"
+    },
+    {
+      "path": "scripts/verify-delivery.mjs",
+      "sha256": "c9e0b350a2c72654351da8774ddf4eebd7e41dc8643403f2426862fc1f736db3"
+    }
+  ],
+  "beforeInputSha256": {
+    "scripts/check-lua-static.mjs": "b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066",
+    "scripts/ci-quality-shape.mjs": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed",
+    "scripts/ci-shards.mjs": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+    "scripts/ci-test-timings.json": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+    "scripts/publish-full-quality.mjs": "2aaeba6e5a41a9f33ce5d00dc015405f92a72efc6bb71b9e8171640a3d07f2d5",
+    "scripts/publish-merge-group.mjs": "62e632b6df7670210cea301787e5488b7df7e0f67459f8374421edf3fd7a55e8",
+    "scripts/test-lua.mjs": "57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703",
+    "scripts/verify-delivery.mjs": "c9e0b350a2c72654351da8774ddf4eebd7e41dc8643403f2426862fc1f736db3",
+    "src/lua/abyss_encounter_formation.lua": "c31b3aa4711fcd53613e00e689c5e2ede15ecb0ba2fb89d9fa16b6fb8d3abd63",
+    "tests/ci-complete-calibration.test.mjs": "a70cb7de0706d174236a3fd38e74b1ccf4cfaa192c894cdd063ae77afaff5bed",
+    "tests/defect-final-source-epoch.test.mjs": "e8163f25c261b4b16d0d9a5a3a5d73d8d2f5139017ca0bf255643c85ea060e15",
+    "tests/delivery.test.mjs": "0da3bd167179802105f994aa3c07c0808f560f2c05054bc03b127199e06c3049",
+    "tests/fixtures/ci-complete-calibration.json.gz": "c0b66bf5ffd13baaea0f9a035dd43636f7419a0b607cc4eab3f0c1f73155d5ab",
+    "tests/full-quality.test.mjs": "d8eca7d7c8fe4a33122114b0d92197dddbffea2def63fff1f460a490c1367db7",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "ff1d0e926b39ec357a3dc99936c6f4022bbfc567be285decf90b84e44521e720",
+    "tests/helpers/class-potion-planning-source-inverse.mjs": "f756ecbd45e03e4ad755e04fd0d8cc3b4a310d0c0b3100f552080f5f79d15f07",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+    "tests/helpers/copy-integration-source-closure.mjs": "944a6187604a28daf04f7b248239711f4c4ee6358f364d5efe856891eba79457",
+    "tests/helpers/defect-final-ci-source-epoch.json.gz": "88894fcfdcc23ba6383ea5decd456c920dc296aadde209fc58ee8406480d7f75",
+    "tests/helpers/defect-final-ci-source-inverse.mjs": "88633dba85f221abd308e340bb6e181687862790479457666a8d3adc2d473c8b",
+    "tests/helpers/defect-integration-planning-source-inverse.mjs": "0e1af2d7c7b1a5b2363398eb28562afc4199854f5532d2057bf9e220e88dc2b8",
+    "tests/helpers/defect-utility-planning-source-inverse.mjs": "6ca642e4d4bad65c5e45927b3e33c02911e7a0c54922b446c03cffb2b5ada50c",
+    "tests/helpers/encounter-formation-ci-source-epoch.json.gz": "cd039ffe6b0f7fd2959776b84cf199290b3621b8a82266bc6929876e1ce46fbf",
+    "tests/helpers/encounter-formation-ci-source-inverse.mjs": "cdd36e28746f39123ac955195877aa4ad9e4f09555e905b827f19e713d0840c9",
+    "tests/helpers/enemy-ai-planning-source-inverse.mjs": "1b846a6a9367107e37da3a6d478c64ac0e55f77090cc0760549773c9cf5477c6",
+    "tests/helpers/enemy-integration-planning-source-inverse.mjs": "63280b8dbe145f2852a572688e51341724bc1d34dac0fe472d251745920264fa",
+    "tests/helpers/posix15-shape-source-epoch.json.gz": "9f75ddcfc0b6b5ef19c1750efab7d7a5360d9da4825a93de3c9cfe9e702e9b06",
+    "tests/helpers/posix15-shape-source-inverse.mjs": "94e940878d1f55e91a7cda214373b824a7b4b41c0d129bbaa8a8c7436daac20b",
+    "tests/helpers/pure-source-projection-cache.mjs": "e7658ec3b511c667240290e01e0c302aba7ed7882bd32fb1adb883f600e04024",
+    "tests/helpers/relic-equip-ci-source-epoch.json.gz": "541ff621ffe4b9413b90a284949dfb496cdfbe06cb05826307b56b0ac044fd47",
+    "tests/helpers/relic-equip-ci-source-inverse.mjs": "15ce138b19734038245b5d2c6b253c331e786f2d4ce9d75b86bc744e506b6968",
+    "tests/helpers/silent-final-ci-source-epoch.json.gz": "061f63eb40dd03dfecb8bdaf60ecc722f49da40ed75645568666fa29bddf8c2e",
+    "tests/helpers/silent-final-ci-source-inverse.mjs": "545ec4e9a1474f42746ef64af14aa32b7a2c9ecdbd41cb737d9f4a6a51841016",
+    "tests/helpers/watcher-planning-source-inverse.mjs": "98fc14c19920f55c9aad39b9edddee089daca959ff72a90a6ce3a08cac88704b",
+    "tests/merge-queue.test.mjs": "66687a15233984e26140060051f990a63256c099718a14ac3cfcbf7f500d4d21",
+    "tests/silent-final-source-epoch.test.mjs": "5f0f9a8ac18607ff0f0d8d8c5abb20a1a6deb9effed0023f2676d5d779621b47"
+  },
+  "afterInputSha256": {
+    "scripts/check-lua-static.mjs": "b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066",
+    "scripts/ci-quality-shape.mjs": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed",
+    "scripts/ci-shards.mjs": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+    "scripts/ci-test-timings.json": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+    "scripts/publish-full-quality.mjs": "2aaeba6e5a41a9f33ce5d00dc015405f92a72efc6bb71b9e8171640a3d07f2d5",
+    "scripts/publish-merge-group.mjs": "62e632b6df7670210cea301787e5488b7df7e0f67459f8374421edf3fd7a55e8",
+    "scripts/test-lua.mjs": "57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703",
+    "scripts/verify-delivery.mjs": "c9e0b350a2c72654351da8774ddf4eebd7e41dc8643403f2426862fc1f736db3",
+    "src/lua/abyss_encounter_formation.lua": "c31b3aa4711fcd53613e00e689c5e2ede15ecb0ba2fb89d9fa16b6fb8d3abd63",
+    "tests/ci-complete-calibration.test.mjs": "a70cb7de0706d174236a3fd38e74b1ccf4cfaa192c894cdd063ae77afaff5bed",
+    "tests/defect-final-source-epoch.test.mjs": "e8163f25c261b4b16d0d9a5a3a5d73d8d2f5139017ca0bf255643c85ea060e15",
+    "tests/delivery.test.mjs": "0da3bd167179802105f994aa3c07c0808f560f2c05054bc03b127199e06c3049",
+    "tests/fixtures/ci-complete-calibration.json.gz": "c0b66bf5ffd13baaea0f9a035dd43636f7419a0b607cc4eab3f0c1f73155d5ab",
+    "tests/full-quality.test.mjs": "d8eca7d7c8fe4a33122114b0d92197dddbffea2def63fff1f460a490c1367db7",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "ff1d0e926b39ec357a3dc99936c6f4022bbfc567be285decf90b84e44521e720",
+    "tests/helpers/class-potion-planning-source-inverse.mjs": "f756ecbd45e03e4ad755e04fd0d8cc3b4a310d0c0b3100f552080f5f79d15f07",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+    "tests/helpers/copy-integration-source-closure.mjs": "944a6187604a28daf04f7b248239711f4c4ee6358f364d5efe856891eba79457",
+    "tests/helpers/defect-final-ci-source-epoch.json.gz": "88894fcfdcc23ba6383ea5decd456c920dc296aadde209fc58ee8406480d7f75",
+    "tests/helpers/defect-final-ci-source-inverse.mjs": "88633dba85f221abd308e340bb6e181687862790479457666a8d3adc2d473c8b",
+    "tests/helpers/defect-integration-planning-source-inverse.mjs": "0e1af2d7c7b1a5b2363398eb28562afc4199854f5532d2057bf9e220e88dc2b8",
+    "tests/helpers/defect-utility-planning-source-inverse.mjs": "6ca642e4d4bad65c5e45927b3e33c02911e7a0c54922b446c03cffb2b5ada50c",
+    "tests/helpers/encounter-formation-ci-source-epoch.json.gz": "cd039ffe6b0f7fd2959776b84cf199290b3621b8a82266bc6929876e1ce46fbf",
+    "tests/helpers/encounter-formation-ci-source-inverse.mjs": "cdd36e28746f39123ac955195877aa4ad9e4f09555e905b827f19e713d0840c9",
+    "tests/helpers/enemy-ai-planning-source-inverse.mjs": "1b846a6a9367107e37da3a6d478c64ac0e55f77090cc0760549773c9cf5477c6",
+    "tests/helpers/enemy-integration-planning-source-inverse.mjs": "63280b8dbe145f2852a572688e51341724bc1d34dac0fe472d251745920264fa",
+    "tests/helpers/posix15-shape-source-epoch.json.gz": "9f75ddcfc0b6b5ef19c1750efab7d7a5360d9da4825a93de3c9cfe9e702e9b06",
+    "tests/helpers/posix15-shape-source-inverse.mjs": "94e940878d1f55e91a7cda214373b824a7b4b41c0d129bbaa8a8c7436daac20b",
+    "tests/helpers/pure-source-projection-cache.mjs": "e7658ec3b511c667240290e01e0c302aba7ed7882bd32fb1adb883f600e04024",
+    "tests/helpers/relic-equip-ci-source-epoch.json.gz": "541ff621ffe4b9413b90a284949dfb496cdfbe06cb05826307b56b0ac044fd47",
+    "tests/helpers/relic-equip-ci-source-inverse.mjs": "15ce138b19734038245b5d2c6b253c331e786f2d4ce9d75b86bc744e506b6968",
+    "tests/helpers/silent-final-ci-source-epoch.json.gz": "061f63eb40dd03dfecb8bdaf60ecc722f49da40ed75645568666fa29bddf8c2e",
+    "tests/helpers/silent-final-ci-source-inverse.mjs": "545ec4e9a1474f42746ef64af14aa32b7a2c9ecdbd41cb737d9f4a6a51841016",
+    "tests/helpers/watcher-planning-source-inverse.mjs": "98fc14c19920f55c9aad39b9edddee089daca959ff72a90a6ce3a08cac88704b",
+    "tests/merge-queue.test.mjs": "66687a15233984e26140060051f990a63256c099718a14ac3cfcbf7f500d4d21",
+    "tests/silent-final-source-epoch.test.mjs": "5f0f9a8ac18607ff0f0d8d8c5abb20a1a6deb9effed0023f2676d5d779621b47"
+  },
+  "beforeAfterHashesMatched": true,
+  "limitations": [
+    "All probes read local source or use synthetic metadata. They do not certify actual GitHub jobs, hosted timing, current remote Rulesets or publication.",
+    "No complete test suite, production behavior, source epoch regression, CC collection or official runtime/device verification was reexecuted.",
+    "Final commit/tree attestation must independently bind this candidate after the coordinator commits; old parent green or failed results remain historical."
+  ]
+}

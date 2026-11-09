@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T02:19:00Z'
+updated_date: '2026-11-09T01:07:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -21,6 +21,16 @@ documentation:
   - docs/backlog-details/M7-DEFECT-UTILITY-PLANNING-20261108.md
   - docs/backlog-details/M7-DEFECT-REFACTOR-INTEGRATION-20261108.md
   - docs/backlog-details/M7-SEVEN-CURRENT-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-WATCHER-FLOW-PLANNING-20261108.md
+  - docs/backlog-details/M7-SILENT-TACTICS-PLANNING-20261109.md
+  - docs/backlog-details/M7-EFFECTS-TARGET-GROUP-20261109.md
+  - docs/backlog-details/M7-PUBLISHED-COMBINATION-20261109.md
+  - docs/backlog-details/M7-RELIC-EQUIP-20261109.md
+  - docs/backlog-details/M7-SILENT-FINAL-20261109.md
+  - docs/backlog-details/M7-DEFECT-FINAL-20261109.md
+  - docs/backlog-details/M7-DEFECT-COST-20261109.md
+  - docs/backlog-details/M7-ENCOUNTER-FORMATION-20261109.md
+  - docs/backlog-details/M7-FORMATION-POSIX15-INTEGRATION-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -71,6 +81,30 @@ ordinal: 162000
 本轮在隔离本地树保全整合已独审的六项合流12950b1c与Defect utility 27b2ccc9；不改生产输入字节，逐项合并共享来源/成本合同，重新采集组合SCC/CC、定向行为与真实库存预算，独审后本地提交。全部旧计划/证据保留，不重复Full、不上传或操作用户电脑，不改owner/status/AC。
 
 2026-11-08 接续七项已有本地重构：基于已合#560的a0c35db8进行真实增量适配，保全两侧来源、合同与原始证据。只做定向测试及独立深审，不重复Full；从当前基线形成单父线性提交，明确批准后可按Ruleset正常上传及提PR，仍不得绕过质量门禁。
+
+2026-11-08 本轮从最新develop 7821a7f4接续未占用WatcherFlow计划职责：仅按普通伤害、姿态、X费用、Power、弃牌回收拆分planEffect，保留动态读取、验证及队列顺序；withCards32与既有Actor依赖列为残余。冻结旧源、独立双VM图/错误轨迹与真实语义负控，新增职责受CC15，窄来源接线及独审后仅本地保存。不重复Full、不上传、不操作用户设备，不改owner/status/AC。
+
+2026-11-09 按Owner及时集成要求，将已独审WatcherFlow c24ef4e无冲突叠加当前PR564 50584b5，补精确来源epoch与隔离闭包、新测试真实成本及完整库存；定向复验和独立审查后按原权限发布依赖PR564的draft PR，不重复Full、不绕过保护、不改owner/status/AC。
+
+及时集成已公开 #564/#567/#568/#569 到独立云端组合树；保留三片原生产字节与历史证据，合并48-owner来源合同和三项CI规划floor，定向验证及独立复审后远端保全。前置管理员准入仍待，不重复Full、不改他人原分支或任务验收状态。
+
+2026-11-09 接续主控明确授权的 Silent tactics 动作计划职责：仅在当前 develop 7821a7f4 上拆分 planEffect 的目标状态、手牌/弃牌、重复攻击及 X 能量规划，原公开接口、动态读序、错误、队列与 RNG 不变；冻结完整旧源并用独立双 VM/全图及原 Combat 夹具验证。与 #564/#565/#566/#567 生产范围无交集；保留 Furinya、In Progress 与未验 AC，独审后先持久保存实验分支，待前置真实合入再按最新基线完成来源合同集成及正常 Full。
+
+第18轮：仅拆分 abyss_effects.targetGroup 的图发现、稠密成员与相邻配对校验；保留读取顺序和错误时机。冻结 develop 7821a7f 原始源码，增加独立 VM 差分、语义负对照及 CC15 可执行守卫；不改任务状态或负责人。
+
+第19轮：继续既有Owner授权任务，鲜查develop 7821a7f4及开放PR无生产重叠后，在已公开组合#570 cbabad34基础上拆分RelicHooks.onEquip的委派准入、计数初始化、永久升级与奖励预览职责。保持动态公开槽、原调用/RNG/部分写入/错误顺序；完整旧新图与负控、全部新helper CC15、共享来源和CI合同集成后独审并及时远端保全，不重复Full或操作用户电脑，不改owner/status/AC。
+
+第21轮接续主控已授权M7职责治理：鲜查develop7821a7f4与开放PR占用后，在#572 d2ed1bbf依赖树仅拆分Silent final M.apply的触发、造牌、回合能力与伤害执行职责。保留公开动态槽、完整状态/别名/RNG/错误及部分写入；冻结旧源，新增职责CC15、真实语义负控和独立深审后及时远端保全与Draft交付。不重复Full、不改原分支/owner/status/AC、不操作用户设备。
+
+第22轮按Owner持续架构授权接续同一任务，不另认领：task:pick因既有In Progress为HOLD，已核实开放PR未涉及DefectFinal.execute。以最新develop 7821及公开#573 6f017完整祖先链建隔离树，按动作执行职责拆解execute CC39，保持旧分支读序、双created、返回值、RNG、队列及部分失败。冻结完整旧源，双独立VM及真实语义负控；新增helper含嵌套受原CC15门禁。组合来源新epoch保留49-owner历史合同，按实测评估CI成本，独立深审后及时远端Draft接续；不重跑Full、不准入/合并、不改owner/status/AC或用户设备。
+
+接续#574成本阻塞修复：最新HEAD仍fb04fd36；14个POSIX分片负载差仅11ms，完整总负载15994730ms，原预算及60秒预留下至少需真实降低34730ms总成本，不能仅重排伪造通过。先定位新完整图harness开销，仅优化可证明无损的纯计算，完整旧新图、表读取、断言、七旧夹具和十语义负控保留。生产不变，旧日志与floor作为历史证据保留；真实新版本完整测量、成本合同与独审通过后更新原PR，不重复Full、不抬预算/并发/worker。
+
+成本修复方案依据本轮实测与Owner协调确认改为现有框架内最小POSIX15片：14片总量超原容量34730ms且负载差11ms；profile中UTF8仅约1%、Matrix解析约2.22%，不足以支持所需降幅，不实施投机缓存。Windows17、POSIX并发12、Lua worker2、全部原floor、每片预算/执行保护/60秒预留与两平台完整覆盖保持；当前15片预测1126323ms，旧14片与Full36来源/收据原字节冻结，适配当前37作业精确交付与负控，独审后更新#574。
+
+2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
+
+2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -121,4 +155,40 @@ Shivs.startTurn本地职责片：CC33→6，5个新helper最大13，全模块20�
 最终补记：来源定向106个不同用例已有最新通过证据，初次79中3个测试适配问题已定点纠正；独审通过代码/来源安全边界复核，精确提交身份另存。按真实证据补3项成本floor，原19项不变；17/14完整库存含60秒预留最大1771239/1179021ms，原目标余28761/20979ms。后两项仅成功测试用例成本下界，非全文件实测；原失败/中止均保存，不伪称Full。
 
 发布前develop前移至#561b7ed1830，无src/data/scripts/config变动。本轮在新隔离树保全其全部档案及更强历史来源/退休安全合同，仅解决7个非生产文本冲突；45变动owner鲜读与旧epoch linked owner检查并存。最终单父基于b7，原a0度量和320独审按原身份保留；仅定向helper/负控复验，不重复完整行为/工程采集，不改owner/status/AC。
+
+2026-11-08 WatcherFlow纯计划职责本地完成：planEffect32→12，5 helper最大8且纳入CC15；338模块5560完整测量，CC>30为40→39、>15为216→215，SCC68/11/2和14旧警告不变。334例668完整图点及原28例Combat双VM一致，最终11/11含6语义负控，独审另137例通过。当前历史完整树身份窄测真实失败；共享epoch/隔离闭包由#564占用未改，来源接线与新51,776ms规划下界待整合。无上传/PR/Full/合并或设备验收，owner/status/AC保持；见M7-WATCHER-FLOW-PLANNING-20261108及机器附件。
+
+Watcher Flow 已在 #564@50584b5 上接入完整外层来源epoch及隔离闭包，解决原共享来源阻断；46 owners/339非空绑定。原来源45/45、新epoch5/5、行为11/11（55667.073989ms，规划下界55668）、CI41/41、独立来源12/12及CI4/4通过。保留首轮元数据缺失失败和所有冻结来源；784 JS/1409 Lua预算预测1775788/1183709ms。详见 docs/backlog-details/M7-WATCHER-FLOW-PLANNING-20261108.md 和 docs/evidence/m7-watcher-flow-integration-20261109.json。Draft PR发布待完成；#564前置CRLF失败未解决，未重复Full、未合并或设备验收，owner/status/AC不变。
+
+2026-11-09 Silent tactics单一职责片已实做：planEffect CC34→15，四helper最大11，全模块CC15。独立旧新VM各585场景/1170完整图、16语义负控及原Combat各60例通过；来源outer46 owner鲜读、完整5559测量，CC>30 40→39，SCC68/11/2不变。源码已远端保全07400300（与本地8e1同树）；完整验证/失败/独审见新增附件。仅新增真实21636ms floor，未重复Full；#564已负责的GameUI历史收据问题不复制修复，待前置实际合入后整合#567及本片并按正常门禁验收。owner/status/AC保持。
+
+2026-11-09 Effects目标分组验证按图遍历、数组/成员/成对职责拆分，targetGroup CC33→7，六helper最大9；338模块5561测量，CC>30 40→39、>15 216→215，SCC68/11/2不变。独立旧新VM306完整图、11非超时语义负控及真实CC超限负控通过，5/5完整7661ms；旧Shockwave71/71、core7/7、门禁19/19。生产已远端549e92a保全，与本地eba2449同tree。以#564 f256为前置接续其原修复，保留独立基线失败，最终组合证据与审查另附；不重复Full、不提前验收AC。详见本轮附件。
+
+2026-11-09 已实际组合公开#564/#567/#568/#569，三份生产字节及原档保留，先远端保全0df91e5e。338模块5570/5570鲜采：CC>30 40→37、>15 216→213、最大61；SCC68/11/2不变。48-owner组合鲜读与历史45/46合同并存，CI39/39；788JS/1410Lua含预留预测1779486/1187400ms。独立复审无未解决项，原失败日志保留。完整组合证据见M7-PUBLISHED-COMBINATION-20261109；前置管理员准入未解，不重复Full、未ready/入队/合并，owner/status/AC保持。
+
+第19轮已实际拆分RelicHooks.onEquip：CC47→5，五新helper最大13；全338模块5575测量，>30为37→36，>15为213→212，SCC68/11/2及依赖不变。新旧完整图15/15、143检查点、10语义负控及真实CC门禁3/3通过，原八Lua文件通过。生产已远端保全582afa16并核blob，接续#570；共享来源/CI复验与独审收口后保持Draft正常交付，不重复Full。原equipmentUpgrade16/onEnterRoom17残余及失败记录保留，owner/status/AC不变。
+
+Relic装备最终共享来源75/75与CI58个唯一测试通过，791JS/1410Lua原预算预测1781066/1189539ms；原14项装备/奖励/maxHP补测通过。独立深审PASS、无未解决项，1728暖LF/CRLF漂移负控及856行额外轨迹一致；原来源/CI失败均保留。待精确远端HEAD与正常托管准入，仍不勾AC。
+
+第21轮已实做Silent final动作执行职责切片，生产远端检查点ce44fbfb接续#572。apply CC42→2，15个handler最大9；全338模块5590/5590，>30为36→35、>15为212→211，SCC68/11/2不变。真实CC门禁3/3及原职责19/19通过；行为、49-owner来源与CI独审收口中。原choose18保留，不重复Full、不改owner/status/AC。
+
+Silent final最终行为16/16，46301ms；两侧各848完整图、九个具名真实语义负控，原五Lua夹具均保留。49-owner当前来源61/61、历史31/31通过；实际46302ms规划floor后794JS/1410Lua预测Windows1785133、POSIX1194279含60秒预留，原预算不变。独立复查30行为/98暖LF-CRLF漂移通过；最终CI、独审与精确身份附于本轮证据，保留初次失败，不勾AC。
+
+成本最终收口更保守：保留较早成功46616ms与final46301ms的不同测试版边界，behavior floor46617；来源完整9/9为10937ms floor。最终794JS/1410Lua预测Windows1785094、POSIX1194369（含60秒预留），余14906/5631ms。CI runtime/完整校准46/46，首轮44/45历史wrapper装配失败原日志保留；上条规划数字由本条替代，预算/旧floor/owner/status/AC均不变。
+
+第21轮独立深审PASS/unresolved[]，额外CI消费者16/16后共62个不同CI用例通过；传递source14/14及timings路由2/2补齐。生产、合同及成本已冻结，完整日志与原失败均归档，待精确远端最终身份/Draft交付。无Hosted Full、正常准入或合后证据，任务与AC保持。
+
+第22轮已实做DefectFinal.execute职责拆分并远端保全f4a3671d，接续#573。execute CC39→13、8helper最大6；全338模块5598/5598，>30为35→34，>15为211→210，SCC68/11/2不变。行为19/19、双VM各1351完整图、10具名语义变异通过；来源121不同用例、当前50owner鲜读及历史档案保留。真实CC3/3及原职责19/19通过。最终串行行为89.852秒；完整797JS/1410Lua含60秒预留预测POSIX1202485，超过原目标2485ms，成本准入仍BLOCKED。保留原预算/并发/worker与真实失败，不重复Full、ready、入队或合并；当前仅Draft交付准备，不改owner/status/AC。
+
+原#574成本修复本地通过：仅当前POSIX矩阵14→15，Windows17/并发12/Lua2/原30项floor与预算、预留、workflow全部不变；完整同权重总量15994730ms，15片含预留1126323ms余73677。23个完整受影响文件241项通过，独立42负控与797JS/1410Lua各平台完整覆盖通过；3478输入两阶段历史投影等价，原369行为输入及旧失败证据原字节保留。广213仅缺pwsh的旧checkout用例失败，两次过宽来源执行中断均保留；不称Full或全91依赖闭包通过。证据见M7-DEFECT-COST-20261109附件。仅更新原Draft，前置链/管理员准入/精确HEAD Hosted Full尚待，未验AC不勾。
+
+EncounterFormation.assemble职责已拆分，生产先公开保全f0629567；入口CC31→8、6helper最大8，全338模块5604测量，>30 34→33、>15 210→209，SCC68/11/2不变。新行为14/14（7322ms规划），1532完整图/侧及11具名语义负控；三大原Lua另完整旧新17/17通过并保存77.623秒收据。来源新11、旧Defect11、当前全树38通过；真实CC3与原职责19通过，独立1884次执行/888故障前缀无阻塞。CI最终接线等#574POSIX15基线，不重复Full、不提前勾AC。完整证据与初次失败见新增附件。
+
+EncounterFormation已按公开fb04完成CI inverse与真实floor：runtime13/13、完整校准38/39，唯一原POSIX预算失败保持。800JS/1410Lua含60秒预留预测Windows1794163、POSIX1205156（超5156）；未复制另一线尚未发布的POSIX15，Draft整体BLOCKED。完整日志/hash与旧floor均保留，传递消费者补核及最终独审继续。
+
+Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原POSIX成本失败。静态91测试/151模块仅列闭包；直接加载fb04原helper，对5完整CI档案/27种来源/8路径/11导出作4255次输出与异常等价比较全部通过。保留原Defect档案、14shape和全部旧预算/成本。独审局部PASS、整体BLOCKED，不冒称可合入；最终上传与Draft身份附后。
+
+已在独立树整合公开#574@841510b7与#575@d21be2fb，保全两父全部生产/历史证据。组合800JS/1410Lua复算Windows1794163（余5837）、POSIX15为1128812（余71188），旧14超5156保持可复现；仅4共享文本冲突，预算/floor/unknown/并发/worker不变。独审核8125非冲突原路径字节一致；当前定向测试和最终独审收口中，不重复Full或提前勾AC。
+
+POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入前后hash一致；历史/当前投影4370+6976比较重放一致。独审13455比较、17桥拒绝和40准入validator拒绝负控通过，原始失败保留。以原#575与#574为两父合并更新同PR；仅本地组合验证及规划通过，未跑本HEAD Hosted Full，继续Draft与正常准入，不勾AC。
 <!-- SECTION:NOTES:END -->

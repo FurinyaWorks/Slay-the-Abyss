@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preDefectPlanSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'defect',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'defect')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'defect'):readSource)});
 }
 const readers=new WeakMap();
 export function defectPlanReader(readSource=live){

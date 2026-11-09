@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "m7-relic-equip-independent-deep-review-20261109",
+  "reviewer": "independent native reviewer /root/advance_m7_round_19/review_relic_equipment",
+  "conclusion": "pass",
+  "unresolved": [],
+  "reviewedBaseSha": "cbabad34d0957309cbda03e1ae467cd94371bf1c",
+  "reviewedAt": "2026-11-08T19:31:34.723Z",
+  "bindingScope": "Exact bytes in boundFiles. Dirty worktree review; final HEAD/tree binding awaits coordinator supplied target. No attestation of future edits.",
+  "boundFiles": {
+    "src/lua/abyss_relic_hooks.lua": "19b0ba4fcd2c5ca37219623868b8cdd978787e8861e50e2e43fefb8c70be2f2f",
+    "scripts/check-lua-static.mjs": "63af34a9b39f790b8eea7835610ce291a03c91604ae963b3a5346347ac365a52",
+    "scripts/ci-test-timings.json": "34942a4c0e27ed85dc957b310c2416ca83c0392b91ba5bd611783fa47c87f317",
+    "tests/ci-complete-calibration.test.mjs": "4ae696debd68e1a7c3630ff89984f81958e7119720a59b3b31c0f130a9b462ef",
+    "tests/ci-runtime.test.mjs": "3ad57593fb34082831045b260fbf1a8971455fe169705d1fd6fb8cdce0abbe9b",
+    "tests/effects-target-group-source-epoch.test.mjs": "0a8e904152a5db1ff01e82c7b78652c1e0bec626d20daf936fb2cdaa4ca0b59a",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "4e237aed42e18bb9bd0983094bddeedba3ee3e3ea8860818bc50722de11bb083",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "8b0287671523066b22c384e377c30fda9c53310fae6dfe3b01bddb9aeab71d14",
+    "tests/helpers/copy-integration-source-closure.mjs": "7ca1ac7dc3cd1867454acd0ee3c4545c8e0e6f43f8e579a977c3abdc947abe97",
+    "tests/fixtures/relic-equip-before.lua": "ef04341232f139d6e60a7bb5e0595a65dd9487fe63b2a88f41012eab2f79c85e",
+    "tests/helpers/relic-equip-cases.lua": "e84551556281a9555ff20236fc50381daa0d66d8546aa26738de4c0ca62505d9",
+    "tests/helpers/relic-equip-ci-source-epoch.json.gz": "541ff621ffe4b9413b90a284949dfb496cdfbe06cb05826307b56b0ac044fd47",
+    "tests/helpers/relic-equip-ci-source-inverse.mjs": "15ce138b19734038245b5d2c6b253c331e786f2d4ce9d75b86bc744e506b6968",
+    "tests/helpers/relic-equip-source-epoch.json.gz": "c7f30e9773f4f08d3cf33e1ece1a1be425fa04389d0144bb285ff70643d06863",
+    "tests/helpers/relic-equip-source-epoch.mjs": "ff648711e65a818f22a52d2d8b4d9dc1fab42bada42cc8372fbde06a76738a35",
+    "tests/helpers/relic-equip-vm.mjs": "688c1e5bc02f9f3b5650b49cb84a69d5f86f045c4b63b13564fd6a87bbcd6990",
+    "tests/relic-equip-complexity.test.mjs": "59c47160958bdf48d138725d6d4828fffc0e2cdac588918c56ad3e9a2bc4303e",
+    "tests/relic-equip-responsibilities.test.mjs": "8ca20948a414eb943d50992cf1c8f59464189e82737b15ca3b02ad27ff7b1c22",
+    "tests/relic-equip-source-epoch.test.mjs": "7009bce68a3868f66f4678354b1df61e07359ec618db031ec80ffbc33606b44e",
+    "docs/evidence/m7-relic-equip-20261109/behavior-receipt.json": "3a11b8b354f9f6ec395fa29fb34939b900c216c26dabf08d7e9c09dd17627be9",
+    "docs/evidence/m7-relic-equip-20261109/behavior.log.gz": "c30404b16c0fddbb00ae1fd3ece792503b44ff965e3dd2d9cb46b5c1c3459883",
+    "docs/evidence/m7-relic-equip-20261109/independent-adversarial.mjs": "41be7459a0050d25b5395c3ba4aaa945ba9cf533d60a181ae0452a6bf5014096",
+    "docs/evidence/m7-relic-equip-20261109/independent-adversarial.log": "1e6c6f9ea1b1611058949433e680abb49c95dc66633cb3d8c132dfb6f50f9f61",
+    "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md": "a5199c7b13f0693fe3501d42539d0c67d85514784916fe52ae58ee789cf13b85",
+    "docs/backlog-details/M7-RELIC-EQUIP-20261109.md": "e079ed922294d245b1d80f196ce3705d80bcea27955bd178820e06112880b70f"
+  },
+  "findings": [
+    "No blocking defect found in ordered admission, dynamic public-slot lookup, errors and partial writes, aliases, return arity, upgrades or RNG. Only onEquip span changed in production; complete predecessor fixture matches actual base Git source and blob.",
+    "Real Luacheck measurements: onEquip47→5; new helpers9/13/4/11/12. Explicit entry and nested hard-cap negative controls pass. Untouched equipmentUpgrade16 and onEnterRoom17 remain residual.",
+    "Complete historical source bindings and metadata remain intact. New outer epoch preserves48-owner closure; all18 targets reject drift after warm LF and CRLF calls. Foreign input cannot authorize owner reads.",
+    "CI change adds only authentic7908ms local planning floor; effective default10000ms unchanged. Old observed costs, execution controls, budgets, workflows and historical inventory forecasts preserved. Both CI before identities match actual base Git, after identities match reviewed files."
+  ],
+  "tests": [
+    {
+      "command": "node --test tests/relic-equip-complexity.test.mjs tests/relic-equip-source-epoch.test.mjs",
+      "pass": 11,
+      "fail": 0,
+      "durationMs": 10855.010896
+    },
+    {
+      "command": "node --test tests/relic-equip-responsibilities.test.mjs",
+      "pass": 15,
+      "fail": 0,
+      "durationMs": 8782.094246,
+      "graphs": 143,
+      "semanticMutants": 10
+    },
+    {
+      "command": "node --test --test-name-pattern='Relic equip|pre-Relic equip' tests/ci-complete-calibration.test.mjs",
+      "pass": 3,
+      "fail": 0,
+      "durationMs": 5123.710927
+    },
+    {
+      "command": "node docs/evidence/m7-relic-equip-20261109/independent-adversarial.mjs",
+      "ownerDriftChecks": 1728,
+      "targets": 18,
+      "owners": 48,
+      "newlineForms": 2,
+      "metatableDifferentialTraceLines": 856,
+      "result": "pass"
+    },
+    {
+      "command": "git diff --check",
+      "result": "pass"
+    },
+    {
+      "command": "node --test --test-name-pattern='current 129 placement' tests/ci-complete-calibration.test.mjs",
+      "pass": 1,
+      "fail": 0,
+      "durationMs": 4931.501072
+    }
+  ],
+  "limitations": [
+    "Local POSIX review and targeted tests only; no Full, hosted/Windows runtime, official import, device/game validation or deployment performed.",
+    "Prior #564 Full does not cover this slice. Administrator admission remains pending; review does not authorize bypass or claim merge readiness.",
+    "Parent engineering and original eight Lua fixture results were inspected as supporting evidence, not independently rerun.",
+    "Future publication commits and later edits require exact digest recheck; this file does not attest itself."
+  ],
+  "finalDeltaReview": {
+    "allPrevious23BindingsUnchanged": true,
+    "reviewedChanges": "Final current129-placement reconstruction explicitly adds the new authenticated floor to the complete current expected object and removes that floor only for comparison to the frozen original eight. Thresholds, all prior assertions, observed costs and safety bytes remain unchanged. Final documentation and Backlog preserve owner/status/AC, residual CC16/17 and pending normal admission.",
+    "supportingWorkerLog": "/tmp/relic-equip-contracts/ci-calibration-final-2.log",
+    "supportingWorkerLogSha256": "9051a38d7c7c71c7dbd82a137f313a8169360292b8a32aeb71d9efebb6435e8c",
+    "supportingWorkerResult": {
+      "pass": 29,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 6664.523055
+    },
+    "independenceNote": "Worker final full-file result inspected, not independently rerun.",
+    "formattingOnly": "After local candidate ab3804eb, removed exactly one trailing LF byte from tests/relic-equip-source-epoch.test.mjs; byte-prefix equality checked against candidate blob. No logical change."
+  }
+}

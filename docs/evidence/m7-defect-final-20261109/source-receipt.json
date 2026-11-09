@@ -1,0 +1,24 @@
+{
+  "testFile": "tests/defect-final-source-epoch.test.mjs",
+  "tests": 11,
+  "pass": 11,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "durationMs": 13783.175184,
+  "testSha256": "1204a76a70de7bbf5edbf529d6d8d3ad114327f910444584f7c3df2742af7ad7",
+  "inputSha256": {
+    "tests/helpers/defect-final-source-epoch.mjs": "8088008202072d1ce22492383861fe5ccb2b57d2bd9d1b06abb6653f835c2137",
+    "tests/helpers/defect-final-source-epoch.json.gz": "a656584db182a608b75f66a46a8d31ae4d4bbaba6c64d376d1d47a011c7833ce",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "9263d0add5699b125395636c17244d21ed6e9f28243b9ae0a7c77befe727ad74",
+    "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb",
+    "tests/helpers/copy-integration-source-closure.mjs": "38252e528cf47f523b57ca8bc66c711b014216e502a04e161a34c4b04350653f",
+    "src/lua/abyss_defect_final_cards.lua": "77abe4a82a37118273585830e1bd4c49e07b0367de77f06dc388b7ca862f5544"
+  },
+  "beforeAfterHashesMatched": true,
+  "hashEvidenceBefore": "1204a76a70de7bbf5edbf529d6d8d3ad114327f910444584f7c3df2742af7ad7  tests/defect-final-source-epoch.test.mjs\n8088008202072d1ce22492383861fe5ccb2b57d2bd9d1b06abb6653f835c2137  tests/helpers/defect-final-source-epoch.mjs\na656584db182a608b75f66a46a8d31ae4d4bbaba6c64d376d1d47a011c7833ce  tests/helpers/defect-final-source-epoch.json.gz\n9263d0add5699b125395636c17244d21ed6e9f28243b9ae0a7c77befe727ad74  tests/helpers/combined-epoch/source-epoch.mjs\n911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb  tests/helpers/combined-epoch/source-epoch-runtime.mjs\n38252e528cf47f523b57ca8bc66c711b014216e502a04e161a34c4b04350653f  tests/helpers/copy-integration-source-closure.mjs\n77abe4a82a37118273585830e1bd4c49e07b0367de77f06dc388b7ca862f5544  src/lua/abyss_defect_final_cards.lua\n",
+  "hashEvidenceAfter": "tests/defect-final-source-epoch.test.mjs: OK\ntests/helpers/defect-final-source-epoch.mjs: OK\ntests/helpers/defect-final-source-epoch.json.gz: OK\ntests/helpers/combined-epoch/source-epoch.mjs: OK\ntests/helpers/combined-epoch/source-epoch-runtime.mjs: OK\ntests/helpers/copy-integration-source-closure.mjs: OK\nsrc/lua/abyss_defect_final_cards.lua: OK\n",
+  "logSha256": "9b3e8a8384d395f4f76ae9e10bf37719e7c107e167a997e927df50c9dfa6fb60",
+  "compressedLogSha256": "088068b9873e844f8e5e3ce45b6a1d2c7ff304ceb1b18ce212cd1f0c653292cf",
+  "scope": "Complete local run; other independent validation may have been active. Conservative planning cost, not an isolated or hosted benchmark."
+}

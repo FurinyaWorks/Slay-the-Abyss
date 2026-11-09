@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "unchangedPriorTimings": true,
+  "exactCiInverses": [
+    "scripts/ci-test-timings.json",
+    "scripts/check-lua-static.mjs"
+  ],
+  "verifiedInputHashes": 11,
+  "semanticAssertions": [
+    {
+      "name": "double created hooks",
+      "status": 2,
+      "error": "tests/helpers/silent-final-apply-edges.lua:98: double created hooks"
+    },
+    {
+      "name": "Doppelganger X bonus",
+      "status": 2,
+      "error": "tests/helpers/silent-final-apply-edges.lua:105: Doppelganger X bonus"
+    },
+    {
+      "name": "Bullet Time costs",
+      "status": 2,
+      "error": "tests/helpers/silent-final-apply-edges.lua:104: Bullet Time costs"
+    },
+    {
+      "name": "corpse damage amount",
+      "status": 2,
+      "error": "tests/helpers/silent-final-apply-edges.lua:106: corpse damage amount"
+    },
+    {
+      "name": "repeated lazy requires",
+      "status": 2,
+      "error": "tests/helpers/silent-final-apply-edges.lua:100: repeated lazy requires"
+    },
+    {
+      "name": "trigger top queue",
+      "status": 2,
+      "error": "tests/helpers/silent-final-apply-edges.lua:102: trigger top queue"
+    },
+    {
+      "name": "first choke target",
+      "status": 2,
+      "error": "tests/helpers/silent-final-apply-edges.lua:103: first choke target"
+    },
+    {
+      "name": "dynamic public recursion",
+      "status": 2,
+      "error": "tests/helpers/silent-final-apply-edges.lua:128: dynamic public recursion"
+    },
+    {
+      "name": "Nightmare cleanup",
+      "status": 2,
+      "error": "tests/helpers/silent-final-apply-edges.lua:107: Nightmare cleanup"
+    }
+  ],
+  "localFloor": 46302,
+  "scope": "Intermediate 46302ms single-floor snapshot, superseded by conservative behavior/source-floor integration. Not final binding."
+}

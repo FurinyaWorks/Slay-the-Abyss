@@ -1,0 +1,116 @@
+PASS exact fixture identity; pinned Luacheck 1.2.0; old assemble CC31 rejected; all 15 scoped functions and anonymous nested CC regressions rejected; missing/duplicate/misaligned diagnostics fail closed
+{
+  "sourceSha256": "c31b3aa4711fcd53613e00e689c5e2ede15ecb0ba2fb89d9fa16b6fb8d3abd63",
+  "fixtureSha256": "de7afe27c70b14e724aa7f0ea67509e41df882e1e055904b82cc7be56916e8ec",
+  "gateSha256": "b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066",
+  "functions": [
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 19,
+      "subject": "function 'M.assemble'",
+      "complexity": 8,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 24,
+      "subject": "function 'boolean'",
+      "complexity": 1,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 28,
+      "subject": "function 'integer'",
+      "complexity": 4,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 34,
+      "subject": "function 'make'",
+      "complexity": 1,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 37,
+      "subject": "function 'louse'",
+      "complexity": 3,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 38,
+      "subject": "function 'weak'",
+      "complexity": 1,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 45,
+      "subject": "function 'humanoid'",
+      "complexity": 3,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 52,
+      "subject": "function 'strongWildlife'",
+      "complexity": 1,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 58,
+      "subject": "function 'offset'",
+      "complexity": 3,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 66,
+      "subject": "function 'fixedFormation'",
+      "complexity": 7,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 93,
+      "subject": "function 'shapeFormation'",
+      "complexity": 7,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 108,
+      "subject": "function 'gremlinFormation'",
+      "complexity": 4,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 121,
+      "subject": "function 'slimeFormation'",
+      "complexity": 8,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 134,
+      "subject": "function 'louseFormation'",
+      "complexity": 6,
+      "limit": 15
+    },
+    {
+      "file": "src/lua/abyss_encounter_formation.lua",
+      "line": 141,
+      "subject": "function 'mixedFormation'",
+      "complexity": 2,
+      "limit": 15
+    }
+  ]
+}
+KILL independent boundary mutant: cacheConstructor
+KILL independent boundary mutant: cloneSelected
+KILL independent boundary mutant: truncateEager

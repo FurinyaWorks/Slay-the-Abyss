@@ -1,0 +1,50 @@
+{
+  "base": "6f017ff875baa2de80a121e507634a2d859fecfa",
+  "facadeSha256": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+  "testBodies": {
+    "tests/silent-final-source-epoch.test.mjs": "body byte-original, only facade URL changed",
+    "tests/relic-equip-source-epoch.test.mjs": "body byte-original, only facade URL changed",
+    "tests/effects-target-group-source-epoch.test.mjs": "body byte-original, only facade URL changed",
+    "tests/silent-tactics-source-epoch.test.mjs": "body byte-original, only facade URL changed",
+    "tests/watcher-flow-source-epoch.test.mjs": "body byte-original, only facade URL changed",
+    "tests/seven-refactor-source-epoch.test.mjs": "body byte-original, only facade URL changed"
+  },
+  "archives": [
+    {
+      "path": "tests/helpers/combined-epoch/source-epoch.json.gz",
+      "sha256": "2085260a5aabde4476411172eb0b2e6fd3afcaa991a3cafc52f3ab0e98755c73"
+    },
+    {
+      "path": "tests/helpers/effects-target-group-source-epoch.json.gz",
+      "sha256": "f22d0328aedd7b7e9c785482271483f9f083c5c6abd7cd55d19933b24a48c0c2"
+    },
+    {
+      "path": "tests/helpers/relic-equip-ci-source-epoch.json.gz",
+      "sha256": "541ff621ffe4b9413b90a284949dfb496cdfbe06cb05826307b56b0ac044fd47"
+    },
+    {
+      "path": "tests/helpers/relic-equip-source-epoch.json.gz",
+      "sha256": "c7f30e9773f4f08d3cf33e1ece1a1be425fa04389d0144bb285ff70643d06863"
+    },
+    {
+      "path": "tests/helpers/seven-refactor-source-epoch.json.gz",
+      "sha256": "98ce5a13a217c5b20bbbddf93811d5fc2dda4117bb465c33c5ad4c979608c4bd"
+    },
+    {
+      "path": "tests/helpers/silent-final-ci-source-epoch.json.gz",
+      "sha256": "061f63eb40dd03dfecb8bdaf60ecc722f49da40ed75645568666fa29bddf8c2e"
+    },
+    {
+      "path": "tests/helpers/silent-final-source-epoch.json.gz",
+      "sha256": "8d70652c025b8075e2a03936f12c2509dbca427abd555e472f197b1ac4850b49"
+    },
+    {
+      "path": "tests/helpers/silent-tactics-source-epoch.json.gz",
+      "sha256": "046c798aed3ded45bf29ad696c777551102f74066a262174af3d9990bdabb1c7"
+    },
+    {
+      "path": "tests/helpers/watcher-flow-source-epoch.json.gz",
+      "sha256": "9e81602d086a81680830cf179a5d9f9f041bd56e0938b2d82eb196e50f73c015"
+    }
+  ]
+}

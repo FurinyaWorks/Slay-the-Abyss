@@ -1,0 +1,6 @@
+{
+  "check": "independent old/new fresh VM graph comparison",
+  "snapshots": 294,
+  "sourceSha256": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228",
+  "observationSha256": "55f6a87ae8b228586d353c67ed99be156d605c9b0124c95619bc59d8edd86cf5"
+}

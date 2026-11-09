@@ -1,0 +1,109 @@
+{
+  "scope": "Independent receipt/hash verification of author executions, not independent rerunning of their test suite",
+  "priorFormationReceipts": [
+    {
+      "receipt": "docs/evidence/m7-formation-20261109/behavior-final-receipt.json",
+      "sha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc",
+      "inputsVerified": 363,
+      "priorRunOnly": true
+    },
+    {
+      "receipt": "docs/evidence/m7-formation-20261109/source-receipt.json",
+      "sha256": "4a80f128eaa794a38a4da9b8ad7d9caa21abd4c73fd7308466e977eaf601eda0",
+      "inputsVerified": 60,
+      "priorRunOnly": true
+    },
+    {
+      "receipt": "docs/evidence/m7-formation-20261109/source-defect-regression-receipt.json",
+      "sha256": "d3db4f713ad58100ef3697ac81b74be8775f0258146b642e149372d8bb029678",
+      "inputsVerified": 60,
+      "priorRunOnly": true
+    },
+    {
+      "receipt": "docs/evidence/m7-formation-20261109/source-integration-receipt.json",
+      "sha256": "ab57b5bde1896dc8e6442579149653a6f8e2aba918ce57d8c0ce20dc5b9eca43",
+      "inputsVerified": 60,
+      "priorRunOnly": true
+    }
+  ],
+  "currentSelectedSuite": {
+    "receipt": "docs/evidence/m7-formation-posix15-20261109/ci-selected-complete-receipt.json.gz",
+    "sha256": "00a06f5abed588dd94e69999ee612aadbad8bb48396537cc535dfc5d0ae3ac57",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "tests/ci-complete-calibration.test.mjs",
+      "tests/ci-host-timing-calibration.test.mjs",
+      "tests/ci-impact.test.mjs",
+      "tests/ci-posix-concurrency.test.mjs",
+      "tests/ci-posix-shards.test.mjs",
+      "tests/ci-reviewed-lfs.test.mjs",
+      "tests/ci-run-costs.test.mjs",
+      "tests/ci-runtime-preview-lfs.test.mjs",
+      "tests/ci-runtime.test.mjs",
+      "tests/ci-summary-runners.test.mjs",
+      "tests/ci-windows-shape-expansion.test.mjs",
+      "tests/ci-windows-shards.test.mjs",
+      "tests/delivery.test.mjs",
+      "tests/full-quality.test.mjs",
+      "tests/merge-queue.test.mjs",
+      "tests/merge-queue-admission.test.mjs",
+      "tests/pr-quality-evidence.test.mjs",
+      "tests/lua-shards.test.mjs",
+      "tests/watcher-actor-source-inverse.test.mjs",
+      "tests/class-potion-orb-source-inverse.test.mjs",
+      "tests/defect-integration-source.test.mjs",
+      "tests/pr372-integration-source.test.mjs",
+      "tests/ui-regression-partitions.test.mjs"
+    ],
+    "result": {
+      "tests": 245,
+      "pass": 245,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 101267.758538
+    },
+    "status": 0,
+    "beforeAfterIdenticalInputs": 3576,
+    "currentOperationalInputsIdentical": 3575,
+    "executedHarness": "docs/evidence/m7-formation-posix15-20261109/ci-verify-executed-source.py.gz",
+    "executedHarnessUncompressedSha256": "17b7032130a00dbbd4507d71142deef4676bbd8c7a1f49ae1bdfb115d3485794",
+    "harnessOnlyDelta": "Current wrapper now requires a new output directory instead of overwriting original evidence; command, snapshot and reporting logic unchanged. Exact executed wrapper is preserved."
+  },
+  "authorProjectionReceipts": [
+    {
+      "path": "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-receipt.json.gz",
+      "sha256": "2b444d4623366762436120bb752037ccb54374b4749f8aefdf5f3ce558564356",
+      "completeSources": 28,
+      "comparisons": 4370,
+      "completeTextInputs": 3488,
+      "completeTextComparisons": 6976,
+      "downstreamTestFilesNotExecutionClaim": 91
+    },
+    {
+      "path": "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-replay-receipt.json.gz",
+      "sha256": "6781dbf81e44dd9ebc6b8d52ee8fbd25c856b4f9ef26eae90ba6b6dcbeb41f20",
+      "completeSources": 28,
+      "comparisons": 4370,
+      "completeTextInputs": 3488,
+      "completeTextComparisons": 6976,
+      "downstreamTestFilesNotExecutionClaim": 91
+    }
+  ],
+  "failureLogs": [
+    {
+      "name": "ci-initial-conflict-failure",
+      "retained": true,
+      "exitCode": 1
+    },
+    {
+      "name": "ci-initial-combination-failure",
+      "retained": true,
+      "exitCode": 1
+    }
+  ]
+}

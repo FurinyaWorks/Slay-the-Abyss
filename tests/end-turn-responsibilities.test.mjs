@@ -1,10 +1,13 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {readFileSync,mkdirSync,mkdtempSync,rmSync} from 'node:fs';import {join} from 'node:path';
+import {readFileSync,mkdirSync,mkdtempSync,rmSync,writeFileSync} from 'node:fs';import {join,dirname} from 'node:path';
+import {tmpdir} from 'node:os';import {pathToFileURL} from 'node:url';import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';import {spawnSync} from 'node:child_process';
 import {runStatic,reviewResponsibilityComplexity} from '../scripts/check-lua-static.mjs';
 import {discoverSources,measureSources} from '../scripts/lua-quality-metrics.mjs';
 import {preEndTurnResponsibilitiesSource as prior,endTurnResponsibilitiesReader as reader} from './helpers/end-turn-responsibilities-source-inverse.mjs';
 import {preRelicQuerySource,relicQueryReader} from './helpers/relic-query-source-inverse.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {relicQuerySourceProof} from './helpers/epochs/develop/tests/helpers/relic-query-source-inverse.mjs';
 const file='src/lua/abyss_end_turn_powers.lua',read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n'),hash=s=>createHash('sha256').update(s).digest('hex');
 const before=read('tests/fixtures/end-turn-responsibilities-before.lua');
 function replay(source,fixture){mkdirSync('build/end-turn-responsibilities',{recursive:true});const root=mkdtempSync(join('build/end-turn-responsibilities','vm-'));
@@ -32,10 +35,94 @@ test('EndTurn exact outer source bridge freshly rechecks owner, CRLF and wrapper
  for(const s of [current+'\n',current.replace('return top','return bottom'),before,null])assert.equal(prior(file,s,{readSource:()=>{throw Error('must not read unmatched epoch');}}),s);
  assert.throws(()=>prior(file,current,{readSource:()=>{throw Error('missing owner');}}),/missing owner/);
 });
-test('EndTurn current source composes into frozen N35 without replacing its prior source or oracle',()=>{
- const raw=p=>readFileSync(p,'utf8'),current=read(file),old=preRelicQuerySource(file,before,{readSource:p=>prior(p,raw(p),{readSource:raw})});
- assert.equal(preRelicQuerySource(file,current,{readSource:raw}),old);assert.equal(relicQueryReader(raw)(file),old);assert.notEqual(old,current);
- assert.throws(()=>preRelicQuerySource(file,current,{readSource:p=>p===file?'foreign':raw(p)}),/EndTurn current owner identity/);
+test('EndTurn original source composes into frozen N35 without replacing its prior source or oracle',async()=>{
+ // #560 split the branch epochs. Preserve the actual EndTurn chain, not the
+ // different Act1 chain, and run its original error contract on its own inputs.
+ const bytes=readFileSync('tests/fixtures/end-turn-original-chain-3c8b0fbb.json.gz');
+ assert.equal(hash(bytes),'9ba393732275c8b932b3ee3aba8b196b2bee28d1ea63c6bc1b527adbdd26a45c');
+ const validate=archive=>{
+  assert.equal(archive.schemaVersion,1);assert.equal(archive.sourceCommit,'3c8b0fbba73332354e1f030662fcf3169f03e8d6','original EndTurn chain commit');
+  return Object.fromEntries(Object.entries(archive.files).map(([path,binding])=>{
+   assert.match(path,/^tests\/(helpers|fixtures)\/[A-Za-z0-9._-]+$/);
+   assert.notEqual(Object.hasOwn(binding,'existing'),Object.hasOwn(binding,'source'),'one complete original source per path');
+   if(binding.existing)assert.match(binding.existing,/^tests\/helpers\/epochs\/(develop|endTurn)\/tests\/(helpers|fixtures)\/[A-Za-z0-9._-]+$/);
+   const source=binding.existing?readFileSync(binding.existing):Buffer.from(binding.source);
+   assert.equal(hash(source),binding.sha256,'original complete helper: '+path);
+   assert.equal(createHash('sha1').update(`blob ${source.length}\0`).update(source).digest('hex'),binding.gitBlob,'original helper Git blob: '+path);
+   return [path,source];
+  }));
+ };
+ const archive=JSON.parse(gunzipSync(bytes)),inputs=validate(archive),target=sourceEpoch.proof.targets.endTurn;
+ assert.equal(target.commit,archive.sourceCommit);assert.equal(target.files[file].sha256,'3124970981b679dd4964a7805a6b28277a286cf83b1dc0601e1e0e79ca4de527');
+ for(const [key,value,message]of [['sourceCommit','0'.repeat(40),/original EndTurn chain commit/],['sha256','0'.repeat(64),/original complete helper/],['gitBlob','0'.repeat(40),/original helper Git blob/]]){
+  const invalid=structuredClone(archive);
+  if(key==='sourceCommit')invalid[key]=value;else invalid.files['tests/helpers/relic-query-source-inverse.mjs'][key]=value;
+  assert.throws(()=>validate(invalid),message,'metadata cannot relabel an original helper');
+ }
+ const corrupt=structuredClone(archive);corrupt.files['tests/helpers/relic-query-source-inverse.mjs'].source+='\n';
+ assert.throws(()=>validate(corrupt),/original complete helper/);
+ const root=mkdtempSync(join(tmpdir(),'end-turn-original-chain-'));
+ try{
+  for(const [path,source]of Object.entries(inputs)){mkdirSync(dirname(join(root,path)),{recursive:true});writeFileSync(join(root,path),source);}
+  const {preRelicQuerySource,relicQueryReader,relicQuerySourceProof:proof}=await import(pathToFileURL(join(root,'tests/helpers/relic-query-source-inverse.mjs')).href);
+  const {preEndTurnResponsibilitiesSource:prior}=await import(pathToFileURL(join(root,'tests/helpers/end-turn-responsibilities-source-inverse.mjs')).href);
+  const raw=p=>target.files[p]?.source,current=raw(file),old=preRelicQuerySource(file,before,{readSource:p=>prior(p,raw(p),{readSource:raw})});
+  assert.equal(preRelicQuerySource(file,current,{readSource:raw}),old);assert.equal(relicQueryReader(raw)(file),old);assert.notEqual(old,current);
+  assert.throws(()=>preRelicQuerySource(file,current,{readSource:p=>p===file?'foreign':raw(p)}),/EndTurn current owner identity/);
+  assert.equal(old,relicQuerySourceProof.files[file].beforeSource);assert.equal(hash(old),'f4a6f2bb22d0b26c0011278105c85d61d22edca86202f21d9668157f024939bf');
+  assert.deepEqual(proof,relicQuerySourceProof);const owners=Object.keys(proof.files);assert.equal(owners.length,35);
+  const order=[file,...owners.flatMap(p=>p===file?[p,p]:p==='src/lua/abyss_combat.lua'?[p,'src/lua/abyss_original_v4.lua',p,'src/lua/abyss_codex_relic.lua']:[p])];
+  assert.equal(order.length,40,'original EndTurn, N35 and M7 read order');
+  let live=current,reads=[];const observed=p=>{reads.push(p);return p===file?live:raw(p);};
+  const wrapped=relicQueryReader(observed);assert.equal(relicQueryReader(wrapped),wrapped);
+  for(const readSource of [observed,wrapped]){
+   live=current;reads=[];assert.equal(preRelicQuerySource(file,current,{readSource}),old);assert.deepEqual(reads,order);
+   for(live of [current+'\n',before,old,null,undefined]){
+    reads=[];assert.throws(()=>preRelicQuerySource(file,current,{readSource}),{message:'EndTurn current owner identity'});assert.deepEqual(reads,[file]);
+   }
+   live=current;reads=[];assert.equal(preRelicQuerySource(file,current,{readSource}),old);assert.deepEqual(reads,order);
+  }
+ }finally{rmSync(root,{recursive:true,force:true});}
+});
+test('EndTurn current source composes into frozen N35 and freshly authenticates every raw owner',()=>{
+ const current=read(file),old=relicQuerySourceProof.files[file].beforeSource,owners=sourceEpoch.proof.owners;
+ assert.equal(hash(old),'f4a6f2bb22d0b26c0011278105c85d61d22edca86202f21d9668157f024939bf');
+ assert.notEqual(old,current);assert.notEqual(old,before);assert(owners.includes(file));assert(owners.includes('config/architecture.json'));
+ let changed,mode,reads=[];
+ const raw=p=>{
+  reads.push(p);if(p!==changed)return read(p);
+  if(mode==='throw')throw Error('owner sentinel');
+  if(mode==='missing')return undefined;if(mode==='null')return null;if(mode==='foreign')return 'foreign';
+  if(mode==='old')return Object.values(sourceEpoch.proof.targets).find(target=>target.files[p]?.sha256!==sourceEpoch.proof.current[p]?.sha256).files[p]?.source;
+  return read(p)+'\n';
+ };
+ const wrapped=relicQueryReader(raw);assert.equal(relicQueryReader(wrapped),wrapped);
+ assert.equal(preRelicQuerySource(file,current),old);assert.equal(wrapped(file),old);
+ let validReads;
+ for(const readSource of [raw,wrapped]){
+  changed=undefined;reads=[];assert.equal(preRelicQuerySource(file,current,{readSource}),old);
+  assert.deepEqual(reads.slice(0,owners.length),owners);if(validReads)assert.deepEqual(reads,validReads);else validReads=[...reads];
+  for(const owner of owners){
+   for(mode of ['drift','foreign','old','null','missing','throw']){
+    changed=owner;reads=[];
+    const message=mode==='throw'?'combined linked owner missing: '+owner+': owner sentinel':'combined linked owner identity: '+owner;
+    assert.throws(()=>preRelicQuerySource(file,current,{readSource}),{message});
+    assert.deepEqual(reads,owners.slice(0,owners.indexOf(owner)+1),'fresh reads stop at the actual bad owner');
+   }
+   changed=undefined;reads=[];assert.equal(preRelicQuerySource(file,current,{readSource}),old);assert.deepEqual(reads,validReads,'recovery must reread the whole chain');
+  }
+ }
+ for(const variant of [current+'\n',old,null,undefined]){
+  reads=[];assert.equal(preRelicQuerySource(file,variant,{readSource:raw}),variant);assert.deepEqual(reads,[]);
+ }
+ assert.throws(()=>preRelicQuerySource(file,current,{readSource:null}),{code:'ERR_ASSERTION',actual:'object',expected:'function',message:/^linked owner reader(?:\n|$)/});
+ assert.equal(preRelicQuerySource(file,current.replaceAll('\n','\r\n'),{readSource:p=>read(p).replaceAll('\n','\r\n')}),old);
+ const config='config/architecture.json';
+ assert.throws(()=>preRelicQuerySource(file,current,{readSource:p=>p===config?JSON.stringify(JSON.parse(read(p))):read(p)}),{message:'combined linked owner identity: '+config});
+ let configReads=0;
+ assert.throws(()=>preRelicQuerySource(file,current,{readSource:p=>read(p)+(p===config&&++configReads>1?'\n':'')}),
+  /relic query linked owner missing: .*: combined linked owner identity: config\/architecture\.json$/,'inner validation cannot reuse an earlier outer success');
+ assert.equal(configReads,2);
 });
 for(const [name,from,to]of [
  ['negative Ritual guard',"if n>0 then add(bottom,{op='gainStatus',status='strength',value=n})end","if n>=0 then add(bottom,{op='gainStatus',status='strength',value=n})end"],

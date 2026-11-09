@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,mkdtempSync,mkdirSync,writeFileSync,existsSync,rmSync,symlinkSync,renameSync,copyFileSync} from 'node:fs';
+import {readFileSync,mkdtempSync,mkdirSync,writeFileSync,existsSync,rmSync,symlinkSync,renameSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
@@ -9,9 +9,14 @@ import {actorPresenceBefore,actorPresenceSourceProof as proof,preActorPresenceSo
 import {preM7FinalSource,m7FinalReader} from './helpers/m7-core-final-source-inverse.mjs';
 import {preRelicQuerySource,relicQueryReader} from './helpers/relic-query-source-inverse.mjs';
 import {prepareRound3CatalogModuleRetirement as retireHistoricalCatalog} from './helpers/round3-catalog-source-inverse.mjs';
+import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
+import {preActorPresenceSource as frozenProject,actorPresenceReader as frozenReader} from './helpers/epochs/actor/tests/helpers/actor-presence-source-inverse.mjs';
+import {prepareRound3CatalogModuleRetirement as frozenCatalogRetirement,round3CatalogProof} from './helpers/epochs/develop/tests/helpers/round3-catalog-source-inverse.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const owners=Object.keys(proof.files),originals=owners.filter(p=>Object.hasOwn(proof.files[p],'beforeSource'));
+const historicalRead=path=>{const source=sourceEpoch.proof.targets.actor.files[path]?.source;assert.equal(hash(source),proof.files[path].afterSha256,'authenticated original actor after source: '+path);return source;};
 const leaf='src/lua/abyss_actor_presence.lua',config='config/architecture.json';
 const isolated=t=>{const directory=mkdtempSync(join(tmpdir(),'actor-presence-source-'));t.after(()=>rmSync(directory,{recursive:true,force:true}));return directory;};
 function write(root,path,source){const target=join(root,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,source);return target;}
@@ -36,6 +41,8 @@ test('the immutable archive authenticates all 333 complete sources without inven
 });
 
 test('every exact entry freshly reads each of the six raw owners once through nested readers',()=>{
+ // The original 6-owner contract is tested against its authenticated epoch, not today's wider closure.
+ const project=frozenProject,actorPresenceReader=frozenReader,read=historicalRead;
  for(const path of originals)for(const wrapper of [r=>r,actorPresenceReader,r=>actorPresenceReader(actorPresenceReader(r))]){
   const counts=new Map(),reader=wrapper(p=>{counts.set(p,(counts.get(p)??0)+1);return read(p);});
   for(let repeat=1;repeat<=2;repeat++){
@@ -51,6 +58,8 @@ test('every exact entry freshly reads each of the six raw owners once through ne
 });
 
 test('warm source authorization rejects changed, missing and non-string raw owners rather than caching permission',()=>{
+ // The original 6-owner contract is tested against its authenticated epoch, not today's wider closure.
+ const project=frozenProject,actorPresenceReader=frozenReader,read=historicalRead;
  for(const path of originals)for(const bad of owners)for(const kind of ['changed','missing','null','buffer','throw']){
   let broken=false;
   const raw=p=>{
@@ -104,10 +113,8 @@ test('the final M7 outer seam and existing relic chain preserve their exact olde
 
 test('a detached source-only import observes actual file drift and deletion after warmup',async t=>{
  const root=isolated(t);
- for(const path of owners)write(root,path,read(path));
- for(const name of ['actor-presence-source-inverse.mjs','actor-presence-source-proof.json','colorless-catalog-before-2ad07111.json.gz'])copyFileSync('tests/helpers/'+name,write(root,'tests/helpers/'+name,''));
+ const raw=copyCurrentSourceFixture(root);
  const {preActorPresenceSource:detached}=await import(pathToFileURL(join(root,'tests/helpers/actor-presence-source-inverse.mjs')));
- const raw=p=>readFileSync(join(root,p),'utf8');
  for(const owner of owners){
   const path=originals[0],source=read(path);
   assert.equal(detached(path,source,{readSource:raw}),proof.files[path].beforeSource);
@@ -148,6 +155,42 @@ test('the existing historical retirement entry handles presence leaf present and
  const cleanup=retireHistoricalCatalog(root);write(root,leaf,read(leaf)+'\n');
  assert.throws(cleanup,/unreviewed Actor presence/);assert(existsSync(join(root,leaf))&&existsSync(join(root,catalog)));
  write(root,catalog,read(catalog)+'\n');
- assert.throws(cleanup,/unreviewed catalog module destination/);assert.throws(()=>retireHistoricalCatalog(root),/unreviewed catalog module destination/);
+ assert.throws(cleanup,/complete retirement catalog identity/);
+ // Preparation authenticates leaf closures before catalog bytes; a prepared cleanup checks catalog first.
+ assert.throws(()=>retireHistoricalCatalog(root),/unreviewed Actor presence module destination/);
  assert(existsSync(join(root,leaf))&&existsSync(join(root,catalog)));
+ write(root,leaf,read(leaf));assert.throws(()=>retireHistoricalCatalog(root),/complete retirement catalog identity/);
+ assert(existsSync(join(root,leaf))&&existsSync(join(root,catalog)));
+});
+
+
+test('the frozen catalog retirement retains its original identity errors before and after preparation',t=>{
+ const catalog='src/lua/abyss_combat_catalog.lua',source=actorPresenceBefore.files.abyss_combat_catalog.source;
+ assert.equal(hash(source),round3CatalogProof.files[catalog].afterSha256);
+ const root=isolated(t),target=write(root,catalog,source),cleanup=frozenCatalogRetirement(root);
+ write(root,catalog,source+'\n');
+ assert.throws(cleanup,/unreviewed catalog module destination/);
+ assert.throws(()=>frozenCatalogRetirement(root),/unreviewed catalog module destination/);
+ assert(existsSync(target));write(root,catalog,source);frozenCatalogRetirement(root)();assert(!existsSync(target));
+});
+
+test('the current actor facade freshly rejects every expanded raw owner after warm nested reads',()=>{
+ const current=Object.fromEntries(sourceEpoch.proof.owners.map(p=>[p,read(p)]));
+ for(const path of originals){
+  let bad=null,mode='good',seen=[];
+  const raw=p=>{seen.push(p);if(p===bad){
+   if(mode==='throw')throw Error('expanded reader sentinel');
+   if(mode==='missing')return undefined;if(mode==='null')return null;
+   if(mode==='buffer')return Buffer.from(current[p]);if(mode==='changed')return current[p]+'\n';
+  }return current[p]??read(p);};
+  const wrapped=actorPresenceReader(actorPresenceReader(raw));assert.equal(actorPresenceReader(wrapped),wrapped);
+  const check=()=>assert.equal(project(path,read(path),{readSource:wrapped}),proof.files[path].beforeSource);
+  check();const first=[...seen];for(const owner of sourceEpoch.proof.owners)assert(first.includes(owner),'fresh current owner: '+owner);
+  seen=[];check();assert.deepEqual(seen,first,'warm calls repeat the complete raw-read sequence');
+  for(bad of sourceEpoch.proof.owners)for(mode of ['changed','missing','null','buffer','throw']){
+   seen=[];assert.throws(check,error=>{assert.match(error.message,/linked owner/);assert(error.message.includes(bad));if(mode==='throw')assert.match(error.message,/expanded reader sentinel/);return true;});
+   assert(seen.includes(bad));const previous=mode;mode='good';check();mode=previous;
+  }
+ }
+ for(const readSource of [null,{},'invalid'])for(const path of originals)assert.throws(()=>project(path,read(path),{readSource}),/linked (?:owner )?reader/);
 });
