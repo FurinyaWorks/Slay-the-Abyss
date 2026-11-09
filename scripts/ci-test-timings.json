@@ -6173,6 +6173,48 @@
         },
         "sourceReceipt": "docs/evidence/m7-formation-20261109/behavior-final-receipt.json",
         "sourceReceiptSha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc"
+      },
+      "tests/stasis-owner-behavior.test.mjs": {
+        "durationMs": 11811,
+        "environment": "cloud Linux local",
+        "tests": 3,
+        "coverage": "3/3 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 11810.07702,
+        "sourceLog": "docs/evidence/m7-stasis-owner-20261109/ci-behavior.log.gz",
+        "sourceLogSha256": "8b0e6ea01e887a31b605accad3a7ad96e75e7e1794624acc817ab85d6403e16c",
+        "sourceLogUncompressedSha256": "15a2f1505453d2c68244d954d1dff17a95b911bc49c86ebf926b4af6d1bc74ab",
+        "sourceReceipt": "docs/evidence/m7-stasis-owner-20261109/ci-behavior-receipt.json",
+        "sourceReceiptSha256": "d71ea99e3fa4608e3133e255a789ea94ff773fae189b26fecf933efe714f24cd",
+        "testSha256": "2b9d9da3f3124d1aec6f5bc11530497c6727c48abfbb87aa02723aa15f4e2999"
+      },
+      "tests/stasis-owner-boundary.test.mjs": {
+        "durationMs": 1105,
+        "environment": "cloud Linux local",
+        "tests": 2,
+        "coverage": "2/2 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 1104.129858,
+        "sourceLog": "docs/evidence/m7-stasis-owner-20261109/ci-boundary.log.gz",
+        "sourceLogSha256": "4e699d7d7e67fc8e69b05d7ee20d03057ec0881cc66f7b728e3cd872bc47bbbb",
+        "sourceLogUncompressedSha256": "8c7eefa35bde8fd1978ee0ef2e7e279e01f0d8d224ee01a710985edc802c25fe",
+        "sourceReceipt": "docs/evidence/m7-stasis-owner-20261109/ci-boundary-receipt.json",
+        "sourceReceiptSha256": "a56b33bf02c5866507dcb489786f8323eb93d5df1b1e42b4b19fd05d9673b43b",
+        "testSha256": "51e5d4fbca8f60f025978c1fdacd69a878697c525016d895e8d536cbd9d40c48"
+      },
+      "tests/stasis-owner-source-epoch.test.mjs": {
+        "durationMs": 17208,
+        "environment": "cloud Linux local",
+        "tests": 5,
+        "coverage": "5/5 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 17207.999469,
+        "sourceLog": "docs/evidence/m7-stasis-owner-20261109/ci-source-epoch.log.gz",
+        "sourceLogSha256": "20df2477b8ed7c0b1dceae0d2a001db6ebaabf842ecb781e6aab3a48762db283",
+        "sourceLogUncompressedSha256": "d16d358e5d01e41f9c397cd7d6935da372e436df9090c3335428f768f64d6f17",
+        "sourceReceipt": "docs/evidence/m7-stasis-owner-20261109/ci-source-epoch-receipt.json",
+        "sourceReceiptSha256": "29447ec87e0978988b30663c81473669a74d425973a9bfb1c1b68e1bb965412c",
+        "testSha256": "b0b279c7e5559331587d41f9e331c66f503772bc80a8e6fe326c0ab820cbd877"
       }
     }
   },

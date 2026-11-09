@@ -1,0 +1,7 @@
+{
+  "pass": true,
+  "fixture": "docs/evidence/m7-stasis-owner-20261109/independent-require-failure.lua",
+  "independentVMs": 2,
+  "completeGraphsEqual": true,
+  "scope": "Lazy require failure identity, death prefix, custody retention, and queue placement. Not Full."
+}

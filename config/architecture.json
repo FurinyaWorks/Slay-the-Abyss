@@ -553,9 +553,9 @@
       "reason": "Only runtime Master Reality creation uses the initialized host upgrade API; no module-load import."
     },
     {
-      "from": "abyss_act2_stasis",
+      "from": "abyss_actor",
       "to": "abyss_combat",
-      "reason": "StasisPower death constructs Master Reality's upgrade only at runtime after Combat initialization."
+      "reason": "Actor death lifecycle supplies a lazy synchronous upgrade capability; Stasis custody and Master Reality guards run before resolving the Combat capability."
     },
     {
       "from": "abyss_actor",
@@ -1039,6 +1039,20 @@
         "abyss_card_actions"
       ],
       "reason": "Watcher attack plans contain data; the queued-play host supplies lazy Actor arithmetic for Halt snapshots."
+    },
+    {
+      "id": "stasis-death-owner",
+      "from": [
+        "abyss_act2_stasis",
+        "abyss_act2_powers"
+      ],
+      "forbiddenTargets": [
+        "abyss_actor",
+        "abyss_combat",
+        "abyss_card_actions",
+        "abyss_combat_queued_play"
+      ],
+      "reason": "Stasis owns custody and eligibility, not execution. Actor supplies the synchronous lazy upgrade capability. stasis-owner-boundary.test.mjs guards the full AST closure including deferred imports."
     }
   ]
 }

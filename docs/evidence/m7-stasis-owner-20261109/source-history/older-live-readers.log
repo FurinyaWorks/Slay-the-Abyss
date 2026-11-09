@@ -1,0 +1,11 @@
+✔ live LF and CRLF raw owner reads authenticate 50 current owners on every call (1036.189441ms)
+✔ seven-refactor exact outer epoch restores every complete predecessor owner (9.135079ms)
+✔ live LF and CRLF raw owner reads authenticate 49 current owners on every call (956.20782ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9481.321052

@@ -1,0 +1,20 @@
+{
+  "baseCommit": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+  "files": {
+    "src/lua/abyss_actor.lua": {
+      "frozen": "tests/helpers/stasis-owner-before-abyss_actor.lua",
+      "sha256": "0435754ce97e731da0abaa1aafdbbd035988c09b411c47c192bb3e6ab0133c7a",
+      "blob": "437cf78b984ac355b7e69e0bb21c443b947598f3"
+    },
+    "src/lua/abyss_act2_powers.lua": {
+      "frozen": "tests/helpers/stasis-owner-before-abyss_act2_powers.lua",
+      "sha256": "966f9906c9fd03d306424c9ea430e3aa8840fdf6e852d13cecd274c0a3aa3629",
+      "blob": "158eae2c77f3a69d0991e6644770002a8320d86c"
+    },
+    "src/lua/abyss_act2_stasis.lua": {
+      "frozen": "tests/helpers/stasis-owner-before-abyss_act2_stasis.lua",
+      "sha256": "0a1b6da54329fe7c00cfb45bb57dfc1ff53663cd7437e1bb17b35f702181466a",
+      "blob": "b2df81099b92aabd6d503a0fbf9121e1c5ced52c"
+    }
+  }
+}

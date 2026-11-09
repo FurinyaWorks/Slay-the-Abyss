@@ -1,0 +1,10 @@
+✔ Stasis policies cannot reach execution owners through immediate or deferred full-source paths (935.549433ms)
+✔ lazy upgrade owner helper and its nested callbacks retain explicit CC15 governance (2.86442ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1104.129858

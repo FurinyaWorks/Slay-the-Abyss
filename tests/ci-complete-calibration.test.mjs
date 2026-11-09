@@ -1,3 +1,5 @@
+import {preStasisCiSource,stasisCiProof,stasisPlanningFloors,stasisJs} from './helpers/stasis-ci-source-inverse.mjs';
+import * as currentProjection from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource,defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
@@ -23,7 +25,7 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as actualDiskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -31,8 +33,19 @@ import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs as actualDiscoverJs,partition,jsShard as actualCurrentJsShard,jsPlanningWeights as actualCurrentJsPlanningWeights,timings as liveCurrentTimings} from '../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
+// The original 800-file contracts retain their exact baseline inputs and costs.
+// Raw current inventory, bytes and scheduling are asserted independently below.
+const diskReadFileSync=(file,encoding)=>{
+ const value=actualDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8');
+ const prior=preStasisCiSource(file,text);
+ return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);
+};
+const discoverJs=(...args)=>actualDiscoverJs(...args).filter(file=>!stasisJs.includes(file));
+const actualCurrentTimings=JSON.parse(preStasisCiSource('scripts/ci-test-timings.json',actualDiskReadFileSync('scripts/ci-test-timings.json','utf8')));
+const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const rawReadFileSync=(file,encoding)=>{const value=diskReadFileSync(file,encoding);if(typeof value==='string')return preEncounterFormationCiSource(file,value);const text=value.toString('utf8'),prior=preEncounterFormationCiSource(file,text);return prior===text?value:Buffer.from(prior);};
@@ -1038,4 +1051,75 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
  for(const [key,floor]of Object.entries(encounterFormationPlanningFloors))assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[key],floor);
  const workflow=diskReadFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
  assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+});
+
+// Stasis is additive to the complete frozen Formation800 source/inventory above.
+test('Stasis803 retains every original recurring file, all 32 floors and unchanged CI policy',t=>{
+ const js=actualDiscoverJs(),lua=currentLua();assert.equal(js.length,803);assert.equal(lua.length,1410);
+ assert.deepEqual(js.filter(p=>!stasisJs.includes(p)).sort(),stasisCiProof.inventory);
+ assert.deepEqual(js.filter(p=>stasisJs.includes(p)).sort(),[...stasisJs].sort());
+ const previous=JSON.parse(stasisCiProof.files[path].beforeSource),current=structuredClone(liveCurrentTimings);
+ assert.equal(Object.keys(previous.jsPlanning.localLowerBounds).length,32);
+ for(const [key,floor]of Object.entries(stasisPlanningFloors)){assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);delete current.jsPlanning.localLowerBounds[key];}
+ assert.deepEqual(current,previous,'only measured complete Stasis local floors are added');
+ assert.equal(liveCurrentTimings.unknownJsMs,10000);assert.equal(liveCurrentTimings.unknownLuaMs,10000);
+ assert.deepEqual(currentQualityShardMatrices.windows.length,17);assert.deepEqual(currentQualityShardMatrices.posix.length,15);
+ for(const [platform,count,budget]of [['win32',17,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>actualCurrentJsShard(js,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());
+  assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,803);
+  let maximum=Math.max(...bins[0].loads);
+  if(platform==='win32'){
+   const loads=bins[0].loads,t=liveCurrentTimings;
+   const raw=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...t,windowsJsShardMs:loads},2));
+   assert.deepEqual(raw.flat().sort(),lua);
+   const cost=p=>t.luaShard[p]??t.lua[p]??t.unknownLuaMs,safety=p=>t.lua[p]??t.unknownLuaMs;
+   maximum=Math.max(...raw.map((bin,i)=>{const pool=[0,0];for(const p of bin.filter(p=>safety(p)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(p);return loads[i]+bin.filter(p=>safety(p)>=10000).reduce((sum,p)=>sum+cost(p),0)+Math.max(...pool);}));
+  }
+  const forecast=maximum+60000;t.diagnostic(`${platform} Stasis803 forecast ${forecast} ms; unchanged budget ${budget} ms; reserve 60000 ms; not an actual Full pass`);
+  assert.ok(forecast<budget,`${platform} complete inventory forecast ${forecast} exceeds unchanged budget ${budget}`);
+ }
+});
+
+test('Stasis CI outer source admits exact complete identities and rejects partial, foreign and mutated sources',()=>{
+ for(const [file,binding]of Object.entries(stasisCiProof.files)){
+  const source=actualDiskReadFileSync(file,'utf8');assert.equal(hash(source),binding.afterSha256,file);
+  for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preStasisCiSource(file,input),binding.beforeSource);
+  for(const input of [source+'\n',source.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preStasisCiSource(file,input),input);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preStasisCiSource(unknown,source),source);
+ }
+ const source=actualDiskReadFileSync(path,'utf8');
+ for(const mutant of [source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),source.replace('"durationMs": 889638','"durationMs": 889637')]){assert.notEqual(mutant,source);assert.equal(preStasisCiSource(path,mutant),mutant);}
+});
+
+test('Stasis projection preserves all frozen exported outputs and errors across complete source inputs',async()=>{
+ const frozenSource=stasisCiProof.frozenProjectionSource.replace(/from '(\.\/[^']+)'/g,(_,relative)=>`from '${new URL('./helpers/'+relative.slice(2),import.meta.url).href}'`);
+ const frozen=await import('data:text/javascript,'+encodeURIComponent(frozenSource.replaceAll('import.meta.url',JSON.stringify(new URL('./helpers/ci-complete-calibration-source-inverse.mjs',import.meta.url).href))));
+ const outcome=fn=>{try{return {value:fn()};}catch(e){return {error:{name:e.name,message:e.message,code:e.code}};}};
+ for(const [name,original]of Object.entries(frozen)){
+  assert.ok(Object.hasOwn(currentProjection,name));
+  if(typeof original!=='function'){assert.deepEqual(currentProjection[name],original,name);continue;}
+  for(const [file,binding]of Object.entries(stasisCiProof.files)){
+   const source=actualDiskReadFileSync(file,'utf8');
+   for(const input of [source,source.replaceAll('\n','\r\n'),binding.beforeSource,source+'\n',source.slice(1),null,undefined,{},17]){
+    for(const epoch of [undefined,'base','develop','seven','flow','silent','effects','invalid'])
+     assert.deepEqual(outcome(()=>currentProjection[name](file,input,epoch)),outcome(()=>original(file,preStasisCiSource(file,input),epoch)),name+':'+file+':'+epoch);
+   }
+  }
+ }
+});
+
+test('Stasis local planning floors authenticate complete successful files and explicitly scoped source stability',()=>{
+ for(const [file,floor]of Object.entries(stasisPlanningFloors)){
+  const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+  const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+  assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);assert.equal(receipt.status,0);assert.equal(receipt.inputsUnchanged,true);
+  assert.equal(receipt.testFile,file);assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);
+  assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));assert.equal(hash(actualDiskReadFileSync(file)),floor.testSha256);
+  for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+  assert.match(floor.kind,/not .*hosted/);
+  for(const [input,sha]of Object.entries(receipt.inputSha256))assert.equal(hash(actualDiskReadFileSync(input)),sha,input);
+  for(const platform of ['win32','linux'])assert.equal(actualCurrentJsPlanningWeights([file],platform)[file],Math.max(10000,floor.durationMs));
+ }
 });

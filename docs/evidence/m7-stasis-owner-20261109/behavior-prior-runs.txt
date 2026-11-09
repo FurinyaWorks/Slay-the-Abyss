@@ -1,0 +1,30 @@
+Prior successful development runs, recorded from terminal tool output.
+No complete-file process-wall receipt, before/after hashes, or separately saved raw log exists for these two runs. The durations below are Node test-runner durations, not independently measured process-wall durations.
+
+Run 1: Initial suite, whole real death fixture log comparison only, four mutations.
+✔ Stasis owner preserves independent full-source state graphs, aliases, lazy callbacks and errors (1910.14096ms)
+✔ Stasis owner replays the complete original card/death acquisition and rollback fixture in separate VMs (6077.708678ms)
+✔ Stasis owner assertions reject real threshold, dynamic-slot and failure-order mutations (1842.020334ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10006.990139
+
+Run 2: Added full before/after C.play graph observations to the whole real fixture; four mutations.
+✔ Stasis owner preserves independent full-source state graphs, aliases, lazy callbacks and errors (1998.843665ms)
+✔ Stasis owner replays the complete original card/death acquisition and rollback fixture in separate VMs (7785.140773ms)
+✔ Stasis owner assertions reject real threshold, dynamic-slot and failure-order mutations (2052.110575ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12038.525476
+
+Final measured run adds the fifth swallowed-error semantic mutation. See behavior-final.log and behavior-final-receipt.json for the retained raw log, complete process wall time, and actual before/after hashes. behavior-receipt-runner.mjs is the exact executed /tmp/stasis-owner-receipt.mjs source, copied unchanged; its historical output paths remain /tmp paths.

@@ -1,0 +1,28 @@
+{
+  "baseCommit": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+  "ownedFiles": {
+    "tests/actor-status-view-responsibility.test.mjs": "b16c672292da99115e0ea766e91deb69a83a416e3bf2b800bae1e5918b7ab60c",
+    "tests/encounter-formation-source-epoch.test.mjs": "1c3af65fa6e908338be8dae17136fee58567de9d586b4578fc169ed18391a1b7",
+    "tests/seven-refactor-source-epoch.test.mjs": "0a0a0305af91dd23070bd234131614a0f78fe7a2e648e44ccb551bca5428a8a1",
+    "tests/silent-final-source-epoch.test.mjs": "cc0d6c60d586d359e126d0e091e46a164a52debdb5d4053b903167cfc81b2ca8",
+    "tests/defect-final-source-epoch.test.mjs": "ec50f3dfad661b79e7ecb4e3c5c445b5b4fbff3fcaae19d420efa6a9af84ba1d",
+    "tests/helpers/actor-lifecycle.mjs": "c01189047fb9281ee8a8463aaa3ddfda86eb102983156eb3fe1636303a6059ba",
+    "tests/helpers/combat-lifecycle-input.mjs": "df7925fa262d53d876d6ddce87f768c5d018e082125eb28fec60b1053fe6227b",
+    "tests/helpers/actor-damage-parity.mjs": "e968e6bc346cd53f82564ee4f9ede91c9fe842c67a764c8d43d6bfb98ed6c6ef",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "a06e3845b23f0c52f1871b7bbb2a8c2e12224e52c7dfe1a916a0d0d3d2a6cb45",
+    "tests/helpers/copy-integration-source-closure.mjs": "3b18791fa031c0b35cf3da5a742801412a6de601f078744a12f5555ad19c26bd",
+    "tests/helpers/combined-epoch/pre-stasis-source-epoch.mjs": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+    "tests/helpers/stasis-source-epoch.mjs": "2cf62dcb06e9266c2b355cebb24a756f0e936a45c3414f75c838c46e5760f234",
+    "tests/helpers/stasis-source-epoch.json.gz": "5a722ed0eeaaa1bdc95130276f69794a871bb3eff902c81012066de8a76cf856",
+    "tests/helpers/stasis-replay-before.mjs": "3fb771b49ae4756b7c8a2943fdf696b79c523537a0a31421e164b401eb219416",
+    "tests/helpers/stasis-replay-before.json.gz": "a226cdbcd712c545b1b8befb262f909b200fb97f7a4dfc271af4f119d98c6290",
+    "tests/stasis-owner-source-epoch.test.mjs": "b0b279c7e5559331587d41f9e331c66f503772bc80a8e6fe326c0ab820cbd877"
+  },
+  "frozenFacadeIdentical": true,
+  "productionFiles": {
+    "config/architecture.json": "7f013489097abf58c0d21eba86b696eff0f6ba16b9ce087b8726cf44ac6bc36a",
+    "src/lua/abyss_actor.lua": "d175dadf2ed7fb6826eb575ef3286571d2a7bde96a6d701666e9e36b718b10c0",
+    "src/lua/abyss_act2_powers.lua": "339dd5abf01542dab586353d16b54bb05f6237985fc885d031d4cdbe58bcae74",
+    "src/lua/abyss_act2_stasis.lua": "1ea7094ed2db6f1e1184193c5d5541a98320fb127a9a22c964bfe86a731c1866"
+  }
+}

@@ -1,0 +1,13 @@
+✔ Stasis outer epoch preserves all 339 predecessor bindings and complete current sources (1502.72575ms)
+✔ four changed sources project every historical target with exact LF/CRLF and opaque-input rules (33.347962ms)
+✔ 53 fresh raw owners are required after warm authorization including layout and linked reader retargeting (230.001362ms)
+✔ isolated helper copy closes both epochs without Git or source tree access (7965.709883ms)
+✔ historical three-argument Actor replay loads exact complete prior Powers and Stasis modules (2.318164ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17207.999469

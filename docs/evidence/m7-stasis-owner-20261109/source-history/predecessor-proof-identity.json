@@ -1,0 +1,13 @@
+{
+  "baseCommit": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+  "generatedInput": "/tmp/stasis-prior-proof.json",
+  "uncompressedSha256": "bfca8c58838b2eefe8a0ad6f8ffe76809a9860c0f01029261781c3e4aed129cd",
+  "uncompressedBytes": 62976185,
+  "originalGzipSha256": "7445cde79de13e5fdad6e0931ac866ff8983d3a858c40eae193290272e67d6fb",
+  "originalGzipBytes": 16438943,
+  "immutableFacade": "tests/helpers/combined-epoch/pre-stasis-source-epoch.mjs",
+  "immutableFacadeSha256": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+  "reconstructionScript": "docs/evidence/m7-stasis-owner-20261109/source-history/reconstruct-prior-proof.mjs",
+  "localPreservedCompressedCopy": "build/stasis-history/stasis-prior-proof.json.gz",
+  "rationale": "Generated duplicate excluded from committed evidence. All complete prior archives remain immutable in the repository; authoritative logs and receipts are retained."
+}

@@ -12,6 +12,11 @@ const file='src/lua/abyss_actor.lua',directory='build/actor-damage-parity';mkdir
 const normalize=s=>s.replaceAll('\r\n','\n');
 const hash=s=>createHash('sha256').update(normalize(s)).digest('hex');
 const before=execFileSync('git',['show',`${revision}:${file}`],{encoding:'utf8'}),after=readFileSync(file,'utf8');
+const historicalStasisModules=['abyss_act2_powers','abyss_act2_stasis'].map(name=>{
+  const path=`src/lua/${name}.lua`,source=execFileSync('git',['show',`${revision}:${path}`],{encoding:'utf8'});
+  return {name,path,source,sha256:hash(source)};
+});
+const historicalStasisPrelude=historicalStasisModules.map(({name,path,source})=>`package.preload[${luaString(name)}]=assert(load(${luaString(source)},${luaString('@'+path)}));`).join('');
 writeFileSync(`${directory}/before.lua`,before);writeFileSync(`${directory}/after.lua`,after);
 const cli=createRequire(import.meta.url).resolve('fengari-node-cli/src/lua-cli.js');
 const fixtures=['actor_damage_pipeline','plated_armor_queue','fatal_hp_loss_callbacks','ending_damage_hooks','hp_loss_action_boundaries'];
@@ -21,7 +26,7 @@ for(const name of fixtures){
   for(const version of ['before','after']){
     const path=resolve(directory,`${version}.lua`).replaceAll('\\','/');
     const driver=`${directory}/${name}-${version}.lua`,log=`${directory}/${name}-${version}.log`;
-    writeFileSync(driver,`package.path='src/lua/?.lua;build/lua/?.lua;'..package.path;package.loaded.abyss_actor=dofile(${luaString(path)});dofile('tests/helpers/actor-damage-trace.lua');dofile('tests/lua/${name}.lua')`);
+    writeFileSync(driver,`package.path='src/lua/?.lua;build/lua/?.lua;'..package.path;${version==='before'?historicalStasisPrelude:''}package.loaded.abyss_actor=dofile(${luaString(path)});dofile('tests/helpers/actor-damage-trace.lua');dofile('tests/lua/${name}.lua')`);
     const fd=openSync(log,'w');let result;
     try{result=spawnSync(process.execPath,[cli,'-e',`dofile(${luaString(resolve(driver).replaceAll('\\','/'))})`],{encoding:'utf8',timeout:30000,stdio:['ignore',fd,'pipe']});}
     finally{closeSync(fd);}
@@ -34,5 +39,5 @@ for(const name of fixtures){
   results.push(row);console.log(`${name}: ${row.boundaries} equal boundaries, ${row.traceSha256}`);
 }
 writeFileSync(`${directory}/report.json`,JSON.stringify({schemaVersion:1,baselineRevision:revision,source:file,runtime:process.version,
-  beforeSourceSha256:hash(before),afterSourceSha256:hash(after),fixtures:results,
+  historicalStasisModules:historicalStasisModules.map(({source,...identity})=>identity),beforeSourceSha256:hash(before),afterSourceSha256:hash(after),fixtures:results,
   contract:'Complete return/state/event/reaction queue/RNG and graph aliases. Immutable catalog/rules/sourcePools/statusDefinitions omitted from trace only; public rollback separately verifies all original tables and values. Every fixture runs in independent old/new VMs under unchanged 30-second timeout; full output goes directly to disk.'},null,2)+'\n');

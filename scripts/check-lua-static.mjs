@@ -148,7 +148,7 @@ const responsibilityRoots = {
   'src/lua/abyss_actor_power_rules.lua': [],
   'src/lua/abyss_combat_reactions.lua': ["function 'M.enqueue'", "function 'M.enqueueReaction'"],
   'src/lua/abyss_actor.lua': [
-    "function 'presenceIndex'", "function 'presenceNewIndex'",
+    "function 'presenceIndex'", "function 'presenceNewIndex'", "function 'upgradeStasisHeld'",
     ...['M.status','M.applyPower','M.addStatus','M.endTurn'].map(name=>`function '${name}'`),
     ...['updatePlayerStatusOrder','updateMonsterStatusOrder','markRoundDebuffApplication',
       'preparePowerAmount','rememberConstrictedSource','rememberPostDrawPower',

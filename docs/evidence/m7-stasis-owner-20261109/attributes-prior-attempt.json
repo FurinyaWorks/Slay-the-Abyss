@@ -1,0 +1,8 @@
+{
+  "attempt": "Temporary-index attribute QA first preparation",
+  "status": "failed before checkout",
+  "cause": "git add refused intentionally retained .log artifacts because they match the repository ignore rule.",
+  "correction": "Use git add -f only for the explicitly listed authored evidence paths in the temporary index.",
+  "unchanged": "No production, tests, normal index or runtime settings changed. No checkout or gameplay run was performed by the failed preparation.",
+  "evidenceLimit": "The original diagnostic was observed in tool output; no separate full original log was saved. This is a truthful summary, not a reconstructed raw log. The successful full stdout and executed script are archived separately."
+}

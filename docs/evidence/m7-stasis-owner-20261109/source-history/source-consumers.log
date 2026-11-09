@@ -1,0 +1,24 @@
+✔ preM7FinalSource: current source and configuration match original target projection (8.527997ms)
+✔ preRelicQuerySource: current source and configuration match original target projection (9.064741ms)
+✔ preCoreLifecycleSource: current source and configuration match original target projection (26.582558ms)
+✔ preGameUiExtractionSource: current source and configuration match original target projection (41.8881ms)
+✔ preRound3CatalogSource: current source and configuration match original target projection (29.682527ms)
+✔ prePowerShopSource: current source and configuration match original target projection (3.263923ms)
+✔ preSessionRewardSource: current source and configuration match original target projection (3.298404ms)
+✔ preWatcherExecutionSource: current source and configuration match original target projection (1.569785ms)
+✔ preInventoryResponsibilitiesSource: current source and configuration match original target projection (1.241942ms)
+✔ preAct1ChoiceSource: current source and configuration match original target projection (1.293879ms)
+✔ preDefectPlanSource: current source and configuration match original target projection (0.933365ms)
+✔ preColorlessCatalogSource: current source and configuration match original target projection (2.534339ms)
+✔ prePotionCallbackSource: current source and configuration match original target projection (2.730235ms)
+✔ preEndTurnResponsibilitiesSource: current source and configuration match original target projection (1.048581ms)
+✔ preActorPresenceSource: current source and configuration match original target projection (3.420166ms)
+✔ preRewardQueryBoundarySource: current source and configuration match original target projection (1.576529ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7969.686318

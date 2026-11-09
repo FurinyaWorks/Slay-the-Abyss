@@ -1,0 +1,214 @@
+{
+  "baseCommit": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+  "notes": "Original execution artifacts preserved byte-for-byte, or losslessly gzip-compressed with mtime=0. Absolute paths identify original execution locations, not portable prerequisites. See README.md for repository-relative replay instructions.",
+  "artifacts": [
+    {
+      "originalPath": "build/stasis-history/source-final.log",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/source-final.log",
+      "sha256": "d16d358e5d01e41f9c397cd7d6935da372e436df9090c3335428f768f64d6f17",
+      "uncompressedSha256": "d16d358e5d01e41f9c397cd7d6935da372e436df9090c3335428f768f64d6f17",
+      "bytes": 663,
+      "uncompressedBytes": 663,
+      "gzip": false
+    },
+    {
+      "originalPath": "build/stasis-history/history-manifest.json",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/history-manifest.json",
+      "sha256": "0c64784a55acba6ff9b029087d04020a64f50bdc593ca103ead9170398c3c83a",
+      "uncompressedSha256": "0c64784a55acba6ff9b029087d04020a64f50bdc593ca103ead9170398c3c83a",
+      "bytes": 2444,
+      "uncompressedBytes": 2444,
+      "gzip": false
+    },
+    {
+      "originalPath": "build/stasis-history/import.log",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/import.log",
+      "sha256": "336c8b8655e0e662f374158ff21d3d4002f4fb45708453fd7eac6b8287b75980",
+      "uncompressedSha256": "336c8b8655e0e662f374158ff21d3d4002f4fb45708453fd7eac6b8287b75980",
+      "bytes": 7,
+      "uncompressedBytes": 7,
+      "gzip": false
+    },
+    {
+      "originalPath": "build/stasis-history/historical-replay-provenance.json",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/historical-replay-provenance.json",
+      "sha256": "99dbba9964e2be3fb9afbc30a965bae71cbe283ff042e11c8825f504aef33a34",
+      "uncompressedSha256": "99dbba9964e2be3fb9afbc30a965bae71cbe283ff042e11c8825f504aef33a34",
+      "bytes": 1221,
+      "uncompressedBytes": 1221,
+      "gzip": false
+    },
+    {
+      "originalPath": "build/stasis-history/actor-replays-receipt.json",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/actor-replays-receipt.json.gz",
+      "sha256": "0d0b874f93330f177c05fb9d72b55b6711c2d5b3e8ca1633f28ce382f2706bf9",
+      "uncompressedSha256": "2b5fd5455ae01095d4d3708c786223c47d9dae5ac85dcabb16d4858265064af0",
+      "bytes": 339051,
+      "uncompressedBytes": 812613,
+      "gzip": true
+    },
+    {
+      "originalPath": "build/stasis-history/formation-final-receipt.json",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/formation-final-receipt.json.gz",
+      "sha256": "5f20d2ec63aa5040e70b9f267437d775eacc9dfcefd1e6f481112516bdae23c7",
+      "uncompressedSha256": "04a85d4efbfb9ee7d915e2f732d9769e2af3dd9a9b2591f54561f8f05e4826bd",
+      "bytes": 338962,
+      "uncompressedBytes": 812448,
+      "gzip": true
+    },
+    {
+      "originalPath": "build/stasis-history/older-live-readers-receipt.json",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/older-live-readers-receipt.json.gz",
+      "sha256": "4e1270f1b9ff70088a90f20f7edcb7afd20184f8204e88d55645590c428c2798",
+      "uncompressedSha256": "1ba0d75e63d848c933386fc6bbb0e5eed37ab56185fa97f9097d38d72ab14447",
+      "bytes": 339057,
+      "uncompressedBytes": 812631,
+      "gzip": true
+    },
+    {
+      "originalPath": "build/stasis-history/actor-replays.log",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/actor-replays.log",
+      "sha256": "eb48ceec41357c92b51e0e2ac6af654c68a207d32024aaa1e3b13c89e62f9734",
+      "uncompressedSha256": "eb48ceec41357c92b51e0e2ac6af654c68a207d32024aaa1e3b13c89e62f9734",
+      "bytes": 677,
+      "uncompressedBytes": 677,
+      "gzip": false
+    },
+    {
+      "originalPath": "build/stasis-history/source-final-receipt.json",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/source-final-receipt.json.gz",
+      "sha256": "568dc5e245cabdca90559fffbc44985771ed329e84b975422e3b8c3fd42beb0b",
+      "uncompressedSha256": "6adfd23019c2838dea006225fe91e1a1801a992de0d3fbe718f377bbae609028",
+      "bytes": 338984,
+      "uncompressedBytes": 812488,
+      "gzip": true
+    },
+    {
+      "originalPath": "build/stasis-history/SUMMARY.md",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/original-summary.md",
+      "sha256": "8f9decb72be70558ea8c0b8a652215dbb6ae19c496c7cb05478b339baf57c453",
+      "uncompressedSha256": "8f9decb72be70558ea8c0b8a652215dbb6ae19c496c7cb05478b339baf57c453",
+      "bytes": 2935,
+      "uncompressedBytes": 2935,
+      "gzip": false
+    },
+    {
+      "originalPath": "build/stasis-history/source-initial.log",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/source-initial.log",
+      "sha256": "b2815d419bea0130d3c1e732a5dda892a2a74e58478f1b7f0c5e9b2acde1f883",
+      "uncompressedSha256": "b2815d419bea0130d3c1e732a5dda892a2a74e58478f1b7f0c5e9b2acde1f883",
+      "bytes": 1927,
+      "uncompressedBytes": 1927,
+      "gzip": false
+    },
+    {
+      "originalPath": "build/stasis-history/formation-final.log",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/formation-final.log",
+      "sha256": "8a550be003c91ef5ae78c62905c5415c2f4c215e475e8f21e9c8acc3c2183532",
+      "uncompressedSha256": "8a550be003c91ef5ae78c62905c5415c2f4c215e475e8f21e9c8acc3c2183532",
+      "bytes": 1328,
+      "uncompressedBytes": 1328,
+      "gzip": false
+    },
+    {
+      "originalPath": "build/stasis-history/older-live-readers.log",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/older-live-readers.log",
+      "sha256": "1c096e90016cad122b66da3d7908c10da976615b507ae77902a2942b287f2a9d",
+      "uncompressedSha256": "1c096e90016cad122b66da3d7908c10da976615b507ae77902a2942b287f2a9d",
+      "bytes": 402,
+      "uncompressedBytes": 402,
+      "gzip": false
+    },
+    {
+      "originalPath": "build/stasis-history/source-consumers-receipt.json",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/source-consumers-receipt.json.gz",
+      "sha256": "762488cacd846dfc0d9150bf187b48d1d02baed48362931c86090682f09535f5",
+      "uncompressedSha256": "f2f78fd9b64a4e230cae38d0f99d2fbafbccdb97d64fbade6c11c53ba49671c0",
+      "bytes": 339000,
+      "uncompressedBytes": 812499,
+      "gzip": true
+    },
+    {
+      "originalPath": "build/stasis-history/source-consumers.log",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/source-consumers.log",
+      "sha256": "c172ce17636bd20ae8f632f3a4e5a163612120a0095726751de1e51ca96ae57c",
+      "uncompressedSha256": "c172ce17636bd20ae8f632f3a4e5a163612120a0095726751de1e51ca96ae57c",
+      "bytes": 1850,
+      "uncompressedBytes": 1850,
+      "gzip": false
+    },
+    {
+      "originalPath": "/tmp/run-stasis-history.py",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/run-stasis-history.py",
+      "sha256": "22a6dc4547540b66fbfe0cfc87b612ea990e3088e03e91bae6d6713f0bba66bf",
+      "uncompressedSha256": "22a6dc4547540b66fbfe0cfc87b612ea990e3088e03e91bae6d6713f0bba66bf",
+      "bytes": 1290,
+      "uncompressedBytes": 1290,
+      "gzip": false
+    },
+    {
+      "originalPath": "/tmp/build-stasis-epoch.py",
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/build-stasis-epoch.py",
+      "sha256": "eed79163e70787e0f76a23e6136d04c28479a6b0e3c480e32af5ed9ff7201de3",
+      "uncompressedSha256": "eed79163e70787e0f76a23e6136d04c28479a6b0e3c480e32af5ed9ff7201de3",
+      "bytes": 2269,
+      "uncompressedBytes": 2269,
+      "gzip": false
+    },
+    {
+      "originalPath": null,
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/README.md",
+      "sha256": "6860f7b7ca9c3b4f2635d2592bed2ec28daee7f0dc3b6e7e45a6448d1c2f786b",
+      "uncompressedSha256": "6860f7b7ca9c3b4f2635d2592bed2ec28daee7f0dc3b6e7e45a6448d1c2f786b",
+      "bytes": 7549,
+      "uncompressedBytes": 7549,
+      "gzip": false,
+      "role": "Packaging-only artifact; no source test rerun."
+    },
+    {
+      "originalPath": null,
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/predecessor-proof-identity.json",
+      "sha256": "60252f2c14677aa49b987eb7dab98cfe121224798ab87530dc208b390f2937f0",
+      "uncompressedSha256": "60252f2c14677aa49b987eb7dab98cfe121224798ab87530dc208b390f2937f0",
+      "bytes": 919,
+      "uncompressedBytes": 919,
+      "gzip": false,
+      "role": "Packaging-only artifact; no source test rerun."
+    },
+    {
+      "originalPath": null,
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/reconstruct-prior-proof.mjs",
+      "sha256": "e20e9fe476c3dab96a994d489713eff47cc2f8c17503a1b40a05e970b4675ca4",
+      "uncompressedSha256": "e20e9fe476c3dab96a994d489713eff47cc2f8c17503a1b40a05e970b4675ca4",
+      "bytes": 1253,
+      "uncompressedBytes": 1253,
+      "gzip": false,
+      "role": "Packaging-only artifact; no source test rerun."
+    },
+    {
+      "originalPath": null,
+      "artifact": "docs/evidence/m7-stasis-owner-20261109/source-history/reconstruction-verification.log",
+      "sha256": "b0c71941f90cf44220717e8b528d09bccafd3cfb56cd523dc75e08e2d1d5da06",
+      "uncompressedSha256": "b0c71941f90cf44220717e8b528d09bccafd3cfb56cd523dc75e08e2d1d5da06",
+      "bytes": 181,
+      "uncompressedBytes": 181,
+      "gzip": false,
+      "role": "Packaging-only artifact; no source test rerun."
+    }
+  ],
+  "omittedGeneratedInputs": [
+    {
+      "baseCommit": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+      "generatedInput": "/tmp/stasis-prior-proof.json",
+      "uncompressedSha256": "bfca8c58838b2eefe8a0ad6f8ffe76809a9860c0f01029261781c3e4aed129cd",
+      "uncompressedBytes": 62976185,
+      "originalGzipSha256": "7445cde79de13e5fdad6e0931ac866ff8983d3a858c40eae193290272e67d6fb",
+      "originalGzipBytes": 16438943,
+      "immutableFacade": "tests/helpers/combined-epoch/pre-stasis-source-epoch.mjs",
+      "immutableFacadeSha256": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+      "reconstructionScript": "docs/evidence/m7-stasis-owner-20261109/source-history/reconstruct-prior-proof.mjs",
+      "localPreservedCompressedCopy": "build/stasis-history/stasis-prior-proof.json.gz",
+      "rationale": "Generated duplicate excluded from committed evidence. All complete prior archives remain immutable in the repository; authoritative logs and receipts are retained."
+    }
+  ]
+}

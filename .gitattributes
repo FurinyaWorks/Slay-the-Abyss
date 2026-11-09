@@ -457,3 +457,14 @@ docs/evidence/m7-formation-posix15-20261109/*.log text eol=lf
 docs/evidence/m7-formation-posix15-20261109/*.gz -text
 
 docs/evidence/m7-formation-posix15-20261109/*.md text eol=lf
+
+# Stasis owner boundaries and evidence are authenticated as exact repository bytes.
+tests/stasis-owner-*.test.mjs text eol=lf
+tests/helpers/stasis-owner-* text eol=lf
+tests/helpers/stasis-source-epoch.mjs text eol=lf
+tests/helpers/stasis-source-epoch.json.gz -text
+tests/helpers/stasis-replay-before.mjs text eol=lf
+tests/helpers/stasis-replay-before.json.gz -text
+tests/helpers/stasis-ci-source-inverse.json.gz -text
+docs/evidence/m7-stasis-owner-20261109/** text eol=lf
+docs/evidence/m7-stasis-owner-20261109/**/*.gz -text

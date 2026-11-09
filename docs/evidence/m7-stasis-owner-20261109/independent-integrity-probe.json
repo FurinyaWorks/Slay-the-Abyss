@@ -1,0 +1,13 @@
+{
+  "base": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+  "protectedExistingFiles": 2093,
+  "changedProtectedFiles": [],
+  "newFrozenModulesVerifiedAgainstGit": [
+    "src/lua/abyss_actor.lua",
+    "src/lua/abyss_act2_powers.lua",
+    "src/lua/abyss_act2_stasis.lua"
+  ],
+  "preStasisFacadeExactBase": true,
+  "behaviorEvidenceInputsStillExact": 371,
+  "scope": "Independent read-only Git and byte identity audit. Not Full or final HEAD approval."
+}

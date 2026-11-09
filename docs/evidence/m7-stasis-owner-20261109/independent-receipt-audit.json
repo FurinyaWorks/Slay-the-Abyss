@@ -1,0 +1,38 @@
+{
+  "narrowReceiptAudits": {
+    "source-epoch": {
+      "stableCapturedInputs": 371,
+      "staticImportedModules": 20,
+      "uncapturedStaticImports": [],
+      "originalChangedInputs": [
+        "tests/helpers/actor-damage-parity.mjs"
+      ],
+      "allCapturedHashesMatchOriginalBeforeAfterAndCurrent": true
+    },
+    "behavior": {
+      "stableCapturedInputs": 371,
+      "staticImportedModules": 6,
+      "uncapturedStaticImports": [
+        "scripts/build-original-v4.mjs",
+        "scripts/validate-data.mjs"
+      ],
+      "originalChangedInputs": [],
+      "allCapturedHashesMatchOriginalBeforeAfterAndCurrent": true
+    },
+    "boundary": {
+      "stableCapturedInputs": 370,
+      "staticImportedModules": 36,
+      "uncapturedStaticImports": [
+        "scripts/art/converted-card-data.mjs",
+        "scripts/art/lightweight-2d-assets.mjs",
+        "scripts/art/performance-pack.mjs",
+        "scripts/art/ready-card-registry.mjs",
+        "scripts/art/ready-card-runtime.mjs"
+      ],
+      "originalChangedInputs": [],
+      "allCapturedHashesMatchOriginalBeforeAfterAndCurrent": true
+    }
+  },
+  "historicalActorPowersStasisGitBindingsVerified": 9,
+  "scope": "Original broad source receipt drift remains disclosed. Narrow boundary scope excludes later unrelated CI timing edits. Static imports are not runtime-loader trace or all file I/O. Behavior receipt proves captured set only, not exhaustive closure."
+}
