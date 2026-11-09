@@ -3,7 +3,7 @@ export * from './epochs/develop/tests/helpers/core-lifecycle-source-inverse.mjs'
 import { preCoreLifecycleSource as original } from './epochs/develop/tests/helpers/core-lifecycle-source-inverse.mjs';
 import {sourceEpoch} from './combined-epoch/source-epoch.mjs';
 import {readFileSync} from 'node:fs';
-const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
+const live=p=>readFileSync(p,'utf8');
 export function preCoreLifecycleSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'develop',readSource});

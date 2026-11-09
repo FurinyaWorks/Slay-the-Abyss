@@ -3,14 +3,57 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
+import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
 const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
 test('seven-refactor exact outer epoch restores every complete predecessor owner',()=>{
  assert.equal(proof.owners.length,11);
  for(const path of proof.owners){
-  const source=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  const source=componentEpoch.preCombinedSource(path,readFileSync(path,'utf8'),{target:'componentPrior'}).replaceAll('\r\n','\n');
   assert.equal(source,read(path));
   for(const variant of [source,source.replaceAll('\n','\r\n')])
    assert.equal(epoch.preCombinedSource(path,variant,{target:'prior',readSource:read}),proof.targets.prior.files[path].source);
+ }
+});
+
+test('component UI outer epoch authenticates its exact committed slice and original predecessor',()=>{
+ const current=componentEpoch.proof;
+ assert.equal(current.currentCommit,'e61b917a38e4ffaf360f391b57cc8f2565b46a58');
+ assert.equal(current.currentTreeCommitted,true);
+ assert.equal(current.owners.length,22);
+ const readCurrent=path=>current.current[path]?.source??null;
+ for(const path of current.owners){
+  assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),readCurrent(path),path);
+  const before=current.targets.componentPrior.files[path];
+  const projected=componentEpoch.preCombinedSource(path,readCurrent(path),{target:'componentPrior',readSource:readCurrent});
+  // Added UI witnesses are retained; retirement is a separate checked action.
+  assert.equal(projected,before?.source??readCurrent(path),path);
+ }
+ for(const path of proof.owners)
+  assert.deepEqual(current.targets.componentPrior.files[path],proof.current[path],path);
+});
+
+test('component UI authorization rejects every late owner drift and deletion after warming',()=>{
+ const current=componentEpoch.proof,path='config/architecture.json';
+ const readCurrent=owner=>current.current[owner]?.source??null;
+ for(const owner of current.owners){
+  let corrupt=false;
+  const reader=key=>corrupt&&key===owner?readCurrent(key)+'\n':readCurrent(key);
+  componentEpoch.preCombinedSource(path,readCurrent(path),{target:'componentPrior',readSource:reader});
+  corrupt=true;
+  assert.throws(()=>componentEpoch.preCombinedSource(path,readCurrent(path),{target:'componentPrior',readSource:reader}),/linked owner identity/,owner);
+  assert.throws(()=>componentEpoch.preCombinedSource(path,readCurrent(path),{target:'componentPrior',readSource:key=>key===owner?null:readCurrent(key)}),/linked owner identity/,owner);
+ }
+});
+
+test('component UI foreign and predecessor inputs stay opaque without linked reads',()=>{
+ const current=componentEpoch.proof;
+ for(const path of current.owners){
+  const before=current.targets.componentPrior.files[path];
+  for(const source of [current.current[path].source+'\n',...(before?[before.source]:[])]){
+   let reads=0;
+   assert.equal(componentEpoch.preCombinedSource(path,source,{target:'componentPrior',readSource(){reads++;throw Error('unexpected read');}}),source);
+   assert.equal(reads,0,path);
+  }
  }
 });
 test('seven-refactor projection freshly rejects drift and missing owners after warming',()=>{

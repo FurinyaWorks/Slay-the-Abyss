@@ -465,3 +465,8 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+# Byte-authenticated component source epoch and its isolated closure inputs.
+tests/helpers/seven-refactor-source-epoch.mjs text eol=lf
+tests/fixtures/defect-utility-planning-before.lua text eol=lf
+tests/helpers/component-ui-source-epoch.mjs text eol=lf
+tests/helpers/component-ui-source-epoch.json.gz -text
