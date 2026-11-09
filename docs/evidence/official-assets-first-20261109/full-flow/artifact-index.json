@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "README.md",
-      "bytes": 6002,
-      "sha256": "7d5a97cb0e610e8b2090eda445dc2c4e5603b7d53370a26c46ae7a3bc0177a40"
+      "bytes": 5899,
+      "sha256": "b990484276211f3533b13746b507b83feef8f2f4a310fedf2564e78702381829"
     },
     {
       "path": "full-flow-ci-review.json",
@@ -54,8 +54,7 @@
     {
       "path": "prefix-validation.json.gz",
       "bytes": 675478,
-      "sha256": "ccf6386287a0644c3e845c386aee07bf74c7cedb8588dc49ce60a9e0f9926dae",
-      "publicationStatus": "withheld; original retained locally, not part of this public checkpoint"
+      "sha256": "ccf6386287a0644c3e845c386aee07bf74c7cedb8588dc49ce60a9e0f9926dae"
     },
     {
       "path": "preserved-files.json",
@@ -264,8 +263,8 @@
     },
     {
       "path": "visual-prefix/README.md",
-      "bytes": 1039,
-      "sha256": "99edca968eb63731d61f9dc49d50f4aaa3908eff7dbcbbb744e977393c934284"
+      "bytes": 1027,
+      "sha256": "1e6072a4cbd2f405dbf9a277dbb9de251cd0b7ae56c1d4f396c38a4659e06975"
     },
     {
       "path": "visual-prefix/natural-multi-enemy-selected-readable.png",

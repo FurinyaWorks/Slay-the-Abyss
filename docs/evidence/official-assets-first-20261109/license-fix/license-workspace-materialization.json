@@ -1,0 +1,184 @@
+[
+  {
+    "path": ".artifacts/lowpoly-select/breakthrough-compare-card-before-after.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "009436f377a9da304ede6e7095c8a7b2380293171ce354a9735c37546fcc5853"
+  },
+  {
+    "path": ".artifacts/lowpoly-select/breakthrough-sim3-demo.gif",
+    "source": "exact HEAD Git blob",
+    "sha256": "51e479815cbcccf6563fd44b5f7f0f2ab0dd6b829e032c3854a55ef05a86bb11"
+  },
+  {
+    "path": ".artifacts/lowpoly-select/breakthrough-sim3-f001-idle.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "0ce695fd480bf9ac00b4ff9de0ec2b184f23e9eef1b6e965380a931afb8b949e"
+  },
+  {
+    "path": ".artifacts/lowpoly-select/breakthrough-sim3-t1.5s-select1.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "557b975b1f170620073a2b4142586c7dc848787f0ae5ed989844795cccf2fd9d"
+  },
+  {
+    "path": ".artifacts/menu80/after/menu-panel.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "a69fb7c30c50500b279ca1e0916dc5baf5e4433f338a211e32270c9c2081a6a5"
+  },
+  {
+    "path": ".artifacts/menu80/after/menu-panel.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "2a8fc509dd4d9d6e4dc0834fd3d12b6b22b801aa0da1fc5d57b1094d98afbe11"
+  },
+  {
+    "path": ".artifacts/menu80/after/menu.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "c958b4117af7d1803d0b700c01e33c78ef4771f2bf141571064dc1696a3dae1a"
+  },
+  {
+    "path": ".artifacts/menu80/after/menu.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "5bfa02cbefd49df2b21cc131d44b3d9a12f8453423f936f4feeba96cf8474e0b"
+  },
+  {
+    "path": ".artifacts/menu80/before/menu-panel.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "85370c5249cd63388cdf358ef83e78beea8d4380c301aa6e7a6b14d118457ec8"
+  },
+  {
+    "path": ".artifacts/menu80/before/menu-panel.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "3315d511e1e3805c11636c3cc5d669ac9378bd373fc442ca984c81706b1f16e1"
+  },
+  {
+    "path": ".artifacts/menu80/before/menu.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "2e8f75d9a8fb98fc535ff21891ddb0c7bc3d59e8b6d64e15ff2197924275cf0d"
+  },
+  {
+    "path": ".artifacts/menu80/before/menu.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "18e30e8ea6e55eae7af4d3a865f2c361116f056a63fd1ae5e20a862c9369fbba"
+  },
+  {
+    "path": ".artifacts/neow/after/neow-blessing.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "79243c1fb8e2f01558c67431930e15a194007d77e46cc3794c3ef136afdd2da2"
+  },
+  {
+    "path": ".artifacts/neow/after/neow.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "73d08f76874496a9c7d42619dbe278dd5c61427af3c5360d4ad67cfef5f4e582"
+  },
+  {
+    "path": ".artifacts/neow/after/pair.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "766f72f71bd4c104ca948dbe21f80839d4d4a85c55cac708c3fd17b0cd57c8fa"
+  },
+  {
+    "path": ".artifacts/neow/before-neow.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "57c8897ac70131a2d5463efb400fcb810773dc563b4b140933386585cd1e096c"
+  },
+  {
+    "path": ".artifacts/neow80/after/neow-blessing.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "1f329ff3c84e3249963fdfdf94db993b8945870e443607910fb30a31ac025386"
+  },
+  {
+    "path": ".artifacts/neow80/after/neow.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "7f8f8163a0fdf686111962bab814b61600b370c740f9b05519ca4f4e2a3ecb77"
+  },
+  {
+    "path": ".artifacts/neow80/before/neow-blessing.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "92e3056c589a24306658ed134db75359a18e85f432485bbe9de91795625a5623"
+  },
+  {
+    "path": ".artifacts/neow80/before/neow.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "13977391cf4b5aa2983df65764ae1054ea87a5dbc0b438459991e1c3c78c4530"
+  },
+  {
+    "path": ".artifacts/neow80/pair.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "ce782f9fba3e150813a1ee37c973bacbca80d5a3376e45e4f8629e59e5370027"
+  },
+  {
+    "path": ".artifacts/select80/after/select-deck.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "143642879ff6044a76f88e0b49614d573eb7d75b3a9e7309b69fd804c9b8fe73"
+  },
+  {
+    "path": ".artifacts/select80/after/select-deck.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "0241848f62680ea9d31deb198ec94923954108fd5d70db1a75f02579b2fa2bd1"
+  },
+  {
+    "path": ".artifacts/select80/after/select.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "aad4fd1083a0143630674131af698296d02b09984df8c9ceb221c2c4b13cbacb"
+  },
+  {
+    "path": ".artifacts/select80/after/select.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "b85e477970e44c76a4ceb8c9c1f3fa25a4934eacee947c4f104aad5d928cb858"
+  },
+  {
+    "path": ".artifacts/select80/before/select.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "8ef144ffe38ffb3ef72f2c1fd44890d9f5fe2856f3c21e72cf75b9ada3ece6ff"
+  },
+  {
+    "path": ".artifacts/select80/before/select.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "ff43e1829f9cb91a53fbd1aabad241740ed9a4ac1b3531e71ca0f327fa867646"
+  },
+  {
+    "path": ".artifacts/select80/deck-after/select-deck.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "e4e25839b3321fde2757d2640deb118595b047fb0cafc27554eb2b99eb4012c1"
+  },
+  {
+    "path": ".artifacts/select80/deck-after/select-deck.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "58b007986abf7a0531105245664b74944cb48f627259a0f3c79eef485e25608b"
+  },
+  {
+    "path": ".artifacts/select80/deck-after/select.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "aad4fd1083a0143630674131af698296d02b09984df8c9ceb221c2c4b13cbacb"
+  },
+  {
+    "path": ".artifacts/select80/deck-after/select.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "b85e477970e44c76a4ceb8c9c1f3fa25a4934eacee947c4f104aad5d928cb858"
+  },
+  {
+    "path": ".artifacts/select80/deck-before/select-deck.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "143642879ff6044a76f88e0b49614d573eb7d75b3a9e7309b69fd804c9b8fe73"
+  },
+  {
+    "path": ".artifacts/select80/deck-before/select-deck.sim.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "0241848f62680ea9d31deb198ec94923954108fd5d70db1a75f02579b2fa2bd1"
+  },
+  {
+    "path": ".dream-loop/menu80-target-land.png",
+    "source": "exact HEAD Git blob",
+    "sha256": "919be47a886dd0647967fb6067b696a254dfb3a5ac998b175d4ff87fced30130"
+  },
+  {
+    "path": "art/cards/traveler-geo/armaments/source.png",
+    "status": "still pointer, needs frozen LFS object"
+  },
+  {
+    "path": "art/cards/traveler-geo/cleave/source.png",
+    "status": "still pointer, needs frozen LFS object"
+  },
+  {
+    "path": "art/cards/traveler-geo/heavy_blade/source.png",
+    "status": "still pointer, needs frozen LFS object"
+  }
+]

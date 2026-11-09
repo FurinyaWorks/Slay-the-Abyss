@@ -1,6 +1,6 @@
 # 完整自然流程与离线视觉诊断
 
-本次公开源码checkpoint不包含原始`prefix-validation.json.gz`。该文件原样保存在本地恢复记录中；其范围除诊断源码/日志，还包括云执行目录、版本及sourceStatus。公开目录保留对应文件清单/hash、独立复审与已批准诊断图，不把未公开原件称作可从本PR下载，也不将其改包后另行发布。
+原始`prefix-validation.json.gz`保留四轮前缀取证的真实脚本、失败记录、运行报告与场景数据；完整文件身份见prefix-files.json。归档中的云目录、版本与sourceStatus属于当时执行上下文，不是官方客户端验收。
 
 ## 本轮实际补齐
 
