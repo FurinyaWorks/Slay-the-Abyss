@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "m7-defect-final-execute-independent-review-20261109",
+  "conclusion": "blocked",
+  "admission": "Draft only; not approved for Full admission or merge.",
+  "reviewedBaseSha": "6f017ff875baa2de80a121e507634a2d859fecfa",
+  "checkpoint": {
+    "localCommit": "dc2e2e65c70eaed4f910e60f5592d0ddf75581af",
+    "commitTree": "b302608639c59bf00e6aaca648c8afe3d12c5084",
+    "scope": "Checkpoint contains production refactor, not all reviewed uncommitted tests/evidence. Exact review scope is the file manifest below; no final commit approval is implied."
+  },
+  "reviewedFiles": {
+    ".gitattributes": "d42cb5f07e51de174f9635bf3da97429318dffac6c733eab67bcd9690d374612",
+    ".github/workflows/quality.yml": "aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535",
+    "docs/evidence/m7-defect-final-20261109/ci-planning-receipt.json": "c5976aa9c9dc4da6b9cb9b389ee48f912bd7e45035f0c322f379b96ac2c0c997",
+    "scripts/check-lua-static.mjs": "9ed3c0153b621a5b6f8385ec4158d757e984443a8dbc428d0b001d4aa3829542",
+    "scripts/ci-quality-shape.mjs": "5eb6a562172a05d764609759fe500315fb5c07c565d190271f0c57b2841a889d",
+    "scripts/ci-shards.mjs": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+    "scripts/ci-test-timings.json": "6a3db2904d5529e4245cba597ff61618bbd76c674b5baec470845907318d1171",
+    "scripts/test-lua.mjs": "57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703",
+    "src/lua/abyss_defect_final_cards.lua": "77abe4a82a37118273585830e1bd4c49e07b0367de77f06dc388b7ca862f5544",
+    "tests/ci-complete-calibration.test.mjs": "a543dd00ee3d2c6951d958f1a2bece2780bdab6aa6a98a50d1d5beeb8b203c70",
+    "tests/ci-runtime.test.mjs": "574e51d0bc4cb6fe93a8fcec4dec8e3edd78d0885553a0c59c97ce244378354a",
+    "tests/defect-final-execute-complexity.test.mjs": "7ebd79e6b8677f0dee5aa54c2691522f1602e1418f86cdb14341da185a97fc8d",
+    "tests/defect-final-execute.test.mjs": "353e601af4ec137fb2b0a05e92cbf575b6583d22a09995b73508e22f8d835d5b",
+    "tests/defect-final-source-epoch.test.mjs": "1204a76a70de7bbf5edbf529d6d8d3ad114327f910444584f7c3df2742af7ad7",
+    "tests/effects-target-group-source-epoch.test.mjs": "6afc3ec0dee19eff1b4f95720b0cda8868cde70d25abd7408a1731f4178d6990",
+    "tests/fixtures/defect-final-execute-before.lua": "df100051b93665ecc88dea658f9c3bfdf24148907fd740c50ca0166852f9be71",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "ed6dc42d5ec5ab0755dee2ca09ff9eea63afd5b709e6cbb08748bc0a3245a097",
+    "tests/helpers/combined-epoch/pre-defect-source-epoch.mjs": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "81422aac13c89d3c3fa8d31f1afdff609af1f46f071a4c9d37288591cf20760f",
+    "tests/helpers/copy-integration-source-closure.mjs": "f91af9e74d4d18b4af8572f2d46996e6f30c6d1440046519e19689dc9ab509c1",
+    "tests/helpers/defect-final-ci-source-epoch.json.gz": "88894fcfdcc23ba6383ea5decd456c920dc296aadde209fc58ee8406480d7f75",
+    "tests/helpers/defect-final-ci-source-inverse.mjs": "88633dba85f221abd308e340bb6e181687862790479457666a8d3adc2d473c8b",
+    "tests/helpers/defect-final-execute-edges.lua": "0cbadc31451c50c138c9a9ebe260e38cb8499a88b456b0afcb90698967acee58",
+    "tests/helpers/defect-final-execute-vm.mjs": "993cc0bcb860e3266cf943113398d9713f16a9f67399387ca752802bfa9a96e8",
+    "tests/helpers/defect-final-source-epoch.json.gz": "a656584db182a608b75f66a46a8d31ae4d4bbaba6c64d376d1d47a011c7833ce",
+    "tests/helpers/defect-final-source-epoch.mjs": "8088008202072d1ce22492383861fe5ccb2b57d2bd9d1b06abb6653f835c2137",
+    "tests/helpers/lua-graph-observer.mjs": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f",
+    "tests/relic-equip-source-epoch.test.mjs": "1ac2775bf9afbdf7ac7f1b5472da74656899588900351c654c14b7e71085fc6f",
+    "tests/seven-refactor-source-epoch.test.mjs": "80e3a7d2716811140e888fc50eeb16dd53d52ae32bee994027c660b3335c3254",
+    "tests/silent-final-source-epoch.test.mjs": "5f0f9a8ac18607ff0f0d8d8c5abb20a1a6deb9effed0023f2676d5d779621b47",
+    "tests/silent-tactics-source-epoch.test.mjs": "f84d29a3c32c9cfcd68e06d55c236f4e0fd0fcfedad5c1571a7451ecb1413ba0",
+    "tests/watcher-flow-source-epoch.test.mjs": "f2b72e5f3a9e4e528ecb7aa567ef8f2c7613254a97f6ab95bdce88ae540c4e24"
+  },
+  "reviewedFileManifestSha256": "7071be4ad51ecb441bffd56121f45eab23e4f4d1a2d7db089f45aeda41fb5e37",
+  "evidenceFiles": {
+    "docs/evidence/m7-defect-final-20261109/independent-current-raw.log.gz": "3d569ef3393c49bf68a4d4a9958d122d13e4c916d20f57d86650ce2dd0348508",
+    "docs/evidence/m7-defect-final-20261109/independent-current.log.gz": "056501379cbfbc20237508ca4bc67486ee77cb18095d622fa37aa89d18a30834",
+    "docs/evidence/m7-defect-final-20261109/independent-mutations.json": "8fad61dc6fc2c528e8a995e232a20bea09b1baef422770dcba1fa57f888dbbc3",
+    "docs/evidence/m7-defect-final-20261109/independent-old-raw.log.gz": "f637845cf8fdd8e2a59fae47ad2ae1d72f98924f84aee5ae523d89be598ceec2",
+    "docs/evidence/m7-defect-final-20261109/independent-old.log.gz": "056501379cbfbc20237508ca4bc67486ee77cb18095d622fa37aa89d18a30834",
+    "docs/evidence/m7-defect-final-20261109/independent-probe-result.json": "bb8cef123d9064e3929a876b78fd1952cf9763bcdb82a79db986752788685a5b",
+    "docs/evidence/m7-defect-final-20261109/independent-probe.lua": "d356bf531b6a8132bc2467d186837ac36407199d2284af01959901707256de4d",
+    "docs/evidence/m7-defect-final-20261109/independent-probe.py": "7e6aa2536ebb7b92cfef88cd98ca065d3591a5ea58c527cced49fde66eceaa9d",
+    "docs/evidence/m7-defect-final-20261109/behavior-final-receipt.json": "7c7d1c1ae17307642c63bf2874acdd7d3ef2110ce92a7426c235ec9744c78608",
+    "docs/evidence/m7-defect-final-20261109/behavior-final.log.gz": "c5fa9b35090c5077a20b82e5c944696eb08f25b331870623faa7b4e08b906606",
+    "docs/evidence/m7-defect-final-20261109/source-final-receipt.json": "8c661e6a9805d8e84d844de29fc411eebc3985db28c8815dbd3a97d99e6d0b88",
+    "docs/evidence/m7-defect-final-20261109/source-final.log.gz": "d620ff8e6e0ab0f9f4fce1a26d9fdf7268b76f14f43deed45e0be37c69d5daba",
+    "docs/evidence/m7-defect-final-20261109/source-isolated-consumers.log.gz": "76b1a14f2f226f8cf00dc78c8505c9943c1cbffe60698bb61a807dae6ad4e340",
+    "docs/evidence/m7-defect-final-20261109/source-isolated-effects.log.gz": "3bf76bfedd52601f9498677224994f8a802d776a2d467d92782c3a73d16dc921",
+    "docs/evidence/m7-defect-final-20261109/source-transitive.log.gz": "6431f5719d108f26251fa7f0396f63774aab7782c7b1441edae137984c8ad5d4",
+    "docs/evidence/m7-defect-final-20261109/source-history-identity.json": "6f5fd637016bab851ad744df63473edeaf97f8d3411039cb76de340285a04a22",
+    "docs/evidence/m7-defect-final-20261109/source-final-identities.json": "b0b408a902377a9ff328bfd4c2e6fda5bee558d1fc386272def63446e65dd816",
+    "docs/evidence/m7-defect-final-20261109/ci-final-result.json": "68f61612648bddb0c41c523cbc12f887c8c6edf206dc3905872530a203dd7fb4",
+    "docs/evidence/m7-defect-final-20261109/ci-final-budget-blocked.log.gz": "7602a32a009ac5e2c59cf6f8b86c02fa673440295c060a802703afc2808c1baa",
+    "docs/evidence/m7-defect-final-20261109/ci-planning-receipt.json": "c5976aa9c9dc4da6b9cb9b389ee48f912bd7e45035f0c322f379b96ac2c0c997",
+    "docs/evidence/m7-defect-final-20261109/metrics.json": "125dd89cb500b5f07cbffe3b7bae65762fa2de3e078f57d75b4a803582a203fd",
+    "docs/evidence/m7-defect-final-20261109/complexity.log.gz": "c0504aff08b5fe3be79ba8c50229fa8b9ff4b18334e25008b941a9dc5631c386"
+  },
+  "results": {
+    "production": {
+      "conclusion": "pass",
+      "finding": "Eight genuine helpers preserve dispatcher order, lazy imports, double-created hooks, single action read, dynamic callback slots, queue/RNG ordering and recycle tail-return tuple. No behavior regression found.",
+      "complexity": {
+        "beforeExecute": 39,
+        "afterExecute": 13,
+        "helpers": [
+          6,
+          3,
+          2,
+          5,
+          5,
+          4,
+          4,
+          5
+        ],
+        "budget": 15,
+        "gate": "All nine entries and nested functions are measured; missing, duplicate, shifted and over-budget measurements rejected."
+      }
+    },
+    "independentRuntime": {
+      "conclusion": "pass",
+      "pairedExecutions": 1898,
+      "scenarioConfigurations": 130,
+      "semanticMutantsKilled": 5,
+      "coverage": [
+        "All 12 action names and unknown action",
+        "Missing and malformed state/effect fields",
+        "Metatable get/set/length read order and dynamic property values",
+        "Lazy requires and callback partial failures at every observed operation",
+        "Same graph aliases, shared pile aliases and queue entries",
+        "RNG mutation order and nil-leading recycle multiple return values"
+      ],
+      "normalization": "Probe omits generated source/harness line offsets and local/field diagnostic annotations, and replaces printed VM table addresses. Explicit graph reference IDs, return tuple arity, values and table-key identity remain compared. The shipped runtime oracle separately retains error bodies and maps only exact unchanged source statements.",
+      "boundedCase": "Malformed reboot input with hand == draw is already nonterminating in both versions. This probe compares a 300-observable-operation prefix and injected fault; it does not claim termination equivalence beyond that prefix.",
+      "attemptHistory": [
+        {
+          "outcome": "interrupted",
+          "reason": "Initial independent probe had no operation cutoff and reached the pre-existing hand == draw reboot loop. No product failure was inferred."
+        },
+        {
+          "outcome": "test-design corrected",
+          "reason": "Initial separate scrape-order sensitivity probe discarded one card, so reversal was not observable. The focused sensitivity harness was strengthened to return two nonzero-cost cards; all five mutants then failed comparison."
+        }
+      ],
+      "reproduce": "python docs/evidence/m7-defect-final-20261109/independent-probe.py --output <temporary-output-directory>"
+    },
+    "behaviorSuite": {
+      "conclusion": "pass",
+      "tests": 19,
+      "passed": 19,
+      "failed": 0,
+      "durationMs": 89851.803683,
+      "inputFilesRechecked": 369,
+      "beforeAfterEvidence": "The receipt binds the primary test separately through testSha256, plus 351 other tracked files through inputSha256 and 17 generated files through generatedInputSha256: 352 tracked and 369 total inputs. Reviewer rechecked all 369 final hashes. Seven original fixtures, the complete graph oracle and all 10 named semantic mutant checks remain intact.",
+      "serializationReview": "Only redundant JSON parse/stringify removed. Independently verified 14,316,567-byte pre/post stream identical, SHA256 070b60f6605d00b3b65aaf3f8fc5c8db21d488aae05ba071b16196c1993baf90.",
+      "inputIdentityBreakdown": {
+        "primaryTestSeparatelyBound": 1,
+        "otherTrackedInputs": 351,
+        "generatedInputs": 17,
+        "totalTrackedInputs": 352,
+        "totalInputs": 369
+      }
+    },
+    "sourceIdentity": {
+      "conclusion": "pass",
+      "currentOwners": 50,
+      "historicalFacadeOwners": 49,
+      "currentSourceTests": 11,
+      "sourceRelatedUniquePassedTests": 121,
+      "historicalIsolation": "Prior facade is byte-identical to the base facade. Six historical test files differ only by the import URL; assertions and frozen target proofs remain unchanged. Current public facade authenticates all 50 raw owners afresh, including after warm success. Both facades and new outer archive are pinned in the isolated helper closure.",
+      "priorFacadeSha256": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+      "resourceFailureHistory": "Initial consumer run exhausted the default heap while loading historical isolated closures. Historical facade separation resolved that case without increasing heap limits or relaxing identity checks."
+    },
+    "ciContracts": {
+      "conclusion": "blocked",
+      "tests": 75,
+      "passed": 74,
+      "failed": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 35527.64652,
+      "inventory": {
+        "javascript": 797,
+        "lua": 1410
+      },
+      "reserveMs": 60000,
+      "windows": {
+        "forecastMs": 1791774,
+        "budgetMs": 1800000,
+        "remainingMs": 8226
+      },
+      "posix": {
+        "forecastMs": 1202485,
+        "budgetMs": 1200000,
+        "overBudgetMs": 2485
+      },
+      "preservation": "All 28 previous local floors and all prior timing/provenance data remain exact. Only two authenticated local floors were added. Workflow, shard implementation, workers, concurrency and budgets remain byte-identical to base."
+    }
+  },
+  "unresolved": [
+    {
+      "id": "POSIX-COMPLETE-INVENTORY-BUDGET",
+      "severity": "admission_blocker",
+      "file": "tests/ci-complete-calibration.test.mjs",
+      "test": "current Full36 retains full coverage and reports performance targets under unchanged execution guards",
+      "description": "Complete POSIX planning forecast including 60-second reserve is 1,202,485 ms, exceeding the unchanged 1,200,000 ms target by 2,485 ms. The assertion remains failing.",
+      "requiredResolution": "Reduce the authenticated complete-inventory cost within the existing target while retaining all original tests, source identities, oracles and execution limits, then rerun affected contracts and refresh independent review."
+    }
+  ],
+  "limits": [
+    "This is a local code, source and targeted-contract review, not a hosted Full pass.",
+    "No official import, game ready, device or gameplay acceptance evidence is supplied.",
+    "Production/source pass does not override the explicit CI admission blocker.",
+    "Any reviewed file change requires review/hash reconciliation; a later commit must match the manifest before reusing this evidence."
+  ]
+}

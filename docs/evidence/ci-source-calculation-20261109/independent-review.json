@@ -1,0 +1,37 @@
+{
+  "reviewId": "independent-source-calculation-cache-20261108",
+  "reviewedAt": "2026-11-08T20:00:34.010109+00:00",
+  "conclusion": "pass",
+  "unresolved": [],
+  "findings": [
+    "No correctness regression found. Complete primitive input strings key the shared LF digest cache. Non-string projection inputs and owner values keep their existing guards.",
+    "Both computation caches have FIFO bounds of 256 entries and 2097152 retained UTF-16 code units per cache; oversized strings are computed but not retained. This is not a promise of 2 MiB total heap usage. Layout caches are per projector and digest cache is per module.",
+    "Layout matcher captures immutable cloned current proof token text. Syntax is still gated by JSON.parse; duplicate keys, key order, escapes, and whitespace inside tokens remain distinct. No JSON reserialization is used for equality.",
+    "Every admitted call requires target and reader validation and executes the original ordered linked-owner read loop. Each owner value is revalidated; authorization and projection outputs are not cached. Multiple targets cannot contaminate each other.",
+    "Proof clone/freeze remains unchanged. Shared string digest reuse across proofs is safe because the calculated digest is proof-independent.",
+    "Only the current helper runtime digest changed in the closure manifest. Frozen epochs, historical fixtures and original oracle implementation remain unchanged.",
+    "Added tests instrument builtins but restore them in finally, with default sequential execution. They assert warm-cache computation counts, fresh owner checks, foreign-input opacity, entry/length eviction and oversized no-retention."
+  ],
+  "reviewer": "independent reviewer",
+  "scope": "Three executable changed files at checkpoint 4cd0697a; later documentation is separately reviewed before final publication. No merge approval.",
+  "reviewedBaseSha": "8660380c1611c75c260db22d39ee65bfd8223a8d",
+  "reviewedHeadSha": "4cd0697a82ca0a7baf5557f36ab079b783eae711",
+  "reviewedTreeSha": "a29a3aba5c4eabbd32b2684e9767c42f2ff6a34b",
+  "boundFiles": {
+    "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb",
+    "tests/helpers/copy-integration-source-closure.mjs": "c0f5ea7fe96e6cabdc8563093593dbfdeb73ebbeb5a4c39ce3aac8817c898d4a",
+    "tests/seven-refactor-source-epoch.test.mjs": "415193355f84412b4fd9005cd167dd826ef42b8114030e1e5dee59d41a3ab27d"
+  },
+  "checks": {
+    "focusedTests": {
+      "pass": 9,
+      "fail": 0
+    },
+    "baselineDifferentialCases": 8208,
+    "diffCheck": "pass"
+  },
+  "limitations": [
+    "Local POSIX only; no hosted Full, Windows runner, integration admission, merge or game/device acceptance.",
+    "Performance observations are author measurements, not an independent hosted benchmark."
+  ]
+}

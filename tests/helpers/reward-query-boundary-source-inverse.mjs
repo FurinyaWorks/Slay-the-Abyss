@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preRewardQueryBoundarySource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'reward',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'reward')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'reward'):readSource)});
 }
 const readers=new WeakMap();
 export function rewardQueryBoundaryReader(readSource=live){

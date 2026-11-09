@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "owners": 49,
+  "checks": 98,
+  "retainedTargets": [
+    "develop",
+    "powerShop",
+    "sessionReward",
+    "watcher",
+    "inventory",
+    "act1",
+    "defect",
+    "colorless",
+    "potion",
+    "endTurn",
+    "actor",
+    "reward",
+    "native",
+    "sevenPrior",
+    "watcherFlowPrior",
+    "silentTacticsPrior",
+    "effectsTargetGroupPrior",
+    "relicEquipPrior"
+  ]
+}

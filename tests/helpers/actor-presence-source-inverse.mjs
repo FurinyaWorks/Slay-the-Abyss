@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preActorPresenceSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'actor',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'actor')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'actor'):readSource)});
 }
 const readers=new WeakMap();
 export function actorPresenceReader(readSource=live){

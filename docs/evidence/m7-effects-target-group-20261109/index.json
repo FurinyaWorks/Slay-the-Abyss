@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "base": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "productionSlice": "549e92aac19eaf4589e2f5ff869943becea78459",
+  "productionTree": "ef6ff1bd7ce4fe466ea52752bee6c9fd9eb5fc65",
+  "actualFullRun": false,
+  "scope": "Standalone Effects target-group refactor source epoch, complete current CC/SCC measurements, bounded source contracts, complete inventory forecast and authentic complete behavior planning floor.",
+  "results": {
+    "sourceComplete": {
+      "passed": 48,
+      "failed": 0
+    },
+    "additionalSourceContracts": {
+      "passed": 19,
+      "failed": 0
+    },
+    "behavior": {
+      "passed": 5,
+      "failed": 0,
+      "durationMs": 7661.276801
+    },
+    "ci": {
+      "passed": 31,
+      "failed": 1,
+      "remainingFailure": "Pre-existing 7821 Game UI receipt/source identity mismatch bf6e9f1b vs 96ae4619; not changed by this slice. Separate pending integration base carries its own fix."
+    },
+    "static": "PASS: 14 explicit historical warnings, 2017 governed responsibility measurements",
+    "architecture": "PASS: 338 modules, 1929 edges"
+  },
+  "intermediateFailures": [
+    "ci-first: new behavior file did not yet exist; known baseline Game UI hash failure.",
+    "source-last: newly added unknown-target test caught factory undefined-target passthrough; fixed only in new outer epoch.",
+    "ci-final: behavioral test was strengthened concurrently after first receipt collection; final verified log and hashes replaced only the new floor."
+  ],
+  "files": {
+    "architecture.log.gz": "ad68b99f56cb22d91e326626ef929e5306594c86bdf60e2d0c2f15e68c3fa954",
+    "author-effects-target-group-existing.log.gz": "ee4a0af4b830c13d560dddeb97bd51065839cf0db50b0ccd798780ae3f0d062e",
+    "author-effects-target-group-guard-regression.log.gz": "8b346d11ddfe8bcaf52a17c233fc2350b18b320b710b8d110992cb6e116e2cc2",
+    "author-effects-target-group-tests-final.log.gz": "86ed0ac8a04577b453d2147aa67afacc4db269c7801a215f9c87641d2b55b7f1",
+    "author-effects-target-group-tests-next.log.gz": "7bd264d9a02d8e5b2d35226fec799dfef3699a8598da7855faf480743d687132",
+    "author-effects-target-group-tests.log.gz": "dad290579499f9a4f7975fc92d27aee72b1def153a4df4d874103f6008cc5f3b",
+    "author-effects-target-group-verified.log.gz": "a8212eeb561ca1fb79669333c936867e43cffaa621d279b5c392302c26858fe4",
+    "baseline-engineering.json.gz": "35d2f26e473f73e3e1021cdbcd541b338c9dfd3c0347eaea396dd2ecd0a9cd7d",
+    "baseline-verified.json": "4fd4d6232028647471ee05d69f873a86a4e104289fc73e7afd34458eb435bf94",
+    "behavior-final.log.gz": "a8212eeb561ca1fb79669333c936867e43cffaa621d279b5c392302c26858fe4",
+    "behavior-first.log.gz": "7bd264d9a02d8e5b2d35226fec799dfef3699a8598da7855faf480743d687132",
+    "behavior-receipt.json": "ed8a7599f1c1dabc43e291a2a801a004c8cb07aaed60d03bbb0a1dce5a38d0ea",
+    "ci-final.log.gz": "898422d9bedfd0a0e82ef39956daf272df2dd1b01c43f4215635b1565ca34b9b",
+    "ci-first.log.gz": "7be12c00d6e502b3f810fd711b1d523cba79e065fc6be7baac97a9461ea4de2a",
+    "ci-verified.log.gz": "803e47c3a842d48007d5af0dd8945a1251ea6b2a37e2429e0878ce2e47aaf9f9",
+    "contracts-final.log.gz": "165c9b0063c5d1f7a5cda5c9d48f388694b9b3d30df15a0db4314945aaa2e897",
+    "contracts.log.gz": "301fce7cd5ee73127386c4df84068f4db46024d04cdd134d46c1dc11f1b0046e",
+    "current-engineering.json.gz": "ba0b4c8972cb980aac93a7432a0394a440413fec019a90033bda052f180be549",
+    "current-quality.log.gz": "3510c24e9d431900ac601f1b7da94d46bd56cc38d0108d72c3d0b39769667a47",
+    "forecast.mjs": "7f82a1c5a2f2deaa41d206b2e3ba9fe36b6af3b97e341c846bd72cafa6418627",
+    "lua-static.log.gz": "c300f5173240f2ed799b804bc626ba6138274c7566ef9ac00cdd595a86ce5ee6",
+    "metrics.json": "07ec34de79445c143e014814f92a2c66275af5b99f62e2b9c09adc4dd4495dfc",
+    "planning-before-floor.json": "164653a587827f12a283cf4fa84dec43e3b3b3d9cace7d20a174db6d65f56e0f",
+    "planning.json": "595715d849cbbbf4f3d05523f8f66919bd9e75f2f6d17bc12006af99d8e0d48d",
+    "review-behavior-observation.json": "2e359cd5eb35beb65c0b2a763cb31e72030d8c8325b0b3c5a9c080b21a847be0",
+    "review-independent-gate.log.gz": "af91ca9f5bee8c00d8034e553d4d0972fd2c13c9d083b3b3a95580e2dbf71446",
+    "review-independent-review.json": "e282d4da78111cb79c96cff2ee6513272081ed2543e47317504e290e058cf046",
+    "review-production-review.json": "b200395a5789222f36a19be46645aaa17c9ce7eec8a0115d413840105e77eabc",
+    "review-source-epoch-final.log.gz": "3af90a3e0e4b77bc77bd5cb3979729217908d4d905630e139a38a3aa29dee302",
+    "source-complete.log.gz": "989f63311863413e74a1f4fb8f916b00d2d3f458b293ee1b192e3625de1ffe17",
+    "source-final-unknown.log.gz": "b44917d2241c06d289c1a11cede82216b0ab2a51e77d8b5dcc25cf55d2b0c797",
+    "source-final.log.gz": "e2ffe26fa373371c6644b18d7137b3bcee410fcbfd38df0a6514ffd698eeda6d",
+    "source-first.log.gz": "e6d7561bd27554f77c193ad23e9d9959e4c09fe51b463a0587d5954bfa5d3def",
+    "source-last.log.gz": "9fbadc91dbd093e20923f58952d3b32888c7f6c32b0a68883274fa517480e09c"
+  }
+}

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
 import {luaString} from '../../scripts/build-lua-data.mjs';
-import {comparableAct1ChoiceError,verifyAct1ChoiceErrorSite} from './act1-choice-source-inverse.mjs';
+import {comparableAct1ChoiceError,verifyAct1ChoiceErrorSite} from './epochs/act1/tests/helpers/act1-choice-source-inverse.mjs';
 import {installLuaGraphObserver} from './lua-graph-observer.mjs';
 const require=createRequire(import.meta.url);
 const {lua,lauxlib,lualib,to_luastring,to_jsstring}=require('fengari');
@@ -12,7 +12,9 @@ verifyAct1ChoiceErrorSite(readFileSync('src/lua/abyss_act1_events.lua','utf8'));
 const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);
 const records=[],logs=[];let bytes=0;
 installLuaGraphObserver(L,'ACT1_GRAPH',(label,graph)=>{
- const row=JSON.stringify({label,graph:JSON.parse(graph)});bytes+=Buffer.byteLength(row)+1;
+ // The observer already returns canonical JSON. Preserve it verbatim instead
+ // of allocating and re-encoding the complete graph at every checkpoint.
+ const row=`{"label":${JSON.stringify(label)},"graph":${graph}}`;bytes+=Buffer.byteLength(row)+1;
  assert(bytes<=1024**3,'complete graph output budget');records.push(row);
 });
 lua.lua_pushcfunction(L,L=>{logs.push(to_jsstring(lauxlib.luaL_tolstring(L,1)));return 0;});

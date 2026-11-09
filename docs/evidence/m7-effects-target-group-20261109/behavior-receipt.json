@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "kind": "complete-local-behavior-run",
+  "command": "node --test tests/effects-target-group.test.mjs",
+  "environment": "cloud Linux local",
+  "targeted": {
+    "tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 7661.276801,
+    "scenarios": 51,
+    "entryPoints": 3,
+    "checkpoints": 2,
+    "snapshotsPerVm": 306,
+    "semanticMutationsKilled": 11
+  },
+  "sourceIdentity": {
+    "files": {
+      "src/lua/abyss_effects.lua": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228",
+      "tests/effects-target-group.test.mjs": "54c591a4abda74ff21c5a304c88a7f0de3f609678264c09a72411a13b7b9c07c",
+      "tests/helpers/effects-target-group-before.json": "f6f1940e7e391533877beeb7f2eb6778a812e201f5cc36364990c6c44ac5c54e",
+      "tests/helpers/effects-target-group-vm.mjs": "7de4ae2e6fa6566fa0a7d5eba68b3787ec70beaa3a48f09c542b4eac90756a99",
+      "tests/helpers/effects-target-group-scenarios.lua": "472d7477b74e25d5a7f24e2849bb1c15d951963c0a57fa16cc56331dc965441b",
+      "scripts/check-lua-static.mjs": "10d11c5f5294ac48929d9d4946cb7b92d18881507c09b5825e1dd2b8a813715c"
+    }
+  },
+  "sourceLog": "docs/evidence/m7-effects-target-group-20261109/behavior-final.log.gz",
+  "sourceLogSha256": "a8212eeb561ca1fb79669333c936867e43cffaa621d279b5c392302c26858fe4",
+  "sourceLogUncompressedSha256": "0b64f5530975fb458e44679d7e014f2e69b56d10fdb51363c814c5a9ca5d553f",
+  "actualFullPassClaim": false,
+  "hostedMeasurementClaim": false,
+  "graphSha256": "c7683d013b40e57ab72172be34426a7f753a5f8f2096dc033259895a639a5871",
+  "semanticKillsExcludeInstructionBudgetTimeouts": true
+}

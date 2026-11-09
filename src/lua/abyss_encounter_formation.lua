@@ -62,72 +62,97 @@ function M.assemble(source,boundary)
   return f32(base+f32(value))
  end
  local result={}
- if source=='The Mushroom Lair'then
-  result[1]=make('fungi_beast',-450,30)
-  result[2]=make('fungi_beast',-145,20)
-  result[3]=make('fungi_beast',180,15)
- elseif source=='2 Orb Walkers'then
-  result[1]=make('orb_walker',-250,32)
-  result[2]=make('orb_walker',150,26)
- elseif source=='3 Darklings'then
-  result[1]=make('darkling',-440,10)
-  result[2]=make('darkling',-140,30)
-  result[3]=make('darkling',180,-5)
- elseif source=='Awakened One'then
-  result[1]=make('cultist',-590,10)
-  result[2]=make('cultist',-298,-10)
-  result[3]=make('awakened_one',100,15)
- elseif source=='Reptomancer'then
-  result[1]=make('snake_dagger',-220,115)
-  result[2]=make('reptomancer',-20,10)
-  result[3]=make('snake_dagger',210,75)
- elseif source=='Jaw Worm Horde'then
-  result[1]=make('jaw_worm_hard',-490,-5)
-  result[2]=make('jaw_worm_hard',-150,20)
-  result[3]=make('jaw_worm_hard',175,5)
- elseif source=='3 Shapes'or source=='4 Shapes'then
-  local pool={'repulsor','repulsor','exploder','exploder','spiker','spiker'}
-  local positions={{-480,6},{-240,-6},{0,-12},{240,12}}
-  for i=1,source=='3 Shapes'and 3 or 4 do
-   local p=positions[i];result[i]=make(table.remove(pool,integer(#pool-1)),p[1],p[2])
-  end
- elseif source=='Sphere and 2 Shapes'then
-  local pool={'spiker','repulsor','exploder'}
-  result[1]=make(pool[integer(2)],-435,10)
-  result[2]=make(pool[integer(2)],-210,0)
-  result[3]=make('spheric_guardian',110,10)
- elseif source=='Gremlin Leader'then
-  local pool={'mad_gremlin','mad_gremlin','sneaky_gremlin','sneaky_gremlin','fat_gremlin','fat_gremlin','shield_gremlin','wizard_gremlin'}
-  result[1]=make(pool[integer(7)],-366,-4)
-  result[2]=make(pool[integer(7)],-170,6)
-  result[3]=make('gremlin_leader',35,0)
- elseif source=='Small Slimes'then
-  if boolean()then
-   result[1]=make('spike_slime_s',-230,32);result[2]=make('acid_slime_m',35,8)
-  else result[1]=make('acid_slime_s',-230,32);result[2]=make('spike_slime_m',35,8)end
- elseif source=='Gremlin Gang'then
-  local pool={'mad_gremlin','mad_gremlin','sneaky_gremlin','sneaky_gremlin','fat_gremlin','fat_gremlin','shield_gremlin','wizard_gremlin'}
-  local positions={{-320,25},{-160,-12},{25,-35},{205,40}}
-  for i,p in ipairs(positions)do result[i]=make(table.remove(pool,integer(#pool-1)),p[1],p[2])end
- elseif source=='2 Louse' or source=='3 Louse'then
-  local positions=source=='2 Louse' and {{-200,10},{80,30}} or {{-350,25},{-125,10},{80,30}}
-  for i,p in ipairs(positions)do result[i]=louse(p[1],p[2])end
- elseif source=='Large Slime'then result[1]=make(boolean() and 'acid_slime_l' or 'spike_slime_l',0,0)
- elseif source=='Lots of Slimes'then
-  local pool={'spike_slime_s','spike_slime_s','spike_slime_s','acid_slime_s','acid_slime_s'}
-  local positions={{-480,30},{-320,2},{-160,32},{10,-12},{200,9}}
-  for i,p in ipairs(positions)do result[i]=make(table.remove(pool,integer(#pool-1)),p[1],p[2])end
- elseif source=='Exordium Thugs'then
-  local x,y=offset(-160),offset(20)
-  result[1]=weak(x,y)
-  x,y=offset(130),offset(20)
-  result[2]=humanoid(x,y)
- else -- Source bottomWildlife fixes numMonster=2; its three-slot branch is unreachable.
-  local x,y=offset(-150),offset(20)
-  result[1]=strongWildlife(x,y)
-  x,y=offset(150),offset(20)
-  result[2]=weak(x,y)
+ -- Fixed placements, sampled pools and eager candidate construction own separate paths.
+ local function fixedFormation()
+  if source=='The Mushroom Lair'then
+   result[1]=make('fungi_beast',-450,30)
+   result[2]=make('fungi_beast',-145,20)
+   result[3]=make('fungi_beast',180,15)
+  elseif source=='2 Orb Walkers'then
+   result[1]=make('orb_walker',-250,32)
+   result[2]=make('orb_walker',150,26)
+  elseif source=='3 Darklings'then
+   result[1]=make('darkling',-440,10)
+   result[2]=make('darkling',-140,30)
+   result[3]=make('darkling',180,-5)
+  elseif source=='Awakened One'then
+   result[1]=make('cultist',-590,10)
+   result[2]=make('cultist',-298,-10)
+   result[3]=make('awakened_one',100,15)
+  elseif source=='Reptomancer'then
+   result[1]=make('snake_dagger',-220,115)
+   result[2]=make('reptomancer',-20,10)
+   result[3]=make('snake_dagger',210,75)
+  elseif source=='Jaw Worm Horde'then
+   result[1]=make('jaw_worm_hard',-490,-5)
+   result[2]=make('jaw_worm_hard',-150,20)
+   result[3]=make('jaw_worm_hard',175,5)
+  else return false end
+  return true
  end
+ local function shapeFormation()
+  if source=='3 Shapes'or source=='4 Shapes'then
+   local pool={'repulsor','repulsor','exploder','exploder','spiker','spiker'}
+   local positions={{-480,6},{-240,-6},{0,-12},{240,12}}
+   for i=1,source=='3 Shapes'and 3 or 4 do
+    local p=positions[i];result[i]=make(table.remove(pool,integer(#pool-1)),p[1],p[2])
+   end
+  elseif source=='Sphere and 2 Shapes'then
+   local pool={'spiker','repulsor','exploder'}
+   result[1]=make(pool[integer(2)],-435,10)
+   result[2]=make(pool[integer(2)],-210,0)
+   result[3]=make('spheric_guardian',110,10)
+  else return false end
+  return true
+ end
+ local function gremlinFormation()
+  if source=='Gremlin Leader'then
+   local pool={'mad_gremlin','mad_gremlin','sneaky_gremlin','sneaky_gremlin','fat_gremlin','fat_gremlin','shield_gremlin','wizard_gremlin'}
+   result[1]=make(pool[integer(7)],-366,-4)
+   result[2]=make(pool[integer(7)],-170,6)
+   result[3]=make('gremlin_leader',35,0)
+  elseif source=='Gremlin Gang'then
+   local pool={'mad_gremlin','mad_gremlin','sneaky_gremlin','sneaky_gremlin','fat_gremlin','fat_gremlin','shield_gremlin','wizard_gremlin'}
+   local positions={{-320,25},{-160,-12},{25,-35},{205,40}}
+   for i,p in ipairs(positions)do result[i]=make(table.remove(pool,integer(#pool-1)),p[1],p[2])end
+  else return false end
+  return true
+ end
+ local function slimeFormation()
+  if source=='Small Slimes'then
+   if boolean()then
+    result[1]=make('spike_slime_s',-230,32);result[2]=make('acid_slime_m',35,8)
+   else result[1]=make('acid_slime_s',-230,32);result[2]=make('spike_slime_m',35,8)end
+  elseif source=='Large Slime'then result[1]=make(boolean() and 'acid_slime_l' or 'spike_slime_l',0,0)
+  elseif source=='Lots of Slimes'then
+   local pool={'spike_slime_s','spike_slime_s','spike_slime_s','acid_slime_s','acid_slime_s'}
+   local positions={{-480,30},{-320,2},{-160,32},{10,-12},{200,9}}
+   for i,p in ipairs(positions)do result[i]=make(table.remove(pool,integer(#pool-1)),p[1],p[2])end
+  else return false end
+  return true
+ end
+ local function louseFormation()
+  if source=='2 Louse' or source=='3 Louse'then
+   local positions=source=='2 Louse' and {{-200,10},{80,30}} or {{-350,25},{-125,10},{80,30}}
+   for i,p in ipairs(positions)do result[i]=louse(p[1],p[2])end
+  else return false end
+  return true
+ end
+ local function mixedFormation()
+  if source=='Exordium Thugs'then
+   local x,y=offset(-160),offset(20)
+   result[1]=weak(x,y)
+   x,y=offset(130),offset(20)
+   result[2]=humanoid(x,y)
+  else -- Source bottomWildlife fixes numMonster=2; its three-slot branch is unreachable.
+   local x,y=offset(-150),offset(20)
+   result[1]=strongWildlife(x,y)
+   x,y=offset(150),offset(20)
+   result[2]=weak(x,y)
+  end
+ end
+ if not fixedFormation() and not shapeFormation() and not gremlinFormation()
+  and not slimeFormation() and not louseFormation() then mixedFormation() end
  return result
 end
 return M

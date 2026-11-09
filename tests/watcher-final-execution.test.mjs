@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdirSync,writeFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
@@ -101,12 +102,15 @@ test('the frozen Git source keeps its LF identity when checked out with CRLF',as
  const directory=mkdtempSync(join(tmpdir(),'watcher-crlf-'));
  try{
   const helper='watcher-final-execution-source-inverse.mjs';
-  writeFileSync(join(directory,helper),readFileSync('tests/helpers/'+helper,'utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n'));
-  writeFileSync(join(directory,'watcher-final-execution-before.lua'),watcherExecutionBefore.replaceAll('\n','\r\n'));
-  const crlf=await import(pathToFileURL(join(directory,helper)).href);
+  const readSource=copyCurrentSourceFixture(directory,{crlf:true});
+  const crlf=await import(pathToFileURL(join(directory,'tests/helpers',helper)).href);
   assert.equal(crlf.watcherExecutionBefore,watcherExecutionBefore);
-  const current=readFileSync(path,'utf8').replaceAll('\r\n','\n');
-  assert.equal(crlf.preWatcherExecutionSource(path,current,{readSource:()=>current}),watcherExecutionBefore);
+  const current=readSource(path);
+  assert.equal(crlf.preWatcherExecutionSource(path,current,{readSource}),watcherExecutionBefore);
+  writeFileSync(join(directory,path),current+'\r\n');
+  assert.throws(()=>crlf.preWatcherExecutionSource(path,current,{readSource}),/linked owner/);
+  rmSync(join(directory,path));
+  assert.throws(()=>crlf.preWatcherExecutionSource(path,current,{readSource}),/linked owner missing/);
  }finally{rmSync(directory,{recursive:true,force:true});}
 });
 

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
-import {watcherExecutionBefore} from './watcher-final-execution-source-inverse.mjs';
+import {watcherExecutionBefore} from './epochs/watcher/tests/helpers/watcher-final-execution-source-inverse.mjs';
 import {installLuaGraphObserver} from './lua-graph-observer.mjs';
 import {luaString} from '../../scripts/build-lua-data.mjs';
 const require=createRequire(import.meta.url);

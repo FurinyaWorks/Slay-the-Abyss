@@ -1,0 +1,19 @@
+{
+  "inventory": {
+    "js": 794,
+    "lua": 1410
+  },
+  "reserveMs": 60000,
+  "forecasts": {
+    "win32": {
+      "forecastMs": 1785094,
+      "budgetMs": 1800000,
+      "headroomMs": 14906
+    },
+    "linux": {
+      "forecastMs": 1194369,
+      "budgetMs": 1200000,
+      "headroomMs": 5631
+    }
+  }
+}

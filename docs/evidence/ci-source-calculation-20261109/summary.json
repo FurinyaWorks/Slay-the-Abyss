@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "8660380c1611c75c260db22d39ee65bfd8223a8d",
+  "implementationCheckpoint": "4cd0697a82ca0a7baf5557f36ab079b783eae711",
+  "node": "v24.22.1",
+  "platform": "linux x64",
+  "hostedPriorEvidence": {
+    "run": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42495834681",
+    "posixJob": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42495834681/job/128778034090",
+    "windowsJob": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42495834681/job/128778034068",
+    "seconds": {
+      "core-architecture-inverse": 667.964,
+      "max-hp-accepted": 357.996,
+      "architecture-composition-format": 787.443
+    },
+    "note": "Prior #564 hosted evidence supplied by coordinator. Different head/platform from this local candidate, so these numbers are not a matched speedup comparison."
+  },
+  "local": {
+    "coreBeforeMs": 447719.172312,
+    "coreAfterMs": 47034.544008,
+    "corePass": 2,
+    "coreBeforeProfilerEnabled": true,
+    "maxHpCandidateCaseSumMs": 61418.660469,
+    "maxHpPass": 3,
+    "architectureFormatCandidateCaseSumMs": 464486.318233,
+    "architectureFormatPass": 2,
+    "threeFilesPass": 7,
+    "threeFilesFail": 0,
+    "threeFilesDurationMs": 470383.306749,
+    "memoAndEpochUniqueCasesPassed": 77,
+    "independentDifferentialCases": 8208
+  },
+  "failuresPreserved": [
+    {
+      "file": "ci-pure-initial.log",
+      "reason": "Current helper closure hash required update after runtime edit; corrected and 15/15 followup passed."
+    },
+    {
+      "file": "ci-cache-all-epochs.log",
+      "reason": "59/60 passed; pinned Luacheck absent in new worktree. Copied existing pinned binary, required hash verified by original gate, failed test then passed alone."
+    }
+  ],
+  "residual": "Architecture format remains slow. A single rejected changed-layer input took 16380.595ms; profile identifies private token/identity work in frozen original GameUI, CoreLifecycle and RelicQuery epochs. Those historical implementations were not changed in this bounded slice.",
+  "preserved": [
+    "All original tests in the three reported hotspot files unchanged",
+    "All existing tests retained; two additional memo/freshness cases",
+    "All frozen epochs, fixtures and manifests unchanged",
+    "Every linked owner read and ordered validation remains fresh",
+    "All source/target guards, hash comparisons, failures and original budgets retained",
+    "No production, workflow, CI weight, shard or worker changes"
+  ],
+  "notRun": [
+    "Hosted Full",
+    "Windows execution",
+    "Admission or merge",
+    "Game/device validation"
+  ]
+}

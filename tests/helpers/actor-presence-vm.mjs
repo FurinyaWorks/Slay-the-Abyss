@@ -5,7 +5,7 @@ import {readFileSync,mkdirSync,writeFileSync,appendFileSync,mkdtempSync} from 'n
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {basename} from 'node:path';
-import {actorPresenceBefore} from './actor-presence-source-inverse.mjs';
+import {actorPresenceBefore} from './epochs/actor/tests/helpers/actor-presence-source-inverse.mjs';
 import {installLuaGraphObserver} from './lua-graph-observer.mjs';
 import {luaString} from '../../scripts/build-lua-data.mjs';
 import {generatedRuntimeModules} from '../../scripts/build-native-candidate.mjs';

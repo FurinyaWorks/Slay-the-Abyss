@@ -1,0 +1,14 @@
+{
+  "command": "node --test --test-concurrency=1 --test-reporter=spec tests/ci-runtime.test.mjs tests/ci-host-timing-calibration.test.mjs tests/ci-complete-calibration.test.mjs tests/ci-windows-shards.test.mjs tests/ci-posix-shards.test.mjs tests/ci-posix-concurrency.test.mjs tests/ci-windows-shape-expansion.test.mjs tests/ci-run-costs.test.mjs",
+  "tests": 75,
+  "passed": 74,
+  "failed": 1,
+  "skipped": 0,
+  "cancelled": 0,
+  "durationMs": 35527.64652,
+  "failure": "Current Full36 complete POSIX inventory forecast1202485ms exceeds unchanged1200000ms performance target by2485ms. Budget assertion intentionally remains failing; no changed budgets, worker counts or concurrency.",
+  "logSha256": "1c33e96a9d063aa8b5f67a1252d9f663f7b0697998b1c47f336cbc279748e30d",
+  "compressedLogSha256": "7602a32a009ac5e2c59cf6f8b86c02fa673440295c060a802703afc2808c1baa",
+  "identityFile": "docs/evidence/m7-defect-final-20261109/ci-final-identities.sha256",
+  "scope": "Targeted local CI contracts only. No hosted Full or workflow run and no merge-readiness claim."
+}

@@ -194,7 +194,9 @@ test('Actor damage and status stages plus nested callbacks cannot escape the pro
 
 test('effect support responsibilities remain required and bounded with their nested callbacks',()=>{
  const path='src/lua/abyss_effects.lua';
- const names=['M.apply','continueEffects','applyOne','denseEffectCount','scrySequenceSupported',
+ const names=['M.apply','continueEffects','applyOne',
+  'visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',
+  'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported',
   'supportedEffectOp','conditionalAllowed','nonConditionalOpSupported','selectionAmountsSupported',
   'mantraAmountSupported','effectMetadataSupported','supported','M.supported'];
  const lines=names.map(name=>`function ${name}() return function() end end`);

@@ -94,6 +94,16 @@ export function reviewRenderComplexity(diagnostics, sources) {
 // Budget only this governance slice and every extracted responsibility module.
 // Unrelated pre-existing Combat/UI hotspots keep their diagnostic reports.
 const responsibilityRoots = {
+  'src/lua/abyss_encounter_formation.lua': ['M.assemble','fixedFormation','shapeFormation','gremlinFormation',
+    'slimeFormation','louseFormation','mixedFormation'].map(name=>`function '${name}'`),
+  'src/lua/abyss_defect_final_cards.lua': ['M.execute','generate','applyFinalPower','recurOrb','scrapeDrawn','recoverZeroCost','recoverDiscard','fissionOrbs','rebootPiles']
+    .map(name=>`function '${name}'`),
+  'src/lua/abyss_silent_final_cards.lua': ['M.apply',
+    ...['gainSilentFinalPower','potionShivs','trigger','choke','setup','bulletTime','copyHand','distraction','doppelganger','phantasmalGain','remove','tools','startPower','corpseDamage','alchemize']
+      .map(name=>`actionHandlers.${name}`)].map(name=>`function '${name}'`),
+  'src/lua/abyss_silent_tactics_cards.lua': [],
+  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']
+    .map(name=>`function '${name}'`),
   'src/lua/abyss_scry.lua': ['M.choose','allowedCandidates','selectedCards','hasWeaveQueue','discardSelected']
     .map(name=>`function '${name}'`),
   'src/lua/abyss_shivs.lua': [],
@@ -132,6 +142,9 @@ const responsibilityRoots = {
   'src/lua/abyss_relic_queries.lua': [],
   ...Object.fromEntries(['relic_hooks','uncommon_relics','rare_relics','boss_relics','shop_relics']
     .map(name=>[`src/lua/abyss_${name}.lua`,["function 'queryIndex'","function 'queryNewIndex'"]])),
+  'src/lua/abyss_relic_hooks.lua': ['queryIndex','queryNewIndex','M.onEquip',
+    'admitEquipment','initializeEquipCounter','equipPotionCapacity','previewEggRewards',
+    'equipPermanentBenefit'].map(name=>`function '${name}'`),
   'src/lua/abyss_actor_power_rules.lua': [],
   'src/lua/abyss_combat_reactions.lua': ["function 'M.enqueue'", "function 'M.enqueueReaction'"],
   'src/lua/abyss_actor.lua': [
@@ -181,7 +194,8 @@ const responsibilityRoots = {
   'src/lua/abyss_run_potions.lua': ["function 'potionCandidate'"],
   'src/lua/abyss_run_potion_candidate.lua': [],
   'src/lua/abyss_effects.lua': ["function 'M.apply'", "function 'continueEffects'", "function 'applyOne'",
-    ...['denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',
+    ...['visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',
+      'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',
       'nonConditionalOpSupported','selectionAmountsSupported','mantraAmountSupported',
       'effectMetadataSupported','supported','M.supported'].map(name=>`function '${name}'`)],
   'src/lua/abyss_combat.lua': [
@@ -247,6 +261,7 @@ const responsibilityRoots = {
 // All Run orchestration and newly extracted Run helpers receive the full budget.
 const responsibilityHelper = file => /^src\/lua\/abyss_(?:effects_.+|combat_effect.*|combat_catalog|combat_reactions|combat_native_play|combat_queued_play|act2_ai_.+|character_presentation_.+|feedback_.+|node_ui(?:_.+)?|game_ui_.+|run(?:_(?!(?:card_catalog|red_card_contract|seed)\.lua$).+)?|nodes(?:_.+)?)\.lua$/.test(file);
 const completeResponsibility = file => responsibilityHelper(file)
+  || file==='src/lua/abyss_silent_tactics_cards.lua'
   || file==='src/lua/abyss_shivs.lua'
   || file==='src/lua/abyss_act3_ai.lua'
   || file==='src/lua/abyss_turn_power_phases.lua'

@@ -1,0 +1,18 @@
+{
+  "scope": "First syntactically combined contracts before adapting old POSIX15 historical expectations to Formation inventory; failed assertions retained",
+  "exitCode": 1,
+  "beforeInputSha256": {
+    "tests/ci-complete-calibration.test.mjs": "2cd85e3876709d4e55a1cc7698ee6e376aa028aa06e2b08b71b076b13593722b",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "ff1d0e926b39ec357a3dc99936c6f4022bbfc567be285decf90b84e44521e720",
+    "scripts/ci-test-timings.json": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+    "scripts/ci-quality-shape.mjs": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed"
+  },
+  "afterInputSha256": {
+    "tests/ci-complete-calibration.test.mjs": "2cd85e3876709d4e55a1cc7698ee6e376aa028aa06e2b08b71b076b13593722b",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "ff1d0e926b39ec357a3dc99936c6f4022bbfc567be285decf90b84e44521e720",
+    "scripts/ci-test-timings.json": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+    "scripts/ci-quality-shape.mjs": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed"
+  },
+  "logSha256": "cb3633bea39212137e18564390e83ba60137871012448a451d21f81f4fe9002c",
+  "compressedLogSha256": "8a749b48fd37bd824f512168d81308121a5a406986e04cec92fd50627e5ca393"
+}

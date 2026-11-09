@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "functions": [
+    "preCurrentCiPlacementSource",
+    "preCiCompleteCalibrationSource"
+  ],
+  "inputCount": 3478,
+  "nonShapeIdentityCount": 3477,
+  "receiptSha256": "0defa7887be5e11e0168c916581a13e8d86c72be20570a825721d1032cbcb60b"
+}

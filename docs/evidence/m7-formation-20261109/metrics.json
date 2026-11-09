@@ -1,0 +1,167 @@
+{
+  "baseSha": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "baselineReuse": "Complete 338-source identity verified against immutable parent. Prior complete pinned collection reused, not rerun or claimed fresh.",
+  "baseline": {
+    "coverage": {
+      "modules": 338,
+      "functions": 5260,
+      "measurements": 5598,
+      "expectedMeasurements": 5598
+    },
+    "ccAbove30": 34,
+    "ccAbove15": 210,
+    "maxCC": 61,
+    "sccMembers": [
+      68,
+      11,
+      2
+    ],
+    "sccInternalReferences": [
+      513,
+      44,
+      2
+    ],
+    "allReferences": 1929,
+    "dependencyPairs": 1558,
+    "formation": [
+      {
+        "name": "<chunk>",
+        "complexity": 1
+      },
+      {
+        "name": "M.supports",
+        "complexity": 1
+      },
+      {
+        "name": "M.assemble",
+        "complexity": 31
+      },
+      {
+        "name": "boolean",
+        "complexity": 1
+      },
+      {
+        "name": "integer",
+        "complexity": 4
+      },
+      {
+        "name": "make",
+        "complexity": 1
+      },
+      {
+        "name": "louse",
+        "complexity": 3
+      },
+      {
+        "name": "weak",
+        "complexity": 1
+      },
+      {
+        "name": "humanoid",
+        "complexity": 3
+      },
+      {
+        "name": "strongWildlife",
+        "complexity": 1
+      },
+      {
+        "name": "offset",
+        "complexity": 3
+      }
+    ]
+  },
+  "current": {
+    "coverage": {
+      "modules": 338,
+      "functions": 5266,
+      "measurements": 5604,
+      "expectedMeasurements": 5604
+    },
+    "ccAbove30": 33,
+    "ccAbove15": 209,
+    "maxCC": 61,
+    "sccMembers": [
+      68,
+      11,
+      2
+    ],
+    "sccInternalReferences": [
+      513,
+      44,
+      2
+    ],
+    "allReferences": 1929,
+    "dependencyPairs": 1558,
+    "formation": [
+      {
+        "name": "<chunk>",
+        "complexity": 1
+      },
+      {
+        "name": "M.supports",
+        "complexity": 1
+      },
+      {
+        "name": "M.assemble",
+        "complexity": 8
+      },
+      {
+        "name": "boolean",
+        "complexity": 1
+      },
+      {
+        "name": "integer",
+        "complexity": 4
+      },
+      {
+        "name": "make",
+        "complexity": 1
+      },
+      {
+        "name": "louse",
+        "complexity": 3
+      },
+      {
+        "name": "weak",
+        "complexity": 1
+      },
+      {
+        "name": "humanoid",
+        "complexity": 3
+      },
+      {
+        "name": "strongWildlife",
+        "complexity": 1
+      },
+      {
+        "name": "offset",
+        "complexity": 3
+      },
+      {
+        "name": "fixedFormation",
+        "complexity": 7
+      },
+      {
+        "name": "shapeFormation",
+        "complexity": 7
+      },
+      {
+        "name": "gremlinFormation",
+        "complexity": 4
+      },
+      {
+        "name": "slimeFormation",
+        "complexity": 8
+      },
+      {
+        "name": "louseFormation",
+        "complexity": 6
+      },
+      {
+        "name": "mixedFormation",
+        "complexity": 2
+      }
+    ]
+  },
+  "nonFormationSourcesUnchanged": true
+}

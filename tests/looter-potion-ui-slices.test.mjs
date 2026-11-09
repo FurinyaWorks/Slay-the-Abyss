@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {preLuaTimeoutPolicySource} from './helpers/lua-timeout-policy-source-inverse.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -58,8 +59,7 @@ test('eight original-budget looter UI fixtures preserve all eight groups and 22 
   const discovered = readdirSync('tests/lua').filter(name => /^looter_potion_ui(?:_slice_\d+)?\.lua$/.test(name)).map(name => 'tests/lua/' + name).sort();
   assert.deepEqual(discovered, ranges.map(([path]) => path).sort(), 'raw Lua discovery includes all eight original-parent ranges exactly once');
   const runner = read('scripts/test-lua.mjs');
-  assert.doesNotMatch(runner, /looter_potion_ui/, 'no family-specific timeout exception');
-  assert.match(runner, /fixture \|\| composedHost \? 60000 : 30000;/, 'keep the existing 30-second default fixture budget');
+  validateCurrentRunner(runner);
 });
 
 test('looter UI source and coverage contracts reject lost assertions, skipped groups, inert wrappers and seed drift', () => {
@@ -78,4 +78,29 @@ test('looter UI source and coverage contracts reject lost assertions, skipped gr
   const changedSeed = read(helper).replace('Run.new(H.F.Data,42)', 'Run.new(H.F.Data,43)');
   assert.notEqual(changedSeed, read(helper), 'the negative control must alter the real reward seed');
   assert.throws(() => validateHelper(changedSeed), /fresh seed-42 reward fixture/);
+});
+
+function validateCurrentRunner(source) {
+  assert.doesNotMatch(source, /looter_potion_ui/, 'no family-specific timeout exception');
+  // Bind the complete current runner and freshly read policy owner, preserving
+  // the reviewed ordinary classification without rewriting frozen source proof.
+  const previous = preLuaTimeoutPolicySource('scripts/test-lua.mjs', source);
+  assert.notEqual(previous, source, 'complete reviewed central Lua timeout policy');
+  assert.match(previous, /fixture \|\| composedHost \? 60000 : 30000;/, 'ordinary fixture classification remains intact');
+}
+
+test('current looter UI budget rejects classification drift, timeout overrides and missing wrappers', () => {
+  const source = read('scripts/test-lua.mjs');
+  for (const [before, after] of [
+    ['luaTimeoutMs.heavy : luaTimeoutMs.default', 'luaTimeoutMs.heavy : luaTimeoutMs.heavy'],
+    ['fixture || composedHost', 'composedHost'],
+    ['timeout ??=', 'timeout ='],
+  ]) {
+    const changed = source.replace(before, after);
+    assert.notEqual(changed, source, 'negative control changes actual runner: ' + before);
+    assert.throws(() => validateCurrentRunner(changed), /complete reviewed central Lua timeout policy/);
+  }
+  const missing = wrappers();
+  delete missing[ranges.at(-1)[0]];
+  assert.throws(() => validatePartitions(ranges, missing), /executable tail wrapper/);
 });

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/c1a4970a76e0/m7-formation/docs/evidence/m7-formation-20261109/independent-metrics-probe.py", line 20, in <module>
+    assert before['tools']==after['tools'];assert before['snapshot']['contract']==after['snapshot']['contract']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

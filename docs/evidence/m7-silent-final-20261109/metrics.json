@@ -1,0 +1,69 @@
+{
+  "baseline": {
+    "coverage": {
+      "modules": 338,
+      "functions": 5237,
+      "measurements": 5575,
+      "expectedMeasurements": 5575
+    },
+    "ccAbove30": 36,
+    "ccAbove15": 212,
+    "maxCC": 61,
+    "scc": [
+      {
+        "members": 68,
+        "internalReferences": 513,
+        "internalPairs": 324
+      },
+      {
+        "members": 11,
+        "internalReferences": 44,
+        "internalPairs": 26
+      },
+      {
+        "members": 2,
+        "internalReferences": 2,
+        "internalPairs": 2
+      }
+    ],
+    "dependencyPairs": 1558,
+    "warnings": 14
+  },
+  "current": {
+    "coverage": {
+      "modules": 338,
+      "functions": 5252,
+      "measurements": 5590,
+      "expectedMeasurements": 5590
+    },
+    "ccAbove30": 35,
+    "ccAbove15": 211,
+    "maxCC": 61,
+    "scc": [
+      {
+        "members": 68,
+        "internalReferences": 513,
+        "internalPairs": 324
+      },
+      {
+        "members": 11,
+        "internalReferences": 44,
+        "internalPairs": 26
+      },
+      {
+        "members": 2,
+        "internalReferences": 2,
+        "internalPairs": 2
+      }
+    ],
+    "dependencyPairs": 1558,
+    "warnings": 14
+  },
+  "onlyChangedProduction": [
+    "src/lua/abyss_silent_final_cards.lua"
+  ],
+  "checkpoint": "ce44fbfbfd0b7be8bd18fd8f3399c75ec4c10e50",
+  "checkpointTree": "e59d7ee4824c59c4cd62861968fef9139a2362ed",
+  "base": "d2ed1bbfdb1bc9e000870f38037592cc60ab4068",
+  "sourceSha256": "21766502d620d7fb9885cc3884d79c557739bac3bf750b5105fe34aa18bf8fdb"
+}

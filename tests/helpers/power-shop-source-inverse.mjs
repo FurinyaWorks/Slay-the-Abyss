@@ -6,5 +6,5 @@ import {readFileSync} from 'node:fs';
 const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function prePowerShopSource(path,source,{readSource=live}={}){
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'powerShop',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'powerShop')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'powerShop'):readSource)});
 }

@@ -7,7 +7,7 @@ const live=p=>readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 export function preColorlessCatalogSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const projected=sourceEpoch.preCombinedSource(path,source,{target:'colorless',readSource});
- return original(path,projected,{readSource:sourceEpoch.combinedReader(readSource,'colorless')});
+ return original(path,projected,{readSource:(typeof readSource==='function'?sourceEpoch.combinedReader(readSource,'colorless'):readSource)});
 }
 const readers=new WeakMap();
 export function colorlessCatalogReader(readSource=live){

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "base": "f256316c5b63adc7bbc1a72a8fedbc86f69079c6",
+  "publishedInputs": {
+    "564": "f256316c5b63adc7bbc1a72a8fedbc86f69079c6",
+    "567": "cb0b804c23e31280fab8e69a964e7ea2319134e2",
+    "568": "dae93d7108afcf9fb6fb4ed937133ac69346f8f2",
+    "569": "a6efc662704c214b7a4ce4b0cac960bc01cc2477"
+  },
+  "productionCheckpoint": "0df91e5e5b95a4859d6b54f70ce3bcb3ba9d0397",
+  "finalTargeted": {
+    "tests": 125,
+    "passed": 125,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 65540.90294,
+    "ciTestsIncluded": 39
+  },
+  "freshBehavior": {
+    "namedBehaviorTests": 5,
+    "flowSilentNamedTests": 4,
+    "effectsNamedTests": 1,
+    "runnerNote": "Flow/Silent command reports five results including one Effects file with no matching named test. This empty file is not counted as behavioral evidence."
+  },
+  "engineering": {
+    "command": "node scripts/check-engineering.mjs",
+    "modules": 338,
+    "measurements": 5570,
+    "expectedMeasurements": 5570,
+    "governed": 2045,
+    "ccAbove30": 37,
+    "ccAbove15": 213,
+    "maxCC": 61,
+    "scc": [
+      68,
+      11,
+      2
+    ],
+    "warnings": 14
+  },
+  "independentReview": {
+    "reviewId": "m7-published-combination-independent-20261109",
+    "file": "review-independent.json",
+    "unresolved": [],
+    "sourceTests": 3,
+    "ciTests": 3,
+    "guardTests": 19,
+    "lfCrlfProjections": 136,
+    "ownerDriftNegativeControls": 192,
+    "siblingAssertions": 39
+  },
+  "scopeChecks": {
+    "guidance": "PASS",
+    "backlog": "PASS",
+    "doctor": "Existing five duplicate-ID groups retained; not a pass."
+  },
+  "failuresPreserved": [
+    "source-combined-first.log.gz: one CRLF no-op expected-value error, fixed and independently retested",
+    "ci-first.log.gz: three combination inventory/forecast/gate assertions, fixed and final39/39"
+  ],
+  "fullRun": false,
+  "hostedFull": false,
+  "mergeAdmission": false,
+  "merged": false,
+  "limitations": [
+    "#564 admin normal-queue identity remains pending; no bypass.",
+    "New exact combined HEAD requires normal hosted Full and admission after predecessor integration.",
+    "No user device, official import, gameplay, release or unpublished Parasite work."
+  ],
+  "files": {
+    "backlog.log.gz": "36b881df20ada6d24b214e3a06f96a14b43fcd333fbe4d6d5fba733e9b284e4d",
+    "behavior-effects.log.gz": "95107df154147489bc01bc0a009ac7ddbec61a0a2770a71f067f41c5aea18040",
+    "behavior-flow-silent.log.gz": "1e49c2ca887221156c38ca3e828cbaace5ad46e85304cea721174986aa109d09",
+    "ci-final.log.gz": "161791fae5f87458e6088747ec4f66f5a6a987ab580862f41a7efdb4cd8b4220",
+    "ci-first.log.gz": "b9287b63d82aba0918f725d79b461fa99d1dc727b518744a37df5e96f7cd7b9c",
+    "current-engineering.json.gz": "b0f84a78983ea0f145ee676de60bfa4e6558dec7413b192e2ba10a925820acfe",
+    "doctor.log.gz": "7e892b56fbff817bcd506dc5991c2e7525a8d868605350bd0f0282a8df48b1bf",
+    "engineering.log.gz": "e7e797c03e921a2b5db45eacc8db2fb90e94fea5cf95f823cb48bfbe82bbbe72",
+    "final-targeted.log.gz": "0ce4bfacdecc7717f73ff010a9cc8df6c4f73bd2b7a94e5e65ce3637ac6e9d1b",
+    "forecast.mjs": "7549cbe6ff5a03b3484d89338b071ed68f864be88d97140fd81cd2418200fdb1",
+    "guidance.log.gz": "7122e18fced3d2c5bcb4160fbc6d21658835bd35a598fbe79709692c230624a6",
+    "metrics.json": "447a40f36ad38929275e89758b841bf36dce7fd0cf492e2c2d87fc1cc02243a1",
+    "planning.json": "29b243c3568bd71c73e5e36286cdf145b613e35081ce5e5207d8740c2b38a0ef",
+    "review-adversarial.mjs": "691d3f277521f44230d2bf5ec30d6bdb0c12a4e4df5c23272c130280738c347a",
+    "review-ci.log": "2f4c331d3cde6f000c23aa2b3d5c31b59de3dffaa022f5c69c448ca8a3e42d38",
+    "review-guards.log": "8b5f610bf6e10a4716cfddb0e72604c8d6e19482fee96bb3df9d715dd735a5fe",
+    "review-independent.json": "50204dff21e977b039fdfeaeaf47d80dcceedbf40900b626d30ce33915be0168",
+    "review-source.log": "7b66bf8569cf6edc6540969562745ed38d0c25998b5fe2c2d7a3d84ce223f005",
+    "source-combined-first.log.gz": "c7dd8d51d3072d2ec5b4f60188400b48e5148cb9d3a46810c14a49c55019753b",
+    "source-combined-fixed.log.gz": "955d18c248b15aaed78602063744f3874dc19c044654a75b7f8f32268bd4c088",
+    "source-siblings.log.gz": "f8e3cabe80d569cddb9a6704f725d9525c032ffd100e2cb02dd15e1ca889606e"
+  }
+}

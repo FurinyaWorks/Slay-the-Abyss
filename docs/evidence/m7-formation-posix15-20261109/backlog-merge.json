@@ -1,0 +1,9 @@
+{
+  "base": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "ours": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+  "theirs": "841510b78172b923b1a613216b5c3dcb2c3e062e",
+  "method": "Select authenticated upstream task then append the exact Formation-only plan/notes and document through Backlog CLI; retain owner/status/AC.",
+  "ownPlanAppend": "2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。",
+  "ownNotesAppend": "EncounterFormation.assemble职责已拆分，生产先公开保全f0629567；入口CC31→8、6helper最大8，全338模块5604测量，>30 34→33、>15 210→209，SCC68/11/2不变。新行为14/14（7322ms规划），1532完整图/侧及11具名语义负控；三大原Lua另完整旧新17/17通过并保存77.623秒收据。来源新11、旧Defect11、当前全树38通过；真实CC3与原职责19通过，独立1884次执行/888故障前缀无阻塞。CI最终接线等#574POSIX15基线，不重复Full、不提前勾AC。完整证据与初次失败见新增附件。\n\nEncounterFormation已按公开fb04完成CI inverse与真实floor：runtime13/13、完整校准38/39，唯一原POSIX预算失败保持。800JS/1410Lua含60秒预留预测Windows1794163、POSIX1205156（超5156）；未复制另一线尚未发布的POSIX15，Draft整体BLOCKED。完整日志/hash与旧floor均保留，传递消费者补核及最终独审继续。\n\nFormation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原POSIX成本失败。静态91测试/151模块仅列闭包；直接加载fb04原helper，对5完整CI档案/27种来源/8路径/11导出作4255次输出与异常等价比较全部通过。保留原Defect档案、14shape和全部旧预算/成本。独审局部PASS、整体BLOCKED，不冒称可合入；最终上传与Draft身份附后。",
+  "preserved": true
+}

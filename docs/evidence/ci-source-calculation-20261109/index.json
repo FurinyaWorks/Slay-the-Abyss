@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "8660380c1611c75c260db22d39ee65bfd8223a8d",
+  "implementationCheckpoint": "4cd0697a82ca0a7baf5557f36ab079b783eae711",
+  "artifacts": {
+    "docs/evidence/ci-source-calculation-20261109/independent-differential.mjs": {
+      "sha256": "c06a3725f6e0a96784d0fbc66c7cdda60bfecee4a0591953a2b15f6542737cd2",
+      "bytes": 3219
+    },
+    "docs/evidence/ci-source-calculation-20261109/independent-review.json": {
+      "sha256": "65aa2502379acc24d4b510184188f47db6e413a3d4cf77361cdbedb4e673ca77",
+      "bytes": 2842
+    },
+    "docs/evidence/ci-source-calculation-20261109/profile-summary.json": {
+      "sha256": "b6faee747e6e69a890adbdc99a315189868f6e92121a4eb8290c48f570590cf6",
+      "bytes": 811
+    },
+    "docs/evidence/ci-source-calculation-20261109/summary.json": {
+      "sha256": "1863482675340f832355d79e7f9c1067394b24eac681a69991e703cc16abd2d2",
+      "bytes": 2626
+    },
+    "docs/evidence/ci-source-calculation-20261109/validation.log.gz": {
+      "sha256": "56409df57185230463a9bc9f49831e7e565ec3bce1aadb18ed35224678760ee8",
+      "bytes": 5862
+    }
+  },
+  "unchangedHotspotTestBodies": {
+    "tests/core-architecture-inverse.test.mjs": "f9a8c289f1bd1c811d73d770fb1465dc0a9a07ac85eafb22842553ab7a178f99",
+    "tests/max-hp-accepted-source-inverse.test.mjs": "212accda9d40386c696aeca8259fe72d04df900554193f7660acd19411c9bca7",
+    "tests/architecture-composition-format.test.mjs": "baad086583b627e959579578df59554d6d1b8aaa6312ab5359b70d67226b3d62"
+  },
+  "currentExecutableBindings": {
+    "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb",
+    "tests/helpers/copy-integration-source-closure.mjs": "c0f5ea7fe96e6cabdc8563093593dbfdeb73ebbeb5a4c39ce3aac8817c898d4a",
+    "tests/seven-refactor-source-epoch.test.mjs": "415193355f84412b4fd9005cd167dd826ef42b8114030e1e5dee59d41a3ab27d"
+  },
+  "scope": "Local targeted verification and independent review only; no hosted performance acceptance or merge approval."
+}

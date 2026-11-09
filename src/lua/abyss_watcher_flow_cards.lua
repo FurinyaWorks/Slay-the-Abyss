@@ -146,9 +146,8 @@ function M.prepareEffect(state,effect,target)
  end
  return out
 end
-function M.planEffect(state,effect,context)
- context=context or {};local p=plan();local op=effect.op
- assert(M.ops[op] or op=='recallFlowCard','unknown Watcher flow effect')
+-- These planners only describe queue work. The host retains every state commit.
+local function planDamage(p,effect,context,op)
  if op=='fearNoEvil'then
   int(effect.value);int(effect.normalAmount)
   p.top[1]=e('damage',effect.value,{normalAmount=effect.normalAmount})
@@ -158,38 +157,54 @@ function M.planEffect(state,effect,context)
   int(effect.value);int(effect.normalAmount)
   local n=effect.times or 1;int(n,1)
   for _=1,n do p.top[#p.top+1]=e('damage',effect.value,{normalAmount=effect.normalAmount})end
- elseif op=='indignation'then
+ else
+  int(effect.value);int(effect.normalAmount)
+  p.damage={value=effect.value,normalAmount=effect.normalAmount,targetId=assert(context.target,'missing Wallop target').id,after='wallop'}
+ end
+end
+local function planStance(p,state,effect)
   int(effect.value)
   if state.player.stance=='Wrath'then
    for _,target in ipairs(state.enemies)do p.bottom[#p.bottom+1]=e('applyFlowStatus',effect.value,{status='vulnerable',targetId=target.id})end
   else p.bottom[1]=e('changeStance',nil,{stance='Wrath'})end
- elseif op=='collect'then
+end
+local function planCollect(p,state,effect,context)
   assert(effect.value==0 or effect.value==1,'invalid Collect upgrade')
   assert(context.chemicalX==nil or context.chemicalX==false or context.chemicalX==0,'unsupported Collect Chemical X context override')
   assert(context.freeToPlayOnce==nil or type(context.freeToPlayOnce)=='boolean','invalid Collect free flag')
   local n=context.energyOnUse;if n==nil or n==-1 then n=state.energy end
   n=int(int(n)+0.0+effect.value+require('abyss_relic_queries').shop.xBonus(state))
   if n>0 then p.bottom[1]=gain('collect',math.min(999,n));p.consumeAllEnergy=context.freeToPlayOnce~=true end
- elseif op=='triggerMarks'then
+end
+local function planPower(p,state,effect,context,op)
+ if op=='triggerMarks'then
   assert(effect.value==1,'invalid mark trigger')
   for _,target in ipairs(state.enemies)do
    local n=amount(state,'mark',target)
    if n>0 then p.bottom[#p.bottom+1]=e('markLoseHp',n,{targetId=target.id})end
   end
- elseif op=='gainWatcherFlowPower' or op=='applyWatcherFlowPower'then
+ else
   assert(powers[effect.status],'unknown Watcher flow application')
   int(effect.value)
   p.applyPower={status=effect.status,value=effect.value,targetId=op=='gainWatcherFlowPower' and state.player.id or assert(context.target,'missing flow Power target').id}
- elseif op=='wallop'then
-  int(effect.value);int(effect.normalAmount)
-  p.damage={value=effect.value,normalAmount=effect.normalAmount,targetId=assert(context.target,'missing Wallop target').id,after='wallop'}
- elseif op=='recallFlowCard'then
+ end
+end
+local function planRecall(p,state,effect)
   int(effect.uid,1)
   for _,c in ipairs(state.discard)do if c.uid==effect.uid then
    assert(c.cardId=='flurry_of_blows' or c.cardId=='weave','invalid flow recall card')
    if #state.hand<state.rules.player.maxHand then p.move={from='discard',to='hand',uid=c.uid,cardId=c.cardId,handHook=false}end
    break
   end end
+end
+function M.planEffect(state,effect,context)
+ context=context or {};local p=plan();local op=effect.op
+ assert(M.ops[op] or op=='recallFlowCard','unknown Watcher flow effect')
+ if op=='fearNoEvil' or op=='flowDamage' or op=='wallop'then planDamage(p,effect,context,op)
+ elseif op=='indignation'then planStance(p,state,effect)
+ elseif op=='collect'then planCollect(p,state,effect,context)
+ elseif op=='triggerMarks' or op=='gainWatcherFlowPower' or op=='applyWatcherFlowPower'then planPower(p,state,effect,context,op)
+ elseif op=='recallFlowCard'then planRecall(p,state,effect)
  end
  return p
 end

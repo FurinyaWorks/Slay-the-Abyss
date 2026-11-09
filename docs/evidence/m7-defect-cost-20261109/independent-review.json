@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "baseSHA": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "conclusion": "pass",
+  "unresolved": [],
+  "coverage": [
+    {
+      "name": "windows-js",
+      "files": 797,
+      "bins": [
+        49,
+        34,
+        43,
+        45,
+        47,
+        47,
+        47,
+        47,
+        48,
+        48,
+        49,
+        49,
+        49,
+        49,
+        49,
+        49,
+        48
+      ]
+    },
+    {
+      "name": "posix-js",
+      "files": 797,
+      "bins": [
+        55,
+        33,
+        53,
+        54,
+        55,
+        55,
+        53,
+        55,
+        55,
+        55,
+        54,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "name": "windows-lua",
+      "files": 1410,
+      "bins": [
+        83,
+        84,
+        83,
+        83,
+        83,
+        83,
+        82,
+        82,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83,
+        83
+      ]
+    }
+  ],
+  "negativeControls": [
+    "full/missing",
+    "full/extra",
+    "full/old14",
+    "full/oldSHA",
+    "full/duplicate",
+    "full/failure",
+    "full/skipped",
+    "full/cancelled",
+    "merge-group/missing",
+    "merge-group/extra",
+    "merge-group/old14",
+    "merge-group/oldSHA",
+    "merge-group/duplicate",
+    "merge-group/failure",
+    "merge-group/skipped",
+    "merge-group/cancelled",
+    "delivery/missing",
+    "delivery/extra",
+    "delivery/old14",
+    "delivery/oldSHA",
+    "delivery/duplicate",
+    "delivery/failure",
+    "delivery/skipped",
+    "delivery/cancelled",
+    "merged-delivery/missing",
+    "merged-delivery/extra",
+    "merged-delivery/old14",
+    "merged-delivery/oldSHA",
+    "merged-delivery/duplicate",
+    "merged-delivery/failure",
+    "merged-delivery/skipped",
+    "merged-delivery/cancelled"
+  ],
+  "unchangedProof": [
+    {
+      "path": ".github/workflows/quality.yml",
+      "sha256": "aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535",
+      "byteIdenticalToBase": true
+    },
+    {
+      "path": "scripts/ci-impact.mjs",
+      "sha256": "46439db10900aaa049df2619f7aee35ffc434bd6322f2316d1f1c0b830faba82",
+      "byteIdenticalToBase": true
+    },
+    {
+      "path": "scripts/ci-shards.mjs",
+      "sha256": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+      "byteIdenticalToBase": true
+    },
+    {
+      "path": "scripts/test-lua.mjs",
+      "sha256": "57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703",
+      "byteIdenticalToBase": true
+    },
+    {
+      "path": "scripts/ci-test-timings.json",
+      "sha256": "6a3db2904d5529e4245cba597ff61618bbd76c674b5baec470845907318d1171",
+      "byteIdenticalToBase": true
+    },
+    {
+      "path": "scripts/ci-timeout-policy.mjs",
+      "sha256": "86884e7db31c299d1b3e908a9647d46379d958122dd519f52f92f5bce4fd8c3a",
+      "byteIdenticalToBase": true
+    },
+    {
+      "path": "scripts/publish-full-quality.mjs",
+      "sha256": "2aaeba6e5a41a9f33ce5d00dc015405f92a72efc6bb71b9e8171640a3d07f2d5",
+      "byteIdenticalToBase": true
+    },
+    {
+      "path": "scripts/publish-merge-group.mjs",
+      "sha256": "62e632b6df7670210cea301787e5488b7df7e0f67459f8374421edf3fd7a55e8",
+      "byteIdenticalToBase": true
+    },
+    {
+      "path": "scripts/verify-delivery.mjs",
+      "sha256": "c9e0b350a2c72654351da8774ddf4eebd7e41dc8643403f2426862fc1f736db3",
+      "byteIdenticalToBase": true
+    }
+  ],
+  "budget": {
+    "reserveMs": 60000,
+    "targetMs": 1200000,
+    "old14Loads": [
+      1142485,
+      1142479,
+      1142484,
+      1142484,
+      1142484,
+      1142475,
+      1142479,
+      1142484,
+      1142484,
+      1142475,
+      1142475,
+      1142484,
+      1142484,
+      1142474
+    ],
+    "new15Loads": [
+      1066314,
+      1066314,
+      1066314,
+      1066323,
+      1066323,
+      1066323,
+      1066313,
+      1066313,
+      1066314,
+      1066314,
+      1066313,
+      1066313,
+      1066313,
+      1066313,
+      1066313
+    ],
+    "newPeakWithReserveMs": 1126323,
+    "headroomMs": 73677
+  },
+  "limitations": [
+    "Synthetic validator controls and static/planned budget verification only. No hosted Full run, workflow execution, or hosted wall-clock performance certification.",
+    "Review binds exact file hashes over the stated base; final publication HEAD must be checked against these bindings after commit.",
+    "Author suite results are not claimed as independent test executions."
+  ],
+  "history": {
+    "historicalSourceExactBase": true,
+    "authenticatedProjection": true,
+    "negativeProjectionControls": 10,
+    "oldHistoricalFixturesAndEvidenceUnchanged": true,
+    "productionLuaUnchanged": true,
+    "minimalBinsProof": {
+      "sumMs": 15994730,
+      "perBinAvailableMs": 1140000,
+      "minimumBins": 15,
+      "fourteenBinDeficitMs": 34730
+    }
+  },
+  "reviewedFiles": [
+    {
+      "path": "scripts/ci-quality-shape.mjs",
+      "sha256": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed"
+    },
+    {
+      "path": "tests/ci-complete-calibration.test.mjs",
+      "sha256": "b349a726ce0cc0e7063b335ef31fea164c74aab29e1e8f3a632eab6548161687"
+    },
+    {
+      "path": "tests/ci-impact.test.mjs",
+      "sha256": "a64f4db9972b591aa5ccefe991554dd4677ff075dc436aea5d1dffb41edce706"
+    },
+    {
+      "path": "tests/ci-posix-shards.test.mjs",
+      "sha256": "53bb153d0dfead95e33acb3669b77e0a8643c56b7112b3ceb9471ed6bfff2eca"
+    },
+    {
+      "path": "tests/delivery.test.mjs",
+      "sha256": "0da3bd167179802105f994aa3c07c0808f560f2c05054bc03b127199e06c3049"
+    },
+    {
+      "path": "tests/full-quality.test.mjs",
+      "sha256": "d8eca7d7c8fe4a33122114b0d92197dddbffea2def63fff1f460a490c1367db7"
+    },
+    {
+      "path": "tests/merge-queue.test.mjs",
+      "sha256": "66687a15233984e26140060051f990a63256c099718a14ac3cfcbf7f500d4d21"
+    },
+    {
+      "path": "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "sha256": "809b93f954772a0016c7b4e269804ac2098b186e71a676e1708f3363242b7c4a"
+    },
+    {
+      "path": "tests/helpers/reward-query-planning-contract.mjs",
+      "sha256": "5ed5306daeb974afee9401f628062ccfdbfc05e8b4fb90c95c27356ff967aad1"
+    },
+    {
+      "path": "tests/helpers/posix15-shape-source-epoch.json.gz",
+      "sha256": "9f75ddcfc0b6b5ef19c1750efab7d7a5360d9da4825a93de3c9cfe9e702e9b06"
+    },
+    {
+      "path": "tests/helpers/posix15-shape-source-inverse.mjs",
+      "sha256": "94e940878d1f55e91a7cda214373b824a7b4b41c0d129bbaa8a8c7436daac20b"
+    }
+  ],
+  "scope": "Independent review of POSIX14 to15 capacity allocation and current/historical CI contracts; production DefectFinal refactor was outside this review.",
+  "consumerMap": [
+    "ci-quality-shape exports windows17/posix15 and32 shard names",
+    "ci-impact main emits shared matrices for Full, Fast, unknown paths, and merge_group",
+    "quality.yml expands emitted matrices with unchanged max-parallel12, POSIX30min and Windows45min guards",
+    "verify-delivery currentFullQualityJobs binds32 shard jobs plus5 orchestration jobs",
+    "publish-full-quality and publish-merge-group import currentFullQualityJobs; latest execution and exact SHA/run/attempt/receipt gates remain byte-identical",
+    "Historical shape projection exists only in test helpers and cannot downgrade the live validator contract"
+  ],
+  "unchangedContracts": {
+    "windowsShards": 17,
+    "posixMaxParallel": 12,
+    "luaWorkers": 2,
+    "planningReserveMs": 60000,
+    "posixPlanningTargetMs": 1200000,
+    "windowsPlanningTargetMs": 1800000,
+    "posixExecutionGuardMinutes": 30,
+    "windowsExecutionGuardMinutes": 45,
+    "defectExecuteFloorMs": 89852,
+    "defectSourceFloorMs": 13784,
+    "timingProof": "Complete timing JSON is byte-identical to base, preserving every observation, floor, unknown estimate, initial gate and Lua classification input."
+  },
+  "uncommittedCandidate": true,
+  "finalHeadVerified": false,
+  "reproduction": {
+    "command": "node docs/evidence/m7-defect-cost-20261109/independent-reproduce.mjs",
+    "workingDirectory": "repository root",
+    "defaultOutput": "build/m7-defect-cost-independent-review.json",
+    "requirements": [
+      "Node.js and Git",
+      "Base commit fb04fd36ab4fbdba71c0da08bf71d2899143f69b available in local Git object database"
+    ],
+    "source": "docs/evidence/m7-defect-cost-20261109/independent-reproduce.mjs"
+  },
+  "authorVerification": {
+    "independentlyExecuted": false,
+    "reportedAffectedTests": {
+      "passed": 210,
+      "failed": 0,
+      "skipped": 0
+    },
+    "reportedBroadTests": {
+      "passed": 212,
+      "failed": 1,
+      "blocker": "Unchanged ci-downloads test requires unavailable pwsh."
+    },
+    "source": "docs/evidence/m7-defect-cost-20261109/affected-ci-tools-receipt.json",
+    "reportedAdditionalTests": {
+      "files": 6,
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "source": "docs/evidence/m7-defect-cost-20261109/transitive-source-contracts-receipt.json.gz",
+      "independentVerification": "Compressed and decompressed log hashes verified, 5117 before/after input hashes identical; log confirms31 pass0fail0skip."
+    },
+    "combinedAffectedTests": {
+      "files": 23,
+      "passed": 241,
+      "failed": 0,
+      "skipped": 0,
+      "independentlyExecuted": false
+    }
+  },
+  "historicalConsumerBoundary": {
+    "staticDependencyTestFiles": 91,
+    "notAnExecutionClaim": true,
+    "selection": "Four direct helper consumers, pr372 complete mapping contract, and ui-regression-partitions live POSIX matrix reader were additionally executed in full. Previously executed CI contracts cover remaining live-matrix and reward-epoch paths.",
+    "rewardLiveShapeAudit": "Only assertRewardQueryPlanningReceipt call is in ci-complete-calibration and explicitly passes ciEpoch(reward). Reward receipt historical shape composes exact POSIX15 bridge before unchanged POSIX14 bridge.",
+    "compositionAudit": "pr372 imports preCiCompleteCalibrationSource; unchanged downstream mapping receives equivalent old/new complete output. Nonshape paths cannot activate new bridge because it checks exact path first. No live validator imports the test bridge.",
+    "unexecutedBoundary": "Remaining transitive consumers were not all rerun. Confidence in this narrow change relies on actual two-stage projection output equivalence, exact path gating, authenticated complete shape inputs, unchanged downstream composition, and selected complete contracts, not filename regex or 91 claimed passes.",
+    "source": "docs/evidence/m7-defect-cost-20261109/transitive-source-dependency-boundary.json"
+  },
+  "projectionEquivalenceVerification": {
+    "independentlyExecuted": true,
+    "command": "node docs/evidence/m7-defect-cost-20261109/projection-equivalence.mjs --output build/independent-posix15-projection-final.json.gz",
+    "publishedBaseSHA": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+    "frozenInputCount": 3478,
+    "stages": 2,
+    "nonShapeIdentityCount": 3477,
+    "supplementalNewHelperCount": 1,
+    "replayedReceiptRawSha256": "da2fa01688396f97d878bd58e4226e74bb880a9db48f9b632926cfc11485331a",
+    "overwriteNegativeControls": 2,
+    "originalEvidencePreserved": true,
+    "safetyReview": "Read-only git show/ls-tree/ls-files and local imports; only writes a new build or explicitly requested output, rejects existing/tracked/script/original-receipt targets and uses exclusive-create. Frozen public-base inventory and authenticated input/output hashes do not depend on staging. Loader rebases module URLs only, preserving executable old projection logic.",
+    "evidenceBindings": {
+      "docs/evidence/m7-defect-cost-20261109/projection-equivalence.mjs": "1a8636dfa69e2d51b2995395b3a6ecfd726931b97327a2319444504431c74a9b",
+      "docs/evidence/m7-defect-cost-20261109/projection-equivalence-receipt.json.gz": "a423a9dfe824438a74a2f3aafab39e47035fffb3eaf129c8f9e2f43c94db7761",
+      "docs/evidence/m7-defect-cost-20261109/projection-equivalence-replay-receipt.json.gz": "0c12ec598602912fb23fe2a223e65c4de4c6aed150f273a3cacb5c880fb72478",
+      "docs/evidence/m7-defect-cost-20261109/transitive-source-contracts-receipt.json.gz": "79f90fe441b21a9d13aa24c1f25a25c4c7794ecc5bfb153f827e07e5ad6882fb",
+      "docs/evidence/m7-defect-cost-20261109/transitive-source-contracts.log.gz": "699b0c582af64206e6ef0ce2cda5a5ae8896b91f5bf2caa0cea672322827062d",
+      "docs/evidence/m7-defect-cost-20261109/transitive-source-dependency-boundary.json": "3453afa1407406ea1b17b2fa7f78ea2e8b5a56e0a4a7b008534c3416f34efd1d"
+    }
+  },
+  "readyToCommit": true
+}

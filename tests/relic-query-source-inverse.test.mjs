@@ -1,4 +1,3 @@
-import {preEndTurnResponsibilitiesSource} from './helpers/end-turn-responsibilities-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync,mkdtempSync,rmSync} from 'node:fs';
@@ -6,17 +5,34 @@ import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {join,dirname} from 'node:path';
 import {tmpdir} from 'node:os';
-import {preCoreLifecycleSource,coreLifecycleSourceProof} from './helpers/core-lifecycle-source-inverse.mjs';
-import {preGameUiExtractionSource} from './helpers/game-ui-extraction-source-inverse.mjs';
-import * as epoch from './helpers/relic-query-source-inverse.mjs';
+import {pathToFileURL} from 'node:url';
+import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
+import {copyCurrentSourceFixture} from './helpers/isolated-current-source.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {preCoreLifecycleSource as frozenCore,coreLifecycleSourceProof} from './helpers/epochs/develop/tests/helpers/core-lifecycle-source-inverse.mjs';
+import {preGameUiExtractionSource as frozenGameUi} from './helpers/epochs/develop/tests/helpers/game-ui-extraction-source-inverse.mjs';
+import * as epoch from './helpers/epochs/develop/tests/helpers/relic-query-source-inverse.mjs';
 import {preInventoryResponsibilitiesSource} from './helpers/inventory-responsibilities-source-inverse.mjs';
-import {preM7FinalSource} from './helpers/m7-core-final-source-inverse.mjs';
+import {preM7FinalSource} from './helpers/epochs/develop/tests/helpers/m7-core-final-source-inverse.mjs';
 import {preWatcherExecutionSource} from './helpers/watcher-final-execution-source-inverse.mjs';
 const normalize=s=>s.replaceAll('\r\n','\n');
 const hash=s=>createHash('sha256').update(s).digest('hex');
-// Exercise the unchanged N35 source epoch itself. The new three-owner outer
-// epoch has its own fresh-owner, missing/foreign-source and behavior contracts.
-const read=p=>preM7FinalSource(p,preEndTurnResponsibilitiesSource(p,normalize(readFileSync(p,'utf8'))));
+// Exercise the unchanged N35 chain on authenticated historical inputs, without
+// projecting today's wider facade for each of its thousands of raw reads. Only
+// immutable fixture bytes are retained; every original guard still runs afresh.
+// The separate detached current matrix below authenticates today's real files.
+const target=sourceEpoch.proof.targets.develop;
+assert.equal(target.commit,'d8a57cae2a867200ca8e588abc0d368e6cdb3799');
+const targetRead=p=>target.files[p]?.source;
+const historical=Object.freeze(Object.fromEntries(Object.keys(target.files).map(p=>[p,preM7FinalSource(p,targetRead(p),{readSource:targetRead})])));
+const read=p=>{
+ if(Object.hasOwn(historical,p))return historical[p];
+ assert(p.startsWith('tests/helpers/'),'original context must not borrow a live owner: '+p);
+ return normalize(readFileSync(p,'utf8'));
+};
+const bindHistorical=consume=>(path,source,options={})=>consume(path,source,{readSource:read,...options});
+const preCoreLifecycleSource=bindHistorical(frozenCore),preGameUiExtractionSource=bindHistorical(frozenGameUi);
+const historicalProject=bindHistorical(epoch.preRelicQuerySource);
 const bytes=readFileSync('tests/helpers/relic-query-baseline-391306af.json.gz');
 assert.equal(hash(bytes),'df89de0002fee32b9300489b95432ce4287c467435af804f481241ee3c3bbdf2');
 const frozen=JSON.parse(gunzipSync(bytes));
@@ -31,7 +47,8 @@ const query='src/lua/abyss_relic_queries.lua',purge='src/lua/abyss_purge_candida
 const combatHooks='src/lua/abyss_relic_combat_hooks.lua',family='src/lua/abyss_relic_family_combat.lua';
 const old={...original,[livingWall]:read('tests/helpers/query-living-wall-before.lua'),...runtimeOld};
 const paths=[...Object.keys(old),config],owners=[...Object.keys(original),query,livingWall,purge,...Object.keys(runtimeOld),combatHooks,family,config];
-const inverse=()=>{assert.deepEqual(Object.keys(epoch.relicQuerySourceProof.files),owners,'one complete thirty-five-owner relic epoch');return epoch.preRelicQuerySource;};
+const inverse=()=>{assert.deepEqual(Object.keys(epoch.relicQuerySourceProof.files),owners,'one complete thirty-five-owner relic epoch');return historicalProject;};
+for(const path of owners)assert.equal(hash(read(path)),epoch.relicQuerySourceProof.files[path].afterSha256,'authenticated original N35 after source: '+path);
 const publicPrior=(path,source,options)=>preCoreLifecycleSource(path,source,options);
 
 test('complete final lifecycle epoch restores all thirty existing Lua owners and exact 391 architecture without inventing witness history',()=>{
@@ -102,11 +119,16 @@ test('each direct and common source call freshly binds all thirty-five raw owner
  }
 });
 
-test('real isolated thirty-five-owner files reject warm source edits, configuration reformatting and deletion without borrowing the live tree',()=>{
- const prior=inverse(),source=Object.fromEntries(owners.map(path=>[path,read(path)]));
- const expected={...old,[config]:prior(config,source[config])};
+test('real isolated thirty-five-owner files reject warm source edits, configuration reformatting and deletion without borrowing the live tree',async()=>{
+ const source=Object.fromEntries(owners.map(path=>[path,read(path)]));
+ for(const path of owners)assert.equal(hash(source[path]),epoch.relicQuerySourceProof.files[path].afterSha256,'exact original N35 owner: '+path);
+ const expected={...old,[config]:inverse()(config,source[config])};
  const cwd=process.cwd(),directory=mkdtempSync(join(tmpdir(),'relic-query-source-'));
  try{
+  copyIntegrationSourceClosure(directory);
+  const detached=await import(pathToFileURL(join(directory,'tests/helpers/epochs/develop/tests/helpers/relic-query-source-inverse.mjs')).href);
+  assert.deepEqual(detached.relicQuerySourceProof,epoch.relicQuerySourceProof);
+  const prior=detached.preRelicQuerySource;
   for(const path of owners){const target=join(directory,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,source[path]);}
   process.chdir(directory);
   for(const host of paths)for(const linked of owners){
@@ -119,4 +141,36 @@ test('real isolated thirty-five-owner files reject warm source edits, configurat
   writeFileSync(config,JSON.stringify(JSON.parse(source[config])));
   assert.throws(()=>prior(paths[0],source[paths[0]]),/relic query linked/,'layout-equivalent inputs never excuse drift in the linked real file');
  }finally{process.chdir(cwd);rmSync(directory,{recursive:true,force:true});}
+});
+
+
+test('the isolated current relic facade freshly binds every original entry to every dynamic raw owner',async()=>{
+ const directory=mkdtempSync(join(tmpdir(),'relic-query-current-source-'));
+ try{
+  const raw=copyCurrentSourceFixture(directory);
+  const {preRelicQuerySource:prior}=await import(pathToFileURL(join(directory,'tests/helpers/relic-query-source-inverse.mjs')).href);
+  const {sourceEpoch:detachedEpoch}=await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href);
+  assert.deepEqual(detachedEpoch.proof,sourceEpoch.proof);
+  const currentOwners=detachedEpoch.proof.owners;
+  const source=Object.fromEntries([...new Set([...paths,...currentOwners])].map(path=>[path,raw(path)]));
+  const expected={...old,[config]:inverse()(config,read(config))};
+  for(const host of paths){
+   assert.equal(prior(host,source[host]),expected[host]);
+   for(const linked of currentOwners){
+    const target=join(directory,linked);
+    writeFileSync(target,source[linked]+'\n');
+    assert.throws(()=>prior(host,source[host]),error=>{assert.match(error.message,/linked owner identity/);assert(error.message.includes(linked));return true;});
+    rmSync(target);
+    assert.throws(()=>prior(host,source[host]),error=>{assert.match(error.message,/linked owner missing/);assert(error.message.includes(linked));return true;});
+    // Each recovery reauthorizes the full chain and warms the next owner. No
+    // authorization is cached, and both faults still run for every owner.
+    writeFileSync(target,source[linked]);assert.equal(prior(host,source[host]),expected[host]);
+   }
+  }
+  for(const host of paths){
+   writeFileSync(join(directory,config),JSON.stringify(JSON.parse(source[config])));
+   assert.throws(()=>prior(host,source[host]),/linked owner identity: config\/architecture\.json/,'input layout permission cannot excuse drift in the actual detached configuration');
+   writeFileSync(join(directory,config),source[config]);assert.equal(prior(host,source[host]),expected[host]);
+  }
+ }finally{rmSync(directory,{recursive:true,force:true});}
 });

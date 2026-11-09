@@ -357,3 +357,111 @@ docs/evidence/mobile-readability-20261101/** -text
 docs/evidence/raiden-v4-verification-20261103/*.json text eol=lf
 tests/raiden-v4-verification.test.mjs text eol=lf
 tests/lua/support/raiden_v4_*.lua text eol=lf
+
+# Seven-refactor helper and compressed proof are authenticated as complete bytes.
+tests/helpers/seven-refactor-source-epoch.mjs text eol=lf
+tests/helpers/seven-refactor-source-epoch.json.gz -text
+tests/fixtures/defect-utility-planning-before.lua text eol=lf
+
+# Planning receipts authenticate the original raw bytes of both JSON and logs.
+# Keep these four frozen Git blobs unchanged in core.autocrlf checkouts.
+docs/evidence/seven-current-integration-20261108/game-ui-extraction-planning.json -text
+docs/evidence/seven-current-integration-20261108/game-ui-extraction-local.log -text
+docs/evidence/seven-current-integration-20261108/source-inverse-partial-planning.json -text
+docs/evidence/seven-current-integration-20261108/source-inverse-partial-cases.log -text
+
+# Ready-art original helper provenance is authenticated as complete raw bytes.
+tests/fixtures/ready-art-original-helper-sources.json text eol=lf
+
+# Art-feature retirement extends the same byte-authenticated original helper closure.
+tests/fixtures/art-feature-original-helper-sources.json text eol=lf
+# Effects target-group exact source, helper closure and local evidence identities.
+tests/effects-target-group*.test.mjs text eol=lf
+tests/helpers/effects-target-group*.mjs text eol=lf
+tests/helpers/effects-target-group*.json text eol=lf
+tests/helpers/effects-target-group*.lua text eol=lf
+tests/helpers/effects-target-group*.gz -text
+docs/evidence/m7-effects-target-group-20261109/*.json text eol=lf
+docs/evidence/m7-effects-target-group-20261109/*.mjs text eol=lf
+docs/evidence/m7-effects-target-group-20261109/*.log text eol=lf
+docs/evidence/m7-effects-target-group-20261109/*.gz -text
+
+# Stacked integration evidence preserves exact bytes.
+docs/evidence/m7-effects-stack-20261109/*.json text eol=lf
+docs/evidence/m7-effects-stack-20261109/*.gz -text
+
+# WatcherFlow source epoch helpers are authenticated by exact bytes.
+tests/helpers/watcher-flow-source-epoch.mjs text eol=lf
+tests/helpers/watcher-flow-source-epoch.json.gz -text
+# Silent tactics source epoch helpers are authenticated by exact bytes.
+tests/helpers/silent-tactics-source-epoch.mjs text eol=lf
+tests/helpers/silent-tactics-source-epoch.json.gz -text
+docs/evidence/m7-silent-tactics-20261109/*.json text eol=lf
+docs/evidence/m7-silent-tactics-20261109/*.mjs text eol=lf
+docs/evidence/m7-silent-tactics-20261109/*.log text eol=lf
+docs/evidence/m7-silent-tactics-20261109/*.gz -text
+
+# Combined integration evidence is byte-bound.
+docs/evidence/m7-published-combination-20261109/*.json text eol=lf
+docs/evidence/m7-published-combination-20261109/*.mjs text eol=lf
+docs/evidence/m7-published-combination-20261109/*.log text eol=lf
+docs/evidence/m7-published-combination-20261109/*.gz -text
+
+# Silent final action evidence and authenticated helper bytes.
+tests/helpers/silent-final-source-epoch.mjs text eol=lf
+tests/helpers/silent-final-source-epoch.json.gz -text
+tests/helpers/silent-final-ci-source-inverse.mjs text eol=lf
+tests/helpers/silent-final-ci-source-epoch.json.gz -text
+docs/evidence/m7-silent-final-20261109/*.json text eol=lf
+docs/evidence/m7-silent-final-20261109/*.mjs text eol=lf
+docs/evidence/m7-silent-final-20261109/*.log text eol=lf
+docs/evidence/m7-silent-final-20261109/*.gz -text
+
+# Defect final action evidence and authenticated helper bytes.
+tests/helpers/defect-final-source-epoch.mjs text eol=lf
+tests/helpers/defect-final-source-epoch.json.gz -text
+tests/helpers/defect-final-ci-source-inverse.mjs text eol=lf
+tests/helpers/defect-final-ci-source-epoch.json.gz -text
+docs/evidence/m7-defect-final-20261109/*.json text eol=lf
+docs/evidence/m7-defect-final-20261109/*.mjs text eol=lf
+docs/evidence/m7-defect-final-20261109/*.lua text eol=lf
+docs/evidence/m7-defect-final-20261109/*.py text eol=lf
+docs/evidence/m7-defect-final-20261109/*.gz -text
+docs/evidence/m7-defect-final-20261109/*.sha256 text eol=lf
+
+# POSIX matrix allocation retains exact historical source and validation bytes.
+tests/helpers/posix15-shape-source-inverse.mjs text eol=lf
+tests/helpers/posix15-shape-source-epoch.json.gz -text
+docs/evidence/m7-defect-cost-20261109/*.json text eol=lf
+docs/evidence/m7-defect-cost-20261109/*.mjs text eol=lf
+docs/evidence/m7-defect-cost-20261109/*.gz -text
+docs/evidence/m7-defect-cost-20261109/*.log text eol=lf
+
+# Encounter formation responsibility evidence and authenticated helper bytes.
+tests/helpers/encounter-formation-source-epoch.mjs text eol=lf
+tests/helpers/encounter-formation-source-epoch.json.gz -text
+tests/helpers/encounter-formation-ci-source-inverse.mjs text eol=lf
+tests/helpers/encounter-formation-ci-source-epoch.json.gz -text
+docs/evidence/m7-formation-20261109/*.json text eol=lf
+docs/evidence/m7-formation-20261109/*.mjs text eol=lf
+docs/evidence/m7-formation-20261109/*.lua text eol=lf
+docs/evidence/m7-formation-20261109/*.py text eol=lf
+docs/evidence/m7-formation-20261109/*.log text eol=lf
+docs/evidence/m7-formation-20261109/*.gz -text
+
+# Formation and approved POSIX15 integration evidence.
+docs/evidence/m7-formation-posix15-20261109/*.json text eol=lf
+docs/evidence/m7-formation-posix15-20261109/*.mjs text eol=lf
+docs/evidence/m7-formation-posix15-20261109/*.py text eol=lf
+docs/evidence/m7-formation-posix15-20261109/*.log text eol=lf
+docs/evidence/m7-formation-posix15-20261109/*.gz -text
+
+docs/evidence/m7-formation-posix15-20261109/*.md text eol=lf
+docs/evidence/m7-watcher-flow-planning-20261108.json text eol=lf
+docs/evidence/watcher-flow-integration-behavior-20261109.json text eol=lf
+docs/evidence/m7-relic-equip-20261109/behavior-receipt.json text eol=lf
+tests/watcher-flow-planning.test.mjs text eol=lf
+src/lua/abyss_watcher_flow_cards.lua text eol=lf
+tests/lua/watcher_flow_planning.lua text eol=lf
+tests/helpers/watcher-flow-vm.mjs text eol=lf
+tests/helpers/relic-equip-source-epoch.mjs text eol=lf

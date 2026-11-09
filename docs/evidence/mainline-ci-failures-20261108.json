@@ -1,0 +1,406 @@
+{
+  "schemaVersion": 1,
+  "base": "b7ed18307e0be318ccd112aaa142e5ca4c191696",
+  "run": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038",
+  "readScope": "The jobs connector returns the first page only. These are the observed failing jobs, not an assertion that the complete run inventory was returned.",
+  "observedJobs": 30,
+  "observedFailures": 22,
+  "failedJobs": [
+    {
+      "id": 128598481053,
+      "name": "engineering-posix (1/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481053",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/art-feature-source-inverse.test.mjs\",\"durationMs\":8512.066469,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/compendium-source-inverse.test.mjs\",\"durationMs\":17228.847619,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/end-turn-responsibilities.test.mjs\",\"durationMs\":23942.026335,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/relic-query-source-inverse.test.mjs\",\"durationMs\":201704.592725,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/reward-query-boundary-source.test.mjs\",\"durationMs\":59.468405,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unreviewed .* (?:added )?module destination/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: complete retirement catalog identity\\n' +",
+        "    actual: AssertionError [ERR_ASSERTION]: complete retirement catalog identity",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unreviewed .* (?:added )?module destination/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: complete retirement catalog identity\\n' +",
+        "    actual: AssertionError [ERR_ASSERTION]: complete retirement catalog identity",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /catalog module destination changed after preparation/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: retirement target changed\\n' +",
+        "    actual: AssertionError [ERR_ASSERTION]: retirement target changed",
+        "  AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json",
+        "  AssertionError [ERR_ASSERTION]: EndTurn current owner identity",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /EndTurn current owner identity/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: combined linked owner identity: src/lua/abyss_end_turn_powers.lua'",
+        "    actual: AssertionError [ERR_ASSERTION]: combined linked owner identity: src/lua/abyss_end_turn_powers.lua",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /linked reader/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: linked owner reader\\n' +",
+        "    actual: AssertionError [ERR_ASSERTION]: linked owner reader",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  AssertionError [ERR_ASSERTION]: reward query boundary linked owner missing: config/architecture.json: combined linked owner missing: src/lua/abyss_act1_events.lua: Cannot read properties of undefined (reading 'replaceAll')",
+        "  AssertionError [ERR_ASSERTION]: reward query boundary linked owner missing: config/architecture.json: combined linked owner identity: src/lua/abyss_act1_events.lua",
+        "  AssertionError [ERR_ASSERTION]: combined linked owner identity: src/lua/abyss_act1_events.lua",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/resolve:271",
+        "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/reward-query-source-oksLpp/tests/helpers/epochs/reward/tests/helpers/reward-query-boundary-source-inverse.mjs' imported from /tmp/reward-query-source-oksLpp/tests/helpers/reward-query-boundary-source-inverse.mjs",
+        "##[error]Process completed with exit code 1.",
+        "##[error]No files were found with the provided path: build/architecture.json"
+      ]
+    },
+    {
+      "id": 128598481064,
+      "name": "engineering-posix (7/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481064",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/power-shop-boundaries.test.mjs\",\"durationMs\":82679.97794,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Power\\/Shop linked owner/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json'",
+        "    actual: AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481077,
+      "name": "engineering-posix (13/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481077",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/act1-choice-responsibilities.test.mjs\",\"durationMs\":186949.02589,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/actor-presence-source.test.mjs\",\"durationMs\":105.809393,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/pr259-fixture-budget.test.mjs\",\"durationMs\":68153.564034,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: Act1 choice linked owner identity",
+        "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/act1-crlf-zk6lra/epochs/act1/tests/helpers/act1-choice-source-inverse.mjs' imported from /tmp/act1-crlf-zk6lra/act1-choice-source-inverse.mjs",
+        "  AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+        "  AssertionError [ERR_ASSERTION]: Actor presence linked owner identity: src/lua/abyss_actor.lua",
+        "  AssertionError [ERR_ASSERTION]: linked owner reader",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/actor-presence-source-YHemL6/tests/helpers/epochs/actor/tests/helpers/actor-presence-source-inverse.mjs' imported from /tmp/actor-presence-source-YHemL6/tests/helpers/actor-presence-source-inverse.mjs",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unreviewed catalog module destination/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: complete retirement catalog identity\\n' +",
+        "    actual: AssertionError [ERR_ASSERTION]: complete retirement catalog identity",
+        "  AssertionError [ERR_ASSERTION]: raw discovery keeps the original default 30s budget; these files have no timeout exception",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481081,
+      "name": "engineering-posix (9/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481081",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/core-lifecycle-source-inverse.test.mjs\",\"durationMs\":1412.209058,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/reward-query-boundary.test.mjs\",\"durationMs\":1769.553279,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: lifecycle linked owner identity: src/lua/abyss_actor.lua",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  AssertionError [ERR_ASSERTION]: only this mutant-specific semantic assertion counts as a kill: [REWARD_BOUNDARY] Bowl owns is not Prayer Wheel: false ~= true",
+        "  AssertionError [ERR_ASSERTION]: only this mutant-specific semantic assertion counts as a kill: [REWARD_BOUNDARY] preview preserves skip-upgraded flag: false ~= true",
+        "  AssertionError [ERR_ASSERTION]: only this mutant-specific semantic assertion counts as a kill: [REWARD_BOUNDARY] every reward owner retains Bowl option: 0 ~= bowl",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481088,
+      "name": "engineering-posix (3/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481088",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/looter-potion-ui-slices.test.mjs\",\"durationMs\":11.930267,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: keep the existing 30-second default fixture budget",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481090,
+      "name": "engineering-posix (12/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481090",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/colorless-catalog-source.test.mjs\",\"durationMs\":87.825988,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/defect-plan-responsibilities.test.mjs\",\"durationMs\":34712.105626,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/potion-target-context-slices.test.mjs\",\"durationMs\":659.665771,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/pr266-fixture-budget.test.mjs\",\"durationMs\":663.995427,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  AssertionError [ERR_ASSERTION]: Defect plan linked owner identity",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /fixture \\|\\| composedHost \\? 60000 : 30000;/. Input:",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /timeout \\?\\?= normalizedScript\\.endsWith\\('tests\\/lua\\/encounter_coverage\\.lua'\\) \\? 120000 : mapProperties \\? 120000 : fixture \\|\\| composedHost \\? 60000 : 30000;/. Input:",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481094,
+      "name": "engineering-posix (4/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481094",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/ci-windows-shards.test.mjs\",\"durationMs\":1510.49369,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/potion-callback-source.test.mjs\",\"durationMs\":101.760226,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/watcher-final-execution.test.mjs\",\"durationMs\":57078.866613,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^    needs: \\[impact, rules, fast, presentation, engineering-posix\\]\\n    if: always\\(\\)$/m. Input:",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+        "  AssertionError [ERR_ASSERTION]: potion callback linked owner identity: src/lua/abyss_relic_hooks.lua",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+        "    actual: AssertionError [ERR_ASSERTION]: potion callback linked owner missing: src/lua/abyss_relic_hooks.lua: potion callback linked owner identity: src/lua/abyss_run_potion_candidate.lua",
+        "  AssertionError [ERR_ASSERTION]: linked owner reader",
+        "  AssertionError [ERR_ASSERTION]: potion callback linked owner identity: src/lua/abyss_relic_hooks.lua",
+        "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/potion-callback-source-IIR7HM/tests/helpers/epochs/potion/tests/helpers/potion-callback-source-inverse.mjs' imported from /tmp/potion-callback-source-IIR7HM/tests/helpers/potion-callback-source-inverse.mjs",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unreviewed catalog module destination/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: complete retirement catalog identity\\n' +",
+        "    actual: AssertionError [ERR_ASSERTION]: complete retirement catalog identity",
+        "  AssertionError [ERR_ASSERTION]: Watcher execution linked owner identity",
+        "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/watcher-crlf-Ehtx4m/epochs/watcher/tests/helpers/watcher-final-execution-source-inverse.mjs' imported from /tmp/watcher-crlf-Ehtx4m/watcher-final-execution-source-inverse.mjs",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481103,
+      "name": "rules (6/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481103",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/act1-choice-responsibilities.test.mjs\",\"durationMs\":215065.0685,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/core-lifecycle-source-inverse.test.mjs\",\"durationMs\":1895.1609,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: Act1 choice linked owner identity\r",
+        "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\act1-crlf-eyzOE1\\epochs\\act1\\tests\\helpers\\act1-choice-source-inverse.mjs' imported from C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\act1-crlf-eyzOE1\\act1-choice-source-inverse.mjs\r",
+        "  AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json\r",
+        "  AssertionError [ERR_ASSERTION]: lifecycle linked owner identity: src/lua/abyss_actor.lua\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481108,
+      "name": "engineering-posix (5/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481108",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/ci-posix-shards.test.mjs\",\"durationMs\":1556.113786,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^    needs: \\[impact, engineering-posix-shards, fast\\]\\n    if: always\\(\\)$/m. Input:",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481109,
+      "name": "rules (3/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481109",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/compendium-source-inverse.test.mjs\",\"durationMs\":41231.6563,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/looter-potion-ui-slices.test.mjs\",\"durationMs\":18.3501,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/round3-catalog-source-inverse.test.mjs\",\"durationMs\":23570.1172,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json\r",
+        "  AssertionError [ERR_ASSERTION]: keep the existing 30-second default fixture budget\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /catalog linked/. Input:\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /catalog linked/. Input:\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /separate historical destination/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: separate retirement destination'\r",
+        "    actual: AssertionError [ERR_ASSERTION]: separate retirement destination\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unreviewed catalog module destination/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: complete retirement catalog identity\\n' +\r",
+        "    actual: AssertionError [ERR_ASSERTION]: complete retirement catalog identity\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /separate historical module/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: separate retirement destination'\r",
+        "    actual: AssertionError [ERR_ASSERTION]: separate retirement destination\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /catalog module destination changed/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: retirement target changed\\n' +\r",
+        "    actual: AssertionError [ERR_ASSERTION]: retirement target changed\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481125,
+      "name": "rules (16/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481125",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/battle-ui-slices.test.mjs\",\"durationMs\":113575.7864,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/reward-query-boundary-source.test.mjs\",\"durationMs\":69.9759,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /fixture \\|\\| composedHost \\? 60000 : 30000;/. Input:\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r",
+        "  AssertionError [ERR_ASSERTION]: reward query boundary linked owner missing: config/architecture.json: combined linked owner missing: src/lua/abyss_act1_events.lua: Cannot read properties of undefined (reading 'replaceAll')\r",
+        "  AssertionError [ERR_ASSERTION]: reward query boundary linked owner missing: config/architecture.json: combined linked owner identity: src/lua/abyss_act1_events.lua\r",
+        "  AssertionError [ERR_ASSERTION]: combined linked owner identity: src/lua/abyss_act1_events.lua\r",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/resolve:271\r",
+        "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\reward-query-source-JGkkF3\\tests\\helpers\\epochs\\reward\\tests\\helpers\\reward-query-boundary-source-inverse.mjs' imported from C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\reward-query-source-JGkkF3\\tests\\helpers\\reward-query-boundary-source-inverse.mjs\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481134,
+      "name": "engineering-posix (11/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481134",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/card-origin-source-inverse.test.mjs\",\"durationMs\":3934.845528,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/potion-target-pointer-slices.test.mjs\",\"durationMs\":644.796463,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+        "  AssertionError [ERR_ASSERTION]: current ordinary fixture budget remains 30 seconds",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481138,
+      "name": "engineering-posix (10/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481138",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/architecture-composition-format.test.mjs\",\"durationMs\":256626.518543,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/card-help-release-slices.test.mjs\",\"durationMs\":376.718461,\"success\":false}",
+        "CI_FILE_TIMING {\"file\":\"tests/round3-catalog-source-inverse.test.mjs\",\"durationMs\":3002.239502,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: unreviewed integrated PR323 composition source: config/architecture.json",
+        "  AssertionError [ERR_ASSERTION]: keep the existing 30-second default fixture budget",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /catalog linked/. Input:",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /catalog linked/. Input:",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /separate historical destination/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: separate retirement destination'",
+        "    actual: AssertionError [ERR_ASSERTION]: separate retirement destination",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unreviewed catalog module destination/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: complete retirement catalog identity\\n' +",
+        "    actual: AssertionError [ERR_ASSERTION]: complete retirement catalog identity",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /separate historical module/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: separate retirement destination'",
+        "    actual: AssertionError [ERR_ASSERTION]: separate retirement destination",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /catalog module destination changed/. Input:",
+        "  'AssertionError [ERR_ASSERTION]: retirement target changed\\n' +",
+        "    actual: AssertionError [ERR_ASSERTION]: retirement target changed",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481142,
+      "name": "rules (13/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481142",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/art-feature-source-inverse.test.mjs\",\"durationMs\":20500.5107,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/potion-target-pointer-slices.test.mjs\",\"durationMs\":3179.9053,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unreviewed .* (?:added )?module destination/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: complete retirement catalog identity\\n' +\r",
+        "    actual: AssertionError [ERR_ASSERTION]: complete retirement catalog identity\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unreviewed .* (?:added )?module destination/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: complete retirement catalog identity\\n' +\r",
+        "    actual: AssertionError [ERR_ASSERTION]: complete retirement catalog identity\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /catalog module destination changed after preparation/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: retirement target changed\\n' +\r",
+        "    actual: AssertionError [ERR_ASSERTION]: retirement target changed\r",
+        "  AssertionError [ERR_ASSERTION]: current ordinary fixture budget remains 30 seconds\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481146,
+      "name": "rules (5/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481146",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/colorless-catalog-source.test.mjs\",\"durationMs\":175.0248,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/reward-query-boundary.test.mjs\",\"durationMs\":2139.9086,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r",
+        "  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r",
+        "  AssertionError [ERR_ASSERTION]: only this mutant-specific semantic assertion counts as a kill: [REWARD_BOUNDARY] Bowl owns is not Prayer Wheel: false ~= true\r",
+        "  AssertionError [ERR_ASSERTION]: only this mutant-specific semantic assertion counts as a kill: [REWARD_BOUNDARY] preview preserves skip-upgraded flag: false ~= true\r",
+        "  AssertionError [ERR_ASSERTION]: only this mutant-specific semantic assertion counts as a kill: [REWARD_BOUNDARY] every reward owner retains Bowl option: 0 ~= bowl\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481147,
+      "name": "rules (14/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481147",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/pr266-fixture-budget.test.mjs\",\"durationMs\":3856.6522,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /timeout \\?\\?= normalizedScript\\.endsWith\\('tests\\/lua\\/encounter_coverage\\.lua'\\) \\? 120000 : mapProperties \\? 120000 : fixture \\|\\| composedHost \\? 60000 : 30000;/. Input:\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481156,
+      "name": "rules (4/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481156",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/ci-posix-shards.test.mjs\",\"durationMs\":5906.8092,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^    needs: \\[impact, engineering-posix-shards, fast\\]\\n    if: always\\(\\)$/m. Input:\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481160,
+      "name": "engineering-posix (8/13)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481160",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/battle-ui-slices.test.mjs\",\"durationMs\":119683.474132,\"success\":false}",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /fixture \\|\\| composedHost \\? 60000 : 30000;/. Input:",
+        "##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "id": 128598481165,
+      "name": "rules (11/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481165",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/architecture-composition-format.test.mjs\",\"durationMs\":365148.4557,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/ci-windows-shards.test.mjs\",\"durationMs\":25586.9502,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/end-turn-responsibilities.test.mjs\",\"durationMs\":25478.2358,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/pr259-fixture-budget.test.mjs\",\"durationMs\":114821.2259,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: unreviewed integrated PR323 composition source: config/architecture.json\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^    needs: \\[impact, rules, fast, presentation, engineering-posix\\]\\n    if: always\\(\\)$/m. Input:\r",
+        "  AssertionError [ERR_ASSERTION]: EndTurn current owner identity\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /EndTurn current owner identity/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: combined linked owner identity: src/lua/abyss_end_turn_powers.lua'\r",
+        "    actual: AssertionError [ERR_ASSERTION]: combined linked owner identity: src/lua/abyss_end_turn_powers.lua\r",
+        "  AssertionError [ERR_ASSERTION]: raw discovery keeps the original default 30s budget; these files have no timeout exception\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481171,
+      "name": "rules (7/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481171",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/card-origin-source-inverse.test.mjs\",\"durationMs\":4863.6497,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/power-shop-boundaries.test.mjs\",\"durationMs\":63906.8828,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/relic-query-source-inverse.test.mjs\",\"durationMs\":240497.5256,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Power\\/Shop linked owner/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json'\r",
+        "    actual: AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /linked reader/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: linked owner reader\\n' +\r",
+        "    actual: AssertionError [ERR_ASSERTION]: linked owner reader\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481183,
+      "name": "rules (12/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481183",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/defect-plan-responsibilities.test.mjs\",\"durationMs\":28266.9394,\"success\":false}\r",
+        "CI_FILE_TIMING {\"file\":\"tests/watcher-final-execution.test.mjs\",\"durationMs\":66011.7415,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: Defect plan linked owner identity\r",
+        "  AssertionError [ERR_ASSERTION]: Watcher execution linked owner identity\r",
+        "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\watcher-crlf-3XDiXk\\epochs\\watcher\\tests\\helpers\\watcher-final-execution-source-inverse.mjs' imported from C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\watcher-crlf-3XDiXk\\watcher-final-execution-source-inverse.mjs\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    },
+    {
+      "id": 128598481201,
+      "name": "rules (10/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42437108038/job/128598481201",
+      "failures": [
+        "CI_FILE_TIMING {\"file\":\"tests/potion-callback-source.test.mjs\",\"durationMs\":304.5239,\"success\":false}\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\r",
+        "  AssertionError [ERR_ASSERTION]: potion callback linked owner identity: src/lua/abyss_relic_hooks.lua\r",
+        "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\r",
+        "    actual: AssertionError [ERR_ASSERTION]: potion callback linked owner missing: src/lua/abyss_relic_hooks.lua: potion callback linked owner identity: src/lua/abyss_run_potion_candidate.lua\r",
+        "  AssertionError [ERR_ASSERTION]: linked owner reader\r",
+        "  AssertionError [ERR_ASSERTION]: potion callback linked owner identity: src/lua/abyss_relic_hooks.lua\r",
+        "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\potion-callback-source-30WiJ7\\tests\\helpers\\epochs\\potion\\tests\\helpers\\potion-callback-source-inverse.mjs' imported from C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\potion-callback-source-30WiJ7\\tests\\helpers\\potion-callback-source-inverse.mjs\r",
+        "  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unreviewed catalog module destination/. Input:\r",
+        "  'AssertionError [ERR_ASSERTION]: complete retirement catalog identity\\n' +\r",
+        "    actual: AssertionError [ERR_ASSERTION]: complete retirement catalog identity\r",
+        "##[error]Process completed with exit code 1.\r"
+      ]
+    }
+  ]
+}

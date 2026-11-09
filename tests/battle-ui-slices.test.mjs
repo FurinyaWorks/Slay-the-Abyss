@@ -7,6 +7,7 @@ import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {runLua} from '../scripts/test-lua.mjs';
 import {originalLuaRunner} from './helpers/ci-lua-runner-inverse.mjs';
+import {preLuaTimeoutPolicySource} from './helpers/lua-timeout-policy-source-inverse.mjs';
 const read=path=>readFileSync(path,'utf8').replaceAll('\r\n','\n');
 const sha=source=>createHash('sha256').update(source).digest('hex');
 const support='tests/lua/support/battle_ui_cases.lua';
@@ -186,12 +187,34 @@ historicalTest('battle UI seed-slice guards reject skipped/overlapping seeds, lo
   assert.throws(()=>validateRunner(longer),/unchanged runner and original deadlines/);
 });
 
-test('current battle UI discovery preserves the seven wrappers and ordinary fixture budget',()=>{
+function validateCurrentRunner(source){
+  // Only the complete reviewed central policy may map back to the original
+  // fixture classification. Its helper freshly checks the policy owner too.
+  const previous=preLuaTimeoutPolicySource('scripts/test-lua.mjs',source);
+  assert.notEqual(previous,source,'complete reviewed central Lua timeout policy');
+  assert.match(previous,/fixture \|\| composedHost \? 60000 : 30000;/);
+}
+
+test('current battle UI discovery preserves the seven wrappers and central fixture budget',()=>{
   validatePartitions(slices,readWrappers());
   const discovered=readdirSync('tests/lua').filter(file=>/^battle_ui(?:_slice_\d+)?\.lua$/.test(file)).sort();
   assert.deepEqual(discovered,slices.map(([file])=>file).sort());
   const runner=read('scripts/test-lua.mjs');
-  assert.match(runner,/fixture \|\| composedHost \? 60000 : 30000;/);
+  validateCurrentRunner(runner);
+});
+
+test('current battle UI budget rejects classification drift and explicit timeout overrides',()=>{
+  const source=read('scripts/test-lua.mjs');
+  for(const [before,after]of [
+    ['luaTimeoutMs.heavy : luaTimeoutMs.default','luaTimeoutMs.default : luaTimeoutMs.default'],
+    ['fixture || composedHost','composedHost'],
+    ['timeout ??=','timeout ='],
+    ["'tests/lua/battle_ui_slice_7.lua'","'tests/lua/foreign_fixture.lua'"],
+  ]){
+    const changed=source.replace(before,after);
+    assert.notEqual(changed,source,'negative control changes actual runner: '+before);
+    assert.throws(()=>validateCurrentRunner(changed),/complete reviewed central Lua timeout policy/);
+  }
 });
 
 test('the frozen battle UI cases execute across seven slices with all six playback seeds exactly once',()=>{

@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "98fef95d047652aa6a8880241ddff28ef320a484",
+  "entry": "tests/helpers/ready-art-source-inverse.mjs",
+  "files": {
+    "tests/fixtures/art-feature-source-layer-pre379.json": {
+      "sha256": "33ad4cabfe6a3b678a7054f39975bca56e122ecc5ca2c3ad945392eb77b22afc",
+      "gitBlob": "da0152a4e755a8f89a6bdf35653167105c9a7c7e",
+      "copyFrom": "tests/fixtures/art-feature-source-layer-pre379.json"
+    },
+    "tests/fixtures/art-feature-source-layer.json": {
+      "sha256": "b2bef34f482a5eca07b74a10d5ca31f04a5256a6b3a3d249ff8597a7b5962a30",
+      "gitBlob": "35fbf9048a7358c4daaeff9b653d8bfd317828eb",
+      "copyFrom": "tests/fixtures/art-feature-source-layer.json"
+    },
+    "tests/fixtures/art-perf-source-composition.json": {
+      "sha256": "2aba05dd108700a04347a2f357c6663409f326d5e9e9a4cf050601912bd2ca4a",
+      "gitBlob": "7e562a76cbc52ab693b2d19fdea5f19446448aa9",
+      "copyFrom": "tests/fixtures/art-perf-source-composition.json"
+    },
+    "tests/fixtures/beta-integration-sources.json": {
+      "sha256": "ce3402eb178847948c88f90d785fc89cd72bb3a87f136e8be56b8c1dc36223a3",
+      "gitBlob": "9d50b5a09ed755366fcc9352dc0d57e0e4cfb7e6",
+      "copyFrom": "tests/helpers/epochs/develop/tests/fixtures/beta-integration-sources.json"
+    },
+    "tests/fixtures/beta-ui-historical-host.json": {
+      "sha256": "7c08cd9b5ba01a0495d7272335f9bc877d9bdc509f7d9d8f9c314cb898700dfd",
+      "gitBlob": "47f2525ed194ef23409b04aeb9174f3a14c1264a",
+      "copyFrom": "tests/helpers/epochs/develop/tests/fixtures/beta-ui-historical-host.json"
+    },
+    "tests/fixtures/deck-browse-source-layer.json": {
+      "sha256": "e2088cf3a33fcd27e23d97b9996cfc97c75e5da4ec5933c34507cc06dec37bf6",
+      "gitBlob": "de050159dbf8108d2ffb89333b4860d4baa80c44",
+      "copyFrom": "tests/helpers/epochs/develop/tests/fixtures/deck-browse-source-layer.json"
+    },
+    "tests/fixtures/deck-delivery-source-composition.json": {
+      "sha256": "fad6258a3cf9b8d0c1062e960ae518ba6dc338bc591a6f2192f770aa0bc8d79b",
+      "gitBlob": "047ef5ec72505c685c662be455d6bae30147a83e",
+      "copyFrom": "tests/helpers/epochs/develop/tests/fixtures/deck-delivery-source-composition.json"
+    },
+    "tests/fixtures/delivery-source-composition.json.gz": {
+      "sha256": "d7bf28b224aaec821ac215f81adcef436fff51b009c21ef8b75d50bd16c2fa4b",
+      "gitBlob": "3685da83e5bcba1e7e569c3aebb8d3f1bee6af23",
+      "copyFrom": "tests/helpers/epochs/develop/tests/fixtures/delivery-source-composition.json.gz"
+    },
+    "tests/fixtures/m3-event-delivery-source-inverse.json": {
+      "sha256": "69cd0dbe5e40f1a9d4a342e89823f7411b77b9bdca6ce15f291bb0c49db0778e",
+      "gitBlob": "8b1c64daf5a4c26bdfb0fa4ce64f4c9105223a16",
+      "copyFrom": "tests/helpers/epochs/develop/tests/fixtures/m3-event-delivery-source-inverse.json"
+    },
+    "tests/fixtures/native-monster-art-source-layer.json": {
+      "sha256": "055c8877bcc2632e7fb992acd7043049e4c218f1695f42361db6977e79ffdcaf",
+      "gitBlob": "4144323d5bb0049ecd8c5bc955f350d9377340a8",
+      "copyFrom": "tests/helpers/epochs/develop/tests/fixtures/native-monster-art-source-layer.json"
+    },
+    "tests/fixtures/pr372-integration-sources.json": {
+      "sha256": "ea2f161779f99bc4f81c25c9087eeeb911951d52b5ff85bafec112b4c9e00995",
+      "gitBlob": "1d85f1c7eebf33a17f22b5572b13cd7ffc1f5f04",
+      "copyFrom": "tests/helpers/epochs/develop/tests/fixtures/pr372-integration-sources.json"
+    },
+    "tests/fixtures/ready-art-source-layer.json": {
+      "sha256": "e0987dbe3d3c835356bcdf57208d2d4cb7fa4d360d7ba463806e76c49d29e4df",
+      "gitBlob": "57ac98b7df12a0afb708d0d96dbc0cea0612a4a0",
+      "copyFrom": "tests/fixtures/ready-art-source-layer.json"
+    },
+    "tests/fixtures/round3-catalog-source-inverse.json": {
+      "sha256": "f50e2544d9cefb702cc6dac3d7e64fd4d26bba43d5d0dd801c3e13b5e24ea1b6",
+      "gitBlob": "5f02e50e4880119815b3a8e6580316e89f69e0a6",
+      "copyFrom": "tests/helpers/epochs/develop/tests/fixtures/round3-catalog-source-inverse.json"
+    },
+    "tests/helpers/architecture-source-format.mjs": {
+      "sha256": "2d8161e42b94d1d530922f5c91f45309d49af6cc74375c7129f9d43e3b04b4f6",
+      "gitBlob": "272debdd9e1e81764cbaf0f7d1700c2d6362ca64",
+      "source": "// Pure formatting only: callers still execute every projection and proof guard.\n// Exact source strings (not parsed values/digests) distinguish all token drift.\nconst cache=new Map();\nconst tokens=text=>text.replace(/\"(?:\\\\.|[^\"\\\\])*\"|[ \\t\\r\\n]+/g,token=>token.startsWith('\"')?token:'');\nexport function architectureSourceFormat(path,source){\n const cacheable=path==='config/architecture.json'&&typeof source==='string';\n if(cacheable&&cache.has(source))return cache.get(source);\n const formatted=JSON.stringify(JSON.parse(source),null,2)+'\\n';\n const result=Object.freeze({formatted,tokensEqual:tokens(source)===tokens(formatted)});\n if(cacheable){\n  if(cache.size===8)cache.delete(cache.keys().next().value);\n  cache.set(source,result);\n }\n return result;\n}\n"
+    },
+    "tests/helpers/art-feature-source-inverse.mjs": {
+      "sha256": "309fe4a0a11095292bec1358727938e43775c4c1eebfa75c4c00952f68b4d65a",
+      "gitBlob": "525ac124bd5d4c77dc382c773a3483a92d11cc36",
+      "copyFrom": "tests/helpers/art-feature-source-inverse.mjs"
+    },
+    "tests/helpers/art-perf-source-composition.mjs": {
+      "sha256": "bd15bc30488bd4dec5ab3c5bb4d8528dcd5749970d4a1f053962d8b2f2a7cc02",
+      "gitBlob": "cb6ad5e27311e1f7c98ee63980caa244a21fbdc8",
+      "copyFrom": "tests/helpers/art-perf-source-composition.mjs"
+    },
+    "tests/helpers/beta-delivery-host-source.mjs": {
+      "sha256": "8a428637bf272a6f8719d67884beeb5526a832b2176555084635d3bf081df201",
+      "gitBlob": "0d825107865f479794395e3ed61ea841e732ddb6",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/beta-delivery-host-source.mjs"
+    },
+    "tests/helpers/beta-integration-source.mjs": {
+      "sha256": "bf0af4d1c0015da102c4bc7905677b9a14b3aa850aaa1ed7b5df2fa08897c48c",
+      "gitBlob": "1ae39c95d6f5450940bdd41c47638f57505d49aa",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/beta-integration-source.mjs"
+    },
+    "tests/helpers/deck-browse-source-inverse.mjs": {
+      "sha256": "5e65f32dc1214b4c153996957e4e9f5d7a908746c025de8244f84dc44e426bf9",
+      "gitBlob": "c3ca1c6ac70ee69a677d7316a844c50bbda5c23b",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/deck-browse-source-inverse.mjs"
+    },
+    "tests/helpers/deck-delivery-source-composition.mjs": {
+      "sha256": "ff9fdcad0020bd2d8002f860d8c6e495a7d3e4f915c99501e3e9d1407a3fc5cb",
+      "gitBlob": "3bd54a42a1c2813e18f7a63872aa93659d823545",
+      "source": "// Exact M4/delivery branch composition; old archives remain immutable.\nimport assert from 'node:assert/strict';\nimport {readFileSync} from 'node:fs';\nimport {createHash} from 'node:crypto';\nimport {deepFreezeSourceProof} from './pure-source-projection-cache.mjs';\nconst normalize=s=>s.replaceAll('\\r\\n','\\n');\nconst hash=s=>createHash('sha256').update(s).digest('hex');\nconst blob=s=>createHash('sha1').update(`blob ${Buffer.byteLength(s)}\\0`).update(s).digest('hex');\nconst bytes=normalize(readFileSync(new URL('../fixtures/deck-delivery-source-composition.json',import.meta.url),'utf8'));\nassert.equal(hash(bytes),'fad6258a3cf9b8d0c1062e960ae518ba6dc338bc591a6f2192f770aa0bc8d79b');\nexport const deckDeliveryProof=deepFreezeSourceProof(JSON.parse(bytes));\nconst proof=deckDeliveryProof;\nassert.equal(proof.schemaVersion,1);assert.deepEqual(Object.keys(proof.targets),['delivery','deck']);\nassert.equal(proof.targets.delivery.beforeCommit,'9c2067547cb378fb33827f63d54cf6394ef32f12');\nassert.equal(proof.targets.delivery.afterCommit,'8504ac73f5cd6bff760e5abc234eacfec7c4ee7e');\nassert.equal(proof.targets.deck.beforeCommit,'24fd070167d433fa6cbbb0c54d8844795b0c5608');\nexport const deckDeliveryPaths=Object.freeze(Object.keys(proof.targets.delivery.files));\nassert.equal(deckDeliveryPaths.length,7);\nassert.deepEqual(deckDeliveryPaths,[...deckDeliveryPaths].sort());\nfor(const target of Object.values(proof.targets))for(const [path,b]of Object.entries(target.files)){\n assert.ok(deckDeliveryPaths.includes(path));assert.match(b.beforeSha256,/^[a-f0-9]{64}$/);assert.match(b.afterSha256,/^[a-f0-9]{64}$/);\n assert.equal(b.afterSha256,proof.targets.delivery.files[path].afterSha256,'one real integrated source per path');\n let end=0,beforeEnd=0;for(const h of b.hunks){assert.ok(Number.isSafeInteger(h.at)&&h.at>=end&&Number.isSafeInteger(h.beforeAt)&&h.beforeAt>=beforeEnd);for(const line of [...h.before,...h.after])assert.ok(typeof line==='string'&&!/[\\r\\n]/.test(line));end=h.at+h.after.length;beforeEnd=h.beforeAt+h.before.length;}\n}\nexport function preDeckDeliverySource(path,source,target='delivery',{readSource=p=>readFileSync(p,'utf8')}={}){\n assert.ok(proof.targets[target],'registered deck delivery target');\n const b=proof.targets[target].files[path];if(!b||typeof source!=='string')return source;\n const text=normalize(source);if(hash(text)!==b.afterSha256)return source;\n // Fresh linked reads are outside every existing pure-string cache.\n for(const linked of deckDeliveryPaths){let live;try{live=readSource(linked);}catch{assert.fail('deck delivery linked source missing: '+linked);}assert.equal(typeof live,'string','deck delivery linked source must exist: '+linked);assert.equal(hash(normalize(live)),proof.targets.delivery.files[linked].afterSha256,'deck delivery linked source identity: '+linked);}\n assert.equal(blob(text),b.afterGitBlob);\n const lines=text.split('\\n');assert.equal(lines.length,b.afterLines);\n for(const h of [...b.hunks].reverse()){assert.deepEqual(lines.slice(h.at,h.at+h.after.length),h.after,'exact deck delivery hunk: '+path);lines.splice(h.at,h.after.length,...h.before);}\n const old=lines.join('\\n');assert.equal(lines.length,b.beforeLines);assert.equal(hash(old),b.beforeSha256);assert.equal(blob(old),b.beforeGitBlob);\n const forward=[...lines];for(const h of [...b.hunks].reverse()){assert.deepEqual(forward.slice(h.beforeAt,h.beforeAt+h.before.length),h.before);forward.splice(h.beforeAt,h.before.length,...h.after);}\n assert.equal(forward.join('\\n'),text,'exact deck delivery forward identity');return old;\n}\n"
+    },
+    "tests/helpers/delivery-source-composition.mjs": {
+      "sha256": "588305d1e9e464ff5c06407d833ac5fb3abb8ea773d415392b3dc7bf54feeebb",
+      "gitBlob": "752a6bfff772932ab6c7f4121aaa8804f4e68370",
+      "source": "import {preDeckDeliverySource,deckDeliveryPaths} from './deck-delivery-source-composition.mjs';\nimport {gunzipSync} from 'node:zlib';\n// Exact Git composition, historical evidence only; current runtime never imports this.\nimport assert from 'node:assert/strict';\nimport {createHash} from 'node:crypto';\nimport {readFileSync,existsSync,realpathSync,writeFileSync,rmSync} from 'node:fs';\nimport {join,relative,isAbsolute} from 'node:path';\nimport {deepFreezeSourceProof} from './pure-source-projection-cache.mjs';\nconst normalize=s=>s.replaceAll('\\r\\n','\\n');\nconst hash=s=>createHash('sha256').update(s).digest('hex');\nconst blob=s=>createHash('sha1').update(`blob ${Buffer.byteLength(s)}\\0`).update(s).digest('hex');\nconst bytes=readFileSync(new URL('../fixtures/delivery-source-composition.json.gz',import.meta.url));\nassert.equal(hash(bytes),'d7bf28b224aaec821ac215f81adcef436fff51b009c21ef8b75d50bd16c2fa4b');\nexport const deliverySourceProof=deepFreezeSourceProof(JSON.parse(gunzipSync(bytes)));\nconst proof=deliverySourceProof;\nassert.equal(proof.schemaVersion,1);\nassert.deepEqual(Object.keys(proof.targets),['developEvents','develop','legacyM3','legacyMulti','legacyUiSupport','pre379']);\nfor(const [name,target]of Object.entries(proof.targets)){\n assert.match(target.beforeCommit,/^[a-f0-9]{40}$/);assert.match(target.afterCommit,/^[a-f0-9]{40}$/);\n assert.deepEqual(Object.keys(target.files),Object.keys(target.files).sort());\n for(const [path,b]of Object.entries(target.files)){\n  assert.ok(/^(?:src\\/lua\\/[^/]+\\.lua|(?:scripts|config|data|tools)\\/[A-Za-z0-9_.\\/-]+|tests\\/lua\\/support\\/(?:game_ui_fixture|battle_gesture_fixture)\\.lua)$/.test(path)&&!path.split('/').includes('..'),'relative exact source path: '+path);\n  assert.match(b.afterSha256,/^[a-f0-9]{64}$/);assert.match(b.afterGitBlob,/^[a-f0-9]{40}$/);assert.notEqual(b.beforeSha256,b.afterSha256);\n  if(b.beforeSha256===null){assert.equal(b.beforeGitBlob,null);assert.deepEqual(b.hunks,[]);}\n  else{assert.match(b.beforeSha256,/^[a-f0-9]{64}$/);assert.match(b.beforeGitBlob,/^[a-f0-9]{40}$/);}\n  let end=0,oldEnd=0;for(const h of b.hunks){\n   assert.ok(Number.isSafeInteger(h.at)&&h.at>=end&&Number.isSafeInteger(h.beforeAt)&&h.beforeAt>=oldEnd);\n   for(const line of [...h.before,...h.after])assert.ok(typeof line==='string'&&!/[\\r\\n]/.test(line));\n   end=h.at+h.after.length;oldEnd=h.beforeAt+h.before.length;\n  }\n }\n}\nconst readLive=p=>readFileSync(p,'utf8');\nfunction inverse(path,source,target){\n assert.ok(proof.targets[target],'registered integrated monster target');\n const b=proof.targets[target].files[path];if(!b||typeof source!=='string')return undefined;\n const s=normalize(source);if(hash(s)!==b.afterSha256)return undefined;\n assert.equal(blob(s),b.afterGitBlob,'complete integrated source Git blob: '+path);\n if(b.beforeSha256===null)return null;\n const lines=s.split('\\n');assert.equal(lines.length,b.afterLines);\n for(const h of [...b.hunks].reverse()){\n  assert.deepEqual(lines.slice(h.at,h.at+h.after.length),h.after,'exact integrated inverse hunk: '+path);\n  lines.splice(h.at,h.after.length,...h.before);\n }\n const prior=lines.join('\\n');assert.equal(lines.length,b.beforeLines);assert.equal(hash(prior),b.beforeSha256);assert.equal(blob(prior),b.beforeGitBlob);\n const forward=[...lines];for(const h of [...b.hunks].reverse()){\n  assert.deepEqual(forward.slice(h.beforeAt,h.beforeAt+h.before.length),h.before);forward.splice(h.beforeAt,h.before.length,...h.after);\n }\n assert.equal(forward.join('\\n'),s,'exact integrated forward source: '+path);return prior;\n}\nexport function tryDeliverySource(path,source,target,{readSource=readLive}={}){\n source=preDeckDeliverySource(path,source,'delivery',{readSource});\n const prior=inverse(path,source,target);if(prior===undefined)return undefined;\n // Every call re-reads linked owners. No cache may cover this validation.\n for(const [p,b]of Object.entries(proof.targets[target].files).filter(([,b])=>b.beforeSha256===null)){\n  const label='delivery linked source';\n  let live;try{live=readSource(p);}catch{assert.fail(label+' missing: '+p);}\n  if(target==='develop'||target==='pre379'){const projected=inverse(p,live,'developEvents');if(projected!==undefined)live=projected;}\n  if(target==='pre379'){const projected=inverse(p,live,'develop');if(projected!==undefined)live=projected;}\n  assert.equal(typeof live,'string',label+' must exist: '+p);\n  assert.equal(hash(normalize(live)),b.afterSha256,label+' identity: '+p);\n }\n return prior;\n}\nexport function preDeliveryTargetSource(path,source,target,options){\n source=preDeckDeliverySource(path,source,'delivery',options);\n const prior=tryDeliverySource(path,source,target,options);return prior===undefined?source:prior;\n}\nexport function deliveryHistoricalPaths(target){return Object.freeze([...new Set([...deckDeliveryPaths,...((target==='develop'||target==='pre379')?Object.keys(proof.targets.developEvents.files):[]),...(target==='pre379'?Object.keys(proof.targets.develop.files):[]),...Object.keys(proof.targets[target].files)])].sort());}\nexport function verifiedDeliverySources(target,{sourceRoot=process.cwd(),readSource=p=>readFileSync(join(sourceRoot,p),'utf8')}={}){\n assert.ok(target==='develop'||target==='pre379'||target==='legacyMulti');const outputs=[];\n for(const path of deliveryHistoricalPaths(target)){\n  const raw=preDeckDeliverySource(path,readSource(path),'delivery',{readSource}),outer=(target==='develop'||target==='pre379')?proof.targets.developEvents.files[path]:undefined;\n  assert.equal(typeof raw,'string','unreviewed current integrated monster source missing: '+path);\n  if(outer)assert.equal(hash(normalize(raw)),outer.afterSha256,'unreviewed current integrated monster source: '+path);\n  let source=(target==='develop'||target==='pre379')?preDeliveryTargetSource(path,raw,'developEvents',{readSource}):raw;\n  if(target==='pre379'){const middle=proof.targets.develop.files[path];if(middle){assert.equal(typeof source,'string','unreviewed current delivery middle source missing: '+path);assert.equal(hash(normalize(source)),middle.afterSha256,'unreviewed current delivery middle source: '+path);}source=preDeliveryTargetSource(path,source,'develop',{readSource});}\n  const inner=proof.targets[target].files[path];\n  if(inner){assert.equal(typeof source,'string','integrated prior existence: '+path);assert.equal(hash(normalize(source)),inner.afterSha256,'unreviewed current integrated monster source: '+path);source=preDeliveryTargetSource(path,source,target,{readSource});}\n  outputs.push([path,source]);\n }\n return outputs;\n}\nexport function materializeBeforeDelivery(directory,{sourceRoot=process.cwd()}={}){\n const destination=realpathSync(directory),live=realpathSync(sourceRoot);assert.notEqual(destination,live,'integrated replay requires separate historical destination');\n const outputs=verifiedDeliverySources('pre379',{sourceRoot});\n for(const [path,source]of outputs){\n  const target=join(directory,path);if(!existsSync(target))continue;\n  const actual=realpathSync(target),within=relative(destination,actual);\n  assert.ok(within&&!within.startsWith('..')&&!isAbsolute(within),'integrated destination stays in isolated copy');\n  assert.notEqual(actual,realpathSync(join(sourceRoot,path)),'integrated destination cannot alias live source');\n  const readSource=p=>readFileSync(join(sourceRoot,p),'utf8');\n  const digest=hash(normalize(preDeckDeliverySource(path,readFileSync(target,'utf8'),'delivery',{readSource}))),raw=hash(normalize(preDeckDeliverySource(path,readSource(path),'delivery',{readSource})));\n  assert.ok(digest===raw||(source!==null&&digest===hash(normalize(source))),'unreviewed integrated destination: '+path);\n }\n for(const [path,source]of outputs){const target=join(directory,path);if(!existsSync(target))continue;if(source===null)rmSync(target);else writeFileSync(target,source);}\n}\n\nexport function preDeliverySource(path,source,options){return preDeliveryTargetSource(path,preDeliveryTargetSource(path,source,'developEvents',options),'develop',options);}\nexport const preLegacyM3Source=(path,source,options)=>preDeliveryTargetSource(path,source,'legacyM3',options);\nexport const preLegacyMultiSource=(path,source,options)=>preDeliveryTargetSource(path,source,'legacyMulti',options);\nexport const preLegacyUiSupportSource=(path,source,options)=>preDeliveryTargetSource(path,source,'legacyUiSupport',options);\n\nexport const preAcceptedDevelopSource=(path,source,options)=>preDeliveryTargetSource(path,preDeliverySource(path,source,options),'pre379',options);\n"
+    },
+    "tests/helpers/exact-fixture-hunks.mjs": {
+      "sha256": "83f9cb15d9d745c86c555a77875b6b2bfc283a12ec380bcd2af518aa6526a935",
+      "gitBlob": "89cbfde83fbd4fc5a48c01baa820cb7cfa7af1d7",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/exact-fixture-hunks.mjs"
+    },
+    "tests/helpers/m3-event-delivery-source-inverse.mjs": {
+      "sha256": "000a1df0692b24e3a3c90125438420e97d2acf40eca9247874abf61777e1ab98",
+      "gitBlob": "297e7c7ca1119014bb3a9e9c2701c6b5c0767299",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/m3-event-delivery-source-inverse.mjs"
+    },
+    "tests/helpers/native-monster-art-source-inverse.mjs": {
+      "sha256": "03ce81392c45cf31e91d11e1f4262bf83980b091deed6c6bae836efe32edab43",
+      "gitBlob": "88cab488d487cf1b227470e0ce864af58f549dde",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/native-monster-art-source-inverse.mjs"
+    },
+    "tests/helpers/pr372-integration-source.mjs": {
+      "sha256": "20fd7930a62b31e09faf267bf9f011dda290207363e0a83554e064d40e6f31f9",
+      "gitBlob": "84c6ab0036ecbf90e004880a6014433543b3d1a4",
+      "source": "import {preBetaSource,prepareBetaRetirement} from './beta-integration-source.mjs';\nimport {preDeckBrowseSource} from './deck-browse-source-inverse.mjs';\nimport {preAcceptedDevelopSource} from './delivery-source-composition.mjs';\n// Exact test-only projection of the reviewed combined slice. Runtime never imports this.\nimport assert from 'node:assert/strict';\nimport {readFileSync,existsSync,rmSync} from 'node:fs';\nimport {join,resolve} from 'node:path';\nimport {createHash} from 'node:crypto';\nconst hash=s=>createHash('sha256').update(s).digest('hex');\nconst bytes=readFileSync(new URL('../fixtures/pr372-integration-sources.json',import.meta.url),'utf8').replaceAll('\\r\\n','\\n');\nassert.equal(hash(bytes),'ea2f161779f99bc4f81c25c9087eeeb911951d52b5ff85bafec112b4c9e00995','complete combined source identity');\nexport const integrationSources=JSON.parse(bytes).sources;\nexport function preIntegrationSource(path,source,target='base',{readSource=path=>readFileSync(path,'utf8')}={}){\n if(target==='feature379')return preBetaSource(path,source,target,{readSource});\n source=preBetaSource(path,source,'history',{readSource});\n source=preAcceptedDevelopSource(path,source,{readSource});\n source=preDeckBrowseSource(path,source);\n source=preAcceptedDevelopSource(path,source,{readSource});\n const binding=integrationSources[path];\n if(!binding||typeof source!=='string')return source;\n const normalized=source.replaceAll('\\r\\n','\\n');\n if(hash(normalized)!==binding.sha256||!Object.hasOwn(binding.targets,target))return source;\n for(const [linked,b] of Object.entries(integrationSources)){\n  if(linked.startsWith('src/lua/')&&b.targets.base?.absent===true){\n   const current=preAcceptedDevelopSource(linked,readSource(linked),{readSource}).replaceAll('\\r\\n','\\n');\n   assert.equal(hash(current),b.sha256,'unreviewed combined linked module: '+linked);\n  }\n }\n const prior=binding.targets[target];\n if(prior.absent)return null;\n const lines=normalized.split('\\n');\n for(const h of [...prior.hunks].reverse()){\n  assert.deepEqual(lines.slice(h.at,h.at+h.current.length),h.current,'exact combined source hunk: '+path);\n  lines.splice(h.at,h.current.length,...h.prior);\n }\n const previous=lines.join('\\n');\n assert.equal(hash(previous),prior.sha256,'complete target source: '+path);\n return previous;\n}\nexport function prepareIntegrationRetirement(directory,{sourceRoot=process.cwd()}={}){\n const retireBeta=prepareBetaRetirement(directory,{sourceRoot});\n assert.notEqual(resolve(directory),resolve(sourceRoot),'integration retirement requires separate destination');\n const targets=[];\n for(const [path,b] of Object.entries(integrationSources)){\n  if(!path.startsWith('src/lua/')||b.targets.base?.absent!==true)continue;\n  const target=join(directory,path);if(!existsSync(target))continue;\n  assert.equal(hash(preAcceptedDevelopSource(path,readFileSync(target,'utf8'),{readSource:p=>readFileSync(join(sourceRoot,p),'utf8')}).replaceAll('\\r\\n','\\n')),b.sha256,'unreviewed integration module: '+path);targets.push(target);\n }\n return ()=>{prepareBetaRetirement(directory,{sourceRoot});retireBeta();for(const target of targets)if(existsSync(target))rmSync(target);};\n}\n"
+    },
+    "tests/helpers/pure-source-projection-cache.mjs": {
+      "sha256": "e7658ec3b511c667240290e01e0c302aba7ed7882bd32fb1adb883f600e04024",
+      "gitBlob": "b4aa134dbb688420d401e8c7c8d56b056524ad50",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/pure-source-projection-cache.mjs"
+    },
+    "tests/helpers/ready-art-source-inverse.mjs": {
+      "sha256": "eb020d6c59151f4e5d3905e33e485f3eece47bcf2e1a0039c232cff368099d50",
+      "gitBlob": "fcf143e52c66e7c57fa6d68638883bc318d699b4",
+      "copyFrom": "tests/helpers/ready-art-source-inverse.mjs"
+    },
+    "tests/helpers/relic-art-composition.json": {
+      "sha256": "68a179c3f7e63fc77b5944618e089c83d6f72a762775ca1a270a12c61597a77e",
+      "gitBlob": "5d3df125050bb3cbbbf6e9d4d1d2a009bcc3404c",
+      "copyFrom": "tests/helpers/relic-art-composition.json"
+    },
+    "tests/helpers/relic-art-composition.mjs": {
+      "sha256": "184152f116edf69b89e1b611227f72868933373d3ee18f8e3a9ab6edb093b93c",
+      "gitBlob": "64ec59108d3efa85f8a678bcc552ea2e37e88c69",
+      "copyFrom": "tests/helpers/relic-art-composition.mjs"
+    },
+    "tests/helpers/relic-art-feature-composition.json": {
+      "sha256": "857ac2e1af7f46acba4fadc750762f1093935cde8849a7586bf96309ca70eb1a",
+      "gitBlob": "ee5a8a817d080ec23c1e334c0a85c8cd2a05e895",
+      "copyFrom": "tests/helpers/relic-art-feature-composition.json"
+    },
+    "tests/helpers/relic-art-feature-composition.mjs": {
+      "sha256": "45c8bc1725aaf34cc6e990a21a85803ef14faf1dac9aa43b6de04c61a303889c",
+      "gitBlob": "320cbb55949d97f0262572f360e9f804308c1568",
+      "copyFrom": "tests/helpers/relic-art-feature-composition.mjs"
+    },
+    "tests/helpers/relic-round3-composition.json": {
+      "sha256": "2e3f3f551f1c99b39b6c8028ce2abea49ed33a1e8b6c11097898e2145ff02736",
+      "gitBlob": "501cee4995195133819782c9f236a1ef0c23cd9d",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/relic-round3-composition.json"
+    },
+    "tests/helpers/relic-round3-composition.mjs": {
+      "sha256": "7b65d3d55254d6539f895e2e6ac6c711748f8adbe80d96655086b8e9be976fed",
+      "gitBlob": "8ced80178e119633ea10543d01bade062c27d894",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/relic-round3-composition.mjs"
+    },
+    "tests/helpers/round3-catalog-source-inverse.mjs": {
+      "sha256": "e7c9b7c5de1313b8e112d98734ebd4a037fb022338ed05a26fbcebd70fcc0e65",
+      "gitBlob": "09f18838abf8bd65bb6e936f3df3358ac46fc6ba",
+      "copyFrom": "tests/helpers/epochs/develop/tests/helpers/round3-catalog-source-inverse.mjs"
+    }
+  }
+}

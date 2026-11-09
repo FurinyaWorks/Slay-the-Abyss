@@ -1,0 +1,170 @@
+{
+  "scope": "Formation + POSIX15 integration of the two assigned CI conflict files only; new receipts are supplemental and never relabel old failures. No production or immutable source archive edited by this worker.",
+  "parents": [
+    "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+    "841510b78172b923b1a613216b5c3dcb2c3e062e"
+  ],
+  "finalTestAndHelperSha256": {
+    "tests/ci-complete-calibration.test.mjs": "a70cb7de0706d174236a3fd38e74b1ccf4cfaa192c894cdd063ae77afaff5bed",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "ff1d0e926b39ec357a3dc99936c6f4022bbfc567be285decf90b84e44521e720"
+  },
+  "finalContractTestCount": 42,
+  "selectedCompleteFiles": 23,
+  "selectedResult": {
+    "tests": 245,
+    "pass": 245,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 101267.758538
+  },
+  "selectedReceipt": "docs/evidence/m7-formation-posix15-20261109/ci-selected-complete-receipt.json.gz",
+  "beforeAfterVerificationInputCount": 3576,
+  "verificationInputsUnchangedDuringRun": true,
+  "finalVerificationInputBinding": {
+    "currentUnchangedInputs": 3575,
+    "executedRunner": "docs/evidence/m7-formation-posix15-20261109/ci-verify.py",
+    "executedRunnerSourceArchive": "docs/evidence/m7-formation-posix15-20261109/ci-verify-executed-source.py.gz",
+    "executedRunnerSourceSha256": "17b7032130a00dbbd4507d71142deef4676bbd8c7a1f49ae1bdfb115d3485794",
+    "replayRunnerChange": "Only CLI output-directory selection and fail-if-existing protection changed after the successful run. The exact executed script bytes remain in the archive; no tested code changed."
+  },
+  "firstCombinationResult": {
+    "tests": 41,
+    "pass": 39,
+    "fail": 2,
+    "cancelled": 0,
+    "skipped": 0,
+    "log": "docs/evidence/m7-formation-posix15-20261109/ci-initial-combination-failure.log.gz",
+    "reason": "Old POSIX15 current-inventory expectations required explicit historical797 projection and new combined800 assertion. Both old797 forecasts remain asserted exactly."
+  },
+  "retainedOriginalFailures": [
+    {
+      "commit": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+      "path": "docs/evidence/m7-formation-20261109/ci-calibration-receipt.json",
+      "sha256": "344cd2c14aafb4d6993f35a0aaccc8b09d48902aa5f1c56cab04c08351b4c2c0",
+      "unchanged": true
+    },
+    {
+      "commit": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+      "path": "docs/evidence/m7-formation-20261109/ci-calibration.log.gz",
+      "sha256": "a990cd81ac6da5842ebcb9bf7d07bad6e0c55c93215502d9125be43c646e2117",
+      "unchanged": true
+    },
+    {
+      "commit": "841510b78172b923b1a613216b5c3dcb2c3e062e",
+      "path": "docs/evidence/m7-defect-cost-20261109/initial-ci-tools-failed.log.gz",
+      "sha256": "668adc5f24835d3ab344ea7768b65dc54933b4c669007c0a38ee3d12e3d49716",
+      "unchanged": true
+    },
+    {
+      "commit": "841510b78172b923b1a613216b5c3dcb2c3e062e",
+      "path": "docs/evidence/m7-defect-cost-20261109/broad-ci-tools-pwsh-missing.log.gz",
+      "sha256": "7fc36e745b38ec1f0788febed19e432425f15bab9c6ae879b33ed45a602ee361",
+      "unchanged": true
+    }
+  ],
+  "projection": {
+    "completeHistoricalSources": 28,
+    "exportedFunctionComparisons": 4370,
+    "completeCurrentTextInputs": 3488,
+    "completeCurrentTextComparisons": 6976,
+    "comparisonReplayIdentical": true,
+    "allCurrentTextBeforeAfterHashesMatched": true,
+    "downstreamTestFiles": 91,
+    "receipt": "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-replay-receipt.json.gz",
+    "boundary": "Equivalence proof only, not a 91-file execution claim"
+  },
+  "completePlanning": {
+    "original797": [
+      {
+        "platform": "win32",
+        "count": 17,
+        "forecastMs": 1791774,
+        "budgetMs": 1800000,
+        "headroomMs": 8226,
+        "totalPlannedJsMs": 18915702
+      },
+      {
+        "platform": "linux",
+        "count": 14,
+        "forecastMs": 1202485,
+        "budgetMs": 1200000,
+        "headroomMs": -2485,
+        "totalPlannedJsMs": 15994730
+      },
+      {
+        "platform": "linux",
+        "count": 15,
+        "forecastMs": 1126323,
+        "budgetMs": 1200000,
+        "headroomMs": 73677,
+        "totalPlannedJsMs": 15994730
+      }
+    ],
+    "combined800": [
+      {
+        "platform": "win32",
+        "count": 17,
+        "forecastMs": 1794163,
+        "budgetMs": 1800000,
+        "headroomMs": 5837,
+        "totalPlannedJsMs": 18953044
+      },
+      {
+        "platform": "linux",
+        "count": 14,
+        "forecastMs": 1205156,
+        "budgetMs": 1200000,
+        "headroomMs": -5156,
+        "totalPlannedJsMs": 16032072
+      },
+      {
+        "platform": "linux",
+        "count": 15,
+        "forecastMs": 1128812,
+        "budgetMs": 1200000,
+        "headroomMs": 71188,
+        "totalPlannedJsMs": 16032072
+      }
+    ],
+    "luaInventory": 1410,
+    "fullJobs": 37,
+    "windowsShards": 17,
+    "posixShards": 15,
+    "maxParallel": 12,
+    "luaWorkers": 2,
+    "reserveMs": 60000,
+    "unknownJsMs": 10000,
+    "oldFloors": 30,
+    "combinedFloors": 32,
+    "receipt": "docs/evidence/m7-formation-posix15-20261109/ci-planning-replay-receipt.json.gz"
+  },
+  "notRun": [
+    "Hosted Windows/POSIX Full37",
+    "Unchanged PowerShell ci-downloads suite, original #574 failure retained; pwsh not installed",
+    "Broad 91-file transitive source closure",
+    "Formation behavior/source expensive VMs: inputs authenticated instead; saved complete runs are not current reruns"
+  ],
+  "actualFullPassClaim": false,
+  "artifacts": {
+    "docs/evidence/m7-formation-posix15-20261109/ci-initial-combination-failure.json": "93dfd12b957611f8d551ab52419575bf22fe02c5ef20f15b0ecb7aaa88afcae5",
+    "docs/evidence/m7-formation-posix15-20261109/ci-initial-combination-failure.log.gz": "8a749b48fd37bd824f512168d81308121a5a406986e04cec92fd50627e5ca393",
+    "docs/evidence/m7-formation-posix15-20261109/ci-initial-conflict-failure.json": "eb7bc34cc300c420449aea407953c136f580aba4288574f2ad23d15cdb9102a8",
+    "docs/evidence/m7-formation-posix15-20261109/ci-initial-conflict-failure.log.gz": "2f092b5c93c77875a7bab8d89199f3b90c118fdb47d5bb63512bf552f2ccbcd8",
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning-receipt.json.gz": "400c92417476f6341caeafae5739908fca314224871b7496e1fa0fa70b4f9669",
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning-replay-receipt.json.gz": "400c92417476f6341caeafae5739908fca314224871b7496e1fa0fa70b4f9669",
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning-replay.log": "6508c8e816fcc1d857dfd5cb1135fc5eabf3c032e52d59940b76ffe49ef3d1fe",
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning.log": "f09fb97c66811cf9acf970dd683fbf6f1f6ddc55a1380f54f3b5680c7b4bd88e",
+    "docs/evidence/m7-formation-posix15-20261109/ci-planning.mjs": "a7d8b3fa48815a15c813e128a8aa7779d4fde5e8cae94a7a20620bad74231ac1",
+    "docs/evidence/m7-formation-posix15-20261109/ci-selected-complete-receipt.json.gz": "00a06f5abed588dd94e69999ee612aadbad8bb48396537cc535dfc5d0ae3ac57",
+    "docs/evidence/m7-formation-posix15-20261109/ci-selected-complete.log.gz": "867ccd85f3daaa3839870fe869a35d3011131789d6105554763f64f9c6f46e3f",
+    "docs/evidence/m7-formation-posix15-20261109/ci-verify-executed-source.py.gz": "44f54c28cb1f59bbe331356a3fe55f18917fb50ee5d23c380836aba327498a82",
+    "docs/evidence/m7-formation-posix15-20261109/ci-verify.py": "eb3ba0fee6243be02b6fc1152e2061814ccc9fb98bb46ab41be9237446b3cc37",
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-receipt.json.gz": "2b444d4623366762436120bb752037ccb54374b4749f8aefdf5f3ce558564356",
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-replay-receipt.json.gz": "6781dbf81e44dd9ebc6b8d52ee8fbd25c856b4f9ef26eae90ba6b6dcbeb41f20",
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-replay.log": "05d99de70c0b8f435c169cc61c35c8b6c2bc052dcb6f9288ea33504e2eab3dbc",
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence.log": "2df4a9f2e577fd2f421819766cdd0ef05ce36cd5d31316cbfe9ee8bd59978e3c",
+    "docs/evidence/m7-formation-posix15-20261109/projection-equivalence.mjs": "482bfb9950eb8443dab1cf85e80606037c2b434762cf4d3a1d5932c41947d863"
+  }
+}

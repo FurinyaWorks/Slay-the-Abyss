@@ -1,4 +1,9 @@
-import {prePartialCasePlanningSource,partialCasePlanningFloors,originalPlanningSource,preGameUiLocalPlanningSource,gameUiLocalPlanningKey,gameUiLocalPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
+import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
+import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
+import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
+import {relicEquipPlanningKey,relicEquipPlanningFloor} from './helpers/relic-equip-ci-source-inverse.mjs';
+import {preCombinedPlanningSource,preSilentTacticsPlanningSource,silentTacticsPlanningKey,silentTacticsPlanningFloor,preEffectsTargetGroupPlanningSource,effectsTargetGroupPlanningKey,effectsTargetGroupPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
+import {preWatcherFlowPlanningSource,watcherFlowPlanningKey,watcherFlowPlanningFloor,prePartialCasePlanningSource,partialCasePlanningFloors,originalPlanningSource,preGameUiLocalPlanningSource,gameUiLocalPlanningKey,gameUiLocalPlanningFloor} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciEpoch} from './helpers/integration-ci-epochs.mjs';
 import {potionCallbackFloorKey,verifiedPotionCallbackFloor,prePotionCallbackPlanningSource} from './helpers/potion-callback-planning.mjs';
 import {endTurnFloorKey,verifiedEndTurnFloor} from './helpers/end-turn-planning.mjs';
@@ -20,6 +25,7 @@ import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { gunzipSync } from 'node:zlib';
 import { originalLuaRunner } from './helpers/ci-lua-runner-inverse.mjs';
 import {readBeforeMobileQaSource} from './helpers/mobile-qa-source-inverse.mjs';
 import { partition, jsShard, jsPlanningWeights, discoverJs, timings } from '../scripts/ci-shards.mjs';
@@ -229,6 +235,22 @@ test('current timing records preserve all measured corrections without duplicate
   }else if(file===classPotionPlanningKey){
    assert.deepEqual(entry,classPotionPlanningFloor);assert.equal(entry.durationMs,180000);
    assert.ok(entry.durationMs>=162004.675552,'retain conservative full-file local planning floor');
+  }else if(Object.hasOwn(encounterFormationPlanningFloors,file)){
+   assert.deepEqual(entry,encounterFormationPlanningFloors[file]);
+  }else if(Object.hasOwn(defectFinalPlanningFloors,file)){
+   assert.deepEqual(entry,defectFinalPlanningFloors[file]);
+  }else if(file===silentFinalSourcePlanningKey){
+   assert.deepEqual(entry,silentFinalSourcePlanningFloor);
+  }else if(file===silentFinalPlanningKey){
+   assert.deepEqual(entry,silentFinalPlanningFloor);
+  }else if(file===relicEquipPlanningKey){
+   assert.deepEqual(entry,relicEquipPlanningFloor);
+  }else if(file===silentTacticsPlanningKey){
+   assert.deepEqual(entry,silentTacticsPlanningFloor);
+  }else if(file===effectsTargetGroupPlanningKey){
+   assert.deepEqual(entry,effectsTargetGroupPlanningFloor);
+  }else if(file===watcherFlowPlanningKey){
+   assert.deepEqual(entry,watcherFlowPlanningFloor);assert.equal(entry.durationMs,55668);
   }else if(file===watcherPlanningKey){
    assert.deepEqual(entry,watcherPlanningFloor);assert.equal(entry.durationMs,30000);
    assert.ok(entry.durationMs>=21763.220989+1218.265678);
@@ -237,7 +259,7 @@ test('current timing records preserve all measured corrections without duplicate
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,22);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 
@@ -315,8 +337,39 @@ test('complete local Game UI run raises only its planning floor and preserves ev
  assert.equal(Number(log.match(/ℹ duration_ms ([\d.]+)/)[1]),receipt.nodeReportedDurationMs);
  assert.equal(receipt.nodeReportedDurationMs,77214.241194);assert.equal(floor.nodeReportedDurationMs,receipt.nodeReportedDurationMs);
  assert.equal(floor.durationMs,Math.ceil(receipt.nodeReportedDurationMs));assert.equal(receipt.planningFloorMs,floor.durationMs);
- assert.equal(receipt.sourceIdentity.files[key],hash(readFileSync(key)));
- const path='scripts/ci-test-timings.json',source=prePartialCasePlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),prior=preGameUiLocalPlanningSource(path,source);
+ // This receipt measured an uncommitted candidate based on #560, not today's
+ // test. Commit 3205985a later retained all 346 recorded input hashes exactly.
+ // Keep its complete measured test as data; the current Game UI suite still
+ // executes independently, including the combined-retirement regression.
+ const archive=readFileSync('tests/fixtures/game-ui-planning-historical-source.json.gz');
+ assert.equal(hash(archive),'be2f351b3cf80f6c10928308863b7f4f3bf0d3a729cb892923651995de75bcd5');
+ const historical=JSON.parse(gunzipSync(archive));
+ const identity={schemaVersion:1,sourceCommit:'3205985a38e0eb88ab6f894e74fe68c3e3789131',sourceTree:'4f11016d4badfa25024645c0a65e49b2a11aa94d',baseCommit:'a0c35db8d3c7242437f4dff0df373749b0d84985',file:key,sourceSha256:'bf6e9f1bb709548f1185f13120512a8c7e8411cfef92bd290982fe1724ef17f0',gitBlob:'05b38520531db07556dde3f1fd3a1ab1deb8b595'};
+ const gitBlob=bytes=>createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
+ function assertHistoricalSource(binding,observation=receipt){
+  const {source,...metadata}=binding;assert.deepEqual(metadata,identity,'exact measured candidate, distinct from its #560 base');
+  assert.equal(typeof source,'string');const bytes=Buffer.from(source);
+  assert.equal(hash(bytes),identity.sourceSha256,'complete original measured test bytes');
+  assert.equal(gitBlob(bytes),identity.gitBlob,'original measured test Git blob');
+  assert.equal(observation.file,key);assert.equal(observation.sourceIdentity.baseHead,identity.baseCommit);
+  assert.equal(observation.sourceIdentity.files[key],hash(bytes),'receipt authenticates the historical source, never a newer test');
+ }
+ assertHistoricalSource(historical);
+ const caseNames=[...historical.source.matchAll(/^test\('([^']+)'/gm)].map(match=>match[1]);
+ assert.equal(caseNames.length,receipt.tests);
+ for(const name of caseNames)assert.ok(log.includes('✔ '+name+' ('),'each measured historical case remains in the original log');
+ for(const source of [readFileSync(key,'utf8'),historical.source+'\n',historical.source.replace('originalReads,paths.length*paths.length*2','originalReads,0')]){
+  assert.notEqual(source,historical.source);
+  assert.throws(()=>assertHistoricalSource({...historical,source}),/original measured test bytes/);
+  const bytes=Buffer.from(source);
+  assert.throws(()=>assertHistoricalSource({...historical,source,sourceSha256:hash(bytes),gitBlob:gitBlob(bytes)}),/exact measured candidate/);
+ }
+ for(const field of ['sourceCommit','sourceTree','baseCommit','file','sourceSha256','gitBlob'])
+  assert.throws(()=>assertHistoricalSource({...historical,[field]:field==='sourceCommit'?identity.baseCommit:'wrong source'}),/exact measured candidate/);
+ for(const mutate of [r=>r.file='tests/other.test.mjs',r=>r.sourceIdentity.baseHead=identity.sourceCommit,r=>r.sourceIdentity.files[key]=hash(readFileSync(key))]){
+  const wrong=structuredClone(receipt);mutate(wrong);assert.throws(()=>assertHistoricalSource(historical,wrong));
+ }
+ const path='scripts/ci-test-timings.json',source=prePartialCasePlanningSource(path,preCombinedPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'))),prior=preGameUiLocalPlanningSource(path,source);
  assert.notEqual(source,prior);const old=JSON.parse(prior),expected=structuredClone(old);
  assert.equal(Object.keys(old.jsPlanning.localLowerBounds).length,19);assert.equal(old.jsPlanning.localLowerBounds[key],undefined);
  expected.jsPlanning.localLowerBounds[key]=floor;
@@ -355,7 +408,7 @@ test('partial successful source cases provide lower bounds without claiming thei
   assert.equal(floor.durationMs,Math.ceil(observation.durationMs));assert.equal(observation.planningFloorMs,floor.durationMs);
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,floor.durationMs));
  }
- const path='scripts/ci-test-timings.json',source=readFileSync(path,'utf8').replaceAll('\r\n','\n'),prior=prePartialCasePlanningSource(path,source);
+ const path='scripts/ci-test-timings.json',source=preCombinedPlanningSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),prior=prePartialCasePlanningSource(path,source);
  assert.notEqual(prior,source);const expected=JSON.parse(prior);
  assert.equal(Object.keys(expected.jsPlanning.localLowerBounds).length,20);
  for(const key of keys)assert.equal(expected.jsPlanning.localLowerBounds[key],undefined);

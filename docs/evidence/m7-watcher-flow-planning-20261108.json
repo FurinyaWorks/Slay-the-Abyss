@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "status": "local_slice_pass_source_integration_pending",
+  "baseSha": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "productionSha256": "019fc60e728ffad81405b24323545b05718f452ae20c756f67fc6f56ce9e0217",
+  "metrics": {
+    "before": {
+      "modules": 338,
+      "measurements": 5555,
+      "over15": 216,
+      "over30": 40,
+      "max": 61,
+      "warnings": 14,
+      "cycles": [
+        {
+          "members": 68,
+          "edges": 513,
+          "pairs": 324
+        },
+        {
+          "members": 11,
+          "edges": 44,
+          "pairs": 26
+        },
+        {
+          "members": 2,
+          "edges": 2,
+          "pairs": 2
+        }
+      ],
+      "flow": [
+        {
+          "name": "M.withCards",
+          "cc": 32
+        },
+        {
+          "name": "M.planEffect",
+          "cc": 32
+        }
+      ]
+    },
+    "after": {
+      "modules": 338,
+      "measurements": 5560,
+      "over15": 215,
+      "over30": 39,
+      "max": 61,
+      "warnings": 14,
+      "cycles": [
+        {
+          "members": 68,
+          "edges": 513,
+          "pairs": 324
+        },
+        {
+          "members": 11,
+          "edges": 44,
+          "pairs": 26
+        },
+        {
+          "members": 2,
+          "edges": 2,
+          "pairs": 2
+        }
+      ],
+      "flow": [
+        {
+          "name": "M.withCards",
+          "cc": 32
+        },
+        {
+          "name": "planDamage",
+          "cc": 6
+        },
+        {
+          "name": "planStance",
+          "cc": 3
+        },
+        {
+          "name": "planCollect",
+          "cc": 8
+        },
+        {
+          "name": "planPower",
+          "cc": 6
+        },
+        {
+          "name": "planRecall",
+          "cc": 5
+        },
+        {
+          "name": "M.planEffect",
+          "cc": 12
+        }
+      ]
+    }
+  },
+  "completeGraph": {
+    "status": 0,
+    "error": null,
+    "checkpoints": 668,
+    "graphBytes": 2015159,
+    "logs": [
+      "WATCHER_FLOW_PLANNING_PASS 334"
+    ],
+    "completeOutputSha256": "f9eb29dd949521297574298f0df28a9e135ff26ff6d6de82e5f1ba1dd1eb401e"
+  },
+  "targeted": {
+    "tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 51775.185427,
+    "semanticMutationsKilled": 6,
+    "realCombatCasesEachVm": 28
+  },
+  "independentReview": {
+    "reviewId": "audit_unclaimed_m7_slice/watcher-flow-local",
+    "conclusion": "pass_local_slice_not_merge_ready",
+    "cases": 137,
+    "reviewedFiles": {
+      "src/lua/abyss_watcher_flow_cards.lua": "019fc60e728ffad81405b24323545b05718f452ae20c756f67fc6f56ce9e0217",
+      "scripts/check-lua-static.mjs": "c90c522a35efa86a444d973d6c90d0e42c7e02cc4bd1d4a49e5e94fdd331fa51",
+      "tests/watcher-flow-planning.test.mjs": "a23aa69433998b6426a40a79f256c23f8c4bc813b3fd6ea28bad9b2e36f763c1",
+      "tests/lua/watcher_flow_planning.lua": "a3442d79c37d19024ba636bb5b2a7b19eafad454078a69d03665143d7a3313f8",
+      "tests/fixtures/watcher-flow-planning-before.lua": "08c363feb2269edbe1058457f5d7de39c1b1bf7e0b69b5ce05ad834641a961b9",
+      "tests/helpers/watcher-flow-source-inverse.mjs": "57115ae66144a796e2854d5d72948dd29a8b3df848d70c5ae943b85ba03406b9",
+      "tests/helpers/watcher-flow-vm.mjs": "9291b2ba0cea78bc583245135d01ba9fa189bf703e8aee77119efae995a20100",
+      "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md": "3be0e3c9319e705900aa08a07c48249d5e3c2baaa5af17faeccbfbb73d2c55bd"
+    },
+    "finalAddendum": "docs/evidence/m7-watcher-flow-final-addendum-20261108.json.gz",
+    "addendumScopeNote": "The seven code/fixture hashes and task/doc text are unchanged. The machine summary subsequently appended guidance/backlog/doctor logs and the review itself; those bookkeeping additions were hash-verified by the integrator, not represented as a new independent review."
+  },
+  "pending": [
+    "Shared historical source epoch and authenticated isolated closure integration after PR564",
+    "Planning lower bound >= 51776ms and complete-inventory validation",
+    "Exact candidate Hosted Full and independent admission",
+    "Actual merged SHA and platform/device validation"
+  ],
+  "notPerformed": [
+    "upload",
+    "pull request creation",
+    "rerun or dispatch Full",
+    "merge",
+    "user computer access"
+  ],
+  "artifacts": [
+    {
+      "path": "docs/evidence/m7-watcher-flow-baseline-engineering-20261108.json.gz",
+      "sha256": "574ae9fe958ca1b0c66233406d57b079395a07ba2c53e2a8c3e7d7677cb23de2",
+      "uncompressedSha256": "f5238fb3713e31669dc60b22e6bcba40ac843fa1fe4e9b6a71f20347bc278ce4"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-current-engineering-20261108.json.gz",
+      "sha256": "bffc6700b2567eb1578c6edd43d8554524049dab00c69f79536d7ba88905c3fc",
+      "uncompressedSha256": "b4d50f737dd7fa77b57c179421515cfa373a03bdf95ad7bc83b84312aaf7034d"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-targeted-first-20261108.log.gz",
+      "sha256": "3b2914b4a969332a06a4b4895a5e232a047299fc0c3568781b7f53c8f26c3b09",
+      "uncompressedSha256": "63d02ce448b764f06c1b0a869d06fcbe5a0d1e44dc8c4eb95d2d971cb5854da5"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-targeted-correction-20261108.log.gz",
+      "sha256": "0950cbef67a5d269b5be54cad3b1a61f48091a8228b549bf7299babfdd69ddf5",
+      "uncompressedSha256": "bbcc7b7fb627e8806757b102ba3582a0b0c2f0086ade6a46e9fb90e35c42d003"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-targeted-graph-correction-20261108.log.gz",
+      "sha256": "b8d094567633588fe8322f47f63bce5a16fc6eca21047f41ef7b34c2a0c70ed6",
+      "uncompressedSha256": "795547dbdb93ba227280a21ec96b85dcab1e118bac015d2ac7f83b235864026d"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-targeted-final-20261108.log.gz",
+      "sha256": "53d4055898de21c7584806acbcf739d88decc4ee40d248f436a03b778a1125d4",
+      "uncompressedSha256": "e17ba6aeda94b106701f3e9eb18e6a3adc15c41eb3a5949365634e38b8aba7e9"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-known-source-integration-blocker-20261108.log.gz",
+      "sha256": "cb797abc4055d1dd21a4714afd1ca41882e86dea18f732ea4e0619275abae47f",
+      "uncompressedSha256": "a83faa87193137a71c779c71a7649afecd0e3d2e17e2803ae5fd87b9e714b69a"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-architecture-20261108.log.gz",
+      "sha256": "ffeba8f8f67e817fe8b44352291bf85a0229f6d269b842c6fbd6028a38d1c589",
+      "uncompressedSha256": "4aa70c7bb1907e6ffdd0c47ce897b54654be5c9d77cf9254257c25c94f9462fe"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-static-20261108.log.gz",
+      "sha256": "e685363a9e9f22ffce68b06f209c95d571139151d8d5b206252de7a8309acbda",
+      "uncompressedSha256": "c6ce3717ea05719cae518c95d96f30bfd6d47f997978065fafb0a2cced6b3667"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-independent-review.mjs-20261108.gz",
+      "sha256": "9ec5ae2442c66874c3772992ac5bfbd825a2e2e048515d706fc153d582735b2f",
+      "uncompressedSha256": "830882b77bbe91ae6d92572d395c8ba5bc8a96eb832955f14a11e29ebd32c05c"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-independent-review.json-20261108.gz",
+      "sha256": "bb3aab2ad17581d9dafeb281992e6a7ed0ace31daea25535a430671a6b5fc978",
+      "uncompressedSha256": "efd50976df6966f916e1e49c35b9da9bd5c9c1eac327659db8a49e62f0fe8dfc"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-independent-review.log-20261108.gz",
+      "sha256": "1391399568bf89e784e5e14716792ce55a87dda451a5c0c1c0a435d19d7559e2",
+      "uncompressedSha256": "5096fb663d327e7b9a5a9529d3bb20d4b8cc455710785b99bed0fc9f2841b18e"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-review-conclusion.json-20261108.gz",
+      "sha256": "1039ffe5d7f41eca88c131827e47e507139ae118e61cce474b6efb29a9ef2cfb",
+      "uncompressedSha256": "c7aa7ef4c5b6327c97ea962e288f14fd70fc021238c50bf8ec612fcae500de51"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-guidance-20261108.log.gz",
+      "sha256": "64e0b3082f5223f4b73931564231198287926be4861a3da6a555520447d2f111",
+      "uncompressedSha256": "7322d76e0ae366d8568f4d23db9b0184183cecbe007d1909f2e873cb03c35d15"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-guidance-final-20261108.log.gz",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "uncompressedSha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-backlog-final-20261108.log.gz",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "uncompressedSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-final-addendum-20261108.json.gz",
+      "sha256": "3939c0dd3bee5cd7448f9e89ad74814c995cefbcf99f67cba7707a56ff55a271",
+      "uncompressedSha256": "b70845e6c8176d8c81b937e87116e5155226808a5c79771fe995374161474a9e"
+    },
+    {
+      "path": "docs/evidence/m7-watcher-flow-doctor-20261108.log.gz",
+      "sha256": "0912a57acd458cc36ae76985126a10694766a903b041378e61ce70196220f7bc",
+      "uncompressedSha256": "7b3f37fc4c252feb7b9598a43450e078a62d281673c0c1f9b1144c4b5434966d"
+    }
+  ],
+  "otherChecks": {
+    "guidance": "passed after materializing unchanged .cursor from HEAD",
+    "backlog": "passed",
+    "diffCheck": "passed",
+    "doctor": "reported pre-existing duplicate IDs and legacy archived-task layout; no --fix attempted"
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent focused review; not Full, hosted CI, merge or gameplay acceptance",
+  "byteChecks": [
+    {
+      "ref": "cb0b804c",
+      "path": "src/lua/abyss_watcher_flow_cards.lua",
+      "sha256": "019fc60e728ffad81405b24323545b05718f452ae20c756f67fc6f56ce9e0217"
+    },
+    {
+      "ref": "cb0b804c",
+      "path": "tests/helpers/watcher-flow-source-epoch.json.gz",
+      "sha256": "9e81602d086a81680830cf179a5d9f9f041bd56e0938b2d82eb196e50f73c015"
+    },
+    {
+      "ref": "417ef189",
+      "path": "src/lua/abyss_silent_tactics_cards.lua",
+      "sha256": "dc60eda7b81c0bb7386a3c30653a13e982c307646451807ade10c69e4e19b641"
+    },
+    {
+      "ref": "417ef189",
+      "path": "tests/helpers/silent-tactics-source-epoch.json.gz",
+      "sha256": "046c798aed3ded45bf29ad696c777551102f74066a262174af3d9990bdabb1c7"
+    },
+    {
+      "ref": "d998dbcc",
+      "path": "src/lua/abyss_effects.lua",
+      "sha256": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228"
+    },
+    {
+      "ref": "d998dbcc",
+      "path": "tests/helpers/effects-target-group-source-epoch.json.gz",
+      "sha256": "f22d0328aedd7b7e9c785482271483f9f083c5c6abd7cd55d19933b24a48c0c2"
+    },
+    {
+      "ref": "f256316c",
+      "path": "tests/battle-max-hp-config-inverse.test.mjs",
+      "sha256": "9c00e81a9272033fb181ad44c50f97bfba536cffb3009430ad845d49224514ed"
+    },
+    {
+      "ref": "f256316c",
+      "path": "tests/scry-choice-responsibilities.test.mjs",
+      "sha256": "f5f90e3117836f99a0d5ca52aee330e1eda81d0064a1246d03951c0aaa679f0c"
+    },
+    {
+      "ref": "f256316c",
+      "path": "tests/helpers/combined-epoch/source-epoch-runtime.mjs",
+      "sha256": "49c0d122395270c531de0a5dda7c8b1d7b0b31c79bb4f4a5dbbac70ffb5d9d72"
+    },
+    {
+      "ref": "f256316c",
+      "path": "tests/helpers/combined-epoch/source-epoch.json.gz",
+      "sha256": "2085260a5aabde4476411172eb0b2e6fd3afcaa991a3cafc52f3ab0e98755c73"
+    },
+    {
+      "ref": "f256316c",
+      "path": "tests/helpers/seven-refactor-source-epoch.json.gz",
+      "sha256": "98ce5a13a217c5b20bbbddf93811d5fc2dda4117bb465c33c5ad4c979608c4bd"
+    }
+  ],
+  "projections": 136,
+  "ownerDriftMutants": 192,
+  "owners": 48,
+  "engineeringAuthorReport": {
+    "sha256": "d5e110f2d63d076bbe4f688271d3498dcd6aee025352d1fbff8d90a5c10e75a0",
+    "status": "reported",
+    "coverage": {
+      "modules": 338,
+      "functions": 5232,
+      "measurements": 5570,
+      "expectedMeasurements": 5570
+    },
+    "cycles": [
+      {
+        "members": 68,
+        "edges": 513
+      },
+      {
+        "members": 11,
+        "edges": 44
+      },
+      {
+        "members": 2,
+        "edges": 2
+      }
+    ]
+  },
+  "findings": [],
+  "boundFiles": {
+    "src/lua/abyss_watcher_flow_cards.lua": "019fc60e728ffad81405b24323545b05718f452ae20c756f67fc6f56ce9e0217",
+    "src/lua/abyss_silent_tactics_cards.lua": "dc60eda7b81c0bb7386a3c30653a13e982c307646451807ade10c69e4e19b641",
+    "src/lua/abyss_effects.lua": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228",
+    "config/architecture.json": "5b86c2108275977a57376b61d42c1780330417228982078498379b8761248946",
+    "scripts/check-lua-static.mjs": "8253029479f041be7ec8235fcff181f941f9e3190412c587a3b06904452903c1",
+    "tests/responsibility-complexity.test.mjs": "b1e99d86c83f5aa4ee0fbacdf3f9f1f9164530668efcb681907995b4ecf8715b",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "ead581cd9f4342753bf9971b94c2dd79048ff2b152e330bf5702e465d9158f10",
+    "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "49c0d122395270c531de0a5dda7c8b1d7b0b31c79bb4f4a5dbbac70ffb5d9d72",
+    "tests/helpers/copy-integration-source-closure.mjs": "c6ee5e9be60ac1327133ce0331e27beb38c3463a90d11bfd5b8d6439c980c01b",
+    "tests/helpers/watcher-flow-source-epoch.mjs": "dad47d3abfb21ce4922a2482142ac2f702644aaa4775558c4c5b06458196cccd",
+    "tests/helpers/silent-tactics-source-epoch.mjs": "1961b7399f1ec8ece9bfc598f9660f5fdc20c669cac3e967a2d4979296b597cf",
+    "tests/helpers/effects-target-group-source-epoch.mjs": "8affe1c65d7a096fc5546375bcb19bb404923be2c94528e3e443b4095ef7c488",
+    ".gitattributes": "42f8f31c23aaa9e5792ef156223750c4af713b143baa6556be2f1efe30ba4636",
+    "tests/effects-target-group-source-epoch.test.mjs": "8f89f6283f63ae55d73fc586c98f02d55ea0bbbe7a0fd5b8dc6cad8594e839df",
+    "tests/watcher-flow-source-epoch.test.mjs": "4be1918917fb4b0a3c315e31b70c7c11688b1dd371e4b0683d31220c55af665c",
+    "tests/silent-tactics-source-epoch.test.mjs": "1b7eb6e4e4f5d768cf61a6568114ba882b9a515c20d4857b05cf3913a53e50eb",
+    "tests/seven-refactor-source-epoch.test.mjs": "bba7fa6fc36744e8f6d389010a0c02165c889b08719dcd04ba402f5780b30894",
+    "scripts/ci-test-timings.json": "db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "2db1d97a6445c38bd79085747a168bba804419c12f1e1297b4344ab2b73e4ec4",
+    "tests/ci-complete-calibration.test.mjs": "aca6dafb9fa8d0aef667bdde5fcf1494a0605866fbee43719d3bd9721aa883b9",
+    "tests/ci-runtime.test.mjs": "3e6897810a2f76252818a569d944bbe42f201808491567a35b2e1f2c80cfbdc3"
+  },
+  "reviewedAt": "2026-11-08T18:59:36.593Z",
+  "fixedFindings": [
+    {
+      "file": "tests/effects-target-group-source-epoch.test.mjs",
+      "finding": "New combined loop incorrectly expected LF from CRLF input when destination/current binding was identical.",
+      "resolution": "No-op cases now expect original input bytes; changed bindings still require exact archived LF. Independent affected three-test rerun passed."
+    }
+  ],
+  "independentChecks": {
+    "responsibilityRegression": {
+      "passed": 19,
+      "failed": 0
+    },
+    "combinedSourceRegression": {
+      "passed": 3,
+      "failed": 0
+    },
+    "combinedCIRegression": {
+      "passed": 3,
+      "failed": 0
+    },
+    "archivedSiblingGateAndTimingAssertions": 39,
+    "adversarialSourceProjections": 136,
+    "warmOwnerDriftAssertions": 192
+  },
+  "sccComparison": {
+    "baseline": "docs/evidence/m7-effects-target-group-20261109/baseline-engineering.json.gz",
+    "current": "build/engineering-quality.json",
+    "sameSCCs": [
+      [
+        68,
+        513
+      ],
+      [
+        11,
+        44
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "sameDistinctDependencies": 1558,
+    "sameWarnings": 14,
+    "note": "Read-only comparison of supplied quality snapshots; author fresh engineering run is not claimed as independent execution."
+  },
+  "limitations": [
+    "No Full or hosted CI executed by reviewer.",
+    "No merge, auto-merge, official import, device test or gameplay acceptance.",
+    "Bound to file digests, not a future commit or subsequent edits."
+  ],
+  "verdict": "No unresolved findings within focused reviewed scope"
+}

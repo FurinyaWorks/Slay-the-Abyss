@@ -5,7 +5,7 @@ import {readFileSync,mkdirSync,writeFileSync,appendFileSync,mkdtempSync} from 'n
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {basename} from 'node:path';
-import {colorlessCatalogBefore} from './colorless-catalog-source-inverse.mjs';
+import {colorlessCatalogBefore} from './epochs/colorless/tests/helpers/colorless-catalog-source-inverse.mjs';
 import {installLuaGraphObserver} from './lua-graph-observer.mjs';
 import {luaString} from '../../scripts/build-lua-data.mjs';
 import {generatedRuntimeModules} from '../../scripts/build-native-candidate.mjs';

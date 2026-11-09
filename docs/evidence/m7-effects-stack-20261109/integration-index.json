@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "base": "f256316c5b63adc7bbc1a72a8fedbc86f69079c6",
+  "baseStatus": "Existing #564 Full passed; normal merge admission still awaits administrator. This integration neither changes that HEAD nor claims merge.",
+  "productionCommit": "bddfdeaa32d3377ade5673b56b3ea6bd80d2a1aa",
+  "standaloneVerificationCommit": "29bc119c7cf80b064655e340c52ae4391797af3f",
+  "result": {
+    "tests": 104,
+    "passed": 104,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "ciTests": 32
+  },
+  "command": "node --test tests/effects-target-group-source-epoch.test.mjs tests/seven-refactor-source-epoch.test.mjs tests/integration-source-epoch.test.mjs tests/ci-complete-calibration.test.mjs tests/ci-runtime.test.mjs tests/class-potion-orb-source-inverse.test.mjs tests/watcher-actor-source-inverse.test.mjs tests/defect-integration-source.test.mjs tests/watcher-potion-integration-source.test.mjs",
+  "changes": "Retain all f256 fixes. Enable configuration layout only on new outer input, preserving strict fresh raw-owner identities. Preserve old 45-owner proof and add current 46-owner layout, drift/deletion and malformed-token tests. Retain invalid-reader foreign input semantics, strict public readers and unknown-target rejection. Reauthenticate changed closure identities only. Keep Game UI historical source proof unchanged.",
+  "changedSourceSha256": {
+    "tests/helpers/effects-target-group-source-epoch.mjs": "8affe1c65d7a096fc5546375bcb19bb404923be2c94528e3e443b4095ef7c488",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "f58227d34592f58f370186f5eaf24ed9e6bcecbc298708bd3de5e179c69d549e",
+    "tests/helpers/copy-integration-source-closure.mjs": "60a7d4779869f87b40c7e34ca2ae88383d7a98c34f320145764076802b919796",
+    "tests/ci-runtime.test.mjs": "eec7e79ca944029a9abca58a0a294ab320f67743763231b47c3e41e6adae30e4",
+    "tests/effects-target-group-source-epoch.test.mjs": "2761ab57b0abdbaa95f34edbc72f667f2dd508e033fba1917e3d371e1bd4655f",
+    "tests/seven-refactor-source-epoch.test.mjs": "bba7fa6fc36744e8f6d389010a0c02165c889b08719dcd04ba402f5780b30894"
+  },
+  "fullRun": false,
+  "expensiveBehaviorRerun": false,
+  "engineeringRemeasured": false,
+  "files": {
+    "integration-doctor-final.log.gz": "12f98ab203a3e4079217260eee0458b89be87548424209d845bbe96b05964824",
+    "integration-doctor.log.gz": "2ac95ea72bff400951dabb922b7323eac2d2c7064c991879f853d87da75e2ac4",
+    "integration-guidance.log.gz": "8e1905c4ededdb64bfbd5bb40db6211b56194a35a40840096061491c8458385b",
+    "integration-identity.json": "56863c0c426616c1469a7739ac570dda932faab91f242e95a49c3a4620cb15ab",
+    "integration-planning.json": "595715d849cbbbf4f3d05523f8f66919bd9e75f2f6d17bc12006af99d8e0d48d",
+    "integration-verified.log.gz": "660b95765104d829ae6437b3c7338e340179d4601d9c597c91db1f54f7e20581",
+    "integration-verify-backlog.log.gz": "f9ef94a287dc0f1be4925d2a7563f0c2a0982a86b2841b3f3f75a0837460f0f3",
+    "source-ci.log.gz": "c5e7d020e90411be1fc9081d3d3e2c9fc8e80c13ba40eec870282ca2dee4f23e"
+  },
+  "scopeChecks": {
+    "backlog": "PASS",
+    "guidance": "PASS",
+    "doctor": "Existing 5 duplicate-ID groups and 93 archived paths retained; initial unsupported --plain invocation also preserved."
+  }
+}

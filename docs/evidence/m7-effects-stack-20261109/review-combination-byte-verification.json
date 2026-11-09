@@ -1,0 +1,18 @@
+{
+  "base": "f256316c5b63adc7bbc1a72a8fedbc86f69079c6",
+  "protectedFilesUnchanged": 386,
+  "behaviorReceiptFilesVerified": [
+    "src/lua/abyss_effects.lua",
+    "tests/effects-target-group.test.mjs",
+    "tests/helpers/effects-target-group-before.json",
+    "tests/helpers/effects-target-group-vm.mjs",
+    "tests/helpers/effects-target-group-scenarios.lua",
+    "scripts/check-lua-static.mjs"
+  ],
+  "productionSourceSha256": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228",
+  "timingOriginalBytesRestored": true,
+  "sourceChanges": [
+    "src/lua/abyss_effects.lua"
+  ],
+  "priorProbeFailure": "git show default output buffer exceeded for large frozen archive; repeated using direct Git blob identities without reading Git blob contents"
+}

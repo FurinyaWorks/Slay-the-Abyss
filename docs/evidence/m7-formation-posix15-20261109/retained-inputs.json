@@ -1,0 +1,2274 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-09T01:07:34.546472+00:00",
+  "base": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "formationParent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+  "posixParent": "841510b78172b923b1a613216b5c3dcb2c3e062e",
+  "formationParentTree": "a46ccfe3fe820617290aa1d3b9aae2ba345dd671",
+  "posixParentTree": "aabc61f3140e9e4803f3017dbaaa14b4b6ae7692",
+  "sharedChangedPaths": [
+    ".gitattributes",
+    "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+    "tests/ci-complete-calibration.test.mjs",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs"
+  ],
+  "retainedPaths": {
+    "docs/backlog-details/M7-DEFECT-COST-20261109.md": {
+      "gitBlob": "7b4a598bc5bc3f682c469b1d3aff26332d9a4974",
+      "sha256": "54814efdd991028223745c74663a5df6b14365fb5d2a3ef04548b1e7d3f76b3c",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/backlog-details/M7-ENCOUNTER-FORMATION-20261109.md": {
+      "gitBlob": "db2f731b5e8dd7d864747806006e7a635ebe3b11",
+      "sha256": "3c1960c56fa4e151f3c2073d631bc748c0e3f7fbc38907a588f356e0cd06f19d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-defect-cost-20261109/affected-ci-tools-receipt.json": {
+      "gitBlob": "a352332fd7bdd58ad6185a05d9cbdee5dfd54fae",
+      "sha256": "1f83bc2ce7066e751bc83b5da52542b251b3930b25388f5d456619cf14f6f5a1",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/affected-ci-tools.log.gz": {
+      "gitBlob": "db547754c9b33dba2581295823dac41b877113ec",
+      "sha256": "f5ae86366bd16238a47c8e4de88407b8a3529e449e11e76f9674f5d7676fea2e",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/backlog.log.gz": {
+      "gitBlob": "a1ca2659a267d1b60f4a57008f7f500a57191a2a",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/broad-ci-tools-pwsh-missing.log.gz": {
+      "gitBlob": "3f2305a206969f71d2ea989ac02daee2da7218a6",
+      "sha256": "7fc36e745b38ec1f0788febed19e432425f15bab9c6ae879b33ed45a602ee361",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/final-input-binding.json": {
+      "gitBlob": "0e661a2c52a3e1c596ad4ec2bf2010b2c2f8662c",
+      "sha256": "1724b8bb2b08f783e85bf437bcce1d58b25833a1602fd2c744b3e51519afce15",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/guidance.log.gz": {
+      "gitBlob": "2a53b99497673fb2e8b32a7a05ccb19184e27bb8",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/independent-reproduce.mjs": {
+      "gitBlob": "f1b301e5ad62d80c5a098b92506761a5c62aac89",
+      "sha256": "62116135974611e4cc01197ecf168eeafd2f2bb582134b61e20bbf978333f78c",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/independent-review.json": {
+      "gitBlob": "91a9d51015ba4bfa09b86d377736d911a82d915c",
+      "sha256": "b00f7b87eed3ca3a23e1a57a1c9ff684d97d42ff89ff8ca59b21e42f2c88dc08",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/index.json": {
+      "gitBlob": "2f3e7419147cc59c2a9aca48da5f07ffcdbaacfa",
+      "sha256": "50ebdabb9a4026687eb28360cf8f9cd89b7a55507f105373d234853d7ab9d3c7",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/initial-ci-tools-failed.log.gz": {
+      "gitBlob": "09da68fe0c784980a30630fcb9e6290d62400b37",
+      "sha256": "668adc5f24835d3ab344ea7768b65dc54933b4c669007c0a38ee3d12e3d49716",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/intermediate-contracts.log.gz": {
+      "gitBlob": "b52e3c626fb701695b143ef14b60fd08beeb673c",
+      "sha256": "ef3dcb75b4de7ddf4cba09b5129fb9c4def275fea95b9d2f54e1dc7a0899b201",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/prepublication-freshness.json": {
+      "gitBlob": "824b051b14d3fd16166c66cfc2eb7a7e5a0dfa70",
+      "sha256": "b9408d31be32102fcdc80385305d2f38074533919ccd3f27f9b31d4e1c0e9b60",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/projection-equivalence-receipt.json.gz": {
+      "gitBlob": "b3b935adecfe95c923d4a71427857e60371f12fe",
+      "sha256": "a423a9dfe824438a74a2f3aafab39e47035fffb3eaf129c8f9e2f43c94db7761",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/projection-equivalence-replay-receipt.json.gz": {
+      "gitBlob": "6a3992f1d51878de16f55a4e160c4b00b3f8d344",
+      "sha256": "0c12ec598602912fb23fe2a223e65c4de4c6aed150f273a3cacb5c880fb72478",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/projection-equivalence-replay.log": {
+      "gitBlob": "1c7ef6c9975decda47d268247025e0ab6c6d9fc2",
+      "sha256": "6ddae227d4eff8038bc6d92e40b37638f858115b1377993d0540d3d855a3f0c2",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/projection-equivalence.log": {
+      "gitBlob": "42f298b1c39a20a6c3e7dc37d8444b436f81c0a8",
+      "sha256": "15ae4a0d8c3448f2f4099f937cc53d23865496acce652ecf6189300624b8b906",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/projection-equivalence.mjs": {
+      "gitBlob": "ca0f4c0a13809b6e144f91fb33be0caef72da7f0",
+      "sha256": "1a8636dfa69e2d51b2995395b3a6ecfd726931b97327a2319444504431c74a9b",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/redistribution-before-after-plan.json": {
+      "gitBlob": "be3b2d36c512d4c746f434b407371f5540c14f35",
+      "sha256": "9bafbf54c02541b6819ad67a3e60bfeec6ae57902698cf0a3a3b853c4e4ed5be",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/retained-production-and-history.json": {
+      "gitBlob": "becd0d153f44b0d86b587570e9bdc66e0dc698d2",
+      "sha256": "146de6e9dd38854fa20b9ab3c82453c784577183e5361ab5d053f428c76405a1",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/transitive-source-contracts-receipt.json.gz": {
+      "gitBlob": "c811c0a859895f24544fa556850d4ec5e922528d",
+      "sha256": "79f90fe441b21a9d13aa24c1f25a25c4c7794ecc5bfb153f827e07e5ad6882fb",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/transitive-source-contracts.log.gz": {
+      "gitBlob": "a46dc626015a37572731f17afc83db3f61d338ab",
+      "sha256": "699b0c582af64206e6ef0ce2cda5a5ae8896b91f5bf2caa0cea672322827062d",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/transitive-source-dependency-boundary.json": {
+      "gitBlob": "50d4e5d3f584ac780f975f1aa8a55c55c45070b3",
+      "sha256": "3453afa1407406ea1b17b2fa7f78ea2e8b5a56e0a4a7b008534c3416f34efd1d",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/transitive-source-interrupted.log.gz": {
+      "gitBlob": "b03f41fd3fcf6ddc2070ebcd04a1330c69c1a3b4",
+      "sha256": "dbb05c51a04da8c848cc1c34d22f9057d7e7a128ff65fb596343ca74a13d56df",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-defect-cost-20261109/transitive-source-serial-interrupted.log.gz": {
+      "gitBlob": "1f1a850b15c9c771f811b4fcb7bb3c19b9e8033e",
+      "sha256": "61f679f527fc77dbe70e8563c37af39f8023e92ff4ca5505b1b1becc6d367e9a",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "docs/evidence/m7-formation-20261109/affected-plan.log.gz": {
+      "gitBlob": "8764e23e633a029b844ce5cc472f8c30c81c5a9d",
+      "sha256": "dd79201d02f2340b0fb3cd05c13cdf1a7d039681225054af8c181264e7c83489",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/backlog-delivery.log.gz": {
+      "gitBlob": "a1ca2659a267d1b60f4a57008f7f500a57191a2a",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/backlog-final.log.gz": {
+      "gitBlob": "a1ca2659a267d1b60f4a57008f7f500a57191a2a",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/backlog.log.gz": {
+      "gitBlob": "a1ca2659a267d1b60f4a57008f7f500a57191a2a",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/behavior-final-receipt.json": {
+      "gitBlob": "6cec07cfb6c06af6daaefc3356de3202dfd685b4",
+      "sha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/behavior-final.log.gz": {
+      "gitBlob": "6666cf01140b52579377a12346b0efecdbae5f96",
+      "sha256": "2fb1e9cf600f6a0aea08eb739f404f6539430b7865883f2bffac3ae2fdf46333",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/behavior-initial.log.gz": {
+      "gitBlob": "65a23ecb336e983097b5848a3d615ace424b5567",
+      "sha256": "a6aeb4c0d9334fd0f8343dd9ad45f2d94f03d35907cd0cc06ebbb1e5d92390b0",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/build.log.gz": {
+      "gitBlob": "c31907451a1aa5891e4c9bf6f53a962264e80a42",
+      "sha256": "d70340fa8eb66eb8cb502d4298744070031895f76c0ffe064452e5eeec31b834",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-boundary-equivalence-receipt.json": {
+      "gitBlob": "2bd7fe27ea95dd37adb813e7b26ef4d74e59c3f1",
+      "sha256": "cc47ed7c4cd3f034fd3999996bffb11d9c83a0047fe71c51bd65e184b8a5aaaa",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-boundary-equivalence.json": {
+      "gitBlob": "56e63b6d186f973a92919207cc9351de4205bb22",
+      "sha256": "67fe74dc87fb8ecab5bc99ec90f2f592c1053c98a6ebb31afc4a329473a4044b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-boundary-equivalence.log.gz": {
+      "gitBlob": "d97ebbdce4a62d4044a2433631fe596142ed129f",
+      "sha256": "c29c4926b2d3d9274fb90f7569386892aae614513a40b25f0fde9060b914dcbe",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-boundary-equivalence.mjs": {
+      "gitBlob": "6d248990d62ffe8aa75c37af2f82e86aeab3df48",
+      "sha256": "a02fc5960c1e4cc8a0b820a25315427b26e72251aad67c1500f0532ae06df713",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-calibration-receipt.json": {
+      "gitBlob": "dbfc107a41b72bcd3e3eeac9e7d7da81d3db6755",
+      "sha256": "344cd2c14aafb4d6993f35a0aaccc8b09d48902aa5f1c56cab04c08351b4c2c0",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-calibration.log.gz": {
+      "gitBlob": "45ca6d7f09dcf0f9dc4fd91c8762fbbf2e7fe5e7",
+      "sha256": "a990cd81ac6da5842ebcb9bf7d07bad6e0c55c93215502d9125be43c646e2117",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-live-consumers-receipt.json": {
+      "gitBlob": "de5dbe619b77d04684ba13122360ba37a21cb5ef",
+      "sha256": "1045a50a0623e15971bd6afd0c81b931c3c11f928f0974b59ac00ab659dd2e63",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-live-consumers.log.gz": {
+      "gitBlob": "80b23470bfd2b5ebee6515a27644e1cb5df70559",
+      "sha256": "7ee5a4e576c98f8f227f8a8a220b0fe157d500d25ed2b9351aaf9ec97bdcda06",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-planning.json": {
+      "gitBlob": "d04f8fac8afe623c1d6df2639fc2157aabd25c72",
+      "sha256": "40d34c2c5bcf785b9fe37f4704eee39f0b73ca9df8d90bd834df13890fcd3f46",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-runtime-receipt.json": {
+      "gitBlob": "f0fe9696bef16fa4c4278fef614c3579ebde1a4f",
+      "sha256": "931891ae35129e3b9dce0ca14e15bee0568e428378e14c25043e1baa1c50b022",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/ci-runtime.log.gz": {
+      "gitBlob": "3ce98d10e8f9731156d004cb10db9d14905fb61b",
+      "sha256": "045c6e58f0714e69fa6f02eb342466a29425a211d317fe8e25408311472d8e0d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/complexity.log.gz": {
+      "gitBlob": "2905f3332192bba28cb627dd5e5178249ea80dbf",
+      "sha256": "9252ed95bacd7dcbe30606a888a102f9b8f9bfb55643f3f7650fa893fdd6e0fa",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/current-engineering.json.gz": {
+      "gitBlob": "c03db1005fb9fed2410956ba9cb8768bb6d06d87",
+      "sha256": "2abe4b92fceb9b67cf1d3648707328a45b93d27b8279cfce94bf13ad5d96db2c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/doctor.log.gz": {
+      "gitBlob": "9cbef2d8ec39545d7c28e82ea6abc9dd1ccf49ab",
+      "sha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/engineering.log.gz": {
+      "gitBlob": "8fe5f53722b4e14361e7e2917fb65530599d8e04",
+      "sha256": "b00f1976a38e37e15e61a8c03d0bec841b23e79e7955f6c84c718b837767c7cc",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/guidance-delivery.log.gz": {
+      "gitBlob": "2a53b99497673fb2e8b32a7a05ccb19184e27bb8",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/guidance-final.log.gz": {
+      "gitBlob": "2a53b99497673fb2e8b32a7a05ccb19184e27bb8",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/guidance.log.gz": {
+      "gitBlob": "2a53b99497673fb2e8b32a7a05ccb19184e27bb8",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-boundary-probe.log": {
+      "gitBlob": "3a0ea88f70d1737b8a45f8595026e751ea903c15",
+      "sha256": "08616ee6255b790c07dd1efc2c74ca4ba12e23b305e79140baa132336c9fb930",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-boundary-probe.lua": {
+      "gitBlob": "c25fa1be19fd4f1da9abf4841721fa8bce70ed26",
+      "sha256": "64727afa9a64cb569b1dda743b05b23067a1c4bf52c5a997c5319aeea7958bba",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-ci-probe.log": {
+      "gitBlob": "a98fe504f81ee8aaf80b564d1310a16877baf704",
+      "sha256": "86a43579d2440af95368d1329b8fd2349398be07b5df5c6cea04fa09a47ff737",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-ci-probe.mjs": {
+      "gitBlob": "53da8cf8448826a5167c52fd4cf6aa240c262712",
+      "sha256": "e4bb2a14c3cb9f9b9a6a7e9761924242d2f035d0aaf805c561b7efff80fbfe05",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-ci-review.json": {
+      "gitBlob": "151667c35b164f14ec8f4c3335ee5aaf4b4e870a",
+      "sha256": "4a4da70e6bb7995b0129fbb86f15cb83685dfe4b80c47aad2b48b771959f5536",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-complexity-probe.log": {
+      "gitBlob": "d38dafde9c40811a093a59bc2e46e9d6bc642a9e",
+      "sha256": "7587f98c144a6d5eb1125222f46993452553b8ff2258286d9c34bc4dbaa1e44c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-complexity-probe.mjs": {
+      "gitBlob": "e45eb092350e9beee66b7d982b326c4c69bc3493",
+      "sha256": "8dc82994bf191283b8cc15f59605cc5b8ffabde11851eef0e891c78cb71f35b0",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-metrics-probe-path-correction.log": {
+      "gitBlob": "bab5c5b83e3b23f62a9a26cb2403d85e409332eb",
+      "sha256": "80af6d14a8e84112915354295a659b5a503ced622b2f85e2fc400f02792f28d5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-metrics-probe.log": {
+      "gitBlob": "e133b78a5e0abfac27883423e412b51295c59760",
+      "sha256": "0fc658cd696b6ce5faec5af14def7840170ff189403c21a6335893b4e92877fb",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-metrics-probe.py": {
+      "gitBlob": "e9d95e1314cfd602d358a10c179c04d52b4c07a8",
+      "sha256": "712e3e997c4ff45e8ad98d03d36794fdbf0a1cbb5b628bdbe33b654a29457282",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-metrics-review.json": {
+      "gitBlob": "3dd6d37bc45256bb7286188cfc4f9ed0d2e789f1",
+      "sha256": "0fb99f2d905d26f7df13db68487fc24b94250c4b58512ba682d4c5e11d7ed8c1",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-review.md": {
+      "gitBlob": "340c7eb670f8bcc1b09567c6fe600af500418758",
+      "sha256": "3333ab05bb0bec19a98ed7f2e5b00adb252621bc39c5a99d0939e6a0b2d412a0",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-source-receipt-probe-binary-correction.log": {
+      "gitBlob": "d171ae88b43e4453b5491c75ed2caa63a162f4fc",
+      "sha256": "a930c078283694db37d98b3c6e6f6ae08d9498a05d1ae8d8257c4611778353c2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-source-receipt-probe-initial.log": {
+      "gitBlob": "a6c4fc08227060a854dcd4e13acbf6127c810211",
+      "sha256": "7fac8a986ac9d9756996e21387d1605d87ddede457b73d9404a00f27df1dd1cd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-source-receipt-probe-layout-correction.log": {
+      "gitBlob": "7c77808fa09a1587492b4e7077e436a416a89e42",
+      "sha256": "1e6cb8d70cf1e226bbc31fc780cf4485ddbdf00b91ef96d91f3025e55399a4c4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-source-receipt-probe.log": {
+      "gitBlob": "ec9f845db0eefdaa792228ba1da3cffad30e256b",
+      "sha256": "a9b63c95eb8987d6edafd751a1266500020643e7a82717445c976c8c4d2c76bc",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-source-receipt-probe.mjs": {
+      "gitBlob": "32cdeb0ef21070fda35df3570ddc6d53b7014e37",
+      "sha256": "65821dec04622ee9d70e69a2f590dcbeb32a7eb580587ff9ceb1cb69209c9025",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/independent-source-receipt-review.json": {
+      "gitBlob": "ed761f5a5382b32a004eb492a12326091dc31d12",
+      "sha256": "5db25d1f6b205c8fd8254687f9b79fd7d117a1d3d953ef182d8a1aa8a72616ec",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/index.json": {
+      "gitBlob": "cfba653fc5eee4ef98b916490673914a1ef5f6d5",
+      "sha256": "02bdbecc9aee78601bac60b0c01cd32267eec8e6719e1559de7a8ca2e63e46dd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/measure-behavior.py": {
+      "gitBlob": "cf21d7a7cebb89f908289ca6ab790fb69a95cbfa",
+      "sha256": "b903d11d8d9e13ee05e61e9ca23370ef8e9245c646e98e34f6966c84b7b671be",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/metrics.json": {
+      "gitBlob": "70ddde279d46c0a32b25b14b41df05ba97f72e07",
+      "sha256": "69e60e2130cb5bb04c2c8b8b5f956b3aad1e1546e116f569f6c2fa94d9a980bd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/retained-double-vm-receipt.json": {
+      "gitBlob": "0458c4cb95e75d436f748590f8edabde36343037",
+      "sha256": "bc3d0bfb9589bf9e92520bf94cbf1996c601987c3ea18a2b7e2fc205988c0b48",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/retained-double-vm.log.gz": {
+      "gitBlob": "d2dbffbb7e2a376535287089cc8255a193b4116a",
+      "sha256": "7473bd955ae62887bba592592115067f12f6242e77f3e32bccd782e2cefdc711",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/retained-double-vm.mjs": {
+      "gitBlob": "b3f3be792d025c6e731656f1bfc1b29f3047fda6",
+      "sha256": "e83c6efe4798f12c42e32d5343103586a272b2bd9f61234363b5050196f48646",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/source-defect-regression-receipt.json": {
+      "gitBlob": "b8945cdffedbfb3f5384150ab491de62f0d1026a",
+      "sha256": "d3db4f713ad58100ef3697ac81b74be8775f0258146b642e149372d8bb029678",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/source-defect-regression.log.gz": {
+      "gitBlob": "fd8246adec69a500ed1ad3493447beb84625fda6",
+      "sha256": "18c7bb8a50cb8fc501272df270806163498ca57e0343000fa75f11403d943b66",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/source-integration-receipt.json": {
+      "gitBlob": "88f230b6f312a207dd0f2377d2ef70e8a896cafd",
+      "sha256": "ab57b5bde1896dc8e6442579149653a6f8e2aba918ce57d8c0ce20dc5b9eca43",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/source-integration.log.gz": {
+      "gitBlob": "9f97d6235d22694b0212dd7b668a79f336ea4615",
+      "sha256": "6934117f451450dc545e13c1bc2935a158f7f75b0eb88d4ddd7aac2887ad6762",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/source-receipt.json": {
+      "gitBlob": "2318b9f7a9917e0924046978e9f5977b8d04a43e",
+      "sha256": "4a80f128eaa794a38a4da9b8ad7d9caa21abd4c73fd7308466e977eaf601eda0",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "docs/evidence/m7-formation-20261109/source.log.gz": {
+      "gitBlob": "e07503f5bad7025bc7ea67cf238180e34aadca61",
+      "sha256": "40b9017ee4984b4fca03d73668e2adcfceeb925ee81723ece78c188c0198bbc1",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "scripts/check-lua-static.mjs": {
+      "gitBlob": "3c8d8086ba812d4509b88101edccc423c45bbc82",
+      "sha256": "b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "scripts/ci-quality-shape.mjs": {
+      "gitBlob": "953122c49ae1a5efda8884eb697149b3b792a3bc",
+      "sha256": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "scripts/ci-test-timings.json": {
+      "gitBlob": "2c91af452a4b98fe13cf6a162c3c78b31ac970e4",
+      "sha256": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_acid_slime_m_ai.lua": {
+      "gitBlob": "062223f54dfb3f53c11723f7a86977bce254f85c",
+      "sha256": "972d81f4e3ed017249796267d242ab73f7bdac93945efb6a441ed53b603a90e6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_acid_slime_s_ai.lua": {
+      "gitBlob": "051ccdcce9768f0db03542e39de5fa13168bbcd2",
+      "sha256": "b3063719126444d01ec18bc7878d4ca614dda13dc0ddcc7599304e24b3703769",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act1_bosses.lua": {
+      "gitBlob": "302ebe9d1cf75ffca8821e8af346a7b4cda15cae",
+      "sha256": "9a3db2a6bb7e4625765cdb212172e940225a3b7c1a2f0bedae164acc3f7df1be",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act1_events.lua": {
+      "gitBlob": "1caee9e0c589bec580d8e9799394cc30ffd68781",
+      "sha256": "987a96604109beac3365a8f8daf478b8bf45286921deccc865c96102ae2590c5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act2_ai.lua": {
+      "gitBlob": "e4290d45bd6129dd2bc813139599e96eb3f68d95",
+      "sha256": "aba682db573572693cf60f613bcd5ce3f1f0b11f2116610f23cacf285f89bad3",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act2_ai_moves.lua": {
+      "gitBlob": "fb98f3880b34bcc6353593fa16c492483783f8b9",
+      "sha256": "794f0bfdd215c57440b19c3d132efdac425b58a4b92ae3f11c62780a5d3570a4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act2_enemies.lua": {
+      "gitBlob": "70107b1d6a8661b44f9095eedc04a6f6eafbfda7",
+      "sha256": "11d8b679c711ebff5a5a34609a8f4da737552377c556cfce63c8812c14329777",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act2_event_relics.lua": {
+      "gitBlob": "783b5c7aa8cb73ab7eed8be18e56cf9734399b67",
+      "sha256": "fbad6fda867e0dbc2b9347e9698bba6b66d1acdc208a3c966f222ec286f3af92",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act2_events.lua": {
+      "gitBlob": "d111e849086c9ad360985ea49f0e1425f572c259",
+      "sha256": "75d8578d7cf4a3feaa0bfb6c4a0fd162625b3a0ce8dc6ad42d6f5b0520aacad6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act2_powers.lua": {
+      "gitBlob": "158eae2c77f3a69d0991e6644770002a8320d86c",
+      "sha256": "966f9906c9fd03d306424c9ea430e3aa8840fdf6e852d13cecd274c0a3aa3629",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act2_stasis.lua": {
+      "gitBlob": "b2df81099b92aabd6d503a0fbf9121e1c5ced52c",
+      "sha256": "0a1b6da54329fe7c00cfb45bb57dfc1ff53663cd7437e1bb17b35f702181466a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act2_summons.lua": {
+      "gitBlob": "e1e9cae2b0b87eac4163d8ce9c46c375605b8193",
+      "sha256": "f8075f8c6891a8c9dc5ec789cc427c599a5729f5f9b155080d6d6ecf8627ad66",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act3_ai.lua": {
+      "gitBlob": "c333d0bb59826afa6032ae417be45b1b36a8b5d0",
+      "sha256": "c7dbab631b1b4ceb5f6949f8446660cd088eb1372c7e170a1688c78b75d291b2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act3_bosses.lua": {
+      "gitBlob": "e35873fb54cf948909f7e53180a2531b25772702",
+      "sha256": "e99bde5cc595bf0a3dac968a7ea61ee96faf7c8afd313464b52b653daba0d404",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act3_enemies.lua": {
+      "gitBlob": "feafb2d7a107a919e9bc19b7cbc3abbdbb15c376",
+      "sha256": "c810114c966767fcdc9c04a37fb835577337a18799288c7f4b57c2214b7fdd74",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act3_events.lua": {
+      "gitBlob": "acb5e71613b81b9ba6a1d14dacc865377deaf8b5",
+      "sha256": "e30d2820eb81359f9112c4b32b36b1af61db1a294151407526b9c658316f2c9a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act3_powers.lua": {
+      "gitBlob": "59b9055893c67023706d0784335bc585ba1ebf66",
+      "sha256": "07064486b2bb60c770c748e503b5209ede5559619be946ccb00c192fe9c88365",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_act4_enemies.lua": {
+      "gitBlob": "72bd3f05a10010da8631752240b3eaa3be7ea0a4",
+      "sha256": "6c18570819c4f0a918bf51e04644f2f998fad696614a8f86cdd54493fb49f710",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_action_queue.lua": {
+      "gitBlob": "19c9d23efe516a1e001e0572e814a8616b5abc00",
+      "sha256": "5053ad084fee0bc15277ccbd9bc614c2acaa8e2b8d70bcb91f1bf4a01499cb2d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_actor.lua": {
+      "gitBlob": "437cf78b984ac355b7e69e0bb21c443b947598f3",
+      "sha256": "0435754ce97e731da0abaa1aafdbbd035988c09b411c47c192bb3e6ab0133c7a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_actor_motion.lua": {
+      "gitBlob": "9846ae9de4a8717c3db346543fc16554a80cd1a7",
+      "sha256": "c5bd7f59379629cd6c8a0523e1449f4a59267617a81c0fb0e9ebd426f2558687",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_actor_power_rules.lua": {
+      "gitBlob": "d9b1245cbebea29327f64403fc93826bd1a95f36",
+      "sha256": "ff5ee7976332e9e3a01a62c121d7a7246ad59ae5eae27f0cd4bb5bee5be6051a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_actor_presence.lua": {
+      "gitBlob": "1292b042c9754ed62933b2b5faa8f6e59527d3df",
+      "sha256": "780975ab1e274168e19a8f04cbe27d2e95ab796ab72474fad35a1d8f1ecd440a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_acts.lua": {
+      "gitBlob": "9d45b715a8c55321ab409d7b4e9a41d6555643ec",
+      "sha256": "06307170ce3ee1627c9ea5ebe45f9042a4857ad153f7f92e625f2e9856cc8150",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_awakened_one.lua": {
+      "gitBlob": "dcd6816638d64a653949298fe90e91fe15bb1503",
+      "sha256": "0d8fbb76c5db90539e995aabd2f02660184481463b842045b5687b38ab42de36",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_back_to_basics.lua": {
+      "gitBlob": "8c54a876b9b1df3bc01c3114100d1b74445737fc",
+      "sha256": "5d83af37dc3bffcd16f61627e164dcb41b654647ed753aa7cdd0058c10926571",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_action_bindings.lua": {
+      "gitBlob": "0033b496eff67c79ae959e7d1bfb704a7c7837f2",
+      "sha256": "84d11f396803b5bcd202aa6226e9d0b67a56fef6956b3e6bf167e089de933bd7",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_actions.lua": {
+      "gitBlob": "380fa63267358c927bd040b4b926a8a2f9ef82f8",
+      "sha256": "e558c6b3dba4bcfaae21c84473933f7c4a4440104400c27561d68cbeb68fc4c2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_aim_arrow.lua": {
+      "gitBlob": "5f16e1f8d8627371ac4a3473f034edd5d0b044e3",
+      "sha256": "ca8b78b1df9ea3e764cd936a39027a73e0a99bc86c524937363e73887099fea4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_card_bindings.lua": {
+      "gitBlob": "af9561f79c59834549a3114f5ebb99a843f0b2fd",
+      "sha256": "add73e13c968039d9eee32dacd3d7d866c21ec6e2ccc89182d4f199d2ee9b7e7",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_card_gestures.lua": {
+      "gitBlob": "29fb77b3d8621b55c6560e7b928e03095e093613",
+      "sha256": "9941287769dde812c12426f7a3ea47e685d0b5a64c4ee4c534f4d22d649d5536",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_card_layout.lua": {
+      "gitBlob": "f26bec30d55a3fd34014bd7801b2a4ae8a4597f7",
+      "sha256": "a64d014875bf29300602b80bbb7d01260c59931434a509e5056b44a0f31713f8",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_card_view.lua": {
+      "gitBlob": "693d85024f12ae692e3a5272437435f36e740ee0",
+      "sha256": "95f56c683140dc813684eb6bc67dea99ac02a1ad020ec4711346314b02056b12",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_damage_view.lua": {
+      "gitBlob": "c4913d408d759ae4282161c7bfb176edc27c7f60",
+      "sha256": "0fdde0bd08f4d94f1a95b30a4236cca9b062fcfb3cafdd3df513c5599699df29",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_detail_bindings.lua": {
+      "gitBlob": "8e6a5c5a3fab90a108761a6c13272c0f4b8b4f38",
+      "sha256": "06f4f139894de966d8d49a1ed1855f5e08e5d127f186380b736177ad139be748",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_details.lua": {
+      "gitBlob": "7fbf8c3b85e50d043480c9e48e8a7f4079d63a05",
+      "sha256": "975e2546741b40a74bd12e2424e0743f85f422b6215fec1c9b727aa17f9bfcc6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_ending_intent.lua": {
+      "gitBlob": "173a47e43a4d3949ce565b5fbe4984d125771cd9",
+      "sha256": "fd7c1b135604fe71fefaabc5caedf107d22cefa4889bd2f109b5d4a30f06b466",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_enemy_view.lua": {
+      "gitBlob": "71b6a2cd2e5f7969d853822d44c432938d47e77b",
+      "sha256": "fb453b46085fd00e781a5ca7a5f2d85475d6883a5c18a9d00e6e355da95d4f5f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_info_content.lua": {
+      "gitBlob": "fbfd90cc9b0c4fb933f221b9b3c04cb786f4ec64",
+      "sha256": "6689b168fc44daee3f1eca6bc7d76db277fb6cdda00b43c13d3df7a3315c9f2c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_info_view.lua": {
+      "gitBlob": "fc28611f58d9429fb24f11d1a19a8d64622c76e9",
+      "sha256": "121297a5930b4ad8f954407caa019caed5b604474e35354539d80242e83d3eae",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_input_state.lua": {
+      "gitBlob": "3495300b49f0e8c372462832d5b48531e6042f1e",
+      "sha256": "f5ca34c51e6599284d574b8053297c429b4f14d7a1951395f5a4decfbb87cd3d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_intent_view.lua": {
+      "gitBlob": "5c2d36e83785e60e3a38884d340722f4ecb0800a",
+      "sha256": "491d92710d2e269d98ef850ffc100631897fdfc0572e2da7e754776b653634e0",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_potion_bindings.lua": {
+      "gitBlob": "ebac1e694a1cafd139fd5dcb149b372fc4ddfa21",
+      "sha256": "4d0529fe8b74cdf1807676dbf1c64d0913b27bb1348fbdd13069274ca006db64",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_potion_popup.lua": {
+      "gitBlob": "7e858fd11141927cf6a5004b34ef018cff0e0f60",
+      "sha256": "705397ad7afc3246e7c533932cef7cd63436535676087b0e4fdd51dd1e7c24cd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_potion_view.lua": {
+      "gitBlob": "63411ebe24ce6794cae5e32a525f44b9bcb0e53e",
+      "sha256": "c14001f467b8abd9efa98bd550b183266c97a2a2292154d7c97f374064f65a92",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_render.lua": {
+      "gitBlob": "db374b76c98cab0e34f4942e2a3a0ac9b21ac553",
+      "sha256": "6ab3653f406287abd50cfd6773410fff2c9a64b238810390ee3fce509881daba",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_render_actors.lua": {
+      "gitBlob": "d61d734f594b82d0570267cc8f38b88d85d18060",
+      "sha256": "47157bd6b5d4819f674dfd0b542f40eda91268977b196f1f230a4815a60dd145",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_render_hud.lua": {
+      "gitBlob": "11962d15fd29b7798cd3d28a3fd08fcb1f2f99d5",
+      "sha256": "5f2cbce7d5d7411e9b575b4f88311540a7913860086a5515ebcc88cb2a8b7f55",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_render_state.lua": {
+      "gitBlob": "0a0d8f7ec3eca3e4bd1765ec93df6ea4484ba0a0",
+      "sha256": "190bc4eca4ebaa7cc0147e8ddb901975f3ee3ef28bf27f945b73f70f485d9398",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_reward_layout.lua": {
+      "gitBlob": "d2db9a237bfb1fdb4cd1c7d475eb686d9e20faa4",
+      "sha256": "e1b3a9d7963298deb5a82f9a470b416e88da3e98a11d7320254d75660ac2a1b8",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_reward_owner.lua": {
+      "gitBlob": "4670e49dd16e390095c4c1f3d50fb1b6a7748ed7",
+      "sha256": "cb73427a6fdf4b952f5cf134eb59364f8af95db334dec6d2388d35cde8f5887a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_status_view.lua": {
+      "gitBlob": "408c426fb8934284610993f06cb38e8e29fe7cd0",
+      "sha256": "615fc1275429bef0ad4e1bc9a834d76c1aaac9e7c2baf53e284b06c7cf159b87",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_target_bindings.lua": {
+      "gitBlob": "31c62f613f74d5b49951e517e598ca6a2f5b258e",
+      "sha256": "430762c548eaecda576bb4edb8b85081501a5fc59d93ba11c8e7f2d192048b5b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_targeting.lua": {
+      "gitBlob": "95c986a631bdf9cdb58073f150852c50f0ff1c8a",
+      "sha256": "50922018fca25cbaf2ea7645b4ca9657b667c1f5e446edd52dd33b5103ae099f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_ui.lua": {
+      "gitBlob": "fafe3f2ac560b95f9e9e12aefb8e54d247a56236",
+      "sha256": "978f475b859da331cef3bdcb94c53b067d2db03fa12c46c212dc8150a3837f76",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_battle_unit_view.lua": {
+      "gitBlob": "07d8f49ba51fccca7a5e32e39ab534588fe4b2d6",
+      "sha256": "e723f9d6f1d696cc317947935a1e9a04e10f0046311a4034712c1ec133eea74e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_bgm.lua": {
+      "gitBlob": "c18e9e1cbcaa7de65ca408848f5077ba7e7c74be",
+      "sha256": "adcc610892b2c068e2c37a0f067080ec44e3b233e78d7799ac9371e1ddce39ec",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_blue_slaver_ai.lua": {
+      "gitBlob": "fcdadec44bb2094b09dc800f73aa3d7a5acb39a7",
+      "sha256": "f600520998bd33a13716e71ff93be6937db4d323a55aa1721ab6ce8e5be8108c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_boss_relics.lua": {
+      "gitBlob": "d7ccbb35e21540ba8348c9e072f4f392e40929ee",
+      "sha256": "07202773300b3808fb154d473769f3c2c1ba9733141b2a6411f20748c88b147e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_build_actions.lua": {
+      "gitBlob": "730be81e3d8d48cfc3334e7b2de529e73a63d0ff",
+      "sha256": "77a03a52e8f07324605cb97017111023593e6497fe0cf66158807d73290f0ea7",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_actions.lua": {
+      "gitBlob": "b80bfc9c79e85622e96bb53fda94ae0502678274",
+      "sha256": "8248d11eb5ab15c46763ef722b72aff3ac5dbde2c5e6b4da7b3103f5066ae4f4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_art_runtime.lua": {
+      "gitBlob": "a2b28f5fccf2afea6cf1cb61b2682f4565e6f2ea",
+      "sha256": "4917a9486da0ff8848b1fb1388aaac19b9011bfb671a702a47f33e729c4cb0c3",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_capability.lua": {
+      "gitBlob": "de89e7b56a6097b544a01a2686f54063e00589d6",
+      "sha256": "819de22b64a601386d8600eadac4b3fe0ca4b48b74bf2b4a8ca585dd0ebe2a79",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_display.lua": {
+      "gitBlob": "38797b9042a5f90b5c78d77a23596a3f27a49d96",
+      "sha256": "8b676a31d21df94b2244780ebf5816c670a886a0e3fcab5564f28caad7a932e8",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_flow.lua": {
+      "gitBlob": "d79e3a6823b8f137d2cedc32ccd5fea3d18de4c6",
+      "sha256": "65dcdf5306c4a4a3665d934843f10974224b4b876189b0c0b0fa387458bec5fb",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_input.lua": {
+      "gitBlob": "e81c8f05bd4cb62ac69062d50b277e7c1139c7f3",
+      "sha256": "2bdbf7ef08346979524c336bd80a44e2e0b4c2c00998fcb8cf54efbf631f54e5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_origin.lua": {
+      "gitBlob": "c88c9edccef8257028269407665437241c4276ba",
+      "sha256": "44f4891881c0f9c982930298620dd789d49f5d87347ca6782e088af916099d06",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_origin_view.lua": {
+      "gitBlob": "c2fefc1e564ffed5fcfff193ccb8e7600eb0e4e2",
+      "sha256": "10ffbb328bf0660568f0e79bf439c93a61a44f739c5f1078ffc82a89ee96a285",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_pool.lua": {
+      "gitBlob": "2ce7be9f6d8283efa322ae79f2102415655a6096",
+      "sha256": "dfc3a89f7df686a677b960430b8ad1be5a8042fcb4ae9a29537659795a2d0f90",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_random.lua": {
+      "gitBlob": "445c581eeeed0670035a404a3994e41f2558dc2f",
+      "sha256": "fe5890f5ea37f9cd32905321fe8a8245c25b90c527196f67bb6ff111ca962cb9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_skin.lua": {
+      "gitBlob": "9c62d8ce1f89621b932b33588026de2ef56b58af",
+      "sha256": "ec8e852c9d9c07d744f30daee6ec95b00044185194f162e8736dd69c2cdeb5f6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_card_triggers.lua": {
+      "gitBlob": "6232892d1c725c3f7837ca85cc69dddcb100d1ab",
+      "sha256": "0fa45d814d1d1773e46358c2a7ea81b4ae2c8a823f330189609624485e2050bd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_character_presentation.lua": {
+      "gitBlob": "638eedc28b261d0b4f14404c95ad0b095d88433d",
+      "sha256": "832d7871d48a9816f0285a30eacef48cbdbd4c4e8f394bf6eda0ee3425778bcf",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_character_presentation_text.lua": {
+      "gitBlob": "c809837529ab983e879601c6de431495e1481eb3",
+      "sha256": "c57e30f30c35ee7b7d8cc654a848e8ff9fea2be2fe1fa958cf48df23c21e8311",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_character_profiles.lua": {
+      "gitBlob": "655f00d88510f6d070e0dd36f1bade2b3cdd3632",
+      "sha256": "65a255630ead2887a58b34c37f3de1e25a636d3c02412774055e5294401b2a10",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_character_select.lua": {
+      "gitBlob": "014a449e590a7c1182fd40efe7bcd88a7801986a",
+      "sha256": "6eb3455bf6afa519ce9d9339a9ba58aece8ee9201c3c5ea13218047e140e6d35",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_character_select_view.lua": {
+      "gitBlob": "5495a0ed3fe644af03a50965cab90727b9f54f51",
+      "sha256": "d90169c2e5d369a218b9742747fda7cd71dc5b09f4face05d657cb96a9c09cbb",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_choice_ui.lua": {
+      "gitBlob": "784d8788561d4da88184d35b7491a09e4cd017cc",
+      "sha256": "c05d16a48e5a11f0734b2f429cd634f383ebee5bdcc1edd9d55a73e988098b0b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_class_card_pools.lua": {
+      "gitBlob": "cac400db7511e9862a28254c5df8033ae89933c6",
+      "sha256": "f9e6bf8162f964f6e28915c9add89b56ad514e3d436097f726370233fd8ac708",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_class_potions.lua": {
+      "gitBlob": "0ad657423237539dc2db3edc0c402cf937a4ddf8",
+      "sha256": "4cb57fc32fef1c086c5ee726008ce016fcb85b0f5b1c60a3c69a7a34180fd5b9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_codex_relic.lua": {
+      "gitBlob": "ce2dd9d1a14290a9a2311d034a895ce505ef3ce0",
+      "sha256": "fbfdc03e939bd40d39178b887b65db37af16ca6e6edbfcfaa35e0d2d0dd6e339",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_colorless_cards.lua": {
+      "gitBlob": "e0e26d913cdee29aea6d522dc7cd15373fc7e34d",
+      "sha256": "3c5fd5496278bac496fd737ef77cef383c41e3c350e46d3de66a8c99b7bed580",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_colorless_catalog.lua": {
+      "gitBlob": "fbd13a519bc85a054ce1d9b894b76dfdcfb01de2",
+      "sha256": "59783bedd0d0ca45774e25c76753a39783f6f8299dbdc90b00e9328878b54f9a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_colosseum_event.lua": {
+      "gitBlob": "63379eefee28100c1ec490abd4fb206b21d34731",
+      "sha256": "a4d3d339d10b0f56ed97a95237d630fda8cb46f9d125dfa21c70fc5218627058",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat.lua": {
+      "gitBlob": "2f0c4d6ca051f2df93f386e300e6b28c79bdf943",
+      "sha256": "609e75ba6e83da7b2311629adfdc2fd101c8167d3d17dbb1cdc0748baa9b1d1c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_catalog.lua": {
+      "gitBlob": "8299d941fe848401a642210f696d6d05c85a59ba",
+      "sha256": "875a7d22de4c868c584389c2c66bc98bc6e25c82720157d71c164bbb3fa5d7dd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_effect_cards.lua": {
+      "gitBlob": "ca2c991a5be433c811e71d11ad60cdf7413b73cf",
+      "sha256": "ad516e63bfa3528104d42a49bb7e8b5c446c2d0d6e4c855b984bcc524f2733e5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_effect_choice.lua": {
+      "gitBlob": "866be776deaa0327ae315814b57aceb78d6f0822",
+      "sha256": "28f6dc9c18cb44b172858bc5be388ace2aa727609402d2478529b5536d9c086f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_effect_damage.lua": {
+      "gitBlob": "52702a38473279c44ac000d22276ad79dd993da2",
+      "sha256": "b8ff07660d5d8e4b2348082678a3e83dd17d70994ef78652435c19dcbb5ff044",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_effect_dispatch.lua": {
+      "gitBlob": "b53baa5f33059faffaf767f0729080d30df3053b",
+      "sha256": "5bf02c9a8800e10abed38f7718f62f77c150ff6739132bf57a4127846d1d0ca7",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_effect_powers.lua": {
+      "gitBlob": "43e1f9619638280b86852da741eaaa3a765b0f37",
+      "sha256": "abff029055d1ec47be657fb5a938c928309a925043796eb860e492df93b47afa",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_enemy_setup.lua": {
+      "gitBlob": "d1ff79c4d7af6c79b4bdfbcfadf2415cbb104c57",
+      "sha256": "76c8aa93a85a272b80ff4ae74645bc26fe33b7f6d18eb733d8c54d904b9331da",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_native_play.lua": {
+      "gitBlob": "dd44b25127223152d394f9a957f5370b3d6063dc",
+      "sha256": "539c3a339016f9497b77f11daed7e0db0378f3e2fcb0923a2ebd39547881c6ec",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_queued_play.lua": {
+      "gitBlob": "d4fda1b3cc44b4a88a9f01fedc11c3e8716e66da",
+      "sha256": "8cdb95b829af4572932daa356ca0456a385c5cad5afb7950da2f2b47a5152d15",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_combat_reactions.lua": {
+      "gitBlob": "5526c95f135e3406ff96a497f861b97b32ea4678",
+      "sha256": "2772aa238ce72d7628958bcf625602cd40b437cc6c24570d48dcacd578ddb06d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_compendium_catalog.lua": {
+      "gitBlob": "77fb3513aeac1f6ca89da454a7f164ede0cc1ac2",
+      "sha256": "d6594b4d276ab2f02983429227102282e51565acceca266c8971adfa9e32706a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_controller.lua": {
+      "gitBlob": "76faa7f7b40b0aae3eb82cfba2bd347eedaa3966",
+      "sha256": "bfa156d81cbb4be11b5cdf6f5568051c46e2eacd724fa01b2d827736e6ddf482",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_copy.lua": {
+      "gitBlob": "d64c7602df9f3389e2a0c359b6bdcfe1339db0c3",
+      "sha256": "099de1e77e190d4e61ababe30916b93656e7dbceb489755a121a021657911cc9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_corrupt_heart.lua": {
+      "gitBlob": "fdfaa6b2390913060488f352c7a0db734149c12a",
+      "sha256": "a9b65915db69f66b9dc8a2be670ad2fb18f46f7e9fa254a406816b49cea496ac",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_corruption.lua": {
+      "gitBlob": "e47692b6d021d4e8bf59c2f2147dd01822db556e",
+      "sha256": "a4ec793a0568245f32b79b0a6e074348b59d627b71fe2da8faa345fea2ef2f14",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_cursed_tome_event.lua": {
+      "gitBlob": "17a70c3ab6d579f268edceb64522318d9e1ea76c",
+      "sha256": "6055e253d9af199bb0e263b9460238c835107cde7cf704c5923e98220af2a411",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_curses.lua": {
+      "gitBlob": "0f019456f530e3897c992b6579acd739f319429a",
+      "sha256": "942e7c65da29875fefbff132182ce7a7aab16afb4405e28d2a71e31d589a44b7",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_darklings.lua": {
+      "gitBlob": "1a3a412e1c22d321b986212f929cbdee8659a44b",
+      "sha256": "4cf5255fd3ba000fb5e9d94468a74685a2ca37fbb15d0c3f5d2efd9c90fec22e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_dead_adventurer_event.lua": {
+      "gitBlob": "51e73a0f2b1fa590c83e20d0185b59932844984b",
+      "sha256": "2d225ea8e6852a4ccee55f8e1d794c111bf09f61b553d294c26c95753c76bc5c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_deck_ui.lua": {
+      "gitBlob": "aa077e72e87bf4d5d2d4cdc35b0f2e73910739dd",
+      "sha256": "e652f6c95c74a34072da49f6019e2915aa9c81b97d54300fca2d8a2fe997e908",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_defect_cards.lua": {
+      "gitBlob": "09d0bd677c2127dbe0d0e53520bacdae8461255e",
+      "sha256": "7844025e58ffcf345243d29a8e24b21268f728e833456389acbd764bcbb8d6a3",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_defect_engine_cards.lua": {
+      "gitBlob": "33420d6ed74220a2bf6053fbc0d4f414f0b1e1ec",
+      "sha256": "4d9a0281fdd42f853d6a836f485d56d0693996577287ba2ec5283c222cd17ac7",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_defect_final_cards.lua": {
+      "gitBlob": "c3b0ccafe1c5f5576378a265c71e1ba64f5ee797",
+      "sha256": "77abe4a82a37118273585830e1bd4c49e07b0367de77f06dc388b7ca862f5544",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_defect_utility_cards.lua": {
+      "gitBlob": "414d1f260d3a617eb06b4caadfbef013296f1a70",
+      "sha256": "921a0e333377d12bd54551b71d1af2d142fc404172df7bf62ba1d4351b33cfb5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_designer_event.lua": {
+      "gitBlob": "539680ec4b4bffdc3cf5e53ccc5f151a72421621",
+      "sha256": "8597b051e23c7ad62276c3fa868f652ddb82f33dc6a9aa6bc0e5009935b852cc",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_discard.lua": {
+      "gitBlob": "67db31f147d082c5057d9481a8811b093533435c",
+      "sha256": "5742fbad7b6daf65b324ff9c0143d458f1fb864c006237ef5b150f4e34524265",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_drug_dealer_event.lua": {
+      "gitBlob": "3bd23b9a658acdcaa520e44333e56df321554062",
+      "sha256": "050e3ff36e02d4abf878248f4fac2a4bff3b6b8fbb3021965156f67cb901ff83",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_duplicator_event.lua": {
+      "gitBlob": "dfb765f779be49c42950afda5e03846250087eae",
+      "sha256": "12be2e5ebb7f0d54464d159d03829275cb1a9bfd30f46fd5d9b2912e97c6386b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_effects.lua": {
+      "gitBlob": "4c860972de6187d872dec91e324caaae325f0825",
+      "sha256": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_effects_cards.lua": {
+      "gitBlob": "debd856c8f5f97e569a05c990753b24439c65bb5",
+      "sha256": "28bb3255c8d038d905bcdbe1b8e5164b787223747ec20d0c15fb33a5ab989bc1",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_effects_damage.lua": {
+      "gitBlob": "0ec1a5cd6bdde91e7e77387a85ddb2aeee6ff2e3",
+      "sha256": "ae24c9ddd57d7ac2bac8c65d8f1f1768fad750ada74262501b9bad074d03ca41",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_effects_enemy.lua": {
+      "gitBlob": "11da712fd74220bd8531770f7baf32fc10561507",
+      "sha256": "afa4d9172f210a5b459bbd38df18718babc3993477ffbc12ddd2615eb4f2f12a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_effects_powers.lua": {
+      "gitBlob": "01e203d90a6c52fad5add534c2ae470f657c2e49",
+      "sha256": "323319953426476692bd7388526a249537651c46beb6b01c6e1877ceb4e70e36",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_emerald_elite.lua": {
+      "gitBlob": "cde12ab5111a4dcdd17bc5204ffd301b2de26c03",
+      "sha256": "66f04ab348236f17a61125d8b76c7098b4fdf79607ae44b634892bff89be3d46",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_emerald_rewards.lua": {
+      "gitBlob": "797094f674d927dac7bcd8ff1ad6f6735dc2049e",
+      "sha256": "800a19f3a9f3c6e4dac423ac62d90ccb5ac4ddf6a23a255f12572b040490c83c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_encounter_formation.lua": {
+      "gitBlob": "d35935c941cb5fda2700efa79da4ca2208f2aece",
+      "sha256": "c31b3aa4711fcd53613e00e689c5e2ede15ecb0ba2fb89d9fa16b6fb8d3abd63",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_encounter_queue.lua": {
+      "gitBlob": "6075478d0ad91b9a468991a9ae919bf923cd18f6",
+      "sha256": "3fe80c7f00add3170c5bc3d2053889ac197e8a96e83aee1ab428b809baa4f7f8",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_end_turn_powers.lua": {
+      "gitBlob": "a8cdc3c6100674948bfe8c1913d3f1eb22ec143e",
+      "sha256": "3124970981b679dd4964a7805a6b28277a286cf83b1dc0601e1e0e79ca4de527",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_ending_actions.lua": {
+      "gitBlob": "d0028ce7bdef985a5c7949400153a1084124800b",
+      "sha256": "2a2ada3efd984aec9b4a28cd5e60f5f18bb22f16ba44cec95afc1538ade5dd4a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_ending_history.lua": {
+      "gitBlob": "2bf97e45231cd57821a0fef3ec15e55f57671964",
+      "sha256": "65c718fc07c01542e4aee1911d347d017e97b6ec3df4a789fcc3d8f09fb7ba9d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_enemy_ai.lua": {
+      "gitBlob": "1b1e7048c326c75813bf76326ad975af85890fe7",
+      "sha256": "5823224e9286ae0de64acd7d04bc6ed05857841ba143cbc219bb1bb4367e7ed9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_enemy_random.lua": {
+      "gitBlob": "50c19825b5a752633246d1259a293aea5298e3ff",
+      "sha256": "6e85867185aa114af1b0dd5faf38bc0a59a7292f1bfc39e513460909e22621cd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_event_card_sampling.lua": {
+      "gitBlob": "ba8531ed034a1ccaf278f2061cbdf9a11768cd44",
+      "sha256": "8ec3dcdbd2519f8d06d66ed96124178d0eab515c4c8d3cc6504d55c85739ae02",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_event_combat.lua": {
+      "gitBlob": "934f74a06baa4751bf709af6978310a5ffd0df2d",
+      "sha256": "818e322fbaa74f9fabc0608793ffa7edb8493db8de331e655b0776000f13b550",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_event_combat_enemies.lua": {
+      "gitBlob": "01093732160b6aa4d361d4da85d809566205cf13",
+      "sha256": "730ec209b7b4808789ab90cd255697850c36cd0c3de6d63caec18bc7b2e105da",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_event_combat_routes.lua": {
+      "gitBlob": "edf67283791ac65b9c18b4a815adb3e412cb2929",
+      "sha256": "0165cced88e1c8d2144944b03c5538051dc28da17defd4011f6748e465a1d859",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_event_pool.lua": {
+      "gitBlob": "3a4da236a366bb7b5e50df540c219cb304b90424",
+      "sha256": "2b3511baabf92f3007515de4d6707fe9b60c281d3c46ee04547109543f1219ca",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_event_transform_context.lua": {
+      "gitBlob": "3a17382da27e182272a0b9416d527bae9aa71081",
+      "sha256": "38c827ae2eb69dac8d0a7b9dc3f7d11d0964e2bf48d2157c23dc91d24eb4af44",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_events.lua": {
+      "gitBlob": "25525ca76e9f2192b2ba18f17c082bbb15ad8453",
+      "sha256": "82a1fd4f5903454220e95d55639bbb547ec13d00257051b703bf22464fd1968c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_exhaust.lua": {
+      "gitBlob": "d16510f06c5ce98de7f0c75d657ed794142f712f",
+      "sha256": "a896da79d8206d763a28622ba5544920d14ee9e9b33d6fef9b11d72d8491de48",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_external_random.lua": {
+      "gitBlob": "72b488f58eb211eedaef13a1b558861502605c33",
+      "sha256": "e328762910a732b84bd20b1d800f7372e0295156a8e66fae146acf758e834702",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_face_trader_event.lua": {
+      "gitBlob": "1cf8455483a906f89887da1048e07790275dcc51",
+      "sha256": "cb82eb38e4d69656dc23f170ee197618123f887f83539074199030289f0dd66a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_feedback.lua": {
+      "gitBlob": "ff9d7f38c9a53d56676fcb22dbd32848a8cf1335",
+      "sha256": "2219cdcb5d43fad4593e136b0ec40aa1505abb8e03f1e0c81aee8e767711afe1",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_feedback_actor_painter.lua": {
+      "gitBlob": "ba431dffe1bd038f4975293e4bf18f25027eb25b",
+      "sha256": "e5e39be2a66b707e2385e2fd7171d9eac3a707ab2ef8eebcbb0c1689f9a3ebec",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_flow_actions.lua": {
+      "gitBlob": "50c209237d460eb87c2030e8680fb5da4db4875f",
+      "sha256": "d1ce62d0481da5fef3c25fa835d4dd4c3a4d16d2ee4aefc6402bd01b4d7b3759",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_focus.lua": {
+      "gitBlob": "1fa64aeb4d8a436bbe89de9e9e1531e9dad7531b",
+      "sha256": "a4cead026d11ade7e97e68190a77d4d12661a8119daaf6ecac14a31eca3c94ad",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_forgotten_altar_event.lua": {
+      "gitBlob": "8e667470fe0adfaea65c157f7ab9dca82e950fdb",
+      "sha256": "e353015785d8cbe3eefe1c181c160f17ad1bd58b124fc80202c1782a777db003",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_fountain.lua": {
+      "gitBlob": "fc23d16e87f6fcfa9e57d9bf4786fd0f67e25596",
+      "sha256": "cedc147d608a7fe39020d494dc96a3326f0fc3a1c0473741b5e9031d069a97d5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_fungi_beast_ai.lua": {
+      "gitBlob": "3550e6d363a9b11c77d7f8f86242f24070ce6fba",
+      "sha256": "2b9d1aea3c91a0570ef60e7b35ea7038c385b12c945c4058babafb71d65992e4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_game_ui.lua": {
+      "gitBlob": "8b8f56f4033a87bfece857c0f91f9f3e4c8e42b4",
+      "sha256": "757b84d15424fe567a635cddede31708bee98dd51fc9cc8683904a02c2c6db5d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_game_ui_input.lua": {
+      "gitBlob": "6eb097d815ad911ca7d9228979bc7744c56fe9f4",
+      "sha256": "a2630f7eee718be5b970a5e0fdfc8a8867fde6877e5c09402c0d1486ad096e39",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_game_ui_lifecycle.lua": {
+      "gitBlob": "caa211f16567fe3cdbb0a2fbd13ff16298d60b1b",
+      "sha256": "9f7ec19571c1103e536d2f579df52214cbca420f17da921459331b96c33c3f1c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_game_ui_menu_view.lua": {
+      "gitBlob": "393d76d870109ea0eb1c01e1dbf1d10ffb7e6fd8",
+      "sha256": "20db628306d05a6dc7bc8b786715322e78d7c2840c028451544d8d9b308d588e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_game_ui_overlays.lua": {
+      "gitBlob": "8dc2650845bf9ae0353275e155ebcbf7327b0e24",
+      "sha256": "cc8e70176ed82a7a8146507fb51c123ecbeeb6c5d01c8e1a98cb07cfb53fd1d2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_game_ui_run.lua": {
+      "gitBlob": "51bfb2c2c7e84891e28830cbbd5c1090567f62bd",
+      "sha256": "ae1d8e262a79ebc8a9e6749948f1a8d97b21a7ab13a28adcc4a886b1a98bc5b3",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_game_ui_view.lua": {
+      "gitBlob": "101b0de81bf8c0c4e1d589b87f6f7a1d10864843",
+      "sha256": "08f021ddfc7856f8de998c4af079927025fa03c469443f82232933de002bb105",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_ghosts_event.lua": {
+      "gitBlob": "7132f217af92b487a97745a297e9692d1f3d1398",
+      "sha256": "d7fb720f4fd19f95bb1315a41eee54329227ead858c8dd58cd5f663ab8b1661c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_giant_head.lua": {
+      "gitBlob": "596c3dacd67f66ffd48feb83c15e8501cae6edbb",
+      "sha256": "5806525b4634c5396e71e7c590bc00fc0047d81e6b3a612e417f889eba79f1b2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_gold_rewards.lua": {
+      "gitBlob": "8784f7c8f920407ea7015143a5c22b7710d81bf3",
+      "sha256": "8cb4b578939c8093917e521e7114ce7a8bfc53da71692cd2db1df71c78dbb5fb",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_golden_idol_event.lua": {
+      "gitBlob": "85baebf80e4919437a55635b9930eba9a671dd60",
+      "sha256": "14ea045b9e85ee54a6b7bbf3b5a633b3a077f85962ab92dc088b95c46e7f2af2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_gremlin_nob_ai.lua": {
+      "gitBlob": "e2c82e357dbd856ef5bc2d3ea1f81e12a0cdb952",
+      "sha256": "b6739284fccfb553e229ce4f228cc8db602decbd9ee3ef4f93340ba39eeaa7e2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_guardian_ai.lua": {
+      "gitBlob": "79fffb8f7b4d976f86f6063a28e7c6b1ff35c74e",
+      "sha256": "f75fb008b6ddfffec6adaa49890c192d89b459f3119e3e8baf4d9b03a7c92eb3",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_hand_choice.lua": {
+      "gitBlob": "a245d22fa82de2e264dd0b4f4971be4427960029",
+      "sha256": "4779464a8dbdb4e8531071e3c61b2217a8ed99aec3788275aba10e054a0e2d76",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_hp_loss.lua": {
+      "gitBlob": "2c8e519f89d4c00716b7c5c14451cc80b99b74f9",
+      "sha256": "c850a947b868859d6fc522ccf547e76253473f29d4ebe762da0507ec9d9331ed",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_inventory.lua": {
+      "gitBlob": "f4362552e440416c1d8d3add2f889decbd8a03c7",
+      "sha256": "caf1e1b1aa8b61a3b3c3388aae0163eebce63df68e598710857f26d064204c8a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_jaw_worm_ai.lua": {
+      "gitBlob": "c18d9efef89e373d8c303009cd962ae12dde05cd",
+      "sha256": "c8408c9ebfdf3198db3a70e63ece71a89a642dee64548d907c64cf64208252e9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_joust_event.lua": {
+      "gitBlob": "0fb26fda5899857e390b0d36691340205c3e3fd8",
+      "sha256": "c579ccb9efe508634e712388ccdf1ac61b54295922f59b89f47f032be2ea1a04",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_knowing_skull_event.lua": {
+      "gitBlob": "3cb9888a6b541490d7046f3ef4c6bdc757b42ab8",
+      "sha256": "fefcadeecba9b0f47fc1a7d7467585cfad81fe5645b885a73bae148b9ae293ec",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_library_event.lua": {
+      "gitBlob": "1096b5dc00ab4dd6d6f000c67c52c0696db7d79b",
+      "sha256": "10d0f6970d478ca4adb58cd287dfe5d17e8d779138bfea72ce413f3b5aa79c4b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_living_wall.lua": {
+      "gitBlob": "79b6e309a8e032c7620575db4f4cdaf6127207f0",
+      "sha256": "9fdf91e1b9ae66511b6c6e80d0e2b250b7245d2077452095c32c8515d281432a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_lizard_tail.lua": {
+      "gitBlob": "375e69770d01c60f3b3b6cd530e627cd40ccb60d",
+      "sha256": "c4dbfaeb1049dd90eda158a02713977e5e968ee5e478f6986bb7fc74081ce299",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_looter_ai.lua": {
+      "gitBlob": "52ece96dd11787d935422f5fec11749cab499cc5",
+      "sha256": "c754cac73612052a71475d7a209cfe97634e6d134773a93475069245143b0d48",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_louse_ai.lua": {
+      "gitBlob": "84309aaac3702a59c7e70e77dea0c2d562b6877b",
+      "sha256": "8e3201c61d29992883784b6165eb79512b2e4e974de5008fba8f227e6c7776f4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_mantra.lua": {
+      "gitBlob": "808b2d1cfa528bdfef2c842ce293fa005db3131c",
+      "sha256": "767b0c41782ce159b549fbbe163c1d3022bc416d0f06fa8de8d555910dc0c375",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_map.lua": {
+      "gitBlob": "5375d7e16059fc1967efa1826c2ffe9ac9f37ccc",
+      "sha256": "52d311bc4a863303906dfa3a29d65bc11606eda30759a560ed80266381900810",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_map_rooms.lua": {
+      "gitBlob": "332d3ad29eb23bd1f9dd3cfb0716c0034c58c579",
+      "sha256": "eef10661bd77af2e9464e4eab7199c0d487f72b1ba412cf0867f970169569e2c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_map_topology.lua": {
+      "gitBlob": "8496da670d3402ade2c5b21ec06ac491b22a1bcf",
+      "sha256": "0b07a3269a9110c82a3a88b9fdd25313555a5e44d6121d86606f70ed654ed788",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_map_ui.lua": {
+      "gitBlob": "1f252870aa1a4060e99e485d652a8a8209dd5f45",
+      "sha256": "893880f414ac726f627c599bdc066342db6a94c58b6d4dd284f4ca57ec376504",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_masked_bandits_event.lua": {
+      "gitBlob": "f25787977777f0a3766cb2c145f4ee405cbdcc18",
+      "sha256": "e094fb78b5836742f1c55b00aaeb71face17f8c4af66c63f9ef5860c9ba45a80",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_match_event.lua": {
+      "gitBlob": "e1d7c53a593eeea3bb9960bb8aef63b7c17b164f",
+      "sha256": "c8e76f8be6640926de79b14cf435eb71688485072d174833f64a4fbe68361596",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_match_event_ui.lua": {
+      "gitBlob": "8aad00562f455d51f0f68b132e61101d6967f6df",
+      "sha256": "fe0508489ec452737e78f35e42107861b7cc69ba98f8b3e54d83e873712b523b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_max_hp_relics.lua": {
+      "gitBlob": "b08b9757da03e5ece79deb16fa172c5c47ac6192",
+      "sha256": "be64e570ab9ca4ab28acf79b474531714e41fe93d7a04a284b88a79e683dc0d6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_menu_background.lua": {
+      "gitBlob": "22f2a7dfed4ccf5ff78e541da6bdcad4f948e381",
+      "sha256": "343d0e5dad14423edc2bd5495c70632a2ff4b91e04c7102cc5eab397ef27d4f4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_merchant.lua": {
+      "gitBlob": "afbf26dadb4b565564ebda7f14073d0924509cff",
+      "sha256": "1406a09412592bc65e8cc39446fa4219250d837bc55a94f06c53ea68ad31435d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_mind_bloom_event.lua": {
+      "gitBlob": "2615b07cefefd9b5db62039c81a936765524f18d",
+      "sha256": "90839bb4c97a29e8294f3ac97481c8d3851f079f5088570c48fd885a641b2bb8",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_moai_event.lua": {
+      "gitBlob": "c50d96f07c15996e2f32faacb3a5259af4b2bccc",
+      "sha256": "5e91422199049347db4c33429235023180cdc3ae6fda7b4645bbf2643e0c8026",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_art.lua": {
+      "gitBlob": "a28504c7cccb762acd9387308d6853c41ac175cb",
+      "sha256": "af776e697821870dd7c06b86862b4096262f9879ae66af3f8bbebb125d63644b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_displayed_intent.lua": {
+      "gitBlob": "d28f0b3b34a9b9babf8fca5bd2ea1614ebb99eca",
+      "sha256": "03ffebc6575d6ee7bca229b239276a452bec5e5800737238745ae129ead6e358",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_escape.lua": {
+      "gitBlob": "a7ba25b253cbcc48f6acade18edd58bc2e1c5022",
+      "sha256": "f5fa35cd7aa2f62fe1540d14b732647e79014e8266f64e28b4671d688c3f34a2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_intent_particle_view.lua": {
+      "gitBlob": "82096aa9fa148f0975e78a45d1b1cc3a9dd44b64",
+      "sha256": "8117dd827ff947880d410f19fc5999fdce6cbd8caeb0b8e2b2cdb11b9db3dd70",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_intent_particles.lua": {
+      "gitBlob": "0bd58f0c67fea624a5e3090c0188326a2869f2b7",
+      "sha256": "53bc76d7bd0296944fff253e4d021e2319253acda758c48e8eb673878dc3aa5f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_power_surfaces.lua": {
+      "gitBlob": "78eda022f52e2595c33e8d473a8e41ddb7d9a02c",
+      "sha256": "e9e81ea8648f22f3d2b6b2a489f72eda194304cc164a52f8cebbed9859bff15e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_power_view.lua": {
+      "gitBlob": "ce7e3f358c6508a9a49e836f6fef36b8b131d361",
+      "sha256": "64a01d5c8b97872a574749418afa0ee415290a760f62f8b70e40f369a9f90627",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_source_geometry.lua": {
+      "gitBlob": "184ca637b1ba8d74974019554fc64949d9237807",
+      "sha256": "72e5b5b88b3788f88597fb84d9e8df8c7369dbb38c75d2f99e9e81866f597d47",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_source_intents.lua": {
+      "gitBlob": "50181cc1f74d692524d64a1ede82a0d10f72cb35",
+      "sha256": "8992382ce56ae66c54194686160bfac78c035f545a50410557d02e8ae6820675",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_source_positions.lua": {
+      "gitBlob": "cf6d25f7ae6be831bbaf561638a78196426854a9",
+      "sha256": "451aba7cc747b2ea24bcc26b646206f0c3da72be1784621e0024de2a96a8d755",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_monster_surfaces.lua": {
+      "gitBlob": "9db4fe0c1648c645e4ef4b5cae4be66f8ea16238",
+      "sha256": "217ea8492fb72867ef635d674987891e5a85a1d71dda7b70b52db6a0e53f0d8e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_mushrooms_event.lua": {
+      "gitBlob": "d49f39da7200d66dce5f4a8c42aa962a97210bf5",
+      "sha256": "4cc7a98b481c4600cfbe497ad1b44e5a7fe18c08d14498b52b47225c559c25a5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_mysterious_sphere_event.lua": {
+      "gitBlob": "9c63ebf2389806394997646fb42976978ecec18c",
+      "sha256": "9532b65d22f0849ca4da946abe27c99ab48f06e2f902a30d39b1ce5b1d4c71a4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_native_pages.lua": {
+      "gitBlob": "f34aeb379736abc864e869ed6a8d6b7ce9184058",
+      "sha256": "ce0e2d6c5bbfaef501812fafe9ac688a764ffafc475d32250afeac8e51cb06be",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_necronomicurse.lua": {
+      "gitBlob": "e0093ba41e741b6004d81eb68e36f168b59a5e72",
+      "sha256": "173812f59fb1ae31decb2904785291b12c53a7b64f9eaca12d229ace07c5bbc8",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_nemesis.lua": {
+      "gitBlob": "c7b5c2344f36c9ee50427bc488a476cb3730eb84",
+      "sha256": "0aee581d8fef52d08d4318ca4ff3f8656970936d0690d5705c7036405e8fbe6b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_neow.lua": {
+      "gitBlob": "cdaa780099326e6b2928082e64e7e93bca4a587a",
+      "sha256": "6d7c62735bcaae2b188c497b1b756216125ca85670141fb8a4c7e440a0b877d6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_neow_history.lua": {
+      "gitBlob": "aee81aaa3f5468e5504f81cfad9123469db489ca",
+      "sha256": "6fe9d6b915f155a1edbd2581cc13af530b3fa7277aeab10c3249429a2d200b16",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_nest_event.lua": {
+      "gitBlob": "eca3658cb808249b8acb1cde96b02482d44e8737",
+      "sha256": "5fe3c845db3520c0c91c43307b723b7c0a5f7b0c2acf6954758f6b31b68ad936",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_new_run_seed.lua": {
+      "gitBlob": "efae54fdb70149e3f085fe9fc5b23810e4d9fa75",
+      "sha256": "3d22d46f72cae9cbeacf534091442d8e3205701bc1b118599c181e5adb981755",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_nloth_event.lua": {
+      "gitBlob": "0a145f7277b12dc7c9b068b4fd1126a78033708d",
+      "sha256": "89395ef63c0876b09097b051941e0560e5788ba9b8f863066e02ac146c790605",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui.lua": {
+      "gitBlob": "145540f5b65f1ba88f983646d661fb2648f0a25c",
+      "sha256": "4f8da21e05e0289181c7890656cfca2f818cc6e3850f23e505327fd4a16acfba",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_camp.lua": {
+      "gitBlob": "646ef37c73ed2b1ca7135badbd838884180d874d",
+      "sha256": "e67ee265250e0182f551c35b114abb39b539943caa346bbae5ea5f491fe20478",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_camp_actions.lua": {
+      "gitBlob": "da08b98ba097db0825b42eb3c8a4df3a968289a4",
+      "sha256": "cfc7a17942f4c5770a06b38fe67b04183e673d890285fc50f950810130a04252",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_ending.lua": {
+      "gitBlob": "74e0fb64424a51a5b3625b3cecb8e5e65ca96d1f",
+      "sha256": "b53dacef061da3574578cf1b7f623b5ade64a3fa80ccb464f4085deb72d052f3",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_event_cards.lua": {
+      "gitBlob": "71fc8e491e2df4d2a786da57f2ce343ef5bae482",
+      "sha256": "d87d2401a475451aa11505c46a04f90147f7772e128099bde934dc4a5ba63242",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_event_ownership.lua": {
+      "gitBlob": "5b55d05dd73dd7967e149fd8a8ed435a734326a5",
+      "sha256": "a9d0ebe3d0f9973274bfe0734c14881c90a5947ece6955770e27c15fb507af58",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_events.lua": {
+      "gitBlob": "c2091efe414cb90a3f4a139ef7e26af49f4dceae",
+      "sha256": "45d2aab93b2e0819cca54f4082b80fd006b5253be455cc3c36cdee66437544b0",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_faces.lua": {
+      "gitBlob": "d10319477552d37a7e7da3e849ffb0d12d4838b6",
+      "sha256": "0ab8654addf095b7c00980aab325fe12f496b109f47714f78abfab8adacdfbd4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_feedback.lua": {
+      "gitBlob": "7991a57634767e2395935df4b40d486262d9cbe9",
+      "sha256": "d684dc352f25e270991025ed37d262527d676c428e50ccf6faa7fff87dc43a27",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_input.lua": {
+      "gitBlob": "2536846bc35319c2865b4a08fc2b16e93c8fb760",
+      "sha256": "c7aa8771c045dbdb24f7d36589f8671b548cca7c5bf55d0f5dcefddecac882ad",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_lifecycle.lua": {
+      "gitBlob": "e683c2cde03eb0a8d6e929c0203ade5e483f6975",
+      "sha256": "40db53d318a958922f25e84dc97825265f48b3a43f83abda54da3b6c4791651e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_motion.lua": {
+      "gitBlob": "7f893176904e2f8adfdf982c90ff7a1c189d286e",
+      "sha256": "3673190f95c5bf81a68c7a671942fb13549267114d702bfe40e36869057bc18f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_reward_detail.lua": {
+      "gitBlob": "8972a82eef67c3916557a51d6b57f5d1ffe91b2e",
+      "sha256": "166430794f9eb17607b5bed5102260c981caef9fdbf761e73c01d113b052d2f7",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_rewards.lua": {
+      "gitBlob": "4a7d8ff5487529b8456760159271d64c4c77e7e9",
+      "sha256": "b9b321752c45bdf2800d3d9f1be68484cc3ea2e58b27f2803bf789404ad85bb2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_shop.lua": {
+      "gitBlob": "6c942a7f5a59f6acc46b8dc6c6844a763e43efb9",
+      "sha256": "93cc968880309c10a73f38e6970c499b1ca5e14e173863a49eeb9fa20c2505b6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_treasure.lua": {
+      "gitBlob": "bee37b477e82d7c0eaa9fc2999b98ee05a5c44df",
+      "sha256": "771421ff18215245dcd4967f210a96019562cd3dfb80deab1829edfbaf681ec2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_node_ui_treasure_list.lua": {
+      "gitBlob": "bd9115025c3749a5448fcf6ff1a1612b8808d3ef",
+      "sha256": "8761f06908f2befeb9107be141e87f7d815d5e224382ba7ef93600f64e818060",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_nodes.lua": {
+      "gitBlob": "3833625544cccd1a785476b530fa0f5eb0dcd9a5",
+      "sha256": "f685e7a59b57f66721e3c2f8143b99aa37efd05be77371bbda61fd6e4a4a4d9f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_nodes_common.lua": {
+      "gitBlob": "ac00506857352e14b5214bb48701010dd14ae8df",
+      "sha256": "584d9e65ce3ae76df830bc3603b2a2f815312dd336774c5d69a7f767f344bb4b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_nodes_entry.lua": {
+      "gitBlob": "98c5fdbc5b8c00f853d82a57e0eff53b9872444b",
+      "sha256": "b966569a6c79b03cf7734238fe516183be412cfbd0a3db9adeef2dd32ec95447",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_nodes_events.lua": {
+      "gitBlob": "140a17610e06f5bb803e56e19636d1813b82d57c",
+      "sha256": "596ec0802d0df72c3e3a431051a16e225a434ffc43b0464d267891c9eafdc4a4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_nodes_rare_camp.lua": {
+      "gitBlob": "9c5c30cf2d5ee79680abf4ea036e1dbb687fbbcf",
+      "sha256": "af58260d9f6ce43190589ba78ad46dae73485450a725d02b490644ed255bdfdf",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_nodes_sources.lua": {
+      "gitBlob": "ec76fa74a844e1d3e348b834f6adcbdb5540aa39",
+      "sha256": "daf8bf82db53dc1fd1c8ef38d0356cc2c226d223d60d4883c8a27c96ff9ac310",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_numbers.lua": {
+      "gitBlob": "80763d45a36c1ea978e2f823fc40abb55041f578",
+      "sha256": "857c071eefa67b128b5d8aaf16fb4ae04374ac3f80ba2eddb13b324382953c80",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_opening_hand.lua": {
+      "gitBlob": "b2bcad0f1a8a79e629863dabc8ffe5e91c6e20b0",
+      "sha256": "4b81ec5f9bfaf28f7f8c127db4df7f87de1455e5639a98ddf0162d830a664d28",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_orb_powers.lua": {
+      "gitBlob": "a2aa7cb53f21ca7f9c20d81a63c089d0cb903219",
+      "sha256": "7fd3fe6cad6a519c352403f65276caaae6eccc49c2a59bae64fd58de3a3ab811",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_orbs.lua": {
+      "gitBlob": "49c1c22665a6847b534d5de195455cc7e95151dc",
+      "sha256": "8db88dc31db3e60e779e737cbb49b776f817ba3fdc945b8f7779fbb35b3442bf",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_original_v4.lua": {
+      "gitBlob": "f36890a3376fe7a369a878c45f2cb436096291b5",
+      "sha256": "4728b4ab4838e664d7b2fe4efa6b55c089417c79428e4362412b682a84cd927f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_original_v4_display.lua": {
+      "gitBlob": "57b631384138dd081e9f6c344280ce0c06fdd1c0",
+      "sha256": "51f6f3bd0a93acb728a9c2a10c8d52041d4ac1133714ddb48758124f7cdc0711",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_original_v4_health.lua": {
+      "gitBlob": "7dce6ea3ffd6ec5b95d77e418950f7af12d3a01a",
+      "sha256": "ed0efdbcf41527cf87b5e9b53d6afb08d73e3462e7a1528a4f1f4a33008849bd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_original_v4_profiles.lua": {
+      "gitBlob": "88b39a1226cbe9a9d821dd9a461751a6dafe07ee",
+      "sha256": "fb50790452127f2bae3821d4f8cc249cf71f9c7850e97906e65626dafc2cb9d4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_pile_choice.lua": {
+      "gitBlob": "5881d3f3f33440297260cfe67a066329668fd985",
+      "sha256": "a0d0e6cec6cc92b3e1d59425e712cdf1c0fb183fb2cc88653daf8931ba39edb5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_plated_armor.lua": {
+      "gitBlob": "673923e604a6ce841e65fc46639134c1cc54ca32",
+      "sha256": "dd80bf7c574748759fea2eb4dfc168b05f312f8d81b630cbb8e3b4fa18125813",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_player_revive.lua": {
+      "gitBlob": "cb827f231e2a92eb145bebd4ed81d8b4bb9b3020",
+      "sha256": "735fe7d5b055c5ddd66335b45273e920282cd891c4814e1c13afb9ab0a3b0d92",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_poison.lua": {
+      "gitBlob": "2ff6e00c8ee4fc24ae74efcda7bf613dfd66e9c3",
+      "sha256": "c739ba6e3958531a0148752b46566963b69a315cf38dfd8fa27eecb701ac8e78",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_discard_ui.lua": {
+      "gitBlob": "759079f0ac8dca7b6e31d6d10e1d923b1995fc5f",
+      "sha256": "5b7ad888b2f2407fc3dea893119f407f29a1600332862ddbbd75b8661d23d479",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_discovery.lua": {
+      "gitBlob": "7e9b5af12dfcfa233e65faef9ee316f76acd31ec",
+      "sha256": "27350b4591b352d28aae66ca4236b3c7301bf8363d02fb7c94592bf5f5d34e38",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_events.lua": {
+      "gitBlob": "966ea46723cb1eeccc7d2dafc44e98576f21d253",
+      "sha256": "2ff64303e05e625ce592f42797aef95f0c3d3b157e89b25ebd29ebf26c7dfb54",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_fairy.lua": {
+      "gitBlob": "df26f95d1517d635589840479551cafc32a47ffb",
+      "sha256": "fe6a3d984f7387ef1f5a52a65e3874634022d9cab86f6b17576a89720607194e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_generation.lua": {
+      "gitBlob": "e39ebe014a1337d127c84db080473eb0dcc1d71e",
+      "sha256": "3f6c2b85cbc01a77199402cd9bdf5efd943461b42d9883bb7196cd198752b766",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_health.lua": {
+      "gitBlob": "6f15459fe8a2831b10f7b6600874aa0cacae1370",
+      "sha256": "8fa0f204f39258f80c6b63770d7138a5b267a193b35923d7b7020ec7466558bb",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_random.lua": {
+      "gitBlob": "0070e6d47a96ddc8e03560e10be847bf67d5e5cc",
+      "sha256": "9c2f9f9beaa848af047306215e1b36d6d2d93bcd156ef54c56531c3c78342dde",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_rewards.lua": {
+      "gitBlob": "3009a4d79986e7479bc3d21989e8c53600eaeb83",
+      "sha256": "4874abc2834147eca3b7676214b4f99278dd78c56ae570875e67a49a63913914",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_stance.lua": {
+      "gitBlob": "851ae6e3b5befb8da48bdf21e0734baeb1879916",
+      "sha256": "8ac4826598d8d3e3eca5706420d1acce9d9b05f6852f2505affb9866d957eca6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_potion_text.lua": {
+      "gitBlob": "d47d46a381022e5003055fd796c942032a119a52",
+      "sha256": "8c2907f1102699c59ea2167919e43a39e1c1be188756b104d5f64bf228369d59",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_power_order.lua": {
+      "gitBlob": "1477e9a2600b2fd5231333368c21e288258a9ac9",
+      "sha256": "7ce009e48cc6eaa9a67fbb713388e01d36fb587249ceb9353efc2fd114ac1cea",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_power_schedule.lua": {
+      "gitBlob": "2136362e8765b7e2a9c03e40502a95e32d221aa4",
+      "sha256": "eb8fe768a1f161b8dc5ecbdff9e5e12fc38730048cefe2afc67aa125c4e275cf",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_prologue.lua": {
+      "gitBlob": "90ea0681e59fe4a67654739c52edf343ddd82947",
+      "sha256": "90016c56a06e97ec7508729d85ef2422adbb0441e1b6e352d226a90ee6bdce83",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_purge_candidates.lua": {
+      "gitBlob": "e3ffdf5635f82e623c25de173035a3af52dc08ed",
+      "sha256": "a1ab5102f39adf7f44159a45d9611458e67d3ee49a9c8aa6fa50432bee4ca592",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_random.lua": {
+      "gitBlob": "b423a6e7b1c185a83de6c2bdbb9cfe18112cffec",
+      "sha256": "a052a4996c3b7090b1d79112f18630400f21df4318afe68041a2167d1c92e09d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_randomxs128.lua": {
+      "gitBlob": "6d745648c4d78a71e03b0b0c490e9471c45dcb44",
+      "sha256": "73af699eb931d4134c81db9bc980f0fa8cabbcf3c587c9031c85ce6886fe9777",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_rare_relics.lua": {
+      "gitBlob": "ecfb3701cbe32edd196dcbf7232d7e19bc822375",
+      "sha256": "2b05387c8d77ef9818d38a43c2d1b1f9fcd2f69f930db47a919df75744f74788",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_red_slaver_ai.lua": {
+      "gitBlob": "fc560a07530ca7b4e819acf50d4385171afb936b",
+      "sha256": "7b785a5f8c9b14199f7907fe7e71ad1a1992144d2c168e58e251c462f4474457",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_card_rewards.lua": {
+      "gitBlob": "dcc69d8137369b0c1556149b1f2b267b77f42a19",
+      "sha256": "316d218a6b2922547c37a5ad5b94c1b8b7a41a757fe0aaa1779893230afa26a6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_choices.lua": {
+      "gitBlob": "c8edf17604061cad24c2a6a2b32c2eaedecdec07",
+      "sha256": "2d9e764deb17171cacdcd7821f60c28cc34c141e03acd9c5d2ca5de3b941692d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_combat_hooks.lua": {
+      "gitBlob": "24163d7d418edbebbf51e2752bfbc84d32d83ecd",
+      "sha256": "fda7e14cf4b4704ba30ca79f3fa8b3ed3c933f9d391887227ed463350f8755a9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_end_turn.lua": {
+      "gitBlob": "1da9a61302686711cabd4ee56b11383f5a6dd508",
+      "sha256": "0b28bacfb03f92e399c12b19e02ec880f70774d9ec56bf4993c9de7bc1a93ecd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_family_combat.lua": {
+      "gitBlob": "a126651ff57d53601839acee22af07dc6a58ceaa",
+      "sha256": "2e001da46754b81afda1dc592beaf8519a0f308fef65ca47c5779b2ae3607e4c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_hooks.lua": {
+      "gitBlob": "792504a367f4488fb08942e0030d5376ea4de73c",
+      "sha256": "19b0ba4fcd2c5ca37219623868b8cdd978787e8861e50e2e43fefb8c70be2f2f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_loss.lua": {
+      "gitBlob": "ec6baec9fce5b27044f8821eb6c520901233f1bd",
+      "sha256": "8a3196cd5838a838b47856703d9cc69c17b5bb61052b314ac68001508b2c964e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_names.lua": {
+      "gitBlob": "491012b0926c6563967147c9f8e9317a83e465a6",
+      "sha256": "b0d5f76ff66e76947c657bb06bf2bfb920907d00a840db5062b5e7c8c2cd06ae",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_pending.lua": {
+      "gitBlob": "b407967b40c36de00b678e4d0581d84981a184e0",
+      "sha256": "0d81d862c3afebb7a857440d0366e4feabeb6f8ee49f53239c4486a533941c7f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_pending_ui.lua": {
+      "gitBlob": "077cb1c0d81a8716dd40b4f00a136cf2a5ad8611",
+      "sha256": "a1d5ba5d2d81ef63209651b571d91de24d967e12e144f3b454a5f9439cf2fe23",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_pool.lua": {
+      "gitBlob": "6ee148bb07a6af6207bb99191203af3482bda663",
+      "sha256": "25ff5c96bf6ed5c35a77aba3d0664193211167e90de9cc478691f8da02e2f51c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_potion_hooks.lua": {
+      "gitBlob": "18b72f5c904cc64930833e869dea56c648649a61",
+      "sha256": "e8618af244ee85b8013050c6849c57fd951cad52b44ca7599e57b1f6f066cdcd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_queries.lua": {
+      "gitBlob": "dd0efc8a3dc22b73d22f8c5245712ae8d015e7fe",
+      "sha256": "a9ede443094115bdf31363d530ac89fa9ab011211ee68bfac866f99e4f2dd214",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_rarity.lua": {
+      "gitBlob": "56747a24d5be254e95c34c1e0c75d45c93048a30",
+      "sha256": "6c92a5ede225452073ed8b283a0ce2bbe24bfc37d4651ebabc47dbef8fd8c8d4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_rewards.lua": {
+      "gitBlob": "7007a3eebb4193b6fe4fd4d7058ff9750cb09504",
+      "sha256": "1a6afee50885e2e56065b05058e5e632745ba88ce202bd4fbea7ff47c54ec405",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_text.lua": {
+      "gitBlob": "15e3959114d143c8637c11929eeaec9d19f1445d",
+      "sha256": "b0c64b6f06ece16b2f3ddbc39d2b0e6ba0f78b2b67c4836c4829ded94c69fe79",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_relic_view_ui.lua": {
+      "gitBlob": "a3404a11c366d049007d4047dba9e464a773962e",
+      "sha256": "59140cd7e1adbae288a50d44f631c6a2dd547069f01ecf3e9b584153c7a0c5a2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_reptomancer.lua": {
+      "gitBlob": "43c2c7db3a4541d0b49d150a688130aefe935966",
+      "sha256": "43eb35c06a1b1fae67e51319416a58febdf524f470c851db4641b8d2e27b7ebd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_retained_cards.lua": {
+      "gitBlob": "f7b5b7d229351ed89ac72d0e59be21016cbbc68c",
+      "sha256": "62f43f6c006b6a5400dcb401e08edb9701404b885012fa30df38426e2da3ffe0",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_retrieval_cards.lua": {
+      "gitBlob": "e2959b20f27c6e158b743967303eed1478edc345",
+      "sha256": "25f54d3bc35ae4e91ed336e2565c94b8c41f0613a9b93ac4c73b47bb93d26fa2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_room_encounters.lua": {
+      "gitBlob": "00d5132ca942d580c8e96c9f5743cad451e7a9ad",
+      "sha256": "f2e377c002ead24bdcf1ec71eece13290445980d2cd5ac142abc100ed560d73e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run.lua": {
+      "gitBlob": "54e6faaa0a6bfa15793d626b324d7618e1f2e19b",
+      "sha256": "189e4a36804ec74f9dcc8c54a07ea5401fb07d81a44ef08d44153b15bac89030",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_admission.lua": {
+      "gitBlob": "14e590b069773072f146deb1e4f21c31023a9cf8",
+      "sha256": "7a57fd9c9c11770f51f642df85180a4caddf5999901b7467c44eb8c52bd79992",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_card_catalog.lua": {
+      "gitBlob": "008c3667ffd415a9cffe428a3c9537a07edb58a2",
+      "sha256": "e6a005a33e95fda500f6ecefecfe1591b9a8054270995975d4b53be1a1eafe3f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_initialization.lua": {
+      "gitBlob": "7a934b8dc311d127aaa8f6169052d2b9ab188ef3",
+      "sha256": "1b6779a80523c03c14bafdd399215190cadf04437d76a6db6e86a3f768fc73f9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_potion_candidate.lua": {
+      "gitBlob": "c94530f9fb779f36df9cdfa424612cf166fb9707",
+      "sha256": "30bbe0a7cbfc698990943569b9b3da5d6c51a3a0e9dc0f0680449830fb60ed81",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_potions.lua": {
+      "gitBlob": "896c0ab72e33b3d10dd75e76a85046298ba2013f",
+      "sha256": "59434df0d36cecd33dbe58fc9c3be19aa42700011e0440c3e568390a68ba5be1",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_red_card_contract.lua": {
+      "gitBlob": "40c07b54ca06fab18d924cf48a6d098d1b29c86f",
+      "sha256": "933b9b7855e99736474cdff4c051a12a4613750bfe322061f3b3604aedf86397",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_rooms.lua": {
+      "gitBlob": "aec84fd2254115c7fc5b08973f4969a7bb1354b9",
+      "sha256": "0c8a3ff96133c6217abcfcb4b7287052b3929eb2e890d8aa2b7354b5f6de86d1",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_score.lua": {
+      "gitBlob": "f670a9247df7f6c09d3fa1befe8b9892b64f4c2e",
+      "sha256": "417229ed8d4b836761e4d001465cfc7739ed932f81ec41ed55ddedc480023685",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_scoring.lua": {
+      "gitBlob": "b9423ba6f0ea8418e7cc2c68b373050329554d9b",
+      "sha256": "3fca7eb3bb4c5149b4c2b9ac975386393de5c8ae5151ffd97503dca0eb76e03a",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_seed.lua": {
+      "gitBlob": "d1d4ba6b5ec8e3d8709d84d206d25001f9a75932",
+      "sha256": "d94d44a66d183f6ffd5b1e082f7a14de66cc6969b0257b4920bc8c94616a576c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_settlement.lua": {
+      "gitBlob": "8d1f9dbec1929368f2d0e7b073e2e5dbd8dcad0b",
+      "sha256": "65c4ebaea52e996ef6dc129baa145a24b11ff4a728ffa4eab04f8eab38ce4ec1",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_run_transition.lua": {
+      "gitBlob": "5af3451db1bc5d8d986c01899a4678d45378e771",
+      "sha256": "7f4136e52c4bd7fe4ceb71958830cbbe90d79ecbcedb998703e1897bbf2d2120",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_scry.lua": {
+      "gitBlob": "434e3e4110bb1d18a059e782f088e4032691b503",
+      "sha256": "5bad4886300de2d8a46105185f49869ac8b0c61114cb109b1243932f3cfca6c4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_sensory_stone_event.lua": {
+      "gitBlob": "67a9cfbde42cb3ff852b271fffa6e3063fbbbea4",
+      "sha256": "3df3cc4708f6d2704b503c9805b8e9bdf130afc60a348519ffdac152aa3dc890",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_sentry_ai.lua": {
+      "gitBlob": "cf291d04fe10b159482c92b4e9f0b6c76273cef0",
+      "sha256": "c174f622e36a645a8e989d1162fc1bbbc7c52f7a3e60d503638eebb85995265d",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_shivs.lua": {
+      "gitBlob": "001ee223eb5252fd6f669d1ed7fcbbb8023fd68c",
+      "sha256": "d5c2216d3069c6bdb65c9e0e030b050db18e596a6b55b840a45b09e13688c565",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_shop.lua": {
+      "gitBlob": "cbdc8d53901028fa5948bceb73195d4ffd2357ce",
+      "sha256": "562effbddab2b0e5e7e921eb9a94be12940fdabd7799c5d829fee524bd5ae5f6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_shop_price.lua": {
+      "gitBlob": "11a57631de01eee2762a96e8228bb730dec66a96",
+      "sha256": "c882362aba486ae139b1d0bec7e67b5bd1b85f4cf812c3d365573a2ac7b45a1f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_shop_relics.lua": {
+      "gitBlob": "d0c228dbe38a37b74dcef12894facec7f1e24fc1",
+      "sha256": "4d193801023eb938b4a25878b61c0210ab3023f1133ab395daadbcdf11f810ba",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_shop_selection.lua": {
+      "gitBlob": "64fe14d2e84bf65bfe32c4610634a9f4b9fda49c",
+      "sha256": "66ac3deb3029d761fea245cc1a37e9d6096ae13a7a06e18223490ce8253efb20",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_shop_ui.lua": {
+      "gitBlob": "36b8bd2f0ed2ad5478c3f89a72ffccb15e113f12",
+      "sha256": "373302ed5d715034c5c0b3c14f8d65bca4b4ba1569935c2f6d65d8dfe2fbce71",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_silent.lua": {
+      "gitBlob": "e0cd3cb4a968fddd7f7404e48de54e61a2261054",
+      "sha256": "32705c37dbe7dd4123663d9eb985f11c6fcc700fc92e07f1726903fcacccccd5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_silent_attack_cards.lua": {
+      "gitBlob": "910fde0e3f4dae056832b631e3e7406ad0309db9",
+      "sha256": "4b2efb9f0724c958d4a22aae8fef1e5bd0b3ae74f4af34e375c79640fe740efa",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_silent_discard_cards.lua": {
+      "gitBlob": "ee443f40f34de2ffe7393e2f4dd2acd6b2aa23d8",
+      "sha256": "13d1b7f47480e3110ddf47cb8dcda80f42c5730b792ae5d4ea61c2db575a33bc",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_silent_final_cards.lua": {
+      "gitBlob": "f576ba0b1b232a35d3d8e612d835381e50bc8b3d",
+      "sha256": "21766502d620d7fb9885cc3884d79c557739bac3bf750b5105fe34aa18bf8fdb",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_silent_potions.lua": {
+      "gitBlob": "0451199ea98b4706759897b292139b2f9b85629e",
+      "sha256": "ec5a9c8cdc398211d0e4e25f9ac737e012d2103315350daa534bac770b44d292",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_silent_tactics_cards.lua": {
+      "gitBlob": "752acaf44f8c4cc86724a8f0f248ea68e28683aa",
+      "sha256": "dc60eda7b81c0bb7386a3c30653a13e982c307646451807ade10c69e4e19b641",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_skill_feedback.lua": {
+      "gitBlob": "f5744cfd034f590edb74d25ab34d94c6827fe546",
+      "sha256": "6bc4bbfc994d1b031f0857a4f690a1c7e9a405ec457d542abf82497e91f3dce6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_snapshot.lua": {
+      "gitBlob": "446db705ac66a87450bf32bf9d6cff2bbaec7d1e",
+      "sha256": "8952ff07bea54c924d9a04200acce11be26cbb4bc66096de72a1b6a39e079b63",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_spike_slime_m_ai.lua": {
+      "gitBlob": "425fa064dc34cc3f56c747b602a0c718a53209f2",
+      "sha256": "941795ae786277e32c0382c785063a241f9dc4ae3f93dba595b346bef329dd2e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_spire_pair.lua": {
+      "gitBlob": "9d69f6007509ad8e066bcf2f43fdce648539b831",
+      "sha256": "42aaa7b747edd6a717a4be3051974d77c4dd236fd61cfe78d2ea7570ae2d62e5",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_stances.lua": {
+      "gitBlob": "29bad1102f0102e1c95ab9929aa3050cdd2699e5",
+      "sha256": "c88a7c42694836b921b10bc791161ef0e0deca62f8545974f57b0aeb11ca6610",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_sts_random.lua": {
+      "gitBlob": "00d059441a1e2263884c420c74535d5d91a6927b",
+      "sha256": "1e0e0f64fe6a7d2edfe8609419080266c554b763fd71b9565b52eed99aaa42b9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_time_eater.lua": {
+      "gitBlob": "b8213107920ea3db9c0907fa305cc3b6fb8602b3",
+      "sha256": "678c77192bce317778f4ef9447b29632446babb69a5d0b86645182ed25f3f0f7",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_tomb_red_mask_event.lua": {
+      "gitBlob": "a733169b8d256bac4c8ddbdbb30a38ba173647fc",
+      "sha256": "190184898fdaa23de61c1bd9d8739d1d7569d2cac416c691c91654b189c8e4b4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_trade_event.lua": {
+      "gitBlob": "bf98b57745a62d3d140406f03d722c0c0269715e",
+      "sha256": "e512ecc1e8b1fecd181da0401d5f8819e6af96d9fde3881fb0bb41acaf1f29b2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_transform_card.lua": {
+      "gitBlob": "f2ad42dd904065b95093ebe8c7cb9d1163b4a620",
+      "sha256": "6fe97f0ed053616db17834ca25ec52551e1dfda898a404ba0c8f0e14d8b0a5b9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_traveler_portraits.lua": {
+      "gitBlob": "3c19c6a0392081b51cb8cbb91de58b00b6ebe719",
+      "sha256": "41fbee152754ed69c8574a09280b916f8ee983a3f305f60523dd26280ec039e6",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_treasure.lua": {
+      "gitBlob": "76ac99e63db7e76419a42507f22a3c9b6a87610b",
+      "sha256": "ced731d340e84dcc340926ad2b320f9bbcbec464d720d6a7065cad1f297d778e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_treasure_source.lua": {
+      "gitBlob": "59c934e1dcf59569f9d8152506aa963e2d601bba",
+      "sha256": "44ae73c0d996c4f336d18f225a44466c73db6db85921f1eca28c00865f8601da",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_treasure_ui.lua": {
+      "gitBlob": "6aad4e670d8f9a11a4040f083a08b19399732605",
+      "sha256": "b948aefb729dff7bcd160e991bf331d5fddf41e646eabe45fbe0d9fd4c7aadd2",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_turn_power_phases.lua": {
+      "gitBlob": "94fc15731985ca93bcca5c675e44a9470b84403f",
+      "sha256": "7ac6b71d7f54c871cb992af2fe02dade51557b84446f03e54e59f14d3d92e93b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_turn_powers.lua": {
+      "gitBlob": "1c98f888908a491929ef6dec79df4bbba08b9506",
+      "sha256": "1708245a6366e94ffabae72d9ff3af48c0d578815307a022dcc82f3e4e475ac8",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_ui.lua": {
+      "gitBlob": "cbb99d8b864f5a9b682794fd0c4bf528f36b3e66",
+      "sha256": "8122defcff3ce7e95ae79a0bbab288f90ed56cba3de2546dd3dd7dfae3e45605",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_uncommon_relics.lua": {
+      "gitBlob": "ce2b69add5b10483ef6267481c464fba2e4e691c",
+      "sha256": "8e260bd5c52f8ca90f61281858099afbf98d7ec91a5f82a3c7b8f9e74108093c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_unknown.lua": {
+      "gitBlob": "5b46b6f65134ecc444b9da8142ed7f07f412cae5",
+      "sha256": "1a35af89546437350e32caaf12ab64ca379f37c06f636348933d5f5f4840b69c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_vampires_event.lua": {
+      "gitBlob": "73063057fb0a00f026a6b28013e1d9c86ddbd30c",
+      "sha256": "53270489c6ac1ca6e9b97fc7cc43efaa2cad992a79872d9f37c574032bea4c53",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_victory_easter_egg.lua": {
+      "gitBlob": "5d13b88e703d845665886ffdc230dc99aa02103b",
+      "sha256": "53fa603781dff67b44deb317e3ed212b714785475dc7bdd02606c22c05fa256e",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_viewport.lua": {
+      "gitBlob": "f0bb1c05cb74df7d34773085a42e5ccd9ee2a3f3",
+      "sha256": "14b9a3f0ac0dd4873d7735cacc2daa7b96ac41fcef4a41692194a16e437092fb",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_warrior_cards.lua": {
+      "gitBlob": "20659ab12839239694afa11dc6524e906c9f50f1",
+      "sha256": "cf9fe3d1aa038be990b1ab47ad0b1ed7898b952a6ef5f49feb931764d0d9dabb",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_warrior_exhaust_cards.lua": {
+      "gitBlob": "ad835d41e10ec3b39a00bdfc895467a5de2bb78c",
+      "sha256": "5b425f3cfc4c7d94128cc5a0a77a856a1a44edfe1dbd5abf427a8444f4bc4a1b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_warrior_status_cards.lua": {
+      "gitBlob": "11fd44163182c2b205cd9910b7108b0d40a38fbf",
+      "sha256": "554181c678d5387ca7de54095db78a37225c04acc23878bce0392d21acc33a63",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_warrior_strength_cards.lua": {
+      "gitBlob": "0d76e5c5217e706f1048da4eb4bccdd989d48a41",
+      "sha256": "222eca8efdd2568cd81dd21c1cb3b2f738e7326ac5d37ae33f66cca3be6176da",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_watcher_attack_cards.lua": {
+      "gitBlob": "1211a9da2325ee0022b7f5888c14a879bb0626cf",
+      "sha256": "f34c4b292fa104724b98a05324ed931448ee21d9cf58ca946c8e33f6b22b4f00",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_watcher_cards.lua": {
+      "gitBlob": "b25f5fdd6d42a7dca2ea45932f0f68d12dcf875c",
+      "sha256": "c93259044790a3e3d6d257d21355707c5879417ea65cc833bfd17ee6f6f5ad3c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_watcher_final_cards.lua": {
+      "gitBlob": "6001d336b98e2217332882c3bcd6316725610f0c",
+      "sha256": "ec2ef8388b777de5dccfce1df602ac0981dfd112bbd8b63d2e188d345f0c03cd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_watcher_flow_cards.lua": {
+      "gitBlob": "207ba6450f0d332af23e0f26547112094c491b43",
+      "sha256": "019fc60e728ffad81405b24323545b05718f452ae20c756f67fc6f56ce9e0217",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_watcher_foreign_pool.lua": {
+      "gitBlob": "35ec97438f64435bc87decb4eb8306f51c6a4b3c",
+      "sha256": "5bd9c29d05fe493053b03a4c8272b7a55cc774dc357968899bbdd7d8724bcd01",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_wheel_event.lua": {
+      "gitBlob": "5dfd5811ebc91d6e54e92c0e3f7e30564d19b48b",
+      "sha256": "f775746a95c2f33eeb9a5d7c688c536b3dd0b6b3ddefeb3455fbd28468f6bc2c",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_winding_event.lua": {
+      "gitBlob": "58c3b7d0d1d02060b605dda644579d65bb327d03",
+      "sha256": "1f3a5d5f40847660638443ac9c553065b1e8cec03bb523882d235d4271daebaa",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "src/lua/abyss_writhing_mass.lua": {
+      "gitBlob": "ebd8806d01ae182254469213aed79d6309059c80",
+      "sha256": "fc362d8be41e3744169067903fc979ad8bc671eda47c754e4c67f8fe6a7d2d4f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/ci-impact.test.mjs": {
+      "gitBlob": "3a6096573fde0cd81455afa188b10bece083192c",
+      "sha256": "a64f4db9972b591aa5ccefe991554dd4677ff075dc436aea5d1dffb41edce706",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "tests/ci-posix-shards.test.mjs": {
+      "gitBlob": "9c83525c13fc943e3f8e421cb56d8f9749168852",
+      "sha256": "53bb153d0dfead95e33acb3669b77e0a8643c56b7112b3ceb9471ed6bfff2eca",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "tests/ci-runtime.test.mjs": {
+      "gitBlob": "b8d6281ae8cab81282d6cc2d3775d8324de9a1c5",
+      "sha256": "c02f7cbc245ad0568207de6f6956ac3a65c2c9ba8939f9e2024e793ffc8bd3dd",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/defect-final-source-epoch.test.mjs": {
+      "gitBlob": "473e0deb797f2d1ae17184b12e2d48a9d89699df",
+      "sha256": "e8163f25c261b4b16d0d9a5a3a5d73d8d2f5139017ca0bf255643c85ea060e15",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/delivery.test.mjs": {
+      "gitBlob": "e08400d1590c31ee27ae9f44bad23d2bed5aafd3",
+      "sha256": "0da3bd167179802105f994aa3c07c0808f560f2c05054bc03b127199e06c3049",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "tests/encounter-formation-complexity.test.mjs": {
+      "gitBlob": "f1967046577c7ad4d406bcd078bc2793917a4d9b",
+      "sha256": "50250678df9fafe2a8507c062340762449e91b1d35783588263f704d63fac8f4",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/encounter-formation-responsibilities.test.mjs": {
+      "gitBlob": "ea0d3de29f20fcdb6278842939c92eed2bd39f44",
+      "sha256": "3b738419197c308d6e9e0a52ad050e8b28c7d887d29245f6b2e7e941f6865671",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/encounter-formation-source-epoch.test.mjs": {
+      "gitBlob": "211c05ae77e758ae0ca827832b4483afba9b949c",
+      "sha256": "cc49af6185255c8b877e1fdc0d79028d1f676534fd65a0d1fd28f43536af29c0",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/fixtures/encounter-formation-before.lua": {
+      "gitBlob": "ca421d599f10c7c6271a03b4083924203733edfb",
+      "sha256": "de7afe27c70b14e724aa7f0ea67509e41df882e1e055904b82cc7be56916e8ec",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/full-quality.test.mjs": {
+      "gitBlob": "cf39533baad47397b6d98b5ea0443f463bd223d9",
+      "sha256": "d8eca7d7c8fe4a33122114b0d92197dddbffea2def63fff1f460a490c1367db7",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "tests/helpers/combined-epoch/pre-formation-source-epoch.mjs": {
+      "gitBlob": "ed539d56ef8e576418c957bd10576a65b2914751",
+      "sha256": "81422aac13c89d3c3fa8d31f1afdff609af1f46f071a4c9d37288591cf20760f",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/helpers/combined-epoch/source-epoch.mjs": {
+      "gitBlob": "323d95c01805296cb847a36fa6b02032273e658d",
+      "sha256": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/helpers/copy-integration-source-closure.mjs": {
+      "gitBlob": "911bd53d7c20817d91a1958a12460ccd2b554acc",
+      "sha256": "944a6187604a28daf04f7b248239711f4c4ee6358f364d5efe856891eba79457",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/helpers/encounter-formation-ci-source-epoch.json.gz": {
+      "gitBlob": "3dfc00ae056808c8b206cbc2615f3cb7a7603bad",
+      "sha256": "cd039ffe6b0f7fd2959776b84cf199290b3621b8a82266bc6929876e1ce46fbf",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/helpers/encounter-formation-ci-source-inverse.mjs": {
+      "gitBlob": "140c90a4f458751513f703fcf1f3a76a00435a00",
+      "sha256": "cdd36e28746f39123ac955195877aa4ad9e4f09555e905b827f19e713d0840c9",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/helpers/encounter-formation-edges.lua": {
+      "gitBlob": "9ce3d95d33234c0f932d767d7b637463a4cf3b0f",
+      "sha256": "474c807f6326ba7da94eb628ad40ff53d6a7d72a1356c994b2ceeed1df16db8b",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/helpers/encounter-formation-source-epoch.json.gz": {
+      "gitBlob": "955232f6be28871be67c9419532892f5e10ec3f8",
+      "sha256": "6d082e4f921213a60a41ab1f0a4109a49645c1014cc83f315178937ca0885132",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/helpers/encounter-formation-source-epoch.mjs": {
+      "gitBlob": "24a9498e6cd40bb6a420aca7fd22a93ea3504d14",
+      "sha256": "1c654029938e0d5eb0864adb2f76333d3e4a1ed1fe95d73e2e0c21a8fb376436",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/helpers/encounter-formation-vm.mjs": {
+      "gitBlob": "1317cdc8945ef63173942ff0d29c6c3e838fe7e5",
+      "sha256": "a2e35c5e0f638fab98003885810eb4d4baaf81a3e43519d2ffc6ecefed250603",
+      "parent": "d21be2fb2d84f68767c3b1ef827b61a2b63aa323"
+    },
+    "tests/helpers/posix15-shape-source-epoch.json.gz": {
+      "gitBlob": "59fe37eebdacbe19e0aaed778922fc7ab2beba96",
+      "sha256": "9f75ddcfc0b6b5ef19c1750efab7d7a5360d9da4825a93de3c9cfe9e702e9b06",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "tests/helpers/posix15-shape-source-inverse.mjs": {
+      "gitBlob": "f7867f3d060ae992cfe8ccfef14ea81cbab58de3",
+      "sha256": "94e940878d1f55e91a7cda214373b824a7b4b41c0d129bbaa8a8c7436daac20b",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "tests/helpers/reward-query-planning-contract.mjs": {
+      "gitBlob": "a0353e886274abd0825a7f68379eddd4159c4196",
+      "sha256": "5ed5306daeb974afee9401f628062ccfdbfc05e8b4fb90c95c27356ff967aad1",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    },
+    "tests/merge-queue.test.mjs": {
+      "gitBlob": "033a1eea9d986de84a5dbe8d301b8eab4b4e13ca",
+      "sha256": "66687a15233984e26140060051f990a63256c099718a14ac3cfcbf7f500d4d21",
+      "parent": "841510b78172b923b1a613216b5c3dcb2c3e062e"
+    }
+  },
+  "receipts": {
+    "docs/evidence/m7-formation-20261109/behavior-final-receipt.json": {
+      "originalReceiptSha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc",
+      "unchangedCurrentInputs": 363,
+      "claims": "Prior actual run retained by exact input identity; not rerun in this integration."
+    },
+    "docs/evidence/m7-formation-20261109/source-receipt.json": {
+      "originalReceiptSha256": "4a80f128eaa794a38a4da9b8ad7d9caa21abd4c73fd7308466e977eaf601eda0",
+      "unchangedCurrentInputs": 60,
+      "claims": "Prior actual run retained by exact input identity; not rerun in this integration."
+    },
+    "docs/evidence/m7-formation-20261109/source-defect-regression-receipt.json": {
+      "originalReceiptSha256": "d3db4f713ad58100ef3697ac81b74be8775f0258146b642e149372d8bb029678",
+      "unchangedCurrentInputs": 60,
+      "claims": "Prior actual run retained by exact input identity; not rerun in this integration."
+    },
+    "docs/evidence/m7-formation-20261109/source-integration-receipt.json": {
+      "originalReceiptSha256": "ab57b5bde1896dc8e6442579149653a6f8e2aba918ce57d8c0ce20dc5b9eca43",
+      "unchangedCurrentInputs": 60,
+      "claims": "Prior actual run retained by exact input identity; not rerun in this integration."
+    }
+  },
+  "productionSources": 338,
+  "limits": [
+    "No old CI result is claimed fresh or as current raw-input identity; changed CI contracts are separately executed and their historical projections verified.",
+    "No Hosted Full, admission, merge to develop, deployment or device performance claim."
+  ]
+}

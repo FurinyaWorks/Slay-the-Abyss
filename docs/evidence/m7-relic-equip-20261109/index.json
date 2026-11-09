@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "baseSha": "cbabad34d0957309cbda03e1ae467cd94371bf1c",
+  "developObserved": "7821a7f44b518c09f6b565860e04e4823bc95153",
+  "dependsOnPr": 570,
+  "predecessorDependency": 564,
+  "productionCheckpoint": "582afa16192b65f896973144c5ebc22bea6c1252",
+  "productionCheckpointTree": "777df68c395797775ec581643ecf343b2d235fbe",
+  "sourceSha256": "19b0ba4fcd2c5ca37219623868b8cdd978787e8861e50e2e43fefb8c70be2f2f",
+  "behavior": {
+    "tests": 15,
+    "passed": 15,
+    "graphs": 143,
+    "caughtErrorsEachVM": 22,
+    "semanticMutants": 10,
+    "durationMs": 7907.592055
+  },
+  "sourceContracts": {
+    "passed": 75,
+    "failed": 0,
+    "durationMs": 55731.587782
+  },
+  "ci": {
+    "uniqueTestsPassed": 58,
+    "calibrationFinalPassed": 29,
+    "otherFourFilesPassed": 29,
+    "calibrationFinalDurationMs": 6664.523055,
+    "inventory": {
+      "js": 791,
+      "lua": 1410
+    },
+    "planningIncluding60SecondReserve": {
+      "windows": 1781066,
+      "posix": 1189539
+    },
+    "windowsHeadroomMs": 18934,
+    "posixHeadroomMs": 10461,
+    "budgetsAndWorkflowChanged": false
+  },
+  "scopeChecks": {
+    "realComplexityTests": 3,
+    "originalLuaFilesPassed": 8,
+    "supplementTestsPassed": 14,
+    "supplementDurationMs": 116733.366106,
+    "guidance": "pass",
+    "backlog": "pass",
+    "doctor": "Five pre-existing duplicate-ID groups; exit1, not a pass."
+  },
+  "engineering": {
+    "modules": 338,
+    "measurements": 5575,
+    "expectedMeasurements": 5575,
+    "governed": 2051,
+    "ccAbove30": 36,
+    "ccAbove15": 212,
+    "maxCC": 61,
+    "scc": [
+      68,
+      11,
+      2
+    ],
+    "warnings": 14
+  },
+  "review": {
+    "reviewId": "m7-relic-equip-independent-deep-review-20261109",
+    "conclusion": "pass",
+    "unresolved": [],
+    "boundFiles": 25,
+    "independentBehavior": 15,
+    "independentSourceComplexity": 11,
+    "independentCiNew": 3,
+    "independentHistoricalReconstruction": 1,
+    "warmOwnerDriftChecks": 1728,
+    "metatableTraceLines": 856
+  },
+  "fullRun": false,
+  "hostedFull": false,
+  "merged": false,
+  "failuresRetained": [
+    "Initial8.017s capacity expectation failure retained in execution transcript only.",
+    "behavior-first.log.gz: LizardTail fixture ownership failure.",
+    "ci-1.log.gz:57/58 initial batch; all29 other-file passes valid.",
+    "ci-calibration-final.log.gz:28/29 intermediate retry."
+  ],
+  "limitations": [
+    "#564 admin normal admission pending; no bypass.",
+    "#570 and this new exactHEAD still need normal Full and actual develop integration.",
+    "Untouched equipmentUpgrade16/onEnterRoom17 remain explicit residuals; no SCC reduction claimed.",
+    "No official import, user device, gameplay, release or unpublished Parasite code."
+  ],
+  "files": {
+    "backlog.log.gz": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "baseline-engineering.json.gz": "b80b8eea5a2a5c85149465bfeb504c3ca5f1bcce04b4fcbda0fbf519e6525567",
+    "behavior-first.log.gz": "ccdf957ad87e3a6a705e678ffaef6a43956f6fc3487d9edb28afc98d68abff03",
+    "behavior-receipt.json": "3a11b8b354f9f6ec395fa29fb34939b900c216c26dabf08d7e9c09dd17627be9",
+    "behavior.log.gz": "c30404b16c0fddbb00ae1fd3ece792503b44ff965e3dd2d9cb46b5c1c3459883",
+    "ci-1.log.gz": "d7f54e7dedb174702fb51303f45c1c8b6d09d6ac4430a93e0d15d2a774a99051",
+    "ci-calibration-final-2.log.gz": "c2f0105954176be37a5d8f21bb254837edf818e680c29d9c1bc1ef5907840eee",
+    "ci-calibration-final.log.gz": "880af79aea462355cf020f8a3b3c19cc0d9720204cac51931a468ccfa1f134e4",
+    "complexity.log.gz": "a93283acd11a9eb1454f7d8b70691a98a200fed54721c9c31943c1e3ff88db30",
+    "current-engineering.json.gz": "48c88f053ab810d90624f4bd8fd785793a6021527be276f3eafdc164d5a6ddf4",
+    "doctor.log.gz": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+    "engineering.log.gz": "3587480f6eda76ac02c451fdd6cc2525c2e25e3c52d1a1ce3fe649f079c7174e",
+    "guidance.log.gz": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "independent-adversarial.log": "1e6c6f9ea1b1611058949433e680abb49c95dc66633cb3d8c132dfb6f50f9f61",
+    "independent-adversarial.mjs": "41be7459a0050d25b5395c3ba4aaa945ba9cf533d60a181ae0452a6bf5014096",
+    "independent-review.json": "cad40a0beece0b2d10b3ae0d41ac1cddcd42489a2b1bede4b75233fed1a4406e",
+    "metrics.json": "a81d1c83227ebc411261a2ac6c1835ef4e3626668c8af4d56d557213145476c0",
+    "original-fixtures.log.gz": "49ea1925eddc63a51c47c9a599a140e83fb13ec95fc58fa2195ba77ab8566a3c",
+    "planning-complete.json.gz": "dc4b375600ba2ddca937e05e9887887404cbb0ce75dc989a2d27a926ae3e1969",
+    "source-final.log.gz": "8821498d951ee0fcefe256c247a74e5af0c598c7d17cb4f95a6d84765d632814",
+    "supplement.log.gz": "c9b9f641bef72856d7c991100021897b56da04fb88f7d206779c33b703545884"
+  }
+}

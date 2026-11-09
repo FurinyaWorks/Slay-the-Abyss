@@ -10,6 +10,8 @@ import {analyzeSources} from '../scripts/check-architecture.mjs';
 import {discoverSources,dependencyCycles} from '../scripts/lua-quality-metrics.mjs';
 import {reviewResponsibilityComplexity} from '../scripts/check-lua-static.mjs';
 import {prePowerShopSource,powerShopAfter} from './helpers/power-shop-source-inverse.mjs';
+import {prePowerShopSource as frozenPowerShopSource} from './helpers/epochs/powerShop/tests/helpers/power-shop-source-inverse.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 const require=createRequire(import.meta.url);
 const {lua,lauxlib,lualib,to_luastring,to_jsstring}=require('fengari');
 process.on('exit',()=>process.stdout.write('POWER_SHOP_RESOURCE '+JSON.stringify({testProcessMaxRSSKiB:process.resourceUsage().maxRSS})+'\n'));
@@ -116,8 +118,9 @@ test('the metadata leaf main chunk and nested helpers actually enforce CC15',()=
  const errors=reviewResponsibilityComplexity(rows,{[file]:source}).errors.filter(e=>e.file===file);
  for(const subject of ['main chunk',"function 'probe'",'function'])assert(errors.some(e=>e.message===`Responsibility complexity 16 exceeds 15: ${subject}`),subject);
 });
-test('the new source epoch keeps complete old Git sources and freshly authenticates all current owners',()=>{
- const read=p=>readFileSync(p,'utf8');
+test('the frozen Power Shop epoch keeps complete old Git sources and freshly authenticates its five owners',()=>{
+ const read=p=>{const source=sourceEpoch.proof.targets.powerShop.files[p].source;assert.equal(hash(source),powerShopAfter[p],'authenticated original Power/Shop after: '+p);return source;};
+ const prePowerShopSource=(path,source,options={})=>frozenPowerShopSource(path,source,{readSource:read,...options});
  for(const path of Object.keys(powerShopAfter)){
   const current=read(path),expected=before.files[path]?.source??null;
   assert.equal(prePowerShopSource(path,current),expected);
@@ -135,6 +138,34 @@ test('the new source epoch keeps complete old Git sources and freshly authentica
  }
  const path='config/architecture.json',policy=JSON.parse(read(path));
  for(const input of [JSON.stringify(policy),JSON.stringify(policy,null,'\t')])assert.equal(prePowerShopSource(path,input),before.files[path].source);
+ for(const input of [read(path).replace('"abyss_turn_power_phases"','"abyss_turn_power_pha\\u0073es"'),read(path).replace('"abyss_turn_power_phases":','"abyss_turn_power_phases":"core","abyss_turn_power_phases":')])
+  assert.equal(prePowerShopSource(path,input),input,'escaped/duplicate tokens cannot acquire permission');
+});
+
+test('the current Power Shop facade authenticates every expanded owner and recovers through all original hosts',()=>{
+ const read=p=>readFileSync(p,'utf8');
+ for(const path of Object.keys(powerShopAfter)){
+  const current=read(path),expected=before.files[path]?.source??null;
+  assert.equal(prePowerShopSource(path,current),expected);
+  for(const linked of sourceEpoch.proof.owners)for(const bad of ['foreign','missing','throw']){
+   let changed=false;
+   const readSource=p=>{if(p!==linked||!changed)return read(p);if(bad==='throw')throw Error('fresh sentinel');return bad==='missing'?undefined:read(p)+'-- foreign';};
+   assert.equal(prePowerShopSource(path,current,{readSource}),expected);
+   changed=true;assert.throws(()=>prePowerShopSource(path,current,{readSource}),error=>{assert.match(error.message,/linked owner/);assert(error.message.includes(linked));if(bad==='throw')assert.match(error.message,/fresh sentinel/);return true;});
+   changed=false;assert.equal(prePowerShopSource(path,current,{readSource}),expected);
+  }
+  for(const readSource of [null,{},'invalid'])assert.throws(()=>prePowerShopSource(path,current,{readSource}),/linked (?:owner )?reader/);
+  for(const foreign of [expected,current+'-- foreign',null,'']){
+   if(foreign===null&&expected===null)continue;
+   let reads=0;const readSource=()=>{reads++;throw Error('no foreign permission');};
+   assert.equal(prePowerShopSource(path,foreign,{readSource}),foreign);assert.equal(reads,0);
+  }
+ }
+ const path='config/architecture.json',policy=JSON.parse(read(path));
+ for(const input of [JSON.stringify(policy),JSON.stringify(policy,null,'\t')]){
+  assert.equal(prePowerShopSource(path,input),before.files[path].source);
+  assert.throws(()=>prePowerShopSource(path,input,{readSource:p=>p===path?input:read(p)}),/linked owner/);
+ }
  for(const input of [read(path).replace('"abyss_turn_power_phases"','"abyss_turn_power_pha\\u0073es"'),read(path).replace('"abyss_turn_power_phases":','"abyss_turn_power_phases":"core","abyss_turn_power_phases":')])
   assert.equal(prePowerShopSource(path,input),input,'escaped/duplicate tokens cannot acquire permission');
 });

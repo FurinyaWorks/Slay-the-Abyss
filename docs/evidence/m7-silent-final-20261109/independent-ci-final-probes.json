@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "base": "d2ed1bbfdb1bc9e000870f38037592cc60ab4068",
+  "allPriorTimingFieldsExact": true,
+  "workflowUnchanged": true,
+  "exactInverseLfCrlfForeignChecks": true,
+  "behaviorFloor": 46617,
+  "sourceFloor": 10937,
+  "priorCompleteRunLimitation": "Earlier complete successful test version, before deep-proxy and malformed-error probes. No test-source hash was captured for that run; retained only as a conservative cost lower bound. Final-version identity is bound separately by sourceReceipt.",
+  "verifiedFinalBehaviorInputHashes": 11,
+  "verifiedSourceInputHashes": 7,
+  "finalCiTestCount": 46
+}

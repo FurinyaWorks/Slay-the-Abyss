@@ -1,0 +1,1112 @@
+{
+  "roots": [
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+    "tests/helpers/reward-query-planning-contract.mjs"
+  ],
+  "directConsumers": {
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": [
+      "tests/ci-complete-calibration.test.mjs",
+      "tests/ci-host-timing-calibration.test.mjs",
+      "tests/ci-runtime.test.mjs",
+      "tests/ci-windows-shape-expansion.test.mjs",
+      "tests/class-potion-orb-source-inverse.test.mjs",
+      "tests/defect-integration-source.test.mjs",
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/reward-query-planning-contract.mjs",
+      "tests/lua-shards.test.mjs",
+      "tests/watcher-actor-source-inverse.test.mjs"
+    ],
+    "tests/helpers/reward-query-planning-contract.mjs": [
+      "tests/ci-complete-calibration.test.mjs",
+      "tests/ci-runtime.test.mjs"
+    ]
+  },
+  "staticRuntimeTransitiveTests": [
+    "tests/agent-guidance.test.mjs",
+    "tests/approved-node-ui-refactor.test.mjs",
+    "tests/approved-ui-inverse.test.mjs",
+    "tests/architecture-composition-format.test.mjs",
+    "tests/architecture-source-format.test.mjs",
+    "tests/art-feature-source-inverse.test.mjs",
+    "tests/art-perf-source-composition.test.mjs",
+    "tests/battle-drag-click-compatibility.test.mjs",
+    "tests/battle-life-source-inverse.test.mjs",
+    "tests/battle-max-hp-config-inverse.test.mjs",
+    "tests/battle-ui-slices.test.mjs",
+    "tests/beta-delivery-composition.test.mjs",
+    "tests/beta-integration-source.test.mjs",
+    "tests/boss-ui-fixture-composition.test.mjs",
+    "tests/card-actions-drain.test.mjs",
+    "tests/card-actions-registry.test.mjs",
+    "tests/ci-complete-calibration.test.mjs",
+    "tests/ci-host-timing-calibration.test.mjs",
+    "tests/ci-runtime.test.mjs",
+    "tests/ci-windows-shape-expansion.test.mjs",
+    "tests/class-potion-orb-source-inverse.test.mjs",
+    "tests/competition-roster-config-composition.test.mjs",
+    "tests/competition-roster-prepared-ui.test.mjs",
+    "tests/competition-roster.test.mjs",
+    "tests/core-architecture-inverse.test.mjs",
+    "tests/death-settlement-guard-inverse.test.mjs",
+    "tests/defect-integration-source.test.mjs",
+    "tests/encounter-coverage-partitions.test.mjs",
+    "tests/engineering-quality.test.mjs",
+    "tests/event-production-source-inverse.test.mjs",
+    "tests/event-snapshot-composition.test.mjs",
+    "tests/final-integration-source.test.mjs",
+    "tests/formal-campaign-entry.test.mjs",
+    "tests/game-ui-class-choices-partitions.test.mjs",
+    "tests/game-ui-class-powers-partitions.test.mjs",
+    "tests/game-ui-extraction-source-inverse.test.mjs",
+    "tests/hand-fan-source-inverse.test.mjs",
+    "tests/hero-visual-slots.test.mjs",
+    "tests/historical-baseline-inputs.test.mjs",
+    "tests/launch-content.test.mjs",
+    "tests/lua-shards.test.mjs",
+    "tests/m3-event-delivery-source-inverse.test.mjs",
+    "tests/m3-ui-polish.test.mjs",
+    "tests/map-path-a11y.test.mjs",
+    "tests/max-hp-accepted-source-inverse.test.mjs",
+    "tests/mobile-qa-source-migration.test.mjs",
+    "tests/molten-egg-source.test.mjs",
+    "tests/native-enemy-theme-inverse.test.mjs",
+    "tests/native-monster-source-inverse.test.mjs",
+    "tests/nested-command-snapshot-owner-inverse.test.mjs",
+    "tests/nodes-battle-max-hp-config-inverse.test.mjs",
+    "tests/nodes-governance.test.mjs",
+    "tests/official-background-source-inverse.test.mjs",
+    "tests/open-pr-source-composition.test.mjs",
+    "tests/p0-presentation-inverse.test.mjs",
+    "tests/platform-load-wiring.test.mjs",
+    "tests/player-death-inverse.test.mjs",
+    "tests/potion-target-context-slices.test.mjs",
+    "tests/potion-target-inventory-slices.test.mjs",
+    "tests/potion-target-pointer-slices.test.mjs",
+    "tests/pr238-remaining-budget.test.mjs",
+    "tests/pr262-ui-fixture-budget.test.mjs",
+    "tests/pr266-fixture-budget.test.mjs",
+    "tests/pr267-fixture-budget.test.mjs",
+    "tests/pr323-accepted-source-inverse.test.mjs",
+    "tests/pr372-integration-source.test.mjs",
+    "tests/presentation-m3-integration.test.mjs",
+    "tests/presentation-native-m3-contract.test.mjs",
+    "tests/presentation-responsibilities.test.mjs",
+    "tests/pure-source-projection-cache.test.mjs",
+    "tests/ready-art-source-inverse.test.mjs",
+    "tests/relic-art-composition-inverse.test.mjs",
+    "tests/relic-art-feature-composition-inverse.test.mjs",
+    "tests/relic-completion-inverse.test.mjs",
+    "tests/relic-round2-composition-inverse.test.mjs",
+    "tests/relic-round3-composition-inverse.test.mjs",
+    "tests/relic-view-ui-inverse.test.mjs",
+    "tests/round2-can-play-source-inverse.test.mjs",
+    "tests/round3-catalog-source-inverse.test.mjs",
+    "tests/ruby-recall.test.mjs",
+    "tests/run-architecture-inverse.test.mjs",
+    "tests/run-max-hp-config-inverse.test.mjs",
+    "tests/run-red-card-contract.test.mjs",
+    "tests/sapphire-treasure.test.mjs",
+    "tests/sts1-relic-pool-catalog.test.mjs",
+    "tests/task76-owner-composition.test.mjs",
+    "tests/task77-current-source-layers.test.mjs",
+    "tests/toxic-egg-source.test.mjs",
+    "tests/ui-regression-partitions.test.mjs",
+    "tests/unknown-routing-partitions.test.mjs",
+    "tests/watcher-actor-source-inverse.test.mjs"
+  ],
+  "alreadyCovered": [
+    "tests/ci-complete-calibration.test.mjs",
+    "tests/ci-host-timing-calibration.test.mjs",
+    "tests/ci-runtime.test.mjs",
+    "tests/ci-windows-shape-expansion.test.mjs"
+  ],
+  "uncoveredTests": [
+    "tests/agent-guidance.test.mjs",
+    "tests/approved-node-ui-refactor.test.mjs",
+    "tests/approved-ui-inverse.test.mjs",
+    "tests/architecture-composition-format.test.mjs",
+    "tests/architecture-source-format.test.mjs",
+    "tests/art-feature-source-inverse.test.mjs",
+    "tests/art-perf-source-composition.test.mjs",
+    "tests/battle-drag-click-compatibility.test.mjs",
+    "tests/battle-life-source-inverse.test.mjs",
+    "tests/battle-max-hp-config-inverse.test.mjs",
+    "tests/battle-ui-slices.test.mjs",
+    "tests/beta-delivery-composition.test.mjs",
+    "tests/beta-integration-source.test.mjs",
+    "tests/boss-ui-fixture-composition.test.mjs",
+    "tests/card-actions-drain.test.mjs",
+    "tests/card-actions-registry.test.mjs",
+    "tests/class-potion-orb-source-inverse.test.mjs",
+    "tests/competition-roster-config-composition.test.mjs",
+    "tests/competition-roster-prepared-ui.test.mjs",
+    "tests/competition-roster.test.mjs",
+    "tests/core-architecture-inverse.test.mjs",
+    "tests/death-settlement-guard-inverse.test.mjs",
+    "tests/defect-integration-source.test.mjs",
+    "tests/encounter-coverage-partitions.test.mjs",
+    "tests/engineering-quality.test.mjs",
+    "tests/event-production-source-inverse.test.mjs",
+    "tests/event-snapshot-composition.test.mjs",
+    "tests/final-integration-source.test.mjs",
+    "tests/formal-campaign-entry.test.mjs",
+    "tests/game-ui-class-choices-partitions.test.mjs",
+    "tests/game-ui-class-powers-partitions.test.mjs",
+    "tests/game-ui-extraction-source-inverse.test.mjs",
+    "tests/hand-fan-source-inverse.test.mjs",
+    "tests/hero-visual-slots.test.mjs",
+    "tests/historical-baseline-inputs.test.mjs",
+    "tests/launch-content.test.mjs",
+    "tests/lua-shards.test.mjs",
+    "tests/m3-event-delivery-source-inverse.test.mjs",
+    "tests/m3-ui-polish.test.mjs",
+    "tests/map-path-a11y.test.mjs",
+    "tests/max-hp-accepted-source-inverse.test.mjs",
+    "tests/mobile-qa-source-migration.test.mjs",
+    "tests/molten-egg-source.test.mjs",
+    "tests/native-enemy-theme-inverse.test.mjs",
+    "tests/native-monster-source-inverse.test.mjs",
+    "tests/nested-command-snapshot-owner-inverse.test.mjs",
+    "tests/nodes-battle-max-hp-config-inverse.test.mjs",
+    "tests/nodes-governance.test.mjs",
+    "tests/official-background-source-inverse.test.mjs",
+    "tests/open-pr-source-composition.test.mjs",
+    "tests/p0-presentation-inverse.test.mjs",
+    "tests/platform-load-wiring.test.mjs",
+    "tests/player-death-inverse.test.mjs",
+    "tests/potion-target-context-slices.test.mjs",
+    "tests/potion-target-inventory-slices.test.mjs",
+    "tests/potion-target-pointer-slices.test.mjs",
+    "tests/pr238-remaining-budget.test.mjs",
+    "tests/pr262-ui-fixture-budget.test.mjs",
+    "tests/pr266-fixture-budget.test.mjs",
+    "tests/pr267-fixture-budget.test.mjs",
+    "tests/pr323-accepted-source-inverse.test.mjs",
+    "tests/pr372-integration-source.test.mjs",
+    "tests/presentation-m3-integration.test.mjs",
+    "tests/presentation-native-m3-contract.test.mjs",
+    "tests/presentation-responsibilities.test.mjs",
+    "tests/pure-source-projection-cache.test.mjs",
+    "tests/ready-art-source-inverse.test.mjs",
+    "tests/relic-art-composition-inverse.test.mjs",
+    "tests/relic-art-feature-composition-inverse.test.mjs",
+    "tests/relic-completion-inverse.test.mjs",
+    "tests/relic-round2-composition-inverse.test.mjs",
+    "tests/relic-round3-composition-inverse.test.mjs",
+    "tests/relic-view-ui-inverse.test.mjs",
+    "tests/round2-can-play-source-inverse.test.mjs",
+    "tests/round3-catalog-source-inverse.test.mjs",
+    "tests/ruby-recall.test.mjs",
+    "tests/run-architecture-inverse.test.mjs",
+    "tests/run-max-hp-config-inverse.test.mjs",
+    "tests/run-red-card-contract.test.mjs",
+    "tests/sapphire-treasure.test.mjs",
+    "tests/sts1-relic-pool-catalog.test.mjs",
+    "tests/task76-owner-composition.test.mjs",
+    "tests/task77-current-source-layers.test.mjs",
+    "tests/toxic-egg-source.test.mjs",
+    "tests/ui-regression-partitions.test.mjs",
+    "tests/unknown-routing-partitions.test.mjs",
+    "tests/watcher-actor-source-inverse.test.mjs"
+  ],
+  "reachedEdges": {
+    "tests/agent-guidance.test.mjs": [
+      "tests/helpers/presentation-announcement-retirement.mjs"
+    ],
+    "tests/approved-node-ui-refactor.test.mjs": [
+      "tests/helpers/mobile-qa-source-inverse.mjs",
+      "tests/helpers/approved-node-ui-refactor.mjs",
+      "tests/helpers/node-ui-refactor-inverse.mjs",
+      "tests/helpers/approved-ui-inverse.mjs",
+      "tests/helpers/p0-presentation-inverse.mjs",
+      "tests/support/formal-entry-source-inverse.mjs"
+    ],
+    "tests/approved-ui-inverse.test.mjs": [
+      "tests/helpers/mobile-qa-source-inverse.mjs",
+      "tests/helpers/node-ui-refactor-inverse.mjs",
+      "tests/helpers/approved-node-ui-refactor.mjs",
+      "tests/helpers/approved-ui-inverse.mjs",
+      "tests/helpers/p0-presentation-inverse.mjs"
+    ],
+    "tests/architecture-composition-format.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/architecture-source-format.test.mjs": [
+      "tests/helpers/round2-ui-source-inverse.mjs",
+      "tests/helpers/art-perf-source-composition.mjs"
+    ],
+    "tests/art-feature-source-inverse.test.mjs": [
+      "tests/helpers/art-feature-source-inverse.mjs",
+      "tests/helpers/art-perf-source-composition.mjs",
+      "tests/helpers/ready-art-source-inverse.mjs",
+      "tests/helpers/battle-life-source-inverse.mjs"
+    ],
+    "tests/art-perf-source-composition.test.mjs": [
+      "tests/helpers/art-feature-source-inverse.mjs",
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/relic-art-composition.mjs",
+      "tests/helpers/art-perf-source-composition.mjs",
+      "tests/helpers/ready-art-source-inverse.mjs",
+      "tests/helpers/round2-ui-source-inverse.mjs",
+      "tests/helpers/battle-life-source-inverse.mjs"
+    ],
+    "tests/battle-drag-click-compatibility.test.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/p0-presentation-inverse.mjs",
+      "tests/helpers/presentation-m3-integration.mjs",
+      "tests/helpers/presentation-announcement-retirement.mjs",
+      "tests/helpers/approved-ui-inverse.mjs",
+      "tests/helpers/battle-refactor-projection.mjs",
+      "tests/helpers/task76-drag-click-inverse.mjs"
+    ],
+    "tests/battle-life-source-inverse.test.mjs": [
+      "tests/helpers/combat-relics-hud-inverse.mjs",
+      "tests/helpers/native-enemy-theme-inverse.mjs",
+      "tests/helpers/round2-ui-source-inverse.mjs",
+      "tests/helpers/relic-completion-inverse.mjs",
+      "tests/helpers/battle-life-source-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/combat-vfx-upgrade-inverse.mjs",
+      "tests/helpers/event-production-source-inverse.mjs"
+    ],
+    "tests/battle-max-hp-config-inverse.test.mjs": [
+      "tests/helpers/battle-max-hp-config-inverse.mjs"
+    ],
+    "tests/battle-ui-slices.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/approved-ui-inverse.mjs",
+      "tests/helpers/ci-lua-runner-inverse.mjs"
+    ],
+    "tests/beta-delivery-composition.test.mjs": [
+      "tests/helpers/art-feature-source-inverse.mjs"
+    ],
+    "tests/beta-integration-source.test.mjs": [
+      "tests/helpers/battle-life-source-inverse.mjs"
+    ],
+    "tests/boss-ui-fixture-composition.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/card-actions-drain.test.mjs": [
+      "tests/helpers/card-actions-policy-composition.mjs"
+    ],
+    "tests/card-actions-registry.test.mjs": [
+      "tests/helpers/card-actions-policy-composition.mjs"
+    ],
+    "tests/ci-complete-calibration.test.mjs": [
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/helpers/reward-query-planning-contract.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/ci-host-timing-calibration.test.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs"
+    ],
+    "tests/ci-runtime.test.mjs": [
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/helpers/reward-query-planning-contract.mjs",
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/ci-lua-runner-inverse.mjs",
+      "tests/helpers/mobile-qa-source-inverse.mjs"
+    ],
+    "tests/ci-windows-shape-expansion.test.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs"
+    ],
+    "tests/class-potion-orb-source-inverse.test.mjs": [
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs"
+    ],
+    "tests/competition-roster-config-composition.test.mjs": [
+      "tests/helpers/competition-roster-config-composition.mjs",
+      "tests/helpers/competition-roster-config-composition.mjs"
+    ],
+    "tests/competition-roster-prepared-ui.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/competition-roster.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/competition-roster-config-composition.mjs",
+      "tests/helpers/competition-roster-source-inverse.mjs",
+      "tests/helpers/presentation-announcement-retirement.mjs",
+      "tests/helpers/p0-presentation-inverse.mjs"
+    ],
+    "tests/core-architecture-inverse.test.mjs": [
+      "tests/helpers/competition-roster-config-composition.mjs",
+      "tests/helpers/nodes-battle-max-hp-config-inverse.mjs",
+      "tests/helpers/core-architecture-inverse.mjs",
+      "tests/helpers/approved-node-ui-refactor.mjs"
+    ],
+    "tests/death-settlement-guard-inverse.test.mjs": [
+      "tests/helpers/hero-visual-source-inverse.mjs",
+      "tests/helpers/relic-view-ui-inverse.mjs",
+      "tests/helpers/approved-ui-inverse.mjs",
+      "tests/support/formal-entry-source-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/competition-roster-config-composition.mjs",
+      "tests/helpers/competition-roster-source-inverse.mjs"
+    ],
+    "tests/defect-integration-source.test.mjs": [
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs"
+    ],
+    "tests/encounter-coverage-partitions.test.mjs": [
+      "tests/helpers/ci-lua-runner-inverse.mjs"
+    ],
+    "tests/engineering-quality.test.mjs": [
+      "tests/helpers/presentation-announcement-retirement.mjs"
+    ],
+    "tests/event-production-source-inverse.test.mjs": [
+      "tests/helpers/open-pr-source-composition.mjs",
+      "tests/helpers/event-snapshot-composition.mjs"
+    ],
+    "tests/event-snapshot-composition.test.mjs": [
+      "tests/helpers/event-snapshot-composition.mjs",
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/nested-command-snapshot-owner-inverse.mjs",
+      "tests/helpers/battle-life-source-inverse.mjs"
+    ],
+    "tests/final-integration-source.test.mjs": [
+      "tests/helpers/task77-current-source-layers.mjs",
+      "tests/support/formal-entry-source-inverse.mjs",
+      "tests/helpers/presentation-announcement-retirement.mjs"
+    ],
+    "tests/formal-campaign-entry.test.mjs": [
+      "tests/helpers/presentation-announcement-retirement.mjs",
+      "tests/helpers/mobile-qa-source-inverse.mjs",
+      "tests/support/formal-entry-source-inverse.mjs"
+    ],
+    "tests/game-ui-class-choices-partitions.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/game-ui-class-powers-partitions.test.mjs": [
+      "tests/support/formal-entry-source-inverse.mjs"
+    ],
+    "tests/game-ui-extraction-source-inverse.test.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/round2-ui-source-inverse.mjs"
+    ],
+    "tests/hand-fan-source-inverse.test.mjs": [
+      "tests/helpers/hand-fan-source-inverse.mjs"
+    ],
+    "tests/helpers/approved-battle-responsibilities.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/task76-drag-click-inverse.mjs"
+    ],
+    "tests/helpers/approved-node-ui-refactor.mjs": [
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/competition-roster-config-composition.mjs",
+      "tests/helpers/competition-roster-source-inverse.mjs",
+      "tests/helpers/task76-drag-click-inverse.mjs",
+      "tests/helpers/nodes-battle-max-hp-config-inverse.mjs",
+      "tests/helpers/battle-max-hp-config-inverse.mjs",
+      "tests/helpers/battle-refactor-projection.mjs",
+      "tests/helpers/node-ui-refactor-inverse.mjs",
+      "tests/helpers/max-hp-accepted-source-inverse.mjs",
+      "tests/helpers/core-architecture-inverse.mjs"
+    ],
+    "tests/helpers/approved-ui-inverse.mjs": [
+      "tests/helpers/battle-life-source-inverse.mjs",
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/hero-visual-source-inverse.mjs",
+      "tests/helpers/relic-view-ui-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/battle-refactor-projection.mjs",
+      "tests/helpers/approved-node-ui-refactor.mjs"
+    ],
+    "tests/helpers/architecture-token-read-probe.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/art-feature-source-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/relic-art-feature-composition.mjs"
+    ],
+    "tests/helpers/art-perf-source-composition.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/art-feature-source-inverse.mjs",
+      "tests/helpers/relic-art-composition.mjs"
+    ],
+    "tests/helpers/battle-life-source-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/combat-relics-hud-inverse.mjs",
+      "tests/helpers/combat-vfx-upgrade-inverse.mjs",
+      "tests/helpers/hand-gesture-aim-source-inverse.mjs",
+      "tests/helpers/hand-fan-source-inverse.mjs",
+      "tests/helpers/art-feature-source-inverse.mjs",
+      "tests/helpers/official-background-source-inverse.mjs",
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/native-enemy-theme-inverse.mjs",
+      "tests/helpers/relic-round2-composition.mjs",
+      "tests/helpers/round2-can-play-source-inverse.mjs",
+      "tests/helpers/round2-ui-source-inverse.mjs",
+      "tests/helpers/ci-lua-calibration-inverse.mjs",
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/helpers/battle-max-hp-config-inverse.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/battle-refactor-projection.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/battle-ui-governance-inverse.mjs",
+      "tests/helpers/approved-battle-responsibilities.mjs"
+    ],
+    "tests/helpers/battle-ui-governance-inverse.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/card-actions-policy-composition.mjs": [
+      "tests/helpers/relic-round3-composition.mjs"
+    ],
+    "tests/helpers/card-desc-overflow-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/card-skin-migration.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": [],
+    "tests/helpers/ci-lua-calibration-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/ci-lua-runner-inverse.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/combat-relics-hud-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/combat-vfx-upgrade-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/competition-roster-config-composition.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/competition-roster-source-inverse.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/core-architecture-inverse.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/battle-refactor-projection.mjs"
+    ],
+    "tests/helpers/event-production-source-inverse.mjs": [
+      "tests/helpers/battle-life-source-inverse.mjs",
+      "tests/helpers/open-pr-source-composition.mjs",
+      "tests/helpers/event-snapshot-composition.mjs"
+    ],
+    "tests/helpers/event-snapshot-composition.mjs": [
+      "tests/helpers/round2-can-play-source-inverse.mjs",
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/helpers/hand-fan-source-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/hand-gesture-aim-source-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/hero-visual-source-inverse.mjs": [
+      "tests/helpers/battle-life-source-inverse.mjs",
+      "tests/helpers/open-pr-source-composition.mjs"
+    ],
+    "tests/helpers/historical-monster-ui-entry.mjs": [
+      "tests/helpers/approved-battle-responsibilities.mjs"
+    ],
+    "tests/helpers/historical-sapphire-entry.mjs": [
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/helpers/launch-baseline-fixture.mjs": [
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/helpers/map-path-a11y-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/max-hp-accepted-source-inverse.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/mobile-qa-source-inverse.mjs": [
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/helpers/native-enemy-theme-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/map-path-a11y-inverse.mjs",
+      "tests/helpers/potion-manage-source-inverse.mjs"
+    ],
+    "tests/helpers/native-monster-art-source-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/nested-command-snapshot-owner-inverse.mjs": [
+      "tests/helpers/round2-can-play-source-inverse.mjs",
+      "tests/helpers/event-snapshot-composition.mjs"
+    ],
+    "tests/helpers/node-ui-refactor-inverse.mjs": [
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/nodes-battle-max-hp-config-inverse.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/run-max-hp-config-inverse.mjs"
+    ],
+    "tests/helpers/official-background-source-inverse.mjs": [
+      "tests/helpers/ready-art-source-inverse.mjs"
+    ],
+    "tests/helpers/open-pr-source-composition.mjs": [
+      "tests/helpers/battle-life-source-inverse.mjs"
+    ],
+    "tests/helpers/p0-presentation-inverse.mjs": [
+      "tests/helpers/battle-life-source-inverse.mjs",
+      "tests/helpers/relic-completion-inverse.mjs",
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/hero-visual-source-inverse.mjs",
+      "tests/helpers/relic-view-ui-inverse.mjs",
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/task76-drag-click-inverse.mjs",
+      "tests/helpers/approved-node-ui-refactor.mjs",
+      "tests/helpers/approved-ui-inverse.mjs"
+    ],
+    "tests/helpers/potion-manage-source-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/pr323-accepted-source-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/card-desc-overflow-inverse.mjs",
+      "tests/helpers/battle-life-source-inverse.mjs",
+      "tests/helpers/relic-completion-inverse.mjs",
+      "tests/helpers/hero-visual-source-inverse.mjs",
+      "tests/helpers/relic-view-ui-inverse.mjs",
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/nested-command-snapshot-owner-inverse.mjs"
+    ],
+    "tests/helpers/pr372-integration-source.mjs": [
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs"
+    ],
+    "tests/helpers/presentation-announcement-retirement.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/approved-node-ui-refactor.mjs",
+      "tests/helpers/approved-ui-inverse.mjs",
+      "tests/helpers/task77-current-source-layers.mjs",
+      "tests/support/formal-entry-source-inverse.mjs"
+    ],
+    "tests/helpers/presentation-m3-integration.mjs": [
+      "tests/helpers/approved-node-ui-refactor.mjs",
+      "tests/helpers/presentation-announcement-retirement.mjs"
+    ],
+    "tests/helpers/ready-art-source-inverse.mjs": [
+      "tests/helpers/art-feature-source-inverse.mjs",
+      "tests/helpers/art-perf-source-composition.mjs"
+    ],
+    "tests/helpers/relic-art-composition.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/relic-art-feature-composition.mjs"
+    ],
+    "tests/helpers/relic-art-feature-composition.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/relic-completion-inverse.mjs": [
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/relic-round2-composition.mjs",
+      "tests/helpers/native-enemy-theme-inverse.mjs"
+    ],
+    "tests/helpers/relic-round2-composition.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/relic-round3-composition.mjs",
+      "tests/helpers/relic-art-composition.mjs"
+    ],
+    "tests/helpers/relic-round3-composition.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/helpers/relic-view-ui-inverse.mjs": [
+      "tests/helpers/battle-life-source-inverse.mjs",
+      "tests/helpers/open-pr-source-composition.mjs"
+    ],
+    "tests/helpers/reward-query-planning-contract.mjs": [
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs"
+    ],
+    "tests/helpers/round2-can-play-source-inverse.mjs": [
+      "tests/helpers/relic-round2-composition.mjs"
+    ],
+    "tests/helpers/round2-ui-source-inverse.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/combat-vfx-upgrade-inverse.mjs",
+      "tests/helpers/art-perf-source-composition.mjs",
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/relic-round2-composition.mjs"
+    ],
+    "tests/helpers/run-max-hp-config-inverse.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/task76-drag-click-inverse.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/task76-owner-composition.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/helpers/task77-current-source-layers.mjs": [
+      "tests/helpers/hero-visual-source-inverse.mjs",
+      "tests/helpers/relic-view-ui-inverse.mjs",
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/approved-node-ui-refactor.mjs",
+      "tests/helpers/approved-ui-inverse.mjs",
+      "tests/helpers/p0-presentation-inverse.mjs"
+    ],
+    "tests/hero-visual-slots.test.mjs": [
+      "tests/helpers/open-pr-source-composition.mjs",
+      "tests/helpers/hero-visual-source-inverse.mjs"
+    ],
+    "tests/historical-baseline-inputs.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/launch-content.test.mjs": [
+      "tests/helpers/launch-baseline-fixture.mjs"
+    ],
+    "tests/lua-shards.test.mjs": [
+      "tests/helpers/ci-lua-calibration-inverse.mjs",
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs"
+    ],
+    "tests/m3-event-delivery-source-inverse.test.mjs": [
+      "tests/helpers/relic-round2-composition.mjs",
+      "tests/helpers/relic-art-composition.mjs",
+      "tests/helpers/relic-art-feature-composition.mjs",
+      "tests/helpers/relic-round3-composition.mjs"
+    ],
+    "tests/m3-ui-polish.test.mjs": [
+      "tests/helpers/presentation-m3-integration.mjs",
+      "tests/support/formal-entry-source-inverse.mjs"
+    ],
+    "tests/map-path-a11y.test.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/map-path-a11y-inverse.mjs"
+    ],
+    "tests/max-hp-accepted-source-inverse.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/competition-roster-config-composition.mjs",
+      "tests/helpers/nodes-battle-max-hp-config-inverse.mjs",
+      "tests/helpers/battle-max-hp-config-inverse.mjs",
+      "tests/helpers/max-hp-accepted-source-inverse.mjs",
+      "tests/helpers/presentation-announcement-retirement.mjs",
+      "tests/helpers/p0-presentation-inverse.mjs",
+      "tests/helpers/approved-ui-inverse.mjs"
+    ],
+    "tests/mobile-qa-source-migration.test.mjs": [
+      "tests/helpers/mobile-qa-source-inverse.mjs"
+    ],
+    "tests/molten-egg-source.test.mjs": [
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/native-enemy-theme-inverse.test.mjs": [
+      "tests/helpers/potion-manage-source-inverse.mjs",
+      "tests/helpers/combat-relics-hud-inverse.mjs",
+      "tests/helpers/native-enemy-theme-inverse.mjs",
+      "tests/helpers/relic-completion-inverse.mjs",
+      "tests/helpers/map-path-a11y-inverse.mjs",
+      "tests/helpers/battle-life-source-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/native-monster-source-inverse.test.mjs": [
+      "tests/helpers/pr372-integration-source.mjs",
+      "tests/helpers/native-monster-art-source-inverse.mjs"
+    ],
+    "tests/nested-command-snapshot-owner-inverse.test.mjs": [
+      "tests/helpers/event-snapshot-composition.mjs",
+      "tests/helpers/nested-command-snapshot-owner-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/nodes-battle-max-hp-config-inverse.test.mjs": [
+      "tests/helpers/nodes-battle-max-hp-config-inverse.mjs",
+      "tests/helpers/nodes-battle-max-hp-config-inverse.mjs",
+      "tests/helpers/competition-roster-config-composition.mjs"
+    ],
+    "tests/nodes-governance.test.mjs": [
+      "tests/helpers/mobile-qa-source-inverse.mjs"
+    ],
+    "tests/official-background-source-inverse.test.mjs": [
+      "tests/helpers/ready-art-source-inverse.mjs",
+      "tests/helpers/official-background-source-inverse.mjs"
+    ],
+    "tests/open-pr-source-composition.test.mjs": [
+      "tests/helpers/open-pr-source-composition.mjs",
+      "tests/helpers/battle-life-source-inverse.mjs"
+    ],
+    "tests/p0-presentation-inverse.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/approved-ui-inverse.mjs",
+      "tests/helpers/node-ui-refactor-inverse.mjs",
+      "tests/helpers/max-hp-accepted-source-inverse.mjs",
+      "tests/helpers/p0-presentation-inverse.mjs"
+    ],
+    "tests/platform-load-wiring.test.mjs": [
+      "tests/helpers/presentation-announcement-retirement.mjs"
+    ],
+    "tests/player-death-inverse.test.mjs": [
+      "tests/helpers/relic-view-ui-inverse.mjs",
+      "tests/helpers/hero-visual-source-inverse.mjs",
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/approved-ui-inverse.mjs"
+    ],
+    "tests/potion-target-context-slices.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/ci-lua-runner-inverse.mjs"
+    ],
+    "tests/potion-target-inventory-slices.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/ci-lua-runner-inverse.mjs"
+    ],
+    "tests/potion-target-pointer-slices.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/ci-lua-runner-inverse.mjs"
+    ],
+    "tests/pr238-remaining-budget.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/support/formal-entry-source-inverse.mjs"
+    ],
+    "tests/pr262-ui-fixture-budget.test.mjs": [
+      "tests/support/formal-entry-source-inverse.mjs"
+    ],
+    "tests/pr266-fixture-budget.test.mjs": [
+      "tests/support/formal-entry-source-inverse.mjs"
+    ],
+    "tests/pr267-fixture-budget.test.mjs": [
+      "tests/support/formal-entry-source-inverse.mjs"
+    ],
+    "tests/pr323-accepted-source-inverse.test.mjs": [
+      "tests/helpers/art-perf-source-composition.mjs",
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/round2-ui-source-inverse.mjs",
+      "tests/helpers/relic-round2-composition.mjs",
+      "tests/helpers/relic-view-ui-inverse.mjs",
+      "tests/helpers/hero-visual-source-inverse.mjs",
+      "tests/helpers/event-production-source-inverse.mjs",
+      "tests/helpers/nested-command-snapshot-owner-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/competition-roster-config-composition.mjs",
+      "tests/helpers/battle-max-hp-config-inverse.mjs",
+      "tests/helpers/nodes-battle-max-hp-config-inverse.mjs",
+      "tests/helpers/run-max-hp-config-inverse.mjs",
+      "tests/helpers/core-architecture-inverse.mjs"
+    ],
+    "tests/pr372-integration-source.test.mjs": [
+      "tests/helpers/pr372-integration-source.mjs"
+    ],
+    "tests/presentation-m3-integration.test.mjs": [
+      "tests/helpers/presentation-m3-integration.mjs",
+      "tests/helpers/presentation-announcement-retirement.mjs",
+      "tests/support/formal-entry-source-inverse.mjs",
+      "tests/helpers/p0-presentation-inverse.mjs",
+      "tests/helpers/max-hp-accepted-source-inverse.mjs"
+    ],
+    "tests/presentation-native-m3-contract.test.mjs": [
+      "tests/helpers/presentation-m3-integration.mjs",
+      "tests/helpers/presentation-announcement-retirement.mjs"
+    ],
+    "tests/presentation-responsibilities.test.mjs": [
+      "tests/helpers/presentation-m3-integration.mjs"
+    ],
+    "tests/pure-source-projection-cache.test.mjs": [
+      "tests/helpers/relic-round3-composition.mjs",
+      "tests/helpers/relic-art-composition.mjs",
+      "tests/helpers/relic-round2-composition.mjs",
+      "tests/helpers/round2-ui-source-inverse.mjs"
+    ],
+    "tests/ready-art-source-inverse.test.mjs": [
+      "tests/helpers/ready-art-source-inverse.mjs"
+    ],
+    "tests/relic-art-composition-inverse.test.mjs": [
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/relic-art-feature-composition.mjs",
+      "tests/helpers/relic-round3-composition.mjs",
+      "tests/helpers/relic-art-composition.mjs",
+      "tests/helpers/relic-completion-inverse.mjs",
+      "tests/helpers/art-perf-source-composition.mjs"
+    ],
+    "tests/relic-art-feature-composition-inverse.test.mjs": [
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/relic-art-feature-composition.mjs",
+      "tests/helpers/art-feature-source-inverse.mjs",
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/relic-completion-inverse.test.mjs": [
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/relic-round2-composition.mjs",
+      "tests/helpers/native-enemy-theme-inverse.mjs",
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/relic-round2-composition-inverse.test.mjs": [
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/relic-round3-composition.mjs",
+      "tests/helpers/relic-art-composition.mjs",
+      "tests/helpers/relic-round2-composition.mjs",
+      "tests/helpers/relic-completion-inverse.mjs",
+      "tests/helpers/round2-can-play-source-inverse.mjs",
+      "tests/helpers/round2-ui-source-inverse.mjs"
+    ],
+    "tests/relic-round3-composition-inverse.test.mjs": [
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/relic-round3-composition.mjs",
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/relic-view-ui-inverse.test.mjs": [
+      "tests/helpers/open-pr-source-composition.mjs",
+      "tests/helpers/relic-view-ui-inverse.mjs",
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/round2-can-play-source-inverse.test.mjs": [
+      "tests/helpers/relic-round2-composition.mjs",
+      "tests/helpers/round2-can-play-source-inverse.mjs",
+      "tests/helpers/nested-command-snapshot-owner-inverse.mjs"
+    ],
+    "tests/round3-catalog-source-inverse.test.mjs": [
+      "tests/helpers/native-monster-art-source-inverse.mjs",
+      "tests/helpers/relic-round3-composition.mjs",
+      "tests/helpers/art-perf-source-composition.mjs"
+    ],
+    "tests/ruby-recall.test.mjs": [
+      "tests/helpers/mobile-qa-source-inverse.mjs"
+    ],
+    "tests/run-architecture-inverse.test.mjs": [
+      "tests/helpers/competition-roster-config-composition.mjs",
+      "tests/helpers/run-max-hp-config-inverse.mjs",
+      "tests/helpers/core-architecture-inverse.mjs",
+      "tests/helpers/approved-node-ui-refactor.mjs"
+    ],
+    "tests/run-max-hp-config-inverse.test.mjs": [
+      "tests/helpers/run-max-hp-config-inverse.mjs"
+    ],
+    "tests/run-red-card-contract.test.mjs": [
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/sapphire-treasure.test.mjs": [
+      "tests/helpers/launch-baseline-fixture.mjs"
+    ],
+    "tests/sts1-relic-pool-catalog.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/support/formal-entry-source-inverse.mjs": [
+      "tests/helpers/task77-current-source-layers.mjs"
+    ],
+    "tests/task76-owner-composition.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/task76-owner-composition.mjs",
+      "tests/helpers/battle-refactor-projection.mjs",
+      "tests/helpers/task76-drag-click-inverse.mjs"
+    ],
+    "tests/task77-current-source-layers.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs",
+      "tests/helpers/approved-ui-inverse.mjs",
+      "tests/helpers/task77-current-source-layers.mjs",
+      "tests/support/formal-entry-source-inverse.mjs",
+      "tests/helpers/presentation-announcement-retirement.mjs",
+      "tests/helpers/competition-roster-source-inverse.mjs"
+    ],
+    "tests/toxic-egg-source.test.mjs": [
+      "tests/helpers/relic-completion-inverse.mjs"
+    ],
+    "tests/ui-regression-partitions.test.mjs": [
+      "tests/helpers/pr323-accepted-source-inverse.mjs"
+    ],
+    "tests/unknown-routing-partitions.test.mjs": [
+      "tests/helpers/ci-lua-runner-inverse.mjs"
+    ],
+    "tests/watcher-actor-source-inverse.test.mjs": [
+      "tests/helpers/ci-complete-calibration-source-inverse.mjs"
+    ]
+  },
+  "method": "Conservative reverse dependency closure of relative static import/export and literal dynamic import references across current scripts/tests MJS. Archived tests/helpers/epochs modules are isolated historical inputs, excluded from current runtime graph. Imported source strings used by subprocess fixtures are conservatively included.",
+  "counts": {
+    "transitiveTopLevelTestFiles": 91,
+    "alreadyExecutedFilesIn210Tests": 4,
+    "freshAdditionalFiles": 6,
+    "freshAdditionalTests": 31,
+    "notFreshlyReexecutedTransitiveFiles": 81
+  },
+  "changeBoundary": {
+    "calibration": "preCurrentCiPlacementSource now composes prePosix15ShapeSource before the existing projection. It can change only scripts/ci-quality-shape.mjs with the exact new SHA256; every other path and drifted value passes through unchanged. Current shape is tested separately from authenticated historical source.",
+    "rewardReceipt": "Only epoch-specific historical shape validation composes the same exact POSIX15 inverse before existing POSIX14 inverse. Live timing maps and gameplay inputs are untouched.",
+    "inheritance": "No91-file or51-file fresh pass claim. The six selected complete files passed31/31 serially with default heap and5117 equal before/after input hashes. The remaining81 files include source assertions as well as behavior and guidance; exact helper-edit proof and old/new stage output equivalence over3478 complete tracked textual inputs establish the nonshape semantic boundary. Only exact current shape15 is compared with authenticated oldshape14. Original Defect19 input manifest remains unchanged and was not rerun."
+  },
+  "initialFilenameFilteredSourceContracts": [
+    "tests/approved-ui-inverse.test.mjs",
+    "tests/architecture-composition-format.test.mjs",
+    "tests/architecture-source-format.test.mjs",
+    "tests/art-feature-source-inverse.test.mjs",
+    "tests/art-perf-source-composition.test.mjs",
+    "tests/battle-life-source-inverse.test.mjs",
+    "tests/battle-max-hp-config-inverse.test.mjs",
+    "tests/beta-delivery-composition.test.mjs",
+    "tests/beta-integration-source.test.mjs",
+    "tests/boss-ui-fixture-composition.test.mjs",
+    "tests/class-potion-orb-source-inverse.test.mjs",
+    "tests/competition-roster-config-composition.test.mjs",
+    "tests/core-architecture-inverse.test.mjs",
+    "tests/death-settlement-guard-inverse.test.mjs",
+    "tests/defect-integration-source.test.mjs",
+    "tests/event-production-source-inverse.test.mjs",
+    "tests/event-snapshot-composition.test.mjs",
+    "tests/final-integration-source.test.mjs",
+    "tests/game-ui-extraction-source-inverse.test.mjs",
+    "tests/hand-fan-source-inverse.test.mjs",
+    "tests/lua-shards.test.mjs",
+    "tests/m3-event-delivery-source-inverse.test.mjs",
+    "tests/max-hp-accepted-source-inverse.test.mjs",
+    "tests/mobile-qa-source-migration.test.mjs",
+    "tests/molten-egg-source.test.mjs",
+    "tests/native-enemy-theme-inverse.test.mjs",
+    "tests/native-monster-source-inverse.test.mjs",
+    "tests/nested-command-snapshot-owner-inverse.test.mjs",
+    "tests/nodes-battle-max-hp-config-inverse.test.mjs",
+    "tests/official-background-source-inverse.test.mjs",
+    "tests/open-pr-source-composition.test.mjs",
+    "tests/p0-presentation-inverse.test.mjs",
+    "tests/player-death-inverse.test.mjs",
+    "tests/pr323-accepted-source-inverse.test.mjs",
+    "tests/pr372-integration-source.test.mjs",
+    "tests/pure-source-projection-cache.test.mjs",
+    "tests/ready-art-source-inverse.test.mjs",
+    "tests/relic-art-composition-inverse.test.mjs",
+    "tests/relic-art-feature-composition-inverse.test.mjs",
+    "tests/relic-completion-inverse.test.mjs",
+    "tests/relic-round2-composition-inverse.test.mjs",
+    "tests/relic-round3-composition-inverse.test.mjs",
+    "tests/relic-view-ui-inverse.test.mjs",
+    "tests/round2-can-play-source-inverse.test.mjs",
+    "tests/round3-catalog-source-inverse.test.mjs",
+    "tests/run-architecture-inverse.test.mjs",
+    "tests/run-max-hp-config-inverse.test.mjs",
+    "tests/task76-owner-composition.test.mjs",
+    "tests/task77-current-source-layers.test.mjs",
+    "tests/toxic-egg-source.test.mjs",
+    "tests/watcher-actor-source-inverse.test.mjs"
+  ],
+  "initialFilenameFilteredSelectionWasNotUsedAsSemanticBoundary": true,
+  "freshAdditionalFiles": [
+    "tests/lua-shards.test.mjs",
+    "tests/watcher-actor-source-inverse.test.mjs",
+    "tests/class-potion-orb-source-inverse.test.mjs",
+    "tests/defect-integration-source.test.mjs",
+    "tests/pr372-integration-source.test.mjs",
+    "tests/ui-regression-partitions.test.mjs"
+  ],
+  "notFreshlyReexecutedTransitiveFiles": [
+    "tests/agent-guidance.test.mjs",
+    "tests/approved-node-ui-refactor.test.mjs",
+    "tests/approved-ui-inverse.test.mjs",
+    "tests/architecture-composition-format.test.mjs",
+    "tests/architecture-source-format.test.mjs",
+    "tests/art-feature-source-inverse.test.mjs",
+    "tests/art-perf-source-composition.test.mjs",
+    "tests/battle-drag-click-compatibility.test.mjs",
+    "tests/battle-life-source-inverse.test.mjs",
+    "tests/battle-max-hp-config-inverse.test.mjs",
+    "tests/battle-ui-slices.test.mjs",
+    "tests/beta-delivery-composition.test.mjs",
+    "tests/beta-integration-source.test.mjs",
+    "tests/boss-ui-fixture-composition.test.mjs",
+    "tests/card-actions-drain.test.mjs",
+    "tests/card-actions-registry.test.mjs",
+    "tests/competition-roster-config-composition.test.mjs",
+    "tests/competition-roster-prepared-ui.test.mjs",
+    "tests/competition-roster.test.mjs",
+    "tests/core-architecture-inverse.test.mjs",
+    "tests/death-settlement-guard-inverse.test.mjs",
+    "tests/encounter-coverage-partitions.test.mjs",
+    "tests/engineering-quality.test.mjs",
+    "tests/event-production-source-inverse.test.mjs",
+    "tests/event-snapshot-composition.test.mjs",
+    "tests/final-integration-source.test.mjs",
+    "tests/formal-campaign-entry.test.mjs",
+    "tests/game-ui-class-choices-partitions.test.mjs",
+    "tests/game-ui-class-powers-partitions.test.mjs",
+    "tests/game-ui-extraction-source-inverse.test.mjs",
+    "tests/hand-fan-source-inverse.test.mjs",
+    "tests/hero-visual-slots.test.mjs",
+    "tests/historical-baseline-inputs.test.mjs",
+    "tests/launch-content.test.mjs",
+    "tests/m3-event-delivery-source-inverse.test.mjs",
+    "tests/m3-ui-polish.test.mjs",
+    "tests/map-path-a11y.test.mjs",
+    "tests/max-hp-accepted-source-inverse.test.mjs",
+    "tests/mobile-qa-source-migration.test.mjs",
+    "tests/molten-egg-source.test.mjs",
+    "tests/native-enemy-theme-inverse.test.mjs",
+    "tests/native-monster-source-inverse.test.mjs",
+    "tests/nested-command-snapshot-owner-inverse.test.mjs",
+    "tests/nodes-battle-max-hp-config-inverse.test.mjs",
+    "tests/nodes-governance.test.mjs",
+    "tests/official-background-source-inverse.test.mjs",
+    "tests/open-pr-source-composition.test.mjs",
+    "tests/p0-presentation-inverse.test.mjs",
+    "tests/platform-load-wiring.test.mjs",
+    "tests/player-death-inverse.test.mjs",
+    "tests/potion-target-context-slices.test.mjs",
+    "tests/potion-target-inventory-slices.test.mjs",
+    "tests/potion-target-pointer-slices.test.mjs",
+    "tests/pr238-remaining-budget.test.mjs",
+    "tests/pr262-ui-fixture-budget.test.mjs",
+    "tests/pr266-fixture-budget.test.mjs",
+    "tests/pr267-fixture-budget.test.mjs",
+    "tests/pr323-accepted-source-inverse.test.mjs",
+    "tests/presentation-m3-integration.test.mjs",
+    "tests/presentation-native-m3-contract.test.mjs",
+    "tests/presentation-responsibilities.test.mjs",
+    "tests/pure-source-projection-cache.test.mjs",
+    "tests/ready-art-source-inverse.test.mjs",
+    "tests/relic-art-composition-inverse.test.mjs",
+    "tests/relic-art-feature-composition-inverse.test.mjs",
+    "tests/relic-completion-inverse.test.mjs",
+    "tests/relic-round2-composition-inverse.test.mjs",
+    "tests/relic-round3-composition-inverse.test.mjs",
+    "tests/relic-view-ui-inverse.test.mjs",
+    "tests/round2-can-play-source-inverse.test.mjs",
+    "tests/round3-catalog-source-inverse.test.mjs",
+    "tests/ruby-recall.test.mjs",
+    "tests/run-architecture-inverse.test.mjs",
+    "tests/run-max-hp-config-inverse.test.mjs",
+    "tests/run-red-card-contract.test.mjs",
+    "tests/sapphire-treasure.test.mjs",
+    "tests/sts1-relic-pool-catalog.test.mjs",
+    "tests/task76-owner-composition.test.mjs",
+    "tests/task77-current-source-layers.test.mjs",
+    "tests/toxic-egg-source.test.mjs",
+    "tests/unknown-routing-partitions.test.mjs"
+  ],
+  "selectionReason": "Four previously omitted direct test consumers, full pr372 mapping consumer, and UI regression partitions as the one remaining live-matrix reader. Selection is semantic, not a source/inverse filename filter.",
+  "liveMatrixAudit": {
+    "added": "tests/ui-regression-partitions.test.mjs",
+    "directAlreadySelected": "tests/lua-shards.test.mjs",
+    "unchangedExplicitCounts": {
+      "tests/battle-drag-click-compatibility.test.mjs": "explicit Windows8/POSIX4 and Lua8",
+      "tests/competition-roster-prepared-ui.test.mjs": "explicit Windows8/POSIX4 and Lua8",
+      "tests/game-ui-class-choices-partitions.test.mjs": "explicit Windows8/POSIX4 and Lua8",
+      "tests/encounter-coverage-partitions.test.mjs": "explicit Lua8",
+      "tests/unknown-routing-partitions.test.mjs": "explicit Lua8"
+    },
+    "unchangedDependencies": [
+      "scripts/ci-shards.mjs",
+      "scripts/test-lua.mjs",
+      "scripts/ci-test-timings.json"
+    ]
+  },
+  "equivalence": {
+    "script": "docs/evidence/m7-defect-cost-20261109/projection-equivalence.mjs",
+    "receipt": "docs/evidence/m7-defect-cost-20261109/projection-equivalence-receipt.json.gz",
+    "inputDomain": "All3478 tracked .mjs/.lua/.json/.yml/.yaml/.txt/.md inputs under scripts,tests,config,src/lua,data,.github plus package.json and package-lock.json at verification time.3477 nonshape inputs unchanged; two composed projection stages compared. Malformed/nonstring/unknown-path and drifted-shape return/throw classifications also compared.",
+    "oldImplementation": "Exact git8b3819eb helper bytes; only relative import URLs and import.meta.url are rebased for in-memory loading. Both original and loaded hashes are recorded.",
+    "rewardHelper": "Exact old/new file diff is solely prePosix15 before the unchanged prePosix14 historical shape validation, with composed output equality."
+  },
+  "interruptedAttempts": [
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/transitive-source-interrupted.log.gz",
+      "exitCode": 130,
+      "scope": "Default-parallel attempt stopped immediately after parent serial instruction. Partial file failure without completed diagnostics, not a pass."
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/transitive-source-serial-interrupted.log.gz",
+      "exitCode": 130,
+      "scope": "51-file serial broad selection stopped by parent to replace filename-based selection with precise semantic coverage;3 approved-ui subtests had passed, but no whole-run pass claimed."
+    }
+  ]
+}
