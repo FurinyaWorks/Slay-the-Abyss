@@ -876,7 +876,7 @@ test('Defect final CI outer epoch preserves complete predecessor costs and exact
  assert.deepEqual(current,previous,'all old costs, provenance and planning settings remain unchanged');
  for(const file of [path,'scripts/check-lua-static.mjs','tests/helpers/combined-epoch/source-epoch.mjs','tests/helpers/copy-integration-source-closure.mjs','tests/silent-final-source-epoch.test.mjs']){
   const source=rawReadFileSync(file,'utf8'),before=preDefectFinalCiSource(file,source);assert.notEqual(before,source,file);
-  assert.equal(preDefectFinalCiSource(file,source.replaceAll('\n','\r\n')),before);
+  assert.equal(preDefectFinalCiSource(file,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),before);
   for(const input of [source+'\n',source.slice(1),before,null,undefined,{},17])assert.equal(preDefectFinalCiSource(file,input),input);
   assert.equal(preDefectFinalCiSource('foreign',source),source);
  }
@@ -932,7 +932,7 @@ test('Encounter formation CI outer epoch preserves every prior cost and admits o
  assert.deepEqual(current,previous,'all old costs, provenance and planning settings remain unchanged');
  for(const file of [path,'scripts/check-lua-static.mjs','src/lua/abyss_encounter_formation.lua','tests/helpers/combined-epoch/source-epoch.mjs','tests/helpers/copy-integration-source-closure.mjs','tests/defect-final-source-epoch.test.mjs']){
   const source=diskReadFileSync(file,'utf8'),before=preEncounterFormationCiSource(file,source);assert.notEqual(before,source,file);
-  assert.equal(preEncounterFormationCiSource(file,source.replaceAll('\n','\r\n')),before);
+  assert.equal(preEncounterFormationCiSource(file,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),before);
   for(const input of [source+'\n',source.slice(1),before,null,undefined,{},17])assert.equal(preEncounterFormationCiSource(file,input),input);
   for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preEncounterFormationCiSource(unknown,source),source);
  }
