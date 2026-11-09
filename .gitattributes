@@ -477,3 +477,12 @@ docs/evidence/m7-watcher-flow-preparation-20261109/*.json text eol=lf
 docs/evidence/m7-watcher-flow-preparation-20261109/*.mjs text eol=lf
 docs/evidence/m7-watcher-flow-preparation-20261109/*.md text eol=lf
 docs/evidence/m7-watcher-flow-preparation-20261109/*.gz -text
+
+# Exact reused Windows18 capacity and its retained predecessor proof.
+scripts/ci-quality-shape.mjs text eol=lf
+tests/helpers/windows18-shape-source-inverse.mjs text eol=lf
+tests/helpers/windows18-shape-source-epoch.json.gz -text
+docs/evidence/m7-watcher-flow-cost-20261109/*.json text eol=lf
+docs/evidence/m7-watcher-flow-cost-20261109/*.mjs text eol=lf
+docs/evidence/m7-watcher-flow-cost-20261109/*.md text eol=lf
+docs/evidence/m7-watcher-flow-cost-20261109/*.gz -text

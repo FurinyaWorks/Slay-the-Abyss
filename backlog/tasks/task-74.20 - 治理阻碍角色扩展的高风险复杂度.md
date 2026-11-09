@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T06:37:00Z'
+updated_date: '2026-11-09T07:17:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -32,6 +32,7 @@ documentation:
   - docs/backlog-details/M7-ENCOUNTER-FORMATION-20261109.md
   - docs/backlog-details/M7-FORMATION-POSIX15-INTEGRATION-20261109.md
   - docs/evidence/m7-watcher-flow-preparation-20261109/README.md
+  - docs/evidence/m7-watcher-flow-cost-20261109/README.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -108,6 +109,8 @@ ordinal: 162000
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
 
 2026-11-09 主控接续既有M7任务：避开#579/#581/#582/#583/#584及SilentPotions在途文件，隔离于develop 1eb28847治理WatcherFlow.withCards初始化复杂度。保留原生牌、衍生牌兼容校验、共享Vigor身份及次序；完整旧新输入/输出/错误对照，新增职责CC15及负控；来源与成本只作必要适配，独审后及时正常上传提草稿PR，不重复Full、不改owner/status/AC。
+
+2026-11-09 接续#586精确头2a4bfec2的成本阻断：先核实develop仍1eb28847、Quality排队且Quick/Licenses成功。仅复用已公开#579@062a5776的18Windows/15POSIX中央shape（原17仅264ms超限仍保留），不改其他在途分支，不新增调度器，不降低任何实测floor、预算或执行保护。核对全部802JS/1410Lua完整分配、38作业和严格交付拒绝负例，定向验证及独审后更新同PR，不重复Full。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -202,4 +205,8 @@ WatcherFlow当前成本补记：原规划完整11/11实测100195.360976ms，保�
 WatcherFlow最终定向CI58项57通过/1失败，唯一失败Windows成本超264ms；全部历史、当前802/1410完整库存与三份成本收据断言通过。源码/来源独审通过，最终草稿只报告代码完成与成本BLOCKED，不称准入或合并完成。
 
 最终口径澄清：58项中其余57项通过，完整库存测试在Windows预算断言失败，后续POSIX及工作流断言未执行。POSIX1135841来自独立完整复算，不把失败测试的未执行部分称为通过。历史成本及三份收据测试均实际通过。
+
+接续#586成本：原字节复用#579既有18Windows/15POSIX中央shape，34项floor及原预算/并发/worker/预留均不变。完整802JS/1410Lua预测Windows18=1703695、POSIX15=1135841；原17=1800264超264的反例保持。当前38作业准入与严格拒绝控制定向验证、独审中，不把预测当Hosted实测，不重复Full。
+
+Windows18接续定向验证已通过：五文件115/115，补强后交付/队列56/56（重叠不累加）；历史/POSIX24/24、runtime13/13、full-quality验证器单元17/17。独审另269准入拒绝负控，378生产/证明/成本旧路径哈希保持。本地成本阻断已解决，保留旧17超264反例；新HEAD正常Hosted Full、独审绑定和实际合后准入待，不提前勾AC。
 <!-- SECTION:NOTES:END -->

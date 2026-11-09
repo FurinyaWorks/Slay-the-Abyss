@@ -1,3 +1,4 @@
+import {preWindows18ShapeSource} from './windows18-shape-source-inverse.mjs';
 import {preWatcherFlowPreparationCiSource} from './watcher-flow-preparation-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource} from './encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource} from './posix15-shape-source-inverse.mjs';
@@ -36,13 +37,15 @@ const posix13Source=ciCompleteCalibrationProof.files['scripts/ci-quality-shape.m
 assert.equal(hash(posix13Source),currentPlacementSha256['scripts/ci-quality-shape.mjs'][0]);
 const posix14Source=posix13Source.replace('length:13','length:14');
 export function prePosix14ShapeSource(path,source){
+ const outer=preWindows18ShapeSource(path,source);
+ if(outer!==source)source=prePosix15ShapeSource(path,outer);
  if(path!=='scripts/ci-quality-shape.mjs'||typeof source!=='string')return source;
  return source.replaceAll('\r\n','\n')===posix14Source?posix13Source:source;
 }
 // This placement-only bridge returns the existing complete approved source.
 // It adds no live owner, fixture dependency or permission-bearing cache.
 export function preCurrentCiPlacementSource(path,source){
- source=prePosix15ShapeSource(path,source);
+ source=prePosix15ShapeSource(path,preWindows18ShapeSource(path,source));
  source=originalPlanningSource(path,source);
  source=preDefectUtilityPlanningSource(path,preDefectIntegrationPlanningSource(path,source));
  source=preEnemyAiPlanningSource(path,prePosix14ShapeSource(path,preClassPotionPlanningSource(path,preWatcherPlanningSource(path,preEnemyIntegrationPlanningSource(path,source)))));

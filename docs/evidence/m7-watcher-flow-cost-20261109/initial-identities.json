@@ -1,0 +1,26 @@
+{
+  "baseDevelop": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "currentPr": 586,
+  "currentHead": "2a4bfec25c8e7e7ed087db8efb03b58f085f2dcf",
+  "sourcePr": 579,
+  "sourceHead": "062a57760ab49539ada43725805970117df9045d",
+  "sourcePath": "scripts/ci-quality-shape.mjs",
+  "sourceGitBlob": "ec19d20e3722a7e328ec6cab29ea4a00c3b61a3d",
+  "sourceUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/062a57760ab49539ada43725805970117df9045d/scripts/ci-quality-shape.mjs",
+  "currentQualityRun": 42575190511,
+  "observedCurrentQualityStatus": "queued",
+  "quickRun": 42575190421,
+  "observedQuickConclusion": "success",
+  "licensesRun": 42575190432,
+  "observedLicensesConclusion": "success",
+  "sourceStatus": "Existing published draft capacity shape; not an assertion that source PR has merged or passed current Full.",
+  "unchangedConstraints": [
+    "original execution budgets",
+    "all observed timing floors including100196",
+    "unknown costs",
+    "concurrency12",
+    "Lua workers2",
+    "reserve60000",
+    "entire production tree and behavior proofs"
+  ]
+}

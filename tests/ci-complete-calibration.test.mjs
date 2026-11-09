@@ -1,3 +1,4 @@
+import {preWindows18ShapeSource,windows18ShapeProof} from './helpers/windows18-shape-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource,defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
@@ -29,8 +30,8 @@ import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as pr
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
 import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-shape-source-inverse.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
-import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
-import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
+import {qualityShardMatrices as actualQualityShardMatrices,qualityShardJobs as actualQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
+import {currentFullQualityJobs as actualFullQualityJobs} from '../scripts/verify-delivery.mjs';
 import {discoverJs as actualDiscoverJs,partition,jsShard as actualJsShard,jsPlanningWeights as actualJsPlanningWeights,timings as liveTimings} from '../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
 import {preWatcherFlowPreparationCiSource,watcherFlowPreparationCiProof,watcherFlowPreparationPlanningFloors} from './helpers/watcher-flow-preparation-ci-source-inverse.mjs';
@@ -39,9 +40,12 @@ const watcherFlowPreparationJs=['tests/watcher-flow-preparation.test.mjs','tests
 const discoverJs=()=>actualDiscoverJs().filter(file=>!watcherFlowPreparationJs.includes(file));
 const diskReadFileSync=(file,encoding)=>{
  const raw=actualDiskReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
- const prior=preWatcherFlowPreparationCiSource(file,text);
+ const prior=preWindows18ShapeSource(file,preWatcherFlowPreparationCiSource(file,text));
  return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
 };
+// Frozen Formation800 shape keeps all published 17/15 assertions intact.
+const {qualityShardMatrices:currentQualityShardMatrices,qualityShardJobs:currentQualityShardJobs}=await import('data:text/javascript,'+encodeURIComponent(preWindows18ShapeSource('scripts/ci-quality-shape.mjs',actualDiskReadFileSync('scripts/ci-quality-shape.mjs','utf8'))));
+const currentFullQualityJobs=['check','presentation','engineering-posix',...currentQualityShardJobs,'impact','fast'];
 const actualCurrentTimings=JSON.parse(watcherFlowPreparationCiProof.files['scripts/ci-test-timings.json'].beforeSource);
 const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
 const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
@@ -256,7 +260,7 @@ test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 L
  const workflow=beforeExecutionTimeoutWorkflow(read('.github/workflows/quality.yml'));assert.match(workflow,/max-parallel: 12/);assert.match(workflow,/timeout-minutes: 20/);assert.match(workflow,/local-special' && 75 \|\| 30/);
 });
 
-test('current Full37 retains full coverage and reports performance targets under unchanged execution guards',t=>{
+test('historical Formation800 Full37 retains full coverage and reports performance targets under unchanged execution guards',t=>{
  const workflow=read('.github/workflows/quality.yml');assert.match(workflow,/timeout-minutes: \$\{\{ inputs.runner_pool == 'local-special' && 75 \|\| 45 \}\}/);assert.match(workflow,/runs-on: ubuntu-24.04\n    timeout-minutes: 30/);
  const js=discoverJs(),lua=currentLua();
  assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:17},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
@@ -1064,7 +1068,7 @@ test('Watcher Flow preparation recovery preserves exact predecessor CI receipt s
  }
 });
 
-test('current Watcher Flow preparation802 Full37 inventory adds only two files under unchanged budgets and complete effective costs',t=>{
+test('current Watcher Flow preparation802 Full38 inventory adds only two files under unchanged budgets and complete effective costs',t=>{
  const js=actualDiscoverJs(),lua=currentLua();
  assert.equal(js.length,802);assert.equal(lua.length,1410);
  assert.deepEqual(js.filter(file=>!discoverJs().includes(file)).sort(),[...watcherFlowPreparationJs].sort());
@@ -1076,9 +1080,9 @@ test('current Watcher Flow preparation802 Full37 inventory adds only two files u
   assert.equal(liveTimings.js[platform][file],undefined);
   assert.equal(actualJsPlanningWeights([file],platform)[file],Math.max(liveTimings.unknownJsMs,liveTimings.jsPlanning.localLowerBounds[file]?.durationMs??0));
  }
- assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:17},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
- assert.equal(currentFullQualityJobs.length,37);
- for(const [platform,count,budget]of [['win32',17,1800000],['linux',15,1200000]]){
+ assert.deepEqual(actualQualityShardMatrices,{windows:Array.from({length:18},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
+ assert.equal(actualFullQualityJobs.length,38);
+ for(const [platform,count,budget]of [['win32',17,1800000],['win32',18,1800000],['linux',15,1200000]]){
   const bins=Array.from({length:count},(_,i)=>actualJsShard(js,`${i+1}/${count}`,platform));
   assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,802);
   const loads=bins[0].loads,old=actualJsShard(discoverJs(),`1/${count}`,platform).loads;
@@ -1095,8 +1099,9 @@ test('current Watcher Flow preparation802 Full37 inventory adds only two files u
    const cost=file=>liveTimings.luaShard[file]??liveTimings.lua[file]??liveTimings.unknownLuaMs,safety=file=>liveTimings.lua[file]??liveTimings.unknownLuaMs;
    maximum=Math.max(...luaBins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
   }
-  const forecast=maximum+60000;t.diagnostic(`${platform} complete Watcher Flow preparation802 forecast ${forecast} ms; budget ${budget} ms; actual Full pass not claimed`);
-  assert.ok(forecast<budget);
+  const forecast=maximum+60000;t.diagnostic(`${platform} complete Watcher Flow preparation802 shape ${count} forecast ${forecast} ms; budget ${budget} ms; actual Full pass not claimed`);
+  if(platform==='win32'&&count===17){assert.equal(forecast,1800264);assert.equal(forecast-budget,264);assert.ok(forecast>=budget,'the original blocked17 witness stays blocked');}
+  else assert.ok(forecast<budget);
  }
  const workflow=actualDiskReadFileSync('.github/workflows/quality.yml','utf8');
  assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
@@ -1127,4 +1132,20 @@ test('Watcher Flow preparation complete local floors authenticate actual files a
   }
  }
  assert.deepEqual(current,actualCurrentTimings,'all old costs, hosted measurements, safety inputs and thresholds remain unchanged');
+});
+
+
+test('published Windows18 source only admits the exact full shape and preserves original17 bytes',()=>{
+ const {path,beforeSource,afterSource,beforeSha256,afterSha256,publishedCommit,publishedGitBlob}=windows18ShapeProof;
+ assert.equal(actualDiskReadFileSync(path,'utf8').replaceAll('\r\n','\n'),afterSource);
+ assert.equal(afterSource,beforeSource.replace('length:17','length:18'));
+ assert.equal(hash(beforeSource),beforeSha256);assert.equal(hash(afterSource),afterSha256);
+ assert.equal(publishedCommit,'062a57760ab49539ada43725805970117df9045d');
+ assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(afterSource)}\0`).update(afterSource).digest('hex'),publishedGitBlob);
+ assert.equal(publishedGitBlob,'ec19d20e3722a7e328ec6cab29ea4a00c3b61a3d');
+ for(const source of [afterSource,afterSource.replaceAll('\n','\r\n')])assert.equal(preWindows18ShapeSource(path,source),beforeSource);
+ for(const source of [beforeSource,afterSource+'\n',afterSource.slice(1),afterSource.replace('length:15','length:16'),afterSource.replace('length:18','length:19'),null,undefined,{},42])assert.equal(preWindows18ShapeSource(path,source),source);
+ for(const other of ['foreign','scripts/ci-test-timings.json'])assert.equal(preWindows18ShapeSource(other,afterSource),afterSource);
+ assert.deepEqual(actualFullQualityJobs,['check','presentation','engineering-posix',...actualQualityShardJobs,'impact','fast']);
+ assert.equal(actualFullQualityJobs.length,38);assert.equal(new Set(actualFullQualityJobs).size,38);
 });

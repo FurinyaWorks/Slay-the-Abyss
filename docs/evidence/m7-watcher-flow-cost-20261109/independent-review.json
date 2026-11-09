@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "watcher-flow-windows18-cost-final-independent-review",
+  "reviewer": "Independent code reviewer",
+  "reviewedBaseSha": "3b95ad3f396215466d9c3179033d357e762d1566",
+  "reviewedRemoteBaseSha": "2a4bfec25c8e7e7ed087db8efb03b58f085f2dcf",
+  "reviewedWorkingTreeDelta": true,
+  "codeReview": {
+    "conclusion": "pass",
+    "unresolved": []
+  },
+  "localCostAdmission": {
+    "conclusion": "pass",
+    "currentWindowsForecastMs": 1703695,
+    "windowsBudgetMs": 1800000,
+    "windowsMarginMs": 96305,
+    "posixForecastMs": 1135841,
+    "posixBudgetMs": 1200000,
+    "posixMarginMs": 64159,
+    "retainedWindows17ForecastMs": 1800264,
+    "retainedWindows17ExcessMs": 264
+  },
+  "delivery": {
+    "conclusion": "pending",
+    "reason": "Exact new HEAD Hosted Full, normal queue admission and merged-commit verification remain required; local forecast and targeted tests do not replace them."
+  },
+  "findings": [
+    "Only executable production change is central Windows shard count17 to18; POSIX15 and delivery validator implementations unchanged.",
+    "Central shape exactly matches published Git blob ec19d20e3722a7e328ec6cab29ea4a00c3b61a3d, without claiming source PR579 is merged or approved.",
+    "All378 protected production/source/proof/cost/evidence hashes match base; all34 floors remain unchanged, including100196ms adverse sample.",
+    "Exact source inverse is test-only and rejects drift/unknown paths; historical17-shard failure is retained explicitly.",
+    "Current802 JS/1410 Lua inventory is assigned exactly once;38 required jobs retain strict missing/failed/cancelled/skipped/identity/mixed-shape refusal.",
+    "Final full-quality unit adaptation adds18th-shard and old17/mixed controls; no acceptance or security gate is weakened."
+  ],
+  "validation": {
+    "independentBoundaryNegatives": 269,
+    "validCurrentJobControl": 38,
+    "forecastArtifact": "Independently executed identical forecast logic with output redirected only to review artifacts; full result exactly matches committed forecast.json.",
+    "implementationFinalHashesMatched": 10,
+    "protectedHashesMatched": 378,
+    "workerLogsReviewed": [
+      {
+        "tests": 115,
+        "passed": 115,
+        "scope": "initial five files"
+      },
+      {
+        "tests": 56,
+        "passed": 56,
+        "scope": "final delivery and queue, overlaps initial run; not summed"
+      },
+      {
+        "tests": 24,
+        "passed": 24,
+        "scope": "final indirect historical/POSIX consumers"
+      },
+      {
+        "tests": 13,
+        "passed": 13,
+        "scope": "final runtime"
+      },
+      {
+        "tests": 17,
+        "passed": 17,
+        "scope": "final full-quality validator unit file, not Hosted Full"
+      }
+    ],
+    "diffCheck": "pass"
+  },
+  "limits": [
+    "No Full or source VM suite rerun.",
+    "No user device operation.",
+    "Forecast margins are model estimates, not hosted performance evidence."
+  ],
+  "fileCount": 26,
+  "inputSha256": {
+    ".gitattributes": "7c5c99486e83f99f01d5fac317b9a8eaccf62657fa328547541195494fad4aae",
+    "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md": "eb187ce85838058db89b5e8f42e07a5ee37e48e8a0bf212ce87a2d892e2e54c3",
+    "docs/evidence/m7-watcher-flow-cost-20261109/README.md": "7dfa729d0d3006710ab9a406ec4d1f4168f0c3decae6db6d9cdbcf343a98e30f",
+    "docs/evidence/m7-watcher-flow-cost-20261109/admission-final.log.gz": "e21cf287c674610281d6ab809fd34a67f6cb2f0abfdfa42d2c1ee89ffe795710",
+    "docs/evidence/m7-watcher-flow-cost-20261109/doctor.log.gz": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+    "docs/evidence/m7-watcher-flow-cost-20261109/forecast-replay.log.gz": "00f68afc1d1eef3d407934e8dfb631f2b1b1d7e89f6bb6453b09b014a6bc2411",
+    "docs/evidence/m7-watcher-flow-cost-20261109/forecast.json": "586ad80143bf754a68ee5cdd29cdc601d986aa4fa68f49a9cf0e1c38c8cf94ab",
+    "docs/evidence/m7-watcher-flow-cost-20261109/forecast.mjs": "7b2b39cbd937d9961b10047763ce832d66e67281f9f557b394a09f6ccba29651",
+    "docs/evidence/m7-watcher-flow-cost-20261109/full-quality-unit-final.log.gz": "8c441a7e8902694ee8349c3f3bd8eb256350d2fc60d7d9738ddca924f492cd02",
+    "docs/evidence/m7-watcher-flow-cost-20261109/guidance.log.gz": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "docs/evidence/m7-watcher-flow-cost-20261109/indirect-final.log.gz": "bea16bf996c87ccf1b6416b5f349f40dc116570de4dfb37efd6e541c68c9efbe",
+    "docs/evidence/m7-watcher-flow-cost-20261109/initial-identities.json": "d7e31b611fdf345ac5c8ff3422df8c8fe3981d0a3a4f69417f8ec124314aaa84",
+    "docs/evidence/m7-watcher-flow-cost-20261109/retained-inputs.json": "ed03067b1e33ae09f54178d7dc13b405c1ef78b17cd8942362680e09a1ac1995",
+    "docs/evidence/m7-watcher-flow-cost-20261109/runtime-final.log.gz": "306bbe00d98fb7a3bfe32af8a7d34692e584b52108b0f990f77308dd09df6382",
+    "docs/evidence/m7-watcher-flow-cost-20261109/targeted-initial.log.gz": "91e0330d606957da3751b5df98249cdc642880563289ea0dde3549823163e705",
+    "docs/evidence/m7-watcher-flow-cost-20261109/verify-backlog.log.gz": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "scripts/ci-quality-shape.mjs": "86b519a185be48c2b9417761b6a9f81ff7c30cd015c534e992f2f50da317ee78",
+    "tests/ci-complete-calibration.test.mjs": "9a79089bb915e02930115b712b98b8b1eeb8538c5f48ea5b836c02e5a81a0f96",
+    "tests/ci-impact.test.mjs": "710cd5178f3f9bbff3797b1ad7948e2003c3aa5f88f1d662a97376abd2ec5542",
+    "tests/ci-windows-shards.test.mjs": "c640db8c3aeca2f9915f15f2d3fe3ae7e1a96126872d773e39e8e011d9d89d6e",
+    "tests/delivery.test.mjs": "0af231a7395693b863fe6f727352e291a0ce606658e3381b6f8afafbd10d29f5",
+    "tests/full-quality.test.mjs": "7b6ef7d364818865fcc03fe1378e889155bf4ff3cbc5e871ab0ff178b4ebcd9f",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "2b70fd9d3d2990e1ec943233613e7280b33e978bfe52d1da631f147a4368d594",
+    "tests/helpers/windows18-shape-source-epoch.json.gz": "c09d67f4599a7422b9c03dcbdb036248b3081d5d43360b1d1f4be685a8adf866",
+    "tests/helpers/windows18-shape-source-inverse.mjs": "ff3d5f06b7ae202391c763f751b447d0b9248dc250e204c86b1a37b3fa2b8f9e",
+    "tests/merge-queue.test.mjs": "c91fcd3f535aa206ca642015bc89221ad6d625f5cf9368985e53a6058c9fbfc3"
+  }
+}
