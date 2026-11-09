@@ -486,3 +486,10 @@ docs/evidence/m7-watcher-flow-cost-20261109/*.json text eol=lf
 docs/evidence/m7-watcher-flow-cost-20261109/*.mjs text eol=lf
 docs/evidence/m7-watcher-flow-cost-20261109/*.md text eol=lf
 docs/evidence/m7-watcher-flow-cost-20261109/*.gz -text
+
+# Exact live-reader compatibility proof and retained hosted failures.
+tests/helpers/flow-live-reader-source-inverse.mjs text eol=lf
+tests/helpers/flow-live-reader-source-epoch.json.gz -text
+docs/evidence/m7-watcher-flow-live-readers-20261109/*.json text eol=lf
+docs/evidence/m7-watcher-flow-live-readers-20261109/*.md text eol=lf
+docs/evidence/m7-watcher-flow-live-readers-20261109/*.gz -text

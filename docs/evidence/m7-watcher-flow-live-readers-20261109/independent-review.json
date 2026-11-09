@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "watcher-flow-historical-live-readers-independent-final",
+  "reviewer": "Independent code reviewer",
+  "reviewedBaseSha": "b12bc32fbedf2ecae51f53452bc1d3afb45a2c59",
+  "reviewedRemoteBaseSha": "53cf5cf0fb49fb890eb3bdc575b37eac418214c8",
+  "reviewedWorkingTreeDelta": true,
+  "conclusion": "pass",
+  "unresolved": [],
+  "codeReview": "pass",
+  "localCostAdmission": "pass",
+  "hostedFullQueueAndMergedValidation": "pending",
+  "scope": "Entire incremental delta: historical Silent49/Defect50 disk readers, exact three-file historical CI bridge, two observed cost increases, final cross-platform receipt assertions, evidence, attributes and Backlog.",
+  "resolvedFinding": "New text receipt hashes initially used raw bytes. Final checks normalize only CRLF to LF; gzip stays byte-exact, with real temporary CRLF files and text/binary drift controls.",
+  "findings": [
+    "Both historical readers still read disk each call and apply only the exact single-owner preparation predecessor projection. Original49/50 owner proofs, all assertions, and current51-owner proof are unchanged.",
+    "Corrupt/missing injection remains after projection. Unknown/foreign/old sources do not gain current-source admission.",
+    "Exact bridge beforeSource for two test files and timings matches base commit.33 independent drift/old/unknown-path probes passed.",
+    "Only two current floor objects increased to19795/15585; complete prior objects10937/13784 preserved, other32floors and all execution guards unchanged.",
+    "377 protected paths remain byte-identical; timings is the sole permitted protected change.",
+    "CRLF repair final47-test log is byte-identical to supplied original; no Full or sourceVM rerun by reviewer."
+  ],
+  "validation": {
+    "frozenOwnedFilesMatched": 8,
+    "protectedFilesMatched": 377,
+    "independentBridgeNegativeChecks": 33,
+    "receiptInputHashesVerified": 372,
+    "sourceRuns": [
+      {
+        "name": "Silent",
+        "passed": 9,
+        "total": 9,
+        "durationMs": 19794.798607
+      },
+      {
+        "name": "Defect",
+        "passed": 11,
+        "total": 11,
+        "durationMs": 15584.26312
+      }
+    ],
+    "ciRuns": [
+      {
+        "passed": 60,
+        "total": 60,
+        "durationMs": 46819.68928
+      },
+      {
+        "passed": 47,
+        "total": 47,
+        "durationMs": 13527.434364
+      },
+      {
+        "passed": 47,
+        "total": 47,
+        "durationMs": 12730.977615,
+        "final": true
+      }
+    ],
+    "overlap": "Calibration runs supersede corresponding earlier tests; counts are not summed.",
+    "forecastArtifactReplay": "Exact recorded full result reproduced with output redirected only to review artifacts.",
+    "diffCheck": "pass"
+  },
+  "costs": {
+    "windows18": {
+      "forecastMs": 1704233,
+      "budgetMs": 1800000,
+      "marginMs": 95767
+    },
+    "posix15": {
+      "forecastMs": 1136551,
+      "budgetMs": 1200000,
+      "marginMs": 63449
+    },
+    "currentWindows17": {
+      "forecastMs": 1800898,
+      "excessMs": 898
+    },
+    "frozenPriorWindows17": {
+      "forecastMs": 1800264,
+      "excessMs": 264
+    }
+  },
+  "limitations": [
+    "Targeted local success is not Hosted Full or merge eligibility.",
+    "Receipt inputs were collected after successful runs, not sealed before execution.",
+    "Earlier Hosted failures and superseded/cancelled runs are retained, not reported as successful."
+  ],
+  "fileCount": 27,
+  "inputSha256": {
+    ".gitattributes": "6ebad015d14fdd7bc69d1d31a0fe60a8e208223c54624eccae39c27f257b04fb",
+    "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md": "9ece624e67397159ec22accc8b22eb92ae2dc060338699737850abf7be29c2a9",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/README.md": "665d5fb558e97bc9348242619449e48cad80fc9be39e5cb733701b3ed4b6f55b",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/calibration-crlf-final.log.gz": "24e0a4ca70ea0f677fbc72ebdff5e1a42e377bd8543a5323778100ccd340aec1",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/calibration-final.log.gz": "ecbfacf281cce61aa4b58611a0c02a3bbccdd5dd28e7cc5e69d350db565d4e08",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/ci-final.log.gz": "94a878d5a6d5b76504a5c0fd9f6e807dc03d4a9a813034ef1725449aa54058f9",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/defect-receipt.json": "52c4bbaed1211558db2ce4ae472f9ddfc62baff456582960960d0cd829773dfd",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/defect-source.log.gz": "38b0c548f66e9cbd9256863e7c16c264ee0b2aef13b8df2bc492f0b54b6fe757",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/forecast-replay.log.gz": "c845b8f34c69d8457da45a39272b05a7ec99c756611edba4fb20dc6182fcaa36",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/forecast.json": "5756783732e56e0800f68f5f3c9fd554a5c668a659375e739f98bd87fd3501bc",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/guidance.log.gz": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/hosted-failure-sources.json": "27d4edc6e91a136cedf8e29e6ce5f7b9026eaa290d6c235947ae447daefcc41c",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/old-job-129022069502.log.gz": "8d0b07d9f3737cf18a5f9265fb93688762eb6aaa956fc4f486a9484d6df60a37",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/old-job-129022069531.log.gz": "5c6322f4f955f376dfb8dc081f54f5ee40ec7287dcbed6e099cf1ced468dc442",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/old-job-129022069574.log.gz": "05baa19206696cd88c46473876fedcae232ae44f07d1944d11c986a53c35a2e0",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/previous-floors.json": "f1ddffbaca31f46236353383bd9cb8fe159e2616c6c81fa56fbe759cb538965f",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/silent-receipt.json": "8635cfbc7b9d765163b7742a4fef72b17f9190e03f6cc5445355ff64268a8d02",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/silent-source.log.gz": "dad67e912fe86001841c822634dd3ee7a3520771f822a6c3bb6c66bf1045d8f8",
+    "docs/evidence/m7-watcher-flow-live-readers-20261109/verify-backlog.log.gz": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "scripts/ci-test-timings.json": "450b45016fd5f1dedbb7da479f179cfd5406f2b4b256187b7063d273f78c90bb",
+    "tests/ci-complete-calibration.test.mjs": "b89d1b9d72ec57a3f09a1627596dbba6e0327b2bdddab9e86e6d7fd6b207d5ab",
+    "tests/ci-runtime.test.mjs": "459fec33ecf2126febbb042643551352215d68522179aa0b30d9ebde891c031b",
+    "tests/defect-final-source-epoch.test.mjs": "9fdd4683072fe822c7546a2ed864dc8b5afeb7b1d194cb152b3027b077522715",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "a32ec39a78504ddfb4f952adecef403fd82ceb0fa462d3513001b6c4c91014cf",
+    "tests/helpers/flow-live-reader-source-epoch.json.gz": "87c2e6d2190a3dd99a8cfb975d44858ae120a33fba0e3562f4b2f6f3d4f4f8d2",
+    "tests/helpers/flow-live-reader-source-inverse.mjs": "a9fcb30a210db0c916ce3d4595d4c2d13a4a4a1f7f1631112eeb67e3abdc5cad",
+    "tests/silent-final-source-epoch.test.mjs": "f48156807e3e519016d0b508da058baef03f87834cbe2598a5aab257f937ebce"
+  }
+}

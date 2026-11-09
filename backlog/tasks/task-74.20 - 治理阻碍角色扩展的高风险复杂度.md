@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T07:17:00Z'
+updated_date: '2026-11-09T07:35:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -33,6 +33,7 @@ documentation:
   - docs/backlog-details/M7-FORMATION-POSIX15-INTEGRATION-20261109.md
   - docs/evidence/m7-watcher-flow-preparation-20261109/README.md
   - docs/evidence/m7-watcher-flow-cost-20261109/README.md
+  - docs/evidence/m7-watcher-flow-live-readers-20261109/README.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -209,4 +210,8 @@ WatcherFlow最终定向CI58项57通过/1失败，唯一失败Windows成本超264
 接续#586成本：原字节复用#579既有18Windows/15POSIX中央shape，34项floor及原预算/并发/worker/预留均不变。完整802JS/1410Lua预测Windows18=1703695、POSIX15=1135841；原17=1800264超264的反例保持。当前38作业准入与严格拒绝控制定向验证、独审中，不把预测当Hosted实测，不重复Full。
 
 Windows18接续定向验证已通过：五文件115/115，补强后交付/队列56/56（重叠不累加）；历史/POSIX24/24、runtime13/13、full-quality验证器单元17/17。独审另269准入拒绝负控，378生产/证明/成本旧路径哈希保持。本地成本阻断已解决，保留旧17超264反例；新HEAD正常Hosted Full、独审绑定和实际合后准入待，不提前勾AC。
+
+2026-11-09：继续核查#586 Hosted原始日志，发现Silent49历史磁盘reader遗漏新WatcherFlow投影，并静态确认Defect50同类路径；最小接入后完整9/9及11/11通过。保留较慢样本，将两floor上调19795/15585，其余32项保持。当前18Windows/15POSIX完整负载1704233/1136551ms，预算余95767/63449；同成本17片仍超898，前轮264反例原样保留。原生产源不变，精确历史桥接/独审与新HEAD Hosted继续收口，不冒称已合。
+
+2026-11-09：历史live-reader最终合同收口：CI历史合同/runtime两文件60/60通过，补充当前17片拒绝后仅calibration最终47/47（覆盖前次对应项，不叠计）；377保护文件不变，timings仅保留两项更慢样本。待独审及新精确HEAD Hosted，保持未合。
 <!-- SECTION:NOTES:END -->

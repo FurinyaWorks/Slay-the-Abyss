@@ -1,0 +1,56 @@
+{
+  "tests/silent-final-source-epoch.test.mjs": {
+    "durationMs": 10937,
+    "environment": "cloud Linux local",
+    "coverage": "9/9 complete file passed; 0 failed, cancelled or skipped. Includes live LF/CRLF reads and warm-owner drift for all 49 owners.",
+    "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+    "nodeReportedDurationMs": 10936.736773,
+    "sourceLog": "docs/evidence/m7-silent-final-20261109/source-standalone.log.gz",
+    "sourceLogSha256": "e7bd39f5e66f924f7cbf64c291fc58ea4fea0e23944c58398c033630224592ba",
+    "sourceLogUncompressedSha256": "1acfc2fcab2179cdfc66d8cfa75344ec42bc2204ebc7fc5b14d39a2f7b768b00",
+    "testSha256": "cafb4492b21ec529c905cea3d80b366b2eb02c096d22c4278fcbb2f930edb9e6",
+    "measurementScope": "Complete local run; other independent validation may have been active. Conservative planning cost, not an isolated or hosted benchmark.",
+    "inputSha256": {
+      "src/lua/abyss_silent_final_cards.lua": "21766502d620d7fb9885cc3884d79c557739bac3bf750b5105fe34aa18bf8fdb",
+      "tests/helpers/silent-final-source-epoch.mjs": "62621989d65db4db12a6b7251fc8216bbd5851b196c87d28f0cffd222d8a28b4",
+      "tests/helpers/silent-final-source-epoch.json.gz": "8d70652c025b8075e2a03936f12c2509dbca427abd555e472f197b1ac4850b49",
+      "tests/helpers/combined-epoch/source-epoch.mjs": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+      "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb",
+      "tests/helpers/copy-integration-source-closure.mjs": "98030ef27b74af88a111fea3d3560a85d2e01ec146fbd69eb1e2f0a4f1bcd1b4"
+    }
+  },
+  "tests/defect-final-source-epoch.test.mjs": {
+    "durationMs": 13784,
+    "environment": "cloud Linux local",
+    "tests": 11,
+    "coverage": "11/11 complete file passed; 0 failed, cancelled or skipped. Complete raw reader, metadata and 50-owner source epoch contracts.",
+    "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+    "nodeReportedDurationMs": 12527.775739,
+    "sourceLog": "docs/evidence/m7-defect-final-20261109/source-final.log.gz",
+    "sourceLogSha256": "d620ff8e6e0ab0f9f4fce1a26d9fdf7268b76f14f43deed45e0be37c69d5daba",
+    "sourceLogUncompressedSha256": "e5ea7097654fc731b65c97b776226ce1d0cc566c8518cbbca99d0c3ea4b665d0",
+    "testSha256": "1204a76a70de7bbf5edbf529d6d8d3ad114327f910444584f7c3df2742af7ad7",
+    "measurementScope": "Complete local run; other independent validation may have been active. Conservative planning cost, not an isolated or hosted benchmark.",
+    "inputSha256": {
+      "tests/helpers/defect-final-source-epoch.mjs": "8088008202072d1ce22492383861fe5ccb2b57d2bd9d1b06abb6653f835c2137",
+      "tests/helpers/defect-final-source-epoch.json.gz": "a656584db182a608b75f66a46a8d31ae4d4bbaba6c64d376d1d47a011c7833ce",
+      "tests/helpers/combined-epoch/source-epoch.mjs": "81422aac13c89d3c3fa8d31f1afdff609af1f46f071a4c9d37288591cf20760f",
+      "tests/helpers/combined-epoch/pre-defect-source-epoch.mjs": "ee1631bc3e9e29ac7ef4f96b9c42769d75cb3bfe11881b2e07b868344c3e51fa",
+      "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb",
+      "tests/helpers/copy-integration-source-closure.mjs": "f91af9e74d4d18b4af8572f2d46996e6f30c6d1440046519e19689dc9ab509c1",
+      "src/lua/abyss_defect_final_cards.lua": "77abe4a82a37118273585830e1bd4c49e07b0367de77f06dc388b7ca862f5544"
+    },
+    "sourceReceipt": "docs/evidence/m7-defect-final-20261109/source-final-receipt.json",
+    "sourceReceiptSha256": "8c661e6a9805d8e84d844de29fc411eebc3985db28c8815dbd3a97d99e6d0b88",
+    "priorCompleteRun": {
+      "durationMs": 13784,
+      "nodeReportedDurationMs": 13783.175184,
+      "sourceLog": "docs/evidence/m7-defect-final-20261109/source.log.gz",
+      "sourceLogSha256": "088068b9873e844f8e5e3ce45b6a1d2c7ff304ceb1b18ce212cd1f0c653292cf",
+      "sourceLogUncompressedSha256": "9b3e8a8384d395f4f76ae9e10bf37719e7c107e167a997e927df50c9dfa6fb60",
+      "sourceReceipt": "docs/evidence/m7-defect-final-20261109/source-receipt.json",
+      "sourceReceiptSha256": "61789dd81b6a4f03b8fb5bfe4fa76004a0a69336fbaf5a4ebd4b0e452091c55b",
+      "scope": "Earlier complete successful 11/11 source suite before isolating the exact predecessor facade; its complete before/after input identities remain in the original receipt. Conservative floor is not lowered."
+    }
+  }
+}

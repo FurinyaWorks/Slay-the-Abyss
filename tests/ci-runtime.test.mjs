@@ -1,3 +1,4 @@
+import {preFlowLiveReaderSource} from './helpers/flow-live-reader-source-inverse.mjs';
 import {preWatcherFlowPreparationCiSource} from './helpers/watcher-flow-preparation-ci-source-inverse.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
@@ -163,7 +164,7 @@ test('real executor preserves test failure, continues later files, reports timin
 
 
 test('pre-Watcher Flow preparation timing records preserve all measured corrections without duplicate JSON keys',()=>{
- const raw=preWatcherFlowPreparationCiSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8'));
+ const raw=preWatcherFlowPreparationCiSource('scripts/ci-test-timings.json',preFlowLiveReaderSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8')));
  const timings=JSON.parse(raw);
  const jsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(timings.js[platform][file]??timings.unknownJsMs,timings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
  assert.equal((raw.match(/^  "jsCorrections":/gm)||[]).length,1,'one unambiguous correction inventory');

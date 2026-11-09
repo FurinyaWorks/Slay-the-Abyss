@@ -1,3 +1,6 @@
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {preFlowLiveReaderSource,flowLiveReaderProof} from './helpers/flow-live-reader-source-inverse.mjs';
 import {preWindows18ShapeSource,windows18ShapeProof} from './helpers/windows18-shape-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
@@ -24,7 +27,7 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as actualDiskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as actualDiskReadFileSync,readdirSync,mkdtempSync,writeFileSync,rmSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -40,7 +43,7 @@ const watcherFlowPreparationJs=['tests/watcher-flow-preparation.test.mjs','tests
 const discoverJs=()=>actualDiscoverJs().filter(file=>!watcherFlowPreparationJs.includes(file));
 const diskReadFileSync=(file,encoding)=>{
  const raw=actualDiskReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
- const prior=preWindows18ShapeSource(file,preWatcherFlowPreparationCiSource(file,text));
+ const prior=preWindows18ShapeSource(file,preWatcherFlowPreparationCiSource(file,preFlowLiveReaderSource(file,text)));
  return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
 };
 // Frozen Formation800 shape keeps all published 17/15 assertions intact.
@@ -1059,7 +1062,7 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
 
 test('Watcher Flow preparation recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
  for(const [file,binding]of Object.entries(watcherFlowPreparationCiProof.files)){
-  const raw=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  const raw=preFlowLiveReaderSource(file,actualDiskReadFileSync(file,'utf8')).replaceAll('\r\n','\n');
   assert.equal(hash(raw),binding.afterSha256,file);
   assert.equal(hash(binding.beforeSource),binding.beforeSha256,file);
   for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preWatcherFlowPreparationCiSource(file,source),binding.beforeSource);
@@ -1082,15 +1085,18 @@ test('current Watcher Flow preparation802 Full38 inventory adds only two files u
  }
  assert.deepEqual(actualQualityShardMatrices,{windows:Array.from({length:18},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
  assert.equal(actualFullQualityJobs.length,38);
- for(const [platform,count,budget]of [['win32',17,1800000],['win32',18,1800000],['linux',15,1200000]]){
-  const bins=Array.from({length:count},(_,i)=>actualJsShard(js,`${i+1}/${count}`,platform));
+ for(const [platform,count,budget,published17]of [['win32',17,1800000,true],['win32',17,1800000,false],['win32',18,1800000,false],['linux',15,1200000,false]]){
+  const oldTimings=JSON.parse(flowLiveReaderProof.files[path].beforeSource);
+  const oldWeights=Object.fromEntries(js.map(file=>[file,Math.max(oldTimings.js[platform][file]??oldTimings.unknownJsMs,oldTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+  const plan=(files,value)=>published17?partition(files,value,oldWeights,oldTimings.unknownJsMs,Array.from({length:count},(_,i)=>i===0?oldTimings.initialMs[platform][0]:0)):actualJsShard(files,value,platform);
+  const bins=Array.from({length:count},(_,i)=>plan(js,`${i+1}/${count}`));
   assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,802);
-  const loads=bins[0].loads,old=actualJsShard(discoverJs(),`1/${count}`,platform).loads;
+  const loads=bins[0].loads,old=plan(discoverJs(),`1/${count}`).loads;
   assert.equal(loads.reduce((a,b)=>a+b,0)-old.reduce((a,b)=>a+b,0),Object.values(actualJsPlanningWeights(watcherFlowPreparationJs,platform)).reduce((a,b)=>a+b,0));
   const priorWeights=currentJsPlanningWeights(discoverJs(),platform),currentWeights=actualJsPlanningWeights(discoverJs(),platform);
   const increasedOldWork=Object.keys(priorWeights).reduce((sum,file)=>sum+currentWeights[file]-priorWeights[file],0);
   const planning='tests/watcher-flow-planning.test.mjs';
-  assert.equal(increasedOldWork,currentWeights[planning]-priorWeights[planning],'the adverse complete historical-test observation remains in current costs');
+  assert.equal(increasedOldWork,[planning,...Object.keys(flowLiveReaderProof.floors)].reduce((sum,file)=>sum+currentWeights[file]-priorWeights[file],0),'the adverse complete historical-test observation remains in current costs');
   assert.equal(currentWeights[planning],Math.max(liveTimings.js[platform][planning]??liveTimings.unknownJsMs,watcherFlowPreparationPlanningFloors[planning].durationMs));
   let maximum=Math.max(...loads);
   if(platform==='win32'){
@@ -1099,8 +1105,8 @@ test('current Watcher Flow preparation802 Full38 inventory adds only two files u
    const cost=file=>liveTimings.luaShard[file]??liveTimings.lua[file]??liveTimings.unknownLuaMs,safety=file=>liveTimings.lua[file]??liveTimings.unknownLuaMs;
    maximum=Math.max(...luaBins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
   }
-  const forecast=maximum+60000;t.diagnostic(`${platform} complete Watcher Flow preparation802 shape ${count} forecast ${forecast} ms; budget ${budget} ms; actual Full pass not claimed`);
-  if(platform==='win32'&&count===17){assert.equal(forecast,1800264);assert.equal(forecast-budget,264);assert.ok(forecast>=budget,'the original blocked17 witness stays blocked');}
+  const forecast=maximum+60000;t.diagnostic(`${platform} complete Watcher Flow preparation802 ${published17?'frozen prior costs':'current complete costs'} shape ${count} forecast ${forecast} ms; budget ${budget} ms; actual Full pass not claimed`);
+  if(platform==='win32'&&count===17){if(published17){assert.equal(forecast,1800264);assert.equal(forecast-budget,264);}assert.ok(forecast>=budget,'the original and current17 plans both remain blocked');}
   else assert.ok(forecast<budget);
  }
  const workflow=actualDiskReadFileSync('.github/workflows/quality.yml','utf8');
@@ -1110,7 +1116,7 @@ test('current Watcher Flow preparation802 Full38 inventory adds only two files u
 
 test('Watcher Flow preparation complete local floors authenticate actual files and preserve every prior observation',()=>{
  assert.deepEqual(Object.keys(watcherFlowPreparationPlanningFloors).sort(),[...watcherFlowPreparationJs,'tests/watcher-flow-planning.test.mjs'].sort());
- const current=JSON.parse(actualDiskReadFileSync(path,'utf8'));
+ const current=JSON.parse(preFlowLiveReaderSource(path,actualDiskReadFileSync(path,'utf8')));
  for(const [key,floor]of Object.entries(watcherFlowPreparationPlanningFloors)){
   assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);
   const prior=actualCurrentTimings.jsPlanning.localLowerBounds[key];
@@ -1148,4 +1154,50 @@ test('published Windows18 source only admits the exact full shape and preserves 
  for(const other of ['foreign','scripts/ci-test-timings.json'])assert.equal(preWindows18ShapeSource(other,afterSource),afterSource);
  assert.deepEqual(actualFullQualityJobs,['check','presentation','engineering-posix',...actualQualityShardJobs,'impact','fast']);
  assert.equal(actualFullQualityJobs.length,38);assert.equal(new Set(actualFullQualityJobs).size,38);
+});
+
+
+test('live-reader repair admits only three exact complete sources and preserves every prior floor',t=>{
+ const inputHash=(file,bytes)=>hash(file.endsWith('.gz')?bytes:bytes.toString('utf8').replaceAll('\r\n','\n'));
+ assert.deepEqual(Object.keys(flowLiveReaderProof.files).sort(),[path,'tests/silent-final-source-epoch.test.mjs','tests/defect-final-source-epoch.test.mjs'].sort());
+ for(const [file,binding]of Object.entries(flowLiveReaderProof.files)){
+  const source=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(source),binding.afterSha256);assert.equal(hash(binding.beforeSource),binding.beforeSha256);
+  for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preFlowLiveReaderSource(file,input),binding.beforeSource);
+  for(const input of [binding.beforeSource,source+'\n',source.slice(1),null,undefined,{},17])assert.equal(preFlowLiveReaderSource(file,input),input);
+  for(const foreign of ['foreign','__proto__','constructor'])assert.equal(preFlowLiveReaderSource(foreign,source),source);
+ }
+ const current=JSON.parse(actualDiskReadFileSync(path,'utf8')),before=JSON.parse(flowLiveReaderProof.files[path].beforeSource);
+ assert.equal(Object.keys(current.jsPlanning.localLowerBounds).length,34);
+ for(const [key,floor]of Object.entries(flowLiveReaderProof.floors)){
+  assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);
+  assert.deepEqual(flowLiveReaderProof.priorFloors[key],before.jsPlanning.localLowerBounds[key]);
+  assert.ok(floor.durationMs>=before.jsPlanning.localLowerBounds[key].durationMs);
+  assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));
+  const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+  for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+  const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+  assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);assert.equal(receipt.test,key);
+  assert.deepEqual([receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[floor.tests,floor.tests,0,0,0]);
+  assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);
+  assert.equal(receipt.sourceLogSha256,floor.sourceLogSha256);assert.equal(receipt.sourceLogUncompressedSha256,floor.sourceLogUncompressedSha256);
+  assert.equal(inputHash(key,actualDiskReadFileSync(key)),floor.testSha256);assert.equal(receipt.inputSha256[key],floor.testSha256);
+  for(const [file,sha]of Object.entries(receipt.inputSha256))assert.equal(inputHash(file,actualDiskReadFileSync(file)),sha,file);
+  const directory=mkdtempSync(join(tmpdir(),'flow-receipt-crlf-')),copy=join(directory,'source.test.mjs');
+  try{
+   const crlf=actualDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n');
+   writeFileSync(copy,crlf);const actual=actualDiskReadFileSync(copy);
+   assert.ok(actual.includes(Buffer.from('\r\n')),'real CRLF disk fixture');
+   assert.notEqual(hash(actual),floor.testSha256,'raw CRLF bytes differ from LF identity');
+   assert.equal(inputHash(key,actual),floor.testSha256,'CRLF disk source retains exact LF identity');
+   writeFileSync(copy,crlf+'\r\n// drift\r\n');
+   assert.notEqual(inputHash(key,actualDiskReadFileSync(copy)),floor.testSha256,'CRLF content drift is rejected');
+   assert.equal(inputHash(floor.sourceLog,bytes),floor.sourceLogSha256,'gzip retains raw binary identity');
+   assert.notEqual(inputHash(floor.sourceLog,Buffer.concat([bytes,Buffer.from('\r\n')])),floor.sourceLogSha256,'binary drift is not normalized');
+   t.diagnostic(`${key}: real CRLF disk copy accepted; text and gzip drift rejected`);
+  }finally{rmSync(directory,{recursive:true,force:true});}
+  current.jsPlanning.localLowerBounds[key]=before.jsPlanning.localLowerBounds[key];
+ }
+ assert.deepEqual(current,before,'only two observed floors rise; every other cost and guard remains unchanged');
 });

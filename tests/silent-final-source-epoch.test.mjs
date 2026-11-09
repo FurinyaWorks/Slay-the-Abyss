@@ -9,12 +9,15 @@ import {silentFinalEpoch} from './helpers/silent-final-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_silent_final_cards.lua',proof=sourceEpoch.proof,prior=preSilentFinalEpoch.proof;
 const raw=p=>proof.current[p]?.source??null;
+import {watcherFlowPreparationEpoch} from './helpers/watcher-flow-preparation-source-epoch.mjs';
+// Only the exact later Flow preparation owner is projected; every call reads disk.
+const historicalLive=file=>watcherFlowPreparationEpoch.preCombinedSource(file,readFileSync(file,'utf8'),{target:'prior'});
 test('Silent final outer epoch preserves every prior binding and exact frozen production byte',()=>{
  assert.equal(silentFinalEpoch.proof.currentCommit,'d2ed1bbfdb1bc9e000870f38037592cc60ab4068');
  assert.equal(proof.currentCommit,prior.currentCommit);
  assert.equal(proof.currentTreeCommitted,false);
  assert.match(proof.silentFinalCurrentCommitRole,/base only/);
- assert.equal(raw(path),readFileSync(path,'utf8').replaceAll('\r\n','\n'));
+ assert.equal(raw(path),historicalLive(path).replaceAll('\r\n','\n'));
  assert.deepEqual(silentFinalEpoch.proof.targets.prior.files[path],prior.current[path]);
  assert.deepEqual(proof.targets.silentFinalPrior.files,prior.current);
  for(const [name,target]of Object.entries(prior.targets))assert.deepEqual(proof.targets[name],target,name);
@@ -95,14 +98,14 @@ test('outer foreign-source fallback preserves invalid raw-reader semantics',()=>
 });
 
 test('live LF and CRLF raw owner reads authenticate 49 current owners on every call',()=>{
- const config='config/architecture.json',input=readFileSync(config,'utf8'),expected=proof.targets.actor.files[config].source;
+ const config='config/architecture.json',input=historicalLive(config),expected=proof.targets.actor.files[config].source;
  for(const crlf of [false,true]){
   const seen=[];let corrupt=null,missing=null;
-  const live=file=>{seen.push(file);if(file===missing)return null;const bytes=readFileSync(file,'utf8').replaceAll('\r\n','\n');return file===corrupt?bytes+'\n':crlf?bytes.replaceAll('\n','\r\n'):bytes;};
+  const live=file=>{seen.push(file);if(file===missing)return null;const bytes=historicalLive(file).replaceAll('\r\n','\n');return file===corrupt?bytes+'\n':crlf?bytes.replaceAll('\n','\r\n'):bytes;};
   for(let repeat=0;repeat<2;repeat++){seen.length=0;assert.equal(sourceEpoch.preCombinedSource(config,input,{target:'actor',readSource:live}),expected);assert.deepEqual(seen,proof.owners);}
   for(const owner of proof.owners){
    corrupt=owner;assert.throws(()=>sourceEpoch.preCombinedSource(config,input,{target:'actor',readSource:live}),/linked owner identity/,owner);corrupt=null;
-   missing=owner;assert.throws(()=>sourceEpoch.preCombinedSource(path,readFileSync(path,'utf8'),{target:'silentFinalPrior',readSource:live}),/linked owner identity/,owner);missing=null;
+   missing=owner;assert.throws(()=>sourceEpoch.preCombinedSource(path,historicalLive(path),{target:'silentFinalPrior',readSource:live}),/linked owner identity/,owner);missing=null;
   }
  }
 });

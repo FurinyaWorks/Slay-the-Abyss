@@ -1,0 +1,38 @@
+{
+  "failures": [
+    {
+      "jobId": 129022069502,
+      "runId": 42575190511,
+      "head": "2a4bfec25c8e7e7ed087db8efb03b58f085f2dcf",
+      "file": "old-job-129022069502.log.gz",
+      "sha256": "8d0b07d9f3737cf18a5f9265fb93688762eb6aaa956fc4f486a9484d6df60a37",
+      "uncompressedSha256": "c7d42a94fe64f9cc1f5fc932a34b64e7305976bbc7334a82a1698ba41b1bee4a",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42575190511/job/129022069502"
+    },
+    {
+      "jobId": 129022069531,
+      "runId": 42575190511,
+      "head": "2a4bfec25c8e7e7ed087db8efb03b58f085f2dcf",
+      "file": "old-job-129022069531.log.gz",
+      "sha256": "5c6322f4f955f376dfb8dc081f54f5ee40ec7287dcbed6e099cf1ced468dc442",
+      "uncompressedSha256": "edbfafdcca7d3318cdd5b35732da4c482f0f7c026284a6c097b3443bef75bdde",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42575190511/job/129022069531"
+    },
+    {
+      "jobId": 129022069574,
+      "runId": 42575190511,
+      "head": "2a4bfec25c8e7e7ed087db8efb03b58f085f2dcf",
+      "file": "old-job-129022069574.log.gz",
+      "sha256": "05baa19206696cd88c46473876fedcae232ae44f07d1944d11c986a53c35a2e0",
+      "uncompressedSha256": "3125820e28a2d6686561841e731a678b5b06665252b8eed03cf007e6f03055c3",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42575190511/job/129022069574"
+    }
+  ],
+  "currentAtDiscovery": "53cf5cf0fb49fb890eb3bdc575b37eac418214c8",
+  "notes": [
+    "POSIX2: pinned Luacheck download HTTP504 before source tests.",
+    "POSIX11: original Windows17 forecast1800264ms versus1800000ms budget, addressed by18-shard capacity commit.",
+    "POSIX3: unprojected current WatcherFlow source entered frozen49-owner Silent proof; adjacent frozen50-owner Defect path also identified by source inspection, not claimed as observed hosted failure.",
+    "Old run was superseded and automatically cancelled by native concurrency; cancellation and prior failures are not successes."
+  ]
+}
