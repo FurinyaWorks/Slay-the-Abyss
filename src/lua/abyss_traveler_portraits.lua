@@ -231,8 +231,8 @@ local function controller(host, data, display, templates, options)
         if working or phase=='destroyed' or phase=='failed' or phase=='release_failed'then return false end
         if host.alive==false then self:destroy();return false end
         if phase=='building' or phase=='revealing' or phase=='ready'then
-            if nativeLifecycle then return transition(true,phase~='building',true)end
-            if data.cache or compactProfile(data) then host:SetActive(true);host:SetVisible(phase~='building')end
+            if nativeLifecycle then return transition(true,phase=='ready',true)end
+            if data.cache or compactProfile(data) then host:SetActive(true);host:SetVisible(phase=='ready')end
             if base then self:pose(0,0,1,1)end
             return true
         end
@@ -265,14 +265,14 @@ local function controller(host, data, display, templates, options)
             local ok,err=pcall(function()
                 for _=1,4 do
                     local entry=revealGroups[revealIndex]
-                    if not entry then phase='ready';break end
+                    if not entry then break end
                     if not revealedPages[entry.page] then
                         call(token,entry.page,'SetVisible',true);call(token,entry.page,'SetActive',true);revealedPages[entry.page]=true
                     end
                     call(token,entry.control,'SetVisible',true);call(token,entry.control,'SetActive',true)
                     revealIndex=revealIndex+1
                 end
-                if revealIndex>#revealGroups then phase='ready'end
+                if revealIndex>#revealGroups then call(token,host,'SetVisible',true);phase='ready'end
             end)
             if not ok and err~=CANCELLED then fail(err)end
             if pending then cleanup()end;working=false;return ok,'reveal'
@@ -288,7 +288,10 @@ local function controller(host, data, display, templates, options)
                 if data.runtimeV2 then revealGroups[#revealGroups+1]={control=group,page=page}end
             else
                 local c=create(token,Asset.imagePrefabId,group);image(token,c,data.rows[nextIndex]);nextIndex=nextIndex+1
-                if nextIndex>#data.rows then call(token,host,'SetVisible',true);phase=data.runtimeV2 and 'revealing' or 'ready'end
+                if nextIndex>#data.rows then
+                    if data.runtimeV2 then phase='revealing'
+                    else call(token,host,'SetVisible',true);phase='ready'end
+                end
             end
         end)
         if not ok and err~=CANCELLED then fail(err)end

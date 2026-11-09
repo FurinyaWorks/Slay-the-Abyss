@@ -10,6 +10,10 @@ import {percentile} from './benchmark-runtime-path.mjs';
 
 const sha=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const digest=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
+export function comparableUi(project,gil) {
+ assert.equal(path.resolve(project.meta.sourceFile),path.resolve(gil),'SDK UI metadata points at another GIL');
+ return {...project,meta:{...project.meta,sourceFile:'<separately-packaged-candidate>'}};
+}
 export function comparableScripts(scripts) {
  let markers=0;
  const normalized=scripts.map(script=>{
@@ -103,7 +107,7 @@ export async function benchmarkComponentLifecycle({receiptFile,sdkExport,output,
   return rawAdd.call(this,o);
  };
  const report={schemaVersion:1,status:'SDK_PROBE_INCOMPLETE',createdAt:new Date().toISOString(),
-  identity:{gilSha256:receipt.gilSha256,luaInventorySha256:receipt.luaInventorySha256,saveSha256:receipt.saveSha256,sdkExportSha256:sha(sdkExport),workerSha256:sha(fileURLToPath(import.meta.url)),serverUiSha256:digest(save.assets.server),templatesSha256:digest(save.assets.client),rawScriptsSha256:digest(save.assets.scripts),exactScriptsSha256:digest(comparableScripts(save.assets.scripts)),scriptNormalization:'Only the exact builder-injected ABYSS_BUILD UUID first line in abyss_ui.lua and the single eagerPages boolean in generated abyss_component_binding.lua; all remaining source and script metadata remain byte-identical.'},
+  identity:{gilSha256:receipt.gilSha256,luaInventorySha256:receipt.luaInventorySha256,saveSha256:receipt.saveSha256,sdkExportSha256:sha(sdkExport),workerSha256:sha(fileURLToPath(import.meta.url)),serverUiSha256:digest(comparableUi(save.assets.server,receipt.gil)),templatesSha256:digest(comparableUi(save.assets.client,receipt.gil)),rawScriptsSha256:digest(save.assets.scripts),exactScriptsSha256:digest(comparableScripts(save.assets.scripts)),scriptNormalization:'Only the exact builder-injected ABYSS_BUILD UUID first line in abyss_ui.lua and the single eagerPages boolean in generated abyss_component_binding.lua; all remaining source and script metadata remain byte-identical.',uiNormalization:'Only project.meta.sourceFile, verified to equal the actual candidate GIL path; all visual records and runtime fields remain exact.'},
   source:{commit:candidate.sourceCommit,dirty:candidate.sourceDirty,payloadDigest:candidate.payloadDigest,buildId:candidate.buildId,artFeatures:candidate.artFeatures,uiProfile:candidate.uiProfile,candidateReceiptSha256:sha(candidateFile),projectionReceiptSha256:sha(receiptFile)},
   mountedValues:receipt.mountedValues,
   environment:{node:process.version,platform:process.platform,arch:process.arch},steadyFramesPerVisit:30,

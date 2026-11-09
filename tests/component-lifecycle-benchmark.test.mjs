@@ -1,9 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {summarizeSteps,verifyCycles,verifySameVisualPair,comparableScripts,evaluatePair} from '../scripts/benchmark-component-lifecycle.mjs';
+import {summarizeSteps,verifyCycles,verifySameVisualPair,comparableScripts,comparableUi,evaluatePair} from '../scripts/benchmark-component-lifecycle.mjs';
 test('SDK nearest-rank timing keeps tail and rejects absent/invalid samples',()=>{
  assert.deepEqual(summarizeSteps([1,9,2,3].map(wallMs=>({wallMs}))),{samples:4,p50Ms:2,p95Ms:9,p99Ms:9,maxMs:9});
  for(const rows of [[],[{wallMs:NaN}],[{wallMs:-1}]])assert.throws(()=>summarizeSteps(rows));
+});
+test('SDK projection sourceFile normalization requires the actual package path',()=>{
+ const a={meta:{sourceFile:'a.gil'},root:{x:1}},b={meta:{sourceFile:'b.gil'},root:{x:1}};
+ assert.deepEqual(comparableUi(a,'a.gil'),comparableUi(b,'b.gil'));
+ assert.throws(()=>comparableUi(a,'b.gil'));
+ assert.notDeepEqual(comparableUi(a,'a.gil'),comparableUi({...b,root:{x:2}},'b.gil'));
 });
 test('baseline-derived deterministic count fences reject regressions and report timing separately',()=>{
  const run={cycles:Array.from({length:20},()=>({menuVisible:true,characterVisible:true,countAfter:100})),phases:[{name:'initialize',created:100},...['menu-step','character-step','menu-return-step'].map(name=>({name,wallMs:1}))]};
