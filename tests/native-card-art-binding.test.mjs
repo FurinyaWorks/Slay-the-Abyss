@@ -12,6 +12,11 @@ import { nativeCardArtArgs, prepareNativeCardArt, attachNativeCardArt } from '..
 import { buildUI, assertNativeUiCapacity } from '../scripts/build-ui.mjs';
 
 const row=(image=100003)=>({image,position:[1.125,-2.25],size:[3.5,4.75],anchorMin:[.5,.5],anchorMax:[.5,.5],pivot:[.5,.5],scale:[1,1],rotation:[23.125,-45.25,9.75],colour:[12,34,56,78],imageType:image===100003?'stretch':'basic'});
+test('native image resource capabilities skip basic shape mode while preserving strict gallery mode',()=>{
+ const result=runLua('tests/lua/native_card_art_image_capabilities.lua');
+ assert.equal(result.status,0,result.stdout+result.stderr);
+ assert.match(result.stdout,/NATIVE_CARD_ART_IMAGE_CAPABILITIES_PASS/);
+});
 export const registry=()=>({schemaVersion:2,editorCommit:'103025f9095d8089e3f9bf097f4d0c5fe039d546',canvas:[144,64],assets:{
  cleave:{cardId:'cleave',luaSha256:'a'.repeat(64),jsonSha256:'b'.repeat(64),slots:[row(),row(106057)]},
  heavy_blade:{cardId:'heavy_blade',luaSha256:'c'.repeat(64),jsonSha256:'d'.repeat(64),slots:[row(106056)]}}});

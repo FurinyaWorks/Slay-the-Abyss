@@ -19,6 +19,12 @@ test('only hash-bound verified unchanged UI can skip encoding',t=>{
  assert.equal(cached.templateResults.AbyssReadyCardImage.templateIndex,11);
  writeFileSync(join(f.generated,'game-ui.json'),'changed');assert.equal(reusableUi(f.base,f.generated),null);
 });
+
+test('private template collections bypass the legacy cache instead of losing their native bindings',t=>{
+ const f=fixture(t);f.receipt.v25CardAssets={templateIndices:{privateShell:21}};f.save();
+ assert.ok(reusableUi(f.base,f.generated));
+ assert.equal(reusableUi(f.base,f.generated,{privateTemplates:true}),null);
+});
 for(const mutation of ['base','templates','status','binding'])test('UI reuse rejects mismatched '+mutation,t=>{
  const f=fixture(t);
  if(mutation==='base')f.receipt.candidate={sha256:'0'.repeat(64)};

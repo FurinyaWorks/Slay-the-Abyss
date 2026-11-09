@@ -6,6 +6,17 @@ import { deckCardTemplate } from '../scripts/deck-ui-layout.mjs';
 import { nativeControls, nativeTheme } from '../scripts/native-ui-theme.mjs';
 
 const children = count => Array.from({ length: count }, (_, i) => ({ name: `control${i}` }));
+test('native opacity is image-only and illegal hidden text fails before a GIL write',()=>{
+ for(const kind of ['text','container','cursorArea','grid','presetButton']){
+  assert.throws(()=>assertNativeUiCapacity({name:'layout',controls:[{name:'badOpacity',kind,visible:false,opacity:0}]}),/badOpacity.*opacity.*image/);
+ }
+ assert.doesNotThrow(()=>assertNativeUiCapacity({controls:[{name:'image',kind:'image',opacity:0}]}));
+ assert.doesNotThrow(()=>assertNativeUiCapacity({controls:[{name:'text',kind:'text',text:{opacity:0}}]}));
+});
+test('native image fields require resolved numeric resource IDs rather than theme descriptor objects',()=>{
+ assert.throws(()=>assertNativeUiCapacity({controls:[{name:'badImage',kind:'image',image:{id:105046,verify:true}}]}),/badImage.*image.*resource/);
+ assert.doesNotThrow(()=>assertNativeUiCapacity({controls:[{name:'resolved',kind:'image',image:105046}]}));
+});
 test('every exported UI and template uses readable integer native font fields', () => {
   let count=0;
   const visit=control=>{

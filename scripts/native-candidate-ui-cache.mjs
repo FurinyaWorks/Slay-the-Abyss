@@ -1,7 +1,10 @@
 import {existsSync,readFileSync} from 'node:fs';
 import {dirname,join} from 'node:path';
 import {fileRecord} from './evidence-files.mjs';
-export function reusableUi(base,generated) {
+export function reusableUi(base,generated,{privateTemplates=false}={}) {
+ // The legacy receipt only carries the shared image/group/background bindings.
+ // Re-encode private templates until their complete binding set is cacheable.
+ if(privateTemplates)return null;
  const receiptPath=join(dirname(base.path),'candidate.json');
  if(!existsSync(receiptPath))return null;
  const receipt=JSON.parse(readFileSync(receiptPath,'utf8'));

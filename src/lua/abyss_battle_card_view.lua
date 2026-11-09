@@ -226,7 +226,7 @@ function M.new(view, controls)
         local definition, enabled = card.definition, card.playable
         local text = bodyText(card, battle, aimUid, aimTarget)
         CardDisplay.writeBody(box:GetChild("label"), text,box)
-        ink(box:GetChild("label"), C.text)
+        ink(box:GetChild("label"), Theme.cardSkin.text.body or C.text)
         box:GetChild("cost").text = card.missing and '—' or costText(definition)
         ink(box:GetChild("cost"), enabled and C.energy or C.danger)
         tint(box:GetChild("costDisc"), enabled and C.energy or C.energyEmpty)
@@ -240,7 +240,7 @@ function M.new(view, controls)
         tint(box:GetChild("nameBand"), C.rarityBand[definition.rarity] or C.rarityBand.basic)
         tint(box:GetChild("nameRule"), C.rarity[definition.rarity] or C.line)
         tint(box:GetChild("artPlate"), enabled and (C.cardType[definition.type] or C.panelRaised) or C.panelSunken)
-        CardDisplay.writeArt(box:GetChild("art"), definition, picture)
+        CardDisplay.writeArt(box:GetChild("art"), definition, picture,box)
         if view.active==false then CardDisplay.clearNativeArt(box)
         else CardDisplay.writeNativeArt(box,definition,card.display.nativeArt,controls.platform,box:GetChild('art'),
             card.instance and card.instance.uid)end
@@ -281,7 +281,7 @@ function M.new(view, controls)
         local base=card.instance and context.battle.catalog.cards[card.instance.cardId] or card.definition
         local printed=card.upgraded and base.upgrade and base.upgrade.cost or base.cost
         CardSkin.apply(box,card.definition,controls.platform,{dim=not card.playable,selected=card.selected or hovered,
-            cost=card.definition.cost,baseCost=printed,blockReason=card.blockReason})
+            cost=card.definition.cost,baseCost=printed,blockReason=card.blockReason,surfaceScope='battle'})
     end
 
     local function renderSlot(context, i, aimUid, aimTarget)

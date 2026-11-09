@@ -113,7 +113,7 @@ function M.new(root,presentation,clickEvent,platform,onConfirm)
         CardDisplay.writeNativeArt(face,definition,display.nativeArt,platform,face:GetChild('art'),instance.uid)
         local printed=battle.catalog.cards[instance.cardId]
         local base=instance.upgraded and printed.upgrade and printed.upgrade.cost or printed.cost
-        CardSkin.apply(face,definition,platform,{cost=definition.cost,baseCost=base,selected=picked})
+        CardSkin.apply(face,definition,platform,{cost=definition.cost,baseCost=base,selected=picked,surfaceScope='choice'})
     end
     local function render()
         if not view.visible then return end

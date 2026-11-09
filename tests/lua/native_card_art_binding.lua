@@ -19,7 +19,7 @@ local platform={imageSource='static',imageTypes={basic=17,stretch=23},color=func
 local function bind(meta)return Display.writeNativeArt(box,{id=meta and meta.cardId or 'strike'},meta,platform,fallback)end
 assert(bind(a));assert(pool.visible and not fallback.visible)
 assert(first.rotation[1]==23.125 and first.rotation[2]==-45.25 and first.rotation[3]==9.75,'XYZ lost')
-assert(first.imageType==23 and second.imageType==17 and first.imageColor[4]==78,'native type/RGBA lost')
+assert(rawget(first,'imageType')==nil and second.imageType==17 and first.imageColor[4]==78,'basic shape mode skipped, gallery type/RGBA retained')
 assert(first.sizeDeltaX==3.5 and first.x==1.125 and first.y==-2.25)
 local writes=first.rotationWrites
 for _=1,8 do assert(bind(a))end
