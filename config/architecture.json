@@ -633,16 +633,6 @@
       "reason": "Silent callbacks import the initialized runtime only during action execution, never at module initialization."
     },
     {
-      "from": "abyss_silent_potions",
-      "to": "abyss_combat",
-      "reason": "Silent callbacks import the initialized runtime only during action execution, never at module initialization."
-    },
-    {
-      "from": "abyss_silent_potions",
-      "to": "abyss_card_actions",
-      "reason": "Silent callbacks import the initialized runtime only during action execution, never at module initialization."
-    },
-    {
       "from": "abyss_silent_final_cards",
       "to": "abyss_enemy_ai",
       "reason": "Choke execution notifies the initialized enemy death hooks only while resolving a card action."
@@ -786,6 +776,11 @@
       "from": "abyss_combat_effect_dispatch",
       "to": "abyss_orbs",
       "reason": "The Combat effect queue host supplies the explicit deferred Orb execution capability for Darkness resolution; no load-time import."
+    },
+    {
+      "from": "abyss_silent_final_cards",
+      "to": "abyss_combat",
+      "reason": "Cunning Potion execution supplies call-local Shiv capabilities after both runtime owners initialize; methods remain dynamically read."
     }
   ],
   "dependencyBoundaries": [
@@ -1039,6 +1034,19 @@
         "abyss_card_actions"
       ],
       "reason": "Watcher attack plans contain data; the queued-play host supplies lazy Actor arithmetic for Halt snapshots."
+    },
+    {
+      "id": "silent-potion-shiv-owner",
+      "from": [
+        "abyss_silent_potions"
+      ],
+      "forbiddenTargets": [
+        "abyss_combat",
+        "abyss_card_actions",
+        "abyss_actor",
+        "abyss_silent_final_cards"
+      ],
+      "reason": "Silent potion policy consumes lazy, narrow Shiv creation capabilities from its action owner and must not import lifecycle executors."
     }
   ]
 }

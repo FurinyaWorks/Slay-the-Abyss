@@ -8,11 +8,12 @@ function M.register(data)
  })do if not seen[p.id]then data.potions.potions[#data.potions.potions+1]=p end end
  return data
 end
-function M.shivs(state,n)
- local C=require('abyss_combat');local Actions=require('abyss_card_actions')
+-- The action owner supplies one lazy, call-local set of Shiv capabilities.
+function M.shivs(state,n,shivHost)
+ local host=shivHost()
  for _=1,n do
-  local card=Actions.fresh(C,state,'shiv');assert(C.canUpgrade(state,card),'missing upgraded Shiv')
-  C.upgrade(state,card);Actions.created(C,state,card);Actions.created(C,state,card);Actions.toHand(state,card)
+  local card=host.fresh(state);assert(host.canUpgrade(state,card),'missing upgraded Shiv')
+  host.upgrade(state,card);host.created(state,card);host.created(state,card);host.toHand(state,card)
  end
 end
 return M

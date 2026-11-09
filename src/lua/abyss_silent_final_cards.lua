@@ -209,7 +209,18 @@ function actionHandlers.gainSilentFinalPower(_combat,s,e,_item)
   A().applyPower(s,s.player,e.status,e.value,s.player)
 end
 function actionHandlers.potionShivs(_combat,s,e,_item)
-  require('abyss_silent_potions').shivs(s,e.value)
+  require('abyss_silent_potions').shivs(s,e.value,function()
+   -- Bind the original runtime modules once per action, but read each method
+   -- at its original execution point, including both creation callbacks.
+   local C=require('abyss_combat');local Actions=require('abyss_card_actions')
+   return {
+    fresh=function(state)return Actions.fresh(C,state,'shiv')end,
+    canUpgrade=function(state,card)return C.canUpgrade(state,card)end,
+    upgrade=function(state,card)return C.upgrade(state,card)end,
+    created=function(state,card)return Actions.created(C,state,card)end,
+    toHand=function(state,card)return Actions.toHand(state,card)end,
+   }
+  end)
 end
 function actionHandlers.trigger(combat,s,e,item)
   local a=e.action
