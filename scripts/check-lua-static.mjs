@@ -102,7 +102,8 @@ const responsibilityRoots = {
     ...['gainSilentFinalPower','potionShivs','trigger','choke','setup','bulletTime','copyHand','distraction','doppelganger','phantasmalGain','remove','tools','startPower','corpseDamage','alchemize']
       .map(name=>`actionHandlers.${name}`)].map(name=>`function '${name}'`),
   'src/lua/abyss_silent_tactics_cards.lua': [],
-  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']
+  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall',
+    'M.withCards','indexFlowInput','prepareFlowCard','prepareNativeCards','validateDerivative','prepareDerivativeCards','prepareFlowPowers']
     .map(name=>`function '${name}'`),
   'src/lua/abyss_scry.lua': ['M.choose','allowedCandidates','selectedCards','hasWeaveQueue','discardSelected']
     .map(name=>`function '${name}'`),

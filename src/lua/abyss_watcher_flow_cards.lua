@@ -76,20 +76,33 @@ local descriptions={
  flurry_of_blows={'造成4伤害。每次实际改变姿态后，若本牌在弃牌堆且手牌未满，将其返回手牌。','造成6伤害。每次实际改变姿态后，若本牌在弃牌堆且手牌未满，将其返回手牌。'},
  weave={'造成4伤害。占卜非空抽牌堆后，若本牌在弃牌堆且手牌未满，将其返回手牌。','造成6伤害。占卜非空抽牌堆后，若本牌在弃牌堆且手牌未满，将其返回手牌。'},
 }
-function M.withCards(data)
- assert(type(data)=='table' and data.cards and data.cards.cards and data.statuses and data.statuses.statuses,'missing Watcher flow data')
- local out,ids,statuses=copy(data),{},{}
+local function indexFlowInput(out)
+ local ids,statuses={},{}
  for _,c in ipairs(out.cards.cards)do assert(not ids[c.id],'duplicate flow input card');ids[c.id]=true end
  for _,s in ipairs(out.statuses.statuses)do assert(not statuses[s.id],'duplicate flow input power');statuses[s.id]=s end
- for _,s in ipairs(specs)do
-  assert(not ids[s[1]],'Watcher flow card already exists: '..s[1])
+ return ids,statuses
+end
+local function prepareFlowCard(s)
   local c={id=s[1],sourceId=s[2],sts_name=s[3],name=s[4],type=s[5],rarity=s[6],cost=s[7],color='purple',
    effects=copy(s[8]),upgrade={effects=copy(s[9] or s[8])},text=descriptions[s[1]][1],upgradeText=descriptions[s[1]][2]}
   for k,v in pairs(s[10] or {})do
    if k=='innate'then c.upgrade.innate=v elseif k=='upgradeCost'then c.upgrade.cost=v else c[k]=v end
   end
+  return c
+end
+local function prepareNativeCards(out,ids)
+ for _,s in ipairs(specs)do
+  assert(not ids[s[1]],'Watcher flow card already exists: '..s[1])
+  local c=prepareFlowCard(s)
   out.cards.cards[#out.cards.cards+1]=c;ids[c.id]=true
  end
+end
+local function validateDerivative(existing,c)
+    assert(existing.sourceId==c.sourceId and existing.cost==c.cost and existing.type==c.type
+     and existing.selfRetain==true and existing.exhaust==true,'unsupported existing flow derivative')
+    assert(#existing.effects==1 and existing.effects[1].op==c.effects[1].op and existing.effects[1].value==c.effects[1].value,'unsupported existing flow derivative effects')
+end
+local function prepareDerivativeCards(out,ids)
  local special={
   {id='through_violence',sourceId='ThroughViolence',sts_name='Through Violence',name='以暴制暴',cost=0,type='attack',effects={e('damage',20)},upgrade={effects={e('damage',30)}},text='保留。造成20点伤害。消耗。',upgradeText='保留。造成30点伤害。消耗。'},
   {id='insight',sourceId='Insight',sts_name='Insight',name='洞见',cost=0,type='skill',effects={e('draw',2)},upgrade={effects={e('draw',3)}},text='保留。抽2张牌。消耗。',upgradeText='保留。抽3张牌。消耗。'},
@@ -100,12 +113,12 @@ function M.withCards(data)
   if not ids[c.id]then c.rarity='special';c.color='colorless';c.selfRetain=true;c.exhaust=true;out.cards.cards[#out.cards.cards+1]=c
   else
    for _,existing in ipairs(out.cards.cards)do if existing.id==c.id then
-    assert(existing.sourceId==c.sourceId and existing.cost==c.cost and existing.type==c.type
-     and existing.selfRetain==true and existing.exhaust==true,'unsupported existing flow derivative')
-    assert(#existing.effects==1 and existing.effects[1].op==c.effects[1].op and existing.effects[1].value==c.effects[1].value,'unsupported existing flow derivative effects')
+    validateDerivative(existing,c)
    end end
   end
  end
+end
+local function prepareFlowPowers(out,statuses)
  for _,id in ipairs(powerOrder)do
   local s=powers[id]
   local existing=statuses[id]
@@ -120,6 +133,14 @@ function M.withCards(data)
     priority=id=='draw_card_next_turn' and 20 or 5,description=s[4]}
   end
  end
+end
+function M.withCards(data)
+ assert(type(data)=='table' and data.cards and data.cards.cards and data.statuses and data.statuses.statuses,'missing Watcher flow data')
+ local out=copy(data)
+ local ids,statuses=indexFlowInput(out)
+ prepareNativeCards(out,ids)
+ prepareDerivativeCards(out,ids)
+ prepareFlowPowers(out,statuses)
  return out
 end
 local function plan()return {top={},bottom={},consumeAllEnergy=false}end
