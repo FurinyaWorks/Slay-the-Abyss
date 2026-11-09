@@ -28,7 +28,7 @@ export function evaluateReplay(report,{maxStepMs=100,maxWarmControlGrowth=0}={})
   assert.equal(report.identity.sdkSha256,supportedSdkSha256,'Unsupported SDK capture');
   assert.equal(report.inputsUnchanged,true,'Capture did not verify unchanged inputs');
   assert(report.environment&&['platform','arch','node','cpu'].every(key=>typeof report.environment[key]==='string'&&report.environment[key].length),'Missing replay environment');
-  assert(['visualSha256','loadSha256'].every(key=>sha(report.conditions?.[key])),'Missing controlled-input fingerprints');
+  assert(['visualSha256','loadSha256','interventionSha256'].every(key=>sha(report.conditions?.[key])),'Missing controlled-input fingerprints');
   assert.deepEqual(report.scenario,{id:'menu-character-roundtrip-v1',roundTrips:20,dt:1/60,frameLimit:180},'Unsupported/truncated scenario');
   assert(Array.isArray(report.events)&&report.events.length>=41,'Missing runtime events');
   let previous=0;
@@ -44,6 +44,7 @@ export function evaluateReplay(report,{maxStepMs=100,maxWarmControlGrowth=0}={})
   assert.deepEqual(report.pages?.map(({name,cycle})=>({name,cycle})),expectedPages,'Missing/reordered page observations');
   let cursor=0;
   for(const [index,page]of report.pages.entries()){
+   assert(typeof page.oracleVerified==='boolean','Missing model-oracle provenance');
    assert(typeof page.scriptReady==='boolean'&&typeof page.structureReady==='boolean'&&typeof page.complete==='boolean','Missing page readiness observations');
    assert(count(page.frames)&&page.frames<=180&&finite(page.elapsedMs),'Invalid readiness window');
    assert(page.requiredChecks&&['controls','templates','text'].every(key=>typeof page.requiredChecks[key]==='boolean'),'Missing page checks');
@@ -59,7 +60,11 @@ export function evaluateReplay(report,{maxStepMs=100,maxWarmControlGrowth=0}={})
    assert.equal(page.complete,page.scriptReady&&page.structureReady,'Script ready is not page ready');
    const initial=page.initialReadiness;
    assert(initial&&typeof initial.scriptReady==='boolean'&&typeof initial.structureReady==='boolean'&&typeof initial.complete==='boolean'&&initial.requiredChecks,'Missing initial page observation');
+   assert(['controls','templates','text'].every(key=>typeof initial.requiredChecks[key]==='boolean'),'Missing initial readiness categories');
+   assert.equal(initial.structureReady,Object.values(initial.requiredChecks).every(value=>value===true),'Forged initial structure readiness');
    assert.equal(initial.complete,initial.scriptReady&&initial.structureReady);
+   assert.equal(initial.scriptReady,page.scriptReady,'Startup evidence changed without a new session');
+   if(page.frames===0)assert.deepEqual(initial.requiredChecks,page.requiredChecks,'Readiness changed without any SDK update');
    if(initial.scriptReady&&!initial.complete&&initial.requiredChecks.controls)blockers.push(`${page.cycle}/${page.name}: visible before complete SDK structure`);
    const expectedPhase=index===0?'initialize':page.name==='character'?'open-character':'close-character';
    assert.equal(page.firstEventIndex,cursor,'Page is detached from its input/startup event');
@@ -106,7 +111,7 @@ export function evaluateReplay(report,{maxStepMs=100,maxWarmControlGrowth=0}={})
   result.roundTrips=20;
   result.warmControlGrowth=report.roundTrips.at(-1).countAfter-report.roundTrips[0].countAfter;
   if(result.maxStepMs>maxStepMs)blockers.push(`SDK synchronous operation exceeds ${maxStepMs}ms`);
-  result.offlineStatus=blockers.length?'FAIL':'PASS';
+  result.offlineStatus=report.pages.some(page=>!page.oracleVerified)?'UNVERIFIED':blockers.length?'FAIL':'PASS';
  }catch(error){errors.push(error.message);result.offlineStatus='INVALID';}
  return result;
 }
@@ -217,11 +222,14 @@ export function verifyOutcome(file,{root=process.cwd()}={}) {
   const experiments=(manifest.experiments??[]).map(experiment=>{
    assert(manifest.hypotheses.some(h=>h.id===experiment.hypothesis),'Unknown experiment hypothesis');
    const before=boundJson(experiment.baseline,root),after=boundJson(experiment.candidate,root);
+   const runner=digest(readFileSync(new URL('./replay-ui-outcome.mjs',import.meta.url)));
+   assert.equal(before.identity?.runnerSha256,runner,'Experiment baseline uses another observer contract');
+   assert.equal(after.identity?.runnerSha256,runner,'Experiment candidate uses another observer contract');
    const pair=experiment.baseline.sha256+':'+experiment.candidate.sha256;assert(!pairs.has(pair),'Reused experiment observation');pairs.add(pair);
    const a=evaluateReplay(before),b=evaluateReplay(after);
    assert(!['INVALID','UNVERIFIED'].includes(a.offlineStatus)&&!['INVALID','UNVERIFIED'].includes(b.offlineStatus),'Experiment lacks valid replay observations');
    const controlled=['visualSha256','loadSha256'].every(key=>sha(before.conditions?.[key])&&before.conditions[key]===after.conditions?.[key])
-    &&before.identity.sdkSha256===after.identity.sdkSha256&&JSON.stringify(before.environment)===JSON.stringify(after.environment)
+    &&before.identity.sdkSha256===after.identity.sdkSha256&&before.identity.mountedValuesSha256===after.identity.mountedValuesSha256&&JSON.stringify(before.environment)===JSON.stringify(after.environment)
     &&JSON.stringify(before.scenario)===JSON.stringify(after.scenario);
    return {id:experiment.id,hypothesis:experiment.hypothesis,metric:experiment.metric,before:a[experiment.metric],after:b[experiment.metric],controlled,
     baselineSha256:experiment.baseline.sha256,candidateSha256:experiment.candidate.sha256};
@@ -244,7 +252,7 @@ export function auditOutcomeTasks(tasks,root=process.cwd()) {
   const paths=(task.documentation??[]).filter(path=>/^docs\/evidence\/product-outcomes\/TASK-[\d.]+\.json$/.test(path));
   if(paths.length!==1){errors.push(`${task.id}: 缺少唯一产品诊断证据；保持 UNVERIFIED`);continue;}
   const result=verifyOutcome(paths[0],{root});
-  if(result.taskId!==task.id||result.ownerPr!==contract.ownerPr||result.scope!==contract.scope||result.status==='INVALID'||task.status==='Done'&&(result.status!=='DIAGNOSED'||!result.replay||!result.reproduction||result.direction.action!=='CONTINUE_MEASUREMENT'||!layers.every(layer=>result.gaps?.some(g=>g.layer===layer))))errors.push(`${task.id}: 产品诊断 ${result.status}: ${result.errors.join('; ')}；Done须含真实回放、症状复现、纠偏处置和全部未验层归口`);
+  if(result.taskId!==task.id||result.ownerPr!==contract.ownerPr||result.scope!==contract.scope||result.status==='INVALID'||task.status==='Done'&&(result.status!=='DIAGNOSED'||!['PASS','FAIL'].includes(result.replay?.offlineStatus)||!result.reproduction||result.direction.action!=='CONTINUE_MEASUREMENT'||!layers.every(layer=>result.gaps?.some(g=>g.layer===layer))))errors.push(`${task.id}: 产品诊断 ${result.status}: ${result.errors.join('; ')}；Done须含真实回放、症状复现、纠偏处置和全部未验层归口`);
  }
  return errors;
 }
@@ -252,5 +260,5 @@ export function auditOutcomeTasks(tasks,root=process.cwd()) {
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){
  const result=verifyOutcome(process.argv[2]??'docs/evidence/product-outcomes/TASK-104.json');
  console.log(JSON.stringify(result,null,2));
- if(result.status!=='DIAGNOSED'||process.argv.includes('--require-offline-pass')&&result.replay?.offlineStatus!=='PASS')process.exitCode=1;
+ if(result.status!=='DIAGNOSED'||result.direction?.action!=='CONTINUE_MEASUREMENT'||process.argv.includes('--require-offline-pass')&&result.replay?.offlineStatus!=='PASS')process.exitCode=1;
 }

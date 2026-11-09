@@ -73,25 +73,27 @@
 
 重大体验阻塞先复现再修复；已有产品任务/PR保持单一归口。若需要关闭“诊断机制”任务，使用 `product-diagnosis` 标签，并在 `config/product-outcomes.json` 固定登记 taskId、diagnosis 类型和已有产品PR归口，documentation链接同名诊断JSON。`verify:backlog`读取该记录：Done须包含真实回放、原症状失败复现、全部未验层负责人，且无未处理的实验复核/转向。去掉标签也不能让已登记任务逃逸。`product-acceptance`或未登记类型不能借用DIAGNOSED关闭产品任务；正式验收仍用既有 `verify:ui`、官方负载和同候选设备合同。
 
-实验条目必须引用哈希绑定的baseline/candidate原始回放，指定原症状指标和可反证假设。判定器从回放计算before/after，以实际native树/资源、规则数据、SDK、环境和场景身份判定是否可比，忽略自报的 `controlled` / `before` / `after`。两次受控实验无改善输出 `REVISIT_HYPOTHESIS`；混入不同视觉/负载输出 `REVIEW_EXPERIMENT`，阻止Done。后续有效的重新测量可解除待复核状态，失败历史仍保留。摘要和哈希本身不自证执行真实性，独立评审仍须核对原始来源；没有新增签名、后台调度、并发锁或产品发布授权。
+实验条目必须引用哈希绑定的baseline/candidate原始回放，指定原症状指标和可反证假设。判定器从回放计算before/after，以全部native树/资源、Lua工作负载、原生mount参数、SDK、观察器版本、环境和场景身份判定是否可比，忽略自报的 `controlled` / `before` / `after`。当前只允许固定 `abyss_component_bridge.lua` 作为单因素干预，单独记录intervention摘要；其他Lua变化默认不可比，后续须独审扩展合同。两次受控实验无改善输出 `REVISIT_HYPOTHESIS`；混入不同视觉/负载输出 `REVIEW_EXPERIMENT`，CLI非零并阻止Done。后续有效的重新测量可解除待复核状态，失败历史仍保留。摘要和哈希本身不自证执行真实性，独立评审仍须核对原始来源；没有新增签名、后台调度、并发锁或产品发布授权。
 
 ## 7. #565 本轮闭环实战
 
 原始六实例历史SDK记录完整压缩保存在 `docs/evidence/product-outcomes/pr565-{old,new}-sdk.json.gz`，来自#565既有未改写的metrics-raw.json；两份原始JSON摘要分别为 `8abae690e1a51f731c9f515093848b16fb500b22a300ee4d0803a5ef942f90ee` 和诊断manifest绑定的新包记录。原旧新 GIL 分别是 `ae1dcf81…` / `207e4ad4…`。判定器直接从全部逐步数据计算nearest-rank中位数，得到初始化约1302.85→2452.27ms、菜单step约3.387→10.057ms、选角step约16.718→10.437ms，以及新版观测阶段零新增。自动输出 PARTIAL_IMPROVEMENT，标记startup/menu-step回退；不作异画质因果推断。
 
-本轮用同两份冻结实际GIL、同SDK、同机器，串行各跑20次菜单/选角往返，新原始记录保存在 `pr565-{old,new}-roundtrip-20261109.json.gz`，完整摘要由 [诊断manifest](../evidence/product-outcomes/TASK-104.json) 绑定；未提交社区原件、SDK源码或GIL。
+本轮用同两份冻结实际GIL、同SDK、同机器，串行各跑20次菜单/选角往返。初版两份记录保存在 `pr565-{old,new}-roundtrip-20261109.json.gz`；独审指出旧路径仅信phase日志不足，已保留为superseded而不认证完备性。修正后两份正式记录为 `pr565-{old,new}-roundtrip-20261109-v2.json.gz`，完整摘要由 [诊断manifest](../evidence/product-outcomes/TASK-104.json) 绑定；未提交社区原件、SDK源码或GIL。
+
+最终旧路径用现有luaparse解释候选自身资产模块的纯literal与受限ROOT/ELEMENTS数据IIFE，不执行候选Lua。绑定已知控制器源码后，从362/4315/457行分别推导menu/selection/avatar的page/group/image完整集合，核对实际prefab、精确数量、继承/本地显隐、图片ID、逐行位置和尺寸。固定SDK的动态兄弟是newest-first，先恢复创建顺序再配原数据；`owned=0/ready`假日志无法通过。未知算法或数据格式输出UNVERIFIED并停止空prepare循环。
 
 | 本轮观测 | 旧候选 | 原组件候选 |
 | --- | ---: | ---: |
 | 页面模型完整 / 输入命中 | 41/41、40/40 | 41/41、40/40 |
-| 初次菜单需追加prepare步数 | 13 | 0 |
-| 初次选角需追加prepare步数 | 100 | 0 |
+| 初次菜单需追加prepare步数 | 11 | 0 |
+| 初次选角需追加prepare步数 | 98 | 0 |
 | 首次菜单ready后至最终菜单对象净增长 | +4855（首轮建立缓存） | 0 |
 | 首轮完成后至第20轮对象净增长 | 0 | 0 |
-| 初始化SDK墙钟 | 1494.02ms | 4814.75ms |
-| 最长非初始化SDK同步输入操作 | 261.50ms | 319.01ms |
+| 初始化SDK墙钟 | 1335.14ms | 3116.17ms |
+| 最长非初始化SDK同步输入操作 | 286.45ms | 336.80ms |
 | 离线预算判定 | FAIL：完整结构前已可见、同步长阻塞 | FAIL：同步长阻塞 |
 
 旧包初始 `ABYSS_UI ready=true` 时菜单/选角结构仍不完整，是这次直接复现的真实反例；等待到最终ready不能抹去这个失败。新版模型初次进入即可完整、没有动态净增长，但启动成本和输入同步阻塞仍存在。两次顺序运行含机器负载、V8及观察器差异，**不能把本轮两个时长直接当同画质优化效果**。判定器的native树指纹也明确判定这两个包不可作同视觉A/B。
 
-反证合同覆盖正常轻量模型、假ready、缺/隐藏/截断组件、错输入、漏页/漏周期、事件伪覆盖、计数不守恒、原始数据篡改、错误候选、缺失或越界证据、预算放宽、重复实验及异画质伪配对、局部指标冒充resolved、诊断类型冒充产品Done。重型回放只执行本轮两次；轻量合同已接现有入口。下一有效工作仍由TASK-103/#565原归口和TASK-100.1接续：在同V25视觉/负载下区分eager挂载与proxy刷新成本；本任务没有修改它们的生产文件或宣称其完成。官方导入、新ready、官方容量、PC/安卓表现、V25人工验收均保持UNVERIFIED。
+反证合同覆盖正常轻量模型、假ready、缺/隐藏/截断组件、旧路径假日志与缺图元、错输入、漏页/漏周期、事件伪覆盖、计数不守恒、原始数据篡改、错误候选、缺失或越界证据、预算放宽、重复实验及异画质/参数/观察器伪配对、局部指标冒充resolved、诊断类型冒充产品Done。SDK正式回放为初版两次、独审收紧oracle后两次；开发短探针和首次失败也保留，不计为通过。轻量合同已接现有入口；本地另验CI库存/分片18项，未重复本地Full。下一有效工作仍由TASK-103/#565原归口和已登记的TASK-100.1职责接续：在同V25视觉/负载下区分eager挂载与proxy刷新成本；本任务没有修改它们的生产文件或宣称其完成。官方导入、新ready、官方容量、PC/安卓表现、V25人工验收均保持UNVERIFIED。

@@ -6,6 +6,7 @@ import {pathToFileURL,fileURLToPath} from 'node:url';
 import {createHash,randomUUID} from 'node:crypto';
 import {performance} from 'node:perf_hooks';
 import os from 'node:os';
+import luaparse from 'luaparse';
 
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const read=file=>JSON.parse(readFileSync(file,'utf8'));
@@ -13,6 +14,86 @@ const sha=file=>hash(readFileSync(file));
 const scope='Actual GIL-derived SDK model, exact Lua and native mount params; script/model wall time and Node memory only. No renderer, GPU, official capacity, official client or device acceptance.';
 const paths={menu:'stage/menuPanel',character:'stage/characterPanel',open:'stage/menuPanel/start/hit',close:'stage/characterPanel/cancel/hit'};
 export const supportedSdkSha256='a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3';
+const supportedLegacyControllerSha256='97a0704c4226ce5f0cce9a92c91509fbe457d35818f4d60ff48e4157cbb3c265';
+
+// Interpret data, never execute candidate Lua. The one supported generated asset
+// also wraps ROOT/ELEMENTS literals in a zero-argument IIFE. Its only permitted
+// statements are single local literal declarations and a final data return.
+function literal(node,locals=new Map()){
+ if(['NumericLiteral','StringLiteral','BooleanLiteral'].includes(node.type))return node.value;
+ if(node.type==='UnaryExpression'&&node.operator==='-'&&node.argument.type==='NumericLiteral')return -node.argument.value;
+ if(node.type==='Identifier'){assert(locals.has(node.name),'Unknown asset data local');return locals.get(node.name);}
+ if(node.type==='TableConstructorExpression'){
+  const array=node.fields.every(field=>field.type==='TableValue'),result=array?[]:Object.create(null);
+  for(const field of node.fields){
+   if(array){result.push(literal(field.value,locals));continue;}
+   assert(field.type==='TableKey'||field.type==='TableKeyString','Mixed asset array/key table');
+   const key=field.type==='TableKeyString'?field.key.name:literal(field.key,locals);
+   assert(typeof key==='string'&&!Object.hasOwn(result,key),'Invalid/duplicate asset data key');result[key]=literal(field.value,locals);
+  }
+  return result;
+ }
+ if(node.type==='CallExpression'&&node.arguments.length===0&&node.base.type==='FunctionDeclaration'&&node.base.parameters.length===0){
+  const scope=new Map();let result,returned=false;
+  for(const statement of node.base.body){
+   assert(!returned,'Statement after asset data return');
+   if(statement.type==='LocalStatement'){
+    assert(statement.variables.length===1&&statement.init.length===1&&!scope.has(statement.variables[0].name),'Invalid asset local declaration');
+    scope.set(statement.variables[0].name,literal(statement.init[0],scope));
+   }else{assert(statement.type==='ReturnStatement'&&statement.arguments.length===1,'Executable asset statement rejected');result=literal(statement.arguments[0],scope);returned=true;}
+  }
+  assert(returned,'Missing asset data return');return result;
+ }
+ throw Error('Executable/non-literal asset expression rejected: '+node.type);
+}
+export function deriveLegacyOracle(scripts){
+ try{
+  const assetRows=scripts.filter(row=>row.name==='abyss_traveler_portrait_assets'),controllers=scripts.filter(row=>row.name==='abyss_traveler_portraits');
+  assert.equal(assetRows.length,1,'Missing exact asset Lua');assert.equal(controllers.length,1,'Missing exact portrait controller Lua');
+  assert.equal(hash(controllers[0].source),supportedLegacyControllerSha256,'Unknown legacy assembly algorithm');
+  const chunk=luaparse.parse(assetRows[0].source,{encodingMode:'pseudo-latin1',luaVersion:'5.3'});
+  assert(chunk.body.length===1&&chunk.body[0].type==='ReturnStatement'&&chunk.body[0].arguments.length===1,'Asset is not a data return');
+  const assets=literal(chunk.body[0].arguments[0]);
+  assert(Number.isSafeInteger(assets.imagePrefabId)&&Number.isSafeInteger(assets.containerPrefabId),'Missing asset template identities');
+  const roles={menuScene:{path:'stage/menuPanel/lowpolyScene',data:assets.lowpolyLand,inheritedVisible:true},
+   selection:{path:'stage/characterPanel/details/officialSelectionFigure',data:assets.battle133,inheritedVisible:true},
+   avatar:{path:'stage/characterPanel/traveler/officialAvatar',data:assets.avatar96,inheritedVisible:false}};
+  assert(assets.v25PortraitProfile?.schemaVersion===1,'Unsupported legacy portrait selection profile');
+  for(const role of Object.values(roles)){
+   const data=role.data;assert(data&&Array.isArray(data.rows)&&data.rows.length===data.count&&data.count>0&&data.count<=10000,'Invalid asset rows/count');
+   assert(data.rows.every(row=>Array.isArray(row)&&[18,20].includes(row.length)&&row.every(Number.isFinite)),'Invalid portrait image data');
+   role.pages=Math.ceil(data.count/3600);role.groups=Math.ceil(data.count/60);role.images=data.count;
+  }
+  return {supported:true,assetSha256:hash(assetRows[0].source),controllerSha256:hash(controllers[0].source),imagePrefabId:assets.imagePrefabId,containerPrefabId:assets.containerPrefabId,roles};
+ }catch(error){return {supported:false,reason:'Legacy model completeness UNVERIFIED: '+error.message};}
+}
+function legacyTreeComplete(row,role,oracle){
+ const fail=reason=>({complete:false,reason});
+ if(!row||(role.inheritedVisible&&!row.visible))return fail('host-missing-or-hidden');
+ const active=node=>node.active!==false&&node.visible!==false;
+ if(!active(row.node)||(row.node.children??[]).length!==role.pages)return fail('host-pages:'+String(row.node.children?.length));
+ let index=0,groups=0;
+ // The pinned SDK stores dynamically instantiated siblings newest first;
+ // reconstruct controller creation order before pairing each literal row.
+ const pages=[...row.node.children].reverse();
+ for(let pageIndex=0;pageIndex<role.pages;pageIndex++){
+  const page=pages[pageIndex],imagesInPage=Math.min(3600,role.images-pageIndex*3600),groupCount=Math.ceil(imagesInPage/60);
+  if(page.kind!=='container'||page.prefabIndex!==oracle.containerPrefabId||!active(page)||(page.children??[]).length!==groupCount)return fail('page:'+pageIndex+':'+JSON.stringify({kind:page.kind,prefabIndex:page.prefabIndex,active:page.active,visible:page.visible,groups:page.children?.length}));
+  const pageGroups=[...page.children].reverse();
+  for(let groupIndex=0;groupIndex<groupCount;groupIndex++){
+   const group=pageGroups[groupIndex],imageCount=Math.min(60,imagesInPage-groupIndex*60);groups++;
+   if(group.kind!=='container'||group.prefabIndex!==oracle.containerPrefabId||!active(group)||(group.children??[]).length!==imageCount)return fail('group:'+pageIndex+':'+groupIndex+':'+JSON.stringify({kind:group.kind,prefabIndex:group.prefabIndex,active:group.active,visible:group.visible,images:group.children?.length}));
+   for(const image of [...group.children].reverse()){
+    const expected=role.data.rows[index++];
+    if(image.kind!=='image'||image.prefabIndex!==oracle.imagePrefabId||!active(image)||(image.children??[]).length||image.imageId!==expected[0])return fail('image:'+index+':'+JSON.stringify({kind:image.kind,prefabIndex:image.prefabIndex,active:image.active,visible:image.visible,imageId:image.imageId,expectedImage:expected[0]}));
+    for(const [property,value] of [['anchoredPositionX',expected[1]],['anchoredPositionY',expected[2]],['sizeDeltaX',expected[3]],['sizeDeltaY',expected[4]]]){
+     if(!Number.isFinite(image[property])||Math.abs(image[property]-value)>0.0001)return fail('image:'+index+':'+property+':'+String(image[property])+':expected:'+value);
+    }
+   }
+  }
+ }
+ return {complete:index===role.images&&groups===role.groups,reason:'images='+index+' groups='+groups};
+}
 
 function rows(session){
  const result=[];
@@ -37,9 +118,9 @@ function portraitPhases(logs){
  const phases={};for(const row of logs){const m=row.text?.match(/^ABYSS_PORTRAIT (\w+) phase=([\w_]+)/);if(m)phases[m[1]]=m[2];}return phases;
 }
 
-export function inspectPage(session,name,{componentMode,templates,staticRoots}){
+export function inspectPage(session,name,{componentMode,templates,staticRoots,legacyOracle}){
  const all=rows(session),checks=[],phases=portraitPhases(session.runtime.logs);
- function check(category,id,value){assert(['controls','templates','text'].includes(category),'Unknown page check category');checks.push({category,id,passed:!!value});}
+ function check(category,id,value,detail){assert(['controls','templates','text'].includes(category),'Unknown page check category');checks.push({category,id,passed:!!value,...(detail?{detail}:{})});}
  const page=target(all,paths[name]);check('controls','panel-visible',page.visible);
  if(name==='menu')check('controls','selection-closed',!target(all,paths.character).visible);
  const text=name==='menu'?['start/label']:['details/name','details/stats','details/gold','details/deckTitle','details/deckSummary','details/relic'];
@@ -72,13 +153,22 @@ export function inspectPage(session,name,{componentMode,templates,staticRoots}){
    check('templates','portrait-component-present',host?.children?.length===1);
   }
  }else{
-  for(const role of name==='menu'?['menuScene']:['selection','avatar'])check('templates','portrait-ready:'+role,phases[role]==='ready');
+  check('templates','legacy-oracle-supported',legacyOracle?.supported===true);
+  for(const role of name==='menu'?['menuScene']:['selection','avatar']){
+   check('templates','portrait-ready:'+role,phases[role]==='ready');
+   if(legacyOracle?.supported){
+    const expected=legacyOracle.roles[role],matches=all.filter(row=>row.path===expected.path||row.path.endsWith('/'+expected.path));
+    const observed=matches.length===1?legacyTreeComplete(matches[0],expected,legacyOracle):{complete:false,reason:'host-path-missing-or-ambiguous'};
+    check('templates','portrait-asset-tree:'+role,observed.complete,observed.reason);
+   }
+  }
  }
  const scriptReady=session.runtime.logs.some(row=>row.text==='ABYSS_UI ready');
  const requiredChecks=Object.fromEntries(['controls','templates','text'].map(category=>[category,checks.some(check=>check.category===category)&&checks.filter(check=>check.category===category).every(check=>check.passed)]));
  const structureReady=Object.values(requiredChecks).every(Boolean);
- return {scriptReady,structureReady,complete:scriptReady&&structureReady,requiredChecks,checkDetails:checks,portraitPhases:phases,
-  reason:checks.filter(check=>!check.passed).map(check=>check.id).join('; ')||(!scriptReady?'script-ready missing':'SDK model complete; visual presentation remains UNVERIFIED')};
+ return {scriptReady,structureReady,complete:scriptReady&&structureReady,requiredChecks,checkDetails:checks,portraitPhases:phases,oracleVerified:componentMode||legacyOracle?.supported===true,preparationSupported:componentMode||legacyOracle?.supported===true,
+  reason:!componentMode&&!legacyOracle?.supported?(legacyOracle?.reason??'Legacy model completeness UNVERIFIED: asset oracle unavailable')
+   :checks.filter(check=>!check.passed).map(check=>check.id).join('; ')||(!scriptReady?'script-ready missing':'SDK model complete; visual presentation remains UNVERIFIED')};
 }
 
 export async function replayUiOutcome({receiptFile,sdkFile,outFile,roundTrips=20,frameLimit=180}){
@@ -103,12 +193,18 @@ export async function replayUiOutcome({receiptFile,sdkFile,outFile,roundTrips=20
   for(const source of scripts){const found=save.assets.scripts.filter(row=>row.guid===source.guid);assert.equal(found.length,1);assert.equal(found[0].source,source.source);assert.equal(found[0].path,source.file);}
   report.identity={gilSha256:receipt.gilSha256,saveSha256:receipt.saveSha256,sdkSha256:sha(sdkFile),runnerSha256:sha(fileURLToPath(import.meta.url)),receiptSha256:sha(receiptFile),
    luaInventorySha256:receipt.luaInventorySha256,mountedValuesSha256:hash(JSON.stringify(receipt.mountedValues)),luaExact:true};
-  // Conservative equivalence: any native graph/art/geometry difference stops
-  // a same-visual claim. Rules/data and server model must also be identical.
-  report.conditions={visualSha256:hash(JSON.stringify([save.assets.server.root,save.assets.client.root])),
-   loadSha256:hash(JSON.stringify([save.serverLogic,save.assets.scripts.filter(row=>/^(abyss_data|abyss_original_v4_data)\.lua$/.test(basename(row.path))).map(row=>({path:row.path,source:row.source}))]))};
+  // Deliberately conservative: every rules/data/UI/rendering Lua source and all
+  // model inputs participate, except the one reviewed bridge intervention.
+  // Its identity stays explicit; adding another exception needs a code review.
+  const exactSources=save.assets.scripts.map(row=>({path:row.path,source:row.source})).sort((a,b)=>a.path.localeCompare(b.path));
+  const intervention=exactSources.filter(row=>basename(row.path)==='abyss_component_bridge.lua'),workloadSources=exactSources.filter(row=>basename(row.path)!=='abyss_component_bridge.lua');
+  const modelAssets=Object.fromEntries(Object.entries(save.assets).filter(([name])=>name!=='scripts'));
+  report.conditions={visualSha256:hash(JSON.stringify([save.assets.server.root,save.assets.client.root,workloadSources,receipt.mountedValues])),
+   loadSha256:hash(JSON.stringify([save.serverLogic,modelAssets,workloadSources,receipt.mountedValues])),interventionSha256:hash(JSON.stringify(intervention))};
   const initialIdentity=JSON.stringify([sha(receipt.gil),sha(receipt.output),sha(receiptFile),sha(scriptsFile),sha(sdkFile)]);
   const componentMode=receipt.mountedValues.some(row=>row.values?.nativeComponentControls===true);report.mode=componentMode?'original-components':'legacy-portrait';
+  const legacyOracle=componentMode?undefined:deriveLegacyOracle(scripts);
+  if(legacyOracle)report.legacyOracle={...legacyOracle,roles:legacyOracle.roles&&Object.fromEntries(Object.entries(legacyOracle.roles).map(([name,role])=>[name,{path:role.path,images:role.images,pages:role.pages,groups:role.groups,inheritedVisible:role.inheritedVisible}]))};
   const templates=new Map(save.assets.client.root.children.map(node=>[node.guid,node]));
   temporary=join(dirname(outFile),'.sdk-ui-outcome-'+randomUUID()+'.mjs');
   writeFileSync(temporary,readFileSync(sdkFile,'utf8')+'\nexport {Gr,vi,dn,wi,pa,Me};\n',{flag:'wx'});
@@ -144,9 +240,9 @@ export async function replayUiOutcome({receiptFile,sdkFile,outFile,roundTrips=20
   function observePage(name,cycle,firstEventIndex){
    let state,initialReadiness,frames=0;const start=performance.now();
    for(;;){
-    state=inspectPage(session,name,{componentMode,templates,staticRoots:[save.assets.server.root]});
+    state=inspectPage(session,name,{componentMode,templates,staticRoots:[save.assets.server.root],legacyOracle});
     initialReadiness??={scriptReady:state.scriptReady,structureReady:state.structureReady,complete:state.complete,requiredChecks:state.requiredChecks};
-    if(state.complete||frames>=frameLimit)break;
+    if(state.complete||!state.preparationSupported||frames>=frameLimit)break;
     measure(name+'-prepare',cycle,()=>sdk.dn(session,1/60));frames++;
    }
    report.pages.push({name,cycle,...state,initialReadiness,frames,elapsedMs:performance.now()-start,firstEventIndex,lastEventIndex:report.events.length-1});return state.complete;

@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-09 11:11'
-updated_date: '2026-11-09 03:49'
+updated_date: '2026-11-09 04:03'
 labels:
   - product-diagnosis
 milestone: m-7
@@ -51,4 +51,6 @@ Owner要求将“为什么一周多架构优化仍未提前定位游戏逐块出
 2026-11-09：本任务由 Owner 明确要求先登记并提 PR，交由现有 Agent 后续实施和合并。本 PR 只写任务与可审计的诊断依据，尚未实现或运行新的性能回归机制，AC 全部保持未勾。当前执行环境不能运行 Backlog CLI，任务文件按仓库已有任务格式提交；接手者需在实际仓库使用 Backlog CLI 核对身份、状态及 metadata，再运行 doctor、verify:backlog、现有 CI 与独立复审，禁止以此记录冒充已验证通过。
 
 已落实实际GIL/固定SDK回放、20次菜单选角往返、事件绑定/完整模板/输入/资源与固定预算合同，接现有runtime-path测试和verify:backlog。历史六实例及本轮两份20次原始记录已冻结。新包41页/40输入通过且净增长0，但>100ms同步操作使离线关口FAIL；旧包复现脚本ready早于完整结构。62项定向测试通过，doctor/verify:backlog/check:guidance通过；反例与设备未验边界见附件。AC5保留未勾，等待整片独立复审、精确HEAD Full和正常队列/合后验收。
+
+独审发现并修正旧路径只信phase日志、未绑定mount参数和实验观察器版本的问题；最终v2原始20次记录已冻结，初版两份保留superseded。旧路径从本候选literal资产派生并核实际完整图元树；新旧各41页/40输入有效，但两者均因同步长阻塞FAIL，旧包另复现完整结构前已可见。最终定向62/62、原CI库存/分片合同18/18通过。#581曾被并发关闭删分支，经本轮Owner授权恢复；当前等待新精确SHA独审与远端Full，不提前勾AC5。
 <!-- SECTION:NOTES:END -->
