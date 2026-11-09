@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
+import {preFoundationFixCiSource} from './foundation-fix-ci-source-inverse.mjs';
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const compressed=readFileSync(new URL('./component-ui-ci-source-epoch.json.gz',import.meta.url));
 assert.equal(hash(compressed),'498384c890d22428b10a9c19f6720712d3e568cf871179e447c69fd8b92ea520','component UI CI compressed identity');
@@ -24,8 +25,23 @@ for(const binding of Object.values(proof.files)){
 }
 Object.freeze(proof.files);
 export const componentUiCiSourceProof=Object.freeze(proof);
-export function preComponentUiCiSource(path,source){
+export function preComponentUiCiFoundationSource(path,source){
  const binding=Object.hasOwn(proof.files,path)?proof.files[path]:null;
  if(!binding||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!==binding.afterSha256)return source;
  return binding.beforeSource;
+}
+// Pure named views keep each published receipt in its own source epoch. New
+// outer receipts append here; frozen literal/foreign assertions keep their view.
+const epochs=Object.freeze([
+ Object.freeze({name:'component281',project:preComponentUiCiFoundationSource}),
+ Object.freeze({name:'foundationFix',project:preFoundationFixCiSource}),
+]);
+export function ciSourceAtEpoch(path,source,target){
+ const index=epochs.findIndex(epoch=>epoch.name===target);assert(index>=0,'known CI source epoch');
+ for(let i=epochs.length-1;i>index;i--)source=epochs[i].project(path,source);
+ return source;
+}
+export function preComponentUiCiSource(path,source){
+ for(let i=epochs.length-1;i>=0;i--)source=epochs[i].project(path,source);
+ return source;
 }

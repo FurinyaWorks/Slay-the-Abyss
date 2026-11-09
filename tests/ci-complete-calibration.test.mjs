@@ -1,5 +1,6 @@
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
-import {preComponentUiCiSource,componentUiCiSourceProof} from './helpers/component-ui-ci-source-inverse.mjs';
+import {preComponentUiCiSource,preComponentUiCiFoundationSource,componentUiCiSourceProof,ciSourceAtEpoch} from './helpers/component-ui-ci-source-inverse.mjs';
+import {foundationFixCiSourceProof,preFoundationFixCiSource} from './helpers/foundation-fix-ci-source-inverse.mjs';
 import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource,defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {preSilentFinalCiSource,silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -130,18 +131,32 @@ const postCalibrationLua=['tests/lua/actor_lifecycle.lua','tests/lua/actor_lifec
   .map(group=>'tests/lua/relic_lifecycle_'+group+'.lua')].sort();
 
 test('component UI CI projection admits only complete current sources and preserves foreign drift',()=>{
+ const preComponentUiCiSource=preComponentUiCiFoundationSource;
  const archive=componentUiCiSourceProof;
  assert.equal(archive.beforeCommit,'1eb288472d7b33b7450eec97a624ca2ffa526f39');
  assert.equal(archive.afterProductionCommit,'a0c2dc558b2a37f26678dc104bb98df194b0f2d8');
  for(const required of ['config/architecture.json','tests/helpers/combined-epoch/source-epoch.mjs','tests/helpers/copy-integration-source-closure.mjs'])assert.ok(Object.hasOwn(archive.files,required));
  for(const [file,binding]of Object.entries(archive.files)){
-  const source=diskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  const source=ciSourceAtEpoch(file,diskReadFileSync(file,'utf8').replaceAll('\r\n','\n'),'component281');
   assert.equal(source,binding.afterSource,file);
   assert.equal(preComponentUiCiSource(file,source),binding.beforeSource,file);
   assert.equal(preComponentUiCiSource(file,source.replaceAll('\n','\r\n')),binding.beforeSource,file);
   for(const input of [source+'\n',source.slice(1),source.slice(0,-1),binding.beforeSource,null,undefined,{},17])
    assert.equal(preComponentUiCiSource(file,input),input,file);
   assert.equal(preComponentUiCiSource('foreign/'+file,source),source,file);
+ }
+});
+
+test('post281 CI fixes preserve the immutable71-source foundation and every exact foreign-source boundary',()=>{
+ const proof=foundationFixCiSourceProof;
+ assert.equal(proof.beforeCommit,'2814719e884fa2a201e05a22b35d9bbc8519ca62');
+ assert.equal(proof.afterProductionCommit,'a0c2dc558b2a37f26678dc104bb98df194b0f2d8');
+ for(const [file,binding]of Object.entries(proof.files)){
+  const source=ciSourceAtEpoch(file,diskReadFileSync(file,'utf8').replaceAll('\r\n','\n'),'foundationFix');
+  assert.equal(source,binding.afterSource,file);assert.equal(preFoundationFixCiSource(file,source),binding.beforeSource,file);
+  assert.equal(preFoundationFixCiSource(file,source.replaceAll('\n','\r\n')),binding.beforeSource,file);
+  for(const foreign of [source+'\n',source.slice(1),source.slice(0,-1),binding.beforeSource,null,undefined,{},17])assert.equal(preFoundationFixCiSource(file,foreign),foreign,file);
+  assert.equal(preFoundationFixCiSource('foreign/'+file,source),source,file);
  }
 });
 
