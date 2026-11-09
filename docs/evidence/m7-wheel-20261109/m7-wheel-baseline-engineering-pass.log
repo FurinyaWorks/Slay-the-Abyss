@@ -1,0 +1,3 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality reported: 338 modules; 5605/5605 measurements; new thresholds report-only. See build/engineering-quality.{json,md}

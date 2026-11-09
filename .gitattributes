@@ -468,3 +468,14 @@ tests/helpers/stasis-replay-before.json.gz -text
 tests/helpers/stasis-ci-source-inverse.json.gz -text
 docs/evidence/m7-stasis-owner-20261109/** text eol=lf
 docs/evidence/m7-stasis-owner-20261109/**/*.gz -text
+
+# Wheel responsibility boundaries preserve exact frozen source and evidence bytes.
+tests/fixtures/wheel-event-before.lua text eol=lf
+tests/wheel-event-*.test.mjs text eol=lf
+tests/helpers/wheel-event-*.mjs text eol=lf
+tests/helpers/wheel-event-*.lua text eol=lf
+tests/helpers/wheel-event-*.json.gz -text
+tests/helpers/wheel-ci-*.mjs text eol=lf
+tests/helpers/wheel-ci-*.json.gz -text
+docs/evidence/m7-wheel-20261109/** text eol=lf
+docs/evidence/m7-wheel-20261109/**/*.gz -text

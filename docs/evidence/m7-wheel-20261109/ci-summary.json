@@ -1,0 +1,90 @@
+{
+  "baseline": "ef6b62a23aa85b41e32fb6e5c4e95b697b41d66c",
+  "recurringInventory": {
+    "js": 806,
+    "lua": 1410
+  },
+  "priorFloorsUnchanged": 35,
+  "newFloors": 3,
+  "totalFloors": 38,
+  "newConservativeCompleteFileFloorsMs": {
+    "responsibilities": 150751,
+    "complexity": 967,
+    "sourceEpoch": 23093
+  },
+  "costPolicy": "Ceiling of the maximum observed complete-file duration: final wall/Node plus retained earlier successful full-file durations. Earlier logs have no exploratory before/after manifest and are not claimed as current-byte executions.",
+  "shape": {
+    "windows": 18,
+    "posix": 15,
+    "concurrency": 12,
+    "luaWorkers": 2
+  },
+  "reserveMs": 60000,
+  "budgetsMs": {
+    "windows": 1800000,
+    "posix": 1200000
+  },
+  "blockedWindows17ForecastMs": 1807094,
+  "blockedWindows17ShortageMs": 7094,
+  "finalForecastMs": {
+    "windows": 1710157,
+    "posix": 1143666
+  },
+  "currentFullJobCount": 38,
+  "workflowUnchanged": true,
+  "unknownJsMs": 10000,
+  "unknownLuaMs": 10000,
+  "initialBatch": {
+    "files": [
+      "tests/ci-runtime.test.mjs",
+      "tests/ci-complete-calibration.test.mjs",
+      "tests/ci-host-timing-calibration.test.mjs",
+      "tests/ci-windows-shape-expansion.test.mjs",
+      "tests/lua-shards.test.mjs",
+      "tests/ci-posix-shards.test.mjs",
+      "tests/ci-windows-shards.test.mjs",
+      "tests/ci-impact.test.mjs",
+      "tests/delivery.test.mjs",
+      "tests/full-quality.test.mjs",
+      "tests/merge-queue.test.mjs"
+    ],
+    "summary": {
+      "tests": 169,
+      "pass": 157,
+      "fail": 12,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "wallMs": 67295,
+    "inputsUnchanged": true
+  },
+  "finalAffectedBatch": {
+    "files": [
+      "tests/ci-runtime.test.mjs",
+      "tests/ci-complete-calibration.test.mjs",
+      "tests/ci-host-timing-calibration.test.mjs",
+      "tests/ci-windows-shape-expansion.test.mjs",
+      "tests/full-quality.test.mjs",
+      "tests/merge-queue.test.mjs"
+    ],
+    "summary": {
+      "tests": 106,
+      "pass": 106,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "wallMs": 54522,
+    "nodeReportedDurationMs": 54282.123213,
+    "inputCount": 3596,
+    "inputsUnchanged": true
+  },
+  "failureCorrection": "Initial exact-source archive mistakenly read moving HEAD after a separate product checkpoint. Rebuilt all predecessor sources and inventory against fixed ef6b62a. One reward historical shape consumer now applies the exact Wheel inverse before the existing POSIX inverse. No historical assertions removed.",
+  "limits": [
+    "No Full execution or hosted timing claim.",
+    "No Windows/PowerShell execution or device validation.",
+    "Final106/106 covers six affected complete files, not a new combined170-test execution. Five other unchanged consumers passed the earlier batch before conservative floor consolidation.",
+    "No new cache optimization; no prior floors, fallbacks, tests, budgets or gates reduced."
+  ],
+  "archiveSha256": "ae1a53e724d0aaddba2d1fda4661f39298cb30ec26c462a7ebba28516b3409c7"
+}

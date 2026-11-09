@@ -1,0 +1,13 @@
+import {readFileSync,readdirSync,writeFileSync,existsSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import {gzipSync} from 'node:zlib';
+const hash=b=>createHash('sha256').update(b).digest('hex'),root='docs/evidence/m7-wheel-20261109';
+let files=['tests/ci-runtime.test.mjs','tests/ci-complete-calibration.test.mjs','tests/ci-host-timing-calibration.test.mjs','tests/ci-windows-shape-expansion.test.mjs','tests/lua-shards.test.mjs','tests/ci-posix-shards.test.mjs','tests/ci-windows-shards.test.mjs','tests/ci-impact.test.mjs','tests/delivery.test.mjs','tests/full-quality.test.mjs','tests/merge-queue.test.mjs'];
+if(process.argv.includes('--affected'))files=files.filter(p=>['tests/ci-runtime.test.mjs','tests/ci-complete-calibration.test.mjs','tests/ci-host-timing-calibration.test.mjs','tests/ci-windows-shape-expansion.test.mjs','tests/full-quality.test.mjs','tests/merge-queue.test.mjs'].includes(p));
+const walk=p=>!existsSync(p)?[]:readdirSync(p,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p+'/'+e.name):[p+'/'+e.name]);
+const paths=[...new Set(['package-lock.json',...['src/lua','tests','scripts','config','.github/workflows','build/lua'].flatMap(walk)])].sort(),snapshot=()=>Object.fromEntries(paths.map(p=>[p,hash(readFileSync(p))]));
+const before=snapshot(),command=[process.execPath,'--test','--test-concurrency=1','--test-reporter=spec',...files],start=Date.now(),result=spawnSync(command[0],command.slice(1),{encoding:'utf8',maxBuffer:64*1024*1024}),log=result.stdout+result.stderr,after=snapshot();
+const name=process.argv[2]??'ci-contracts-final';writeFileSync(`${root}/${name}.log.gz`,gzipSync(log));
+const changedInputs=paths.filter(p=>before[p]!==after[p]),receipt={command,status:result.status,signal:result.signal,error:result.error?.message??null,wallMs:Date.now()-start,inputSha256:before,inputSha256After:after,changedInputs,inputsUnchanged:changedInputs.length===0,nodeReportedDurationMs:Number(log.match(/(?:ℹ |# )duration_ms ([\d.]+)/)?.[1]),summary:Object.fromEntries(['tests','pass','fail','cancelled','skipped'].map(k=>[k,Number(log.match(new RegExp('(?:ℹ |# )'+k+' (\\d+)'))?.[1])]))};
+writeFileSync(`${root}/${name}-receipt.json`,JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify({...receipt,inputSha256:undefined,inputSha256After:undefined},null,2));console.log(log.split('\n').filter(x=>/^[✖ℹ].*(?:forecast|test|fail)/.test(x)).map(x=>x.slice(0,300)).join('\n'));process.exitCode=result.status??1;

@@ -18,9 +18,9 @@ function fixture(){return {repo,runId:7,attempt:1,number:510,head:sha('a'),base:
  checkoutArtifact:{id:200,name:'quality-7-1-check',expired:false,workflow_run:{id:7,head_sha:sha('a')}}};}
 test('Full gate accepts the exact running aggregate only after every actual shard succeeds',()=>assert.deepEqual(fullGateErrors(fixture()),[]));
 
-test('Full publisher cannot certify old 27/28/30/33/35/36-job shapes or a forged/missing current actual shard',()=>{
+test('Full publisher cannot certify old 27/28/30/33/35/36/37-job shapes or a forged/missing current actual shard',()=>{
  for(const mutate of [
-  ...[[13,9],[14,9],[16,9],[16,12],[17,13],[17,14]].map(([windows,posix])=>e=>{
+  ...[[13,9],[14,9],[16,9],[16,12],[17,13],[17,14],[17,15]].map(([windows,posix])=>e=>{
    const win=e.jobs.find(j=>j.name.startsWith('rules (')),linux=e.jobs.find(j=>j.name.startsWith('engineering-posix ('));
    assert(win&&linux,'current matrices supply complete legacy-shape samples');
    e.jobs=e.jobs.filter(j=>!j.name.startsWith('rules (')&&!j.name.startsWith('engineering-posix ('));
@@ -29,16 +29,16 @@ test('Full publisher cannot certify old 27/28/30/33/35/36-job shapes or a forged
   e=>e.jobs=e.jobs.filter(j=>j.name!=='engineering-posix (15/15)'),
   e=>e.jobs.push({...e.jobs.find(j=>j.name==='engineering-posix (15/15)'),id:3000}),
   e=>e.jobs.find(j=>j.name==='engineering-posix (15/15)').name='engineering-posix (15/14)',
-  e=>e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)'),
-  e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (17/17)'),id:900}),
-  e=>e.jobs.find(job=>job.name==='rules (17/17)').id=e.jobs.find(job=>job.name==='rules (16/17)').id,
-  e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (17/17)'),id:3001,name:'rules (18/17)'}),
-  e=>e.jobs.find(job=>job.name==='rules (17/17)').name='rules (17/16)',
-  e=>{const sample=e.jobs.find(job=>job.name==='rules (1/17)');assert(sample,'actual current first shard exists');e.jobs=e.jobs.filter(job=>!job.name.startsWith('rules ('));e.jobs.push(...Array.from({length:13},(_,i)=>({...sample,id:700+i,name:`rules (${i+1}/13)`})));},
-  e=>{e.jobs=e.jobs.filter(job=>job.name!=='rules (17/17)');e.jobTotal=37;e.matrix={windows:17,posix:15};},
+  e=>e.jobs=e.jobs.filter(job=>job.name!=='rules (18/18)'),
+  e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (18/18)'),id:900}),
+  e=>e.jobs.find(job=>job.name==='rules (18/18)').id=e.jobs.find(job=>job.name==='rules (17/18)').id,
+  e=>e.jobs.push({...e.jobs.find(job=>job.name==='rules (18/18)'),id:3001,name:'rules (19/18)'}),
+  e=>e.jobs.find(job=>job.name==='rules (18/18)').name='rules (18/17)',
+  e=>{const sample=e.jobs.find(job=>job.name==='rules (1/18)');assert(sample,'actual current first shard exists');e.jobs=e.jobs.filter(job=>!job.name.startsWith('rules ('));e.jobs.push(...Array.from({length:13},(_,i)=>({...sample,id:700+i,name:`rules (${i+1}/13)`})));},
+  e=>{e.jobs=e.jobs.filter(job=>job.name!=='rules (18/18)');e.jobTotal=38;e.matrix={windows:18,posix:15};},
   e=>e.checkout.tested=sha('f'),
  ]){
-  const e=fixture();assert.equal(e.jobs.length,37);mutate(e);
+  const e=fixture();assert.equal(e.jobs.length,38);mutate(e);
   assert(fullGateErrors(e).length,String(mutate));let posted;
   const result=publishFullQuality(e,(...args)=>{posted=args.find(arg=>arg.startsWith('state=')).slice(6);return JSON.stringify({state:posted,context:'full-quality'});});
   assert.equal(result.state,'failure');assert.equal(posted,'failure');
@@ -242,8 +242,8 @@ test('execution slack restores only the complete approved workflow edit for hist
  }
 });
 
-test('all thirty-two actual shard identities are mandatory for current Full admission',()=>{
- assert.equal(qualityShardJobs.length,32);
+test('all thirty-three actual shard identities are mandatory for current Full admission',()=>{
+ assert.equal(qualityShardJobs.length,33);
  for(const name of qualityShardJobs)for(const mutation of ['missing','failure','cancelled','skipped','wrong-sha']){
   const e=fixture(),job=e.jobs.find(job=>job.name===name);assert.ok(job);
   if(mutation==='missing')e.jobs=e.jobs.filter(job=>job.name!==name);

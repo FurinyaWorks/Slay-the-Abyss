@@ -1,10 +1,12 @@
+import {sourceEpoch as liveWheelEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+const stasisLive=liveWheelEpoch.combinedReader(p=>readFileSync(p,'utf8'),'wheelPrior');
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {sourceEpoch,preStasisEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {sourceEpoch,preStasisEpoch} from './helpers/combined-epoch/pre-wheel-source-epoch.mjs';
 import {stasisEpoch,extendStasisEpoch} from './helpers/stasis-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 import {stasisReplayBefore,priorStasisReplayPrelude} from './helpers/stasis-replay-before.mjs';
@@ -20,7 +22,7 @@ test('Stasis outer epoch preserves all 339 predecessor bindings and complete cur
  for(const [name,target]of Object.entries(prior.targets))assert.deepEqual(proof.targets[name],target,name);
  for(const [path,binding]of Object.entries(prior.current))if(!paths.includes(path))assert.deepEqual(proof.current[path],binding,path);
  assert.deepEqual(['config/architecture.json',...readdirSync('src/lua').filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)].sort(),Object.keys(proof.current).filter(p=>proof.current[p]!==null).sort());
- for(const [path,binding]of Object.entries(proof.current))if(binding)assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),binding.source,path);
+ for(const [path,binding]of Object.entries(proof.current))if(binding)assert.equal(stasisLive(path).replaceAll('\r\n','\n'),binding.source,path);
  for(const path of paths){assert.deepEqual(stasisEpoch.proof.targets.prior.files[path],prior.current[path]);for(const field of Object.keys(prior.current[path])){const changed=structuredClone(prior);changed.current[path][field]='tampered';assert.throws(()=>extendStasisEpoch({...preStasisEpoch,proof:changed}),/authenticated predecessor/);}}
  assert(Object.isFrozen(proof.targets.stasisPrior.files));
 });
@@ -36,7 +38,7 @@ test('53 fresh raw owners are required after warm authorization including layout
  const path=paths[0],source=JSON.stringify(JSON.parse(raw(path))),target='stasisPrior';
  for(const crlf of [false,true]){
   let corrupt=null,missing=null;const seen=[];
-  const readSource=p=>{seen.push(p);if(p===missing)return null;const s=readFileSync(p,'utf8').replaceAll('\r\n','\n');return p===corrupt?s+'\n':crlf?s.replaceAll('\n','\r\n'):s;};
+  const readSource=p=>{seen.push(p);if(p===missing)return null;const s=stasisLive(p).replaceAll('\r\n','\n');return p===corrupt?s+'\n':crlf?s.replaceAll('\n','\r\n'):s;};
   for(let i=0;i<2;i++){seen.length=0;assert.equal(sourceEpoch.preCombinedSource(path,source,{target,readSource}),prior.current[path].source);assert.deepEqual(seen,proof.owners);}
   for(const owner of proof.owners){corrupt=owner;assert.throws(()=>sourceEpoch.preCombinedSource(path,source,{target,readSource}),/linked owner identity/,owner);corrupt=null;missing=owner;assert.throws(()=>sourceEpoch.preCombinedSource(paths[3],raw(paths[3]),{target,readSource}),/linked owner identity/,owner);missing=null;}
  }
@@ -48,7 +50,7 @@ test('53 fresh raw owners are required after warm authorization including layout
 });
 test('isolated helper copy closes both epochs without Git or source tree access',async()=>{
  const directory=mkdtempSync(join(tmpdir(),'stasis-epoch-'));
- try{copyIntegrationSourceClosure(directory);const module=await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href);assert.deepEqual(module.sourceEpoch.proof,proof);assert.deepEqual(module.preStasisEpoch.proof,prior);assert.equal(module.sourceEpoch.preCombinedSource(paths[3],raw(paths[3]),{target:'stasisPrior',readSource:raw}),prior.current[paths[3]].source);assert.throws(()=>module.sourceEpoch.preCombinedSource(paths[3],raw(paths[3]),{target:'stasisPrior',readSource:p=>p===paths[2]?null:raw(p)}),/linked owner identity/);}finally{rmSync(directory,{recursive:true,force:true});}
+ try{copyIntegrationSourceClosure(directory);const module=await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/pre-wheel-source-epoch.mjs')).href);assert.deepEqual(module.sourceEpoch.proof,proof);assert.deepEqual(module.preStasisEpoch.proof,prior);assert.equal(module.sourceEpoch.preCombinedSource(paths[3],raw(paths[3]),{target:'stasisPrior',readSource:raw}),prior.current[paths[3]].source);assert.throws(()=>module.sourceEpoch.preCombinedSource(paths[3],raw(paths[3]),{target:'stasisPrior',readSource:p=>p===paths[2]?null:raw(p)}),/linked owner identity/);}finally{rmSync(directory,{recursive:true,force:true});}
 });
 test('historical three-argument Actor replay loads exact complete prior Powers and Stasis modules',()=>{
  for(const [name,file]of Object.entries(stasisReplayBefore.files)){assert.deepEqual(file.source,prior.current[file.path].source);assert.match(priorStasisReplayPrelude(),new RegExp(name));}

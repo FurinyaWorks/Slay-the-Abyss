@@ -6215,6 +6215,65 @@
         "sourceReceipt": "docs/evidence/m7-stasis-owner-20261109/ci-source-epoch-receipt.json",
         "sourceReceiptSha256": "29447ec87e0978988b30663c81473669a74d425973a9bfb1c1b68e1bb965412c",
         "testSha256": "b0b279c7e5559331587d41f9e331c66f503772bc80a8e6fe326c0ab820cbd877"
+      },
+      "tests/wheel-event-responsibilities.test.mjs": {
+        "wallMs": 146015.90205499998,
+        "durationMs": 150751,
+        "environment": "cloud Linux local",
+        "tests": 2,
+        "coverage": "2/2 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Conservative maximum of observed complete-file local durations; final stable-input run and earlier complete run retained separately; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 145927.663443,
+        "sourceLog": "docs/evidence/m7-wheel-20261109/ci-responsibilities.log.gz",
+        "sourceLogSha256": "e3e25604f9e92b06cbf0dc09d0727137d488721f8329ac2f348b2580f0b1a8e7",
+        "sourceLogUncompressedSha256": "d1165ca1dfeb0952cbac856efe9214c496a4790c46caa7abd91eecaff1af0156",
+        "sourceReceipt": "docs/evidence/m7-wheel-20261109/ci-responsibilities-receipt.json",
+        "sourceReceiptSha256": "3bae2ad029966d7952e11786e6fc3a27120ad259fb36d36ac58c12de2bb86e2d",
+        "testSha256": "1727551d3af166c5f9606a438bb1dfb4f16666a30032ad2dba80c64bc802c49c",
+        "earlierCompleteObservation": {
+          "nodeReportedDurationMs": 150750.23137,
+          "sourceLog": "docs/evidence/m7-wheel-20261109/ci-responsibilities-earlier-complete.log.gz",
+          "sourceLogSha256": "f572c4f1043e39bf6cdb35ca8633695e23c3239830a78cc7ea361ad527be247e",
+          "sourceLogUncompressedSha256": "63e1dc0bdbcff2805af55ce70a5031ac3e9aeb9b2e2d11e92a1759a10eee78ac",
+          "scope": "Earlier complete successful same scenario/mutant coverage. Responsibilities helper diagnostics and comparison representation changed before the final run; no work removed. No exploratory before/after manifest was captured; not a current-byte execution claim."
+        }
+      },
+      "tests/wheel-event-complexity.test.mjs": {
+        "wallMs": 956.158477000019,
+        "durationMs": 967,
+        "environment": "cloud Linux local",
+        "tests": 1,
+        "coverage": "1/1 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Conservative maximum of observed complete-file local durations; final stable-input run and earlier complete run retained separately; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 881.034981,
+        "sourceLog": "docs/evidence/m7-wheel-20261109/ci-complexity.log.gz",
+        "sourceLogSha256": "38f9eeaf2885b1a1a0125470ba6f56aecbc090b64cc7a1590ae44287862615a9",
+        "sourceLogUncompressedSha256": "57fc9420788b840e4eeca78e320f2e3f642d470f7dd349dca5619f5b3e836c22",
+        "sourceReceipt": "docs/evidence/m7-wheel-20261109/ci-complexity-receipt.json",
+        "sourceReceiptSha256": "efd4f700e3499a59586a4c41feda8fd01494c2a376851a73648562cc2c88c11d",
+        "testSha256": "6ad4af120641976d089f5aa770da459409c6852d31b8ce6df2e349cbcaf4efa4",
+        "earlierCompleteObservation": {
+          "nodeReportedDurationMs": 966.885585,
+          "sourceLog": "docs/evidence/m7-wheel-20261109/ci-complexity-earlier-complete.log.gz",
+          "sourceLogSha256": "15bd8d52a50edf62425a7494017ff9b68b49d89b88dafce4aff69f3243e8203b",
+          "sourceLogUncompressedSha256": "4f1bf96764e8cbfeed0f375bcfcd3794d80ebbbcdc82e3583bb0e5c02c956180",
+          "scope": "Earlier complete successful same scenario/mutant coverage. Responsibilities helper diagnostics and comparison representation changed before the final run; no work removed. No exploratory before/after manifest was captured; not a current-byte execution claim."
+        }
+      },
+      "tests/wheel-event-source-epoch.test.mjs": {
+        "wallMs": 23093,
+        "durationMs": 23093,
+        "environment": "cloud Linux local",
+        "tests": 5,
+        "coverage": "5/5 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Conservative maximum of observed complete-file local durations; final stable-input run and earlier complete run retained separately; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 22998.442152,
+        "sourceLog": "docs/evidence/m7-wheel-20261109/source-final.log.gz",
+        "sourceLogSha256": "30a4f8af26455ad06bf8dca00ca43a2069fc77ec1e78a206edf891e8aadaff0d",
+        "sourceLogUncompressedSha256": "48cd04b9b10c6255b5e52cdce1895586f610c653ea8cb26c5cb0c113ef086228",
+        "sourceReceipt": "docs/evidence/m7-wheel-20261109/source-final-receipt.json",
+        "sourceReceiptSha256": "d364905050697a1cc0755dbba7705cc2e2a6bd311f864543504e5c636550cd6d",
+        "testSha256": "fe038f2ee850d54756fea41b76ad42b07d96d78aa1035c55d6a2b8ad0bd9fb8b"
       }
     }
   },

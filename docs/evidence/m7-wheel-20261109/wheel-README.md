@@ -1,0 +1,18 @@
+# Wheel responsibility slice
+
+Production is a cohesive local-helper extraction, not new modules or altered algorithms. Stage dispatcher keeps repeated event.stage reads in original order and preserves UID rejection. Eight local responsibilities: spinWheel, revealRelic, acceptCurse, offerPurge, acceptDamage, chooseRelic, choosePurge, acceptOutcome.
+
+Frozen original: tests/fixtures/wheel-event-before.lua (SHA256 f775746a95c2f33eeb9a5d7c688c536b3dd0b6b3ddefeb3455fbd28468f6bc2c).
+Current production SHA256: 280b777031fb52f203fa74a5ba8d97e62f904e54a1c77e776c237d01ef527bb5.
+
+Pinned Luacheck 1.2.0: original choose34, current choose9; acceptOutcome8, acceptCurse6, choosePurge6, chooseRelic4, spinWheel3, revealRelic2, offerPurge2, acceptDamage2. All module functions and chunk are covered by CC15. Original34 and injected regressions in every new helper/choose, nested function, and chunk are rejected; missing measurements rejected.
+
+Independent VM proof executes unchanged wheel_event.lua (5 original public-path tests,102 graphs), wheel_event_ui.lua (2 original UI/public-path tests,16 graphs), wheel-event-boundaries.lua (81 graphs), each once with frozen original and once with current implementation. Full reachable values, aliases, retained owners, exact return arity and verified relocated error statements are compared; no selected-state projection. Tests print final graph SHA256 and byte counts. Graph temp files are discarded after equality; raw complete stdout and hashes remain in final logs.
+
+Boundaries include all stage/choice UID refusals, absent/unsupported outcomes, dynamic field access traces, dependency false returns and partial writes, transaction rollback with retained owner identity, float32 rounding boundary, description-construction error after spin writes, and late purge read after an earlier matching UID.
+
+11 real production semantic mutants are each executed in a fresh VM and killed by named assertions: RNG range, extra draw, preapply gold, UID gate, reveal pool commit, Decay identity, Omamori flag, float32 rounding, damage refusal, purge eligibility, relic refusal. Original source file is never mutated on disk.
+
+Evidence lifecycle: initial probe failed because generated abyss_data did not exist; build:data/build:ui/map generation completed before tests. Boundary probe then passed. First complete responsibilities run passed in150750.23137ms. Final run tightened error normalization to an exact unique relocated original statement, emitted graph digest/byte summaries, and added before/after hashes and exact timing receipts. These are focused tests, NOT Full, and not official import/device evidence. Parent owns current whole-source engineering, source epoch preservation, CI planning floors and publication.
+
+Final complete focused runs: responsibilities145927.663443ms (2/2pass), complexity881.034981ms (1/1pass), zero failure/skip/cancel. Both receipts record identical before/after input hashes. Final rounded Node durations:145928ms and882ms; final wall ceilings146016ms and957ms. Conservative planning should retain larger prior complete observed durations150751ms and967ms. Exploratory responsibilities had the same scenarios and mutants but the earlier generic error-line normalization and string graph comparison without digest diagnostics; complexity test bytes were unchanged. Exploratory pre/post full harness hashes were not recorded and must not be invented. Final complete graph streams have102/16/81checkpoints, respective byte counts98172394/15500322/72042799 and SHA256 values in responsibilities-final.log. Streams are deliberately temporary and not retained; digest/byte count plus fresh runtime equality are recorded.

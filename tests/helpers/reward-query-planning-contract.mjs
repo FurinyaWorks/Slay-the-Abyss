@@ -1,3 +1,4 @@
+import {preWheelCiSource} from './wheel-ci-source-inverse.mjs';
 import {prePosix15ShapeSource} from './posix15-shape-source-inverse.mjs';
 // Current cost and provenance checks stay outside the pure historical projection.
 import assert from 'node:assert/strict';
@@ -40,7 +41,7 @@ export function assertRewardQueryPlanningReceipt({epoch}={}){
  // integration's live shape. Current callers still inspect the live matrix.
  let qualityShardMatrices=liveQualityShardMatrices;
  if(epoch){
-  const shape=prePosix14ShapeSource('scripts/ci-quality-shape.mjs',prePosix15ShapeSource('scripts/ci-quality-shape.mjs',liveContext.read('scripts/ci-quality-shape.mjs')));
+  const shape=prePosix14ShapeSource('scripts/ci-quality-shape.mjs',prePosix15ShapeSource('scripts/ci-quality-shape.mjs',preWheelCiSource('scripts/ci-quality-shape.mjs',liveContext.read('scripts/ci-quality-shape.mjs'))));
   assert.equal(hash(shape),'0d6c82c2a7e7db82e276eb563978d5253d9a225039329e171ed3f907f98609d1','complete original 17/13 shape, with only exact approved outer epoch accepted');
   qualityShardMatrices=structuredClone(runInNewContext(shape.replaceAll('export const ','const ')+'\nqualityShardMatrices;',Object.create(null),{timeout:1000}));
  }

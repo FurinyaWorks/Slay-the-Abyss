@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "base": "ef6b62a23aa85b41e32fb6e5c4e95b697b41d66c",
+  "oldTrackedPathCount": 8263,
+  "allOldPathAttributesUnchanged": true,
+  "actualAutocrlfControl": "Unpinned production Wheel converted to CRLF; new frozen inputs/helpers/evidence kept exact Git bytes.",
+  "gitattributesSha256": "4a5869ff0715047e0347a53d0a061239a80a781c13672ffd591f51cea15efa7d",
+  "limits": "Actual Git autocrlf conversion on Linux, not Windows runtime or Hosted Full. Report/log/index/independent final review excluded to avoid self-reference. No gameplay rerun.",
+  "checkedPathCount": 89
+}

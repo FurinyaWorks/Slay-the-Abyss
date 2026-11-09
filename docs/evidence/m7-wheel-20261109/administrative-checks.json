@@ -1,0 +1,38 @@
+{
+  "syntax": "passed",
+  "guidance": "passed",
+  "backlogScope": "passed",
+  "doctor": {
+    "exitStatus": 1,
+    "status": "existing failure retained",
+    "duplicateGroups": 5,
+    "affectedFiles": 10,
+    "repairPerformed": false
+  },
+  "logs": [
+    {
+      "path": "docs/evidence/m7-wheel-20261109/syntax.log.gz",
+      "originalBytes": 410,
+      "originalSha256": "428404b2b437d79c58abbb235c75251e8c750236bbddc10c71280bdcc64eafae",
+      "storedSha256": "ab3c453da85dc4f69d65d65964aa148d2bc808f2eb5c4fdc9fb1491a257cf6bf"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/guidance.log.gz",
+      "originalBytes": 482,
+      "originalSha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "storedSha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/backlog-verify.log.gz",
+      "originalBytes": 382,
+      "originalSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "storedSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/doctor.log.gz",
+      "originalBytes": 4785,
+      "originalSha256": "41ec373ed9871a1bdc86d07865141fe89ca39d8163789d12e940e8783de30ecc",
+      "storedSha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf"
+    }
+  ]
+}
