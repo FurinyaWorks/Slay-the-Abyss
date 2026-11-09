@@ -465,3 +465,9 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# Golden Idol responsibility source authentication.
+tests/helpers/combined-epoch/pre-ending-terminal-source-epoch.mjs text eol=lf
+tests/helpers/ending-terminal-source-epoch.json.gz -text
+tests/helpers/ending-terminal-source-epoch.mjs text eol=lf
+tests/ending-terminal-source-epoch.test.mjs text eol=lf

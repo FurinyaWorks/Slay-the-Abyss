@@ -80,18 +80,31 @@ function M.begin(owner,run,context)
  if not valid or context.isDailyRun or context.isTrial then state.unlocked=false end
  return state
 end
-local function terminal(run,map,entry)
- local flow,result=run.nodeFlow,run.lastResult
+-- Each predicate owns one source of terminal evidence. The coordinator keeps
+-- the original snapshot and short-circuit order before persistence is allowed.
+local function terminalRun(run,entry)
  if run.campaign~=true or run.act~=3 or run.floor~=51 or run.runSeed~=entry.seed
   or run.character~=entry.character or identity(run)~=entry.role or not entry.role then return false end
+ return true
+end
+local function terminalFlow(flow)
  if not plain(flow)or flow.type~='event'or flow.roomKind~='ending'or flow.complete~=true
   or flow.result~='normal_victory'or flow.floor~=51 or type(flow.id)~='string'then return false end
+ return true
+end
+local function terminalCombat(run,result)
  if run.encounterTier~='boss'or type(run.encounterId)~='string'or not plain(result)
   or result.outcome~='victory'or result.encounterId~=run.encounterId or result.allEnemiesEscaped then return false end
+ return true
+end
+local function terminalMap(map,flow,entry)
  if not plain(map)or map.act~=3 or map.floor~=51 or map.runSeed~=entry.seed
   or type(map.sourceSignature)~='string'or map.sourceSignature==''or flow.mapSignature~=map.sourceSignature
   or flow.mapSeed~=entry.seed or map.currentNodeId~=flow.id or not plain(map.path)
   or map.path[#map.path]~=flow.id or not plain(map.nodes)then return false end
+ return true
+end
+local function terminalNode(map,flow)
  local matches=0
  for _,node in ipairs(map.nodes)do
   if not plain(node)then return false end
@@ -101,6 +114,14 @@ local function terminal(run,map,entry)
   end
  end
  return matches==1
+end
+local function terminal(run,map,entry)
+ local flow,result=run.nodeFlow,run.lastResult
+ if not terminalRun(run,entry)then return false end
+ if not terminalFlow(flow)then return false end
+ if not terminalCombat(run,result)then return false end
+ if not terminalMap(map,flow,entry)then return false end
+ return terminalNode(map,flow)
 end
 local function persist(owner,role)
  if type(owner.writer)~='function'then return end

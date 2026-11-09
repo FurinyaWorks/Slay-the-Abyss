@@ -1,7 +1,7 @@
-// Preserve the complete Defect predecessor as an independently importable epoch.
-export * from './pre-formation-source-epoch.mjs';
-import {sourceEpoch as preEncounterFormationEpoch} from './pre-formation-source-epoch.mjs';
-import {extendEncounterFormationEpoch} from '../encounter-formation-source-epoch.mjs';
-export {preEncounterFormationEpoch};
-// Current public consumers authenticate all 51 changed raw owners on every call.
-export const sourceEpoch=extendEncounterFormationEpoch(preEncounterFormationEpoch);
+// Preserve the complete Encounter formation predecessor as an importable epoch.
+export * from './pre-ending-terminal-source-epoch.mjs';
+import {sourceEpoch as preEndingTerminalEpoch} from './pre-ending-terminal-source-epoch.mjs';
+import {extendEndingTerminalEpoch} from '../ending-terminal-source-epoch.mjs';
+export {preEndingTerminalEpoch};
+// Current public consumers authenticate all 52 changed raw owners on every call.
+export const sourceEpoch=extendEndingTerminalEpoch(preEndingTerminalEpoch);

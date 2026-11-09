@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T01:07:00Z'
+updated_date: '2026-11-09T09:18:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -105,6 +105,8 @@ ordinal: 162000
 2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
 
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
+
+2026-11-09 主控委派继续未占用 ending_history.terminal：将标准局身份、终局事件、Boss结果、地图来源与唯一终点节点校验分成具名职责，保持原短路读取/异常顺序及持久化owner。冻结1eb2884完整旧源，独立新旧VM比较成功/每字段拒绝/别名/故障前缀，真实CC15门禁及来源epoch、定向验证、独审后及时Draft交付；不重复Full、不使用用户电脑，原owner/status/AC不变。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
