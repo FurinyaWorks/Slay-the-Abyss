@@ -18,7 +18,7 @@ test('complete mapped set is eligible; unknown, deleted, core and release change
   for (const ev of [{ ...event, forceFull: true }, { ...event, base: 'master' }, { ...event, eventName: 'push' }, { ...event, eventName: 'workflow_dispatch' }])
     assert.equal(impact(['scripts/value.mjs'], sources, ev, timing).mode, 'full');
   assert.equal(impact([], sources, event, timing).mode, 'full');
-  assert.equal(impact(['scripts/value.mjs'], sources, event, { ...timing, unknownJsMs: 180001 }).mode, 'full');
+  assert.equal(impact(['scripts/value.mjs'], sources, event, { ...timing, unknownJsMs: 180001 }).mode, 'fast');
 });
 test('prose allowlist cannot hide additional unmodelled changes', () => {
   assert.equal(impact(['docs/CI.md'], sources, event, timing).mode, 'fast');
@@ -45,7 +45,7 @@ test('registered UI responsibilities share eligibility with their parent; unknow
   for (const path of ['src/lua/abyss_new_unclassified.lua', 'src/lua/abyss_combat.lua', 'config/architecture.json'])
     assert.equal(impact([path], { ...input, [path]: 'return {}' }, event, timing).mode, 'full');
 });
-test('parallel platforms budget their complete selected sets, including identical Lua cost', () => {
+test('parallel platform costs are advisory and never expand the complete affected set', () => {
   const input = {
     'scripts/value.mjs': 'export const value=1;',
     'tests/a.test.mjs': 'import "../scripts/value.mjs";',
@@ -62,14 +62,27 @@ test('parallel platforms budget their complete selected sets, including identica
   assert.deepEqual(plan.js, ['tests/a.test.mjs', 'tests/b.test.mjs']);
   assert.deepEqual(plan.lua, ['tests/lua/check.lua']);
   assert.equal(plan.estimateMs, 180000);
+  assert.equal(plan.exceedsFastTarget, false);
   assert.deepEqual(plan.estimateByPlatformMs, { win32: 180000, linux: 180000 });
   for (const platform of ['win32', 'linux']) {
     const over = structuredClone(weights);
     over.js[platform]['tests/a.test.mjs']++;
-    const full = impact(changed, input, event, over);
-    assert.equal(full.mode, 'full', `${platform} alone exceeding budget must reject Fast`);
-    assert.equal(full.estimateByPlatformMs[platform], 180001);
-    assert.equal(full.estimateMs, 180001);
+    const affected = impact(changed, input, event, over);
+    assert.equal(affected.mode, 'fast', `${platform} cost cannot expand test scope`);
+    assert.deepEqual(affected.js, plan.js);
+    assert.deepEqual(affected.lua, plan.lua);
+    assert.equal(affected.exceedsFastTarget, true);
+    assert.equal(affected.estimateByPlatformMs[platform], 180001);
+    assert.equal(affected.estimateMs, 180001);
+  }
+  for (const cost of [480001, 1200001, 2700001]) {
+    const slower = structuredClone(weights);
+    slower.lua['tests/lua/check.lua'] = cost;
+    const affected = impact(changed, input, event, slower);
+    assert.equal(affected.mode, 'fast');
+    assert.deepEqual(affected.js, plan.js);
+    assert.deepEqual(affected.lua, plan.lua);
+    assert.equal(affected.exceedsFastTarget, true);
   }
   assert.equal(impact([...changed, 'unknown'], input, event, weights).mode, 'full');
   assert.equal(impact([...changed, 'src/lua/abyss_combat.lua'], input, event, weights).mode, 'full');
@@ -92,7 +105,7 @@ test('actual required gate commands reject every missing, failed, cancelled or s
     }
     // A status function still runs the gate on failed/skipped dependencies;
     // cancellation must release obsolete runs instead of queuing a summary.
-    assert.match(body, /^    if: \$\{\{ !cancelled\(\) \}\}$/m);
+    assert.match(body, /^    if: \$\{\{ !cancelled\(\) && \(github\.event_name != 'pull_request' \|\| github\.event\.pull_request\.draft == false\) \}\}$/m);
   }
 });
 
