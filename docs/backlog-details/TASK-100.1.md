@@ -116,3 +116,11 @@ H1另修原完整4315图元肖像：构建和分批激活均保持整体隐藏�
 [血量分层核对](../evidence/task-100-1-v25-latest-natural-hp-layers-20261109.json)保留战斗末状态82HP与两张结算/回图HUD 88HP的区别：同候选源码先结算战斗血量，再由燃烧之血恢复6；保留的combat对象不随run恢复回写。PNG/画布直接证明显示88，同候选源码支持其来源；原观察器未导出run.hp标量，不补称为当时直接读取，也未改Core或覆盖旧数据。
 
 私有GIL、输入和SDK不提交。重复副本与19份大型state JSON在逐文件hash、归档解压及独立重放核验后清理，保留单一恢复入口、压缩原始证据和源码历史；不删除#565脏树或其他会话工作。上述来源固定于实际测量版本，后续源码或CI修复不回写成这些旧收据的source SHA。
+
+### 最终集成源码复测
+
+[最终A/B及原始数据](../evidence/task-100-1-sdk-final-comparison-20261109.json)另从clean `aced9718e213c09e2e72aa6e05525bc9bf90d0ce`构建，不覆盖0829历史。eager GIL `17f7ab2be7447bc26cf3a5f4551910da7b60b18935bfc8ef4bd3b4e5cb381a5e`，lazy GIL `ff91bf9e7680c066a10ae77e81f2a3448ea8c8a5c0b7ed628e09fcc558000126`；源码payload、原输入、UI、模板、flags/profile与mountedValues均相同，只允许原UUID/eager布尔/已验证的描述性路径归一。原生嵌入Pages原始SHA `a1196b2f3d4bcfa69772cd626dc9063db1a8c4a6d6194667cb4ab894b688fd0f`与最终生产文件逐字节相等。双边相同Node22/SDK/worker，各3新runtime×20往返，初始化19539→14938、暖态19539→16060、每组残留0。
+
+最终暖态P95没有显示时间收益：菜单17.659→19.815ms、选角11.379→13.522ms、返回13.135→14.639ms，均较eager高但未越原1.25观察线；max也完整保留，不挑用旧0829的较好数据替换本轮结果。Node RSS约2.316→1.758GB是无forcedGC的进程观测，不称设备内存收益。正式比较另拒不同/缺失worker身份；既有测试第9项锁最终两份raw gzip及解压hash、固定源码与完整协议，重算全部统计并要求三个P95退步仍如实呈现。采样完成后才增加比较器身份断言，采样循环未改，原收据保留实际worker hash。
+
+独审真实发现测试证明工具的非枚举路径可绕过复用校验，已用同一攻击RED→GREEN：复用只接受深冻结纯JSON对象/稠密数组，自有Symbol、getter、隐藏字段、空洞或附加数组键均拒绝；默认clone行为不变。原始Run完整case、68 owner逐调用一次/顺序/首坏停止/暖恢复/foreign零读与130闭包漂移负控保留，原历史archive/目标hash/预算不变。历史Formation的51-owner原合同明确检验冻结前驱，公共当前68-owner另以真实磁盘逐一故障和删除检验；当前18/15矩阵不改写历史14/9事实。

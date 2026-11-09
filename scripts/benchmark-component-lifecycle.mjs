@@ -39,6 +39,8 @@ export function verifySameVisualPair(before,after) {
 }
 export function evaluatePair(before,after,{observedTimeRatio=1.25}={}) {
  verifySameVisualPair(before,after);
+ assert.match(before.identity.workerSha256,/^[0-9a-f]{64}$/,'missing/invalid measurement worker identity');
+ assert.equal(before.identity.workerSha256,after.identity.workerSha256,'controlled pair changed measurement worker');
  assert(Number.isFinite(observedTimeRatio)&&observedTimeRatio>=1,'invalid observation ratio');
  for(const report of [before,after]){
   assert.equal(report.status,'SDK_MENU_CHARACTER_CYCLES_PASS','incomplete SDK probe');

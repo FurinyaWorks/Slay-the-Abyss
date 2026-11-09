@@ -16,10 +16,12 @@ test('SDK projection sourceFile normalization requires the actual package path',
 });
 test('baseline-derived deterministic count fences reject regressions and report timing separately',()=>{
  const run={cycles:Array.from({length:20},()=>({menuVisible:true,characterVisible:true,countAfter:100})),phases:[{name:'initialize',created:100},...['menu-step','character-step','menu-return-step'].map(name=>({name,wallMs:1}))]};
- const identity=Object.fromEntries(['sdkExportSha256','serverUiSha256','templatesSha256','exactScriptsSha256'].map(key=>[key,'a'.repeat(64)]));
+ const identity=Object.fromEntries(['sdkExportSha256','serverUiSha256','templatesSha256','exactScriptsSha256','workerSha256'].map(key=>[key,'a'.repeat(64)]));
  const before={identity:{...identity,gilSha256:'a'},status:'SDK_MENU_CHARACTER_CYCLES_PASS',runs:[run,run,run]};
  const after={...before,identity:{...identity,gilSha256:'b'}};
  assert.equal(evaluatePair(before,after).hardBudgets.baselineInitializationCeiling,100);
+ assert.throws(()=>evaluatePair(before,{...after,identity:{...after.identity,workerSha256:'b'.repeat(64)}}),/measurement worker/);
+ assert.throws(()=>evaluatePair({...before,identity:{...before.identity,workerSha256:undefined}},after),/measurement worker/);
  assert.throws(()=>evaluatePair(before,{...after,runs:after.runs.slice(1)}));
  assert.throws(()=>evaluatePair(before,{...after,runs:after.runs.map(r=>({...r,phases:r.phases.map(p=>p.name==='initialize'?{...p,created:101}:p)}))}));
  assert.throws(()=>evaluatePair(before,{...after,runs:after.runs.map(r=>({...r,cycles:r.cycles.map(c=>({...c,countAfter:101}))}))}));
@@ -76,4 +78,32 @@ test('recorded actual-GIL pair reproduces all count fences and timing observatio
   const row=actual.timing.find(value=>value.phase===phase);
   assert(row.after.maxMs>row.before.maxMs);
  }
+});
+
+test('final clean integrated actual-GIL pair preserves exact protocol and unfavorable warm timing observations',()=>{
+ const evidence=new URL('../docs/evidence/',import.meta.url);
+ const summary=JSON.parse(readFileSync(new URL('task-100-1-sdk-final-comparison-20261109.json',evidence),'utf8'));
+ const hashes=['8dd4da9c30fbd88b901f35c90bdae54208ca03402e42e867f64767e515130734',
+  'b9a49851cbc3b10c245ad8e3409f9e57600abaaf72fcb1210f672dfb9283042a'];
+ assert.equal(summary.rawReports.length,2);
+ const reports=summary.rawReports.map((binding,index)=>{
+  const bytes=readFileSync(new URL(binding.path,evidence));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),hashes[index]);
+  assert.equal(binding.sha256,hashes[index]);assert.equal(bytes.length,binding.bytes);
+  const raw=gunzipSync(bytes);assert.equal(raw.length,binding.uncompressedBytes);
+  assert.equal(createHash('sha256').update(raw).digest('hex'),binding.uncompressedSha256);
+  return JSON.parse(raw);
+ });
+ const actual=evaluatePair(...reports,{observedTimeRatio:1.25});
+ for(const key of Object.keys(actual))assert.deepEqual(summary[key],actual[key],key);
+ for(const report of reports){
+  assert.equal(report.source.commit,'aced9718e213c09e2e72aa6e05525bc9bf90d0ce');
+  assert.equal(report.source.dirty,false);assert.equal(report.steadyFramesPerVisit,30);
+ }
+ assert.deepEqual(reports[0].environment,reports[1].environment);
+ assert.deepEqual(reports[0].mountedValues,reports[1].mountedValues);
+ for(const key of ['payloadDigest','artFeatures','uiProfile'])assert.deepEqual(reports[0].source[key],reports[1].source[key],key);
+ assert(actual.timing.every(row=>row.after.p95Ms>row.before.p95Ms&&!row.exceedsObservation),
+  'all measured warm P95 regressions stay reported within the original observation line');
+ assert.equal(summary.protocolEquality.workerSha256,actual.current.workerSha256);
 });
