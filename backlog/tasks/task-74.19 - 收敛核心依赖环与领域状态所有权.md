@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T05:27:00Z'
+updated_date: '2026-11-09T06:57:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -59,6 +59,8 @@ ordinal: 161000
 2026-11-08 接续七项已有本地重构：基于已合#560的a0c35db8进行真实增量适配，保全两侧来源、合同与原始证据。只做定向测试及独立深审，不重复Full；从当前基线形成单父线性提交，明确批准后可按Ruleset正常上传及提PR，仍不得绕过质量门禁。
 
 2026-11-09 本轮主控接续未占用的 SilentPotions Cunning Potion 执行边界：由既有 SilentFinal 动作 owner 提供惰性 Shiv 创建/升级宿主，药水规则不再回导 Combat/CardActions。先独审计划，保留加载顺序、动态方法、双 created、错误和回滚，建立全图差分及依赖负控；完整 SCC/CC 重采，保持旧来源与预算、定向验证和独审后及时远端保存。避开 #579/#581/#582/#583/#584 与 WindingHalls，不重复 Full；owner/status/AC 不变。
+
+2026-11-09 PR #585 Quick 暴露 Seven 旧来源测试漏接精确前驱：只补历史测试入口，保留冻结证据和原断言，新增现场来源漂移/缺失负控；复现、同类来源巡检与独审后上传修复，不重复 Full，不改生产或预算。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -105,4 +107,6 @@ WatcherAttack 已改由 queued-play 显式提供延迟 Actor 算术，完整333�
 发布前develop前移至#561b7ed1830，无src/data/scripts/config变动。本轮在新隔离树保全其全部档案及更强历史来源/退休安全合同，仅解决7个非生产文本冲突；45变动owner鲜读与旧epoch linked owner检查并存。最终单父基于b7，原a0度量和320独审按原身份保留；仅定向helper/负控复验，不重复完整行为/工程采集，不改owner/status/AC。
 
 2026-11-09 SilentPotions由SilentFinal动作owner提供五项惰性Shiv能力，实际SCC68→67、内部513→511/324→322；338模块5610完整测量，CC热点33/209与14旧告警不变。生产远端23c72a05已保全；266故障前缀和12真实Run全图、4语义负控、新行为7/7、来源13/13及独立54探针通过。旧来源、正式用药回滚与原断言保留；真实floor28376/25228，Win预测余2731ms并非实际安全。最终CI合同/精确独审与正常托管准入继续；不重复Full、不改owner/status/AC。详见M7-SILENT-POTION-OWNER-20261109。
+
+2026-11-09 PR #585 Quick 42573763876 的 Seven 历史配置比较失败已复现并修复，仅补精确前驱入口和暖调用负控。原11/45-owner/archive/hash保持；单文件9/9、10项来源文件121/121与独立12负控通过。原Quick同12JS/87Lua选集不变，失败日志保留；新HEAD仍须正常Hosted准入，未重复Full。
 <!-- SECTION:NOTES:END -->

@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "failedHeadSha": "f36ba763a23fed8b09a6671398de721f300ff5e7",
+  "baseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "hostedFailure": {
+    "runId": 42573763876,
+    "jobId": 129016784748,
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42573763876",
+    "tests": 114,
+    "passed": 113,
+    "failed": 1,
+    "failure": "Seven frozen 11-owner test directly compared new architecture file with its predecessor; missing authenticated outer projection."
+  },
+  "fix": "Use existing exact live three-owner projection before all original Seven 11/45-owner contracts; preserve original archive/hash, test and file count; add LF/CRLF warm drift/missing negative controls inside original first case.",
+  "inputSha256": {
+    "tests/seven-refactor-source-epoch.test.mjs": "8b8da84cacf52ab84813c19f785fbd784bcad362ec2f183234859b2498470adb",
+    "tests/helpers/silent-potion-prior-live.mjs": "38b1eacf45af451cf0897d3f880261c048ec433225223acdc5d059a53675ff3f",
+    "tests/helpers/silent-potion-source-epoch.mjs": "159a1a33fb29b306c126efd956ea829548a06267708ea647e6118cc4266015d8",
+    "tests/helpers/silent-potion-source-epoch.json.gz": "60114ed947c22b989b28f06cbb202c091431c7b5e658da3760c10bef474f90b9",
+    "tests/helpers/seven-refactor-source-epoch.mjs": "adee26f0be88462722cd374430150bf7e519c359df87f852f93708629b60b942",
+    "tests/helpers/seven-refactor-source-epoch.json.gz": "98ce5a13a217c5b20bbbddf93811d5fc2dda4117bb465c33c5ad4c979608c4bd",
+    "config/architecture.json": "efc8ce730052bb3c60cd24f50bdfdb17ea4f3a29aeb07feaaaf783dcedaac590",
+    "src/lua/abyss_silent_potions.lua": "ac978892d5c00a1f30d6ec7804c29f087f6bd63e26941435633f460458d47297",
+    "src/lua/abyss_silent_final_cards.lua": "6f0f4db2851af37a5a67e308a153c968f7c464a63db13274feaa4baf39fae589"
+  },
+  "logs": [
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/seven-fix-repro.log.gz",
+      "sha256": "3aa069e288d879a61756aa0f4fd7106dedf8638dda6b80a718025389517ebb6f",
+      "uncompressedSha256": "2f3c5eb21c502d2b2fa1444b45a9fcdbad3033c6de356c5710225cab6e339479",
+      "summary": {
+        "tests": "9",
+        "pass": "8",
+        "fail": "1",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "13239.348841"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/seven-fix-negative-initial.log.gz",
+      "sha256": "4997d380219d9e5efa25ba865a19a548c493271a768c6847215d185a58d10db9",
+      "uncompressedSha256": "aca538fff84cbbf937bad0678e894fa302f9ea98bf80098d74974dd94037f4f1",
+      "summary": {
+        "tests": "9",
+        "pass": "8",
+        "fail": "1",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "11187.287753"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/seven-fix-final.log.gz",
+      "sha256": "5f210be2b6f1c7f9ffe1745237285f78b001e8e3475cbfceba27ddd0cfe628cb",
+      "uncompressedSha256": "52893bdb579f7bb4b000abe815e0474a82b1a053e7a43ad9efc234b4d54a788b",
+      "summary": {
+        "tests": "9",
+        "pass": "9",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "8383.682548"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/seven-fix-epoch-sweep.log.gz",
+      "sha256": "603a74bbc6e36602d004fee1550ddf20acfb56a2802ad153052cb4931d2e8dd1",
+      "uncompressedSha256": "4852f3b8d0e7351ffc1ebbef79b664f096d698650394aa95a0d43f2af17ff9fe",
+      "summary": {
+        "tests": "121",
+        "pass": "121",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "152050.226097"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/seven-fix-quick-js-missing-lfs.log.gz",
+      "sha256": "3a6b924e84dcfd6706068743a9221429a41e6ae05f39e8210408e873693589d4",
+      "uncompressedSha256": "beb2eb28a6fcbba06e62bcc3531aafc9c63845d44eec83c09b0c90244b81288e",
+      "summary": {
+        "tests": "114",
+        "pass": "106",
+        "fail": "8",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "39232.036929"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/seven-fix-quick-js-final.log.gz",
+      "sha256": "3359e6c5107705833abe13303fb2b18d804c9817d66dffccb420bca8099a28a4",
+      "uncompressedSha256": "c691c1e9c612d9f66ff9f351f7ff62a44303045f0b48fa1e4a9781d00c6a83e2",
+      "summary": {
+        "tests": "114",
+        "pass": "114",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "29002.573914"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/seven-fix-lfs-preparation.log.gz",
+      "sha256": "7241835039e20dc58d32eb25bb82f9f69f4dc99d53357c74bf2c78deae87a56e",
+      "uncompressedSha256": "007f1c3ac91afa7d694f11619c72d4b5017dc35dd1663bb530ee7a79726f802e",
+      "summary": {}
+    }
+  ],
+  "quickPlan": {
+    "fast": [
+      "tests/ci-run-costs.test.mjs",
+      "tests/genshin-monster-benchmarks.test.mjs",
+      "tests/mad-gremlin-data.test.mjs",
+      "tests/monster-source-candidates.test.mjs",
+      "tests/native-candidate-deployment-closure.test.mjs",
+      "tests/native-script-batch.test.mjs",
+      "tests/official-background-lifecycle.test.mjs",
+      "tests/official-portraits-build.test.mjs",
+      "tests/playtest-input-lifecycle.test.mjs",
+      "tests/reviewed-traveler-geo-assets.test.mjs",
+      "tests/seven-refactor-source-epoch.test.mjs",
+      "tests/sprint-intake.test.mjs"
+    ],
+    "luaFiles": 87,
+    "estimatedLuaMs": 89153,
+    "unchangedFromFailedHostedRun": true
+  },
+  "materializedReviewedPngs": [
+    {
+      "path": "art/cards/traveler-geo/armaments/source.png",
+      "bytes": 1750604,
+      "sha256": "e63cd8703ce983eb1556efa31a017b803e31c7b887e9c3e14c77bd3ba9928332"
+    },
+    {
+      "path": "art/cards/traveler-geo/armaments/preview-native.png",
+      "bytes": 30121,
+      "sha256": "b7b2cd9c4fdfa3f1d893156405a51afc8b8bd1b65a776a9f704086c97685b2ff"
+    },
+    {
+      "path": "art/cards/traveler-geo/cleave/source.png",
+      "bytes": 2091086,
+      "sha256": "6e37a7b9264154a2cd7e6560a625cf001b3b00d63e8fdbf4d01369a714397155"
+    },
+    {
+      "path": "art/cards/traveler-geo/cleave/preview-native.png",
+      "bytes": 36567,
+      "sha256": "271c49cc6248cf46ea029cc63387c682858b43c29288eb32b44d24175e662b39"
+    },
+    {
+      "path": "art/cards/traveler-geo/heavy_blade/source.png",
+      "bytes": 2041123,
+      "sha256": "1cf7dec3ef1f9ae369837204c24b0ce727142909f200c225d252dd85760bdbfc"
+    },
+    {
+      "path": "art/cards/traveler-geo/heavy_blade/preview-native.png",
+      "bytes": 34027,
+      "sha256": "aefb4d2ca114a8738029249fba8b1bdc4f6235be648684cbfe348ed496388936"
+    }
+  ],
+  "limits": [
+    "Targeted source and exact Quick JavaScript subset only; no local Full or 87-file Quick Lua rerun.",
+    "Initial local Quick JavaScript attempt had 8 missing-LFS failures; original materializer verified the six frozen PNGs before the successful complete 12-file retry.",
+    "Original receipts and manifest remain immutable; this is a separate supplementary record.",
+    "Exact new HEAD independent review and normal hosted CI must be bound separately."
+  ],
+  "environment": "cloud Linux local, Node v24.22.1"
+}

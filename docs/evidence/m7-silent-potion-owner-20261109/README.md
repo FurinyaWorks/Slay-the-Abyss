@@ -16,3 +16,7 @@
 - independent-review-provisional.json：代码、行为、来源、CI增量独立审查；不是最终HEAD批准或Hosted证据。
 
 所有摘要需结合相应输入身份解读。规划不是Hosted Full或设备性能，尚无本片官方导入、ready、手机或发布证明。
+
+## Seven 旧来源入口修复补充
+
+`seven-fix-evidence.json` 独立列出初始Quick失败、当前修复输入、补充日志与验证边界。`seven-fix-*.log.gz` 保留原8/9复现、初稿负控失败、最终9/9、全部10个来源合同121/121，以及原Quick JS选集复验。首次JS复验缺少本地LFS素材产生8项失败，随后通过原`ci-reviewed-lfs.mjs`精确下载6份既有PNG，保留准备日志与最终结果。没有修改图片、原证据manifest、成本或门禁，也未执行本地Full。

@@ -1,3 +1,5 @@
+import {readSilentPotionPrior} from './helpers/silent-potion-prior-live.mjs';
+import {silentPotionEpoch} from './helpers/silent-potion-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -7,10 +9,26 @@ const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
 test('seven-refactor exact outer epoch restores every complete predecessor owner',()=>{
  assert.equal(proof.owners.length,11);
  for(const path of proof.owners){
-  const source=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  // Retain Seven's exact source contract after authenticating the newer live slice.
+  const source=readSilentPotionPrior(path).replaceAll('\r\n','\n');
   assert.equal(source,read(path));
   for(const variant of [source,source.replaceAll('\n','\r\n')])
    assert.equal(epoch.preCombinedSource(path,variant,{target:'prior',readSource:read}),proof.targets.prior.files[path].source);
+ }
+ // Both line-ending forms authenticate actual current owners before the frozen
+ // Seven configuration is admitted. Warming cannot hide later drift or absence.
+ const config='config/architecture.json';
+ for(const crlf of [false,true])for(const owner of silentPotionEpoch.proof.owners){
+  let corrupt=false,missing=false;const seen=[];
+  const live=path=>{seen.push(path);if(missing&&path===owner)return null;
+   const source=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+   return corrupt&&path===owner?source+'\n':crlf?source.replaceAll('\n','\r\n'):source;};
+  const raw=readFileSync(config,'utf8').replaceAll('\r\n','\n'),input=crlf?raw.replaceAll('\n','\r\n'):raw;
+  const project=()=>silentPotionEpoch.preCombinedSource(config,input,{target:'prior',readSource:live});
+  assert.equal(project(),read(config));
+  assert.deepEqual(seen,silentPotionEpoch.proof.owners);
+  corrupt=true;assert.throws(project,/linked owner identity/);corrupt=false;
+  missing=true;assert.throws(project,/linked owner identity/);
  }
 });
 test('seven-refactor projection freshly rejects drift and missing owners after warming',()=>{

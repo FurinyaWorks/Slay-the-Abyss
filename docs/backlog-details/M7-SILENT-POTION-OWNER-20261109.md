@@ -39,3 +39,11 @@ shivs 的第三个 host 参数是同步迁移的内部接口。没有默认反�
 原始收据glob曾误抓两项未被行为/source执行的CI-only helper，导致receipt/floor/CI档案循环。已依据真实导入范围排除这两项，原收据完整保留，修正记录说明原hash；没有回填新hash冒充旧运行。source闭包负控初稿重复导入巨大历史证明曾触及默认heap，保留失败并改为精准损坏/缺失负控，未放宽内存阈值。
 
 不重复本地Full，不占用设备、不做官方导入或发布。PR保持Draft，精确HEAD/base独审、Hosted Full、正常merge:auto/原生队列和合后验收仍由原门禁执行；未验AC不勾。
+
+## PR #585 Quick 来源入口修复
+
+精确初始HEAD `f36ba763a23fed8b09a6671398de721f300ff5e7` 的 [Quick 42573763876](https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42573763876) 在原12个JS文件中113/114通过。失败来自Seven旧11-owner合同直接读取当前architecture配置，却与冻结前驱逐字比较；该入口遗漏本片精确前驱适配，不是可忽略的失败。原运行不追认为通过。
+
+仅将这个历史测试入口接入既有`readSilentPotionPrior`：实时认证当前三个owner后投影精确旧配置，保留旧11/45-owner断言与全部archive/hash。原case内增加LF/CRLF × 三owner的暖调用漂移/缺失负控；固定合法输入后污染linked reader，保持foreign输入不读owner的既有语义。不改生产、成本、预算、选集或测试文件/用例数量。
+
+本地原失败8/9可复现，最终单文件9/9、全部10个source-epoch文件121/121通过；独立复核11项旧owner等式和12个新增暖调用负控。原Quick选择器仍选同一12JS/87Lua，完整12JS复验114/114通过；初次因未准备LFS图片出现的8项失败与原入口成功下载6份图片的日志均保留，未改图片或以跳过素材测试替代通过。所有新旧失败与通过日志另存`seven-fix-*`补充证据，不改写初始收据。没有重复Full或87项Quick Lua；修复后须由新HEAD的正常Hosted CI重新准入。
