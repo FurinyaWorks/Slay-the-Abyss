@@ -1,0 +1,87 @@
+{
+  "baseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "originalPrHead": "53b55d4ddd4ed0f2adc5458e53d7d2da5fab51c3",
+  "node": "v24.22.1",
+  "platform": "linux",
+  "completeLocalFull": "not_run",
+  "hostedFull": "pending",
+  "uniqueFinalTargetedTests": 176,
+  "runs": [
+    {
+      "log": "initial-policy.log.gz",
+      "files": [
+        "ci-impact",
+        "ci-summary-runners",
+        "ci-windows-shards",
+        "ci-posix-shards"
+      ],
+      "result": "21/21 before repair"
+    },
+    {
+      "log": "initial-history.log.gz",
+      "files": [
+        "ci-windows-shape-expansion",
+        "full-quality",
+        "ci-posix-concurrency"
+      ],
+      "result": "20/24; four baseline failures reproduced"
+    },
+    {
+      "log": "repaired-history.log.gz",
+      "files": [
+        "ci-summary-runners",
+        "full-quality",
+        "ci-posix-concurrency",
+        "ci-windows-shape-expansion"
+      ],
+      "result": "30/31; original 24/24 pass; one new test had malformed mutation fixture"
+    },
+    {
+      "log": "repaired-summary-final.log.gz",
+      "files": [
+        "ci-summary-runners"
+      ],
+      "result": "6/7; second mutation targeted unrelated earlier rules gate"
+    },
+    {
+      "log": "repaired-summary-pass.log.gz",
+      "files": [
+        "ci-summary-runners"
+      ],
+      "result": "7/7 after both negative fixtures corrected"
+    },
+    {
+      "log": "calibration-engineering.log.gz",
+      "files": [
+        "ci-complete-calibration",
+        "engineering-quality"
+      ],
+      "result": "56/56"
+    },
+    {
+      "log": "admission-regression.log.gz",
+      "files": [
+        "ci-runtime",
+        "ci-impact",
+        "ci-windows-shards",
+        "ci-posix-shards",
+        "merge-queue",
+        "delivery"
+      ],
+      "result": "86/86"
+    },
+    {
+      "log": "platform-wiring.log.gz",
+      "files": [
+        "platform-load-wiring"
+      ],
+      "result": "3/3"
+    }
+  ],
+  "notes": [
+    "All files invoked with node --test --test-concurrency=1; complete named suites, no name filters.",
+    "176 is the deduplicated final 24+7+56+86+3, not the sum of retries.",
+    "Guidance first failed because sparse checkout lacked .cursor/rules/miliastra.mdc; materializing tracked .cursor restored pass without editing guidance.",
+    "Backlog doctor existing duplicate/archive warnings retained; no fix or acceptance-criteria changes."
+  ]
+}
