@@ -1,0 +1,10 @@
+{
+  "scope": "Unresolved merge-state syntax failure, not gameplay or cost result",
+  "exitCode": 1,
+  "inputSha256": {
+    "tests/ci-complete-calibration.test.mjs": "b0edc2053a04e7c1748a6bcee1eab9ddc166b7211be7f39a87caed4b655315ca",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "4c8603a7ab2d7f3b06bedd85911d2610edcc594e0be99ff76f2bb6032371a0f4"
+  },
+  "logSha256": "cf056e13e2a123c7cd9f7c392ac0e65bfeedc1d63276e2a9193652bc790eb269",
+  "compressedLogSha256": "2f092b5c93c77875a7bab8d89199f3b90c118fdb47d5bb63512bf552f2ccbcd8"
+}

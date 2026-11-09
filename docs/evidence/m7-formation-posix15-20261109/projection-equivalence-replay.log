@@ -1,0 +1,14 @@
+{
+  "downstreamTests": 91,
+  "downstreamModules": 151,
+  "sourceArchives": 6,
+  "completeSources": 28,
+  "comparisons": 4370,
+  "thrownComparisons": 30,
+  "projectedComparisons": 34,
+  "completeCurrentTextInputCount": 3488,
+  "completeCurrentTextComparisons": 6976,
+  "equivalent": true,
+  "output": "docs/evidence/m7-formation-posix15-20261109/projection-equivalence-replay-receipt.json.gz",
+  "receiptSha256": "4f7a5dc356ca7707742b29a21dbd23de59165d98fe331a80fa849977574d2e24"
+}

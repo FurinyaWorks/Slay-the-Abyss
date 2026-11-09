@@ -1,0 +1,9 @@
+Auto-merging .gitattributes
+CONFLICT (content): Merge conflict in .gitattributes
+Auto-merging backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md
+CONFLICT (content): Merge conflict in backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md
+Auto-merging tests/ci-complete-calibration.test.mjs
+CONFLICT (content): Merge conflict in tests/ci-complete-calibration.test.mjs
+Auto-merging tests/helpers/ci-complete-calibration-source-inverse.mjs
+CONFLICT (content): Merge conflict in tests/helpers/ci-complete-calibration-source-inverse.mjs
+Automatic merge failed; fix conflicts and then commit the result.

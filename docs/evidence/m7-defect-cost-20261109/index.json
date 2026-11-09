@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "baseRemoteSha": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "localCostAdmission": "pass",
+  "hostedFull": "not run or certified for this candidate",
+  "scope": "Existing PR574 capacity repair. One production CI line changes POSIX14 to15. Production Lua, timing weights/floors, concurrency, budgets, reserve and execution guards remain unchanged.",
+  "matrix": {
+    "windows": 17,
+    "posix": 15,
+    "shards": 32,
+    "fullJobIdentities": 37,
+    "posixMaxParallel": 12,
+    "luaWorkers": 2
+  },
+  "planning": {
+    "inventoryJs": 797,
+    "inventoryLua": 1410,
+    "samePosixTotalWeightMs": 15994730,
+    "old14CapacityDeficitMs": 34730,
+    "minimumPosixBins": 15,
+    "windowsWithReserveMs": 1791774,
+    "windowsHeadroomMs": 8226,
+    "posixWithReserveMs": 1126323,
+    "posixHeadroomMs": 73677,
+    "reserveMs": 60000,
+    "qualification": "Same-weight per-job planning only, not lower total CPU, hosted latency or permission to run."
+  },
+  "freshValidation": {
+    "files": 23,
+    "tests": 241,
+    "fail": 0,
+    "skipped": 0,
+    "affectedCiFiles": 17,
+    "affectedCiTests": 210,
+    "additionalSourceFiles": 6,
+    "additionalSourceTests": 31,
+    "independentValidatorControls": 32,
+    "independentProjectionControls": 10,
+    "projectionInputCount": 3478,
+    "projectionStages": 2,
+    "supplementalNewHelperInputs": 1,
+    "guidance": "pass",
+    "backlog": "pass"
+  },
+  "retainedValidation": {
+    "previousBehaviorTests": 19,
+    "behaviorInputHashesVerifiedUnchanged": 369,
+    "behaviorRerun": false,
+    "previousSource121": "Historical result retained, not relabeled as a fresh run. Changed source projection consumers are verified by the fresh selection and equivalence proof.",
+    "originalBlockedIndex": "docs/evidence/m7-defect-final-20261109/index.json"
+  },
+  "limitations": [
+    "Broader213-test run passed212; unchanged PowerShell checkout test could not execute because pwsh is unavailable. Original failure retained.",
+    "Two overbroad source attempts were interrupted and retained; neither is counted as passed.",
+    "91-file conservative dependency closure is not91 newly executed files.10 were covered in the fresh suites;81 are bounded by exact projection equivalence and documented live-reader audit.",
+    "Original14-shard over-budget result and all historical fixtures remain unmodified.",
+    "Draft stacked PR; prerequisite integration, normal administrator admission and exact-HEAD Hosted Full still pending. No duplicate Full, bypass, ready, merge, deployment or user computer action."
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/affected-ci-tools-receipt.json",
+      "sha256": "1f83bc2ce7066e751bc83b5da52542b251b3930b25388f5d456619cf14f6f5a1",
+      "bytes": 751527
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/affected-ci-tools.log.gz",
+      "sha256": "f5ae86366bd16238a47c8e4de88407b8a3529e449e11e76f9674f5d7676fea2e",
+      "bytes": 8665,
+      "uncompressedSha256": "6ccc54ce57f18e499326272abd66c1508cb31e2f5780ee5f9e629c7be12a3e7b",
+      "uncompressedBytes": 24461
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/backlog.log.gz",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "bytes": 361,
+      "uncompressedSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "uncompressedBytes": 382
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/broad-ci-tools-pwsh-missing.log.gz",
+      "sha256": "7fc36e745b38ec1f0788febed19e432425f15bab9c6ae879b33ed45a602ee361",
+      "bytes": 9186,
+      "uncompressedSha256": "f425907c6eb6defc60a783f2704840901a16f0b086fe8a24dd92e5a5f251f176",
+      "uncompressedBytes": 25752
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/final-input-binding.json",
+      "sha256": "1724b8bb2b08f783e85bf437bcce1d58b25833a1602fd2c744b3e51519afce15",
+      "bytes": 998
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/guidance.log.gz",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "bytes": 287,
+      "uncompressedSha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "uncompressedBytes": 482
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/independent-reproduce.mjs",
+      "sha256": "62116135974611e4cc01197ecf168eeafd2f2bb582134b61e20bbf978333f78c",
+      "bytes": 7673
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/independent-review.json",
+      "sha256": "b00f7b87eed3ca3a23e1a57a1c9ff684d97d42ff89ff8ca59b21e42f2c88dc08",
+      "bytes": 12562
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/initial-ci-tools-failed.log.gz",
+      "sha256": "668adc5f24835d3ab344ea7768b65dc54933b4c669007c0a38ee3d12e3d49716",
+      "bytes": 5400,
+      "uncompressedSha256": "ae29b4b67b659f91b1a348c7548940be44f16693c32d80626af0b63aa97d667b",
+      "uncompressedBytes": 14882
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/intermediate-contracts.log.gz",
+      "sha256": "ef3dcb75b4de7ddf4cba09b5129fb9c4def275fea95b9d2f54e1dc7a0899b201",
+      "bytes": 2108,
+      "uncompressedSha256": "706e3a5a49b50e132a2576c9148c0af738ad681bdc89046f420a9f5e0d8a55ab",
+      "uncompressedBytes": 5454
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/prepublication-freshness.json",
+      "sha256": "b9408d31be32102fcdc80385305d2f38074533919ccd3f27f9b31d4e1c0e9b60",
+      "bytes": 2892
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/projection-equivalence-receipt.json.gz",
+      "sha256": "a423a9dfe824438a74a2f3aafab39e47035fffb3eaf129c8f9e2f43c94db7761",
+      "bytes": 219499,
+      "uncompressedSha256": "0defa7887be5e11e0168c916581a13e8d86c72be20570a825721d1032cbcb60b",
+      "uncompressedBytes": 1761887
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/projection-equivalence-replay-receipt.json.gz",
+      "sha256": "0c12ec598602912fb23fe2a223e65c4de4c6aed150f273a3cacb5c880fb72478",
+      "bytes": 219695,
+      "uncompressedSha256": "da2fa01688396f97d878bd58e4226e74bb880a9db48f9b632926cfc11485331a",
+      "uncompressedBytes": 1762252
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/projection-equivalence-replay.log",
+      "sha256": "6ddae227d4eff8038bc6d92e40b37638f858115b1377993d0540d3d855a3f0c2",
+      "bytes": 765
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/projection-equivalence.log",
+      "sha256": "15ae4a0d8c3448f2f4099f937cc53d23865496acce652ecf6189300624b8b906",
+      "bytes": 255
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/projection-equivalence.mjs",
+      "sha256": "1a8636dfa69e2d51b2995395b3a6ecfd726931b97327a2319444504431c74a9b",
+      "bytes": 8490
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/redistribution-before-after-plan.json",
+      "sha256": "9bafbf54c02541b6819ad67a3e60bfeec6ae57902698cf0a3a3b853c4e4ed5be",
+      "bytes": 1869
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/retained-production-and-history.json",
+      "sha256": "146de6e9dd38854fa20b9ab3c82453c784577183e5361ab5d053f428c76405a1",
+      "bytes": 331971
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/transitive-source-contracts-receipt.json.gz",
+      "sha256": "79f90fe441b21a9d13aa24c1f25a25c4c7794ecc5bfb153f827e07e5ad6882fb",
+      "bytes": 488398,
+      "uncompressedSha256": "0b500251142c51033ab4e6fb856f63025375206838df3c244975900e06805646",
+      "uncompressedBytes": 1236159
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/transitive-source-contracts.log.gz",
+      "sha256": "699b0c582af64206e6ef0ce2cda5a5ae8896b91f5bf2caa0cea672322827062d",
+      "bytes": 1529,
+      "uncompressedSha256": "014989cfac253b056c27790c5fd879b27610414916b85f93effc86311131894d",
+      "uncompressedBytes": 3890
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/transitive-source-dependency-boundary.json",
+      "sha256": "3453afa1407406ea1b17b2fa7f78ea2e8b5a56e0a4a7b008534c3416f34efd1d",
+      "bytes": 51816
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/transitive-source-interrupted.log.gz",
+      "sha256": "dbb05c51a04da8c848cc1c34d22f9057d7e7a128ff65fb596343ca74a13d56df",
+      "bytes": 74,
+      "uncompressedSha256": "4fe9435095169f4795c83d7f64e565cb1f7ff05d40aa0cdd309e6e90448335a5",
+      "uncompressedBytes": 56
+    },
+    {
+      "path": "docs/evidence/m7-defect-cost-20261109/transitive-source-serial-interrupted.log.gz",
+      "sha256": "61f679f527fc77dbe70e8563c37af39f8023e92ff4ca5505b1b1becc6d367e9a",
+      "bytes": 272,
+      "uncompressedSha256": "ac9883b67f831174222b2e39940cdade43ffbf1c266d65f6b53deee161726dc2",
+      "uncompressedBytes": 454
+    }
+  ]
+}

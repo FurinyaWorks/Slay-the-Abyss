@@ -1,4 +1,5 @@
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
+import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource,defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {preSilentFinalCiSource,silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
 import {preRelicEquipCiSource,relicEquipPlanningKey,relicEquipPlanningFloor} from './helpers/relic-equip-ci-source-inverse.mjs';
@@ -35,7 +36,11 @@ import {shardLuaScripts} from '../scripts/test-lua.mjs';
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const rawReadFileSync=(file,encoding)=>{const value=diskReadFileSync(file,encoding);if(typeof value==='string')return preEncounterFormationCiSource(file,value);const text=value.toString('utf8'),prior=preEncounterFormationCiSource(file,text);return prior===text?value:Buffer.from(prior);};
-const readFileSync=(file,encoding)=>{const value=rawReadFileSync(file,encoding);if(typeof value==='string')return preDefectFinalCiSource(file,value);const text=value.toString('utf8'),prior=preDefectFinalCiSource(file,text);return prior===text?value:Buffer.from(prior);};
+const readFileSync=(file,encoding)=>{
+ const raw=rawReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
+ const prior=preDefectFinalCiSource(file,prePosix15ShapeSource(file,text));
+ return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
+};
 const hash=s=>createHash('sha256').update(s).digest('hex'),read=p=>originalPlanningSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
 const currentTimings=actualCurrentTimings;
 // Frozen 17/13 contracts retain their original complete shape and job identity.
@@ -238,11 +243,11 @@ test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 L
  const workflow=beforeExecutionTimeoutWorkflow(read('.github/workflows/quality.yml'));assert.match(workflow,/max-parallel: 12/);assert.match(workflow,/timeout-minutes: 20/);assert.match(workflow,/local-special' && 75 \|\| 30/);
 });
 
-test('current Full36 retains full coverage and reports performance targets under unchanged execution guards',t=>{
+test('current Full37 retains full coverage and reports performance targets under unchanged execution guards',t=>{
  const workflow=read('.github/workflows/quality.yml');assert.match(workflow,/timeout-minutes: \$\{\{ inputs.runner_pool == 'local-special' && 75 \|\| 45 \}\}/);assert.match(workflow,/runs-on: ubuntu-24.04\n    timeout-minutes: 30/);
  const js=discoverJs(),lua=currentLua();
- assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:17},(_,i)=>i+1),posix:Array.from({length:14},(_,i)=>i+1)});
- assert.equal(currentQualityShardJobs.length,31);assert.equal(currentFullQualityJobs.length,36);assert.equal(new Set(currentFullQualityJobs).size,36);
+ assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:17},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
+ assert.equal(currentQualityShardJobs.length,32);assert.equal(currentFullQualityJobs.length,37);assert.equal(new Set(currentFullQualityJobs).size,37);
  assert.deepEqual(js.filter(file=>postPlacementJs.includes(file)).sort(),postPlacementJs);
  assert.deepEqual(lua.filter(file=>postPlacementLua.includes(file)),postPlacementLua);
  assert.equal(js.length,placement.inventory.js+postPlacementJs.length);
@@ -304,12 +309,12 @@ test('current Full36 retains full coverage and reports performance targets under
   assert.equal(currentTimings.lua[file],undefined,'new fixtures have no fabricated worker-safety measurements');
   assert.equal(currentTimings.luaShard[file],undefined,'new fixtures have no fabricated placement measurements');
  }
- for(const [platform,count,budget]of [['win32',17,1800000],['linux',14,1200000]]){
+ for(const [platform,count,budget]of [['win32',17,1800000],['linux',15,1200000]]){
   const loads=currentJsShard(js,`1/${count}`,platform).loads;
   const jsBins=Array.from({length:count},(_,i)=>currentJsShard(js,`${i+1}/${count}`,platform).files);
   assert.deepEqual(jsBins.flat().sort(),[...js].sort());assert.equal(new Set(jsBins.flat()).size,js.length);
   if(platform==='linux'){
-   const forecast=Math.max(...loads)+60000;assert.equal(forecast,1205156);assert.ok(forecast<budget,'complete POSIX inventory fits the unchanged performance target including reserve');t.diagnostic(`POSIX forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
+   const forecast=Math.max(...loads)+60000;assert.equal(forecast,1128812);assert.ok(forecast<budget,'complete POSIX inventory fits the unchanged performance target including reserve');t.diagnostic(`POSIX forecast ${forecast} ms; target ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; actual Full pass not claimed`);assert.ok(forecast<1800000,'forecast must fit the separately authorized 30-minute execution guard');
    continue;
   }
   const planning={...currentTimings,windowsJsShardMs:loads};
@@ -979,4 +984,58 @@ test('pre-Formation Full36 inventory and forecasts remain independently reproduc
   }
   assert.equal(maximum+60000,expected);
  }
+});
+
+test('POSIX15 accepts only its complete approved source and preserves the exact published POSIX14 epoch',()=>{
+ const {path,beforeSource,afterSource,beforeSha256,afterSha256}=posix15ShapeProof;
+ assert.equal(rawReadFileSync(path,'utf8').replaceAll('\r\n','\n'),afterSource);
+ assert.equal(afterSource,beforeSource.replace('length:14','length:15'),'only capacity allocation changes');
+ assert.equal(hash(beforeSource),beforeSha256);assert.equal(hash(afterSource),afterSha256);
+ for(const source of [afterSource,afterSource.replaceAll('\n','\r\n')])assert.equal(prePosix15ShapeSource(path,source),beforeSource);
+ for(const source of [beforeSource,afterSource+'\n',afterSource.slice(1),afterSource.replace('length:17','length:18'),afterSource.replace('length:15','length:16'),null,undefined,{},42])assert.equal(prePosix15ShapeSource(path,source),source);
+ for(const other of ['foreign','scripts/ci-test-timings.json'])assert.equal(prePosix15ShapeSource(other,afterSource),afterSource);
+ assert.equal(prePosix14ShapeSource(path,beforeSource),frozenShapeSource);
+ assert.equal(prePosix14ShapeSource(path,afterSource),afterSource,'the original POSIX14 projector still rejects POSIX15 directly');
+});
+
+test('pre-Formation unchanged complete weights reproduce the blocked POSIX14 forecast and the POSIX15 capacity allocation',()=>{
+ const historical=JSON.parse(preEncounterFormationCiSource(path,diskReadFileSync(path,'utf8')));
+ const js=discoverJs().filter(file=>!encounterFormationJs.includes(file)),lua=currentLua();assert.equal(js.length,797);assert.equal(lua.length,1410);
+ assert.deepEqual([...js].sort(),encounterFormationCiInventory.js);
+ const weights=Object.fromEntries(js.map(file=>[file,Math.max(historical.js.linux[file]??historical.unknownJsMs,historical.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+ const totals=[];
+ for(const [count,forecast]of [[14,1202485],[15,1126323]]){
+  const bins=Array.from({length:count},(_,i)=>partition(js,`${i+1}/${count}`,weights,historical.unknownJsMs,Array.from({length:count},(_,i)=>i===0?historical.initialMs.linux[0]:0)));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,797);
+  const loads=bins[0].loads;totals.push(loads.reduce((sum,load)=>sum+load,0));
+  assert.equal(Math.max(...loads)+60000,forecast);
+  assert.equal(forecast<1200000,count===15,'the original budget is unchanged; old capacity remains blocked');
+ }
+ assert.deepEqual(totals,[15994730,15994730],'redistribution does not claim a runtime or modeled-work reduction');
+ assert.ok(totals[0]>14*(1200000-60000),'even ideal balancing cannot fit the complete unchanged work into fourteen original budgets');
+ assert.equal(historical.jsPlanning.localLowerBounds['tests/defect-final-execute.test.mjs'].durationMs,89852);
+ assert.equal(historical.jsPlanning.localLowerBounds['tests/defect-final-source-epoch.test.mjs'].durationMs,13784);
+ assert.equal(Object.keys(historical.jsPlanning.localLowerBounds).length,30);
+ const workflow=rawReadFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
+ assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+});
+
+
+test('combined Formation800 inventory preserves both blocked POSIX14 and feasible POSIX15 forecasts without reducing work or floors',()=>{
+ const js=discoverJs(),lua=currentLua();assert.equal(js.length,800);assert.equal(lua.length,1410);
+ const totals=[];
+ for(const [count,forecast]of [[14,1205156],[15,1128812]]){
+  const bins=Array.from({length:count},(_,i)=>currentJsShard(js,`${i+1}/${count}`,'linux'));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,800);
+  const loads=bins[0].loads;totals.push(loads.reduce((sum,load)=>sum+load,0));
+  assert.equal(Math.max(...loads)+60000,forecast);
+  assert.equal(forecast<1200000,count===15,'the original budget is unchanged; complete old capacity remains blocked');
+ }
+ assert.deepEqual(totals,[16032072,16032072],'redistribution does not claim a runtime or modeled-work reduction');
+ assert.equal(totals[0]-15994730,37342,'only the three Formation files add planned work at their unchanged effective costs');
+ assert.ok(totals[0]>14*(1200000-60000),'even ideal balancing cannot fit all complete work into fourteen original budgets');
+ assert.equal(currentTimings.unknownJsMs,10000);assert.equal(Object.keys(currentTimings.jsPlanning.localLowerBounds).length,32);
+ for(const [key,floor]of Object.entries(encounterFormationPlanningFloors))assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[key],floor);
+ const workflow=diskReadFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
+ assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
 });

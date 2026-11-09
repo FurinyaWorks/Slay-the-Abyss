@@ -1,0 +1,64 @@
+{
+  "conclusion": "PASS",
+  "completeSources": 28,
+  "comparisons": 13455,
+  "bridgeControls": 17,
+  "validatorNegativeControls": 40,
+  "inventory": {
+    "js": 800,
+    "lua": 1410
+  },
+  "budget": {
+    "reserveMs": 60000,
+    "windowsTargetMs": 1800000,
+    "posixTargetMs": 1200000,
+    "windowsCurrentMs": 1794163,
+    "windowsHeadroomMs": 5837,
+    "posix14CurrentMs": 1205156,
+    "posix15CurrentMs": 1128812,
+    "posixHeadroomMs": 71188,
+    "posixTotalWorkMs": 16032072,
+    "prior797TotalWorkMs": 15994730,
+    "addedWorkMs": 37342,
+    "minRequiredPosixBins": 15,
+    "historic797Forecasts": {
+      "14": 1202485,
+      "15": 1126323
+    },
+    "loads14": [
+      1145148,
+      1145148,
+      1145147,
+      1145156,
+      1145147,
+      1145148,
+      1145147,
+      1145148,
+      1145147,
+      1145147,
+      1145147,
+      1145147,
+      1145147,
+      1145148
+    ],
+    "loads15": [
+      1068803,
+      1068812,
+      1068810,
+      1068812,
+      1068803,
+      1068812,
+      1068803,
+      1068802,
+      1068802,
+      1068803,
+      1068802,
+      1068802,
+      1068802,
+      1068802,
+      1068802
+    ]
+  },
+  "reviewedInputs": 36,
+  "output": "docs/evidence/m7-formation-posix15-20261109/independent-merge-probe-receipt.json"
+}

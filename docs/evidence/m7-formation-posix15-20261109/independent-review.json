@@ -1,0 +1,24 @@
+{
+  "reviewId": "Formation–POSIX15 independent merge review, 2026-11-09",
+  "reviewer": "Independent integration reviewer, separate from implementation",
+  "createdAt": "2026-11-09T01:07:18.160622+00:00",
+  "localConclusion": "pass",
+  "unresolvedLocalFindings": [],
+  "admissionStatus": "BLOCKED / UNVERIFIED",
+  "reviewedHeadSha": null,
+  "reviewedTreeSha": null,
+  "parents": [
+    "d21be2fb2d84f68767c3b1ef827b61a2b63aa323",
+    "841510b78172b923b1a613216b5c3dcb2c3e062e"
+  ],
+  "scope": "Full-tree preservation and narrow Formation/POSIX15 source-composition, planning and CI contract review. Not merge admission, hosted Full or new gameplay/metrics execution.",
+  "finalIdentityRequirement": "After commit, independently read exact commit parents and tree, compare reviewed file bindings, and report attestation separately.",
+  "evidence": {
+    "independent-merge-probe-receipt.json": "305054caff9be14039732ee4c7d539700e89739dc64ab1439762927033b90768",
+    "independent-merge-probe.log": "5591e8ab00040e555e9d30a72e75a55077c483fd760ed4a833c5440ebaf59643",
+    "independent-merge-probe.mjs": "c86fe0e6819a304e831c62027f2bcf23af458d091a636baaaf1a5bf09e7c2201",
+    "independent-original-preservation.json": "ca9255366aa1067d00843856de850c13b0580bcb253c7640c0c39aaf3f63c982",
+    "independent-receipt-audit.json": "31a0469d7fd693e4f8a936d89fc68b89499f505b5808f0aefe2a8cf2789a587d",
+    "independent-review.md": "7d636ed64fba1700aa0894dd0656a5d88182596982277157a86685505084b6aa"
+  }
+}

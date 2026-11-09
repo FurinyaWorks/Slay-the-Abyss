@@ -1,0 +1,80 @@
+{
+  "pass": true,
+  "output": "docs/evidence/m7-formation-posix15-20261109/ci-planning-replay-receipt.json.gz",
+  "forecasts": [
+    {
+      "platform": "win32",
+      "count": 17,
+      "jsCount": 797,
+      "forecastMs": 1791774,
+      "budgetMs": 1800000,
+      "headroomMs": 8226,
+      "totalPlannedJsMs": 18915702
+    },
+    {
+      "platform": "linux",
+      "count": 14,
+      "jsCount": 797,
+      "forecastMs": 1202485,
+      "budgetMs": 1200000,
+      "headroomMs": -2485,
+      "totalPlannedJsMs": 15994730
+    },
+    {
+      "platform": "linux",
+      "count": 15,
+      "jsCount": 797,
+      "forecastMs": 1126323,
+      "budgetMs": 1200000,
+      "headroomMs": 73677,
+      "totalPlannedJsMs": 15994730
+    },
+    {
+      "platform": "win32",
+      "count": 17,
+      "jsCount": 800,
+      "forecastMs": 1794163,
+      "budgetMs": 1800000,
+      "headroomMs": 5837,
+      "totalPlannedJsMs": 18953044
+    },
+    {
+      "platform": "linux",
+      "count": 14,
+      "jsCount": 800,
+      "forecastMs": 1205156,
+      "budgetMs": 1200000,
+      "headroomMs": -5156,
+      "totalPlannedJsMs": 16032072
+    },
+    {
+      "platform": "linux",
+      "count": 15,
+      "jsCount": 800,
+      "forecastMs": 1128812,
+      "budgetMs": 1200000,
+      "headroomMs": 71188,
+      "totalPlannedJsMs": 16032072
+    }
+  ],
+  "authenticatedFloors": {
+    "tests/encounter-formation-source-epoch.test.mjs": {
+      "durationMs": 17342,
+      "inputCount": 59,
+      "sourceLog": "docs/evidence/m7-formation-20261109/source.log.gz",
+      "sourceLogSha256": "40b9017ee4984b4fca03d73668e2adcfceeb925ee81723ece78c188c0198bbc1",
+      "sourceReceipt": "docs/evidence/m7-formation-20261109/source-receipt.json",
+      "sourceReceiptSha256": "4a80f128eaa794a38a4da9b8ad7d9caa21abd4c73fd7308466e977eaf601eda0",
+      "scope": "Exact original complete-run inputs authenticated, not a current rerun or hosted measurement"
+    },
+    "tests/encounter-formation-responsibilities.test.mjs": {
+      "durationMs": 7322,
+      "inputCount": 345,
+      "sourceLog": "docs/evidence/m7-formation-20261109/behavior-final.log.gz",
+      "sourceLogSha256": "2fb1e9cf600f6a0aea08eb739f404f6539430b7865883f2bffac3ae2fdf46333",
+      "sourceReceipt": "docs/evidence/m7-formation-20261109/behavior-final-receipt.json",
+      "sourceReceiptSha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc",
+      "scope": "Exact original complete-run inputs authenticated, not a current rerun or hosted measurement"
+    }
+  }
+}

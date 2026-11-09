@@ -1,0 +1,28 @@
+{
+  "pass": true,
+  "functions": [
+    "preCurrentCiPlacementSource",
+    "preCiCompleteCalibrationSource"
+  ],
+  "inputCount": 3478,
+  "nonShapeIdentityCount": 3477,
+  "supplementalTextInputCount": 1,
+  "output": "docs/evidence/m7-defect-cost-20261109/projection-equivalence-replay-receipt.json.gz",
+  "receiptSha256": "da2fa01688396f97d878bd58e4226e74bb880a9db48f9b632926cfc11485331a"
+}
+
+{
+  "overwriteNegativeControls": [
+    {
+      "output": "docs/evidence/m7-defect-cost-20261109/projection-equivalence.mjs",
+      "status": 1,
+      "rejected": true
+    },
+    {
+      "output": "docs/evidence/m7-defect-cost-20261109/projection-equivalence-receipt.json.gz",
+      "status": 1,
+      "rejected": true
+    }
+  ],
+  "scriptAndOriginalReceiptUnchanged": true
+}
