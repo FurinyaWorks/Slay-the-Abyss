@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T01:07:00Z'
+updated_date: '2026-11-09T02:20:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -105,6 +105,8 @@ ordinal: 162000
 2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
 
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
+
+本轮接续Owner持续M7授权，鲜查develop7821a7f4与#576集成、#577 Stasis并避开已占用职责，只治理Gremlin Wheel事件M.choose的CC34。按转动/揭示、结果兑现、遗物领取及选牌移除生命周期拆责，保持Gold提前提交、单次misc RNG、动态Run接口、错误与完整事务回滚。基于已审Stasis整树保留旧完整来源，独立旧新VM与真实负控，全函数测量/CC15门禁及原库存预算检查后独审、及时远端保存并Draft交付；不重复Full、不用用户设备/Codex、不改owner/status/AC或绕过#576正常准入。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
