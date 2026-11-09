@@ -1,3 +1,4 @@
+import {preGoldenIdolCiSource} from './helpers/golden-idol-ci-source-inverse.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -161,8 +162,9 @@ test('real executor preserves test failure, continues later files, reports timin
 });
 
 
-test('current timing records preserve all measured corrections without duplicate JSON keys',()=>{
- const raw=readFileSync('scripts/ci-test-timings.json','utf8');
+test('pre-Golden Idol timing records preserve all measured corrections without duplicate JSON keys',()=>{
+ const raw=preGoldenIdolCiSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8'));
+ const timings=JSON.parse(raw);
  assert.equal((raw.match(/^  "jsCorrections":/gm)||[]).length,1,'one unambiguous correction inventory');
  assert.equal(timings.jsCorrections.length,3);
  for(const entry of timings.jsCorrections){

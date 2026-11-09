@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T01:07:00Z'
+updated_date: '2026-11-09T07:38:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -105,6 +105,8 @@ ordinal: 162000
 2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
 
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
+
+2026-11-09 主控第七轮指派接续 GoldenIdolEvent.choose（CC31）：鲜查 develop 1eb28847 和全部七个开放 PR 无此生产路径占用；按遗物取得、陷阱健康准入及三类代价提交拆责，保留 Run 事务、动态接口、错误及部分写入顺序。冻结原完整源码，独立旧新 VM 全图差分和真实变异负控；新增职责 CC15、来源适配及窄回归后独审及时上传 Draft。task:pick 因既有 In Progress 为 HOLD，仅续做既有指派，不新领、不改 owner/status/AC；不重复 Full 或操作用户电脑。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -191,4 +193,6 @@ Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原PO
 已在独立树整合公开#574@841510b7与#575@d21be2fb，保全两父全部生产/历史证据。组合800JS/1410Lua复算Windows1794163（余5837）、POSIX15为1128812（余71188），旧14超5156保持可复现；仅4共享文本冲突，预算/floor/unknown/并发/worker不变。独审核8125非冲突原路径字节一致；当前定向测试和最终独审收口中，不重复Full或提前勾AC。
 
 POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入前后hash一致；历史/当前投影4370+6976比较重放一致。独审13455比较、17桥拒绝和40准入validator拒绝负控通过，原始失败保留。以原#575与#574为两父合并更新同PR；仅本地组合验证及规划通过，未跑本HEAD Hosted Full，继续Draft与正常准入，不勾AC。
+
+GoldenIdolEvent.choose职责切片已完成：31→9，四helper最高8；完整338模块>30热点33→32、>15为209→208，SCC68/11/2及14旧告警不变。98图+8语义变异+全模块CC门禁5/5，独审907额外图等价；原8项真实Lua旧新各8/8通过。52-owner来源保留51-owner历史；当前802JS/1410Lua预测Windows1796561、POSIX1131638ms，原预算不变且不宣称Hosted安全。独审、来源/成本窄验与及时Draft交付证据见docs/evidence/m7-golden-idol-20261109/README.md；正常Full、队列与合后验收未取得，所有AC维持未勾。
 <!-- SECTION:NOTES:END -->

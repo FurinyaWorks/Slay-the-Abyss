@@ -1,0 +1,162 @@
+{
+  "base": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "before": {
+    "modules": 338,
+    "measurements": 5604,
+    "over30": 33,
+    "over15": 209,
+    "max": 61,
+    "scc": [
+      {
+        "members": 68,
+        "positions": 513
+      },
+      {
+        "members": 11,
+        "positions": 44
+      },
+      {
+        "members": 2,
+        "positions": 2
+      }
+    ],
+    "warnings": 14
+  },
+  "after": {
+    "modules": 338,
+    "measurements": 5608,
+    "over30": 32,
+    "over15": 208,
+    "max": 61,
+    "scc": [
+      {
+        "members": 68,
+        "positions": 513
+      },
+      {
+        "members": 11,
+        "positions": 44
+      },
+      {
+        "members": 2,
+        "positions": 2
+      }
+    ],
+    "warnings": 14
+  },
+  "sourceSha256": "96a6c25fde12de016eb631e11325349d45c10794c9259f243fa42fc0e8129e0f",
+  "sourceFile": "src/lua/abyss_golden_idol_event.lua",
+  "scoped": [
+    {
+      "id": "$",
+      "name": "<chunk>",
+      "kind": "chunk",
+      "constructorName": false,
+      "line": 1,
+      "column": 1,
+      "endLine": 67,
+      "lines": 67,
+      "complexity": 1
+    },
+    {
+      "id": "$/owned#1",
+      "name": "owned",
+      "kind": "function",
+      "constructorName": false,
+      "line": 5,
+      "column": 7,
+      "endLine": 5,
+      "lines": 1,
+      "complexity": 3
+    },
+    {
+      "id": "$/row#1",
+      "name": "row",
+      "kind": "function",
+      "constructorName": false,
+      "line": 6,
+      "column": 7,
+      "endLine": 6,
+      "lines": 1,
+      "complexity": 1
+    },
+    {
+      "id": "$/M.prepare#1",
+      "name": "M.prepare",
+      "kind": "function",
+      "constructorName": false,
+      "line": 7,
+      "column": 1,
+      "endLine": 13,
+      "lines": 7,
+      "complexity": 5
+    },
+    {
+      "id": "$/M.options#1",
+      "name": "M.options",
+      "kind": "function",
+      "constructorName": false,
+      "line": 14,
+      "column": 1,
+      "endLine": 23,
+      "lines": 10,
+      "complexity": 6
+    },
+    {
+      "id": "$/chooseIntro#1",
+      "name": "chooseIntro",
+      "kind": "function",
+      "constructorName": false,
+      "line": 24,
+      "column": 7,
+      "endLine": 31,
+      "lines": 8,
+      "complexity": 6
+    },
+    {
+      "id": "$/invalidTrapHealth#1",
+      "name": "invalidTrapHealth",
+      "kind": "function",
+      "constructorName": false,
+      "line": 32,
+      "column": 7,
+      "endLine": 35,
+      "lines": 4,
+      "complexity": 8
+    },
+    {
+      "id": "$/obtainInjury#1",
+      "name": "obtainInjury",
+      "kind": "function",
+      "constructorName": false,
+      "line": 36,
+      "column": 7,
+      "endLine": 42,
+      "lines": 7,
+      "complexity": 7
+    },
+    {
+      "id": "$/applyTrapCost#1",
+      "name": "applyTrapCost",
+      "kind": "function",
+      "constructorName": false,
+      "line": 43,
+      "column": 7,
+      "endLine": 54,
+      "lines": 12,
+      "complexity": 6
+    },
+    {
+      "id": "$/M.choose#1",
+      "name": "M.choose",
+      "kind": "function",
+      "constructorName": false,
+      "line": 55,
+      "column": 1,
+      "endLine": 66,
+      "lines": 12,
+      "complexity": 9
+    }
+  ],
+  "unchangedDependencies": true
+}

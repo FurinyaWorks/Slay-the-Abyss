@@ -465,3 +465,16 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# Golden Idol responsibility source authentication.
+tests/helpers/combined-epoch/pre-golden-idol-source-epoch.mjs text eol=lf
+tests/helpers/golden-idol-source-epoch.json.gz -text
+tests/helpers/golden-idol-source-epoch.mjs text eol=lf
+tests/golden-idol-source-epoch.test.mjs text eol=lf
+
+# Golden Idol complete source and cost receipts retain authenticated LF bytes.
+tests/fixtures/golden-idol-before.lua text eol=lf
+tests/helpers/golden-idol-vm.mjs text eol=lf
+tests/helpers/golden-idol-cases.lua text eol=lf
+tests/golden-idol-responsibilities.test.mjs text eol=lf
+tests/helpers/golden-idol-ci-source-inverse.mjs text eol=lf

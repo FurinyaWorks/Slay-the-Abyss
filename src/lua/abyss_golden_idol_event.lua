@@ -21,29 +21,28 @@ function M.options(run,event)
   row('damage','承受伤害','受到'..event.damage..'点普通伤害。'),
   row('max_hp','牺牲最大生命','失去'..event.maxHpLoss..'点最大生命（'..string.format('%.0f',run.maxHp)..' → '..string.format('%.0f',math.max(1,run.maxHp-event.maxHpLoss))..'），不治疗。')}
 end
-function M.choose(run,flow,choice,uid)
- local event=flow.event
- if uid~=nil or (run.act or 1)~=1 then return false,'invalid_event_choice'end
- if event.stage=='result'then
-  if choice~='leave'then return false,'invalid_event_choice'end
-  return true,'complete'
- end
- if event.stage=='intro'then
-  if choice=='leave'then event.stage,event.body='result','你没有拿走遗物。';return true,'pending'end
-  if choice~='take'then return false,'invalid_event_choice'end
-  local id=owned(run,'golden_idol')and'circlet'or'golden_idol'
-  local ok,why=Run.obtainRelic(run,id);if not ok then return false,why end
-  event.obtainedRelicId,event.stage,event.body=id,'trap','遗物已经到手；巨石滚来，必须选择代价。'
-  return true,'pending'
- end
- if event.stage~='trap'then return false,'invalid_event_choice'end
- if type(run.maxHp)~='number' or run.maxHp%1~=0 or run.maxHp<1 or run.maxHp>2147483647
-  or type(run.hp)~='number' or run.hp%1~=0 or run.hp<=0 or run.hp>run.maxHp then return false,'invalid_event_health'end
+local function chooseIntro(run,event,choice)
+ if choice=='leave'then event.stage,event.body='result','你没有拿走遗物。';return true,'pending'end
+ if choice~='take'then return false,'invalid_event_choice'end
+ local id=owned(run,'golden_idol')and'circlet'or'golden_idol'
+ local ok,why=Run.obtainRelic(run,id);if not ok then return false,why end
+ event.obtainedRelicId,event.stage,event.body=id,'trap','遗物已经到手；巨石滚来，必须选择代价。'
+ return true,'pending'
+end
+local function invalidTrapHealth(run)
+ return type(run.maxHp)~='number' or run.maxHp%1~=0 or run.maxHp<1 or run.maxHp>2147483647
+  or type(run.hp)~='number' or run.hp%1~=0 or run.hp<=0 or run.hp>run.maxHp
+end
+local function obtainInjury(run,event)
+ if owned(run,'darkstone_periapt')then return false,'event_obtain_content_unavailable'end
+ local ok,obtained=Run.obtainCard(run,'injury');if not ok then return false,obtained end
+ event.obtainedCardUid=type(obtained)=='number' and obtained or nil;event.curseBlocked=obtained=='curse_blocked'
+ event.body=event.curseBlocked and'护符阻止了诅咒牌「旧伤」。'or'你获得了诅咒牌「旧伤」。'
+ return true
+end
+local function applyTrapCost(run,event,choice)
  if choice=='injury'then
-  if owned(run,'darkstone_periapt')then return false,'event_obtain_content_unavailable'end
-  local ok,obtained=Run.obtainCard(run,'injury');if not ok then return false,obtained end
-  event.obtainedCardUid=type(obtained)=='number' and obtained or nil;event.curseBlocked=obtained=='curse_blocked'
-  event.body=event.curseBlocked and'护符阻止了诅咒牌「旧伤」。'or'你获得了诅咒牌「旧伤」。'
+  local ok,why=obtainInjury(run,event);if not ok then return false,why end
  elseif choice=='damage'then
   local ok,why=Run.eventNormalDamage(run,event.damage);if not ok then return false,why end
   event.body='你承受了陷阱的伤害。'
@@ -52,5 +51,17 @@ function M.choose(run,flow,choice,uid)
   event.body='你失去了'..event.maxHpLoss..'点最大生命，没有获得治疗。'
  else return false,'invalid_event_choice'end
  event.stage='result';return true,'pending'
+end
+function M.choose(run,flow,choice,uid)
+ local event=flow.event
+ if uid~=nil or (run.act or 1)~=1 then return false,'invalid_event_choice'end
+ if event.stage=='result'then
+  if choice~='leave'then return false,'invalid_event_choice'end
+  return true,'complete'
+ end
+ if event.stage=='intro'then return chooseIntro(run,event,choice)end
+ if event.stage~='trap'then return false,'invalid_event_choice'end
+ if invalidTrapHealth(run)then return false,'invalid_event_health'end
+ return applyTrapCost(run,event,choice)
 end
 return M
