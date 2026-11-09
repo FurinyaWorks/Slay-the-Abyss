@@ -8,7 +8,20 @@ import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {evaluateReplay,diagnoseComparison,experimentDirection,verifyOutcome,auditOutcomeTasks} from '../../scripts/product-outcome.mjs';
 import {supportedSdkSha256,inspectPage} from '../../scripts/replay-ui-outcome.mjs';
+import {outcomeConditions} from '../../scripts/ui-outcome-identity.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
+test('the producer ignores only build provenance while real Lua, native resources and mount changes prevent pairing',()=>{
+ const marker=id=>`print("ABYSS_BUILD ${id}")\n`;
+ const save={serverLogic:{rules:[]},assets:{server:{meta:{sourceFile:'/old/a.gil',sourceFormat:'actual'},root:{name:'stage',imageId:1}},client:{meta:{sourceFile:'/old/a.gil'},root:{children:[]}},scripts:[{path:'abyss_ui.lua',source:marker('11111111-1111-1111-1111-111111111111')+'return 1'},{path:'abyss_combat.lua',source:'return 2'},{path:'abyss_component_bridge.lua',source:'return 3'}]}};
+ const params=[{controlId:1,values:{nativeComponentControls:true}}],baseline=outcomeConditions(save,params),rebuilt=structuredClone(save);
+ rebuilt.assets.server.meta.sourceFile='/new/b.gil';rebuilt.assets.client.meta.sourceFile='/new/b.gil';rebuilt.assets.scripts[0].source=marker('22222222-2222-2222-2222-222222222222')+'return 1';
+ assert.deepEqual(outcomeConditions(rebuilt,params),baseline,'a new directory/buildId is still a real same-content control');
+ for(const mutate of [s=>s.assets.scripts[0].source+='\nreturn 4',s=>s.assets.scripts[1].source='return 0',s=>s.assets.server.root.imageId=2,s=>s.assets.server.meta.sourceFormat='other',s=>s.serverLogic.rules.push('less-work')]){
+  const changed=structuredClone(rebuilt);mutate(changed);assert.notEqual(outcomeConditions(changed,params).loadSha256,baseline.loadSha256);
+ }
+ assert.notEqual(outcomeConditions(rebuilt,[]).loadSha256,baseline.loadSha256);
+ rebuilt.assets.scripts[2].source='return 4';const bridge=outcomeConditions(rebuilt,params);assert.equal(bridge.loadSha256,baseline.loadSha256);assert.equal(bridge.visualSha256,baseline.visualSha256);assert.notEqual(bridge.interventionSha256,baseline.interventionSha256);
+});
 test('the replay oracle checks expected component hosts, full children and inherited visibility rather than script ready',()=>{
  const node=(name,children=[],extra={})=>({name,kind:'container',children,...extra});
  const template=node('art',[node('leaf')]),host=()=>node('__kitOriginal',[{...structuredClone(template),prefabIndex:1}]);
@@ -45,7 +58,7 @@ function replay(){
   roundTrips.push({cycle,countBefore:100,countAfter:100,firstEventIndex:cycle*2-1,lastEventIndex:cycle*2});
  }
  for(const page of pages){page.oracleVerified=true;page.checkDetails=['controls','templates','text'].map(category=>({category,id:category,passed:true}));page.initialReadiness={scriptReady:true,structureReady:true,complete:true,requiredChecks:{...page.requiredChecks}};}
- return {schemaVersion:1,kind:'sdk-ui-outcome',identity:{...Object.fromEntries(['gilSha256','saveSha256','receiptSha256','luaInventorySha256','mountedValuesSha256'].map(k=>[k,'a'.repeat(64)])),sdkSha256:supportedSdkSha256,runnerSha256:hash(readFileSync('scripts/replay-ui-outcome.mjs'))},environment:{platform:'test',arch:'x64',node:'test',cpu:'test'},conditions:{visualSha256:'b'.repeat(64),loadSha256:'c'.repeat(64),interventionSha256:'d'.repeat(64)},inputsUnchanged:true,scenario:{id:'menu-character-roundtrip-v1',roundTrips:20,dt:1/60,frameLimit:180},events,pages,inputs,roundTrips,faults:[],mountErrors:[],logs:[{text:'ABYSS_UI ready'}]};
+ return {schemaVersion:1,kind:'sdk-ui-outcome',identity:{...Object.fromEntries(['gilSha256','saveSha256','receiptSha256','luaInventorySha256','mountedValuesSha256'].map(k=>[k,'a'.repeat(64)])),sdkSha256:supportedSdkSha256,runnerSha256:hash(readFileSync('scripts/replay-ui-outcome.mjs')),conditionsProducerSha256:hash(readFileSync('scripts/ui-outcome-identity.mjs'))},environment:{platform:'test',arch:'x64',node:'test',cpu:'test'},conditions:{visualSha256:'b'.repeat(64),loadSha256:'c'.repeat(64),interventionSha256:'d'.repeat(64)},inputsUnchanged:true,scenario:{id:'menu-character-roundtrip-v1',roundTrips:20,dt:1/60,frameLimit:180},events,pages,inputs,roundTrips,faults:[],mountErrors:[],logs:[{text:'ABYSS_UI ready'}]};
 }
 test('normal model passes its bounded offline gate, while all device and V25 layers stay UNVERIFIED',()=>{
  const r=evaluateReplay(replay());assert.equal(r.offlineStatus,'PASS');assert.equal(r.productStatus,'UNVERIFIED');assert.deepEqual(r.errors,[]);

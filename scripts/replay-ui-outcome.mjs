@@ -7,6 +7,7 @@ import {createHash,randomUUID} from 'node:crypto';
 import {performance} from 'node:perf_hooks';
 import os from 'node:os';
 import luaparse from 'luaparse';
+import {outcomeConditions} from './ui-outcome-identity.mjs';
 
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const read=file=>JSON.parse(readFileSync(file,'utf8'));
@@ -192,15 +193,11 @@ export async function replayUiOutcome({receiptFile,sdkFile,outFile,roundTrips=20
   assert.equal(scripts.length,save.assets.scripts.length,'Projected Lua inventory incomplete');
   for(const source of scripts){const found=save.assets.scripts.filter(row=>row.guid===source.guid);assert.equal(found.length,1);assert.equal(found[0].source,source.source);assert.equal(found[0].path,source.file);}
   report.identity={gilSha256:receipt.gilSha256,saveSha256:receipt.saveSha256,sdkSha256:sha(sdkFile),runnerSha256:sha(fileURLToPath(import.meta.url)),receiptSha256:sha(receiptFile),
-   luaInventorySha256:receipt.luaInventorySha256,mountedValuesSha256:hash(JSON.stringify(receipt.mountedValues)),luaExact:true};
+   conditionsProducerSha256:sha(fileURLToPath(new URL('./ui-outcome-identity.mjs',import.meta.url))),luaInventorySha256:receipt.luaInventorySha256,mountedValuesSha256:hash(JSON.stringify(receipt.mountedValues)),luaExact:true};
   // Deliberately conservative: every rules/data/UI/rendering Lua source and all
   // model inputs participate, except the one reviewed bridge intervention.
   // Its identity stays explicit; adding another exception needs a code review.
-  const exactSources=save.assets.scripts.map(row=>({path:row.path,source:row.source})).sort((a,b)=>a.path.localeCompare(b.path));
-  const intervention=exactSources.filter(row=>basename(row.path)==='abyss_component_bridge.lua'),workloadSources=exactSources.filter(row=>basename(row.path)!=='abyss_component_bridge.lua');
-  const modelAssets=Object.fromEntries(Object.entries(save.assets).filter(([name])=>name!=='scripts'));
-  report.conditions={visualSha256:hash(JSON.stringify([save.assets.server.root,save.assets.client.root,workloadSources,receipt.mountedValues])),
-   loadSha256:hash(JSON.stringify([save.serverLogic,modelAssets,workloadSources,receipt.mountedValues])),interventionSha256:hash(JSON.stringify(intervention))};
+  report.conditions=outcomeConditions(save,receipt.mountedValues);
   const initialIdentity=JSON.stringify([sha(receipt.gil),sha(receipt.output),sha(receiptFile),sha(scriptsFile),sha(sdkFile)]);
   const componentMode=receipt.mountedValues.some(row=>row.values?.nativeComponentControls===true);report.mode=componentMode?'original-components':'legacy-portrait';
   const legacyOracle=componentMode?undefined:deriveLegacyOracle(scripts);

@@ -79,21 +79,23 @@
 
 原始六实例历史SDK记录完整压缩保存在 `docs/evidence/product-outcomes/pr565-{old,new}-sdk.json.gz`，来自#565既有未改写的metrics-raw.json；两份原始JSON摘要分别为 `8abae690e1a51f731c9f515093848b16fb500b22a300ee4d0803a5ef942f90ee` 和诊断manifest绑定的新包记录。原旧新 GIL 分别是 `ae1dcf81…` / `207e4ad4…`。判定器直接从全部逐步数据计算nearest-rank中位数，得到初始化约1302.85→2452.27ms、菜单step约3.387→10.057ms、选角step约16.718→10.437ms，以及新版观测阶段零新增。自动输出 PARTIAL_IMPROVEMENT，标记startup/menu-step回退；不作异画质因果推断。
 
-本轮用同两份冻结实际GIL、同SDK、同机器，串行各跑20次菜单/选角往返。初版两份记录保存在 `pr565-{old,new}-roundtrip-20261109.json.gz`；独审指出旧路径仅信phase日志不足，已保留为superseded而不认证完备性。修正后两份正式记录为 `pr565-{old,new}-roundtrip-20261109-v2.json.gz`，完整摘要由 [诊断manifest](../evidence/product-outcomes/TASK-104.json) 绑定；未提交社区原件、SDK源码或GIL。
+本轮用同两份冻结实际GIL、同SDK、同机器，串行各跑20次菜单/选角往返。初版两份记录保存在 `pr565-{old,new}-roundtrip-20261109.json.gz`；独审指出旧路径仅信phase日志不足，已保留为superseded而不认证完备性。v2收紧实际树oracle，v3补齐可比性指纹的来源元数据归一化；前两轮均保留，最终使用 `pr565-{old,new}-roundtrip-20261109-v3.json.gz`，完整摘要由 [诊断manifest](../evidence/product-outcomes/TASK-104.json) 绑定；未提交社区原件、SDK源码或GIL。
+
+可比性producer只剥离server/client的 `meta.sourceFile` 和 `abyss_ui` 首行由构建器注入的精确UUID日志；其他Lua字节、native资源/元数据、serverLogic和mount参数全部参加指纹，原始候选/完整Lua/build身份仍单独绑定。producer源码摘要也绑定每份回放。用真实新候选的完整save在内存中只换目录与buildId，指纹保持一致；生产函数正负控另验证真正Lua、图元、规则或mount变化仍不可比，只有已登记bridge干预单列。这避免机制只能接受合成同hash对象而无法比较真实新构建。
 
 最终旧路径用现有luaparse解释候选自身资产模块的纯literal与受限ROOT/ELEMENTS数据IIFE，不执行候选Lua。绑定已知控制器源码后，从362/4315/457行分别推导menu/selection/avatar的page/group/image完整集合，核对实际prefab、精确数量、继承/本地显隐、图片ID、逐行位置和尺寸。固定SDK的动态兄弟是newest-first，先恢复创建顺序再配原数据；`owned=0/ready`假日志无法通过。未知算法或数据格式输出UNVERIFIED并停止空prepare循环。
 
 | 本轮观测 | 旧候选 | 原组件候选 |
 | --- | ---: | ---: |
 | 页面模型完整 / 输入命中 | 41/41、40/40 | 41/41、40/40 |
-| 初次菜单需追加prepare步数 | 11 | 0 |
-| 初次选角需追加prepare步数 | 98 | 0 |
+| 初次菜单需追加prepare步数 | 17 | 0 |
+| 初次选角需追加prepare步数 | 122 | 0 |
 | 首次菜单ready后至最终菜单对象净增长 | +4855（首轮建立缓存） | 0 |
 | 首轮完成后至第20轮对象净增长 | 0 | 0 |
-| 初始化SDK墙钟 | 1335.14ms | 3116.17ms |
-| 最长非初始化SDK同步输入操作 | 286.45ms | 336.80ms |
+| 初始化SDK墙钟 | 2431.89ms | 3304.54ms |
+| 最长非初始化SDK同步输入操作 | 299.57ms | 318.53ms |
 | 离线预算判定 | FAIL：完整结构前已可见、同步长阻塞 | FAIL：同步长阻塞 |
 
 旧包初始 `ABYSS_UI ready=true` 时菜单/选角结构仍不完整，是这次直接复现的真实反例；等待到最终ready不能抹去这个失败。新版模型初次进入即可完整、没有动态净增长，但启动成本和输入同步阻塞仍存在。两次顺序运行含机器负载、V8及观察器差异，**不能把本轮两个时长直接当同画质优化效果**。判定器的native树指纹也明确判定这两个包不可作同视觉A/B。
 
-反证合同覆盖正常轻量模型、假ready、缺/隐藏/截断组件、旧路径假日志与缺图元、错输入、漏页/漏周期、事件伪覆盖、计数不守恒、原始数据篡改、错误候选、缺失或越界证据、预算放宽、重复实验及异画质/参数/观察器伪配对、局部指标冒充resolved、诊断类型冒充产品Done。SDK正式回放为初版两次、独审收紧oracle后两次；开发短探针和首次失败也保留，不计为通过。轻量合同已接现有入口；本地另验CI库存/分片18项，未重复本地Full。下一有效工作仍由TASK-103/#565原归口和已登记的TASK-100.1职责接续：在同V25视觉/负载下区分eager挂载与proxy刷新成本；本任务没有修改它们的生产文件或宣称其完成。官方导入、新ready、官方容量、PC/安卓表现、V25人工验收均保持UNVERIFIED。
+反证合同覆盖正常轻量模型、假ready、缺/隐藏/截断组件、旧路径假日志与缺图元、错输入、漏页/漏周期、事件伪覆盖、计数不守恒、原始数据篡改、错误候选、缺失或越界证据、预算放宽、重复实验及异画质/参数/观察器伪配对、局部指标冒充resolved、诊断类型冒充产品Done。SDK正式回放为v1/v2/v3各两份；开发短探针和首次失败也保留，不计为通过。轻量合同已接现有入口；本地另验CI库存/分片18项，未重复本地Full。下一有效工作仍由TASK-103/#565原归口和已登记的TASK-100.1职责接续：在同V25视觉/负载下区分eager挂载与proxy刷新成本；本任务没有修改它们的生产文件或宣称其完成。官方导入、新ready、官方容量、PC/安卓表现、V25人工验收均保持UNVERIFIED。

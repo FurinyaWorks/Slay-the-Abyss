@@ -467,3 +467,4 @@ tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
 # UI outcome captures bind the exact executable replay source bytes.
 scripts/replay-ui-outcome.mjs text eol=lf
+scripts/ui-outcome-identity.mjs text eol=lf

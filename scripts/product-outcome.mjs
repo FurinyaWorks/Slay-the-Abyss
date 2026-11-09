@@ -24,7 +24,7 @@ export function evaluateReplay(report,{maxStepMs=100,maxWarmControlGrowth=0}={})
   assert(finite(maxStepMs)&&maxStepMs<=100&&count(maxWarmControlGrowth)&&maxWarmControlGrowth===0,'Evidence cannot relax the fixed 100ms/zero warm-growth contract');
   assert(!report.error,'Replay execution failed');
   assert.equal(report.schemaVersion,1);assert.equal(report.kind,'sdk-ui-outcome');
-  for(const key of ['gilSha256','saveSha256','sdkSha256','runnerSha256','receiptSha256','luaInventorySha256','mountedValuesSha256'])assert(sha(report.identity?.[key]),`Missing identity ${key}`);
+  for(const key of ['gilSha256','saveSha256','sdkSha256','runnerSha256','conditionsProducerSha256','receiptSha256','luaInventorySha256','mountedValuesSha256'])assert(sha(report.identity?.[key]),`Missing identity ${key}`);
   assert.equal(report.identity.sdkSha256,supportedSdkSha256,'Unsupported SDK capture');
   assert.equal(report.inputsUnchanged,true,'Capture did not verify unchanged inputs');
   assert(report.environment&&['platform','arch','node','cpu'].every(key=>typeof report.environment[key]==='string'&&report.environment[key].length),'Missing replay environment');
@@ -179,6 +179,10 @@ function boundJson(record,root){
  const bytes=readFileSync(file);assert.equal(digest(bytes),record.sha256,`Evidence hash mismatch: ${record.path}`);
  return JSON.parse((record.path.endsWith('.gz')?gunzipSync(bytes):bytes).toString('utf8'));
 }
+function requireCurrentObserver(report){
+ assert.equal(report.identity?.runnerSha256,digest(readFileSync(new URL('./replay-ui-outcome.mjs',import.meta.url))),'Replay belongs to a different runner contract');
+ assert.equal(report.identity?.conditionsProducerSha256,digest(readFileSync(new URL('./ui-outcome-identity.mjs',import.meta.url))),'Replay belongs to a different condition producer');
+}
 
 export function verifyOutcome(file,{root=process.cwd()}={}) {
  const result={status:'UNVERIFIED',productStatus:'UNVERIFIED',external:unverified(),errors:[]};
@@ -202,14 +206,14 @@ export function verifyOutcome(file,{root=process.cwd()}={}) {
   if(manifest.replay){
    const raw=boundJson(manifest.replay,root);
    assert.equal(raw.identity?.gilSha256,manifest.expectedCandidateSha256,'Stale/wrong replay candidate');
-   assert.equal(raw.identity?.runnerSha256,digest(readFileSync(new URL('./replay-ui-outcome.mjs',import.meta.url))),'Replay belongs to a different runner contract');
+   requireCurrentObserver(raw);
    result.replay=evaluateReplay(raw,manifest.budget);
    assert.notEqual(result.replay.offlineStatus,'INVALID',result.replay.errors.join('; '));
   }
   if(manifest.reproduction){
    const raw=boundJson(manifest.reproduction,root);
    assert.equal(raw.identity?.gilSha256,manifest.expectedBaselineSha256,'Stale/wrong reproduction candidate');
-   assert.equal(raw.identity?.runnerSha256,digest(readFileSync(new URL('./replay-ui-outcome.mjs',import.meta.url))),'Reproduction belongs to a different runner contract');
+   requireCurrentObserver(raw);
    result.reproduction=evaluateReplay(raw);
    assert.equal(result.reproduction.offlineStatus,'FAIL','Baseline did not reproduce the blocked experience');
    assert(result.reproduction.blockers.some(blocker=>blocker.includes('visible before complete')),'Baseline did not reproduce progressive model assembly');
@@ -222,9 +226,7 @@ export function verifyOutcome(file,{root=process.cwd()}={}) {
   const experiments=(manifest.experiments??[]).map(experiment=>{
    assert(manifest.hypotheses.some(h=>h.id===experiment.hypothesis),'Unknown experiment hypothesis');
    const before=boundJson(experiment.baseline,root),after=boundJson(experiment.candidate,root);
-   const runner=digest(readFileSync(new URL('./replay-ui-outcome.mjs',import.meta.url)));
-   assert.equal(before.identity?.runnerSha256,runner,'Experiment baseline uses another observer contract');
-   assert.equal(after.identity?.runnerSha256,runner,'Experiment candidate uses another observer contract');
+   requireCurrentObserver(before);requireCurrentObserver(after);
    const pair=experiment.baseline.sha256+':'+experiment.candidate.sha256;assert(!pairs.has(pair),'Reused experiment observation');pairs.add(pair);
    const a=evaluateReplay(before),b=evaluateReplay(after);
    assert(!['INVALID','UNVERIFIED'].includes(a.offlineStatus)&&!['INVALID','UNVERIFIED'].includes(b.offlineStatus),'Experiment lacks valid replay observations');

@@ -70,13 +70,13 @@
   ],
   "experiments": [],
   "replay": {
-    "path": "docs/evidence/product-outcomes/pr565-new-roundtrip-20261109-v2.json.gz",
-    "sha256": "64186a82e05a4ade569a3aa7ceba94dc96ce13adc6b2303490b0f04a250ff9ae"
+    "path": "docs/evidence/product-outcomes/pr565-new-roundtrip-20261109-v3.json.gz",
+    "sha256": "1fd8625813bb26699eab64f3dd6eddc894ae16d1b3dded51b5c88828f3c8dbdd"
   },
   "expectedCandidateSha256": "207e4ad401fe86a4682618b347162bd6d7bd97ccd13996266f26daff3213fa0b",
   "reproduction": {
-    "path": "docs/evidence/product-outcomes/pr565-old-roundtrip-20261109-v2.json.gz",
-    "sha256": "734e01fabaa49363bf9dbf3a53119a2f9d21c88c0edddc2f049a5e325f558ef2"
+    "path": "docs/evidence/product-outcomes/pr565-old-roundtrip-20261109-v3.json.gz",
+    "sha256": "458b2d9bd143e32f74997065f7b568281306617584e41190b82210f376845a14"
   },
   "expectedBaselineSha256": "ae1dcf818812470ea2e7ffa91241d9e94aae3cb9146a76ac5ecbf1af37bbdac9",
   "supersededReplays": [
@@ -89,6 +89,16 @@
       "path": "docs/evidence/product-outcomes/pr565-old-roundtrip-20261109.json.gz",
       "sha256": "33040fd6e772472290965103494115807d0825f3f9a558c4b268d55451b91f62",
       "reason": "Initial observation retained; independent review required a stronger legacy asset-tree oracle."
+    },
+    {
+      "path": "docs/evidence/product-outcomes/pr565-new-roundtrip-20261109-v2.json.gz",
+      "sha256": "64186a82e05a4ade569a3aa7ceba94dc96ce13adc6b2303490b0f04a250ff9ae",
+      "reason": "Retained v2 observations; final producer removes only provenance directory/buildId differences."
+    },
+    {
+      "path": "docs/evidence/product-outcomes/pr565-old-roundtrip-20261109-v2.json.gz",
+      "sha256": "734e01fabaa49363bf9dbf3a53119a2f9d21c88c0edddc2f049a5e325f558ef2",
+      "reason": "Retained v2 observations; final producer removes only provenance directory/buildId differences."
     }
   ]
 }
