@@ -1,7 +1,7 @@
-// Preserve the complete Defect predecessor as an independently importable epoch.
-export * from './pre-formation-source-epoch.mjs';
-import {sourceEpoch as preEncounterFormationEpoch} from './pre-formation-source-epoch.mjs';
-import {extendEncounterFormationEpoch} from '../encounter-formation-source-epoch.mjs';
-export {preEncounterFormationEpoch};
-// Current public consumers authenticate all 51 changed raw owners on every call.
-export const sourceEpoch=extendEncounterFormationEpoch(preEncounterFormationEpoch);
+// Frozen predecessors retain every original source identity and contract.
+export * from './pre-silent-potion-source-epoch.mjs';
+import {sourceEpoch as preSilentPotionEpoch} from './pre-silent-potion-source-epoch.mjs';
+import {extendSilentPotionEpoch} from '../silent-potion-source-epoch.mjs';
+export {preSilentPotionEpoch};
+// Every projection freshly authenticates all 52 changed raw owners.
+export const sourceEpoch=extendSilentPotionEpoch(preSilentPotionEpoch);

@@ -1,0 +1,41 @@
+# Silent Potion 的 Shiv 动作所有权
+
+TASK-74.19 本轮从 develop `1eb288472d7b33b7450eec97a624ca2ffa526f39` 独立接续。避开在途 #579、#581、#582、#583、#584 和 WindingHalls。本片只修改两份生产 Lua 与必要依赖边界，不新增玩法或启用正式职业。
+
+## 实际边界
+
+原 SilentPotions.shivs 为创建 Cunning Potion 的升级小刀，直接回导 Combat 和 CardActions。药水定义/策略因此与战斗生命周期处于同一 SCC。现在由既有 SilentFinal.potionShivs 动作 owner 提供惰性工厂，只暴露 fresh、canUpgrade、upgrade、created、toHand 五个调用能力。
+
+工厂按原顺序加载 Combat、CardActions，一次调用绑定一对模块对象，每个步骤仍现场读取其方法。保留 require SilentPotions、读取 shivs、读取 effect.value、进入 shivs、加载两个执行模块的顺序；零/负次数也先加载。每张牌仍依次 fresh、canUpgrade/assert、upgrade、两次 created、toHand，不提前验证、加补偿或改变返回数量。单次调用中的模块替换不影响已绑定对象；方法替换立即生效，后续动作重新绑定。传入 SilentFinal 的 combat 参数没有冒充旧 require 得到的 owner。
+
+shivs 的第三个 host 参数是同步迁移的内部接口。没有默认反向 require 回退，没有可变全局服务，也未改变公共 Run 用药事务。旧历史 SilentFinal 的精确双参数版本只在其独立历史 VM 内配对相同提交的旧 Potion，不让历史代码误调新接口。
+
+## 同源度量
+
+两次均使用原完整 Lua AST、Luacheck 和依赖算法；完整原始报告及逐源码 SHA 位于[证据目录](../evidence/m7-silent-potion-owner-20261109/README.md)。
+
+- 模块仍为338，测量5604/5604→5610/5610；增加六个惰性工厂/闭包测量。
+- 最大 SCC 68→67，内部引用513→511，内部唯一对324→322。SilentPotions 实际退出 SCC，完整图引用总数1929不变。
+- 其余 SCC 11/2 保持。CC>30 为33、CC>15 为209、最大61，14个历史告警均未变。本片不宣称CC下降或全部架构完成。
+- 原 SilentFinal 全部动作入口及匿名嵌套CC15门禁保持，原 choose CC18仍明确保留。
+
+## 本轮验证
+
+- 新行为7/7：独立旧新 VM 的266个完整故障前缀/动态方法图，加原真实Run用药12图，逐字一致；共13,708,001字节/侧。
+- 四个可解析真实语义变异被具名行为断言检出：少一次created、漏upgrade、错误卡ID、过早缓存created方法。首次后两项测试断言不充分/定位错误的失败日志保留，修正后完整文件通过。
+- 原Lua三个完整文件通过：Silent potion、71卡来源、Sacred Bark高级路径；原SilentFinal完整旧新行为和变异16/16，原复杂度3/3。
+- 独立54个额外配对探针通过，四个回导边界负控通过；生产、来源和行为语义独审未发现阻断项。最终精确提交仍须另外绑定。
+- 新52-owner来源13/13，完整旧来源24+20与公开消费者44项通过。旧archive/hash/断言保留，当前现场读取、LF/CRLF、暖调用漂移、缺失和错误reader、损坏archive/前驱缺失均有负控。
+- 静态架构、Luacheck、guidance、verify:backlog通过。当前 Backlog CLI doctor 报告基线已存在的5组archive/task重复ID，本片只追加TASK-74.19计划/记录，未自动改号或宣称doctor通过。
+
+- CI历史/当前完整合同58/58，六个直接消费者30/30通过，未重复Full。独立复核原Git输入、所有旧成本与预算，以及两收据766项保留输入hash均一致；最终生产/来源/行为/CI增量无未解决代码项，提交身份另核。
+
+## 成本与限制
+
+两个完整单文件实测28,375.196147ms和25,227.153439ms，以28,376/25,228ms新增保守规划floor。全部原预算、成本、unknown=10,000、worker、并发、分片和工作流不变。旧800JS/1410Lua合同冻结原输入，新802JS/1410Lua真实完整库存另验。
+
+现有双worker算法的Windows17预测1,797,269ms、POSIX15预测1,132,381ms，含60秒预留；Windows距原1,800,000ms仅2,731ms，不能据此宣称Hosted预算安全。早期手算1,796,641ms未模拟短夹具实际双worker序列，已由正式入口结果替代，不作为通过证据。
+
+原始收据glob曾误抓两项未被行为/source执行的CI-only helper，导致receipt/floor/CI档案循环。已依据真实导入范围排除这两项，原收据完整保留，修正记录说明原hash；没有回填新hash冒充旧运行。source闭包负控初稿重复导入巨大历史证明曾触及默认heap，保留失败并改为精准损坏/缺失负控，未放宽内存阈值。
+
+不重复本地Full，不占用设备、不做官方导入或发布。PR保持Draft，精确HEAD/base独审、Hosted Full、正常merge:auto/原生队列和合后验收仍由原门禁执行；未验AC不勾。

@@ -23,7 +23,7 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as actualDiskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -31,8 +31,21 @@ import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs as actualDiscoverJs,partition,jsShard as actualJsShard,jsPlanningWeights as actualJsPlanningWeights,timings as liveTimings} from '../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
+import {preSilentPotionCiSource,silentPotionCiProof,silentPotionPlanningFloors} from './helpers/silent-potion-ci-source-inverse.mjs';
+const silentPotionJs=['tests/silent-potion-owner.test.mjs','tests/silent-potion-source-epoch.test.mjs'];
+// Complete historical 800-file contracts remain fixed; actual802 is tested separately.
+const discoverJs=()=>actualDiscoverJs().filter(file=>!silentPotionJs.includes(file));
+const diskReadFileSync=(file,encoding)=>{
+ const raw=actualDiskReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
+ const prior=preSilentPotionCiSource(file,text);
+ return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
+};
+const actualCurrentTimings=JSON.parse(silentPotionCiProof.files['scripts/ci-test-timings.json'].beforeSource);
+const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
+
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const rawReadFileSync=(file,encoding)=>{const value=diskReadFileSync(file,encoding);if(typeof value==='string')return preEncounterFormationCiSource(file,value);const text=value.toString('utf8'),prior=preEncounterFormationCiSource(file,text);return prior===text?value:Buffer.from(prior);};
@@ -1038,4 +1051,81 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
  for(const [key,floor]of Object.entries(encounterFormationPlanningFloors))assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[key],floor);
  const workflow=diskReadFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
  assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+});
+
+
+test('Silent potion recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
+ for(const [file,binding]of Object.entries(silentPotionCiProof.files)){
+  const raw=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(raw),binding.afterSha256,file);
+  assert.equal(hash(binding.beforeSource),binding.beforeSha256,file);
+  for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preSilentPotionCiSource(file,source),binding.beforeSource);
+  for(const source of [raw+'\n',raw.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preSilentPotionCiSource(file,source),source);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preSilentPotionCiSource(unknown,raw),raw);
+ }
+});
+
+test('current Silent potion802 Full37 inventory adds only two files under unchanged budgets and complete effective costs',t=>{
+ const js=actualDiscoverJs(),lua=currentLua();
+ assert.equal(js.length,802);assert.equal(lua.length,1410);
+ assert.deepEqual(js.filter(file=>!discoverJs().includes(file)).sort(),[...silentPotionJs].sort());
+ assert.deepEqual([...discoverJs()].sort(),silentPotionCiProof.inventory.js);
+ assert.deepEqual(lua,Object.keys(silentPotionCiProof.inventory.luaSha256));
+ for(const [file,sha]of Object.entries(silentPotionCiProof.inventory.luaSha256))assert.equal(hash(actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n')),sha,file);
+ assert.equal(liveTimings.unknownJsMs,10000);
+ for(const platform of ['win32','linux'])for(const file of silentPotionJs){
+  assert.equal(liveTimings.js[platform][file],undefined);
+  assert.equal(actualJsPlanningWeights([file],platform)[file],Math.max(liveTimings.unknownJsMs,liveTimings.jsPlanning.localLowerBounds[file]?.durationMs??0));
+ }
+ assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:17},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
+ assert.equal(currentFullQualityJobs.length,37);
+ for(const [platform,count,budget]of [['win32',17,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>actualJsShard(js,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,802);
+  const loads=bins[0].loads,old=actualJsShard(discoverJs(),`1/${count}`,platform).loads;
+  assert.equal(loads.reduce((a,b)=>a+b,0)-old.reduce((a,b)=>a+b,0),Object.values(actualJsPlanningWeights(silentPotionJs,platform)).reduce((a,b)=>a+b,0));
+  let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const luaBins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...liveTimings,windowsJsShardMs:loads},2));
+   assert.deepEqual(luaBins.flat().sort(),[...lua].sort());assert.equal(new Set(luaBins.flat()).size,1410);
+   const cost=file=>liveTimings.luaShard[file]??liveTimings.lua[file]??liveTimings.unknownLuaMs,safety=file=>liveTimings.lua[file]??liveTimings.unknownLuaMs;
+   maximum=Math.max(...luaBins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
+  }
+  const forecast=maximum+60000;t.diagnostic(`${platform} complete Silent potion802 forecast ${forecast} ms; budget ${budget} ms; actual Full pass not claimed`);
+  assert.ok(forecast<budget);
+ }
+ const workflow=actualDiskReadFileSync('.github/workflows/quality.yml','utf8');
+ assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+});
+
+
+test('Silent potion complete local floors authenticate actual files and preserve every prior observation',()=>{
+ assert.deepEqual(Object.keys(silentPotionPlanningFloors).sort(),[...silentPotionJs].sort());
+ const current=JSON.parse(actualDiskReadFileSync(path,'utf8'));
+ for(const [key,floor]of Object.entries(silentPotionPlanningFloors)){
+  assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);delete current.jsPlanning.localLowerBounds[key];
+  const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+  const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+  assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+  assert.equal(receipt.test,key);assert.deepEqual([receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[floor.tests,floor.tests,0,0,0]);
+  assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);
+  const initialArchive=actualDiskReadFileSync(floor.sourceReceipt.replace('-receipt.json','-receipt-initial.json.gz'));
+  assert.equal(hash(initialArchive),key==='tests/silent-potion-owner.test.mjs'?'06ba12b003eef81e78b6475d1a6ba0eb7b7740dfafa4f90d5a752b456c7b6c0c':'22b66c3491c840d26d75758d69686b3f27c0cc94682ba08ed24dc7929c17ce7e');
+  const initial=JSON.parse(gunzipSync(initialArchive)),corrected=structuredClone(receipt),excluded=corrected.inputManifestCorrection.excludedUnexecutedCiHelpers;
+  assert.deepEqual(Object.keys(excluded).sort(),['tests/helpers/silent-potion-ci-source-epoch.json.gz','tests/helpers/silent-potion-ci-source-inverse.mjs']);
+  for(const file of Object.keys(excluded)){assert.equal(initial.inputSha256[file],excluded[file]);assert.equal(corrected.inputSha256[file],undefined);}
+  corrected.inputSha256={...corrected.inputSha256,...excluded};delete corrected.inputManifestCorrection;
+  assert.deepEqual(corrected,initial,'manifest correction preserves the complete original run and only removes the two unexecuted CI-only inputs');
+  assert.equal(receipt.sourceLogSha256,floor.sourceLogSha256);assert.equal(receipt.sourceLogUncompressedSha256,floor.sourceLogUncompressedSha256);
+  assert.equal(hash(actualDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n')),floor.testSha256);
+  assert.equal(receipt.inputSha256[key],floor.testSha256);
+  assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));assert.match(floor.kind,/not .*hosted/);
+  for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+  assert.ok(Object.keys(receipt.inputSha256).length>0);
+  for(const [file,sha]of Object.entries(receipt.inputSha256)){
+   const raw=actualDiskReadFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n')),sha,file);
+  }
+ }
+ assert.deepEqual(current,actualCurrentTimings,'all old costs, hosted measurements, safety inputs and thresholds remain unchanged');
 });

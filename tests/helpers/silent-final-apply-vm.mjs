@@ -4,7 +4,7 @@ import {createRequire} from 'node:module';
 import {luaString} from '../../scripts/build-lua-data.mjs';
 import {installLuaGraphObserver} from './lua-graph-observer.mjs';
 const {lua,lauxlib,lualib,to_luastring,to_jsstring}=createRequire(import.meta.url)('fengari');
-const {source,fixture,output}=JSON.parse(readFileSync(0,'utf8'));
+const {source,fixture,output,oldPotionSource}=JSON.parse(readFileSync(0,'utf8'));
 const before=readFileSync('tests/fixtures/silent-final-apply-before.lua','utf8').replaceAll('\r\n','\n');
 const path='src/lua/abyss_silent_final_cards.lua';
 // Only identical error-bearing statements, exact module locations and known bodies
@@ -33,6 +33,7 @@ installLuaGraphObserver(L,'SILENT_GRAPH',(label,graph)=>graphs.push(JSON.stringi
 lua.lua_pushcfunction(L,L=>{logs.push(to_jsstring(lauxlib.luaL_tolstring(L,1)));return 0;});lua.lua_setglobal(L,to_luastring('print'));
 lua.lua_pushcfunction(L,L=>{lua.lua_pushstring(L,to_luastring(comparable(to_jsstring(lauxlib.luaL_checkstring(L,1)))));return 1;});lua.lua_setglobal(L,to_luastring('SILENT_ERROR'));
 const prelude=`package.path='tests/lua/?.lua;src/lua/?.lua;build/lua/?.lua;'..package.path
+${oldPotionSource===null||oldPotionSource===undefined?'':`package.preload.abyss_silent_potions=assert(load(${luaString(oldPotionSource)},'@src/lua/abyss_silent_potions.lua'))`}
 package.preload.abyss_silent_final_cards=assert(load(${luaString(source)},'@${path}'))
 local M=require('abyss_silent_final_cards');local original=M.apply
 M.apply=function(combat,s,item)

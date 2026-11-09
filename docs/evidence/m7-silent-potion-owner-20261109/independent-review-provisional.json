@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "status": "provisional_pass",
+  "finalShaApproved": false,
+  "baseCommit": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "productionSliceCommit": "23c72a0542ecbb582aff0f6ef76154ec08308ff5",
+  "observedLocalHead": "23c72a0542ecbb582aff0f6ef76154ec08308ff5",
+  "scope": [
+    "SilentPotions/SilentFinal lazy narrow capability boundary and architecture config",
+    "Behavior graph harness, failure prefixes, semantic mutants and historical VM pairing",
+    "52-owner exact source outer, preserved historical facade/targets and isolated helper closure",
+    "CI runtime/calibration historical 800 and current 802 inventories, exact recovery adapters and local floors",
+    "Preserved initial receipts and narrowly scoped correction excluding two unexecuted CI helpers"
+  ],
+  "independentProbes": [
+    {
+      "name": "Historical/current formal-dispatch semantic probe",
+      "cases": 54,
+      "status": "passed"
+    },
+    {
+      "name": "Architecture analysis",
+      "errors": 0,
+      "oldLargestSCC": 68,
+      "newLargestSCC": 67,
+      "oldEdges": 1929,
+      "newEdges": 1929
+    },
+    {
+      "name": "Forbidden dependency negative probes",
+      "cases": 4,
+      "status": "passed"
+    },
+    {
+      "name": "Exact Git predecessor and historical Potion pairing",
+      "status": "passed"
+    },
+    {
+      "name": "CI archive predecessor sources and unchanged prior timing object",
+      "status": "passed"
+    },
+    {
+      "name": "Receipt correction equality and all remaining live input hashes",
+      "status": "passed"
+    }
+  ],
+  "reviewedExternalEvidence": [
+    {
+      "path": "/tmp/silent-ci-final-verified-v2.log",
+      "sha256": "2aed815e58f8e1ac9144a209731d4062f08b93f1a3ff9aa9a4d4e0682eacf51c",
+      "tests": 58,
+      "passed": 58,
+      "failed": 0,
+      "skipped": 0,
+      "reviewerReran": false
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/behavior.log.gz",
+      "tests": 7,
+      "passed": 7,
+      "reviewerReran": false
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/source.log.gz",
+      "tests": 13,
+      "passed": 13,
+      "reviewerReran": false
+    }
+  ],
+  "findings": [],
+  "resolvedFindings": [
+    "Initial input receipts overincluded two evolving CI-only helpers; immutable initial archives plus exact reconstruction assertion now retain original run evidence and exclude only those two unexecuted inputs."
+  ],
+  "pending": [
+    "Receive final remote commit identity and compare exact reviewed files before SHA approval.",
+    "Parent-owned six direct-consumer validation results pending.",
+    "Full/hosted CI not executed or approved by reviewer."
+  ],
+  "sourceHashes": {
+    ".gitattributes": "e2ed8261fb830dfddf82c3409ff188093d02c113f456172e612ed1fd82fa3014",
+    "config/architecture.json": "efc8ce730052bb3c60cd24f50bdfdb17ea4f3a29aeb07feaaaf783dcedaac590",
+    "scripts/ci-test-timings.json": "1662a2f8d7e97650aaebcdd882226daf266e7b1113c682a08d5a5fb897a72284",
+    "src/lua/abyss_silent_final_cards.lua": "6f0f4db2851af37a5a67e308a153c968f7c464a63db13274feaa4baf39fae589",
+    "src/lua/abyss_silent_potions.lua": "ac978892d5c00a1f30d6ec7804c29f087f6bd63e26941435633f460458d47297",
+    "tests/ci-complete-calibration.test.mjs": "4cd947e1f0af6556b12ed2a6a14f475036ab1aefa10dcc78b6e2c7a2618968ab",
+    "tests/ci-runtime.test.mjs": "23d493992fd7c222282e1d2bce91d61fc8173c8f510fb1119c22fd3fecd82b31",
+    "tests/defect-final-source-epoch.test.mjs": "ef88c6cd1650e53bcb45fd7e2ffe25a8b404f690e0ce936f111af195af32658a",
+    "tests/encounter-formation-source-epoch.test.mjs": "906b94da15f2201bd289324eb2ab7b5805292366713bc08f3e9ac3e313666efb",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "ad62b806afc466c9b2476c750404bd7ce2abd72b51ef49b024817393ac9f204a",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "43db18f9c993c6bae26d7b1fe726474ad756b8644fae706d425c0b5a92c68873",
+    "tests/helpers/copy-integration-source-closure.mjs": "152acfb382e858f4b83ae98a22bbdad616a9e4307878fd965789cfea65b31a66",
+    "tests/helpers/silent-final-apply-vm.mjs": "e1d1e070c80df7bcc8f6e8cba56f7a0e1ea3b1594569a45333157d1518376e79",
+    "tests/silent-final-apply.test.mjs": "36c3255e8f75110d13b37e69312b42abd7a4da9b982f310e1c7d2a3048b1b016",
+    "tests/silent-final-source-epoch.test.mjs": "56b2be33e0973fe2fa0deb873026caafbd1a6098052ac4ec8c079fd40a8aed75",
+    "docs/backlog-details/M7-SILENT-POTION-OWNER-20261109.md": "ce907f9185c6a0efe29b54e11d4c1fecaed86e18d690896a6c3f70296b99dd64",
+    "docs/evidence/m7-silent-potion-owner-20261109/README.md": "046165fa510d16ec44a281cca7415f647dea26bec136b62fe23855e1e96594ef",
+    "docs/evidence/m7-silent-potion-owner-20261109/after-quality.json.gz": "0fa721548096ace00c4efca545d2e9647ec502ea96ff8c5f0437d0cefa504a3a",
+    "docs/evidence/m7-silent-potion-owner-20261109/backlog-doctor.log.gz": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+    "docs/evidence/m7-silent-potion-owner-20261109/before-quality.json.gz": "96a8d183bf2a42b0cce27c58d9dea34a37f2adb8052d9a7292e2257acb8ac059",
+    "docs/evidence/m7-silent-potion-owner-20261109/behavior-first-failure.log.gz": "459bcf35cc3ae83ab8afc53126a82e65eb3c5f3d2a7d4b40fc3c367db550db7d",
+    "docs/evidence/m7-silent-potion-owner-20261109/behavior-receipt-initial.json.gz": "06ba12b003eef81e78b6475d1a6ba0eb7b7740dfafa4f90d5a752b456c7b6c0c",
+    "docs/evidence/m7-silent-potion-owner-20261109/behavior-receipt.json": "b6227a61d616a9d96bd55d76e198e3565e91bf7b19353662f6a11a7ff3164605",
+    "docs/evidence/m7-silent-potion-owner-20261109/behavior.log.gz": "aa6131b1edec171c815fd8cdfde8d17109d879558a0ecb32fe578d85a5058cf6",
+    "docs/evidence/m7-silent-potion-owner-20261109/existing-complexity.log.gz": "2d7689e3f582ebb69c1797e4228eca278e671177ebca53c82bd56f24d8886002",
+    "docs/evidence/m7-silent-potion-owner-20261109/history-final.log.gz": "e01b8856166c402ad71879eb9ef88c077be94933cf05e7232a2d0974846d7ed6",
+    "docs/evidence/m7-silent-potion-owner-20261109/metrics.json": "097e15cde6aeda4cce21cb4bba4e5a400f7fe33e798ca08e5e5365a4ceb6efd2",
+    "docs/evidence/m7-silent-potion-owner-20261109/old-behavior.log.gz": "e73ab96137cc43cdbf98dfcaf25e1308aedf96688884b7a810156ba5cd82fe77",
+    "docs/evidence/m7-silent-potion-owner-20261109/original-lua.log.gz": "bc01022b9e6915cc5f04bd90b2bb4c990c2a3527e92b808b7eb1eeb0ca3bf4a2",
+    "docs/evidence/m7-silent-potion-owner-20261109/reviewer-probe.mjs": "9702083a47c435e788d17311adb58700006c89443c5f762f3bb2690bc482c332",
+    "docs/evidence/m7-silent-potion-owner-20261109/source-consumers.log.gz": "f8af544405f5f20fdf63a719f95e5bc93ed31b4978b1fd72d4fadc62319ad5c4",
+    "docs/evidence/m7-silent-potion-owner-20261109/source-receipt-initial.json.gz": "22b66c3491c840d26d75758d69686b3f27c0cc94682ba08ed24dc7929c17ce7e",
+    "docs/evidence/m7-silent-potion-owner-20261109/source-receipt.json": "1a20fb90289d2c1736af82d602bb6f0b7189143f5d5f36f9850d4645436e7878",
+    "docs/evidence/m7-silent-potion-owner-20261109/source-recheck.log.gz": "d0001db6f697e5695f2cf84cfd074c57137a49f49dcb77df1d64f4c0524585de",
+    "docs/evidence/m7-silent-potion-owner-20261109/source.log.gz": "b7d095d3825e80d067f970239789bd93b51be6a49bce4772e452d787768077ac",
+    "tests/helpers/combined-epoch/pre-silent-potion-source-epoch.mjs": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+    "tests/helpers/silent-potion-ci-source-epoch.json.gz": "d58c6216039b1c26b26f08a1f5976ce2c09a98709da8590d35de097b3d023a03",
+    "tests/helpers/silent-potion-ci-source-inverse.mjs": "54c466279fc480a2f5167cbec18a439d68d16eb92a0dc8388f261e99217680c7",
+    "tests/helpers/silent-potion-owner-edges.lua": "4c750afe4d5ea71ac72f398fcfefeff8a59ba9d49944fd3372c05e05e616db2c",
+    "tests/helpers/silent-potion-owner-vm.mjs": "e2d36ea8435d038d1bbdf8e5b7181c73c64cb5fd406cd60531ff03cb25f74460",
+    "tests/helpers/silent-potion-prior-live.mjs": "38b1eacf45af451cf0897d3f880261c048ec433225223acdc5d059a53675ff3f",
+    "tests/helpers/silent-potion-source-epoch.json.gz": "60114ed947c22b989b28f06cbb202c091431c7b5e658da3760c10bef474f90b9",
+    "tests/helpers/silent-potion-source-epoch.mjs": "159a1a33fb29b306c126efd956ea829548a06267708ea647e6118cc4266015d8",
+    "tests/silent-potion-owner.test.mjs": "52df400eda378f96da65851c242d89a973d6897f2db615ddf6d6a95a3b383660",
+    "tests/silent-potion-source-epoch.test.mjs": "7e9c474f08fa64109ba2f9c8966ce1bc36e234a98caf6d01e322921421bfc378"
+  }
+}

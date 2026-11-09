@@ -1,3 +1,4 @@
+import {silentPotionEpoch} from './helpers/silent-potion-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
@@ -15,7 +16,7 @@ function run(source,fixture){
  try{
   const output=join(dir,'graphs.jsonl');
   const child=spawnSync(process.execPath,['tests/helpers/silent-final-apply-vm.mjs'],{
-   input:JSON.stringify({source,fixture,output}),encoding:'utf8',timeout:120000,maxBuffer:8*1024**2});
+   input:JSON.stringify({source,fixture,output,oldPotionSource:source===before?silentPotionEpoch.proof.targets.prior.files['src/lua/abyss_silent_potions.lua'].source:null}),encoding:'utf8',timeout:120000,maxBuffer:8*1024**2});
   assert.ifError(child.error);assert.equal(child.signal,null,'timeout is not a semantic mutant kill');assert.equal(child.status,0,child.stderr);
   const result=JSON.parse(child.stdout);return {...result,graph:readFileSync(output,'utf8')};
  }finally{rmSync(dir,{recursive:true,force:true});}
