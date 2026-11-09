@@ -1,0 +1,11 @@
+{
+  "kind": "isolated-template-regression-negative-control",
+  "source": "original exporter with only unused fixture import removed; old incorrect actor dispatch retained",
+  "originalHash": "b41ad1ca639db5bb4f97413fe4d2a77de9e42a56c753042fb2b6918587254ea2",
+  "counterfactualHash": "c96219780c0a90fb863f12aea223e70a69ad5972da315ffd372e08b987570a68",
+  "testHash": "1a41ef72c6e7bcd8d72b793618d863e7237a9d77bb050a744d257bd985a51652",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "(command line):19: attempt to index a nil value (field 'text')\nstack traceback:\n\t(command line):19: in main chunk\n",
+  "expectedFailure": "Incorrect Power-to-Actor dispatch aliases the actor name and loses the live template text; original real-template assertions reject the resulting tree."
+}

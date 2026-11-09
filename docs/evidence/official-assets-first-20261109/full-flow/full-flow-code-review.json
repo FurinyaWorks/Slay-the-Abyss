@@ -1,0 +1,78 @@
+{
+  "reviewer": "independent code review",
+  "reviewedAt": "2026-11-09T11:08:40.320776+00:00",
+  "scope": "Current uncommitted full-flow presentation/campaign/diagnostic increment; no exact HEAD merge admission",
+  "conclusion": "NO_OPEN_PRODUCTION_CODE_FINDINGS; offline natural campaign passed; native visual acceptance remains UNVERIFIED",
+  "inputHashes": {
+    "scripts/official-assets-layout.mjs": "e8325b858f3bebeb245b6ec0e0d59a8ab36c84a16aa0b8ea1065e78a3180bf91",
+    "scripts/official-assets-campaign.lua": "ee6055c8f9e7bc4ef299ff464f59b3f34cb1cb2d6d9f7b2cdb41660e4c281094",
+    "scripts/official-assets-preview.lua": "dbe8c2742904122efdd3a7e7a34a43b7324b88b70af02235b5df9b3296cc0455",
+    "scripts/official-assets-preview-driver.lua": "c58f10549ae050e4a08bddef4ed18045df5ad6d74ed7237d8cb450c17608df77",
+    "scripts/official-assets-preview.mjs": "0557d66af11938eabf4448bc15d474004960f18bb4dbee0ae0234dfd6653aa61",
+    "scripts/official-assets-preview-raster.py": "fe8fb86bdfcc4a96fd53a26d3ca55282c20e0d9063f08a72e7ad888bd88fdf7a",
+    "scripts/verify-official-campaign.mjs": "41ba9834d25075703b2d207966077e935ade87c147509d88e4548505e718d9ad",
+    "tests/official-assets.test.mjs": "92dc05ca08b085a5c1fce2f7b441a26a51a3dc3ec0cca94f441bb0e2d2911480",
+    "tests/official-assets-visual.test.mjs": "1a41ef72c6e7bcd8d72b793618d863e7237a9d77bb050a744d257bd985a51652"
+  },
+  "evidenceHashes": {
+    ".artifacts/pr588/campaign-validation/final-seed2/report.json": "ed9d0841cce06fe44ec9167f3dc4955f8b0c52884dc85ab25e7e008f5e0b2030",
+    ".artifacts/pr588/campaign-validation/final-seed2/stdout.log": "af643d2cc63fcfc11ccd7b7bf02d7edbac78c66ae9eec1be9c00c73e35ef6450",
+    ".artifacts/pr588/campaign-validation/final-seed2/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".artifacts/pr588/campaign-validation/final-seed2/entry.lua": "c7e42eb78978c4ffc3c31472aa28cdfbc3b003e7624685008a49485b7745b3fc",
+    ".artifacts/pr588/campaign-validation/final-seed2/visual-scenes.json": "f061c96ec46851a72f380fae32366eb407bda1ddb6ea3718f5218b1618711001",
+    ".artifacts/pr588/visual-power-red.log": "e69f6bf277f232ad7ab1ae0f7c4f30e211eea23b94615382a8a5eff59ba86bfc",
+    ".artifacts/pr588/visual-power-green.log": "b43788124c3c0d0fc712dae865d4094d6fbe92f6c77ec5b7161f564317d7ce83",
+    ".artifacts/pr588/visual-power-template-red.json": "fd113d0825049f1a00bacbaea532c64f96d19086966132daae5c551a7d9a5c67",
+    ".artifacts/pr588/visual-power-template-red.log": "68f01f928db9111ea22676c4a8bd6162b68591381b711a12ea6906dfd4f62cfe"
+  },
+  "checks": [
+    "Production delta changes four result plaque images/borders and shop text minimum only; no geometry, input, visibility or default profile changes.",
+    "Campaign uses real Host/UI commands, continuous room count, both boss-win assertions, final two-act completion and fresh Run/Map restart. No HP, phase or RNG writes; explicit pre-Start seed configuration only.",
+    "Actor/Power exporter dispatch now follows child.name and rejects unknown templates; isolated test checks both actual text payloads and template sizes.",
+    "Existing test assertions preserved with narrowly scoped expected shop minimum exception."
+  ],
+  "campaign": {
+    "status": "passed",
+    "elapsedMs": 351033.94430699997,
+    "rooms": 34,
+    "actions": 1091,
+    "ending": "two_act_complete",
+    "restartSeed": 3,
+    "sourceCommit": "882d2ecfe9252f5396aa6bbd45d287fcae1f537f",
+    "sourceDirty": true,
+    "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+    "inputCount": 1098,
+    "beforeAfterInputHashesEqual": true,
+    "rawHashesVerified": true,
+    "generatedHashesVerified": true,
+    "passMarkerAfterRestart": true,
+    "boundCaptureSha256": "b41ad1ca639db5bb4f97413fe4d2a77de9e42a56c753042fb2b6918587254ea2",
+    "currentCaptureSha256": "dbe8c2742904122efdd3a7e7a34a43b7324b88b70af02235b5df9b3296cc0455",
+    "currentDifferencesFromCampaignClosure": [
+      "scripts/official-assets-preview.lua"
+    ],
+    "boundary": "Campaign executed old capture exporter. No recapture was performed after the template fix; old scene JSON is not repaired-power evidence. Natural gameplay assertions are independent of diagnostic serialization."
+  },
+  "testEvidence": {
+    "executionByReviewer": "None; logs and source inspected only",
+    "green": "4/4 passed in supplied log",
+    "redCaveat": "Supplied old-version RED failed during unused fixture import because abyss_game_ui was missing, before reaching power dispatch assertions. It proves isolated old-version loading failure, not a targeted power-dispatch RED.",
+    "templateNegativeControl": {
+      "reviewedAt": "2026-11-09T11:10:59.118466+00:00",
+      "sourceSha256": "c96219780c0a90fb863f12aea223e70a69ad5972da315ffd372e08b987570a68",
+      "reconstructedOriginalSha256": "b41ad1ca639db5bb4f97413fe4d2a77de9e42a56c753042fb2b6918587254ea2",
+      "testFileSha256": "1a41ef72c6e7bcd8d72b793618d863e7237a9d77bb050a744d257bd985a51652",
+      "exitCode": 1,
+      "verified": "Negative-control file is exactly original exporter minus unused fixture import; only remaining difference against fixed exporter is template dispatch. Log matches recorded stderr.",
+      "actualFailure": "Embedded Lua line 19: seen.enemy.children[1].text.content, before the following direct power assertion. Old dispatch labels Power as Actor/ enemy and exports wrong child structure; name-keyed seen map can overwrite real enemy with malformed power export, causing missing text. This is template confusion, not module loading.",
+      "boundary": "No rerun by reviewer. Earlier visual-power-red.log remains separately classified as fixture-import failure."
+    }
+  },
+  "remainingUnverified": [
+    "Official SDK image rendering, tint/text contrast, font layout, GIL import, native ready, physical input and device performance.",
+    "Post-fix natural-run dynamic power capture; exact historical trigger count cannot be reconstructed reliably from old reduced tree.",
+    "Only normal preset-button surface and up to 12 grid items are captured; no all-state/all-page visual claim.",
+    "One seed/path offline campaign is not all-event/all-reward/all-encounter coverage."
+  ],
+  "changesMadeByReviewer": "Only this local review JSON. No source edits or test/long-route execution."
+}

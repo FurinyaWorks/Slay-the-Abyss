@@ -1,0 +1,56 @@
+{
+  "reviewer": "independent code review",
+  "reviewedAt": "2026-11-09T11:23:52.718311+00:00",
+  "conclusion": "NO_OPEN_FINDINGS_IN_BOUNDED_PREFIX_EVIDENCE; offline diagnostic only",
+  "inputHashes": {
+    ".artifacts/pr588/campaign-validation/multi-prefix-flush/official-assets-campaign-prefix.lua": "dbc7f40dff2e662d6da5b36857c30368cac24f7ce20c5f60191271bbf12ecc74",
+    ".artifacts/pr588/campaign-validation/multi-prefix-flush/run-prefix.mjs": "bf6cb6382c4908b8155f4926153a9fff867e77aa430b4434a482d75b3f74cb70",
+    ".artifacts/pr588/campaign-validation/multi-prefix-flush/driver.patch": "9a35c6e310535284130fea70d5026dfe2e3090d40b06c14ef8281a1c2aec4bfd",
+    ".artifacts/pr588/campaign-validation/multi-prefix-flush/runner.patch": "795b9d6d0bfc28ddb3a65e2a731013abdf8c7ae6b46b92c05c4cc21ed3e9d435",
+    ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/report.json": "fee5f31be95312b2b9a3f120e0fad37894e6693ee1cb0821ed272d5c009aeabd",
+    ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/entry.lua": "d5cf19f1207b64cec7aa12d528b258e0e4119bcaf05bc6f354e6dde002dba2fc",
+    ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/stdout.log": "dcc68e60a4b1e9abb034a1d5674858cb5c8dd90dcf4f68daf0088f5b1786adee",
+    ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/visual-scenes.json": "8376e8fbd6b47e5d105bafa2662e54484b57158dc9933e2c0012907b473e3335",
+    ".artifacts/pr588/campaign-validation/multi-prefix-summary.json": "29cfa631c022197da86d64e63d1a347b519f59c95cbcad50d9e1ae8482e2362f"
+  },
+  "checks": [
+    "Driver and runner patches exactly reproduce differences from current standalone campaign files.",
+    "Prefix hook performs no HP, phase, RNG or combat rule writes; advances existing Host update loop only and compares entire Combat copy before/after settling.",
+    "Natural existing campaign actions unchanged before hook; first input-ready multi-enemy encounter required.",
+    "Live actor IDs checked via Actor.isActive and surfaces.find(id), including actual control visibility/activeInHierarchy. Captured actor HP text is 10/10 and 30/30, with five legal hand cards.",
+    "Completion sentinel caught only for exact OFFICIAL_PREFIX_COMPLETE; normal process return drains stdout. Both valid JSON and explicit pass marker present.",
+    "1103 input hashes match before/after/current; entry, raw stdout/stderr and generated file hashes match report. Scene provenance and file hash match summary.",
+    "Total budget narrowed to100000ms in artifact runner only; no global fixture, default test or production timeout expanded."
+  ],
+  "result": {
+    "elapsedMs": 18454.548086,
+    "status": "passed",
+    "sourceStable": true,
+    "sourceClosure": "8da88e828ea3d43948be8e4fc476ec13691fb518322347dd14a98f8e8ebd7312",
+    "floor": 4,
+    "turn": 1,
+    "enemies": [
+      {
+        "id": "acid_slime_s_1",
+        "hp": 10.0
+      },
+      {
+        "id": "spike_slime_m_2",
+        "hp": 30.0
+      }
+    ],
+    "handCount": 5,
+    "initialUpdateSeconds": 2,
+    "staleFeedbackBefore": true,
+    "normalSettleFrames": 69,
+    "stableFrames": 15,
+    "combatUnchangedAssertion": true
+  },
+  "priorFailures": "Both retained: first failed settle condition after stale-feedback cleanup; second failed JSON parsing after os.exit truncated stdout. Neither represented as passing.",
+  "remainingUnverified": [
+    "This prefix is not another full campaign completion.",
+    "Only offline generated native controls; no real SDK texture, official client/device/physical input or platform performance acceptance."
+  ],
+  "reviewerExecution": "Read/hash comparisons only; no route replay or tests."
+}

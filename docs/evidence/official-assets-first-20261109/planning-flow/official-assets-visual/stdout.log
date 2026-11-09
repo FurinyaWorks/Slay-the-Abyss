@@ -1,0 +1,12 @@
+✔ official diagnostic visibly disclaims native and texture acceptance (1.805414ms)
+✔ diagnostic preserves position, tint, text and hides inactive controls without invented glyphs (0.537907ms)
+✔ visual driver does not fake completion or mutate health and labels component stress (0.299812ms)
+✔ dynamic actor diagnostics retain the real power template and reject unknown actors (208.257849ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 383.612588

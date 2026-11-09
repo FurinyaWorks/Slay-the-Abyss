@@ -1,3 +1,4 @@
+import {preOfficialAssetsFlowCiSource} from './official-assets-flow-ci-source-inverse.mjs';
 import {preOfficialAssetsCiSource} from './official-assets-ci-source-inverse.mjs';
 // Pure CI receipt compatibility: complete current strings may enter the exact
 // pre-component source epoch. This does not authorize live owner projections or
@@ -37,6 +38,7 @@ const epochs=Object.freeze([
  Object.freeze({name:'component281',project:preComponentUiCiFoundationSource}),
  Object.freeze({name:'foundationFix',project:preFoundationFixCiSource}),
  Object.freeze({name:'officialAssets',project:preOfficialAssetsCiSource}),
+ Object.freeze({name:'officialAssetsFlow',project:preOfficialAssetsFlowCiSource}),
 ]);
 export function ciSourceAtEpoch(path,source,target){
  const index=epochs.findIndex(epoch=>epoch.name===target);assert(index>=0,'known CI source epoch');

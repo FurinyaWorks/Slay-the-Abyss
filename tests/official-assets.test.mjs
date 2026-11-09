@@ -64,7 +64,7 @@ test('all game card contexts use the same official panel while every input and l
  for(const [path,node,before] of semantic){
   assert.equal(current.get(path),node,path);
   for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget'])assert.deepEqual(node[key],before[key],path+' '+key);
-  if(node.text){const actual={...node.text},expected={...before.text};delete actual.colour;delete expected.colour;assert.deepEqual(actual,expected,path);}
+  if(node.text){const actual={...node.text},expected={...before.text};delete actual.colour;delete expected.colour;if(path.endsWith('/shopView/removal/description'))expected.minFontSize=nativeTheme.font.minimum;assert.deepEqual(actual,expected,path);}
  }
  for(const [path,node,before]of containers){assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
@@ -84,7 +84,18 @@ test('scene and button substitutions preserve semantic icons and all four native
  for(const [path,node]of paths(layout))if(/\/(portrait|intentIcon|intentBadge|intentExtra|hpIcon|goldIcon|blockedLock|art|art_attack|art_skill|art_power|icon)$/.test(path)&&node.kind==='image')
   assert.equal(node.image,before.get(path),path);
  assert.equal(child(child(layout,'menuPanel'),'backdrop').image,nativeTheme.image.officialBackdrops.title);
+ const menu=child(layout,'menuPanel'),result=child(menu,'result');
+ for(const key of ['floor','victories','time','deck']){
+  const stat=child(result,'stat_'+key);assert.equal(child(stat,'face').image,107311);
+  assert.equal(child(stat,'face').colour,'#FFFFFF');assert.equal(child(stat,'border').colour,nativeTheme.color.goldDim);
+ }
+ const map=child(layout,'mapPanel'),field=child(child(map,'mapGroup1'),'mapField');
+ assert.equal(field.image,nativeTheme.image.rect);assert.equal(field.colour,nativeTheme.color.mapCanvas.backdrop);
  assert.equal(theme.cardSkin.text.body,'#2A2620');assert.equal(nativeTheme.cardSkin.text.body,undefined);
+ const removal=child(child(child(layout,'nodePanel'),'shopView'),'removal');
+ const description=child(removal,'description');
+ assert.equal(description.text.fontSize,20);assert.equal(description.text.minFontSize,nativeTheme.font.minimum);
+ assert.equal(description.text.autoSize,true);assert.deepEqual(description.size,[104,64]);
 });
 
 test('isolated builder emits official skin plus the real preserved portraits and retains opt-out fallback',t=>{

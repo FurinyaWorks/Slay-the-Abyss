@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "beforeCommit": "1a733d800a2a50309803face7f30fd2a98b2cd31",
+  "scope": "Local serial complete-file planning evidence only; first checkpoint evidence retained unchanged",
+  "runs": [
+    {
+      "file": "tests/official-assets.test.mjs",
+      "tests": 6,
+      "nodeDurationMs": 1576.96361,
+      "wallDurationMs": 1704.499213,
+      "floorMs": 1705,
+      "previousFloorMs": 1464,
+      "previousEffectiveMs": 10000,
+      "newEffectiveMs": 10000,
+      "testSha256": "92dc05ca08b085a5c1fce2f7b441a26a51a3dc3ec0cca94f441bb0e2d2911480",
+      "inputCount": 691,
+      "layoutSha256": "e8325b858f3bebeb245b6ec0e0d59a8ab36c84a16aa0b8ea1065e78a3180bf91"
+    },
+    {
+      "file": "tests/official-assets-runtime.test.mjs",
+      "tests": 2,
+      "nodeDurationMs": 24440.198496,
+      "wallDurationMs": 24559.274278,
+      "floorMs": 24560,
+      "previousFloorMs": 17427,
+      "previousEffectiveMs": 17427,
+      "newEffectiveMs": 24560,
+      "testSha256": "f0872bace88a766cdd8d6ba258c6a27d11b8522996cdccdaee8911a42f757cc2",
+      "inputCount": 691,
+      "layoutSha256": "e8325b858f3bebeb245b6ec0e0d59a8ab36c84a16aa0b8ea1065e78a3180bf91"
+    },
+    {
+      "file": "tests/official-assets-flow.test.mjs",
+      "tests": 6,
+      "nodeDurationMs": 36698.603564,
+      "wallDurationMs": 36855.905063,
+      "floorMs": 43888,
+      "previousFloorMs": 43888,
+      "previousEffectiveMs": 43888,
+      "newEffectiveMs": 43888,
+      "testSha256": "71240e17448744047b77f306a821728d1072b6ffa95fa08aea209952cdbcdd49",
+      "inputCount": 691,
+      "layoutSha256": "e8325b858f3bebeb245b6ec0e0d59a8ab36c84a16aa0b8ea1065e78a3180bf91"
+    },
+    {
+      "file": "tests/official-assets-visual.test.mjs",
+      "tests": 4,
+      "nodeDurationMs": 383.612588,
+      "wallDurationMs": 525.9588860000003,
+      "floorMs": 526,
+      "previousFloorMs": null,
+      "previousEffectiveMs": 0,
+      "newEffectiveMs": 10000,
+      "testSha256": "1a41ef72c6e7bcd8d72b793618d863e7237a9d77bb050a744d257bd985a51652",
+      "inputCount": 691,
+      "layoutSha256": "e8325b858f3bebeb245b6ec0e0d59a8ab36c84a16aa0b8ea1065e78a3180bf91"
+    }
+  ],
+  "additionalEffectiveJsWorkMs": 17133,
+  "currentJsInventory": 829,
+  "fullExecuted": false,
+  "campaignRepeated": false,
+  "hostedMeasurementsAdded": false,
+  "luaWeightsChanged": false,
+  "matrixOrBudgetsOrTimeoutsChanged": false
+}

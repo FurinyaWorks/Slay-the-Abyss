@@ -58,15 +58,32 @@ function panelSurfaces(node,theme){
    setImage(plate,theme.officialAssets.images.panel,'#FFFFFF');
  }
 }
+function roomTextFits(node,theme){
+ if(node.name!=='shopView')return;
+ const description=required(required(node,'removal'),'description');
+ if(description.kind!=='text'||!description.text?.autoSize)throw Error('Official shop removal needs autosizing text');
+ // Keep the full live description and box. Seven CJK glyphs do not fit the
+ // former fixed 20px minimum; permit the existing native minimum as needed.
+ description.text.minFontSize=theme.font.minimum;
+}
 function pageBackgrounds(node,theme){
  const ids=theme.image.officialBackdrops;
- if(node.name==='menuPanel')setImage(required(node,'backdrop'),ids.title,'#FFFFFF');
+ if(node.name==='menuPanel'){
+  setImage(required(node,'backdrop'),ids.title,'#FFFFFF');
+  // Results share this page. Keep the four live value fields and reveal poses,
+  // but give their compact plaques the same official surface as other rooms.
+  const result=required(node,'result');
+  for(const key of ['floor','victories','time','deck']){
+   const stat=required(result,'stat_'+key);
+   setImage(required(stat,'face'),theme.officialAssets.images.panel,'#FFFFFF');
+   required(stat,'border').colour=theme.color.goldDim;
+  }
+ }
  if(node.name==='nodePanel'){
   const backdrop=child(node,'backdrop');if(backdrop)setImage(backdrop,ids.act1_3,'#FFFFFF');
  }
- if(node.name==='mapPanel'){
-  const backdrop=child(node,'backdrop');if(backdrop?.kind==='image')setImage(backdrop,ids.selection,'#FFFFFF');
- }
+ // The map has grouped mapField/mapLight surfaces, not a backdrop child. Its
+ // quiet low-control background and semantic official node icons stay intact.
 }
 export function applyOfficialAssets(trees,theme){
  if(!Array.isArray(trees)||!trees.length)throw Error('Official assets require layout trees');
@@ -77,7 +94,7 @@ export function applyOfficialAssets(trees,theme){
   const result=compactBoundedCardFaces(tree);removedControls+=result.removedControls;
   walk(tree,node=>{
    if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme);cardHosts++;}
-   else {buttonFaces(node,theme);panelSurfaces(node,theme);pageBackgrounds(node,theme);}
+   else {buttonFaces(node,theme);panelSurfaces(node,theme);pageBackgrounds(node,theme);roomTextFits(node,theme);}
   });
  }
  return {cardHosts,removedControls};

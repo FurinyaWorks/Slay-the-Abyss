@@ -1,0 +1,216 @@
+{
+  "compressedSha256": "ccf6386287a0644c3e845c386aee07bf74c7cedb8588dc49ce60a9e0f9926dae",
+  "uncompressedSha256": "460c931f6943ccf78f51432181da108bb1cc728040f945f0c18bc9e30cc14c5b",
+  "files": [
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix/official-assets-campaign-prefix.lua",
+      "bytes": 14452,
+      "sha256": "0a94d8356cdf2c75d1ed1e98b2a49ae9d6c432c350f20a3f8d8aafeb774aed4e",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix/run-prefix.mjs",
+      "bytes": 7661,
+      "sha256": "a5fbf2144507698d682728371476d5c71502ba27ce2ef02463b4bdfbf0ecde9a",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix/driver.patch",
+      "bytes": 3641,
+      "sha256": "710056b1338f8b8b0a25ab72f4556b732a95ec702782259368d82a3b75ebbe3f",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix/runner.patch",
+      "bytes": 6069,
+      "sha256": "40109c54ae7a5135bfa6b7c003d6842c92feaab6d9bbc7ad877a123922aa60b2",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix/run/report.json",
+      "bytes": 268133,
+      "sha256": "4ecdd6640da2a9241e17f1edd9fdbe04878ccf0ae0e351552ee6319127ecbb44",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix/run/stdout.log",
+      "bytes": 13415,
+      "sha256": "0988aa5b21233a1f5e74ae136d9bd474c339824b38c06daf67b0bb2d7d9ae9de",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix/run/stderr.log",
+      "bytes": 533,
+      "sha256": "98dd5f53265e5551bf36b19e741080fc70ff27fbfae1474ecc7d45900cce6a8d",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix/run/entry.lua",
+      "bytes": 956,
+      "sha256": "3ac3b8b7b5122ec0372bd4608fc836706b919b053190276cacce941e76cf2f72",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-retry/official-assets-campaign-prefix.lua",
+      "bytes": 15802,
+      "sha256": "a4a490905991af02bc8ed8cb9c5a694072cf49062b968e89b432eae3a04ffdc0",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-retry/run-prefix.mjs",
+      "bytes": 7691,
+      "sha256": "35f8cad51b04c960272e47c85fd0d5e27c3ed505c48b9d02e97ba4c67f5250e2",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-retry/driver.patch",
+      "bytes": 5021,
+      "sha256": "dd8853a72a78ea7822fdb3627fbff3e4d82459860996560bbe7aba8d401d9355",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-retry/runner.patch",
+      "bytes": 6105,
+      "sha256": "29ed5716b5355819602febcbbea80add34610a80eb6746196c0837d88440e1c7",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-retry/run/report.json",
+      "bytes": 273361,
+      "sha256": "b6e4d79428160f955a4461f889b60f8f4d2f13c9825c3b4dfda551ef18dbb0de",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-retry/run/stdout.log",
+      "bytes": 197562,
+      "sha256": "b4d073de1ffb217d29565571d2758cc8329a5ead9caf6cf7ffbe14571b56cdec",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-retry/run/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-retry/run/entry.lua",
+      "bytes": 968,
+      "sha256": "1385a0c9091c385d02bc374bb0cac295fc36587f553ff841fa295473f33d9639",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-flush/official-assets-campaign-prefix.lua",
+      "bytes": 15876,
+      "sha256": "dbc7f40dff2e662d6da5b36857c30368cac24f7ce20c5f60191271bbf12ecc74",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-flush/run-prefix.mjs",
+      "bytes": 7781,
+      "sha256": "bf6cb6382c4908b8155f4926153a9fff867e77aa430b4434a482d75b3f74cb70",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-flush/driver.patch",
+      "bytes": 5095,
+      "sha256": "9a35c6e310535284130fea70d5026dfe2e3090d40b06c14ef8281a1c2aec4bfd",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-flush/runner.patch",
+      "bytes": 6196,
+      "sha256": "795b9d6d0bfc28ddb3a65e2a731013abdf8c7ae6b46b92c05c4cc21ed3e9d435",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/report.json",
+      "bytes": 273314,
+      "sha256": "fee5f31be95312b2b9a3f120e0fad37894e6693ee1cb0821ed272d5c009aeabd",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/stdout.log",
+      "bytes": 974015,
+      "sha256": "dcc68e60a4b1e9abb034a1d5674858cb5c8dd90dcf4f68daf0088f5b1786adee",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/visual-scenes.json",
+      "bytes": 959091,
+      "sha256": "8376e8fbd6b47e5d105bafa2662e54484b57158dc9933e2c0012907b473e3335",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-flush/run/entry.lua",
+      "bytes": 1058,
+      "sha256": "d5cf19f1207b64cec7aa12d528b258e0e4119bcaf05bc6f354e6dde002dba2fc",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/selected-readable-prefix/official-assets-campaign-prefix.lua",
+      "bytes": 19519,
+      "sha256": "eb405caf447401ab07133de61d925c3455b9158d0198b731962108dd3f3a93a2",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/selected-readable-prefix/run-prefix.mjs",
+      "bytes": 7871,
+      "sha256": "dc5803986e5e5f2e0910f1c8001192e6895ee0c49e4ca6100242a8956287519d",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/selected-readable-prefix/driver.patch",
+      "bytes": 4433,
+      "sha256": "995bbe3382f62d5ffc1ca6756dedb66183869d994f4f94d99f870f038fef6ffb",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/selected-readable-prefix/runner.patch",
+      "bytes": 3453,
+      "sha256": "f0fcd625100fa617efad2b53e88e6651473f20af5cb5a338ab4fa1ef9a99b625",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/report.json",
+      "bytes": 273422,
+      "sha256": "0cfb1090a94e675415f9d9cb70d1cfe10ff54bee86eca05a0edb455cda2eb499",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/stdout.log",
+      "bytes": 1345046,
+      "sha256": "1c93635777ecc72ff761b5e6c7ebc79c754cbb85c65332821dd7dead3168924f",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/visual-scenes.json",
+      "bytes": 1328989,
+      "sha256": "9b81a05bfd9a583eaf1753d8d345710ef66a1456806f02c33cc3480f25a4b796",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/entry.lua",
+      "bytes": 1070,
+      "sha256": "1555e1060f2a4a032ac5c6837150f50cb06ef913d732100a28b3674b1616db7f",
+      "encoding": "utf8"
+    },
+    {
+      "path": ".artifacts/pr588/campaign-validation/multi-prefix-summary.json",
+      "bytes": 4063,
+      "sha256": "29cfa631c022197da86d64e63d1a347b519f59c95cbcad50d9e1ae8482e2362f",
+      "encoding": "utf8"
+    }
+  ]
+}

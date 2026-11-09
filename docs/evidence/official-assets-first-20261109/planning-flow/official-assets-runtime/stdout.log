@@ -1,0 +1,10 @@
+✔ official candidate preserves real ten-card dual-enemy combat through cancellation, dragging and turns (9955.753614ms)
+✔ official candidate keeps C-mode, repeated pile modals, real victory and return-map controls live (14233.717738ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24440.198496
