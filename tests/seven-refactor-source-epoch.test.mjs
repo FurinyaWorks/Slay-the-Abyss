@@ -18,7 +18,7 @@ test('seven-refactor exact outer epoch restores every complete predecessor owner
 
 test('component UI outer epoch authenticates its exact committed slice and original predecessor',()=>{
  const current=componentEpoch.proof;
- assert.equal(current.currentCommit,'fc98f4e38ad1eaa2fb14a775f410f3dce9014158');
+ assert.equal(current.currentCommit,'b71f41078ffd6db1f634b697148a8c9118971dfd');
  assert.equal(current.currentTreeCommitted,true);
  assert.equal(current.owners.length,22);
  const readCurrent=path=>current.current[path]?.source??null;

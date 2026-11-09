@@ -132,7 +132,7 @@ const postCalibrationLua=['tests/lua/actor_lifecycle.lua','tests/lua/actor_lifec
 test('component UI CI projection admits only complete current sources and preserves foreign drift',()=>{
  const archive=componentUiCiSourceProof;
  assert.equal(archive.beforeCommit,'1eb288472d7b33b7450eec97a624ca2ffa526f39');
- assert.equal(archive.afterProductionCommit,'fc98f4e38ad1eaa2fb14a775f410f3dce9014158');
+ assert.equal(archive.afterProductionCommit,'b71f41078ffd6db1f634b697148a8c9118971dfd');
  for(const required of ['config/architecture.json','tests/helpers/combined-epoch/source-epoch.mjs','tests/helpers/copy-integration-source-closure.mjs'])assert.ok(Object.hasOwn(archive.files,required));
  for(const [file,binding]of Object.entries(archive.files)){
   const source=diskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
