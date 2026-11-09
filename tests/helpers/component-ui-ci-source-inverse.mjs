@@ -6,6 +6,7 @@ import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {preFoundationFixCiSource} from './foundation-fix-ci-source-inverse.mjs';
+import {preComponentAliasCiSource} from './component-alias-ci-source-inverse.mjs';
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const compressed=readFileSync(new URL('./component-ui-ci-source-epoch.json.gz',import.meta.url));
 assert.equal(hash(compressed),'498384c890d22428b10a9c19f6720712d3e568cf871179e447c69fd8b92ea520','component UI CI compressed identity');
@@ -35,6 +36,7 @@ export function preComponentUiCiFoundationSource(path,source){
 const epochs=Object.freeze([
  Object.freeze({name:'component281',project:preComponentUiCiFoundationSource}),
  Object.freeze({name:'foundationFix',project:preFoundationFixCiSource}),
+ Object.freeze({name:'componentAliasFix',project:preComponentAliasCiSource}),
 ]);
 export function ciSourceAtEpoch(path,source,target){
  const index=epochs.findIndex(epoch=>epoch.name===target);assert(index>=0,'known CI source epoch');

@@ -93,7 +93,7 @@ function rejectInputOutputAliases(outputDirectory, extraInputs = []) {
   const outputs = ['abyss_theme.lua', 'map-ui.json', 'abyss_map_layout.lua', 'abyss_map_controls.lua',
     'abyss_narrative.lua', 'abyss_presentation.lua', 'battle-ui.json', 'game-ui.json', 'abyss_ui_layout.lua',
     'game-ui-templates.json', 'abyss_ui_templates.lua', 'native-card-art-receipt.json', 'lightweight-2d.json', 'v25-theme.json', `${uiProfileModule}.lua`, `${backgroundModule}.lua`,
-    'abyss_ready_card_binding.lua','abyss_ready_card_assets.lua','abyss_traveler_portrait_assets.lua',`${artFeatureModule}.lua`,'abyss_monster_art_data.lua','abyss_monster_actor_binding.lua','art-performance.json','art-render-v2.json'];
+    'abyss_ready_card_binding.lua','abyss_ready_card_assets.lua','abyss_traveler_portrait_assets.lua',`${artFeatureModule}.lua`,'abyss_monster_art_data.lua','abyss_monster_actor_binding.lua','abyss_component_binding.lua','art-performance.json','art-render-v2.json'];
   outputs.push(`${v25CardModule}.lua`);
   for (const file of outputs) {
     const output = join(outputDirectory, file);

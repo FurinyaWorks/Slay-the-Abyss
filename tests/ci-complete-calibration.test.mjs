@@ -1,5 +1,6 @@
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {preComponentUiCiSource,preComponentUiCiFoundationSource,componentUiCiSourceProof,ciSourceAtEpoch} from './helpers/component-ui-ci-source-inverse.mjs';
+import {componentAliasCiSourceProof,createComponentAliasCiProjector,preComponentAliasCiSource} from './helpers/component-alias-ci-source-inverse.mjs';
 import {foundationFixCiSourceProof,preFoundationFixCiSource} from './helpers/foundation-fix-ci-source-inverse.mjs';
 import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource,defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
@@ -129,6 +130,24 @@ const postCalibrationLua=['tests/lua/actor_lifecycle.lua','tests/lua/actor_lifec
   ...Array.from({length:9},(_,i)=>'parasite_'+String(i+1).padStart(2,'0')),
   ...Array.from({length:11},(_,i)=>'uncommon_'+String(i+1).padStart(2,'0'))]
   .map(group=>'tests/lua/relic_lifecycle_'+group+'.lua')].sort();
+
+test('component alias repair preserves exact old CI sources without accepting drift or foreign paths',()=>{
+ const proof=componentAliasCiSourceProof;
+ assert(Object.isFrozen(proof)&&Object.isFrozen(proof.files));
+ for(const [file,binding]of Object.entries(proof.files)){
+  const source=diskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  assert.equal(source,binding.afterSource,file);
+  assert.equal(preComponentAliasCiSource(file,source),binding.beforeSource,file);
+  assert.equal(preComponentAliasCiSource(file,source.replaceAll('\n','\r\n')),binding.beforeSource,file);
+  for(const foreign of [source+'\n',source.slice(1),source.slice(0,-1),binding.beforeSource,null,undefined,{},17])assert.equal(preComponentAliasCiSource(file,foreign),foreign,file);
+  for(const foreign of ['foreign/'+file,file+'/extra','__proto__','constructor'])assert.equal(preComponentAliasCiSource(foreign,source),source,file);
+  for(const field of ['beforeSource','afterSource','beforeSha256','afterSha256','beforeGitBlob','afterGitBlob']){
+   const corrupt=JSON.parse(JSON.stringify(proof));corrupt.files[file][field]+='x';
+   assert.throws(()=>createComponentAliasCiProjector(corrupt),field);
+  }
+  const missing=JSON.parse(JSON.stringify(proof));delete missing.files[file];assert.throws(()=>createComponentAliasCiProjector(missing));
+ }
+});
 
 test('component UI CI projection admits only complete current sources and preserves foreign drift',()=>{
  const preComponentUiCiSource=preComponentUiCiFoundationSource;
