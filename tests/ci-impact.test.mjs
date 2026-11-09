@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync,writeFileSync,mkdtempSync,mkdirSync,rmSync } from 'node:fs';
+import {join,resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import {qualityShardMatrices} from '../scripts/ci-quality-shape.mjs';
 import { spawnSync } from 'node:child_process';
 import { impact } from '../scripts/ci-impact.mjs';
 const timing = { js: { win32: {}, linux: {} }, lua: {}, unknownJsMs: 1000, unknownLuaMs: 1000 };
@@ -91,4 +94,40 @@ test('actual required gate commands reject every missing, failed, cancelled or s
     // cancellation must release obsolete runs instead of queuing a summary.
     assert.match(body, /^    if: \$\{\{ !cancelled\(\) \}\}$/m);
   }
+});
+
+test('actual impact CLI routes Full Fast unknown and merge-group through the complete current matrices',()=>{
+ const root=mkdtempSync(join(tmpdir(),'impact-posix15-')),cli=resolve('scripts/ci-impact.mjs');
+ const git=(...args)=>{const result=spawnSync('git',args,{cwd:root,encoding:'utf8'});assert.ifError(result.error);assert.equal(result.status,0,result.stderr);return result.stdout.trim();};
+ try{
+  for(const dir of ['src/lua','scripts','tests','docs'])mkdirSync(join(root,dir),{recursive:true});
+  writeFileSync(join(root,'scripts/ci-test-timings.json'),JSON.stringify(timing));
+  writeFileSync(join(root,'docs/CI.md'),'initial\n');
+  git('init','--quiet');git('add','.');git('-c','user.name=CI Fixture','-c','user.email=ci@example.invalid','commit','--quiet','-m','initial');
+  const base=git('rev-parse','HEAD'),head='a'.repeat(40),ref='refs/heads/gh-readonly-queue/develop/pr-1-fixture';
+  for(const scenario of [
+   {name:'fast',file:'docs/CI.md',mode:'fast'},
+   {name:'full',file:'scripts/ci-quality-shape.mjs',mode:'full'},
+   {name:'unknown',file:'unmapped-input',mode:'full'},
+   {name:'merge-group',mode:'full',eventName:'merge_group'},
+  ]){
+   git('reset','--hard',base);git('clean','-fd');
+   if(scenario.file){writeFileSync(join(root,scenario.file),'changed\n');git('add','.');git('-c','user.name=CI Fixture','-c','user.email=ci@example.invalid','commit','--quiet','-m',scenario.name);}
+   // git does not retain empty directories. The real CLI still scans its three source roots.
+   for(const dir of ['src/lua','scripts','tests'])mkdirSync(join(root,dir),{recursive:true});
+   const eventPath=join(root,'event.json'),output=join(root,'output'),summary=join(root,'summary');
+   const event=scenario.eventName?{action:'checks_requested',merge_group:{head_sha:head,base_sha:base,head_ref:ref,base_ref:'refs/heads/develop'}}:{pull_request:{base:{sha:base,ref:'develop'},head:{sha:head},labels:[]}};
+   writeFileSync(eventPath,JSON.stringify(event));
+   const env={...process.env,GITHUB_EVENT_PATH:eventPath,GITHUB_OUTPUT:output,GITHUB_STEP_SUMMARY:summary,GITHUB_EVENT_NAME:scenario.eventName??'pull_request',GITHUB_SHA:head,GITHUB_REF:ref,GITHUB_RUN_ID:'7',GITHUB_RUN_ATTEMPT:'1'};
+   const actual=spawnSync(process.execPath,[cli],{cwd:root,env,encoding:'utf8'});assert.ifError(actual.error);assert.equal(actual.status,0,scenario.name+': '+actual.stderr);
+   const plan=JSON.parse(readFileSync(join(root,'ci-impact.json'),'utf8'));assert.equal(plan.mode,scenario.mode);assert.equal(plan.sha,head);
+   const emitted=Object.fromEntries(readFileSync(output,'utf8').trim().split('\n').map(line=>[line.slice(0,line.indexOf('=')),line.slice(line.indexOf('=')+1)]));
+   assert.equal(emitted.mode,scenario.mode);assert.deepEqual(JSON.parse(emitted.windows_shards),qualityShardMatrices.windows);assert.deepEqual(JSON.parse(emitted.posix_shards),qualityShardMatrices.posix);
+   assert.equal(JSON.parse(emitted.windows_shards).length,17);assert.equal(JSON.parse(emitted.posix_shards).length,15);
+   if(scenario.eventName){
+    writeFileSync(eventPath,JSON.stringify({...event,merge_group:{...event.merge_group,head_sha:'b'.repeat(40)}}));
+    const denied=spawnSync(process.execPath,[cli],{cwd:root,env,encoding:'utf8'});assert.ifError(denied.error);assert.notEqual(denied.status,0);assert.match(denied.stderr,/Invalid native merge group identity/);
+   }
+  }
+ }finally{rmSync(root,{recursive:true,force:true});}
 });

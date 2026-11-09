@@ -1,3 +1,4 @@
+import {prePosix15ShapeSource} from './posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource} from './defect-final-ci-source-inverse.mjs';
 import {preSilentFinalCiSource} from './silent-final-ci-source-inverse.mjs';
 import {preRelicEquipCiSource} from './relic-equip-ci-source-inverse.mjs';
@@ -39,6 +40,7 @@ export function prePosix14ShapeSource(path,source){
 // This placement-only bridge returns the existing complete approved source.
 // It adds no live owner, fixture dependency or permission-bearing cache.
 export function preCurrentCiPlacementSource(path,source){
+ source=prePosix15ShapeSource(path,source);
  source=originalPlanningSource(path,source);
  source=preDefectUtilityPlanningSource(path,preDefectIntegrationPlanningSource(path,source));
  source=preEnemyAiPlanningSource(path,prePosix14ShapeSource(path,preClassPotionPlanningSource(path,preWatcherPlanningSource(path,preEnemyIntegrationPlanningSource(path,source)))));

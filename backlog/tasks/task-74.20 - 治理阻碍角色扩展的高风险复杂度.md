@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T22:28:00Z'
+updated_date: '2026-11-09T00:49:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -28,6 +28,7 @@ documentation:
   - docs/backlog-details/M7-RELIC-EQUIP-20261109.md
   - docs/backlog-details/M7-SILENT-FINAL-20261109.md
   - docs/backlog-details/M7-DEFECT-FINAL-20261109.md
+  - docs/backlog-details/M7-DEFECT-COST-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -94,6 +95,10 @@ ordinal: 162000
 第21轮接续主控已授权M7职责治理：鲜查develop7821a7f4与开放PR占用后，在#572 d2ed1bbf依赖树仅拆分Silent final M.apply的触发、造牌、回合能力与伤害执行职责。保留公开动态槽、完整状态/别名/RNG/错误及部分写入；冻结旧源，新增职责CC15、真实语义负控和独立深审后及时远端保全与Draft交付。不重复Full、不改原分支/owner/status/AC、不操作用户设备。
 
 第22轮按Owner持续架构授权接续同一任务，不另认领：task:pick因既有In Progress为HOLD，已核实开放PR未涉及DefectFinal.execute。以最新develop 7821及公开#573 6f017完整祖先链建隔离树，按动作执行职责拆解execute CC39，保持旧分支读序、双created、返回值、RNG、队列及部分失败。冻结完整旧源，双独立VM及真实语义负控；新增helper含嵌套受原CC15门禁。组合来源新epoch保留49-owner历史合同，按实测评估CI成本，独立深审后及时远端Draft接续；不重跑Full、不准入/合并、不改owner/status/AC或用户设备。
+
+接续#574成本阻塞修复：最新HEAD仍fb04fd36；14个POSIX分片负载差仅11ms，完整总负载15994730ms，原预算及60秒预留下至少需真实降低34730ms总成本，不能仅重排伪造通过。先定位新完整图harness开销，仅优化可证明无损的纯计算，完整旧新图、表读取、断言、七旧夹具和十语义负控保留。生产不变，旧日志与floor作为历史证据保留；真实新版本完整测量、成本合同与独审通过后更新原PR，不重复Full、不抬预算/并发/worker。
+
+成本修复方案依据本轮实测与Owner协调确认改为现有框架内最小POSIX15片：14片总量超原容量34730ms且负载差11ms；profile中UTF8仅约1%、Matrix解析约2.22%，不足以支持所需降幅，不实施投机缓存。Windows17、POSIX并发12、Lua worker2、全部原floor、每片预算/执行保护/60秒预留与两平台完整覆盖保持；当前15片预测1126323ms，旧14片与Full36来源/收据原字节冻结，适配当前37作业精确交付与负控，独审后更新#574。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -168,4 +173,6 @@ Silent final最终行为16/16，46301ms；两侧各848完整图、九个具名�
 第21轮独立深审PASS/unresolved[]，额外CI消费者16/16后共62个不同CI用例通过；传递source14/14及timings路由2/2补齐。生产、合同及成本已冻结，完整日志与原失败均归档，待精确远端最终身份/Draft交付。无Hosted Full、正常准入或合后证据，任务与AC保持。
 
 第22轮已实做DefectFinal.execute职责拆分并远端保全f4a3671d，接续#573。execute CC39→13、8helper最大6；全338模块5598/5598，>30为35→34，>15为211→210，SCC68/11/2不变。行为19/19、双VM各1351完整图、10具名语义变异通过；来源121不同用例、当前50owner鲜读及历史档案保留。真实CC3/3及原职责19/19通过。最终串行行为89.852秒；完整797JS/1410Lua含60秒预留预测POSIX1202485，超过原目标2485ms，成本准入仍BLOCKED。保留原预算/并发/worker与真实失败，不重复Full、ready、入队或合并；当前仅Draft交付准备，不改owner/status/AC。
+
+原#574成本修复本地通过：仅当前POSIX矩阵14→15，Windows17/并发12/Lua2/原30项floor与预算、预留、workflow全部不变；完整同权重总量15994730ms，15片含预留1126323ms余73677。23个完整受影响文件241项通过，独立42负控与797JS/1410Lua各平台完整覆盖通过；3478输入两阶段历史投影等价，原369行为输入及旧失败证据原字节保留。广213仅缺pwsh的旧checkout用例失败，两次过宽来源执行中断均保留；不称Full或全91依赖闭包通过。证据见M7-DEFECT-COST-20261109附件。仅更新原Draft，前置链/管理员准入/精确HEAD Hosted Full尚待，未验AC不勾。
 <!-- SECTION:NOTES:END -->

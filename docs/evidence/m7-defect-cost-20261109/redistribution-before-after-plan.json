@@ -1,0 +1,69 @@
+{
+  "baseRemoteSha": "fb04fd36ab4fbdba71c0da08bf71d2899143f69b",
+  "sameWeights": true,
+  "unknownMs": 10000,
+  "unchangedPosixConcurrency": 12,
+  "unchangedWindowsShards": 17,
+  "unchangedLuaWorkers": 2,
+  "unchangedPlanningBudgetMs": 1200000,
+  "unchangedExecutionTimeoutMinutes": 30,
+  "unchangedReserveMs": 60000,
+  "plans": [
+    {
+      "posixShards": 14,
+      "files": 797,
+      "loads": [
+        1142485,
+        1142479,
+        1142484,
+        1142484,
+        1142484,
+        1142475,
+        1142479,
+        1142484,
+        1142484,
+        1142475,
+        1142475,
+        1142484,
+        1142484,
+        1142474
+      ],
+      "sumMs": 15994730,
+      "averageMs": 1142480.7142857143,
+      "forecastWith60000ReserveMs": 1202485,
+      "headroomMs": -2485
+    },
+    {
+      "posixShards": 15,
+      "files": 797,
+      "loads": [
+        1066314,
+        1066314,
+        1066314,
+        1066323,
+        1066323,
+        1066323,
+        1066313,
+        1066313,
+        1066314,
+        1066314,
+        1066313,
+        1066313,
+        1066313,
+        1066313,
+        1066313
+      ],
+      "sumMs": 15994730,
+      "averageMs": 1066315.3333333333,
+      "forecastWith60000ReserveMs": 1126323,
+      "headroomMs": 73677
+    }
+  ],
+  "qualification": "Same complete inventory and weights. Planning only; not hosted runtime or end-to-end latency. Fifteen is minimal because fourteen total capacity is34730ms short.",
+  "inputs": {
+    "scripts/ci-test-timings.json": "6a3db2904d5529e4245cba597ff61618bbd76c674b5baec470845907318d1171",
+    "scripts/ci-shards.mjs": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+    ".github/workflows/quality.yml": "aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535",
+    "scripts/test-lua.mjs": "57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703"
+  }
+}
