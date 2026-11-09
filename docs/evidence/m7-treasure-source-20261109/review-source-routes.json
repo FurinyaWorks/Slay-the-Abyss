@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "targets": 22,
+  "paths": 339,
+  "projectedChecks": 1234,
+  "unchangedChecks": 13682,
+  "rawOwnerReads": 64168,
+  "sourceAdapterSha256": "ce40981ee9deba431eba2f024cabc9d3ee18f493430af48c812a05e2801e315c"
+}

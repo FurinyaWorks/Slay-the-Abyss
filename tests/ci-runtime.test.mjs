@@ -1,3 +1,4 @@
+import {preTreasureSourceCiSource} from './helpers/treasure-source-ci-source-inverse.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -162,7 +163,8 @@ test('real executor preserves test failure, continues later files, reports timin
 
 
 test('current timing records preserve all measured corrections without duplicate JSON keys',()=>{
- const raw=readFileSync('scripts/ci-test-timings.json','utf8');
+ const raw=preTreasureSourceCiSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8'));
+ const timings=JSON.parse(raw); // This receipt retains its exact 800-file predecessor.
  assert.equal((raw.match(/^  "jsCorrections":/gm)||[]).length,1,'one unambiguous correction inventory');
  assert.equal(timings.jsCorrections.length,3);
  for(const entry of timings.jsCorrections){

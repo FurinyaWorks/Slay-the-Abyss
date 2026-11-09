@@ -1,0 +1,110 @@
+[
+  {
+    "fixture": "tests/lua/source_treasure_token.lua",
+    "version": "before",
+    "wallMs": 16534.728015,
+    "checkpoints": 42,
+    "bytes": 41691,
+    "logs": [
+      "ok Act2 event UI 1 - opaque token refuses metatables and every additional field before changing a reward owner",
+      "ok Act2 event UI 2 - source rechecks floor, seed, signature, generation and opened chest",
+      "ok Act2 event UI 3 - modern footer source binds stable linked slots and taking key preserves all independent rewards",
+      "ok Act2 event UI 4 - modern footer refuses same token after any reward or summary mutation without partial resources",
+      "ok Act2 event UI 5 - initial unavailable base can be sacrificed, later missing implemented definition cannot be laundered",
+      "ok Act2 event UI 6 - source Matryoshka extra reward survives Sapphire together with independent gold",
+      "SOURCE_TREASURE_TOKEN 6 passed"
+    ]
+  },
+  {
+    "fixture": "tests/lua/source_treasure_token.lua",
+    "version": "current",
+    "wallMs": 10494.676017999998,
+    "checkpoints": 42,
+    "bytes": 41691,
+    "logs": [
+      "ok Act2 event UI 1 - opaque token refuses metatables and every additional field before changing a reward owner",
+      "ok Act2 event UI 2 - source rechecks floor, seed, signature, generation and opened chest",
+      "ok Act2 event UI 3 - modern footer source binds stable linked slots and taking key preserves all independent rewards",
+      "ok Act2 event UI 4 - modern footer refuses same token after any reward or summary mutation without partial resources",
+      "ok Act2 event UI 5 - initial unavailable base can be sacrificed, later missing implemented definition cannot be laundered",
+      "ok Act2 event UI 6 - source Matryoshka extra reward survives Sapphire together with independent gold",
+      "SOURCE_TREASURE_TOKEN 6 passed"
+    ]
+  },
+  {
+    "fixture": "tests/lua/source_treasure_nodes.lua",
+    "version": "before",
+    "wallMs": 4728.006152000002,
+    "checkpoints": 18,
+    "bytes": 12732,
+    "logs": [
+      "ok Act2 event UI 1 - room entry constructs source chest without opening hooks or consuming relic queues",
+      "ok Act2 event UI 2 - explicit open commits exact owners and exposes independent linked reward tokens",
+      "ok Act2 event UI 3 - generated chest click is a real open command and reward paging preserves other rewards",
+      "ok Act2 event UI 4 - failed relic obtain cannot consume reward token, queues, currencies or ownership",
+      "SOURCE_TREASURE_NODES 4 passed"
+    ]
+  },
+  {
+    "fixture": "tests/lua/source_treasure_nodes.lua",
+    "version": "current",
+    "wallMs": 4375.763536000002,
+    "checkpoints": 18,
+    "bytes": 12732,
+    "logs": [
+      "ok Act2 event UI 1 - room entry constructs source chest without opening hooks or consuming relic queues",
+      "ok Act2 event UI 2 - explicit open commits exact owners and exposes independent linked reward tokens",
+      "ok Act2 event UI 3 - generated chest click is a real open command and reward paging preserves other rewards",
+      "ok Act2 event UI 4 - failed relic obtain cannot consume reward token, queues, currencies or ownership",
+      "SOURCE_TREASURE_NODES 4 passed"
+    ]
+  },
+  {
+    "fixture": "tests/lua/source_treasure_owner_guards.lua",
+    "version": "before",
+    "wallMs": 5164.216305000002,
+    "checkpoints": 62,
+    "bytes": 46038,
+    "logs": [
+      "ok Act2 event UI 1 - byte-equal reward-items replacement retires both original source gestures; fresh plain gestures work",
+      "ok Act2 event UI 2 - selected gold and relic row metatables refuse before graph copy; unchanged plain rows still claim",
+      "ok Act2 event UI 3 - ignored malformed-row child refusal poisons an enclosing permanent transaction",
+      "ok Act2 event UI 4 - legacy nil-items source choices remain valid through unchanged generated UI controls",
+      "SOURCE_TREASURE_OWNER_GUARDS 4 passed"
+    ]
+  },
+  {
+    "fixture": "tests/lua/source_treasure_owner_guards.lua",
+    "version": "current",
+    "wallMs": 5817.666361999996,
+    "checkpoints": 62,
+    "bytes": 46038,
+    "logs": [
+      "ok Act2 event UI 1 - byte-equal reward-items replacement retires both original source gestures; fresh plain gestures work",
+      "ok Act2 event UI 2 - selected gold and relic row metatables refuse before graph copy; unchanged plain rows still claim",
+      "ok Act2 event UI 3 - ignored malformed-row child refusal poisons an enclosing permanent transaction",
+      "ok Act2 event UI 4 - legacy nil-items source choices remain valid through unchanged generated UI controls",
+      "SOURCE_TREASURE_OWNER_GUARDS 4 passed"
+    ]
+  },
+  {
+    "fixture": "tests/lua/sapphire_current_relics.lua",
+    "version": "before",
+    "wallMs": 2352.4151590000038,
+    "checkpoints": 6,
+    "bytes": 8376,
+    "logs": [
+      "SAPPHIRE_CURRENT_RELICS_PASS"
+    ]
+  },
+  {
+    "fixture": "tests/lua/sapphire_current_relics.lua",
+    "version": "current",
+    "wallMs": 2156.219407000004,
+    "checkpoints": 6,
+    "bytes": 8376,
+    "logs": [
+      "SAPPHIRE_CURRENT_RELICS_PASS"
+    ]
+  }
+]

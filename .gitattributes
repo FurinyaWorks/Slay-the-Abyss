@@ -465,3 +465,13 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# Treasure source responsibility source authentication.
+tests/helpers/combined-epoch/pre-treasure-source-source-epoch.mjs text eol=lf
+tests/helpers/treasure-source-source-epoch.json.gz -text
+tests/helpers/treasure-source-source-epoch.mjs text eol=lf
+tests/treasure-source-epoch.test.mjs text eol=lf
+tests/helpers/treasure-source-ci-source-epoch.json.gz -text
+tests/helpers/treasure-source-ci-source-inverse.mjs text eol=lf
+docs/evidence/m7-treasure-source-20261109/*.gz -text
+docs/evidence/m7-treasure-source-20261109/*.json text eol=lf

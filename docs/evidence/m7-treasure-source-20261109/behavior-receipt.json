@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "test": "tests/treasure-source-responsibilities.test.mjs",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/treasure-source-responsibilities.test.mjs"
+  ],
+  "environment": "cloud Linux local",
+  "sourceBaseCommit": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "exitCode": 0,
+  "tests": 16,
+  "passed": 16,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "nodeReportedDurationMs": 10177.375855,
+  "wallMs": 10273.434874,
+  "beforeAfterHashesMatched": true,
+  "sourceLogSha256": "1b2083a82528b77cb45faa7826c6538aa1eef86acb6db09a43c4b792c17e3b56",
+  "sourceLogUncompressedSha256": "fe3b4ea21a276bd858ddce24ec58d455b7b28ad40ce019b6ae53b7af560e44f2",
+  "inputSha256": {
+    "src/lua/abyss_treasure_source.lua": "9abc146584d55b7c32afc96fd42862bc2844539e4eda7d6902dc49a7d1e70e92",
+    "tests/fixtures/treasure-source-before.lua": "44ae73c0d996c4f336d18f225a44466c73db6db85921f1eca28c00865f8601da",
+    "tests/treasure-source-responsibilities.test.mjs": "ee5dc0c867607ba41a68bab225c430fdb11bce48e9a99b0b65073c903fdd6909",
+    "tests/helpers/treasure-source-vm.mjs": "a2de3eb48d47d28062a47f1facaafa6b8c323d1104daf8d9671ddd04f05ca146",
+    "tests/helpers/treasure-source-edges.lua": "55b7d43da6a4345a68c2c7d4c4d84eb64965607b09bc36cee07712cb7c6eb7f6",
+    "tests/helpers/lua-graph-observer.mjs": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f",
+    "scripts/build-lua-data.mjs": "2a04be0449e7fd43404662e4998c7d0541761708f50043f966e66ac7c5ed67d1",
+    "scripts/build-original-v4.mjs": "91406d3b0b06000d1dea4129dd47ac8531d8806f3db066342b5946dd6da8f267",
+    "scripts/validate-data.mjs": "4a1043d4fee942f51a7ae7d7fc12e7a17b6fdaed01f3d75bf09cc868613eb925",
+    "package.json": "1b862ee47c4390a99c952582a6e16a8768c370d5df42aed990c8a665f568473c",
+    "package-lock.json": "b3f3cbd334fee96bcebeb6645c909a9b64425d0d704fd179b4279b19e1cf2ed9"
+  },
+  "inputScope": "Complete repository import closure (11 files), excluding installed immutable npm package contents bound by package-lock."
+}

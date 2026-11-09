@@ -94,6 +94,7 @@ export function reviewRenderComplexity(diagnostics, sources) {
 // Budget only this governance slice and every extracted responsibility module.
 // Unrelated pre-existing Combat/UI hotspots keep their diagnostic reports.
 const responsibilityRoots = {
+  'src/lua/abyss_treasure_source.lua': ['M.pair','collectItems','linkedPair','matchingExtras','item','relicItem'].map(name=>`function '${name}'`),
   'src/lua/abyss_encounter_formation.lua': ['M.assemble','fixedFormation','shapeFormation','gremlinFormation',
     'slimeFormation','louseFormation','mixedFormation'].map(name=>`function '${name}'`),
   'src/lua/abyss_defect_final_cards.lua': ['M.execute','generate','applyFinalPower','recurOrb','scrapeDrawn','recoverZeroCost','recoverDiscard','fissionOrbs','rebootPiles']

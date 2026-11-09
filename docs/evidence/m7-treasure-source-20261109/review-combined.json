@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "status": "APPROVED_REVIEWED_BYTES_AWAITING_COMMIT_BINDING",
+  "baseCommit": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "reviewedCommit": null,
+  "blockers": [],
+  "reviewedFilesSha256": {
+    "src/lua/abyss_treasure_source.lua": "9abc146584d55b7c32afc96fd42862bc2844539e4eda7d6902dc49a7d1e70e92",
+    "scripts/check-lua-static.mjs": "e727aa790f5afdb8ac829b3566382adb501a839851baffacd9ce5bf4829cf692",
+    "scripts/ci-test-timings.json": "aeab4ef8436b969066f952c8e0a534f265729b255d8263abd6a2e62558d769d8",
+    "tests/treasure-source-responsibilities.test.mjs": "ee5dc0c867607ba41a68bab225c430fdb11bce48e9a99b0b65073c903fdd6909",
+    "tests/helpers/treasure-source-vm.mjs": "a2de3eb48d47d28062a47f1facaafa6b8c323d1104daf8d9671ddd04f05ca146",
+    "tests/helpers/treasure-source-edges.lua": "55b7d43da6a4345a68c2c7d4c4d84eb64965607b09bc36cee07712cb7c6eb7f6",
+    "tests/treasure-source-complexity.test.mjs": "cfb901c47bddcf21ecd79e7365724f32098b237c3e45b78472aaf8d744de746c",
+    "tests/fixtures/treasure-source-before.lua": "44ae73c0d996c4f336d18f225a44466c73db6db85921f1eca28c00865f8601da",
+    "tests/treasure-source-epoch.test.mjs": "5aebbd903fd8e3f4ddcf9bfb437227a3e107daafb902d85f6022f4a79a2e83ab",
+    "tests/helpers/treasure-source-source-epoch.mjs": "ce40981ee9deba431eba2f024cabc9d3ee18f493430af48c812a05e2801e315c",
+    "tests/helpers/treasure-source-source-epoch.json.gz": "1d21b6e2b0e5bd2df395c87ecaae37ad82bc6310e0414db15a2d910688163ce0",
+    "tests/helpers/treasure-source-ci-source-inverse.mjs": "19282c4531bf7871ed8eca026f0a64e7b347253afabba0b4e1b3a635e7eb0750",
+    "tests/helpers/treasure-source-ci-source-epoch.json.gz": "108949efb09ad1fad77d8aaea623e6d034d75f4780204e90151b3f75c84b8acf",
+    "tests/helpers/combined-epoch/pre-treasure-source-source-epoch.mjs": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "9acb6f6274609e4d75e0c51b86cf7a4e38dfd21ce6fd83cd12cc480ac3d08c73",
+    "tests/helpers/copy-integration-source-closure.mjs": "3e135b06c6af964f29693aab89188fbbadae59b86b4404c329e076664843c16e",
+    "tests/encounter-formation-source-epoch.test.mjs": "8961728a23eba2246cc0afaab10c218caa9ce5ba63f6b642b9eb83d0158a97db",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "86c5ff0bfeb6b8fdec5882999ac85e6ba2a8874be5b7eb84c441cc62aead55d5",
+    "tests/ci-complete-calibration.test.mjs": "39076336dbbd6f0482378af80e3171f2b98c053d453bf58f4133ece20c83c01c",
+    "tests/ci-runtime.test.mjs": "ebbc243006a0a6565a2bf77cdcd8adb2881f77b78367eab30486628c4022a2c0",
+    ".gitattributes": "fe2e7b19164e279fa4c5e261b4abacbf8497bd112be2bf116d31e9edc33d12a2"
+  },
+  "independentChecks": {
+    "behaviorCases": 20,
+    "checkpointsPerVm": 40,
+    "matchingGraphStreamSha256": "b6c1529f1f74664b5d5ee52cbba8320d1f9ebfad2cd59efaa42a9a9bb78470c7",
+    "sourceRoutes": {
+      "status": "PASS",
+      "targets": 22,
+      "paths": 339,
+      "projectedChecks": 1234,
+      "unchangedChecks": 13682,
+      "rawOwnerReads": 64168,
+      "sourceAdapterSha256": "ce40981ee9deba431eba2f024cabc9d3ee18f493430af48c812a05e2801e315c"
+    },
+    "ciArchiveBeforeBindingsMatchGitBase": 7,
+    "ciArchiveCurrentBindingsMatchDisk": 7,
+    "predecessorFacadeByteIdentical": true
+  },
+  "findings": [
+    "No production semantic or source/CI integration blockers found.",
+    "All 22 target and 339 path current routes preserve exact predecessor target content. LF/CRLF projections authenticate exactly 52 raw owners each; original and unchanged bytes cause no owner reads.",
+    "Prior source archives, target bindings, consumer facades and original oracle assertions are preserved. Formation-specific tests now select frozen predecessor explicitly.",
+    "CI historical 800-file costs and observations stay separate from current 803-file inventory. Seven exact CI inverse bindings match Git base bytes. Only two planning floors are added; hosted timings, safety bounds, workflows and timeouts are unchanged.",
+    "Behavior planning floor 10624 conservatively uses max of two complete passes; first pass records nine input hashes and later pass all eleven, without retroactively claiming eleven for first pass.",
+    "Graph streams are reconstructable full-state evidence with delta-encoded definitions, not standalone full snapshots."
+  ],
+  "peerLogsReviewed": {
+    "behavior-final.log": "16/16",
+    "complexity-final.log": "3/3",
+    "source.log": "11/11",
+    "ci-complete-final.log": "45/45",
+    "ci-runtime-final.log": "13/13"
+  },
+  "parentReportedNotRerun": {
+    "originalRunOwnerFixtures": 4,
+    "matchingPairCheckpointsPerVm": 128,
+    "engineeringCurrent": "338/5608"
+  },
+  "forecastOnly": {
+    "windowsMs": 1796804,
+    "windowsBudgetMs": 1800000,
+    "linuxMs": 1131726,
+    "linuxBudgetMs": 1200000,
+    "fullRunClaimed": false
+  },
+  "limits": [
+    "Final commit binding pending parent-supplied SHA.",
+    "No Full, live platform/device acceptance, upload or commit performed by reviewer.",
+    "Forecasts are not hosted execution evidence; Windows forecast headroom is only 3196 ms."
+  ],
+  "evidenceFiles": [
+    ".artifacts/treasure-source/review-independent.md",
+    ".artifacts/treasure-source/review-edges.lua",
+    ".artifacts/treasure-source/review-before-graphs.jsonl",
+    ".artifacts/treasure-source/review-after-graphs.jsonl",
+    ".artifacts/treasure-source/review-source-routes.mjs",
+    ".artifacts/treasure-source/review-source-routes.json"
+  ]
+}

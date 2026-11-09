@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T01:07:00Z'
+updated_date: '2026-11-09T12:27:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -31,6 +31,7 @@ documentation:
   - docs/backlog-details/M7-DEFECT-COST-20261109.md
   - docs/backlog-details/M7-ENCOUNTER-FORMATION-20261109.md
   - docs/backlog-details/M7-FORMATION-POSIX15-INTEGRATION-20261109.md
+  - docs/backlog-details/M7-TREASURE-SOURCE-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -105,6 +106,12 @@ ordinal: 162000
 2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
 
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
+
+2026-11-09 主控明确续做未占用的 WindingHalls.choose：仅在原模块内分离健康与遗物准入、Madness/Writhe/maxHP结果职责，保留Run动态方法、两次取得、错误与部分写入及事务回滚。核对最新develop 1eb28847和全部开放PR后在独立树实施；不重领已In Progress任务、不改owner/status/AC。冻结完整旧源，独立VM全图差分与真实语义负控、原Lua回归、CC15门禁、来源/成本接线、独审后及时按原门禁上传。
+
+更正上述Winding计划：在写生产前获知该职责已有原owner和远端上传，立即停止重复实施；本树未改该生产文件。后续仅核对未占用的TreasureSource.pair奖励身份校验职责，不覆盖Winding成果。
+
+本轮实际仅拆分TreasureSource.pair：物品槽收集、Sapphire双向身份绑定、额外遗物比较三职责，保留拒绝优先级、规范签名、公开返回与零状态提交；不改既有Run事务与UI。新增职责纳入CC15、完整旧新图和具名语义负控，接续原来源/成本合同，独审后按原门禁上传。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -191,4 +198,6 @@ Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原PO
 已在独立树整合公开#574@841510b7与#575@d21be2fb，保全两父全部生产/历史证据。组合800JS/1410Lua复算Windows1794163（余5837）、POSIX15为1128812（余71188），旧14超5156保持可复现；仅4共享文本冲突，预算/floor/unknown/并发/worker不变。独审核8125非冲突原路径字节一致；当前定向测试和最终独审收口中，不重复Full或提前勾AC。
 
 POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入前后hash一致；历史/当前投影4370+6976比较重放一致。独审13455比较、17桥拒绝和40准入validator拒绝负控通过，原始失败保留。以原#575与#574为两父合并更新同PR；仅本地组合验证及规划通过，未跑本HEAD Hosted Full，继续Draft与正常准入，不勾AC。
+
+TreasureSource奖励身份职责已实做：pair CC35→8、item19→11、新helper最高14；全338模块5608测量，>30 33→32、>15 209→207，SCC68/11/2和原14告警保持。旧新各2444边界场景/4888可重建图检查点、14语义负控、四原Lua文件两侧通过；新52-owner与原来源合同保留。成本floor仅新增23130/10624，803JS1410Lua原17Windows15POSIX预测1796804/1131726ms，Windows余3196ms不代表Hosted安全。独审生产和来源无阻断，精确身份/正常CI与队列仍待；原失败全保留，无本地Full/设备操作，owner/status/AC不变。详见M7-TREASURE-SOURCE-20261109。
 <!-- SECTION:NOTES:END -->
