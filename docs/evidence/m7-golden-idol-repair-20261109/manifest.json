@@ -20,24 +20,32 @@
     "gzipSha256": "2e00108a00309a35872d4e5c3043f5cf8142cd407fa7c87298214e3d5b503559"
   },
   "hosted-job-129043592001.log": {
-    "bytes": 27341,
-    "sha256": "aad49537e9e0829c24f19bce6b1a839398808ab7df5afdee075f31cf0a1b896d",
-    "gzipSha256": "1cf111b7b075398a780a33fec3ee8cdbfc992a07f706d91b9680b79182d120d4"
+    "bytes": 27473,
+    "sha256": "9360d20892b5fea2d6897bd9f97af18ab046df85283a85f0fa5142b948ece5ad",
+    "gzipSha256": "19e4fddefffe96f826405ffa24c0f3d7b408d284fd2178f4ab5d2a154bc8fec9",
+    "classification": "complete-github-returned-log",
+    "sourceUrl": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/jobs/129043592001/logs"
   },
   "hosted-job-129043592155.log": {
     "bytes": 31440,
     "sha256": "e53b7a4f1d4bb487c75616cafcafa381ceca41928299179400712bf744138c46",
-    "gzipSha256": "40259482948a16583560d62979fa2d035ae3c65062ec1d34013fd8e10a5114ab"
+    "gzipSha256": "40259482948a16583560d62979fa2d035ae3c65062ec1d34013fd8e10a5114ab",
+    "classification": "complete-github-returned-log",
+    "sourceUrl": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/jobs/129043592155/logs"
   },
   "hosted-job-129043592255.log": {
-    "bytes": 43103,
-    "sha256": "2eba42cf3d88c843abcdef3897b930bbe73cb6b284aaa5ded4733374aa2cd909",
-    "gzipSha256": "c345627702a4ac13e21dc1d3852fd36b694455a7cf3d7d97e97bc43159a7cab8"
+    "bytes": 83189,
+    "sha256": "ef2aa7304c1881dc8fc9c370669b3f58247b948e6b8640edc807f470b9744840",
+    "gzipSha256": "1f3e1b83cc08142a2bae6674a4bfe90a182234285bad6cb93aa8040db07fc4fb",
+    "classification": "complete-github-returned-log",
+    "sourceUrl": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/jobs/129043592255/logs"
   },
   "hosted-job-129043592318.log": {
-    "bytes": 43182,
-    "sha256": "5304a95c9182c01b74279df1a082b7db4d089d964ba4a7d5023cf71cbec1828f",
-    "gzipSha256": "b4293fe8989548f1d8d64919c3efc1c81f992ee4bcf4e53eba4f9977e5fb9de0"
+    "bytes": 83270,
+    "sha256": "0137aa9150d9c82c30a544e0c429a43baacec5b96ca24b02d20ca9321b513e63",
+    "gzipSha256": "a2a3ff58ddc2a4b808202ae83052aa8feeacb3fb22a22bdd1d2a21d9abc5ab6f",
+    "classification": "complete-github-returned-log",
+    "sourceUrl": "https://api.github.com/repos/FurinyaWorks/Slay-the-Abyss/actions/jobs/129043592318/logs"
   },
   "missing-attribute-negative.log": {
     "bytes": 1389,
@@ -73,5 +81,26 @@
     "bytes": 382,
     "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
     "gzipSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719"
+  },
+  "hosted-job-129043592001.prior-incomplete.log": {
+    "bytes": 27341,
+    "sha256": "aad49537e9e0829c24f19bce6b1a839398808ab7df5afdee075f31cf0a1b896d",
+    "gzipSha256": "1cf111b7b075398a780a33fec3ee8cdbfc992a07f706d91b9680b79182d120d4",
+    "classification": "prior-incomplete",
+    "supersededBy": "hosted-job-129043592001.log.gz"
+  },
+  "hosted-job-129043592255.prior-incomplete.log": {
+    "bytes": 43103,
+    "sha256": "2eba42cf3d88c843abcdef3897b930bbe73cb6b284aaa5ded4733374aa2cd909",
+    "gzipSha256": "c345627702a4ac13e21dc1d3852fd36b694455a7cf3d7d97e97bc43159a7cab8",
+    "classification": "prior-incomplete",
+    "supersededBy": "hosted-job-129043592255.log.gz"
+  },
+  "hosted-job-129043592318.prior-incomplete.log": {
+    "bytes": 43182,
+    "sha256": "5304a95c9182c01b74279df1a082b7db4d089d964ba4a7d5023cf71cbec1828f",
+    "gzipSha256": "b4293fe8989548f1d8d64919c3efc1c81f992ee4bcf4e53eba4f9977e5fb9de0",
+    "classification": "prior-incomplete",
+    "supersededBy": "hosted-job-129043592318.log.gz"
   }
 }

@@ -12,8 +12,21 @@ Quality [42581856147](https://github.com/FurinyaWorks/Slay-the-Abyss/actions/run
 - `receipt-green.log.gz` 保留首次仅复制属性但未刷新索引的失败；正确索引/checkout 后的成功在 `receipt-green-final.log.gz`。失败尝试未删除。
 - 独立复审见 `receipt-review.json`，按两个执行文件的 SHA256 绑定，通过且无未解决项；最终提交另作精确读回。
 
-## 尚未完成，不以本地通过代替 Hosted
+## 原修复提交时的待验状态（历史）
 
 同一旧 HEAD 的 job129043592001、129043592155 在静态工具下载遇 HTTP504；现有 #581 负责下载重试，不重复实现。job129043592318 原拖拽历史切片8–15在30秒上限失败；完整诊断和无效试验的撤回见 [drag/README](drag/README.md)，当前没有已证实的运行时修复。
 
-全部四个 Hosted 失败 job 的原始日志在本目录，压缩前/后摘要见 `manifest.json`。未重复 Full、未 rerun/dispatch、未放宽任何门槛或覆盖；PR 保持 Draft，当前提交的正常 Hosted 门禁、独立超时修复和严格合并流程仍待完成。TASK-74.20 的 owner/status/AC 保持不变。Backlog验证与指引检查通过；首次指引检查因稀疏工作树缺失已跟踪的 `.cursor/rules/miliastra.mdc` 失败，恢复同一 HEAD 原文件后通过，原失败日志保留。
+当时归档的四份 Hosted 失败日志后来发现三份不完整；补证见下一节，原变体完整保留，不再称为完整官方原件。未重复 Full、未 rerun/dispatch、未放宽任何门槛或覆盖；PR 保持 Draft，当前提交的正常 Hosted 门禁、独立超时修复和严格合并流程仍待完成。TASK-74.20 的 owner/status/AC 保持不变。Backlog验证与指引检查通过；首次指引检查因稀疏工作树缺失已跟踪的 `.cursor/rules/miliastra.mdc` 失败，恢复同一 HEAD 原文件后通过，原失败日志保留。
+
+## 2026-11-10 完整 Hosted 日志补证
+
+重新读取同一 [Quality 42581856147 / attempt 1](https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42581856147) 的四个原失败 job，只修复本目录中的日志证据：
+
+- Windows7 / 129043592255：原43103 bytes缺前40000字符，已补齐为83189 bytes。
+- Windows16 / 129043592318：原43182 bytes缺前40000字符，已补齐为83270 bytes。
+- POSIX7 / 129043592001：原27341 bytes缺8段反引号包裹的警告，共132 bytes，已补齐为27473 bytes。
+- Windows9 / 129043592155：原31440 bytes与完整接口正文一致，压缩文件保持逐字不变。
+
+三个旧归档原样保存为 `hosted-job-<id>.prior-incomplete.log.gz`，不删除、不覆盖失败历史。原路径现在对应完整返回的 UTF-8 正文，保留 BOM、Windows CRLF／POSIX LF、反引号与首尾行；仅作可逆 gzip 压缩。`manifest.json` 分别记录完整件和旧不完整件的压缩前后哈希；[来源收据](hosted-log-provenance.json) 绑定 job/run/attempt、原 HEAD f1481459、BASE 1eb28847 和实际 tested merge ad23d9cf，并说明获取与字节边界。没有推测此前差异的产生原因。
+
+原收据换行修复的 HEAD 9fc1e165 已在 [Quality 42611819804](https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42611819804) 完成 Hosted Full；上节“待验”保留为当时记录，不再作为当前失败判断。本补证没有修复拖拽运行时，也不能把旧成功迁移为新提交已通过。未改生产源码、测试、原 receipt/hash、timings/floor、预算、工作流、Backlog owner/status/AC；不重复 Full，不转 Ready，不入队或合并。后续仍须新精确 HEAD 的正常门禁、原 merge:auto 握手和实际合后验收。
