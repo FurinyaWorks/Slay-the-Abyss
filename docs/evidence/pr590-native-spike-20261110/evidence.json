@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-09T20:32:09Z",
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "pr": 590,
+  "originalHead": "408342139863c449fd58b7441a6d10e5acbb93ed",
+  "base": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "originalTree": "1ea203368747b9c5da155daa80bc556874c39731",
+  "hostedRunId": 42620426648,
+  "hostedJobId": 129171129224,
+  "hostedSummary": {
+    "success": 34,
+    "failure": 2,
+    "skipped": 1,
+    "total": 37
+  },
+  "runtime": {
+    "node": "v24.22.1",
+    "platform": "linux",
+    "hostedNode": "v24.18.0",
+    "hostedWindowsRerun": false
+  },
+  "validation": {
+    "finalOuterTests": 4,
+    "finalOuterPassed": 4,
+    "nestedTests": 16,
+    "nestedPassed": 16,
+    "finalFileDurationMs": 30475.351331,
+    "finalLuaDurationMs": 28306.61,
+    "unchangedPerChildTimeoutMs": 30000,
+    "negativeNestedFailure": "old context exits 0 without running; fixed wrapper fails at JS before Lua",
+    "sceneLogic": "removing only diagnostic lines reproduces original exact bytes"
+  },
+  "limits": {
+    "timeoutReliability": "UNRESOLVED",
+    "newHeadHostedFull": "PENDING",
+    "mergeAdmission": "NOT_REQUESTED",
+    "costAccounting": "Existing timings unchanged; observed local file duration is not a hosted observation or proof of planning margin",
+    "productionChanges": false,
+    "officialOrDeviceAcceptance": false
+  },
+  "inputs": [
+    {
+      "path": "tests/figma-map-native-spike.test.mjs",
+      "sha256": "20e9e84b91d30bb4b9792bcbd3ef724f3f3d424334d144a9db676812d60b7be5",
+      "gitBlob": "00956105e968ee9d8d8109d946bc3d92e39eba26"
+    },
+    {
+      "path": "experiments/figma-map-native-spike/tests/scene.lua",
+      "sha256": "bfafb3bd8617b62b711d8e5851e553ecce45268421df42b2f021e24bba2b6e78",
+      "gitBlob": "c0dc9e39234d9207ffe8b939f798bacfb6433f11"
+    },
+    {
+      "path": "src/lua/abyss_treasure_source.lua",
+      "sha256": "9abc146584d55b7c32afc96fd42862bc2844539e4eda7d6902dc49a7d1e70e92",
+      "gitBlob": "c02bbb606cf433be90449fb29100922aa688ebce"
+    },
+    {
+      "path": "scripts/ci-test-timings.json",
+      "sha256": "aeab4ef8436b969066f952c8e0a534f265729b255d8263abd6a2e62558d769d8",
+      "gitBlob": "fa678c863727a94fbc7c62bc73e60bc1b5bcdacc"
+    },
+    {
+      "path": ".github/workflows/quality.yml",
+      "sha256": "aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535",
+      "gitBlob": "2d41d7295baf6fddff8dc5cf0b2ba3d63a44e90a"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "hosted-job-response.json.gz",
+      "uncompressedSha256": "454b7a6765ec6e9ebb15ba534472d5d5a78128f44e47177abbae49531219ee3b",
+      "gzipSha256": "1e1ef8d024e0f82f4242e709faf20057ae50cdfdbb30a0038d966f8638abf0b7",
+      "bytes": 72726
+    },
+    {
+      "path": "hosted-windows5-failure.log.gz",
+      "uncompressedSha256": "72520ec88194988a3037a71eddac504b15e20b80b695ca43eddbd27689235d6f",
+      "gzipSha256": "f667ec749bc107a9ce9b2272b13921a860e81ed908598b5e3513bcb093840702",
+      "bytes": 69804
+    },
+    {
+      "path": "hosted-jobs.json.gz",
+      "uncompressedSha256": "a061c3812ffa2d60439910f7df3ea503d90a4f4b3bfa970961f74e730ff54205",
+      "gzipSha256": "434ee1c5034ab869a27b6061d378bbfd669d8fa4c4146971912fcbf889b1b6ce",
+      "bytes": 186820
+    },
+    {
+      "path": "baseline-complete.log.gz",
+      "uncompressedSha256": "00cfe91a603bd72e73c4c16a1eafdcfe07d239a19ccefd9bd8ba8c3ea34e744f",
+      "gzipSha256": "159703c0f057712e96b261fcd15cd434f6cdba39fe90fc02996d9e4549b70065",
+      "bytes": 2112
+    },
+    {
+      "path": "diagnostic-baseline.log.gz",
+      "uncompressedSha256": "be6c093a790926154d52ff6ec1c92910d2c238b1dbdfce4c9b699fb8b424dac7",
+      "gzipSha256": "5bca5d504a4d858a1e72c4eaae1f00b7514f1d4fb1a3fe99e5d51f5abd27e2fd",
+      "bytes": 2045
+    },
+    {
+      "path": "live-embers-and-nested-tests.log.gz",
+      "uncompressedSha256": "46dbbe9a7477ebffea1ce99ab4dd48e192b8ca0350361eaaf766273532791208",
+      "gzipSha256": "cc2aa4d84afcd89e013171a3dfa89ce54960b1b50b74488cab2e9259573ac59a",
+      "bytes": 9177
+    },
+    {
+      "path": "string-key-trial.log.gz",
+      "uncompressedSha256": "cae61530e33b349b62fff37631f00e996dc41ba421d640dc0bf50ce1e83e9360",
+      "gzipSha256": "0b259916f5dca6380525fe7adb7485c07743ca4703dc839cacee9b2f0592c0f7",
+      "bytes": 9483
+    },
+    {
+      "path": "native-sort-trial.log.gz",
+      "uncompressedSha256": "c7fc58f63c3b38c8c4918daa17f662baa551c87cf2a9fb2a4eac6b215f9a6a4a",
+      "gzipSha256": "5c38f07a78c860a3244677c9aea83cface3d832da72369c2d1b7c61b25e18db2",
+      "bytes": 5110
+    },
+    {
+      "path": "final-focused.log.gz",
+      "uncompressedSha256": "5771030fad6aa6f3441531e32d94413b5e0d2df46a14962094c4941ddb12945c",
+      "gzipSha256": "f16b405415e666bfe2f642ba32db19243217f4c2fbb7fe121e03035687ae5f40",
+      "bytes": 5411
+    },
+    {
+      "path": "diagnostic-contracts.log.gz",
+      "uncompressedSha256": "7d9c64c0578cafd9233bc44b7848c74887902e3bbf5215ece768c23b1ec2bba4",
+      "gzipSha256": "73c83e4d6450b90f19321c1346068d1e4ddaa47936b585cc3940a0a2d855a241",
+      "bytes": 416
+    },
+    {
+      "path": "nested-failure-proof.log.gz",
+      "uncompressedSha256": "8537b5ca70f7abc7bb78eec91e08dce62654dbfa62c2302d071cb3d00d0a519a",
+      "gzipSha256": "437a22b597a52cf959d4be915073ec07a4c47db022aa4dd59dd11572fd05b123",
+      "bytes": 7009
+    },
+    {
+      "path": "build-data.log.gz",
+      "uncompressedSha256": "bb5c2e2187876b22928387e9516481bace63dbb7ea77573e29714d9a136f730a",
+      "gzipSha256": "55e12e402720a50ec9ae22d5216db1e05c8260adfbab010cbf45357608ef6506",
+      "bytes": 202
+    },
+    {
+      "path": "build-ui.log.gz",
+      "uncompressedSha256": "700b6af7e4ba8ae4c28ee2bfaeb5f2315c8e671dbf0c81dba8db6b47e676aff8",
+      "gzipSha256": "6776ff5a1fac3b3ec9ba7c2eb31af470998ea6929d5667da6742a8adb49396ef",
+      "bytes": 213
+    },
+    {
+      "path": "verify-backlog.log.gz",
+      "uncompressedSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "gzipSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "bytes": 382
+    },
+    {
+      "path": "guidance.log.gz",
+      "uncompressedSha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "gzipSha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "bytes": 482
+    },
+    {
+      "path": "backlog-doctor.log.gz",
+      "uncompressedSha256": "41ec373ed9871a1bdc86d07865141fe89ca39d8163789d12e940e8783de30ecc",
+      "gzipSha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+      "bytes": 4785
+    },
+    {
+      "path": "backlog-plan.log.gz",
+      "uncompressedSha256": "41f75b3a1dbf6453f6bab93f295fb20aaf00cc6c68acce4bdd9621881e2177f8",
+      "gzipSha256": "c276d5bff2ee16a2e108e899c956f18011ebf4a22a399e4cc7a60523fd02deec",
+      "bytes": 24
+    },
+    {
+      "path": "backlog-final.log.gz",
+      "uncompressedSha256": "41f75b3a1dbf6453f6bab93f295fb20aaf00cc6c68acce4bdd9621881e2177f8",
+      "gzipSha256": "c276d5bff2ee16a2e108e899c956f18011ebf4a22a399e4cc7a60523fd02deec",
+      "bytes": 24
+    }
+  ]
+}

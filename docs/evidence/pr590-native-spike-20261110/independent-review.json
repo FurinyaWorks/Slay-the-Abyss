@@ -1,0 +1,55 @@
+{
+  "reviewId": "round20-native-spike-independent-20261109-review-native-spike-cost",
+  "reviewedAt": "2026-11-09T20:32:45.204330+00:00",
+  "scope": "Prepublication working-tree coverage and failure-diagnostics repair only; not a full PR590 rereview or timeout fix.",
+  "reviewedHeadSha": "408342139863c449fd58b7441a6d10e5acbb93ed",
+  "reviewedBaseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "workingTreeChanges": true,
+  "executableFiles": {
+    "tests/figma-map-native-spike.test.mjs": "20e9e84b91d30bb4b9792bcbd3ef724f3f3d424334d144a9db676812d60b7be5",
+    "experiments/figma-map-native-spike/tests/scene.lua": "bfafb3bd8617b62b711d8e5851e553ecce45268421df42b2f021e24bba2b6e78"
+  },
+  "conclusion": "pass",
+  "unresolved": [],
+  "knownLimitations": [
+    "Original 30-second Lua timeout remains unproven/unfixed; local passing run is not evidence of reliable runtime margin.",
+    "No production performance claim; experimental ember-reference and snapshot-sort optimizations were reverted.",
+    "No full wrapper or full suite rerun by this reviewer; parent full focused execution is separately reported.",
+    "New commit and exact-head hosted CI remain required before merge readiness."
+  ],
+  "checks": [
+    {
+      "name": "Independent cheap contract tests",
+      "result": "pass",
+      "command": "node --test --test-reporter=tap --test-name-pattern='native map (child CLI|stage failures|nested CLI)' tests/figma-map-native-spike.test.mjs",
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "Original Lua assertions and behavior retained",
+      "result": "pass",
+      "detail": "Removed only phase helper and phase call lines in memory; resulting bytes equal git show HEAD:experiments/figma-map-native-spike/tests/scene.lua exactly.",
+      "originalSha256": "ce3f74bd89bf48c8bfde8c253f599f65da6a16cdf656bd8c526b59728667c8a1"
+    },
+    {
+      "name": "Executable diff review",
+      "result": "pass",
+      "detail": "Independent child env removes NODE_TEST_CONTEXT without changing parent, including empty-string case. Four existing child timeouts remain 30000ms; nested JS remains serial with explicit TAP. Nonempty/no-fail/no-cancel/no-skip/no-todo summary required. Single Lua process retains curve, presentation, scene sequence and all original assertions. Error, signal and exit failures retain phase, elapsed time and both streams."
+    },
+    {
+      "name": "Nested failure sensitivity evidence inspection",
+      "result": "pass",
+      "detail": "Reviewed disposable-source injection script and actual log. Old inherited-context child exits 0 without executing; new actual wrapper exits nonzero on injected nested assertion before Lua. Not rerun by reviewer.",
+      "sources": [
+        ".artifacts/round20/prove-nested-failure.mjs",
+        ".artifacts/round20/nested-failure-proof.log"
+      ]
+    }
+  ],
+  "evidenceHashes": {
+    ".artifacts/round20/prove-nested-failure.mjs": "5cec597082990b36adfa7c97398a556830d25e4c4fef998efd217dadf5c1df65",
+    ".artifacts/round20/nested-failure-proof.log": "8537b5ca70f7abc7bb78eec91e08dce62654dbfa62c2302d071cb3d00d0a519a"
+  }
+}

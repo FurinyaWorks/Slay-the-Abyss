@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T12:27:00Z'
+updated_date: '2026-11-09T20:32:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -112,6 +112,8 @@ ordinal: 162000
 更正上述Winding计划：在写生产前获知该职责已有原owner和远端上传，立即停止重复实施；本树未改该生产文件。后续仅核对未占用的TreasureSource.pair奖励身份校验职责，不覆盖Winding成果。
 
 本轮实际仅拆分TreasureSource.pair：物品槽收集、Sapphire双向身份绑定、额外遗物比较三职责，保留拒绝优先级、规范签名、公开返回与零状态提交；不改既有Run事务与UI。新增职责纳入CC15、完整旧新图和具名语义负控，接续原来源/成本合同，独审后按原门禁上传。
+
+2026-11-10 北京时间接续既有PR590的Windows原生地图夹具超时：保留30秒、同进程顺序和全部断言，先补阶段/单调计时及超时输出，定位后仅优化经证实的测试夹具冗余。核对当前评论无在途修复；独立树完成定向验证及独审后按原门禁上传，不重复Full、不改生产/owner/status/AC或用户GUI。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -200,4 +202,6 @@ Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原PO
 POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入前后hash一致；历史/当前投影4370+6976比较重放一致。独审13455比较、17桥拒绝和40准入validator拒绝负控通过，原始失败保留。以原#575与#574为两父合并更新同PR；仅本地组合验证及规划通过，未跑本HEAD Hosted Full，继续Draft与正常准入，不勾AC。
 
 TreasureSource奖励身份职责已实做：pair CC35→8、item19→11、新helper最高14；全338模块5608测量，>30 33→32、>15 209→207，SCC68/11/2和原14告警保持。旧新各2444边界场景/4888可重建图检查点、14语义负控、四原Lua文件两侧通过；新52-owner与原来源合同保留。成本floor仅新增23130/10624，803JS1410Lua原17Windows15POSIX预测1796804/1131726ms，Windows余3196ms不代表Hosted安全。独审生产和来源无阻断，精确身份/正常CI与队列仍待；原失败全保留，无本地Full/设备操作，owner/status/AC不变。详见M7-TREASURE-SOURCE-20261109。
+
+2026-11-10 接续PR590：复现原30秒Fengari超时后补阶段、时长和错误双流；另确证继承NODE_TEST_CONTEXT使16项嵌套JS测试虚假退出0，已沿用既有CI环境隔离并校验非空/零跳过。最终定向4/4、嵌套16/16，真实失败注入由旧假绿转为当前失败；原Lua全部字节在剥离诊断行后保持。两项优化试验未证明稳定余量，已完整撤回并保留失败/慢日志。30秒不变，超时可靠性仍待Hosted证据，不声明修复完成或成本安全；保持Draft及原owner/status/AC。
 <!-- SECTION:NOTES:END -->
