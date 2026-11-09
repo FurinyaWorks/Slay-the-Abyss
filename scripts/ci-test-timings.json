@@ -6173,6 +6173,45 @@
         },
         "sourceReceipt": "docs/evidence/m7-formation-20261109/behavior-final-receipt.json",
         "sourceReceiptSha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc"
+      },
+      "tests/official-assets.test.mjs": {
+        "durationMs": 1464,
+        "environment": "cloud Linux local",
+        "tests": 6,
+        "nodeReportedDurationMs": 1376.501689,
+        "wallDurationMs": 1463.378884,
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "testSha256": "069931ecac1accf3bafe257dad9cb028ffbf4a94a528e01aa6da3080266762f8",
+        "sourceReceipt": "docs/evidence/official-assets-first-20261109/planning/official-assets/measurement.json",
+        "sourceReceiptSha256": "403cd8d49c734f3e7a2e64f83ba90d40ed0007c9d38c05f6f10e4dac44853718",
+        "sourceLog": "docs/evidence/official-assets-first-20261109/planning/official-assets/stdout.log",
+        "sourceLogSha256": "5d0a666cc55b6b8cd3d173e7488ea978b16e66651ac2eadd812c7f6df67e0102"
+      },
+      "tests/official-assets-runtime.test.mjs": {
+        "durationMs": 17427,
+        "environment": "cloud Linux local",
+        "tests": 2,
+        "nodeReportedDurationMs": 17334.379686,
+        "wallDurationMs": 17426.759422,
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "testSha256": "f0872bace88a766cdd8d6ba258c6a27d11b8522996cdccdaee8911a42f757cc2",
+        "sourceReceipt": "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/measurement.json",
+        "sourceReceiptSha256": "88af88309bed4858cc18736fdbfae0cbe94f0765bce0b66380865e4562ad0178",
+        "sourceLog": "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/stdout.log",
+        "sourceLogSha256": "5fd5f4ad18e9904ceb3466e85af062938683e6c6dcd044267a2d3df130f39ff3"
+      },
+      "tests/official-assets-flow.test.mjs": {
+        "durationMs": 43888,
+        "environment": "cloud Linux local",
+        "tests": 6,
+        "nodeReportedDurationMs": 43761.55763,
+        "wallDurationMs": 43887.685775,
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "testSha256": "71240e17448744047b77f306a821728d1072b6ffa95fa08aea209952cdbcdd49",
+        "sourceReceipt": "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/measurement.json",
+        "sourceReceiptSha256": "663999d352acc34d3320978bb27d49839fdc7b2e326fd5e17c7461165739fedf",
+        "sourceLog": "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/stdout.log",
+        "sourceLogSha256": "b2df5ffff29058e0cf4ccf4bb4ce2d921111c19060b7ed7bec491f517e25ce3e"
       }
     }
   },

@@ -1,3 +1,5 @@
+import {officialAssetFlags,officialAssetsProfile} from '../scripts/official-assets-profile.mjs';
+import {uiProfileReceipt,uiProfileSource,uiProfileFromReceipt} from '../scripts/ui-profile.mjs';
 import {artFeatureReceipt,artFeaturesSource} from '../scripts/art-features.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -35,18 +37,19 @@ export class Client {
  }
 }
 `;
-function fixture(t, corrupt, existing=false) {
+function fixture(t, corrupt, existing=false, official=false) {
   const root = mkdtempSync(join(tmpdir(), 'abyss-bgm-marker-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   const put = (file, text) => { const path = join(root, file); mkdirSync(dirname(path), { recursive: true }); writeFileSync(path, text); return path; };
   const buildId = 'fe4ad995-c98b-4ed1-981a-04abbc4bfad9';
-  const sources = { abyss_art_features:artFeaturesSource({menuBackground:true}), abyss_bgm: 'return {bgm=true}', abyss_game_ui: 'return {view=true}',
+  const flags=official?officialAssetFlags:{menuBackground:true};
+  const sources = { ...(official?{abyss_ui_profile:uiProfileSource(true)}:{}),abyss_art_features:artFeaturesSource(flags), abyss_bgm: 'return {bgm=true}', abyss_game_ui: 'return {view=true}',
     abyss_ui: `print("ABYSS_BUILD ${buildId}")\n-- exact full-build instrumentation\nreturn {}`, abyss_narrative: 'return {codeVersion="v0.1.0"}' };
   const moduleDigests = Object.fromEntries(Object.entries(sources).map(([name, source]) => {
     put(`full/payload/${name}.lua`, source); return [name, sha256(source)];
   }));
   const base = put('full/candidate.gil', 'full pre-audio candidate');
-  const sourceReceipt = put('full/candidate.json', JSON.stringify({ buildId, artFeatures:artFeatureReceipt({menuBackground:true}), candidate: fileRecord(base), moduleDigests, officialBackground:{templateIndex:1470123456,peakDynamicControls:13201} }));
+  const sourceReceipt = put('full/candidate.json', JSON.stringify({ buildId, ...(official?{officialAssetsProfile,uiProfile:uiProfileReceipt(true)}:{}),artFeatures:artFeatureReceipt(flags), candidate: fileRecord(base), moduleDigests, officialBackground:{templateIndex:1470123456,peakDynamicControls:13201} }));
   const tool = join(root, 'tool');
   put('tool/package.json', '{"type":"module","version":"fixture"}');
   put('tool/node_modules/@modelcontextprotocol/sdk/package.json', '{"type":"module"}');
@@ -98,4 +101,14 @@ for (const corrupt of ['abyss_ui', 'abyss_narrative', 'abyss_art_features']) tes
   const f = fixture(t, corrupt); assert.notEqual(f.run.status, 0);
   assert.match(f.run.stderr, /Final audio script readback differs/);
   assert.equal(existsSync(join(f.output, 'candidate.json')), false);
+});
+
+test('audio CLI preserves official skin and lifecycle identity and rejects changed policy readback',t=>{
+ const f=fixture(t,undefined,false,true);assert.equal(f.run.status,0,f.run.stderr);
+ const result=JSON.parse(readFileSync(join(f.output,'candidate.json')));
+ assert.equal(result.officialAssetsProfile,officialAssetsProfile);
+ assert.deepEqual(result.uiProfile,uiProfileReceipt(true));assert.equal(uiProfileFromReceipt(result),true);
+ const bad=fixture(t,'abyss_ui_profile',false,true);assert.notEqual(bad.run.status,0);
+ assert.match(bad.run.stderr,/Final audio script readback differs/);
+ assert.equal(existsSync(join(bad.output,'candidate.json')),false);
 });

@@ -1,6 +1,6 @@
 // One hosted Full shape for matrix expansion and current delivery evidence.
 export const qualityShardMatrices=Object.freeze({
-  windows:Object.freeze(Array.from({length:17},(_,i)=>i+1)),
+  windows:Object.freeze(Array.from({length:18},(_,i)=>i+1)),
   posix:Object.freeze(Array.from({length:15},(_,i)=>i+1)),
 });
 export const qualityShardJobs=Object.freeze([

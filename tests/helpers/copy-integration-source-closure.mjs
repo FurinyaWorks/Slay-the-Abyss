@@ -52,6 +52,13 @@ const files={...JSON.parse(bytes),...{
   "tests/fixtures/class-potion-orb-before.json.gz": "5bd98d551db3dae6b436b20bc9c78d4dc50b0b70442dded20405d792e0bcacc3",
   "tests/fixtures/watcher-actor-before.json.gz": "47f5750ba3ed1f804a18eb992b0944cb5adbd4ab5c43f1c4cf60827247c1af5e",
   "tests/fixtures/defect-utility-planning-before.lua": "e9372f029db58b62e4fff8f4889826607e8d114dcab2cfa00ca4f124fe29f670"
+},...{
+  // Current component epoch overlay; the frozen closure and prior overlay above
+  // retain their exact bytes and hashes for their original source epochs.
+  "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "5341c965ce41e956f153caf90c2e2097ccaee447a2d1e53a5aa666d15a238882",
+  "tests/helpers/combined-epoch/source-epoch.mjs": "7b469cc3098e8db2360bac4e4427757a47f7185221708be1cd66a7b029093601",
+  "tests/helpers/component-ui-source-epoch.mjs": "311d47d5fc85c29021a124f53cf836d54121178685e23d2499f1d3e2d79cfba9",
+  "tests/helpers/component-ui-source-epoch.json.gz": "df2a27ff146ecbee4fb01054eb1071458ffe491ece1bb50fa6fb33d19df74d4a"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

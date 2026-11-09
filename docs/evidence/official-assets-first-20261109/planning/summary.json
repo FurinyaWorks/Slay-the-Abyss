@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "scope": "Local serial complete-file planning evidence only",
+  "runs": [
+    {
+      "file": "tests/official-assets.test.mjs",
+      "tests": 6,
+      "nodeDurationMs": 1376.501689,
+      "wallDurationMs": 1463.378884,
+      "floorMs": 1464,
+      "previousEffectiveMs": 10000,
+      "newEffectiveMs": 10000,
+      "testSha256": "069931ecac1accf3bafe257dad9cb028ffbf4a94a528e01aa6da3080266762f8",
+      "inputCount": 685,
+      "buildUiSha256": "53ab3f909ba18fe6de8b396d649401c20cbf38c45670edbaae2ef8ac978f6b1f"
+    },
+    {
+      "file": "tests/official-assets-runtime.test.mjs",
+      "tests": 2,
+      "nodeDurationMs": 17334.379686,
+      "wallDurationMs": 17426.759422,
+      "floorMs": 17427,
+      "previousEffectiveMs": 10000,
+      "newEffectiveMs": 17427,
+      "testSha256": "f0872bace88a766cdd8d6ba258c6a27d11b8522996cdccdaee8911a42f757cc2",
+      "inputCount": 685,
+      "buildUiSha256": "53ab3f909ba18fe6de8b396d649401c20cbf38c45670edbaae2ef8ac978f6b1f"
+    },
+    {
+      "file": "tests/official-assets-flow.test.mjs",
+      "tests": 6,
+      "nodeDurationMs": 43761.55763,
+      "wallDurationMs": 43887.685775,
+      "floorMs": 43888,
+      "previousEffectiveMs": 10000,
+      "newEffectiveMs": 43888,
+      "testSha256": "71240e17448744047b77f306a821728d1072b6ffa95fa08aea209952cdbcdd49",
+      "inputCount": 685,
+      "buildUiSha256": "53ab3f909ba18fe6de8b396d649401c20cbf38c45670edbaae2ef8ac978f6b1f"
+    }
+  ],
+  "additionalEffectiveJsWorkMs": 41315,
+  "currentJsInventory": 828,
+  "fullExecuted": false,
+  "hostedMeasurementsAdded": false,
+  "luaWeightsChanged": false,
+  "matrixOrBudgetsOrTimeoutsChanged": false,
+  "unverified": [
+    "Hosted Full on exact integrated PR head",
+    "Official editor import and real ready",
+    "PC and phone gameplay and visual acceptance"
+  ]
+}

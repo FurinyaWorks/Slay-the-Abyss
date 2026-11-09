@@ -217,7 +217,7 @@ end
 for _,edge in ipairs({'property','color'})do
  scenario('stale static '..edge..' callback fails closed',function()
   local shape=static('strike');render('strike')
-  staticMetadata('defend',100002);staticMetadata('inflame',100003)
+  staticMetadata('defend',edge=='property' and 106057 or 100002);staticMetadata('inflame',100003)
   local once=false;local mt=getmetatable(shape);local color=options.color
   local function replace()if not once then once=true;render('inflame')end end
   if edge=='property'then

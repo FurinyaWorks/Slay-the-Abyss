@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "status": "OFFLINE_SAME_FULL_SOURCE_ATOMIC_REVEAL_PASS",
+  "measuredAt": "2026-11-09T04:03:46.350Z",
+  "integratedCommit": "e61b917a38e4ffaf360f391b57cc8f2565b46a58",
+  "measurementRepositoryHead": "f803af29bf7eaa067921060b958889996aef8005",
+  "measurementUsesWorkingCopySource": true,
+  "sourceMappingNote": "测量执行的是明确记录hash的工作副本源码；本次核对所有输入与e61b917a，文本仅有CRLF/LF表示差异，未把测量HEAD当作干净候选。",
+  "before": {
+    "sourceCommit": "ae71692631e5a84c9716ea291dd1b32aa87281e0",
+    "gitBlob": "8206756298b4420b9857672128a320c752723ae3",
+    "sourceSha256": "e22fd53b643c6da54ab1a1d7228b581f1775546287a6c0743b9460ff6b89cf9f"
+  },
+  "after": {
+    "sourceSha256": "6a63825286da3add1443a733c8566084f58676f4bbb9404382e8e8f22193cca6"
+  },
+  "sourceFiles": [
+    {
+      "path": "src/lua/abyss_traveler_portraits.lua",
+      "sha256": "6a63825286da3add1443a733c8566084f58676f4bbb9404382e8e8f22193cca6",
+      "integratedGitBlobSha256": "ef4048b5282e9dd68a6bbaa447b026077fd5d6cf93d5950ba8817f6d89b6cd8d",
+      "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+    },
+    {
+      "path": "tests/lua/support/component_portrait_diagnosis.lua",
+      "sha256": "b48b24e77b67f44a469cc755b5e97328fa881ad1fee3dc941f0b1803e2ce8ada",
+      "integratedGitBlobSha256": "b48b24e77b67f44a469cc755b5e97328fa881ad1fee3dc941f0b1803e2ce8ada",
+      "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+    },
+    {
+      "path": "tests/helpers/component-portrait-input.mjs",
+      "sha256": "7398797c954cd230a0cbab6b67388cd6c9d854737c6326e77e95b4ebbb48862d",
+      "integratedGitBlobSha256": "7398797c954cd230a0cbab6b67388cd6c9d854737c6326e77e95b4ebbb48862d",
+      "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+    },
+    {
+      "path": "tests/fixtures/component-portrait-before.json.gz",
+      "sha256": "279a48990026017da846fc77588da626ec5d63109299ea8c72f1364cf66f5bb9",
+      "integratedGitBlobSha256": "279a48990026017da846fc77588da626ec5d63109299ea8c72f1364cf66f5bb9",
+      "equivalence": "exact bytes"
+    },
+    {
+      "path": "data/presentation/ui_theme.json",
+      "sha256": "3f03e07371f50bb40d02d8aa71be656d6cbdf4012b668543651292468a8a5449",
+      "integratedGitBlobSha256": "6784ddb098e4c1ecc2b02b7ceeb2484a29b801cd8e3280c6a82b9ff7a109756e",
+      "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+    },
+    {
+      "path": "scripts/official-portraits.mjs",
+      "sha256": "e284d777185b2203d2e492b2838fb72b3650fcd4d77e4ea0b6e089274f3cbfb7",
+      "integratedGitBlobSha256": "13214f1854ea0a8986e51b40d0a9a25ccaf499d0787c6a026350ae6eff89fdfc",
+      "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+    },
+    {
+      "path": "scripts/v25-portrait-profile.mjs",
+      "sha256": "5307410574120c10c498820364cee5d9b558c3d6542ef9810ae3b6375a2c6431",
+      "integratedGitBlobSha256": "0c685a4d230dba99b423d4b30aaedcfbc9018b3534859d7b2ffa3b7962372ae9",
+      "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/runtime-no-snapshot.lua",
+      "sha256": "ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880",
+      "integratedGitBlobSha256": "ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880",
+      "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/native-art.json",
+      "sha256": "f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248",
+      "integratedGitBlobSha256": "f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248",
+      "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+    }
+  ],
+  "environment": {
+    "node": "v24.18.0",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "invariant": "相同4315个完整原图图元，普通缓存及nativeLifecycle均为旧部分显露17帧→新0帧；最终全部图元/容器属性、父子身份、创建顺序与宿主pose逐字节一致。",
+  "noLatencyImprovementClaim": true,
+  "timingNote": "首显与完整显现帧数只记录本次离线样本，受既有os.clock准备预算和CPU负载影响；不将这些帧号解释为耗时提速、GPU帧时或真实FPS。",
+  "cases": [
+    {
+      "nativeLifecycle": false,
+      "runs": [
+        {
+          "variant": "before",
+          "invariantOutcome": "RED",
+          "firstVisibleFrame": 124,
+          "firstCompleteFrame": 141,
+          "partialFrames": 17,
+          "finalPrimitiveStateSha256": "ab48ec46845ba76b1bb4613439cdd22721547cf60854b2ae9adca2d944dff0c1",
+          "rawLua": {
+            "path": "cached-before.lua",
+            "sha256": "adba7818caba0eae924e3ea6da151762ecd8b0dd4e5310a091f02fa041791f39"
+          },
+          "stdout": {
+            "path": "cached-before.lua.stdout.txt",
+            "sha256": "e75180517b8ab52c176645a287be55191fb3f1cf32f56066b829184186777d3d"
+          },
+          "stderr": {
+            "path": "cached-before.lua.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "variant": "after",
+          "invariantOutcome": "GREEN",
+          "firstVisibleFrame": 144,
+          "firstCompleteFrame": 144,
+          "partialFrames": 0,
+          "finalPrimitiveStateSha256": "ab48ec46845ba76b1bb4613439cdd22721547cf60854b2ae9adca2d944dff0c1",
+          "rawLua": {
+            "path": "cached-after.lua",
+            "sha256": "a5ffef51386e96708cdef1a53323ca320a2d2dff78e5abc03e6d72a9e1d452bd"
+          },
+          "stdout": {
+            "path": "cached-after.lua.stdout.txt",
+            "sha256": "550bb135a85a1e3ec0e19dba240e95cbf4c803ae2711f874fbc4c4a3953226f5"
+          },
+          "stderr": {
+            "path": "cached-after.lua.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      ],
+      "finalPrimitiveStateEqual": true
+    },
+    {
+      "nativeLifecycle": true,
+      "runs": [
+        {
+          "variant": "before",
+          "invariantOutcome": "RED",
+          "firstVisibleFrame": 121,
+          "firstCompleteFrame": 138,
+          "partialFrames": 17,
+          "finalPrimitiveStateSha256": "44bd0501858bfd0320d2ff9ec3554e3c3826eb30b3fe31236649153634a1d0f9",
+          "rawLua": {
+            "path": "native-before.lua",
+            "sha256": "b5c1833d435a6469b9cdf73f940eb295535c0c76012fb0e0a707138c5034176d"
+          },
+          "stdout": {
+            "path": "native-before.lua.stdout.txt",
+            "sha256": "477c3dabbeb800b5fdb0af3b861c74e5d798ceafdf7e50ec55592ff2f6a7daea"
+          },
+          "stderr": {
+            "path": "native-before.lua.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "variant": "after",
+          "invariantOutcome": "GREEN",
+          "firstVisibleFrame": 138,
+          "firstCompleteFrame": 138,
+          "partialFrames": 0,
+          "finalPrimitiveStateSha256": "44bd0501858bfd0320d2ff9ec3554e3c3826eb30b3fe31236649153634a1d0f9",
+          "rawLua": {
+            "path": "native-after.lua",
+            "sha256": "acdef7e544e889d2faffcb7bc80f00092b3c566d3033453af071ed5a9a408490"
+          },
+          "stdout": {
+            "path": "native-after.lua.stdout.txt",
+            "sha256": "e8811c6f49443c8d0bcb1f2cb074db7c15bca64038d16d8ff3028eed0b4fc976"
+          },
+          "stderr": {
+            "path": "native-after.lua.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      ],
+      "finalPrimitiveStateEqual": true
+    }
+  ],
+  "privateEvidence": {
+    "directory": ".artifacts/task-100-1/final/h1",
+    "manifest": "private-evidence-manifest.json",
+    "manifestSha256": "3f98a238e446c5da1049417f4b0a5b0fc2976efb91ca00ef37ae143fdd858b72",
+    "files": [
+      {
+        "path": "archive-history.private.py",
+        "bytes": 4666,
+        "sha256": "d1a451d286a8742403b41a768c0822d2dc07171538f8fb09a42c8dfe3a764594"
+      },
+      {
+        "path": "cached-after.lua",
+        "bytes": 388143,
+        "sha256": "a5ffef51386e96708cdef1a53323ca320a2d2dff78e5abc03e6d72a9e1d452bd"
+      },
+      {
+        "path": "cached-after.lua.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "cached-after.lua.stdout.txt",
+        "bytes": 566418,
+        "sha256": "550bb135a85a1e3ec0e19dba240e95cbf4c803ae2711f874fbc4c4a3953226f5"
+      },
+      {
+        "path": "cached-before.lua",
+        "bytes": 387400,
+        "sha256": "adba7818caba0eae924e3ea6da151762ecd8b0dd4e5310a091f02fa041791f39"
+      },
+      {
+        "path": "cached-before.lua.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "cached-before.lua.stdout.txt",
+        "bytes": 566419,
+        "sha256": "e75180517b8ab52c176645a287be55191fb3f1cf32f56066b829184186777d3d"
+      },
+      {
+        "path": "historical-diagnostics.private.zip",
+        "bytes": 632321,
+        "sha256": "2701f19bc1bcf665fbde2a9bb837183ceaa4007d676685dc09c7f0b586aa7b7f"
+      },
+      {
+        "path": "historical-source-manifest.json",
+        "bytes": 5837,
+        "sha256": "04810081b880a9daf67d3ffc36e59389b396b9b4fed908be02554b13575860f7"
+      },
+      {
+        "path": "native-after.lua",
+        "bytes": 388374,
+        "sha256": "acdef7e544e889d2faffcb7bc80f00092b3c566d3033453af071ed5a9a408490"
+      },
+      {
+        "path": "native-after.lua.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "native-after.lua.stdout.txt",
+        "bytes": 566414,
+        "sha256": "e8811c6f49443c8d0bcb1f2cb074db7c15bca64038d16d8ff3028eed0b4fc976"
+      },
+      {
+        "path": "native-before.lua",
+        "bytes": 387631,
+        "sha256": "b5c1833d435a6469b9cdf73f940eb295535c0c76012fb0e0a707138c5034176d"
+      },
+      {
+        "path": "native-before.lua.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "native-before.lua.stdout.txt",
+        "bytes": 566415,
+        "sha256": "477c3dabbeb800b5fdb0af3b861c74e5d798ceafdf7e50ec55592ff2f6a7daea"
+      },
+      {
+        "path": "probe-source.private.mjs",
+        "bytes": 4544,
+        "sha256": "3ff088c4bb3e7ccd1829ebd6c59b7e314acc5530dd5b7f17c1ac2e7548fd8a98"
+      },
+      {
+        "path": "report.json",
+        "bytes": 6159,
+        "sha256": "f694a8caceaa221ca90ec3ff11695785f6335efefc63db2fde4ba39c752ec152"
+      },
+      {
+        "path": "verified-duplicate-cleanup.json",
+        "bytes": 2229,
+        "sha256": "d29389f55d7a480046a5b01b13b07b30d2b192a74bf862d89a703cdc58db9dd8"
+      }
+    ],
+    "publicBoundary": "本收据只公开计数、统计、来源及全部输入/输出hash；完整Lua与全部几何snapshot保留本地private evidence，不公开第三方完整素材。",
+    "historicalDiagnostics": {
+      "archive": "historical-diagnostics.private.zip",
+      "archiveSha256": "2701f19bc1bcf665fbde2a9bb837183ceaa4007d676685dc09c7f0b586aa7b7f",
+      "files": 28,
+      "cleanupStatus": "HASH_VERIFIED_HISTORICAL_DUPLICATES_REMOVED"
+    }
+  },
+  "limitations": [
+    "Offline actual production controller and frozen original 4315 drawing rows with shared native-contract fixture; not GPU pixels or official client.",
+    "First-visible/complete frame indexes vary with the existing os.clock preparation budget and host CPU; they are observations, not timing regression thresholds.",
+    "Atomicity is zero visible incomplete original image groups including revealing pause/resume; final native primitive/container properties, parent identities, creation order and host pose must remain exactly equal.",
+    "The community component actor and official PC/Android visual/performance acceptance are outside this experiment."
+  ],
+  "sourceDirtyAtCollection": true,
+  "committedSourceMapping": {
+    "commit": "e61b917a38e4ffaf360f391b57cc8f2565b46a58",
+    "verifiedInputs": 9,
+    "sourceFiles": [
+      {
+        "path": "src/lua/abyss_traveler_portraits.lua",
+        "sha256": "6a63825286da3add1443a733c8566084f58676f4bbb9404382e8e8f22193cca6",
+        "integratedGitBlobSha256": "ef4048b5282e9dd68a6bbaa447b026077fd5d6cf93d5950ba8817f6d89b6cd8d",
+        "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+      },
+      {
+        "path": "tests/lua/support/component_portrait_diagnosis.lua",
+        "sha256": "b48b24e77b67f44a469cc755b5e97328fa881ad1fee3dc941f0b1803e2ce8ada",
+        "integratedGitBlobSha256": "b48b24e77b67f44a469cc755b5e97328fa881ad1fee3dc941f0b1803e2ce8ada",
+        "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+      },
+      {
+        "path": "tests/helpers/component-portrait-input.mjs",
+        "sha256": "7398797c954cd230a0cbab6b67388cd6c9d854737c6326e77e95b4ebbb48862d",
+        "integratedGitBlobSha256": "7398797c954cd230a0cbab6b67388cd6c9d854737c6326e77e95b4ebbb48862d",
+        "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+      },
+      {
+        "path": "tests/fixtures/component-portrait-before.json.gz",
+        "sha256": "279a48990026017da846fc77588da626ec5d63109299ea8c72f1364cf66f5bb9",
+        "integratedGitBlobSha256": "279a48990026017da846fc77588da626ec5d63109299ea8c72f1364cf66f5bb9",
+        "equivalence": "exact bytes"
+      },
+      {
+        "path": "data/presentation/ui_theme.json",
+        "sha256": "3f03e07371f50bb40d02d8aa71be656d6cbdf4012b668543651292468a8a5449",
+        "integratedGitBlobSha256": "6784ddb098e4c1ecc2b02b7ceeb2484a29b801cd8e3280c6a82b9ff7a109756e",
+        "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+      },
+      {
+        "path": "scripts/official-portraits.mjs",
+        "sha256": "e284d777185b2203d2e492b2838fb72b3650fcd4d77e4ea0b6e089274f3cbfb7",
+        "integratedGitBlobSha256": "13214f1854ea0a8986e51b40d0a9a25ccaf499d0787c6a026350ae6eff89fdfc",
+        "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+      },
+      {
+        "path": "scripts/v25-portrait-profile.mjs",
+        "sha256": "5307410574120c10c498820364cee5d9b558c3d6542ef9810ae3b6375a2c6431",
+        "integratedGitBlobSha256": "0c685a4d230dba99b423d4b30aaedcfbc9018b3534859d7b2ffa3b7962372ae9",
+        "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+      },
+      {
+        "path": "art/characters/traveler-geo/portraits/battle133/runtime-no-snapshot.lua",
+        "sha256": "ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880",
+        "integratedGitBlobSha256": "ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880",
+        "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+      },
+      {
+        "path": "art/characters/traveler-geo/portraits/battle133/native-art.json",
+        "sha256": "f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248",
+        "integratedGitBlobSha256": "f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248",
+        "equivalence": "exact UTF-8 text after CRLF-to-LF normalization only"
+      }
+    ],
+    "note": "Original collection report remains f803af29 + dirty working copy. All 9 measured inputs map to e61b917a: exact binary bytes or UTF-8 text with CRLF/LF normalization only."
+  }
+}

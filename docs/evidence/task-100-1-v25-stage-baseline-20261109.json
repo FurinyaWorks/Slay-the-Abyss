@@ -1,0 +1,1081 @@
+{
+  "schemaVersion": 1,
+  "status": "CURRENT_SAME_SOURCE_VISUAL_SEED_SDK_STAGE_BASELINE_PASS",
+  "createdAt": "2026-11-09T05:06:45.778Z",
+  "source": {
+    "gilSha256": "2c03f6a516430150f460f25d942c4ebe137411c49ece4bc66334d4ba729e278a",
+    "sourceCommit": "fc98f4e38ad1eaa2fb14a775f410f3dce9014158",
+    "sourceDirty": false,
+    "payloadDigest": "66c576206ade7676c0f0f160cb8858410154ee1a742cf73ce9a6536ac70827b1",
+    "buildId": "022017af-c7f5-47b8-8ca2-e1a80973ab4e",
+    "projectionSha256": "437bca1863d22442f78d374eac1f975683cd439f4e66759601696161eadab16a",
+    "candidateReceiptSha256": "a7f2324b86b2fda6c85d28eaf853af9ceba3c6f34078b454fea082259c3632c6",
+    "sdkExportSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+    "workerSha256": "be3d877db0d07a26243a269ef3107f45183cb5a7730a80a05a45c09ce1098597"
+  },
+  "samples": 3,
+  "independentNodePids": [
+    30824,
+    26216,
+    30036
+  ],
+  "seed": 17,
+  "seedMechanism": "SDK fixture sets the existing Host explicit replay seed field before Start; legal encounter assembly uses unchanged Combat.new(seed17) and Core.draw. os.clock/os.time are not modified.",
+  "scenario": {
+    "naturalMenuCharacterBlessingMapRoute": true,
+    "firstBattle": "Explicit legal fungi_pair with production source positions, unchanged starter deck, Core.new(seed17), five opening cards",
+    "tenCardStress": "Production Core.draw(5) in an explicitly assembled fixture; no change to card pools or balance",
+    "nativePcCanvas": [
+      1600,
+      900
+    ],
+    "rendererIncluded": false,
+    "officialClient": false
+  },
+  "stages": [
+    {
+      "name": "initialize",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 1231.5077,
+        "p50": 1251.2233,
+        "p95": 1262.623,
+        "p99": 1262.623,
+        "max": 1262.623
+      },
+      "modelCreated": [
+        16289,
+        16289,
+        16289
+      ],
+      "modelDeleted": [
+        0,
+        0,
+        0
+      ],
+      "registeredBefore": [
+        0,
+        0,
+        0
+      ],
+      "registeredAfter": [
+        16289,
+        16289,
+        16289
+      ],
+      "sdkSteps": [
+        0,
+        0,
+        0
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        null,
+        null,
+        null
+      ],
+      "completeVisibleWaitSteps": [
+        null,
+        null,
+        null
+      ],
+      "sampledPeakRssBytes": [
+        464728064,
+        462688256,
+        461561856
+      ],
+      "sampledPeakHeapBytes": [
+        352281336,
+        358112344,
+        358872560
+      ],
+      "osProcessMaxRssBytes": [
+        474689536,
+        471179264,
+        474247168
+      ],
+      "perSdkStepWallMs": null,
+      "sdkStepsOver100Ms": 0
+    },
+    {
+      "name": "menu",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 249.04030000000012,
+        "p50": 252.54389999999967,
+        "p95": 258.7594999999999,
+        "p99": 258.7594999999999,
+        "max": 258.7594999999999
+      },
+      "modelCreated": [
+        370,
+        370,
+        370
+      ],
+      "modelDeleted": [
+        0,
+        0,
+        0
+      ],
+      "registeredBefore": [
+        16289,
+        16289,
+        16289
+      ],
+      "registeredAfter": [
+        16659,
+        16659,
+        16659
+      ],
+      "sdkSteps": [
+        41,
+        41,
+        41
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        0,
+        0,
+        0
+      ],
+      "completeVisibleWaitSteps": [
+        11,
+        11,
+        11
+      ],
+      "sampledPeakRssBytes": [
+        471105536,
+        480374784,
+        472850432
+      ],
+      "sampledPeakHeapBytes": [
+        373075384,
+        372064264,
+        371301824
+      ],
+      "osProcessMaxRssBytes": [
+        474689536,
+        480518144,
+        478355456
+      ],
+      "perSdkStepWallMs": {
+        "samples": 123,
+        "min": 2.5527000000001863,
+        "p50": 3.1403000000000247,
+        "p95": 17.446699999999964,
+        "p99": 21.147399999999834,
+        "max": 22.269999999999982
+      },
+      "sdkStepsOver100Ms": 0
+    },
+    {
+      "name": "character",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 5448.0602,
+        "p50": 5559.875,
+        "p95": 5771.1630000000005,
+        "p99": 5771.1630000000005,
+        "max": 5771.1630000000005
+      },
+      "modelCreated": [
+        24494,
+        24494,
+        24494
+      ],
+      "modelDeleted": [
+        0,
+        0,
+        0
+      ],
+      "registeredBefore": [
+        16659,
+        16659,
+        16659
+      ],
+      "registeredAfter": [
+        41153,
+        41153,
+        41153
+      ],
+      "sdkSteps": [
+        434,
+        447,
+        441
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        0,
+        0,
+        0
+      ],
+      "completeVisibleWaitSteps": [
+        402,
+        415,
+        409
+      ],
+      "sampledPeakRssBytes": [
+        676442112,
+        676818944,
+        677711872
+      ],
+      "sampledPeakHeapBytes": [
+        563294888,
+        562995504,
+        563764192
+      ],
+      "osProcessMaxRssBytes": [
+        677195776,
+        677707776,
+        677781504
+      ],
+      "perSdkStepWallMs": {
+        "samples": 1316,
+        "min": 2.504899999999907,
+        "p50": 11.630799999999908,
+        "p95": 16.769900000000234,
+        "p99": 19.408600000000206,
+        "max": 31.233899999999267
+      },
+      "sdkStepsOver100Ms": 0
+    },
+    {
+      "name": "natural-route-to-first-battle",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 2896.446399999999,
+        "p50": 3187.1669,
+        "p95": 3232.974400000001,
+        "p99": 3232.974400000001,
+        "max": 3232.974400000001
+      },
+      "modelCreated": [
+        3245,
+        3329,
+        3360
+      ],
+      "modelDeleted": [
+        19639,
+        19639,
+        19639
+      ],
+      "registeredBefore": [
+        41153,
+        41153,
+        41153
+      ],
+      "registeredAfter": [
+        24759,
+        24843,
+        24874
+      ],
+      "sdkSteps": [
+        220,
+        220,
+        220
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        null,
+        null,
+        null
+      ],
+      "completeVisibleWaitSteps": [
+        null,
+        null,
+        null
+      ],
+      "sampledPeakRssBytes": [
+        858472448,
+        859860992,
+        866959360
+      ],
+      "sampledPeakHeapBytes": [
+        748031312,
+        747790792,
+        751062352
+      ],
+      "osProcessMaxRssBytes": [
+        858472448,
+        859860992,
+        866959360
+      ],
+      "perSdkStepWallMs": {
+        "samples": 630,
+        "min": 2.9615000000012515,
+        "p50": 4.976399999999558,
+        "p95": 20.795799999999872,
+        "p99": 29.593800000000556,
+        "max": 33.97789999999986
+      },
+      "sdkStepsOver100Ms": 0
+    },
+    {
+      "name": "first-battle-five-cards-two-enemies",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 13802.096699999998,
+        "p50": 14199.2649,
+        "p95": 15539.1503,
+        "p99": 15539.1503,
+        "max": 15539.1503
+      },
+      "modelCreated": [
+        40466,
+        40396,
+        40381
+      ],
+      "modelDeleted": [
+        474,
+        488,
+        504
+      ],
+      "registeredBefore": [
+        24759,
+        24843,
+        24874
+      ],
+      "registeredAfter": [
+        64751,
+        64751,
+        64751
+      ],
+      "sdkSteps": [
+        929,
+        913,
+        976
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        0,
+        0,
+        0
+      ],
+      "completeVisibleWaitSteps": [
+        899,
+        883,
+        946
+      ],
+      "sampledPeakRssBytes": [
+        1269895168,
+        1266208768,
+        1288450048
+      ],
+      "sampledPeakHeapBytes": [
+        1154512848,
+        1146999080,
+        1167410536
+      ],
+      "osProcessMaxRssBytes": [
+        1269895168,
+        1266221056,
+        1288515584
+      ],
+      "perSdkStepWallMs": {
+        "samples": 2818,
+        "min": 4.776600000001054,
+        "p50": 13.983100000001286,
+        "p95": 19.783000000001266,
+        "p99": 23.41070000000036,
+        "max": 106.65679999999702
+      },
+      "sdkStepsOver100Ms": 1
+    },
+    {
+      "name": "ten-cards-two-enemies",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 14339.640599999995,
+        "p50": 16729.723299999998,
+        "p95": 17498.0254,
+        "p99": 17498.0254,
+        "max": 17498.0254
+      },
+      "modelCreated": [
+        38706,
+        38706,
+        38706
+      ],
+      "modelDeleted": [
+        0,
+        0,
+        0
+      ],
+      "registeredBefore": [
+        64751,
+        64751,
+        64751
+      ],
+      "registeredAfter": [
+        103457,
+        103457,
+        103457
+      ],
+      "sdkSteps": [
+        1018,
+        925,
+        1056
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        0,
+        0,
+        0
+      ],
+      "completeVisibleWaitSteps": [
+        988,
+        895,
+        1026
+      ],
+      "sampledPeakRssBytes": [
+        1308585984,
+        1319919616,
+        1314844672
+      ],
+      "sampledPeakHeapBytes": [
+        1190027456,
+        1199306128,
+        1192600336
+      ],
+      "osProcessMaxRssBytes": [
+        1308729344,
+        1320050688,
+        1317982208
+      ],
+      "perSdkStepWallMs": {
+        "samples": 2999,
+        "min": 5.163400000004913,
+        "p50": 14.662900000002992,
+        "p95": 20.412499999998545,
+        "p99": 23.44260000000213,
+        "max": 120.41010000000097
+      },
+      "sdkStepsOver100Ms": 3
+    },
+    {
+      "name": "cancel-card-ten",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 603.1371999999974,
+        "p50": 642.397100000002,
+        "p95": 662.997000000003,
+        "p99": 662.997000000003,
+        "max": 662.997000000003
+      },
+      "modelCreated": [
+        0,
+        0,
+        0
+      ],
+      "modelDeleted": [
+        0,
+        0,
+        0
+      ],
+      "registeredBefore": [
+        103457,
+        103457,
+        103457
+      ],
+      "registeredAfter": [
+        103457,
+        103457,
+        103457
+      ],
+      "sdkSteps": [
+        30,
+        30,
+        30
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        null,
+        null,
+        null
+      ],
+      "completeVisibleWaitSteps": [
+        null,
+        null,
+        null
+      ],
+      "sampledPeakRssBytes": [
+        1321058304,
+        1316610048,
+        1328193536
+      ],
+      "sampledPeakHeapBytes": [
+        1140870560,
+        1129316848,
+        1170428072
+      ],
+      "osProcessMaxRssBytes": [
+        1321058304,
+        1320050688,
+        1328193536
+      ],
+      "perSdkStepWallMs": {
+        "samples": 90,
+        "min": 5.257100000002538,
+        "p50": 6.240499999999884,
+        "p95": 9.693899999998393,
+        "p99": 10.93130000000383,
+        "max": 10.93130000000383
+      },
+      "sdkStepsOver100Ms": 0
+    },
+    {
+      "name": "play-defense",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 856.2920000000013,
+        "p50": 878.5162000000055,
+        "p95": 915.8660000000018,
+        "p99": 915.8660000000018,
+        "max": 915.8660000000018
+      },
+      "modelCreated": [
+        0,
+        0,
+        0
+      ],
+      "modelDeleted": [
+        0,
+        0,
+        0
+      ],
+      "registeredBefore": [
+        103457,
+        103457,
+        103457
+      ],
+      "registeredAfter": [
+        103457,
+        103457,
+        103457
+      ],
+      "sdkSteps": [
+        28,
+        28,
+        28
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        26,
+        26,
+        26
+      ],
+      "completeVisibleWaitSteps": [
+        26,
+        26,
+        26
+      ],
+      "sampledPeakRssBytes": [
+        1425797120,
+        1418240000,
+        1461440512
+      ],
+      "sampledPeakHeapBytes": [
+        1304241320,
+        1289879984,
+        1334217808
+      ],
+      "osProcessMaxRssBytes": [
+        1426284544,
+        1418240000,
+        1461927936
+      ],
+      "perSdkStepWallMs": {
+        "samples": 78,
+        "min": 5.526499999999942,
+        "p50": 6.682199999995646,
+        "p95": 30.40639999999985,
+        "p99": 81.30589999999938,
+        "max": 81.30589999999938
+      },
+      "sdkStepsOver100Ms": 0
+    },
+    {
+      "name": "actual-enemy-turn-and-return",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 3845.3966,
+        "p50": 4023.762300000002,
+        "p95": 4067.1536999999953,
+        "p99": 4067.1536999999953,
+        "max": 4067.1536999999953
+      },
+      "modelCreated": [
+        6902,
+        6902,
+        6902
+      ],
+      "modelDeleted": [
+        6867,
+        6867,
+        6867
+      ],
+      "registeredBefore": [
+        103457,
+        103457,
+        103457
+      ],
+      "registeredAfter": [
+        103492,
+        103492,
+        103492
+      ],
+      "sdkSteps": [
+        305,
+        309,
+        301
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        191,
+        191,
+        191
+      ],
+      "completeVisibleWaitSteps": [
+        303,
+        307,
+        299
+      ],
+      "sampledPeakRssBytes": [
+        1616420864,
+        1607925760,
+        1653309440
+      ],
+      "sampledPeakHeapBytes": [
+        1489240952,
+        1480082248,
+        1516216560
+      ],
+      "osProcessMaxRssBytes": [
+        1616486400,
+        1607925760,
+        1653309440
+      ],
+      "perSdkStepWallMs": {
+        "samples": 909,
+        "min": 4.653500000000349,
+        "p50": 13.733800000001793,
+        "p95": 17.96770000000106,
+        "p99": 21.987999999997555,
+        "max": 90.8689000000013
+      },
+      "sdkStepsOver100Ms": 0
+    },
+    {
+      "name": "engine-root-close",
+      "stageWallMs": {
+        "samples": 3,
+        "min": 4100.856999999996,
+        "p50": 4201.0893,
+        "p95": 4277.287799999998,
+        "p99": 4277.287799999998,
+        "max": 4277.287799999998
+      },
+      "modelCreated": [
+        0,
+        0,
+        0
+      ],
+      "modelDeleted": [
+        103492,
+        103492,
+        103492
+      ],
+      "registeredBefore": [
+        103492,
+        103492,
+        103492
+      ],
+      "registeredAfter": [
+        0,
+        0,
+        0
+      ],
+      "sdkSteps": [
+        0,
+        0,
+        0
+      ],
+      "nativeOperabilityCandidateWaitSteps": [
+        null,
+        null,
+        null
+      ],
+      "completeVisibleWaitSteps": [
+        null,
+        null,
+        null
+      ],
+      "sampledPeakRssBytes": [
+        1795645440,
+        1785634816,
+        1686360064
+      ],
+      "sampledPeakHeapBytes": [
+        1653445776,
+        1648252072,
+        1540343464
+      ],
+      "osProcessMaxRssBytes": [
+        1795645440,
+        1785634816,
+        1702621184
+      ],
+      "perSdkStepWallMs": null,
+      "sdkStepsOver100Ms": 0
+    }
+  ],
+  "templateBoundaries": [
+    {
+      "templateId": 1073742002,
+      "attempts": [
+        112049,
+        112063,
+        112079
+      ],
+      "successfulReturns": [
+        112049,
+        112063,
+        112079
+      ],
+      "nilOrFalseReturns": [
+        0,
+        0,
+        0
+      ],
+      "throws": [
+        0,
+        0,
+        0
+      ],
+      "returnedSubtreeSizeHistograms": [
+        {
+          "1": 112049
+        },
+        {
+          "1": 112063
+        },
+        {
+          "1": 112079
+        }
+      ],
+      "singleApiWallMs": {
+        "samples": 336191,
+        "min": 0.0030999999999039574,
+        "p50": 0.004399999997986015,
+        "p95": 0.014999999999417923,
+        "p99": 0.02509999999892898,
+        "max": 27.884099999999307
+      },
+      "maxCalls": [
+        {
+          "stage": "ten-cards-two-enemies",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 1,
+          "success": true,
+          "error": null
+        },
+        {
+          "stage": "actual-enemy-turn-and-return",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 1,
+          "success": true,
+          "error": null
+        },
+        {
+          "stage": "ten-cards-two-enemies",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 1,
+          "success": true,
+          "error": null
+        }
+      ]
+    },
+    {
+      "templateId": 1073742003,
+      "attempts": [
+        1959,
+        1959,
+        1959
+      ],
+      "successfulReturns": [
+        1959,
+        1959,
+        1959
+      ],
+      "nilOrFalseReturns": [
+        0,
+        0,
+        0
+      ],
+      "throws": [
+        0,
+        0,
+        0
+      ],
+      "returnedSubtreeSizeHistograms": [
+        {
+          "1": 1959
+        },
+        {
+          "1": 1959
+        },
+        {
+          "1": 1959
+        }
+      ],
+      "singleApiWallMs": {
+        "samples": 5877,
+        "min": 0.0015999999995983671,
+        "p50": 0.005899999996472616,
+        "p95": 0.01419999999779975,
+        "p99": 0.02930000000196742,
+        "max": 1.8619000000035157
+      },
+      "maxCalls": [
+        {
+          "stage": "first-battle-five-cards-two-enemies",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 1,
+          "success": true,
+          "error": null
+        },
+        {
+          "stage": "ten-cards-two-enemies",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 1,
+          "success": true,
+          "error": null
+        },
+        {
+          "stage": "character",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 1,
+          "success": true,
+          "error": null
+        }
+      ]
+    },
+    {
+      "templateId": 1073742004,
+      "attempts": [
+        4,
+        4,
+        4
+      ],
+      "successfulReturns": [
+        4,
+        4,
+        4
+      ],
+      "nilOrFalseReturns": [
+        0,
+        0,
+        0
+      ],
+      "throws": [
+        0,
+        0,
+        0
+      ],
+      "returnedSubtreeSizeHistograms": [
+        {
+          "35": 4
+        },
+        {
+          "35": 4
+        },
+        {
+          "35": 4
+        }
+      ],
+      "singleApiWallMs": {
+        "samples": 12,
+        "min": 0.0930000000007567,
+        "p50": 0.12160000000039872,
+        "p95": 0.36850000000049477,
+        "p99": 0.36850000000049477,
+        "max": 0.36850000000049477
+      },
+      "maxCalls": [
+        {
+          "stage": "natural-route-to-first-battle",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 35,
+          "success": true,
+          "error": null
+        },
+        {
+          "stage": "natural-route-to-first-battle",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 35,
+          "success": true,
+          "error": null
+        },
+        {
+          "stage": "natural-route-to-first-battle",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 35,
+          "success": true,
+          "error": null
+        }
+      ]
+    },
+    {
+      "templateId": 1073742039,
+      "attempts": [
+        5,
+        5,
+        5
+      ],
+      "successfulReturns": [
+        5,
+        5,
+        5
+      ],
+      "nilOrFalseReturns": [
+        0,
+        0,
+        0
+      ],
+      "throws": [
+        0,
+        0,
+        0
+      ],
+      "returnedSubtreeSizeHistograms": [
+        {
+          "7": 5
+        },
+        {
+          "7": 5
+        },
+        {
+          "7": 5
+        }
+      ],
+      "singleApiWallMs": {
+        "samples": 15,
+        "min": 0.02230000000054133,
+        "p50": 0.05429999999978463,
+        "p95": 0.08039999999891734,
+        "p99": 0.08039999999891734,
+        "max": 0.08039999999891734
+      },
+      "maxCalls": [
+        {
+          "stage": "actual-enemy-turn-and-return",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 7,
+          "success": true,
+          "error": null
+        },
+        {
+          "stage": "natural-route-to-first-battle",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 7,
+          "success": true,
+          "error": null
+        },
+        {
+          "stage": "natural-route-to-first-battle",
+          "lifecycle": "idle",
+          "returnedSubtreeNodes": 7,
+          "success": true,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "templateCallColumns": [
+    "stage",
+    "sdkFrame",
+    "templateId",
+    "rawSdkInstantiateWallMs",
+    "returnedSubtreeNodes",
+    "outcome"
+  ],
+  "beforeCloseSemantic": {
+    "hand": 5,
+    "enemies": {
+      "1": {
+        "id": "fungi_beast_1",
+        "hp": 23,
+        "maxHp": 23
+      },
+      "2": {
+        "id": "fungi_beast_2",
+        "hp": 22,
+        "maxHp": 22
+      }
+    },
+    "energy": 3,
+    "turn": 2,
+    "combatPhase": "player",
+    "heroHp": 87,
+    "cardIds": {
+      "1": {
+        "uid": 3
+      },
+      "2": {
+        "uid": 4
+      },
+      "3": {
+        "uid": 1
+      },
+      "4": {
+        "uid": 10
+      },
+      "5": {
+        "uid": 2
+      }
+    }
+  },
+  "readyRegisteredModelsIdenticalAcrossSamples": {
+    "menu": 16659,
+    "character": 41153,
+    "fiveCardBattle": 64751,
+    "tenCardBattle": 103457,
+    "afterPlayerTurn": 103492,
+    "afterEngineRootClose": 0
+  },
+  "rawReports": [
+    {
+      "path": "task-100-1-v25-stage-baseline-1-20261109.json.gz",
+      "sha256": "5dc272e5b0cdaeeeadad82ef1bda590ab78c22700b3bfeb8b1a581bcf20f4500",
+      "compressedBytes": 661622,
+      "uncompressedSha256": "fedcbf91071109dbda1c0947394c6704350944bc8a5fe865a7a24b71d26272a0",
+      "uncompressedBytes": 16296851
+    },
+    {
+      "path": "task-100-1-v25-stage-baseline-2-20261109.json.gz",
+      "sha256": "147c15222a597ea508a99147f8f7f5621ba4f733117f72ab349bc4ee770c50a8",
+      "compressedBytes": 649702,
+      "uncompressedSha256": "990dd3a711d1977ecb5132c55fd460f961738b933b76a317542a929bb3ff7ae4",
+      "uncompressedBytes": 16258748
+    },
+    {
+      "path": "task-100-1-v25-stage-baseline-3-20261109.json.gz",
+      "sha256": "62aa19f0759e60ffa5b9f15b4c812f66d27326e4e088fa6307fd7357c2f83f75",
+      "compressedBytes": 675153,
+      "uncompressedSha256": "2edfbe4d0ab0115c7463797157afb79787cfb31b620850b5dd2c4b62dccb789c",
+      "uncompressedBytes": 16341073
+    }
+  ],
+  "observationNotes": [
+    "All raw SDK instantiate calls and per-step wall/memory/model rows are retained, including unfavorable maxima.",
+    "Creation/deletion counts in the fixed-step natural prelude and subsequent replacement vary because CPU-budgeted hidden work progresses by different amounts before the explicit encounter replaces it; ready inventories and final Core/RNG semantics are identical. No count samples were discarded.",
+    "First native-operability candidates use native visibility/raycast/interactable flags and Host busy state. Actual later pointer commands are verified separately; this does not establish earliest physical user latency.",
+    "Complete-visible waits inspect original source portrait/texture state and published native card surfaces; no art/data simplification.",
+    "Single API timings wrap actual Qi.instantiate only and exclude post-return subtree traversal. Generic image/group calls construct packed semantic V25 textures over many updates; an empty host or one returned node does not bound a whole card component cost.",
+    "No failing instantiate calls occurred in this workload; nil/false/throw counters remain explicit zeros rather than invented failure measurements.",
+    "Source GUI flags/clock are not changed; only the existing explicit Host replay seed and explicitly marked legal encounter/draw fixture are supplied.",
+    "Three fresh Node/SDK/Lua runtimes share OS caches but no game runtime or VM; no forced GC or observer-free calibration.",
+    "SDK raw wall time includes instrumentation/V8/Fengari/GC/OS work and is not real PC/Android frame time/FPS. Model counts and Node memory are not official capacity/GPU memory.",
+    "Current source retains existing original-design visual gaps recorded separately; this same-source baseline is not before-after improvement attribution."
+  ],
+  "limitations": [
+    "All clocks include observer/SDK/V8 work; no observer-free calibration.",
+    "Stage wall time includes readiness queries; per-step wall time wraps dn only.",
+    "RSS/heap are Node/SDK/Fengari; sampled heap peaks may miss intra-call transients; OS maxRSS separately recorded. No forced GC.",
+    "Readiness is observed at discrete SDK steps; simulated dt is not device FPS or elapsed player time.",
+    "This is a three-replay same-source/same-visual/seed scenario baseline, not before-after benefit attribution.",
+    "The current native V25 path retains known original-design visual differences recorded separately."
+  ],
+  "officialDeviceEvidence": "UNVERIFIED_TASK_4_21"
+}

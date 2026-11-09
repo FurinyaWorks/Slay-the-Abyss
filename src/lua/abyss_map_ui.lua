@@ -67,7 +67,7 @@ function M.roomInk(node, state, currentFloor)
         return { r = c.r, g = c.g, b = c.b, a = math.floor(c.a * opacity + .5) }
     end
     -- TASK-4.13 judge: next/available rooms speak one gold language (no lavender event ink).
-    if state == "available" then return Theme.color.node.pathTaken end
+    if state == "available" then return palette.available or Theme.color.node.pathTaken end
     return palette.kind[node.type]
 end
 local function finite(n) return type(n) == "number" and n == n and math.abs(n) < math.huge end

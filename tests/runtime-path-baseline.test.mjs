@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+// Reuse PR #581 / dc9f9200's bounded real-curl recovery contract.
+import './helpers/lua-download-contract.mjs';
 import {phases,counters,validateSample,percentile,validateHistogram} from '../scripts/benchmark-runtime-path.mjs';
 function sample(){
  const rows=phases.map(phase=>({phase,elapsedMs:1,...Object.fromEntries(counters.map(key=>[key,0])),nativeMethods:{},propertyNames:{},memory:{rss:100,heapUsed:50}}));

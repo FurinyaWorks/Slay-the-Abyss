@@ -5,11 +5,13 @@ local Bgm = require("abyss_bgm")
 local CharacterView = require("abyss_character_select_view")
 local MenuView=require("abyss_game_ui_menu_view")
 local Theme=require("abyss_theme")
+local CardSkin=require('abyss_card_skin')
 local number = require("abyss_numbers").integer
 local NeowHistory=require('abyss_neow_history')
 local EndingHistory=require('abyss_ending_history')
 local Acts=require('abyss_acts')
 local NativePages=require('abyss_native_pages')
+local Input=require('abyss_game_ui_input')
 local M = {}
 local function building(status)
     return status and (status.phase=='building' or status.phase=='revealing')
@@ -382,7 +384,12 @@ function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVis
             end
             if runMenu.visible then runMenu:SetAsLastSibling() end
             local back = child('mapPanel'):GetChild('previewBack')
-            back:SetVisible(self.routeOpen == true)
+            local showBack=self.routeOpen==true
+            if Theme.presentationProfile=='v25-reference' then
+                showBack=Input.mapReturnAvailable(self)
+                back:GetChild('hit').raycastTarget=showBack
+            end
+            back:SetVisible(showBack)
             if self.routeOpen then
                 self.mapUI.map = self.map
                 self.mapUI:setVisible(true)
@@ -438,9 +445,14 @@ function M.syncOfficialBattleScene(root,self)
         end
 end
 
+local function surfaceScopes(self)
+    return {battle=self.mode=='battle',node=self.mode=='node',character=self.characterOpen==true,
+        deck=self.deckUI and self.deckUI.visible==true,choice=self.choiceUI and self.choiceUI.visible==true}
+end
 function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleScene,syncMenuContext,platform,syncCardChoice,closeStaleDeck,openCardChoice,canManagePotions,overlaysBlocked,syncRewardReturn,refreshUtilities,refreshPageVisibility,renderCurrentPage,bgm,present,refreshForeground,syncPortraits,openingForeground)
     return function(_)
             if self.disabled then return false,"ui_disabled" end
+            local surfaceFrame=CardSkin.beginFrame()
             local run = self.run
             finishRunFlow(run)
             local covering = syncOpening(run)
@@ -467,6 +479,7 @@ function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleS
             syncPortraits()
             openingForeground(covering)
             self:syncController()
+            CardSkin.endFrame(surfaceFrame,surfaceScopes(self))
         end
 end
 

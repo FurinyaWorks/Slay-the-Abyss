@@ -1,0 +1,1107 @@
+{
+  "schemaVersion": 1,
+  "scope": "保留历史V25实验记录；当前按用户最新指示改为完整第三方原件组件对照。下方currentComponentControl是当前路线，旧samples和修复记录不代表本轮仍采用自制视觉。未通过官方画质和设备性能验收",
+  "currentComponentControl": {
+    "profile": "provided-components-control-v1",
+    "decision": "停用自制V25卡框/像素纹理/人物重建；完整原件模板提供图形，现有Lua规则、RNG、数据、输入事务不改。业务文字和透明输入区域明确属于项目接线，不冒称原件自带功能",
+    "adoptions": [
+      {
+        "source": "jelly-ui",
+        "sourceSha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
+        "record": "main/0003.json.gz 钝角按钮原根1073741999及全部依赖；main/0005.json.gz 星原根1073742066及全部依赖；main/0011.json.gz 菜单及main/0001.json.gz 方块-蓝用作菜单/费用徽章；client70",
+        "implementation": "scripts/native-component-import.mjs:createComponentImporter/loadOriginalComponent/relocateComponent/appendOriginalClientTemplate；scripts/build-component-candidate.mjs:buildComponentCandidate",
+        "verification": "35原native模板574记录已实际写入GIL、逆typed ID与slot变换逐字节核验、原生读回和实际SDK显示；未知组件、外部非零引用、ID/名称碰撞均拒绝",
+        "boundary": "原件图层不自动代表点击/四态功能；仅项目既有输入事务负责命令。官方设备结果未核"
+      },
+      {
+        "source": "ui-kit",
+        "sourceSha256": "a1c998c9de0e3dc806d2b3c2abeef8a34c00d898966f22b3960f69965eb63d8f",
+        "record": "main/0000.json.gz 底板1原根1073741853；main/0001.json.gz 红卡原根1073743194及全部依赖；regular61",
+        "implementation": "scripts/native-component-regular.mjs:createRegularComponentAdapter/prepareOriginalRegularComponent/preparedToNativeComponent/classifyOriginal56；scripts/native-component-profile.mjs:prepareComponentControlLayout/assertComponentControlOutput",
+        "verification": "显式转换regular61到client70，全部四设备XYZ/图像资源/ARGB/模式保全；每父绘制顺序由front-to-back转换为back-to-front。独审复现黑卡后修复，实际typed GIL读回后的四件SDK对照像素差0；未知字体/标志/组件拒绝",
+        "boundary": "源字体260326到客户端默认12是明确兼容映射，官方字体等效及保留56组件的行为未核。源卡仅一个文本槽，项目动态标题/费用/正文接线不能冒充四个原槽"
+      },
+      {
+        "source": "lowload-characters",
+        "sourceSha256": "cdb23c74278e99340a6d43cfe7b57cb2291b4eabf8400eefb4f72acc767c2d66",
+        "record": "main/0102.json.gz 荧Lumine原根1073744826及42依赖，regular61",
+        "implementation": "scripts/native-component-regular.mjs:prepareOriginalRegularComponent/preparedToNativeComponent；src/lua/abyss_component_bridge.lua:new/instantiateBusiness",
+        "verification": "原43记录实际typed编码、四设备读回及源/typed实际SDK画面对照；未使用旧133px人物重建",
+        "boundary": "这是原件小头像，不是全身或现成攻击动画；当前组件对照不代表V25人物验收"
+      }
+    ],
+    "contentImage": {
+      "sourceSha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
+      "record": "jelly-ui main/0000.json.gz完整闭包内native图像叶ID1073741888，原15/96/97；同包root结构4模板标记",
+      "implementation": "scripts/native-component-content.mjs:prepareOriginalContentImage/restorePromotedLeaf；src/lua/abyss_component_bridge.lua的声明式contentImage数据槽",
+      "verification": "源父链/每父children/无环与hash核验；仅去外parent、加入同包模板标记及明确唯一名，逆操作逐字节回原leaf；实际GIL/SDK图库变图/色/宿主伸展测试和独立负控通过",
+      "boundary": "原material保全；实例的资源ID、色值及根布局由游戏数据明确绑定，用于必要地图图标/线、状态和血条。是原组件的数据迁移，不冒称实例外观与原按钮叶完全相同；封存卡框/面板不被写穿"
+    },
+    "assembly": "src/lua/abyss_component_bridge.lua隔离原件树；旧装饰成为无绘制业务锚点，必要数据图元使用借用image组件；Grid和合法动态敌人沿同一模板体系挂载。只在显式nativeComponentControls=true启用，普通构建默认关闭。失败分配回收整个新业务root，拒绝销毁时强账保留并停止继续分配；OnDestroy不逐原件子控件销毁",
+    "checks": "完整10张手牌及交互几何保留；拒绝布局/动态模板混入旧绘制节点、漏装card10、数据槽三重删除、零缩放、伪来源、JSON/Lua分歧。第四内部包652d6770实际SDK使用358份原Lua/原参数，完整经过菜单/选角/恩赐/地图/连续3次拖牌/两敌行动/再次抽牌；地图及选角缺失已内部修复。静止卡底下沉是原批准交互，原hover抬升后三行正文完整显示，未擅改hand主题；新菜单/费用原件及最终源仍须下一候选实际回归",
+    "performance": "没有本轮官方帧时间/容量/手机结果，不以节点数或Simulator代替设备验收",
+    "distribution": "原始私有GIA/GIL/截图与完整源校验凭证留在本机.artifacts/native-kit-control，源码PR不分发原始资产；不发布游戏"
+  },
+  "kitVerification": {
+    "exactLuaScripts": 128,
+    "samples": 28,
+    "failures": [],
+    "method": "本地tools/verify_kit.py本轮重新执行；未执行样本脚本",
+    "runtimeCertification": false
+  },
+  "samples": [
+    {
+      "id": "jelly-ui",
+      "sourceSha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
+      "decision": "分层机制借鉴，独立实现",
+      "record": "main/0000.json.gz root.1[0].19[0].1[0] ID1073741887；22直接子；dependencies/0000.json.gz图片96/97，身份501/父链504",
+      "projectEntry": "scripts/v25-battle-chrome.mjs:turnChrome/energyChrome/pileChrome；scripts/v25-character-layout.mjs:flagButton",
+      "verification": "结构/四态测试已有；原件无Lua，不由图片父链推断点击回调；官方读回和视觉待验",
+      "reason": "借鉴装饰分层；官方图元独立重建V25，不复制22层到每按钮，不照搬未知96/97序列化"
+    },
+    {
+      "id": "ui-kit",
+      "sourceSha256": "a1c998c9de0e3dc806d2b3c2abeef8a34c00d898966f22b3960f69965eb63d8f",
+      "decision": "结构对照，未直接复用",
+      "record": "main/0001.json.gz 红色卡牌模版 ID1073743194 recordType61；dependencies/0007.json.gz文本ID1073743195；0008-0028边框/渐变/底层图片38",
+      "projectEntry": "scripts/card-face.mjs:cardFaceChildren；scripts/v25-card-templates.mjs:prepareV25CardTemplates",
+      "verification": "已核动态文本独立于22装饰层；此常规UI未直接作为客户端模板导入",
+      "reason": "只对照内容/装饰分离；卡壳采用冻结V25原PNG，不拿样本红/蓝卡替代；recordType61不等于可直接InstantiateClientUIControl"
+    },
+    {
+      "id": "tutorial",
+      "sourceSha256": "51a3c2f9e74bc8d5705feb04d01659e96929dde9403596f2f53790130d55d8a8",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "lowload-characters",
+      "sourceSha256": "cdb23c74278e99340a6d43cfe7b57cb2291b4eabf8400eefb4f72acc767c2d66",
+      "decision": "已核结构，未替代V25人物",
+      "record": "main/0102.json.gz root.1[102] 荧Lumine ID1073744826，recordType61，42依赖，组件15/12/23/56",
+      "projectEntry": null,
+      "verification": "真实记录已读；无本轮角色素材接入",
+      "reason": "与果冻recordType70/图片96/97不同，不能自动当客户端模板；现有133px人物采样仍未达V25原稿验收"
+    },
+    {
+      "id": "pixel-scripts",
+      "sourceSha256": "64258bd23fffb3983158e33c31f8ea4003ae936d5abf380be6a7f798373740db",
+      "decision": "模板与生命周期机制借鉴，独立实现",
+      "record": "scripts/092-1073741917.lua：ReleaseControls184、DrawRect194、BuildImage217、OnStart247、OnDestroy264",
+      "projectEntry": "scripts/v25-card-templates.mjs:prepareV25CardTemplates；src/lua/abyss_v25_card_surface.lua:allocate/retire/drain/onDestroy",
+      "verification": "真实10资产lossless模板结构、源RGBA及合成生命周期/重入负控已测；官方性能未验",
+      "reason": "借鉴静态矩形/实际模板ID/实例所有权/失败释放；未复制DRAWS/全画布缩放，不用64格人物替代V25",
+      "scriptSha256": "a0e427b0cc34b0f0135b0ef41eadd37782053cb81665e684024794c1842ae979"
+    },
+    {
+      "id": "xiangqi",
+      "sourceSha256": "a3150bb79d896f7a8dc321b21f08c26b77576a728b02c5dd8eea748d175cee69",
+      "decision": "Tween未直接采用",
+      "record": "scripts/001-1073741827.lua：PlayTweensParallel203-236、KillAllAnims238-245、AnimateMove1735-1782、OnDestroy1994-2011",
+      "projectEntry": "src/lua/abyss_battle_card_view.lua:lerpSnap/advancePose；src/lua/abyss_feedback.lua",
+      "verification": "已读先监听后Play/全正常完成才续接/Kill(false)；本轮无Tween同条件A/B",
+      "reason": "保留原插值与按牌UID/战斗身份管理的输入事务；无充分证据证明整体换Tween更好，不认领已移植",
+      "scriptSha256": "f7ccb0eb897772939c432da22128c4dce8f17f9070289a5915c935aafeb12716"
+    },
+    {
+      "id": "badapple",
+      "sourceSha256": "7b45a1a34b0380202db135dd79fb2c2b6e2caef9379d3590fccc5ab267707963",
+      "decision": "池化与差分机制借鉴，独立实现",
+      "record": "scripts/000-1073741826.lua：createRectangle711、drawFrame725-749、decodeStep752、OnUpdate777、OnDestroy813-839",
+      "projectEntry": "src/lua/abyss_v25_card_surface.lua:reusable/replace/beginFrame/endFrame/release；src/lua/abyss_battle_card_view.lua:sameHandValues/applyHandPose",
+      "verification": "固定10手牌、换定义替换、稳定刷新、牌库/奖励释放fixture已测；20次实机切场/内存未测",
+      "reason": "借鉴按槽懒建/仅变化属性提交/倒序销毁；未移植视频/解码器/4612块上限；不跳过出牌伤害领奖语义，不认领平台预算",
+      "scriptSha256": "dbe30b4c46c8e20f86916f8a8956e5be7649b8e4eac9336492a05ad3dce946ef"
+    },
+    {
+      "id": "rpg",
+      "sourceSha256": "e4fe16b355d3d8f5681214603c61637a335faac5c1a90b5ecc3d0195cb6ad83a",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "witch-parkour",
+      "sourceSha256": "73efb3d470c327a1989ef12d88c494103651d68dd8ccada8996859d915ee3144",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "mondstadt",
+      "sourceSha256": "562fe3448954bfd147f5ce4220dfd5473b6287d59e8c5ca52d445ca86094ea25",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "furina-summons",
+      "sourceSha256": "829d87d01d6815098a30522f8de977c41610044fb93c815ef9459d28f190b7f8",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "mouse-pick",
+      "sourceSha256": "11363e6055d936b800423583465fa8de33a73f81b0328cb249fe480eee3c86a7",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "camera-v2",
+      "sourceSha256": "0e7ac038c0b0905195caeb994e8c6b355b9cffa37f90606ca1296d726bd08486",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "sword",
+      "sourceSha256": "4745ebeb22feadc959c790f2b02535fab588203cb61d3f5d0398ad3d554c9cd0",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "buildings",
+      "sourceSha256": "c6cc8d6ca357b52a807733e9d1ffef52e45e51a13e92e62a3dcdb57ea536a4f0",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "lumine",
+      "sourceSha256": "e11d41d5e7409a4cf6799a0d1f1d4e8b6bd22e9dcfa4ff55121b9d4b773d2e2c",
+      "decision": "场景像素模型不作为客户端UI采用",
+      "record": "main/0000.json.gz root.1[0] recordType1 body11、192依赖；dependencies/0000.json.gz起为recordType28 body21装饰物；index.ui为空",
+      "projectEntry": null,
+      "verification": "真实世界实体/装饰物记录已读，未转为ImageControl模板",
+      "reason": "世界造型与客户端UI不是同一资源路线；不以体积或装饰数证明低成本，也不拿模型替代V25认可立绘"
+    },
+    {
+      "id": "sand-and-puppet",
+      "sourceSha256": "ca9bb03208807d29ee7c5242abe2204d39a696636c53c836a4c965a2cdf1d854",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "slimes",
+      "sourceSha256": "6a5171436464e2365f9564a6676d0f884b2b1e52164bd9448ffc1db4a1fb37cd",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "mages-hilichurls",
+      "sourceSha256": "e491c9ed62b09368cc0a603bfcef8a80c1585a18ec49bfd45bbfbf37f4bdb5da",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "klee-dynamic",
+      "sourceSha256": "e037a0d8b0a1f80c7935135ab670a19bd78112c62e1ed0e911403021b57d683e",
+      "decision": "表情帧组已核，未作为攻击动画采用",
+      "record": "dependencies/0000.json.gz root.2[0].13[0].1[0].1[0].3：当前动作/待机/开心/斜眼/伤心；dependencies/0002.json.gz：当前动作序列/展示动作/做动作；main0001/0002是11-20及1-10组",
+      "projectEntry": null,
+      "verification": "实际原件图已读；无本轮攻击/受击/死亡动画接入或官方播放证明",
+      "reason": "表情帧组不证明现成攻击动作、骨骼、仅驻留一帧或低成本图集；战斗反馈继续由项目动作队列显示"
+    },
+    {
+      "id": "characters-117",
+      "sourceSha256": "9c1097d38053a1b7250062260823ccf5f9eb8534016688e5cddd44eef7bbdcbd",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "paimon-dynamic",
+      "sourceSha256": "239a2688eff3b55f6d418985ff413bb058f7499483c39f66e77f810bc73a48b5",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "klee-multi",
+      "sourceSha256": "dbec03690b9c7b03194cff648b2b6fe319f7ecf330fad6d94f222e88cf7ee9b9",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "audetta-idle",
+      "sourceSha256": "bfc59f42c8a074a5756cd81832e4ad8ebeecbe681d66ec772a60639f5068b080",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "spade",
+      "sourceSha256": "e22ca3fbf611a5e8edd2abf9d8e44e446a18e65d29e235e9310b59725acf37d0",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "heart",
+      "sourceSha256": "dcab692605a1690bfec5ff42fe692d5383cfdb7ad1c3710496a9329b2c0d4d7e",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "sky-frame",
+      "sourceSha256": "cb21a10e2f3ac2453ee6dae2ae84fd370575709e6c801a8db83f238e1368f528",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    },
+    {
+      "id": "dragon-dialogue",
+      "sourceSha256": "4086f1fd26d390300cbd0125b37ca946e817865edd14f885fb1426a20a6d4123",
+      "decision": "待核",
+      "record": null,
+      "projectEntry": null,
+      "verification": "原件与提取Lua字节核验通过；未接入本轮候选",
+      "reason": "未完成具体实现与本项目适用性核对，不据摘要认领采用"
+    }
+  ],
+  "privateV25": {
+    "differences": [
+      "战斗/卡牌/人物宿主、选角和地图已按V25重定位；字体、SVG滤镜/渐变、曲线/混合仍有原生近似，逐屏对照未通过",
+      "卡壳lossless1x编译和10唯一模板已实现；每壳6751-8871可见矩形、mana846，官方容量/冷启动/帧时间未验证，不能认定低负载",
+      "当前人物仍为已有133px/64色采样；放大不恢复原稿，背景/选角星图未全量绑定",
+      "启动/主菜单及其余页面未完成全量对齐；节点/结算模块状态另列，不冒充完整两幕新表现交付",
+      "缺当前完整候选官方导入/新ready、逐屏录像、同设备真实性能和20切场资源证据，保持UNVERIFIED；缺证不算2D失败"
+    ],
+    "sourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+    "sourceSha256": "bee6138f43655ffc62ce0c0860bfacf6050fbae7bd702227a472c571c0e13f92",
+    "projectEntry": "scripts/v25-battle-chrome.mjs",
+    "record": "dist/sts-battle-restore.css：energy、end-turn、pile选择器",
+    "method": "源PNG私有本地lossless编译；公开模块按冻结V25布局/色彩独立重建原生结构；规则/RNG/输入事务继续由原Lua唯一结算",
+    "baseline": {
+      "siteVersion": 25,
+      "sourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+      "manifestSha256": "f104bb096395744a620601d9e86a813574bb6bc4e3a73a84e2fbd6fe0eed9fea",
+      "sourceAuthoritySha256": "c092c27f327f1750cc02cd18bb6e0de149aebd543f3e3bc4c58f7f6c1b697388",
+      "recoveredFiles": 91,
+      "recoveryReceiptSha256": "f1bba2ef9d646375bc5555f33434b27f077bccf6a12756de5ed45a9c9040e3df",
+      "licenseScope": "原始私源/PNG/编译数据仅本地.artifacts/build；保留NOTICE/ASSET-PROVENANCE/FONT-LICENSES；本JSON仅hash/定位"
+    },
+    "traces": [
+      {
+        "id": "selection-constellation-source-mask",
+        "sources": [
+          {
+            "path": "constellation-exact.png",
+            "sha256": "5780bc541d322b369b61f656908da59bdeee7f3ad83988edca8be23776720ecd",
+            "record": "512×512完整alpha，alpha SHA256 9e10d467d9e6ae6f958a99d04fdcfb2d990c2c9c5177e6e4192aa444ef34be84；bounds[64,66,452,449]不裁切/重居中"
+          },
+          {
+            "path": "character-reference.css",
+            "sha256": "9a6d137a3297559f638e5323db424506ae394c7942cdf334551936ac0d74d17d",
+            "record": "53选中124框/border3；58 cr-constellation原alpha×#FFE0A2，实际DOM内容118×118、中心stage[461,577]"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-ui-mask-assets.mjs:compileUiMask/prepareUiMask/prepareV25UiMasks/attachV25UiMasks",
+          "scripts/v25-private-card-assets.mjs:复用compileRgbaRectangles/decodeRgbaRectangles",
+          "scripts/v25-profile.mjs:显式v25UiMasks非RC参数及收据",
+          "scripts/build-ui.mjs/build-native-candidate.mjs:私有输入snapshot/实际template ID/reference",
+          "scripts/v25-ui-mask-audit-inputs.mjs:rebasePrivateUiMask/prepareAuditV25UiMasks；audit-native-candidate.mjs:全模板比较"
+        ],
+        "verification": {
+          "sourceRgbPreserved": false,
+          "sourceAlphaExact": true,
+          "sampling": "none",
+          "derivedTintedRgbaSha256": "ac22a7e0dad4592d6fd793c89aece38b0c0113971cb04ccec447b36dafde301d",
+          "tests": "63项相关通过；独立7负控覆盖篡改tint/合法重hash的alpha/decoder期间换源/物理alias/receipt漂移/全模板删节点改alpha改ID/cache禁用；真实原PNG静态template和reference经原encoder写读一致",
+          "privateGeometry": "F:/New folder/.artifacts/v25-constellation-computed/geometry.json",
+          "privateIntegratedUi": ".artifacts/v25-ui-mask-integrated-f20a40a3-50ce-4c1e-833f-8729569a91dd/result.json"
+        },
+        "limits": "RGBA无损指CSS派生金色mask，不等于原灰RGB。静态template共19639节点是结构计数，不是低负载证明。无Lua逐帧创建；同候选原生显示/首次显示/资源释放与官方容量/设备性能仍未验"
+      },
+      {
+        "id": "battle-turn-notice",
+        "sources": [
+          {
+            "path": "battle.js",
+            "sha256": "b81d1dbf57874df0efdf68bff2894b256bda954fc8e2f235a657085f518a1ec7",
+            "record": "turnBanner:155；css turn-announcement/turnReveal:68，1.7s、20%/65%、±40px；非动作等待"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-turn-notice-layout.mjs:applyV25TurnNoticeLayout",
+          "src/lua/abyss_v25_turn_notice.lua:M.new/bind/playerTurn/update/reset",
+          "src/lua/abyss_feedback.lua:bindIdle/bannerStep/update/reset",
+          "data/presentation/ui_theme.json:v25Battle.layout.v25TurnNotice"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-battle-runtime.test.mjs",
+            "tests/v25-layout.test.mjs"
+          ],
+          "status": "缺控件/取消复活/首牌误取消/单次setter错误均已红绿；独立原encoder对21节点UI写读同原typed合同一致，独立重入和Host探针通过；完整新候选和官方逐屏未验"
+        },
+        "limits": "固定树无新增点击/原生分配；CSS ease数值重建，图片fade、交叉剑轮廓、原生字体与字距需同候选官方对照，不以离线测试宣称V25等效"
+      },
+      {
+        "id": "final-card-content-geometry",
+        "sources": [
+          {
+            "path": "project-card-theme.css",
+            "sha256": "354502472f3142a5dd2b76f39f60e7c854ce18d61f3e148a41e30284f867a819",
+            "record": "62–71最终84%×41%窗口、78%肩部/6%圆角；76–78实际字体；82–85能力53.5%椭圆及56%图标"
+          },
+          {
+            "path": "sts-battle-restore.css",
+            "sha256": "bee6138f43655ffc62ce0c0860bfacf6050fbae7bd702227a472c571c0e13f92",
+            "record": "58 native-card-icon 44×44/50%/45%/translate；最终CSS覆盖后以真实DOM为准"
+          }
+        ],
+        "projectEntry": [
+          "data/presentation/ui_theme.json:v25Battle.layout.card.v25Content/cardSkin",
+          "scripts/card-face.mjs:windowParts/flowingText/cardFaceChildren",
+          "src/lua/abyss_card_display.lua:writeArt/bodyFrame/bodyTypeWindows/writeBody",
+          "src/lua/abyss_battle_card_view.lua/abyss_deck_ui.lua/abyss_node_ui_faces.lua:共享正文及图标入口"
+        ],
+        "verification": {
+          "privateRecord": "F:/New folder/.artifacts/v25-card-computed-geometry/geometry.json",
+          "privateRecordSha256": "866c6d1212d7d35e83295805b08aade596a4327588aff4874e054125583a2287",
+          "method": "原版实际5牌CDP border quad逆仿射，91/91原件hash一致；无注入新牌。攻击/技能126×86.09375、图标Y36.875、正文Y-59.8515625。静态和真实Host三牌型/长文恢复已有红绿；原交易断言全部保留"
+        },
+        "limits": "源实际字体13.5/12/8.5005与自定义Sans/Type仍不等于当前16/14/14；未降低14字号门槛。Power几何来自最终CSS声明，原默认DOM无Power。长文仍保留完整正文fallback，固定纹理下的实际视觉/字体/阴影/遮罩须官方核验"
+      },
+      {
+        "id": "battle-hud-layout",
+        "sources": [
+          {
+            "path": "sts-battle-restore.css",
+            "sha256": "bee6138f43655ffc62ce0c0860bfacf6050fbae7bd702227a472c571c0e13f92",
+            "record": "energy/end-turn/pile/card/hero/enemy选择器"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-layout.mjs:v25Theme/applyV25BattleLayout/rebuildV25CardFaces",
+          "scripts/v25-battle-chrome.mjs:applyV25BattleChrome",
+          "data/presentation/ui_theme.json:v25Battle"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-layout.test.mjs",
+            "tests/v25-battle-chrome.test.mjs",
+            "tests/v25-battle-runtime.test.mjs"
+          ],
+          "status": "已接buildUI；结构及Run/Combat宿主fixture已有验证"
+        },
+        "limits": "原生字体/soft-edge/四态实机与同状态截图待验"
+      },
+      {
+        "id": "battle-scene",
+        "sources": [
+          {
+            "path": "battle.js",
+            "sha256": "b81d1dbf57874df0efdf68bff2894b256bda954fc8e2f235a657085f518a1ec7",
+            "record": "scene(false):72，1280x676分层SVG"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-battle-scene.mjs:buildV25BattleSceneGeometry/nativeShape/applyV25BattleScene"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-battle-scene.test.mjs"
+          ],
+          "status": "已接buildUI；规范几何与原生投影结构已有测试"
+        },
+        "limits": "12段曲线/原生fade-glow-vignette近似；mask/拼缝/原稿视觉未官方验收"
+      },
+      {
+        "id": "private-lossless-card-shells",
+        "sources": [
+          {
+            "path": "private-card-skins/manifest.json",
+            "sha256": "f8bb8c01dbe0ecdb6818efe612e7882e7b27f4f0b2ba4647ea9ca8dc2fe7a623",
+            "record": "assets/cardShells；仅取asset.source原PNG RGBA，忽略旧sampleSize/blocks"
+          },
+          {
+            "path": "private-card-skins/cardShell_attack_common-raster.png",
+            "sha256": "cf5bc089273450670ee4a2acfcd0543e8b84e8bbef446427698d14ed81f52c6a",
+            "record": "159x210，logical150x210，crop[4,0]，display[0.5,0]；其余9项逐输入hash保留私有pack.inputs"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-private-card-assets.mjs:compileRgbaRectangles/decodeRgbaRectangles/compilePrivateCardAssets",
+          "scripts/v25-card-templates.mjs:prepareV25CardTemplates",
+          "scripts/v25-card-audit-inputs.mjs:prepareAuditV25CardInputs",
+          "scripts/build-native-candidate.mjs:66输入digest/实际ID绑定",
+          "scripts/audit-native-candidate.mjs:locator重定位/全模板读回比较"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-private-card-assets.test.mjs",
+            "tests/v25-card-templates.test.mjs",
+            "tests/v25-card-audit-inputs.test.mjs",
+            "tests/v25-card-surface.test.mjs",
+            "tests/v25-card-skin-integration.test.mjs",
+            "tests/v25-profile.test.mjs"
+          ],
+          "status": "10真实资产lossless重解码RGBA一致；65依赖+编译JSON共66输入；alpha/孔洞/越界/hash/别名/重定位负控已有验证"
+        },
+        "limits": "默认原稿无降采样/STD16；原PNG与编译数据不入Git；高控件量仍待实机；此manifest旧采样blocks不是采用基准"
+      },
+      {
+        "id": "character-and-portrait",
+        "sources": [
+          {
+            "path": "character-reference.js",
+            "sha256": "f8e43d290bb1d44012529678391ade58a60627f83ea7efa5f38ff8f03bda8d7b",
+            "record": "renderCharacterReference:43，roster/details/confirm/cancel"
+          },
+          {
+            "path": "character-reference.css",
+            "sha256": "9a6d137a3297559f638e5323db424506ae394c7942cdf334551936ac0d74d17d",
+            "record": ".character-reference布局/旗帜/星图/全身像"
+          },
+          {
+            "path": "traveler-battle.png",
+            "sha256": "4851e4aae6c43799ec31e2b2ebd06f9b00cf07161f26e71d72a6ec89191ad98e",
+            "record": "共享源身份；当前133px采样不等于原分辨率"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-character-layout.mjs:applyV25CharacterLayout/flagButton/roster",
+          "scripts/v25-portrait-profile.mjs:applyV25PortraitProfile/v25PortraitRuntimeProfile",
+          "src/lua/abyss_traveler_portraits.lua:v25Profile/nativeTransition/controller"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-character-layout.test.mjs",
+            "tests/v25-portrait-profile.test.mjs",
+            "tests/portrait-paint-cache.test.mjs"
+          ],
+          "status": "buildUI与运行时display/anchor已接；装饰宿主pause/restore原生active读回/重入负控已有验证"
+        },
+        "limits": "原背景/星图未绑定；采样人物不能冒充原稿；只停装饰宿主，不停根Lua"
+      },
+      {
+        "id": "map",
+        "sources": [
+          {
+            "path": "app.js",
+            "sha256": "66fb1f1e7ca018c600b67ea4b05f9010c32198d34c5c5a7d989bcc75a1dad75e",
+            "record": "map(host,v):42"
+          },
+          {
+            "path": "sts-map-restore.css",
+            "sha256": "d0aa50eb665e04ae63e8741362acfd6ab5db371e5203777f9f4342696880fdc7",
+            "record": "mapscroll/atlas/map-legend/ribbon"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-map-layout.mjs:applyV25MapLayout/styleLegend/styleReturn",
+          "src/lua/abyss_map_ui.lua:既有滚动/节点池/路线命令"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-map-layout.test.mjs",
+            "tests/v25-map-return.test.mjs"
+          ],
+          "status": "已接buildUI；路线/滚动保留，返回Run事务fixture已有验证"
+        },
+        "limits": "纸纹turbulence/破边/Kreon字体仍有差异；未改两幕生成/RNG或删节点省负载"
+      },
+      {
+        "id": "rooms-module",
+        "sources": [
+          {
+            "path": "genshin-rooms.js",
+            "sha256": "5169706502ca4c958999b48417c5d463ef732bcdf5e1aa50a840e4b1c9e21452",
+            "record": "renderRoom:29，shop/camp/event/rewards"
+          },
+          {
+            "path": "genshin-rooms.css",
+            "sha256": "abf9e5188e076062646153358bbfa16b498adf0e08b90d92a0fb1b5801760100",
+            "record": ".gr-*"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-node-layout.mjs:v25NodeThemePatch/applyV25NodeLayout/applyV25RewardLayout",
+          "scripts/build-ui.mjs:gameLayout节点与standalone battle奖励接入"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-node-layout.test.mjs"
+          ],
+          "status": "节点/theme/gameLayout与standalone battle奖励布局已接；综合176项175通过，唯一红为另一结果fixture且已定向修复；真实房间/奖励候选实机未验"
+        },
+        "limits": "不移植浏览器gold/hp/sold/campDone演示状态；保留四事件选项/商人/分页选择；无冻结宝箱截图，不认领宝箱视觉对齐",
+        "projectImplementation": {
+          "path": "scripts/v25-node-layout.mjs",
+          "sha256": "fc28f57fd8496136aa83f4f25a2b3137faa9a74959cfbc9de4dc029b145a3914",
+          "bytes": 20458
+        }
+      },
+      {
+        "id": "results-module",
+        "sources": [
+          {
+            "path": "results.js",
+            "sha256": "06d9106dd7abf47f4b840b2bfb9002f8d3379a049d8766e20177fea3dd1ca334",
+            "record": "renderResults:6"
+          },
+          {
+            "path": "results.css",
+            "sha256": "fd155f1e98942f7eff6eacc35c0ca619705cd3f94aca12a22297c8f51cc8ace8",
+            "record": "result-banner/result-stats/result-actions"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-result-layout.mjs:applyV25ResultLayout/v25ResultRuntimeLayout",
+          "src/lua/abyss_v25_menu_view.lua:present/resultValues/entrance"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-result-layout.test.mjs"
+          ],
+          "status": "已接buildUI/theme及共享menu控制器；present读取原Run的遗物/生命/金币/楼层/牌组，六行入场与画像同步已实现；当前候选完整结算未验"
+        },
+        "limits": "不复制RESULT_SAMPLES或重算分数；六行真实数据/胜败主体/实时HUD/字体纸张与同候选实机待验"
+      },
+      {
+        "id": "main-menu",
+        "sources": [
+          {
+            "path": "menus.js",
+            "sha256": "a9f861917e697d5f5f25650abafdc3eef5f7ac6593d9ef015a62bbeab638f114",
+            "record": "renderMenu:44 / bindReferenceMenuMotion"
+          },
+          {
+            "path": "menu-reference.css",
+            "sha256": "97218a083a1d29f7a9b742155fdb689629a4c7b7e649c7c43292dcc2174a60fd",
+            "record": ".mr-mainlinks/.mr-option"
+          }
+        ],
+        "projectEntry": [
+          "scripts/v25-menu-layout.mjs:applyV25MenuLayout/v25MenuRuntimeLayout",
+          "src/lua/abyss_v25_menu_view.lua:button/pointer/present",
+          "src/lua/abyss_game_ui_input.lua:既有开始与退出事务"
+        ],
+        "verification": {
+          "tests": [
+            "tests/v25-profile.test.mjs",
+            "tests/v25-layout.test.mjs"
+          ],
+          "status": "buildUI/theme和menu controller接入已读回源码；四态装饰指针适配已实现；本菜单新增真实交互fixture/官方导入仍需主控验证"
+        },
+        "limits": "原塔楼与logo私有图尚未绑定；原生字体/渐变未视觉验收；图鉴/游戏记录保持锁定，不假造可用入口或浏览器示例存档"
+      }
+    ]
+  },
+  "preserved": [
+    "Run/Combat/RNG/输入事务未改",
+    "原手牌插值与动作队列未换Tween",
+    "10牌及合法敌人数未缩减"
+  ],
+  "deviceValidation": "UNVERIFIED",
+  "adoptionSemantics": "机制借鉴/结构对照是独立实现与已读原件的对应关系，不是逐行复用或样本运行认证；未核样本保持待核；未知操作码不推断完整语义",
+  "techniques": [
+    {
+      "id": "native-four-states",
+      "decision": "复用项目四态；V25装饰独立实现",
+      "sources": [
+        {
+          "path": "scripts/ui-layout.mjs",
+          "sha256": "111005ca81903cd286c1cee9410e10d06c173af416b4b0a87d8fc0ba45ef31a5",
+          "record": "button：presetButton.states normal/hover/pressed/disabled"
+        }
+      ],
+      "projectEntry": [
+        "scripts/v25-battle-chrome.mjs:applyV25BattleChrome",
+        "scripts/v25-character-layout.mjs:flagButton"
+      ],
+      "verification": {
+        "tests": [
+          "tests/v25-battle-chrome.test.mjs",
+          "tests/v25-battle-runtime.test.mjs",
+          "tests/v25-character-layout.test.mjs"
+        ],
+        "status": "离线结构/宿主fixture已有验证；官方同候选画面、设备性能未验"
+      },
+      "boundary": "jelly-ui只证实装饰父链，不证实四态事件；实机拖出/取消复位待验"
+    },
+    {
+      "id": "native-mask-layer-order",
+      "decision": "复用原生fill/mask；场景裁切独立实现",
+      "sources": [
+        {
+          "path": "scripts/ui-layout.mjs",
+          "sha256": "111005ca81903cd286c1cee9410e10d06c173af416b4b0a87d8fc0ba45ef31a5",
+          "record": "unit：hpGhost/hpFill mask=true、horizontal fill"
+        },
+        {
+          "path": "battle.js",
+          "sha256": "b81d1dbf57874df0efdf68bff2894b256bda954fc8e2f235a657085f518a1ec7",
+          "record": "scene(false):72，墙柱/拱门/地面层次"
+        }
+      ],
+      "projectEntry": [
+        "scripts/v25-battle-scene.mjs:nativeShape/applyV25BattleScene"
+      ],
+      "verification": {
+        "tests": [
+          "tests/v25-battle-scene.test.mjs",
+          "tests/native-candidate-audit.test.mjs"
+        ],
+        "status": "离线结构/宿主fixture已有验证；官方同候选画面、设备性能未验"
+      },
+      "boundary": "未把未知96/97字段当认证mask schema；100003右半裁切/pivot/共享边混合需官方读回；PNG孔洞保留"
+    },
+    {
+      "id": "templates-owner-lifecycle",
+      "decision": "静态外观/实例所有权分离，独立实现",
+      "sources": [
+        {
+          "path": "extracted/pixel-scripts/scripts/092-1073741917.lua",
+          "sha256": "a0e427b0cc34b0f0135b0ef41eadd37782053cb81665e684024794c1842ae979",
+          "record": "DrawRect194/BuildImage217/ReleaseControls184/OnDestroy264"
+        }
+      ],
+      "projectEntry": [
+        "scripts/v25-card-templates.mjs:prepareV25CardTemplates",
+        "scripts/v25-card-binding.mjs:v25CardBindingSource/assertV25CardPreparation",
+        "src/lua/abyss_v25_card_surface.lua:allocate/publish/current/retire/drain"
+      ],
+      "verification": {
+        "tests": [
+          "tests/v25-card-templates.test.mjs",
+          "tests/v25-card-surface.test.mjs",
+          "tests/v25-card-skin-integration.test.mjs",
+          "tests/v25-profile.test.mjs"
+        ],
+        "status": "离线结构/宿主fixture已有验证；官方同候选画面、设备性能未验"
+      },
+      "boundary": "模板实际ID、原生文字、迟到setter/分配释放失败负控已有；预置UI不复制10套卡壳，但每个可见牌槽实例仍有成本；真实20切场未测"
+    },
+    {
+      "id": "pool-diff-page-lifecycle",
+      "decision": "固定槽缓存与差分提交，独立实现",
+      "sources": [
+        {
+          "path": "extracted/badapple/scripts/000-1073741826.lua",
+          "sha256": "dbe30b4c46c8e20f86916f8a8956e5be7649b8e4eac9336492a05ad3dce946ef",
+          "record": "createRectangle711、drawFrame725位置/尺寸/显隐缓存、OnDestroy813"
+        }
+      ],
+      "projectEntry": [
+        "src/lua/abyss_v25_card_surface.lua:reusable/replace/endFrame/release",
+        "src/lua/abyss_battle_card_view.lua:sameHandValues/applyHandPose",
+        "src/lua/abyss_traveler_portraits.lua:controller/nativeTransition/cleanup",
+        "src/lua/abyss_game_ui_lifecycle.lua:disable/onEngineDestroy"
+      ],
+      "verification": {
+        "tests": [
+          "tests/v25-card-skin-integration.test.mjs",
+          "tests/portrait-paint-cache.test.mjs",
+          "tests/v25-portrait-profile.test.mjs"
+        ],
+        "status": "离线结构/宿主fixture已有验证；官方同候选画面、设备性能未验"
+      },
+      "boundary": "稳定刷新复用、10牌/定义替换/关闭释放及装饰宿主pause原生active读回负控已有；缓存停用不等于释放，不停止根Lua，不采用视频跳帧规则"
+    },
+    {
+      "id": "packed-source-rgba-native-textures",
+      "source": {
+        "file": "src/lua/abyss_traveler_portraits.lua",
+        "sha256": "4277fcd05676fc61b95be6230a7b73ac48af365d2e720422b86617dd14496ad0",
+        "record": "MIT controller/create/step/release/cleanup; existing native page/group ownership and image painting",
+        "kitSample": "pixel-scripts",
+        "kitSourceSha256": "64258bd23fffb3983158e33c31f8ea4003ae936d5abf380be6a7f798373740db",
+        "kitScriptSha256": "a0e427b0cc34b0f0135b0ef41eadd37782053cb81665e684024794c1842ae979",
+        "kitRecord": "092-1073741917.lua ReleaseControls184/DrawRect194/BuildImage217"
+      },
+      "projectEntry": [
+        "scripts/v25-card-templates.mjs:prepareV25CardTemplates",
+        "scripts/v25-ui-mask-assets.mjs:prepareUiMask",
+        "scripts/v25-card-binding.mjs:v25CardBindingSource",
+        "src/lua/abyss_v25_texture_runtime.lua:lazyData/instantiate/update/syncMask/clear",
+        "src/lua/abyss_v25_card_surface.lua:complete/pairReady/endFrame",
+        "src/lua/abyss_ui.lua:OnStart/OnUpdate/OnDestroy"
+      ],
+      "decision": "原RGBA紧凑存储、原native控制器按需构建；未复用像素场景模型，未改源像素或合法玩法数量",
+      "verification": {
+        "privateExactPixels": ".artifacts/v25-card-assets-capacity-proof/receipt.json; 10 card textures plus original CSS-alpha mask, all 89025 visible rectangles and complete transparent RGB retained",
+        "independentPixels": ".artifacts/v25-texture-preparation-independent.log",
+        "surfaceReview": ".artifacts/v25-surface-independent-review/final-review-receipt.json; 9 independent black-box probes green after 4 red defects fixed",
+        "engineering": ".artifacts/v25-capacity-engineering-final.log; 342 modules/5724 measurements/1945 dependencies, M1-M4 killed and native lifecycle 6/6; original thresholds",
+        "candidate": "NEW_PINNED_COMPLETE_GIL_PENDING",
+        "officialCapacity": "NEW_CANDIDATE_RETEST_PENDING",
+        "performance": "NOT_MEASURED"
+      },
+      "boundary": "存档减重不代表动态原生控制数、首屏时长或帧时合格；64步/8ms只是调度预算。所有原素材许可及MIT声明保持，公开源码不含私有位图或编译数据。"
+    }
+  ],
+  "validationBoundary": {
+    "kitBytes": "VERIFIED_28_RAW_128_LUA",
+    "sourceRecovery": "VERIFIED_91_FROZEN_FILES",
+    "offline": "按各trace指定测试和本地证据；不替代候选验收",
+    "officialImport": "2be5219e build1ab94c8a entered playtest; newer dirty source fixes NOT_OFFICIALLY_TESTED",
+    "newReady": "2be5219e two fresh ready records; first run failed at t253 SetAnchoredPosition got inf; second run reached battle victory",
+    "screenComparisons": "UNVERIFIED",
+    "interactionsVideo": "UNVERIFIED",
+    "sameDeviceFrameTimeMemoryCapacity": "UNVERIFIED",
+    "twentySceneResourceRelease": "UNVERIFIED",
+    "twoDDecision": "UNDECIDED_ROUTE; current delivery NO_GO for visual gaps/runtime failure/reported stalls; targeted fixes require same-candidate official retest",
+    "deliveryGoNoGo": "NO_GO_FOR_FINAL_ACCEPTANCE",
+    "reviewEvidence": [
+      ".artifacts/ci565-01754/integration-review.md：主控owned接线独立复审；profile/cache/audit比较合同31/31，非我方compiler/helper独审",
+      ".artifacts/ci565-01754/current-registration-17-final.log：历史分片/测量合同19/19，新增测试仍未测量，不是实际Full用时"
+    ],
+    "verificationRounds": [
+      {
+        "kind": "pinned-full-candidate-17b6b079",
+        "sourceCommit": "17b6b079e48bbb7043d247b0ea06fa74e1ec2722",
+        "sourceDirty": false,
+        "buildId": "d4315046-5ef4-4eb7-90ac-c1f346e4b406",
+        "candidateSha256": "d58a28437c5ee4f30e7fa58b88082a420c48e4fdee67acc040277eec50479d43",
+        "audit": {
+          "path": ".artifacts/v25-pinned-17b6b079/audit.json",
+          "sha256": "796b7cbfe48e4e5f7528236b69414976eeb5db53c62ccb6c66f553a639e8be16",
+          "bytes": 209652
+        },
+        "conclusion": "354模块、完整UI、全部模板/图及66私有输入重建读回通过，候选hash前后不变；此历史候选不覆盖随后新增的回合提示及最终卡内容几何，不是官方导入或实机"
+      },
+      {
+        "kind": "turn-notice-and-final-card-content",
+        "log": {
+          "path": ".artifacts/v25-content-final-alignment.log",
+          "sha256": "a2b8614250e9d8758b484bc7c27889051d38cfa87531690f44ec79d9425bdeb9",
+          "bytes": 4338
+        },
+        "tests": 41,
+        "pass": 41,
+        "fail": 0,
+        "skipped": 0,
+        "engineering": {
+          "path": ".artifacts/v25-content-engineering-alignment.log",
+          "sha256": "dbfc1ea145954f2f3d849ea3ee7ced3396fc6680e261719498b2668a40f64ac0",
+          "bytes": 1720
+        },
+        "conclusion": "相关组和工程通过；原复杂度15及字号14门槛不改，所有失败探针保留。新HEAD完整GIL/官方设备仍待"
+      },
+      {
+        "kind": "integration-regression",
+        "log": {
+          "path": ".artifacts/v25-integration-validation.log",
+          "sha256": "0633a4b5bc97f071f6cfd8d8bc0dcce4d552147a20edfa799240556d9f43b8da",
+          "bytes": 19608
+        },
+        "tests": 176,
+        "pass": 175,
+        "fail": 1,
+        "skipped": 0,
+        "failure": "tests/v25-result-layout.test.mjs unbound fixture继承批准support文案，但该负控要求空绑定；期望空字符串而得到批准文案",
+        "conclusion": "此轮并非全绿；不得表述为176项单轮通过"
+      },
+      {
+        "kind": "focused-fix-retest",
+        "log": {
+          "path": ".artifacts/v25-result-validation-final.log",
+          "sha256": "fa42abda6c6d8004f020eadbda3d65876b72135acd7ad2f5400296d82bb58715",
+          "bytes": 684
+        },
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "skipped": 0,
+        "change": "unbound fixture明确传入v25Result:{}，保留空绑定原断言；生产批准文案不删除",
+        "conclusion": "修复后结果布局5项新鲜复验通过；未重跑176项，不合并计数冒充单轮全绿"
+      },
+      {
+        "kind": "engineering",
+        "log": {
+          "path": ".artifacts/v25-engineering-current.log",
+          "sha256": "81c6ff24f34e14008cc8f2bd44cb20c81759555ac0e01002d65d3756c5b33e05",
+          "bytes": 1722
+        },
+        "modules": 340,
+        "measurements": "5638/5638",
+        "mutationControls": "M1-M4均killed_by_assertion",
+        "nativeUiContracts": "6/6通过，零skip",
+        "conclusion": "工程检查通过；不代表当前完整候选官方导入、画质或性能验收"
+      },
+      {
+        "kind": "guidance-backlog-calibration",
+        "source": "集成负责人本轮执行回报；calibration日志另见reviewEvidence",
+        "guidance": "PASS",
+        "backlog": "PASS",
+        "calibration": "19/19 PASS",
+        "conclusion": "指引/任务/历史测量合同通过；新增测试仍属未实测，保留冻结原件"
+      },
+      {
+        "kind": "frozen-integration-retest",
+        "log": {
+          "path": "F:\\New folder\\.worktrees\\v25-port\\.artifacts\\v25-integration-validation-final.log",
+          "sha256": "355fe3cebdeaef357860a67b996e98f6cd94a6a208d8b1d0dbcaa08c1c970252",
+          "bytes": 18409
+        },
+        "tests": 176,
+        "pass": 176,
+        "fail": 0,
+        "skipped": 0,
+        "conclusion": "同一冻结源码完整重跑相关组通过；不是完整CI或官方实机验收"
+      },
+      {
+        "kind": "event-title-runtime-bound-retest",
+        "log": {
+          "path": "F:\\New folder\\.worktrees\\v25-port\\.artifacts\\v25-node-text-height-final.log",
+          "sha256": "15b4f194779c594c20c183918c0856ec0a8680c0c741fcbadccb28771b705f07",
+          "bytes": 748
+        },
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "skipped": 0,
+        "change": "普通事件18字号标题的主题透明高度28改36，避免runtime placeOptions覆盖静态保护；原700×60点击区/选项数/交易不变",
+        "conclusion": "完整相关组176通过后的一行布局修正及定向6项通过，不宣称后续完整CI或原生字形已验"
+      },
+      {
+        "kind": "native-encoder-interface-fix",
+        "log": {
+          "path": "F:\\New folder\\.worktrees\\v25-port\\.artifacts\\v25-native-fields-fix-final.log",
+          "sha256": "002f600f9415033f1b18a44841b9eedfae4bf3d6d4133f33001d2efc4319af40",
+          "bytes": 4127
+        },
+        "tests": 41,
+        "pass": 41,
+        "fail": 0,
+        "skipped": 0,
+        "change": "真实GIL编码拦截control.opacity文本和image描述对象。改为原生text.opacity并解析deck.id，预检加入两条负控；普通事件runtime SetVisible不重写font alpha。",
+        "conclusion": "定向通过，旧e726候选的build fail和已写中间副本保留；新源码完整GIL/最终读回尚未完成"
+      },
+      {
+        "kind": "owner-official-editor-capacity-failure",
+        "sourceCommit": "06e049f54fce68c8a8ef62b98d2887d8b3096271",
+        "buildId": "e1640ff2-d3b3-423a-a819-bced7714615b",
+        "candidateSha256": "ab427fbe5218b1d764668315afcdeb681c0b2a6b0615f45c41039d090935d2d2",
+        "artifact": {
+          "path": ".artifacts/v25-capacity-official-06e/owner-editor-failure.png",
+          "sha256": "3a2c0a77c37ff49d966e69036a82bfd4a1e446729f5c22058fd4a2fc4b5ef6c6"
+        },
+        "association": "Owner screenshot reply to this exact local candidate path; image itself has no build marker",
+        "levelStorageMB": 70.51413,
+        "limitMB": 20,
+        "serverStorage": "NOT_PROVIDED",
+        "clientVersion": "NOT_PROVIDED",
+        "ready": "NOT_REACHED",
+        "performance": "NOT_MEASURED"
+      },
+      {
+        "kind": "owner-2be5219e-script-playtest",
+        "sourceCommit": "2be5219ec796436fe5dbb574a6d17de00dc4cb5a",
+        "buildId": "1ab94c8a-1505-4c1b-b143-fa41c32228dd",
+        "candidateSha256": "9f00ced0de4913273259624a7e7aac44309c9b718f3a41ce546161f19643311a",
+        "evidence": {
+          "path": ".artifacts/v25-user-playtest-20261108/collection-20261108T092705738Z/debug-01-2026-11-08_16-52-26.gia",
+          "sha256": "4f578b8999d4fb95bbafbcfa27449f923cd4140d450b18fea99b321b7751be09"
+        },
+        "association": "Fresh ABYSS_BUILD marker and normalized 356/356 external Lua source match; decoded print records, not a full input/video trace",
+        "officialCapacity": "NO_NEW_NUMERIC_READING",
+        "ready": "TWO_NEW_READY_SESSIONS",
+        "result": "FIRST_SESSION_RUNTIME_ERROR_AT_T253; SECOND_SESSION_REAL_PLAYS_ENEMY_TURNS_AND_VICTORY",
+        "ownerFeedback": [
+          "map colours differ",
+          "constellation loads slowly",
+          "incomplete UI",
+          "severe card interaction stalls"
+        ],
+        "instrumentedFrameTimes": "NOT_MEASURED",
+        "mobile": "NOT_MEASURED",
+        "releaseDecision": "NO_GO_CURRENT_CANDIDATE"
+      }
+    ],
+    "visualEncodingProbe": {
+      "path": "F:/New folder/.artifacts/v25-raster-approx/visual-review.json",
+      "adopted": false,
+      "conclusion": "有限3档背景矩形误差编码出现块化，全部拒绝；标题最小误差仅离线假设，不当原生或性能通过，不判2D失败"
+    }
+  },
+  "toolchainAdaptations": [
+    {
+      "source": {
+        "file": "genshin-miliastra-mcp/src/scene-save.mjs",
+        "sha256": "efed8c468683c7984f626e67bf74b4a35ffc326e0bfe6a2a36ff05591229b34f",
+        "bytes": 340450,
+        "record": "checkClientScripts / listClientScripts.carried / clientProblems / addClientUi"
+      },
+      "projectEntry": [
+        "scripts/native-ui-encoder.mjs",
+        "scripts/native-client-check.mjs",
+        "scripts/build-native-candidate.mjs",
+        "scripts/audit-native-candidate.mjs"
+      ],
+      "use": "原checker、interface/clientTrees/template/mount与全部诊断保留；仅把模块×UI重复遍历换成已用section50脚本投影。原安装文件不改；source与helper各自随机query隔离并校验实际加载字节，hook finally撤销，非单锚点拒绝。",
+      "verification": {
+        "tests": "Node22/24、helper预缓存A→磁盘B及加载漂移/并发隔离负控；构建/审计46项通过",
+        "originalCheckerComparison": ".artifacts/v25-review-checker-56cb5f2a-10fc-4820-a6ab-f994d7ad03ef/result.json：三组完整deepEqual覆盖7类真实错误",
+        "completeUiReadback": ".artifacts/v25-ui-preflight-e20f2e3a-89c9-45e2-bc11-b4569f7a0564/typed-result.json：完整UI同原有typed比较合同一致，GIL未修改；非完整候选audit或实机"
+      },
+      "boundary": "离线编码检查优化，不构成游戏帧时、内存、官方容量或最终Go；helper/mcp源hash同时纳入候选多次输入快照。"
+    }
+  ],
+  "ownerPlaytestRepairs": {
+    "scope": "Reviewed source fixes only; full current GIL and official device acceptance pending",
+    "items": [
+      {
+        "id": "enemy-name-finite-decay",
+        "source": {
+          "file": "src/lua/abyss_battle_enemy_view.lua",
+          "sha256": "0cf94c52da41f2d2380c266e26735352cd92e8d78ec567d662b88d11716288ff",
+          "record": "fade/nameStep/exp10Out"
+        },
+        "verification": "Exact old packaged code dt225 overflows Y; analytic decay stays finite. Independent9 and related51 green. Actual Simulator hover/exit/dt225 and enemy turn continued without error.",
+        "boundary": "Official log does not include the failing dt/hover stack; unique real-event causality is not proven; no device FPS claim."
+      },
+      {
+        "id": "native-basic-shape-capability",
+        "source": {
+          "file": "src/lua/abyss_traveler_portraits.lua",
+          "sha256": "97a0704c4226ce5f0cce9a92c91509fbe457d35818f4d60ff48e4157cbb3c265",
+          "record": "image; activeTargets V25 selection warm gate"
+        },
+        "relatedSource": {
+          "file": "src/lua/abyss_card_display.lua",
+          "sha256": "2bf4bb124ffcf2b9856cdd8a1a976255ef1deffe42301da8467d9a77b8fdde59",
+          "record": "basic shape image mode capability"
+        },
+        "verification": "Actual SDK0.5.2 rejects imageType for basic shapes100001..100006; those writes omitted, gallery strict write/readback retained. V25 hidden selection no longer starts art.",
+        "boundary": "Official2be5 portraits did reach ready, so the SDK imageType failure is not asserted as the official crash cause."
+      },
+      {
+        "id": "card-surface-component-ownership",
+        "source": {
+          "file": "src/lua/abyss_v25_card_surface.lua",
+          "sha256": "7b1c98cc9617969a02d50a47da396bf321ccf8138aa163ebedee5428d8d04e1a",
+          "record": "retainComponents/replace/complete/publish"
+        },
+        "verification": "Real Runtime binding reproduced retained mana destroyed through old-current alias; unchanged components now transferred exclusively. Strict mana-on-top reorder covers failure/throw and reentry. Independent exact hash review-7b1c98cc.json passed.",
+        "boundary": "Synchronous destruction of changed shells remains expensive; this does not prove fluid interaction."
+      },
+      {
+        "id": "pending-only-texture-build-quota",
+        "source": {
+          "file": "src/lua/abyss_v25_texture_runtime.lua",
+          "sha256": "c51efa3684bc06c7de11c61f982eef7db483f2d3aa1251b3904320421a8fe7c1",
+          "record": "update"
+        },
+        "verification": "Ready leases retain validation but no longer consume pending construction slots. Original64-step/8ms admission checks preserved; independent6 tests and combined57 source tests green.",
+        "boundary": "No hard whole-frame8ms bound; native calls, ready validation and current cleanup are not preemptible."
+      },
+      {
+        "id": "v25-map-live-theme",
+        "source": {
+          "file": "sts-map-restore.css",
+          "sha256": "d0aa50eb665e04ae63e8741362acfd6ab5db371e5203777f9f4342696880fdc7",
+          "record": "27-30 path/traveled/reachable;31/34-39 node state inks"
+        },
+        "projectEntry": [
+          {
+            "file": "data/presentation/ui_theme.json",
+            "sha256": "6784ddb098e4c1ecc2b02b7ceeb2484a29b801cd8e3280c6a82b9ff7a109756e",
+            "record": "v25Battle.color.mapCanvas/node and layout.map.presentation"
+          },
+          {
+            "file": "src/lua/abyss_map_ui.lua",
+            "sha256": "c0b82572e7dc676f0af68b0680215480c278a9e2be3f8218d5577a37eba22ca4",
+            "record": "roomInk optional available token, legacy fallback"
+          }
+        ],
+        "verification": "Generated theme→real MapUI writers and real Map.choose validated all state colours/widths/alpha. Actual Simulator natural map shows the new palette.",
+        "boundary": "Source mask glyphs, dashes, paper grain and edge materials remain visibly different; whole-screen parity NOT_ACCEPTED."
+      },
+      {
+        "id": "v25-transparent-text-line-bounds",
+        "projectEntry": [
+          {
+            "file": "scripts/v25-character-layout.mjs",
+            "sha256": "4adb8c190b63f0fbc239494425245492c3f374d5faa8ddf14add866ec1966076",
+            "record": "8 evidenced one-line text heights"
+          },
+          {
+            "file": "scripts/v25-map-layout.mjs",
+            "sha256": "bff21afebc6a1a1e160321939e401e6f31e70c2b83902fe37bc6b59b705361c8",
+            "record": "legend title transparent height"
+          },
+          {
+            "file": "scripts/v25-layout.mjs",
+            "sha256": "0d1a3acc74c87e6e8adb41b9613458e90c0a559533dfbc54ed61f2f270c5f24b",
+            "record": "oneLineTextBox/rebuildV25CardFaces/applyV25BattleLayout"
+          }
+        ],
+        "verification": "Actual SDK height-only probes turn8 selection+8 battle+1 legend nonempty zero-line fields into visible lines. Centre/width/font/align retained. Current Host10 legal hands/2 dynamic enemies/real play and enemy turn covered independently.",
+        "boundary": "Full official candidate font layout not yet verified; SDK tofu glyphs and coarse portrait art remain unresolved."
+      }
+    ],
+    "actualSimulator": {
+      "adapter": "Actual candidate356 Lua and17 templates plus explicitly hashed7 source overrides/current generated layout; no rule-state injection",
+      "sdkCorrection": "Private GPL-3.0-only SDK0.5.2 userdata identity cache correction; installed package unchanged. This is a tool correction, not a game-source fix.",
+      "evidence": ".artifacts/v25-simulator-debug/runtime-session-03",
+      "runSeed": 23705,
+      "observed": "Menu→selection→Neow+8maxHP→map→jaw_worm44HP; real pointer drag dealt6 and spent1 energy; enemy hit11, next player turn; artificialdt225 stayed finite",
+      "performance": "Manual-clock software simulator is NOT PC/mobile display performance; current source still has unaccepted image quality/loading gaps"
+    },
+    "localChecks": {
+      "related": "128 total:127 pass/1 Windows symlink EPERM, zero skips (before final text/theme integration)",
+      "finalTextTheme": "11/11",
+      "surfaceRuntime": "57/57",
+      "nativeContract": "6/6",
+      "mutations": "Original M1-M4 all killed_by_assertion",
+      "ci": "Existing draft PR565 Full is red; sampled historical linked-source fixture failures retained, no gate bypass"
+    },
+    "rejectedProbes": [
+      "118/148/236 mask display sampling has measurable alpha differences; not adopted as pixel-equivalent",
+      "Multilevel contour approximation increased controls and changed support; not adopted",
+      "Native static-template encoding: omitted device/default fields have no source-backed semantic equivalence; not adopted"
+    ]
+  }
+}

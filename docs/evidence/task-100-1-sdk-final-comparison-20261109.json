@@ -1,0 +1,2901 @@
+{
+  "schemaVersion": 1,
+  "status": "DETERMINISTIC_SDK_COUNT_FENCES_PASS",
+  "baseline": {
+    "gilSha256": "17f7ab2be7447bc26cf3a5f4551910da7b60b18935bfc8ef4bd3b4e5cb381a5e",
+    "luaInventorySha256": "79d2482ca66c988007d4796014d694cc65666ee8ba167c542703bc74a44e335c",
+    "saveSha256": "b10dc92ce161b77466ab7c3b26eee725cd4e9c310544946a233b2611222127ec",
+    "sdkExportSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+    "workerSha256": "fb8dddf96603c04f8c5c8298272b03ff631132fbc61e904377d583edb4dfeac1",
+    "serverUiSha256": "cf38317e8f4d4967b7c508b2ccfca5af060ae2473494efabb4dbe56da718eb3d",
+    "templatesSha256": "77bd454f6d8c2fa9f552e806f1426e833c5e740f0779dd1633b4e6020c492f03",
+    "rawScriptsSha256": "1c5b9be60a5624e0c365652c309e8c7f76caedbe1c95f7821c40da5269e16365",
+    "exactScriptsSha256": "7c47b056bae29649931d9ec541ac94588220c3d5815cda82fe7a73ae33be1ba1",
+    "scriptNormalization": "Only the exact builder-injected ABYSS_BUILD UUID first line in abyss_ui.lua and the single eagerPages boolean in generated abyss_component_binding.lua; all remaining source and script metadata remain byte-identical.",
+    "uiNormalization": "Only project.meta.sourceFile, verified to equal the actual candidate GIL path; all visual records and runtime fields remain exact."
+  },
+  "current": {
+    "gilSha256": "ff91bf9e7680c066a10ae77e81f2a3448ea8c8a5c0b7ed628e09fcc558000126",
+    "luaInventorySha256": "9f59289998f81fc162724a9245e8cd65ff46982e9cb992bc93396f6d9d57eae5",
+    "saveSha256": "2e41a814b8a76bc8e6d9d16dfcb0cee5e4bb8417c16737497dbd6c5289b6fe76",
+    "sdkExportSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+    "workerSha256": "fb8dddf96603c04f8c5c8298272b03ff631132fbc61e904377d583edb4dfeac1",
+    "serverUiSha256": "cf38317e8f4d4967b7c508b2ccfca5af060ae2473494efabb4dbe56da718eb3d",
+    "templatesSha256": "77bd454f6d8c2fa9f552e806f1426e833c5e740f0779dd1633b4e6020c492f03",
+    "rawScriptsSha256": "380299cddfb3ff4419f12eb2bfb97a0307cece4afa4bce0acb8f2e67ebf1b84b",
+    "exactScriptsSha256": "7c47b056bae29649931d9ec541ac94588220c3d5815cda82fe7a73ae33be1ba1",
+    "scriptNormalization": "Only the exact builder-injected ABYSS_BUILD UUID first line in abyss_ui.lua and the single eagerPages boolean in generated abyss_component_binding.lua; all remaining source and script metadata remain byte-identical.",
+    "uiNormalization": "Only project.meta.sourceFile, verified to equal the actual candidate GIL path; all visual records and runtime fields remain exact."
+  },
+  "hardBudgets": {
+    "baselineInitializationCeiling": 19539,
+    "baselineWarmControlCeiling": 19539,
+    "netResidual": 0,
+    "cycles": 20
+  },
+  "timingPolicy": "REPORT_ONLY: nearest-rank SDK script wall-time observations; no device/frame-time or stable-tail certification.",
+  "observedTimeRatio": 1.25,
+  "timing": [
+    {
+      "phase": "menu-step",
+      "before": {
+        "samples": 90,
+        "p50Ms": 8.861800000000585,
+        "p95Ms": 17.658899999999903,
+        "p99Ms": 25.77980000000025,
+        "maxMs": 25.77980000000025
+      },
+      "after": {
+        "samples": 90,
+        "p50Ms": 9.790899999999965,
+        "p95Ms": 19.814500000000407,
+        "p99Ms": 25.9916000000012,
+        "maxMs": 25.9916000000012
+      },
+      "observationP95CeilingMs": 22.07362499999988,
+      "exceedsObservation": false
+    },
+    {
+      "phase": "character-step",
+      "before": {
+        "samples": 1800,
+        "p50Ms": 7.74619999999959,
+        "p95Ms": 11.379299999993236,
+        "p99Ms": 14.183799999998882,
+        "maxMs": 18.440300000002026
+      },
+      "after": {
+        "samples": 1800,
+        "p50Ms": 8.137499999999818,
+        "p95Ms": 13.521600000000035,
+        "p99Ms": 17.36069999999745,
+        "maxMs": 22.580599999993865
+      },
+      "observationP95CeilingMs": 14.224124999991545,
+      "exceedsObservation": false
+    },
+    {
+      "phase": "menu-return-step",
+      "before": {
+        "samples": 1800,
+        "p50Ms": 8.416300000000774,
+        "p95Ms": 13.135399999999208,
+        "p99Ms": 16.381000000001222,
+        "maxMs": 93.64280000000144
+      },
+      "after": {
+        "samples": 1800,
+        "p50Ms": 8.865499999999884,
+        "p95Ms": 14.638700000003155,
+        "p99Ms": 18.08810000000085,
+        "maxMs": 21.9288000000015
+      },
+      "observationP95CeilingMs": 16.41924999999901,
+      "exceedsObservation": false
+    }
+  ],
+  "scope": "Final integrated aced9718 same-source/same-visual component eager/lazy actual-GIL pair: three fresh SDK runtimes per arm, 20 menu-character-return cycles each. Historical0829 raw remains separately bound to its older source.",
+  "protocolEquality": {
+    "status": "EXACT_SAME_MEASUREMENT_PROTOCOL_VERIFIED",
+    "workerSha256": "fb8dddf96603c04f8c5c8298272b03ff631132fbc61e904377d583edb4dfeac1",
+    "workerSha256Equal": true,
+    "environment": {
+      "node": "v22.22.1",
+      "platform": "win32",
+      "arch": "x64"
+    },
+    "nodePlatformArchEqual": true,
+    "sourceCommit": "aced9718e213c09e2e72aa6e05525bc9bf90d0ce",
+    "sourceDirty": false,
+    "payloadDigest": "a75366548b01ce7525230361435cbc993f8c837047766ff0da89fc982e103af8",
+    "sourceCommitDirtyPayloadEqual": true,
+    "mountedValues": [
+      {
+        "controlId": 1700070222,
+        "script": "abyss_ui",
+        "values": {
+          "nativeComponentControls": true
+        }
+      }
+    ],
+    "mountedValuesEqual": true,
+    "steadyFramesPerVisit": 30,
+    "cyclesPerRuntime": 20,
+    "freshRuntimesPerArm": 3,
+    "artFeatures": {
+      "schemaVersion": 2,
+      "flags": {
+        "cards": false,
+        "menuBackground": false,
+        "selectionAvatar": false,
+        "battlePortrait": false,
+        "monsters": false
+      },
+      "configSha256": "7b4035fdbfb66058cdd93e9746f8ca8900845c920bebe942ceb3960520f282d0"
+    },
+    "uiProfile": {
+      "schemaVersion": 1,
+      "nativePageLifecycle": false,
+      "configSha256": "f162e53dcf4da6e3e0e92c80f947844d85fb45ff5a4c77ecf189ebf594adfeb1"
+    },
+    "flagsAndUiProfileEqual": true,
+    "allowedLuaDifferences": "Only exact ABYSS_BUILD first-line UUID and single generated binding.eagerPages boolean; all other Lua bytes/metadata equal.",
+    "allowedUiDifferences": "Only project.meta.sourceFile, verified to equal each actual GIL path; all other UI/template data deep equal."
+  },
+  "preflight": {
+    "status": "ACTUAL_GIL_FINAL_PAGES_AND_SAME_VISUAL_PREFLIGHT_PASS",
+    "sameVisualHistorical0829ServerAndTemplates": true,
+    "sameVisualFinalPair": true,
+    "privateVisualInputsUnchangedFromHistorical": true,
+    "originalBaseGilSha256": "6e82decfb9b113310ba97c0cad5cf541288c0cada5cb52644a0dd8785004a432",
+    "composedOriginalComponentsBaseSha256": "6fec91c4cb117d9d865b6d5847ffe68a0bccd8fc8cbddcccb26f440500345f5d",
+    "privateInputHashes": [
+      {
+        "basename": "whole-game-selection.private.json",
+        "sha256": "9a3f74f9f82b3bbb4668f5036a8b79ee24110547c970f04a166e9943df3dbfe8",
+        "bytes": 557
+      },
+      {
+        "basename": "CATALOG.json",
+        "sha256": "ec2e84c8af35a48da0c81b63e2a73e44342119fba1444fa67ce417667db00659",
+        "bytes": 14010
+      },
+      {
+        "basename": "jelly-ui.gia",
+        "sha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
+        "bytes": 491965
+      },
+      {
+        "basename": "ui-kit.gia",
+        "sha256": "a1c998c9de0e3dc806d2b3c2abeef8a34c00d898966f22b3960f69965eb63d8f",
+        "bytes": 175218
+      },
+      {
+        "basename": "ui-kit.gia",
+        "sha256": "a1c998c9de0e3dc806d2b3c2abeef8a34c00d898966f22b3960f69965eb63d8f",
+        "bytes": 175218
+      },
+      {
+        "basename": "lowload-characters.gia",
+        "sha256": "cdb23c74278e99340a6d43cfe7b57cb2291b4eabf8400eefb4f72acc767c2d66",
+        "bytes": 3921962
+      },
+      {
+        "basename": "jelly-ui.gia",
+        "sha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
+        "bytes": 491965
+      },
+      {
+        "basename": "jelly-ui.gia",
+        "sha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
+        "bytes": 491965
+      },
+      {
+        "basename": "jelly-ui.gia",
+        "sha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
+        "bytes": 491965
+      },
+      {
+        "basename": "jelly-ui.gia",
+        "sha256": "d85bd9255dd49d1976bb48f00f23f13494222f496f0388f20ce817c31a955cc3",
+        "bytes": 491965
+      }
+    ],
+    "pagesSource": [
+      {
+        "mode": "eager",
+        "path": "abyss_component_pages.lua",
+        "embeddedSha256": "a1196b2f3d4bcfa69772cd626dc9063db1a8c4a6d6194667cb4ab894b688fd0f",
+        "workingSha256": "a1196b2f3d4bcfa69772cd626dc9063db1a8c4a6d6194667cb4ab894b688fd0f",
+        "exactAfterCrLfNormalization": true,
+        "publicationAndHideCurrentGuardPresent": true
+      },
+      {
+        "mode": "lazy",
+        "path": "abyss_component_pages.lua",
+        "embeddedSha256": "a1196b2f3d4bcfa69772cd626dc9063db1a8c4a6d6194667cb4ab894b688fd0f",
+        "workingSha256": "a1196b2f3d4bcfa69772cd626dc9063db1a8c4a6d6194667cb4ab894b688fd0f",
+        "exactAfterCrLfNormalization": true,
+        "publicationAndHideCurrentGuardPresent": true
+      }
+    ],
+    "candidateIdentity": [
+      {
+        "mode": "eager",
+        "sourceCommit": "aced9718e213c09e2e72aa6e05525bc9bf90d0ce",
+        "sourceDirty": false,
+        "payloadDigest": "a75366548b01ce7525230361435cbc993f8c837047766ff0da89fc982e103af8",
+        "buildId": "5b3e6383-584a-4c9c-bfb0-763adfa3bdf4",
+        "gilSha256": "17f7ab2be7447bc26cf3a5f4551910da7b60b18935bfc8ef4bd3b4e5cb381a5e",
+        "originalCandidateReceiptSha256": "b76a2fc1aaea7890839050769e036489c7735f7c0352ac010669a97c0cb215ea",
+        "archivedCandidateReceiptSha256": "b76a2fc1aaea7890839050769e036489c7735f7c0352ac010669a97c0cb215ea",
+        "adapterReceiptSha256": "d8c732b9defbc4a97cfc1aa14a7333f23e652d2ade4d326a884ea1b4638ab144",
+        "projectionSha256": "b10dc92ce161b77466ab7c3b26eee725cd4e9c310544946a233b2611222127ec"
+      },
+      {
+        "mode": "lazy",
+        "sourceCommit": "aced9718e213c09e2e72aa6e05525bc9bf90d0ce",
+        "sourceDirty": false,
+        "payloadDigest": "a75366548b01ce7525230361435cbc993f8c837047766ff0da89fc982e103af8",
+        "buildId": "a78d59ec-9bf6-4684-bb4d-2b4e4658a718",
+        "gilSha256": "ff91bf9e7680c066a10ae77e81f2a3448ea8c8a5c0b7ed628e09fcc558000126",
+        "originalCandidateReceiptSha256": "0db6960c0cd2099c62dc1ee09eb174f9b33f43fc08b87adb33946a14723c924e",
+        "archivedCandidateReceiptSha256": "0db6960c0cd2099c62dc1ee09eb174f9b33f43fc08b87adb33946a14723c924e",
+        "adapterReceiptSha256": "e30a0a95da7aaa37844525f210dcf070914e6d881ac2171d6b43a281be15240d",
+        "projectionSha256": "2e41a814b8a76bc8e6d9d16dfcb0cee5e4bb8417c16737497dbd6c5289b6fe76"
+      }
+    ]
+  },
+  "rawReports": [
+    {
+      "mode": "eager",
+      "path": "task-100-1-sdk-final-eager-20261109.json.gz",
+      "sha256": "8dd4da9c30fbd88b901f35c90bdae54208ca03402e42e867f64767e515130734",
+      "bytes": 92770,
+      "uncompressedSha256": "ef49dc85c710b668430e60764f0dcda0c854eb7941dcaa4a5ada6186935bc806",
+      "uncompressedBytes": 1681005
+    },
+    {
+      "mode": "lazy",
+      "path": "task-100-1-sdk-final-lazy-20261109.json.gz",
+      "sha256": "b9a49851cbc3b10c245ad8e3409f9e57600abaaf72fcb1210f672dfb9283042a",
+      "bytes": 93182,
+      "uncompressedSha256": "2efef4d2cf45ffb8e5ef895ba51f4229f94508d60f8536d8616e5bf8b33a67e6",
+      "uncompressedBytes": 1696311
+    }
+  ],
+  "perRuntime": {
+    "eager": [
+      {
+        "sample": 1,
+        "initialization": {
+          "name": "initialize",
+          "wallMs": 2400.8089,
+          "created": 19539,
+          "destroyed": 0,
+          "countAfter": 19539,
+          "memory": {
+            "rss": 433307648,
+            "heapTotal": 367972352,
+            "heapUsed": 335607560,
+            "external": 2440051,
+            "arrayBuffers": 80045
+          }
+        },
+        "cycles": [
+          {
+            "cycle": 1,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 2,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 3,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 4,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 5,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 6,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 7,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 8,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 9,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 10,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 11,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 12,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 13,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 14,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 15,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 16,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 17,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 18,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 19,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 20,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          }
+        ],
+        "pageReadiness": [
+          {
+            "page": "menu",
+            "firstCompleteVisibleSdkFrame": 0,
+            "waitFrames": 0,
+            "waitWallMs": 19.50440000000026
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 32,
+            "waitFrames": 0,
+            "waitWallMs": 16.138199999999415
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 64,
+            "waitFrames": 0,
+            "waitWallMs": 16.20679999999993
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 96,
+            "waitFrames": 0,
+            "waitWallMs": 14.309299999999894
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 128,
+            "waitFrames": 0,
+            "waitWallMs": 24.050500000000284
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 160,
+            "waitFrames": 0,
+            "waitWallMs": 17.716200000000754
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 192,
+            "waitFrames": 0,
+            "waitWallMs": 18.2463000000007
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 224,
+            "waitFrames": 0,
+            "waitWallMs": 17.38010000000031
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 256,
+            "waitFrames": 0,
+            "waitWallMs": 20.82140000000072
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 288,
+            "waitFrames": 0,
+            "waitWallMs": 17.55749999999989
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 320,
+            "waitFrames": 0,
+            "waitWallMs": 15.591499999998632
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 352,
+            "waitFrames": 0,
+            "waitWallMs": 16.141700000000128
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 384,
+            "waitFrames": 0,
+            "waitWallMs": 14.294200000000274
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 416,
+            "waitFrames": 0,
+            "waitWallMs": 15.344900000000052
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 448,
+            "waitFrames": 0,
+            "waitWallMs": 17.04360000000088
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 480,
+            "waitFrames": 0,
+            "waitWallMs": 16.750899999999092
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 512,
+            "waitFrames": 0,
+            "waitWallMs": 16.53349999999955
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 544,
+            "waitFrames": 0,
+            "waitWallMs": 17.232700000000477
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 576,
+            "waitFrames": 0,
+            "waitWallMs": 21.237499999999272
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 608,
+            "waitFrames": 0,
+            "waitWallMs": 16.052700000000186
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 640,
+            "waitFrames": 0,
+            "waitWallMs": 14.699399999999514
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 672,
+            "waitFrames": 0,
+            "waitWallMs": 15.76339999999982
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 704,
+            "waitFrames": 0,
+            "waitWallMs": 14.443500000001222
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 736,
+            "waitFrames": 0,
+            "waitWallMs": 14.401199999998425
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 768,
+            "waitFrames": 0,
+            "waitWallMs": 15.51759999999922
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 800,
+            "waitFrames": 0,
+            "waitWallMs": 13.96599999999853
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 832,
+            "waitFrames": 0,
+            "waitWallMs": 15.688999999998487
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 864,
+            "waitFrames": 0,
+            "waitWallMs": 13.123499999999694
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 896,
+            "waitFrames": 0,
+            "waitWallMs": 14.286200000000463
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 928,
+            "waitFrames": 0,
+            "waitWallMs": 16.523600000000442
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 960,
+            "waitFrames": 0,
+            "waitWallMs": 19.322199999998702
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 992,
+            "waitFrames": 0,
+            "waitWallMs": 15.457800000000134
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1024,
+            "waitFrames": 0,
+            "waitWallMs": 13.755700000001525
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1056,
+            "waitFrames": 0,
+            "waitWallMs": 14.14429999999993
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1088,
+            "waitFrames": 0,
+            "waitWallMs": 16.096299999997427
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1120,
+            "waitFrames": 0,
+            "waitWallMs": 14.001000000000204
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1152,
+            "waitFrames": 0,
+            "waitWallMs": 16.357499999998254
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1184,
+            "waitFrames": 0,
+            "waitWallMs": 17.979200000001583
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1216,
+            "waitFrames": 0,
+            "waitWallMs": 15.340100000001257
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1248,
+            "waitFrames": 0,
+            "waitWallMs": 17.463000000003376
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1280,
+            "waitFrames": 0,
+            "waitWallMs": 14.792499999999563
+          }
+        ],
+        "netResidual": 0,
+        "counts": {
+          "warmControlCount": 19539,
+          "netResidual": 0
+        },
+        "memoryPeak": {
+          "rss": 1007681536,
+          "heapUsed": 890079576
+        },
+        "faultCount": 0
+      },
+      {
+        "sample": 2,
+        "initialization": {
+          "name": "initialize",
+          "wallMs": 2264.046300000002,
+          "created": 19539,
+          "destroyed": 0,
+          "countAfter": 19539,
+          "memory": {
+            "rss": 1201885184,
+            "heapTotal": 1126133760,
+            "heapUsed": 1084924824,
+            "external": 3878615,
+            "arrayBuffers": 1518569
+          }
+        },
+        "cycles": [
+          {
+            "cycle": 1,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 2,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 3,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 4,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 5,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 6,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 7,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 8,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 9,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 10,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 11,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 12,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 13,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 14,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 15,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 16,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 17,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 18,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 19,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 20,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          }
+        ],
+        "pageReadiness": [
+          {
+            "page": "menu",
+            "firstCompleteVisibleSdkFrame": 0,
+            "waitFrames": 0,
+            "waitWallMs": 16.4503999999979
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 32,
+            "waitFrames": 0,
+            "waitWallMs": 17.39249999999811
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 64,
+            "waitFrames": 0,
+            "waitWallMs": 14.916600000000471
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 96,
+            "waitFrames": 0,
+            "waitWallMs": 16.82459999999992
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 128,
+            "waitFrames": 0,
+            "waitWallMs": 14.170099999999366
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 160,
+            "waitFrames": 0,
+            "waitWallMs": 15.21270000000004
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 192,
+            "waitFrames": 0,
+            "waitWallMs": 20.41439999999784
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 224,
+            "waitFrames": 0,
+            "waitWallMs": 14.854499999997643
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 256,
+            "waitFrames": 0,
+            "waitWallMs": 39.063500000000204
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 288,
+            "waitFrames": 0,
+            "waitWallMs": 16.253600000000006
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 320,
+            "waitFrames": 0,
+            "waitWallMs": 14.332099999999627
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 352,
+            "waitFrames": 0,
+            "waitWallMs": 14.899599999997008
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 384,
+            "waitFrames": 0,
+            "waitWallMs": 14.077400000001944
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 416,
+            "waitFrames": 0,
+            "waitWallMs": 13.552100000000792
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 448,
+            "waitFrames": 0,
+            "waitWallMs": 15.784299999999348
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 480,
+            "waitFrames": 0,
+            "waitWallMs": 13.221699999998236
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 512,
+            "waitFrames": 0,
+            "waitWallMs": 14.093400000001566
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 544,
+            "waitFrames": 0,
+            "waitWallMs": 16.65639999999985
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 576,
+            "waitFrames": 0,
+            "waitWallMs": 14.95339999999851
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 608,
+            "waitFrames": 0,
+            "waitWallMs": 14.48909999999887
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 640,
+            "waitFrames": 0,
+            "waitWallMs": 13.845300000000861
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 672,
+            "waitFrames": 0,
+            "waitWallMs": 14.358399999997346
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 704,
+            "waitFrames": 0,
+            "waitWallMs": 16.27060000000347
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 736,
+            "waitFrames": 0,
+            "waitWallMs": 14.407199999997829
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 768,
+            "waitFrames": 0,
+            "waitWallMs": 15.767299999999523
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 800,
+            "waitFrames": 0,
+            "waitWallMs": 15.86409999999887
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 832,
+            "waitFrames": 0,
+            "waitWallMs": 14.354700000003504
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 864,
+            "waitFrames": 0,
+            "waitWallMs": 15.552599999995437
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 896,
+            "waitFrames": 0,
+            "waitWallMs": 15.570099999997183
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 928,
+            "waitFrames": 0,
+            "waitWallMs": 13.588999999999942
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 960,
+            "waitFrames": 0,
+            "waitWallMs": 16.161999999996624
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 992,
+            "waitFrames": 0,
+            "waitWallMs": 13.868799999996554
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1024,
+            "waitFrames": 0,
+            "waitWallMs": 15.289199999999255
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1056,
+            "waitFrames": 0,
+            "waitWallMs": 15.611700000001292
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1088,
+            "waitFrames": 0,
+            "waitWallMs": 14.196199999998498
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1120,
+            "waitFrames": 0,
+            "waitWallMs": 16.516700000000128
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1152,
+            "waitFrames": 0,
+            "waitWallMs": 15.29030000000057
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1184,
+            "waitFrames": 0,
+            "waitWallMs": 14.412499999998545
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1216,
+            "waitFrames": 0,
+            "waitWallMs": 17.62290000000212
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1248,
+            "waitFrames": 0,
+            "waitWallMs": 14.425200000005134
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1280,
+            "waitFrames": 0,
+            "waitWallMs": 18.011599999997998
+          }
+        ],
+        "netResidual": 0,
+        "counts": {
+          "warmControlCount": 19539,
+          "netResidual": 0
+        },
+        "memoryPeak": {
+          "rss": 1486721024,
+          "heapUsed": 1365883208
+        },
+        "faultCount": 0
+      },
+      {
+        "sample": 3,
+        "initialization": {
+          "name": "initialize",
+          "wallMs": 2307.2102000000014,
+          "created": 19539,
+          "destroyed": 0,
+          "countAfter": 19539,
+          "memory": {
+            "rss": 1792548864,
+            "heapTotal": 1710796800,
+            "heapUsed": 1661170608,
+            "external": 3944818,
+            "arrayBuffers": 1584772
+          }
+        },
+        "cycles": [
+          {
+            "cycle": 1,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 2,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 3,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 4,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 5,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 6,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 7,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 8,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 9,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 10,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 11,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 12,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 13,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 14,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 15,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 16,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 17,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 18,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 19,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          },
+          {
+            "cycle": 20,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 19539,
+            "created": 19539,
+            "destroyed": 0
+          }
+        ],
+        "pageReadiness": [
+          {
+            "page": "menu",
+            "firstCompleteVisibleSdkFrame": 0,
+            "waitFrames": 0,
+            "waitWallMs": 16.900399999998626
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 32,
+            "waitFrames": 0,
+            "waitWallMs": 18.735799999994924
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 64,
+            "waitFrames": 0,
+            "waitWallMs": 14.945699999996577
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 96,
+            "waitFrames": 0,
+            "waitWallMs": 17.40570000000298
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 128,
+            "waitFrames": 0,
+            "waitWallMs": 14.60899999999674
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 160,
+            "waitFrames": 0,
+            "waitWallMs": 14.86069999999745
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 192,
+            "waitFrames": 0,
+            "waitWallMs": 17.58360000000539
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 224,
+            "waitFrames": 0,
+            "waitWallMs": 14.480199999998149
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 256,
+            "waitFrames": 0,
+            "waitWallMs": 14.550100000000384
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 288,
+            "waitFrames": 0,
+            "waitWallMs": 18.018899999995483
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 320,
+            "waitFrames": 0,
+            "waitWallMs": 16.670799999999872
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 352,
+            "waitFrames": 0,
+            "waitWallMs": 17.693599999998696
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 384,
+            "waitFrames": 0,
+            "waitWallMs": 14.795799999999872
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 416,
+            "waitFrames": 0,
+            "waitWallMs": 14.83060000000114
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 448,
+            "waitFrames": 0,
+            "waitWallMs": 18.78009999999631
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 480,
+            "waitFrames": 0,
+            "waitWallMs": 14.865399999995134
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 512,
+            "waitFrames": 0,
+            "waitWallMs": 18.78770000000077
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 544,
+            "waitFrames": 0,
+            "waitWallMs": 19.987200000003213
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 576,
+            "waitFrames": 0,
+            "waitWallMs": 21.75920000000042
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 608,
+            "waitFrames": 0,
+            "waitWallMs": 26.10120000000461
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 640,
+            "waitFrames": 0,
+            "waitWallMs": 20.29309999999532
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 672,
+            "waitFrames": 0,
+            "waitWallMs": 14.546000000002095
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 704,
+            "waitFrames": 0,
+            "waitWallMs": 16.098100000002887
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 736,
+            "waitFrames": 0,
+            "waitWallMs": 12.728000000002794
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 768,
+            "waitFrames": 0,
+            "waitWallMs": 13.560399999994843
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 800,
+            "waitFrames": 0,
+            "waitWallMs": 17.833400000003166
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 832,
+            "waitFrames": 0,
+            "waitWallMs": 13.279699999999139
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 864,
+            "waitFrames": 0,
+            "waitWallMs": 16.268499999998312
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 896,
+            "waitFrames": 0,
+            "waitWallMs": 17.24250000000029
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 928,
+            "waitFrames": 0,
+            "waitWallMs": 14.504000000000815
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 960,
+            "waitFrames": 0,
+            "waitWallMs": 18.18019999999524
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 992,
+            "waitFrames": 0,
+            "waitWallMs": 12.946100000001024
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1024,
+            "waitFrames": 0,
+            "waitWallMs": 14.530899999997928
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1056,
+            "waitFrames": 0,
+            "waitWallMs": 22.688799999996263
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1088,
+            "waitFrames": 0,
+            "waitWallMs": 14.02100000000064
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1120,
+            "waitFrames": 0,
+            "waitWallMs": 16.60290000000532
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1152,
+            "waitFrames": 0,
+            "waitWallMs": 20.33400000000256
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1184,
+            "waitFrames": 0,
+            "waitWallMs": 13.826900000000023
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1216,
+            "waitFrames": 0,
+            "waitWallMs": 16.736400000001595
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1248,
+            "waitFrames": 0,
+            "waitWallMs": 14.108399999997346
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1280,
+            "waitFrames": 0,
+            "waitWallMs": 13.964599999999336
+          }
+        ],
+        "netResidual": 0,
+        "counts": {
+          "warmControlCount": 19539,
+          "netResidual": 0
+        },
+        "memoryPeak": {
+          "rss": 2316345344,
+          "heapUsed": 2174877592
+        },
+        "faultCount": 0
+      }
+    ],
+    "lazy": [
+      {
+        "sample": 1,
+        "initialization": {
+          "name": "initialize",
+          "wallMs": 2207.194,
+          "created": 14938,
+          "destroyed": 0,
+          "countAfter": 14938,
+          "memory": {
+            "rss": 527187968,
+            "heapTotal": 437104640,
+            "heapUsed": 409882752,
+            "external": 28032515,
+            "arrayBuffers": 25672509
+          }
+        },
+        "cycles": [
+          {
+            "cycle": 1,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 2,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 3,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 4,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 5,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 6,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 7,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 8,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 9,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 10,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 11,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 12,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 13,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 14,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 15,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 16,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 17,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 18,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 19,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 20,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          }
+        ],
+        "pageReadiness": [
+          {
+            "page": "menu",
+            "firstCompleteVisibleSdkFrame": 2,
+            "waitFrames": 2,
+            "waitWallMs": 84.29950000000008
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 45,
+            "waitFrames": 11,
+            "waitWallMs": 283.27700000000004
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 77,
+            "waitFrames": 0,
+            "waitWallMs": 11.04570000000058
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 109,
+            "waitFrames": 0,
+            "waitWallMs": 12.147299999999632
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 141,
+            "waitFrames": 0,
+            "waitWallMs": 14.742099999999482
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 173,
+            "waitFrames": 0,
+            "waitWallMs": 11.600900000000365
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 205,
+            "waitFrames": 0,
+            "waitWallMs": 11.200599999999213
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 237,
+            "waitFrames": 0,
+            "waitWallMs": 11.705800000000636
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 269,
+            "waitFrames": 0,
+            "waitWallMs": 12.32629999999972
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 301,
+            "waitFrames": 0,
+            "waitWallMs": 12.349499999999352
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 333,
+            "waitFrames": 0,
+            "waitWallMs": 16.776499999999942
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 365,
+            "waitFrames": 0,
+            "waitWallMs": 13.95390000000043
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 397,
+            "waitFrames": 0,
+            "waitWallMs": 12.008499999999913
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 429,
+            "waitFrames": 0,
+            "waitWallMs": 12.93119999999908
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 461,
+            "waitFrames": 0,
+            "waitWallMs": 12.371500000001106
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 493,
+            "waitFrames": 0,
+            "waitWallMs": 12.35319999999956
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 525,
+            "waitFrames": 0,
+            "waitWallMs": 12.927300000001196
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 557,
+            "waitFrames": 0,
+            "waitWallMs": 13.92950000000019
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 589,
+            "waitFrames": 0,
+            "waitWallMs": 12.465400000000955
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 621,
+            "waitFrames": 0,
+            "waitWallMs": 12.294200000000274
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 653,
+            "waitFrames": 0,
+            "waitWallMs": 12.813899999999194
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 685,
+            "waitFrames": 0,
+            "waitWallMs": 13.813200000000506
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 717,
+            "waitFrames": 0,
+            "waitWallMs": 11.75340000000142
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 749,
+            "waitFrames": 0,
+            "waitWallMs": 13.312299999999595
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 781,
+            "waitFrames": 0,
+            "waitWallMs": 13.282400000000052
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 813,
+            "waitFrames": 0,
+            "waitWallMs": 13.594600000000355
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 845,
+            "waitFrames": 0,
+            "waitWallMs": 12.0645999999997
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 877,
+            "waitFrames": 0,
+            "waitWallMs": 12.362599999998565
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 909,
+            "waitFrames": 0,
+            "waitWallMs": 12.864400000000387
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 941,
+            "waitFrames": 0,
+            "waitWallMs": 13.335399999999936
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 973,
+            "waitFrames": 0,
+            "waitWallMs": 15.523600000000442
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1005,
+            "waitFrames": 0,
+            "waitWallMs": 12.743599999999788
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1037,
+            "waitFrames": 0,
+            "waitWallMs": 15.139200000001438
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1069,
+            "waitFrames": 0,
+            "waitWallMs": 15.626200000000608
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1101,
+            "waitFrames": 0,
+            "waitWallMs": 13.36909999999989
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1133,
+            "waitFrames": 0,
+            "waitWallMs": 13.533199999998033
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1165,
+            "waitFrames": 0,
+            "waitWallMs": 15.111899999999878
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1197,
+            "waitFrames": 0,
+            "waitWallMs": 14.786700000000565
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1229,
+            "waitFrames": 0,
+            "waitWallMs": 13.314699999998993
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1261,
+            "waitFrames": 0,
+            "waitWallMs": 15.645899999999529
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1293,
+            "waitFrames": 0,
+            "waitWallMs": 14.900799999999435
+          }
+        ],
+        "netResidual": 0,
+        "counts": {
+          "warmControlCount": 16060,
+          "netResidual": 0
+        },
+        "memoryPeak": {
+          "rss": 1233424384,
+          "heapUsed": 1120728504
+        },
+        "faultCount": 0
+      },
+      {
+        "sample": 2,
+        "initialization": {
+          "name": "initialize",
+          "wallMs": 2268.3029000000024,
+          "created": 14938,
+          "destroyed": 0,
+          "countAfter": 14938,
+          "memory": {
+            "rss": 1359134720,
+            "heapTotal": 702844928,
+            "heapUsed": 545878400,
+            "external": 2506350,
+            "arrayBuffers": 146076
+          }
+        },
+        "cycles": [
+          {
+            "cycle": 1,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 2,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 3,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 4,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 5,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 6,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 7,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 8,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 9,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 10,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 11,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 12,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 13,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 14,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 15,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 16,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 17,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 18,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 19,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 20,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          }
+        ],
+        "pageReadiness": [
+          {
+            "page": "menu",
+            "firstCompleteVisibleSdkFrame": 2,
+            "waitFrames": 2,
+            "waitWallMs": 45.352899999998044
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 45,
+            "waitFrames": 11,
+            "waitWallMs": 210.91890000000058
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 77,
+            "waitFrames": 0,
+            "waitWallMs": 10.814699999998993
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 109,
+            "waitFrames": 0,
+            "waitWallMs": 16.826199999999517
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 141,
+            "waitFrames": 0,
+            "waitWallMs": 13.338900000002468
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 173,
+            "waitFrames": 0,
+            "waitWallMs": 11.61989999999787
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 205,
+            "waitFrames": 0,
+            "waitWallMs": 11.54660000000149
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 237,
+            "waitFrames": 0,
+            "waitWallMs": 10.582900000001246
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 269,
+            "waitFrames": 0,
+            "waitWallMs": 11.533199999998033
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 301,
+            "waitFrames": 0,
+            "waitWallMs": 10.997300000002724
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 333,
+            "waitFrames": 0,
+            "waitWallMs": 11.362700000001496
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 365,
+            "waitFrames": 0,
+            "waitWallMs": 13.623999999999796
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 397,
+            "waitFrames": 0,
+            "waitWallMs": 11.550599999998667
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 429,
+            "waitFrames": 0,
+            "waitWallMs": 11.356400000000576
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 461,
+            "waitFrames": 0,
+            "waitWallMs": 12.383999999998196
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 493,
+            "waitFrames": 0,
+            "waitWallMs": 10.856299999999464
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 525,
+            "waitFrames": 0,
+            "waitWallMs": 11.619199999997363
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 557,
+            "waitFrames": 0,
+            "waitWallMs": 14.070999999999913
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 589,
+            "waitFrames": 0,
+            "waitWallMs": 11.57549999999901
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 621,
+            "waitFrames": 0,
+            "waitWallMs": 11.1846000000005
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 653,
+            "waitFrames": 0,
+            "waitWallMs": 12.042099999998754
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 685,
+            "waitFrames": 0,
+            "waitWallMs": 12.3153999999995
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 717,
+            "waitFrames": 0,
+            "waitWallMs": 15.149799999999232
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 749,
+            "waitFrames": 0,
+            "waitWallMs": 11.3920999999973
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 781,
+            "waitFrames": 0,
+            "waitWallMs": 13.85030000000188
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 813,
+            "waitFrames": 0,
+            "waitWallMs": 12.332099999999627
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 845,
+            "waitFrames": 0,
+            "waitWallMs": 19.96010000000024
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 877,
+            "waitFrames": 0,
+            "waitWallMs": 12.80779999999504
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 909,
+            "waitFrames": 0,
+            "waitWallMs": 13.220099999998638
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 941,
+            "waitFrames": 0,
+            "waitWallMs": 11.512900000001537
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 973,
+            "waitFrames": 0,
+            "waitWallMs": 15.737999999997555
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1005,
+            "waitFrames": 0,
+            "waitWallMs": 14.363799999999173
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1037,
+            "waitFrames": 0,
+            "waitWallMs": 12.219199999999546
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1069,
+            "waitFrames": 0,
+            "waitWallMs": 11.283100000000559
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1101,
+            "waitFrames": 0,
+            "waitWallMs": 12.445700000003853
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1133,
+            "waitFrames": 0,
+            "waitWallMs": 12.438900000001013
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1165,
+            "waitFrames": 0,
+            "waitWallMs": 12.556899999995949
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1197,
+            "waitFrames": 0,
+            "waitWallMs": 19.69959999999992
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1229,
+            "waitFrames": 0,
+            "waitWallMs": 12.269899999999325
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1261,
+            "waitFrames": 0,
+            "waitWallMs": 15.066600000005565
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1293,
+            "waitFrames": 0,
+            "waitWallMs": 19.149199999999837
+          }
+        ],
+        "netResidual": 0,
+        "counts": {
+          "warmControlCount": 16060,
+          "netResidual": 0
+        },
+        "memoryPeak": {
+          "rss": 1520205824,
+          "heapUsed": 1395434264
+        },
+        "faultCount": 0
+      },
+      {
+        "sample": 3,
+        "initialization": {
+          "name": "initialize",
+          "wallMs": 3733.7639999999956,
+          "created": 14938,
+          "destroyed": 0,
+          "countAfter": 14938,
+          "memory": {
+            "rss": 1728770048,
+            "heapTotal": 1142026240,
+            "heapUsed": 749735992,
+            "external": 2571563,
+            "arrayBuffers": 211361
+          }
+        },
+        "cycles": [
+          {
+            "cycle": 1,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 2,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 3,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 4,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 5,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 6,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 7,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 8,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 9,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 10,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 11,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 12,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 13,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 14,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 15,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 16,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 17,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 18,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 19,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          },
+          {
+            "cycle": 20,
+            "characterVisible": true,
+            "menuVisible": true,
+            "countAfter": 16060,
+            "created": 16060,
+            "destroyed": 0
+          }
+        ],
+        "pageReadiness": [
+          {
+            "page": "menu",
+            "firstCompleteVisibleSdkFrame": 2,
+            "waitFrames": 2,
+            "waitWallMs": 70.61409999999887
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 45,
+            "waitFrames": 11,
+            "waitWallMs": 368.417300000001
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 77,
+            "waitFrames": 0,
+            "waitWallMs": 23.388099999996484
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 109,
+            "waitFrames": 0,
+            "waitWallMs": 18.12920000000304
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 141,
+            "waitFrames": 0,
+            "waitWallMs": 17.805999999996857
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 173,
+            "waitFrames": 0,
+            "waitWallMs": 11.926699999996345
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 205,
+            "waitFrames": 0,
+            "waitWallMs": 14.601600000001781
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 237,
+            "waitFrames": 0,
+            "waitWallMs": 12.20560000000114
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 269,
+            "waitFrames": 0,
+            "waitWallMs": 11.694900000002235
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 301,
+            "waitFrames": 0,
+            "waitWallMs": 11.608500000002095
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 333,
+            "waitFrames": 0,
+            "waitWallMs": 12.053199999994831
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 365,
+            "waitFrames": 0,
+            "waitWallMs": 12.853500000004715
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 397,
+            "waitFrames": 0,
+            "waitWallMs": 15.65400000000227
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 429,
+            "waitFrames": 0,
+            "waitWallMs": 13.889799999997194
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 461,
+            "waitFrames": 0,
+            "waitWallMs": 12.819100000000617
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 493,
+            "waitFrames": 0,
+            "waitWallMs": 11.465299999996205
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 525,
+            "waitFrames": 0,
+            "waitWallMs": 12.249700000000303
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 557,
+            "waitFrames": 0,
+            "waitWallMs": 12.977500000000873
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 589,
+            "waitFrames": 0,
+            "waitWallMs": 15.552800000004936
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 621,
+            "waitFrames": 0,
+            "waitWallMs": 11.929199999998673
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 653,
+            "waitFrames": 0,
+            "waitWallMs": 11.146699999997509
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 685,
+            "waitFrames": 0,
+            "waitWallMs": 11.976399999999558
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 717,
+            "waitFrames": 0,
+            "waitWallMs": 11.957900000001246
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 749,
+            "waitFrames": 0,
+            "waitWallMs": 11.753600000003644
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 781,
+            "waitFrames": 0,
+            "waitWallMs": 13.441100000003644
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 813,
+            "waitFrames": 0,
+            "waitWallMs": 13.801299999999173
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 845,
+            "waitFrames": 0,
+            "waitWallMs": 11.283699999999953
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 877,
+            "waitFrames": 0,
+            "waitWallMs": 11.64610000000539
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 909,
+            "waitFrames": 0,
+            "waitWallMs": 11.718799999995099
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 941,
+            "waitFrames": 0,
+            "waitWallMs": 12.744699999995646
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 973,
+            "waitFrames": 0,
+            "waitWallMs": 12.029999999998836
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1005,
+            "waitFrames": 0,
+            "waitWallMs": 14.357000000003609
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1037,
+            "waitFrames": 0,
+            "waitWallMs": 12.11699999999837
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1069,
+            "waitFrames": 0,
+            "waitWallMs": 11.3096000000005
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1101,
+            "waitFrames": 0,
+            "waitWallMs": 12.780800000000454
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1133,
+            "waitFrames": 0,
+            "waitWallMs": 12.902399999999034
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1165,
+            "waitFrames": 0,
+            "waitWallMs": 11.927500000005239
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1197,
+            "waitFrames": 0,
+            "waitWallMs": 12.367999999994936
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1229,
+            "waitFrames": 0,
+            "waitWallMs": 11.706399999995483
+          },
+          {
+            "page": "character",
+            "firstCompleteVisibleSdkFrame": 1261,
+            "waitFrames": 0,
+            "waitWallMs": 12.201500000002852
+          },
+          {
+            "page": "menu-return",
+            "firstCompleteVisibleSdkFrame": 1293,
+            "waitFrames": 0,
+            "waitWallMs": 13.186199999996461
+          }
+        ],
+        "netResidual": 0,
+        "counts": {
+          "warmControlCount": 16060,
+          "netResidual": 0
+        },
+        "memoryPeak": {
+          "rss": 1758261248,
+          "heapUsed": 1604073544
+        },
+        "faultCount": 0
+      }
+    ]
+  },
+  "limitations": [
+    "Timing p95 observation ceilings remain REPORT_ONLY with the unchanged 1.25 ratio. Exceedances/unfavorable maxima remain reported, not hidden or converted to a hard performance pass.",
+    "Node22 builds/samples in the same environment. Failed Node24 compiler attempts are archived tooling failures, not game behavior regression. Cross-version/historical timing comparisons are not improvement evidence.",
+    "SDK Gr/vi/dn exact-GIL menu/character only; no official client/GPU/FPS/phone or final visual approval claim. Full-source trueV25 seed33815 natural and seed17 explicit pressure evidence remain separately bound to fc98.",
+    "The final Pages publication/hide guards are present in actual embedded Lua. Collector source and timing contract are unchanged while collecting."
+  ]
+}

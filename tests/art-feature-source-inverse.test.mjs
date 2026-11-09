@@ -15,6 +15,7 @@ import {gameUiExtractionProof} from './helpers/epochs/develop/tests/helpers/game
 import {nativeMonsterSourceLayer} from './helpers/epochs/develop/tests/helpers/native-monster-art-source-inverse.mjs';
 import {betaSources} from './helpers/beta-integration-source.mjs';
 import {round3CatalogProof} from './helpers/epochs/develop/tests/helpers/round3-catalog-source-inverse.mjs';
+import {preComponentUiCiSource} from './helpers/component-ui-ci-source-inverse.mjs';
 
 // Execute the exact original 98fef helper closure on the original 98fef inputs.
 // The reviewed ready-art manifest supplies 34 files; this extension adds only
@@ -290,11 +291,14 @@ test('current feature entries preserve unsupported input bytes and never use unk
  }
 });
 
-test('current unsupported feature and art compositions expose their exact linked identities',()=>{
+test('pre-component unsupported feature and art compositions expose their exact linked identities',()=>{
+ // Preserve the pre-component consumer's exact first unsupported owner. The
+ // outer admits only a complete known current source, never foreign drift.
+ const readSource=path=>preComponentUiCiSource(path,readFileSync(path,'utf8'));
  const featurePath='scripts/art/ready-card-runtime.mjs',featureOwner='scripts/official-backdrop-layout.mjs';
  const featureActual=hash(readFileSync(featureOwner,'utf8').replaceAll('\r\n','\n')),featureExpected=betaSources[featureOwner].sha256;
  assert.notEqual(featureActual,featureExpected);
- for(const project of [currentFeature,currentHistory])assert.throws(()=>project(featurePath,readFileSync(featurePath,'utf8')),error=>{
+ for(const project of [currentFeature,currentHistory])assert.throws(()=>project(featurePath,readFileSync(featurePath,'utf8'),{readSource}),error=>{
   assert.equal(error.code,'ERR_ASSERTION');
   assert(error.message.startsWith('unreviewed beta linked owner; linked source drift: '+featureOwner));
   assert.equal(error.actual,featureActual);assert.equal(error.expected,featureExpected);return true;
@@ -302,12 +306,29 @@ test('current unsupported feature and art compositions expose their exact linked
  const path='scripts/card-art-samples.mjs',owner='data/presentation/native-monster-art.json';
  const source=readFileSync(path,'utf8'),actual=hash(readFileSync(owner,'utf8').replaceAll('\r\n','\n')),expected=nativeMonsterSourceLayer.files[owner].afterSha256;
  assert.notEqual(actual,expected,'current art metadata has no approved full inverse to the original epoch');
- for(const project of [source=>currentArtPerf(path,source,'art'),source=>currentArtPerf(path,source,'perf'),source=>currentReadyArt(path,source)]){
-  assert.throws(()=>project(source),error=>{
-   assert.equal(error.code,'ERR_ASSERTION');assert(error.message.startsWith('native monster linked source identity: '+owner));
-   assert.equal(error.actual,actual);assert.equal(error.expected,expected);return true;
-  });
- }
+ // These older compositions expose no injected-reader seam. Give their actual
+ // filesystem readers the same complete pre-component source context instead.
+ const cwd=process.cwd(),directory=temporary();
+ try{
+  for(const file of new Set([...Object.keys(betaSources),...Object.keys(nativeMonsterSourceLayer.files)]))put(directory,file,readSource(file));
+  process.chdir(directory);
+  for(const project of [source=>currentArtPerf(path,source,'art'),source=>currentArtPerf(path,source,'perf'),source=>currentReadyArt(path,source)]){
+   assert.throws(()=>project(source),error=>{
+    assert.equal(error.code,'ERR_ASSERTION');assert(error.message.startsWith('native monster linked source identity: '+owner));
+    assert.equal(error.actual,actual);assert.equal(error.expected,expected);return true;
+   });
+  }
+ }finally{process.chdir(cwd);rmSync(directory,{recursive:true,force:true});}
+});
+
+test('current feature consumers reject the exact first unsupported component-era linked owner',()=>{
+ const path='scripts/art/ready-card-runtime.mjs',owner='scripts/native-candidate-ui-cache.mjs';
+ const source=readFileSync(path,'utf8'),actual=hash(readFileSync(owner,'utf8').replaceAll('\r\n','\n')),expected=betaSources[owner].sha256;
+ assert.notEqual(actual,expected);
+ for(const project of [currentFeature,currentHistory])assert.throws(()=>project(path,source),error=>{
+  assert.equal(error.code,'ERR_ASSERTION');assert(error.message.startsWith('unreviewed beta linked owner; linked source drift: '+owner));
+  assert.equal(error.actual,actual);assert.equal(error.expected,expected);return true;
+ });
 });
 
 // The current retirement contract also accepts an exact original copy, but its
