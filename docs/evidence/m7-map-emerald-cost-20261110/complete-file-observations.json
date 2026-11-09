@@ -1,0 +1,234 @@
+[
+  {
+    "testFile": "tests/ci-host-timing-calibration.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/emerald-cost/ci-host-timing-calibration.jsonl",
+      "tests/ci-host-timing-calibration.test.mjs"
+    ],
+    "startedAt": "2026-11-09T19:18:49.812Z",
+    "finishedAt": "2026-11-09T19:19:06.956Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 17142.248459000002,
+    "nodeTotalDurationMs": 16965.758447,
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/ci-host-timing-calibration.test.mjs",
+      "durationMs": 274.82913,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/emerald-cost/ci-host-timing-calibration-before.json.gz",
+      "sha256": "02b72be703ac92b316f3e7b8fcc8652b41c3808973f3c3c20ca3745e3f8af184",
+      "uncompressedSha256": "8dcca80d113b2ce2314ecb298f40065ed999278066d274b1625bcdcb57f93046",
+      "files": 8234
+    },
+    "after": {
+      "path": ".artifacts/emerald-cost/ci-host-timing-calibration-after.json.gz",
+      "sha256": "02b72be703ac92b316f3e7b8fcc8652b41c3808973f3c3c20ca3745e3f8af184",
+      "uncompressedSha256": "8dcca80d113b2ce2314ecb298f40065ed999278066d274b1625bcdcb57f93046",
+      "files": 8234
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/emerald-cost/ci-host-timing-calibration.log.gz",
+      "sha256": "cf51cf0873c8b79a9b6205e7fe7caa192a2cec9a5e1c71fdcabf9ed286314335",
+      "uncompressedSha256": "fe50f5d0f1d9e9cd2e594e4fcf16948fbe5c1cbaf82ad149d18b84b1140c0f4c"
+    },
+    "native": {
+      "path": ".artifacts/emerald-cost/ci-host-timing-calibration.jsonl",
+      "sha256": "6180a0480fb5ad814b9595bc7970c041114a84c16d650007d47db4688cc3f524"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+    "sourceTree": "45f3708d4d82bdaef7ef800d09a0c6e3724c945d"
+  },
+  {
+    "testFile": "tests/ci-windows-shape-expansion.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/emerald-cost/ci-windows-shape-expansion.jsonl",
+      "tests/ci-windows-shape-expansion.test.mjs"
+    ],
+    "startedAt": "2026-11-09T19:19:09.127Z",
+    "finishedAt": "2026-11-09T19:19:20.290Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 11161.471646999998,
+    "nodeTotalDurationMs": 11024.910421,
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/ci-windows-shape-expansion.test.mjs",
+      "durationMs": 313.585837,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/emerald-cost/ci-windows-shape-expansion-before.json.gz",
+      "sha256": "02b72be703ac92b316f3e7b8fcc8652b41c3808973f3c3c20ca3745e3f8af184",
+      "uncompressedSha256": "8dcca80d113b2ce2314ecb298f40065ed999278066d274b1625bcdcb57f93046",
+      "files": 8234
+    },
+    "after": {
+      "path": ".artifacts/emerald-cost/ci-windows-shape-expansion-after.json.gz",
+      "sha256": "02b72be703ac92b316f3e7b8fcc8652b41c3808973f3c3c20ca3745e3f8af184",
+      "uncompressedSha256": "8dcca80d113b2ce2314ecb298f40065ed999278066d274b1625bcdcb57f93046",
+      "files": 8234
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/emerald-cost/ci-windows-shape-expansion.log.gz",
+      "sha256": "64f036dc40cfe5b1d8898e374ca8a35796883cd7d15d912d744546801312984b",
+      "uncompressedSha256": "2aa01eaddcbc371eddc184ddcd5343469b479e89338740c376ad76217a2a6a14"
+    },
+    "native": {
+      "path": ".artifacts/emerald-cost/ci-windows-shape-expansion.jsonl",
+      "sha256": "ad1d587a81aac075563b9a967d4c065f4065cf104232a12590d934fdec9e98c5"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+    "sourceTree": "45f3708d4d82bdaef7ef800d09a0c6e3724c945d"
+  },
+  {
+    "testFile": "tests/class-potion-orb-source-inverse.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/emerald-cost/class-potion-orb-source-inverse.jsonl",
+      "tests/class-potion-orb-source-inverse.test.mjs"
+    ],
+    "startedAt": "2026-11-09T19:19:21.825Z",
+    "finishedAt": "2026-11-09T19:19:32.689Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 10863.915623,
+    "nodeTotalDurationMs": 10751.353525,
+    "tests": 5,
+    "pass": 5,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/class-potion-orb-source-inverse.test.mjs",
+      "durationMs": 86.869569,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/emerald-cost/class-potion-orb-source-inverse-before.json.gz",
+      "sha256": "02b72be703ac92b316f3e7b8fcc8652b41c3808973f3c3c20ca3745e3f8af184",
+      "uncompressedSha256": "8dcca80d113b2ce2314ecb298f40065ed999278066d274b1625bcdcb57f93046",
+      "files": 8234
+    },
+    "after": {
+      "path": ".artifacts/emerald-cost/class-potion-orb-source-inverse-after.json.gz",
+      "sha256": "02b72be703ac92b316f3e7b8fcc8652b41c3808973f3c3c20ca3745e3f8af184",
+      "uncompressedSha256": "8dcca80d113b2ce2314ecb298f40065ed999278066d274b1625bcdcb57f93046",
+      "files": 8234
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/emerald-cost/class-potion-orb-source-inverse.log.gz",
+      "sha256": "452dcf3f01f668c3295adfe2355c22d0b7a4d8cb1d0996e56b3725a2e29c77ca",
+      "uncompressedSha256": "6ce76b64319f2ca3432b278bf89f9cf02c428531210a095afd060982922071a9"
+    },
+    "native": {
+      "path": ".artifacts/emerald-cost/class-potion-orb-source-inverse.jsonl",
+      "sha256": "4b7680c93a4a45b47a6121109010ea9fb97e5dfe5b90974d105ba6374f385709"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+    "sourceTree": "45f3708d4d82bdaef7ef800d09a0c6e3724c945d"
+  },
+  {
+    "testFile": "tests/watcher-actor-source-inverse.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/emerald-cost/watcher-actor-source-inverse.jsonl",
+      "tests/watcher-actor-source-inverse.test.mjs"
+    ],
+    "startedAt": "2026-11-09T19:19:33.978Z",
+    "finishedAt": "2026-11-09T19:19:55.848Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 21869.614862999995,
+    "nodeTotalDurationMs": 21734.296185,
+    "tests": 5,
+    "pass": 5,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/watcher-actor-source-inverse.test.mjs",
+      "durationMs": 109.594624,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/emerald-cost/watcher-actor-source-inverse-before.json.gz",
+      "sha256": "02b72be703ac92b316f3e7b8fcc8652b41c3808973f3c3c20ca3745e3f8af184",
+      "uncompressedSha256": "8dcca80d113b2ce2314ecb298f40065ed999278066d274b1625bcdcb57f93046",
+      "files": 8234
+    },
+    "after": {
+      "path": ".artifacts/emerald-cost/watcher-actor-source-inverse-after.json.gz",
+      "sha256": "02b72be703ac92b316f3e7b8fcc8652b41c3808973f3c3c20ca3745e3f8af184",
+      "uncompressedSha256": "8dcca80d113b2ce2314ecb298f40065ed999278066d274b1625bcdcb57f93046",
+      "files": 8234
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/emerald-cost/watcher-actor-source-inverse.log.gz",
+      "sha256": "631cfa7b25486a57b046d2fbfe7942db88b95000bb2acdfd8991a2fed4079227",
+      "uncompressedSha256": "1ac6f8c0cb4565606672c9b3c936d5dc8f577d86318b36f1bddd823a08448343"
+    },
+    "native": {
+      "path": ".artifacts/emerald-cost/watcher-actor-source-inverse.jsonl",
+      "sha256": "5745db7d3779c22f6bcc28a8390770b6badfef33c5691a1bd63531faab23aa9a"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+    "sourceTree": "45f3708d4d82bdaef7ef800d09a0c6e3724c945d"
+  }
+]

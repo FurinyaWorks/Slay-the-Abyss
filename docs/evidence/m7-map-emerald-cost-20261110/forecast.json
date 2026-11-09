@@ -1,0 +1,36 @@
+{
+  "kind": "diagnostic only; in-memory exact existing planner with conservative observed complete-file costs; no configuration change or Hosted proof",
+  "floors": {
+    "tests/ci-host-timing-calibration.test.mjs": 17143,
+    "tests/ci-windows-shape-expansion.test.mjs": 11162,
+    "tests/class-potion-orb-source-inverse.test.mjs": 10864,
+    "tests/watcher-actor-source-inverse.test.mjs": 21870,
+    "tests/ci-complete-calibration.test.mjs": 13573,
+    "tests/defect-integration-source.test.mjs": 16574,
+    "tests/ci-runtime.test.mjs": 12019
+  },
+  "plans": [
+    {
+      "platform": "win32",
+      "count": 17,
+      "files": 800,
+      "luaFiles": 1410,
+      "forecastMs": 1801318,
+      "budgetMs": 1800000,
+      "headroomMs": -1318,
+      "jsCostTotalMs": 19071882,
+      "uniqueCoverage": true
+    },
+    {
+      "platform": "linux",
+      "count": 15,
+      "files": 800,
+      "luaFiles": 1410,
+      "forecastMs": 1137160,
+      "budgetMs": 1200000,
+      "headroomMs": 62840,
+      "jsCostTotalMs": 16157320,
+      "uniqueCoverage": true
+    }
+  ]
+}

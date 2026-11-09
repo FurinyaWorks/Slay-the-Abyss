@@ -1,0 +1,155 @@
+{
+  "persistedManifestFilesVerified": 17,
+  "persistedMappingsVerified": 16,
+  "status": "FOUR_MEASUREMENT_GAPS_CLOSED_OVERALL_BLOCKED",
+  "head": "d6974c64cf082773878a47936f1bd488035da6d5",
+  "tree": "45f3708d4d82bdaef7ef800d09a0c6e3724c945d",
+  "scope": "Evidence and pure planner audit only; no test file, Full, or raw Lua fixture executed by this reviewer.",
+  "totalTests": 17,
+  "rows": [
+    {
+      "file": "tests/ci-host-timing-calibration.test.mjs",
+      "tests": 4,
+      "pass": 4,
+      "processWallMs": 17142.248459000002,
+      "nodeTotalDurationMs": 16965.758447,
+      "nativeSummaryMs": 274.82913,
+      "conservativeFloorMs": 17143
+    },
+    {
+      "file": "tests/ci-windows-shape-expansion.test.mjs",
+      "tests": 3,
+      "pass": 3,
+      "processWallMs": 11161.471646999998,
+      "nodeTotalDurationMs": 11024.910421,
+      "nativeSummaryMs": 313.585837,
+      "conservativeFloorMs": 11162
+    },
+    {
+      "file": "tests/class-potion-orb-source-inverse.test.mjs",
+      "tests": 5,
+      "pass": 5,
+      "processWallMs": 10863.915623,
+      "nodeTotalDurationMs": 10751.353525,
+      "nativeSummaryMs": 86.869569,
+      "conservativeFloorMs": 10864
+    },
+    {
+      "file": "tests/watcher-actor-source-inverse.test.mjs",
+      "tests": 5,
+      "pass": 5,
+      "processWallMs": 21869.614862999995,
+      "nodeTotalDurationMs": 21734.296185,
+      "nativeSummaryMs": 109.594624,
+      "conservativeFloorMs": 21870
+    }
+  ],
+  "trackedPaths": 8234,
+  "presentTrackedPaths": 8059,
+  "missingTrackedPaths": 175,
+  "missingPathPrefixes": [
+    ".artifacts",
+    ".dream-loop",
+    "experiments",
+    "schemas",
+    "todos"
+  ],
+  "missingSample": [
+    ".artifacts/lowpoly-select/breakthrough-compare-card-before-after.png",
+    ".artifacts/lowpoly-select/breakthrough-sim3-demo.gif",
+    ".artifacts/lowpoly-select/breakthrough-sim3-f001-idle.png",
+    ".artifacts/lowpoly-select/breakthrough-sim3-t1.5s-select1.png",
+    ".artifacts/menu80/after/menu-panel.png",
+    ".artifacts/menu80/after/menu-panel.sim.png",
+    ".artifacts/menu80/after/menu.png",
+    ".artifacts/menu80/after/menu.sim.png"
+  ],
+  "allEightSnapshotsIdentical": true,
+  "priorPersistedReceiptsVerified": 15,
+  "priorStandaloneObservationsRemainSupplemental": true,
+  "postMeasurementDifferences": [
+    "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md"
+  ],
+  "conservativeFloors": {
+    "tests/ci-host-timing-calibration.test.mjs": 17143,
+    "tests/ci-windows-shape-expansion.test.mjs": 11162,
+    "tests/class-potion-orb-source-inverse.test.mjs": 10864,
+    "tests/watcher-actor-source-inverse.test.mjs": 21870,
+    "tests/ci-complete-calibration.test.mjs": 13573,
+    "tests/defect-integration-source.test.mjs": 16574,
+    "tests/ci-runtime.test.mjs": 12019
+  },
+  "baseline": [
+    {
+      "platform": "win32",
+      "count": 17,
+      "files": 800,
+      "luaFiles": 1410,
+      "forecastMs": 1799118,
+      "budgetMs": 1800000,
+      "headroomMs": 882,
+      "jsCostTotalMs": 19034880,
+      "uniqueCoverage": true,
+      "luaUniqueCoverage": true
+    },
+    {
+      "platform": "linux",
+      "count": 15,
+      "files": 800,
+      "luaFiles": 1410,
+      "forecastMs": 1134372,
+      "budgetMs": 1200000,
+      "headroomMs": 65628,
+      "jsCostTotalMs": 16115470,
+      "uniqueCoverage": true,
+      "luaUniqueCoverage": null
+    }
+  ],
+  "conservative": [
+    {
+      "platform": "win32",
+      "count": 17,
+      "files": 800,
+      "luaFiles": 1410,
+      "forecastMs": 1801318,
+      "budgetMs": 1800000,
+      "headroomMs": -1318,
+      "jsCostTotalMs": 19071882,
+      "uniqueCoverage": true,
+      "luaUniqueCoverage": true
+    },
+    {
+      "platform": "linux",
+      "count": 15,
+      "files": 800,
+      "luaFiles": 1410,
+      "forecastMs": 1137160,
+      "budgetMs": 1200000,
+      "headroomMs": 62840,
+      "jsCostTotalMs": 16157320,
+      "uniqueCoverage": true,
+      "luaUniqueCoverage": null
+    }
+  ],
+  "adverseControls": [
+    "corrupt compressed-log hash",
+    "drop JS inventory member",
+    "duplicate Lua inventory member",
+    "missing concrete measured input is not a hash",
+    "native-only duration cannot cover complete process cost"
+  ],
+  "unresolved": [
+    "The timing map does not yet register the seven conservative costs.",
+    "Current exact source-epoch and old-floor assertions must remain protected if registration is later implemented.",
+    "Windows forecast exceeds original 1800000 ms target by 1318 ms; this does not certify hosted performance or resolve the prior independent block.",
+    "Standalone defect-integration cost is supplemental without pre-run binding.",
+    "No approval to merge, expand shard count, alter workers, thresholds, timeouts or CI gates is implied."
+  ],
+  "finalEvidenceAdditionsVerified": [
+    "README.md",
+    "backlog.log.gz",
+    "guidance.log.gz",
+    "doctor.log.gz"
+  ],
+  "finalEvidenceAdditionsScope": "Verified all current manifest hashes and decoded the three check logs; reread revised evidence-branch publication limits after initial planner audit."
+}
