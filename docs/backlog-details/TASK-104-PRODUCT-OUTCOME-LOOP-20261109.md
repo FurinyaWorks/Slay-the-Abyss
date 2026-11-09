@@ -59,3 +59,39 @@
 让实施 Agent 用 PR #565 的真实变更演示：一项“控件新增降为0 / 选角 step 加快但启动变慢”的结果，自动得到**部分改善、仍未产品验收**；缺证据/伪造同源/假 ready 的负控会被既有检查正确拒绝；输入与 V25 视觉不被错误替换；在不增加每 PR 重型运行的情况下，能定位下一项有效工作并保留无法实机确认的缺口。
 
 这比“新增一份 Harness 规范”更重要。文件本身不会自动改变 Agent 行为；完成须有实际测试入口、失败样本、可复核修复结果及正确的 Backlog/PR 收口。
+
+## 6. 可执行入口与任务收口
+
+2026-11-09 接手 #581 后实现以下机制。原文中的“待实施”描述保留为登记时的历史；本节记录实际机制和本轮边界。
+
+- `npm run replay:outcome -- --receipt <adapter-receipt.json> --sdk <actual-runtime.mjs> --out <新的report.json>`：复用 #565 已有 actual-GIL 投影和固定身份 BeyondSimulator 0.5.2 的 `Gr/vi/dn`，不加载 renderer，不启动官方客户端。默认菜单→选角→取消返回20次；只调用原指针接口，不点确认、不创建 Run。小诊断可用 `--cycles 1 --frame-limit 2`，其输出不能通过完整合同。
+- `npm run verify:outcome -- docs/evidence/product-outcomes/TASK-104.json`：验证绑定文件的实际 SHA256、完整事件与页/输入/资源关联，重新推导诊断。退出0只表示证据足以作诊断；`productStatus` 和六个官方/设备/视觉层始终是 UNVERIFIED。
+- 加 `--require-offline-pass` 才要求离线体验关口 PASS。固定合同是20次完整往返、实际输入命中、页面模型完整、暖重入对象不增长、非初始化 SDK 同步操作不超过100ms。100ms是诊断阻塞预算，输入操作含 move/down/两次step/up，不是单帧GPU预算；初始化长阻塞单列。证据不能自增预算，正常无阻塞模型正例可过，缺证据/异常/错误摘要非零。
+- 普通 Quality 在原 `tests/runtime-path-baseline.test.mjs` 入口运行轻量合同和负控，使用 `tests/helpers/product-outcome-contract.mjs`；不在每个PR运行SDK。`test:related` 继续按真实模块依赖选择。完整测试文件库存、分片、预算、原断言和 Fast/Full/队列规则保持。
+
+回放先逐一核对实际 GIL、投影 save、exact Lua inventory 与原 mountedValues；SDK仅接受已记录的 `a62bb31a…` 导出摘要。追加export的临时副本位于新输出旁，原SDK、GIL及Lua不改写，结束重新核对身份。页面检查从候选静态树取得预期host全集，对实际组件有序完整子树及必要可见性做核对，并检查菜单/选角关键文字和可交互hit。删除整个host、隐藏必需host、截断子树、仅打印脚本ready均不能当页面完整。**这仍仅证明SDK模型结构，不证明像素已呈现或V25保真。** Node RSS/heap是进程观测，不是设备内存。
+
+重大体验阻塞先复现再修复；已有产品任务/PR保持单一归口。若需要关闭“诊断机制”任务，使用 `product-diagnosis` 标签，并在 `config/product-outcomes.json` 固定登记 taskId、diagnosis 类型和已有产品PR归口，documentation链接同名诊断JSON。`verify:backlog`读取该记录：Done须包含真实回放、原症状失败复现、全部未验层负责人，且无未处理的实验复核/转向。去掉标签也不能让已登记任务逃逸。`product-acceptance`或未登记类型不能借用DIAGNOSED关闭产品任务；正式验收仍用既有 `verify:ui`、官方负载和同候选设备合同。
+
+实验条目必须引用哈希绑定的baseline/candidate原始回放，指定原症状指标和可反证假设。判定器从回放计算before/after，以实际native树/资源、规则数据、SDK、环境和场景身份判定是否可比，忽略自报的 `controlled` / `before` / `after`。两次受控实验无改善输出 `REVISIT_HYPOTHESIS`；混入不同视觉/负载输出 `REVIEW_EXPERIMENT`，阻止Done。后续有效的重新测量可解除待复核状态，失败历史仍保留。摘要和哈希本身不自证执行真实性，独立评审仍须核对原始来源；没有新增签名、后台调度、并发锁或产品发布授权。
+
+## 7. #565 本轮闭环实战
+
+原始六实例历史SDK记录完整压缩保存在 `docs/evidence/product-outcomes/pr565-{old,new}-sdk.json.gz`，来自#565既有未改写的metrics-raw.json；两份原始JSON摘要分别为 `8abae690e1a51f731c9f515093848b16fb500b22a300ee4d0803a5ef942f90ee` 和诊断manifest绑定的新包记录。原旧新 GIL 分别是 `ae1dcf81…` / `207e4ad4…`。判定器直接从全部逐步数据计算nearest-rank中位数，得到初始化约1302.85→2452.27ms、菜单step约3.387→10.057ms、选角step约16.718→10.437ms，以及新版观测阶段零新增。自动输出 PARTIAL_IMPROVEMENT，标记startup/menu-step回退；不作异画质因果推断。
+
+本轮用同两份冻结实际GIL、同SDK、同机器，串行各跑20次菜单/选角往返，新原始记录保存在 `pr565-{old,new}-roundtrip-20261109.json.gz`，完整摘要由 [诊断manifest](../evidence/product-outcomes/TASK-104.json) 绑定；未提交社区原件、SDK源码或GIL。
+
+| 本轮观测 | 旧候选 | 原组件候选 |
+| --- | ---: | ---: |
+| 页面模型完整 / 输入命中 | 41/41、40/40 | 41/41、40/40 |
+| 初次菜单需追加prepare步数 | 13 | 0 |
+| 初次选角需追加prepare步数 | 100 | 0 |
+| 首次菜单ready后至最终菜单对象净增长 | +4855（首轮建立缓存） | 0 |
+| 首轮完成后至第20轮对象净增长 | 0 | 0 |
+| 初始化SDK墙钟 | 1494.02ms | 4814.75ms |
+| 最长非初始化SDK同步输入操作 | 261.50ms | 319.01ms |
+| 离线预算判定 | FAIL：完整结构前已可见、同步长阻塞 | FAIL：同步长阻塞 |
+
+旧包初始 `ABYSS_UI ready=true` 时菜单/选角结构仍不完整，是这次直接复现的真实反例；等待到最终ready不能抹去这个失败。新版模型初次进入即可完整、没有动态净增长，但启动成本和输入同步阻塞仍存在。两次顺序运行含机器负载、V8及观察器差异，**不能把本轮两个时长直接当同画质优化效果**。判定器的native树指纹也明确判定这两个包不可作同视觉A/B。
+
+反证合同覆盖正常轻量模型、假ready、缺/隐藏/截断组件、错输入、漏页/漏周期、事件伪覆盖、计数不守恒、原始数据篡改、错误候选、缺失或越界证据、预算放宽、重复实验及异画质伪配对、局部指标冒充resolved、诊断类型冒充产品Done。重型回放只执行本轮两次；轻量合同已接现有入口。下一有效工作仍由TASK-103/#565原归口和TASK-100.1接续：在同V25视觉/负载下区分eager挂载与proxy刷新成本；本任务没有修改它们的生产文件或宣称其完成。官方导入、新ready、官方容量、PC/安卓表现、V25人工验收均保持UNVERIFIED。

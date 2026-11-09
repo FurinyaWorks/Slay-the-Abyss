@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import {auditOutcomeTasks} from './product-outcome.mjs';
 
 // Read-only: intentionally restricted to the scalar/list fields written by Backlog CLI.
 // All changes to these files must still go through that CLI.
@@ -14,7 +15,7 @@ export function readTaskHeader(source) {
     return [...(block?.[1] ?? '').matchAll(/^[ \t]+-[ \t]+(.+)$/gm)].map(m => m[1].trim().replace(/^['"]|['"]$/g, ''));
   };
   return { id: scalar('id'), status: scalar('status'), priority: scalar('priority'), milestone: scalar('milestone'),
-    parentTaskId: scalar('parent_task_id'), assignees: list('assignee'), labels: list('labels') };
+    parentTaskId: scalar('parent_task_id'), assignees: list('assignee'), labels: list('labels'), documentation: list('documentation') };
 }
 
 // Priority describes the current queue, not whether a launch requirement matters.
@@ -175,7 +176,7 @@ export function verifyBacklogRoadmap(root = '.') {
     return [id, stage];
   }).filter(([id, stage]) => id && stage));
   return [...new Set([...auditRoadmap(tasks, readFileSync(join(root, 'docs/MILESTONES.md'), 'utf8'), milestones, completed),
-    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditOrderedStageIds(milestoneRecords, requiresCurrent)])];
+    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditOrderedStageIds(milestoneRecords, requiresCurrent), ...auditOutcomeTasks(tasks,root)])];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const errors = [...verifyBacklogRoadmap(), ...verifyMilestoneScope()];

@@ -465,3 +465,5 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+# UI outcome captures bind the exact executable replay source bytes.
+scripts/replay-ui-outcome.mjs text eol=lf
