@@ -1,0 +1,2 @@
+PASS independent original-Git/current direct-owner return arity, identity, metatable reads and dependency fault probe
+1:nil|2:table|2:nil|1:nil|1:nil|hasEmeraldKey|hasEmeraldKey|id|id|type|hasEmeraldKey|lane|floor|2:table|8|2:table|2:table|2:table|1:nil cases=11

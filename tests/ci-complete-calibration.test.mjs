@@ -1,3 +1,4 @@
+import {preEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor,emeraldMapCiProof} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource,defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
@@ -23,7 +24,7 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as actualDiskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -31,10 +32,11 @@ import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs,partition,jsShard as actualJsShard,jsPlanningWeights as actualJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
-// Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
-// costs/inventory use live imports; the new outer tests below use raw disk bytes.
+// Existing contracts retain their complete pre-Emerald source epoch. Real current
+// costs and bytes remain separate and are checked by the Emerald contracts below.
+const diskReadFileSync=(file,encoding)=>{const value=actualDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldMapCiSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);};
 const rawReadFileSync=(file,encoding)=>{const value=diskReadFileSync(file,encoding);if(typeof value==='string')return preEncounterFormationCiSource(file,value);const text=value.toString('utf8'),prior=preEncounterFormationCiSource(file,text);return prior===text?value:Buffer.from(prior);};
 const readFileSync=(file,encoding)=>{
  const raw=rawReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
@@ -42,7 +44,15 @@ const readFileSync=(file,encoding)=>{
  return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
 };
 const hash=s=>createHash('sha256').update(s).digest('hex'),read=p=>originalPlanningSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
-const currentTimings=actualCurrentTimings;
+// Load the complete authenticated planner, changing only its timing input and
+// resolving its sibling import for the data URL. No scheduling logic is copied.
+const plannerSource=actualDiskReadFileSync('scripts/ci-shards.mjs','utf8').replaceAll('\r\n','\n');
+assert.equal(hash(plannerSource),'e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628','complete frozen Formation800 planner');
+const timingRead="readFileSync(new URL('./ci-test-timings.json', import.meta.url), 'utf8')";
+assert.equal(plannerSource.split(timingRead).length,2);
+const frozenPlannerSource=plannerSource.replace(timingRead,JSON.stringify(diskReadFileSync('scripts/ci-test-timings.json','utf8')))
+ .replace("'./ci-reviewed-lfs.mjs'",JSON.stringify(new URL('../scripts/ci-reviewed-lfs.mjs',import.meta.url).href));
+const {timings:currentTimings,jsPlanningWeights:currentJsPlanningWeights,jsShard:currentJsShard}=await import('data:text/javascript,'+encodeURIComponent(frozenPlannerSource));
 // Frozen 17/13 contracts retain their original complete shape and job identity.
 const frozenShapeSource=prePosix14ShapeSource('scripts/ci-quality-shape.mjs',read('scripts/ci-quality-shape.mjs'));
 const {qualityShardMatrices:frozenQualityShardMatrices,qualityShardJobs:frozenQualityShardJobs}=await import('data:text/javascript,'+encodeURIComponent(frozenShapeSource));
@@ -1038,4 +1048,73 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
  for(const [key,floor]of Object.entries(encounterFormationPlanningFloors))assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[key],floor);
  const workflow=diskReadFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
  assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+});
+
+// Emerald contracts intentionally bypass every historical source reader above.
+test('Emerald map CI epoch adds only one measured floor and rejects partial or foreign source identities',()=>{
+ const source=actualDiskReadFileSync(path,'utf8'),previous=JSON.parse(preEmeraldMapCiSource(path,source)),current=JSON.parse(source);
+ assert.deepEqual(current.jsPlanning.localLowerBounds[emeraldMapPlanningKey],emeraldMapPlanningFloor);
+ assert.equal(previous.jsPlanning.localLowerBounds[emeraldMapPlanningKey],undefined);
+ delete current.jsPlanning.localLowerBounds[emeraldMapPlanningKey];assert.deepEqual(current,previous);
+ assert.deepEqual([current.js.win32[emeraldMapPlanningKey],current.js.linux[emeraldMapPlanningKey]],[5802,4240],'original hosted observations are never overwritten');
+ for(const file of Object.keys(emeraldMapCiProof.files)){
+  const input=actualDiskReadFileSync(file,'utf8'),before=preEmeraldMapCiSource(file,input);assert.notEqual(before,input,file);
+  assert.equal(preEmeraldMapCiSource(file,input.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),before);
+  for(const value of [input+'\n',input.slice(1),before,null,undefined,{},17])assert.equal(preEmeraldMapCiSource(file,value),value);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preEmeraldMapCiSource(unknown,input),input);
+ }
+ const changed=source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999');assert.notEqual(changed,source);assert.equal(preEmeraldMapCiSource(path,changed),changed);
+});
+test('Emerald complete recurring run receipt authenticates current input bytes and its honest local planning cost',()=>{
+ const floor=emeraldMapPlanningFloor,key=emeraldMapPlanningKey,bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+ assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+ const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+ assert.equal(receipt.testFile,key);assert.deepEqual([receipt.tests,receipt.pass,receipt.fail,receipt.cancelled,receipt.skipped],[floor.tests,floor.tests,0,0,0]);
+ assert.equal(receipt.durationMs,floor.nodeReportedDurationMs);assert.equal(receipt.testSha256,floor.testSha256);assert.deepEqual(receipt.inputSha256,floor.inputSha256);
+ assert.equal(receipt.logSha256,floor.sourceLogUncompressedSha256);assert.equal(receipt.compressedLogSha256,floor.sourceLogSha256);assert.equal(receipt.beforeAfterHashesMatched,true);
+ assert.equal(hash(actualDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n')),floor.testSha256);
+ assert.deepEqual(receipt.planningInputSha256,{'scripts/ci-test-timings.json':emeraldMapCiProof.files['scripts/ci-test-timings.json'].beforeSha256});
+ for(const entry of Object.values(receipt.snapshots)){const bytes=actualDiskReadFileSync(entry.path);assert.equal(hash(bytes),entry.sha256);assert.equal(hash(gunzipSync(bytes)),entry.uncompressedSha256);}
+ const snapshots=Object.fromEntries(Object.entries(receipt.snapshots).map(([name,entry])=>[name,JSON.parse(gunzipSync(actualDiskReadFileSync(entry.path)))]));
+ assert.deepEqual(snapshots['test-inputs-before.json'].files,snapshots['test-inputs-after.json'].files);
+ assert.equal(snapshots['test-inputs-stability.json'].stable,true);assert.deepEqual(snapshots['test-inputs-stability.json'].changes,[]);
+ const measured=Object.fromEntries(snapshots['test-inputs-before.json'].files.map(row=>[row.path,row.sha256]));
+ for(const [file,sha]of Object.entries(floor.inputSha256))assert.equal(measured[file],sha,file);
+ assert.equal(measured['scripts/ci-test-timings.json'],receipt.planningInputSha256['scripts/ci-test-timings.json']);
+ const initial=receipt.initialCompleteRun,initialBytes=actualDiskReadFileSync(initial.path),initialLog=gunzipSync(initialBytes).toString('utf8');
+ assert.equal(hash(initialBytes),initial.sha256);assert.equal(hash(initialLog),initial.uncompressedSha256);
+ assert.ok(initialLog.includes('ℹ duration_ms '+initial.durationMs));assert.ok(floor.durationMs>=Math.ceil(initial.durationMs));
+ assert.match(initial.inputBinding,/post-start/);
+
+ assert.ok(Number.isFinite(floor.nodeReportedDurationMs)&&floor.nodeReportedDurationMs>0);assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));
+ for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+ assert.match(floor.kind,/not .*hosted/i);assert.ok(Object.keys(floor.inputSha256).length>0);
+ for(const [file,sha]of Object.entries(floor.inputSha256)){const raw=actualDiskReadFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n')),sha,file);}
+ for(const platform of ['win32','linux'])assert.equal(actualJsPlanningWeights([key],platform)[key],Math.max(actualCurrentTimings.js[platform][key],floor.durationMs));
+});
+test('actual Emerald800 forecasts retain complete inventory, every old floor, safety settings and original capacity',t=>{
+ const js=discoverJs(),lua=currentLua(),previous=JSON.parse(preEmeraldMapCiSource(path,actualDiskReadFileSync(path,'utf8')));
+ assert.equal(js.length,800);assert.equal(lua.length,1410);assert.deepEqual([...js].sort(),emeraldMapCiProof.inventory.js);
+ assert.deepEqual(lua,Object.keys(emeraldMapCiProof.inventory.luaSha256));
+ for(const [file,sha]of Object.entries(emeraldMapCiProof.inventory.luaSha256))assert.equal(hash(actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n')),sha,file);
+ for(const [key,value]of Object.entries(previous.jsPlanning.localLowerBounds))assert.deepEqual(actualCurrentTimings.jsPlanning.localLowerBounds[key],value,key);
+ assert.equal(Object.keys(actualCurrentTimings.jsPlanning.localLowerBounds).length,33);
+ for(const key of ['lua','luaShard','luaShardCalibrationUpdates','initialMs','unknownJsMs','unknownLuaMs'])assert.deepEqual(actualCurrentTimings[key],previous[key]);
+ for(const [platform,count,budget]of [['win32',17,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>actualJsShard(js,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,800);
+  const oldWeights=Object.fromEntries(js.map(file=>[file,Math.max(previous.js[platform][file]??previous.unknownJsMs,previous.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+  const oldLoads=partition(js,`1/${count}`,oldWeights,previous.unknownJsMs,Array.from({length:count},(_,i)=>i===0?previous.initialMs[platform][0]:0)).loads;
+  const loads=bins[0].loads,delta=actualJsPlanningWeights([emeraldMapPlanningKey],platform)[emeraldMapPlanningKey]-oldWeights[emeraldMapPlanningKey];
+  assert.equal(loads.reduce((a,b)=>a+b,0)-oldLoads.reduce((a,b)=>a+b,0),delta);
+  let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const luaBins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...actualCurrentTimings,windowsJsShardMs:loads},2));
+   assert.deepEqual(luaBins.flat().sort(),lua);
+   const cost=file=>actualCurrentTimings.luaShard[file]??actualCurrentTimings.lua[file]??actualCurrentTimings.unknownLuaMs,safety=file=>actualCurrentTimings.lua[file]??actualCurrentTimings.unknownLuaMs;
+   maximum=Math.max(...luaBins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
+  }
+  const forecast=maximum+60000;assert.equal(forecast,emeraldMapCiProof.forecasts[platform]);
+  t.diagnostic(`${platform}: actual current modeled forecast ${forecast} ms; unchanged budget ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; not a Full pass or hosted measurement`);
+ }
 });

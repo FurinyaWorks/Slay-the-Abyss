@@ -1,3 +1,4 @@
+import {preEmeraldMapCiSource} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {originalPlanningSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -11,7 +12,7 @@ import {preM7FinalSource} from './helpers/m7-core-final-source-inverse.mjs';
 import {preDefectUtilitySource,defectUtilitySourceProof} from './helpers/defect-utility-source-inverse.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
-const path=proof.path,current=originalPlanningSource(path,read(path),'seven');
+const path=proof.path,current=originalPlanningSource(path,preEmeraldMapCiSource(path,read(path)),'seven');
 
 test('combined planning authenticates both exact preserved parents without accepting unrelated source changes',()=>{
  assert.equal(hash(current),proof.combinedSha256);

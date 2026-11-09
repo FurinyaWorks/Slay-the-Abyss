@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T01:07:00Z'
+updated_date: '2026-11-09T13:48:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -31,6 +31,7 @@ documentation:
   - docs/backlog-details/M7-DEFECT-COST-20261109.md
   - docs/backlog-details/M7-ENCOUNTER-FORMATION-20261109.md
   - docs/backlog-details/M7-FORMATION-POSIX15-INTEGRATION-20261109.md
+  - docs/backlog-details/M7-MAP-EMERALD-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -105,6 +106,8 @@ ordinal: 162000
 2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
 
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
+
+2026-11-09 接续既有 M7：仅拆分 Map.emeraldNode 的选择形状、地图身份和唯一标记节点验证职责，保持读取/短路/错误顺序、RNG与状态所有权；补旧新独立VM差分、语义负控、完整CC15门禁及必要历史来源认证；独立深审后提交Draft。避开所有在途切片，不重跑Full、不操作用户电脑，owner/status/AC保持。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -191,4 +194,8 @@ Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原PO
 已在独立树整合公开#574@841510b7与#575@d21be2fb，保全两父全部生产/历史证据。组合800JS/1410Lua复算Windows1794163（余5837）、POSIX15为1128812（余71188），旧14超5156保持可复现；仅4共享文本冲突，预算/floor/unknown/并发/worker不变。独审核8125非冲突原路径字节一致；当前定向测试和最终独审收口中，不重复Full或提前勾AC。
 
 POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入前后hash一致；历史/当前投影4370+6976比较重放一致。独审13455比较、17桥拒绝和40准入validator拒绝负控通过，原始失败保留。以原#575与#574为两父合并更新同PR；仅本地组合验证及规划通过，未跑本HEAD Hosted Full，继续Draft与正常准入，不勾AC。
+
+2026-11-09 Map.emeraldNode接续已拆分：CC38→9，新职责12/8/13；338模块5607完整测量，>30 33→32、>15 209→208，SCC68/11/2不变。旧新独立VM与14语义负控、原六组及相关11项通过，严格4281输入前后稳定。独审11额外探针、339绑定/21历史target无问题。仅追加真实87638ms规划floor，800JS/1410Lua完整覆盖；Windows17含60秒预留1799118ms仅余882，POSIX15余65628，不当作Hosted性能。成本历史reader初始8失败已保留并定点完整复验20/20，原门禁不放宽。本地提交/Draft及精确head审查另附，仍须正常Hosted准入；owner/status/AC保持，无Full重复或用户电脑操作。
+
+本轮成本收口更正：已确认原生file timing summary不是完整Node/进程成本，同一次CI校准3.910/13.041/13.159秒，runtime2.132/11.922/12.019秒，原数据保留。内存保守纳入已知完整成本后Windows仅余49ms，仍有修改CI文件独立成本缺项；不能将配置余882ms宣称为完整成本闭环。生产/行为/source独审无缺陷，最终7文件79/79通过，但本PR整体保持DRAFT_BLOCKED_COST_ACCOUNTING，不授权合并；后续应修完整文件成本取证与规划登记，不放宽预算。
 <!-- SECTION:NOTES:END -->

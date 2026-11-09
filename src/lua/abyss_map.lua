@@ -176,20 +176,25 @@ function M.choose(map, nodeId,winged)
     return false, "node_unavailable"
 end
 
-local function emeraldNode(map,nodeId)
-    if type(map)~='table' or getmetatable(map)~=nil or map.emeraldBoost~=nil
-        or not array(map.nodes,107) or type(map.emeraldSelection)~='table' then return end
-    local selection,found=map.emeraldSelection,nil
-    local act=map.act
-    if act==nil then act=1 end
+-- Selection shape is independent of the current map identity. Keep these checks
+-- before owner/seed reads so malformed external input cannot advance validation.
+local function emeraldSelectionShape(selection)
     if getmetatable(selection)~=nil or selection.version~=1 or not integer(selection.act)
         or selection.act<1 or selection.act>3 or not integer(selection.x) or not integer(selection.y)
-        or selection.x<0 or selection.x>6 or selection.y<0 or selection.y>14
-        or nodeId~=selection.nodeId or selection.act~=act
+        or selection.x<0 or selection.x>6 or selection.y<0 or selection.y>14 then return false end
+    return true
+end
+
+local function emeraldSelectionOwner(map,selection,nodeId,act)
+    if nodeId~=selection.nodeId or selection.act~=act
         or type(map.runSeed)~='string' or map.seed~=map.runSeed
-        or type(map.sourceSignature)~='string' or map.sourceSignature=='' then return end
+        or type(map.sourceSignature)~='string' or map.sourceSignature=='' then return false end
     local ok,mapSeed=pcall(Acts.mapSeed,map.runSeed,selection.act)
-    if not ok or map.mapSeed~=mapSeed then return end
+    return ok and map.mapSeed==mapSeed
+end
+
+local function markedEmeraldNode(map,selection,nodeId)
+    local found
     for _,node in ipairs(map.nodes)do
         if type(node)~='table' then return end
         if node.hasEmeraldKey~=nil and (node.hasEmeraldKey~=true or node.id~=nodeId) then return end
@@ -200,6 +205,17 @@ local function emeraldNode(map,nodeId)
         end
     end
     return found
+end
+
+local function emeraldNode(map,nodeId)
+    if type(map)~='table' or getmetatable(map)~=nil or map.emeraldBoost~=nil
+        or not array(map.nodes,107) or type(map.emeraldSelection)~='table' then return end
+    local selection=map.emeraldSelection
+    local act=map.act
+    if act==nil then act=1 end
+    if not emeraldSelectionShape(selection) then return end
+    if not emeraldSelectionOwner(map,selection,nodeId,act) then return end
+    return markedEmeraldNode(map,selection,nodeId)
 end
 
 local function prepareEmerald(map,nodeId)

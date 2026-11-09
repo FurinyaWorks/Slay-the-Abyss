@@ -1,0 +1,64 @@
+{
+  "baseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "before": {
+    "modules": 338,
+    "measurements": 5604,
+    "expectedMeasurements": 5604,
+    "functions": 5266,
+    "ccAbove30": 33,
+    "ccAbove15": 209,
+    "maxCc": 61,
+    "scc": [
+      68,
+      11,
+      2
+    ],
+    "diagnostics": 14,
+    "dependencyPairs": 1558,
+    "dependencyLocations": 1929
+  },
+  "after": {
+    "modules": 338,
+    "measurements": 5607,
+    "expectedMeasurements": 5607,
+    "functions": 5269,
+    "ccAbove30": 32,
+    "ccAbove15": 208,
+    "maxCc": 61,
+    "scc": [
+      68,
+      11,
+      2
+    ],
+    "diagnostics": 14,
+    "dependencyPairs": 1558,
+    "dependencyLocations": 1929
+  },
+  "dependenciesExactlyEqual": true,
+  "cyclesExactlyEqual": true,
+  "diagnosticsExactlyEqual": true,
+  "scopedFunctions": [
+    {
+      "name": "emeraldSelectionShape",
+      "cc": 12,
+      "lines": 6
+    },
+    {
+      "name": "emeraldSelectionOwner",
+      "cc": 8,
+      "lines": 7
+    },
+    {
+      "name": "markedEmeraldNode",
+      "cc": 13,
+      "lines": 13
+    },
+    {
+      "name": "emeraldNode",
+      "cc": 9,
+      "lines": 10
+    }
+  ],
+  "mapSha256": "8c223d62d3f5c1c6a7093700caaafc5508b9d00cefd70ac23286021e330f5733",
+  "dependencyLocationsExactlyEqual": true
+}

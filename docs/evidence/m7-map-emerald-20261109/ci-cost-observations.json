@@ -1,0 +1,231 @@
+{
+  "status": "DRAFT_BLOCKED_COST_ACCOUNTING",
+  "nativeFileSummaries": [
+    {
+      "file": "tests/ci-complete-calibration.test.mjs",
+      "durationMs": 3225.194271,
+      "success": true
+    },
+    {
+      "file": "tests/ci-host-timing-calibration.test.mjs",
+      "durationMs": 185.648092,
+      "success": true
+    },
+    {
+      "file": "tests/ci-runtime.test.mjs",
+      "durationMs": 1883.01545,
+      "success": true
+    },
+    {
+      "file": "tests/ci-windows-shape-expansion.test.mjs",
+      "durationMs": 294.782477,
+      "success": true
+    },
+    {
+      "file": "tests/class-potion-orb-source-inverse.test.mjs",
+      "durationMs": 81.574592,
+      "success": true
+    },
+    {
+      "file": "tests/defect-integration-source.test.mjs",
+      "durationMs": 389.965923,
+      "success": true
+    },
+    {
+      "file": "tests/watcher-actor-source-inverse.test.mjs",
+      "durationMs": 56.584017,
+      "success": true
+    }
+  ],
+  "pairedWholeProcessObservations": [
+    {
+      "testFile": "tests/ci-complete-calibration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "--test-reporter-destination=stdout",
+        "--test-reporter=./scripts/ci-timing-reporter.mjs",
+        "--test-reporter-destination=.artifacts/map-emerald/ci-complete-calibration-paired.jsonl",
+        "tests/ci-complete-calibration.test.mjs"
+      ],
+      "returncode": 0,
+      "processWallMs": 13158.71997299837,
+      "nodeTotalDurationMs": 13041.312295,
+      "nativeSummary": {
+        "file": "tests/ci-complete-calibration.test.mjs",
+        "durationMs": 3909.987245,
+        "success": true
+      },
+      "beforePath": ".artifacts/map-emerald/ci-complete-calibration-paired-before.json",
+      "afterPath": ".artifacts/map-emerald/ci-complete-calibration-paired-after.json",
+      "inputsMatched": true,
+      "logPath": ".artifacts/map-emerald/ci-complete-calibration-paired.log",
+      "logSha256": "54bf2e3db380f111cd753828e098923fefc4fd9b90163871eb97ded4aa849518",
+      "nativePath": ".artifacts/map-emerald/ci-complete-calibration-paired.jsonl",
+      "nativeSha256": "40640f6e5e8894d3e43cdcc6fbe59975435157a1b5b09ac3122b7cae07ec4d88"
+    },
+    {
+      "testFile": "tests/ci-runtime.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=spec",
+        "--test-reporter-destination=stdout",
+        "--test-reporter=./scripts/ci-timing-reporter.mjs",
+        "--test-reporter-destination=.artifacts/map-emerald/ci-runtime-paired.jsonl",
+        "tests/ci-runtime.test.mjs"
+      ],
+      "returncode": 0,
+      "processWallMs": 12018.856545000745,
+      "nodeTotalDurationMs": 11921.762917,
+      "nativeSummary": {
+        "file": "tests/ci-runtime.test.mjs",
+        "durationMs": 2131.63404,
+        "success": true
+      },
+      "beforePath": ".artifacts/map-emerald/ci-runtime-paired-before.json",
+      "afterPath": ".artifacts/map-emerald/ci-runtime-paired-after.json",
+      "inputsMatched": true,
+      "logPath": ".artifacts/map-emerald/ci-runtime-paired.log",
+      "logSha256": "735804e4ccfd17b1cbc3d9e74a952902fb64f22c82e05e3a208513058f150bdd",
+      "nativePath": ".artifacts/map-emerald/ci-runtime-paired.jsonl",
+      "nativeSha256": "154cb8e6826e04976ed3e6cc6281b51e9d34eeb1b87c1bf5b915e16530a2f367"
+    }
+  ],
+  "completeStandaloneObservations": {
+    "tests/ci-complete-calibration.test.mjs": {
+      "durationMs": 13572.302682,
+      "path": ".artifacts/map-emerald/final-ci-calibration-after-readers.log",
+      "sha256": "8ab786895c39bda992721137e8be845544c5fa03a9b8ba7f5ddc715d3dd78487",
+      "scope": "Independent complete node --test file command, including startup; other validation may have been active."
+    },
+    "tests/defect-integration-source.test.mjs": {
+      "durationMs": 16573.520926,
+      "path": ".artifacts/map-emerald/final-ci-defect-integration-source.log",
+      "sha256": "d14cc1b582ebe5ee783ba9b126c2a4a8f44c1fff0819c488ec7b8cd36ae3c39b",
+      "scope": "Independent complete node --test file command, including startup; other validation may have been active."
+    }
+  },
+  "measurementCaveat": "Same-invocation paired measurements show native per-file test:summary durations are much shorter than Node total duration and process wall in this environment. They cannot represent complete process cost. Do not treat small native durations as proof existing floors cover the complete run. The measurements do not isolate every millisecond of the gap to ESM imports versus other startup, runner or teardown work.",
+  "measurementInputsBefore": {
+    "tests/ci-complete-calibration.test.mjs": "1cc24f4d5199797a0896bacab184ca90e1f12a3cb950f231e12d9ccf562f8aa0",
+    "tests/ci-runtime.test.mjs": "6430c52b9e645923f546b13ebcc07ef710325bcc9168ecb1dacf491262441c6d",
+    "tests/ci-host-timing-calibration.test.mjs": "232d52a69b5d9fa5e3430f1c26ba326e500a36c91002ed18d2457b137744e565",
+    "tests/ci-windows-shape-expansion.test.mjs": "3c4140685f365fa069dfefd54658a8e5ce85c667863e63076baf4ce151ed9bc6",
+    "tests/watcher-actor-source-inverse.test.mjs": "804a98f450d5c0c0797219fbfe718cb3c011d120002eb0033bbcb39e823d0464",
+    "tests/class-potion-orb-source-inverse.test.mjs": "694446ee9ef3cc4b9b7eda37a651996e3e50cd77a627976215d6401cd5853986",
+    "tests/defect-integration-source.test.mjs": "ec04dcb0596ee72083aae0049fc5ce2b2216ab051f2bf03948f98b3a22d1b79e",
+    "tests/helpers/map-emerald-ci-source-inverse.mjs": "ca6042d2ae0741dac434f002cc849054dc7118eeaaad04db6942c0a51d53941a",
+    "tests/helpers/map-emerald-ci-source-epoch.json.gz": "32696fe1c2c4428fb5890e4621f86118ba054d2ca7296a75c13bb6b53099551d",
+    "scripts/ci-test-timings.json": "2cd79700b9abe2385265a2846e4f5339a46e6da88b327b80690785371bc5b146",
+    "scripts/ci-shards.mjs": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+    "scripts/ci-timing-reporter.mjs": "78aabcb0993011946824b6e78a42ea5cbc28ba90e8c9828600e0d97cd8e994e8"
+  },
+  "measurementInputsAfter": {
+    "tests/ci-complete-calibration.test.mjs": "1cc24f4d5199797a0896bacab184ca90e1f12a3cb950f231e12d9ccf562f8aa0",
+    "tests/ci-runtime.test.mjs": "6430c52b9e645923f546b13ebcc07ef710325bcc9168ecb1dacf491262441c6d",
+    "tests/ci-host-timing-calibration.test.mjs": "232d52a69b5d9fa5e3430f1c26ba326e500a36c91002ed18d2457b137744e565",
+    "tests/ci-windows-shape-expansion.test.mjs": "3c4140685f365fa069dfefd54658a8e5ce85c667863e63076baf4ce151ed9bc6",
+    "tests/watcher-actor-source-inverse.test.mjs": "804a98f450d5c0c0797219fbfe718cb3c011d120002eb0033bbcb39e823d0464",
+    "tests/class-potion-orb-source-inverse.test.mjs": "694446ee9ef3cc4b9b7eda37a651996e3e50cd77a627976215d6401cd5853986",
+    "tests/defect-integration-source.test.mjs": "ec04dcb0596ee72083aae0049fc5ce2b2216ab051f2bf03948f98b3a22d1b79e",
+    "tests/helpers/map-emerald-ci-source-inverse.mjs": "ca6042d2ae0741dac434f002cc849054dc7118eeaaad04db6942c0a51d53941a",
+    "tests/helpers/map-emerald-ci-source-epoch.json.gz": "32696fe1c2c4428fb5890e4621f86118ba054d2ca7296a75c13bb6b53099551d",
+    "scripts/ci-test-timings.json": "2cd79700b9abe2385265a2846e4f5339a46e6da88b327b80690785371bc5b146",
+    "scripts/ci-shards.mjs": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+    "scripts/ci-timing-reporter.mjs": "78aabcb0993011946824b6e78a42ea5cbc28ba90e8c9828600e0d97cd8e994e8"
+  },
+  "inputsMatched": true,
+  "knownCostDiagnosticOnly": {
+    "win32": {
+      "durationMs": 1799951,
+      "budgetMs": 1800000,
+      "headroomMs": 49
+    },
+    "linux": {
+      "durationMs": 1135751,
+      "budgetMs": 1200000,
+      "headroomMs": 64249
+    }
+  },
+  "notYetAccounted": "The committed timing map currently includes only the Emerald complete-file floor. Diagnostic raises known standalone complete durations and the complete paired runtime process duration in memory. Other modified CI files still lack independent whole-process duration evidence. No complete cost-admission or Full pass is claimed.",
+  "measurementInputsScope": "The before/after hashes bind the serial native-reporter run. Each paired complete-file observation has its own before/after hashes. Earlier standalone logs without pre-run snapshots remain explicitly labeled supplemental observations.",
+  "persistedEvidence": {
+    ".artifacts/map-emerald/ci-cost-serial.log": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-cost-serial.log.gz",
+      "sha256": "85dd36da6a7b1e49700ef5f84a089cb9f13e4ae823150311adbd1ce6eb59c7ae",
+      "uncompressedSha256": "957d5544d31a09c9dac85e6f952374c925123e46f77ab250adbe20abcd2eb78b"
+    },
+    ".artifacts/map-emerald/ci-per-file-costs.jsonl": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-per-file-costs.jsonl.gz",
+      "sha256": "b633905fa65baa9f03a8553825f06a3655605ded2806894e173ec158d8bf3214",
+      "uncompressedSha256": "154dc0be01c2cc19442bfbd15b5002fad2a08d6d96f40504c62caa2ea4c7042d"
+    },
+    ".artifacts/map-emerald/ci-cost-inputs-before.json": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-cost-inputs-before.json.gz",
+      "sha256": "c04b1508515ed4fec0247a133743fb104c7cd4efc7b7622e7b2e7ea0247de09f",
+      "uncompressedSha256": "9e7e89119f1204dfd724b56de82fc243510e18669354f47322488705f6728e99"
+    },
+    ".artifacts/map-emerald/ci-cost-inputs-after.json": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-cost-inputs-after.json.gz",
+      "sha256": "c04b1508515ed4fec0247a133743fb104c7cd4efc7b7622e7b2e7ea0247de09f",
+      "uncompressedSha256": "9e7e89119f1204dfd724b56de82fc243510e18669354f47322488705f6728e99"
+    },
+    ".artifacts/map-emerald/final-ci-calibration-after-readers.log": {
+      "path": "docs/evidence/m7-map-emerald-20261109/final-ci-calibration-after-readers.log.gz",
+      "sha256": "99e732ad45bcc1c587774793dea509b479fb520fd612dc255fe9735dec58c829",
+      "uncompressedSha256": "8ab786895c39bda992721137e8be845544c5fa03a9b8ba7f5ddc715d3dd78487"
+    },
+    ".artifacts/map-emerald/final-ci-defect-integration-source.log": {
+      "path": "docs/evidence/m7-map-emerald-20261109/final-ci-defect-integration-source.log.gz",
+      "sha256": "b2d0a94b2f49abd175174f21d3647e8c20182d1506ab30391b261aa9e6a8cd20",
+      "uncompressedSha256": "d14cc1b582ebe5ee783ba9b126c2a4a8f44c1fff0819c488ec7b8cd36ae3c39b"
+    },
+    ".artifacts/map-emerald/ci-paired-cost-observations.json": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-paired-cost-observations.json.gz",
+      "sha256": "5e693a10472875704ed891d81e511b28698bdabeea6160d494d5c36e9dd0ff69",
+      "uncompressedSha256": "a026d84d28ae91a62248c1c49ce995b56144621416bd981d09f423cbb8c3fa07"
+    },
+    ".artifacts/map-emerald/ci-complete-calibration-paired.log": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-complete-calibration-paired.log.gz",
+      "sha256": "bfeb8ccb6631917d5670c74b18fcc9f287a0abfc14368af7b0afe193b09e5987",
+      "uncompressedSha256": "54bf2e3db380f111cd753828e098923fefc4fd9b90163871eb97ded4aa849518"
+    },
+    ".artifacts/map-emerald/ci-runtime-paired.log": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-runtime-paired.log.gz",
+      "sha256": "c549e8c1f794c8c24d432eb6d2717aaeae8c90b9a33271f4dc396799bf5f9a8e",
+      "uncompressedSha256": "735804e4ccfd17b1cbc3d9e74a952902fb64f22c82e05e3a208513058f150bdd"
+    },
+    ".artifacts/map-emerald/ci-complete-calibration-paired.jsonl": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-complete-calibration-paired.jsonl.gz",
+      "sha256": "ebd08ffbac97c189ab5434f7e04e0f4489bda51753a4a2cf81a9c2d55be1677b",
+      "uncompressedSha256": "40640f6e5e8894d3e43cdcc6fbe59975435157a1b5b09ac3122b7cae07ec4d88"
+    },
+    ".artifacts/map-emerald/ci-runtime-paired.jsonl": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-runtime-paired.jsonl.gz",
+      "sha256": "35ddc11eff65e538421405ee7f0c129ef722c8231854d0c51f814c5ad08e4132",
+      "uncompressedSha256": "154cb8e6826e04976ed3e6cc6281b51e9d34eeb1b87c1bf5b915e16530a2f367"
+    },
+    ".artifacts/map-emerald/ci-complete-calibration-paired-before.json": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-complete-calibration-paired-before.json.gz",
+      "sha256": "3df964629dbe80517ba4391facb0811e78d21ea3f35935965ce0321b418dff2d",
+      "uncompressedSha256": "99bd017c863924f7d55d30dff8087be410a51ab7118b3e676772a6c19b85addf"
+    },
+    ".artifacts/map-emerald/ci-runtime-paired-before.json": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-runtime-paired-before.json.gz",
+      "sha256": "3df964629dbe80517ba4391facb0811e78d21ea3f35935965ce0321b418dff2d",
+      "uncompressedSha256": "99bd017c863924f7d55d30dff8087be410a51ab7118b3e676772a6c19b85addf"
+    },
+    ".artifacts/map-emerald/ci-runtime-paired-after.json": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-runtime-paired-after.json.gz",
+      "sha256": "3df964629dbe80517ba4391facb0811e78d21ea3f35935965ce0321b418dff2d",
+      "uncompressedSha256": "99bd017c863924f7d55d30dff8087be410a51ab7118b3e676772a6c19b85addf"
+    },
+    ".artifacts/map-emerald/ci-complete-calibration-paired-after.json": {
+      "path": "docs/evidence/m7-map-emerald-20261109/ci-complete-calibration-paired-after.json.gz",
+      "sha256": "3df964629dbe80517ba4391facb0811e78d21ea3f35935965ce0321b418dff2d",
+      "uncompressedSha256": "99bd017c863924f7d55d30dff8087be410a51ab7118b3e676772a6c19b85addf"
+    }
+  }
+}

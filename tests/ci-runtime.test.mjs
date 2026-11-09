@@ -1,3 +1,4 @@
+import {preEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -20,7 +21,7 @@ import {classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-p
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
+import { readdirSync, readFileSync as diskReadFileSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -162,7 +163,7 @@ test('real executor preserves test failure, continues later files, reports timin
 
 
 test('current timing records preserve all measured corrections without duplicate JSON keys',()=>{
- const raw=readFileSync('scripts/ci-test-timings.json','utf8');
+ const raw=diskReadFileSync('scripts/ci-test-timings.json','utf8');
  assert.equal((raw.match(/^  "jsCorrections":/gm)||[]).length,1,'one unambiguous correction inventory');
  assert.equal(timings.jsCorrections.length,3);
  for(const entry of timings.jsCorrections){
@@ -235,6 +236,8 @@ test('current timing records preserve all measured corrections without duplicate
   }else if(file===classPotionPlanningKey){
    assert.deepEqual(entry,classPotionPlanningFloor);assert.equal(entry.durationMs,180000);
    assert.ok(entry.durationMs>=162004.675552,'retain conservative full-file local planning floor');
+  }else if(file===emeraldMapPlanningKey){
+   assert.deepEqual(entry,emeraldMapPlanningFloor);
   }else if(Object.hasOwn(encounterFormationPlanningFloors,file)){
    assert.deepEqual(entry,encounterFormationPlanningFloors[file]);
   }else if(Object.hasOwn(defectFinalPlanningFloors,file)){
@@ -259,7 +262,7 @@ test('current timing records preserve all measured corrections without duplicate
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,29+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 
@@ -421,3 +424,6 @@ test('partial successful source cases provide lower bounds without claiming thei
   if(typeof input==='string'&&input!==prior)assert.equal(originalPlanningSource(path,input),input);
  }
 });
+
+// Historical source contracts authenticate the complete new outer epoch first.
+function readFileSync(file,encoding){const value=diskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldMapCiSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);}

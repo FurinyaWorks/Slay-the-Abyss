@@ -465,3 +465,17 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# Map Emerald owner governance keeps reviewed byte identities on Windows/POSIX.
+src/lua/abyss_map.lua text eol=lf
+tests/emerald-map.test.mjs text eol=lf
+tests/fixtures/map-emerald-before.lua text eol=lf
+tests/helpers/map-emerald-*.mjs text eol=lf
+tests/helpers/map-emerald-*.lua text eol=lf
+tests/helpers/map-emerald-*.json.gz -text
+tests/helpers/emerald-node-source-epoch.mjs text eol=lf
+tests/helpers/emerald-node-source-epoch.json.gz -text
+docs/evidence/m7-map-emerald-20261109/*.json text eol=lf
+docs/evidence/m7-map-emerald-20261109/*.mjs text eol=lf
+docs/evidence/m7-map-emerald-20261109/*.log text eol=lf
+docs/evidence/m7-map-emerald-20261109/*.gz -text

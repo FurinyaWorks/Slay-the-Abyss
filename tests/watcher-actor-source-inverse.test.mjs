@@ -1,3 +1,4 @@
+import {preEmeraldMapCiSource} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {originalPlanningSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {preDefectIntegrationPlanningSource} from './helpers/defect-integration-planning-source-inverse.mjs';
 import {preEnemyIntegrationPlanningSource} from './helpers/enemy-integration-planning-source-inverse.mjs';
@@ -56,7 +57,7 @@ test('complete inputs reject missing, mixed, and drifted owners after prior succ
 
 test('the measured planning floor is isolated from all original costs and budgets',async()=>{
  const {preWatcherPlanningSource:project,watcherPlanningKey:key,watcherPlanningFloor:floor}=await import('./helpers/watcher-planning-source-inverse.mjs');
- const path='scripts/ci-test-timings.json',source=preEnemyIntegrationPlanningSource(path,preDefectIntegrationPlanningSource(path,originalPlanningSource(path,read(path),'seven'))),previous=project(path,source);
+ const path='scripts/ci-test-timings.json',source=preEnemyIntegrationPlanningSource(path,preDefectIntegrationPlanningSource(path,originalPlanningSource(path,preEmeraldMapCiSource(path,read(path)),'seven'))),previous=project(path,source);
  assert.notEqual(previous,source);
  const expected=JSON.parse(previous);assert.equal(expected.jsPlanning.localLowerBounds[key],undefined);
  assert.equal(floor.durationMs,30000);assert(floor.durationMs>=21763.220989+1218.265678);

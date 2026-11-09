@@ -1,7 +1,8 @@
+import {preEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,readdirSync} from 'node:fs';
+import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciWindowsShapeProof as proof,preCiWindowsShapeSource} from './helpers/ci-windows-shape-source-inverse.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
@@ -78,3 +79,6 @@ test('historical fourteen-slot budget retains its complete observed inventory wh
  const posix=Array.from({length:9},(_,i)=>shardLuaScripts(lua,`${i+1}/9`,timings,2));
  assert.equal(new Set(posix.flat()).size,lua.length);assert.deepEqual(posix.flat().sort(),[...lua].sort());
 });
+
+// Historical source contracts authenticate the complete new outer epoch first.
+function readFileSync(file,encoding){const value=diskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldMapCiSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);}
