@@ -11,7 +11,14 @@ for _,nativeLifecycle in ipairs({false,true})do
                 armed=false
                 if failure=='false'then return false end
                 if failure=='throw'then error('injected final-show failure')end
-                if failure=='cancel'then adapter:release();return true end
+                if failure=='cancel'then
+                    adapter:release()
+                    assert(not adapter:begin(),'an in-flight generation must finish cancellation before restart')
+                    -- Native calls can resume and commit after the release
+                    -- callback hid the host. The old call must reconcile it.
+                    states[self].visible=true
+                    return true
+                end
                 adapter:destroy()
                 for control in pairs(states)do states[control].alive=false end
                 return true

@@ -160,7 +160,8 @@ local function controller(host, data, display, templates, options)
         if phase=='released' and host.alive~=false then
             -- The old native setter may finish after a synchronous release.
             -- Read back/deactivate only the still-live released decoration.
-            hide();pcall(nativeTransition,false,false,false)
+            hide()
+            if nativeLifecycle then pcall(nativeTransition,false,false,false)end
         end
     end
     local function transition(active,visible,reset)
@@ -274,7 +275,9 @@ local function controller(host, data, display, templates, options)
                 end
                 if revealIndex>#revealGroups then call(token,host,'SetVisible',true);phase='ready'end
             end)
-            if not ok and err~=CANCELLED then fail(err)end
+            if not ok then
+                if err~=CANCELLED then fail(err)else reconcileCancellation()end
+            end
             if pending then cleanup()end;working=false;return ok,'reveal'
         end
         local ok,err=pcall(function()
