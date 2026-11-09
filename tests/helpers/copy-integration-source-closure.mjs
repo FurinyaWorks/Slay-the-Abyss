@@ -55,11 +55,12 @@ const files={...JSON.parse(bytes),...{
 },...{
   // Current component epoch overlay; the frozen closure and prior overlay above
   // retain their exact bytes and hashes for their original source epochs.
+  "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "c082e8dd14d0d91a9becefe73c8051a740deae0bca5ada1050c292f60348ea52",
   "tests/helpers/combined-epoch/source-epoch.mjs": "7b469cc3098e8db2360bac4e4427757a47f7185221708be1cd66a7b029093601",
-  "tests/helpers/component-ui-source-epoch.mjs": "90c67a97a8dd79e0c468d6b906ffcd615703fc94ab2aff4fd93a04a1f39b56aa",
+  "tests/helpers/component-ui-source-epoch.mjs": "311d47d5fc85c29021a124f53cf836d54121178685e23d2499f1d3e2d79cfba9",
   "tests/helpers/core-lifecycle-source-inverse.mjs": "9824634c2b83a02b8902b528d5417caf1d996dbd2fc35f2e8388c5b8d3e375a4",
   "tests/helpers/relic-query-source-inverse.mjs": "42fed61d4e8b2d34af9959d8b5713318973633b7b0890ee7bec4933cbc0d7afc",
-  "tests/helpers/component-ui-source-epoch.json.gz": "42fea4a55fc5c5133404a00f458bd9af8ba3c27907e3fdc9c92b36a68c2f37ef"
+  "tests/helpers/component-ui-source-epoch.json.gz": "df2a27ff146ecbee4fb01054eb1071458ffe491ece1bb50fa6fb33d19df74d4a"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

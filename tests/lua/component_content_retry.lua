@@ -2,11 +2,15 @@ local Bridge=require('abyss_component_bridge')
 local scaleFailure,positionFailure,imageFailure,sizeFailure=false,false,false,false
 local calls={scale=0,position=0,image=0,size=0}
 local created={}
+local onShow
 local function control(name)
     local node={name=name,alive=true,children={},visible=true,anchorMinX=.5,anchorMaxX=.5,sizeDeltaX=100}
     function node:GetChild(key)assert(self.alive);return self.children[key]end
     function node:GetChildren()local list={};for _,child in pairs(self.children)do list[#list+1]=child end;return list end
-    function node:SetVisible(value)self.visible=value;return true end
+    function node:SetVisible(value)
+        if value and self.name=='menuPanel' and onShow then local callback=onShow;onShow=nil;callback()end
+        self.visible=value;return true
+    end
     function node:SetAnchorMin()return true end
     function node:SetAnchorMax()return true end
     function node:SetPivot()return true end
@@ -22,8 +26,10 @@ stage.children.menuPanel=menu;menu.children.fill=anchor;anchor.children.__kitOri
 local imageSpec={name='fill',kind='image',contentImage={templateId=1,imageId=100001,imageColor=0xffffffff,fill=true}}
 local lateAnchor=control('late');lateAnchor.children.__kitOriginal=control('__kitOriginal');menu.children.late=lateAnchor
 local lateSpec={name='late',kind='image',contentImage={templateId=1,imageId=100001,imageColor=0xffffffff}}
+local publicationAnchor=control('publicationLate');publicationAnchor.children.__kitOriginal=control('__kitOriginal');menu.children.publicationLate=publicationAnchor
+local publicationSpec={name='publicationLate',kind='image',contentImage={templateId=1,imageId=100001,imageColor=0xffffffff}}
 local bridge=Bridge.new(stage,{schemaVersion=1,root={name='stage',kind='container',children={
-    {name='menuPanel',kind='container',children={imageSpec,lateSpec}}}},templates={},placements={}},{
+    {name='menuPanel',kind='container',children={imageSpec,lateSpec,publicationSpec}}}},templates={},placements={}},{
     instantiate=function()local item=control('image');created[#created+1]=item;return item end,
     destroy=function(item)item.alive=false;return true end,imageSource=7})
 local proxy=bridge.root:GetChild('menuPanel'):GetChild('fill')
@@ -55,5 +61,13 @@ assert(bridge:cancelPage('menuPanel'));assert(not created[1].alive)
 bridge.root:GetChild('menuPanel'):SetVisible(true);bridge:step()
 assert(#created==4 and proxy.fillAmount==.3 and proxy.imageId==100003,'eviction must retain semantic state and rebind native image')
 assert(late.imageId==100004 and not created[2].alive,'late wrapped content must retain a rebuild job after eviction')
+bridge.root:GetChild('menuPanel'):SetVisible(false)
+onShow=function()bridge.root:GetChild('menuPanel'):GetChild('publicationLate').imageId=100005 end
+bridge.root:GetChild('menuPanel'):SetVisible(true)
+assert(not menu.visible and bridge:pageState('menuPanel')=='preparing' and #created==4,
+    'a cached-page native show callback must register new content as hidden pending work')
+bridge:step()
+assert(menu.visible and #created==5,'late cache-publication content must mount exactly once under the shared budget')
+assert(bridge.root:GetChild('menuPanel'):GetChild('publicationLate').imageId==100005)
 bridge:onEngineDestroy();assert(not pcall(function()return proxy.imageId end))
 print('PASS content setters false/retry, deferred state, eviction and native rebind')

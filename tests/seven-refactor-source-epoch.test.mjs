@@ -18,7 +18,7 @@ test('seven-refactor exact outer epoch restores every complete predecessor owner
 
 test('component UI outer epoch authenticates its exact committed slice and original predecessor',()=>{
  const current=componentEpoch.proof;
- assert.equal(current.currentCommit,'b71f41078ffd6db1f634b697148a8c9118971dfd');
+ assert.equal(current.currentCommit,'a0c2dc558b2a37f26678dc104bb98df194b0f2d8');
  assert.equal(current.currentTreeCommitted,true);
  assert.equal(current.owners.length,22);
  const readCurrent=path=>current.current[path]?.source??null;
@@ -205,4 +205,63 @@ test('pure hash memoization evicts by both entry count and retained complete str
   const previous=hashes;run(oversized);run(oversized);assert.equal(hashes-previous,2,'oversized input is not retained');
   assert.equal(reads,0,'foreign source computations never authorize linked reads');
  }finally{crypto.createHash=originalHash;syncBuiltinESMExports();}
+});
+
+function reusableProofFixture(){
+ const bind=source=>({source,sha256:createHash('sha256').update(source).digest('hex')});
+ return {schemaVersion:1,normalization:'LF',currentCommit:'a'.repeat(40),
+  owners:['config/architecture.json','src/lua/reuse_probe.lua'],
+  current:{'config/architecture.json':bind('{"reuse":"current"}\n'),'src/lua/reuse_probe.lua':bind('return 1\n')},
+  targets:{prior:{commit:'b'.repeat(40),files:{'config/architecture.json':bind('{}\n'),'src/lua/reuse_probe.lua':bind('return 0\n')}}}};
+}
+function freezeProofData(value){
+ if(value&&typeof value==='object'){for(const child of Object.values(value))freezeProofData(child);Object.freeze(value);}
+ return value;
+}
+
+test('frozen input reuse preserves immutable bindings while default callers retain clone isolation',async()=>{
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ const path='config/architecture.json',input=reusableProofFixture(),source=input.current[path].source;
+ const cloned=createSourceEpochProjector(input);
+ input.current[path].source='unreviewed';input.targets.prior.files[path].source='unreviewed';input.owners.length=0;
+ assert.equal(cloned.proof.current[path].source,source);assert.equal(cloned.proof.targets.prior.files[path].source,'{}\n');
+ assert.equal(cloned.proof.owners.length,2);assert.equal(Object.isFrozen(input.current[path]),false);
+ const frozen=freezeProofData(reusableProofFixture()),reused=createSourceEpochProjector(frozen,{reuseFrozenInput:true});
+ assert.equal(reused.proof,frozen);assert(Object.isFrozen(reused.proof.current[path]));
+ assert.throws(()=>{frozen.current[path].source='unreviewed';},TypeError);
+ assert.throws(()=>{frozen.targets.prior.files[path].source='unreviewed';},TypeError);
+ assert.equal(reused.preCombinedSource(path,source,{target:'prior',readSource:p=>frozen.current[p].source}),'{}\n');
+});
+
+test('frozen reuse rejects mutable/accessor/cyclic data and still validates complete source hashes',async()=>{
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ assert.throws(()=>createSourceEpochProjector(reusableProofFixture(),{reuseFrozenInput:true}),/must be frozen/);
+ const broken=reusableProofFixture();broken.current['config/architecture.json'].sha256='0'.repeat(64);
+ assert.throws(()=>createSourceEpochProjector(freezeProofData(broken),{reuseFrozenInput:true}),/source identity SHA256/);
+ const plain=freezeProofData(reusableProofFixture());let getterCalls=0;
+ const binding=Object.freeze({sha256:plain.current['config/architecture.json'].sha256,
+  get source(){getterCalls++;return plain.current['config/architecture.json'].source;}});
+ const accessor=Object.freeze({...plain,current:Object.freeze({...plain.current,'config/architecture.json':binding})});
+ assert.throws(()=>createSourceEpochProjector(accessor,{reuseFrozenInput:true}),/data properties/);assert.equal(getterCalls,0);
+ const symbolic=Object.freeze({...plain,get [Symbol('foreign')](){getterCalls++;return 'unreviewed';}});
+ assert.throws(()=>createSourceEpochProjector(symbolic,{reuseFrozenInput:true}),/no symbol keys/);assert.equal(getterCalls,0);
+ const cycle={};cycle.self=cycle;Object.freeze(cycle);
+ assert.throws(()=>createSourceEpochProjector(cycle,{reuseFrozenInput:true}),/acyclic/);
+});
+
+test('reused flattened proofs freshly read each declared owner once and stop at the first invalid owner',async()=>{
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ const input=freezeProofData(reusableProofFixture()),projector=createSourceEpochProjector(input,{reuseFrozenInput:true});
+ const path='config/architecture.json',source=input.current[path].source;let changed,replacement,reads=[];
+ const reader=owner=>{reads.push(owner);if(owner===changed){if(replacement instanceof Error)throw replacement;return replacement;}return input.current[owner].source;};
+ const project=value=>projector.preCombinedSource(path,value,{target:'prior',readSource:reader});
+ assert.equal(project(source),'{}\n');assert.deepEqual(reads,input.owners);
+ for(const owner of input.owners)for(replacement of [input.current[owner].source+'\n',null,new Error('missing reused owner')]){
+  changed=owner;reads=[];assert.throws(()=>project(source),/combined linked owner/);
+  assert.deepEqual(reads,input.owners.slice(0,input.owners.indexOf(owner)+1));
+  changed=undefined;reads=[];assert.equal(project(source),'{}\n');assert.deepEqual(reads,input.owners);
+ }
+ for(const foreign of [source+'unreviewed',null,undefined,'{}\n']){
+  reads=[];assert.equal(project(foreign),foreign);assert.deepEqual(reads,[]);
+ }
 });

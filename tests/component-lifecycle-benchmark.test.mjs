@@ -1,5 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {gunzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
 import {summarizeSteps,verifyCycles,verifySameVisualPair,comparableScripts,comparableUi,evaluatePair} from '../scripts/benchmark-component-lifecycle.mjs';
 test('SDK nearest-rank timing keeps tail and rejects absent/invalid samples',()=>{
  assert.deepEqual(summarizeSteps([1,9,2,3].map(wallMs=>({wallMs}))),{samples:4,p50Ms:2,p95Ms:9,p99Ms:9,maxMs:9});
@@ -51,4 +54,26 @@ test('twenty page cycles reject hidden destinations and growing native-model inv
  assert.throws(()=>verifyCycles(cycles.slice(1)));
  assert.throws(()=>verifyCycles(cycles.map((c,i)=>({...c,countAfter:100+i}))));
  assert.throws(()=>verifyCycles(cycles.map((c,i)=>({...c,menuVisible:i!==8}))));
+});
+
+test('recorded actual-GIL pair reproduces all count fences and timing observations from immutable raw samples',()=>{
+ const evidence=new URL('../docs/evidence/',import.meta.url);
+ const summary=JSON.parse(readFileSync(new URL('task-100-1-sdk-comparison-20261109.json',evidence),'utf8'));
+ const hashes=['efae8f92eeaf49f03e569fdec1229eae7f9f8c0c280149a00a61e7d371544e18',
+  '51b8b28f7d18ee2a4ca30c2fd427afc45ffdb045d89deeef42edfb65304f43c3'];
+ assert.equal(summary.rawReports.length,2);
+ const reports=summary.rawReports.map((binding,index)=>{
+  const bytes=readFileSync(new URL(binding.path,evidence));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),hashes[index]);
+  assert.equal(binding.sha256,hashes[index]);assert.equal(bytes.length,binding.bytes);
+  return JSON.parse(gunzipSync(bytes));
+ });
+ const actual=evaluatePair(...reports,{observedTimeRatio:1.25});
+ for(const key of Object.keys(actual))assert.deepEqual(summary[key],actual[key],key);
+ assert(actual.timing.every(row=>!row.exceedsObservation));
+ // Preserve adverse individual maxima; a passing P95 observation is no tail/FPS claim.
+ for(const phase of ['character-step','menu-return-step']){
+  const row=actual.timing.find(value=>value.phase===phase);
+  assert(row.after.maxMs>row.before.maxMs);
+ }
 });

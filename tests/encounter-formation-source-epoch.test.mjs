@@ -1,14 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
+import {readFileSync as diskReadFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {sourceEpoch,preEncounterFormationEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {sourceEpoch as currentSourceEpoch,preComponentUiEpoch as sourceEpoch,preEncounterFormationEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {preComponentUiCiSource} from './helpers/component-ui-ci-source-inverse.mjs';
 import {encounterFormationEpoch} from './helpers/encounter-formation-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_encounter_formation.lua',proof=sourceEpoch.proof,prior=preEncounterFormationEpoch.proof;
 const raw=p=>proof.current[p]?.source??null;
+// The original 51-owner assertions describe the frozen Formation predecessor.
+// Current UI admission is independently checked against all raw owners below.
+const readFileSync=(file,...args)=>preComponentUiCiSource(file,diskReadFileSync(file,...args).replaceAll('\r\n','\n'));
 test('Encounter formation outer epoch preserves every prior binding and exact frozen production byte',()=>{
  assert.equal(encounterFormationEpoch.proof.currentCommit,'fb04fd36ab4fbdba71c0da08bf71d2899143f69b');
  assert.equal(proof.currentCommit,prior.currentCommit);
@@ -52,7 +56,7 @@ test('isolated authenticated helper closure retains the exact Encounter formatio
  const directory=mkdtempSync(join(tmpdir(),'formation-epoch-closure-'));
  try{
   copyIntegrationSourceClosure(directory);
-  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).sourceEpoch;
+  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).preComponentUiEpoch;
   assert.deepEqual(isolated.proof,proof);
   assert.equal(isolated.preCombinedSource(path,raw(path),{target:'encounterFormationPrior',readSource:raw}),prior.current[path].source);
   assert.throws(()=>isolated.preCombinedSource(path,raw(path),{target:'encounterFormationPrior',readSource:p=>p===path?raw(p)+'\n':raw(p)}),/linked owner identity/);
@@ -68,7 +72,7 @@ test('unknown source targets are rejected rather than gaining an identity fallba
 });
 
 test('configuration layout admission preserves exact tokens and freshly authenticates all 51 current raw owners',async()=>{
- const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {preComponentUiEpoch:sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
  const proof=sourceEpoch.proof,path='config/architecture.json',source=proof.current[path].source;
  const raw=p=>proof.current[p]?.source??null,expected=proof.targets.actor.files[path].source;
  assert.equal(proof.owners.length,51);
@@ -132,5 +136,21 @@ test('source and configuration reject unknown targets and malformed live readers
   for(const readSource of [null,false,0,{},[]])assert.throws(()=>sourceEpoch.preCombinedSource(file,raw(file),{target,readSource}),/reader/);
   assert.throws(()=>sourceEpoch.preCombinedSource(file,raw(file),{target,readSource(){throw Error('unavailable');}}),/linked owner missing/);
   for(const value of [{},17,false,undefined])assert.throws(()=>sourceEpoch.preCombinedSource(file,raw(file),{target,readSource:()=>value}),/linked owner identity/);
+ }
+});
+
+test('current UI facade authenticates every raw owner once in declared order after warm success',()=>{
+ const current=currentSourceEpoch.proof,file='config/architecture.json',input=diskReadFileSync(file,'utf8'),target='develop';
+ assert.equal(current.owners.length,68);
+ const expected=current.targets[target].files[file].source;
+ for(const crlf of [false,true]){
+  const reads=[];let bad=null,missing=false;
+  const live=owner=>{reads.push(owner);if(owner===bad&&missing)return null;const bytes=diskReadFileSync(owner,'utf8').replaceAll('\r\n','\n');return owner===bad?bytes+'\n':crlf?bytes.replaceAll('\n','\r\n'):bytes;};
+  for(let repeat=0;repeat<2;repeat++){reads.length=0;assert.equal(currentSourceEpoch.preCombinedSource(file,input,{target,readSource:live}),expected);assert.deepEqual(reads,current.owners);}
+  for(const owner of current.owners){
+   for(const absent of [false,true]){bad=owner;missing=absent;reads.length=0;assert.throws(()=>currentSourceEpoch.preCombinedSource(file,input,{target,readSource:live}),/linked owner identity/,owner);assert.deepEqual(reads,current.owners.slice(0,current.owners.indexOf(owner)+1));}
+   bad=null;reads.length=0;assert.equal(currentSourceEpoch.preCombinedSource(file,input,{target,readSource:live}),expected);assert.deepEqual(reads,current.owners);
+  }
+  reads.length=0;assert.equal(currentSourceEpoch.preCombinedSource(file,'foreign source',{target,readSource:live}),'foreign source');assert.deepEqual(reads,[]);
  }
 });

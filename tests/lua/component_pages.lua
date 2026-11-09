@@ -122,4 +122,35 @@ bridge:onEngineDestroy()
 assert(not slot.alive and not pcall(setter,slot,0,0),'retired wrapper must not use borrowed native handles')
 assert(not pcall(retiredVisibility,menu,true),'retired page setter must reject a cached method')
 assert(callback()==true and invoked==1,'destroyed Host must consume stale callbacks')
+-- Protect the shipped defaults as well as the explicit two-job/one-cache
+-- configuration above. Increasing a production default must not evade CI.
+local defaultStage=native('defaultStage')
+local defaultRoot={name='defaultStage',kind='container',children={}}
+local defaultPlacements={}
+for _,name in ipairs({'menuPanel','mapPanel','battlePanel','characterPanel'})do
+    local page=native(name);defaultStage.children[name]=page
+    local spec={name=name,kind='container',children={}};defaultRoot.children[#defaultRoot.children+1]=spec
+    for index=1,5 do
+        local child=native('slot'..index);child.children.__kitOriginal=native('__kitOriginal');page.children[child.name]=child
+        spec.children[#spec.children+1]={name=child.name,kind='container'}
+        defaultPlacements[#defaultPlacements+1]={path=name..'/'..child.name,templateId=index,host='__kitOriginal'}
+    end
+end
+local defaultCreated,defaultDestroyed=0,0
+local defaults=Bridge.new(defaultStage,{schemaVersion=1,root=defaultRoot,templates={},placements=defaultPlacements},{
+    instantiate=function()defaultCreated=defaultCreated+1;return native('defaultOriginal')end,
+    destroy=function(item)item.alive=false;defaultDestroyed=defaultDestroyed+1;return true end})
+assert(defaultCreated==0,'default loader must not eagerly mount hidden pages')
+local previous
+for _,name in ipairs({'menuPanel','mapPanel','battlePanel','characterPanel'})do
+    if previous then previous:SetVisible(false)end
+    local page=defaults.root:GetChild(name);local before=defaultCreated;page:SetVisible(true)
+    defaults:step()
+    assert(defaultCreated-before==4 and not defaultStage.children[name].visible,'default preparation must stay at four jobs per update')
+    defaults:step();assert(defaultStage.children[name].visible and defaultCreated-before==5)
+    assert(defaultCreated-defaultDestroyed<=15,'default cache must retain no more than two hidden pages plus the visible page')
+    previous=page
+end
+assert(defaultCreated==20 and defaultDestroyed==5,'default LRU must release the oldest of three hidden pages')
+defaults:onEngineDestroy()
 print('PASS component pages H1/H2/H3, rollback, retry, cancel and 20 switches; created='..created..' destroyed='..destroyed)

@@ -43,9 +43,31 @@ function validateBinding(binding){
  assert.equal(hash(binding.source),binding.sha256,'source identity SHA256');
  if(binding.gitBlob)assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(binding.source)}\0`).update(binding.source).digest('hex'),binding.gitBlob,'source identity Git blob');
 }
-export function createSourceEpochProjector(input,{root=process.cwd(),allowConfigLayout=false}={}){
+// A composed proof can share previously validated immutable source strings.
+// Reuse is explicit and accepts only an already deeply frozen JSON data graph;
+// mutable containers, accessors and cycles cannot become an authorization input.
+function assertReusableFrozenData(value,seen=new WeakSet(),active=new WeakSet()){
+ if(value===null||typeof value==='string'||typeof value==='boolean')return;
+ if(typeof value==='number'){assert(Number.isFinite(value),'reused source number');return;}
+ assert.equal(typeof value,'object','reused source JSON data');
+ assert(!active.has(value),'reused source data must be acyclic');
+ if(seen.has(value))return;
+ assert(Object.isFrozen(value),'reused source data must be frozen');
+ assert.equal(Object.getOwnPropertySymbols(value).length,0,'reused source data has no symbol keys');
+ const prototype=Object.getPrototypeOf(value);
+ assert(prototype===Object.prototype||prototype===Array.prototype||prototype===null,'reused source plain data');
+ active.add(value);
+ for(const descriptor of Object.values(Object.getOwnPropertyDescriptors(value))){
+  assert(Object.hasOwn(descriptor,'value'),'reused source data properties');
+  assertReusableFrozenData(descriptor.value,seen,active);
+ }
+ active.delete(value);seen.add(value);
+}
+export function createSourceEpochProjector(input,{root=process.cwd(),allowConfigLayout=false,reuseFrozenInput=false}={}){
  // Clone once to prevent the caller changing proof data after validation.
- const proof=JSON.parse(JSON.stringify(input));
+ assert.equal(typeof reuseFrozenInput,'boolean','source proof reuse policy');
+ if(reuseFrozenInput)assertReusableFrozenData(input);
+ const proof=reuseFrozenInput?input:JSON.parse(JSON.stringify(input));
  assert.equal(proof.schemaVersion,1);assert.equal(proof.normalization,'LF');
  assert.match(proof.currentCommit,/^[a-f0-9]{40}$/);
  assert(Array.isArray(proof.owners));assert.equal(new Set(proof.owners).size,proof.owners.length,'unique owners');

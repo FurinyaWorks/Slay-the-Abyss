@@ -7,9 +7,9 @@ import {createHash} from 'node:crypto';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const archive=readFileSync(new URL('./component-ui-source-epoch.json.gz',import.meta.url));
-assert.equal(hash(archive),'42fea4a55fc5c5133404a00f458bd9af8ba3c27907e3fdc9c92b36a68c2f37ef','component UI compressed identity');
+assert.equal(hash(archive),'df2a27ff146ecbee4fb01054eb1071458ffe491ece1bb50fa6fb33d19df74d4a','component UI compressed identity');
 const bytes=gunzipSync(archive);
-assert.equal(hash(bytes),'8ba583e6ad8d45e766e597df629def7260039f4253241780b1c08a4b9e1b9e9f','component UI complete identity');
+assert.equal(hash(bytes),'28409a616ba20ce449428d53b876cc002736acacef63a35a40f65b7707b4835a','component UI complete identity');
 export const componentUiSourceEpoch=createSourceEpochProjector(JSON.parse(bytes),{allowConfigLayout:true});
 
 export function extendComponentUiEpoch(original){
@@ -28,21 +28,20 @@ export function extendComponentUiEpoch(original){
   currentTreeCommitted:outer.currentTreeCommitted,current:outer.current,targets};
  proof.owners=paths.filter(path=>Object.values(targets).some(target=>
   target.files[path]?.sha256!==proof.current[path]?.sha256));
- // Reuse already validated frozen historical bindings rather than deep-cloning
- // every historical source again. Only the exact new outer slice needs its own
- // projector; both layers authorize fresh linked reads on every projection.
+ // Flatten authorization to this complete declared closure. Frozen bindings
+ // are reused without cloning the complete historical source corpus again.
  for(const target of Object.values(targets)){Object.freeze(target.files);Object.freeze(target);}
  Object.freeze(targets);Object.freeze(proof.owners);Object.freeze(proof);
+ const current=createSourceEpochProjector(proof,{allowConfigLayout:true,reuseFrozenInput:true});
  const live=path=>{
   try{return readFileSync(path,'utf8');}catch(error){if(error.code==='ENOENT')return null;throw error;}
  },readers=new WeakMap();
  function preCombinedSource(path,source,{target,readSource=live}={}){
   readSource=readers.get(readSource)?.raw??readSource;
-  assert(Object.hasOwn(targets,target),'unknown source target');
-  const projected=componentUiSourceEpoch.preCombinedSource(path,source,{target:'componentPrior',readSource});
-  if(target==='componentPrior')return projected;
-  return original.preCombinedSource(path,projected,{target,
-   readSource:typeof readSource==='function'?componentUiSourceEpoch.combinedReader(readSource,'componentPrior'):readSource});
+  const projected=current.preCombinedSource(path,source,{target,readSource});
+  if(projected!==source||target==='componentPrior'||prior.current[path]?.sha256===current.proof.current[path]?.sha256)return projected;
+  return original.preCombinedSource(path,source,{target,
+   readSource:typeof readSource==='function'?current.combinedReader(readSource,'componentPrior'):readSource});
  }
  function combinedReader(readSource=live,target){
   assert.equal(typeof readSource,'function','linked reader must be a function');
@@ -50,6 +49,6 @@ export function extendComponentUiEpoch(original){
   const raw=existing?.raw??readSource,reader=path=>preCombinedSource(path,raw(path),{target,readSource:raw});
   readers.set(reader,{raw,target});return reader;
  }
- return Object.freeze({proof,preCombinedSource,combinedReader,
+ return Object.freeze({proof:current.proof,preCombinedSource,combinedReader,
   readerTarget:reader=>readers.get(reader)?.target});
 }
