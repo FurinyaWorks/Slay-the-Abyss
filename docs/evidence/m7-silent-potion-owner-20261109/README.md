@@ -20,3 +20,7 @@
 ## Seven 旧来源入口修复补充
 
 `seven-fix-evidence.json` 独立列出初始Quick失败、当前修复输入、补充日志与验证边界。`seven-fix-*.log.gz` 保留原8/9复现、初稿负控失败、最终9/9、全部10个来源合同121/121，以及原Quick JS选集复验。首次JS复验缺少本地LFS素材产生8项失败，随后通过原`ci-reviewed-lfs.mjs`精确下载6份既有PNG，保留准备日志与最终结果。没有修改图片、原证据manifest、成本或门禁，也未执行本地Full。
+
+## Watcher/Potion 历史reader修复补充
+
+`watcher-fix-evidence.json` 记录Hosted双平台失败、当前helper组合修复输入和独立补充日志。`watcher-fix-*.log.gz` 保留带原时间戳的Hosted失败摘录、本地2/5复现、错误target中间失败、最终5/5、CI58/58及来源复制/集成60/60。原收据及manifest未重写；最新helper的验证以这批当前输入日志为准，不把旧历史测量视为本次运行。没有重复本地Full。

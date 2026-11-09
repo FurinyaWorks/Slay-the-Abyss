@@ -47,3 +47,13 @@ shivs 的第三个 host 参数是同步迁移的内部接口。没有默认反�
 仅将这个历史测试入口接入既有`readSilentPotionPrior`：实时认证当前三个owner后投影精确旧配置，保留旧11/45-owner断言与全部archive/hash。原case内增加LF/CRLF × 三owner的暖调用漂移/缺失负控；固定合法输入后污染linked reader，保持foreign输入不读owner的既有语义。不改生产、成本、预算、选集或测试文件/用例数量。
 
 本地原失败8/9可复现，最终单文件9/9、全部10个source-epoch文件121/121通过；独立复核11项旧owner等式和12个新增暖调用负控。原Quick选择器仍选同一12JS/87Lua，完整12JS复验114/114通过；初次因未准备LFS图片出现的8项失败与原入口成功下载6份图片的日志均保留，未改图片或以跳过素材测试替代通过。所有新旧失败与通过日志另存`seven-fix-*`补充证据，不改写初始收据。没有重复Full或87项Quick Lua；修复后须由新HEAD的正常Hosted CI重新准入。
+
+## Hosted Watcher/Potion reader 组合修复
+
+`f3534b4193019856140a3850e889fce36574bf6d` 的Quick和Licenses已成功，但[Quality 42576626252](https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42576626252)在POSIX/Windows分别暴露Watcher/Potion历史来源的三项失败。前次只检查独立source-epoch文件，没有覆盖这个历史集成reader，不能以此前通过掩盖本次失败。
+
+根因不只在测试：`preM7FinalSource` 的capability前置分支直接用旧Seven读取当前树。五个未变Lua owner先匹配历史六源身份，但新architecture配置未经过当前外层投影，形成混合epoch并被严格校验拒绝。现在公共helper与测试共享两段精确组合：当前52-owner认证→silentPotionPrior完整前驱→冻结Seven的localSeven。默认/显式当前reader和历史六源reader均验证，foreign输入仍不读取owner，没有放宽原身份校验。
+
+同步更新独立副本的helper精确hash。新增不可变双文件repair原件，只保存f353时的m7/copy helper完整源码、SHA256和Git blob；严格匹配当前完整bytes后才能读回旧原件。已有CI档案、原运行收据、旧测量成本全部不变，不把旧收据输入伪称为本次执行的当前文件。该桥不包含自身、receipt或cost，避免循环。
+
+Watcher/Potion原2/5失败已本地复现；修复完整5/5通过，包含全部52-owner逐项暖漂移/缺失、默认/显式LF/CRLF reader和foreign零读取。CI完整合同58/58、来源复制/集成/Seven完整60/60、四个直接消费者22/22通过。独审另核18条reader路径、104个暖漂移/缺失负控及24个foreign零读取输入。Watcher/Potion完整单文件本地实测10,723.073743ms，记录真实耗时，不宣称Hosted性能。未改生产、预算、工作流或测试文件/用例数量；新HEAD仍需原托管CI及独审/合并门禁。

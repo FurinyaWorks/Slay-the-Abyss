@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "failedHeadSha": "f3534b4193019856140a3850e889fce36574bf6d",
+  "baseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "hosted": {
+    "runId": 42576626252,
+    "posixJobId": 129051711760,
+    "windowsJobId": 129051712013,
+    "failedCasesEachPlatform": 3,
+    "quickRun42576626147": "success",
+    "licensesRun42576626183": "success",
+    "quality": "failure"
+  },
+  "rootCause": "The M7 capability facade and Watcher/Potion historical test directly applied Seven to the current tree; unchanged Lua owner tokens matched first but the new config was not projected, producing a rejected mixed source epoch.",
+  "repair": "Both entry paths use current52 -> silentPotionPrior -> frozen Seven localSeven. Explicit readers stay explicit; old six-owner and standalone historical contracts are preserved.",
+  "inputSha256": {
+    "tests/ci-complete-calibration.test.mjs": "b3005f449de86c897638be8c3ce64741b089b8ee314ec95c3519da897d99239a",
+    "tests/helpers/copy-integration-source-closure.mjs": "4a0ec6ff16d3be3f9ecc43435813367f7bf6ee1c2996e7512fec464e8995d38e",
+    "tests/helpers/m7-core-final-source-inverse.mjs": "4caaad4aa09559128b78db57501733bf4e6416f81bad6e32a5406f157dcf65ca",
+    "tests/helpers/silent-potion-ci-source-inverse.mjs": "02a4a643e2a104eaf8ea9a6fe22319f5d705ea9b6d882bae99308c9439a80051",
+    "tests/helpers/silent-potion-reader-repair-source.json.gz": "237b51d06c1c9d6eb726343b69b66b812dee5f89f090b6c08c1756e41a9ddf71",
+    "tests/watcher-potion-integration-source.test.mjs": "484617edcf46d146308389cb71a39c2670fd4d21e3f560c5140aaf1af6d7913a",
+    "config/architecture.json": "efc8ce730052bb3c60cd24f50bdfdb17ea4f3a29aeb07feaaaf783dcedaac590",
+    "src/lua/abyss_silent_potions.lua": "ac978892d5c00a1f30d6ec7804c29f087f6bd63e26941435633f460458d47297",
+    "src/lua/abyss_silent_final_cards.lua": "6f0f4db2851af37a5a67e308a153c968f7c464a63db13274feaa4baf39fae589",
+    "scripts/ci-test-timings.json": "1662a2f8d7e97650aaebcdd882226daf266e7b1113c682a08d5a5fb897a72284",
+    ".github/workflows/quality.yml": "aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535"
+  },
+  "inputScope": "Critical repair, production-boundary and CI inputs, not a full execution import inventory.",
+  "unchangedHistoricalInputs": {
+    "tests/helpers/silent-potion-ci-source-epoch.json.gz": "d58c6216039b1c26b26f08a1f5976ce2c09a98709da8590d35de097b3d023a03",
+    "tests/helpers/silent-potion-source-epoch.json.gz": "60114ed947c22b989b28f06cbb202c091431c7b5e658da3760c10bef474f90b9",
+    "tests/helpers/seven-refactor-source-epoch.json.gz": "98ce5a13a217c5b20bbbddf93811d5fc2dda4117bb465c33c5ad4c979608c4bd",
+    "tests/fixtures/class-potion-watcher-before.json.gz": "3d119313edd5f75f5c2cba056a96cba8a66504f8eca6c0473b6170b62395de5a",
+    "docs/evidence/m7-silent-potion-owner-20261109/manifest.json": "1ab16e5a1a41c58c476d99186db6594842c4d0bdaa39ee3e77f24e989885e195",
+    "docs/evidence/m7-silent-potion-owner-20261109/behavior-receipt.json": "b6227a61d616a9d96bd55d76e198e3565e91bf7b19353662f6a11a7ff3164605",
+    "docs/evidence/m7-silent-potion-owner-20261109/source-receipt.json": "1a20fb90289d2c1736af82d602bb6f0b7189143f5d5f36f9850d4645436e7878"
+  },
+  "logs": [
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/watcher-fix-posix-hosted-excerpt.log.gz",
+      "sha256": "0347faab247ffc6a7104fa1a06a22c3db7f85151aefc74aeaf493dedc5125717",
+      "uncompressedSha256": "f6e297e2378704cefcddc33f9262b5ed9ab966a648dc925bca20e57e5fc28d31",
+      "summary": {}
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/watcher-fix-windows-hosted-excerpt.log.gz",
+      "sha256": "ae2e4e88946454e1a0158e7345b38e915134a30e41939186cf40a284d2d023d2",
+      "uncompressedSha256": "1f540b7f04d561bd2910c8b5840d015bab68664e3cc2e17cbabb755c448d6dad",
+      "summary": {
+        "tests": "241",
+        "pass": "238",
+        "fail": "3",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "1003774.0258"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/watcher-fix-repro.log.gz",
+      "sha256": "0a7e10c09aef2e533238e5e090447d72a2bba9689e8dc1bbaae2bf6b20fe5f8c",
+      "uncompressedSha256": "0d91f8879ea94097d6c04182f74e4d5f9e6fa0135cf8a908f13e47109a86b2db",
+      "summary": {
+        "tests": "5",
+        "pass": "2",
+        "fail": "3",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "10497.315825"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/watcher-fix-invalid-target.log.gz",
+      "sha256": "b449d1b0c75b15238afa43e56a1b5115c5221ca4a2c274bfbf706fcf79e1883d",
+      "uncompressedSha256": "7b0398fd88c9ee8938edc7014f8eba05999f17528a3d4ea5d52595158bcc92a1",
+      "summary": {
+        "tests": "1",
+        "pass": "0",
+        "fail": "1",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "9254.420852"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/watcher-fix-complete.log.gz",
+      "sha256": "6d909e375ae42d0502bccf310b6d86b31f3b8823a9fd87ebf96895070c0b59e9",
+      "uncompressedSha256": "bafe9012fbe5c9675835bc637c939b993a15a09abde41e1d4146c1560860233b",
+      "summary": {
+        "tests": "5",
+        "pass": "5",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "10723.073743"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/watcher-fix-ci.log.gz",
+      "sha256": "79fa27c2146cf507e7d417806debd6874c6c8ca312192e787144aa53c307f9d1",
+      "uncompressedSha256": "9ff322a2f0237ddc62e476b7feafde209028b3befe5657e1e0150a9aa81406f9",
+      "summary": {
+        "tests": "58",
+        "pass": "58",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "18400.515716"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/watcher-fix-source-closure.log.gz",
+      "sha256": "702b7224b0e640714684d6bae50230490cb0235f1b2c09860f25a47d06113624",
+      "uncompressedSha256": "0b55dd05b36c6a3c8012ee1533edb9afc69933836c2bba5471be62ceed82b607",
+      "summary": {
+        "tests": "60",
+        "pass": "60",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "41462.531934"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-silent-potion-owner-20261109/watcher-fix-consumers.log.gz",
+      "sha256": "cccf8ace8eead33d7e3be80030dc867abe3f38f98d36b14dc84e7e1e2a19d901",
+      "uncompressedSha256": "9a82bfc42fdc57629c9af592daddf13b954cdb71f357da543fc636c036a8ab3e",
+      "summary": {
+        "tests": "22",
+        "pass": "22",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "86076.009679"
+      }
+    }
+  ],
+  "limits": [
+    "Targeted complete files only, not local Full.",
+    "All original archives, receipts, costs and workflow budgets remain byte-identical.",
+    "The exact two-helper repair archive authenticates historical receipt inputs; it does not claim those historical bytes were current during this repair run.",
+    "Watcher/Potion local complete-file duration is 10723.073743 ms, not a hosted performance claim.",
+    "Fresh hosted CI, exact commit independent review and original merge gates remain required."
+  ],
+  "environment": "cloud Linux local, Node v24.22.1"
+}

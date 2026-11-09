@@ -38,7 +38,7 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/end-turn-responsibilities-source-inverse.mjs": "b38d08a2214f2878e7390dcb574e50404f405dbf42e1dd76b51f3372404ac146",
   "tests/helpers/game-ui-extraction-source-inverse.mjs": "6a6f1ce53357b6c4be69cb15cbc9b81c0dafa37c3628ee069c8f1235f37be822",
   "tests/helpers/inventory-responsibilities-source-inverse.mjs": "ccf84aec265efa467ae80a16fbf313a26b2258d4d7df110b4055262c276de0f7",
-  "tests/helpers/m7-core-final-source-inverse.mjs": "74c7758206b74dea8275d6a7cb473a8481f18203e9b39497fba6a5a264a7a132",
+  "tests/helpers/m7-core-final-source-inverse.mjs": "4caaad4aa09559128b78db57501733bf4e6416f81bad6e32a5406f157dcf65ca",
   "tests/helpers/potion-callback-source-inverse.mjs": "7164f8e40e7a9d014c1eac7759095442b4c4c187bbce62bdd0823100d9a67b4f",
   "tests/helpers/power-shop-source-inverse.mjs": "c6035aeea5b3f563160a582753b7357a9c4e0c2326c5302221788e6c0180678d",
   "tests/helpers/relic-query-source-inverse.mjs": "258f9e8fd6c0c4b06e79287317579db318857b044c1aa73b3d65de26658d75a5",

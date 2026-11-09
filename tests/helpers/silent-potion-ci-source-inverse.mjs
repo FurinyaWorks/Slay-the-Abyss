@@ -9,7 +9,22 @@ assert.equal(hash(archive),'d58c6216039b1c26b26f08a1f5976ce2c09a98709da8590d35de
 const bytes=gunzipSync(archive);assert.equal(hash(bytes),'c5ab74c396a12fa298deb8317986201be643a2b7d13dce0f808b1ddb66afe81d');
 export const silentPotionCiProof=JSON.parse(bytes);
 for(const binding of Object.values(silentPotionCiProof.files))assert.equal(hash(binding.beforeSource),binding.beforeSha256);
+// Exact current reader repair -> original measured helper bytes. No receipts or costs are rewritten.
+const repairArchive=readFileSync(new URL('./silent-potion-reader-repair-source.json.gz',import.meta.url));
+assert.equal(hash(repairArchive),'237b51d06c1c9d6eb726343b69b66b812dee5f89f090b6c08c1756e41a9ddf71');
+const repairBytes=gunzipSync(repairArchive);assert.equal(hash(repairBytes),'5e8f09d06da0a9a1e88de3b713c814717a89dae5f10aba1bb38f589f27288673');
+export const silentPotionReaderRepairProof=JSON.parse(repairBytes);
+for(const binding of Object.values(silentPotionReaderRepairProof.files)){
+ assert.equal(hash(binding.beforeSource),binding.beforeSha256);
+ assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(binding.beforeSource)}\0`).update(binding.beforeSource).digest('hex'),binding.beforeGitBlob);
+}
+export function preSilentPotionReaderRepairSource(path,source){
+ const binding=Object.hasOwn(silentPotionReaderRepairProof.files,path)?silentPotionReaderRepairProof.files[path]:null;
+ if(!binding||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!==binding.afterSha256)return source;
+ return binding.beforeSource;
+}
 export function preSilentPotionCiSource(path,source){
+ source=preSilentPotionReaderRepairSource(path,source);
  const binding=Object.hasOwn(silentPotionCiProof.files,path)?silentPotionCiProof.files[path]:null;
  if(!binding||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!==binding.afterSha256)return source;
  return binding.beforeSource;

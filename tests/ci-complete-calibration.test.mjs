@@ -33,7 +33,7 @@ import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as 
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
 import {discoverJs as actualDiscoverJs,partition,jsShard as actualJsShard,jsPlanningWeights as actualJsPlanningWeights,timings as liveTimings} from '../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
-import {preSilentPotionCiSource,silentPotionCiProof,silentPotionPlanningFloors} from './helpers/silent-potion-ci-source-inverse.mjs';
+import {preSilentPotionCiSource,silentPotionCiProof,silentPotionPlanningFloors,preSilentPotionReaderRepairSource,silentPotionReaderRepairProof} from './helpers/silent-potion-ci-source-inverse.mjs';
 const silentPotionJs=['tests/silent-potion-owner.test.mjs','tests/silent-potion-source-epoch.test.mjs'];
 // Complete historical 800-file contracts remain fixed; actual802 is tested separately.
 const discoverJs=()=>actualDiscoverJs().filter(file=>!silentPotionJs.includes(file));
@@ -1055,8 +1055,17 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
 
 
 test('Silent potion recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
- for(const [file,binding]of Object.entries(silentPotionCiProof.files)){
+ assert.equal(silentPotionReaderRepairProof.baseCommit,'f3534b4193019856140a3850e889fce36574bf6d');
+ for(const [file,binding]of Object.entries(silentPotionReaderRepairProof.files)){
   const raw=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(raw),binding.afterSha256,file);assert.equal(hash(binding.beforeSource),binding.beforeSha256,file);
+  for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preSilentPotionReaderRepairSource(file,source),binding.beforeSource);
+  for(const source of [raw+'\n',raw.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preSilentPotionReaderRepairSource(file,source),source);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preSilentPotionReaderRepairSource(unknown,raw),raw);
+ }
+
+ for(const [file,binding]of Object.entries(silentPotionCiProof.files)){
+  const raw=preSilentPotionReaderRepairSource(file,actualDiskReadFileSync(file,'utf8')).replaceAll('\r\n','\n');
   assert.equal(hash(raw),binding.afterSha256,file);
   assert.equal(hash(binding.beforeSource),binding.beforeSha256,file);
   for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preSilentPotionCiSource(file,source),binding.beforeSource);
@@ -1124,7 +1133,7 @@ test('Silent potion complete local floors authenticate actual files and preserve
   for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
   assert.ok(Object.keys(receipt.inputSha256).length>0);
   for(const [file,sha]of Object.entries(receipt.inputSha256)){
-   const raw=actualDiskReadFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n')),sha,file);
+   const raw=actualDiskReadFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:preSilentPotionReaderRepairSource(file,raw.toString('utf8')).replaceAll('\r\n','\n')),sha,file);
   }
  }
  assert.deepEqual(current,actualCurrentTimings,'all old costs, hosted measurements, safety inputs and thresholds remain unchanged');

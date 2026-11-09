@@ -1,12 +1,12 @@
-import {sevenRefactorEpoch} from './helpers/seven-refactor-source-epoch.mjs';
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {preClassPotionWatcherSource as prior,classPotionWatcherReader,preIntegratedCapabilitySource, classPotionWatcherSourceProof as proof,standaloneArchitectureSource} from './helpers/class-potion-watcher-source-inverse.mjs';
-import {preM7FinalSource,m7FinalReader} from './helpers/m7-core-final-source-inverse.mjs';
-const read=sevenRefactorEpoch.combinedReader(p=>readFileSync(p,'utf8').replaceAll('\r\n','\n'),'localSeven');
+import {preM7FinalSource,m7FinalReader,m7LocalSevenReader} from './helpers/m7-core-final-source-inverse.mjs';
+const read=m7LocalSevenReader(p=>readFileSync(p,'utf8').replaceAll('\r\n','\n'));
 const {before}=JSON.parse(gunzipSync(readFileSync('tests/fixtures/class-potion-watcher-before.json.gz')));
 const owners=Object.keys(proof),live=Object.fromEntries(owners.map(p=>[p,read(p)]));
 const hash=s=>createHash('sha256').update(s).digest('hex');
@@ -16,6 +16,31 @@ test('all six combined owners bind actual complete sources and preserve independ
   assert.equal(hash(live[path]),proof[path].afterSha256);
   assert.equal(hash(before[path]),proof[path].beforeSha256);
   for(const project of [prior,preIntegratedCapabilitySource,preM7FinalSource])for(const source of [live[path],live[path].replaceAll('\n','\r\n')])assert.equal(project(path,source,{readSource:read}),before[path]);
+ }
+ // The public facade must also accept today's raw tree, not just the already
+ // projected historical fixture reader above. All current owners remain live.
+ const raw=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
+ for(const path of owners){
+  assert.equal(preM7FinalSource(path,raw(path)),before[path]);
+  assert.equal(m7FinalReader()(path),before[path]);
+  for(const crlf of [false,true]){
+   const reader=p=>crlf?raw(p).replaceAll('\n','\r\n'):raw(p);
+   assert.equal(preM7FinalSource(path,reader(path),{readSource:reader}),before[path]);
+   assert.equal(m7FinalReader(reader)(path),before[path]);
+  }
+ }
+ const path=owners[0],input=raw(path);
+ for(const wrap of [r=>r,m7FinalReader])for(const owner of sourceEpoch.proof.owners){
+  let bad=false,missing=false;const seen=[];
+  const reader=wrap(p=>{seen.push(p);return missing&&p===owner?null:bad&&p===owner?raw(p)+'\n':raw(p);});
+  const project=()=>preM7FinalSource(path,input,{readSource:reader});
+  assert.equal(project(),before[path]);
+  for(const linked of sourceEpoch.proof.owners)assert(seen.includes(linked),linked);
+  bad=true;assert.throws(project,/linked owner (identity|missing)/,owner);bad=false;
+  missing=true;assert.throws(project,/linked owner (identity|missing)/,owner);
+ }
+ for(const value of ['foreign source',null,{},17]){
+  let calls=0;assert.equal(preM7FinalSource(path,value,{readSource(){calls++;throw Error('unexpected read');}}),value);assert.equal(calls,0);
  }
 });
 test('combined reads freshly authenticate all six owners on every call and reused wrapper',()=>{
