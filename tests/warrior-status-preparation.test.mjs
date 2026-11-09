@@ -26,9 +26,14 @@ test('WarriorStatus preparation detects real semantic regressions at named asser
   ["existing.burnDamage==nil and existing.endTurnDamage==2","existing.burnDamage==nil and existing.endTurnDamage==3",'legacy Burn outcome'],
   ["prepareNativeCards(out,ids)\n prepareStatusCards(out,ids)\n preparePowers(out)","preparePowers(out)\n prepareStatusCards(out,ids)\n prepareNativeCards(out,ids)",'definition order'],
  ];
+ // Canonicalize only mutation input. Raw baseline and disk snapshots stay exact.
+ const mutationSource=source=>source.replaceAll('\r\n','\n');
+ const source=mutationSource(current);
+ for(const variant of [source,source.replaceAll('\n','\r\n'),source.replace('\n','\r\n')])
+  assert.equal(mutationSource(variant),source);
  for(const [from,to,marker] of mutants){
-  assert.equal(current.split(from).length,2,from);
-  const result=preparationVm(current.replace(from,to));
+  assert.equal(source.split(from).length,2,from);
+  const result=preparationVm(source.replace(from,to));
   assert.notEqual(result.status,0,marker);assert(result.error.includes('STATUS_SEMANTIC '+marker),result.error);
   t.diagnostic(`killed: ${marker}`);
  }

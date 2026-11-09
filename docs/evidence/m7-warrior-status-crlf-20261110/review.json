@@ -1,0 +1,44 @@
+{
+  "reviewId": "warrior-status-crlf-20261110",
+  "reviewedAt": "2026-11-09T21:25:23.305Z",
+  "receiptPreparedAt": "2026-11-09T21:26:37.579Z",
+  "reviewedHeadSha": "7df12df61e3598224dab8c1830fb7b20c18a9f8d",
+  "reviewedBaseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "reviewedWorkingTree": true,
+  "reviewScope": "Incremental mutation-harness CRLF fix in tests/warrior-status-preparation.test.mjs relative to PR #583 head 7df12df61e3598224dab8c1830fb7b20c18a9f8d. This is not a fresh review of earlier production changes in PR #583. The working-tree test is bound by SHA256; final commit binding remains pending.",
+  "examinedFileSha256": {
+    "tests/warrior-status-preparation.test.mjs": "dfab7f89371a2a21b58722b6485e48d165ac583ada646d8bd7d5041737fafde6",
+    "src/lua/abyss_warrior_status_cards.lua": "095d6057d9a8be5f58202084db6113749ac1a8a56f152ce210b2a02959ca10ee",
+    "tests/fixtures/warrior-status-before.lua": "554181c678d5387ca7de54095db78a37225c04acc23878bce0392d21acc33a63",
+    "tests/helpers/warrior-status-preparation-vm.mjs": "723c6e43135e568b27eebe350527f0b50b01ef7d5887c9719473a1787d4072a1",
+    "tests/helpers/warrior-status-preparation-cases.lua": "b9847d643a2486f76dfad565f0990e730ff19c43e3e6c8636e2993aabbe04b24"
+  },
+  "evidenceFileSha256": {
+    "docs/evidence/m7-warrior-status-crlf-20261110/independent-eol-probe.mjs": "7ffca10cc6963374283bd682b754139148399c9fa7e4fe768c542dac60ec5374",
+    "docs/evidence/m7-warrior-status-crlf-20261110/independent-eol-probe.json": "87857303457ff6c3f82f1dffd7d09c3344224f2814d75ff15effe71d8da2fac3",
+    "docs/evidence/m7-warrior-status-crlf-20261110/independent-eol-probe.log": "7049525cae003adc41a1c5bdcc50aac7789d6eda65a18bb4f05cf3ac282001e9",
+    "docs/evidence/m7-warrior-status-crlf-20261110/independent-final-semantic.log": "811a824f3a3c5caa2029f02126b8560473d7d640dc71fb1ee0c2fffa42a5f145"
+  },
+  "unchangedProductionGitBlob": "9a46b81bee78cfceb7930844121bd56599916460",
+  "conclusion": "pass",
+  "findings": [],
+  "unresolved": [],
+  "checks": [
+    "Final named semantic test passed: all original six mutants killed by specified markers.",
+    "Independent Linux in-memory probe: unmutated LF and CRLF yield identical 68 graphs; all six real mutants killed for both EOL forms; 24 missing/duplicate-anchor rejection checks passed.",
+    "Original raw old/new graph test and original CC15/CC36 test are byte-identical to reviewed PR head.",
+    "Final patch keeps raw disk snapshot/current unchanged and normalizes only mutation input; six unique anchors and six named semantic assertions retained. LF/CRLF/mixed normalization variants converge.",
+    "Production source restored to exact prior Git blob 9a46b81bee78cfceb7930844121bd56599916460; SHA256 independently verified. No src, scripts, configuration, workflow, timings or budget changes relative to existing PR head."
+  ],
+  "limitations": [
+    "Linux only. No Windows execution or new hosted CI validation performed in this review.",
+    "Full and the static suite were not repeated. Separate full-file LF/CRLF-disk validation is maintained by the implementation owner.",
+    "This receipt is not exact-new-head merge approval. Final commit and subsequent documentation/evidence require binding before use as delivery evidence."
+  ],
+  "reproduction": {
+    "command": "node docs/evidence/m7-warrior-status-crlf-20261110/independent-eol-probe.mjs",
+    "workingDirectory": "repository root",
+    "scope": "Supplemental independent EOL VM and anchor-uniqueness probe; not Full or Windows execution.",
+    "relocation": "Original executed probe copied with relative import and result-output path adjusted, plus a comment made standalone. Probe logic unchanged; relocated copy not re-executed."
+  }
+}

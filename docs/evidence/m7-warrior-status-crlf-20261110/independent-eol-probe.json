@@ -1,0 +1,68 @@
+{
+  "platform": "linux",
+  "cleanGraphsPerEol": 68,
+  "cleanLfCrlfEquivalent": true,
+  "mutants": [
+    {
+      "label": "LF",
+      "marker": "empty source unchanged",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:28: STATUS_SEMANTIC empty source unchanged"
+    },
+    {
+      "label": "LF",
+      "marker": "native normalization",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:92: STATUS_SEMANTIC native normalization"
+    },
+    {
+      "label": "LF",
+      "marker": "Burn normalization",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:45: STATUS_SEMANTIC Burn normalization"
+    },
+    {
+      "label": "LF",
+      "marker": "final marker",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:39: STATUS_SEMANTIC final marker"
+    },
+    {
+      "label": "LF",
+      "marker": "legacy Burn outcome",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:26: STATUS_SEMANTIC legacy Burn outcome"
+    },
+    {
+      "label": "LF",
+      "marker": "definition order",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:38: STATUS_SEMANTIC definition order"
+    },
+    {
+      "label": "CRLF",
+      "marker": "empty source unchanged",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:28: STATUS_SEMANTIC empty source unchanged"
+    },
+    {
+      "label": "CRLF",
+      "marker": "native normalization",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:92: STATUS_SEMANTIC native normalization"
+    },
+    {
+      "label": "CRLF",
+      "marker": "Burn normalization",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:45: STATUS_SEMANTIC Burn normalization"
+    },
+    {
+      "label": "CRLF",
+      "marker": "final marker",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:39: STATUS_SEMANTIC final marker"
+    },
+    {
+      "label": "CRLF",
+      "marker": "legacy Burn outcome",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:26: STATUS_SEMANTIC legacy Burn outcome"
+    },
+    {
+      "label": "CRLF",
+      "marker": "definition order",
+      "error": "[string \"package.path='tests/lua/?.lua;src/lua/?.lua;b...\"]:38: STATUS_SEMANTIC definition order"
+    }
+  ],
+  "missingAndDuplicateAnchorRejections": 24
+}

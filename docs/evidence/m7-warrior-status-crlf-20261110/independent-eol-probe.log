@@ -1,0 +1,1 @@
+PASS: two clean 68-graph executions equivalent; 12 real semantic mutants killed; 24 absent/duplicate anchor guards rejected. Linux in-memory probe only.

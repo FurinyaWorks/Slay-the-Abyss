@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "scope": "PR583 incremental test-only CRLF repair; existing production scope is unchanged",
+  "base": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "parent": "7df12df61e3598224dab8c1830fb7b20c18a9f8d",
+  "hostedFailure": {
+    "runId": 42563842632,
+    "jobId": 128986606663,
+    "attempt": 1,
+    "runUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42563842632",
+    "jobUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42563842632/job/128986606663",
+    "jobs": {
+      "success": 21,
+      "failure": 15,
+      "skipped": 1
+    },
+    "failedSetupJobs": 12,
+    "failedJsJobs": 1,
+    "failedAggregates": 2
+  },
+  "runtime": {
+    "platform": "Linux",
+    "node": "v24.22.1",
+    "notClaimed": [
+      "Hosted Windows",
+      "Hosted Full for new HEAD",
+      "merge admission",
+      "device validation"
+    ]
+  },
+  "validation": {
+    "testsPerFinalRun": 3,
+    "finalLf": {
+      "passed": 3,
+      "durationMs": 24126.455173
+    },
+    "finalCrlfDisk": {
+      "passed": 3,
+      "durationMs": 5460.973985
+    },
+    "productionGraphCases": 68,
+    "semanticMutants": 6,
+    "note": "Two final runs of the same three tests, not six unique tests. Earlier 12-mutant trial passed but was reduced to six original VM calls; all timing samples retained, including slower LF results. No planning cost, budget, test file inventory or source proof changed."
+  },
+  "files": {
+    "tests/warrior-status-preparation.test.mjs": {
+      "sha256": "dfab7f89371a2a21b58722b6485e48d165ac583ada646d8bd7d5041737fafde6",
+      "gitBlob": "9f9428afcbf873ebd18f1d08ae7668f1f5876440",
+      "unchangedFromParent": false
+    },
+    "src/lua/abyss_warrior_status_cards.lua": {
+      "sha256": "095d6057d9a8be5f58202084db6113749ac1a8a56f152ce210b2a02959ca10ee",
+      "gitBlob": "9a46b81bee78cfceb7930844121bd56599916460",
+      "unchangedFromParent": true
+    },
+    "tests/fixtures/warrior-status-before.lua": {
+      "sha256": "554181c678d5387ca7de54095db78a37225c04acc23878bce0392d21acc33a63",
+      "gitBlob": "11fd44163182c2b205cd9910b7108b0d40a38fbf",
+      "unchangedFromParent": true
+    },
+    "tests/helpers/warrior-status-preparation-vm.mjs": {
+      "sha256": "723c6e43135e568b27eebe350527f0b50b01ef7d5887c9719473a1787d4072a1",
+      "gitBlob": "e7f2806a53441af95e35612fe07c3097845b03fd",
+      "unchangedFromParent": true
+    },
+    "tests/helpers/warrior-status-preparation-cases.lua": {
+      "sha256": "b9847d643a2486f76dfad565f0990e730ff19c43e3e6c8636e2993aabbe04b24",
+      "gitBlob": "090da6f0fb1d7acabdf1b2785c413e8086c8bc1c",
+      "unchangedFromParent": true
+    },
+    "scripts/ci-test-timings.json": {
+      "sha256": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+      "gitBlob": "2c91af452a4b98fe13cf6a162c3c78b31ac970e4",
+      "unchangedFromParent": true
+    },
+    ".github/workflows/quality.yml": {
+      "sha256": "aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535",
+      "gitBlob": "2d41d7295baf6fddff8dc5cf0b2ba3d63a44e90a",
+      "unchangedFromParent": true
+    }
+  },
+  "logs": {
+    "hosted-windows2.log": {
+      "path": "hosted-windows2.log.gz",
+      "sha256": "9a8bc82a28d01974efb8ea092daf13a589c93e6a50f23fcae87afc9dcc3eefac",
+      "compressedSha256": "8d962bbee65d5822d021e4cd686bdec3a2034245b827159ebd413391676c87af",
+      "bytes": 72715
+    },
+    "hosted-state.json": {
+      "path": "hosted-state.json.gz",
+      "sha256": "369c6ff090c763d6ecec2ba87c77718d4d777f2f2e9d8d391dd82b8bf92e18f6",
+      "compressedSha256": "2bafb6285bbf4dc67712f66b3272f3810e75e4b354c10ce72456f0ee6988f68f",
+      "bytes": 227205
+    },
+    "crlf-before.log": {
+      "path": "crlf-before.log.gz",
+      "sha256": "e71dd63f2508d54e76933031f6b00c1adaa89b935be041e47b80fac04a893cb0",
+      "compressedSha256": "0cd853f931a0f241cc63646f1f6b711c0e590fc24927166286ac94cb1a1cec4d",
+      "bytes": 1210
+    },
+    "lf-initial-matrix.log": {
+      "path": "lf-initial-matrix.log.gz",
+      "sha256": "7804bf6cf18a3d454741153ebaf8265342d0292ba5e1ae75cc48d6260afdd8bc",
+      "compressedSha256": "2b225a26207c9cd4d027661b7cccc7d196c1a4a5a3e4874a4239024714976021",
+      "bytes": 922
+    },
+    "crlf-initial-matrix.log": {
+      "path": "crlf-initial-matrix.log.gz",
+      "sha256": "0b61982bf10a0495b76c1f84e878a01f0e92a91ab2b5cfb92dab6e4a1b3eebf9",
+      "compressedSha256": "7f3dfd08429fbd862c91ee5b7f2c3a9e7f1e9aff42da3f41e1ea3e1243cce699",
+      "bytes": 919
+    },
+    "lf-final.log": {
+      "path": "lf-final.log.gz",
+      "sha256": "11be274d10dbf168c2fef6cbeba70cd89bd14e68c5eb2d1f662a677b09053a91",
+      "compressedSha256": "8a77633d627940fc94ebc5e83166024163cf688c5f997c69fa472d822e806da3",
+      "bytes": 664
+    },
+    "crlf-final.log": {
+      "path": "crlf-final.log.gz",
+      "sha256": "6d0b9c8f93db51b9e4f492d2e83f36c993395f7da977a10de2abc026e4f91b9e",
+      "compressedSha256": "77cd47ab17183d39b812df6a42c6c39f2532b42584bc36a03c488b0fe6d6fa21",
+      "bytes": 662
+    },
+    "verify-backlog-final.log": {
+      "path": "verify-backlog-final.log.gz",
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "compressedSha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "bytes": 382
+    },
+    "guidance-final.log": {
+      "path": "guidance-final.log.gz",
+      "sha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "compressedSha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "bytes": 482
+    },
+    "backlog-doctor.log": {
+      "path": "backlog-doctor.log.gz",
+      "sha256": "41ec373ed9871a1bdc86d07865141fe89ca39d8163789d12e940e8783de30ecc",
+      "compressedSha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+      "bytes": 4785
+    },
+    "independent-final-semantic.log": {
+      "path": "independent-final-semantic.log.gz",
+      "sha256": "811a824f3a3c5caa2029f02126b8560473d7d640dc71fb1ee0c2fffa42a5f145",
+      "compressedSha256": "af37057fec2d6c21a38d529ff05ac8a17d6ff2efc3bd16f1f85d315f9e8451b3",
+      "bytes": 403
+    },
+    "independent-eol-probe.log": {
+      "path": "independent-eol-probe.log.gz",
+      "sha256": "7049525cae003adc41a1c5bdcc50aac7789d6eda65a18bb4f05cf3ac282001e9",
+      "compressedSha256": "b4994e5182b1cd5ef63435834e1dc9fd8e6563806af54a5ddd647a7430e34d9a",
+      "bytes": 153
+    }
+  }
+}

@@ -1,0 +1,15 @@
+✔ WarriorStatus preparation detects real semantic regressions at named assertions (12733.574807ms)
+ℹ killed: empty source unchanged
+ℹ killed: native normalization
+ℹ killed: Burn normalization
+ℹ killed: final marker
+ℹ killed: legacy Burn outcome
+ℹ killed: definition order
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16015.138778
