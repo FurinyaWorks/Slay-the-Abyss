@@ -53,6 +53,25 @@ test('flat decoration uses exact bounds and colors while keeping thirteen semant
  }
 });
 
+test('preserving artwork windows retains exact attack, skill and power silhouettes while compacting other decoration',()=>{
+ for(const context of ['battle','deck','node']){
+  const face={name:'face',kind:'container',children:cardFaceChildren(nativeTheme,context)};
+  const template=deckCardTemplate();
+  const skin=child(face,'skin'),before=structuredClone(skin),templateSkin=structuredClone(child(child(template,'face'),'skin'));
+  const beforeCount=count(face),cost=child(face,'cost'),art=child(face,context==='node'?'art_attack':'art');
+  const result=compactBoundedCardFaces(face,[template],{preserveWindows:true});
+  assert(result.removedControls>0);assert(count(face)<beforeCount);
+  assert.equal(child(face,'skin'),skin,'window owner identity changed');
+  assert.deepEqual(skin,before,'window geometry or colors changed');
+  assert.deepEqual(child(child(template,'face'),'skin'),templateSkin,'deck template windows changed');
+  assert.deepEqual(child(face,'roundBody').children.map(n=>n.name),['flat']);
+  assert.equal(child(face,'cost'),cost);assert.equal(child(face,context==='node'?'art_attack':'art'),art);
+  const stable=structuredClone(face);
+  assert.equal(compactBoundedCardFaces(face,[template],{preserveWindows:true}).removedControls,0);
+  assert.deepEqual(face,stable,'window-preserving transform was not idempotent');
+ }
+});
+
 test('non-card lookalikes and malformed decoration are rejected without partial rewrites',()=>{
  const fake={name:'other',children:[{name:'roundFrame'},{name:'skin'}]},before=structuredClone(fake);
  assert.equal(compactBoundedCardFaces(fake).cardHosts,0);assert.deepEqual(fake,before);
