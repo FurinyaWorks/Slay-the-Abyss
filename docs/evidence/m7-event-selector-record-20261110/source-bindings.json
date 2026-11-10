@@ -1,0 +1,18 @@
+[
+  {
+    "path": "tests/event-combat-routes-source.test.mjs",
+    "blobs": {
+      "c20f9898462194d5f720f901274898e171a17ed5": "6f55527e0378664ce80daeec00864b42215dbf22",
+      "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04": "6f55527e0378664ce80daeec00864b42215dbf22"
+    },
+    "unchanged": true
+  },
+  {
+    "path": "tests/test-affected.test.mjs",
+    "blobs": {
+      "c20f9898462194d5f720f901274898e171a17ed5": "d8c11f307afc7b46acadcacca845f5708d8e34f6",
+      "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04": "d8c11f307afc7b46acadcacca845f5708d8e34f6"
+    },
+    "unchanged": true
+  }
+]
