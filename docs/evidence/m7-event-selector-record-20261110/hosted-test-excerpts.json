@@ -1,0 +1,58 @@
+[
+  {
+    "name": "hosted-win5",
+    "jobId": 129683007000,
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683007000",
+    "downloadedTextSha256": "8ad9455733d2ca5b32993bac1c4704309fe1d9e20dfe07125d68026d64ebb836",
+    "downloadedTextBytes": 1043854,
+    "scope": "connector-decoded log text, not original archive bytes",
+    "excerpts": [
+      "2026-11-10T07:30:50.7676863Z ✔ event source contract retains its actual reader for src/lua/abyss_dead_adventurer_event.lua (0.4443ms)",
+      "2026-11-10T07:30:50.7677793Z ✔ event source contract retains its actual reader for src/lua/abyss_colosseum_event.lua (0.2034ms)",
+      "2026-11-10T07:30:50.7678803Z ✔ event source contract retains its actual reader for src/lua/abyss_masked_bandits_event.lua (0.1638ms)",
+      "2026-11-10T07:30:50.7681640Z ✔ event source contract retains its actual reader for src/lua/abyss_event_combat_routes.lua (0.2108ms)",
+      "2026-11-10T07:30:50.7683664Z ✔ event source contract retains its actual reader for src/lua/abyss_event_combat_enemies.lua (0.1634ms)",
+      "2026-11-10T07:30:50.7684671Z ✔ event source contract leaves unrelated selection narrow and unknown or deleted inputs on Full (0.4175ms)",
+      "2026-11-10T07:30:50.7775950Z CI_FILE_TIMING {\"file\":\"tests/test-affected.test.mjs\",\"durationMs\":10140.1252,\"success\":true}"
+    ]
+  },
+  {
+    "name": "hosted-win17",
+    "jobId": 129683007251,
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683007251",
+    "downloadedTextSha256": "862d2e83f39bbf39c88c9bab2e78369715fd05173e57e9026f360b56f360f11d",
+    "downloadedTextBytes": 212653,
+    "scope": "connector-decoded log text, not original archive bytes",
+    "excerpts": [
+      "2026-11-10T07:30:06.4037649Z CI_FILE_TIMING {\"file\":\"tests/event-combat-routes-source.test.mjs\",\"durationMs\":106.5525,\"success\":true}"
+    ]
+  },
+  {
+    "name": "hosted-linux7",
+    "jobId": 129683006704,
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006704",
+    "downloadedTextSha256": "4438ce7fbfc093652cdd234f29366017c7228580e0d332985192674811fd72fc",
+    "downloadedTextBytes": 86880,
+    "scope": "connector-decoded log text, not original archive bytes",
+    "excerpts": [
+      "2026-11-10T07:19:26.3623825Z ✔ event source contract retains its actual reader for src/lua/abyss_dead_adventurer_event.lua (0.386292ms)",
+      "2026-11-10T07:19:26.3625512Z ✔ event source contract retains its actual reader for src/lua/abyss_colosseum_event.lua (0.330327ms)",
+      "2026-11-10T07:19:26.3627203Z ✔ event source contract retains its actual reader for src/lua/abyss_masked_bandits_event.lua (0.29471ms)",
+      "2026-11-10T07:19:26.3629196Z ✔ event source contract retains its actual reader for src/lua/abyss_event_combat_routes.lua (0.287276ms)",
+      "2026-11-10T07:19:26.3630933Z ✔ event source contract retains its actual reader for src/lua/abyss_event_combat_enemies.lua (0.313305ms)",
+      "2026-11-10T07:19:26.3640131Z ✔ event source contract leaves unrelated selection narrow and unknown or deleted inputs on Full (0.640566ms)",
+      "2026-11-10T07:19:26.3841177Z CI_FILE_TIMING {\"file\":\"tests/test-affected.test.mjs\",\"durationMs\":13520.668218,\"success\":true}"
+    ]
+  },
+  {
+    "name": "hosted-linux11",
+    "jobId": 129683006780,
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006780",
+    "downloadedTextSha256": "4c552d0b07941b527a6ebf0444b4a74c03870a74426b25a817e6361d8873b8c2",
+    "downloadedTextBytes": 78726,
+    "scope": "connector-decoded log text, not original archive bytes",
+    "excerpts": [
+      "2026-11-10T07:18:12.4652112Z CI_FILE_TIMING {\"file\":\"tests/event-combat-routes-source.test.mjs\",\"durationMs\":61.804666,\"success\":true}"
+    ]
+  }
+]
