@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "scope": "CI setup failure evidence, not UI/device performance",
+  "headBeforeFix": "4f2efb41e6b9d78e04651c6ba7744c5271f248b6",
+  "base": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "failures": [
+    {
+      "runId": 42560668427,
+      "attempt": 1,
+      "jobId": 128976843233,
+      "job": "engineering-posix (3/15)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42560668427/job/128976843233",
+      "stage": "setup:lua-static",
+      "testsExecuted": false,
+      "cause": "Luacheck release download returned HTTP504",
+      "path": "docs/evidence/product-outcomes/ci-504-128976843233.log.gz",
+      "sha256": "221ebaf67360d6dac9a11b692740930662f7639e9d986e0cd67e68198f10b280",
+      "decodedLogSha256": "03cb156c165027bd617cb496957843a1c6198df08827b9181049e70cd660599b"
+    },
+    {
+      "runId": 42560668427,
+      "attempt": 1,
+      "jobId": 128976843288,
+      "job": "rules (6/17)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42560668427/job/128976843288",
+      "stage": "setup:lua-static",
+      "testsExecuted": false,
+      "cause": "Luacheck release download returned HTTP504",
+      "path": "docs/evidence/product-outcomes/ci-504-128976843288.log.gz",
+      "sha256": "25788a6bb629d68c21dacdad6c41796fca25f70ffa5410de207871d6843a08e4",
+      "decodedLogSha256": "358e432678da0e6555a94662536ae80dbccf05df3aea0b938e9f094c97c6cab8"
+    },
+    {
+      "runId": 42560668427,
+      "attempt": 1,
+      "jobId": 128976843203,
+      "job": "engineering-posix (14/15)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42560668427/job/128976843203",
+      "stage": "setup:lua-static",
+      "testsExecuted": false,
+      "cause": "Luacheck release download returned HTTP504",
+      "path": "docs/evidence/product-outcomes/ci-504-128976843203.log.gz",
+      "sha256": "8e8c97e8abb093df3eb059c13081d8028bbe45c1bde770151b6c9452ebde909e",
+      "decodedLogSha256": "66acafcd98571241c13496211053f64c20d627715992bc98aa03cac1cb0e0391"
+    },
+    {
+      "runId": 42560668427,
+      "attempt": 2,
+      "jobId": 129004912948,
+      "job": "engineering-posix (3/15)",
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42560668427/job/129004912948",
+      "stage": "setup:lua-static",
+      "testsExecuted": false,
+      "cause": "Luacheck release download returned HTTP504",
+      "path": "docs/evidence/product-outcomes/ci-504-129004912948.log.gz",
+      "sha256": "52f263790ce4202db38e603672088f68cf73687d3eb92df9ca041b9db4a209ac",
+      "decodedLogSha256": "9a6f364ae7232d5b76eef5f3b0c67c7a59ffcbc86e3cb332d5f06824e4a54df0"
+    }
+  ],
+  "attempt1": "29 regression shards succeeded; 3 failed before tests. Native failed-only attempt2 preserved successes.",
+  "recovery": "Existing curl native retry count2, delay1s, retry-max-time60s; existing max-time60s, process timeout65000ms, version and SHA256 remain unchanged."
+}
