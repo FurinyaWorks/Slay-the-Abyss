@@ -94,7 +94,8 @@ test('outer foreign-source fallback preserves invalid raw-reader semantics',()=>
   assert.equal(sourceEpoch.preCombinedSource(path,source,{target,readSource}),source);
 });
 
-test('live LF and CRLF raw owner reads authenticate 49 current owners on every call',()=>{
+test('live LF and CRLF raw owner reads authenticate every current owner on every call',async()=>{
+ const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs'),proof=sourceEpoch.proof;
  const config='config/architecture.json',input=readFileSync(config,'utf8'),expected=proof.targets.actor.files[config].source;
  for(const crlf of [false,true]){
   const seen=[];let corrupt=null,missing=null;

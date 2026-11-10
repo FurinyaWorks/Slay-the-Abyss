@@ -39,3 +39,9 @@
 本目录公开的是原已完成观测的路径规范化副本，不是重新执行结果。云工作目录前缀替换为 `<cloud-workspace>`，Node 安装位置替换为 `<cloud-runtime>/node`；仓库相对路径、文件数量、工具与源码字节身份、测试数量、状态、时间戳和耗时全部保留。每份输入归档与收据注明原件 SHA256，`publication-transform.json` 列出原件到公开副本的逐文件摘要及变换类别。原件仅保存在私有证据归档中，不随公开 Git 历史发布。
 
 `final-file-hashes.json` 是原始私有测量冻结的历史身份，不能当作当前公开副本摘要。具有原件访问权的审查者可运行 `node docs/evidence/m7-colorless-description-ci-20261110/sanitize-public-evidence.mjs --verify`，逐字节重现并核对转换。没有私有原件的读者可核验公开文件摘要和转换规则，但摘要本身不能证明隐藏原件的内容。原测量采集器保留原样，未来执行仍须先私有保存原件，再经过明确的公开转换。
+
+## 后续旧消费者接线修复
+
+上述公开路径转换和 `publication-transform.json` 对应首个公开提交 `45473f7ffe38399a98de46653ea17c1b1e3fe0b4`、树 `631fdf5ee48c55f50fa6708ade03e353e8f9f7d8`。转换脚本的 `--verify` 应在该历史 checkout 中使用具有授权的私有原件执行；后续 CI proof 变更不属于原转换，不能重写原映射或声称是再次执行原测试。
+
+本次另修正 Defect/Silent 两个 live-owner case：只有该 case 局部使用当前公开 epoch 与当前 owner 集合，原冻结 50/49-owner 合同、历史数量及所有漂移/缺失负控不变。CI proof 对这两个测试各增加完整字节到 `ab65ed3` 原源码的逆向绑定，既有九条绑定原样保留。两项 filtered case 均先精确复现 Colorless owner 身份失败，再各 1/1 通过；相关 CI 来源、历史 floor 与 inventory 合同按名称选择 9/9 通过。没有重跑整文件或 Full，上文 81/81 是先前候选的历史结果，不是此次补丁的新完整回归。Defect/Silent 原正式规划下界 13784/10937 ms 与全部预算保持不变；filtered 进程耗时不作为新完整文件测量。

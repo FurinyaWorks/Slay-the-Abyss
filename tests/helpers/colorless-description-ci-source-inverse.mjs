@@ -5,8 +5,8 @@ import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const archive=readFileSync(new URL('./colorless-description-ci-source-epoch.json.gz',import.meta.url));
-assert.equal(hash(archive),'8b70da0c540e693eb12f3c3c28dbc9f9e507cb305a339d3d8b9d77f1f611684b');
-const bytes=gunzipSync(archive);assert.equal(hash(bytes),'9a786d92c872b6d94aaae0ba2776877d6e108da870e685b8a830998ce39e0324');
+assert.equal(hash(archive),'3a0b4213170740b0f20b0a959eabbb004b453e0e2c0cb3431d7387321cf38865');
+const bytes=gunzipSync(archive);assert.equal(hash(bytes),'f6b9f0c5fae3ee71ee56d54e57eba214b16c8a735b8ed831d0864028f6aa0ad9');
 export const colorlessDescriptionCiProof=JSON.parse(bytes);
 for(const binding of Object.values(colorlessDescriptionCiProof.files)){
  assert.equal(hash(binding.beforeSource),binding.beforeSha256);assert.equal(hash(binding.afterSource),binding.afterSha256);
