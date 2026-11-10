@@ -74,16 +74,15 @@ function styleLegend(legend,theme){
  // Transparent bounds only: SDK font26 needs 41.7px for one line; preserve the source centre/font.
  const title=must(legend,'title');title.position=[0,129];title.size=[230,52];
  Object.assign(title.text,{content:'图例',fontSize:26,minFontSize:26,colour:'#1D2C32',outline:false});
- const rows=[['event','未知'],['shop','商人'],['treasure','宝箱'],['camp','休息'],['combat','敌人'],['elite','精英']];
+ const rows=[['event','未知'],['shop','商人'],['treasure','宝箱'],['camp','休息'],['combat','敌人'],['elite','精英'],['boss','首领']];
  rows.forEach(([kind,label],i)=>{
-  const icon=must(legend,kind+'Icon'),text=must(legend,kind+'Label'),y=86.5-i*40;
+  const icon=must(legend,kind+'Icon'),text=must(legend,kind+'Label'),y=86.5-i*35;
+  icon.visible=true;text.visible=true;
   icon.position=[-81.5,y];icon.size=[31,32];icon.colour='#20323A';
   icon.image=theme.icon.node[kind];
   text.position=[19,y];text.size=[140,40];Object.assign(text.text,{content:label,fontSize:22,minFontSize:22,colour:'#20323A',align:'left',outline:false});
  });
- // The approved A legend has six entries; the boss remains in the graph and
- // its existing legend handles remain addressable, rather than being deleted.
- must(legend,'bossIcon').visible=false;must(legend,'bossLabel').visible=false;
+ // Keep all seven playable node kinds discoverable, including the terminal boss.
  legend.children.unshift(legendPaper(theme));
 }
 

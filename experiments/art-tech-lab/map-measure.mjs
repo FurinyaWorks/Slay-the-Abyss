@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 const [file,sdk,out]=process.argv.slice(2);
-const {Gr,vi,dn,wi,pa,Me,d}=await import(pathToFileURL(sdk));
+const {Gr,vi,dn,wi,pa,Me,d,ya}=await import(pathToFileURL(sdk));
 const hash=f=>createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 const report={scope:'Production map subsystem in Simulator SDK; room completion explicitly simulated; CPU wall time, not GPU or official device FPS',saveSha256:hash(file),sdkSha256:hash(sdk),stages:[],samples:[],logs:[]};
 const save=JSON.parse(fs.readFileSync(file));let session,L;
@@ -27,6 +27,7 @@ try{
  stage('twenty-scroll-roundtrips',()=>{for(let i=0;i<20;i++){call('MapPreviewScroll(400)');step();call('MapPreviewScroll(0)');step()}});
  stage('real-pointer-choices',()=>{report.choices=[];for(let i=0;i<6;i++){call('MapPreviewContinue()');const before=status();const hit=controls().find(x=>/\/node\d+\/hit$/.test(x.path)&&x.node.visible&&x.node.parent?.visible);assert(hit,'no actual hit');tap(hit.node);const after=status();assert.equal(after.floor,before.floor+1,'pointer did not choose legal next node');report.choices.push({before,after});}});
  stage('act2-real-generated-map',()=>{call('MapPreviewAct(2)');step();report.act2=status();assert.equal(report.act2.act,2)});
+ stage('boss-viewport',()=>{call('MapPreviewScroll(880)');step();fs.writeFileSync(out+'.boss.state.json',JSON.stringify(ya(session,{view:true,paint:true})));});
  stage('destroy-roots',()=>{for(const runtime of session.runtimes)for(const root of [...runtime.roots])runtime.destroyControl(root);assert.equal(session.runtime.controlsById.size,0)});
  report.status='passed';
 }catch(e){report.status='failed';report.error=String(e.stack);process.exitCode=1}

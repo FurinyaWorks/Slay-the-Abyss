@@ -41,7 +41,8 @@ test('paper and blue legend have layered native silhouettes, continuous light an
  assert(chrome.children.some(c=>c.name==='topRoll'));assert(chrome.children.some(c=>c.name==='bottomRoll'));
  assert.equal(find(legend,'title').text.content,'图例');
  assert.equal(find(legend,'eventLabel').text.content,'未知');assert.equal(find(legend,'shopLabel').text.content,'商人');
- assert.equal(find(legend,'bossIcon').visible,false);assert.equal(find(legend,'bossLabel').visible,false);
+ assert.equal(find(legend,'bossIcon').visible,true);assert.equal(find(legend,'bossLabel').visible,true);
+ assert.equal(find(legend,'bossLabel').text.content,'首领');
  assert.equal(all(layout).filter(c=>c.kind==='cursorArea').length,hits);
  for(const node of all(paper).concat(all(chrome)))assert(!node.script&&!node.scripts&&!node.focusable);
 });
