@@ -1,0 +1,37 @@
+[
+  {
+    "path": "ci-independent-audit.log.gz",
+    "sha256": "dcc5aed19d98c565c2fc837e8915b62ab9a244e0c56ebae0ce7d4f6aca04cf07",
+    "uncompressedSha256": "7991261d7ef281e8b0cc4ef403db65c48b28acd15f0e04d386347da067d316f2"
+  },
+  {
+    "path": "ci-planning.json.gz",
+    "sha256": "0e92ff0df4434c34b494044ac488bd3471c577e322fe0423970e034e382b0a82",
+    "uncompressedSha256": "ed748bf03a27e94a02ce3e6fedf209743bc774ea5c402aa4373afd2c02903ab6"
+  },
+  {
+    "path": "formation-predecessor.log.gz",
+    "sha256": "919cd4cd3e22b83ab687de21195f08a1e0c86f5c067ef6a6a0f7b09de82d78de",
+    "uncompressedSha256": "bb4970f4db676ab87faa32d934411d24a424ee6b0241d5886aa3bcd10ba1ce44"
+  },
+  {
+    "path": "integration-consumers.log.gz",
+    "sha256": "def01e5d8a5942401fbbd0ced742513e44b9bd877fc8111a5a08fa5c638a4d1a",
+    "uncompressedSha256": "aec3c235a42584cfada058bd4193319674f905d762e48bd463dbd971faf5f293"
+  },
+  {
+    "path": "legacy-ending-owner-negative-probe.log.gz",
+    "sha256": "8349235166aeb60aaa7ec54751fd2b4564fbf5801f35665b0e8723c3597f1b4d",
+    "uncompressedSha256": "4aca484789f606e4f71e09af793166c042939e71043514f9e177761bc0bc93e6"
+  },
+  {
+    "path": "legacy-owner-negative-probe-final.log.gz",
+    "sha256": "6b89742ad492ad3139b3b6756156e46434e042424315332ad35e6ce0f62e5a80",
+    "uncompressedSha256": "56ac3e000fa9a00b05348ab0757dfa1379ac8cb06f61b6ab6332c8231d525a59"
+  },
+  {
+    "path": "legacy-owner-negative-probe.log.gz",
+    "sha256": "a27e273f1ad3c9ff7932eaa6b0b3c664919b17a2fe106814e5c92e393a767d1f",
+    "uncompressedSha256": "3a2a406793434d00f7efe87bc92e9373a37a91a3869028cdfaca9e8d577278c7"
+  }
+]

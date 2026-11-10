@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T01:07:00Z'
+updated_date: '2026-11-10T07:32:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -31,6 +31,7 @@ documentation:
   - docs/backlog-details/M7-DEFECT-COST-20261109.md
   - docs/backlog-details/M7-ENCOUNTER-FORMATION-20261109.md
   - docs/backlog-details/M7-FORMATION-POSIX15-INTEGRATION-20261109.md
+  - docs/backlog-details/M7-ENDING-TERMINAL-20261110.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -105,6 +106,10 @@ ordinal: 162000
 2026-11-09 主控指派接续未占用EncounterFormation.assemble（CC31）：按固定编队、随机池、候选即时构造职责拆分，冻结完整旧源码与独立VM轨迹，保持构造/RNG/动态能力读取/错误行为。独立树接续已公开#574，不触碰其POSIX15在途修改；单独CC15硬门禁、全源度量、来源与成本合同及独立深审后及时上传草稿。此片不宣称SCC下降，不重复Full、不操作用户设备、不提前勾AC。
 
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
+
+2026-11-09 主控委派继续未占用 ending_history.terminal：将标准局身份、终局事件、Boss结果、地图来源与唯一终点节点校验分成具名职责，保持原短路读取/异常顺序及持久化owner。冻结1eb2884完整旧源，独立新旧VM比较成功/每字段拒绝/别名/故障前缀，真实CC15门禁及来源epoch、定向验证、独审后及时Draft交付；不重复Full、不使用用户电脑，原owner/status/AC不变。
+
+2026-11-10 接续已公开57b27715的EndingHistory terminal既有切片，先保留原提交并与最新develop ab65ed3b合流；不重复Winding或其他在途职责。核对完整旧新图、来源/历史消费者及原预算下真实新增成本，独立深审后更新原分支并提Draft。Backlog owner/状态/AC保持，不重复Full、不占用用户设备。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -191,4 +196,6 @@ Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原PO
 已在独立树整合公开#574@841510b7与#575@d21be2fb，保全两父全部生产/历史证据。组合800JS/1410Lua复算Windows1794163（余5837）、POSIX15为1128812（余71188），旧14超5156保持可复现；仅4共享文本冲突，预算/floor/unknown/并发/worker不变。独审核8125非冲突原路径字节一致；当前定向测试和最终独审收口中，不重复Full或提前勾AC。
 
 POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入前后hash一致；历史/当前投影4370+6976比较重放一致。独审13455比较、17桥拒绝和40准入validator拒绝负控通过，原始失败保留。以原#575与#574为两父合并更新同PR；仅本地组合验证及规划通过，未跑本HEAD Hosted Full，继续Draft与正常准入，不勾AC。
+
+2026-11-10 恢复并接续已公开EndingHistory terminal切片57b27715，保留原提交与ab65ed3b基线合流。新三文件28/28及原职责19/19、独审35+11和1664 fresh-owner负控通过；terminal CC39→5，5helper最大13，全库5609项测量、>30为32、>15为208，SCC68/11/2与14旧告警不变。最终CI四文件64/64；6项真实local floor保留较慢不稳定成功与稳定复测边界，原预算、17/15形状及全部历史成本不变。Win规划含预留1798303ms仅余1697，不代表Hosted可行。等待精确HEAD正常CI与原生准入/合后验收，owner/status/AC不改，无Full重复或设备操作。
 <!-- SECTION:NOTES:END -->

@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-reporter=tap",
+    "tests/ci-complete-calibration.test.mjs",
+    "tests/ci-host-timing-calibration.test.mjs",
+    "tests/ci-windows-shape-expansion.test.mjs",
+    "tests/ci-runtime.test.mjs"
+  ],
+  "exitCode": 0,
+  "tests": 64,
+  "pass": 64,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "nodeReportedDurationMs": 42887.623898,
+  "logPath": "docs/evidence/m7-ending-terminal-20261110/final-ci-four.log.gz",
+  "logSha256": "60680c8aa9dfa3b9ef048ba284ba8c090c11a851e79e3be8a683beed0381c4ba",
+  "logUncompressedSha256": "078fa440ce15d86c66b9c7ebe5b698dc8ea2a3ba6c0c33b2e3c460b656502720",
+  "afterRunFileSha256": {
+    "scripts/ci-test-timings.json": "b6f7bc98e126d1130d36af9a2dd93c1526c48f1f49204b64b5b529b655c268da",
+    "tests/ci-complete-calibration.test.mjs": "f1016074b9fae401765860b8654bd356773dc658fe19b1fa98a4fbe8b8b2837d",
+    "tests/ci-host-timing-calibration.test.mjs": "f328b2d3cb44bc7d8f9e3b7cec31ab40c36d30376dc31dbca17b9ec9bf3f12da",
+    "tests/ci-runtime.test.mjs": "c32527ba9fa48f0b0b82efdacfa8db60fc0859503d6d2e42a9d6549625efd487",
+    "tests/ci-windows-shape-expansion.test.mjs": "05b845266f80788c29872135b1eab53473d1d484f1dd5a01a7b6977d90866b96",
+    "tests/helpers/ending-terminal-ci-contract.mjs": "bd0c3d119851a43c835582e1624cfc1c45645712f94ba27a527d82ddfe2cab95",
+    "tests/helpers/ending-terminal-ci-source-inverse.mjs": "6338635162a90cd8fba72fe14a0ed2af22e5d16f5dbf5e8d16daa12e80c15baa",
+    "tests/helpers/ending-terminal-ci-source-epoch.json.gz": "a4c341fc65a4e01f76b24497f0637a0d3465509e3ded4e0842749e09ef416cd3",
+    ".gitattributes": "809189227e8d4957430bea410df94e67f075e65ca4c6d72409cb6fa88e62f549"
+  },
+  "scope": "Final combined serial four-file CI validation after costs and helper registration. After-run identity only; not a per-file cost observation or a before/after manifest receipt. No Full or hosted pass claimed."
+}

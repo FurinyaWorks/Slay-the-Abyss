@@ -465,3 +465,22 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# Ending terminal responsibility source authentication.
+tests/helpers/combined-epoch/pre-ending-terminal-source-epoch.mjs text eol=lf
+tests/helpers/ending-terminal-source-epoch.json.gz -text
+tests/helpers/ending-terminal-source-epoch.mjs text eol=lf
+tests/ending-terminal-source-epoch.test.mjs text eol=lf
+
+# Ending terminal current receipt and CI source bytes.
+tests/ending-terminal-responsibilities.test.mjs text eol=lf
+tests/ending-terminal-complexity.test.mjs text eol=lf
+tests/ci-complete-calibration.test.mjs text eol=lf
+tests/ci-host-timing-calibration.test.mjs text eol=lf
+tests/ci-runtime.test.mjs text eol=lf
+tests/ci-windows-shape-expansion.test.mjs text eol=lf
+tests/helpers/ending-terminal-ci-contract.mjs text eol=lf
+tests/helpers/ending-terminal-ci-source-inverse.mjs text eol=lf
+tests/helpers/ending-terminal-ci-source-epoch.json.gz -text
+docs/evidence/m7-ending-terminal-20261110/*.gz -text
+docs/evidence/m7-ending-terminal-20261110/*.mjs text eol=lf

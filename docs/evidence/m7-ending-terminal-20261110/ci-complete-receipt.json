@@ -1,0 +1,29 @@
+{
+  "file": "tests/ci-complete-calibration.test.mjs",
+  "label": "ci-complete",
+  "startedAt": "2026-11-10T07:27:47.740Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/ci-complete-calibration.test.mjs"
+  ],
+  "exitCode": 1,
+  "signal": null,
+  "wallMs": 242.3901820000001,
+  "nodeReportedDurationMs": 150.615835,
+  "tests": 1,
+  "pass": 0,
+  "fail": 1,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "f1016074b9fae401765860b8654bd356773dc658fe19b1fa98a4fbe8b8b2837d",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5919,
+  "inputPath": "docs/evidence/m7-ending-terminal-20261110/ci-complete-inputs.json.gz",
+  "inputSha256": "b68a3070ee7bfcbd8f27b15c52d4da176fa5db67e87b3cc37ffc109e8a800ed1",
+  "logPath": "docs/evidence/m7-ending-terminal-20261110/ci-complete.log.gz",
+  "logSha256": "65ed498b4e402ca25aee2477240276ae0cc4e9c3e57f479d104f193143d5553b",
+  "logUncompressedSha256": "6f26fb27203a2e125792a19f7f6b14cab11315752aba3d61a6b78e6111e2761f",
+  "collectorSha256": "7894156466bb142aee852d2e9b9ec9cb66f8f8391310c07884759cd6a18ff1fb"
+}

@@ -1,3 +1,4 @@
+import {preEndingTerminalCiSource} from './helpers/ending-terminal-ci-source-inverse.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -20,7 +21,7 @@ import {classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-p
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
+import { readdirSync, readFileSync as liveReadFileSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -162,6 +163,8 @@ test('real executor preserves test failure, continues later files, reports timin
 
 
 test('current timing records preserve all measured corrections without duplicate JSON keys',()=>{
+ const timings=JSON.parse(preEndingTerminalCiSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8')));
+ const jsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(timings.js[platform][file]??timings.unknownJsMs,timings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
  const raw=readFileSync('scripts/ci-test-timings.json','utf8');
  assert.equal((raw.match(/^  "jsCorrections":/gm)||[]).length,1,'one unambiguous correction inventory');
  assert.equal(timings.jsCorrections.length,3);
@@ -421,3 +424,6 @@ test('partial successful source cases provide lower bounds without claiming thei
   if(typeof input==='string'&&input!==prior)assert.equal(originalPlanningSource(path,input),input);
  }
 });
+
+// Frozen runtime cost assertions use the exact complete predecessor bytes.
+function readFileSync(file,encoding){const value=liveReadFileSync(file,encoding);const text=typeof value==='string'?value:value.toString('utf8');const projected=preEndingTerminalCiSource(file,text);return typeof value==='string'?projected:projected===text?value:Buffer.from(projected);}

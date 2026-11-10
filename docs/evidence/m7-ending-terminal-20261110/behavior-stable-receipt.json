@@ -1,0 +1,29 @@
+{
+  "file": "tests/ending-terminal-responsibilities.test.mjs",
+  "label": "behavior-stable",
+  "startedAt": "2026-11-10T07:26:34.371Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/ending-terminal-responsibilities.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 22608.060051999997,
+  "nodeReportedDurationMs": 22503.157538,
+  "tests": 14,
+  "pass": 14,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "752af795141537046d1fb0cfb5856bc99139602a5e6304411a877e6d710485b3",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5915,
+  "inputPath": "docs/evidence/m7-ending-terminal-20261110/behavior-stable-inputs.json.gz",
+  "inputSha256": "3e957339e9782ac87618058d6b30fd15d3133c4ae09f3fa58adee214279ce043",
+  "logPath": "docs/evidence/m7-ending-terminal-20261110/behavior-stable.log.gz",
+  "logSha256": "05a3846cc8bcd374d5ab4dc78fdae666768266f6ad660e70b24427e0d109aa46",
+  "logUncompressedSha256": "c2ab5cd18ef1aaaac364f53bac6ee6f98c95b8451c9d24f91d6c9150806ae729",
+  "collectorSha256": "7894156466bb142aee852d2e9b9ec9cb66f8f8391310c07884759cd6a18ff1fb"
+}

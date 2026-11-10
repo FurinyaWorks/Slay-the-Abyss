@@ -1,0 +1,29 @@
+{
+  "file": "tests/ci-windows-shape-expansion.test.mjs",
+  "label": "ci-windows",
+  "startedAt": "2026-11-10T07:28:48.304Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/ci-windows-shape-expansion.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 10382.244213,
+  "nodeReportedDurationMs": 10293.102563,
+  "tests": 3,
+  "pass": 3,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "05b845266f80788c29872135b1eab53473d1d484f1dd5a01a7b6977d90866b96",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5919,
+  "inputPath": "docs/evidence/m7-ending-terminal-20261110/ci-windows-inputs.json.gz",
+  "inputSha256": "e804580e6cb92f8f635ff5c4b497fabad39ab881fdb5001b4cc2c61dbc31d9b3",
+  "logPath": "docs/evidence/m7-ending-terminal-20261110/ci-windows.log.gz",
+  "logSha256": "ea185f042becc6ee8b9634d176ca63039dcf1833a92cf1da783fd7863ded5efb",
+  "logUncompressedSha256": "6601d4fcdf094ba56d3fe3bb010061ab572c48b2e801a30e896d2148348b83f5",
+  "collectorSha256": "7894156466bb142aee852d2e9b9ec9cb66f8f8391310c07884759cd6a18ff1fb"
+}

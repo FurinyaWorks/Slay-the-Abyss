@@ -1,0 +1,17 @@
+import {inputManifest} from './input-manifest.mjs';
+import {readFileSync as read,writeFileSync as write,existsSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
+import {spawnSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const [file,label]=process.argv.slice(2);assert(file?.startsWith('tests/')&&label&&/^[a-z0-9-]+$/.test(label));
+const root='docs/evidence/m7-ending-terminal-20261110',hash=b=>createHash('sha256').update(b).digest('hex');
+const before=inputManifest(),command=[process.execPath,'--test','--test-reporter=tap',file],startedAt=new Date().toISOString(),start=performance.now();
+const result=spawnSync(command[0],command.slice(1),{encoding:'utf8',maxBuffer:32*1024**2});const wallMs=performance.now()-start,after=inputManifest();
+const log=result.stdout+'\n'+result.stderr,get=k=>Number(log.match(new RegExp(`^# ${k} ([0-9.]+)$`,'m'))?.[1]);
+const stable=JSON.stringify(before.files)===JSON.stringify(after.files),inputPath=`${root}/${label}-inputs.json.gz`,inputBytes=gzipSync(JSON.stringify({before,after},null,2)+'\n'),logPath=`${root}/${label}.log.gz`,logBytes=gzipSync(log);
+write(inputPath,inputBytes);write(logPath,logBytes);
+const receipt={file,label,startedAt,command,exitCode:result.status,signal:result.signal,wallMs,nodeReportedDurationMs:get('duration_ms'),tests:get('tests'),pass:get('pass'),fail:get('fail'),cancelled:get('cancelled'),skipped:get('skipped'),testSha256:before.files[file].sha256,inputFilesUnchanged:stable,inputFileCount:Object.keys(before.files).length,inputPath,inputSha256:hash(inputBytes),logPath,logSha256:hash(logBytes),logUncompressedSha256:hash(log),collectorSha256:hash(read(`${root}/measure-file.mjs`))};
+write(`${root}/${label}-receipt.json`,JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt));
+if(!stable)console.error('Execution input changed; this run cannot be final validation.');
+process.exitCode=result.status||(!stable?2:0);

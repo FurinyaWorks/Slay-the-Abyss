@@ -1,0 +1,29 @@
+{
+  "file": "tests/ending-terminal-complexity.test.mjs",
+  "label": "complexity",
+  "startedAt": "2026-11-10T07:26:31.658Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/ending-terminal-complexity.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 1049.9113340000001,
+  "nodeReportedDurationMs": 963.785864,
+  "tests": 3,
+  "pass": 3,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "b9d910db0ec418867cf54a127cf823ed91342d334b821c6cdc8e76dec37206ff",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5915,
+  "inputPath": "docs/evidence/m7-ending-terminal-20261110/complexity-inputs.json.gz",
+  "inputSha256": "5fa4f2589416a575487177ba12b11017c1fefc550866016e36dd9f1c08d1ecf2",
+  "logPath": "docs/evidence/m7-ending-terminal-20261110/complexity.log.gz",
+  "logSha256": "3910cdbf0240996fb60e4895ef12fa882d5ef21c9c6beddbcd1b73bb070a9f71",
+  "logUncompressedSha256": "d9a5d4844d13f7f85c625df5d71b7fbef409d93759a0640444415f4e3f2dcc23",
+  "collectorSha256": "7894156466bb142aee852d2e9b9ec9cb66f8f8391310c07884759cd6a18ff1fb"
+}

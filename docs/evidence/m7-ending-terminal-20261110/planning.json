@@ -1,0 +1,13 @@
+{
+  "inventory": {
+    "js": 803,
+    "lua": 1410
+  },
+  "windows17WithReserve": 1798303,
+  "posix15WithReserve": 1133696,
+  "reserveMs": 60000,
+  "windowsBudget": 1800000,
+  "posixBudget": 1200000,
+  "workers": 2,
+  "fullRunClaimed": false
+}

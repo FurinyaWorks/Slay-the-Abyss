@@ -6173,6 +6173,48 @@
         },
         "sourceReceipt": "docs/evidence/m7-formation-20261109/behavior-final-receipt.json",
         "sourceReceiptSha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc"
+      },
+      "tests/ending-terminal-source-epoch.test.mjs": {
+        "durationMs": 18865,
+        "environment": "cloud Linux local",
+        "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+        "sourceReceipt": "docs/evidence/m7-ending-terminal-20261110/source-receipt.json",
+        "sourceReceiptSha256": "4bc29b7fa0b6439d6aff5b9f27e1aeed7772bb6afc1894bf9c1fa2daccc8db59"
+      },
+      "tests/ending-terminal-responsibilities.test.mjs": {
+        "durationMs": 27753,
+        "environment": "cloud Linux local",
+        "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+        "sourceReceipt": "docs/evidence/m7-ending-terminal-20261110/behavior-stable-receipt.json",
+        "sourceReceiptSha256": "793a87426955462853dedf16b75282b4efb9cec33c541a431f5b17642a1066e9"
+      },
+      "tests/ci-complete-calibration.test.mjs": {
+        "durationMs": 13688,
+        "environment": "cloud Linux local",
+        "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+        "sourceReceipt": "docs/evidence/m7-ending-terminal-20261110/ci-complete-final-receipt.json",
+        "sourceReceiptSha256": "21f8bb17eab3f2f0d6229b286a114acd9055434c5d6b303b736b41e10bc72b83"
+      },
+      "tests/ci-host-timing-calibration.test.mjs": {
+        "durationMs": 10843,
+        "environment": "cloud Linux local",
+        "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+        "sourceReceipt": "docs/evidence/m7-ending-terminal-20261110/ci-host-receipt.json",
+        "sourceReceiptSha256": "52703663e3a58e96d8da31210a0e0e259b912a6b316074113038eae4efb5ab57"
+      },
+      "tests/ci-windows-shape-expansion.test.mjs": {
+        "durationMs": 10383,
+        "environment": "cloud Linux local",
+        "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+        "sourceReceipt": "docs/evidence/m7-ending-terminal-20261110/ci-windows-receipt.json",
+        "sourceReceiptSha256": "2a5ecc73bc12ec91d34c088d0a702f9f9b17b7c0e855bf4c0f81c3e71a9c40f2"
+      },
+      "tests/ci-runtime.test.mjs": {
+        "durationMs": 13100,
+        "environment": "cloud Linux local",
+        "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+        "sourceReceipt": "docs/evidence/m7-ending-terminal-20261110/ci-runtime-receipt.json",
+        "sourceReceiptSha256": "271aaeb1c7c208f8c7c60d4c85e27eec99e22e2f8a3cabf6800961c952f1088f"
       }
     }
   },
