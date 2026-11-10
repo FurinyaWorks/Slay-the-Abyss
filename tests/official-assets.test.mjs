@@ -86,11 +86,22 @@ test('approved battle geometry keeps live field identities and input contracts w
   for(const kind of ['draw','discard']){
    const pile=child(battle,kind+'Icon'),hit=child(pile,'hit'),label=child(battle,kind+'Label');
    const hx=pile.position[0]+hit.position[0],hy=pile.position[1]+hit.position[1];
-   assert(hx-hit.size[0]/2<=label.position[0]-label.size[0]/2&&hx+hit.size[0]/2>=label.position[0]+label.size[0]/2,'pile caption must be clickable');
-   assert(hy+hit.size[1]/2>=label.position[1]+label.size[1]/2,'pile caption top must be clickable');
+   assert.equal(label.visible,false,'original pile captions remain hover details');
+   assert.equal(label.text.content,'','runtime visibility refresh must not restore a caption over exhaust');
+   assert.deepEqual(hit.size,pile.size,'actual pile stack must be clickable');
    const turn=child(battle,'endTurn');
    assert(hx+hit.size[0]/2<turn.position[0]-turn.size[0]/2||hx-hit.size[0]/2>turn.position[0]+turn.size[0]/2,'pile target must not overlap irreversible End Turn');
   }
+  const hints=child(battle,'resourceHints');
+  for(const kind of ['hp','gold']){
+   const box=child(hints,kind),hit=child(box,'hit');
+   for(let slot=1;slot<=3;slot++){
+    const potion=child(battle,'potion'+slot);
+    assert(Math.abs(box.position[0]-potion.position[0])>=(hit.size[0]+potion.size[0])/2,'resource help overlaps potion '+slot);
+   }
+  }
+  const exhaust=child(battle,'exhaustIcon'),discard=child(battle,'discardIcon');
+  assert(exhaust.position[1]-child(exhaust,'hit').size[1]/2>discard.position[1]+child(discard,'hit').size[1]/2,'exhaust and discard hits overlap');
   for(let i=1;i<=10;i++){
    const card=child(battle,'card'+i);assert(card);
    assert.deepEqual(card.size,[150,210]);
@@ -117,10 +128,11 @@ test('scene and button substitutions preserve semantic icons and all four native
  assert.deepEqual(turn.states,{normal:'normal',hover:'hover',pressed:'pressed',disabled:'disabled'});
   for(const state of turn.children){
    assert(child(state,'v25Chrome'));
+   assert.equal(child(child(state,'v25Chrome'),'faceLight'),undefined,'no rectangular face highlight patch');
    for(const name of ['border','borderLeft','borderRight','inner','innerLeft','innerRight','plate','plateLeft','plateRight'])assert.equal(child(state,name).visible,false,'legacy '+name+' must not widen the restored turn button');
   }
  for(const [path,node]of paths(layout))if(/\/(portrait|intentIcon|intentBadge|intentExtra|hpIcon|goldIcon|blockedLock|art|art_attack|art_skill|art_power|icon)$/.test(path)&&node.kind==='image')
-  assert.equal(node.image,before.get(path),path);
+  assert.equal(node.image,before.get(path)??(/^\/SlayTheAbyss\/relicBar\/slot(?:1[3-9]|2[0-5])\/icon$/.test(path)?before.get('/SlayTheAbyss/relicBar/slot1/icon'):undefined),path);
  assert.equal(child(child(layout,'menuPanel'),'backdrop').image,nativeTheme.image.officialBackdrops.title);
  const menu=child(layout,'menuPanel'),result=child(menu,'result');
  for(const key of ['floor','victories','time','deck']){

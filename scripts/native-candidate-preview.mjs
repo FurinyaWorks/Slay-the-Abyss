@@ -19,7 +19,18 @@ const ui=native.getClientUi({mapPath:gil,ui:'SlayTheAbyss'}),scripts=embeddedScr
 if(scripts.length!==Object.keys(candidate.moduleDigests).length||scripts.some(s=>createHash('sha256').update(s.source).digest('hex')!==candidate.moduleDigests[s.name]))throw Error('Embedded Lua differs from build receipt');
 fs.writeFileSync(path.join(pinned,'ui.json'),JSON.stringify(ui));
 fs.writeFileSync(path.join(pinned,'scripts.json'),JSON.stringify({scripts}));
-for(const name of ['AbyssDeckCard','AbyssMonsterActor','AbyssMonsterPower','AbyssReadyCardGroup','AbyssReadyCardImage'])fs.writeFileSync(path.join(pinned,name+'.json'),JSON.stringify(native.getClientUi({mapPath:gil,template:name})));
+const requiredTemplates=new Set(['AbyssDeckCard','AbyssMonsterActor','AbyssMonsterPower','AbyssReadyCardGroup','AbyssReadyCardImage']);
+function collectTemplateReferences(node){
+ for(const key of ['itemTemplate','template'])if(node[key])requiredTemplates.add(node[key]);
+ for(const child of node.children??node.controls??[])collectTemplateReferences(child);
+}
+collectTemplateReferences(ui.interface);
+for(const name of requiredTemplates){
+ const actual=native.getClientUi({mapPath:gil,template:name});
+ if(actual.template?.name!==name)throw Error('Actual template identity differs: '+name);
+ collectTemplateReferences(actual.template);
+ fs.writeFileSync(path.join(pinned,name+'.json'),JSON.stringify(actual));
+}
 const raw=wire.container(fs.readFileSync(gil)),section=wire.one(raw,50),scriptMetadata=new Map();
 for(const f of wire.fields(section).filter(f=>f.id===1&&f.wire===2)){
  const fields=wire.fields(f.data),str=id=>fields.find(v=>v.id===id&&v.wire===2)?.data.toString('utf8');
@@ -28,7 +39,7 @@ for(const f of wire.fields(section).filter(f=>f.id===1&&f.wire===2)){
 for(const s of scripts){const m=scriptMetadata.get(s.name);if(!m||m.source!==s.source||m.file!==s.file||!Number.isSafeInteger(m.guid)||m.guid<=0)throw Error('Script readback identity mismatch: '+s.name);}
 const templateRecords=[];
 for(const file of fs.readdirSync(pinned).filter(f=>f.endsWith('.json'))){const data=read(path.join(pinned,file));if(data.template&&data.templateIndex)templateRecords.push({file,...data});}
-if(templateRecords.length!==5||new Set(templateRecords.map(t=>t.templateIndex)).size!==5)throw Error('Expected all five PR588 actual templates');
+if(templateRecords.length!==requiredTemplates.size||new Set(templateRecords.map(t=>t.templateIndex)).size!==requiredTemplates.size)throw Error('Expected every referenced PR588 actual template');
 const seed=read(path.join(root,'experiments/art-tech-lab/seed.save.json')),prototypes=new Map();
 function collect(n){if(!prototypes.has(n.kind))prototypes.set(n.kind,n);for(const c of n.children??[])collect(c);}collect(seed.assets.server.root);collect(seed.assets.client.root);
 const kinds={container:'container',image:'image',text:'textbox',cursorArea:'cursor',presetButton:'button',grid:'grid',reference:'reference',keyHint:'keyhint',textWindow:'textwindow',animation:'animation',fullscreenAnimation:'fullscreen'};
@@ -63,9 +74,13 @@ function node(spec,ids,trail,templateRoot=false){
  if(kind==='cursor')n.raycastTarget=true;
  if(kind==='button')Object.assign(n,{raycastTarget:true,interactable:spec.enabled!==false,clickAudioId:spec.sound??50888,unavailableChildId:null,hoverChildId:null,pressedChildId:null,selectedChildId:null});
  if(kind==='grid'){
+  if(spec.itemTemplate&&!templateIds[spec.itemTemplate])throw Error('Missing actual grid template: '+spec.itemTemplate);
   const g=spec.grid??{};Object.assign(n,{itemPrefabId:templateIds[spec.itemTemplate]??null,raycastTarget:true,interactable:true,showScrollBar:g.scrollbar!==false,scrollDirection:g.horizontal||g.rows?'Horizontal':'Vertical',layoutConstraint:g.columns||g.rows?'Fixed':'AutoWrap',layoutConstraintFixedCount:g.columns??g.rows??null,cellSizeX:g.itemSize?.[0]??50,cellSizeY:g.itemSize?.[1]??50,spacingX:g.spacing?.[0]??8,spacingY:g.spacing?.[1]??8,padding1X:g.padding?.[0]??20,padding1Y:g.padding?.[1]??20,padding2X:g.padding?.[2]??20,padding2Y:g.padding?.[3]??20,previewCount:g.preview??5});
  }
- if(kind==='reference')n.referencedPrefabId=templateIds[spec.template]??null;
+ if(kind==='reference'){
+  if(spec.template&&!templateIds[spec.template])throw Error('Missing actual reference template: '+spec.template);
+  n.referencedPrefabId=templateIds[spec.template]??null;
+ }
  if(kind==='keyhint'){n.keyboardKeyCode=spec.key??null;n.controllerKeyCode=spec.padKey??null;}
  if(kind==='animation'||kind==='fullscreen'){n.animationId=spec.effect??null;n.playSoundEffect=spec.effectSound===true;n.layer=spec.below?'BelowAllControls':'AboveAllControls';}
  const original=(spec.children??[]).map(c=>node(c,ids,trail?trail+'/'+c.name:c.name));
@@ -81,7 +96,7 @@ const rootSpec={name:'root',kind:'container',position:[0,0],size:[0,0],anchor:{m
 const interfaceRoot=node(rootSpec,{...ui.ids,root:ui.rootId},'');holder.children=[interfaceRoot];save.assets.server={version:1,layoutSchemaVersion:2,meta:{name:ui.interface.name,assetType:'server-control-template',sourceFormat:'actual-native-candidate-readback',sourceFile:gil},canvasId:'pc-16-9',selectedId:interfaceRoot.id,root:holder};
 const clientRoot=structuredClone(seed.assets.client.root);clientRoot.children=[];clientRoot.id='sim-client-root';clientRoot.guid=0;clientRoot.name='V25 actual candidate templates';clientRoot.scriptMappingIds=[];
 for(const t of templateRecords)clientRoot.children.push(node(t.template,t.ids,t.template.name,true));
-save.assets.client={version:1,layoutSchemaVersion:2,meta:{name:'V25 actual17templates',assetType:'client-control-template',sourceFormat:'actual-native-candidate-readback',sourceFile:gil},canvasId:'pc-16-9',selectedId:clientRoot.children[0].id,root:clientRoot};
+save.assets.client={version:1,layoutSchemaVersion:2,meta:{name:`V25 actual ${templateRecords.length} templates`,assetType:'client-control-template',sourceFormat:'actual-native-candidate-readback',sourceFile:gil},canvasId:'pc-16-9',selectedId:clientRoot.children[0].id,root:clientRoot};
 save.assets.scripts=scripts.map(s=>({id:'s'+scriptMetadata.get(s.name).guid,guid:scriptMetadata.get(s.name).guid,path:s.file,source:s.source,controlAsset:s.name==='abyss_ui'?'server-control-template':null,controlId:s.name==='abyss_ui'?interfaceRoot.id:null}));
 warn('Native compiled server graphs are not automatically converted to simulator serverLogic rules; settlement/BGM/history platform signals remain simulator limitations. Actual candidate Lua sources preserved exactly.');
 warn('Actual image IDs are preserved. Native image field5 zero/absent means Basic (same mapping as native-component-regular.mjs); translate explicitly instead of Simulator atlas border default. Asset availability still requires playback; missing images are not substituted.');

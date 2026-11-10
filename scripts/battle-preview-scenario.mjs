@@ -5,8 +5,9 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 const [input,output]=process.argv.slice(2);
-const ten=process.argv[4]==='--ten';
-if(process.argv.length>5||process.argv[4]&&!ten)throw Error('Optional argument: --ten');
+const hud=process.argv[4]==='--hud';
+const ten=process.argv[4]==='--ten'||hud;
+if(process.argv.length>5||process.argv[4]&&!ten)throw Error('Optional argument: --ten or --hud');
 if(!input||!output)throw Error('Usage: node scripts/battle-preview-scenario.mjs <actual.save.json> <new.save.json>');
 const save=JSON.parse(readFileSync(input,'utf8'));
 const mod=save.assets.scripts.find(s=>/abyss_game_ui\.lua$/.test(s.path));
@@ -27,6 +28,7 @@ function M.new(root,data,presentation,event,platform)
  assert(host:selectCharacter('traveler'))
  assert(host:selectElement('ironclad'))
  assert(host:confirmCharacter())
+ ${hud?"host.run.potions={'fire_potion','dexterity_potion','block_potion'}; local R=require('abyss_run');assert(R.removeCard(host.run,host.run.deck[1].uid));assert(R.obtainCard(host.run,'offering'));assert(R.obtainRelic(host.run,'kunai'));assert(R.obtainRelic(host.run,'ink_bottle'))":"-- Standard starter inventory."}
  assert(require('abyss_run').startCombat(host.run,'small_slimes'))
  -- The explicit replay entry omits map-room formation. Restore only the
  -- presentation offsets from the existing Small Slimes source formation.

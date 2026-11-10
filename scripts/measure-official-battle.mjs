@@ -43,11 +43,25 @@ try{
    local discard,pile={},{}
    for _,card in ipairs(c and c.discard or {})do discard[#discard+1]=card.uid end
    for _,card in ipairs(v.deckUI.cards or {})do pile[#pile+1]=card.uid end
-   return {phase=v.run and v.run.phase,mode=v.mode,hand=c and #c.hand,energy=c and c.energy,turn=c and c.turn,busy=v.battleUI.busy,selected=v.battleUI.selected,cards=cards,enemies=enemies,deckOpen=v.deckUI.visible,pileKind=v.deckUI.pileKind,discard=discard,pile=pile,routeOpen=v.routeOpen==true,portraits=__BATTLE_PORTRAITS:status()}
+   return {phase=v.run and v.run.phase,mode=v.mode,hand=c and #c.hand,energy=c and c.energy,turn=c and c.turn,busy=v.battleUI.busy,selected=v.battleUI.selected,dragging=v.battleUI.gesture and v.battleUI.gesture.moving==true,heldUid=v.battleUI.gesture and v.battleUI.gesture.uid,cards=cards,enemies=enemies,deckOpen=v.deckUI.visible,pileKind=v.deckUI.pileKind,discard=discard,pile=pile,routeOpen=v.routeOpen==true,portraits=__BATTLE_PORTRAITS:status()}
   end`,'READ_ONLY_BATTLE_STATUS');
   assert(session.runtime.logs.some(l=>l.text==='ABYSS_UI ready'));return status();
  });
  stage('portrait-ready-feedback-idle',()=>{for(let i=0;i<600;i++){const s=status();if(s.portraits.battle?.phase==='ready'&&!s.busy)return s;step()}throw Error('battle portrait never became ready')});
+ stage('two-seconds-card-glow-and-held-aim',()=>{
+  const before=status(),entry=Object.entries(before.cards).find(([,c])=>c.type==='attack'&&c.target);assert(entry,'no legal attack to aim');
+  const card=point('stage/battlePanel/card'+entry[0]+'/hit');
+  pointer('move',card);pointer('down',card);step();
+  const enemy=Object.values(before.enemies)[0];assert(enemy);
+  const actor=native('stage/battlePanel/actorLayer').children.find(a=>a.visible&&a.children.some(c=>c.name==='hit'));
+  const hit=actor.children.find(c=>c.name==='hit'),boxes=wi(session),box=boxes.get(hit.Id),matrix=pa(session,boxes).get(hit.Id);
+  const target=Me(matrix,box.centerX,box.centerY);
+  pointer('move',target);for(let i=0;i<120;i++)step();
+  const held=status();assert(held.dragging&&held.heldUid===entry[1].uid,'targeted attack did not remain held');
+  pointer('move',card);pointer('up',card);step();
+  const after=drain();assert.equal(after.hand,before.hand);assert.equal(after.energy,before.energy);
+  return {before,held,after};
+ });
  stage('steady-120-frames',()=>{for(let i=0;i<120;i++)step();return status()});
  stage('actual-select-cancel',()=>{const before=status();tap('stage/battlePanel/card1/hit');assert(status().selected,'pointer did not select');tap('stage/battlePanel/card1/hit');const after=status();assert(!after.selected);assert.equal(after.hand,before.hand);assert.equal(after.energy,before.energy);return after});
  stage('up-to-three-legal-card-commands',()=>{
@@ -64,6 +78,7 @@ try{
   assert(outcomes.length>0,'no card command executed');return {commandsExecuted:outcomes.length,outcomes};
  });
  stage('actual-discard-pile-browse',()=>{const before=drain();tap('stage/battlePanel/discardIcon/hit');const opened=status();assert(opened.deckOpen&&opened.pileKind==='discard');const uids=value=>Object.values(value??{}).sort((a,b)=>a-b);assert.deepEqual(uids(opened.pile),uids(before.discard),'discard browser differs from real combat pile');tap('stage/deckPanel/close/hit');const after=status();assert(!after.deckOpen);assert.equal(after.hand,before.hand);assert.equal(after.energy,before.energy);return {opened,after}});
+ stage('twenty-native-discard-grid-cycles',()=>{const before=drain(),counts=[];for(let i=0;i<20;i++){tap('stage/battlePanel/discardIcon/hit');assert(status().deckOpen&&status().pileKind==='discard');tap('stage/deckPanel/close/hit');assert(!status().deckOpen);counts.push(session.runtime.controlsById.size)}assert.equal(new Set(counts.slice(1)).size,1,'native pile controls grow after warm cycle');assert.equal(status().hand,before.hand);assert.equal(status().energy,before.energy);return {counts,state:status()}});
  stage('actual-end-turn',()=>{const before=drain();if(before.phase==='combat'){tap('stage/battlePanel/endTurn');const after=drain();assert(after.turn>before.turn||after.phase!=='combat','turn did not advance');return after}return before});
  stage('twenty-open-close-cycles',()=>{const counts=[];for(let i=0;i<20;i++){tap('stage/deckEntry/open/hit');assert(status().deckOpen);tap('stage/deckPanel/close/hit');assert(!status().deckOpen);counts.push(session.runtime.controlsById.size)}assert.equal(new Set(counts.slice(1)).size,1,'controls grow after warm cycle');return {counts,state:status()}});
  stage('twenty-route-preview-roundtrips',()=>{const before=drain(),counts=[];for(let i=0;i<20;i++){tap('stage/battlePanel/topBar/battleRoute/hit');assert(status().routeOpen,'route shortcut did not open');tap('stage/mapPanel/previewBack/hit');assert(!status().routeOpen,'route did not return');counts.push(session.runtime.controlsById.size)}const after=status();assert.equal(after.hand,before.hand);assert.equal(after.energy,before.energy);assert.equal(new Set(counts.slice(1)).size,1,'route roundtrip controls grow');return {counts,state:after}});

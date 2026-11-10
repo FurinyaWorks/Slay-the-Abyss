@@ -15,7 +15,7 @@ import { gameLayout } from './game-ui-layout.mjs';
 import { withViewport } from './viewport-layout.mjs';
 import { buildUiTheme } from './build-ui-theme.mjs';
 import { buildMapUI } from './map-ui-layout.mjs';
-import { deckCardTemplate } from './deck-ui-layout.mjs';
+import { deckCardTemplate, battlePileCardTemplate } from './deck-ui-layout.mjs';
 import { contentFiles } from './validate-data.mjs';
 import { loadReleaseNotes, releaseInputPaths, releaseBuildArgs } from './release-notes.mjs';
 import { nativeCardArtArgs, prepareNativeCardArt, attachNativeCardArt, bindNativeArtPresentation, nativeArtReceipt } from './card-art-samples.mjs';
@@ -179,7 +179,10 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   if(options.lightweight2d===true&&!options.legacyCardFrames){
     compactBoundedCardFaces(battle);compactBoundedCardFaces(layout,templates);
   }
-  if(officialAssets)applyOfficialAssets([battle,layout,...templates],theme);
+  if(officialAssets){
+    applyOfficialAssets([battle,layout,...templates],theme);
+    templates.push(battlePileCardTemplate(layout,templates[0]));
+  }
   for (const tree of [battle, layout, ...templates]) assertNativeUiCapacity(tree);
   const rendered = spawnSync(python, ['tools/render_traveler_cards.py', 'data/cards.json', 'data/presentation/traveler.zh-CN.json'],
     { encoding: 'utf8', timeout: 15000, maxBuffer: 1024 * 1024, env: { ...process.env, PYTHONUTF8: '1' } });

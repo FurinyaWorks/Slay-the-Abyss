@@ -37,8 +37,9 @@ function turnChrome(state,size,theme){
  const elements=[...hex('rim',w,h,palette[1],theme),...hex('well',w-6,h-6,'#1A2C35',theme),
   ...hex('face',w-14,h-14,palette[3],theme)];
  // Two bounded native soft highlights model the upper metal/blue gradient.
- elements.push(image('rimLight',[w*.68,3],theme.image.rect,palette[0],[0,h/2-2],{feather:{pixels:[3,1]}}),
-  image('faceLight',[w*.64,Math.max(2,(h-14)*.5)],theme.image.rect,palette[2],[0,(h-14)*.22],{feather:{pixels:[4,3]}}));
+ // The native rectangular feather reads as a visible patch inside the hexagon.
+ // Keep the continuous face and the thin metal edge; no detached face highlight.
+ elements.push(image('rimLight',[w*.68,3],theme.image.rect,palette[0],[0,h/2-2],{feather:{pixels:[3,1]}}));
  return group('v25Chrome',size,elements);
 }
 

@@ -32,6 +32,11 @@ export function officialAssetsTheme(source){
   for(const key of Object.keys(source.v25Battle.font))theme.font[key]=approved.font[key];
   Object.assign(theme.motion,source.v25Battle.motion);
   theme.layout.energy.faceColour='#FFE35D00';
+  theme.layout.cardDrag.aimDots=theme.officialAssets.battleAim.segments;
+  theme.layout.cardDrag.aimBend=[...theme.officialAssets.battleAim.bend];
+  // Existing exhaust-flight readers retain their historical topBar token path.
+  const exhaust=theme.officialAssets.battleHud.exhaustPile.position;
+  theme.layout.topBar.exhaustIcon[0]=exhaust[0];theme.layout.topBar.y=exhaust[1];
   theme.cardSkin.artWells=structuredClone(approved.cardSkin.artWells);
   theme.cardSkin.typeInk=approved.cardSkin.typeInk;
   // The frozen original maps starter/basic shells to the common silver frame.
@@ -201,6 +206,15 @@ export function applyOfficialAssets(trees,theme){
  let cardHosts=0,removedControls=0;const battleCards=new Set();
   for(const tree of trees){
    const stage=child(tree,'stage')??tree;
+   const relicBar=child(stage,'relicBar');
+   if(relicBar)for(let i=1;i<=theme.officialAssets.battleRelicBar.count;i++){
+    if(!child(relicBar,'slot'+i)){
+     const slot=structuredClone(required(relicBar,'slot1'));slot.name='slot'+i;slot.visible=false;relicBar.children.push(slot);
+    }
+   }
+   for(const host of [child(stage,'relicBar'),child(stage,'relicPanel')])if(host)walk(host,node=>{
+    if(node.kind==='image'&&node.name==='icon')node.colour='#FFFFFF';
+   });
    if(child(stage,'battlePanel')||child(stage,'endTurn')){
     applyV25BattleLayout(tree,theme);
     applyV25BattleChrome(tree,theme);

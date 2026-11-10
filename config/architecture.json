@@ -165,6 +165,7 @@
     "abyss_battle_ui": "ui",
     "abyss_battle_card_view": "ui",
     "abyss_battle_aim_arrow": "ui",
+    "abyss_battle_card_glow": "ui",
     "abyss_battle_info_content": "ui",
     "abyss_battle_info_view": "ui",
     "abyss_battle_intent_view": "ui",

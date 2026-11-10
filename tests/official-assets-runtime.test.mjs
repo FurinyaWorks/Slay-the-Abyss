@@ -21,6 +21,17 @@ function runOfficial(t,body,marker){
  const stage=layout.controls.find(c=>c.name==='stage');
  const battle=stage.children.find(c=>c.name==='battlePanel');
  const face=battle.children.find(c=>c.name==='card1');
+ const pileGrid=stage.children.find(c=>c.name==='deckPanel').children.find(c=>c.name==='pileGrid');
+ const templates=JSON.parse(readFileSync(join(directory,'game-ui-templates.json'),'utf8'));
+ const pile=templates.find(c=>c.name===pileGrid.itemTemplate);
+ assert.equal(pile.name,'AbyssBattlePileCard');
+ const expected=structuredClone(face);
+ Object.assign(expected,{name:'face',position:[0,0],scale:[1,1],rotation:0,visible:true});
+ expected.children=expected.children.filter(c=>c.name!=='hit');
+ for(const name of ['glow','nativePlayableRim','costHalo'])expected.children.find(c=>c.name===name).visible=false;
+ assert.deepEqual(pile.children.find(c=>c.name==='face'),expected,'pile must reuse the final official hand face exactly');
+ assert.deepEqual(pile.children.find(c=>c.name==='hit').size,[150,210]);
+ assert.equal(templates.find(c=>c.name==='AbyssDeckCard').children.find(c=>c.name==='face').children.some(c=>c.name==='nativeRibbon'),false,'ordinary deck template retained its existing surface');
  assert.equal(face.children.find(c=>c.name==='roundBody').children.find(c=>c.name==='flat').image,theme.image.rect);
  const script=`
 local generated=${luaString(directory.replaceAll('\\','/'))}
@@ -210,11 +221,24 @@ for i=1,20 do
  assert(hit.visible and hit.raycastTarget and hit.click({touchId=100+i}))
  h:update(0)
  assert(h.deckUI.visible and h.deckUI.pileKind==kind and not u.active)
- assert(root:GetChild('deckPanel'):GetChild('grid').itemCount==#b[kind])
+ local modal=root:GetChild('deckPanel');local grid=modal:GetChild('pileGrid')
+ assert(grid.visible and grid.itemCount==#b[kind] and not modal:GetChild('grid').visible)
+ local bindings=0
+ for control,binding in pairs(h.deckUI.bindings)do
+  assert(control.alive,'repeated pile views retained a destroyed native control')
+  if binding.generation==h.deckUI.generation then
+   bindings=bindings+1
+   local found=false
+   for _,card in ipairs(b[kind])do if card.uid==binding.uid then found=true end end
+   assert(found,'pile view bound a UID outside the real combat pile')
+  end
+ end
+ assert(bindings==#b[kind],'repeated pile view lost its current native binding')
  u:endTurn();u:playSlot(1)
  unchanged(b,before,'covered battle accepted a command')
  assert(root:GetChild('deckPanel'):GetChild('close'):GetChild('hit').click({touchId=100+i}))
  assert(not h.deckUI.visible and u.active and h.run.combat==b)
+ assert(not grid.visible and grid.itemCount==0,'closed pile retained active native items')
  unchanged(b,before,'pile round trip mutated combat')
 end
 F.click(root,'battlePanel','card1');F.click(root,'battlePanel','enemy2')
@@ -240,6 +264,140 @@ local before=C.copy(win.run)
 event('card1','up',201);event('card1','click',201)
 unchanged(win.run,before,'late battle pointer acted after return to map')
 `, 'OFFICIAL_RUNTIME_FLOW_PASS');
+});
+
+test('official pile faces reuse hand chrome across small rows, native recycling and C-mode pages',t=>{
+ runOfficial(t,`
+local Theme=H.F.Theme
+local function instance(uid,id)return {uid=uid,cardId=id,upgraded=false}end
+local function checkDetailAndScroll(host,root,grid)
+ local face=grid.items[0];local uid=host.deckUI.bindings[face].uid
+ local hit=face:GetChild('hit')
+ assert(hit.listeners.drag==nil and hit.listeners.endDrag==nil,'pile must retain native scroll ownership')
+ grid.scrollProgress=.35
+ assert(not hit.click({dragging=true}) and not host.deckUI.detailPages)
+ assert(hit.click() and host.deckUI.cardDetail.instance.uid==uid)
+ assert(root:GetChild('deckPanel'):GetChild('close'):GetChild('hit').click())
+ host.deckUI:update()
+ assert(not host.deckUI.detailPages and grid.visible and grid.scrollProgress==.35)
+ assert(host.deckUI.bindings[grid.items[0]].uid==uid)
+end
+        local host=H.setup()
+        local spec,panelSpec
+        local function find(entries)
+            for _,entry in ipairs(entries)do
+                if entry.name=='pileGrid'then spec=entry end
+                if entry.name=='deckPanel'then panelSpec=entry end
+                find(entry.children or {})
+            end
+        end
+        find(H.F.Layout)
+        local panel=H.F.control(assert(panelSpec))
+        local root={GetChild=function(_,name)assert(name=='deckPanel');return panel end}
+        local grid=panel:GetChild('pileGrid')
+        local controller=false
+        local deck
+        deck=require('abyss_deck_ui').new(panel,H.F.Presentation,'click',{
+            imageSource='static',color=function(...)return {...}end,
+            controllerApi={isController=function()return controller end}},function()return deck:close()end)
+        host.deckUI=deck
+        for _,amount in ipairs({1,3,5,6,13})do
+            host.run.combat.discard={}
+            for i=1,amount do host.run.combat.discard[i]=instance(100+i,'defend')end
+            local before=C.copy(host.run)
+            assert(host.deckUI:openPile(host.run,'discard'));host.deckUI:update()
+            assert(grid.visible and grid.itemCount==amount and not panel:GetChild('grid').visible)
+            assert(panel:GetChild('pileVeil').visible and not panel:GetChild('header').visible)
+            assert(panel:GetChild('title').visible and not panel:GetChild('browseTitle').visible)
+            for _,name in ipairs({'All','Attack','Skill','Power','Status','Curse'})do
+                assert(not panel:GetChild('filter'..name).visible)
+            end
+            assert(not host.deckUI:setFilter('skill'),'hidden pile filters cannot alter the snapshot')
+            local columns=math.min(5,amount)
+            local width=columns*spec.grid.itemSize[1]+(columns-1)*spec.grid.spacing[1]
+                +spec.grid.padding[3]+spec.grid.padding[4]
+            assert(grid.size[1]==width and grid.x==0 and grid.y==0,'occupied first row is horizontally centered')
+            assert(grid.size[2]==(amount<=5 and spec.grid.itemSize[2]+spec.grid.padding[1]+spec.grid.padding[2]
+                or Theme.layout.deckView.viewport[4]),'small rows center vertically; long piles retain full viewport')
+            local face=grid.items[0]:GetChild('face')
+            assert(face.y==0 and not grid.items[0]:GetChild('uid').visible)
+            assert(face:GetChild('nativeRibbon') and face:GetChild('nativeCostOrb').visible)
+            for _,name in ipairs({'nativePlayableRim','glow','costHalo'})do
+                assert(not face:GetChild(name).visible,'read-only piles cannot flash ready/cost halos')
+            end
+            assert(face:GetChild('name').fontColor[1]==Theme.officialAssets.battleCardTitleInk.r)
+            assert(face:GetChild('cost').fontColor[1]==Theme.cardSkin.battleCostText.r)
+            if amount==13 then
+                grid.destroyOnRecycle=true
+                local previous=grid.items[0]
+                grid:recycle(0,12);host.deckUI:update()
+                assert(previous.alive==false and not host.deckUI.bindings[previous])
+                assert(host.deckUI.bindings[grid.items[0]].uid==113,'recycled slot retains actual pile UID')
+                grid:recycle(0,0)
+                controller=true;deck:update()
+                assert(grid.itemCount==10,'official C-mode uses two five-column rows')
+                assert(deck:controllerStep(1) and grid.itemCount==3)
+                assert(deck.bindings[grid.items[0]].uid==111,'C-mode second page retains actual UID')
+                assert(deck:controllerStep(-1))
+                controller=false;deck:update()
+                assert(grid.itemCount==13,'pointer mode restores native scrolling for the full pile')
+            end
+            checkDetailAndScroll(host,root,grid)
+            assert(panel:GetChild('close'):GetChild('hit').click(),'pile close must consume the event')
+            assert(not grid.visible and grid.itemCount==0 and not panel:GetChild('pileVeil').visible)
+            assert(same(before,host.run),'official pile inspection changed state or RNG')
+        end
+        assert(host.deckUI:open(host.run));host.deckUI:update()
+        assert(panel:GetChild('grid').visible and not grid.visible and panel:GetChild('filterAll').visible)
+        assert(panel:GetChild('header').visible and not host.deckUI.pileView)
+        host.deckUI:close()
+
+`, 'OFFICIAL_PILE_FACE_PASS');
+});
+
+test('official pooled glow emits four staggered source-shaped waves and clears illegal slots',t=>{
+ runOfficial(t,`
+local Glow=require('abyss_battle_card_glow')
+local h,u,p=H.setup({'strike','defend','bludgeon'},{'cultist'})
+local box=p:GetChild('card1');local rim=box:GetChild('nativePlayableRim')
+assert(rim.visible)
+local layers={}
+for i=1,4 do layers[i]=assert(rim:GetChild(i==1 and 'pulseEdge' or 'pulseEdge'..i),'missing pooled wave '..i)end
+local function close(a,b)return math.abs(a-b)<.00001 end
+local function assertWave(i,remaining)
+ local wave=layers[i]
+ assert(wave.visible,'emitted wave missing '..i)
+ assert(close(wave.localScaleX,1.03+.08*(1-remaining*remaining)),'source glow scale mismatch')
+ assert(wave:GetChild('vertical').imageColor.a==math.floor(remaining/2*255+.5),'source glow alpha mismatch')
+end
+Glow.tick(box,0);assertWave(1,1.2)
+for i=2,4 do assert(not layers[i].visible,'unemitted wave appeared early')end
+Glow.tick(box,.3);assertWave(1,.9);assertWave(2,1.2)
+Glow.tick(box,.6)
+for i=1,4 do assertWave(i,.3+(i-1)*.3)end
+-- Rebinding an already-ready physical slot must preserve its wave phase.
+Glow.bind(box,rim,true,function(r,g,b,a)return {r=r,g=g,b=b,a=a}end)
+Glow.tick(box,.1);assertWave(1,.2)
+Glow.tick(box,.2)
+for i=1,4 do assertWave(i,1.2-(i==1 and 0 or (5-i)*.3))end
+Glow.clear(box)
+for i=1,4 do assert(not layers[i].visible,'cleared wave retained pixels')end
+local before=layers[1].localScaleX;Glow.tick(box,.7);assert(layers[1].localScaleX==before)
+-- Native handles can be recreated after weak references are reclaimed. Drop
+-- only cached weak values; the native hierarchy remains the authoritative owner.
+local stateTable
+for i=1,20 do local _,value=debug.getupvalue(Glow.tick,i);if type(value)=='table' and getmetatable(value) and getmetatable(value).__mode=='k' then stateTable=value;break end end
+assert(stateTable,'glow states must not retain native card keys strongly')
+Glow.bind(box,rim,true,function(r,g,b,a)return {r=r,g=g,b=b,a=a}end)
+assert(getmetatable(stateTable[box].refs).__mode=='v','native pulse handles must remain weak')
+for k in pairs(stateTable[box].refs)do stateTable[box].refs[k]=nil end
+Glow.tick(box,0);assertWave(1,1.2)
+local battle=h.run.combat;battle.energy=0;u:render()
+assert(not rim.visible,'unplayable card kept its glow owner')
+for i=1,4 do assert(not layers[i].visible,'illegal card wave survived disable')end
+Glow.tick(box,.3)
+assert(stateTable[box]==nil,'disabled glow retained state')
+`, 'OFFICIAL_POOLED_GLOW_PASS');
 });
 
 for(const official of [false,true])test(`${official?'official':'default'} generated cards preserve strict lookup, rarity tint and required children`,t=>{

@@ -31,7 +31,9 @@ export function officialBattleCardChrome(face,theme){
  child(face,'nameBand').visible=false;child(face,'nativeBannerRight').visible=false;
  face.children.splice(face.children.indexOf(child(face,'name')),0,ribbon);
  const rim=child(face,'nativePlayableRim');
- rim.children=[rounded('softEdge',156,216,11,chrome.ready,{opacity:.55,feather:{pixels:[3,3]}})];
+ rim.children=[rounded('softEdge',162,222,14,chrome.ready,{opacity:.13,feather:{pixels:[8,8]}}),
+  ...Array.from({length:4},(_,index)=>({...rounded(index===0?'pulseEdge':'pulseEdge'+(index+1),150,210,9,chrome.ready,
+   {opacity:1,feather:{pixels:[3,3]}}),visible:false}))];
  const core=child(face,'costCore');core.visible=false;
  const orb={name:'nativeCostOrb',kind:'container',position:[...core.position],size:[chrome.costSize,chrome.costSize],children:
   chrome.orb.map((colour,index)=>image('ring'+index,[chrome.costSize-index*4,chrome.costSize-index*4],colour,index===chrome.orb.length-1?[-1,1]:[0,0],{image:100002}))};

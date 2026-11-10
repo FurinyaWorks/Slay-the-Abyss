@@ -97,4 +97,15 @@ test('empty piles open and invalid contexts cannot replace a visible snapshot',f
     host.run.combat.phase='enemy';assert(not host.deckUI:openPile(host.run,'draw'))
     host.run.phase='map';assert(not host.deckUI:openPile(host.run,'draw'))
 end)
+
+test('default pile browsing retains the normal card template and filters',function()
+    local host,_,_,_,_,_,_,root=H.setup()
+    host.run.combat.draw={instance(105,'defend')}
+    local grid=open(host,root,'draw')
+    local panel=root:GetChild('deckPanel')
+    assert(not host.deckUI.pileView and grid==panel:GetChild('grid'))
+    assert(not panel:GetChild('pileGrid').visible and panel:GetChild('filterAll').visible)
+    assert(not grid.items[0]:GetChild('face'):GetChild('nativeRibbon'))
+    host.deckUI:close()
+end)
 print('LUA_DECK_PILE_VIEW_PASS '..count)
