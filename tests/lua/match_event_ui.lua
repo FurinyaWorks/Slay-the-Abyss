@@ -12,6 +12,21 @@ local eq,same,test=H.eq,H.same,H.test
 local function setup(r,beforeRender)
  local root=control({name='host',kind='container',children={Layout}});local self={run=r,map={},visible=true,actions={},busy=false}
  self.root=root
+ -- Match the actual SDK: static Image/Text reject cursor-only properties.
+ for i=1,12 do
+  local back=root:GetChild('pickerView'):GetChild('forgeGrid'):GetChild('card'..i):GetChild('matchBack')
+  for _,name in ipairs({'plate','glyph','label'})do
+   local decoration=back:GetChild(name);local mt={}
+   for key,value in pairs(getmetatable(decoration)or{})do mt[key]=value end
+   rawset(decoration,'raycastTarget',nil)
+   local previous=mt.__newindex
+   mt.__newindex=function(t,k,v)
+    assert(k~='raycastTarget','native Image/Text cannot set raycastTarget')
+    if previous then previous(t,k,v)else rawset(t,k,v)end
+   end
+   setmetatable(decoration,mt)
+  end
+ end
  local ctx={root=root,self=self,options={imageSource='static',color=function(a,b,c,d)return {r=a,g=b,b=c,a=d}end}}
  ctx.self.presentation=require('abyss_presentation')
  function ctx.child(name)return assert(root:GetChild(name),name)end
@@ -43,7 +58,6 @@ test('all twelve actual native card faces stay concealed until core reveal and u
    if spec.name~='hit'and spec.name~='matchBack'then eq(get(path..'/'..spec.name).visible,false)end
   end
   eq(get(path..'/name').visible,false);eq(get(path..'/name').text,'');eq(get(path..'/description').visible,false)
-  for _,name in ipairs({'plate','glyph','label'})do eq(get(path..'/matchBack/'..name).raycastTarget,false)end
  end
  same(r,before);assert(ctx.self.actions['pickerView/forgeGrid/card1'].handler())
  local slot=H.view(r).match.slots[1];assert(get('pickerView/forgeGrid/card1/name').visible);assert(not get('pickerView/forgeGrid/card1/matchBack').visible)

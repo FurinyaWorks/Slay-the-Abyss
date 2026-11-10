@@ -5,11 +5,13 @@ local Bgm = require("abyss_bgm")
 local CharacterView = require("abyss_character_select_view")
 local MenuView=require("abyss_game_ui_menu_view")
 local Theme=require("abyss_theme")
+local CardSkin=require('abyss_card_skin')
 local number = require("abyss_numbers").integer
 local NeowHistory=require('abyss_neow_history')
 local EndingHistory=require('abyss_ending_history')
 local Acts=require('abyss_acts')
 local NativePages=require('abyss_native_pages')
+local Input=require('abyss_game_ui_input')
 local M = {}
 local function building(status)
     return status and (status.phase=='building' or status.phase=='revealing')
@@ -166,12 +168,31 @@ function M.syncRewardReturn(self)
         end
 end
 
+local function mapPotionFrame(open,hit,run,mapSlots)
+    local values=Theme.layout.nativeNode.topBar.potions
+    local x,y,w,h=table.unpack(values)
+    if mapSlots then
+        local capacity=run and require('abyss_run').potionCapacity(run) or 3
+        -- Keep the leftmost slot clear of live gold when Potion Belt adds two.
+        x,y,w,h=-250+math.max(0,capacity-3)*21,338,capacity*42,44
+    end
+    open:SetAnchoredPosition(x,y);hit:SetSizeDelta(w,h)
+end
+
 function M.refreshPotionEntry(child,inCombat,canManagePotions,platform)
-    return function(run)
-            local potionHit=child("potionEntry"):GetChild("open"):GetChild("hit")
+    return function(run,mapVisible)
+            local open=child("potionEntry"):GetChild("open")
+            local potionHit=open:GetChild("hit")
+            local anchor=Theme.presentationProfile=='v25-reference' and child('mapPanel'):GetChild('v25MapPotionAnchor')
+            local mapSlots=anchor and mapVisible==true
+            if anchor then mapPotionFrame(open,potionHit,run,mapSlots)end
             potionHit.interactable=not inCombat() and canManagePotions(run);potionHit.raycastTarget=potionHit.interactable
-            PotionDiscardUI.refreshEntry(potionHit,run,platform)
+            PotionDiscardUI.refreshEntry(potionHit,run,platform,mapSlots)
         end
+end
+
+local function mapPotionVisible(self)
+    return self.mode=='map' or self.routeOpen==true
 end
 
 function M.refreshDeckEntry(child,self)
@@ -207,7 +228,7 @@ function M.refreshUtilities(child,self,inCombat,refreshPotionEntry,refreshDeckEn
                 variant:GetChild('count').text=run and number(#run.relics) or ''
             end
             child("potionEntry"):SetVisible(not inCombat() and utilitiesVisible)
-            refreshPotionEntry(run)
+            refreshPotionEntry(run,mapPotionVisible(self))
             child("nodePanel"):GetChild("potions"):SetVisible(false)
             if potionOpen then self.potionUI:render()end
             refreshDeckEntry(run)
@@ -382,7 +403,12 @@ function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVis
             end
             if runMenu.visible then runMenu:SetAsLastSibling() end
             local back = child('mapPanel'):GetChild('previewBack')
-            back:SetVisible(self.routeOpen == true)
+            local showBack=self.routeOpen==true
+            if Theme.presentationProfile=='v25-reference' then
+                showBack=Input.mapReturnAvailable(self)
+                back:GetChild('hit').raycastTarget=showBack
+            end
+            back:SetVisible(showBack)
             if self.routeOpen then
                 self.mapUI.map = self.map
                 self.mapUI:setVisible(true)
@@ -438,9 +464,14 @@ function M.syncOfficialBattleScene(root,self)
         end
 end
 
+local function surfaceScopes(self)
+    return {battle=self.mode=='battle',node=self.mode=='node',character=self.characterOpen==true,
+        deck=self.deckUI and self.deckUI.visible==true,choice=self.choiceUI and self.choiceUI.visible==true}
+end
 function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleScene,syncMenuContext,platform,syncCardChoice,closeStaleDeck,openCardChoice,canManagePotions,overlaysBlocked,syncRewardReturn,refreshUtilities,refreshPageVisibility,renderCurrentPage,bgm,present,refreshForeground,syncPortraits,openingForeground)
     return function(_)
             if self.disabled then return false,"ui_disabled" end
+            local surfaceFrame=CardSkin.beginFrame()
             local run = self.run
             finishRunFlow(run)
             local covering = syncOpening(run)
@@ -467,6 +498,7 @@ function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleS
             syncPortraits()
             openingForeground(covering)
             self:syncController()
+            CardSkin.endFrame(surfaceFrame,surfaceScopes(self))
         end
 end
 

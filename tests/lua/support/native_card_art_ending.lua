@@ -57,7 +57,7 @@ local function textFor(id,cost)
  return get(face,'name').text,get(face,'label').text
 end
 art(true,2);local name,description=textFor('cleave','1')
-eq(first.imageType,23,'stretch enum forwarded');eq(tail.imageType,17,'basic enum forwarded')
+eq(rawget(first,'imageType'),nil,'basic shape has no mode field');eq(tail.imageType,17,'gallery enum forwarded')
 run.combat.player.statuses.strength=7;host:refresh()
 local nextName,nextDescription=textFor('cleave','1')
 eq(nextName,name,'dynamic damage preserves title');assert(nextDescription~=description,'dynamic description updates')

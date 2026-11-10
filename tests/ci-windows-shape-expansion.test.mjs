@@ -1,4 +1,5 @@
 import {beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
+import {preComponentUiCiSource} from './helpers/component-ui-ci-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
@@ -15,7 +16,7 @@ const timings=JSON.parse(preCiCompleteCalibrationSource('scripts/ci-test-timings
 const jsShard=(files,value,platform)=>partition(files,value,Object.fromEntries(files.map(file=>[file,Math.max(timings.js[platform][file]??timings.unknownJsMs,timings.jsPlanning?.localLowerBounds?.[file]?.durationMs??0)])),timings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?timings.initialMs[platform][0]:0));
 
 test('TASK-75.5 historical thirteen-to-fourteen source and exact 28-job shape remain intact behind the approved outer epoch',()=>{
- const actual=preCiCompleteCalibrationSource(proof.path,readFileSync(proof.path,'utf8').replaceAll('\r\n','\n'));
+ const actual=preCiCompleteCalibrationSource(proof.path,preComponentUiCiSource(proof.path,readFileSync(proof.path,'utf8').replaceAll('\r\n','\n')));
  assert.equal(actual,proof.afterSource,'projected complete source must retain the approved historical fourteen-shard epoch');
  assert.equal(actual,proof.beforeSource.replace('length:13','length:14'),'one exact production edit');
  assert.deepEqual(qualityShardMatrices.windows,[1,2,3,4,5,6,7,8,9,10,11,12,13,14]);

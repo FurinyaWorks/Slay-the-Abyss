@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "repo": "FurinyaWorks/Slay-the-Abyss",
+  "runId": 42579408683,
+  "attempt": 1,
+  "head": "2814719e884fa2a201e05a22b35d9bbc8519ca62",
+  "status": "completed",
+  "conclusion": "failure",
+  "failedJobs": [
+    {
+      "jobId": 129035063512,
+      "name": "engineering-posix (4/15)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:39:28.9552854Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "6cec5ff157682a1147ca3b9a8cbee3ab097413009b8d36f8d98410cb61965067",
+        "bytes": 25318
+      }
+    },
+    {
+      "jobId": 129035063519,
+      "name": "engineering-posix (1/15)",
+      "failedSteps": [
+        "Run npm run setup:lua-static",
+        "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:39:09.9943570Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "07a8ea7b1d5834f2b411a63876d6e7c76e6eb82394c86e3f7c31737f8ce1f37d",
+        "bytes": 26709
+      }
+    },
+    {
+      "jobId": 129035063535,
+      "name": "engineering-posix (3/15)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:43:08.0277834Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "9816b9c8aad7baba70cac9fc1b39de992c9b0d2a6cee63115cf46cf5bd08c3de",
+        "bytes": 24954
+      }
+    },
+    {
+      "jobId": 129035063538,
+      "name": "engineering-posix (8/15)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:39:05.1111100Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "e67929a8609dd6569f7f623547302171fead2990545f206f9c96d7828f513614",
+        "bytes": 26127
+      }
+    },
+    {
+      "jobId": 129035063548,
+      "name": "engineering-posix (9/15)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:42:47.7042084Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "f092272f56037c40337d9adb90a9c92f96955e41e02b45269d77691592915787",
+        "bytes": 27411
+      }
+    },
+    {
+      "jobId": 129035063554,
+      "name": "engineering-posix (12/15)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:43:30.2247973Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "871a3e81dd36c65197fa6a5b676d82a2f9f045f9198b3eabd53d352bf6596cf4",
+        "bytes": 21158
+      }
+    },
+    {
+      "jobId": 129035063599,
+      "name": "engineering-posix (14/15)",
+      "failedSteps": [
+        "POSIX JavaScript regression shard"
+      ],
+      "classification": "REGRESSION_TEST_FAILURE",
+      "failedTests": [
+        "live LF and CRLF raw owner reads authenticate 50 current owners on every call"
+      ],
+      "failedFiles": [
+        "tests/defect-final-source-epoch.test.mjs"
+      ],
+      "downloadErrors": [],
+      "rawLog": {
+        "sha256": "7591edef43fc572bd46a1b30b073b40eea108cb8da30c2a9f9ba1cf5cd9db0f0",
+        "bytes": 126683
+      }
+    },
+    {
+      "jobId": 129035063683,
+      "name": "engineering-posix (13/15)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T08:07:23.9363559Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "b482f7a63bf32540fa71bd2c80b26e1e1bf8d2e65eb139908af50b70da6180e9",
+        "bytes": 26060
+      }
+    },
+    {
+      "jobId": 129035063719,
+      "name": "rules (9/18)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:31:10.5468867Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "659dd57be513ccdbd3941066359ba1c241fac6da5bc627df7f10b24470c2ff16",
+        "bytes": 31526
+      }
+    },
+    {
+      "jobId": 129035063775,
+      "name": "rules (17/18)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:45:33.3737146Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "83c7c62fe2f1849e36a45fe9bfb282a5996d2b31c9efe73d354f0f2b785f7b77",
+        "bytes": 31940
+      }
+    },
+    {
+      "jobId": 129035063793,
+      "name": "rules (14/18)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T08:09:51.9292832Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "99a778117262fd08e956a700e81777f038c58eae3ac80357435e4d094c61c99b",
+        "bytes": 31457
+      }
+    },
+    {
+      "jobId": 129035063802,
+      "name": "rules (8/18)",
+      "failedSteps": [
+        "JavaScript regression shard"
+      ],
+      "classification": "REGRESSION_TEST_FAILURE",
+      "failedTests": [
+        "UI build creates and replaces all normal generated outputs without touching inputs",
+        "explicit zero-art UI CLI builds without npm dependencies and preserves zero-art fallback",
+        "live LF and CRLF raw owner reads authenticate 50 current owners on every call",
+        "Full publisher cannot certify old 27/28/30/33/35/36-job shapes or a forged/missing current actual shard",
+        "all thirty-two actual shard identities are mandatory for current Full admission"
+      ],
+      "failedFiles": [
+        "tests/build-ui-input-protection.test.mjs",
+        "tests/defect-final-source-epoch.test.mjs",
+        "tests/full-quality.test.mjs"
+      ],
+      "downloadErrors": [],
+      "rawLog": {
+        "sha256": "7f2b0139b54dee540a7b32f335fcb5ab79f5ee2c86098a709177a1f6521eb210",
+        "bytes": 219948
+      }
+    },
+    {
+      "jobId": 129035063804,
+      "name": "rules (2/18)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:53:54.9850860Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "8fc4232209bb398bf964f9167bbba3bcc845f277727a7a25f5ec0b2b082165f3",
+        "bytes": 31462
+      }
+    },
+    {
+      "jobId": 129035063862,
+      "name": "rules (18/18)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:52:42.0449377Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "a9f5a4af4fb49ac2c0ba8133ddd5f8e6f0a108c48ae9cd1fabc1e5060e3d850e",
+        "bytes": 31714
+      }
+    },
+    {
+      "jobId": 129035063903,
+      "name": "rules (11/18)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T07:52:42.0295740Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "77d02de399fb735df6fff905ac1246e96a24510ee569a9969be35b7adedf1ba8",
+        "bytes": 31528
+      }
+    },
+    {
+      "jobId": 129035063931,
+      "name": "rules (10/18)",
+      "failedSteps": [
+        "Run npm run setup:lua-static"
+      ],
+      "classification": "LUACHECK_HTTP_504",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [
+        "2026-11-09T08:09:28.8629138Z Luacheck download: curl: (22) The requested URL returned error: 504"
+      ],
+      "rawLog": {
+        "sha256": "0dfda0d5b7490c481f376843ce1e715814e64df88e7c271b8d6d51bd60e1cd9a",
+        "bytes": 31587
+      }
+    },
+    {
+      "jobId": 129054850372,
+      "name": "engineering-posix",
+      "failedSteps": [
+        "Require every POSIX regression shard"
+      ],
+      "classification": "UPSTREAM_AGGREGATE_FAILURE",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [],
+      "rawLog": {
+        "sha256": "303c903b6f1e682a6d4b3f3ab653c5f8f9a981df46da4e3542e05703bc10df0a",
+        "bytes": 2153
+      }
+    },
+    {
+      "jobId": 129056436487,
+      "name": "check",
+      "failedSteps": [
+        "Require every regression shard",
+        "Publish exact Full regression status",
+        "Publish exact PR admission status"
+      ],
+      "classification": "UPSTREAM_AGGREGATE_FAILURE",
+      "failedTests": [],
+      "failedFiles": [],
+      "downloadErrors": [],
+      "rawLog": {
+        "sha256": "78433e7c4fa7489fb93498d1d0a1ebba5883a1bb9e420c82b7fd6cde69959c64",
+        "bytes": 28511
+      }
+    }
+  ],
+  "uniqueFailedTests": [
+    "live LF and CRLF raw owner reads authenticate 50 current owners on every call",
+    "UI build creates and replaces all normal generated outputs without touching inputs",
+    "explicit zero-art UI CLI builds without npm dependencies and preserves zero-art fallback",
+    "Full publisher cannot certify old 27/28/30/33/35/36-job shapes or a forged/missing current actual shard",
+    "all thirty-two actual shard identities are mandatory for current Full admission"
+  ],
+  "uniqueFailedFiles": [
+    "tests/defect-final-source-epoch.test.mjs",
+    "tests/build-ui-input-protection.test.mjs",
+    "tests/full-quality.test.mjs"
+  ],
+  "rawLogsLocation": "Private task delivery archive; hashes bind each complete collected job log."
+}

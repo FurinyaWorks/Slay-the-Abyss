@@ -1,0 +1,29 @@
+{
+  "conclusion": "pass",
+  "scope": "Independent addendum: exact predecessor calibration bridge plus previously reviewed runtime alias repair",
+  "reviewId": "round22-independent-component-alias-calibration",
+  "baseHead": "06bc84ee4b2b3c7b51486df678ac4551ced1b084",
+  "independentAssertions": 132,
+  "failed": 0,
+  "unchangedHistoricalHelperArchives": 38,
+  "unresolved": [],
+  "reviewedFileSha256": {
+    "scripts/build-ui.mjs": "b14687b4c9999dbea0a2392480f31f8439383f0d6140cb4b9970b8317748df51",
+    "tests/helpers/component-alias-ci-source-inverse.mjs": "0df64aa708d8edf89c4464a4cfe8de7ea19898cb73a2e7e7151313f2b879de6c",
+    "tests/helpers/component-alias-ci-source-epoch.json.gz": "3d11025b87ec35e234f99eb3df53dd862a69b75778c88a714db9b694a9c2f93d",
+    "tests/helpers/component-ui-ci-source-inverse.mjs": "5f3dd23ae04b233ec70fd053e920336ef5cffb6abf61fb968bf590a6a2561926",
+    "tests/ci-complete-calibration.test.mjs": "7105927645d6a1bbab515c9c34edb01440e9fa3cb5aa64581153bec5d5be50be"
+  },
+  "artifactSha256": {
+    "independent-calibration-probe.mjs": "527658628a076f7e6ec7d359dafdec07e55f7010133a48c6ecbd7ec8c5cb2357",
+    "independent-calibration-probe-setup-failure.log": "92df1f4fed2addbe378a357b974d30ae5cb06183d0a69ccb10cac8dcbfb57dd7",
+    "independent-calibration-probe.log": "d099d5421cfce1934867fd3e017f2160ac193e8deed491f04744661774daaf06",
+    "independent-calibration-probe-buffer-failure.log": "f4a89262e094b28a97996398fe79d28b4fc28eb1a54f254daa75cef6830ed962"
+  },
+  "limits": [
+    "Local Linux Node 24.22.1 only.",
+    "Coordinator owns complete calibration and input-protection suite results; reviewer did not duplicate them.",
+    "Review binds file hashes, not a yet-created commit or hosted CI success.",
+    "Historical source projection is receipt compatibility only, not current runtime performance evidence."
+  ]
+}

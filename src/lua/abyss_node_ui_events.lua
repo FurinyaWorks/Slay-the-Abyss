@@ -73,7 +73,8 @@ local function renderEventFigure(event, id)
     if figure then figure:SetVisible(neow) end
     if art then art:SetVisible(not neow) end
     for _, name in ipairs({ 'plate', 'plateBorder', 'glow', 'caption' }) do
-        local c = event:GetChild(name); if c then c:SetVisible(not neow) end
+        local c = event:GetChild(name)
+        if c then c:SetVisible(not neow and (name ~= 'caption' or not layout.event.visuals)) end
     end
     if neow then event:GetChild('caption').text = '七天神像' end
     local bubble = event:GetChild('bubble'); if bubble then bubble:SetVisible(neow) end
@@ -108,6 +109,14 @@ local function placeOptions(event, neow, count)
             for _, part in ipairs({ 'normal', 'disabled', 'hover', 'pressed', 'selected' }) do
                 local c = box:GetChild(part); if c then c:SetSizeDelta(w - 4, h - 4) end
             end
+            if layout.event.visuals then
+                place(box:GetChild('v25BaseMaterial'), {0, 0, w - 4, h - 4})
+                local chrome = box:GetChild('v25StateChrome')
+                chrome:SetSizeDelta(w, h)
+                place(chrome:GetChild('topStitch'), {0, h / 2 - 2, w - 8, 2})
+                place(chrome:GetChild('lowerRim'), {0, -h / 2 + 2, w - 8, 2})
+                place(chrome:GetChild('faceDepth'), {0, 0, w - 6, h - 6})
+            end
             box:GetChild('description'):SetVisible(true)
         end
     end
@@ -117,6 +126,24 @@ local function eventNotice(id, copy, result)
     if id == 'neow' then return '' end
     if (stagedEvent(id) or Act3Events.ids[id]) then return copy.name .. ' · 请选择上方选项' end
     return result and copy.name or (copy.name .. " · 选择一项，或直接离开")
+end
+
+local function renderEventArt(ctx, event, id)
+    local visuals = layout.event.visuals
+    if not visuals or id == 'neow' then return end
+    local visual = visuals[id] or visuals.default
+    ctx.picture(event:GetChild('art'), visual.icon)
+    ctx.tint(event:GetChild('art'), visual.colour)
+end
+
+local function optionDescription(ctx, selected)
+    local description = ctx.eventOptionText(selected)
+    if layout.event.visuals and selected.potionId then return (description:gsub('\n', '｜', 1)) end
+    return description
+end
+
+local function descriptionInk(enabled)
+    return enabled and (layout.event.descriptionInk or C.textDim) or (layout.event.disabledInk or C.textMuted)
 end
 
 -- Installs the events responsibility on one node UI instance.
@@ -133,6 +160,7 @@ function M.install(ctx)
         end
         writeEventHeading()
         renderEventFigure(event, id)
+        renderEventArt(ctx, event, id)
         local body
         local function eventOutcomeBody()
             body=result and result.text or node.event and node.event.body or copy.body
@@ -170,7 +198,7 @@ function M.install(ctx)
                         for _,option in ipairs(info.options) do
                             local selected=option
                             rows[#rows+1]={title='［'..(selected.rewardCard and ctx.cardName(selected.cardId,selected.upgraded)or selected.title)..'］',
-                                description=ctx.eventOptionText(selected),enabled=selected.enabled,handler=function()
+                                description=optionDescription(ctx,selected),enabled=selected.enabled,handler=function()
                                     -- Repeated-search events retain the same command after
                                     -- rendering new odds. An old callback is still stale.
                                     if ctx.self.view~=view or ctx.self.renderRun~=ctx.self.run or ctx.self.renderMap~=ctx.self.map then return false,'stale_action' end
@@ -268,7 +296,7 @@ function M.install(ctx)
                 box:GetChild("title").text = row.title
                 box:GetChild("description").text = row.description
                 ctx.ink(box:GetChild("title"), row.enabled and C.goldBright or C.textMuted)
-                ctx.ink(box:GetChild("description"), row.enabled and C.textDim or C.textMuted)
+                ctx.ink(box:GetChild("description"), descriptionInk(row.enabled))
                 ctx.action("eventView/option" .. i, row.enabled, row.handler, row.description)
             end
         end

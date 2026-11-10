@@ -1,0 +1,313 @@
+{
+  "schemaVersion": 1,
+  "status": "LATEST_TRUE_V25_NATURAL_BATTLE_VICTORY_REWARD_MAP_PASS",
+  "createdAt": "2026-11-09T05:32:24.020Z",
+  "source": {
+    "gilSha256": "2c03f6a516430150f460f25d942c4ebe137411c49ece4bc66334d4ba729e278a",
+    "sourceCommit": "fc98f4e38ad1eaa2fb14a775f410f3dce9014158",
+    "sourceDirty": false,
+    "payloadDigest": "66c576206ade7676c0f0f160cb8858410154ee1a742cf73ce9a6536ac70827b1",
+    "buildId": "022017af-c7f5-47b8-8ca2-e1a80973ab4e",
+    "projectionSha256": "437bca1863d22442f78d374eac1f975683cd439f4e66759601696161eadab16a",
+    "candidateReceiptSha256": "a7f2324b86b2fda6c85d28eaf853af9ceba3c6f34078b454fea082259c3632c6",
+    "sdkExportSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+    "workerSha256": "9ec1678febf7f078199fc4c83cbc2bef9a70be1b0bd6fcdd984fb5708aad9be1"
+  },
+  "seed": 33815,
+  "seedMechanism": "Only the existing Host explicit replay seed33815 before natural Start. Production route/encounter/deck/draw/transactions unchanged; os.time/os.clock unchanged. No encounter fixture and no extra Core.draw call.",
+  "scenario": "Natural starter-deck map encounter, no encounter replacement, no Core draw, no balance/state modification; existing explicit Host replay seed33815 only.",
+  "scope": "Same immutable latest fc98 actual-GIL used for the stage/pressure evidence, separate fresh SDK VM natural gameplay. No state replacement or additional draw fixture; no GUI/official client/device claim.",
+  "readyEvidence": [
+    {
+      "level": "info",
+      "text": "ABYSS_BUILD 022017af-c7f5-47b8-8ca2-e1a80973ab4e",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_RUN seed=33815 source=explicit",
+      "time": 8.616666666666674
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_FEEDBACK victory source=- target=- amount=0",
+      "time": 53.649999999998236
+    }
+  ],
+  "naturalEnemy": {
+    "1": {
+      "id": "cultist_1",
+      "hp": 52,
+      "maxHp": 52
+    }
+  },
+  "nativeInputTransactions": {
+    "route": "actual pointer taps menu Start, character Confirm, three blessing options, mapGroup3/node1",
+    "cancel": {
+      "verified": true,
+      "energyBefore": 3,
+      "energyAfter": 3,
+      "handBefore": 5,
+      "handAfter": 5,
+      "enemiesUnchanged": true
+    },
+    "cardPlays": [
+      {
+        "label": "actual-play:strike:uid4",
+        "uid": "4",
+        "before": {
+          "energy": 3,
+          "turn": 1,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 52,
+              "maxHp": 52
+            }
+          }
+        },
+        "after": {
+          "energy": 2,
+          "turn": 1,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 46,
+              "maxHp": 52
+            }
+          },
+          "runPhase": "combat"
+        }
+      },
+      {
+        "label": "actual-play:strike:uid5",
+        "uid": "5",
+        "before": {
+          "energy": 2,
+          "turn": 1,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 46,
+              "maxHp": 52
+            }
+          }
+        },
+        "after": {
+          "energy": 1,
+          "turn": 1,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 40,
+              "maxHp": 52
+            }
+          },
+          "runPhase": "combat"
+        }
+      },
+      {
+        "label": "actual-play:strike:uid1",
+        "uid": "1",
+        "before": {
+          "energy": 1,
+          "turn": 1,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 40,
+              "maxHp": 52
+            }
+          }
+        },
+        "after": {
+          "energy": 0,
+          "turn": 1,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 34,
+              "maxHp": 52
+            }
+          },
+          "runPhase": "combat"
+        }
+      },
+      {
+        "label": "actual-play:bash:uid10",
+        "uid": "10",
+        "before": {
+          "energy": 3,
+          "turn": 2,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 34,
+              "maxHp": 52
+            }
+          }
+        },
+        "after": {
+          "energy": 1,
+          "turn": 2,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 26,
+              "maxHp": 52
+            }
+          },
+          "runPhase": "combat"
+        }
+      },
+      {
+        "label": "actual-play:strike:uid3",
+        "uid": "3",
+        "before": {
+          "energy": 1,
+          "turn": 2,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 26,
+              "maxHp": 52
+            }
+          }
+        },
+        "after": {
+          "energy": 0,
+          "turn": 2,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 17,
+              "maxHp": 52
+            }
+          },
+          "runPhase": "combat"
+        }
+      },
+      {
+        "label": "actual-play:strike:uid2",
+        "uid": "2",
+        "before": {
+          "energy": 3,
+          "turn": 3,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 17,
+              "maxHp": 52
+            }
+          }
+        },
+        "after": {
+          "energy": 2,
+          "turn": 3,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 8,
+              "maxHp": 52
+            }
+          },
+          "runPhase": "combat"
+        }
+      },
+      {
+        "label": "actual-play:strike:uid3",
+        "uid": "3",
+        "before": {
+          "energy": 2,
+          "turn": 3,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 8,
+              "maxHp": 52
+            }
+          }
+        },
+        "after": {
+          "energy": 1,
+          "turn": 3,
+          "enemies": {
+            "1": {
+              "id": "cultist_1",
+              "hp": 0,
+              "maxHp": 52
+            }
+          },
+          "runPhase": "reward"
+        }
+      }
+    ],
+    "enemyTurns": [
+      {
+        "turnBefore": 1,
+        "turnAfter": 2,
+        "heroHpBefore": 88,
+        "heroHpAfter": 88
+      },
+      {
+        "turnBefore": 2,
+        "turnAfter": 3,
+        "heroHpBefore": 88,
+        "heroHpAfter": 82
+      }
+    ],
+    "victory": {
+      "turn": 3,
+      "heroHp": 82,
+      "enemies": {
+        "1": {
+          "id": "cultist_1",
+          "hp": 0,
+          "maxHp": 52
+        }
+      }
+    },
+    "goldReward": {
+      "before": 99,
+      "after": 112,
+      "amount": 13
+    },
+    "map": {
+      "mode": "map",
+      "runPhase": "map",
+      "gold": 112
+    }
+  },
+  "teardown": {
+    "registeredModels": 0,
+    "roots": 0,
+    "scriptAlive": false,
+    "createdTotal": 132458,
+    "deletedTotal": 132458
+  },
+  "luaFaults": 0,
+  "rawReport": {
+    "path": "task-100-1-v25-latest-natural-raw-20261109.json.gz",
+    "sha256": "62707761bfa8667e226f025cf5749b26ae0825f5cc9e86338b775d7fb948a82e",
+    "bytes": 702025,
+    "uncompressedSha256": "9afee4a55bab75e3935b9bdd24a02c0ef0a3661bd36bc7a205637446cf7d0807",
+    "uncompressedBytes": 16618420,
+    "originalPrivateReportSha256": "a3baa4c66b8f8062997c2b81c3b7f6ac190aa53aee0067e0934fd1c1fd688b59",
+    "metadataNormalization": {
+      "originalReportSha256": "a3baa4c66b8f8062997c2b81c3b7f6ac190aa53aee0067e0934fd1c1fd688b59",
+      "originalSeedMechanism": "SDK fixture sets the existing Host explicit replay seed field before Start; legal encounter assembly uses unchanged Combat.new(seed17) and Core.draw. os.clock/os.time are not modified.",
+      "change": "Replace inherited generic seed17 encounter/draw description. Actual executed seed and scenario are 33815 natural route, as verified by ABYSS_RUN log and no fixture/draw invocation in hashed worker source. No numeric/event/source identity values changed."
+    }
+  },
+  "limitations": [
+    "SDK headless actual-GIL path, not official client/Android or desktop-input evidence.",
+    "Existing original-design visual gaps and source-preservation proof remain separately recorded.",
+    "No new performance benefit claimed from this gameplay replay; original three-stage baseline/older A-B measurements unchanged.",
+    "Earlier d547 natural-victory record remains bound to that older candidate; this new separate record binds fc98/022017af only."
+  ]
+}

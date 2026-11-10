@@ -212,8 +212,9 @@ test("unaffordable goods turn the price red, grey the card and explain without c
     local offer = Nodes.view(ui.run, ui.map).node.cards[1]
     ui.run.gold = offer.price - 1 ui:render()
     local box, price = get("shopView/card1"), get("shopView/price1")
+    local bodyInk=Theme.cardSkin.text.body or C.text
     assert(is(price.children.value.fontColor, C.danger) and not box.children.veil.visible)
-    assert(box.children.blockedVeil.visible and box.children.blockedReason.text=='金币不足' and is(box.children.description.fontColor,C.text))
+    assert(box.children.blockedVeil.visible and box.children.blockedReason.text=='金币不足' and is(box.children.description.fontColor,bodyInk))
     local before = Combat.copy(ui.run)
     assert(not click("shopView/card1")) same(ui.run, before)
     -- The notice states the shortfall; the merchant answers in his own dialogue box.
@@ -222,7 +223,7 @@ test("unaffordable goods turn the price red, grey the card and explain without c
     assert(readMerchantLine(ui,get) == "「" .. Narrative.merchant.insufficientGold .. "」" and ui.merchant.shake == nil)
     assert(#changes == 0)
     ui.run.gold = offer.price ui:render()
-    assert(is(price.children.value.fontColor, C.goldBright) and is(box.children.description.fontColor, C.text))
+    assert(is(price.children.value.fontColor, C.goldBright) and is(box.children.description.fontColor,bodyInk))
     local size = #ui.run.deck assert(click("shopView/card1"))
     assert(#ui.run.deck==size and ui.run.gold==offer.price)
     assert(click("confirm"))

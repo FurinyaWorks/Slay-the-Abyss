@@ -1,0 +1,1332 @@
+{
+  "schemaVersion": 1,
+  "status": "RELATIVE_VISUAL_SOURCE_AND_FINAL_PRIMITIVE_STATE_PRESERVED",
+  "beforeReference": "ae71692631e5a84c9716ea291dd1b32aa87281e0",
+  "afterReference": "fc98f4e38ad1eaa2fb14a775f410f3dce9014158",
+  "scope": "Relative no-deletion/no-loss proof for this performance change. Original private V25 final product approval remains separate.",
+  "trackedVisualSources": [
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/alpha-verification.json",
+      "beforeGitBlob": "21e6f1fd2aca3a762cc80b153010211284dcfa3f",
+      "afterGitBlob": "21e6f1fd2aca3a762cc80b153010211284dcfa3f",
+      "beforeSha256": "7ea0103e3540c77bb7a4ffb70028ebc7af4f61fffabdf919010dd8b7e1323039",
+      "afterSha256": "7ea0103e3540c77bb7a4ffb70028ebc7af4f61fffabdf919010dd8b7e1323039",
+      "bytes": 5248,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/asset.json",
+      "beforeGitBlob": "7bf441c706717b97a10d3eee4fd631598829f079",
+      "afterGitBlob": "7bf441c706717b97a10d3eee4fd631598829f079",
+      "beforeSha256": "48be577c7c7e2b580a9e363a190f1e48f61d0494c47e29c123a46ca46159f58e",
+      "afterSha256": "48be577c7c7e2b580a9e363a190f1e48f61d0494c47e29c123a46ca46159f58e",
+      "bytes": 5518,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/editable.scene.json",
+      "beforeGitBlob": "6e0f498057408e05465f211d33edf17fad678005",
+      "afterGitBlob": "6e0f498057408e05465f211d33edf17fad678005",
+      "beforeSha256": "1958b2faabfb4737a85216d09edc816a316f33f446897ca6a06fd349b932c077",
+      "afterSha256": "1958b2faabfb4737a85216d09edc816a316f33f446897ca6a06fd349b932c077",
+      "bytes": 1377800,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/export-report.json",
+      "beforeGitBlob": "85177c58a62c9c3ea0457e7828c68d9c9cceea1f",
+      "afterGitBlob": "85177c58a62c9c3ea0457e7828c68d9c9cceea1f",
+      "beforeSha256": "1682ade588f7c2921602b7d5b13e8126c9a28ed575a0fdabc74a6189bf2f6a3a",
+      "afterSha256": "1682ade588f7c2921602b7d5b13e8126c9a28ed575a0fdabc74a6189bf2f6a3a",
+      "bytes": 13104,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/literal-drawing.json",
+      "beforeGitBlob": "470cbf2f02ad6d3ccdf22c8103cc29aa7c9f4c8e",
+      "afterGitBlob": "470cbf2f02ad6d3ccdf22c8103cc29aa7c9f4c8e",
+      "beforeSha256": "866ae50e34cab9e0e3a69e7944c874ba0583dc1f27906c7a497e38087726f0ae",
+      "afterSha256": "866ae50e34cab9e0e3a69e7944c874ba0583dc1f27906c7a497e38087726f0ae",
+      "bytes": 1024083,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/native-art.json",
+      "beforeGitBlob": "83cc75403b830c4a08cb71b23c617002867bf291",
+      "afterGitBlob": "83cc75403b830c4a08cb71b23c617002867bf291",
+      "beforeSha256": "93bcf4303d370f7faac2b8289146acfe655bae6dced0abf5257e407d69f748ef",
+      "afterSha256": "93bcf4303d370f7faac2b8289146acfe655bae6dced0abf5257e407d69f748ef",
+      "bytes": 2658277,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/native-art.lua",
+      "beforeGitBlob": "08477c4df2bdd964880bfc99047bdf722db10ab7",
+      "afterGitBlob": "08477c4df2bdd964880bfc99047bdf722db10ab7",
+      "beforeSha256": "ca442b6467c79a6a8d8662f31aeca52060a24f817c47763a180953feef98f0ef",
+      "afterSha256": "ca442b6467c79a6a8d8662f31aeca52060a24f817c47763a180953feef98f0ef",
+      "bytes": 2794055,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/preview-native-1x.png",
+      "beforeGitBlob": "7fd6298d97fba67cec3a6760e13a7bd866ae518b",
+      "afterGitBlob": "7fd6298d97fba67cec3a6760e13a7bd866ae518b",
+      "beforeSha256": "d96f7f81c436971a5d7aa78740b580a7bb237d5ac2962e51f5532dbb51f9eb80",
+      "afterSha256": "d96f7f81c436971a5d7aa78740b580a7bb237d5ac2962e51f5532dbb51f9eb80",
+      "bytes": 17710,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/preview-native-4x.png",
+      "beforeGitBlob": "75d12798bce604d3b5b0a87e5973791b51e3c769",
+      "afterGitBlob": "75d12798bce604d3b5b0a87e5973791b51e3c769",
+      "beforeSha256": "439ead18c007b91cf872dac2fae0f0b625b831d82d7f2dda5552cbcb244be836",
+      "afterSha256": "439ead18c007b91cf872dac2fae0f0b625b831d82d7f2dda5552cbcb244be836",
+      "bytes": 25235,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/preview-redraw-draft-1x.png",
+      "beforeGitBlob": "55ec87e91e06d6ec6ee4e3226c17f3c5736bb1d9",
+      "afterGitBlob": "55ec87e91e06d6ec6ee4e3226c17f3c5736bb1d9",
+      "beforeSha256": "3d5f556d42231612c9d3b5c3d48aff9ce16ea406a2be94ab333a591f1ae61fee",
+      "afterSha256": "3d5f556d42231612c9d3b5c3d48aff9ce16ea406a2be94ab333a591f1ae61fee",
+      "bytes": 16526,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/preview-redraw-draft-4x.png",
+      "beforeGitBlob": "5c309d9e3a8c883365b70ddd508507ad3b30dec3",
+      "afterGitBlob": "5c309d9e3a8c883365b70ddd508507ad3b30dec3",
+      "beforeSha256": "117a69d91b796ffc1731be00b771e1e8a3fb4f90da36dd1f8bffcca84ef2489e",
+      "afterSha256": "117a69d91b796ffc1731be00b771e1e8a3fb4f90da36dd1f8bffcca84ef2489e",
+      "bytes": 24188,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/preview-source-1x.png",
+      "beforeGitBlob": "dd39fea4841d6e404018d4f14bd82d2e4ceb9f53",
+      "afterGitBlob": "dd39fea4841d6e404018d4f14bd82d2e4ceb9f53",
+      "beforeSha256": "8d2741b022a8bdc6e62984fbd7e908e29c490fb7b2fbce9b5bb56283cfe3ad10",
+      "afterSha256": "8d2741b022a8bdc6e62984fbd7e908e29c490fb7b2fbce9b5bb56283cfe3ad10",
+      "bytes": 18649,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/preview-source-4x.png",
+      "beforeGitBlob": "b62badbb6d68e6ed4ef609e64560e098716f6c9f",
+      "afterGitBlob": "b62badbb6d68e6ed4ef609e64560e098716f6c9f",
+      "beforeSha256": "00433a0e75cffa433c001658ba3d9f218c6584235779b8a96ed36a8f2dc1202f",
+      "afterSha256": "00433a0e75cffa433c001658ba3d9f218c6584235779b8a96ed36a8f2dc1202f",
+      "bytes": 27848,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/preview-svg-inkscape-96.png",
+      "beforeGitBlob": "72de1d75f2207acefca9c4004ad49d6a123715dd",
+      "afterGitBlob": "72de1d75f2207acefca9c4004ad49d6a123715dd",
+      "beforeSha256": "cae70999350f6330a9acf24ada6bab7e5f708d7853006a70c26fd60915a3a7ef",
+      "afterSha256": "cae70999350f6330a9acf24ada6bab7e5f708d7853006a70c26fd60915a3a7ef",
+      "bytes": 16878,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/redraw-recipe.json",
+      "beforeGitBlob": "91c5cd94a436a3b33fcec883adb9ef7c0dca7f0a",
+      "afterGitBlob": "91c5cd94a436a3b33fcec883adb9ef7c0dca7f0a",
+      "beforeSha256": "3fff7c9ba92d1db5f6399b909fb184090916fdfa80c3846935dfcb6934efcff9",
+      "afterSha256": "3fff7c9ba92d1db5f6399b909fb184090916fdfa80c3846935dfcb6934efcff9",
+      "bytes": 790,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/runtime-no-snapshot.lua",
+      "beforeGitBlob": "f1e1dc79280e36252efed74643606ce23abc67e2",
+      "afterGitBlob": "f1e1dc79280e36252efed74643606ce23abc67e2",
+      "beforeSha256": "c30551e1fed1cd7f18c61b67fe0ad0cd6e52c61bfa6ae937ccd9e4c90e7f72bb",
+      "afterSha256": "c30551e1fed1cd7f18c61b67fe0ad0cd6e52c61bfa6ae937ccd9e4c90e7f72bb",
+      "bytes": 395396,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/source.png",
+      "beforeGitBlob": "ae120f9b3a2e7243c2e3e92b9d80ccd7f1184196",
+      "afterGitBlob": "ae120f9b3a2e7243c2e3e92b9d80ccd7f1184196",
+      "beforeSha256": "6b32c5e192d699c20808c3c697640275ac4b42953d6904eb51b005d8ce66a788",
+      "afterSha256": "6b32c5e192d699c20808c3c697640275ac4b42953d6904eb51b005d8ce66a788",
+      "bytes": 1517359,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/svg-preview-diagnostic.json",
+      "beforeGitBlob": "2c63ee38acb1c8dbd92a6f21201f7480a45ec9f7",
+      "afterGitBlob": "2c63ee38acb1c8dbd92a6f21201f7480a45ec9f7",
+      "beforeSha256": "7561813404d78ff795849dd27368edf85d4eea32b4c1b495dc9a9d824c1c13ca",
+      "afterSha256": "7561813404d78ff795849dd27368edf85d4eea32b4c1b495dc9a9d824c1c13ca",
+      "bytes": 11673,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/avatar96/vm-report.json",
+      "beforeGitBlob": "bb99fd3bd1f91f6b15434d27af5a5cca20fcb58e",
+      "afterGitBlob": "bb99fd3bd1f91f6b15434d27af5a5cca20fcb58e",
+      "beforeSha256": "0b1878e90c9c3cbdddafa00c4ffc536ff37aca4d9d9c6c420162652ae07dd313",
+      "afterSha256": "0b1878e90c9c3cbdddafa00c4ffc536ff37aca4d9d9c6c420162652ae07dd313",
+      "bytes": 1865,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/alpha-verification.json",
+      "beforeGitBlob": "d76a8772d25ece6977b2f67fa61e9c1c0c41efe5",
+      "afterGitBlob": "d76a8772d25ece6977b2f67fa61e9c1c0c41efe5",
+      "beforeSha256": "7b4c4de63a94cdb867ef58570fec9de13e8bb57e7dd0174d8170c4af88a29170",
+      "afterSha256": "7b4c4de63a94cdb867ef58570fec9de13e8bb57e7dd0174d8170c4af88a29170",
+      "bytes": 5278,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/asset.json",
+      "beforeGitBlob": "8c05976ba883be6246ed84d2ba813269a698694f",
+      "afterGitBlob": "8c05976ba883be6246ed84d2ba813269a698694f",
+      "beforeSha256": "6a46078e04d8df4c597792c8e9467863be16762c0fd0975536646990b0d6d9f2",
+      "afterSha256": "6a46078e04d8df4c597792c8e9467863be16762c0fd0975536646990b0d6d9f2",
+      "bytes": 5531,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/editable.scene.json",
+      "beforeGitBlob": "9a94d3e10c11f84fdeb4ed8c9dfe0c3874c0f20b",
+      "afterGitBlob": "9a94d3e10c11f84fdeb4ed8c9dfe0c3874c0f20b",
+      "beforeSha256": "40e2507c32d3e9a78e31b2c39b775d9e00815e4631830d118ec96374525ddf0a",
+      "afterSha256": "40e2507c32d3e9a78e31b2c39b775d9e00815e4631830d118ec96374525ddf0a",
+      "bytes": 1231255,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/export-report.json",
+      "beforeGitBlob": "18ff365d6d0dbaf6ee33b5be917f7729028f8d3a",
+      "afterGitBlob": "18ff365d6d0dbaf6ee33b5be917f7729028f8d3a",
+      "beforeSha256": "fe8879808882dcbe08d655dd7c2a7296417943fd169cfe768ae199414b338909",
+      "afterSha256": "fe8879808882dcbe08d655dd7c2a7296417943fd169cfe768ae199414b338909",
+      "bytes": 13783,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/literal-drawing.json",
+      "beforeGitBlob": "a0bf1f74fb760dc80e8e07b943daeb15e2dcb199",
+      "afterGitBlob": "a0bf1f74fb760dc80e8e07b943daeb15e2dcb199",
+      "beforeSha256": "f1a8c8a315812dfaad13b36b212e0ffef26b8c3251b0d473b660ad3571a31de5",
+      "afterSha256": "f1a8c8a315812dfaad13b36b212e0ffef26b8c3251b0d473b660ad3571a31de5",
+      "bytes": 919094,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/native-art.json",
+      "beforeGitBlob": "bbc82b67acd01cee163697714ec47ff7337c6a63",
+      "afterGitBlob": "bbc82b67acd01cee163697714ec47ff7337c6a63",
+      "beforeSha256": "f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248",
+      "afterSha256": "f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248",
+      "bytes": 2377377,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/native-art.lua",
+      "beforeGitBlob": "954ab227caf1f7413a9d9af9e25fb07e9efcc3e0",
+      "afterGitBlob": "954ab227caf1f7413a9d9af9e25fb07e9efcc3e0",
+      "beforeSha256": "22182f1fa79d9b09f68aebce7a81785d8310df3f1f1cffb9654bd0aaac174da4",
+      "afterSha256": "22182f1fa79d9b09f68aebce7a81785d8310df3f1f1cffb9654bd0aaac174da4",
+      "bytes": 2501280,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/preview-native-1x.png",
+      "beforeGitBlob": "a654d1e975f69aab6923b509fef6f94bc7b1271b",
+      "afterGitBlob": "a654d1e975f69aab6923b509fef6f94bc7b1271b",
+      "beforeSha256": "93b4d73290c3a20da7b02f02b05786b57fd5d381da71b02b5839a8c6a344f80b",
+      "afterSha256": "93b4d73290c3a20da7b02f02b05786b57fd5d381da71b02b5839a8c6a344f80b",
+      "bytes": 18329,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/preview-native-4x.png",
+      "beforeGitBlob": "158d1e2b6626428c1d7cf704aceb7abfbb47f569",
+      "afterGitBlob": "158d1e2b6626428c1d7cf704aceb7abfbb47f569",
+      "beforeSha256": "9a4fc13fa950c47250546c9afccd2ec1eb31178a5bfe0c2b6bad8988dfa4e48f",
+      "afterSha256": "9a4fc13fa950c47250546c9afccd2ec1eb31178a5bfe0c2b6bad8988dfa4e48f",
+      "bytes": 27981,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/preview-redraw-draft-1x.png",
+      "beforeGitBlob": "9a20b5dadefa37b27cb9f5ac4fe634267e032292",
+      "afterGitBlob": "9a20b5dadefa37b27cb9f5ac4fe634267e032292",
+      "beforeSha256": "17aeaea62261c69a6ff09f29d09782b0c2f6556c75bda772346a4b00cd77974c",
+      "afterSha256": "17aeaea62261c69a6ff09f29d09782b0c2f6556c75bda772346a4b00cd77974c",
+      "bytes": 17517,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/preview-redraw-draft-4x.png",
+      "beforeGitBlob": "43c19d22d7ffd7e021f78738dd17aa8c953a9e09",
+      "afterGitBlob": "43c19d22d7ffd7e021f78738dd17aa8c953a9e09",
+      "beforeSha256": "90c6ba65bb6406eb59bc4ad7a5c9eb9fbc3660f7670da67b91b34e55874bffdd",
+      "afterSha256": "90c6ba65bb6406eb59bc4ad7a5c9eb9fbc3660f7670da67b91b34e55874bffdd",
+      "bytes": 27003,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/preview-source-1x.png",
+      "beforeGitBlob": "746daeece54e7b2cf85901b1ae78e85b293fd90c",
+      "afterGitBlob": "746daeece54e7b2cf85901b1ae78e85b293fd90c",
+      "beforeSha256": "d016b18f2360e07208b96ebdac67fdf58b7f5d17e05c626a3ffc71886e6c07c3",
+      "afterSha256": "d016b18f2360e07208b96ebdac67fdf58b7f5d17e05c626a3ffc71886e6c07c3",
+      "bytes": 18450,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/preview-source-4x.png",
+      "beforeGitBlob": "a2063db233fa4f9011ca1a7f7955a89cba9d00f3",
+      "afterGitBlob": "a2063db233fa4f9011ca1a7f7955a89cba9d00f3",
+      "beforeSha256": "cebb3c7c05d17c5b6f7fd9d37d2028fe96ab84b53074dd2d46e2f2f2e128b021",
+      "afterSha256": "cebb3c7c05d17c5b6f7fd9d37d2028fe96ab84b53074dd2d46e2f2f2e128b021",
+      "bytes": 28857,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/preview-svg-inkscape-133.png",
+      "beforeGitBlob": "e54e1104a09c664165cafd69cb34c0b3bf4648cd",
+      "afterGitBlob": "e54e1104a09c664165cafd69cb34c0b3bf4648cd",
+      "beforeSha256": "0505407a828bb1cbc9a03b4951330af2a9c15062338e513ce7e6d5d3439f5343",
+      "afterSha256": "0505407a828bb1cbc9a03b4951330af2a9c15062338e513ce7e6d5d3439f5343",
+      "bytes": 17467,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/redraw-recipe.json",
+      "beforeGitBlob": "f5655e46196877bc7add0022b90caf01b7d92afd",
+      "afterGitBlob": "f5655e46196877bc7add0022b90caf01b7d92afd",
+      "beforeSha256": "f136610f154e05eb16c9793f17d89fc6a2160374f6d10f469feaa2d246a599ad",
+      "afterSha256": "f136610f154e05eb16c9793f17d89fc6a2160374f6d10f469feaa2d246a599ad",
+      "bytes": 804,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/runtime-no-snapshot.lua",
+      "beforeGitBlob": "f20d98cf8fc34317e0e3c72709add683c739e64e",
+      "afterGitBlob": "f20d98cf8fc34317e0e3c72709add683c739e64e",
+      "beforeSha256": "ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880",
+      "afterSha256": "ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880",
+      "bytes": 356825,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/source.png",
+      "beforeGitBlob": "06ba2ef2093a9e50884ce72853662feab11e6b11",
+      "afterGitBlob": "06ba2ef2093a9e50884ce72853662feab11e6b11",
+      "beforeSha256": "4851e4aae6c43799ec31e2b2ebd06f9b00cf07161f26e71d72a6ec89191ad98e",
+      "afterSha256": "4851e4aae6c43799ec31e2b2ebd06f9b00cf07161f26e71d72a6ec89191ad98e",
+      "bytes": 1839573,
+      "gitBlobEqual": true,
+      "materialization": "BINARY_BYTES_EQUAL"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/svg-preview-diagnostic.json",
+      "beforeGitBlob": "7b8386e81027ccf43c067a93718027c22f76c82c",
+      "afterGitBlob": "7b8386e81027ccf43c067a93718027c22f76c82c",
+      "beforeSha256": "1babce107bd2b4928168c6d1763cae60400fa500d6861b569cb7d9e782a39c4d",
+      "afterSha256": "1babce107bd2b4928168c6d1763cae60400fa500d6861b569cb7d9e782a39c4d",
+      "bytes": 11224,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/battle133/vm-report.json",
+      "beforeGitBlob": "62d71fe562541538317778db9b3a114449d65e0b",
+      "afterGitBlob": "62d71fe562541538317778db9b3a114449d65e0b",
+      "beforeSha256": "b3fb4d88c93da7d1779a29c8dc78184478e4f5421519a4ca55a0052715f38d4e",
+      "afterSha256": "b3fb4d88c93da7d1779a29c8dc78184478e4f5421519a4ca55a0052715f38d4e",
+      "bytes": 1867,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/capacity-experiment.json",
+      "beforeGitBlob": "13b7371c6f4cfcd3ab1517321ea282d95140f107",
+      "afterGitBlob": "13b7371c6f4cfcd3ab1517321ea282d95140f107",
+      "beforeSha256": "1bd93809fbf2dcf54261589b867109d4a2a28b0dd7fd54b1139889cc5697a3c5",
+      "afterSha256": "1bd93809fbf2dcf54261589b867109d4a2a28b0dd7fd54b1139889cc5697a3c5",
+      "bytes": 1829,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/catalog.json",
+      "beforeGitBlob": "e52fc4ec973a8f5d61d381a9f160740be958db4c",
+      "afterGitBlob": "e52fc4ec973a8f5d61d381a9f160740be958db4c",
+      "beforeSha256": "245a47c88cd54d42799b43cdcdf9085089a66839f14dac5f2ce5a0ea6a479f54",
+      "afterSha256": "245a47c88cd54d42799b43cdcdf9085089a66839f14dac5f2ce5a0ea6a479f54",
+      "bytes": 2211,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/characters/traveler-geo/portraits/current-milestone-integration.json",
+      "beforeGitBlob": "78a7bd8fef196be9d44d1107e1b598913778d4c7",
+      "afterGitBlob": "78a7bd8fef196be9d44d1107e1b598913778d4c7",
+      "beforeSha256": "bb23ae543ac7e5cdb3f01ef2369d967dafefb3ddb1c9cd7f74d9a90e9b9d0b9f",
+      "afterSha256": "bb23ae543ac7e5cdb3f01ef2369d967dafefb3ddb1c9cd7f74d9a90e9b9d0b9f",
+      "bytes": 1706,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "art/lowpoly-select/select-lowpoly.json",
+      "beforeGitBlob": "b6f9022b360abe62e047d0effbe262807e453dff",
+      "afterGitBlob": "b6f9022b360abe62e047d0effbe262807e453dff",
+      "beforeSha256": "aca5ac9e2f6e1224f7aba3faa692abc2e4a5b81045756b86d7ff8c3384f36284",
+      "afterSha256": "aca5ac9e2f6e1224f7aba3faa692abc2e4a5b81045756b86d7ff8c3384f36284",
+      "bytes": 255786,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "data/presentation/ui_theme.json",
+      "beforeGitBlob": "041142da0b171870f13027a6e9870773e3990b36",
+      "afterGitBlob": "041142da0b171870f13027a6e9870773e3990b36",
+      "beforeSha256": "6784ddb098e4c1ecc2b02b7ceeb2484a29b801cd8e3280c6a82b9ff7a109756e",
+      "afterSha256": "6784ddb098e4c1ecc2b02b7ceeb2484a29b801cd8e3280c6a82b9ff7a109756e",
+      "bytes": 86802,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-battle-chrome.mjs",
+      "beforeGitBlob": "d50ac6ec61d2333e8286348df1822f80bfc54048",
+      "afterGitBlob": "d50ac6ec61d2333e8286348df1822f80bfc54048",
+      "beforeSha256": "17a872ecd2f11cbca4eda9789712917ea99017c84611985d2e09d63895867af1",
+      "afterSha256": "17a872ecd2f11cbca4eda9789712917ea99017c84611985d2e09d63895867af1",
+      "bytes": 6856,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-battle-scene.mjs",
+      "beforeGitBlob": "03cc42001dc890ec70c7fd08f6d3694608d5cf5a",
+      "afterGitBlob": "03cc42001dc890ec70c7fd08f6d3694608d5cf5a",
+      "beforeSha256": "d5e7000a8dc35c545319b936931f2d10b69c010878f8068bd2c3f815f2698e0e",
+      "afterSha256": "d5e7000a8dc35c545319b936931f2d10b69c010878f8068bd2c3f815f2698e0e",
+      "bytes": 9709,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-card-audit-inputs.mjs",
+      "beforeGitBlob": "666778294394518c77bd9aa757da53e46adddb6d",
+      "afterGitBlob": "666778294394518c77bd9aa757da53e46adddb6d",
+      "beforeSha256": "bf27a08f49e8eee87d62fbe9dcd8cdedf01e7af47065edf220f70324a93cd35e",
+      "afterSha256": "bf27a08f49e8eee87d62fbe9dcd8cdedf01e7af47065edf220f70324a93cd35e",
+      "bytes": 8763,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-card-binding.mjs",
+      "beforeGitBlob": "f5f7852447ab58b5c60ed3f64176b04cbe30630f",
+      "afterGitBlob": "f5f7852447ab58b5c60ed3f64176b04cbe30630f",
+      "beforeSha256": "36e8dd566f6ad671c247933a7cf3616429520adc05382859d4e1cd092b4c1e0a",
+      "afterSha256": "36e8dd566f6ad671c247933a7cf3616429520adc05382859d4e1cd092b4c1e0a",
+      "bytes": 3731,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-card-templates.mjs",
+      "beforeGitBlob": "9503c7778f653e425fa17b843afbfe46f1cb8db8",
+      "afterGitBlob": "9503c7778f653e425fa17b843afbfe46f1cb8db8",
+      "beforeSha256": "b214304df90950c07dbff61779770ad797b760c469f241b18eb1c0ea35b04b6e",
+      "afterSha256": "b214304df90950c07dbff61779770ad797b760c469f241b18eb1c0ea35b04b6e",
+      "bytes": 9814,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-character-layout.mjs",
+      "beforeGitBlob": "0e46e327dca4bf354eb8f669000b0721436c7c77",
+      "afterGitBlob": "0e46e327dca4bf354eb8f669000b0721436c7c77",
+      "beforeSha256": "4adb8c190b63f0fbc239494425245492c3f374d5faa8ddf14add866ec1966076",
+      "afterSha256": "4adb8c190b63f0fbc239494425245492c3f374d5faa8ddf14add866ec1966076",
+      "bytes": 10397,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-layout.mjs",
+      "beforeGitBlob": "283fe327cbed7a9a912f932a489d12ee8afc4646",
+      "afterGitBlob": "283fe327cbed7a9a912f932a489d12ee8afc4646",
+      "beforeSha256": "0d1a3acc74c87e6e8adb41b9613458e90c0a559533dfbc54ed61f2f270c5f24b",
+      "afterSha256": "0d1a3acc74c87e6e8adb41b9613458e90c0a559533dfbc54ed61f2f270c5f24b",
+      "bytes": 5191,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-map-layout.mjs",
+      "beforeGitBlob": "3049bf8081f454f47e5a1d86ee136c6d4fe5c928",
+      "afterGitBlob": "3049bf8081f454f47e5a1d86ee136c6d4fe5c928",
+      "beforeSha256": "bff21afebc6a1a1e160321939e401e6f31e70c2b83902fe37bc6b59b705361c8",
+      "afterSha256": "bff21afebc6a1a1e160321939e401e6f31e70c2b83902fe37bc6b59b705361c8",
+      "bytes": 8297,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-menu-layout.mjs",
+      "beforeGitBlob": "de868fd69d7eda94e38112cad04bc60481baf984",
+      "afterGitBlob": "de868fd69d7eda94e38112cad04bc60481baf984",
+      "beforeSha256": "ba04a93b9ffaa2cf6af1942f0b0a6828a4cde226599b33208b7654ddb40f56bd",
+      "afterSha256": "ba04a93b9ffaa2cf6af1942f0b0a6828a4cde226599b33208b7654ddb40f56bd",
+      "bytes": 3304,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-node-layout.mjs",
+      "beforeGitBlob": "1256a2488cab07b15328e96743184fb5d8319735",
+      "afterGitBlob": "1256a2488cab07b15328e96743184fb5d8319735",
+      "beforeSha256": "fc28f57fd8496136aa83f4f25a2b3137faa9a74959cfbc9de4dc029b145a3914",
+      "afterSha256": "fc28f57fd8496136aa83f4f25a2b3137faa9a74959cfbc9de4dc029b145a3914",
+      "bytes": 20458,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-portrait-profile.mjs",
+      "beforeGitBlob": "dd1d1a3c909c049e01d62f2a8886de4782c36b95",
+      "afterGitBlob": "dd1d1a3c909c049e01d62f2a8886de4782c36b95",
+      "beforeSha256": "0c685a4d230dba99b423d4b30aaedcfbc9018b3534859d7b2ffa3b7962372ae9",
+      "afterSha256": "0c685a4d230dba99b423d4b30aaedcfbc9018b3534859d7b2ffa3b7962372ae9",
+      "bytes": 2345,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-private-card-assets.mjs",
+      "beforeGitBlob": "08b8a0e866337c551a7e3a351419a30f7dbc2d64",
+      "afterGitBlob": "08b8a0e866337c551a7e3a351419a30f7dbc2d64",
+      "beforeSha256": "c972225f6f596420e655e6bd00e4e65f1928d3e5635e8bb0c2e4e261a4b2c065",
+      "afterSha256": "c972225f6f596420e655e6bd00e4e65f1928d3e5635e8bb0c2e4e261a4b2c065",
+      "bytes": 10479,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-profile.mjs",
+      "beforeGitBlob": "a5c13e4f465bc2728c0af0ae87a26653143eb609",
+      "afterGitBlob": "a5c13e4f465bc2728c0af0ae87a26653143eb609",
+      "beforeSha256": "ecb12e7914f593d755d455548e38b12b6fce43c39a67cbc8ec7e1fc06f00edaa",
+      "afterSha256": "ecb12e7914f593d755d455548e38b12b6fce43c39a67cbc8ec7e1fc06f00edaa",
+      "bytes": 3878,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-result-layout.mjs",
+      "beforeGitBlob": "f8a93f556f7113636df2a9777ec2ab849f3984f0",
+      "afterGitBlob": "f8a93f556f7113636df2a9777ec2ab849f3984f0",
+      "beforeSha256": "5809e8cfde40108f64d55551bb9a7d4bd1df9655c4d4ff0d5b1e1ab33fec8917",
+      "afterSha256": "5809e8cfde40108f64d55551bb9a7d4bd1df9655c4d4ff0d5b1e1ab33fec8917",
+      "bytes": 8940,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-turn-notice-layout.mjs",
+      "beforeGitBlob": "fde34389a90457307e98bab8fea6c91e2946b422",
+      "afterGitBlob": "fde34389a90457307e98bab8fea6c91e2946b422",
+      "beforeSha256": "014b1d349ac6c71b1dd3e7b03eabf658e0d7c07fbd43387d3aa70d181d43b072",
+      "afterSha256": "014b1d349ac6c71b1dd3e7b03eabf658e0d7c07fbd43387d3aa70d181d43b072",
+      "bytes": 2487,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-ui-mask-assets.mjs",
+      "beforeGitBlob": "fb91517f36fbeeee1971cba37cd611a3a5edbfef",
+      "afterGitBlob": "fb91517f36fbeeee1971cba37cd611a3a5edbfef",
+      "beforeSha256": "ac3e61bf6fa7b19a827e07e77b1d693b895baacd6c3520193a321dd5e56bcccd",
+      "afterSha256": "ac3e61bf6fa7b19a827e07e77b1d693b895baacd6c3520193a321dd5e56bcccd",
+      "bytes": 10558,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "scripts/v25-ui-mask-audit-inputs.mjs",
+      "beforeGitBlob": "4756744b45245dddd218073b3b23595e48fd451a",
+      "afterGitBlob": "4756744b45245dddd218073b3b23595e48fd451a",
+      "beforeSha256": "9fb8d14aea1d2a6f1575efdf86135b329b30d78f20490e1e2fbb523464236646",
+      "afterSha256": "9fb8d14aea1d2a6f1575efdf86135b329b30d78f20490e1e2fbb523464236646",
+      "bytes": 3661,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "src/lua/abyss_v25_card_surface.lua",
+      "beforeGitBlob": "7ad14161bc8d8e221c7f2839d0f4e1a50a4fecb2",
+      "afterGitBlob": "7ad14161bc8d8e221c7f2839d0f4e1a50a4fecb2",
+      "beforeSha256": "7b1c98cc9617969a02d50a47da396bf321ccf8138aa163ebedee5428d8d04e1a",
+      "afterSha256": "7b1c98cc9617969a02d50a47da396bf321ccf8138aa163ebedee5428d8d04e1a",
+      "bytes": 13753,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "src/lua/abyss_v25_menu_view.lua",
+      "beforeGitBlob": "228446ccb45a86d3f10e1309294fbfa05735ab78",
+      "afterGitBlob": "228446ccb45a86d3f10e1309294fbfa05735ab78",
+      "beforeSha256": "bb115f8acebc28cbf1d167944a5ad96b5dca38cd09ff231336c7f251e8a17936",
+      "afterSha256": "bb115f8acebc28cbf1d167944a5ad96b5dca38cd09ff231336c7f251e8a17936",
+      "bytes": 5171,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "src/lua/abyss_v25_texture_runtime.lua",
+      "beforeGitBlob": "f953ac1f143c5e43ad09eb7617766c2a2e0fc280",
+      "afterGitBlob": "f953ac1f143c5e43ad09eb7617766c2a2e0fc280",
+      "beforeSha256": "c51efa3684bc06c7de11c61f982eef7db483f2d3aa1251b3904320421a8fe7c1",
+      "afterSha256": "c51efa3684bc06c7de11c61f982eef7db483f2d3aa1251b3904320421a8fe7c1",
+      "bytes": 12733,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    },
+    {
+      "path": "src/lua/abyss_v25_turn_notice.lua",
+      "beforeGitBlob": "f32e6c99f278fc8d76ed03a4b24d2ba9fd53e0d0",
+      "afterGitBlob": "f32e6c99f278fc8d76ed03a4b24d2ba9fd53e0d0",
+      "beforeSha256": "395bf91869cfc89e0d8df6d52d974892009730b87f5db1d601f0ce9df4828fea",
+      "afterSha256": "395bf91869cfc89e0d8df6d52d974892009730b87f5db1d601f0ce9df4828fea",
+      "bytes": 6124,
+      "gitBlobEqual": true,
+      "materialization": "TEXT_EQUIVALENT_CRLF_LF_ONLY"
+    }
+  ],
+  "privateSourceBinding": {
+    "siteVersion": 25,
+    "privateSourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+    "authority": "Ignored originals are not Git-addressable. Their65 raw input pins plus the pack are bound to the historical #565 V25 artifact; compiler/layout blobs at ae716926 equal fc98f4e3. Historical artifact is not relabelled ae716926.",
+    "historicalSourceCommit": "6e6cf7868d97cf8a0abf6c861a5835c4fa6020f4",
+    "historicalSourceDirty": false,
+    "historicalGilSha256": "ae1dcf818812470ea2e7ffa91241d9e94aae3cb9146a76ac5ecbf1af37bbdac9",
+    "originalPackSha256": "ad2f6aa71dfe4b491ea35e221896ec5da79bab8962de465c66cb64ec0d89cd9a",
+    "relocatedPackSha256": "fccfc58ceb2fee961a18084f9c1c8d3cca4fe7fc8fb7c5321bb507f4ddc95634",
+    "pathOnlyRelocation": true,
+    "packInputsIncludingPack": 66,
+    "rawInputs": [
+      {
+        "id": 1,
+        "name": "manifest.json",
+        "beforeSha256": "f8bb8c01dbe0ecdb6818efe612e7882e7b27f4f0b2ba4647ea9ca8dc2fe7a623",
+        "afterSha256": "f8bb8c01dbe0ecdb6818efe612e7882e7b27f4f0b2ba4647ea9ca8dc2fe7a623",
+        "bytes": 668462,
+        "equalBytes": true
+      },
+      {
+        "id": 2,
+        "name": "battle.js",
+        "beforeSha256": "b81d1dbf57874df0efdf68bff2894b256bda954fc8e2f235a657085f518a1ec7",
+        "afterSha256": "b81d1dbf57874df0efdf68bff2894b256bda954fc8e2f235a657085f518a1ec7",
+        "bytes": 39795,
+        "equalBytes": true
+      },
+      {
+        "id": 3,
+        "name": "style.css",
+        "beforeSha256": "52eccb6a7690045c0a564d93409f096bc4098dc61c0ea033e0c3a4cb5e0efbf8",
+        "afterSha256": "52eccb6a7690045c0a564d93409f096bc4098dc61c0ea033e0c3a4cb5e0efbf8",
+        "bytes": 12765,
+        "equalBytes": true
+      },
+      {
+        "id": 4,
+        "name": "sts-battle-restore.css",
+        "beforeSha256": "bee6138f43655ffc62ce0c0860bfacf6050fbae7bd702227a472c571c0e13f92",
+        "afterSha256": "bee6138f43655ffc62ce0c0860bfacf6050fbae7bd702227a472c571c0e13f92",
+        "bytes": 194134,
+        "equalBytes": true
+      },
+      {
+        "id": 5,
+        "name": "genshin-rooms.css",
+        "beforeSha256": "abf9e5188e076062646153358bbfa16b498adf0e08b90d92a0fb1b5801760100",
+        "afterSha256": "abf9e5188e076062646153358bbfa16b498adf0e08b90d92a0fb1b5801760100",
+        "bytes": 11336,
+        "equalBytes": true
+      },
+      {
+        "id": 6,
+        "name": "project-card-theme.css",
+        "beforeSha256": "354502472f3142a5dd2b76f39f60e7c854ce18d61f3e148a41e30284f867a819",
+        "afterSha256": "354502472f3142a5dd2b76f39f60e7c854ce18d61f3e148a41e30284f867a819",
+        "bytes": 10568,
+        "equalBytes": true
+      },
+      {
+        "id": 7,
+        "name": "geo-cost-icon-priority.svg",
+        "beforeSha256": "6ccddc7f889221a64c745f68aad9d8f2c9e8ec3598cbf1da6f2a42cb4a2d4205",
+        "afterSha256": "6ccddc7f889221a64c745f68aad9d8f2c9e8ec3598cbf1da6f2a42cb4a2d4205",
+        "bytes": 30345,
+        "equalBytes": true
+      },
+      {
+        "id": 8,
+        "name": "geo-body-filter.svg",
+        "beforeSha256": "2a45f50d6871bd8848b6943178dc3b79099f09027e620f8ee07961d02e21b61c",
+        "afterSha256": "2a45f50d6871bd8848b6943178dc3b79099f09027e620f8ee07961d02e21b61c",
+        "bytes": 485,
+        "equalBytes": true
+      },
+      {
+        "id": 9,
+        "name": "geo-orb-filter.svg",
+        "beforeSha256": "5778d232a4fbca35861289cdbe68088da3275a2878c95d1f74e837709c27f234",
+        "afterSha256": "5778d232a4fbca35861289cdbe68088da3275a2878c95d1f74e837709c27f234",
+        "bytes": 441,
+        "equalBytes": true
+      },
+      {
+        "id": 10,
+        "name": "sts-card-red-orb.png",
+        "beforeSha256": "0421030b7b3ab5f3b66b51d392418c44f6dc33a0a07e82261025adbc5ba51ef3",
+        "afterSha256": "0421030b7b3ab5f3b66b51d392418c44f6dc33a0a07e82261025adbc5ba51ef3",
+        "bytes": 22322,
+        "equalBytes": true
+      },
+      {
+        "id": 11,
+        "name": "geo-card-zhongli-attack.svg",
+        "beforeSha256": "d2cda159ff304ea5eb58669fe3a7305896d01787cba998f1df0dc852f0ecf091",
+        "afterSha256": "d2cda159ff304ea5eb58669fe3a7305896d01787cba998f1df0dc852f0ecf091",
+        "bytes": 55352,
+        "equalBytes": true
+      },
+      {
+        "id": 12,
+        "name": "geo-card-zhongli-skill.svg",
+        "beforeSha256": "e08a2713cf92ca452d2cfd8a264f89749f91df011e1b2dd777135a398153a9d0",
+        "afterSha256": "e08a2713cf92ca452d2cfd8a264f89749f91df011e1b2dd777135a398153a9d0",
+        "bytes": 55244,
+        "equalBytes": true
+      },
+      {
+        "id": 13,
+        "name": "geo-card-zhongli-power.svg",
+        "beforeSha256": "c560f8e8f412b5e08318a3ced002d7695acd41dd514ca5ff65fba0b2e6c89bf9",
+        "afterSha256": "c560f8e8f412b5e08318a3ced002d7695acd41dd514ca5ff65fba0b2e6c89bf9",
+        "bytes": 68420,
+        "equalBytes": true
+      },
+      {
+        "id": 14,
+        "name": "sts-rarity-banner_common.png",
+        "beforeSha256": "3082b98935e17671a747bf04e6caad6be875392007758d56ee7fd4561291603d",
+        "afterSha256": "3082b98935e17671a747bf04e6caad6be875392007758d56ee7fd4561291603d",
+        "bytes": 9182,
+        "equalBytes": true
+      },
+      {
+        "id": 15,
+        "name": "sts-rarity-banner_uncommon.png",
+        "beforeSha256": "ae27122930de831a4ae68ec07cbe24e736cd2b497234eb0a2c9f9b662a9c163a",
+        "afterSha256": "ae27122930de831a4ae68ec07cbe24e736cd2b497234eb0a2c9f9b662a9c163a",
+        "bytes": 25766,
+        "equalBytes": true
+      },
+      {
+        "id": 16,
+        "name": "sts-rarity-banner_rare.png",
+        "beforeSha256": "8674c4088749ffcbd823caa26ebf5686dc5e35ece290abf963099d04e53d4dc8",
+        "afterSha256": "8674c4088749ffcbd823caa26ebf5686dc5e35ece290abf963099d04e53d4dc8",
+        "bytes": 27315,
+        "equalBytes": true
+      },
+      {
+        "id": 17,
+        "name": "sts-rarity-frame_common_attack.png",
+        "beforeSha256": "57bd70f7da917f826f9da4d0cd1f353bb1cb90e445aba02f43b2e86252b422c7",
+        "afterSha256": "57bd70f7da917f826f9da4d0cd1f353bb1cb90e445aba02f43b2e86252b422c7",
+        "bytes": 11487,
+        "equalBytes": true
+      },
+      {
+        "id": 18,
+        "name": "sts-rarity-frame_uncommon_attack.png",
+        "beforeSha256": "6ae1a1ec820db12fb549fe33c1c3f23c8a76bb82d9edb41b8f9d5555dd332888",
+        "afterSha256": "6ae1a1ec820db12fb549fe33c1c3f23c8a76bb82d9edb41b8f9d5555dd332888",
+        "bytes": 36129,
+        "equalBytes": true
+      },
+      {
+        "id": 19,
+        "name": "sts-rarity-frame_rare_attack.png",
+        "beforeSha256": "b6480088588548abcc4ae32624dc78f9b321d37109eb7d19ff7bb07064f8e5f0",
+        "afterSha256": "b6480088588548abcc4ae32624dc78f9b321d37109eb7d19ff7bb07064f8e5f0",
+        "bytes": 35520,
+        "equalBytes": true
+      },
+      {
+        "id": 20,
+        "name": "sts-rarity-frame_common_skill.png",
+        "beforeSha256": "646b73f793451e4ad79d2d69b219cfd234d71054e96ef828e840f9b1c1cee115",
+        "afterSha256": "646b73f793451e4ad79d2d69b219cfd234d71054e96ef828e840f9b1c1cee115",
+        "bytes": 11735,
+        "equalBytes": true
+      },
+      {
+        "id": 21,
+        "name": "sts-rarity-frame_uncommon_skill.png",
+        "beforeSha256": "9aa966f674bc1a4b2afa604ad16a17f83b9f901f9adc7306079a03e79d27624f",
+        "afterSha256": "9aa966f674bc1a4b2afa604ad16a17f83b9f901f9adc7306079a03e79d27624f",
+        "bytes": 30214,
+        "equalBytes": true
+      },
+      {
+        "id": 22,
+        "name": "sts-rarity-frame_rare_skill.png",
+        "beforeSha256": "325efc44585dbac9f87356bb17d8d8bf5dc5381d703108094c1291df2c7038d9",
+        "afterSha256": "325efc44585dbac9f87356bb17d8d8bf5dc5381d703108094c1291df2c7038d9",
+        "bytes": 29174,
+        "equalBytes": true
+      },
+      {
+        "id": 23,
+        "name": "sts-rarity-frame_common_power.png",
+        "beforeSha256": "70d91ee587460699053de5709b598f39cf8f5766372e9509d573a960821b1820",
+        "afterSha256": "70d91ee587460699053de5709b598f39cf8f5766372e9509d573a960821b1820",
+        "bytes": 17479,
+        "equalBytes": true
+      },
+      {
+        "id": 24,
+        "name": "sts-rarity-frame_uncommon_power.png",
+        "beforeSha256": "a54090d96caeadbd0e49d50366a20333f2c2b31913768074b97f7afa585c341e",
+        "afterSha256": "a54090d96caeadbd0e49d50366a20333f2c2b31913768074b97f7afa585c341e",
+        "bytes": 57852,
+        "equalBytes": true
+      },
+      {
+        "id": 25,
+        "name": "sts-rarity-frame_rare_power.png",
+        "beforeSha256": "d7dd4b75b82ac31e6ba5dc84478f2dff73e654bc43a6c8d53836a0cf3121acae",
+        "afterSha256": "d7dd4b75b82ac31e6ba5dc84478f2dff73e654bc43a6c8d53836a0cf3121acae",
+        "bytes": 56726,
+        "equalBytes": true
+      },
+      {
+        "id": 26,
+        "name": "cardShell_attack_common-raster.png",
+        "beforeSha256": "cf5bc089273450670ee4a2acfcd0543e8b84e8bbef446427698d14ed81f52c6a",
+        "afterSha256": "cf5bc089273450670ee4a2acfcd0543e8b84e8bbef446427698d14ed81f52c6a",
+        "bytes": 17897,
+        "equalBytes": true
+      },
+      {
+        "id": 27,
+        "name": "cardShell_attack_common-sample.png",
+        "beforeSha256": "4b1f63012aa21adae9e8a96a871f46a3c344d9939e853bf7f986a693d7f086e1",
+        "afterSha256": "4b1f63012aa21adae9e8a96a871f46a3c344d9939e853bf7f986a693d7f086e1",
+        "bytes": 12652,
+        "equalBytes": true
+      },
+      {
+        "id": 28,
+        "name": "cardShell_attack_common.html",
+        "beforeSha256": "37be9bb14c0d2a362b9d70613941130e39ed4f64e10e3c4bbbf167c95fa4c55e",
+        "afterSha256": "37be9bb14c0d2a362b9d70613941130e39ed4f64e10e3c4bbbf167c95fa4c55e",
+        "bytes": 17712,
+        "equalBytes": true
+      },
+      {
+        "id": 29,
+        "name": "cardShell_attack_common-full-browser.png",
+        "beforeSha256": "62d3e3959a86ab85db2e361aea0e00830d4477b5837714ecdcddf9e634b0b304",
+        "afterSha256": "62d3e3959a86ab85db2e361aea0e00830d4477b5837714ecdcddf9e634b0b304",
+        "bytes": 19268,
+        "equalBytes": true
+      },
+      {
+        "id": 30,
+        "name": "cardShell_attack_uncommon-raster.png",
+        "beforeSha256": "a8c019f9be52b4bcb8328d38d3a40cc549c7b4a88972c7c1fccbc682e164402d",
+        "afterSha256": "a8c019f9be52b4bcb8328d38d3a40cc549c7b4a88972c7c1fccbc682e164402d",
+        "bytes": 19619,
+        "equalBytes": true
+      },
+      {
+        "id": 31,
+        "name": "cardShell_attack_uncommon-sample.png",
+        "beforeSha256": "b095c571ced4ea2d944ea503fd2c476c6459b785ee14b02e0004768f9010be41",
+        "afterSha256": "b095c571ced4ea2d944ea503fd2c476c6459b785ee14b02e0004768f9010be41",
+        "bytes": 13308,
+        "equalBytes": true
+      },
+      {
+        "id": 32,
+        "name": "cardShell_attack_uncommon.html",
+        "beforeSha256": "6b924e8b6f4666df6b2bd893134b1ffc01070e07e5e6da7845ea6d63c44f8c1a",
+        "afterSha256": "6b924e8b6f4666df6b2bd893134b1ffc01070e07e5e6da7845ea6d63c44f8c1a",
+        "bytes": 17714,
+        "equalBytes": true
+      },
+      {
+        "id": 33,
+        "name": "cardShell_attack_uncommon-full-browser.png",
+        "beforeSha256": "8e5c4a419b7b1115d1e4ba4073405061be2aa7f05c4d76e84e772eef086b4922",
+        "afterSha256": "8e5c4a419b7b1115d1e4ba4073405061be2aa7f05c4d76e84e772eef086b4922",
+        "bytes": 20733,
+        "equalBytes": true
+      },
+      {
+        "id": 34,
+        "name": "cardShell_attack_rare-raster.png",
+        "beforeSha256": "f5c7960300f82103483139533278643578ecb0d0adce8864e5fd9a9afa97e9a0",
+        "afterSha256": "f5c7960300f82103483139533278643578ecb0d0adce8864e5fd9a9afa97e9a0",
+        "bytes": 20043,
+        "equalBytes": true
+      },
+      {
+        "id": 35,
+        "name": "cardShell_attack_rare-sample.png",
+        "beforeSha256": "7dc805a6db434665854dcd10a2f720d2b210070f09c6bcd8db981573602d18c9",
+        "afterSha256": "7dc805a6db434665854dcd10a2f720d2b210070f09c6bcd8db981573602d18c9",
+        "bytes": 13281,
+        "equalBytes": true
+      },
+      {
+        "id": 36,
+        "name": "cardShell_attack_rare.html",
+        "beforeSha256": "c3ec8b95981e9ca41af37f20e439bec9e9fdf7180e2cc79792c2f85df99052c0",
+        "afterSha256": "c3ec8b95981e9ca41af37f20e439bec9e9fdf7180e2cc79792c2f85df99052c0",
+        "bytes": 17710,
+        "equalBytes": true
+      },
+      {
+        "id": 37,
+        "name": "cardShell_attack_rare-full-browser.png",
+        "beforeSha256": "31426665946e245c76419ad64f295a0f9fc7881a492637337dc309cdb0ecbb0e",
+        "afterSha256": "31426665946e245c76419ad64f295a0f9fc7881a492637337dc309cdb0ecbb0e",
+        "bytes": 21074,
+        "equalBytes": true
+      },
+      {
+        "id": 38,
+        "name": "cardShell_skill_common-raster.png",
+        "beforeSha256": "4a4b0f8e6c2a426f7c8cf692de4c0eb9b518f1acd8a1f88cd8c0db5d183faf11",
+        "afterSha256": "4a4b0f8e6c2a426f7c8cf692de4c0eb9b518f1acd8a1f88cd8c0db5d183faf11",
+        "bytes": 17048,
+        "equalBytes": true
+      },
+      {
+        "id": 39,
+        "name": "cardShell_skill_common-sample.png",
+        "beforeSha256": "f1d4a1baa920c9505f1666412e74c20a56ac2c9f06748b95a12e95406ca2d964",
+        "afterSha256": "f1d4a1baa920c9505f1666412e74c20a56ac2c9f06748b95a12e95406ca2d964",
+        "bytes": 11977,
+        "equalBytes": true
+      },
+      {
+        "id": 40,
+        "name": "cardShell_skill_common.html",
+        "beforeSha256": "d2ad23f041f27e5cf5d647f40bb03dcc45350390aed0db9474a40eec3ef853f1",
+        "afterSha256": "d2ad23f041f27e5cf5d647f40bb03dcc45350390aed0db9474a40eec3ef853f1",
+        "bytes": 17813,
+        "equalBytes": true
+      },
+      {
+        "id": 41,
+        "name": "cardShell_skill_common-full-browser.png",
+        "beforeSha256": "3183c5fb14b4ccc793a547779e763bec18661f24da90965fe688159a278d9a1d",
+        "afterSha256": "3183c5fb14b4ccc793a547779e763bec18661f24da90965fe688159a278d9a1d",
+        "bytes": 18332,
+        "equalBytes": true
+      },
+      {
+        "id": 42,
+        "name": "cardShell_skill_uncommon-raster.png",
+        "beforeSha256": "d41b3405a7c9b8b0943e1373e788503f66913b3b16cbb6439584ac27ec97529a",
+        "afterSha256": "d41b3405a7c9b8b0943e1373e788503f66913b3b16cbb6439584ac27ec97529a",
+        "bytes": 18621,
+        "equalBytes": true
+      },
+      {
+        "id": 43,
+        "name": "cardShell_skill_uncommon-sample.png",
+        "beforeSha256": "9c3c4e8266de0996e61782e7538d8f9b47ef5ea3975d9aebc7794e883b289f3a",
+        "afterSha256": "9c3c4e8266de0996e61782e7538d8f9b47ef5ea3975d9aebc7794e883b289f3a",
+        "bytes": 12634,
+        "equalBytes": true
+      },
+      {
+        "id": 44,
+        "name": "cardShell_skill_uncommon.html",
+        "beforeSha256": "4c4c0669d2bb7d7b0755381ff3f96bb658cbfe9d604a8290728cb37617375244",
+        "afterSha256": "4c4c0669d2bb7d7b0755381ff3f96bb658cbfe9d604a8290728cb37617375244",
+        "bytes": 17815,
+        "equalBytes": true
+      },
+      {
+        "id": 45,
+        "name": "cardShell_skill_uncommon-full-browser.png",
+        "beforeSha256": "957a9155dcfce0c66922fdc61e52ffba1c7e20c0d5a80f3035196c441abc1d15",
+        "afterSha256": "957a9155dcfce0c66922fdc61e52ffba1c7e20c0d5a80f3035196c441abc1d15",
+        "bytes": 19615,
+        "equalBytes": true
+      },
+      {
+        "id": 46,
+        "name": "cardShell_skill_rare-raster.png",
+        "beforeSha256": "d646bc22df361dffce44401fab486de733abc5cef2f5cc880dbe0021cf3ea046",
+        "afterSha256": "d646bc22df361dffce44401fab486de733abc5cef2f5cc880dbe0021cf3ea046",
+        "bytes": 18815,
+        "equalBytes": true
+      },
+      {
+        "id": 47,
+        "name": "cardShell_skill_rare-sample.png",
+        "beforeSha256": "7deaf5b24d7b4dee20645b2a5639a11f84ce4def816caf4c62a568e0709b60d5",
+        "afterSha256": "7deaf5b24d7b4dee20645b2a5639a11f84ce4def816caf4c62a568e0709b60d5",
+        "bytes": 12696,
+        "equalBytes": true
+      },
+      {
+        "id": 48,
+        "name": "cardShell_skill_rare.html",
+        "beforeSha256": "4654ca7e0c10c53e28ebe2ff121745d3e20735beb22b0a490186af600a53e440",
+        "afterSha256": "4654ca7e0c10c53e28ebe2ff121745d3e20735beb22b0a490186af600a53e440",
+        "bytes": 17811,
+        "equalBytes": true
+      },
+      {
+        "id": 49,
+        "name": "cardShell_skill_rare-full-browser.png",
+        "beforeSha256": "08a10fc0adf4f65957bf7a74a3498279a1a344fc7c351d4b74d8d5004ef6a91b",
+        "afterSha256": "08a10fc0adf4f65957bf7a74a3498279a1a344fc7c351d4b74d8d5004ef6a91b",
+        "bytes": 19711,
+        "equalBytes": true
+      },
+      {
+        "id": 50,
+        "name": "cardShell_power_common-raster.png",
+        "beforeSha256": "9ead8e617892259f653a29ce0dc79b98c2eedfaaa2794c409044bd5afb2bdc19",
+        "afterSha256": "9ead8e617892259f653a29ce0dc79b98c2eedfaaa2794c409044bd5afb2bdc19",
+        "bytes": 21042,
+        "equalBytes": true
+      },
+      {
+        "id": 51,
+        "name": "cardShell_power_common-sample.png",
+        "beforeSha256": "23cb2884adcf9475389f7b1fd019a14cfb7d00a2e15a6ead4ab96629b7e56f84",
+        "afterSha256": "23cb2884adcf9475389f7b1fd019a14cfb7d00a2e15a6ead4ab96629b7e56f84",
+        "bytes": 14738,
+        "equalBytes": true
+      },
+      {
+        "id": 52,
+        "name": "cardShell_power_common.html",
+        "beforeSha256": "2e62ffd34eae0a17826e9706023ca8832d02a927ca07858586d0968396da7c6f",
+        "afterSha256": "2e62ffd34eae0a17826e9706023ca8832d02a927ca07858586d0968396da7c6f",
+        "bytes": 17745,
+        "equalBytes": true
+      },
+      {
+        "id": 53,
+        "name": "cardShell_power_common-full-browser.png",
+        "beforeSha256": "dbd84d91c3d21bd9ecf32699f19b9295ae37f66b6dec8ff5b4526632679eb6b5",
+        "afterSha256": "dbd84d91c3d21bd9ecf32699f19b9295ae37f66b6dec8ff5b4526632679eb6b5",
+        "bytes": 23039,
+        "equalBytes": true
+      },
+      {
+        "id": 54,
+        "name": "cardShell_power_uncommon-raster.png",
+        "beforeSha256": "9431e45f462611338b955cc9a9198725027cda6f95202c01d226a439b1ac6937",
+        "afterSha256": "9431e45f462611338b955cc9a9198725027cda6f95202c01d226a439b1ac6937",
+        "bytes": 23199,
+        "equalBytes": true
+      },
+      {
+        "id": 55,
+        "name": "cardShell_power_uncommon-sample.png",
+        "beforeSha256": "85591ab551b7555c36795cdd1112b0a00175fe547f4a51c146b5e97bfc49865d",
+        "afterSha256": "85591ab551b7555c36795cdd1112b0a00175fe547f4a51c146b5e97bfc49865d",
+        "bytes": 15336,
+        "equalBytes": true
+      },
+      {
+        "id": 56,
+        "name": "cardShell_power_uncommon.html",
+        "beforeSha256": "1280e5c4414d4b23f0fe51565eeec9a21fe5f37044390bf42636bb004b60b053",
+        "afterSha256": "1280e5c4414d4b23f0fe51565eeec9a21fe5f37044390bf42636bb004b60b053",
+        "bytes": 17747,
+        "equalBytes": true
+      },
+      {
+        "id": 57,
+        "name": "cardShell_power_uncommon-full-browser.png",
+        "beforeSha256": "beef7e6e04e04e97dbf7ee21ddc86233c449241d06e1fa57e2fac7bb9e9c2177",
+        "afterSha256": "beef7e6e04e04e97dbf7ee21ddc86233c449241d06e1fa57e2fac7bb9e9c2177",
+        "bytes": 24555,
+        "equalBytes": true
+      },
+      {
+        "id": 58,
+        "name": "cardShell_power_rare-raster.png",
+        "beforeSha256": "b957ff759aea3c1818077d2aa7a342b153a7ee50754ab55f0d44502736b60515",
+        "afterSha256": "b957ff759aea3c1818077d2aa7a342b153a7ee50754ab55f0d44502736b60515",
+        "bytes": 23661,
+        "equalBytes": true
+      },
+      {
+        "id": 59,
+        "name": "cardShell_power_rare-sample.png",
+        "beforeSha256": "e7b5272862b23728b83a32d450eb352d4dbf7150bd88d36cacd026e5ce2df913",
+        "afterSha256": "e7b5272862b23728b83a32d450eb352d4dbf7150bd88d36cacd026e5ce2df913",
+        "bytes": 15431,
+        "equalBytes": true
+      },
+      {
+        "id": 60,
+        "name": "cardShell_power_rare.html",
+        "beforeSha256": "034999d82e820e48526e3e647a46611a03eed99a48656ff669e8f9e74e602d90",
+        "afterSha256": "034999d82e820e48526e3e647a46611a03eed99a48656ff669e8f9e74e602d90",
+        "bytes": 17743,
+        "equalBytes": true
+      },
+      {
+        "id": 61,
+        "name": "cardShell_power_rare-full-browser.png",
+        "beforeSha256": "d4d049bb107141418df2c22f3fc4b2fee0dcfb5804c4de2071fc2b469191548f",
+        "afterSha256": "d4d049bb107141418df2c22f3fc4b2fee0dcfb5804c4de2071fc2b469191548f",
+        "bytes": 24970,
+        "equalBytes": true
+      },
+      {
+        "id": 62,
+        "name": "cardShell_mana-raster.png",
+        "beforeSha256": "de66ae5a40107e563fbe8bfd239c8ac405127126394010fa25adbd307f66f3b3",
+        "afterSha256": "de66ae5a40107e563fbe8bfd239c8ac405127126394010fa25adbd307f66f3b3",
+        "bytes": 2544,
+        "equalBytes": true
+      },
+      {
+        "id": 63,
+        "name": "cardShell_mana-sample.png",
+        "beforeSha256": "de66ae5a40107e563fbe8bfd239c8ac405127126394010fa25adbd307f66f3b3",
+        "afterSha256": "de66ae5a40107e563fbe8bfd239c8ac405127126394010fa25adbd307f66f3b3",
+        "bytes": 2544,
+        "equalBytes": true
+      },
+      {
+        "id": 64,
+        "name": "cardShell_mana.html",
+        "beforeSha256": "6531d95cb45c17c7f861b7b49b697421334e1c82598f137e46cdd8794f490a80",
+        "afterSha256": "6531d95cb45c17c7f861b7b49b697421334e1c82598f137e46cdd8794f490a80",
+        "bytes": 16711,
+        "equalBytes": true
+      },
+      {
+        "id": 65,
+        "name": "cardShell_mana-full-browser.png",
+        "beforeSha256": "cc29cfeff704acd0a9d8845a94fe69becdcdc619c32b68b27ebc97da74c69edd",
+        "afterSha256": "cc29cfeff704acd0a9d8845a94fe69becdcdc619c32b68b27ebc97da74c69edd",
+        "bytes": 3337,
+        "equalBytes": true
+      }
+    ],
+    "freshPngDecodeAndRgbaValidation": true,
+    "tenTemplates": [
+      {
+        "name": "AbyssV25Card1",
+        "templateIdBefore": 1073741990,
+        "templateIdAfter": 1073741990,
+        "templateSourceSha256": "7d33a9492cb3470c4d93123d2dd1105c9a2f5a74141c1cf3da741956ba2aebbf",
+        "rectangleDataBeforeSha256": "a59a3d1bbd850cdeb395dff86d76674a9ba371d679008041b3319b1d7ce47352",
+        "rectangleDataAfterSha256": "a59a3d1bbd850cdeb395dff86d76674a9ba371d679008041b3319b1d7ce47352",
+        "dataEqual": true,
+        "visibleRectangles": 6779
+      },
+      {
+        "name": "AbyssV25Card2",
+        "templateIdBefore": 1073741991,
+        "templateIdAfter": 1073741991,
+        "templateSourceSha256": "d8f156358cf94a57477ffe91a66e94c1166a733bbb1749b947342a9277ef87ba",
+        "rectangleDataBeforeSha256": "95e9eb42380322488c21f6cbf68f0555467d6bb2f12c538f1ca662a51d2d2f43",
+        "rectangleDataAfterSha256": "95e9eb42380322488c21f6cbf68f0555467d6bb2f12c538f1ca662a51d2d2f43",
+        "dataEqual": true,
+        "visibleRectangles": 7372
+      },
+      {
+        "name": "AbyssV25Card3",
+        "templateIdBefore": 1073741992,
+        "templateIdAfter": 1073741992,
+        "templateSourceSha256": "f6465d9959847c2ee152eee0aff7ba12c170cb98c7cf19d867dfc7f1035ed182",
+        "rectangleDataBeforeSha256": "bfa429e9e7c50973d49c92b6ff6be5992f8fbe217783778ab517c960aef831f1",
+        "rectangleDataAfterSha256": "bfa429e9e7c50973d49c92b6ff6be5992f8fbe217783778ab517c960aef831f1",
+        "dataEqual": true,
+        "visibleRectangles": 7516
+      },
+      {
+        "name": "AbyssV25Card4",
+        "templateIdBefore": 1073741993,
+        "templateIdAfter": 1073741993,
+        "templateSourceSha256": "edaa244e8bb1e74bb057e9e165dde4f37020f72fcd80f305da5989a3c9edcca4",
+        "rectangleDataBeforeSha256": "1e9bc5ff3cc77a969886c1416f85974ea5ae12af28e65a7650e5753ee6d8d2f0",
+        "rectangleDataAfterSha256": "1e9bc5ff3cc77a969886c1416f85974ea5ae12af28e65a7650e5753ee6d8d2f0",
+        "dataEqual": true,
+        "visibleRectangles": 6751
+      },
+      {
+        "name": "AbyssV25Card5",
+        "templateIdBefore": 1073741994,
+        "templateIdAfter": 1073741994,
+        "templateSourceSha256": "8f0ad88ce26e157413b5c625e37adf041772f9283fc4ec53c7edc294fa65e1fe",
+        "rectangleDataBeforeSha256": "691c2a047f41ea27e046a8c0ad8223cbda9598af5c552a9c13abaceccb1cf899",
+        "rectangleDataAfterSha256": "691c2a047f41ea27e046a8c0ad8223cbda9598af5c552a9c13abaceccb1cf899",
+        "dataEqual": true,
+        "visibleRectangles": 7285
+      },
+      {
+        "name": "AbyssV25Card6",
+        "templateIdBefore": 1073741995,
+        "templateIdAfter": 1073741995,
+        "templateSourceSha256": "8e1fdf9d145e256131cfa85d2f69f02af57bcb8f83e982955715b5d08675294c",
+        "rectangleDataBeforeSha256": "6699759d7cea89d4a10ae7ab0a507a87b1daf7f63355d4bf9d603addd7dafe4f",
+        "rectangleDataAfterSha256": "6699759d7cea89d4a10ae7ab0a507a87b1daf7f63355d4bf9d603addd7dafe4f",
+        "dataEqual": true,
+        "visibleRectangles": 7299
+      },
+      {
+        "name": "AbyssV25Card7",
+        "templateIdBefore": 1073741996,
+        "templateIdAfter": 1073741996,
+        "templateSourceSha256": "4d8f08ad3140234f5f9ad00c116564f1306f8750be31a9b48f0d5199f25c25bd",
+        "rectangleDataBeforeSha256": "81461415810a5e465c232bbc1b2601859cb2f948d33ce1d6cbcc833fad78be70",
+        "rectangleDataAfterSha256": "81461415810a5e465c232bbc1b2601859cb2f948d33ce1d6cbcc833fad78be70",
+        "dataEqual": true,
+        "visibleRectangles": 8273
+      },
+      {
+        "name": "AbyssV25Card8",
+        "templateIdBefore": 1073741997,
+        "templateIdAfter": 1073741997,
+        "templateSourceSha256": "3a050fe48486ff8836413f632ebe637e0702ac67b3e9bd2155640faa2a09fa7d",
+        "rectangleDataBeforeSha256": "11082598b64b557a23c3b60b1d89d49651ff775d3b94c0e5f3d0140d8a241ab7",
+        "rectangleDataAfterSha256": "11082598b64b557a23c3b60b1d89d49651ff775d3b94c0e5f3d0140d8a241ab7",
+        "dataEqual": true,
+        "visibleRectangles": 8723
+      },
+      {
+        "name": "AbyssV25Card9",
+        "templateIdBefore": 1073741998,
+        "templateIdAfter": 1073741998,
+        "templateSourceSha256": "a001b5aa64dd894f9fcfbb77d0610872ef84a3b97b20653f104967902fa4c1cc",
+        "rectangleDataBeforeSha256": "689eb94169b1dfd18accc525fe387002be7dd18c47daa1f11592ec62ee66ccd6",
+        "rectangleDataAfterSha256": "689eb94169b1dfd18accc525fe387002be7dd18c47daa1f11592ec62ee66ccd6",
+        "dataEqual": true,
+        "visibleRectangles": 8871
+      },
+      {
+        "name": "AbyssV25Card10",
+        "templateIdBefore": 1073741999,
+        "templateIdAfter": 1073741999,
+        "templateSourceSha256": "c748a6a661fe6166eb941de7cd02a58be100ff278827b00bc4d308a299ab4fc3",
+        "rectangleDataBeforeSha256": "1d096893de44ec1a32e3cd7c89afad4bf301f675057128f33b97d99597b8c58b",
+        "rectangleDataAfterSha256": "1d096893de44ec1a32e3cd7c89afad4bf301f675057128f33b97d99597b8c58b",
+        "dataEqual": true,
+        "visibleRectangles": 846
+      }
+    ],
+    "bindingBeforeSha256": "b974e6c04eef302cbb903f5b1a0fce7299a7ddb2e5e3d55b70de10186db7d655",
+    "bindingAfterSha256": "b974e6c04eef302cbb903f5b1a0fce7299a7ddb2e5e3d55b70de10186db7d655"
+  },
+  "maskPreservation": {
+    "sourcePngSha256": "5780bc541d322b369b61f656908da59bdeee7f3ad83988edca8be23776720ecd",
+    "alphaBeforeSha256": "9e10d467d9e6ae6f958a99d04fdcfb2d990c2c9c5177e6e4192aa444ef34be84",
+    "alphaAfterSha256": "9e10d467d9e6ae6f958a99d04fdcfb2d990c2c9c5177e6e4192aa444ef34be84",
+    "textureBeforeSha256": "9fb849b0bbc006477577b2a06e21f4d1ae57c2aa40c9674490d7b5922a418d2d",
+    "textureAfterSha256": "9fb849b0bbc006477577b2a06e21f4d1ae57c2aa40c9674490d7b5922a418d2d",
+    "freshPngAlphaRoundtrip": true
+  },
+  "allowedPortraitLifecycleChange": {
+    "beforeSourceSha256": "e22fd53b643c6da54ab1a1d7228b581f1775546287a6c0743b9460ff6b89cf9f",
+    "afterCanonicalGitSha256": "ef4048b5282e9dd68a6bbaa447b026077fd5d6cf93d5950ba8817f6d89b6cd8d",
+    "afterPackedWorkingSha256": "6a63825286da3add1443a733c8566084f58676f4bbb9404382e8e8f22193cca6",
+    "workingTextEqualsGitAfterCrLfNormalization": true,
+    "candidateBuildId": "022017af-c7f5-47b8-8ca2-e1a80973ab4e",
+    "candidateGilSha256": "2c03f6a516430150f460f25d942c4ebe137411c49ece4bc66334d4ba729e278a",
+    "evidenceFile": "docs/evidence/task-100-1-h1-20261109.json",
+    "evidenceSha256": "36d1b19abf6db5b7f02c0ff80c2f2c210c9d399c662bf93efa8b10566245974d",
+    "cases": [
+      {
+        "nativeLifecycle": false,
+        "sourcePrimitives": 4315,
+        "beforeFinalStateSha256": "ab48ec46845ba76b1bb4613439cdd22721547cf60854b2ae9adca2d944dff0c1",
+        "afterFinalStateSha256": "ab48ec46845ba76b1bb4613439cdd22721547cf60854b2ae9adca2d944dff0c1",
+        "beforePartialFrames": 17,
+        "afterPartialFrames": 0,
+        "finalStateEqual": true
+      },
+      {
+        "nativeLifecycle": true,
+        "sourcePrimitives": 4315,
+        "beforeFinalStateSha256": "44bd0501858bfd0320d2ff9ec3554e3c3826eb30b3fe31236649153634a1d0f9",
+        "afterFinalStateSha256": "44bd0501858bfd0320d2ff9ec3554e3c3826eb30b3fe31236649153634a1d0f9",
+        "beforePartialFrames": 17,
+        "afterPartialFrames": 0,
+        "finalStateEqual": true
+      }
+    ]
+  },
+  "finalProductVisualApproval": "NOT_PASSED_AS_RECORDED_SEPARATELY",
+  "limitations": [
+    "This proves no introduced V25 source/data/layout deletion or loss, not equivalence of the existing native representation to the original high-resolution design. Existing gaps belong to TASK-103.",
+    "Tracked unmaterialized LFS PNGs retain the same Git pointer/OID and are explicitly not presented as fresh decodes. The selected private card PNGs and mask were freshly decoded by unchanged validators.",
+    "No official GPU/frame-time/PC/Android/device performance or visual approval claim."
+  ]
+}

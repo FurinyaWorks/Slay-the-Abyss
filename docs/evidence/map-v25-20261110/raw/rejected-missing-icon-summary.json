@@ -1,0 +1,22 @@
+{
+  "sourceSaveSha256": "e18ae3baddcc63dbc698cc3f9ff9cee24901fbd3b255a975088caba8f2f1e300",
+  "scope": "Source-generated SDK candidate, not GIL",
+  "reviewedSourceStable": true,
+  "officialDevices": "NOT RUN / UNVERIFIED",
+  "browser": {
+    "firstProjectionCompleteMs": 213.5,
+    "samples": 120,
+    "p95": 1.099999999976717,
+    "max": 3.2999999999883585,
+    "webgl": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002520) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "errors": []
+  },
+  "browser-selected": {
+    "firstProjectionCompleteMs": 152.59999999997672,
+    "samples": 0,
+    "p95": null,
+    "max": null,
+    "webgl": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002520) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "errors": []
+  }
+}

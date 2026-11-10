@@ -47,7 +47,7 @@ local function fillFace(face,card,i,platform)
         CardDisplay.writeArt(face:GetChild('art'),definition,function(control,id)control:SetImage(platform.imageSource,id)end)
         CardDisplay.writeNativeArt(face,definition,display.nativeArt,platform,face:GetChild('art'),instance.uid)
     end
-    CardSkin.apply(face,definition,platform,{cost=definition.cost,baseCost=definition.cost})
+    CardSkin.apply(face,definition,platform,{cost=definition.cost,baseCost=definition.cost,surfaceScope='character'})
 end
 function M.renderDeck(view,info,open,platform)
     view:SetVisible(open==true and info~=nil)

@@ -12,7 +12,7 @@ local index=0
 for _,control in ipairs(F.created)do
  if control.kind=='image' then
   index=index+1;local row=assert(source[index]);local color=row[5]
-  assert(control.image==100001 and control.imageType==23,'native rectangle image/type mismatch')
+  assert(control.image==100001 and rawget(control,'imageType')==nil,'native basic rectangle must not access unsupported image mode')
   assert(control.position[1]==row[1]+row[3]/2-72 and control.position[2]==32-row[2]-row[4]/2,'native rectangle coordinate mismatch')
   assert(control.size[1]==row[3] and control.size[2]==row[4],'native rectangle size mismatch')
   assert(control.imageColor[1]==math.floor(color/65536) and control.imageColor[2]==math.floor(color/256)%256

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, writeFileSync, readFileSync, mkdirSync, linkSync, symlinkSync, rmSync, existsSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, readFileSync, mkdirSync, linkSync, symlinkSync, rmSync, existsSync, realpathSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
@@ -10,6 +10,25 @@ import { sha256 } from '../scripts/evidence-files.mjs';
 import {uiProfileSource,uiProfileReceipt} from '../scripts/ui-profile.mjs';
 
 const script = new URL('../scripts/build-native-candidate.mjs', import.meta.url);
+test('canonical production modules and the native candidate recipe include the same generated bindings',async()=>{
+ const {generatedModules}=await import('../scripts/native-candidate-scripts.mjs');
+ const {generatedRuntimeModules}=await import(script);
+ assert.deepEqual([...generatedModules].sort(),Object.keys(generatedRuntimeModules).sort());
+ assert.ok(generatedModules.includes('abyss_v25_card_assets'),'default and V25 packages both require the generated enabled/disabled binding');
+});
+
+test('encoder source and checker projection are hashed before and during packaging',async t=>{
+ const {sourceInputs}=await import(script),f=await fixture(t);
+ const sourcePath=join(f.root,'encoder.mjs'),helperPath=join(f.root,'checker.mjs');
+ writeFileSync(sourcePath,'encoder');writeFileSync(helperPath,'checker');
+ const identity={sourcePath,sourceSha256:sha256('encoder'),sourceBytes:7,helperPath,helperSha256:sha256('checker'),helperBytes:7};
+ const inputs=sourceInputs(f.root,{toolchainIdentity:identity});
+ assert.ok(inputs.some(row=>row.path===realpathSync.native(sourcePath)&&row.sha256===identity.sourceSha256));
+ const receipt=await f.run({toolchainIdentity:identity});assert.deepEqual(receipt.toolchainIdentity,identity);
+ writeFileSync(sourcePath,'changed');
+ assert.throws(()=>sourceInputs(f.root,{toolchainIdentity:identity}),/encoder input changed/);
+ await assert.rejects(f.run({toolchainIdentity:identity}),/encoder input changed/);
+});
 
 async function fixture(t, overrides = {}) {
   const mod = await import(script);
@@ -65,7 +84,7 @@ test('identical embedded modules avoid writes while changed modules and entry ar
   writeFileSync(join(f.root,'src/lua/abyss_changed.lua'),'return 2');
   const receipt=await f.run();
   assert.deepEqual(receipt.reusedModules,['abyss_same']);
-  assert.deepEqual(f.calls.filter(c=>c.name==='scene_set_client_script').map(c=>c.args.name),['abyss_monster_actor_binding','abyss_changed','abyss_ui']);
+  assert.deepEqual(f.calls.filter(c=>c.name==='scene_set_client_script').map(c=>c.args.name).sort(),['abyss_changed','abyss_monster_actor_binding','abyss_ui']);
   assert.deepEqual(receipt.checkedModules,['abyss_changed','abyss_monster_actor_binding','abyss_same','abyss_ui']);
   assert.equal(f.calls.filter(c=>c.name==='scene_list_client_scripts'&&c.args.includeSource).length,2);
 });
@@ -100,6 +119,8 @@ test('every production entry parameter is registered by both native package rout
   await f.run();
   const {candidateScriptFiles}=await import('../scripts/native-candidate-scripts.mjs');
   const generated=join(f.root,'generated');mkdirSync(generated);
+  writeFileSync(join(generated,'abyss_component_binding.lua'),'return {schemaVersion=1,enabled=false}');
+  writeFileSync(join(generated,'abyss_v25_card_assets.lua'),'return {enabled=false}');
   for(const name of ['abyss_ui_profile','abyss_art_features','abyss_monster_actor_binding','abyss_monster_art_data', 'abyss_data','abyss_original_v4_data','abyss_map_layout','abyss_narrative','abyss_presentation','abyss_theme','abyss_menu_background_asset', 'abyss_ready_card_binding', 'abyss_ready_card_assets', 'abyss_traveler_portrait_assets'])
     writeFileSync(join(generated,name+'.lua'),'return {}');
   const packaged=candidateScriptFiles(join(f.root,'src/lua'),generated).find(row=>row.name==='abyss_ui');
@@ -107,7 +128,7 @@ test('every production entry parameter is registered by both native package rout
   assert(parameters.length>0);
   for(const variables of [packaged.variables,f.calls.find(c=>c.name==='scene_set_client_script'&&c.args.name==='abyss_ui').args.variables])
     for(const name of parameters)assert.deepEqual(variables.find(row=>row.name===name),
-      {name,type:'boolean',value:false},'Missing production entry parameter: '+name);
+      {name,type:'boolean',value:false,...(name==='nativeComponentControls'?{public:true}:{})},'Missing production entry parameter: '+name);
 });
 
 test('reused base removes only owned stale modules and reuses its writable settlement graph',async t=>{
@@ -119,7 +140,8 @@ test('reused base removes only owned stale modules and reuses its writable settl
   assert.equal(f.calls.find(c=>c.name==='write_graphs').args.graphs[0].graphId,23);
   assert.deepEqual(f.calls.find(c=>c.name==='scene_set_client_script'&&c.args.name==='abyss_ui').args.variables,
     [{name:'nativeMonsterArtEnabled',type:'boolean',value:true},{name:'nativeBgmEnabled',type:'boolean',value:false},
-      {name:'experimentalCharacters',type:'boolean',value:false}]);
+      {name:'experimentalCharacters',type:'boolean',value:false},
+      {name:'nativeComponentControls',type:'boolean',value:false,public:true}]);
   assert.equal(f.calls.find(c=>c.name==='scene_add_client_ui').args.replace,true);
 });
 
