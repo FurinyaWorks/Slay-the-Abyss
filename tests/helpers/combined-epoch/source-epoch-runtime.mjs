@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
+import {types} from 'node:util';
 const normalize=s=>s.replaceAll('\r\n','\n');
 const hash=s=>createHash('sha256').update(s).digest('hex');
 // Only pure computations over complete immutable strings are memoized. Readers,
@@ -43,9 +44,43 @@ function validateBinding(binding){
  assert.equal(hash(binding.source),binding.sha256,'source identity SHA256');
  if(binding.gitBlob)assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(binding.source)}\0`).update(binding.source).digest('hex'),binding.gitBlob,'source identity Git blob');
 }
+// Preserve the old JSON conversion for non-JSON inputs. For ordinary proof data,
+// copy containers without serializing their large immutable source strings.
+// Like JSON, duplicate aliased containers; neither path retains input objects.
+function cloneProof(input){
+ const seen=new WeakSet(),active=new WeakSet();
+ function plain(value){
+  if(value===null||typeof value==='string'||typeof value==='boolean')return true;
+  if(typeof value==='number')return Number.isFinite(value)&&!Object.is(value,-0);
+  if(typeof value!=='object'||types.isProxy(value))return false;
+  if(active.has(value))return false;
+  if(seen.has(value))return true;
+  const array=Array.isArray(value),prototype=Object.getPrototypeOf(value);
+  if(array?prototype!==Array.prototype:prototype!==Object.prototype&&prototype!==null)return false;
+  if('toJSON' in value)return false;
+  const keys=Object.keys(value);
+  if(array&&(keys.length!==value.length||keys.some((key,index)=>key!==String(index))))return false;
+  active.add(value);
+  for(const key of keys){
+   const descriptor=Object.getOwnPropertyDescriptor(value,key);
+   if(!Object.hasOwn(descriptor,'value')||!plain(descriptor.value))return false;
+  }
+  active.delete(value);seen.add(value);return true;
+ }
+ function copy(value){
+  if(value===null||typeof value!=='object')return value;
+  if(Array.isArray(value)){
+   const result=[];
+   for(let index=0;index<value.length;index++)Object.defineProperty(result,index,{value:copy(value[index]),enumerable:true,writable:true,configurable:true});
+   return result;
+  }
+  return Object.fromEntries(Object.keys(value).map(key=>[key,copy(value[key])]));
+ }
+ return plain(input)?copy(input):JSON.parse(JSON.stringify(input));
+}
 export function createSourceEpochProjector(input,{root=process.cwd(),allowConfigLayout=false}={}){
  // Clone once to prevent the caller changing proof data after validation.
- const proof=JSON.parse(JSON.stringify(input));
+ const proof=cloneProof(input);
  assert.equal(proof.schemaVersion,1);assert.equal(proof.normalization,'LF');
  assert.match(proof.currentCommit,/^[a-f0-9]{40}$/);
  assert(Array.isArray(proof.owners));assert.equal(new Set(proof.owners).size,proof.owners.length,'unique owners');

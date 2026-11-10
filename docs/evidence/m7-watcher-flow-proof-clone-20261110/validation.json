@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "previousHead": "a46634168bced808b40a084403f916fa50ebb0f6",
+  "reviewedLocalBase": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "latestObservedDevelop": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "sourceInputs": "reviewed-source-inputs.sha256",
+  "tests": [
+    {
+      "files": [
+        "tests/historical-monster-ui-runner.test.mjs",
+        "tests/watcher-flow-preparation-source-epoch.test.mjs"
+      ],
+      "passed": 24,
+      "failed": 0,
+      "durationMs": 15725.929287,
+      "log": "source-runner-exact-final.log.gz"
+    },
+    {
+      "files": [
+        "tests/ci-complete-calibration.test.mjs",
+        "tests/ci-runtime.test.mjs"
+      ],
+      "passed": 63,
+      "failed": 0,
+      "durationMs": 12180.494412,
+      "log": "calibration-runtime-exact-final.log.gz"
+    },
+    {
+      "files": [
+        "tests/battle-drag-click-compatibility.test.mjs"
+      ],
+      "passed": 7,
+      "failed": 0,
+      "durationMs": 86730.244021,
+      "originalLuaCases": 15,
+      "slices": [
+        {
+          "first": 1,
+          "last": 7,
+          "durationMs": 21814,
+          "timeoutMs": 30000
+        },
+        {
+          "first": 8,
+          "last": 15,
+          "durationMs": 25048,
+          "timeoutMs": 30000
+        }
+      ],
+      "log": "drag-exact-final.log.gz"
+    }
+  ],
+  "independentAdversarialCases": 18,
+  "guidance": "pass after restoring missing sparse checkout files; original failure retained",
+  "backlog": "pass",
+  "fullRerun": false,
+  "newHeadHostedCI": "pending",
+  "newBaseCombination": "unverified",
+  "nativeAdmission": "pending",
+  "postMergeValidation": "pending",
+  "guiUsed": false
+}

@@ -1,0 +1,102 @@
+{
+  "hosted-windows17-original.log.gz": {
+    "sha256": "792e38424d913dd310ed6dc4f879294049e0b60cb4a56954917c01273eb7b098",
+    "decodedSha256": "13c4cdc50698158415a3ec91ef98ce53b887fb71c74407b749d948a5845620bf",
+    "decodedBytes": 79904
+  },
+  "hosted-run-before.json.gz": {
+    "sha256": "e9bdd63708856aa0756ab99a49652656e1e2524a35a888b731d90fd4e8ce2dfe",
+    "decodedSha256": "0e94cf54d66a4a5a4766bc84344747769501ffdefd8f28279d378dfc72313aa9",
+    "decodedBytes": 15052
+  },
+  "hosted-jobs-before.json.gz": {
+    "sha256": "2569f4a4cb2c90a02482811b4f84c7700f9e07505e98ea060f0ca5cd2c97a276",
+    "decodedSha256": "d7bd30cb1b8e4bd471cf17593b8da90841148b00ebf6387a5522c707d7a8f88c",
+    "decodedBytes": 276244
+  },
+  "profile-original.cpuprofile.gz": {
+    "sha256": "10128a33e3ca951b073eda7744a47c85f7fd98b9ffc904a39ece9865a4a69ccb",
+    "decodedSha256": "8a7c28f45b694d485c982a84f0406937889608efefd469acc9ae8aed1faa2fcd",
+    "decodedBytes": 536898
+  },
+  "profile-original.log.gz": {
+    "sha256": "38a6bef5216468949a00f4d6a608796af8db3514251e68a2ad18e0cc4519976b",
+    "decodedSha256": "58c7d1fee988dbbfc0e62a36e2617daaffffe4d0273552c2ad5d99a68a31f1b2",
+    "decodedBytes": 2520
+  },
+  "profile-unavailable-time.log.gz": {
+    "sha256": "6ce97002f260e1268efc93192cd9a463a9953d71987db775defc89ed5c261125",
+    "decodedSha256": "3e737f6a9117cec194b02103b357f8668fae9adb86a8a8cd0bf25efab8948548",
+    "decodedBytes": 60
+  },
+  "drag-intermediate.log.gz": {
+    "sha256": "a7aedeffebb66c4b74b2716480978493c6bf94b20d8d6e482ed0efdda906ac0d",
+    "decodedSha256": "4f5aee765b936828f2e82c36dfca7aec7c27ff406a6dedeb483fc468f8ef4111",
+    "decodedBytes": 2563
+  },
+  "source-runner-intermediate.log.gz": {
+    "sha256": "1f5a978351f507f6749757002ff29b37b83c2c6ac1c00b4656caea8616a2adb7",
+    "decodedSha256": "b8455fa8823805c7b744129201a1eb80266db428d03ed3101876be7aad29a3ed",
+    "decodedBytes": 2653
+  },
+  "calibration-runtime-intermediate.log.gz": {
+    "sha256": "56bfd32b067a952c527e0b98afeda2d4998b14492ca040660d253f4ff5f4d2f4",
+    "decodedSha256": "cc0a7f1e2bdc7da7ead6d7bcb74790477f26c45462a0f93c99d6149bdd9131a0",
+    "decodedBytes": 8645
+  },
+  "source-runner-exact-final.log.gz": {
+    "sha256": "c9b0c5fd96e0ed853b52256e2e3bbdd6f09d593b208e90a774036b6850a112a3",
+    "decodedSha256": "6b37241a1bd343a4546a73c1e5f3ccb8827fe44b37f4b84f46c8c64ac1897593",
+    "decodedBytes": 2755
+  },
+  "calibration-runtime-exact-final.log.gz": {
+    "sha256": "df8b12b14869a5799f054b0caa847fef683bd1c4deab0fdba51d42cc03dfffe4",
+    "decodedSha256": "8619a834fbb74ebebb237df72495894696c21381e1f074ef804b31c0e08665fc",
+    "decodedBytes": 8638
+  },
+  "guidance-initial-failure.log.gz": {
+    "sha256": "387dbf6a34fef2720dbcf4ff588ee6744a9f6f24eadb4a3425c19f713893eca5",
+    "decodedSha256": "2c1da80a78bb962dd8ba9ae5ee2d4d83118184f78882bb9ea582eb66ffbcdf14",
+    "decodedBytes": 523
+  },
+  "guidance-final.log.gz": {
+    "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "decodedSha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+    "decodedBytes": 482
+  },
+  "backlog-verify.log.gz": {
+    "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "decodedSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+    "decodedBytes": 382
+  },
+  "drag-interrupted-empty.log.gz": {
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "decodedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decodedBytes": 0
+  },
+  "drag-interruption.txt.gz": {
+    "sha256": "39906645f992ccab07c5a31b8f2629e88032f26bc09fb59f7df15a381435dd81",
+    "decodedSha256": "035a335cf8ada8cf1ed007296788b9c5fcc87319c831a8eeaa631a562f52af8c",
+    "decodedBytes": 172
+  },
+  "adversarial-probes.log.gz": {
+    "sha256": "9957b4756aaab46b92f470819f8605c8a2d802786210624f993ea9229d846005",
+    "decodedSha256": "b3bbb941e0a097cdc44c28be505f36c6cf4be28dc54efec5bb4cda8c50d78d78",
+    "decodedBytes": 292
+  },
+  "adversarial-probes.mjs.gz": {
+    "sha256": "8eb9a5969fea1b9565bd3181243980899baaa4bd37663e2b1b3398a8532bf546",
+    "decodedSha256": "0007760ae3492fb30935b629324bea97be5343ff334f62de91d776d4159a79e5",
+    "decodedBytes": 2416
+  },
+  "drag-exact-final.log.gz": {
+    "sha256": "1aa56a9763fc1e45cec446d017aeae8409baa5782c4e7f19f1d8730832951cbe",
+    "decodedSha256": "4ea9464ce1c2eee68fcff98a718a6807a15d45507d656979141c0b5dc6c7aa77",
+    "decodedBytes": 2564
+  },
+  "backlog-final-verify.log.gz": {
+    "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "decodedSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+    "decodedBytes": 382
+  }
+}

@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T20:52:00Z'
+updated_date: '2026-11-10T11:26:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -36,6 +36,7 @@ documentation:
   - docs/evidence/m7-watcher-flow-live-readers-20261109/README.md
   - docs/evidence/m7-watcher-flow-effects-reader-20261109/README.md
   - docs/evidence/m7-watcher-flow-proof-reuse-20261109/README.md
+  - docs/evidence/m7-watcher-flow-proof-clone-20261110/README.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -114,6 +115,8 @@ ordinal: 162000
 2026-11-09 主控接续既有M7任务：避开#579/#581/#582/#583/#584及SilentPotions在途文件，隔离于develop 1eb28847治理WatcherFlow.withCards初始化复杂度。保留原生牌、衍生牌兼容校验、共享Vigor身份及次序；完整旧新输入/输出/错误对照，新增职责CC15及负控；来源与成本只作必要适配，独审后及时正常上传提草稿PR，不重复Full、不改owner/status/AC。
 
 2026-11-09 接续#586精确头2a4bfec2的成本阻断：先核实develop仍1eb28847、Quality排队且Quick/Licenses成功。仅复用已公开#579@062a5776的18Windows/15POSIX中央shape（原17仅264ms超限仍保留），不改其他在途分支，不新增调度器，不降低任何实测floor、预算或执行保护。核对全部802JS/1410Lua完整分配、38作业和严格交付拒绝负例，定向验证及独审后更新同PR，不重复Full。
+
+2026-11-10 接续既有 #586 的真实 Hosted 阻塞：精确 a4663416 的 Windows17 原拖拽8–15例在原30秒上限超时，其他32回归片成功。保留原全部冻结场景、断言、来源身份、成本和超时；只定位并移除可证明冗余的历史启动工作，实际旧新配对、失败负控和独立复审后追加原PR，不重复Full、不启新架构草稿、不操作GUI，owner/status/AC保持。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -222,4 +225,6 @@ Windows18接续定向验证已通过：五文件115/115，补强后交付/队列
 2026-11-09：WatcherFlow 新 outer 的不可变证明构造抖动已做独立性能切片，基于未合并58b1fcc，仅保留最多两个已验证projector，不缓存授权/读者/投影结果；51-owner逐次有序读取、跨target、重入淘汰和漂移拒绝永久回归通过。与#579/#582共享runtime及GameUI原测试分工隔离，未改其实现。原GameUI完整14/14为78818.61186ms，永久来源12/12为26235.83895ms，最终CI62/62、间接9/9；默认Node无扩大heap，maxChildRss2205204KiB约2.10GiB。GameUI floor仅77215升至78819，旧全对象和其他34项保留；完整802JS/1410Lua模型Windows18=1705160、POSIX15=1137499，旧17失败反例仍在。原HEAD/旧helper的Hosted成功慢样本1157502.785265ms及全部失败日志保持，不能由本地78.8秒替换，不宣称Hosted已修复；新精确HEAD Hosted、发布及合后验证仍待。无Full重跑、ready、合并，Furinya/In Progress及原AC均不变。完整证据见新增附件。
 
 接续#586当前3b281879的POSIX1取消诊断，56选中文件仅33份成功收据、23份未完成；GameUI完整1310431ms，注入reader案例522345ms，取消发起方未知。复用既有c5b6af1a双projector构造候选，不改共享runtime、原GameUI用例、51-owner fresh-read或门禁。本轮相同注入reader定向1/1，案例5848ms/全进程20.58秒；本地与Hosted不可直接换算。交付只保留必要源码和验证证据，独审后接续原PR，精确新HEAD Hosted及Licenses仍待，不重跑Full、不改Furinya/In Progress或AC。
+
+2026-11-10 接续既有#586 a4663416的唯一Hosted失败：历史证明大源码重复JSON克隆使Windows拖拽8–15触发原30秒期限。普通JSON容器深拷贝并保留异常输入旧语义、新鲜owner认证及全部旧断言；只桥接两份精确历史收据。最终来源/runner24/24、calibration/runtime63/63，成本和原门禁不变。完整拖拽、独审与原失败证据见docs/evidence/m7-watcher-flow-proof-clone-20261110/README.md；新HEAD Hosted/原生准入及合后验收仍待，owner/status/AC保持。
 <!-- SECTION:NOTES:END -->

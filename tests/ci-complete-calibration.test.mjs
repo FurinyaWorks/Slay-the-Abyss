@@ -1,3 +1,4 @@
+import {preProofCloneInput,proofClonePriorInputs} from './helpers/proof-clone-prior-inputs.mjs';
 import {preWatcherFlowProofReuseSource,watcherFlowProofReuseProof} from './helpers/watcher-flow-proof-reuse-source-inverse.mjs';
 import {preEffects48PlanningSource,effects48PlanningProof} from './helpers/effects48-planning-source-inverse.mjs';
 import {tmpdir} from 'node:os';
@@ -29,7 +30,7 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as actualDiskReadFileSync,readdirSync,mkdtempSync,writeFileSync,rmSync} from 'node:fs';
+import {readFileSync as currentDiskReadFileSync,readdirSync,mkdtempSync,writeFileSync,rmSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -43,6 +44,13 @@ import {preWatcherFlowPreparationCiSource,watcherFlowPreparationCiProof,watcherF
 const watcherFlowPreparationJs=['tests/watcher-flow-preparation.test.mjs','tests/watcher-flow-preparation-source-epoch.test.mjs'];
 // Complete historical 800-file contracts remain fixed; actual802 is tested separately.
 const discoverJs=()=>actualDiscoverJs().filter(file=>!watcherFlowPreparationJs.includes(file));
+// These receipts predate the clone implementation. Preserve their exact observed
+// inputs; current implementation identity and drift are checked separately below.
+const actualDiskReadFileSync=(file,encoding)=>{
+ const raw=currentDiskReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
+ const prior=preProofCloneInput(file,text);
+ return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
+};
 // Only published historical receipt/planning inputs pass this exact boundary.
 const proofReusePriorDiskReadFileSync=(file,encoding)=>{
  const raw=actualDiskReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
@@ -1280,4 +1288,18 @@ test('bounded proof reuse preserves historical receipts while current raw measur
  const compressed=actualDiskReadFileSync(witness.rawLogPath);assert.equal(hash(compressed),witness.compressedLogSha256);assert.equal(hash(gunzipSync(compressed)),witness.rawLogSha256);
  assert.equal(witness.head,'3f633f3123d41e0a0d19955c91e7b9e226722b7a');assert.equal(witness.oldOuterHelperSha256,proof.files['tests/helpers/watcher-flow-preparation-source-epoch.mjs'].beforeSha256);
  assert.equal(witness.completeSuccessRecord.length,1);assert.match(witness.completeSuccessRecord[0],/1157502\.785265/);assert.match(witness.completeSuccessRecord[0],/"success":true/);
+});
+
+
+test('proof clone improvement preserves exact prior receipts and rejects current source drift',()=>{
+ const proof=proofClonePriorInputs;
+ assert.deepEqual(Object.keys(proof.files).sort(),['tests/helpers/combined-epoch/source-epoch-runtime.mjs','tests/helpers/copy-integration-source-closure.mjs'].sort());
+ for(const [file,binding]of Object.entries(proof.files)){
+  const source=currentDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(source),binding.afterSha256,'current implementation remains independently authenticated');
+  assert.notEqual(binding.beforeSha256,binding.afterSha256);
+  for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preProofCloneInput(file,input),binding.beforeSource);
+  for(const input of [binding.beforeSource,source+'\n',source.slice(1),null,undefined,{},17])assert.equal(preProofCloneInput(file,input),input);
+  for(const foreign of ['foreign','__proto__','constructor'])assert.equal(preProofCloneInput(foreign,source),source);
+ }
 });

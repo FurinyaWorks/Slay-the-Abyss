@@ -158,3 +158,80 @@ test('phase cleanup errors remain visible without masking the original child fai
   if(receipt)for(const path of [receipt+'.next',receipt])if(existsSync(path))unlink(path);
  }
 });
+
+test('historical proof construction preserves JSON conversion, isolation and non-aliased containers',async()=>{
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ const {createHash}=await import('node:crypto');
+ const path='src/lua/clone_proof.lua',source='return "current"\n';
+ const binding=text=>({source:text,sha256:createHash('sha256').update(text).digest('hex')});
+ const fresh=()=>{const shared=binding(source);return {schemaVersion:1,normalization:'LF',currentCommit:'a'.repeat(40),owners:[path],current:{[path]:shared},
+  targets:{same:{commit:'a'.repeat(40),files:{[path]:shared}},prior:{commit:'b'.repeat(40),files:{[path]:binding('return "prior"\n')}}}};};
+ const nullPrototype=Object.assign(Object.create(null),{key:'value'});
+ const special=JSON.parse('{"__proto__":{"preserved":true}}');
+ const inherited=Object.create({inherited:true});inherited.own='kept';
+ const accessor={get value(){return 'converted';}};
+ const sparse=[];sparse[2]='third';
+ const extraArray=['first'];extraArray.extra='ignored';
+ const hiddenArray=['first'];Object.defineProperty(hiddenArray,'0',{enumerable:false,value:'hidden index'});
+ const overriddenArray=['first'];
+ Object.defineProperty(overriddenArray,'map',{value(){throw Error('array map must not execute');}});
+ Object.defineProperty(overriddenArray,'constructor',{get(){throw Error('array species must not execute');}});
+ const variants=[overriddenArray,nullPrototype,special,inherited,accessor,sparse,extraArray,hiddenArray,new Date('2026-11-10T00:00:00Z'),
+  {toJSON(){return {converted:true};}},{missing:undefined,values:[undefined,NaN,Infinity,-Infinity,-0]},new Number(2),/ignored/,
+  new Proxy({key:'value'},{})];
+ for(const metadata of [undefined,...variants]){
+  const input=fresh();if(metadata!==undefined)input.metadata=metadata;
+  const expected=JSON.parse(JSON.stringify(input)),project=createSourceEpochProjector(input);
+  assert.deepEqual(project.proof,expected);
+  assert.notEqual(project.proof.current[path],input.current[path]);
+  assert.notEqual(project.proof.current[path],project.proof.targets.same.files[path],'JSON duplicates aliased containers');
+  assert.ok(Object.isFrozen(project.proof.current[path]));
+  input.current[path].source='foreign input mutation';
+  assert.equal(project.proof.current[path].source,source);
+  let actual=source,reads=0;const readSource=()=>{reads++;return actual;};
+  assert.equal(project.preCombinedSource(path,source,{target:'prior',readSource}),'return "prior"\n');
+  actual='foreign source';assert.throws(()=>project.preCombinedSource(path,source,{target:'prior',readSource}),/linked owner identity/);
+  actual=source;assert.equal(project.preCombinedSource(path,source,{target:'prior',readSource}),'return "prior"\n');assert.equal(reads,3);
+ }
+ for(const metadata of [1n,(()=>{const value={};value.self=value;return value;})()]){
+  const input=fresh();input.metadata=metadata;
+  assert.throws(()=>JSON.stringify(input),TypeError);assert.throws(()=>createSourceEpochProjector(input),TypeError);
+ }
+ const invalid=fresh();invalid.current[path].sha256='0'.repeat(64);
+ assert.throws(()=>createSourceEpochProjector(invalid),/source identity SHA256/);
+});
+
+test('complete archived proof construction retains every JSON byte and rejects source drift',async()=>{
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ const {gunzipSync}=await import('node:zlib');
+ const packed=JSON.parse(gunzipSync(readFileSync(new URL('./helpers/combined-epoch/source-epoch.json.gz',import.meta.url))));
+ const expand=files=>Object.fromEntries(Object.entries(files).map(([path,key])=>[path,key===null?null:packed.bindings[key]]));
+ const input={schemaVersion:1,normalization:packed.normalization,currentCommit:packed.currentCommit,owners:packed.owners,current:expand(packed.current),
+  targets:Object.fromEntries(Object.entries(packed.targets).map(([name,target])=>[name,{commit:target.commit,files:expand(target.files)}]))};
+ const expected=JSON.stringify(input),project=createSourceEpochProjector(input);
+ assert.equal(JSON.stringify(project.proof),expected,'every field, source byte, key order and target survives');
+ const owner=input.owners.find(path=>input.current[path]);
+ input.current[owner].source+='\n-- foreign mutation';
+ assert.equal(JSON.stringify(project.proof),expected,'no caller object retained');
+ assert.throws(()=>createSourceEpochProjector(input),/source identity SHA256/);
+});
+
+test('proof array copying defines own elements without invoking inherited index setters',()=>{
+ const module=new URL('./helpers/combined-epoch/source-epoch-runtime.mjs',import.meta.url).href;
+ const source=`import assert from 'node:assert/strict';
+import {createSourceEpochProjector} from ${JSON.stringify(module)};
+const input={schemaVersion:1,normalization:'LF',currentCommit:'a'.repeat(40),owners:[],current:{},targets:{},metadata:Array.from({length:10},(_,i)=>i)};
+const expected=JSON.parse(JSON.stringify(input)),previous=Object.getOwnPropertyDescriptor(Array.prototype,'9');
+let actual,error,calls=0;
+try{
+ Object.defineProperty(Array.prototype,'9',{configurable:true,set(){calls++;throw Error('inherited index setter must not execute');}});
+ try{actual=createSourceEpochProjector(input).proof;}catch(failure){error=failure;}
+}finally{
+ if(previous)Object.defineProperty(Array.prototype,'9',previous);else delete Array.prototype[9];
+}
+assert.ifError(error);assert.equal(calls,0);assert.deepEqual(actual,expected);
+assert.ok(Object.hasOwn(actual.metadata,'9'));assert.notEqual(actual.metadata,input.metadata);
+assert.ok(Object.isFrozen(actual.metadata));`;
+ const result=childProcess.spawnSync(process.execPath,['--input-type=module','-e',source],{encoding:'utf8',timeout:10000});
+ assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);
+});
