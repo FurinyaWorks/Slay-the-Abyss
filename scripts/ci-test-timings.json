@@ -6173,6 +6173,20 @@
         },
         "sourceReceipt": "docs/evidence/m7-formation-20261109/behavior-final-receipt.json",
         "sourceReceiptSha256": "9ef72176e6f25ceed223cf450898fa133feaad7356a75b018b07436cf124ebdc"
+      },
+      "tests/colorless-description-source-epoch.test.mjs": {
+        "durationMs": 16110,
+        "environment": "cloud Linux local",
+        "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+        "sourceReceipt": "docs/evidence/m7-colorless-description-ci-20261110/source-receipt.json",
+        "sourceReceiptSha256": "6fcd2b9a0feb448e922886efb2231555b64fc9ef48ca9d34c1ea37d34bc9da4b"
+      },
+      "tests/ci-runtime.test.mjs": {
+        "durationMs": 8048,
+        "environment": "cloud Linux local",
+        "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+        "sourceReceipt": "docs/evidence/m7-colorless-description-ci-20261110/ci-runtime-receipt.json",
+        "sourceReceiptSha256": "6ecf24091953546d080cca84608ddd6e870f51d6bbef33925fd2a185c190e7a7"
       }
     }
   },

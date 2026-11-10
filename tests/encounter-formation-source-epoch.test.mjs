@@ -4,7 +4,7 @@ import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {sourceEpoch,preEncounterFormationEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {sourceEpoch,preEncounterFormationEpoch} from './helpers/combined-epoch/pre-colorless-description-source-epoch.mjs';
 import {encounterFormationEpoch} from './helpers/encounter-formation-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_encounter_formation.lua',proof=sourceEpoch.proof,prior=preEncounterFormationEpoch.proof;
@@ -52,7 +52,7 @@ test('isolated authenticated helper closure retains the exact Encounter formatio
  const directory=mkdtempSync(join(tmpdir(),'formation-epoch-closure-'));
  try{
   copyIntegrationSourceClosure(directory);
-  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).sourceEpoch;
+  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/pre-colorless-description-source-epoch.mjs')).href)).sourceEpoch;
   assert.deepEqual(isolated.proof,proof);
   assert.equal(isolated.preCombinedSource(path,raw(path),{target:'encounterFormationPrior',readSource:raw}),prior.current[path].source);
   assert.throws(()=>isolated.preCombinedSource(path,raw(path),{target:'encounterFormationPrior',readSource:p=>p===path?raw(p)+'\n':raw(p)}),/linked owner identity/);
@@ -68,7 +68,7 @@ test('unknown source targets are rejected rather than gaining an identity fallba
 });
 
 test('configuration layout admission preserves exact tokens and freshly authenticates all 51 current raw owners',async()=>{
- const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {sourceEpoch}=await import('./helpers/combined-epoch/pre-colorless-description-source-epoch.mjs');
  const proof=sourceEpoch.proof,path='config/architecture.json',source=proof.current[path].source;
  const raw=p=>proof.current[p]?.source??null,expected=proof.targets.actor.files[path].source;
  assert.equal(proof.owners.length,51);
@@ -94,7 +94,9 @@ test('outer foreign-source fallback preserves invalid raw-reader semantics',()=>
   assert.equal(sourceEpoch.preCombinedSource(path,source,{target,readSource}),source);
 });
 
-test('live LF and CRLF raw owner reads authenticate 51 current owners on every call',()=>{
+test('live LF and CRLF raw owner reads authenticate 51 current owners on every call',async()=>{
+ // Historical Formation contracts above stay frozen; live disk reads use the current public owner identities.
+ const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
  const config='config/architecture.json',input=readFileSync(config,'utf8'),expected=proof.targets.actor.files[config].source;
  for(const crlf of [false,true]){
   const seen=[];let corrupt=null,missing=null;

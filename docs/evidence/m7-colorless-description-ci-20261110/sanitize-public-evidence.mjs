@@ -1,0 +1,71 @@
+// Reproduce a publication-only path normalization from an authorized private Git archive.
+// The archive stays private. This script never pushes, runs tests, or changes measurements.
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {gzipSync,gunzipSync} from 'node:zlib';
+const root='docs/evidence/m7-colorless-description-ci-20261110';
+const commit='be44f7f676114665b559e0e7a5f64bf41efa0b49';
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const raw=path=>execFileSync('git',['show',`${commit}:${path}`],{maxBuffer:32*1024**2});
+const parse=path=>JSON.parse(raw(path));
+const json=value=>Buffer.from(JSON.stringify(value,null,2)+'\n');
+const verify=process.argv.includes('--verify');
+assert(process.argv.length===2||process.argv.slice(2).every(arg=>arg==='--verify'));
+const labels=['source','complexity','ci-complete','ci-complete-final','ci-host','ci-windows','ci-runtime','formation-source'];
+const runtime=parse(`${root}/source-receipt.json`).command[0];
+const oldBridge=gunzipSync(raw(`${root}/bridge-red.log.gz`)).toString('utf8');
+const suffix=`/${root}/bridge-red.mjs`,offset=oldBridge.indexOf(suffix),start=oldBridge.lastIndexOf('file://',offset)+7;
+assert(offset>start&&start>6);const workspace=oldBridge.slice(start,offset);
+assert(runtime.startsWith('/')&&workspace.startsWith('/'));
+const substitutions=[{original:runtime,placeholder:'<cloud-runtime>/node'},{original:workspace,placeholder:'<cloud-workspace>'}];
+const normalize=source=>substitutions.reduce((value,{original,placeholder})=>value.replaceAll(original,placeholder),source);
+const output=new Map();
+function derived(path,bytes,kind){output.set(path,{bytes,kind});}
+const receipts={};
+for(const label of labels){
+ const path=`${root}/${label}-receipt.json`,original=raw(path),receipt=JSON.parse(original);
+ assert.equal(receipt.command[0],runtime);const oldInput=raw(receipt.inputPath),inputs=JSON.parse(normalize(gunzipSync(oldInput).toString('utf8')));
+ assert.deepEqual(inputs.before.files,inputs.after.files);assert.equal(Object.keys(inputs.before.files).length,receipt.inputFileCount);
+ assert(inputs.before.files['<cloud-runtime>/node']);
+ inputs.publicationTransform={kind:'path-normalized-publication-copy',executedAgain:false,originalArchiveSha256:hash(oldInput),originalUncompressedSha256:hash(gunzipSync(oldInput)),identity:'All original file bytes, hashes, counts and measurement values are retained. Only environment path labels are normalized in both snapshots.'};
+ const publicInput=gzipSync(json(inputs));derived(receipt.inputPath,publicInput,'Normalize path labels; retain all input identities and append original archive commitments.');
+ receipt.command[0]='<cloud-runtime>/node';receipt.inputSha256=hash(publicInput);
+ receipt.publicationTransform={kind:'path-normalized-publication-copy',executedAgain:false,originalReceiptSha256:hash(original),originalInputSha256:hash(oldInput),originalLogSha256:receipt.logSha256};
+ const publicReceipt=json(receipt);derived(path,publicReceipt,'Normalize command executable label and link the transformed input archive; retain execution facts.');
+ receipts[label]={...receipt,receiptPath:path,receiptSha256:hash(publicReceipt)};
+}
+derived(`${root}/bridge-red.log.gz`,gzipSync(normalize(oldBridge)),'Normalize only the cloud workspace prefix in the original assertion stack.');
+const reportPath=`${root}/complete-process-observations.json`,report=parse(reportPath);
+report.observations=report.observations.map(row=>receipts[row.label]);
+report.publicationTransform={kind:'path-normalized-publication-copy',executedAgain:false,originalReportSha256:hash(raw(reportPath)),scope:'Original completed measurements, not new executions. Absolute environment labels are replaced while repository-relative paths, source identities, input counts, timings and test counts remain intact.'};
+derived(reportPath,json(report),'Refresh receipt identities and mark the report as a non-executed publication transform.');
+const timingPath='scripts/ci-test-timings.json',timings=parse(timingPath);
+for(const label of ['source','ci-runtime'])timings.jsPlanning.localLowerBounds[receipts[label].file].sourceReceiptSha256=receipts[label].receiptSha256;
+derived(timingPath,json(timings),'Update only the two new local-floor receipt SHA256 references; all costs and historical data stay unchanged.');
+const planningPath=`${root}/planning.json`,planning=parse(planningPath);
+for(const label of ['source','ci-runtime'])planning.localFloors[receipts[label].file].sourceReceiptSha256=receipts[label].receiptSha256;
+derived(planningPath,json(planning),'Update only the two receipt references; budget forecasts remain unchanged.');
+const freezePath=`${root}/final-file-hashes.json`,freeze=parse(freezePath);
+freeze.scope='Historical private measurement freeze before publication normalization. Entries intentionally retain original artifact hashes, not current public-copy hashes. See publication-transform.json for explicit original-to-public mappings.';
+freeze.originalManifestSha256=hash(raw(freezePath));
+derived(freezePath,json(freeze),'Preserve every original freeze entry and clarify its historical private-artifact scope.');
+const readmePath=`${root}/README.md`,readme=raw(readmePath).toString('utf8');
+derived(readmePath,Buffer.from(readme+'\n## 公开副本的环境路径脱敏\n\n本目录公开的是原已完成观测的路径规范化副本，不是重新执行结果。云工作目录前缀替换为 `<cloud-workspace>`，Node 安装位置替换为 `<cloud-runtime>/node`；仓库相对路径、文件数量、工具与源码字节身份、测试数量、状态、时间戳和耗时全部保留。每份输入归档与收据注明原件 SHA256，`publication-transform.json` 列出原件到公开副本的逐文件摘要及变换类别。原件仅保存在私有证据归档中，不随公开 Git 历史发布。\n\n`final-file-hashes.json` 是原始私有测量冻结的历史身份，不能当作当前公开副本摘要。具有原件访问权的审查者可运行 `node '+root+'/sanitize-public-evidence.mjs --verify`，逐字节重现并核对转换。没有私有原件的读者可核验公开文件摘要和转换规则，但摘要本身不能证明隐藏原件的内容。原测量采集器保留原样，未来执行仍须先私有保存原件，再经过明确的公开转换。\n'), 'Append an explicit publication-copy and private-original verification boundary.');
+for(const [path,{bytes}]of output){if(verify)assert.deepEqual(readFileSync(path),bytes,path);else writeFileSync(path,bytes);}
+if(!verify)execFileSync(process.execPath,[`${root}/build-ci-proof.mjs`],{stdio:'pipe'});
+const inverse='tests/helpers/colorless-description-ci-source-inverse.mjs',proofPath='tests/helpers/colorless-description-ci-source-epoch.json.gz';
+const baselineProof=JSON.parse(gunzipSync(raw(proofPath))),publicProof=JSON.parse(gunzipSync(readFileSync(proofPath)));
+const expectedProof=structuredClone(baselineProof);const timing=publicProof.files[timingPath];
+assert.equal(timing.afterSource,output.get(timingPath).bytes.toString());assert.equal(timing.afterSha256,hash(timing.afterSource));
+expectedProof.files[timingPath].afterSource=timing.afterSource;expectedProof.files[timingPath].afterSha256=timing.afterSha256;
+assert.deepEqual(publicProof,expectedProof,'CI proof changes only the new receipt references within its current timing binding');
+const expectedInverse=raw(inverse).toString().replace(hash(raw(proofPath)),hash(readFileSync(proofPath))).replace(hash(gunzipSync(raw(proofPath))),hash(gunzipSync(readFileSync(proofPath))));
+assert.equal(readFileSync(inverse,'utf8'),expectedInverse,'inverse code changes only the two authenticated archive digests');
+for(const path of [proofPath,inverse])output.set(path,{bytes:readFileSync(path),kind:'Regenerate exact current timing binding and its archive identity; preserve all historical proof bindings.'});
+const paths=[...output.keys()].sort();
+const mapping={schemaVersion:1,originalPrivateCommit:commit,publicParentCommit:'3a09dfba19fca59c5bcd434a6ad09ed7d0330902',executedAgain:false,scope:'Publication normalization only. The original private commit must never be a public ancestor. Raw originals are retained privately; authorized reviewers can reproduce these mappings with --verify. Public hashes alone do not authenticate unseen private bytes.',pathLabels:substitutions.map(({original,placeholder})=>({placeholder,originalPathSha256:hash(original)})),files:Object.fromEntries(paths.map(path=>[path,{originalSha256:hash(raw(path)),publicSha256:hash(output.get(path).bytes),transformation:output.get(path).kind}]))};
+const mappingPath=`${root}/publication-transform.json`;
+if(verify)assert.deepEqual(readFileSync(mappingPath),json(mapping));else writeFileSync(mappingPath,json(mapping));
+console.log(JSON.stringify({mode:verify?'verified':'written',transformedFiles:paths.length,mappingSha256:hash(json(mapping)),newExecutions:0}));

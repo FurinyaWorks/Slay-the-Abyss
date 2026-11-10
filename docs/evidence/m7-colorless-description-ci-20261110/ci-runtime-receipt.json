@@ -1,0 +1,36 @@
+{
+  "file": "tests/ci-runtime.test.mjs",
+  "label": "ci-runtime",
+  "startedAt": "2026-11-10T08:39:47.281Z",
+  "command": [
+    "<cloud-runtime>/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/ci-runtime.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 8047.295613,
+  "nodeReportedDurationMs": 7988.269988,
+  "tests": 13,
+  "pass": 13,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "bb578db514a2ef7ba7e7ca7126dc5f8cdc0d675e82d4c3e0831b14ab28d4ed27",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5221,
+  "inputPath": "docs/evidence/m7-colorless-description-ci-20261110/ci-runtime-inputs.json.gz",
+  "inputSha256": "b3ef774f9c73f95c46869ecb9ebbbd2e94fbc0ae767b7b8d0a7df17a1c1f1ba8",
+  "logPath": "docs/evidence/m7-colorless-description-ci-20261110/ci-runtime.log.gz",
+  "logSha256": "d394b29b496d921935f123518b6ab4b453f22d3a6edca40164d6c11c2cd1c158",
+  "logUncompressedSha256": "29a663e62ebf65bf2d265fa8e667c5e2cebdd0d5485c022f98319d3590616b14",
+  "collectorSha256": "6cf7ea23b9a08cd1d44e458432085e5812be4c707bca1c3334e4383bcc59a6ff",
+  "publicationTransform": {
+    "kind": "path-normalized-publication-copy",
+    "executedAgain": false,
+    "originalReceiptSha256": "6ca3f4ea36ba2df783386008a76b9f63f13888993bf959ae837467020e24bd53",
+    "originalInputSha256": "43b3ad6d92139e44e2484915233c022dfe6ada0e080af664edfa39783238eed3",
+    "originalLogSha256": "d394b29b496d921935f123518b6ab4b453f22d3a6edca40164d6c11c2cd1c158"
+  }
+}

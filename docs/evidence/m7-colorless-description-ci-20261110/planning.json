@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "jsInventory": 802,
+  "luaInventory": 1410,
+  "unknownJsMs": 10000,
+  "localFloors": {
+    "tests/colorless-description-source-epoch.test.mjs": {
+      "durationMs": 16110,
+      "environment": "cloud Linux local",
+      "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+      "sourceReceipt": "docs/evidence/m7-colorless-description-ci-20261110/source-receipt.json",
+      "sourceReceiptSha256": "6fcd2b9a0feb448e922886efb2231555b64fc9ef48ca9d34c1ea37d34bc9da4b"
+    },
+    "tests/ci-runtime.test.mjs": {
+      "durationMs": 8048,
+      "environment": "cloud Linux local",
+      "kind": "Complete local planning floor; not a hosted measurement or execution permission.",
+      "sourceReceipt": "docs/evidence/m7-colorless-description-ci-20261110/ci-runtime-receipt.json",
+      "sourceReceiptSha256": "6ecf24091953546d080cca84608ddd6e870f51d6bbef33925fd2a185c190e7a7"
+    }
+  },
+  "posix": {
+    "count": 15,
+    "forecastMs": 1130998,
+    "budgetMs": 1200000
+  },
+  "windows": {
+    "count": 17,
+    "workers": 2,
+    "forecastMs": 1795777,
+    "budgetMs": 1800000
+  },
+  "scope": "Current inventory forecast with actual hosted records and complete local lower bounds; no Full or hosted run performed."
+}

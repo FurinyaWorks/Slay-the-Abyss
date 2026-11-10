@@ -465,3 +465,19 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+# Colorless description current exact-byte CI receipts and frozen source proof.
+tests/colorless-description-source-epoch.test.mjs text eol=lf
+tests/colorless-description-complexity.test.mjs text eol=lf
+tests/encounter-formation-source-epoch.test.mjs text eol=lf
+tests/ci-complete-calibration.test.mjs text eol=lf
+tests/ci-host-timing-calibration.test.mjs text eol=lf
+tests/ci-windows-shape-expansion.test.mjs text eol=lf
+tests/ci-runtime.test.mjs text eol=lf
+tests/helpers/colorless-description-*.mjs text eol=lf
+tests/helpers/colorless-description-*.json.gz -text
+tests/helpers/combined-epoch/pre-colorless-description-source-epoch.mjs text eol=lf
+tests/fixtures/colorless-description-before.lua text eol=lf
+docs/evidence/m7-colorless-description-ci-20261110/*.json text eol=lf
+docs/evidence/m7-colorless-description-ci-20261110/*.mjs text eol=lf
+docs/evidence/m7-colorless-description-ci-20261110/*.log text eol=lf
+docs/evidence/m7-colorless-description-ci-20261110/*.gz -text

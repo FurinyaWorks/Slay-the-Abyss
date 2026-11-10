@@ -21,3 +21,15 @@
 本PR保持 Draft：隔离差分/变异证据尚未接入仓库可重跑测试入口，公共epoch/组合来源合同尚未集成，不声称完整CI通过，也不声称架构优化完成。正式Ready前需补齐仓库测试与来源集成、精确HEAD/BASE独立准入及必要Full CI。未改共享配置、原断言或他人PR。
 
 Backlog CLI当前不可用，未伪称已认领或变更任务状态；此切片按用户明确授权的独立M7架构工作提交。发布前检查13个开放PR全部文件页，无此源码重叠。
+
+## 本地公共接线续交（尚未更新远端）
+
+本地已接入正式 sourceEpoch、公共 helper 复制闭包及两个自动发现的测试文件。保留原51 owners、339 bindings、全部21个历史target；新增 colorlessDescriptionPrior 后22个target。前代完整proof先序列化认证一次，再只消费其plain-data快照；toJSON与二次getter不能偷换后续身份。Formation历史合同仍读取冻结前代入口，唯一直接读取当前磁盘的测试使用当前公共入口，原51-owner暖读、缺失和污染拒绝断言全部保留。
+
+sourceOnlyTree 是兼容元数据字段，指已公开3a09dfb源码阶段的完整tree5872f4b8（包含源码和本说明的旧版），不是本轮公共接线tree。candidateCommit与collectedBaseCommit分别记录已公开源码提交和ab65基线，不把本地接线冒充已公开。
+
+新source合同完整5/5、复杂度完整1/1通过；复杂度合同真实采集锁定Luacheck，并逐个提取函数及匿名嵌套注入超30分支拒绝。已有Formation完整11/11与四个CI校准完整64/64通过。原3232描述行为矩阵、76独立探针、5语义变异和3生产fixture的源码身份完全未变，本轮未重复执行它们。
+
+成本仅使用完整文件进程实测：source16109.85ms登记16110下界；runtime8047.30ms登记8048下界，不能误用unknown10000替代其更低的hosted成本。Formation12507.14ms由原17342下界覆盖；其他成本保持原值。原库存、历史收据hash、预算、并行及worker设置不变。最终预测和本轮精确测试输入见对应CI证据目录；预测不等于Hosted或Full通过。
+
+此续交仍仅本地准备。尚需最终独审、公开披露许可、精确公开HEAD/BASE准入及正常Full CI，不自动Ready或合并。

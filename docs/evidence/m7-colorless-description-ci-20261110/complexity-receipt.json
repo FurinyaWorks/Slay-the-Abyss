@@ -1,0 +1,36 @@
+{
+  "file": "tests/colorless-description-complexity.test.mjs",
+  "label": "complexity",
+  "startedAt": "2026-11-10T08:38:26.408Z",
+  "command": [
+    "<cloud-runtime>/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/colorless-description-complexity.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 743.103171,
+  "nodeReportedDurationMs": 677.462768,
+  "tests": 1,
+  "pass": 1,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "6399bcd742145c2eb04147762751e9641652aa3a1a89fd8dfc3b5b3b4abc4a8d",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5220,
+  "inputPath": "docs/evidence/m7-colorless-description-ci-20261110/complexity-inputs.json.gz",
+  "inputSha256": "728f1c5eab3b87d932e67859a86743b43df006c02794685a2dd3ee11d5469cf4",
+  "logPath": "docs/evidence/m7-colorless-description-ci-20261110/complexity.log.gz",
+  "logSha256": "576d65770814064bcd2f67a345ca3e7dcb66e88b813917df8ca522f456d1065c",
+  "logUncompressedSha256": "63b17834e30db2b6daff3d0f39e0466a706c0543b9409c69111c7b46567177c4",
+  "collectorSha256": "6cf7ea23b9a08cd1d44e458432085e5812be4c707bca1c3334e4383bcc59a6ff",
+  "publicationTransform": {
+    "kind": "path-normalized-publication-copy",
+    "executedAgain": false,
+    "originalReceiptSha256": "df45c41e5081b6c5250593e0412588032baee54d5efee3391950185d87409954",
+    "originalInputSha256": "dbf150bf6ef7a89eca16884a91cf6309405a5d33f493cbc2a24ee79d74e89512",
+    "originalLogSha256": "576d65770814064bcd2f67a345ca3e7dcb66e88b813917df8ca522f456d1065c"
+  }
+}

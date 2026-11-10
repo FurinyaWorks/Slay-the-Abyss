@@ -1,0 +1,36 @@
+{
+  "file": "tests/colorless-description-source-epoch.test.mjs",
+  "label": "source",
+  "startedAt": "2026-11-10T08:38:09.221Z",
+  "command": [
+    "<cloud-runtime>/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/colorless-description-source-epoch.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 16109.848212,
+  "nodeReportedDurationMs": 16051.36663,
+  "tests": 5,
+  "pass": 5,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "4dcd48bec0f24a2dc6085ee9b49174546e4055553350bfe0957122a1f6291b98",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5220,
+  "inputPath": "docs/evidence/m7-colorless-description-ci-20261110/source-inputs.json.gz",
+  "inputSha256": "57e0c353630355e62686d7cc151b433e9801f676b11c63e6ac6750667b59e430",
+  "logPath": "docs/evidence/m7-colorless-description-ci-20261110/source.log.gz",
+  "logSha256": "0e690cb580b77ec1651f7bda8adaf137069860c6b8de6e4f053cbe890cbfd346",
+  "logUncompressedSha256": "3e740bece6512356ac8cb5f528716cff8868de74215eacd06f43c7b4e287d7f7",
+  "collectorSha256": "6cf7ea23b9a08cd1d44e458432085e5812be4c707bca1c3334e4383bcc59a6ff",
+  "publicationTransform": {
+    "kind": "path-normalized-publication-copy",
+    "executedAgain": false,
+    "originalReceiptSha256": "4d86e815236f23615fb00deb0b5755376632ad8d92dd184266bae026bc03315c",
+    "originalInputSha256": "7147fd50498e75fae347fba13179d1f0875768ef23bacc4a0f3e8ce14594e9cd",
+    "originalLogSha256": "0e690cb580b77ec1651f7bda8adaf137069860c6b8de6e4f053cbe890cbfd346"
+  }
+}

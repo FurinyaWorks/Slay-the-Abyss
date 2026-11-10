@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "originalPrivateCommit": "be44f7f676114665b559e0e7a5f64bf41efa0b49",
+  "publicParentCommit": "3a09dfba19fca59c5bcd434a6ad09ed7d0330902",
+  "executedAgain": false,
+  "scope": "Publication normalization only. The original private commit must never be a public ancestor. Raw originals are retained privately; authorized reviewers can reproduce these mappings with --verify. Public hashes alone do not authenticate unseen private bytes.",
+  "pathLabels": [
+    {
+      "placeholder": "<cloud-runtime>/node",
+      "originalPathSha256": "0cabc4107abb8e4c043f03a614ebae312ad2ae86b74f3fdc2488b1aa472439c4"
+    },
+    {
+      "placeholder": "<cloud-workspace>",
+      "originalPathSha256": "ee1117daa37ebe05708f25599dcbccaa2aefddf359dfcd5178aded177d4533de"
+    }
+  ],
+  "files": {
+    "docs/evidence/m7-colorless-description-ci-20261110/README.md": {
+      "originalSha256": "9666293eb479d0133b2818f85359630e58df980728162f053f9a1b123bcde8d8",
+      "publicSha256": "3b00d15b11bb6212ebfd900356f48ea50585d163b0ed3f14f44bfa75881baed9",
+      "transformation": "Append an explicit publication-copy and private-original verification boundary."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/bridge-red.log.gz": {
+      "originalSha256": "acbdf546d0032c3bd52422dfce5854cab325af5c1167e7ac0a4f5330db5bbe8e",
+      "publicSha256": "0b390049ee0c32301820ecdb3fd16512cea3c09b2e0b4969cc02956e7d6a3136",
+      "transformation": "Normalize only the cloud workspace prefix in the original assertion stack."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-complete-final-inputs.json.gz": {
+      "originalSha256": "cbcc46bea3ccd49c1a5e0ed7e4bf52780ae37050ca3f92fe9c545f34deab0d97",
+      "publicSha256": "0f771df7bc4ce81d474daca1ba86449127110b15415dc392542c9b6b00b6eefa",
+      "transformation": "Normalize path labels; retain all input identities and append original archive commitments."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-complete-final-receipt.json": {
+      "originalSha256": "41877152f3746fcf3a0448c30372f49af9b384ca056c4ba099ffe6f0b9472305",
+      "publicSha256": "43f0b0a5224b7bdcb563d927204990afee9f7623c8334b1d477d96a75d380c65",
+      "transformation": "Normalize command executable label and link the transformed input archive; retain execution facts."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-complete-inputs.json.gz": {
+      "originalSha256": "3b44f296bd0faf62fdc1588ae5675466dd4ee99e08d1d9e5a3d14afe8981a0e7",
+      "publicSha256": "1c30b8185b3a271c6006861505bc0a6d842f6c2584328c7c42109aee189c6ea9",
+      "transformation": "Normalize path labels; retain all input identities and append original archive commitments."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-complete-receipt.json": {
+      "originalSha256": "12e8c9bc1a000e2d0f2f63b380933303b80e457270f08363adff659ff14e4580",
+      "publicSha256": "83f3ffc34e439b6a6ac626db39c4ba6366fc1daf7fa942f6e995bca72ab46e69",
+      "transformation": "Normalize command executable label and link the transformed input archive; retain execution facts."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-host-inputs.json.gz": {
+      "originalSha256": "37282edc771763089bf38ad30d8706745abbe16023cae8fbdf0285bf4585150c",
+      "publicSha256": "b15062d6ee60b0c79b5f2a9b5fad6907cb4c772d42c6c20ac65fd0768187302b",
+      "transformation": "Normalize path labels; retain all input identities and append original archive commitments."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-host-receipt.json": {
+      "originalSha256": "8456750a67b01b17119663e03ba397646e5cf41e24ff057bb6490def14ae3ef5",
+      "publicSha256": "ee360cea012993ca378e90b7d48bfb13951c1083fc2e176713eb1c4533d9196c",
+      "transformation": "Normalize command executable label and link the transformed input archive; retain execution facts."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-runtime-inputs.json.gz": {
+      "originalSha256": "43b3ad6d92139e44e2484915233c022dfe6ada0e080af664edfa39783238eed3",
+      "publicSha256": "b3ef774f9c73f95c46869ecb9ebbbd2e94fbc0ae767b7b8d0a7df17a1c1f1ba8",
+      "transformation": "Normalize path labels; retain all input identities and append original archive commitments."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-runtime-receipt.json": {
+      "originalSha256": "6ca3f4ea36ba2df783386008a76b9f63f13888993bf959ae837467020e24bd53",
+      "publicSha256": "6ecf24091953546d080cca84608ddd6e870f51d6bbef33925fd2a185c190e7a7",
+      "transformation": "Normalize command executable label and link the transformed input archive; retain execution facts."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-windows-inputs.json.gz": {
+      "originalSha256": "ba5956e270ae5b9bf40706c69c13a84a901a634c61c33291e0a1fe378c75a589",
+      "publicSha256": "c0ab185cfa7e9ed670daa449937ad5b3d5abe865dfc6e3e22a447d9b07c0947a",
+      "transformation": "Normalize path labels; retain all input identities and append original archive commitments."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/ci-windows-receipt.json": {
+      "originalSha256": "eba037015d28a880e98c273b2f900705ae7d6a8bac4eb588211846b40e9dbd8c",
+      "publicSha256": "006cac4aac1012887f0af75e381f40b2528f69211314be776153a2719ecd4fdd",
+      "transformation": "Normalize command executable label and link the transformed input archive; retain execution facts."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/complete-process-observations.json": {
+      "originalSha256": "c4d526cfb26735f5bd42cbf76d01799e3b6c97c43449d02ed12108b211c24a4d",
+      "publicSha256": "9c036cf42030aee158334d044c58815beb4b96619898e9a05c876b257c0c2246",
+      "transformation": "Refresh receipt identities and mark the report as a non-executed publication transform."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/complexity-inputs.json.gz": {
+      "originalSha256": "dbf150bf6ef7a89eca16884a91cf6309405a5d33f493cbc2a24ee79d74e89512",
+      "publicSha256": "728f1c5eab3b87d932e67859a86743b43df006c02794685a2dd3ee11d5469cf4",
+      "transformation": "Normalize path labels; retain all input identities and append original archive commitments."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/complexity-receipt.json": {
+      "originalSha256": "df45c41e5081b6c5250593e0412588032baee54d5efee3391950185d87409954",
+      "publicSha256": "1a4a760015fe2978645da9d667b963d3e40c8a50a599b4a8569ed145be4a73c5",
+      "transformation": "Normalize command executable label and link the transformed input archive; retain execution facts."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/final-file-hashes.json": {
+      "originalSha256": "2f2f86b5f47fcb84f435c5781642c1148e06e5425d10d69912e13982ca759e31",
+      "publicSha256": "7e2fcb63b97fdcf013b8f10da4fdf741fb10486796b8ab002db3cbf392774485",
+      "transformation": "Preserve every original freeze entry and clarify its historical private-artifact scope."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/formation-source-inputs.json.gz": {
+      "originalSha256": "e0856896b640c5d0b20a107123722501b87846b5f30134ba5cb975a53c7800e1",
+      "publicSha256": "5bf07b54507abad72807b848ae14e69d57c4fadd76dc9ae311d53b7f9f20cc5e",
+      "transformation": "Normalize path labels; retain all input identities and append original archive commitments."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/formation-source-receipt.json": {
+      "originalSha256": "93c81a23533be7e821548b14cba8ba23c966f87880063b4c1a8e62a2497053bd",
+      "publicSha256": "295cd8ebf42bb9f98e690c3a15a51dd2312b6f65b01887d050803f11ac6b7786",
+      "transformation": "Normalize command executable label and link the transformed input archive; retain execution facts."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/planning.json": {
+      "originalSha256": "7fe081b824309f94e0f24b7a0fda07551e89c19d1db67d3abe17b095b080e626",
+      "publicSha256": "b6aa3cd1b43a24fc8c5c4ac302558680ee81f61def8e61e354fd0526f5eaaf70",
+      "transformation": "Update only the two receipt references; budget forecasts remain unchanged."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/source-inputs.json.gz": {
+      "originalSha256": "7147fd50498e75fae347fba13179d1f0875768ef23bacc4a0f3e8ce14594e9cd",
+      "publicSha256": "57e0c353630355e62686d7cc151b433e9801f676b11c63e6ac6750667b59e430",
+      "transformation": "Normalize path labels; retain all input identities and append original archive commitments."
+    },
+    "docs/evidence/m7-colorless-description-ci-20261110/source-receipt.json": {
+      "originalSha256": "4d86e815236f23615fb00deb0b5755376632ad8d92dd184266bae026bc03315c",
+      "publicSha256": "6fcd2b9a0feb448e922886efb2231555b64fc9ef48ca9d34c1ea37d34bc9da4b",
+      "transformation": "Normalize command executable label and link the transformed input archive; retain execution facts."
+    },
+    "scripts/ci-test-timings.json": {
+      "originalSha256": "b2287af4c1ae8066a4aab880674feedbb4e5fdf269af0ef7d38dbc35a2f81428",
+      "publicSha256": "135fff817068325174bdd27be927fdb18059cce9a0887f8ea56cd0fc9f254c39",
+      "transformation": "Update only the two new local-floor receipt SHA256 references; all costs and historical data stay unchanged."
+    },
+    "tests/helpers/colorless-description-ci-source-epoch.json.gz": {
+      "originalSha256": "ae0a65056c029a5e45abb5bb6ee504cc84bd76833519241df09fdac9dcc6e0d4",
+      "publicSha256": "8b70da0c540e693eb12f3c3c28dbc9f9e507cb305a339d3d8b9d77f1f611684b",
+      "transformation": "Regenerate exact current timing binding and its archive identity; preserve all historical proof bindings."
+    },
+    "tests/helpers/colorless-description-ci-source-inverse.mjs": {
+      "originalSha256": "5ae39bf49cb492c49775d59313dfd2f9c9d08bc782379617a944bb016296d71c",
+      "publicSha256": "3f84c365b14ef41bb265b393e61e68608d1f117dec59642c8ead4e1e6b2508d0",
+      "transformation": "Regenerate exact current timing binding and its archive identity; preserve all historical proof bindings."
+    }
+  }
+}
