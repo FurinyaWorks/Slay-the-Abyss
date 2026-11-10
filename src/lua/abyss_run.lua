@@ -5,7 +5,7 @@ local Capability = require("abyss_card_capability")
 local RelicPool = require('abyss_relic_pool')
 local EmeraldRewards=require('abyss_emerald_rewards')
 local RelicHooks = require('abyss_relic_hooks')
-local M = {}
+local M = require('abyss_run_health')
 local preparedCharacters={ironclad=true,silent=true,defect=true,watcher=true}
 local preparedOriginalRoles={HT=true,AR=true,FR=true,RD=true}
 
@@ -90,11 +90,6 @@ function M.eventNormalDamage(run,value)
     -- Null owner does not dispatch Torii.onAttacked; permanent fatal reserves
     -- share the event damage boundary without consulting a retained battle.
     return M.eventDamage(run,value)
-end
-function M.heal(run,value)
-    assert(amount(value),'invalid heal')
-    value=require('abyss_potion_health').modifyHealing(value,run.relics,run.phase=='combat')
-    local before=run.hp;run.hp=math.min(run.maxHp,run.hp+0.0+value);return run.hp-before
 end
 function M.increaseMaxHp(run,value)
     if not amount(value) or not amount(run.maxHp) or run.maxHp+0.0+value>2147483647 then return false,'invalid_max_hp' end

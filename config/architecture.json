@@ -231,6 +231,7 @@
     "abyss_relic_pool": "core",
     "abyss_room_encounters": "core",
     "abyss_run": "core",
+    "abyss_run_health": "core",
     "abyss_run_seed": "core",
     "abyss_sentry_ai": "core",
     "abyss_shop": "core",
@@ -347,11 +348,6 @@
   },
   "dynamicExceptions": [],
   "deferredImports": [
-    {
-      "from": "abyss_uncommon_relics",
-      "to": "abyss_run",
-      "reason": "Meat on the Bone delegates raw victory healing to the initialized Run health owner while the room is still in combat, preserving one shared Magic Flower/Bloom modifier pass."
-    },
     {
       "from": "abyss_relic_card_rewards",
       "to": "abyss_run",
