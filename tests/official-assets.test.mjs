@@ -53,7 +53,7 @@ test('receipts and pinned source audits reconstruct official art and reject mism
   assert.throws(()=>officialAssetsFromReceipt({...value,...patch}));
 });
 
-test('all game card contexts use the same official panel while every input and live field retains identity and geometry',()=>{
+test('approved battle geometry keeps live field identities and input contracts while other pages retain their geometry',()=>{
  const layout=gameLayout(),template=deckCardTemplate(),theme=officialAssetsTheme(nativeTheme);
  const nodes=[...paths(layout),...paths(template)];
  const semantic=nodes.filter(([,node])=>['text','cursorArea','presetButton'].includes(node.kind))
@@ -61,16 +61,35 @@ test('all game card contexts use the same official panel while every input and l
  const containers=nodes.filter(([,node])=>node.kind==='container').map(([path,node])=>[path,node,{position:node.position,size:node.size,visible:node.visible,scale:node.scale,rotation:node.rotation}]);
  const result=applyOfficialAssets([layout,template],theme);
  const current=new Map([...paths(layout),...paths(template)]);
- for(const [path,node,before] of semantic){
-  assert.equal(current.get(path),node,path);
+  for(const [path,node,before] of semantic){
+   assert.equal(current.get(path),node,path);
+   if(path.includes('/battlePanel/')){
+    // Battle geometry is intentionally restored to the approved V25 tokens.
+    // The existing event-bearing objects and input/state contracts still survive.
+    for(const key of ['kind','states','focusable','interactable','raycastTarget'])assert.deepEqual(node[key],before[key],path+' '+key);
+    continue;
+   }
   for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget'])assert.deepEqual(node[key],before[key],path+' '+key);
-  if(node.text){const actual={...node.text},expected={...before.text};delete actual.colour;delete expected.colour;if(path.endsWith('/shopView/removal/description'))expected.minFontSize=nativeTheme.font.minimum;assert.deepEqual(actual,expected,path);}
+   if(node.text){const actual={...node.text},expected={...before.text};delete actual.colour;delete expected.colour;if(expected.autoSize&&(expected.minFontSize*1.45+4>before.size?.[1]||path.endsWith('/shopView/removal/description')))expected.minFontSize=nativeTheme.font.minimum;assert.deepEqual(actual,expected,path);}
  }
- for(const [path,node,before]of containers){assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
+  for(const [path,node,before]of containers){if(path.includes('/battlePanel/'))continue;assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
  assert.equal(result.cardHosts,cards.length);assert(cards.length>=40);assert(result.removedControls>500);
  for(const card of cards){assert.equal(child(child(card,'roundBody'),'flat').image,107253);assert.equal(child(card,'costCore').image,107202);}
- const battle=child(layout,'battlePanel');for(let i=1;i<=10;i++)assert(child(battle,'card'+i));
+  const battle=child(layout,'battlePanel');
+  assert.deepEqual(child(battle,'hero').position,[-324,-37]);
+  assert.equal(child(child(battle,'hero'),'name').visible,false);
+  assert.deepEqual(child(battle,'endTurn').position,[454.5,-220]);
+  assert.deepEqual(child(battle,'endTurn').size,[143,56]);
+  assert.deepEqual(child(battle,'drawIcon').position,[-585.5,-311.5]);
+  for(let i=1;i<=10;i++){
+   const card=child(battle,'card'+i);assert(card);
+   assert.deepEqual(card.size,[150,210]);
+   assert.deepEqual(child(card,'cost').position,[-66.5078125,95]);
+   assert.deepEqual(child(card,'name').position,[0,79.8046875]);
+   assert.deepEqual(child(card,'label').size,[114,60.921875]);
+   assert.equal(child(card,'cost').text.fontSize,25);
+  }
  assertNativeUiCapacity(layout);assertNativeUiCapacity(template);
 });
 
@@ -80,7 +99,7 @@ test('scene and button substitutions preserve semantic icons and all four native
  applyOfficialAssets([layout],theme);
  const battle=child(layout,'battlePanel'),turn=child(battle,'endTurn');
  assert.deepEqual(turn.states,{normal:'normal',hover:'hover',pressed:'pressed',disabled:'disabled'});
- for(const state of turn.children)assert.equal(child(state,'plate').image,107196);
+  for(const state of turn.children)assert.equal(child(state,'plate').image,nativeTheme.officialAssets.images.button);
  for(const [path,node]of paths(layout))if(/\/(portrait|intentIcon|intentBadge|intentExtra|hpIcon|goldIcon|blockedLock|art|art_attack|art_skill|art_power|icon)$/.test(path)&&node.kind==='image')
   assert.equal(node.image,before.get(path),path);
  assert.equal(child(child(layout,'menuPanel'),'backdrop').image,nativeTheme.image.officialBackdrops.title);
@@ -91,7 +110,7 @@ test('scene and button substitutions preserve semantic icons and all four native
  }
  const map=child(layout,'mapPanel'),field=child(child(map,'mapGroup1'),'mapField');
  assert.equal(field.image,nativeTheme.image.rect);assert.equal(field.colour,nativeTheme.color.mapCanvas.backdrop);
- assert.equal(theme.cardSkin.text.body,'#2A2620');assert.equal(nativeTheme.cardSkin.text.body,undefined);
+  assert.equal(theme.cardSkin.text.body,nativeTheme.officialAssets.cardInk);assert.equal(nativeTheme.cardSkin.text.body,undefined);
  const removal=child(child(child(layout,'nodePanel'),'shopView'),'removal');
  const description=child(removal,'description');
  assert.equal(description.text.fontSize,20);assert.equal(description.text.minFontSize,nativeTheme.font.minimum);

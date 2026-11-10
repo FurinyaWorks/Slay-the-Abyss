@@ -5,10 +5,17 @@
     "images": {
       "cardPanel": 107253,
       "panel": 107311,
-      "button": 107196,
+      "button": 107231,
       "costDisc": 107202
     },
-    "cardInk": "#2A2620",
+    "cardInk": "#FFF6E2",
+    "cardBodyTint": "#273840",
+    "buttonBacking": "#17252D",
+    "buttonInk": "#FFF8E7",
+    "costInk": "#FFF8E7",
+    "battlePortraitDisplay": 210,
+    "battlePortraitPosition": [0, 0],
+    "backdropVeil": "#0F1117B8",
     "catalogSources": [
       "https://github.com/8itlab/genshin-miliastra-mcp/blob/main/src/scene/image-library/plate-colour_06.jpg",
       "https://github.com/8itlab/genshin-miliastra-mcp/blob/main/src/scene/image-library/plate-colour_08.jpg",

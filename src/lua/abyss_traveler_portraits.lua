@@ -351,6 +351,8 @@ function M.new(stage,report,flags,cardTemplates)
     if owners[stage]then return owners[stage]end
     local Asset=require('abyss_traveler_portrait_assets')
     local profile=v25Profile(Asset)
+    local theme=require('abyss_theme')
+    local official=theme.presentationProfile=='official-assets-first'
     local epoch=0
     if carding and not lowpoly(Asset.lowpolyCardFan) then carding=false end
     if landing and not lowpoly(Asset.lowpolyLand) then landing=false end
@@ -379,7 +381,7 @@ function M.new(stage,report,flags,cardTemplates)
         details=panel:GetChild('details')
         local host=details and details:GetChild('officialSelectionFigure')
         if host then
-            local figure=profile and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
+            local figure=(profile or official) and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
             if figure.renderProfile~='lowpoly-v1' then
                 validate(figure,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
             end
@@ -409,8 +411,8 @@ function M.new(stage,report,flags,cardTemplates)
     if fighting then
         validate(Asset.battle133,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
         local hero=assert(stage:GetChild('battlePanel'):GetChild('hero'))
-        battle=controller(hero:GetChild('officialFigure'),Asset.battle133,profile and profile.battleDisplay or 400/3,Asset,
-            {retryFailedOnPause=true,position=profile and profile.battlePosition,
+        battle=controller(hero:GetChild('officialFigure'),Asset.battle133,profile and profile.battleDisplay or official and theme.layout.player.portrait or 400/3,Asset,
+            {retryFailedOnPause=true,position=profile and profile.battlePosition or official and theme.officialAssets.battlePortraitPosition,
                 nativeLifecycle=profile~=nil,ownerEpoch=function()return epoch end})
         -- UnitView deliberately hides the shipped geometric player placeholder.
         -- Publication failure or pause must not override that presentation policy.
