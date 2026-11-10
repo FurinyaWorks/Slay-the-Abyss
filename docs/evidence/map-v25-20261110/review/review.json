@@ -1,9 +1,9 @@
 {
   "reviewId": "/root/map_review/map-v25-20261110",
   "reviewer": "Independent sub-agent /root/map_review",
-  "reviewedAt": "2026-11-10T10:00:01.239Z",
-  "reviewedHeadSha": "0020ed8827f04ee69fb68850ee12ba13270a919d",
-  "reviewedWorkingTree": true,
+  "reviewedAt": "2026-11-10T11:13:37.093Z",
+  "reviewedHeadSha": "6ef975bc181b17577effcd6458879ffb10ef590b",
+  "reviewedWorkingTree": false,
   "scope": "Map incremental code only; excludes inherited PR582 full history, final product/performance acceptance and official devices",
   "conclusion": "pass",
   "unresolved": [],
@@ -12,7 +12,7 @@
     "src/lua/abyss_map_ui.lua": "21dc38b913f78bbe5f94a274759f38f3a9c932991a9286aeb9da1918bbf6408f",
     "src/lua/abyss_game_ui_view.lua": "5e9a9f840b605d716daf9fb220847114f6ec3c91b0ac1efb23e8829835444c06",
     "src/lua/abyss_potion_discard_ui.lua": "cfd56147ec0ab5463695a88079f0cbc0e0d7b47f6989d1ff4eab0ca2f3e8465b",
-    "data/presentation/ui_theme.json": "ec438842920a62d3200cd05fd80c6d7180ec6b4db35b0e3e13b20ada211340ac",
+    "data/presentation/ui_theme.json": "a3a56938ab0756c12370e75513a3d31e0b4d41e2de8c6f52a8a50fe1e1c652d3",
     "config/luacheck-baseline.json": "869982d4dfcae06006a5d8c7bda2bc4a5a24f72ff2a0f50b992eacdf63503971",
     "tests/lua/map_node_visuals.lua": "214cae2b5f03b01126bba96182f1f9ef995cb6c3ab96c5885da5044280bad232",
     "tests/lua/map_gesture_ownership.lua": "db48ef5f32867d318bd38ea3bd510312147eb9097a46ec854655484f7a803ce5",
@@ -63,13 +63,18 @@
   "finalIconReview": {
     "conclusion": "pass",
     "unresolved": [],
-    "scope": "Two image-property changes only: V25 combat icon102039, explicit legend image IDs from the same theme map",
+    "scope": "Final withdrawal of unavailable Simulator icon102039; explicit legend IDs retained from the same theme map",
     "checks": [
-      "Default combat icon102044 unchanged",
-      "V25 combat icon102039",
+      "Previous102039 property-only review did not certify bitmap availability",
+      "Rejected missing-icon candidate retained by primary agent",
+      "Default and V25 combat icon both102044",
       "All six visible legend IDs match theme.icon.node",
       "Source theme not mutated",
-      "No node type, input, map generation, Run or RNG changes"
-    ]
+      "No node type, input, map generation, Run or RNG changes",
+      "Only data/presentation/ui_theme.json changed from previous17-file review",
+      "Primary post-revert-proof records current layout/theme exact byte match to successful map-delivery-final"
+    ],
+    "successfulEvidence": "map-delivery-final",
+    "rejectedEvidence": "rejected-missing-icon"
   }
 }

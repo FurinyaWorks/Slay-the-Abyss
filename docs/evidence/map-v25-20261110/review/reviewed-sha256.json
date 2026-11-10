@@ -3,7 +3,7 @@
   "src/lua/abyss_map_ui.lua": "21dc38b913f78bbe5f94a274759f38f3a9c932991a9286aeb9da1918bbf6408f",
   "src/lua/abyss_game_ui_view.lua": "5e9a9f840b605d716daf9fb220847114f6ec3c91b0ac1efb23e8829835444c06",
   "src/lua/abyss_potion_discard_ui.lua": "cfd56147ec0ab5463695a88079f0cbc0e0d7b47f6989d1ff4eab0ca2f3e8465b",
-  "data/presentation/ui_theme.json": "ec438842920a62d3200cd05fd80c6d7180ec6b4db35b0e3e13b20ada211340ac",
+  "data/presentation/ui_theme.json": "a3a56938ab0756c12370e75513a3d31e0b4d41e2de8c6f52a8a50fe1e1c652d3",
   "config/luacheck-baseline.json": "869982d4dfcae06006a5d8c7bda2bc4a5a24f72ff2a0f50b992eacdf63503971",
   "tests/lua/map_node_visuals.lua": "214cae2b5f03b01126bba96182f1f9ef995cb6c3ab96c5885da5044280bad232",
   "tests/lua/map_gesture_ownership.lua": "db48ef5f32867d318bd38ea3bd510312147eb9097a46ec854655484f7a803ce5",

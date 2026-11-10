@@ -37,3 +37,5 @@
 map-browser.py 已在重复点击后读取新的final snapshot，并断言最终lua-error及页面errors均为空再写passed。未新增测试框架或放宽原门槛。最终复核无已确认 P1/P2；最终17文件摘要见reviewed-sha256.json，具体运行时与附录脚本范围见review.json。
 
 末次纯图像属性补核：V25专属icon.node.combat改为102039，默认主题仍为102044；styleLegend用同一theme.icon.node[kind]给六类图例显式赋图，和MapUI既有运行时SetImage来源一致。独立断言默认主题未被突变、V25战斗图标值及六类图例一致全部通过；未改变节点类型、连通性、输入对象、Run或RNG。此两文件摘要已再次刷新，无新增P1/P2。
+
+最终图像撤回复核：上述102039仅通过过图像属性/主题隔离检查，未表示Simulator资源可用；主线程实际截图发现缺图粉色占位后已拒绝该候选并保留rejected-missing-icon。最终撤回V25图标override，V25与默认均继承已实际验证的102044；保留图例显式读取同一theme的修复。独立确认只有data/presentation/ui_theme.json较上一轮17文件摘要变化，其他运行时/脚本摘要不变；再次断言V25/默认102044、六类图例一致及默认源不突变通过。成功交付证据回到map-delivery-final，主线程的post-revert-proof.json记录当前buildUI的game-ui.json/abyss_theme.lua与该成功候选逐字节相等。此纯图像属性撤回无新增P1/P2，未重跑整套测试。最终摘要绑定当前已提交HEAD 6ef975bc181b17577effcd6458879ffb10ef590b 的17文件内容；其余未提交Backlog说明不在代码审查范围。
