@@ -5,7 +5,7 @@ import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const bytes=readFileSync(new URL('./joint-ui-ci-source-epoch.json.gz',import.meta.url));
-assert.equal(hash(bytes),'e401ff30c46c7fd9dd996fa7487c971ee84ab6a717f6f04cf4ec5d57e0dc0330','joint CI compressed identity');
+assert.equal(hash(bytes),'9fee4e85665d37746b68368fced892a316db490c8e01273328391bc57acfd840','joint CI compressed identity');
 const proof=JSON.parse(gunzipSync(bytes));
 for(const row of Object.values(proof.files))assert.equal(hash(row.current),row.sha256);
 const views=['componentAliasFix','officialAssetsFlow','defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt'];

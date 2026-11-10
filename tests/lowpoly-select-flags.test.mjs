@@ -20,6 +20,7 @@ function run(assetSource,flags,readyTemplates='{imageTemplateIndex=11,containerT
  const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);
  const portraits=readFileSync('src/lua/abyss_traveler_portraits.lua','utf8');
  const code=`
+package.path='build/lua/?.lua;src/lua/?.lua;'..package.path
 local created,rot3d,loads=0,0,0
 local function control(name)
  local c={alive=true,visible=true,sizeDeltaX=200,children={},name=name}

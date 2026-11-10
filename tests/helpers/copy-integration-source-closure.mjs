@@ -62,7 +62,7 @@ const files={...JSON.parse(bytes),...{
 },...{
   // Exact final UI composition overlay; prior closure snapshots stay frozen.
   "tests/helpers/combined-epoch/source-epoch.mjs": "9c13e8134088d55a7a7b57e7f4fe905fd87cdc9a36e6c636049285e6fa99faf1",
-  "tests/helpers/room-ui-source-epoch.mjs": "dff1401d6c5a6d3ba52b3931655a7f233bdce57b752ac399f7da7bb568025c81",
+  "tests/helpers/room-ui-source-epoch.mjs": "ddcb90da9fdaa1b93ccdc903cb348dd99c2ccaeaa2d5350bc2ed586631612500",
   "tests/helpers/room-ui-source-epoch.json.gz": "0b3cb34acf85e814bd3e7d82254e9586a6a60c78e20fd95603b2e96e877d7bfc",
   "tests/helpers/joint-ui-source-epoch.mjs": "f35a2626dfd4ae6e8aa0c8c2b8897859be2796d84ae0fd05e29595c785cc7692",
   "tests/helpers/joint-ui-source-epoch.json.gz": "67777c3571d86bc82427fbb6ac5cd2254ed480b58285f41aa17d05d7490413f9"
