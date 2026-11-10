@@ -1,0 +1,6 @@
+{
+  ".artifacts/round24/emerald-map-before.json.gz": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz",
+  ".artifacts/round24/emerald-map-after.json.gz": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz",
+  ".artifacts/round24/ci-complete-calibration-before.json.gz": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz",
+  ".artifacts/round24/ci-complete-calibration-after.json.gz": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz"
+}

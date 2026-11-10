@@ -1,0 +1,102 @@
+{
+  "docs/evidence/m7-map-fixture-reuse-20261110/README.md": {
+    "sha256": "15bee10a225814065137bde05b1d5d37c01f48f8a1897732a0b65d98c3338a23",
+    "bytes": 4272
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/archived-paths.json": {
+    "sha256": "ceb84565dfb71bc693dba8fed9cbf2171550fdd35d17ec9338cb08420b0798e4",
+    "bytes": 737
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/backlog-final.log.gz": {
+    "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "bytes": 361
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/backlog.log.gz": {
+    "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "bytes": 361
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/build-data.log.gz": {
+    "sha256": "55e12e402720a50ec9ae22d5216db1e05c8260adfbab010cbf45357608ef6506",
+    "bytes": 172
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/build-ui.log.gz": {
+    "sha256": "6776ff5a1fac3b3ec9ba7c2eb31af470998ea6929d5667da6742a8adb49396ef",
+    "bytes": 184
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/ci-complete-calibration.jsonl.gz": {
+    "sha256": "023267748c061627ffc26e19c498b8ff1fcc070843373a3dad215500ed5b505c",
+    "bytes": 102
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/ci-complete-calibration.log.gz": {
+    "sha256": "7786622b0e247b54408bb465f33383a7b8c561ff62e7c886d1b0f9ec07a1f949",
+    "bytes": 2445
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/doctor-invocation-error.log.gz": {
+    "sha256": "b511460ce955fc7e8868d632ccb48ad74a3d2211db879df9b5e1b07dcc9217fc",
+    "bytes": 95
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/doctor.log.gz": {
+    "sha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+    "bytes": 1843
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/emerald-map.jsonl.gz": {
+    "sha256": "3a8ea4f43366fd55d5dcc7320557b4278742516a450399f23eb565e9c11ba10f",
+    "bytes": 94
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/emerald-map.log.gz": {
+    "sha256": "1ec3311db79f9c3828f7dfab5f071c7623775eb3ce5a4da61cc36cbab077b17d",
+    "bytes": 847
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/fixture-comparison.json": {
+    "sha256": "979348a0a0b3ec9187300796f2e516bc46f2f70c2c30b088532fa6ea9e6ecf16",
+    "bytes": 9772
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/fixture-comparison.log.gz": {
+    "sha256": "f537d5869e2906ba9042b922cc598e01a671448ec4e96ad420f0061144e34081",
+    "bytes": 2190
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/fixture-controls.log.gz": {
+    "sha256": "2bb037b517ca914d195a019e1477708428fa169e37e5d14334e094028f6580a1",
+    "bytes": 243
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/guidance-final.log.gz": {
+    "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "bytes": 287
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/guidance.log.gz": {
+    "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "bytes": 287
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/independent-review-checks.mjs": {
+    "sha256": "a7d060ca1e289a45bf8440bfc7eeb775c667461797f013d79c9291717e3fecd3",
+    "bytes": 4693
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/independent-review.json": {
+    "sha256": "6d3d13fafb1e98d27a62d423607206e8856fd250be20a87a52ba50a50d7375f6",
+    "bytes": 4092
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/independent-review.log.gz": {
+    "sha256": "b3d7c7949b1336d8bdee11f0f09ed3b1af384e685ba3ca9c4fe1e5ecaa11a306",
+    "bytes": 1884
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/independent-review.md": {
+    "sha256": "0405e7cf57a3de82698b57cef16626fcfe4b1dd1773d11851fe1b0b96cb1f61e",
+    "bytes": 3034
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz": {
+    "sha256": "bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0",
+    "bytes": 395460
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/measure-targeted.py.gz": {
+    "sha256": "6a84e24eb887060f2f3ee3f5303f2d31d4b4406fcf5e193342fab46cdf53b18c",
+    "bytes": 1133
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/probe-fixture.mjs.gz": {
+    "sha256": "f08502c0e93ebf517c89e5a7bcaecefdfd98318584db5bfe6af9f4dfddd33151",
+    "bytes": 1091
+  },
+  "docs/evidence/m7-map-fixture-reuse-20261110/targeted-validation.json": {
+    "sha256": "009c2b29113e1e7612f8af0a3680e386c89436e86581825c91a1c33d709408dc",
+    "bytes": 4133
+  }
+}

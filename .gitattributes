@@ -486,3 +486,9 @@ docs/evidence/m7-map-emerald-cost-20261110/*.json text eol=lf
 docs/evidence/m7-map-cost-registration-20261110/*.json text eol=lf
 docs/evidence/m7-map-cost-registration-20261110/*.mjs text eol=lf
 docs/evidence/m7-map-cost-registration-20261110/*.gz -text
+
+# Map fixed-seed fixture evidence remains byte-stable on Windows and POSIX.
+tests/fixtures/map-emerald-cases-before-reuse.lua text eol=lf
+docs/evidence/m7-map-fixture-reuse-20261110/*.json text eol=lf
+docs/evidence/m7-map-fixture-reuse-20261110/*.mjs text eol=lf
+docs/evidence/m7-map-fixture-reuse-20261110/*.gz -text

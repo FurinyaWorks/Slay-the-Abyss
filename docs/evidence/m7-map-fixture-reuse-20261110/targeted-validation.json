@@ -1,0 +1,94 @@
+[
+  {
+    "testFile": "tests/emerald-map.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-24/.artifacts/round24/emerald-map.jsonl",
+      "tests/emerald-map.test.mjs"
+    ],
+    "returncode": 0,
+    "processWallMs": 65079.33882600628,
+    "summary": {
+      "tests": 10.0,
+      "pass": 10.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 64921.923415
+    },
+    "log": {
+      "path": ".artifacts/round24/emerald-map.log",
+      "sha256": "a77c08692688bf511990f1d11d5be46cf071f7096863190387075ec09c25a375",
+      "publishedPath": "docs/evidence/m7-map-fixture-reuse-20261110/emerald-map.log.gz",
+      "publishedGzipSha256": "1ec3311db79f9c3828f7dfab5f071c7623775eb3ce5a4da61cc36cbab077b17d"
+    },
+    "before": {
+      "path": ".artifacts/round24/emerald-map-before.json.gz",
+      "sha256": "bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0",
+      "uncompressedSha256": "58ca3493f5195e89cad511bf0ed55439368e0be7716ceaa121e6737e3443d5bc",
+      "files": 8315,
+      "publishedPath": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz"
+    },
+    "after": {
+      "path": ".artifacts/round24/emerald-map-after.json.gz",
+      "sha256": "bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0",
+      "uncompressedSha256": "58ca3493f5195e89cad511bf0ed55439368e0be7716ceaa121e6737e3443d5bc",
+      "files": 8315,
+      "publishedPath": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/emerald-map.test.mjs\",\"durationMs\":64403.859595,\"success\":true}\n"
+  },
+  {
+    "testFile": "tests/ci-complete-calibration.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-24/.artifacts/round24/ci-complete-calibration.jsonl",
+      "tests/ci-complete-calibration.test.mjs"
+    ],
+    "returncode": 0,
+    "processWallMs": 14521.576238999842,
+    "summary": {
+      "tests": 50.0,
+      "pass": 50.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 14415.349713
+    },
+    "log": {
+      "path": ".artifacts/round24/ci-complete-calibration.log",
+      "sha256": "62020576dba4e98ff1a7e4ba8f00b0b523c793afe523437491e869d406ab585b",
+      "publishedPath": "docs/evidence/m7-map-fixture-reuse-20261110/ci-complete-calibration.log.gz",
+      "publishedGzipSha256": "7786622b0e247b54408bb465f33383a7b8c561ff62e7c886d1b0f9ec07a1f949"
+    },
+    "before": {
+      "path": ".artifacts/round24/ci-complete-calibration-before.json.gz",
+      "sha256": "bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0",
+      "uncompressedSha256": "58ca3493f5195e89cad511bf0ed55439368e0be7716ceaa121e6737e3443d5bc",
+      "files": 8315,
+      "publishedPath": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz"
+    },
+    "after": {
+      "path": ".artifacts/round24/ci-complete-calibration-after.json.gz",
+      "sha256": "bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0",
+      "uncompressedSha256": "58ca3493f5195e89cad511bf0ed55439368e0be7716ceaa121e6737e3443d5bc",
+      "files": 8315,
+      "publishedPath": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/ci-complete-calibration.test.mjs\",\"durationMs\":4256.742299,\"success\":true}\n"
+  }
+]

@@ -6,6 +6,8 @@ local R=require('abyss_sts_random')
 local Acts=require('abyss_acts')
 local E=require('abyss_emerald_elite')
 local copy=require('abyss_copy').copy
+-- Only immutable seed setup is shared inside this VM; each scenario gets fresh tables.
+local initialMapRng=R.snapshot(R.fromSeed('42'))
 local trace={}
 local function event(...) trace[#trace+1]=table.pack(...) end
 for _,entry in ipairs({{R,'restore'},{R,'snapshot'},{R,'randomIntBetween'},{Acts,'mapSeed'},{E,'prepare'}})do
@@ -19,7 +21,7 @@ local function base(act,x,y)
  local node={id='selected',type='elite',hasEmeraldKey=true,lane=x+1,floor=first+y,nextIds={}}
  local map={seed='42',runSeed='42',mapSeed=Acts.mapSeed('42',act),sourceSignature='signature',
   nodes={node},emeraldSelection={version=1,act=act,nodeId='selected',x=x,y=y},
-  mapRng=R.snapshot(R.fromSeed('42')),floor=first+y-1,path={}}
+  mapRng=copy(initialMapRng),floor=first+y-1,path={}}
  if act~=1 then map.act,map.firstFloor=act,first end
  if y>0 then
   map.nodes[2]={id='prior',floor=first+y-1,type='combat',nextIds={'selected'}}

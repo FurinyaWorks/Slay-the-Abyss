@@ -1,0 +1,72 @@
+{
+  "status": "PASS_NARROW_REVIEW",
+  "head": "49678e7ba6fd6365c7d5573e5b51ccae6fde6e1d",
+  "reviewedAt": "2026-11-10T01:20:58.344Z",
+  "checks": [
+    {
+      "name": "fixed seed setup reuses only construction and gives every scenario independent nested state",
+      "status": "PASS"
+    },
+    {
+      "name": "fixture inverse preserves original complete input and refuses every foreign or changed candidate",
+      "status": "PASS"
+    },
+    {
+      "name": "Frozen original fixture exactly equals original Git blob and paired proof input",
+      "status": "PASS",
+      "blob": "e137d19eccee94692f6f166ebc60bf560bec5578"
+    },
+    {
+      "name": "Production, budgets/timings, original Emerald tests, VM, observer, owner proof and cost contracts unchanged",
+      "status": "PASS",
+      "paths": [
+        "src",
+        "scripts",
+        ".github",
+        "config",
+        "tests/emerald-map.test.mjs",
+        "tests/helpers/map-emerald-vm.mjs",
+        "tests/helpers/lua-graph-observer.mjs",
+        "tests/helpers/map-emerald-source-contract.mjs",
+        "tests/helpers/combined-epoch",
+        "tests/helpers/emerald-node-source-epoch.mjs",
+        "tests/helpers/map-emerald-cost-contract.mjs",
+        "tests/helpers/map-emerald-cost-source-inverse.mjs"
+      ]
+    },
+    {
+      "name": "Paired receipt has all 17 expected source variants, matching streams and 14 divergent mutants",
+      "status": "PASS",
+      "checkpointsPerSide": 17529,
+      "note": "Inspected parent-run receipt and exact runner; full paired execution not repeated by reviewer."
+    }
+  ],
+  "reviewedInputSha256": {
+    ".gitattributes": "e027b9d3b9a85fb203bcb072b742bb6813e1702301f9f0ffb28aa57168901c91",
+    "tests/ci-complete-calibration.test.mjs": "8b3513979788dbbb03c16d6499239319670d25b7350264d1ed5c87d32fcf6787",
+    "tests/helpers/map-emerald-cases.lua": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "tests/fixtures/map-emerald-cases-before-reuse.lua": "afd3fc85fdd4dff15d71d7a94f3a4fb178fffd39ab8f7362852f0f016d3b87b9",
+    "tests/helpers/map-emerald-fixture-contract.mjs": "77570b0f04f60ec34a5aaa78562db57ec3ecc2d53edff0a891df8bebb1da89fe",
+    "tests/helpers/map-emerald-fixture-source-inverse.mjs": "3a80a0e78fda77f68e1f0536e028149e8d92091308d8a11b7a9b3385ec68e710",
+    "tests/emerald-map.test.mjs": "b84710b49948b5b78813dadb12651121725afa04ba15aadf56a594b33787bee0",
+    "tests/helpers/map-emerald-vm.mjs": "eedfd10b55ddbb2a07a8ed7b753eac0fbc03a6d0643a88ae39a55433b4c6d958",
+    "tests/helpers/lua-graph-observer.mjs": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f",
+    "src/lua/abyss_copy.lua": "099de1e77e190d4e61ababe30916b93656e7dbceb489755a121a021657911cc9",
+    "src/lua/abyss_sts_random.lua": "1e0e0f64fe6a7d2edfe8609419080266c554b763fd71b9565b52eed99aaa42b9",
+    "src/lua/abyss_randomxs128.lua": "73af699eb931d4134c81db9bc980f0fa8cabbcf3c587c9031c85ce6886fe9777",
+    "src/lua/abyss_map.lua": "8c223d62d3f5c1c6a7093700caaafc5508b9d00cefd70ac23286021e330f5733",
+    "tests/helpers/map-emerald-source-contract.mjs": "a50dc7ad8e4518d89dcd649bbe2d33fb290564a8e5282d11aa1ed15ec1ff0faf",
+    "tests/helpers/map-emerald-cost-contract.mjs": "4e1ece351da5fd2dedfde0bf2efb52246f25ca7d8e29ba6eff5648e1a471225c",
+    "scripts/ci-test-timings.json": "46e69e006ce623f0a66197db9f03859894b27152b4e90ee24fbe24cc42ab4289",
+    ".artifacts/round24/probe-fixture.mjs": "3a63a9f38d6b272da5fb69cc54bbe55ad41a6775d35e7fe51a811142fd7bf20e",
+    ".artifacts/round24/fixture-comparison.json": "979348a0a0b3ec9187300796f2e516bc46f2f70c2c30b088532fa6ea9e6ecf16",
+    ".artifacts/round24/fixture-comparison.log": "e5fbfabaf2627a1e14dd3d27fb5380d57d5fae09dff84b1a24b21b515b89f9b5"
+  },
+  "findings": [],
+  "limitations": [
+    "Complete Emerald/calibration suites are parent-owned; not repeated here.",
+    "Paired performance observations are local exploration, not Hosted/full-suite/current capacity certification.",
+    "Timings and budgets remain unchanged; capacity BLOCKED remains.",
+    "Review covers hashes listed, not subsequent edits."
+  ]
+}

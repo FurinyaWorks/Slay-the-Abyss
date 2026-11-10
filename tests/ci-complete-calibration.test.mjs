@@ -1,3 +1,5 @@
+import {preEmeraldFixtureSource} from './helpers/map-emerald-fixture-source-inverse.mjs';
+import {registerEmeraldFixtureContracts} from './helpers/map-emerald-fixture-contract.mjs';
 import {preEmeraldCostSource,emeraldCostBeforeSource} from './helpers/map-emerald-cost-source-inverse.mjs';
 import {registerEmeraldCostContracts} from './helpers/map-emerald-cost-contract.mjs';
 import {preEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor,emeraldMapCiProof} from './helpers/map-emerald-ci-source-inverse.mjs';
@@ -38,7 +40,7 @@ import {discoverJs,partition,jsShard as registeredJsShard,jsPlanningWeights as r
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
 // The unchanged Emerald assertions below retain their exact original timing epoch.
 // Live registration is checked separately against unprojected disk and planner exports.
-function actualDiskReadFileSync(file,encoding){const value=registeredDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldCostSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);}
+function actualDiskReadFileSync(file,encoding){const value=registeredDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldCostSource(file,preEmeraldFixtureSource(file,text));return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);}
 // Existing contracts retain their complete pre-Emerald source epoch. Real current
 // costs and bytes remain separate and are checked by the Emerald contracts below.
 const diskReadFileSync=(file,encoding)=>{const value=actualDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldMapCiSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);};
@@ -1129,3 +1131,6 @@ test('frozen original Emerald800 forecasts retain complete inventory, every old 
 });
 
 registerEmeraldCostContracts({test,assert,readFileSync:registeredDiskReadFileSync,discoverJs,partition,jsShard:registeredJsShard,jsPlanningWeights:registeredJsPlanningWeights,timings:registeredTimings,shardLuaScripts});
+
+// Current fixture behavior reads real bytes, outside all historical projections.
+registerEmeraldFixtureContracts({test,assert,readFileSync:registeredDiskReadFileSync});

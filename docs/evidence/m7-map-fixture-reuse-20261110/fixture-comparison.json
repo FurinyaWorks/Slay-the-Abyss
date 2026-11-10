@@ -1,0 +1,296 @@
+{
+  "helperSha256": "8cdbe94aa87b481e9e0625f556a44e1a1e8b0acfc8898612bed555440fc5b5e5",
+  "beforeFixtureSha256": "afd3fc85fdd4dff15d71d7a94f3a4fb178fffd39ab8f7362852f0f016d3b87b9",
+  "afterFixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+  "rows": [
+    {
+      "name": "current",
+      "integration": true,
+      "sourceSha256": "8c223d62d3f5c1c6a7093700caaafc5508b9d00cefd70ac23286021e330f5733",
+      "before": {
+        "ms": 5927.6464320000005,
+        "graphs": 1047,
+        "bytes": 1542646,
+        "sha256": "2a316cb3cf4ec15d721461ed329a453ff5bc0607df1e2d93749f6096e5f6b419"
+      },
+      "after": {
+        "ms": 5146.167821,
+        "graphs": 1047,
+        "bytes": 1542646,
+        "sha256": "2a316cb3cf4ec15d721461ed329a453ff5bc0607df1e2d93749f6096e5f6b419"
+      }
+    },
+    {
+      "name": "before",
+      "integration": true,
+      "sourceSha256": "52d311bc4a863303906dfa3a29d65bc11606eda30759a560ed80266381900810",
+      "after": {
+        "ms": 5316.697990000001,
+        "graphs": 1047,
+        "bytes": 1542646,
+        "sha256": "2a316cb3cf4ec15d721461ed329a453ff5bc0607df1e2d93749f6096e5f6b419"
+      },
+      "before": {
+        "ms": 5657.302227,
+        "graphs": 1047,
+        "bytes": 1542646,
+        "sha256": "2a316cb3cf4ec15d721461ed329a453ff5bc0607df1e2d93749f6096e5f6b419"
+      }
+    },
+    {
+      "name": "before-negative",
+      "integration": false,
+      "sourceSha256": "52d311bc4a863303906dfa3a29d65bc11606eda30759a560ed80266381900810",
+      "before": {
+        "ms": 1646.034599999999,
+        "graphs": 1029,
+        "bytes": 999338,
+        "sha256": "ea131681e092cbb9e0f4f37c004361148567676ffb80c625e08ea942882d82b9"
+      },
+      "after": {
+        "ms": 1286.8534120000004,
+        "graphs": 1029,
+        "bytes": 999338,
+        "sha256": "ea131681e092cbb9e0f4f37c004361148567676ffb80c625e08ea942882d82b9"
+      }
+    },
+    {
+      "name": "false boost bypass",
+      "integration": false,
+      "sourceSha256": "a575ef66c5a2f297bf722115980e35efc8f5bea0cd822bd12c6708a2c4764b67",
+      "after": {
+        "ms": 1196.6105009999992,
+        "graphs": 1029,
+        "bytes": 1005948,
+        "sha256": "a303c8d811c7a764ab218d6e2110f13be7644fbc228125617bb431b4ec49cbe3"
+      },
+      "before": {
+        "ms": 1540.7578820000017,
+        "graphs": 1029,
+        "bytes": 1005948,
+        "sha256": "a303c8d811c7a764ab218d6e2110f13be7644fbc228125617bb431b4ec49cbe3"
+      }
+    },
+    {
+      "name": "selection upper bound",
+      "integration": false,
+      "sourceSha256": "227761c8113ee4ae28afcbcd4653fd0e6ba091cbb041450c8f5fe85f3cf9693d",
+      "before": {
+        "ms": 1513.0298449999973,
+        "graphs": 1029,
+        "bytes": 999760,
+        "sha256": "51841174238ef3c36a01bde6646f45283d6c352af087d10e7762cb3fdb1fbf16"
+      },
+      "after": {
+        "ms": 1177.6371740000031,
+        "graphs": 1029,
+        "bytes": 999760,
+        "sha256": "51841174238ef3c36a01bde6646f45283d6c352af087d10e7762cb3fdb1fbf16"
+      }
+    },
+    {
+      "name": "map seed identity bypass",
+      "integration": false,
+      "sourceSha256": "2c92ff988ed5e816f8964add5d6dbef07fc2ae98342f6876557ab41a78fa1de3",
+      "after": {
+        "ms": 1283.6379210000014,
+        "graphs": 1029,
+        "bytes": 1048710,
+        "sha256": "e987a076adc68b84ca01ddbbc9f53cd0831012bf26f2e72b7250d6bba4bed5f9"
+      },
+      "before": {
+        "ms": 1694.6697859999986,
+        "graphs": 1029,
+        "bytes": 1048710,
+        "sha256": "e987a076adc68b84ca01ddbbc9f53cd0831012bf26f2e72b7250d6bba4bed5f9"
+      }
+    },
+    {
+      "name": "false marked key bypass",
+      "integration": false,
+      "sourceSha256": "52ca94aa45ed4ce615f6f1557c94c94ef2e3807e876c9157a78d8691d20e9179",
+      "before": {
+        "ms": 1890.1158399999986,
+        "graphs": 1029,
+        "bytes": 1005518,
+        "sha256": "5efc02ab45b9df1bf3efc38d3eda380fda0bd8b3e520c95c5d9e8704a409519a"
+      },
+      "after": {
+        "ms": 1301.4074370000017,
+        "graphs": 1029,
+        "bytes": 1005518,
+        "sha256": "5efc02ab45b9df1bf3efc38d3eda380fda0bd8b3e520c95c5d9e8704a409519a"
+      }
+    },
+    {
+      "name": "duplicate selection bypass",
+      "integration": false,
+      "sourceSha256": "53542000bb52a30a38c1bc959b6325fff6f095226ee43846f60e04d7c02300d9",
+      "after": {
+        "ms": 1432.521388000001,
+        "graphs": 1029,
+        "bytes": 1011698,
+        "sha256": "a35725ea868589d53b63a2fe78ef9d53d570b57f0972072022830dbf6fc5d659"
+      },
+      "before": {
+        "ms": 1653.7654079999993,
+        "graphs": 1029,
+        "bytes": 1011698,
+        "sha256": "a35725ea868589d53b63a2fe78ef9d53d570b57f0972072022830dbf6fc5d659"
+      }
+    },
+    {
+      "name": "late node validation skipped",
+      "integration": false,
+      "sourceSha256": "27e092033395d41acd1a6883de694a2d902407590dd8b3c80fcc3660b1a57a26",
+      "before": {
+        "ms": 1760.6966299999985,
+        "graphs": 1029,
+        "bytes": 1033806,
+        "sha256": "002e224f78aa1a2f9e7bef4079c132ab4b2d490d36a3dbf93824eb7ca8a37764"
+      },
+      "after": {
+        "ms": 1246.2755049999978,
+        "graphs": 1029,
+        "bytes": 1033806,
+        "sha256": "002e224f78aa1a2f9e7bef4079c132ab4b2d490d36a3dbf93824eb7ca8a37764"
+      }
+    },
+    {
+      "name": "shape before seed reordered",
+      "integration": false,
+      "sourceSha256": "d2ed507ed4979eaf997dc14e28de593907651395408f1e81375e2b29781a8ce5",
+      "after": {
+        "ms": 1341.6704079999981,
+        "graphs": 1029,
+        "bytes": 1014930,
+        "sha256": "a7fd675255e5a4dddb011da449bff5ba615f86e176de53858856ed09b21aa625"
+      },
+      "before": {
+        "ms": 1655.6344680000038,
+        "graphs": 1029,
+        "bytes": 1014930,
+        "sha256": "a7fd675255e5a4dddb011da449bff5ba615f86e176de53858856ed09b21aa625"
+      }
+    },
+    {
+      "name": "unavailable private draw",
+      "integration": false,
+      "sourceSha256": "90fdb6cd4538303b04e2b06fc278393c8cba1b729e0d24f039a6c379a21f0c45",
+      "before": {
+        "ms": 1584.881779000003,
+        "graphs": 1029,
+        "bytes": 1030659,
+        "sha256": "4ae7c2e1222994a2ea216bc62f14bee32ea39d4d9f10e77e6983f807107419bf"
+      },
+      "after": {
+        "ms": 1211.0483099999983,
+        "graphs": 1029,
+        "bytes": 1030659,
+        "sha256": "4ae7c2e1222994a2ea216bc62f14bee32ea39d4d9f10e77e6983f807107419bf"
+      }
+    },
+    {
+      "name": "bad RNG reason collapsed",
+      "integration": false,
+      "sourceSha256": "dc22450d4d1143f69d155f7ccdf88e9f88fe99e257d2a7839b4ebd938b8da4b6",
+      "after": {
+        "ms": 1212.366335000006,
+        "graphs": 1029,
+        "bytes": 999468,
+        "sha256": "1b3785d3723dfcf6c177fa881797c101012f978d0d5e9f7cf86abc48ad24537a"
+      },
+      "before": {
+        "ms": 1543.255376000001,
+        "graphs": 1029,
+        "bytes": 999468,
+        "sha256": "1b3785d3723dfcf6c177fa881797c101012f978d0d5e9f7cf86abc48ad24537a"
+      }
+    },
+    {
+      "name": "nil return changed to false",
+      "integration": false,
+      "sourceSha256": "e94d6bd9bfe528adaaf628015944d1ac9ebd60822860a8182c10add50e4107d0",
+      "before": {
+        "ms": 1479.4142320000028,
+        "graphs": 1029,
+        "bytes": 1006443,
+        "sha256": "3da5e2ec3b079f56bd4bb00d7e8b9dfc1d669a72fd942718f04d6da0755aa280"
+      },
+      "after": {
+        "ms": 1347.4470480000018,
+        "graphs": 1029,
+        "bytes": 1006443,
+        "sha256": "3da5e2ec3b079f56bd4bb00d7e8b9dfc1d669a72fd942718f04d6da0755aa280"
+      }
+    },
+    {
+      "name": "before RNG alias leak",
+      "integration": false,
+      "sourceSha256": "931cb34260fc52f60c96ff8224b10c0fedc6d8ecf801fa29c4981ed194ebc1ec",
+      "after": {
+        "ms": 1606.083283,
+        "graphs": 1029,
+        "bytes": 991915,
+        "sha256": "dabc5d2013c955c2dc775612ab546e2d39c464059791e647234ab2bc7cb651f6"
+      },
+      "before": {
+        "ms": 1534.9807250000013,
+        "graphs": 1029,
+        "bytes": 991915,
+        "sha256": "dabc5d2013c955c2dc775612ab546e2d39c464059791e647234ab2bc7cb651f6"
+      }
+    },
+    {
+      "name": "next RNG alias leak",
+      "integration": false,
+      "sourceSha256": "39f8cb027f9cebd00f5e229ca706731c40fe531894d9b72b35e46644def817ed",
+      "before": {
+        "ms": 1736.6554969999997,
+        "graphs": 1029,
+        "bytes": 991915,
+        "sha256": "ddf6446c9327c481a418ff9b53abc7c952c96da312c0bfa1eacfad8d8a1762f0"
+      },
+      "after": {
+        "ms": 1174.3764779999983,
+        "graphs": 1029,
+        "bytes": 991915,
+        "sha256": "ddf6446c9327c481a418ff9b53abc7c952c96da312c0bfa1eacfad8d8a1762f0"
+      }
+    },
+    {
+      "name": "commit caller alias leak",
+      "integration": false,
+      "sourceSha256": "8edb1e2c37d92a25cb28679ed8c044fa0c452e814bfe9b0b802bb7ce4c0ab66f",
+      "after": {
+        "ms": 1145.821769000002,
+        "graphs": 1029,
+        "bytes": 998328,
+        "sha256": "9ff5fcdc7cf89cd551274b2fa88961c8d38c7ab7b0fafa71100034c50979c51c"
+      },
+      "before": {
+        "ms": 1501.1705599999987,
+        "graphs": 1029,
+        "bytes": 998328,
+        "sha256": "9ff5fcdc7cf89cd551274b2fa88961c8d38c7ab7b0fafa71100034c50979c51c"
+      }
+    },
+    {
+      "name": "commit path ownership bypass",
+      "integration": false,
+      "sourceSha256": "16c6f8d15c506f4db9d5ee72eee5ef026e9a666be7520c8ad0300399d476cdaf",
+      "before": {
+        "ms": 1442.318299999999,
+        "graphs": 1029,
+        "bytes": 1002627,
+        "sha256": "5a693e04417c62a06df45de773e93650b4e0491e42108b1eb049b9e154d3a7b6"
+      },
+      "after": {
+        "ms": 1192.7270040000003,
+        "graphs": 1029,
+        "bytes": 1002627,
+        "sha256": "5a693e04417c62a06df45de773e93650b4e0491e42108b1eb049b9e154d3a7b6"
+      }
+    }
+  ]
+}
