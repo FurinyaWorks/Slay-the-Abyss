@@ -63,11 +63,33 @@ for(const [path,binding]of Object.entries(shell.files)){
 }
 Object.freeze(shell.files);
 export const officialBattleShellSourceProof=Object.freeze(shell);
+// Additive exact interaction continuation. All earlier source archives remain immutable.
+const interactionArchive=readFileSync(new URL('./official-battle-interaction-source-epoch.json.gz',import.meta.url));
+assert.equal(hash(interactionArchive),'47ea3088416992ca43c97adab9ac5c724bcc4ccac1d415ec8a7d4a5328d34505');
+const interactionBytes=gunzipSync(interactionArchive);
+assert.equal(hash(interactionBytes),'2131dcb3aab956a73a6dbaacc2b8daabc937b706dfaf500fab7a9f73a7827ce8');
+const interaction=JSON.parse(interactionBytes);
+assert.equal(interaction.schemaVersion,1);assert.equal(interaction.normalization,'LF');
+assert.equal(interaction.beforeCommit,'fa67d2fea098218cebe464851d9ee1f1905c7818');
+assert.equal(interaction.afterCommit,'e4b2e702a89b0f09650e0c47e3a80434488470cd');
+assert.deepEqual(Object.keys(interaction.files),['config/architecture.json','src/lua/abyss_battle_card_view.lua','src/lua/abyss_deck_ui.lua']);
+for(const [path,binding]of Object.entries(interaction.files)){
+ for(const side of ['before','after'])assert.equal(hash(binding[side+'Source']),binding[side+'Sha256']);
+ if(Object.hasOwn(shell.files,path))assert.equal(binding.beforeSource,shell.files[path].afterSource);
+ Object.freeze(binding);
+}
+Object.freeze(interaction.files);
+export const officialBattleInteractionSourceProof=Object.freeze(interaction);
+export function preOfficialBattleInteractionSource(path,source){
+ const binding=Object.hasOwn(interaction.files,path)?interaction.files[path]:null;
+ return binding&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===binding.afterSha256?binding.beforeSource:source;
+}
 export function preOfficialBattleShellSource(path,source){
  const binding=Object.hasOwn(shell.files,path)?shell.files[path]:null;
  return binding&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===binding.afterSha256?binding.beforeSource:source;
 }
 export function preOfficialBattleSource(path,source){
+ source=preOfficialBattleInteractionSource(path,source);
  source=preOfficialBattleShellSource(path,source);
  const repair=Object.hasOwn(banner.files,path)?banner.files[path]:null;
  if(repair&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===repair.afterSha256)

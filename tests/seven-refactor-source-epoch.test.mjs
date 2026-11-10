@@ -6,6 +6,7 @@ import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch
 import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
 import {sourceEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import {preOfficialBattleSource,officialBattleSourceProof,officialBattleAlignmentSourceProof as alignment,officialBannerSourceProof as banner,preOfficialBattleShellSource,officialBattleShellSourceProof as shell} from './helpers/official-battle-source-inverse.mjs';
+import {preOfficialBattleInteractionSource,officialBattleInteractionSourceProof as interaction} from './helpers/official-battle-source-inverse.mjs';
 const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
 // Authenticate both the input and every linked owner in the same exact historical view.
 const componentRead=path=>preOfficialBattleSource(path,readFileSync(path,'utf8'));
@@ -38,6 +39,29 @@ test('component UI outer epoch authenticates its exact committed slice and origi
   assert.deepEqual(preComponentUiEpoch.proof.targets.watcherFlowPrior.files[path],proof.current[path],path);
 });
 
+test('official battle interaction continuation binds only three complete frozen owners and rejects foreign inputs',()=>{
+ assert.equal(interaction.beforeCommit,'fa67d2fea098218cebe464851d9ee1f1905c7818');
+ assert.equal(interaction.afterCommit,'e4b2e702a89b0f09650e0c47e3a80434488470cd');
+ assert.deepEqual(Object.keys(interaction.files),['config/architecture.json','src/lua/abyss_battle_card_view.lua','src/lua/abyss_deck_ui.lua']);
+ for(const [path,binding]of Object.entries(interaction.files)){
+  const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(actual,binding.afterSource,path);
+  assert.equal(binding.beforeSource,shell.files[path]?.afterSource??componentEpoch.proof.current[path].source,path);
+  for(const source of [actual,actual.replaceAll('\n','\r\n')]){
+   assert.equal(preOfficialBattleInteractionSource(path,source),binding.beforeSource,path);
+   assert.equal(preOfficialBattleSource(path,source),componentEpoch.proof.current[path].source,path);
+  }
+  for(const source of [actual+'\n',actual.slice(1),actual.replace(/\n/,'\n '),binding.beforeSource,null,undefined,{},17]){
+   assert.equal(preOfficialBattleInteractionSource(path,source),source,path);
+   if(source!==binding.beforeSource)assert.equal(preOfficialBattleSource(path,source),source,path);
+  }
+  for(const unknown of ['foreign','__proto__','constructor','src/lua/abyss_battle_card_glow.lua']){
+   assert.equal(preOfficialBattleInteractionSource(unknown,actual),actual);
+   assert.equal(preOfficialBattleSource(unknown,actual),actual);
+  }
+ }
+});
+
 test('official battle historical view binds complete committed sources and rejects partial or foreign inputs',()=>{
  assert.equal(officialBattleSourceProof.beforeCommit,componentEpoch.proof.currentCommit);
  assert.equal(officialBattleSourceProof.afterCommit,'5b3e9f11a25211173a3710d570ca8e4c22664d25');
@@ -52,7 +76,7 @@ test('official battle historical view binds complete committed sources and rejec
  assert.equal(shell.beforeCommit,'4278561b4df3defaf879cf4be62ab415d6998e72');
  assert.equal(shell.afterCommit,'95fab6acf45c5292d6a48dbe7c9cf12d5e6e03b2');
  for(const [path,binding]of Object.entries(shell.files)){
-  const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  const actual=preOfficialBattleInteractionSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
   assert.equal(actual,binding.afterSource,path);
   assert.equal(binding.beforeSource,banner.files[path]?.afterSource??alignment.files[path].afterSource,path);
   for(const source of [actual,actual.replaceAll('\n','\r\n')])assert.equal(preOfficialBattleShellSource(path,source),binding.beforeSource,path);
@@ -62,7 +86,7 @@ test('official battle historical view binds complete committed sources and rejec
  for(const [path,binding]of Object.entries(alignment.files)){
   const predecessor=officialBattleSourceProof.files[path]?.afterSource??componentEpoch.proof.current[path].source;
   assert.equal(binding.beforeSource,predecessor,path);
-  const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  const actual=preOfficialBattleInteractionSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
   assert.equal(preOfficialBattleShellSource(path,actual),banner.files[path]?.afterSource??binding.afterSource,path);
   for(const source of [actual,actual.replaceAll('\n','\r\n')])
    assert.equal(preOfficialBattleSource(path,source),componentEpoch.proof.current[path].source,path);
@@ -72,7 +96,7 @@ test('official battle historical view binds complete committed sources and rejec
  for(const [path,binding]of Object.entries(officialBattleSourceProof.files)){
   assert.equal(binding.beforeSource,componentEpoch.proof.current[path].source,path);
   assert.equal(alignment.files[path].beforeSource,binding.afterSource,path);
-  const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  const actual=preOfficialBattleInteractionSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
   assert.equal(preOfficialBattleShellSource(path,actual),banner.files[path]?.afterSource??alignment.files[path].afterSource,path);
   assert.equal(preOfficialBattleSource(path,binding.afterSource),binding.beforeSource,path);
   for(const source of [actual,actual.replaceAll('\n','\r\n')])
