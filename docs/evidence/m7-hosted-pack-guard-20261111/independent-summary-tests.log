@@ -1,0 +1,15 @@
+✔ only the lightweight impact planner and two required summaries use slim (3.107266ms)
+✔ draft Quality is deferred, Ready and integration retain the real gates (1.680706ms)
+✔ complete Draft/Fast projection restores exact develop workflow bytes with LF and CRLF (23.734065ms)
+✔ Draft/Fast projection refuses every partial migration, duplicate and changed policy block (28.348456ms)
+✔ Draft/Fast projection preserves unrelated drift and never partially restores execution slack (5.02266ms)
+✔ [historical 98fef source contract] reviewed summary runner inverse retains the original complete workflow contract (465.215671ms)
+✔ [historical 98fef source contract] direct platform projection and layered replay share the same exact runner migration (415.286259ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1193.702321

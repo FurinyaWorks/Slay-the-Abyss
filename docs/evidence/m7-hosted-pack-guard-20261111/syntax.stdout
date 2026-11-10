@@ -1,0 +1,5 @@
+
+> slay-the-abyss@1.0.0 check:syntax
+> node scripts/check-syntax.mjs
+
+JavaScript syntax checks passed.
