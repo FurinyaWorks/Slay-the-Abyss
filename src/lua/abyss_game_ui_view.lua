@@ -5,11 +5,13 @@ local Bgm = require("abyss_bgm")
 local CharacterView = require("abyss_character_select_view")
 local MenuView=require("abyss_game_ui_menu_view")
 local Theme=require("abyss_theme")
+local CardSkin=require('abyss_card_skin')
 local number = require("abyss_numbers").integer
 local NeowHistory=require('abyss_neow_history')
 local EndingHistory=require('abyss_ending_history')
 local Acts=require('abyss_acts')
 local NativePages=require('abyss_native_pages')
+local Input=require('abyss_game_ui_input')
 local M = {}
 local function building(status)
     return status and (status.phase=='building' or status.phase=='revealing')
@@ -166,12 +168,31 @@ function M.syncRewardReturn(self)
         end
 end
 
+local function mapPotionFrame(open,hit,run,mapSlots)
+    local values=Theme.layout.nativeNode.topBar.potions
+    local x,y,w,h=table.unpack(values)
+    if mapSlots then
+        local capacity=run and require('abyss_run').potionCapacity(run) or 3
+        -- Keep the leftmost slot clear of live gold when Potion Belt adds two.
+        x,y,w,h=-250+math.max(0,capacity-3)*21,338,capacity*42,44
+    end
+    open:SetAnchoredPosition(x,y);hit:SetSizeDelta(w,h)
+end
+
 function M.refreshPotionEntry(child,inCombat,canManagePotions,platform)
-    return function(run)
-            local potionHit=child("potionEntry"):GetChild("open"):GetChild("hit")
+    return function(run,mapVisible)
+            local open=child("potionEntry"):GetChild("open")
+            local potionHit=open:GetChild("hit")
+            local anchor=Theme.presentationProfile=='v25-reference' and child('mapPanel'):GetChild('v25MapPotionAnchor')
+            local mapSlots=anchor and mapVisible==true
+            if anchor then mapPotionFrame(open,potionHit,run,mapSlots)end
             potionHit.interactable=not inCombat() and canManagePotions(run);potionHit.raycastTarget=potionHit.interactable
-            PotionDiscardUI.refreshEntry(potionHit,run,platform)
+            PotionDiscardUI.refreshEntry(potionHit,run,platform,mapSlots)
         end
+end
+
+local function mapPotionVisible(self)
+    return self.mode=='map' or self.mode=='node' or self.routeOpen==true
 end
 
 function M.refreshDeckEntry(child,self)
@@ -184,6 +205,8 @@ function M.refreshDeckEntry(child,self)
                 if variant then
                     variant:GetChild("label").text = run and "卡组 " .. #run.deck or "卡组"
                     variant:GetChild('count').text=run and number(#run.deck) or ''
+                    local hud=variant:GetChild('officialBattleHud')
+                    if hud then hud:GetChild('count').text=run and number(#run.deck)or ''end
                 end
             end
         end
@@ -207,7 +230,7 @@ function M.refreshUtilities(child,self,inCombat,refreshPotionEntry,refreshDeckEn
                 variant:GetChild('count').text=run and number(#run.relics) or ''
             end
             child("potionEntry"):SetVisible(not inCombat() and utilitiesVisible)
-            refreshPotionEntry(run)
+            refreshPotionEntry(run,mapPotionVisible(self))
             child("nodePanel"):GetChild("potions"):SetVisible(false)
             if potionOpen then self.potionUI:render()end
             refreshDeckEntry(run)
@@ -345,7 +368,55 @@ function M.exitEntryVisible(self)
 end
 
 function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVisible,exitPanel,exitDialogOwnsForeground,runMenu,canViewRoute,child,refreshExitDialog)
+    local hud=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleHud
+    local priorBattleHud
+    local hudScales={}
+    local hudVisibility={}
+    local routeLabels={}
+    local function routeCaption(back)
+        if not hud then return end
+        local label=back:GetChild('label')
+        if not label then return end
+        if routeLabels[label]==nil then routeLabels[label]=label.text or ''end
+        label.text=self.routeOpen and self.mode=='battle' and hud.routeBackText or routeLabels[label]
+    end
+    local function utilityFace(variant,fighting)
+        local overlay=variant:GetChild('officialBattleHud')
+        if not overlay then return end
+        local originals=hudVisibility[variant]
+        if not originals then
+            originals={};hudVisibility[variant]=originals
+            for _,part in ipairs(variant:GetChildren())do if part~=overlay then originals[part]=part.visible~=false end end
+        end
+        for part,visible in pairs(originals)do part:SetVisible(not fighting and visible)end
+        overlay:SetVisible(fighting)
+    end
+    local function battleUtilities()
+        if not hud then return end
+        local fighting=self.mode=='battle'
+        if priorBattleHud==fighting then return end
+        for _,entry in ipairs({{child('deckEntry'):GetChild('open'),hud.deck},{exitEntry:GetChild('open'),hud.menu}})do
+            local control,values=entry[1],entry[2]
+            if fighting then
+                control:SetAnchoredPosition(values[1],values[2])
+            else
+                local defaults=entry[1]==exitEntry:GetChild('open') and Theme.layout.exitMenu.entry or Theme.layout.deckView.entry
+                if defaults then control:SetAnchoredPosition(defaults[1],defaults[2])end
+            end
+            local hit=control:GetChild('hit')
+            for _,name in ipairs({'normal','hover','pressed','disabled'})do
+                local variant=hit:GetChild(name)
+                local original=hudScales[variant]
+                if not original then original={variant.localScaleX or 1,variant.localScaleY or 1};hudScales[variant]=original end
+                local scale=fighting and values[3] or 1
+                variant:SetLocalScale(original[1]*scale,original[2]*scale,1)
+                utilityFace(variant,fighting)
+            end
+        end
+        priorBattleHud=fighting
+    end
     return function()
+            battleUtilities()
             if characterPanel then
                 characterPanel:SetVisible(self.characterOpen==true)
                 if self.characterOpen then
@@ -382,7 +453,13 @@ function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVis
             end
             if runMenu.visible then runMenu:SetAsLastSibling() end
             local back = child('mapPanel'):GetChild('previewBack')
-            back:SetVisible(self.routeOpen == true)
+            local showBack=self.routeOpen==true
+            if Theme.presentationProfile=='v25-reference' then
+                showBack=Input.mapReturnAvailable(self)
+                back:GetChild('hit').raycastTarget=showBack
+            end
+            back:SetVisible(showBack)
+            routeCaption(back)
             if self.routeOpen then
                 self.mapUI.map = self.map
                 self.mapUI:setVisible(true)
@@ -438,9 +515,14 @@ function M.syncOfficialBattleScene(root,self)
         end
 end
 
+local function surfaceScopes(self)
+    return {battle=self.mode=='battle',node=self.mode=='node',character=self.characterOpen==true,
+        deck=self.deckUI and self.deckUI.visible==true,choice=self.choiceUI and self.choiceUI.visible==true}
+end
 function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleScene,syncMenuContext,platform,syncCardChoice,closeStaleDeck,openCardChoice,canManagePotions,overlaysBlocked,syncRewardReturn,refreshUtilities,refreshPageVisibility,renderCurrentPage,bgm,present,refreshForeground,syncPortraits,openingForeground)
     return function(_)
             if self.disabled then return false,"ui_disabled" end
+            local surfaceFrame=CardSkin.beginFrame()
             local run = self.run
             finishRunFlow(run)
             local covering = syncOpening(run)
@@ -467,6 +549,7 @@ function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleS
             syncPortraits()
             openingForeground(covering)
             self:syncController()
+            CardSkin.endFrame(surfaceFrame,surfaceScopes(self))
         end
 end
 

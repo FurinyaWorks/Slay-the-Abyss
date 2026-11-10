@@ -6,6 +6,17 @@ import {join} from 'node:path';
 import {gameLayout} from '../scripts/game-ui-layout.mjs';
 
 const modulePath=new URL('../scripts/official-portraits.mjs',import.meta.url);
+test('V25 inventory counts the actual independent selection and result source instances',async t=>{
+ const {writePortraitModule,portraitRuntimeInventory,portraitInventory}=await import(modulePath);
+ const dir=mkdtempSync(join(tmpdir(),'abyss-v25-portrait-inventory-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));
+ writePortraitModule(dir,{v25BattleChrome:true});
+ const actual=portraitRuntimeInventory(dir),expected=portraitInventory({},{budget:false,v25:true});
+ assert.deepEqual(actual,expected);
+ for(const key of ['battle133','battle133-selection','battle133-result']){
+  assert.equal(actual.assets.find(row=>row.asset==='traveler-geo/portraits/'+key)?.images,4315);
+ }
+ assert.equal(actual.assets.filter(row=>row.asset.endsWith('-result')).length,1);
+});
 test('native selection budget changes only selection art and preserves the frozen battle literal',async t=>{
  const {writePortraitModule,selectionBudget,portraitRuntimeInventory}=await import(modulePath);
  const dir=mkdtempSync(join(tmpdir(),'abyss-selection-budget-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));

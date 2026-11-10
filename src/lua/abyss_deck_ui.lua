@@ -62,7 +62,22 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         assert(not self.visible and type(value)=="table", "cannot replace visible deck presentation")
         presentation=value
     end
-    local grid = assert(root:GetChild("grid"), "missing deck grid")
+    local browserGrid = assert(root:GetChild("grid"), "missing deck grid")
+    local pileGrid = root:GetChild('pileGrid')
+    local grid = browserGrid
+    local function gridColumns() return self.pileView and 5 or Theme.layout.deckView.columns end
+    local function pileLayout(count)
+        local l=Theme.layout.deckView
+        -- FixedCount is read-only in ClientUIGridScrollerControl. A narrower
+        -- viewport centers the occupied first row without moving recycled items.
+        local columns=math.max(1,math.min(5,count))
+        local w,h=grid:GetItemSize()
+        local spacing=grid:GetItemSpacing()
+        local top,bottom,left,right=grid:GetPadding()
+        local height=count<=5 and h+top+bottom or l.viewport[4]
+        grid:SetSizeDelta(columns*w+(columns-1)*spacing+left+right,height)
+        grid:SetAnchoredPosition(l.viewport[1],l.viewport[2])
+    end
     local function liveFaces(fn)
         for control,binding in pairs(self.bindings)do
             if control.alive==false then
@@ -79,7 +94,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         end
     end
     local function canBrowse()
-        return self.visible == true and self.browseEnabled == true and not self.detailOnly and not self.detailPages
+        return self.visible == true and self.browseEnabled == true and not self.pileView and not self.detailOnly and not self.detailPages
     end
     local function paintBrowse()
         local active=canBrowse()
@@ -217,24 +232,38 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         local definition = Combat.cardDefinition(battle or {catalog=catalog}, instance)
         local display = assert(presentation[instance.cardId], "missing deck presentation " .. instance.cardId)
         local face = control:GetChild("face")
+        if self.pileView then
+            -- Reuse the native template and its current official card face;
+            -- battle pile browsing has no choice-feedback line below the card.
+            face:SetAnchoredPosition(0,0)
+            control:GetChild('hit'):SetAnchoredPosition(0,0)
+            control:GetChild('uid'):SetVisible(false)
+        end
         CardDisplay.writeTitle(face:GetChild("name"),display.name,instance.upgraded,
             definition.repeatable and (instance.upgrades or 1) or nil,face:GetChild("type"),typeNames[definition.type] or definition.type)
-        face:GetChild("name").fontColor = colour(Theme.cardSkin.text.title)
+        face:GetChild("name").fontColor = colour(self.pileView and Theme.officialAssets.battleCardTitleInk or Theme.cardSkin.text.title)
         -- Permanent cards carry no combat modifiers: fill live tokens with their own values.
         local text=battle and CardDisplay.combatText(display,definition,instance,Combat.cardPreview(battle,instance),battle)
             or CardDisplay.permanentText(display,definition,instance)
         CardDisplay.writeBody(face:GetChild("label"),text,face)
+        if Theme.cardSkin.text.body then face:GetChild('label').fontColor=colour(Theme.cardSkin.text.body)end
         face:GetChild("cost").text = definition.cost == -2 and "" or definition.costMode == "all_energy" and "X" or tostring(definition.cost)
         tint(face:GetChild("border"), Theme.color.rarity[definition.rarity] or Theme.color.line)
         tint(face:GetChild("nameBand"), Theme.color.rarityBand[definition.rarity] or Theme.color.rarityBand.basic)
+        if self.pileView then require('abyss_battle_card_view').paintBanner(face,definition,tint) end
         tint(face:GetChild("nameRule"), Theme.color.rarity[definition.rarity] or Theme.color.line)
         tint(face:GetChild("artPlate"), Theme.color.cardType[definition.type] or Theme.color.panelRaised)
-        CardDisplay.writeArt(face:GetChild("art"), definition, picture);CardDisplay.writeNativeArt(face,definition,display.nativeArt,platform,face:GetChild('art'),instance.uid)
+        CardDisplay.writeArt(face:GetChild("art"), definition, picture,face);CardDisplay.writeNativeArt(face,definition,display.nativeArt,platform,face:GetChild('art'),instance.uid)
         local printed=catalog.cards[instance.cardId]
         local base=instance.upgraded and printed.upgrade and printed.upgrade.cost or printed.cost
         local selected=false
         for _,uid in ipairs(self.choiceSelected or {}) do if uid==instance.uid then selected=true end end
-        CardSkin.apply(face,definition,platform,{cost=definition.cost,baseCost=base,selected=selected})
+        CardSkin.apply(face,definition,platform,{cost=definition.cost,baseCost=base,selected=selected,surfaceScope=self.pileView and 'battle' or 'deck'})
+        if self.pileView then
+            face:GetChild('nativePlayableRim'):SetVisible(false)
+            face:GetChild('glow'):SetVisible(false)
+            face:GetChild('costHalo'):SetVisible(false)
+        end
         control:GetChild("uid").text = selected and '已选择' or ''
         local hit=control:GetChild('hit')
         hit:SetVisible(true)
@@ -359,6 +388,12 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         for _, card in ipairs(run.data.cards.cards) do catalog.cards[card.id] = card end
         self.choiceToken,self.onPick,self.battle=choice and choice.token,onPick,(choice or pileKind) and run.combat
         self.pileKind=pileKind
+        self.pileView=Theme.presentationProfile=='official-assets-first' and pileNames[pileKind]~=nil
+        grid=self.pileView and assert(pileGrid,'missing official pile grid') or browserGrid
+        browserGrid:SetVisible(not self.pileView)
+        if pileGrid then pileGrid:SetVisible(self.pileView) end
+        root:GetChild('pileVeil'):SetVisible(self.pileView)
+        root:GetChild('header'):SetVisible(not self.pileView)
         if pileKind then cards,catalog=pileCards(run,pileKind,presentation),run.combat.catalog end
         self.multiple,self.choiceSelected=choice and choice.multiple,choice and choice.selected
         self.optional=choice and choice.optional
@@ -386,6 +421,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             handToDraw="选择放回抽牌堆顶的手牌",upgradeHand="选择要升级的牌",dualWield="选择要复制的攻击或能力牌"}
         self.listTitle=(pileNames[pileKind] or "卡组").." · "..#cards.." 张"
         if self.browseEnabled then projectCards() end
+        if self.pileView then pileLayout(#self.cards) end
         root:GetChild("title").text = choice and prompts[choice.op] or self.listTitle
         if self.multiple then root:GetChild('title').text=root:GetChild('title').text..' · 已选'..#choice.selected..(choice.required and '/'..choice.required or '') end
         root:GetChild("close"):SetVisible(not choice or self.multiple == true or self.optional==true)
@@ -408,7 +444,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             self.controllerMode=mode;self.controllerPage=1
             if not self.calibrating and self.cards then self.generation=self.generation+1;self.pending=true end
         end
-        local pageSize=Theme.layout.deckView.columns*2
+        local pageSize=gridColumns()*2
         local pages=math.max(1,math.ceil(#(self.cards or {})/pageSize))
         for _,name in ipairs({'previous','next','pageHint'})do
             local box=root:GetChild(name)
@@ -420,7 +456,8 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             end
         end
         if self.detailPages then liveFaces();return end
-        liveFaces(function(face)CardSkin.tick(face,dt or 0)end)
+        if self.pileView then liveFaces()
+        else liveFaces(function(face)CardSkin.tick(face,dt or 0)end) end
         if not self.pending then return end
         self.pending, self.calibrating = false, false
         local generation, cards, catalog, base = self.generation, self.cards, self.catalog, self.indexBase
@@ -440,7 +477,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     function self.controllerStep(_,delta)
         if not self.visible or not self.controllerMode or self.detailPages or self.calibrating then return false end
         local page=(self.controllerPage or 1)+delta
-        if page<1 or page>math.ceil(#self.cards/(Theme.layout.deckView.columns*2))then return false end
+        if page<1 or page>math.ceil(#self.cards/(gridColumns()*2))then return false end
         self.generation=self.generation+1
         self.controllerPage,self.pending=page,true;self:update();return true
     end
@@ -459,6 +496,10 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         details:SetVisible(false);detailHit:SetVisible(false)
         root:SetVisible(false);liveFaces(CardDisplay.clearNativeArt)
         grid:RefreshItems(0, function() end)
+        if pileGrid then pileGrid:SetVisible(false) end
+        root:GetChild('pileVeil'):SetVisible(false)
+        root:GetChild('header'):SetVisible(true)
+        self.pileView=nil;grid=browserGrid
         liveFaces()
         return true
     end
@@ -520,8 +561,10 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     end
     local close=root:GetChild('close'):GetChild('hit')
     close:AddCursorEventListener(clickEvent,function()
-        if Controller.pointerBlocked(platform.controller)then return false end
-        return self:back()
+        local swallow=self.visible and self.pileView
+        if Controller.pointerBlocked(platform.controller)then return swallow or false end
+        local result=self:back()
+        return swallow or result
     end)
     Controller.bind(platform.controller,close,'deck',function()return self:back()end,nil,100)
     for _,name in ipairs({'previous','next'})do

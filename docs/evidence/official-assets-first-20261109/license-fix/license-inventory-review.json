@@ -1,0 +1,372 @@
+{
+  "reviewer": "independent code review",
+  "reviewedAt": "2026-11-09T12:08:23.105337+00:00",
+  "scope": "Only docs/legal/assets.json additive provenance repair for25 diagnostic PNG files",
+  "conclusion": "NO_OPEN_FINDINGS_IN_INVENTORY_REPAIR; local audit success log verified; remote exact HEAD pending",
+  "baselineLocalHead": "cde99c932236876d8a1a70268c50e1c2f5b9c8b9",
+  "inputHashes": {
+    "docs/legal/assets.json": "1a80e96128951ac8813c609af5a1d6fd7f10384e15063e81602d1356aebb12b3",
+    "scripts/official-assets-preview-raster.py": "fe8fb86bdfcc4a96fd53a26d3ca55282c20e0d9063f08a72e7ad888bd88fdf7a",
+    "docs/evidence/official-assets-first-20261109/full-flow/artifact-index.json": "f25c907a3cdc4592c38b6cb9381e7428ed0de23685a452d0319ef5f416fe91b5",
+    ".artifacts/pr588/license-diagnostics-fix.log": "10e155da2ef53c495ea6faec267fd636517a0a2adc89610265f3802c0dfcd928",
+    ".artifacts/pr588/license-diagnostics-audit-pass.log": "82350cc6b088c61b2100a71c66c8305390734822907e01fcc4f01b88b3b87101",
+    ".artifacts/pr588/license-reviewed-assets.log": "007f1c3ac91afa7d694f11619c72d4b5017dc35dd1663bb530ee7a79726f802e",
+    ".artifacts/pr588/license-workspace-materialization.json": "20f9dbdd44eccbe78fee8d09fb9b3db2d1367e09807d4dae42974f3e41b06c15",
+    "docs/evidence/official-assets-first-20261109/license-fix/logs.json": "b8165180e1c18bd3d8c2b3e0a91e39091d229bb86014b9fc71b38a1bfd4bba3c",
+    "scripts/ci-reviewed-lfs.mjs": "8b6c94e4aae3792708eed4b2e22b6f2be7907de18c52b2907c9b5eacb769000b"
+  },
+  "preservation": {
+    "oldFileRecordsUnchanged": 1396,
+    "oldCategoriesUnchanged": 31,
+    "otherTopLevelValuesUnchanged": true,
+    "newCategories": 1,
+    "newPngRecords": 25
+  },
+  "checks": [
+    "Category explicitly describes Pillow/system Noto raster diagnostics, unknown SDK texture ID outlines and not browser/native screenshots.",
+    "Category does not sublicense game IP, claim commercial clearance or replace existing licenses.",
+    "Old21-scene capture, fixed later prefixes and layout-only shop rerender differentiated correctly.",
+    "All25 PNG byte hashes match both artifact-index and actual local outputs; PNGs contain only IHDR/IDAT/IEND, no embedded fonts or ancillary payload.",
+    "Renderer creates geometry/text only, draws unknown-image outlines/IDs, never loads official texture images; representative selected-card PNG visually inspected.",
+    "No checker/test/license change in reviewed repair."
+  ],
+  "assets": [
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/shop-delta/shop-fixed.png",
+      "sha256": "0a844e7f3d90f432bec1297d7f2d02384ff9f7e7cf48570aaba481cffebfe853",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-shop-fixed/shop-fixed.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/act-transition.png",
+      "sha256": "f4a19999fb6a0729900118be0d5c9e265f5c3e8d74b20468ebbb6e25e490e9a4",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/act-transition.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/battle-act1.png",
+      "sha256": "f8205a503fcb4250d118236b9daa9e50b7bf54601a261fa3a7847d184d2ad038",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-multi/battle-act1.png",
+        ".artifacts/pr588/visual-natural-selected/battle-act1.png",
+        ".artifacts/pr588/visual-natural/battle-act1.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/battle-act2.png",
+      "sha256": "c89ba0c50de1de8af14127c1b308cd52a368b434a491b050e6257775e175fb4b",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/battle-act2.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/boss_treasure-act1.png",
+      "sha256": "ea7c42e6aa4d1e314e09d4897196ffb22a09e0b9e03c118354376315c4cbf208",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/boss_treasure-act1.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/boss_treasure-act2.png",
+      "sha256": "6fc627517749943f00110ecda144ad0bda1bd2eec2922d5ce991bd1b946e1aa4",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/boss_treasure-act2.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/camp-act1.png",
+      "sha256": "815649fe704c012b6e93beb7f8eb07871f3784ba847b67dca5bb72908d209823",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/camp-act1.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/camp-act2.png",
+      "sha256": "3b3cf06ff59d54244314c2488d23f20f348cbc6a5867687b62a0ccc55ef61e24",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/camp-act2.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/character.png",
+      "sha256": "876d3798b1d72dc26e61e55656840c96012bd34801ffbdc3879010489c94b0f3",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-multi/character.png",
+        ".artifacts/pr588/visual-natural-selected/character.png",
+        ".artifacts/pr588/visual-natural/character.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/event-act1.png",
+      "sha256": "1e7a920713faf8ad6158a9e246c594ac8a1e42c728c34f51b34d122e9b968cbe",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-multi/event-act1.png",
+        ".artifacts/pr588/visual-natural-selected/event-act1.png",
+        ".artifacts/pr588/visual-natural/event-act1.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/event-act2.png",
+      "sha256": "c0ac1ec57f8ba5734bd563ddace6b3783cb7e150dfa72720cc1d4678e172b712",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/event-act2.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/map-act1.png",
+      "sha256": "752032d4a37ba5a0ed549ed53284a0482aaf955b3365020a4a368d40f8c70c52",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-multi/map-act1.png",
+        ".artifacts/pr588/visual-natural-selected/map-act1.png",
+        ".artifacts/pr588/visual-natural/map-act1.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/map-act2.png",
+      "sha256": "d2a2985efa1206814281192a69f82271c287f819d0cfa243fc058f36f097c3cf",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/map-act2.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/menu.png",
+      "sha256": "165f988633d4274a9407133304418027358b65babf89d1cfc5940887a2ad4236",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-multi/menu.png",
+        ".artifacts/pr588/visual/menu.png",
+        ".artifacts/pr588/visual-natural-selected/menu.png",
+        ".artifacts/pr588/visual-natural/menu.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/neow-act1.png",
+      "sha256": "a3ff223d7716ac09e3d4675100756fa1d38f1a63e0b73cfaa986559f48ef8a50",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-multi/neow-act1.png",
+        ".artifacts/pr588/visual-natural-selected/neow-act1.png",
+        ".artifacts/pr588/visual-natural/neow-act1.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/restart-neow.png",
+      "sha256": "3e4bd7d06316b242996ec6fe9d284d2d75f0b1f542ed3a2cef110a843da67412",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/restart-neow.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/reward-act1.png",
+      "sha256": "a03fdcc2cdb0bf5b6564839010d86db41fbdc6702e37e2e27edf63ca5047e461",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-multi/reward-act1.png",
+        ".artifacts/pr588/visual-natural-selected/reward-act1.png",
+        ".artifacts/pr588/visual-natural/reward-act1.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/reward-act2.png",
+      "sha256": "c9be806bb148607153ffcc6800557f9a494820761a0c9e4fb117987d890de604",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/reward-act2.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/shop-act2.png",
+      "sha256": "f0d0a204aed02d975e25d97e496e7f7eacea6a76ae0ccce9adeb240876d7e8bb",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/shop-act2.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/treasure-act1.png",
+      "sha256": "73817e73232d3ff9375274fab3407e73428ca7d166d2cdbed61745a9a6b2f09c",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/treasure-act1.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/treasure-act2.png",
+      "sha256": "f728fae6ba7149b62d3e0d182ab84b5bdc95f40729d9c49ff433352ac302f389",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/treasure-act2.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual/victory.png",
+      "sha256": "eb9ad2cd5e78eb957b01d52c9e65dbd93e72dd7d203ec59d573f9166a390492e",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural/victory.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-selected-readable.png",
+      "sha256": "571198f200c0983c3d5bcc24467ebefcafca0f29ceb9892b855f597a702a140e",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-selected/natural-multi-enemy-selected-readable.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-selection-cancelled.png",
+      "sha256": "a0af289f0a70fd55479020ea0dd83699777e1e84e3d7a83f9b39a6461e32c932",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-selected/natural-multi-enemy-selection-cancelled.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    },
+    {
+      "path": "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-settled.png",
+      "sha256": "4427191b3d1a1b944de7ff37aa47d99fd05568c416faf9fec1304c1286b6f59f",
+      "matchingLocalOutputs": [
+        ".artifacts/pr588/visual-natural-multi/natural-multi-enemy-settled.png",
+        ".artifacts/pr588/visual-natural-selected/natural-multi-enemy-settled.png"
+      ],
+      "pngChunkTypes": [
+        "IDAT",
+        "IEND",
+        "IHDR"
+      ]
+    }
+  ],
+  "validationLog": "Seven license-tool tests passed. Subsequent final audit log reports: License inventory unchanged. Known GPL/IP/unknown risks remain open; this is not commercial clearance. Parent reports exit0; raw log does not itself encode an exit-code receipt.",
+  "remainingUnverified": [
+    "Exact remote fixed HEAD Licenses rerun and full merge admission.",
+    "Official-client rendering, native font/texture/device acceptance remain outside this provenance record."
+  ],
+  "reviewerExecution": "No test rerun; source/diff/hash/PNG structure inspection only.",
+  "materializationFollowup": {
+    "reviewedAt": "2026-11-09T12:11:48.460906+00:00",
+    "exactHeadBlobFilesVerified": 34,
+    "additionalPointerStatusRecords": 3,
+    "frozenLfsObjectsIndependentlyVerifiedInCache": 6,
+    "totalFrozenBytes": 5983528,
+    "compressedAndRawLogPairsVerified": 5,
+    "checks": [
+      "All34 restored historical files match both HEAD Git blobs and recorded SHA256.",
+      "All six cached PNG payloads match existing ci-reviewed-lfs.mjs frozen OIDs and lengths. No downloader/checker change.",
+      "Original failure, intermediate three-pointer failure, materialization log and final pass log preserved with matching gzip/raw hashes.",
+      "Inventory hash remains the independently reviewed additive25-PNG repair."
+    ],
+    "boundary": "Local materialization repair and local audit only; no latest remote Licenses pass claimed."
+  }
+}

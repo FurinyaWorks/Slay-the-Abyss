@@ -1,0 +1,19 @@
+PASS dotted filename original path and CLI violation
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(both().errors.some(e=>/Dependency cycle/.test(e.message)&&e.file==='src/lua/nest/a.lua'))
+
+    at file:///tmp/m7-eleven-review/probe.mjs:20:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

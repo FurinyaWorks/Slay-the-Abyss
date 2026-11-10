@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-08 01:12'
-updated_date: '2026-11-08 02:04'
+updated_date: '2026-11-10 16:03'
 labels: []
 dependencies: []
 parent_task_id: TASK-88
@@ -23,13 +23,17 @@ ordinal: 165000
 ## Implementation Plan
 
 <!-- SECTION:PLAN:BEGIN -->
-1. 冻结盘点；2. 统一集成；3. 组合验证与候选；4. develop正式合入和清理
-
-Owner追加全部收口：修复并消化#554；将其余来源写入可恢复隔离档案，清理所有非主线远程分支；修复合后历史回放/退休及CI，保留2D默认。
+1. 以最新develop冻结24个开放PR、远程分支和本地脏树身份。2. 将已完成工程与CI切片集中集成，保留来源和独立复审，正常队列及合后Full验收。3. 收拢UI/地图/事件和素材，保留未完成设备关口，消除重复PR。4. 已消化分支先bundle验证再删除，保留未提交工作；最终读回PR、分支、工作树及develop CI。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
 Owner追加全量收口：五公开实验222路径已恢复逐blob验证；#554原两支及最小raw修复实验归档，不动默认API；私UI保留本地bundle。修复组合35-owner鲜读、UI退休/隔离、旧native/Session分层与跨平台102 helper身份；本轮UI/组合52、Session4、CI23等通过。最终远端目标0PR与develop/master两支，Full排队单独跟踪。
+
+2026-11-10按Owner要求只做集中收口：来源与去向见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；CI修复由#606正常自动合并，其余可组合来源收拢一个Draft。10份尚未通过完整组合的M7切片保存在已验证bundle及本地归档refs、原PR refs，回Backlog接续，不冒称已合。脏树保留；来源分支按精确SHA租约清理。内部Issue600迁TASK-74.22，不新增内部Issue。
+
+第二轮：#606已实际合入develop@80f1bcfa，合后push Full仍待。最新事件d218已吸收并清理来源分支，源码联合层1638独立检查/Formation12/UI行为14通过；CI完整校准51通过，计时合同13通过，另外三CI消费者24项通过。真实LFS六图5983528字节及license检查通过。继续#607整片独审/新基线Full与原队列，不勾完成AC。
+
+正式#607 Full入口复现原始8份诊断log的141行空白格式错误，属于捕获堆栈/空白行原文。仅8个精确log设置-whitespace，原始字节与正常源码检查均保留；整PR git diff --check已重新通过。首次impact失败日志单独保留，不计为Full成功。
 <!-- SECTION:NOTES:END -->

@@ -1,12 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
+import {readFileSync as diskReadFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {sourceEpoch,preSilentFinalEpoch} from './helpers/combined-epoch/pre-defect-source-epoch.mjs';
 import {silentFinalEpoch} from './helpers/silent-final-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
+import {preComponentUiCiSource} from './helpers/component-ui-ci-source-inverse.mjs';
+// These original49-owner contracts authenticate the pre-component Silent epoch;
+// the public current68-owner facade is independently checked in Formation/Run.
+const readFileSync=(file,...args)=>preComponentUiCiSource(file,diskReadFileSync(file,...args).replaceAll('\r\n','\n'));
 const path='src/lua/abyss_silent_final_cards.lua',proof=sourceEpoch.proof,prior=preSilentFinalEpoch.proof;
 const raw=p=>proof.current[p]?.source??null;
 test('Silent final outer epoch preserves every prior binding and exact frozen production byte',()=>{

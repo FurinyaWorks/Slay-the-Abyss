@@ -1,0 +1,74 @@
+[
+  {
+    "path": "natural-campaign-report.json",
+    "bytes": 357433,
+    "sha256": "ed9d0841cce06fe44ec9167f3dc4955f8b0c52884dc85ab25e7e008f5e0b2030",
+    "sourcePath": ".artifacts/pr588/campaign-validation/final-seed2/report.json",
+    "originalBytes": 357433,
+    "originalSha256": "ed9d0841cce06fe44ec9167f3dc4955f8b0c52884dc85ab25e7e008f5e0b2030",
+    "gzip": false
+  },
+  {
+    "path": "natural-stdout.log.gz",
+    "bytes": 99877,
+    "sha256": "8b0a66f9ecd994144d32d0888f2e0e658763385d6526dde1c358f97ebf0c2479",
+    "sourcePath": ".artifacts/pr588/campaign-validation/final-seed2/stdout.log",
+    "originalBytes": 2910976,
+    "originalSha256": "af643d2cc63fcfc11ccd7b7bf02d7edbac78c66ae9eec1be9c00c73e35ef6450",
+    "gzip": true
+  },
+  {
+    "path": "natural-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sourcePath": ".artifacts/pr588/campaign-validation/final-seed2/stderr.log",
+    "originalBytes": 0,
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gzip": false
+  },
+  {
+    "path": "natural-visual-scenes.json.gz",
+    "bytes": 84811,
+    "sha256": "cf32c63d86ec9df3a56d6a7ac3bb250aa0355fbb9925605ca2a8ad63012a9f0d",
+    "sourcePath": ".artifacts/pr588/campaign-validation/final-seed2/visual-scenes.json",
+    "originalBytes": 2653875,
+    "originalSha256": "f061c96ec46851a72f380fae32366eb407bda1ddb6ea3718f5218b1618711001",
+    "gzip": true
+  },
+  {
+    "path": "natural-entry.lua",
+    "bytes": 902,
+    "sha256": "c7e42eb78978c4ffc3c31472aa28cdfbc3b003e7624685008a49485b7745b3fc",
+    "sourcePath": ".artifacts/pr588/campaign-validation/final-seed2/entry.lua",
+    "originalBytes": 902,
+    "originalSha256": "c7e42eb78978c4ffc3c31472aa28cdfbc3b003e7624685008a49485b7745b3fc",
+    "gzip": false
+  },
+  {
+    "path": "visual-power-red.log.gz",
+    "bytes": 735,
+    "sha256": "2071ffa3e06525341f630134bf7079e04326b078fef892dfeda1460b292af0f6",
+    "sourcePath": ".artifacts/pr588/visual-power-red.log",
+    "originalBytes": 1881,
+    "originalSha256": "e69f6bf277f232ad7ab1ae0f7c4f30e211eea23b94615382a8a5eff59ba86bfc",
+    "gzip": true
+  },
+  {
+    "path": "visual-power-green.log.gz",
+    "bytes": 335,
+    "sha256": "faa3f6d410a716dc8ad5ac11ffae533a10a1ddc39e9f07dede2e3b0761d06e95",
+    "sourcePath": ".artifacts/pr588/visual-power-green.log",
+    "originalBytes": 514,
+    "originalSha256": "b43788124c3c0d0fc712dae865d4094d6fbe92f6c77ec5b7161f564317d7ce83",
+    "gzip": true
+  },
+  {
+    "path": "results-and-shop-surface-test.log.gz",
+    "bytes": 250,
+    "sha256": "940f0f773bd4185847a387304b5be75fd4b576d323ad40edb72f907017310d2d",
+    "sourcePath": ".artifacts/pr588/results-and-shop-surface-test.log",
+    "originalBytes": 354,
+    "originalSha256": "e8e66830e02cd901ffdbb9c10dbec942309041d159e2105ff97443afe11b00b7",
+    "gzip": true
+  }
+]

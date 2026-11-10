@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 2,
+  "reviewer": "independent code review",
+  "reviewedAt": "2026-11-09T10:21:23.325Z",
+  "base": "520c44d4f8d9e8af93ab47e696331a4ff2eb45ab",
+  "checkoutHead": "520c44d4f8d9e8af93ab47e696331a4ff2eb45ab",
+  "reviewedCommittedHead": false,
+  "identityBoundary": "Uncommitted working-tree snapshot identified by input path and SHA256. checkoutHead is context only, not an approved or tested commit.",
+  "scope": "Official asset production builders/profile/layout/theme and associated structural, alias, audio, runtime and flow tests. Pending CI timing/helper/evidence changes require separate final review. CI increment subsequently reviewed in ciReview with separately bound file hashes.",
+  "inputs": [
+    {
+      "path": "data/presentation/ui_theme.json",
+      "bytes": 87606,
+      "sha256": "e75634afe55d892d423e6f97b7199b4427c0d2c60311b858e64337b1266f6506"
+    },
+    {
+      "path": "scripts/official-assets-profile.mjs",
+      "bytes": 2414,
+      "sha256": "4448c15d21285ff6d6a5715046bb6a10976fbe4f2b0fe82652da9e397e96ada7"
+    },
+    {
+      "path": "scripts/official-assets-layout.mjs",
+      "bytes": 4259,
+      "sha256": "4c4a170e067eee4db332fd8cbad890fe307cc792dd64367c6e9103703c0c6755"
+    },
+    {
+      "path": "scripts/art-features.mjs",
+      "bytes": 9817,
+      "sha256": "34c3f1719433bef761483e39dd4ac73015f5b4f835d3c335bdc8cdffed3ac902"
+    },
+    {
+      "path": "scripts/audit-native-candidate.mjs",
+      "bytes": 22095,
+      "sha256": "b406c337bc23b3fd63c011e70a52b0a908c142aa401135f239aaaf66873c8c01"
+    },
+    {
+      "path": "scripts/build-game.mjs",
+      "bytes": 1838,
+      "sha256": "a467668ebd858638fcf4b06ab1c5cbfbb2b8d4b1de4e8dea31bab12cf3bf74af"
+    },
+    {
+      "path": "scripts/build-native-audio-game.mjs",
+      "bytes": 7956,
+      "sha256": "41042f4cb0ef9f36ae833ddb4bc4ccfb704d7a80f4bcb7fd44bea7953bc5fa2e"
+    },
+    {
+      "path": "scripts/build-native-bgm-candidate.mjs",
+      "bytes": 8913,
+      "sha256": "4f9c998164c1d81bce7abbe5da93e43c2173c317ec12d55fcc2b2c5857354258"
+    },
+    {
+      "path": "scripts/build-native-candidate.mjs",
+      "bytes": 39655,
+      "sha256": "cbbadcbd5b4d27c21acc57fc18169970a4c0a0f4d9413a205ccc3bab05ecf683"
+    },
+    {
+      "path": "scripts/build-ui.mjs",
+      "bytes": 17861,
+      "sha256": "53ab3f909ba18fe6de8b396d649401c20cbf38c45670edbaae2ef8ac978f6b1f"
+    },
+    {
+      "path": "scripts/ui-profile.mjs",
+      "bytes": 2710,
+      "sha256": "2df6c3fd8f16f41a36db51bd76bdd53f2e805ee92a35ca0d03e91f50d93dfdd3"
+    },
+    {
+      "path": "tests/native-bgm-build-provenance.test.mjs",
+      "bytes": 9268,
+      "sha256": "7bf85d8b982d5832fb8dae66ffa52f79fb89b48387fa6909caffb2c5bd72848d"
+    },
+    {
+      "path": "tests/official-assets.test.mjs",
+      "bytes": 9301,
+      "sha256": "069931ecac1accf3bafe257dad9cb028ffbf4a94a528e01aa6da3080266762f8"
+    },
+    {
+      "path": "tests/official-assets-runtime.test.mjs",
+      "bytes": 10640,
+      "sha256": "f0872bace88a766cdd8d6ba258c6a27d11b8522996cdccdaee8911a42f757cc2"
+    },
+    {
+      "path": "tests/official-assets-flow.test.mjs",
+      "bytes": 12110,
+      "sha256": "71240e17448744047b77f306a821728d1072b6ffa95fa08aea209952cdbcdd49"
+    },
+    {
+      "path": "tests/build-ui-input-protection.test.mjs",
+      "bytes": 12390,
+      "sha256": "e934abdd836bee082127405e5210b46a05b087677f2788d645f61504c1670371"
+    },
+    {
+      "path": "tests/native-candidate-art.test.mjs",
+      "bytes": 30750,
+      "sha256": "d439c8b75c7b8d9ae4ee94fa0acc2b6348a6217a99b962fb27a8f6e67efa6a05"
+    }
+  ],
+  "inputsDigest": "2e3dd61cf21f5805bce244b6f3e15b54853e0dbb6d99469cdf26f5c23122500d",
+  "conclusion": "NO_OPEN_CODE_FINDINGS_IN_REVIEWED_SCOPE_ACCEPTANCE_INCOMPLETE",
+  "findings": [
+    {
+      "severity": "P2",
+      "path": "scripts/build-ui.mjs",
+      "status": "resolved",
+      "detail": "Both official source module URLs are protected as input identities; hardlink/symlink negative cases assert original source bytes and absence of partial output."
+    },
+    {
+      "severity": "P1",
+      "path": "scripts/build-native-bgm-candidate.mjs",
+      "status": "resolved",
+      "detail": "Official skin and lifecycle profile are validated and retained; policy payload digest checked. Audio wrapper forwards and compares exact profile identities."
+    },
+    {
+      "severity": "P2",
+      "path": "scripts/build-ui.mjs",
+      "status": "resolved",
+      "detail": "Inherited omitted abyss_component_binding.lua output is now in alias preflight. No effective protection assertion removed."
+    }
+  ],
+  "checks": {
+    "sourceReview": "No src/lua differences; opt-in builder profile, strict conflicts and real Traveler flags preserved. Generated official theme participates in output alias protection. Dynamic description/cost ink remains controlled by generated candidate theme.",
+    "structuralProbe": {
+      "cardHosts": 60,
+      "removedDecorativeControls": 2940,
+      "buttonReplacements": 202,
+      "panelReplacements": 15,
+      "survivingGeometryChanges": 0
+    },
+    "independentEarlierFocused": "31 passed; 1 failed before behavior due missing build/lua/abyss_theme.lua",
+    "implementerReported": {
+      "audioAndProfile": "28/28 passed",
+      "hostRerun": "1/1 passed after baseline generation",
+      "newModuleAlias": "4/4 negative cases passed",
+      "packagingInitial": "548 tests: 525 pass, 22 fail, 1 skip",
+      "packagingRepair": "22/22 failed cases rerun passed after component-binding output guard and sparse schema materialization; not a fresh 548-test pass",
+      "newFlow": "6/6 passed"
+    },
+    "runtimeTestReview": "Generated-module preloads prevent shared baseline leakage. Texture binding uses an explicit mock; it is not native rendering validation. Real ten-card/two-enemy combat, cancel/late pointers, C-mode, pile modal cycles and reward/map commands are asserted.",
+    "flowTestReview": "First scenario uses untouched starter deck and real first encounter; F.win plays legal UI cards/end-turns, not HP mutation. Shop/event/camp/treasure/boss scenarios explicitly route connected map edges without proving prior room victories. Boss scenario reaches real defeat and restart, not boss victory, act transition or final victory settlement.",
+    "noTestsStartedInFinalRefresh": true
+  },
+  "acceptanceBlockers": [
+    "Unique importable final GIL and native write/readback not verified by this review",
+    "Official import and fresh ready not verified",
+    "Current-candidate key-page screenshots, visual acceptance and actual loading/device performance not verified",
+    "Act 1 boss victory, inter-act transition, Act 2 completion and victory settlement not covered by the added flow tests",
+    "Exact final integrated commit hosted Full and original Merge Queue admission remain unverified"
+  ],
+  "limitations": [
+    "No Full suite or official client was run by this review",
+    "Preserved custom Traveler portrait remains a high-control-count exception",
+    "Button tint multiplication and stretched panel borders require actual visual review",
+    "Do not claim complete user request, release readiness or approved merge HEAD from this uncommitted source review"
+  ],
+  "sourceEdits": false,
+  "ciReview": {
+    "reviewer": "independent code review",
+    "reviewedAt": "2026-11-09T10:25:42.885Z",
+    "conclusion": "NO_OPEN_FINDINGS_IN_CI_INCREMENT",
+    "inputs": [
+      {
+        "path": "scripts/ci-test-timings.json",
+        "bytes": 444965,
+        "sha256": "00d61717d1742c93af0c7a193509ee014c04ab9906fa6cb5750b9f2f51846303"
+      },
+      {
+        "path": "tests/ci-complete-calibration.test.mjs",
+        "bytes": 121249,
+        "sha256": "d559a58dfe4a681e39eb1c50e4a8ed2b3c419e36ee22b2dda9ed61dae2bb8e21"
+      },
+      {
+        "path": "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+        "bytes": 20306,
+        "sha256": "afd828fcc0d0731b6b57a46a3aa3619461cf5cba4e4e95f56b1d677ff7b921c9"
+      },
+      {
+        "path": "tests/helpers/component-ui-ci-source-inverse.mjs",
+        "bytes": 2822,
+        "sha256": "9bbd05b7ef298dd223906af10418cff96f38bf42ea4fac1e67e47dfbae5dfc3d"
+      },
+      {
+        "path": "tests/helpers/official-assets-ci-source-inverse.mjs",
+        "bytes": 1243,
+        "sha256": "c112c383b26820b61e25432ccd4b385f9fd55cbb7ee9149046e4bfa8dbec2e13"
+      },
+      {
+        "path": "tests/helpers/official-assets-ci-source-epoch.json.gz",
+        "bytes": 189787,
+        "sha256": "bc5079ac224d1090c0f7761ca5808003160a5b2d1a0eb79e32c52bcd6f92da1b"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/README.md",
+        "bytes": 3110,
+        "sha256": "5b17f8953c7778e504894994f3aefbd0501d78c045aff5b8ea6f91ef36ffb5a4"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/ci-contracts.log",
+        "bytes": 7957,
+        "sha256": "e24637948a0c2354606144a4b50da0a95ea22acd003fbd182331454c29c625f0"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/official-assets/measurement.json",
+        "bytes": 76486,
+        "sha256": "403cd8d49c734f3e7a2e64f83ba90d40ed0007c9d38c05f6f10e4dac44853718"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/official-assets/stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/official-assets/stdout.log",
+        "bytes": 808,
+        "sha256": "5d0a666cc55b6b8cd3d173e7488ea978b16e66651ac2eadd812c7f6df67e0102"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/measurement.json",
+        "bytes": 76502,
+        "sha256": "663999d352acc34d3320978bb27d49839fdc7b2e326fd5e17c7461165739fedf"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/stdout.log",
+        "bytes": 845,
+        "sha256": "b2df5ffff29058e0cf4ccf4bb4ce2d921111c19060b7ed7bec491f517e25ce3e"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/measurement.json",
+        "bytes": 76512,
+        "sha256": "88af88309bed4858cc18736fdbfae0cbe94f0765bce0b66380865e4562ad0178"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/stdout.log",
+        "bytes": 357,
+        "sha256": "5fd5f4ad18e9904ceb3466e85af062938683e6c6dcd044267a2d3df130f39ff3"
+      },
+      {
+        "path": "docs/evidence/official-assets-first-20261109/planning/summary.json",
+        "bytes": 1831,
+        "sha256": "580cba1a97a40a82eab0ca7911d578a06a276879f0a9bf294824b7b5fee40d3f"
+      }
+    ],
+    "verification": {
+      "files": [
+        "tests/ci-complete-calibration.test.mjs",
+        "tests/helpers/component-ui-ci-source-inverse.mjs",
+        "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+        "scripts/ci-test-timings.json",
+        "data/presentation/ui_theme.json",
+        "scripts/art-features.mjs",
+        "scripts/audit-native-candidate.mjs",
+        "scripts/build-native-audio-game.mjs",
+        "scripts/build-native-candidate.mjs",
+        "scripts/build-ui.mjs",
+        "scripts/ui-profile.mjs",
+        "tests/build-ui-input-protection.test.mjs",
+        "tests/native-candidate-art.test.mjs"
+      ],
+      "runs": [
+        {
+          "file": "tests/official-assets.test.mjs",
+          "inputCount": 685,
+          "tests": 6,
+          "floorMs": 1464,
+          "startedAt": "2026-11-09T10:20:13.005Z",
+          "finishedAt": "2026-11-09T10:20:14.471Z"
+        },
+        {
+          "file": "tests/official-assets-runtime.test.mjs",
+          "inputCount": 685,
+          "tests": 2,
+          "floorMs": 17427,
+          "startedAt": "2026-11-09T10:20:14.520Z",
+          "finishedAt": "2026-11-09T10:20:31.952Z"
+        },
+        {
+          "file": "tests/official-assets-flow.test.mjs",
+          "inputCount": 685,
+          "tests": 6,
+          "floorMs": 43888,
+          "startedAt": "2026-11-09T10:20:32.030Z",
+          "finishedAt": "2026-11-09T10:21:15.918Z"
+        }
+      ],
+      "productionSnapshotUnchanged": true
+    },
+    "notes": [
+      "13 complete-source epoch bindings match exact current after SHA and exact 520c44d4 before bytes; unknown paths/non-strings/foreign or partial text cannot trigger projection. Only LF/CRLF canonicalization is allowed.",
+      "Archive and expanded proof digests are fixed; historical projection enters test-only named epoch chains, not production runtime or test discovery.",
+      "Current inventory explicitly includes all three new test files; historical exclusions are named and current coverage checks remain.",
+      "Independently read and hashed all three measurement receipts/stdout/stderr and 685 current source inputs per run; serial start/end order and full-file 14/14 totals agree. No test suite rerun.",
+      "Removing precisely the three local floors makes ci-test-timings.json structurally equal to base. Hosted observations, Lua values, unknown floors and other settings unchanged.",
+      "1464ms floor does not lower existing 10000ms default; effective new work is 41315ms.",
+      "Read 62/62, zero-skip affected CI-contract log; execution was by implementer, not repeated by reviewer.",
+      "17 previously reviewed source/test snapshot hashes are unchanged."
+    ],
+    "forecast": {
+      "source": "planning README; reviewed as reported forecast, not fresh execution",
+      "windowsMs": 1718255,
+      "windowsBudgetMs": 1800000,
+      "posixMs": 1150234,
+      "posixBudgetMs": 1200000
+    },
+    "exactHeadMergeAdmission": false
+  }
+}

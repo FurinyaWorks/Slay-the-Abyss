@@ -254,7 +254,7 @@ test('current Full evidence cannot omit orchestration jobs, borrow Fast coverage
 test('orchestration jobs retain exact identities, latest-execution semantics and expected Full conclusions',()=>{
   for(const name of ['impact','fast'])for(const layer of ['preflight','push']) {
     for(const mutate of [
-  ...[[13,9],[14,9],[16,9],[16,12],[17,13],[17,14]].map(([windows,posix])=>e=>{
+  ...[[13,9],[14,9],[16,9],[16,12],[17,13],[17,14],[17,15]].map(([windows,posix])=>e=>{
    const win=e.jobs.find(j=>j.name.startsWith('rules (')),linux=e.jobs.find(j=>j.name.startsWith('engineering-posix ('));
    assert(win&&linux,'current matrices supply complete legacy-shape samples');
    e.jobs=e.jobs.filter(j=>!j.name.startsWith('rules (')&&!j.name.startsWith('engineering-posix ('));
@@ -415,14 +415,15 @@ test('normal delivery includes the current complete hosted Quality matrices',()=
     const impactSource=readFileSync('scripts/ci-impact.mjs','utf8');
     assert.ok(impactSource.includes('windows_shards=${JSON.stringify(qualityShardMatrices.windows)}'));
     assert.ok(impactSource.includes('posix_shards=${JSON.stringify(qualityShardMatrices.posix)}'));
-    assert.deepEqual(qualityShardMatrices.windows,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]);
+    assert.deepEqual(qualityShardMatrices.windows,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
     assert.deepEqual(qualityShardMatrices.posix,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
+    assert.equal(qualityShardJobs.length,33,'current hosted shape is 18 Windows plus 15 POSIX shards');
     assert.deepEqual(fullQualityJobs.filter(name=>name.startsWith('engineering-posix (')),
       Array.from({length:4},(_,i)=>`engineering-posix (${i+1}/4)`));
     assert.equal(fullQualityJobs.length,15);
     assert.equal(deliverySchemaVersion,3);
     assert.deepEqual(currentFullQualityJobs,['check','presentation','engineering-posix',...qualityShardJobs,'impact','fast']);
-    assert.equal(currentFullQualityJobs.length,37);
+    assert.equal(currentFullQualityJobs.length,qualityShardJobs.length+5);
     assert.deepEqual(currentFullQualityJobs.filter(name=>name.startsWith('engineering-posix (')),
       Array.from({length:15},(_,i)=>`engineering-posix (${i+1}/15)`));
     assert.match(workflow,/^  impact:\n/m);
@@ -443,8 +444,8 @@ test('fully green former four-, six- or eight-POSIX schema-three runs cannot cer
   }
 });
 
-test('old fully green twenty-one-, twenty-five-, twenty-seven-, twenty-eight-, thirty-, thirty-three-, thirty-five- and thirty-six-job shapes cannot certify current delivery or supply its first-shard receipt',()=>{
-  for(const [windows,posix] of [[8,8],[11,9],[13,9],[14,9],[16,9],[16,12],[17,13],[17,14]])for(const layer of ['preflight','push']){
+test('old fully green twenty-one-, twenty-five-, twenty-seven-, twenty-eight-, thirty-, thirty-three-, thirty-five-, thirty-six- and thirty-seven-job shapes cannot certify current delivery or supply its first-shard receipt',()=>{
+  for(const [windows,posix] of [[8,8],[11,9],[13,9],[14,9],[16,9],[16,12],[17,13],[17,14],[17,15]])for(const layer of ['preflight','push']){
     const e=mergedEvidence(3),proof=layer==='preflight'?e.preflight:e;
     const example=proof.jobs[0];
     proof.jobs=['check','presentation','engineering-posix',...Array.from({length:windows},(_,i)=>`rules (${i+1}/${windows})`),
@@ -460,22 +461,23 @@ test('old fully green twenty-one-, twenty-five-, twenty-seven-, twenty-eight-, t
   }
 });
 
-test('current PR and push delivery reject a missing seventeenth Windows or fifteenth POSIX shard, duplicates and forged job totals or source identity',()=>{
-  const last='rules (17/17)';
+test('current PR and push delivery reject a missing eighteenth Windows or fifteenth POSIX shard, duplicates and forged job totals or source identity',()=>{
+  const windows=qualityShardMatrices.windows.length,posix=qualityShardMatrices.posix.length;
+  const last=`rules (${windows}/${windows})`,lastPosix=`engineering-posix (${posix}/${posix})`;
   for(const layer of ['preflight','push'])for(const mutate of [
     proof=>proof.jobs=proof.jobs.filter(job=>job.name!==last),
     proof=>proof.jobs.push({...proof.jobs.find(job=>job.name===last),id:900}),
-    proof=>proof.jobs.find(job=>job.name===last).id=proof.jobs.find(job=>job.name==='rules (16/17)').id,
-    proof=>proof.jobs.push({...proof.jobs.find(job=>job.name===last),id:3001,name:'rules (18/17)'}),
-    proof=>proof.jobs=proof.jobs.filter(job=>job.name!=='engineering-posix (15/15)'),
-    proof=>proof.jobs.push({...proof.jobs.find(job=>job.name==='engineering-posix (15/15)'),id:3000}),
-    proof=>proof.jobs.find(job=>job.name==='engineering-posix (15/15)').name='engineering-posix (15/14)',
-    proof=>proof.jobs.find(job=>job.name===last).name='rules (17/16)',
-    proof=>{proof.jobs=proof.jobs.filter(job=>job.name!==last);proof.jobTotal=37;proof.matrix={windows:Array.from({length:17},(_,i)=>i+1),posix:15};},
+    proof=>proof.jobs.find(job=>job.name===last).id=proof.jobs.find(job=>job.name===`rules (${windows-1}/${windows})`).id,
+    proof=>proof.jobs.push({...proof.jobs.find(job=>job.name===last),id:3001,name:`rules (${windows+1}/${windows})`}),
+    proof=>proof.jobs=proof.jobs.filter(job=>job.name!==lastPosix),
+    proof=>proof.jobs.push({...proof.jobs.find(job=>job.name===lastPosix),id:3000}),
+    proof=>proof.jobs.find(job=>job.name===lastPosix).name=`engineering-posix (${posix}/${posix-1})`,
+    proof=>proof.jobs.find(job=>job.name===last).name=`rules (${windows}/${windows-1})`,
+    proof=>{proof.jobs=proof.jobs.filter(job=>job.name!==last);proof.jobTotal=currentFullQualityJobs.length;proof.matrix={windows:[...qualityShardMatrices.windows],posix};},
     proof=>proof.checkout.head=sha('f'),
   ]){
     const evidence=mergedEvidence(3),proof=layer==='preflight'?evidence.preflight:evidence;
-    assert.equal(proof.jobs.length,37);mutate(proof);
+    assert.equal(proof.jobs.length,currentFullQualityJobs.length);mutate(proof);
     if(layer==='preflight')assert(verifyDelivery(proof).length,String(mutate));
     else assert.equal(verifyMergedDelivery(evidence).state,'merged_pending',String(mutate));
   }

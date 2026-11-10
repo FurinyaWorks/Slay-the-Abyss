@@ -1,0 +1,6 @@
+empty standalone {"schemaVersion":1,"parser":"luaparse@0.3.1","sourceHashes":{},"nodes":[],"edges":[],"errors":[]}
+empty discover No Lua sources discovered
+nested standalone {"schemaVersion":1,"parser":"luaparse@0.3.1","sourceHashes":{},"nodes":[],"edges":[],"errors":[]}
+nested discover {"src/lua/nested/helper.lua":"return game.GetPlayer()"}
+link standalone {"schemaVersion":1,"parser":"luaparse@0.3.1","sourceHashes":{"link":"79a81fc07bbc1a91102bf9958118af58897191e8784a6e34e360b11b70cf62df"},"nodes":["link"],"edges":[],"errors":[{"file":"src/lua/link.lua","line":1,"message":"Module needs explicit classification"}]}
+link discover Linked source entry is not supported: /tmp/m7-eleven-review/fixture-yYlM7x/src/lua/link.lua

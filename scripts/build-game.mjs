@@ -12,9 +12,10 @@ export function gameBuildArgs(argv) {
   }else if(arg.startsWith('--'))throw Error('Unknown build option: '+arg);
   else paths.push(arg);
  }
- if(!['2d','3d'].includes(combat)||!['legacy','enhanced'].includes(art))throw Error('Use --combat=2d|3d and --art-version=legacy|enhanced');
+ if(!['2d','3d'].includes(combat)||!['legacy','enhanced','official'].includes(art))throw Error('Use --combat=2d|3d and --art-version=legacy|enhanced|official');
  if(combat==='3d')throw Error('3D is archived at PR #553/#556; no accepted mainline 3D runtime is available.');
- if(paths.length<1||paths.length>2)throw Error('Usage: npm run build:game -- <base.gil> [output] [--art-version=legacy|enhanced]');
+ if(paths.length<1||paths.length>2)throw Error('Usage: npm run build:game -- <base.gil> [output] [--art-version=legacy|enhanced|official]');
+ if(art==='official')return [...paths,'--official-assets','--native-page-lifecycle'];
  return [...paths,...(art==='enhanced'?['--lightweight-2d','--native-page-lifecycle']:[]),
   '--art-cards=false','--art-monsters=false','--art-menu-background=true','--art-selection-avatar=true','--art-battle-portrait=true'];
 }

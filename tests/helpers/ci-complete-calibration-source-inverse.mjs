@@ -1,3 +1,5 @@
+import {preOfficialAssetsFlowCiSource} from './official-assets-flow-ci-source-inverse.mjs';
+import {preOfficialAssetsCiSource} from './official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource} from './encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource} from './posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource} from './defect-final-ci-source-inverse.mjs';
@@ -138,6 +140,7 @@ export function preEffectsTargetGroupPlanningSource(path,source){
 // Only this complete combined identity can project to frozen sibling planning epochs.
 // Arbitrary source, partial floor sets and changed execution inputs pass through untouched.
 export function preCombinedPlanningSource(path,source,epoch='base'){
+ source=preOfficialAssetsCiSource(path,preOfficialAssetsFlowCiSource(path,source));
  if(path==='scripts/ci-test-timings.json')source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,preDefectFinalCiSource(path,preEncounterFormationCiSource(path,source))));
  if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba')return source;
  const targets={base:'54d5380ac20148b37866cb5a01e16bee76f6d9df5b013af9a29459d841969f56',flow:'20a43c9723de6f8b85a28ef863e0cdb977cc1432a8ceb25ac794d0bd6cff6543',silent:'9c088a8c3a6d4c553e58e85ef10f89f049e0f39dad14c494885568bd9352f310',effects:'aa5a35f348c759ef3aa14411aa0d52e7c7d9fd02b9086fb7a369b1aad7abd75d'};

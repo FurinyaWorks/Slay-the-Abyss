@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "status": "generated_layout_only",
+  "officialImport": "UNVERIFIED",
+  "candidateGil": null,
+  "command": "node scripts/build-ui.mjs <isolated-output> --official-assets --native-page-lifecycle",
+  "sourceInputs": [
+    {
+      "path": "scripts/build-ui.mjs",
+      "sha256": "53ab3f909ba18fe6de8b396d649401c20cbf38c45670edbaae2ef8ac978f6b1f"
+    },
+    {
+      "path": "scripts/official-assets-profile.mjs",
+      "sha256": "4448c15d21285ff6d6a5715046bb6a10976fbe4f2b0fe82652da9e397e96ada7"
+    },
+    {
+      "path": "scripts/official-assets-layout.mjs",
+      "sha256": "4c4a170e067eee4db332fd8cbad890fe307cc792dd64367c6e9103703c0c6755"
+    },
+    {
+      "path": "data/presentation/ui_theme.json",
+      "sha256": "e75634afe55d892d423e6f97b7199b4427c0d2c60311b858e64337b1266f6506"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "abyss_art_features.lua",
+      "bytes": 200,
+      "sha256": "30c57fdb2a8d739ae6d523973f10ebbc1d7e2c55915fef669af56cb86cf74d9b"
+    },
+    {
+      "path": "abyss_component_binding.lua",
+      "bytes": 83,
+      "sha256": "ca994b74c66fee485045460ebad65e1752b256e80f8d84b20288b6a34c08e2c8"
+    },
+    {
+      "path": "abyss_map_controls.lua",
+      "bytes": 102846,
+      "sha256": "f2f2e6618c8105f07da45a6d3ed7fe5a63df5f3e498e2af155b7103d81778507"
+    },
+    {
+      "path": "abyss_map_layout.lua",
+      "bytes": 612,
+      "sha256": "e08ebb48860ffee29db3313b56e1cb68ed6b649070148ddb3b6d16c95af4bff3"
+    },
+    {
+      "path": "abyss_menu_background_asset.lua",
+      "bytes": 69,
+      "sha256": "3c27739f7bf21453d31f57d21469bc2579a63dd7ad0d071f9667d440c5db4b03"
+    },
+    {
+      "path": "abyss_monster_actor_binding.lua",
+      "bytes": 176,
+      "sha256": "e93f6e4790e6d9f3f0c472e7b60e6efb4062d8c14d39a84ba0a67565c01767de"
+    },
+    {
+      "path": "abyss_monster_art_data.lua",
+      "bytes": 65,
+      "sha256": "dd3c9956c7cc8c66d0e96f12e6c142b29923a0d3af4f679183519aed3333cbbb"
+    },
+    {
+      "path": "abyss_narrative.lua",
+      "bytes": 7703,
+      "sha256": "c8b5924faea790e9bb0b81f9d22961b61b8920fe2acf04d0a54f431b1a29f573"
+    },
+    {
+      "path": "abyss_presentation.lua",
+      "bytes": 74514,
+      "sha256": "d787983564fc6d1e3435fd55d0b97fe593d12b7b53b393ce4fbf298318449e0c"
+    },
+    {
+      "path": "abyss_ready_card_assets.lua",
+      "bytes": 81,
+      "sha256": "c9270928bf5a43b58a811e80e7d85458861031fc6ae661d3a6af8ed3e2a69db9"
+    },
+    {
+      "path": "abyss_ready_card_binding.lua",
+      "bytes": 149,
+      "sha256": "42db192efcc7b7777a74410ba309f9184b76a6bcd8317aeeee0c3370ee340086"
+    },
+    {
+      "path": "abyss_theme.lua",
+      "bytes": 111754,
+      "sha256": "d8bc80601cb20ec3a7baaaaa7b0ac40b373573452d7927ee403a5cf1e256125d"
+    },
+    {
+      "path": "abyss_traveler_portrait_assets.lua",
+      "bytes": 702102,
+      "sha256": "f7c0d999867161ad8c3fc3e75eb1934cca0ebf3a0a9681105f24fa8d76a42245"
+    },
+    {
+      "path": "abyss_ui_layout.lua",
+      "bytes": 1481809,
+      "sha256": "97ca3762cec5e3bcd8c45ba696d58e322cc79de623559be86afb30d27f4c6780"
+    },
+    {
+      "path": "abyss_ui_profile.lua",
+      "bytes": 109,
+      "sha256": "18dca490638f500f0e97c6e1463310b4f2e88f59c1754de8faad49ac140d3e8a"
+    },
+    {
+      "path": "abyss_ui_templates.lua",
+      "bytes": 19158,
+      "sha256": "b5a77ab3d33c0d82c2c240b9546443e9b985980d235c1236da4fdeb81164de0e"
+    },
+    {
+      "path": "abyss_v25_card_assets.lua",
+      "bytes": 72,
+      "sha256": "f375249ec77cc5e83e3cd4f3fb226eb321eff7e6bae95431d53d5b4f90751503"
+    },
+    {
+      "path": "art-render-v2.json",
+      "bytes": 80,
+      "sha256": "b6d991b0e9d37abfdfde58d6c7beacd035d70eca1881fdc3f47c6f77fbcd77ec"
+    },
+    {
+      "path": "battle-ui.json",
+      "bytes": 1135091,
+      "sha256": "e5aa3b293f92202066f4a9e1d63aa417676de695b7de6dc89ed339ca81d5748a"
+    },
+    {
+      "path": "game-ui-templates.json",
+      "bytes": 47899,
+      "sha256": "e33f1597583bafbb53f4a61bbf661f2fb829b5a33de7be9234c266d479d1d0c6"
+    },
+    {
+      "path": "game-ui.json",
+      "bytes": 5863119,
+      "sha256": "3791e4b9732daea88afbd9de22b8439f6ec81c16c6a4844599ac234bd80818d3"
+    },
+    {
+      "path": "map-ui.json",
+      "bytes": 334229,
+      "sha256": "9819abe824097acf9e339ec84f81981e73a34bacccef29f234488b7147d9b7a2"
+    },
+    {
+      "path": "official-assets-theme.json",
+      "bytes": 57049,
+      "sha256": "10118388ed26f95ac8ddfeb1328b4e56437ea92275c292b2794aba04baef9bf1"
+    }
+  ]
+}

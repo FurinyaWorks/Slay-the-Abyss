@@ -14,7 +14,7 @@ assert(not bind(box,art));assert(#F.created==0,'compact request allocated native
 Runtime.update();assert(bind(box,art),'compact rectangle artwork was not rendered')
 assert(#F.created==3,'compact rectangle count did not drive exact native allocation')
 local a,b=F.created[2],F.created[3]
-assert(a.image==100001 and a.imageType==23,'compact rectangle must use native stretch rectangle')
+assert(a.image==100001 and rawget(a,'imageType')==nil,'compact rectangle must use the basic white shape without unsupported mode')
 assert(a.position[1]==0 and a.position[2]==0 and a.size[1]==144 and a.size[2]==64,'full canvas transform mismatch')
 assert(a.imageColor[1]==0x12 and a.imageColor[2]==0x34 and a.imageColor[3]==0x56 and a.imageColor[4]==255,'RGB/opaque colour mismatch')
 assert(b.position[1]==-67.5 and b.position[2]==25.5 and b.size[1]==5 and b.size[2]==7,'top-left pixel transform mismatch')

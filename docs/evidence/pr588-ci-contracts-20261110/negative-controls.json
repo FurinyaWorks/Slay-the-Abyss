@@ -1,0 +1,17 @@
+[
+  {
+    "name": "stale-light-ink",
+    "exitCode": 1,
+    "expectedFailure": true
+  },
+  {
+    "name": "old-medallion",
+    "exitCode": 1,
+    "expectedFailure": true
+  },
+  {
+    "name": "suppressed-semantic-cost",
+    "exitCode": 1,
+    "expectedFailure": true
+  }
+]

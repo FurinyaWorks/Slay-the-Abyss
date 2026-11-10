@@ -58,9 +58,9 @@ test('enabled native card art clears through the real Heart Proceed and true-end
 
 test('Heart ending integration rejects a missing native card-art transition clear', () => candidate(output => {
   const source = readFileSync('src/lua/abyss_battle_card_view.lua', 'utf8');
-  const before = 'if not id then CardDisplay.clearNativeArt(box);return end';
+  const before = 'if not id then CardGlow.clear(box);CardDisplay.clearNativeArt(box);return end';
   assert.equal(source.split(before).length, 2, 'exactly one in-memory mutation target');
-  const mutated = source.replace(before, 'if not id then return end');
+  const mutated = source.replace(before, 'if not id then CardGlow.clear(box);return end');
   const preload = `package.preload['abyss_battle_card_view']=function()
 return assert(load(${toLua(mutated)},'@in-memory-no-transition-clear'))()end\n`;
   const result = runEnding(output, preload);

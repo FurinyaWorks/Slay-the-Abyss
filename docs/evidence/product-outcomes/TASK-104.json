@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "taskId": "TASK-104",
+  "ownerPr": 565,
+  "scope": "diagnosis",
+  "claim": "diagnosed",
+  "symptom": "进入菜单与选角时逐块出图、启动及交互等待",
+  "facts": [
+    "docs/backlog-details/TASK-104-PRODUCT-OUTCOME-LOOP-20261109.md",
+    "docs/backlog-details/TASK-100.md",
+    "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/558",
+    "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/565#issuecomment-6730271611"
+  ],
+  "hypotheses": [
+    {
+      "id": "primitive-assembly",
+      "prediction": "完整组件减少页面可见后的动态创建",
+      "falsifier": "同等视觉负载下仍逐步新增/显示图元"
+    },
+    {
+      "id": "eager-startup",
+      "prediction": "全屏提前挂载将成本移至初始化",
+      "falsifier": "同等视觉负载按屏准备未降低启动等待"
+    },
+    {
+      "id": "proxy-refresh",
+      "prediction": "无效代理访问放大菜单step",
+      "falsifier": "同页受控移除重复查询后step未改善"
+    }
+  ],
+  "approvedVisual": {
+    "revision": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+    "publicAdoption": "docs/design/APPROVED_UI_ADOPTION_20261105.md"
+  },
+  "historical": {
+    "old": {
+      "path": "docs/evidence/product-outcomes/pr565-old-sdk.json.gz",
+      "sha256": "e383e978cd855b602b33d3b54ab5eb43088946c43030cd838627dc5eb053f455"
+    },
+    "new": {
+      "path": "docs/evidence/product-outcomes/pr565-new-sdk.json.gz",
+      "sha256": "d2a2092d7534890d9a471620bac6f6dbd5c1bf9a46b72faec7d0908731232353"
+    }
+  },
+  "gaps": [
+    {
+      "layer": "officialImport",
+      "owner": "TASK-103"
+    },
+    {
+      "layer": "officialReady",
+      "owner": "TASK-103"
+    },
+    {
+      "layer": "officialCapacity",
+      "owner": "TASK-103"
+    },
+    {
+      "layer": "pcPerformance",
+      "owner": "TASK-103"
+    },
+    {
+      "layer": "androidPerformance",
+      "owner": "TASK-4.21"
+    },
+    {
+      "layer": "v25Visual",
+      "owner": "TASK-103"
+    }
+  ],
+  "experiments": [],
+  "replay": {
+    "path": "docs/evidence/product-outcomes/pr565-new-roundtrip-20261109-v3.json.gz",
+    "sha256": "1fd8625813bb26699eab64f3dd6eddc894ae16d1b3dded51b5c88828f3c8dbdd"
+  },
+  "expectedCandidateSha256": "207e4ad401fe86a4682618b347162bd6d7bd97ccd13996266f26daff3213fa0b",
+  "reproduction": {
+    "path": "docs/evidence/product-outcomes/pr565-old-roundtrip-20261109-v3.json.gz",
+    "sha256": "458b2d9bd143e32f74997065f7b568281306617584e41190b82210f376845a14"
+  },
+  "expectedBaselineSha256": "ae1dcf818812470ea2e7ffa91241d9e94aae3cb9146a76ac5ecbf1af37bbdac9",
+  "supersededReplays": [
+    {
+      "path": "docs/evidence/product-outcomes/pr565-new-roundtrip-20261109.json.gz",
+      "sha256": "20115962e03baa2fc42699ca4925dd28b2f2eadabd01d53e85a430efd1f88d38",
+      "reason": "Initial observation retained; independent review required a stronger legacy asset-tree oracle."
+    },
+    {
+      "path": "docs/evidence/product-outcomes/pr565-old-roundtrip-20261109.json.gz",
+      "sha256": "33040fd6e772472290965103494115807d0825f3f9a558c4b268d55451b91f62",
+      "reason": "Initial observation retained; independent review required a stronger legacy asset-tree oracle."
+    },
+    {
+      "path": "docs/evidence/product-outcomes/pr565-new-roundtrip-20261109-v2.json.gz",
+      "sha256": "64186a82e05a4ade569a3aa7ceba94dc96ce13adc6b2303490b0f04a250ff9ae",
+      "reason": "Retained v2 observations; final producer removes only provenance directory/buildId differences."
+    },
+    {
+      "path": "docs/evidence/product-outcomes/pr565-old-roundtrip-20261109-v2.json.gz",
+      "sha256": "734e01fabaa49363bf9dbf3a53119a2f9d21c88c0edddc2f049a5e325f558ef2",
+      "reason": "Retained v2 observations; final producer removes only provenance directory/buildId differences."
+    }
+  ]
+}

@@ -17,7 +17,10 @@ local function control(spec)
  function c:SetAnchoredPosition(x,y)self.position={x,y}end
  function c:SetAsLastSibling()self.raised=true end
  for _,child in ipairs(spec.children or {})do c.children[#c.children+1]=control(child)end
- return c
+ return setmetatable(c,{__newindex=function(t,key,value)
+  assert(key~='imageType' or not (type(t.image)=='number' and t.image>=100001 and t.image<=100006),'basic source shape has no imageType')
+  rawset(t,key,value)
+ end})
 end
 local root=control()
 local env=setmetatable({script={object=root},Enum={ImageSource={StaticReference=31},ImageType={Basic=17,Stretch=23}},
@@ -46,7 +49,10 @@ end
 local gallery=0
 for i,want in ipairs(source)do
  local got=visible[i]
- for _,key in ipairs({'image','imageType','anchorMin','anchorMax','pivot','size','scale','rotation','position','imageColor'})do exact(want[key],got[key],key,i)end
+ for _,key in ipairs({'image','anchorMin','anchorMax','pivot','size','scale','rotation','position','imageColor'})do exact(want[key],got[key],key,i)end
+ if want.image>=100001 and want.image<=100006 then
+  assert(rawget(want,'imageType')==nil and rawget(got,'imageType')==nil,'unsupported basic source imageType was written')
+ else exact(want.imageType,got.imageType,'imageType',i)end
  if want.image==106056 or want.image==106057 then gallery=gallery+1 end
  assert(want.raised,'source layer order requires explicit sibling append')
 end

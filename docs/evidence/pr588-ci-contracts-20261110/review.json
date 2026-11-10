@@ -1,0 +1,43 @@
+{
+  "reviewId": "pr588-ci-independent-review-2026-11-10",
+  "reviewedBaseSourceSha": "5b3e9f11a25211173a3710d570ca8e4c22664d25",
+  "scope": [
+    "tests/official-assets-legibility.test.mjs",
+    "tests/official-assets-runtime.test.mjs",
+    "tests/seven-refactor-source-epoch.test.mjs",
+    "tests/helpers/official-battle-source-inverse.mjs",
+    "tests/helpers/official-battle-source-epoch.json.gz"
+  ],
+  "conclusion": "pass",
+  "unresolved": [],
+  "verification": [
+    "Complete archive before/after bytes verified directly against Git a0c2dc558b2a37f26678dc104bb98df194b0f2d8 and 5b3e9f11a25211173a3710d570ca8e4c22664d25 for all four changed component owners.",
+    "New projection requires exact complete-source SHA256 after LF normalization; unknown, partial and historical inputs stay opaque. Archive and decompressed JSON have pinned SHA256 identities.",
+    "Original historical archives, expected bytes, projector runtime and production sources unchanged from base.",
+    "Independent all-68-owner warmed drift and deletion controls rejected every mutation, using live source reads.",
+    "Independent isolated mutations of stale light ink, old medallion and suppressed semantic cost coloring failed intended assertions.",
+    "Reviewed coordinator green logs: 9/9 cost tests and 18/18 source-epoch tests; not rerun wholesale by reviewer.",
+    "Final committed live-closure test loop reviewed: currentEpoch.proof.owners covers all 68 owners; source worker final selected test passed 1/1.",
+    "Independent restored positive controls passed 2/2 in scratch after all three mutations were reverted."
+  ],
+  "limitations": [
+    "Source/runtime contract only; not rendered contrast or official/device verification.",
+    "No Full suite, CI rerun, commit, push, gate change or merge performed. Merge remains blocked by #582 and feature ancestry."
+  ],
+  "artifacts": [
+    "closure-and-git-identity.json",
+    "closure.log",
+    "negative-controls.json",
+    "stale-light-ink.log",
+    "old-medallion.log",
+    "suppressed-semantic-cost.log",
+    "restored-positive-controls.log"
+  ],
+  "sha256": {
+    "tests/official-assets-legibility.test.mjs": "fb4bde450abec3d227fbbe7f00d9061f32581640f1ccbe7d858586f4ca01c648",
+    "tests/official-assets-runtime.test.mjs": "9405a089b90013797ac1640111de2b0162111b41f9ad9fd2ed21b332b231dbc3",
+    "tests/seven-refactor-source-epoch.test.mjs": "65485e013ff47f5a38b66943fff1c2bb846704d6054e82a756cfd46f9a9b4bdd",
+    "tests/helpers/official-battle-source-inverse.mjs": "3540c4d6b542d7c65b74828d59c183dd2bf4444fcac7ab71a63326de42fc486f",
+    "tests/helpers/official-battle-source-epoch.json.gz": "5e74438e077be47b5b176287b6ceeb71e69447fa32ceedf2b0e595c4499d3c80"
+  }
+}

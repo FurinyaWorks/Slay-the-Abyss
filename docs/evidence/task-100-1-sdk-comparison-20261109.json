@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "status": "DETERMINISTIC_SDK_COUNT_FENCES_PASS",
+  "baseline": {
+    "gilSha256": "adddfd80e7745d346cbd188e6312cbf9e9638909641ccde4b91f120a3bdef817",
+    "luaInventorySha256": "4595a90cec27838ad042facf6a8551b4d9fdbf811961f188e3114a98cd33f971",
+    "saveSha256": "c1e36b24d8fd7c20481ffed50f25f63b00fef44df1226bef8317c1b15b456e3c",
+    "sdkExportSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+    "workerSha256": "ae44ab6bfd3e1b5f125d03d2d5a157bec53252602e0154e3c54bc81bab5dbadb",
+    "serverUiSha256": "cf38317e8f4d4967b7c508b2ccfca5af060ae2473494efabb4dbe56da718eb3d",
+    "templatesSha256": "77bd454f6d8c2fa9f552e806f1426e833c5e740f0779dd1633b4e6020c492f03",
+    "rawScriptsSha256": "b64acb315d013fea48342c387f157e7e6bd41b7c3f70814d45b7cacf828e5a63",
+    "exactScriptsSha256": "55e877148ce2d69b8ba89c6808494c4130144fd7437f329738e5c2865b233597",
+    "scriptNormalization": "Only the exact builder-injected ABYSS_BUILD UUID first line in abyss_ui.lua and the single eagerPages boolean in generated abyss_component_binding.lua; all remaining source and script metadata remain byte-identical.",
+    "uiNormalization": "Only project.meta.sourceFile, verified to equal the actual candidate GIL path; all visual records and runtime fields remain exact."
+  },
+  "current": {
+    "gilSha256": "8964606b7a8cb5b8bf0c365f39e18c7faccf2015aded5b2edea2d2475750ab95",
+    "luaInventorySha256": "b91e1e171889a03710fabaafe1c051e06df338153c942db7f399ebfcf1632cdb",
+    "saveSha256": "17d5c6734361d69ea39256fb3f6271e1327c921c7d7ae4dd9dda2951d195ca2e",
+    "sdkExportSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+    "workerSha256": "ae44ab6bfd3e1b5f125d03d2d5a157bec53252602e0154e3c54bc81bab5dbadb",
+    "serverUiSha256": "cf38317e8f4d4967b7c508b2ccfca5af060ae2473494efabb4dbe56da718eb3d",
+    "templatesSha256": "77bd454f6d8c2fa9f552e806f1426e833c5e740f0779dd1633b4e6020c492f03",
+    "rawScriptsSha256": "464973e7125a5b89b6c22e43aa6495e5f65fe8992b9d02070f1b6b80e83083c0",
+    "exactScriptsSha256": "55e877148ce2d69b8ba89c6808494c4130144fd7437f329738e5c2865b233597",
+    "scriptNormalization": "Only the exact builder-injected ABYSS_BUILD UUID first line in abyss_ui.lua and the single eagerPages boolean in generated abyss_component_binding.lua; all remaining source and script metadata remain byte-identical.",
+    "uiNormalization": "Only project.meta.sourceFile, verified to equal the actual candidate GIL path; all visual records and runtime fields remain exact."
+  },
+  "hardBudgets": {
+    "baselineInitializationCeiling": 19539,
+    "baselineWarmControlCeiling": 19539,
+    "netResidual": 0,
+    "cycles": 20
+  },
+  "timingPolicy": "REPORT_ONLY: nearest-rank SDK script wall-time observations; no device/frame-time or stable-tail certification.",
+  "observedTimeRatio": 1.25,
+  "timing": [
+    {
+      "phase": "menu-step",
+      "before": {
+        "samples": 90,
+        "p50Ms": 10.265800000000127,
+        "p95Ms": 19.976199999997334,
+        "p99Ms": 39.6251000000002,
+        "maxMs": 39.6251000000002
+      },
+      "after": {
+        "samples": 90,
+        "p50Ms": 9.758099999999104,
+        "p95Ms": 15.607200000002194,
+        "p99Ms": 23.229899999999816,
+        "maxMs": 23.229899999999816
+      },
+      "observationP95CeilingMs": 24.970249999996668,
+      "exceedsObservation": false
+    },
+    {
+      "phase": "character-step",
+      "before": {
+        "samples": 1800,
+        "p50Ms": 8.652500000000146,
+        "p95Ms": 15.423900000001595,
+        "p99Ms": 18.610500000002503,
+        "maxMs": 26.458299999998417
+      },
+      "after": {
+        "samples": 1800,
+        "p50Ms": 8.01510000000053,
+        "p95Ms": 11.642899999998917,
+        "p99Ms": 15.934499999999389,
+        "maxMs": 33.28809999999794
+      },
+      "observationP95CeilingMs": 19.279875000001994,
+      "exceedsObservation": false
+    },
+    {
+      "phase": "menu-return-step",
+      "before": {
+        "samples": 1800,
+        "p50Ms": 9.180000000000291,
+        "p95Ms": 15.494700000002922,
+        "p99Ms": 19.87999999999738,
+        "maxMs": 25.429900000002817
+      },
+      "after": {
+        "samples": 1800,
+        "p50Ms": 8.607100000001083,
+        "p95Ms": 11.814100000003236,
+        "p99Ms": 15.96600000000035,
+        "maxMs": 65.4539999999979
+      },
+      "observationP95CeilingMs": 19.368375000003653,
+      "exceedsObservation": false
+    }
+  ],
+  "rawReports": [
+    {
+      "path": "task-100-1-sdk-eager-20261109.json.gz",
+      "sha256": "efae8f92eeaf49f03e569fdec1229eae7f9f8c0c280149a00a61e7d371544e18",
+      "bytes": 92732
+    },
+    {
+      "path": "task-100-1-sdk-lazy-20261109.json.gz",
+      "sha256": "51b8b28f7d18ee2a4ca30c2fd427afc45ffdb045d89deeef42edfb65304f43c3",
+      "bytes": 96307
+    }
+  ],
+  "unverified": [
+    "Original V25 visual approval",
+    "Official client import/ready/capacity",
+    "PC/Android FPS/GPU/device memory",
+    "10-card/2-3-enemy actual SDK stress workload",
+    "Full-game performance or identical-seed battle A/B"
+  ],
+  "notes": [
+    "All native-model count fences and 3x20 menu-character cycles pass. This status certifies that scope only.",
+    "Character max wall time rose 26.4583 to 33.2881 ms; menu-return max rose 25.4299 to 65.454 ms. Raw unfavorable samples remain included.",
+    "Time is REPORT_ONLY; observer and SDK/V8/OS work are included. No release or device claim."
+  ]
+}

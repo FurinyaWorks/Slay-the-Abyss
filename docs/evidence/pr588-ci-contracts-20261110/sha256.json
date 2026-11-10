@@ -1,0 +1,23 @@
+{
+  "README.md": "8728549b594a8ccc5d29a03c670b9fba8ff6d50cc110855d3f90157314608938",
+  "backlog-final.log.gz": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+  "closure-and-git-identity.json": "7c4744fe2841e05b93ca99720bfee4706c435b087c353d8f08f657f973d5d9e5",
+  "closure.log.gz": "ad0faa9ec53cd4111e5b06f8f73d9e953766b96a7efa88bdaae69e146af34d1b",
+  "cost-contract-green.log.gz": "0d364006a4e0918a0229e423d7a670aeba1a9d449eeb0fe6afd3a1a4527da84c",
+  "guidance-sparse-red.log.gz": "387dbf6a34fef2720dbcf4ff588ee6744a9f6f24eadb4a3425c19f713893eca5",
+  "guidance.log.gz": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+  "legibility-red.log.gz": "c4f565642d1f36341c074fa1e73f8e39f7a80eb607ee1468d87ec0559b89c2d2",
+  "negative-controls.json": "c1a9fffca02cf8255d025cf5340fe0d6e0f302e2909270ee5d86fc41a7415b60",
+  "old-medallion.log.gz": "4124151f9b70b424504f5e2b9bae326e5a130c989b361a77ec988d360fa79a48",
+  "quick-42761531123-original.log.gz": "a5126f81311ba433fb0faaf9c02a1a7e4ea88c864b84ddd1171674ae7a272167",
+  "related-green.log.gz": "06a6b65555118d1c2152f5081602cc65257dbcb97c3aee1bce661929bf44b323",
+  "restored-positive-controls.log.gz": "29b0210c478dd81fbc89630d314b78f40e3964a89ed54ad0ab02742e55a0df11",
+  "review.json": "581007d5b2e17e0210f7f01f635fda5b956c9e741d692f3fb35ee493c33cc1db",
+  "reviewed-sha256.txt": "954d03182402c1adb525f8188310795baa7a3a5bd2c011a80089d5a410bb043b",
+  "source-closure-final.log.gz": "2807412c82cc8253677aaa0b1f29f387b885c62bed388750aa6ec5df49e1e9c6",
+  "source-green.log.gz": "418ec91bc72deb32316919d5fc8a824b3523304f6d9f4a6784647f0cd796e275",
+  "source-red.log.gz": "95ad7fd9db1203d57c17278b1354e11d788cb897e50b59c827441b21c336fc30",
+  "stale-light-ink.log.gz": "1282b08b43082410e14c3a5888a2d675f35685ebd622b0e47afb3779e9cfa404",
+  "suppressed-semantic-cost.log.gz": "3ad926e68f052ecc525ccbe4103a667272acb46a9c2ea9ad776b404e4b7594ff",
+  "syntax.log.gz": "ab3c453da85dc4f69d65d65964aa148d2bc808f2eb5c4fdc9fb1491a257cf6bf"
+}

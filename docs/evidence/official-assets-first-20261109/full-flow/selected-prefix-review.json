@@ -1,0 +1,106 @@
+{
+  "reviewer": "independent code review",
+  "reviewedAt": "2026-11-09T11:48:24.725219+00:00",
+  "conclusion": "NO_OPEN_FINDINGS_IN_SELECTED_CARD_PREFIX; bounded offline geometry evidence only",
+  "inputHashes": {
+    ".artifacts/pr588/campaign-validation/selected-readable-prefix/official-assets-campaign-prefix.lua": "eb405caf447401ab07133de61d925c3455b9158d0198b731962108dd3f3a93a2",
+    ".artifacts/pr588/campaign-validation/selected-readable-prefix/run-prefix.mjs": "dc5803986e5e5f2e0910f1c8001192e6895ee0c49e4ca6100242a8956287519d",
+    ".artifacts/pr588/campaign-validation/selected-readable-prefix/driver.patch": "995bbe3382f62d5ffc1ca6756dedb66183869d994f4f94d99f870f038fef6ffb",
+    ".artifacts/pr588/campaign-validation/selected-readable-prefix/runner.patch": "f0fcd625100fa617efad2b53e88e6651473f20af5cb5a338ab4fa1ef9a99b625",
+    ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/report.json": "0cfb1090a94e675415f9d9cb70d1cfe10ff54bee86eca05a0edb455cda2eb499",
+    ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/stdout.log": "1c93635777ecc72ff761b5e6c7ebc79c754cbb85c65332821dd7dead3168924f",
+    ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/entry.lua": "1555e1060f2a4a032ac5c6837150f50cb06ef913d732100a28b3674b1616db7f",
+    ".artifacts/pr588/campaign-validation/selected-readable-prefix/run/visual-scenes.json": "9b81a05bfd9a583eaf1753d8d345710ef66a1456806f02c33cc3480f25a4b796"
+  },
+  "status": "passed",
+  "elapsedMs": 18969.145861,
+  "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+  "sourceStable": true,
+  "inputCount": 1103,
+  "sourceAndRawAndGeneratedHashesVerified": true,
+  "exactPatchesVerified": true,
+  "checks": [
+    "Actual visible/raycast-enabled card3 hit.click selects UID3; second hit cancels. No direct selected-state assignment or battle command.",
+    "Selection and cancellation each settle over47 normal frames plus15 stable frames; cancellation restores all original hand poses. Whole Combat compared after selection and cancellation.",
+    "Four corners use actual label sizeDelta dimensions; each ancestor applies scale, rotation and translation in correct local-to-parent order until stage. Stage is deliberately excluded because safe bounds are expressed in stage design coordinates.",
+    "At1280x720 fixture stage scale is1. The algorithm is not a physical-screen/device-inset acceptance check.",
+    "Selected card scale1.22 is included, producing body rectangle left/right±80.52, bottom-337.56, top-225.32 inside safe rectangle±600/±340.",
+    "Theme explicitly allows resting hand overhang and selection lift; no production layout changed to hide that design."
+  ],
+  "captureProvenance": {
+    "kind": "natural-prefix-real-card3-hit",
+    "floor": 4,
+    "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+    "hand": [
+      {
+        "uid": 4,
+        "slot": 1,
+        "x": -280.0,
+        "y": -289.94622643513,
+        "scaleX": 1,
+        "scaleY": 1,
+        "angle": 5.0
+      },
+      {
+        "uid": 11,
+        "slot": 2,
+        "x": -140.0,
+        "y": -292.87115029045,
+        "scaleX": 1,
+        "scaleY": 1,
+        "angle": 2.5
+      },
+      {
+        "uid": 3,
+        "slot": 3,
+        "x": 0.0,
+        "y": -213.12,
+        "scaleX": 1.22,
+        "scaleY": 1.22,
+        "angle": 0
+      },
+      {
+        "uid": 10,
+        "slot": 4,
+        "x": 140.0,
+        "y": -292.87115029045,
+        "scaleX": 1,
+        "scaleY": 1,
+        "angle": -2.5
+      },
+      {
+        "uid": 9,
+        "slot": 5,
+        "x": 280.0,
+        "y": -289.94622643513,
+        "scaleX": 1,
+        "scaleY": 1,
+        "angle": -5.0
+      }
+    ],
+    "settleFrames": 47,
+    "stableFrames": 15,
+    "bodyBounds": {
+      "left": -80.52,
+      "right": 80.52,
+      "bottom": -337.56,
+      "top": -225.32
+    },
+    "safeBounds": {
+      "left": -600.0,
+      "right": 600.0,
+      "bottom": -340.0,
+      "top": 340.0
+    },
+    "bodyText": "对目标造成 6 点伤害。",
+    "combatUnchanged": true,
+    "scope": "offline geometry, not native font rendering"
+  },
+  "remainingUnverified": [
+    "Only card3 UID3 with this text/hand/state; does not prove all cards, long descriptions, edge selections, locales or device sizes.",
+    "Rectangle containment is not native font legibility, wrapping/clipping, texture contrast or official rendering evidence.",
+    "Not another full campaign or exact HEAD merge admission."
+  ],
+  "executionByReviewer": "Read-only review and hashes; no replay or tests."
+}

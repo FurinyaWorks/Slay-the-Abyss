@@ -212,8 +212,9 @@ test("unaffordable goods turn the price red, grey the card and explain without c
     local offer = Nodes.view(ui.run, ui.map).node.cards[1]
     ui.run.gold = offer.price - 1 ui:render()
     local box, price = get("shopView/card1"), get("shopView/price1")
+    local bodyInk=Theme.cardSkin.text.body or C.text
     assert(is(price.children.value.fontColor, C.danger) and not box.children.veil.visible)
-    assert(box.children.blockedVeil.visible and box.children.blockedReason.text=='金币不足' and is(box.children.description.fontColor,C.text))
+    assert(box.children.blockedVeil.visible and box.children.blockedReason.text=='金币不足' and is(box.children.description.fontColor,bodyInk))
     local before = Combat.copy(ui.run)
     assert(not click("shopView/card1")) same(ui.run, before)
     -- The notice states the shortfall; the merchant answers in his own dialogue box.
@@ -222,7 +223,7 @@ test("unaffordable goods turn the price red, grey the card and explain without c
     assert(readMerchantLine(ui,get) == "「" .. Narrative.merchant.insufficientGold .. "」" and ui.merchant.shake == nil)
     assert(#changes == 0)
     ui.run.gold = offer.price ui:render()
-    assert(is(price.children.value.fontColor, C.goldBright) and is(box.children.description.fontColor, C.text))
+    assert(is(price.children.value.fontColor, C.goldBright) and is(box.children.description.fontColor,bodyInk))
     local size = #ui.run.deck assert(click("shopView/card1"))
     assert(#ui.run.deck==size and ui.run.gold==offer.price)
     assert(click("confirm"))
@@ -481,9 +482,11 @@ test("Purifier prays for free through the picker and shows the removal result", 
     source.rules.events.encounterId='purifier' -- explicit content fixture, independent of room RNG
     local ui, get, click, shown = setup("event", source)
     assert(get("eventView/name").text == "净化神龛" and get("eventView/body").text == Narrative.eventCopy.purifier.intro:gsub("\n\n", "\n"))
-    assert(get("eventView/option1").children.title.text == "［祈祷］")
+    local prayerTitle=plainCardTitle(get("eventView/option1").children.title.text)
+    assert(Theme.layout.nativeNode.event.reference and prayerTitle=='[祈祷] 免费从牌组移除一张卡牌' or prayerTitle=='［祈祷］')
     assert(get("eventView/option1").children.description.text == "免费从牌组移除一张卡牌")
-    assert(get("eventView/option2").children.title.text == "［离开］" and not shown("eventView/option3"))
+    local leaveTitle=plainCardTitle(get("eventView/option2").children.title.text)
+    assert((Theme.layout.nativeNode.event.reference and leaveTitle=='[离开] 什么也不会发生。' or leaveTitle=='［离开］')and not shown("eventView/option3"))
     assert(click("eventView/option1") and shown("pickerView") and get("confirm").children.label.text == "祈祷 · 移除")
     local second = ui.run.deck[2]
     local name = Presentation[second.cardId].name

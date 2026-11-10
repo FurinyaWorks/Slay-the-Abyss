@@ -1,0 +1,14 @@
+✔ official art is opt-in and preserves both legacy CLI presets and strict candidate guards (3.901391ms)
+✔ receipts and pinned source audits reconstruct official art and reject mismatched profiles (124.227329ms)
+✔ all game card contexts use the same official panel while every input and live field retains identity and geometry (155.308958ms)
+✔ scene and button substitutions preserve semantic icons and all four native button states (71.637533ms)
+✔ isolated builder emits official skin plus the real preserved portraits and retains opt-out fallback (832.236934ms)
+✔ audio wrapper forwards the explicit official profile and lifecycle without legacy background defaults (1.55701ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1376.501689

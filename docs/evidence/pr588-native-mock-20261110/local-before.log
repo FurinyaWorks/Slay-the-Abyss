@@ -1,0 +1,10 @@
+not ok growing_card_text 1 - legacy display without optional fields still renders old static text: tests/lua/support/growing_card_text_cases.lua:175: tests/lua/support/growing_card_text_cases.lua:22: unknown control card1/nativeBannerRight
+growing_card_text: 0/1 passed
+ tests/lua/support/growing_card_text_cases.lua:178: 1 growing_card_text failures
+stack traceback:
+	[JS]: in function 'assert'
+	tests/lua/support/growing_card_text_cases.lua:178: in function <tests/lua/support/growing_card_text_cases.lua:2>
+	...-banner-contract/tests/lua/growing_card_text_slice_4.lua:2: in main chunk
+	[JS]: in function 'dofile'
+	(command line):1: in main chunk
+

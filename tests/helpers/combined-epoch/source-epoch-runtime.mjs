@@ -43,9 +43,38 @@ function validateBinding(binding){
  assert.equal(hash(binding.source),binding.sha256,'source identity SHA256');
  if(binding.gitBlob)assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(binding.source)}\0`).update(binding.source).digest('hex'),binding.gitBlob,'source identity Git blob');
 }
-export function createSourceEpochProjector(input,{root=process.cwd(),allowConfigLayout=false}={}){
+// A composed proof can share previously validated immutable source strings.
+// Reuse is explicit and accepts only an already deeply frozen JSON data graph;
+// mutable containers, accessors and cycles cannot become an authorization input.
+function assertReusableFrozenData(value,seen=new WeakSet(),active=new WeakSet()){
+ if(value===null||typeof value==='string'||typeof value==='boolean')return;
+ if(typeof value==='number'){assert(Number.isFinite(value),'reused source number');return;}
+ assert.equal(typeof value,'object','reused source JSON data');
+ assert(!active.has(value),'reused source data must be acyclic');
+ if(seen.has(value))return;
+ assert(Object.isFrozen(value),'reused source data must be frozen');
+ assert.equal(Object.getOwnPropertySymbols(value).length,0,'reused source data has no symbol keys');
+ const prototype=Object.getPrototypeOf(value),array=Array.isArray(value);
+ assert(array?prototype===Array.prototype:prototype===Object.prototype||prototype===null,'reused source plain data');
+ const descriptors=Object.getOwnPropertyDescriptors(value);
+ if(array)assert.equal(Object.keys(descriptors).length,value.length+1,'reused source complete JSON array');
+ active.add(value);
+ for(const [key,descriptor]of Object.entries(descriptors)){
+  assert(Object.hasOwn(descriptor,'value'),'reused source data properties');
+  if(array&&key==='length')assert.equal(descriptor.enumerable,false,'reused source array length');
+  else{
+   assert.equal(descriptor.enumerable,true,'reused source enumerable JSON property');
+   if(array)assert(/^(0|[1-9][0-9]*)$/.test(key)&&Number(key)<value.length,'reused source JSON array index');
+  }
+  assertReusableFrozenData(descriptor.value,seen,active);
+ }
+ active.delete(value);seen.add(value);
+}
+export function createSourceEpochProjector(input,{root=process.cwd(),allowConfigLayout=false,reuseFrozenInput=false}={}){
  // Clone once to prevent the caller changing proof data after validation.
- const proof=JSON.parse(JSON.stringify(input));
+ assert.equal(typeof reuseFrozenInput,'boolean','source proof reuse policy');
+ if(reuseFrozenInput)assertReusableFrozenData(input);
+ const proof=reuseFrozenInput?input:JSON.parse(JSON.stringify(input));
  assert.equal(proof.schemaVersion,1);assert.equal(proof.normalization,'LF');
  assert.match(proof.currentCommit,/^[a-f0-9]{40}$/);
  assert(Array.isArray(proof.owners));assert.equal(new Set(proof.owners).size,proof.owners.length,'unique owners');

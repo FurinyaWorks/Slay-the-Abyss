@@ -9,7 +9,7 @@ export function relicDisc(theme, name, size, ring, iconSize, position = [0, 0]) 
   return { name, kind: 'container', position, size: [size, size], children: [
     disc('rim', size, c.goldDim), disc('face', size - ring * 2, c.panelRaised),
     { ...disc('light', size - ring * 2, c.panelSunken), image: theme.image.discSoft },
-    { name: 'icon', kind: 'image', position: [0, 0], size: [iconSize, iconSize], image: theme.icon.node.treasure.id ?? theme.icon.node.treasure, colour: c.geo },
+    { name: 'icon', kind: 'image', position: [0, 0], size: [iconSize, iconSize], image: theme.icon.node.treasure.id ?? theme.icon.node.treasure, colour: theme.presentationProfile === 'official-assets-first' ? '#FFFFFF' : c.geo },
   ] };
 }
 
@@ -17,6 +17,8 @@ export function relicViewControls(theme = nativeTheme) {
   const { plate, text } = nativeControls(theme);
   const { color: c, font: f, layout: l, space: s } = theme, v = l.relicView;
   const left = (control) => ({ ...control, text: { ...control.text, align: 'left' } });
+  const top = (control) => ({ ...control, text: { ...control.text, valign: 'top' } });
+  const right = (control) => ({ ...control, text: { ...control.text, align: 'right' } });
   const button = (name, frame, label) => {
     const size = frame.slice(2), variants = { normal: [c.panelRaised, c.goldBright, c.goldDim],
       hover: [c.panelRaised, c.goldBright, c.goldBright], pressed: [c.buttonPressedFill, c.text, c.goldBright],
@@ -46,7 +48,8 @@ export function relicViewControls(theme = nativeTheme) {
     slot.children = slot.children.filter(part => part.name !== 'light');
     slot.children.find(part => part.name === 'rim').colour = hud.border;
     slot.children.find(part => part.name === 'face').colour = hud.fill;
-    slot.children.find(part => part.name === 'icon').colour = hud.ink;
+    slot.children.find(part => part.name === 'icon').colour = theme.presentationProfile === 'official-assets-first' ? '#FFFFFF' : hud.ink;
+    slot.children.push({ ...right(text('counter', [0, -10, 40, 36], '', f.small, '#FFFFFF')), visible: false });
     slot.children.push({ ...text('more', b.more, '', f.label, c.goldBright), visible: false });
     slot.children.push({ name: 'hit', kind: 'cursorArea', size: [b.step, 44], focusable: true });
     return slot;
@@ -73,8 +76,18 @@ export function relicViewControls(theme = nativeTheme) {
       { name: 'blocker', kind: 'cursorArea', size: [...theme.canvas.base], focusable: false },
       plate('frame', [0, 0, ...v.panel.slice(2)], c.goldDim),
       plate('plate', [0, 0, ...v.panel.slice(2).map(x => x - s.border * 2)], c.panelSunken),
+      // Above the outside blocker, below all readable content and buttons.
+      { name: 'contentBlocker', kind: 'cursorArea', size: v.panel.slice(2), focusable: false },
       text('title', v.title, '持有遗物', f.heading, c.goldBright),
       ...rows,
+      { name: 'single', kind: 'container', size: v.panel.slice(2), visible: false, children: [
+        { name: 'icon', kind: 'image', position: [0, 144], size: [v.disc * 2, v.disc * 2],
+          image: theme.icon.node.treasure.id ?? theme.icon.node.treasure, colour: '#FFFFFF' },
+        text('name', [0, 42, v.row[0], 48], '', f.heading, c.goldBright),
+        text('rarity', [0, 0, v.row[0], 36], '', f.label, c.textDim),
+        top(text('description', [0, -102, v.row[0], v.description[3]], '', f.small, c.text)),
+        text('status', [0, -210, v.row[0], 36], '', f.label, c.goldBright),
+      ] },
       { ...text('placeholder', [0, 0, 600, 48], '本局尚未获得遗物。', f.body, c.textDim), visible: false },
       button('close', v.close, '关闭'),
       { ...button('previous', v.previous, '上一页'), visible: false },

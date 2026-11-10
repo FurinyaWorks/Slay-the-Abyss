@@ -28,7 +28,7 @@ end
 -- Native anchored coordinates are centered and Y-up. Control slots never enter this transform.
 -- STS floorY is 340 for a 0.7-scale hand; this hand is taller (208/720), so the
 -- monster floor rises 60 source px to keep bodies, HP bars and block above resting cards.
-M.floorY=400
+M.floorY=L.enemyRow.floorY or 400
 function M.geometry(actor)
  local source=SourceGeometry.resolve(actor)
  local sx,sy=Theme.canvas.base[1]/1920,Theme.canvas.base[2]/1080
@@ -56,7 +56,10 @@ function M.position(_,_,actor)
  return g.x,L.battleUnit.nameWidth,g.portrait,g.hitWidth,g.y
 end
 local function fade(value,dt,speed)
- if value~=0 then value=value+(0-value)*dt*speed;if math.abs(value)<.01 then value=0 end end
+ -- Exact decay preserves the [0,1] state domain for any legal frame delta.
+ -- Euler overshoot made alpha negative after a long frame; exp10Out then
+ -- exponentiated that state into an infinite native name Y coordinate.
+ if value~=0 then value=value*math.exp(-dt*speed);if value<.01 then value=0 end end
  return value
 end
 function M.exp10Out(a)return 1-(2^(-10*a)-2^-10)/(1-2^-10)end

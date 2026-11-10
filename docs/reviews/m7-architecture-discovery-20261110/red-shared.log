@@ -1,0 +1,159 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+: tool missing
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (11.120919ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.747317ms)
+✔ collection failures and existing gate failures propagate (1.742261ms)
+✔ a failed shared collection writes a fresh failed quality report (8.718441ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (6.506095ms)
+✖ standalone architecture and shared collection inspect the same recursive modules and source paths (14.844532ms)
+✖ both architecture entries reject empty scans and ambiguous Lua module identities (0.584017ms)
+✖ both architecture entries refuse linked source directories instead of silently omitting them (0.966835ms)
+✖ nested source changes and dependency boundaries are freshly checked by both architecture entries (1.911027ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 5
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 295.408223
+
+✖ failing tests:
+
+test at tests/engineering-shared-inputs.test.mjs:82:1
+✖ standalone architecture and shared collection inspect the same recursive modules and source paths (14.844532ms)
+  AssertionError [ERR_ASSERTION]: valid
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      edges: [
+        {
+          from: 'main',
+          line: 1,
+  ...
+      ],
+  +   errors: [
+  +     {
+  +       file: 'src/lua/main.lua',
+  +       line: 1,
+  +       message: 'unknown module nested.helper'
+  +     }
+  +   ],
+  -   errors: [],
+      nodes: [
+        'main',
+  -     'nested.helper',
+        'ui'
+      ],
+      parser: 'luaparse@0.3.1',
+      schemaVersion: 1,
+      sourceHashes: {
+  -     'nested.helper': '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315',
+        main: '3412012de47d885046ee3370e5971ccc3bde7d38a4400d7ff70dd650a7295dfe',
+        ui: '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315'
+      }
+    }
+  
+      at file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:94:12
+      at sourceTree (file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:77:5)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:92:6)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { schemaVersion: 1, parser: 'luaparse@0.3.1', sourceHashes: { main: '3412012de47d885046ee3370e5971ccc3bde7d38a4400d7ff70dd650a7295dfe', ui: '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315' }, nodes: [ 'main', 'ui' ], edges: [ [Object] ], errors: [ [Object] ] },
+    expected: { schemaVersion: 1, parser: 'luaparse@0.3.1', sourceHashes: { main: '3412012de47d885046ee3370e5971ccc3bde7d38a4400d7ff70dd650a7295dfe', 'nested.helper': '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315', ui: '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315' }, nodes: [ 'main', 'nested.helper', 'ui' ], edges: [ [Object] ], errors: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/engineering-shared-inputs.test.mjs:109:1
+✖ both architecture entries reject empty scans and ambiguous Lua module identities (0.584017ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:114:12
+      at sourceTree (file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:77:5)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:113:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /No Lua sources discovered/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/engineering-shared-inputs.test.mjs:119:1
+✖ both architecture entries refuse linked source directories instead of silently omitting them (0.966835ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:124:12
+      at sourceTree (file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:77:5)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:120:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Linked source entry is not supported/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/engineering-shared-inputs.test.mjs:129:1
+✖ nested source changes and dependency boundaries are freshly checked by both architecture entries (1.911027ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      edges: [],
+  +   errors: [
+  +     {
+  +       file: 'config/architecture.json',
+  +       line: 1,
+  +       message: 'Dependency boundary nested-leaf needs unique known modules in from'
+  +     }
+  +   ],
+  -   errors: [],
+      nodes: [
+        'main',
+  -     'nested.helper'
+      ],
+      parser: 'luaparse@0.3.1',
+      schemaVersion: 1,
+      sourceHashes: {
+  -     'nested.helper': '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315',
+        main: '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315'
+      }
+    }
+  
+      at file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:134:48
+      at sourceTree (file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:77:5)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-eleven/tests/engineering-shared-inputs.test.mjs:133:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { schemaVersion: 1, parser: 'luaparse@0.3.1', sourceHashes: { main: '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315' }, nodes: [ 'main' ], edges: [], errors: [ [Object] ] },
+    expected: { schemaVersion: 1, parser: 'luaparse@0.3.1', sourceHashes: { main: '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315', 'nested.helper': '7df8f0cd9e1cd0b204a760783671c0ccca4a3258dc7c51f59e9e2295c6c25315' }, nodes: [ 'main', 'nested.helper' ], edges: [], errors: [] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

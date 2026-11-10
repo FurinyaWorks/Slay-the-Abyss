@@ -1,0 +1,408 @@
+{
+  "schemaVersion": 1,
+  "kind": "task-record-correction",
+  "taskId": "TASK-81.1",
+  "checkedAt": "2026-11-10T08:19:44.029Z",
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "repositoryId": 1429751262,
+  "currentDevelop": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "originalPull": {
+    "number": 525,
+    "head": "22ba86b15bf1596e6a9ec98cd1c19dc1cd5b1b9d",
+    "base": "dedb9ed5af52fc595031d64d3e8fd84bc908b2c8",
+    "merged": true,
+    "squash": "c20f9898462194d5f720f901274898e171a17ed5",
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/525"
+  },
+  "originalReview": {
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/525#issuecomment-6676527126",
+    "reviewId": "pr525-combined-20261106-22ba86b1-dedb9ed5-readonly",
+    "head": "22ba86b15bf1596e6a9ec98cd1c19dc1cd5b1b9d",
+    "base": "dedb9ed5af52fc595031d64d3e8fd84bc908b2c8",
+    "conclusion": "pass",
+    "unresolved": []
+  },
+  "runs": [
+    {
+      "id": 42160034221,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42160034221",
+      "event": "pull_request",
+      "head": "22ba86b15bf1596e6a9ec98cd1c19dc1cd5b1b9d",
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 42164576994,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42164576994",
+      "event": "merge_group",
+      "head": "c20f9898462194d5f720f901274898e171a17ed5",
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 42168995589,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42168995589",
+      "event": "push",
+      "head": "c20f9898462194d5f720f901274898e171a17ed5",
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "currentRun": {
+    "id": 42772190615,
+    "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615",
+    "event": "push",
+    "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "currentJobs": [
+    {
+      "id": 129682349381,
+      "name": "impact",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129682349381"
+    },
+    {
+      "id": 129682349484,
+      "name": "presentation",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129682349484"
+    },
+    {
+      "id": 129683006607,
+      "name": "engineering-posix (14/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006607"
+    },
+    {
+      "id": 129683006611,
+      "name": "engineering-posix (3/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006611"
+    },
+    {
+      "id": 129683006675,
+      "name": "engineering-posix (9/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006675"
+    },
+    {
+      "id": 129683006687,
+      "name": "engineering-posix (13/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006687"
+    },
+    {
+      "id": 129683006704,
+      "name": "engineering-posix (7/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006704"
+    },
+    {
+      "id": 129683006707,
+      "name": "engineering-posix (5/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006707"
+    },
+    {
+      "id": 129683006736,
+      "name": "engineering-posix (4/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006736"
+    },
+    {
+      "id": 129683006766,
+      "name": "engineering-posix (6/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006766"
+    },
+    {
+      "id": 129683006774,
+      "name": "engineering-posix (1/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006774"
+    },
+    {
+      "id": 129683006780,
+      "name": "engineering-posix (11/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006780"
+    },
+    {
+      "id": 129683006784,
+      "name": "engineering-posix (8/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006784"
+    },
+    {
+      "id": 129683006787,
+      "name": "rules (2/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006787"
+    },
+    {
+      "id": 129683006812,
+      "name": "rules (7/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006812"
+    },
+    {
+      "id": 129683006865,
+      "name": "rules (1/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006865"
+    },
+    {
+      "id": 129683006866,
+      "name": "rules (16/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006866"
+    },
+    {
+      "id": 129683006867,
+      "name": "engineering-posix (15/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006867"
+    },
+    {
+      "id": 129683006882,
+      "name": "rules (14/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006882"
+    },
+    {
+      "id": 129683006884,
+      "name": "rules (4/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006884"
+    },
+    {
+      "id": 129683006892,
+      "name": "rules (8/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006892"
+    },
+    {
+      "id": 129683006928,
+      "name": "rules (11/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006928"
+    },
+    {
+      "id": 129683006937,
+      "name": "engineering-posix (12/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006937"
+    },
+    {
+      "id": 129683006943,
+      "name": "rules (10/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006943"
+    },
+    {
+      "id": 129683006946,
+      "name": "rules (6/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006946"
+    },
+    {
+      "id": 129683006978,
+      "name": "engineering-posix (2/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006978"
+    },
+    {
+      "id": 129683006983,
+      "name": "rules (12/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006983"
+    },
+    {
+      "id": 129683006989,
+      "name": "rules (3/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006989"
+    },
+    {
+      "id": 129683006995,
+      "name": "engineering-posix (10/15)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683006995"
+    },
+    {
+      "id": 129683007000,
+      "name": "rules (5/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683007000"
+    },
+    {
+      "id": 129683007068,
+      "name": "rules (15/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683007068"
+    },
+    {
+      "id": 129683007078,
+      "name": "rules (13/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683007078"
+    },
+    {
+      "id": 129683007223,
+      "name": "rules (9/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683007223"
+    },
+    {
+      "id": 129683007251,
+      "name": "rules (17/17)",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683007251"
+    },
+    {
+      "id": 129683008887,
+      "name": "fast",
+      "conclusion": "skipped",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129683008887"
+    },
+    {
+      "id": 129699545692,
+      "name": "engineering-posix",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129699545692"
+    },
+    {
+      "id": 129702211155,
+      "name": "check",
+      "conclusion": "success",
+      "head": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "runId": 42772190615,
+      "attempt": 1,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42772190615/job/129702211155"
+    }
+  ],
+  "limits": {
+    "originalSquashPush": "failed; not changed by later success",
+    "immutableCheckoutArtifact": "metadata read only; archive bytes not verified in this audit",
+    "taskStatus": "In Progress",
+    "acceptanceCriterion3": "unchecked",
+    "newCode": false,
+    "newFullRun": false,
+    "gui": false,
+    "mergeAuthorization": false
+  }
+}

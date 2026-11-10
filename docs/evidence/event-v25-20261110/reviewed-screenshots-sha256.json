@@ -1,0 +1,38 @@
+[
+  {
+    "path": ".artifacts/event-v25-finalized/browser-final/camp.png",
+    "sha256": "c58862c4c58b09e55c7d40b6b5d3bc6cc1b4ce576dc6c81b39727a9d9affa8de"
+  },
+  {
+    "path": ".artifacts/event-v25-finalized/browser-final/shop.png",
+    "sha256": "6c85bffb1bb0b76214fcbc64a5972e9bbe55a23882edc331e4dac42a29a95456"
+  },
+  {
+    "path": ".artifacts/event-v25-finalized/browser-final/treasure-open.png",
+    "sha256": "82c786a14adc0f6c892a742623fa502adb57c5038e70f3ea184d3d31c917e9d4"
+  },
+  {
+    "path": ".artifacts/event-v25-finalized/browser-final/cleric.png",
+    "sha256": "4f80b77d4182fa58ef735ca29d6b6811722349484e6eabb5ae761632e914630a"
+  },
+  {
+    "path": ".artifacts/event-v25-finalized/browser-final/designer-four-options.png",
+    "sha256": "96b2203dc159bfd6a2e66fa4d671f99e41d8a532bcfba9ec55914763ef060822"
+  },
+  {
+    "path": ".artifacts/event-v25-finalized/browser-final/library-picker.png",
+    "sha256": "6cabf155c73b15f9f09f3088ca22b42cd96504bd2e043671eccdd7a4256a5eb5"
+  },
+  {
+    "path": ".artifacts/event-v25-finalized/browser-special/neow-blessings.png",
+    "sha256": "78981c37e8db28191ca4c0ec3b79f088398f5eac2138026b62d1c4f32854fa64"
+  },
+  {
+    "path": ".artifacts/event-v25-finalized/browser-special/we-meet-again-long-potion.png",
+    "sha256": "727229d42861f7098ef19ffa4f15370d2daad5cf768c6fa3b20450b4527dade8"
+  },
+  {
+    "path": ".artifacts/event-v25-finalized/browser-special/match-reveal.png",
+    "sha256": "6e06f208e3370c7866305361010ab854e17c99c5646277fac119a6b589adba89"
+  }
+]

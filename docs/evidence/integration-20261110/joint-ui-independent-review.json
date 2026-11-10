@@ -1,0 +1,10 @@
+{
+  "reviewId": "joint-ui-independent-source-audit-20261110",
+  "assertions": 1638,
+  "paths": 346,
+  "owners": 79,
+  "rows": 20,
+  "archiveSha256": "67777c3571d86bc82427fbb6ac5cd2254ed480b58285f41aa17d05d7490413f9",
+  "conclusion": "pass",
+  "unresolved": []
+}

@@ -1,0 +1,950 @@
+[
+  {
+    "scene": "menu",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116"
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 18,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "character",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116"
+    },
+    "textOverflowCandidates": [
+      {
+        "path": "/root/characterPanel/hint",
+        "text": "查看初始信息，确认后开始冒险。",
+        "measuredHeight": 28.6,
+        "boxHeight": 26
+      },
+      {
+        "path": "/root/characterPanel/details/relicTag",
+        "text": "初始遗物",
+        "measuredHeight": 26.0,
+        "boxHeight": 24
+      },
+      {
+        "path": "/root/characterPanel/details/deckSummary",
+        "text": "普通攻击×5  破防斩×1  防御×4",
+        "measuredHeight": 31.200000000000003,
+        "boxHeight": 28
+      }
+    ],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 21,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "neow-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+      "floor": 0,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 41,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "map-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+      "floor": 0,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 103,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "battle-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+      "floor": 1,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [
+      {
+        "path": "/root/battlePanel/card1/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card2/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card3/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card4/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card5/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      }
+    ],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 260,
+    "overlappingSiblingHits": [
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card1/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card2/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card2/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card3/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card3/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card4/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      }
+    ]
+  },
+  {
+    "scene": "reward-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+      "floor": 1,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 36,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "event-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+      "floor": 2,
+      "act": 1
+    },
+    "textOverflowCandidates": [
+      {
+        "path": "/root/nodePanel/eventView/option1/description",
+        "text": "交出所示药水，获得随机遗物。\n自己敏捷2",
+        "measuredHeight": 52.0,
+        "boxHeight": 40
+      },
+      {
+        "path": "/root/nodePanel/eventView/option3/description",
+        "text": "交出所示卡牌，获得随机遗物。\n「稳住阵脚」",
+        "measuredHeight": 52.0,
+        "boxHeight": 40
+      }
+    ],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 37,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "natural-multi-enemy-settled",
+    "provenance": {
+      "kind": "natural-continuous-prefix-only",
+      "seed": 2,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+      "floor": 4,
+      "act": 1,
+      "turn": 1,
+      "liveEnemies": [
+        {
+          "id": "acid_slime_s_1",
+          "hp": 10
+        },
+        {
+          "id": "spike_slime_m_2",
+          "hp": 30
+        }
+      ],
+      "hand": [
+        {
+          "uid": 4,
+          "slot": 1,
+          "x": -280,
+          "y": -289.94622643513,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 5
+        },
+        {
+          "uid": 11,
+          "slot": 2,
+          "x": -140,
+          "y": -292.87115029045,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 2.5
+        },
+        {
+          "uid": 3,
+          "slot": 3,
+          "x": 0,
+          "y": -296,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0
+        },
+        {
+          "uid": 10,
+          "slot": 4,
+          "x": 140,
+          "y": -292.87115029045,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": -2.5
+        },
+        {
+          "uid": 9,
+          "slot": 5,
+          "x": 280,
+          "y": -289.94622643513,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": -5
+        }
+      ],
+      "settleSeconds": 2,
+      "settleFrames": 69,
+      "maxSettleFrames": 120,
+      "stableFrames": 15,
+      "frameSeconds": 0.016666666666667,
+      "staleFeedbackBefore": true,
+      "initialHand": [
+        {
+          "uid": 4,
+          "slot": 1,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        },
+        {
+          "uid": 11,
+          "slot": 2,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        },
+        {
+          "uid": 3,
+          "slot": 3,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        },
+        {
+          "uid": 10,
+          "slot": 4,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        },
+        {
+          "uid": 9,
+          "slot": 5,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        }
+      ],
+      "afterUpdate2Hand": [
+        {
+          "uid": 4,
+          "slot": 1,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        },
+        {
+          "uid": 11,
+          "slot": 2,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        },
+        {
+          "uid": 3,
+          "slot": 3,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        },
+        {
+          "uid": 10,
+          "slot": 4,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        },
+        {
+          "uid": 9,
+          "slot": 5,
+          "x": -568,
+          "y": -300,
+          "scaleX": 0.16,
+          "scaleY": 0.16,
+          "angle": 0
+        }
+      ],
+      "stopCondition": "first input-ready combat with at least two active enemies and stable scale-one hand",
+      "scope": "menu through first natural multi-enemy combat; not campaign completion"
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [
+      {
+        "path": "/root/battlePanel/card1/label",
+        "box": [
+          295.1227073534214,
+          734.155894394702,
+          434.6387358343164,
+          837.3103646618335
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card1/hit",
+        "box": [
+          269.7199999999999,
+          526.2399999999981,
+          450.28,
+          839.9999999999981
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card2/label",
+        "box": [
+          434.49901124925077,
+          739.9827529401565,
+          570.3863601356669,
+          837.6529484579117
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card2/hit",
+        "box": [
+          409.72,
+          526.2399999999978,
+          590.28,
+          839.9999999999978
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card3/label",
+        "box": [
+          574.0,
+          746.0,
+          706.0,
+          838.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card3/hit",
+        "box": [
+          549.72,
+          526.24,
+          730.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card4/label",
+        "box": [
+          709.6136398643332,
+          739.9827529401565,
+          845.5009887507492,
+          837.6529484579117
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card4/hit",
+        "box": [
+          689.72,
+          526.2399999999978,
+          870.28,
+          839.9999999999978
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card5/label",
+        "box": [
+          845.3612641656837,
+          734.155894394702,
+          984.8772926465786,
+          837.3103646618335
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card5/hit",
+        "box": [
+          829.72,
+          526.2399999999981,
+          1010.28,
+          839.9999999999981
+        ]
+      }
+    ],
+    "rotatedTextUnverified": [
+      "/root/battlePanel/card1/name",
+      "/root/battlePanel/card1/type",
+      "/root/battlePanel/card1/label",
+      "/root/battlePanel/card1/cost",
+      "/root/battlePanel/card2/name",
+      "/root/battlePanel/card2/type",
+      "/root/battlePanel/card2/label",
+      "/root/battlePanel/card2/cost",
+      "/root/battlePanel/card4/name",
+      "/root/battlePanel/card4/type",
+      "/root/battlePanel/card4/label",
+      "/root/battlePanel/card4/cost",
+      "/root/battlePanel/card5/name",
+      "/root/battlePanel/card5/type",
+      "/root/battlePanel/card5/label",
+      "/root/battlePanel/card5/cost"
+    ],
+    "unknownImageCount": 247,
+    "overlappingSiblingHits": [
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card2/hit",
+        "intersectionArea": 12726.105599999955
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 12726.105599999895
+      },
+      {
+        "a": "/root/battlePanel/card3/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 12726.105599999895
+      },
+      {
+        "a": "/root/battlePanel/card4/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 12726.105599999973
+      }
+    ]
+  },
+  {
+    "scene": "natural-multi-enemy-selected-readable",
+    "provenance": {
+      "kind": "natural-prefix-real-card3-hit",
+      "floor": 4,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+      "hand": [
+        {
+          "uid": 4,
+          "slot": 1,
+          "x": -280,
+          "y": -289.94622643513,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 5
+        },
+        {
+          "uid": 11,
+          "slot": 2,
+          "x": -140,
+          "y": -292.87115029045,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 2.5
+        },
+        {
+          "uid": 3,
+          "slot": 3,
+          "x": 0,
+          "y": -213.12,
+          "scaleX": 1.22,
+          "scaleY": 1.22,
+          "angle": 0
+        },
+        {
+          "uid": 10,
+          "slot": 4,
+          "x": 140,
+          "y": -292.87115029045,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": -2.5
+        },
+        {
+          "uid": 9,
+          "slot": 5,
+          "x": 280,
+          "y": -289.94622643513,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": -5
+        }
+      ],
+      "settleFrames": 47,
+      "stableFrames": 15,
+      "bodyBounds": {
+        "left": -80.52,
+        "right": 80.52,
+        "bottom": -337.56,
+        "top": -225.32
+      },
+      "safeBounds": {
+        "left": -600,
+        "right": 600,
+        "bottom": -340,
+        "top": 340
+      },
+      "bodyText": "对目标造成 6 点伤害。",
+      "combatUnchanged": true,
+      "scope": "offline geometry, not native font rendering"
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [
+      {
+        "path": "/root/battlePanel/card1/label",
+        "box": [
+          295.1227073534214,
+          734.155894394702,
+          434.6387358343164,
+          837.3103646618335
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card1/hit",
+        "box": [
+          269.7199999999999,
+          526.2399999999981,
+          450.28,
+          839.9999999999981
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card2/label",
+        "box": [
+          434.49901124925077,
+          739.9827529401565,
+          570.3863601356669,
+          837.6529484579117
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card2/hit",
+        "box": [
+          409.72,
+          526.2399999999978,
+          590.28,
+          839.9999999999978
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card3/hit",
+        "box": [
+          549.72,
+          526.2400000000011,
+          730.28,
+          839.9999999999982
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card4/label",
+        "box": [
+          709.6136398643332,
+          739.9827529401565,
+          845.5009887507492,
+          837.6529484579117
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card4/hit",
+        "box": [
+          689.72,
+          526.2399999999978,
+          870.28,
+          839.9999999999978
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card5/label",
+        "box": [
+          845.3612641656837,
+          734.155894394702,
+          984.8772926465786,
+          837.3103646618335
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card5/hit",
+        "box": [
+          829.72,
+          526.2399999999981,
+          1010.28,
+          839.9999999999981
+        ]
+      }
+    ],
+    "rotatedTextUnverified": [
+      "/root/battlePanel/card1/name",
+      "/root/battlePanel/card1/type",
+      "/root/battlePanel/card1/label",
+      "/root/battlePanel/card1/cost",
+      "/root/battlePanel/card2/name",
+      "/root/battlePanel/card2/type",
+      "/root/battlePanel/card2/label",
+      "/root/battlePanel/card2/cost",
+      "/root/battlePanel/card4/name",
+      "/root/battlePanel/card4/type",
+      "/root/battlePanel/card4/label",
+      "/root/battlePanel/card4/cost",
+      "/root/battlePanel/card5/name",
+      "/root/battlePanel/card5/type",
+      "/root/battlePanel/card5/label",
+      "/root/battlePanel/card5/cost"
+    ],
+    "unknownImageCount": 264,
+    "overlappingSiblingHits": [
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card2/hit",
+        "intersectionArea": 12726.105599999955
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 12726.105599999848
+      },
+      {
+        "a": "/root/battlePanel/card3/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 12726.105599999848
+      },
+      {
+        "a": "/root/battlePanel/card4/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 12726.105599999973
+      }
+    ]
+  },
+  {
+    "scene": "natural-multi-enemy-selection-cancelled",
+    "provenance": {
+      "kind": "natural-prefix-real-card3-cancel",
+      "floor": 4,
+      "sourceClosure": "d5245d8d0a33500be3a42b2199eea607a44851ed96a1dc40803e747444268116",
+      "hand": [
+        {
+          "uid": 4,
+          "slot": 1,
+          "x": -280,
+          "y": -289.94622643513,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 5
+        },
+        {
+          "uid": 11,
+          "slot": 2,
+          "x": -140,
+          "y": -292.87115029045,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 2.5
+        },
+        {
+          "uid": 3,
+          "slot": 3,
+          "x": 0,
+          "y": -296,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0
+        },
+        {
+          "uid": 10,
+          "slot": 4,
+          "x": 140,
+          "y": -292.87115029045,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": -2.5
+        },
+        {
+          "uid": 9,
+          "slot": 5,
+          "x": 280,
+          "y": -289.94622643513,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": -5
+        }
+      ],
+      "settleFrames": 47,
+      "stableFrames": 15,
+      "combatUnchanged": true
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [
+      {
+        "path": "/root/battlePanel/card1/label",
+        "box": [
+          295.1227073534214,
+          734.155894394702,
+          434.6387358343164,
+          837.3103646618335
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card1/hit",
+        "box": [
+          269.7199999999999,
+          526.2399999999981,
+          450.28,
+          839.9999999999981
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card2/label",
+        "box": [
+          434.49901124925077,
+          739.9827529401565,
+          570.3863601356669,
+          837.6529484579117
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card2/hit",
+        "box": [
+          409.72,
+          526.2399999999978,
+          590.28,
+          839.9999999999978
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card3/label",
+        "box": [
+          574.0,
+          746.0,
+          706.0,
+          838.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card3/hit",
+        "box": [
+          549.72,
+          526.24,
+          730.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card4/label",
+        "box": [
+          709.6136398643332,
+          739.9827529401565,
+          845.5009887507492,
+          837.6529484579117
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card4/hit",
+        "box": [
+          689.72,
+          526.2399999999978,
+          870.28,
+          839.9999999999978
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card5/label",
+        "box": [
+          845.3612641656837,
+          734.155894394702,
+          984.8772926465786,
+          837.3103646618335
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card5/hit",
+        "box": [
+          829.72,
+          526.2399999999981,
+          1010.28,
+          839.9999999999981
+        ]
+      }
+    ],
+    "rotatedTextUnverified": [
+      "/root/battlePanel/card1/name",
+      "/root/battlePanel/card1/type",
+      "/root/battlePanel/card1/label",
+      "/root/battlePanel/card1/cost",
+      "/root/battlePanel/card2/name",
+      "/root/battlePanel/card2/type",
+      "/root/battlePanel/card2/label",
+      "/root/battlePanel/card2/cost",
+      "/root/battlePanel/card4/name",
+      "/root/battlePanel/card4/type",
+      "/root/battlePanel/card4/label",
+      "/root/battlePanel/card4/cost",
+      "/root/battlePanel/card5/name",
+      "/root/battlePanel/card5/type",
+      "/root/battlePanel/card5/label",
+      "/root/battlePanel/card5/cost"
+    ],
+    "unknownImageCount": 247,
+    "overlappingSiblingHits": [
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card2/hit",
+        "intersectionArea": 12726.105599999955
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 12726.105599999895
+      },
+      {
+        "a": "/root/battlePanel/card3/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 12726.105599999895
+      },
+      {
+        "a": "/root/battlePanel/card4/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 12726.105599999973
+      }
+    ]
+  }
+]

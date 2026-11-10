@@ -3,7 +3,7 @@ local testStart=dofile('tests/lua/support/game_ui_fixture.lua').start
 local F = dofile('tests/lua/support/game_ui_fixture.lua')
 local Map, MapUI = require('abyss_map'), require('abyss_map_ui')
 local passed, failed = 0, 0
-local cursor = {CursorDown='down', CursorUp='up', CursorDrag='drag', CursorExit='exit', CursorEndDrag='endDrag'}
+local cursor = {CursorDown='down', CursorUp='up', CursorEnter='enter', CursorDrag='drag', CursorExit='exit', CursorEndDrag='endDrag'}
 local function test(name, fn)
     local ok, why = pcall(fn)
     if ok then passed = passed + 1 else failed = failed + 1 end
@@ -349,5 +349,20 @@ test('controller can choose a legal node after input reset without a focus butto
     assert(#calls==1 and map.currentNodeId==map.nodes[2].id)
 end)
 
+for _,kind in ipairs({'up','exit','endDrag','enter'})do
+    test('foreign '..kind..' cannot cancel the owning finger press feedback',function()
+        local ui,map,calls,emit=setup()
+        emit(1,'down',11)
+        local fx=ui.roomFx[ui.slots[1]]
+        assert(fx.pressed,'owning finger has no press feedback')
+        emit(1,kind,22)
+        assert(fx.pressed,'foreign input cleared owner press feedback')
+        assert(not emit(1,'click',22) and #calls==0,'foreign input committed a node')
+        emit(1,'up',11)
+        assert(not fx.pressed,'owner release retained press feedback')
+        assert(emit(1,'click',11) and #calls==1 and map.floor==1,'owner lost its commit')
+    end)
+end
+print('LUA_MAP_FEEDBACK_OWNERSHIP_PASS')
 print('LUA_MAP_GESTURE_OWNERSHIP '..passed..' passed; '..failed..' failed')
 assert(failed==0,'map gesture ownership regressions failed')

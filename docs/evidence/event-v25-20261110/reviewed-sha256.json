@@ -1,0 +1,46 @@
+{
+  "files": [
+    {
+      "sha256": "25f5bbfe8944bebb592949ec4e4389888598bc3f55a3e8ac6231bdc4763044e3",
+      "path": "data/presentation/ui_theme.json"
+    },
+    {
+      "sha256": "c6dfb33d433305f1ee1f15fc555b9dceef40f350d6e160da8be6fc03b8a0161f",
+      "path": "scripts/v25-node-layout.mjs"
+    },
+    {
+      "sha256": "7ffaed89ffdc30c0bac03122fd4e9403fc0d7ea4253cb7c8521ff45856565385",
+      "path": "src/lua/abyss_node_ui_events.lua"
+    },
+    {
+      "sha256": "77ee49e2a366687b0a9293597b5d0402cbe1fa194bae7f4773f69ea2127e5451",
+      "path": "src/lua/abyss_match_event_ui.lua"
+    },
+    {
+      "sha256": "56943e5e770c1e33362981feb49f3705c866164a6b239a56079b3a4bcc47acb9",
+      "path": "tests/lua/match_event_ui.lua"
+    },
+    {
+      "sha256": "6600325ff7f9e83d54c39556d5ee8a0bdd313930026dcda5f406400aade85d7c",
+      "path": "tests/v25-event-readability.test.mjs"
+    },
+    {
+      "sha256": "2d122e71cfd3944c0d4658ba96d0ae18d92c39f4ba4846ef0fecf0c21ee6653a",
+      "path": "experiments/art-tech-lab/map-game.mjs"
+    },
+    {
+      "sha256": "14cc1b7559e06ec91e79b0cd18952b7e032fb2d30a05012283ea157d998bd58f",
+      "path": "tests/event-simulator-fixture.test.mjs"
+    },
+    {
+      "sha256": "11da4f7e0c3eb84eb71ca84c9d3d6fdbba231b802205c08360b6896b68efedff",
+      "path": "experiments/art-tech-lab/event-web-preview.mjs"
+    },
+    {
+      "sha256": "f9849ea8c23436e4279c6402784216fc3932708ef20fd05e7896363c9f4d6e43",
+      "path": "experiments/art-tech-lab/event-room-preview.lua"
+    }
+  ],
+  "base": "5bb9b645002ed6a95378294d81f509994e6c5975",
+  "head": "c5d3a32d0500035863757c60e3bc8ee1bff56b87"
+}

@@ -1,0 +1,31 @@
+✔ seven-refactor exact outer epoch restores every complete predecessor owner (25.190747ms)
+✔ component UI outer epoch authenticates its exact committed slice and original predecessor (14.377074ms)
+✔ official battle historical view binds complete committed sources and rejects partial or foreign inputs (12.487639ms)
+✔ official battle projected live closure rejects every late owner drift and deletion (905.66534ms)
+✔ component config accepts only input layout while freshly authenticating raw linked owners (3.258083ms)
+✔ component UI authorization rejects every late owner drift and deletion after warming (20.598048ms)
+✔ component UI foreign and predecessor inputs stay opaque without linked reads (3.581394ms)
+✔ seven-refactor projection freshly rejects drift and missing owners after warming (2.290727ms)
+✔ foreign and predecessor inputs remain opaque without linked reads (1.271938ms)
+✔ every advertised composed target preserves foreign bytes without linked reads (2.857342ms)
+✔ facades preserve original invalid-reader semantics while public reader factories remain strict (274.077942ms)
+✔ configuration layout admission preserves exact tokens and freshly authenticates all 45 raw owners (38.162537ms)
+✔ configuration layout never repairs invalid number or keyword tokens (2.274378ms)
+✔ pure source calculations reuse exact strings but every projection freshly reads its owners (2.677292ms)
+✔ pure hash memoization evicts by both entry count and retained complete string length (30.457608ms)
+✔ frozen input reuse preserves immutable bindings while default callers retain clone isolation (0.954887ms)
+✔ frozen reuse rejects mutable/accessor/cyclic data and still validates complete source hashes (3.393095ms)
+✔ reused flattened proofs freshly read each declared owner once and stop at the first invalid owner (2.18194ms)
+✔ real UI mock factories share public argument contracts and preserve scene isolation (1399.087224ms)
+✔ native grid destruction invalidates handles and deck consumers survive refresh and viewport churn (7689.156065ms)
+✔ native lifecycle gate detects removal of the production dead-item guard (4928.897105ms)
+✔ deck lifecycle releases Controller records while retaining live reused bindings (13074.646175ms)
+✔ native lifecycle gate detects missing Controller retirement (1681.748527ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28963.511501

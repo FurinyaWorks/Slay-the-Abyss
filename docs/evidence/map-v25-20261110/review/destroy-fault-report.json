@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "scope": "Source-generated full GameUI integration, no GIL or device claim; explicit seed42 and legal selection/Neow/map/combat/menu commands",
+  "totalMs": 19798.2417,
+  "mapCombatRoundtripsMs": 12240.266099999999,
+  "roundtrips": [
+    {
+      "cycle": 1,
+      "wallMs": 574.6875,
+      "controls": 17357
+    },
+    {
+      "cycle": 2,
+      "wallMs": 446.0061999999998,
+      "controls": 17357
+    },
+    {
+      "cycle": 3,
+      "wallMs": 441.3666999999987,
+      "controls": 17357
+    },
+    {
+      "cycle": 4,
+      "wallMs": 401.16079999999965,
+      "controls": 17357
+    },
+    {
+      "cycle": 5,
+      "wallMs": 417.2006999999994,
+      "controls": 17357
+    },
+    {
+      "cycle": 6,
+      "wallMs": 430.58230000000003,
+      "controls": 17357
+    },
+    {
+      "cycle": 7,
+      "wallMs": 424.1196999999993,
+      "controls": 17357
+    },
+    {
+      "cycle": 8,
+      "wallMs": 381.46650000000045,
+      "controls": 17357
+    },
+    {
+      "cycle": 9,
+      "wallMs": 375.670900000001,
+      "controls": 17357
+    },
+    {
+      "cycle": 10,
+      "wallMs": 416.1425999999992,
+      "controls": 17357
+    },
+    {
+      "cycle": 11,
+      "wallMs": 428.0632000000005,
+      "controls": 17357
+    },
+    {
+      "cycle": 12,
+      "wallMs": 447.10050000000047,
+      "controls": 17357
+    },
+    {
+      "cycle": 13,
+      "wallMs": 420.6461999999992,
+      "controls": 17357
+    },
+    {
+      "cycle": 14,
+      "wallMs": 470.64300000000003,
+      "controls": 17357
+    },
+    {
+      "cycle": 15,
+      "wallMs": 436.4395000000004,
+      "controls": 17357
+    },
+    {
+      "cycle": 16,
+      "wallMs": 460.2769999999982,
+      "controls": 17357
+    },
+    {
+      "cycle": 17,
+      "wallMs": 502.7299000000021,
+      "controls": 17357
+    },
+    {
+      "cycle": 18,
+      "wallMs": 491.90989999999874,
+      "controls": 17357
+    },
+    {
+      "cycle": 19,
+      "wallMs": 490.492000000002,
+      "controls": 17357
+    },
+    {
+      "cycle": 20,
+      "wallMs": 409.15100000000166,
+      "controls": 17357
+    }
+  ],
+  "warmControls": 17357,
+  "releasedControls": 0,
+  "logs": [
+    {
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_RUN seed=42 source=explicit",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "MAP_GAME_MODE node",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "MAP_GAME_FINAL node node",
+      "time": 0.49999999999999994
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=map nodeNativeActive=false choiceNativeActive=false",
+      "time": 0.49999999999999994
+    },
+    {
+      "level": "info",
+      "text": "MAP_GAME_ROUTE_READY",
+      "time": 0.49999999999999994
+    },
+    {
+      "level": "lua-error",
+      "text": "OnDestroy: abyss_ui.lua:245: INDEPENDENT_DESTROY_FAULT",
+      "time": 6.866666666666648
+    }
+  ]
+}

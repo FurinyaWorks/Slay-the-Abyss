@@ -1,16 +1,169 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync as nativeReadFileSync} from 'node:fs';
+import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
+// Original assertions retain their explicit frozen source view.
+const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,value,'official'):value;};
 import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
+import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
+import {preRoomUiEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {preOfficialBattleSource,officialBattleSourceProof,officialBattleAlignmentSourceProof as alignment,officialBannerSourceProof as banner,preOfficialBattleShellSource,officialBattleShellSourceProof as shell} from './helpers/official-battle-source-inverse.mjs';
+import {preOfficialBattleInteractionSource,officialBattleInteractionSourceProof as interaction} from './helpers/official-battle-source-inverse.mjs';
 const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
+// Authenticate both the input and every linked owner in the same exact historical view.
+const componentRead=path=>preOfficialBattleSource(path,readFileSync(path,'utf8'));
 test('seven-refactor exact outer epoch restores every complete predecessor owner',()=>{
  assert.equal(proof.owners.length,11);
  for(const path of proof.owners){
-  const source=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  const source=currentEpoch.preCombinedSource(path,componentRead(path),{target:'watcherFlowPrior',readSource:componentRead}).replaceAll('\r\n','\n');
   assert.equal(source,read(path));
   for(const variant of [source,source.replaceAll('\n','\r\n')])
    assert.equal(epoch.preCombinedSource(path,variant,{target:'prior',readSource:read}),proof.targets.prior.files[path].source);
+ }
+});
+
+test('component UI outer epoch authenticates its exact committed slice and original predecessor',()=>{
+ const current=componentEpoch.proof;
+ assert.equal(current.currentCommit,'a0c2dc558b2a37f26678dc104bb98df194b0f2d8');
+ assert.equal(current.currentTreeCommitted,true);
+ assert.equal(current.owners.length,22);
+ const readCurrent=path=>current.current[path]?.source??null;
+ for(const path of current.owners){
+  assert.equal(componentRead(path).replaceAll('\r\n','\n'),readCurrent(path),path);
+  const before=current.targets.componentPrior.files[path];
+  const projected=componentEpoch.preCombinedSource(path,readCurrent(path),{target:'componentPrior',readSource:readCurrent});
+  // Added UI witnesses are retained; retirement is a separate checked action.
+  assert.equal(projected,before?.source??readCurrent(path),path);
+ }
+ for(const path of Object.keys(preComponentUiEpoch.proof.current))
+  assert.deepEqual(current.targets.componentPrior.files[path],preComponentUiEpoch.proof.current[path],path);
+ for(const path of proof.owners)
+  assert.deepEqual(preComponentUiEpoch.proof.targets.watcherFlowPrior.files[path],proof.current[path],path);
+});
+
+test('official battle interaction continuation binds only three complete frozen owners and rejects foreign inputs',()=>{
+ assert.equal(interaction.beforeCommit,'fa67d2fea098218cebe464851d9ee1f1905c7818');
+ assert.equal(interaction.afterCommit,'e4b2e702a89b0f09650e0c47e3a80434488470cd');
+ assert.deepEqual(Object.keys(interaction.files),['config/architecture.json','src/lua/abyss_battle_card_view.lua','src/lua/abyss_deck_ui.lua']);
+ for(const [path,binding]of Object.entries(interaction.files)){
+  const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(actual,binding.afterSource,path);
+  assert.equal(binding.beforeSource,shell.files[path]?.afterSource??componentEpoch.proof.current[path].source,path);
+  for(const source of [actual,actual.replaceAll('\n','\r\n')]){
+   assert.equal(preOfficialBattleInteractionSource(path,source),binding.beforeSource,path);
+   assert.equal(preOfficialBattleSource(path,source),componentEpoch.proof.current[path].source,path);
+  }
+  for(const source of [actual+'\n',actual.slice(1),actual.replace(/\n/,'\n '),binding.beforeSource,null,undefined,{},17]){
+   assert.equal(preOfficialBattleInteractionSource(path,source),source,path);
+   if(source!==binding.beforeSource)assert.equal(preOfficialBattleSource(path,source),source,path);
+  }
+  for(const unknown of ['foreign','__proto__','constructor','src/lua/abyss_battle_card_glow.lua']){
+   assert.equal(preOfficialBattleInteractionSource(unknown,actual),actual);
+   assert.equal(preOfficialBattleSource(unknown,actual),actual);
+  }
+ }
+});
+
+test('official battle historical view binds complete committed sources and rejects partial or foreign inputs',()=>{
+ assert.equal(officialBattleSourceProof.beforeCommit,componentEpoch.proof.currentCommit);
+ assert.equal(officialBattleSourceProof.afterCommit,'5b3e9f11a25211173a3710d570ca8e4c22664d25');
+ assert.equal(Object.keys(officialBattleSourceProof.files).length,4);
+ assert.equal(banner.beforeCommit,'20a23f0095ed3f82020f0ccfb13bca3de617ac73');
+ for(const [path,binding]of Object.entries(banner.files)){
+  assert.equal(binding.beforeSource,alignment.files[path].afterSource,path);
+  assert.equal(preOfficialBattleSource(path,binding.beforeSource),componentEpoch.proof.current[path].source,path);
+ }
+ assert.equal(alignment.beforeCommit,officialBattleSourceProof.afterCommit);
+ assert.equal(alignment.afterCommit,'94327916e236797ba933096d8490fe04d93a6838');
+ assert.equal(shell.beforeCommit,'4278561b4df3defaf879cf4be62ab415d6998e72');
+ assert.equal(shell.afterCommit,'95fab6acf45c5292d6a48dbe7c9cf12d5e6e03b2');
+ for(const [path,binding]of Object.entries(shell.files)){
+  const actual=preOfficialBattleInteractionSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
+  assert.equal(actual,binding.afterSource,path);
+  assert.equal(binding.beforeSource,banner.files[path]?.afterSource??alignment.files[path].afterSource,path);
+  for(const source of [actual,actual.replaceAll('\n','\r\n')])assert.equal(preOfficialBattleShellSource(path,source),binding.beforeSource,path);
+  for(const source of [actual+'\n',actual.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preOfficialBattleShellSource(path,source),source,path);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preOfficialBattleShellSource(unknown,actual),actual);
+ }
+ for(const [path,binding]of Object.entries(alignment.files)){
+  const predecessor=officialBattleSourceProof.files[path]?.afterSource??componentEpoch.proof.current[path].source;
+  assert.equal(binding.beforeSource,predecessor,path);
+  const actual=preOfficialBattleInteractionSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
+  assert.equal(preOfficialBattleShellSource(path,actual),banner.files[path]?.afterSource??binding.afterSource,path);
+  for(const source of [actual,actual.replaceAll('\n','\r\n')])
+   assert.equal(preOfficialBattleSource(path,source),componentEpoch.proof.current[path].source,path);
+  for(const source of [actual+'\n',actual.slice(1),null,undefined,{},17])
+   assert.equal(preOfficialBattleSource(path,source),source,path);
+ }
+ for(const [path,binding]of Object.entries(officialBattleSourceProof.files)){
+  assert.equal(binding.beforeSource,componentEpoch.proof.current[path].source,path);
+  assert.equal(alignment.files[path].beforeSource,binding.afterSource,path);
+  const actual=preOfficialBattleInteractionSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
+  assert.equal(preOfficialBattleShellSource(path,actual),banner.files[path]?.afterSource??alignment.files[path].afterSource,path);
+  assert.equal(preOfficialBattleSource(path,binding.afterSource),binding.beforeSource,path);
+  for(const source of [actual,actual.replaceAll('\n','\r\n')])
+   assert.equal(preOfficialBattleSource(path,source),binding.beforeSource,path);
+  for(const source of [actual+'\n',actual.slice(1),binding.beforeSource,null,undefined,{},17])
+   assert.equal(preOfficialBattleSource(path,source),source,path);
+  for(const unknown of ['foreign','__proto__','constructor'])
+   assert.equal(preOfficialBattleSource(unknown,actual),actual);
+ }
+});
+
+test('official battle projected live closure rejects every late owner drift and deletion',()=>{
+ const path='config/architecture.json',source=componentRead(path);
+ for(const owner of currentEpoch.proof.owners){
+  let bad=false;
+  const reader=key=>{
+   const raw=readFileSync(key,'utf8');
+   return preOfficialBattleSource(key,bad&&key===owner?raw+'\n':raw);
+  };
+  currentEpoch.preCombinedSource(path,source,{target:'watcherFlowPrior',readSource:reader});
+  bad=true;
+  assert.throws(()=>currentEpoch.preCombinedSource(path,source,{target:'watcherFlowPrior',readSource:reader}),/linked owner identity/,owner);
+  assert.throws(()=>currentEpoch.preCombinedSource(path,source,{target:'watcherFlowPrior',readSource:key=>key===owner?null:componentRead(key)}),/linked owner identity/,owner);
+ }
+});
+
+test('component config accepts only input layout while freshly authenticating raw linked owners',()=>{
+ const current=componentEpoch.proof,path='config/architecture.json';
+ const raw=current.current[path].source,compact=JSON.stringify(JSON.parse(raw));
+ const readCurrent=owner=>current.current[owner]?.source??null;
+ assert.equal(componentEpoch.preCombinedSource(path,compact,{target:'componentPrior',readSource:readCurrent}),current.targets.componentPrior.files[path].source);
+ assert.throws(()=>componentEpoch.preCombinedSource(path,compact,{target:'componentPrior',readSource:owner=>owner===path?compact:readCurrent(owner)}),/linked owner identity/);
+ const foreign=compact.replace('"abyss_component_pages":"ui"','"abyss_component_pages":"platform"');
+ assert.notEqual(foreign,compact);
+ let reads=0;
+ assert.equal(componentEpoch.preCombinedSource(path,foreign,{target:'componentPrior',readSource(){reads++;throw Error('unexpected read');}}),foreign);
+ assert.equal(reads,0);
+});
+
+test('component UI authorization rejects every late owner drift and deletion after warming',()=>{
+ const current=componentEpoch.proof,path='config/architecture.json';
+ const readCurrent=owner=>current.current[owner]?.source??null;
+ for(const owner of current.owners){
+  let corrupt=false;
+  const reader=key=>corrupt&&key===owner?readCurrent(key)+'\n':readCurrent(key);
+  componentEpoch.preCombinedSource(path,readCurrent(path),{target:'componentPrior',readSource:reader});
+  corrupt=true;
+  assert.throws(()=>componentEpoch.preCombinedSource(path,readCurrent(path),{target:'componentPrior',readSource:reader}),/linked owner identity/,owner);
+  assert.throws(()=>componentEpoch.preCombinedSource(path,readCurrent(path),{target:'componentPrior',readSource:key=>key===owner?null:readCurrent(key)}),/linked owner identity/,owner);
+ }
+});
+
+test('component UI foreign and predecessor inputs stay opaque without linked reads',()=>{
+ const current=componentEpoch.proof;
+ for(const path of current.owners){
+  const before=current.targets.componentPrior.files[path];
+  const foreign=path==='config/architecture.json'
+   ?JSON.stringify({...JSON.parse(current.current[path].source),componentForeign:true})
+   :current.current[path].source+'\n';
+  for(const source of [foreign,...(before?[before.source]:[])]){
+   let reads=0;
+   assert.equal(componentEpoch.preCombinedSource(path,source,{target:'componentPrior',readSource(){reads++;throw Error('unexpected read');}}),source);
+   assert.equal(reads,0,path);
+  }
  }
 });
 test('seven-refactor projection freshly rejects drift and missing owners after warming',()=>{
@@ -143,4 +296,78 @@ test('pure hash memoization evicts by both entry count and retained complete str
   const previous=hashes;run(oversized);run(oversized);assert.equal(hashes-previous,2,'oversized input is not retained');
   assert.equal(reads,0,'foreign source computations never authorize linked reads');
  }finally{crypto.createHash=originalHash;syncBuiltinESMExports();}
+});
+
+function reusableProofFixture(){
+ const bind=source=>({source,sha256:createHash('sha256').update(source).digest('hex')});
+ return {schemaVersion:1,normalization:'LF',currentCommit:'a'.repeat(40),
+  owners:['config/architecture.json','src/lua/reuse_probe.lua'],
+  current:{'config/architecture.json':bind('{"reuse":"current"}\n'),'src/lua/reuse_probe.lua':bind('return 1\n')},
+  targets:{prior:{commit:'b'.repeat(40),files:{'config/architecture.json':bind('{}\n'),'src/lua/reuse_probe.lua':bind('return 0\n')}}}};
+}
+function freezeProofData(value){
+ if(value&&typeof value==='object'){for(const child of Object.values(value))freezeProofData(child);Object.freeze(value);}
+ return value;
+}
+
+test('frozen input reuse preserves immutable bindings while default callers retain clone isolation',async()=>{
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ const path='config/architecture.json',input=reusableProofFixture(),source=input.current[path].source;
+ const cloned=createSourceEpochProjector(input);
+ input.current[path].source='unreviewed';input.targets.prior.files[path].source='unreviewed';input.owners.length=0;
+ assert.equal(cloned.proof.current[path].source,source);assert.equal(cloned.proof.targets.prior.files[path].source,'{}\n');
+ assert.equal(cloned.proof.owners.length,2);assert.equal(Object.isFrozen(input.current[path]),false);
+ const frozen=freezeProofData(reusableProofFixture()),reused=createSourceEpochProjector(frozen,{reuseFrozenInput:true});
+ assert.equal(reused.proof,frozen);assert(Object.isFrozen(reused.proof.current[path]));
+ assert.throws(()=>{frozen.current[path].source='unreviewed';},TypeError);
+ assert.throws(()=>{frozen.targets.prior.files[path].source='unreviewed';},TypeError);
+ assert.equal(reused.preCombinedSource(path,source,{target:'prior',readSource:p=>frozen.current[p].source}),'{}\n');
+});
+
+test('frozen reuse rejects mutable/accessor/cyclic data and still validates complete source hashes',async()=>{
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ assert.throws(()=>createSourceEpochProjector(reusableProofFixture(),{reuseFrozenInput:true}),/must be frozen/);
+ const broken=reusableProofFixture();broken.current['config/architecture.json'].sha256='0'.repeat(64);
+ assert.throws(()=>createSourceEpochProjector(freezeProofData(broken),{reuseFrozenInput:true}),/source identity SHA256/);
+ const plain=freezeProofData(reusableProofFixture());let getterCalls=0;
+ const binding=Object.freeze({sha256:plain.current['config/architecture.json'].sha256,
+  get source(){getterCalls++;return plain.current['config/architecture.json'].source;}});
+ const accessor=Object.freeze({...plain,current:Object.freeze({...plain.current,'config/architecture.json':binding})});
+ assert.throws(()=>createSourceEpochProjector(accessor,{reuseFrozenInput:true}),/data properties/);assert.equal(getterCalls,0);
+ const symbolic=Object.freeze({...plain,get [Symbol('foreign')](){getterCalls++;return 'unreviewed';}});
+ assert.throws(()=>createSourceEpochProjector(symbolic,{reuseFrozenInput:true}),/no symbol keys/);assert.equal(getterCalls,0);
+ const hidden='src/lua/hidden.lua',hiddenCurrent='return "hidden-current"\n',unauthorized='UNVALIDATED HISTORICAL SOURCE\n';
+ const bind=source=>Object.freeze({source,sha256:createHash('sha256').update(source).digest('hex')}),current={...plain.current},files={...plain.targets.prior.files};
+ Object.defineProperty(current,hidden,{value:bind(hiddenCurrent),enumerable:false});
+ Object.defineProperty(files,hidden,{value:Object.freeze({source:unauthorized,sha256:'0'.repeat(64)}),enumerable:false});
+ const hiddenProof=Object.freeze({...plain,current:Object.freeze(current),targets:Object.freeze({prior:Object.freeze({...plain.targets.prior,files:Object.freeze(files)})})});
+ let hiddenReads=0;const cloned=createSourceEpochProjector(hiddenProof);
+ assert.equal(cloned.preCombinedSource(hidden,hiddenCurrent,{target:'prior',readSource(){hiddenReads++;throw Error('unexpected read');}}),hiddenCurrent);
+ assert.equal(hiddenReads,0);assert.equal(Object.hasOwn(cloned.proof.current,hidden),false);
+ assert.throws(()=>createSourceEpochProjector(hiddenProof,{reuseFrozenInput:true}),/enumerable JSON property/);
+ const extra=[...plain.owners];extra.foreign='unreviewed';Object.freeze(extra);
+ const sparse=Object.freeze(new Array(plain.owners.length));
+ const hiddenIndex=[...plain.owners];Object.defineProperty(hiddenIndex,'0',{value:hiddenIndex[0],enumerable:false});Object.freeze(hiddenIndex);
+ for(const owners of [extra,sparse,hiddenIndex])assert.throws(()=>createSourceEpochProjector(Object.freeze({...plain,owners}),{reuseFrozenInput:true}),/JSON array|JSON property/);
+ const wrongKind=Object.freeze(Object.assign(Object.create(Array.prototype),plain));
+ assert.throws(()=>createSourceEpochProjector(wrongKind,{reuseFrozenInput:true}),/plain data/);
+ const cycle={};cycle.self=cycle;Object.freeze(cycle);
+ assert.throws(()=>createSourceEpochProjector(cycle,{reuseFrozenInput:true}),/acyclic/);
+});
+
+test('reused flattened proofs freshly read each declared owner once and stop at the first invalid owner',async()=>{
+ const {createSourceEpochProjector}=await import('./helpers/combined-epoch/source-epoch-runtime.mjs');
+ const input=freezeProofData(reusableProofFixture()),projector=createSourceEpochProjector(input,{reuseFrozenInput:true});
+ const path='config/architecture.json',source=input.current[path].source;let changed,replacement,reads=[];
+ const reader=owner=>{reads.push(owner);if(owner===changed){if(replacement instanceof Error)throw replacement;return replacement;}return input.current[owner].source;};
+ const project=value=>projector.preCombinedSource(path,value,{target:'prior',readSource:reader});
+ assert.equal(project(source),'{}\n');assert.deepEqual(reads,input.owners);
+ for(const owner of input.owners)for(replacement of [input.current[owner].source+'\n',null,new Error('missing reused owner')]){
+  changed=owner;reads=[];assert.throws(()=>project(source),/combined linked owner/);
+  assert.deepEqual(reads,input.owners.slice(0,input.owners.indexOf(owner)+1));
+  changed=undefined;reads=[];assert.equal(project(source),'{}\n');assert.deepEqual(reads,input.owners);
+ }
+ for(const foreign of [source+'unreviewed',null,undefined,'{}\n']){
+  reads=[];assert.equal(project(foreign),foreign);assert.deepEqual(reads,[]);
+ }
 });

@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: actual source-generated Simulator fixture preserves authored triangle fill direction
+ok 1 - actual source-generated Simulator fixture preserves authored triangle fill direction
+  ---
+  duration_ms: 5841.5891
+  type: 'test'
+  ...
+# Subtest: four V25 event options have two description lines and stay clear of narrative and footer
+ok 2 - four V25 event options have two description lines and stay clear of narrative and footer
+  ---
+  duration_ms: 68.405
+  type: 'test'
+  ...
+# Subtest: V25 event identities use existing theme assets and leave the ordinary theme unchanged
+ok 3 - V25 event identities use existing theme assets and leave the ordinary theme unchanged
+  ---
+  duration_ms: 10.1668
+  type: 'test'
+  ...
+# Subtest: V25 node surfaces retain all original objects, paths, live text and legal pool sizes
+ok 4 - V25 node surfaces retain all original objects, paths, live text and legal pool sizes
+  ---
+  duration_ms: 310.6193
+  type: 'test'
+  ...
+# Subtest: shop cloth, campfire and event parchment contain bounded layered native geometry
+ok 5 - shop cloth, campfire and event parchment contain bounded layered native geometry
+  ---
+  duration_ms: 54.5529
+  type: 'test'
+  ...
+# Subtest: wrapped full game rebuilds the actual reward stage without touching combat or choice ownership
+ok 6 - wrapped full game rebuilds the actual reward stage without touching combat or choice ownership
+  ---
+  duration_ms: 1361.7276
+  type: 'test'
+  ...
+# Subtest: duplicate and malformed input fail before mutation and source gaps are explicit
+ok 7 - duplicate and malformed input fail before mutation and source gaps are explicit
+  ---
+  duration_ms: 207.0244
+  type: 'test'
+  ...
+# Subtest: standalone battle reward transform matches the full game and rejects duplicate application
+ok 8 - standalone battle reward transform matches the full game and rejects duplicate application
+  ---
+  duration_ms: 143.7988
+  type: 'test'
+  ...
+# Subtest: isolated generated V25 nodes execute original shop, camp, event and chest transactions
+ok 9 - isolated generated V25 nodes execute original shop, camp, event and chest transactions
+  ---
+  duration_ms: 73770.9233
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 76395.1556

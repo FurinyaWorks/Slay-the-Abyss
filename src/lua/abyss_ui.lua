@@ -1,7 +1,9 @@
-local view, Viewport, background, cardArt, portraits
+local view, Viewport, background, cardArt, portraits, v25Textures, nativeStage, componentBridge
 local canvasWidth, canvasHeight
 local attempted = false
 local function failed(phase, reason)
+    pcall(function()require('abyss_card_skin').clearSurface()end)
+    if v25Textures then pcall(function()v25Textures:clear()end)end
     print("ABYSS_UI failed " .. phase .. ": " .. tostring(reason))
     if portraits then pcall(function()portraits:release()end) end
     if cardArt then pcall(cardArt.clear) end
@@ -75,8 +77,18 @@ function OnStart()
         Viewport = require("abyss_viewport")
         local width, height = game.GetUICanvasSize()
         local stage = Viewport.apply(script.object, width, height)
+        nativeStage=stage
         print("ABYSS_UI viewport_ready")
         local flags = artFeatures()
+        local hasComponents, componentControls = pcall(function()return script:GetParam('nativeComponentControls')end)
+        if hasComponents and componentControls==true then
+            for key,value in pairs(flags)do assert(value==false,'component comparison forbids legacy artwork: '..key)end
+            local binding=require('abyss_component_binding')
+            componentBridge=require('abyss_component_bridge').new(stage,binding,{
+                instantiate=game.InstantiateClientUIControl,destroy=game.DestroyClientUIControl,color=Color,imageSource=Enum.ImageSource.StaticReference})
+            stage=componentBridge.root
+            print('ABYSS_COMPONENTS attached original-components-control-v1')
+        end
         local createEasterEggArt
         if not flags.cards then
             -- Legacy static candidates embed nativeArt in presentation. Suppress
@@ -96,7 +108,15 @@ function OnStart()
         -- Use native require, not the desktop-only package.loaded assumption.
         require("abyss_card_art_runtime").configure(nil)
         -- Approved gold chrome is pure UI; it remains independent of deferred card illustrations and select fan.
-        optionalArt('cardChrome', function()require("abyss_card_skin").configure('premium')end)
+        if not componentBridge then
+          optionalArt('cardChrome', function()require("abyss_card_skin").configure('premium')end)
+          optionalArt('v25CardSurface',function()
+            local binding=require('abyss_v25_card_assets')
+            v25Textures=require('abyss_v25_texture_runtime').new(binding,{
+                instantiate=game.InstantiateClientUIControl,destroy=game.DestroyClientUIControl})
+            require('abyss_card_skin').configureSurface(binding,v25Textures:surfaceApi())
+          end)
+        end
         if flags.menuBackground then
             createEasterEggArt=function()
                 local factory=require('abyss_traveler_portraits').createController
@@ -144,6 +164,18 @@ function OnStart()
         local nativePageLifecycle=uiProfile.nativePageLifecycle
         local build = require('abyss_narrative').build
         local alpha = type(build)=='table' and build.workKey=='alpha-test'
+        local actorBinding=require('abyss_monster_actor_binding')
+        local actorInstantiate,actorDestroy=game.InstantiateClientUIControl,game.DestroyClientUIControl
+        if componentBridge then
+            actorInstantiate=function(index,parent)
+                local name=index==actorBinding.templateIndex and 'AbyssMonsterActor'
+                    or index==actorBinding.powerTemplateIndex and 'AbyssMonsterPower'
+                    or index==actorBinding.containerTemplateIndex and 'AbyssReadyCardGroup'
+                assert(name,'unmapped component business template '..tostring(index))
+                return componentBridge.instantiateBusiness(index,parent,name)
+            end
+            actorDestroy=function(control)return game.DestroyClientUIControl(componentBridge.unwrap(control))end
+        end
         view = GameUI.new(stage, Data, Presentation, Enum.CursorEventType.CursorClick,
             { background = background, portraits = portraits, cardArt = cardArt, music = music, campaign = true, campaignProfile = "competition-two-act",
               nativePageLifecycle = nativePageLifecycle,
@@ -154,13 +186,17 @@ function OnStart()
               createEasterEggArt=createEasterEggArt,
               characterProfile = (alpha or isTest and testPlay == true) and "competition-candidate" or "production",
               controllerApi = {events=Enum.ControllerNavigationEventType,directions=Enum.ControllerNavigationDir,
-                  modes=Enum.ControllerNavigationMode,getFocus=game.GetControllerFocus,setFocus=game.SetControllerFocus,
+                  modes=Enum.ControllerNavigationMode,
+                  getFocus=function()
+                      local focus=game.GetControllerFocus()
+                      return componentBridge and componentBridge.wrap(focus) or focus
+                  end,
+                  setFocus=function(control)return game.SetControllerFocus(componentBridge and componentBridge.unwrap(control) or control)end,
                   isController=function()
                       local device=game.GetDevice()
                       return device==Enum.Device.Controller or device==Enum.Device.MobileController
                   end},
-              monsterActors=setmetatable({instantiate=game.InstantiateClientUIControl,destroy=game.DestroyClientUIControl},
-                  {__index=require('abyss_monster_actor_binding')}),
+              monsterActors=setmetatable({instantiate=actorInstantiate,destroy=actorDestroy},{__index=actorBinding}),
               nativeMonsterArtEnabled=flags.monsters,
               color = Color, imageSource = Enum.ImageSource.StaticReference, cursorEvents = Enum.CursorEventType, keyEvents = Enum.KeyEventType,
               imageTypes = Enum.ImageType and {basic=Enum.ImageType.Basic,stretch=Enum.ImageType.Stretch},
@@ -195,16 +231,26 @@ function OnUpdate(dt)
             canvasWidth, canvasHeight = width, height
         end
         view:update(dt)
+        if componentBridge then componentBridge:step()end
+        if v25Textures then
+            v25Textures:syncMask(nativeStage)
+            if v25Textures:update() then view:refresh()end
+        end
         if cardArt then cardArt.update() end
     end)
     if not ok then failed("update", reason) end
 end
 
 function OnDestroy()
+    pcall(function()require('abyss_card_skin').destroySurface()end)
+    if v25Textures then pcall(function()v25Textures:onDestroy()end)end
     if view then pcall(function()view:onEngineDestroy()end) end
     if cardArt then cardArt.onEngineDestroy() end
     if portraits then portraits:onEngineDestroy() end
     if background then background:onEngineDestroy() end
+    if componentBridge then componentBridge:onEngineDestroy()end
     background, portraits, cardArt, view = nil, nil, nil, nil
+    v25Textures,nativeStage=nil,nil
+    componentBridge=nil
     script:EnableUpdate(false)
 end

@@ -1,0 +1,32 @@
+[
+  {
+    "path": "license-hosted-failure.log.gz",
+    "sha256": "4696b7072b88d24ce5b4c9c931f57b8151c202b8330402655589de1bc699c305",
+    "rawSha256": "435acc0f06fa494d69b1519f7457fa59817c70494675e5b076325307809a1ec5",
+    "rawBytes": 24991
+  },
+  {
+    "path": "license-diagnostics-fix.log.gz",
+    "sha256": "1f20a1a98690f17a7a3d88fbb5931fcf4b365e0660d0bc9de1644134fdf9fe1b",
+    "rawSha256": "10e155da2ef53c495ea6faec267fd636517a0a2adc89610265f3802c0dfcd928",
+    "rawBytes": 4268
+  },
+  {
+    "path": "license-diagnostics-audit-final.log.gz",
+    "sha256": "fb31cd695821bef511240743954943620ee8d2d765df495b478904e9bfb28bf3",
+    "rawSha256": "f76e22afa83d7f666beea1a7b959008ebe1bd82f91238f36e4f362e095b0a694",
+    "rawBytes": 371
+  },
+  {
+    "path": "license-reviewed-assets.log.gz",
+    "sha256": "7241835039e20dc58d32eb25bb82f9f69f4dc99d53357c74bf2c78deae87a56e",
+    "rawSha256": "007f1c3ac91afa7d694f11619c72d4b5017dc35dd1663bb530ee7a79726f802e",
+    "rawBytes": 52
+  },
+  {
+    "path": "license-diagnostics-audit-pass.log.gz",
+    "sha256": "666519a0d6def41a727d7839d1b91b1cc8a0b941232f6a8d49720ff0a211ca13",
+    "rawSha256": "82350cc6b088c61b2100a71c66c8305390734822907e01fcc4f01b88b3b87101",
+    "rawBytes": 202
+  }
+]

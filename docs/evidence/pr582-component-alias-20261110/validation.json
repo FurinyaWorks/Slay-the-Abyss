@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "pr": 582,
+  "baseCommit": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "previousHead": "06bc84ee4b2b3c7b51486df678ac4551ced1b084",
+  "reuseSource": "1a733d800a2a50309803face7f30fd2a98b2cd31",
+  "environment": {
+    "platform": "linux",
+    "node": "24.22.1"
+  },
+  "runtimeChange": "Add abyss_component_binding.lua to the existing input/output alias preflight before any generated writes.",
+  "historicalProjection": "Three exact complete current files map only to their Git06bc predecessors for historical receipts; no old archive, timing, expected hash or assertion was rewritten.",
+  "tests": {
+    "inputProtection": {
+      "tests": 513,
+      "pass": 513,
+      "fail": 0,
+      "durationMs": 170044.441405
+    },
+    "calibrationAndRuntime": {
+      "tests": 53,
+      "pass": 53,
+      "fail": 0,
+      "durationMs": 21997.843365
+    },
+    "sourceConsumers": {
+      "files": 4,
+      "tests": 49,
+      "pass": 49,
+      "fail": 0,
+      "durationMs": 188896.366111
+    },
+    "independentRuntimeProbes": 8,
+    "independentCalibrationAssertions": 132
+  },
+  "hostedFailure": {
+    "runId": 42591125959,
+    "attempt": 1,
+    "head": "06bc84ee4b2b3c7b51486df678ac4551ced1b084",
+    "testedMerge": "96b54f5b9b9966996701710afe2ad2a0ed29e7eb",
+    "jobIds": [
+      129074595018,
+      129074595213
+    ],
+    "uniqueFailedContracts": 20,
+    "failedExecutions": 40,
+    "logScope": "Complete decoded UTF-8 responses from the GitHub job log endpoint, saved without trimming or newline conversion."
+  },
+  "preservedFailures": [
+    "Three preliminary local setup failures were missing preview PNGs, not regression reproductions. The original bounded materializer then verified all four frozen runtime previews.",
+    "alias-red-complete.log is the real source-overwrite reproduction before repair.",
+    "ci-epoch-red.log is the subsequent exact historical-source mismatch before the outer bridge.",
+    "guidance.log is a missing sparse-checkout guidance file; materializing tracked .cursor resolved it.",
+    "Two independent calibration probe setup/buffer failures are retained with the successful bounded probe."
+  ],
+  "limits": [
+    "No local Full, manual rerun/dispatch, GUI or device work.",
+    "Exact new HEAD hosted Full and review-status/queue/merged verification are pending.",
+    "Old measurements remain historical; no current performance improvement claimed.",
+    "Backlog doctor retains 5 duplicate-ID groups and 93 legacy archive-location warnings."
+  ],
+  "sourceSha256": {
+    "scripts/build-ui.mjs": "b14687b4c9999dbea0a2392480f31f8439383f0d6140cb4b9970b8317748df51",
+    "tests/ci-complete-calibration.test.mjs": "7105927645d6a1bbab515c9c34edb01440e9fa3cb5aa64581153bec5d5be50be",
+    "tests/helpers/component-ui-ci-source-inverse.mjs": "5f3dd23ae04b233ec70fd053e920336ef5cffb6abf61fb968bf590a6a2561926",
+    "tests/helpers/component-alias-ci-source-inverse.mjs": "0df64aa708d8edf89c4464a4cfe8de7ea19898cb73a2e7e7151313f2b879de6c",
+    "tests/helpers/component-alias-ci-source-epoch.json.gz": "3d11025b87ec35e234f99eb3df53dd862a69b75778c88a714db9b694a9c2f93d"
+  },
+  "files": {
+    "alias-full-green.log.gz": {
+      "sha256": "3a3dc5554b5a0c6bbb93983a00ea0bbb47f2d40a8dcf9f5393bcb1c76ccef54a",
+      "bytes": 6229,
+      "uncompressedSha256": "250a9af9123a16616cf1d8be60926ba63ba2edbe885dfcd744fc36e57e3fd839",
+      "uncompressedBytes": 54916
+    },
+    "alias-red-complete.log.gz": {
+      "sha256": "a4b3978de6502a4bc449ed82117751d7953dccbe359b4d3074125cfd0aea8d77",
+      "bytes": 574,
+      "uncompressedSha256": "a16c872f8c01fbe3d7a2fc55151dadddcbaf9a63e512839d5242afdce50189e0",
+      "uncompressedBytes": 1375
+    },
+    "alias-red-materialized.log.gz": {
+      "sha256": "b74a7798638d99134af5fba52c62f060ab8decc41b0f7b2d3769e1bbea08a9f1",
+      "bytes": 531,
+      "uncompressedSha256": "c4cc2249d3d02bf494704b23bbacb553cbfbde16fee0253ed9b9d8fc1f284be4",
+      "uncompressedBytes": 1321
+    },
+    "alias-red-ready.log.gz": {
+      "sha256": "e6da2e1328439321df0e8972aa3b62546e42cfa34b5c65c48646ecb025c211f8",
+      "bytes": 530,
+      "uncompressedSha256": "cd47a0363ca8f6694c8f1e414686d0dfc03cf5e8d3aa0c69873b4f702c1e27a0",
+      "uncompressedBytes": 1320
+    },
+    "alias-red.log.gz": {
+      "sha256": "ab32b91b52d8017fd0aeff275d73da88418ed674b9326c3efb54270528b6f701",
+      "bytes": 531,
+      "uncompressedSha256": "c67c4bab5019b243ae4b722c0c757a2ebd7ff127f3dd075c6476c948ff5a8576",
+      "uncompressedBytes": 1321
+    },
+    "backlog-doctor.log.gz": {
+      "sha256": "fc5e2ae6415bfee3ee603e8baee14570b7b5969e31a2f5851f1a687e3d38e960",
+      "bytes": 1842,
+      "uncompressedSha256": "a5225dc366dd2a55867c806d2c8ee22bfefbde6a584f6de3fb4af33ff6afb54d",
+      "uncompressedBytes": 4785
+    },
+    "backlog-final.log.gz": {
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "bytes": 361,
+      "uncompressedSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "uncompressedBytes": 382
+    },
+    "backlog-notes.log.gz": {
+      "sha256": "1759febe93e37efacebd0aae2e1d4676494de2fc3fac3120532b76d259cce373",
+      "bytes": 44,
+      "uncompressedSha256": "ba99fa068a9b20b2a42bd2f3ec7e54c7a5594eebcd98d546a2acafe75e55dadc",
+      "uncompressedBytes": 24
+    },
+    "backlog-plan.log.gz": {
+      "sha256": "1759febe93e37efacebd0aae2e1d4676494de2fc3fac3120532b76d259cce373",
+      "bytes": 44,
+      "uncompressedSha256": "ba99fa068a9b20b2a42bd2f3ec7e54c7a5594eebcd98d546a2acafe75e55dadc",
+      "uncompressedBytes": 24
+    },
+    "ci-contracts-green.log.gz": {
+      "sha256": "d812a52d978df77ea5cf67f68b450805b269903b8cdd2e50ef0f2b8ffc5b40cd",
+      "bytes": 2487,
+      "uncompressedSha256": "b9dda6a02ede6e233d3fa14832cef0087a69201df9f3b7ed4fd363adb922a5ec",
+      "uncompressedBytes": 6685
+    },
+    "ci-epoch-red.log.gz": {
+      "sha256": "9d148a02ad1e1bdaeda1b3f1c249c0b12da41cb04c35e1b47b271b4778336b8b",
+      "bytes": 4244,
+      "uncompressedSha256": "0527251a0d29d4d0ec9f9867b9a08c6a2288659e9a85685c9fc63d888ad19034",
+      "uncompressedBytes": 23482
+    },
+    "guidance-final2.log.gz": {
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "bytes": 287,
+      "uncompressedSha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "uncompressedBytes": 482
+    },
+    "guidance.log.gz": {
+      "sha256": "64e0b3082f5223f4b73931564231198287926be4861a3da6a555520447d2f111",
+      "bytes": 288,
+      "uncompressedSha256": "7322d76e0ae366d8568f4d23db9b0184183cecbe007d1909f2e873cb03c35d15",
+      "uncompressedBytes": 438
+    },
+    "hosted-129074595018.log.gz": {
+      "sha256": "b7cad41878ae5734b4f5d894232bd284f76c6745752eb717c59321d4886bb5a0",
+      "bytes": 33676,
+      "uncompressedSha256": "48e79f0bac1c48f0a263286b4ed6b1cf7ba2af0dc50bb51b4399d2de998ef7d2",
+      "uncompressedBytes": 184095
+    },
+    "hosted-129074595213.log.gz": {
+      "sha256": "6907827a3b8c65f8f8711f9a8ffaa019189860e1aa6931cc7560423717415b3c",
+      "bytes": 34079,
+      "uncompressedSha256": "805f24acb7f3a1dcc91da5d25d24d27af051b1ce5b4f81d856b749140219da0e",
+      "uncompressedBytes": 185649
+    },
+    "independent-boundary-probe.log.gz": {
+      "sha256": "7357e2e17f45cea9b6d243d45273abeaa87ab71463a24446a0b6d9193f670baa",
+      "bytes": 286,
+      "uncompressedSha256": "7d25560bca1435047eb758d474ed3f5195c377aa3c595574a67027af7aa0438a",
+      "uncompressedBytes": 944
+    },
+    "independent-boundary-probe.mjs.gz": {
+      "sha256": "883e433e89dc86aab9872b832febeddb63ff0cfc9abc620cb945ef7797077618",
+      "bytes": 1067,
+      "uncompressedSha256": "535b969de282fe4760e08cb3945e5b60dec66025b6924dbd1aeccf9580c09336",
+      "uncompressedBytes": 2794
+    },
+    "independent-calibration-probe-buffer-failure.log.gz": {
+      "sha256": "26a26be7cfdd3a4b0241142e9569111050aa85ca0ba098a56ecf0c0a0518867d",
+      "bytes": 994,
+      "uncompressedSha256": "f4a89262e094b28a97996398fe79d28b4fc28eb1a54f254daa75cef6830ed962",
+      "uncompressedBytes": 2684
+    },
+    "independent-calibration-probe-setup-failure.log.gz": {
+      "sha256": "49347189c950b62f0da6e29642b8249ad4ddea4daee38a32e2346dbc561e4366",
+      "bytes": 476,
+      "uncompressedSha256": "92df1f4fed2addbe378a357b974d30ae5cb06183d0a69ccb10cac8dcbfb57dd7",
+      "uncompressedBytes": 1199
+    },
+    "independent-calibration-probe.log.gz": {
+      "sha256": "0ffe5d35047deb96a553febc77d2ab4119489b83e5db75931718c5aaa3ffa17e",
+      "bytes": 263,
+      "uncompressedSha256": "d099d5421cfce1934867fd3e017f2160ac193e8deed491f04744661774daaf06",
+      "uncompressedBytes": 537
+    },
+    "independent-calibration-probe.mjs.gz": {
+      "sha256": "86b008fbb0be4340217a21c1f1eb33dbebd2d2ea62cfd79175cef1a8e6ff8cbe",
+      "bytes": 1261,
+      "uncompressedSha256": "527658628a076f7e6ec7d359dafdec07e55f7010133a48c6ecbd7ec8c5cb2357",
+      "uncompressedBytes": 3314
+    },
+    "independent-calibration-review.json": {
+      "sha256": "cf78de126db007c11a8ca61778d5c9b5f21aa1096ea31b4e9558e0bcc3e9c009",
+      "bytes": 1849
+    },
+    "independent-calibration-review.md": {
+      "sha256": "a27eec46fd7011abcae59dac88e1b8418e65205276fa0b1676a9d4c313e56904",
+      "bytes": 2443
+    },
+    "independent-review.json": {
+      "sha256": "8c99e2592355518a8885fc47df44ba69cc8dd2ad37ca74c96734a8c6d63a7199",
+      "bytes": 1465
+    },
+    "independent-review.md": {
+      "sha256": "b813d158319f094f562fdc4072373faf8cf769ffb73ad7a798b2773c3a22b70a",
+      "bytes": 2449
+    },
+    "materialize.log.gz": {
+      "sha256": "23d01b6a0fa38bac5b9af027e0dfd952935e41941b9a6859c3cdecf42fc23805",
+      "bytes": 71,
+      "uncompressedSha256": "954aa3397315c6160a41b617590b0327e788b25e824e288c84b97b2bf6afe272",
+      "uncompressedBytes": 52
+    },
+    "related-final-plan.log.gz": {
+      "sha256": "7c41741c011b0ddfafab559862889822b1c426da1292855bf35277044538e18d",
+      "bytes": 353,
+      "uncompressedSha256": "b361812b22cdde3bb4477ec10d0338acf49f9146b9b67844e97ae79774884580",
+      "uncompressedBytes": 827
+    },
+    "related-plan.log.gz": {
+      "sha256": "5e9b739e7a678057c21e7509bb9a0150ae86840a1048342833b2c8a9711bd0e3",
+      "bytes": 522,
+      "uncompressedSha256": "c876770aabcc7fe6b1b87e9949670d8ae499f1e23c87d43bf1ee521b6de9ca61",
+      "uncompressedBytes": 860
+    },
+    "source-consumers-green.log.gz": {
+      "sha256": "b0c262263c5f783a9689338ad944e082a5e8f782693fdc1b25c536cc3dfc43f7",
+      "bytes": 1678,
+      "uncompressedSha256": "69cbaadbcc701e70bf83df30d1511ee7dc833e3e1e0a847f4521ca342e5b75f6",
+      "uncompressedBytes": 5879
+    },
+    "syntax-full.log.gz": {
+      "sha256": "ab3c453da85dc4f69d65d65964aa148d2bc808f2eb5c4fdc9fb1491a257cf6bf",
+      "bytes": 269,
+      "uncompressedSha256": "428404b2b437d79c58abbb235c75251e8c750236bbddc10c71280bdcc64eafae",
+      "uncompressedBytes": 410
+    }
+  }
+}
