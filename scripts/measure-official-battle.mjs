@@ -40,7 +40,10 @@ try{
     for i,card in ipairs(c.hand)do local def=C.cardDefinition(c,card);local plain=C.canPlay(c,card.uid,nil);local target=C.canPlay(c,card.uid,1);cards[i]={uid=card.uid,id=card.cardId,type=def.type,plain=plain,target=target}end
     for i,e in ipairs(c.enemies)do local g=require('abyss_battle_enemy_view').geometry(e);enemies[i]={hp=e.hp,x=g.hitX,y=g.hitY}end
    end
-   return {phase=v.run and v.run.phase,mode=v.mode,hand=c and #c.hand,energy=c and c.energy,turn=c and c.turn,busy=v.battleUI.busy,selected=v.battleUI.selected,cards=cards,enemies=enemies,deckOpen=v.deckUI.visible,portraits=__BATTLE_PORTRAITS:status()}
+   local discard,pile={},{}
+   for _,card in ipairs(c and c.discard or {})do discard[#discard+1]=card.uid end
+   for _,card in ipairs(v.deckUI.cards or {})do pile[#pile+1]=card.uid end
+   return {phase=v.run and v.run.phase,mode=v.mode,hand=c and #c.hand,energy=c and c.energy,turn=c and c.turn,busy=v.battleUI.busy,selected=v.battleUI.selected,cards=cards,enemies=enemies,deckOpen=v.deckUI.visible,pileKind=v.deckUI.pileKind,discard=discard,pile=pile,routeOpen=v.routeOpen==true,portraits=__BATTLE_PORTRAITS:status()}
   end`,'READ_ONLY_BATTLE_STATUS');
   assert(session.runtime.logs.some(l=>l.text==='ABYSS_UI ready'));return status();
  });
@@ -60,8 +63,10 @@ try{
   }
   assert(outcomes.length>0,'no card command executed');return {commandsExecuted:outcomes.length,outcomes};
  });
+ stage('actual-discard-pile-browse',()=>{const before=drain();tap('stage/battlePanel/discardIcon/hit');const opened=status();assert(opened.deckOpen&&opened.pileKind==='discard');const uids=value=>Object.values(value??{}).sort((a,b)=>a-b);assert.deepEqual(uids(opened.pile),uids(before.discard),'discard browser differs from real combat pile');tap('stage/deckPanel/close/hit');const after=status();assert(!after.deckOpen);assert.equal(after.hand,before.hand);assert.equal(after.energy,before.energy);return {opened,after}});
  stage('actual-end-turn',()=>{const before=drain();if(before.phase==='combat'){tap('stage/battlePanel/endTurn');const after=drain();assert(after.turn>before.turn||after.phase!=='combat','turn did not advance');return after}return before});
  stage('twenty-open-close-cycles',()=>{const counts=[];for(let i=0;i<20;i++){tap('stage/deckEntry/open/hit');assert(status().deckOpen);tap('stage/deckPanel/close/hit');assert(!status().deckOpen);counts.push(session.runtime.controlsById.size)}assert.equal(new Set(counts.slice(1)).size,1,'controls grow after warm cycle');return {counts,state:status()}});
+ stage('twenty-route-preview-roundtrips',()=>{const before=drain(),counts=[];for(let i=0;i<20;i++){tap('stage/battlePanel/topBar/battleRoute/hit');assert(status().routeOpen,'route shortcut did not open');tap('stage/mapPanel/previewBack/hit');assert(!status().routeOpen,'route did not return');counts.push(session.runtime.controlsById.size)}const after=status();assert.equal(after.hand,before.hand);assert.equal(after.energy,before.energy);assert.equal(new Set(counts.slice(1)).size,1,'route roundtrip controls grow');return {counts,state:after}});
  stage('engine-root-cleanup',()=>{for(const runtime of session.runtimes)for(const root of [...runtime.roots])runtime.destroyControl(root);assert.equal(session.runtime.controlsById.size,0);assert.equal(rootScript.alive,false);return {liveControls:0}});
  report.status='passed';
 }catch(error){report.status='failed';report.error=String(error.stack);process.exitCode=1}

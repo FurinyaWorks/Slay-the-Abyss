@@ -56,9 +56,10 @@ function energyChrome(icon,theme){
   image('emberRim',[size-17,size-17],disc,'#852024'),
   image('ember',[size-24,size-24],disc,'#E84D12'),
   image('amber',[size*.62,size*.62],disc,'#FFAD20',[-size*.025,size*.04]),
-  image('warmLight',[size*.44,size*.44],theme.image.discSoft,'#FFF7A6',[-size*.05,size*.08]),
+  image('warmLight',[size*.58,size*.58],100002,'#FFF7A6',[-size*.05,size*.08],{feather:{pixels:[12,12]}}),
  ]);
  // The runtime-owned light sits above the new ornament and still hides at 0 energy.
+ light.image=100002;light.feather={pixels:[14,14]};
  icon.children=[chrome,ring,light,core,requireChild(icon,'valueShadow')];
 }
 
@@ -97,8 +98,12 @@ export function applyV25BattleChrome(layout,theme){
  const piles=['draw','discard'].map(name=>requireChild(root,name+'Icon'));
  for(const pile of piles)for(const name of ['image','face','captionPlate','back2','back1','front','glyph','hit'])requireChild(pile,name);
  for(const state of turnStates){
-  for(const name of ['plate','plateLeft','plateRight'])requireChild(state,name).visible=false;
+  // The old hex button also owns border/inner side wedges. Keeping those
+  // visible makes the restored 143px button sprout gold wings from the wider
+  // former shell. Preserve handles for the controller, hide their paint.
+  for(const part of state.children)if(part.name!=='label')part.visible=false;
   const label=requireChild(state,'label');
+  label.text.colour=state.name==='disabled'?'#8F9591':'#E2DFD0';
   // Keep original objects and paths, including Lua's invisible compatibility plates.
   state.children=[...state.children.filter(node=>node!==label),turnChrome(state.name,turn.size,theme),label];
  }

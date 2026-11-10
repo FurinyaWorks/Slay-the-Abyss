@@ -157,6 +157,27 @@ assert(b.turn==2 and b.energy==3 and b.player.hp<playerHP,'enemy damage and next
 assert(p:GetChild('energy').text=='3/3')
 for _,entry in ipairs(textures)do assert(entry[1].imageId==entry[2],'hand refresh lost official texture')end
 unchanged(H.F.Data,dataBefore,'gameplay mutated generated Core data')
+-- A dead preview target must not make Clash glow when the other real target
+-- is rejected by its original only-attacks rule.
+local ch,cu,cp,_,_,_,_,cr=H.setup({'clash','defend'},{'cultist','jaw_worm'})
+local cb=ch.run.combat;cb.enemies[1].hp=0;cu.target=1;ch:refresh()
+for i,card in ipairs(cb.hand)do if card.cardId=='clash'then
+ assert(not C.canPlay(cb,card.uid,1)and not C.canPlay(cb,card.uid,2))
+ assert(not cp:GetChild('card'..i):GetChild('nativePlayableRim').visible,'Clash has no legal target but glows')
+end end
+-- Shortcut retains the existing modal transaction identity, including a
+-- mandatory choice that opens/closes between physical Down and Up.
+local rh=cp:GetChild('topBar'):GetChild('battleRoute'):GetChild('hit')
+local function routeEvent(kind,id)return rh.listeners[kind]({touchId=id})end
+routeEvent('down',700);ch.choiceUI.generation=ch.choiceUI.generation+1
+routeEvent('up',700);assert(not routeEvent('click',700)and not ch.routeOpen)
+ch.choiceUI.visible=true
+routeEvent('down',701);routeEvent('up',701);assert(not routeEvent('click',701)and not ch.routeOpen)
+ch.choiceUI.visible=false
+routeEvent('down',702);routeEvent('up',702);assert(routeEvent('click',702)and ch.routeOpen)
+assert(cr:GetChild('mapPanel'):GetChild('previewBack'):GetChild('label').text=='返回战斗')
+assert(ch:closeExit()and not ch.routeOpen and ch.mode=='battle')
+assert(cr:GetChild('mapPanel'):GetChild('previewBack'):GetChild('label').text~='返回战斗')
 `, 'OFFICIAL_RUNTIME_COMBAT_PASS');
 });
 

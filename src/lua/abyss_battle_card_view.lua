@@ -9,9 +9,22 @@ local CardDisplay = require("abyss_card_display")
 local number = require("abyss_numbers").integer
 local C, L = Theme.color, Theme.layout
 local titleInk=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleCardTitleInk or Theme.cardSkin.text.title
+local bannerTints=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleBannerByRarity
 local D = L.cardDrag
 local typeNames = { attack = "攻击", skill = "技能", power = "能力", status = "状态", curse = "诅咒" }
 local M = {}
+local function bannerInk(definition)
+    if bannerTints then return bannerTints[definition.rarity]or bannerTints.basic end
+    return C.rarityBand[definition.rarity]or C.rarityBand.basic
+end
+local function canAimCard(card,battle)
+    if card.playable then return true end
+    if card.blockReason~='invalid_target' or not card.instance or not battle then return false end
+    for index in ipairs(battle.enemies)do
+        if Combat.canPlay(battle,card.instance.uid,index)then return true end
+    end
+    return false
+end
 
 local function lerpSnap(value, target, dt, rate, threshold)
     local nextValue=value+(target-value)*math.min(1,dt*rate)
@@ -238,7 +251,8 @@ function M.new(view, controls)
         tint(box:GetChild("border"), (card.selected or hovered) and C.goldBright
             or enabled and (C.rarity[definition.rarity] or C.line) or C.line)
         -- The title banner and its rule carry rarity, as on the original cards.
-        tint(box:GetChild("nameBand"), C.rarityBand[definition.rarity] or C.rarityBand.basic)
+        tint(box:GetChild("nameBand"), bannerInk(definition))
+        local right=box:GetChild('nativeBannerRight');if right then tint(right,bannerInk(definition))end
         tint(box:GetChild("nameRule"), C.rarity[definition.rarity] or C.line)
         tint(box:GetChild("artPlate"), enabled and (C.cardType[definition.type] or C.panelRaised) or C.panelSunken)
         CardDisplay.writeArt(box:GetChild("art"), definition, picture,box)
@@ -283,6 +297,8 @@ function M.new(view, controls)
         local printed=card.upgraded and base.upgrade and base.upgrade.cost or base.cost
         CardSkin.apply(box,card.definition,controls.platform,{dim=not card.playable,selected=card.selected or hovered,
             cost=card.definition.cost,baseCost=printed,blockReason=card.blockReason,surfaceScope='battle'})
+        local rim=box:GetChild('nativePlayableRim')
+        if rim then rim:SetVisible(context.active and canAimCard(card,context.battle))end
     end
 
     local function renderSlot(context, i, aimUid, aimTarget)

@@ -76,13 +76,21 @@ test('approved battle geometry keeps live field identities and input contracts w
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
  assert.equal(result.cardHosts,cards.length);assert(cards.length>=40);assert(result.removedControls>500);
  const battleBodies=new Set(all(child(layout,'battlePanel')));
- for(const card of cards){assert.equal(child(child(card,'roundBody'),'flat').image,battleBodies.has(card)?100001:107253);assert.equal(child(child(card,'roundFrame'),'flat').image,battleBodies.has(card)?100001:107253);assert.equal(child(card,'costCore').image,107270);}
+ for(const card of cards){assert.equal(child(child(card,'roundBody'),'flat').image,battleBodies.has(card)?100001:107253);assert.equal(child(child(card,'roundFrame'),'flat').image,battleBodies.has(card)?100001:107253);assert.equal(child(card,'costCore').image,battleBodies.has(card)?107203:107270);}
   const battle=child(layout,'battlePanel');
   assert.deepEqual(child(battle,'hero').position,[-324,-37]);
   assert.equal(child(child(battle,'hero'),'name').visible,false);
   assert.deepEqual(child(battle,'endTurn').position,[454.5,-220]);
   assert.deepEqual(child(battle,'endTurn').size,[143,56]);
   assert.deepEqual(child(battle,'drawIcon').position,[-585.5,-311.5]);
+  for(const kind of ['draw','discard']){
+   const pile=child(battle,kind+'Icon'),hit=child(pile,'hit'),label=child(battle,kind+'Label');
+   const hx=pile.position[0]+hit.position[0],hy=pile.position[1]+hit.position[1];
+   assert(hx-hit.size[0]/2<=label.position[0]-label.size[0]/2&&hx+hit.size[0]/2>=label.position[0]+label.size[0]/2,'pile caption must be clickable');
+   assert(hy+hit.size[1]/2>=label.position[1]+label.size[1]/2,'pile caption top must be clickable');
+   const turn=child(battle,'endTurn');
+   assert(hx+hit.size[0]/2<turn.position[0]-turn.size[0]/2||hx-hit.size[0]/2>turn.position[0]+turn.size[0]/2,'pile target must not overlap irreversible End Turn');
+  }
   for(let i=1;i<=10;i++){
    const card=child(battle,'card'+i);assert(card);
    assert.deepEqual(card.size,[150,210]);
@@ -100,7 +108,10 @@ test('scene and button substitutions preserve semantic icons and all four native
  applyOfficialAssets([layout],theme);
  const battle=child(layout,'battlePanel'),turn=child(battle,'endTurn');
  assert.deepEqual(turn.states,{normal:'normal',hover:'hover',pressed:'pressed',disabled:'disabled'});
-  for(const state of turn.children)assert.equal(child(state,'plate').image,nativeTheme.officialAssets.images.button);
+  for(const state of turn.children){
+   assert(child(state,'v25Chrome'));
+   for(const name of ['border','borderLeft','borderRight','inner','innerLeft','innerRight','plate','plateLeft','plateRight'])assert.equal(child(state,name).visible,false,'legacy '+name+' must not widen the restored turn button');
+  }
  for(const [path,node]of paths(layout))if(/\/(portrait|intentIcon|intentBadge|intentExtra|hpIcon|goldIcon|blockedLock|art|art_attack|art_skill|art_power|icon)$/.test(path)&&node.kind==='image')
   assert.equal(node.image,before.get(path),path);
  assert.equal(child(child(layout,'menuPanel'),'backdrop').image,nativeTheme.image.officialBackdrops.title);

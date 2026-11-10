@@ -3,6 +3,7 @@ import {applyV25BattleScene} from './v25-battle-scene.mjs';
 import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
 import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
 import {v25Theme,applyV25BattleLayout} from './v25-layout.mjs';
+import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
 const children=node=>node?.controls??node?.children??[];
 const child=(node,name)=>children(node).find(item=>item.name===name);
 const required=(node,name)=>{const value=child(node,name);if(!value)throw Error('Official assets missing '+name);return value;};
@@ -21,10 +22,15 @@ export function officialAssetsTheme(source){
  theme.presentationProfile='official-assets-first';
  theme.cardSkin.text.body=theme.officialAssets.cardInk;
   theme.cardSkin.costText=theme.officialAssets.costInk;
+  theme.cardSkin.battleCostText=theme.officialAssets.battleCostInk;
+  theme.cardSkin.battleCostRingOpacity=theme.officialAssets.battleCostRingOpacity;
+  theme.cardSkin.battleArtWells=theme.officialAssets.battleArtWells;
   theme.color.officialBackdropVeil=theme.officialAssets.backdropVeil;
+  theme.color.topPanelHp='#EF7777';theme.color.topPanelGold='#F1CA67';
   for(const key of Object.keys(source.v25Battle.layout))theme.layout[key]=structuredClone(approved.layout[key]);
   for(const key of Object.keys(source.v25Battle.font))theme.font[key]=approved.font[key];
   Object.assign(theme.motion,source.v25Battle.motion);
+  theme.layout.energy.faceColour='#FFE35D00';
   theme.cardSkin.artWells=structuredClone(approved.cardSkin.artWells);
   theme.cardSkin.typeInk=approved.cardSkin.typeInk;
   // The frozen original maps starter/basic shells to the common silver frame.
@@ -40,20 +46,45 @@ function cardFace(face,theme,battle=false){
    setImage(image,battle?theme.image.rect:art.images.cardPanel,name==='roundBody'?art.cardBodyTint:undefined);
  }
  if(battle){
-  const body=required(face,'roundBody'),flat=required(body,'flat');
+  face.children.unshift({name:'nativePlayableRim',kind:'container',visible:false,size:[150,210],children:[
+   ...[-1,1].map(side=>({name:'side'+side,kind:'image',position:[side*75,0],size:[4,212],image:100001,colour:'#43C6BD',opacity:.55,feather:{pixels:[2,2]}})),
+   ...[-1,1].map(side=>({name:'edge'+side,kind:'image',position:[0,side*105],size:[154,4],image:100001,colour:'#43C6BD',opacity:.55,feather:{pixels:[2,2]}})),
+  ]});
+  const body=required(face,'roundBody'),flat=required(body,'flat');flat.colour=art.battleCardBodyTint;
   body.children.unshift({name:'nativePaperTrim',kind:'image',position:[...flat.position],size:[...flat.size],image:art.images.cardPanel,imageType:'basic',colour:art.battleCardTrim});
   flat.size=flat.size.map(value=>value-art.battleCardInset);
-  const band=required(face,'nameBand'),skin=required(face,'skin');
-  skin.children.push({name:'nativePaperBanner',kind:'image',position:[...band.position],size:[...band.size],image:art.images.cardPanel,imageType:'basic',colour:art.battleCardBannerTint});
-  const title=required(face,'name');title.text.colour=art.battleCardTitleInk;title.text.outline=true;title.text.outlineColour='#FFF6E2';title.text.outlineOpacity=.45;
+  const band=required(face,'nameBand'),skin=required(face,'skin'),title=required(face,'name');
+  band.image=art.images.battleBanner;band.imageType='basic';band.position=[...title.position];band.size=[title.size[0],theme.layout.card.nameBand];band.colour=art.battleCardBannerTint;
+  face.children.splice(face.children.indexOf(band),1);face.children.splice(face.children.indexOf(title),0,band);
+  // Two clipped halves gently bend the native ribbon without raster rebuilds.
+  band.rotation=art.battleRibbonTilt;band.fill={shape:'horizontal',from:'left',amount:art.battleRibbonFill};
+  const right=structuredClone(band);right.name='nativeBannerRight';right.rotation=-art.battleRibbonTilt;right.fill.from='right';
+  face.children.splice(face.children.indexOf(band)+1,0,right);
+  required(face,'nameRule').visible=false;
+  // Reuse the live rarity-owned banner path above. Old rectangle bands would
+  // cover its folded silhouette; retain their handles for cached tint writers.
+  for(const part of children(skin))if(part.name==='gloss'||/^band\d+$/.test(part.name))part.visible=false;
+  title.text.colour=art.battleCardTitleInk;title.text.outline=true;title.text.outlineColour='#373737';title.text.outlineOpacity=1;
+  for(const [name,width]of [['tagEdge',45],['tagBody',42]]){
+   const tag=required(face,name);tag.size[0]=width;required(tag,'flat').size[0]=width;
+   if(name==='tagBody')required(tag,'flat').colour='#C4CAD3';
+  }
+  for(const kind of ['attack','skill','power']){
+   const window=required(skin,kind),well=required(window,'well');
+   for(const [index,scale]of [.95,.7,.45].entries())well.children.push({name:'nativeWindowLight'+index,kind:'image',position:[0,window.size[1]*.12],size:[window.size[0]*scale,window.size[1]*scale*.8],image:100002,colour:kind==='attack'?'#A53630':kind==='skill'?'#45636A':'#A48049',opacity:.14,feather:{pixels:[26,14]}});
+  }
  }
  for(const name of ['label','description']){
   const text=child(face,name);if(text?.kind==='text')text.text.colour=art.cardInk;
  }
- setImage(required(face,'costCore'),art.images.costDisc,'#FFFFFF');
+ setImage(required(face,'costCore'),battle?art.images.battleCoin:art.images.costDisc,battle?'#FFD06A':'#FFFFFF');
  // Preserve the animated, semantic cost ring and red/green cost deltas. The
 // official medallion is a single untinted backing, never the dynamic number.
  const disc=required(face,'costCore');disc.size=[Math.min(...disc.size),Math.min(...disc.size)];
+ if(battle){
+  disc.size=[34,34];disc.imageType='basic';
+  const cost=required(face,'cost');cost.text.outline=true;cost.text.outlineColour='#4A2B27';cost.text.outlineOpacity=1;
+ }
 }
 function battleSurfaces(root,theme){
  walk(root,node=>{
@@ -83,13 +114,14 @@ function battleSurfaces(root,theme){
   for(const node of [required(root,'potion'+index),child(child(root,'potionHelp'),'potionHelp'+index)]){
    if(node){
     node.position=[x,hud.y];
-    for(const face of children(node))if(['normal','hover','pressed','disabled'].includes(face.name))face.scale=(face.scale??[1,1]).map(value=>value*hud.potionScale);
+    for(const face of children(node))if(['normal','hover','pressed','disabled'].includes(face.name))face.scale=(face.scale??[1,1]).map((value,axis)=>value*(Array.isArray(hud.potionScale)?hud.potionScale[axis]:hud.potionScale));
    }
   }
   const caption=child(child(root,'potionHelp'),'potionCaption'+index);if(caption)caption.position=[x,hud.potionCaptionY];
  }
 }
 function buttonFaces(node,theme){
+ if(node.name==='endTurn'&&child(child(node,'normal'),'v25Chrome'))return;
  const parts=children(node),isStateButton=node.kind==='presetButton';
  const hasHit=parts.some(item=>item.name==='hit'&&item.kind==='cursorArea');
  const hasCaption=parts.some(item=>item.name==='label'&&item.kind==='text');
@@ -174,6 +206,7 @@ export function applyOfficialAssets(trees,theme){
     const battle=child(stage,'battlePanel')??stage;
     for(const node of children(battle))if(/^card\d+$/.test(node.name))battleCards.add(node);
     battleSurfaces(battle,theme);
+    officialBattleHud(battle,theme);officialBattleUtilityFaces(stage,theme);
    }
    const result=compactBoundedCardFaces(tree,[],{preserveWindows:true});removedControls+=result.removedControls;
    walk(tree,node=>{
