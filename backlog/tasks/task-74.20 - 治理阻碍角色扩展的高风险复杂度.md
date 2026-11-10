@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T19:23:00Z'
+updated_date: '2026-11-09T23:59:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -33,6 +33,7 @@ documentation:
   - docs/backlog-details/M7-FORMATION-POSIX15-INTEGRATION-20261109.md
   - docs/backlog-details/M7-MAP-EMERALD-20261109.md
   - docs/evidence/m7-map-emerald-cost-20261110/README.md
+  - docs/evidence/m7-map-cost-registration-20261110/README.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -113,6 +114,8 @@ ordinal: 162000
 接续既有 PR #591：复用原生产独审与完整 Hosted 结果，仅补四个缺项 CI 文件的单文件完整进程收据；先前后输入 hash，再执行，保留完整日志与原较慢观测。核实完整成本后据实登记规划与严格历史投影，独审通过才公开接续，不重复 Full、不增加切片、不改原预算及准入。
 
 PR #591成本补证收口：独立核查确认只改timings会破坏现有精确历史绑定；本轮先交付四项完整收据和原planner完整诊断，不新增历史层或改预算。正式登记七项成本及对应合同接线保留待办，原overall BLOCKED不撤销。
+
+2026-11-10 接续 #591 成本准入：在独立工作树登记七项公开完整进程成本并保留旧观测；通过精确完整字节的外层合同投影保持原历史断言，不改原档、预算、矩阵、worker 或测试覆盖。先证明原预算下不可仅靠重新分配，再定位真正可测量的开销改进；仅运行受影响完整文件并记录前后输入、Node 总时长和外层 wall。独立复审前保持 Draft / BLOCKED，不重复 Full 或改合并设置。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -205,4 +208,6 @@ POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入�
 本轮成本收口更正：已确认原生file timing summary不是完整Node/进程成本，同一次CI校准3.910/13.041/13.159秒，runtime2.132/11.922/12.019秒，原数据保留。内存保守纳入已知完整成本后Windows仅余49ms，仍有修改CI文件独立成本缺项；不能将配置余882ms宣称为完整成本闭环。生产/行为/source独审无缺陷，最终7文件79/79通过，但本PR整体保持DRAFT_BLOCKED_COST_ACCOUNTING，不授权合并；后续应修完整文件成本取证与规划登记，不放宽预算。
 
 2026-11-10 接续#591：四个缺项CI文件各完整一次，17/17通过，8059现存跟踪文件hash前后稳定，175稀疏缺项显式保留null。保留旧较慢观测后原800JS/1410Lua、17/15形状内存复算Windows1801318ms（超原目标1318）、POSIX1137160ms。新收据与旧未绑定standalone分别标注；不把summary或旧Hosted绿灯当完整成本。仅补证，timings/源码/测试/旧档/门禁未改，正式成本登记、独审准入与正常队列仍待，owner/status/AC保持。
+
+2026-11-10 #591 成本登记接线：七项真实完整进程观测登记，原33 floor与804行断言及旧档不变，精确外层reader分别保留历史33与实际40。七完整文件82/82通过，初轮runtime12/13失败保留并修复；最终校准48/48为14894ms，仍保留更慢成功17544ms floor及旧13573历史值。Windows实际预测1801345ms（超1345），理想下界1800665.882ms，不能仅调度解决；POSIX1137425ms。独审收口中，保持Draft/BLOCKED，不重复Full，未更改owner/status/AC或合并设置。共享证明优化与#586原线协调，不复制实施。
 <!-- SECTION:NOTES:END -->

@@ -1,3 +1,5 @@
+import {preEmeraldCostSource,emeraldCostBeforeSource} from './helpers/map-emerald-cost-source-inverse.mjs';
+import {registerEmeraldCostContracts} from './helpers/map-emerald-cost-contract.mjs';
 import {preEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor,emeraldMapCiProof} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
@@ -24,7 +26,7 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as actualDiskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as registeredDiskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -32,8 +34,11 @@ import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as actualJsShard,jsPlanningWeights as actualJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs,partition,jsShard as registeredJsShard,jsPlanningWeights as registeredJsPlanningWeights,timings as registeredTimings} from '../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
+// The unchanged Emerald assertions below retain their exact original timing epoch.
+// Live registration is checked separately against unprojected disk and planner exports.
+function actualDiskReadFileSync(file,encoding){const value=registeredDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldCostSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);}
 // Existing contracts retain their complete pre-Emerald source epoch. Real current
 // costs and bytes remain separate and are checked by the Emerald contracts below.
 const diskReadFileSync=(file,encoding)=>{const value=actualDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldMapCiSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);};
@@ -53,6 +58,10 @@ assert.equal(plannerSource.split(timingRead).length,2);
 const frozenPlannerSource=plannerSource.replace(timingRead,JSON.stringify(diskReadFileSync('scripts/ci-test-timings.json','utf8')))
  .replace("'./ci-reviewed-lfs.mjs'",JSON.stringify(new URL('../scripts/ci-reviewed-lfs.mjs',import.meta.url).href));
 const {timings:currentTimings,jsPlanningWeights:currentJsPlanningWeights,jsShard:currentJsShard}=await import('data:text/javascript,'+encodeURIComponent(frozenPlannerSource));
+const emeraldPlannerSource=plannerSource.replace(timingRead,JSON.stringify(emeraldCostBeforeSource))
+ .replace("'./ci-reviewed-lfs.mjs'",JSON.stringify(new URL('../scripts/ci-reviewed-lfs.mjs',import.meta.url).href));
+const {timings:actualCurrentTimings,jsPlanningWeights:actualJsPlanningWeights,jsShard:actualJsShard}=await import('data:text/javascript,'+encodeURIComponent(emeraldPlannerSource));
+
 // Frozen 17/13 contracts retain their original complete shape and job identity.
 const frozenShapeSource=prePosix14ShapeSource('scripts/ci-quality-shape.mjs',read('scripts/ci-quality-shape.mjs'));
 const {qualityShardMatrices:frozenQualityShardMatrices,qualityShardJobs:frozenQualityShardJobs}=await import('data:text/javascript,'+encodeURIComponent(frozenShapeSource));
@@ -1092,7 +1101,7 @@ test('Emerald complete recurring run receipt authenticates current input bytes a
  for(const [file,sha]of Object.entries(floor.inputSha256)){const raw=actualDiskReadFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n')),sha,file);}
  for(const platform of ['win32','linux'])assert.equal(actualJsPlanningWeights([key],platform)[key],Math.max(actualCurrentTimings.js[platform][key],floor.durationMs));
 });
-test('actual Emerald800 forecasts retain complete inventory, every old floor, safety settings and original capacity',t=>{
+test('frozen original Emerald800 forecasts retain complete inventory, every old floor, safety settings and original capacity',t=>{
  const js=discoverJs(),lua=currentLua(),previous=JSON.parse(preEmeraldMapCiSource(path,actualDiskReadFileSync(path,'utf8')));
  assert.equal(js.length,800);assert.equal(lua.length,1410);assert.deepEqual([...js].sort(),emeraldMapCiProof.inventory.js);
  assert.deepEqual(lua,Object.keys(emeraldMapCiProof.inventory.luaSha256));
@@ -1115,6 +1124,8 @@ test('actual Emerald800 forecasts retain complete inventory, every old floor, sa
    maximum=Math.max(...luaBins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
   }
   const forecast=maximum+60000;assert.equal(forecast,emeraldMapCiProof.forecasts[platform]);
-  t.diagnostic(`${platform}: actual current modeled forecast ${forecast} ms; unchanged budget ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; not a Full pass or hosted measurement`);
+  t.diagnostic(`${platform}: frozen original Emerald33 forecast ${forecast} ms; unchanged budget ${budget} ms; overrun ${Math.max(0,forecast-budget)} ms; not a Full pass or hosted measurement`);
  }
 });
+
+registerEmeraldCostContracts({test,assert,readFileSync:registeredDiskReadFileSync,discoverJs,partition,jsShard:registeredJsShard,jsPlanningWeights:registeredJsPlanningWeights,timings:registeredTimings,shardLuaScripts});

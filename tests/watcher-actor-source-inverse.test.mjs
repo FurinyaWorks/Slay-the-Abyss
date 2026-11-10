@@ -1,4 +1,5 @@
-import {preEmeraldMapCiSource} from './helpers/map-emerald-ci-source-inverse.mjs';
+import {preEmeraldCostSource} from './helpers/map-emerald-cost-source-inverse.mjs';
+import {preEmeraldMapCiSource as originalPreEmeraldMapCiSource} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {originalPlanningSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {preDefectIntegrationPlanningSource} from './helpers/defect-integration-planning-source-inverse.mjs';
 import {preEnemyIntegrationPlanningSource} from './helpers/enemy-integration-planning-source-inverse.mjs';
@@ -67,3 +68,6 @@ test('the measured planning floor is isolated from all original costs and budget
  for(const changed of [source+'\n',source.slice(1),source.replace('"durationMs": 30000','"durationMs": 23000')])assert.equal(project(path,changed),changed);
  assert.equal(project('foreign',source),source);
 });
+
+// Preserve the complete original Emerald/historical assertions behind one exact registration boundary.
+function preEmeraldMapCiSource(path,source){return originalPreEmeraldMapCiSource(path,preEmeraldCostSource(path,source));}

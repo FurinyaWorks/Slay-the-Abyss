@@ -479,3 +479,10 @@ docs/evidence/m7-map-emerald-20261109/*.json text eol=lf
 docs/evidence/m7-map-emerald-20261109/*.mjs text eol=lf
 docs/evidence/m7-map-emerald-20261109/*.log text eol=lf
 docs/evidence/m7-map-emerald-20261109/*.gz -text
+
+# Complete-process registration receipts retain hashed UTF-8 bytes on both hosts.
+tests/fixtures/map-emerald-cost-registration.json text eol=lf
+docs/evidence/m7-map-emerald-cost-20261110/*.json text eol=lf
+docs/evidence/m7-map-cost-registration-20261110/*.json text eol=lf
+docs/evidence/m7-map-cost-registration-20261110/*.mjs text eol=lf
+docs/evidence/m7-map-cost-registration-20261110/*.gz -text

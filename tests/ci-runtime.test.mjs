@@ -1,4 +1,5 @@
-import {preEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor} from './helpers/map-emerald-ci-source-inverse.mjs';
+import {preEmeraldCostSource,emeraldCostBeforeSource} from './helpers/map-emerald-cost-source-inverse.mjs';
+import {preEmeraldMapCiSource as originalPreEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -29,10 +30,17 @@ import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
 import { originalLuaRunner } from './helpers/ci-lua-runner-inverse.mjs';
 import {readBeforeMobileQaSource} from './helpers/mobile-qa-source-inverse.mjs';
-import { partition, jsShard, jsPlanningWeights, discoverJs, timings } from '../scripts/ci-shards.mjs';
+import { partition, discoverJs } from '../scripts/ci-shards.mjs';
 import { shardLuaScripts } from '../scripts/test-lua.mjs';
 import {historicalTest,readHistoricalBaselineSource} from './helpers/historical-baseline-inputs.mjs';
 import {qualityShardMatrices} from '../scripts/ci-quality-shape.mjs';
+// Keep the original 33-floor assertions on their complete authenticated Emerald source.
+// The unprojected 40-floor planner is checked by map-emerald-cost-contract.mjs.
+const originalPlannerSource=diskReadFileSync('scripts/ci-shards.mjs','utf8').replaceAll('\r\n','\n')
+ .replace("readFileSync(new URL('./ci-test-timings.json', import.meta.url), 'utf8')",JSON.stringify(emeraldCostBeforeSource))
+ .replace("'./ci-reviewed-lfs.mjs'",JSON.stringify(new URL('../scripts/ci-reviewed-lfs.mjs',import.meta.url).href));
+const {jsShard,jsPlanningWeights,timings}=await import('data:text/javascript,'+encodeURIComponent(originalPlannerSource));
+
 
 historicalTest('scheduler inverse preserves the frozen runner for LF/CRLF and rejects unrelated changes', () => {
   const source = readBeforeMobileQaSource('scripts/test-lua.mjs').replaceAll('\r\n', '\n');
@@ -427,3 +435,6 @@ test('partial successful source cases provide lower bounds without claiming thei
 
 // Historical source contracts authenticate the complete new outer epoch first.
 function readFileSync(file,encoding){const value=diskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldMapCiSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);}
+
+// Preserve the complete original Emerald/historical assertions behind one exact registration boundary.
+function preEmeraldMapCiSource(path,source){return originalPreEmeraldMapCiSource(path,preEmeraldCostSource(path,source));}

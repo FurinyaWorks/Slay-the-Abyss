@@ -1,0 +1,68 @@
+{
+  "scope": "Static original assertion-line preservation and exact unchanged timing fields. Not a behavioral test or admission result.",
+  "assertions": [
+    {
+      "file": "tests/ci-complete-calibration.test.mjs",
+      "beforeSha256": "1cc24f4d5199797a0896bacab184ca90e1f12a3cb950f231e12d9ccf562f8aa0",
+      "afterSha256": "b5098500fa556a749d9bf91036fa0b1034b0bb63317589544f349234fc2357d3",
+      "originalAssertionLines": 505,
+      "unchanged": true
+    },
+    {
+      "file": "tests/ci-host-timing-calibration.test.mjs",
+      "beforeSha256": "232d52a69b5d9fa5e3430f1c26ba326e500a36c91002ed18d2457b137744e565",
+      "afterSha256": "768fb481d6c929e86458cd12dc53059a12b84d08f540340d93d6e6323ee54cbe",
+      "originalAssertionLines": 34,
+      "unchanged": true
+    },
+    {
+      "file": "tests/ci-runtime.test.mjs",
+      "beforeSha256": "6430c52b9e645923f546b13ebcc07ef710325bcc9168ecb1dacf491262441c6d",
+      "afterSha256": "f6d377d11e41d144fd58ff262232ecd5b9bee22169625246eccc0831e87de01e",
+      "originalAssertionLines": 183,
+      "unchanged": true
+    },
+    {
+      "file": "tests/ci-windows-shape-expansion.test.mjs",
+      "beforeSha256": "3c4140685f365fa069dfefd54658a8e5ce85c667863e63076baf4ce151ed9bc6",
+      "afterSha256": "2548e44ad622adb030688248f0473a0007ac15fb813ed0bc1e26d4f4490fb37c",
+      "originalAssertionLines": 24,
+      "unchanged": true
+    },
+    {
+      "file": "tests/class-potion-orb-source-inverse.test.mjs",
+      "beforeSha256": "694446ee9ef3cc4b9b7eda37a651996e3e50cd77a627976215d6401cd5853986",
+      "afterSha256": "b52757b389a896a7a10d456bf02c70913e07ba2ae693f4e93f16af67cf6d3468",
+      "originalAssertionLines": 18,
+      "unchanged": true
+    },
+    {
+      "file": "tests/defect-integration-source.test.mjs",
+      "beforeSha256": "ec04dcb0596ee72083aae0049fc5ce2b2216ab051f2bf03948f98b3a22d1b79e",
+      "afterSha256": "36bb8b4ede5b046198b6aec9388adfc0e3919868a9a9ed783f79e1859f9e77b4",
+      "originalAssertionLines": 22,
+      "unchanged": true
+    },
+    {
+      "file": "tests/watcher-actor-source-inverse.test.mjs",
+      "beforeSha256": "804a98f450d5c0c0797219fbfe718cb3c011d120002eb0033bbcb39e823d0464",
+      "afterSha256": "54f5b79e2693d167b0047524f024e346cade7ec5e4f90b914d4e79f8e2678711",
+      "originalAssertionLines": 18,
+      "unchanged": true
+    }
+  ],
+  "totalOriginalAssertionLines": 804,
+  "priorFloors": 33,
+  "currentFloors": 40,
+  "onlySevenTimingEntriesAdded": true,
+  "newKeys": [
+    "tests/ci-complete-calibration.test.mjs",
+    "tests/ci-host-timing-calibration.test.mjs",
+    "tests/ci-runtime.test.mjs",
+    "tests/ci-windows-shape-expansion.test.mjs",
+    "tests/class-potion-orb-source-inverse.test.mjs",
+    "tests/defect-integration-source.test.mjs",
+    "tests/watcher-actor-source-inverse.test.mjs"
+  ],
+  "sourceProductionUnchanged": true
+}

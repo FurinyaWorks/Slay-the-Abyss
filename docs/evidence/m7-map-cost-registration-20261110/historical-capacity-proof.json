@@ -1,0 +1,391 @@
+{
+  "kind": "read-only capacity lower-bound diagnostic, not a test execution or hosted timing proof",
+  "root": "/workspace/scratch/c1a4970a76e0/m7-map-emerald-cost",
+  "inputSha256": {
+    "scripts/ci-test-timings.json": "2cd79700b9abe2385265a2846e4f5339a46e6da88b327b80690785371bc5b146",
+    "scripts/ci-shards.mjs": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+    "scripts/test-lua.mjs": "57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703",
+    "scripts/lua-workers.mjs": "699aa2e9e4c236c4be8fdc7b4a61f66877dbecf88d16b8ad0d488defee8d82a3",
+    "scripts/ci-quality-shape.mjs": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed",
+    "docs/evidence/m7-map-emerald-cost-20261110/complete-file-observations.json": "24eb3b4c1255e38d418d14dccac6c312bca037be55e52dd97e1f3dcb64e42cd7",
+    "docs/evidence/m7-map-emerald-20261109/ci-cost-observations.json": "15eee1c6b29bd991a83c0337169c9767463be782be9ad1fbcb8000ef0a9f54a8",
+    "docs/evidence/m7-map-emerald-cost-20261110/forecast.json": "3559f7e7ee7e6b36f27d974d565df37100a817eb9d20bb640523181c000e5749"
+  },
+  "floors": {
+    "tests/ci-complete-calibration.test.mjs": {
+      "durationMs": 13573,
+      "currentSourceSha256": "1cc24f4d5199797a0896bacab184ca90e1f12a3cb950f231e12d9ccf562f8aa0",
+      "previousSavedFloorMs": null
+    },
+    "tests/ci-host-timing-calibration.test.mjs": {
+      "durationMs": 17143,
+      "currentSourceSha256": "232d52a69b5d9fa5e3430f1c26ba326e500a36c91002ed18d2457b137744e565",
+      "previousSavedFloorMs": null
+    },
+    "tests/ci-runtime.test.mjs": {
+      "durationMs": 12019,
+      "currentSourceSha256": "6430c52b9e645923f546b13ebcc07ef710325bcc9168ecb1dacf491262441c6d",
+      "previousSavedFloorMs": null
+    },
+    "tests/ci-windows-shape-expansion.test.mjs": {
+      "durationMs": 11162,
+      "currentSourceSha256": "3c4140685f365fa069dfefd54658a8e5ce85c667863e63076baf4ce151ed9bc6",
+      "previousSavedFloorMs": null
+    },
+    "tests/class-potion-orb-source-inverse.test.mjs": {
+      "durationMs": 10864,
+      "currentSourceSha256": "694446ee9ef3cc4b9b7eda37a651996e3e50cd77a627976215d6401cd5853986",
+      "previousSavedFloorMs": null
+    },
+    "tests/defect-integration-source.test.mjs": {
+      "durationMs": 16574,
+      "currentSourceSha256": "ec04dcb0596ee72083aae0049fc5ce2b2216ab051f2bf03948f98b3a22d1b79e",
+      "previousSavedFloorMs": null
+    },
+    "tests/watcher-actor-source-inverse.test.mjs": {
+      "durationMs": 21870,
+      "currentSourceSha256": "804a98f450d5c0c0797219fbfe718cb3c011d120002eb0033bbcb39e823d0464",
+      "previousSavedFloorMs": null
+    }
+  },
+  "inventory": {
+    "js": 800,
+    "lua": 1410,
+    "jsNamesSha256": "50ffb6b9731c00ffa482f2f465566bfc0abab5ac6afb33d126cde37f2d6ab2dc",
+    "luaNamesSha256": "d447b578a29045d2d53e67e40adc4e54f05c0cee48e1e747cfda6de833d4b761",
+    "shortLua": 763,
+    "exclusiveLua": 647
+  },
+  "originalFloorCount": 33,
+  "projectedFloorCount": 40,
+  "preservedOriginalFloors": true,
+  "serialLuaMs": 7852637,
+  "shortLuaMs": 5325660,
+  "plans": [
+    {
+      "platform": "win32",
+      "count": 17,
+      "budgetMs": 1800000,
+      "reserveMs": 60000,
+      "forecastMs": 1801318,
+      "totalJsIncludingGateMs": 19071882,
+      "normalizedWorkMs": 29587349,
+      "availableNormalizedWorkMs": 29580000,
+      "workDeficitMs": 7349,
+      "lowerBoundExact": "29587349/17+60000",
+      "lowerBoundMs": 1800432.294117647,
+      "integerLowerBoundMs": 1800433,
+      "jsCoverage": true,
+      "luaCoverage": true,
+      "rows": [
+        {
+          "shard": 1,
+          "jsMs": 1121877,
+          "exclusiveLuaMs": 468213,
+          "shortWorkerMs": [
+            150329,
+            150365
+          ],
+          "shortCount": 45,
+          "exclusiveCount": 38,
+          "totalMs": 1740455
+        },
+        {
+          "shard": 2,
+          "jsMs": 1121878,
+          "exclusiveLuaMs": 452750,
+          "shortWorkerMs": [
+            166061,
+            165551
+          ],
+          "shortCount": 47,
+          "exclusiveCount": 36,
+          "totalMs": 1740689
+        },
+        {
+          "shard": 3,
+          "jsMs": 1121877,
+          "exclusiveLuaMs": 443329,
+          "shortWorkerMs": [
+            175319,
+            175124
+          ],
+          "shortCount": 49,
+          "exclusiveCount": 34,
+          "totalMs": 1740525
+        },
+        {
+          "shard": 4,
+          "jsMs": 1121877,
+          "exclusiveLuaMs": 470359,
+          "shortWorkerMs": [
+            148350,
+            148069
+          ],
+          "shortCount": 43,
+          "exclusiveCount": 40,
+          "totalMs": 1740586
+        },
+        {
+          "shard": 5,
+          "jsMs": 1121867,
+          "exclusiveLuaMs": 480754,
+          "shortWorkerMs": [
+            138391,
+            137224
+          ],
+          "shortCount": 41,
+          "exclusiveCount": 41,
+          "totalMs": 1741012
+        },
+        {
+          "shard": 6,
+          "jsMs": 1121877,
+          "exclusiveLuaMs": 457043,
+          "shortWorkerMs": [
+            161092,
+            161939
+          ],
+          "shortCount": 47,
+          "exclusiveCount": 36,
+          "totalMs": 1740859
+        },
+        {
+          "shard": 7,
+          "jsMs": 1121877,
+          "exclusiveLuaMs": 457954,
+          "shortWorkerMs": [
+            160630,
+            160588
+          ],
+          "shortCount": 46,
+          "exclusiveCount": 37,
+          "totalMs": 1740461
+        },
+        {
+          "shard": 8,
+          "jsMs": 1121877,
+          "exclusiveLuaMs": 463495,
+          "shortWorkerMs": [
+            155520,
+            154635
+          ],
+          "shortCount": 44,
+          "exclusiveCount": 39,
+          "totalMs": 1740892
+        },
+        {
+          "shard": 9,
+          "jsMs": 1121877,
+          "exclusiveLuaMs": 459638,
+          "shortWorkerMs": [
+            159070,
+            158787
+          ],
+          "shortCount": 46,
+          "exclusiveCount": 37,
+          "totalMs": 1740585
+        },
+        {
+          "shard": 10,
+          "jsMs": 1121876,
+          "exclusiveLuaMs": 485540,
+          "shortWorkerMs": [
+            133334,
+            132676
+          ],
+          "shortCount": 41,
+          "exclusiveCount": 42,
+          "totalMs": 1740750
+        },
+        {
+          "shard": 11,
+          "jsMs": 1121866,
+          "exclusiveLuaMs": 450742,
+          "shortWorkerMs": [
+            168103,
+            167448
+          ],
+          "shortCount": 48,
+          "exclusiveCount": 34,
+          "totalMs": 1740711
+        },
+        {
+          "shard": 12,
+          "jsMs": 1121876,
+          "exclusiveLuaMs": 457462,
+          "shortWorkerMs": [
+            160082,
+            161980
+          ],
+          "shortCount": 46,
+          "exclusiveCount": 37,
+          "totalMs": 1741318
+        },
+        {
+          "shard": 13,
+          "jsMs": 1121876,
+          "exclusiveLuaMs": 463812,
+          "shortWorkerMs": [
+            155054,
+            154444
+          ],
+          "shortCount": 43,
+          "exclusiveCount": 40,
+          "totalMs": 1740742
+        },
+        {
+          "shard": 14,
+          "jsMs": 1121877,
+          "exclusiveLuaMs": 469370,
+          "shortWorkerMs": [
+            149265,
+            149084
+          ],
+          "shortCount": 44,
+          "exclusiveCount": 39,
+          "totalMs": 1740512
+        },
+        {
+          "shard": 15,
+          "jsMs": 1121875,
+          "exclusiveLuaMs": 444477,
+          "shortWorkerMs": [
+            174149,
+            174103
+          ],
+          "shortCount": 46,
+          "exclusiveCount": 37,
+          "totalMs": 1740501
+        },
+        {
+          "shard": 16,
+          "jsMs": 1121875,
+          "exclusiveLuaMs": 469436,
+          "shortWorkerMs": [
+            148697,
+            149575
+          ],
+          "shortCount": 42,
+          "exclusiveCount": 42,
+          "totalMs": 1740886
+        },
+        {
+          "shard": 17,
+          "jsMs": 1121877,
+          "exclusiveLuaMs": 458263,
+          "shortWorkerMs": [
+            160277,
+            160345
+          ],
+          "shortCount": 45,
+          "exclusiveCount": 38,
+          "totalMs": 1740485
+        }
+      ]
+    },
+    {
+      "platform": "linux",
+      "count": 15,
+      "budgetMs": 1200000,
+      "reserveMs": 60000,
+      "forecastMs": 1137160,
+      "totalJsIncludingGateMs": 16157320,
+      "normalizedWorkMs": 16157320,
+      "availableNormalizedWorkMs": 17100000,
+      "workDeficitMs": -942680,
+      "lowerBoundExact": "16157320/15+60000",
+      "lowerBoundMs": 1137154.6666666667,
+      "integerLowerBoundMs": 1137155,
+      "jsCoverage": true,
+      "luaCoverage": null,
+      "rows": [
+        {
+          "shard": 1,
+          "jsMs": 1077160,
+          "totalMs": 1077160
+        },
+        {
+          "shard": 2,
+          "jsMs": 1077160,
+          "totalMs": 1077160
+        },
+        {
+          "shard": 3,
+          "jsMs": 1077160,
+          "totalMs": 1077160
+        },
+        {
+          "shard": 4,
+          "jsMs": 1077160,
+          "totalMs": 1077160
+        },
+        {
+          "shard": 5,
+          "jsMs": 1077160,
+          "totalMs": 1077160
+        },
+        {
+          "shard": 6,
+          "jsMs": 1077152,
+          "totalMs": 1077152
+        },
+        {
+          "shard": 7,
+          "jsMs": 1077150,
+          "totalMs": 1077150
+        },
+        {
+          "shard": 8,
+          "jsMs": 1077150,
+          "totalMs": 1077150
+        },
+        {
+          "shard": 9,
+          "jsMs": 1077150,
+          "totalMs": 1077150
+        },
+        {
+          "shard": 10,
+          "jsMs": 1077150,
+          "totalMs": 1077150
+        },
+        {
+          "shard": 11,
+          "jsMs": 1077150,
+          "totalMs": 1077150
+        },
+        {
+          "shard": 12,
+          "jsMs": 1077150,
+          "totalMs": 1077150
+        },
+        {
+          "shard": 13,
+          "jsMs": 1077150,
+          "totalMs": 1077150
+        },
+        {
+          "shard": 14,
+          "jsMs": 1077159,
+          "totalMs": 1077159
+        },
+        {
+          "shard": 15,
+          "jsMs": 1077159,
+          "totalMs": 1077159
+        }
+      ]
+    }
+  ],
+  "proof": [
+    "For shard i, completion C_i >= J_i + E_i + S_i/2 because JS and exclusive Lua remain serial and precede a short Lua pool of at most two workers.",
+    "Summing over every shard and retaining complete unique coverage gives max(C_i) >= (sum J_i + sum E_i + sum S_i/2)/N. Assignment, order and perfect short-pool balancing cannot reduce this bound.",
+    "Add the unchanged 60000 ms reserve. Windows lower bound is 1800432.294117647 ms and the integer-millisecond lower bound is 1800433 ms against target 1800000 ms. Assignment cannot change the 7349 ms normalized workload deficit."
+  ],
+  "caveats": [
+    "Local measurements remain planning estimates, not hosted elapsed-time guarantees.",
+    "No test suite, Full run, configuration change, repository write, or upload performed.",
+    "Historical standalone observations keep their existing provenance limitations; their conservative costs are not weakened."
+  ]
+}

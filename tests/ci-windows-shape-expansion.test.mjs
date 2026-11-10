@@ -1,4 +1,5 @@
-import {preEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor} from './helpers/map-emerald-ci-source-inverse.mjs';
+import {preEmeraldCostSource} from './helpers/map-emerald-cost-source-inverse.mjs';
+import {preEmeraldMapCiSource as originalPreEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -82,3 +83,6 @@ test('historical fourteen-slot budget retains its complete observed inventory wh
 
 // Historical source contracts authenticate the complete new outer epoch first.
 function readFileSync(file,encoding){const value=diskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preEmeraldMapCiSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);}
+
+// Preserve the complete original Emerald/historical assertions behind one exact registration boundary.
+function preEmeraldMapCiSource(path,source){return originalPreEmeraldMapCiSource(path,preEmeraldCostSource(path,source));}

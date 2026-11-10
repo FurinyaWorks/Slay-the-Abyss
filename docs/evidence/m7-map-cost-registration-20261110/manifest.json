@@ -1,0 +1,147 @@
+{
+  "kind": "Exact evidence and source-byte inventory; not admission or Hosted execution proof",
+  "parent": "b7edb8ef36654a920652b2c1065f3ab6753baf2f",
+  "originalPrHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+  "base": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "sources": {
+    ".gitattributes": "c456ed834b6d16517fb552c28b7f577565cb814c12f4a2bff7d3eaf4b48ee123",
+    "scripts/ci-test-timings.json": "46e69e006ce623f0a66197db9f03859894b27152b4e90ee24fbe24cc42ab4289",
+    "tests/ci-complete-calibration.test.mjs": "b5098500fa556a749d9bf91036fa0b1034b0bb63317589544f349234fc2357d3",
+    "tests/ci-host-timing-calibration.test.mjs": "768fb481d6c929e86458cd12dc53059a12b84d08f540340d93d6e6323ee54cbe",
+    "tests/ci-runtime.test.mjs": "f6d377d11e41d144fd58ff262232ecd5b9bee22169625246eccc0831e87de01e",
+    "tests/ci-windows-shape-expansion.test.mjs": "2548e44ad622adb030688248f0473a0007ac15fb813ed0bc1e26d4f4490fb37c",
+    "tests/class-potion-orb-source-inverse.test.mjs": "b52757b389a896a7a10d456bf02c70913e07ba2ae693f4e93f16af67cf6d3468",
+    "tests/defect-integration-source.test.mjs": "36bb8b4ede5b046198b6aec9388adfc0e3919868a9a9ed783f79e1859f9e77b4",
+    "tests/watcher-actor-source-inverse.test.mjs": "54f5b79e2693d167b0047524f024e346cade7ec5e4f90b914d4e79f8e2678711",
+    "tests/fixtures/map-emerald-cost-registration.json": "19f522ed5140fb37ec2daeac218295cdb3679fca32737e36641737d37d76ed41",
+    "tests/helpers/map-emerald-cost-contract.mjs": "4e1ece351da5fd2dedfde0bf2efb52246f25ca7d8e29ba6eff5648e1a471225c",
+    "tests/helpers/map-emerald-cost-source-inverse.mjs": "e3d5f5f003fba1747ac8473da62ff55733a3638c4ff6db745a8498394ffdbe21",
+    "tests/helpers/map-emerald-cost-timings-before.json.gz": "5d07b11d861c6b744ee8f5250af60e4de4c0308c672ac638ae64fdfb9680f4c2"
+  },
+  "files": {
+    "docs/evidence/m7-map-cost-registration-20261110/README.md": {
+      "sha256": "d82f8fba736bdf3d462af2009fc4ab391818521e3a72328b957b2d084e0b1f44",
+      "bytes": 5370
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/backlog-final.log.gz": {
+      "sha256": "a41daa028e8e1826fe66714e47db49b5f9e1077ddb40b02794a9dbcfd2b5ee81",
+      "bytes": 15153
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/backlog.log.gz": {
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "bytes": 361
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/build-data.log.gz": {
+      "sha256": "55e12e402720a50ec9ae22d5216db1e05c8260adfbab010cbf45357608ef6506",
+      "bytes": 172
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/build-ui.log.gz": {
+      "sha256": "6776ff5a1fac3b3ec9ba7c2eb31af470998ea6929d5667da6742a8adb49396ef",
+      "bytes": 184
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-ci-runtime.log.gz": {
+      "sha256": "873c6c75e98c85ff1ac8bf9ddd5c9716ed8cd94ec956d4b94b67eb92ecb565f6",
+      "bytes": 942
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-ci-windows-shape-expansion.log.gz": {
+      "sha256": "31bb1fbc8ad09584d5799a208a2e626c66c95877ed2746b96348d61d9707ebf4",
+      "bytes": 413
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-class-potion-orb-source-inverse.log.gz": {
+      "sha256": "e190ea3ab28ccddc53cf48ec268733e477d6c7fee993fa57be51c2ac671b4a8c",
+      "bytes": 492
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-defect-integration-source.log.gz": {
+      "sha256": "3764bdf6962041a2e811ee2fb26dbb3ec813f4aae15fd161094ce28df48309ef",
+      "bytes": 453
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-validation-observations.json": {
+      "sha256": "58458c8fc3f6276fd74b580c3d9187bf64235d97f3f613ad2c5c4d73b5400fe6",
+      "bytes": 13372
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-watcher-actor-source-inverse.log.gz": {
+      "sha256": "c598435ca822f07c0611d29da71603a6655e86fc82a367488b5d22c93aeb51d7",
+      "bytes": 491
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/doctor-invocation-error.log.gz": {
+      "sha256": "b511460ce955fc7e8868d632ccb48ad74a3d2211db879df9b5e1b07dcc9217fc",
+      "bytes": 95
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/doctor.log.gz": {
+      "sha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+      "bytes": 1843
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/final-calibration-validation.json": {
+      "sha256": "939da5732e038070d0201f5257e97bfb6a749306425521657a7b58fa1600c929",
+      "bytes": 2692
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/final-ci-complete-calibration.log.gz": {
+      "sha256": "d912011cdbec24ba7e7bd131a324bea95746e6fc137d79e9afd439673ebd3eac",
+      "bytes": 2350
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/guidance.log.gz": {
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "bytes": 287
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/historical-capacity-proof.json": {
+      "sha256": "8c3297e5055fdc86b24e29e11de7fee7d5814b38515af26ce30b7208522f1888",
+      "bytes": 11191
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/historical-capacity-proof.md": {
+      "sha256": "d51b18d1e33cc66effc15c09b6b6eddd2ebdb61347d78f6c149c872110dd0c9b",
+      "bytes": 5609
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/historical-capacity-proof.mjs": {
+      "sha256": "7cff09279e48d0624a62a7da5b9ff957d2a351ff9775ce0fff19e5c19c5b5173",
+      "bytes": 6436
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/independent-review.json": {
+      "sha256": "a9f285ba5978d6fc8e2a311407745a31ba7b18141c936119becf1a181eaec6bf",
+      "bytes": 20135
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/independent-review.md": {
+      "sha256": "9c3795460c01e89418abc8f60ddb036d081e2d16369d519ef6453243814ad7ee",
+      "bytes": 3950
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/initial-ci-complete-calibration.log.gz": {
+      "sha256": "5ee0faa4eb79575bf84185a36decc8e168b6f3f5b130d08512efd96dba847784",
+      "bytes": 2362
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/initial-ci-host-timing-calibration.log.gz": {
+      "sha256": "da4fb8564d917bdd6756b0ce2acc331e876f32405769ab94d58fa2e04c5c87a2",
+      "bytes": 494
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/initial-ci-runtime.log.gz": {
+      "sha256": "1a77ece9328714bf2fb3ea0d21cd14667cd0045f3f94334d20bafc506cf8bdcb",
+      "bytes": 1351
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/initial-validation-observations.json": {
+      "sha256": "363e87d5d3659f79a616e64f0b1da99171734bbb1f9a613fa4a242e012ad6e66",
+      "bytes": 7843
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/inputs-018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0.json.gz": {
+      "sha256": "018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0",
+      "bytes": 383675
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/inputs-61db7e6be9b48cac4b1f30d5bcca500fedc0c8df4b2b76a1aae31384fea875c2.json.gz": {
+      "sha256": "61db7e6be9b48cac4b1f30d5bcca500fedc0c8df4b2b76a1aae31384fea875c2",
+      "bytes": 382929
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz": {
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "bytes": 382923
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/measure-registration-files.mjs": {
+      "sha256": "f5e2e99b315ca772b52cc012ae6895a501493eada799e131efbeb584eb54800a",
+      "bytes": 4111
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/preservation-audit.json": {
+      "sha256": "a42ac1408791e65a7fd719bb655e04a8ae2d55558615a50f1562ae760cb1c575",
+      "bytes": 2834
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/registration-validation.json": {
+      "sha256": "23f3b3d4124a4af35437183a52dcba6495299f012a0244c151cd5e8b06e92a87",
+      "bytes": 19863
+    }
+  }
+}

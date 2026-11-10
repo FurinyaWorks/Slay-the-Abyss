@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "kind": "conservative-historical-complete-process-cost-registration",
+  "measuredPrHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+  "publishedEvidenceCommit": "b976473753678574d29104ab0026eb0e68c48ba4",
+  "beforeTimingSha256": "2cd79700b9abe2385265a2846e4f5339a46e6da88b327b80690785371bc5b146",
+  "afterTimingSha256": "46e69e006ce623f0a66197db9f03859894b27152b4e90ee24fbe24cc42ab4289",
+  "priorFloorCount": 33,
+  "registeredFloorCount": 40,
+  "floors": {
+    "tests/ci-host-timing-calibration.test.mjs": {
+      "durationMs": 17143,
+      "environment": "shared cloud Linux local",
+      "kind": "Conservative complete-process planning floor; not a Hosted measurement or a current-code performance certificate.",
+      "sourceReceipt": "docs/evidence/m7-map-emerald-cost-20261110/complete-file-observations.json",
+      "sourceReceiptSha256": "24eb3b4c1255e38d418d14dccac6c312bca037be55e52dd97e1f3dcb64e42cd7",
+      "sourceMeasuredHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+      "inputBinding": "Tracked before/after snapshots at the recorded measurement epoch; untracked/generated/dependency files are not certified."
+    },
+    "tests/ci-windows-shape-expansion.test.mjs": {
+      "durationMs": 11162,
+      "environment": "shared cloud Linux local",
+      "kind": "Conservative complete-process planning floor; not a Hosted measurement or a current-code performance certificate.",
+      "sourceReceipt": "docs/evidence/m7-map-emerald-cost-20261110/complete-file-observations.json",
+      "sourceReceiptSha256": "24eb3b4c1255e38d418d14dccac6c312bca037be55e52dd97e1f3dcb64e42cd7",
+      "sourceMeasuredHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+      "inputBinding": "Tracked before/after snapshots at the recorded measurement epoch; untracked/generated/dependency files are not certified."
+    },
+    "tests/class-potion-orb-source-inverse.test.mjs": {
+      "durationMs": 10864,
+      "environment": "shared cloud Linux local",
+      "kind": "Conservative complete-process planning floor; not a Hosted measurement or a current-code performance certificate.",
+      "sourceReceipt": "docs/evidence/m7-map-emerald-cost-20261110/complete-file-observations.json",
+      "sourceReceiptSha256": "24eb3b4c1255e38d418d14dccac6c312bca037be55e52dd97e1f3dcb64e42cd7",
+      "sourceMeasuredHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+      "inputBinding": "Tracked before/after snapshots at the recorded measurement epoch; untracked/generated/dependency files are not certified."
+    },
+    "tests/watcher-actor-source-inverse.test.mjs": {
+      "durationMs": 21870,
+      "environment": "shared cloud Linux local",
+      "kind": "Conservative complete-process planning floor; not a Hosted measurement or a current-code performance certificate.",
+      "sourceReceipt": "docs/evidence/m7-map-emerald-cost-20261110/complete-file-observations.json",
+      "sourceReceiptSha256": "24eb3b4c1255e38d418d14dccac6c312bca037be55e52dd97e1f3dcb64e42cd7",
+      "sourceMeasuredHead": "d6974c64cf082773878a47936f1bd488035da6d5",
+      "inputBinding": "Tracked before/after snapshots at the recorded measurement epoch; untracked/generated/dependency files are not certified."
+    },
+    "tests/ci-complete-calibration.test.mjs": {
+      "durationMs": 17544,
+      "environment": "shared cloud Linux local",
+      "kind": "Conservative complete-process planning floor; not a Hosted measurement or a current-code performance certificate.",
+      "sourceReceipt": "docs/evidence/m7-map-emerald-20261109/ci-cost-observations.json",
+      "sourceReceiptSha256": "15eee1c6b29bd991a83c0337169c9767463be782be9ad1fbcb8000ef0a9f54a8",
+      "inputBinding": "Supplemental earlier complete standalone observation without a pre-run snapshot; not promoted to strict current-input evidence.",
+      "historicalObservationFloorMs": 13573,
+      "additionalObservationReceipt": "docs/evidence/m7-map-cost-registration-20261110/registration-validation.json",
+      "additionalObservationReceiptSha256": "23f3b3d4124a4af35437183a52dcba6495299f012a0244c151cd5e8b06e92a87",
+      "additionalObservationScope": "Complete registration-candidate validation; exact recorded source snapshots, not a final-current-code certificate."
+    },
+    "tests/defect-integration-source.test.mjs": {
+      "durationMs": 16574,
+      "environment": "shared cloud Linux local",
+      "kind": "Conservative complete-process planning floor; not a Hosted measurement or a current-code performance certificate.",
+      "sourceReceipt": "docs/evidence/m7-map-emerald-20261109/ci-cost-observations.json",
+      "sourceReceiptSha256": "15eee1c6b29bd991a83c0337169c9767463be782be9ad1fbcb8000ef0a9f54a8",
+      "inputBinding": "Supplemental earlier complete standalone observation without a pre-run snapshot; not promoted to strict current-input evidence."
+    },
+    "tests/ci-runtime.test.mjs": {
+      "durationMs": 12019,
+      "environment": "shared cloud Linux local",
+      "kind": "Conservative complete-process planning floor; not a Hosted measurement or a current-code performance certificate.",
+      "sourceReceipt": "docs/evidence/m7-map-emerald-20261109/ci-cost-observations.json",
+      "sourceReceiptSha256": "15eee1c6b29bd991a83c0337169c9767463be782be9ad1fbcb8000ef0a9f54a8",
+      "inputBinding": "Original paired before/after recorded inputs; preserve the exact historical measurement scope."
+    }
+  },
+  "admission": "BLOCKED: Windows original target is exceeded; registration does not replace independent review or exact-HEAD Hosted verification."
+}

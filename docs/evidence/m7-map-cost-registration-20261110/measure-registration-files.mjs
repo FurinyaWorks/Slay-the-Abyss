@@ -1,0 +1,20 @@
+import {readFileSync,writeFileSync,existsSync,readdirSync,lstatSync,mkdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';import {gzipSync} from 'node:zlib';import {spawnSync,execFileSync} from 'node:child_process';import {performance} from 'node:perf_hooks';
+const dir='.artifacts/map-cost-registration';mkdirSync(dir,{recursive:true});
+const defaultFiles=['ci-complete-calibration','ci-host-timing-calibration','ci-runtime','ci-windows-shape-expansion','class-potion-orb-source-inverse','defect-integration-source','watcher-actor-source-inverse'].map(s=>'tests/'+s+'.test.mjs');
+const files=process.argv.length>2?process.argv.slice(2):defaultFiles;
+if(files.some(file=>!defaultFiles.includes(file)))throw new Error('Unknown complete-file validation input');
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const tracked=execFileSync('git',['ls-files','-z'],{encoding:'utf8'}).split('\0').filter(Boolean);
+const added=execFileSync('git',['ls-files','--others','--exclude-standard','-z'],{encoding:'utf8'}).split('\0').filter(p=>p&&!p.startsWith('.artifacts/')&&!p.startsWith('build/'));
+const generated=[];function visit(dir){if(!existsSync(dir))return;for(const p of readdirSync(dir)){const f=dir+'/'+p;if(lstatSync(f).isDirectory())visit(f);else if(lstatSync(f).isFile())generated.push(f);}}visit('build/lua');
+const paths=[...new Set([...tracked,...added,...generated])].sort();
+const snapshot=()=>Object.fromEntries(paths.map(p=>[p,existsSync(p)?hash(readFileSync(p)):null]));
+const save=(name,value)=>{const raw=Buffer.from(JSON.stringify(value,null,2)+'\n'),gzip=gzipSync(raw,{mtime:0});writeFileSync(`${dir}/${name}.json.gz`,gzip);return{path:`${dir}/${name}.json.gz`,sha256:hash(gzip),uncompressedSha256:hash(raw),files:paths.length};};
+const results=[];
+for(const file of files){const stem=file.split('/').at(-1).replace('.test.mjs',''),before=snapshot(),beforeReceipt=save(stem+'-before',before);
+ const args=['--test','--test-concurrency=1','--test-reporter=spec','--test-reporter-destination=stdout','--test-reporter=./scripts/ci-timing-reporter.mjs',`--test-reporter-destination=${dir}/${stem}.jsonl`,file];
+ const env={...process.env};delete env.NODE_TEST_CONTEXT;const startedAt=new Date().toISOString(),start=performance.now();const run=spawnSync(process.execPath,args,{env,encoding:'utf8',timeout:180000,maxBuffer:16*1024*1024});const wall=performance.now()-start,finishedAt=new Date().toISOString();
+ const log=Buffer.from(run.stdout+'\n'+run.stderr);writeFileSync(`${dir}/${stem}.log`,log);writeFileSync(`${dir}/${stem}.log.gz`,gzipSync(log,{mtime:0}));const after=snapshot(),afterReceipt=save(stem+'-after',after),changed=paths.filter(p=>before[p]!==after[p]);const val=k=>{const m=log.toString().match(new RegExp('ℹ '+k+' ([\\d.]+)'));return m?Number(m[1]):null;};const native=readFileSync(`${dir}/${stem}.jsonl`);
+ const r={testFile:file,command:[process.execPath,...args],startedAt,finishedAt,returncode:run.status,signal:run.signal,error:run.error?.message??null,processWallMs:wall,nodeTotalDurationMs:val('duration_ms'),tests:val('tests'),pass:val('pass'),fail:val('fail'),cancelled:val('cancelled'),skipped:val('skipped'),nativeSummary:JSON.parse(native.toString().trim()),before:beforeReceipt,after:afterReceipt,changedInputs:changed,inputsMatched:changed.length===0,log:{path:`${dir}/${stem}.log.gz`,sha256:hash(readFileSync(`${dir}/${stem}.log.gz`)),uncompressedSha256:hash(log)},node:process.version,platform:process.platform,architecture:process.arch,localParent:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),scope:'Own-tree generated inputs and tracked plus new implementation paths; shared local host, not Hosted or isolated benchmark; historical observations remain separate.'};results.push(r);writeFileSync(`${dir}/validation-observations.json`,JSON.stringify(results,null,2)+'\n');console.log(JSON.stringify({file,status:run.status,wall,node:r.nodeTotalDurationMs,summary:r.nativeSummary.durationMs,tests:r.tests,pass:r.pass,fail:r.fail,changed:changed.length}));if(run.status!==0||changed.length||r.fail!==0)process.exit(1);
+}

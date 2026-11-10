@@ -1,0 +1,59 @@
+[
+  {
+    "testFile": "tests/ci-complete-calibration.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/map-cost-registration-review-fixed/ci-complete-calibration.jsonl",
+      "tests/ci-complete-calibration.test.mjs"
+    ],
+    "startedAt": "2026-11-09T23:57:29.127Z",
+    "finishedAt": "2026-11-09T23:57:44.022Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 14894.074337,
+    "nodeTotalDurationMs": 14790.467021,
+    "tests": 48,
+    "pass": 48,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/ci-complete-calibration.test.mjs",
+      "durationMs": 4600.96816,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/map-cost-registration-review-fixed/ci-complete-calibration-before.json.gz",
+      "sha256": "018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0",
+      "uncompressedSha256": "95197bbc686cff2fa9908cffd3dc1b6413b6db3517c0e66d163c77800db8a30c",
+      "files": 8296,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0.json.gz"
+    },
+    "after": {
+      "path": ".artifacts/map-cost-registration-review-fixed/ci-complete-calibration-after.json.gz",
+      "sha256": "018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0",
+      "uncompressedSha256": "95197bbc686cff2fa9908cffd3dc1b6413b6db3517c0e66d163c77800db8a30c",
+      "files": 8296,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0.json.gz"
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/map-cost-registration-review-fixed/ci-complete-calibration.log.gz",
+      "sha256": "d912011cdbec24ba7e7bd131a324bea95746e6fc137d79e9afd439673ebd3eac",
+      "uncompressedSha256": "721225c3c01cdd640df746c65c1607cd0a9010a53094bbae0c3083cd6cda4a5e",
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/final-ci-complete-calibration.log.gz"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localParent": "b7edb8ef36654a920652b2c1065f3ab6753baf2f",
+    "scope": "Own-tree generated inputs and tracked plus new implementation paths; shared local host, not Hosted or isolated benchmark; historical observations remain separate."
+  }
+]

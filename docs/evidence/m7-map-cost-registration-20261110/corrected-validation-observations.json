@@ -1,0 +1,287 @@
+[
+  {
+    "testFile": "tests/ci-runtime.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/map-cost-registration-final/ci-runtime.jsonl",
+      "tests/ci-runtime.test.mjs"
+    ],
+    "startedAt": "2026-11-09T23:55:28.886Z",
+    "finishedAt": "2026-11-09T23:55:39.907Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 11019.980872999999,
+    "nodeTotalDurationMs": 10899.023926,
+    "tests": 13,
+    "pass": 13,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/ci-runtime.test.mjs",
+      "durationMs": 1974.129535,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/map-cost-registration-final/ci-runtime-before.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "after": {
+      "path": ".artifacts/map-cost-registration-final/ci-runtime-after.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/map-cost-registration-final/ci-runtime.log.gz",
+      "sha256": "873c6c75e98c85ff1ac8bf9ddd5c9716ed8cd94ec956d4b94b67eb92ecb565f6",
+      "uncompressedSha256": "4f12d9350d258d364272535d5121346c782d4077fc69d4aae3a753a1db5a016f",
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/corrected-ci-runtime.log.gz"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localParent": "b7edb8ef36654a920652b2c1065f3ab6753baf2f",
+    "scope": "Own-tree generated inputs and tracked plus new implementation paths; shared local host, not Hosted or isolated benchmark; historical observations remain separate."
+  },
+  {
+    "testFile": "tests/ci-windows-shape-expansion.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/map-cost-registration-final/ci-windows-shape-expansion.jsonl",
+      "tests/ci-windows-shape-expansion.test.mjs"
+    ],
+    "startedAt": "2026-11-09T23:55:41.060Z",
+    "finishedAt": "2026-11-09T23:55:51.110Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 10049.926808,
+    "nodeTotalDurationMs": 9921.968031,
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/ci-windows-shape-expansion.test.mjs",
+      "durationMs": 335.25757,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/map-cost-registration-final/ci-windows-shape-expansion-before.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "after": {
+      "path": ".artifacts/map-cost-registration-final/ci-windows-shape-expansion-after.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/map-cost-registration-final/ci-windows-shape-expansion.log.gz",
+      "sha256": "31bb1fbc8ad09584d5799a208a2e626c66c95877ed2746b96348d61d9707ebf4",
+      "uncompressedSha256": "d6e62d281253aefbbd77ad1ac7c73a008158e63e7ed1524ed7bf259e977ec0be",
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/corrected-ci-windows-shape-expansion.log.gz"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localParent": "b7edb8ef36654a920652b2c1065f3ab6753baf2f",
+    "scope": "Own-tree generated inputs and tracked plus new implementation paths; shared local host, not Hosted or isolated benchmark; historical observations remain separate."
+  },
+  {
+    "testFile": "tests/class-potion-orb-source-inverse.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/map-cost-registration-final/class-potion-orb-source-inverse.jsonl",
+      "tests/class-potion-orb-source-inverse.test.mjs"
+    ],
+    "startedAt": "2026-11-09T23:55:52.198Z",
+    "finishedAt": "2026-11-09T23:56:01.940Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 9741.324725999995,
+    "nodeTotalDurationMs": 9625.931129,
+    "tests": 5,
+    "pass": 5,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/class-potion-orb-source-inverse.test.mjs",
+      "durationMs": 105.862406,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/map-cost-registration-final/class-potion-orb-source-inverse-before.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "after": {
+      "path": ".artifacts/map-cost-registration-final/class-potion-orb-source-inverse-after.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/map-cost-registration-final/class-potion-orb-source-inverse.log.gz",
+      "sha256": "e190ea3ab28ccddc53cf48ec268733e477d6c7fee993fa57be51c2ac671b4a8c",
+      "uncompressedSha256": "20cabbf29fa05a79104b21a3835e23e7322f3899ca9e729e8061221f83cdaa19",
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/corrected-class-potion-orb-source-inverse.log.gz"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localParent": "b7edb8ef36654a920652b2c1065f3ab6753baf2f",
+    "scope": "Own-tree generated inputs and tracked plus new implementation paths; shared local host, not Hosted or isolated benchmark; historical observations remain separate."
+  },
+  {
+    "testFile": "tests/defect-integration-source.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/map-cost-registration-final/defect-integration-source.jsonl",
+      "tests/defect-integration-source.test.mjs"
+    ],
+    "startedAt": "2026-11-09T23:56:03.056Z",
+    "finishedAt": "2026-11-09T23:56:13.359Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 10302.012888999998,
+    "nodeTotalDurationMs": 10185.967981,
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/defect-integration-source.test.mjs",
+      "durationMs": 556.842085,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/map-cost-registration-final/defect-integration-source-before.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "after": {
+      "path": ".artifacts/map-cost-registration-final/defect-integration-source-after.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/map-cost-registration-final/defect-integration-source.log.gz",
+      "sha256": "3764bdf6962041a2e811ee2fb26dbb3ec813f4aae15fd161094ce28df48309ef",
+      "uncompressedSha256": "5a8e0b49bec72011769d4bc1a9e233b643f255a2b000a3be2f1c5dfa3480361f",
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/corrected-defect-integration-source.log.gz"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localParent": "b7edb8ef36654a920652b2c1065f3ab6753baf2f",
+    "scope": "Own-tree generated inputs and tracked plus new implementation paths; shared local host, not Hosted or isolated benchmark; historical observations remain separate."
+  },
+  {
+    "testFile": "tests/watcher-actor-source-inverse.test.mjs",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=.artifacts/map-cost-registration-final/watcher-actor-source-inverse.jsonl",
+      "tests/watcher-actor-source-inverse.test.mjs"
+    ],
+    "startedAt": "2026-11-09T23:56:14.444Z",
+    "finishedAt": "2026-11-09T23:56:24.260Z",
+    "returncode": 0,
+    "signal": null,
+    "error": null,
+    "processWallMs": 9814.895677,
+    "nodeTotalDurationMs": 9689.173453,
+    "tests": 5,
+    "pass": 5,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "nativeSummary": {
+      "file": "tests/watcher-actor-source-inverse.test.mjs",
+      "durationMs": 87.472006,
+      "success": true
+    },
+    "before": {
+      "path": ".artifacts/map-cost-registration-final/watcher-actor-source-inverse-before.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "after": {
+      "path": ".artifacts/map-cost-registration-final/watcher-actor-source-inverse-after.json.gz",
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6",
+      "files": 8280,
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz"
+    },
+    "changedInputs": [],
+    "inputsMatched": true,
+    "log": {
+      "path": ".artifacts/map-cost-registration-final/watcher-actor-source-inverse.log.gz",
+      "sha256": "c598435ca822f07c0611d29da71603a6655e86fc82a367488b5d22c93aeb51d7",
+      "uncompressedSha256": "abe56c76a3d60e7a15ebd8e4bba6ab27f8995bab8b0b8a7e6e33a63246497e02",
+      "publishedPath": "docs/evidence/m7-map-cost-registration-20261110/corrected-watcher-actor-source-inverse.log.gz"
+    },
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64",
+    "localParent": "b7edb8ef36654a920652b2c1065f3ab6753baf2f",
+    "scope": "Own-tree generated inputs and tracked plus new implementation paths; shared local host, not Hosted or isolated benchmark; historical observations remain separate."
+  }
+]

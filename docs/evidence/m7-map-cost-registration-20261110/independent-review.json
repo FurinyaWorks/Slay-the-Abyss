@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 1,
+  "status": "SCOPED_REGISTRATION_REVIEW_PASS",
+  "overallAdmission": "BLOCKED",
+  "scope": "Independent local review of seven conservative complete-process cost registrations, exact historical projections, and packaged validation; not a Hosted, Full, admission, queue, merge, or post-merge pass.",
+  "baseCommit": "b7edb8ef36654a920652b2c1065f3ab6753baf2f",
+  "reviewedWorkingTreeSourceSha256": {
+    "scripts/ci-test-timings.json": "46e69e006ce623f0a66197db9f03859894b27152b4e90ee24fbe24cc42ab4289",
+    "tests/ci-complete-calibration.test.mjs": "b5098500fa556a749d9bf91036fa0b1034b0bb63317589544f349234fc2357d3",
+    "tests/ci-host-timing-calibration.test.mjs": "768fb481d6c929e86458cd12dc53059a12b84d08f540340d93d6e6323ee54cbe",
+    "tests/ci-runtime.test.mjs": "f6d377d11e41d144fd58ff262232ecd5b9bee22169625246eccc0831e87de01e",
+    "tests/ci-windows-shape-expansion.test.mjs": "2548e44ad622adb030688248f0473a0007ac15fb813ed0bc1e26d4f4490fb37c",
+    "tests/class-potion-orb-source-inverse.test.mjs": "b52757b389a896a7a10d456bf02c70913e07ba2ae693f4e93f16af67cf6d3468",
+    "tests/defect-integration-source.test.mjs": "36bb8b4ede5b046198b6aec9388adfc0e3919868a9a9ed783f79e1859f9e77b4",
+    "tests/watcher-actor-source-inverse.test.mjs": "54f5b79e2693d167b0047524f024e346cade7ec5e4f90b914d4e79f8e2678711",
+    "tests/helpers/map-emerald-cost-source-inverse.mjs": "e3d5f5f003fba1747ac8473da62ff55733a3638c4ff6db745a8498394ffdbe21",
+    "tests/helpers/map-emerald-cost-contract.mjs": "4e1ece351da5fd2dedfde0bf2efb52246f25ca7d8e29ba6eff5648e1a471225c",
+    "tests/helpers/map-emerald-cost-timings-before.json.gz": "5d07b11d861c6b744ee8f5250af60e4de4c0308c672ac638ae64fdfb9680f4c2",
+    "tests/fixtures/map-emerald-cost-registration.json": "19f522ed5140fb37ec2daeac218295cdb3679fca32737e36641737d37d76ed41",
+    ".gitattributes": "c456ed834b6d16517fb552c28b7f577565cb814c12f4a2bff7d3eaf4b48ee123"
+  },
+  "unchangedProductionSha256": {
+    "scripts/ci-shards.mjs": "e68f10c9650c43961d12405aac2e927b06fac1eba3b53345d34a5a3336b81628",
+    "scripts/test-lua.mjs": "57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703",
+    "scripts/lua-workers.mjs": "699aa2e9e4c236c4be8fdc7b4a61f66877dbecf88d16b8ad0d488defee8d82a3",
+    "scripts/ci-quality-shape.mjs": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed",
+    "scripts/ci-timeout-policy.mjs": "86884e7db31c299d1b3e908a9647d46379d958122dd519f52f92f5bce4fd8c3a",
+    ".github/workflows/quality.yml": "aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535"
+  },
+  "frozenTimingSha256": "2cd79700b9abe2385265a2846e4f5339a46e6da88b327b80690785371bc5b146",
+  "registeredTimingSha256": "46e69e006ce623f0a66197db9f03859894b27152b4e90ee24fbe24cc42ab4289",
+  "historicalAssertions": {
+    "methodAssertionLinesUnchanged": 804,
+    "additionalBareAssertLinesUnchanged": 2,
+    "files": [
+      {
+        "path": "tests/ci-complete-calibration.test.mjs",
+        "unchangedAssertionBearingLines": 505
+      },
+      {
+        "path": "tests/ci-host-timing-calibration.test.mjs",
+        "unchangedAssertionBearingLines": 34
+      },
+      {
+        "path": "tests/ci-runtime.test.mjs",
+        "unchangedAssertionBearingLines": 183
+      },
+      {
+        "path": "tests/ci-windows-shape-expansion.test.mjs",
+        "unchangedAssertionBearingLines": 26
+      },
+      {
+        "path": "tests/class-potion-orb-source-inverse.test.mjs",
+        "unchangedAssertionBearingLines": 18
+      },
+      {
+        "path": "tests/defect-integration-source.test.mjs",
+        "unchangedAssertionBearingLines": 22
+      },
+      {
+        "path": "tests/watcher-actor-source-inverse.test.mjs",
+        "unchangedAssertionBearingLines": 18
+      }
+    ]
+  },
+  "fixedFindings": [
+    {
+      "finding": "Live40 entries reached the frozen runtime33 provenance assertions.",
+      "resolution": "Runtime uses the complete planner with authenticated original Emerald timing input; unprojected live40 exports are checked by the new contracts."
+    },
+    {
+      "finding": "Raw-byte hashed registration and new observation JSON lacked explicit LF checkout rules.",
+      "resolution": "Relevant registration and observation JSON paths are explicitly text eol=lf; queried Git attributes confirm the rule."
+    },
+    {
+      "finding": "Frozen Emerald forecasts were described as current.",
+      "resolution": "The old forecast test and diagnostics explicitly identify frozen original Emerald33; the new contract reports true current forecasts."
+    },
+    {
+      "finding": "New observation validation compared snapshot checksum strings without reading the archive.",
+      "resolution": "The archive is now read, compressed and uncompressed digests and file count are verified; simulated archive unavailability is rejected."
+    }
+  ],
+  "cheapReviewChecks": {
+    "threeNewContractsPassedInIsolation": true,
+    "missingSnapshotRejected": true,
+    "lfCrlfInverseAndDriftRejectionPassed": true,
+    "allOriginalTimingValuesPreserved": true,
+    "reviewerRanCompleteTestFiles": false,
+    "reviewerRanFull": false
+  },
+  "completeFileEvidence": {
+    "uniqueFiles": 7,
+    "distinctCases": 82,
+    "pass": 82,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "initialRuntimeFailurePreserved": true,
+    "rerunsNotAddedToDistinctCount": true,
+    "records": [
+      {
+        "receipt": "initial-validation-observations.json",
+        "file": "tests/ci-complete-calibration.test.mjs",
+        "tests": 48,
+        "pass": 48,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 17543.864644
+      },
+      {
+        "receipt": "initial-validation-observations.json",
+        "file": "tests/ci-host-timing-calibration.test.mjs",
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 8283.612195000002
+      },
+      {
+        "receipt": "initial-validation-observations.json",
+        "file": "tests/ci-runtime.test.mjs",
+        "tests": 13,
+        "pass": 12,
+        "fail": 1,
+        "returncode": 1,
+        "processWallMs": 9839.955285
+      },
+      {
+        "receipt": "corrected-validation-observations.json",
+        "file": "tests/ci-runtime.test.mjs",
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 11019.980872999999
+      },
+      {
+        "receipt": "corrected-validation-observations.json",
+        "file": "tests/ci-windows-shape-expansion.test.mjs",
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 10049.926808
+      },
+      {
+        "receipt": "corrected-validation-observations.json",
+        "file": "tests/class-potion-orb-source-inverse.test.mjs",
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 9741.324725999995
+      },
+      {
+        "receipt": "corrected-validation-observations.json",
+        "file": "tests/defect-integration-source.test.mjs",
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 10302.012888999998
+      },
+      {
+        "receipt": "corrected-validation-observations.json",
+        "file": "tests/watcher-actor-source-inverse.test.mjs",
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 9814.895677
+      },
+      {
+        "receipt": "registration-validation.json",
+        "file": "tests/ci-complete-calibration.test.mjs",
+        "tests": 48,
+        "pass": 48,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 17543.864644
+      },
+      {
+        "receipt": "registration-validation.json",
+        "file": "tests/ci-host-timing-calibration.test.mjs",
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 8283.612195000002
+      },
+      {
+        "receipt": "registration-validation.json",
+        "file": "tests/ci-runtime.test.mjs",
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 11019.980872999999
+      },
+      {
+        "receipt": "registration-validation.json",
+        "file": "tests/ci-windows-shape-expansion.test.mjs",
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 10049.926808
+      },
+      {
+        "receipt": "registration-validation.json",
+        "file": "tests/class-potion-orb-source-inverse.test.mjs",
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 9741.324725999995
+      },
+      {
+        "receipt": "registration-validation.json",
+        "file": "tests/defect-integration-source.test.mjs",
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 10302.012888999998
+      },
+      {
+        "receipt": "registration-validation.json",
+        "file": "tests/watcher-actor-source-inverse.test.mjs",
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 9814.895677
+      },
+      {
+        "receipt": "final-calibration-validation.json",
+        "file": "tests/ci-complete-calibration.test.mjs",
+        "tests": 48,
+        "pass": 48,
+        "fail": 0,
+        "returncode": 0,
+        "processWallMs": 14894.074337
+      }
+    ]
+  },
+  "finalCalibration": {
+    "receipt": "docs/evidence/m7-map-cost-registration-20261110/final-calibration-validation.json",
+    "receiptSha256": "939da5732e038070d0201f5257e97bfb6a749306425521657a7b58fa1600c929",
+    "tests": 48,
+    "pass": 48,
+    "processWallMs": 14894.074337,
+    "nodeTotalDurationMs": 14790.467021,
+    "nativeSummaryMs": 4600.96816,
+    "retainedFloorMs": 17544,
+    "earlierHistoricalFloorMs": 13573,
+    "snapshotEntries": 8296,
+    "presentEntries": 8121,
+    "explicitSparseNullEntries": 175,
+    "allReviewedSemanticInputsMatchFinalSnapshot": true,
+    "postRunRecordedDifferences": [
+      {
+        "path": "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+        "recordedSha256": "76a5c0b1027a7b9492dd032f338628f583c80a5b1e3e1f620ba590ea4f506240",
+        "currentSha256": "62ceb4e669b56c3721ae0d128bd12735033ca6de1d28f1e8e01432773e56c5f9"
+      }
+    ]
+  },
+  "planning": {
+    "windowsShards": 17,
+    "posixShards": 15,
+    "jsFilesPerPlatform": 800,
+    "rawWindowsLuaFiles": 1410,
+    "reserveMs": 60000,
+    "windowsForecastMs": 1801345,
+    "windowsOriginalTargetMs": 1800000,
+    "windowsOverrunMs": 1345,
+    "posixForecastMs": 1137425,
+    "posixOriginalTargetMs": 1200000,
+    "normalizedWindowsWorkMs": 29591320,
+    "normalizedWindowsCapacityMs": 29580000,
+    "normalizedDeficitMs": 11320,
+    "windowsIdealLowerBoundMs": 1800665.8823529412
+  },
+  "publishedEvidenceReferences": {
+    "docs/evidence/m7-map-cost-registration-20261110/inputs-61db7e6be9b48cac4b1f30d5bcca500fedc0c8df4b2b76a1aae31384fea875c2.json.gz": {
+      "sha256": "61db7e6be9b48cac4b1f30d5bcca500fedc0c8df4b2b76a1aae31384fea875c2",
+      "uncompressedSha256": "61eb2db930ad71b7c8ec185530c9082603829770f91e3990c0d2927370339bc7"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/initial-ci-complete-calibration.log.gz": {
+      "sha256": "5ee0faa4eb79575bf84185a36decc8e168b6f3f5b130d08512efd96dba847784",
+      "uncompressedSha256": "43afe14b7b3d8fb0c06213baafdf9dae0a54b7343359075b6a6342d90166944f"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/initial-ci-host-timing-calibration.log.gz": {
+      "sha256": "da4fb8564d917bdd6756b0ce2acc331e876f32405769ab94d58fa2e04c5c87a2",
+      "uncompressedSha256": "82aa87b862c2727ba58fd9f778e2dbc0f636e0ba7ac504358594068c68049e31"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/initial-ci-runtime.log.gz": {
+      "sha256": "1a77ece9328714bf2fb3ea0d21cd14667cd0045f3f94334d20bafc506cf8bdcb",
+      "uncompressedSha256": "6db6d9898282e978477a59bf66cbc8d1a5f9779e089752f73771ff32998b9085"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz": {
+      "sha256": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+      "uncompressedSha256": "8cfccf0c405ad5e4979dd1c39eb87e2ff3a2a59ee1ba0e561833fc40275b80f6"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-ci-runtime.log.gz": {
+      "sha256": "873c6c75e98c85ff1ac8bf9ddd5c9716ed8cd94ec956d4b94b67eb92ecb565f6",
+      "uncompressedSha256": "4f12d9350d258d364272535d5121346c782d4077fc69d4aae3a753a1db5a016f"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-ci-windows-shape-expansion.log.gz": {
+      "sha256": "31bb1fbc8ad09584d5799a208a2e626c66c95877ed2746b96348d61d9707ebf4",
+      "uncompressedSha256": "d6e62d281253aefbbd77ad1ac7c73a008158e63e7ed1524ed7bf259e977ec0be"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-class-potion-orb-source-inverse.log.gz": {
+      "sha256": "e190ea3ab28ccddc53cf48ec268733e477d6c7fee993fa57be51c2ac671b4a8c",
+      "uncompressedSha256": "20cabbf29fa05a79104b21a3835e23e7322f3899ca9e729e8061221f83cdaa19"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-defect-integration-source.log.gz": {
+      "sha256": "3764bdf6962041a2e811ee2fb26dbb3ec813f4aae15fd161094ce28df48309ef",
+      "uncompressedSha256": "5a8e0b49bec72011769d4bc1a9e233b643f255a2b000a3be2f1c5dfa3480361f"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-watcher-actor-source-inverse.log.gz": {
+      "sha256": "c598435ca822f07c0611d29da71603a6655e86fc82a367488b5d22c93aeb51d7",
+      "uncompressedSha256": "abe56c76a3d60e7a15ebd8e4bba6ab27f8995bab8b0b8a7e6e33a63246497e02"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/inputs-018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0.json.gz": {
+      "sha256": "018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0",
+      "uncompressedSha256": "95197bbc686cff2fa9908cffd3dc1b6413b6db3517c0e66d163c77800db8a30c"
+    },
+    "docs/evidence/m7-map-cost-registration-20261110/final-ci-complete-calibration.log.gz": {
+      "sha256": "d912011cdbec24ba7e7bd131a324bea95746e6fc137d79e9afd439673ebd3eac",
+      "uncompressedSha256": "721225c3c01cdd640df746c65c1607cd0a9010a53094bbae0c3083cd6cda4a5e"
+    }
+  },
+  "packagingSha256": {
+    "docs/evidence/m7-map-cost-registration-20261110/README.md": "d82f8fba736bdf3d462af2009fc4ab391818521e3a72328b957b2d084e0b1f44",
+    "docs/evidence/m7-map-cost-registration-20261110/backlog-final.log.gz": "a41daa028e8e1826fe66714e47db49b5f9e1077ddb40b02794a9dbcfd2b5ee81",
+    "docs/evidence/m7-map-cost-registration-20261110/backlog.log.gz": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+    "docs/evidence/m7-map-cost-registration-20261110/build-data.log.gz": "55e12e402720a50ec9ae22d5216db1e05c8260adfbab010cbf45357608ef6506",
+    "docs/evidence/m7-map-cost-registration-20261110/build-ui.log.gz": "6776ff5a1fac3b3ec9ba7c2eb31af470998ea6929d5667da6742a8adb49396ef",
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-ci-runtime.log.gz": "873c6c75e98c85ff1ac8bf9ddd5c9716ed8cd94ec956d4b94b67eb92ecb565f6",
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-ci-windows-shape-expansion.log.gz": "31bb1fbc8ad09584d5799a208a2e626c66c95877ed2746b96348d61d9707ebf4",
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-class-potion-orb-source-inverse.log.gz": "e190ea3ab28ccddc53cf48ec268733e477d6c7fee993fa57be51c2ac671b4a8c",
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-defect-integration-source.log.gz": "3764bdf6962041a2e811ee2fb26dbb3ec813f4aae15fd161094ce28df48309ef",
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-validation-observations.json": "58458c8fc3f6276fd74b580c3d9187bf64235d97f3f613ad2c5c4d73b5400fe6",
+    "docs/evidence/m7-map-cost-registration-20261110/corrected-watcher-actor-source-inverse.log.gz": "c598435ca822f07c0611d29da71603a6655e86fc82a367488b5d22c93aeb51d7",
+    "docs/evidence/m7-map-cost-registration-20261110/doctor-invocation-error.log.gz": "b511460ce955fc7e8868d632ccb48ad74a3d2211db879df9b5e1b07dcc9217fc",
+    "docs/evidence/m7-map-cost-registration-20261110/doctor.log.gz": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+    "docs/evidence/m7-map-cost-registration-20261110/final-calibration-validation.json": "939da5732e038070d0201f5257e97bfb6a749306425521657a7b58fa1600c929",
+    "docs/evidence/m7-map-cost-registration-20261110/final-ci-complete-calibration.log.gz": "d912011cdbec24ba7e7bd131a324bea95746e6fc137d79e9afd439673ebd3eac",
+    "docs/evidence/m7-map-cost-registration-20261110/guidance.log.gz": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+    "docs/evidence/m7-map-cost-registration-20261110/historical-capacity-proof.json": "8c3297e5055fdc86b24e29e11de7fee7d5814b38515af26ce30b7208522f1888",
+    "docs/evidence/m7-map-cost-registration-20261110/historical-capacity-proof.md": "d51b18d1e33cc66effc15c09b6b6eddd2ebdb61347d78f6c149c872110dd0c9b",
+    "docs/evidence/m7-map-cost-registration-20261110/historical-capacity-proof.mjs": "7cff09279e48d0624a62a7da5b9ff957d2a351ff9775ce0fff19e5c19c5b5173",
+    "docs/evidence/m7-map-cost-registration-20261110/initial-ci-complete-calibration.log.gz": "5ee0faa4eb79575bf84185a36decc8e168b6f3f5b130d08512efd96dba847784",
+    "docs/evidence/m7-map-cost-registration-20261110/initial-ci-host-timing-calibration.log.gz": "da4fb8564d917bdd6756b0ce2acc331e876f32405769ab94d58fa2e04c5c87a2",
+    "docs/evidence/m7-map-cost-registration-20261110/initial-ci-runtime.log.gz": "1a77ece9328714bf2fb3ea0d21cd14667cd0045f3f94334d20bafc506cf8bdcb",
+    "docs/evidence/m7-map-cost-registration-20261110/initial-validation-observations.json": "363e87d5d3659f79a616e64f0b1da99171734bbb1f9a613fa4a242e012ad6e66",
+    "docs/evidence/m7-map-cost-registration-20261110/inputs-018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0.json.gz": "018f001de2566c15f402d65bef409a4da140069c8586acf1f6d55b7f4f1c40c0",
+    "docs/evidence/m7-map-cost-registration-20261110/inputs-61db7e6be9b48cac4b1f30d5bcca500fedc0c8df4b2b76a1aae31384fea875c2.json.gz": "61db7e6be9b48cac4b1f30d5bcca500fedc0c8df4b2b76a1aae31384fea875c2",
+    "docs/evidence/m7-map-cost-registration-20261110/inputs-a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1.json.gz": "a9f53ad7b8030488ec3ef684dbc7bccab25f73ce5adb059af17d78f745d3d5d1",
+    "docs/evidence/m7-map-cost-registration-20261110/manifest.json": "107042c44f91ecb61bdc2e535f16c6c48a156c4cecec326596d5b6eababdf2ab",
+    "docs/evidence/m7-map-cost-registration-20261110/measure-registration-files.mjs": "f5e2e99b315ca772b52cc012ae6895a501493eada799e131efbeb584eb54800a",
+    "docs/evidence/m7-map-cost-registration-20261110/preservation-audit.json": "a42ac1408791e65a7fd719bb655e04a8ae2d55558615a50f1562ae760cb1c575",
+    "docs/evidence/m7-map-cost-registration-20261110/registration-validation.json": "23f3b3d4124a4af35437183a52dcba6495299f012a0244c151cd5e8b06e92a87"
+  },
+  "doctor": "The unsupported --plain invocation is retained separately. The supported read-only doctor report retains five existing duplicate-ID groups and 93 legacy-location files; no repair or pass is claimed.",
+  "remainingBlockingFindings": [],
+  "limitations": [
+    "No final commit SHA exists for this local review; source identities above bind the reviewed working-tree bytes.",
+    "Local shared Linux measurements are neither isolated benchmarks nor Hosted Windows guarantees.",
+    "Final calibration covers the final semantic source identities; six other complete-file passes are retained from the stated earlier registration candidates, without falsely declaring their full input snapshots identical to the final candidate.",
+    "Snapshot scope excludes node_modules and unrelated untracked/generated outputs; sparse missing paths remain null.",
+    "The original target overrun and exact-HEAD Hosted/admission requirements remain unresolved."
+  ]
+}

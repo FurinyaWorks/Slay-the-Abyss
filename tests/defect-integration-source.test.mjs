@@ -1,4 +1,5 @@
-import {preEmeraldMapCiSource} from './helpers/map-emerald-ci-source-inverse.mjs';
+import {preEmeraldCostSource} from './helpers/map-emerald-cost-source-inverse.mjs';
+import {preEmeraldMapCiSource as originalPreEmeraldMapCiSource} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {originalPlanningSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -60,3 +61,6 @@ test('utility production inverse composes with the current M7 source chain witho
  for(const input of [source+'\n',source.slice(1),undefined,null,{},42])assert.equal(preM7FinalSource(p,input,{readSource:fail}),input);
  assert.equal(preM7FinalSource('foreign',source,{readSource:fail}),source);
 });
+
+// Preserve the complete original Emerald/historical assertions behind one exact registration boundary.
+function preEmeraldMapCiSource(path,source){return originalPreEmeraldMapCiSource(path,preEmeraldCostSource(path,source));}
