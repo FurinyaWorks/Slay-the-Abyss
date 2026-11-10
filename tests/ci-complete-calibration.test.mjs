@@ -1,3 +1,4 @@
+import {preObserverEventWriteSource,observerSourcePath,observerCurrentSha256,observerPriorSha256} from './helpers/lua-graph-observer-source-inverse.mjs';
 import {preWheelCiSource,wheelCiProof,wheelPlanningFloors,wheelJs} from './helpers/wheel-ci-source-inverse.mjs';
 import {preStasisCiSource,stasisCiProof,stasisPlanningFloors,stasisJs} from './helpers/stasis-ci-source-inverse.mjs';
 import * as currentProjection from './helpers/ci-complete-calibration-source-inverse.mjs';
@@ -43,7 +44,7 @@ import {shardLuaScripts} from '../scripts/test-lua.mjs';
 // Historical Stasis803 contracts retain exact complete predecessor inputs.
 const actualDiskReadFileSync=(file,encoding)=>{
  const value=wheelDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8');
- const prior=preWheelCiSource(file,text);
+ const prior=preWheelCiSource(file,preObserverEventWriteSource(file,text));
  return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);
 };
 const actualDiscoverJs=(...args)=>wheelDiscoverJs(...args).filter(file=>!wheelJs.includes(file));
@@ -1280,4 +1281,26 @@ test('Wheel planning retains every larger earlier complete success without claim
   assert.ok(log.includes('duration_ms '+earlier.nodeReportedDurationMs));assert.match(log,/(?:ℹ |# )fail 0/);assert.match(log,/(?:ℹ |# )skipped 0/);
   assert.ok(floor.durationMs>=Math.ceil(earlier.nodeReportedDurationMs));assert.match(earlier.scope,/No exploratory before\/after manifest/);
  }
+});
+
+
+test('observer receipt projection authenticates raw current and complete prior sources without hiding drift',()=>{
+ const raw=wheelDiskReadFileSync(observerSourcePath,'utf8'),lf=raw.replaceAll('\r\n','\n');
+ assert.equal(hash(lf),observerCurrentSha256,'independent raw-current source identity');
+ const prior=preObserverEventWriteSource(observerSourcePath,raw);
+ assert.equal(hash(prior),observerPriorSha256);
+ assert.notEqual(raw,prior);assert.match(lf,/writeGraph,writeEvent/);assert.match(lf,/_EVENT_WRITE/);
+ for(const source of [lf,lf.replaceAll('\n','\r\n')]){
+  assert.equal(preObserverEventWriteSource(observerSourcePath,source),prior);
+  assert.equal(preObserverEventWriteSource('foreign',source),source);
+ }
+ for(const source of [undefined,null,'',Buffer.from(lf),prior,lf+' ',lf.slice(0,-1),
+  lf.replace('writeGraph,writeEvent','writeGraph'),lf.replace("name+'_EVENT_WRITE'","name+'_FOREIGN_WRITE'"),
+  lf.replace('const allocations=new Map()','const allocations=new WeakMap()'),
+  lf.replace('\n','\r\n'),lf.replaceAll('\n','\r'),lf.replace('\n','\r'),
+  lf.replaceAll('\n','\r\n').replace('\r\n','\n')]){
+  assert.equal(preObserverEventWriteSource(observerSourcePath,source),source,'unknown/missing/partial input remains unprojected');
+  if(typeof source==='string'&&source!==prior)assert.notEqual(hash(source),observerPriorSha256,'drift cannot authenticate the frozen receipt');
+ }
+ assert.equal(wheelDiskReadFileSync(observerSourcePath,'utf8'),raw,'projection does not modify current source');
 });

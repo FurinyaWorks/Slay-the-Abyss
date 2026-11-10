@@ -1,0 +1,83 @@
+{
+  "baseHead": "0956bf424f9f46cf525604b696040f07a0b23192",
+  "scope": "Historical planning receipt observer projection only; runtime observer and frozen inputs unchanged.",
+  "validation": {
+    "red-four": "4/4 fail with exact observer digest mismatch after local data/UI/map prerequisites",
+    "green-calibration": "54/54 pass; 0 skipped",
+    "green-strict-projection": "1/1 pass",
+    "green-projection-cache": "6/6 pass",
+    "green-observer-runtime": "5/5 pass",
+    "green-source-consumers": "32/33 pass; only failure missing pinned Luacheck; original failure preserved",
+    "green-silent-cc": "1/1 pass after pinned Luacheck hash verification",
+    "red": "Initial diagnostic run before generated build prerequisites, retained separately"
+  },
+  "limits": [
+    "No full npm check",
+    "No Hosted run/retry/dispatch",
+    "No GUI",
+    "No publish or merge",
+    "Local Linux checks do not replace required Windows/POSIX CI"
+  ],
+  "logs": {
+    "build.log": {
+      "bytes": 459,
+      "sha256": "88b25cab04f8c99b51f36429e4fd45d23768d8511da33445da48f5895cc04108",
+      "archiveSha256": "426bec77ecf6887b486a9f3714ec4c3fe9f7ce8a7e62a8ec12911a54faae6860"
+    },
+    "green-calibration.log": {
+      "bytes": 7147,
+      "sha256": "088cecf4aa78c5baf3c38d01ddaf7d7de6a5a9700f0b41a84535a3f37f421495",
+      "archiveSha256": "00ad5a92491c65a7e8cbf29873e2582e0d9ffaa3aa7afc4534647f7ca4dc30a9"
+    },
+    "green-observer-runtime.log": {
+      "bytes": 619,
+      "sha256": "4447291ee879a6d2b6f3f9057ded716347c59c094b18d0f30831ca556f25f112",
+      "archiveSha256": "fac4c190d2c5afdb5966eb9b65457de2f5bdf2cec05e00a3eba60b8d06a83338"
+    },
+    "green-projection-cache.log": {
+      "bytes": 793,
+      "sha256": "53a7220e7d62c1f2dfe0a1c68a9dba5d4fcfe7e9d587558a31d1d93f816a3e70",
+      "archiveSha256": "20a87ff72ea4156ab03240c1130eaa31a5692058f6aa0f52c942d1b0384a33dd"
+    },
+    "green-silent-cc.log": {
+      "bytes": 217,
+      "sha256": "464ca1b88bbe568e6c6103fe0d708efb99a376e271f9e19e8ff57dd0d2a4b465",
+      "archiveSha256": "20929d32c10cc94b9c8719ed10b830ead82e6bd857f0aeea06b598afcb1d35d5"
+    },
+    "green-source-consumers.log": {
+      "bytes": 5319,
+      "sha256": "0dbaace837a743ef19913352cdb63b08b1d256ecab84383ef67b1293bbf4d47d",
+      "archiveSha256": "599e1526a80830736639173cad8cec69acc3aea9faf68ebe38df02b2a18e023e"
+    },
+    "green-strict-projection.log": {
+      "bytes": 233,
+      "sha256": "4e9d1fa83658bf654438de78d80791a01714de50352795949e3227219812f228",
+      "archiveSha256": "56a0f3b28c112e87135fd2174c8bd68271970d7ee275c07cc23650feed5b3874"
+    },
+    "job-129693019603.log": {
+      "bytes": 97724,
+      "sha256": "386b47abf59bd20f69b372a56824e96a4b62f50b8e7d5e1b77eb73b172acaa61",
+      "archiveSha256": "0f70101b2b41a21fc9b7784bd5ec14759751f02407de436adf2cce372ecc2cb2"
+    },
+    "job-129693019889.log": {
+      "bytes": 87081,
+      "sha256": "82193014a69b5ae68fb585f07e749e0a03e613e83e53e3dcb43f6856d8e1b136",
+      "archiveSha256": "4698c17d8ea132d63a87db14f431002bffcaf3c6b981fc2b704436f8084bba18"
+    },
+    "luacheck-setup.log": {
+      "bytes": 265,
+      "sha256": "20dbc3a2a41d7ecc9ee00ba76190da61a0c3ce3416ece6cb1a45f2ae527fc527",
+      "archiveSha256": "7ca351047f59643b766a447211d2217037bde75d19317740d2a302f123717c02"
+    },
+    "red-four.log": {
+      "bytes": 5127,
+      "sha256": "f35f26dfb4a4501320013d52689f3a7e6b9345bc20698115247cbf72db39ba4c",
+      "archiveSha256": "0385323dade3ee62cbbe8ac9c13f2c01ac6fc032bc1fb8d810f4e7ff847b936f"
+    },
+    "red.log": {
+      "bytes": 5142,
+      "sha256": "0381385cfd8e984b04d91fe1b0f4fc3a961b7e45e55e4cda44758801f13fc62d",
+      "archiveSha256": "9267138e7555200de24d31128594efbdbdf8a2d58686e2d423f70835bad6e071"
+    }
+  }
+}
