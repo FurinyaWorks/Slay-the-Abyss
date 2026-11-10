@@ -13,3 +13,5 @@
 
 运行重建：`python create_raiden_idle.py raiden_static_draft.png ./rebuild`，依赖 `pillow numpy opencv-python-headless`。
 角色IP归原权利人，非商业同人预览，不将此候选称为官方图片或获授权的商业素材。
+
+复现环境：原生成脚本依赖 Linux 的 `/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf`。Windows 需提供相同字体环境；字体 fallback 不保证对照 GIF 逐字一致。源 evidence.json 保留原临时路径/预览名，只作历史记录；当前入库身份以实际文件及 docs/legal/assets.json 为准。

@@ -1,0 +1,191 @@
+{
+  "date": "2026-11-10",
+  "task": "TASK-88.1",
+  "baseline": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "sources": [
+    {
+      "pr": 606,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/606",
+      "head": "0dde23077131092782e7f7f434efb6492b82f7b0",
+      "branch": "feat/integration-closeout-20261110",
+      "disposition": "ci-auto-merge"
+    },
+    {
+      "pr": 605,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/605",
+      "head": "4eed3327396d94ac3bac83c449d24fa50017ce26",
+      "branch": "feat/event-v25",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 604,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/604",
+      "head": "6ca77d2f04890ca632136a468c4d7a7aa9c4ac18",
+      "branch": "feat/architecture-source-discovery",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 603,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/603",
+      "head": "5bb9b645002ed6a95378294d81f509994e6c5975",
+      "branch": "feat/map-v25",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 602,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/602",
+      "head": "fa1c9a11ecbd0b47fcbb6033826fae4c3dcedca2",
+      "branch": "assets/lumine-idle-approved-20261110",
+      "disposition": "deduplicated-with-596"
+    },
+    {
+      "pr": 601,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/601",
+      "head": "ab5d3fd04753de30411afb4d9e5400d36d6a7334",
+      "branch": "feat/architecture-for-iterators",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 599,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/599",
+      "head": "0702220c8ccccd987626684dd0cf74d706e76b8f",
+      "branch": "feat/m7-run-healing-owner-20261110",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    },
+    {
+      "pr": 598,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/598",
+      "head": "e04cfbbf97ded021e8e0d00eaecaad84d2d2e610",
+      "branch": "feat/art-raiden-idle-candidate-20261110",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 597,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/597",
+      "head": "08dfe1139c8f915df489baaaaf6441797674ab93",
+      "branch": "feat/m7-event-selector-closeout",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 596,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/596",
+      "head": "f9a5129cfc3fc7013feadbd622fa160e843191c3",
+      "branch": "feat/art-lumine-idle-approved-20261110",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 595,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/595",
+      "head": "2aa5c29c230804473bb2ce437ed440542f9f65d5",
+      "branch": "feat/m7-ending-terminal-responsibilities",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    },
+    {
+      "pr": 594,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/594",
+      "head": "9c7731fe86268534960bce793efaa82f5ae2a223",
+      "branch": "feat/m7-colorless-description-20261110",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    },
+    {
+      "pr": 593,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/593",
+      "head": "5524292fe66e3927cd4846fdbdb33b8d66e435c2",
+      "branch": "docs/task-25-2-1-traveler-art-reference-20261110",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 591,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/591",
+      "head": "f819a15a232ffaf173c62eb0025fab0e40c5a230",
+      "branch": "feat/m7-map-emerald-responsibilities",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    },
+    {
+      "pr": 590,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/590",
+      "head": "fcff7c538942a55ce519c340ce6ecaa6f4af6d89",
+      "branch": "feat/m7-treasure-source-responsibilities",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    },
+    {
+      "pr": 589,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/589",
+      "head": "3ad248460d7b4f272fbc5670b507547b53df41a1",
+      "branch": "docs/simulator-native-asset-parity-20261109",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 588,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/588",
+      "head": "a1a3ba4b6b83ab1ddca76268e08bba9c014ad375",
+      "branch": "feat/official-assets-first-ui-20261109",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 587,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/587",
+      "head": "080f8e636b952509376e7c61d57aa312dab1bf3e",
+      "branch": "feat/m7-golden-idol-responsibilities",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    },
+    {
+      "pr": 586,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/586",
+      "head": "b28a8d4be085015e53ea8e56b94af9ea5e38b000",
+      "branch": "feat/m7-watcher-flow-preparation",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    },
+    {
+      "pr": 585,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/585",
+      "head": "ce11d4fef744930fbe73b5418cf184bdbbe0aee6",
+      "branch": "feat/m7-silent-potion-owner",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    },
+    {
+      "pr": 583,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/583",
+      "head": "168e7d796b712330a61a30a6293dcc6ebafcab14",
+      "branch": "feat/m7-warrior-status-recovery",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    },
+    {
+      "pr": 582,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/582",
+      "head": "982e1968ba01dff11c2ab1b9596a3abda881aa1d",
+      "branch": "feat/ui-lifecycle",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 581,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/581",
+      "head": "dc9f92007de50bb7d105ddc10de57725dd1d1ef0",
+      "branch": "docs/task-104-product-outcome-harness-20261109",
+      "disposition": "consolidated-candidate-not-accepted"
+    },
+    {
+      "pr": 579,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/579",
+      "head": "12dbe03ff61e4af8482fb188579fdf97bea93e91",
+      "branch": "feat/balance-batch-integration",
+      "disposition": "preserved-for-backlog-reintegration-not-merged"
+    }
+  ],
+  "recovery": {
+    "bundle": ".artifacts/integration-20261110-remote-frozen.bundle",
+    "verifiedComplete": true,
+    "archiveRefs": "refs/archive/integration-20261110/remote/*",
+    "closedPrRecovery": "git fetch origin refs/pull/<PR>/head; git switch -c <short-branch> FETCH_HEAD"
+  },
+  "limits": [
+    "No source task marked Done by branch cleanup",
+    "10 independent M7 slices preserved for Backlog reintegration; not silently claimed merged",
+    "Candidate source tests: 62 pass, 4 historical UI identity failures; normal Full/independent admission remains required",
+    "New source updates after snapshot require a new bundle and exact lease; never delete an unseen head",
+    "Dirty worktrees retained"
+  ],
+  "issues": {
+    "600": "TASK-74.22; original body and discussion in ISSUE-600-MIGRATION-20261110.json"
+  }
+}

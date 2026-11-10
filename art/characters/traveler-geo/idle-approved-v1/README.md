@@ -29,3 +29,5 @@ python create_lumine_idle.py lumine_static_approved.png ./rebuild
 这批是**审美批准的源媒体**，不是可直接作为自定义纹理导入千星的 GIL。下一步只能沿既有原生图元/模板/SDK路线转换，使用实际原生控件数、首次完整显示与手机帧时判定是否可交付；不承诺57控件或替换现有战斗皮肤。需要逐帧 PNG 时执行脚本重建 `frame_00.png`—`frame_19.png`，避免把20张相似图片都写进长期Git历史。
 
 角色「荧」出自《原神》，相关人物形象及设定权利属于原权利人。此资产为非商业同人项目的创作/技术验证，**不声称拥有官方角色版权，也不把游戏原画或其他社区GIA打包进仓库**。生成和审阅来自本项目对话记录，原素材和失败历史哈希按本文件登记。
+
+复现环境：原生成脚本依赖 Linux 的 `/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf`。Windows 需提供相同字体环境；字体 fallback 不保证对照 GIF 逐字一致。源 evidence.json 保留原临时路径/预览名，只作历史记录；当前入库身份以实际文件及 docs/legal/assets.json 为准。

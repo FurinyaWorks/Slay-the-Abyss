@@ -491,3 +491,7 @@ tests/helpers/official-banner-source-epoch.json.gz -text
 docs/evidence/pr588-native-mock-20261110/** -text
 # Raw runner logs retain their original indentation and trailing whitespace.
 docs/evidence/pr588-native-mock-20261110/*.log -whitespace
+
+# Preserve original server-created CRLF evidence blobs byte-for-byte.
+docs/evidence/pr588-native-mock-20261110/** -text whitespace=cr-at-eol
+docs/evidence/official-assets-first-20261109/full-flow/** -text whitespace=cr-at-eol

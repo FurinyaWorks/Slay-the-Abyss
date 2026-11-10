@@ -130,6 +130,14 @@
     "official-assets-offline-diagnostic": {
       "status": "Project UI geometry and text diagnostics rendered by Pillow with system Noto fonts. Unknown SDK textures are outlined and labelled by ID; no official texture images or font binaries redistributed. Referenced game identities remain their owners IP; no asset/IP sublicense or commercial clearance. Offline Host/layout evidence only, not official-client or browser screenshots, final artwork, import/ready, native font, device or performance acceptance.",
       "evidence": "docs/evidence/official-assets-first-20261109/full-flow/README.md and artifact-index.json; scripts/official-assets-preview.lua, scripts/official-assets-preview.mjs and scripts/official-assets-preview-raster.py; full natural campaign and separately identified bounded prefixes. Initial 21-scene capture predates the Power-template diagnostic fix; later prefix captures use the fix. shop-delta is explicitly a layout-only rerender, not a fresh Host route."
+    },
+    "character-idle-source": {
+      "status": "Project AI-assisted Genshin character derivative source media. Lumine source appearance approved; Raiden candidate unapproved and disabled. No character-IP sublicense, commercial clearance, native import or device acceptance.",
+      "evidence": "art/characters/traveler-geo/idle-approved-v1/README.md; art/characters/raiden-shogun/idle-candidate-v1/README.md; source PR596/598; independent review character-idle-source-dedup-independent-20261110"
+    },
+    "map-event-offline-evidence": {
+      "status": "Project map/event UI diagnostic captures, including rejected missing-icon input. Platform artwork and character rights remain with their owners. Evidence only; no asset sublicense, commercial clearance, official import, device or final product acceptance.",
+      "evidence": "docs/evidence/map-v25-20261110/README.md; docs/evidence/event-v25-20261110/README.md; original PR603/605"
     }
   },
   "files": {
@@ -6061,6 +6069,106 @@
     "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-settled.png": {
       "sha256": "4427191b3d1a1b944de7ff37aa47d99fd05568c416faf9fec1304c1286b6f59f",
       "category": "official-assets-offline-diagnostic"
+    },
+    "art/characters/traveler-geo/idle-approved-v1/evidence.json": {
+      "category": "art-production-record",
+      "sha256": "ac33fe4871414ff98830ffdfeab4fa4082718f24d023ff0cdbe33bdefb7a2998"
+    },
+    "art/characters/traveler-geo/idle-approved-v1/lumine_idle_133px_spritesheet.png": {
+      "category": "character-idle-source",
+      "sha256": "8a9e8dda24e5678c1e279a3a1c42da357e4e5c87d61137da95c4fa18a89a5090"
+    },
+    "art/characters/traveler-geo/idle-approved-v1/lumine_idle_approved.gif": {
+      "category": "character-idle-source",
+      "sha256": "0449a8b3094f0a628f493b27157ae2d8b27d646ceb9541f6f5e9ce98a9ebeff1"
+    },
+    "art/characters/traveler-geo/idle-approved-v1/lumine_idle_compare.gif": {
+      "category": "character-idle-source",
+      "sha256": "638be8b90eb33da4846b261b9565424fd8339d32c89413b47e9296472d0885b1"
+    },
+    "art/characters/traveler-geo/idle-approved-v1/lumine_static_approved.png": {
+      "category": "character-idle-source",
+      "sha256": "32830a9ab3f0b181202205bba59447efe660ce3225ab26f32943c54753a105de"
+    },
+    "art/characters/raiden-shogun/idle-candidate-v1/asset_manifest.json": {
+      "category": "art-production-record",
+      "sha256": "0b549a8b1a5d67a2f7446eb347ff4162a330f1601837382c70d5ea2ee1fa87df"
+    },
+    "art/characters/raiden-shogun/idle-candidate-v1/evidence.json": {
+      "category": "art-production-record",
+      "sha256": "8e8b19c2f7c9743dbbaf5c72b599de2c9e535c04c68047805bd0f3129419e166"
+    },
+    "art/characters/raiden-shogun/idle-candidate-v1/imagegen_first_8frames.gif": {
+      "category": "character-idle-source",
+      "sha256": "b7e82ec088424260326621c4ceb53ac4e89238da481e766443ad51a50087c2c1"
+    },
+    "art/characters/raiden-shogun/idle-candidate-v1/raiden_idle_133px_spritesheet.png": {
+      "category": "character-idle-source",
+      "sha256": "19fb4013d7d1c617ef34ac43d472a5c7876f9bdffc923f727f93199ac10fdc54"
+    },
+    "art/characters/raiden-shogun/idle-candidate-v1/raiden_idle_compare.gif": {
+      "category": "character-idle-source",
+      "sha256": "ea3df0d7c705f11d0310dca61666649295e4f0a72affc90fda37edf7db2f2453"
+    },
+    "art/characters/raiden-shogun/idle-candidate-v1/raiden_idle_review.gif": {
+      "category": "character-idle-source",
+      "sha256": "76154dfadea876dead0c0b259dbc877902871e82235b65252da87530b74993e1"
+    },
+    "art/characters/raiden-shogun/idle-candidate-v1/raiden_static_draft.png": {
+      "category": "character-idle-source",
+      "sha256": "b1c2a0cf9a361f2e9be52646180d58c01600f5972b9e50da249a1c0e698b03d9"
+    },
+    "docs/evidence/map-v25-20261110/map-boss.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "a9e013e8e6fd3b1a7637ef3ef59b0df04603cadd8fdd3d23c6a98164062c13cd"
+    },
+    "docs/evidence/map-v25-20261110/map-selected.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "0175f22c16a6ccc540017a3b97a2f4c91d2f5a209b529a44bdfc99b9dc5acec6"
+    },
+    "docs/evidence/map-v25-20261110/map.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "897322ac19605b0bf090eee7730270fc57bfe3ddbdac8b83dd2afc10508d008b"
+    },
+    "docs/evidence/map-v25-20261110/raw/rejected-missing-icon.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "90b5b825669c11446d34cbcf1183db21dcbd78df3a17d82db5a90a9278df2cb2"
+    },
+    "docs/evidence/event-v25-20261110/camp.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "c58862c4c58b09e55c7d40b6b5d3bc6cc1b4ce576dc6c81b39727a9d9affa8de"
+    },
+    "docs/evidence/event-v25-20261110/cleric.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "4f80b77d4182fa58ef735ca29d6b6811722349484e6eabb5ae761632e914630a"
+    },
+    "docs/evidence/event-v25-20261110/designer-four-options.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "96b2203dc159bfd6a2e66fa4d671f99e41d8a532bcfba9ec55914763ef060822"
+    },
+    "docs/evidence/event-v25-20261110/library-picker.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "6cabf155c73b15f9f09f3088ca22b42cd96504bd2e043671eccdd7a4256a5eb5"
+    },
+    "docs/evidence/event-v25-20261110/match-reveal.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "6e06f208e3370c7866305361010ab854e17c99c5646277fac119a6b589adba89"
+    },
+    "docs/evidence/event-v25-20261110/neow-blessings.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "78981c37e8db28191ca4c0ec3b79f088398f5eac2138026b62d1c4f32854fa64"
+    },
+    "docs/evidence/event-v25-20261110/shop.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "6c85bffb1bb0b76214fcbc64a5972e9bbe55a23882edc331e4dac42a29a95456"
+    },
+    "docs/evidence/event-v25-20261110/treasure-open.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "82c786a14adc0f6c892a742623fa502adb57c5038e70f3ea184d3d31c917e9d4"
+    },
+    "docs/evidence/event-v25-20261110/we-meet-again-long-potion.png": {
+      "category": "map-event-offline-evidence",
+      "sha256": "727229d42861f7098ef19ffa4f15370d2daad5cf768c6fa3b20450b4527dade8"
     }
   }
 }
