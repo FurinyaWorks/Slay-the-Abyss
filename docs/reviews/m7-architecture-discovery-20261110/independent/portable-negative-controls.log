@@ -1,0 +1,54 @@
+=== isolated green control ===
+PASS dotted filename original path and CLI violation
+PASS added files and nested cycle path
+PASS source removal freshness
+PASS policy freshness
+PASS collision and CLI rejection
+PASS file, non-Lua, dangling, directory symlink rejection
+PASS empty tree CLI rejection despite earlier successful build report
+PASS all independent probes
+
+=== path mutation: exit 1 ===
+PASS dotted filename original path and CLI violation
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(both().errors.some(e=>/Dependency cycle/.test(e.message)&&e.file==='src/lua/nest/a.lua'))
+
+    at file:///tmp/m7-eleven-review/probe.mjs:23:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+
+PASS path: rejected at intended assertion
+=== collision mutation: exit 1 ===
+PASS dotted filename original path and CLI violation
+PASS added files and nested cycle path
+PASS source removal freshness
+PASS policy freshness
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Missing expected exception.
+    at file:///tmp/m7-eleven-review/probe.mjs:26:46 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: /Ambiguous Lua module identity/,
+  operator: 'throws',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+
+PASS collision: rejected at intended assertion

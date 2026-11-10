@@ -1,0 +1,8 @@
+PASS dotted filename original path and CLI violation
+PASS added files and nested cycle path
+PASS source removal freshness
+PASS policy freshness
+PASS collision and CLI rejection
+PASS file, non-Lua, dangling, directory symlink rejection
+PASS empty tree CLI rejection despite earlier successful build report
+PASS all independent probes

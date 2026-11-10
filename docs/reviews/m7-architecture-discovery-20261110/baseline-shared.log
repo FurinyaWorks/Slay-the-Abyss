@@ -1,0 +1,17 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+: tool missing
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (6.122288ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.383089ms)
+✔ collection failures and existing gate failures propagate (1.022089ms)
+✔ a failed shared collection writes a fresh failed quality report (12.561242ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (1.609492ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 186.28167

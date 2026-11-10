@@ -19,6 +19,19 @@ export function discoverSources(root=process.cwd()) {
   return sources;
 }
 
+// Keep both engineering entry points on the same module identity contract.
+// Preserve the real path: a dotted filename and nested directories can name
+// the same Lua module, but their diagnostics must not invent a different file.
+export function architectureSources(sources) {
+  const byModule={},sourcePaths={};
+  for(const [file,source] of Object.entries(sources)) {
+    const name=file.slice('src/lua/'.length,-4).replaceAll('/','.');
+    if(name in byModule)throw new Error(`Ambiguous Lua module identity: ${name}`);
+    byModule[name]=source;sourcePaths[name]=file;
+  }
+  return {byModule,sourcePaths};
+}
+
 const symbol = node => node?.type==='Identifier' ? node.name
   : node?.type==='MemberExpression' ? `${symbol(node.base)}${node.indexer}${symbol(node.identifier)}` : null;
 

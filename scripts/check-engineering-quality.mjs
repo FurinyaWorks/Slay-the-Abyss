@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { isDeepStrictEqual } from 'node:util';
 import { analyzeSources } from './check-architecture.mjs';
 import { runStatic, compareDiagnostics } from './check-lua-static.mjs';
-import { discoverSources, measureSources, dependencyCycles } from './lua-quality-metrics.mjs';
+import { discoverSources, architectureSources, measureSources, dependencyCycles } from './lua-quality-metrics.mjs';
 import { sha256 } from './evidence-files.mjs';
 
 export const qualityContract={
@@ -107,13 +107,8 @@ export function policyErrors(inputs,policy) {
 // Fresh per invocation; shared only by the combined engineering process.
 export function collectEngineeringInputs({discover=discoverSources,
   policy=()=>readJson('config/architecture.json'),analyze=analyzeSources,lint=runStatic,measure=measureSources}={}) {
-  const sources=discover(),byModule={};
-  for(const [file,source] of Object.entries(sources)) {
-    const name=file.slice('src/lua/'.length,-4).replaceAll('/','.');
-    if(name in byModule)throw new Error(`Ambiguous Lua module identity: ${name}`);
-    byModule[name]=source;
-  }
-  const architecture=analyze(byModule,policy());
+  const sources=discover(),{byModule,sourcePaths}=architectureSources(sources);
+  const architecture=analyze(byModule,policy(),undefined,sourcePaths);
   const warnings=lint([]),complexity=lint(['--max-cyclomatic-complexity','0','--only','561']);
   const measurements=measure(sources,complexity.diagnostics);
   return {sources,byModule,architecture,warnings,complexity,measurements};

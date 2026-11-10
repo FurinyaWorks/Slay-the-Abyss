@@ -1,0 +1,30 @@
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (10.924839ms)
+✔ initialization calls cannot borrow a deferred import exception (7.827154ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (6.959882ms)
+✔ generic-for initialization invokes the known iterator, including aliases and factory results (3.620175ms)
+✔ generic-for does not invoke state, control, unused results or dormant loop owners (3.066153ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.485435ms)
+✔ deferred import exceptions must still match an actual function-scoped require (1.154482ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.644874ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (1.603465ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+: tool missing
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (5.693554ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.46667ms)
+✔ collection failures and existing gate failures propagate (0.668558ms)
+✔ a failed shared collection writes a fresh failed quality report (6.309325ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (1.452328ms)
+✔ standalone architecture and shared collection inspect the same recursive modules and source paths (21.198479ms)
+✔ both architecture entries reject empty scans and ambiguous Lua module identities (1.111555ms)
+✔ both architecture entries refuse linked source directories instead of silently omitting them (1.973894ms)
+✔ nested source changes and dependency boundaries are freshly checked by both architecture entries (3.015588ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 186.550194
