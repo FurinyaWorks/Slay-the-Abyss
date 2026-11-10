@@ -4,8 +4,8 @@ title: 治理阻碍角色扩展的高风险复杂度
 status: In Progress
 assignee:
   - Furinya
-created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T01:07:00Z'
+created_date: '2026-11-06 01:46'
+updated_date: '2026-11-10 14:29'
 labels: []
 milestone: m-7
 dependencies: []
@@ -191,4 +191,6 @@ Formation收口补验：6个实际CI消费者87/87，CI总139项138过/1个原PO
 已在独立树整合公开#574@841510b7与#575@d21be2fb，保全两父全部生产/历史证据。组合800JS/1410Lua复算Windows1794163（余5837）、POSIX15为1128812（余71188），旧14超5156保持可复现；仅4共享文本冲突，预算/floor/unknown/并发/worker不变。独审核8125非冲突原路径字节一致；当前定向测试和最终独审收口中，不重复Full或提前勾AC。
 
 POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入前后hash一致；历史/当前投影4370+6976比较重放一致。独审13455比较、17桥拒绝和40准入validator拒绝负控通过，原始失败保留。以原#575与#574为两父合并更新同PR；仅本地组合验证及规划通过，未跑本HEAD Hosted Full，继续Draft与正常准入，不勾AC。
+
+Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
 <!-- SECTION:NOTES:END -->

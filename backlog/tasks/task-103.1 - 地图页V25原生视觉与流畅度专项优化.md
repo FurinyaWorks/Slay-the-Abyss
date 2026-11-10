@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-10 09:00'
-updated_date: '2026-11-10 11:12'
+updated_date: '2026-11-10 14:29'
 labels: []
 milestone: m-8
 dependencies: []
@@ -42,4 +42,6 @@ Owner明确授权独立地图任务与PR；复用#582生命周期，避开#588�
 地图原生纸面、虚线路线、节点层级、官方骷髅与图例、手势反馈、药水容量3/5及恢复已实现并独审。真实SDK20轮战斗地图往返状态不变、17357暖态稳定、销毁0；浏览器真实点选与5次防重复通过。证据docs/evidence/map-v25-20261110。V25候选生效，#588官方素材路径未自动接入；官方设备/GIL导入未测，PR与CI收口中。
 
 独立Draft PR #603已建立，HEAD 6ef975bc。最终实际截图发现102039在当前Simulator缺图，已撤回并保留rejected证据，成功证据回用已验证102044同运行时候选。未合并发布；#588官方素材路径仍需后续明确接线，Hosted Full未完成。
+
+Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
 <!-- SECTION:NOTES:END -->

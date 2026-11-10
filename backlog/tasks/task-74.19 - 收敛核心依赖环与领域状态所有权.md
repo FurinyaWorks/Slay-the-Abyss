@@ -4,8 +4,8 @@ title: 收敛核心依赖环与领域状态所有权
 status: In Progress
 assignee:
   - Furinya
-created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T02:19:00Z'
+created_date: '2026-11-06 01:46'
+updated_date: '2026-11-10 14:29'
 labels: []
 milestone: m-7
 dependencies: []
@@ -100,4 +100,6 @@ WatcherAttack 已改由 queued-play 显式提供延迟 Actor 算术，完整333�
 最终补记：来源定向106个不同用例已有最新通过证据，初次79中3个测试适配问题已定点纠正；独审通过代码/来源安全边界复核，精确提交身份另存。按真实证据补3项成本floor，原19项不变；17/14完整库存含60秒预留最大1771239/1179021ms，原目标余28761/20979ms。后两项仅成功测试用例成本下界，非全文件实测；原失败/中止均保存，不伪称Full。
 
 发布前develop前移至#561b7ed1830，无src/data/scripts/config变动。本轮在新隔离树保全其全部档案及更强历史来源/退休安全合同，仅解决7个非生产文本冲突；45变动owner鲜读与旧epoch linked owner检查并存。最终单父基于b7，原a0度量和320独审按原身份保留；仅定向helper/负控复验，不重复完整行为/工程采集，不改owner/status/AC。
+
+Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
 <!-- SECTION:NOTES:END -->

@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-09 11:11'
-updated_date: '2026-11-09 06:12'
+updated_date: '2026-11-10 14:29'
 labels:
   - product-diagnosis
 milestone: m-7
@@ -59,4 +59,6 @@ Owner要求将“为什么一周多架构优化仍未提前定位游戏逐块出
 最终producer只剥离已知GIL来源路径和构建器UUID日志，完整源码/候选身份另绑定；真实#565完整save改目录/buildId的内存探针可比，实际Lua/资源/mount变化不可比。最终v3回放摘要与producer源码身份已冻结，前两版保留。定向63/63通过；CI库存合同仍沿原18/18，不重复Full。任务AC5继续等待当前HEAD独审和完整远端准入。
 
 正式Full42560668427首轮29回归分片成功，POSIX3/14和Windows6在Luacheck下载504前置失败；失败项补跑后POSIX3仍504。已保存四份job原始日志与摘要，未把未执行测试写成通过。最小纠偏为现有curl原生有界重试，版本/SHA/60秒下载与65秒进程上限均不变；真实loopback RED/GREEN及持续失败/404/坏哈希反例20/20通过，原测试库存和预算不变。新增下载源修复将随本PR重新独审及验证，不绕门禁。
+
+Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
 <!-- SECTION:NOTES:END -->
