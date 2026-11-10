@@ -1,0 +1,29 @@
+{
+  "file": "tests/run-healing-source-epoch.test.mjs",
+  "label": "ci-source",
+  "startedAt": "2026-11-10T09:20:24.350Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/run-healing-source-epoch.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 22816.304854,
+  "nodeReportedDurationMs": 22717.681809,
+  "tests": 8,
+  "pass": 8,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "f95ea4029b60a3c1e2ce3a812ee920c04225b3c2417e7dc25e7ad6807573e9cd",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5914,
+  "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-source-inputs.json.gz",
+  "inputSha256": "d58bd9465a95a67887a27ab31aca868994c28e564fc6b457a3b68d0371b40a4a",
+  "logPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-source.log.gz",
+  "logSha256": "87a5eba6a8180ba54f6d58e090e54af125af9b9949f57d549604e0edab6075ca",
+  "logUncompressedSha256": "a8fcfcc3daeb9320103e78d0bf70c32f4b276a84055133a283ac7aa6317696db",
+  "collectorSha256": "e3ed1dcc852ce6887c6ddf2d8cfeb805483f1592f4e057c25e983248c0a04d8b"
+}

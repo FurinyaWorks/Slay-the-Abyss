@@ -1,0 +1,16 @@
+{
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "pr": 599,
+  "headSha": "074258935b5cf6acef99089d7ded90d855facb22",
+  "baseSha": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "runId": 42786493383,
+  "jobId": 129728901791,
+  "conclusion": "failure",
+  "source": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42786493383/job/129728901791",
+  "log": "docs/evidence/m7-run-healing-contracts-20261110/original-quick-feedback.log.gz",
+  "compressedSha256": "916ed0474fdeea470df0497d302be63be9e81825d1b44dc29e5be5de74163759",
+  "uncompressedSha256": "508947db9b0afe3c4be3318830f36b3be8e2fe4ca3f6874966417e9787f99238",
+  "failure": "seven-refactor-source-epoch.test.mjs:11 compares live architecture to frozen predecessor without healing source bridge",
+  "retry": "No rerun or dispatch performed",
+  "capture": "Exact UTF-8 bytes of decoded connector log string, preserving BOM, CRLF and terminal newline as returned."
+}

@@ -1,0 +1,37 @@
+{
+  "reviewId": "m7-run-healing-contract-source-20261110",
+  "conclusion": "pass",
+  "scope": "Source epoch, all54-owner fresh admission, immutable predecessor and helper closure; not yet combined CI or merge admission.",
+  "sourceSliceCommit": "074258935b5cf6acef99089d7ded90d855facb22",
+  "reviewedBaseSha": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "findings": [],
+  "checks": {
+    "publicFacades": 16,
+    "independentChecks": 308,
+    "paths": 340,
+    "owners": 54,
+    "behaviors": [
+      "Warm drift and missing owners rejected",
+      "Malformed readers rejected",
+      "Foreign input opaque",
+      "CRLF input and linked owner text accepted",
+      "New historical-null witness remains present",
+      "Four production bindings match published Git commit",
+      "Historical archives unchanged"
+    ]
+  },
+  "filesSha256": {
+    "tests/helpers/run-healing-source-epoch.json.gz": "4d2eb01f67d8fc66add025681806653d0947e1d9a3117a7d359cfadf0bada05c",
+    "tests/helpers/run-healing-source-epoch.mjs": "40da040ed326dbb1c55b401d39feddabe79e80896d9c6cbb67e4df46c9d894cf",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "9036705e9b4fb60fca767254e52d2f1d52105abb5cdb47a4a79d873ad2e7cd94",
+    "tests/helpers/combined-epoch/pre-run-healing-source-epoch.mjs": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+    "tests/helpers/copy-integration-source-closure.mjs": "3fa871ac0a62f3f926a6fd80d49a37e429bc7fc5f8b0222a0d63143431339f92",
+    "tests/seven-refactor-source-epoch.test.mjs": "885f57c1ff11cf66af56c2d0b836a366565b54c16c7a5d9d767367e8d70088df",
+    "tests/silent-final-source-epoch.test.mjs": "70cb93ca57a6a47046724361097cf7cf688f02be6849229987f4635ad4d55a2a",
+    "tests/defect-final-source-epoch.test.mjs": "8e78853f19e289dbc50706b06e67ebf1b5c79961dd059b0d3956c8ceb2bf9ab6",
+    "tests/encounter-formation-source-epoch.test.mjs": "bf9b8e9a6de5b021a60a06a1932e84b7877435242d654b7ed4838d26e02d6cfc",
+    "tests/run-healing-source-epoch.test.mjs": "f95ea4029b60a3c1e2ce3a812ee920c04225b3c2417e7dc25e7ad6807573e9cd",
+    ".gitattributes": "124a6f36907f134e18918644d5fee35945f42c9b56233078381eee843732f508"
+  },
+  "independentProbeSha256": "eeb69bd6d7c6551979cc14281eeef78ce6b23d3089593a483aa29a30a1b64635"
+}

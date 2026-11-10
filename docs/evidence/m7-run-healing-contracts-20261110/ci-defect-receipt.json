@@ -1,0 +1,29 @@
+{
+  "file": "tests/defect-final-source-epoch.test.mjs",
+  "label": "ci-defect",
+  "startedAt": "2026-11-10T09:20:50.082Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/defect-final-source-epoch.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 17504.67647,
+  "nodeReportedDurationMs": 17419.205947,
+  "tests": 11,
+  "pass": 11,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "8e78853f19e289dbc50706b06e67ebf1b5c79961dd059b0d3956c8ceb2bf9ab6",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5914,
+  "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-defect-inputs.json.gz",
+  "inputSha256": "1721687104c6a122d77af4d5a2408442c197661a60f65cb222338b2dff26cf64",
+  "logPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-defect.log.gz",
+  "logSha256": "29d6ea83a75398e5f96dfdccc2ed6ca2c8c46821fe7ca3709fe1fb592640b9c9",
+  "logUncompressedSha256": "7de652724247882609d8320fbd517934afdcfea4484f1b4979a3a4238967a04e",
+  "collectorSha256": "e3ed1dcc852ce6887c6ddf2d8cfeb805483f1592f4e057c25e983248c0a04d8b"
+}

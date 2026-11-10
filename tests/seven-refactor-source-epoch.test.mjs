@@ -1,6 +1,7 @@
+import {runHealingEpoch} from './helpers/run-healing-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync as liveReadFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
 const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
@@ -144,3 +145,6 @@ test('pure hash memoization evicts by both entry count and retained complete str
   assert.equal(reads,0,'foreign source computations never authorize linked reads');
  }finally{crypto.createHash=originalHash;syncBuiltinESMExports();}
 });
+
+// Authenticate the four current healing owners before entering this frozen epoch.
+function readFileSync(file,encoding){const value=liveReadFileSync(file,encoding);if(typeof value!=='string')return value;return runHealingEpoch.preCombinedSource(file,value,{target:'prior'});}

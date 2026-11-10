@@ -1,0 +1,24 @@
+{
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "headSha": "074258935b5cf6acef99089d7ded90d855facb22",
+  "runId": 42786493122,
+  "status": "partial original run, two completed failing jobs inspected; other jobs pending",
+  "logs": [
+    {
+      "jobId": 129732878040,
+      "log": "docs/evidence/m7-run-healing-contracts-20261110/original-full-129732878040.log.gz",
+      "compressedSha256": "b01b7d886289cba76183cfedcc96e91692cc2c72e235864d2a34d6408c955886",
+      "uncompressedSha256": "e660f0d0f53577c710d3332f2fd588dd78988725b51f1eee534b52f7108be7e9",
+      "crlf": 0
+    },
+    {
+      "jobId": 129732878075,
+      "log": "docs/evidence/m7-run-healing-contracts-20261110/original-full-129732878075.log.gz",
+      "compressedSha256": "a3550fbf5d29f88a6d540a5c7f83722b5868dce8f70f8e38466986240e1305a0",
+      "uncompressedSha256": "fb6cc834650f326a28c07700274ca7b544eb459e9d6868a418951981da026d74",
+      "crlf": 1176
+    }
+  ],
+  "retry": "No rerun or dispatch performed",
+  "capture": "Exact UTF-8 bytes of decoded connector log strings, preserving original line endings and terminal newline."
+}

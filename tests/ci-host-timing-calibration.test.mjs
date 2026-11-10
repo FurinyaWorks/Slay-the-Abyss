@@ -1,6 +1,7 @@
+import {preRunHealingCiSource} from './helpers/run-healing-ci-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync as liveReadFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciHostTimingProof as proof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
@@ -73,3 +74,6 @@ test('TASK-75.4 calibration preserves unknown fallback, worker safety and execut
  assert.deepEqual(after.lua,before.lua);assert.deepEqual(after.luaShard,before.luaShard);
  assert.deepEqual(after.initialMs,before.initialMs);assert.deepEqual(after.jsPlanning,before.jsPlanning);
 });
+
+// Exact complete-byte predecessor; the current inventory and costs are checked separately.
+function readFileSync(file,encoding){const value=liveReadFileSync(file,encoding);const text=typeof value==='string'?value:value.toString('utf8');const projected=preRunHealingCiSource(file,text);return typeof value==='string'?projected:projected===text?value:Buffer.from(projected);}

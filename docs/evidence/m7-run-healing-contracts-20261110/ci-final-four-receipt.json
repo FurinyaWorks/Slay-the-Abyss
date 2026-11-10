@@ -1,0 +1,29 @@
+{
+  "scope": "Final exact inputs, four complete CI files, serial file concurrency. Not Full, not an individual-file cost observation.",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-reporter=tap",
+    "tests/ci-complete-calibration.test.mjs",
+    "tests/ci-host-timing-calibration.test.mjs",
+    "tests/ci-runtime.test.mjs",
+    "tests/ci-windows-shape-expansion.test.mjs"
+  ],
+  "startedAt": "2026-11-10T09:26:19.742Z",
+  "wallMs": 40095.962512,
+  "exitCode": 0,
+  "signal": null,
+  "tests": 64,
+  "pass": 64,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "inputFilesUnchanged": true,
+  "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-final-four-inputs.json.gz",
+  "inputSha256": "1459a635252b9d8a4592a8b7447c1ea8ee3f663ffcd3a646fc9fba29c7668126",
+  "logPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-final-four.log.gz",
+  "logSha256": "cdae1705be55326760390ac669259d9fc0c3c438c149f0ae3fffe192776105d8",
+  "logUncompressedSha256": "8e3a1a49bf7f97cad2fef219fc3d84cfa580950c6084bcb95524d73a1325b4f7",
+  "collectorSha256": "eacdee375a68933fc685cff2e279945e8f1791c35a745d62c4cc1661c4e4c2cf"
+}

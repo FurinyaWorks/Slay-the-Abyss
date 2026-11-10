@@ -1,0 +1,29 @@
+{
+  "file": "tests/ci-runtime.test.mjs",
+  "label": "ci-runtime",
+  "startedAt": "2026-11-10T09:23:47.855Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/ci-runtime.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 12307.045610000001,
+  "nodeReportedDurationMs": 12208.241784,
+  "tests": 13,
+  "pass": 13,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "8e30a780df896cfdd659daf1e75a7ae13be9b1b2bb70a21e0ba464eba6075e88",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5918,
+  "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-runtime-inputs.json.gz",
+  "inputSha256": "db6e5d9f2c5cf668f04ebe2c2d76151a59ed14b013ba34f9af1d65d575ddb4fd",
+  "logPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-runtime.log.gz",
+  "logSha256": "8aedf263bb8cc1e69c01ac0ce479cc8e4fe652c275df1086bfa12f002c7b6913",
+  "logUncompressedSha256": "e9294d76a21f674ee21f26e33d087f0682bce61a19e624b58d47af9c297698e8",
+  "collectorSha256": "e3ed1dcc852ce6887c6ddf2d8cfeb805483f1592f4e057c25e983248c0a04d8b"
+}

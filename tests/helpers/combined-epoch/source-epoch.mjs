@@ -1,7 +1,7 @@
-// Preserve the complete Defect predecessor as an independently importable epoch.
-export * from './pre-formation-source-epoch.mjs';
-import {sourceEpoch as preEncounterFormationEpoch} from './pre-formation-source-epoch.mjs';
-import {extendEncounterFormationEpoch} from '../encounter-formation-source-epoch.mjs';
-export {preEncounterFormationEpoch};
-// Current public consumers authenticate all 51 changed raw owners on every call.
-export const sourceEpoch=extendEncounterFormationEpoch(preEncounterFormationEpoch);
+// Preserve the complete Formation predecessor without rewriting historical sources.
+export * from './pre-run-healing-source-epoch.mjs';
+import {sourceEpoch as preRunHealingEpoch} from './pre-run-healing-source-epoch.mjs';
+import {extendRunHealingEpoch} from '../run-healing-source-epoch.mjs';
+export {preRunHealingEpoch};
+// Every current projection freshly authenticates all 54 changed raw owners.
+export const sourceEpoch=extendRunHealingEpoch(preRunHealingEpoch);

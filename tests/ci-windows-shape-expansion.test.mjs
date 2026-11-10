@@ -1,7 +1,8 @@
+import {preRunHealingCiSource} from './helpers/run-healing-ci-source-inverse.mjs';
 import {beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,readdirSync} from 'node:fs';
+import {readFileSync as liveReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciWindowsShapeProof as proof,preCiWindowsShapeSource} from './helpers/ci-windows-shape-source-inverse.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
@@ -78,3 +79,6 @@ test('historical fourteen-slot budget retains its complete observed inventory wh
  const posix=Array.from({length:9},(_,i)=>shardLuaScripts(lua,`${i+1}/9`,timings,2));
  assert.equal(new Set(posix.flat()).size,lua.length);assert.deepEqual(posix.flat().sort(),[...lua].sort());
 });
+
+// Exact complete-byte predecessor; the current inventory and costs are checked separately.
+function readFileSync(file,encoding){const value=liveReadFileSync(file,encoding);const text=typeof value==='string'?value:value.toString('utf8');const projected=preRunHealingCiSource(file,text);return typeof value==='string'?projected:projected===text?value:Buffer.from(projected);}

@@ -1,0 +1,29 @@
+{
+  "file": "tests/seven-refactor-source-epoch.test.mjs",
+  "label": "ci-seven",
+  "startedAt": "2026-11-10T09:22:27.705Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/seven-refactor-source-epoch.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 8361.037906,
+  "nodeReportedDurationMs": 8256.502866,
+  "tests": 9,
+  "pass": 9,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "885f57c1ff11cf66af56c2d0b836a366565b54c16c7a5d9d767367e8d70088df",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5918,
+  "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-seven-inputs.json.gz",
+  "inputSha256": "de25a9bddec2b28f5881f912cecc485c58ad2e0a9811d1c35827c647ce8ab456",
+  "logPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-seven.log.gz",
+  "logSha256": "0dc922fea14a5b74e8c021445787e5d8fc939067184a9fc3fb5f8349d80746c5",
+  "logUncompressedSha256": "cdd4649c35b390f51c1832d14d601d15f2ddd215aa0ae60db8f914bdcfbea148",
+  "collectorSha256": "e3ed1dcc852ce6887c6ddf2d8cfeb805483f1592f4e057c25e983248c0a04d8b"
+}

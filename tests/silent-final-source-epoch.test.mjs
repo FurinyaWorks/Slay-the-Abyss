@@ -1,6 +1,7 @@
+import {runHealingEpoch} from './helpers/run-healing-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
+import {readFileSync as liveReadFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -106,3 +107,6 @@ test('live LF and CRLF raw owner reads authenticate 49 current owners on every c
   }
  }
 });
+
+// Authenticate the four current healing owners before entering this frozen epoch.
+function readFileSync(file,encoding){const value=liveReadFileSync(file,encoding);if(typeof value!=='string')return value;return runHealingEpoch.preCombinedSource(file,value,{target:'prior'});}

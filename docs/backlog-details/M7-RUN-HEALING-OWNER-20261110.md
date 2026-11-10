@@ -26,3 +26,9 @@
 公共 sourceEpoch、历史来源投影、helper closure、测试库存及完整文件成本接线尚未完成。本切片新增 1 个 JS 和 2 个 Lua 测试，不能据此改写历史库存/哈希或宣称现行公共校准已通过。共享架构配置须在合入前与其他 PR 的新增条目协调，不能覆盖其他切片。
 
 保持原预算、worker、并发、timeout、旧断言和历史证据；未重复本地 Full 或手动触发 Hosted Full。源码独审不等于整 PR 接线/CI 准入，必须完成当前精确 HEAD 的正常检查与合并门禁后再考虑 Ready/合并。无原生导入、ready、设备、性能或平衡验收声明。Backlog CLI 当前不可用，未手改任务状态或认领。
+
+## 2026-11-10 公共接线接续
+
+已新增独立来源外层与helper closure，保留历史sourceEpoch、哈希与断言；当前340路径/54 owner每次重新认证。旧800JS/1410Lua与当前802JS/1412Lua库存分开，完整文件成本与最终输入验证分别留证。原Quick/Full失败日志未改写。详见[来源与成本证据](../evidence/m7-run-healing-contracts-20261110/README.md)。
+
+此接续不修改原治疗逻辑、不等于整PR准入。保持Draft；当前公开HEAD正常Hosted、精确独审绑定及原Merge Queue/合后验证仍需完成，不把极小规划余量当成运行保证。

@@ -465,3 +465,10 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# Run-healing source and complete local receipt identities remain LF on Windows.
+tests/helpers/run-healing-source-epoch.mjs text eol=lf
+tests/helpers/run-healing-source-epoch.json.gz -text
+tests/helpers/run-healing-ci-source-inverse.mjs text eol=lf
+tests/helpers/run-healing-ci-source-epoch.json.gz -text
+tests/helpers/run-healing-ci-contract.mjs text eol=lf

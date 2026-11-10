@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "initialCostStage": {
+    "reportPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-complete-process-observations.json",
+    "reportSha256": "c8a9f29a569006c14b6bb1a470e31cb60001de2baa634d0ed0d9c03f63c0f4c1",
+    "meaning": "Ten selected complete successful cost observations. Some predate sealing the CI receipt contract and final timing/proof inputs. Their manifests describe their actual historical execution and are NOT asserted to equal current dependency inputs.",
+    "unstableReceipt": "docs/evidence/m7-run-healing-contracts-20261110/ci-silent-receipt.json",
+    "unstableReason": "Sparse checkout materialization changed the directory-superset inputs. Preserved as unstable and not final validation; stable repeat selected."
+  },
+  "finalValidationStage": {
+    "receiptPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-final-four-receipt.json",
+    "receiptSha256": "13d4de03f3155921292ead62977afecc13a3a199b5fc00bf22802347ed77db00",
+    "tests": 64,
+    "pass": 64,
+    "fail": 0,
+    "inputFilesUnchanged": true,
+    "manifestFileCount": 5920,
+    "currentCapturedFilesChanged": [],
+    "keyExecutables": {
+      "tests/helpers/run-healing-ci-contract.mjs": {
+        "bytes": 6557,
+        "sha256": "5e9a1b59c92c2502344941dcb5c2f377700e4f393027ff5b44b3507d65f02276",
+        "lfSha256": "5e9a1b59c92c2502344941dcb5c2f377700e4f393027ff5b44b3507d65f02276"
+      },
+      "scripts/ci-test-timings.json": {
+        "bytes": 443408,
+        "sha256": "b308989422277e75ba8dfb8f73af5ef3fd5a02ba40c9c22e8965c05be24f4325",
+        "lfSha256": "b308989422277e75ba8dfb8f73af5ef3fd5a02ba40c9c22e8965c05be24f4325"
+      },
+      "tests/helpers/run-healing-ci-source-epoch.json.gz": {
+        "bytes": 370223,
+        "sha256": "717081785456a704622724241f82afaf4b6f939c3189396433f079b5fb60408c"
+      },
+      "tests/helpers/run-healing-ci-source-inverse.mjs": {
+        "bytes": 1153,
+        "sha256": "d808731cf4abb7538e947bca0080227ce0d368f9b02f98fe75515b5986c47547",
+        "lfSha256": "d808731cf4abb7538e947bca0080227ce0d368f9b02f98fe75515b5986c47547"
+      },
+      "tests/helpers/run-healing-source-epoch.mjs": {
+        "bytes": 3000,
+        "sha256": "40da040ed326dbb1c55b401d39feddabe79e80896d9c6cbb67e4df46c9d894cf",
+        "lfSha256": "40da040ed326dbb1c55b401d39feddabe79e80896d9c6cbb67e4df46c9d894cf"
+      },
+      "tests/helpers/combined-epoch/source-epoch.mjs": {
+        "bytes": 468,
+        "sha256": "9036705e9b4fb60fca767254e52d2f1d52105abb5cdb47a4a79d873ad2e7cd94",
+        "lfSha256": "9036705e9b4fb60fca767254e52d2f1d52105abb5cdb47a4a79d873ad2e7cd94"
+      },
+      "tests/helpers/copy-integration-source-closure.mjs": {
+        "bytes": 7508,
+        "sha256": "3fa871ac0a62f3f926a6fd80d49a37e429bc7fc5f8b0222a0d63143431339f92",
+        "lfSha256": "3fa871ac0a62f3f926a6fd80d49a37e429bc7fc5f8b0222a0d63143431339f92"
+      }
+    },
+    "scope": "Serial four-file aggregate after installing observed-max floors and sealing current CI contract. Captures executable source, imported test/helper modules, timing and archive data, tools/dependencies/workflows as a directory superset, not a dynamic dependency trace. Mutable self-evidence JSON/log outputs are excluded to avoid circular hashes; receipt contracts independently check selected evidence hashes. Standalone evidence scripts are included if present at capture time. No Full or hosted result."
+  },
+  "planning": {
+    "inventory": {
+      "js": 802,
+      "lua": 1412
+    },
+    "forecastMs": {
+      "posix15": 1134458,
+      "windows17": 1799873
+    },
+    "budgetMs": {
+      "posix": 1200000,
+      "windows": 1800000
+    },
+    "reserveMs": 60000,
+    "luaWorkers": 2,
+    "unknownJsMs": 10000,
+    "scope": "Forecast only, not Full or hosted measurements."
+  }
+}

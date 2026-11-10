@@ -1,0 +1,29 @@
+{
+  "file": "tests/silent-final-source-epoch.test.mjs",
+  "label": "ci-silent",
+  "startedAt": "2026-11-10T09:21:09.895Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/silent-final-source-epoch.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 13641.560207,
+  "nodeReportedDurationMs": 13534.23468,
+  "tests": 9,
+  "pass": 9,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "70cb93ca57a6a47046724361097cf7cf688f02be6849229987f4635ad4d55a2a",
+  "inputFilesUnchanged": false,
+  "inputFileCount": 5914,
+  "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-silent-inputs.json.gz",
+  "inputSha256": "2c7e6d31ea963540bb730ff0c13f780b137a987016ee1b927190fdfe26742664",
+  "logPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-silent.log.gz",
+  "logSha256": "15a70b181c46c097e2fb2919a980e2a3f725b291d5f051188354e6c9e2703d4f",
+  "logUncompressedSha256": "fa011cbe34114d43f485b8483a4c470ea8eafcb3e012170cb7db66c67fcc3d3c",
+  "collectorSha256": "e3ed1dcc852ce6887c6ddf2d8cfeb805483f1592f4e057c25e983248c0a04d8b"
+}

@@ -1,0 +1,18 @@
+{
+  "inventory": {
+    "js": 802,
+    "lua": 1412
+  },
+  "forecastMs": {
+    "posix15": 1134458,
+    "windows17": 1799873
+  },
+  "budgetMs": {
+    "posix": 1200000,
+    "windows": 1800000
+  },
+  "reserveMs": 60000,
+  "luaWorkers": 2,
+  "unknownJsMs": 10000,
+  "scope": "Forecast only, not Full or hosted measurements."
+}

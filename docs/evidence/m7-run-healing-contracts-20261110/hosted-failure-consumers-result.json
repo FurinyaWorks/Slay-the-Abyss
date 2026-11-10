@@ -1,0 +1,27 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-reporter=tap",
+    "tests/game-ui-extraction-source-inverse.test.mjs",
+    "tests/inventory-responsibilities.test.mjs",
+    "tests/pure-source-projection-cache.test.mjs",
+    "tests/run-max-hp-config-inverse.test.mjs"
+  ],
+  "exitCode": 0,
+  "counts": {
+    "tests": 41.0,
+    "pass": 41.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 655512.336858
+  },
+  "log": "docs/evidence/m7-run-healing-contracts-20261110/hosted-failure-consumers.log.gz",
+  "logSha256": "9a446fb3901aa52bfad24067473d7165dc340e6d357b2c5ea509c2a06a1314c7",
+  "uncompressedSha256": "fdb1d92f498ebc454deffc688f0901a9c06bb22c18738ddc4cab3ddba0c3517c",
+  "finalCiCapturedFilesRechecked": 5920,
+  "capturedFilesChangedAfterConsumers": [],
+  "scope": "Four complete source consumers that failed in original Hosted logs; not a Full run or hosted success. Final CI captured executable bytes rechecked after these tests; this is not a dynamic filesystem trace."
+}

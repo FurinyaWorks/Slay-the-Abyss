@@ -1,0 +1,29 @@
+{
+  "file": "tests/encounter-formation-source-epoch.test.mjs",
+  "label": "ci-formation",
+  "startedAt": "2026-11-10T09:22:37.880Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/encounter-formation-source-epoch.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 42340.824499999995,
+  "nodeReportedDurationMs": 42224.523423,
+  "tests": 11,
+  "pass": 11,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "bf9b8e9a6de5b021a60a06a1932e84b7877435242d654b7ed4838d26e02d6cfc",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5918,
+  "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-formation-inputs.json.gz",
+  "inputSha256": "535410bcae96101aa483cd2b5c284c9e2b7c11d628f98bacd2ff3dfc92b92af7",
+  "logPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-formation.log.gz",
+  "logSha256": "633da5806f6e8158556d5815046edbc208012dab6117da2bbc8ed380f5b6550d",
+  "logUncompressedSha256": "2106fb1c9c5b0bc8168f682749140db9371ffc2a37ffd88e394b5e0fad523825",
+  "collectorSha256": "e3ed1dcc852ce6887c6ddf2d8cfeb805483f1592f4e057c25e983248c0a04d8b"
+}

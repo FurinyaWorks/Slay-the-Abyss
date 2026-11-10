@@ -1,0 +1,29 @@
+{
+  "file": "tests/run-healing-owner.test.mjs",
+  "label": "ci-owner",
+  "startedAt": "2026-11-10T09:20:21.168Z",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/run-healing-owner.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "wallMs": 1146.853333,
+  "nodeReportedDurationMs": 1066.212988,
+  "tests": 2,
+  "pass": 2,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "testSha256": "971322b53f15e0d874dabfc52d15a763c3d7f6017501c267e52c344b3e977c05",
+  "inputFilesUnchanged": true,
+  "inputFileCount": 5914,
+  "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-owner-inputs.json.gz",
+  "inputSha256": "71e2a5b992f027b58cee78128b5df08410b9e96ca9975b6778c22e5aa8cb8c75",
+  "logPath": "docs/evidence/m7-run-healing-contracts-20261110/ci-owner.log.gz",
+  "logSha256": "fd26c3342fea9649702fe5f0824556ffa525e2e0203522ca040d3d4def38d349",
+  "logUncompressedSha256": "08958ef1495e04dc6bd6884d47acec9f4cf37a1ac0e03d34f1edd795884a837c",
+  "collectorSha256": "e3ed1dcc852ce6887c6ddf2d8cfeb805483f1592f4e057c25e983248c0a04d8b"
+}
