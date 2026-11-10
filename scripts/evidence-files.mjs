@@ -3,13 +3,17 @@ import { createHash } from 'node:crypto';
 import { relative, isAbsolute, resolve, dirname } from 'node:path';
 
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
+// Resolve through the OS: Windows Global-target junctions can be reported as
+// ordinary directories by lstat, which leaves realpathSync's JS traversal lexical.
+// native is available on both Windows and POSIX; resolution errors stay fatal.
+const physicalPath = realpathSync.native;
 export function inside(root, file) {
-  const path = realpathSync(file), base = realpathSync(root), rel = relative(base,path);
+  const path = physicalPath(file), base = physicalPath(root), rel = relative(base,path);
   if (rel === '..' || rel.startsWith('..\\') || rel.startsWith('../') || isAbsolute(rel)) throw new Error(`File belongs to another root: ${file}`);
   return path;
 }
 export function fileRecord(file, root) {
-  const path = root ? inside(root,file) : realpathSync(file);
+  const path = root ? inside(root,file) : physicalPath(file);
   if (!statSync(path).isFile()) throw new Error(`Not a regular file: ${file}`);
   const bytes = readFileSync(path);
   return {path,sha256:sha256(bytes),bytes:bytes.length};
@@ -21,7 +25,7 @@ export function prepareOutputDirectory(root, output) {
     const parent=dirname(ancestor);if(parent===ancestor)throw new Error('Output has no valid root');ancestor=parent;
   }
   const realParent=inside(root,ancestor),effective=resolve(realParent,relative(ancestor,path));
-  const rel=relative(realpathSync(root),effective).replaceAll('\\','/');
+  const rel=relative(physicalPath(root),effective).replaceAll('\\','/');
   if(!rel || rel==='..'||rel.startsWith('../')||isAbsolute(rel)||/^(src|data|scripts|docs|tests|tools|config|\.git)(\/|$)/.test(rel))throw new Error('Output must be outside source paths and inside the project root');
   mkdirSync(path,{recursive:true});return inside(root,path);
 }

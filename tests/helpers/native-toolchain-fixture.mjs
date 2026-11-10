@@ -37,13 +37,27 @@ export function installNativeToolchainFixture(tool,sdk) {
  put('src/scene/wire.mjs',wireSource);
  put('src/fixture-store.mjs',storeSource);
  put('src/scene-save.mjs',String.raw`
-import {record,scenario,scriptRecord} from './fixture-store.mjs';
+import {record,scenario,scriptRecord,readScripts} from './fixture-store.mjs';
+import {container,fields,one} from './scene/wire.mjs';
+import {checkClient} from './client-check.mjs';
 export function clientScriptRecord(spec){return scriptRecord(spec);}
+export function listClientScripts({mapPath}){return {scripts:readScripts(mapPath)};}
 export function listInterface(){return {clientTemplates:[],clientInterfaces:[]};}
 export function getClientUi(){throw Error('fixture has no template');}
 export function listComponents(){return {found:[]};}
 export function listSignals(){return {parameters:{}};}
 export function signalWords(){return null;}
+export function checkClientScripts({mapPath:file,scripts}){
+ return checkClient({mapPath:file,scripts},{listClientScripts,listComponents,listSignals,signalWords,
+  listInterface});
+}
+export function addClientTemplate({mapPath,name,...template}){
+ record('scene_add_client_template',{mapPath,template:{name,...template}});
+ const indices={AbyssDeckCard:1073741846,AbyssReadyCardImage:1073741847,AbyssReadyCardGroup:1073741848,
+  AbyssMonsterActor:1073741849,AbyssMonsterPower:1073741850,AbyssOfficialBackgroundImage:1073741851};
+ if(!Object.hasOwn(indices,name))throw Error('Unregistered native template '+name);
+ return {mapPath,templateIndex:indices[name]};
+}
 export function addClientUi(args){
  record('scene_add_client_ui',args);const state=scenario();
  if(state.failTool==='scene_add_client_ui')throw Error('FIXTURE_FAILURE scene_add_client_ui');

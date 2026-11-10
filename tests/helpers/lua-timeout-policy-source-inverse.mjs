@@ -1,11 +1,13 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
+import {preComponentUiCiSource} from './component-ui-ci-source-inverse.mjs';
 const hash=source=>createHash('sha256').update(source).digest('hex');
 // Only this complete default-policy edit may precede the immutable runner
 // witnesses. Unknown or partially edited sources remain exposed to their guards.
 export function preLuaTimeoutPolicySource(path,source){
  if(path!=='scripts/test-lua.mjs'||typeof source!=='string')return source;
+ source=preComponentUiCiSource(path,source);
  const normalized=source.replaceAll('\r\n','\n');
  if(hash(normalized)!=="57e1ad1d74a0fb53bc54c9512569f9e22d7630940106cb053f94ff1b25102703")return source;
  const policy=readFileSync(new URL('../../scripts/ci-timeout-policy.mjs',import.meta.url),'utf8').replaceAll('\r\n','\n');

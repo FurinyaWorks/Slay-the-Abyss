@@ -1,0 +1,2021 @@
+{
+  "schemaVersion": 1,
+  "status": "SINGLE_VM_SAME_SOURCE_SEED_NATIVE_CONTROL_REQUEST_COUNTS_PASS",
+  "createdAt": "2026-11-09T05:15:18.614Z",
+  "source": {
+    "gilSha256": "2c03f6a516430150f460f25d942c4ebe137411c49ece4bc66334d4ba729e278a",
+    "sourceCommit": "fc98f4e38ad1eaa2fb14a775f410f3dce9014158",
+    "sourceDirty": false,
+    "payloadDigest": "66c576206ade7676c0f0f160cb8858410154ee1a742cf73ce9a6536ac70827b1",
+    "buildId": "022017af-c7f5-47b8-8ca2-e1a80973ab4e",
+    "projectionSha256": "437bca1863d22442f78d374eac1f975683cd439f4e66759601696161eadab16a",
+    "candidateReceiptSha256": "a7f2324b86b2fda6c85d28eaf853af9ceba3c6f34078b454fea082259c3632c6",
+    "sdkExportSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+    "workerSha256": "51c9ab1f3d0d68f6f889fddbc59ff67864e426875f397b063cafc1928d5d89bd"
+  },
+  "seed": 17,
+  "seedMechanism": "SDK fixture sets the existing Host explicit replay seed field before Start; legal encounter assembly uses unchanged Combat.new(seed17) and Core.draw. os.clock/os.time are not modified.",
+  "environment": {
+    "node": "v22.22.1",
+    "platform": "win32",
+    "arch": "x64",
+    "pid": 33660
+  },
+  "scope": "Independent opt-in one-VM count-only replay of the same ten stages; no replacement or adjustment of the three original timing/memory baseline reports.",
+  "hook": {
+    "target": "Qi.prototype.mtIndexNewindex; metatable name Control only",
+    "propertyRead": "Calls to the original native Control readFn; includes unknown-field reads returning nil, excludes method lookup that resolves directly to a callback.",
+    "propertyWrite": "Calls to the original native Control writeFn; records attempts including rejected writes.",
+    "getMethod": "Invocations of the original Control C callback whose method name begins Get; includes GetChild/GetChildren; method lookup alone does not count.",
+    "setMethod": "Invocations of the original Control C callback whose method name begins Set; records request attempts.",
+    "semantics": "Reflect.apply forwards original this, all arguments, return value and exceptions. Original allowFn remains the identical reference. No wrapper invokes or mutates the Lua stack.",
+    "callbackOutcome": "Returned means the original callback returned without JavaScript throw, not that a visual/state change succeeded. No-op writes and nil reads remain attempts. Throws are retained, never subtracted from attempts.",
+    "excludedObserver": "Only explicit read-only status()/readiness Lua queries are suppressed. Native JS inspection does not invoke this Lua C boundary. Fixture commands calling production refresh remain included.",
+    "sdkInternal": "SDK JS-internal calls such as FindChild recursively calling GetChild are not counted as additional Lua-native C requests."
+  },
+  "componentBridgeProxy": "NA_DISABLED_TRUE_V25_CANDIDATE_NOT_ZERO_MEASURED",
+  "stages": [
+    {
+      "stage": "initialize",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 1780,
+          "callbackReturned": 1780,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 17217,
+          "callbackReturned": 17217,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 19688,
+          "callbackReturned": 19688,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 670,
+          "callbackReturned": 670,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "getMethod": {
+          "GetChild": {
+            "attempts": 3401,
+            "returned": 3401,
+            "thrown": 0
+          },
+          "GetChildren": {
+            "attempts": 16287,
+            "returned": 16287,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetLocalScale": {
+            "attempts": 7,
+            "returned": 7,
+            "thrown": 0
+          },
+          "SetVisible": {
+            "attempts": 618,
+            "returned": 618,
+            "thrown": 0
+          },
+          "SetAnchoredPosition": {
+            "attempts": 24,
+            "returned": 24,
+            "thrown": 0
+          },
+          "SetSizeDelta": {
+            "attempts": 15,
+            "returned": 15,
+            "thrown": 0
+          },
+          "SetAsLastSibling": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          },
+          "SetAnchorMin": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          },
+          "SetAnchorMax": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          },
+          "SetPivot": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          },
+          "SetLocalRotation": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          }
+        },
+        "propertyRead": {
+          "sizeDeltaX": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          },
+          "parent": {
+            "attempts": 100,
+            "returned": 100,
+            "thrown": 0
+          },
+          "name": {
+            "attempts": 16,
+            "returned": 16,
+            "thrown": 0
+          },
+          "alive": {
+            "attempts": 814,
+            "returned": 814,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 154,
+            "returned": 154,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          },
+          "active": {
+            "attempts": 9,
+            "returned": 9,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 582,
+            "returned": 582,
+            "thrown": 0
+          },
+          "activeInHierarchy": {
+            "attempts": 96,
+            "returned": 96,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 6,
+            "returned": 6,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "canControllerFocus": {
+            "attempts": 16585,
+            "returned": 16585,
+            "thrown": 0
+          },
+          "disableCursorEventPassthrough": {
+            "attempts": 11,
+            "returned": 11,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 52,
+            "returned": 52,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 45,
+            "returned": 45,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 219,
+            "returned": 219,
+            "thrown": 0
+          },
+          "imageColor": {
+            "attempts": 202,
+            "returned": 202,
+            "thrown": 0
+          },
+          "fontColor": {
+            "attempts": 100,
+            "returned": 100,
+            "thrown": 0
+          },
+          "fontSize": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          },
+          "adaptiveFontSize": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 0,
+      "registeredAfter": 16289,
+      "modelCreated": 16289,
+      "modelDeleted": 0
+    },
+    {
+      "stage": "menu",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 45851,
+          "callbackReturned": 45851,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 362,
+          "callbackReturned": 362,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 588,
+          "callbackReturned": 588,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 4467,
+          "callbackReturned": 4467,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "propertyRead": {
+          "alive": {
+            "attempts": 25859,
+            "returned": 25859,
+            "thrown": 0
+          },
+          "active": {
+            "attempts": 378,
+            "returned": 378,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 3234,
+            "returned": 3234,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 12222,
+            "returned": 12222,
+            "thrown": 0
+          },
+          "activeInHierarchy": {
+            "attempts": 2016,
+            "returned": 2016,
+            "thrown": 0
+          },
+          "parent": {
+            "attempts": 2016,
+            "returned": 2016,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 126,
+            "returned": 126,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 741,
+            "returned": 741,
+            "thrown": 0
+          },
+          "SetAnchorMin": {
+            "attempts": 370,
+            "returned": 370,
+            "thrown": 0
+          },
+          "SetAnchorMax": {
+            "attempts": 370,
+            "returned": 370,
+            "thrown": 0
+          },
+          "SetPivot": {
+            "attempts": 370,
+            "returned": 370,
+            "thrown": 0
+          },
+          "SetSizeDelta": {
+            "attempts": 370,
+            "returned": 370,
+            "thrown": 0
+          },
+          "SetLocalScale": {
+            "attempts": 412,
+            "returned": 412,
+            "thrown": 0
+          },
+          "SetLocalRotation": {
+            "attempts": 370,
+            "returned": 370,
+            "thrown": 0
+          },
+          "SetAnchoredPosition": {
+            "attempts": 370,
+            "returned": 370,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 370,
+            "returned": 370,
+            "thrown": 0
+          },
+          "SetImage": {
+            "attempts": 362,
+            "returned": 362,
+            "thrown": 0
+          },
+          "SetAsLastSibling": {
+            "attempts": 362,
+            "returned": 362,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "imageColor": {
+            "attempts": 362,
+            "returned": 362,
+            "thrown": 0
+          }
+        },
+        "getMethod": {
+          "GetChild": {
+            "attempts": 588,
+            "returned": 588,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 16289,
+      "registeredAfter": 16659,
+      "modelCreated": 370,
+      "modelDeleted": 0
+    },
+    {
+      "stage": "character",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 978106,
+          "callbackReturned": 978106,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 25219,
+          "callbackReturned": 25219,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 10187,
+          "callbackReturned": 10187,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 102714,
+          "callbackReturned": 102714,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "getMethod": {
+          "GetChild": {
+            "attempts": 10187,
+            "returned": 10187,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 50284,
+            "returned": 50284,
+            "thrown": 0
+          },
+          "SetLocalScale": {
+            "attempts": 866,
+            "returned": 866,
+            "thrown": 0
+          },
+          "SetAnchoredPosition": {
+            "attempts": 24528,
+            "returned": 24528,
+            "thrown": 0
+          },
+          "SetSizeDelta": {
+            "attempts": 24510,
+            "returned": 24510,
+            "thrown": 0
+          },
+          "SetImage": {
+            "attempts": 42,
+            "returned": 42,
+            "thrown": 0
+          },
+          "SetAsLastSibling": {
+            "attempts": 4,
+            "returned": 4,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 824,
+            "returned": 824,
+            "thrown": 0
+          },
+          "SetAnchorMin": {
+            "attempts": 414,
+            "returned": 414,
+            "thrown": 0
+          },
+          "SetAnchorMax": {
+            "attempts": 414,
+            "returned": 414,
+            "thrown": 0
+          },
+          "SetPivot": {
+            "attempts": 414,
+            "returned": 414,
+            "thrown": 0
+          },
+          "SetLocalRotation": {
+            "attempts": 414,
+            "returned": 414,
+            "thrown": 0
+          }
+        },
+        "propertyRead": {
+          "alive": {
+            "attempts": 793184,
+            "returned": 793184,
+            "thrown": 0
+          },
+          "active": {
+            "attempts": 5852,
+            "returned": 5852,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 20812,
+            "returned": 20812,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 131241,
+            "returned": 131241,
+            "thrown": 0
+          },
+          "activeInHierarchy": {
+            "attempts": 12648,
+            "returned": 12648,
+            "thrown": 0
+          },
+          "parent": {
+            "attempts": 12648,
+            "returned": 12648,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 1353,
+            "returned": 1353,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 4,
+            "returned": 4,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 364,
+            "returned": 364,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "text": {
+            "attempts": 721,
+            "returned": 721,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 50,
+            "returned": 50,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 58,
+            "returned": 58,
+            "thrown": 0
+          },
+          "imageColor": {
+            "attempts": 24280,
+            "returned": 24280,
+            "thrown": 0
+          },
+          "fontColor": {
+            "attempts": 98,
+            "returned": 98,
+            "thrown": 0
+          },
+          "fontSize": {
+            "attempts": 4,
+            "returned": 4,
+            "thrown": 0
+          },
+          "adaptiveFontSize": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 6,
+            "returned": 6,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 16659,
+      "registeredAfter": 41153,
+      "modelCreated": 24494,
+      "modelDeleted": 0
+    },
+    {
+      "stage": "natural-route-to-first-battle",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 395663,
+          "callbackReturned": 395663,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 9895,
+          "callbackReturned": 9895,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 16905,
+          "callbackReturned": 16905,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 22018,
+          "callbackReturned": 22018,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "getMethod": {
+          "GetChild": {
+            "attempts": 16855,
+            "returned": 16855,
+            "thrown": 0
+          },
+          "GetChildren": {
+            "attempts": 50,
+            "returned": 50,
+            "thrown": 0
+          }
+        },
+        "propertyRead": {
+          "alive": {
+            "attempts": 208793,
+            "returned": 208793,
+            "thrown": 0
+          },
+          "active": {
+            "attempts": 2147,
+            "returned": 2147,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 52530,
+            "returned": 52530,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 10,
+            "returned": 10,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 65667,
+            "returned": 65667,
+            "thrown": 0
+          },
+          "activeInHierarchy": {
+            "attempts": 31948,
+            "returned": 31948,
+            "thrown": 0
+          },
+          "parent": {
+            "attempts": 32232,
+            "returned": 32232,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 2047,
+            "returned": 2047,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 10,
+            "returned": 10,
+            "thrown": 0
+          },
+          "name": {
+            "attempts": 187,
+            "returned": 187,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 6,
+            "returned": 6,
+            "thrown": 0
+          },
+          "x": {
+            "attempts": 66,
+            "returned": 66,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 20,
+            "returned": 20,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "text": {
+            "attempts": 899,
+            "returned": 899,
+            "thrown": 0
+          },
+          "imageColor": {
+            "attempts": 6903,
+            "returned": 6903,
+            "thrown": 0
+          },
+          "fontColor": {
+            "attempts": 618,
+            "returned": 618,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 141,
+            "returned": 141,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 164,
+            "returned": 164,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 306,
+            "returned": 306,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 598,
+            "returned": 598,
+            "thrown": 0
+          },
+          "localScaleY": {
+            "attempts": 112,
+            "returned": 112,
+            "thrown": 0
+          },
+          "localScaleX": {
+            "attempts": 112,
+            "returned": 112,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 12,
+            "returned": 12,
+            "thrown": 0
+          },
+          "adaptiveFontSize": {
+            "attempts": 10,
+            "returned": 10,
+            "thrown": 0
+          },
+          "fontSize": {
+            "attempts": 20,
+            "returned": 20,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetLocalScale": {
+            "attempts": 630,
+            "returned": 630,
+            "thrown": 0
+          },
+          "SetVisible": {
+            "attempts": 11411,
+            "returned": 11411,
+            "thrown": 0
+          },
+          "SetAnchoredPosition": {
+            "attempts": 4595,
+            "returned": 4595,
+            "thrown": 0
+          },
+          "SetSizeDelta": {
+            "attempts": 4749,
+            "returned": 4749,
+            "thrown": 0
+          },
+          "SetImage": {
+            "attempts": 139,
+            "returned": 139,
+            "thrown": 0
+          },
+          "SetAsLastSibling": {
+            "attempts": 27,
+            "returned": 27,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 111,
+            "returned": 111,
+            "thrown": 0
+          },
+          "SetAnchorMin": {
+            "attempts": 86,
+            "returned": 86,
+            "thrown": 0
+          },
+          "SetAnchorMax": {
+            "attempts": 86,
+            "returned": 86,
+            "thrown": 0
+          },
+          "SetPivot": {
+            "attempts": 86,
+            "returned": 86,
+            "thrown": 0
+          },
+          "SetLocalRotation": {
+            "attempts": 84,
+            "returned": 84,
+            "thrown": 0
+          },
+          "SetControllerNavigation": {
+            "attempts": 14,
+            "returned": 14,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 41153,
+      "registeredAfter": 24925,
+      "modelCreated": 3411,
+      "modelDeleted": 19639
+    },
+    {
+      "stage": "first-battle-five-cards-two-enemies",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 2530884,
+          "callbackReturned": 2530884,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 54576,
+          "callbackReturned": 54576,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 47701,
+          "callbackReturned": 47701,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 186600,
+          "callbackReturned": 186600,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "getMethod": {
+          "GetChild": {
+            "attempts": 47695,
+            "returned": 47695,
+            "thrown": 0
+          },
+          "GetChildren": {
+            "attempts": 6,
+            "returned": 6,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 87956,
+            "returned": 87956,
+            "thrown": 0
+          },
+          "SetImage": {
+            "attempts": 107,
+            "returned": 107,
+            "thrown": 0
+          },
+          "SetAnchoredPosition": {
+            "attempts": 47614,
+            "returned": 47614,
+            "thrown": 0
+          },
+          "SetLocalScale": {
+            "attempts": 5258,
+            "returned": 5258,
+            "thrown": 0
+          },
+          "SetSizeDelta": {
+            "attempts": 41381,
+            "returned": 41381,
+            "thrown": 0
+          },
+          "SetAsLastSibling": {
+            "attempts": 118,
+            "returned": 118,
+            "thrown": 0
+          },
+          "SetAnchorMin": {
+            "attempts": 673,
+            "returned": 673,
+            "thrown": 0
+          },
+          "SetAnchorMax": {
+            "attempts": 673,
+            "returned": 673,
+            "thrown": 0
+          },
+          "SetPivot": {
+            "attempts": 673,
+            "returned": 673,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 1472,
+            "returned": 1472,
+            "thrown": 0
+          },
+          "SetLocalRotation": {
+            "attempts": 671,
+            "returned": 671,
+            "thrown": 0
+          },
+          "SetControllerNavigation": {
+            "attempts": 4,
+            "returned": 4,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "text": {
+            "attempts": 1477,
+            "returned": 1477,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 225,
+            "returned": 225,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 260,
+            "returned": 260,
+            "thrown": 0
+          },
+          "imageColor": {
+            "attempts": 46735,
+            "returned": 46735,
+            "thrown": 0
+          },
+          "fontColor": {
+            "attempts": 4805,
+            "returned": 4805,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 60,
+            "returned": 60,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 18,
+            "returned": 18,
+            "thrown": 0
+          },
+          "adaptiveFontSize": {
+            "attempts": 50,
+            "returned": 50,
+            "thrown": 0
+          },
+          "fontSize": {
+            "attempts": 100,
+            "returned": 100,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 846,
+            "returned": 846,
+            "thrown": 0
+          }
+        },
+        "propertyRead": {
+          "interactable": {
+            "attempts": 10,
+            "returned": 10,
+            "thrown": 0
+          },
+          "alive": {
+            "attempts": 1711408,
+            "returned": 1711408,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 208853,
+            "returned": 208853,
+            "thrown": 0
+          },
+          "active": {
+            "attempts": 13823,
+            "returned": 13823,
+            "thrown": 0
+          },
+          "name": {
+            "attempts": 150,
+            "returned": 150,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 30,
+            "returned": 30,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 20,
+            "returned": 20,
+            "thrown": 0
+          },
+          "x": {
+            "attempts": 1874,
+            "returned": 1874,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 100,
+            "returned": 100,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 276804,
+            "returned": 276804,
+            "thrown": 0
+          },
+          "activeInHierarchy": {
+            "attempts": 148188,
+            "returned": 148188,
+            "thrown": 0
+          },
+          "parent": {
+            "attempts": 148188,
+            "returned": 148188,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 21436,
+            "returned": 21436,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 24925,
+      "registeredAfter": 64751,
+      "modelCreated": 40333,
+      "modelDeleted": 507
+    },
+    {
+      "stage": "ten-cards-two-enemies",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 2713209,
+          "callbackReturned": 2713209,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 53029,
+          "callbackReturned": 53029,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 52794,
+          "callbackReturned": 52794,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 181621,
+          "callbackReturned": 181621,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "getMethod": {
+          "GetChild": {
+            "attempts": 52744,
+            "returned": 52744,
+            "thrown": 0
+          },
+          "GetChildren": {
+            "attempts": 50,
+            "returned": 50,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 84478,
+            "returned": 84478,
+            "thrown": 0
+          },
+          "SetImage": {
+            "attempts": 124,
+            "returned": 124,
+            "thrown": 0
+          },
+          "SetAnchoredPosition": {
+            "attempts": 46712,
+            "returned": 46712,
+            "thrown": 0
+          },
+          "SetSizeDelta": {
+            "attempts": 40091,
+            "returned": 40091,
+            "thrown": 0
+          },
+          "SetAsLastSibling": {
+            "attempts": 132,
+            "returned": 132,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 1425,
+            "returned": 1425,
+            "thrown": 0
+          },
+          "SetLocalScale": {
+            "attempts": 5987,
+            "returned": 5987,
+            "thrown": 0
+          },
+          "SetAnchorMin": {
+            "attempts": 665,
+            "returned": 665,
+            "thrown": 0
+          },
+          "SetAnchorMax": {
+            "attempts": 665,
+            "returned": 665,
+            "thrown": 0
+          },
+          "SetPivot": {
+            "attempts": 665,
+            "returned": 665,
+            "thrown": 0
+          },
+          "SetLocalRotation": {
+            "attempts": 665,
+            "returned": 665,
+            "thrown": 0
+          },
+          "SetControllerNavigation": {
+            "attempts": 12,
+            "returned": 12,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "text": {
+            "attempts": 1416,
+            "returned": 1416,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 180,
+            "returned": 180,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 208,
+            "returned": 208,
+            "thrown": 0
+          },
+          "imageColor": {
+            "attempts": 44690,
+            "returned": 44690,
+            "thrown": 0
+          },
+          "fontColor": {
+            "attempts": 4760,
+            "returned": 4760,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 48,
+            "returned": 48,
+            "thrown": 0
+          },
+          "adaptiveFontSize": {
+            "attempts": 80,
+            "returned": 80,
+            "thrown": 0
+          },
+          "fontSize": {
+            "attempts": 160,
+            "returned": 160,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 1482,
+            "returned": 1482,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 5,
+            "returned": 5,
+            "thrown": 0
+          }
+        },
+        "propertyRead": {
+          "interactable": {
+            "attempts": 8,
+            "returned": 8,
+            "thrown": 0
+          },
+          "alive": {
+            "attempts": 1810401,
+            "returned": 1810401,
+            "thrown": 0
+          },
+          "name": {
+            "attempts": 273,
+            "returned": 273,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 24,
+            "returned": 24,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 16,
+            "returned": 16,
+            "thrown": 0
+          },
+          "x": {
+            "attempts": 1930,
+            "returned": 1930,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 160,
+            "returned": 160,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 229659,
+            "returned": 229659,
+            "thrown": 0
+          },
+          "active": {
+            "attempts": 14375,
+            "returned": 14375,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 285417,
+            "returned": 285417,
+            "thrown": 0
+          },
+          "activeInHierarchy": {
+            "attempts": 172019,
+            "returned": 172019,
+            "thrown": 0
+          },
+          "parent": {
+            "attempts": 172019,
+            "returned": 172019,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 26908,
+            "returned": 26908,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 64751,
+      "registeredAfter": 103457,
+      "modelCreated": 38706,
+      "modelDeleted": 0
+    },
+    {
+      "stage": "cancel-card-ten",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 51730,
+          "callbackReturned": 51730,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 2221,
+          "callbackReturned": 2221,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 5172,
+          "callbackReturned": 5172,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 2788,
+          "callbackReturned": 2788,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "getMethod": {
+          "GetChild": {
+            "attempts": 5172,
+            "returned": 5172,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 1383,
+            "returned": 1383,
+            "thrown": 0
+          },
+          "SetAnchoredPosition": {
+            "attempts": 649,
+            "returned": 649,
+            "thrown": 0
+          },
+          "SetSizeDelta": {
+            "attempts": 328,
+            "returned": 328,
+            "thrown": 0
+          },
+          "SetImage": {
+            "attempts": 45,
+            "returned": 45,
+            "thrown": 0
+          },
+          "SetAsLastSibling": {
+            "attempts": 51,
+            "returned": 51,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 30,
+            "returned": 30,
+            "thrown": 0
+          },
+          "SetLocalScale": {
+            "attempts": 302,
+            "returned": 302,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "raycastTarget": {
+            "attempts": 72,
+            "returned": 72,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 63,
+            "returned": 63,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 481,
+            "returned": 481,
+            "thrown": 0
+          },
+          "imageColor": {
+            "attempts": 849,
+            "returned": 849,
+            "thrown": 0
+          },
+          "fontColor": {
+            "attempts": 466,
+            "returned": 466,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 18,
+            "returned": 18,
+            "thrown": 0
+          },
+          "adaptiveFontSize": {
+            "attempts": 30,
+            "returned": 30,
+            "thrown": 0
+          },
+          "fontSize": {
+            "attempts": 60,
+            "returned": 60,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 181,
+            "returned": 181,
+            "thrown": 0
+          },
+          "disableCursorEventPassthrough": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          }
+        },
+        "propertyRead": {
+          "alive": {
+            "attempts": 23442,
+            "returned": 23442,
+            "thrown": 0
+          },
+          "name": {
+            "attempts": 39,
+            "returned": 39,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 9,
+            "returned": 9,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 6,
+            "returned": 6,
+            "thrown": 0
+          },
+          "x": {
+            "attempts": 64,
+            "returned": 64,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 60,
+            "returned": 60,
+            "thrown": 0
+          },
+          "active": {
+            "attempts": 450,
+            "returned": 450,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 7170,
+            "returned": 7170,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 8910,
+            "returned": 8910,
+            "thrown": 0
+          },
+          "activeInHierarchy": {
+            "attempts": 5370,
+            "returned": 5370,
+            "thrown": 0
+          },
+          "parent": {
+            "attempts": 5370,
+            "returned": 5370,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 840,
+            "returned": 840,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 103457,
+      "registeredAfter": 103457,
+      "modelCreated": 0,
+      "modelDeleted": 0
+    },
+    {
+      "stage": "play-defense",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 51456,
+          "callbackReturned": 51456,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 6721,
+          "callbackReturned": 6721,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 13907,
+          "callbackReturned": 13907,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 9327,
+          "callbackReturned": 9327,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "getMethod": {
+          "GetChild": {
+            "attempts": 13907,
+            "returned": 13907,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 4596,
+            "returned": 4596,
+            "thrown": 0
+          },
+          "SetAnchoredPosition": {
+            "attempts": 2030,
+            "returned": 2030,
+            "thrown": 0
+          },
+          "SetSizeDelta": {
+            "attempts": 1205,
+            "returned": 1205,
+            "thrown": 0
+          },
+          "SetImage": {
+            "attempts": 148,
+            "returned": 148,
+            "thrown": 0
+          },
+          "SetAsLastSibling": {
+            "attempts": 162,
+            "returned": 162,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 94,
+            "returned": 94,
+            "thrown": 0
+          },
+          "SetLocalScale": {
+            "attempts": 1090,
+            "returned": 1090,
+            "thrown": 0
+          },
+          "SetControllerNavigation": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "raycastTarget": {
+            "attempts": 244,
+            "returned": 244,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 213,
+            "returned": 213,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 1606,
+            "returned": 1606,
+            "thrown": 0
+          },
+          "imageColor": {
+            "attempts": 2157,
+            "returned": 2157,
+            "thrown": 0
+          },
+          "fontColor": {
+            "attempts": 1246,
+            "returned": 1246,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 74,
+            "returned": 74,
+            "thrown": 0
+          },
+          "adaptiveFontSize": {
+            "attempts": 94,
+            "returned": 94,
+            "thrown": 0
+          },
+          "fontSize": {
+            "attempts": 188,
+            "returned": 188,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 848,
+            "returned": 848,
+            "thrown": 0
+          },
+          "disableCursorEventPassthrough": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 49,
+            "returned": 49,
+            "thrown": 0
+          }
+        },
+        "propertyRead": {
+          "alive": {
+            "attempts": 25392,
+            "returned": 25392,
+            "thrown": 0
+          },
+          "name": {
+            "attempts": 130,
+            "returned": 130,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 30,
+            "returned": 30,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 20,
+            "returned": 20,
+            "thrown": 0
+          },
+          "x": {
+            "attempts": 70,
+            "returned": 70,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 188,
+            "returned": 188,
+            "thrown": 0
+          },
+          "active": {
+            "attempts": 430,
+            "returned": 430,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 6398,
+            "returned": 6398,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 8613,
+            "returned": 8613,
+            "thrown": 0
+          },
+          "activeInHierarchy": {
+            "attempts": 4727,
+            "returned": 4727,
+            "thrown": 0
+          },
+          "parent": {
+            "attempts": 4727,
+            "returned": 4727,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 729,
+            "returned": 729,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 103457,
+      "registeredAfter": 103457,
+      "modelCreated": 0,
+      "modelDeleted": 0
+    },
+    {
+      "stage": "actual-enemy-turn-and-return",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 691853,
+          "callbackReturned": 691853,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 17873,
+          "callbackReturned": 17873,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 27133,
+          "callbackReturned": 27133,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 44542,
+          "callbackReturned": 44542,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "propertyRead": {
+          "alive": {
+            "attempts": 425939,
+            "returned": 425939,
+            "thrown": 0
+          },
+          "active": {
+            "attempts": 4540,
+            "returned": 4540,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 68137,
+            "returned": 68137,
+            "thrown": 0
+          },
+          "x": {
+            "attempts": 632,
+            "returned": 632,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 90509,
+            "returned": 90509,
+            "thrown": 0
+          },
+          "activeInHierarchy": {
+            "attempts": 47601,
+            "returned": 47601,
+            "thrown": 0
+          },
+          "parent": {
+            "attempts": 47601,
+            "returned": 47601,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 6532,
+            "returned": 6532,
+            "thrown": 0
+          },
+          "name": {
+            "attempts": 182,
+            "returned": 182,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 42,
+            "returned": 42,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 38,
+            "returned": 38,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 96,
+            "returned": 96,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 4,
+            "returned": 4,
+            "thrown": 0
+          }
+        },
+        "getMethod": {
+          "GetChild": {
+            "attempts": 27133,
+            "returned": 27133,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "imageColor": {
+            "attempts": 11245,
+            "returned": 11245,
+            "thrown": 0
+          },
+          "fontColor": {
+            "attempts": 2693,
+            "returned": 2693,
+            "thrown": 0
+          },
+          "localRotationZ": {
+            "attempts": 1106,
+            "returned": 1106,
+            "thrown": 0
+          },
+          "fillAmount": {
+            "attempts": 196,
+            "returned": 196,
+            "thrown": 0
+          },
+          "raycastTarget": {
+            "attempts": 344,
+            "returned": 344,
+            "thrown": 0
+          },
+          "interactable": {
+            "attempts": 300,
+            "returned": 300,
+            "thrown": 0
+          },
+          "text": {
+            "attempts": 1805,
+            "returned": 1805,
+            "thrown": 0
+          },
+          "adaptiveFontSize": {
+            "attempts": 48,
+            "returned": 48,
+            "thrown": 0
+          },
+          "fontSize": {
+            "attempts": 96,
+            "returned": 96,
+            "thrown": 0
+          },
+          "canControllerFocus": {
+            "attempts": 40,
+            "returned": 40,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 20639,
+            "returned": 20639,
+            "thrown": 0
+          },
+          "SetAnchoredPosition": {
+            "attempts": 11576,
+            "returned": 11576,
+            "thrown": 0
+          },
+          "SetLocalScale": {
+            "attempts": 2988,
+            "returned": 2988,
+            "thrown": 0
+          },
+          "SetSizeDelta": {
+            "attempts": 8281,
+            "returned": 8281,
+            "thrown": 0
+          },
+          "SetImage": {
+            "attempts": 152,
+            "returned": 152,
+            "thrown": 0
+          },
+          "SetAsLastSibling": {
+            "attempts": 155,
+            "returned": 155,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 285,
+            "returned": 285,
+            "thrown": 0
+          },
+          "SetAnchorMin": {
+            "attempts": 116,
+            "returned": 116,
+            "thrown": 0
+          },
+          "SetAnchorMax": {
+            "attempts": 116,
+            "returned": 116,
+            "thrown": 0
+          },
+          "SetPivot": {
+            "attempts": 116,
+            "returned": 116,
+            "thrown": 0
+          },
+          "SetLocalRotation": {
+            "attempts": 116,
+            "returned": 116,
+            "thrown": 0
+          },
+          "SetControllerNavigation": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 103457,
+      "registeredAfter": 103492,
+      "modelCreated": 6902,
+      "modelDeleted": 6867
+    },
+    {
+      "stage": "engine-root-close",
+      "apiRequests": {
+        "propertyRead": {
+          "attempts": 310134,
+          "callbackReturned": 310134,
+          "callbackThrew": 0
+        },
+        "propertyWrite": {
+          "attempts": 0,
+          "callbackReturned": 0,
+          "callbackThrew": 0
+        },
+        "getMethod": {
+          "attempts": 270,
+          "callbackReturned": 270,
+          "callbackThrew": 0
+        },
+        "setMethod": {
+          "attempts": 330,
+          "callbackReturned": 330,
+          "callbackThrew": 0
+        }
+      },
+      "byFieldOrMethod": {
+        "propertyRead": {
+          "alive": {
+            "attempts": 310134,
+            "returned": 310134,
+            "thrown": 0
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 300,
+            "returned": 300,
+            "thrown": 0
+          },
+          "SetActive": {
+            "attempts": 30,
+            "returned": 30,
+            "thrown": 0
+          }
+        },
+        "getMethod": {
+          "GetChild": {
+            "attempts": 270,
+            "returned": 270,
+            "thrown": 0
+          }
+        }
+      },
+      "registeredBefore": 103492,
+      "registeredAfter": 0,
+      "modelCreated": 0,
+      "modelDeleted": 103492
+    }
+  ],
+  "excludedApiRequests": {
+    "observer": 20800,
+    "validation": 14
+  },
+  "permissionNegativeControls": {
+    "before": {
+      "readonlyIdRejected": true,
+      "invalidSetVisibleRejected": true,
+      "rootIdAndVisibilityUnchanged": true,
+      "missingChildReturnsNil": true
+    },
+    "after": {
+      "readonlyIdRejected": true,
+      "invalidSetVisibleRejected": true,
+      "rootIdAndVisibilityUnchanged": true,
+      "missingChildReturnsNil": true
+    },
+    "separateValidationCounts": {
+      "initialize": {
+        "propertyRead": {
+          "Id": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "Id": {
+            "attempts": 1,
+            "returned": 0,
+            "thrown": 1
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 1,
+            "returned": 0,
+            "thrown": 1
+          }
+        },
+        "getMethod": {
+          "GetChild": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          }
+        }
+      },
+      "actual-enemy-turn-and-return": {
+        "propertyRead": {
+          "Id": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          },
+          "visible": {
+            "attempts": 2,
+            "returned": 2,
+            "thrown": 0
+          }
+        },
+        "propertyWrite": {
+          "Id": {
+            "attempts": 1,
+            "returned": 0,
+            "thrown": 1
+          }
+        },
+        "setMethod": {
+          "SetVisible": {
+            "attempts": 1,
+            "returned": 0,
+            "thrown": 1
+          }
+        },
+        "getMethod": {
+          "GetChild": {
+            "attempts": 1,
+            "returned": 1,
+            "thrown": 0
+          }
+        }
+      }
+    },
+    "excludedFromProductionStageCounts": true
+  },
+  "verification": {
+    "nonemptyAllFourCountLayers": true,
+    "originalReadonlyIdAndBooleanGuardPreserved": true,
+    "missingChildNilPreserved": true,
+    "finalCoreSemanticEqualsOriginalBaseline": true,
+    "registeredModelsAfterClose": 0,
+    "createdEqualsDeleted": true,
+    "luaFaults": 0
+  },
+  "rawReport": {
+    "path": "task-100-1-v25-native-control-count-raw-20261109.json.gz",
+    "sha256": "410d46071f219d5f7c29c074b571df1cfd01e8efee339ade56331a319dc205d7",
+    "bytes": 653099,
+    "uncompressedSha256": "be6dd93c1065efcb20189cefafb8bbea10d61b4e928ce3f14078cd8dbd8d59ba",
+    "uncompressedBytes": 16314264
+  },
+  "limitations": [
+    "One fresh VM, not three repetitions; call counts depend on CPU-budgeted readiness progress and cannot be relabelled as the earlier three raw baselines.",
+    "Timings retained inside the raw count-only report are observer overhead observations, not improvement attribution or new timing thresholds.",
+    "True V25 uses native full-source UI, so componentBridge proxy counters are NA; no invented zero.",
+    "This measures SDK Lua-to-Control API requests, not official engine setters/GPU work or device FPS.",
+    "The source identity remains fc98f4e3 exactly; later dead-guard source changes are not silently attached to this candidate."
+  ]
+}

@@ -54,7 +54,7 @@ export async function buildNativeAudioGame({ baseMap, output = 'build/native-aud
     || fileRecord(audio.mapPath).sha256 !== audio.sha256 || audio.candidate?.sha256 !== audio.sha256
     || !full.buildId || audio.buildId !== full.buildId) throw new Error('Final audio artifact/build marker is not bound to the full candidate');
   verifyNativeCardArtReceipt(full.nativeCardArt,{root});
-  if (payloadDigest(sourceInputs(root,{artFeatures:flags,nativeCardArt,readyCardArt})) !== full.payloadDigest) throw new Error('Source changed during audio packaging');
+  if (payloadDigest(sourceInputs(root,{artFeatures:flags,nativeCardArt,readyCardArt,toolchainIdentity:full.toolchainIdentity})) !== full.payloadDigest) throw new Error('Source changed during audio packaging');
   if (releaseCandidate) {
     const identity = gitSourceIdentity(root);
     if (identity.sourceCommit !== full.sourceCommit || identity.sourceDirty || full.sourceDirty !== false
@@ -64,6 +64,7 @@ export async function buildNativeAudioGame({ baseMap, output = 'build/native-aud
   Object.assign(audio, { artFeatures:full.artFeatures, sourceCommit: full.sourceCommit, sourceDirty: full.sourceDirty, payloadDigest: full.payloadDigest,
     startedAt: full.startedAt, productionManifest: full.productionManifest,
     monsterActors: full.monsterActors,
+    ...(full.toolchainIdentity ? {toolchainIdentity:full.toolchainIdentity} : {}),
     sourceReceipt: fileRecord(full.receiptPath), ...(full.release ? { release: full.release } : {}),
     ...(full.nativeMonsterArt ? {nativeMonsterArt:full.nativeMonsterArt} : {}),
     ...(full.nativeCardArt ? { nativeCardArt: full.nativeCardArt } : {}),

@@ -136,12 +136,14 @@ end
 function M.new(stage, platform, present, complete)
     local self = { busy = false, fastMode = false, effects = {}, deaths = {}, dying = {}, poses = {}, escaping = {}, escaped = {}, slotOwners = {}, tints = {} }
     local overlay = stage:GetChild("feedback")
+    local v25Notice=require('abyss_v25_turn_notice').new(overlay,platform)
     local surfaces=require('abyss_monster_surfaces').get(stage)
     function self.bindIdle(_owner,battle)
         local changing=self.idleBattle and self.idleBattle~=battle
             or battle and self.battle and self.battle~=battle
         if not self.busy and changing then self:reset(battle==nil) end
         self.idleBattle = battle
+        if v25Notice then v25Notice:bind(battle)end
         if battle and not self.busy then self.shadow = battle end
     end
     self.cardFlow=CardFlow.new(stage,platform)
@@ -205,7 +207,8 @@ function M.new(stage, platform, present, complete)
     function self.bindEnemySlot(slot,id)
         if self.slotOwners[slot]~=id then resetUnit('enemy'..slot) self.slotOwners[slot]=id end
     end
-    function self.reset(_owner,retainHistory)
+    function self.reset(_owner,retainHistory,preserveTurnNotice)
+        if v25Notice and not preserveTurnNotice then v25Notice:reset()end
         -- Hiding/rewards retire visuals, but terminal death evidence still belongs
         -- to this battle. Cancellation and the next battle clear that history.
         local history=retainHistory and self.deaths or {}
@@ -316,6 +319,8 @@ function M.new(stage, platform, present, complete)
             or {{0, 0, 1}, {T.base, 0, 1 + SWELL}, {T.base + T.slow, 0, 1}}}
     end
     local function bannerStep(d, kind)
+        if kind=='player_turn' and v25Notice then v25Notice:playerTurn(self.shadow.turn);sound('turn');return end
+        if v25Notice then v25Notice:reset()end
         if kind == "enemy_turn" then banner("敌方回合") sound("turn")
         elseif kind == "player_turn" then banner("我方回合 " .. n(self.shadow.turn)) sound("turn")
         elseif kind == "victory" then banner(d.allEnemiesEscaped and "敌人已逃跑" or "战斗胜利") sound("victory")
@@ -539,7 +544,7 @@ function M.new(stage, platform, present, complete)
         -- dungeon's effectList. A subsequent card in this battle must not erase
         -- a previous target's still-running number, HP ghost or recovery pose.
         -- Cancellation, failure and battle replacement retain full cleanup.
-        if self.battle ~= battle then self:reset() end
+        if self.battle ~= battle then self:reset(nil,self.idleBattle==battle) end
         self.battle = battle
         self.playbackFastMode = self.fastMode
         self.presentation, self.origin, self.acting = presentation, origin, nil
@@ -612,6 +617,7 @@ function M.new(stage, platform, present, complete)
         if not self.idleBattle and not self.busy and next(self.effects) == nil and next(self.poses) == nil and next(self.dying) == nil and next(self.escaping)==nil and not self.sweep and not self.dissolve and not self.cardFlow:busy() then return end
         local ok, failure = pcall(function()
             assert(type(dt) == "number" and dt == dt and dt >= 0 and dt < math.huge, "invalid frame delta")
+            if v25Notice then v25Notice:update(dt)end
             self.idleClock=ActorMotion.advance(self.idleClock or 0,dt,T.actorIdle)
             self.elapsed = (self.elapsed or 0) + dt
             ActorPainter.advanceDeaths(painter,dt)
@@ -637,7 +643,7 @@ function M.new(stage, platform, present, complete)
                     card:SetLocalScale(s, s, 1)
                 end
             end
-            if self.busy and banners[self.current.kind] then
+            if self.busy and banners[self.current.kind] and not (v25Notice and self.current.kind=='player_turn') then
                 -- Slide in, hold, slide out; the plate wipes open before the text arrives.
                 local age, travel = self.elapsed, S.xxl * 2
                 local enter, exit = easeOut(age / T.fast), easeIn((age - T.banner + T.fast) / T.fast)
