@@ -1,0 +1,122 @@
+{
+  "baseline": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "sourceHash": "371e51f96e1f5d5588c399baf901ac7359bc2bb4111b0cad875b29bfb68aeb68",
+  "testHash": "854ace816aaead0e7d6afb5211a42d4619e10f6b01a35474b7a6beb51cea3829",
+  "sourceUnchanged": true,
+  "testUnchanged": true,
+  "node": "v24.22.1",
+  "probeCount": 37,
+  "passed": 37,
+  "priorRejected": [
+    "direct-local",
+    "anonymous",
+    "alias",
+    "assigned",
+    "forward-local-declaration",
+    "factory",
+    "factory-alias",
+    "double-factory",
+    "same-loop-variable",
+    "multiple-loop-variables",
+    "local-initializer-scope",
+    "called-containing-owner",
+    "returned-containing-owner",
+    "nested-generic-loop",
+    "conditional-initialization",
+    "numeric-contained-generic",
+    "repeat-contained-generic",
+    "factory-plus-iterator",
+    "mixed-eager-deferred"
+  ],
+  "mutations": [
+    {
+      "name": "remove-implicit-call",
+      "sha256": "d82ef5e48e40046e213669e585ef9b3f2651d19299a87f2ba6596d3fdcec07b2",
+      "rejectedBy": [
+        "direct-local",
+        "anonymous",
+        "alias",
+        "assigned",
+        "forward-local-declaration",
+        "factory",
+        "factory-alias",
+        "double-factory",
+        "same-loop-variable",
+        "multiple-loop-variables",
+        "local-initializer-scope",
+        "called-containing-owner",
+        "returned-containing-owner",
+        "nested-generic-loop",
+        "conditional-initialization",
+        "numeric-contained-generic",
+        "repeat-contained-generic",
+        "factory-plus-iterator",
+        "mixed-eager-deferred"
+      ]
+    },
+    {
+      "name": "invoke-state-as-iterator",
+      "sha256": "a6bae8fc19b7b565c800ab963ad2e1ce23c24600893d9111d1ef7475237cf83e",
+      "rejectedBy": [
+        "state-value",
+        "control-value",
+        "extra-value"
+      ]
+    },
+    {
+      "name": "lose-containing-owner",
+      "sha256": "d0511135796c76718cbfd617a14740644b953be49dbdae257e054533c263f410",
+      "rejectedBy": [
+        "uninvoked-containing-owner",
+        "uninvoked-factory-loop"
+      ]
+    },
+    {
+      "name": "wrong-second-expression",
+      "sha256": "6aa60391c6922b9c3c41a8363261b7bb17178bdb21158376b2fbdd6b671ef123",
+      "rejectedBy": [
+        "direct-local",
+        "anonymous",
+        "alias",
+        "assigned",
+        "forward-local-declaration",
+        "factory",
+        "factory-alias",
+        "double-factory",
+        "same-loop-variable",
+        "multiple-loop-variables",
+        "local-initializer-scope",
+        "called-containing-owner",
+        "returned-containing-owner",
+        "nested-generic-loop",
+        "conditional-initialization",
+        "numeric-contained-generic",
+        "repeat-contained-generic",
+        "factory-plus-iterator",
+        "state-value",
+        "mixed-eager-deferred"
+      ]
+    },
+    {
+      "name": "break-explicit-call",
+      "sha256": "24f31e783e2e08b82a9af01555d47b2928f2dc82645b6c21b9b8abc3b945a5e0",
+      "rejectedBy": [
+        "called-containing-owner",
+        "factory-plus-iterator",
+        "state-call",
+        "control-call",
+        "extra-expression-call",
+        "explicit-call-preserved",
+        "string-call-preserved",
+        "table-call-preserved"
+      ]
+    }
+  ],
+  "repository": {
+    "moduleCount": 338,
+    "edgeCount": 1929,
+    "errorCount": 0,
+    "byteIdentical": true,
+    "reportSha256": "e4f9f2694a0ea61b3ebb3e16aa292fe2c0acf2ea63d77dec3419cf56c0d04f53"
+  }
+}

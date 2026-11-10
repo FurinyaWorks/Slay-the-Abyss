@@ -75,6 +75,48 @@ test('uninvoked callbacks and lexical shadows remain deferred',()=>{
   ])assert.deepEqual(analyzeSources({a,b:'return require("a")'},deferredPolicy,{}).errors,[],label);
 });
 
+test('generic-for initialization invokes the known iterator, including aliases and factory results',()=>{
+  for(const [label,a] of [
+    ['local iterator','local function iter() return require("b") end; for value in iter do end'],
+    ['function expression','for value in function() return require("b") end do end'],
+    ['local alias','local function iter() return require("b") end; local alias=iter; for value in alias do end'],
+    ['assigned local','local iter; iter=function() return require("b") end; for value in iter do end'],
+    ['returned iterator','local function factory() return function() return require("b") end end; for value in factory() do end'],
+    ['returned alias','local function factory() local function iter() return require("b") end; return iter end; for value in factory() do end'],
+    ['shadowing loop variable','local function iter() return require("b") end; for iter in iter do end'],
+    ['multiple loop variables','local function iter() return require("b") end; for iter, other in iter, {}, 0 do end'],
+    ['called outer owner','local function outer() local function iter() return require("b") end; for value in iter do end end; outer()'],
+    ['nested generic loops','local function outer() return require("b") end; local function iter() for value in outer do end end; for value in iter do end'],
+    ['state expression still executes','local function state() return require("b") end; for value in function() end, state() do end'],
+    ['control expression still executes','local function control() return require("b") end; for value in function() end, {}, control() do end'],
+  ]) {
+    const report=analyzeSources({a,b:'return require("a")'},deferredPolicy,{});
+    assert(report.errors.some(error=>/Dependency cycle/.test(error.message)),label);
+    assert(report.errors.some(error=>/Stale deferred import exception/.test(error.message)),label);
+    assert.equal(report.edges.find(edge=>edge.from==='a').reviewedDeferred,false,label);
+  }
+});
+
+test('generic-for does not invoke state, control, unused results or dormant loop owners',()=>{
+  for(const [label,a] of [
+    ['state value','local function later() return require("b") end; for value in function() end, later do end'],
+    ['control value','local function later() return require("b") end; for value in function() end, {}, later do end'],
+    ['extra value','local function later() return require("b") end; for value in function() end, {}, 0, later do end'],
+    ['factory second result','local function factory() return function() end, function() return require("b") end end; for value in factory() do end'],
+    ['iterator return is not called','local function iter() return function() return require("b") end end; for value in iter do end'],
+    ['uninvoked owner','return function() local function iter() return require("b") end; for value in iter do end end'],
+    ['shadowed iterator','local function iter() return require("b") end; do local function iter() end; for value in iter do end end; return iter'],
+    ['reassigned iterator remains unknown','local iter=function() end; local old=iter; iter=function() return require("b") end; for value in old do end; return iter'],
+    ['parameter remains unknown','local function iter() return require("b") end; local function loop(iter) for value in iter do end end; loop(function() end); return iter'],
+    ['numeric loop is not an iterator call','local function later() return require("b") end; for value=1,2 do end; return later'],
+  ]) assert.deepEqual(analyzeSources({a,b:'return require("a")'},deferredPolicy,{}).errors,[],label);
+  const a='local function iter() return require("b") end; for value in iter do end; return function() return require("b") end';
+  const report=analyzeSources({a,b:'return require("a")'},deferredPolicy,{});
+  assert.deepEqual(report.edges.filter(edge=>edge.from==='a').map(edge=>edge.reviewedDeferred),[false,true]);
+  assert(report.errors.some(error=>/Dependency cycle/.test(error.message)));
+  assert(!report.errors.some(error=>/Stale deferred/.test(error.message)));
+});
+
 test('an immediate and a deferred require retain their individual execution classification',()=>{
   const a='local function now() return require("b") end; now(); return function() return require("b") end';
   const report=analyzeSources({a,b:'return require("a")'},deferredPolicy,{});

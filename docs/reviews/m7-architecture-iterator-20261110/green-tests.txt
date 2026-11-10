@@ -1,0 +1,17 @@
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (8.1222ms)
+✔ initialization calls cannot borrow a deferred import exception (3.76595ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (3.828419ms)
+✔ generic-for initialization invokes the known iterator, including aliases and factory results (2.174603ms)
+✔ generic-for does not invoke state, control, unused results or dormant loop owners (2.041021ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.366166ms)
+✔ deferred import exceptions must still match an actual function-scoped require (0.748812ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.291939ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (0.661288ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 149.746396

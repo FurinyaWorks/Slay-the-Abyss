@@ -1,0 +1,15 @@
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (14.309955ms)
+✔ initialization calls cannot borrow a deferred import exception (6.323142ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (6.046916ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.578955ms)
+✔ deferred import exceptions must still match an actual function-scoped require (1.083771ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.277569ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (0.830045ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 179.849941

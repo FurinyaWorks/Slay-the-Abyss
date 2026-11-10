@@ -1,0 +1,33 @@
+✔ active policy pins exactly the lint/tool inputs and rejects changes, missing pins and exception options (4.667091ms)
+✔ active policy preserves historical lint except exact reviewed SDK owner and callback declarations (6.896142ms)
+✔ physical lines and inclusive function spans include comments, blank lines and nested bodies (17.745083ms)
+✔ CRLF and LF have identical canonical metrics and source hashes (2.324863ms)
+✔ every function and chunk needs exactly one matching Luacheck coordinate (9.263095ms)
+✔ Unicode codepoint columns map to UTF8 AST bytes, including emoji and combining marks (3.859796ms)
+✔ all files and extracted helpers are discovered recursively; empty scans fail (19.764743ms)
+✔ full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically (8.451741ms)
+✔ baseline diff keeps full metrics, exact warning multiplicity and changed/deleted/new modules visible (6.086696ms)
+✔ baseline contract/tool/scope mismatch and malformed snapshots cannot be treated as improvement (4.218683ms)
+✔ JSON object key ordering does not create false warning changes or contract mismatches (1.063934ms)
+✔ all new numeric metrics remain report-only, including high complexity and new helper hotspots (7.837089ms)
+✔ the frozen baseline covers every recorded module/function and is not an exemption configuration (12.528905ms)
+✔ dependency and cycle changes are visible even when total module and warning counts stay equal (0.652526ms)
+✔ quality reports are collected by the existing gate and uploaded on failed runs without changing older CI guards (4.274529ms)
+✔ historical package replay inverts only the exact quality entry and gate wiring without changing its old hash (198.332008ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (7.629529ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.472696ms)
+✔ collection failures and existing gate failures propagate (1.06176ms)
+✔ a failed shared collection writes a fresh failed quality report (9.576821ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (2.211429ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8596.5582

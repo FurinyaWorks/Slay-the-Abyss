@@ -1,0 +1,58 @@
+{
+  "reviewId": "architecture-generic-iterator-independent-20261110",
+  "reviewedBaseSha": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "reviewedHeadSha": null,
+  "conclusion": "pass",
+  "unresolved": [],
+  "candidateState": "Uncommitted exact two-file snapshot; published HEAD binding remains required.",
+  "reviewedFiles": [
+    {
+      "path": "scripts/check-architecture.mjs",
+      "sha256": "371e51f96e1f5d5588c399baf901ac7359bc2bb4111b0cad875b29bfb68aeb68",
+      "bytes": 11377
+    },
+    {
+      "path": "tests/architecture.test.mjs",
+      "sha256": "854ace816aaead0e7d6afb5211a42d4619e10f6b01a35474b7a6beb51cea3829",
+      "bytes": 13278
+    }
+  ],
+  "probes": {
+    "passed": 37,
+    "total": 37,
+    "baselineMismatches": 19,
+    "semanticMutantsRejected": 5,
+    "runtime": "Fengari Lua 5.3 with counting require stub",
+    "node": "v24.22.1"
+  },
+  "currentProject": {
+    "moduleCount": 338,
+    "edgeCount": 1929,
+    "errorCount": 0,
+    "byteIdentical": true,
+    "reportSha256": "e4f9f2694a0ea61b3ebb3e16aa292fe2c0acf2ea63d77dec3419cf56c0d04f53"
+  },
+  "artifacts": [
+    {
+      "file": "probe.mjs",
+      "sha256": "7b92c9629ac2a47c9ce2fec93e4b0fc3d19987c93855ea2b6d7473cb935c3487",
+      "bytes": 10067
+    },
+    {
+      "file": "results.json",
+      "sha256": "3a6eaea3bc516e2209ba976734457397a71e374c15ce9a664cab3cd2ddadad2d",
+      "bytes": 12552
+    },
+    {
+      "file": "probe.log",
+      "sha256": "f90d54e20a78bc01cf4d0e47015166ac2cf64764280ce812637dd2e7489010b1",
+      "bytes": 3456
+    },
+    {
+      "file": "REVIEW.md",
+      "sha256": "44341deb3f60fd0f86fa2a93d06939a436ab28c77b6af9de0717afd6400f34b4",
+      "bytes": 4733
+    }
+  ],
+  "portableEntryVerified": true
+}

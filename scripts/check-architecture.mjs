@@ -47,7 +47,10 @@ function initializationFunctions(ast) {
     }
     // A call used as a callee/initializer consumes its first result only.
     if(node.type==='ReturnStatement'&&node.arguments[0])add(returns,owner,node.arguments[0]);
-    if(['CallExpression','StringCallExpression','TableCallExpression'].includes(node.type))add(calls,owner,node);
+    if(['CallExpression','StringCallExpression','TableCallExpression'].includes(node.type))add(calls,owner,node.base);
+    // Generic-for implicitly calls its first iterator expression. The remaining
+    // expressions supply state/control values; their functions are not invoked.
+    if(node.type==='ForGenericStatement')add(calls,owner,node.iterators[0]);
     if(['IfClause','ElseifClause','ElseClause','DoStatement','WhileStatement','RepeatStatement',
       'ForNumericStatement','ForGenericStatement'].includes(node.type)) {
       const inner=scope(env);
@@ -76,7 +79,7 @@ function initializationFunctions(ast) {
     return [];
   }
   const eager=new Set(),pending=[null];
-  while(pending.length)for(const call of calls.get(pending.pop())??[])for(const fn of targets(call.base))
+  while(pending.length)for(const callee of calls.get(pending.pop())??[])for(const fn of targets(callee))
     if(!eager.has(fn)){eager.add(fn);pending.push(fn);}
   return eager;
 }
