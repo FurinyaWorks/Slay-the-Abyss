@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-08 01:12'
-updated_date: '2026-11-10 15:54'
+updated_date: '2026-11-10 16:03'
 labels: []
 dependencies: []
 parent_task_id: TASK-88
@@ -34,4 +34,6 @@ Owner追加全量收口：五公开实验222路径已恢复逐blob验证；#554�
 2026-11-10按Owner要求只做集中收口：来源与去向见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；CI修复由#606正常自动合并，其余可组合来源收拢一个Draft。10份尚未通过完整组合的M7切片保存在已验证bundle及本地归档refs、原PR refs，回Backlog接续，不冒称已合。脏树保留；来源分支按精确SHA租约清理。内部Issue600迁TASK-74.22，不新增内部Issue。
 
 第二轮：#606已实际合入develop@80f1bcfa，合后push Full仍待。最新事件d218已吸收并清理来源分支，源码联合层1638独立检查/Formation12/UI行为14通过；CI完整校准51通过，计时合同13通过，另外三CI消费者24项通过。真实LFS六图5983528字节及license检查通过。继续#607整片独审/新基线Full与原队列，不勾完成AC。
+
+正式#607 Full入口复现原始8份诊断log的141行空白格式错误，属于捕获堆栈/空白行原文。仅8个精确log设置-whitespace，原始字节与正常源码检查均保留；整PR git diff --check已重新通过。首次impact失败日志单独保留，不计为Full成功。
 <!-- SECTION:NOTES:END -->

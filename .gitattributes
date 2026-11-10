@@ -502,3 +502,13 @@ tests/helpers/room-ui-source-epoch.json.gz -text
 tests/helpers/joint-ui-source-epoch.json.gz -text
 tests/helpers/joint-ui-ci-source-inverse.mjs text eol=lf
 tests/helpers/joint-ui-ci-source-epoch.json.gz -text
+# Immutable captured transcripts retain exact stack indentation and blank lines.
+# This exemption is limited to the eight original diagnostic blobs, not source.
+docs/evidence/pr588-native-mock-20261110/banner-contract.log -whitespace
+docs/evidence/pr588-native-mock-20261110/growing-slices.log -whitespace
+docs/evidence/pr588-native-mock-20261110/independent-banner-guard-false.log -whitespace
+docs/evidence/pr588-native-mock-20261110/independent-banner-guard-true.log -whitespace
+docs/evidence/pr588-native-mock-20261110/independent-rim-guard-false.log -whitespace
+docs/evidence/pr588-native-mock-20261110/independent-rim-guard-true.log -whitespace
+docs/evidence/pr588-native-mock-20261110/local-before.log -whitespace
+docs/evidence/pr588-native-mock-20261110/quick-failure.log -whitespace
