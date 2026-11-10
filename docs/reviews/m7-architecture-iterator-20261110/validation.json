@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "base": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "node": "v24.22.1",
+  "platform": "linux",
+  "sourceHashes": {
+    "scripts/check-architecture.mjs": "371e51f96e1f5d5588c399baf901ac7359bc2bb4111b0cad875b29bfb68aeb68",
+    "tests/architecture.test.mjs": "854ace816aaead0e7d6afb5211a42d4619e10f6b01a35474b7a6beb51cea3829"
+  },
+  "architecture": {
+    "modules": 338,
+    "edges": 1929,
+    "errors": [],
+    "beforeSha256": "0f398234391b40b39d5ea11443ea513a2b24e32e939bffbf7b87083a6a36b1b5",
+    "afterSha256": "0f398234391b40b39d5ea11443ea513a2b24e32e939bffbf7b87083a6a36b1b5",
+    "byteIdentical": true
+  },
+  "validation": {
+    "baselineArchitectureGroups": {
+      "pass": 7,
+      "fail": 0
+    },
+    "oldAnalyzerNewTests": {
+      "pass": 7,
+      "fail": 2
+    },
+    "candidateArchitectureGroups": {
+      "pass": 9,
+      "fail": 0,
+      "newScenarios": 23
+    },
+    "engineeringConsumers": {
+      "pass": 21,
+      "fail": 0
+    },
+    "boundaryConsumers": {
+      "pass": 2,
+      "fail": 0
+    },
+    "guidance": "passed",
+    "backlog": "passed",
+    "full": "not_run",
+    "officialImport": "not_run",
+    "ready": "not_run",
+    "devices": "not_run"
+  },
+  "logs": {
+    "backlog.txt": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+    "baseline-architecture.txt": "8a096194e3ef00dcae39e6b8d0159e2b34df1950305c9c93ceae36aa1692a050",
+    "baseline-tests.txt": "9ca90fdf6e770d02ea8444646458cc8195662ccbbcc394ad961453bdf29cb0b3",
+    "boundary-consumers.txt": "6b64195e56bfb1fdcf2758fb34ff465dfea5bd756457d346a990b9e8b75fd04d",
+    "current-architecture.txt": "8a096194e3ef00dcae39e6b8d0159e2b34df1950305c9c93ceae36aa1692a050",
+    "engineering-consumers.txt": "07068cefd672177fcb9b8f2799b58d2af1260e84353355b2d6aa7644048b627f",
+    "green-tests.txt": "2aae9d8af52c9d774b9fbdda16af46b3d760ebfdd2ba5250cda894e3a75bfd9a",
+    "guidance.txt": "c564e9debd99d0e4c564d32c7be0ee3fee5ee00f1564eb501ad3bddda5354a05",
+    "red-tests.log": "c6ba01fe8fa5d632d3c52db5c81e93f4c3c0deca8c09a88d6f09c45b9315d05d"
+  },
+  "task": "Existing TASK-74.19 scope. Intake HOLD because In Progress. Backlog CLI unavailable; no claim, state, owner or acceptance change."
+}

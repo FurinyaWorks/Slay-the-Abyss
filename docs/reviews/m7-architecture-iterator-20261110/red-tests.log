@@ -1,0 +1,63 @@
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (13.552665ms)
+✔ initialization calls cannot borrow a deferred import exception (5.449236ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (5.161038ms)
+✖ generic-for initialization invokes the known iterator, including aliases and factory results (1.133739ms)
+✖ generic-for does not invoke state, control, unused results or dormant loop owners (4.165748ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.812176ms)
+✔ deferred import exceptions must still match an actual function-scoped require (0.791125ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.582962ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (1.266401ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 7
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 185.200695
+
+✖ failing tests:
+
+test at tests/architecture.test.mjs:78:1
+✖ generic-for initialization invokes the known iterator, including aliases and factory results (1.133739ms)
+  AssertionError [ERR_ASSERTION]: local iterator
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-ten/tests/architecture.test.mjs:94:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/architecture.test.mjs:100:1
+✖ generic-for does not invoke state, control, unused results or dormant loop owners (4.165748ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   false,
+      true,
+  +   true
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-ten/tests/architecture.test.mjs:115:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ true, true ],
+    expected: [ false, true ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
