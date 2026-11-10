@@ -1,0 +1,19 @@
+✔ Encounter formation outer epoch preserves every prior binding and exact frozen production byte (19.793901ms)
+✔ all advertised historical targets restore Encounter formation from LF and CRLF without rewriting originals (4.322288ms)
+✔ current facade retains exact config identity and rechecks all 51 owners after warm success (10.03058ms)
+✔ foreign bytes never authorize reads and composed readers preserve explicit raw reader ownership (1.994883ms)
+✔ isolated authenticated helper closure retains the exact Encounter formation epoch and rejects owner drift (7471.450461ms)
+✔ unknown source targets are rejected rather than gaining an identity fallback (1.056727ms)
+✔ configuration layout admission preserves exact tokens and freshly authenticates all 51 current raw owners (20.800494ms)
+✔ outer foreign-source fallback preserves invalid raw-reader semantics (1.308729ms)
+✔ live LF and CRLF raw owner reads authenticate 51 current owners on every call (1053.681462ms)
+✔ outer metadata preserves the full predecessor and rejects altered predecessor metadata (705.510901ms)
+✔ source and configuration reject unknown targets and malformed live readers after warm authorization (5.252279ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18022.917445

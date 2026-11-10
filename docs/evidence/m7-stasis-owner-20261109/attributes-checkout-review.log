@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "base": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+  "oldTrackedPathCount": 8165,
+  "allOldPathAttributesUnchanged": true,
+  "actualAutocrlfControl": "Unpinned current Actor was converted to CRLF by git checkout-index. New pinned source/helpers/evidence retained exact original bytes.",
+  "gitattributesSha256": "c52375d61a59f550f1f2b83a217e811b5802ea5ea6d65e4c74f269422185b4d0",
+  "checkoutPath": "/tmp/stasis-crlf-k3rfomsq/checkout",
+  "limits": "Actual Git autocrlf conversion on Linux, not Windows runtime or Hosted Full. No gameplay rerun.",
+  "newByteIdenticalCount": 88
+}

@@ -1,0 +1,23 @@
+{
+  "scope": "Evidence wording correction only; original receipts, timing floors, their archives and hashes remain unchanged.",
+  "finding": "E1: boundary sourceScope says recursive static import/archive closure but actual original capture omits five transitive art imports; behavior371 capture also omits two indirect JavaScript imports. Neither capture is exhaustive.",
+  "behaviorMissing": [
+    "scripts/build-original-v4.mjs",
+    "scripts/validate-data.mjs"
+  ],
+  "boundaryMissing": [
+    "scripts/art/ready-card-runtime.mjs",
+    "scripts/art/converted-card-data.mjs",
+    "scripts/art/ready-card-registry.mjs",
+    "scripts/art/performance-pack.mjs",
+    "scripts/art/lightweight-2d-assets.mjs"
+  ],
+  "interpretation": "Passed behavior and boundary tests with their captured input sets; no claim of complete recursively captured runtime inputs, Hosted Full, or full merge readiness. Final independent receipt audit qualifies these inputs.",
+  "unchangedOriginalReceipts": [
+    "ci-boundary-receipt.json",
+    "ci-boundary-original-receipt.json.gz",
+    "behavior-final-receipt.json",
+    "ci-behavior-receipt.json"
+  ],
+  "ciFinalSeparateEvidence": "85/85 CI contract tests and 3561 recorded inputs were independently rechecked and are separate runs."
+}

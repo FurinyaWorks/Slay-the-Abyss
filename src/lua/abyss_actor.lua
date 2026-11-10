@@ -404,7 +404,11 @@ local function battleEnding(state)
     for _, enemy in ipairs(state.enemies) do if M.isPresent(enemy) then return false end end
     return true
 end
-
+-- Death owns lazy upgrading; Stasis checks custody and Master Reality first.
+local function upgradeStasisHeld(s,c)
+    local combat=require('abyss_combat')
+    if combat.canUpgrade(s,c)then combat.upgrade(s,c)end
+end
 local function queueDeathPower(state, target, before, reactions)
     if before>0 and target.hp<=0 and not target.escaped then
         local function deathReaction(s,effect,top)
@@ -420,7 +424,7 @@ local function queueDeathPower(state, target, before, reactions)
         local function visit(actor)
             actor=actor or target
             for _,id in ipairs(M.powerSequence(actor,{'stasis','corpse_explosion'}))do
-                if id=='stasis' then Act2Powers.stasisDied(state,actor,deathReaction)
+                if id=='stasis' then Act2Powers.stasisDied(state,actor,deathReaction,upgradeStasisHeld)
                 else require('abyss_silent_final_cards').death(state,actor,before,deathReaction)end
             end
             Act2Powers.died(state,actor,deathReaction)

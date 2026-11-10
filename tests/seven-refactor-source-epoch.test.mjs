@@ -1,3 +1,5 @@
+import {sourceEpoch as liveStasisEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+const priorLive=liveStasisEpoch.combinedReader(p=>readFileSync(p,'utf8'),'stasisPrior');
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -7,7 +9,7 @@ const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
 test('seven-refactor exact outer epoch restores every complete predecessor owner',()=>{
  assert.equal(proof.owners.length,11);
  for(const path of proof.owners){
-  const source=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  const source=priorLive(path).replaceAll('\r\n','\n');
   assert.equal(source,read(path));
   for(const variant of [source,source.replaceAll('\n','\r\n')])
    assert.equal(epoch.preCombinedSource(path,variant,{target:'prior',readSource:read}),proof.targets.prior.files[path].source);

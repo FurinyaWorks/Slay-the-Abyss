@@ -1,0 +1,4 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: File belongs to another root: /tmp/m7-wheel-base-QdlL6z/build/tools/luacheck/luacheck

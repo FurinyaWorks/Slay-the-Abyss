@@ -1,3 +1,5 @@
+import {sourceEpoch as liveStasisEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+const priorLive=liveStasisEpoch.combinedReader(p=>readFileSync(p,'utf8'),'stasisPrior');
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
@@ -14,7 +16,7 @@ test('Defect final outer epoch preserves every prior binding and exact frozen pr
  assert.equal(proof.currentCommit,prior.currentCommit);
  assert.equal(proof.currentTreeCommitted,false);
  assert.match(proof.defectFinalCurrentCommitRole,/base only/);
- assert.equal(raw(path),readFileSync(path,'utf8').replaceAll('\r\n','\n'));
+ assert.equal(raw(path),priorLive(path).replaceAll('\r\n','\n'));
  assert.deepEqual(defectFinalEpoch.proof.targets.prior.files[path],prior.current[path]);
  assert.deepEqual(proof.targets.defectFinalPrior.files,prior.current);
  for(const [name,target]of Object.entries(prior.targets))assert.deepEqual(proof.targets[name],target,name);
@@ -95,14 +97,14 @@ test('outer foreign-source fallback preserves invalid raw-reader semantics',()=>
 });
 
 test('live LF and CRLF raw owner reads authenticate 50 current owners on every call',()=>{
- const config='config/architecture.json',input=readFileSync(config,'utf8'),expected=proof.targets.actor.files[config].source;
+ const config='config/architecture.json',input=priorLive(config),expected=proof.targets.actor.files[config].source;
  for(const crlf of [false,true]){
   const seen=[];let corrupt=null,missing=null;
-  const live=file=>{seen.push(file);if(file===missing)return null;const bytes=readFileSync(file,'utf8').replaceAll('\r\n','\n');return file===corrupt?bytes+'\n':crlf?bytes.replaceAll('\n','\r\n'):bytes;};
+  const live=file=>{seen.push(file);if(file===missing)return null;const bytes=priorLive(file).replaceAll('\r\n','\n');return file===corrupt?bytes+'\n':crlf?bytes.replaceAll('\n','\r\n'):bytes;};
   for(let repeat=0;repeat<2;repeat++){seen.length=0;assert.equal(sourceEpoch.preCombinedSource(config,input,{target:'actor',readSource:live}),expected);assert.deepEqual(seen,proof.owners);}
   for(const owner of proof.owners){
    corrupt=owner;assert.throws(()=>sourceEpoch.preCombinedSource(config,input,{target:'actor',readSource:live}),/linked owner identity/,owner);corrupt=null;
-   missing=owner;assert.throws(()=>sourceEpoch.preCombinedSource(path,readFileSync(path,'utf8'),{target:'defectFinalPrior',readSource:live}),/linked owner identity/,owner);missing=null;
+   missing=owner;assert.throws(()=>sourceEpoch.preCombinedSource(path,priorLive(path),{target:'defectFinalPrior',readSource:live}),/linked owner identity/,owner);missing=null;
   }
  }
 });

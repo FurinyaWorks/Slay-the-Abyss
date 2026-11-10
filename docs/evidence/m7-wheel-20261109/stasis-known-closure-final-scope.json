@@ -1,0 +1,18 @@
+{
+  "receipt": "docs/evidence/m7-wheel-20261109/stasis-known-closure-final-receipt.json",
+  "receiptSha256": "23ed310882732754fc309bc89078a903cc766dc8d0c8fe1c64153b4c88ade976",
+  "tests": 5,
+  "wallDurationMs": 18342,
+  "nodeReportedDurationMs": 18261.114514,
+  "knownRelevantPaths": 482,
+  "capturedPaths": 1040,
+  "allKnownRelevantCaptured": true,
+  "inputsUnchangedDuringRun": true,
+  "currentCapturedSetMatches": true,
+  "previouslyOmittedScripts": {
+    "scripts/build-lua-data.mjs": "2a04be0449e7fd43404662e4998c7d0541761708f50043f966e66ac7c5ed67d1",
+    "scripts/build-original-v4.mjs": "91406d3b0b06000d1dea4129dd47ac8531d8806f3db066342b5946dd6da8f267",
+    "scripts/validate-data.mjs": "4a1043d4fee942f51a7ae7d7fc12e7a17b6fdaed01f3d75bf09cc868613eb925"
+  },
+  "scope": "Focused complete Stasis historical file; audited known transitive modules/data/isolated-copy/source closure captured before and after. Standard Node runtime remains external. Prior receipts and supplements retained unchanged. No CI floor update or Full claim."
+}

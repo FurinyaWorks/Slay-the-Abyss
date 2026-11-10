@@ -1,3 +1,4 @@
+import {priorStasisReplayPrelude} from './stasis-replay-before.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync,mkdtempSync,rmSync} from 'node:fs';
@@ -20,7 +21,7 @@ export function runActorLifecycle(source,rulesSource){
     const actor=join(directory,'actor.lua'),rules=join(directory,'rules.lua'),driver=join(directory,'driver.lua');
     if(source!==undefined)writeFileSync(actor,source);
     if(rulesSource!==undefined)writeFileSync(rules,rulesSource);
-    writeFileSync(driver,`ACTOR_LIFECYCLE_TRACE=true;package.path='src/lua/?.lua;build/lua/?.lua;'..package.path;${rulesSource===undefined?'':`package.loaded.abyss_actor_power_rules=dofile(${luaString(rules.replaceAll('\\','/'))});`}${source===undefined?'':`package.loaded.abyss_actor=dofile(${luaString(actor.replaceAll('\\','/'))});`}dofile(${luaString(resolve('tests/lua/actor_lifecycle.lua').replaceAll('\\','/'))})`);
+    writeFileSync(driver,`ACTOR_LIFECYCLE_TRACE=true;package.path='src/lua/?.lua;build/lua/?.lua;'..package.path;${source!==undefined&&source.replaceAll('\r\n','\n')===actorLifecycleBefore()?priorStasisReplayPrelude():''}${rulesSource===undefined?'':`package.loaded.abyss_actor_power_rules=dofile(${luaString(rules.replaceAll('\\','/'))});`}${source===undefined?'':`package.loaded.abyss_actor=dofile(${luaString(actor.replaceAll('\\','/'))});`}dofile(${luaString(resolve('tests/lua/actor_lifecycle.lua').replaceAll('\\','/'))})`);
     return runLua(driver,{maxBuffer:32*1024*1024});
   }finally{rmSync(directory,{recursive:true,force:true});}
 }

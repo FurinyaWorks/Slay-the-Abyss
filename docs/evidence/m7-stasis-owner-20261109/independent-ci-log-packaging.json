@@ -1,0 +1,37 @@
+{
+  "preservedRawDirectory": "/tmp/m7-stasis-raw-independent-ci",
+  "records": [
+    {
+      "original": "docs/evidence/m7-stasis-owner-20261109/independent-ci-control.log",
+      "stored": "docs/evidence/m7-stasis-owner-20261109/independent-ci-control.log.gz",
+      "uncompressedSha256": "2cd9367190bc8007a48e0bb5dfe721f215e6342551bc30ab2f7900b5d87b1204",
+      "compressedSha256": "67d8f792337d556a99e758701f46e394efcd9ba58393e1c7d07bd041152574c0"
+    },
+    {
+      "original": "docs/evidence/m7-stasis-owner-20261109/independent-ci-missing-inventory.log",
+      "stored": "docs/evidence/m7-stasis-owner-20261109/independent-ci-missing-inventory.log.gz",
+      "uncompressedSha256": "7348fbb4c2b1828267e9aa3db445687c71038abf660204bd4841d65f0778e7a0",
+      "compressedSha256": "ac322a2b60b200b08e49951c65877fd2db2091fefec80056f6de036ff4daa06c"
+    },
+    {
+      "original": "docs/evidence/m7-stasis-owner-20261109/independent-ci-changed-unknown.log",
+      "stored": "docs/evidence/m7-stasis-owner-20261109/independent-ci-changed-unknown.log.gz",
+      "uncompressedSha256": "672647f258f8dda0de9548bf953a84593b57617d5c0f854d6eadda0edd87ac04",
+      "compressedSha256": "fdcbc473f8b79547e1d8a172d3f9c126fc2d9c84bb46bc5ef107c587ceed96c9"
+    },
+    {
+      "original": "docs/evidence/m7-stasis-owner-20261109/independent-ci-changed-old-floor.log",
+      "stored": "docs/evidence/m7-stasis-owner-20261109/independent-ci-changed-old-floor.log.gz",
+      "uncompressedSha256": "a57f40c53e973a6413b0349ae97522342625f5e9721a7a50d9a4bcb0c3c8de76",
+      "compressedSha256": "7d6b620bbaa924f5d5e845fd5dfcc151eed70f28c171484a8a55bf0f45ac5864"
+    },
+    {
+      "original": "docs/evidence/m7-stasis-owner-20261109/independent-ci-historical-shape-as-current.log",
+      "stored": "docs/evidence/m7-stasis-owner-20261109/independent-ci-historical-shape-as-current.log.gz",
+      "uncompressedSha256": "64777fc8733b79cee5dd7c708023f752562eebd0f88a40cb43070da63b3b4796",
+      "compressedSha256": "f0b51eb73429f359d7ec6c45749056234d0cf712db22c4e09c2eefa2751a714d"
+    }
+  ],
+  "originalLogsUnchanged": true,
+  "limits": "Packaging only; no new probe execution and no changed pass/fail status."
+}

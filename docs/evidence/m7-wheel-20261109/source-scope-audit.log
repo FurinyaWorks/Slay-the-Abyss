@@ -1,0 +1,50 @@
+{
+  name: 'source-final',
+  captured: 1035,
+  relevant: 477,
+  modules: 20,
+  copied: 134,
+  uncaptured: 0,
+  mismatches: [
+    {
+      path: 'tests/helpers/reward-query-planning-contract.mjs',
+      atRun: '5ed5306daeb974afee9401f628062ccfdbfc05e8b4fb90c95c27356ff967aad1',
+      current: '2d13b4cae4a75b01e21535be6b6012505268bc029fc33de2b3daa0a260ce8b9b'
+    },
+    {
+      path: 'tests/helpers/wheel-event-vm.mjs',
+      atRun: '327c6b896f6906e26d621c195adaa4d37867283b3b746488e55edee8a7ddc8ee',
+      current: '447b3a03f67f4ec253b8dff64a3112fa9dfcdaa6e702d80ecca30686507dcb30'
+    }
+  ]
+}
+{
+  name: 'stasis-historical',
+  captured: 1035,
+  relevant: 482,
+  modules: 22,
+  copied: 134,
+  uncaptured: 3,
+  mismatches: [
+    {
+      path: 'tests/helpers/reward-query-planning-contract.mjs',
+      atRun: '5ed5306daeb974afee9401f628062ccfdbfc05e8b4fb90c95c27356ff967aad1',
+      current: '2d13b4cae4a75b01e21535be6b6012505268bc029fc33de2b3daa0a260ce8b9b'
+    }
+  ]
+}
+{
+  name: 'integration-source',
+  captured: 1035,
+  relevant: 475,
+  modules: 74,
+  copied: 134,
+  uncaptured: 0,
+  mismatches: [
+    {
+      path: 'tests/helpers/reward-query-planning-contract.mjs',
+      atRun: '5ed5306daeb974afee9401f628062ccfdbfc05e8b4fb90c95c27356ff967aad1',
+      current: '2d13b4cae4a75b01e21535be6b6012505268bc029fc33de2b3daa0a260ce8b9b'
+    }
+  ]
+}

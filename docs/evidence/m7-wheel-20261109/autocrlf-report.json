@@ -1,0 +1,367 @@
+{
+  "passed": true,
+  "base": "ef6b62a23aa85b41e32fb6e5c4e95b697b41d66c",
+  "checkedByteIdenticalPaths": [
+    {
+      "path": "docs/evidence/m7-wheel-20261109/administrative-checks.json",
+      "sha256": "0d499cb9a21b3055561ca2c937d977afb3390cf214650216ab256699eb6a92e8"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/audit-predecessors.mjs",
+      "sha256": "8663109da70c2ae0731d1a5ea70cfc9b8707def819515ef2367110e022d2b20c"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/audit-source-final-scope.mjs",
+      "sha256": "d35f52bc0a34af6d2e7a9be88dc6bda13952f23e0ad8ef988d88f8907c573bcd"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/audit-successful-source-scopes.mjs",
+      "sha256": "4fc222bfe3450a2715c31c466e54c511f05a17aacf9772d2d7d16c2f1ab16643"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/backlog-verify.log.gz",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/baseline-engineering.json.gz",
+      "sha256": "7474353de64156151b8a6fd3662fc644416ef4d6dd72247277686fefc009e566"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-complexity-earlier-complete.log.gz",
+      "sha256": "15bd8d52a50edf62425a7494017ff9b68b49d89b88dafce4aff69f3243e8203b"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-complexity-original-receipt.json.gz",
+      "sha256": "730da7eedd091a7dc7089a226dbd8703539ffafaf71192d19d867a66bdee368f"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-complexity-receipt.json",
+      "sha256": "efd4f700e3499a59586a4c41feda8fd01494c2a376851a73648562cc2c88c11d"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-complexity.log.gz",
+      "sha256": "38f9eeaf2885b1a1a0125470ba6f56aecbc090b64cc7a1590ae44287862615a9"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-contracts-final-receipt.json",
+      "sha256": "02d9ff62c8a4a1be7f24d8525b7aad3381cd3533e1455725f7cf68642a07b5d7"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-contracts-final.log.gz",
+      "sha256": "222ad37c7b607b8212a305c05c60ea4f5c6d6f270855e4205ce8946ac871295d"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-contracts-initial-receipt.json",
+      "sha256": "40fb273139dc9bb21ec319b78e49718f45eef6cdd674d2cf5a39e23bf11ec3a8"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-contracts-initial.log.gz",
+      "sha256": "fef7516a4324f8ed3bf455bdeb47d5b6be59080f91becff8f5cffc04532b5518"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-exploratory-layout-proposal-not-final.json",
+      "sha256": "e789ac33f4f171065fc29faf1b3f31d3c3f5689af1353c480a8427a1f05b1a1b"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-final-blocked17-forecast.json",
+      "sha256": "4c7c993c24604f988579ff19ec445240aed8438b500448a49aa9842be9021dc5"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-final-forecast.json",
+      "sha256": "a60fa4982c81441e49485cc34a97a7d32f5a36579e5a37ff678c38d12e13ba17"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-forecast.mjs",
+      "sha256": "875b745201654466d55de5be414b5cf7a7c2075b5a4727abc6a9e5da43c2b03e"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-initial-forecast.json",
+      "sha256": "e28b5594b68d78dad4e5f7b550c84900c546612cd593f02059fb269e1d51677d"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-policy-audit.json",
+      "sha256": "335c49d85f174e284a42068f7296715ffe25afaf66ebd47f7e4c268c586dcfa0"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-policy-audit.mjs",
+      "sha256": "9cc223455a97c14001437460eb5b941ca06a99d4d0a3377262602f2f2967e1f3"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-pressure-scenarios-not-measurements.json",
+      "sha256": "aa25c9722359e262c01f64e7068bdf4fdce397db538382613acbec5fdd45871c"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-receipt-runner.mjs",
+      "sha256": "c03dca0027b6fbedf43e63ceaca3307b4bdc4e9c6fd33f1e769dfa4943a94c8b"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-responsibilities-earlier-complete.log.gz",
+      "sha256": "f572c4f1043e39bf6cdb35ca8633695e23c3239830a78cc7ea361ad527be247e"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-responsibilities-original-receipt.json.gz",
+      "sha256": "ec643f965184a5deff8e248cf7033d11857afc26e28f0f1a4ac4199418a3c962"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-responsibilities-receipt.json",
+      "sha256": "3bae2ad029966d7952e11786e6fc3a27120ad259fb36d36ac58c12de2bb86e2d"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-responsibilities.log.gz",
+      "sha256": "e3e25604f9e92b06cbf0dc09d0727137d488721f8329ac2f348b2580f0b1a8e7"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/ci-summary.json",
+      "sha256": "1350011f23ee1b449fe55e597b6c53021ac1b7396de6eba3714b62c6113a3d5b"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/current-engineering.json.gz",
+      "sha256": "7cf9c2f4f914c76acea8151b0042adb182c14612841952f3a3d47a36ab82811c"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/doctor.log.gz",
+      "sha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/guidance.log.gz",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/integration-source-receipt.json",
+      "sha256": "21637b83b6b85c1dea654ccb43d76a99749a36c97683be6c100e62307e7904b8"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/integration-source.log.gz",
+      "sha256": "961e7ce76017300134633c819b71b2bb4a7a779b9f2efc50dea84f7c355a4709"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/m7-wheel-baseline-engineering-final.log",
+      "sha256": "46b1d7bd29231253541716556502624c8f12035961fcdc89e899d8a239fabba0"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/m7-wheel-baseline-engineering-pass.log",
+      "sha256": "d5e74fd1bd1c03bbf9b112eabd71330be0e5481172d32655dc1b00bd8caa1f2c"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/m7-wheel-baseline-engineering.log",
+      "sha256": "b4e24082eeb39d7af235c3e0414e47e910c52eac1ccae23961d1d322bac52d21"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/m7-wheel-current-engineering.log",
+      "sha256": "d2c410a8eade2e46d6dfe81b9bc1b8a5324772e0099d7f4d8be3b3fde26b6b9e"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/metrics.json",
+      "sha256": "22737d454c062f2956e4ea14be2d328388642c87b82883d810740d3fe5dd74ac"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/predecessor-integrity.json",
+      "sha256": "62410618ec2a6c421d2b201c35d114c0d027ea2b466f82c17a7deb10d347bef8"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/receipt-log-pairs.json",
+      "sha256": "8ed7f3bef1b6e4bd5dd59596c914d1d20b7d253a9694ba7a314fafe4fb2f58f8"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-attempts.md",
+      "sha256": "1863d8019dd76247079fc94e0165acecfcacff9a8bd9f6fa32e6c97b1c392f25"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-final-receipt.json",
+      "sha256": "d364905050697a1cc0755dbba7705cc2e2a6bd311f864543504e5c636550cd6d"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-final-scope-supplement.json",
+      "sha256": "3b07727da91790d11fc0f7c519f5ec5e8d17c94c849638c1c592dc33f5c13cb5"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-final.log.gz",
+      "sha256": "30a4f8af26455ad06bf8dca00ca43a2069fc77ec1e78a206edf891e8aadaff0d"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-initial-heap-failure.log.gz",
+      "sha256": "bd567314c09b74ac3672fa2d5c0696431baa95f6a9fa9e78353a0326b53d0599"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-receipt-runner.mjs",
+      "sha256": "49dc812dd8b94ef61faa287690af108b04230094b7e4f19b04e17fe82a8eaeb8"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-scope-audit.log",
+      "sha256": "275e59bcc9fb0863ae24870001b7af39d3deff98911886a89d3545c6eb6d9202"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-second-heap-failure-receipt.json",
+      "sha256": "e08b57b3d3a39a407d44e1468d539bd18e4fb62e0b674deba21b72b43b2a09d0"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-second-heap-failure.log.gz",
+      "sha256": "deda9f980f480c7adfd10a0b2e39bb5ececb7c150b49690322754f85e9c62920"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-successful-scope-supplement.json",
+      "sha256": "cc3dd452ee2a5d4249587ca82a57c2d5ebea0a40ba9e151cd45eb9e0811eb4bb"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-third-test-failure-receipt.json",
+      "sha256": "68605e7c094610167398cf5e5853c0d370fecab7121a4d102f554ac0527e10ce"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/source-third-test-failure.log.gz",
+      "sha256": "1d5d6189e34cf2159ebae265d4c5fd0e1b3c69c2d5a032e5ac59c53d8b5ccf22"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/stasis-closure-receipt-runner.mjs",
+      "sha256": "1a1dd289b1109087d6f46e30c2fcd4184de1ed03802b179ac765846cf7aebc1a"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/stasis-historical-receipt.json",
+      "sha256": "873454f6d99e36e8fc871d4aa2365542aa1ca36484529b7fab00afa1ba3c444f"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/stasis-historical.log.gz",
+      "sha256": "1cc776bf2c1b3c6787aaa52ce9b381b60f05a8fc90f3dabc6a1e2a0846073402"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/stasis-known-closure-final-receipt.json",
+      "sha256": "23ed310882732754fc309bc89078a903cc766dc8d0c8fe1c64153b4c88ade976"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/stasis-known-closure-final-scope.json",
+      "sha256": "5237beae7df0b4328233ea4dd62bda403cb01e1e6ac5fd876bf6fc18edda6ac1"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/stasis-known-closure-final.log.gz",
+      "sha256": "41db17acb6f8e421e9cb2d5aeb52ca454e806092f5495eaf13fd2fd51c085c4c"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/stasis-known-closure-final.md",
+      "sha256": "16bad7addbf4e436c000e16031c013f6f9115eb97bf1c1e1d5c10d1411e5f948"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/syntax.log.gz",
+      "sha256": "ab3c453da85dc4f69d65d65964aa148d2bc808f2eb5c4fdc9fb1491a257cf6bf"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/verify-autocrlf.py",
+      "sha256": "e66f6696d9608733d1b99a9a30a6d531021663f4c4f2ad7de3d6a8074bbed164"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-README.md",
+      "sha256": "35891648503ef2355073cc4d2962370908c095c909501e58fd6d90599c7ff9e0"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-backlog-execution.log.gz",
+      "sha256": "0c217e9964afc0a8b7d49537be28d8697f68aa9ac275329d1b774149af908c14"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-backlog-overview.log.gz",
+      "sha256": "98069cd85d30e83df0f88897f7e9fcced198e1cf3ef1a8f5b16306d1a065ade8"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-build-data.log.gz",
+      "sha256": "90e8479ec7e23d73794a5bb9cf1aff35843bee00cb336c82c88b2102cdcce63b"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-build-map.log.gz",
+      "sha256": "13cde1375c6d059f07fdacca9e11ad21ff376306d97ba433ead5e29d96bf264d"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-build-ui.log.gz",
+      "sha256": "88725856c35a376abeb718c9d4034124c5fdc924a141dfc50083b60246bfbf8b"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-complexity-final.log.gz",
+      "sha256": "6ae5dc6cb3ddb46cea8b0e5d666e42fb1c0c3a7c82e8845dd789a70d3383aa2e"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-complexity-receipt.json",
+      "sha256": "f856452b8c55afe07a6388e2235a63242454ae211deaa7392ab26bf89d3cb3bb"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-complexity.log.gz",
+      "sha256": "ad12b8e59e18c0abb204704172aa94424738647a34b21db6b6827931144ae89b"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-evidence-manifest.json",
+      "sha256": "f6d7ee4c1285bab71915965241fa61af2938683f82529815c467076a1f710c8c"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-input.sha256",
+      "sha256": "f7ee85aa631f086f47a92392a5255330aa5fcf8fba494fc67252253199ab805a"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-measure.log.gz",
+      "sha256": "ebf57f8db4360a4bdff76fe9dd7ff5f8ca5a2bb1cfbab576b592b72ad075c28f"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-measure.mjs",
+      "sha256": "d19d78349dc4090e00d3b2273d2c0e121509427fcb8c9baa60e1e23d42b67a67"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-responsibilities-final.log.gz",
+      "sha256": "4ab9fb428372027a707c193e49c292d752284b47fced49eabe065262cb9bf136"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-responsibilities-receipt.json",
+      "sha256": "cc001c2d527017375cf797e92dbe50947aaf20238ca6d0ea7424e478faf2d1f7"
+    },
+    {
+      "path": "docs/evidence/m7-wheel-20261109/wheel-responsibilities.log.gz",
+      "sha256": "b666bda4b76f2de7a0c6b96e7c90cd00610f2a5ebc0086724f5a249382a7ccee"
+    },
+    {
+      "path": "tests/fixtures/wheel-event-before.lua",
+      "sha256": "f775746a95c2f33eeb9a5d7c688c536b3dd0b6b3ddefeb3455fbd28468f6bc2c"
+    },
+    {
+      "path": "tests/helpers/combined-epoch/pre-wheel-source-epoch.mjs",
+      "sha256": "a06e3845b23f0c52f1871b7bbb2a8c2e12224e52c7dfe1a916a0d0d3d2a6cb45"
+    },
+    {
+      "path": "tests/helpers/wheel-ci-source-inverse.json.gz",
+      "sha256": "ae1a53e724d0aaddba2d1fda4661f39298cb30ec26c462a7ebba28516b3409c7"
+    },
+    {
+      "path": "tests/helpers/wheel-ci-source-inverse.mjs",
+      "sha256": "ee7cb9895c2e444fe0013f15c203177e213d7d7eafa32d4025421635731d3743"
+    },
+    {
+      "path": "tests/helpers/wheel-event-boundaries.lua",
+      "sha256": "47ebf548388e45e8aa825159acce08866f57175a4ff603a85420835755eb2809"
+    },
+    {
+      "path": "tests/helpers/wheel-event-mutants.lua",
+      "sha256": "cf8c40a38c6841c5d8ea1c0ad3b6acfcd0128008f6274d4968f383e2154484a1"
+    },
+    {
+      "path": "tests/helpers/wheel-event-source-epoch.json.gz",
+      "sha256": "1819e38b35531634883fa80f72a928eb8ec6d9b78d944025d6278efc8f54e3d8"
+    },
+    {
+      "path": "tests/helpers/wheel-event-source-epoch.mjs",
+      "sha256": "d22f3df328337bf1eea7fd87ca723f255246165140cb92208642fe997678bdba"
+    },
+    {
+      "path": "tests/helpers/wheel-event-vm.mjs",
+      "sha256": "447b3a03f67f4ec253b8dff64a3112fa9dfcdaa6e702d80ecca30686507dcb30"
+    },
+    {
+      "path": "tests/wheel-event-complexity.test.mjs",
+      "sha256": "6ad4af120641976d089f5aa770da459409c6852d31b8ce6df2e349cbcaf4efa4"
+    },
+    {
+      "path": "tests/wheel-event-responsibilities.test.mjs",
+      "sha256": "1727551d3af166c5f9606a438bb1dfb4f16666a30032ad2dba80c64bc802c49c"
+    },
+    {
+      "path": "tests/wheel-event-source-epoch.test.mjs",
+      "sha256": "fe038f2ee850d54756fea41b76ad42b07d96d78aa1035c55d6a2b8ad0bd9fb8b"
+    }
+  ],
+  "oldTrackedPathCount": 8263,
+  "allOldPathAttributesUnchanged": true,
+  "actualAutocrlfControl": "Unpinned production Wheel converted to CRLF; new frozen inputs/helpers/evidence kept exact Git bytes.",
+  "gitattributesSha256": "4a5869ff0715047e0347a53d0a061239a80a781c13672ffd591f51cea15efa7d",
+  "limits": "Actual Git autocrlf conversion on Linux, not Windows runtime or Hosted Full. Report/log/index/independent final review excluded to avoid self-reference. No gameplay rerun."
+}

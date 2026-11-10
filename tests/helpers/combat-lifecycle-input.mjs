@@ -1,3 +1,5 @@
+import {priorStasisReplayPrelude} from './stasis-replay-before.mjs';
+import {actorLifecycleBefore} from './actor-lifecycle.mjs';
 import {readFileSync,writeFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {join,resolve} from 'node:path';
 import {tmpdir} from 'node:os';
@@ -25,7 +27,7 @@ export function executeCombatLifecycle(source,group,trace=false,{actorSource}={}
     let actorPrelude='';
     if(actorSource!==undefined){
       const actor=join(dir,'actor.lua');writeFileSync(actor,actorSource);
-      actorPrelude=`package.loaded.abyss_actor=dofile(${luaString(actor.replaceAll('\\','/'))});`;
+      actorPrelude=`${actorSource.replaceAll('\r\n','\n')===actorLifecycleBefore()?priorStasisReplayPrelude():''}package.loaded.abyss_actor=dofile(${luaString(actor.replaceAll('\\','/'))});`;
     }
     writeFileSync(driver,`package.path='src/lua/?.lua;build/lua/?.lua;'..package.path;${actorPrelude}package.loaded.abyss_combat=dofile(${luaString(module.replaceAll('\\','/'))});COMBAT_LIFECYCLE_GROUP=${luaString(group)};COMBAT_LIFECYCLE_TRACE=${trace?'true':'false'};dofile(${luaString(resolve(combatLifecycleFixture).replaceAll('\\','/'))})`);
     return runLua(driver,{maxBuffer:32*1024*1024});

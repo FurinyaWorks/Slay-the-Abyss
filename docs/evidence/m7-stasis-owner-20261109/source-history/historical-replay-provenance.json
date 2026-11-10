@@ -1,0 +1,26 @@
+[
+  {
+    "revision": "a308edbfde7792485cbe79b5650c17e1c7de98cc",
+    "sources": {
+      "src/lua/abyss_actor.lua": "eb45b19b4a3d75cbf15e4a22df44d1cafcebfaa2c111b3a72cf6203a243d4c70",
+      "src/lua/abyss_act2_powers.lua": "966f9906c9fd03d306424c9ea430e3aa8840fdf6e852d13cecd274c0a3aa3629",
+      "src/lua/abyss_act2_stasis.lua": "0a1b6da54329fe7c00cfb45bb57dfc1ff53663cd7437e1bb17b35f702181466a"
+    }
+  },
+  {
+    "revision": "c20f9898462194d5f720f901274898e171a17ed5",
+    "sources": {
+      "src/lua/abyss_actor.lua": "3ca585adaf351ef9fde31575e121c69186d2f2dfdd451a8ca32bf4ba0855ac94",
+      "src/lua/abyss_act2_powers.lua": "966f9906c9fd03d306424c9ea430e3aa8840fdf6e852d13cecd274c0a3aa3629",
+      "src/lua/abyss_act2_stasis.lua": "0a1b6da54329fe7c00cfb45bb57dfc1ff53663cd7437e1bb17b35f702181466a"
+    }
+  },
+  {
+    "revision": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+    "sources": {
+      "src/lua/abyss_actor.lua": "0435754ce97e731da0abaa1aafdbbd035988c09b411c47c192bb3e6ab0133c7a",
+      "src/lua/abyss_act2_powers.lua": "966f9906c9fd03d306424c9ea430e3aa8840fdf6e852d13cecd274c0a3aa3629",
+      "src/lua/abyss_act2_stasis.lua": "0a1b6da54329fe7c00cfb45bb57dfc1ff53663cd7437e1bb17b35f702181466a"
+    }
+  }
+]

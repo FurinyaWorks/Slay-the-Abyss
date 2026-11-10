@@ -1,0 +1,22 @@
+[
+  {
+    "receipt": "wheel-responsibilities-receipt.json",
+    "receiptSha256": "cc001c2d527017375cf797e92dbe50947aaf20238ca6d0ea7424e478faf2d1f7",
+    "actualFinalLog": "wheel-responsibilities-final.log.gz",
+    "actualFinalLogSha256": "4ab9fb428372027a707c193e49c292d752284b47fced49eabe065262cb9bf136",
+    "actualFinalLogUncompressedSha256": "d1165ca1dfeb0952cbac856efe9214c496a4790c46caa7abd91eecaff1af0156",
+    "distinctEarlierExploratoryLog": "wheel-responsibilities.log.gz",
+    "earlierLogSha256": "b666bda4b76f2de7a0c6b96e7c90cd00610f2a5ebc0086724f5a249382a7ccee",
+    "note": "Unsuffixed log is earlier complete successful run, not this final receipt. It is retained as conservative planning observation without a full before/after execution input manifest."
+  },
+  {
+    "receipt": "wheel-complexity-receipt.json",
+    "receiptSha256": "f856452b8c55afe07a6388e2235a63242454ae211deaa7392ab26bf89d3cb3bb",
+    "actualFinalLog": "wheel-complexity-final.log.gz",
+    "actualFinalLogSha256": "6ae5dc6cb3ddb46cea8b0e5d666e42fb1c0c3a7c82e8845dd789a70d3383aa2e",
+    "actualFinalLogUncompressedSha256": "57fc9420788b840e4eeca78e320f2e3f642d470f7dd349dca5619f5b3e836c22",
+    "distinctEarlierExploratoryLog": "wheel-complexity.log.gz",
+    "earlierLogSha256": "ad12b8e59e18c0abb204704172aa94424738647a34b21db6b6827931144ae89b",
+    "note": "Unsuffixed log is earlier complete successful run, not this final receipt. It is retained as conservative planning observation without a full before/after execution input manifest."
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "testFile": "tests/wheel-event-complexity.test.mjs",
+  "status": 0,
+  "tests": 1,
+  "nodeReportedDurationMs": 881.034981,
+  "wallMs": 956.158477000019,
+  "inputSha256": {
+    "src/lua/abyss_wheel_event.lua": "280b777031fb52f203fa74a5ba8d97e62f904e54a1c77e776c237d01ef527bb5",
+    "scripts/check-lua-static.mjs": "1bd3e276b44b9d74d9ffddc4a3a51249433622f893fc403242dff6166a87f034",
+    "tests/fixtures/wheel-event-before.lua": "f775746a95c2f33eeb9a5d7c688c536b3dd0b6b3ddefeb3455fbd28468f6bc2c",
+    "tests/wheel-event-responsibilities.test.mjs": "1727551d3af166c5f9606a438bb1dfb4f16666a30032ad2dba80c64bc802c49c",
+    "tests/wheel-event-complexity.test.mjs": "6ad4af120641976d089f5aa770da459409c6852d31b8ce6df2e349cbcaf4efa4",
+    "tests/helpers/wheel-event-vm.mjs": "447b3a03f67f4ec253b8dff64a3112fa9dfcdaa6e702d80ecca30686507dcb30",
+    "tests/helpers/wheel-event-boundaries.lua": "47ebf548388e45e8aa825159acce08866f57175a4ff603a85420835755eb2809",
+    "tests/helpers/wheel-event-mutants.lua": "cf8c40a38c6841c5d8ea1c0ad3b6acfcd0128008f6274d4968f383e2154484a1",
+    "tests/helpers/lua-graph-observer.mjs": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f",
+    "tests/lua/wheel_event.lua": "72e82e34a31471a37e4216e79a46e6c7ce0c6060592524bbc495ac420c379dbd",
+    "tests/lua/wheel_event_ui.lua": "afdb25b32e412d3356ee936dcee5bcf55e6fd387f421657974444bd05713e467"
+  },
+  "inputSha256After": {
+    "src/lua/abyss_wheel_event.lua": "280b777031fb52f203fa74a5ba8d97e62f904e54a1c77e776c237d01ef527bb5",
+    "scripts/check-lua-static.mjs": "1bd3e276b44b9d74d9ffddc4a3a51249433622f893fc403242dff6166a87f034",
+    "tests/fixtures/wheel-event-before.lua": "f775746a95c2f33eeb9a5d7c688c536b3dd0b6b3ddefeb3455fbd28468f6bc2c",
+    "tests/wheel-event-responsibilities.test.mjs": "1727551d3af166c5f9606a438bb1dfb4f16666a30032ad2dba80c64bc802c49c",
+    "tests/wheel-event-complexity.test.mjs": "6ad4af120641976d089f5aa770da459409c6852d31b8ce6df2e349cbcaf4efa4",
+    "tests/helpers/wheel-event-vm.mjs": "447b3a03f67f4ec253b8dff64a3112fa9dfcdaa6e702d80ecca30686507dcb30",
+    "tests/helpers/wheel-event-boundaries.lua": "47ebf548388e45e8aa825159acce08866f57175a4ff603a85420835755eb2809",
+    "tests/helpers/wheel-event-mutants.lua": "cf8c40a38c6841c5d8ea1c0ad3b6acfcd0128008f6274d4968f383e2154484a1",
+    "tests/helpers/lua-graph-observer.mjs": "a93fb46a50b261dea20156bd1d0c2dfdfe06c912b13966ccb9568e6fe9229b3f",
+    "tests/lua/wheel_event.lua": "72e82e34a31471a37e4216e79a46e6c7ce0c6060592524bbc495ac420c379dbd",
+    "tests/lua/wheel_event_ui.lua": "afdb25b32e412d3356ee936dcee5bcf55e6fd387f421657974444bd05713e467"
+  },
+  "inputsUnchanged": true,
+  "originalReceiptSha256": "f856452b8c55afe07a6388e2235a63242454ae211deaa7392ab26bf89d3cb3bb",
+  "originalReceipt": "docs/evidence/m7-wheel-20261109/ci-complexity-original-receipt.json.gz",
+  "scope": "Complete test file, no filter; original measurement receipt retained without modification."
+}

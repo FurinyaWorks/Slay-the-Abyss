@@ -1,0 +1,364 @@
+{
+  "passed": true,
+  "base": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+  "checkedByteIdenticalPaths": [
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/attributes-checkout-review.py",
+      "sha256": "3854cc45bfbb24e22ee64ea025644b214656ccfe7747e14d7394dd31ed0c6dff"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/backlog.log.gz",
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/behavior-final-receipt.json",
+      "sha256": "2bf68f89c116792c901710204eb6b4d8f9a206ea686f4fdb3fff8ec2d9fee35a"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/behavior-final.log",
+      "sha256": "15a2f1505453d2c68244d954d1dff17a95b911bc49c86ebf926b4af6d1bc74ab"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/behavior-prior-runs.txt",
+      "sha256": "fa8ada1841f8987f9e2f7bd7887c4a7e325d8cd4e54e2cd6a92b3c526e179415"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/behavior-receipt-runner.mjs",
+      "sha256": "6bf36a0769b4e8b1dbde501ced611957aab337289e35c6ae9960d05c464c8692"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/boundary-actor-complexity.txt",
+      "sha256": "2df7addf3f8aeb4120f990f763b8b486f10d3582a5b937e9b4a2402cdacbc0b7"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/boundary-architecture-metrics.json",
+      "sha256": "7c33ffa59bb69031ee6e0b2d7f092db4f4ceff8e9cd5a9ffc71e73347145a126"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/boundary-final.log",
+      "sha256": "8c7eefa35bde8fd1978ee0ef2e7e279e01f0d8d224ee01a710985edc802c25fe"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/boundary-pinned-probe.json",
+      "sha256": "ed91d4f5da21350813cb6cd4aa5121313aaf07fc1ec2fd20a473a11c8a39d92b"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/boundary-prior-attempts.json",
+      "sha256": "74757d995b05d47ee597829df09acf494be5a3e105c8cdfbdf8a16a57eb6f0c2"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/boundary-receipt.json",
+      "sha256": "3a754cf0b1467bceaa979d29a577cdeb9fd4f2e7f51bd34807ba6b9ee5bfee49"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/build.log.gz",
+      "sha256": "d70340fa8eb66eb8cb502d4298744070031895f76c0ffe064452e5eeec31b834"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-behavior-original-receipt.json.gz",
+      "sha256": "04ead0f8bc1cc75f7c05f68bfd5bf712d2a251d2aaed87467f136494f32e1857"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-behavior-receipt.json",
+      "sha256": "d71ea99e3fa4608e3133e255a789ea94ff773fae189b26fecf933efe714f24cd"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-behavior.log.gz",
+      "sha256": "8b0e6ea01e887a31b605accad3a7ad96e75e7e1794624acc817ab85d6403e16c"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-boundary-original-receipt.json.gz",
+      "sha256": "52bbda9904f2b71eccbc9e3bbeb7684bf313035892e240e9833198db03ddc421"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-boundary-receipt.json",
+      "sha256": "a56b33bf02c5866507dcb489786f8323eb93d5df1b1e42b4b19fd05d9673b43b"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-boundary.log.gz",
+      "sha256": "4e699d7d7e67fc8e69b05d7ee20d03057ec0881cc66f7b728e3cd872bc47bbbb"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-contracts-final-receipt.json",
+      "sha256": "4710205b337ed7521fabb6e77417ccf3e6d73b17e4570ab57abc5310f135572f"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-contracts-final.log.gz",
+      "sha256": "d415dd967997e57c9dfb749ad9de4813392f1904a291a42261acca38cf90666c"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-contracts-initial-failed.log.gz",
+      "sha256": "fdd3a900f9f14a93d4341391a21ca0b6c512e307945217979b1ee887044c42db"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-source-epoch-original-receipt.json.gz",
+      "sha256": "568dc5e245cabdca90559fffbc44985771ed329e84b975422e3b8c3fd42beb0b"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-source-epoch-receipt.json",
+      "sha256": "29447ec87e0978988b30663c81473669a74d425973a9bfb1c1b68e1bb965412c"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-source-epoch.log.gz",
+      "sha256": "20df2477b8ed7c0b1dceae0d2a001db6ebaabf842ecb781e6aab3a48762db283"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-static-affected-closure.json",
+      "sha256": "98b793c48867f3c2b5cf6d0c5382b9ab6d5ebeca13e8d061d5cc87532d95c415"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/ci-summary.json",
+      "sha256": "faa9dbfdb0011b6f57b037291ec33426ba9faf8b85c1b4f92bd2ac68956e349e"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/current-engineering.json.gz",
+      "sha256": "a25d5cc808e042277a8eb5856c8704c05eded837af714a4d8f4586a0b0d189fc"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/doctor.log.gz",
+      "sha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/engineering.log.gz",
+      "sha256": "59c80e7a1969c83ba15c14084a6f73e9b12d2e11ea2860f5fd4fda2a3a9f833a"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/guidance.log.gz",
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-ci-changed-old-floor.log",
+      "sha256": "a57f40c53e973a6413b0349ae97522342625f5e9721a7a50d9a4bcb0c3c8de76"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-ci-changed-unknown.log",
+      "sha256": "672647f258f8dda0de9548bf953a84593b57617d5c0f854d6eadda0edd87ac04"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-ci-control.log",
+      "sha256": "2cd9367190bc8007a48e0bb5dfe721f215e6342551bc30ab2f7900b5d87b1204"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-ci-historical-shape-as-current.log",
+      "sha256": "64777fc8733b79cee5dd7c708023f752562eebd0f88a40cb43070da63b3b4796"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-ci-missing-inventory.log",
+      "sha256": "7348fbb4c2b1828267e9aa3db445687c71038abf660204bd4841d65f0778e7a0"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-ci-probes.mjs",
+      "sha256": "2d2187505c8f83f0e1fb2823f9360f143c8449f80320199a97fd6ae83874fea4"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-ci-results.json",
+      "sha256": "e9c74fe406baa5f0f0c7f93cfb453928153c02de3afd43c50c69536cba81469d"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-integrity-probe.json",
+      "sha256": "438a6db4d6a3a03de92dd00904f1922d5e091c53c6b5176de79bc23b10742e15"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-receipt-audit.json",
+      "sha256": "b17117d8bbe388839e93fd5bd3bac7893e7ddac901b6591f3cfa0fc6e38c4e69"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-require-failure.json",
+      "sha256": "1f1d8bc5f050abccc2edfe89c659b77bbafab184da4cfec8666ffac605d8bcc6"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-require-failure.lua",
+      "sha256": "3a009cccbe910b02b286e211962f6abe22ce695460c8c23f17196b8a3d24812b"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-require-failure.mjs",
+      "sha256": "af7ee145cf28c795635da1fa263f17bc3573f01542f399aa06a256d2a3eb3e23"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/independent-review.json",
+      "sha256": "ce82e43d9052ddca6e1b64efbd21c1c1da7de06042a0e107d4ee17c843c04087"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/metrics.json",
+      "sha256": "b92675f6ad0fc975f8f7eb8ceac0b95547e26c510ca4f0ab16c030004010c351"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/original-regressions-input-audit.json",
+      "sha256": "f779ef6c8f7656f5320af01a7ce33ea18529e11694356e07829af427871964bc"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/original-regressions-input-audit.py",
+      "sha256": "a7101f86e257aae25c9bb415a36bb6ce0eb9cd16682944878e69da6ae0b40288"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/original-regressions-receipt.json.gz",
+      "sha256": "d86060d37665208e279d7ef9a64323b3df1a45a641be9f2bbd5cb03f01c4e82f"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/original-regressions-runner.py",
+      "sha256": "6f722402c30099fb3a81e4d87d6d7c9d6aad3e88528a172e28f2518608dd4a16"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/original-regressions.log.gz",
+      "sha256": "5240e0148ec448e800f23049e264f0a075c3eabdd8171115971e9545545ee0c7"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/receipt-scope-correction.json",
+      "sha256": "90768c7bf0ed22c5337f43af625278eb2e1ee2e69174965cb076a72a3f067fe8"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/README.md",
+      "sha256": "6860f7b7ca9c3b4f2635d2592bed2ec28daee7f0dc3b6e7e45a6448d1c2f786b"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/actor-replays-receipt.json.gz",
+      "sha256": "0d0b874f93330f177c05fb9d72b55b6711c2d5b3e8ca1633f28ce382f2706bf9"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/actor-replays.log",
+      "sha256": "eb48ceec41357c92b51e0e2ac6af654c68a207d32024aaa1e3b13c89e62f9734"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/artifact-manifest.json",
+      "sha256": "2f283886570516a94f48518bc3903bc71497419a17a1d671a0915f04002e47a8"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/build-stasis-epoch.py",
+      "sha256": "eed79163e70787e0f76a23e6136d04c28479a6b0e3c480e32af5ed9ff7201de3"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/formation-final-receipt.json.gz",
+      "sha256": "5f20d2ec63aa5040e70b9f267437d775eacc9dfcefd1e6f481112516bdae23c7"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/formation-final.log",
+      "sha256": "8a550be003c91ef5ae78c62905c5415c2f4c215e475e8f21e9c8acc3c2183532"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/historical-replay-provenance.json",
+      "sha256": "99dbba9964e2be3fb9afbc30a965bae71cbe283ff042e11c8825f504aef33a34"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/history-manifest.json",
+      "sha256": "0c64784a55acba6ff9b029087d04020a64f50bdc593ca103ead9170398c3c83a"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/import.log",
+      "sha256": "336c8b8655e0e662f374158ff21d3d4002f4fb45708453fd7eac6b8287b75980"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/older-live-readers-receipt.json.gz",
+      "sha256": "4e1270f1b9ff70088a90f20f7edcb7afd20184f8204e88d55645590c428c2798"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/older-live-readers.log",
+      "sha256": "1c096e90016cad122b66da3d7908c10da976615b507ae77902a2942b287f2a9d"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/original-summary.md",
+      "sha256": "8f9decb72be70558ea8c0b8a652215dbb6ae19c496c7cb05478b339baf57c453"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/predecessor-proof-identity.json",
+      "sha256": "60252f2c14677aa49b987eb7dab98cfe121224798ab87530dc208b390f2937f0"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/reconstruct-prior-proof.mjs",
+      "sha256": "e20e9fe476c3dab96a994d489713eff47cc2f8c17503a1b40a05e970b4675ca4"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/reconstruction-verification.log",
+      "sha256": "b0c71941f90cf44220717e8b528d09bccafd3cfb56cd523dc75e08e2d1d5da06"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/run-stasis-history.py",
+      "sha256": "22a6dc4547540b66fbfe0cfc87b612ea990e3088e03e91bae6d6713f0bba66bf"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/source-consumers-receipt.json.gz",
+      "sha256": "762488cacd846dfc0d9150bf187b48d1d02baed48362931c86090682f09535f5"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/source-consumers.log",
+      "sha256": "c172ce17636bd20ae8f632f3a4e5a163612120a0095726751de1e51ca96ae57c"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/source-final-receipt.json.gz",
+      "sha256": "568dc5e245cabdca90559fffbc44985771ed329e84b975422e3b8c3fd42beb0b"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/source-final.log",
+      "sha256": "d16d358e5d01e41f9c397cd7d6935da372e436df9090c3335428f768f64d6f17"
+    },
+    {
+      "path": "docs/evidence/m7-stasis-owner-20261109/source-history/source-initial.log",
+      "sha256": "b2815d419bea0130d3c1e732a5dda892a2a74e58478f1b7f0c5e9b2acde1f883"
+    },
+    {
+      "path": "tests/helpers/stasis-ci-source-inverse.json.gz",
+      "sha256": "84e8884c62b1d324135f9875911e5880faca89fd0ac2469b9474c5939ec7df73"
+    },
+    {
+      "path": "tests/helpers/stasis-ci-source-inverse.mjs",
+      "sha256": "4654503fe44e6d1b44458971a20922ee166e2b0d67c0617a168803b1e66dcf11"
+    },
+    {
+      "path": "tests/helpers/stasis-owner-before-abyss_act2_powers.lua",
+      "sha256": "966f9906c9fd03d306424c9ea430e3aa8840fdf6e852d13cecd274c0a3aa3629"
+    },
+    {
+      "path": "tests/helpers/stasis-owner-before-abyss_act2_stasis.lua",
+      "sha256": "0a1b6da54329fe7c00cfb45bb57dfc1ff53663cd7437e1bb17b35f702181466a"
+    },
+    {
+      "path": "tests/helpers/stasis-owner-before-abyss_actor.lua",
+      "sha256": "0435754ce97e731da0abaa1aafdbbd035988c09b411c47c192bb3e6ab0133c7a"
+    },
+    {
+      "path": "tests/helpers/stasis-owner-before.json",
+      "sha256": "55b9b72796c6b9797ae2d9a71096a28fc7ade179c6d8add372e3f48f1b463975"
+    },
+    {
+      "path": "tests/helpers/stasis-owner-edges.lua",
+      "sha256": "54339f6d1e05d08bf147b5c6a1307bbc8f58354ec689dd9b70dd644918d53afa"
+    },
+    {
+      "path": "tests/helpers/stasis-owner-vm.mjs",
+      "sha256": "e2454937adfcda20641ce17e237cbf9f5b9f50a4a0b27330add51e8d614f4202"
+    },
+    {
+      "path": "tests/helpers/stasis-replay-before.json.gz",
+      "sha256": "a226cdbcd712c545b1b8befb262f909b200fb97f7a4dfc271af4f119d98c6290"
+    },
+    {
+      "path": "tests/helpers/stasis-replay-before.mjs",
+      "sha256": "3fb771b49ae4756b7c8a2943fdf696b79c523537a0a31421e164b401eb219416"
+    },
+    {
+      "path": "tests/helpers/stasis-source-epoch.json.gz",
+      "sha256": "5a722ed0eeaaa1bdc95130276f69794a871bb3eff902c81012066de8a76cf856"
+    },
+    {
+      "path": "tests/helpers/stasis-source-epoch.mjs",
+      "sha256": "2cf62dcb06e9266c2b355cebb24a756f0e936a45c3414f75c838c46e5760f234"
+    },
+    {
+      "path": "tests/stasis-owner-behavior.test.mjs",
+      "sha256": "2b9d9da3f3124d1aec6f5bc11530497c6727c48abfbb87aa02723aa15f4e2999"
+    },
+    {
+      "path": "tests/stasis-owner-boundary.test.mjs",
+      "sha256": "51e5d4fbca8f60f025978c1fdacd69a878697c525016d895e8d536cbd9d40c48"
+    },
+    {
+      "path": "tests/stasis-owner-source-epoch.test.mjs",
+      "sha256": "b0b279c7e5559331587d41f9e331c66f503772bc80a8e6fe326c0ab820cbd877"
+    }
+  ],
+  "oldTrackedPathCount": 8165,
+  "allOldPathAttributesUnchanged": true,
+  "actualAutocrlfControl": "Unpinned current Actor was converted to CRLF by git checkout-index. New pinned source/helpers/evidence retained exact original bytes.",
+  "gitattributesSha256": "c52375d61a59f550f1f2b83a217e811b5802ea5ea6d65e4c74f269422185b4d0",
+  "checkoutPath": "/tmp/stasis-crlf-k3rfomsq/checkout",
+  "limits": "Actual Git autocrlf conversion on Linux, not Windows runtime or Hosted Full. No gameplay rerun."
+}

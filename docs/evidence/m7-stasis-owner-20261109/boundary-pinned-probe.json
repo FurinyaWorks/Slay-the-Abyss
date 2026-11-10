@@ -1,0 +1,8 @@
+{
+  "command": "build/tools/luacheck/luacheck src/lua/abyss_actor.lua --formatter plain --codes --ranges --no-color --max-cyclomatic-complexity 0 --only 561",
+  "binarySha256": "d68da17fca0697d9e2fb04201f3884abd259fa558b3a449bccaed47f1390defc",
+  "expectedConfig": "config/lua-tools.json",
+  "sourceSha256": "d175dadf2ed7fb6826eb575ef3286571d2a7bde96a6d701666e9e36b718b10c0",
+  "measurement": "src/lua/abyss_actor.lua:408:7-37: (W561) cyclomatic complexity of function 'upgradeStasisHeld' is too high (2 > 0)",
+  "scope": "Targeted diagnostic measurement only, CC2. All W561 rows retained in boundary-actor-complexity.txt. Standalone Luacheck exit code was not separately captured by original multi-command shell; no claim of standalone exit status."
+}

@@ -1,0 +1,11 @@
+{
+  "scope": "Post-checkout script packaging correction; original checkout report remains unchanged.",
+  "capturedPath": "docs/evidence/m7-stasis-owner-20261109/attributes-checkout-review.py",
+  "capturedSha256": "3854cc45bfbb24e22ee64ea025644b214656ccfe7747e14d7394dd31ed0c6dff",
+  "capturedBytesPreserved": "attributes-checkout-reviewed-script.py",
+  "executedRunner": "/tmp/m7-stasis-attributes.py",
+  "executedRunnerArchivedAs": "attributes-checkout-review.py",
+  "executedRunnerSha256": "238cfadc023af7dc725edd499ae350cd56c73216692f2a8e783c9d5fa504cb36",
+  "difference": "The executable /tmp runner used git add -f for explicitly listed ignored log evidence. The checkout snapshot also included an older archived copy of the runner without -f; after successful checkout the actual executed runner replaced that archived copy.",
+  "claims": "All 88 files matched their then-current bytes during checkout. The other 87 captured files remain unchanged; this script archival replacement is separately identified, not mislabeled as an unchanged captured input. No production/test/helper input changed."
+}

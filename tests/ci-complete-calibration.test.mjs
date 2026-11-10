@@ -1,3 +1,6 @@
+import {preWheelCiSource,wheelCiProof,wheelPlanningFloors,wheelJs} from './helpers/wheel-ci-source-inverse.mjs';
+import {preStasisCiSource,stasisCiProof,stasisPlanningFloors,stasisJs} from './helpers/stasis-ci-source-inverse.mjs';
+import * as currentProjection from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource,defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
@@ -23,16 +26,43 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as wheelDiskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
 import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-shape-source-inverse.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
-import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
-import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {qualityShardMatrices as wheelQualityShardMatrices,qualityShardJobs as wheelQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
+import {currentFullQualityJobs as wheelFullQualityJobs} from '../scripts/verify-delivery.mjs';
+import {discoverJs as currentDiscoverJs,partition,jsShard as wheelCurrentJsShard,jsPlanningWeights as wheelCurrentJsPlanningWeights,timings as wheelCurrentTimings} from '../scripts/ci-shards.mjs';
+// Published Wheel806 and earlier inventories exclude only the later batch test.
+// Actual dispatch and the current807 contract below use the unfiltered inventory.
+const balanceBatchTest='tests/balance-batch.test.mjs';
+const wheelDiscoverJs=(...args)=>currentDiscoverJs(...args).filter(file=>file!==balanceBatchTest);
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
+// Historical Stasis803 contracts retain exact complete predecessor inputs.
+const actualDiskReadFileSync=(file,encoding)=>{
+ const value=wheelDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8');
+ const prior=preWheelCiSource(file,text);
+ return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);
+};
+const actualDiscoverJs=(...args)=>wheelDiscoverJs(...args).filter(file=>!wheelJs.includes(file));
+const liveCurrentTimings=JSON.parse(preWheelCiSource('scripts/ci-test-timings.json',wheelDiskReadFileSync('scripts/ci-test-timings.json','utf8')));
+const actualCurrentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(liveCurrentTimings.js[platform][file]??liveCurrentTimings.unknownJsMs,liveCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+const actualCurrentJsShard=(files,value,platform)=>partition(files,value,actualCurrentJsPlanningWeights(files,platform),liveCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?liveCurrentTimings.initialMs[platform][0]:0));
+const {qualityShardMatrices:currentQualityShardMatrices,qualityShardJobs:currentQualityShardJobs}=await import('data:text/javascript,'+encodeURIComponent(preWheelCiSource('scripts/ci-quality-shape.mjs',wheelDiskReadFileSync('scripts/ci-quality-shape.mjs','utf8'))));
+const currentFullQualityJobs=['check','presentation','engineering-posix',...currentQualityShardJobs,'impact','fast'];
+// The original 800-file contracts retain their exact baseline inputs and costs.
+// Raw current inventory, bytes and scheduling are asserted independently below.
+const diskReadFileSync=(file,encoding)=>{
+ const value=actualDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8');
+ const prior=preStasisCiSource(file,text);
+ return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);
+};
+const discoverJs=(...args)=>actualDiscoverJs(...args).filter(file=>!stasisJs.includes(file));
+const actualCurrentTimings=JSON.parse(preStasisCiSource('scripts/ci-test-timings.json',actualDiskReadFileSync('scripts/ci-test-timings.json','utf8')));
+const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const rawReadFileSync=(file,encoding)=>{const value=diskReadFileSync(file,encoding);if(typeof value==='string')return preEncounterFormationCiSource(file,value);const text=value.toString('utf8'),prior=preEncounterFormationCiSource(file,text);return prior===text?value:Buffer.from(prior);};
@@ -243,7 +273,7 @@ test('frozen Windows17 POSIX13 Full35 receipt covers its exact 741 JS and 1401 L
  const workflow=beforeExecutionTimeoutWorkflow(read('.github/workflows/quality.yml'));assert.match(workflow,/max-parallel: 12/);assert.match(workflow,/timeout-minutes: 20/);assert.match(workflow,/local-special' && 75 \|\| 30/);
 });
 
-test('current Full37 retains full coverage and reports performance targets under unchanged execution guards',t=>{
+test('published Formation800 Full37 retains full coverage and original performance observations',t=>{
  const workflow=read('.github/workflows/quality.yml');assert.match(workflow,/timeout-minutes: \$\{\{ inputs.runner_pool == 'local-special' && 75 \|\| 45 \}\}/);assert.match(workflow,/runs-on: ubuntu-24.04\n    timeout-minutes: 30/);
  const js=discoverJs(),lua=currentLua();
  assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:17},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
@@ -1038,4 +1068,216 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
  for(const [key,floor]of Object.entries(encounterFormationPlanningFloors))assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[key],floor);
  const workflow=diskReadFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
  assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+});
+
+test('current combined807 inventory includes every test once within the original execution budgets',()=>{
+ const js=currentDiscoverJs(),lua=currentLua(),t=wheelCurrentTimings;
+ assert.equal(js.length,807);assert.equal(lua.length,1410);
+ assert.deepEqual(js.filter(file=>file!==balanceBatchTest),wheelDiscoverJs());
+ assert.equal(js.filter(file=>file===balanceBatchTest).length,1);
+ assert.equal(t.unknownJsMs,10000);assert.equal(Object.keys(t.jsPlanning.localLowerBounds).length,38);
+ assert.equal(t.jsPlanning.localLowerBounds[balanceBatchTest],undefined);
+ for(const [platform,count,budget,expected]of [['win32',18,1800000,1710876],['linux',15,1200000,1144332]]){
+  assert.equal(t.js[platform][balanceBatchTest],undefined);
+  assert.equal(wheelCurrentJsPlanningWeights([balanceBatchTest],platform)[balanceBatchTest],10000);
+  const partitions=Array.from({length:count},(_,i)=>wheelCurrentJsShard(js,`${i+1}/${count}`,platform));
+  const allocated=partitions.flatMap(bin=>bin.files);
+  assert.deepEqual([...allocated].sort(),[...js].sort());assert.equal(new Set(allocated).size,807);
+  const loads=partitions[0].loads;let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const bins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...t,windowsJsShardMs:loads},2));
+   assert.deepEqual(bins.flat().sort(),[...lua].sort());assert.equal(new Set(bins.flat()).size,1410);
+   const cost=file=>t.luaShard[file]??t.lua[file]??t.unknownLuaMs,safety=file=>t.lua[file]??t.unknownLuaMs;
+   maximum=Math.max(...bins.map((bin,i)=>{const pool=[0,0];
+    for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);
+    return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);
+   }));
+  }
+  assert.equal(maximum+60000,expected);assert.ok(maximum+60000<budget);
+ }
+ assert.equal(wheelFullQualityJobs.length,38);assert.equal(wheelQualityShardJobs.length,33);
+});
+
+test('published balance801 inventory retains its complete original Full37 forecasts and budgets',()=>{
+ const js=[...discoverJs(),balanceBatchTest].sort(),lua=currentLua();
+ assert.equal(js.length,801);assert.equal(lua.length,1410);
+ assert.deepEqual(js.filter(file=>file!==balanceBatchTest),discoverJs());
+ assert.equal(js.filter(file=>file===balanceBatchTest).length,1);
+ assert.equal(actualCurrentTimings.unknownJsMs,10000);
+ assert.equal(Object.keys(actualCurrentTimings.jsPlanning.localLowerBounds).length,32);
+ assert.equal(actualCurrentTimings.jsPlanning.localLowerBounds[balanceBatchTest],undefined);
+ for(const [platform,count,budget,expected]of [['win32',17,1800000,1794649],['linux',15,1200000,1129474]]){
+  assert.equal(actualCurrentTimings.js[platform][balanceBatchTest],undefined);
+  assert.equal(currentJsPlanningWeights([balanceBatchTest],platform)[balanceBatchTest],10000);
+  const partitions=Array.from({length:count},(_,i)=>currentJsShard(js,`${i+1}/${count}`,platform));
+  const allocated=partitions.flatMap(bin=>bin.files);
+  assert.deepEqual([...allocated].sort(),[...js].sort());assert.equal(new Set(allocated).size,801);
+  const loads=partitions[0].loads;let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const bins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...actualCurrentTimings,windowsJsShardMs:loads},2));
+   assert.deepEqual(bins.flat().sort(),[...lua].sort());assert.equal(new Set(bins.flat()).size,1410);
+   const cost=file=>actualCurrentTimings.luaShard[file]??actualCurrentTimings.lua[file]??actualCurrentTimings.unknownLuaMs;
+   const safety=file=>actualCurrentTimings.lua[file]??actualCurrentTimings.unknownLuaMs;
+   maximum=Math.max(...bins.map((bin,i)=>{const pool=[0,0];
+    for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);
+    return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);
+   }));
+  }
+  assert.equal(maximum+60000,expected);assert.ok(maximum+60000<budget);
+ }
+ assert.equal(currentFullQualityJobs.length,37);assert.equal(currentQualityShardJobs.length,32);
+});
+
+// Stasis is additive to the complete frozen Formation800 source/inventory above.
+test('Stasis803 retains every original recurring file, all 32 floors and unchanged CI policy',t=>{
+ const js=actualDiscoverJs(),lua=currentLua();assert.equal(js.length,803);assert.equal(lua.length,1410);
+ assert.deepEqual(js.filter(p=>!stasisJs.includes(p)).sort(),stasisCiProof.inventory);
+ assert.deepEqual(js.filter(p=>stasisJs.includes(p)).sort(),[...stasisJs].sort());
+ const previous=JSON.parse(stasisCiProof.files[path].beforeSource),current=structuredClone(liveCurrentTimings);
+ assert.equal(Object.keys(previous.jsPlanning.localLowerBounds).length,32);
+ for(const [key,floor]of Object.entries(stasisPlanningFloors)){assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);delete current.jsPlanning.localLowerBounds[key];}
+ assert.deepEqual(current,previous,'only measured complete Stasis local floors are added');
+ assert.equal(liveCurrentTimings.unknownJsMs,10000);assert.equal(liveCurrentTimings.unknownLuaMs,10000);
+ assert.deepEqual(currentQualityShardMatrices.windows.length,17);assert.deepEqual(currentQualityShardMatrices.posix.length,15);
+ for(const [platform,count,budget]of [['win32',17,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>actualCurrentJsShard(js,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());
+  assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,803);
+  let maximum=Math.max(...bins[0].loads);
+  if(platform==='win32'){
+   const loads=bins[0].loads,t=liveCurrentTimings;
+   const raw=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...t,windowsJsShardMs:loads},2));
+   assert.deepEqual(raw.flat().sort(),lua);
+   const cost=p=>t.luaShard[p]??t.lua[p]??t.unknownLuaMs,safety=p=>t.lua[p]??t.unknownLuaMs;
+   maximum=Math.max(...raw.map((bin,i)=>{const pool=[0,0];for(const p of bin.filter(p=>safety(p)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(p);return loads[i]+bin.filter(p=>safety(p)>=10000).reduce((sum,p)=>sum+cost(p),0)+Math.max(...pool);}));
+  }
+  const forecast=maximum+60000;t.diagnostic(`${platform} Stasis803 forecast ${forecast} ms; unchanged budget ${budget} ms; reserve 60000 ms; not an actual Full pass`);
+  assert.ok(forecast<budget,`${platform} complete inventory forecast ${forecast} exceeds unchanged budget ${budget}`);
+ }
+});
+
+test('Stasis CI outer source admits exact complete identities and rejects partial, foreign and mutated sources',()=>{
+ for(const [file,binding]of Object.entries(stasisCiProof.files)){
+  const source=actualDiskReadFileSync(file,'utf8');assert.equal(hash(source),binding.afterSha256,file);
+  for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preStasisCiSource(file,input),binding.beforeSource);
+  for(const input of [source+'\n',source.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preStasisCiSource(file,input),input);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preStasisCiSource(unknown,source),source);
+ }
+ const source=actualDiskReadFileSync(path,'utf8');
+ for(const mutant of [source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),source.replace('"durationMs": 889638','"durationMs": 889637')]){assert.notEqual(mutant,source);assert.equal(preStasisCiSource(path,mutant),mutant);}
+});
+
+test('Stasis projection preserves all frozen exported outputs and errors across complete source inputs',async()=>{
+ const frozenSource=stasisCiProof.frozenProjectionSource.replace(/from '(\.\/[^']+)'/g,(_,relative)=>`from '${new URL('./helpers/'+relative.slice(2),import.meta.url).href}'`);
+ const frozen=await import('data:text/javascript,'+encodeURIComponent(frozenSource.replaceAll('import.meta.url',JSON.stringify(new URL('./helpers/ci-complete-calibration-source-inverse.mjs',import.meta.url).href))));
+ const outcome=fn=>{try{return {value:fn()};}catch(e){return {error:{name:e.name,message:e.message,code:e.code}};}};
+ for(const [name,original]of Object.entries(frozen)){
+  assert.ok(Object.hasOwn(currentProjection,name));
+  if(typeof original!=='function'){assert.deepEqual(currentProjection[name],original,name);continue;}
+  for(const [file,binding]of Object.entries(stasisCiProof.files)){
+   const source=actualDiskReadFileSync(file,'utf8');
+   for(const input of [source,source.replaceAll('\n','\r\n'),binding.beforeSource,source+'\n',source.slice(1),null,undefined,{},17]){
+    for(const epoch of [undefined,'base','develop','seven','flow','silent','effects','invalid'])
+     assert.deepEqual(outcome(()=>currentProjection[name](file,input,epoch)),outcome(()=>original(file,preStasisCiSource(file,input),epoch)),name+':'+file+':'+epoch);
+   }
+  }
+ }
+});
+
+test('Stasis local planning floors authenticate complete successful files and explicitly scoped source stability',()=>{
+ for(const [file,floor]of Object.entries(stasisPlanningFloors)){
+  const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+  const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+  assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);assert.equal(receipt.status,0);assert.equal(receipt.inputsUnchanged,true);
+  assert.equal(receipt.testFile,file);assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);
+  assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));assert.equal(hash(actualDiskReadFileSync(file)),floor.testSha256);
+  for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+  assert.match(floor.kind,/not .*hosted/);
+  for(const [input,sha]of Object.entries(receipt.inputSha256))assert.equal(hash(actualDiskReadFileSync(input)),sha,input);
+  for(const platform of ['win32','linux'])assert.equal(actualCurrentJsPlanningWeights([file],platform)[file],Math.max(10000,floor.durationMs));
+ }
+});
+
+// Current Wheel inventory is checked through raw disk reads and live scheduler imports.
+test('Wheel806 retains the complete Stasis803 inventory, all 35 floors and unchanged CI policy',t=>{
+ const js=wheelDiscoverJs(),lua=currentLua();assert.equal(js.length,806);assert.equal(lua.length,1410);
+ assert.deepEqual(js.filter(p=>!wheelJs.includes(p)).sort(),wheelCiProof.inventory);
+ assert.deepEqual(js.filter(p=>wheelJs.includes(p)).sort(),[...wheelJs].sort());
+ const previous=JSON.parse(wheelCiProof.files[path].beforeSource),current=structuredClone(wheelCurrentTimings);
+ assert.equal(Object.keys(previous.jsPlanning.localLowerBounds).length,35);
+ for(const [key,floor]of Object.entries(wheelPlanningFloors)){assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);delete current.jsPlanning.localLowerBounds[key];}
+ assert.deepEqual(current,previous,'only measured complete Wheel local floors are added');
+ assert.equal(wheelCurrentTimings.unknownJsMs,10000);assert.equal(wheelCurrentTimings.unknownLuaMs,10000);
+ assert.equal(wheelQualityShardMatrices.windows.length,18);assert.equal(wheelQualityShardMatrices.posix.length,15);
+ assert.equal(wheelQualityShardJobs.length,33);assert.equal(wheelFullQualityJobs.length,38);assert.equal(new Set(wheelFullQualityJobs).size,38);assert.deepEqual(wheelFullQualityJobs,['check','presentation','engineering-posix',...wheelQualityShardJobs,'impact','fast']);
+ const beforeShape=wheelCiProof.files['scripts/ci-quality-shape.mjs'].beforeSource;assert.equal(wheelDiskReadFileSync('scripts/ci-quality-shape.mjs','utf8'),beforeShape.replace('length:17','length:18'));
+ const workflow=wheelDiskReadFileSync('.github/workflows/quality.yml','utf8');assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>wheelCurrentJsShard(js,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,806);
+  let maximum=Math.max(...bins[0].loads);
+  if(platform==='win32'){
+   const loads=bins[0].loads,t=wheelCurrentTimings,raw=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...t,windowsJsShardMs:loads},2));
+   assert.deepEqual(raw.flat().sort(),lua);
+   const cost=p=>t.luaShard[p]??t.lua[p]??t.unknownLuaMs,safety=p=>t.lua[p]??t.unknownLuaMs;
+   maximum=Math.max(...raw.map((bin,i)=>{const pool=[0,0];for(const p of bin.filter(p=>safety(p)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(p);return loads[i]+bin.filter(p=>safety(p)>=10000).reduce((sum,p)=>sum+cost(p),0)+Math.max(...pool);}));
+  }
+  const forecast=maximum+60000;t.diagnostic(`${platform} Wheel806 forecast ${forecast} ms; unchanged budget ${budget} ms; reserve 60000 ms; not an actual Full pass`);
+  assert.ok(forecast<budget,`${platform} complete inventory forecast ${forecast} exceeds unchanged budget ${budget}`);
+ }
+});
+
+test('Wheel CI outer source admits exact complete identities and rejects partial, foreign and mutated sources',()=>{
+ for(const [file,binding]of Object.entries(wheelCiProof.files)){
+  const source=wheelDiskReadFileSync(file,'utf8');assert.equal(hash(source),binding.afterSha256,file);
+  for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preWheelCiSource(file,input),binding.beforeSource);
+  for(const input of [source+'\n',source.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preWheelCiSource(file,input),input);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preWheelCiSource(unknown,source),source);
+ }
+ const source=wheelDiskReadFileSync(path,'utf8');
+ for(const mutant of [source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),source.replace('"durationMs": 889638','"durationMs": 889637')]){assert.notEqual(mutant,source);assert.equal(preWheelCiSource(path,mutant),mutant);}
+});
+
+test('Wheel projection preserves all frozen exported outputs and errors across complete source inputs',async()=>{
+ const frozenSource=wheelCiProof.frozenProjectionSource.replace(/from '(\.\/[^']+)'/g,(_,relative)=>`from '${new URL('./helpers/'+relative.slice(2),import.meta.url).href}'`);
+ const frozen=await import('data:text/javascript,'+encodeURIComponent(frozenSource.replaceAll('import.meta.url',JSON.stringify(new URL('./helpers/ci-complete-calibration-source-inverse.mjs',import.meta.url).href))));
+ const outcome=fn=>{try{return {value:fn()};}catch(e){return {error:{name:e.name,message:e.message,code:e.code}};}};
+ for(const [name,original]of Object.entries(frozen)){
+  assert.ok(Object.hasOwn(currentProjection,name));
+  if(typeof original!=='function'){assert.deepEqual(currentProjection[name],original,name);continue;}
+  for(const [file,binding]of Object.entries(wheelCiProof.files)){
+   const source=wheelDiskReadFileSync(file,'utf8');
+   for(const input of [source,source.replaceAll('\n','\r\n'),binding.beforeSource,source+'\n',source.slice(1),null,undefined,{},17]){
+    for(const epoch of [undefined,'base','develop','seven','flow','silent','effects','invalid'])
+     assert.deepEqual(outcome(()=>currentProjection[name](file,input,epoch)),outcome(()=>original(file,preWheelCiSource(file,input),epoch)),name+':'+file+':'+epoch);
+   }
+  }
+ }
+});
+
+test('Wheel local planning floors authenticate complete successful files and before/after input stability',()=>{
+ for(const [file,floor]of Object.entries(wheelPlanningFloors)){
+  const bytes=wheelDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+  const receiptBytes=wheelDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+  assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);assert.equal(receipt.exitStatus??receipt.status,0);assert.equal(receipt.inputsUnchanged,true);
+  assert.equal(receipt.testFile,file);assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);
+  assert.equal(floor.durationMs,Math.ceil(Math.max(floor.wallMs,floor.nodeReportedDurationMs,floor.earlierCompleteObservation?.nodeReportedDurationMs??0)));assert.equal(hash(wheelDiskReadFileSync(file)),floor.testSha256);
+  for(const [key,value]of Object.entries({tests:floor.tests,pass:floor.tests,fail:0,cancelled:0,skipped:0,duration_ms:floor.nodeReportedDurationMs}))assert.match(log,new RegExp('(?:ℹ |# )'+key+' '+String(value).replaceAll('.','\\.')+'(?:\\s|$)'));
+  assert.match(floor.kind,/not .*hosted/);
+  assert.deepEqual(receipt.inputSha256,receipt.inputSha256After);
+  for(const platform of ['win32','linux'])assert.equal(wheelCurrentJsPlanningWeights([file],platform)[file],Math.max(10000,floor.durationMs));
+ }
+});
+
+// Earlier complete successes remain conservative cost evidence, not current-byte receipts.
+test('Wheel planning retains every larger earlier complete success without claiming an unrecorded input manifest',()=>{
+ for(const floor of Object.values(wheelPlanningFloors)){
+  const earlier=floor.earlierCompleteObservation;if(!earlier)continue;
+  const bytes=wheelDiskReadFileSync(earlier.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  assert.equal(hash(bytes),earlier.sourceLogSha256);assert.equal(hash(log),earlier.sourceLogUncompressedSha256);
+  assert.ok(log.includes('duration_ms '+earlier.nodeReportedDurationMs));assert.match(log,/(?:ℹ |# )fail 0/);assert.match(log,/(?:ℹ |# )skipped 0/);
+  assert.ok(floor.durationMs>=Math.ceil(earlier.nodeReportedDurationMs));assert.match(earlier.scope,/No exploratory before\/after manifest/);
+ }
 });

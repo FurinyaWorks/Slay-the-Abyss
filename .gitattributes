@@ -465,3 +465,76 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# Stasis owner boundaries and evidence are authenticated as exact repository bytes.
+tests/stasis-owner-*.test.mjs text eol=lf
+tests/helpers/stasis-owner-* text eol=lf
+tests/helpers/stasis-source-epoch.mjs text eol=lf
+tests/helpers/stasis-source-epoch.json.gz -text
+tests/helpers/stasis-replay-before.mjs text eol=lf
+tests/helpers/stasis-replay-before.json.gz -text
+tests/helpers/stasis-ci-source-inverse.json.gz -text
+docs/evidence/m7-stasis-owner-20261109/** text eol=lf
+docs/evidence/m7-stasis-owner-20261109/**/*.gz -text
+
+# Wheel responsibility boundaries preserve exact frozen source and evidence bytes.
+tests/fixtures/wheel-event-before.lua text eol=lf
+tests/wheel-event-*.test.mjs text eol=lf
+tests/helpers/wheel-event-*.mjs text eol=lf
+tests/helpers/wheel-event-*.lua text eol=lf
+tests/helpers/wheel-event-*.json.gz -text
+tests/helpers/wheel-ci-*.mjs text eol=lf
+tests/helpers/wheel-ci-*.json.gz -text
+docs/evidence/m7-wheel-20261109/** text eol=lf
+docs/evidence/m7-wheel-20261109/**/*.gz -text
+config/architecture.json text eol=lf
+scripts/check-lua-static.mjs text eol=lf
+scripts/ci-quality-shape.mjs text eol=lf
+scripts/ci-test-timings.json text eol=lf
+src/lua/abyss_act2_powers.lua text eol=lf
+src/lua/abyss_act2_stasis.lua text eol=lf
+src/lua/abyss_actor.lua text eol=lf
+src/lua/abyss_wheel_event.lua text eol=lf
+tests/actor-status-view-responsibility.test.mjs text eol=lf
+tests/defect-final-source-epoch.test.mjs text eol=lf
+tests/encounter-formation-source-epoch.test.mjs text eol=lf
+tests/helpers/actor-damage-parity.mjs text eol=lf
+tests/helpers/actor-lifecycle.mjs text eol=lf
+tests/helpers/combat-lifecycle-input.mjs text eol=lf
+tests/helpers/copy-integration-source-closure.mjs text eol=lf
+tests/seven-refactor-source-epoch.test.mjs text eol=lf
+tests/silent-final-source-epoch.test.mjs text eol=lf
+# Full-source receipts authenticate repository LF bytes on both CI platforms.
+src/lua/*.lua text eol=lf
+package-lock.json text eol=lf
+scripts/build-lua-data.mjs text eol=lf
+tests/helpers/lua-graph-observer.mjs text eol=lf
+tests/lua/death_power_order.lua text eol=lf
+scripts/art-features.mjs text eol=lf
+scripts/build-native-candidate.mjs text eol=lf
+scripts/build-original-v4.mjs text eol=lf
+scripts/candidate-art-policy.mjs text eol=lf
+scripts/card-art-samples.mjs text eol=lf
+scripts/card-face.mjs text eol=lf
+scripts/card-lightning.mjs text eol=lf
+scripts/check-architecture.mjs text eol=lf
+scripts/evidence-files.mjs text eol=lf
+scripts/lightweight-2d-profile.mjs text eol=lf
+scripts/lua-quality-metrics.mjs text eol=lf
+scripts/monster-art.mjs text eol=lf
+scripts/native-candidate-scripts.mjs text eol=lf
+scripts/native-candidate-ui-cache.mjs text eol=lf
+scripts/native-client-check.mjs text eol=lf
+scripts/native-playtest-evidence.mjs text eol=lf
+scripts/native-script-batch.mjs text eol=lf
+scripts/native-script-inventory.mjs text eol=lf
+scripts/native-ui-theme.mjs text eol=lf
+scripts/official-background.mjs text eol=lf
+scripts/official-portraits.mjs text eol=lf
+scripts/potion-slot-visual.mjs text eol=lf
+scripts/release-notes.mjs text eol=lf
+scripts/settlement-graph.mjs text eol=lf
+scripts/setup-lua-static.mjs text eol=lf
+scripts/ui-layout.mjs text eol=lf
+scripts/ui-profile.mjs text eol=lf
+scripts/validate-data.mjs text eol=lf

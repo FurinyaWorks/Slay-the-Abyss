@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-08T02:19:00Z'
+updated_date: '2026-11-09T01:43:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -13,6 +13,7 @@ documentation:
   - docs/backlog-details/M7-DEPENDENCY-AUDIT-20261106.md
   - docs/backlog-details/M7-POTION-REFACTOR-INTEGRATION-20261108.md
   - docs/backlog-details/M7-SEVEN-CURRENT-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-STASIS-OWNER-20261109.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -56,6 +57,8 @@ ordinal: 161000
 2026-11-08 接续既有授权的独立职责片：WatcherAttack 只保留卡牌数据与纯效果计划；Halt 的 Actor 格挡算术由 queued-play 逐次提供延迟能力。仅改两生产源，保持动态方法读取、验证顺序与快照；原断言和完整历史来源保留，定向测试、全源码 SCC/CC 测量、独审后仅本地保存，不上传或重复 Full。
 
 2026-11-08 接续七项已有本地重构：基于已合#560的a0c35db8进行真实增量适配，保全两侧来源、合同与原始证据。只做定向测试及独立深审，不重复Full；从当前基线形成单父线性提交，明确批准后可按Ruleset正常上传及提PR，仍不得绕过质量门禁。
+
+本轮接续Owner持续M7架构授权，鲜查develop 7821a7f4、开放PR及并行占用后，在Formation/POSIX15已审集成树上只治理Stasis升级能力的所有权。Actor现有死亡生命周期入口同步提供惰性Combat升级能力，经Act2Powers传递，Stasis保留卡牌托管/满手/Master Reality准入；维持动态方法读取、错误与队列顺序。固定完整旧源、双VM图和真实语义负控，完整依赖/复杂度测量及独立深审；公共来源和成本合同加法集成，不新增重复Full、不碰他人工作树或用户电脑，及时远端保全及Draft交付，正常准入未过不合并，不改owner/status/AC。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -100,4 +103,6 @@ WatcherAttack 已改由 queued-play 显式提供延迟 Actor 算术，完整333�
 最终补记：来源定向106个不同用例已有最新通过证据，初次79中3个测试适配问题已定点纠正；独审通过代码/来源安全边界复核，精确提交身份另存。按真实证据补3项成本floor，原19项不变；17/14完整库存含60秒预留最大1771239/1179021ms，原目标余28761/20979ms。后两项仅成功测试用例成本下界，非全文件实测；原失败/中止均保存，不伪称Full。
 
 发布前develop前移至#561b7ed1830，无src/data/scripts/config变动。本轮在新隔离树保全其全部档案及更强历史来源/退休安全合同，仅解决7个非生产文本冲突；45变动owner鲜读与旧epoch linked owner检查并存。最终单父基于b7，原a0度量和320独审按原身份保留；仅定向helper/负控复验，不重复完整行为/工程采集，不改owner/status/AC。
+
+Stasis死亡升级能力已由Actor既有生命周期显式提供，仅三生产源；新鲜338模块5605/5605测量，核心SCC68→66，内部513→506引用/324→317对，全库1929/1558不变，CC分布33/209/max61不变，新helperCC2入原CC15。行为3/3、边界2/2、原回归4/4及来源/历史回放通过；7完整CI文件85/85，803JS/1410Lua，原35floor中的32旧项及17/15预算/并发/worker保持，含预留Windows余3625ms、POSIX余68589ms。独立局部深审PASS；两个输入收据非穷尽的范围限制和autocrlf脚本打包差异明确记录，旧档不改。先本地369b1884保全，最终提交及远端身份由证据索引/PR绑定；前置#575远端280b85b4整树与已审本地前驱一致。未重复Full、准入、合并或操作用户设备；#564管理员正常入口、全链及本HEAD托管/合后验收仍待，AC不勾。
 <!-- SECTION:NOTES:END -->

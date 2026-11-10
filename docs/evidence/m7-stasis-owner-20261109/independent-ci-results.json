@@ -1,0 +1,46 @@
+{
+  "scope": "One exact current Stasis803 contract, relocated imports. Four input-only negatives. Original tests unchanged; not Full.",
+  "results": [
+    {
+      "name": "control",
+      "status": 0,
+      "expected": "pass",
+      "log": "docs/evidence/m7-stasis-owner-20261109/independent-ci-control.log.gz",
+      "rawLogSha256": "2cd9367190bc8007a48e0bb5dfe721f215e6342551bc30ab2f7900b5d87b1204",
+      "compressedLogSha256": "67d8f792337d556a99e758701f46e394efcd9ba58393e1c7d07bd041152574c0"
+    },
+    {
+      "name": "missing-inventory",
+      "status": 1,
+      "expected": "assertion rejection",
+      "log": "docs/evidence/m7-stasis-owner-20261109/independent-ci-missing-inventory.log.gz",
+      "rawLogSha256": "7348fbb4c2b1828267e9aa3db445687c71038abf660204bd4841d65f0778e7a0",
+      "compressedLogSha256": "ac322a2b60b200b08e49951c65877fd2db2091fefec80056f6de036ff4daa06c"
+    },
+    {
+      "name": "changed-unknown",
+      "status": 1,
+      "expected": "assertion rejection",
+      "log": "docs/evidence/m7-stasis-owner-20261109/independent-ci-changed-unknown.log.gz",
+      "rawLogSha256": "672647f258f8dda0de9548bf953a84593b57617d5c0f854d6eadda0edd87ac04",
+      "compressedLogSha256": "fdcbc473f8b79547e1d8a172d3f9c126fc2d9c84bb46bc5ef107c587ceed96c9"
+    },
+    {
+      "name": "changed-old-floor",
+      "status": 1,
+      "expected": "assertion rejection",
+      "log": "docs/evidence/m7-stasis-owner-20261109/independent-ci-changed-old-floor.log.gz",
+      "rawLogSha256": "a57f40c53e973a6413b0349ae97522342625f5e9721a7a50d9a4bcb0c3c8de76",
+      "compressedLogSha256": "7d6b620bbaa924f5d5e845fd5dfcc151eed70f28c171484a8a55bf0f45ac5864"
+    },
+    {
+      "name": "historical-shape-as-current",
+      "status": 1,
+      "expected": "assertion rejection",
+      "log": "docs/evidence/m7-stasis-owner-20261109/independent-ci-historical-shape-as-current.log.gz",
+      "rawLogSha256": "64777fc8733b79cee5dd7c708023f752562eebd0f88a40cb43070da63b3b4796",
+      "compressedLogSha256": "f0b51eb73429f359d7ec6c45749056234d0cf712db22c4e09c2eefa2751a714d"
+    }
+  ],
+  "packaging": "Raw probe logs were gzip-compressed without byte changes to retain their trailing whitespace without disabling diff checks. Exact executed probe script still generates the original raw logs; packaging is separate."
+}

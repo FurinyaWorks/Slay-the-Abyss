@@ -1,0 +1,28 @@
+{
+  "source": "Original execution tool outputs; no full log file was written for these prior attempts. Final log is extracted verbatim from the final receipt.",
+  "attempts": [
+    {
+      "action": "node --test tests/stasis-owner-boundary.test.mjs",
+      "exitCode": 1,
+      "toolWallMs": 1184.291856,
+      "nodeDurationMs": 1151.058284,
+      "passed": 1,
+      "failed": 1,
+      "error": "TypeError [Error]: Cannot read properties of undefined (reading 'abyss_act2_stasis')",
+      "cause": "Test-only bounded graph policy used modules instead of layers. Corrected test policy field; production and assertions were not relaxed."
+    },
+    {
+      "action": "node --test tests/stasis-owner-boundary.test.mjs",
+      "exitCode": 0,
+      "toolWallMs": 1375.270302,
+      "nodeDurationMs": 1361.688017,
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "action": "build/tools/luacheck src/lua/abyss_actor.lua --formatter plain --codes --ranges --no-color --max-cyclomatic-complexity 0 --only 561",
+      "error": "/bin/bash: line 7: build/tools/luacheck: Is a directory",
+      "outcome": "No measurement executed. Corrected executable path to build/tools/luacheck/luacheck. The containing multi-command shell ended with git diff --check and reported zero; that shell status is not claimed as a successful Luacheck measurement."
+    }
+  ]
+}

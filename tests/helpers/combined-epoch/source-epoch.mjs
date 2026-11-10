@@ -1,7 +1,7 @@
-// Preserve the complete Defect predecessor as an independently importable epoch.
-export * from './pre-formation-source-epoch.mjs';
-import {sourceEpoch as preEncounterFormationEpoch} from './pre-formation-source-epoch.mjs';
-import {extendEncounterFormationEpoch} from '../encounter-formation-source-epoch.mjs';
-export {preEncounterFormationEpoch};
-// Current public consumers authenticate all 51 changed raw owners on every call.
-export const sourceEpoch=extendEncounterFormationEpoch(preEncounterFormationEpoch);
+// Preserve the complete Stasis predecessor as an independently importable epoch.
+export * from './pre-wheel-source-epoch.mjs';
+import {sourceEpoch as preWheelEpoch} from './pre-wheel-source-epoch.mjs';
+import {extendWheelEventEpoch} from '../wheel-event-source-epoch.mjs';
+export {preWheelEpoch};
+// Current public consumers authenticate all 54 changed raw owners on every call.
+export const sourceEpoch=extendWheelEventEpoch(preWheelEpoch);

@@ -1,0 +1,64 @@
+{
+  "baseline": "4a51905537fa223e5df4e5ee475152c8a6629af5",
+  "recurringInventory": {
+    "js": 803,
+    "lua": 1410
+  },
+  "unchangedPriorFloors": 32,
+  "newCompleteFileFloors": 3,
+  "totalFloors": 35,
+  "newNodeDurationCeilingMs": {
+    "behavior": 11811,
+    "boundary": 1105,
+    "sourceEpoch": 17208
+  },
+  "unknownJsMs": 10000,
+  "unknownLuaMs": 10000,
+  "forecastMsIncluding60000Reserve": {
+    "win32": 1796375,
+    "linux": 1131411
+  },
+  "unchangedBudgetsMs": {
+    "win32": 1800000,
+    "linux": 1200000
+  },
+  "shape": {
+    "win32": 17,
+    "posix": 15,
+    "luaWorkers": 2,
+    "concurrency": 12
+  },
+  "frozen800ForecastMs": {
+    "win32": 1794163,
+    "linux": 1128812
+  },
+  "executedCompleteFiles": [
+    "tests/ci-runtime.test.mjs",
+    "tests/ci-complete-calibration.test.mjs",
+    "tests/ci-host-timing-calibration.test.mjs",
+    "tests/ci-windows-shape-expansion.test.mjs",
+    "tests/lua-shards.test.mjs",
+    "tests/ci-posix-shards.test.mjs",
+    "tests/ci-windows-shards.test.mjs"
+  ],
+  "tests": 85,
+  "pass": 85,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "beforeAfterInputCount": 3561,
+  "changedInputs": [],
+  "wallMs": 58990,
+  "nodeDurationMs": 58790.521778,
+  "staticAffectedRecurringTests": 523,
+  "staticAffectedIsNotExecution": true,
+  "initialFailure": "45/46 initial calibration: newly added frozen module data-URL evaluation could not resolve import.meta.url; fixed only relocation in new equivalence test. Original assertions all passed. Original failed log preserved.",
+  "limits": [
+    "No Full execution",
+    "No new hosted timing claims",
+    "No PowerShell retry",
+    "No broad 523-file static closure execution",
+    "No repeated expensive Stasis behavior/source run"
+  ],
+  "archiveSha256": "84e8884c62b1d324135f9875911e5880faca89fd0ac2469b9474c5939ec7df73"
+}

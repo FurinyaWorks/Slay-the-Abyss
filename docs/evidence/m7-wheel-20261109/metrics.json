@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "sourceBase": "ef6b62a23aa85b41e32fb6e5c4e95b697b41d66c",
+  "baselineMethod": "Exact Git archive of src, scripts, config, data and pinned project config; local copy of verified tool, dependencies read from same installed node_modules. Baseline report revision null because archive has no .git. Every baseline module digest independently checked against Git bytes.",
+  "currentMethod": "Fresh node scripts/check-engineering.mjs; complete quality/architecture/static collection, not npm check or Hosted Full. All current source hashes independently verified after run.",
+  "priorFailures": [
+    "Initial baseline omitted imported ui_theme data, then copied it from exact same Git archive.",
+    "Next attempt rejected tools symlink belonging to another root; copied exact verified tool into baseline root instead. Both failed logs retained, not counted as passes."
+  ],
+  "measurements": [
+    {
+      "label": "baseline",
+      "coverage": {
+        "modules": 338,
+        "functions": 5267,
+        "measurements": 5605,
+        "expectedMeasurements": 5605
+      },
+      "complexity": {
+        "over30": 33,
+        "over15": 209,
+        "max": 61
+      },
+      "scc": [
+        {
+          "members": 66,
+          "edges": 506,
+          "pairs": 317
+        },
+        {
+          "members": 11,
+          "edges": 44,
+          "pairs": 26
+        },
+        {
+          "members": 2,
+          "edges": 2,
+          "pairs": 2
+        }
+      ],
+      "edges": 1929,
+      "pairs": 1558,
+      "warningCount": 14,
+      "errors": [],
+      "wheel": {
+        "file": "src/lua/abyss_wheel_event.lua",
+        "sha256": "f775746a95c2f33eeb9a5d7c688c536b3dd0b6b3ddefeb3455fbd28468f6bc2c",
+        "lines": 82,
+        "functions": [
+          {
+            "id": "$",
+            "name": "<chunk>",
+            "kind": "chunk",
+            "constructorName": false,
+            "line": 1,
+            "column": 1,
+            "endLine": 82,
+            "lines": 82,
+            "complexity": 1
+          },
+          {
+            "id": "$/row#1",
+            "name": "row",
+            "kind": "function",
+            "constructorName": false,
+            "line": 7,
+            "column": 7,
+            "endLine": 7,
+            "lines": 1,
+            "complexity": 1
+          },
+          {
+            "id": "$/result#1",
+            "name": "result",
+            "kind": "function",
+            "constructorName": false,
+            "line": 8,
+            "column": 7,
+            "endLine": 8,
+            "lines": 1,
+            "complexity": 1
+          },
+          {
+            "id": "$/M.prepare#1",
+            "name": "M.prepare",
+            "kind": "function",
+            "constructorName": false,
+            "line": 9,
+            "column": 1,
+            "endLine": 9,
+            "lines": 1,
+            "complexity": 2
+          },
+          {
+            "id": "$/M.options#1",
+            "name": "M.options",
+            "kind": "function",
+            "constructorName": false,
+            "line": 10,
+            "column": 1,
+            "endLine": 16,
+            "lines": 7,
+            "complexity": 5
+          },
+          {
+            "id": "$/M.choose#1",
+            "name": "M.choose",
+            "kind": "function",
+            "constructorName": false,
+            "line": 17,
+            "column": 1,
+            "endLine": 81,
+            "lines": 65,
+            "complexity": 34
+          }
+        ]
+      },
+      "reportSha256": "15faecd973cfbe8a7e26669bd675384c2b32e3283eb970166b6b7e29ab22d0bf"
+    },
+    {
+      "label": "current",
+      "coverage": {
+        "modules": 338,
+        "functions": 5275,
+        "measurements": 5613,
+        "expectedMeasurements": 5613
+      },
+      "complexity": {
+        "over30": 32,
+        "over15": 208,
+        "max": 61
+      },
+      "scc": [
+        {
+          "members": 66,
+          "edges": 506,
+          "pairs": 317
+        },
+        {
+          "members": 11,
+          "edges": 44,
+          "pairs": 26
+        },
+        {
+          "members": 2,
+          "edges": 2,
+          "pairs": 2
+        }
+      ],
+      "edges": 1929,
+      "pairs": 1558,
+      "warningCount": 14,
+      "errors": [],
+      "wheel": {
+        "file": "src/lua/abyss_wheel_event.lua",
+        "sha256": "280b777031fb52f203fa74a5ba8d97e62f904e54a1c77e776c237d01ef527bb5",
+        "lines": 99,
+        "functions": [
+          {
+            "id": "$",
+            "name": "<chunk>",
+            "kind": "chunk",
+            "constructorName": false,
+            "line": 1,
+            "column": 1,
+            "endLine": 99,
+            "lines": 99,
+            "complexity": 1
+          },
+          {
+            "id": "$/row#1",
+            "name": "row",
+            "kind": "function",
+            "constructorName": false,
+            "line": 7,
+            "column": 7,
+            "endLine": 7,
+            "lines": 1,
+            "complexity": 1
+          },
+          {
+            "id": "$/result#1",
+            "name": "result",
+            "kind": "function",
+            "constructorName": false,
+            "line": 8,
+            "column": 7,
+            "endLine": 8,
+            "lines": 1,
+            "complexity": 1
+          },
+          {
+            "id": "$/M.prepare#1",
+            "name": "M.prepare",
+            "kind": "function",
+            "constructorName": false,
+            "line": 9,
+            "column": 1,
+            "endLine": 9,
+            "lines": 1,
+            "complexity": 2
+          },
+          {
+            "id": "$/M.options#1",
+            "name": "M.options",
+            "kind": "function",
+            "constructorName": false,
+            "line": 10,
+            "column": 1,
+            "endLine": 16,
+            "lines": 7,
+            "complexity": 5
+          },
+          {
+            "id": "$/spinWheel#1",
+            "name": "spinWheel",
+            "kind": "function",
+            "constructorName": false,
+            "line": 17,
+            "column": 7,
+            "endLine": 33,
+            "lines": 17,
+            "complexity": 3
+          },
+          {
+            "id": "$/revealRelic#1",
+            "name": "revealRelic",
+            "kind": "function",
+            "constructorName": false,
+            "line": 34,
+            "column": 7,
+            "endLine": 40,
+            "lines": 7,
+            "complexity": 2
+          },
+          {
+            "id": "$/acceptCurse#1",
+            "name": "acceptCurse",
+            "kind": "function",
+            "constructorName": false,
+            "line": 41,
+            "column": 7,
+            "endLine": 46,
+            "lines": 6,
+            "complexity": 6
+          },
+          {
+            "id": "$/offerPurge#1",
+            "name": "offerPurge",
+            "kind": "function",
+            "constructorName": false,
+            "line": 47,
+            "column": 7,
+            "endLine": 51,
+            "lines": 5,
+            "complexity": 2
+          },
+          {
+            "id": "$/acceptDamage#1",
+            "name": "acceptDamage",
+            "kind": "function",
+            "constructorName": false,
+            "line": 52,
+            "column": 7,
+            "endLine": 57,
+            "lines": 6,
+            "complexity": 2
+          },
+          {
+            "id": "$/chooseRelic#1",
+            "name": "chooseRelic",
+            "kind": "function",
+            "constructorName": false,
+            "line": 58,
+            "column": 7,
+            "endLine": 64,
+            "lines": 7,
+            "complexity": 4
+          },
+          {
+            "id": "$/choosePurge#1",
+            "name": "choosePurge",
+            "kind": "function",
+            "constructorName": false,
+            "line": 65,
+            "column": 7,
+            "endLine": 73,
+            "lines": 9,
+            "complexity": 6
+          },
+          {
+            "id": "$/acceptOutcome#1",
+            "name": "acceptOutcome",
+            "kind": "function",
+            "constructorName": false,
+            "line": 74,
+            "column": 7,
+            "endLine": 85,
+            "lines": 12,
+            "complexity": 8
+          },
+          {
+            "id": "$/M.choose#1",
+            "name": "M.choose",
+            "kind": "function",
+            "constructorName": false,
+            "line": 86,
+            "column": 1,
+            "endLine": 98,
+            "lines": 13,
+            "complexity": 9
+          }
+        ]
+      },
+      "reportSha256": "82d8ad6c51a6937021619579c17c6042fa36ff21bdd27cde8330714943d47409"
+    }
+  ],
+  "claims": "Only one existing product source changed. This reduces one CC>30 and one CC>15 hotspot; no SCC, edge, dependency pair, global maximum or warnings improvement claimed."
+}

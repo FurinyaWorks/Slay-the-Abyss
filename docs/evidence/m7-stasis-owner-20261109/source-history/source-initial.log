@@ -1,0 +1,35 @@
+✔ Stasis outer epoch preserves all 339 predecessor bindings and complete current sources (1419.914791ms)
+✖ four changed sources project every historical target with exact LF/CRLF and opaque-input rules (17.782657ms)
+✔ 53 fresh raw owners are required after warm authorization including layout and linked reader retargeting (222.705161ms)
+✔ isolated helper copy closes both epochs without Git or source tree access (7370.970742ms)
+✔ historical three-argument Actor replay loads exact complete prior Powers and Stasis modules (2.844083ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17134.182312
+
+✖ failing tests:
+
+test at tests/stasis-owner-source-epoch.test.mjs:27:1
+✖ four changed sources project every historical target with exact LF/CRLF and opaque-input rules (17.782657ms)
+  AssertionError [ERR_ASSERTION]: combined linked owner missing: config/architecture.json: unexpected
+      at Object.preCombinedSource (file:///workspace/scratch/c1a4970a76e0/m7-stasis-owner/tests/helpers/combined-epoch/source-epoch-runtime.mjs:77:65)
+      at Object.preCombinedSource (file:///workspace/scratch/c1a4970a76e0/m7-stasis-owner/tests/helpers/stasis-source-epoch.mjs:23:27)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-stasis-owner/tests/stasis-owner-source-epoch.test.mjs:31:126)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'fail',
+    diff: 'simple'
+  }

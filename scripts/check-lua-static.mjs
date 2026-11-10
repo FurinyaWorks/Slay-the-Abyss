@@ -94,6 +94,7 @@ export function reviewRenderComplexity(diagnostics, sources) {
 // Budget only this governance slice and every extracted responsibility module.
 // Unrelated pre-existing Combat/UI hotspots keep their diagnostic reports.
 const responsibilityRoots = {
+  'src/lua/abyss_wheel_event.lua': ["function 'M.choose'"],
   'src/lua/abyss_encounter_formation.lua': ['M.assemble','fixedFormation','shapeFormation','gremlinFormation',
     'slimeFormation','louseFormation','mixedFormation'].map(name=>`function '${name}'`),
   'src/lua/abyss_defect_final_cards.lua': ['M.execute','generate','applyFinalPower','recurOrb','scrapeDrawn','recoverZeroCost','recoverDiscard','fissionOrbs','rebootPiles']
@@ -148,7 +149,7 @@ const responsibilityRoots = {
   'src/lua/abyss_actor_power_rules.lua': [],
   'src/lua/abyss_combat_reactions.lua': ["function 'M.enqueue'", "function 'M.enqueueReaction'"],
   'src/lua/abyss_actor.lua': [
-    "function 'presenceIndex'", "function 'presenceNewIndex'",
+    "function 'presenceIndex'", "function 'presenceNewIndex'", "function 'upgradeStasisHeld'",
     ...['M.status','M.applyPower','M.addStatus','M.endTurn'].map(name=>`function '${name}'`),
     ...['updatePlayerStatusOrder','updateMonsterStatusOrder','markRoundDebuffApplication',
       'preparePowerAmount','rememberConstrictedSource','rememberPostDrawPower',
@@ -261,6 +262,7 @@ const responsibilityRoots = {
 // All Run orchestration and newly extracted Run helpers receive the full budget.
 const responsibilityHelper = file => /^src\/lua\/abyss_(?:effects_.+|combat_effect.*|combat_catalog|combat_reactions|combat_native_play|combat_queued_play|act2_ai_.+|character_presentation_.+|feedback_.+|node_ui(?:_.+)?|game_ui_.+|run(?:_(?!(?:card_catalog|red_card_contract|seed)\.lua$).+)?|nodes(?:_.+)?)\.lua$/.test(file);
 const completeResponsibility = file => responsibilityHelper(file)
+  || file === 'src/lua/abyss_wheel_event.lua'
   || file==='src/lua/abyss_silent_tactics_cards.lua'
   || file==='src/lua/abyss_shivs.lua'
   || file==='src/lua/abyss_act3_ai.lua'

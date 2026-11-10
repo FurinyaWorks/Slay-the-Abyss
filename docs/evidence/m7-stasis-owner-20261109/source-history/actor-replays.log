@@ -1,0 +1,13 @@
+✔ Actor lifecycle complete frozen source matches independent VM state graph and failure trace (24616.150672ms)
+✔ statusView exact frozen Actor and current Actor agree in independent VMs on full returns, aliases, errors and lazy reads (13258.166349ms)
+✔ Combat complete lifecycle differential in independent VMs: owners (16316.935303ms)
+ℹ owners: 2420696 bytes, SHA256 5dfa37dc24cd800b5f4e65ffaf52f4b1fec3b71e5f528eb5f5b6b2d8d8f3382b
+✔ combined frozen Actor + Combat retain public Run/Combat owner graphs against both current modules (14907.817666ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31470.277237

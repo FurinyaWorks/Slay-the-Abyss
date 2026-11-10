@@ -1,3 +1,4 @@
+import {priorStasisReplayPrelude} from './helpers/stasis-replay-before.mjs';
 import {createHash} from 'node:crypto';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -14,7 +15,7 @@ const current=()=>readFileSync(path,'utf8').replaceAll('\r\n','\n');
 function replay(source,directory,label){
  const actor=join(directory,`${label}.lua`),driver=join(directory,`${label}-driver.lua`);
  writeFileSync(actor,source);
- writeFileSync(driver,`QUERY_DIFFERENTIAL_TRACE=true;package.path='src/lua/?.lua;build/lua/?.lua;'..package.path;package.loaded.abyss_actor=dofile(${luaString(actor.replaceAll('\\','/'))});dofile(${luaString(resolve('tests/lua/actor_status_view_differential.lua').replaceAll('\\','/'))})`);
+ writeFileSync(driver,`QUERY_DIFFERENTIAL_TRACE=true;package.path='src/lua/?.lua;build/lua/?.lua;'..package.path;${source===originalActorStatusViewSource()?priorStasisReplayPrelude():''}package.loaded.abyss_actor=dofile(${luaString(actor.replaceAll('\\','/'))});dofile(${luaString(resolve('tests/lua/actor_status_view_differential.lua').replaceAll('\\','/'))})`);
  const result=runLua(driver,{maxBuffer:4*1024*1024});
  assert.equal(result.status,0,`${label}: ${result.stdout}${result.stderr}`);
  assert.match(result.stdout,/STATUS_VIEW_PASS 252/);

@@ -29,14 +29,13 @@ function M.apply(combat,s,orb)
  combat.applyEffects(s,{{op='gainStatus',status='stasis',value=1}},orb,s.player)
  Events.emit(s,'card_stasis',{enemy=orb.id,uid=chosen.card.uid,cardId=chosen.card.cardId})
 end
-function M.death(s,orb)
+function M.death(s,orb,upgradeHeld)
  local c=s.act2StasisCards and s.act2StasisCards[orb.id]
  if not c then return end
  local discard=#s.hand==s.rules.player.maxHand
  if not discard and (s.player.statuses.master_reality or 0)>0 then
   -- MakeTempCardInHandAction performs Master Reality's upgrade in its constructor.
-  local combat=require('abyss_combat')
-  if combat.canUpgrade(s,c)then combat.upgrade(s,c)end
+  upgradeHeld(s,c)
  end
  return {op='stasis_return',ownerId=orb.id,forceDiscard=discard}
 end

@@ -72,8 +72,8 @@ function M.onDraw(s,card,base)
  end
  card.freeToPlayOnce=false
 end
-function M.stasisDied(s,e,push)
- local stasis=Stasis.death(s,e);if stasis then push(s,stasis)end
+function M.stasisDied(s,e,push,upgradeHeld)
+ local stasis=Stasis.death(s,e,upgradeHeld);if stasis then push(s,stasis)end
 end
 function M.died(s,e,push)
  -- Both source bosses queue DAMAGE-typed SuicideAction at TOP. Stasis and
