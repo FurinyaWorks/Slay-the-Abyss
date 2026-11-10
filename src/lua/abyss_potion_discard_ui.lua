@@ -7,15 +7,22 @@ local Controller=require('abyss_controller')
 local function find(entries,id)for _,entry in ipairs(entries)do if entry.id==id then return entry end end end
 -- Read-only shared entry paint. Keep the existing management button and its
 -- binding; a slot silhouette never consumes a potion or changes selection.
-function M.refreshEntry(hit,run,platform)
+function M.refreshEntry(hit,run,platform,mapSlots)
     local capacity=run and Run.potionCapacity(run) or 0
     for _,state in ipairs({'normal','hover','pressed','disabled'})do
         local variant=hit:GetChild(state)
+        if Theme.presentationProfile=='v25-reference' and variant:GetChild('v25MapPotionStyle') then
+            for _,name in ipairs({'label','entryFace'})do
+                local control=variant:GetChild(name)
+                if control then control:SetVisible(not mapSlots)end
+            end
+        end
         variant:GetChild('label').text=run and '药水 '..Run.potionCount(run)..'/'..capacity or '药水'
         for i=1,Theme.layout.battlePotions.count do
             local slot=variant:GetChild('slot'..i)
             local id=i<=capacity and run.potions[i] or nil
-            slot:SetVisible(false) -- Large management caption owns the shared entry; all five slots remain in its modal.
+            slot:SetVisible(mapSlots==true and i<=capacity)
+            if mapSlots then slot:SetAnchoredPosition((i-(capacity+1)/2)*42,0)end
             slot:GetChild('emptyShell'):SetVisible(id==nil)
             slot:GetChild('filledShell'):SetVisible(id~=nil and id~='fire_potion')
             slot:GetChild('fireShell'):SetVisible(id=='fire_potion')

@@ -168,12 +168,31 @@ function M.syncRewardReturn(self)
         end
 end
 
+local function mapPotionFrame(open,hit,run,mapSlots)
+    local values=Theme.layout.nativeNode.topBar.potions
+    local x,y,w,h=table.unpack(values)
+    if mapSlots then
+        local capacity=run and require('abyss_run').potionCapacity(run) or 3
+        -- Keep the leftmost slot clear of live gold when Potion Belt adds two.
+        x,y,w,h=-250+math.max(0,capacity-3)*21,338,capacity*42,44
+    end
+    open:SetAnchoredPosition(x,y);hit:SetSizeDelta(w,h)
+end
+
 function M.refreshPotionEntry(child,inCombat,canManagePotions,platform)
-    return function(run)
-            local potionHit=child("potionEntry"):GetChild("open"):GetChild("hit")
+    return function(run,mapVisible)
+            local open=child("potionEntry"):GetChild("open")
+            local potionHit=open:GetChild("hit")
+            local anchor=Theme.presentationProfile=='v25-reference' and child('mapPanel'):GetChild('v25MapPotionAnchor')
+            local mapSlots=anchor and mapVisible==true
+            if anchor then mapPotionFrame(open,potionHit,run,mapSlots)end
             potionHit.interactable=not inCombat() and canManagePotions(run);potionHit.raycastTarget=potionHit.interactable
-            PotionDiscardUI.refreshEntry(potionHit,run,platform)
+            PotionDiscardUI.refreshEntry(potionHit,run,platform,mapSlots)
         end
+end
+
+local function mapPotionVisible(self)
+    return self.mode=='map' or self.routeOpen==true
 end
 
 function M.refreshDeckEntry(child,self)
@@ -209,7 +228,7 @@ function M.refreshUtilities(child,self,inCombat,refreshPotionEntry,refreshDeckEn
                 variant:GetChild('count').text=run and number(#run.relics) or ''
             end
             child("potionEntry"):SetVisible(not inCombat() and utilitiesVisible)
-            refreshPotionEntry(run)
+            refreshPotionEntry(run,mapPotionVisible(self))
             child("nodePanel"):GetChild("potions"):SetVisible(false)
             if potionOpen then self.potionUI:render()end
             refreshDeckEntry(run)

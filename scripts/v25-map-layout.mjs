@@ -21,9 +21,23 @@ function paper(theme){
  const items=[plate('darkField',0,0,1280,720,'#030504'),
   image('fieldHaze',38,20,1150,720,theme.image.glowWide,'#15201F',{opacity:.72}),
   plate('parchment',.5,-22,838,676,'#929286'),
-  image('paperAge',-20,-15,840,900,theme.image.glowWide,'#8C8B7F',{opacity:.35}),
+  image('paperAge',-20,-15,840,900,theme.image.glowWide,'#8C8B7F',{opacity:.18}),
   image('paperEdgeShade',.5,-22,842,676,theme.image.vignette,'#66695E',{opacity:.08}),
  ];
+ // Native monochrome paper, rather than a reduced PNG reconstruction. Its
+ // irregular silhouette is kept at the sides of the continuous paper field.
+ items.push(image('nativePaperEdge',0,-22,844,676,106045,'#929286',{opacity:.18}));
+ const margin=(name,x,y,flip)=>{
+  const ink='#53615B',stroke=(id,px,py,w,h,rotation=0)=>plate(id,px*flip,py,w,h,ink,{opacity:.24,rotation:rotation*flip});
+  return group(name,[70,210],[
+   stroke('shaftLeft',-19,5,1,98,-7),stroke('shaftRight',19,5,1,98,-7),
+   stroke('capitalTop',0,59,60,1,-7),stroke('capitalBottom',0,49,54,1,-7),
+   ...[-12,-4,4,12].map((dx,i)=>stroke('flute'+i,dx,5,1,85,-7)),
+   stroke('footTop',0,-43,52,1,-7),stroke('footBottom',0,-52,65,1,-7),
+   stroke('floor',3,-63,64,1,-7),stroke('fragment',8,-80,36,1,12),
+  ],[x,y]);
+ };
+ items.push(margin('leftRuins',-390,-148,1),margin('rightRuins',391,130,-1));
  // A bounded irregular edge, not a generated noise texture or a raster mosaic.
  for(let i=0;i<7;i++){
   const widths=[3.4,2,4,2.4,3.8,2.6,3.2],h=676/7,y=316-(i+.5)*h;
@@ -59,12 +73,13 @@ function styleLegend(legend,theme){
  legend.position=[486,22.5];legend.size=[266,333];
  // Transparent bounds only: SDK font26 needs 41.7px for one line; preserve the source centre/font.
  const title=must(legend,'title');title.position=[0,129];title.size=[230,52];
- Object.assign(title.text,{content:'图例',fontSize:26,minFontSize:26,colour:'#1D2C32'});
+ Object.assign(title.text,{content:'图例',fontSize:26,minFontSize:26,colour:'#1D2C32',outline:false});
  const rows=[['event','未知'],['shop','商人'],['treasure','宝箱'],['camp','休息'],['combat','敌人'],['elite','精英']];
  rows.forEach(([kind,label],i)=>{
   const icon=must(legend,kind+'Icon'),text=must(legend,kind+'Label'),y=86.5-i*40;
   icon.position=[-81.5,y];icon.size=[31,32];icon.colour='#20323A';
-  text.position=[19,y];text.size=[140,40];Object.assign(text.text,{content:label,fontSize:22,minFontSize:22,colour:'#20323A',align:'left'});
+  icon.image=theme.icon.node[kind];
+  text.position=[19,y];text.size=[140,40];Object.assign(text.text,{content:label,fontSize:22,minFontSize:22,colour:'#20323A',align:'left',outline:false});
  });
  // The approved A legend has six entries; the boss remains in the graph and
  // its existing legend handles remain addressable, rather than being deleted.
@@ -123,8 +138,32 @@ export function applyV25MapLayout(layout,theme){
  // All validation completed before mutation. Preserve the mapGroup paths that
  // the real MapUI at() resolver owns, including the complete node/edge pools.
  for(const control of legacy)control.visible=false;
+ // Each route remains the very same pooled control/transform. Eight stretched
+ // native rectangles make the approved dashed ink; no textures, per-frame
+ // allocation, new input or replacement graph. Anchors stretch with the clipped
+ // route, including at the viewport boundaries.
+ for(const edge of groups.flatMap(children).filter(c=>/^edge\d+$/.test(c.name))){
+  const ink=edge.colour;edge.kind='container';delete edge.image;delete edge.colour;
+  edge.children=Array.from({length:8},(_,i)=>({name:'routeInk'+(i+1),kind:'image',image:100001,colour:ink,
+   anchor:{min:[i/8,0],max:[(i+.48)/8,1]},position:[0,0],size:[0,0]}));
+ }
  title.position=[116,338];title.size=[220,40];Object.assign(title.text,{fontSize:14,minFontSize:14,colour:'#E4DDD0'});
+ const notice=at('notice');notice.size=[820,48];
+ Object.assign(notice.text,{fontSize:16,minFontSize:16,colour:'#273638',outline:false});
  styleLegend(legend,theme);if(back)styleReturn(back);if(resources)styleResources(resources);
  if(hints&&resources)styleResourceHints(hints,resources);
+ const potionEntry=children(stage??{}).find(c=>c.name==='potionEntry');
+ if(potionEntry){
+  panel.children.push(group('v25MapPotionAnchor',[164,44],[],[-250,338]));
+  const hit=must(must(potionEntry,'open'),'hit');
+  for(const state of children(hit)){
+   state.children.push(group('v25MapPotionStyle',[0,0],[]));
+   for(const slot of children(state).filter(c=>/^slot\d+$/.test(c.name))){
+    const i=Number(slot.name.slice(4))-1;slot.position=[(i-1)*42,0];slot.scale=[.75,.75];
+    const shell=children(slot).find(c=>c.name==='emptyShell');
+    if(shell)must(shell,'face').visible=false;
+   }
+  }
+ }
  panel.children.unshift(paper(theme));return layout;
 }

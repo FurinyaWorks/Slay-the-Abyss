@@ -17,7 +17,14 @@ test('paper chrome preserves every graph, edge, scrolling and node-input object 
  const protectedPaths=Object.entries(paths).filter(([path])=>/\/(?:node\d+|edge\d+|dragArea|next|previous)(?:\/|$)/.test('/'+path));
  const snapshots=new Map(protectedPaths.map(([path,node])=>[path,structuredClone(node)]));
  applyV25MapLayout(layout,nativeTheme);const after=entries(layout);
- for(const[path,node]of protectedPaths){assert.equal(after[path],node,path);assert.deepEqual(node,snapshots.get(path),path);}
+ for(const[path,node]of protectedPaths){
+  assert.equal(after[path],node,path);
+  if(/^edge\d+$/.test(node.name)){
+   const before=snapshots.get(path);assert.equal(node.kind,'container');assert.equal(node.children.length,8);
+   for(const key of ['name','size','position','visible'])assert.deepEqual(node[key],before[key],path+'/'+key);
+   for(const stroke of node.children){assert.equal(stroke.image,100001);assert.equal(stroke.colour,before.colour);assert.equal(stroke.kind,'image');}
+  }else assert.deepEqual(node,snapshots.get(path),path);
+ }
  assert.equal(all(layout).filter(c=>/^node\d+$/.test(c.name)).length,92);
  assert.equal(all(layout).filter(c=>/^edge\d+$/.test(c.name)).length,126);
  assert.deepEqual(mapGeometry(),geometry);assert.deepEqual(nativeTheme,themeBefore);

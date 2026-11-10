@@ -1,0 +1,19 @@
+{
+  "scripts/v25-map-layout.mjs": "23b4b694a1c304ae4edff7aeb78323cb38e998e0e1ee5e578bede793530c6ea2",
+  "src/lua/abyss_map_ui.lua": "21dc38b913f78bbe5f94a274759f38f3a9c932991a9286aeb9da1918bbf6408f",
+  "src/lua/abyss_game_ui_view.lua": "5e9a9f840b605d716daf9fb220847114f6ec3c91b0ac1efb23e8829835444c06",
+  "src/lua/abyss_potion_discard_ui.lua": "cfd56147ec0ab5463695a88079f0cbc0e0d7b47f6989d1ff4eab0ca2f3e8465b",
+  "data/presentation/ui_theme.json": "ec438842920a62d3200cd05fd80c6d7180ec6b4db35b0e3e13b20ada211340ac",
+  "config/luacheck-baseline.json": "869982d4dfcae06006a5d8c7bda2bc4a5a24f72ff2a0f50b992eacdf63503971",
+  "tests/lua/map_node_visuals.lua": "214cae2b5f03b01126bba96182f1f9ef995cb6c3ab96c5885da5044280bad232",
+  "tests/lua/map_gesture_ownership.lua": "db48ef5f32867d318bd38ea3bd510312147eb9097a46ec854655484f7a803ce5",
+  "tests/map-gesture-ownership.test.mjs": "945c07cb28e6f3ddd552cc2a1393cfed897b8ea6e95f0668531f33d5e1f2b4e0",
+  "tests/v25-map-layout.test.mjs": "1013f0e7f7289901ab98615da91481dde725f449cdbc2ce2339047571abc4af0",
+  "experiments/art-tech-lab/map-measure.mjs": "cf16559eb4d3a3093d34b43c961ebc7f5282f9e97f0562372a6c7653bb5200da",
+  "experiments/art-tech-lab/map-game-measure.mjs": "3bb888d73f261cd69387c811d073f1ddf0c377cb7c9b832ad196892a9e1f1eaa",
+  "experiments/art-tech-lab/map-game.mjs": "94deb9a4f289a9de92573261ef9b23957d05a8cf01d4cc77e6bb9cc8ea2c7f92",
+  "experiments/art-tech-lab/map-preview.mjs": "d98cf781263c1f031c76884353cb7767b804e2dc35ddd7e8f75eb9c058a3d4df",
+  "experiments/art-tech-lab/map-preview.lua": "a2ccdd243f1c493871b275757d093ba5a49f5a6216efd156401de44b8b47de19",
+  "experiments/art-tech-lab/map-state-browser.py": "9f1538d5dab3556af06562a78ab1ec7b033990b9cf96ddb30ce2b132f8217859",
+  "experiments/art-tech-lab/map-browser.py": "a063df4ccd0982f2be06c09d993e4b1d9e46d4e95ba18ee204ed91e6eb37063f"
+}

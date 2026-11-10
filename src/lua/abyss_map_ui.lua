@@ -14,10 +14,16 @@ local M = {}
 function M.drawScale(fx)
     -- TASK-4.13 judge: current beacon reads by scale/tint only (no extra chrome).
     if fx.state == "current" then return fx.scale * 1.15 end
-    if fx.state ~= "available" then return fx.scale end
+    if fx.state ~= "available" then
+        local visual=Theme.layout.map.presentation
+        return fx.scale*(fx.state=="locked" and (visual.lockedIconScale or 1)
+            or fx.state=="visited" and (visual.visitedIconScale or 1) or 1)
+    end
     local base, cap = Layout.sts.baseScale, Theme.layout.map.presentation.availableScaleCap
     local t = math.max(0, math.min(1, (fx.scale - .91) / (1.25 - .91)))
-    return base * (1.1 + (cap - 1.1) * t)
+    local minimum=Theme.layout.map.presentation.availableScaleFloor or 1.1
+    local scale=base * (minimum + (cap - minimum) * t)
+    return fx.pressed and scale*.92 or fx.hovered and math.min(base*cap,scale*1.06) or scale
 end
 -- Track the last native writer, including pooled handles reused by another map/view.
 -- Tokens have no control back-reference; weak keys do not retain retired handles.
@@ -40,7 +46,7 @@ function M.paintRoom(fx)
     roomSize(fx,icon,iconSize)
     -- oscillateColor drives color.a for reachable rooms.
     local ink = fx.ink
-    if ink then icon.imageColor = fx.colour(ink.r, ink.g, ink.b, math.floor(ink.a * fx.alpha + .5)) end
+    if ink then icon.imageColor = fx.colour(ink.r, ink.g, ink.b, math.floor(ink.a * (fx.hovered and 1 or fx.alpha) + .5)) end
     local ringSize = fx.size * Layout.sts.circlePerScale * (fx.scale * .95 + .2)
     roomSize(fx,ring,ringSize)
 end
@@ -205,6 +211,12 @@ function M.new(root, map, onChoose, clickEvent, options)
         cancelSelection()
         drag = nil
         scrollAnimation, buttonHover, buttonPress = nil, nil, nil
+        for _,fx in ipairs(self.activeFx or {})do
+            if fx.hovered or fx.pressed then
+                fx.hovered,fx.pressed=false,false
+                if fx.visible then M.paintRoom(fx)end
+            end
+        end
     end
     local controlCache = {}
     local function at(name)
@@ -322,7 +334,10 @@ function M.new(root, map, onChoose, clickEvent, options)
         -- TASK-4.13: walked routes are heavier than reachable ones (STS taken edges read first).
         control:SetSizeDelta(math.sqrt(dx * dx + dy * dy), width)
         control.localRotationZ = math.atan(dy, dx) * 180 / math.pi
-        control.imageColor = taken and pathColours.taken or reachable and pathColours.next or far and pathColours.far or pathColours.future
+        local ink=taken and pathColours.taken or reachable and pathColours.next or far and pathColours.far or pathColours.future
+        if control:GetChild('routeInk1') then
+            for i=1,8 do child(control,'routeInk'..i).imageColor=ink end
+        else control.imageColor=ink end
     end
     function self.render(_)
         if not self.map then return false, "map_unbound" end
@@ -391,6 +406,7 @@ function M.new(root, map, onChoose, clickEvent, options)
                 -- pulse first so focus never culls that ring at the first row.
                 if state == "current" and fx.state ~= state then fx.scale = Sts.baseScale end
                 fx.state,fx.size,fx.box,fx.x,fx.y,fx.emerald=state,size,box,x,y,node.hasEmeraldKey
+                fx.hovered,fx.pressed=false,false
                 visible=roomVisible(fx);fx.visible=visible
                 -- Hidden transitions still lerp to rest; otherwise a temporarily
                 -- oversized current ring could remain culled forever.
@@ -484,10 +500,14 @@ function M.new(root, map, onChoose, clickEvent, options)
         local visibilityChanged=false
         for _, fx in ipairs(self.activeFx or {}) do
             do
+                local previousScale=fx.scale
                 if fx.state == "available" and not self.reducedMotion then oscillate(fx, dt)
                 elseif fx.state == "available" then fx.alpha, fx.scale = 1, .91
                 else fx.scale = scaleLerpSnap(fx.scale, Sts.baseScale, dt) end
-                if fx.visible then M.paintRoom(fx)end
+                -- Static rooms have no animation after the lerp snaps. A full
+                -- render still owns repaint after scroll/show/rebind. Avoid
+                -- resubmitting their unchanged colour on every stable frame.
+                if fx.visible and (fx.state=="available" or fx.scale~=previousScale) then M.paintRoom(fx)end
                 if dt>0 and roomVisible(fx)~=fx.visible then visibilityChanged=true end
             end
         end
@@ -671,11 +691,33 @@ function M.new(root, map, onChoose, clickEvent, options)
     end
     local function draggable(control, slot)
         if not pointerInput then return end
-        control:AddCursorEventListener(cursor.CursorDown, function(event) press(event, slot) end)
+        local function feedback(hovered,pressed)
+            local id=slot and self.slots[slot]
+            local fx=id and self.roomFx[id]
+            if fx and fx.visible and fx.state=='available' and self.navigationEnabled then
+                fx.hovered,fx.pressed=hovered,pressed;M.paintRoom(fx)
+            end
+        end
+        local function feedbackOwned(event)
+            return not drag or touch(event)==drag.touch and slot==drag.slot
+        end
+        if cursor.CursorEnter then control:AddCursorEventListener(cursor.CursorEnter,function()
+            if not drag then feedback(true,false)end
+        end)end
+        control:AddCursorEventListener(cursor.CursorDown, function(event)
+            press(event, slot)
+            if drag and feedbackOwned(event) and drag.slot==slot then feedback(false,true)end
+        end)
         if cursor.CursorDrag then control:AddCursorEventListener(cursor.CursorDrag, function(event) move(event, slot) end) end
-        control:AddCursorEventListener(cursor.CursorUp, function(event) release(event, slot) end)
-        if cursor.CursorExit then control:AddCursorEventListener(cursor.CursorExit, function(event) cancelPointer(event, slot) end) end
-        if cursor.CursorEndDrag then control:AddCursorEventListener(cursor.CursorEndDrag, function(event) cancelPointer(event, slot, true) end) end
+        control:AddCursorEventListener(cursor.CursorUp, function(event)
+            local owns=feedbackOwned(event);release(event, slot);if owns then feedback(false,false)end
+        end)
+        if cursor.CursorExit then control:AddCursorEventListener(cursor.CursorExit, function(event)
+            local owns=feedbackOwned(event);cancelPointer(event, slot);if owns then feedback(false,false)end
+        end) end
+        if cursor.CursorEndDrag then control:AddCursorEventListener(cursor.CursorEndDrag, function(event)
+            local owns=feedbackOwned(event);cancelPointer(event, slot, true);if owns then feedback(false,false)end
+        end) end
     end
     draggable(at("dragArea"))
     for i = 1, Layout.maxNodes do local slot = i bind("node" .. slot, function(event)

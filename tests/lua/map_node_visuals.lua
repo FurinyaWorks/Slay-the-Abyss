@@ -109,6 +109,17 @@ assert(focus.navigation.confirm())
 assert(calls==2 and map.floor==2)
 verify()
 ui:setNavigationEnabled(true)
+-- Stable locked/current/visited rooms must not keep crossing the native painter
+-- boundary every frame. A render still repaints after rebind/scroll/show.
+for _=1,180 do ui:update(1/60)end
+local paintRoom,staticPaints=UI.paintRoom,0
+UI.paintRoom=function(fx)
+    if fx.state~='available' then staticPaints=staticPaints+1 end
+    return paintRoom(fx)
+end
+ui:update(1/60)
+UI.paintRoom=paintRoom
+assert(staticPaints==0,'settled static map rooms painted again in a stable update')
 for _,invalid in ipairs({map.path[1],map.currentNodeId,'f16_l4','missing'}) do
     assert(not ui:choose(invalid) and calls==2 and map.floor==2,'illegal routes must not become selectable')
 end

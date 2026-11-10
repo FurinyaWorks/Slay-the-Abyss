@@ -3333,6 +3333,7 @@
     "presentationProfile": "v25-reference",
     "sourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
     "font": { "card": 14, "cardName": 16, "cost": 25 },
+    "icon": { "node": { "combat": 102039 } },
     "motion": { "hoverLift": 80, "hoverScale": 1.22 },
     "cardSkin": { "text": { "title": "#FFFFFF", "body": "#FFF6E2" }, "costText": "#FFF8E7", "typeInk": "#595959", "artWells": { "attack": "#551C24", "skill": "#1A3042", "power": "#252536" } },
     "color": {
@@ -3360,7 +3361,14 @@
     },
     "layout": {
       "map": {
+        "notice": [0, -324, 820, 48],
+        "emeraldNotice": [0, -316, 820, 48],
         "presentation": {
+          "lockedIconScale": 0.65,
+          "visitedIconScale": 0.85,
+          "availableScaleFloor": 1.4,
+          "availableScaleCap": 1.6,
+          "noticeHeight": 48,
           "pathWidth": 2,
           "lockedPathWidth": 1.85,
           "takenPathWidth": 2.1,
