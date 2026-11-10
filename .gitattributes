@@ -512,3 +512,14 @@ docs/evidence/pr588-native-mock-20261110/independent-rim-guard-false.log -whites
 docs/evidence/pr588-native-mock-20261110/independent-rim-guard-true.log -whitespace
 docs/evidence/pr588-native-mock-20261110/local-before.log -whitespace
 docs/evidence/pr588-native-mock-20261110/quick-failure.log -whitespace
+
+# Curses source witnesses and complete-file cost receipts are byte-authenticated.
+src/lua/abyss_curses.lua text eol=lf
+tests/curses-shape-responsibilities.test.mjs text eol=lf
+tests/curses-source-epoch.test.mjs text eol=lf
+tests/fixtures/curses-shape-before.lua text eol=lf
+tests/fixtures/curses-source-epoch.json text eol=lf
+tests/helpers/curses-shape-differential.lua text eol=lf
+tests/helpers/curses-source-epoch.mjs text eol=lf
+tests/helpers/curses-ci-planning.mjs text eol=lf
+docs/evidence/replay-curses-ci-20261111/planning/** -text

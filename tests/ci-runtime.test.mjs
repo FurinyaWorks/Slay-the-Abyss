@@ -1,3 +1,4 @@
+import {cursesPlanningFloors} from './helpers/curses-ci-planning.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -257,12 +258,14 @@ test('current timing records preserve all measured corrections without duplicate
    assert.ok(entry.durationMs>=21763.220989+1218.265678);
   }else if(Object.hasOwn(officialAssetsPlanningFloors,file)){
    assert.deepEqual(entry,officialAssetsPlanningFloors[file],'retain each published official checkpoint floor independently');
+  }else if(Object.hasOwn(cursesPlanningFloors,file)){
+   assert.deepEqual(entry,cursesPlanningFloors[file]);
   }else{
    assert.match(entry.environment,/local/);assert.match(entry.kind,/not .*hosted/);localFloorCount++;
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length+Object.keys(officialAssetsPlanningFloors).length);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length+Object.keys(officialAssetsPlanningFloors).length+Object.keys(cursesPlanningFloors).length);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 
