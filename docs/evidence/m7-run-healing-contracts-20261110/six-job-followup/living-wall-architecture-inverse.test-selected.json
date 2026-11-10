@@ -1,0 +1,30 @@
+{
+  "file": "tests/living-wall-architecture-inverse.test.mjs",
+  "selectedNames": [
+    "only the complete LivingWall increment restores authenticated prior architecture and all older witnesses",
+    "warm LivingWall projections freshly bind linked policy bytes, including guard removal and deletion",
+    "both outer entries authenticate foreign tokens before IO and reread reviewed linked inputs after warmup"
+  ],
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=^(?:only\\ the\\ complete\\ LivingWall\\ increment\\ restores\\ authenticated\\ prior\\ architecture\\ and\\ all\\ older\\ witnesses|warm\\ LivingWall\\ projections\\ freshly\\ bind\\ linked\\ policy\\ bytes,\\ including\\ guard\\ removal\\ and\\ deletion|both\\ outer\\ entries\\ authenticate\\ foreign\\ tokens\\ before\\ IO\\ and\\ reread\\ reviewed\\ linked\\ inputs\\ after\\ warmup)$",
+    "tests/living-wall-architecture-inverse.test.mjs"
+  ],
+  "exitCode": 0,
+  "elapsedMs": 73465.71779251099,
+  "testSha256": "572982217c213c2bdf9edeff41d7a57a1f4933ee7e9d643c12db506ed134049f",
+  "testInputUnchanged": true,
+  "summary": {
+    "tests": 3.0,
+    "pass": 3.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 73244.974364
+  },
+  "logPath": "/tmp/pr599-six-failures/living-wall-architecture-inverse.test-selected.log",
+  "logSha256": "5d26534fe50b3ea7c89ae92c86c156b9a86eeec49bb7abb021eacb6061a2e004",
+  "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+}

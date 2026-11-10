@@ -1,0 +1,110 @@
+{
+  "baseCommit": "da1c045af8508274565527857ac3eec874f201b2",
+  "status": "DRAFT BLOCKED: genuine current Windows17 budget assertion fails by 27ms",
+  "costStage": {
+    "watcherReceiptPaths": [
+      "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-boundary-final-receipt.json",
+      "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-potion-final-receipt.json"
+    ],
+    "boundaryFloorMs": 32326,
+    "potionFloorMs": 11238,
+    "scope": "Complete stable Watcher observations before successor CI wiring. Their 5921-file manifests are historical cost inputs, not current successor dependency identity."
+  },
+  "ciWholeFileObservationStage": {
+    "observations": [
+      {
+        "file": "tests/ci-complete-calibration.test.mjs",
+        "tests": 47,
+        "pass": 46,
+        "fail": 1,
+        "wallMs": 11530.204591,
+        "nodeReportedDurationMs": 11414.410843,
+        "inputFilesUnchanged": true,
+        "receipt": "docs/evidence/m7-run-healing-contracts-20261110/followup-ci-complete-receipt.json"
+      },
+      {
+        "file": "tests/ci-host-timing-calibration.test.mjs",
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "wallMs": 8764.677943,
+        "nodeReportedDurationMs": 8667.080529,
+        "inputFilesUnchanged": true,
+        "receipt": "docs/evidence/m7-run-healing-contracts-20261110/followup-ci-host-receipt.json"
+      },
+      {
+        "file": "tests/ci-runtime.test.mjs",
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "wallMs": 12224.236182,
+        "nodeReportedDurationMs": 12141.950054,
+        "inputFilesUnchanged": true,
+        "receipt": "docs/evidence/m7-run-healing-contracts-20261110/followup-ci-runtime-receipt.json"
+      },
+      {
+        "file": "tests/ci-windows-shape-expansion.test.mjs",
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "wallMs": 9326.14975,
+        "nodeReportedDurationMs": 9242.591457,
+        "inputFilesUnchanged": true,
+        "receipt": "docs/evidence/m7-run-healing-contracts-20261110/followup-ci-windows-receipt.json"
+      }
+    ],
+    "scope": "One complete observation per changed CI file, before metadata-freeze refinements. All durations below existing effective planning costs. Failed ci-complete run is retained as failure, not promoted as a successful floor. No final whole-file cost claim after immutability fixes."
+  },
+  "fourFileAggregateStage": {
+    "receipt": "docs/evidence/m7-run-healing-contracts-20261110/followup-sealed-four-receipt.json",
+    "receiptSha256": "a2da02fd5ec4d98fecee9c1a6dc47cbffe6e974e0a63ab772a9666d2a41f3840",
+    "tests": 67,
+    "pass": 66,
+    "fail": 1,
+    "inputFilesUnchanged": true,
+    "scope": "All original64 historical cases and2 new source/cost cases passed; independent current budget case failed. This aggregate includes proof deep-freeze but precedes projected-timings deep-freeze and its negative controls. It is NOT a final same-byte four-file validation."
+  },
+  "finalNarrowValidationStage": {
+    "receipt": "docs/evidence/m7-run-healing-contracts-20261110/followup-final-helper-receipt.json",
+    "receiptSha256": "5dd8908b2445a606e3a7d2a1b3f60dbcbe568294c1738e9cbd9fc8c213887800",
+    "tests": 5,
+    "pass": 4,
+    "fail": 1,
+    "inputFilesUnchanged": true,
+    "inputFileCount": 5930,
+    "changedSinceAggregate": [
+      "tests/helpers/run-healing-followup-current-contract.mjs",
+      "tests/helpers/run-healing-followup-predecessor.mjs"
+    ],
+    "addedSinceAggregate": [
+      "docs/evidence/m7-run-healing-contracts-20261110/ci-successor/helper-validation.mjs"
+    ],
+    "removedSinceAggregate": [],
+    "currentCapturedFileDrift": [],
+    "scope": "Final actual helper bytes: two authenticated published historical cases and two successor source/cost cases pass, unchanged current Windows budget case remains a real failure. Deep-freeze covers proof and projected timing metadata; mutation controls check warm inverse/weights/shards. Directory-superset capture, not dynamic OS dependency tracing. Mutable self-evidence JSON/log outputs and static .mjs.txt review artifacts are outside the collector scope. No repeat four-file/Full run after final narrow fixes."
+  },
+  "planning": {
+    "js": 802,
+    "lua": 1412,
+    "posixMs": 1134695,
+    "windowsMs": 1800027,
+    "posixBudgetMs": 1200000,
+    "windowsBudgetMs": 1800000,
+    "reserveMs": 60000,
+    "windowsOverrunMs": 27
+  },
+  "retainedIntermediateLogs": [
+    {
+      "path": "docs/evidence/m7-run-healing-contracts-20261110/ci-successor/preliminary-contract.log.gz",
+      "sha256": "e4640512089c49763390e75826b7734b05908de83ce3c6b00edc9a1813b077d0",
+      "uncompressedSha256": "ce36e0f742006a6ec14ee96e9d84f15a8a121230f8d810346e6027837347cc5e",
+      "stage": "Intermediate source/receipt checks; current budget intentionally remains failing. Not final full-file validation."
+    },
+    {
+      "path": "docs/evidence/m7-run-healing-contracts-20261110/ci-successor/sealed-contract.log.gz",
+      "sha256": "c3830109d22c1d3bd7a77f5d999cf02785089cb78830839abd89f90d2ebc18ef",
+      "uncompressedSha256": "e93a11c9ecb5c0df1f48c3ee59feeed3f10abfae7779a816ac486c16ca73e2ac",
+      "stage": "Intermediate source/receipt checks; current budget intentionally remains failing. Not final full-file validation."
+    }
+  ]
+}

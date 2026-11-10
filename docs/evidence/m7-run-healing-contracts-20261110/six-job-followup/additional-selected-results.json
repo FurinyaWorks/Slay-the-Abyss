@@ -1,0 +1,151 @@
+[
+  {
+    "file": "tests/colorless-catalog-source.test.mjs",
+    "selectedNames": [
+      "old, foreign, partial and witness-only inputs never grant linked I/O",
+      "CRLF and exact input-only JSON formatting retain prior strict token behavior",
+      "existing final M7 and relic lifecycle chains consume exact pre-extraction owners",
+      "every current Colorless entry freshly authenticates the full dynamic owner set through all reader forms"
+    ],
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "--test-name-pattern=^(?:old,\\ foreign,\\ partial\\ and\\ witness\\-only\\ inputs\\ never\\ grant\\ linked\\ I/O|CRLF\\ and\\ exact\\ input\\-only\\ JSON\\ formatting\\ retain\\ prior\\ strict\\ token\\ behavior|existing\\ final\\ M7\\ and\\ relic\\ lifecycle\\ chains\\ consume\\ exact\\ pre\\-extraction\\ owners|every\\ current\\ Colorless\\ entry\\ freshly\\ authenticates\\ the\\ full\\ dynamic\\ owner\\ set\\ through\\ all\\ reader\\ forms)$",
+      "tests/colorless-catalog-source.test.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 10554.57615852356,
+    "testSha256": "dc38b0a3420833e3b1a820ca714b9a654aae61d1235d7adc5bcdc4145c9275a4",
+    "testInputUnchanged": true,
+    "summary": {
+      "tests": 4.0,
+      "pass": 4.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 10468.350965
+    },
+    "logPath": "/tmp/pr599-six-failures/colorless-catalog-source.test-selected.log",
+    "logSha256": "a15913bd3d9420943c223066708b632848edd9641613eb92883ac5a56882040d",
+    "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+  },
+  {
+    "file": "tests/living-wall-architecture-inverse.test.mjs",
+    "selectedNames": [
+      "only the complete LivingWall increment restores authenticated prior architecture and all older witnesses",
+      "warm LivingWall projections freshly bind linked policy bytes, including guard removal and deletion",
+      "both outer entries authenticate foreign tokens before IO and reread reviewed linked inputs after warmup"
+    ],
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "--test-name-pattern=^(?:only\\ the\\ complete\\ LivingWall\\ increment\\ restores\\ authenticated\\ prior\\ architecture\\ and\\ all\\ older\\ witnesses|warm\\ LivingWall\\ projections\\ freshly\\ bind\\ linked\\ policy\\ bytes,\\ including\\ guard\\ removal\\ and\\ deletion|both\\ outer\\ entries\\ authenticate\\ foreign\\ tokens\\ before\\ IO\\ and\\ reread\\ reviewed\\ linked\\ inputs\\ after\\ warmup)$",
+      "tests/living-wall-architecture-inverse.test.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 73465.71779251099,
+    "testSha256": "572982217c213c2bdf9edeff41d7a57a1f4933ee7e9d643c12db506ed134049f",
+    "testInputUnchanged": true,
+    "summary": {
+      "tests": 3.0,
+      "pass": 3.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 73244.974364
+    },
+    "logPath": "/tmp/pr599-six-failures/living-wall-architecture-inverse.test-selected.log",
+    "logSha256": "5d26534fe50b3ea7c89ae92c86c156b9a86eeec49bb7abb021eacb6061a2e004",
+    "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+  },
+  {
+    "file": "tests/session-reward-source-inverse.test.mjs",
+    "selectedNames": [
+      "current combined Session and M7 projections preserve the original complete before sources"
+    ],
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "--test-name-pattern=^(?:current\\ combined\\ Session\\ and\\ M7\\ projections\\ preserve\\ the\\ original\\ complete\\ before\\ sources)$",
+      "tests/session-reward-source-inverse.test.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 8396.133661270142,
+    "testSha256": "8f84d269f72bdbcf4fbc85c92c99106a409f05a464dc1fb2b2f795d6cfe9c585",
+    "testInputUnchanged": true,
+    "summary": {
+      "tests": 1.0,
+      "pass": 1.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 8311.790533
+    },
+    "logPath": "/tmp/pr599-six-failures/session-reward-source-inverse.test-selected.log",
+    "logSha256": "80f7636771ffd6acdadab30f9d1ffbe9924e363ae46a3ce4cf89d52be9dcbfff",
+    "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+  },
+  {
+    "file": "tests/watcher-final-execution.test.mjs",
+    "selectedNames": [
+      "current raw source composes into the unchanged 391 proof and rejects every linked owner drift"
+    ],
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "--test-name-pattern=^(?:current\\ raw\\ source\\ composes\\ into\\ the\\ unchanged\\ 391\\ proof\\ and\\ rejects\\ every\\ linked\\ owner\\ drift)$",
+      "tests/watcher-final-execution.test.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 11125.071048736572,
+    "testSha256": "d37a19ebab636495578598a4e936aeaa00335e80149a7d0497ca9002e8caa1c2",
+    "testInputUnchanged": true,
+    "summary": {
+      "tests": 1.0,
+      "pass": 1.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 11041.220326
+    },
+    "logPath": "/tmp/pr599-six-failures/watcher-final-execution.test-selected.log",
+    "logSha256": "258934685aa96592ae33b77320c77833d272bac5612b44e946657cca4974fee5",
+    "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+  },
+  {
+    "file": "tests/potion-callback-source.test.mjs",
+    "selectedNames": [
+      "CRLF and input-only JSON layout equivalence never relax linked raw bytes or exact tokens",
+      "the final M7 outer seam and existing relic chain preserve their exact older epochs",
+      "a detached source-only import observes actual file drift and deletion after warmup",
+      "the existing historical retirement entry handles potion callback leaf present and absent without weakening old guards",
+      "the current potion facade freshly rejects every expanded raw owner after warm nested reads"
+    ],
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "--test-name-pattern=^(?:CRLF\\ and\\ input\\-only\\ JSON\\ layout\\ equivalence\\ never\\ relax\\ linked\\ raw\\ bytes\\ or\\ exact\\ tokens|the\\ final\\ M7\\ outer\\ seam\\ and\\ existing\\ relic\\ chain\\ preserve\\ their\\ exact\\ older\\ epochs|a\\ detached\\ source\\-only\\ import\\ observes\\ actual\\ file\\ drift\\ and\\ deletion\\ after\\ warmup|the\\ existing\\ historical\\ retirement\\ entry\\ handles\\ potion\\ callback\\ leaf\\ present\\ and\\ absent\\ without\\ weakening\\ old\\ guards|the\\ current\\ potion\\ facade\\ freshly\\ rejects\\ every\\ expanded\\ raw\\ owner\\ after\\ warm\\ nested\\ reads)$",
+      "tests/potion-callback-source.test.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 21293.075799942017,
+    "testSha256": "b7263dfdfad9cb57957fd492531a15232ff9f0e2548bace3d2196761a12f37eb",
+    "testInputUnchanged": true,
+    "summary": {
+      "tests": 5.0,
+      "pass": 5.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 21207.466961
+    },
+    "logPath": "/tmp/pr599-six-failures/potion-callback-source.test-selected.log",
+    "logSha256": "4c726b31cc9f6ccc52965dee72576a5cc3bbcfdbc92995b04f2cb5efa9fd244e",
+    "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+  }
+]

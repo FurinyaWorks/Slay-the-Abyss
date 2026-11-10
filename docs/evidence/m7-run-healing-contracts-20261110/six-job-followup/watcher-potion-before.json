@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=^(?:all\\ six\\ combined\\ owners\\ bind\\ actual\\ complete\\ sources\\ and\\ preserve\\ independent\\ frozen\\ identities|combined\\ reads\\ freshly\\ authenticate\\ all\\ six\\ owners\\ on\\ every\\ call\\ and\\ reused\\ wrapper|every\\ combined\\ linked\\ owner\\ rejects\\ drift,\\ mixed\\ epochs\\ and\\ missing\\ sources\\ after\\ warmed\\ projections)$",
+    "tests/watcher-potion-integration-source.test.mjs"
+  ],
+  "exitCode": 1,
+  "elapsedMs": 10231.751680374146,
+  "testSha256": "f6a7d207ca87b5eac5952342172c19cf21852f7377b8cd89199034e252c92141",
+  "summary": [
+    "# tests 3",
+    "# pass 0",
+    "# fail 3",
+    "# cancelled 0",
+    "# skipped 0",
+    "# duration_ms 10133.88302"
+  ]
+}

@@ -472,3 +472,13 @@ tests/helpers/run-healing-source-epoch.json.gz -text
 tests/helpers/run-healing-ci-source-inverse.mjs text eol=lf
 tests/helpers/run-healing-ci-source-epoch.json.gz -text
 tests/helpers/run-healing-ci-contract.mjs text eol=lf
+
+# Successor epoch and new complete-process receipts preserve cross-platform identity.
+tests/helpers/run-healing-followup-*.mjs text eol=lf
+tests/helpers/run-healing-followup-epoch.json.gz -text
+docs/evidence/m7-run-healing-contracts-20261110/six-watcher-*-receipt.json text eol=lf
+docs/evidence/m7-run-healing-contracts-20261110/six-watcher-*.gz -text
+docs/evidence/m7-run-healing-contracts-20261110/followup-*.json text eol=lf
+docs/evidence/m7-run-healing-contracts-20261110/followup-*.gz -text
+docs/evidence/m7-run-healing-contracts-20261110/ci-successor/*.mjs text eol=lf
+docs/evidence/m7-run-healing-contracts-20261110/ci-successor/*.json text eol=lf

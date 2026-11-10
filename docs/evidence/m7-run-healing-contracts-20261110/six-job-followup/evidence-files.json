@@ -1,0 +1,182 @@
+[
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/129732878058.log.gz",
+    "sha256": "8395d309be50ce1768fac01493577d015e99d5089dec726db3ba8a3655596c29",
+    "rawBytes": 187592,
+    "rawSha256": "5ad883bd6a42ad401285a9dbce2ee6171b5128d9f8f300f5d100091daa40b178"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/129732878213.log.gz",
+    "sha256": "43f12e73178123e6b5e5c20a933f8f064a1791cf76fa307804865fe02b54135f",
+    "rawBytes": 142173,
+    "rawSha256": "8a0caffca3f41d7010d942c56a06b254b700f5f9fc73149bdeddbe33be790ea7"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/additional-selected-before.log.gz",
+    "sha256": "287beb0b2f1e3ff5359908d6bf2068dbcc13dcbfb658bbd9f158c1b99be9acc4",
+    "rawBytes": 3569,
+    "rawSha256": "7282eeea997e51440206a5d8f3050f27794b0d05ffcbbf67381ef97d66133764"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/additional-selected-results.json",
+    "sha256": "a1f1b62d9e5b6f5b41e1e3d6df24dfac3c49d822eed8404fd98c4f8422714eae",
+    "rawBytes": 7386,
+    "rawSha256": "a1f1b62d9e5b6f5b41e1e3d6df24dfac3c49d822eed8404fd98c4f8422714eae"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/additional-selected-tests.json",
+    "sha256": "5c3c7220f447546ec5e062ff184b05b1137bd9eeb66984e7b141e9997463f150",
+    "rawBytes": 2159,
+    "rawSha256": "5c3c7220f447546ec5e062ff184b05b1137bd9eeb66984e7b141e9997463f150"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/colorless-catalog-source.test-selected.json",
+    "sha256": "a1bc75b9c2bb4465a7afc7287d0f18f00b96e052a2e5c041fd4da2a02691e97b",
+    "rawBytes": 1587,
+    "rawSha256": "a1bc75b9c2bb4465a7afc7287d0f18f00b96e052a2e5c041fd4da2a02691e97b"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/colorless-catalog-source.test-selected.log.gz",
+    "sha256": "708f165b24cae57c0ea7d86993c98d33de4057b3c64783fd506091f76bd58625",
+    "rawBytes": 1064,
+    "rawSha256": "a15913bd3d9420943c223066708b632848edd9641613eb92883ac5a56882040d"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/formation-receipt-recheck.json",
+    "sha256": "5028b354002899fe165c5e61465c2e427b196a5d394226cb49f5f5fbba586e45",
+    "rawBytes": 1358,
+    "rawSha256": "5028b354002899fe165c5e61465c2e427b196a5d394226cb49f5f5fbba586e45"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/job-129732878045.log.gz",
+    "sha256": "f6b9940fd31462aab1ff4b6020db81cebf3a99263e4cfe62f6068973a03801f4",
+    "rawBytes": 191348,
+    "rawSha256": "43e0701e0628e5059eb8fb7c20fd777e7aa81fbcc4dadce09a0b17403beb3e0b"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/job-129732878074.log.gz",
+    "sha256": "49aeb86e07c03e1aba88ebe1b42fecea00a1062739e69b9e315b61ce04bb3e18",
+    "rawBytes": 137230,
+    "rawSha256": "3d5af2a7907703a28d029b0db3e344275dae0f80612edab73cec04333f0820ea"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/living-wall-architecture-inverse.test-selected.json",
+    "sha256": "6d1eb3be9115be63236c47977fec6ea4f573a567798c2b4f871ad21e6fe31029",
+    "rawBytes": 1542,
+    "rawSha256": "6d1eb3be9115be63236c47977fec6ea4f573a567798c2b4f871ad21e6fe31029"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/living-wall-architecture-inverse.test-selected.log.gz",
+    "sha256": "e13598c3847e57cc33eb83e3411db8fc2f1519270fb7f89fd279e8ecdec8c4e8",
+    "rawBytes": 955,
+    "rawSha256": "5d26534fe50b3ea7c89ae92c86c156b9a86eeec49bb7abb021eacb6061a2e004"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/potion-callback-source.test-selected.json",
+    "sha256": "ad562d4cd063f11df4d61fe1348e37cbe866fdb0728bfd1a4845563fdad8bd61",
+    "rawBytes": 1897,
+    "rawSha256": "ad562d4cd063f11df4d61fe1348e37cbe866fdb0728bfd1a4845563fdad8bd61"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/potion-callback-source.test-selected.log.gz",
+    "sha256": "b7235c34ff39aa02b3812a17fee63e085ec50b8b8194e691d5d4a3715a783fde",
+    "rawBytes": 1404,
+    "rawSha256": "4c726b31cc9f6ccc52965dee72576a5cc3bbcfdbc92995b04f2cb5efa9fd244e"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/session-reward-source-inverse.test-selected.json",
+    "sha256": "1f43b02438cc9f0bad3ae0090c67c8ddc96c01765ff4a7243a22da7052597cbc",
+    "rawBytes": 1028,
+    "rawSha256": "1f43b02438cc9f0bad3ae0090c67c8ddc96c01765ff4a7243a22da7052597cbc"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/session-reward-source-inverse.test-selected.log.gz",
+    "sha256": "e8562f45577d85f56dae96a979d442fff295a0cbeb1fddd9490a03e7f5329c99",
+    "rawBytes": 370,
+    "rawSha256": "80f7636771ffd6acdadab30f9d1ffbe9924e363ae46a3ce4cf89d52be9dcbfff"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/six-failure-inventory.json",
+    "sha256": "f44458f50dc4fab48b2b325a0b111fa2a310e7770400ad0a218083b078e342aa",
+    "rawBytes": 16963,
+    "rawSha256": "f44458f50dc4fab48b2b325a0b111fa2a310e7770400ad0a218083b078e342aa"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-after.log.gz",
+    "sha256": "92fbb03c629472796cf851a37f14cf3c04da2a8c88f9350ddb430a199313eac3",
+    "rawBytes": 10891,
+    "rawSha256": "d4348a56449ee56767e98de43dd2e5fc52c3f96865109d543023dd27f50ad866"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-before.log.gz",
+    "sha256": "b0d72c712ca665b821347c944b95c20ff114431e0f28a5c4a6e0551a69a91d95",
+    "rawBytes": 1083,
+    "rawSha256": "1ccde7f25173fd3e17f9ba208a2881624b4aead0855e03a730c2b6c91d51fabd"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-final-execution.test-selected.json",
+    "sha256": "139dd96850c8f645acbe9c24be8e38824a3257ef772acc7a487641e689906593",
+    "rawBytes": 1026,
+    "rawSha256": "139dd96850c8f645acbe9c24be8e38824a3257ef772acc7a487641e689906593"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-final-execution.test-selected.log.gz",
+    "sha256": "3c7525230440f83b587a6638033eab8a7a3fd3be2f7d686f731e46c55c7784b1",
+    "rawBytes": 381,
+    "rawSha256": "258934685aa96592ae33b77320c77833d272bac5612b44e946657cca4974fee5"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-graph-after.log.gz",
+    "sha256": "34ae539f3ce3a11f0c894e2c3676a2856cddd6fc831d94b2b30db0f1f4eb7886",
+    "rawBytes": 338,
+    "rawSha256": "7ac9a48d6c2db1ba908b443e8438e2b3b397a8de7f43114651723598ccb47b2b"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-potion-after-full.json",
+    "sha256": "4943f0db36dba33f56bcdf90c0c4ac13518c68fcac5978166f25994ac7f4e084",
+    "rawBytes": 657,
+    "rawSha256": "4943f0db36dba33f56bcdf90c0c4ac13518c68fcac5978166f25994ac7f4e084"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-potion-after-full.log.gz",
+    "sha256": "4ee1ef711441acc13b73f6f777d3074f80af0d72d23a5510b06307109e4c4a0b",
+    "rawBytes": 1396,
+    "rawSha256": "b5a0258eae74e28c9fff9679bc3def7488cf9c5001b02b66fd7391e4b6d8cb53"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-potion-before.json",
+    "sha256": "6d1159c4d7404cac5b191bb8b3df6524a5d93b283cb83e97b49518bd8b1bf902",
+    "rawBytes": 796,
+    "rawSha256": "6d1159c4d7404cac5b191bb8b3df6524a5d93b283cb83e97b49518bd8b1bf902"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-potion-before.log.gz",
+    "sha256": "ea99dae23575c923f087a6c5899bb37ea92d2b2868323a4f478e3ba451652451",
+    "rawBytes": 3898,
+    "rawSha256": "fd46004f5bfeb1756786d559e710a2eb68bd349a33f5820c92b4c5a86579cd0c"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-potion-reader-probe-initial.json",
+    "sha256": "75d89928c2472c384c4f41957403d504174ca77f31e862a3a0eb1e9c85695d3d",
+    "rawBytes": 664,
+    "rawSha256": "75d89928c2472c384c4f41957403d504174ca77f31e862a3a0eb1e9c85695d3d"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-potion-reader-probe-initial.log.gz",
+    "sha256": "f5906b83c3c4df0843dbd93be03cf9c88761b35d817c875de679b69eaf985da1",
+    "rawBytes": 380,
+    "rawSha256": "5326877e0a8fe043589edb6d06d34dcedcf291abc8423149d49acf7716ea5e13"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-potion-reader-probe.json",
+    "sha256": "99ba2bd6bece2a63f5e653e5900262c59f0f5938a9021baf93e0b37351e09a07",
+    "rawBytes": 838,
+    "rawSha256": "99ba2bd6bece2a63f5e653e5900262c59f0f5938a9021baf93e0b37351e09a07"
+  },
+  {
+    "file": "docs/evidence/m7-run-healing-contracts-20261110/six-job-followup/watcher-potion-reader-probe.log.gz",
+    "sha256": "f361f27b8e8541bd4b64b3ed110bed4d8961ffc4ac239090a201c23dfa64f4f7",
+    "rawBytes": 261,
+    "rawSha256": "28b7556a0be4cd63204fdce07c6e7dd8af3e237c47c083ff1b8e02d4ecb2f9b7"
+  }
+]

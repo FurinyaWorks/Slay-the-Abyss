@@ -1,0 +1,37 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-reporter=tap",
+    "--test-name-pattern=Act1 current source enters|current feature and history entries|current feature entries preserve unsupported|only the complete two-file owner delta|partial changes, added drift and wrong paths|exact background inverse preserves|current Battle config facade rejects|current Roster registration admission|current Roster legacy bridge rejects|only the complete LivingWall increment|warm LivingWall projections|both outer entries authenticate foreign",
+    "tests/act1-choice-responsibilities.test.mjs",
+    "tests/art-feature-source-inverse.test.mjs",
+    "tests/nested-command-snapshot-owner-inverse.test.mjs",
+    "tests/official-background-source-inverse.test.mjs",
+    "tests/battle-max-hp-config-inverse.test.mjs",
+    "tests/competition-roster-config-composition.test.mjs",
+    "tests/living-wall-architecture-inverse.test.mjs"
+  ],
+  "scope": "Exact prior failing assertions only. Unselected tests were not executed. This is not a complete-file or Full result. No whole dependency before/after capture was made for this diagnostic selection.",
+  "result": {
+    "tests": 12.0,
+    "pass": 12.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 235091.861547
+  },
+  "exitCode": 0,
+  "selectedFileHashesAtReportTime": {
+    "tests/act1-choice-responsibilities.test.mjs": "9d507a0564a8b581c622b12ec086904200fd2b2dd37de563add6c969c076911e",
+    "tests/art-feature-source-inverse.test.mjs": "b0a191d3af2db6266fcb5fd1e8b2b09ebe1cbf627005ae911d0e8771b5e16195",
+    "tests/nested-command-snapshot-owner-inverse.test.mjs": "50ac3c9c1e5bf3fa2f665c8a7e937c9a9d2369a2d86bd5b31c17601262abed7d",
+    "tests/official-background-source-inverse.test.mjs": "79fa8c8080d3de08fefc2baa37278a6bcfe6511c30d77d9d3177a572bdba5eff",
+    "tests/battle-max-hp-config-inverse.test.mjs": "9c00e81a9272033fb181ad44c50f97bfba536cffb3009430ad845d49224514ed",
+    "tests/competition-roster-config-composition.test.mjs": "9f1383515a92475ef176bf66a226845f59d7424a2a0d6459b5310d60ecd543ee",
+    "tests/living-wall-architecture-inverse.test.mjs": "572982217c213c2bdf9edeff41d7a57a1f4933ee7e9d643c12db506ed134049f"
+  },
+  "log": "additional-selected-before.log.gz",
+  "decodedLogSha256": "7282eeea997e51440206a5d8f3050f27794b0d05ffcbbf67381ef97d66133764"
+}

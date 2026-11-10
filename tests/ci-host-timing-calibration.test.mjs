@@ -1,4 +1,4 @@
-import {preRunHealingCiSource} from './helpers/run-healing-ci-source-inverse.mjs';
+import {preRunHealingCiSource} from './helpers/run-healing-followup-predecessor.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as liveReadFileSync} from 'node:fs';

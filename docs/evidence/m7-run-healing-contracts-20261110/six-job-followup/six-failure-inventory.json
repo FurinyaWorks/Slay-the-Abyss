@@ -1,0 +1,318 @@
+[
+  {
+    "job": 129732878040,
+    "counts": {
+      "tests": "156",
+      "pass": "151",
+      "fail": "5",
+      "duration_ms": "453944.721286"
+    },
+    "cases": [
+      {
+        "location": "tests/inventory-responsibilities.test.mjs:75:1",
+        "name": "raw current Inventory still enters the unchanged complete historical lifecycle oracle",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/helpers/historical-baseline-inputs.mjs:172:9",
+        "name": "[historical 98fef source contract] warm pure projections never cache catalog or extracted UI linked-file validation",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/pure-source-projection-cache.test.mjs:86:1",
+        "name": "warm current UI projections preserve their frozen intermediate epoch and reread every raw owner",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests/run-max-hp-config-inverse.test.mjs:158:1",
+        "name": "current Run architecture admission uses its declared target and rereads every raw owner on each call",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests/run-max-hp-config-inverse.test.mjs:195:1",
+        "name": "legacy Run config bridges reject unsupported current owners rather than claiming an ancient Run target",
+        "error": "AssertionError [ERR_ASSERTION]: Missing expected exception: current raw owners cannot borrow the original Run closure"
+      }
+    ]
+  },
+  {
+    "job": 129732878045,
+    "counts": {
+      "tests": "302",
+      "pass": "293",
+      "fail": "9",
+      "duration_ms": "537594.159679"
+    },
+    "cases": [
+      {
+        "location": "tests/colorless-catalog-source.test.mjs:46:1",
+        "name": "old, foreign, partial and witness-only inputs never grant linked I/O",
+        "error": "AssertionError [ERR_ASSERTION]: Missing expected exception."
+      },
+      {
+        "location": "tests/colorless-catalog-source.test.mjs:55:1",
+        "name": "CRLF and exact input-only JSON formatting retain prior strict token behavior",
+        "error": "AssertionError [ERR_ASSERTION]: Colorless catalog linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/colorless-catalog-source.test.mjs:67:1",
+        "name": "existing final M7 and relic lifecycle chains consume exact pre-extraction owners",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/colorless-catalog-source.test.mjs:86:1",
+        "name": "every current Colorless entry freshly authenticates the full dynamic owner set through all reader forms",
+        "error": "AssertionError [ERR_ASSERTION]: Colorless catalog linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/living-wall-architecture-inverse.test.mjs:22:1",
+        "name": "only the complete LivingWall increment restores authenticated prior architecture and all older witnesses",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests/living-wall-architecture-inverse.test.mjs:66:1",
+        "name": "warm LivingWall projections freshly bind linked policy bytes, including guard removal and deletion",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests/living-wall-architecture-inverse.test.mjs:91:1",
+        "name": "both outer entries authenticate foreign tokens before IO and reread reviewed linked inputs after warmup",
+        "error": "AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107"
+      },
+      {
+        "location": "tests/session-reward-source-inverse.test.mjs:18:1",
+        "name": "current combined Session and M7 projections preserve the original complete before sources",
+        "error": "AssertionError [ERR_ASSERTION]: config/architecture.json"
+      },
+      {
+        "location": "tests/watcher-final-execution.test.mjs:75:1",
+        "name": "current raw source composes into the unchanged 391 proof and rejects every linked owner drift",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      }
+    ]
+  },
+  {
+    "job": 129732878058,
+    "counts": {
+      "tests": "251",
+      "pass": "242",
+      "fail": "9",
+      "duration_ms": "1255423.322554"
+    },
+    "cases": [
+      {
+        "location": "tests/act1-choice-responsibilities.test.mjs:179:1",
+        "name": "Act1 current source enters the unchanged historical chain and rereads every raw owner",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/art-feature-source-inverse.test.mjs:237:1",
+        "name": "current feature and history entries authenticate supported intermediates and freshly read every raw owner",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests/art-feature-source-inverse.test.mjs:274:1",
+        "name": "current feature entries preserve unsupported input bytes and never use unknown input to authorize raw reads",
+        "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /GameUI extraction linked reader must be a function/. Input:"
+      },
+      {
+        "location": "tests/helpers/historical-baseline-inputs.mjs:172:9",
+        "name": "[historical 98fef source contract] only the complete two-file owner delta recovers accepted full runtime identities",
+        "error": "AssertionError [ERR_ASSERTION]: delivery linked source missing: src/lua/abyss_event_combat_routes.lua"
+      },
+      {
+        "location": "tests/helpers/historical-baseline-inputs.mjs:172:9",
+        "name": "[historical 98fef source contract] partial changes, added drift and wrong paths never acquire historical composition permission",
+        "error": "AssertionError [ERR_ASSERTION]: delivery linked source missing: src/lua/abyss_event_combat_routes.lua"
+      },
+      {
+        "location": "tests/helpers/historical-baseline-inputs.mjs:172:9",
+        "name": "[historical 98fef source contract] exact background inverse preserves old whole-file identities and exposes any unknown drift",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/seven-refactor-source-epoch.test.mjs:7:1",
+        "name": "seven-refactor exact outer epoch restores every complete predecessor owner",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests/silent-final-source-epoch.test.mjs:97:1",
+        "name": "live LF and CRLF raw owner reads authenticate 49 current owners on every call",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests/watcher-actor-boundary.test.mjs:20:1",
+        "name": "Watcher planning leaves the complete SCC without hiding delayed requires",
+        "error": "AssertionError [ERR_ASSERTION]: original inventory retained alongside five develop additions"
+      }
+    ]
+  },
+  {
+    "job": 129732878074,
+    "counts": {
+      "tests": "409",
+      "pass": "400",
+      "fail": "9",
+      "duration_ms": "805509.460981"
+    },
+    "cases": [
+      {
+        "location": "tests/encounter-formation-source-epoch.test.mjs:97:1",
+        "name": "live LF and CRLF raw owner reads authenticate 51 current owners on every call",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests/potion-callback-source.test.mjs:105:1",
+        "name": "CRLF and input-only JSON layout equivalence never relax linked raw bytes or exact tokens",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/potion-callback-source.test.mjs:119:1",
+        "name": "the final M7 outer seam and existing relic chain preserve their exact older epochs",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/potion-callback-source.test.mjs:132:1",
+        "name": "a detached source-only import observes actual file drift and deletion after warmup",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/potion-callback-source.test.mjs:165:1",
+        "name": "the existing historical retirement entry handles potion callback leaf present and absent without weakening old guards",
+        "error": "AssertionError [ERR_ASSERTION]: Colorless catalog linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/potion-callback-source.test.mjs:195:1",
+        "name": "the current potion facade freshly rejects every expanded raw owner after warm nested reads",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/watcher-potion-integration-source.test.mjs:13:1",
+        "name": "all six combined owners bind actual complete sources and preserve independent frozen identities",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/watcher-potion-integration-source.test.mjs:21:1",
+        "name": "combined reads freshly authenticate all six owners on every call and reused wrapper",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests/watcher-potion-integration-source.test.mjs:34:1",
+        "name": "every combined linked owner rejects drift, mixed epochs and missing sources after warmed projections",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      }
+    ]
+  },
+  {
+    "job": 129732878075,
+    "counts": {
+      "tests": "248",
+      "pass": "236",
+      "fail": "12",
+      "duration_ms": "634553.888"
+    },
+    "cases": [
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:28:1",
+        "name": "one complete extraction restores immutable full Host/config and authenticates each fresh owner",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:55:1",
+        "name": "foreign and old epochs perform zero linked reads, including duplicate keys and escaped JSON tokens",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:66:1",
+        "name": "configuration owner names never waive complete tokens or fresh linked validation",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:85:1",
+        "name": "nested linked readers keep fresh raw identities across composed historical boundaries",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:105:1",
+        "name": "actual current Host reaches every direct and transitive consumer with frozen historical results",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:135:1",
+        "name": "injected readers at shared consumer seams never fall back to live owners",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:154:1",
+        "name": "actual detached filesystem owners reject warm drift and deletion separately for every module",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:168:1",
+        "name": "retirement verifies the full isolated destination before deleting, and revalidates deferred cleanup",
+        "error": "AssertionError [ERR_ASSERTION]: reviewed GameUI extraction retirement module: src/lua/abyss_game_ui_view.lua: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:197:1",
+        "name": "combined retirement freshly authenticates every changed source owner and refuses hard-link aliases",
+        "error": "AssertionError [ERR_ASSERTION]: reviewed GameUI extraction retirement module: src/lua/abyss_game_ui_view.lua: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:227:1",
+        "name": "retirement accepts real repository-local historical copies and preserves every live owner",
+        "error": "AssertionError [ERR_ASSERTION]: reviewed GameUI extraction retirement module: src/lua/abyss_game_ui_view.lua: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:248:1",
+        "name": "repository-local cleanup rejects nested symlink escapes and revalidates all targets before deletion",
+        "error": "AssertionError [ERR_ASSERTION]: reviewed GameUI extraction retirement module: src/lua/abyss_game_ui_view.lua: combined linked owner identity: config/architecture.json"
+      },
+      {
+        "location": "tests\\game-ui-extraction-source-inverse.test.mjs:269:1",
+        "name": "real filesystem traces distinguish foreign/old inputs from fresh equivalent and warm owner reads",
+        "error": "AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json"
+      }
+    ]
+  },
+  {
+    "job": 129732878213,
+    "counts": {
+      "tests": "289",
+      "pass": "283",
+      "fail": "6",
+      "duration_ms": "833317.865"
+    },
+    "cases": [
+      {
+        "location": "tests\\battle-max-hp-config-inverse.test.mjs:114:1",
+        "name": "current Battle config facade rejects incompatible modern owners instead of borrowing historical admission",
+        "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /delivery linked source identity: src\\/lua\\/abyss_monster_intent_particle_view\\.lua/. Input:"
+      },
+      {
+        "location": "tests\\competition-roster-config-composition.test.mjs:191:1",
+        "name": "current Roster registration admission validates every raw owner freshly at the supported develop target",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests\\competition-roster-config-composition.test.mjs:216:1",
+        "name": "current Roster legacy bridge rejects incompatible owners rather than claiming either ancient witness",
+        "error": "AssertionError [ERR_ASSERTION]: Missing expected exception: an unsupported old bridge cannot borrow a much older delivery owner"
+      },
+      {
+        "location": "tests\\living-wall-architecture-inverse.test.mjs:22:1",
+        "name": "only the complete LivingWall increment restores authenticated prior architecture and all older witnesses",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests\\living-wall-architecture-inverse.test.mjs:66:1",
+        "name": "warm LivingWall projections freshly bind linked policy bytes, including guard removal and deletion",
+        "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+      },
+      {
+        "location": "tests\\living-wall-architecture-inverse.test.mjs:91:1",
+        "name": "both outer entries authenticate foreign tokens before IO and reread reviewed linked inputs after warmup",
+        "error": "AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107"
+      }
+    ]
+  }
+]

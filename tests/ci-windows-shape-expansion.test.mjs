@@ -1,4 +1,4 @@
-import {preRunHealingCiSource} from './helpers/run-healing-ci-source-inverse.mjs';
+import {preRunHealingCiSource} from './helpers/run-healing-followup-predecessor.mjs';
 import {beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';

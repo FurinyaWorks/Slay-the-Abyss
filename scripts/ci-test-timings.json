@@ -5186,10 +5186,20 @@
         "kind": "Conservative planning-only floor; not a hosted measurement or a full-pass claim."
       },
       "tests/watcher-actor-boundary.test.mjs": {
-        "durationMs": 30000,
-        "environment": "local Linux",
-        "coverage": "9 original boundary cases took 21763.220989 ms (8 passed, 1 graph assertion failed); graph assertion corrected and rerun separately. One added frozen-Halt protocol case took 1218.265678 ms including runner. Both unchanged behavior fixture pairs passed.",
-        "kind": "Conservative planning-only floor; not a hosted observation or full-pass claim."
+        "durationMs": 32326,
+        "environment": "cloud Linux local",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "tests": 10,
+        "wallMs": 32325.761561999996,
+        "nodeReportedDurationMs": 32218.918047,
+        "sourceReceipt": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-boundary-final-receipt.json",
+        "sourceReceiptSha256": "e7e0e38ad0ae3c9eb318c22f2e58f1513b4a46030b02d566d6d973c42cec2e00",
+        "sourceLog": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-boundary-final.log.gz",
+        "sourceLogSha256": "eb041240114bf94d1255e6427306e24bf49c777223c0c184d0eff0a60b141b8a",
+        "testSha256": "4006c14e41e9c022c87cb721f67dbf6b514fa088e34c08bda7d119ac82d7bbd6",
+        "inputReceipt": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-boundary-final-inputs.json.gz",
+        "inputReceiptSha256": "5e3b55562fd6c9fffed02f8f5709cc93bea11ba5b197e4b6fe4513118423bfce",
+        "measurementScope": "Complete stable local process before successor CI wiring; historical cost observation, not final successor input validation."
       },
       "tests/enemy-ai-lifecycle.test.mjs": {
         "durationMs": 30000,
@@ -6223,6 +6233,22 @@
         "sourceReceipt": "docs/evidence/m7-run-healing-contracts-20261110/ci-windows-final-receipt.json",
         "sourceReceiptSha256": "8d1012b0aa85afaf261a56e09cab245822a2686c2f54c92663d28a857b2a7c1d",
         "measurementScope": "Complete local run; independent narrow validation may have been active. Conservative planning cost, not an isolated or hosted benchmark."
+      },
+      "tests/watcher-potion-integration-source.test.mjs": {
+        "durationMs": 11238,
+        "environment": "cloud Linux local",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "tests": 5,
+        "wallMs": 11237.073321,
+        "nodeReportedDurationMs": 11122.367125,
+        "sourceReceipt": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-potion-final-receipt.json",
+        "sourceReceiptSha256": "9c0c4de43cace2f6a606e6bddf7bf13f941d79e0f9a684b033cc0de909ff26cd",
+        "sourceLog": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-potion-final.log.gz",
+        "sourceLogSha256": "f867d0e7d24b742f9660d194d2643079d7911a78059024228b08e77264ec225e",
+        "testSha256": "d59a6436e368e946802e340b9d90e2b396f8357e2f44f3b37304e7bb0bc84779",
+        "inputReceipt": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-potion-final-inputs.json.gz",
+        "inputReceiptSha256": "bd3f01ac0f58b126bab06b70cb9bb07a712bb339da1bf6b47073a7cae0a82f5e",
+        "measurementScope": "Complete stable local process before successor CI wiring; historical cost observation, not final successor input validation."
       }
     }
   },

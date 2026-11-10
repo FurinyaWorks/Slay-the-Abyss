@@ -1,0 +1,23 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/watcher-potion-integration-source.test.mjs"
+  ],
+  "exitCode": 0,
+  "elapsedMs": 9764.58477973938,
+  "testSha256": "d59a6436e368e946802e340b9d90e2b396f8357e2f44f3b37304e7bb0bc84779",
+  "testInputUnchanged": true,
+  "summary": {
+    "tests": 5.0,
+    "pass": 5.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 9590.219252
+  },
+  "logPath": "/tmp/pr599-six-failures/watcher-potion-after-full.log",
+  "logSha256": "b5a0258eae74e28c9fff9679bc3def7488cf9c5001b02b66fd7391e4b6d8cb53",
+  "scope": "Complete watcher-potion test file only, not Full."
+}

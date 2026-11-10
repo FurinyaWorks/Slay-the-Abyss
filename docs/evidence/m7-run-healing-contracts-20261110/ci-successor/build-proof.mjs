@@ -1,0 +1,11 @@
+import {readFileSync as read,writeFileSync as write} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
+const baseCommit='da1c045af8508274565527857ac3eec874f201b2',hash=b=>createHash('sha256').update(b).digest('hex');
+const paths=['.gitattributes','scripts/ci-test-timings.json','tests/watcher-actor-boundary.test.mjs','tests/watcher-potion-integration-source.test.mjs',...['ci-complete-calibration','ci-host-timing-calibration','ci-runtime','ci-windows-shape-expansion'].map(n=>'tests/'+n+'.test.mjs')];
+const files=Object.fromEntries(paths.map(path=>{const beforeSource=execFileSync('git',['show',baseCommit+':'+path],{encoding:'utf8',maxBuffer:8*1024**2}),afterSource=read(path,'utf8').replaceAll('\r\n','\n');return[path,{beforeSource,beforeSha256:hash(beforeSource),afterSource,afterSha256:hash(afterSource)}];}));
+const publishedSha256=Object.fromEntries(['tests/helpers/run-healing-ci-contract.mjs','tests/helpers/run-healing-ci-source-inverse.mjs','tests/helpers/run-healing-ci-source-epoch.json.gz'].map(path=>{const bytes=execFileSync('git',['show',baseCommit+':'+path],{maxBuffer:8*1024**2});return[path,hash(path.endsWith('.gz')?bytes:bytes.toString('utf8').replaceAll('\r\n','\n'))];}));
+const archive=gzipSync(JSON.stringify({schemaVersion:1,baseCommit,files,publishedSha256}),{level:9});write('tests/helpers/run-healing-followup-epoch.json.gz',archive);
+const helper='tests/helpers/run-healing-followup-predecessor.mjs';write(helper,read(helper,'utf8').replace(/const expectedArchive='[^']+';/,`const expectedArchive='${hash(archive)}';`));
+console.log(JSON.stringify({baseCommit,paths,archiveSha256:hash(archive)}));

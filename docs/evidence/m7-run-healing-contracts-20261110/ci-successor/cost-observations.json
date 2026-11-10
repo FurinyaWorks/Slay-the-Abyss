@@ -1,0 +1,64 @@
+{
+  "baseCommit": "da1c045af8508274565527857ac3eec874f201b2",
+  "observations": [
+    {
+      "file": "tests/watcher-actor-boundary.test.mjs",
+      "label": "six-watcher-boundary-final",
+      "startedAt": "2026-11-10T10:02:59.728Z",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/watcher-actor-boundary.test.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 32325.761561999996,
+      "nodeReportedDurationMs": 32218.918047,
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "testSha256": "4006c14e41e9c022c87cb721f67dbf6b514fa088e34c08bda7d119ac82d7bbd6",
+      "inputFilesUnchanged": true,
+      "inputFileCount": 5921,
+      "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-boundary-final-inputs.json.gz",
+      "inputSha256": "5e3b55562fd6c9fffed02f8f5709cc93bea11ba5b197e4b6fe4513118423bfce",
+      "logPath": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-boundary-final.log.gz",
+      "logSha256": "eb041240114bf94d1255e6427306e24bf49c777223c0c184d0eff0a60b141b8a",
+      "logUncompressedSha256": "64ec83868884a0793818b17f1ed766b04d8e71f14118765574f3595100d2e429",
+      "collectorSha256": "e3ed1dcc852ce6887c6ddf2d8cfeb805483f1592f4e057c25e983248c0a04d8b"
+    },
+    {
+      "file": "tests/watcher-potion-integration-source.test.mjs",
+      "label": "six-watcher-potion-final",
+      "startedAt": "2026-11-10T10:03:34.435Z",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/watcher-potion-integration-source.test.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "wallMs": 11237.073321,
+      "nodeReportedDurationMs": 11122.367125,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "testSha256": "d59a6436e368e946802e340b9d90e2b396f8357e2f44f3b37304e7bb0bc84779",
+      "inputFilesUnchanged": true,
+      "inputFileCount": 5921,
+      "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-potion-final-inputs.json.gz",
+      "inputSha256": "bd3f01ac0f58b126bab06b70cb9bb07a712bb339da1bf6b47073a7cae0a82f5e",
+      "logPath": "docs/evidence/m7-run-healing-contracts-20261110/six-watcher-potion-final.log.gz",
+      "logSha256": "f867d0e7d24b742f9660d194d2643079d7911a78059024228b08e77264ec225e",
+      "logUncompressedSha256": "a9701adcf940372f4ed9756d710ccb76a459e92d31d5c67c81424ca156667703",
+      "collectorSha256": "e3ed1dcc852ce6887c6ddf2d8cfeb805483f1592f4e057c25e983248c0a04d8b"
+    }
+  ],
+  "scope": "Complete Watcher processes before successor CI edits. Not final dependency validation."
+}

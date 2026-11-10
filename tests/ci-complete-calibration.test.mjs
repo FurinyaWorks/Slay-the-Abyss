@@ -1,4 +1,4 @@
-import {preRunHealingCiSource} from './helpers/run-healing-ci-source-inverse.mjs';
+import {preRunHealingCiSource} from './helpers/run-healing-followup-predecessor.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {prePosix15ShapeSource,posix15ShapeProof} from './helpers/posix15-shape-source-inverse.mjs';
 import {preDefectFinalCiSource,defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
@@ -1048,4 +1048,5 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
  assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
 });
 
-import "./helpers/run-healing-ci-contract.mjs";
+import "./helpers/run-healing-followup-historical-contract.mjs";
+import "./helpers/run-healing-followup-current-contract.mjs";

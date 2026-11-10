@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "/tmp/pr599-six-failures/watcher-potion-reader-probe.mjs"
+  ],
+  "elapsedMs": 116.12939834594727,
+  "exitCode": 1,
+  "log": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Missing expected exception.\n    at file:///tmp/pr599-six-failures/watcher-potion-reader-probe.mjs:16:109 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: undefined,\n  expected: /linked owner identity/,\n  operator: 'throws',\n  diff: 'simple'\n}\n\nNode.js v24.22.1\n",
+  "scope": "Supplemental read-only linked LF/CRLF and current new-owner guard probe, not a test-file run"
+}

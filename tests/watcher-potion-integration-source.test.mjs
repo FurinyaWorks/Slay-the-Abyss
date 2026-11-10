@@ -1,4 +1,5 @@
 import {sevenRefactorEpoch} from './helpers/seven-refactor-source-epoch.mjs';
+import {runHealingEpoch} from './helpers/run-healing-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -6,7 +7,7 @@ import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {preClassPotionWatcherSource as prior,classPotionWatcherReader,preIntegratedCapabilitySource, classPotionWatcherSourceProof as proof,standaloneArchitectureSource} from './helpers/class-potion-watcher-source-inverse.mjs';
 import {preM7FinalSource,m7FinalReader} from './helpers/m7-core-final-source-inverse.mjs';
-const read=sevenRefactorEpoch.combinedReader(p=>readFileSync(p,'utf8').replaceAll('\r\n','\n'),'localSeven');
+const read=sevenRefactorEpoch.combinedReader(runHealingEpoch.combinedReader(p=>readFileSync(p,'utf8').replaceAll('\r\n','\n'),'prior'),'localSeven');
 const {before}=JSON.parse(gunzipSync(readFileSync('tests/fixtures/class-potion-watcher-before.json.gz')));
 const owners=Object.keys(proof),live=Object.fromEntries(owners.map(p=>[p,read(p)]));
 const hash=s=>createHash('sha256').update(s).digest('hex');

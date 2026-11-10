@@ -1,0 +1,28 @@
+{
+  "receipt": "docs/evidence/m7-run-healing-contracts-20261110/ci-formation-receipt.json",
+  "receiptPassCount": 11,
+  "checkedFiles": 733,
+  "logSha256Match": true,
+  "inputSha256Match": true,
+  "scope": "Receipt log/input hashes and test file hash match; 730/733 captured source/config/helper files match. Three changed CI calibration helpers are not imported or copied by the Formation test. This is bounded receipt reuse, not a new test run or all-input exact equivalence.",
+  "unrelatedCiHelperDifferences": [
+    {
+      "file": "tests/helpers/run-healing-ci-contract.mjs",
+      "expected": "2ea6e7f723a8b451c237a38c20204a30cc4b51faa9cec5122fabf63b59261926",
+      "actual": "5e9a1b59c92c2502344941dcb5c2f377700e4f393027ff5b44b3507d65f02276"
+    },
+    {
+      "file": "tests/helpers/run-healing-ci-source-epoch.json.gz",
+      "expected": "25b0a95241552e83c857ea5f8f95ab2ce152f41f7a3400e32902dcdadb1bb88b",
+      "actual": "717081785456a704622724241f82afaf4b6f939c3189396433f079b5fb60408c"
+    },
+    {
+      "file": "tests/helpers/run-healing-ci-source-inverse.mjs",
+      "expected": "9541fb9598979ace2eeb813ec9990dca35ef7ca02127651f61c9aaea37a62cb8",
+      "actual": "d808731cf4abb7538e947bca0080227ce0d368f9b02f98fe75515b5986c47547"
+    }
+  ],
+  "copiedClosureMismatch": [],
+  "copiedClosureFileCount": 127,
+  "formationTestSha256Match": true
+}

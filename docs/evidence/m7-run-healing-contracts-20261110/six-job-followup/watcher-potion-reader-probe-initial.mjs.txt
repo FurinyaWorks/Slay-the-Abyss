@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {pathToFileURL} from 'node:url';
+const root=process.cwd(),load=p=>import(pathToFileURL(root+'/'+p));
+const {runHealingEpoch}=await load('tests/helpers/run-healing-source-epoch.mjs');
+const {sevenRefactorEpoch}=await load('tests/helpers/seven-refactor-source-epoch.mjs');
+const {classPotionWatcherSourceProof}=await load('tests/helpers/class-potion-watcher-source-inverse.mjs');
+const {createHash}=await import('node:crypto');const hash=s=>createHash('sha256').update(s.replaceAll('\r\n','\n')).digest('hex');
+const config='config/architecture.json',leaf='src/lua/abyss_run_health.lua',owners=runHealingEpoch.proof.owners;
+const raw=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');let checks=0;
+for(const crlf of [false,true]){
+ let bad=null,missing=false;const readRaw=p=>{if(p===bad){if(missing)return null;return raw(p)+'\n';}return crlf?raw(p).replaceAll('\n','\r\n'):raw(p);};
+ const read=sevenRefactorEpoch.combinedReader(runHealingEpoch.combinedReader(readRaw,'prior'),'localSeven');
+ assert.equal(hash(read(config)),classPotionWatcherSourceProof[config].afterSha256);checks++;
+ assert.equal(read(leaf),readRaw(leaf),'new historical-null witness must be retained');checks++;
+ for(const owner of owners)for(const mode of ['drift','missing']){bad=owner;missing=mode==='missing';assert.throws(()=>read(config),/linked owner identity/);checks++;bad=null;assert.equal(hash(read(config)),classPotionWatcherSourceProof[config].afterSha256);checks++;}
+}
+console.log(JSON.stringify({status:'pass',checks,linkedRawEndingForms:['LF','CRLF'],newWitnessRetained:leaf,authenticatedOwners:owners}));

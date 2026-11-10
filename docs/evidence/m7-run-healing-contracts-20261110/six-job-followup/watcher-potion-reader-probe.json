@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "/tmp/pr599-six-failures/watcher-potion-reader-probe.mjs"
+  ],
+  "elapsedMs": 160.22920608520508,
+  "exitCode": 0,
+  "log": "{\"status\":\"pass\",\"checks\":40,\"linkedRawEndingForms\":[\"LF\",\"CRLF\"],\"newWitnessRetained\":\"src/lua/abyss_run_health.lua\",\"authenticatedOwners\":[\"config/architecture.json\",\"src/lua/abyss_run.lua\",\"src/lua/abyss_uncommon_relics.lua\",\"src/lua/abyss_run_health.lua\"]}\n",
+  "scope": "Supplemental read-only linked LF/CRLF and current new-owner guard probe, not a test-file run",
+  "initialProbeCorrection": "Initial probe incorrectly expected foreign current configuration input to throw. Corrected probe supplies a known exact current input to test linked drift, and separately verifies foreign reader input remains opaque. Production test patch unchanged."
+}

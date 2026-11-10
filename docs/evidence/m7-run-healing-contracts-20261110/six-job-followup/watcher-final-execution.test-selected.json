@@ -1,0 +1,28 @@
+{
+  "file": "tests/watcher-final-execution.test.mjs",
+  "selectedNames": [
+    "current raw source composes into the unchanged 391 proof and rejects every linked owner drift"
+  ],
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=^(?:current\\ raw\\ source\\ composes\\ into\\ the\\ unchanged\\ 391\\ proof\\ and\\ rejects\\ every\\ linked\\ owner\\ drift)$",
+    "tests/watcher-final-execution.test.mjs"
+  ],
+  "exitCode": 0,
+  "elapsedMs": 11125.071048736572,
+  "testSha256": "d37a19ebab636495578598a4e936aeaa00335e80149a7d0497ca9002e8caa1c2",
+  "testInputUnchanged": true,
+  "summary": {
+    "tests": 1.0,
+    "pass": 1.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 11041.220326
+  },
+  "logPath": "/tmp/pr599-six-failures/watcher-final-execution.test-selected.log",
+  "logSha256": "258934685aa96592ae33b77320c77833d272bac5612b44e946657cca4974fee5",
+  "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+}

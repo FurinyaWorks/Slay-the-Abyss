@@ -1,0 +1,13 @@
+import {inputManifest} from '../ci-input-manifest.mjs';
+import {spawnSync} from 'node:child_process';
+import {writeFileSync,readFileSync} from 'node:fs';
+import {gzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
+const root='docs/evidence/m7-run-healing-contracts-20261110',hash=x=>createHash('sha256').update(x).digest('hex');
+const files=['tests/helpers/run-healing-followup-historical-contract.mjs','tests/helpers/run-healing-followup-current-contract.mjs'];
+const command=[process.execPath,'--test','--test-concurrency=1','--test-reporter=tap',...files],before=inputManifest(),startedAt=new Date().toISOString(),start=performance.now();
+const result=spawnSync(command[0],command.slice(1),{encoding:'utf8',maxBuffer:32*1024**2}),wallMs=performance.now()-start,after=inputManifest(),log=result.stdout+'\n'+result.stderr;
+const inputPath=`${root}/followup-final-helper-inputs.json.gz`,logPath=`${root}/followup-final-helper.log.gz`,inputBytes=gzipSync(JSON.stringify({before,after})),logBytes=gzipSync(log),get=k=>Number(log.match(new RegExp(`^# ${k} ([0-9.]+)$`,'m'))?.[1]);
+writeFileSync(inputPath,inputBytes);writeFileSync(logPath,logBytes);
+const receipt={scope:'Final narrow regression after deep-freezing planner metadata: two helper contract files, serial concurrency. Earlier four-file aggregate is a prior stage, not exact-final-source validation. Not Full or an individual-file cost observation.',command,startedAt,wallMs,exitCode:result.status,signal:result.signal,tests:get('tests'),pass:get('pass'),fail:get('fail'),cancelled:get('cancelled'),skipped:get('skipped'),inputFilesUnchanged:JSON.stringify(before.files)===JSON.stringify(after.files),inputPath,inputSha256:hash(inputBytes),logPath,logSha256:hash(logBytes),logUncompressedSha256:hash(log),collectorSha256:hash(readFileSync(`${root}/ci-successor/helper-validation.mjs`))};
+writeFileSync(`${root}/followup-final-helper-receipt.json`,JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt));process.exitCode=result.status||(!receipt.inputFilesUnchanged?2:0);

@@ -1,0 +1,32 @@
+{
+  "file": "tests/potion-callback-source.test.mjs",
+  "selectedNames": [
+    "CRLF and input-only JSON layout equivalence never relax linked raw bytes or exact tokens",
+    "the final M7 outer seam and existing relic chain preserve their exact older epochs",
+    "a detached source-only import observes actual file drift and deletion after warmup",
+    "the existing historical retirement entry handles potion callback leaf present and absent without weakening old guards",
+    "the current potion facade freshly rejects every expanded raw owner after warm nested reads"
+  ],
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=^(?:CRLF\\ and\\ input\\-only\\ JSON\\ layout\\ equivalence\\ never\\ relax\\ linked\\ raw\\ bytes\\ or\\ exact\\ tokens|the\\ final\\ M7\\ outer\\ seam\\ and\\ existing\\ relic\\ chain\\ preserve\\ their\\ exact\\ older\\ epochs|a\\ detached\\ source\\-only\\ import\\ observes\\ actual\\ file\\ drift\\ and\\ deletion\\ after\\ warmup|the\\ existing\\ historical\\ retirement\\ entry\\ handles\\ potion\\ callback\\ leaf\\ present\\ and\\ absent\\ without\\ weakening\\ old\\ guards|the\\ current\\ potion\\ facade\\ freshly\\ rejects\\ every\\ expanded\\ raw\\ owner\\ after\\ warm\\ nested\\ reads)$",
+    "tests/potion-callback-source.test.mjs"
+  ],
+  "exitCode": 0,
+  "elapsedMs": 21293.075799942017,
+  "testSha256": "b7263dfdfad9cb57957fd492531a15232ff9f0e2548bace3d2196761a12f37eb",
+  "testInputUnchanged": true,
+  "summary": {
+    "tests": 5.0,
+    "pass": 5.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 21207.466961
+  },
+  "logPath": "/tmp/pr599-six-failures/potion-callback-source.test-selected.log",
+  "logSha256": "4c726b31cc9f6ccc52965dee72576a5cc3bbcfdbc92995b04f2cb5efa9fd244e",
+  "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+}

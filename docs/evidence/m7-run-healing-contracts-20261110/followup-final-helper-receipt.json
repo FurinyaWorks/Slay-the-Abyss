@@ -1,0 +1,27 @@
+{
+  "scope": "Final narrow regression after deep-freezing planner metadata: two helper contract files, serial concurrency. Earlier four-file aggregate is a prior stage, not exact-final-source validation. Not Full or an individual-file cost observation.",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-reporter=tap",
+    "tests/helpers/run-healing-followup-historical-contract.mjs",
+    "tests/helpers/run-healing-followup-current-contract.mjs"
+  ],
+  "startedAt": "2026-11-10T10:15:14.070Z",
+  "wallMs": 1107.9680640000001,
+  "exitCode": 1,
+  "signal": null,
+  "tests": 5,
+  "pass": 4,
+  "fail": 1,
+  "cancelled": 0,
+  "skipped": 0,
+  "inputFilesUnchanged": true,
+  "inputPath": "docs/evidence/m7-run-healing-contracts-20261110/followup-final-helper-inputs.json.gz",
+  "inputSha256": "b1476968bbc480e7f71a716f07a5cdc9ee4f25375dcad78d65e0d7711f005191",
+  "logPath": "docs/evidence/m7-run-healing-contracts-20261110/followup-final-helper.log.gz",
+  "logSha256": "1b4c598af4d97f96e89b8997900aba6567315ad3fb55d2f0d7387da78ebd368d",
+  "logUncompressedSha256": "b0e26b2ae63886877462e497da203f27a6d3460b0371eb50a05bc479d9416725",
+  "collectorSha256": "7768856199f927f5f8444de850f0ed4954710be7b91284a3b92701c928894191"
+}

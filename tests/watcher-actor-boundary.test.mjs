@@ -6,6 +6,7 @@ import {baselineSources,watcherVm} from './helpers/watcher-actor-vm.mjs';
 import {analyzeSources} from '../scripts/check-architecture.mjs';
 import {luaString} from '../scripts/build-lua-data.mjs';
 import {discoverSources,dependencyCycles} from '../scripts/lua-quality-metrics.mjs';
+import {runHealingEpoch} from './helpers/run-healing-source-epoch.mjs';
 const file='src/lua/abyss_watcher_attack_cards.lua';
 const queued='src/lua/abyss_combat_queued_play.lua';
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
@@ -23,8 +24,21 @@ test('Watcher planning leaves the complete SCC without hiding delayed requires',
  assert.deepEqual(report.errors,[]);
  const additions=['abyss_actor_presence','abyss_colorless_catalog','abyss_native_pages','abyss_relic_potion_hooks','abyss_turn_power_phases'];
  for(const name of additions)assert(Object.hasOwn(sources,name),'develop added owner: '+name);
- assert.equal(Object.keys(sources).filter(name=>!additions.includes(name)).length,333,'original inventory retained alongside five develop additions');
- assert.equal(Object.keys(sources).length,338,'complete current combined inventory');
+ // Preserve the complete pre-healing inventory independently of the live one.
+ // The projector retains new witnesses. Only this separate historical graph
+ // omits the exact owner whose authenticated predecessor binding is null.
+ const health='src/lua/abyss_run_health.lua';
+ assert.equal(runHealingEpoch.proof.targets.prior.files[health],null,'new healing owner was absent from the complete predecessor');
+ assert.equal(createHash('sha256').update(raw[health].replaceAll('\r\n','\n')).digest('hex'),runHealingEpoch.proof.current[health].sha256,'complete healing owner before constructing historical graph');
+ const priorRaw=Object.fromEntries(Object.entries(raw).map(([path,source])=>[path,path===health?null:runHealingEpoch.preCombinedSource(path,source,{target:'prior',readSource:read})]));
+ const priorSources=Object.fromEntries(Object.entries(priorRaw).filter(([,source])=>source!==null).map(([path,source])=>[path.split('/').at(-1).slice(0,-4),source]));
+ assert.equal(Object.keys(priorSources).filter(name=>!additions.includes(name)).length,333,'original inventory retained alongside five develop additions');
+ assert.equal(Object.keys(priorSources).length,338,'complete current combined inventory');
+ const priorPolicy=JSON.parse(runHealingEpoch.preCombinedSource('config/architecture.json',read('config/architecture.json'),{target:'prior',readSource:read}));
+ assert.deepEqual(analyzeSources(priorSources,priorPolicy).errors,[],'complete predecessor remains independently valid');
+ assert(Object.hasOwn(sources,'abyss_run_health'),'current healing owner remains measured');
+ assert.equal(Object.keys(sources).filter(name=>![...additions,'abyss_run_health'].includes(name)).length,333,'live inventory retains all original owners');
+ assert.equal(Object.keys(sources).length,339,'complete current healing inventory');
  assert(!dependencyCycles(report.nodes,report.edges).some(c=>c.members.includes('abyss_watcher_attack_cards')));
  assert.deepEqual(report.edges.filter(e=>e.from==='abyss_watcher_attack_cards'),[]);
  const actorEdges=report.edges.filter(e=>e.from==='abyss_combat_queued_play'&&e.to==='abyss_actor');

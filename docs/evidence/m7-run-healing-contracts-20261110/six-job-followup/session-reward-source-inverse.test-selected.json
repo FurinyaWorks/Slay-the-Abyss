@@ -1,0 +1,28 @@
+{
+  "file": "tests/session-reward-source-inverse.test.mjs",
+  "selectedNames": [
+    "current combined Session and M7 projections preserve the original complete before sources"
+  ],
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=^(?:current\\ combined\\ Session\\ and\\ M7\\ projections\\ preserve\\ the\\ original\\ complete\\ before\\ sources)$",
+    "tests/session-reward-source-inverse.test.mjs"
+  ],
+  "exitCode": 0,
+  "elapsedMs": 8396.133661270142,
+  "testSha256": "8f84d269f72bdbcf4fbc85c92c99106a409f05a464dc1fb2b2f795d6cfe9c585",
+  "testInputUnchanged": true,
+  "summary": {
+    "tests": 1.0,
+    "pass": 1.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 8311.790533
+  },
+  "logPath": "/tmp/pr599-six-failures/session-reward-source-inverse.test-selected.log",
+  "logSha256": "80f7636771ffd6acdadab30f9d1ffbe9924e363ae46a3ce4cf89d52be9dcbfff",
+  "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+}

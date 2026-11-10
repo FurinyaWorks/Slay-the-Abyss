@@ -1,0 +1,34 @@
+{
+  "tests/colorless-catalog-source.test.mjs": [
+    "old, foreign, partial and witness-only inputs never grant linked I/O",
+    "CRLF and exact input-only JSON formatting retain prior strict token behavior",
+    "existing final M7 and relic lifecycle chains consume exact pre-extraction owners",
+    "every current Colorless entry freshly authenticates the full dynamic owner set through all reader forms"
+  ],
+  "tests/living-wall-architecture-inverse.test.mjs": [
+    "only the complete LivingWall increment restores authenticated prior architecture and all older witnesses",
+    "warm LivingWall projections freshly bind linked policy bytes, including guard removal and deletion",
+    "both outer entries authenticate foreign tokens before IO and reread reviewed linked inputs after warmup"
+  ],
+  "tests/session-reward-source-inverse.test.mjs": [
+    "current combined Session and M7 projections preserve the original complete before sources"
+  ],
+  "tests/watcher-final-execution.test.mjs": [
+    "current raw source composes into the unchanged 391 proof and rejects every linked owner drift"
+  ],
+  "tests/encounter-formation-source-epoch.test.mjs": [
+    "live LF and CRLF raw owner reads authenticate 51 current owners on every call"
+  ],
+  "tests/potion-callback-source.test.mjs": [
+    "CRLF and input-only JSON layout equivalence never relax linked raw bytes or exact tokens",
+    "the final M7 outer seam and existing relic chain preserve their exact older epochs",
+    "a detached source-only import observes actual file drift and deletion after warmup",
+    "the existing historical retirement entry handles potion callback leaf present and absent without weakening old guards",
+    "the current potion facade freshly rejects every expanded raw owner after warm nested reads"
+  ],
+  "tests/watcher-potion-integration-source.test.mjs": [
+    "all six combined owners bind actual complete sources and preserve independent frozen identities",
+    "combined reads freshly authenticate all six owners on every call and reused wrapper",
+    "every combined linked owner rejects drift, mixed epochs and missing sources after warmed projections"
+  ]
+}

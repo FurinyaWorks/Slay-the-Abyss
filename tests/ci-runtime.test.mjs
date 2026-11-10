@@ -1,4 +1,4 @@
-import {preRunHealingCiSource} from './helpers/run-healing-ci-source-inverse.mjs';
+import {preRunHealingCiSource} from './helpers/run-healing-followup-predecessor.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';

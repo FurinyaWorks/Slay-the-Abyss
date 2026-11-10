@@ -1,0 +1,31 @@
+{
+  "file": "tests/colorless-catalog-source.test.mjs",
+  "selectedNames": [
+    "old, foreign, partial and witness-only inputs never grant linked I/O",
+    "CRLF and exact input-only JSON formatting retain prior strict token behavior",
+    "existing final M7 and relic lifecycle chains consume exact pre-extraction owners",
+    "every current Colorless entry freshly authenticates the full dynamic owner set through all reader forms"
+  ],
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=^(?:old,\\ foreign,\\ partial\\ and\\ witness\\-only\\ inputs\\ never\\ grant\\ linked\\ I/O|CRLF\\ and\\ exact\\ input\\-only\\ JSON\\ formatting\\ retain\\ prior\\ strict\\ token\\ behavior|existing\\ final\\ M7\\ and\\ relic\\ lifecycle\\ chains\\ consume\\ exact\\ pre\\-extraction\\ owners|every\\ current\\ Colorless\\ entry\\ freshly\\ authenticates\\ the\\ full\\ dynamic\\ owner\\ set\\ through\\ all\\ reader\\ forms)$",
+    "tests/colorless-catalog-source.test.mjs"
+  ],
+  "exitCode": 0,
+  "elapsedMs": 10554.57615852356,
+  "testSha256": "dc38b0a3420833e3b1a820ca714b9a654aae61d1235d7adc5bcdc4145c9275a4",
+  "testInputUnchanged": true,
+  "summary": {
+    "tests": 4.0,
+    "pass": 4.0,
+    "fail": 0.0,
+    "cancelled": 0.0,
+    "skipped": 0.0,
+    "duration_ms": 10468.350965
+  },
+  "logPath": "/tmp/pr599-six-failures/colorless-catalog-source.test-selected.log",
+  "logSha256": "a15913bd3d9420943c223066708b632848edd9641613eb92883ac5a56882040d",
+  "scope": "Only old hosted failing test names selected. Other tests not executed; not Full."
+}
