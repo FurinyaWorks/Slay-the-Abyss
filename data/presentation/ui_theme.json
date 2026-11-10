@@ -3350,7 +3350,7 @@
     "sourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
     "font": { "card": 14, "cardName": 16, "cost": 25 },
     "motion": { "hoverLift": 80, "hoverScale": 1.22 },
-    "cardSkin": { "text": { "title": "#FFFFFF", "body": "#FFF6E2" }, "costText": "#FFF8E7", "typeInk": "#595959", "artWells": { "attack": "#551C24", "skill": "#1A3042", "power": "#252536" } },
+    "cardSkin": { "text": { "title": "#FFFFFF", "body": "#FFF6E2" }, "costText": "#FFF8E7", "costOutline": { "colour": "#4D4D4D", "opacity": 1 }, "typeInk": "#595959", "artWells": { "attack": "#551C24", "skill": "#1A3042", "power": "#252536" } },
     "color": {
       "mapCanvas": {
         "available": "#17212B",
