@@ -34,12 +34,15 @@ test('official cost medallions pair the selected light material with neutral dar
  // material/ink choice; this is a source contract, not measured texture contrast.
  assert.equal(theme.officialAssets.images.costDisc,107270);
  assert.equal(theme.cardSkin.costText,'#403829');
+ assert.equal(theme.cardSkin.battleCostText,'#FFF8D8');
+ const battleCards=new Set(all(child(layout,'battlePanel')).filter(n=>child(n,'roundFrame')&&child(n,'costDisc')));
+ assert.equal(battleCards.size,10);
  const cards=[...all(layout),...all(template)].filter(n=>child(n,'roundFrame')&&child(n,'costDisc'));
  assert(cards.length>=40);
  for(const card of cards){
   const core=child(card,'costCore');
-  assert.equal(core.image,107270,card.name+' cost material');
-  assert.equal(core.colour,'#FFFFFF',card.name+' cost material must remain untinted');
+  assert.equal(core.image,battleCards.has(card)?107203:107270,card.name+' scoped cost material');
+  assert.equal(core.colour,battleCards.has(card)?'#FFD06A':'#FFFFFF',card.name+' scoped cost tint');
   assert.equal(core.size[0],core.size[1],card.name+' cost material must remain circular');
  }
  assert.deepEqual(theme.cardSkin.costTone,nativeTheme.cardSkin.costTone,'red/green cost semantics');

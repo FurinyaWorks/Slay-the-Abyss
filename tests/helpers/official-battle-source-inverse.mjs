@@ -17,7 +17,26 @@ for(const binding of Object.values(proof.files)){
 }
 Object.freeze(proof.files);
 export const officialBattleSourceProof=Object.freeze(proof);
+// Additive continuation: retain the immutable 5b3e source archive above.
+const alignmentArchive=readFileSync(new URL('./official-battle-alignment-source-epoch.json.gz',import.meta.url));
+assert.equal(hash(alignmentArchive),'f834dafca07c62a1b807cbc7df3ae8619f3043a1627b8fb5dee5f464c420d458');
+const alignmentBytes=gunzipSync(alignmentArchive);
+assert.equal(hash(alignmentBytes),'d50eba8195f5d1ac24ae0d0c150c072a83bd360d868b5299252eed7ac0ee2005');
+const alignment=JSON.parse(alignmentBytes);
+assert.equal(alignment.schemaVersion,1);assert.equal(alignment.normalization,'LF');
+assert.equal(alignment.beforeCommit,proof.afterCommit);
+assert.deepEqual(Object.keys(alignment.files).sort(),[...Object.keys(proof.files),'src/lua/abyss_game_ui_input.lua','src/lua/abyss_battle_render_hud.lua'].sort());
+for(const [path,binding]of Object.entries(alignment.files)){
+ for(const side of ['before','after'])assert.equal(hash(binding[side+'Source']),binding[side+'Sha256']);
+ if(Object.hasOwn(proof.files,path))assert.equal(binding.beforeSource,proof.files[path].afterSource);
+ Object.freeze(binding);
+}
+Object.freeze(alignment.files);
+export const officialBattleAlignmentSourceProof=Object.freeze(alignment);
 export function preOfficialBattleSource(path,source){
+ const continuation=Object.hasOwn(alignment.files,path)?alignment.files[path]:null;
+ if(continuation&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===continuation.afterSha256)
+  source=continuation.beforeSource;
  const binding=Object.hasOwn(proof.files,path)?proof.files[path]:null;
  if(!binding||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!==binding.afterSha256)return source;
  return binding.beforeSource;

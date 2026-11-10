@@ -106,11 +106,13 @@ for _,entry in ipairs(textures)do assert(entry[1].imageId==entry[2],'render repl
 local Skin=require('abyss_card_skin');local theme=H.F.Theme
 local card=p:GetChild('card1');local number=card:GetChild('cost')
 local ink=theme.cardSkin.costText
+local battleInk=theme.cardSkin.battleCostText
 assert(ink.r==64 and ink.g==56 and ink.b==41,'official neutral ink')
+assert(battleInk.r==255 and battleInk.g==248 and battleInk.b==216,'battle coin neutral ink')
 local function colour(actual,expected,label)
  assert(actual and actual.r==expected.r and actual.g==expected.g and actual.b==expected.b,label)
 end
-colour(number.fontColor,ink,'live neutral cost')
+colour(number.fontColor,battleInk,'live battle neutral cost')
 local paint={color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end}
 local definition=C.cardDefinition(b,b.hand[1])
 for _,case in ipairs({
@@ -123,8 +125,12 @@ for _,case in ipairs({
  Skin.apply(card,definition,paint,case)
  colour(number.fontColor,case.tone,'live cost semantic ink')
  assert(card:GetChild('costDirection').text==case.direction,'live cost direction')
+ case.surfaceScope='battle'
+ Skin.apply(card,definition,paint,case)
+ colour(number.fontColor,case.tone==ink and battleInk or case.tone,'battle scoped semantic ink')
+ assert(card:GetChild('costDirection').text==case.direction,'battle scoped cost direction')
 end
-u:render();colour(number.fontColor,ink,'neutral ink restored after semantic cost changes')
+u:render();colour(number.fontColor,battleInk,'battle neutral ink restored after semantic cost changes')
 unchanged(b,before,'official image binding mutated Combat')
 unchanged(H.F.Data,dataBefore,'official image binding mutated Core data')
 -- Selection alone is presentation-only. A resize invalidates the held pointer,

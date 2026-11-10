@@ -56,6 +56,17 @@
 - check:engineering 通过：344 模块、5879 测量、无新增 Luacheck 诊断，原有复杂度门槛未放宽，4 个关键变异被捕获、原生 UI 生命周期 6/6。
 - 日常 check:platform-load 通过；它检查默认生产 manifest，不是本候选官方容量。
 - check:syntax 与 git diff --check 通过。
+- verify:backlog 与 check:guidance 通过。
 - 独立 battle_review 复核无未解决 P1/P2；最终 12 文件摘要 `c4e9842ae2b63b38a98a0a6b7abbd247336719cb61223e76bd53d915380c77c4`；末次只读复核确认两牌堆完整覆盖 caption 且与结束回合无重叠。
 - 官方导入、新 ready、官方 PC/手机帧时、GPU/系统内存、官方容量均 NOT RUN / UNVERIFIED。无有效录像；完整 npm run check 与本轮远端 Full 不在本记录中冒称通过。
 - TASK-103 保持 In Progress、PR #588 保持 Draft；不合并、不发布、不扩展其他页面。
+
+## 接续远端测试修复
+
+推送前远端新增 `756ff8b7`，已保留并线性接续。本轮生产提交为 `94327916e236797ba933096d8490fe04d93a6838`，接续过程中生产源码未变，候选不冒称由新 HEAD 重建。
+
+远端费用合同原来绑定所有卡 107270/深字，现精确区分战斗 10 卡的 107203/白字与其他宿主原材质/深字；真实 CardSkin 两种 scope 均检查降费、升费、能量不足、目标无效和方向符号。费用与运行时 9 项通过。
+
+新增的历史整源合同初跑 4 项失败，补齐新地图输入/HUD 来源后全部 18 项通过。保留旧 official-battle-source-epoch 档案字节，另加 `official-battle-alignment-source-epoch.json.gz`，绑定 `5b3e9f11`→`94327916` 的完整六文件。压缩 SHA `f834dafca07c62a1b807cbc7df3ae8619f3043a1627b8fb5dee5f464c420d458`、内容 SHA `d50eba8195f5d1ac24ae0d0c150c072a83bd360d868b5299252eed7ac0ee2005`；校验每源哈希、前身链、精确路径，保留未知输入、晚期漂移和删除拒绝。未改历史 oracle、生产源码或阈值。失败与成功日志留在本机证据根。
+
+battle_review 对费用两文件与来源三文件分别独立复核，无 P1/P2；摘要分别为 `f45a9df25291993404f044117fe0db31b4282031a695f45c5cde4bb0ab9873fd`、`493fafb841d0ca58f8bd96633465318cc3340bf9c27417b6eccd611b6a808df4`。独审另验证六文件 Git blob 身份、当前源码和精确投影，没有冒称整套复跑。
