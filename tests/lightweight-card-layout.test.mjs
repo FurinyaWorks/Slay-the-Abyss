@@ -126,6 +126,33 @@ test('real CardSkin paints flat rarity/window and resizes blocked reason without
  assert(box:GetChild('roundFrame'):GetChild('flat').imageColor.r==Theme.cardSkin.rarities.rare[1].r)
 `));
 
+test('rarity-colored inner trim and type plate leave role accents and cost semantics unchanged',()=>skinLua(`
+ Theme.cardSkin.rarityWindow=true
+ Theme.cardSkin.typePlate={r=196,g=202,b=211,a=255}
+ local definition={type='attack',rarity='rare',cost=1}
+ Skin.apply(box,definition,platform,{cost=1,baseCost=1})
+ local expected=Theme.cardSkin.rarities.rare[4]
+ local edge=box:GetChild('skin'):GetChild('attack'):GetChild('edge'):GetChild('flat').imageColor
+ assert(edge.r==expected.r and edge.g==expected.g and edge.b==expected.b)
+ local tagEdge=box:GetChild('tagEdge'):GetChild('flat')
+ local typeEdge=box:GetChild('typeEdge')
+ for _,control in ipairs({tagEdge,typeEdge})do
+  local colour=assert(control.imageColor,'missing paint on '..control.name)
+  assert(colour.r==expected.r and colour.g==expected.g and colour.b==expected.b)
+ end
+ local plate=box:GetChild('tagBody'):GetChild('flat').imageColor
+ assert(plate.r==196 and plate.g==202 and plate.b==211)
+ local accent=Theme.cardSkin.roles.traveler.accent
+ local disc=box:GetChild('costDisc').imageColor
+ assert(disc.r==accent.r and disc.g==accent.g and disc.b==accent.b)
+ assert(box:GetChild('roleMark'):GetChild('traveler').visible)
+ local mark=box:GetChild('roleMark'):GetChild('traveler'):GetChild('symbol').imageColor
+ assert(mark.r==accent.r and mark.g==accent.g and mark.b==accent.b)
+ Skin.apply(box,definition,platform,{dim=true,blockReason='insufficient_energy',cost=1,baseCost=1})
+ local blocked=box:GetChild('cost').fontColor
+ assert(blocked.r==Theme.cardSkin.costTone.up.r and blocked.g==Theme.cardSkin.costTone.up.g and blocked.b==Theme.cardSkin.costTone.up.b)
+ `));
+
 test('flat discovery and size failures retain native error propagation',()=>skinLua(`
  local frame=box:GetChild('roundFrame');frame.GetChildren=function()error('native enumeration failed')end
  local ok,reason=pcall(Skin.apply,box,{type='attack',rarity='common',cost=1},platform,{cost=1,baseCost=1})

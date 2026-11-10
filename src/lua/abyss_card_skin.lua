@@ -113,18 +113,21 @@ local function frame(box,definition,look,tint)
 end
 local function window(box,definition,accent,tint)
     local shape=definition.type
+    local rarity=config.rarities[definition.rarity] or config.rarities.basic
+    local edge=config.rarityWindow and rarity[4] or accent
     if not windowNames[shape] then shape='attack' end
     box:GetChild('artPlate'):SetVisible(false);box:GetChild('artWell'):SetVisible(false)
     for kind,names in pairs(windowNames)do
         local group=box:GetChild('skin'):GetChild(kind);group:SetVisible(kind==shape)
         if kind==shape then
-            paint(group:GetChild('edge'),names,accent,tint)
+            paint(group:GetChild('edge'),names,edge,tint)
             local well=config.artWells and config.artWells[shape] or mix(Theme.color.cardWell,accent,.05)
             paint(group:GetChild('well'),names,well,tint)
         end
     end
-    paint(box:GetChild('tagEdge'),roundNames,accent,tint)
-    tint(box:GetChild('typeEdge'),accent)
+    paint(box:GetChild('tagEdge'),roundNames,edge,tint)
+    if config.typePlate then paint(box:GetChild('tagBody'),roundNames,config.typePlate,tint)end
+    tint(box:GetChild('typeEdge'),edge)
 end
 local function emblem(box,role,accent,tint)
     for key in pairs(config.roles)do
