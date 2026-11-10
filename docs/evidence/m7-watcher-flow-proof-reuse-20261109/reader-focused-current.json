@@ -1,0 +1,24 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "--test-name-pattern=injected readers at shared consumer seams",
+    "tests/game-ui-extraction-source-inverse.test.mjs"
+  ],
+  "wallSeconds": 20.578004030998272,
+  "maxRssKiB": 1603940,
+  "exitCode": 0,
+  "tests": 1,
+  "passed": 1,
+  "scope": "Only injected readers at shared consumer seams; not the full14-test GameUI file.",
+  "nodeVersion": "v24.22.1",
+  "logSha256": "74b893694124bf9ecd7597ef1083b7f0cb206193804774c2e2d19678c30359d1",
+  "logGzipSha256": "346890ae1cc1fa579afd4016fa495865d8aeb5cc4d232889bfb234cb5a2c5aa5",
+  "rawInputSha256": {
+    "tests/game-ui-extraction-source-inverse.test.mjs": "96ae4619ac9d4e77ebde18a6b74603b8390a39fc200674a8ded7fea20d264690",
+    "tests/helpers/watcher-flow-preparation-source-epoch.mjs": "da8054f39401640e3f078d145aa1075fd658910d51286bcab1a4163556262056",
+    "tests/helpers/copy-integration-source-closure.mjs": "4c9a1ac6f02e9b1fb5e711820b5cc04ac8b93551cd76d70e1f60b315cba28a0a",
+    "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "911ada4af92457deed01e7b2132ce227d27f4ea87956516630178d364bcccbeb"
+  }
+}

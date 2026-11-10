@@ -1,0 +1,91 @@
+{
+  "base": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "purpose": "Current read-only ownership check for this existing PR586 repair. Shared runtime and original GameUI test remain untouched; closure edits only update this outer helper hash.",
+  "pulls": [
+    {
+      "pr": 591,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/591",
+      "checkedPaths": [
+        "tests/helpers/copy-integration-source-closure.mjs"
+      ]
+    },
+    {
+      "pr": 590,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/590",
+      "checkedPaths": [
+        "tests/helpers/copy-integration-source-closure.mjs"
+      ]
+    },
+    {
+      "pr": 589,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/589",
+      "checkedPaths": []
+    },
+    {
+      "pr": 588,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/588",
+      "checkedPaths": [
+        "tests/helpers/copy-integration-source-closure.mjs",
+        "tests/helpers/combined-epoch/source-epoch-runtime.mjs",
+        "tests/game-ui-extraction-source-inverse.test.mjs"
+      ]
+    },
+    {
+      "pr": 587,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/587",
+      "checkedPaths": [
+        "tests/helpers/copy-integration-source-closure.mjs"
+      ]
+    },
+    {
+      "pr": 586,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/586",
+      "checkedPaths": [
+        "tests/helpers/watcher-flow-preparation-source-epoch.mjs",
+        "tests/watcher-flow-preparation-source-epoch.test.mjs",
+        "tests/helpers/copy-integration-source-closure.mjs"
+      ]
+    },
+    {
+      "pr": 585,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/585",
+      "checkedPaths": [
+        "tests/helpers/copy-integration-source-closure.mjs"
+      ]
+    },
+    {
+      "pr": 584,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/584",
+      "checkedPaths": []
+    },
+    {
+      "pr": 583,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/583",
+      "checkedPaths": [
+        "tests/helpers/copy-integration-source-closure.mjs"
+      ]
+    },
+    {
+      "pr": 582,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/582",
+      "checkedPaths": [
+        "tests/helpers/copy-integration-source-closure.mjs",
+        "tests/helpers/combined-epoch/source-epoch-runtime.mjs",
+        "tests/game-ui-extraction-source-inverse.test.mjs"
+      ]
+    },
+    {
+      "pr": 581,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/581",
+      "checkedPaths": []
+    },
+    {
+      "pr": 579,
+      "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/pull/579",
+      "checkedPaths": [
+        "tests/helpers/copy-integration-source-closure.mjs",
+        "tests/helpers/combined-epoch/source-epoch-runtime.mjs"
+      ]
+    }
+  ]
+}

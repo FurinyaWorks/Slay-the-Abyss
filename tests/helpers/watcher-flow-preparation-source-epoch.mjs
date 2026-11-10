@@ -18,19 +18,23 @@ export function extendWatcherFlowPreparationEpoch(original){
   owners:[...new Set([...prior.owners,...outer.owners])],
   targets:{...prior.targets,watcherFlowPreparationPrior:{commit:outer.targets.prior.commit,files:prior.current}}};
  // Prior proofs are already deeply frozen and authenticated. Do not clone the
- // entire accumulated target graph again for a one-file outer epoch. Keep only
- // one validated target projector alive; authorization itself is never cached.
+ // entire accumulated target graph again for a one-file outer epoch. Retain
+ // at most two validated target projectors to avoid nested target thrashing.
+ // Only immutable construction is reused; authorization is never cached.
  Object.freeze(proof.current);Object.freeze(proof.owners);
  Object.freeze(proof.targets.watcherFlowPreparationPrior);
  Object.freeze(proof.targets);Object.freeze(proof);
- let activeTarget,activeProjector;
+ const projectors=new Map();
  const current={proof,preCombinedSource(path,source,options){
   assert(Object.hasOwn(proof.targets,options.target),'unknown source target');
-  if(activeTarget!==options.target){
-   activeProjector=createSourceEpochProjector({...proof,targets:{[options.target]:proof.targets[options.target]}},{allowConfigLayout:true});
-   activeTarget=options.target;
+  let projector=projectors.get(options.target);
+  if(projector)projectors.delete(options.target);
+  else{
+   if(projectors.size===2)projectors.delete(projectors.keys().next().value);
+   projector=createSourceEpochProjector({...proof,targets:{[options.target]:proof.targets[options.target]}},{allowConfigLayout:true});
   }
-  return activeProjector.preCombinedSource(path,source,options);
+  projectors.set(options.target,projector);
+  return projector.preCombinedSource(path,source,options);
  },combinedReader(readSource,target){
   assert(Object.hasOwn(proof.targets,target),'unknown source target');
   assert.equal(typeof readSource,'function','linked reader must be a function');

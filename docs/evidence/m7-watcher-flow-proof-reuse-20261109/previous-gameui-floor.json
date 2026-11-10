@@ -1,0 +1,11 @@
+{
+  "durationMs": 77215,
+  "environment": "cloud Linux local",
+  "coverage": "13/13 complete file passed; 0 skipped; single-file Node execution.",
+  "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+  "nodeReportedDurationMs": 77214.241194,
+  "sourceLog": "docs/evidence/seven-current-integration-20261108/game-ui-extraction-local.log",
+  "sourceLogSha256": "1779bc98d11ed261d6b2e96256a6030df337c978d95356b18ce8cf1041c2f326",
+  "sourceReceipt": "docs/evidence/seven-current-integration-20261108/game-ui-extraction-planning.json",
+  "sourceReceiptSha256": "0a7cb353d3a795706a33a3049e65d730be31861083eba807fd5019684c6feb30"
+}

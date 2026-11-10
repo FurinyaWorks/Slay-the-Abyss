@@ -5214,15 +5214,18 @@
         "nodeReportedDurationMs": 15812.642915
       },
       "tests/game-ui-extraction-source-inverse.test.mjs": {
-        "durationMs": 77215,
+        "durationMs": 78819,
         "environment": "cloud Linux local",
-        "coverage": "13/13 complete file passed; 0 skipped; single-file Node execution.",
+        "tests": 14,
+        "coverage": "14/14 complete file passed; 0 failed, cancelled or skipped.",
         "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
-        "nodeReportedDurationMs": 77214.241194,
-        "sourceLog": "docs/evidence/seven-current-integration-20261108/game-ui-extraction-local.log",
-        "sourceLogSha256": "1779bc98d11ed261d6b2e96256a6030df337c978d95356b18ce8cf1041c2f326",
-        "sourceReceipt": "docs/evidence/seven-current-integration-20261108/game-ui-extraction-planning.json",
-        "sourceReceiptSha256": "0a7cb353d3a795706a33a3049e65d730be31861083eba807fd5019684c6feb30"
+        "nodeReportedDurationMs": 78818.61186,
+        "sourceLog": "docs/evidence/m7-watcher-flow-proof-reuse-20261109/gameui.log.gz",
+        "sourceLogSha256": "2547b2df8adb6cb9cfc72076e3d594ad2de84129faf5083b2f5409fb0e2cbac4",
+        "sourceLogUncompressedSha256": "6a95921413688ef51d00e706cb3faf6566edde027227c5f6b5723717e4681503",
+        "testSha256": "96ae4619ac9d4e77ebde18a6b74603b8390a39fc200674a8ded7fea20d264690",
+        "sourceReceipt": "docs/evidence/m7-watcher-flow-proof-reuse-20261109/gameui-receipt.json",
+        "sourceReceiptSha256": "f0ddad14accf4fce2133d8de4a14d205d99ba7237136678a43532aa9b9818ee5"
       },
       "tests/combat-reactions-architecture-inverse.test.mjs": {
         "durationMs": 80063,

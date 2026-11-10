@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "tests/game-ui-extraction-source-inverse.test.mjs"
+  ],
+  "exitCode": 1,
+  "wallSeconds": 24.008475196998916,
+  "maxChildRssKiB": 1526816
+}

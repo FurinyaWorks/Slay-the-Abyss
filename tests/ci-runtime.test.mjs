@@ -1,3 +1,4 @@
+import {preWatcherFlowProofReuseSource,watcherFlowProofReuseProof} from './helpers/watcher-flow-proof-reuse-source-inverse.mjs';
 import {preEffects48PlanningSource} from './helpers/effects48-planning-source-inverse.mjs';
 import {preFlowLiveReaderSource} from './helpers/flow-live-reader-source-inverse.mjs';
 import {preWatcherFlowPreparationCiSource} from './helpers/watcher-flow-preparation-ci-source-inverse.mjs';
@@ -165,7 +166,7 @@ test('real executor preserves test failure, continues later files, reports timin
 
 
 test('pre-Watcher Flow preparation timing records preserve all measured corrections without duplicate JSON keys',()=>{
- const raw=preWatcherFlowPreparationCiSource('scripts/ci-test-timings.json',preFlowLiveReaderSource('scripts/ci-test-timings.json',preEffects48PlanningSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8'))));
+ const raw=preWatcherFlowPreparationCiSource('scripts/ci-test-timings.json',preFlowLiveReaderSource('scripts/ci-test-timings.json',preEffects48PlanningSource('scripts/ci-test-timings.json',preWatcherFlowProofReuseSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8')))));
  const timings=JSON.parse(raw);
  const jsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(timings.js[platform][file]??timings.unknownJsMs,timings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
  assert.equal((raw.match(/^  "jsCorrections":/gm)||[]).length,1,'one unambiguous correction inventory');
@@ -379,9 +380,13 @@ test('complete local Game UI run raises only its planning floor and preserves ev
  assert.equal(Object.keys(old.jsPlanning.localLowerBounds).length,19);assert.equal(old.jsPlanning.localLowerBounds[key],undefined);
  expected.jsPlanning.localLowerBounds[key]=floor;
  assert.equal(JSON.stringify(expected,null,2)+'\n',source);
+ // Execute the unchanged real weight function against the exact authenticated
+ // historical timing input; current pricing is asserted independently below.
+ const historicalWeights=Function('timings','return ('+jsPlanningWeights.toString()+')')(JSON.parse(source));
  for(const platform of ['win32','linux']){
   assert.equal(timings.js[platform][key],10000,'retain actual old observations separately from the new local planning floor');
-  assert.equal(jsPlanningWeights([key],platform)[key],Math.max(timings.js[platform][key],floor.durationMs));
+  assert.equal(historicalWeights([key],platform)[key],Math.max(timings.js[platform][key],floor.durationMs));
+  assert.equal(jsPlanningWeights([key],platform)[key],Math.max(timings.js[platform][key],watcherFlowProofReuseProof.floor.durationMs));
  }
  assert.equal(preGameUiLocalPlanningSource(path,source.replaceAll('\n','\r\n')),prior);
  assert.equal(preGameUiLocalPlanningSource('foreign/'+path,source),source);

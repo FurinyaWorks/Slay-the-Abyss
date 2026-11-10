@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-09T08:33:00Z'
+updated_date: '2026-11-09T20:52:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -35,6 +35,7 @@ documentation:
   - docs/evidence/m7-watcher-flow-cost-20261109/README.md
   - docs/evidence/m7-watcher-flow-live-readers-20261109/README.md
   - docs/evidence/m7-watcher-flow-effects-reader-20261109/README.md
+  - docs/evidence/m7-watcher-flow-proof-reuse-20261109/README.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -217,4 +218,8 @@ Windows18接续定向验证已通过：五文件115/115，补强后交付/队列
 2026-11-09：历史live-reader最终合同收口：CI历史合同/runtime两文件60/60通过，补充当前17片拒绝后仅calibration最终47/47（覆盖前次对应项，不叠计）；377保护文件不变，timings仅保留两项更慢样本。待独审及新精确HEAD Hosted，保持未合。
 
 2026-11-09：#586自然Hosted又发现Effects48直接owner字节比较遗漏；扩大13epoch/13闭包/7当前复制/8历史链审计后仅新增此处，按原48证明最小投影补齐。完整11/11，新增明确floor22618为第35项，原34项不动；最终CI61/61、间接9/9。当前18Windows/15POSIX模型1705020/1137392ms，仍低于原预算。已保留来源失败、十份Luacheck504和POSIX1原因未明取消日志；Hosted与合后未通过，不重跑Full或绕门禁。
+
+2026-11-09：WatcherFlow 新 outer 的不可变证明构造抖动已做独立性能切片，基于未合并58b1fcc，仅保留最多两个已验证projector，不缓存授权/读者/投影结果；51-owner逐次有序读取、跨target、重入淘汰和漂移拒绝永久回归通过。与#579/#582共享runtime及GameUI原测试分工隔离，未改其实现。原GameUI完整14/14为78818.61186ms，永久来源12/12为26235.83895ms，最终CI62/62、间接9/9；默认Node无扩大heap，maxChildRss2205204KiB约2.10GiB。GameUI floor仅77215升至78819，旧全对象和其他34项保留；完整802JS/1410Lua模型Windows18=1705160、POSIX15=1137499，旧17失败反例仍在。原HEAD/旧helper的Hosted成功慢样本1157502.785265ms及全部失败日志保持，不能由本地78.8秒替换，不宣称Hosted已修复；新精确HEAD Hosted、发布及合后验证仍待。无Full重跑、ready、合并，Furinya/In Progress及原AC均不变。完整证据见新增附件。
+
+接续#586当前3b281879的POSIX1取消诊断，56选中文件仅33份成功收据、23份未完成；GameUI完整1310431ms，注入reader案例522345ms，取消发起方未知。复用既有c5b6af1a双projector构造候选，不改共享runtime、原GameUI用例、51-owner fresh-read或门禁。本轮相同注入reader定向1/1，案例5848ms/全进程20.58秒；本地与Hosted不可直接换算。交付只保留必要源码和验证证据，独审后接续原PR，精确新HEAD Hosted及Licenses仍待，不重跑Full、不改Furinya/In Progress或AC。
 <!-- SECTION:NOTES:END -->

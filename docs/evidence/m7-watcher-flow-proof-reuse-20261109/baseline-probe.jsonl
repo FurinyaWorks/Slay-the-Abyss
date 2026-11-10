@@ -1,0 +1,4 @@
+{"path":"config/architecture.json","ms":4143.111001000001,"bytes":30460,"stats":{"constructs":78,"constructMs":4069.2309469999927,"targets":{"native":39,"develop":39},"calls":84},"memory":{"rss":1416556544,"heapTotal":1315262464,"heapUsed":1231610176,"external":9883808,"arrayBuffers":539843}}
+{"path":"src/lua/abyss_game_ui.lua","ms":139.82850099999996,"bytes":11540,"stats":{"constructs":80,"constructMs":4205.457343999995,"targets":{"native":40,"develop":40},"calls":89},"memory":{"rss":1394229248,"heapTotal":1292910592,"heapUsed":1177296776,"external":9883848,"arrayBuffers":539843}}
+{"path":"src/lua/abyss_actor.lua","ms":4007.241904999999,"bytes":51269,"stats":{"constructs":158,"constructMs":8174.045561000014,"targets":{"native":79,"develop":79},"calls":170},"memory":{"rss":1577123840,"heapTotal":1471987712,"heapUsed":1388015536,"external":9883848,"arrayBuffers":539843}}
+{"totalMs":19536.281374000002}

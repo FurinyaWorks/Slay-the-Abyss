@@ -1,0 +1,12 @@
+{
+  "head": "3f633f3123d41e0a0d19955c91e7b9e226722b7a",
+  "jobId": 129040954716,
+  "rawLogPath": "docs/evidence/m7-watcher-flow-proof-reuse-20261109/hosted-old-posix1.log.gz",
+  "rawLogSha256": "af4c74112f82aa0bb23cc5159670abccd7509bee13c34d4d844c33ff067f3010",
+  "oldOuterHelperSha256": "773b8738355b677bd65c042c0ae9f421d3e838b6f9553c495b8592a4be0a9e1c",
+  "completeSuccessRecord": [
+    "2026-11-09T08:12:00.7514561Z CI_FILE_TIMING {\"file\":\"tests/game-ui-extraction-source-inverse.test.mjs\",\"durationMs\":1157502.785265,\"success\":true}"
+  ],
+  "note": "Historical hosted observation retained. Local candidate timing is not evidence of new hosted runtime or cost admission.",
+  "compressedLogSha256": "928dbc72d6dfc21297468f1e4e41d57b19140ad8fcd482ef5c3801acc75dbee4"
+}

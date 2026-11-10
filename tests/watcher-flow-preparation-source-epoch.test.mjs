@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -134,4 +134,49 @@ test('source and configuration reject unknown targets and malformed live readers
   assert.throws(()=>sourceEpoch.preCombinedSource(file,raw(file),{target,readSource(){throw Error('unavailable');}}),/linked owner missing/);
   for(const value of [{},17,false,undefined])assert.throws(()=>sourceEpoch.preCombinedSource(file,raw(file),{target,readSource:()=>value}),/linked owner identity/);
  }
+});
+
+test('bounded immutable projector reuse preserves ordered fresh authorization across targets and nested eviction',async()=>{
+ const directory=mkdtempSync(join(tmpdir(),'flow-projector-reuse-'));
+ try{
+  copyIntegrationSourceClosure(directory);
+  const file=join(directory,'tests/helpers/watcher-flow-preparation-source-epoch.mjs');
+  let source=readFileSync(file,'utf8');
+  // Instrument only construction and retained keys in an isolated copy. This
+  // does not replace the projector or its owner authentication implementation.
+  const construction='   projector=createSourceEpochProjector',retention='  projectors.set(options.target,projector);';
+  assert.equal(source.split(construction).length,2);assert.equal(source.split(retention).length,2);
+  source=source.replace(construction,'   reuseProbe.constructions.push(options.target);\n'+construction)
+   .replace(retention,retention+'\n  reuseProbe.retained.push([...projectors.keys()]);')
+   +'\nexport const reuseProbe={constructions:[],retained:[]};\n';
+  writeFileSync(file,source);
+  const {extendWatcherFlowPreparationEpoch,reuseProbe}=await import(pathToFileURL(file).href);
+  const epoch=extendWatcherFlowPreparationEpoch(preWatcherFlowPreparationEpoch),config='config/architecture.json',input=raw(config);
+  const targets=['native','develop','actor'];
+  for(const target of targets)assert.notEqual(proof.targets[target].files[config].sha256,proof.current[config].sha256);
+  const reads=[],reader=p=>{reads.push(p);return raw(p);};
+  for(const target of ['native','develop','native','actor','native','develop']){
+   const start=reads.length;
+   assert.equal(epoch.preCombinedSource(config,input,{target,readSource:reader}),proof.targets[target].files[config].source);
+   assert.deepEqual(reads.slice(start),proof.owners,'all51 ordered owners are read on every cache hit or miss');
+  }
+  assert.deepEqual(reuseProbe.constructions,['native','develop','actor','develop']);
+  assert.ok(reuseProbe.retained.every(keys=>keys.length<=2),'retained immutable projectors are bounded');
+  for(const owner of proof.owners){
+   let changed=false;const read=p=>changed&&p===owner?raw(p)+'\n':raw(p);
+   epoch.preCombinedSource(config,input,{target:'native',readSource:read});changed=true;
+   assert.throws(()=>epoch.preCombinedSource(config,input,{target:'native',readSource:read}),/linked owner identity/,owner);
+   assert.throws(()=>epoch.preCombinedSource(config,input,{target:'develop',readSource:p=>p===owner?null:raw(p)}),/linked owner identity/,owner);
+  }
+  let entered=false;const outer=[];
+  const nested=p=>{outer.push(p);if(!entered){entered=true;for(const target of ['actor','develop'])epoch.preCombinedSource(config,input,{target,readSource:reader});}return raw(p);};
+  assert.equal(epoch.preCombinedSource(config,input,{target:'native',readSource:nested}),proof.targets.native.files[config].source);
+  assert.deepEqual(outer,proof.owners,'nested eviction does not replace the executing projector or its reader');
+  let changed=false;const last=proof.owners.at(-1);
+  assert.throws(()=>epoch.preCombinedSource(config,input,{target:'native',readSource:p=>{if(p===proof.owners[0])changed=true;return changed&&p===last?raw(p)+'\n':raw(p);}}),/linked owner identity/);
+  let forbidden=0;for(const value of ['foreign',proof.targets.native.files[config].source])assert.equal(epoch.preCombinedSource(config,value,{target:'native',readSource(){forbidden++;throw Error('must not read');}}),value);
+  assert.equal(forbidden,0);assert.throws(()=>epoch.preCombinedSource(config,input,{target:'unknown',readSource:reader}),/unknown source target/);
+  assert.throws(()=>epoch.preCombinedSource(config,input,{target:'native',readSource:null}),/reader/);
+  assert.ok(reuseProbe.retained.every(keys=>keys.length<=2));
+ }finally{rmSync(directory,{recursive:true,force:true});}
 });

@@ -1,3 +1,4 @@
+import {preWatcherFlowProofReuseSource,watcherFlowProofReuseProof} from './helpers/watcher-flow-proof-reuse-source-inverse.mjs';
 import {preEffects48PlanningSource,effects48PlanningProof} from './helpers/effects48-planning-source-inverse.mjs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -42,8 +43,14 @@ import {preWatcherFlowPreparationCiSource,watcherFlowPreparationCiProof,watcherF
 const watcherFlowPreparationJs=['tests/watcher-flow-preparation.test.mjs','tests/watcher-flow-preparation-source-epoch.test.mjs'];
 // Complete historical 800-file contracts remain fixed; actual802 is tested separately.
 const discoverJs=()=>actualDiscoverJs().filter(file=>!watcherFlowPreparationJs.includes(file));
-const diskReadFileSync=(file,encoding)=>{
+// Only published historical receipt/planning inputs pass this exact boundary.
+const proofReusePriorDiskReadFileSync=(file,encoding)=>{
  const raw=actualDiskReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
+ const prior=preWatcherFlowProofReuseSource(file,text);
+ return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
+};
+const diskReadFileSync=(file,encoding)=>{
+ const raw=proofReusePriorDiskReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
  const prior=preWindows18ShapeSource(file,preWatcherFlowPreparationCiSource(file,preFlowLiveReaderSource(file,preEffects48PlanningSource(file,text))));
  return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
 };
@@ -1063,7 +1070,7 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
 
 test('Watcher Flow preparation recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
  for(const [file,binding]of Object.entries(watcherFlowPreparationCiProof.files)){
-  const raw=preFlowLiveReaderSource(file,preEffects48PlanningSource(file,actualDiskReadFileSync(file,'utf8'))).replaceAll('\r\n','\n');
+  const raw=preFlowLiveReaderSource(file,preEffects48PlanningSource(file,proofReusePriorDiskReadFileSync(file,'utf8'))).replaceAll('\r\n','\n');
   assert.equal(hash(raw),binding.afterSha256,file);
   assert.equal(hash(binding.beforeSource),binding.beforeSha256,file);
   for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preWatcherFlowPreparationCiSource(file,source),binding.beforeSource);
@@ -1097,7 +1104,7 @@ test('current Watcher Flow preparation802 Full38 inventory adds only two files u
   const priorWeights=currentJsPlanningWeights(discoverJs(),platform),currentWeights=actualJsPlanningWeights(discoverJs(),platform);
   const increasedOldWork=Object.keys(priorWeights).reduce((sum,file)=>sum+currentWeights[file]-priorWeights[file],0);
   const planning='tests/watcher-flow-planning.test.mjs';
-  assert.equal(increasedOldWork,[planning,...Object.keys(flowLiveReaderProof.floors),effects48PlanningProof.key].reduce((sum,file)=>sum+currentWeights[file]-priorWeights[file],0),'the adverse complete historical-test observation remains in current costs');
+  assert.equal(increasedOldWork,[planning,...Object.keys(flowLiveReaderProof.floors),effects48PlanningProof.key,watcherFlowProofReuseProof.key].reduce((sum,file)=>sum+currentWeights[file]-priorWeights[file],0),'the adverse complete historical-test observation remains in current costs');
   assert.equal(currentWeights[planning],Math.max(liveTimings.js[platform][planning]??liveTimings.unknownJsMs,watcherFlowPreparationPlanningFloors[planning].durationMs));
   let maximum=Math.max(...loads);
   if(platform==='win32'){
@@ -1117,25 +1124,25 @@ test('current Watcher Flow preparation802 Full38 inventory adds only two files u
 
 test('Watcher Flow preparation complete local floors authenticate actual files and preserve every prior observation',()=>{
  assert.deepEqual(Object.keys(watcherFlowPreparationPlanningFloors).sort(),[...watcherFlowPreparationJs,'tests/watcher-flow-planning.test.mjs'].sort());
- const current=JSON.parse(preFlowLiveReaderSource(path,preEffects48PlanningSource(path,actualDiskReadFileSync(path,'utf8'))));
+ const current=JSON.parse(preFlowLiveReaderSource(path,preEffects48PlanningSource(path,proofReusePriorDiskReadFileSync(path,'utf8'))));
  for(const [key,floor]of Object.entries(watcherFlowPreparationPlanningFloors)){
   assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);
   const prior=actualCurrentTimings.jsPlanning.localLowerBounds[key];
   if(prior)current.jsPlanning.localLowerBounds[key]=prior;else delete current.jsPlanning.localLowerBounds[key];
-  const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  const bytes=proofReusePriorDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
   assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
-  const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+  const receiptBytes=proofReusePriorDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
   assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
   assert.equal(receipt.test,key);assert.deepEqual([receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[floor.tests,floor.tests,0,0,0]);
   assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);
   assert.equal(receipt.sourceLogSha256,floor.sourceLogSha256);assert.equal(receipt.sourceLogUncompressedSha256,floor.sourceLogUncompressedSha256);
-  assert.equal(hash(actualDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n')),floor.testSha256);
+  assert.equal(hash(proofReusePriorDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n')),floor.testSha256);
   assert.equal(receipt.inputSha256[key],floor.testSha256);
   assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));assert.match(floor.kind,/not .*hosted/);
   for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
   assert.ok(Object.keys(receipt.inputSha256).length>0);
   for(const [file,sha]of Object.entries(receipt.inputSha256)){
-   const raw=actualDiskReadFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n')),sha,file);
+   const raw=proofReusePriorDiskReadFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n')),sha,file);
   }
  }
  assert.deepEqual(current,actualCurrentTimings,'all old costs, hosted measurements, safety inputs and thresholds remain unchanged');
@@ -1162,38 +1169,38 @@ test('live-reader repair admits only three exact complete sources and preserves 
  const inputHash=(file,bytes)=>hash(file.endsWith('.gz')?bytes:bytes.toString('utf8').replaceAll('\r\n','\n'));
  assert.deepEqual(Object.keys(flowLiveReaderProof.files).sort(),[path,'tests/silent-final-source-epoch.test.mjs','tests/defect-final-source-epoch.test.mjs'].sort());
  for(const [file,binding]of Object.entries(flowLiveReaderProof.files)){
-  const source=preEffects48PlanningSource(file,actualDiskReadFileSync(file,'utf8')).replaceAll('\r\n','\n');
+  const source=preEffects48PlanningSource(file,proofReusePriorDiskReadFileSync(file,'utf8')).replaceAll('\r\n','\n');
   assert.equal(hash(source),binding.afterSha256);assert.equal(hash(binding.beforeSource),binding.beforeSha256);
   for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preFlowLiveReaderSource(file,input),binding.beforeSource);
   for(const input of [binding.beforeSource,source+'\n',source.slice(1),null,undefined,{},17])assert.equal(preFlowLiveReaderSource(file,input),input);
   for(const foreign of ['foreign','__proto__','constructor'])assert.equal(preFlowLiveReaderSource(foreign,source),source);
  }
- const current=JSON.parse(preEffects48PlanningSource(path,actualDiskReadFileSync(path,'utf8'))),before=JSON.parse(flowLiveReaderProof.files[path].beforeSource);
+ const current=JSON.parse(preEffects48PlanningSource(path,proofReusePriorDiskReadFileSync(path,'utf8'))),before=JSON.parse(flowLiveReaderProof.files[path].beforeSource);
  assert.equal(Object.keys(current.jsPlanning.localLowerBounds).length,34);
  for(const [key,floor]of Object.entries(flowLiveReaderProof.floors)){
   assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);
   assert.deepEqual(flowLiveReaderProof.priorFloors[key],before.jsPlanning.localLowerBounds[key]);
   assert.ok(floor.durationMs>=before.jsPlanning.localLowerBounds[key].durationMs);
   assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));
-  const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  const bytes=proofReusePriorDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
   assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
   for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
-  const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+  const receiptBytes=proofReusePriorDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
   assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);assert.equal(receipt.test,key);
   assert.deepEqual([receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[floor.tests,floor.tests,0,0,0]);
   assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);
   assert.equal(receipt.sourceLogSha256,floor.sourceLogSha256);assert.equal(receipt.sourceLogUncompressedSha256,floor.sourceLogUncompressedSha256);
-  assert.equal(inputHash(key,actualDiskReadFileSync(key)),floor.testSha256);assert.equal(receipt.inputSha256[key],floor.testSha256);
-  for(const [file,sha]of Object.entries(receipt.inputSha256))assert.equal(inputHash(file,actualDiskReadFileSync(file)),sha,file);
+  assert.equal(inputHash(key,proofReusePriorDiskReadFileSync(key)),floor.testSha256);assert.equal(receipt.inputSha256[key],floor.testSha256);
+  for(const [file,sha]of Object.entries(receipt.inputSha256))assert.equal(inputHash(file,proofReusePriorDiskReadFileSync(file)),sha,file);
   const directory=mkdtempSync(join(tmpdir(),'flow-receipt-crlf-')),copy=join(directory,'source.test.mjs');
   try{
-   const crlf=actualDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n');
-   writeFileSync(copy,crlf);const actual=actualDiskReadFileSync(copy);
+   const crlf=proofReusePriorDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n');
+   writeFileSync(copy,crlf);const actual=proofReusePriorDiskReadFileSync(copy);
    assert.ok(actual.includes(Buffer.from('\r\n')),'real CRLF disk fixture');
    assert.notEqual(hash(actual),floor.testSha256,'raw CRLF bytes differ from LF identity');
    assert.equal(inputHash(key,actual),floor.testSha256,'CRLF disk source retains exact LF identity');
    writeFileSync(copy,crlf+'\r\n// drift\r\n');
-   assert.notEqual(inputHash(key,actualDiskReadFileSync(copy)),floor.testSha256,'CRLF content drift is rejected');
+   assert.notEqual(inputHash(key,proofReusePriorDiskReadFileSync(copy)),floor.testSha256,'CRLF content drift is rejected');
    assert.equal(inputHash(floor.sourceLog,bytes),floor.sourceLogSha256,'gzip retains raw binary identity');
    assert.notEqual(inputHash(floor.sourceLog,Buffer.concat([bytes,Buffer.from('\r\n')])),floor.sourceLogSha256,'binary drift is not normalized');
    t.diagnostic(`${key}: real CRLF disk copy accepted; text and gzip drift rejected`);
@@ -1204,7 +1211,7 @@ test('live-reader repair admits only three exact complete sources and preserves 
 });
 
 test('Effects48 complete observation preserves all34 prior floors and admits only the exact new timing source',()=>{
- const proof=effects48PlanningProof,{path,key,floor}=proof,source=actualDiskReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+ const proof=effects48PlanningProof,{path,key,floor}=proof,source=proofReusePriorDiskReadFileSync(path,'utf8').replaceAll('\r\n','\n');
  assert.equal(hash(source),proof.afterSha256);assert.equal(hash(proof.beforeSource),proof.beforeSha256);
  for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preEffects48PlanningSource(path,input),proof.beforeSource);
  for(const input of [proof.beforeSource,source+'\n',source.slice(1),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),null,undefined,{},17])assert.equal(preEffects48PlanningSource(path,input),input);
@@ -1214,21 +1221,63 @@ test('Effects48 complete observation preserves all34 prior floors and admits onl
  assert.equal(before.jsPlanning.localLowerBounds[key],undefined);assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);
  assert.equal(floor.durationMs,Math.ceil(floor.nodeReportedDurationMs));assert.ok(floor.durationMs>before.unknownJsMs);
  delete current.jsPlanning.localLowerBounds[key];assert.deepEqual(current,before,'all previous costs, floors and guard values remain identical');
- const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+ const bytes=proofReusePriorDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
  for(const line of ['tests 11','pass 11','fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
- const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+ const receiptBytes=proofReusePriorDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
  assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);assert.equal(receipt.test,key);
  assert.deepEqual([receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[11,11,0,0,0]);
  assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);assert.equal(receipt.sourceLogSha256,floor.sourceLogSha256);assert.equal(receipt.sourceLogUncompressedSha256,floor.sourceLogUncompressedSha256);
  const inputHash=(file,b)=>hash(file.endsWith('.gz')?b:b.toString('utf8').replaceAll('\r\n','\n'));
  assert.equal(receipt.inputSha256[key],floor.testSha256);
- for(const [file,sha]of Object.entries(receipt.inputSha256))assert.equal(inputHash(file,actualDiskReadFileSync(file)),sha,file);
+ for(const [file,sha]of Object.entries(receipt.inputSha256))assert.equal(inputHash(file,proofReusePriorDiskReadFileSync(file)),sha,file);
  const directory=mkdtempSync(join(tmpdir(),'effects48-receipt-')),copy=join(directory,'source.test.mjs');
  try{
-  const crlf=actualDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n');writeFileSync(copy,crlf);
-  assert.notEqual(hash(actualDiskReadFileSync(copy)),floor.testSha256);assert.equal(inputHash(key,actualDiskReadFileSync(copy)),floor.testSha256);
-  writeFileSync(copy,crlf+'\r\n// drift\r\n');assert.notEqual(inputHash(key,actualDiskReadFileSync(copy)),floor.testSha256);
+  const crlf=proofReusePriorDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n');writeFileSync(copy,crlf);
+  assert.notEqual(hash(proofReusePriorDiskReadFileSync(copy)),floor.testSha256);assert.equal(inputHash(key,proofReusePriorDiskReadFileSync(copy)),floor.testSha256);
+  writeFileSync(copy,crlf+'\r\n// drift\r\n');assert.notEqual(inputHash(key,proofReusePriorDiskReadFileSync(copy)),floor.testSha256);
   assert.equal(inputHash(floor.sourceLog,bytes),floor.sourceLogSha256);assert.notEqual(inputHash(floor.sourceLog,Buffer.concat([bytes,Buffer.from('\r\n')])),floor.sourceLogSha256);
  }finally{rmSync(directory,{recursive:true,force:true});}
+});
+
+test('bounded proof reuse preserves historical receipts while current raw measurements raise only GameUI cost',()=>{
+ const proof=watcherFlowProofReuseProof;
+ assert.deepEqual(Object.keys(proof.files).sort(),[path,'tests/helpers/watcher-flow-preparation-source-epoch.mjs','tests/helpers/copy-integration-source-closure.mjs','tests/watcher-flow-preparation-source-epoch.test.mjs'].sort());
+ for(const [file,binding]of Object.entries(proof.files)){
+  const source=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');assert.equal(hash(source),binding.afterSha256);assert.equal(hash(binding.beforeSource),binding.beforeSha256);
+  for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preWatcherFlowProofReuseSource(file,input),binding.beforeSource);
+  for(const input of [binding.beforeSource,source+'\n',source.slice(1),null,undefined,{},17])assert.equal(preWatcherFlowProofReuseSource(file,input),input);
+  for(const foreign of ['foreign','__proto__','constructor'])assert.equal(preWatcherFlowProofReuseSource(foreign,source),source);
+ }
+ const current=JSON.parse(actualDiskReadFileSync(path,'utf8')),before=JSON.parse(proof.files[path].beforeSource);
+ assert.equal(Object.keys(current.jsPlanning.localLowerBounds).length,35);assert.deepEqual(before.jsPlanning.localLowerBounds[proof.key],proof.priorFloor);
+ assert.deepEqual(current.jsPlanning.localLowerBounds[proof.key],proof.floor);assert.equal(proof.priorFloor.durationMs,77215);assert.equal(proof.floor.durationMs,78819);
+ current.jsPlanning.localLowerBounds[proof.key]=proof.priorFloor;assert.deepEqual(current,before,'only GameUI floor rises; all previous costs and guards remain');
+ const receipts=[[proof.floor.sourceReceipt,proof.floor.sourceReceiptSha256],[proof.sourceReceipt,proof.sourceReceiptSha256]];
+ const inputHash=(file,bytes)=>hash(file.endsWith('.gz')?bytes:bytes.toString('utf8').replaceAll('\r\n','\n'));
+ for(const [file,sha]of receipts){
+  const bytes=actualDiskReadFileSync(file);assert.equal(hash(bytes),sha);const receipt=JSON.parse(bytes);
+  assert.deepEqual([receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[receipt.tests,0,0,0]);
+  assert.equal(receipt.tests,receipt.test===proof.key?14:12);
+  const compressed=actualDiskReadFileSync(receipt.sourceLog),log=gunzipSync(compressed).toString('utf8');assert.equal(hash(compressed),receipt.sourceLogSha256);assert.equal(hash(log),receipt.sourceLogUncompressedSha256);
+  for(const line of ['tests '+receipt.tests,'pass '+receipt.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+receipt.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+  for(const [input,expected]of Object.entries(receipt.inputSha256))assert.equal(inputHash(input,actualDiskReadFileSync(input)),expected,input);
+  for(const input of Object.keys(proof.files).filter(p=>p!==path)){
+   assert.equal(receipt.inputSha256[input],proof.files[input].afterSha256,'new receipts bind actual current source without inverse');
+   assert.notEqual(receipt.inputSha256[input],proof.files[input].beforeSha256);
+  }
+  const floor=JSON.parse(actualDiskReadFileSync(path,'utf8')).jsPlanning.localLowerBounds[receipt.test];
+  assert.ok(floor.durationMs>=Math.ceil(receipt.nodeReportedDurationMs));
+ }
+ const directory=mkdtempSync(join(tmpdir(),'proof-reuse-crlf-')),copy=join(directory,'source.mjs');
+ try{
+  const file='tests/helpers/watcher-flow-preparation-source-epoch.mjs',source=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n');writeFileSync(copy,source);
+  assert.notEqual(hash(actualDiskReadFileSync(copy)),proof.files[file].afterSha256);assert.equal(inputHash(file,actualDiskReadFileSync(copy)),proof.files[file].afterSha256);
+  assert.equal(preWatcherFlowProofReuseSource(file,actualDiskReadFileSync(copy,'utf8')),proof.files[file].beforeSource);
+  writeFileSync(copy,source+'\r\n// drift\r\n');const drift=actualDiskReadFileSync(copy,'utf8');assert.equal(preWatcherFlowProofReuseSource(file,drift),drift);assert.notEqual(inputHash(file,Buffer.from(drift)),proof.files[file].afterSha256);
+ }finally{rmSync(directory,{recursive:true,force:true});}
+ const witness=JSON.parse(actualDiskReadFileSync('docs/evidence/m7-watcher-flow-proof-reuse-20261109/hosted-slow-witness.json','utf8'));
+ const compressed=actualDiskReadFileSync(witness.rawLogPath);assert.equal(hash(compressed),witness.compressedLogSha256);assert.equal(hash(gunzipSync(compressed)),witness.rawLogSha256);
+ assert.equal(witness.head,'3f633f3123d41e0a0d19955c91e7b9e226722b7a');assert.equal(witness.oldOuterHelperSha256,proof.files['tests/helpers/watcher-flow-preparation-source-epoch.mjs'].beforeSha256);
+ assert.equal(witness.completeSuccessRecord.length,1);assert.match(witness.completeSuccessRecord[0],/1157502\.785265/);assert.match(witness.completeSuccessRecord[0],/"success":true/);
 });

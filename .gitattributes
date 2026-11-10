@@ -500,3 +500,11 @@ tests/helpers/effects48-planning-source-epoch.json.gz -text
 docs/evidence/m7-watcher-flow-effects-reader-20261109/*.json text eol=lf
 docs/evidence/m7-watcher-flow-effects-reader-20261109/*.md text eol=lf
 docs/evidence/m7-watcher-flow-effects-reader-20261109/*.gz -text
+
+# Bounded immutable Flow proof reuse and exact source-bound measurements.
+tests/helpers/watcher-flow-proof-reuse-source-inverse.mjs text eol=lf
+tests/helpers/watcher-flow-proof-reuse-source-epoch.json.gz -text
+docs/evidence/m7-watcher-flow-proof-reuse-20261109/*.json text eol=lf
+docs/evidence/m7-watcher-flow-proof-reuse-20261109/*.jsonl text eol=lf
+docs/evidence/m7-watcher-flow-proof-reuse-20261109/*.md text eol=lf
+docs/evidence/m7-watcher-flow-proof-reuse-20261109/*.gz -text

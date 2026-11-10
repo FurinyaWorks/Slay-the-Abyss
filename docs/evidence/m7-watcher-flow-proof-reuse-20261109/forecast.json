@@ -1,0 +1,17 @@
+{
+  "inventory": {
+    "javascript": 802,
+    "lua": 1410,
+    "localFloors": 35
+  },
+  "frozenPriorWindows17Ms": 1800264,
+  "currentWindows17Ms": 1801749,
+  "currentWindows18Ms": 1705160,
+  "currentPosix15Ms": 1137499,
+  "windowsBudgetMs": 1800000,
+  "posixBudgetMs": 1200000,
+  "windowsHeadroomMs": 94840,
+  "posixHeadroomMs": 62501,
+  "source": "Complete current-calibration partition and Lua cost computation, final 62/62 local run. Forecast only; no new exact-head hosted admission claim.",
+  "sourceLog": "ci-final.log.gz"
+}
