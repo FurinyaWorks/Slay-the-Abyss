@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "status": "COMBAT_HP_AND_POST_SETTLEMENT_RUN_HUD_LAYERS_DISTINGUISHED",
+  "source": {
+    "gilSha256": "2c03f6a516430150f460f25d942c4ebe137411c49ece4bc66334d4ba729e278a",
+    "sourceCommit": "fc98f4e38ad1eaa2fb14a775f410f3dce9014158",
+    "sourceDirty": false,
+    "payloadDigest": "66c576206ade7676c0f0f160cb8858410154ee1a742cf73ce9a6536ac70827b1",
+    "buildId": "022017af-c7f5-47b8-8ca2-e1a80973ab4e",
+    "projectionSha256": "437bca1863d22442f78d374eac1f975683cd439f4e66759601696161eadab16a",
+    "candidateReceiptSha256": "a7f2324b86b2fda6c85d28eaf853af9ceba3c6f34078b454fea082259c3632c6",
+    "sdkExportSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+    "workerSha256": "090da2e69ced01687ddf958edb67396c2e41c219a5b3b5b7d8756046e6f195f3"
+  },
+  "seed": 33815,
+  "firstReplayCombatHp": 82,
+  "secondReplayCombatHp": 82,
+  "secondReplayHeroHpAfterEnemyTurns": [
+    {
+      "before": 88,
+      "after": 88
+    },
+    {
+      "before": 88,
+      "after": 82
+    }
+  ],
+  "capturedHud": [
+    {
+      "name": "latest-natural-victory-rewards",
+      "frame": 3199,
+      "pngSha256": "7c22539e4c3036e91fd7d0f61227da5644a8fc1f3294d13cfbfee28f9486176e",
+      "stateRawSha256": "a4f78b42d576b18f2eedf8787430bed6f362596626b433f8aba6ac6ae4fea6bd",
+      "hpControls": [
+        {
+          "path": "容器节点/stage/nodePanel/hp",
+          "id": 12032,
+          "text": "88/88",
+          "visible": false
+        },
+        {
+          "path": "容器节点/stage/mapPanel/resources/hp",
+          "id": 12061,
+          "text": "88/88",
+          "visible": false
+        },
+        {
+          "path": "容器节点/stage/battlePanel/player",
+          "id": 15968,
+          "text": "88/88",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "latest-natural-return-map",
+      "frame": 3353,
+      "pngSha256": "a06893aac688da26ff84b3b52f38fb50c0388168fbfe63009c5a4cf9cfcf3c38",
+      "stateRawSha256": "1904c0673b6b8a744d12b3de81632c400a484e3b155cc1f0f4bbbec455b8d4c7",
+      "hpControls": [
+        {
+          "path": "容器节点/stage/nodePanel/hp",
+          "id": 12032,
+          "text": "88/88",
+          "visible": false
+        },
+        {
+          "path": "容器节点/stage/mapPanel/resources/hp",
+          "id": 12061,
+          "text": "88/88",
+          "visible": true
+        },
+        {
+          "path": "容器节点/stage/battlePanel/player",
+          "id": 15968,
+          "text": "88/88",
+          "visible": false
+        }
+      ]
+    }
+  ],
+  "candidateSourceProof": [
+    {
+      "path": "abyss_run_settlement.lua",
+      "sha256": "90b5275bf92800fd11ef78bc3abf09a72059176578b804fbbc1c2a4cae057603",
+      "bytes": 14536
+    },
+    {
+      "path": "abyss_run.lua",
+      "sha256": "3d6484f7e43298e321fd40d785d1d3c650a8663aa2b94f85cc125bc0c85e1496",
+      "bytes": 34437
+    },
+    {
+      "path": "abyss_game_ui_view.lua",
+      "sha256": "7e076f2ee66f260005c88c6e56f92f15a61039aa1cb701213be2bf2a20e2ae5d",
+      "bytes": 25896
+    },
+    {
+      "path": "abyss_battle_render_hud.lua",
+      "sha256": "1f8711b3831f424a04eeedafa0240d38a8785fe314196667a5b31809cac25b28",
+      "bytes": 13817
+    },
+    {
+      "path": "abyss_battle_render_state.lua",
+      "sha256": "0b4d3df03b2712c09e1021046e141ab1c384f0389a3cd173c2133c585e161367",
+      "bytes": 6927
+    }
+  ],
+  "candidateGeneratedHealingData": [
+    {
+      "path": "abyss_data.lua",
+      "sha256": "c8dd7a050839a50b2e895787f6a72824187f9c6eaaea4002261f82f4ad0de9a4",
+      "bytes": 212620
+    }
+  ],
+  "explanation": "The retained combat.player.hp is 82 after the final enemy attack. Existing settlement first copies that HP into run.hp, then applies combat_end relic healing to run.hp. Existing Burning Blood starter data heals 6, producing post-settlement run.hp 88; the HUD source explicitly reads run.hp/run.maxHp. Both reward and returned-map captures display 88/88, not 82. Run.heal updates run.hp only and does not rewrite the retained combat.player.hp.",
+  "evidenceBoundary": "Both raw reports directly observed retained combat.player.hp=82. Captured native HUD text directly observed 88/88. The original read-only status helper did not export the separate run.hp scalar: run.hp=88 is inferred from the exact immutable candidate HUD/settlement source and observed native text, not falsely described as an additional VM scalar read.",
+  "noSourceChanges": true,
+  "limitations": [
+    "This audit reads only pinned projection scripts, existing raw reports and captured compressed SDK state; no SDK replay or Core mutation.",
+    "This layer distinction is existing source behavior, not a new healing implementation or a screenshot claim that 82 HP was rendered."
+  ]
+}

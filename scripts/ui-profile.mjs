@@ -1,9 +1,11 @@
 import {createHash} from 'node:crypto';
 import {lightweightProfile} from './lightweight-2d-profile.mjs';
+import {v25ChromeProfile,validateV25Chrome} from './v25-profile.mjs';
 
 export const uiProfileModule='abyss_ui_profile';
-export function validateUiProfileOptions({nativePageLifecycle=false,lightweight2d=false,releaseCandidate=false}={}) {
- if(typeof nativePageLifecycle!=='boolean'||nativePageLifecycle&&(lightweight2d!==true||releaseCandidate!==false))
+export function validateUiProfileOptions({nativePageLifecycle=false,lightweight2d=false,releaseCandidate=false,v25BattleChrome=false}={}) {
+ validateV25Chrome({v25BattleChrome,lightweight2d,releaseCandidate});
+ if(typeof nativePageLifecycle!=='boolean'||nativePageLifecycle&&((lightweight2d!==true&&v25BattleChrome!==true)||releaseCandidate!==false))
   throw Error('Native page lifecycle requires an explicit bounded non-release experiment');
  return nativePageLifecycle;
 }
@@ -31,6 +33,6 @@ export function uiProfileFromReceipt(receipt) {
  if(!profile||profile.schemaVersion!==1||typeof profile.nativePageLifecycle!=='boolean'
   ||Reflect.ownKeys(profile).some(key=>!['schemaVersion','nativePageLifecycle','configSha256'].includes(key)))throw Error('Invalid native page lifecycle receipt');
  if(profile.configSha256!==uiProfileReceipt(profile.nativePageLifecycle).configSha256)throw Error('UI profile config digest mismatch');
- if(profile.nativePageLifecycle&&receipt.experimentalProfile!==lightweightProfile)throw Error('Native page lifecycle receipt requires bounded experiment');
+ if(profile.nativePageLifecycle&&receipt.experimentalProfile!==lightweightProfile&&receipt.experimentalBattleChrome!==v25ChromeProfile)throw Error('Native page lifecycle receipt requires bounded experiment');
  return profile.nativePageLifecycle;
 }

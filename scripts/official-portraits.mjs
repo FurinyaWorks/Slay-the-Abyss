@@ -4,6 +4,8 @@ import {createHash} from 'node:crypto';
 import {toLua} from './build-lua-data.mjs';
 import {createRequire} from 'node:module';
 import {isLightweightProfile,lightweightInventory,boundedPortraitSource} from './lightweight-2d-profile.mjs';
+import {v25Theme} from './v25-layout.mjs';
+import {v25PortraitRuntimeProfile} from './v25-portrait-profile.mjs';
 
 export const portraitModule='abyss_traveler_portrait_assets';
 const base='art/characters/traveler-geo/portraits';
@@ -118,7 +120,7 @@ function lowpolyInventory(source) {
   const value=key=>fields.find(f=>f.key?.name===key||f.key?.raw===`"${key}"`)?.value;
   const count=value('count')?.value,images=value('rows')?.fields;
   if(!Number.isSafeInteger(count)||count<1||images?.length!==count||images.some(f=>f.type!=='TableValue'))throw Error('Invalid low-poly inventory count: '+name);
-  rows.push({asset:name,images:count,groups:Math.ceil(count/60),pages:Math.ceil(count/3600),instances:name==='lowpolyLand'?3:1,hosts:name==='lowpolyCardFan'?1:0});
+  rows.push({asset:name,images:count,groups:Math.ceil(count/60),pages:Math.ceil(count/3600),instances:name==='lowpolyLand'?(source.includes('v25SceneOwnerCount=1')?1:3):1,hosts:name==='lowpolyCardFan'?1:0});
  }
  return rows;
 }
@@ -139,14 +141,16 @@ export function lowpolySelectLiterals(root=process.cwd(),{selectionAvatar=false,
  return [...(selectionAvatar?[asset('lowpolyHero',data.hero)]:[]),...(cards?[asset('lowpolyCardFan',data.cardFan)]:[]),
   ...(menuBackground?[asset('lowpolyLand',data.land)]:[])];
 }
-export function writePortraitModule(directory,{root=process.cwd(),imageTemplateIndex=0,containerTemplateIndex=0,selectionAvatar=true,battlePortrait=true,cards=false,menuBackground=false}={}) {
+export function writePortraitModule(directory,{root=process.cwd(),imageTemplateIndex=0,containerTemplateIndex=0,selectionAvatar=true,battlePortrait=true,cards=false,menuBackground=false,v25BattleChrome=false}={}) {
+ if(typeof v25BattleChrome!=='boolean'||v25BattleChrome&&selectionAvatar!==battlePortrait)throw Error('V25 portraits require paired selection and battle source assets');
  if(!validIndex(imageTemplateIndex,true)||!validIndex(containerTemplateIndex,true))throw Error('Invalid portrait templateIndex');
  if(isLightweightProfile(directory)){
   if(!selectionAvatar||!battlePortrait||!menuBackground||cards)throw Error('Bounded 2D requires fixed experiment art flags');
   const source=boundedPortraitSource(imageTemplateIndex,containerTemplateIndex);
   writeFileSync(join(directory,`${portraitModule}.lua`),source);return source;
  }
- const lowpoly=lowpolySelectLiterals(root,{selectionAvatar,cards,menuBackground});
+ const lowpoly=lowpolySelectLiterals(root,{selectionAvatar:selectionAvatar&&!v25BattleChrome,cards,menuBackground});
+ if(v25BattleChrome&&menuBackground)lowpoly.push('v25SceneOwnerCount=1');
  if(!selectionAvatar&&!battlePortrait){const source=lowpoly.length?`-- Disabled portraits; low-poly select fan / scene backgrounds only.\nreturn {imagePrefabId=${imageTemplateIndex},containerPrefabId=${containerTemplateIndex},\n${lowpoly.join(',\n')}\n}\n`:'-- Disabled optional drawings.\nreturn {imagePrefabId=0,containerPrefabId=0}\n';writeFileSync(join(directory,`${portraitModule}.lua`),source);return source;}
  const compactPath=join(directory,'art-performance.json');
  const compact=existsSync(compactPath)?JSON.parse(readFileSync(compactPath,'utf8')):null;
@@ -159,8 +163,12 @@ export function writePortraitModule(directory,{root=process.cwd(),imageTemplateI
   if(compact){const asset=compact.assets[a.kind];return `${a.kind}=${toLua({root:[0,0,a.width,a.width,.5,.5,.5,.5,.5,.5,1,1,0],rows:asset.rows,width:a.width,count:asset.count,display:a.display,sourceSha256:a.runtime,jsonSha256:a.json,renderProfile:'compact-v1',sourcePreviewSha256:asset.sha256})}`;}
   return `${a.kind}=(function()\n${a.literals}\nreturn {root=ROOT,rows=ELEMENTS,width=${a.width},count=${a.count},display=${a.display},sourceSha256='${a.runtime}',jsonSha256='${a.json}'${runtimeV2?',runtimeV2=true,cache=true,rectanglesOnly=true':''}}\nend)()`;
  });
- if(budget)data.push(`selection133=${budgetLiteral(assets[1],budget.assets.selection133)}`);
+ if(budget&&!v25BattleChrome)data.push(`selection133=${budgetLiteral(assets[1],budget.assets.selection133)}`);
  data.push(...lowpoly);
+ if(v25BattleChrome){
+  const theme=v25Theme(JSON.parse(readFileSync(join(root,'data/presentation/ui_theme.json'),'utf8')));
+  data.push(`v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(theme))}`);
+ }
  const source=`--[=[
 ${license(root)}]=]
 -- Frozen portrait literal bytes; no original synchronous OnStart/exporter included.\n-- Native property sequence is derived from Primitive's MIT runtime (2026 LiuL).\nreturn {imagePrefabId=${imageTemplateIndex},containerPrefabId=${containerTemplateIndex},\n${data.join(',\n')}\n}\n`;
@@ -171,20 +179,24 @@ export function bindPortraitTemplates(directory,result,options={}) {
  if(!validIndex(imageTemplateIndex)||!validIndex(containerTemplateIndex))throw Error('MCP did not return valid portrait image/container templateIndex');
  return writePortraitModule(directory,{...options,imageTemplateIndex,containerTemplateIndex});
 }
-function inventoryRows(selectionAvatar,battlePortrait,budget) {
+function inventoryRows(selectionAvatar,battlePortrait,budget,v25) {
  const rows=[];
  if(selectionAvatar)rows.push({asset:'traveler-geo/portraits/avatar96',images:budget?457:4822,sourceSha256:assets[0].runtime});
- if(selectionAvatar&&budget)rows.push({asset:'traveler-geo/portraits/selection133',images:1940,sourceSha256:assets[1].runtime});
+ if(selectionAvatar&&v25)rows.push({asset:'traveler-geo/portraits/battle133-selection',images:4315,sourceSha256:assets[1].runtime});
+ else if(selectionAvatar&&budget)rows.push({asset:'traveler-geo/portraits/selection133',images:1940,sourceSha256:assets[1].runtime});
  if(battlePortrait)rows.push({asset:'traveler-geo/portraits/battle133',images:4315,sourceSha256:assets[1].runtime});
+ if(battlePortrait&&v25)rows.push({asset:'traveler-geo/portraits/battle133-result',images:4315,sourceSha256:assets[1].runtime});
  return rows.map(row=>({...row,groups:Math.ceil(row.images/60),pages:Math.ceil(row.images/3600)}));
 }
-export function portraitInventory({selectionAvatar=true,battlePortrait=true,cards=false,menuBackground=false}={}, {budget=true,lowpoly=true}={}) {
- const rows=inventoryRows(selectionAvatar,battlePortrait,budget);
+export function portraitInventory({selectionAvatar=true,battlePortrait=true,cards=false,menuBackground=false}={}, {budget=true,lowpoly=true,v25=false}={}) {
+ const rows=inventoryRows(selectionAvatar,battlePortrait,budget,v25);
  const legacy=rows.length?{...(budget?{renderProfile:'selection-budget-v1',hiddenBuild:true,cache:true,revealGroupsPerFrame:4,
-  ...(selectionAvatar?{selectionUses:'selection133'}:{})}:{}),assets:rows,instances:rows.length,batchSize:64,
+  ...(selectionAvatar?{selectionUses:v25?'battle133':'selection133'}:{})}:{}),assets:rows,instances:rows.length,batchSize:64,
   peakDynamicControls:rows.reduce((sum,a)=>sum+a.images+a.groups+a.pages,0),maxDirectDynamicChildren:60,officialCapacity:'not_measured',
   measurement:'offline-runtime-control-contract-not-official-capacity',devicePerformance:'not_run'}:undefined;
- return combineInventory(legacy,lowpoly?lowpolyInventory('return {'+lowpolySelectLiterals(process.cwd(),{selectionAvatar,cards,menuBackground}).join(',')+'}'):[]);
+ const landscape=lowpolySelectLiterals(process.cwd(),{selectionAvatar:selectionAvatar&&!v25,cards,menuBackground});
+ if(v25&&menuBackground)landscape.push('v25SceneOwnerCount=1');
+ return combineInventory(legacy,lowpoly?lowpolyInventory('return {'+landscape.join(',')+'}'):[]);
 }
 export function portraitRuntimeInventory(directory) {
  if(isLightweightProfile(directory))return lightweightInventory();
@@ -197,5 +209,5 @@ export function portraitRuntimeInventory(directory) {
    groups:Math.ceil(row.count/60),pages:Math.ceil(row.count/3600),sourcePreviewSha256:row.sha256,grid:row.grid};});
   return combineInventory(rows.length?{renderProfile:'compact-v1',assets:rows,instances:rows.length,batchSize:64,peakDynamicControls:rows.reduce((n,a)=>n+a.images+a.groups+a.pages,0),maxDirectDynamicChildren:60,officialCapacity:'not_measured',devicePerformance:'not_run'}:undefined,lowpolyInventory(source));
  }
- return combineInventory(portraitInventory(flags,{budget:existsSync(join(directory,'art-render-v2.json'))||source.includes('selection133='),lowpoly:false}),lowpolyInventory(source));
+ return combineInventory(portraitInventory(flags,{budget:existsSync(join(directory,'art-render-v2.json'))||source.includes('selection133='),lowpoly:false,v25:source.includes('v25PortraitProfile=')||source.includes('v25SceneOwnerCount=')}),lowpolyInventory(source));
 }

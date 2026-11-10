@@ -22,6 +22,13 @@ local function snapshotDeck(deck)
 end
 local function iconId(entry) return type(entry) == "table" and entry.id or entry end
 
+local function merchantVisible(ctx, node, active)
+    if not node or node.type ~= 'shop' or ctx.self.mode ~= 'main' or not (active or node.complete) then return false end
+    if not layout.shop.referenceBareGoods then return true end
+    local current = ctx.merchant.current
+    return current ~= nil and current.kind ~= 'encounter' and current.kind ~= 'greet' and current.kind ~= 'idle'
+end
+
 function M.new(root, run, map, presentation, clickEvent, onChange, options)
     local ctx = {root=root,run=run,map=map,presentation=presentation,clickEvent=clickEvent,onChange=onChange,options=options}
     ctx.options = ctx.options or {}
@@ -78,6 +85,11 @@ function M.new(root, run, map, presentation, clickEvent, onChange, options)
 
     function ctx.renderTopBar(node)
         EndingUI.header(ctx.self,ctx.child,node and node.type=='ending_proceed')
+        if layout.referenceIdentity then
+            local identity = ctx.child('v25Identity')
+            identity.text = layout.referenceIdentity[ctx.self.run.character or 'ironclad'] or ctx.self.run.character or '旅行者'
+            identity:SetVisible(not node or node.type ~= 'ending_proceed')
+        end
         ctx.child("title").text = node and ("第 " .. node.floor .. " 层 · " ..
         (node.roomKind == "neow" and "七天神像" or node.roomKind == "boss_treasure" and "首领宝箱" or kinds[node.type] or "节点")) or "路线"
         ctx.child("hp").text = number(ctx.self.run.hp) .. "/" .. number(ctx.self.run.maxHp)
@@ -155,7 +167,7 @@ function M.new(root, run, map, presentation, clickEvent, onChange, options)
             ctx.self.merchantNode, ctx.self.merchantRun = node.id, ctx.self.run
             ctx.merchant:enter(ctx.self.run)
         end
-        ctx.merchant:setVisible(node ~= nil and node.type == "shop" and ctx.self.mode == "main" and (active or node.complete))
+        ctx.merchant:setVisible(merchantVisible(ctx, node, active))
         ctx.child("notice").text = ctx.self.notice ~= "" and ctx.self.notice or hint
         ctx.ink(ctx.child("notice"), ctx.self.failed and ctx.self.notice ~= "" and C.danger or C.text)
 

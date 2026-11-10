@@ -1,0 +1,235 @@
+{
+  "beforeCommit": "5acef9b454c0339c9f787f90e33d6d886c7c14ef",
+  "unchanged": [
+    {
+      "path": "docs/evidence/task-100-1-sdk-comparison-20261109.json",
+      "sha256": "ad705bc4405197b50268dce0e73525b842895ad8e33671a8e7b4d46505d22e9d",
+      "bytes": 5430
+    },
+    {
+      "path": "docs/evidence/task-100-1-sdk-eager-20261109.json.gz",
+      "sha256": "efae8f92eeaf49f03e569fdec1229eae7f9f8c0c280149a00a61e7d371544e18",
+      "bytes": 92732
+    },
+    {
+      "path": "docs/evidence/task-100-1-sdk-final-comparison-20261109.json",
+      "sha256": "f9fa51a59c938256b6b1b097fa84988818ce6052af613a0813bf05e9f52c1511",
+      "bytes": 86886
+    },
+    {
+      "path": "docs/evidence/task-100-1-sdk-final-eager-20261109.json.gz",
+      "sha256": "8dd4da9c30fbd88b901f35c90bdae54208ca03402e42e867f64767e515130734",
+      "bytes": 92770
+    },
+    {
+      "path": "docs/evidence/task-100-1-sdk-final-lazy-20261109.json.gz",
+      "sha256": "b9a49851cbc3b10c245ad8e3409f9e57600abaaf72fcb1210f672dfb9283042a",
+      "bytes": 93182
+    },
+    {
+      "path": "docs/evidence/task-100-1-sdk-gameplay-diagnostic-20261109.json.gz",
+      "sha256": "059ec393a76f8eab89c2aef83a91706bd79ea8162bbcad184712f9c15091edf2",
+      "bytes": 11546
+    },
+    {
+      "path": "docs/evidence/task-100-1-sdk-lazy-20261109.json.gz",
+      "sha256": "51b8b28f7d18ee2a4ca30c2fd427afc45ffdb045d89deeef42edfb65304f43c3",
+      "bytes": 96307
+    },
+    {
+      "path": "tests/helpers/colorless-catalog-before-2ad07111.json.gz",
+      "sha256": "88c0ab46a951aacc45a2cf8e4a2d2c7a6ac0b5ebc153dcdf87ac600ad6ee8a95",
+      "bytes": 738042
+    },
+    {
+      "path": "tests/helpers/combined-epoch/source-epoch.json.gz",
+      "sha256": "2085260a5aabde4476411172eb0b2e6fd3afcaa991a3cafc52f3ab0e98755c73",
+      "bytes": 1127284
+    },
+    {
+      "path": "tests/helpers/component-alias-ci-source-epoch.json.gz",
+      "sha256": "3d11025b87ec35e234f99eb3df53dd862a69b75778c88a714db9b694a9c2f93d",
+      "bytes": 51070
+    },
+    {
+      "path": "tests/helpers/component-ui-ci-source-epoch.json.gz",
+      "sha256": "498384c890d22428b10a9c19f6720712d3e568cf871179e447c69fd8b92ea520",
+      "bytes": 436099
+    },
+    {
+      "path": "tests/helpers/component-ui-source-epoch.json.gz",
+      "sha256": "df2a27ff146ecbee4fb01054eb1071458ffe491ece1bb50fa6fb33d19df74d4a",
+      "bytes": 1538232
+    },
+    {
+      "path": "tests/helpers/defect-final-ci-source-epoch.json.gz",
+      "sha256": "88894fcfdcc23ba6383ea5decd456c920dc296aadde209fc58ee8406480d7f75",
+      "bytes": 80331
+    },
+    {
+      "path": "tests/helpers/defect-final-source-epoch.json.gz",
+      "sha256": "a656584db182a608b75f66a46a8d31ae4d4bbaba6c64d376d1d47a011c7833ce",
+      "bytes": 6804
+    },
+    {
+      "path": "tests/helpers/effects-target-group-source-epoch.json.gz",
+      "sha256": "f22d0328aedd7b7e9c785482271483f9f083c5c6abd7cd55d19933b24a48c0c2",
+      "bytes": 5195
+    },
+    {
+      "path": "tests/helpers/encounter-formation-ci-source-epoch.json.gz",
+      "sha256": "cd039ffe6b0f7fd2959776b84cf199290b3621b8a82266bc6929876e1ce46fbf",
+      "bytes": 173703
+    },
+    {
+      "path": "tests/helpers/encounter-formation-source-epoch.json.gz",
+      "sha256": "6d082e4f921213a60a41ab1f0a4109a49645c1014cc83f315178937ca0885132",
+      "bytes": 2719
+    },
+    {
+      "path": "tests/helpers/epochs/actor/tests/helpers/colorless-catalog-before-2ad07111.json.gz",
+      "sha256": "88c0ab46a951aacc45a2cf8e4a2d2c7a6ac0b5ebc153dcdf87ac600ad6ee8a95",
+      "bytes": 738042
+    },
+    {
+      "path": "tests/helpers/epochs/colorless/tests/helpers/colorless-catalog-before-2ad07111.json.gz",
+      "sha256": "88c0ab46a951aacc45a2cf8e4a2d2c7a6ac0b5ebc153dcdf87ac600ad6ee8a95",
+      "bytes": 738042
+    },
+    {
+      "path": "tests/helpers/epochs/develop/tests/fixtures/ci-complete-calibration.json.gz",
+      "sha256": "c0b66bf5ffd13baaea0f9a035dd43636f7419a0b607cc4eab3f0c1f73155d5ab",
+      "bytes": 308165
+    },
+    {
+      "path": "tests/helpers/epochs/develop/tests/fixtures/ci-host-timing-calibration.json.gz",
+      "sha256": "70cf6cbf502ed85cf7884095cb603a92f910e9b6cb5b311cee2b4b0f1118659f",
+      "bytes": 80775
+    },
+    {
+      "path": "tests/helpers/epochs/develop/tests/fixtures/delivery-source-composition.json.gz",
+      "sha256": "d7bf28b224aaec821ac215f81adcef436fff51b009c21ef8b75d50bd16c2fa4b",
+      "bytes": 900350
+    },
+    {
+      "path": "tests/helpers/epochs/develop/tests/helpers/m7-core-final-before.json.gz",
+      "sha256": "430bd33b94081665bcaadfcc284cf4c4fd019b3f4c84f44195d898e4083c8318",
+      "bytes": 32990
+    },
+    {
+      "path": "tests/helpers/epochs/develop/tests/helpers/relic-lifecycle-baseline-391306af.json.gz",
+      "sha256": "30c35c0b2298dc33ee3227a5dfc7aa32b5e0959fe11dbe30aef17a5af1ce5067",
+      "bytes": 738555
+    },
+    {
+      "path": "tests/helpers/epochs/develop/tests/helpers/relic-query-baseline-391306af.json.gz",
+      "sha256": "df89de0002fee32b9300489b95432ce4287c467435af804f481241ee3c3bbdf2",
+      "bytes": 19460
+    },
+    {
+      "path": "tests/helpers/epochs/native/tests/helpers/m7-core-final-before.json.gz",
+      "sha256": "430bd33b94081665bcaadfcc284cf4c4fd019b3f4c84f44195d898e4083c8318",
+      "bytes": 32990
+    },
+    {
+      "path": "tests/helpers/epochs/native/tests/helpers/relic-lifecycle-baseline-391306af.json.gz",
+      "sha256": "30c35c0b2298dc33ee3227a5dfc7aa32b5e0959fe11dbe30aef17a5af1ce5067",
+      "bytes": 738555
+    },
+    {
+      "path": "tests/helpers/epochs/native/tests/helpers/relic-query-baseline-391306af.json.gz",
+      "sha256": "df89de0002fee32b9300489b95432ce4287c467435af804f481241ee3c3bbdf2",
+      "bytes": 19460
+    },
+    {
+      "path": "tests/helpers/epochs/potion/tests/helpers/colorless-catalog-before-2ad07111.json.gz",
+      "sha256": "88c0ab46a951aacc45a2cf8e4a2d2c7a6ac0b5ebc153dcdf87ac600ad6ee8a95",
+      "bytes": 738042
+    },
+    {
+      "path": "tests/helpers/epochs/powerShop/tests/helpers/power-shop-before-2c85.json.gz",
+      "sha256": "9a0e812b775133a4052eaba470bbc6a82eb4b447b5d7cb0f05e4c0bdbb98a52c",
+      "bytes": 13460
+    },
+    {
+      "path": "tests/helpers/foundation-fix-ci-source-epoch.json.gz",
+      "sha256": "bb40135a5ef6a5286f75cdf3035a451702f79cdcc36dca90d071d85f09ce30a3",
+      "bytes": 59704
+    },
+    {
+      "path": "tests/helpers/m7-core-final-before.json.gz",
+      "sha256": "430bd33b94081665bcaadfcc284cf4c4fd019b3f4c84f44195d898e4083c8318",
+      "bytes": 32990
+    },
+    {
+      "path": "tests/helpers/posix15-shape-source-epoch.json.gz",
+      "sha256": "9f75ddcfc0b6b5ef19c1750efab7d7a5360d9da4825a93de3c9cfe9e702e9b06",
+      "bytes": 468
+    },
+    {
+      "path": "tests/helpers/power-shop-before-2c85.json.gz",
+      "sha256": "9a0e812b775133a4052eaba470bbc6a82eb4b447b5d7cb0f05e4c0bdbb98a52c",
+      "bytes": 13460
+    },
+    {
+      "path": "tests/helpers/purge-query-baseline-a27b86a5.json.gz",
+      "sha256": "7ddb2bf87ff3d7a56a80f34a4bb06e6249e7dd7d0811afd391afad16a5f39dee",
+      "bytes": 5372
+    },
+    {
+      "path": "tests/helpers/relic-equip-ci-source-epoch.json.gz",
+      "sha256": "541ff621ffe4b9413b90a284949dfb496cdfbe06cb05826307b56b0ac044fd47",
+      "bytes": 74390
+    },
+    {
+      "path": "tests/helpers/relic-equip-source-epoch.json.gz",
+      "sha256": "c7f30e9773f4f08d3cf33e1ece1a1be425fa04389d0144bb285ff70643d06863",
+      "bytes": 3289
+    },
+    {
+      "path": "tests/helpers/relic-lifecycle-baseline-391306af.json.gz",
+      "sha256": "30c35c0b2298dc33ee3227a5dfc7aa32b5e0959fe11dbe30aef17a5af1ce5067",
+      "bytes": 738555
+    },
+    {
+      "path": "tests/helpers/relic-lifecycle-baseline-a27b86a5.json.gz",
+      "sha256": "68112b06f51194a9523ea287549c29c2871eec56164fa21ace64a1f576efaaac",
+      "bytes": 739353
+    },
+    {
+      "path": "tests/helpers/relic-query-baseline-391306af.json.gz",
+      "sha256": "df89de0002fee32b9300489b95432ce4287c467435af804f481241ee3c3bbdf2",
+      "bytes": 19460
+    },
+    {
+      "path": "tests/helpers/session-reward-before.json.gz",
+      "sha256": "d0a42f51486f79bca22b34a8f0457ca0f78e4917310ad72e70ef89c836a9b57c",
+      "bytes": 5816
+    },
+    {
+      "path": "tests/helpers/seven-refactor-source-epoch.json.gz",
+      "sha256": "98ce5a13a217c5b20bbbddf93811d5fc2dda4117bb465c33c5ad4c979608c4bd",
+      "bytes": 107170
+    },
+    {
+      "path": "tests/helpers/silent-final-ci-source-epoch.json.gz",
+      "sha256": "061f63eb40dd03dfecb8bdaf60ecc722f49da40ed75645568666fa29bddf8c2e",
+      "bytes": 74632
+    },
+    {
+      "path": "tests/helpers/silent-final-source-epoch.json.gz",
+      "sha256": "8d70652c025b8075e2a03936f12c2509dbca427abd555e472f197b1ac4850b49",
+      "bytes": 6705
+    },
+    {
+      "path": "tests/helpers/silent-tactics-source-epoch.json.gz",
+      "sha256": "046c798aed3ded45bf29ad696c777551102f74066a262174af3d9990bdabb1c7",
+      "bytes": 5902
+    },
+    {
+      "path": "tests/helpers/watcher-flow-source-epoch.json.gz",
+      "sha256": "9e81602d086a81680830cf179a5d9f9f041bd56e0938b2d82eb196e50f73c015",
+      "bytes": 7194
+    }
+  ]
+}

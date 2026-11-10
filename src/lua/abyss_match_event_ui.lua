@@ -123,7 +123,8 @@ function M.install(ctx)
   for i,slot in ipairs(info.slots)do
    local box=grid:GetChild('card'..i);ctx.show(box,not slot.removed);box:SetLocalScale(1,1,1)
    local back=box:GetChild('matchBack');ctx.show(back,not slot.faceUp and not slot.removed);ctx.inspectCards[box]=nil
-   for _,name in ipairs({'plate','glyph','label'})do back:GetChild(name).raycastTarget=false end
+   -- Native Image/Text have no raycastTarget property. Only the card's existing
+   -- CursorArea receives input; these static decorations cannot intercept it.
    if slot.faceUp and not slot.removed then restoreFace(box);ctx.fillCard(box,slot.cardId,slot.upgraded,{instance=slot})
    else concealFace(box)end
    local owned=ownership(ctx,view,panel,box,grid)

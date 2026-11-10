@@ -1,0 +1,8 @@
+{
+  "currentBuildMatchesSuccessfulCandidate": true,
+  "files": [
+    "game-ui.json",
+    "abyss_theme.lua"
+  ],
+  "scope": "Exact rebuilt native layout and runtime theme equality after rejecting unsupported102039"
+}

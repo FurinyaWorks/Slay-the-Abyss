@@ -43,6 +43,6 @@ bg:sync('menu',false,false);bg:tick()
 assert(#created==count and host.visible and host.active,'return rebuilt a cached background')
 bg:onEngineDestroy();assert(destroyed==0,'engine teardown recursively destroyed controls')
 for _,c in ipairs(created)do
- if c.kind=='image'then assert(c.image==100001 and c.imageType==23 and c.rotation[3]==0 and c.scale[1]==1)end
+ if c.kind=='image'then assert(c.image==100001 and c.imageType==nil and c.rotation[3]==0 and c.scale[1]==1)end
 end
 print('COMPACT_ART_LOADING_PASS '..count..' controls / zero navigation destroys / zero engine destroys')

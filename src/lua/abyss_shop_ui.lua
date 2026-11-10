@@ -4,6 +4,7 @@ local Run = require("abyss_run")
 local Theme = require("abyss_theme")
 local number = require("abyss_numbers").integer
 local C = Theme.color
+local removalInk = Theme.layout.nativeNode.shop.referenceRemovalInk or C.text
 local SHOP_PAGE = #Theme.layout.nativeNode.shop.columns
 local RELIC_PAGE = #Theme.layout.nativeNode.shop.relics.columns
 local typeNames = { attack = "攻击", skill = "技能", power = "能力", status = "状态", curse = "诅咒" }
@@ -161,8 +162,9 @@ function M.new(controller, ui)
         local open = node.removeAvailable and #node.purgeCards > 0 and not poor
         local reason = removalReason(node)
         state(removal, open)
+        if Theme.layout.nativeNode.shop.referenceRemovalName then removal:GetChild('name').text=Theme.layout.nativeNode.shop.referenceRemovalName end
         removal:GetChild("description").text = removalDescription(node)
-        ink(removal:GetChild("name"), open and C.text or C.textMuted)
+        ink(removal:GetChild("name"), open and removalInk or C.textMuted)
         renderRemovalPrice(removalPrice, node, poor)
         action("shopView/removal", open, function()
             self.mode, self.picker, self.pickPage, self.selected, self.notice = "picker", "remove", 1, nil, ""

@@ -3319,5 +3319,111 @@
       "padding": 7,
       "glyphScale": 1.35
     }
+  },
+  "v25Result": {
+    "supportHeading": "当前暂无存档功能",
+    "supportBody": "存档功能需作者达到创作者 4 级后开放，喜欢的话欢迎点赞支持。帮助作者提升等级。"
+  },
+  "v25Character": {
+    "constellation": { "sourceSha256": "5780bc541d322b369b61f656908da59bdeee7f3ad83988edca8be23776720ecd", "sourceSize": [512,512], "displaySize": [118,118], "colour": "#FFE0A2" },
+    "story": "岩层深处传来了异常的共鸣。\n旅行者，深入遗迹，阻止深渊的侵蚀。",
+    "relicImageId": 102005
+  },
+  "v25Battle": {
+    "presentationProfile": "v25-reference",
+    "sourceCommit": "7e40d2d361fff6b9c89d9f409db29a9d8ac44352",
+    "font": { "card": 14, "cardName": 16, "cost": 25 },
+    "motion": { "hoverLift": 80, "hoverScale": 1.22 },
+    "cardSkin": { "text": { "title": "#FFFFFF", "body": "#FFF6E2" }, "costText": "#FFF8E7", "typeInk": "#595959", "artWells": { "attack": "#551C24", "skill": "#1A3042", "power": "#252536" } },
+    "color": {
+      "mapCanvas": {
+        "available": "#17212B",
+        "visited": "#17212B",
+        "far": "#575757",
+        "currentRing": "#25373E",
+        "kind": {
+          "combat": "#26363C",
+          "elite": "#26363C",
+          "camp": "#26363C",
+          "shop": "#26363C",
+          "event": "#26363C",
+          "treasure": "#26363C",
+          "boss": "#26363C"
+        }
+      },
+      "node": {
+        "current": "#17212B",
+        "path": "#5D625E",
+        "pathTaken": "#26373E",
+        "reachable": "#26373E"
+      }
+    },
+    "layout": {
+      "nativeNode": {
+        "referenceButtons": {
+          "ink": "#F4DE8E", "disabledInk": "#A8ABA3",
+          "flag": {"hover": "#A0524C", "pressed": "#5C2828"},
+          "choice": {"hover": "#427D81", "pressed": "#183B40"}
+        },
+        "referenceIdentity": {"ironclad": "旅行者·荧·岩", "silent": "旅行者·荧·风", "defect": "旅行者·荧·雷", "watcher": "旅行者·荧·草", "hutao": "胡桃", "arlecchino": "阿蕾奇诺", "furina": "芙宁娜", "raiden": "雷电将军"},
+        "shop": {"referenceRemovalName": "卡牌移除\n服务！", "referenceRemovalInk": "#EED689", "referenceRemovalBorder": "#7D7C81"},
+        "camp": {"reference": {"restEdge": "#85AA68", "forgeEdge": "#96646A", "restHover": "#619E58", "forgeHover": "#B77980"}},
+        "cardReference": {
+          "paperImage": 107253, "costImage": 107270, "paperInk": "#B5A480", "bodyInk": "#2E2828",
+          "costInk": "#FFF0D0", "costOrbInk": "#F3CB68", "ribbonEdge": "#726858",
+          "rarities": {"basic": "#B8AC90", "common": "#B7B4AA", "uncommon": "#71D4D8", "rare": "#E4B855"}
+        },
+        "event": {
+          "reference": {
+            "icon": 100114, "figureInk": "#C3C9BF40",
+            "textInk": "#EDEEDF", "disabledInk": "#777E6E",
+            "costInk": "#D77C7E", "rewardInk": "#9DD740",
+            "hover": "#427D81", "pressed": "#183B40",
+            "border": "#406166", "hoverBorder": "#8EB6B5"
+          }
+        }
+      },
+      "map": {
+        "notice": [0, -324, 820, 48],
+        "emeraldNotice": [0, -316, 820, 48],
+        "presentation": {
+          "lockedIconScale": 0.65,
+          "visitedIconScale": 0.85,
+          "availableScaleFloor": 1.4,
+          "availableScaleCap": 1.6,
+          "noticeHeight": 48,
+          "pathWidth": 2,
+          "lockedPathWidth": 1.85,
+          "takenPathWidth": 2.1,
+          "futureOpacity": 0.72,
+          "farFutureOpacity": 0.72,
+          "takenOpacity": 1,
+          "nextOpacity": 1,
+          "lockedOpacity": 1,
+          "farLockedOpacity": 1
+        }
+      },
+      "v25TurnNotice": { "position": [0, 43], "size": [1280, 100], "duration": 1.7, "enterEnd": 0.2, "exitStart": 0.65, "travel": 40, "titleSize": 37, "subtitleSize": 16, "titleInk": "#ECD193", "subtitleInk": "#C0B9A4", "shadeInk": "#03080CCD", "shadowInk": "#000000CC", "swordInk": { "edge": "#334947", "left": "#8DACA4", "right": "#AFC3B2", "guard": "#829A88", "handle": "#80958B" } },
+      "player": { "position": [-324, -37], "portrait": 210 },
+      "enemyRow": { "floorY": 330 },
+      "hpBar": { "size": [154, 11] },
+      "battleUnit": { "heroFoot": 0, "heroNameGap": 0, "heroNameLine": 0, "heroHealthGap": 5, "heroHealthWidth": 154 },
+      "energy": { "position": [-511, -233], "size": 86, "numberSize": 29, "rimColour": "#514247", "shellColour": "#24262A", "faceColour": "#FFE35DC0", "lightColour": "#FFF7A680", "elementColour": "#FFE35D30" },
+      "endTurn": { "position": [454.5, -220], "size": [143, 56], "numberSize": 18, "faceColour": "#243942", "textColour": "#E2DFD0" },
+      "drawPile": { "position": [-585.5, -311.5], "size": [65, 67] },
+      "hand": { "y": -290, "maxWidth": 694, "spacingMax": 124, "spacingMin": 60 },
+      "pileBadge": { "visual": { "diameter": 28, "offset": [20, -14], "font": 19, "textWidth": 36 } },
+      "card": { "size": [150, 210], "costPosition": [-66.5078125, 95], "nameBand": 37.8, "art": 77.7, "typeLine": 16.8, "textBox": [114, 60.921875], "title": { "position": [0, 79.8046875], "width": 159 }, "artIcon": 44,
+        "v25Content": {
+          "bodyPosition": [0, -59.8515625], "typePosition": [0, -14.6953125],
+          "icons": { "attack": [0, 36.875], "skill": [0, 36.875], "power": [0, 36.84375] },
+          "windows": {
+            "attack": { "position": [0, 32.5625], "size": [126, 86.09375], "shoulder": 0.78 },
+            "skill": { "position": [0, 32.5625], "size": [126, 86.09375], "cornerFraction": 0.06 },
+            "power": { "position": [0, 43.578125], "size": [129, 112.34375], "ellipse": true }
+          }
+        }
+      }
+    }
   }
 }
