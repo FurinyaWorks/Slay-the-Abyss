@@ -1,0 +1,698 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "pr579-ci-repair-independent-review-20261110",
+  "reviewer": "pr579-ci-repair-independent-review-20261110",
+  "reviewedAt": "2026-11-10T07:18:41.825193+00:00",
+  "reviewedHeadSha": "830360c45d5eb7e21a2eae769a46013da9b65cb0",
+  "reviewedTreeSha": "7d2ca0283cd7b364cf9152b4426a1c798ec81ff1",
+  "repairBaselineSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+  "historicalReviewedBaseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "reviewedBaseSha": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "localCombinationSha": "d647771981fe9b3ae8d504746840ad7f3b144639",
+  "localCombinationTreeSha": "82bbf80b2b3eacdf74960b8422642950deada306",
+  "conclusion": "pass",
+  "scope": "Independent source/delta review only; not CI, full-consumer, delivery or merge approval. Final publication metadata must be rebound.",
+  "unresolved": [],
+  "changedExecutablePaths": [
+    {
+      "path": "tests/game-ui-host-result.test.mjs",
+      "sha256": "b30c961b34903a370d153cc93a5701d77518a4b0ddb1ec93186583cb144621be"
+    },
+    {
+      "path": "tests/helpers/game-ui-host-vm.mjs",
+      "sha256": "4a362e0b3517f5fecd788d2168938ebe5f4dd445a1c020039b50ee294c4b04e8"
+    },
+    {
+      "path": "tests/helpers/lua-graph-observer.mjs",
+      "sha256": "c75f1ed7356d1c2163e096af5765922593ad0081a53fb5f261d401d1d743a62a"
+    },
+    {
+      "path": "tests/helpers/pr372-integration-source.mjs",
+      "sha256": "9287e8b5da4d0997d1ac8e9608160a89c5d88d045dfc06eca6f6dfffdac5e493"
+    },
+    {
+      "path": "tests/lua/support/game_ui_host_trace.lua",
+      "sha256": "5be2b47dbd1b30dddfcd987b27b20bf8e2f3762825f6f6de23a061019d66999a"
+    },
+    {
+      "path": "tests/ready-art-source-inverse.test.mjs",
+      "sha256": "9c26a826aa08901458578e849df11774281d06e5f9486e95685ac4588f3a74d7"
+    },
+    {
+      "path": "tests/responsibility-complexity.test.mjs",
+      "sha256": "90920c62ff70b741c53f84243784985e33cf43a22396e1042b8a769c37be7647"
+    },
+    {
+      "path": "tests/watcher-potion-integration-source.test.mjs",
+      "sha256": "e16f05f12d6427b4ab19e7626a0db3c833f3d732fa56c5276c65f1127e7ba4ed"
+    }
+  ],
+  "unchangedOriginalScope": {
+    "count": 59,
+    "manifest": "docs/reviews/pr579-reanchor-20261110/fresh-source-coverage.json",
+    "byteComparison": "All 59 original0f blobs equal implementation HEAD and match recorded SHA256.",
+    "liveAttribution": "Original independent review source was personally verified with its reviewer, beyond the saved report: the59 paths were personally reviewed at0f382e9e8464eb474c61ac042656ca2c2cd3463e/base1eb288472d7b33b7450eec97a624ca2ffa526f39/tree24c400695c36d09034a6141c9b50acc0dbba38ed. Public source: https://github.com/FurinyaWorks/Slay-the-Abyss/pull/579#pullrequestreview-5837052010 . Inheritance applies only to byte-unchanged scope; current-source defects found later are not excluded by that earlier review.",
+    "limits": "Original review did not prove affected consumer closure, source admission, Actor fixture completeness, Full or Hosted. New repair addresses observed omissions without claiming exhaustive coverage."
+  },
+  "reviewedContracts": [
+    "Actor fixture adds existing required upgradeStasisHeld owner; production CC15, exact-coordinate CC16, missing-entry and missing-AST assertions retained.",
+    "pr372 current-source GameUI authentication now precedes pure CI config stripping. Original art-feature file unchanged; ready-art original e50c2b19 baseline assertions retained. All pure CI contracts, frozen archives and beforeSha identities unchanged.",
+    "Watcher reader authenticates full current owner closure before frozen watcherFlowPrior/localSeven projection. Stable recognized entry probes distinguish linked-owner failures from unknown root passthrough.",
+    "Host event sink calls same fresh observer at original record point with shared stable identities; preserves argument arity, order, strings, definitions and checkpoint flush order. Original window coverage, byte comparisons,30s timeout,128MiB decoded/32MiB encoded bounds unchanged.",
+    "Reviewed unchanged consumers: GameUI adapter/current epoch, art/ready and relic compositions, pure CI projection chain, observer consumers retaining three-argument API. This inspection is not full dynamic closure.",
+    "New base14-path delta affects intake/guidance; only PR overlap docs/MILESTONES paragraph composes without conflict. No repair executable/source-scope overlap; independently reproduced merge tree."
+  ],
+  "independentProbes": [
+    {
+      "name": "responsibility-complexity full file",
+      "result": "19/19 passed"
+    },
+    {
+      "name": "seven positive-named Host graph/event/identity/collector probes",
+      "result": "7/7 passed before final additional UTF8 expansion; final expansion inspected and worker7/7 log read"
+    },
+    {
+      "name": "pr372 config base and feature379",
+      "result": "Both restore originale50c2b19ba16cc334bc438ab3fcceb4b1fba822caf094076325ca7fcaacd6e11;108 drift negatives across54 current owners passed"
+    },
+    {
+      "name": "draft expected-only three-suite attempt",
+      "result": "26/29; independently reproduced missing raw config reads and draft undefined-root hashing mistake. Draft rejected, final ordering restores original expectations."
+    },
+    {
+      "name": "original failure evidence",
+      "result": "All8 gzip/raw byte counts and hashes independently verified; original assertions and timeout read."
+    },
+    {
+      "name": "Host raw byte oracle",
+      "result": "Personally read/hash three44529985-byte traces; identical07bd0eaa83ee9bc5ea6facca489b5c89d2ab8c24b9603cf4d860ce0dd72c668e. Original invocation worker-attributed, not independently rerun."
+    }
+  ],
+  "workerValidationRead": {
+    "sourceAssigned": "30/30 final repaired suites passed",
+    "boundedConsumers": "88/90 initial; missing generated data repaired, calibration rerun53/53. GameUI full-file remains failed OOM. Not all88 reverse-import test files run.",
+    "pairedGameUi": "Untouched0f and candidate both default-heap SIGABRT/OOM,41.761s/2396144KiB and41.256s/2377908KiB respectively. No limit raised.",
+    "host": "Original failing seed6/28-30 candidate old/new exact trace pass once locally; timing variable and Windows unverified.",
+    "newBaseComposition": "Recorded local implementation/base combination guidance, backlog and48 task-contract tests pass; inspected logs, not independently rerun."
+  },
+  "officialFailureManifest": {
+    "schemaVersion": 1,
+    "repository": "FurinyaWorks/Slay-the-Abyss",
+    "runId": 42760162623,
+    "runAttempt": 1,
+    "headSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+    "source": "GitHub job log API returned decoded text, encoded verbatim as UTF-8 with original BOM and CRLF; deterministic gzip, no line filtering",
+    "jobs": [
+      {
+        "jobId": 129644323425,
+        "jobName": "rules (2/18)",
+        "jobUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42760162623/job/129644323425",
+        "runId": 42760162623,
+        "headSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+        "conclusion": "failure",
+        "rawBytes": 97516,
+        "rawSha256": "4ddcff574e6b85796736f48a429985c00b7a94a1913256bab5d6bf7549b96b53",
+        "archive": "job-129644323425.log.gz",
+        "archiveBytes": 22094,
+        "archiveSha256": "5733502634e0bf3a30a1042cb73602ab2fd735b579a9181551b4390fc0c9b24c"
+      },
+      {
+        "jobId": 129644323487,
+        "jobName": "engineering-posix (6/15)",
+        "jobUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42760162623/job/129644323487",
+        "runId": 42760162623,
+        "headSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+        "conclusion": "failure",
+        "rawBytes": 101102,
+        "rawSha256": "5affe4983b1fe799afa7d28ad4724d7cbd7861191cd152d331b82bc7b4b453f9",
+        "archive": "job-129644323487.log.gz",
+        "archiveBytes": 23413,
+        "archiveSha256": "009780924e7ce94be0020bc5f587c8ad366621b2fc6a84d530d5d39dcf5db71c"
+      },
+      {
+        "jobId": 129644323493,
+        "jobName": "rules (7/18)",
+        "jobUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42760162623/job/129644323493",
+        "runId": 42760162623,
+        "headSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+        "conclusion": "failure",
+        "rawBytes": 71452,
+        "rawSha256": "feaf0d57087a773484f98b94897a4e44e6b876623edc221d8a94c4d33a3cf83c",
+        "archive": "job-129644323493.log.gz",
+        "archiveBytes": 18674,
+        "archiveSha256": "2157928d2ffeb10d24598846212ef19a5724770c884f2d8b105d11ad66b834da"
+      },
+      {
+        "jobId": 129644323537,
+        "jobName": "rules (16/18)",
+        "jobUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42760162623/job/129644323537",
+        "runId": 42760162623,
+        "headSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+        "conclusion": "failure",
+        "rawBytes": 114790,
+        "rawSha256": "94aef70ae97eb4cc7aa314fa3622e81cae1f6c3bb30456ba5f578a3f3965f6a4",
+        "archive": "job-129644323537.log.gz",
+        "archiveBytes": 25246,
+        "archiveSha256": "a4c985a661da3c17ab1265d04c6b36998f87bef461769204a4bbf91e48dadca0"
+      },
+      {
+        "jobId": 129644323626,
+        "jobName": "engineering-posix (13/15)",
+        "jobUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42760162623/job/129644323626",
+        "runId": 42760162623,
+        "headSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+        "conclusion": "failure",
+        "rawBytes": 108755,
+        "rawSha256": "09f761c681c5b6d2d4984f3e0a54007431998a1aed7c7db1fcbd06d8d2a5791f",
+        "archive": "job-129644323626.log.gz",
+        "archiveBytes": 25303,
+        "archiveSha256": "2e88cb3cfc1ee232a672f2bb28327ef193e01596c26073aefe3ec2ca44255227"
+      },
+      {
+        "jobId": 129644323656,
+        "jobName": "rules (18/18)",
+        "jobUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42760162623/job/129644323656",
+        "runId": 42760162623,
+        "headSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+        "conclusion": "failure",
+        "rawBytes": 85314,
+        "rawSha256": "a6d6b0ac74b34588e5f1b4f215611eecad5ff7dfcc50e3658c39fecf23c901ed",
+        "archive": "job-129644323656.log.gz",
+        "archiveBytes": 22912,
+        "archiveSha256": "0463504cc9d9ca3ed4b370fd9fdc1f516b2be08c05178b43a566dca4fa18dfc6"
+      },
+      {
+        "jobId": 129644323661,
+        "jobName": "rules (3/18)",
+        "jobUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42760162623/job/129644323661",
+        "runId": 42760162623,
+        "headSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+        "conclusion": "failure",
+        "rawBytes": 76045,
+        "rawSha256": "dd47bddd56dbf23d7d2b43095704b9c4cb6f899d8f97ccc34c17d25b3cf7fe31",
+        "archive": "job-129644323661.log.gz",
+        "archiveBytes": 19804,
+        "archiveSha256": "fc71a2950a6e31cefa4279b1b878ca5fbf770dd21d9191c09c4ab52ee28c4e03"
+      },
+      {
+        "jobId": 129644323769,
+        "jobName": "engineering-posix (12/15)",
+        "jobUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/actions/runs/42760162623/job/129644323769",
+        "runId": 42760162623,
+        "headSha": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+        "conclusion": "failure",
+        "rawBytes": 153136,
+        "rawSha256": "6cc36dcd09dbc0ecd3681b400b8616d16d263cfaea5a5be3017d27d90bbb76c5",
+        "archive": "job-129644323769.log.gz",
+        "archiveBytes": 32437,
+        "archiveSha256": "001578663125130b4000c6cdeaf9a7dd161dd90827c939de85d25e490f05692a"
+      }
+    ]
+  },
+  "rawEvidence": [
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/README.md",
+      "bytes": 3397,
+      "sha256": "1ca164c2225b2f313a5c710ab3d878681903a47572de21076adcf5966c3347bc"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/baseline.log",
+      "bytes": 4784,
+      "sha256": "8cc0d8aa42ccb8191afe3e075f123d778e0916b16ab2b02b9ea93e4e0fd49240"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/build.log",
+      "bytes": 415,
+      "sha256": "6426d443f8b1269bed413bed335775dddfcd268cb5485c5a7051e1cdd92d3a1c"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/helpers-positive.log",
+      "bytes": 827,
+      "sha256": "cd405a4a7699a0617edf0222506b623e49e2f64d428eb345e2405820bcd2f06c"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/helpers.log",
+      "bytes": 118,
+      "sha256": "6044e14654cf4cc84b8daa81c397e18ebf199d14c923a6d5937257c726b2071c"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/native-events.log",
+      "bytes": 298,
+      "sha256": "4aedabbc21cfa12890cdd21609da8815930e6a4fddbf50bddd5bebf59213cca9"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/original-byte-oracle.log",
+      "bytes": 594,
+      "sha256": "35421e84e7640dbac67ee07101fb026172ab352ee3d6a0713f9b07835aad02fb"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-new-1jMQ5f-1-25-27-80b41736-7e60-4e4a-a300-22bab9058fe1.json",
+      "bytes": 2065,
+      "sha256": "e509a983c8eea7a4bfe2c1f4f537b625c2d93bb3a53b314643fb2dfd610230c9"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-new-b7QVu8-6-28-30-6c8a94b5-190e-435a-a292-3b8cdf820a49.json",
+      "bytes": 2280,
+      "sha256": "f795108333a7006103b0c87083a885c058bf0e904e605a506ac772babe481b7b"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-new-qRyhTs-6-28-30-6bf545a5-2566-471e-a317-349918a38d36.json",
+      "bytes": 2414,
+      "sha256": "d1fd8c09012850f45158ffac0d10320e7aaa5b35ca68557e07d7c1a36ac41f7b"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-old-S0TSOv-1-25-27-9e7fa32c-2e70-4805-a3bb-56b2fe7fa8ac.json",
+      "bytes": 2065,
+      "sha256": "d79c61ebf86a34edcd4a2887ea466179d6f5bb764701f54ea33d06587a3cdddd"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-old-hsvLoj-6-28-30-6e039839-d212-445e-9ddf-af71f0426338.json",
+      "bytes": 2280,
+      "sha256": "618d2c382c59104d96057e79ee87f003ef9b8f398bae27413abfc2f40aed69a1"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-old-nIrkiN-6-28-30-d6ec30d2-db26-4a74-940c-48d03bee6a46.json",
+      "bytes": 2280,
+      "sha256": "4c64e870922fe6485d7e77c82b9b0c394f99e795fd6185c73cb0414c13baa367"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-old-sAjPr3-6-28-30-4ffc0eb3-0f7d-4a7b-81cc-84fd4fc70b73.json",
+      "bytes": 2280,
+      "sha256": "e8a6bb1a3280c677c47ef73b695e7159bbce93ee9fd4fcaa3e71f6ff6980acc2"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/windows-job-129644323656.log.gz",
+      "bytes": 22912,
+      "sha256": "0463504cc9d9ca3ed4b370fd9fdc1f516b2be08c05178b43a566dca4fa18dfc6"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/after-order-diagnosis.log.gz",
+      "bytes": 77,
+      "sha256": "fb706ecfdb45360681fc01b81a86aef6a90395aa43791711cf8a056789f3df38"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/calibration-built.log.gz",
+      "bytes": 2929,
+      "sha256": "3672dbbf03ba241059799f50d5e62ea77e06cd36857a894a89bbdda505f24eaf"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/consumer-closure.log.gz",
+      "bytes": 5696,
+      "sha256": "570bddbf5c631f9057b3fa8a4b07900ed5869a42ede74395ddc9cca8b76a8d97"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/final-targeted.log.gz",
+      "bytes": 1764,
+      "sha256": "504e28aa2edd5a33bd0146d4d00516734dca64e84701bdb2d7aa0da10637dd0f"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/first-green.log.gz",
+      "bytes": 26094,
+      "sha256": "a49df27c82eee562341b66e98b638cdde50b3e446162ea7e3564cf8569bdc738"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-full.log.gz",
+      "bytes": 861,
+      "sha256": "2344cb829973ba3175f8e1712bd59552f9f90032ee74982887c1b1ee086e1efa"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-minimal.log.gz",
+      "bytes": 229,
+      "sha256": "e4795afb6232f559a665db881aa0bb613ad100057d1be241560e2103e5b96ab5"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-resource.json",
+      "bytes": 144,
+      "sha256": "f3f38ed3cf75142915bc1a395d7539cbeccc66f047c852ba2f68acfb979fda59"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-time.log.gz",
+      "bytes": 78,
+      "sha256": "6ce97002f260e1268efc93192cd9a463a9953d71987db775defc89ed5c261125"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-candidate-full.log.gz",
+      "bytes": 859,
+      "sha256": "1ce363753a0c4c1ce9c01d1d6832fb3cf776838d5d0eaa5f5c4f7fef702cc489"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-candidate-resource.json",
+      "bytes": 145,
+      "sha256": "7c35bfcc47cbc356f119d96339482d3062f85ca4f97548140d010c1354104f76"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-candidate-stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-candidate-time.log.gz",
+      "bytes": 78,
+      "sha256": "6ce97002f260e1268efc93192cd9a463a9953d71987db775defc89ed5c261125"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-pair-environment.log.gz",
+      "bytes": 126,
+      "sha256": "45d3f7df67b83c50bede359575407374c149af88d69c625fd5c637c0ebddbc33"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/green.log.gz",
+      "bytes": 2384,
+      "sha256": "8bfa019ebcfe08d72ba83c94263b1d03100afac6220678663db1d5e10f60ab80"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/historical-green.log.gz",
+      "bytes": 218,
+      "sha256": "dd45dfc87b03b8a1637636fa622584b4b28130fba01043d22a3b0208629cbf3e"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/import-consumers.txt",
+      "bytes": 6317,
+      "sha256": "119ab42dd3720aa1d5c0d76b70cdd6d05ec39ff7f2ed6567236c1a6083ebf6ad"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/manifest.json",
+      "bytes": 7932,
+      "sha256": "33b74de100509b471dc8167e6406d0bc3052684668deae15fe7be46f06149640"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/projection-diagnosis.log.gz",
+      "bytes": 974,
+      "sha256": "b054c5c07fb00d7c92df4511bfa9a1a939595fb80bb93a7dc347124a691ec886"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/red-minimal.log.gz",
+      "bytes": 3719,
+      "sha256": "aa5501c8fd7cc0872f287cc34cbb4557e99eaf99cb3fa9c65e2420d51b9b08e1"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/red.log.gz",
+      "bytes": 4615,
+      "sha256": "2fb43132087f8b868428150d5eab7e6f96b0ce986c46d0912a4cd8fc22d6fb1a"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/repair-summary.md",
+      "bytes": 3758,
+      "sha256": "2e573045f6bb7e74464f51140fd0e49662034377d6b6a33d063f3034722a85de"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/repaired-green.log.gz",
+      "bytes": 21972,
+      "sha256": "01ed6d35e2acefc02c857555f9a786a9b229641fe907359d536a8aa5785cadcb"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/watcher-pr372-green.log.gz",
+      "bytes": 676,
+      "sha256": "f6184a1bd12b2fdde99ea60303629162d15f751afdefcc79f6fafd2d718f1008"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/README.md",
+      "bytes": 6911,
+      "sha256": "482453d081803e7acefce4269658d4ccb7340dd195fa7b2e426d00fdac01f6dd"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/actor-fixture-green.log",
+      "bytes": 2270,
+      "sha256": "83029d7ebdcec628099f01b1fea504ccac9af2cd0bb1cf443f337a760d67dff3"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/actor-fixture-red.log",
+      "bytes": 1376,
+      "sha256": "a322029a011de63a79fb3cd57644f548af5d01d6fefab871e0ed3808120c04d4"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323425.log.gz",
+      "bytes": 22094,
+      "sha256": "5733502634e0bf3a30a1042cb73602ab2fd735b579a9181551b4390fc0c9b24c"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323487.log.gz",
+      "bytes": 23413,
+      "sha256": "009780924e7ce94be0020bc5f587c8ad366621b2fc6a84d530d5d39dcf5db71c"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323493.log.gz",
+      "bytes": 18674,
+      "sha256": "2157928d2ffeb10d24598846212ef19a5724770c884f2d8b105d11ad66b834da"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323537.log.gz",
+      "bytes": 25246,
+      "sha256": "a4c985a661da3c17ab1265d04c6b36998f87bef461769204a4bbf91e48dadca0"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323626.log.gz",
+      "bytes": 25303,
+      "sha256": "2e88cb3cfc1ee232a672f2bb28327ef193e01596c26073aefe3ec2ca44255227"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323656.log.gz",
+      "bytes": 22912,
+      "sha256": "0463504cc9d9ca3ed4b370fd9fdc1f516b2be08c05178b43a566dca4fa18dfc6"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323661.log.gz",
+      "bytes": 19804,
+      "sha256": "fc71a2950a6e31cefa4279b1b878ca5fbf770dd21d9191c09c4ab52ee28c4e03"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323769.log.gz",
+      "bytes": 32437,
+      "sha256": "001578663125130b4000c6cdeaf9a7dd161dd90827c939de85d25e490f05692a"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/merged-backlog.log",
+      "bytes": 382,
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/merged-guidance.log",
+      "bytes": 482,
+      "sha256": "c564e9debd99d0e4c564d32c7be0ee3fee5ee00f1564eb501ad3bddda5354a05"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/merged-task-contracts.log",
+      "bytes": 4439,
+      "sha256": "1d0e89edf24a56347add154afedfaadd3ee7cd9072ab8fb76f03f091708909c8"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/official-failure-logs.json",
+      "bytes": 5005,
+      "sha256": "a77f3166a5208b9b7be0b971b3c9cf7822fb1a7907455bce3bcc53d854ef0ee2"
+    }
+  ],
+  "limitations": [
+    "No Full, complete88-file consumer closure, fresh Hosted Windows/POSIX or device/GUI validation.",
+    "Paired local GameUI default-heap OOM is a failed validation, not a pass; baseline reproduction does not prove every supported environment passes.",
+    "No robust Host speedup or Windows timeout cure claimed from single local run.",
+    "Final exact head/base required CI must run afresh. Original0f CI was failed and is not inherited.",
+    "This report binds pre-review evidence HEAD830360c4 and separately records implementation HEAD26463035; adding this report/manifest requires a subsequent identity-only readback without circular self-hash.",
+    "Backlog CLI unavailable on PATH during review; no task state edits made."
+  ],
+  "implementationHeadSha": "830360c45d5eb7e21a2eae769a46013da9b65cb0",
+  "implementationTreeSha": "7d2ca0283cd7b364cf9152b4426a1c798ec81ff1",
+  "currentCombinationTreeSha": "d0c73a60a387c8748cd54e4cb68fb700695ab9c5",
+  "sourceEvidenceManifest": {
+    "implementationCommit": "3ab8cfcf92fdabc590c3de4e019ece8ec6ac8411",
+    "baseline": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+    "files": [
+      {
+        "file": "after-order-diagnosis.log.gz",
+        "rawFile": "after-order-diagnosis.log",
+        "rawBytes": 130,
+        "rawSha256": "addb866f21cb9ca7a2df8373146350a47cdcf0dfca6b3c2138f5b2868e35503e",
+        "storedBytes": 77,
+        "storedSha256": "fb706ecfdb45360681fc01b81a86aef6a90395aa43791711cf8a056789f3df38"
+      },
+      {
+        "file": "calibration-built.log.gz",
+        "rawFile": "calibration-built.log",
+        "rawBytes": 15134,
+        "rawSha256": "74dd126918ec4f5bf9617486006592892cb3f6368de39b60d480de88e375a846",
+        "storedBytes": 2929,
+        "storedSha256": "3672dbbf03ba241059799f50d5e62ea77e06cd36857a894a89bbdda505f24eaf"
+      },
+      {
+        "file": "consumer-closure.log.gz",
+        "rawFile": "consumer-closure.log",
+        "rawBytes": 29589,
+        "rawSha256": "b1ffed57304d01a2c3765d368a6a8985128e5b867607ae6e3520b34a17e2d19d",
+        "storedBytes": 5696,
+        "storedSha256": "570bddbf5c631f9057b3fa8a4b07900ed5869a42ede74395ddc9cca8b76a8d97"
+      },
+      {
+        "file": "final-targeted.log.gz",
+        "rawFile": "final-targeted.log",
+        "rawBytes": 8865,
+        "rawSha256": "b781df1be7bc716fa6f65c22ef77a7f7aadf13a70b05a339dd9c9799e46d26d0",
+        "storedBytes": 1764,
+        "storedSha256": "504e28aa2edd5a33bd0146d4d00516734dca64e84701bdb2d7aa0da10637dd0f"
+      },
+      {
+        "file": "first-green.log.gz",
+        "rawFile": "first-green.log",
+        "rawBytes": 169476,
+        "rawSha256": "3a12e5e82e9648fc4a88a11e5f1e63ccebd46535b2b56a66f748d8a009dfd38c",
+        "storedBytes": 26094,
+        "storedSha256": "a49df27c82eee562341b66e98b638cdde50b3e446162ea7e3564cf8569bdc738"
+      },
+      {
+        "file": "game-ui-baseline-full.log.gz",
+        "rawFile": "game-ui-baseline-full.log",
+        "rawBytes": 2764,
+        "rawSha256": "03d307c694baf7f52a3b8ac4541c5b47ca61af9b205563796ed7361a8b463cfb",
+        "storedBytes": 861,
+        "storedSha256": "2344cb829973ba3175f8e1712bd59552f9f90032ee74982887c1b1ee086e1efa"
+      },
+      {
+        "file": "game-ui-baseline-minimal.log.gz",
+        "rawFile": "game-ui-baseline-minimal.log",
+        "rawBytes": 383,
+        "rawSha256": "c82ae5b665db35a20037c1807b7fa764ddbf5dd30a64645ac733c2115557928b",
+        "storedBytes": 229,
+        "storedSha256": "e4795afb6232f559a665db881aa0bb613ad100057d1be241560e2103e5b96ab5"
+      },
+      {
+        "file": "game-ui-baseline-resource.json",
+        "rawFile": "game-ui-baseline-resource.json",
+        "rawBytes": 144,
+        "rawSha256": "f3f38ed3cf75142915bc1a395d7539cbeccc66f047c852ba2f68acfb979fda59",
+        "storedBytes": 144,
+        "storedSha256": "f3f38ed3cf75142915bc1a395d7539cbeccc66f047c852ba2f68acfb979fda59"
+      },
+      {
+        "file": "game-ui-baseline-stderr.log.gz",
+        "rawFile": "game-ui-baseline-stderr.log",
+        "rawBytes": 0,
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "storedBytes": 20,
+        "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      {
+        "file": "game-ui-baseline-time.log.gz",
+        "rawFile": "game-ui-baseline-time.log",
+        "rawBytes": 60,
+        "rawSha256": "3e737f6a9117cec194b02103b357f8668fae9adb86a8a8cd0bf25efab8948548",
+        "storedBytes": 78,
+        "storedSha256": "6ce97002f260e1268efc93192cd9a463a9953d71987db775defc89ed5c261125"
+      },
+      {
+        "file": "game-ui-candidate-full.log.gz",
+        "rawFile": "game-ui-candidate-full.log",
+        "rawBytes": 2762,
+        "rawSha256": "f2e1781a3b078cc326b6fe44b15a107d4fa61f31500051a0112b40803784454d",
+        "storedBytes": 859,
+        "storedSha256": "1ce363753a0c4c1ce9c01d1d6832fb3cf776838d5d0eaa5f5c4f7fef702cc489"
+      },
+      {
+        "file": "game-ui-candidate-resource.json",
+        "rawFile": "game-ui-candidate-resource.json",
+        "rawBytes": 145,
+        "rawSha256": "7c35bfcc47cbc356f119d96339482d3062f85ca4f97548140d010c1354104f76",
+        "storedBytes": 145,
+        "storedSha256": "7c35bfcc47cbc356f119d96339482d3062f85ca4f97548140d010c1354104f76"
+      },
+      {
+        "file": "game-ui-candidate-stderr.log.gz",
+        "rawFile": "game-ui-candidate-stderr.log",
+        "rawBytes": 0,
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "storedBytes": 20,
+        "storedSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      {
+        "file": "game-ui-candidate-time.log.gz",
+        "rawFile": "game-ui-candidate-time.log",
+        "rawBytes": 60,
+        "rawSha256": "3e737f6a9117cec194b02103b357f8668fae9adb86a8a8cd0bf25efab8948548",
+        "storedBytes": 78,
+        "storedSha256": "6ce97002f260e1268efc93192cd9a463a9953d71987db775defc89ed5c261125"
+      },
+      {
+        "file": "game-ui-pair-environment.log.gz",
+        "rawFile": "game-ui-pair-environment.log",
+        "rawBytes": 114,
+        "rawSha256": "c6b548af90425df5c18e4dfd659e0c81743e78511f1e829b953c58b97477d04e",
+        "storedBytes": 126,
+        "storedSha256": "45d3f7df67b83c50bede359575407374c149af88d69c625fd5c637c0ebddbc33"
+      },
+      {
+        "file": "green.log.gz",
+        "rawFile": "green.log",
+        "rawBytes": 11870,
+        "rawSha256": "46347b5bcce0458fa7d90c49466a76f227b50d894df29de0e221a9465bd23128",
+        "storedBytes": 2384,
+        "storedSha256": "8bfa019ebcfe08d72ba83c94263b1d03100afac6220678663db1d5e10f60ab80"
+      },
+      {
+        "file": "historical-green.log.gz",
+        "rawFile": "historical-green.log",
+        "rawBytes": 348,
+        "rawSha256": "0dcac35f3785b84566b643330daa143d4ec4f8cf267dea9f839a5759589199d1",
+        "storedBytes": 218,
+        "storedSha256": "dd45dfc87b03b8a1637636fa622584b4b28130fba01043d22a3b0208629cbf3e"
+      },
+      {
+        "file": "import-consumers.txt",
+        "rawFile": "import-consumers.txt",
+        "rawBytes": 6317,
+        "rawSha256": "119ab42dd3720aa1d5c0d76b70cdd6d05ec39ff7f2ed6567236c1a6083ebf6ad",
+        "storedBytes": 6317,
+        "storedSha256": "119ab42dd3720aa1d5c0d76b70cdd6d05ec39ff7f2ed6567236c1a6083ebf6ad"
+      },
+      {
+        "file": "projection-diagnosis.log.gz",
+        "rawFile": "projection-diagnosis.log",
+        "rawBytes": 3629,
+        "rawSha256": "198f4ab1ba6d24cfe991a2b9a2402a5c36a4c698bb8b81ed9a6476719a102226",
+        "storedBytes": 974,
+        "storedSha256": "b054c5c07fb00d7c92df4511bfa9a1a939595fb80bb93a7dc347124a691ec886"
+      },
+      {
+        "file": "red-minimal.log.gz",
+        "rawFile": "red-minimal.log",
+        "rawBytes": 52502,
+        "rawSha256": "fb2c88409c9c2fe0355ed9dd4c329269bb0c1ac77c980fdd5034692b47ed1342",
+        "storedBytes": 3719,
+        "storedSha256": "aa5501c8fd7cc0872f287cc34cbb4557e99eaf99cb3fa9c65e2420d51b9b08e1"
+      },
+      {
+        "file": "red.log.gz",
+        "rawFile": "red.log",
+        "rawBytes": 34440,
+        "rawSha256": "d724b6bd94cdfd2ec345ed3dfd1b11425b70d2e231e70112e6262351974ee88b",
+        "storedBytes": 4615,
+        "storedSha256": "2fb43132087f8b868428150d5eab7e6f96b0ce986c46d0912a4cd8fc22d6fb1a"
+      },
+      {
+        "file": "repair-summary.md",
+        "rawFile": "repair-summary.md",
+        "rawBytes": 3758,
+        "rawSha256": "2e573045f6bb7e74464f51140fd0e49662034377d6b6a33d063f3034722a85de",
+        "storedBytes": 3758,
+        "storedSha256": "2e573045f6bb7e74464f51140fd0e49662034377d6b6a33d063f3034722a85de"
+      },
+      {
+        "file": "repaired-green.log.gz",
+        "rawFile": "repaired-green.log",
+        "rawBytes": 150012,
+        "rawSha256": "ad3ed9d3ab9290313918efb4f12e34de911df30ab17d70c46baa85c12e50eb2a",
+        "storedBytes": 21972,
+        "storedSha256": "01ed6d35e2acefc02c857555f9a786a9b229641fe907359d536a8aa5785cadcb"
+      },
+      {
+        "file": "watcher-pr372-green.log.gz",
+        "rawFile": "watcher-pr372-green.log",
+        "rawBytes": 2269,
+        "rawSha256": "9d7d43580160ec9790912c3881bfa689404d52d5ed6bd9c75166db0c0a52d186",
+        "storedBytes": 676,
+        "storedSha256": "f6184a1bd12b2fdde99ea60303629162d15f751afdefcc79f6fafd2d718f1008"
+      }
+    ]
+  }
+}

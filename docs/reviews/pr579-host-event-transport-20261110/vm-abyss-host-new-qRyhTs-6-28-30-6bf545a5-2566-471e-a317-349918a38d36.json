@@ -1,0 +1,16 @@
+{
+  "side": "new",
+  "seed": 6,
+  "scenario": "",
+  "from": 28,
+  "to": 30,
+  "elapsedMs": 30086,
+  "status": null,
+  "signal": "SIGTERM",
+  "error": {
+    "code": "ETIMEDOUT",
+    "message": "spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node ETIMEDOUT"
+  },
+  "encodedBytes": 0,
+  "stderr": "HOST_PROGRESS start 1 construct\nHOST_PROGRESS done 1 construct\nHOST_PROGRESS start 2 refresh\nHOST_PROGRESS done 2 refresh\nHOST_PROGRESS start 3 pointer down\nHOST_PROGRESS done 3 pointer down\nHOST_PROGRESS start 4 foreign up\nHOST_PROGRESS done 4 foreign up\nHOST_PROGRESS start 5 foreign click\nHOST_PROGRESS done 5 foreign click\nHOST_PROGRESS start 6 pointer up\nHOST_PROGRESS done 6 pointer up\nHOST_PROGRESS start 7 start click\nHOST_PROGRESS done 7 start click\nHOST_PROGRESS start 8 close selection\nHOST_PROGRESS done 8 close selection\nHOST_PROGRESS start 9 stale click\nHOST_PROGRESS done 9 stale click\nHOST_PROGRESS start 10 start\nHOST_PROGRESS done 10 start\nHOST_PROGRESS start 11 select\nHOST_PROGRESS done 11 select\nHOST_PROGRESS start 12 element\nHOST_PROGRESS done 12 element\nHOST_PROGRESS start 13 confirm\nHOST_PROGRESS done 13 confirm\nHOST_PROGRESS start 14 deck\nHOST_PROGRESS done 14 deck\nHOST_PROGRESS start 15 deck close\nHOST_PROGRESS done 15 deck close\nHOST_PROGRESS start 16 resize\nHOST_PROGRESS done 16 resize\nHOST_PROGRESS start 17 invalid dt\nHOST_PROGRESS done 17 invalid dt\nHOST_PROGRESS start 18 update\nHOST_PROGRESS done 18 update\nHOST_PROGRESS start 19 open menu\nHOST_PROGRESS done 19 open menu\nHOST_PROGRESS start 20 close menu\nHOST_PROGRESS done 20 close menu\nHOST_PROGRESS start 21 dynamic method\nHOST_PROGRESS done 21 dynamic method\nHOST_PROGRESS start 22 dynamic close\nHOST_PROGRESS done 22 dynamic close\nHOST_PROGRESS start 23 second shared platform\nHOST_PROGRESS done 23 second shared platform\nHOST_PROGRESS start 24 first captured controller\nHOST_PROGRESS done 24 first captured controller\nHOST_PROGRESS start 25 begin combat\nHOST_PROGRESS done 25 begin combat\nHOST_PROGRESS start 26 combat tick\nHOST_PROGRESS done 26 combat tick\nHOST_PROGRESS start 27 open exit\nHOST_PROGRESS done 27 open exit\nHOST_PROGRESS start 28 settle false\nHOST_PROGRESS done 28 settle false\nHOST_PROGRESS start 29 settle throw\nHOST_PROGRESS done 29 settle throw\nHOST_PROGRESS start 30 settle nil\nHOST_PROGRESS done 30 settle nil\n"
+}

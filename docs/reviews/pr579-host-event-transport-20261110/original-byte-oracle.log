@@ -1,0 +1,4 @@
+HOST_TRACE_BYTES ms=23237 encoded=3228249 decoded=44529985
+{"label":"original","bytes":44529985,"sha256":"07bd0eaa83ee9bc5ea6facca489b5c89d2ab8c24b9603cf4d860ce0dd72c668e","equal":true,"traces":3,"events":3,"pass":true,"window":true}
+{"label":"candidate-old","bytes":44529985,"sha256":"07bd0eaa83ee9bc5ea6facca489b5c89d2ab8c24b9603cf4d860ce0dd72c668e","equal":true,"traces":3,"events":3,"pass":true,"window":true}
+{"label":"candidate-new","bytes":44529985,"sha256":"07bd0eaa83ee9bc5ea6facca489b5c89d2ab8c24b9603cf4d860ce0dd72c668e","equal":true,"traces":3,"events":3,"pass":true,"window":true}

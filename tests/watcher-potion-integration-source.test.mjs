@@ -1,3 +1,4 @@
+import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import {sevenRefactorEpoch} from './helpers/seven-refactor-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -6,7 +7,9 @@ import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {preClassPotionWatcherSource as prior,classPotionWatcherReader,preIntegratedCapabilitySource, classPotionWatcherSourceProof as proof,standaloneArchitectureSource} from './helpers/class-potion-watcher-source-inverse.mjs';
 import {preM7FinalSource,m7FinalReader} from './helpers/m7-core-final-source-inverse.mjs';
-const read=sevenRefactorEpoch.combinedReader(p=>readFileSync(p,'utf8').replaceAll('\r\n','\n'),'localSeven');
+// Authenticate the full current owner closure before entering the frozen seven-refactor epoch.
+const raw=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
+const read=sevenRefactorEpoch.combinedReader(sourceEpoch.combinedReader(raw,'watcherFlowPrior'),'localSeven');
 const {before}=JSON.parse(gunzipSync(readFileSync('tests/fixtures/class-potion-watcher-before.json.gz')));
 const owners=Object.keys(proof),live=Object.fromEntries(owners.map(p=>[p,read(p)]));
 const hash=s=>createHash('sha256').update(s).digest('hex');
@@ -72,5 +75,52 @@ test('standalone config entry rejects every opposite-owner mixed epoch, drift an
    const current={...live,[config]:historical[config]};
    assert.throws(()=>entry(p=>current[p])(historical[config]),/combined linked owner identity/);
   }
+ }
+});
+
+test('current-to-seven bridge authenticates the complete predecessor and every fresh raw owner',()=>{
+ const target=sourceEpoch.proof.targets.watcherFlowPrior;
+ assert.equal(target.commit,'7821a7f44b518c09f6b565860e04e4823bc95153');
+ for(const [path,binding]of Object.entries(sevenRefactorEpoch.proof.current))
+  assert.deepEqual(target.files[path],binding,'independent seven-refactor predecessor: '+path);
+ const config='config/architecture.json',seen=[];let bad=null,mode=null;
+ const readRaw=path=>{
+  seen.push(path);
+  if(path===bad){
+   if(mode==='missing')return undefined;
+   if(mode==='throw')throw Error('bridge raw reader sentinel');
+   return raw(path)+'\n';
+  }
+  return raw(path);
+ };
+ const predecessor=sourceEpoch.combinedReader(readRaw,'watcherFlowPrior');
+ const reader=sevenRefactorEpoch.combinedReader(predecessor,'localSeven');
+ const currentSource=raw(config);
+ assert.equal(hash(reader(config)),proof[config].afterSha256);seen.length=0;
+ // Keep the entry token stable while faulting its linked config read as well.
+ const check=()=>{
+  const source=sourceEpoch.preCombinedSource(config,currentSource,{target:'watcherFlowPrior',readSource:readRaw});
+  assert.equal(hash(sevenRefactorEpoch.preCombinedSource(config,source,{target:'localSeven',readSource:predecessor})),proof[config].afterSha256);
+ };
+ check();const first=[...seen];seen.length=0;check();assert.deepEqual(seen,first);
+ for(const owner of sourceEpoch.proof.owners){
+  assert(first.includes(owner),'fresh current owner: '+owner);
+  for(mode of ['drift','missing','throw']){
+   bad=owner;
+   for(let repeat=0;repeat<2;repeat++)assert.throws(check,error=>{
+    assert.match(error.message,/linked owner/);assert(error.message.includes(owner));
+    if(mode==='throw')assert.match(error.message,/bridge raw reader sentinel/);return true;
+   });
+  }
+  bad=null;check();
+ }
+});
+
+test('current-to-seven reader preserves unknown entry values without linked-owner reads',()=>{
+ const config='config/architecture.json';
+ for(const input of [undefined,null,{},raw(config)+'\n-- unknown']){
+  const seen=[],readRaw=path=>{seen.push(path);assert.equal(path,config);return input;};
+  const reader=sevenRefactorEpoch.combinedReader(sourceEpoch.combinedReader(readRaw,'watcherFlowPrior'),'localSeven');
+  assert.equal(reader(config),input);assert.deepEqual(seen,[config]);
  }
 });

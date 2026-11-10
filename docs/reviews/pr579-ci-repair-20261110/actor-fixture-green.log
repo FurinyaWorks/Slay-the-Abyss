@@ -1,0 +1,29 @@
+✔ native turn orchestration and every extracted stage remain bounded and required (29.517298ms)
+✔ presentation extractions are required and their nested callbacks remain budgeted (1.159125ms)
+✔ scoped responsibility budgets include nested callbacks and preserve unrelated hotspots (3.365206ms)
+✔ every extracted helper and anonymous function receives the same budget (1.228107ms)
+✔ potion candidate helpers cannot move branching outside the responsibility budget (0.467462ms)
+✔ every extracted card action helper is required and bounded with its nested functions (473.919075ms)
+✔ combat play, turn and constructor stages are required, bounded and fully measured (521.030681ms)
+✔ Actor damage and status stages plus nested callbacks cannot escape the production CC15 policy (247.324139ms)
+✔ effect support responsibilities remain required and bounded with their nested callbacks (75.094435ms)
+✔ restoring the original Run potion candidate hotspot fails the production policy (0.584952ms)
+✔ missing entries, missing measurements, duplicate positions and unknown formats fail closed (1.016968ms)
+✔ each AST function needs its own measurement even when counts remain equal (0.563478ms)
+✔ Luacheck Unicode codepoint columns map to the byte AST on the same line (2.237538ms)
+✔ shared combat catalog and nested helpers retain the responsibility budget (0.603493ms)
+✔ main chunk and a function at the first source position are distinct measurements (0.504746ms)
+✔ the extracted wording formatter is required and restoring the old local hotspot is also budgeted (1.905766ms)
+✔ Scry confirmation stages and their nested callbacks are required and bounded without hiding pile validation (11.498216ms)
+✔ the complete Shiv responsibility includes future helpers, nested functions and its chunk (0.514526ms)
+✔ the complete Act3 AI responsibility budgets future helpers, nested callbacks and its chunk (0.789204ms)
+✔ Stasis policies cannot reach execution owners through immediate or deferred full-source paths (1899.988037ms)
+✔ lazy upgrade owner helper and its nested callbacks retain explicit CC15 governance (2.798501ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2213.049376

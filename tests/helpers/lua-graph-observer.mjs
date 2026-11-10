@@ -3,7 +3,7 @@ const require=createRequire(import.meta.url);
 const {lua,lauxlib,to_luastring,to_jsstring}=require('fengari');
 // Visit every reachable field each call. Stable mode emits changed definitions;
 // preceding definitions remain part of the reconstructable graph stream.
-export function installLuaGraphObserver(L,name='ABYSS_HOST_GRAPH',writeGraph){
+export function installLuaGraphObserver(L,name='ABYSS_HOST_GRAPH',writeGraph,writeEvent){
  const allocations=new Map(),previous=new Map(),backings=new Map();let serial=0;
  const tags=Object.fromEntries([lua.LUA_TTABLE,lua.LUA_TFUNCTION,lua.LUA_TUSERDATA,lua.LUA_TTHREAD].map(type=>[type,to_jsstring(lua.lua_typename(L,type))]));
  // A graph value is a nil tag or a typed scalar/reference pair, never a table
@@ -77,6 +77,10 @@ export function installLuaGraphObserver(L,name='ABYSS_HOST_GRAPH',writeGraph){
   definitions.sort((a,b)=>a[1]-b[1]);
   return JSON.stringify({root,definitions});
  };
+ if(writeEvent){
+  lua.lua_pushcfunction(L,L=>{writeEvent(observe(L,true));return 0;});
+  lua.lua_setglobal(L,to_luastring(name+'_EVENT_WRITE'));
+ }
  const returned=(L,eventArgs=false)=>{lua.lua_pushstring(L,to_luastring(observe(L,eventArgs)));return 1;};
  lua.lua_pushcfunction(L,L=>returned(L));lua.lua_setglobal(L,to_luastring(name));
  lua.lua_pushcfunction(L,L=>returned(L,true));lua.lua_setglobal(L,to_luastring(name+'_EVENT'));

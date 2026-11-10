@@ -11,7 +11,10 @@ import {createHash} from 'node:crypto';
 import {preReadyArtSource as currentProject} from './helpers/ready-art-source-inverse.mjs';
 import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import {nativeMonsterSourceLayer} from './helpers/epochs/develop/tests/helpers/native-monster-art-source-inverse.mjs';
-import {gameUiExtractionProof} from './helpers/epochs/develop/tests/helpers/game-ui-extraction-source-inverse.mjs';
+import {gameUiExtractionProof,preGameUiExtractionSource as frozenGameUi} from './helpers/epochs/develop/tests/helpers/game-ui-extraction-source-inverse.mjs';
+import {preNativePageSource} from './helpers/game-ui-extraction-source-inverse.mjs';
+import {preRelicQuerySource} from './helpers/relic-query-source-inverse.mjs';
+import {preCoreLifecycleSource} from './helpers/core-lifecycle-source-inverse.mjs';
 const hash=s=>s===null?null:createHash('sha256').update(s).digest('hex');
 
 // The entry and every relative dependency are the unchanged 98fef Git bytes.
@@ -173,4 +176,31 @@ test('current unsupported art-source composition still exposes its exact linked 
   assert(error.message.startsWith('native monster linked source identity: '+linked));
   assert.equal(error.actual,actual);assert.equal(error.expected,expected);return true;
  });
+});
+
+// Keep the older GameUI input epoch an explicit positive contract as well.
+// Reconstruct it through authenticated native, query and lifecycle predecessors;
+// both old and current admission must restore the same frozen output identities.
+test('frozen GameUI Host/config still restore their independent original identities',()=>{
+ const nativeRead=path=>preNativePageSource(path,readFileSync(path,'utf8'));
+ const queryRead=path=>preRelicQuerySource(path,nativeRead(path),{readSource:nativeRead});
+ const inputs=Object.fromEntries(Object.keys(gameUiExtractionProof.files).map(path=>[
+  path,preCoreLifecycleSource(path,queryRead(path),{readSource:nativeRead}),
+ ]));
+ const config='config/architecture.json';
+ assert.equal(gameUiExtractionProof.files[config].beforeSha256,'e50c2b19ba16cc334bc438ab3fcceb4b1fba822caf094076325ca7fcaacd6e11');
+ for(const path of ['src/lua/abyss_game_ui.lua',config]){
+  const binding=gameUiExtractionProof.files[path],seen=[];
+  assert.equal(hash(inputs[path]),binding.afterSha256);
+  const readSource=owner=>{seen.push(owner);return inputs[owner];};
+  for(const source of [inputs[path],inputs[path].replaceAll('\n','\r\n')]){
+   seen.length=0;
+   const previous=frozenGameUi(path,source,{readSource});
+   assert.equal(previous,binding.beforeSource);assert.equal(hash(previous),binding.beforeSha256);
+   assert.deepEqual(seen,Object.keys(gameUiExtractionProof.files));
+  }
+  for(const owner of Object.keys(inputs)){
+   assert.throws(()=>frozenGameUi(path,inputs[path],{readSource:p=>inputs[p]+(p===owner?'\n-- drift':'')}),/linked owner/);
+  }
+ }
 });

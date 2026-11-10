@@ -1,0 +1,11 @@
+HOST_TRACE_BYTES ms=23493 encoded=3228249 decoded=44529985
+HOST_TRACE_BYTES ms=25385 encoded=3228249 decoded=44529985
+✔ whole Host result seed 6 boundaries 28-30 (49620.252705ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 49854.390303

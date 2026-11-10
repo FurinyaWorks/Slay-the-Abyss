@@ -11,7 +11,8 @@ end
 local function record(...)
  if not ABYSS_HOST_FULL_TRACE then return end
  if count+1<(ABYSS_HOST_FROM or 1) or count+1>(ABYSS_HOST_TO or 35) then return end
- events[#events+1]=assert(ABYSS_HOST_GRAPH_EVENT)(...)
+ if ABYSS_HOST_GRAPH_EVENT_WRITE then ABYSS_HOST_GRAPH_EVENT_WRITE(...)
+ else events[#events+1]=assert(ABYSS_HOST_GRAPH_EVENT)(...)end
 end
 -- The fixture invokes this after inert construction. Remove ALL raw fields so
 -- repeated direct writes pass through __newindex, including existing properties.
@@ -76,7 +77,9 @@ local function checkpoint(label,host,fn)
  if ABYSS_HOST_FULL_TRACE then
   local frame={label=label,result=result,state={host=host,hosts=hosts,data=F.Data,presentation=F.Presentation,native=nativeControls}}
   if ABYSS_HOST_GRAPH_WRITE then
-   print('HOST_EVENTS ['..table.concat(events,',')..']');ABYSS_HOST_GRAPH_WRITE(frame,'HOST_TRACE',true)
+   if ABYSS_HOST_EVENTS_WRITE then ABYSS_HOST_EVENTS_WRITE()
+   else print('HOST_EVENTS ['..table.concat(events,',')..']')end
+   ABYSS_HOST_GRAPH_WRITE(frame,'HOST_TRACE',true)
   else
    local line=graph(frame,true)
    print('HOST_EVENTS ['..table.concat(events,',')..']');print('HOST_TRACE '..line)

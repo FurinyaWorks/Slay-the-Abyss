@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 1,
+  "baseline": "0f382e9e8464eb474c61ac042656ca2c2cd3463e",
+  "currentBase": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "reviewId": "pr579-ci-repair-independent-review-20261110",
+  "files": [
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/README.md",
+      "bytes": 6911,
+      "sha256": "482453d081803e7acefce4269658d4ccb7340dd195fa7b2e426d00fdac01f6dd",
+      "gitBlob": "0cf026fffcb90d4198de87cb390ad5fbf7127cf7"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/actor-fixture-green.log",
+      "bytes": 2270,
+      "sha256": "83029d7ebdcec628099f01b1fea504ccac9af2cd0bb1cf443f337a760d67dff3",
+      "gitBlob": "8bb1a4aba4347991c372b7157080bd2f0c095275"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/actor-fixture-red.log",
+      "bytes": 1376,
+      "sha256": "a322029a011de63a79fb3cd57644f548af5d01d6fefab871e0ed3808120c04d4",
+      "gitBlob": "cb8ace68b5acd085458647b640b81cee2f2edd1a"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/fresh-repair-review.json",
+      "bytes": 32615,
+      "sha256": "c276813496d51ba5cf9d3069ad1afa41ee91e2ef889308f90447e6cc227785f1",
+      "gitBlob": "7e97297b881e48b3ee093e15076e691c9e11929f"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323425.log.gz",
+      "bytes": 22094,
+      "sha256": "5733502634e0bf3a30a1042cb73602ab2fd735b579a9181551b4390fc0c9b24c",
+      "gitBlob": "77f03f81e833aff05944d932f9dcf762d5a1326c"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323487.log.gz",
+      "bytes": 23413,
+      "sha256": "009780924e7ce94be0020bc5f587c8ad366621b2fc6a84d530d5d39dcf5db71c",
+      "gitBlob": "ff8fc2076eec809e7ff603fbeb9099d60a420a6c"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323493.log.gz",
+      "bytes": 18674,
+      "sha256": "2157928d2ffeb10d24598846212ef19a5724770c884f2d8b105d11ad66b834da",
+      "gitBlob": "bdaa79771a9ca7a9e50344ebdde53cc12f622795"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323537.log.gz",
+      "bytes": 25246,
+      "sha256": "a4c985a661da3c17ab1265d04c6b36998f87bef461769204a4bbf91e48dadca0",
+      "gitBlob": "65f2487c14837b599437d5add1d8a57bf719f9a1"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323626.log.gz",
+      "bytes": 25303,
+      "sha256": "2e88cb3cfc1ee232a672f2bb28327ef193e01596c26073aefe3ec2ca44255227",
+      "gitBlob": "9c85487f7556e4a6bfc18b8ce234f792c47e3057"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323656.log.gz",
+      "bytes": 22912,
+      "sha256": "0463504cc9d9ca3ed4b370fd9fdc1f516b2be08c05178b43a566dca4fa18dfc6",
+      "gitBlob": "0e78e1edf9cb94f243e8548029a90bfb092bb685"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323661.log.gz",
+      "bytes": 19804,
+      "sha256": "fc71a2950a6e31cefa4279b1b878ca5fbf770dd21d9191c09c4ab52ee28c4e03",
+      "gitBlob": "029f03c33cca8b1bf251c2f334353eddb18e25bc"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/job-129644323769.log.gz",
+      "bytes": 32437,
+      "sha256": "001578663125130b4000c6cdeaf9a7dd161dd90827c939de85d25e490f05692a",
+      "gitBlob": "64dd1d4637101bc5fae096a8438aa36a9be32866"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/merged-backlog.log",
+      "bytes": 382,
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "gitBlob": "5fdef30dfa9d343baae608b8a0617c5decf8b1c8"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/merged-guidance.log",
+      "bytes": 482,
+      "sha256": "c564e9debd99d0e4c564d32c7be0ee3fee5ee00f1564eb501ad3bddda5354a05",
+      "gitBlob": "1206540b7b55d240224269d53fec9a94994274bd"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/merged-task-contracts.log",
+      "bytes": 4439,
+      "sha256": "1d0e89edf24a56347add154afedfaadd3ee7cd9072ab8fb76f03f091708909c8",
+      "gitBlob": "0325de8b86e478bca91d6ebdd23609562b9899c9"
+    },
+    {
+      "path": "docs/reviews/pr579-ci-repair-20261110/official-failure-logs.json",
+      "bytes": 5005,
+      "sha256": "a77f3166a5208b9b7be0b971b3c9cf7822fb1a7907455bce3bcc53d854ef0ee2",
+      "gitBlob": "30dc9b285611fb8bc471f123a218eefdb0fef740"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/README.md",
+      "bytes": 3397,
+      "sha256": "1ca164c2225b2f313a5c710ab3d878681903a47572de21076adcf5966c3347bc",
+      "gitBlob": "f8fb392d9ab768d6b3ca4a658dc34c1f027c5288"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/baseline.log",
+      "bytes": 4784,
+      "sha256": "8cc0d8aa42ccb8191afe3e075f123d778e0916b16ab2b02b9ea93e4e0fd49240",
+      "gitBlob": "f20c27c168606fe71de7a649952f1fa009a928d6"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/build.log",
+      "bytes": 415,
+      "sha256": "6426d443f8b1269bed413bed335775dddfcd268cb5485c5a7051e1cdd92d3a1c",
+      "gitBlob": "4a8ab5dc21dbbd3bb4c6e223765e7acd6fe431b7"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/helpers-positive.log",
+      "bytes": 827,
+      "sha256": "cd405a4a7699a0617edf0222506b623e49e2f64d428eb345e2405820bcd2f06c",
+      "gitBlob": "1dcd4cb8b05609adcd6962e2b938fdd26590963d"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/helpers.log",
+      "bytes": 118,
+      "sha256": "6044e14654cf4cc84b8daa81c397e18ebf199d14c923a6d5937257c726b2071c",
+      "gitBlob": "76ddcce84b3109681b783fa600aa1b1015eafa41"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/native-events.log",
+      "bytes": 298,
+      "sha256": "4aedabbc21cfa12890cdd21609da8815930e6a4fddbf50bddd5bebf59213cca9",
+      "gitBlob": "50d99c2bc2c4e21a39e5f01e31b6f1cfb31afc11"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/original-byte-oracle.log",
+      "bytes": 594,
+      "sha256": "35421e84e7640dbac67ee07101fb026172ab352ee3d6a0713f9b07835aad02fb",
+      "gitBlob": "1093e1d57827d6c2a71f0d70a490844c680720fd"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-new-1jMQ5f-1-25-27-80b41736-7e60-4e4a-a300-22bab9058fe1.json",
+      "bytes": 2065,
+      "sha256": "e509a983c8eea7a4bfe2c1f4f537b625c2d93bb3a53b314643fb2dfd610230c9",
+      "gitBlob": "14870ca4472646b4f9deca1aa10bdaf765bc5bbd"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-new-b7QVu8-6-28-30-6c8a94b5-190e-435a-a292-3b8cdf820a49.json",
+      "bytes": 2280,
+      "sha256": "f795108333a7006103b0c87083a885c058bf0e904e605a506ac772babe481b7b",
+      "gitBlob": "b6f09521ef6bbf417b37b9905b7bc026d02f5179"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-new-qRyhTs-6-28-30-6bf545a5-2566-471e-a317-349918a38d36.json",
+      "bytes": 2414,
+      "sha256": "d1fd8c09012850f45158ffac0d10320e7aaa5b35ca68557e07d7c1a36ac41f7b",
+      "gitBlob": "8a41d6bf18c1efd58cce69ad80ea0fae9936ba59"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-old-S0TSOv-1-25-27-9e7fa32c-2e70-4805-a3bb-56b2fe7fa8ac.json",
+      "bytes": 2065,
+      "sha256": "d79c61ebf86a34edcd4a2887ea466179d6f5bb764701f54ea33d06587a3cdddd",
+      "gitBlob": "65644a3c6f9ca4b1f5615ce34d4384b226398a3b"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-old-hsvLoj-6-28-30-6e039839-d212-445e-9ddf-af71f0426338.json",
+      "bytes": 2280,
+      "sha256": "618d2c382c59104d96057e79ee87f003ef9b8f398bae27413abfc2f40aed69a1",
+      "gitBlob": "f47fa7619fc0bd2a995ec6ec0d839e5d4e68e623"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-old-nIrkiN-6-28-30-d6ec30d2-db26-4a74-940c-48d03bee6a46.json",
+      "bytes": 2280,
+      "sha256": "4c64e870922fe6485d7e77c82b9b0c394f99e795fd6185c73cb0414c13baa367",
+      "gitBlob": "3d02ee1080df08f2942c296bf485b0617a461437"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/vm-abyss-host-old-sAjPr3-6-28-30-4ffc0eb3-0f7d-4a7b-81cc-84fd4fc70b73.json",
+      "bytes": 2280,
+      "sha256": "e8a6bb1a3280c677c47ef73b695e7159bbce93ee9fd4fcaa3e71f6ff6980acc2",
+      "gitBlob": "4aa941197bf0664abed91cac892fc25f1d3b52b1"
+    },
+    {
+      "path": "docs/reviews/pr579-host-event-transport-20261110/windows-job-129644323656.log.gz",
+      "bytes": 22912,
+      "sha256": "0463504cc9d9ca3ed4b370fd9fdc1f516b2be08c05178b43a566dca4fa18dfc6",
+      "gitBlob": "0e78e1edf9cb94f243e8548029a90bfb092bb685"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/after-order-diagnosis.log.gz",
+      "bytes": 77,
+      "sha256": "fb706ecfdb45360681fc01b81a86aef6a90395aa43791711cf8a056789f3df38",
+      "gitBlob": "df6a02530f358837b65fe8ac427f0fbb5b67900a"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/calibration-built.log.gz",
+      "bytes": 2929,
+      "sha256": "3672dbbf03ba241059799f50d5e62ea77e06cd36857a894a89bbdda505f24eaf",
+      "gitBlob": "711d59c4f97aaa49f8a8faa86cb6ea32635a8a7f"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/consumer-closure.log.gz",
+      "bytes": 5696,
+      "sha256": "570bddbf5c631f9057b3fa8a4b07900ed5869a42ede74395ddc9cca8b76a8d97",
+      "gitBlob": "3a25df44648ac591a01eeba941dedd3b7cc9d8ac"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/final-targeted.log.gz",
+      "bytes": 1764,
+      "sha256": "504e28aa2edd5a33bd0146d4d00516734dca64e84701bdb2d7aa0da10637dd0f",
+      "gitBlob": "8a4c4ab6dcd281c325cbb02b4f6b8c3ebd67e122"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/first-green.log.gz",
+      "bytes": 26094,
+      "sha256": "a49df27c82eee562341b66e98b638cdde50b3e446162ea7e3564cf8569bdc738",
+      "gitBlob": "80a2df011c5381eab95cba5100ea51fff10e4922"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-full.log.gz",
+      "bytes": 861,
+      "sha256": "2344cb829973ba3175f8e1712bd59552f9f90032ee74982887c1b1ee086e1efa",
+      "gitBlob": "a9a565ac584c701bb5219b9a62cc73796d0900a0"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-minimal.log.gz",
+      "bytes": 229,
+      "sha256": "e4795afb6232f559a665db881aa0bb613ad100057d1be241560e2103e5b96ab5",
+      "gitBlob": "ddb765c79ee4aaf75e5226e68dbea3ca0a42aed1"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-resource.json",
+      "bytes": 144,
+      "sha256": "f3f38ed3cf75142915bc1a395d7539cbeccc66f047c852ba2f68acfb979fda59",
+      "gitBlob": "7e1810b861efbea8a90d3f41004dc116ce6d6c1c"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gitBlob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-baseline-time.log.gz",
+      "bytes": 78,
+      "sha256": "6ce97002f260e1268efc93192cd9a463a9953d71987db775defc89ed5c261125",
+      "gitBlob": "b894266b3a77736bc15d431e5704afe2b2adcb8d"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-candidate-full.log.gz",
+      "bytes": 859,
+      "sha256": "1ce363753a0c4c1ce9c01d1d6832fb3cf776838d5d0eaa5f5c4f7fef702cc489",
+      "gitBlob": "bb3663bd653234eb30a2632e6223f12f40270bab"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-candidate-resource.json",
+      "bytes": 145,
+      "sha256": "7c35bfcc47cbc356f119d96339482d3062f85ca4f97548140d010c1354104f76",
+      "gitBlob": "8e121a47d3ac806751dfdc89dbee01e621e1f15f"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-candidate-stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "gitBlob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-candidate-time.log.gz",
+      "bytes": 78,
+      "sha256": "6ce97002f260e1268efc93192cd9a463a9953d71987db775defc89ed5c261125",
+      "gitBlob": "b894266b3a77736bc15d431e5704afe2b2adcb8d"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/game-ui-pair-environment.log.gz",
+      "bytes": 126,
+      "sha256": "45d3f7df67b83c50bede359575407374c149af88d69c625fd5c637c0ebddbc33",
+      "gitBlob": "6d6bd392b135ee1de3bc5d290377196066f8db94"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/green.log.gz",
+      "bytes": 2384,
+      "sha256": "8bfa019ebcfe08d72ba83c94263b1d03100afac6220678663db1d5e10f60ab80",
+      "gitBlob": "cd8040505275f092d25982be622f669beef652e0"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/historical-green.log.gz",
+      "bytes": 218,
+      "sha256": "dd45dfc87b03b8a1637636fa622584b4b28130fba01043d22a3b0208629cbf3e",
+      "gitBlob": "22e3f8672fb6bde4e2a93d240285bdabee9124c2"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/import-consumers.txt",
+      "bytes": 6317,
+      "sha256": "119ab42dd3720aa1d5c0d76b70cdd6d05ec39ff7f2ed6567236c1a6083ebf6ad",
+      "gitBlob": "65369deaf58e46b4f7c6179626ca7d722b687ec0"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/manifest.json",
+      "bytes": 7932,
+      "sha256": "33b74de100509b471dc8167e6406d0bc3052684668deae15fe7be46f06149640",
+      "gitBlob": "3b0472123d559d05430d4ca95753322b77f3450a"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/projection-diagnosis.log.gz",
+      "bytes": 974,
+      "sha256": "b054c5c07fb00d7c92df4511bfa9a1a939595fb80bb93a7dc347124a691ec886",
+      "gitBlob": "a7c65e76c8536dc099671d7e512751f645f2adfc"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/red-minimal.log.gz",
+      "bytes": 3719,
+      "sha256": "aa5501c8fd7cc0872f287cc34cbb4557e99eaf99cb3fa9c65e2420d51b9b08e1",
+      "gitBlob": "7e4573475e722869c8ab17da95cd376e21dc3a7f"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/red.log.gz",
+      "bytes": 4615,
+      "sha256": "2fb43132087f8b868428150d5eab7e6f96b0ce986c46d0912a4cd8fc22d6fb1a",
+      "gitBlob": "9ac37f8ce9a1bdbfa75d8a2d1488f9143417a9aa"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/repair-summary.md",
+      "bytes": 3758,
+      "sha256": "2e573045f6bb7e74464f51140fd0e49662034377d6b6a33d063f3034722a85de",
+      "gitBlob": "522e15eb386e01407f7b8077542e2b3ceed25493"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/repaired-green.log.gz",
+      "bytes": 21972,
+      "sha256": "01ed6d35e2acefc02c857555f9a786a9b229641fe907359d536a8aa5785cadcb",
+      "gitBlob": "0cba49a59b2c09fc5e6e0dcbbb5393cb7886f2cc"
+    },
+    {
+      "path": "docs/reviews/pr579-source-contract-repair-20261110/watcher-pr372-green.log.gz",
+      "bytes": 676,
+      "sha256": "f6184a1bd12b2fdde99ea60303629162d15f751afdefcc79f6fafd2d718f1008",
+      "gitBlob": "56bfd665f963b0fb3b4c3a9458e3a58ab30b3791"
+    },
+    {
+      "path": "tests/game-ui-host-result.test.mjs",
+      "bytes": 16344,
+      "sha256": "b30c961b34903a370d153cc93a5701d77518a4b0ddb1ec93186583cb144621be",
+      "gitBlob": "66b6afda2e0f1a616892cf8b28af92ad42591e55"
+    },
+    {
+      "path": "tests/helpers/game-ui-host-vm.mjs",
+      "bytes": 2380,
+      "sha256": "4a362e0b3517f5fecd788d2168938ebe5f4dd445a1c020039b50ee294c4b04e8",
+      "gitBlob": "5ba48b82b844ea19b12cb69c83488e83af6f2069"
+    },
+    {
+      "path": "tests/helpers/lua-graph-observer.mjs",
+      "bytes": 6065,
+      "sha256": "c75f1ed7356d1c2163e096af5765922593ad0081a53fb5f261d401d1d743a62a",
+      "gitBlob": "b0677e1252f4a390dab50675a24d0800acf82c1b"
+    },
+    {
+      "path": "tests/helpers/pr372-integration-source.mjs",
+      "bytes": 4052,
+      "sha256": "9287e8b5da4d0997d1ac8e9608160a89c5d88d045dfc06eca6f6dfffdac5e493",
+      "gitBlob": "d281398d2811821d2e6d6a6ed5ff7e525ee6ec5c"
+    },
+    {
+      "path": "tests/lua/support/game_ui_host_trace.lua",
+      "bytes": 18094,
+      "sha256": "5be2b47dbd1b30dddfcd987b27b20bf8e2f3762825f6f6de23a061019d66999a",
+      "gitBlob": "12bd4651e5589ac68ad30c8584a0fed5cd9017ee"
+    },
+    {
+      "path": "tests/ready-art-source-inverse.test.mjs",
+      "bytes": 13013,
+      "sha256": "9c26a826aa08901458578e849df11774281d06e5f9486e95685ac4588f3a74d7",
+      "gitBlob": "e0a3170b682ac0fe33377d0b87705c7ef8c7f971"
+    },
+    {
+      "path": "tests/responsibility-complexity.test.mjs",
+      "bytes": 22700,
+      "sha256": "90920c62ff70b741c53f84243784985e33cf43a22396e1042b8a769c37be7647",
+      "gitBlob": "a1eec60d18cffb0a114d93fa3a4de7d2f4f57bb6"
+    },
+    {
+      "path": "tests/watcher-potion-integration-source.test.mjs",
+      "bytes": 7956,
+      "sha256": "e16f05f12d6427b4ab19e7626a0db3c833f3d732fa56c5276c65f1127e7ba4ed",
+      "gitBlob": "43ccca42a7ed363c4e22c47eac25933618811244"
+    }
+  ]
+}

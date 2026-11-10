@@ -52,6 +52,31 @@ test('native graph writes preserve every returned-string byte and event order',(
  assert.match(written[5],/\[\["engine","alive"\],\["boolean",false\]\]/,'retired native control remains fully observed');
 });
 
+test('native event writes preserve ordered bytes, arity and shared graph identity',()=>{
+ const {lua,lauxlib,lualib,to_luastring,to_jsstring}=require('fengari');
+ function observe(native){
+  const output=[],L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);
+  installLuaGraphObserver(L,'ABYSS_HOST_GRAPH',(label,graph)=>output.push(label+' '+graph),
+   native?graph=>output.push('event '+graph):undefined);
+  lua.lua_pushcfunction(L,L=>{output.push(to_jsstring(lua.lua_tostring(L,1)));return 0;});
+  lua.lua_setglobal(L,to_luastring('print'));
+  const source=`local function record(...)
+    ${native?"ABYSS_HOST_GRAPH_EVENT_WRITE(...)":"print('event '..ABYSS_HOST_GRAPH_EVENT(...))"}
+   end
+   local child={value='中文\\0😀\\nline\\r\\n'};local root={a=child,b=child};root.self=root
+   local control={};ABYSS_HOST_GRAPH_CONTROL(control,{child=child})
+   record();record(nil,false,nil);record('native',control,root,child,nil)
+   ABYSS_HOST_GRAPH_WRITE(root,'trace',true)
+   child.value='changed';root.b={value=child.value};record('write',root,child,control)
+   ABYSS_HOST_GRAPH_WRITE(root,'trace',true)`;
+  assert.equal(lauxlib.luaL_dostring(L,to_luastring(source)),lua.LUA_OK);
+  return output;
+ }
+ const original=observe(false),native=observe(true);
+ assert.equal(original.length,6);assert.deepEqual(native,original);
+ assert.match(native[1],/"root":\[\["nil"\],\["boolean",false\],\["nil"\]\]/);
+});
+
 test('fresh graph deltas preserve the fixed original observer stream across every value and entry mode',()=>{
  // Oracle: tests/helpers/lua-graph-observer.mjs at 67793786, SHA256
  // ddef991a2c414dcf6838cc9d343fa99269ae9d9c297368b3ac8df46cd785fa15.
@@ -104,11 +129,16 @@ test('fresh graph deltas preserve the fixed original observer stream across ever
 
 test('graph strings still reject invalid UTF-8 after a previously observed buffer changes',()=>{
  const {lua,lauxlib,lualib,to_luastring}=require('fengari');
- const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);installLuaGraphObserver(L);
- assert.equal(lauxlib.luaL_dostring(L,to_luastring("probe='red';return ABYSS_HOST_GRAPH({value=probe},{},true)")),lua.LUA_OK);
- lua.lua_settop(L,0);lua.lua_getglobal(L,to_luastring('probe'));
- lua.lua_tolstring(L,-1)[0]=255;lua.lua_pop(L,1);
- assert.notEqual(lauxlib.luaL_dostring(L,to_luastring('return ABYSS_HOST_GRAPH({value=probe},{},true)')),lua.LUA_OK);
+ for(const entry of ["return ABYSS_HOST_GRAPH({value=probe},{},true)","ABYSS_HOST_GRAPH_EVENT_WRITE(probe)"]){
+  let writes=0;
+  const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);installLuaGraphObserver(L,'ABYSS_HOST_GRAPH',undefined,()=>writes++);
+  assert.equal(lauxlib.luaL_dostring(L,to_luastring("probe='red';"+entry)),lua.LUA_OK);
+  const before=writes;
+  lua.lua_settop(L,0);lua.lua_getglobal(L,to_luastring('probe'));
+  lua.lua_tolstring(L,-1)[0]=255;lua.lua_pop(L,1);
+  assert.notEqual(lauxlib.luaL_dostring(L,to_luastring(entry)),lua.LUA_OK);
+  assert.equal(writes,before,'invalid bytes must not emit an event');
+ }
 });
 
 test('reference-push reuse ends at each observation and freshly reads warm and detached owners',()=>{
@@ -170,9 +200,14 @@ test('original result windows detect detached-owner replacement that adjacent ov
  }
  const record=fragment('local function record(','\n-- The fixture');
  const checkpoint=fragment('local function checkpoint(','\nlocal host,root');
- function observe(from,to,replace){
+ function observe(from,to,replace,nativeEvents=false){
   const output=[],L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);
-  installLuaGraphObserver(L,'ABYSS_HOST_GRAPH',(label,graph)=>output.push(label+' '+graph));
+  let events=[];
+  installLuaGraphObserver(L,'ABYSS_HOST_GRAPH',(label,graph)=>output.push(label+' '+graph),nativeEvents?graph=>events.push(graph):undefined);
+  if(nativeEvents){
+   lua.lua_pushcfunction(L,()=>{output.push('HOST_EVENTS ['+events.join(',')+']');events=[];return 0;});
+   lua.lua_setglobal(L,to_luastring('ABYSS_HOST_EVENTS_WRITE'));
+  }
   lua.lua_pushcfunction(L,L=>{output.push(to_jsstring(lua.lua_tostring(L,1)));return 0;});
   lua.lua_setglobal(L,to_luastring('print'));
   const prefix=`local events,count,hosts,nativeControls={},24,{},{}
@@ -196,6 +231,8 @@ test('original result windows detect detached-owner replacement that adjacent ov
   assert.equal(output.filter(line=>line.startsWith('HOST_EVENTS ')).length,to-from+1);
   return output.join('\n');
  }
+ for(const [from,to]of [[25,26],[26,27],[25,27]])for(const replace of [false,true])
+  assert.equal(observe(from,to,replace,true),observe(from,to,replace),'native sink preserves complete collector stream');
  assert.equal(observe(25,26,false),observe(25,26,true),'the first overlap never reaches the replacement');
  assert.equal(observe(26,27,false),observe(26,27,true),'the second overlap never saw the detached owner before it returned');
  assert.notEqual(observe(25,27,false),observe(25,27,true),'the original complete stream preserves long-range owner identity');

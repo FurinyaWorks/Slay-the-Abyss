@@ -1,0 +1,43 @@
+HOST_TRACE_BYTES ms=28176 encoded=3228249 decoded=44529985
+HOST_VM_FAILURE {"side":"new","seed":6,"scenario":"","from":28,"to":30,"elapsedMs":30086,"status":null,"signal":"SIGTERM","error":{"code":"ETIMEDOUT","message":"spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node ETIMEDOUT"},"encodedBytes":0,"stderr":"HOST_PROGRESS start 1 construct\nHOST_PROGRESS done 1 construct\nHOST_PROGRESS start 2 refresh\nHOST_PROGRESS done 2 refresh\nHOST_PROGRESS start 3 pointer down\nHOST_PROGRESS done 3 pointer down\nHOST_PROGRESS start 4 foreign up\nHOST_PROGRESS done 4 foreign up\nHOST_PROGRESS start 5 foreign click\nHOST_PROGRESS done 5 foreign click\nHOST_PROGRESS start 6 pointer up\nHOST_PROGRESS done 6 pointer up\nHOST_PROGRESS start 7 start click\nHOST_PROGRESS done 7 start click\nHOST_PROGRESS start 8 close selection\nHOST_PROGRESS done 8 close selection\nHOST_PROGRESS start 9 stale click\nHOST_PROGRESS done 9 stale click\nHOST_PROGRESS start 10 start\nHOST_PROGRESS done 10 start\nHOST_PROGRESS start 11 select\nHOST_PROGRESS done 11 select\nHOST_PROGRESS start 12 element\nHOST_PROGRESS done 12 element\nHOST_PROGRESS start 13 confirm\nHOST_PROGRESS done 13 confirm\nHOST_PROGRESS start 14 deck\nHOST_PROGRESS done 14 deck\nHOST_PROGRESS start 15 deck close\nHOST_PROGRESS done 15 deck close\nHOST_PROGRESS start 16 resize\nHOST_PROGRESS done 16 resize\nHOST_PROGRESS start 17 invalid dt\nHOST_PROGRESS done 17 invalid dt\nHOST_PROGRESS start 18 update\nHOST_PROGRESS done 18 update\nHOST_PROGRESS start 19 open menu\nHOST_PROGRESS done 19 open menu\nHOST_PROGRESS start 20 close menu\nHOST_PROGRESS done 20 close menu\nHOST_PROGRESS start 21 dynamic method\nHOST_PROGRESS done 21 dynamic method\nHOST_PROGRESS start 22 dynamic close\nHOST_PROGRESS done 22 dynamic close\nHOST_PROGRESS start 23 second shared platform\nHOST_PROGRESS done 23 second shared platform\nHOST_PROGRESS start 24 first captured controller\nHOST_PROGRESS done 24 first captured controller\nHOST_PROGRESS start 25 begin combat\nHOST_PROGRESS done 25 begin combat\nHOST_PROGRESS start 26 combat tick\nHOST_PROGRESS done 26 combat tick\nHOST_PROGRESS start 27 open exit\nHOST_PROGRESS done 27 open exit\nHOST_PROGRESS start 28 settle false\nHOST_PROGRESS done 28 settle false\nHOST_PROGRESS start 29 settle throw\nHOST_PROGRESS done 29 settle throw\nHOST_PROGRESS start 30 settle nil\nHOST_PROGRESS done 30 settle nil\n"}
+✖ whole Host result seed 6 boundaries 28-30 (58416.614273ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58581.669766
+
+✖ failing tests:
+
+test at tests/game-ui-host-result.test.mjs:204:61
+✖ whole Host result seed 6 boundaries 28-30 (58416.614273ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node ETIMEDOUT
+      at execute (file:///workspace/scratch/c1a4970a76e0/m7-host-vm-timeout/tests/helpers/game-ui-host-equivalence.mjs:45:9)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at execute (file:///workspace/scratch/c1a4970a76e0/m7-host-vm-timeout/tests/helpers/game-ui-host-equivalence.mjs:34:10)
+      at runPair (file:///workspace/scratch/c1a4970a76e0/m7-host-vm-timeout/tests/helpers/game-ui-host-equivalence.mjs:63:58)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-host-vm-timeout/tests/game-ui-host-result.test.mjs:204:128)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node ETIMEDOUT
+        at Object.spawnSync (node:internal/child_process:1191:20)
+        at spawnSync (node:child_process:929:24)
+        at execute (file:///workspace/scratch/c1a4970a76e0/m7-host-vm-timeout/tests/helpers/game-ui-host-equivalence.mjs:34:10)
+        at runPair (file:///workspace/scratch/c1a4970a76e0/m7-host-vm-timeout/tests/helpers/game-ui-host-equivalence.mjs:63:58)
+        at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-host-vm-timeout/tests/game-ui-host-result.test.mjs:204:128)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.start (node:internal/test_runner/test:1262:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }

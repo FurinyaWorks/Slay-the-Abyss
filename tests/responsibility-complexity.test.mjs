@@ -161,7 +161,7 @@ test('Actor damage and status stages plus nested callbacks cannot escape the pro
     'preparePowerAmount','rememberConstrictedSource','rememberPostDrawPower',
     'clearOwnerEntangled','appendAcquiredEndPower','collectOwnerEndPowers','settleOwnerEndPower',
     'clearTemporaryPowerOrder','settleOwnerEndPowers','finishOwnerTurn',
-    'queueHitPowers','queueAttackedPowers','M.damage',
+    'queueHitPowers','queueAttackedPowers','upgradeStasisHeld','M.damage',
     'monsterStatusIds','playerStatusIds','statusKind','statusEntry','statusResource',
     'appendRaidenResources','appendOriginalV4Resources','appendTargetV4Resources','M.statusView'];
   const lines=names.map(name=>`function ${name}() return function() end end`);

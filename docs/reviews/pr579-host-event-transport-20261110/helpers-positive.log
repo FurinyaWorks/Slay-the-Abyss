@@ -1,0 +1,15 @@
+✔ native graph writes preserve every returned-string byte and event order (25.074375ms)
+✔ native event writes preserve ordered bytes, arity and shared graph identity (3.696873ms)
+✔ fresh graph deltas preserve the fixed original observer stream across every value and entry mode (15.454448ms)
+✔ graph strings still reject invalid UTF-8 after a previously observed buffer changes (3.664771ms)
+✔ reference-push reuse ends at each observation and freshly reads warm and detached owners (4.546703ms)
+✔ result anchor observes replacement identity even when separate final graphs are equal (1.591778ms)
+✔ original result windows detect detached-owner replacement that adjacent overlaps miss (45.453959ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 249.211187

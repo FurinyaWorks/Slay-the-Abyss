@@ -8,7 +8,12 @@ const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);
 const output=[];const write=process.stdout.write.bind(process.stdout);let bytes=0;
 process.stdout.write=(chunk)=>{const buffer=Buffer.from(chunk);bytes+=buffer.length;
  if(bytes>128*1024*1024)throw Error('decoded Host trace exceeds fixed 128MiB bound');output.push(buffer);return true;};
-installLuaGraphObserver(L,'ABYSS_HOST_GRAPH',(label,graph)=>process.stdout.write(label+' '+graph+'\n'));
+// Keep complete ordered event JSON in JS, avoiding a large Lua byte-string
+// round trip. Observation and stable identity assignment still happen at record.
+let events=[];
+installLuaGraphObserver(L,'ABYSS_HOST_GRAPH',(label,graph)=>process.stdout.write(label+' '+graph+'\n'),graph=>events.push(graph));
+lua.lua_pushcfunction(L,()=>{process.stdout.write('HOST_EVENTS ['+events.join(',')+']\n');events=[];return 0;});
+lua.lua_setglobal(L,to_luastring('ABYSS_HOST_EVENTS_WRITE'));
 const scenario=process.argv[3]||'';
 const total=scenario==='short-route'?18:scenario==='short-chapters'||scenario==='short-egg'?11:scenario==='short-overlays'?13:scenario.startsWith('short-')?7:scenario?1:35;
 const from=Number(process.argv[4]||1),to=Number(process.argv[5]||total);

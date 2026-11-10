@@ -16,11 +16,13 @@ const bytes=readFileSync(new URL('../fixtures/pr372-integration-sources.json',im
 assert.equal(hash(bytes),'ea2f161779f99bc4f81c25c9087eeeb911951d52b5ff85bafec112b4c9e00995','complete combined source identity');
 export const integrationSources=JSON.parse(bytes).sources;
 export function preIntegrationSource(path,source,target='base',{readSource=path=>readFileSync(path,'utf8')}={}){
+ // Authenticate current raw owners before pure CI/planning inverses can strip
+ // the config entry token down to an older epoch with no current admission.
+ source=preGameUiExtractionSource(path,source,{readSource});
  source=preLuaTimeoutPolicySource(path,source);
  source=preCiCompleteCalibrationSource(path,source);
  source=preCiHostTimingSource(path,source);
  source=preCiWindowsShapeSource(path,source);
- source=preGameUiExtractionSource(path,source,{readSource});
  readSource=gameUiExtractionReader(readSource);
  if(target==='feature379')return preBetaSource(path,source,target,{readSource});
  source=preBetaSource(path,source,'history',{readSource});
