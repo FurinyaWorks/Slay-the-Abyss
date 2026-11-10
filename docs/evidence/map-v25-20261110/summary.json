@@ -1,22 +1,558 @@
 {
-  "sourceSaveSha256": "e18ae3baddcc63dbc698cc3f9ff9cee24901fbd3b255a975088caba8f2f1e300",
-  "scope": "Source-generated SDK candidate, not GIL",
-  "reviewedSourceStable": true,
+  "sourceSaveSha256": "2337ac5460cd18d0ed8bf55a109b087cfaa2a186e54f922383d6e58d0e9b9aa8",
+  "scope": "Source-generated SDK candidate, not GIL; verified102044 icon",
   "officialDevices": "NOT RUN / UNVERIFIED",
   "browser": {
-    "firstProjectionCompleteMs": 213.5,
-    "samples": 120,
-    "p95": 1.099999999976717,
-    "max": 3.2999999999883585,
-    "webgl": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002520) Direct3D11 vs_5_0 ps_5_0, D3D11)",
-    "errors": []
+    "firstProjectionCompleteMs": 258.69999999925494,
+    "webgl": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "canvas": [
+      1280,
+      720
+    ],
+    "nodes": 620,
+    "errors": [],
+    "renderer": "Installed Simulator Pixi via headless Chrome; not official device FPS",
+    "softwareRequested": false,
+    "samplesMs": [
+      1.5,
+      1.3999999985098839,
+      1.699999999254942,
+      1.4000000022351742,
+      1.300000000745058,
+      1.4000000022351742,
+      1.300000000745058,
+      1.300000000745058,
+      1.3999999985098839,
+      1.7999999970197678,
+      0.8999999985098839,
+      1.9000000022351742,
+      1.5,
+      1.0999999977648258,
+      1.199999999254942,
+      1.199999999254942,
+      1.3999999985098839,
+      1.3999999985098839,
+      1.4000000022351742,
+      1.5,
+      1.699999999254942,
+      1.199999999254942,
+      1.2999999970197678,
+      1.300000000745058,
+      1,
+      1.9000000022351742,
+      1.0999999977648258,
+      1.1000000014901161,
+      1,
+      1.0999999977648258,
+      1.300000000745058,
+      1.8999999985098839,
+      1.199999999254942,
+      1.5,
+      1.300000000745058,
+      1.4000000022351742,
+      1.2000000029802322,
+      1.300000000745058,
+      1.2000000029802322,
+      1.3999999985098839,
+      1.2999999970197678,
+      1.0999999977648258,
+      1.8999999985098839,
+      1.1000000014901161,
+      1.4000000022351742,
+      1.199999999254942,
+      1.199999999254942,
+      1.5,
+      1.199999999254942,
+      0.7999999970197678,
+      0.9000000022351742,
+      1.4000000022351742,
+      1.4000000022351742,
+      1.1000000014901161,
+      0.8999999985098839,
+      1.6000000014901161,
+      1.1000000014901161,
+      1.300000000745058,
+      1.800000000745058,
+      1,
+      1.300000000745058,
+      1.5,
+      1.1000000014901161,
+      1.5,
+      1.5999999977648258,
+      1.199999999254942,
+      1,
+      0.6999999992549419,
+      1.0999999977648258,
+      1.199999999254942,
+      2.400000002235174,
+      1.3999999985098839,
+      1.699999999254942,
+      1.300000000745058,
+      2.2000000029802322,
+      1.199999999254942,
+      2.800000000745058,
+      1.300000000745058,
+      0.8999999985098839,
+      1.4000000022351742,
+      1.2999999970197678,
+      1.2999999970197678,
+      1.800000000745058,
+      1.5,
+      1.300000000745058,
+      1.6000000014901161,
+      1.199999999254942,
+      2.100000001490116,
+      1.800000000745058,
+      1.6000000014901161,
+      1.4000000022351742,
+      1.7999999970197678,
+      1.199999999254942,
+      1.4000000022351742,
+      1.5,
+      1.5,
+      1.4000000022351742,
+      2,
+      1.8999999985098839,
+      1.1000000014901161,
+      2,
+      1.3999999985098839,
+      1.5,
+      3.199999999254942,
+      1.800000000745058,
+      3.5,
+      2.199999999254942,
+      3,
+      2.699999999254942,
+      1.5,
+      3.100000001490116,
+      1.699999999254942,
+      2.2999999970197678,
+      1.199999999254942,
+      1.5,
+      1.699999999254942,
+      1.5,
+      1.1000000014901161,
+      2.600000001490116,
+      1.5999999977648258
+    ],
+    "browser": "151.0.7922.108",
+    "resources": [
+      {
+        "url": "http://127.0.0.1:4180/favicon.ico",
+        "duration": 1.8999999985098839,
+        "bytes": 0
+      },
+      {
+        "url": "http://127.0.0.1:4180/editor/play-renderer.js",
+        "duration": 887.5,
+        "bytes": 789914
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-font/manifest",
+        "duration": 7.199999999254942,
+        "bytes": 325
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106025.json",
+        "duration": 211.5,
+        "bytes": 377
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/100114.json",
+        "duration": 205.89999999850988,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102005.json",
+        "duration": 209.40000000223517,
+        "bytes": 375
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/105046.json",
+        "duration": 204.89999999850988,
+        "bytes": 375
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/105077.json",
+        "duration": 206.60000000149012,
+        "bytes": 375
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102018.json",
+        "duration": 204.69999999925494,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106095.json",
+        "duration": 206.69999999925494,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102002.json",
+        "duration": 205.19999999925494,
+        "bytes": 375
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102044.json",
+        "duration": 208.80000000074506,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102025.json",
+        "duration": 210,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102034.json",
+        "duration": 209.5,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102028.json",
+        "duration": 195,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106057.json",
+        "duration": 189.69999999925494,
+        "bytes": 379
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106045.json",
+        "duration": 186.30000000074506,
+        "bytes": 377
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106059.json",
+        "duration": 187.89999999850988,
+        "bytes": 375
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106025.png",
+        "duration": 76.80000000074506,
+        "bytes": 1673
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/100114.png",
+        "duration": 69.30000000074506,
+        "bytes": 819
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102005.png",
+        "duration": 70.70000000298023,
+        "bytes": 3327
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/105046.png",
+        "duration": 71.60000000149012,
+        "bytes": 71573
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102018.png",
+        "duration": 73.79999999701977,
+        "bytes": 807
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/105077.png",
+        "duration": 74.39999999850988,
+        "bytes": 13608
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106095.png",
+        "duration": 77.60000000149012,
+        "bytes": 788
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102002.png",
+        "duration": 78.80000000074506,
+        "bytes": 11496
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102044.png",
+        "duration": 80.19999999925494,
+        "bytes": 1736
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102025.png",
+        "duration": 82.30000000074506,
+        "bytes": 1605
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102034.png",
+        "duration": 82.89999999850988,
+        "bytes": 1770
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102028.png",
+        "duration": 84.19999999925494,
+        "bytes": 1929
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106057.png",
+        "duration": 85.69999999925494,
+        "bytes": 13729
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106045.png",
+        "duration": 86.80000000074506,
+        "bytes": 1328
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106059.png",
+        "duration": 88.89999999850988,
+        "bytes": 6947
+      }
+    ],
+    "longTasks": [
+      {
+        "start": 25122.699999999255,
+        "duration": 95
+      },
+      {
+        "start": 25225.39999999851,
+        "duration": 272
+      }
+    ]
   },
   "browser-selected": {
-    "firstProjectionCompleteMs": 152.59999999997672,
-    "samples": 0,
-    "p95": null,
-    "max": null,
-    "webgl": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002520) Direct3D11 vs_5_0 ps_5_0, D3D11)",
-    "errors": []
+    "firstProjectionCompleteMs": 347.4000000022352,
+    "webgl": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "canvas": [
+      1280,
+      720
+    ],
+    "nodes": 1411,
+    "errors": [],
+    "renderer": "Installed Simulator Pixi via headless Chrome; not official device FPS",
+    "softwareRequested": false,
+    "samplesMs": [],
+    "browser": "151.0.7922.108",
+    "resources": [
+      {
+        "url": "http://127.0.0.1:4180/favicon.ico",
+        "duration": 1.800000000745058,
+        "bytes": 0
+      },
+      {
+        "url": "http://127.0.0.1:4180/editor/play-renderer.js",
+        "duration": 62.30000000074506,
+        "bytes": 789914
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-font/manifest",
+        "duration": 4.100000001490116,
+        "bytes": 325
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/105077.json",
+        "duration": 320.6000000014901,
+        "bytes": 375
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102018.json",
+        "duration": 321,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106095.json",
+        "duration": 320.5,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102002.json",
+        "duration": 320.30000000074506,
+        "bytes": 375
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102044.json",
+        "duration": 323.70000000298023,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102025.json",
+        "duration": 324.5999999977648,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102034.json",
+        "duration": 324.5,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/100114.json",
+        "duration": 325.5,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102028.json",
+        "duration": 317.80000000074506,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106057.json",
+        "duration": 314.5,
+        "bytes": 379
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106045.json",
+        "duration": 313.9000000022352,
+        "bytes": 377
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106059.json",
+        "duration": 314.19999999925494,
+        "bytes": 375
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106025.json",
+        "duration": 315.8999999985099,
+        "bytes": 377
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102012.json",
+        "duration": 321.5999999977648,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102014.json",
+        "duration": 315.30000000074506,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/100150.json",
+        "duration": 298.3999999985099,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/100149.json",
+        "duration": 298.6000000014901,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/103005.json",
+        "duration": 299.8999999985099,
+        "bytes": 373
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106029.json",
+        "duration": 301.5,
+        "bytes": 377
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/107106.json",
+        "duration": 280.5,
+        "bytes": 375
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/105077.png",
+        "duration": 88.30000000074506,
+        "bytes": 13608
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102018.png",
+        "duration": 87.30000000074506,
+        "bytes": 807
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106095.png",
+        "duration": 90.5,
+        "bytes": 788
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102002.png",
+        "duration": 92.60000000149012,
+        "bytes": 11496
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102044.png",
+        "duration": 93.5,
+        "bytes": 1736
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102025.png",
+        "duration": 91.09999999776483,
+        "bytes": 1605
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102034.png",
+        "duration": 101.5,
+        "bytes": 1770
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/100114.png",
+        "duration": 99.40000000223517,
+        "bytes": 819
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102028.png",
+        "duration": 103.40000000223517,
+        "bytes": 1929
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106057.png",
+        "duration": 106.59999999776483,
+        "bytes": 13729
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106045.png",
+        "duration": 105.30000000074506,
+        "bytes": 1328
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106059.png",
+        "duration": 105.69999999925494,
+        "bytes": 6947
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106025.png",
+        "duration": 109.5,
+        "bytes": 1673
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102012.png",
+        "duration": 109.69999999925494,
+        "bytes": 748
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/100150.png",
+        "duration": 114.29999999701977,
+        "bytes": 903
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/102014.png",
+        "duration": 136.29999999701977,
+        "bytes": 778
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/100149.png",
+        "duration": 114.69999999925494,
+        "bytes": 984
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/106029.png",
+        "duration": 117.69999999925494,
+        "bytes": 1771
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/103005.png",
+        "duration": 133.60000000149012,
+        "bytes": 7277
+      },
+      {
+        "url": "http://127.0.0.1:4180/qxqy-assets/sprite-v1/107106.png",
+        "duration": 132.10000000149012,
+        "bytes": 21062
+      }
+    ],
+    "longTasks": [
+      {
+        "start": 1857.3999999985099,
+        "duration": 106
+      },
+      {
+        "start": 1968.699999999255,
+        "duration": 364
+      }
+    ]
   }
 }
