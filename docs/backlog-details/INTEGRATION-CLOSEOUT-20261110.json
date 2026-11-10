@@ -197,6 +197,14 @@
       "bundle": ".artifacts/integration-20261110-policy-followup.bundle",
       "archiveRef": "refs/archive/integration-20261110/remote/feat/architecture-deferred-policy",
       "note": "Published by another execution line during cleanup; stale source task number must be reconciled through Backlog CLI before importing"
+    },
+    {
+      "head": "9d788bde1b067e2b638f717c1ff5a3e55d9c0b9c",
+      "branch": "feat/m7-flow-ci-checkpoint-20261110",
+      "disposition": "preserved-checkpoint-not-merged",
+      "bundle": ".artifacts/integration-20261110-flow-followup.bundle",
+      "requiresBase": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+      "archiveRef": "refs/archive/integration-20261110/remote/feat/m7-flow-ci-checkpoint-20261110"
     }
   ]
 }
