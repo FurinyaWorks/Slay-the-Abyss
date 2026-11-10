@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-09 11:10
-updated_date: '2026-11-09T22:29:00Z'
+updated_date: '2026-11-10T03:25:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -43,6 +43,8 @@ P0 技术阻塞：千星原生 V25 组件方案减少了运行时逐图元组装
 1. 复用 #580 任务和 #565 已提交组件实现，在独立 feat/ui-lifecycle 工作树执行，原 V25 skin 脏树保持原负责人所有。2. 按附件 H1/H2/H3 单因素实验建立 RED；组件层接入按页隐藏准备、预算调度、完整展示和失败清理，缓存只作用于已测热点。3. 复用现有 SDK/GIL 流程生成同视觉实验、20次切换与完整战斗输入证据；缺少私有资产或当前官方设备证据保持未验收。4. 定向回归、性能负控及架构门禁后进行独立复审；正常 Full、严格准入与合后 develop 验证通过才收口。
 
 2026-11-10：接续 #582 当前 06bc84ee，仅复用 #588 已有的 component binding 生成目标输入别名预检；保留原断言、预算、视觉与生命周期实现。先复现保护失败，跑完整输入保护文件并独审，正常新 HEAD CI 和原队列门禁通过前不收口。
+
+2026-11-10：修复 #582 同视觉配对遗漏 mountedValues；先保存参数变更/缺失/重复/格式错误 RED，再验证完整挂载参数集合与深层值一致，保留原始报告、历史源码证明及预算。定向合同 GREEN 后交独审，不改 AC/状态或远端。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -59,4 +61,6 @@ P0 技术阻塞：千星原生 V25 组件方案减少了运行时逐图元组装
 最终clean aced9718同源SDK组件A/B各3×20通过：同原件/视觉/测量协议，init19539→14938、warm19539→16060、残留0。三暖态P95本轮全部升高但未越原1.25观察线，完整保留，不宣称暖态提速。结合fc98同候选原V25三VM十阶段/十手双敌压力、自然seed33815胜利领奖回图和截图、64既有视觉源字节/LFS身份保持，选定私有卡面/遮罩另经PNG/RGBA验证及正式生命周期负控，核验AC1/3/4/6；AC5与最终交付仍等最后HEAD独审/正常Full及合后读回。独审非枚举证明旁路已同攻击独立RED→GREEN，默认clone与旧assert/archive/预算保留。
 
 2026-11-10：接续 #582 的 component binding 输出别名遗漏，复用 #588 单行生产修复，不引入其美术功能。完整输入保护513/513，历史CI/runtime53/53通过；旧档案、成本、预算和断言保持。新增精确三文件前驱投影仅服务历史收据，旧失败及完整本轮证据见 docs/evidence/pr582-component-alias-20261110/README.md。仍待最终独审、当前HEAD Hosted Full与原队列/合后验收，AC5不勾。
+
+2026-11-10：修复 #582 review5836270444 的挂载参数配对漏洞；按 controlId/script 完整集合比较所有参数，拒绝缺失、重复、非法 JSON，并在 SDK 导入前校验收据。20项 RED 后，扩展39项 GREEN、历史 CI/runtime53项通过，原始两组 SDK 报告及其 hash/预算/观察输出不变，未放宽或重建历史源码证明。证据 docs/evidence/pr582-mounted-identity-20261110/README.md；独审、精确 HEAD Full及合后验收未完成，AC5与状态保持。
 <!-- SECTION:NOTES:END -->

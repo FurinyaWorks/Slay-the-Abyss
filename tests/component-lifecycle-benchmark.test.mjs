@@ -17,7 +17,7 @@ test('SDK projection sourceFile normalization requires the actual package path',
 test('baseline-derived deterministic count fences reject regressions and report timing separately',()=>{
  const run={cycles:Array.from({length:20},()=>({menuVisible:true,characterVisible:true,countAfter:100})),phases:[{name:'initialize',created:100},...['menu-step','character-step','menu-return-step'].map(name=>({name,wallMs:1}))]};
  const identity=Object.fromEntries(['sdkExportSha256','serverUiSha256','templatesSha256','exactScriptsSha256','workerSha256'].map(key=>[key,'a'.repeat(64)]));
- const before={identity:{...identity,gilSha256:'a'},status:'SDK_MENU_CHARACTER_CYCLES_PASS',runs:[run,run,run]};
+ const before={mountedValues:[],identity:{...identity,gilSha256:'a'},status:'SDK_MENU_CHARACTER_CYCLES_PASS',runs:[run,run,run]};
  const after={...before,identity:{...identity,gilSha256:'b'}};
  assert.equal(evaluatePair(before,after).hardBudgets.baselineInitializationCeiling,100);
  assert.throws(()=>evaluatePair(before,{...after,identity:{...after.identity,workerSha256:'b'.repeat(64)}}),/measurement worker/);
@@ -44,10 +44,10 @@ test('controlled eager flag normalization preserves all other generated binding 
 });
 test('same-visual pairing rejects a changed scene, template, Lua or SDK export',()=>{
  const identity={sdkExportSha256:'a'.repeat(64),serverUiSha256:'b'.repeat(64),templatesSha256:'c'.repeat(64),exactScriptsSha256:'d'.repeat(64),gilSha256:'a'};
- assert.equal(verifySameVisualPair({identity},{identity:{...identity,gilSha256:'b'}}),true);
+ assert.equal(verifySameVisualPair({identity,mountedValues:[]},{identity:{...identity,gilSha256:'b'},mountedValues:[]}),true);
  for(const field of ['sdkExportSha256','serverUiSha256','templatesSha256','exactScriptsSha256'])
-  assert.throws(()=>verifySameVisualPair({identity},{identity:{...identity,[field]:'changed',gilSha256:'b'}}));
- assert.throws(()=>verifySameVisualPair({identity},{identity}));
+  assert.throws(()=>verifySameVisualPair({identity,mountedValues:[]},{identity:{...identity,[field]:'changed',gilSha256:'b'},mountedValues:[]}));
+ assert.throws(()=>verifySameVisualPair({identity,mountedValues:[]},{identity,mountedValues:[]}));
  assert.throws(()=>verifySameVisualPair({identity:{}},{identity:{}}));
 });
 test('twenty page cycles reject hidden destinations and growing native-model inventory',()=>{
@@ -106,4 +106,53 @@ test('final clean integrated actual-GIL pair preserves exact protocol and unfavo
  assert(actual.timing.every(row=>row.after.p95Ms>row.before.p95Ms&&!row.exceedsObservation),
   'all measured warm P95 regressions stay reported within the original observation line');
  assert.equal(summary.protocolEquality.workerSha256,actual.current.workerSha256);
+});
+
+const mountIdentity={sdkExportSha256:'a'.repeat(64),serverUiSha256:'b'.repeat(64),templatesSha256:'c'.repeat(64),exactScriptsSha256:'d'.repeat(64),gilSha256:'a'};
+const mounts=()=>[{controlId:1,script:'abyss_ui',values:{nativeComponentControls:true,nested:{enabled:false,list:[1,'x',null]}}},{controlId:2,script:'page',values:{}}];
+for(const [name,mutate] of [
+ ['changed value',r=>r[0].values.nativeComponentControls=false],
+ ['added parameter',r=>r[0].values.nativeBgmEnabled=true],
+ ['removed parameter',r=>delete r[0].values.nativeComponentControls],
+ ['changed nested value',r=>r[0].values.nested.list[0]=2],
+ ['added row',r=>r.push({controlId:3,script:'page',values:{}})],
+ ['removed row',r=>r.pop()],
+ ['changed control',r=>r[0].controlId=3],
+ ['changed script',r=>r[0].script='other'],
+])test('mounted parameter identity rejects '+name+' on either side',()=>{
+ const original=mounts(),changed=mounts();mutate(changed);
+ for(const pair of [[original,changed],[changed,original]])assert.throws(()=>verifySameVisualPair({identity:mountIdentity,mountedValues:pair[0]},{identity:{...mountIdentity,gilSha256:'b'},mountedValues:pair[1]}),/mounted/);
+});
+for(const [name,rows] of [
+ ['missing',undefined],['null',null],['object',{}],['duplicate', [...mounts(),mounts()[0]]],
+ ['null row',[null]],['array row',[[]]],['sparse rows',new Array(1)],
+ ['sparse values',[{...mounts()[0],values:{nested:new Array(1)}}]],
+ ['cyclic values',[{...mounts()[0],values:(()=>{const value={};value.self=value;return value;})()}]],
+ ['extra row field',[{...mounts()[0],ignored:true}]],
+ ['fractional control',[{...mounts()[0],controlId:1.5}]],
+ ['missing control',[{script:'abyss_ui',values:{}}]],
+ ['null values',[{...mounts()[0],values:null}]],
+ ['date values',[{...mounts()[0],values:new Date(0)}]],['missing values',[{controlId:1,script:'abyss_ui'}]],
+ ['array values',[{controlId:1,script:'abyss_ui',values:[]}]],
+ ['invalid control',[{controlId:'1',script:'abyss_ui',values:{}}]],
+ ['invalid script',[{controlId:1,script:'',values:{}}]],
+ ['nonfinite value',[{controlId:1,script:'abyss_ui',values:{n:NaN}}]],
+ ['undefined value',[{controlId:1,script:'abyss_ui',values:{n:undefined}}]],
+])test('mounted parameter identity rejects '+name+' even on both sides',()=>{
+ for(const [a,b] of [[rows,rows],[rows,mounts()],[mounts(),rows]])
+  assert.throws(()=>verifySameVisualPair({identity:mountIdentity,mountedValues:a},{identity:{...mountIdentity,gilSha256:'b'},mountedValues:b}),/mounted/);
+});
+test('mounted parameter identity allows row and object-key order without mutating reports',()=>{
+ const a=mounts(),b=mounts().reverse();b[1].values={nested:{list:[1,'x',null],enabled:false},nativeComponentControls:true};
+ const original=structuredClone([a,b]);
+ assert.equal(verifySameVisualPair({identity:mountIdentity,mountedValues:a},{identity:{...mountIdentity,gilSha256:'b'},mountedValues:b}),true);
+ assert.deepEqual([a,b],original);
+});
+test('recorded final pair rejects the review parameter mutation through evaluatePair',()=>{
+ const evidence=new URL('../docs/evidence/',import.meta.url);
+ const summary=JSON.parse(readFileSync(new URL('task-100-1-sdk-final-comparison-20261109.json',evidence)));
+ const reports=summary.rawReports.map(r=>JSON.parse(gunzipSync(readFileSync(new URL(r.path,evidence)))));
+ reports[1].mountedValues[0].values.nativeComponentControls=false;
+ reports[1].mountedValues[0].values.nativeBgmEnabled=true;
+ assert.throws(()=>evaluatePair(...reports),/mounted/);
 });

@@ -31,9 +31,36 @@ export function comparableScripts(scripts) {
  });
  assert.equal(markers,1,'ambiguous/missing abyss_ui source');return normalized;
 }
+// Receipt rows are effective mountScript overrides, not covered by script/UI hashes.
+// Compare identities as a set, retaining every parameter and nested JSON value.
+function comparableMountedValues(rows) {
+ assert(Array.isArray(rows),'missing/invalid mountedValues');
+ const seen=new Set(),ancestors=new Set();
+ function jsonValue(value) {
+  if(value===null||typeof value==='string'||typeof value==='boolean')return;
+  if(typeof value==='number'){assert(Number.isFinite(value),'invalid mounted numeric value');return;}
+  assert(value&&typeof value==='object','invalid mounted JSON value');
+  assert(Array.isArray(value)||Object.getPrototypeOf(value)===Object.prototype,'invalid mounted JSON object');
+  assert(!ancestors.has(value),'cyclic mounted JSON value');ancestors.add(value);
+  for(const child of Array.isArray(value)?value:Object.values(value))jsonValue(child);
+  ancestors.delete(value);
+ }
+ return Array.from(rows,row=>{
+  assert(row&&typeof row==='object'&&!Array.isArray(row),'invalid mounted row');
+  assert.deepEqual(Object.keys(row).sort(),['controlId','script','values'],'invalid mounted row fields');
+  assert(Number.isSafeInteger(row.controlId)&&row.controlId>0,'invalid mounted controlId');
+  assert(typeof row.script==='string'&&row.script.trim().length>0,'invalid mounted script');
+  assert(row.values&&typeof row.values==='object'&&!Array.isArray(row.values),'invalid mounted values');
+  jsonValue(row.values);
+  const key=JSON.stringify([row.controlId,row.script]);
+  assert(!seen.has(key),'duplicate mounted identity');seen.add(key);
+  return {key,row};
+ }).sort((a,b)=>a.key<b.key?-1:a.key>b.key?1:0).map(entry=>entry.row);
+}
 export function verifySameVisualPair(before,after) {
  for(const field of ['sdkExportSha256','serverUiSha256','templatesSha256','exactScriptsSha256'])
   {assert(/^[0-9a-f]{64}$/.test(before.identity[field]),'missing/invalid pair identity '+field);assert.equal(before.identity[field],after.identity[field],'controlled pair changed '+field);}
+ assert.deepEqual(comparableMountedValues(before.mountedValues),comparableMountedValues(after.mountedValues),'controlled pair changed mounted values');
  assert.notEqual(before.identity.gilSha256,after.identity.gilSha256,'pair must identify separate GIL packages');
  return true;
 }
@@ -82,6 +109,7 @@ export async function benchmarkComponentLifecycle({receiptFile,sdkExport,output,
  for(const p of [receiptFile,sdkExport])assert(fs.existsSync(p),'missing private input '+p);
  output=path.resolve(output);assert(!fs.existsSync(output),'use a new output directory');fs.mkdirSync(output,{recursive:true});
  const receipt=JSON.parse(fs.readFileSync(receiptFile));
+ comparableMountedValues(receipt.mountedValues);
  const candidateFile=path.join(path.dirname(receipt.gil),'candidate.json');
  const candidate=JSON.parse(fs.readFileSync(candidateFile));
  assert.equal(candidate.candidate.sha256,receipt.gilSha256,'candidate/source receipt does not identify this GIL');
