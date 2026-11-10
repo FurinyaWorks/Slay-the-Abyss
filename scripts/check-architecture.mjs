@@ -83,7 +83,27 @@ function initializationFunctions(ast) {
 
 export function analyzeSources(sources,policy,generated=generatedRuntimeModules) {
   const errors=[],edges=[],nodes=Object.keys(sources).sort(),layers=policy.layers;
-  const deferredImports=new Set((policy.deferredImports??[]).map(row=>`${row.from}:${row.to}`));
+  const policyError=message=>errors.push({file:'config/architecture.json',line:1,message});
+  const reviewedImports=[],declaredImports=[];
+  if(policy.deferredImports!==undefined&&!Array.isArray(policy.deferredImports))
+    policyError('deferredImports must be an array');
+  for(const [index,row] of (Array.isArray(policy.deferredImports)?policy.deferredImports:[]).entries()) {
+    const label=`Deferred import exception #${index+1}`;
+    if(!row||typeof row!=='object'||Array.isArray(row)){policyError(`${label} must be an object`);continue;}
+    if(typeof row.from==='string'&&typeof row.to==='string')declaredImports.push(row);
+    let valid=true;
+    for(const key of ['from','to']) {
+      const name=row[key];
+      if(typeof name!=='string'||!name.trim()||!(Object.hasOwn(sources,name)||key==='to'&&Object.hasOwn(generated,name))) {
+        policyError(`${label} needs a known module in ${key}`);valid=false;
+      }
+    }
+    if(typeof row.reason!=='string'||!row.reason.trim()) {
+      policyError(`${label} needs a nonblank review reason`);valid=false;
+    }
+    if(valid)reviewedImports.push(row);
+  }
+  const deferredImports=new Set(reviewedImports.map(row=>`${row.from}:${row.to}`));
   for(const name of nodes) {
     const source=sources[name],layer=layers[name];
     const say=(node,message)=>errors.push({file:`src/lua/${name}.lua`,line:node?.loc?.start.line??1,message});
@@ -120,7 +140,7 @@ export function analyzeSources(sources,policy,generated=generatedRuntimeModules)
     visit(ast);
   }
   const seenDeferredImports=new Set();
-  for(const {from,to} of policy.deferredImports??[]) {
+  for(const {from,to} of declaredImports) {
     const key=`${from}:${to}`;
     if(seenDeferredImports.has(key))errors.push({file:'config/architecture.json',line:1,message:`Duplicate deferred import exception: ${from} -> ${to}`});
     else if(!edges.some(edge=>edge.from===from&&edge.to===to&&edge.reviewedDeferred))
@@ -129,7 +149,6 @@ export function analyzeSources(sources,policy,generated=generatedRuntimeModules)
   }
   const active=new Set(),done=new Set();
   const boundaryIds=new Set();
-  const policyError=message=>errors.push({file:'config/architecture.json',line:1,message});
   if(policy.dependencyBoundaries!==undefined&&!Array.isArray(policy.dependencyBoundaries))
     policyError('dependencyBoundaries must be an array');
   for(const rule of Array.isArray(policy.dependencyBoundaries)?policy.dependencyBoundaries:[]) {

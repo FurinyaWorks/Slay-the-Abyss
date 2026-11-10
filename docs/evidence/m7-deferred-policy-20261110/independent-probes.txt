@@ -1,0 +1,60 @@
+PASS 1 valid reviewed cycle allowed
+PASS 2 invalid reason undefined
+PASS 3 invalid reason null
+PASS 4 invalid reason false
+PASS 5 invalid reason true
+PASS 6 invalid reason 0
+PASS 7 invalid reason 1
+PASS 8 invalid reason []
+PASS 9 invalid reason {}
+PASS 10 invalid reason ["valid"]
+PASS 11 invalid reason ""
+PASS 12 invalid reason " "
+PASS 13 invalid reason "﻿"
+PASS 14 invalid reason "\n\t"
+PASS 15 malformed policy null
+PASS 16 malformed policy false
+PASS 17 malformed policy true
+PASS 18 malformed policy 0
+PASS 19 malformed policy 1
+PASS 20 malformed policy ""
+PASS 21 malformed policy "a:b"
+PASS 22 malformed policy {}
+PASS 23 malformed policy [null]
+PASS 24 malformed policy [false]
+PASS 25 malformed policy [0]
+PASS 26 malformed policy ["a:b"]
+PASS 27 malformed policy [[]]
+PASS 28 malformed policy [{}]
+PASS 29 invalid from null
+PASS 30 invalid from 0
+PASS 31 invalid from []
+PASS 32 invalid from {}
+PASS 33 invalid from ""
+PASS 34 invalid from " a"
+PASS 35 invalid from "missing"
+PASS 36 invalid from "constructor"
+PASS 37 invalid from "toString"
+PASS 38 invalid from "__proto__"
+PASS 39 invalid to null
+PASS 40 invalid to 0
+PASS 41 invalid to []
+PASS 42 invalid to {}
+PASS 43 invalid to ""
+PASS 44 invalid to " a"
+PASS 45 invalid to "missing"
+PASS 46 invalid to "constructor"
+PASS 47 invalid to "toString"
+PASS 48 invalid to "__proto__"
+PASS 49 inherited source cannot authorize exception
+PASS 50 generated target allowed but generated source prohibited
+PASS 51 inherited generated target prohibited
+PASS 52 duplicate valid and invalid reason preserved
+PASS 53 deleted importer stale diagnostic preserved
+PASS 54 immediate invocation never excused by valid reason
+PASS 55 boundary remains independent
+PASS 56 layer constraint remains independent
+PASS 57 malformed row does not erase valid exception
+PASS 58 nested dotted identities work at analyzer boundary
+PASS 59 generic-for gap remains pre-existing and unaltered
+SUMMARY 59 probes PASS; base semantic negative controls reproduced for 13 invalid reasons.

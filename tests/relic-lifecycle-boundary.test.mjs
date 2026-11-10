@@ -43,7 +43,7 @@ test('persisted Combat lifecycle boundaries reject eager and deferred Session im
    for(const deferred of [false,true]){
     const call=`require('${to}')`,code=deferred?`return function()return ${call}end`:`return ${call}`;
     const report=analyzeSources({...sources,[from]:code},{layers:policy.layers,
-     dependencyBoundaries:[rule],deferredImports:deferred?[{from,to}]:[]},{});
+     dependencyBoundaries:[rule],deferredImports:deferred?[{from,to,reason:'Reviewed runtime callback'}]:[]},{});
     assert(report.errors.some(error=>error.message.includes(`Dependency boundary ${rule.id}: ${from} cannot depend on ${to}`)));
    }
   }

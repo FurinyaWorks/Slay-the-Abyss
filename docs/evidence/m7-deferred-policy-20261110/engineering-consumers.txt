@@ -1,0 +1,69 @@
+✔ responsibility boundaries validate policy and reject immediate and deferred imports (11.799004ms)
+✔ production policy permanently protects Actor and the independently loadable reaction entry (1485.317139ms)
+✔ deferred cycle exemptions require a nonblank textual review reason (4.721646ms)
+✔ malformed deferred exception containers and rows produce structured errors (2.369125ms)
+✔ deferred exceptions validate both identities without coercion or prototype matches (3.149119ms)
+✔ invalid exception rows do not discard unrelated valid reviews or boundary enforcement (0.46858ms)
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (14.584574ms)
+✔ initialization calls cannot borrow a deferred import exception (5.409459ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (10.462748ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.822311ms)
+✔ deferred import exceptions must still match an actual function-scoped require (1.383161ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.607005ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (1.484643ms)
+✔ active policy pins exactly the lint/tool inputs and rejects changes, missing pins and exception options (2.336822ms)
+✔ active policy preserves historical lint except exact reviewed SDK owner and callback declarations (11.935789ms)
+✔ physical lines and inclusive function spans include comments, blank lines and nested bodies (5.734397ms)
+✔ CRLF and LF have identical canonical metrics and source hashes (0.887843ms)
+✔ every function and chunk needs exactly one matching Luacheck coordinate (2.826117ms)
+✔ Unicode codepoint columns map to UTF8 AST bytes, including emoji and combining marks (1.571003ms)
+✔ all files and extracted helpers are discovered recursively; empty scans fail (10.709975ms)
+✖ full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically (4.318367ms)
+✔ baseline diff keeps full metrics, exact warning multiplicity and changed/deleted/new modules visible (2.478206ms)
+✔ baseline contract/tool/scope mismatch and malformed snapshots cannot be treated as improvement (1.625276ms)
+✔ JSON object key ordering does not create false warning changes or contract mismatches (0.927356ms)
+✔ all new numeric metrics remain report-only, including high complexity and new helper hotspots (2.305112ms)
+✔ the frozen baseline covers every recorded module/function and is not an exemption configuration (13.289211ms)
+✔ dependency and cycle changes are visible even when total module and warning counts stay equal (0.958309ms)
+✔ quality reports are collected by the existing gate and uploaded on failed runs without changing older CI guards (19.221852ms)
+✔ historical package replay inverts only the exact quality entry and gate wiring without changing its old hash (270.774761ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (10.321117ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.761253ms)
+✔ collection failures and existing gate failures propagate (1.955155ms)
+✔ a failed shared collection writes a fresh failed quality report (11.794817ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (1.899356ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 33
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13695.53184
+
+✖ failing tests:
+
+test at tests/engineering-quality.test.mjs:81:1
+✖ full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically (4.318367ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-fourteen/tests/engineering-quality.test.mjs:88:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

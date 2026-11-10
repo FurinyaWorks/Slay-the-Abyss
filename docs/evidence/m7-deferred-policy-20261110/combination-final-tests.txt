@@ -1,0 +1,36 @@
+✔ responsibility boundaries validate policy and reject immediate and deferred imports (9.96083ms)
+✔ production policy permanently protects Actor and the independently loadable reaction entry (1010.668792ms)
+✔ deferred cycle exemptions require a nonblank textual review reason (2.135322ms)
+✔ malformed deferred exception containers and rows produce structured errors (2.522974ms)
+✔ deferred exceptions validate both identities without coercion or prototype matches (1.31402ms)
+✔ invalid exception rows do not discard unrelated valid reviews or boundary enforcement (0.402092ms)
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (10.942638ms)
+✔ initialization calls cannot borrow a deferred import exception (4.864839ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (4.890735ms)
+✔ generic-for initialization invokes the known iterator, including aliases and factory results (2.063869ms)
+✔ generic-for does not invoke state, control, unused results or dormant loop owners (3.402816ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.459681ms)
+✔ deferred import exceptions must still match an actual function-scoped require (0.986676ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.497905ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (1.049939ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (5.015019ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.272738ms)
+✔ collection failures and existing gate failures propagate (0.51208ms)
+✔ a failed shared collection writes a fresh failed quality report (7.853439ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (1.787892ms)
+✔ standalone architecture and shared collection inspect the same recursive modules and source paths (23.013561ms)
+✔ both architecture entries reject empty scans and ambiguous Lua module identities (0.73419ms)
+✔ both architecture entries refuse linked source directories instead of silently omitting them (0.556591ms)
+✔ nested source changes and dependency boundaries are freshly checked by both architecture entries (1.754734ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1606.099928

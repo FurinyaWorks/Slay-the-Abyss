@@ -21,7 +21,7 @@ test('permanent purge candidates only depend on Copy and Boss cannot return thro
   for(const from of rule.from)for(const to of rule.forbiddenTargets)for(const deferred of [false,true]){
    const call=`require('${to}')`,code=deferred?`return function()return ${call}end`:`return ${call}`;
    const report=analyzeSources({...sources,[from]:code},{layers:policy.layers,dependencyBoundaries:[rule],
-    deferredImports:deferred?[{from,to}]:[]},{});
+    deferredImports:deferred?[{from,to,reason:'Reviewed runtime callback'}]:[]},{});
    assert(report.errors.some(e=>e.message===`Dependency boundary ${wanted.id}: ${from} cannot depend on ${to}`),
     `${deferred?'deferred':'eager'} ${from}->${to}`);
   }

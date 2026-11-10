@@ -19,7 +19,7 @@ test('reward capability policy rejects eager and deferred Session facade regress
  const sources=Object.fromEntries([...consumers,...facades].map(n=>[n,'return {}']));
  for(const from of consumers)for(const to of facades)for(const deferred of [false,true]){
   const report=analyzeSources({...sources,[from]:deferred?`return function()return require('${to}')end`:`return require('${to}')`},
-   {layers:policy.layers,dependencyBoundaries:[rule],deferredImports:deferred?[{from,to}]:[]},{});
+   {layers:policy.layers,dependencyBoundaries:[rule],deferredImports:deferred?[{from,to,reason:'Reviewed runtime callback'}]:[]},{});
   assert(report.errors.some(e=>e.message.includes('Dependency boundary session-reward-capabilities:')));
  }
 });

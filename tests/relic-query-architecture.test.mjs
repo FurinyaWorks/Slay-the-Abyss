@@ -27,7 +27,7 @@ test('relic query policy prevents eager and deferred return to execution owners'
    const call=`require('${to}')`;
    const code=deferred?`return function()return ${call}end`:`return ${call}`;
    const report=analyzeSources({...sources,[from]:code},{...scoped,
-    deferredImports:deferred?[{from,to}]:[]},{});
+    deferredImports:deferred?[{from,to,reason:'Reviewed runtime callback'}]:[]},{});
    assert(report.errors.some(error=>error.message.includes(`Dependency boundary ${rule.id}: ${from} cannot depend on ${to}`)),
     `restored ${deferred?'deferred':'eager'} dependency ${from}->${to} must fail`);
   }

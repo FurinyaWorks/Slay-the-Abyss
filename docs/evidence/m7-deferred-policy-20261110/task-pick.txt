@@ -1,0 +1,6 @@
+
+> slay-the-abyss@1.0.0 task:pick
+> node scripts/check-task-intake.mjs TASK-74.19.1
+
+ALLOW TASK-74.19.1
+Still check task dependencies, approvals, open PRs, task claims and file ownership; this command does not claim the task.

@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {analyzeSources as check} from './scripts/check-architecture.mjs';
+import {analyzeSources as old} from './scripts/base.mjs';
+const sources={a:'return function() return require("b") end',b:'return require("a")'};
+const pair={from:'a',to:'b',reason:'Reviewed callback'};
+const policy={layers:{a:'core',b:'core'},deferredImports:[pair]};
+const cycle=r=>r.errors.some(e=>/Dependency cycle/.test(e.message));
+const diagnostic=(r,re)=>r.errors.some(e=>re.test(e.message));
+let n=0;
+function probe(name,fn){fn();n++;console.log(`PASS ${n} ${name}`)}
+probe('valid reviewed cycle allowed',()=>assert.deepEqual(check(sources,policy,{}).errors,[]));
+for(const reason of [undefined,null,false,true,0,1,[],{},['valid'],'','\u00a0','\ufeff','\n\t'])probe(`invalid reason ${JSON.stringify(reason)}`,()=>{
+ const p={...policy,deferredImports:[{...pair,reason}]},r=check(sources,p,{});
+ assert(cycle(r));assert(diagnostic(r,/nonblank review reason/));assert.equal(r.edges[0].reviewedDeferred,false);
+ assert.equal(cycle(old(sources,p,{})),false,'base actually hides cycle');
+});
+for(const value of [null,false,true,0,1,'','a:b',{},[null],[false],[0],['a:b'],[[]],[{}]])probe(`malformed policy ${JSON.stringify(value)}`,()=>{const r=check(sources,{...policy,deferredImports:value},{});assert(cycle(r));assert(r.errors.some(e=>e.file==='config/architecture.json'));});
+for(const key of ['from','to'])for(const value of [null,0,[],{},'',' a','missing','constructor','toString','__proto__'])probe(`invalid ${key} ${JSON.stringify(value)}`,()=>{const r=check(sources,{...policy,deferredImports:[{...pair,[key]:value}]},{});assert(cycle(r));assert(diagnostic(r,new RegExp(`known module in ${key}`)));});
+probe('inherited source cannot authorize exception',()=>{const s=Object.assign(Object.create({b:sources.b}),{a:sources.a});const r=check(s,policy,{});assert(diagnostic(r,/known module in to/));assert.equal(r.edges[0].reviewedDeferred,false)});
+probe('generated target allowed but generated source prohibited',()=>{assert.deepEqual(check({a:sources.a},{layers:{a:'ui'},deferredImports:[pair]},{b:'builder'}).errors,[]);const r=check({b:sources.b},policy,{a:'builder'});assert(diagnostic(r,/known module in from/));});
+probe('inherited generated target prohibited',()=>{const r=check({a:sources.a},{layers:{a:'ui'},deferredImports:[pair]},Object.create({b:'builder'}));assert(diagnostic(r,/known module in to/));});
+probe('duplicate valid and invalid reason preserved',()=>{const r=check(sources,{...policy,deferredImports:[pair,{...pair,reason:''}]},{});assert(diagnostic(r,/Duplicate deferred/));assert(diagnostic(r,/reason/));});
+probe('deleted importer stale diagnostic preserved',()=>assert(diagnostic(check({b:sources.b},policy,{}),/Stale deferred/)));
+probe('immediate invocation never excused by valid reason',()=>{const r=check({...sources,a:'local function f() return require("b") end; return f()'},policy,{});assert(cycle(r));assert(diagnostic(r,/Stale deferred/));});
+probe('boundary remains independent',()=>{const r=check(sources,{...policy,dependencyBoundaries:[{id:'deny',from:['a'],forbiddenTargets:['b'],reason:'independent rule'}]},{});assert(diagnostic(r,/Dependency boundary deny/));});
+probe('layer constraint remains independent',()=>assert(diagnostic(check(sources,{...policy,layers:{a:'core',b:'ui'}},{}),/core cannot depend/)));
+probe('malformed row does not erase valid exception',()=>{const r=check(sources,{...policy,deferredImports:[null,pair]},{});assert.equal(cycle(r),false);assert(r.errors.length>0)});
+probe('nested dotted identities work at analyzer boundary',()=>{const s={'nested.a':'return function() return require("nested.b") end','nested.b':'return require("nested.a")'};assert.deepEqual(check(s,{layers:{'nested.a':'core','nested.b':'core'},deferredImports:[{from:'nested.a',to:'nested.b',reason:'review'}]},{}).errors,[])});
+probe('generic-for gap remains pre-existing and unaltered',()=>{const s={...sources,a:'local function iter() return require("b") end; for item in iter do end; return {}'};assert.deepEqual(check(s,policy,{}),old(s,policy,{}));assert.equal(cycle(check(s,policy,{})),false)});
+console.log(`SUMMARY ${n} probes PASS; base semantic negative controls reproduced for 13 invalid reasons.`);

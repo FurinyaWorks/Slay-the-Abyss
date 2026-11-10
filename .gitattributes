@@ -465,3 +465,6 @@ src/lua/abyss_watcher_flow_cards.lua text eol=lf
 tests/lua/watcher_flow_planning.lua text eol=lf
 tests/helpers/watcher-flow-vm.mjs text eol=lf
 tests/helpers/relic-equip-source-epoch.mjs text eol=lf
+
+# Preserve raw validation output, including whitespace in assertion diagnostics.
+docs/evidence/m7-deferred-policy-20261110/*.txt -whitespace

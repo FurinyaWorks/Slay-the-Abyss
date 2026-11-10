@@ -1,0 +1,39 @@
+{
+  "reviewId": "independent-m7-round14-deferred-policy-20261110",
+  "reviewedBaseSha": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
+  "reviewedHeadSha": null,
+  "identityNote": "Review binds the candidate source bytes below, not a subsequently created commit. Parent must bind exact commit before admission.",
+  "conclusion": "pass",
+  "unresolved": [],
+  "sourceSha256": {
+    "scripts/check-architecture.mjs": "b1e9a839f77797ee933b9ca19aeada719c0d9749cf2921e695ab690529cd1351",
+    "tests/architecture-boundaries.test.mjs": "40dd13f74c59793010f92a0f010b6b74a3bec3e198c181f8d6a1830bce201485",
+    "tests/engineering-quality.test.mjs": "fc7c2032e7e54c673ad9c806438d2c194c5bcd48fef7792dcb8d46f7184b7eb3",
+    "tests/reward-query-boundary.test.mjs": "ecb47e27973f97a3f0a243f492e3b9f041023fac2e1a28fba8ae5a9579829f71",
+    "tests/purge-query-architecture.test.mjs": "b3800c3cb18d14c1214cbd2563b37afa19e725d8ebdd8e4c2f7d635da14230c4",
+    "tests/session-reward-capabilities.test.mjs": "1bdab34f88a47413335c2bea470b75cb7322f070e2f0c2de276985dd1d45036e",
+    "tests/relic-query-architecture.test.mjs": "eb9b6d680f5e3144e7890e553cf83404249513bbcab2593fa152d5a44a41b228",
+    "tests/relic-lifecycle-boundary.test.mjs": "ac05195fba679075cc80f421363fd8faa62eed2897207472e3d98b00d151b93c"
+  },
+  "findings": [
+    "No blocking defect found within the JSON policy validation change. Invalid records cannot populate the exemption set; invalid policy produces structured diagnostics while genuine cycles remain reported.",
+    "The final declaredImports/reviewedImports separation preserves deleted-importer stale and duplicate diagnostics. Generated targets remain supported; generated-only sources and inherited module names are rejected.",
+    "Review reason validation does not relax dependency-boundary, layer, or eager invocation checks. Valid unrelated records remain usable even when another policy row is invalid.",
+    "Reviewed six additional synthetic-policy fixture edits: each only supplies Reviewed runtime callback reason; existing assertions, sources and boundary expectations are unchanged. These keep tests exercising reviewed exceptions rather than failing earlier at malformed policy. Parent owns their execution."
+  ],
+  "validation": {
+    "independentProbes": "59 passed; probes.mjs and probes.log",
+    "baseNegativeControls": "13 malformed review reason variants on exact base suppress a real a-to-b-to-a dependency cycle; candidate retains the cycle and emits policy errors.",
+    "semanticMutants": "Two copied candidate mutants, unconditionally accepting records and disabling reason validation, each suppress the real dependency cycle and are killed by the cycle oracle; mutations.mjs and mutations.log.",
+    "providedOldRedLog": "Inspected .artifacts/old-negative.log: four new tests fail against base, including null-row crash.",
+    "full": "Not rerun; parent owns focused consumer and Full validation. No production implementation or policy files modified by reviewer."
+  },
+  "interactions": {
+    "pr601": "Inspected exact ab65 diff for ab5d3fd04753de30411afb4d9e5400d36d6a7334. Generic-for eager-function classification is orthogonal to policy validation. Existing generic-for false exemption was reproduced on both base and standalone candidate, remains pre-existing and is addressed by #601. Parent owns combined exact-head execution.",
+    "pr604": "Inspected exact ab65 diff for 6ca77d2f04890ca632136a468c4d7a7aa9c4ac18. Discovery supplies own dotted module keys, compatible with new identity validation; independent dotted-key cycle probe passed. Keep sourceFile plus policyError setup when combining nearby analyzeSources edits. Parent owns combined exact-head execution."
+  },
+  "limits": [
+    "This is source-policy gate review, not Lua execution, official import, ready, device acceptance, CI admission, or merge approval.",
+    "No promise that arbitrary hostile JavaScript getters/proxies or malformed top-level policy objects are safely handled; production policy is parsed JSON and this change targets deferredImports."
+  ]
+}

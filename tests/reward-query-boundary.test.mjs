@@ -27,7 +27,7 @@ test('reward query architecture rule rejects immediate and deferred facade regre
  const sources=Object.fromEntries([...consumers,'abyss_relic_hooks'].map(n=>[n,'return {}']));
  for(const from of consumers)for(const deferred of [false,true]){
   const source=deferred?"return function()return require('abyss_relic_hooks')end":"return require('abyss_relic_hooks')";
-  const report=analyzeSources({...sources,[from]:source},{layers:policy.layers,dependencyBoundaries:[rule],deferredImports:deferred?[{from,to:'abyss_relic_hooks'}]:[]},{});
+  const report=analyzeSources({...sources,[from]:source},{layers:policy.layers,dependencyBoundaries:[rule],deferredImports:deferred?[{from,to:'abyss_relic_hooks',reason:'Reviewed runtime callback'}]:[]},{});
   assert(report.errors.some(e=>e.message.includes('Dependency boundary reward-query-consumer-boundary:')));
  }
 });

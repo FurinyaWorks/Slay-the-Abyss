@@ -80,7 +80,7 @@ test('all files and extracted helpers are discovered recursively; empty scans fa
 
 test('full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically',()=>{
   const sources={a:'return function() return require("b") end',b:'return require("a")',c:'return require("c")',d:'return {}'};
-  const policy={layers:{a:'core',b:'core',c:'core',d:'core'},deferredImports:[{from:'a',to:'b'}]};
+  const policy={layers:{a:'core',b:'core',c:'core',d:'core'},deferredImports:[{from:'a',to:'b',reason:'Reviewed runtime callback'}]};
   const arch=analyzeSources(sources,policy,{});
   const cycles=dependencyCycles(arch.nodes,arch.edges);
   assert.deepEqual(cycles.map(c=>c.members),[['a','b'],['c']]);

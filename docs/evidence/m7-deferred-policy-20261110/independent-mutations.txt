@@ -1,0 +1,2 @@
+KILLED accept-invalid-records: real cyclic dependency improperly exempted under blank review (independent oracle requires cycle)
+KILLED ignore-review-reasons: real cyclic dependency improperly exempted under blank review (independent oracle requires cycle)

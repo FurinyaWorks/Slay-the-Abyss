@@ -1,0 +1,136 @@
+✔ responsibility boundaries validate policy and reject immediate and deferred imports (6.559482ms)
+✔ production policy permanently protects Actor and the independently loadable reaction entry (1074.16282ms)
+✔ deferred cycle exemptions require a nonblank textual review reason (3.556588ms)
+✔ malformed deferred exception containers and rows produce structured errors (4.27777ms)
+✔ deferred exceptions validate both identities without coercion or prototype matches (4.257603ms)
+✔ invalid exception rows do not discard unrelated valid reviews or boundary enforcement (2.747878ms)
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (17.035665ms)
+✔ initialization calls cannot borrow a deferred import exception (8.712703ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (11.323317ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.895519ms)
+✔ deferred import exceptions must still match an actual function-scoped require (2.5552ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.732386ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (1.229206ms)
+✔ active policy pins exactly the lint/tool inputs and rejects changes, missing pins and exception options (2.664814ms)
+✔ active policy preserves historical lint except exact reviewed SDK owner and callback declarations (8.274535ms)
+✔ physical lines and inclusive function spans include comments, blank lines and nested bodies (4.917028ms)
+✔ CRLF and LF have identical canonical metrics and source hashes (0.906645ms)
+✔ every function and chunk needs exactly one matching Luacheck coordinate (1.806896ms)
+✔ Unicode codepoint columns map to UTF8 AST bytes, including emoji and combining marks (1.527914ms)
+✔ all files and extracted helpers are discovered recursively; empty scans fail (8.858448ms)
+✔ full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically (2.30951ms)
+✔ baseline diff keeps full metrics, exact warning multiplicity and changed/deleted/new modules visible (1.554654ms)
+✔ baseline contract/tool/scope mismatch and malformed snapshots cannot be treated as improvement (1.228321ms)
+✔ JSON object key ordering does not create false warning changes or contract mismatches (0.812111ms)
+✔ all new numeric metrics remain report-only, including high complexity and new helper hotspots (1.674328ms)
+✔ the frozen baseline covers every recorded module/function and is not an exemption configuration (14.065265ms)
+✔ dependency and cycle changes are visible even when total module and warning counts stay equal (0.713427ms)
+✔ quality reports are collected by the existing gate and uploaded on failed runs without changing older CI guards (4.784684ms)
+✔ historical package replay inverts only the exact quality entry and gate wiring without changing its old hash (256.670127ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (5.438076ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.503424ms)
+✔ collection failures and existing gate failures propagate (0.618574ms)
+✔ a failed shared collection writes a fresh failed quality report (6.832177ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (2.107088ms)
+✔ permanent purge candidates only depend on Copy and Boss cannot return through LivingWall (1836.76622ms)
+✔ every permanent candidate helper and facade accessor retains CC15 (6.388792ms)
+✔ all functions and nested callbacks in both Combat capabilities retain CC15 and size1000 (4.582432ms)
+✔ persisted Combat lifecycle boundaries reject eager and deferred Session imports (49.782683ms)
+✔ abyss_actor cannot load Session relic facades or permanent command owners (7.003291ms)
+✔ abyss_hp_loss cannot load Session relic facades or permanent command owners (3.138163ms)
+✔ abyss_card_actions cannot load Session relic facades or permanent command owners (3.086838ms)
+✔ abyss_combat cannot load Session relic facades or permanent command owners (2.903718ms)
+✔ cold actor-first relic capabilities never initialize Session facades (296.803704ms)
+✔ cold capabilities-first relic capabilities never initialize Session facades (263.527113ms)
+✔ all delegated ordinary public fields share their planned canonical slot in both directions (259.301161ms)
+✔ relic query policy prevents eager and deferred return to execution owners (18.42381ms)
+✔ every query leaf helper and callback retains CC15 and module size limits (1.733207ms)
+✔ query facade accessors retain complete CC15 measurements (2.285275ms)
+✔ reward query consumers use capabilities and retain actual Run transaction dependencies (3165.89008ms)
+✔ reward query architecture rule rejects immediate and deferred facade regression (2.52285ms)
+✔ independent cold baseline and current VMs preserve complete reward graph (3951.602452ms)
+✔ independent dynamic baseline and current VMs preserve complete reward graph (4142.947881ms)
+✔ independent cards baseline and current VMs preserve complete reward graph (45315.791955ms)
+✔ independent shop baseline and current VMs preserve complete reward graph (18600.597565ms)
+✔ real managed-bowl semantic mutation is rejected by named boundary assertion (1635.143565ms)
+✔ real preview-flag semantic mutation is rejected by named boundary assertion (2076.96773ms)
+✔ real pending-bowl semantic mutation is rejected by named boundary assertion (2041.101139ms)
+✔ reward preparation consumes capabilities without returning to permanent Session owners (1079.38235ms)
+✔ reward capability policy rejects eager and deferred Session facade regressions (8.576536ms)
+✔ Session reward potion complete graph matches independent three-source baseline VM (3337.417657ms)
+✖ Session reward events complete graph matches independent three-source baseline VM (36436.999316ms)
+✖ Session reward dynamic complete graph matches independent three-source baseline VM (31429.347027ms)
+ℹ tests 62
+ℹ suites 0
+ℹ pass 60
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 173748.80525
+
+✖ failing tests:
+
+test at tests/session-reward-capabilities.test.mjs:27:50
+✖ Session reward events complete graph matches independent three-source baseline VM (36436.999316ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node ETIMEDOUT
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-fourteen/tests/session-reward-capabilities.test.mjs:32:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-fourteen/tests/session-reward-capabilities.test.mjs:31:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node ETIMEDOUT
+        at Object.spawnSync (node:internal/child_process:1191:20)
+        at spawnSync (node:child_process:929:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-fourteen/tests/session-reward-capabilities.test.mjs:31:16)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19)
+        at Test.run (node:internal/test_runner/test:1467:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at tests/session-reward-capabilities.test.mjs:27:50
+✖ Session reward dynamic complete graph matches independent three-source baseline VM (31429.347027ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node ETIMEDOUT
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-fourteen/tests/session-reward-capabilities.test.mjs:32:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-fourteen/tests/session-reward-capabilities.test.mjs:31:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node ETIMEDOUT
+        at Object.spawnSync (node:internal/child_process:1191:20)
+        at spawnSync (node:child_process:929:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-fourteen/tests/session-reward-capabilities.test.mjs:31:16)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19)
+        at Test.run (node:internal/test_runner/test:1467:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7),
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
