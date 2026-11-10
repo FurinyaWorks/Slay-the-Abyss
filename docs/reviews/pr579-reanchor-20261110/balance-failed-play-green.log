@@ -1,0 +1,16 @@
+✔ seed ranges are bounded and chunked to the existing driver limit (2.135513ms)
+✔ offline run metrics track actual play, damage, healing (0.353591ms)
+✔ do not pass corrupted or platform-claimed evidence (0.536066ms)
+✔ skipped and failed card rewards are not recorded as picked cards (0.374566ms)
+✔ failed plays remain diagnostic actions but do not count as successfully played cards (0.822023ms)
+✔ missing and nonfinite report metrics fail instead of disappearing from JSON (0.361234ms)
+✔ losses are evidence and driver blockers fail a mechanical gate (1.250003ms)
+✔ batch runner uses existing driver and writes a verified report (isolated fake driver) (631.556195ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 732.690527

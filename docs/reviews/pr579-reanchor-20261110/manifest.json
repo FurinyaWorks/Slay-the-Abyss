@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "scope": "Historical reanchor evidence and subsequent failed-play report correction; no Full execution claim",
+  "reanchorHead": "b6a9c9e407118b90177440c9950397bab5dfb608",
+  "base": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "reanchorTree": "9f674fb31a92f98f5fac129f0c2a29ab3c7841de",
+  "oldHead": "062a57760ab49539ada43725805970117df9045d",
+  "backupRef": "preserve/pr579-before-reanchor-062a5776",
+  "repairSources": {
+    "scripts/balance-batch.mjs": "43790cbbe33a3f1965db6b605012337782e0537596068a215815a891ad538ea9",
+    "tests/balance-batch.test.mjs": "2e6d797360486e9c2e381a28f5b031136b617aa817f6a9ebb367932e5ab90fcc"
+  },
+  "redImplementationSha256": "a8fab163e2b078734ece9a11fa13f4e6f7ca73d6375f9ec8d5bd612a4123ae7c",
+  "tests": {
+    "ownerSource": {
+      "passed": 13,
+      "failed": 0
+    },
+    "initialCI": {
+      "passed": 151,
+      "failed": 1,
+      "failure": "Missing original UI build output; original build:ui fixed local preparation only"
+    },
+    "finalCalibration": {
+      "passed": 53,
+      "failed": 0
+    },
+    "uniqueCIWithSuccess": 152,
+    "reportRed": {
+      "passed": 7,
+      "failed": 1
+    },
+    "reportGreen": {
+      "passed": 8,
+      "failed": 0
+    },
+    "fullExecuted": false,
+    "hostedRequired": true
+  },
+  "files": {
+    "README.md": {
+      "sha256": "9df2174d99fef50b3b3022d87d55c563551f50a45d98e38728f73f2b13b3b041",
+      "bytes": 3429
+    },
+    "backlog-verify.log": {
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "bytes": 382
+    },
+    "balance-failed-play-green.log": {
+      "sha256": "e8e79e5fa056b73f0f30b2c7088954c1d92b2f36fd488705575e3e4e47331498",
+      "bytes": 799
+    },
+    "balance-failed-play-red.log": {
+      "sha256": "4a0c9fc2e9f3588b1a1ed3e444304e31bfe9c892a046e9fe750b77e9c647aa8c",
+      "bytes": 1722
+    },
+    "baseline-architecture.json": {
+      "sha256": "82ce00de1e51248bcffe37cec1fdd90096320661aecbefd65a4a9e245896530a",
+      "bytes": 2967
+    },
+    "build-ui.log": {
+      "sha256": "700b6af7e4ba8ae4c28ee2bfaeb5f2315c8e671dbf0c81dba8db6b47e676aff8",
+      "bytes": 213
+    },
+    "ci-calibration-final.log": {
+      "sha256": "7a3918ac326cd452bd99086fef2318953e6036ccbee9df60f7f3aec5c0943aac",
+      "bytes": 7033
+    },
+    "ci-contracts.log": {
+      "sha256": "3cf158b06e6c4cf009d88959c0c49020a0ba21a517cabc14dfe964b5ca5f8d4b",
+      "bytes": 19851
+    },
+    "current-summary.json": {
+      "sha256": "ec3b96294c5161b3ef3c68b01a44dfebf6ab9e39186e2603fa2a86a2272f578c",
+      "bytes": 1343
+    },
+    "engineering.log": {
+      "sha256": "d2c410a8eade2e46d6dfe81b9bc1b8a5324772e0099d7f4d8be3b3fde26b6b9e",
+      "bytes": 375
+    },
+    "fresh-floor-integrity.json": {
+      "sha256": "b9774055f89359b8a2ba7e33a3a72e9bd910add648f35cb76c2f6564894421b0",
+      "bytes": 1696
+    },
+    "fresh-owner-probe.log": {
+      "sha256": "191404422e2ea255fc99b875ee3f009fc405a05725001c09678d055d0d032c24",
+      "bytes": 76
+    },
+    "fresh-raw-provenance.json": {
+      "sha256": "670e35c56fff436f464e825385d30409ce10ff8d296c6eceb95ee1e24dfad739",
+      "bytes": 7246
+    },
+    "fresh-source-coverage.json": {
+      "sha256": "f2d09477d51a16a6949a9bc593373782315b9fe878fb18ae08e8679e06b1c3b6",
+      "bytes": 16902
+    },
+    "fresh-source-review.json": {
+      "sha256": "1dde581ac01a9356c2d1de129e221df15e766b23f077f60912b84b015d0ecfd9",
+      "bytes": 4514
+    },
+    "guidance-final.log": {
+      "sha256": "857c4e7b87797f74dc3a352f0abd9090ad5be686df225901a72edb4ade3030db",
+      "bytes": 482
+    },
+    "guidance.log": {
+      "sha256": "7322d76e0ae366d8568f4d23db9b0184183cecbe007d1909f2e873cb03c35d15",
+      "bytes": 438
+    },
+    "owner-contracts.log": {
+      "sha256": "9b6ee3c20aa4d11c34ed53991d0fd53b1a292681672c81f2fcb5559651e699ea",
+      "bytes": 2473
+    }
+  }
+}

@@ -1,0 +1,297 @@
+[
+  {
+    "path": ".gitattributes",
+    "sha256": "ea477804967a409bdc590fbfa69e7209234730f6daf91cc7ef5b669bac2938c6",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "config/architecture.json",
+    "sha256": "7f013489097abf58c0d21eba86b696eff0f6ba16b9ce087b8726cf44ac6bc36a",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "scripts/balance-batch.mjs",
+    "sha256": "43790cbbe33a3f1965db6b605012337782e0537596068a215815a891ad538ea9",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "scripts/check-lua-static.mjs",
+    "sha256": "1bd3e276b44b9d74d9ffddc4a3a51249433622f893fc403242dff6166a87f034",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "scripts/ci-quality-shape.mjs",
+    "sha256": "86b519a185be48c2b9417761b6a9f81ff7c30cd015c534e992f2f50da317ee78",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "scripts/ci-test-timings.json",
+    "sha256": "248bdfbc159cfd784f03bcf4c7280c5565914edc8e15d507b23355bb82427d58",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "scripts/m3-normal-campaign.mjs",
+    "sha256": "a378e7f62ab6ba9cee195b7ca58f557bc9bc1cb1e7c373b9af4fb46b4e5b5691",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "src/lua/abyss_act2_powers.lua",
+    "sha256": "339dd5abf01542dab586353d16b54bb05f6237985fc885d031d4cdbe58bcae74",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "src/lua/abyss_act2_stasis.lua",
+    "sha256": "1ea7094ed2db6f1e1184193c5d5541a98320fb127a9a22c964bfe86a731c1866",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "src/lua/abyss_actor.lua",
+    "sha256": "d175dadf2ed7fb6826eb575ef3286571d2a7bde96a6d701666e9e36b718b10c0",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "src/lua/abyss_wheel_event.lua",
+    "sha256": "280b777031fb52f203fa74a5ba8d97e62f904e54a1c77e776c237d01ef527bb5",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/actor-status-view-responsibility.test.mjs",
+    "sha256": "b16c672292da99115e0ea766e91deb69a83a416e3bf2b800bae1e5918b7ab60c",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/balance-batch.test.mjs",
+    "sha256": "2e6d797360486e9c2e381a28f5b031136b617aa817f6a9ebb367932e5ab90fcc",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/ci-complete-calibration.test.mjs",
+    "sha256": "f9d1373526245d768c9e38c649ecf0618f2be9e939739916eb9053e6435f76dd",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/ci-impact.test.mjs",
+    "sha256": "710cd5178f3f9bbff3797b1ad7948e2003c3aa5f88f1d662a97376abd2ec5542",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/ci-runtime.test.mjs",
+    "sha256": "abc2327547d0208a62d80fb52a154befc6a165ea9afb2aaad9a7fe36f1819416",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/ci-windows-shards.test.mjs",
+    "sha256": "c640db8c3aeca2f9915f15f2d3fe3ae7e1a96126872d773e39e8e011d9d89d6e",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/defect-final-source-epoch.test.mjs",
+    "sha256": "ec50f3dfad661b79e7ecb4e3c5c445b5b4fbff3fcaae19d420efa6a9af84ba1d",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/delivery.test.mjs",
+    "sha256": "f897dc4c58844cbe7323a98e6b7a23ff13157d93b3d4dab62b6fb177ca58b362",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/encounter-formation-source-epoch.test.mjs",
+    "sha256": "1c3af65fa6e908338be8dae17136fee58567de9d586b4578fc169ed18391a1b7",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/fixtures/wheel-event-before.lua",
+    "sha256": "f775746a95c2f33eeb9a5d7c688c536b3dd0b6b3ddefeb3455fbd28468f6bc2c",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/full-quality.test.mjs",
+    "sha256": "934c50b69c722fa103ae6e5b6273408fbc021f3c55ceb4d90f3a05de48f2926c",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/actor-damage-parity.mjs",
+    "sha256": "e968e6bc346cd53f82564ee4f9ede91c9fe842c67a764c8d43d6bfb98ed6c6ef",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/actor-lifecycle.mjs",
+    "sha256": "c01189047fb9281ee8a8463aaa3ddfda86eb102983156eb3fe1636303a6059ba",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+    "sha256": "d56a7f00fce1e9212e99183cf9cd0e4a289e988fc235b3b8947c1f567d30f973",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/combat-lifecycle-input.mjs",
+    "sha256": "df7925fa262d53d876d6ddce87f768c5d018e082125eb28fec60b1053fe6227b",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/combined-epoch/pre-stasis-source-epoch.mjs",
+    "sha256": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/combined-epoch/pre-wheel-source-epoch.mjs",
+    "sha256": "a06e3845b23f0c52f1871b7bbb2a8c2e12224e52c7dfe1a916a0d0d3d2a6cb45",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/combined-epoch/source-epoch.mjs",
+    "sha256": "70118136c00aeb7f13ee86fb99949df8949cc324ec23c1fd954b1fbf6cf9f3bc",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/copy-integration-source-closure.mjs",
+    "sha256": "47f5db90684eee297c55a40f39b87fee5dee0cad0d96d0b08cc18b6628914301",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/reward-query-planning-contract.mjs",
+    "sha256": "2d13b4cae4a75b01e21535be6b6012505268bc029fc33de2b3daa0a260ce8b9b",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-ci-source-inverse.json.gz",
+    "sha256": "84e8884c62b1d324135f9875911e5880faca89fd0ac2469b9474c5939ec7df73",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-ci-source-inverse.mjs",
+    "sha256": "4654503fe44e6d1b44458971a20922ee166e2b0d67c0617a168803b1e66dcf11",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-owner-before-abyss_act2_powers.lua",
+    "sha256": "966f9906c9fd03d306424c9ea430e3aa8840fdf6e852d13cecd274c0a3aa3629",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-owner-before-abyss_act2_stasis.lua",
+    "sha256": "0a1b6da54329fe7c00cfb45bb57dfc1ff53663cd7437e1bb17b35f702181466a",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-owner-before-abyss_actor.lua",
+    "sha256": "0435754ce97e731da0abaa1aafdbbd035988c09b411c47c192bb3e6ab0133c7a",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-owner-before.json",
+    "sha256": "55b9b72796c6b9797ae2d9a71096a28fc7ade179c6d8add372e3f48f1b463975",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-owner-edges.lua",
+    "sha256": "54339f6d1e05d08bf147b5c6a1307bbc8f58354ec689dd9b70dd644918d53afa",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-owner-vm.mjs",
+    "sha256": "e2454937adfcda20641ce17e237cbf9f5b9f50a4a0b27330add51e8d614f4202",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-replay-before.json.gz",
+    "sha256": "a226cdbcd712c545b1b8befb262f909b200fb97f7a4dfc271af4f119d98c6290",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-replay-before.mjs",
+    "sha256": "3fb771b49ae4756b7c8a2943fdf696b79c523537a0a31421e164b401eb219416",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-source-epoch.json.gz",
+    "sha256": "5a722ed0eeaaa1bdc95130276f69794a871bb3eff902c81012066de8a76cf856",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/stasis-source-epoch.mjs",
+    "sha256": "2cf62dcb06e9266c2b355cebb24a756f0e936a45c3414f75c838c46e5760f234",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/wheel-ci-source-inverse.json.gz",
+    "sha256": "ae1a53e724d0aaddba2d1fda4661f39298cb30ec26c462a7ebba28516b3409c7",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/wheel-ci-source-inverse.mjs",
+    "sha256": "ee7cb9895c2e444fe0013f15c203177e213d7d7eafa32d4025421635731d3743",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/wheel-event-boundaries.lua",
+    "sha256": "47ebf548388e45e8aa825159acce08866f57175a4ff603a85420835755eb2809",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/wheel-event-mutants.lua",
+    "sha256": "cf8c40a38c6841c5d8ea1c0ad3b6acfcd0128008f6274d4968f383e2154484a1",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/wheel-event-source-epoch.json.gz",
+    "sha256": "1819e38b35531634883fa80f72a928eb8ec6d9b78d944025d6278efc8f54e3d8",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/wheel-event-source-epoch.mjs",
+    "sha256": "d22f3df328337bf1eea7fd87ca723f255246165140cb92208642fe997678bdba",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/helpers/wheel-event-vm.mjs",
+    "sha256": "447b3a03f67f4ec253b8dff64a3112fa9dfcdaa6e702d80ecca30686507dcb30",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/merge-queue.test.mjs",
+    "sha256": "c4b2883b829a08beafd5ca22b090d1b65b843ef995abb1a0d209f541c539a0b8",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/seven-refactor-source-epoch.test.mjs",
+    "sha256": "0a0a0305af91dd23070bd234131614a0f78fe7a2e648e44ccb551bca5428a8a1",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/silent-final-source-epoch.test.mjs",
+    "sha256": "cc0d6c60d586d359e126d0e091e46a164a52debdb5d4053b903167cfc81b2ca8",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/stasis-owner-behavior.test.mjs",
+    "sha256": "2b9d9da3f3124d1aec6f5bc11530497c6727c48abfbb87aa02723aa15f4e2999",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/stasis-owner-boundary.test.mjs",
+    "sha256": "51e5d4fbca8f60f025978c1fdacd69a878697c525016d895e8d536cbd9d40c48",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/stasis-owner-source-epoch.test.mjs",
+    "sha256": "f8b26ad3158759e8ecd64db0d6dc8702ee05eb9b3364afa1f495645ba39a4ccf",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/wheel-event-complexity.test.mjs",
+    "sha256": "6ad4af120641976d089f5aa770da459409c6852d31b8ce6df2e349cbcaf4efa4",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/wheel-event-responsibilities.test.mjs",
+    "sha256": "1727551d3af166c5f9606a438bb1dfb4f16666a30032ad2dba80c64bc802c49c",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  },
+  {
+    "path": "tests/wheel-event-source-epoch.test.mjs",
+    "sha256": "fe038f2ee850d54756fea41b76ad42b07d96d78aa1035c55d6a2b8ad0bd9fb8b",
+    "reviewMethod": "Fresh source/diff inspection; archived source data additionally checked against actual base or exact predecessor chain."
+  }
+]

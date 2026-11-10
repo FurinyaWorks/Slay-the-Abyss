@@ -35,7 +35,7 @@ export function summarizeEvidence(evidence) {
       || action.label === 'card_reward' && (!Number.isSafeInteger(action.details?.index) || action.details.index < 0)) {
       throw new Error('Missing or untrusted M3 action metrics');
     }
-    if (action.label === 'play') played++;
+    if (action.label === 'play' && action.ok) played++;
     if (action.label === 'card_reward' && action.ok && action.details.index > 0) cardPicks++;
     if (action.before && action.after && Number.isFinite(action.before.hp) && Number.isFinite(action.after.hp)) {
       hpLost += Math.max(0, action.before.hp - action.after.hp);

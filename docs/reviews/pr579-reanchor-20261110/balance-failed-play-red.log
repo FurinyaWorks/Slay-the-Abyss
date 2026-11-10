@@ -1,0 +1,39 @@
+✔ seed ranges are bounded and chunked to the existing driver limit (3.032396ms)
+✔ offline run metrics track actual play, damage, healing (0.30381ms)
+✔ do not pass corrupted or platform-claimed evidence (0.51963ms)
+✔ skipped and failed card rewards are not recorded as picked cards (0.168954ms)
+✖ failed plays remain diagnostic actions but do not count as successfully played cards (1.609228ms)
+✔ missing and nonfinite report metrics fail instead of disappearing from JSON (0.384581ms)
+✔ losses are evidence and driver blockers fail a mechanical gate (0.478006ms)
+✔ batch runner uses existing driver and writes a verified report (isolated fake driver) (844.475729ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1025.177766
+
+✖ failing tests:
+
+test at tests/balance-batch.test.mjs:34:1
+✖ failed plays remain diagnostic actions but do not count as successfully played cards (1.609228ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-stasis-wheel-reconcile/tests/balance-batch.test.mjs:41:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

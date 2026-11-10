@@ -1,0 +1,116 @@
+{
+  "ref": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "errors": [],
+  "modules": 338,
+  "edges": 1929,
+  "cycles": [
+    {
+      "size": 68,
+      "members": [
+        "abyss_act2_ai",
+        "abyss_act2_event_relics",
+        "abyss_act2_powers",
+        "abyss_act2_stasis",
+        "abyss_act3_ai",
+        "abyss_act3_bosses",
+        "abyss_act3_enemies",
+        "abyss_act4_enemies",
+        "abyss_actor",
+        "abyss_build_actions",
+        "abyss_card_actions",
+        "abyss_card_capability",
+        "abyss_card_triggers",
+        "abyss_colorless_cards",
+        "abyss_combat",
+        "abyss_combat_effect_cards",
+        "abyss_combat_effect_choice",
+        "abyss_combat_effect_damage",
+        "abyss_combat_effect_dispatch",
+        "abyss_combat_effect_powers",
+        "abyss_combat_enemy_setup",
+        "abyss_combat_native_play",
+        "abyss_combat_queued_play",
+        "abyss_defect_engine_cards",
+        "abyss_defect_final_cards",
+        "abyss_defect_utility_cards",
+        "abyss_discard",
+        "abyss_effects",
+        "abyss_effects_cards",
+        "abyss_effects_damage",
+        "abyss_effects_enemy",
+        "abyss_effects_powers",
+        "abyss_end_turn_powers",
+        "abyss_ending_actions",
+        "abyss_enemy_ai",
+        "abyss_exhaust",
+        "abyss_flow_actions",
+        "abyss_focus",
+        "abyss_guardian_ai",
+        "abyss_hand_choice",
+        "abyss_hp_loss",
+        "abyss_inventory",
+        "abyss_mantra",
+        "abyss_orb_powers",
+        "abyss_orbs",
+        "abyss_original_v4",
+        "abyss_original_v4_health",
+        "abyss_pile_choice",
+        "abyss_player_revive",
+        "abyss_poison",
+        "abyss_potion_fairy",
+        "abyss_relic_combat_hooks",
+        "abyss_relic_family_combat",
+        "abyss_scry",
+        "abyss_shivs",
+        "abyss_silent",
+        "abyss_silent_attack_cards",
+        "abyss_silent_final_cards",
+        "abyss_silent_potions",
+        "abyss_silent_tactics_cards",
+        "abyss_stances",
+        "abyss_time_eater",
+        "abyss_turn_powers",
+        "abyss_warrior_status_cards",
+        "abyss_warrior_strength_cards",
+        "abyss_watcher_final_cards",
+        "abyss_watcher_flow_cards",
+        "abyss_writhing_mass"
+      ],
+      "keys": [
+        "members",
+        "edges"
+      ]
+    },
+    {
+      "size": 11,
+      "members": [
+        "abyss_boss_relics",
+        "abyss_relic_card_rewards",
+        "abyss_relic_choices",
+        "abyss_relic_hooks",
+        "abyss_relic_pending",
+        "abyss_run",
+        "abyss_run_potions",
+        "abyss_run_rooms",
+        "abyss_run_settlement",
+        "abyss_shop_relics",
+        "abyss_uncommon_relics"
+      ],
+      "keys": [
+        "members",
+        "edges"
+      ]
+    },
+    {
+      "size": 2,
+      "members": [
+        "abyss_power_order",
+        "abyss_power_schedule"
+      ],
+      "keys": [
+        "members",
+        "edges"
+      ]
+    }
+  ]
+}

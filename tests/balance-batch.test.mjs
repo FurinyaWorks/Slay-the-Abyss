@@ -31,6 +31,20 @@ test('skipped and failed card rewards are not recorded as picked cards',()=>{
  evidence.actions=[{...reward,details:{index:0}}, {...reward,ok:false}, reward];
  assert.equal(summarizeEvidence(evidence).cardPicks,1);
 });
+test('failed plays remain diagnostic actions but do not count as successfully played cards',()=>{
+ const evidence=fixture(48,'driver_blocked');
+ evidence.reason='invalid card';
+ const play=evidence.actions[0];
+ evidence.actions=[play,{...play,ok:false}];
+ const row=summarizeEvidence(evidence);
+ assert.equal(row.actions,2);
+ assert.equal(row.played,1);
+ const summary=aggregateRows([row]);
+ assert.equal(summary.totalPlayed,1);
+ assert.equal(summary.blocked,1);
+ assert.deepEqual(summary.blockedSeeds,[{seed:48,reason:'invalid card'}]);
+ assert.equal(summarizeEvidence({...evidence,actions:[{...play,ok:false}]}).played,0);
+});
 test('missing and nonfinite report metrics fail instead of disappearing from JSON',()=>{
  for(const final of [{},{floor:10},{floor:10,hp:NaN},{floor:Infinity,hp:24}])
   assert.throws(()=>summarizeEvidence({...fixture(46),final}),/untrusted/);

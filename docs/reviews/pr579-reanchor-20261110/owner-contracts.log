@@ -1,0 +1,22 @@
+✔ Stasis policies cannot reach execution owners through immediate or deferred full-source paths (897.993054ms)
+✔ lazy upgrade owner helper and its nested callbacks retain explicit CC15 governance (2.524494ms)
+✔ Stasis outer epoch preserves all 339 predecessor bindings and complete current sources (3166.853965ms)
+✔ four changed sources project every historical target with exact LF/CRLF and opaque-input rules (50.538943ms)
+✔ 53 fresh raw owners are required after warm authorization including layout and linked reader retargeting (245.265318ms)
+✔ isolated helper copy closes both epochs without Git or source tree access (9527.714261ms)
+✔ historical three-argument Actor replay loads exact complete prior Powers and Stasis modules (4.889208ms)
+✔ complete wheel responsibility has pinned CC15 including nested functions and chunk (773.362681ms)
+ℹ cyclomatic complexity of main chunk is too high (1 > 0); cyclomatic complexity of function 'row' is too high (1 > 0); cyclomatic complexity of function 'result' is too high (1 > 0); cyclomatic complexity of function 'M.prepare' is too high (2 > 0); cyclomatic complexity of function 'M.options' is too high (5 > 0); cyclomatic complexity of function 'spinWheel' is too high (3 > 0); cyclomatic complexity of function 'revealRelic' is too high (2 > 0); cyclomatic complexity of function 'acceptCurse' is too high (6 > 0); cyclomatic complexity of function 'offerPurge' is too high (2 > 0); cyclomatic complexity of function 'acceptDamage' is too high (2 > 0); cyclomatic complexity of function 'chooseRelic' is too high (4 > 0); cyclomatic complexity of function 'choosePurge' is too high (6 > 0); cyclomatic complexity of function 'acceptOutcome' is too high (8 > 0); cyclomatic complexity of function 'M.choose' is too high (9 > 0)
+✔ Wheel outer preserves all 339 predecessor bindings, metadata and historical targets (42.123695ms)
+✔ Wheel projects all historical targets from LF and CRLF, leaving originals and opaque inputs untouched (5.999047ms)
+✔ all 54 fresh raw owners remain mandatory after warm authorization and linked-reader retargeting (386.583446ms)
+✔ historical Act1 public facade preserves Wheel source with a complete authenticated reader (1.033063ms)
+✔ isolated helper closure imports both complete epochs without Git or production tree access (13825.048085ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52884.230309

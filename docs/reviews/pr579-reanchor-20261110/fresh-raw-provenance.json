@@ -1,0 +1,170 @@
+{
+  "ciPredecessorBindings": [
+    {
+      "epoch": "stasis",
+      "path": "scripts/ci-test-timings.json",
+      "beforeSha256": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+      "expectedPriorSha256": "62a0f2fcff6ade7863857a226ff0c1e2b1e40c9c56a63d06feb6a60e06ea53c7",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "scripts/check-lua-static.mjs",
+      "beforeSha256": "b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066",
+      "expectedPriorSha256": "b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "config/architecture.json",
+      "beforeSha256": "5b86c2108275977a57376b61d42c1780330417228982078498379b8761248946",
+      "expectedPriorSha256": "5b86c2108275977a57376b61d42c1780330417228982078498379b8761248946",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "src/lua/abyss_actor.lua",
+      "beforeSha256": "0435754ce97e731da0abaa1aafdbbd035988c09b411c47c192bb3e6ab0133c7a",
+      "expectedPriorSha256": "0435754ce97e731da0abaa1aafdbbd035988c09b411c47c192bb3e6ab0133c7a",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "src/lua/abyss_act2_powers.lua",
+      "beforeSha256": "966f9906c9fd03d306424c9ea430e3aa8840fdf6e852d13cecd274c0a3aa3629",
+      "expectedPriorSha256": "966f9906c9fd03d306424c9ea430e3aa8840fdf6e852d13cecd274c0a3aa3629",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "src/lua/abyss_act2_stasis.lua",
+      "beforeSha256": "0a1b6da54329fe7c00cfb45bb57dfc1ff53663cd7437e1bb17b35f702181466a",
+      "expectedPriorSha256": "0a1b6da54329fe7c00cfb45bb57dfc1ff53663cd7437e1bb17b35f702181466a",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/helpers/combined-epoch/source-epoch.mjs",
+      "beforeSha256": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+      "expectedPriorSha256": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/helpers/copy-integration-source-closure.mjs",
+      "beforeSha256": "944a6187604a28daf04f7b248239711f4c4ee6358f364d5efe856891eba79457",
+      "expectedPriorSha256": "944a6187604a28daf04f7b248239711f4c4ee6358f364d5efe856891eba79457",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/encounter-formation-source-epoch.test.mjs",
+      "beforeSha256": "cc49af6185255c8b877e1fdc0d79028d1f676534fd65a0d1fd28f43536af29c0",
+      "expectedPriorSha256": "cc49af6185255c8b877e1fdc0d79028d1f676534fd65a0d1fd28f43536af29c0",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/helpers/actor-damage-parity.mjs",
+      "beforeSha256": "f7cc25257fa02fb630f532878a2ef59163e45630624b7c98370058467a57a8b7",
+      "expectedPriorSha256": "f7cc25257fa02fb630f532878a2ef59163e45630624b7c98370058467a57a8b7",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/seven-refactor-source-epoch.test.mjs",
+      "beforeSha256": "80e3a7d2716811140e888fc50eeb16dd53d52ae32bee994027c660b3335c3254",
+      "expectedPriorSha256": "80e3a7d2716811140e888fc50eeb16dd53d52ae32bee994027c660b3335c3254",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/silent-final-source-epoch.test.mjs",
+      "beforeSha256": "5f0f9a8ac18607ff0f0d8d8c5abb20a1a6deb9effed0023f2676d5d779621b47",
+      "expectedPriorSha256": "5f0f9a8ac18607ff0f0d8d8c5abb20a1a6deb9effed0023f2676d5d779621b47",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/defect-final-source-epoch.test.mjs",
+      "beforeSha256": "e8163f25c261b4b16d0d9a5a3a5d73d8d2f5139017ca0bf255643c85ea060e15",
+      "expectedPriorSha256": "e8163f25c261b4b16d0d9a5a3a5d73d8d2f5139017ca0bf255643c85ea060e15",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/helpers/actor-lifecycle.mjs",
+      "beforeSha256": "250f3f49a60b62689840299a4b8ed3a65fb6134ce182561dbe1f1fb7d8a0036d",
+      "expectedPriorSha256": "250f3f49a60b62689840299a4b8ed3a65fb6134ce182561dbe1f1fb7d8a0036d",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/helpers/combat-lifecycle-input.mjs",
+      "beforeSha256": "22cc7fe5e889a581a7311d4c4234a05a88e2b6e5b906844e25ef46c924512311",
+      "expectedPriorSha256": "22cc7fe5e889a581a7311d4c4234a05a88e2b6e5b906844e25ef46c924512311",
+      "match": true
+    },
+    {
+      "epoch": "stasis",
+      "path": "tests/actor-status-view-responsibility.test.mjs",
+      "beforeSha256": "d0201c30c1f4a9d57813d0ec7af9290a774fe5a6dd7ae201730623a59f654d2f",
+      "expectedPriorSha256": "d0201c30c1f4a9d57813d0ec7af9290a774fe5a6dd7ae201730623a59f654d2f",
+      "match": true
+    },
+    {
+      "epoch": "wheel",
+      "path": "scripts/ci-quality-shape.mjs",
+      "beforeSha256": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed",
+      "expectedPriorSha256": "7a021a514c2ab8a669d67118ca294b20d22eaa18c12917dffa7f523aed7853ed",
+      "match": true
+    },
+    {
+      "epoch": "wheel",
+      "path": "scripts/ci-test-timings.json",
+      "beforeSha256": "fd79250a2612f3f667d566cd190e1fed2b3cce9bdf64c299a8d0502c4b2ac6dc",
+      "expectedPriorSha256": "fd79250a2612f3f667d566cd190e1fed2b3cce9bdf64c299a8d0502c4b2ac6dc",
+      "match": true
+    },
+    {
+      "epoch": "wheel",
+      "path": "scripts/check-lua-static.mjs",
+      "beforeSha256": "bdd3fe4d7c788204dc13833fbb5ec5fc2d50dec2702d91951e071f9e16f32f68",
+      "expectedPriorSha256": "bdd3fe4d7c788204dc13833fbb5ec5fc2d50dec2702d91951e071f9e16f32f68",
+      "match": true
+    },
+    {
+      "epoch": "wheel",
+      "path": "src/lua/abyss_wheel_event.lua",
+      "beforeSha256": "f775746a95c2f33eeb9a5d7c688c536b3dd0b6b3ddefeb3455fbd28468f6bc2c",
+      "expectedPriorSha256": "f775746a95c2f33eeb9a5d7c688c536b3dd0b6b3ddefeb3455fbd28468f6bc2c",
+      "match": true
+    },
+    {
+      "epoch": "wheel",
+      "path": "tests/helpers/combined-epoch/source-epoch.mjs",
+      "beforeSha256": "a06e3845b23f0c52f1871b7bbb2a8c2e12224e52c7dfe1a916a0d0d3d2a6cb45",
+      "expectedPriorSha256": "a06e3845b23f0c52f1871b7bbb2a8c2e12224e52c7dfe1a916a0d0d3d2a6cb45",
+      "match": true
+    },
+    {
+      "epoch": "wheel",
+      "path": "tests/helpers/copy-integration-source-closure.mjs",
+      "beforeSha256": "3b18791fa031c0b35cf3da5a742801412a6de601f078744a12f5555ad19c26bd",
+      "expectedPriorSha256": "3b18791fa031c0b35cf3da5a742801412a6de601f078744a12f5555ad19c26bd",
+      "match": true
+    }
+  ],
+  "priorTimingObjectUnchanged": true,
+  "addedFloors": [
+    "tests/stasis-owner-behavior.test.mjs",
+    "tests/stasis-owner-boundary.test.mjs",
+    "tests/stasis-owner-source-epoch.test.mjs",
+    "tests/wheel-event-responsibilities.test.mjs",
+    "tests/wheel-event-complexity.test.mjs",
+    "tests/wheel-event-source-epoch.test.mjs"
+  ],
+  "frozenProductionSourcesEqualDevelop": true,
+  "stasisSourceTestPredecessor": "Fresh source comparison required; no actual baseline Git object available.",
+  "method": "Compare prior bytes directly with current develop and exact intervening Stasis after hashes; no reliance on prior review claims."
+}

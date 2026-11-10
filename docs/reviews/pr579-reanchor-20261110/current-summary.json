@@ -1,0 +1,83 @@
+{
+  "sourceTree": "9f674fb31a92f98f5fac129f0c2a29ab3c7841de",
+  "modules": 338,
+  "measurements": 5613,
+  "over30": 32,
+  "over15": 208,
+  "maximum": 61,
+  "cycles": [
+    {
+      "members": 66,
+      "internalReferences": 506,
+      "dependencyPairs": 317
+    },
+    {
+      "members": 11,
+      "internalReferences": 44,
+      "dependencyPairs": 26
+    },
+    {
+      "members": 2,
+      "internalReferences": 2,
+      "dependencyPairs": 2
+    }
+  ],
+  "wheel": [
+    {
+      "name": "<chunk>",
+      "complexity": 1
+    },
+    {
+      "name": "row",
+      "complexity": 1
+    },
+    {
+      "name": "result",
+      "complexity": 1
+    },
+    {
+      "name": "M.prepare",
+      "complexity": 2
+    },
+    {
+      "name": "M.options",
+      "complexity": 5
+    },
+    {
+      "name": "spinWheel",
+      "complexity": 3
+    },
+    {
+      "name": "revealRelic",
+      "complexity": 2
+    },
+    {
+      "name": "acceptCurse",
+      "complexity": 6
+    },
+    {
+      "name": "offerPurge",
+      "complexity": 2
+    },
+    {
+      "name": "acceptDamage",
+      "complexity": 2
+    },
+    {
+      "name": "chooseRelic",
+      "complexity": 4
+    },
+    {
+      "name": "choosePurge",
+      "complexity": 6
+    },
+    {
+      "name": "acceptOutcome",
+      "complexity": 8
+    },
+    {
+      "name": "M.choose",
+      "complexity": 9
+    }
+  ]
+}

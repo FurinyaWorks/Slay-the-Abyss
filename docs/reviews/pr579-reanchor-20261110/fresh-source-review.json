@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "pr579-fresh-integrated-source-review-20261110",
+  "reviewedAt": "2026-11-10T05:05:17.650949+00:00",
+  "reviewedBaseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "reviewedHeadSha": null,
+  "identityScope": "Exact working-file SHA256 values in fresh-source-coverage.json; final commit binding required separately.",
+  "conclusion": "pass",
+  "unresolved": [],
+  "independence": "Fresh independent source review. Historical reviewer JSONs were reading guides only, not proof of reviewer identity or inherited approval.",
+  "coverage": {
+    "executableAndConfigurationPaths": 59,
+    "manifest": "fresh-source-coverage.json",
+    "production": "Compared all four Lua production diffs against develop. Stasis preserves custody/hand/Master Reality guards, lazy loading, dynamic canUpgrade/upgrade reads, throw and partial write order; Actor supplies the callback through Powers. Wheel extracts local responsibilities without changing stage reads, UID gates, RNG, Gold preapply, float32, dynamic Run calls, purge full traversal or transaction ordering.",
+    "proofAndTests": "Read added Stasis/Wheel VM harnesses, graph checks, boundary fixtures, semantic mutants, CC gates, source/CI epoch wrappers, archived fixtures, closure copier and modified historical consumers. New epochs retain predecessor maps and use fresh authenticated raw readers. No original production fixture bytes changed.",
+    "ci": "Read matrix and timing deltas, complete calibration projection changes and delivery/Full/queue rejection updates. Real discovery remains unfiltered; historical inventories are separated from raw current807. All prior timing fields conserved, exactly six additive floors, 18/15 shape, unknown10000 and 60000 reserve retained.",
+    "report": "Read batch helper, runner override and test coverage. Found failed-play counting defect; reviewed success-only fix and regression. Bounded sequential batching, source/seed checks, isolated output and nonzero blocked outcome retained.",
+    "documentation": "Reviewed task and milestone scope, pending AC and device limitations. Historical archived logs remain historical; current verification records do not claim Full or official client results."
+  },
+  "independentChecks": [
+    "Four frozen production source files equal actual current develop bytes.",
+    "22 complete CI predecessor bindings equal actual develop or exact intervening Stasis after identities. New Stasis test predecessor was separately diff-reviewed against its authenticated Wheel adaptation.",
+    "Full timing object equals develop after removing exactly six new floors.",
+    "All six added floor compressed/uncompressed log hashes and receipt hashes/statuses verified.",
+    "Fresh 54-owner warm authorization followed by 108 drift/deletion rejection probes passed.",
+    "Failed-only/mixed-action/aggregate report probes passed after repair."
+  ],
+  "resolvedFindings": [
+    {
+      "path": "scripts/balance-batch.mjs",
+      "finding": "Failed play counted as played card",
+      "resolution": "Count only action.ok; mixed and failed-only regression checks preserve action count and blocked reason."
+    }
+  ],
+  "limitations": [
+    "This is source approval, not a hosted CI, Full, merge queue or device acceptance result.",
+    "Historical 4a519055 and ef6b62a2 commit objects could not be fetched locally. The source predecessor equivalence was independently established directly against actual develop and exact source-chain hashes instead; historical authorship/timestamps are not certified.",
+    "Historical behavioral receipts capture enumerated inputs, not necessarily exhaustive transitive runtime dependencies. Fresh source review does not retroactively expand those receipts.",
+    "Graph comparison does not establish closure-upvalue, debug-stack or arbitrary function/userdata identity equivalence.",
+    "No expensive behavior or Full rerun performed; CI must validate final actual HEAD/base normally.",
+    "Final packaged evidence and commit identity require coordinator readback; approval does not authorize bypass of branch protections."
+  ],
+  "validationRecordsRead": [
+    "13 source/boundary checks passed.",
+    "152 distinct CI checks have passing results; first missing generated-art input and final calibration53/53 are recorded separately.",
+    "Report RED7/8 then GREEN8/8; original failure preserved.",
+    "Complete fresh engineering scan338 modules/5613 measurements and guidance/backlog records inspected."
+  ]
+}

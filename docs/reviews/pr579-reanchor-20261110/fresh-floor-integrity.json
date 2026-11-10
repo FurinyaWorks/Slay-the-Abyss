@@ -1,0 +1,44 @@
+[
+  {
+    "testFile": "tests/stasis-owner-behavior.test.mjs",
+    "durationMs": 11811,
+    "logSha256": "8b0e6ea01e887a31b605accad3a7ad96e75e7e1794624acc817ab85d6403e16c",
+    "receiptSha256": "d71ea99e3fa4608e3133e255a789ea94ff773fae189b26fecf933efe714f24cd",
+    "status": 0
+  },
+  {
+    "testFile": "tests/stasis-owner-boundary.test.mjs",
+    "durationMs": 1105,
+    "logSha256": "4e699d7d7e67fc8e69b05d7ee20d03057ec0881cc66f7b728e3cd872bc47bbbb",
+    "receiptSha256": "a56b33bf02c5866507dcb489786f8323eb93d5df1b1e42b4b19fd05d9673b43b",
+    "status": 0
+  },
+  {
+    "testFile": "tests/stasis-owner-source-epoch.test.mjs",
+    "durationMs": 17208,
+    "logSha256": "20df2477b8ed7c0b1dceae0d2a001db6ebaabf842ecb781e6aab3a48762db283",
+    "receiptSha256": "29447ec87e0978988b30663c81473669a74d425973a9bfb1c1b68e1bb965412c",
+    "status": 0
+  },
+  {
+    "testFile": "tests/wheel-event-responsibilities.test.mjs",
+    "durationMs": 150751,
+    "logSha256": "e3e25604f9e92b06cbf0dc09d0727137d488721f8329ac2f348b2580f0b1a8e7",
+    "receiptSha256": "3bae2ad029966d7952e11786e6fc3a27120ad259fb36d36ac58c12de2bb86e2d",
+    "status": 0
+  },
+  {
+    "testFile": "tests/wheel-event-complexity.test.mjs",
+    "durationMs": 967,
+    "logSha256": "38f9eeaf2885b1a1a0125470ba6f56aecbc090b64cc7a1590ae44287862615a9",
+    "receiptSha256": "efd4f700e3499a59586a4c41feda8fd01494c2a376851a73648562cc2c88c11d",
+    "status": 0
+  },
+  {
+    "testFile": "tests/wheel-event-source-epoch.test.mjs",
+    "durationMs": 23093,
+    "logSha256": "30a4f8af26455ad06bf8dca00ca43a2069fc77ec1e78a206edf891e8aadaff0d",
+    "receiptSha256": "d364905050697a1cc0755dbba7705cc2e2a6bd311f864543504e5c636550cd6d",
+    "status": 0
+  }
+]
