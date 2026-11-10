@@ -19,7 +19,7 @@ const inventoryAdditions=Object.freeze({
 // Only these complete reviewed source updates may enter their original named
 // receipt views. The archived source/targets and unrelated files remain frozen.
 const sourceAdditions=Object.freeze({
- "tests/ci-complete-calibration.test.mjs":Object.freeze({"beforeSha256":"8c5046164021603181e3816d8c1b3facd14d1ea926dc5d95a84b1f153c2bf4ec","afterSha256":"19e42e5bb2a09acdd0c6238806dfe8974161f7ca2a7a03fb7dbfcc0333e6ad86"}),
+ "tests/ci-complete-calibration.test.mjs":Object.freeze({"beforeSha256":"8c5046164021603181e3816d8c1b3facd14d1ea926dc5d95a84b1f153c2bf4ec","afterSha256":"b2f86a28c982022308c8677e9370cd3ef74bff49ed8343da29aac3c0236eb276"}),
  "scripts/ci-test-timings.json":Object.freeze({"beforeSha256":"18174c289e1f6f49b62e7c060bb98b6d41420dcfa77df8b668aa730a385ccc80","afterSha256":"a423700109c482cd5fdea24be4649463c4c7287fa2ed725a71dc323290da93a1"}),
  "tests/helpers/ci-complete-calibration-source-inverse.mjs":Object.freeze({"beforeSha256":"fcfd93b82e97cb81158ce01daa54b48cfa2f9c8dee7a06fceb572708c0f3db64","afterSha256":"a54e59fc162811dc2eabc3c562e3ba5f3afd7f99867c6d8c23d3f49e9d77efe0"}),
  "tests/helpers/combined-epoch/source-epoch.mjs":Object.freeze({"beforeSha256":"9c13e8134088d55a7a7b57e7f4fe905fd87cdc9a36e6c636049285e6fa99faf1","afterSha256":"ebb69c0778a5465273edae9b2fd2d523d3efa6cb248e2a02316b757a1bc3840a"}),

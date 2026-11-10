@@ -1285,7 +1285,7 @@ test('joint historical inventory rejects missing duplicate and unknown files whi
  }
  assert.throws(()=>jointCiInventoryAt([...current,'tests/foreign.test.mjs'],'officialAssetsFlow'),/inventory/);
  const file='tests/historical-monster-import-boundary.test.mjs',source=diskReadFileSync(file,'utf8');
- assert.deepEqual(jointCiInventoryAt(current,'officialAssetsFlow',(path,encoding)=>path===file?source.replaceAll('\n','\r\n'):diskReadFileSync(path,encoding)),historical);
+ assert.deepEqual(jointCiInventoryAt(current,'officialAssetsFlow',(path,encoding)=>path===file?source.replaceAll('\r\n','\n').replaceAll('\n','\r\n'):diskReadFileSync(path,encoding)),historical);
  for(const foreign of [source+'\n',source.slice(1),source.slice(0,-1)]){
   assert.throws(()=>jointCiInventoryAt(current,'officialAssetsFlow',(path,encoding)=>path===file?foreign:diskReadFileSync(path,encoding)),/added inventory source/);
  }
@@ -1297,7 +1297,7 @@ test('joint historical inventory rejects missing duplicate and unknown files whi
   assert.equal(jointCiSourceAt(file,source,target),prior);
   assert.equal(jointCiSourceAt(file,archive.files[file].current,target),prior);
   assert.notEqual(prior,source);assert.equal(jointCiMatches(file,source,target),true);
-  assert.equal(jointCiSourceAt(file,source.replaceAll('\n','\r\n'),target),prior);
+  assert.equal(jointCiSourceAt(file,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n'),target),prior);
   for(const foreign of [source+'\n',source.slice(1),source.slice(0,-1),null,{},17]){
    assert.equal(jointCiSourceAt(file,foreign,target),foreign);assert.equal(jointCiMatches(file,foreign,target),false);
   }
@@ -1348,7 +1348,7 @@ test('Curses CI outer source views reject partial identities and preserve every 
  for(const file of paths){
   const source=diskReadFileSync(file,'utf8'),row=archive.files[file];
   assert.deepEqual(Object.keys(row.targets),['officialAssetsFlow']);
-  for(const input of [source,source.replaceAll('\n','\r\n'),row.current]){
+  for(const input of [source,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n'),row.current]){
    assert.equal(jointCiMatches(file,input,'officialAssetsFlow'),true);assert.equal(jointCiSourceAt(file,input,'officialAssetsFlow'),row.targets.officialAssetsFlow);
   }
   for(const foreign of [source+'\n',source.slice(1),source.slice(0,-1),null,{},17]){
@@ -1359,7 +1359,7 @@ test('Curses CI outer source views reject partial identities and preserve every 
   }
  }
  const file='scripts/ci-test-timings.json',source=diskReadFileSync(file,'utf8'),before=archive.files[file].current;
- assert.equal(preCurrentPlanningSource(file,source),before);assert.equal(preCurrentPlanningSource(file,source.replaceAll('\n','\r\n')),before);
+ assert.equal(preCurrentPlanningSource(file,source),before);assert.equal(preCurrentPlanningSource(file,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),before);
  const value=JSON.parse(source);for(const key of Object.keys(cursesPlanningFloors))delete value.jsPlanning.localLowerBounds[key];
  assert.deepEqual(value,JSON.parse(before),'only the two measured floors change; every original field is preserved');
  for(const key of Object.keys(cursesPlanningFloors)){
@@ -1369,13 +1369,15 @@ test('Curses CI outer source views reject partial identities and preserve every 
  for(const path of ['__proto__','constructor','foreign/'+file,file+'/extra'])assert.equal(preCurrentPlanningSource(path,source),source);
  const gate=cursesGateProof.path,raw=diskReadFileSync(gate,'utf8'),prior=preCursesGateSource(gate,raw);
  assert.equal(hash(prior),'b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066','immutable develop6a gate identity');
- assert.equal(preCursesGateSource(gate,raw.replaceAll('\n','\r\n')),prior);assert.equal(preCursesGateSource(gate,prior),prior);
+ assert.equal(preCursesGateSource(gate,raw.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),prior);assert.equal(preCursesGateSource(gate,prior),prior);
  assert.equal(jointCiSourceAt(gate,raw,'officialAssetsFlow'),prior);assert.equal(jointCiMatches(gate,raw,'officialAssetsFlow'),true);
  for(const target of ['componentAliasFix','defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt']){
   assert.equal(jointCiMatches(gate,raw,target),false);assert.equal(jointCiSourceAt(gate,raw,target),raw);
  }
- const line="  || file==='src/lua/abyss_curses.lua'\n";
- for(const foreign of [raw+'\n',raw.slice(1),raw.replace(line,''),raw.replace(line,line+line),null,{},17]){
+ const line="  || file==='src/lua/abyss_curses.lua'\n",lf=raw.replaceAll('\r\n','\n');
+ const missing=lf.replace(line,''),duplicate=lf.replace(line,line+line);
+ assert.notEqual(missing,lf);assert.notEqual(duplicate,lf);
+ for(const foreign of [raw+'\n',raw.slice(1),missing,duplicate,null,{},17]){
   assert.equal(preCursesGateSource(gate,foreign),foreign);assert.equal(jointCiMatches(gate,foreign,'officialAssetsFlow'),false);assert.equal(jointCiSourceAt(gate,foreign,'officialAssetsFlow'),foreign);
  }
  for(const path of ['__proto__','constructor','foreign/'+gate,gate+'/extra'])assert.equal(preCursesGateSource(path,raw),raw);
@@ -1386,7 +1388,7 @@ test('Curses receipt source is exact and cannot substitute for raw current sourc
  const path='src/lua/abyss_curses.lua',raw=diskReadFileSync(path,'utf8'),before=diskReadFileSync('tests/fixtures/curses-shape-before.lua','utf8').replaceAll('\r\n','\n');
  assert.equal(hash(raw),'65d912f1d2dbd5245bb4734103c762eb9667c5161c33e4c850062e35572c3642');
  assert.equal(hash(before),'942e7c65da29875fefbff132182ce7a7aab16afb4405e28d2a71e31d589a44b7');
- for(const source of [raw,raw.replaceAll('\n','\r\n')]){
+ for(const source of [raw,raw.replaceAll('\r\n','\n').replaceAll('\n','\r\n')]){
   assert.equal(jointCiMatches(path,source,'officialAssetsFlow'),true);assert.equal(jointCiSourceAt(path,source,'officialAssetsFlow'),before);
  }
  assert.equal(jointCiSourceAt(path,before,'officialAssetsFlow'),before);
