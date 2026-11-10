@@ -1,0 +1,44 @@
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (16.404291ms)
+✔ initialization calls cannot borrow a deferred import exception (16.005451ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (13.338415ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.737667ms)
+✔ deferred import exceptions must still match an actual function-scoped require (1.203231ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.344878ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (1.515067ms)
+✔ active policy pins exactly the lint/tool inputs and rejects changes, missing pins and exception options (1.597627ms)
+✔ active policy preserves historical lint except exact reviewed SDK owner and callback declarations (5.996303ms)
+✔ physical lines and inclusive function spans include comments, blank lines and nested bodies (5.030791ms)
+✔ CRLF and LF have identical canonical metrics and source hashes (0.812079ms)
+✔ every function and chunk needs exactly one matching Luacheck coordinate (1.242941ms)
+✔ Unicode codepoint columns map to UTF8 AST bytes, including emoji and combining marks (1.18377ms)
+✔ all files and extracted helpers are discovered recursively; empty scans fail (10.157568ms)
+✔ full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically (1.9747ms)
+✔ baseline diff keeps full metrics, exact warning multiplicity and changed/deleted/new modules visible (1.877133ms)
+✔ baseline contract/tool/scope mismatch and malformed snapshots cannot be treated as improvement (0.995922ms)
+✔ JSON object key ordering does not create false warning changes or contract mismatches (0.672551ms)
+✔ all new numeric metrics remain report-only, including high complexity and new helper hotspots (1.303979ms)
+✔ the frozen baseline covers every recorded module/function and is not an exemption configuration (11.505646ms)
+✔ dependency and cycle changes are visible even when total module and warning counts stay equal (0.743236ms)
+✔ quality reports are collected by the existing gate and uploaded on failed runs without changing older CI guards (4.363329ms)
+✔ historical package replay inverts only the exact quality entry and gate wiring without changing its old hash (182.653261ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+: tool missing
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (6.199283ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.289063ms)
+✔ collection failures and existing gate failures propagate (0.868889ms)
+✔ a failed shared collection writes a fresh failed quality report (8.453702ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (1.319254ms)
+✔ standalone architecture and shared collection inspect the same recursive modules and source paths (18.030351ms)
+✔ both architecture entries reject empty scans and ambiguous Lua module identities (1.061334ms)
+✔ both architecture entries refuse linked source directories instead of silently omitting them (0.40577ms)
+✔ nested source changes and dependency boundaries are freshly checked by both architecture entries (1.839908ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11462.66463

@@ -1,0 +1,28 @@
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (10.186991ms)
+✔ initialization calls cannot borrow a deferred import exception (6.669601ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (8.229575ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.667574ms)
+✔ deferred import exceptions must still match an actual function-scoped require (1.586796ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.579525ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (0.91767ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (7.205903ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.271661ms)
+✔ collection failures and existing gate failures propagate (1.420788ms)
+✔ a failed shared collection writes a fresh failed quality report (10.199932ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (1.773951ms)
+✔ standalone architecture and shared collection inspect the same recursive modules and source paths (21.681365ms)
+✔ both architecture entries reject empty scans and ambiguous Lua module identities (0.789791ms)
+✔ both architecture entries refuse linked source directories instead of silently omitting them (0.55616ms)
+✔ nested source changes and dependency boundaries are freshly checked by both architecture entries (1.829231ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 228.15147

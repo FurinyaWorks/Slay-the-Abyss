@@ -1,9 +1,10 @@
 import luaparse from 'luaparse';
-import { readFileSync, readdirSync, mkdirSync, writeFileSync } from 'node:fs';
-import { join, resolve, basename } from 'node:path';
+import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { generatedRuntimeModules } from './build-native-candidate.mjs';
 import { sha256 } from './evidence-files.mjs';
+import { discoverSources, architectureSources } from './lua-quality-metrics.mjs';
 
 // Resolve statically visible initialization calls, not arbitrary Lua execution.
 // Only single-write locals assigned by their declaring function before the
@@ -81,12 +82,13 @@ function initializationFunctions(ast) {
   return eager;
 }
 
-export function analyzeSources(sources,policy,generated=generatedRuntimeModules) {
+export function analyzeSources(sources,policy,generated=generatedRuntimeModules,sourcePaths={}) {
   const errors=[],edges=[],nodes=Object.keys(sources).sort(),layers=policy.layers;
+  const sourceFile=name=>Object.hasOwn(sourcePaths,name)?sourcePaths[name]:`src/lua/${name}.lua`;
   const deferredImports=new Set((policy.deferredImports??[]).map(row=>`${row.from}:${row.to}`));
   for(const name of nodes) {
     const source=sources[name],layer=layers[name];
-    const say=(node,message)=>errors.push({file:`src/lua/${name}.lua`,line:node?.loc?.start.line??1,message});
+    const say=(node,message)=>errors.push({file:sourceFile(name),line:node?.loc?.start.line??1,message});
     if(!['core','ui','platform'].includes(layer))say(null,'Module needs explicit classification');
     let ast;
     try{ast=luaparse.parse(Buffer.from(source).toString('latin1'),{luaVersion:'5.3',locations:true,ranges:true,scope:true,encodingMode:'pseudo-latin1'});}
@@ -146,11 +148,11 @@ export function analyzeSources(sources,policy,generated=generatedRuntimeModules)
       }
     }
     if(valid)for(const edge of edges)if(from.includes(edge.from)&&forbiddenTargets.includes(edge.to))
-      errors.push({file:`src/lua/${edge.from}.lua`,line:edge.line,
+      errors.push({file:sourceFile(edge.from),line:edge.line,
         message:`Dependency boundary ${id}: ${edge.from} cannot depend on ${edge.to}`});
   }
   function cycle(name,trail=[]) {
-    if(active.has(name)){errors.push({file:`src/lua/${name}.lua`,line:1,message:`Dependency cycle: ${[...trail,name].join(' -> ')}`});return;}
+    if(active.has(name)){errors.push({file:sourceFile(name),line:1,message:`Dependency cycle: ${[...trail,name].join(' -> ')}`});return;}
     if(done.has(name))return;
     active.add(name);for(const edge of edges.filter(edge=>edge.from===name&&!edge.reviewedDeferred))if(edge.to in sources)cycle(edge.to,[...trail,name]);
     active.delete(name);done.add(name);
@@ -159,8 +161,8 @@ export function analyzeSources(sources,policy,generated=generatedRuntimeModules)
   return {schemaVersion:1,parser:'luaparse@0.3.1',sourceHashes:Object.fromEntries(nodes.map(name=>[name,sha256(sources[name])])),nodes,edges,errors};
 }
 export function checkArchitecture(root=process.cwd()) {
-  const sources=Object.fromEntries(readdirSync(join(root,'src/lua')).filter(file=>file.endsWith('.lua')).sort().map(file=>[basename(file,'.lua'),readFileSync(join(root,'src/lua',file),'utf8')]));
-  return analyzeSources(sources,JSON.parse(readFileSync(join(root,'config/architecture.json'),'utf8')));
+  const {byModule,sourcePaths}=architectureSources(discoverSources(root));
+  return analyzeSources(byModule,JSON.parse(readFileSync(join(root,'config/architecture.json'),'utf8')),undefined,sourcePaths);
 }
 export function main(report=checkArchitecture()) {
   mkdirSync('build',{recursive:true});writeFileSync('build/architecture.json',JSON.stringify(report,null,2)+'\n');
