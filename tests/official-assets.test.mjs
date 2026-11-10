@@ -98,6 +98,13 @@ test('approved battle geometry keeps live field identities and input contracts w
    assert.deepEqual(child(card,'name').position,[0,79.8046875]);
    assert.deepEqual(child(card,'label').size,[114,60.921875]);
    assert.equal(child(card,'cost').text.fontSize,25);
+   assert.equal(child(child(card,'roundBody'),'nativePaperTrim').visible,false,'old square paper must not leak through rounded corners');
+   assert.equal(child(card,'nameBand').visible,false);
+   const ribbon=child(card,'nativeRibbon');assert.equal(ribbon.children.length,18);
+   assert(ribbon.children.slice(-8).every(n=>n.name.startsWith('face')),'all curved faces must cover backing seams');
+   assert.deepEqual(child(child(card,'skin'),'skill').size,[126,86.09375],'final computed reference window');
+   assert.deepEqual(child(card,'nativeCostOrb').size,[41,41]);
+   assert.equal(child(card,'nativeCostOrb').children.length,6);
   }
  assertNativeUiCapacity(layout);assertNativeUiCapacity(template);
 });

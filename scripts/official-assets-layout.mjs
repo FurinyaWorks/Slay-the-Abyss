@@ -4,6 +4,7 @@ import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
 import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
 import {v25Theme,applyV25BattleLayout} from './v25-layout.mjs';
 import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
+import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
 const children=node=>node?.controls??node?.children??[];
 const child=(node,name)=>children(node).find(item=>item.name===name);
 const required=(node,name)=>{const value=child(node,name);if(!value)throw Error('Official assets missing '+name);return value;};
@@ -54,7 +55,7 @@ function cardFace(face,theme,battle=false){
   body.children.unshift({name:'nativePaperTrim',kind:'image',position:[...flat.position],size:[...flat.size],image:art.images.cardPanel,imageType:'basic',colour:art.battleCardTrim});
   flat.size=flat.size.map(value=>value-art.battleCardInset);
   const band=required(face,'nameBand'),skin=required(face,'skin'),title=required(face,'name');
-  band.image=art.images.battleBanner;band.imageType='basic';band.position=[...title.position];band.size=[title.size[0],theme.layout.card.nameBand];band.colour=art.battleCardBannerTint;
+  band.image=art.images.battleBanner;band.imageType='basic';band.position=[title.position[0],title.position[1]+2];band.size=[title.size[0],art.battleCardChrome.ribbonHeight];band.colour=art.battleCardBannerTint;
   face.children.splice(face.children.indexOf(band),1);face.children.splice(face.children.indexOf(title),0,band);
   // Two clipped halves gently bend the native ribbon without raster rebuilds.
   band.rotation=art.battleRibbonTilt;band.fill={shape:'horizontal',from:'left',amount:art.battleRibbonFill};
@@ -64,6 +65,7 @@ function cardFace(face,theme,battle=false){
   // Reuse the live rarity-owned banner path above. Old rectangle bands would
   // cover its folded silhouette; retain their handles for cached tint writers.
   for(const part of children(skin))if(part.name==='gloss'||/^band\d+$/.test(part.name))part.visible=false;
+  title.text.fontSize=14;title.text.minFontSize=14;
   title.text.colour=art.battleCardTitleInk;title.text.outline=true;title.text.outlineColour='#373737';title.text.outlineOpacity=1;
   for(const [name,width]of [['tagEdge',45],['tagBody',42]]){
    const tag=required(face,name);tag.size[0]=width;required(tag,'flat').size[0]=width;
@@ -84,6 +86,7 @@ function cardFace(face,theme,battle=false){
  if(battle){
   disc.size=[34,34];disc.imageType='basic';
   const cost=required(face,'cost');cost.text.outline=true;cost.text.outlineColour='#4A2B27';cost.text.outlineOpacity=1;
+  officialBattleCardChrome(face,theme);
  }
 }
 function battleSurfaces(root,theme){

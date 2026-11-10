@@ -130,7 +130,11 @@ for _,case in ipairs({
  colour(number.fontColor,case.tone==ink and battleInk or case.tone,'battle scoped semantic ink')
  assert(card:GetChild('costDirection').text==case.direction,'battle scoped cost direction')
 end
-u:render();colour(number.fontColor,battleInk,'battle neutral ink restored after semantic cost changes')
+local costless=C.copy(definition);costless.cost=-2
+Skin.apply(card,costless,paint,{surfaceScope='battle'})
+assert(not card:GetChild('nativeCostOrb').visible,'costless card keeps a coin')
+u:render();assert(card:GetChild('nativeCostOrb').visible,'live cost orb not restored')
+colour(number.fontColor,battleInk,'battle neutral ink restored after semantic cost changes')
 unchanged(b,before,'official image binding mutated Combat')
 unchanged(H.F.Data,dataBefore,'official image binding mutated Core data')
 -- Selection alone is presentation-only. A resize invalidates the held pointer,
@@ -260,7 +264,7 @@ for i=1,10 do
  assert((box.children.nativeBannerRight~=nil)==official,'generated profile owns the ribbon')
  local get=box.GetChild
  box.GetChild=function(self,key)
-  if key=='nativeBannerRight' or key=='nativePlayableRim' then probes=probes+1;assert(official,'default profile probed official-only ribbon')end
+  if key=='nativeBannerRight' or key=='nativePlayableRim' or key=='nativeRibbon' or key=='nativeCostOrb' then probes=probes+1;assert(official,'default profile probed official-only decoration')end
   return assert(get(self,key),'missing required card child '..key)
  end
 end
@@ -279,7 +283,7 @@ for _,rarity in ipairs({'basic','common','uncommon','rare'})do
  end
 end
 assert(official and probes>0 or not official and probes==0)
-for _,name in ipairs(official and {'nameBand','nameRule','art','nativeBannerRight','nativePlayableRim'} or {'nameBand','nameRule','art'})do
+for _,name in ipairs(official and {'nameBand','nameRule','art','nativeBannerRight','nativePlayableRim','nativeRibbon','nativeCostOrb'} or {'nameBand','nameRule','art'})do
  local box=p:GetChild('card1');local saved=box.children[name];assert(saved)
  box.children[name]=nil
  local ok,reason=pcall(function()u:render()end)

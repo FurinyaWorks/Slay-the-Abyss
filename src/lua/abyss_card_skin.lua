@@ -149,7 +149,11 @@ local function costState(look)
     if type(current)~='number' or type(base)~='number' then return false,0,0 end
     return current>=0 and base>=0 and current~=base,current,base
 end
-local function costVisibility(box,hasCost,nativeSurface)
+local function costVisibility(box,hasCost,nativeSurface,scope)
+    if scope=='battle' and Theme.presentationProfile=='official-assets-first' then
+        local orb=assert(box:GetChild('nativeCostOrb'),'official battle cost orb is required')
+        orb:SetVisible(hasCost and not nativeSurface)
+    end
     for _,name in ipairs({'costCore','costDisc','cost'})do
         box:GetChild(name):SetVisible(hasCost and (name=='cost' or not nativeSurface))
     end
@@ -171,7 +175,7 @@ local function costs(box,definition,look,accent,platform,tint,nativeSurface)
     local numberTone=costNumberTone(tone,changed,look)
     if platform.color then box:GetChild('cost').fontColor=platform.color(numberTone.r,numberTone.g,numberTone.b,255)end
     local hasCost=definition.cost~=-2
-    costVisibility(box,hasCost,nativeSurface)
+    costVisibility(box,hasCost,nativeSurface,look.surfaceScope)
     activeHalos[box]=changed and hasCost
     box:GetChild('costHalo'):SetVisible(changed and hasCost)
     local direction=box:GetChild('costDirection');direction:SetVisible(changed and hasCost)

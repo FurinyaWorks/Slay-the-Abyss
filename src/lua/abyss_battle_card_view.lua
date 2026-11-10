@@ -17,6 +17,15 @@ local function bannerInk(definition)
     if bannerTints then return bannerTints[definition.rarity]or bannerTints.basic end
     return C.rarityBand[definition.rarity]or C.rarityBand.basic
 end
+local ribbonColours=setmetatable({},{__mode='k'})
+local function paintRibbon(box,tone,tint)
+    local ribbon=assert(box:GetChild('nativeRibbon'),'official battle ribbon is required')
+    if ribbonColours[box]==tone then return end
+    for _,part in ipairs(ribbon:GetChildren())do
+        if part.name:match('^face')then tint(part,tone)end
+    end
+    ribbonColours[box]=tone
+end
 local function canAimCard(card,battle)
     if card.playable then return true end
     if card.blockReason~='invalid_target' or not card.instance or not battle then return false end
@@ -254,6 +263,7 @@ function M.new(view, controls)
         tint(box:GetChild("nameBand"), bannerInk(definition))
         if Theme.presentationProfile=='official-assets-first' then
             tint(assert(box:GetChild('nativeBannerRight'),'official battle banner is required'),bannerInk(definition))
+            paintRibbon(box,bannerInk(definition),tint)
         end
         tint(box:GetChild("nameRule"), C.rarity[definition.rarity] or C.line)
         tint(box:GetChild("artPlate"), enabled and (C.cardType[definition.type] or C.panelRaised) or C.panelSunken)

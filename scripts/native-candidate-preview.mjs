@@ -53,7 +53,7 @@ function node(spec,ids,trail,templateRoot=false){
  for(const k of Object.keys(spec))if(!known.has(k))unknown.set(k,(unknown.get(k)??0)+1);
  if(kind==='container'){n.isolateNavigation=spec.isolateNavigation===true;n.disableKeyEventPassthrough=spec.blockKeys===true;n.disableCursorEventPassthrough=spec.blockCursor===true;n.showCursor=spec.showCursor===true;}
  if(kind==='textbox'||kind==='textwindow'){
-  const t=spec.text??{};Object.assign(n,{text:t.content??'',fontSize:t.fontSize??20,adaptiveFontSize:t.autoSize===true,minimumFontSize:t.minFontSize??20,fontColor:argb(t.colour,t.opacity??1),bgColor:argb(t.background??'#000000',t.backgroundOpacity??0),enableOutline:t.outline===true,outlineColor:argb(t.outlineColour??'#333333',t.outlineOpacity??.2),horizontalAlignment:align[t.align]??'Left',verticalAlignment:align[t.valign]??'Top'});
+  const t=spec.text??{};Object.assign(n,{text:t.content??'',fontSize:t.fontSize??20,adaptiveFontSize:t.autoSize===true,minimumFontSize:t.minFontSize??20,fontColor:argb(t.colour,t.opacity??1),bgColor:argb(t.background??'#000000',t.backgroundOpacity??0),enableOutline:t.outline!==false,outlineColor:argb(t.outlineColour??'#333333',t.outlineOpacity??.2),horizontalAlignment:align[t.align]??'Left',verticalAlignment:align[t.valign]??'Top'});
   if(kind==='textwindow'){n.interactable=t.scrollable!==false;n.showScrollBar=t.scrollbar!==false;}
  }
  if(kind==='image'){
@@ -101,6 +101,7 @@ function compareTree(original,restored,trail){
  if(original.kind==='image'&&(original.imageType??'basic').toLowerCase()!==(restored.imageType??'basic').toLowerCase())inverseFaults.push('imageType '+trail);
  if(original.active===false&&restored.active!==false||original.visible===false&&restored.visible!==false)inverseFaults.push('visibility '+trail);
  if(original.text){for(const field of ['content','fontSize','minFontSize','align','valign'])if(original.text[field]!==undefined&&(original.text[field]||field!=='content')&&original.text[field]!==restored.text?.[field])inverseFaults.push('text.'+field+' '+trail);}
+ if(original.text&&(original.text.outline!==false)!==(restored.text?.outline!==false))inverseFaults.push('text.outline '+trail);
  if(original.colour&&original.colour.toLowerCase()!==(restored.colour??'#ffffff').toLowerCase())inverseFaults.push('colour '+trail);
  if(original.opacity!==undefined&&Math.round(original.opacity*255)!==Math.round((restored.opacity??1)*255))inverseFaults.push('alpha '+trail);
  if(original.fill&&JSON.stringify(original.fill)!==JSON.stringify(restored.fill))inverseFaults.push('fill '+trail);
