@@ -1,0 +1,15 @@
+✔ official battle HUD can render at least one full native text line without hiding its values (88.917772ms)
+✔ official dark buttons retain light ink and cover their whole native hit surface with the same material (52.571073ms)
+✔ official cost medallions pair the selected light material with neutral dark ink across card hosts (47.734273ms)
+✔ official battle reuses the approved complete V25 architecture instead of stretched pillar icons (31.490386ms)
+✔ approved card inner frames retain their point/rounded silhouettes and unchanged illustration identities (36.400581ms)
+✔ standalone battle output receives the same geometry and required turn-notice tree (13.176285ms)
+✔ generic disabled buttons remain visibly distinct from enabled buttons (32.218765ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 435.485945

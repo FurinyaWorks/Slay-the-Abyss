@@ -1,4 +1,5 @@
 local AimArrow=require("abyss_battle_aim_arrow")
+local CardGlow=require('abyss_battle_card_glow')
 -- Card faces, placement and drag trajectory only. The host owns input validity
 -- and commands; the core supplies costs, previews and playability.
 local Combat = require("abyss_combat")
@@ -8,9 +9,40 @@ local CardSkin = require('abyss_card_skin')
 local CardDisplay = require("abyss_card_display")
 local number = require("abyss_numbers").integer
 local C, L = Theme.color, Theme.layout
+local titleInk=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleCardTitleInk or Theme.cardSkin.text.title
+local bannerTints=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleBannerByRarity
 local D = L.cardDrag
 local typeNames = { attack = "攻击", skill = "技能", power = "能力", status = "状态", curse = "诅咒" }
 local M = {}
+local function bannerInk(definition)
+    if bannerTints then return bannerTints[definition.rarity]or bannerTints.basic end
+    return C.rarityBand[definition.rarity]or C.rarityBand.basic
+end
+local ribbonColours=setmetatable({},{__mode='k'})
+local function paintRibbon(box,tone,tint)
+    local ribbon=assert(box:GetChild('nativeRibbon'),'official battle ribbon is required')
+    if ribbonColours[box]==tone then return end
+    for _,part in ipairs(ribbon:GetChildren())do
+        if part.name:match('^face')then tint(part,tone)end
+    end
+    ribbonColours[box]=tone
+end
+-- Shared by the hand and read-only combat piles using the same native face.
+function M.paintBanner(box,definition,tint)
+    tint(box:GetChild('nameBand'),bannerInk(definition))
+    if Theme.presentationProfile=='official-assets-first' then
+        tint(assert(box:GetChild('nativeBannerRight'),'official battle banner is required'),bannerInk(definition))
+        paintRibbon(box,bannerInk(definition),tint)
+    end
+end
+local function canAimCard(card,battle)
+    if card.playable then return true end
+    if card.blockReason~='invalid_target' or not card.instance or not battle then return false end
+    for index in ipairs(battle.enemies)do
+        if Combat.canPlay(battle,card.instance.uid,index)then return true end
+    end
+    return false
+end
 
 local function lerpSnap(value, target, dt, rate, threshold)
     local nextValue=value+(target-value)*math.min(1,dt*rate)
@@ -219,7 +251,7 @@ function M.new(view, controls)
         CardDisplay.writeTitle(box:GetChild("name"), card.display.name, card.upgraded,
             repeatCount(card.definition, instance),box:GetChild("type"),
             typeNames[card.definition.type] or card.definition.type)
-        ink(box:GetChild("name"), Theme.cardSkin.text.title)
+        ink(box:GetChild("name"), titleInk)
     end
 
     local function writeDetails(box, card, battle, aimUid, aimTarget)
@@ -237,7 +269,7 @@ function M.new(view, controls)
         tint(box:GetChild("border"), (card.selected or hovered) and C.goldBright
             or enabled and (C.rarity[definition.rarity] or C.line) or C.line)
         -- The title banner and its rule carry rarity, as on the original cards.
-        tint(box:GetChild("nameBand"), C.rarityBand[definition.rarity] or C.rarityBand.basic)
+        M.paintBanner(box,definition,tint)
         tint(box:GetChild("nameRule"), C.rarity[definition.rarity] or C.line)
         tint(box:GetChild("artPlate"), enabled and (C.cardType[definition.type] or C.panelRaised) or C.panelSunken)
         CardDisplay.writeArt(box:GetChild("art"), definition, picture,box)
@@ -282,6 +314,12 @@ function M.new(view, controls)
         local printed=card.upgraded and base.upgrade and base.upgrade.cost or base.cost
         CardSkin.apply(box,card.definition,controls.platform,{dim=not card.playable,selected=card.selected or hovered,
             cost=card.definition.cost,baseCost=printed,blockReason=card.blockReason,surfaceScope='battle'})
+        if Theme.presentationProfile=='official-assets-first' then
+            local rim=assert(box:GetChild('nativePlayableRim'),'official playable rim is required')
+            local ready=context.active and canAimCard(card,context.battle)
+            rim:SetVisible(ready)
+            CardGlow.bind(box,rim,ready,controls.platform.color)
+        end
     end
 
     local function renderSlot(context, i, aimUid, aimTarget)
@@ -289,7 +327,7 @@ function M.new(view, controls)
         local instance = context.fighting and context.battle.hand[i]
         local id = instance and instance.cardId or context.rewards[i]
         box:SetVisible(id ~= nil and id ~= false)
-        if not id then CardDisplay.clearNativeArt(box);return end
+        if not id then CardGlow.clear(box);CardDisplay.clearNativeArt(box);return end
         local card = slotCard(context, instance, id, i)
         writeName(box, card)
         writeDetails(box, card, context.battle, aimUid, aimTarget)
@@ -390,7 +428,8 @@ function M.new(view, controls)
 
     local function renderReticle(layer, aiming, ex, ey, ring, enemy)
         local reticle = layer:GetChild("reticle")
-        reticle:SetVisible(aiming == true)
+        -- Original targeting uses the arrow head and the creature's corner marks.
+        reticle:SetVisible(aiming == true and Theme.presentationProfile~='official-assets-first')
         reticle:SetAnchoredPosition(ex, ey)
         reticle:SetSizeDelta(ring, ring)
         tint(reticle, enemy and C.danger or C.textDim)
@@ -412,7 +451,8 @@ function M.new(view, controls)
         local enemy=target and potion.battle.enemies[target]
         local ex,ey,ring=aimEndpoint(potion,target,enemy)
         renderReticle(layer,aiming,ex,ey,ring,enemy)
-        AimArrow.render(layer,aiming,potion.origin[1],potion.origin[2],ex,ey-(enemy and ring/2 or 0),enemy, tint, aim.phase)
+        local arrowY=Theme.presentationProfile=='official-assets-first' and ey or ey-(enemy and ring/2 or 0)
+        AimArrow.render(layer,aiming,potion.origin[1],potion.origin[2],ex,arrowY,enemy,tint,aim.phase,aim.lock)
         layer:SetAsLastSibling()
     end
     local function renderActivePotion(g)
@@ -445,7 +485,8 @@ function M.new(view, controls)
             local ex, ey, ring = aimEndpoint(g, target, enemy)
             renderReticle(layer, aiming, ex, ey, ring, enemy)
             local sx, sy, fy = x, y+h/2, ey-(enemy and ring/2 or 0)
-            AimArrow.render(layer, aiming, sx, sy, ex, fy, enemy, tint, aim.phase)
+            if Theme.presentationProfile=='official-assets-first' then fy=ey end
+            AimArrow.render(layer, aiming, sx, sy, ex, fy, enemy, tint, aim.phase,aim.lock)
             layer:SetAsLastSibling()
             g.drawn, g.drawnValid, g.drawnTarget, g.drawnAiming = true, valid, target, aiming
         end
@@ -459,7 +500,7 @@ function M.new(view, controls)
         renderDrag(held.drawnValid, held.drawnTarget, held.drawnAiming, true)
     end
     local function update(dt)
-        for i=1,10 do CardSkin.tick(child("card"..i),dt)end
+        for i=1,10 do local box=child('card'..i);CardSkin.tick(box,dt);CardGlow.tick(box,dt)end
         if not handBattle or dt<=0 then return end
         local held=view.gesture or view.carry
         advanceAim(held,dt)

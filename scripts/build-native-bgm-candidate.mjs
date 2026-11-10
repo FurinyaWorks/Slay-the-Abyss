@@ -1,3 +1,5 @@
+import {officialAssetsFromReceipt} from './official-assets-profile.mjs';
+import {uiProfileFromReceipt,uiProfileSource,uiProfileModule} from './ui-profile.mjs';
 import {verifyArtFeatureReceipt,artFeaturesSource,artFeatureModule} from './art-features.mjs';
 // Explicit audio audition candidate. Never imported or played automatically.
 import { readFileSync, mkdirSync, writeFileSync, copyFileSync, constants, existsSync } from 'node:fs';
@@ -20,6 +22,12 @@ const baseSha256 = hash(baseMap);
 const full = sourceReceiptFile ? JSON.parse(readFileSync(sourceReceiptFile, 'utf8')) : undefined;
 if(!full)throw Error('Candidate artwork policy requires a full source receipt; untracked legacy audition is not a delivery candidate');
 assertCandidateArtReceipt(full);
+officialAssetsFromReceipt(full);
+const nativePageLifecycle=uiProfileFromReceipt(full);
+if(full.uiProfile){
+ const source=readFileSync(join(dirname(resolve(sourceReceiptFile)),'payload',uiProfileModule+'.lua'),'utf8');
+ if(source!==uiProfileSource(nativePageLifecycle)||createHash('sha256').update(source).digest('hex')!==full.moduleDigests?.[uiProfileModule])throw Error('Full candidate UI profile configuration mismatch');
+}
 if (full && (full.candidate?.sha256 !== baseSha256 || typeof full.buildId !== 'string' || !full.buildId))
   throw new Error('Full candidate receipt does not match the audio base/build');
 if(full){
@@ -96,6 +104,8 @@ try {
   mapPath = finalMap;
   writeFileSync(join(workspace, 'candidate.json'), JSON.stringify({ mapPath, sha256: hash(mapPath),
     candidate: fileRecord(mapPath), ...(full ? { buildId: full.buildId, artFeatures:full.artFeatures, moduleDigests: full.moduleDigests,
+      ...(full.officialAssetsProfile ? {officialAssetsProfile:full.officialAssetsProfile} : {}),
+      ...(full.uiProfile ? {uiProfile:full.uiProfile} : {}),
       ...(full.officialPortraits ? {officialPortraits:full.officialPortraits} : {}),
     ...(full.readyCardArt ? {readyCardArt:full.readyCardArt} : {}),
     ...(full.officialBackground ? {officialBackground:full.officialBackground} : {}) } : {}),

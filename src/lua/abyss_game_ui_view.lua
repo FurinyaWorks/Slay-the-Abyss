@@ -205,6 +205,8 @@ function M.refreshDeckEntry(child,self)
                 if variant then
                     variant:GetChild("label").text = run and "卡组 " .. #run.deck or "卡组"
                     variant:GetChild('count').text=run and number(#run.deck) or ''
+                    local hud=variant:GetChild('officialBattleHud')
+                    if hud then hud:GetChild('count').text=run and number(#run.deck)or ''end
                 end
             end
         end
@@ -366,7 +368,55 @@ function M.exitEntryVisible(self)
 end
 
 function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVisible,exitPanel,exitDialogOwnsForeground,runMenu,canViewRoute,child,refreshExitDialog)
+    local hud=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleHud
+    local priorBattleHud
+    local hudScales={}
+    local hudVisibility={}
+    local routeLabels={}
+    local function routeCaption(back)
+        if not hud then return end
+        local label=back:GetChild('label')
+        if not label then return end
+        if routeLabels[label]==nil then routeLabels[label]=label.text or ''end
+        label.text=self.routeOpen and self.mode=='battle' and hud.routeBackText or routeLabels[label]
+    end
+    local function utilityFace(variant,fighting)
+        local overlay=variant:GetChild('officialBattleHud')
+        if not overlay then return end
+        local originals=hudVisibility[variant]
+        if not originals then
+            originals={};hudVisibility[variant]=originals
+            for _,part in ipairs(variant:GetChildren())do if part~=overlay then originals[part]=part.visible~=false end end
+        end
+        for part,visible in pairs(originals)do part:SetVisible(not fighting and visible)end
+        overlay:SetVisible(fighting)
+    end
+    local function battleUtilities()
+        if not hud then return end
+        local fighting=self.mode=='battle'
+        if priorBattleHud==fighting then return end
+        for _,entry in ipairs({{child('deckEntry'):GetChild('open'),hud.deck},{exitEntry:GetChild('open'),hud.menu}})do
+            local control,values=entry[1],entry[2]
+            if fighting then
+                control:SetAnchoredPosition(values[1],values[2])
+            else
+                local defaults=entry[1]==exitEntry:GetChild('open') and Theme.layout.exitMenu.entry or Theme.layout.deckView.entry
+                if defaults then control:SetAnchoredPosition(defaults[1],defaults[2])end
+            end
+            local hit=control:GetChild('hit')
+            for _,name in ipairs({'normal','hover','pressed','disabled'})do
+                local variant=hit:GetChild(name)
+                local original=hudScales[variant]
+                if not original then original={variant.localScaleX or 1,variant.localScaleY or 1};hudScales[variant]=original end
+                local scale=fighting and values[3] or 1
+                variant:SetLocalScale(original[1]*scale,original[2]*scale,1)
+                utilityFace(variant,fighting)
+            end
+        end
+        priorBattleHud=fighting
+    end
     return function()
+            battleUtilities()
             if characterPanel then
                 characterPanel:SetVisible(self.characterOpen==true)
                 if self.characterOpen then
@@ -409,6 +459,7 @@ function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVis
                 back:GetChild('hit').raycastTarget=showBack
             end
             back:SetVisible(showBack)
+            routeCaption(back)
             if self.routeOpen then
                 self.mapUI.map = self.map
                 self.mapUI:setVisible(true)

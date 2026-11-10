@@ -1,0 +1,12 @@
+✔ official candidate preserves real ten-card dual-enemy combat through cancellation, dragging and turns (7671.326299ms)
+✔ official candidate keeps C-mode, repeated pile modals, real victory and return-map controls live (12640.790453ms)
+✔ default generated cards preserve strict lookup, rarity tint and required children (4723.751735ms)
+✔ official generated cards preserve strict lookup, rarity tint and required children (4506.072111ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29720.945014

@@ -174,7 +174,8 @@ test('MCP mock: audio wrapper preserves full art receipt and rejects input chang
     run:(script,[base,directory])=>{
       runs++;mkdirSync(directory,{recursive:true});const mapPath=join(directory,'audio.gil');writeFileSync(mapPath,'MCP mock audio');
       writeFileSync(join(directory,'candidate.json'),JSON.stringify({mapPath,sha256:fileRecord(mapPath).sha256,candidate:fileRecord(mapPath),
-        baseSha256:full.candidate.sha256,baseAfter:full.candidate.sha256,buildId:full.buildId,artFeatures:full.artFeatures}));
+        baseSha256:full.candidate.sha256,baseAfter:full.candidate.sha256,buildId:full.buildId,artFeatures:full.artFeatures,
+    uiProfile:full.uiProfile,...(full.officialAssetsProfile?{officialAssetsProfile:full.officialAssetsProfile}:{})}));
       mutate?.();
     }});
   const audio=await packageAudio();assert.deepEqual(audio.nativeCardArt,full.nativeCardArt);
@@ -351,7 +352,8 @@ test('MCP mock: monster-only audio preserves source receipt and rejects changed 
   run:(script,[base,directory])=>{
    mkdirSync(directory,{recursive:true});const mapPath=join(directory,'audio.gil');writeFileSync(mapPath,'MCP mock audio');
    writeFileSync(join(directory,'candidate.json'),JSON.stringify({mapPath,sha256:fileRecord(mapPath).sha256,candidate:fileRecord(mapPath),
-    baseSha256:full.candidate.sha256,baseAfter:full.candidate.sha256,buildId:full.buildId,artFeatures:full.artFeatures}));
+    baseSha256:full.candidate.sha256,baseAfter:full.candidate.sha256,buildId:full.buildId,artFeatures:full.artFeatures,
+    uiProfile:full.uiProfile,...(full.officialAssetsProfile?{officialAssetsProfile:full.officialAssetsProfile}:{})}));
   }});
  const audio=await run();assert.deepEqual(audio.nativeMonsterArt,full.nativeMonsterArt);
  const path=join(f.root,full.nativeMonsterArt.inputs[0].path);writeFileSync(path,readFileSync(path,'utf8')+'\n-- changed');

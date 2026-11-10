@@ -52,6 +52,13 @@ local function bindV25Hover(box,hit,cursor,available)
     hit:AddCursorEventListener(cursor.CursorEnter,function()V25View.pointer(box,'enter',available())end)
 end
 
+local function battleRouteAvailable(self,enabled)
+    if self.mode~='battle' or self.exitOpen or self.deckUI.visible or self.potionUI.visible
+        or self.characterOpen or self.controlsOpen or self.easterEggOpen then return false end
+    if self.choiceUI and self.choiceUI.visible then return false end
+    return enabled()
+end
+
 function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owner)
     return function(box, kind, action, enabled, order, group, onFocus)
             local hit = box:GetChild("hit")
@@ -61,6 +68,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
             local characterAction = kind:match("^character_")~=nil
             local resourceAction = kind:match('^resource_')~=nil
             local mapReturn = kind=='mapReturn'
+            local mapContext = mapReturn or kind=='battleRoute'
             local cursor = platform.cursorEvents or {}
             local runMenuAction = kind:sub(1, 4) == 'run_'
             local function eggAvailable()
@@ -108,6 +116,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
             end
             local function available()
                 if self.disabled or self.settlementRequested or self.settlementBusy then return false end
+                if kind=='battleRoute' then return battleRouteAvailable(self,enabled)end
                 if resourceAction then return not self.potionUI.visible and canManagePotions(self.run) and (not enabled or enabled()) end
                 if self.easterEggOpen or kind=='egg_open' or kind=='egg_close' then return eggAvailable()end
                 return modalAvailable()
@@ -126,7 +135,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                         and token.potionGeneration==self.potionUI.generation)
                     and (not menuAction and not characterAction or token.menuGeneration == owner.menuGeneration) and available()
                     and currentReward(token)
-                    and (not mapReturn or currentMapReturn(token))
+                    and (not mapContext or currentMapReturn(token))
             end
             local function touch(event) return event and event.touchId end
             bindV25Hover(box,hit,cursor,available)
@@ -139,7 +148,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                     if available() then held = {generation=owner.exitGeneration,menuGeneration=owner.menuGeneration,run=self.run,touch=touch(event),
                         deckGeneration=self.deckUI.generation,potionGeneration=self.potionUI.generation,mode=self.mode,
                         pending=self.run and self.run.pendingCombatRewards,rewardGeneration=self.rewardReturnGeneration,
-                        mapReturn=mapReturn and mapReturnIdentity(self) or nil} end
+                        mapReturn=mapContext and mapReturnIdentity(self) or nil} end
                     V25View.pointer(box,'down',held~=nil)
                 end)
                 hit:AddCursorEventListener(cursor.CursorUp, function(event)
@@ -238,6 +247,12 @@ function M.installMenu(self,child,clickEvent,resourceHint,bindCommand,start,sett
 end
 
 function M.installGuide(self,exitPanel,clickEvent,bindCommand,dismissFromOutside,runMenu,canViewRoute,child,owner)
+    local bar=Theme.presentationProfile=='official-assets-first' and child('battlePanel'):GetChild('topBar')
+    local shortcut=bar and bar:GetChild('battleRoute')
+    if shortcut then bindCommand(shortcut,'battleRoute',function()
+        if not self:openMenu()then return false end
+        self.routeOpen=true;self:refresh();return true
+    end,canViewRoute)end
     local guide = exitPanel:GetChild('guide')
     if guide then
         bindCommand(exitPanel:GetChild('help'), 'help', function()

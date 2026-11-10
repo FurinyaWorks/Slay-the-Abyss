@@ -126,6 +126,10 @@
     "reference-ui-ofl-font-subset": {
       "status": "Noto CJK font subsets under SIL Open Font License 1.1, retaining embedded notices and renamed Prototype Card Sans / Prototype Card Type family names. Font license applies separately; not relicensed under the project noncommercial code license.",
       "evidence": "docs/design/reference-ui-lab/ASSET-PROVENANCE.md; public source 84da1d3b2ac889fe9a9fa9cb48779ba255be99ea; LICENSE-SCOPE.md; docs/design/reference-ui-lab/FONT-LICENSES.txt; https://github.com/notofonts/noto-cjk"
+    },
+    "official-assets-offline-diagnostic": {
+      "status": "Project UI geometry and text diagnostics rendered by Pillow with system Noto fonts. Unknown SDK textures are outlined and labelled by ID; no official texture images or font binaries redistributed. Referenced game identities remain their owners IP; no asset/IP sublicense or commercial clearance. Offline Host/layout evidence only, not official-client or browser screenshots, final artwork, import/ready, native font, device or performance acceptance.",
+      "evidence": "docs/evidence/official-assets-first-20261109/full-flow/README.md and artifact-index.json; scripts/official-assets-preview.lua, scripts/official-assets-preview.mjs and scripts/official-assets-preview-raster.py; full natural campaign and separately identified bounded prefixes. Initial 21-scene capture predates the Power-template diagnostic fix; later prefix captures use the fix. shop-delta is explicitly a layout-only rerender, not a fresh Host route."
     }
   },
   "files": {
@@ -5957,6 +5961,106 @@
     "docs/design/reference-ui-lab/traveler-reference.png": {
       "sha256": "5a8287ed5c1d1825b9068534df985cf14067596e37eef530f5d2a6ab1ba26854",
       "category": "game-ip-ai"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/shop-delta/shop-fixed.png": {
+      "sha256": "0a844e7f3d90f432bec1297d7f2d02384ff9f7e7cf48570aaba481cffebfe853",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/act-transition.png": {
+      "sha256": "f4a19999fb6a0729900118be0d5c9e265f5c3e8d74b20468ebbb6e25e490e9a4",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/battle-act1.png": {
+      "sha256": "f8205a503fcb4250d118236b9daa9e50b7bf54601a261fa3a7847d184d2ad038",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/battle-act2.png": {
+      "sha256": "c89ba0c50de1de8af14127c1b308cd52a368b434a491b050e6257775e175fb4b",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/boss_treasure-act1.png": {
+      "sha256": "ea7c42e6aa4d1e314e09d4897196ffb22a09e0b9e03c118354376315c4cbf208",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/boss_treasure-act2.png": {
+      "sha256": "6fc627517749943f00110ecda144ad0bda1bd2eec2922d5ce991bd1b946e1aa4",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/camp-act1.png": {
+      "sha256": "815649fe704c012b6e93beb7f8eb07871f3784ba847b67dca5bb72908d209823",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/camp-act2.png": {
+      "sha256": "3b3cf06ff59d54244314c2488d23f20f348cbc6a5867687b62a0ccc55ef61e24",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/character.png": {
+      "sha256": "876d3798b1d72dc26e61e55656840c96012bd34801ffbdc3879010489c94b0f3",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/event-act1.png": {
+      "sha256": "1e7a920713faf8ad6158a9e246c594ac8a1e42c728c34f51b34d122e9b968cbe",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/event-act2.png": {
+      "sha256": "c0ac1ec57f8ba5734bd563ddace6b3783cb7e150dfa72720cc1d4678e172b712",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/map-act1.png": {
+      "sha256": "752032d4a37ba5a0ed549ed53284a0482aaf955b3365020a4a368d40f8c70c52",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/map-act2.png": {
+      "sha256": "d2a2985efa1206814281192a69f82271c287f819d0cfa243fc058f36f097c3cf",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/menu.png": {
+      "sha256": "165f988633d4274a9407133304418027358b65babf89d1cfc5940887a2ad4236",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/neow-act1.png": {
+      "sha256": "a3ff223d7716ac09e3d4675100756fa1d38f1a63e0b73cfaa986559f48ef8a50",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/restart-neow.png": {
+      "sha256": "3e4bd7d06316b242996ec6fe9d284d2d75f0b1f542ed3a2cef110a843da67412",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/reward-act1.png": {
+      "sha256": "a03fdcc2cdb0bf5b6564839010d86db41fbdc6702e37e2e27edf63ca5047e461",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/reward-act2.png": {
+      "sha256": "c9be806bb148607153ffcc6800557f9a494820761a0c9e4fb117987d890de604",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/shop-act2.png": {
+      "sha256": "f0d0a204aed02d975e25d97e496e7f7eacea6a76ae0ccce9adeb240876d7e8bb",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/treasure-act1.png": {
+      "sha256": "73817e73232d3ff9375274fab3407e73428ca7d166d2cdbed61745a9a6b2f09c",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/treasure-act2.png": {
+      "sha256": "f728fae6ba7149b62d3e0d182ab84b5bdc95f40729d9c49ff433352ac302f389",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual/victory.png": {
+      "sha256": "eb9ad2cd5e78eb957b01d52c9e65dbd93e72dd7d203ec59d573f9166a390492e",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-selected-readable.png": {
+      "sha256": "571198f200c0983c3d5bcc24467ebefcafca0f29ceb9892b855f597a702a140e",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-selection-cancelled.png": {
+      "sha256": "a0af289f0a70fd55479020ea0dd83699777e1e84e3d7a83f9b39a6461e32c932",
+      "category": "official-assets-offline-diagnostic"
+    },
+    "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-settled.png": {
+      "sha256": "4427191b3d1a1b944de7ff37aa47d99fd05568c416faf9fec1304c1286b6f59f",
+      "category": "official-assets-offline-diagnostic"
     }
   }
 }

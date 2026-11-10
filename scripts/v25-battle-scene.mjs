@@ -7,7 +7,7 @@ export const v25SceneSource=Object.freeze({
  plateSheetSha256:'dc4fb4dc149a65e57831920cfdd40e7159a6a54c488facca18127e16c1a0cd7b',
  gradientSheetSha256:'666cea6d6e8c50d7127afb788422dbf69e6aa78512c0b36439d2acfa382dd674',
  triangle:'100003 is upward isosceles in the local official image_catalog photograph; right-half mask, pivot and seams still require current-candidate platform validation',
- differences:'12-segment curves, native fade106095/glow106057/vignette106059, a flat curved floor cap through y451, and per-shape opacity approximate the SVG; exact atlas alpha, shared-edge blending, visual parity and performance are unverified',
+ differences:'12-segment curves, native fade106095/glow106057/vignette106059, a flat curved floor cap through y451, opaque sky-preblended polygons with 0.45px edge bleed approximate the SVG; official atlas alpha, visual parity and device performance are unverified',
 });
 const children=node=>node.controls??node.children??[];
 const polygon=(name,points,colour,opacity=1)=>({name,type:'polygon',points,colour,opacity});
@@ -91,6 +91,13 @@ function tone(hex){
  return '#'+rgb.map(c=>Math.round(luma+(c-luma)*.65).toString(16).padStart(2,'0')).join('');
 }
 const nativePoint=([x,y])=>[x-640,338-y];
+export const nativeSceneEdgeBleed=.45;
+// Shared triangle edges must be opaque. Per-triangle translucent alpha exposes
+// antialias seams in Simulator. Bake the intended tint against the sky once,
+// then give adjacent native triangles a subpixel overlap (no extra controls).
+function polygonTone(hex,alpha){
+ const sky='#516371';return tone('#'+[1,3,5].map(i=>Math.round(parseInt(hex.slice(i,i+2),16)*alpha+parseInt(sky.slice(i,i+2),16)*(1-alpha)).toString(16).padStart(2,'0')).join(''));
+}
 const group=(name,items)=>({name,kind:'container',position:[0,0],size:[1280,676],children:items});
 function nativeShape(shape,theme){
  const picture=(name,box,image,extra={})=>({name,kind:'image',position:nativePoint([box[0]+box[2]/2,box[1]+box[3]/2]),size:box.slice(2),image,colour:tone(shape.colour),opacity:shape.opacity,...extra});
@@ -118,8 +125,10 @@ function nativeShape(shape,theme){
   for(const end of [b,c]){
    const ux=end[0]-foot[0],uy=end[1]-foot[1],width=Math.hypot(ux,uy);
    if(width<1e-7||height<1e-7)continue;
-   images.push({name:shape.name+'Tri'+images.length,kind:'image',position:foot,size:[width*2,height],image:100003,
-    colour:tone(shape.colour),opacity:shape.opacity,pivot:[.5,0],rotation:Math.atan2(uy,ux)*180/Math.PI,
+   const sign=Math.sign(ux*(a[1]-foot[1])-uy*(a[0]-foot[0])),pad=nativeSceneEdgeBleed;
+   const origin=[foot[0]-ux/width*pad+uy/width*sign*pad,foot[1]-uy/width*pad-ux/width*sign*pad];
+   images.push({name:shape.name+'Tri'+images.length,kind:'image',position:origin,size:[(width+pad*3)*2,height+pad*3],image:100003,
+    colour:polygonTone(shape.colour,shape.opacity),opacity:1,pivot:[.5,0],rotation:Math.atan2(uy,ux)*180/Math.PI,
     scale:[1,Math.sign(ux*(a[1]-foot[1])-uy*(a[0]-foot[0]))],fill:{shape:'horizontal',from:'right',amount:.5}});
   }
  }

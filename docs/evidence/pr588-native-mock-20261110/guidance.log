@@ -1,0 +1,23 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 check:guidance
+> node scripts/check-agent-guidance.mjs
+
+{
+  "errors": [
+    "AGENTS.md: invalid local link .codebuddy/skills/miliastra-wonderland/SKILL.md",
+    ".cursor/rules/miliastra.mdc: missing guidance"
+  ],
+  "metrics": [
+    {
+      "file": "AGENTS.md",
+      "lines": 41,
+      "characters": 2985
+    },
+    {
+      "file": "CLAUDE.md",
+      "lines": 5,
+      "characters": 150
+    }
+  ]
+}

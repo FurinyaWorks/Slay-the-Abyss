@@ -1,3 +1,5 @@
+import {validateOfficialAssets,officialAssetsArgs,officialAssetFlags} from './official-assets-profile.mjs';
+import {applyOfficialAssets,officialAssetsTheme} from './official-assets-layout.mjs';
 import {resolveArtFeatures,artFeatureArgs,writeArtFeatures,artFeatureModule} from './art-features.mjs';
 import {portraitRuntimeInputs,portraitSources,attachOfficialPortraits,attachLowpolyScenes,writePortraitModule} from './official-portraits.mjs';
 import {attachReadyCardHosts,readyArtTemplates,writeReadyCardAssets,prepareReadyCardAssets,readyArtGroupTemplate,readyArtImageTemplate,writeReadyArtBinding,readyArtSourceInputs} from './art/ready-card-runtime.mjs';
@@ -13,7 +15,7 @@ import { gameLayout } from './game-ui-layout.mjs';
 import { withViewport } from './viewport-layout.mjs';
 import { buildUiTheme } from './build-ui-theme.mjs';
 import { buildMapUI } from './map-ui-layout.mjs';
-import { deckCardTemplate } from './deck-ui-layout.mjs';
+import { deckCardTemplate, battlePileCardTemplate } from './deck-ui-layout.mjs';
 import { contentFiles } from './validate-data.mjs';
 import { loadReleaseNotes, releaseInputPaths, releaseBuildArgs } from './release-notes.mjs';
 import { nativeCardArtArgs, prepareNativeCardArt, attachNativeCardArt, bindNativeArtPresentation, nativeArtReceipt } from './card-art-samples.mjs';
@@ -87,12 +89,14 @@ function rejectInputOutputAliases(outputDirectory, extraInputs = []) {
     // Imported battle/native layout modules read this theme relative to their source.
     fileURLToPath(new URL('../data/presentation/ui_theme.json', import.meta.url)),
     fileURLToPath(new URL('./ui-profile.mjs', import.meta.url)),
+    fileURLToPath(new URL('./official-assets-profile.mjs', import.meta.url)),
+    fileURLToPath(new URL('./official-assets-layout.mjs', import.meta.url)),
     fileURLToPath(new URL('./art/lightweight-2d-assets.mjs', import.meta.url)), ...releaseInputPaths()];
   const identities = inputs.map(input => ({ input, realPath: realpathSync.native(input),
     stat: statSync(input, { bigint: true }) }));
   const outputs = ['abyss_theme.lua', 'map-ui.json', 'abyss_map_layout.lua', 'abyss_map_controls.lua',
     'abyss_narrative.lua', 'abyss_presentation.lua', 'battle-ui.json', 'game-ui.json', 'abyss_ui_layout.lua',
-    'game-ui-templates.json', 'abyss_ui_templates.lua', 'native-card-art-receipt.json', 'lightweight-2d.json', 'v25-theme.json', `${uiProfileModule}.lua`, `${backgroundModule}.lua`,
+    'game-ui-templates.json', 'abyss_ui_templates.lua', 'native-card-art-receipt.json', 'lightweight-2d.json', 'v25-theme.json', 'official-assets-theme.json', `${uiProfileModule}.lua`, `${backgroundModule}.lua`,
     'abyss_ready_card_binding.lua','abyss_ready_card_assets.lua','abyss_traveler_portrait_assets.lua',`${artFeatureModule}.lua`,'abyss_monster_art_data.lua','abyss_monster_actor_binding.lua','abyss_component_binding.lua','art-performance.json','art-render-v2.json'];
   outputs.push(`${v25CardModule}.lua`);
   for (const file of outputs) {
@@ -116,6 +120,8 @@ function rejectInputOutputAliases(outputDirectory, extraInputs = []) {
 
 export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYSS_PYTHON || 'python', options = {}) {
   // Preflight the entire batch before any generated file can be changed.
+  const officialAssets=validateOfficialAssets(options);
+  if(officialAssets)options={...options,artFeatures:{...officialAssetFlags}};
   const v25BattleChrome=validateV25Chrome(options);
   if(v25BattleChrome&&options.performanceArt)throw Error('V25 reference mode cannot use compact art sampling');
   const v25Cards=options.v25CardAssets?prepareV25CardTemplates(options.v25CardAssets,{root:process.cwd()}):null;
@@ -138,7 +144,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   const releaseNotes = loadReleaseNotes({ releaseCandidate: options.releaseCandidate, workKey: options.workKey,
     sourceIdentity: options.sourceIdentity });
   const sourceTheme = JSON.parse(readFileSync('data/presentation/ui_theme.json', 'utf8').replace(/^\uFEFF/, ''));
-  const theme=v25BattleChrome?v25Theme(sourceTheme):sourceTheme;
+  const theme=officialAssets?officialAssetsTheme(sourceTheme):v25BattleChrome?v25Theme(sourceTheme):sourceTheme;
   const battle = battleLayout(), layout = withViewport(gameLayout(undefined, options), theme);
   const templates = [deckCardTemplate()];
   if(v25Cards)templates.push(...v25Cards.templates);
@@ -173,6 +179,10 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   if(options.lightweight2d===true&&!options.legacyCardFrames){
     compactBoundedCardFaces(battle);compactBoundedCardFaces(layout,templates);
   }
+  if(officialAssets){
+    applyOfficialAssets([battle,layout,...templates],theme);
+    templates.push(battlePileCardTemplate(layout,templates[0]));
+  }
   for (const tree of [battle, layout, ...templates]) assertNativeUiCapacity(tree);
   const rendered = spawnSync(python, ['tools/render_traveler_cards.py', 'data/cards.json', 'data/presentation/traveler.zh-CN.json'],
     { encoding: 'utf8', timeout: 15000, maxBuffer: 1024 * 1024, env: { ...process.env, PYTHONUTF8: '1' } });
@@ -191,12 +201,15 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   else rmSync(join(outputDirectory,'art-performance.json'),{force:true});
   writeFileSync(join(outputDirectory,'art-render-v2.json'),JSON.stringify({profile:'native-v2',hiddenBuild:true,cache:true,revealGroupsPerFrame:4}));
   writeArtFeatures(outputDirectory,flags);writeMonsterActorBinding(outputDirectory);
-  writeBackgroundModule(outputDirectory,{enabled:flags.menuBackground});writePortraitModule(outputDirectory,{...flags,v25BattleChrome});
+  writeBackgroundModule(outputDirectory,{enabled:flags.menuBackground});writePortraitModule(outputDirectory,{...flags,v25BattleChrome,officialAssets});
   writeReadyArtBinding(outputDirectory);writeReadyCardAssets(outputDirectory,{prepared:readyAssets});
   const variantTheme=join(outputDirectory,'v25-theme.json');
   if(v25BattleChrome)writeFileSync(variantTheme,JSON.stringify(theme));
   else rmSync(variantTheme,{force:true});
-  buildUiTheme(v25BattleChrome?variantTheme:undefined, undefined, join(outputDirectory, 'abyss_theme.lua'));
+  const officialTheme=join(outputDirectory,'official-assets-theme.json');
+  if(officialAssets)writeFileSync(officialTheme,JSON.stringify(theme));
+  else rmSync(officialTheme,{force:true});
+  buildUiTheme(officialAssets?officialTheme:v25BattleChrome?variantTheme:undefined, undefined, join(outputDirectory, 'abyss_theme.lua'));
   buildMapUI(outputDirectory);
   writeFileSync(join(outputDirectory,'abyss_monster_art_data.lua'),`-- Generated from the bounded native monster registry.\nreturn ${toLua(monsterArt??{})}\n`);
   const narrative = JSON.parse(readFileSync('data/presentation/narrative.zh-CN.json', 'utf8'));
@@ -213,13 +226,14 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try {
-    const chrome=v25ChromeArgs(process.argv.slice(2));
+    const official=officialAssetsArgs(process.argv.slice(2));
+    const chrome=v25ChromeArgs(official.args);
     const profile=uiProfileArgs(chrome.args),args = profile.args, experimentalCharacters = args.includes('--experimental-characters'),lightweight2d=args.includes('--lightweight-2d'),legacyCardFrames=args.includes('--legacy-card-frames');
     const features=artFeatureArgs(args.filter(arg => !['--experimental-characters','--lightweight-2d','--legacy-card-frames'].includes(arg)));
     const native = nativeCardArtArgs(features.args);
     const { paths, options } = releaseBuildArgs(native.args);
     if (paths.length > 1) throw new Error('Expected at most one output directory');
-    buildUI(paths[0], undefined, { v25BattleChrome:chrome.v25BattleChrome,v25CardAssets:chrome.v25CardAssets,v25UiMasks:chrome.v25UiMasks, experimentalCharacters, lightweight2d, legacyCardFrames, nativePageLifecycle:profile.nativePageLifecycle, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
+    buildUI(paths[0], undefined, {officialAssets:official.officialAssets, v25BattleChrome:chrome.v25BattleChrome,v25CardAssets:chrome.v25CardAssets,v25UiMasks:chrome.v25UiMasks, experimentalCharacters, lightweight2d, legacyCardFrames, nativePageLifecycle:profile.nativePageLifecycle, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
     console.log('Native battle UI and Traveler display module built.');
   }
   catch (error) { console.error(error.message); process.exitCode = 1; }

@@ -1,0 +1,589 @@
+[
+  {
+    "scene": "menu",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab"
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 18,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "character",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab"
+    },
+    "textOverflowCandidates": [
+      {
+        "path": "/root/characterPanel/hint",
+        "text": "查看初始信息，确认后开始冒险。",
+        "measuredHeight": 28.6,
+        "boxHeight": 26
+      },
+      {
+        "path": "/root/characterPanel/details/relicTag",
+        "text": "初始遗物",
+        "measuredHeight": 26.0,
+        "boxHeight": 24
+      },
+      {
+        "path": "/root/characterPanel/details/deckSummary",
+        "text": "普通攻击×5  破防斩×1  防御×4",
+        "measuredHeight": 31.200000000000003,
+        "boxHeight": 28
+      }
+    ],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 21,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "neow-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 0,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 41,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "map-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 0,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 103,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "battle-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 1,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [
+      {
+        "path": "/root/battlePanel/card1/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card2/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card3/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card4/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card5/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      }
+    ],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 260,
+    "overlappingSiblingHits": [
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card1/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card2/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card2/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card3/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card3/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card4/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      }
+    ]
+  },
+  {
+    "scene": "reward-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 1,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 36,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "event-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 2,
+      "act": 1
+    },
+    "textOverflowCandidates": [
+      {
+        "path": "/root/nodePanel/eventView/option1/description",
+        "text": "交出所示药水，获得随机遗物。\n自己敏捷2",
+        "measuredHeight": 52.0,
+        "boxHeight": 40
+      },
+      {
+        "path": "/root/nodePanel/eventView/option3/description",
+        "text": "交出所示卡牌，获得随机遗物。\n「稳住阵脚」",
+        "measuredHeight": 52.0,
+        "boxHeight": 40
+      }
+    ],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 37,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "treasure-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 9,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 29,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "camp-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 15,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 41,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "boss_treasure-act1",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 17,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 38,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "act-transition",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 17,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 39,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "map-act2",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 17,
+      "act": 2
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 124,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "battle-act2",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 18,
+      "act": 2
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [
+      {
+        "path": "/root/battlePanel/card1/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card2/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card3/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card4/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      },
+      {
+        "path": "/root/battlePanel/card5/hit",
+        "box": [
+          -18.28,
+          526.24,
+          162.28,
+          840.0
+        ]
+      }
+    ],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 235,
+    "overlappingSiblingHits": [
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card1/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card2/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/drawIcon/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 6888.0
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card2/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card1/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card3/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card2/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card3/hit",
+        "b": "/root/battlePanel/card4/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card3/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      },
+      {
+        "a": "/root/battlePanel/card4/hit",
+        "b": "/root/battlePanel/card5/hit",
+        "intersectionArea": 56652.5056
+      }
+    ]
+  },
+  {
+    "scene": "reward-act2",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 18,
+      "act": 2
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 48,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "event-act2",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 19,
+      "act": 2
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 45,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "camp-act2",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 23,
+      "act": 2
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 44,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "treasure-act2",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 26,
+      "act": 2
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 41,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "shop-act2",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 28,
+      "act": 2
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 249,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "boss_treasure-act2",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 34,
+      "act": 2
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 44,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "victory",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 34,
+      "act": 2
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 28,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "restart-neow",
+    "provenance": {
+      "kind": "natural-continuous-host-run",
+      "seed": 2,
+      "sourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+      "floor": 0,
+      "act": 1
+    },
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 39,
+    "overlappingSiblingHits": []
+  }
+]

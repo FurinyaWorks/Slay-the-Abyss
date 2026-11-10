@@ -1,0 +1,50 @@
+{
+  "before": {
+    "name": "description",
+    "kind": "text",
+    "visible": true,
+    "position": [
+      0,
+      -34
+    ],
+    "size": [
+      104,
+      64
+    ],
+    "interactable": true,
+    "raycastTarget": true,
+    "states": {},
+    "text": {
+      "content": "每家商店限一次\n之后的商店 +25",
+      "fontSize": 20,
+      "minFontSize": 20,
+      "colour": "#A9A595",
+      "align": "centre",
+      "valign": "middle"
+    },
+    "children": {}
+  },
+  "afterSpec": {
+    "name": "description",
+    "kind": "text",
+    "position": [
+      0,
+      -34
+    ],
+    "size": [
+      104,
+      64
+    ],
+    "text": {
+      "content": "",
+      "fontSize": 20,
+      "colour": "#A9A595",
+      "align": "centre",
+      "valign": "middle",
+      "autoSize": true,
+      "minFontSize": 14
+    }
+  },
+  "sourceSha256": "e8325b858f3bebeb245b6ec0e0d59a8ab36c84a16aa0b8ea1065e78a3180bf91",
+  "oldScenesSha256": "ae2bf5f621a4d3bf43712aabe28bddaaabf10afb2567e7414e697fda99029faa"
+}

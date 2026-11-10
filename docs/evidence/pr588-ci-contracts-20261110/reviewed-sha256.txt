@@ -1,0 +1,5 @@
+fb4bde450abec3d227fbbe7f00d9061f32581640f1ccbe7d858586f4ca01c648  tests/official-assets-legibility.test.mjs
+9405a089b90013797ac1640111de2b0162111b41f9ad9fd2ed21b332b231dbc3  tests/official-assets-runtime.test.mjs
+65485e013ff47f5a38b66943fff1c2bb846704d6054e82a756cfd46f9a9b4bdd  tests/seven-refactor-source-epoch.test.mjs
+3540c4d6b542d7c65b74828d59c183dd2bf4444fcac7ab71a63326de42fc486f  tests/helpers/official-battle-source-inverse.mjs
+5e74438e077be47b5b176287b6ceeb71e69447fa32ceedf2b0e595c4499d3c80  tests/helpers/official-battle-source-epoch.json.gz

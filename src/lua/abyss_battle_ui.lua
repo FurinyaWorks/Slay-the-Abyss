@@ -333,7 +333,13 @@ function M.new(root, data, presentation, clickEvent, platform, options)
                 and self.run and self.run.phase=='combat' and self.run.combat.phase=='player'
         end
         local function openPile()
-            if available()then return host.options.onPile(kind)end
+            if available()then
+                if Theme.presentationProfile=='official-assets-first' and #self.run.combat[kind]==0 then
+                    local names={draw='抽牌堆',discard='弃牌堆',exhaust='消耗堆'}
+                    services.notice(names[kind]..'为空。');return true
+                end
+                return host.options.onPile(kind)
+            end
             return false
         end
         hit:AddCursorEventListener(host.clickEvent,function()

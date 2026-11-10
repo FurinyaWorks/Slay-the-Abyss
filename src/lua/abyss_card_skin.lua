@@ -111,20 +111,24 @@ local function frame(box,definition,look,tint)
     local skin=box:GetChild('skin');tint(skin:GetChild('gloss'),rarity[4])
     for i=1,config.bandSteps do tint(skin:GetChild('band'..i),mix(rarity[2],rarity[3],(i-1)/(config.bandSteps-1)))end
 end
-local function window(box,definition,accent,tint)
+local function window(box,definition,accent,tint,scope)
     local shape=definition.type
+    local rarity=config.rarities[definition.rarity] or config.rarities.basic
+    local edge=config.rarityWindow and rarity[4] or accent
     if not windowNames[shape] then shape='attack' end
     box:GetChild('artPlate'):SetVisible(false);box:GetChild('artWell'):SetVisible(false)
     for kind,names in pairs(windowNames)do
         local group=box:GetChild('skin'):GetChild(kind);group:SetVisible(kind==shape)
         if kind==shape then
-            paint(group:GetChild('edge'),names,accent,tint)
-            local well=config.artWells and config.artWells[shape] or mix(Theme.color.cardWell,accent,.05)
+            paint(group:GetChild('edge'),names,edge,tint)
+            local wells=scope=='battle' and config.battleArtWells or config.artWells
+            local well=wells and wells[shape] or mix(Theme.color.cardWell,accent,.05)
             paint(group:GetChild('well'),names,well,tint)
         end
     end
-    paint(box:GetChild('tagEdge'),roundNames,accent,tint)
-    tint(box:GetChild('typeEdge'),accent)
+    paint(box:GetChild('tagEdge'),roundNames,edge,tint)
+    if config.typePlate then paint(box:GetChild('tagBody'),roundNames,config.typePlate,tint)end
+    tint(box:GetChild('typeEdge'),edge)
 end
 local function emblem(box,role,accent,tint)
     for key in pairs(config.roles)do
@@ -145,24 +149,33 @@ local function costState(look)
     if type(current)~='number' or type(base)~='number' then return false,0,0 end
     return current>=0 and base>=0 and current~=base,current,base
 end
-local function costVisibility(box,hasCost,nativeSurface)
+local function costVisibility(box,hasCost,nativeSurface,scope)
+    if scope=='battle' and Theme.presentationProfile=='official-assets-first' then
+        local orb=assert(box:GetChild('nativeCostOrb'),'official battle cost orb is required')
+        orb:SetVisible(hasCost and not nativeSurface)
+    end
     for _,name in ipairs({'costCore','costDisc','cost'})do
         box:GetChild(name):SetVisible(hasCost and (name=='cost' or not nativeSurface))
     end
 end
 local function costNumberTone(tone,changed,look)
     if changed or (look.dim==true and look.blockReason=='insufficient_energy')then return tone end
+    if look.surfaceScope=='battle' then return config.battleCostText or config.costText or tone end
     return config.costText or tone
+end
+local function costRingTone(tone,look)
+    if look.surfaceScope~='battle' or not config.battleCostRingOpacity then return tone end
+    return {r=tone.r,g=tone.g,b=tone.b,a=math.floor((tone.a or 255)*config.battleCostRingOpacity+.5)}
 end
 local function costs(box,definition,look,accent,platform,tint,nativeSurface)
     local changed,current,base=costState(look)
     local tone=accent
     if changed or look.dim then tone=costTone(current,base,look.dim==true and look.blockReason=='insufficient_energy',accent)end
-    tint(box:GetChild('costDisc'),tone);tint(box:GetChild('costHalo'),tone)
+    tint(box:GetChild('costDisc'),costRingTone(tone,look));tint(box:GetChild('costHalo'),tone)
     local numberTone=costNumberTone(tone,changed,look)
     if platform.color then box:GetChild('cost').fontColor=platform.color(numberTone.r,numberTone.g,numberTone.b,255)end
     local hasCost=definition.cost~=-2
-    costVisibility(box,hasCost,nativeSurface)
+    costVisibility(box,hasCost,nativeSurface,look.surfaceScope)
     activeHalos[box]=changed and hasCost
     box:GetChild('costHalo'):SetVisible(changed and hasCost)
     local direction=box:GetChild('costDirection');direction:SetVisible(changed and hasCost)
@@ -215,9 +228,9 @@ function M.apply(box,definition,platform,look)
     local role=identity(definition)
     local accent=(config.roles[role] or config.roles.traveler).accent
     local tint=painter(platform)
-    local key=table.concat({role,definition.rarity or 'basic',definition.type or 'status',tostring(look.dim),tostring(look.selected),tostring(premium~=nil)},':')
+    local key=table.concat({role,definition.rarity or 'basic',definition.type or 'status',tostring(look.dim),tostring(look.selected),tostring(premium~=nil),tostring(look.surfaceScope)},':')
     if decorations[box]~=key then
-        frame(box,definition,look,tint);window(box,definition,accent,tint)
+        frame(box,definition,look,tint);window(box,definition,accent,tint,look.surfaceScope)
         emblem(box,role,accent,tint);decorations[box]=key
     end
     local rarities=config.rarities

@@ -111,6 +111,11 @@ local function control(spec, parent)
     self.AddCursorEventListener = Control.AddCursorEventListener
     if spec.kind == "grid" then
         self.items, self.indexBase = {}, 0
+        -- ClientUIGridScrollerControl geometry getters return the imported
+        -- native configuration; fixed layout constraints remain engine-owned.
+        function self:GetItemSize()return table.unpack(spec.grid.itemSize)end
+        function self:GetItemSpacing()return table.unpack(spec.grid.spacing)end
+        function self:GetPadding()return table.unpack(spec.grid.padding)end
         function self:recycle(slot, index)
             -- Optional destruction models native viewport churn; the default
             -- retains real reuse for existing identity-specific scenarios.

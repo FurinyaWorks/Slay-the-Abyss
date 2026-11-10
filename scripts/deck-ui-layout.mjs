@@ -18,6 +18,28 @@ export function deckCardTemplate(theme = nativeTheme) {
   ] };
 }
 
+// Clone the final imported hand face after every V25/official pass. Piles own
+// only their read-only receiver; artwork, geometry and typography stay shared.
+export function battlePileCardTemplate(layout, template) {
+  const find = (node, name) => node.name === name ? node
+    : (node.controls ?? node.children ?? []).map(child => find(child, name)).find(Boolean);
+  const hand = find(layout, 'card1'), grid = find(layout, 'pileGrid');
+  if (!hand || !grid) throw Error('Official pile template requires the final battle hand and pile grid');
+  const pile = structuredClone(template), face = structuredClone(hand);
+  pile.name = 'AbyssBattlePileCard'; pile.size = [...grid.grid.itemSize];
+  Object.assign(face, { name: 'face', position: [0, 0], scale: [1, 1], rotation: 0, visible: true });
+  face.children = face.children.filter(control => control.name !== 'hit');
+  for (const name of ['glow', 'nativePlayableRim', 'costHalo']) {
+    const control = face.children.find(child => child.name === name);
+    if (control) control.visible = false;
+  }
+  pile.children[pile.children.findIndex(child => child.name === 'face')] = face;
+  Object.assign(pile.children.find(child => child.name === 'hit'), { position: [0, 0], size: [...hand.size] });
+  pile.children.find(child => child.name === 'uid').visible = false;
+  grid.itemTemplate = pile.name;
+  return pile;
+}
+
 export function deckControls(theme = nativeTheme) {
   const { plate, text } = nativeControls(theme);
   const { layout: l, color: c, font: f, space: s } = theme;
@@ -114,10 +136,18 @@ export function deckControls(theme = nativeTheme) {
     { name: 'deckPanel', kind: 'container', size: [...theme.canvas.base], visible: false, children: [
       { ...plate('veil', [0, 0, ...theme.canvas.base], c.backdropVeil.slice(0, 7)),
         opacity: c.backdropVeil.length === 9 ? parseInt(c.backdropVeil.slice(7), 16) / 255 : 1 },
+      // Pile screens have a fixed five-column native scroller. The SDK exposes
+      // its column constraint read-only, so keep the six-column browser intact.
+      { ...plate('pileVeil', [0, 0, ...theme.canvas.base], '#000000'), opacity: 0.9, visible: false },
       { name: 'blocker', kind: 'cursorArea', size: [...theme.canvas.base], focusable: false },
       { name: 'grid', kind: 'grid', position: l.deckView.viewport.slice(0, 2), size: l.deckView.viewport.slice(2),
         itemTemplate: deckCardTemplate(theme).name, grid: { columns: l.deckView.columns, horizontal: false,
           itemSize: itemSize(theme), spacing: [...l.deckView.spacing], padding: [...l.deckView.padding], scrollbar: true } },
+      { name: 'pileGrid', kind: 'grid', visible: false, position: l.deckView.viewport.slice(0, 2), size: l.deckView.viewport.slice(2),
+        itemTemplate: deckCardTemplate(theme).name, grid: { columns: 5, horizontal: false,
+          itemSize: [Math.max(itemSize(theme)[0], theme.v25Battle.layout.card.size[0]), itemSize(theme)[1]],
+          spacing: [...l.deckView.spacing], padding: [l.deckView.padding[0], l.deckView.padding[1],
+            l.deckView.padding[2], l.deckView.padding[2]], scrollbar: true } },
       plate('header', [0, l.deckView.title[1], l.deckView.viewport[2],
         Math.max(l.deckView.title[3], l.deckView.close[3]) + s.s], c.panel),
       text('title', l.deckView.title, '', f.heading, c.goldBright),

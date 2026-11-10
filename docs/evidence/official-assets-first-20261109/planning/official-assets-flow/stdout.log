@@ -1,0 +1,14 @@
+✔ official flow: untouched starter run selects character, wins first map encounter and returns with a real reward (13697.783168ms)
+✔ official flow: independently routed shop previews, cancels, purchases and exits without duplicate spending (4007.847427ms)
+✔ official flow: independently routed event uses its actual leave option and restores map ownership (4995.579477ms)
+✔ official flow: independently routed camp rejects full-HP rest then upgrades a real card (5805.795556ms)
+✔ official flow: independently routed treasure opens real offers and consumes each claim once (4791.049249ms)
+✔ official flow: actual boss entry refuses premature chapter/settlement then reaches defeat through enemy turns (10170.349304ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43761.55763

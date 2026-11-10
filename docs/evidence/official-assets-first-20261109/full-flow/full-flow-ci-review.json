@@ -1,0 +1,188 @@
+{
+  "reviewer": "independent code review",
+  "reviewedAt": "2026-11-09T11:13:21.957574+00:00",
+  "conclusion": "NO_OPEN_CODE_FINDINGS_IN_REVIEWED_CI_INCREMENT; not exact HEAD merge admission",
+  "inputHashes": {
+    ".gitattributes": "c16c0172cf9256ac79b5ce39582a387e33338ce8b41f1a2c0c164aa2419ca8d8",
+    "docs/evidence/official-assets-first-20261109/planning-flow/README.md": "14a2ac5543a81c12722b27cc060f18bbbffa400e78348436f6455195b0344a23",
+    "docs/evidence/official-assets-first-20261109/planning-flow/ci-calibration-initial.log": "7f389342b8d028b1b30f7f8b71d645bca9a4c6e25a362d1b2db6ef2f6e04dcac",
+    "docs/evidence/official-assets-first-20261109/planning-flow/ci-contracts.log": "5cd814481d299786345aa475670e342a153772728ced2f4037779b3d74fefe8e",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-flow/measurement.json": "8b91346d21b3f0293e55615a1fd09b3dcf09d67c03335b11ec967191200f5406",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-flow/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-flow/stdout.log": "e4c3adb78ff81875aa48dc8f93aa2a7912f6f49e420202df91215e52f1d28fc4",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-runtime/measurement.json": "02299599e4a6e5ee7c0a172ee0381ca48e8107318e127fa999b57013fc3da9e9",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-runtime/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-runtime/stdout.log": "365a61cfba2d2e3b774a7685fb07e68e35afe278efafe7f904fd2e5ee2544553",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-visual/measurement.json": "03d5ac05315c21c0a97ed594dc44f24d91be103230295e7e005e86836f7a045f",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-visual/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-visual/stdout.log": "757a95cbbfcad4cea56875aa45cac05b4e4feb11430c2bc918fa208f52707c44",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets/measurement.json": "93b4451a2a870dfc1c73dc5eca8dcfd8bde7a4bbf90bd55c7e7148f4e60010ff",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/evidence/official-assets-first-20261109/planning-flow/official-assets/stdout.log": "1b26bc287f556ab5d13ef7680e05767d91b4c9250d66129c07e053c281f64c4a",
+    "docs/evidence/official-assets-first-20261109/planning-flow/summary.json": "ee1c8bdb173088ff129d1345d1b6eba3e977616180324acc1333f57da0ce8d86",
+    "docs/evidence/official-assets-first-20261109/planning/README.md": "5b17f8953c7778e504894994f3aefbd0501d78c045aff5b8ea6f91ef36ffb5a4",
+    "docs/evidence/official-assets-first-20261109/planning/ci-contracts.log": "e24637948a0c2354606144a4b50da0a95ea22acd003fbd182331454c29c625f0",
+    "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/measurement.json": "663999d352acc34d3320978bb27d49839fdc7b2e326fd5e17c7461165739fedf",
+    "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/stdout.log": "b2df5ffff29058e0cf4ccf4bb4ce2d921111c19060b7ed7bec491f517e25ce3e",
+    "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/measurement.json": "88af88309bed4858cc18736fdbfae0cbe94f0765bce0b66380865e4562ad0178",
+    "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/stdout.log": "5fd5f4ad18e9904ceb3466e85af062938683e6c6dcd044267a2d3df130f39ff3",
+    "docs/evidence/official-assets-first-20261109/planning/official-assets/measurement.json": "403cd8d49c734f3e7a2e64f83ba90d40ed0007c9d38c05f6f10e4dac44853718",
+    "docs/evidence/official-assets-first-20261109/planning/official-assets/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/evidence/official-assets-first-20261109/planning/official-assets/stdout.log": "5d0a666cc55b6b8cd3d173e7488ea978b16e66651ac2eadd812c7f6df67e0102",
+    "docs/evidence/official-assets-first-20261109/planning/summary.json": "580cba1a97a40a82eab0ca7911d578a06a276879f0a9bf294824b7b5fee40d3f",
+    "scripts/ci-test-timings.json": "18174c289e1f6f49b62e7c060bb98b6d41420dcfa77df8b668aa730a385ccc80",
+    "tests/ci-complete-calibration.test.mjs": "a6cb66b563e39599af364dfc089ee4242124e2c7ab862aec18024c202f4840d5",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "fcfd93b82e97cb81158ce01daa54b48cfa2f9c8dee7a06fceb572708c0f3db64",
+    "tests/helpers/component-ui-ci-source-inverse.mjs": "0da077a6912676708dc11770d72f013678cdc8ce95b4bb4072f25ebf1c8ef46f",
+    "tests/helpers/official-assets-ci-source-epoch.json.gz": "bc5079ac224d1090c0f7761ca5808003160a5b2d1a0eb79e32c52bcd6f92da1b",
+    "tests/helpers/official-assets-ci-source-inverse.mjs": "c112c383b26820b61e25432ccd4b385f9fd55cbb7ee9149046e4bfa8dbec2e13",
+    "tests/helpers/official-assets-flow-ci-source-epoch.json.gz": "2efc7dc0e787d86f49c27863cd936be82fbd90f1902331345528936335b516c8",
+    "tests/helpers/official-assets-flow-ci-source-inverse.mjs": "d0d4d1ba8cb17723acee8c426cbd48ecf8880bed2932d9870c065ef3ca5e695b"
+  },
+  "baseline": "1a733d800a2a50309803face7f30fd2a98b2cd31",
+  "archive": {
+    "compressedBytes": 136110,
+    "compressedSha256": "2efc7dc0e787d86f49c27863cd936be82fbd90f1902331345528936335b516c8",
+    "decodedBytes": 638274,
+    "decodedSha256": "bb3729afe49ff140f9824549ab031bc936f96267f57d752f3d9cc6eff3653fbc",
+    "singleGzipMemberNoTrailingPayload": true,
+    "topLevelKeys": [
+      "schemaVersion",
+      "normalization",
+      "scope",
+      "planningFloors",
+      "files"
+    ],
+    "sourceRecords": [
+      {
+        "path": "scripts/official-assets-layout.mjs",
+        "beforeSha256": "4c4a170e067eee4db332fd8cbad890fe307cc792dd64367c6e9103703c0c6755",
+        "beforeGitBlob": "416d13a976c13d70591ddf9e759b15d14e812815",
+        "sourceUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/1a733d800a2a50309803face7f30fd2a98b2cd31/scripts/official-assets-layout.mjs",
+        "afterSha256": "e8325b858f3bebeb245b6ec0e0d59a8ab36c84a16aa0b8ea1065e78a3180bf91"
+      },
+      {
+        "path": "tests/official-assets.test.mjs",
+        "beforeSha256": "069931ecac1accf3bafe257dad9cb028ffbf4a94a528e01aa6da3080266762f8",
+        "beforeGitBlob": "c53d2843c89a73e7e9d0c1a82bf9543a012f3dc3",
+        "sourceUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/1a733d800a2a50309803face7f30fd2a98b2cd31/tests/official-assets.test.mjs",
+        "afterSha256": "92dc05ca08b085a5c1fce2f7b441a26a51a3dc3ec0cca94f441bb0e2d2911480"
+      },
+      {
+        "path": "tests/ci-complete-calibration.test.mjs",
+        "beforeSha256": "d559a58dfe4a681e39eb1c50e4a8ed2b3c419e36ee22b2dda9ed61dae2bb8e21",
+        "beforeGitBlob": "40001d717c93eedabb0eaa04e312166d28013b86",
+        "sourceUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/1a733d800a2a50309803face7f30fd2a98b2cd31/tests/ci-complete-calibration.test.mjs",
+        "afterSha256": "a6cb66b563e39599af364dfc089ee4242124e2c7ab862aec18024c202f4840d5"
+      },
+      {
+        "path": "tests/helpers/component-ui-ci-source-inverse.mjs",
+        "beforeSha256": "9bbd05b7ef298dd223906af10418cff96f38bf42ea4fac1e67e47dfbae5dfc3d",
+        "beforeGitBlob": "07e109c82d532d8307a9ab5074cf0cdbbd885fc1",
+        "sourceUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/1a733d800a2a50309803face7f30fd2a98b2cd31/tests/helpers/component-ui-ci-source-inverse.mjs",
+        "afterSha256": "0da077a6912676708dc11770d72f013678cdc8ce95b4bb4072f25ebf1c8ef46f"
+      },
+      {
+        "path": "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+        "beforeSha256": "afd828fcc0d0731b6b57a46a3aa3619461cf5cba4e4e95f56b1d677ff7b921c9",
+        "beforeGitBlob": "e01a1e0ea76e8d0c35f0b97fb4e87a5525cd9eb1",
+        "sourceUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/1a733d800a2a50309803face7f30fd2a98b2cd31/tests/helpers/ci-complete-calibration-source-inverse.mjs",
+        "afterSha256": "fcfd93b82e97cb81158ce01daa54b48cfa2f9c8dee7a06fceb572708c0f3db64"
+      },
+      {
+        "path": "scripts/ci-test-timings.json",
+        "beforeSha256": "00d61717d1742c93af0c7a193509ee014c04ab9906fa6cb5750b9f2f51846303",
+        "beforeGitBlob": "446704f77a72818c3d42df0e30b1ff5d86b5f5a7",
+        "sourceUrl": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/1a733d800a2a50309803face7f30fd2a98b2cd31/scripts/ci-test-timings.json",
+        "afterSha256": "18174c289e1f6f49b62e7c060bb98b6d41420dcfa77df8b668aa730a385ccc80"
+      }
+    ],
+    "nonSourceContent": "schemaVersion, LF normalization, historical-only scope, and four local timing-floor records with repo-relative receipt/log paths, hashes, test counts and durations. No extra fields or non-repository source payload."
+  },
+  "historicalPreservation": {
+    "byteIdenticalFileCount": 14,
+    "files": [
+      "docs/evidence/official-assets-first-20261109/planning/README.md",
+      "docs/evidence/official-assets-first-20261109/planning/ci-contracts.log",
+      "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/measurement.json",
+      "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/stderr.log",
+      "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/stdout.log",
+      "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/measurement.json",
+      "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/stderr.log",
+      "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/stdout.log",
+      "docs/evidence/official-assets-first-20261109/planning/official-assets/measurement.json",
+      "docs/evidence/official-assets-first-20261109/planning/official-assets/stderr.log",
+      "docs/evidence/official-assets-first-20261109/planning/official-assets/stdout.log",
+      "docs/evidence/official-assets-first-20261109/planning/summary.json",
+      "tests/helpers/official-assets-ci-source-inverse.mjs",
+      "tests/helpers/official-assets-ci-source-epoch.json.gz"
+    ],
+    "view": "Explicit first-checkpoint local read/discovery view retains original three-floor/14-case checks; separate current contract checks four files. Outer exact whole-source projection precedes old epochs."
+  },
+  "currentEvidence": {
+    "runs": [
+      {
+        "file": "tests/official-assets.test.mjs",
+        "tests": 6,
+        "start": "2026-11-09T11:07:22.169Z",
+        "finish": "2026-11-09T11:07:23.874Z",
+        "inputs": 691,
+        "floorMs": 1705
+      },
+      {
+        "file": "tests/official-assets-runtime.test.mjs",
+        "tests": 2,
+        "start": "2026-11-09T11:07:23.948Z",
+        "finish": "2026-11-09T11:07:48.507Z",
+        "inputs": 691,
+        "floorMs": 24560
+      },
+      {
+        "file": "tests/official-assets-flow.test.mjs",
+        "tests": 6,
+        "start": "2026-11-09T11:07:48.559Z",
+        "finish": "2026-11-09T11:08:25.416Z",
+        "inputs": 691,
+        "floorMs": 43888
+      },
+      {
+        "file": "tests/official-assets-visual.test.mjs",
+        "tests": 4,
+        "start": "2026-11-09T11:08:25.494Z",
+        "finish": "2026-11-09T11:08:26.020Z",
+        "inputs": 691,
+        "floorMs": 526
+      }
+    ],
+    "totalTests": 18,
+    "all691InputHashesVerifiedForEachRun": true,
+    "receiptAndRawLogHashesVerified": true,
+    "serialNonoverlapVerified": true,
+    "ciContractLog": "64 tests, 64 pass, zero skipped/fail/cancelled; 42592.629089ms; inspected not rerun",
+    "timingsOnlyFourMonotonicFloorChanges": true,
+    "additionalEffectiveWorkMs": 17133,
+    "reportedInventory": 829
+  },
+  "reviewChecks": [
+    "Projection requires own known path, string type and exact normalized full afterSha256; foreign, partial and mismatched input passes unchanged.",
+    "Tests cover LF/CRLF, appended/truncated input, foreign/prototype paths, partial floor set and unrelated unknownJsMs drift.",
+    "Restoring four floor entries yields exact published timings object: hosted weights, Lua, budgets and workers unchanged.",
+    "Attributes force LF for new planning logs/receipts and binary preservation for new archive.",
+    "No new campaign discovery or Full execution; archive is historical compatibility evidence, not expanded execution/admission."
+  ],
+  "remainingUnverified": [
+    "Exact integrated committed HEAD hosted Full and Merge Queue admission.",
+    "Windows execution/performance; local floor and predicted budget figures are not hosted measurements.",
+    "Native client import, ready, texture/visual quality and device interaction."
+  ],
+  "executionByReviewer": "Read-only source/JSON/log/hash comparisons only; no test suites or long route run.",
+  "attributeFollowup": {
+    "reviewedAt": "2026-11-09T11:23:52.722966+00:00",
+    "whitespaceException": "docs/evidence/official-assets-first-20261109/planning-flow/ci-calibration-initial.log -whitespace",
+    "scope": "Exactly one historical failed raw log; no production source whitespace exemption.",
+    "additionalObservedLine": "docs/evidence/official-assets-first-20261109/full-flow/** -text",
+    "additionalScope": "Preserves raw full-flow evidence bytes; does not change executable source checks or global attributes."
+  }
+}

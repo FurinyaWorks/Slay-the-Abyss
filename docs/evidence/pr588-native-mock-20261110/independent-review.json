@@ -1,0 +1,40 @@
+{
+  "reviewId": "pr588-official-profile-independent-20261110",
+  "scope": "Incremental source repair only; not complete PR, hosted CI, merge admission, GIL or device acceptance",
+  "reviewedLocalCommit": "457e55b575a1e434206e0c8c417211cd4a530762",
+  "reviewedLocalTree": "d9e8ea6d746c27b70e64d2525dbeb99eb65e534d",
+  "parentHead": "20a23f0095ed3f82020f0ccfb13bca3de617ac73",
+  "sourceConclusion": "pass",
+  "unresolved": [],
+  "findings": [
+    "Both official-only child lookups are guarded by the existing explicit presentationProfile, not merely by the presence of officialAssets config.",
+    "Official-profile missing banner and rim remain fatal. All original strict mocks and art/layout files are unchanged.",
+    "Each original profile guard forced true or false is independently rejected by the generated-layout runtime tests.",
+    "Additive exact-hash source inverse authenticates full before/after content and chains to immutable predecessor archives; no afterCommit is fabricated."
+  ],
+  "sourceSha256": {
+    "src/lua/abyss_battle_card_view.lua": "f851b274ba9930ef3de511294dd97efe537c7c06e52ce76fe56f49e7f0b5f58b",
+    "tests/helpers/official-battle-source-inverse.mjs": "0609b8d88b99724ecc1749f72dc54ecde3916c003ba06f613ff4ec419e9fe7fb",
+    "tests/official-assets-runtime.test.mjs": "80b3737fc3941084865bc8ee41e44706320f135e26292b069466e7e7e4eda3af",
+    "tests/seven-refactor-source-epoch.test.mjs": "4efbcd5254369fcf6bc708fb314425be86627a5cdc7d8e628bc8087c1a72317e",
+    "tests/helpers/official-banner-source-epoch.json.gz": "3f1f13b24b1fd05e01706937f14e905c7003d193b446b2133e8ec25548e91628"
+  },
+  "preservedSha256": {
+    "tests/helpers/official-battle-source-epoch.json.gz": "5e74438e077be47b5b176287b6ceeb71e69447fa32ceedf2b0e595c4499d3c80",
+    "tests/helpers/official-battle-alignment-source-epoch.json.gz": "f834dafca07c62a1b807cbc7df3ae8619f3043a1627b8fb5dee5f464c420d458",
+    "tests/lua/support/growing_card_text_cases.lua": "6469a98e26e1739d4c1691cd3394f6677550494beb823d14df8d7dff1eab67c6",
+    "tests/lua/support/game_ui_fixture.lua": "053b816da1f855a3f3947d01e62585e93662db8938ebf3d3d91eabd8f57bd44e",
+    "tests/lua/support/native_ui_contract.lua": "1795cfdf1dacfbe533c2236e7bd80e1c21ee6822e22c52a6ae54028ab711bdcd",
+    "scripts/ci-test-timings.json": "18174c289e1f6f49b62e7c060bb98b6d41420dcfa77df8b668aa730a385ccc80"
+  },
+  "independentTests": {
+    "generatedProfiles": "2/2 pass",
+    "semanticGuardMutations": "4/4 rejected",
+    "initialInvocation": "Wrong cwd: test path not found. Preserved separately; corrected isolated worktree command passed."
+  },
+  "validationScope": [
+    "No duplicate Full, manual rerun, budgets or CI gate changes.",
+    "Source and targeted tests are not official or device acceptance.",
+    "The PR retains its #582 dependency and historical merge-ancestor blocker."
+  ]
+}

@@ -4,6 +4,7 @@ import { relicViewControls } from '../scripts/relic-view-layout.mjs';
 import { nativeTheme as theme } from '../scripts/native-ui-theme.mjs';
 import { mapGeometry } from '../scripts/map-ui-layout.mjs';
 import { gameLayout } from '../scripts/game-ui-layout.mjs';
+import { applyOfficialAssets, officialAssetsTheme } from '../scripts/official-assets-layout.mjs';
 
 const frame = c => [...(c.position ?? [0, 0]), ...c.size];
 const clear = (a, b) => Math.abs(a[0] - b[0]) >= (a[2] + b[2]) / 2 ||
@@ -50,7 +51,8 @@ test('owned relics use disc art slots in the top bar and detail rows', () => {
     assert.ok(Math.abs(slot.position[0] - v.bar.tray[0]) + v.bar.disc / 2 <= v.bar.tray[2] / 2, 'disc inside tray');
     assert.deepEqual(slot.position, [v.bar.origin[0] + v.bar.step * i, v.bar.origin[1]]);
     assert.deepEqual(slot.size, [v.bar.disc, v.bar.disc]);
-    assert.deepEqual(slot.children.map(c => c.name), ['rim', 'face', 'icon', 'more', 'hit']);
+    assert.deepEqual(slot.children.map(c => c.name), ['rim', 'face', 'icon', 'counter', 'more', 'hit']);
+    assert.equal(slot.children.find(c => c.name === 'counter').visible, false);
     assert.equal(slot.children[0].image, theme.image.disc);
     assert.ok(Math.abs(slot.position[1] - v.bar.tray[1]) + v.bar.disc / 2 <= v.bar.tray[3] / 2, 'disc vertically inside tray');
     if (i) assert.ok(slot.position[0] - slots[i - 1].position[0] >= v.bar.disc, 'discs never overlap');
@@ -68,6 +70,43 @@ test('owned relics use disc art slots in the top bar and detail rows', () => {
   assert.equal(panel.isolateNavigation, true);
   const json = JSON.stringify(panel);
   assert.doesNotMatch(json.replace(/"(name|kind|image|align|valign|colour)":"[^"]*"/g, ''), /"content":"[A-Za-z]{3,}/);
+});
+
+test('single relic content stays above its input shield and preserves original icon colors', () => {
+  const [bar, panel] = relicViewControls({...theme, presentationProfile: 'official-assets-first'});
+  const names = panel.children.map(c => c.name);
+  assert.ok(names.indexOf('blocker') < names.indexOf('contentBlocker'));
+  assert.ok(names.indexOf('contentBlocker') < names.indexOf('single'));
+  assert.ok(names.indexOf('single') < names.indexOf('close'));
+  const single = panel.children.find(c => c.name === 'single');
+  assert.equal(single.visible, false);
+  for (const name of ['icon', 'name', 'rarity', 'description', 'status']) assert.ok(single.children.some(c => c.name === name));
+  assert.equal(single.children.find(c => c.name === 'icon').colour, '#FFFFFF');
+  const legacyPanel = relicViewControls(theme)[1];
+  const legacySingle = legacyPanel.children.find(c => c.name === 'single');
+  for (const name of ['rarity', 'status']) {
+    const label = legacySingle.children.find(c => c.name === name);
+    assert.ok(label.text.fontSize * 1.45 + 4 <= label.size[1], `${name} fits one line before the official pass`);
+  }
+  assert.equal(bar.children[1].children.find(c => c.name === 'icon').colour, '#FFFFFF');
+  const legacy = structuredClone(theme); delete legacy.officialAssets;
+  const [legacyBar] = relicViewControls(legacy);
+  assert.equal(legacyBar.children[1].children.find(c => c.name === 'icon').colour, legacy.color.mapHeader.menuNormal.ink);
+});
+
+test('production default layout then official pass preserves relic icon colors without changing semantic IDs', () => {
+  // buildUI constructs gameLayout(undefined, options) before the official pass.
+  const layout = gameLayout();
+  const stage = layout.controls.find(c => c.name === 'stage') ?? layout;
+  const children = c => c.children ?? c.controls ?? [];
+  const child = (c, name) => children(c).find(n => n.name === name);
+  const bar = child(stage, 'relicBar'), panel = child(stage, 'relicPanel');
+  const icons = [child(child(bar, 'slot1'), 'icon'), child(child(child(panel, 'row1'), 'slot'), 'icon'), child(child(panel, 'single'), 'icon')];
+  const ids = icons.map(c => c.image);
+  assert.equal(icons[0].colour, theme.color.mapHeader.menuNormal.ink, 'legacy construction retains the old HUD palette');
+  applyOfficialAssets([layout], officialAssetsTheme(theme));
+  assert.deepEqual(icons.map(c => c.image), ids, 'official pass must retain the semantic icon source');
+  assert.deepEqual(icons.map(c => c.colour), ['#FFFFFF', '#FFFFFF', '#FFFFFF']);
 });
 
 test('second-row geometry rejects the old overlapping row and off-canvas click areas', () => {

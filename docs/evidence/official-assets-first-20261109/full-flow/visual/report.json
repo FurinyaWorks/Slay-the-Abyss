@@ -1,0 +1,167 @@
+{
+  "kind": "PIL geometry and text diagnostic rendered from preserved natural Host capture",
+  "platformVerified": false,
+  "browserScreenshot": false,
+  "hostRerun": false,
+  "captureSourceClosure": "f54d388556db5e5c6b4c4ab0cd1a8610c0ef35fc5f6f50afc8e183055e9abcab",
+  "captureReportSha256": "ed9d0841cce06fe44ec9167f3dc4955f8b0c52884dc85ab25e7e008f5e0b2030",
+  "captureScenesSha256": "f061c96ec46851a72f380fae32366eb407bda1ddb6ea3718f5218b1618711001",
+  "renderScope": "source-hashes.json and source-integrity.json bind render only; not a new capture after exporter fix",
+  "sceneCount": 21,
+  "scenes": [
+    "menu",
+    "character",
+    "neow-act1",
+    "map-act1",
+    "battle-act1",
+    "reward-act1",
+    "event-act1",
+    "treasure-act1",
+    "camp-act1",
+    "boss_treasure-act1",
+    "act-transition",
+    "map-act2",
+    "battle-act2",
+    "reward-act2",
+    "event-act2",
+    "camp-act2",
+    "treasure-act2",
+    "shop-act2",
+    "boss_treasure-act2",
+    "victory",
+    "restart-neow"
+  ],
+  "naturalMultiEnemyCaptured": false,
+  "battleLimits": "Both battle-act1 and battle-act2 have one top-level actor. Two nested fake MonsterActor exports in battle-act2 are old power-template misclassification. Five cards in each battle are at draw-animation start position [-568,-300], scale0.16. No settled hand or natural multi-enemy screenshot.",
+  "exporterLimits": "Preserved input was captured before nativeActorPower template dispatch fix; dynamic power icon/count fields may be missing or misclassified. The fixed source has NOT recaptured this input.",
+  "summary": [
+    {
+      "scene": "menu",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "character",
+      "overflowCandidates": 3,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "neow-act1",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "map-act1",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "battle-act1",
+      "overflowCandidates": 0,
+      "outsideCandidates": 5
+    },
+    {
+      "scene": "reward-act1",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "event-act1",
+      "overflowCandidates": 2,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "treasure-act1",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "camp-act1",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "boss_treasure-act1",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "act-transition",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "map-act2",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "battle-act2",
+      "overflowCandidates": 0,
+      "outsideCandidates": 5
+    },
+    {
+      "scene": "reward-act2",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "event-act2",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "camp-act2",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "treasure-act2",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "shop-act2",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "boss_treasure-act2",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "victory",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    },
+    {
+      "scene": "restart-neow",
+      "overflowCandidates": 0,
+      "outsideCandidates": 0
+    }
+  ],
+  "outputHashes": {
+    "reward-act2.png": "c9be806bb148607153ffcc6800557f9a494820761a0c9e4fb117987d890de604",
+    "battle-act1.png": "f8205a503fcb4250d118236b9daa9e50b7bf54601a261fa3a7847d184d2ad038",
+    "treasure-act2.png": "f728fae6ba7149b62d3e0d182ab84b5bdc95f40729d9c49ff433352ac302f389",
+    "reward-act1.png": "a03fdcc2cdb0bf5b6564839010d86db41fbdc6702e37e2e27edf63ca5047e461",
+    "shop-act2.png": "f0d0a204aed02d975e25d97e496e7f7eacea6a76ae0ccce9adeb240876d7e8bb",
+    "restart-neow.png": "3e4bd7d06316b242996ec6fe9d284d2d75f0b1f542ed3a2cef110a843da67412",
+    "map-act2.png": "d2a2985efa1206814281192a69f82271c287f819d0cfa243fc058f36f097c3cf",
+    "boss_treasure-act2.png": "6fc627517749943f00110ecda144ad0bda1bd2eec2922d5ce991bd1b946e1aa4",
+    "act-transition.png": "f4a19999fb6a0729900118be0d5c9e265f5c3e8d74b20468ebbb6e25e490e9a4",
+    "treasure-act1.png": "73817e73232d3ff9375274fab3407e73428ca7d166d2cdbed61745a9a6b2f09c",
+    "event-act2.png": "c0ac1ec57f8ba5734bd563ddace6b3783cb7e150dfa72720cc1d4678e172b712",
+    "character.png": "876d3798b1d72dc26e61e55656840c96012bd34801ffbdc3879010489c94b0f3",
+    "battle-act2.png": "c89ba0c50de1de8af14127c1b308cd52a368b434a491b050e6257775e175fb4b",
+    "boss_treasure-act1.png": "ea7c42e6aa4d1e314e09d4897196ffb22a09e0b9e03c118354376315c4cbf208",
+    "camp-act2.png": "3b3cf06ff59d54244314c2488d23f20f348cbc6a5867687b62a0ccc55ef61e24",
+    "event-act1.png": "1e7a920713faf8ad6158a9e246c594ac8a1e42c728c34f51b34d122e9b968cbe",
+    "neow-act1.png": "a3ff223d7716ac09e3d4675100756fa1d38f1a63e0b73cfaa986559f48ef8a50",
+    "menu.png": "165f988633d4274a9407133304418027358b65babf89d1cfc5940887a2ad4236",
+    "map-act1.png": "752032d4a37ba5a0ed549ed53284a0482aaf955b3365020a4a368d40f8c70c52",
+    "victory.png": "eb9ad2cd5e78eb957b01d52c9e65dbd93e72dd7d203ec59d573f9166a390492e",
+    "camp-act1.png": "815649fe704c012b6e93beb7f8eb07871f3784ba847b67dca5bb72908d209823"
+  }
+}

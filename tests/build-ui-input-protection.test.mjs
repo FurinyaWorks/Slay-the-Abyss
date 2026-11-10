@@ -45,6 +45,16 @@ for(const mode of ['hardlink','symlink'])test(`UI CLI rejects profile generator 
   assert.deepEqual(readFileSync(input),before,'isolated profile generator was overwritten');
   assert.deepEqual(readdirSync(join(root,'out')),['abyss_ui_profile.lua'],'partial generated files escaped preflight');
 }));
+for(const generator of ['official-assets-profile.mjs','official-assets-layout.mjs'])for(const mode of ['hardlink','symlink'])test(`UI CLI rejects official generator ${generator} alias ${mode} before any write`,t=>cliFixture(root=>{
+  const input=join(root,'scripts',generator),target=join(root,'out/abyss_ui_profile.lua'),before=readFileSync(input);
+  try{if(mode==='hardlink')linkSync(input,target);else symlinkSync(input,target,'file');}
+  catch(error){if(mode==='symlink'&&['EPERM','EACCES','ENOSYS'].includes(error.code)){t.skip(`Symlink unavailable: ${error.code}`);return;}throw error;}
+  const result=spawnSync(process.execPath,['scripts/build-ui.mjs','out'],{cwd:root,encoding:'utf8'});
+  assert.notEqual(result.status,0,'profile generator alias was accepted');
+  assert.match(result.stderr,/Output must not overwrite an input file/);
+  assert.deepEqual(readFileSync(input),before,'isolated profile generator was overwritten');
+  assert.deepEqual(readdirSync(join(root,'out')),['abyss_ui_profile.lua'],'partial generated files escaped preflight');
+}));
 function build(root) {
   const cwd = process.cwd();
   try { process.chdir(root); buildUI('out'); } finally { process.chdir(cwd); }

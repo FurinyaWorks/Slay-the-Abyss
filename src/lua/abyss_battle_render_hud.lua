@@ -166,7 +166,10 @@ function M.install(owner, _ownership, host, dependencies)
         -- Keep the floor identifiable without a naked number over the first potion slot.
         dependencies.label("floor", "")
         local floor=flow and flow.floor and " · 第"..tostring(flow.floor).."层" or ""
-        dependencies.label("title", kind .. floor .. stanceHeading(frame) .. orbHeading(frame) .. discardHeading(frame) .. originalHeading(frame))
+        local suffix=stanceHeading(frame)..orbHeading(frame)..discardHeading(frame)..originalHeading(frame)
+        local caption=kind..floor..suffix
+        if Theme.presentationProfile=='official-assets-first' and frame.run and (frame.run.act or 1)==1 then caption='塔底'..floor..suffix end
+        dependencies.label("title",caption)
     end
     local function renderEnergy(frame)
         local battle = frame.battle

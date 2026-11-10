@@ -53,6 +53,9 @@ export function cardFaceChildren(theme, context, interactive = true) {
   const flowingText=(...args)=>{const control=text(...args);if(reference)control.text.valign='top';return control;};
   const hidden = control => ({...control, visible:false});
   const orb = (name, values, colour, id = image.disc) => ({...plate(name, values, colour), image:id});
+  const cost=text('cost',frame(disc,[d,l.nativeText.lineHeight]),'',f.cost,c.energy);
+  if(theme.cardSkin.costOutline)Object.assign(cost.text,{outline:true,
+    outlineColour:theme.cardSkin.costOutline.colour,outlineOpacity:theme.cardSkin.costOutline.opacity});
   // STS AbstractCard.renderGlow: the hot card wears a wide soft halo; a 4px rim read as unselected.
   const padding = s.xl;
   // Views tint border/nameBand/nameRule by rarity, artPlate/costDisc by state;
@@ -100,7 +103,7 @@ export function cardFaceChildren(theme, context, interactive = true) {
     // Dark coin with a coloured ring and coloured numeral.
     orb('costCore', frame(disc,[d+trim.costRing,d+trim.costRing]), c.cardWell),
     orb('costDisc', frame(disc,[d,d]), c.energy, image.ring),
-    text('cost',frame(disc,[d,l.nativeText.lineHeight]),'',f.cost,c.energy),
+    cost,
     hidden(text('costDirection',frame([disc[0]+d/2-2,disc[1]-d/2+2],[20,l.nativeText.lineHeight]),'',f.minimum,c.positive)),
     ...(node ? [
       hidden(plate('veil',frame([0,0],[w,h]),c.backdropVeil)),

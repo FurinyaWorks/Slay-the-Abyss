@@ -1,3 +1,4 @@
+import {officialAssetsFromReceipt,officialAssetsProfile} from './official-assets-profile.mjs';
 import {prepareMonsterArt} from './monster-art.mjs';
 import {portraitInventory,portraitRuntimeInputs} from './official-portraits.mjs';
 import {lightweightInventory,lightweightProfile} from './lightweight-2d-profile.mjs';
@@ -73,6 +74,7 @@ export function artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory=f
  const v25BattleChrome=v25ChromeFromReceipt(receipt);
  const v25CardAssets=v25CardAssetsFromReceipt(receipt);
  const v25UiMasks=v25UiMasksFromReceipt(receipt);
+ const officialAssets=officialAssetsFromReceipt(receipt);
  const flags=verifyArtFeatureReceipt(receipt?.artFeatures),native=receipt.nativeCardArt;
  const lightweight2d=receipt.experimentalProfile===lightweightProfile;
  if(receipt.experimentalProfile!==undefined&&!lightweight2d||lightweight2d&&(!flags.menuBackground||!flags.selectionAvatar||!flags.battlePortrait||flags.cards||flags.monsters))throw Error('Invalid experimental artwork profile');
@@ -97,7 +99,7 @@ export function artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory=f
  if((flags.selectionAvatar||flags.battlePortrait||flags.cards||flags.menuBackground)!==Boolean(receipt.officialPortraits))throw Error('Portrait artwork receipt conflicts with art features');
  if(receipt.officialPortraits){
   const actual=receipt.officialPortraits;
-  const expected=lightweight2d?(deferExperimentalInventory?{renderProfile:lightweightProfile}:lightweightInventory()):portraitInventory(flags,{v25:v25BattleChrome});
+  const expected=lightweight2d?(deferExperimentalInventory?{renderProfile:lightweightProfile}:lightweightInventory()):portraitInventory(flags,{v25:v25BattleChrome,officialAssets:receipt.officialAssetsProfile===officialAssetsProfile});
   for(const [key,value]of Object.entries(expected))if(JSON.stringify(actual[key])!==JSON.stringify(value))throw Error('Portrait artwork inventory differs from art features: '+key);
   const paths=portraitRuntimeInputs(flags);
   if(!Array.isArray(actual.inputs)||actual.inputs.length!==paths.length||paths.some(path=>actual.inputs.filter(row=>
@@ -106,7 +108,7 @@ export function artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory=f
  }
 
  if(native&&(typeof native.registry?.path!=='string'||!native.registry.path||!Array.isArray(native.hosts)||!native.hosts.length))throw Error('Invalid static card artwork receipt');
- return {artFeatures:flags,...(receipt.toolchainIdentity?{toolchainIdentity:receipt.toolchainIdentity}:{}),...(v25CardAssets?{v25CardAssets}:{}),...(v25UiMasks?{v25UiMasks}:{}),...(v25BattleChrome?{v25BattleChrome:true}:{}),...(lightweight2d?{lightweight2d:true}:{}),...(receipt.experimentalUi==='legacy-card-frames'?{legacyCardFrames:true}:{}),...(native?{nativeCardArt:{registry:native.registry.path,hosts:[...native.hosts]}}:{})};
+ return {artFeatures:flags,...(officialAssets?{officialAssets:true}:{}),...(receipt.toolchainIdentity?{toolchainIdentity:receipt.toolchainIdentity}:{}),...(v25CardAssets?{v25CardAssets}:{}),...(v25UiMasks?{v25UiMasks}:{}),...(v25BattleChrome?{v25BattleChrome:true}:{}),...(lightweight2d?{lightweight2d:true}:{}),...(receipt.experimentalUi==='legacy-card-frames'?{legacyCardFrames:true}:{}),...(native?{nativeCardArt:{registry:native.registry.path,hosts:[...native.hosts]}}:{})};
 }
 export function readArtFeatures(directory) {
  const source=readFileSync(join(directory,artFeatureModule+'.lua'),'utf8');

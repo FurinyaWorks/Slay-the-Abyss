@@ -1,0 +1,68 @@
+✖ default generated cards preserve strict lookup, rarity tint and required children (4086.643071ms)
+✖ official generated cards preserve strict lookup, rarity tint and required children (8989.713493ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13240.523277
+
+✖ failing tests:
+
+test at tests/official-banner-contract.test.mjs:10:36
+✖ default generated cards preserve strict lookup, rarity tint and required children (4086.643071ms)
+  AssertionError [ERR_ASSERTION]: ABYSS_RUN seed=1 source=explicit
+  (command line):17: missing required card child nativePlayableRim
+  stack traceback:
+  	[JS]: in function 'assert'
+  	(command line):17: in method 'GetChild'
+  	src/lua/abyss_battle_card_view.lua:302: in upvalue 'writeSkin'
+  	src/lua/abyss_battle_card_view.lua:317: in upvalue 'renderSlot'
+  	src/lua/abyss_battle_card_view.lua:333: in field 'renderCards'
+  	src/lua/abyss_battle_render.lua:27: in method 'render'
+  	(command line):26: in main chunk
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/pr588-native-banner-contract/tests/official-banner-contract.test.mjs:64:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/official-banner-contract.test.mjs:10:36
+✖ official generated cards preserve strict lookup, rarity tint and required children (8989.713493ms)
+  AssertionError [ERR_ASSERTION]: ABYSS_RUN seed=1 source=explicit
+  (command line):21: rarity ink mismatch
+  stack traceback:
+  	[JS]: in function 'assert'
+  	(command line):21: in local 'colour'
+  	(command line):30: in main chunk
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/pr588-native-banner-contract/tests/official-banner-contract.test.mjs:64:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

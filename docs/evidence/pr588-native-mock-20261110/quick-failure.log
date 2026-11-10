@@ -1,0 +1,1152 @@
+﻿2026-11-10T08:19:15.2196358Z Current runner version: '2.338.2'
+2026-11-10T08:19:15.2222069Z ##[group]Runner Image Provisioner
+2026-11-10T08:19:15.2223087Z Hosted Compute Agent
+2026-11-10T08:19:15.2223735Z Version: 20261028.624
+2026-11-10T08:19:15.2224735Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-10T08:19:15.2225505Z Build Date: 2026-10-28T21:51:42Z
+2026-11-10T08:19:15.2226263Z Worker ID: {08fbee33-1d86-43fd-8a76-e262e98b8f87}
+2026-11-10T08:19:15.2227054Z Region: centralus
+2026-11-10T08:19:15.2227653Z Cloud: Azure
+2026-11-10T08:19:15.2228212Z ##[endgroup]
+2026-11-10T08:19:15.2230145Z ##[group]Operating System
+2026-11-10T08:19:15.2230825Z Ubuntu
+2026-11-10T08:19:15.2231522Z 24.04.5
+2026-11-10T08:19:15.2232079Z LTS
+2026-11-10T08:19:15.2232601Z ##[endgroup]
+2026-11-10T08:19:15.2233219Z ##[group]Runner Image
+2026-11-10T08:19:15.2233890Z Image: ubuntu-24.04
+2026-11-10T08:19:15.2235011Z Version: 20261101.360.1
+2026-11-10T08:19:15.2236417Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-10T08:19:15.2238145Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-10T08:19:15.2239177Z ##[endgroup]
+2026-11-10T08:19:15.2240458Z ##[group]GITHUB_TOKEN Permissions
+2026-11-10T08:19:15.2242421Z Contents: read
+2026-11-10T08:19:15.2243129Z Metadata: read
+2026-11-10T08:19:15.2243741Z ##[endgroup]
+2026-11-10T08:19:15.2246267Z Secret source: Actions
+2026-11-10T08:19:15.2247476Z Cache mode: write
+2026-11-10T08:19:15.2248186Z Prepare workflow directory
+2026-11-10T08:19:15.2626052Z Prepare all required actions
+2026-11-10T08:19:15.2676051Z Getting action download info
+2026-11-10T08:19:15.5269299Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-10T08:19:15.6277260Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-10T08:19:15.7288411Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-10T08:19:15.9157128Z Complete job name: Advisory related tests
+2026-11-10T08:19:16.0106087Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-11-10T08:19:16.0107167Z with:
+2026-11-10T08:19:16.0107649Z   ref: bbde18287d77de8b3c48f47c39b7d762aa03c7eb
+2026-11-10T08:19:16.0108255Z   fetch-depth: 2
+2026-11-10T08:19:16.0108720Z   persist-credentials: false
+2026-11-10T08:19:16.0109272Z   repository: FurinyaWorks/Slay-the-Abyss
+2026-11-10T08:19:16.0113532Z   token: ***
+2026-11-10T08:19:16.0114259Z   ssh-strict: true
+2026-11-10T08:19:16.0114787Z   ssh-user: git
+2026-11-10T08:19:16.0115225Z   clean: true
+2026-11-10T08:19:16.0115696Z   sparse-checkout-cone-mode: true
+2026-11-10T08:19:16.0116219Z   fetch-tags: false
+2026-11-10T08:19:16.0116670Z   show-progress: true
+2026-11-10T08:19:16.0117128Z   lfs: false
+2026-11-10T08:19:16.0117548Z   submodules: false
+2026-11-10T08:19:16.0118037Z   set-safe-directory: true
+2026-11-10T08:19:16.0118561Z   allow-unsafe-pr-checkout: false
+2026-11-10T08:19:16.0119436Z ##[endgroup]
+2026-11-10T08:19:16.2842926Z Syncing repository: FurinyaWorks/Slay-the-Abyss
+2026-11-10T08:19:16.2846156Z ##[group]Getting Git version info
+2026-11-10T08:19:16.2847552Z Working directory is '/home/runner/work/Slay-the-Abyss/Slay-the-Abyss'
+2026-11-10T08:19:16.2849671Z [command]/usr/bin/git version
+2026-11-10T08:19:16.2947765Z git version 2.56.0
+2026-11-10T08:19:16.2982682Z ##[endgroup]
+2026-11-10T08:19:16.3004370Z Temporarily overriding HOME='/home/runner/work/_temp/6ac6fd64-d9e7-4451-812a-66b4769f79ac' before making global git config changes
+2026-11-10T08:19:16.3007222Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-10T08:19:16.3009463Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Slay-the-Abyss/Slay-the-Abyss
+2026-11-10T08:19:16.3066025Z Deleting the contents of '/home/runner/work/Slay-the-Abyss/Slay-the-Abyss'
+2026-11-10T08:19:16.3071481Z ##[group]Initializing the repository
+2026-11-10T08:19:16.3078802Z [command]/usr/bin/git init /home/runner/work/Slay-the-Abyss/Slay-the-Abyss
+2026-11-10T08:19:16.3200461Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-10T08:19:16.3202339Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-10T08:19:16.3204669Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-10T08:19:16.3206029Z hint: call:
+2026-11-10T08:19:16.3207003Z hint:
+2026-11-10T08:19:16.3208064Z hint: 	git config --global init.defaultBranch <name>
+2026-11-10T08:19:16.3209253Z hint:
+2026-11-10T08:19:16.3210488Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-10T08:19:16.3212476Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-10T08:19:16.3215809Z hint:
+2026-11-10T08:19:16.3218420Z hint: 	git branch -m <name>
+2026-11-10T08:19:16.3219653Z hint:
+2026-11-10T08:19:16.3220912Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-10T08:19:16.3223095Z Initialized empty Git repository in /home/runner/work/Slay-the-Abyss/Slay-the-Abyss/.git/
+2026-11-10T08:19:16.3227489Z [command]/usr/bin/git remote add origin https://github.com/FurinyaWorks/Slay-the-Abyss
+2026-11-10T08:19:16.3284717Z ##[endgroup]
+2026-11-10T08:19:16.3286370Z ##[group]Disabling automatic garbage collection
+2026-11-10T08:19:16.3289271Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-10T08:19:16.3332794Z ##[endgroup]
+2026-11-10T08:19:16.3334736Z ##[group]Setting up auth
+2026-11-10T08:19:16.3355508Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-10T08:19:16.3395344Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-10T08:19:16.3811058Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-10T08:19:16.3865273Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-10T08:19:16.4137385Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-10T08:19:16.4185090Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-10T08:19:16.4437773Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-10T08:19:16.4494267Z ##[endgroup]
+2026-11-10T08:19:16.4495986Z ##[group]Fetching the repository
+2026-11-10T08:19:16.4509758Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=2 origin bbde18287d77de8b3c48f47c39b7d762aa03c7eb
+2026-11-10T08:19:21.6913147Z From https://github.com/FurinyaWorks/Slay-the-Abyss
+2026-11-10T08:19:21.6916810Z  * branch            bbde18287d77de8b3c48f47c39b7d762aa03c7eb -> FETCH_HEAD
+2026-11-10T08:19:21.6933750Z ##[endgroup]
+2026-11-10T08:19:21.6936998Z ##[group]Determining the checkout info
+2026-11-10T08:19:21.6939691Z ##[endgroup]
+2026-11-10T08:19:21.6942047Z [command]/usr/bin/git sparse-checkout disable
+2026-11-10T08:19:21.7006444Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-10T08:19:21.7080739Z ##[group]Checking out the ref
+2026-11-10T08:19:21.7087979Z [command]/usr/bin/git checkout --progress --force bbde18287d77de8b3c48f47c39b7d762aa03c7eb
+2026-11-10T08:19:22.7218924Z Updating files:  51% (4386/8448)
+2026-11-10T08:19:22.7330902Z Updating files:  52% (4393/8448)
+2026-11-10T08:19:22.7399566Z Updating files:  53% (4478/8448)
+2026-11-10T08:19:22.7590803Z Updating files:  54% (4562/8448)
+2026-11-10T08:19:22.7678102Z Updating files:  55% (4647/8448)
+2026-11-10T08:19:22.7739641Z Updating files:  56% (4731/8448)
+2026-11-10T08:19:22.7811983Z Updating files:  57% (4816/8448)
+2026-11-10T08:19:22.7879035Z Updating files:  58% (4900/8448)
+2026-11-10T08:19:22.7948818Z Updating files:  59% (4985/8448)
+2026-11-10T08:19:22.8040855Z Updating files:  60% (5069/8448)
+2026-11-10T08:19:22.8102891Z Updating files:  61% (5154/8448)
+2026-11-10T08:19:22.8162715Z Updating files:  62% (5238/8448)
+2026-11-10T08:19:22.8219539Z Updating files:  63% (5323/8448)
+2026-11-10T08:19:22.8277249Z Updating files:  64% (5407/8448)
+2026-11-10T08:19:22.8328830Z Updating files:  65% (5492/8448)
+2026-11-10T08:19:22.8452267Z Updating files:  66% (5576/8448)
+2026-11-10T08:19:22.8654691Z Updating files:  67% (5661/8448)
+2026-11-10T08:19:22.8896080Z Updating files:  68% (5745/8448)
+2026-11-10T08:19:22.8949210Z Updating files:  69% (5830/8448)
+2026-11-10T08:19:22.9055853Z Updating files:  70% (5914/8448)
+2026-11-10T08:19:22.9178592Z Updating files:  71% (5999/8448)
+2026-11-10T08:19:22.9263610Z Updating files:  72% (6083/8448)
+2026-11-10T08:19:22.9349658Z Updating files:  73% (6168/8448)
+2026-11-10T08:19:22.9403332Z Updating files:  74% (6252/8448)
+2026-11-10T08:19:22.9459558Z Updating files:  75% (6336/8448)
+2026-11-10T08:19:22.9509237Z Updating files:  76% (6421/8448)
+2026-11-10T08:19:22.9558635Z Updating files:  77% (6505/8448)
+2026-11-10T08:19:22.9606824Z Updating files:  78% (6590/8448)
+2026-11-10T08:19:22.9662554Z Updating files:  79% (6674/8448)
+2026-11-10T08:19:22.9721239Z Updating files:  80% (6759/8448)
+2026-11-10T08:19:22.9763719Z Updating files:  81% (6843/8448)
+2026-11-10T08:19:22.9815024Z Updating files:  82% (6928/8448)
+2026-11-10T08:19:22.9863370Z Updating files:  83% (7012/8448)
+2026-11-10T08:19:22.9917257Z Updating files:  84% (7097/8448)
+2026-11-10T08:19:22.9982531Z Updating files:  85% (7181/8448)
+2026-11-10T08:19:23.0031680Z Updating files:  86% (7266/8448)
+2026-11-10T08:19:23.0077597Z Updating files:  87% (7350/8448)
+2026-11-10T08:19:23.0127610Z Updating files:  88% (7435/8448)
+2026-11-10T08:19:23.0179822Z Updating files:  89% (7519/8448)
+2026-11-10T08:19:23.0237896Z Updating files:  90% (7604/8448)
+2026-11-10T08:19:23.0292341Z Updating files:  91% (7688/8448)
+2026-11-10T08:19:23.0338312Z Updating files:  92% (7773/8448)
+2026-11-10T08:19:23.0390569Z Updating files:  93% (7857/8448)
+2026-11-10T08:19:23.0442446Z Updating files:  94% (7942/8448)
+2026-11-10T08:19:23.0492558Z Updating files:  95% (8026/8448)
+2026-11-10T08:19:23.0549131Z Updating files:  96% (8111/8448)
+2026-11-10T08:19:23.0595034Z Updating files:  97% (8195/8448)
+2026-11-10T08:19:23.0652196Z Updating files:  98% (8280/8448)
+2026-11-10T08:19:23.0702880Z Updating files:  99% (8364/8448)
+2026-11-10T08:19:23.0703824Z Updating files: 100% (8448/8448)
+2026-11-10T08:19:23.0704815Z Updating files: 100% (8448/8448), done.
+2026-11-10T08:19:23.0783274Z Note: switching to 'bbde18287d77de8b3c48f47c39b7d762aa03c7eb'.
+2026-11-10T08:19:23.0784296Z 
+2026-11-10T08:19:23.0784656Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-10T08:19:23.0785695Z changes and commit them, and you can discard any commits you make in this
+2026-11-10T08:19:23.0786799Z state without impacting any branches by switching back to a branch.
+2026-11-10T08:19:23.0787417Z 
+2026-11-10T08:19:23.0787838Z If you want to create a new branch to retain commits you create, you may
+2026-11-10T08:19:23.0788895Z do so (now or later) by using -c with the switch command. Example:
+2026-11-10T08:19:23.0789449Z 
+2026-11-10T08:19:23.0789687Z   git switch -c <new-branch-name>
+2026-11-10T08:19:23.0790013Z 
+2026-11-10T08:19:23.0790214Z Or undo this operation with:
+2026-11-10T08:19:23.0790533Z 
+2026-11-10T08:19:23.0790756Z   git switch -
+2026-11-10T08:19:23.0791022Z 
+2026-11-10T08:19:23.0791534Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-10T08:19:23.0792232Z 
+2026-11-10T08:19:23.0793065Z HEAD is now at bbde182 Merge 20a23f0095ed3f82020f0ccfb13bca3de617ac73 into ab65ed3b5b4240eb653af4651a13c1b8c72b2e04
+2026-11-10T08:19:23.1429820Z ##[endgroup]
+2026-11-10T08:19:23.1505705Z [command]/usr/bin/git log -1 --format=%H
+2026-11-10T08:19:23.1542814Z bbde18287d77de8b3c48f47c39b7d762aa03c7eb
+2026-11-10T08:19:23.1555441Z ##[group]Removing auth
+2026-11-10T08:19:23.1560387Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-10T08:19:23.1607352Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-10T08:19:23.1893372Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-10T08:19:23.1940796Z http.https://github.com/.extraheader
+2026-11-10T08:19:23.1949625Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-10T08:19:23.1993383Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-10T08:19:23.2256801Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-10T08:19:23.2303391Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-10T08:19:23.2566350Z ##[endgroup]
+2026-11-10T08:19:23.2909424Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+2026-11-10T08:19:23.2909882Z with:
+2026-11-10T08:19:23.2910107Z   node-version: 24.18.0
+2026-11-10T08:19:23.2910336Z   cache: npm
+2026-11-10T08:19:23.2910573Z   cache-dependency-path: package-lock.json
+2026-11-10T08:19:23.2910881Z   always-auth: false
+2026-11-10T08:19:23.2911098Z   check-latest: false
+2026-11-10T08:19:23.2913543Z   token: ***
+2026-11-10T08:19:23.2913757Z ##[endgroup]
+2026-11-10T08:19:23.4555280Z Attempting to download 24.18.0...
+2026-11-10T08:19:23.4698958Z (node:2490) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-10T08:19:23.4700643Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-10T08:19:24.2581017Z Acquiring 24.18.0 - x64 from https://github.com/actions/node-versions/releases/download/24.18.0-28070977815/node-24.18.0-linux-x64.tar.gz
+2026-11-10T08:19:24.7796713Z Extracting ...
+2026-11-10T08:19:24.7951654Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/9427e1f0-2889-4c31-97a9-466ed83bb030 -f /home/runner/work/_temp/65df33ee-55e8-4df9-94f3-2ac3eb8bab16
+2026-11-10T08:19:26.0453885Z Adding to the cache ...
+2026-11-10T08:19:27.7557147Z ##[group]Environment details
+2026-11-10T08:19:28.0053195Z node: v24.18.0
+2026-11-10T08:19:28.0053867Z npm: 11.16.0
+2026-11-10T08:19:28.0054489Z yarn: 1.22.22
+2026-11-10T08:19:28.0055119Z ##[endgroup]
+2026-11-10T08:19:28.0085180Z [command]/opt/hostedtoolcache/node/24.18.0/x64/bin/npm config get cache
+2026-11-10T08:19:28.1105473Z /home/runner/.npm
+2026-11-10T08:19:28.2528141Z Cache hit for: node-cache-Linux-x64-npm-e2c2a3a398a60696ffab02a5f61df57166733f62999f8a9b443caec7f9cb1ad1
+2026-11-10T08:19:28.2655809Z (node:2490) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-10T08:19:28.6417743Z Received 827057 of 827057 (100.0%), 3.2 MBs/sec
+2026-11-10T08:19:28.6418576Z Cache Size: ~1 MB (827057 B)
+2026-11-10T08:19:28.6444908Z [command]/usr/bin/tar -xf /home/runner/work/_temp/b97d8150-33e6-499d-92f4-4692663d4823/cache.tzst -P -C /home/runner/work/Slay-the-Abyss/Slay-the-Abyss --use-compress-program unzstd
+2026-11-10T08:19:28.6574329Z Cache restored successfully
+2026-11-10T08:19:28.6580209Z Cache restored from key: node-cache-Linux-x64-npm-e2c2a3a398a60696ffab02a5f61df57166733f62999f8a9b443caec7f9cb1ad1
+2026-11-10T08:19:28.6831795Z ##[group]Run npm ci --ignore-scripts --prefer-offline --no-audit --no-fund --fetch-retries=0 --fetch-timeout=30000
+2026-11-10T08:19:28.6832996Z [36;1mnpm ci --ignore-scripts --prefer-offline --no-audit --no-fund --fetch-retries=0 --fetch-timeout=30000[0m
+2026-11-10T08:19:28.6861354Z shell: /usr/bin/bash -e {0}
+2026-11-10T08:19:28.6861668Z ##[endgroup]
+2026-11-10T08:19:29.3247880Z 
+2026-11-10T08:19:29.3254940Z added 11 packages in 578ms
+2026-11-10T08:19:29.3725646Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-11-10T08:19:29.3726154Z with:
+2026-11-10T08:19:29.3726393Z   python-version: 3.13
+2026-11-10T08:19:29.3726662Z   cache: pip
+2026-11-10T08:19:29.3726980Z   cache-dependency-path: .github/workflows/quality.yml
+2026-11-10T08:19:29.3727376Z   check-latest: false
+2026-11-10T08:19:29.3730306Z   token: ***
+2026-11-10T08:19:29.3730564Z   update-environment: true
+2026-11-10T08:19:29.3730873Z   allow-prereleases: false
+2026-11-10T08:19:29.3731158Z   freethreaded: false
+2026-11-10T08:19:29.3731416Z ##[endgroup]
+2026-11-10T08:19:29.5165116Z ##[group]Installed versions
+2026-11-10T08:19:29.5294217Z (node:2556) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-10T08:19:29.5296235Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-10T08:19:29.5297507Z Successfully set up CPython (3.13.18)
+2026-11-10T08:19:29.5298650Z ##[endgroup]
+2026-11-10T08:19:29.5626502Z [command]/opt/hostedtoolcache/Python/3.13.18/x64/bin/pip cache dir
+2026-11-10T08:19:29.8561297Z /home/runner/.cache/pip
+2026-11-10T08:19:30.0174975Z Cache hit for: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-b0e14ac58b4d30a7d99729bded3f9d852e73ef6bd1a39b53effedb44652591d3
+2026-11-10T08:19:30.0291809Z (node:2556) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-10T08:19:30.6460568Z Received 7349164 of 7349164 (100.0%), 15.2 MBs/sec
+2026-11-10T08:19:30.6461601Z Cache Size: ~7 MB (7349164 B)
+2026-11-10T08:19:30.6490096Z [command]/usr/bin/tar -xf /home/runner/work/_temp/24a72240-e2b3-4041-b9ec-09d329269945/cache.tzst -P -C /home/runner/work/Slay-the-Abyss/Slay-the-Abyss --use-compress-program unzstd
+2026-11-10T08:19:30.6663523Z Cache restored successfully
+2026-11-10T08:19:30.6673879Z Cache restored from key: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.18-pip-b0e14ac58b4d30a7d99729bded3f9d852e73ef6bd1a39b53effedb44652591d3
+2026-11-10T08:19:30.6878233Z ##[group]Run python3 -m pip install --disable-pip-version-check --retries 0 --timeout 30 Pillow==12.3.0
+2026-11-10T08:19:30.6879242Z [36;1mpython3 -m pip install --disable-pip-version-check --retries 0 --timeout 30 Pillow==12.3.0[0m
+2026-11-10T08:19:30.6901827Z shell: /usr/bin/bash -e {0}
+2026-11-10T08:19:30.6902140Z env:
+2026-11-10T08:19:30.6902478Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:30.6903046Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-10T08:19:30.6903597Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:30.6904278Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:30.6904765Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:30.6905252Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-10T08:19:30.6905673Z ##[endgroup]
+2026-11-10T08:19:31.4740623Z Collecting Pillow==12.3.0
+2026-11-10T08:19:31.4758313Z   Using cached pillow-12.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-10T08:19:31.4822464Z Using cached pillow-12.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-11-10T08:19:31.5266957Z Installing collected packages: Pillow
+2026-11-10T08:19:31.8606789Z Successfully installed Pillow-12.3.0
+2026-11-10T08:19:31.9188471Z ##[group]Run test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+2026-11-10T08:19:31.9189004Z [36;1mtest "$(git rev-parse HEAD)" = "$GITHUB_SHA"[0m
+2026-11-10T08:19:31.9189578Z [36;1m[[ "$BASE_SHA" =~ ^[0-9a-f]{40}$ ]][0m
+2026-11-10T08:19:31.9190034Z [36;1mif ! git cat-file -e "${BASE_SHA}^{commit}" 2>/dev/null; then[0m
+2026-11-10T08:19:31.9190890Z [36;1m  git -c credential.helper= -c http.lowSpeedLimit=1024 -c http.lowSpeedTime=30 fetch --depth=1 --no-auto-maintenance --no-tags origin "$BASE_SHA"[0m
+2026-11-10T08:19:31.9191679Z [36;1mfi[0m
+2026-11-10T08:19:31.9191938Z [36;1mgit cat-file -e "${BASE_SHA}^{commit}"[0m
+2026-11-10T08:19:31.9213066Z shell: /usr/bin/bash -e {0}
+2026-11-10T08:19:31.9213369Z env:
+2026-11-10T08:19:31.9213695Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:31.9214497Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-10T08:19:31.9215060Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:31.9215534Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:31.9216014Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:31.9216507Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-10T08:19:31.9216967Z   BASE_SHA: 1eb288472d7b33b7450eec97a624ca2ffa526f39
+2026-11-10T08:19:31.9217347Z   GIT_TERMINAL_PROMPT: 0
+2026-11-10T08:19:31.9217626Z ##[endgroup]
+2026-11-10T08:19:37.0906998Z From https://github.com/FurinyaWorks/Slay-the-Abyss
+2026-11-10T08:19:37.0907608Z  * branch              1eb288472d7b33b7450eec97a624ca2ffa526f39 -> FETCH_HEAD
+2026-11-10T08:19:37.0973612Z ##[group]Run node scripts/test-affected.mjs --ci-fast --base "$BASE_SHA"
+2026-11-10T08:19:37.0974404Z [36;1mnode scripts/test-affected.mjs --ci-fast --base "$BASE_SHA"[0m
+2026-11-10T08:19:37.0996131Z shell: /usr/bin/bash -e {0}
+2026-11-10T08:19:37.0996402Z env:
+2026-11-10T08:19:37.0996689Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:37.0997172Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib/pkgconfig
+2026-11-10T08:19:37.0997655Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:37.0998076Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:37.0998487Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.18/x64
+2026-11-10T08:19:37.0998921Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.18/x64/lib
+2026-11-10T08:19:37.0999331Z   BASE_SHA: 1eb288472d7b33b7450eec97a624ca2ffa526f39
+2026-11-10T08:19:37.1002004Z   CI_LFS_TOKEN: ***
+2026-11-10T08:19:37.1002252Z   ABYSS_PYTHON: python3
+2026-11-10T08:19:37.1002536Z ##[endgroup]
+2026-11-10T08:19:40.0868867Z {
+2026-11-10T08:19:40.0869426Z   "tier": "ci-fast",
+2026-11-10T08:19:40.0869918Z   "changed": [
+2026-11-10T08:19:40.0870431Z     ".gitattributes",
+2026-11-10T08:19:40.0870904Z     "AGENTS.md",
+2026-11-10T08:19:40.0871897Z     "backlog/tasks/task-100.1 - 统一V25原生组件加载生命周期与性能防回退.md",
+2026-11-10T08:19:40.0872897Z     "backlog/tasks/task-103 - 移植V25原生2D并交付两幕可玩候选.md",
+2026-11-10T08:19:40.0873620Z     "config/architecture.json",
+2026-11-10T08:19:40.0874517Z     "config/sprint-intake.json",
+2026-11-10T08:19:40.0875125Z     "config/task-intake.json",
+2026-11-10T08:19:40.0875805Z     "data/presentation/ui_theme.json",
+2026-11-10T08:19:40.0876368Z     "docs/AGENT_GUIDANCE.md",
+2026-11-10T08:19:40.0876873Z     "docs/ENGINEERING.md",
+2026-11-10T08:19:40.0877354Z     "docs/HANDOFF.md",
+2026-11-10T08:19:40.0877798Z     "docs/MILESTONES.md",
+2026-11-10T08:19:40.0878317Z     "docs/SPRINT_EXECUTION.md",
+2026-11-10T08:19:40.0878839Z     "docs/TASK_EXECUTION.md",
+2026-11-10T08:19:40.0879434Z     "docs/backlog-details/TASK-100.1.md",
+2026-11-10T08:19:40.0880171Z     "docs/evidence/battle-alignment-20261110/README.md",
+2026-11-10T08:19:40.0880871Z     "docs/evidence/battle-page-20261110/README.md",
+2026-11-10T08:19:40.0881643Z     "docs/evidence/official-assets-first-20261109/README.md",
+2026-11-10T08:19:40.0882438Z     "docs/evidence/official-assets-first-20261109/full-flow/README.md",
+2026-11-10T08:19:40.0883343Z     "docs/evidence/official-assets-first-20261109/full-flow/artifact-index.json",
+2026-11-10T08:19:40.0884987Z     "docs/evidence/official-assets-first-20261109/full-flow/full-flow-ci-review.json",
+2026-11-10T08:19:40.0886124Z     "docs/evidence/official-assets-first-20261109/full-flow/full-flow-code-review.json",
+2026-11-10T08:19:40.0887221Z     "docs/evidence/official-assets-first-20261109/full-flow/multi-prefix-review.json",
+2026-11-10T08:19:40.0888338Z     "docs/evidence/official-assets-first-20261109/full-flow/natural-campaign-report.json",
+2026-11-10T08:19:40.0889426Z     "docs/evidence/official-assets-first-20261109/full-flow/natural-entry.lua",
+2026-11-10T08:19:40.0890421Z     "docs/evidence/official-assets-first-20261109/full-flow/natural-stderr.log",
+2026-11-10T08:19:40.0891439Z     "docs/evidence/official-assets-first-20261109/full-flow/natural-stdout.log.gz",
+2026-11-10T08:19:40.0892546Z     "docs/evidence/official-assets-first-20261109/full-flow/natural-visual-scenes.json.gz",
+2026-11-10T08:19:40.0893632Z     "docs/evidence/official-assets-first-20261109/full-flow/prefix-files.json",
+2026-11-10T08:19:40.0894915Z     "docs/evidence/official-assets-first-20261109/full-flow/prefix-validation.json.gz",
+2026-11-10T08:19:40.0896008Z     "docs/evidence/official-assets-first-20261109/full-flow/preserved-files.json",
+2026-11-10T08:19:40.0897102Z     "docs/evidence/official-assets-first-20261109/full-flow/repository-checks.log.gz",
+2026-11-10T08:19:40.0898584Z     "docs/evidence/official-assets-first-20261109/full-flow/results-and-shop-surface-test.log.gz",
+2026-11-10T08:19:40.0899844Z     "docs/evidence/official-assets-first-20261109/full-flow/selected-prefix-review.json",
+2026-11-10T08:19:40.0900963Z     "docs/evidence/official-assets-first-20261109/full-flow/shop-delta/README.md",
+2026-11-10T08:19:40.0901998Z     "docs/evidence/official-assets-first-20261109/full-flow/shop-delta/delta.json",
+2026-11-10T08:19:40.0903104Z     "docs/evidence/official-assets-first-20261109/full-flow/shop-delta/raster-diagnostics.json",
+2026-11-10T08:19:40.0904655Z     "docs/evidence/official-assets-first-20261109/full-flow/shop-delta/shop-fixed.png",
+2026-11-10T08:19:40.0905860Z     "docs/evidence/official-assets-first-20261109/full-flow/shop-delta/source-hashes.json",
+2026-11-10T08:19:40.0907021Z     "docs/evidence/official-assets-first-20261109/full-flow/shop-delta/source-integrity.json",
+2026-11-10T08:19:40.0908656Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-old-dispatch-negative-control.lua",
+2026-11-10T08:19:40.0909474Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-power-green.log.gz",
+2026-11-10T08:19:40.0910131Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-power-red.log.gz",
+2026-11-10T08:19:40.0911554Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-power-template-red.json",
+2026-11-10T08:19:40.0913269Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-power-template-red.log",
+2026-11-10T08:19:40.0914693Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/README.md",
+2026-11-10T08:19:40.0916117Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-selected-readable.png",
+2026-11-10T08:19:40.0917850Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-selection-cancelled.png",
+2026-11-10T08:19:40.0919438Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/natural-multi-enemy-settled.png",
+2026-11-10T08:19:40.0920888Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/raster-diagnostics.json",
+2026-11-10T08:19:40.0922340Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/source-hashes.json",
+2026-11-10T08:19:40.0923672Z     "docs/evidence/official-assets-first-20261109/full-flow/visual-prefix/source-integrity.json",
+2026-11-10T08:19:40.0925147Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/README.md",
+2026-11-10T08:19:40.0926293Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/act-transition.png",
+2026-11-10T08:19:40.0927672Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/battle-act1.png",
+2026-11-10T08:19:40.0928902Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/battle-act2.png",
+2026-11-10T08:19:40.0930007Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/boss_treasure-act1.png",
+2026-11-10T08:19:40.0931206Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/boss_treasure-act2.png",
+2026-11-10T08:19:40.0932379Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/camp-act1.png",
+2026-11-10T08:19:40.0933469Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/camp-act2.png",
+2026-11-10T08:19:40.0934792Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/character.png",
+2026-11-10T08:19:40.0935882Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/event-act1.png",
+2026-11-10T08:19:40.0937014Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/event-act2.png",
+2026-11-10T08:19:40.0938102Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/map-act1.png",
+2026-11-10T08:19:40.0939147Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/map-act2.png",
+2026-11-10T08:19:40.0940199Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/menu.png",
+2026-11-10T08:19:40.0941363Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/neow-act1.png",
+2026-11-10T08:19:40.0942770Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/raster-diagnostics.json",
+2026-11-10T08:19:40.0944223Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/report.json",
+2026-11-10T08:19:40.0945358Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/restart-neow.png",
+2026-11-10T08:19:40.0946468Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/reward-act1.png",
+2026-11-10T08:19:40.0947548Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/reward-act2.png",
+2026-11-10T08:19:40.0948660Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/shop-act2.png",
+2026-11-10T08:19:40.0949797Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/source-hashes.json",
+2026-11-10T08:19:40.0951014Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/source-integrity.json",
+2026-11-10T08:19:40.0952149Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/treasure-act1.png",
+2026-11-10T08:19:40.0953271Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/treasure-act2.png",
+2026-11-10T08:19:40.0954954Z     "docs/evidence/official-assets-first-20261109/full-flow/visual/victory.png",
+2026-11-10T08:19:40.0955969Z     "docs/evidence/official-assets-first-20261109/generated-layout.json",
+2026-11-10T08:19:40.0956946Z     "docs/evidence/official-assets-first-20261109/independent-review.json",
+2026-11-10T08:19:40.0957914Z     "docs/evidence/official-assets-first-20261109/license-fix/README.md",
+2026-11-10T08:19:40.0959142Z     "docs/evidence/official-assets-first-20261109/license-fix/license-diagnostics-audit-final.log.gz",
+2026-11-10T08:19:40.0960579Z     "docs/evidence/official-assets-first-20261109/license-fix/license-diagnostics-audit-pass.log.gz",
+2026-11-10T08:19:40.0961919Z     "docs/evidence/official-assets-first-20261109/license-fix/license-diagnostics-fix.log.gz",
+2026-11-10T08:19:40.0963228Z     "docs/evidence/official-assets-first-20261109/license-fix/license-hosted-failure.log.gz",
+2026-11-10T08:19:40.0964686Z     "docs/evidence/official-assets-first-20261109/license-fix/license-inventory-review.json",
+2026-11-10T08:19:40.0965991Z     "docs/evidence/official-assets-first-20261109/license-fix/license-reviewed-assets.log.gz",
+2026-11-10T08:19:40.0967376Z     "docs/evidence/official-assets-first-20261109/license-fix/license-workspace-materialization.json",
+2026-11-10T08:19:40.0968578Z     "docs/evidence/official-assets-first-20261109/license-fix/logs.json",
+2026-11-10T08:19:40.0969851Z     "docs/evidence/official-assets-first-20261109/planning-flow/README.md",
+2026-11-10T08:19:40.0970999Z     "docs/evidence/official-assets-first-20261109/planning-flow/ci-calibration-initial.log",
+2026-11-10T08:19:40.0972160Z     "docs/evidence/official-assets-first-20261109/planning-flow/ci-contracts.log",
+2026-11-10T08:19:40.0973420Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-flow/measurement.json",
+2026-11-10T08:19:40.0975044Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-flow/stderr.log",
+2026-11-10T08:19:40.0976422Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-flow/stdout.log",
+2026-11-10T08:19:40.0977816Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-runtime/measurement.json",
+2026-11-10T08:19:40.0979214Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-runtime/stderr.log",
+2026-11-10T08:19:40.0980556Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-runtime/stdout.log",
+2026-11-10T08:19:40.0981935Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-visual/measurement.json",
+2026-11-10T08:19:40.0983328Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-visual/stderr.log",
+2026-11-10T08:19:40.0984523Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-visual/stdout.log",
+2026-11-10T08:19:40.0986075Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets/measurement.json",
+2026-11-10T08:19:40.0987486Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets/stderr.log",
+2026-11-10T08:19:40.0988769Z     "docs/evidence/official-assets-first-20261109/planning-flow/official-assets/stdout.log",
+2026-11-10T08:19:40.0989974Z     "docs/evidence/official-assets-first-20261109/planning-flow/summary.json",
+2026-11-10T08:19:40.0990984Z     "docs/evidence/official-assets-first-20261109/planning/README.md",
+2026-11-10T08:19:40.0991997Z     "docs/evidence/official-assets-first-20261109/planning/ci-contracts.log",
+2026-11-10T08:19:40.0993170Z     "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/measurement.json",
+2026-11-10T08:19:40.0994716Z     "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/stderr.log",
+2026-11-10T08:19:40.0995951Z     "docs/evidence/official-assets-first-20261109/planning/official-assets-flow/stdout.log",
+2026-11-10T08:19:40.0997263Z     "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/measurement.json",
+2026-11-10T08:19:40.0998580Z     "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/stderr.log",
+2026-11-10T08:19:40.0999901Z     "docs/evidence/official-assets-first-20261109/planning/official-assets-runtime/stdout.log",
+2026-11-10T08:19:40.1001196Z     "docs/evidence/official-assets-first-20261109/planning/official-assets/measurement.json",
+2026-11-10T08:19:40.1002430Z     "docs/evidence/official-assets-first-20261109/planning/official-assets/stderr.log",
+2026-11-10T08:19:40.1003587Z     "docs/evidence/official-assets-first-20261109/planning/official-assets/stdout.log",
+2026-11-10T08:19:40.1004884Z     "docs/evidence/official-assets-first-20261109/planning/summary.json",
+2026-11-10T08:19:40.1005832Z     "docs/evidence/official-assets-first-20261109/validation-files.json",
+2026-11-10T08:19:40.1006916Z     "docs/evidence/official-assets-first-20261109/validation/backlog-after-update.log.gz",
+2026-11-10T08:19:40.1008048Z     "docs/evidence/official-assets-first-20261109/validation/backlog-final.log.gz",
+2026-11-10T08:19:40.1009164Z     "docs/evidence/official-assets-first-20261109/validation/backlog.log.gz",
+2026-11-10T08:19:40.1010319Z     "docs/evidence/official-assets-first-20261109/validation/baseline-build.log.gz",
+2026-11-10T08:19:40.1011412Z     "docs/evidence/official-assets-first-20261109/validation/build-ui-final.log.gz",
+2026-11-10T08:19:40.1012673Z     "docs/evidence/official-assets-first-20261109/validation/build-ui.log.gz",
+2026-11-10T08:19:40.1013884Z     "docs/evidence/official-assets-first-20261109/validation/candidate-contracts-materialized.log.gz",
+2026-11-10T08:19:40.1015368Z     "docs/evidence/official-assets-first-20261109/validation/candidate-contracts.log.gz",
+2026-11-10T08:19:40.1016621Z     "docs/evidence/official-assets-first-20261109/validation/existing-contracts-first.log.gz",
+2026-11-10T08:19:40.1017981Z     "docs/evidence/official-assets-first-20261109/validation/flow-validation-measurement.json.gz",
+2026-11-10T08:19:40.1019283Z     "docs/evidence/official-assets-first-20261109/validation/flow-validation-stderr.log.gz",
+2026-11-10T08:19:40.1020514Z     "docs/evidence/official-assets-first-20261109/validation/flow-validation-stdout.log.gz",
+2026-11-10T08:19:40.1021671Z     "docs/evidence/official-assets-first-20261109/validation/guidance-final.log.gz",
+2026-11-10T08:19:40.1022767Z     "docs/evidence/official-assets-first-20261109/validation/guidance-fixed.log.gz",
+2026-11-10T08:19:40.1023849Z     "docs/evidence/official-assets-first-20261109/validation/guidance.log.gz",
+2026-11-10T08:19:40.1025248Z     "docs/evidence/official-assets-first-20261109/validation/official-alias-fixed.log.gz",
+2026-11-10T08:19:40.1026470Z     "docs/evidence/official-assets-first-20261109/validation/official-assets-first.log.gz",
+2026-11-10T08:19:40.1027704Z     "docs/evidence/official-assets-first-20261109/validation/page-host-after-build.log.gz",
+2026-11-10T08:19:40.1029069Z     "docs/evidence/official-assets-first-20261109/validation/platform-load.log.gz",
+2026-11-10T08:19:40.1030314Z     "docs/evidence/official-assets-first-20261109/validation/profile-audio-fixed.log.gz",
+2026-11-10T08:19:40.1031553Z     "docs/evidence/official-assets-first-20261109/validation/remaining-failures-fixed.log.gz",
+2026-11-10T08:19:40.1032930Z     "docs/evidence/official-assets-first-20261109/validation/runtime-validation-measurement.json.gz",
+2026-11-10T08:19:40.1034504Z     "docs/evidence/official-assets-first-20261109/validation/runtime-validation-stderr.log.gz",
+2026-11-10T08:19:40.1035830Z     "docs/evidence/official-assets-first-20261109/validation/runtime-validation-stdout.log.gz",
+2026-11-10T08:19:40.1036991Z     "docs/evidence/official-assets-first-20261109/validation/syntax.log.gz",
+2026-11-10T08:19:40.1037925Z     "docs/evidence/pr588-ci-contracts-20261110/README.md",
+2026-11-10T08:19:40.1038761Z     "docs/evidence/pr588-ci-contracts-20261110/backlog-final.log.gz",
+2026-11-10T08:19:40.1039780Z     "docs/evidence/pr588-ci-contracts-20261110/closure-and-git-identity.json",
+2026-11-10T08:19:40.1040733Z     "docs/evidence/pr588-ci-contracts-20261110/closure.log.gz",
+2026-11-10T08:19:40.1041654Z     "docs/evidence/pr588-ci-contracts-20261110/cost-contract-green.log.gz",
+2026-11-10T08:19:40.1042650Z     "docs/evidence/pr588-ci-contracts-20261110/guidance-sparse-red.log.gz",
+2026-11-10T08:19:40.1043569Z     "docs/evidence/pr588-ci-contracts-20261110/guidance.log.gz",
+2026-11-10T08:19:40.1044672Z     "docs/evidence/pr588-ci-contracts-20261110/legibility-red.log.gz",
+2026-11-10T08:19:40.1045616Z     "docs/evidence/pr588-ci-contracts-20261110/negative-controls.json",
+2026-11-10T08:19:40.1046542Z     "docs/evidence/pr588-ci-contracts-20261110/old-medallion.log.gz",
+2026-11-10T08:19:40.1047539Z     "docs/evidence/pr588-ci-contracts-20261110/quick-42761531123-original.log.gz",
+2026-11-10T08:19:40.1048531Z     "docs/evidence/pr588-ci-contracts-20261110/related-green.log.gz",
+2026-11-10T08:19:40.1049547Z     "docs/evidence/pr588-ci-contracts-20261110/restored-positive-controls.log.gz",
+2026-11-10T08:19:40.1050484Z     "docs/evidence/pr588-ci-contracts-20261110/review.json",
+2026-11-10T08:19:40.1051321Z     "docs/evidence/pr588-ci-contracts-20261110/reviewed-sha256.txt",
+2026-11-10T08:19:40.1052143Z     "docs/evidence/pr588-ci-contracts-20261110/sha256.json",
+2026-11-10T08:19:40.1053037Z     "docs/evidence/pr588-ci-contracts-20261110/source-closure-final.log.gz",
+2026-11-10T08:19:40.1054465Z     "docs/evidence/pr588-ci-contracts-20261110/source-green.log.gz",
+2026-11-10T08:19:40.1055362Z     "docs/evidence/pr588-ci-contracts-20261110/source-red.log.gz",
+2026-11-10T08:19:40.1056266Z     "docs/evidence/pr588-ci-contracts-20261110/stale-light-ink.log.gz",
+2026-11-10T08:19:40.1057288Z     "docs/evidence/pr588-ci-contracts-20261110/suppressed-semantic-cost.log.gz",
+2026-11-10T08:19:40.1058225Z     "docs/evidence/pr588-ci-contracts-20261110/syntax.log.gz",
+2026-11-10T08:19:40.1059037Z     "docs/evidence/task-100-1-ci281-failure-map-20261109.json",
+2026-11-10T08:19:40.1059742Z     "docs/evidence/task-100-1-h1-20261109.json",
+2026-11-10T08:19:40.1060361Z     "docs/evidence/task-100-1-h3-20261109.json",
+2026-11-10T08:19:40.1061001Z     "docs/evidence/task-100-1-h3-20261109/README.md",
+2026-11-10T08:19:40.1061768Z     "docs/evidence/task-100-1-h3-20261109/raw-counters.json.gz",
+2026-11-10T08:19:40.1062520Z     "docs/evidence/task-100-1-h3-20261109/replay.mjs",
+2026-11-10T08:19:40.1063238Z     "docs/evidence/task-100-1-sdk-comparison-20261109.json",
+2026-11-10T08:19:40.1064228Z     "docs/evidence/task-100-1-sdk-eager-20261109.json.gz",
+2026-11-10T08:19:40.1065065Z     "docs/evidence/task-100-1-sdk-final-comparison-20261109.json",
+2026-11-10T08:19:40.1065926Z     "docs/evidence/task-100-1-sdk-final-eager-20261109.json.gz",
+2026-11-10T08:19:40.1066758Z     "docs/evidence/task-100-1-sdk-final-lazy-20261109.json.gz",
+2026-11-10T08:19:40.1067848Z     "docs/evidence/task-100-1-sdk-gameplay-diagnostic-20261109.json.gz",
+2026-11-10T08:19:40.1068717Z     "docs/evidence/task-100-1-sdk-lazy-20261109.json.gz",
+2026-11-10T08:19:40.1069510Z     "docs/evidence/task-100-1-v25-latest-natural-20261109.json",
+2026-11-10T08:19:40.1070413Z     "docs/evidence/task-100-1-v25-latest-natural-hp-layers-20261109.json",
+2026-11-10T08:19:40.1071383Z     "docs/evidence/task-100-1-v25-latest-natural-raw-20261109.json.gz",
+2026-11-10T08:19:40.1072323Z     "docs/evidence/task-100-1-v25-latest-natural-visual-20261109.json",
+2026-11-10T08:19:40.1073352Z     "docs/evidence/task-100-1-v25-latest-natural-visual-raw-20261109.json.gz",
+2026-11-10T08:19:40.1074602Z     "docs/evidence/task-100-1-v25-native-control-count-20261109.json",
+2026-11-10T08:19:40.1075629Z     "docs/evidence/task-100-1-v25-native-control-count-raw-20261109.json.gz",
+2026-11-10T08:19:40.1076490Z     "docs/evidence/task-100-1-v25-sdk-20261109.json",
+2026-11-10T08:19:40.1077327Z     "docs/evidence/task-100-1-v25-sdk-latest-pressure-20261109.json.gz",
+2026-11-10T08:19:40.1078239Z     "docs/evidence/task-100-1-v25-sdk-natural-20261109.json.gz",
+2026-11-10T08:19:40.1079137Z     "docs/evidence/task-100-1-v25-source-preservation-20261109.json",
+2026-11-10T08:19:40.1080059Z     "docs/evidence/task-100-1-v25-stage-baseline-1-20261109.json.gz",
+2026-11-10T08:19:40.1080999Z     "docs/evidence/task-100-1-v25-stage-baseline-2-20261109.json.gz",
+2026-11-10T08:19:40.1081885Z     "docs/evidence/task-100-1-v25-stage-baseline-20261109.json",
+2026-11-10T08:19:40.1082762Z     "docs/evidence/task-100-1-v25-stage-baseline-3-20261109.json.gz",
+2026-11-10T08:19:40.1083460Z     "docs/legal/assets.json",
+2026-11-10T08:19:40.1084181Z     "docs/plans/2026-11-08-v25-port.md",
+2026-11-10T08:19:40.1084848Z     "docs/plans/2026-11-09-official-assets-first-ui.md",
+2026-11-10T08:19:40.1085591Z     "docs/reviews/V25-COMPONENT-COMPARISON-20261108.md",
+2026-11-10T08:19:40.1086310Z     "experiments/native-2d-vertical-slice/README.md",
+2026-11-10T08:19:40.1087215Z     "experiments/native-2d-vertical-slice/reference-handbook/V25-ADOPTION.json",
+2026-11-10T08:19:40.1088029Z     "scripts/art-features.mjs",
+2026-11-10T08:19:40.1088558Z     "scripts/audit-native-candidate.mjs",
+2026-11-10T08:19:40.1089149Z     "scripts/battle-preview-scenario.mjs",
+2026-11-10T08:19:40.1089798Z     "scripts/benchmark-component-lifecycle.mjs",
+2026-11-10T08:19:40.1090442Z     "scripts/build-component-candidate.mjs",
+2026-11-10T08:19:40.1090974Z     "scripts/build-game.mjs",
+2026-11-10T08:19:40.1091487Z     "scripts/build-native-audio-game.mjs",
+2026-11-10T08:19:40.1092278Z     "scripts/build-native-bgm-candidate.mjs",
+2026-11-10T08:19:40.1092891Z     "scripts/build-native-candidate.mjs",
+2026-11-10T08:19:40.1093425Z     "scripts/build-ui.mjs",
+2026-11-10T08:19:40.1093870Z     "scripts/card-face.mjs",
+2026-11-10T08:19:40.1094619Z     "scripts/check-task-intake.mjs",
+2026-11-10T08:19:40.1095156Z     "scripts/ci-quality-shape.mjs",
+2026-11-10T08:19:40.1095681Z     "scripts/ci-test-timings.json",
+2026-11-10T08:19:40.1096201Z     "scripts/evidence-files.mjs",
+2026-11-10T08:19:40.1096749Z     "scripts/lightweight-card-layout.mjs",
+2026-11-10T08:19:40.1097334Z     "scripts/measure-official-battle.mjs",
+2026-11-10T08:19:40.1097914Z     "scripts/native-candidate-audit.mjs",
+2026-11-10T08:19:40.1098513Z     "scripts/native-candidate-preview.mjs",
+2026-11-10T08:19:40.1099106Z     "scripts/native-candidate-scripts.mjs",
+2026-11-10T08:19:40.1099707Z     "scripts/native-candidate-ui-cache.mjs",
+2026-11-10T08:19:40.1100310Z     "scripts/native-component-content.mjs",
+2026-11-10T08:19:40.1100918Z     "scripts/native-component-import.mjs",
+2026-11-10T08:19:40.1101513Z     "scripts/native-component-profile.mjs",
+2026-11-10T08:19:40.1102131Z     "scripts/native-component-regular.mjs",
+2026-11-10T08:19:40.1102731Z     "scripts/native-ui-encoder.mjs",
+2026-11-10T08:19:40.1103323Z     "scripts/official-assets-campaign.lua",
+2026-11-10T08:19:40.1104151Z     "scripts/official-assets-layout.mjs",
+2026-11-10T08:19:40.1104828Z     "scripts/official-assets-preview-driver.lua",
+2026-11-10T08:19:40.1105740Z     "scripts/official-assets-preview-raster.py",
+2026-11-10T08:19:40.1106416Z     "scripts/official-assets-preview.lua",
+2026-11-10T08:19:40.1107035Z     "scripts/official-assets-preview.mjs",
+2026-11-10T08:19:40.1107643Z     "scripts/official-assets-profile.mjs",
+2026-11-10T08:19:40.1108250Z     "scripts/official-battle-hud.mjs",
+2026-11-10T08:19:40.1108829Z     "scripts/official-portraits.mjs",
+2026-11-10T08:19:40.1109463Z     "scripts/setup-lua-static.mjs",
+2026-11-10T08:19:40.1109979Z     "scripts/test-lua.mjs",
+2026-11-10T08:19:40.1110442Z     "scripts/ui-profile.mjs",
+2026-11-10T08:19:40.1110972Z     "scripts/v25-battle-chrome.mjs",
+2026-11-10T08:19:40.1111530Z     "scripts/v25-battle-scene.mjs",
+2026-11-10T08:19:40.1112086Z     "scripts/v25-card-audit-inputs.mjs",
+2026-11-10T08:19:40.1112653Z     "scripts/v25-card-binding.mjs",
+2026-11-10T08:19:40.1113199Z     "scripts/v25-card-templates.mjs",
+2026-11-10T08:19:40.1113762Z     "scripts/v25-character-layout.mjs",
+2026-11-10T08:19:40.1114511Z     "scripts/v25-layout.mjs",
+2026-11-10T08:19:40.1115016Z     "scripts/v25-map-layout.mjs",
+2026-11-10T08:19:40.1115545Z     "scripts/v25-menu-layout.mjs",
+2026-11-10T08:19:40.1116064Z     "scripts/v25-node-layout.mjs",
+2026-11-10T08:19:40.1116615Z     "scripts/v25-portrait-profile.mjs",
+2026-11-10T08:19:40.1117196Z     "scripts/v25-private-card-assets.mjs",
+2026-11-10T08:19:40.1117759Z     "scripts/v25-profile.mjs",
+2026-11-10T08:19:40.1118270Z     "scripts/v25-result-layout.mjs",
+2026-11-10T08:19:40.1118837Z     "scripts/v25-turn-notice-layout.mjs",
+2026-11-10T08:19:40.1119407Z     "scripts/v25-ui-mask-assets.mjs",
+2026-11-10T08:19:40.1119980Z     "scripts/v25-ui-mask-audit-inputs.mjs",
+2026-11-10T08:19:40.1120583Z     "scripts/verify-backlog-roadmap.mjs",
+2026-11-10T08:19:40.1121182Z     "scripts/verify-launch-content.mjs",
+2026-11-10T08:19:40.1121792Z     "scripts/verify-official-campaign.mjs",
+2026-11-10T08:19:40.1122388Z     "src/lua/abyss_battle_card_view.lua",
+2026-11-10T08:19:40.1122969Z     "src/lua/abyss_battle_enemy_view.lua",
+2026-11-10T08:19:40.1123535Z     "src/lua/abyss_battle_render_hud.lua",
+2026-11-10T08:19:40.1124350Z     "src/lua/abyss_card_display.lua",
+2026-11-10T08:19:40.1124900Z     "src/lua/abyss_card_skin.lua",
+2026-11-10T08:19:40.1125475Z     "src/lua/abyss_character_select_view.lua",
+2026-11-10T08:19:40.1126071Z     "src/lua/abyss_choice_ui.lua",
+2026-11-10T08:19:40.1126615Z     "src/lua/abyss_component_bridge.lua",
+2026-11-10T08:19:40.1127189Z     "src/lua/abyss_component_pages.lua",
+2026-11-10T08:19:40.1127973Z     "src/lua/abyss_deck_ui.lua",
+2026-11-10T08:19:40.1128489Z     "src/lua/abyss_feedback.lua",
+2026-11-10T08:19:40.1129011Z     "src/lua/abyss_game_ui_input.lua",
+2026-11-10T08:19:40.1129594Z     "src/lua/abyss_game_ui_menu_view.lua",
+2026-11-10T08:19:40.1130164Z     "src/lua/abyss_game_ui_view.lua",
+2026-11-10T08:19:40.1130693Z     "src/lua/abyss_map_ui.lua",
+2026-11-10T08:19:40.1131194Z     "src/lua/abyss_node_ui_faces.lua",
+2026-11-10T08:19:40.1131767Z     "src/lua/abyss_traveler_portraits.lua",
+2026-11-10T08:19:40.1132279Z     "src/lua/abyss_ui.lua",
+2026-11-10T08:19:40.1132774Z     "src/lua/abyss_v25_card_surface.lua",
+2026-11-10T08:19:40.1133323Z     "src/lua/abyss_v25_menu_view.lua",
+2026-11-10T08:19:40.1133874Z     "src/lua/abyss_v25_texture_runtime.lua",
+2026-11-10T08:19:40.1134685Z     "src/lua/abyss_v25_turn_notice.lua",
+2026-11-10T08:19:40.1135290Z     "tests/art-feature-flags-runtime.test.mjs",
+2026-11-10T08:19:40.1135963Z     "tests/art-feature-source-inverse.test.mjs",
+2026-11-10T08:19:40.1136593Z     "tests/backlog-roadmap.test.mjs",
+2026-11-10T08:19:40.1137200Z     "tests/build-ui-input-protection.test.mjs",
+2026-11-10T08:19:40.1137858Z     "tests/ci-complete-calibration.test.mjs",
+2026-11-10T08:19:40.1138456Z     "tests/ci-impact.test.mjs",
+2026-11-10T08:19:40.1139031Z     "tests/ci-windows-shape-expansion.test.mjs",
+2026-11-10T08:19:40.1139736Z     "tests/ci-windows-shards.test.mjs",
+2026-11-10T08:19:40.1140692Z     "tests/compendium-source-inverse.test.mjs",
+2026-11-10T08:19:40.1141442Z     "tests/component-lifecycle-benchmark.test.mjs",
+2026-11-10T08:19:40.1142168Z     "tests/component-portrait-diagnosis.test.mjs",
+2026-11-10T08:19:40.1142868Z     "tests/defect-final-source-epoch.test.mjs",
+2026-11-10T08:19:40.1143467Z     "tests/delivery.test.mjs",
+2026-11-10T08:19:40.1144310Z     "tests/encounter-formation-source-epoch.test.mjs",
+2026-11-10T08:19:40.1145016Z     "tests/enemy-name-stability.test.mjs",
+2026-11-10T08:19:40.1145646Z     "tests/evidence-native-junction.test.mjs",
+2026-11-10T08:19:40.1146380Z     "tests/fixtures/component-portrait-before.json.gz",
+2026-11-10T08:19:40.1147018Z     "tests/full-quality.test.mjs",
+2026-11-10T08:19:40.1147666Z     "tests/game-ui-extraction-source-inverse.test.mjs",
+2026-11-10T08:19:40.1148474Z     "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+2026-11-10T08:19:40.1150568Z     "tests/helpers/combined-epoch/source-epoch-runtime.mjs",
+2026-11-10T08:19:40.1151521Z     "tests/helpers/combined-epoch/source-epoch.mjs",
+2026-11-10T08:19:40.1152477Z     "tests/helpers/component-portrait-input.mjs",
+2026-11-10T08:19:40.1153383Z     "tests/helpers/component-ui-ci-source-epoch.json.gz",
+2026-11-10T08:19:40.1154527Z     "tests/helpers/component-ui-ci-source-inverse.mjs",
+2026-11-10T08:19:40.1155451Z     "tests/helpers/component-ui-source-epoch.json.gz",
+2026-11-10T08:19:40.1156296Z     "tests/helpers/component-ui-source-epoch.mjs",
+2026-11-10T08:19:40.1157372Z     "tests/helpers/copy-integration-source-closure.mjs",
+2026-11-10T08:19:40.1158299Z     "tests/helpers/foundation-fix-ci-source-epoch.json.gz",
+2026-11-10T08:19:40.1174992Z     "tests/helpers/foundation-fix-ci-source-inverse.mjs",
+2026-11-10T08:19:40.1175864Z     "tests/helpers/lua-download-contract.mjs",
+2026-11-10T08:19:40.1176659Z     "tests/helpers/lua-timeout-policy-source-inverse.mjs",
+2026-11-10T08:19:40.1177504Z     "tests/helpers/native-toolchain-fixture.mjs",
+2026-11-10T08:19:40.1178358Z     "tests/helpers/official-assets-ci-source-epoch.json.gz",
+2026-11-10T08:19:40.1179252Z     "tests/helpers/official-assets-ci-source-inverse.mjs",
+2026-11-10T08:19:40.1180184Z     "tests/helpers/official-assets-flow-ci-source-epoch.json.gz",
+2026-11-10T08:19:40.1181108Z     "tests/helpers/official-assets-flow-ci-source-inverse.mjs",
+2026-11-10T08:19:40.1182001Z     "tests/helpers/official-battle-alignment-source-epoch.json.gz",
+2026-11-10T08:19:40.1182910Z     "tests/helpers/official-battle-source-epoch.json.gz",
+2026-11-10T08:19:40.1183703Z     "tests/helpers/official-battle-source-inverse.mjs",
+2026-11-10T08:19:40.1185345Z     "tests/helpers/reward-query-planning-contract.mjs",
+2026-11-10T08:19:40.1186073Z     "tests/helpers/v25-texture-binding-fixture.mjs",
+2026-11-10T08:19:40.1186816Z     "tests/lightweight-card-layout.test.mjs",
+2026-11-10T08:19:40.1187516Z     "tests/lua/component_content_retry.lua",
+2026-11-10T08:19:40.1188199Z     "tests/lua/component_page_failures.lua",
+2026-11-10T08:19:40.1188831Z     "tests/lua/component_pages.lua",
+2026-11-10T08:19:40.1189417Z     "tests/lua/native_card_art_binding.lua",
+2026-11-10T08:19:40.1190104Z     "tests/lua/native_card_art_image_capabilities.lua",
+2026-11-10T08:19:40.1190813Z     "tests/lua/native_card_art_rectangles.lua",
+2026-11-10T08:19:40.1191483Z     "tests/lua/support/compact_art_loading.lua",
+2026-11-10T08:19:40.1192243Z     "tests/lua/support/component_portrait_atomic_failures.lua",
+2026-11-10T08:19:40.1193076Z     "tests/lua/support/component_portrait_diagnosis.lua",
+2026-11-10T08:19:40.1193795Z     "tests/lua/support/native_card_art_ending.lua",
+2026-11-10T08:19:40.1194885Z     "tests/lua/support/native_card_art_fallback_ownership.lua",
+2026-11-10T08:19:40.1195774Z     "tests/lua/support/native_card_art_rectangle_equivalence.lua",
+2026-11-10T08:19:40.1196634Z     "tests/lua/support/native_card_art_source_equivalence.lua",
+2026-11-10T08:19:40.1197344Z     "tests/lua/support/node_ui_cases.lua",
+2026-11-10T08:19:40.1197935Z     "tests/lua/v25_texture_runtime.lua",
+2026-11-10T08:19:40.1198762Z     "tests/merge-queue.test.mjs",
+2026-11-10T08:19:40.1199434Z     "tests/native-bgm-build-provenance.test.mjs",
+2026-11-10T08:19:40.1200107Z     "tests/native-candidate-art.test.mjs",
+2026-11-10T08:19:40.1200812Z     "tests/native-candidate-deployment-closure.test.mjs",
+2026-11-10T08:19:40.1201480Z     "tests/native-candidate-scripts.test.mjs",
+2026-11-10T08:19:40.1202111Z     "tests/native-candidate-ui-cache.test.mjs",
+2026-11-10T08:19:40.1202694Z     "tests/native-candidate.test.mjs",
+2026-11-10T08:19:40.1203265Z     "tests/native-card-art-binding.test.mjs",
+2026-11-10T08:19:40.1203874Z     "tests/native-client-check.test.mjs",
+2026-11-10T08:19:40.1204864Z     "tests/native-component-profile.test.mjs",
+2026-11-10T08:19:40.1205543Z     "tests/official-assets-flow.test.mjs",
+2026-11-10T08:19:40.1206210Z     "tests/official-assets-legibility.test.mjs",
+2026-11-10T08:19:40.1206919Z     "tests/official-assets-runtime.test.mjs",
+2026-11-10T08:19:40.1207621Z     "tests/official-assets-visual.test.mjs",
+2026-11-10T08:19:40.1208293Z     "tests/official-assets.test.mjs",
+2026-11-10T08:19:40.1209019Z     "tests/official-portraits-build.test.mjs",
+2026-11-10T08:19:40.1209844Z     "tests/official-portraits-equivalence.test.mjs",
+2026-11-10T08:19:40.1210545Z     "tests/runtime-path-baseline.test.mjs",
+2026-11-10T08:19:40.1211238Z     "tests/seven-refactor-source-epoch.test.mjs",
+2026-11-10T08:19:40.1211918Z     "tests/silent-final-source-epoch.test.mjs",
+2026-11-10T08:19:40.1212603Z     "tests/sprint-intake.test.mjs",
+2026-11-10T08:19:40.1213189Z     "tests/ui-capacity.test.mjs",
+2026-11-10T08:19:40.1213759Z     "tests/v25-battle-chrome.test.mjs",
+2026-11-10T08:19:40.1214659Z     "tests/v25-battle-runtime.test.mjs",
+2026-11-10T08:19:40.1215260Z     "tests/v25-battle-scene.test.mjs",
+2026-11-10T08:19:40.1215883Z     "tests/v25-card-audit-inputs.test.mjs",
+2026-11-10T08:19:40.1216555Z     "tests/v25-card-content-layout.test.mjs",
+2026-11-10T08:19:40.1217242Z     "tests/v25-card-skin-integration.test.mjs",
+2026-11-10T08:19:40.1217951Z     "tests/v25-card-surface-reuse.test.mjs",
+2026-11-10T08:19:40.1218583Z     "tests/v25-card-surface.test.mjs",
+2026-11-10T08:19:40.1219190Z     "tests/v25-card-templates.test.mjs",
+2026-11-10T08:19:40.1219808Z     "tests/v25-character-layout.test.mjs",
+2026-11-10T08:19:40.1220386Z     "tests/v25-cost-outline.test.mjs",
+2026-11-10T08:19:40.1220943Z     "tests/v25-layout.test.mjs",
+2026-11-10T08:19:40.1221472Z     "tests/v25-map-layout.test.mjs",
+2026-11-10T08:19:40.1222046Z     "tests/v25-map-return.test.mjs",
+2026-11-10T08:19:40.1222867Z     "tests/v25-map-theme.test.mjs",
+2026-11-10T08:19:40.1223419Z     "tests/v25-node-layout.test.mjs",
+2026-11-10T08:19:40.1224292Z     "tests/v25-portrait-profile.test.mjs",
+2026-11-10T08:19:40.1224948Z     "tests/v25-private-card-assets.test.mjs",
+2026-11-10T08:19:40.1225609Z     "tests/v25-profile.test.mjs",
+2026-11-10T08:19:40.1226174Z     "tests/v25-result-layout.test.mjs",
+2026-11-10T08:19:40.1226784Z     "tests/v25-texture-runtime.test.mjs",
+2026-11-10T08:19:40.1227410Z     "tests/watcher-actor-boundary.test.mjs",
+2026-11-10T08:19:40.1228128Z     "tests/watcher-potion-integration-source.test.mjs"
+2026-11-10T08:19:40.1228730Z   ],
+2026-11-10T08:19:40.1229073Z   "full": true,
+2026-11-10T08:19:40.1229642Z   "reason": "Unmodelled or deleted input: .gitattributes",
+2026-11-10T08:19:40.1230234Z   "fast": [],
+2026-11-10T08:19:40.1230634Z   "integration": [],
+2026-11-10T08:19:40.1231056Z   "lua": [],
+2026-11-10T08:19:40.1231427Z   "feedback": {
+2026-11-10T08:19:40.1231804Z     "fast": [
+2026-11-10T08:19:40.1232344Z       "tests/card-face-source-parity.test.mjs",
+2026-11-10T08:19:40.1233021Z       "tests/card-face.test.mjs",
+2026-11-10T08:19:40.1233612Z       "tests/card-value-feedback.test.mjs",
+2026-11-10T08:19:40.1234520Z       "tests/ci-run-costs.test.mjs",
+2026-11-10T08:19:40.1235103Z       "tests/converted-card-data.test.mjs",
+2026-11-10T08:19:40.1235723Z       "tests/deck-ui-layout.test.mjs",
+2026-11-10T08:19:40.1236390Z       "tests/evidence-native-junction.test.mjs",
+2026-11-10T08:19:40.1237279Z       "tests/exit-ui-layout.test.mjs",
+2026-11-10T08:19:40.1237969Z       "tests/genshin-monster-benchmarks.test.mjs",
+2026-11-10T08:19:40.1238696Z       "tests/hud-topbar-composition.test.mjs",
+2026-11-10T08:19:40.1239353Z       "tests/mad-gremlin-data.test.mjs",
+2026-11-10T08:19:40.1239973Z       "tests/map-page-polish.test.mjs",
+2026-11-10T08:19:40.1240576Z       "tests/menu-scene-edge.test.mjs",
+2026-11-10T08:19:40.1241253Z       "tests/monster-source-candidates.test.mjs",
+2026-11-10T08:19:40.1242077Z       "tests/native-candidate-audit-boundaries.test.mjs",
+2026-11-10T08:19:40.1242865Z       "tests/native-candidate-audit.test.mjs",
+2026-11-10T08:19:40.1243632Z       "tests/native-candidate-deployment-closure.test.mjs",
+2026-11-10T08:19:40.1244719Z       "tests/native-candidate-ui-cache.test.mjs",
+2026-11-10T08:19:40.1245398Z       "tests/native-graph-payload.test.mjs",
+2026-11-10T08:19:40.1246077Z       "tests/native-playtest-evidence.test.mjs",
+2026-11-10T08:19:40.1246772Z       "tests/native-script-batch.test.mjs",
+2026-11-10T08:19:40.1247394Z       "tests/native-ui-theme.test.mjs",
+2026-11-10T08:19:40.1247989Z       "tests/neow-readable-layout.test.mjs",
+2026-11-10T08:19:40.1248605Z       "tests/node-ui-layout.test.mjs",
+2026-11-10T08:19:40.1249380Z       "tests/official-assets-legibility.test.mjs",
+2026-11-10T08:19:40.1250144Z       "tests/official-background-lifecycle.test.mjs",
+2026-11-10T08:19:40.1250903Z       "tests/official-portraits-build.test.mjs",
+2026-11-10T08:19:40.1251581Z       "tests/pile-view-layout.test.mjs",
+2026-11-10T08:19:40.1252239Z       "tests/playtest-input-lifecycle.test.mjs",
+2026-11-10T08:19:40.1252949Z       "tests/potion-discard-layout.test.mjs",
+2026-11-10T08:19:40.1253615Z       "tests/potion-help-layout.test.mjs",
+2026-11-10T08:19:40.1254574Z       "tests/r2-battle-heading.test.mjs",
+2026-11-10T08:19:40.1255374Z       "tests/readable-unit-typography-inverse.test.mjs",
+2026-11-10T08:19:40.1256108Z       "tests/ready-card-art.test.mjs",
+2026-11-10T08:19:40.1256780Z       "tests/reviewed-traveler-geo-assets.test.mjs",
+2026-11-10T08:19:40.1257491Z       "tests/reward-potion-layout.test.mjs",
+2026-11-10T08:19:40.1258081Z       "tests/ui-layout.test.mjs",
+2026-11-10T08:19:40.1258625Z       "tests/v25-cost-outline.test.mjs",
+2026-11-10T08:19:40.1259210Z       "tests/viewport-layout.test.mjs"
+2026-11-10T08:19:40.1259695Z     ],
+2026-11-10T08:19:40.1260031Z     "lua": [
+2026-11-10T08:19:40.1260514Z       "tests/lua/native_card_art_binding.lua",
+2026-11-10T08:19:40.1261453Z       "tests/lua/component_content_retry.lua",
+2026-11-10T08:19:40.1262115Z       "tests/lua/component_page_failures.lua",
+2026-11-10T08:19:40.1262727Z       "tests/lua/cultist_ai_candidate.lua",
+2026-11-10T08:19:40.1263316Z       "tests/lua/match_game_candidate.lua",
+2026-11-10T08:19:40.1263902Z       "tests/lua/viewport.lua",
+2026-11-10T08:19:40.1264820Z       "tests/lua/transform_card_candidate.lua",
+2026-11-10T08:19:40.1265438Z       "tests/lua/ui_mock_contract.lua",
+2026-11-10T08:19:40.1266008Z       "tests/lua/warrior75_card_text.lua",
+2026-11-10T08:19:40.1266618Z       "tests/lua/jaw_worm_policy_candidate.lua",
+2026-11-10T08:19:40.1267343Z       "tests/lua/character_presentation_budget_5.lua",
+2026-11-10T08:19:40.1268070Z       "tests/lua/character_presentation_budget_8.lua",
+2026-11-10T08:19:40.1268745Z       "tests/lua/watcher_final_live_display.lua",
+2026-11-10T08:19:40.1269412Z       "tests/lua/silent_final_presentation.lua",
+2026-11-10T08:19:40.1270097Z       "tests/lua/presentation_trace_native.lua",
+2026-11-10T08:19:40.1270823Z       "tests/lua/card_value_display.lua",
+2026-11-10T08:19:40.1271521Z       "tests/lua/character_presentation_budget_9.lua",
+2026-11-10T08:19:40.1272233Z       "tests/lua/run_card_catalog_presentation.lua",
+2026-11-10T08:19:40.1272972Z       "tests/lua/character_presentation_budget_6.lua",
+2026-11-10T08:19:40.1273637Z       "tests/lua/ending_intent_view.lua",
+2026-11-10T08:19:40.1274963Z       "tests/lua/growing_card_text_slice_4.lua",
+2026-11-10T08:19:40.1276027Z       "tests/lua/presentation_responsibilities_text.lua",
+2026-11-10T08:19:40.1277046Z       "tests/lua/character_presentation_budget_7.lua",
+2026-11-10T08:19:40.1278316Z       "tests/lua/scrap_ooze_ui.lua",
+2026-11-10T08:19:40.1279107Z       "tests/lua/character_presentation_budget_12.lua",
+2026-11-10T08:19:40.1279767Z       "tests/lua/tomb_red_mask_ui.lua"
+2026-11-10T08:19:40.1280255Z     ],
+2026-11-10T08:19:40.1280623Z     "estimatedLuaMs": 88777
+2026-11-10T08:19:40.1281054Z   },
+2026-11-10T08:19:40.1281429Z   "planDurationMs": 2934
+2026-11-10T08:19:40.1281848Z }
+2026-11-10T08:19:40.1282301Z Feedback timing: plan 2934 ms.
+2026-11-10T08:19:40.1283619Z Complete Quality required: Unmodelled or deleted input: .gitattributes. Quick feedback covers only independently mapped inputs.
+2026-11-10T08:19:40.1287137Z Advisory subset: 39 fast JS and 26 related Lua files selected; 705 integration JS and 577 Lua files deferred to complete Quality. Lua scheduling estimate 88777 ms, not a deadline.
+2026-11-10T08:19:40.8289223Z {"status":"materialized","count":6,"bytes":5983528}
+2026-11-10T08:19:41.4929140Z 
+2026-11-10T08:19:41.4929926Z > slay-the-abyss@1.0.0 build:data
+2026-11-10T08:19:41.4930699Z > node scripts/build-lua-data.mjs
+2026-11-10T08:19:41.4931064Z 
+2026-11-10T08:19:41.6119513Z Validated Lua data module built.
+2026-11-10T08:19:41.7185325Z 
+2026-11-10T08:19:41.7186299Z > slay-the-abyss@1.0.0 build:ui
+2026-11-10T08:19:41.7186966Z > node scripts/build-ui.mjs
+2026-11-10T08:19:41.7187363Z 
+2026-11-10T08:19:42.2902929Z Native battle UI and Traveler display module built.
+2026-11-10T08:19:42.3702167Z Map controls and Lua layout contract built.
+2026-11-10T08:19:42.3739550Z Feedback timing: build 979 ms.
+2026-11-10T08:19:43.5859796Z NATIVE_CARD_ART_BINDING_PASS XYZ/type/RGBA/cache/fallback/tail/failure/reuse
+2026-11-10T08:19:43.5861272Z Lua fixture tests/lua/native_card_art_binding.lua: 1156 ms
+2026-11-10T08:19:43.7889222Z PASS content setters false/retry, deferred state, eviction and native rebind
+2026-11-10T08:19:43.7891127Z Lua fixture tests/lua/component_content_retry.lua: 146 ms
+2026-11-10T08:19:43.9653092Z PASS page cleanup false/throw, retry ownership, partial cancellation and destruction reference release
+2026-11-10T08:19:43.9654394Z PASS publication late cancel/destroy/new intent/same intent, late content budget and cleanup reentry (4/2)
+2026-11-10T08:19:43.9655386Z Lua fixture tests/lua/component_page_failures.lua: 116 ms
+2026-11-10T08:19:44.0666781Z ✔ approved Card header centres the title and keeps the thirty-pixel cost disc separate from native text height (5.619678ms)
+2026-11-10T08:19:44.0669744Z ✔ native Raiden emblem triangulates the approved six-vertex path without changing its outline or scale (1.012159ms)
+2026-11-10T08:19:44.1572135Z ✔ every card face uses native library images and one set of live text slots (3.92203ms)
+2026-11-10T08:19:44.1587184Z ✔ hand, reward, library and node assembly consume the same editable face contract (23.121092ms)
+2026-11-10T08:19:44.1588832Z ✔ a reused card template cannot mutate another card or the theme (3.653995ms)
+2026-11-10T08:19:44.1590738Z ✔ approved card aperture stays 144 by 64 while native text boxes remain independent of visual bands (0.913294ms)
+2026-11-10T08:19:44.1592560Z ✔ card glyph budgets remain separate even when transparent native text boxes overlap (0.612654ms)
+2026-11-10T08:19:44.1594501Z ✔ all native card outlines are assembled from importable shapes within child limits (1.330644ms)
+2026-11-10T08:19:44.2253354Z cardValueIncrease: 8.164:1
+2026-11-10T08:19:44.2262980Z cardValueDecrease: 5.935:1
+2026-11-10T08:19:44.2263483Z text: 13.364:1
+2026-11-10T08:19:44.2263917Z cardValueIncrease: 8.706:1
+2026-11-10T08:19:44.2264709Z cardValueDecrease: 6.330:1
+2026-11-10T08:19:44.2265184Z text: 14.252:1
+2026-11-10T08:19:44.2314701Z ✔ offline preview preserves sentence flow and maps only native colour spans (1.131652ms)
+2026-11-10T08:19:44.2327150Z ✔ value feedback stays inside the original description and never replaces card art with badges (1.12489ms)
+2026-11-10T08:19:44.2328976Z ✔ local colour contrast exceeds 4.5:1 on the description backgrounds (1.191484ms)
+2026-11-10T08:19:44.2334890Z ✔ 1/5/10 cards keep approved idle overhang and complete selected feedback on phone, PC and 19.5:9 stage (3.484753ms)
+2026-11-10T08:19:44.2871014Z ✔ natural Fast requires actual two-platform Quality execution, not cancelled placeholders or advisory (3.455319ms)
+2026-11-10T08:19:44.2916246Z ✔ queue, wall, actual execution and unfinished/cancelled costs stay separate (0.863511ms)
+2026-11-10T08:19:44.2922812Z ✔ missing, failed, skipped or cancelled gates never become successful Fast measurements (0.39663ms)
+2026-11-10T08:19:44.2925184Z ✔ incomplete pages and wrong attempt/SHA/job identities reject rather than manufacture samples (0.549265ms)
+2026-11-10T08:19:44.2931688Z ✔ insufficient natural samples remain insufficient; nearest rank is reported only from eligible runs (0.69666ms)
+2026-11-10T08:19:44.3459139Z ✔ compact data keeps exact full canvas coverage and card identity (3.304227ms)
+2026-11-10T08:19:44.5964463Z ✔ approved deck uses a six-column vertical native scroller and a read-only reusable card template (78.821346ms)
+2026-11-10T08:19:44.5966757Z ✔ deck overlay and close remain inside approved canvas safe areas at every device scale (28.415323ms)
+2026-11-10T08:19:44.5983246Z ✔ deck filters fit beside the normal title without covering the native grid or close button (22.918153ms)
+2026-11-10T08:19:44.5988929Z ✔ controller overlays isolate nearest-control navigation and deck pages leave the card viewport clear (21.221416ms)
+2026-11-10T08:19:44.5990883Z ✔ upgrade preview is an explicit native button outside the text paging hit (15.366219ms)
+2026-11-10T08:19:44.5995694Z ✔ original Chinese sort labels fit in every state without truncation at all reported sizes (17.564071ms)
+2026-11-10T08:19:44.6675924Z ✔ physical external directory aliases are rejected by inside and fileRecord (2.519612ms)
+2026-11-10T08:19:44.6677830Z ✔ an external parent alias is rejected before any output directory is created (0.997051ms)
+2026-11-10T08:19:44.6682474Z ✔ an internal directory alias resolves to the physical output and file identity (1.664477ms)
+2026-11-10T08:19:44.6686488Z ✔ an alias into a protected source directory cannot become an output path (1.806752ms)
+2026-11-10T08:19:44.6691207Z ✔ a project root reached through an alias accepts its own physical descendants (1.116984ms)
+2026-11-10T08:19:44.9180778Z ✔ exit remains above every game page and the deck, with a separate blocking confirmation (53.502062ms)
+2026-11-10T08:19:44.9184593Z ✔ exit entry does not cover deck controls, map navigation or the narrowed game notices (29.583482ms)
+2026-11-10T08:19:44.9192520Z ✔ exit geometry follows theme and safe device scaling without oversized containers (59.901048ms)
+2026-11-10T08:19:44.9195398Z ✔ TASK-4.11 exit warning hierarchy: header, consequence, note, status and actions never overlap (24.701962ms)
+2026-11-10T08:19:44.9202669Z ✔ pause and guide panels keep outside blockers below their interior catch and actions (17.562077ms)
+2026-11-10T08:19:44.9851939Z ✔ exact four immutable Genshin direction benchmarks, never runtime approval or blanket mapping (9.35499ms)
+2026-11-10T08:19:44.9860393Z ✔ historical originals stay intact but identity direction is superseded, with anatomy correction (0.48187ms)
+2026-11-10T08:19:45.1018577Z ✔ final shared HUD leaves the exhaust icon, count and click target unobstructed (48.815747ms)
+2026-11-10T08:19:45.2431081Z ✔ playable Mad Gremlin has A0 HP, passive Angry and only attack4 (18.563796ms)
+2026-11-10T08:19:45.2433039Z ✔ valid Mad Gremlin policy and Angry status enter runtime schema (6.860113ms)
+2026-11-10T08:19:45.2435192Z ✔ Mad Gremlin rejects missing passive (4.623068ms)
+2026-11-10T08:19:45.2439024Z ✔ Mad Gremlin rejects zero passive (4.205488ms)
+2026-11-10T08:19:45.2444811Z ✔ Mad Gremlin rejects negative passive (5.955074ms)
+2026-11-10T08:19:45.2468846Z ✔ Mad Gremlin rejects fractional passive (4.986807ms)
+2026-11-10T08:19:45.2469596Z ✔ Mad Gremlin rejects overflow passive (4.669074ms)
+2026-11-10T08:19:45.2470687Z ✔ Mad Gremlin rejects missing roll (3.593684ms)
+2026-11-10T08:19:45.2471342Z ✔ Mad Gremlin rejects zero roll (3.064239ms)
+2026-11-10T08:19:45.2471851Z ✔ Mad Gremlin rejects too large roll (4.332326ms)
+2026-11-10T08:19:45.2472412Z ✔ Mad Gremlin rejects unknown attack (3.609095ms)
+2026-11-10T08:19:45.2472982Z ✔ Mad Gremlin rejects unknown field (3.933441ms)
+2026-11-10T08:19:45.2474346Z ✔ Mad Gremlin requires an Angry status definition (3.871135ms)
+2026-11-10T08:19:45.2475329Z ✔ Angry uses an approved picture mapping and the complete theme validates (11.854544ms)
+2026-11-10T08:19:45.4082289Z ✔ shared menu entry matches the canvas round copper button while keeping four full native hit states (52.661033ms)
+2026-11-10T08:19:45.4089887Z ✔ map header and necessary return controls follow the canvas hierarchy rather than large boxed prose (38.495746ms)
+2026-11-10T08:19:45.6594549Z ✔ menu scene trims cover exterior colour spill without covering the approved interior (51.712613ms)
+2026-11-10T08:19:45.6600725Z ✔ menu trims remain flag-local and the reported phone sliver maps entirely outside content (102.405839ms)
+2026-11-10T08:19:46.0652852Z ✔ monster roster covers exactly current Acts1–2 enemy definitions (2.939406ms)
+2026-11-10T08:19:46.0658780Z ✔ monster files preserve reviewed source identity and strict unbound limits (345.074231ms)
+2026-11-10T08:19:46.0665136Z ✔ monster text identity accepts CRLF only, rejects content changes and never rewrites PNG bytes (0.517827ms)
+2026-11-10T08:19:46.1544223Z ✔ root script parameters and unknown metadata never inherit geometry tolerance (8.081082ms)
+2026-11-10T08:19:46.1545694Z ✔ discrete UI IDs and grid counts compare exactly (1.935172ms)
+2026-11-10T08:19:46.1547171Z ✔ opaque control and template metadata remain exact even with geometry-like field names (1.910185ms)
+2026-11-10T08:19:46.1548695Z ✔ documented native UI float fields retain finite precision tolerance (7.282401ms)
+2026-11-10T08:19:46.1550213Z ✔ graph nodeCount rejects undefined instead of certifying nonempty payload (0.818848ms)
+2026-11-10T08:19:46.1551689Z ✔ graph nodeCount rejects null instead of certifying nonempty payload (0.547201ms)
+2026-11-10T08:19:46.1553096Z ✔ graph nodeCount rejects 0 instead of certifying nonempty payload (0.678516ms)
+2026-11-10T08:19:46.1554757Z ✔ graph nodeCount rejects -1 instead of certifying nonempty payload (0.596473ms)
+2026-11-10T08:19:46.1556193Z ✔ graph nodeCount rejects 0.5 instead of certifying nonempty payload (0.598608ms)
+2026-11-10T08:19:46.1564929Z ✔ graph nodeCount rejects 22.5 instead of certifying nonempty payload (0.944573ms)
+2026-11-10T08:19:46.1566746Z ✔ graph nodeCount rejects NaN instead of certifying nonempty payload (0.599458ms)
+2026-11-10T08:19:46.1568048Z ✔ graph nodeCount rejects Infinity instead of certifying nonempty payload (0.586284ms)
+2026-11-10T08:19:46.1569966Z ✔ graph nodeCount rejects -Infinity instead of certifying nonempty payload (0.875073ms)
+2026-11-10T08:19:46.1573492Z ✔ graph nodeCount rejects 22 instead of certifying nonempty payload (0.520181ms)
+2026-11-10T08:19:46.1585843Z ✔ graph nodeCount rejects invalid instead of certifying nonempty payload (0.784314ms)
+2026-11-10T08:19:46.1590517Z ✔ graph nodeCount rejects 9007199254740992 instead of certifying nonempty payload (0.805433ms)
+2026-11-10T08:19:46.1593021Z ✔ missing graph nodeCount fails closed; positive safe integer remains accepted (1.268388ms)
+2026-11-10T08:19:46.2825089Z ✔ only a receipt bound to the exact candidate can add its exact entry marker (1.517742ms)
+2026-11-10T08:19:46.2828583Z ✔ native text false autoSize is its omitted default; true and text changes remain detectable (4.709109ms)
+2026-11-10T08:19:46.2832197Z ✔ native default minimum font twenty is omitted without hiding other values or metadata (5.255989ms)
+2026-11-10T08:19:46.2836745Z ✔ native empty child lists are omitted without hiding nonempty children or opaque payloads (2.600614ms)
+2026-11-10T08:19:46.2846552Z ✔ native omitted image ink equals only opaque white, with byte-rounded source alpha (7.871591ms)
+2026-11-10T08:19:46.2848145Z ✔ interface identity, visibility and every root input flag must match source defaults (4.221068ms)
+2026-11-10T08:19:46.2849231Z ✔ hex colour spelling is tolerated only in colour fields, never text or control/interface names (4.146619ms)
+2026-11-10T08:19:46.2857959Z ✔ real readback slice matches fixed source, CRLF and implicit platform defaults (2.298119ms)
+2026-11-10T08:19:46.2859526Z ✔ native omitted opaque white text matches explicit white, while other missing colours fail (4.820156ms)
+2026-11-10T08:19:46.2861160Z ✔ bad module, missing/extra module and wrong UI geometry cannot pass a static-clean candidate (3.319806ms)
+2026-11-10T08:19:46.2867659Z ✔ candidate hash changes, static faults and unmounted or wrong-signal graphs fail (2.795628ms)
+2026-11-10T08:19:46.2869298Z ✔ BGM requires both real native parameter records true and explicit BGM opt-in (1.732143ms)
+2026-11-10T08:19:46.2871269Z ✔ ordinary source that declares BGM disabled requires two correctly typed false records (4.315484ms)
+2026-11-10T08:19:46.2875064Z ✔ source SHA is mandatory, complete and hexadecimal; unrelated label is never accepted (0.299038ms)
+2026-11-10T08:19:46.2879808Z ✔ native image and text alpha use exact ARGB byte encoding, including opaque defaults (6.599417ms)
+2026-11-10T08:19:46.2882837Z ✔ alpha encoding cannot hide wrong bytes, invalid readback or unrelated float changes (6.379867ms)
+2026-11-10T08:19:46.3580838Z ✔ current M3 event/relic/potion modules and their complete literal dependency closure deploy automatically (22.698884ms)
+2026-11-10T08:19:46.4237990Z ✔ only hash-bound verified unchanged UI can skip encoding (3.652317ms)
+2026-11-10T08:19:46.4239947Z ✔ private template collections bypass the legacy cache instead of losing their native bindings (1.295177ms)
+2026-11-10T08:19:46.4243091Z ✔ UI reuse rejects mismatched base (1.97753ms)
+2026-11-10T08:19:46.4248046Z ✔ UI reuse rejects mismatched templates (0.941496ms)
+2026-11-10T08:19:46.4251853Z ✔ UI reuse rejects mismatched status (1.082831ms)
+2026-11-10T08:19:46.4266674Z ✔ UI reuse rejects mismatched binding (0.922332ms)
+2026-11-10T08:19:46.5067227Z ✔ actual complete decoded payload matches itself and only node layout coordinates are excluded (8.091107ms)
+2026-11-10T08:19:46.5071789Z ✔ literal, pin type, variable initial value and signal binding changes must fail (12.758869ms)
+2026-11-10T08:19:46.5080427Z ✔ a graph which cannot roundtrip losslessly is unsupported, never certified (2.554707ms)
+2026-11-10T08:19:46.5082181Z ✔ semantic float fields retain signed zero rather than collapsing through JSON (4.185399ms)
+2026-11-10T08:19:46.5670245Z ✔ startup uses raw decoding and actual run request, not claimed metadata (5.925776ms)
+2026-11-10T08:19:46.6287427Z ✔ batch writer preserves native syntax and unavailable-API checks (3.658145ms)
+2026-11-10T08:19:46.6292402Z ✔ batch additions preserve existing filenames and avoid existing and pending export collisions (7.162875ms)
+2026-11-10T08:19:46.9353472Z ✔ native image colours serialize as RGB with independent opacity (62.222379ms)
+2026-11-10T08:19:46.9358032Z ✔ node and menu layouts resolve semantic colour, font, minimum font and picture tokens (15.483931ms)
+2026-11-10T08:19:46.9364299Z ✔ host preserves the approved battle and scrollable map while composing node and menu panels (103.316935ms)
+2026-11-10T08:19:46.9372707Z ✔ building and mutating output trees cannot mutate the source theme (36.677316ms)
+2026-11-10T08:19:46.9373667Z ✔ all native text preserves its readable size when auto fitting (23.67769ms)
+2026-11-10T08:19:47.0204977Z ✔ Neow native image encoding keeps RGB and explicit alpha (14.757796ms)
+2026-11-10T08:19:47.0210400Z ✔ four readable Neow options fit below dialogue inside the canvas (0.215742ms)
+2026-11-10T08:19:47.0214630Z ✔ Neow uses the existing geo placeholder, never the shop merchant bust (7.037832ms)
+2026-11-10T08:19:47.1269949Z ✔ node panel composes one container per approved node screen within the MCP child limit (6.317759ms)
+2026-11-10T08:19:47.1273389Z ✔ framed node buttons preserve direct paths and have hidden hover and pressed face layers (3.016368ms)
+2026-11-10T08:19:47.1277426Z ✔ every interactive control is a full-size focusable touch target inside the safe area (2.211537ms)
+2026-11-10T08:19:47.1281383Z ✔ node header decoration stays below readable content and has no input receivers (0.304929ms)
+2026-11-10T08:19:47.1286245Z ✔ each screen keeps its readable elements and buttons free of sibling overlap (3.034863ms)
+2026-11-10T08:19:47.1290070Z ✔ native text boxes use the verified 40-unit line height and the readable minimum font (0.823447ms)
+2026-11-10T08:19:47.1296506Z ✔ shop ports five colored cards above two colorless cards, with prices and service beside them (0.558983ms)
+2026-11-10T08:19:47.1301074Z ✔ camp, forge, event and treasure follow the approved composition (0.340556ms)
+2026-11-10T08:19:47.1306901Z ✔ each enlarged shop card keeps every price, the merchant and mobile cancel readable (16.62988ms)
+2026-11-10T08:19:47.1310689Z ✔ source reward rows and the twelve-card smithing grid fit without hiding neighboring content (0.73993ms)
+2026-11-10T08:19:47.1312483Z ✔ merchant pages fit one readable line inside the dialogue panel (0.204211ms)
+2026-11-10T08:19:47.1316696Z ✔ shop purchase and cancel form one adjacent action group outside merchant dialogue (0.229628ms)
+2026-11-10T08:19:47.5406560Z ✔ official battle HUD can render at least one full native text line without hiding its values (90.28962ms)
+2026-11-10T08:19:47.5433182Z ✔ official dark buttons retain light ink and cover their whole native hit surface with the same material (50.473136ms)
+2026-11-10T08:19:47.5435904Z ✔ official cost medallions pair the selected light material with neutral dark ink across card hosts (58.028774ms)
+2026-11-10T08:19:47.5438557Z ✔ official battle reuses the approved complete V25 architecture instead of stretched pillar icons (44.157944ms)
+2026-11-10T08:19:47.5441025Z ✔ approved card inner frames retain their point/rounded silhouettes and unchanged illustration identities (43.361828ms)
+2026-11-10T08:19:47.5443361Z ✔ standalone battle output receives the same geometry and required turn-notice tree (14.517949ms)
+2026-11-10T08:19:47.5445549Z ✔ generic disabled buttons remain visibly distinct from enabled buttons (35.365548ms)
+2026-11-10T08:19:58.2402800Z ✔ frozen full export and every literal row remain bound to the editable JSON (65.439392ms)
+2026-11-10T08:19:58.2407226Z ✔ bounded hidden creation, exact 13201 row properties/order, 8/3 fit, static idempotence (4947.049176ms)
+2026-11-10T08:19:58.2410199Z ✔ stale generation and battle release prevent further creation or resurrection (342.610352ms)
+2026-11-10T08:19:58.2420029Z ✔ repeat begin and tick reentry during creation do not duplicate work (355.546462ms)
+2026-11-10T08:19:58.2424876Z ✔ release inside Instantiate invalidates returned control before any later row (314.417461ms)
+2026-11-10T08:19:58.2429972Z ✔ creation failure nil latches, rolls back, and retries explicitly (372.408183ms)
+2026-11-10T08:19:58.2431567Z ✔ creation failure throw latches, rolls back, and retries explicitly (364.94671ms)
+2026-11-10T08:19:58.2440039Z ✔ creation failure setter latches, rolls back, and retries explicitly (311.177121ms)
+2026-11-10T08:19:58.2446081Z ✔ setter cancellation stops the old job and cannot display partial art (345.032668ms)
+2026-11-10T08:19:58.2448450Z ✔ destroy failure is isolated and retained until explicit release retry (310.268577ms)
+2026-11-10T08:19:58.2450148Z ✔ engine destruction never calls Destroy again and permanently retires callbacks (353.865408ms)
+2026-11-10T08:19:58.2451784Z ✔ template zero, wrong source, malformed batch and dead host fail closed (344.685476ms)
+2026-11-10T08:19:58.2453413Z ✔ engine-destroy tombstone prevents same still-reported-alive host from resurrecting (352.594502ms)
+2026-11-10T08:19:58.2455560Z ✔ host death before the next tick retires the job rather than leaving it pending (381.360461ms)
+2026-11-10T08:19:58.2457191Z ✔ explicit false destroy result is retained as failure, not silently dropped (317.837497ms)
+2026-11-10T08:19:58.2459333Z ✔ creation is rejected while cleanup callbacks reenter and host configuration failure latches (349.187308ms)
+2026-11-10T08:19:58.2460995Z ✔ packaged data module is exactly the hash-locked original literal block (5.374673ms)
+2026-11-10T08:19:58.2463404Z ✔ active release guards host hide reentry before begin/tick or nested release (388.534267ms)
+2026-11-10T08:19:58.2467921Z ✔ explicit false host hide is reported as release failure while cleanup still runs (341.40992ms)
+2026-11-10T08:19:58.9803381Z ✔ V25 inventory counts the actual independent selection and result source instances (28.905304ms)
+2026-11-10T08:19:58.9808521Z ✔ native selection budget changes only selection art and preserves the frozen battle literal (190.925545ms)
+2026-11-10T08:19:58.9812253Z ✔ portrait builder adds dedicated thumbnail, selection and battle hosts without changing existing controls (113.287369ms)
+2026-11-10T08:19:58.9814685Z ✔ candidate binding rejects placeholders and extracts frozen byte-identical ROOT/ELEMENTS blocks (135.243174ms)
+2026-11-10T08:19:59.0811720Z ✔ pile view cursor areas cover their existing icons and counts within the safe canvas (14.273738ms)
+2026-11-10T08:19:59.0817759Z ✔ pile entries coexist with the dynamic actor host and keep scene and template parents within 60 children (7.751736ms)
+2026-11-10T08:19:59.0819771Z ✔ discard pile touch area stays at least 16 units below end turn (4.621168ms)
+2026-11-10T08:19:59.1502088Z ✔ playing input checks the actual run twice, uses the fresh focus capture and sends once (2.78815ms)
+2026-11-10T08:19:59.1503831Z ✔ original succeeded run refuses without focus or input (0.833144ms)
+2026-11-10T08:19:59.1515431Z ✔ original failed run refuses without focus or input (0.254444ms)
+2026-11-10T08:19:59.1516857Z ✔ original starting run refuses without focus or input (0.197358ms)
+2026-11-10T08:19:59.1518446Z ✔ original unknown run refuses without focus or input (0.405436ms)
+2026-11-10T08:19:59.1519449Z ✔ original missing run refuses without focus or input (0.324295ms)
+2026-11-10T08:19:59.1525511Z ✔ running but not yet playing refuses even with a large elapsed time (0.35938ms)
+2026-11-10T08:19:59.1527293Z ✔ running with left-playtest evidence refuses before focus (0.269062ms)
+2026-11-10T08:19:59.1528943Z ✔ running with log-collected evidence refuses before focus (0.238364ms)
+2026-11-10T08:19:59.1530704Z ✔ run ending during focus (succeeded) sends zero inputs (0.608675ms)
+2026-11-10T08:19:59.1532317Z ✔ run ending during focus (running) sends zero inputs (0.30032ms)
+2026-11-10T08:19:59.1534553Z ✔ official result page still running permits its normal Leave input (0.222004ms)
+2026-11-10T08:19:59.1538791Z ✔ unavailable/error/malformed status refuses at either observation (0.295431ms)
+2026-11-10T08:19:59.1541245Z ✔ unavailable/error/malformed status refuses at either observation (0.156291ms)
+2026-11-10T08:19:59.1544654Z ✔ unavailable/error/malformed status refuses at either observation (0.232484ms)
+2026-11-10T08:19:59.1549585Z ✔ unavailable/error/malformed status refuses at either observation (0.173644ms)
+2026-11-10T08:19:59.1556581Z ✔ unavailable/error/malformed status refuses at either observation (0.170507ms)
+2026-11-10T08:19:59.1561771Z ✔ unavailable/error/malformed status refuses at either observation (0.167412ms)
+2026-11-10T08:19:59.1572278Z ✔ unavailable/error/malformed status refuses at either observation (0.439579ms)
+2026-11-10T08:19:59.1575235Z ✔ wrong or missing actual run identity refuses at either observation (0.468894ms)
+2026-11-10T08:19:59.1577577Z ✔ wrong or missing actual run identity refuses at either observation (0.317001ms)
+2026-11-10T08:19:59.1579858Z ✔ wrong or missing actual run identity refuses at either observation (0.361865ms)
+2026-11-10T08:19:59.1582220Z ✔ wrong or missing actual run identity refuses at either observation (0.320949ms)
+2026-11-10T08:19:59.1584840Z ✔ wrong or missing actual run identity refuses at either observation (0.306702ms)
+2026-11-10T08:19:59.1589722Z ✔ text-only MCP status payload is accepted using the same checks (0.310339ms)
+2026-11-10T08:19:59.1591752Z ✔ focus errors or missing capture refuse before any input (0.576214ms)
+2026-11-10T08:19:59.1607578Z ✔ input failure is not retried because it may have reached the game (0.441534ms)
+2026-11-10T08:19:59.1609364Z ✔ missing run/window and path-traversal run identities refuse before any RPC (0.270915ms)
+2026-11-10T08:19:59.3074765Z ✔ five-slot discard modal uses approved button states and blocks the underlying page (48.903237ms)
+2026-11-10T08:19:59.3080172Z ✔ shared potion counter clears core top-bar data and existing utility controls (30.386906ms)
+2026-11-10T08:19:59.4308115Z ✔ five source bottle slots share an explicit effect card and retain hidden compatibility explanation paths (50.239811ms)
+2026-11-10T08:19:59.5151148Z ✔ battle heading stays on the horizontal canvas center without touching HUD neighbours (18.736387ms)
+2026-11-10T08:19:59.5995358Z ✔ readability inverse preserves frozen geometry and rejects typography or unrelated drift (24.701961ms)
+2026-11-10T08:20:00.2272141Z ✔ ready registry consumes only the three approved native drawings without enabling source-only cards (250.665319ms)
+2026-11-10T08:20:00.2276755Z ✔ frozen registry rejects real byte/approval mutations with / paths (2.833819ms)
+2026-11-10T08:20:00.2282682Z ✔ frozen registry rejects real byte/approval mutations with \ paths (2.27204ms)
+2026-11-10T08:20:00.2284932Z ✔ literal table reader does not execute functions, accept aliases or duplicate source bindings (1.763872ms)
+2026-11-10T08:20:00.2289194Z ✔ runtime template capacity remains bounded and source-only IDs are rejected (309.462539ms)
+2026-11-10T08:20:01.8221342Z ✔ reviewed asset catalog exists independently from legacy candidates and runtime theme (5.809472ms)
+2026-11-10T08:20:01.8223520Z ✔ armaments: frozen source, prompt, native tables, preview and metadata are coherent (98.915042ms)
+2026-11-10T08:20:01.8226336Z ✔ cleave: frozen source, prompt, native tables, preview and metadata are coherent (105.262746ms)
+2026-11-10T08:20:01.8229932Z ✔ heavy_blade: frozen source, prompt, native tables, preview and metadata are coherent (68.582794ms)
+2026-11-10T08:20:01.8231826Z ✔ new metadata and assets have real LF-canonical legal inventory hashes (28.830996ms)
+2026-11-10T08:20:01.8236614Z ✔ negative controls reject wrong IDs, escaping paths, hashes, dimensions and missing resources (102.141924ms)
+2026-11-10T08:20:01.8240138Z ✔ a retained editor snapshot cannot hide corrupt real Lua geometry, mask or gallery ID (216.014159ms)
+2026-11-10T08:20:01.8243085Z ✔ LF-canonical frozen text hashes survive a CRLF checkout without rewriting sources (265.113852ms)
+2026-11-10T08:20:01.8245722Z ✔ armaments: Lua EOF normalization preserves the recoverable original export and AST (104.656316ms)
+2026-11-10T08:20:01.8247616Z ✔ cleave: Lua EOF normalization preserves the recoverable original export and AST (174.291254ms)
+2026-11-10T08:20:01.8249688Z ✔ heavy_blade: Lua EOF normalization preserves the recoverable original export and AST (149.168127ms)
+2026-11-10T08:20:01.8252354Z ✔ later identity rejection remains immutable history; new visual approval cannot revive old Heavy (119.303491ms)
+2026-11-10T08:20:01.8256064Z ✔ historic real Heavy mask literals still reject disabled flags and altered geometry (0.921309ms)
+2026-11-10T08:20:01.8258519Z ✔ identity-repair pair registers three current cards without reviving the rejected Heavy bytes (0.689968ms)
+2026-11-10T08:20:01.8264572Z ✔ identity, source approval binding, strict FAIL and repair provenance cannot be weakened (74.305453ms)
+2026-11-10T08:20:01.9276731Z ✔ reward list has four safe rows above Proceed and separate native-height feedback (14.52098ms)
+2026-11-10T08:20:02.0621945Z ✔ feedback uses non-interactive per-actor native pools within the per-parent platform limit (31.867533ms)
+2026-11-10T08:20:02.0627061Z ✔ hero grid and dynamic enemy power templates retain owned detail hits within platform limits (8.95934ms)
+2026-11-10T08:20:02.0631436Z ✔ approved critical actor values and card types have native text line room (4.352984ms)
+2026-11-10T08:20:02.0636553Z ✔ all dynamic battle numbers retain a native text line without intercepting input (4.201672ms)
+2026-11-10T08:20:02.0640085Z ✔ status detail card renders every line natively, left-aligned, and a full page fits under the top bar (3.525139ms)
+2026-11-10T08:20:02.0645731Z ✔ the shared theme drives a centered stage with a canvas-filling backdrop outside it (9.478938ms)
+2026-11-10T08:20:02.0649007Z ✔ one through ten hand cards, including selection, fit the 40/20 safe area on every canvas (2.038935ms)
+2026-11-10T08:20:02.0651272Z ✔ native buttons retain four states, readable targets and Main source edge insets (6.232652ms)
+2026-11-10T08:20:02.0655834Z ✔ five potion buttons follow shared tokens and clear the HUD, notice, hand and turn controls (3.249935ms)
+2026-11-10T08:20:02.1305581Z ✔ approved original cost numerals retain their dark stroke above the bright mana texture (6.786265ms)
+2026-11-10T08:20:02.1311294Z ✔ the outline correction does not change the legacy card face (1.129358ms)
+2026-11-10T08:20:02.2721783Z ✔ shared opaque backdrop covers its actual host independently of the content canvas (49.679518ms)
+2026-11-10T08:20:02.2727377Z ✔ all major screens and overlays share one background behind the unmodified content (29.023846ms)
+2026-11-10T08:20:02.2867931Z ℹ tests 225
+2026-11-10T08:20:02.2868458Z ℹ suites 0
+2026-11-10T08:20:02.2868898Z ℹ pass 225
+2026-11-10T08:20:02.2869322Z ℹ fail 0
+2026-11-10T08:20:02.2869745Z ℹ cancelled 0
+2026-11-10T08:20:02.2870196Z ℹ skipped 0
+2026-11-10T08:20:02.2870622Z ℹ todo 0
+2026-11-10T08:20:02.2871102Z ℹ duration_ms 18284.898775
+2026-11-10T08:20:02.4489950Z ok 1 - opener grants Ritual, not damage or immediate Strength
+2026-11-10T08:20:02.4491372Z ok 2 - unmodified single-enemy action trace is 0,6,9,12,15
+2026-11-10T08:20:02.4492590Z ok 3 - teammate action gap does not trigger Ritual growth
+2026-11-10T08:20:02.4493678Z ok 4 - each live instance has independent opener and first-round skip
+2026-11-10T08:20:02.4494907Z ok 5 - dead actors neither act nor gain end-round Strength
+2026-11-10T08:20:02.4495952Z ok 6 - duplicate actions and rounds are rejected without mutating input
+2026-11-10T08:20:02.4497228Z ok 7 - candidate preserves externally supplied HP without RNG or range substitution
+2026-11-10T08:20:02.4498478Z Cultist candidate: 7 tests passed; no runtime integration or parity certification
+2026-11-10T08:20:02.4499554Z Lua fixture tests/lua/cultist_ai_candidate.lua: 105 ms
+2026-11-10T08:20:02.7238752Z ok pairing candidate 1 - initial view conceals all twelve cards with five attempts
+2026-11-10T08:20:02.7239970Z ok pairing candidate 2 - first reveal does not consume an attempt
+2026-11-10T08:20:02.7241664Z ok pairing candidate 3 - second reveal locks selection until explicit pair resolution
+2026-11-10T08:20:02.7243009Z ok pairing candidate 4 - a match removes both slots and emits exactly one award
+2026-11-10T08:20:02.7244627Z ok pairing candidate 5 - a mismatch conceals both slots and also consumes one attempt
+2026-11-10T08:20:02.7245719Z ok pairing candidate 6 - same slot cannot count as a second reveal
+2026-11-10T08:20:02.7246923Z ok pairing candidate 7 - five matches finish with two unclaimed slots and reject all replay
+2026-11-10T08:20:02.7248024Z ok pairing candidate 8 - five mismatches finish without an award
+2026-11-10T08:20:02.7249110Z ok pairing candidate 9 - mixed fifth-attempt match emits final award before becoming terminal
+2026-11-10T08:20:02.7249972Z ok pairing candidate 10 - equal IDs match even when not original adjacent pair slots
+2026-11-10T08:20:02.7251117Z ok pairing candidate 11 - constructor does not retain board aliases
+2026-11-10T08:20:02.7252173Z ok pairing candidate 12 - every view and result is detached from private state
+2026-11-10T08:20:02.7253099Z ok pairing candidate 13 - instances cannot affect each other
+2026-11-10T08:20:02.7254263Z ok pairing candidate 14 - malformed slot indices are atomically rejected
+2026-11-10T08:20:02.7255369Z ok pairing candidate 15 - malformed board shapes and values are rejected without mutation
+2026-11-10T08:20:02.7256910Z ok pairing candidate 16 - metatable inputs are rejected without invoking metamethods
+2026-11-10T08:20:02.7258165Z ok pairing candidate 17 - rejecting an invalid board does not alter caller array
+2026-11-10T08:20:02.7259065Z LUA_MATCH_GAME_CANDIDATE_PASS 17
+2026-11-10T08:20:02.7259773Z Lua fixture tests/lua/match_game_candidate.lua: 216 ms
+2026-11-10T08:20:03.3376549Z PASS viewport: independent host coverage, uniform content and repeated resize (9 devices)
+2026-11-10T08:20:03.3377992Z Lua fixture tests/lua/viewport.lua: 556 ms
+2026-11-10T08:20:03.7726601Z ok transform candidate 1 - colored flattens exact source groups without rarity weighting
+2026-11-10T08:20:03.7728292Z ok transform candidate 2 - colorless uses source colorless, not current colorless or colored groups
+2026-11-10T08:20:03.7729764Z ok transform candidate 3 - curse excludes original and all four special curse IDs
+2026-11-10T08:20:03.7731225Z ok transform candidate 4 - every duplicate original ID is removed before drawing
+2026-11-10T08:20:03.7733545Z ok transform candidate 5 - non-prohibited duplicates retain separate slots and original ordering
+2026-11-10T08:20:03.7735874Z ok transform candidate 6 - a singleton still consumes exactly one RNG call
+2026-11-10T08:20:03.7737198Z ok transform candidate 7 - empty source tiers do not block remaining colored tiers
+2026-11-10T08:20:03.7738363Z ok transform candidate 8 - all filtered or empty pools refuse without advancing RNG
+2026-11-10T08:20:03.7739689Z ok transform candidate 9 - special curse exclusions apply only to curse category
+2026-11-10T08:20:03.7741070Z ok transform candidate 10 - invalid category and prohibited ID are rejected before RNG access
+2026-11-10T08:20:03.7742288Z ok transform candidate 11 - missing required pool groups cannot silently become empty
+2026-11-10T08:20:03.7743546Z ok transform candidate 12 - malformed dense array shapes and IDs are rejected atomically
+2026-11-10T08:20:03.7745386Z ok transform candidate 13 - selected pool and outer metatables cannot execute hooks
+2026-11-10T08:20:03.7746670Z ok transform candidate 14 - only selected pool groups are required or inspected
+2026-11-10T08:20:03.7747903Z ok transform candidate 15 - bad RNG refuses without falling back to global randomness
+2026-11-10T08:20:03.7749163Z ok transform candidate 16 - results, next RNG and source arrays are detached
+2026-11-10T08:20:03.7750435Z ok transform candidate 17 - counter wraps at the signed32 boundary without changing inputs
+2026-11-10T08:20:03.7751893Z ok transform candidate 18 - fixed signed64 seed vectors agree with independent integer oracle
+2026-11-10T08:20:03.7753870Z ok transform candidate 19 - bounded-draw rejection advances two primitive words but one wrapper call
+2026-11-10T08:20:03.7755542Z ok transform candidate 20 - protected RNG metatables are rejected without evaluating hooks
+2026-11-10T08:20:03.7756612Z transform selection candidate groups passed: 20
+2026-11-10T08:20:03.7757480Z Lua fixture tests/lua/transform_card_candidate.lua: 378 ms
+2026-11-10T08:20:04.9914507Z LUA_NODE_UI_PASS 0
+2026-11-10T08:20:04.9915071Z LUA_UI_PASS 0 range=1-0
+2026-11-10T08:20:04.9915988Z growing_card_text: 0/0 passed
+2026-11-10T08:20:04.9916430Z SAPPHIRE_TREASURE_UI_PASS 0
+2026-11-10T08:20:04.9917242Z ok UI mock contract 1 - all five real mock factories accept signed fractional size deltas and zero
+2026-11-10T08:20:04.9918389Z ok UI mock contract 2 - malformed or unusable synthetic geometry is rejected before changing each scene
+2026-11-10T08:20:04.9919559Z ok UI mock contract 3 - cursor registrations require a callable callback in every real mock
+2026-11-10T08:20:04.9920855Z ok UI mock contract 4 - game key and navigation registrations keep enum values opaque and callbacks callable
+2026-11-10T08:20:04.9922718Z ok UI mock contract 5 - independent controls keep separate geometry and listener state
+2026-11-10T08:20:04.9925035Z ok UI mock contract 6 - all real factories reject the escaped cursor field but preserve button capability
+2026-11-10T08:20:04.9926514Z UI_MOCK_CONTRACT_PASS 6
+2026-11-10T08:20:04.9927535Z Lua fixture tests/lua/ui_mock_contract.lua: 1162 ms
+2026-11-10T08:20:06.0245598Z Card text: 182 class/status/curse variants retain full names and text at approved font bounds; native visual verification still required.
+2026-11-10T08:20:06.0247015Z Lua fixture tests/lua/warrior75_card_text.lua: 969 ms
+2026-11-10T08:20:06.8771093Z Jaw Worm policy: 19044 assertions; 1300 opening, 1300 subsequent requests, 620 resolved choices, 4000 sequence steps passed
+2026-11-10T08:20:06.8772293Z Lua fixture tests/lua/jaw_worm_policy_candidate.lua: 794 ms
+2026-11-10T08:20:08.4646725Z ok 1 existing approved display remains detached and known unchanged cards retain wording
+2026-11-10T08:20:08.4647968Z CHARACTER_PRESENTATION_PASS 1 rendered_card_variants=0
+2026-11-10T08:20:08.4648735Z PR238_SLICE 5 5 1
+2026-11-10T08:20:08.4649459Z Lua fixture tests/lua/character_presentation_budget_5.lua: 1523 ms
+2026-11-10T08:20:10.1250954Z ok 1 unknown op in either branch refuses even if existing presentation is available
+2026-11-10T08:20:10.1252284Z CHARACTER_PRESENTATION_PASS 1 rendered_card_variants=0
+2026-11-10T08:20:10.1253210Z PR238_SLICE 8 8 1
+2026-11-10T08:20:10.1261812Z Lua fixture tests/lua/character_presentation_budget_8.lua: 1603 ms
+2026-11-10T08:20:11.2108647Z WATCHER_FINAL_LIVE_DISPLAY modified block/damage and stored Expunger hit count passed
+2026-11-10T08:20:11.2110334Z Lua fixture tests/lua/watcher_final_live_display.lua: 1025 ms
+2026-11-10T08:20:12.4418824Z ok Silent 150 actual display variants, dynamic power details and Bark potion descriptions
+2026-11-10T08:20:12.4420705Z Lua fixture tests/lua/silent_final_presentation.lua: 1172 ms
+2026-11-10T08:20:13.9666953Z PRESENTATION_TRACE_NATIVE_PASS strict delegation and exact P0 inverse
+2026-11-10T08:20:13.9669152Z Lua fixture tests/lua/presentation_trace_native.lua: 1461 ms
+2026-11-10T08:20:15.5102420Z LUA_CARD_VALUE_DISPLAY_PASS 10
+2026-11-10T08:20:15.5105505Z Lua fixture tests/lua/card_value_display.lua: 1482 ms
+2026-11-10T08:20:17.5882626Z ok 1 unknown status orb hand mode and empty card explicitly refuse
+2026-11-10T08:20:17.5883384Z CHARACTER_PRESENTATION_PASS 1 rendered_card_variants=0
+2026-11-10T08:20:17.5883859Z PR238_SLICE 9 9 1
+2026-11-10T08:20:17.5885381Z Lua fixture tests/lua/character_presentation_budget_9.lua: 2016 ms
+2026-11-10T08:20:19.0336891Z RUN_CARD_CATALOG_PRESENTATION_PASS complete Run300/600 capability, real base/upgraded text and native9 display ABI
+2026-11-10T08:20:19.0338351Z Lua fixture tests/lua/run_card_catalog_presentation.lua: 1384 ms
+2026-11-10T08:20:20.7070838Z ok 1 new dynamic damage tokens follow actual Combat preview instead of static base
+2026-11-10T08:20:20.7072631Z CHARACTER_PRESENTATION_PASS 1 rendered_card_variants=0
+2026-11-10T08:20:20.7073298Z PR238_SLICE 6 6 1
+2026-11-10T08:20:20.7074449Z Lua fixture tests/lua/character_presentation_budget_6.lua: 1612 ms
+2026-11-10T08:20:22.5567287Z PASS ending intent 1 pair secondary actions use existing detail rows and mixed badges
+2026-11-10T08:20:22.5569233Z PASS ending intent 2 Smash block uses actual frozen output instead of intent rounding
+2026-11-10T08:20:22.5570798Z PASS ending intent 3 Heart Debilitate names all five cards and their draw-pile destination
+2026-11-10T08:20:22.5572282Z PASS ending intent 4 Heart buff stages and queued immutable plan share actual source values
+2026-11-10T08:20:22.5574272Z PASS ending intent 5 repeated full previews leave state/RNG/counter and captured old frames unchanged
+2026-11-10T08:20:22.5575742Z ENDING_INTENT_VIEW_PASS 5 controlled offline source projection; no live UI claim
+2026-11-10T08:20:22.5576952Z Lua fixture tests/lua/ending_intent_view.lua: 1788 ms
+2026-11-10T08:20:24.4511980Z not ok growing_card_text 1 - legacy display without optional fields still renders old static text: tests/lua/support/growing_card_text_cases.lua:175: tests/lua/support/growing_card_text_cases.lua:22: unknown control card1/nativeBannerRight
+2026-11-10T08:20:24.4514208Z growing_card_text: 0/1 passed
+2026-11-10T08:20:24.4515304Z tests/lua/support/growing_card_text_cases.lua:178: 1 growing_card_text failures
+2026-11-10T08:20:24.4516479Z stack traceback:
+2026-11-10T08:20:24.4517202Z 	[JS]: in function 'assert'
+2026-11-10T08:20:24.4519280Z 	tests/lua/support/growing_card_text_cases.lua:178: in function <tests/lua/support/growing_card_text_cases.lua:2>
+2026-11-10T08:20:24.4521945Z 	...s/Slay-the-Abyss/tests/lua/growing_card_text_slice_4.lua:2: in main chunk
+2026-11-10T08:20:24.4523419Z 	[JS]: in function 'dofile'
+2026-11-10T08:20:24.4524805Z 	(command line):1: in main chunk
+2026-11-10T08:20:24.4525703Z Lua fixture tests/lua/growing_card_text_slice_4.lua: 1835 ms
+2026-11-10T08:20:24.4575539Z Feedback timing: tests 42084 ms.
+2026-11-10T08:20:24.4577555Z /opt/hostedtoolcache/node/24.18.0/x64/bin/node failed (1)
+2026-11-10T08:20:24.5084759Z ##[error]Process completed with exit code 1.
+2026-11-10T08:20:24.5229081Z Post job cleanup.
+2026-11-10T08:20:24.6128735Z [command]/usr/bin/git version
+2026-11-10T08:20:24.6179532Z git version 2.56.0
+2026-11-10T08:20:24.6220364Z Temporarily overriding HOME='/home/runner/work/_temp/fd059cf9-f24e-46e6-aad6-10b96c5c4b40' before making global git config changes
+2026-11-10T08:20:24.6221911Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-10T08:20:24.6226751Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Slay-the-Abyss/Slay-the-Abyss
+2026-11-10T08:20:24.6274728Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-10T08:20:24.6316803Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-10T08:20:24.6637917Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-10T08:20:24.6682446Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-10T08:20:24.7117539Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-10T08:20:24.7193739Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-10T08:20:24.7606481Z Cleaning up orphan processes
+2026-11-10T08:20:24.8010008Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

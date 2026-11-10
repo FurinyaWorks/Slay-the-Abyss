@@ -1,0 +1,10 @@
+✔ default generated cards preserve strict lookup, rarity tint and required children (12299.147734ms)
+✔ official generated cards preserve strict lookup, rarity tint and required children (4475.80873ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16945.729633
