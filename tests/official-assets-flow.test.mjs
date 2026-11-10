@@ -21,7 +21,7 @@ function runOfficial(t,body,marker){
  const stage=layout.controls.find(c=>c.name==='stage');
  const battle=stage.children.find(c=>c.name==='battlePanel');
  const face=battle.children.find(c=>c.name==='card1');
- assert.equal(face.children.find(c=>c.name==='roundBody').children[0].image,theme.officialAssets.images.cardPanel);
+ assert.equal(face.children.find(c=>c.name==='roundBody').children.find(c=>c.name==='flat').image,theme.image.rect);
  const script=`
 local generated=${luaString(directory.replaceAll('\\','/'))}
 package.path=generated..'/?.lua;src/lua/?.lua'

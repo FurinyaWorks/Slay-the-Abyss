@@ -1,5 +1,5 @@
 // Candidate-only art direction from PR #588. This does not accept the default skin.
-export const officialAssetsProfile = 'official-assets-first-v1';
+export const officialAssetsProfile = 'official-assets-battle-v2';
 export const officialAssetFlags = Object.freeze({cards:false,menuBackground:false,selectionAvatar:true,battlePortrait:true,monsters:false});
 export function validateOfficialAssets(options={}) {
  const {officialAssets=false,releaseCandidate=false,lightweight2d=false,v25BattleChrome=false,
@@ -27,7 +27,7 @@ export function officialAssetsArgs(argv){
 export function officialAssetsFromReceipt(receipt){
  const value=receipt?.officialAssetsProfile;
  if(value===undefined)return false;
- if(value!==officialAssetsProfile)throw Error('Invalid official assets profile receipt');
+ if(![officialAssetsProfile,'official-assets-first-v1'].includes(value))throw Error('Invalid official assets profile receipt');
  validateOfficialAssets({officialAssets:true,artFeatures:receipt.artFeatures?.flags,
   lightweight2d:receipt.experimentalProfile!==undefined,v25BattleChrome:receipt.experimentalBattleChrome!==undefined,
   v25CardAssets:receipt.v25CardAssets,v25UiMasks:receipt.v25UiMasks,nativeCardArt:receipt.nativeCardArt,

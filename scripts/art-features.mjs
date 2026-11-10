@@ -1,4 +1,4 @@
-import {officialAssetsFromReceipt} from './official-assets-profile.mjs';
+import {officialAssetsFromReceipt,officialAssetsProfile} from './official-assets-profile.mjs';
 import {prepareMonsterArt} from './monster-art.mjs';
 import {portraitInventory,portraitRuntimeInputs} from './official-portraits.mjs';
 import {lightweightInventory,lightweightProfile} from './lightweight-2d-profile.mjs';
@@ -99,7 +99,7 @@ export function artBuildOptionsFromReceipt(receipt,{deferExperimentalInventory=f
  if((flags.selectionAvatar||flags.battlePortrait||flags.cards||flags.menuBackground)!==Boolean(receipt.officialPortraits))throw Error('Portrait artwork receipt conflicts with art features');
  if(receipt.officialPortraits){
   const actual=receipt.officialPortraits;
-  const expected=lightweight2d?(deferExperimentalInventory?{renderProfile:lightweightProfile}:lightweightInventory()):portraitInventory(flags,{v25:v25BattleChrome});
+  const expected=lightweight2d?(deferExperimentalInventory?{renderProfile:lightweightProfile}:lightweightInventory()):portraitInventory(flags,{v25:v25BattleChrome,officialAssets:receipt.officialAssetsProfile===officialAssetsProfile});
   for(const [key,value]of Object.entries(expected))if(JSON.stringify(actual[key])!==JSON.stringify(value))throw Error('Portrait artwork inventory differs from art features: '+key);
   const paths=portraitRuntimeInputs(flags);
   if(!Array.isArray(actual.inputs)||actual.inputs.length!==paths.length||paths.some(path=>actual.inputs.filter(row=>

@@ -8,6 +8,7 @@ local CardSkin = require('abyss_card_skin')
 local CardDisplay = require("abyss_card_display")
 local number = require("abyss_numbers").integer
 local C, L = Theme.color, Theme.layout
+local titleInk=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleCardTitleInk or Theme.cardSkin.text.title
 local D = L.cardDrag
 local typeNames = { attack = "攻击", skill = "技能", power = "能力", status = "状态", curse = "诅咒" }
 local M = {}
@@ -219,7 +220,7 @@ function M.new(view, controls)
         CardDisplay.writeTitle(box:GetChild("name"), card.display.name, card.upgraded,
             repeatCount(card.definition, instance),box:GetChild("type"),
             typeNames[card.definition.type] or card.definition.type)
-        ink(box:GetChild("name"), Theme.cardSkin.text.title)
+        ink(box:GetChild("name"), titleInk)
     end
 
     local function writeDetails(box, card, battle, aimUid, aimTarget)

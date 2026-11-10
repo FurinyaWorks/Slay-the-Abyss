@@ -21,7 +21,7 @@ const paths=(node,prefix='')=>allPaths(node,prefix);
 function allPaths(node,prefix){const path=prefix+'/'+node.name;return [[path,node],...children(node).flatMap(item=>allPaths(item,path))];}
 const child=(node,name)=>children(node).find(item=>item.name===name);
 function receipt(){return {officialAssetsProfile,artFeatures:artFeatureReceipt(officialAssetFlags),uiProfile:uiProfileReceipt(true),
- officialPortraits:{...portraitInventory(officialAssetFlags),inputs:portraitRuntimeInputs(officialAssetFlags).map(path=>({path}))}};}
+ officialPortraits:{...portraitInventory(officialAssetFlags,{officialAssets:true}),inputs:portraitRuntimeInputs(officialAssetFlags).map(path=>({path}))}};}
 
 test('official art is opt-in and preserves both legacy CLI presets and strict candidate guards',async()=>{
  assert.equal(validateOfficialAssets({}),false);
@@ -75,7 +75,8 @@ test('approved battle geometry keeps live field identities and input contracts w
   for(const [path,node,before]of containers){if(path.includes('/battlePanel/'))continue;assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
  assert.equal(result.cardHosts,cards.length);assert(cards.length>=40);assert(result.removedControls>500);
- for(const card of cards){assert.equal(child(child(card,'roundBody'),'flat').image,107253);assert.equal(child(card,'costCore').image,107202);}
+ const battleBodies=new Set(all(child(layout,'battlePanel')));
+ for(const card of cards){assert.equal(child(child(card,'roundBody'),'flat').image,battleBodies.has(card)?100001:107253);assert.equal(child(child(card,'roundFrame'),'flat').image,battleBodies.has(card)?100001:107253);assert.equal(child(card,'costCore').image,107270);}
   const battle=child(layout,'battlePanel');
   assert.deepEqual(child(battle,'hero').position,[-324,-37]);
   assert.equal(child(child(battle,'hero'),'name').visible,false);
@@ -117,17 +118,21 @@ test('scene and button substitutions preserve semantic icons and all four native
  assert.equal(description.text.autoSize,true);assert.deepEqual(description.size,[104,64]);
 });
 
-test('isolated builder emits official skin plus the real preserved portraits and retains opt-out fallback',t=>{
+test('official battle uses the temporary pixel actor while preserving selection and opt-out sources',t=>{
  const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});const dir=mkdtempSync(join(root,'official-assets-'));
  t.after(()=>rmSync(dir,{force:true,recursive:true}));
  buildUI(dir,undefined,{officialAssets:true,nativePageLifecycle:true});
  assert.deepEqual(readArtFeatures(dir),officialAssetFlags);
  const layout=JSON.parse(readFileSync(join(dir,'game-ui.json'),'utf8'));
  const battle=child(child(layout,'stage'),'battlePanel');
- assert.equal(child(child(child(battle,'card1'),'roundBody'),'flat').image,107253);
+ assert.equal(child(child(child(battle,'card1'),'roundBody'),'flat').image,100001);
  assert(child(child(battle,'hero'),'officialFigure'));
  const portrait=readFileSync(join(dir,'abyss_traveler_portrait_assets.lua'),'utf8');
  assert.match(portrait,/battle133=/);assert.match(portrait,/avatar96=/);
+ assert.match(portrait,/battlePixel=/);
+ const inventory=portraitInventory(officialAssetFlags,{officialAssets:true});
+ assert.equal(inventory.assets.find(a=>a.asset==='temporary-pixel-traveler').images,57);
+ assert.equal(inventory.assets.find(a=>a.asset==='traveler-geo/portraits/avatar96').images,457);
  assert.doesNotMatch(portrait,/lowpolyLand=/);
  assert.match(readFileSync(join(dir,'abyss_theme.lua'),'utf8'),/official-assets-first/);
  assert.match(readFileSync(join(dir,'abyss_ui_profile.lua'),'utf8'),/nativePageLifecycle=true/);

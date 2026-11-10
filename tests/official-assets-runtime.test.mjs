@@ -21,7 +21,7 @@ function runOfficial(t,body,marker){
  const stage=layout.controls.find(c=>c.name==='stage');
  const battle=stage.children.find(c=>c.name==='battlePanel');
  const face=battle.children.find(c=>c.name==='card1');
- assert.equal(face.children.find(c=>c.name==='roundBody').children[0].image,theme.officialAssets.images.cardPanel);
+ assert.equal(face.children.find(c=>c.name==='roundBody').children.find(c=>c.name==='flat').image,theme.image.rect);
  const script=`
 local generated=${luaString(directory.replaceAll('\\','/'))}
 package.path=generated..'/?.lua;src/lua/?.lua'
@@ -95,7 +95,7 @@ for i=1,10 do
  for _,name in ipairs({'roundBody','roundFrame','roundShadow'})do
   local image=card:GetChild(name):GetChild('flat')
   local id=specChild(specChild(spec,name),'flat').image
-  assert(id==H.F.Theme.officialAssets.images.cardPanel and id~=100001)
+  assert(id==H.F.Theme.image.rect)
   image:SetImage('static',id);textures[#textures+1]={image,id}
  end
 end

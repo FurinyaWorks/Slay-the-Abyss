@@ -198,7 +198,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   else rmSync(join(outputDirectory,'art-performance.json'),{force:true});
   writeFileSync(join(outputDirectory,'art-render-v2.json'),JSON.stringify({profile:'native-v2',hiddenBuild:true,cache:true,revealGroupsPerFrame:4}));
   writeArtFeatures(outputDirectory,flags);writeMonsterActorBinding(outputDirectory);
-  writeBackgroundModule(outputDirectory,{enabled:flags.menuBackground});writePortraitModule(outputDirectory,{...flags,v25BattleChrome});
+  writeBackgroundModule(outputDirectory,{enabled:flags.menuBackground});writePortraitModule(outputDirectory,{...flags,v25BattleChrome,officialAssets});
   writeReadyArtBinding(outputDirectory);writeReadyCardAssets(outputDirectory,{prepared:readyAssets});
   const variantTheme=join(outputDirectory,'v25-theme.json');
   if(v25BattleChrome)writeFileSync(variantTheme,JSON.stringify(theme));

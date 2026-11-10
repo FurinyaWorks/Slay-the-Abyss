@@ -282,7 +282,7 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
       }
       if(portraits||flags.cards||flags.menuBackground){
         if(!modules.has(portraitModule))throw Error('Portrait templates lack runtime module');
-        bindPortraitTemplates(generated,{image:readyTemplates.image,container:readyTemplates.group},{root,...flags,v25BattleChrome});
+        bindPortraitTemplates(generated,{image:readyTemplates.image,container:readyTemplates.group},{root,...flags,v25BattleChrome,officialAssets});
         receipt.officialPortraits={...portraitRuntimeInventory(generated),imageTemplateIndex:readyTemplates.image.templateIndex,containerTemplateIndex:readyTemplates.group.templateIndex,
           inputs:portraitRuntimeInputs(flags).map(path=>fileRecord(join(root,path),root))};
       }

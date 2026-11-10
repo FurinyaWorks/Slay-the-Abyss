@@ -33,11 +33,19 @@ export function officialAssetsTheme(source){
   theme.cardSkin.typePlate=theme.cardSkin.rarities.common[4];
  return theme;
 }
-function cardFace(face,theme){
+function cardFace(face,theme,battle=false){
  const art=theme.officialAssets;
  for(const name of ['roundShadow','roundFrame','roundBody']){
   const image=required(required(face,name),'flat');
-   setImage(image,art.images.cardPanel,name==='roundBody'?art.cardBodyTint:undefined);
+   setImage(image,battle?theme.image.rect:art.images.cardPanel,name==='roundBody'?art.cardBodyTint:undefined);
+ }
+ if(battle){
+  const body=required(face,'roundBody'),flat=required(body,'flat');
+  body.children.unshift({name:'nativePaperTrim',kind:'image',position:[...flat.position],size:[...flat.size],image:art.images.cardPanel,imageType:'basic',colour:art.battleCardTrim});
+  flat.size=flat.size.map(value=>value-art.battleCardInset);
+  const band=required(face,'nameBand'),skin=required(face,'skin');
+  skin.children.push({name:'nativePaperBanner',kind:'image',position:[...band.position],size:[...band.size],image:art.images.cardPanel,imageType:'basic',colour:art.battleCardBannerTint});
+  const title=required(face,'name');title.text.colour=art.battleCardTitleInk;title.text.outline=true;title.text.outlineColour='#FFF6E2';title.text.outlineOpacity=.45;
  }
  for(const name of ['label','description']){
   const text=child(face,name);if(text?.kind==='text')text.text.colour=art.cardInk;
@@ -46,6 +54,40 @@ function cardFace(face,theme){
  // Preserve the animated, semantic cost ring and red/green cost deltas. The
 // official medallion is a single untinted backing, never the dynamic number.
  const disc=required(face,'costCore');disc.size=[Math.min(...disc.size),Math.min(...disc.size)];
+}
+function battleSurfaces(root,theme){
+ walk(root,node=>{
+  // A solid native disc is sufficient for these monochrome materials. Avoid
+  // depending on an atlas sprite's default nine-slice centre for solid fills.
+  if(node.kind==='image'&&node.image===106025)node.image=100002;
+  if(node.name==='dashes'&&children(node).length>1&&children(node).every(c=>/^dash\d+$/.test(c.name)&&c.kind==='image')){
+   node.children=[{name:'nativeRing',kind:'image',size:[...node.size],image:theme.image.ring,colour:theme.color.goldDim,opacity:.55}];
+  }
+ });
+ const bar=child(root,'topBar');
+ if(!bar)return;
+ const hud=theme.officialAssets.battleHud;
+ bar.position=[0,hud.y];
+ for(const name of ['leftRule','rightRule'])required(bar,name).visible=false;
+ required(bar,'steel').colour=hud.barColour;
+ const place=(name,position,size,font)=>{
+  const node=required(root,name);node.position=position;if(size)node.size=size;
+  if(font&&node.text){node.text.fontSize=font;node.text.minFontSize=14;node.text.align='left';}
+ };
+ for(const [name,key,font]of [['hpIcon','hpIcon'],['player','hp',hud.numberSize],['goldIcon','goldIcon'],['piles','gold',hud.numberSize]])place(name,hud[key].slice(0,2),hud[key].slice(2),font);
+ for(const name of ['title','floorIcon','floor'])required(root,name).visible=false;
+ const heading=structuredClone(required(root,'player'));heading.name='officialHeroHeading';heading.position=hud.heading.slice(0,2);heading.size=hud.heading.slice(2);heading.text.content=hud.headingText;heading.text.fontSize=hud.headingSize;heading.text.colour=theme.color.gold;
+ heading.position[1]-=hud.y;bar.children.push(heading);
+ for(let index=1;index<=3;index++){
+  const x=hud.potionX+(index-1)*hud.potionStep;
+  for(const node of [required(root,'potion'+index),child(child(root,'potionHelp'),'potionHelp'+index)]){
+   if(node){
+    node.position=[x,hud.y];
+    for(const face of children(node))if(['normal','hover','pressed','disabled'].includes(face.name))face.scale=(face.scale??[1,1]).map(value=>value*hud.potionScale);
+   }
+  }
+  const caption=child(child(root,'potionHelp'),'potionCaption'+index);if(caption)caption.position=[x,hud.potionCaptionY];
+ }
 }
 function buttonFaces(node,theme){
  const parts=children(node),isStateButton=node.kind==='presetButton';
@@ -121,7 +163,7 @@ export function applyOfficialAssets(trees,theme){
  if(!Array.isArray(trees)||!trees.length)throw Error('Official assets require layout trees');
  const images=theme.officialAssets?.images;
  if(!images||Object.values(images).some(id=>!Number.isSafeInteger(id)||id<=0))throw Error('Invalid official image manifest');
- let cardHosts=0,removedControls=0;
+ let cardHosts=0,removedControls=0;const battleCards=new Set();
   for(const tree of trees){
    const stage=child(tree,'stage')??tree;
    if(child(stage,'battlePanel')||child(stage,'endTurn')){
@@ -129,6 +171,9 @@ export function applyOfficialAssets(trees,theme){
     applyV25BattleChrome(tree,theme);
     applyV25TurnNoticeLayout(tree,theme);
     applyV25BattleScene(tree,theme);
+    const battle=child(stage,'battlePanel')??stage;
+    for(const node of children(battle))if(/^card\d+$/.test(node.name))battleCards.add(node);
+    battleSurfaces(battle,theme);
    }
    const result=compactBoundedCardFaces(tree,[],{preserveWindows:true});removedControls+=result.removedControls;
    walk(tree,node=>{
@@ -136,7 +181,7 @@ export function applyOfficialAssets(trees,theme){
     // preferred/minimum sizes leave no whole line in the real renderer. Keep
     // geometry and preferred sizes, and let the existing autosizer fit the text.
     if(node.kind==='text'&&node.text?.autoSize&&node.text.minFontSize*1.45+4>node.size?.[1])node.text.minFontSize=theme.font.minimum;
-   if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme);cardHosts++;}
+   if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme,battleCards.has(node));cardHosts++;}
    else {buttonFaces(node,theme);panelSurfaces(node,theme);pageBackgrounds(node,theme);roomTextFits(node,theme);}
   });
  }

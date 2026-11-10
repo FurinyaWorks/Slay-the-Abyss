@@ -347,7 +347,34 @@ function M.exitEntryVisible(self)
 end
 
 function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVisible,exitPanel,exitDialogOwnsForeground,runMenu,canViewRoute,child,refreshExitDialog)
+    local hud=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleHud
+    local priorBattleHud
+    local hudScales={}
+    local function battleUtilities()
+        if not hud then return end
+        local fighting=self.mode=='battle'
+        if priorBattleHud==fighting then return end
+        for _,entry in ipairs({{child('deckEntry'):GetChild('open'),hud.deck},{exitEntry:GetChild('open'),hud.menu}})do
+            local control,values=entry[1],entry[2]
+            if fighting then
+                control:SetAnchoredPosition(values[1],values[2])
+            else
+                local defaults=entry[1]==exitEntry:GetChild('open') and Theme.layout.exitMenu.entry or Theme.layout.deckView.entry
+                if defaults then control:SetAnchoredPosition(defaults[1],defaults[2])end
+            end
+            local hit=control:GetChild('hit')
+            for _,name in ipairs({'normal','hover','pressed','disabled'})do
+                local variant=hit:GetChild(name)
+                local original=hudScales[variant]
+                if not original then original={variant.localScaleX or 1,variant.localScaleY or 1};hudScales[variant]=original end
+                local scale=fighting and values[3] or 1
+                variant:SetLocalScale(original[1]*scale,original[2]*scale,1)
+            end
+        end
+        priorBattleHud=fighting
+    end
     return function()
+            battleUtilities()
             if characterPanel then
                 characterPanel:SetVisible(self.characterOpen==true)
                 if self.characterOpen then

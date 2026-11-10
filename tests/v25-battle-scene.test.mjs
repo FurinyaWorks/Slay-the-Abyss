@@ -5,7 +5,7 @@ import {gameLayout} from '../scripts/game-ui-layout.mjs';
 import {withViewport} from '../scripts/viewport-layout.mjs';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {assertNativeUiCapacity} from '../scripts/build-ui.mjs';
-import {applyV25BattleScene,buildV25BattleSceneGeometry,v25SceneSource} from '../scripts/v25-battle-scene.mjs';
+import {applyV25BattleScene,buildV25BattleSceneGeometry,v25SceneSource,nativeSceneEdgeBleed} from '../scripts/v25-battle-scene.mjs';
 
 const nodes=node=>node.controls??node.children??[];
 const child=(node,name)=>nodes(node).find(item=>item.name===name);
@@ -73,7 +73,11 @@ test('masked native triangle geometry conserves polygon area and leaves the gate
  const polygonArea=points=>Math.abs(points.reduce((sum,a,i)=>{const b=points[(i+1)%points.length];return sum+a[0]*b[1]-a[1]*b[0];},0))/2;
  for(const layer of buildV25BattleSceneGeometry())for(const shape of layer.shapes.filter(item=>item.type==='polygon')){
   const triangles=all(child(scene,layer.name)).filter(node=>node.name.startsWith(shape.name+'Tri'));
-  const nativeArea=triangles.reduce((sum,node)=>sum+node.size[0]*node.size[1]/4,0);
+  // The visible native triangles deliberately overlap by subpixel bleed.
+  // Remove that explicit raster margin before checking exact source geometry.
+  assert.equal(nativeSceneEdgeBleed,.45);
+  assert(triangles.every(node=>node.opacity===1),'translucent triangulation seams returned');
+  const nativeArea=triangles.reduce((sum,node)=>sum+(node.size[0]/2-nativeSceneEdgeBleed*3)*(node.size[1]-nativeSceneEdgeBleed*3)/2,0);
   assert(Math.abs(nativeArea-polygonArea(shape.points))<1e-5,`${layer.name}/${shape.name} lost geometric area`);
  }
  const gateTriangles=all(child(scene,'gate')).filter(node=>node.name.startsWith('archTri'));
