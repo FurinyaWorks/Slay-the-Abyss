@@ -4,8 +4,10 @@ import {gameLayout} from '../scripts/game-ui-layout.mjs';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {applyOfficialAssets,officialAssetsTheme} from '../scripts/official-assets-layout.mjs';
 import {battleLayout} from '../scripts/ui-layout.mjs';
+import {deckCardTemplate} from '../scripts/deck-ui-layout.mjs';
 const children=n=>n.controls??n.children??[];
 const child=(n,key)=>children(n).find(c=>c.name===key);
+const all=n=>[n,...children(n).flatMap(all)];
 test('official battle HUD can render at least one full native text line without hiding its values',()=>{
  const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme);applyOfficialAssets([layout],theme);
  const battle=child(layout,'battlePanel');
@@ -24,7 +26,24 @@ test('official dark buttons retain light ink and cover their whole native hit su
   assert.equal(child(face,'border').colour,'#17252D');
   assert.deepEqual(child(face,'plate').size,face.size);
  }
- assert.equal(theme.cardSkin.costText,'#FFF8E7','cost numbers must contrast with their dark medallions');
+});
+test('official cost medallions pair the selected light material with neutral dark ink across card hosts',()=>{
+ const source=JSON.stringify(nativeTheme),theme=officialAssetsTheme(nativeTheme);
+ const layout=gameLayout(),template=deckCardTemplate();applyOfficialAssets([layout,template],theme);
+ // 5b3e9f11 replaced dark 107202 with light 107270. Bind both sides of that
+ // material/ink choice; this is a source contract, not measured texture contrast.
+ assert.equal(theme.officialAssets.images.costDisc,107270);
+ assert.equal(theme.cardSkin.costText,'#403829');
+ const cards=[...all(layout),...all(template)].filter(n=>child(n,'roundFrame')&&child(n,'costDisc'));
+ assert(cards.length>=40);
+ for(const card of cards){
+  const core=child(card,'costCore');
+  assert.equal(core.image,107270,card.name+' cost material');
+  assert.equal(core.colour,'#FFFFFF',card.name+' cost material must remain untinted');
+  assert.equal(core.size[0],core.size[1],card.name+' cost material must remain circular');
+ }
+ assert.deepEqual(theme.cardSkin.costTone,nativeTheme.cardSkin.costTone,'red/green cost semantics');
+ assert.equal(JSON.stringify(nativeTheme),source,'candidate must not change the legacy theme');
 });
 test('official battle reuses the approved complete V25 architecture instead of stretched pillar icons',()=>{
  const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme);applyOfficialAssets([layout],theme);

@@ -5,11 +5,14 @@ import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
 import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
 import {sourceEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {preOfficialBattleSource,officialBattleSourceProof} from './helpers/official-battle-source-inverse.mjs';
 const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
+// Authenticate both the input and every linked owner in the same exact historical view.
+const componentRead=path=>preOfficialBattleSource(path,readFileSync(path,'utf8'));
 test('seven-refactor exact outer epoch restores every complete predecessor owner',()=>{
  assert.equal(proof.owners.length,11);
  for(const path of proof.owners){
-  const source=currentEpoch.preCombinedSource(path,readFileSync(path,'utf8'),{target:'watcherFlowPrior'}).replaceAll('\r\n','\n');
+  const source=currentEpoch.preCombinedSource(path,componentRead(path),{target:'watcherFlowPrior',readSource:componentRead}).replaceAll('\r\n','\n');
   assert.equal(source,read(path));
   for(const variant of [source,source.replaceAll('\n','\r\n')])
    assert.equal(epoch.preCombinedSource(path,variant,{target:'prior',readSource:read}),proof.targets.prior.files[path].source);
@@ -23,7 +26,7 @@ test('component UI outer epoch authenticates its exact committed slice and origi
  assert.equal(current.owners.length,22);
  const readCurrent=path=>current.current[path]?.source??null;
  for(const path of current.owners){
-  assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),readCurrent(path),path);
+  assert.equal(componentRead(path).replaceAll('\r\n','\n'),readCurrent(path),path);
   const before=current.targets.componentPrior.files[path];
   const projected=componentEpoch.preCombinedSource(path,readCurrent(path),{target:'componentPrior',readSource:readCurrent});
   // Added UI witnesses are retained; retirement is a separate checked action.
@@ -33,6 +36,38 @@ test('component UI outer epoch authenticates its exact committed slice and origi
   assert.deepEqual(current.targets.componentPrior.files[path],preComponentUiEpoch.proof.current[path],path);
  for(const path of proof.owners)
   assert.deepEqual(preComponentUiEpoch.proof.targets.watcherFlowPrior.files[path],proof.current[path],path);
+});
+
+test('official battle historical view binds complete committed sources and rejects partial or foreign inputs',()=>{
+ assert.equal(officialBattleSourceProof.beforeCommit,componentEpoch.proof.currentCommit);
+ assert.equal(officialBattleSourceProof.afterCommit,'5b3e9f11a25211173a3710d570ca8e4c22664d25');
+ assert.equal(Object.keys(officialBattleSourceProof.files).length,4);
+ for(const [path,binding]of Object.entries(officialBattleSourceProof.files)){
+  assert.equal(binding.beforeSource,componentEpoch.proof.current[path].source,path);
+  const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(actual,binding.afterSource,path);
+  for(const source of [actual,actual.replaceAll('\n','\r\n')])
+   assert.equal(preOfficialBattleSource(path,source),binding.beforeSource,path);
+  for(const source of [actual+'\n',actual.slice(1),binding.beforeSource,null,undefined,{},17])
+   assert.equal(preOfficialBattleSource(path,source),source,path);
+  for(const unknown of ['foreign','__proto__','constructor'])
+   assert.equal(preOfficialBattleSource(unknown,actual),actual);
+ }
+});
+
+test('official battle projected live closure rejects every late owner drift and deletion',()=>{
+ const path='config/architecture.json',source=componentRead(path);
+ for(const owner of currentEpoch.proof.owners){
+  let bad=false;
+  const reader=key=>{
+   const raw=readFileSync(key,'utf8');
+   return preOfficialBattleSource(key,bad&&key===owner?raw+'\n':raw);
+  };
+  currentEpoch.preCombinedSource(path,source,{target:'watcherFlowPrior',readSource:reader});
+  bad=true;
+  assert.throws(()=>currentEpoch.preCombinedSource(path,source,{target:'watcherFlowPrior',readSource:reader}),/linked owner identity/,owner);
+  assert.throws(()=>currentEpoch.preCombinedSource(path,source,{target:'watcherFlowPrior',readSource:key=>key===owner?null:componentRead(key)}),/linked owner identity/,owner);
+ }
 });
 
 test('component config accepts only input layout while freshly authenticating raw linked owners',()=>{

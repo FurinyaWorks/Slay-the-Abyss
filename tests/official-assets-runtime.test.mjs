@@ -101,6 +101,30 @@ for i=1,10 do
 end
 h:refresh();u:render()
 for _,entry in ipairs(textures)do assert(entry[1].imageId==entry[2],'render replaced official card texture')end
+-- The selected light medallion requires dark neutral numbers. Exercise the
+-- real cost painter as well as red/green changes and insufficient-energy ink.
+local Skin=require('abyss_card_skin');local theme=H.F.Theme
+local card=p:GetChild('card1');local number=card:GetChild('cost')
+local ink=theme.cardSkin.costText
+assert(ink.r==64 and ink.g==56 and ink.b==41,'official neutral ink')
+local function colour(actual,expected,label)
+ assert(actual and actual.r==expected.r and actual.g==expected.g and actual.b==expected.b,label)
+end
+colour(number.fontColor,ink,'live neutral cost')
+local paint={color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end}
+local definition=C.cardDefinition(b,b.hand[1])
+for _,case in ipairs({
+ {cost=0,baseCost=1,tone=theme.cardSkin.costTone.down,direction='↓'},
+ {cost=2,baseCost=1,tone=theme.cardSkin.costTone.up,direction='↑'},
+ {cost=1,baseCost=1,dim=true,blockReason='insufficient_energy',tone=theme.cardSkin.costTone.up,direction=''},
+ {cost=1,baseCost=1,dim=true,blockReason='invalid_target',tone=ink,direction=''},
+ {cost=1,baseCost=1,tone=ink,direction=''},
+})do
+ Skin.apply(card,definition,paint,case)
+ colour(number.fontColor,case.tone,'live cost semantic ink')
+ assert(card:GetChild('costDirection').text==case.direction,'live cost direction')
+end
+u:render();colour(number.fontColor,ink,'neutral ink restored after semantic cost changes')
 unchanged(b,before,'official image binding mutated Combat')
 unchanged(H.F.Data,dataBefore,'official image binding mutated Core data')
 -- Selection alone is presentation-only. A resize invalidates the held pointer,
