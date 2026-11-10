@@ -29,8 +29,9 @@ export function impact(changed, sources, event, timings) {
   const estimateByPlatformMs = Object.fromEntries(['win32', 'linux'].map(platform => [platform,
     js.reduce((n, p) => n + (timings.js[platform][p] ?? timings.unknownJsMs), 0) + luaMs]));
   const estimateMs = Math.max(...Object.values(estimateByPlatformMs));
-  const estimates = { estimateMs, estimateByPlatformMs };
-  if (estimateMs > 180000) return { ...full('Complete affected set exceeds fast execution budget'), ...estimates };
+  // Cost is a feedback target, not evidence that unrelated tests are affected.
+  // Keep the complete proven selection; the executor retains a bounded guard.
+  const estimates = { estimateMs, estimateByPlatformMs, exceedsFastTarget: estimateMs > 180000 };
   return { mode: 'fast', reason: plan.reason, changed, js, lua, ...estimates };
 }
 

@@ -87,7 +87,7 @@ test('current POSIX matrix consumes fifteen shared shards with serial full regre
   assert.ok(shards.includes('          npm run build:data\n          npm run build:ui\n          node scripts/ci-shards.mjs --shard='));
   assert.ok(shards.includes('      - run: npm run check:engineering\n        if: matrix.shard == 1\n'));
   assert.ok(shards.includes('        if: always() && matrix.shard == 1\n'));
-  assert.match(aggregate,/^    needs: \[impact, engineering-posix-shards, fast\]\n    if: \$\{\{ !cancelled\(\) \}\}$/m);
+  assert.match(aggregate,/^    needs: \[impact, engineering-posix-shards, fast\]\n    if: \$\{\{ !cancelled\(\) && \(github\.event_name != 'pull_request' \|\| github\.event\.pull_request\.draft == false\) \}\}$/m);
 });
 
 test('native Node four-shard selection executes every current JS file name exactly once', t => {
@@ -105,7 +105,7 @@ test('native Node four-shard selection executes every current JS file name exact
   // the contract's own runner (Node otherwise disables nested CLI discovery).
   delete env.NODE_TEST_CONTEXT;
   for (let shard = 1; shard <= 4; shard++) {
-    // This contract also runs on Windows, where repeated roots exceed argv limits.
+    // This contract also runs on Windows, where repeated roots exceed Windows' argv limits.
     const args = ['--test', '--test-isolation=none', '--test-concurrency=1', `--test-shard=${shard}/4`, '--test-reporter=tap', ...files];
     assert.deepEqual(args.filter(arg => arg.endsWith('.test.mjs')), files, 'native probe argv must retain sorted basenames');
     const result = spawnSync(process.execPath, args, { cwd: root, env, encoding: 'utf8', windowsHide: true, timeout: 30000, maxBuffer: 2 * 1024 * 1024 });

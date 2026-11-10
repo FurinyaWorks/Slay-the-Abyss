@@ -1,0 +1,51 @@
+{
+  "reviewId": "pr584-independent-draft-history-2026-11-09",
+  "reviewedHeadSha": "53b55d4ddd4ed0f2adc5458e53d7d2da5fab51c3",
+  "reviewedBaseSha": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "scope": "Original PR584 Draft/Fast policy and four-file uncommitted historical-contract repair. Local source review and independent probes only; not remote CI or runtime validation.",
+  "conclusion": "pass",
+  "unresolved": [],
+  "probes": [
+    {
+      "name": "Projection equals independently read develop Git blob, byte for byte",
+      "result": "pass"
+    },
+    {
+      "probe": "single-line mutations",
+      "count": 533
+    },
+    {
+      "name": "Every nonempty workflow line changed independently remains rejected or distinct through complete historical chain",
+      "result": "pass"
+    },
+    {
+      "name": "Before-block injection for each reviewed edit cannot erase unrelated drift",
+      "result": "pass"
+    },
+    {
+      "name": "All six reviewed blocks moved out of original locations fail full historical identity",
+      "result": "pass"
+    },
+    {
+      "name": "All per-line mixed EOL variants fail closed or retain exact unrelated EOL drift",
+      "result": "pass"
+    },
+    {
+      "name": "Old workflow and ancient execution-slack source remain idempotent",
+      "result": "pass"
+    }
+  ],
+  "reviewedFiles": {
+    ".github/workflows/quality.yml": "28957431693a0c07dedcda5a1b8ffff031f94f93ca838203d65661343b46709d",
+    "docs/CI-FAST.md": "e9cbe9b4cc047500dd709d3f1a864555b0bda8cd572c4eb1fb19c27144f64b6f",
+    "scripts/ci-impact.mjs": "929d6b235a0fb64ed6ed3683f34417a46eff91ca8329fcd25c7157cbfc8d065a",
+    "tests/ci-impact.test.mjs": "628fe03b3043c373e4bab71f37200f749c555f7dafc908743ad7ecd12902de2f",
+    "tests/ci-posix-shards.test.mjs": "1512e7464481b1b44320ab1c78f0cd5a46f0dce36a6e7e98df947881fca3fe67",
+    "tests/ci-windows-shards.test.mjs": "7352a856242dfd750a4f3c34dfb1c97defae0a72d19e4d2d1ea1b13b128ad11e",
+    "tests/ci-summary-runners.test.mjs": "cd5d9df028ee5c6d192ab8eebe10e830c0e59dfbc4651c78ae29a9beac996507",
+    "tests/full-quality.test.mjs": "a9e1c7a3b5e75e0496f360596cc572f68ae35340c45970590adb96fdee33441d",
+    "tests/helpers/auto-merge-workflow.mjs": "4f3d88760eece33410ea9e895a6fb49d5cebab29bc7d124b88478ff0bf775103",
+    "tests/helpers/draft-quality-workflow.mjs": "345f862a3c8e63aefdfc71b36acc5108ef3e7d577f2579158e2df5d7306720ce"
+  },
+  "baseWorkflowSha256": "aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535"
+}

@@ -106,7 +106,7 @@ test('current Windows matrix consumes the shared seventeen-shard shape without c
   for(const command of ['node scripts/ci-shards.mjs --prepare=','node scripts/ci-shards.mjs --shard='])
     assert.ok(rules.includes(command+'${{ matrix.shard }}/${{ strategy.job-total }}'));
   assert.ok(rules.includes("node scripts/test-lua.mjs --shard ${{ matrix.shard }}/${{ strategy.job-total }} --workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
-  assert.match(job('check'),/^    needs: \[impact, rules, fast, presentation, engineering-posix\]\n    if: \$\{\{ !cancelled\(\) \}\}$/m);
+  assert.match(job('check'),/^    needs: \[impact, rules, fast, presentation, engineering-posix\]\n    if: \$\{\{ !cancelled\(\) && \(github\.event_name != 'pull_request' \|\| github\.event\.pull_request\.draft == false\) \}\}$/m);
   assert.doesNotMatch(rules,/continue-on-error:|--test-name-pattern|--test-skip-pattern/);
 });
 
@@ -114,7 +114,7 @@ test('current check releases cancelled runs and fails closed on every non-succes
   // #560 deliberately replaced always() only at the job gate. The historical
   // always() contract above stays frozen; failure/skip still reaches this shell.
   const check=job('check');
-  assert.match(check,/^    if: \$\{\{ !cancelled\(\) \}\}$/m);
+  assert.match(check,/^    if: \$\{\{ !cancelled\(\) && \(github\.event_name != 'pull_request' \|\| github\.event\.pull_request\.draft == false\) \}\}$/m);
   assert.match(check,/^          RULES_RESULT: \$\{\{ needs.rules.result \}\}$/m);
   assert.doesNotMatch(check,/continue-on-error:|\|\| true/);
   const command=check.match(/^      - name: Require every regression shard\n        env:\n          RULES_RESULT: [^\n]+\n        run: \|\n((?:          .*\n)+)/m)?.[1];

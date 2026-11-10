@@ -1,6 +1,7 @@
 import {readFileSync} from 'node:fs';
 import {beforeNativeMergeQueueWorkflow} from './merge-queue-workflow.mjs';
 import {beforePosixConcurrencyWorkflow} from './posix-concurrency-workflow.mjs';
+import {beforeDraftQualityWorkflow} from './draft-quality-workflow.mjs';
 // Invert only complete reviewed bootstrap additions. Unknown/partial blocks are
 // retained for the original immutable workflow and package guards to reject.
 const {edits}=JSON.parse(readFileSync(new URL('./auto-merge-workflow.json',import.meta.url),'utf8'));
@@ -8,6 +9,8 @@ const {edits}=JSON.parse(readFileSync(new URL('./auto-merge-workflow.json',impor
 // Performance targets are not current execution deadlines. Partial or unrelated
 // changes remain visible to the old whole-source identities.
 export function beforeExecutionTimeoutWorkflow(text){
+ const original=text;
+ text=beforeDraftQualityWorkflow(text);
  const eol=text.includes('\r\n')?'\r\n':'\n';
  const changes=[
   ["    timeout-minutes: ${{ inputs.runner_pool == 'local-special' && 75 || 30 }}",
@@ -20,8 +23,8 @@ export function beforeExecutionTimeoutWorkflow(text){
   ['    needs: [impact, engineering-posix-shards, fast]\n    if: always()\n',
    '    needs: [impact, engineering-posix-shards, fast]\n    if: ${{ !cancelled() }}\n'],
  ].map(pair=>pair.map(value=>value.replaceAll('\n',eol)));
- if(changes.every(([,after])=>text.split(after).length===2))
-  for(const [before,after]of changes)text=text.replace(after,before);
+ if(!changes.every(([,after])=>text.split(after).length===2))return original;
+ for(const [before,after]of changes)text=text.replace(after,before);
  return text;
 }
 export function beforeAutoMergeWorkflow(text){
