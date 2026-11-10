@@ -1,0 +1,22 @@
+[
+  {
+    "name": "banner-guard-true",
+    "exit": 1,
+    "rejected": true
+  },
+  {
+    "name": "banner-guard-false",
+    "exit": 1,
+    "rejected": true
+  },
+  {
+    "name": "rim-guard-true",
+    "exit": 1,
+    "rejected": true
+  },
+  {
+    "name": "rim-guard-false",
+    "exit": 1,
+    "rejected": true
+  }
+]

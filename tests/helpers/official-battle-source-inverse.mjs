@@ -1,5 +1,5 @@
 // Test-only complete-source projection for the official battle slice at 5b3e9f11.
-// Historical component receipts and production presentation stay unchanged.
+// Historical component receipts remain immutable; only complete source identities project.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
@@ -33,7 +33,25 @@ for(const [path,binding]of Object.entries(alignment.files)){
 }
 Object.freeze(alignment.files);
 export const officialBattleAlignmentSourceProof=Object.freeze(alignment);
+// Additive profile-compatibility repair. Earlier archives remain immutable.
+const bannerArchive=readFileSync(new URL('./official-banner-source-epoch.json.gz',import.meta.url));
+assert.equal(hash(bannerArchive),'3f1f13b24b1fd05e01706937f14e905c7003d193b446b2133e8ec25548e91628');
+const bannerBytes=gunzipSync(bannerArchive);assert.equal(hash(bannerBytes),'d7a9276ad6275b23a1f96d0520e143ff2592016e0452771328e126503456ba2d');
+const banner=JSON.parse(bannerBytes);
+assert.equal(banner.schemaVersion,1);assert.equal(banner.normalization,'LF');
+assert.equal(banner.beforeCommit,'20a23f0095ed3f82020f0ccfb13bca3de617ac73');
+assert.deepEqual(Object.keys(banner.files),['src/lua/abyss_battle_card_view.lua']);
+for(const [path,binding]of Object.entries(banner.files)){
+ for(const side of ['before','after'])assert.equal(hash(binding[side+'Source']),binding[side+'Sha256']);
+ assert.equal(binding.beforeSource,alignment.files[path].afterSource);
+ Object.freeze(binding);
+}
+Object.freeze(banner.files);
+export const officialBannerSourceProof=Object.freeze(banner);
 export function preOfficialBattleSource(path,source){
+ const repair=Object.hasOwn(banner.files,path)?banner.files[path]:null;
+ if(repair&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===repair.afterSha256)
+  source=repair.beforeSource;
  const continuation=Object.hasOwn(alignment.files,path)?alignment.files[path]:null;
  if(continuation&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===continuation.afterSha256)
   source=continuation.beforeSource;

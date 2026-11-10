@@ -482,3 +482,9 @@ tests/helpers/official-assets-flow-ci-source-epoch.json.gz -text
 # Preserve exact full-flow reports, raw traces and diagnostic image bytes.
 docs/evidence/official-assets-first-20261109/full-flow/** -text
 docs/evidence/official-assets-first-20261109/planning-flow/ci-calibration-initial.log -whitespace
+
+# Exact additive banner repair source and validation bytes.
+tests/helpers/official-banner-source-epoch.json.gz -text
+docs/evidence/pr588-native-mock-20261110/** -text
+# Raw runner logs retain their original indentation and trailing whitespace.
+docs/evidence/pr588-native-mock-20261110/*.log -whitespace

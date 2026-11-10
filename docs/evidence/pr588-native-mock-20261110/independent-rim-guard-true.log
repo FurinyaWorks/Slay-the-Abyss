@@ -1,0 +1,44 @@
+✖ default generated cards preserve strict lookup, rarity tint and required children (3394.600634ms)
+✔ official generated cards preserve strict lookup, rarity tint and required children (4659.711503ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8264.420525
+
+✖ failing tests:
+
+test at tests/official-assets-runtime.test.mjs:241:36
+✖ default generated cards preserve strict lookup, rarity tint and required children (3394.600634ms)
+  AssertionError [ERR_ASSERTION]: ABYSS_RUN seed=1 source=explicit
+  src/lua/abyss_battle_card_view.lua:303: official playable rim is required
+  stack traceback:
+  	[JS]: in function 'assert'
+  	src/lua/abyss_battle_card_view.lua:303: in upvalue 'writeSkin'
+  	src/lua/abyss_battle_card_view.lua:319: in upvalue 'renderSlot'
+  	src/lua/abyss_battle_card_view.lua:335: in field 'renderCards'
+  	src/lua/abyss_battle_render.lua:27: in method 'render'
+  	src/lua/abyss_battle_actions.lua:147: in method 'setActive'
+  	src/lua/abyss_game_ui_view.lua:244: in upvalue 'refreshPageVisibility'
+  	src/lua/abyss_game_ui_view.lua:524: in method 'refresh'
+  	tests/lua/support/battle_gesture_fixture.lua:11: in field 'setup'
+  	(command line):6: in main chunk
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///tmp/pr588-independent-nine/tests/official-assets-runtime.test.mjs:295:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

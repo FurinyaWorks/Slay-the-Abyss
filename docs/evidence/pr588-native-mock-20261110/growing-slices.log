@@ -1,0 +1,38 @@
+tests/lua/growing_card_text_slice_4.lua 3083 ms ok growing_card_text 1 - legacy display without optional fields still renders old static text
+growing_card_text: 1/1 passed
+ 
+tests/lua/growing_card_text.lua 3899 ms ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=8
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=18
+ok growing_card_text 1 - normal actual click play, redraw and live modifiers update damage
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=8
+ok growing_card_text 2 - normal new combat resets text
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=8
+ok growing_card_text 3 - normal failed rule rolls back growth and label
+growing_card_text: 3/3 passed
+ 
+tests/lua/growing_card_text_slice_2.lua 3640 ms ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=8
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=21
+ok growing_card_text 1 - upgraded actual click play, redraw and live modifiers update damage
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=8
+ok growing_card_text 2 - upgraded new combat resets text
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=8
+ok growing_card_text 3 - upgraded failed rule rolls back growth and label
+growing_card_text: 3/3 passed
+ 
+tests/lua/growing_card_text_slice_3.lua 3363 ms ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=8
+ok growing_card_text 1 - same id instances retain independent upgraded and normal labels
+ok growing_card_text 2 - integer floats and damage beyond signed 32 bits render without decimals or wrapping
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=8
+ok growing_card_text 3 - reward remains static even after grown battle
+growing_card_text: 3/3 passed
+ 

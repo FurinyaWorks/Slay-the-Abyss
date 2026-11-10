@@ -1,0 +1,39 @@
+✔ default generated cards preserve strict lookup, rarity tint and required children (3824.635371ms)
+✖ official generated cards preserve strict lookup, rarity tint and required children (3741.957379ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7788.378505
+
+✖ failing tests:
+
+test at tests/official-assets-runtime.test.mjs:241:36
+✖ official generated cards preserve strict lookup, rarity tint and required children (3741.957379ms)
+  AssertionError [ERR_ASSERTION]: ABYSS_RUN seed=1 source=explicit
+  (command line):21: rarity ink mismatch
+  stack traceback:
+  	[JS]: in function 'assert'
+  	(command line):21: in local 'colour'
+  	(command line):31: in main chunk
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///tmp/pr588-independent-nine/tests/official-assets-runtime.test.mjs:295:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -237,3 +237,61 @@ event('card1','up',201);event('card1','click',201)
 unchanged(win.run,before,'late battle pointer acted after return to map')
 `, 'OFFICIAL_RUNTIME_FLOW_PASS');
 });
+
+for(const official of [false,true])test(`${official?'official':'default'} generated cards preserve strict lookup, rarity tint and required children`,t=>{
+ const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});
+ const directory=mkdtempSync(join(root,'banner-contract-'));
+ t.after(()=>rmSync(directory,{recursive:true,force:true}));
+ buildLuaData('data',join(directory,'abyss_data.lua'));
+ buildUI(directory,undefined,{officialAssets:official});
+ const modules=readdirSync(directory).filter(n=>n.endsWith('.lua')).map(n=>n.slice(0,-4));
+ const script=`
+local generated=${luaString(directory.replaceAll('\\','/'))}
+package.path=generated..'/?.lua;src/lua/?.lua'
+for _,name in ipairs(${toLua(modules)})do package.preload[name]=assert(loadfile(generated..'/'..name..'.lua'))end
+local H=dofile('tests/lua/support/battle_gesture_fixture.lua')
+local h,u,p=H.setup({'strike','defend','bash','anger','inflame'},{'cultist','jaw_worm'})
+local official=${official}
+local theme=H.F.Theme
+assert((theme.presentationProfile=='official-assets-first')==official)
+local probes=0
+for i=1,10 do
+ local box=p:GetChild('card'..i)
+ assert((box.children.nativeBannerRight~=nil)==official,'generated profile owns the ribbon')
+ local get=box.GetChild
+ box.GetChild=function(self,key)
+  if key=='nativeBannerRight' or key=='nativePlayableRim' then probes=probes+1;assert(official,'default profile probed official-only ribbon')end
+  return assert(get(self,key),'missing required card child '..key)
+ end
+end
+local function colour(actual,expected)
+ assert(actual and actual.r==expected.r and actual.g==expected.g and actual.b==expected.b,'rarity ink mismatch')
+end
+for _,rarity in ipairs({'basic','common','uncommon','rare'})do
+ -- Test-local copy of real card definitions; no gameplay source is changed.
+ for _,def in pairs(h.run.combat.catalog.cards)do def.rarity=rarity end
+ u:render()
+ for i=1,#h.run.combat.hand do
+  local box=p:GetChild('card'..i)
+  local ink=official and theme.officialAssets.battleBannerByRarity[rarity] or theme.color.rarityBand[rarity]
+  colour(box:GetChild('nameBand').imageColor,ink)
+  if official then colour(box:GetChild('nativeBannerRight').imageColor,ink)end
+ end
+end
+assert(official and probes>0 or not official and probes==0)
+for _,name in ipairs(official and {'nameBand','nameRule','art','nativeBannerRight','nativePlayableRim'} or {'nameBand','nameRule','art'})do
+ local box=p:GetChild('card1');local saved=box.children[name];assert(saved)
+ box.children[name]=nil
+ local ok,reason=pcall(function()u:render()end)
+ box.children[name]=saved
+ assert(not ok and tostring(reason):find('missing required card child '..name,1,true),tostring(reason))
+ u:render()
+end
+print('BANNER_CONTRACT_PASS')
+`;
+ const result=spawnSync(process.execPath,[require.resolve('fengari-node-cli/src/lua-cli.js'),'-e',script],{
+  encoding:'utf8',timeout:30000,maxBuffer:2*1024*1024,env:{...process.env,LUA_INIT:'',LUA_INIT_5_3:''},
+ });
+ assert.equal(result.status,0,result.stdout+result.stderr+String(result.error??''));
+ assert.match(result.stdout,/BANNER_CONTRACT_PASS/);
+});

@@ -252,7 +252,9 @@ function M.new(view, controls)
             or enabled and (C.rarity[definition.rarity] or C.line) or C.line)
         -- The title banner and its rule carry rarity, as on the original cards.
         tint(box:GetChild("nameBand"), bannerInk(definition))
-        local right=box:GetChild('nativeBannerRight');if right then tint(right,bannerInk(definition))end
+        if Theme.presentationProfile=='official-assets-first' then
+            tint(assert(box:GetChild('nativeBannerRight'),'official battle banner is required'),bannerInk(definition))
+        end
         tint(box:GetChild("nameRule"), C.rarity[definition.rarity] or C.line)
         tint(box:GetChild("artPlate"), enabled and (C.cardType[definition.type] or C.panelRaised) or C.panelSunken)
         CardDisplay.writeArt(box:GetChild("art"), definition, picture,box)
@@ -297,8 +299,10 @@ function M.new(view, controls)
         local printed=card.upgraded and base.upgrade and base.upgrade.cost or base.cost
         CardSkin.apply(box,card.definition,controls.platform,{dim=not card.playable,selected=card.selected or hovered,
             cost=card.definition.cost,baseCost=printed,blockReason=card.blockReason,surfaceScope='battle'})
-        local rim=box:GetChild('nativePlayableRim')
-        if rim then rim:SetVisible(context.active and canAimCard(card,context.battle))end
+        if Theme.presentationProfile=='official-assets-first' then
+            local rim=assert(box:GetChild('nativePlayableRim'),'official playable rim is required')
+            rim:SetVisible(context.active and canAimCard(card,context.battle))
+        end
     end
 
     local function renderSlot(context, i, aimUid, aimTarget)

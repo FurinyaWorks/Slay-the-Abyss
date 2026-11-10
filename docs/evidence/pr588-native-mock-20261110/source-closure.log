@@ -1,0 +1,26 @@
+✔ seven-refactor exact outer epoch restores every complete predecessor owner (10.764901ms)
+✔ component UI outer epoch authenticates its exact committed slice and original predecessor (5.546528ms)
+✔ official battle historical view binds complete committed sources and rejects partial or foreign inputs (5.716783ms)
+✔ official battle projected live closure rejects every late owner drift and deletion (364.598835ms)
+✔ component config accepts only input layout while freshly authenticating raw linked owners (2.490732ms)
+✔ component UI authorization rejects every late owner drift and deletion after warming (7.229005ms)
+✔ component UI foreign and predecessor inputs stay opaque without linked reads (3.10249ms)
+✔ seven-refactor projection freshly rejects drift and missing owners after warming (2.119469ms)
+✔ foreign and predecessor inputs remain opaque without linked reads (0.770674ms)
+✔ every advertised composed target preserves foreign bytes without linked reads (1.848971ms)
+✔ facades preserve original invalid-reader semantics while public reader factories remain strict (190.49675ms)
+✔ configuration layout admission preserves exact tokens and freshly authenticates all 45 raw owners (19.50625ms)
+✔ configuration layout never repairs invalid number or keyword tokens (1.275587ms)
+✔ pure source calculations reuse exact strings but every projection freshly reads its owners (1.683172ms)
+✔ pure hash memoization evicts by both entry count and retained complete string length (11.01973ms)
+✔ frozen input reuse preserves immutable bindings while default callers retain clone isolation (0.843445ms)
+✔ frozen reuse rejects mutable/accessor/cyclic data and still validates complete source hashes (1.426759ms)
+✔ reused flattened proofs freshly read each declared owner once and stop at the first invalid owner (1.026935ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9330.978059
