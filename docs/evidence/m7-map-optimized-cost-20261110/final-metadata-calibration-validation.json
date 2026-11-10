@@ -1,0 +1,58 @@
+[
+  {
+    "name": "ci-complete-calibration",
+    "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+    "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "startedAt": "2026-11-10T02:30:25.440136+00:00",
+    "testFile": "tests/ci-complete-calibration.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/ci-complete-calibration-metadata.jsonl",
+      "tests/ci-complete-calibration.test.mjs"
+    ],
+    "returncode": 0,
+    "error": null,
+    "processWallMs": 18450.387646997115,
+    "summary": {
+      "tests": 53.0,
+      "pass": 53.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 18334.490977
+    },
+    "log": {
+      "path": ".artifacts/round25/ci-complete-calibration-metadata.log",
+      "sha256": "dca7966edbdf1c6246e48ac53b4fa0c7ab9c55be1f9b42fe7444fdf52875c168",
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-metadata.log.gz",
+      "publishedGzipSha256": "300d1720f474666b57f8e24dae09e7761bf442faa06abe0470f6bafb2734fd1a",
+      "publishedUncompressedSha256": "dca7966edbdf1c6246e48ac53b4fa0c7ab9c55be1f9b42fe7444fdf52875c168"
+    },
+    "before": {
+      "path": ".artifacts/round25/ci-complete-calibration-metadata-before.json.gz",
+      "sha256": "193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91",
+      "uncompressedSha256": "2625ab8cceab1bcd4bdf4d4c0b3a438c688ad2a17fe56d005488d67419469f6e",
+      "files": 9042,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91.json.gz",
+      "publishedGzipSha256": "193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91",
+      "publishedUncompressedSha256": "2625ab8cceab1bcd4bdf4d4c0b3a438c688ad2a17fe56d005488d67419469f6e"
+    },
+    "after": {
+      "path": ".artifacts/round25/ci-complete-calibration-metadata-after.json.gz",
+      "sha256": "193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91",
+      "uncompressedSha256": "2625ab8cceab1bcd4bdf4d4c0b3a438c688ad2a17fe56d005488d67419469f6e",
+      "files": 9042,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91.json.gz",
+      "publishedGzipSha256": "193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91",
+      "publishedUncompressedSha256": "2625ab8cceab1bcd4bdf4d4c0b3a438c688ad2a17fe56d005488d67419469f6e"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/ci-complete-calibration.test.mjs\",\"durationMs\":7218.465218,\"success\":true}\n"
+  }
+]

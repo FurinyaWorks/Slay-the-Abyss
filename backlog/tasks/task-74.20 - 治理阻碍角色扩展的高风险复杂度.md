@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: 2026-11-06 01:46
-updated_date: '2026-11-10T01:22:00Z'
+updated_date: '2026-11-10T02:34:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -34,6 +34,7 @@ documentation:
   - docs/backlog-details/M7-MAP-EMERALD-20261109.md
   - docs/evidence/m7-map-emerald-cost-20261110/README.md
   - docs/evidence/m7-map-cost-registration-20261110/README.md
+  - docs/evidence/m7-map-optimized-cost-20261110/README.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -118,6 +119,8 @@ PR #591成本补证收口：独立核查确认只改timings会破坏现有精确
 2026-11-10 接续 #591 成本准入：在独立工作树登记七项公开完整进程成本并保留旧观测；通过精确完整字节的外层合同投影保持原历史断言，不改原档、预算、矩阵、worker 或测试覆盖。先证明原预算下不可仅靠重新分配，再定位真正可测量的开销改进；仅运行受影响完整文件并记录前后输入、Node 总时长和外层 wall。独立复审前保持 Draft / BLOCKED，不重复 Full 或改合并设置。
 
 2026-11-10 本轮接续 #591 的真实成本阻塞：隔离树基于远端49678e7，不改 #586 的证明构造或任何生产/共享runtime。先剖析新增Map夹具，只尝试在每个独立VM内复用纯固定seed-42初始RNG构造并逐场景深拷贝；原完整矩阵、全部真实负控与逐次图观察保留。用原/新夹具在旧/新源码和所有mutant的完整图流逐字对照，独审后采完整成本；不改预算、分片、owner/status/AC，不重跑Full。
+
+2026-11-10 本轮仅接续 #591 已公开优化的成本闭环：在独立树对原/新Map夹具运行相同完整单文件并逐次绑定输入，保留所有旧慢观测和原历史合同；只在真实改进证据支持时登记当前实现成本，原预算/分片/worker/生产和覆盖不变。检查当前全库存规划、独立复审后发布同PR，不重跑Full、不操作设备、不提前勾AC。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -214,4 +217,8 @@ POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入�
 2026-11-10 #591 成本登记接线：七项真实完整进程观测登记，原33 floor与804行断言及旧档不变，精确外层reader分别保留历史33与实际40。七完整文件82/82通过，初轮runtime12/13失败保留并修复；最终校准48/48为14894ms，仍保留更慢成功17544ms floor及旧13573历史值。Windows实际预测1801345ms（超1345），理想下界1800665.882ms，不能仅调度解决；POSIX1137425ms。独审收口中，保持Draft/BLOCKED，不重复Full，未更改owner/status/AC或合并设置。共享证明优化与#586原线协调，不复制实施。
 
 本轮 #591 Map 固定seed夹具构造优化完成：17对新VM逐字核对17,529检查点/侧，原/新夹具保持所有14语义mutant差异；永久同VM隔离及3真实坏拷贝负控通过。完整原10项Map与新增合同后50项校准均通过，输入前后摘要稳定；独审无阻断。仅本机探索观测，不换算Hosted或规划收益；原timings/floor/预算/分片原字节不变，Windows仍1801345ms及overall BLOCKED，未合并、未验AC。证据：docs/evidence/m7-map-fixture-reuse-20261110/README.md。
+
+2026-11-10 #591已优化夹具成本闭环接续：原/新完整文件各10/10，跨轮唯一输入差为夹具；3次优化版完整wall最大65079.339ms，加10%余量登记71588ms，原87638及完整元数据逐字归档，其他39 floor/预算/17Windows15POSIX保持。实际Windows1800299ms仍超299，继续Draft/BLOCKED。七完整CI文件87/87、换行修复后校准53/53；原失败/慢样本保留，独审与当前Hosted分别验收，不重复Full、不改owner/status/AC。证据docs/evidence/m7-map-optimized-cost-20261110/README.md。
+
+本轮最终成本更正：元数据校准53/53出现18450.388ms较慢完整观测，原样保留；calibration floor据3条候选完整观测加10%余量由17544提高20296，旧值历史保留。最终53/53为18824.570ms仍低于新floor。实际Windows更新为1800631ms、超631，POSIX1136539ms；只有Map和calibration两项成本变化，其余38项不变。先前299ms为提高校准成本前的中间结果，不作为最终准入。
 <!-- SECTION:NOTES:END -->

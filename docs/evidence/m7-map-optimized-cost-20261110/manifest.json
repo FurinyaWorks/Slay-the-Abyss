@@ -1,0 +1,281 @@
+{
+  "scope": "Measurement, validation and independent technical review artifacts; no Hosted or merge-admission claim.",
+  "files": {
+    "docs/evidence/m7-map-optimized-cost-20261110/defect-integration-source.log.gz": {
+      "sha256": "d5169e63a5555e6907748aa1e9274cb068e32bc2f5e86813c149a36e89644a06",
+      "bytes": 452
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/optimized-dependency-bound-before.json.gz": {
+      "sha256": "3104143a672333cfc8b5673f064a26a9554a19d50cde1c57f17fd7a76a942299",
+      "bytes": 427211
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-after.json.gz": {
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "bytes": 428336
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/original-second.log.gz": {
+      "sha256": "a9322077ba5854b9fb9f8f8143c708ccaff7eea1434a4ec838338229862c6d04",
+      "bytes": 844
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-final-after.json.gz": {
+      "sha256": "372fcf9e7c47547408269760382a82e34fe9730ce9c54dc701deba5068d57c58",
+      "bytes": 428335
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validate-final-calibration.py.gz": {
+      "sha256": "0215aa324b2a9521119b13f45a3e924fbf1dbbdd3e5cf290ec29d079c4c1e27b",
+      "bytes": 1652
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/final-calibration-validation.json": {
+      "sha256": "1a5222f5bdda716b79aa9f2008d48c21304bd903a6085c916cbbd9bbf2bab74d",
+      "bytes": 2922
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/inputs-372fcf9e7c47547408269760382a82e34fe9730ce9c54dc701deba5068d57c58.json.gz": {
+      "sha256": "372fcf9e7c47547408269760382a82e34fe9730ce9c54dc701deba5068d57c58",
+      "bytes": 428335
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-host-timing-calibration.log.gz": {
+      "sha256": "8d0de652308022242783157ae218599c7caa4b8d2f83edc8a30cd4ddf3f344c9",
+      "bytes": 497
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validation-final.log.gz": {
+      "sha256": "6a521166c1359f4dc3106c0d2b5aec1db13530d528ba2adee25b85367829d733",
+      "bytes": 561
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/inputs-193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91.json.gz": {
+      "sha256": "193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91",
+      "bytes": 428441
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz": {
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "bytes": 428336
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-before.json.gz": {
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "bytes": 428336
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/class-potion-orb-source-inverse.log.gz": {
+      "sha256": "7dc0b34b42813643a953d97c94c11732ab901d7838625684286ec294f3322653",
+      "bytes": 487
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/measure-pair.py.gz": {
+      "sha256": "8de7191148077218b298a16ad096e510bb1ccde693f6c84501a356e014c7fd4c",
+      "bytes": 1344
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/watcher-actor-source-inverse.log.gz": {
+      "sha256": "3bdacf52dc15c4d65a8dcf0e7b919141b2735d0394d9c0d3875899204736ba09",
+      "bytes": 491
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/optimized-first.log.gz": {
+      "sha256": "b7f2ca1d440db48b0c61c11046ed4340a90eb09d7c93cab9561c69f048f94bb7",
+      "bytes": 846
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-final-before.json.gz": {
+      "sha256": "372fcf9e7c47547408269760382a82e34fe9730ce9c54dc701deba5068d57c58",
+      "bytes": 428335
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-runtime.log.gz": {
+      "sha256": "e89f19895273547a9d170d6ee3da75f680b8790413554ccc80cffdafcc9e461e",
+      "bytes": 949
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/measure-pair.log.gz": {
+      "sha256": "a229afcdc5f7c852e0f04e63924cdcdafc0ef7d437b8f8c645c3d5533113df7c",
+      "bytes": 808
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/calibration-complete-observations.json": {
+      "sha256": "08cea22af3b1017c9477526b4bf8c2086d4c2e1684b9e3ca6406ce6fcc2d4eb4",
+      "bytes": 6799
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/doctor.log.gz": {
+      "sha256": "55e5403e2c1b298a4db17d4fb9551c8482e2e718824490218974ec40723d40cf",
+      "bytes": 1843
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/independent-review.md": {
+      "sha256": "712e0c8f68d49f883ea5fb1b4f40e887ae9af160c6e55ee15a75c53b024c5764",
+      "bytes": 2802
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validation-metadata.log.gz": {
+      "sha256": "8299519e2f0a4ca235e78dbb58190fc6745c86d3e5ba30a36d43401ee45086ee",
+      "bytes": 563
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/final-accounting-validation.json": {
+      "sha256": "314c7d668bbd3e1202b48b27c0a6727f55fd018494bc1cb9bdf78e0b7c8f7a8e",
+      "bytes": 2946
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validation.log.gz": {
+      "sha256": "27448c8fa48d165867969017c7ced7ac785fb7163f4c43398df0479c2295ed14",
+      "bytes": 1257
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/measure-dependency-bound.log.gz": {
+      "sha256": "4257ee05b1188da435ba5b33f8b4ce151c0daea02c02abccd727296d6e3924e9",
+      "bytes": 566
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration.log.gz": {
+      "sha256": "39e83bcdc5b2723680b988113019af3e6e7e1853591154f673726c1fe207c74d",
+      "bytes": 2615
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-metadata.log.gz": {
+      "sha256": "300d1720f474666b57f8e24dae09e7761bf442faa06abe0470f6bafb2734fd1a",
+      "bytes": 2627
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validate-final-accounting.py.gz": {
+      "sha256": "d91341c584a96dcec014cf70b1f72910c387101d3a989149fad7bfe2661c3179",
+      "bytes": 1657
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/final-metadata-probe.log.gz": {
+      "sha256": "300b6ea17ac5e8155fc52dd1bcf1b6699fe6fc5fad4ece1e49bf494429d0e415",
+      "bytes": 629
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/setup-lua.log.gz": {
+      "sha256": "7ca351047f59643b766a447211d2217037bde75d19317740d2a302f123717c02",
+      "bytes": 225
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/backlog-cost-correction.log.gz": {
+      "sha256": "c276d5bff2ee16a2e108e899c956f18011ebf4a22a399e4cc7a60523fd02deec",
+      "bytes": 44
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/probe.mjs": {
+      "sha256": "ebbf67b5ae7275ce3d77ac792b8f03e040ce865809482be66fdf5a9f361db104",
+      "bytes": 3187
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validate-final-metadata.py.gz": {
+      "sha256": "e8d5cff955da4ba44fb1135b83ba63a34b88edf8fabe08fe9b84bb2225d2f60c",
+      "bytes": 1658
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/final-metadata-calibration-validation.json": {
+      "sha256": "8a68e1170eb1365caa21e271ad10e2ea7238a7ea05590784d562986d8873ec72",
+      "bytes": 2937
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/check-calibration-evidence.py": {
+      "sha256": "12294cf5e85b5f39ba7337e5357f40cea2e8a723dee433557df74d8b7570eccf",
+      "bytes": 1796
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validate-seven.py.gz": {
+      "sha256": "1e11811795f95b22df627b41fc677142144ebe1bbb4782d87f8c5e90fe1a7fbc",
+      "bytes": 1711
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-metadata-before.json.gz": {
+      "sha256": "193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91",
+      "bytes": 428441
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/guidance-final.log.gz": {
+      "sha256": "ecab7f06e004f1fef2e1944f4698c97717d3b3e601eb4e4531e3d410b3e3f47e",
+      "bytes": 287
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/calibration-evidence-probe.log.gz": {
+      "sha256": "a9aaa3636564ea0396927d38f6dda38aa96bf099e5c3ee1a0fdc6e96663055dd",
+      "bytes": 228
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/optimized-first-before.json.gz": {
+      "sha256": "919e2f5949b69a621d6d760e275759dc189cfc6bf57ade4714a4e38eed4fb06a",
+      "bytes": 396338
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/probe.log.gz": {
+      "sha256": "7a3f0a132b6cc1a4c6dc531e5293d7e9f4bf038165c9f69b064435330ce46d21",
+      "bytes": 492
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validation.json": {
+      "sha256": "40538c86a4e305f2039bb61c2314148897eba3d608c94c30817d2eecae6fa79a",
+      "bytes": 20270
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/initial-review.json": {
+      "sha256": "77587cdaacee65d86187b809036bc9bc568023ed8ffbc476466d0c065949a3e3",
+      "bytes": 2830
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/measure-dependency-bound.py.gz": {
+      "sha256": "0ab01a6c5e023d47a8a62af8a19f2527b79a4f0aeb7f3b90690969696cd42a73",
+      "bytes": 1574
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/README.md": {
+      "sha256": "be504f200833b691ee94be9ab047e19dc4b4dfcaad75d110fe3932bf035cc227",
+      "bytes": 5422
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validation-environment.json.gz": {
+      "sha256": "8ec201ac67b67d3fcb6de906904a7fb9909d133a40ff11eef9febbb83d196739",
+      "bytes": 303
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-metadata-after.json.gz": {
+      "sha256": "193cd4c34aa37fb79d3df5bfd1552e7cb574da57e642ac607aba800d484f9f91",
+      "bytes": 428441
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/initial-measure-invocation-failure.log.gz": {
+      "sha256": "512af4c51ef08c00c6801b116dd944108eea9807dcf28ce23e90cf8fff7f9941",
+      "bytes": 262
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/initial-complete-measurements.json.gz": {
+      "sha256": "09fb597e6900f41b529d3fd77128a09484b78ae1099d136329aa9c9605935773",
+      "bytes": 2274
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/optimized-dependency-bound.log.gz": {
+      "sha256": "102d817ea25b22aa1338e8f0df7ec048f4841dbce57b5f48a76f6b2c32f26be7",
+      "bytes": 843
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/pre-metadata-review.json": {
+      "sha256": "6c8c10291107d4b18b0f54a23d67aef2cfa13ff4b6494e246a09897161fbb624",
+      "bytes": 4369
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/build-data.log.gz": {
+      "sha256": "55e12e402720a50ec9ae22d5216db1e05c8260adfbab010cbf45357608ef6506",
+      "bytes": 172
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-final.log.gz": {
+      "sha256": "6ac9fcb7b0b82b2272b4508434466c6323bd4126e2c37389e90b847c213e53ce",
+      "bytes": 2621
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/final-accounting-probe.log.gz": {
+      "sha256": "c4230695db9387980ce4e348c445db060119792f6d065930a8733ea192929c60",
+      "bytes": 625
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/inputs-599c6a0339e72308036ff818a82e4e2e9549c902fa955e53e5879e3206482502.json.gz": {
+      "sha256": "599c6a0339e72308036ff818a82e4e2e9549c902fa955e53e5879e3206482502",
+      "bytes": 428798
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/pre-accounting-review.json": {
+      "sha256": "eaea8b66f103fabdfe99173d098e2f628ca5c3d09b888f2a91052d3ce77f15ed",
+      "bytes": 5031
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration-accounting.log.gz": {
+      "sha256": "f7ef281fb96e9fd71e1d2fd06f28e07700bb66ab28c9a436ddd7e11d826c795c",
+      "bytes": 2623
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/original-second-before.json.gz": {
+      "sha256": "af9f08903468135e17ab9a4d338c41fa6a87323200e490ed033c6ff1aa05702e",
+      "bytes": 396338
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/validation-accounting.log.gz": {
+      "sha256": "6029afbf083e943352f6cb3d61377ccee285eb98395b4c7ec30a55fabb19ef47",
+      "bytes": 565
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/backlog-final-update.log.gz": {
+      "sha256": "c276d5bff2ee16a2e108e899c956f18011ebf4a22a399e4cc7a60523fd02deec",
+      "bytes": 44
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/independent-review.json": {
+      "sha256": "ebe959a8a5873b1e096ab69b87feb0590820b3dba686974e323a5e791c22629c",
+      "bytes": 6248
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/environment.json.gz": {
+      "sha256": "8ec201ac67b67d3fcb6de906904a7fb9909d133a40ff11eef9febbb83d196739",
+      "bytes": 303
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/backlog-final.log.gz": {
+      "sha256": "26feff5ee73a79e209f6086617161f5583a9567a9814e254b180863633d88719",
+      "bytes": 361
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/complete-measurements.json": {
+      "sha256": "2a685ad5c5a69d5aafeda2526ababe0ed811b658adbf72274cf5b5d0fa43ecb4",
+      "bytes": 10110
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/build-ui.log.gz": {
+      "sha256": "6776ff5a1fac3b3ec9ba7c2eb31af470998ea6929d5667da6742a8adb49396ef",
+      "bytes": 184
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/ci-windows-shape-expansion.log.gz": {
+      "sha256": "8e5ed1657960e5bd752a2651eb3be7d6df9383c2fa02c7b316f3ad1c8d4f5cf3",
+      "bytes": 409
+    },
+    "docs/evidence/m7-map-optimized-cost-20261110/corrected-probe.log.gz": {
+      "sha256": "300b6ea17ac5e8155fc52dd1bcf1b6699fe6fc5fad4ece1e49bf494429d0e415",
+      "bytes": 629
+    }
+  }
+}

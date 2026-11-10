@@ -1,6 +1,8 @@
+import {preOptimizedEmeraldCostSource,optimizedCostBeforeSource} from './helpers/map-optimized-cost-source-inverse.mjs';
+import {registerOptimizedCostContracts} from './helpers/map-optimized-cost-contract.mjs';
 import {preEmeraldFixtureSource} from './helpers/map-emerald-fixture-source-inverse.mjs';
 import {registerEmeraldFixtureContracts} from './helpers/map-emerald-fixture-contract.mjs';
-import {preEmeraldCostSource,emeraldCostBeforeSource} from './helpers/map-emerald-cost-source-inverse.mjs';
+import {preEmeraldCostSource,emeraldCostBeforeSource} from './helpers/map-optimized-cost-source-inverse.mjs';
 import {registerEmeraldCostContracts} from './helpers/map-emerald-cost-contract.mjs';
 import {preEmeraldMapCiSource,emeraldMapPlanningKey,emeraldMapPlanningFloor,emeraldMapCiProof} from './helpers/map-emerald-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
@@ -1130,7 +1132,14 @@ test('frozen original Emerald800 forecasts retain complete inventory, every old 
  }
 });
 
-registerEmeraldCostContracts({test,assert,readFileSync:registeredDiskReadFileSync,discoverJs,partition,jsShard:registeredJsShard,jsPlanningWeights:registeredJsPlanningWeights,timings:registeredTimings,shardLuaScripts});
+// The original complete-registration contract is historical and unchanged.
+const beforeOptimizedReadFileSync=(file,encoding)=>{const value=registeredDiskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8'),prior=preOptimizedEmeraldCostSource(file,text);return typeof value==='string'?prior:prior===text?value:Buffer.from(prior);};
+const beforeOptimizedPlannerSource=plannerSource.replace(timingRead,JSON.stringify(optimizedCostBeforeSource))
+ .replace("'./ci-reviewed-lfs.mjs'",JSON.stringify(new URL('../scripts/ci-reviewed-lfs.mjs',import.meta.url).href));
+const beforeOptimizedPlanner=await import('data:text/javascript,'+encodeURIComponent(beforeOptimizedPlannerSource));
+registerEmeraldCostContracts({test:(name,fn)=>test('historical registration: '+name,fn),assert,readFileSync:beforeOptimizedReadFileSync,discoverJs,partition,jsShard:beforeOptimizedPlanner.jsShard,jsPlanningWeights:beforeOptimizedPlanner.jsPlanningWeights,timings:beforeOptimizedPlanner.timings,shardLuaScripts});
+// The new cost and remaining capacity block use raw disk and the live planner.
+registerOptimizedCostContracts({test,assert,discoverJs,jsShard:registeredJsShard,jsPlanningWeights:registeredJsPlanningWeights,timings:registeredTimings,shardLuaScripts});
 
 // Current fixture behavior reads real bytes, outside all historical projections.
 registerEmeraldFixtureContracts({test,assert,readFileSync:registeredDiskReadFileSync});

@@ -492,3 +492,11 @@ tests/fixtures/map-emerald-cases-before-reuse.lua text eol=lf
 docs/evidence/m7-map-fixture-reuse-20261110/*.json text eol=lf
 docs/evidence/m7-map-fixture-reuse-20261110/*.mjs text eol=lf
 docs/evidence/m7-map-fixture-reuse-20261110/*.gz -text
+
+# Optimized Map process-cost receipts keep exact byte identity across hosts.
+tests/fixtures/map-optimized-cost-registration.json text eol=lf
+tests/helpers/map-optimized-cost-*.mjs text eol=lf
+tests/helpers/map-optimized-cost-before.json.gz -text
+docs/evidence/m7-map-optimized-cost-20261110/*.json text eol=lf
+docs/evidence/m7-map-optimized-cost-20261110/*.mjs text eol=lf
+docs/evidence/m7-map-optimized-cost-20261110/*.gz -text

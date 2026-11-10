@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "kind": "complete-local-file-observations-not-hosted",
+  "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+  "rows": [
+    {
+      "testFile": "tests/emerald-map.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=spec",
+        "--test-reporter-destination=stdout",
+        "--test-reporter=./scripts/ci-timing-reporter.mjs",
+        "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-24/.artifacts/round24/emerald-map.jsonl",
+        "tests/emerald-map.test.mjs"
+      ],
+      "returncode": 0,
+      "processWallMs": 65079.33882600628,
+      "summary": {
+        "tests": 10.0,
+        "pass": 10.0,
+        "fail": 0.0,
+        "cancelled": 0.0,
+        "skipped": 0.0,
+        "duration_ms": 64921.923415
+      },
+      "log": {
+        "path": "docs/evidence/m7-map-fixture-reuse-20261110/emerald-map.log.gz",
+        "sha256": "1ec3311db79f9c3828f7dfab5f071c7623775eb3ce5a4da61cc36cbab077b17d",
+        "uncompressedSha256": "a77c08692688bf511990f1d11d5be46cf071f7096863190387075ec09c25a375"
+      },
+      "before": {
+        "path": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz",
+        "sha256": "bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0",
+        "uncompressedSha256": "58ca3493f5195e89cad511bf0ed55439368e0be7716ceaa121e6737e3443d5bc",
+        "files": 8315
+      },
+      "after": {
+        "path": "docs/evidence/m7-map-fixture-reuse-20261110/inputs-bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0.json.gz",
+        "sha256": "bb3d6cfaff4115599c0de08e61f7c4e06fe8241ea4a19a0a1038bd95d6275bf0",
+        "uncompressedSha256": "58ca3493f5195e89cad511bf0ed55439368e0be7716ceaa121e6737e3443d5bc",
+        "files": 8315
+      },
+      "inputsMatched": true,
+      "changedInputs": [],
+      "native": "{\"file\":\"tests/emerald-map.test.mjs\",\"durationMs\":64403.859595,\"success\":true}\n",
+      "name": "published-optimized",
+      "sourceCommit": null,
+      "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+      "error": null,
+      "publishedImplementationCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+      "sourceIdentity": "The original row did not record its execution HEAD. Identity is bound by its unchanged published before/after input snapshots; publication commit is not represented as execution HEAD."
+    },
+    {
+      "name": "optimized-first",
+      "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+      "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+      "startedAt": "2026-11-10T02:18:04.798284+00:00",
+      "testFile": "tests/emerald-map.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=spec",
+        "--test-reporter-destination=stdout",
+        "--test-reporter=./scripts/ci-timing-reporter.mjs",
+        "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/optimized-first.jsonl",
+        "tests/emerald-map.test.mjs"
+      ],
+      "returncode": 0,
+      "error": null,
+      "processWallMs": 64592.505454987986,
+      "summary": {
+        "tests": 10.0,
+        "pass": 10.0,
+        "fail": 0.0,
+        "cancelled": 0.0,
+        "skipped": 0.0,
+        "duration_ms": 64496.350172
+      },
+      "log": {
+        "path": "docs/evidence/m7-map-optimized-cost-20261110/optimized-first.log.gz",
+        "sha256": "b7f2ca1d440db48b0c61c11046ed4340a90eb09d7c93cab9561c69f048f94bb7",
+        "uncompressedSha256": "6c5dbbc6d488567d3d6ecf7f245d6781492dde2016919375c11575f2eb6f8535"
+      },
+      "before": {
+        "path": "docs/evidence/m7-map-optimized-cost-20261110/optimized-first-before.json.gz",
+        "sha256": "919e2f5949b69a621d6d760e275759dc189cfc6bf57ade4714a4e38eed4fb06a",
+        "uncompressedSha256": "5589feea7bdb612b44a043f181a3bc6d6f01a1370ec2f94b0ff1c9691ff624b3",
+        "files": 8341
+      },
+      "after": {
+        "path": "docs/evidence/m7-map-optimized-cost-20261110/optimized-first-before.json.gz",
+        "sha256": "919e2f5949b69a621d6d760e275759dc189cfc6bf57ade4714a4e38eed4fb06a",
+        "uncompressedSha256": "5589feea7bdb612b44a043f181a3bc6d6f01a1370ec2f94b0ff1c9691ff624b3",
+        "files": 8341
+      },
+      "inputsMatched": true,
+      "changedInputs": [],
+      "native": "{\"file\":\"tests/emerald-map.test.mjs\",\"durationMs\":64127.977269,\"success\":true}\n"
+    },
+    {
+      "name": "original-second",
+      "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+      "fixtureSha256": "afd3fc85fdd4dff15d71d7a94f3a4fb178fffd39ab8f7362852f0f016d3b87b9",
+      "startedAt": "2026-11-10T02:19:10.553779+00:00",
+      "testFile": "tests/emerald-map.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=spec",
+        "--test-reporter-destination=stdout",
+        "--test-reporter=./scripts/ci-timing-reporter.mjs",
+        "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/original-second.jsonl",
+        "tests/emerald-map.test.mjs"
+      ],
+      "returncode": 0,
+      "error": null,
+      "processWallMs": 69663.27677099616,
+      "summary": {
+        "tests": 10.0,
+        "pass": 10.0,
+        "fail": 0.0,
+        "cancelled": 0.0,
+        "skipped": 0.0,
+        "duration_ms": 69542.359154
+      },
+      "log": {
+        "path": "docs/evidence/m7-map-optimized-cost-20261110/original-second.log.gz",
+        "sha256": "a9322077ba5854b9fb9f8f8143c708ccaff7eea1434a4ec838338229862c6d04",
+        "uncompressedSha256": "c8c8f437a4436b127d94f018f3a8b62e41d09e44f256e10802feb5c6f18bfb07"
+      },
+      "before": {
+        "path": "docs/evidence/m7-map-optimized-cost-20261110/original-second-before.json.gz",
+        "sha256": "af9f08903468135e17ab9a4d338c41fa6a87323200e490ed033c6ff1aa05702e",
+        "uncompressedSha256": "fc82c696d51338e3c94b5608adcab068502090c843a9847d8bb8931944f68f23",
+        "files": 8341
+      },
+      "after": {
+        "path": "docs/evidence/m7-map-optimized-cost-20261110/original-second-before.json.gz",
+        "sha256": "af9f08903468135e17ab9a4d338c41fa6a87323200e490ed033c6ff1aa05702e",
+        "uncompressedSha256": "fc82c696d51338e3c94b5608adcab068502090c843a9847d8bb8931944f68f23",
+        "files": 8341
+      },
+      "inputsMatched": true,
+      "changedInputs": [],
+      "native": "{\"file\":\"tests/emerald-map.test.mjs\",\"durationMs\":69124.394604,\"success\":true}\n"
+    },
+    {
+      "name": "optimized-dependency-bound",
+      "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+      "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+      "startedAt": "2026-11-10T02:21:57.942723+00:00",
+      "testFile": "tests/emerald-map.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=spec",
+        "--test-reporter-destination=stdout",
+        "--test-reporter=./scripts/ci-timing-reporter.mjs",
+        "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/optimized-dependency-bound.jsonl",
+        "tests/emerald-map.test.mjs"
+      ],
+      "returncode": 0,
+      "error": null,
+      "processWallMs": 56273.63050599524,
+      "summary": {
+        "tests": 10.0,
+        "pass": 10.0,
+        "fail": 0.0,
+        "cancelled": 0.0,
+        "skipped": 0.0,
+        "duration_ms": 56142.713531
+      },
+      "log": {
+        "path": "docs/evidence/m7-map-optimized-cost-20261110/optimized-dependency-bound.log.gz",
+        "sha256": "102d817ea25b22aa1338e8f0df7ec048f4841dbce57b5f48a76f6b2c32f26be7",
+        "uncompressedSha256": "1b3a6065e407e5c2ca7374241c8aca58540c3ca9a7e1ab25edea0813a7cca808"
+      },
+      "before": {
+        "path": "docs/evidence/m7-map-optimized-cost-20261110/optimized-dependency-bound-before.json.gz",
+        "sha256": "3104143a672333cfc8b5673f064a26a9554a19d50cde1c57f17fd7a76a942299",
+        "uncompressedSha256": "c679340a945c5616cd472d447bbb900ca4d1a13d7d99857618d3345d18b07d4c",
+        "files": 9020
+      },
+      "after": {
+        "path": "docs/evidence/m7-map-optimized-cost-20261110/optimized-dependency-bound-before.json.gz",
+        "sha256": "3104143a672333cfc8b5673f064a26a9554a19d50cde1c57f17fd7a76a942299",
+        "uncompressedSha256": "c679340a945c5616cd472d447bbb900ca4d1a13d7d99857618d3345d18b07d4c",
+        "files": 9020
+      },
+      "inputsMatched": true,
+      "changedInputs": [],
+      "native": "{\"file\":\"tests/emerald-map.test.mjs\",\"durationMs\":55785.367495,\"success\":true}\n"
+    }
+  ],
+  "environment": {
+    "nodeVersion": "v24.22.1",
+    "nodeExecutable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "nodeExecutableSha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d",
+    "platform": "linux",
+    "dependencyFiles": 678,
+    "scope": "Installed dependency bytes and pinned tool bytes included in before/after snapshots for optimized-dependency-bound only; previous pair did not capture installed bytes."
+  },
+  "limitations": [
+    "Original/first optimized pair capture tracked and generated inputs, not installed dependency bytes.",
+    "Only optimized-dependency-bound captures installed node_modules and pinned tool bytes before/after. Node executable identity was captured before it; no cross-host runtime claim.",
+    "These are non-isolated cloud Linux measurements. Pair order is optimized then original; no causal precision or Windows execution guarantee.",
+    "All previous observations and failures are retained. New headroom does not satisfy the Windows planning budget."
+  ],
+  "metadataCorrection": "Historical published row sourceCommit was initially assigned the later publication HEAD; corrected to null without changing any logs, snapshots, costs or observations. Initial receipt retained separately."
+}

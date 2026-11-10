@@ -1,0 +1,394 @@
+[
+  {
+    "name": "ci-complete-calibration",
+    "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+    "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "startedAt": "2026-11-10T02:25:53.725642+00:00",
+    "testFile": "tests/ci-complete-calibration.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/ci-complete-calibration.jsonl",
+      "tests/ci-complete-calibration.test.mjs"
+    ],
+    "returncode": 0,
+    "error": null,
+    "processWallMs": 14859.921255992958,
+    "summary": {
+      "tests": 53.0,
+      "pass": 53.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 14690.930522
+    },
+    "log": {
+      "path": ".artifacts/round25/ci-complete-calibration.log",
+      "sha256": "39002ff7c1040b951fea5b65f020dcfd88ca4f84f04db2062a1bcd042dc948f5",
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/ci-complete-calibration.log.gz",
+      "publishedGzipSha256": "39e83bcdc5b2723680b988113019af3e6e7e1853591154f673726c1fe207c74d",
+      "publishedUncompressedSha256": "39002ff7c1040b951fea5b65f020dcfd88ca4f84f04db2062a1bcd042dc948f5"
+    },
+    "before": {
+      "path": ".artifacts/round25/ci-complete-calibration-before.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "after": {
+      "path": ".artifacts/round25/ci-complete-calibration-after.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/ci-complete-calibration.test.mjs\",\"durationMs\":4663.185573,\"success\":true}\n"
+  },
+  {
+    "name": "ci-host-timing-calibration",
+    "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+    "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "startedAt": "2026-11-10T02:26:09.690750+00:00",
+    "testFile": "tests/ci-host-timing-calibration.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/ci-host-timing-calibration.jsonl",
+      "tests/ci-host-timing-calibration.test.mjs"
+    ],
+    "returncode": 0,
+    "error": null,
+    "processWallMs": 8848.907652005437,
+    "summary": {
+      "tests": 4.0,
+      "pass": 4.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 8740.120789
+    },
+    "log": {
+      "path": ".artifacts/round25/ci-host-timing-calibration.log",
+      "sha256": "48466a127661e859456fb62975a5afae1c580d1f5c2b6e3642bc6b526ab3a83b",
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/ci-host-timing-calibration.log.gz",
+      "publishedGzipSha256": "8d0de652308022242783157ae218599c7caa4b8d2f83edc8a30cd4ddf3f344c9",
+      "publishedUncompressedSha256": "48466a127661e859456fb62975a5afae1c580d1f5c2b6e3642bc6b526ab3a83b"
+    },
+    "before": {
+      "path": ".artifacts/round25/ci-host-timing-calibration-before.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "after": {
+      "path": ".artifacts/round25/ci-host-timing-calibration-after.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/ci-host-timing-calibration.test.mjs\",\"durationMs\":144.436079,\"success\":true}\n"
+  },
+  {
+    "name": "ci-windows-shape-expansion",
+    "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+    "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "startedAt": "2026-11-10T02:26:19.674076+00:00",
+    "testFile": "tests/ci-windows-shape-expansion.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/ci-windows-shape-expansion.jsonl",
+      "tests/ci-windows-shape-expansion.test.mjs"
+    ],
+    "returncode": 0,
+    "error": null,
+    "processWallMs": 9045.379115996184,
+    "summary": {
+      "tests": 3.0,
+      "pass": 3.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 8921.748419
+    },
+    "log": {
+      "path": ".artifacts/round25/ci-windows-shape-expansion.log",
+      "sha256": "ea046657b8f19e8fab9ce28057b9a1ba20b96b94e2eba96b5b946deb13ff5aaf",
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/ci-windows-shape-expansion.log.gz",
+      "publishedGzipSha256": "8e5ed1657960e5bd752a2651eb3be7d6df9383c2fa02c7b316f3ad1c8d4f5cf3",
+      "publishedUncompressedSha256": "ea046657b8f19e8fab9ce28057b9a1ba20b96b94e2eba96b5b946deb13ff5aaf"
+    },
+    "before": {
+      "path": ".artifacts/round25/ci-windows-shape-expansion-before.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "after": {
+      "path": ".artifacts/round25/ci-windows-shape-expansion-after.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/ci-windows-shape-expansion.test.mjs\",\"durationMs\":259.388857,\"success\":true}\n"
+  },
+  {
+    "name": "class-potion-orb-source-inverse",
+    "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+    "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "startedAt": "2026-11-10T02:26:29.920989+00:00",
+    "testFile": "tests/class-potion-orb-source-inverse.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/class-potion-orb-source-inverse.jsonl",
+      "tests/class-potion-orb-source-inverse.test.mjs"
+    ],
+    "returncode": 0,
+    "error": null,
+    "processWallMs": 8157.739468006184,
+    "summary": {
+      "tests": 5.0,
+      "pass": 5.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 8046.103959
+    },
+    "log": {
+      "path": ".artifacts/round25/class-potion-orb-source-inverse.log",
+      "sha256": "cf4dc177f3ac809b4005785c65028e4cf379ad800d1b828b5fcdb1f79fa58f34",
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/class-potion-orb-source-inverse.log.gz",
+      "publishedGzipSha256": "7dc0b34b42813643a953d97c94c11732ab901d7838625684286ec294f3322653",
+      "publishedUncompressedSha256": "cf4dc177f3ac809b4005785c65028e4cf379ad800d1b828b5fcdb1f79fa58f34"
+    },
+    "before": {
+      "path": ".artifacts/round25/class-potion-orb-source-inverse-before.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "after": {
+      "path": ".artifacts/round25/class-potion-orb-source-inverse-after.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/class-potion-orb-source-inverse.test.mjs\",\"durationMs\":78.005608,\"success\":true}\n"
+  },
+  {
+    "name": "watcher-actor-source-inverse",
+    "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+    "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "startedAt": "2026-11-10T02:26:39.241097+00:00",
+    "testFile": "tests/watcher-actor-source-inverse.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/watcher-actor-source-inverse.jsonl",
+      "tests/watcher-actor-source-inverse.test.mjs"
+    ],
+    "returncode": 0,
+    "error": null,
+    "processWallMs": 8246.250702999532,
+    "summary": {
+      "tests": 5.0,
+      "pass": 5.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 8152.336751
+    },
+    "log": {
+      "path": ".artifacts/round25/watcher-actor-source-inverse.log",
+      "sha256": "c5c2ca1dca428d8dbd2f551070bc83b1360b6b8a67d91d28e1f1d76ad02c22bd",
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/watcher-actor-source-inverse.log.gz",
+      "publishedGzipSha256": "3bdacf52dc15c4d65a8dcf0e7b919141b2735d0394d9c0d3875899204736ba09",
+      "publishedUncompressedSha256": "c5c2ca1dca428d8dbd2f551070bc83b1360b6b8a67d91d28e1f1d76ad02c22bd"
+    },
+    "before": {
+      "path": ".artifacts/round25/watcher-actor-source-inverse-before.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "after": {
+      "path": ".artifacts/round25/watcher-actor-source-inverse-after.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/watcher-actor-source-inverse.test.mjs\",\"durationMs\":67.650399,\"success\":true}\n"
+  },
+  {
+    "name": "defect-integration-source",
+    "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+    "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "startedAt": "2026-11-10T02:26:48.501762+00:00",
+    "testFile": "tests/defect-integration-source.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/defect-integration-source.jsonl",
+      "tests/defect-integration-source.test.mjs"
+    ],
+    "returncode": 0,
+    "error": null,
+    "processWallMs": 8394.705005004653,
+    "summary": {
+      "tests": 4.0,
+      "pass": 4.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 8259.838117
+    },
+    "log": {
+      "path": ".artifacts/round25/defect-integration-source.log",
+      "sha256": "c592bddb887deb48782c5103812293893d9726dd261ba353f14a60249c41a42a",
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/defect-integration-source.log.gz",
+      "publishedGzipSha256": "d5169e63a5555e6907748aa1e9274cb068e32bc2f5e86813c149a36e89644a06",
+      "publishedUncompressedSha256": "c592bddb887deb48782c5103812293893d9726dd261ba353f14a60249c41a42a"
+    },
+    "before": {
+      "path": ".artifacts/round25/defect-integration-source-before.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "after": {
+      "path": ".artifacts/round25/defect-integration-source-after.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/defect-integration-source.test.mjs\",\"durationMs\":377.12358,\"success\":true}\n"
+  },
+  {
+    "name": "ci-runtime",
+    "sourceCommit": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+    "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "startedAt": "2026-11-10T02:26:58.114378+00:00",
+    "testFile": "tests/ci-runtime.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "--test-reporter-destination=stdout",
+      "--test-reporter=./scripts/ci-timing-reporter.mjs",
+      "--test-reporter-destination=/workspace/scratch/c1a4970a76e0/m7-round-25/.artifacts/round25/ci-runtime.jsonl",
+      "tests/ci-runtime.test.mjs"
+    ],
+    "returncode": 0,
+    "error": null,
+    "processWallMs": 11522.510998998769,
+    "summary": {
+      "tests": 13.0,
+      "pass": 13.0,
+      "fail": 0.0,
+      "cancelled": 0.0,
+      "skipped": 0.0,
+      "duration_ms": 11333.025392
+    },
+    "log": {
+      "path": ".artifacts/round25/ci-runtime.log",
+      "sha256": "6c2e83201d219d3862012fa5f369564d97bee4aff9df041d80f5a68155ffa068",
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/ci-runtime.log.gz",
+      "publishedGzipSha256": "e89f19895273547a9d170d6ee3da75f680b8790413554ccc80cffdafcc9e461e",
+      "publishedUncompressedSha256": "6c2e83201d219d3862012fa5f369564d97bee4aff9df041d80f5a68155ffa068"
+    },
+    "before": {
+      "path": ".artifacts/round25/ci-runtime-before.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "after": {
+      "path": ".artifacts/round25/ci-runtime-after.json.gz",
+      "sha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "uncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5",
+      "files": 9040,
+      "publishedPath": "docs/evidence/m7-map-optimized-cost-20261110/inputs-1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1.json.gz",
+      "publishedGzipSha256": "1bd6817428800e5113570b5eb9bceb576164ffb5a375cbd6604e89227bbd8cf1",
+      "publishedUncompressedSha256": "6e11baa8df725647cece36f0c01564d6f1d181fef3764b547b884f73e53ba4a5"
+    },
+    "inputsMatched": true,
+    "changedInputs": [],
+    "native": "{\"file\":\"tests/ci-runtime.test.mjs\",\"durationMs\":2007.554615,\"success\":true}\n"
+  }
+]

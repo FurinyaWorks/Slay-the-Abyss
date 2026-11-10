@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {pathToFileURL} from 'node:url';
+const load=p=>import(pathToFileURL(process.cwd()+'/'+p));
+const {registerOptimizedCostContracts,assertOptimizedCostEvidence}=await load('tests/helpers/map-optimized-cost-contract.mjs');
+const planner=await load('scripts/ci-shards.mjs');
+const {shardLuaScripts}=await load('scripts/test-lua.mjs');
+const {preOptimizedEmeraldCostSource,preEmeraldCostSource,optimizedCostBeforeSource}=await load('tests/helpers/map-optimized-cost-source-inverse.mjs');
+const {preEmeraldCostSource:old,emeraldCostBeforeSource}=await load('tests/helpers/map-emerald-cost-source-inverse.mjs');
+let count=0;
+registerOptimizedCostContracts({test:(name,fn)=>{fn({diagnostic:console.log});console.log('PASS '+name);count++},assert,...planner,shardLuaScripts});
+const oldPaths=['tests/helpers/map-emerald-cost-source-inverse.mjs','tests/helpers/map-emerald-cost-contract.mjs','tests/fixtures/map-emerald-cost-registration.json','tests/helpers/map-emerald-cost-timings-before.json.gz','tests/helpers/map-emerald-ci-source-epoch.json.gz'];
+for(const p of oldPaths)assert.deepEqual(readFileSync(p),execFileSync('git',['show','79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc:'+p]));
+const path='scripts/ci-test-timings.json',source=readFileSync(path,'utf8');
+assert.equal(old(path,source),source);assert.equal(preEmeraldCostSource(path,source),emeraldCostBeforeSource);assert.equal(old(path,optimizedCostBeforeSource),emeraldCostBeforeSource);
+for(const mutated of [source.replace('"initialMs": {','"unknownProbe":1,"initialMs": {'),source.replace('"durationMs": 71588','"durationMs": 71589'),source+' ',source.replace('"unknownJsMs": 10000','"unknownJsMs": 10000,"unknownJsMs":10000')]){assert.notEqual(mutated,source);assert.equal(preOptimizedEmeraldCostSource(path,mutated),mutated);assert.equal(preEmeraldCostSource(path,mutated),mutated);}
+const {receipt,sourcePaths}=assertOptimizedCostEvidence(assert);
+for(const row of receipt.rows)for(const location of [row.log.path,row.before.path,row.after.path])assert.throws(()=>assertOptimizedCostEvidence(assert,p=>p===location?Buffer.from('forged'):readFileSync(p)));
+const texts=new Set(sourcePaths.filter(p=>p==='.luacheckrc'||/\.(?:lua|mjs|json|py|ps1|md|txt|cjs|tsv|csv)$/.test(p)));
+const crlf=p=>texts.has(p)?Buffer.from(readFileSync(p,'utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n')):readFileSync(p);
+assert.deepEqual(assertOptimizedCostEvidence(assert,crlf).sourcePaths,sourcePaths);
+const representatives=new Map();for(const p of texts)representatives.set(p==='.luacheckrc'?p:p.split('.').at(-1),p);
+for(const p of representatives.values())assert.throws(()=>assertOptimizedCostEvidence(assert,f=>f===p?Buffer.from(crlf(f).toString('utf8').replace(/[A-Za-z0-9]/,c=>c==='z'?'y':'z')):crlf(f)),/measured source identity/);
+console.log(JSON.stringify({contracts:count,sourceBindings:sourcePaths.length,crlfSourcePaths:texts.size,textKinds:[...representatives.keys()],historicalBytesUnchanged:oldPaths,extraNegativeChecks:'pass',rows:receipt.rows.map(r=>({name:r.name,wall:r.processWallMs}))}));

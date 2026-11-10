@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "kind": "optimized-fixture-complete-process-cost-registration",
+  "planningKey": "tests/emerald-map.test.mjs",
+  "beforeTimingSha256": "46e69e006ce623f0a66197db9f03859894b27152b4e90ee24fbe24cc42ab4289",
+  "afterTimingSha256": "4eb2e132511aa1e18dbb66a5012a1e5590e012e7d1b7f135b989441882469195",
+  "beforeArchiveSha256": "0b9a61d7652926ecab3521121ea7707af6690f20351792caa0c318af078b3028",
+  "entry": {
+    "durationMs": 71588,
+    "environment": "shared cloud Linux local",
+    "tests": 10,
+    "coverage": "10/10 complete recurring file passed; 0 failed, cancelled or skipped. Original six groups, independent old/new VM graph observations, fourteen semantic mutant kills, pinned complexity contracts and current source-epoch contracts.",
+    "kind": "Implementation-bound local complete-process planning estimate with 10% headroom; not Hosted performance, a timeout change or merge admission.",
+    "sourceReceipt": "docs/evidence/m7-map-optimized-cost-20261110/complete-measurements.json",
+    "sourceReceiptSha256": "2a685ad5c5a69d5aafeda2526ababe0ed811b658adbf72274cf5b5d0fa43ecb4",
+    "fixturePath": "tests/helpers/map-emerald-cases.lua",
+    "fixtureSha256": "551b49dac1ddd5aaa0bef7617232b4d483802f248f35393a1d79bce884e7650f",
+    "maximumObservedCompleteProcessMs": 65079.33882600628,
+    "headroomMultiplier": 1.1,
+    "historicalFloorMs": 87638,
+    "historicalTimingArchive": "tests/helpers/map-optimized-cost-before.json.gz",
+    "historicalTimingSha256": "46e69e006ce623f0a66197db9f03859894b27152b4e90ee24fbe24cc42ab4289",
+    "measurementScope": "All three successful optimized complete-file samples are retained; old-fixture 87638ms and paired 69663.276771ms remain historical, not current implementation observations."
+  },
+  "forecasts": {
+    "win32": 1800631,
+    "linux": 1136539
+  },
+  "status": "BLOCKED_WINDOWS_CAPACITY; normal current-HEAD Hosted and independent admission remain required.",
+  "calibrationEntry": {
+    "durationMs": 20296,
+    "environment": "shared cloud Linux local",
+    "kind": "Conservative complete-process planning floor; not a Hosted measurement or a current-code performance certificate.",
+    "sourceReceipt": "docs/evidence/m7-map-emerald-20261109/ci-cost-observations.json",
+    "sourceReceiptSha256": "15eee1c6b29bd991a83c0337169c9767463be782be9ad1fbcb8000ef0a9f54a8",
+    "inputBinding": "Supplemental earlier complete standalone observation without a pre-run snapshot; not promoted to strict current-input evidence.",
+    "historicalObservationFloorMs": 13573,
+    "additionalObservationReceipt": "docs/evidence/m7-map-cost-registration-20261110/registration-validation.json",
+    "additionalObservationReceiptSha256": "23f3b3d4124a4af35437183a52dcba6495299f012a0244c151cd5e8b06e92a87",
+    "additionalObservationScope": "Complete registration-candidate validation; exact recorded source snapshots, not a final-current-code certificate.",
+    "priorRegisteredFloorMs": 17544,
+    "completeCurrentObservationReceipt": "docs/evidence/m7-map-optimized-cost-20261110/calibration-complete-observations.json",
+    "completeCurrentObservationReceiptSha256": "08cea22af3b1017c9477526b4bf8c2086d4c2e1684b9e3ca6406ce6fcc2d4eb4",
+    "maximumObservedCompleteProcessMs": 18450.387646997115,
+    "headroomMultiplier": 1.1,
+    "currentObservationScope": "Retains all three complete 53-test candidate measurements and the prior 17544ms registration; local planning only, not a final-current-code or Hosted certificate."
+  }
+}

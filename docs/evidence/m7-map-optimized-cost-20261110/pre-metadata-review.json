@@ -1,0 +1,51 @@
+{
+  "reviewId": "map-optimized-cost-review-20261110",
+  "baseHead": "79c5b4cd5a9cedfda4fbb0f687bca4fd15e870dc",
+  "scope": "Independent technical review of the recorded cost-registration working-tree bytes, not whole-PR merge approval.",
+  "conclusion": "pass",
+  "unresolved": [],
+  "findings": [
+    "Historical helper, contract and registration fixture byte-identical to HEAD.",
+    "Outer inverse accepts only exact timing identity; corruption and duplicate-key drift pass through unchanged.",
+    "All three live contract callbacks pass; 1248 current measured source identities match.",
+    "Paired 8341-input snapshots differ only in optimized fixture.",
+    "All four sample receipts and raw compressed logs/snapshots authenticate; tampering rejected.",
+    "Windows forecast 1800299ms remains above unchanged1800000ms budget; Linux1136358ms.",
+    "All39 unrelated planning floors and complete800JS/1410Lua inventories unchanged.",
+    "Initial CRLF source portability defect corrected with explicit source-only text normalization.",
+    "Corrected probe accepts1191 text source paths across11 text kinds, authenticates all1248 source paths and rejects same-length content changes in each kind.",
+    "Historical timing archive and CI source epoch are also byte-identical to original79c5b4cd."
+  ],
+  "limitations": [
+    "Final post-fix complete calibration validation is separately owned by the implementation evidence; no duplicated full suites in this review.",
+    "Exact final commit binding must follow commit; hashes here identify reviewed working-tree bytes.",
+    "Local non-isolated Linux planning evidence does not certify Hosted Windows timing, merge admission, client behavior or release readiness."
+  ],
+  "sha256": {
+    "scripts/ci-test-timings.json": "784b76128afd0edecfb5efeb09e3590b0f627d2e1751ff69357191a745133dd4",
+    "tests/helpers/map-optimized-cost-source-inverse.mjs": "0aa4bbc6d0fc19af1b7e43f00bc8ad703f4f6ca181556203b2259013a0de5cc8",
+    "tests/helpers/map-optimized-cost-contract.mjs": "f34c485ee5138595d4659a2469d8b2a2052904a6e403b8f350839a127dd660ba",
+    "tests/fixtures/map-optimized-cost-registration.json": "9f678c1df7ada3492885a30e1f7066a30a3e2690fc6d6dd9f09375be8469c2b5",
+    "tests/helpers/map-optimized-cost-before.json.gz": "0b9a61d7652926ecab3521121ea7707af6690f20351792caa0c318af078b3028",
+    "tests/ci-complete-calibration.test.mjs": "0e51d67f31ff72a0ea0b3edb470ba791b8324ee7f23beb849463c64104c9b341",
+    "tests/ci-host-timing-calibration.test.mjs": "c1b33f7e5a69be068a8975014aa2b7e24cfa828df91ccef93fc6e15d3e0d6e52",
+    "tests/ci-runtime.test.mjs": "06d6f6de6b3df29bd91c8e08115efbc75174fc6710ddfad2ca7712c34f1fd45d",
+    "tests/ci-windows-shape-expansion.test.mjs": "3826a0f96e7fccbadccf5abb5b35f088fa397e593a93c109f876e87dbbf6e7e7",
+    "tests/class-potion-orb-source-inverse.test.mjs": "7f00a56235b63e974c41f403dde99946557f7ba9d7c46c30d0b657a5d3293f55",
+    "tests/defect-integration-source.test.mjs": "f07dc6c9333e6829548348946c1f886944847d8e8ca44a8467bf0c9c7fe962e8",
+    "tests/watcher-actor-source-inverse.test.mjs": "6c9a243cd2e2ad95f4c44809735a3f5afa1e9f634265d4c00632a6cf8fb1a542",
+    "tests/helpers/map-emerald-cost-source-inverse.mjs": "e3d5f5f003fba1747ac8473da62ff55733a3638c4ff6db745a8498394ffdbe21",
+    "tests/helpers/map-emerald-cost-contract.mjs": "4e1ece351da5fd2dedfde0bf2efb52246f25ca7d8e29ba6eff5648e1a471225c",
+    "tests/fixtures/map-emerald-cost-registration.json": "19f522ed5140fb37ec2daeac218295cdb3679fca32737e36641737d37d76ed41",
+    "tests/helpers/map-emerald-cost-timings-before.json.gz": "5d07b11d861c6b744ee8f5250af60e4de4c0308c672ac638ae64fdfb9680f4c2",
+    "tests/helpers/map-emerald-ci-source-epoch.json.gz": "32696fe1c2c4428fb5890e4621f86118ba054d2ca7296a75c13bb6b53099551d",
+    "docs/evidence/m7-map-optimized-cost-20261110/complete-measurements.json": "883ac3e5e5134ba036e34d0a89077e688e7ed50461dcc46bfc1f1ca90982be31"
+  },
+  "reproduce": "node .artifacts/round25-review/probe.mjs",
+  "probeArtifacts": {
+    "probe.mjs": "ebbf67b5ae7275ce3d77ac792b8f03e040ce865809482be66fdf5a9f361db104",
+    "probe.log": "c57bc69265f775a0f4b8a70c0b3d464510ba73b27e647a6827031cb76307debe",
+    "corrected-probe.log": "0a08f1ccb18662036bce4d1ac1ebbb4dcab015d1f8fe553b591fb39c659845d7",
+    "initial-review.json": "77587cdaacee65d86187b809036bc9bc568023ed8ffbc476466d0c065949a3e3"
+  }
+}
