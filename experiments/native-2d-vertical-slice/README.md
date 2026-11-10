@@ -51,7 +51,7 @@
 
 ## 六、协作、版本与权利
 
-- Agent 首先读 [AGENTS](../../AGENTS.md)、[当前 Sprint](../../docs/SPRINT_EXECUTION.md)、[工具索引](../../docs/TOOLCHAIN.md)；查询 Backlog CLI / task:pick / 在途 PR 和改动归属。Owner 只授权**本项定向性能与 2D 竖切**，不等于全面解锁 M8、新职业或 M9；若准入不一致，保留 Draft、提出窄范围的正式调整，不静默绕过门禁。
+- Agent 首先读 [AGENTS](../../AGENTS.md)、[任务执行](../../docs/TASK_EXECUTION.md)、[工具索引](../../docs/TOOLCHAIN.md)；查询 Backlog CLI / task:pick / 在途 PR 和改动归属。Owner 只授权**本项定向性能与 2D 竖切**，不代替其他任务的具体批准，也不授权新职业或扩大正式范围；不再以 Sprint 日期或 M7/M8/M9 阶段顺序限制领取。若具体审批或所有权不一致，保留 Draft、明确问题，不静默绕过。
 - 当前 [#556](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/556) 正在开发 3D 正式化，**避免共享文件的并行冲突**；本实验独立工作树，不在它的分支上做 2D。既有 #553、#556 不删除、不直接发布。
 - 社区 GIA/GIL 是**实现机制研究样本**。不得把用户私有 Drive 链接、原始文件、解包脚本全文、第三方美术直接提交公共仓库；不经过作者/平台授权，不得直接复制可发布资产。可实现原理相同但视觉由项目原创/获授权素材生成，来源及许可单独留证。
 - 不修改核心规则、已批准参考、正式艺术策略、CI 门禁、发布与投稿流程；每个实测只在自有 GIL 副本操作，按 AGENTS 要求取得桌面操作窗口授权。合并、审查与 PR 准入沿用现行机制。

@@ -51,7 +51,7 @@ export function auditMilestoneScope(titles, archivedTitles = [], requireCurrentS
     return matches.length === 1 && required.every(part => matches[0].includes(part)) && !retiredScope.test(matches[0]) ? []
       : [`${stage}: 里程碑范围必须明确包含${required.join('、')}，不得恢复两职业或扩大为四/八/全职业、第三/四幕，也不得退回仅第一幕或缺少该关口`];
   });
-  // Preserve frozen M3/M4 while validating the chronological M7/M8/M9 contracts.
+  // Preserve frozen M3/M4 while validating the M7/M8/M9 identity contracts.
   const currentPresent=requireCurrentStages||historicalTitles.some(t=>/^M[789](?:[\s｜|:：]|$)/.test(t));
   const currentErrors=currentPresent?[
     {stage:'M7',required:['工程架构','性能强化']},
@@ -85,9 +85,9 @@ function milestoneTitles(directory) {
 }
 
 function configuredCurrentStages(root) {
-  const file = join(root, 'config/sprint-intake.json');
+  const file = join(root, 'config/task-intake.json');
   if (!existsSync(file)) return false;
-  return (JSON.parse(readFileSync(file, 'utf8')).milestoneOrder ?? []).some(id => /^m-[789]$/.test(id));
+  return (JSON.parse(readFileSync(file, 'utf8')).currentMilestoneIds ?? []).some(id => /^m-[789]$/.test(id));
 }
 
 export function verifyMilestoneScope(root = '.') {
@@ -149,7 +149,7 @@ export function auditOrderedStageIds(records, requireCurrentStages = false) {
     const matches=active.filter(x=>new RegExp('^'+stage+'(?:[\\s｜|:：]|$)').test(x.title));
     const required='m-'+stage.slice(1);
     return matches.length===1&&matches[0].id===required?[]
-      :[stage+': 原生ID必须为 '+required+'，与执行序号一致'];
+      :[stage+': 原生ID必须为 '+required+'，与里程碑编号一致'];
   });
 }
 

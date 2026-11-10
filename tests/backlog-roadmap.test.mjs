@@ -327,7 +327,7 @@ test('archiving every current stage cannot make the active-stage contract disapp
 test('the configured current stages stay required even if all their records are deleted', t => {
   const root = backlogFixture(t, []);
   mkdirSync(join(root, 'config'));
-  writeFileSync(join(root, 'config/sprint-intake.json'), JSON.stringify({ milestoneOrder: ['m-7', 'm-8', 'm-9'] }));
+  writeFileSync(join(root, 'config/task-intake.json'), JSON.stringify({ currentMilestoneIds: ['m-7', 'm-8', 'm-9'] }));
   for (const verify of [verifyBacklogRoadmap, verifyMilestoneScope]) {
     const errors = verify(root).join('\n');
     for (const stage of ['M7', 'M8', 'M9']) assert.match(errors, new RegExp(stage));
