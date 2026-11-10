@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-08 01:12'
-updated_date: '2026-11-08 02:04'
+updated_date: '2026-11-10 13:49'
 labels: []
 dependencies: []
 parent_task_id: TASK-88
@@ -23,9 +23,7 @@ ordinal: 165000
 ## Implementation Plan
 
 <!-- SECTION:PLAN:BEGIN -->
-1. 冻结盘点；2. 统一集成；3. 组合验证与候选；4. develop正式合入和清理
-
-Owner追加全部收口：修复并消化#554；将其余来源写入可恢复隔离档案，清理所有非主线远程分支；修复合后历史回放/退休及CI，保留2D默认。
+1. 以最新develop冻结24个开放PR、远程分支和本地脏树身份。2. 将已完成工程与CI切片集中集成，保留来源和独立复审，正常队列及合后Full验收。3. 收拢UI/地图/事件和素材，保留未完成设备关口，消除重复PR。4. 已消化分支先bundle验证再删除，保留未提交工作；最终读回PR、分支、工作树及develop CI。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
