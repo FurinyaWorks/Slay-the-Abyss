@@ -48,7 +48,27 @@ for(const [path,binding]of Object.entries(banner.files)){
 }
 Object.freeze(banner.files);
 export const officialBannerSourceProof=Object.freeze(banner);
+const shellArchive=readFileSync(new URL('./official-battle-shell-source-epoch.json.gz',import.meta.url));
+assert.equal(hash(shellArchive),'6184f4e377056b5e9c8a25ab4282556c152f1228a1436fa2cfa67196697dde22');
+const shellBytes=gunzipSync(shellArchive);
+assert.equal(hash(shellBytes),'f8095e7288e4e8556922500089f64c1a5adade0b61b37e750e319cbe38d34342');
+const shell=JSON.parse(shellBytes);
+assert.equal(shell.schemaVersion,1);assert.equal(shell.normalization,'LF');
+assert.equal(shell.beforeCommit,'4278561b4df3defaf879cf4be62ab415d6998e72');
+assert.deepEqual(Object.keys(shell.files).sort(),['src/lua/abyss_battle_card_view.lua','src/lua/abyss_card_skin.lua']);
+for(const [path,binding]of Object.entries(shell.files)){
+ for(const side of ['before','after'])assert.equal(hash(binding[side+'Source']),binding[side+'Sha256']);
+ assert.equal(binding.beforeSource,banner.files[path]?.afterSource??alignment.files[path].afterSource);
+ Object.freeze(binding);
+}
+Object.freeze(shell.files);
+export const officialBattleShellSourceProof=Object.freeze(shell);
+export function preOfficialBattleShellSource(path,source){
+ const binding=Object.hasOwn(shell.files,path)?shell.files[path]:null;
+ return binding&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===binding.afterSha256?binding.beforeSource:source;
+}
 export function preOfficialBattleSource(path,source){
+ source=preOfficialBattleShellSource(path,source);
  const repair=Object.hasOwn(banner.files,path)?banner.files[path]:null;
  if(repair&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===repair.afterSha256)
   source=repair.beforeSource;

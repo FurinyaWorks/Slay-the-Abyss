@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
 import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
 import {sourceEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
-import {preOfficialBattleSource,officialBattleSourceProof,officialBattleAlignmentSourceProof as alignment,officialBannerSourceProof as banner} from './helpers/official-battle-source-inverse.mjs';
+import {preOfficialBattleSource,officialBattleSourceProof,officialBattleAlignmentSourceProof as alignment,officialBannerSourceProof as banner,preOfficialBattleShellSource,officialBattleShellSourceProof as shell} from './helpers/official-battle-source-inverse.mjs';
 const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
 // Authenticate both the input and every linked owner in the same exact historical view.
 const componentRead=path=>preOfficialBattleSource(path,readFileSync(path,'utf8'));
@@ -49,11 +49,21 @@ test('official battle historical view binds complete committed sources and rejec
  }
  assert.equal(alignment.beforeCommit,officialBattleSourceProof.afterCommit);
  assert.equal(alignment.afterCommit,'94327916e236797ba933096d8490fe04d93a6838');
+ assert.equal(shell.beforeCommit,'4278561b4df3defaf879cf4be62ab415d6998e72');
+ assert.equal(shell.afterCommit,'95fab6acf45c5292d6a48dbe7c9cf12d5e6e03b2');
+ for(const [path,binding]of Object.entries(shell.files)){
+  const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(actual,binding.afterSource,path);
+  assert.equal(binding.beforeSource,banner.files[path]?.afterSource??alignment.files[path].afterSource,path);
+  for(const source of [actual,actual.replaceAll('\n','\r\n')])assert.equal(preOfficialBattleShellSource(path,source),binding.beforeSource,path);
+  for(const source of [actual+'\n',actual.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preOfficialBattleShellSource(path,source),source,path);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preOfficialBattleShellSource(unknown,actual),actual);
+ }
  for(const [path,binding]of Object.entries(alignment.files)){
   const predecessor=officialBattleSourceProof.files[path]?.afterSource??componentEpoch.proof.current[path].source;
   assert.equal(binding.beforeSource,predecessor,path);
   const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
-  assert.equal(actual,banner.files[path]?.afterSource??binding.afterSource,path);
+  assert.equal(preOfficialBattleShellSource(path,actual),banner.files[path]?.afterSource??binding.afterSource,path);
   for(const source of [actual,actual.replaceAll('\n','\r\n')])
    assert.equal(preOfficialBattleSource(path,source),componentEpoch.proof.current[path].source,path);
   for(const source of [actual+'\n',actual.slice(1),null,undefined,{},17])
@@ -63,7 +73,7 @@ test('official battle historical view binds complete committed sources and rejec
   assert.equal(binding.beforeSource,componentEpoch.proof.current[path].source,path);
   assert.equal(alignment.files[path].beforeSource,binding.afterSource,path);
   const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
-  assert.equal(actual,banner.files[path]?.afterSource??alignment.files[path].afterSource,path);
+  assert.equal(preOfficialBattleShellSource(path,actual),banner.files[path]?.afterSource??alignment.files[path].afterSource,path);
   assert.equal(preOfficialBattleSource(path,binding.afterSource),binding.beforeSource,path);
   for(const source of [actual,actual.replaceAll('\n','\r\n')])
    assert.equal(preOfficialBattleSource(path,source),binding.beforeSource,path);
