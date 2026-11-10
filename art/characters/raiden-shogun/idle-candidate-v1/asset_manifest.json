@@ -1,0 +1,45 @@
+{
+  "asset": "Raiden Shogun (Genshin Impact) fanmade combat idle",
+  "status": "DRAFT, NOT OWNER APPROVED",
+  "design_reference": "https://wiki.hoyolab.com/pc/genshin/entry/49",
+  "source": "ChatGPT ImageGen; static source extracted from first frame of 8-frame candidate",
+  "source_static_sha256": "b1c2a0cf9a361f2e9be52646180d58c01600f5972b9e50da249a1c0e698b03d9",
+  "render": "Source-locked deterministic 20-frame 2.2s whole-person motion, fixed shoes; not Miliastra-native",
+  "files": {
+    "raiden_static_draft.png": {
+      "bytes": 113206,
+      "sha256": "b1c2a0cf9a361f2e9be52646180d58c01600f5972b9e50da249a1c0e698b03d9"
+    },
+    "raiden_idle_review.gif": {
+      "bytes": 2049677,
+      "sha256": "76154dfadea876dead0c0b259dbc877902871e82235b65252da87530b74993e1"
+    },
+    "raiden_idle_compare.gif": {
+      "bytes": 1525789,
+      "sha256": "ea3df0d7c705f11d0310dca61666649295e4f0a72affc90fda37edf7db2f2453"
+    },
+    "raiden_idle_133px_spritesheet.png": {
+      "bytes": 381423,
+      "sha256": "19fb4013d7d1c617ef34ac43d472a5c7876f9bdffc923f727f93199ac10fdc54"
+    },
+    "create_raiden_idle.py": {
+      "bytes": 7725,
+      "sha256": "b539f138f461ea298cea0a4876f3800c3edeb669cfaf043060e670ba9acaf7c6"
+    },
+    "evidence.json": {
+      "bytes": 1374,
+      "sha256": "8e8b19c2f7c9743dbbaf5c72b599de2c9e535c04c68047805bd0f3129419e166"
+    },
+    "imagegen_first_8frames.gif": {
+      "bytes": 419587,
+      "sha256": "b7e82ec088424260326621c4ceb53ac4e89238da481e766443ad51a50087c2c1"
+    }
+  },
+  "limits": [
+    "No owner visual approval yet",
+    "No native GIL",
+    "No 57-primitive claim",
+    "No PC/Android FPS",
+    "Need source visual polish if owner requests"
+  ]
+}
