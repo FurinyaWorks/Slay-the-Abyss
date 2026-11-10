@@ -1,3 +1,4 @@
+import {jointCiSourceAt} from './joint-ui-ci-source-inverse.mjs';
 import {preOfficialAssetsFlowCiSource} from './official-assets-flow-ci-source-inverse.mjs';
 import {preOfficialAssetsCiSource} from './official-assets-ci-source-inverse.mjs';
 // Pure CI receipt compatibility: complete current strings may enter the exact
@@ -43,11 +44,14 @@ const epochs=Object.freeze([
  Object.freeze({name:'officialAssetsFlow',project:preOfficialAssetsFlowCiSource}),
 ]);
 export function ciSourceAtEpoch(path,source,target){
+ if(target==='componentAliasFix'){const alias=jointCiSourceAt(path,source,'componentAliasFix');if(alias!==source)return alias;}
+ source=jointCiSourceAt(path,source,'officialAssetsFlow');
  const index=epochs.findIndex(epoch=>epoch.name===target);assert(index>=0,'known CI source epoch');
  for(let i=epochs.length-1;i>index;i--)source=epochs[i].project(path,source);
  return source;
 }
 export function preComponentUiCiSource(path,source){
+ source=jointCiSourceAt(path,source,'officialAssetsFlow');
  for(let i=epochs.length-1;i>=0;i--)source=epochs[i].project(path,source);
  return source;
 }

@@ -21,6 +21,7 @@ import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
+import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -254,12 +255,14 @@ test('current timing records preserve all measured corrections without duplicate
   }else if(file===watcherPlanningKey){
    assert.deepEqual(entry,watcherPlanningFloor);assert.equal(entry.durationMs,30000);
    assert.ok(entry.durationMs>=21763.220989+1218.265678);
+  }else if(Object.hasOwn(officialAssetsPlanningFloors,file)){
+   assert.deepEqual(entry,officialAssetsPlanningFloors[file],'retain each published official checkpoint floor independently');
   }else{
    assert.match(entry.environment,/local/);assert.match(entry.kind,/not .*hosted/);localFloorCount++;
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length+Object.keys(officialAssetsPlanningFloors).length);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 

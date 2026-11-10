@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-08 01:12'
-updated_date: '2026-11-10 14:19'
+updated_date: '2026-11-10 15:54'
 labels: []
 dependencies: []
 parent_task_id: TASK-88
@@ -32,4 +32,6 @@ ordinal: 165000
 Owner追加全量收口：五公开实验222路径已恢复逐blob验证；#554原两支及最小raw修复实验归档，不动默认API；私UI保留本地bundle。修复组合35-owner鲜读、UI退休/隔离、旧native/Session分层与跨平台102 helper身份；本轮UI/组合52、Session4、CI23等通过。最终远端目标0PR与develop/master两支，Full排队单独跟踪。
 
 2026-11-10按Owner要求只做集中收口：来源与去向见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；CI修复由#606正常自动合并，其余可组合来源收拢一个Draft。10份尚未通过完整组合的M7切片保存在已验证bundle及本地归档refs、原PR refs，回Backlog接续，不冒称已合。脏树保留；来源分支按精确SHA租约清理。内部Issue600迁TASK-74.22，不新增内部Issue。
+
+第二轮：#606已实际合入develop@80f1bcfa，合后push Full仍待。最新事件d218已吸收并清理来源分支，源码联合层1638独立检查/Formation12/UI行为14通过；CI完整校准51通过，计时合同13通过，另外三CI消费者24项通过。真实LFS六图5983528字节及license检查通过。继续#607整片独审/新基线Full与原队列，不勾完成AC。
 <!-- SECTION:NOTES:END -->

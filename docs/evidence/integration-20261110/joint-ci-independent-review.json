@@ -1,0 +1,66 @@
+{
+  "reviewId": "pr607-joint-ci-receipt-slice-independent-20261110",
+  "scope": "Only the six listed CI receipt-view and official-floor recognition integration files; not the entire PR, gameplay, Hosted Full, merge queue or merged result.",
+  "state": "content_reviewed_commit_binding_pending",
+  "reviewedHeadSha": null,
+  "reviewedBaseSha": null,
+  "conclusion": "pass",
+  "unresolved": [],
+  "reviewedFiles": {
+    ".gitattributes": {
+      "sha256": "a5844d50a7f933759fd63442d586b84546213d0bc171b3b0c408d92e6b941624",
+      "normalization": "LF"
+    },
+    "tests/ci-complete-calibration.test.mjs": {
+      "sha256": "8c5046164021603181e3816d8c1b3facd14d1ea926dc5d95a84b1f153c2bf4ec",
+      "normalization": "LF"
+    },
+    "tests/helpers/component-ui-ci-source-inverse.mjs": {
+      "sha256": "efb935e7b850d313462929d8f7ec0a852e44d51b6391594a50d03c22aac60f34",
+      "normalization": "LF"
+    },
+    "tests/helpers/joint-ui-ci-source-inverse.mjs": {
+      "sha256": "3ab4d75d5ee7691da1d1e5733fdb41cb25f35c0f9597f6c7bec0e633b2458eb0",
+      "normalization": "LF"
+    },
+    "tests/helpers/joint-ui-ci-source-epoch.json.gz": {
+      "sha256": "e401ff30c46c7fd9dd996fa7487c971ee84ab6a717f6f04cf4ec5d57e0dc0330",
+      "normalization": "raw"
+    },
+    "tests/ci-runtime.test.mjs": {
+      "sha256": "5ae2d2b2c68e60744f7ee5490f86503df819a25b67e32a6964ccba5b7ccd94e1",
+      "normalization": "LF"
+    }
+  },
+  "archiveSha256": "e401ff30c46c7fd9dd996fa7487c971ee84ab6a717f6f04cf4ec5d57e0dc0330",
+  "probes": {
+    "receiptReferences": 218,
+    "trueGitVersions": 53,
+    "sourceAndCrossViewBoundaryChecks": 1916,
+    "oldAliasCheckpointFallbacks": 19,
+    "currentInventory": 834,
+    "historicalFlowInventory": 829,
+    "rawHistoricalEvidenceFiles": 21,
+    "officialFloorEntriesIndependentlyCompared": 4
+  },
+  "validation": {
+    "calibration": "Parent-run final targeted log independently read: 51/51, no failed/cancelled/skipped; metadata-only archive refresh checked separately",
+    "log": "../../.artifacts/integration-20261110-ci-joint-final.log",
+    "logSha256": "356e9558460f9d4f635cad2d37037da6eefdf5f82a2e954fe150e7512c5c5886",
+    "runtime": {
+      "kind": "Parent-run complete single-file test log independently inspected; not Full",
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "log": "../../.artifacts/integration-20261110-runtime-final.log",
+      "logSha256": "c76c1f9068af90a59b9746c71e8b5277ba613811a2fa603ecae0c57e49432823"
+    }
+  },
+  "limits": [
+    "No Full executed or inferred",
+    "No claim current gameplay was measured by old receipts",
+    "Exact new commit/base/tree binding required after submit/rebase"
+  ]
+}

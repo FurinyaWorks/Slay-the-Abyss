@@ -227,6 +227,26 @@
       "tests": 14,
       "passed": 14
     },
-    "ciCalibration": "26 known historical-source/inventory failures remain from the 87-test diagnostic run; no Full pass claimed"
+    "ciCalibration": "51/51 passed; current timing 13/13 passed; Hosted Full and whole-PR admission pending"
+  },
+  "jointCiValidation": {
+    "calibration": {
+      "tests": 51,
+      "passed": 51
+    },
+    "timingRuntime": {
+      "tests": 13,
+      "passed": 13
+    },
+    "unchangedOtherCiConsumers": {
+      "tests": 24,
+      "passed": 24
+    },
+    "currentJsInventory": 834,
+    "historicalOfficialInventory": 829,
+    "realGitSourceVersions": 53,
+    "originalReceiptsPreserved": true,
+    "license": "passed after materializing exact six reviewed PNGs",
+    "hostedFull": "pending"
   }
 }
