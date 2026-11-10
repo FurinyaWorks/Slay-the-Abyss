@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: deck entry is an STS-style fanned card stack with a same-ink count pip inside the menu-sibling disc
+ok 1 - deck entry is an STS-style fanned card stack with a same-ink count pip inside the menu-sibling disc
+  ---
+  duration_ms: 76.9994
+  type: 'test'
+  ...
+# Subtest: nonbattle potion entry shows readable count and retains passive compatibility silhouettes without new actions
+ok 2 - nonbattle potion entry shows readable count and retains passive compatibility silhouettes without new actions
+  ---
+  duration_ms: 34.6565
+  type: 'test'
+  ...
+# Subtest: real potion header repaint preserves physical capacity and sparse inventory without mutating it
+ok 3 - real potion header repaint preserves physical capacity and sparse inventory without mutating it
+  ---
+  duration_ms: 3219.7853
+  type: 'test'
+  ...
+# Subtest: V25 node and Neow reuse the map physical-slot header and its existing inventory manager
+ok 4 - V25 node and Neow reuse the map physical-slot header and its existing inventory manager
+  ---
+  duration_ms: 12122.409
+  type: 'test'
+  ...
+# Subtest: shared slot helper retains hidden Main compatibility paths without mutating inputs
+ok 5 - shared slot helper retains hidden Main compatibility paths without mutating inputs
+  ---
+  duration_ms: 1.1675
+  type: 'test'
+  ...
+# Subtest: V25 event geometry follows the approved compact story composition
+ok 6 - V25 event geometry follows the approved compact story composition
+  ---
+  duration_ms: 52.9351
+  type: 'test'
+  ...
+# Subtest: V25 keeps the approved question placeholder and semantic inline ink without changing the ordinary theme
+ok 7 - V25 keeps the approved question placeholder and semantic inline ink without changing the ordinary theme
+  ---
+  duration_ms: 4.3673
+  type: 'test'
+  ...
+# Subtest: room tokens stay outside the battle-only profile copied by parallel candidates
+ok 8 - room tokens stay outside the battle-only profile copied by parallel candidates
+  ---
+  duration_ms: 2.9361
+  type: 'test'
+  ...
+# Subtest: V25 node surfaces retain all original objects, paths, live text and legal pool sizes
+ok 9 - V25 node surfaces retain all original objects, paths, live text and legal pool sizes
+  ---
+  duration_ms: 200.9457
+  type: 'test'
+  ...
+# Subtest: shop cloth, campfire and event parchment contain bounded layered native geometry
+ok 10 - shop cloth, campfire and event parchment contain bounded layered native geometry
+  ---
+  duration_ms: 54.5154
+  type: 'test'
+  ...
+# Subtest: wrapped full game rebuilds the actual reward stage without touching combat or choice ownership
+ok 11 - wrapped full game rebuilds the actual reward stage without touching combat or choice ownership
+  ---
+  duration_ms: 774.6599
+  type: 'test'
+  ...
+# Subtest: duplicate and malformed input fail before mutation and source gaps are explicit
+ok 12 - duplicate and malformed input fail before mutation and source gaps are explicit
+  ---
+  duration_ms: 119.3196
+  type: 'test'
+  ...
+# Subtest: standalone battle reward transform matches the full game and rejects duplicate application
+ok 13 - standalone battle reward transform matches the full game and rejects duplicate application
+  ---
+  duration_ms: 84.4557
+  type: 'test'
+  ...
+# Subtest: isolated generated V25 nodes execute original shop, camp, event and chest transactions
+ok 14 - isolated generated V25 nodes execute original shop, camp, event and chest transactions
+  ---
+  duration_ms: 70056.7726
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 71718.0608

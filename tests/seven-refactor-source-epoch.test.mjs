@@ -1,10 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync as nativeReadFileSync} from 'node:fs';
+import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
+// Original assertions retain their explicit frozen source view.
+const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,value,'official'):value;};
 import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
 import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
-import {sourceEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {preRoomUiEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import {preOfficialBattleSource,officialBattleSourceProof,officialBattleAlignmentSourceProof as alignment,officialBannerSourceProof as banner,preOfficialBattleShellSource,officialBattleShellSourceProof as shell} from './helpers/official-battle-source-inverse.mjs';
 import {preOfficialBattleInteractionSource,officialBattleInteractionSourceProof as interaction} from './helpers/official-battle-source-inverse.mjs';
 const proof=epoch.proof,read=p=>proof.current[p]?.source??null;

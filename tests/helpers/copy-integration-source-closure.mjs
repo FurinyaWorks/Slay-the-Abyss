@@ -59,6 +59,13 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/combined-epoch/source-epoch.mjs": "7b469cc3098e8db2360bac4e4427757a47f7185221708be1cd66a7b029093601",
   "tests/helpers/component-ui-source-epoch.mjs": "311d47d5fc85c29021a124f53cf836d54121178685e23d2499f1d3e2d79cfba9",
   "tests/helpers/component-ui-source-epoch.json.gz": "df2a27ff146ecbee4fb01054eb1071458ffe491ece1bb50fa6fb33d19df74d4a"
+},...{
+  // Exact final UI composition overlay; prior closure snapshots stay frozen.
+  "tests/helpers/combined-epoch/source-epoch.mjs": "9c13e8134088d55a7a7b57e7f4fe905fd87cdc9a36e6c636049285e6fa99faf1",
+  "tests/helpers/room-ui-source-epoch.mjs": "dff1401d6c5a6d3ba52b3931655a7f233bdce57b752ac399f7da7bb568025c81",
+  "tests/helpers/room-ui-source-epoch.json.gz": "0b3cb34acf85e814bd3e7d82254e9586a6a60c78e20fd95603b2e96e877d7bfc",
+  "tests/helpers/joint-ui-source-epoch.mjs": "f35a2626dfd4ae6e8aa0c8c2b8897859be2796d84ae0fd05e29595c785cc7692",
+  "tests/helpers/joint-ui-source-epoch.json.gz": "67777c3571d86bc82427fbb6ac5cd2254ed480b58285f41aa17d05d7490413f9"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

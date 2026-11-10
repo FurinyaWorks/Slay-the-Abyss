@@ -6,13 +6,22 @@ import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {sourceEpoch as currentSourceEpoch,preComponentUiEpoch as sourceEpoch,preEncounterFormationEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import {preComponentUiCiSource} from './helpers/component-ui-ci-source-inverse.mjs';
+import {componentUiSourceEpoch} from './helpers/component-ui-source-epoch.mjs';
+import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
 import {encounterFormationEpoch} from './helpers/encounter-formation-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
 const path='src/lua/abyss_encounter_formation.lua',proof=sourceEpoch.proof,prior=preEncounterFormationEpoch.proof;
 const raw=p=>proof.current[p]?.source??null;
 // The original 51-owner assertions describe the frozen Formation predecessor.
 // Current UI admission is independently checked against all raw owners below.
-const readFileSync=(file,...args)=>preComponentUiCiSource(file,diskReadFileSync(file,...args).replaceAll('\r\n','\n'));
+// Original Formation assertions read its explicit frozen predecessor view.
+// Actual composed raw owners are independently checked by currentSourceEpoch below.
+const componentRead=file=>jointUiSourceAt(file,diskReadFileSync(file,'utf8'),'component');
+const readFileSync=(file,...args)=>{
+ const source=diskReadFileSync(file,...args).replaceAll('\r\n','\n');
+ const component=jointUiSourceAt(file,source,'component');
+ return preComponentUiCiSource(file,componentUiSourceEpoch.preCombinedSource(file,component,{target:'componentPrior',readSource:componentRead}));
+};
 test('Encounter formation outer epoch preserves every prior binding and exact frozen production byte',()=>{
  assert.equal(encounterFormationEpoch.proof.currentCommit,'fb04fd36ab4fbdba71c0da08bf71d2899143f69b');
  assert.equal(proof.currentCommit,prior.currentCommit);
@@ -141,7 +150,8 @@ test('source and configuration reject unknown targets and malformed live readers
 
 test('current UI facade authenticates every raw owner once in declared order after warm success',()=>{
  const current=currentSourceEpoch.proof,file='config/architecture.json',input=diskReadFileSync(file,'utf8'),target='develop';
- assert.equal(current.owners.length,68);
+ // Original component closure had 68; the exact room/official union adds 11.
+ assert.equal(current.owners.length,79);
  const expected=current.targets[target].files[file].source;
  for(const crlf of [false,true]){
   const reads=[];let bad=null,missing=false;

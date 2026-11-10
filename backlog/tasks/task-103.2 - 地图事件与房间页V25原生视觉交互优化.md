@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-10 11:46'
-updated_date: '2026-11-10 14:29'
+updated_date: '2026-11-10 15:04'
 labels: []
 milestone: m-8
 dependencies: []
@@ -44,4 +44,6 @@ Owner明确追加授权接续地图优化，打磨两幕剧情事件及商店营
 独立Draft PR #605 https://github.com/FurinyaWorks/Slay-the-Abyss/pull/605 已建立，继承#603/#582以develop为基线触发Required CI；没有自动合并或发布。独审10文件及9图无新增P1/P2。实现及证据已交付，任务保持In Progress等待Full CI及官方验收；本地全量未完成，不宣称Full通过。
 
 Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
+
+集中接续#607已吸收最新事件来源d218f27b相对4eed增量：房间身份层、页面内容与既有实测记录完整保留，组合验证另做，不沿用原分支绿灯。
 <!-- SECTION:NOTES:END -->

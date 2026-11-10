@@ -6,27 +6,39 @@ import {nodeLayout} from '../scripts/node-ui-layout.mjs';
 import {applyV25NodeLayout} from '../scripts/v25-node-layout.mjs';
 
 const walk=n=>[n,...(n.controls??n.children??[]).flatMap(walk)];
-test('four V25 event options have two description lines and stay clear of narrative and footer',()=>{
+test('V25 event geometry follows the approved compact story composition',()=>{
  const t=v25Theme(nativeTheme),o=t.layout.nativeNode.event.options,b=t.layout.nativeNode.event.body;
- assert(o.description[3]>=14*3,'two wrapped lines need room for native font leading');
- assert(o.title[1]-o.title[3]/2>=o.description[1]+o.description[3]/2,'title and effect must not overlap');
+ assert.deepEqual(o.size,[700,44],'approved event uses compact inline choices, not 88px cards');
+ assert.deepEqual(o.rows,[-88,-143,-198,-253]);
  assert(b[1]-b[3]/2>=o.rows[0]+o.size[1]/2+8,'narrative must clear the first option');
  for(let i=1;i<4;i++)assert(o.rows[i-1]-o.rows[i]>=o.size[1]+4,'separate pointer targets');
  assert(o.rows[3]-o.size[1]/2>=-318,'keep footer clear');
  const layout=nodeLayout(t);applyV25NodeLayout(layout,t);
  const event=walk(layout).find(n=>n.name==='eventView');
- const paper=walk(event).find(n=>n.name==='paper');
- assert(paper.position[0]+paper.size[0]/2+20<=b[0]-b[2]/2,'title ribbon must clear the narrative column');
- assert(walk(event).find(n=>n.name==='art').opacity>=.7,'event emblem must be legible');
+ const art=walk(event).find(n=>n.name==='art');
+ assert.deepEqual(art.size,[155,155]);assert.equal(art.opacity,.25);
+ assert(!walk(event).some(n=>n.name==='emblemDisc'||n.name==='emblemInset'),'no invented event medallions');
+ assert.deepEqual(t.layout.nativeNode.event.plate,[0,-55,1230,490]);
+ assert.deepEqual(t.layout.nativeNode.event.name,[-280,203,620,60]);
+ assert(walk(event).find(n=>n.name==='ribbon').children.length>3,'retain the irregular long paper silhouette');
 });
 
-test('V25 event identities use existing theme assets and leave the ordinary theme unchanged',()=>{
- const before=structuredClone(nativeTheme),t=v25Theme(nativeTheme),visuals=t.layout.nativeNode.event.visuals;
- assert(visuals,'V25 needs event-specific presentation');
- for(const id of ['cleric','scrap_ooze','we_meet_again','the_library','designer','match_game']){
-  assert(visuals[id]?.icon,id);assert(/^#[\dA-F]{6}$/i.test(visuals[id].colour));
- }
- assert.notEqual(visuals.cleric.icon,visuals.the_library.icon);
+test('V25 keeps the approved question placeholder and semantic inline ink without changing the ordinary theme',()=>{
+ const before=structuredClone(nativeTheme),t=v25Theme(nativeTheme),reference=t.layout.nativeNode.event.reference;
+ assert.equal(reference.icon,100114);
+ assert.equal(reference.costInk,'#D77C7E');assert.equal(reference.rewardInk,'#9DD740');
+ assert.equal(reference.figureInk,'#C3C9BF40','runtime tint must preserve the approved quarter opacity');
  assert.deepEqual(nativeTheme,before);
- assert.equal(nativeTheme.layout.nativeNode.event.visuals,undefined);
+ assert.equal(nativeTheme.layout.nativeNode.event.reference,undefined);
+});
+
+test('room tokens stay outside the battle-only profile copied by parallel candidates',()=>{
+ assert.equal(Object.hasOwn(nativeTheme.v25Battle.layout,'nativeNode'),false);
+ const approved=v25Theme(nativeTheme),battle=structuredClone(nativeTheme);
+ // Mirror the existing official-assets profile's layout selection contract.
+ for(const key of Object.keys(nativeTheme.v25Battle.layout))battle.layout[key]=structuredClone(approved.layout[key]);
+ assert.deepEqual(battle.layout.nativeNode,nativeTheme.layout.nativeNode);
+ assert.equal(battle.layout.nativeNode.cardReference,undefined);
+ assert.equal(approved.layout.nativeNode.cardReference.paperImage,107253);
+ assert.equal(approved.layout.nativeNode.referenceButtons.ink,'#F4DE8E');
 });

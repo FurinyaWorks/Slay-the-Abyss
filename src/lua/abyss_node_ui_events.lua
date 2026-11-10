@@ -74,7 +74,7 @@ local function renderEventFigure(event, id)
     if art then art:SetVisible(not neow) end
     for _, name in ipairs({ 'plate', 'plateBorder', 'glow', 'caption' }) do
         local c = event:GetChild(name)
-        if c then c:SetVisible(not neow and (name ~= 'caption' or not layout.event.visuals)) end
+        if c then c:SetVisible(not neow and (name ~= 'caption' or not layout.event.reference)) end
     end
     if neow then event:GetChild('caption').text = '七天神像' end
     local bubble = event:GetChild('bubble'); if bubble then bubble:SetVisible(neow) end
@@ -85,8 +85,30 @@ local function renderEventFigure(event, id)
     place(body, neow and NEOW.bubbleText or layout.event.body)
 end
 -- LargeDialogOptionButton.calculateY (ROOM): bottom-aligned stack, -82px per slot, x = 620.
-local function placeOptions(event, neow, count)
+local function inlineLines(text)
+    local lines, width = 1, 0
+    for _, code in utf8.codes(text) do
+        local advance = code < 128 and 9 or 18
+        if code == 10 then lines, width = lines + 1, 0
+        elseif width + advance > 650 then lines, width = lines + 1, advance
+        else width = width + advance end
+    end
+    return lines
+end
+local function compactFrames(rows)
+    local frames, bottom = {}, -275
+    for i = math.min(#rows, OPTIONS), 1, -1 do
+        local text = rows[i].title .. ' ' .. (rows[i].description or '')
+        local height = 44 + (inlineLines(text) - 1) * 22
+        frames[i] = {225, bottom + height / 2, 700, height}
+        bottom = bottom + height + 11
+    end
+    return frames
+end
+local function placeOptions(event, neow, rows)
     local o = layout.event.options
+    local count = math.min(#rows, OPTIONS)
+    local frames = layout.event.reference and not neow and compactFrames(rows)
     for i = 1, OPTIONS do
         local box = event:GetChild('option' .. i)
         if box then
@@ -97,6 +119,9 @@ local function placeOptions(event, neow, count)
                 box:SetAnchoredPosition(n.x, n.bottom + (count - i) * n.spacing)
                 place(box:GetChild('title'), n.title)
                 place(box:GetChild('description'), n.description)
+            elseif frames and frames[i] then
+                w, h = frames[i][3], frames[i][4]
+                place(box, frames[i]);place(box:GetChild('title'), {0, 0, 650, h - 8})
             elseif o.rows[i] then
                 box:SetAnchoredPosition(o.x, o.rows[i])
                 place(box:GetChild('title'), o.title)
@@ -109,15 +134,18 @@ local function placeOptions(event, neow, count)
             for _, part in ipairs({ 'normal', 'disabled', 'hover', 'pressed', 'selected' }) do
                 local c = box:GetChild(part); if c then c:SetSizeDelta(w - 4, h - 4) end
             end
-            if layout.event.visuals then
+            if layout.event.reference then
                 place(box:GetChild('v25BaseMaterial'), {0, 0, w - 4, h - 4})
                 local chrome = box:GetChild('v25StateChrome')
                 chrome:SetSizeDelta(w, h)
                 place(chrome:GetChild('topStitch'), {0, h / 2 - 2, w - 8, 2})
                 place(chrome:GetChild('lowerRim'), {0, -h / 2 + 2, w - 8, 2})
                 place(chrome:GetChild('faceDepth'), {0, 0, w - 6, h - 6})
+                for _, name in ipairs({'v25Corner0_0','v25Corner0_1','v25Corner1_0','v25Corner1_1'}) do
+                    box:GetChild(name):SetSizeDelta(42, h / 2)
+                end
             end
-            box:GetChild('description'):SetVisible(true)
+            box:GetChild('description'):SetVisible(not frames)
         end
     end
 end
@@ -129,21 +157,44 @@ local function eventNotice(id, copy, result)
 end
 
 local function renderEventArt(ctx, event, id)
-    local visuals = layout.event.visuals
-    if not visuals or id == 'neow' then return end
-    local visual = visuals[id] or visuals.default
-    ctx.picture(event:GetChild('art'), visual.icon)
-    ctx.tint(event:GetChild('art'), visual.colour)
+    local reference = layout.event.reference
+    if not reference or id == 'neow' then return end
+    ctx.picture(event:GetChild('art'), reference.icon)
+    ctx.tint(event:GetChild('art'), reference.figureInk)
 end
 
 local function optionDescription(ctx, selected)
     local description = ctx.eventOptionText(selected)
-    if layout.event.visuals and selected.potionId then return (description:gsub('\n', '｜', 1)) end
     return description
 end
 
 local function descriptionInk(enabled)
-    return enabled and (layout.event.descriptionInk or C.textDim) or (layout.event.disabledInk or C.textMuted)
+    local reference = layout.event.reference
+    return reference and (enabled and reference.textInk or reference.disabledInk) or enabled and C.textDim or C.textMuted
+end
+
+local function inlineOption(row)
+    local reference = layout.event.reference
+    local text = row.title:gsub('［', '['):gsub('］', ']') .. ' ' .. (row.description or '')
+    if not row.enabled then return text end
+    local function paint(pattern, colour)
+        local hex = string.format('#%02X%02X%02X', colour.r, colour.g, colour.b)
+        text = text:gsub(pattern, function(value) return '<color=' .. hex .. '>' .. value .. '</color>' end)
+    end
+    paint('支付%s*[%d%.]+%s*金币', reference.costInk)
+    paint('失去%s*[%d%.]+%s*点生命', reference.costInk)
+    paint('回复%s*[%d%.]+%s*点生命', reference.rewardInk)
+    paint('获得%s*[%d%.]+%s*金币', reference.rewardInk)
+    paint('从牌组移除一张卡牌', reference.rewardInk)
+    return text
+end
+
+local function writeOption(ctx, box, row, id)
+    local compact = layout.event.reference and id ~= 'neow'
+    box:GetChild('title').text = compact and inlineOption(row) or row.title
+    box:GetChild('description').text = row.description
+    ctx.ink(box:GetChild('title'), compact and descriptionInk(row.enabled) or row.enabled and C.goldBright or C.textMuted)
+    ctx.ink(box:GetChild('description'), descriptionInk(row.enabled))
 end
 
 -- Installs the events responsibility on one node UI instance.
@@ -287,16 +338,13 @@ function M.install(ctx)
             end
         end
         buildEventRows()
-        if NEOW then placeOptions(event, id == 'neow', math.min(#rows, OPTIONS)) end
+        if NEOW then placeOptions(event, id == 'neow', rows) end
         for i = 1, OPTIONS do
             local row, box = rows[i], event:GetChild("option" .. i)
             ctx.show(box, row)
             if row then
                 ctx.state(box, row.enabled)
-                box:GetChild("title").text = row.title
-                box:GetChild("description").text = row.description
-                ctx.ink(box:GetChild("title"), row.enabled and C.goldBright or C.textMuted)
-                ctx.ink(box:GetChild("description"), descriptionInk(row.enabled))
+                writeOption(ctx, box, row, id)
                 ctx.action("eventView/option" .. i, row.enabled, row.handler, row.description)
             end
         end

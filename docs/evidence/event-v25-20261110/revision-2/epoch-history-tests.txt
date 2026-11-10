@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: seven-refactor exact outer epoch restores every complete predecessor owner
+ok 1 - seven-refactor exact outer epoch restores every complete predecessor owner
+  ---
+  duration_ms: 64.8798
+  type: 'test'
+  ...
+# Subtest: component UI outer epoch authenticates its exact committed slice and original predecessor
+ok 2 - component UI outer epoch authenticates its exact committed slice and original predecessor
+  ---
+  duration_ms: 34.9873
+  type: 'test'
+  ...
+# Subtest: component config accepts only input layout while freshly authenticating raw linked owners
+ok 3 - component config accepts only input layout while freshly authenticating raw linked owners
+  ---
+  duration_ms: 4.1465
+  type: 'test'
+  ...
+# Subtest: component UI authorization rejects every late owner drift and deletion after warming
+ok 4 - component UI authorization rejects every late owner drift and deletion after warming
+  ---
+  duration_ms: 6.6662
+  type: 'test'
+  ...
+# Subtest: component UI foreign and predecessor inputs stay opaque without linked reads
+ok 5 - component UI foreign and predecessor inputs stay opaque without linked reads
+  ---
+  duration_ms: 4.5359
+  type: 'test'
+  ...
+# Subtest: seven-refactor projection freshly rejects drift and missing owners after warming
+ok 6 - seven-refactor projection freshly rejects drift and missing owners after warming
+  ---
+  duration_ms: 2.388
+  type: 'test'
+  ...
+# Subtest: foreign and predecessor inputs remain opaque without linked reads
+ok 7 - foreign and predecessor inputs remain opaque without linked reads
+  ---
+  duration_ms: 0.9024
+  type: 'test'
+  ...
+# Subtest: every advertised composed target preserves foreign bytes without linked reads
+ok 8 - every advertised composed target preserves foreign bytes without linked reads
+  ---
+  duration_ms: 1.2017
+  type: 'test'
+  ...
+# Subtest: facades preserve original invalid-reader semantics while public reader factories remain strict
+ok 9 - facades preserve original invalid-reader semantics while public reader factories remain strict
+  ---
+  duration_ms: 362.8024
+  type: 'test'
+  ...
+# Subtest: configuration layout admission preserves exact tokens and freshly authenticates all 45 raw owners
+ok 10 - configuration layout admission preserves exact tokens and freshly authenticates all 45 raw owners
+  ---
+  duration_ms: 27.1862
+  type: 'test'
+  ...
+# Subtest: configuration layout never repairs invalid number or keyword tokens
+ok 11 - configuration layout never repairs invalid number or keyword tokens
+  ---
+  duration_ms: 2.3385
+  type: 'test'
+  ...
+# Subtest: pure source calculations reuse exact strings but every projection freshly reads its owners
+ok 12 - pure source calculations reuse exact strings but every projection freshly reads its owners
+  ---
+  duration_ms: 2.8173
+  type: 'test'
+  ...
+# Subtest: pure hash memoization evicts by both entry count and retained complete string length
+ok 13 - pure hash memoization evicts by both entry count and retained complete string length
+  ---
+  duration_ms: 14.4942
+  type: 'test'
+  ...
+# Subtest: frozen input reuse preserves immutable bindings while default callers retain clone isolation
+ok 14 - frozen input reuse preserves immutable bindings while default callers retain clone isolation
+  ---
+  duration_ms: 1.3346
+  type: 'test'
+  ...
+# Subtest: frozen reuse rejects mutable/accessor/cyclic data and still validates complete source hashes
+ok 15 - frozen reuse rejects mutable/accessor/cyclic data and still validates complete source hashes
+  ---
+  duration_ms: 2.7505
+  type: 'test'
+  ...
+# Subtest: reused flattened proofs freshly read each declared owner once and stop at the first invalid owner
+ok 16 - reused flattened proofs freshly read each declared owner once and stop at the first invalid owner
+  ---
+  duration_ms: 2.2782
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 565.5248

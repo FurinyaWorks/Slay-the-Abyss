@@ -482,9 +482,11 @@ test("Purifier prays for free through the picker and shows the removal result", 
     source.rules.events.encounterId='purifier' -- explicit content fixture, independent of room RNG
     local ui, get, click, shown = setup("event", source)
     assert(get("eventView/name").text == "净化神龛" and get("eventView/body").text == Narrative.eventCopy.purifier.intro:gsub("\n\n", "\n"))
-    assert(get("eventView/option1").children.title.text == "［祈祷］")
+    local prayerTitle=plainCardTitle(get("eventView/option1").children.title.text)
+    assert(Theme.layout.nativeNode.event.reference and prayerTitle=='[祈祷] 免费从牌组移除一张卡牌' or prayerTitle=='［祈祷］')
     assert(get("eventView/option1").children.description.text == "免费从牌组移除一张卡牌")
-    assert(get("eventView/option2").children.title.text == "［离开］" and not shown("eventView/option3"))
+    local leaveTitle=plainCardTitle(get("eventView/option2").children.title.text)
+    assert((Theme.layout.nativeNode.event.reference and leaveTitle=='[离开] 什么也不会发生。' or leaveTitle=='［离开］')and not shown("eventView/option3"))
     assert(click("eventView/option1") and shown("pickerView") and get("confirm").children.label.text == "祈祷 · 移除")
     local second = ui.run.deck[2]
     local name = Presentation[second.cardId].name

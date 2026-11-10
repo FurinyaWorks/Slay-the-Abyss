@@ -495,3 +495,8 @@ docs/evidence/pr588-native-mock-20261110/*.log -whitespace
 # Preserve original server-created CRLF evidence blobs byte-for-byte.
 docs/evidence/pr588-native-mock-20261110/** -text whitespace=cr-at-eol
 docs/evidence/official-assets-first-20261109/full-flow/** -text whitespace=cr-at-eol
+
+tests/helpers/room-ui-source-epoch.mjs text eol=lf
+tests/helpers/joint-ui-source-epoch.mjs text eol=lf
+tests/helpers/room-ui-source-epoch.json.gz -text
+tests/helpers/joint-ui-source-epoch.json.gz -text

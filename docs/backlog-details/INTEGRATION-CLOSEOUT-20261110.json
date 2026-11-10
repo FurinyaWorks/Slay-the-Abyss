@@ -206,5 +206,27 @@
       "requiresBase": "ab65ed3b5b4240eb653af4651a13c1b8c72b2e04",
       "archiveRef": "refs/archive/integration-20261110/remote/feat/m7-flow-ci-checkpoint-20261110"
     }
-  ]
+  ],
+  "eventSourceUpdate": {
+    "head": "d218f27b96ba518016298ab0959669f352150974",
+    "relativeTo": "4eed3327396d94ac3bac83c449d24fa50017ce26",
+    "recoveryBundle": ".artifacts/integration-20261110-event-latest.bundle",
+    "status": "absorbed; joint source identity independently reviewed; not full CI admission"
+  },
+  "jointUiValidation": {
+    "independentReviewId": "joint-ui-independent-source-audit-20261110",
+    "checks": 1638,
+    "currentPaths": 346,
+    "currentOwners": 79,
+    "oldFourUiIdentityFailures": "resolved",
+    "formationCompleteFile": {
+      "tests": 12,
+      "passed": 12
+    },
+    "latestUiBehaviorCompleteFiles": {
+      "tests": 14,
+      "passed": 14
+    },
+    "ciCalibration": "26 known historical-source/inventory failures remain from the 87-test diagnostic run; no Full pass claimed"
+  }
 }

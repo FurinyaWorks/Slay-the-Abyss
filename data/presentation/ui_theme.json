@@ -3424,44 +3424,6 @@
       }
     },
     "layout": {
-      "nativeNode": {
-        "event": {
-          "descriptionInk": "#CED8D0",
-          "disabledInk": "#9BAAA5",
-          "visuals": {
-            "default": {"icon": 100114, "colour": "#C9BB91"},
-            "cleric": {"icon": 102018, "colour": "#E5B6AB"},
-            "big_fish": {"icon": 102018, "colour": "#E5B6AB"},
-            "vampires": {"icon": 102018, "colour": "#C67B81"},
-            "ghosts": {"icon": 102018, "colour": "#A2BFC7"},
-            "fountain": {"icon": 102014, "colour": "#A3CEC4"},
-            "purifier": {"icon": 102014, "colour": "#A3CEC4"},
-            "bonfire": {"icon": 102002, "colour": "#E6B66D"},
-            "accursed_blacksmith": {"icon": 102002, "colour": "#DBA076"},
-            "upgrade_shrine": {"icon": 102002, "colour": "#E6B66D"},
-            "scrap_ooze": {"icon": 102028, "colour": "#A7BE85"},
-            "golden_idol": {"icon": 102028, "colour": "#DBC17D"},
-            "golden_shrine": {"icon": 102028, "colour": "#DBC17D"},
-            "dead_adventurer": {"icon": 102028, "colour": "#C2B49A"},
-            "cursed_tome": {"icon": 105046, "colour": "#BEA1CB"},
-            "the_library": {"icon": 105046, "colour": "#A3C8C2"},
-            "back_to_basics": {"icon": 105046, "colour": "#C9BB91"},
-            "living_wall": {"icon": 105046, "colour": "#A7BE85"},
-            "transmogrifier": {"icon": 105046, "colour": "#BEA1CB"},
-            "duplicator": {"icon": 105046, "colour": "#BEA1CB"},
-            "match_game": {"icon": 105046, "colour": "#DBC17D"},
-            "designer": {"icon": 105046, "colour": "#A3C8C2"},
-            "drug_dealer": {"icon": 105046, "colour": "#BEA1CB"},
-            "we_meet_again": {"icon": 102025, "colour": "#DBC17D"},
-            "woman_in_blue": {"icon": 102025, "colour": "#9BBFD5"},
-            "sssserpent": {"icon": 102025, "colour": "#A7BE85"},
-            "beggar": {"icon": 102025, "colour": "#C9BB91"},
-            "colosseum": {"icon": 102044, "colour": "#DDA590"},
-            "masked_bandits": {"icon": 102044, "colour": "#DDA590"},
-            "joust": {"icon": 102044, "colour": "#DDA590"}
-          }
-        }
-      },
       "map": {
         "notice": [0, -324, 820, 48],
         "emeraldNotice": [0, -316, 820, 48],
@@ -3502,6 +3464,30 @@
             "power": { "position": [0, 43.578125], "size": [129, 112.34375], "ellipse": true }
           }
         }
+      }
+    }
+  },
+  "v25Nodes": {
+    "referenceButtons": {
+      "ink": "#F4DE8E", "disabledInk": "#A8ABA3",
+      "flag": {"hover": "#A0524C", "pressed": "#5C2828"},
+      "choice": {"hover": "#427D81", "pressed": "#183B40"}
+    },
+    "referenceIdentity": {"ironclad": "旅行者·荧·岩", "silent": "旅行者·荧·风", "defect": "旅行者·荧·雷", "watcher": "旅行者·荧·草", "hutao": "胡桃", "arlecchino": "阿蕾奇诺", "furina": "芙宁娜", "raiden": "雷电将军"},
+    "shop": {"referenceRemovalName": "卡牌移除\n服务！", "referenceRemovalInk": "#EED689", "referenceRemovalBorder": "#7D7C81"},
+    "camp": {"reference": {"restEdge": "#85AA68", "forgeEdge": "#96646A", "restHover": "#619E58", "forgeHover": "#B77980"}},
+    "cardReference": {
+      "paperImage": 107253, "costImage": 107270, "paperInk": "#B5A480", "bodyInk": "#2E2828",
+      "costInk": "#FFF0D0", "costOrbInk": "#F3CB68", "ribbonEdge": "#726858",
+      "rarities": {"basic": "#B8AC90", "common": "#B7B4AA", "uncommon": "#71D4D8", "rare": "#E4B855"}
+    },
+    "event": {
+      "reference": {
+        "icon": 100114, "figureInk": "#C3C9BF40",
+        "textInk": "#EDEEDF", "disabledInk": "#777E6E",
+        "costInk": "#D77C7E", "rewardInk": "#9DD740",
+        "hover": "#427D81", "pressed": "#183B40",
+        "border": "#406166", "hoverBorder": "#8EB6B5"
       }
     }
   }

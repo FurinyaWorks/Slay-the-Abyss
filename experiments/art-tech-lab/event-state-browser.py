@@ -56,6 +56,7 @@ with sync_playwright() as p:
         state = json.loads((source / (name + '.state.json')).read_text(encoding='utf8'))
         result = page.evaluate('''async ({s,canvasPng})=>{
           const t=performance.now();await eventRenderer.applyScene(s.scene,s.canvasWidth,s.canvasHeight);eventRenderer.app.render();
+          const initialApplyRenderMs=performance.now()-t;
           // applyScene creates sprite requests without awaiting their completion.
           // Await the installed renderer's actual per-texture promises before
           // capturing, so a fast PNG cannot record red pending-asset placeholders.
@@ -63,9 +64,10 @@ with sync_playwright() as p:
           await Promise.allSettled([...eventRenderer.imageTextures.values()].map(texture=>texture.promise).filter(Boolean));
           const assetWaitMs=performance.now()-assetStart;
           eventRenderer.app.render();
+          const fullReadyMs=performance.now()-t;
           await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
           const gl=eventRenderer.app.renderer.gl,ext=gl?.getExtension('WEBGL_debug_renderer_info');
-          const result={projectionMs:performance.now()-t,webgl:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):'unavailable',nodes:s.scene.nodes.length,canvas:[s.canvasWidth,s.canvasHeight],assetWaitMs,assetCount:eventRenderer.imageTextures.size,assetErrors:[...eventRenderer.imageTextures.entries()].filter(([,texture])=>texture.error).map(([key,texture])=>({key,error:texture.error}))};
+          const result={initialApplyRenderMs,fullReadyMs,projectionMs:performance.now()-t,webgl:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):'unavailable',nodes:s.scene.nodes.length,canvas:[s.canvasWidth,s.canvasHeight],assetWaitMs,assetCount:eventRenderer.imageTextures.size,assetErrors:[...eventRenderer.imageTextures.entries()].filter(([,texture])=>texture.error).map(([key,texture])=>({key,error:texture.error}))};
           if(canvasPng){eventRenderer.app.render();result.png=document.getElementById('event').toDataURL('image/png').split(',')[1];}
           return result;
         }''', {'s':state, 'canvasPng':canvas_png})
@@ -80,7 +82,7 @@ with sync_playwright() as p:
         print('RENDER ' + name, flush=True)
     if frame_states:
         # The selected final screenshot must be the full baseline corresponding
-        # to these sceneRev deltas (the collector emits treasure-open.frames).
+        # to these sceneRev deltas.
         frame_report = page.evaluate('''async frames=>{
           const samples=[];
           for(const s of frames){const t=performance.now();await eventRenderer.applyScene(s.scene,s.canvasWidth,s.canvasHeight);eventRenderer.app.render();samples.push(performance.now()-t);}

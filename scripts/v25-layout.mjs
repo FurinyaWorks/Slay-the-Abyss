@@ -14,6 +14,8 @@ export function v25Theme(source){
  if(source.v25Battle?.sourceCommit!=='7e40d2d361fff6b9c89d9f409db29a9d8ac44352')throw Error('Missing frozen V25 battle tokens');
  const theme=merge(structuredClone(source),source.v25Battle);
  merge(theme,v25NodeThemePatch);
+ // Room-only tokens must not enter the shared battle profile enumeration.
+ merge(theme.layout.nativeNode,source.v25Nodes??{});
  theme.layout.v25Menu=structuredClone(v25MenuRuntimeLayout);
  theme.layout.v25Result=structuredClone(v25ResultRuntimeLayout);
  return theme;

@@ -42,7 +42,7 @@ function OnStart()
     route:resize(1280,720)
     rooms = require('abyss_node_ui').new(stage:GetChild('nodePanel'), nil, nil, require('abyss_presentation'),
         Enum.CursorEventType.CursorClick, refresh,
-        {cursorEvents=Enum.CursorEventType,color=Color,imageSource=Enum.ImageSource.StaticReference})
+        {enhancedRooms=true,cursorEvents=Enum.CursorEventType,color=Color,imageSource=Enum.ImageSource.StaticReference})
     local cases = {
         {'event','cleric',1}, {'event','designer',2}, {'event','the_library',2},
         {'shop',nil,1}, {'camp',nil,1}, {'treasure',nil,1}, {'event','match_game',1},

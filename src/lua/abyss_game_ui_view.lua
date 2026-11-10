@@ -192,7 +192,7 @@ function M.refreshPotionEntry(child,inCombat,canManagePotions,platform)
 end
 
 local function mapPotionVisible(self)
-    return self.mode=='map' or self.routeOpen==true
+    return self.mode=='map' or self.mode=='node' or self.routeOpen==true
 end
 
 function M.refreshDeckEntry(child,self)

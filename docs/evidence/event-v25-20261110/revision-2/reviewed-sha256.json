@@ -1,0 +1,35 @@
+{
+  "screenshots": [
+    {
+      "path": ".artifacts/event-fidelity-r4/browser/cleric.png",
+      "sha256": "e97b74e8b96a27b0657e40e7b478cf7f0b97d1d7a2be0a24cb55ef4f74387fe5"
+    },
+    {
+      "path": ".artifacts/event-fidelity-r4/browser/shop.png",
+      "sha256": "2100163f4dd8d6f150cb7698cd1e8f609d3b2685b2fac974cb24a9ba5a133b43"
+    },
+    {
+      "path": ".artifacts/event-fidelity-r4/browser/camp.png",
+      "sha256": "e543324de74484c2a525708fc5dbbabe025b1f9cc21d906e48cbd102264f5c38"
+    },
+    {
+      "path": ".artifacts/event-fidelity-r4/browser/treasure-open.png",
+      "sha256": "6fd5e23ee3cfa78b55f2ffc517758846d2f4934b7df16269fe3c457879247685"
+    }
+  ],
+  "files": [
+    {
+      "path": "data/presentation/ui_theme.json",
+      "sha256": "ea8747d5ef17d2cecad1311ab49f6abdd875ef6550f0314ca370a342794e7346"
+    },
+    {
+      "path": "scripts/v25-layout.mjs",
+      "sha256": "13ac61fe7325d1bd6fdc2038c68155b871db2b233e9c79835212f5a35ab8358e"
+    },
+    {
+      "path": "tests/v25-event-readability.test.mjs",
+      "sha256": "d820ef90bcc2f162997510902f49385e6145eb96fcdcfb0556fbee7afbab24c2"
+    }
+  ],
+  "head": "fbe7051b6e8698e43ba9c179e2307943a96c8491"
+}

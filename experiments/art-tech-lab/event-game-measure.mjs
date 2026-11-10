@@ -10,6 +10,9 @@ import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 const [file,sdk,out]=process.argv.slice(2);
 const specialOnly=process.argv.includes('--special-only');
+const baselineOnly=process.argv.includes('--baseline-only');
+const campFramesOnly=process.argv.includes('--camp-frames-only');
+assert([specialOnly,baselineOnly,campFramesOnly].filter(Boolean).length<=1,'Select one isolated collector mode');
 if(!out)throw Error('Usage: node experiments/art-tech-lab/event-game-measure.mjs <game.save.json> <actual-session.mjs> <new-output-directory>');
 fs.mkdirSync(out,{recursive:false});
 const save=JSON.parse(fs.readFileSync(file));
@@ -69,6 +72,23 @@ function __EVENT_STAGE(kind,id,act,gold,hp)
 end
 `);
 const stage=(kind,id,act=1,gold=120,hp=41)=>{chunk(`__EVENT_STAGE('${kind}',${id?`'${id}'`:'nil'},${act},${gold},${hp})`);tick();};
+if(campFramesOnly){
+ stage('camp',null,1,120,20);capture('camp');chunk('__EVENT_IDLE_CORE=__EVENT_CORE()');
+ let revision=ya(session,{view:true}).scene.revision;const frames=[];
+ for(let i=0;i<120;i++){tick(1);const state=ya(session,{view:true,sceneRev:revision});assert.equal(state.scene.reset,false);frames.push(state);revision=state.scene.revision;}
+ chunk('assert(__EVENT_EQUAL(__EVENT_IDLE_CORE,__EVENT_CORE()),"camp incremental frames changed gameplay")');
+ fs.writeFileSync(path.join(out,'camp.frames.json'),JSON.stringify(frames));
+ const warmControls=session.runtime.controlsById.size;for(const runtime of session.runtimes)for(const root of [...runtime.roots])runtime.destroyControl(root);assert.equal(session.runtime.controlsById.size,0);clean();
+ assert.equal(hash(file),initialSaveHash);assert.equal(hash(sdk),initialSdkHash);
+ fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({status:'passed',scope:'Camp-only actual SDK full baseline and120 sceneRev incremental frames, explicit fixture; no repeated twenty-cycle transactions, GPU FPS or device claim',captures,idleFrames:frames.length,idleGameplayUnchanged:true,warmControls,releasedControls:0,sourceStable:true,saveSha256:initialSaveHash,sdkSha256:initialSdkHash,logs:session.runtime.logs},null,2));for(const runtime of session.runtimes)runtime.destroy();console.log('EVENT_CAMP_FRAMES_PASS '+path.resolve(out));process.exit(0);
+}
+if(baselineOnly){
+ stage('event','cleric');capture('cleric');stage('event','designer',2);tap('eventView/option1');capture('designer-four-options');
+ chunk('__EVENT_LONG_TRADE=true');stage('event','we_meet_again');capture('we-meet-again-long-potion');
+ const warmControls=session.runtime.controlsById.size;for(const runtime of session.runtimes)for(const root of [...runtime.roots])runtime.destroyControl(root);assert.equal(session.runtime.controlsById.size,0);clean();
+ assert.equal(hash(file),initialSaveHash);assert.equal(hash(sdk),initialSdkHash);
+ fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({status:'baseline-ready',scope:'Source-generated full GameUI and actual SDK; explicit encounter fixtures, baseline projections only; no twenty-cycle/device claim',captures,warmControls,releasedControls:0,sourceStable:true,saveSha256:initialSaveHash,sdkSha256:initialSdkHash,logs:session.runtime.logs},null,2));for(const runtime of session.runtimes)runtime.destroy();console.log('EVENT_BASELINE_READY '+path.resolve(out));process.exit(0);
+}
 if(specialOnly){
  chunk('__EVENT_LONG_TRADE=true');stage('event','we_meet_again');capture('we-meet-again-long-potion');
  stage('event','match_game');capture('match-intro');tap('eventView/option1');capture('match-rules');tap('eventView/option1');capture('match-board');tap('pickerView/forgeGrid/card1');capture('match-reveal');

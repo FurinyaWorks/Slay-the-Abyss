@@ -138,6 +138,10 @@
     "map-event-offline-evidence": {
       "status": "Project map/event UI diagnostic captures, including rejected missing-icon input. Platform artwork and character rights remain with their owners. Evidence only; no asset sublicense, commercial clearance, official import, device or final product acceptance.",
       "evidence": "docs/evidence/map-v25-20261110/README.md; docs/evidence/event-v25-20261110/README.md; original PR603/605"
+    },
+    "v25-native-simulator-evidence": {
+      "status": "Project-authored Lua/layout rendered by the actual Beyond Simulator SDK/Pixi with official platform picture references. Screenshots contain game IP; no asset sublicense, commercial clearance or official import/device acceptance. Private approved reference images are not redistributed. Earlier rejected/diagnostic frames remain evidence only.",
+      "evidence": "docs/evidence/event-v25-20261110/README.md; docs/evidence/map-v25-20261110/README.md; source-generated Simulator saves and SDK/browser receipts; official materials retain their original rights."
     }
   },
   "files": {
@@ -6119,56 +6123,72 @@
       "sha256": "b1c2a0cf9a361f2e9be52646180d58c01600f5972b9e50da249a1c0e698b03d9"
     },
     "docs/evidence/map-v25-20261110/map-boss.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "a9e013e8e6fd3b1a7637ef3ef59b0df04603cadd8fdd3d23c6a98164062c13cd"
+      "sha256": "a9e013e8e6fd3b1a7637ef3ef59b0df04603cadd8fdd3d23c6a98164062c13cd",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/map-v25-20261110/map-selected.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "0175f22c16a6ccc540017a3b97a2f4c91d2f5a209b529a44bdfc99b9dc5acec6"
+      "sha256": "0175f22c16a6ccc540017a3b97a2f4c91d2f5a209b529a44bdfc99b9dc5acec6",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/map-v25-20261110/map.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "897322ac19605b0bf090eee7730270fc57bfe3ddbdac8b83dd2afc10508d008b"
+      "sha256": "897322ac19605b0bf090eee7730270fc57bfe3ddbdac8b83dd2afc10508d008b",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/map-v25-20261110/raw/rejected-missing-icon.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "90b5b825669c11446d34cbcf1183db21dcbd78df3a17d82db5a90a9278df2cb2"
+      "sha256": "90b5b825669c11446d34cbcf1183db21dcbd78df3a17d82db5a90a9278df2cb2",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/event-v25-20261110/camp.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "c58862c4c58b09e55c7d40b6b5d3bc6cc1b4ce576dc6c81b39727a9d9affa8de"
+      "sha256": "c58862c4c58b09e55c7d40b6b5d3bc6cc1b4ce576dc6c81b39727a9d9affa8de",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/event-v25-20261110/cleric.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "4f80b77d4182fa58ef735ca29d6b6811722349484e6eabb5ae761632e914630a"
+      "sha256": "4f80b77d4182fa58ef735ca29d6b6811722349484e6eabb5ae761632e914630a",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/event-v25-20261110/designer-four-options.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "96b2203dc159bfd6a2e66fa4d671f99e41d8a532bcfba9ec55914763ef060822"
+      "sha256": "96b2203dc159bfd6a2e66fa4d671f99e41d8a532bcfba9ec55914763ef060822",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/event-v25-20261110/library-picker.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "6cabf155c73b15f9f09f3088ca22b42cd96504bd2e043671eccdd7a4256a5eb5"
+      "sha256": "6cabf155c73b15f9f09f3088ca22b42cd96504bd2e043671eccdd7a4256a5eb5",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/event-v25-20261110/match-reveal.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "6e06f208e3370c7866305361010ab854e17c99c5646277fac119a6b589adba89"
+      "sha256": "6e06f208e3370c7866305361010ab854e17c99c5646277fac119a6b589adba89",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/event-v25-20261110/neow-blessings.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "78981c37e8db28191ca4c0ec3b79f088398f5eac2138026b62d1c4f32854fa64"
+      "sha256": "78981c37e8db28191ca4c0ec3b79f088398f5eac2138026b62d1c4f32854fa64",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/event-v25-20261110/shop.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "6c85bffb1bb0b76214fcbc64a5972e9bbe55a23882edc331e4dac42a29a95456"
+      "sha256": "6c85bffb1bb0b76214fcbc64a5972e9bbe55a23882edc331e4dac42a29a95456",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/event-v25-20261110/treasure-open.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "82c786a14adc0f6c892a742623fa502adb57c5038e70f3ea184d3d31c917e9d4"
+      "sha256": "82c786a14adc0f6c892a742623fa502adb57c5038e70f3ea184d3d31c917e9d4",
+      "category": "v25-native-simulator-evidence"
     },
     "docs/evidence/event-v25-20261110/we-meet-again-long-potion.png": {
-      "category": "map-event-offline-evidence",
-      "sha256": "727229d42861f7098ef19ffa4f15370d2daad5cf768c6fa3b20450b4527dade8"
+      "sha256": "727229d42861f7098ef19ffa4f15370d2daad5cf768c6fa3b20450b4527dade8",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/event-v25-20261110/revision-2/camp.png": {
+      "sha256": "e543324de74484c2a525708fc5dbbabe025b1f9cc21d906e48cbd102264f5c38",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/event-v25-20261110/revision-2/cleric.png": {
+      "sha256": "e97b74e8b96a27b0657e40e7b478cf7f0b97d1d7a2be0a24cb55ef4f74387fe5",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/event-v25-20261110/revision-2/shop.png": {
+      "sha256": "2100163f4dd8d6f150cb7698cd1e8f609d3b2685b2fac974cb24a9ba5a133b43",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/event-v25-20261110/revision-2/treasure-open.png": {
+      "sha256": "6fd5e23ee3cfa78b55f2ffc517758846d2f4934b7df16269fe3c457879247685",
+      "category": "v25-native-simulator-evidence"
     }
   }
 }

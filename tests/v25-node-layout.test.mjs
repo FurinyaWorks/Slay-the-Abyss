@@ -46,7 +46,7 @@ test('shop cloth, campfire and event parchment contain bounded layered native ge
  assert(find(layout,'fireOuter'));assert(find(layout,'fireInner'));assert(find(layout,'fireCore'));
  assert(all(find(layout,'v25CampScene')).some(n=>n.fill?.amount===.5),'curved silhouette must use sampled polygons, not a box');
  assert(all(find(layout,'v25ShopCloth')).some(n=>n.image===106095),'cloth lighting needs a continuous ramp');
- for(const n of all(layout).filter(n=>!original.has(n))){assert(!n.script&&!n.scripts&&!n.focusable);assert(['image','container'].includes(n.kind));}
+ for(const n of all(layout).filter(n=>!original.has(n))){assert(!n.script&&!n.scripts&&!n.focusable);assert(['image','container','text'].includes(n.kind));}
  const event=find(layout,'eventView'),option=find(event,'option1');
  const states=['normal','hover','pressed','disabled'].map(s=>find(option,s));
  assert.equal(new Set(states.map(s=>s.colour)).size,4,'state materials must actually differ');
@@ -63,6 +63,8 @@ test('wrapped full game rebuilds the actual reward stage without touching combat
  const before=paths(layout);applyV25NodeLayout(layout,t);const after=paths(layout);
  for(const[path,node]of Object.entries(before))assert.equal(after[path],node,path);
  for(const[name,value]of snapshot)assert.deepEqual(find(layout,name),value,name);
+ assert(!find(battle,'v25NodeCardChrome'),'node card materials must not alter the parallel battle page');
+ assert(find(find(layout,'shopView'),'v25NodeCardChrome'),'shop reuses native paper and cost materials');
  const stage=find(battle,'rewardStage');assert.equal(stage.visible,false);assert(find(stage,'v25RewardPaper'));
  assert(find(stage,'v25RewardField'));assert.equal(find(battle,'skip').kind,'presetButton');
  for(const state of parts(find(battle,'skip')))assert(find(state,'v25StateChrome'));
@@ -95,6 +97,28 @@ test('isolated generated V25 nodes execute original shop, camp, event and chest 
 for _,name in ipairs(${toLua(modules)})do package.preload[name]=assert(loadfile(${luaString(dir)}..'/'..name..'.lua'))end
 dofile('tests/lua/support/node_ui_cases.lua')(1,9)
 dofile('tests/lua/support/node_ui_cases.lua')(13,22)
+local EventH=dofile('tests/helpers/act2_event_ui.lua')
+local eventRun,eventMap=EventH.Run.new(EventH.Data,42),EventH.Map.generate(EventH.Data,42)
+eventRun.hp=41
+local first=EventH.Map.available(eventMap)[1]
+for _,node in ipairs(eventMap.nodes)do if node.id==first.id then node.type='event';node.eventId='cleric'end end
+assert(EventH.Nodes.enter(eventRun,eventMap,first.id))
+local eventUI,eventGet=EventH.setup(eventRun,eventMap)
+assert(eventGet('eventView/art').imageId==100114,'approved event keeps the quiet question placeholder')
+assert(not eventGet('eventView/option1/description').visible,'reference choice title and effect share one line')
+local inline=eventGet('eventView/option1/title').text
+assert(inline:find('35',1,true)and inline:find('20',1,true)and inline:find('<color=',1,true),'cost/reward and native semantic ink must be in the choice')
+assert(eventGet('eventView/option1').y==-143 and eventGet('eventView/option3').y==-253,'three choices stack at the approved bottom, not at four fixed rows')
+assert(eventGet('eventView/option1').size[2]==44)
+local beforeGold,beforeHP=eventRun.gold,eventRun.hp
+assert(eventUI:press('eventView/option1'));assert(eventRun.gold==beforeGold-35 and eventRun.hp>=beforeHP)
+local treasureRun,treasureMap=EventH.Run.new(EventH.Data,42),EventH.Map.generate(EventH.Data,42)
+local treasureFirst=EventH.Map.available(treasureMap)[1]
+for _,node in ipairs(treasureMap.nodes)do if node.id==treasureFirst.id then node.type='treasure'end end
+assert(EventH.Nodes.enter(treasureRun,treasureMap,treasureFirst.id))
+local treasureUI,treasureGet=EventH.setup(treasureRun,treasureMap)
+assert(treasureUI:press('treasureView/chest'))
+EventH.same(treasureGet('treasureView/take/label').fontColor,require('abyss_theme').layout.nativeNode.referenceButtons.ink)
 local H=dofile('tests/lua/support/battle_gesture_fixture.lua')
 local h,u,p,event,tap,finish=H.setup({'bludgeon'},{'acid_slime_s'})
 tap('card1',40);tap('enemy1',40);finish()

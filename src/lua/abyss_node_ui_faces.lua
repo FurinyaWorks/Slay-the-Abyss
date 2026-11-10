@@ -10,6 +10,22 @@ local function find(entries, id, key)
 end
 local M = {}
 
+local function referenceCard(ctx, box, definition, look)
+    local reference = Theme.layout.nativeNode.cardReference
+    if not reference then return end
+    local chrome, skin = box:GetChild('v25NodeCardChrome'), box:GetChild('skin')
+    if not chrome then return end
+    for _, name in ipairs({'roundShadow','roundFrame','roundBody','nameBand','nameRule','costCore','costDisc','roleRing','roleMark'}) do
+        box:GetChild(name):SetVisible(false)
+    end
+    skin:GetChild('gloss'):SetVisible(false)
+    for i = 1, Theme.cardSkin.bandSteps do skin:GetChild('band'..i):SetVisible(false) end
+    local ribbon, colour = chrome:GetChild('ribbon'), reference.rarities[definition.rarity] or reference.rarities.basic
+    for i = 0, 7 do ctx.tint(ribbon:GetChild('face'..i), colour) end
+    chrome:GetChild('costOrb'):SetVisible(definition.cost ~= -2)
+    ctx.ink(box:GetChild('cost'), look.changed and C.positive or reference.costInk)
+end
+
 -- Installs the faces responsibility on one node UI instance.
 function M.install(ctx)
     function ctx.card(id) return find(ctx.self.run.data.cards.cards, id) end
@@ -102,6 +118,7 @@ function M.install(ctx)
                 reason=reason,overlayCovered=covered,surfaceScope='node'})
         end
         writeCardFrame()
+        referenceCard(ctx, box, definition, look)
         ctx.show(box:GetChild("glow"), look.selected)
         ctx.show(box:GetChild("veil"), look.veil)
         ctx.show(box:GetChild("stampPlate"), look.stamp ~= nil)
