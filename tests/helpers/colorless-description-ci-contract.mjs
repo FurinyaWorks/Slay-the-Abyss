@@ -5,6 +5,7 @@ import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {preColorlessDescriptionCiSource,colorlessDescriptionCiProof as proof} from './colorless-description-ci-source-inverse.mjs';
+import {originalPlanningSource,preCombinedPlanningSource,preCurrentCiPlacementSource,preCiCompleteCalibrationSource} from './ci-complete-calibration-source-inverse.mjs';
 import {discoverJs,timings,jsPlanningWeights,jsShard} from '../../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../../scripts/test-lua.mjs';
 const hash=b=>createHash('sha256').update(b).digest('hex'),path='scripts/ci-test-timings.json';
@@ -14,6 +15,17 @@ const changed=[...added,'tests/encounter-formation-source-epoch.test.mjs','tests
 const root='docs/evidence/m7-colorless-description-ci-20261110';
 
 test('Colorless CI exact predecessor preserves historical costs and rejects partial, foreign and duplicate-key bytes',()=>{
+ // Exercise public planning entry points with raw disk bytes, before any reader projection.
+ const livePlanning=readFileSync(path,'utf8').replaceAll('\r\n','\n'),priorPlanning=proof.files[path].beforeSource;
+ const planningEntries=[...['develop','seven'].map(epoch=>[epoch,(p,s)=>originalPlanningSource(p,s,epoch)]),...['base','flow','silent','effects'].map(epoch=>[epoch,(p,s)=>preCombinedPlanningSource(p,s,epoch)]),['placement',preCurrentCiPlacementSource],['calibration',preCiCompleteCalibrationSource]];
+ const partialPlanning=JSON.parse(livePlanning);delete partialPlanning.jsPlanning.localLowerBounds['tests/colorless-description-source-epoch.test.mjs'];
+ const planningMutants=[livePlanning+'\n',livePlanning.slice(1),livePlanning+livePlanning,JSON.stringify(partialPlanning,null,2)+'\n',livePlanning.replace('"unknownJsMs": 10000','"unknownJsMs": 9999'),livePlanning.replace('"unknownJsMs": 10000','"unknownJsMs": 10000,\n  "unknownJsMs": 10000'),null,undefined,{},42];
+ for(const [epoch,project]of planningEntries){
+  const expected=project(path,priorPlanning);assert.notEqual(expected,priorPlanning,epoch);
+  for(const source of [livePlanning,livePlanning.replaceAll('\n','\r\n')])assert.equal(project(path,source),expected,epoch);
+  for(const source of planningMutants)assert.equal(project(path,source),source,epoch);
+  for(const foreign of ['foreign','__proto__','scripts/check-lua-static.mjs'])assert.equal(project(foreign,livePlanning),livePlanning,epoch);
+ }
  for(const [file,binding]of Object.entries(proof.files)){
   const source=readFileSync(file,'utf8').replaceAll('\r\n','\n');assert.equal(source,binding.afterSource,file);
   for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preColorlessDescriptionCiSource(file,input),binding.beforeSource,file);
