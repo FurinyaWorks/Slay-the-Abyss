@@ -1,11 +1,11 @@
 ---
 id: TASK-60
 title: 修好CI重复拉取，并限制异常下载
-status: To Do
+status: In Progress
 assignee:
   - '@Furinya'
-created_date: '2026-10-26 02:09'
-updated_date: '2026-11-07 03:48'
+created_date: 2026-10-26 02:09
+updated_date: '2026-11-10T22:23:00Z'
 due_date: '2026-10-26'
 labels:
   - p0 cost engineering
@@ -39,6 +39,8 @@ ordinal: 0
 1. 保留已添加的runner持久引用。2. 只改现有checkout引用、包大小记录/异常阈值和npm下载参数。3. 用真实离线Git回归及轻量合同检查验证。4. 保留独立工作树，待PR206共享文件释放后再受控推送集成。
 
 2026-10-26按用户追加授权，提供Linux本地等价检验，Windows继续跑实际PowerShell正文；复核工作流指纹、真实Git字节量、旧流程负对照与超限拒绝，避免环境缺失导致停工。
+
+2026-11-11 接续实际 hosted 路径缺口：基于 develop 6a614fc8、零开放PR，新增 rules 托管检出前空库保护、保留 Git pack 的进程环境设置和检出后32/128MiB摘要门禁；强化分支条件/顺序负控，保持原self-hosted正文、原超时、原测试与预算。独立副本定向验证及独审后交接，不重复Full或覆盖历史启动+Curses集中候选；实际托管和最终组合门禁仍待验证。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
