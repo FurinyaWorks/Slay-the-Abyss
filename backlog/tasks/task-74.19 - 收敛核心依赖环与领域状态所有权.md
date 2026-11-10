@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-06 01:46'
-updated_date: '2026-11-10 14:29'
+updated_date: '2026-11-10 14:35'
 labels: []
 milestone: m-7
 dependencies: []
@@ -102,4 +102,6 @@ WatcherAttack 已改由 queued-play 显式提供延迟 Actor 算术，完整333�
 发布前develop前移至#561b7ed1830，无src/data/scripts/config变动。本轮在新隔离树保全其全部档案及更强历史来源/退休安全合同，仅解决7个非生产文本冲突；45变动owner鲜读与旧epoch linked owner检查并存。最终单父基于b7，原a0度量和320独审按原身份保留；仅定向helper/负控复验，不重复完整行为/工程采集，不改owner/status/AC。
 
 Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
+
+清理期间另一执行线新增#608@ce10c988，也已完整保全到.archifacts/integration-20261110-policy-followup.bundle及归档ref，统一从#607/本任务接续。源任务编号与本轮TASK-74.22可能冲突，后续需CLI核对编号，不直接覆盖任务。
 <!-- SECTION:NOTES:END -->

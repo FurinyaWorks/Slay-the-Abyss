@@ -187,5 +187,16 @@
   ],
   "issues": {
     "600": "TASK-74.22; original body and discussion in ISSUE-600-MIGRATION-20261110.json"
-  }
+  },
+  "lateSources": [
+    {
+      "pr": 608,
+      "head": "ce10c9885feb0c302886054afb7661223ab38df7",
+      "branch": "feat/architecture-deferred-policy",
+      "disposition": "preserved-for-backlog-reintegration-not-merged",
+      "bundle": ".artifacts/integration-20261110-policy-followup.bundle",
+      "archiveRef": "refs/archive/integration-20261110/remote/feat/architecture-deferred-policy",
+      "note": "Published by another execution line during cleanup; stale source task number must be reconciled through Backlog CLI before importing"
+    }
+  ]
 }
