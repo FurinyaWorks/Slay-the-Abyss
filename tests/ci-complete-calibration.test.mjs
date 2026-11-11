@@ -29,7 +29,17 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as currentReadFileSync,readdirSync} from 'node:fs';
+import {preJoustCiSource, joustCiProof} from './helpers/joust-ci-source-inverse.mjs';
+import {sourceEpoch as joustEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+const joustCurrentSource=p=>{try{return currentReadFileSync(p,'utf8');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+// Existing receipts keep their precise pre-Joust gate; the outer contract below
+// reads raw disk bytes and authenticates both complete identities.
+const diskReadFileSync=(path,encoding)=>{
+ const value=currentReadFileSync(path,encoding),source=typeof value==='string'?value:value.toString('utf8');
+ const prior=preJoustCiSource(path,joustEpoch.preCombinedSource(path,source,{target:'joustPrior',readSource:joustCurrentSource}));
+ return typeof value==='string'?prior:prior===source?value:Buffer.from(prior);
+};
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -1285,5 +1295,32 @@ test('joint historical inventory rejects missing duplicate and unknown files whi
   assert.notEqual(jointCiSourceAt(file,source,target),source);
   for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(jointCiSourceAt(file,foreign,target),foreign);
   assert.equal(jointCiSourceAt('__proto__',source,target),source);
+ }
+});
+
+
+test('Joust gate outer view accepts only the complete two-line addition and preserves historical bytes',()=>{
+ const path='scripts/check-lua-static.mjs',source=currentReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+ const prior=preJoustCiSource(path,joustEpoch.preCombinedSource(path,source,{target:'joustPrior',readSource:joustCurrentSource}));
+ assert.notEqual(prior,source);
+ assert.equal(hash(prior),'b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066');
+ const additions=["  'src/lua/abyss_joust_event.lua': [],\n","  || file==='src/lua/abyss_joust_event.lua'\n"];
+ assert.equal(prior,additions.reduce((s,line)=>s.replace(line,''),source));
+ assert.equal(preJoustCiSource(path,source.replaceAll('\n','\r\n')),prior);
+ for(const input of [prior,source+'\n',source.replaceAll('\n','\r\r\n'),source.replace('const responsibilityRoots','const foreignRoots'),
+  ...additions.flatMap(line=>[source.replace(line,''),source.replace(line,line+line)]),null,42,{}])
+  assert.equal(preJoustCiSource(path,input),input,'partial, duplicate or foreign source remains opaque');
+ assert.equal(preJoustCiSource('foreign',source),source);
+});
+
+
+test('Joust CI outer identities retain complete predecessors and reject foreign drift',()=>{
+ for(const [path,row]of Object.entries(joustCiProof.files)){
+  const source=currentReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(source,row.afterSource,path+' exact current identity');
+  assert.equal(preJoustCiSource(path,source),row.beforeSource);
+  assert.equal(preJoustCiSource(path,source.replaceAll('\n','\r\n')),row.beforeSource);
+  for(const value of [source+'\n',source.slice(1),source.replaceAll('\n','\r\r\n'),row.beforeSource,null,{}])
+   assert.equal(preJoustCiSource(path,value),value,path+' drift opaque');
  }
 });

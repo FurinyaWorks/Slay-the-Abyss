@@ -66,6 +66,10 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/room-ui-source-epoch.json.gz": "0b3cb34acf85e814bd3e7d82254e9586a6a60c78e20fd95603b2e96e877d7bfc",
   "tests/helpers/joint-ui-source-epoch.mjs": "f35a2626dfd4ae6e8aa0c8c2b8897859be2796d84ae0fd05e29595c785cc7692",
   "tests/helpers/joint-ui-source-epoch.json.gz": "67777c3571d86bc82427fbb6ac5cd2254ed480b58285f41aa17d05d7490413f9"
+},...{
+  "tests/helpers/combined-epoch/source-epoch.mjs": "99dcd60d6612a172e18645b773c648f8045b7809bd2a5afe6b684892806b461b",
+  "tests/helpers/joust-source-epoch.mjs": "0a22c6c04cd5b399d11b495fc6838d5396022887b239ee0e7be79f8626194851",
+  "tests/helpers/joust-source-epoch.json.gz": "fa0c3a6e28217ca6c5c7731c399f911cb6008b84c2c6d1afa5f3c042dee47a0d"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

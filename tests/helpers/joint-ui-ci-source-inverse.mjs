@@ -1,3 +1,4 @@
+import {preJoustCiSource} from './joust-ci-source-inverse.mjs';
 // Exact source and inventory views for immutable CI receipts; current Full stays raw.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -22,6 +23,6 @@ export function jointCiSourceAt(path,source,target){
 export function jointCiInventoryAt(paths,target){
  assert.equal(target,'officialAssetsFlow','known joint inventory view');
  assert.deepEqual([...paths].sort(),[...proof.currentInventory].sort(),'complete current inventory');
- for(const [path,sha]of Object.entries(proof.added))assert.equal(hash(readFileSync(path,'utf8').replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
+ for(const [path,sha]of Object.entries(proof.added))assert.equal(hash(preJoustCiSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
  return [...proof.flowInventory];
 }

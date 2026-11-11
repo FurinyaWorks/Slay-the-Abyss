@@ -9,9 +9,12 @@ import {componentUiSourceEpoch as component} from './helpers/component-ui-source
 import {preJointUiEpoch as epoch,preRoomUiEpoch as prior} from './helpers/combined-epoch/source-epoch.mjs';
 const live=p=>readFileSync(p,'utf8'),raw=p=>epoch.proof.current[p]?.source??null;
 const changed=['src/lua/abyss_game_ui_view.lua','src/lua/abyss_map_ui.lua','src/lua/abyss_node_ui_faces.lua'];
-import {sourceEpoch as joint} from './helpers/combined-epoch/source-epoch.mjs';
+import {preJoustEpoch as joint,sourceEpoch as current} from './helpers/combined-epoch/source-epoch.mjs';
+import {joustSourceProof} from './helpers/joust-source-epoch.mjs';
 import {readdirSync} from 'node:fs';
-const jointLive=p=>{try{return nativeReadFileSync(p,'utf8');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+const currentLive=p=>{try{return nativeReadFileSync(p,'utf8');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+// Preserve the original joint UI assertions against their explicit predecessor.
+const jointLive=current.combinedReader(currentLive,'joustPrior');
 
 test('joint UI current identity includes every live module and the entire inherited owner closure',()=>{
  for(const p of epoch.proof.owners)assert(joint.proof.owners.includes(p),p);
@@ -91,4 +94,48 @@ test('foreign predecessor and unchanged inputs stay opaque without authorizing r
  assert.equal(epoch.preCombinedSource(p,raw(p),{target:'componentUiPrior',readSource(){reads++;throw Error('unexpected');}}),raw(p));
  assert.equal(reads,0,'unchanged config cannot be used as a changed-owner authorization probe');
  assert.throws(()=>epoch.preCombinedSource(changed[0],raw(changed[0]),{target:'componentUiPrior',readSource:null}),/linked owner reader/);
+});
+
+
+test('Joust current source identity preserves every inherited target and all live modules',()=>{
+ assert.deepEqual(current.proof.owners,[...new Set([...joint.proof.owners,joustSourceProof.path])]);
+ assert.equal(current.proof.currentTreeCommitted,false);
+ assert.equal(current.proof.joustCollectedBaseCommit,'6a614fc82697750ddb408750e54f59f801c24f1e');
+ assert.deepEqual(current.proof.targets.joustPrior.files,joint.proof.current);
+ for(const [name,target]of Object.entries(joint.proof.targets))assert.deepEqual(current.proof.targets[name],target,name);
+ for(const p of ['config/architecture.json',...readdirSync('src/lua').filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)])
+  assert.equal(currentLive(p).replaceAll('\r\n','\n'),current.proof.current[p].source,p);
+ const changed=Object.keys(current.proof.current).filter(p=>current.proof.current[p]?.sha256!==joint.proof.current[p]?.sha256);
+ assert.deepEqual(changed,[joustSourceProof.path]);
+ assert.equal(nativeReadFileSync('tests/fixtures/joust-event-before.lua','utf8').replaceAll('\r\n','\n'),joustSourceProof.before.source);
+});
+
+test('Joust projections retain every target and reject warm drift or deletion of each raw owner',()=>{
+ const p=joustSourceProof.path,source=currentLive(p);
+ for(const target of Object.keys(current.proof.targets))for(const input of [source,source.replaceAll('\n','\r\n')])
+  assert.equal(current.preCombinedSource(p,input,{target,readSource:currentLive}),current.proof.targets[target].files[p].source,target);
+ for(const owner of current.proof.owners){
+  let drift=false,reads=0;
+  const reader=q=>{reads++;const text=currentLive(q);return drift&&q===owner?text+'\n':text;};
+  assert.equal(current.preCombinedSource(p,source,{target:'joustPrior',readSource:reader}),joustSourceProof.before.source);
+  assert.equal(reads,current.proof.owners.length,'fresh complete closure');drift=true;
+  assert.throws(()=>current.preCombinedSource(p,source,{target:'joustPrior',readSource:reader}),/linked owner identity/,owner);
+  assert.throws(()=>current.preCombinedSource(p,source,{target:'joustPrior',readSource:q=>q===owner?null:currentLive(q)}),/linked owner identity/,owner);
+ }
+ const reader=current.combinedReader(currentLive,'joustPrior');
+ assert.equal(current.readerTarget(reader),'joustPrior');assert.equal(reader(p),joustSourceProof.before.source);
+ assert.equal(current.combinedReader(reader,'joustPrior'),reader);
+ // An inherited changed owner must also authorize the new Joust owner afresh.
+ const inherited='config/architecture.json';
+ assert.throws(()=>current.preCombinedSource(inherited,currentLive(inherited),{target:'jointUiPrior',readSource:q=>q===p?source+'\n':currentLive(q)}),/linked owner identity/);
+});
+
+test('Joust source proof rejects unknown source without authorization reads',()=>{
+ const p=joustSourceProof.path,source=currentLive(p);
+ for(const input of [source+'\n',source.replace('placeBet','foreignBet'),joustSourceProof.before.source,null,{},17]){
+  let reads=0;assert.equal(current.preCombinedSource(p,input,{target:'joustPrior',readSource(){reads++;throw Error('unexpected');}}),input);assert.equal(reads,0);
+ }
+ assert.throws(()=>current.preCombinedSource(p,source,{target:'joustPrior',readSource:null}),/linked owner reader/);
+ assert.throws(()=>current.preCombinedSource(p,source,{target:'unknown'}),/unknown source target/);
+ assert.throws(()=>current.preCombinedSource(p,source,{target:'joustPrior',readSource(){throw Error('removed');}}),/linked owner missing/);
 });
