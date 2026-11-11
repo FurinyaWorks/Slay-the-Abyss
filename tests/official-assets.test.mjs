@@ -150,7 +150,7 @@ test('scene and button substitutions preserve semantic icons and all four native
  assert.equal(description.text.autoSize,true);assert.deepEqual(description.size,[104,64]);
 });
 
-test('official battle uses the temporary pixel actor while preserving selection and opt-out sources',t=>{
+test('official battle and selection share the temporary pixel actor while preserving opt-out sources',t=>{
  const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});const dir=mkdtempSync(join(root,'official-assets-'));
  t.after(()=>rmSync(dir,{force:true,recursive:true}));
  buildUI(dir,undefined,{officialAssets:true,nativePageLifecycle:true});
@@ -164,6 +164,11 @@ test('official battle uses the temporary pixel actor while preserving selection 
  assert.match(portrait,/battlePixel=/);
  const inventory=portraitInventory(officialAssetFlags,{officialAssets:true});
  assert.equal(inventory.assets.find(a=>a.asset==='temporary-pixel-traveler').images,57);
+ const selected=inventory.assets.find(a=>a.asset==='temporary-pixel-traveler-selection');
+ const fighting=inventory.assets.find(a=>a.asset==='temporary-pixel-traveler');
+ assert.equal(inventory.selectionUses,'battlePixel');assert.equal(selected?.images,57);
+ assert.equal(selected.sourceSha256,fighting.sourceSha256);
+ assert.equal(inventory.assets.some(a=>a.asset==='traveler-geo/portraits/battle133-selection'),false);
  assert.equal(inventory.assets.find(a=>a.asset==='traveler-geo/portraits/avatar96').images,457);
  assert.doesNotMatch(portrait,/lowpolyLand=/);
  assert.match(readFileSync(join(dir,'abyss_theme.lua'),'utf8'),/official-assets-first/);

@@ -111,6 +111,7 @@ assert(a:release() and LiveCount()==0)
 test('official title uses on-demand selection while partial cancellation and ready cache remain intact',()=>{
  withPortraitVm(`
 Theme.presentationProfile='official-assets-first'
+local originalClock=os.clock;local tickClock=0;os.clock=function()tickClock=tickClock+.009;return tickClock end
 traveler:SetVisible(true) -- Full-source roster is visible; competition hides this parent.
 local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
@@ -123,7 +124,7 @@ assert(a:status().selection.owned==0 and a:status().avatar.owned==0 and LiveCoun
  'official title eagerly built hidden selection')
 assert(a:sync('menu',true,false,'ironclad',true));a:tick()
 local partial=a:status().selection;local allocated=LiveCount()
-assert(partial.owned>0 and partial.phase=='building' and partial.total==#Asset.battle133.rows)
+assert(partial.owned>0 and partial.phase=='building' and partial.total==#Asset.battlePixel.rows)
 assert(not selectionHost.visible,'partial official selection was exposed')
 assert(a:sync('menu',false,false,'ironclad',true))
 for _=1,20 do a:tick()end
@@ -143,7 +144,8 @@ for _=1,5 do
  assert(a:status().selection.generation==generation,'cached official selection was rebuilt')
 end
 assert(a:release() and LiveCount()==0)
-`,{runtimeV2:true});
+os.clock=originalClock
+`,{runtimeV2:true,officialAssets:true});
 });
 
 test('official hidden roster does not build its avatar and visible roster can prepare cancel and resume',()=>{
@@ -179,7 +181,46 @@ assert(not avatar.visible and LiveCount()==complete)
 traveler:SetVisible(true);assert(a:sync('menu',true,false,'ironclad',true));a:tick()
 assert(avatar.visible and LiveCount()==complete and a:status().avatar.generation==generation)
 assert(a:release() and LiveCount()==0)
-`,{runtimeV2:true});
+`,{runtimeV2:true,officialAssets:true});
+});
+
+test('official selection and battle use the same bounded artwork while full-body literals stay available',()=>{
+ withPortraitVm(`
+local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local note=tree();note.text=''
+stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
+ portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
+traveler:SetVisible(false)
+assert(Asset.battle133.count==4315 and #Asset.battle133.rows==4315,'full-source figure was replaced')
+assert(Asset.battlePixel.count==57 and #Asset.battlePixel.rows==57)
+local a=Portraits.new(stage,nil,{selectionAvatar=true,battlePortrait=true})
+assert(a:sync('menu',true,false,'ironclad'))
+for _=1,1000 do a:tick();if a:status().selection.phase=='ready' then break end end
+assert(a:status().selection.total==57 and a:status().selection.owned<=60,
+ 'official selection did not use the shared bounded battle drawing')
+assert(#Images()==57 and a:status().avatar.owned==0)
+local selected=Images()
+assert(a:sync('battle',false,false,'ironclad'))
+for _=1,1000 do a:tick();if a:status().battle.phase=='ready' then break end end
+local both=Images();assert(a:status().battle.total==57 and #both==114)
+for i=1,57 do Equal(selected[i].trace,both[i+57].trace)end
+assert(Asset.battle133.count==4315 and #Asset.battle133.rows==4315)
+assert(a:release() and LiveCount()==0)
+`,{runtimeV2:true,officialAssets:true});
+});
+
+test('official selection rejects missing shared pixel source instead of silently building the old full-body drawing',()=>{
+ withPortraitVm(`
+local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local note=tree();note.text=''
+stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
+ portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
+Asset.battlePixel=nil
+local ok,reason=pcall(Portraits.new,stage,nil,{selectionAvatar=true})
+assert(not ok and tostring(reason):find('shared battle pixel',1,true),
+ 'official selection silently fell back to 4315 primitives')
+assert(LiveCount()==0)
+`,{runtimeV2:true,officialAssets:true});
 });
 
 test('legacy explicit title warming remains available without the official or V25 profile',()=>{
