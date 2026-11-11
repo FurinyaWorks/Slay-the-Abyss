@@ -33,7 +33,7 @@ import {applyV25PortraitProfile} from './v25-portrait-profile.mjs';
 import {applyV25CharacterLayout} from './v25-character-layout.mjs';
 import {applyV25MapLayout} from './v25-map-layout.mjs';
 import {applyV25MenuLayout} from './v25-menu-layout.mjs';
-import {applyMonolithMenuOverlay} from '../docs/art/monolith-menu-native/monolith-menu-overlay.mjs';
+import {applyMonolithMenuOverlay} from './art/monolith-menu-overlay.mjs';
 import {applyV25ResultLayout} from './v25-result-layout.mjs';
 import {applyV25NodeLayout,applyV25RewardLayout} from './v25-node-layout.mjs';
 import {prepareV25CardTemplates} from './v25-card-templates.mjs';
