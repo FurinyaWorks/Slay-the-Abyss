@@ -1,0 +1,62 @@
+{
+  "service": {
+    "stage": "阶段评审，未验收",
+    "buildId": "0222683d-4448-43a9-987d-733f90e0ff02",
+    "gilSha256": "1c22bd9f8dc20649c76b31d13222353e4853614ebb7b952e7c83a20be8a94bfb",
+    "saveSha256": "696ac396b46f9fbcc427b503658983b3e73faf192a3f790a72aacb8dadeb2f9f",
+    "sourceCommit": "9cece5dc8a0040139449f056a24ce98f275c4f4f",
+    "sourceDirty": false,
+    "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+    "backendExtension": "private typed fullgraph snapshot; not official client",
+    "cases": [
+      {
+        "name": "ten",
+        "file": "hud.save.json",
+        "title": "十牌、双敌、三药水",
+        "description": "主要评审场景，包含遗物和消耗牌。",
+        "sha256": "20f2f60b15f74f4efd1363a62ccc2f3adaf25765fb7fbf4d722009c0c42330c7",
+        "archive": "review-ten.save.json",
+        "session": "battle-stage-ten"
+      },
+      {
+        "name": "five",
+        "file": "five.save.json",
+        "title": "标准五牌开局",
+        "description": "无额外测试药水；用于查看较宽松手牌布局。",
+        "sha256": "40e9718409595c706a7d7eb9e4feb552df0b22e81ac52d7dfada84de03a1c065",
+        "archive": "review-five.save.json",
+        "session": "battle-stage-five"
+      }
+    ],
+    "url": "http://127.0.0.1:63120",
+    "pid": 37816,
+    "backendURL": "http://127.0.0.1:63119",
+    "ready": true
+  },
+  "kind": "actual-browser-canvas",
+  "errors": [],
+  "shots": [
+    {
+      "name": "idle-00.png",
+      "atMs": 31413.320299999996,
+      "simulationOffset": 0,
+      "captureMs": 1351.1974999999948,
+      "sha256": "fb03a6758bc83c2306d3615206d24add143d1c8c6ade57599cee4d71450e8ec3"
+    }
+  ],
+  "firstObservedFigureMs": 27111.2263,
+  "canvas": {
+    "x": 60,
+    "y": 151,
+    "width": 1280,
+    "height": 720
+  },
+  "captureClock": "paused browser, two explicit SDK steps of .055s per sample; screenshots excluded from performance",
+  "faults": [],
+  "status": "captured-awaiting-visual-review",
+  "stop": {
+    "running": false,
+    "tree": [],
+    "logs": []
+  }
+}

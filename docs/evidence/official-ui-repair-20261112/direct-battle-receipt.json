@@ -1,0 +1,20 @@
+{
+  "kind": "derived-direct-battle-diagnostic-gil",
+  "parentBuildId": "0222683d-4448-43a9-987d-733f90e0ff02",
+  "parentCandidateSha256": "1c22bd9f8dc20649c76b31d13222353e4853614ebb7b952e7c83a20be8a94bfb",
+  "sourceCommit": "9cece5dc8a0040139449f056a24ce98f275c4f4f",
+  "parentSourceDirty": false,
+  "mapPath": "F:\\New folder\\.worktrees\\official-mobile-aim-hud\\.artifacts\\official-ui-bugs\\direct-battle\\batch-scripts.gil",
+  "candidateSha256": "e8ff4cf4141e3a0024e1644508d91909a5575afba3b8afbee0730b598c258b6d",
+  "changedModule": "abyss_game_ui",
+  "originalModuleSha256": "3435ec55605f9b520701188c24585115a6190dbb16b7789390351381112ec2fe",
+  "fixtureModuleSha256": "5bb935ef7d9c24cc2c560c55b78a39ce3048bda09ac610e54d98d2225353b434",
+  "modules": 360,
+  "nonScriptSectionsIdentical": true,
+  "gameplayRulesChanged": false,
+  "fixture": "Existing #621 ten real cards, two live slimes, three potions; startup bypass only. Not a natural campaign state.",
+  "officialImport": "not_run",
+  "officialReady": "not_run",
+  "physicalPhone": "not_run",
+  "publish": false
+}

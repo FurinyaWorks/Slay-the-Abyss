@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-23 00:59'
-updated_date: '2026-11-11 16:00'
+updated_date: '2026-11-11 23:20'
 due_date: '2026-10-28'
 labels:
   - ui
@@ -153,4 +153,6 @@ PR327手机反馈来源增量（基于20a74da的历史观察；不认证6795160�
 2026-11-11用户新增官方手机实测Bug：official-assets-first拖攻击牌点链垂直且箭头朝上。沿TASK30接续，独立分支feat/official-mobile-aim-hud，基于最新develop3a061a76并保留PR621战斗切片680be9c5，不带入PR626。优先复现官方分支、原生旋转与触屏坐标，补手机触屏、多敌、自由瞄准/锁定/取消、方向终点覆盖；Simulator与官方设备分层。用户将用最终GIL导入原神做实机测试，未有当前候选实机结果前不标通过或发布。
 
 本轮离线原生回归已确认：GetUIPos坐标约定及localRotationZ写入符合官方文档，主因是触屏卡面上抬270后仍以牌顶作箭头起点。新增12组当前官方分支矩阵；旧抬牌起点/头中心定位负对照被指定几何断言拒绝。旧星链回归保留。实机AC继续未完成。
+
+2026-11-12本轮Simulator TOUCHSCREEN实际触摸截图已复现旧竖线/朝上头并确认修复后锁定、换敌、自由瞄准、取消；取消后重新拖牌释放冒烟：10→9张、3→2能量、14→8血量、日志伤害6。单轮同条件拖牌中位55.8→41.8ms，仅记本轮未退化，不认证手机性能。原single-hit回归低内存30秒超时保留，停止本轮临时服务后原门槛22.5秒通过。独立复审PASS限源码/Simulator，实体手机与官方AC仍未完成。证据docs/evidence/official-ui-repair-20261112。
 <!-- SECTION:NOTES:END -->

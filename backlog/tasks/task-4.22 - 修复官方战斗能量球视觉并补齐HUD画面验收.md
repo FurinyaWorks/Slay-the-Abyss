@@ -5,9 +5,11 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-11 14:56'
-updated_date: '2026-11-11 16:00'
+updated_date: '2026-11-11 23:20'
 labels:
-  - ui combat visual-regression
+  - ui
+  - combat
+  - visual-regression
 milestone: m-8
 dependencies: []
 parent_task_id: TASK-4
@@ -24,8 +26,8 @@ ordinal: 172000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 能量球在实际战斗尺寸下对照批准V25修复盘面、边框和数字观感，保留能量逻辑及可读性，不扩展UI设计。
-- [ ] #2 复用现有测试/截图/验收机制，保留属性和规则断言，增加最终渲染证据及独立画面复审；旧粗糙实现不能只凭配置被判视觉通过。
+- [x] #1 能量球在实际战斗尺寸下对照批准V25修复盘面、边框和数字观感，保留能量逻辑及可读性，不扩展UI设计。
+- [x] #2 复用现有测试/截图/验收机制，保留属性和规则断言，增加最终渲染证据及独立画面复审；旧粗糙实现不能只凭配置被判视觉通过。
 - [ ] #3 交付与手机锁敌修复相同身份的可导入GIL及复测步骤，Simulator、官方客户端和实体手机结果分开；缺当前实机视觉验收不发布。
 <!-- AC:END -->
 
@@ -39,4 +41,6 @@ ordinal: 172000
 
 <!-- SECTION:NOTES:BEGIN -->
 最小修复仅作用official-assets-first：保留86尺寸/位置，官方原生圆面6层替代暗色材质堆叠；29→26字号适配原生字形，连续轮廓替代重复阴影。零/正常/溢出能量当前官方Host回归通过。verify:ui新增HUD画面评审和实际phone/touch来源要求，Simulator独立记录。
+
+2026-11-12独立源码与实际1280x720 Simulator画面复审PASS；并非Owner/官方客户端或实体手机验收。标准GIL build0222683d由干净9cece5dc构建，360模块精确读回；另有只改一个启动模块、非脚本section相同的双敌十牌直达副本。见docs/evidence/official-ui-repair-20261112，官方/手机项保持未完成、不发布。
 <!-- SECTION:NOTES:END -->

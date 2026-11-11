@@ -1,0 +1,176 @@
+{
+  "kind": "headless-Simulator-trusted-touch",
+  "service": {
+    "stage": "阶段评审，未验收",
+    "buildId": "0222683d-4448-43a9-987d-733f90e0ff02",
+    "gilSha256": "1c22bd9f8dc20649c76b31d13222353e4853614ebb7b952e7c83a20be8a94bfb",
+    "saveSha256": "696ac396b46f9fbcc427b503658983b3e73faf192a3f790a72aacb8dadeb2f9f",
+    "sourceCommit": "9cece5dc8a0040139449f056a24ce98f275c4f4f",
+    "sourceDirty": false,
+    "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+    "backendExtension": "private typed fullgraph snapshot; not official client",
+    "cases": [
+      {
+        "name": "ten",
+        "file": "hud.save.json",
+        "title": "十牌、双敌、三药水",
+        "description": "主要评审场景，包含遗物和消耗牌。",
+        "sha256": "20f2f60b15f74f4efd1363a62ccc2f3adaf25765fb7fbf4d722009c0c42330c7",
+        "archive": "review-ten.save.json",
+        "session": "battle-stage-ten"
+      },
+      {
+        "name": "five",
+        "file": "five.save.json",
+        "title": "标准五牌开局",
+        "description": "无额外测试药水；用于查看较宽松手牌布局。",
+        "sha256": "40e9718409595c706a7d7eb9e4feb552df0b22e81ac52d7dfada84de03a1c065",
+        "archive": "review-five.save.json",
+        "session": "battle-stage-five"
+      }
+    ],
+    "url": "http://127.0.0.1:63120",
+    "pid": 37816,
+    "backendURL": "http://127.0.0.1:63119",
+    "ready": true
+  },
+  "archive": "review-ten.save.json",
+  "device": "mobile-16-9",
+  "officialClient": false,
+  "physicalPhone": false,
+  "shots": [
+    {
+      "name": "ready",
+      "sha256": "647b63ac24c75abbd00de2ecab51e3bb38f8b38fc086d9eced8d2c32a7f11074",
+      "frame": 49
+    },
+    {
+      "name": "lock-first",
+      "sha256": "a3bebe37f4cf3aa0a811819598d15a4e8cff5fbfd48431d765fcc5d212b93f8e",
+      "frame": 111
+    },
+    {
+      "name": "lock-second",
+      "sha256": "a72aa1f3690cab57cd9a66cc0ead80ee78b75ff52b8a01ceb3b325cb048866d9",
+      "frame": 142
+    },
+    {
+      "name": "free",
+      "sha256": "33653036255989dcab54a929b36c02e085a48f7a746f5b6003ed266a9911951f",
+      "frame": 172
+    },
+    {
+      "name": "cancel",
+      "sha256": "0b8c9e31fd3f8efd6620c7f8bf9652eec77e9ed9d51297f183efd22bf2d54ae5",
+      "frame": 203
+    }
+  ],
+  "errors": [],
+  "firstObservedReadyMs": 36818.8468,
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "platform": "TOUCHSCREEN",
+    "device": "Mobile"
+  },
+  "canvasRect": {
+    "x": 210,
+    "y": 176,
+    "width": 1280,
+    "height": 720
+  },
+  "points": {
+    "pickup": {
+      "x": 638.4444444444445,
+      "y": 774.3563937183208
+    },
+    "target1": {
+      "x": 1193.3333333333333,
+      "y": 627.3333333333333
+    },
+    "target2": {
+      "x": 1016.6666666666665,
+      "y": 637.3333333333334
+    }
+  },
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_BUILD 0222683d-4448-43a9-987d-733f90e0ff02",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT avatar phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_RUN seed=42 source=explicit",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "BATTLE_PREVIEW_FIXTURE ready hand=10 enemies=2",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=ready owned=59 reason=nil",
+      "time": 0.6164999999999999
+    }
+  ],
+  "status": "captured-awaiting-human-and-physical-phone-review",
+  "stop": {
+    "running": false,
+    "tree": [],
+    "logs": []
+  }
+}
