@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {applyMonolithMenuOverlay} from './monolith-menu-overlay.mjs';
+import {applyMonolithMenuOverlay} from '../../../scripts/art/monolith-menu-overlay.mjs';
 const build=()=>({controls:[{name:'stage',children:[{name:'menuPanel',children:[
  {name:'backdrop',kind:'image',image:107089,opacity:1,colour:'#fff'},
  {name:'vista',visible:true},{name:'title',text:{content:'杀戮原塔2'}},
