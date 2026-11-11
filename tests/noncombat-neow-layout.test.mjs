@@ -11,8 +11,13 @@ test('blessing replaces decoration with bounded battle-native shapes and keeps a
  applyOfficialAssets([layout],theme);
  assert.equal(child(event,'body'),body);
  assert.deepEqual(all(event).filter(n=>n.kind==='cursorArea'),inputs);
- const figure=child(event,'neowFigure');assert(all(figure).length<100);
- assert.equal(child(figure,'scene').image,theme.image.officialBackdrops.act1_3);
+ const figure=child(event,'neowFigure');assert(all(figure).length<150);
+ assert.equal(child(figure,'scene').image,theme.image.rect);
+ assert.equal(child(event,'bubble').image,theme.image.discSoft);
+ assert.deepEqual(child(figure,'scene').size,[1280,640]);
+ for(const n of all(figure).filter(n=>n.kind==='image'&&!n.name.includes('Tri'))){
+  assert(n.position[1]+n.size[1]/2<=280,n.name+' must stay below HUD');
+ }
  assert(all(figure).filter(n=>n.name.includes('Tri')).length>10);
  const [x,y,w,h]=theme.layout.nativeNode.event.neow.bubbleText,bubble=child(event,'bubble');
  assert.equal(x,bubble.position[0]);assert.equal(y,bubble.position[1]);

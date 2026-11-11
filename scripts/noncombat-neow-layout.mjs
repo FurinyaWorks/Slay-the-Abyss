@@ -17,8 +17,18 @@ export function applyOfficialNeowLayout(layout,theme){
   ['rightSleeve',[[1090,393],[1120,374],[1153,434],[1110,457]],'#697776'],
  ];
  figure.children=[
-  image('scene',[0,-22],[1280,676],theme.image.officialBackdrops.act1_3,'#FFFFFF'),
-  image('shade',[0,-22],[1280,676],theme.image.rect,'#081312',{opacity:.5}),
+  image('scene',[0,-40],[1280,640],theme.image.rect,'#101C1C'),
+  ...Array.from({length:56},(_,i)=>{
+   const row=Math.floor(i/8),col=i%8;
+   return image('stone'+i,[-560+col*160+(row%2?60:0),249-row*64],[154,62],theme.image.rect,['#252B25','#202922','#293027'][i%3]);
+  }),
+  image('floor',[0,-250],[1280,220],theme.image.rect,'#344238'),
+  ...[0,1,2].map(i=>image('floorJoint'+i,[0,-207-i*68],[1280,3],theme.image.rect,'#111F1E')),
+  ...[0,1].flatMap(i=>[
+   image('torchGlow'+i,[-235+i*250,150+i*30],[200,200],theme.image.glow,'#F6AC37',{opacity:.4}),
+   image('torchStem'+i,[-235+i*250,178+i*45],[12,48],theme.image.rect,'#111C1C'),
+   image('torchFlame'+i,[-235+i*250,220+i*45],[16,30],theme.image.discSoft,'#FFE39A'),
+  ]),
   image('hoodRim',[391,145],[238,268],theme.image.disc,'#76827D'),
   image('hoodVoid',[391,133],[185,220],theme.image.disc,'#0D1B20'),
   ...shapes.flatMap(([name,points,colour])=>nativeShape({name,type:'polygon',points,colour,opacity:1},theme)),
@@ -28,7 +38,7 @@ export function applyOfficialNeowLayout(layout,theme){
  ];
  // Keep the existing bubble, title/body fields, four option transactions and
  // delayed/reward paths. The native autosizer handles variable blessing copy.
- const bubble=child(event,'bubble');bubble.image=theme.officialAssets.images.panel;
+ const bubble=child(event,'bubble');bubble.image=theme.image.discSoft;
  bubble.colour='#C9E3DE';bubble.opacity=1;
  bubble.position=[-45,65];bubble.size=[310,160];
  return layout;
