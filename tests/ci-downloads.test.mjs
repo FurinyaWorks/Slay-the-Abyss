@@ -1,12 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync, truncateSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 import { createHash, randomBytes } from 'node:crypto';
-import { checkNetworkPolicy } from '../scripts/check-network-policy.mjs';
+import { beforeHostedCheckoutWorkflow, hostedCheckoutWorkflowEdits } from './helpers/hosted-checkout-workflow.mjs';
+import { checkNetworkPolicy, checkHostedCheckout } from '../scripts/check-network-policy.mjs';
 
 const workflow = readFileSync('.github/workflows/quality.yml', 'utf8');
 test('every Fast and Full dependency installation retains bounded download retries', () => {
@@ -138,4 +139,101 @@ test('lightweight engineering check catches old refs, removed size guard and unl
   assert.ok(checkNetworkPolicy(workflow.replace('git update-ref --no-deref $checkoutRef', 'git update-ref $checkoutRef')).length);
   assert.ok(checkNetworkPolicy(workflow.replace('git update-ref --no-deref -d $staleRef', 'git update-ref -d $staleRef')).length);
   assert.ok(checkNetworkPolicy(workflow.replace("$_ -cmatch '^refs/ci/quality-tips/[0-9a-f]{64}$' -and ", '')).length);
+});
+
+test('hosted checkout conditions, empty baseline, retained packs and execution order fail closed', () => {
+  const changeStep = (name, mutate) => workflow.replace(new RegExp(`      - name: ${name}\\r?\\n[\\s\\S]*?(?=\\r?\\n      - |$)`), mutate);
+  const hostedName = 'Check out exact revision on a fresh hosted VM';
+  const guardName = 'Check hosted checkout Git pack payload';
+  for (const name of [hostedName, guardName, 'Check out exact revision with installed Git']) {
+    for (const condition of ['false', 'always()', "runner.environment == 'unknown'"]) {
+      assert.ok(checkNetworkPolicy(changeStep(name, value => value.replace(/        if: [^\r\n]+/, `        if: ${condition}`))).length, `${name}: ${condition}`);
+    }
+    assert.ok(checkNetworkPolicy(changeStep(name, value => value.replace('        if:', '        continue-on-error: true\n        if:'))).length);
+  }
+  for (const token of ["GIT_CONFIG_COUNT: '1'", 'GIT_CONFIG_KEY_0: fetch.unpackLimit', "GIT_CONFIG_VALUE_0: '1'",
+    'ref: ${{ github.sha }}', 'fetch-depth: 2', 'persist-credentials: false'])
+    assert.ok(checkNetworkPolicy(changeStep(hostedName, value => value.replace(token, `# disabled ${token}`))).length, token);
+  for (const replacement of ['', "          EXECUTION_ENVIRONMENT: self-hosted"])
+    assert.ok(checkNetworkPolicy(workflow.replace('          EXECUTION_ENVIRONMENT: ${{ runner.environment }}', replacement)).length);
+  assert.ok(checkNetworkPolicy(workflow.replace("          if ($env:EXECUTION_ENVIRONMENT -eq 'github-hosted'", "          # if ($env:EXECUTION_ENVIRONMENT -eq 'github-hosted'")).length);
+  assert.ok(checkNetworkPolicy(changeStep(guardName, value => value.replace('run: node', 'run: echo node'))).length);
+  assert.ok(checkNetworkPolicy(changeStep(guardName, () => '')).length);
+  const guard = workflow.match(/      - name: Check hosted checkout Git pack payload\r?\n[\s\S]*?(?=\r?\n      - )/)[0];
+  assert.ok(checkNetworkPolicy(workflow.replace(guard, '').replace(`      - name: ${hostedName}`, guard + '\n' + `      - name: ${hostedName}`)).length);
+  assert.ok(checkNetworkPolicy(workflow + '\n').length === 0);
+  assert.deepEqual(checkNetworkPolicy(workflow.replaceAll('\n', '\r\n')), []);
+});
+
+test('real fresh Git fetch retains pack payload and hosted CLI records exact revision without dependency installs', t => {
+  const root = mkdtempSync(join(tmpdir(), 'abyss-hosted-downloads-'));
+  t.after(() => rmSync(root, {recursive: true, force: true}));
+  const source = join(root, 'source'), checkout = join(root, 'checkout');
+  mkdirSync(source); mkdirSync(checkout);
+  git(source, 'init'); git(source, 'config', 'user.name', 'Hosted checkout test'); git(source, 'config', 'user.email', 'test@example.invalid');
+  writeFileSync(join(source, 'payload'), randomBytes(128 * 1024)); git(source, 'add', '.'); git(source, 'commit', '-m', 'payload');
+  const sha = git(source, 'rev-parse', 'HEAD'); git(checkout, 'init');
+  const fetched = spawnSync('git', ['fetch', '--depth=2', '--no-auto-maintenance', '--no-tags', pathToFileURL(source).href, sha], {
+    cwd: checkout, encoding: 'utf8', env: {...process.env, GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'fetch.unpackLimit', GIT_CONFIG_VALUE_0: '1'}
+  });
+  assert.equal(fetched.status, 0, fetched.stderr); git(checkout, 'checkout', '--detach', 'FETCH_HEAD');
+  const summary = join(root, 'summary.md'), log = [];
+  const count = checkHostedCheckout({cwd: checkout, sha, summary, log: value => log.push(value)});
+  assert.ok(count > 128 * 1024, `real retained pack ${count}`);
+  assert.deepEqual(log, [`Hosted checkout Git pack payload: ${count} bytes`]);
+  assert.equal(readFileSync(summary, 'utf8'), log[0] + '\n');
+  const invoked = spawnSync(process.execPath, [resolve('scripts/check-network-policy.mjs'), '--hosted-checkout'], {
+    cwd: checkout, encoding: 'utf8', env: {...process.env, GITHUB_SHA: sha, GITHUB_STEP_SUMMARY: summary}
+  });
+  assert.equal(invoked.status, 0, invoked.stderr); assert.equal(invoked.stdout, log[0] + '\n');
+  assert.equal(git(checkout, 'rev-parse', 'HEAD'), sha);
+  assert.throws(() => checkHostedCheckout({cwd: checkout, sha: 'invalid', summary}), /Invalid hosted checkout SHA/);
+  assert.throws(() => checkHostedCheckout({cwd: checkout, sha: '0'.repeat(40), summary}), /revision mismatch/);
+  assert.throws(() => checkHostedCheckout({cwd: checkout, sha, summary: '', log: () => {}}), /summary destination/);
+  assert.throws(() => checkHostedCheckout({cwd: checkout, sha, summary: root, log: () => {}}), /EISDIR|EPERM/);
+  const extra = join(checkout, '.git/objects/pack/oversize.pack');
+  for (const [total, warning, fail] of [[32 * 1024 ** 2, false, false], [32 * 1024 ** 2 + 1, true, false],
+    [128 * 1024 ** 2, true, false], [128 * 1024 ** 2 + 1, false, true]]) {
+    writeFileSync(extra, ''); truncateSync(extra, total - count); const messages = [];
+    const check = () => checkHostedCheckout({cwd: checkout, sha, summary, log: message => messages.push(message)});
+    if (fail) assert.throws(check, /exceeded 128 MiB/); else assert.equal(check(), total);
+    assert.equal(messages[0], `Hosted checkout Git pack payload: ${total} bytes`);
+    assert.equal(messages.some(message => message.startsWith('::warning::')), warning);
+    assert.ok(readFileSync(summary, 'utf8').endsWith(messages[0] + '\n'), 'even rejected payload is retained in summary');
+  }
+  rmSync(extra); mkdirSync(extra);
+  assert.throws(() => checkHostedCheckout({cwd: checkout, sha, summary}), /not a regular file/);
+  rmSync(extra, {recursive: true});
+  for (const name of readdirSync(join(checkout, '.git/objects/pack'))) rmSync(join(checkout, '.git/objects/pack', name));
+  assert.throws(() => checkHostedCheckout({cwd: checkout, sha, summary}), /no retained Git pack/);
+});
+
+test('hosted workflow projection restores exact prior bytes and preserves partial, duplicate and unrelated drift', () => {
+  // Exact quality.yml Git blob 6399aa1d from base 6a614fc8, not an updated oracle.
+  const baseline = '28957431693a0c07dedcda5a1b8ffff031f94f93ca838203d65661343b46709d';
+  const digest = text => createHash('sha256').update(text.replaceAll('\r\n', '\n')).digest('hex');
+  for (const eol of ['\n', '\r\n']) {
+    const current = workflow.replaceAll('\r\n', '\n').replaceAll('\n', eol);
+    const old = beforeHostedCheckoutWorkflow(current);
+    assert.equal(digest(old), baseline);
+    assert.equal(beforeHostedCheckoutWorkflow(old), old);
+    assert.equal(old.replaceAll(eol, ''), old.replaceAll(/\r?\n/g, ''));
+    const edits = hostedCheckoutWorkflowEdits.map(pair => pair.map(value => value.replaceAll('\n', eol)));
+    for (let mask = 1; mask < 2 ** edits.length; mask++) {
+      let partial = current;
+      for (let i = 0; i < edits.length; i++) if (mask & 1 << i) partial = partial.replace(edits[i][1], edits[i][0]);
+      assert.equal(beforeHostedCheckoutWorkflow(partial), partial);
+    }
+    for (const [, after] of edits) {
+      const duplicate = current + after;
+      assert.equal(beforeHostedCheckoutWorkflow(duplicate), duplicate);
+      const altered = current.replace(after, after.replace(/\S/, '?'));
+      assert.equal(beforeHostedCheckoutWorkflow(altered), altered);
+    }
+    for (const [from, to] of [['contents: read', 'contents: write'], ['fetch-depth: 2', 'fetch-depth: 3'],
+      ["EXECUTION_ENVIRONMENT: ${{ runner.environment }}", 'EXECUTION_ENVIRONMENT: self-hosted']]) {
+      const drift = current.replace(from, to), projected = beforeHostedCheckoutWorkflow(drift);
+      assert.ok(projected.includes(to)); assert.notEqual(digest(projected), baseline);
+    }
+  }
 });

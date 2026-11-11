@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-10T22:27:19.615Z",
+  "node": "v24.22.1",
+  "git": "git version 2.52.0",
+  "selfHostedBodyIdentical": true,
+  "sourceHashes": {
+    ".github/workflows/quality.yml": "1f1b3ee579cfae0abcc3910f46ffa9858d0bfc80f8192c2cd207097876e28bfc",
+    "scripts/check-network-policy.mjs": "7f8a73b4c502c925ee4e99e94a6b075c6270397d312e1c0fdfbb4884a657fc8b",
+    "tests/ci-downloads.test.mjs": "9d414e902e403c0a40847a0f26871f277c142c637c8a8df4afe092cd95fe6239"
+  },
+  "preparationBindingNegativeControls": {
+    "removed": [],
+    "wrongValue": []
+  },
+  "smallFetch": {
+    "default": {
+      "packs": 0,
+      "bytes": 0
+    },
+    "retained": {
+      "packs": 1,
+      "bytes": 202
+    }
+  },
+  "symlinkRejected": true,
+  "cliSummaryFailureNonzero": true
+}

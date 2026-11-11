@@ -1,11 +1,11 @@
 ---
 id: TASK-60
 title: 修好CI重复拉取，并限制异常下载
-status: To Do
+status: In Progress
 assignee:
   - '@Furinya'
-created_date: '2026-10-26 02:09'
-updated_date: '2026-11-07 03:48'
+created_date: 2026-10-26 02:09
+updated_date: '2026-11-10T22:30:00Z'
 due_date: '2026-10-26'
 labels:
   - p0 cost engineering
@@ -14,6 +14,8 @@ dependencies: []
 references:
   - scripts/ci-checkout-equivalent.mjs
   - docs/evidence/linux-checkout-equivalent-20261026.json
+documentation:
+  - docs/backlog-details/M7-HOSTED-PACK-GUARD-20261111.md
 priority: medium
 type: bug
 ordinal: 0
@@ -39,6 +41,8 @@ ordinal: 0
 1. 保留已添加的runner持久引用。2. 只改现有checkout引用、包大小记录/异常阈值和npm下载参数。3. 用真实离线Git回归及轻量合同检查验证。4. 保留独立工作树，待PR206共享文件释放后再受控推送集成。
 
 2026-10-26按用户追加授权，提供Linux本地等价检验，Windows继续跑实际PowerShell正文；复核工作流指纹、真实Git字节量、旧流程负对照与超限拒绝，避免环境缺失导致停工。
+
+2026-11-11 接续实际 hosted 路径缺口：基于 develop 6a614fc8、零开放PR，新增 rules 托管检出前空库保护、保留 Git pack 的进程环境设置和检出后32/128MiB摘要门禁；强化分支条件/顺序负控，保持原self-hosted正文、原超时、原测试与预算。独立副本定向验证及独审后交接，不重复Full或覆盖历史启动+Curses集中候选；实际托管和最终组合门禁仍待验证。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -61,4 +65,6 @@ Linux完整npm test复验1471项全部通过，0失败/0跳过；原缺pwsh失�
 2026-10-26用户明确仓库已公开，要求使用GitHub官方免费runner。API确认visibility=public且连接具备push权限；本轮将Quality/check由本机自托管改为标准windows-latest，其余作业ubuntu-latest，保留全部测试、精确SHA检出、网络门禁、ownership和收据。托管工作区不承诺跨轮对象复用；不操作本机runner服务。当前SHA远端CI仍待实际运行，不勾选相关验收。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-11 已修复 rules 初始 hosted checkout 的pack摘要/32MiB警告/128MiB异常门禁与可达性检查，代码1e88a4c4。5项定向+4份完整CI合同30/30通过，初次29/30失败保留，冻结历史hash未改。全库语法/指引/Backlog通过；独立本地复核通过。当前云环境缺pwsh，原self-hosted完整文件未重跑；实际托管、最终组合Full/队列/合后push未验证，AC2/4保持未勾。仅轻量范围，不改集中历史启动+Curses、成本/库存或用户GUI。
 <!-- SECTION:NOTES:END -->

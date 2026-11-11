@@ -177,6 +177,7 @@ jobs:
           EXECUTION_NAME: ${{ runner.name }}
         run: |
           $ErrorActionPreference = 'Stop'
+          if ($env:EXECUTION_ENVIRONMENT -eq 'github-hosted' -and (Test-Path -LiteralPath '.git')) { throw 'Hosted checkout must start without a Git database' }
           $workspace = Get-Item -LiteralPath $env:GITHUB_WORKSPACE
           if ($workspace.PSDrive.Free -lt 2GB) { throw 'Quality requires at least 2 GiB free before checkout/install' }
           node -e "const os=require('node:os'); console.log(JSON.stringify({runner:process.env.EXECUTION_NAME,environment:process.env.EXECUTION_ENVIRONMENT,os:os.platform(),cpus:os.cpus().length,memoryBytes:os.totalmem(),image:process.env.ImageOS,imageVersion:process.env.ImageVersion}))"
@@ -184,6 +185,11 @@ jobs:
         if: runner.environment == 'github-hosted'
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         timeout-minutes: 5
+        env:
+          # Keep even small fetches packed so the following byte guard sees them.
+          GIT_CONFIG_COUNT: '1'
+          GIT_CONFIG_KEY_0: fetch.unpackLimit
+          GIT_CONFIG_VALUE_0: '1'
         with:
           ref: ${{ github.sha }}
           fetch-depth: 2
@@ -258,6 +264,9 @@ jobs:
           if ((git rev-parse HEAD) -ne $env:CI_SHA) { throw 'Revision mismatch' }
           git clean -ffd
           if ($LASTEXITCODE -ne 0) { throw 'Workspace cleanup failed' }
+      - name: Check hosted checkout Git pack payload
+        if: runner.environment == 'github-hosted'
+        run: node scripts/check-network-policy.mjs --hosted-checkout
       # Keep the measured runtime, every test and every fixture deadline.
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:

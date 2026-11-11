@@ -1,0 +1,5 @@
+
+> slay-the-abyss@1.0.0 check:network
+> node scripts/check-network-policy.mjs
+
+CI download safeguards verified: reachable hosted/local Git pack guards, incremental refs, bounded npm retries

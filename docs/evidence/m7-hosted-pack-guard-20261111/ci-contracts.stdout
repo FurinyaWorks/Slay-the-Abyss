@@ -1,0 +1,63 @@
+✔ [historical 98fef source contract] POSIX shards preserve the original job gates, toolchain and 20-minute budget (610.825504ms)
+✔ [historical 98fef source contract] original required engineering-posix aggregate runs always and rejects missing, skipped and cancelled shards (550.909888ms)
+✔ current POSIX matrix consumes fifteen shared shards with serial full regression and the authorized execution guard (0.578557ms)
+✔ native Node four-shard selection executes every current JS file name exactly once (1784.179217ms)
+✔ [historical 98fef source contract] scheduler inverse preserves the frozen runner for LF/CRLF and rejects unrelated changes (542.290633ms)
+✔ weighted scheduling balances unequal files deterministically and rejects unsafe inputs (0.881256ms)
+✔ platform gates reserve their measured first-shard cost for every valid shard count (0.592033ms)
+✔ all current JS and Lua files are scheduled exactly once; new unmeasured files cannot disappear (259.060101ms)
+✔ platform-native placement covers every current file once and unknown platforms retain the conservative fallback (91.307341ms)
+✔ workflow uses the same balanced plan for materialization and execution without changing concurrency (0.612068ms)
+✔ real executor preserves test failure, continues later files, reports timings and includes added files (507.563988ms)
+✔ current timing records preserve all measured corrections without duplicate JSON keys (282.937097ms)
+✔ [historical 98fef source contract] fresh relic base retains its complete accepted scheduling measurements (310.337778ms)
+✔ Enemy AI local planning floor is exact, conservatively rounded and cannot rewrite hosted or safety evidence (54.241522ms)
+✔ combined planning epoch preserves both complete input maps and rejects any drift (58.626827ms)
+✔ complete local Game UI run raises only its planning floor and preserves every original observation (50.981497ms)
+✔ partial successful source cases provide lower bounds without claiming their failed batch or whole files passed (47.30149ms)
+✔ only the lightweight impact planner and two required summaries use slim (2.790813ms)
+✔ draft Quality is deferred, Ready and integration retain the real gates (1.712304ms)
+✖ complete Draft/Fast projection restores exact develop workflow bytes with LF and CRLF (3.916014ms)
+✔ Draft/Fast projection refuses every partial migration, duplicate and changed policy block (17.806038ms)
+✔ Draft/Fast projection preserves unrelated drift and never partially restores execution slack (2.995324ms)
+✔ [historical 98fef source contract] reviewed summary runner inverse retains the original complete workflow contract (338.71397ms)
+✔ [historical 98fef source contract] direct platform projection and layered replay share the same exact runner migration (336.612246ms)
+✔ [historical 98fef source contract] eight Windows VMs change only the original hosted matrix, preserving every original gate and deadline (450.143169ms)
+✔ the real Lua partitioner retains every discovered raw fixture exactly once across the current Windows shape (145.740814ms)
+✔ [historical 98fef source contract] original required check aggregate rejects every non-success shard result (577.92226ms)
+✔ current Windows matrix consumes the shared eighteen-shard shape without changing protection or execution gates (1.01103ms)
+✔ current check releases cancelled runs and fails closed on every non-success selected result (284.243784ms)
+✔ native Node eight-shard selection executes every current JS file name exactly once (2223.925415ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 29
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22962.657788
+
+✖ failing tests:
+
+test at tests/ci-summary-runners.test.mjs:75:1
+✖ complete Draft/Fast projection restores exact develop workflow bytes with LF and CRLF (3.916014ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'a975c05961e6c29ece3cfd37e12981939e40849322027644c024ab960a0c594e'
+  - 'aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-hosted-pack-guard/tests/ci-summary-runners.test.mjs:82:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'a975c05961e6c29ece3cfd37e12981939e40849322027644c024ab960a0c594e',
+    expected: 'aeb022f9209eda1311f3893acefc2c55a8d75c497b3b950a276d609964ea7535',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
