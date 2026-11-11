@@ -1,0 +1,26 @@
+{
+  "scope": "Final recursive Lua pathspec repair",
+  "noLuaReceipt": {
+    "schemaVersion": 1,
+    "base": "b402717ae49c3f5c2b0182c7877e90af084adafb",
+    "head": "418097ca3ff47ef4126898264b75b50dc564692c",
+    "changedLua": [],
+    "status": "pass",
+    "errors": []
+  },
+  "selectedChanges": [
+    "A",
+    "src/lua/.hidden.lua",
+    "M",
+    "src/lua/a.lua",
+    "A",
+    "src/lua/deep/further/new.lua",
+    "D",
+    "src/lua/deep/old.lua"
+  ],
+  "sourceHashes": {
+    "scripts/check-quality-ratchet.mjs": "d60440e83b8722f473eea6efaea582f10557d1b3d4b6240bebb5ae251622b8b0",
+    "tests/quality-ratchet-policy.test.mjs": "0283fc6349c408e38c99fa34df1f857be572f70b50fdd8f390c339fb61a01335"
+  },
+  "conclusion": "verified"
+}

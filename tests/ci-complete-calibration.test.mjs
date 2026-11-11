@@ -1,4 +1,4 @@
-import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches} from './helpers/joint-ui-ci-source-inverse.mjs';
+import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preRatchetInventory,ratchetInventoryFile} from './helpers/joint-ui-ci-source-inverse.mjs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors,officialAssetsFlowCiSourceProof,preOfficialAssetsFlowCiSource} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import {officialAssetsPlanningFloors as firstOfficialAssetsPlanningFloors,officialAssetsCiSourceProof,preOfficialAssetsCiSource} from './helpers/official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
@@ -122,6 +122,7 @@ const componentAddedJs=['tests/enemy-name-stability.test.mjs',
 const componentAddedLua=['tests/lua/v25_texture_runtime.lua','tests/lua/component_pages.lua',
  'tests/lua/native_card_art_image_capabilities.lua','tests/lua/component_content_retry.lua',
  'tests/lua/component_page_failures.lua'];
+postSnapshotJs.push(ratchetInventoryFile);
 postPlacementJs.push(...currentV25Js,...componentAddedJs,...postSnapshotJs);postPlacementJs.sort();
 postPlacementLua.push(...componentAddedLua);postPlacementLua.sort();
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
@@ -1273,8 +1274,10 @@ test('current official flow floors bind four complete local files while long cam
 
 test('joint historical inventory rejects missing duplicate and unknown files while current discovery remains complete',()=>{
  const current=discoverJs(),historical=jointCiInventoryAt(current,'officialAssetsFlow');
- assert.equal(current.length,834);assert.equal(historical.length,829);
- const added=current.filter(f=>!historical.includes(f));assert.equal(added.length,5);
+ const preRatchet=preRatchetInventory(current);
+ assert.equal(preRatchet.length,834);assert.equal(current.length,835);assert.equal(historical.length,829);
+ const added=current.filter(f=>!historical.includes(f));
+ assert.equal(added.filter(f=>f!==ratchetInventoryFile).length,5);assert.equal(added.length,6);
  for(const f of added){
   assert.throws(()=>jointCiInventoryAt(current.filter(p=>p!==f),'officialAssetsFlow'),/inventory/);
   assert.throws(()=>jointCiInventoryAt([...current,f],'officialAssetsFlow'),/inventory/);
@@ -1286,4 +1289,29 @@ test('joint historical inventory rejects missing duplicate and unknown files whi
   for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(jointCiSourceAt(file,foreign,target),foreign);
   assert.equal(jointCiSourceAt('__proto__',source,target),source);
  }
+});
+
+
+test('ratchet current inventory preserves raw Full coverage and refuses source drift after a warm projection',()=>{
+ const current=discoverJs(),prior=preRatchetInventory(current),historical=jointCiInventoryAt(current,'officialAssetsFlow');
+ assert.equal(current.length,835);assert.equal(prior.length,834);assert.equal(historical.length,829);
+ assert(current.includes(ratchetInventoryFile));assert(!prior.includes(ratchetInventoryFile));
+ for(const platform of ['win32','linux']){
+  assert.equal(actualCurrentTimings.js[platform][ratchetInventoryFile],undefined);
+  assert.equal(actualCurrentTimings.jsPlanning.localLowerBounds[ratchetInventoryFile],undefined);
+  const count=platform==='win32'?18:15;
+  const bins=Array.from({length:count},(_,i)=>currentJsShard(current,`${i+1}/${count}`,platform).files);
+  assert.deepEqual(bins.flat().sort(),[...current].sort());
+  assert.equal(bins.flat().filter(file=>file===ratchetInventoryFile).length,1);
+ }
+ for(const files of [current.filter(f=>f!==ratchetInventoryFile),[...current,ratchetInventoryFile],
+  [...current,'tests/foreign.test.mjs']])assert.throws(()=>preRatchetInventory(files),/inventory/);
+ const source=diskReadFileSync(ratchetInventoryFile,'utf8');
+ for(const changed of [source+'\n',source.slice(1),source.replace('new CC16','new CC99'),null,Buffer.from(source)]){
+  assert.notEqual(changed,source);
+  const reader=(file,encoding)=>file===ratchetInventoryFile?changed:diskReadFileSync(file,encoding);
+  assert.throws(()=>jointCiInventoryAt(current,'officialAssetsFlow',reader));
+ }
+ assert.throws(()=>jointCiInventoryAt(current,'officialAssetsFlow',()=>{throw Error('fresh read failed');}),/fresh read failed/);
+ assert.deepEqual(preRatchetInventory(current,(file,encoding)=>diskReadFileSync(file,encoding).replaceAll('\r\n','\n').replaceAll('\n','\r\n')),prior);
 });

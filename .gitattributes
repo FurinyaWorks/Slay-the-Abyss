@@ -515,3 +515,10 @@ docs/evidence/pr588-native-mock-20261110/quick-failure.log -whitespace
 
 # Preserve ratchet input-binding red/green and independent review evidence.
 docs/evidence/m7-quality-ratchet-head-20261111/** -text
+
+# Immutable ratchet identity, historical-contract and failure/repair evidence.
+docs/evidence/m7-quality-ratchet-closeout-20261111/** -text
+# Exact Node failure diagnostics retain their original blank-line indentation.
+docs/evidence/m7-quality-ratchet-closeout-20261111/m7-ratchet-identity-adjacent.log -whitespace
+docs/evidence/m7-quality-ratchet-closeout-20261111/m7-ratchet-identity-red.log -whitespace
+docs/evidence/m7-quality-ratchet-closeout-20261111/nonlua-red.log -whitespace

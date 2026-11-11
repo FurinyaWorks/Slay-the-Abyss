@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "quality-ratchet-final-source-20261111-r2",
+  "comparedBaseSha": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "priorPublishedHeadSha": "45eb94519f35d1c104da72f9c04688387d92fb8e",
+  "codeReviewConclusion": "pass",
+  "unresolvedCodeFindings": [],
+  "sourceSha256": {
+    "scripts/check-quality-ratchet.mjs": "d60440e83b8722f473eea6efaea582f10557d1b3d4b6240bebb5ae251622b8b0",
+    "scripts/lua-quality-metrics.mjs": "7230ccd48a4818e7c42ce2d180ba9b0a5bf36862cff4135dbc17285ac7eda842",
+    "scripts/quality-ratchet-policy.mjs": "6a089851b5550038811a0d1d4640332d2b1e1a3f6e08c3fd8cd2f15c8a288902",
+    "tests/quality-ratchet-policy.test.mjs": "0283fc6349c408e38c99fa34df1f857be572f70b50fdd8f390c339fb61a01335",
+    "tests/ci-complete-calibration.test.mjs": "aaa4e166215b8af571f74ce1475b24e36550473b0ed7bb74225577d48afe7286",
+    "tests/ci-summary-runners.test.mjs": "ea8520af9cf959f3db02628ef08a918108e824631ae94eea37584d32291b989d",
+    "tests/helpers/quality-ratchet-workflow.mjs": "aea9529e8a68f0e530aefbebdf1aaf782a8e6c63f6d8a2bc52a102498d5aba2a",
+    "tests/helpers/draft-quality-workflow.mjs": "fc626ccfa68e6c30bd760f6e47f6fc9154a1f828a680e43574bd42ca9ea626a5",
+    "tests/helpers/joint-ui-ci-source-inverse.mjs": "f473614e33168bc5ff26db2401a03ae89caff69e1fea08d011e83d6ccd58917e"
+  },
+  "reviewCoverage": [
+    "Exact Git object inputs, byte framing and checkout replacement",
+    "Structural context, unchanged-content-first matching, bounded multiplicity and matched parent ownership",
+    "Strict current 835 / prior 834 / historical 829 inventory and source freshness",
+    "Exact workflow gate placements and immutable historical source bindings",
+    "Recursive Lua pathspec with non-Lua skip and hidden/nested/add/modify/delete inclusion"
+  ],
+  "independentChecks": {
+    "ciNegativeControls": 70,
+    "dualBindingControls": 60,
+    "identityProbeGroups": 9,
+    "nativeWindows": "not run"
+  },
+  "remainingValidation": [
+    "Final remote HEAD and target-base identity binding",
+    "Normal Hosted Fast/Full and native Windows",
+    "Native queue and actual post-merge push"
+  ],
+  "admissionStatusWritten": false,
+  "autoMergeEnabled": false
+}

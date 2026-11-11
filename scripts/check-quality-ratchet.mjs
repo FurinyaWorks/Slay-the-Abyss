@@ -87,7 +87,7 @@ function measure(changedSources,tool,luacheckConfig){
       {cwd:root,encoding:'utf8',timeout:30000,maxBuffer:4*1024*1024});
     if(r.error||r.signal||![0,1].includes(r.status)||r.stderr?.trim())
       throw Error('Pinned Luacheck failed: '+(r.error?.message??r.stderr??r.status));
-    const result=measureSources(changedSources,parseDiagnostics(r.stdout));
+    const result=measureSources(changedSources,parseDiagnostics(r.stdout),{ratchetIdentity:true});
     if(result.errors.length)throw Error('Incomplete AST/CC measurement: '+JSON.stringify(result.errors.slice(0,4)));
     return result.modules;
   }finally{rmSync(root,{recursive:true,force:true});}
@@ -109,7 +109,7 @@ export function main(base=process.env.QUALITY_RATCHET_BASE){
     git(['-c','credential.helper=','fetch','--depth=1','--no-tags','origin',base]);
     git(['cat-file','-e',base+'^{commit}']);
   }
-  const changes=parseChangedLua(git(['diff','--name-status','--no-renames','-z',base,head,'--','src/lua']));
+  const changes=parseChangedLua(git(['diff','--name-status','--no-renames','-z',base,head,'--',':(top,glob)src/lua/**/*.lua']));
   const report={schemaVersion:1,base,head,changedLua:changes.map(c=>c.file),status:'pass',errors:[]};
   if(changes.length){
     const current=committedSources(head),previous=committedSources(base),oldFiles={},newFiles={};

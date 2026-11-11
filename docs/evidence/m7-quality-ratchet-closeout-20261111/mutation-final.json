@@ -1,0 +1,188 @@
+{
+  "scope": "Four registered Lua regressions only; not a repository-wide mutation score",
+  "results": [
+    {
+      "id": "M1",
+      "sourceSha256": "609e75ba6e83da7b2311629adfdc2fd101c8167d3d17dbb1cdc0748baa9b1d1c",
+      "testSha256": "d4837908e20c1c64570f0e1ea056544a5ea67df8fe8cc207e70ecd6b6bfe4474",
+      "runtime": "v24.22.1",
+      "diff": {
+        "before": "        local called,result=pcall(resolveNativePlay,state,uid,targetIndex,instance,position,card)\n        if not called then restore();error(result,0) end",
+        "after": "        local called,result=pcall(resolveNativePlay,state,uid,targetIndex,instance,position,card)\n        if not called then error(result,0) end -- mutation: native rollback omitted"
+      },
+      "baseline": "pass",
+      "syntax": "pass",
+      "status": "killed_by_assertion",
+      "test": "tests/lua/atomic_play.lua",
+      "baselineResult": {
+        "status": 0,
+        "signal": null,
+        "output": [
+          null,
+          "ok 1 - real inflame overflow preserves every value and reference\nok 2 - real upgraded inflame overflow remains atomic\nok 3 - real bash restores damage, block, thorns and earlier events before status overflow\nok 4 - real shockwave rolls back first enemy and earlier status on later enemy overflow\nok 5 - unknown status after successful block, energy and strength restores inserted keys\nok 6 - negative status amount after damage restores target and player\nok 7 - draw then reshuffle then overflow restores old piles, RNG and all card identities\nok 8 - full-hand draw overflow followed by error restores discard and draw order\nok 9 - controlled failure restores noDraw, HP and temporary player fields, preserving error object\nok 10 - failed card remains playable after correcting only the overflow condition\nok 11 - successful real bash keeps identities, ordering and exactly one effect execution\nok 12 - successful reshuffle retains original pile swap and RNG draw sequence\nok 13 - successful lethal attack retains discard then victory and no replay\nok 14 - canPlay rejection keeps false reason convention and complete state\nATOMIC_PLAY 14/14 passed\n",
+          ""
+        ],
+        "pid": 202,
+        "stdout": "ok 1 - real inflame overflow preserves every value and reference\nok 2 - real upgraded inflame overflow remains atomic\nok 3 - real bash restores damage, block, thorns and earlier events before status overflow\nok 4 - real shockwave rolls back first enemy and earlier status on later enemy overflow\nok 5 - unknown status after successful block, energy and strength restores inserted keys\nok 6 - negative status amount after damage restores target and player\nok 7 - draw then reshuffle then overflow restores old piles, RNG and all card identities\nok 8 - full-hand draw overflow followed by error restores discard and draw order\nok 9 - controlled failure restores noDraw, HP and temporary player fields, preserving error object\nok 10 - failed card remains playable after correcting only the overflow condition\nok 11 - successful real bash keeps identities, ordering and exactly one effect execution\nok 12 - successful reshuffle retains original pile swap and RNG draw sequence\nok 13 - successful lethal attack retains discard then victory and no replay\nok 14 - canPlay rejection keeps false reason convention and complete state\nATOMIC_PLAY 14/14 passed\n",
+        "stderr": ""
+      },
+      "assertion": {
+        "file": "tests/lua/atomic_play.lua",
+        "line": 7,
+        "marker": "[ABYSS_ASSERT M1:real inflame overflow preserves every value and reference]"
+      },
+      "result": {
+        "status": 1,
+        "signal": null,
+        "output": [
+          null,
+          "not ok 1 - real inflame overflow preserves every value and reference: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:real inflame overflow preserves every value and reference] original key energy: expected 3, got 2\nnot ok 2 - real upgraded inflame overflow remains atomic: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:real upgraded inflame overflow remains atomic] original key energy: expected 3, got 2\nnot ok 3 - real bash restores damage, block, thorns and earlier events before status overflow: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:real bash restores damage, block, thorns and earlier events before status overflow] original key energy: expected 3, got 1\nnot ok 4 - real shockwave rolls back first enemy and earlier status on later enemy overflow: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:real shockwave rolls back first enemy and earlier status on later enemy overflow] original key energy: expected 3, got 1\nnot ok 5 - unknown status after successful block, energy and strength restores inserted keys: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:unknown status after successful block, energy and strength restores inserted keys] original key energy: expected 3, got 4\nnot ok 6 - negative status amount after damage restores target and player: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:negative status amount after damage restores target and player] original key energy: expected 3, got 1\nnot ok 7 - draw then reshuffle then overflow restores old piles, RNG and all card identities: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:draw then reshuffle then overflow restores old piles, RNG and all card identities] original key seed: expected 50871, got 19749\nnot ok 8 - full-hand draw overflow followed by error restores discard and draw order: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:full-hand draw overflow followed by error restores discard and draw order] original key energy: expected 3, got 2\nnot ok 9 - controlled failure restores noDraw, HP and temporary player fields, preserving error object: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:controlled failure restores noDraw, HP and temporary player fields, preserving error object] original key energy: expected 3, got 2\nnot ok 10 - failed card remains playable after correcting only the overflow condition: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:failed card remains playable after correcting only the overflow condition] original key energy: expected 3, got 2\nok 11 - successful real bash keeps identities, ordering and exactly one effect execution\nok 12 - successful reshuffle retains original pile swap and RNG draw sequence\nok 13 - successful lethal attack retains discard then victory and no replay\nok 14 - canPlay rejection keeps false reason convention and complete state\nATOMIC_PLAY 4/14 passed\n",
+          "/tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:204: 10 atomic play tests failed\nstack traceback:\n\t[JS]: in function 'assert'\n\t/tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:204: in main chunk\n\t[JS]: in function 'dofile'\n\t(command line):1: in main chunk\n"
+        ],
+        "pid": 210,
+        "stdout": "not ok 1 - real inflame overflow preserves every value and reference: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:real inflame overflow preserves every value and reference] original key energy: expected 3, got 2\nnot ok 2 - real upgraded inflame overflow remains atomic: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:real upgraded inflame overflow remains atomic] original key energy: expected 3, got 2\nnot ok 3 - real bash restores damage, block, thorns and earlier events before status overflow: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:real bash restores damage, block, thorns and earlier events before status overflow] original key energy: expected 3, got 1\nnot ok 4 - real shockwave rolls back first enemy and earlier status on later enemy overflow: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:real shockwave rolls back first enemy and earlier status on later enemy overflow] original key energy: expected 3, got 1\nnot ok 5 - unknown status after successful block, energy and strength restores inserted keys: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:unknown status after successful block, energy and strength restores inserted keys] original key energy: expected 3, got 4\nnot ok 6 - negative status amount after damage restores target and player: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:negative status amount after damage restores target and player] original key energy: expected 3, got 1\nnot ok 7 - draw then reshuffle then overflow restores old piles, RNG and all card identities: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:draw then reshuffle then overflow restores old piles, RNG and all card identities] original key seed: expected 50871, got 19749\nnot ok 8 - full-hand draw overflow followed by error restores discard and draw order: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:full-hand draw overflow followed by error restores discard and draw order] original key energy: expected 3, got 2\nnot ok 9 - controlled failure restores noDraw, HP and temporary player fields, preserving error object: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:controlled failure restores noDraw, HP and temporary player fields, preserving error object] original key energy: expected 3, got 2\nnot ok 10 - failed card remains playable after correcting only the overflow condition: /tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:7: [ABYSS_ASSERT M1:failed card remains playable after correcting only the overflow condition] original key energy: expected 3, got 2\nok 11 - successful real bash keeps identities, ordering and exactly one effect execution\nok 12 - successful reshuffle retains original pile swap and RNG draw sequence\nok 13 - successful lethal attack retains discard then victory and no replay\nok 14 - canPlay rejection keeps false reason convention and complete state\nATOMIC_PLAY 4/14 passed\n",
+        "stderr": "/tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:204: 10 atomic play tests failed\nstack traceback:\n\t[JS]: in function 'assert'\n\t/tmp/abyss-mutation-505Rb6/tests/lua/atomic_play.lua:204: in main chunk\n\t[JS]: in function 'dofile'\n\t(command line):1: in main chunk\n"
+      },
+      "durationMs": 8540,
+      "originalUnchanged": true
+    },
+    {
+      "id": "M2",
+      "sourceSha256": "609e75ba6e83da7b2311629adfdc2fd101c8167d3d17dbb1cdc0748baa9b1d1c",
+      "testSha256": "8fac276c293088d07cfd3f23c090b372e77badd385ec9b63f46c05ef4d9b33c1",
+      "runtime": "v24.22.1",
+      "diff": {
+        "before": "if #state.hand >= state.rules.player.maxHand then break end",
+        "after": "if #state.hand > state.rules.player.maxHand then break end"
+      },
+      "baseline": "pass",
+      "syntax": "pass",
+      "status": "killed_by_assertion",
+      "test": "tests/lua/combat.lua",
+      "baselineResult": {
+        "status": 0,
+        "signal": null,
+        "output": [
+          null,
+          "ok 1 - starter deck draws five with refreshed three energy\nok 2 - same seed gives identical shuffle and independent states\nok 3 - strike spends energy and damage crosses enemy block\nok 4 - defend absorbs enemy attack then clears at next own turn\nok 5 - invalid target and insufficient energy do not mutate state or RNG\nok 6 - played card cannot be replayed by stale uid\nok 7 - draw and discard recycle without dropping or duplicating instances\nok 8 - draw stops at capacity without consuming remaining cards\nok 9 - intent copy is immutable to UI and executed before advancing\nok 10 - dead enemies skip queued attacks and victory refuses further commands\nok 11 - defeat stops remaining enemy intents and blocks player actions\nok 12 - bash debuff affects next attacks with final rounding\nok 13 - upgraded card inherits unchanged fields without mutating catalog\nok 14 - unknown or advanced effects fail before spending energy\nok 15 - invalid starting snapshots fail rather than fabricate cards\nok 16 - full hand preserves all pile objects cards UID RNG and events\nok 17 - full hand with empty draw must not reshuffle discard\nok 18 - last hand slot consumes only one card before stopping\nok 19 - filling last slot does not reshuffle after draw becomes empty\nok 20 - draw can cross one necessary reshuffle and stops at capacity\nok 21 - empty piles and nonpositive draw leave state untouched\nok 22 - no draw prevents movement even when a slot and reshuffle are available\nok 23 - real upgraded pommel strike via Run uses the slot freed by playing\nLUA_COMBAT_PASS 23\n",
+          ""
+        ],
+        "pid": 218,
+        "stdout": "ok 1 - starter deck draws five with refreshed three energy\nok 2 - same seed gives identical shuffle and independent states\nok 3 - strike spends energy and damage crosses enemy block\nok 4 - defend absorbs enemy attack then clears at next own turn\nok 5 - invalid target and insufficient energy do not mutate state or RNG\nok 6 - played card cannot be replayed by stale uid\nok 7 - draw and discard recycle without dropping or duplicating instances\nok 8 - draw stops at capacity without consuming remaining cards\nok 9 - intent copy is immutable to UI and executed before advancing\nok 10 - dead enemies skip queued attacks and victory refuses further commands\nok 11 - defeat stops remaining enemy intents and blocks player actions\nok 12 - bash debuff affects next attacks with final rounding\nok 13 - upgraded card inherits unchanged fields without mutating catalog\nok 14 - unknown or advanced effects fail before spending energy\nok 15 - invalid starting snapshots fail rather than fabricate cards\nok 16 - full hand preserves all pile objects cards UID RNG and events\nok 17 - full hand with empty draw must not reshuffle discard\nok 18 - last hand slot consumes only one card before stopping\nok 19 - filling last slot does not reshuffle after draw becomes empty\nok 20 - draw can cross one necessary reshuffle and stops at capacity\nok 21 - empty piles and nonpositive draw leave state untouched\nok 22 - no draw prevents movement even when a slot and reshuffle are available\nok 23 - real upgraded pommel strike via Run uses the slot freed by playing\nLUA_COMBAT_PASS 23\n",
+        "stderr": ""
+      },
+      "assertion": {
+        "file": "tests/lua/combat.lua",
+        "line": 7,
+        "marker": "[ABYSS_ASSERT M2:draw stops at capacity without consuming remaining cards]"
+      },
+      "result": {
+        "status": 1,
+        "signal": null,
+        "output": [
+          null,
+          "ok 1 - starter deck draws five with refreshed three energy\nok 2 - same seed gives identical shuffle and independent states\nok 3 - strike spends energy and damage crosses enemy block\nok 4 - defend absorbs enemy attack then clears at next own turn\nok 5 - invalid target and insufficient energy do not mutate state or RNG\nok 6 - played card cannot be replayed by stale uid\nok 7 - draw and discard recycle without dropping or duplicating instances\n",
+          "/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:7: [ABYSS_ASSERT M2:draw stops at capacity without consuming remaining cards] value: expected 10, got 11\nstack traceback:\n\t[JS]: in function 'assert'\n\t/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:7: in upvalue 'equal'\n\t/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:94: in local 'run'\n\t/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:11: in local 'test'\n\t/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:89: in main chunk\n\t[JS]: in function 'dofile'\n\t(command line):1: in main chunk\n"
+        ],
+        "pid": 226,
+        "stdout": "ok 1 - starter deck draws five with refreshed three energy\nok 2 - same seed gives identical shuffle and independent states\nok 3 - strike spends energy and damage crosses enemy block\nok 4 - defend absorbs enemy attack then clears at next own turn\nok 5 - invalid target and insufficient energy do not mutate state or RNG\nok 6 - played card cannot be replayed by stale uid\nok 7 - draw and discard recycle without dropping or duplicating instances\n",
+        "stderr": "/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:7: [ABYSS_ASSERT M2:draw stops at capacity without consuming remaining cards] value: expected 10, got 11\nstack traceback:\n\t[JS]: in function 'assert'\n\t/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:7: in upvalue 'equal'\n\t/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:94: in local 'run'\n\t/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:11: in local 'test'\n\t/tmp/abyss-mutation-dZONwb/tests/lua/combat.lua:89: in main chunk\n\t[JS]: in function 'dofile'\n\t(command line):1: in main chunk\n"
+      },
+      "durationMs": 5396,
+      "originalUnchanged": true
+    },
+    {
+      "id": "M3",
+      "sourceSha256": "f685e7a59b57f66721e3c2f8143b99aa37efd05be77371bbda61fd6e4a4a4d9f",
+      "testSha256": "cd7550177e1e6108ab82eefecb60ffcb8d358307f731858e4ed1868f8f5d9544",
+      "runtime": "v24.22.1",
+      "diff": {
+        "before": "run.nodeFlow and Combat.copy(run.nodeFlow) or nil",
+        "after": "run.nodeFlow"
+      },
+      "baseline": "pass",
+      "syntax": "pass",
+      "status": "killed_by_assertion",
+      "test": "tests/lua/node_transactions.lua",
+      "caseName": "shop and camp views are detached even for nested offers, card instances and navigation",
+      "baselineResult": {
+        "status": 0,
+        "signal": null,
+        "output": [
+          null,
+          "ok node transactions 10 - shop and camp views are detached even for nested offers, card instances and navigation\nLUA_NODE_TRANSACTIONS_PASS 1 refusals=0\n",
+          ""
+        ],
+        "pid": 234,
+        "stdout": "ok node transactions 10 - shop and camp views are detached even for nested offers, card instances and navigation\nLUA_NODE_TRANSACTIONS_PASS 1 refusals=0\n",
+        "stderr": ""
+      },
+      "assertion": {
+        "file": "tests/lua/node_transactions.lua",
+        "line": 12,
+        "marker": "[ABYSS_ASSERT M3:shop and camp views are detached even for nested offers, card instances and navigation]"
+      },
+      "result": {
+        "status": 1,
+        "signal": null,
+        "output": [
+          null,
+          "",
+          "/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:12: [ABYSS_ASSERT M3:shop and camp views are detached even for nested offers, card instances and navigation] true ~= false\nstack traceback:\n\t[JS]: in function 'error'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:12: in upvalue 'equal'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:27: in upvalue 'same'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:34: in upvalue 'same'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:34: in upvalue 'same'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:34: in upvalue 'same'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:136: in local 'fn'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:45: in local 'test'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:124: in main chunk\n\t[JS]: in function 'dofile'\n\t(command line):1: in main chunk\n"
+        ],
+        "pid": 242,
+        "stdout": "",
+        "stderr": "/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:12: [ABYSS_ASSERT M3:shop and camp views are detached even for nested offers, card instances and navigation] true ~= false\nstack traceback:\n\t[JS]: in function 'error'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:12: in upvalue 'equal'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:27: in upvalue 'same'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:34: in upvalue 'same'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:34: in upvalue 'same'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:34: in upvalue 'same'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:136: in local 'fn'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:45: in local 'test'\n\t/tmp/abyss-mutation-Hl2cJm/tests/lua/node_transactions.lua:124: in main chunk\n\t[JS]: in function 'dofile'\n\t(command line):1: in main chunk\n"
+      },
+      "durationMs": 5505,
+      "originalUnchanged": true
+    },
+    {
+      "id": "M4",
+      "sourceSha256": "59434df0d36cecd33dbe58fc9c3be19aa42700011e0440c3e568390a68ba5be1",
+      "testSha256": "8a4f74234c9d9bec0c4490d5030d25b9a4ffa11f5bdd7cfa4d3a51aa0a6b7d87",
+      "runtime": "v24.22.1",
+      "diff": {
+        "before": "            if not called or not ok then return false, \"potion_effect_failed\" end",
+        "after": "            -- mutation: finalization failure ignored"
+      },
+      "baseline": "pass",
+      "syntax": "pass",
+      "status": "killed_by_assertion",
+      "test": "tests/lua/inventory.lua",
+      "caseName": "potion finalization failure preserves complete state and original references",
+      "baselineResult": {
+        "status": 0,
+        "signal": null,
+        "output": [
+          null,
+          "ok inventory 1 - potion finalization failure preserves complete state and original references\nLUA_INVENTORY_PASS 1\nPR238_SLICE 1 2 1\n",
+          ""
+        ],
+        "pid": 250,
+        "stdout": "ok inventory 1 - potion finalization failure preserves complete state and original references\nLUA_INVENTORY_PASS 1\nPR238_SLICE 1 2 1\n",
+        "stderr": ""
+      },
+      "assertion": {
+        "file": "tests/lua/inventory.lua",
+        "line": 180,
+        "marker": "[ABYSS_ASSERT M4:finalization atomic]"
+      },
+      "result": {
+        "status": 1,
+        "signal": null,
+        "output": [
+          null,
+          "",
+          "/tmp/abyss-mutation-YmA2vs/tests/lua/inventory.lua:180: [ABYSS_ASSERT M4:finalization atomic]\nstack traceback:\n\t[JS]: in function 'assert'\n\t/tmp/abyss-mutation-YmA2vs/tests/lua/inventory.lua:180: in local 'fn'\n\t/tmp/abyss-mutation-YmA2vs/tests/lua/inventory.lua:23: in local 'test'\n\t/tmp/abyss-mutation-YmA2vs/tests/lua/inventory.lua:161: in main chunk\n\t[JS]: in function 'dofile'\n\t(command line):1: in main chunk\n"
+        ],
+        "pid": 258,
+        "stdout": "",
+        "stderr": "/tmp/abyss-mutation-YmA2vs/tests/lua/inventory.lua:180: [ABYSS_ASSERT M4:finalization atomic]\nstack traceback:\n\t[JS]: in function 'assert'\n\t/tmp/abyss-mutation-YmA2vs/tests/lua/inventory.lua:180: in local 'fn'\n\t/tmp/abyss-mutation-YmA2vs/tests/lua/inventory.lua:23: in local 'test'\n\t/tmp/abyss-mutation-YmA2vs/tests/lua/inventory.lua:161: in main chunk\n\t[JS]: in function 'dofile'\n\t(command line):1: in main chunk\n"
+      },
+      "durationMs": 8402,
+      "originalUnchanged": true
+    }
+  ],
+  "durationMs": 27935
+}

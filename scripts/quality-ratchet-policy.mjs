@@ -12,6 +12,12 @@ function modules(rows,label) {
       if(typeof f.id!=='string'||seen.has(f.id)||!['chunk','function'].includes(f.kind)||
         !Number.isSafeInteger(f.complexity)||f.complexity<1||!Number.isSafeInteger(f.line)||f.line<1)
         throw Error('Invalid '+label+' function metrics: '+m.file);
+      if(f.kind==='function') {
+        const identity=f.ratchetIdentity;
+        if(!identity||typeof identity.owner!=='string'||!seen.has(identity.owner)||
+          !/^[a-f0-9]{64}$/.test(identity.context)||!/^[a-f0-9]{64}$/.test(identity.fingerprint))
+          throw Error('Invalid '+label+' function identity: '+m.file);
+      }
       seen.add(f.id);
     }
     out.set(m.file,m);
@@ -32,6 +38,37 @@ function groups(rows,label) {
     return {members,edges};
   });
 }
+// Committed generated Lua follows the same rules as hand-written Lua. Moves to
+// another file, renamed declarations, and changed registration/table/block
+// ownership create new identities; untracked build outputs are not inputs.
+// Match only within the same file and an already matched lexical owner. Exact
+// content wins before edited functions, and each old allowance is consumed once.
+// An originally ambiguous context never becomes unique by consuming its peers.
+function matchFunctions(before,after) {
+  const matches=new Map(),queue=[['$','$']];
+  const oldChunk=before.find(f=>f.kind==='chunk');
+  if(oldChunk)matches.set('$',oldChunk);
+  while(queue.length) {
+    const [oldOwner,newOwner]=queue.shift();
+    const oldChildren=before.filter(f=>f.ratchetIdentity?.owner===oldOwner);
+    const newChildren=after.filter(f=>f.ratchetIdentity?.owner===newOwner);
+    const contexts=new Set(newChildren.map(f=>f.ratchetIdentity.context));
+    for(const context of contexts) {
+      const old=oldChildren.filter(f=>f.ratchetIdentity.context===context);
+      const now=newChildren.filter(f=>f.ratchetIdentity.context===context);
+      const used=new Set();
+      const bind=(a,b)=>{used.add(a);matches.set(b.id,a);queue.push([a.id,b.id]);};
+      // Identical duplicates are interchangeable only for unchanged content;
+      // multiplicity is bounded by the number of old instances, never an ordinal.
+      for(const b of now) {
+        const a=old.find(a=>!used.has(a)&&a.ratchetIdentity.fingerprint===b.ratchetIdentity.fingerprint);
+        if(a)bind(a,b);
+      }
+      if(old.length===1&&now.length===1&&!matches.has(now[0].id))bind(old[0],now[0]);
+    }
+  }
+  return matches;
+}
 export function evaluateQualityRatchet({beforeModules,afterModules,beforeCycles,afterCycles}) {
   const before=modules(beforeModules,'base'),after=modules(afterModules,'candidate'),errors=[];
   const fail=(file,line,message)=>errors.push({file,line,message});
@@ -39,7 +76,7 @@ export function evaluateQualityRatchet({beforeModules,afterModules,beforeCycles,
     const old=before.get(file),limit=Math.max(NEW_MODULE_LINE_LIMIT,old?.lines??0);
     if(now.lines>limit)fail(file,1,'Module length '+(old?.lines??0)+' -> '+now.lines+
       ' exceeds '+limit+'; extract a cohesive owner');
-    const prior=new Map((old?.functions??[]).map(f=>[f.id,f]));
+    const prior=matchFunctions(old?.functions??[],now.functions);
     for(const fn of now.functions) {
       const oldFn=prior.get(fn.id);
       const maximum=oldFn?Math.max(NEW_FUNCTION_CC_LIMIT,oldFn.complexity):NEW_FUNCTION_CC_LIMIT;

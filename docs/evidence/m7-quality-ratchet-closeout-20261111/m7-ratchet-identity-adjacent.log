@@ -1,0 +1,62 @@
+✔ active policy pins exactly the lint/tool inputs and rejects changes, missing pins and exception options (2.710284ms)
+✔ active policy preserves historical lint except exact reviewed SDK owner and callback declarations (15.175713ms)
+✔ physical lines and inclusive function spans include comments, blank lines and nested bodies (9.032026ms)
+✔ CRLF and LF have identical canonical metrics and source hashes (3.022906ms)
+✔ every function and chunk needs exactly one matching Luacheck coordinate (2.311599ms)
+✔ Unicode codepoint columns map to UTF8 AST bytes, including emoji and combining marks (1.98628ms)
+✔ all files and extracted helpers are discovered recursively; empty scans fail (21.698572ms)
+✔ full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically (2.584141ms)
+✔ baseline diff keeps full metrics, exact warning multiplicity and changed/deleted/new modules visible (2.249357ms)
+✔ baseline contract/tool/scope mismatch and malformed snapshots cannot be treated as improvement (1.666843ms)
+✔ JSON object key ordering does not create false warning changes or contract mismatches (0.866474ms)
+✔ all new numeric metrics remain report-only, including high complexity and new helper hotspots (1.397754ms)
+✔ the frozen baseline covers every recorded module/function and is not an exemption configuration (18.950453ms)
+✔ dependency and cycle changes are visible even when total module and warning counts stay equal (1.224681ms)
+✖ quality reports are collected by the existing gate and uploaded on failed runs without changing older CI guards (9.797738ms)
+✔ historical package replay inverts only the exact quality entry and gate wiring without changing its old hash (505.456645ms)
+✔ new CC16 fails while CC15 passes and unrelated old debt is grandfathered (5.768811ms)
+✔ old high CC cannot increase; improvements and low debt within limit are permitted (0.64758ms)
+✔ new modules have a line budget; existing oversized owners cannot grow (0.321295ms)
+✔ new, expanded or denser SCC is blocked; unchanged and eliminated SCC are fine (0.921023ms)
+✔ splitting a large SCC is allowed but its internal edge allowance cannot expand (0.66509ms)
+✔ missing/corrupt measurements fail closed (0.899041ms)
+✔ committed source graphs preserve Git bytes and ignore checkout, staged and untracked changes (68.877059ms)
+✔ committed linked source files and directory entries fail closed without following checkout paths (107.092051ms)
+✔ real CLI keeps committed CC16 blocked after checkout source and policy are replaced (1093.710436ms)
+✔ real anonymous insertions preserve old hotspots without lending their debt to another target (703.878466ms)
+✔ registration event arguments and table owners cannot share an anonymous allowance (1109.854987ms)
+✔ ambiguous same-context functions match unchanged content first and never infer residual uniqueness (1595.25039ms)
+✔ nested debt follows matched lexical owners, not names or shifted ordinals (457.460134ms)
+✔ file moves and generated committed sources use the same explicit identity boundary (1265.585895ms)
+✔ ratchet identity is optional for legacy metrics but mandatory to inherit function debt (485.255116ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 30
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15696.403797
+
+✖ failing tests:
+
+test at tests/engineering-quality.test.mjs:180:1
+✖ quality reports are collected by the existing gate and uploaded on failed runs without changing older CI guards (9.797738ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(!restored.includes('build/engineering-quality.json'))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-ratchet-identities/tests/engineering-quality.test.mjs:189:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
