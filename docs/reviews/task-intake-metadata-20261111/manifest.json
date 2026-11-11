@@ -1,0 +1,7 @@
+{
+  "scripts/check-task-intake.mjs": "34fcbfc3a0230dd5f395dd1798ef40b7ac96a8821135f9b0795a18439216eddd",
+  "tests/sprint-intake.test.mjs": "1d0191d473ea9421c770a99656d28faee57a1ee00e603880560ac744e4202662",
+  "docs/reviews/task-intake-metadata-20261111/independent-review-1.json": "042cbe2a0c2da21409441152d9e0c65cc1af67a48e88378a90c1dee180801139",
+  "docs/reviews/task-intake-metadata-20261111/independent-review-2.json": "76c7e6f47e3a864bfbf6262ed1d96d5b80cdbd60ead701f59dc69406ad937e3f",
+  "docs/reviews/task-intake-metadata-20261111/validation.json.gz": "82c30e3b400bb8af7a67bacb114819579233ba1dce7eba6d2595afc5ea0ecb3e"
+}

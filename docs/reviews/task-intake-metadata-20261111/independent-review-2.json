@@ -1,0 +1,29 @@
+{
+  "reviewId": "review_intake_metadata_guard-20261111-2",
+  "reviewedBaseSha": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "reviewedHeadSha": null,
+  "reviewScope": "Uncommitted two-file patch identified by SHA256; later commit binding requires exact content verification",
+  "conclusion": "pass",
+  "unresolved": [],
+  "resolved": [
+    "R1: first closing delimiter now recognized even for empty header",
+    "R2: indented continuation rejected for selected scalar metadata",
+    "Explicit, escaped and merge key syntax rejected"
+  ],
+  "validation": {
+    "targetedSuite": "15/15 pass; independent-review-2-tests.log",
+    "independentBacklogComparison": {
+      "count": 173,
+      "metadataIdentical": true,
+      "completeDecisionsAndReasonsIdentical": true
+    },
+    "independentAdversarialCases": 10,
+    "existingAssertions": "Preserved; tests only added",
+    "policyStatusDateMilestone": "evaluateIntake unchanged; all 173 native records unchanged",
+    "limits": "Native Backlog subset, not general-purpose YAML parser. Full and CI not rerun."
+  },
+  "fileSha256": {
+    "scripts/check-task-intake.mjs": "34fcbfc3a0230dd5f395dd1798ef40b7ac96a8821135f9b0795a18439216eddd",
+    "tests/sprint-intake.test.mjs": "1d0191d473ea9421c770a99656d28faee57a1ee00e603880560ac744e4202662"
+  }
+}
