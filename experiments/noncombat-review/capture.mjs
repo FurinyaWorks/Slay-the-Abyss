@@ -3,7 +3,7 @@ const service=JSON.parse(fs.readFileSync(process.argv[2]));
 const base=service.url,out=process.argv[3],sid='qa-stage-visual-'+Date.now();fs.mkdirSync(out);
 const {composeRectMatrix,identityMatrix,applyMatrix}=await import(pathToFileURL('F:/New folder/.artifacts/art-lab-simulator/studio/ui/layout.js'));
 const {chromium}=createRequire('C:/Users/Administrator/AppData/Roaming/npm/node_modules/playwright/package.json')('playwright');
-const report={kind:'actual-stage-visual-not-performance',buildId:service.buildId,fixtureSha256:service.cases[0].sha256,rendererSha256:service.rendererSha256,sid,shots:[],errors:[]};
+const report={kind:'actual-natural-visual-not-performance',buildId:service.buildId,saveSha256:service.cases[0].sha256,rendererSha256:service.rendererSha256,sid,shots:[],errors:[]};
 const hash=b=>createHash('sha256').update(b).digest('hex');
 async function api(route,body){const r=await fetch(base+route,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(60000)}),v=await r.json();assert(r.ok&&v.ok!==false,JSON.stringify(v));return v.value??v;}
 await api('/editor/api/load-archive',{sessionId:sid,path:service.cases[0].archive});
@@ -28,6 +28,7 @@ try{
  report.status='captured';
 }catch(error){report.status='failed';report.error=String(error.stack);console.log(report.error);process.exitCode=1}
 finally{await context?.close();await browser.close();try{await api('/editor/api/play',{sessionId:sid,action:'stop',args:{}})}catch(error){report.stopError=String(error)}fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2));console.log(out)}
+
 
 
 
