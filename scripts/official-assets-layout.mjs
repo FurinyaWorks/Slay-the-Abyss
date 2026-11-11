@@ -33,6 +33,9 @@ export function officialAssetsTheme(source){
   for(const key of Object.keys(source.v25Battle.font))theme.font[key]=approved.font[key];
   Object.assign(theme.motion,source.v25Battle.motion);
   theme.layout.energy.faceColour='#FFE35D00';
+  // The native sans glyph occupies more area than V25's serif. Owner's
+  // device feedback calls for a quieter readout inside the unchanged 86px orb.
+  theme.layout.energy.numberSize=26;
   theme.layout.cardDrag.aimDots=theme.officialAssets.battleAim.segments;
   theme.layout.cardDrag.aimBend=[...theme.officialAssets.battleAim.bend];
   // Existing exhaust-flight readers retain their historical topBar token path.

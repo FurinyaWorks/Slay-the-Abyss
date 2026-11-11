@@ -61,6 +61,8 @@ GameUI入口及全部`abyss_game_ui_*`模块另受绝对门禁约束：入口文
 
 UI记录使用 `schemas/ui-acceptance.schema.json`：根部提供buildId/runId/payloadDigest/baselineRevision；逐屏提供候选身份、批准稿图片与截图的相对路径/真实hash、reviewer、合法reviewedAt、reviewScope、实际operations、空unresolved及全部关键checks。同图复用须在涉及各屏说明共享原因。截图相对真实run目录，批准稿相对 `docs/design/`；两者都必须可被Pillow解码。baselineRevision由当前UI_DESIGN、prototype及screens文件内容计算。
 
+战斗关键HUD另设`battleHud`画面评审（能量球品质、零能量/溢出、V25层级）；`battleMobileAim`必须为实际phone/touch并记录型号，逐项检查多敌人、自由瞄准、锁定、换目标、取消、箭头方向和可见尖端终点。所有正式画面记录显式声明`captureSource: official-client`；Simulator证据另存，不通过此验收。控件属性和Lua回归只验证结构/行为，不能宣布画质或手机通过。
+
 CLI从候选旁收据和启动证据取得预期身份，重验原始日志与当前payload；不从待验UI表中自取可信runId。历史 `ui-acceptance.json` 的partial/failed/pending保持原状，未补默认PASS。有效文件、结构和hash也不能证明画面好看或操作正确，人审仍须实际比较并操作。
 
 ## 静态基线与测试证明

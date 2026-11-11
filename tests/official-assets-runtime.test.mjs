@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtempSync,mkdirSync,readdirSync,rmSync,readFileSync} from 'node:fs';
+import {mkdtempSync,mkdirSync,readdirSync,rmSync,readFileSync,writeFileSync} from 'node:fs';
 import {resolve,join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {createRequire} from 'node:module';
@@ -8,7 +8,7 @@ import {buildUI} from '../scripts/build-ui.mjs';
 import {buildLuaData,luaString,toLua} from '../scripts/build-lua-data.mjs';
 
 const require=createRequire(import.meta.url);
-function runOfficial(t,body,marker){
+function runOfficial(t,body,marker,overrides={}){
  const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});
  const directory=mkdtempSync(join(root,'official-runtime-'));
  t.after(()=>rmSync(directory,{recursive:true,force:true}));
@@ -33,6 +33,11 @@ function runOfficial(t,body,marker){
  assert.deepEqual(pile.children.find(c=>c.name==='hit').size,[150,210]);
  assert.equal(templates.find(c=>c.name==='AbyssDeckCard').children.find(c=>c.name==='face').children.some(c=>c.name==='nativeRibbon'),false,'ordinary deck template retained its existing surface');
  assert.equal(face.children.find(c=>c.name==='roundBody').children.find(c=>c.name==='flat').image,theme.image.rect);
+ const overrideLoads=Object.entries(overrides).map(([name,source])=>{
+  assert.match(name,/^abyss_[a-z_]+$/);
+  const file=join(directory,'override-'+name+'.lua');writeFileSync(file,source);
+  return `package.preload[${luaString(name)}]=assert(loadfile(${luaString(file.replaceAll('\\','/'))}))`;
+ }).join('\n');
  const script=`
 local generated=${luaString(directory.replaceAll('\\','/'))}
 package.path=generated..'/?.lua;src/lua/?.lua'
@@ -40,6 +45,7 @@ package.path=generated..'/?.lua;src/lua/?.lua'
 -- module from silently falling back to another candidate's shared build.
 for _,name in ipairs(${toLua(modules)})do package.preload[name]=assert(loadfile(generated..'/'..name..'.lua'))end
 local profile=require('abyss_ui_profile');assert(profile.nativePageLifecycle)
+${overrideLoads}
 local GameUI=require('abyss_game_ui');local create=GameUI.new;local Fixture
 -- Pass the generated bootstrap setting into the real Host. The shared fixture
 -- otherwise omits this platform option; do not replace lifecycle implementation.
@@ -1175,4 +1181,45 @@ for _,entry in ipairs({{'bash','易伤'},{'offering','消耗'}})do
 end
 unchanged(b,before,'keyword hover/reader/cancel changed combat')
 `, 'OFFICIAL_AUTOMATIC_KEYWORDS_PASS');
+});
+
+// Official geometry and touch callbacks must be exercised together.
+test('official aim geometry follows mobile targets and cancels across canvases',t=>{
+ runOfficial(t,"assert(loadfile('tests/lua/support/official_aim_visual_parity.lua'))(H)",'OFFICIAL_AIM_NATIVE_TOUCH_MATRIX 12');
+});
+
+test('generated official energy seam and live values are checked separately from visual acceptance',t=>{
+ runOfficial(t,`
+local function find(node,name)
+ if node.name==name then return node end
+ for _,c in ipairs(node.children or node.controls or {})do local r=find(c,name);if r then return r end end
+end
+local layout={children=H.F.Layout};local number=find(layout,'energy');local icon=find(layout,'energyIcon')
+assert(icon.size[1]==86 and number.text.fontSize==26 and number.text.outlineOpacity==1)
+assert(find(icon,'valueShadow').visible==false,'duplicate numeric shadow must not paint')
+local chrome=find(icon,'v25Chrome');assert(#chrome.children==6,'bounded static orb layers')
+for _,c in ipairs(chrome.children)do assert(c.kind=='image' and c.image==100002,'known native discs, no tinted ornament texture')end
+local h,u,p=H.setup({'strike','strike','defend'})
+local b=h.run.combat
+for _,energy in ipairs({0,3,7})do
+ b.energy=energy;u:render()
+ assert(p:GetChild('energy').text==energy..'/3')
+ assert(p:GetChild('energyIcon'):GetChild('light').visible==(energy>0))
+end
+`, 'OFFICIAL_ENERGY_VALUES_NOT_VISUAL_ACCEPTANCE');
+});
+
+test('official aim regression rejects the escaped lifted-card origin and a centred head',t=>{
+ const body="assert(loadfile('tests/lua/support/official_aim_visual_parity.lua'))(H)";
+ const view=readFileSync('src/lua/abyss_battle_card_view.lua','utf8');
+ const anchor="return g.origin[1],g.origin[2]+height/2";
+ assert.equal(view.split(anchor).length,2,'counterfactual origin anchor must be unique');
+ assert.throws(()=>runOfficial(t,body,'OFFICIAL_AIM_NATIVE_TOUCH_MATRIX 12',{
+  abyss_battle_card_view:view.replace(anchor,'return x,y+height/2'),
+ }),/right-side enemy arrow collapsed into a vertical line/);
+ const arrow=readFileSync('src/lua/abyss_battle_aim_arrow.lua','utf8');
+ assert.equal(arrow.split('local apex=17*scale').length,2);
+ assert.throws(()=>runOfficial(t,body,'OFFICIAL_AIM_NATIVE_TOUCH_MATRIX 12',{
+  abyss_battle_aim_arrow:arrow.replace('local apex=17*scale','local apex=0'),
+ }),/first target tip x/);
 });

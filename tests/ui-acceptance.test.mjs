@@ -18,6 +18,7 @@ test('UI proof accepts complete decoded fixture and rejects missing fields, chan
     const manifest={schemaVersion:1,buildId:expected.buildId,runId:expected.runId,payloadDigest:expected.payloadDigest,baselineRevision:expected.baselineRevision,
       screens:Object.fromEntries(Object.entries(criticalUiChecks).map(([screen,fields])=>[screen,{
         status:'pass',candidateHash:hash,buildId:'fixture',runId:'fixture-run',baseline:'actual.png',baselineHash:imageHash,
+        captureSource:'official-client',deviceClass:'phone',inputMethod:'touch',deviceModel:'synthetic validator fixture only',
         screenshot:'actual.png',screenshotHash:imageHash,reviewer:'fixture only',reviewedAt:'2026-10-01T00:00:00Z',
         reviewScope:'validator fixture, not real game acceptance',operations:['fixture click'],unresolved:[],sharedScreenshotReason:'synthetic shared fixture for validator only',
         checks:Object.fromEntries(fields.map(field=>[field,true])),
@@ -27,7 +28,7 @@ test('UI proof accepts complete decoded fixture and rejects missing fields, chan
     for(const [field,value,match] of [['reviewedAt','bad date',/reviewed/],['reviewedAt','2026-02-31T00:00:00Z',/reviewed/],['reviewer','',/reviewed/],['screenshot','missing.png',/screenshot/],['screenshotHash','f'.repeat(64),/hash mismatch/],['runId','other',/another build/]]) {
       const bad=structuredClone(manifest);bad.screens.battle[field]=value;assert(check(bad).some(e=>match.test(e)),field);
     }
-    for (const screen of ['character','potions','exit']) {
+    for (const screen of ['character','potions','exit','battleHud','battleMobileAim']) {
       assert.ok(criticalUiChecks[screen]?.length, screen);
       const absent = structuredClone(manifest); delete absent.screens[screen];
       assert(check(absent).some(error => error.startsWith(`${screen}:`)), screen);
@@ -38,6 +39,10 @@ test('UI proof accepts complete decoded fixture and rejects missing fields, chan
     }
     const missing=structuredClone(manifest);delete missing.screens.battle.checks.actorHpAndMaxHp;
     assert(check(missing).some(e=>e.includes('actorHpAndMaxHp')));
+    for(const [field,value,match]of [['captureSource','simulator',/official client capture/],['deviceClass','pc',/actual phone/],['inputMethod','mouse',/actual phone/],['deviceModel','',/actual phone/]]){
+      const bad=structuredClone(manifest);bad.screens.battleMobileAim[field]=value;
+      assert(check(bad).some(e=>match.test(e)),field);
+    }
     for(const field of ['gold','hpAndMaxHp']) {
       assert(criticalUiChecks.map.includes(field));
       const absent=structuredClone(manifest);delete absent.screens.map.checks[field];

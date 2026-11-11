@@ -38,6 +38,8 @@ export const criticalUiChecks = {
   exit: ['discoverable', 'blocksUnderlyingInput', 'cancelPreservesRun', 'platformSettlement'],
   map: ['route', 'currentFloor', 'reachableNodes', 'gold', 'hpAndMaxHp'],
   battle: ['actorHpAndMaxHp', 'block', 'energy', 'intent', 'cardText', 'enemyAction'],
+  battleHud: ['energyOrbVisualQuality', 'energyZeroAndOvercharge', 'hudHierarchyAgainstV25'],
+  battleMobileAim: ['multiEnemy', 'freeAim', 'lock', 'retarget', 'cancel', 'arrowDirection', 'visibleTipAtEndpoint'],
   rewards: ['gold', 'cardAddedOrSkipped', 'returnToMap'],
   cardChoice: ['readableChoices', 'clearSelection'],
   camp: ['healOrUpgrade', 'upgradeInformation'],
@@ -64,6 +66,8 @@ export function reviewUiAcceptance(manifest, expected, {evidenceRoot=process.cwd
     if (!row || row.status !== 'pass') { errors.push(`${screen}: ${row?.status || 'no review'}`); continue; }
     if (row.candidateHash !== candidateHash) errors.push(`${screen}: evidence belongs to another candidate`);
     if(row.runId!==manifest.runId||row.buildId!==manifest.buildId)errors.push(`${screen}: another build/run`);
+    if(row.captureSource!=='official-client')errors.push(`${screen}: official client capture required; Simulator is separate evidence`);
+    if(screen==='battleMobileAim'&&(row.deviceClass!=='phone'||row.inputMethod!=='touch'||!row.deviceModel?.trim()))errors.push(`${screen}: actual phone touch/device identity required`);
     for(const [field,root] of [['baseline',baselineRoot],['screenshot',evidenceRoot]]) {
       try {
         if(!row[field])throw new Error('missing');
