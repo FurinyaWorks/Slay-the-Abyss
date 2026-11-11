@@ -150,6 +150,10 @@
     "battle-piles-browser-20261111": {
       "status": "Actual project battle UI compositor screenshots from headless Chromium, using the unchanged existing Simulator renderer and an actual-GIL-derived pressure fixture. Contains project artwork and official platform picture-library/game IP, which remain their owners rights. Diagnostic evidence, not an IP sublicense, commercial clearance, official import or device acceptance. No private reference STS assets redistributed.",
       "evidence": "docs/evidence/battle-piles-final-20261111/README.md; visual-receipt.json; visual-review.json; visual-pixel-check.json"
+    },
+    "official-ui-repair-simulator-evidence": {
+      "status": "Actual project GIL/Simulator UI evidence with existing Genshin platform picture IDs and project-native geometry. Platform-project evidence only; no official asset/IP sublicense, commercial clearance, official-client or physical-device acceptance. No private V25 reference pixels or SDK bundle redistributed.",
+      "evidence": "docs/evidence/official-ui-repair-20261112/README.md; candidate.json; capture receipts and raw states. Project screenshots/crops/comparison composition from current native UI; beyond-simulator 0.5.2 installation retains its own GPL license."
     }
   },
   "files": {
@@ -6277,6 +6281,50 @@
     "docs/evidence/battle-piles-final-20261111/visual/consecutive-original-frame.png": {
       "sha256": "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
       "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/official-ui-repair-20261112/energy-comparison-1x.png": {
+      "sha256": "6fb5ae0d560d1c98e80aa7e8bf1f47a53915714f60b4cda22e976a509a7a838a",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/hud-after.png": {
+      "sha256": "fb03a6758bc83c2306d3615206d24add143d1c8c6ade57599cee4d71450e8ec3",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/hud-before.png": {
+      "sha256": "101d93a54a0617b057c7acfd11b0a5b68534a37942047d405c7144d9fbf4b69b",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/touch-after-cancel.png": {
+      "sha256": "0b8c9e31fd3f8efd6620c7f8bf9652eec77e9ed9d51297f183efd22bf2d54ae5",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/touch-after-free.png": {
+      "sha256": "33653036255989dcab54a929b36c02e085a48f7a746f5b6003ed266a9911951f",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/touch-after-lock-first.png": {
+      "sha256": "a3bebe37f4cf3aa0a811819598d15a4e8cff5fbfd48431d765fcc5d212b93f8e",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/touch-after-lock-second.png": {
+      "sha256": "a72aa1f3690cab57cd9a66cc0ead80ee78b75ff52b8a01ceb3b325cb048866d9",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/touch-after-play.png": {
+      "sha256": "e5624ff38b32dd6cc3f72c6d98aee3d81869a6e5e51eef2ce1b8ced46c996d47",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/touch-after-ready.png": {
+      "sha256": "647b63ac24c75abbd00de2ecab51e3bb38f8b38fc086d9eced8d2c32a7f11074",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/touch-before-lock.png": {
+      "sha256": "8f88e426e924c5fb7c31ebf4a1a2ec3600211ca08f5b255481f23027ac57ac2e",
+      "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/official-ui-repair-20261112/touch-comparison.png": {
+      "sha256": "919c85eb72f3ba679041818f3cb2cdca5f60aea4abd8fbf0e0f55bc3ab85b070",
+      "category": "official-ui-repair-simulator-evidence"
     }
   }
 }
