@@ -1,0 +1,268 @@
+{
+  "kind": "offline-battle-pile-final-regression",
+  "buildId": "3a928e26-af7f-4860-ac29-fd078371b0d5",
+  "browserTimingBoundary": "pointer -> first renderer applyScene after actual normal rendering; not physical scanout latency, FPS, or official client",
+  "browserRuns": [
+    {
+      "round": "baseline-1",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/pile-baseline-qa-1794378738939/report.json",
+      "sid": "qa-source-aim-ten-1794378738946",
+      "buildId": "52aee9f0-9c5e-40dd-a39e-6715383cda5f",
+      "saveSha": "86653a48a00b51064802bf65ddb6aa47922bf762c0b0de1053d236db89ef516a",
+      "rendererSha": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "coldReady": {
+        "archiveLoadMs": 8536.8403,
+        "gotoToObservedFrameMs": 9152.4162,
+        "launchToObservedFrameMs": 19197.3262
+      },
+      "isolated": {
+        "samples": 8,
+        "min": 37.70000000298023,
+        "median": 40.15000000037253,
+        "max": 54.399999998509884
+      },
+      "stream": {
+        "events": 48,
+        "requests": 38,
+        "changedFrames": 37,
+        "wall": 1.2405,
+        "game": 1.25
+      },
+      "release": [
+        {
+          "flightMs": 165,
+          "damageMs": 228.69999999925494
+        },
+        {
+          "flightMs": 156.19999999925494,
+          "damageMs": 227.39999999850988
+        },
+        {
+          "flightMs": 201.5,
+          "damageMs": 296.69999999925494
+        }
+      ],
+      "pageErrors": 0,
+      "stopRunning": false
+    },
+    {
+      "round": "current-1",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/pile-final-qa-1794378800971/report.json",
+      "sid": "qa-source-aim-ten-1794378800977",
+      "buildId": "3a928e26-af7f-4860-ac29-fd078371b0d5",
+      "saveSha": "bde20bed09b286fd2916b396b40701f29734ccfa6525d978065dac3c3823e9a5",
+      "rendererSha": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "coldReady": {
+        "archiveLoadMs": 8407.0769,
+        "gotoToObservedFrameMs": 7972.283000000001,
+        "launchToObservedFrameMs": 18002.9075
+      },
+      "isolated": {
+        "samples": 8,
+        "min": 34.5,
+        "median": 42.05000000074506,
+        "max": 44.69999999925494
+      },
+      "stream": {
+        "events": 48,
+        "requests": 35,
+        "changedFrames": 34,
+        "wall": 1.0981999999992549,
+        "game": 1.0899999999999999
+      },
+      "release": [
+        {
+          "flightMs": 190.69999999925494,
+          "damageMs": 250.30000000074506
+        },
+        {
+          "flightMs": 136.30000000074506,
+          "damageMs": 190.09999999776483
+        },
+        {
+          "flightMs": 339,
+          "damageMs": 439
+        }
+      ],
+      "pageErrors": 0,
+      "stopRunning": false
+    },
+    {
+      "round": "current-2",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/pile-final-qa-1794378863467/report.json",
+      "sid": "qa-source-aim-ten-1794378863471",
+      "buildId": "3a928e26-af7f-4860-ac29-fd078371b0d5",
+      "saveSha": "bde20bed09b286fd2916b396b40701f29734ccfa6525d978065dac3c3823e9a5",
+      "rendererSha": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "coldReady": {
+        "archiveLoadMs": 9636.329000000002,
+        "gotoToObservedFrameMs": 7075.453099999999,
+        "launchToObservedFrameMs": 19075.0243
+      },
+      "isolated": {
+        "samples": 8,
+        "min": 66.69999999925494,
+        "median": 75.3000000026077,
+        "max": 99.90000000223517
+      },
+      "stream": {
+        "events": 48,
+        "requests": 28,
+        "changedFrames": 27,
+        "wall": 1.717800000000745,
+        "game": 1.7000000000000002
+      },
+      "release": [
+        {
+          "flightMs": 241.10000000149012,
+          "damageMs": 329
+        },
+        {
+          "flightMs": 193.09999999776483,
+          "damageMs": 248.39999999850988
+        },
+        {
+          "flightMs": 138.90000000223517,
+          "damageMs": 220.19999999925494
+        }
+      ],
+      "pageErrors": 0,
+      "stopRunning": false
+    },
+    {
+      "round": "baseline-2",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/pile-baseline-qa-1794378931939/report.json",
+      "sid": "qa-source-aim-ten-1794378931945",
+      "buildId": "52aee9f0-9c5e-40dd-a39e-6715383cda5f",
+      "saveSha": "86653a48a00b51064802bf65ddb6aa47922bf762c0b0de1053d236db89ef516a",
+      "rendererSha": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "coldReady": {
+        "archiveLoadMs": 10162.7741,
+        "gotoToObservedFrameMs": 10740.365899999999,
+        "launchToObservedFrameMs": 23073.1482
+      },
+      "isolated": {
+        "samples": 8,
+        "min": 45.30000000074506,
+        "median": 62.5500000026077,
+        "max": 146.80000000074506
+      },
+      "stream": {
+        "events": 48,
+        "requests": 33,
+        "changedFrames": 32,
+        "wall": 1.4335,
+        "game": 1.4399999999999995
+      },
+      "release": [
+        {
+          "flightMs": 236.69999999925494,
+          "damageMs": 317.69999999925494
+        },
+        {
+          "flightMs": 232,
+          "damageMs": 310.4000000022352
+        },
+        {
+          "flightMs": 203.79999999701977,
+          "damageMs": 284.19999999925494
+        }
+      ],
+      "pageErrors": 0,
+      "stopRunning": false
+    }
+  ],
+  "sdkBoundary": "actual-GIL-derived pressure fixture; SDK CPU step only, not device FPS",
+  "sdkStepMs": {
+    "samples": 1060,
+    "p50": 10.231099999997241,
+    "p95": 25.333200000000943,
+    "p99": 57.10740000000078,
+    "max": 149.01640000000043
+  },
+  "controls": [
+    {
+      "stage": "cold-initialize",
+      "controls": 13753,
+      "elapsedMs": 3171.6044
+    },
+    {
+      "stage": "portrait-ready-feedback-idle",
+      "controls": 13812,
+      "elapsedMs": 239.66669999999976
+    },
+    {
+      "stage": "opening-hand-layout-settle-120-steps",
+      "controls": 13812,
+      "elapsedMs": 1328.3129
+    },
+    {
+      "stage": "two-seconds-card-glow-and-held-aim",
+      "controls": 13812,
+      "elapsedMs": 1656.7960000000003
+    },
+    {
+      "stage": "steady-120-frames",
+      "controls": 13812,
+      "elapsedMs": 1178.0042999999996
+    },
+    {
+      "stage": "actual-select-cancel",
+      "controls": 13812,
+      "elapsedMs": 158.8760999999995
+    },
+    {
+      "stage": "up-to-three-legal-card-commands",
+      "controls": 13812,
+      "elapsedMs": 2144.9578999999994
+    },
+    {
+      "stage": "actual-discard-pile-browse",
+      "controls": 13812,
+      "elapsedMs": 278.3694999999989
+    },
+    {
+      "stage": "twenty-native-discard-grid-cycles",
+      "controls": 13812,
+      "elapsedMs": 5938.509899999999
+    },
+    {
+      "stage": "real-offering-and-twenty-exhaust-cycles",
+      "controls": 13812,
+      "elapsedMs": 6625.894899999999
+    },
+    {
+      "stage": "actual-end-turn",
+      "controls": 13812,
+      "elapsedMs": 3685.2903000000006
+    },
+    {
+      "stage": "twenty-native-draw-cycles",
+      "controls": 13812,
+      "elapsedMs": 5413.7297
+    },
+    {
+      "stage": "twenty-open-close-cycles",
+      "controls": 13812,
+      "elapsedMs": 6024.826300000001
+    },
+    {
+      "stage": "twenty-route-preview-roundtrips",
+      "controls": 13812,
+      "elapsedMs": 6395.821799999998
+    },
+    {
+      "stage": "engine-root-cleanup",
+      "controls": 0,
+      "elapsedMs": 49.464700000004086
+    }
+  ],
+  "faults": 0,
+  "sourceStable": true,
+  "officialClient": false,
+  "mobile": false
+}

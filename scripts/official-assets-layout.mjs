@@ -5,6 +5,7 @@ import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
 import {v25Theme,applyV25BattleLayout} from './v25-layout.mjs';
 import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
 import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
+import {battlePileReturn} from './official-battle-pile-chrome.mjs';
 const children=node=>node?.controls??node?.children??[];
 const child=(node,name)=>children(node).find(item=>item.name===name);
 const required=(node,name)=>{const value=child(node,name);if(!value)throw Error('Official assets missing '+name);return value;};
@@ -78,7 +79,7 @@ function cardFace(face,theme,battle=false){
   }
   for(const kind of ['attack','skill','power']){
    const window=required(skin,kind),well=required(window,'well');
-   for(const [index,scale]of [.95,.7,.45].entries())well.children.push({name:'nativeWindowLight'+index,kind:'image',position:[0,window.size[1]*.12],size:[window.size[0]*scale,window.size[1]*scale*.8],image:100002,colour:kind==='attack'?'#A53630':kind==='skill'?'#45636A':'#A48049',opacity:.14,feather:{pixels:[26,14]}});
+   for(const [index,scale]of [.95,.7,.45].entries())well.children.push({name:'nativeWindowLight'+index,kind:'image',position:[0,window.size[1]*.12],size:[window.size[0]*scale,window.size[1]*scale*.8],image:106056,imageType:'basic',colour:kind==='attack'?'#A94D47':'#C46A60',opacity:.14});
   }
  }
  for(const name of ['label','description']){
@@ -117,9 +118,11 @@ function battleSurfaces(root,theme){
  for(const name of ['title','floorIcon','floor'])required(root,name).visible=false;
  const heading=structuredClone(required(root,'player'));heading.name='officialHeroHeading';heading.position=hud.heading.slice(0,2);heading.size=hud.heading.slice(2);heading.text.content=hud.headingText;heading.text.fontSize=hud.headingSize;heading.text.colour=theme.color.gold;
  heading.position[1]-=hud.y;bar.children.push(heading);
- for(let index=1;index<=3;index++){
+ for(let index=1;index<=5;index++){
   const x=hud.potionX+(index-1)*hud.potionStep;
-  for(const node of [required(root,'potion'+index),child(child(root,'potionHelp'),'potionHelp'+index)]){
+  const bottle=child(root,'potion'+index)??child(child(root,'potionHelp'),'potion'+index);
+  if(!bottle)throw Error('Missing battle potion '+index);
+  for(const node of [bottle,child(child(root,'potionHelp'),'potionHelp'+index)]){
    if(node){
     node.position=[x,hud.y];
     for(const face of children(node))if(['normal','hover','pressed','disabled'].includes(face.name))face.scale=(face.scale??[1,1]).map((value,axis)=>value*(Array.isArray(hud.potionScale)?hud.potionScale[axis]:hud.potionScale));
@@ -234,6 +237,12 @@ export function applyOfficialAssets(trees,theme){
    if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme,battleCards.has(node));cardHosts++;}
    else {buttonFaces(node,theme);panelSurfaces(node,theme);pageBackgrounds(node,theme);roomTextFits(node,theme);}
   });
+  const pileReturn=child(child(tree,'stage')??tree,'deckPanel');
+  if(child(pileReturn,'pileReturn'))battlePileReturn(child(pileReturn,'pileReturn'),true,theme.officialAssets.images.button);
+  const tools=child(pileReturn,'pileTools');
+  if(tools)for(const control of children(tools)){
+   const backing=child(control,'officialButtonBacking');if(backing)backing.visible=false;
+  }
  }
  return {cardHosts,removedControls};
 }

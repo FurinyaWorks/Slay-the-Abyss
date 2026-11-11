@@ -1,0 +1,223 @@
+{
+  "kind": "stage-review-evidence-not-acceptance",
+  "buildId": "52aee9f0-9c5e-40dd-a39e-6715383cda5f",
+  "files": [
+    {
+      "path": "browser-report.json.gz",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/stage-qa-1794360773069/report.json",
+      "sourceSha256": "52ca9e1ed41fd5c3d187fd2079dea3693f1d91c56cdf22cab2f5facf146b9d51",
+      "archivedSha256": "ee00a2c7aa1b0ea11b26b6d0c04be77d2e63009e7d811176eba028ac5f9d4530",
+      "sourceBytes": 2455014
+    },
+    {
+      "path": "browser-qa.mjs.gz",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/browser-stage-qa.mjs",
+      "sourceSha256": "feaf9019edd9a5f572e260199558a7b0e5893540fd64a4a7dfdb42df812ab480",
+      "archivedSha256": "a34abf502eccb874fa0b8ffdef29ceb898c02ad3766ec388a29c583b685d3785",
+      "sourceBytes": 12637
+    },
+    {
+      "path": "visual-capture.mjs.gz",
+      "source": ".artifacts/battle-repair-20261111/stage-visual.mjs",
+      "sourceSha256": "24d62b65ac6ab6ca23b64a43340ef2fef7f31fb102b0072b1e0fd23a29d84939",
+      "archivedSha256": "368b090064ae7bc55d8b31ddb59f67b5d311b685e863acde641fdbc41e1834cc",
+      "sourceBytes": 6952
+    },
+    {
+      "path": "geometry.json.gz",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/geometry-source-aim.json",
+      "sourceSha256": "24f8b2e86c28597fe1835e5d016c89636b1959515abfda222357bad255ec7bef",
+      "archivedSha256": "d5051193ed2fe9f34413877bfe7324dcb7c0e2c1ef1f5ed42e63570a052480ab",
+      "sourceBytes": 219731
+    },
+    {
+      "path": "previous-hud2-summary.json.gz",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/hud2-browser-summary.json",
+      "sourceSha256": "fbdb60e98764c84b454e683e26cf5e6dabebeab26347fa841431b5095ba911d5",
+      "archivedSha256": "9e4a46bc61e137da646b7c49862c0eaef152de2fc5d5fb365ba32f1b8f1638b7",
+      "sourceBytes": 22571
+    },
+    {
+      "path": "previous-hud2-ordinary.json.gz",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/hud2-ordinary-1794336659057/report.json",
+      "sourceSha256": "cd43280cef7a2bafdabc1f8c30bd2bf56dc90757cb99006264bedba5670a247d",
+      "archivedSha256": "77946ebfda1e96b11bcf34ce225e453414704763db5feb4cfd72ea2c2910c2d1",
+      "sourceBytes": 1762267
+    },
+    {
+      "path": "previous-hud2-typed.json.gz",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/hud2-typed-1794336742421/report.json",
+      "sourceSha256": "41b7fafab4c4acb1e31abd7a1676cca71f163f789372bde4663c59f5132c7f61",
+      "archivedSha256": "f08720dea217b66424bec099623ea779820ef30a1ff051fb2b83cf28b9eb4490",
+      "sourceBytes": 1708087
+    },
+    {
+      "path": "runtime-tests.log.gz",
+      "source": ".artifacts/battle-repair-20261111/mouse-aim-runtime-full.log",
+      "sourceSha256": "be42fd844e56ebcd9928a7f563c72e8cba5214f1b055e39a392c37ba5fc802fc",
+      "archivedSha256": "c3991503cb92527a8682f85c3895668295afc30b20e949c83afe1f108a18dcc0",
+      "sourceBytes": 5764
+    },
+    {
+      "path": "source-tests.log.gz",
+      "source": ".artifacts/battle-repair-20261111/mouse-aim-source-tests.log",
+      "sourceSha256": "a28f1b4a052e093440e830141989a0a5f52274ab43a67816a22f353a33810f71",
+      "archivedSha256": "ade63c14caf2f18c87a29b6f606524a4ef0288ec8853f1ba99b1d424a65da236",
+      "sourceBytes": 6785
+    },
+    {
+      "path": "engineering.log.gz",
+      "source": ".artifacts/battle-repair-20261111/stage-engineering.log",
+      "sourceSha256": "c4c5b6c4b855dd214c26cfa833ad10189b73dc19651ec7cc26534b1903e98c6e",
+      "archivedSha256": "e7903c95451a1bce4190d8e95edcde4d285ce79b5ead0610e9aa4e9ab65ac43c",
+      "sourceBytes": 378
+    },
+    {
+      "path": "adapter-receipt.json.gz",
+      "source": ".artifacts/battle-repair-20261111/source-aim-candidate/adapter-receipt.json",
+      "sourceSha256": "7638e4a369f968193cc826c13fbae5e4fa4103680ac048c4b6d4fd8e0a9b78c8",
+      "archivedSha256": "e2c8e3fd8faf8e74d0e7f17a210f0522368504061cf3ac55d4530bb712238e59",
+      "sourceBytes": 8632
+    },
+    {
+      "path": "ten-fixture-receipt.json.gz",
+      "source": ".artifacts/battle-repair-20261111/source-aim-candidate/hud.save.json.receipt.json",
+      "sourceSha256": "7da2742f428452aaa736acbed1916548f9700ae635c06fc5166d7cbee645ad85",
+      "archivedSha256": "549999e227421e7aa82e054fd42c37ff2e93b37f8fb4fea3f000bb68a237b428",
+      "sourceBytes": 552
+    },
+    {
+      "path": "five-fixture-receipt.json.gz",
+      "source": ".artifacts/battle-repair-20261111/source-aim-candidate/five.save.json.receipt.json",
+      "sourceSha256": "524f99b1ca3144886894dcf53b01d1ec784515994fb97e1850e44a318b092a0c",
+      "archivedSha256": "291ba0cedbfddf7aa088f8f9cbbea4177c3431d56cec421b740d23d950f950af",
+      "sourceBytes": 552
+    },
+    {
+      "path": "build.log.gz",
+      "source": ".artifacts/battle-repair-20261111/source-aim-build.log",
+      "sourceSha256": "591bc24173c4a461e1ef0b31975169b23ac70d21574b1bbf07244fba25b92cfb",
+      "archivedSha256": "4c616dc9f8795f8bfd8317233bde9455bd79bde5e25f6d2da44b38d3bf1781f2",
+      "sourceBytes": 216
+    },
+    {
+      "path": "readback.log.gz",
+      "source": ".artifacts/battle-repair-20261111/source-aim-readback.log",
+      "sourceSha256": "ccb1538dadc9efd66ed607968042f3bf15db9373f17d26ffec5c9c67112271c4",
+      "archivedSha256": "cd71d824a297cc2601b0d72df244f8f197d9f126f6b4a59223c551847b61164f",
+      "sourceBytes": 282
+    },
+    {
+      "path": "previous-hud2-whole-page.json.gz",
+      "source": ".artifacts/battle-repair-20261111/hud2-candidate/whole-page.json",
+      "sourceSha256": "7dd8e024ce7801729fc1fe6ceafbf609362d02c15ebbddaed7a5a205d4118d6c",
+      "archivedSha256": "3dd8a1b803a585470075993c221b77678cc5a00c181b7f27c5fa6f8e1514e4a7",
+      "sourceBytes": 176493
+    },
+    {
+      "path": "rejected-nested-render-probe.json.gz",
+      "source": ".artifacts/battle-repair-20261111/input-cadence/stage-qa-1794360632414/report.json",
+      "sourceSha256": "f0c55f2943de4b58124e7d4747b4e0d73d71efeac493201af8f129c5389888a9",
+      "archivedSha256": "451baad786004fd795932145a4a3df74d43c3361986f7c6b5aa8390f91a80864",
+      "sourceBytes": 14512258
+    },
+    {
+      "path": "failed-first-visual-capture.json.gz",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360727764/receipt.json",
+      "sourceSha256": "9011ec0603feb0a120bde12bd1e87f282bc422071d93fc5d18a7707ec2bc5c71",
+      "archivedSha256": "04407b2d6f31459ce3d6d7e743918b78bc56820cd3dbc32b48bc732679843012",
+      "sourceBytes": 1266
+    },
+    {
+      "path": "visual/01-whole.png",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/01-whole.png",
+      "sourceSha256": "5931d75247e2b2a31df51a3a95ee80a56aee248fadef880475364fd3efedea59",
+      "archivedSha256": "5931d75247e2b2a31df51a3a95ee80a56aee248fadef880475364fd3efedea59",
+      "sourceBytes": 394527
+    },
+    {
+      "path": "visual/01-whole.state.json.gz",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/01-whole.state.json",
+      "sourceSha256": "e542d808a3213f457c2c27346c5ad531918b1d876dc9b2aa23d2d2a04752c747",
+      "archivedSha256": "2b4a239afb0fa0a339f1bf0b32707d5c790c3a2f5afd1f7a78c43e77b302fadf",
+      "sourceBytes": 5108436
+    },
+    {
+      "path": "visual/02-defend-hover.png",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/02-defend-hover.png",
+      "sourceSha256": "3fbe2d2e342507196e7801de055eb84faba0af5e6720d74b4a578b1c346d1693",
+      "archivedSha256": "3fbe2d2e342507196e7801de055eb84faba0af5e6720d74b4a578b1c346d1693",
+      "sourceBytes": 384277
+    },
+    {
+      "path": "visual/02-defend-hover.state.json.gz",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/02-defend-hover.state.json",
+      "sourceSha256": "011d6639da89186aa35c9fb4755739311dea24cef520b6d5ef5579a47f916587",
+      "archivedSha256": "3e7bbc3af09bb1faff2c2473eb68b7230cf1b265bc3023288f1a5e4b3949c50b",
+      "sourceBytes": 5108409
+    },
+    {
+      "path": "visual/03-bash-centred-aim.png",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/03-bash-centred-aim.png",
+      "sourceSha256": "ed70d90c06781bd0f6397ee13f48df911ebf7979361de54bbd4e25adc5e0d833",
+      "archivedSha256": "ed70d90c06781bd0f6397ee13f48df911ebf7979361de54bbd4e25adc5e0d833",
+      "sourceBytes": 406282
+    },
+    {
+      "path": "visual/03-bash-centred-aim.state.json.gz",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/03-bash-centred-aim.state.json",
+      "sourceSha256": "032356bf8aa32bcdedee2e7f9f65774dbd2a5ee0051ed514cd14ec674b80077a",
+      "archivedSha256": "e172ccc6223523a4f46c56e7f8a2906b646dc52c577979562a9b588b0b712495",
+      "sourceBytes": 5105275
+    },
+    {
+      "path": "visual/04-exhaust-offering.png",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/04-exhaust-offering.png",
+      "sourceSha256": "673fcf1d872296f22bf0517097a59d92c82e0073dbc0938cbc6e248f84ee2b8f",
+      "archivedSha256": "673fcf1d872296f22bf0517097a59d92c82e0073dbc0938cbc6e248f84ee2b8f",
+      "sourceBytes": 97926
+    },
+    {
+      "path": "visual/04-exhaust-offering.state.json.gz",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/04-exhaust-offering.state.json",
+      "sourceSha256": "9eedfd41892deb1d0a3f890354a493876c45541162ca99e50650bfd329eca238",
+      "archivedSha256": "6f37fe70932976cf08839d8e92e09fcb780283620a65c77b8815601c9043c0a1",
+      "sourceBytes": 5367861
+    },
+    {
+      "path": "visual/05-discard-strike.png",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/05-discard-strike.png",
+      "sourceSha256": "d095604f17665967b494d9ceb9a7c576747d9a67081d315b9961a50db151b9f9",
+      "archivedSha256": "d095604f17665967b494d9ceb9a7c576747d9a67081d315b9961a50db151b9f9",
+      "sourceBytes": 92904
+    },
+    {
+      "path": "visual/05-discard-strike.state.json.gz",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/05-discard-strike.state.json",
+      "sourceSha256": "817d1c7bf8b5c1997d8a194324a16833d80a22ce45a3195c3c4b8065f7eaa318",
+      "archivedSha256": "c809c12fbf5addf70585f764c0d75e3748dc2b465b1b34a5d08416c7fa6c12f7",
+      "sourceBytes": 5377769
+    },
+    {
+      "path": "visual/06-draw-next-turn.png",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/06-draw-next-turn.png",
+      "sourceSha256": "93c6984a25bbc2de6afd28d17cab1d73f2b64c4b189dbef375e71d84a8c4ef29",
+      "archivedSha256": "93c6984a25bbc2de6afd28d17cab1d73f2b64c4b189dbef375e71d84a8c4ef29",
+      "sourceBytes": 134968
+    },
+    {
+      "path": "visual/06-draw-next-turn.state.json.gz",
+      "source": ".artifacts/battle-repair-20261111/stage-visual-1794360834592/06-draw-next-turn.state.json",
+      "sourceSha256": "15f822b668df1517bccd98881bf6539b9f97b040f61bab11539c378a4d4d7bad",
+      "archivedSha256": "e440f97889dbf921e369224bb0b58320568b7c0f608464e67b38fb710358bdc8",
+      "sourceBytes": 6194047
+    },
+    {
+      "path": "candidate.json.gz",
+      "source": "build/pr588-battle-source-aim/52aee9f0-9c5e-40dd-a39e-6715383cda5f/candidate.json",
+      "sourceSha256": "6b38c9cf6e9052bf7a02a52b239ba62b96cdaa42fc3d207bb6ad46074131d71c",
+      "archivedSha256": "966266424625f7ad9efcffb0850d5da6202fcdd4f591c2c741549a7268caff53",
+      "sourceBytes": 467967
+    }
+  ]
+}

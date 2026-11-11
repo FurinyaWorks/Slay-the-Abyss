@@ -50,9 +50,12 @@ function M.install(owner, ownership, host, dependencies)
     closeInfo = function()
         if host.potionPopup and host.potionPopup:close() then return true end
         if not owner.info then return false end
+        -- Pointer gestures may continue only after automatic card hover help;
+        -- explicit/held readers and potion popups still consume their close.
+        local automaticCard=owner.info.transient==true and owner.info.kind=='card'
         owner.info = nil
         dependencies.child("statusInfo"):SetVisible(false)
-        return true
+        return true,automaticCard
     end
     function owner:showStatus(index)
         local run = self.run

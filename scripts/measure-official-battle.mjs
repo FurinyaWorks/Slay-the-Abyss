@@ -22,13 +22,24 @@ function luaValue(index,depth=0){assert(depth<12);const type=d.lua_type(L,index)
 function status(){const top=d.lua_gettop(L);d.lua_getglobal(L,enc('__BATTLE_STATUS'));assert.equal(d.lua_pcall(L,0,1,0),0,'status query failed');const value=luaValue(-1);d.lua_settop(L,top);return value}
 function native(p){let n=session.runtime.roots[0];for(const name of p.split('/')){const a=n.children.filter(c=>c.name===name);assert.equal(a.length,1,'native path '+p);n=a[0]}return n}
 function point(p){const n=native(p),boxes=wi(session),box=boxes.get(n.Id),matrix=pa(session,boxes).get(n.Id);assert(box&&matrix);return Me(matrix,box.centerX,box.centerY)}
-const stepTimes=[];
+const stepTimes=[],pointerEvents=[];
 function step(){const t=performance.now();dn(session,1/60);stepTimes.push(performance.now()-t)}
-function pointer(type,p){return vi(session,type,p.x,p.y)}
+function pointer(type,p){
+ const started=performance.now();
+ try{return vi(session,type,p.x,p.y)}
+ finally{pointerEvents.push({type,x:p.x,y:p.y,elapsedMs:performance.now()-started});}
+}
 function tap(p){const xy=typeof p==='string'?point(p):p;pointer('move',xy);pointer('down',xy);step();pointer('up',xy);step()}
 function drain(){for(let i=0;i<600;i++){const s=status();if(!s.busy)return s;step()}throw Error('feedback did not settle')}
 function timing(values){const sorted=[...values].sort((a,b)=>a-b),q=p=>sorted[Math.max(0,Math.ceil(sorted.length*p)-1)];return {samples:sorted.length,p50:q(.5),p95:q(.95),p99:q(.99),max:sorted.at(-1)}}
-function stage(name,fn){const before=session?.runtime.controlsById.size??0,t=performance.now(),at=stepTimes.length;const result=fn();report.stages.push({name,elapsedMs:performance.now()-t,controlsBefore:before,controlsAfter:session?.runtime.controlsById.size??0,steps:stepTimes.length-at,sdkStepMs:timing(stepTimes.slice(at)),memory:process.memoryUsage(),state:result});return result}
+function stage(name,fn){
+ const before=session?.runtime.controlsById.size??0,t=performance.now(),at=stepTimes.length,inputAt=pointerEvents.length;
+ const result=fn(),inputs=pointerEvents.slice(inputAt);
+ report.stages.push({name,elapsedMs:performance.now()-t,controlsBefore:before,controlsAfter:session?.runtime.controlsById.size??0,
+  steps:stepTimes.length-at,sdkStepMs:timing(stepTimes.slice(at)),pointerEvents:inputs,
+  pointerHandlerMs:timing(inputs.map(event=>event.elapsedMs)),memory:process.memoryUsage(),state:result});
+ return result;
+}
 try{
  stage('cold-initialize',()=>{
   session=Gr(save.assets.server,{templatesProject:save.assets.client,scripts:save.assets.scripts,serverConfig:save.serverLogic,canvasId:'pc-16-9',language:'LanguageChs'});
@@ -48,6 +59,7 @@ try{
   assert(session.runtime.logs.some(l=>l.text==='ABYSS_UI ready'));return status();
  });
  stage('portrait-ready-feedback-idle',()=>{for(let i=0;i<600;i++){const s=status();if(s.portraits.battle?.phase==='ready'&&!s.busy)return s;step()}throw Error('battle portrait never became ready')});
+ stage('opening-hand-layout-settle-120-steps',()=>{for(let i=0;i<120;i++)step();return status()});
  stage('two-seconds-card-glow-and-held-aim',()=>{
   const before=status(),entry=Object.entries(before.cards).find(([,c])=>c.type==='attack'&&c.target);assert(entry,'no legal attack to aim');
   const card=point('stage/battlePanel/card'+entry[0]+'/hit');
@@ -88,6 +100,8 @@ try{
 finally{
  report.logs=session?.runtime.logs??[];report.faults=report.logs.filter(l=>l.level==='lua-error'||/ABYSS_UI failed|prepare_failed|command_failed/.test(l.text));if(report.faults.length){report.status='failed';process.exitCode=1}
  report.sdkStepMs=timing(stepTimes);
+ report.pointerEvents=pointerEvents;
+ report.pointerHandlerMs=timing(pointerEvents.map(event=>event.elapsedMs));
  report.sourceStable=hash(savePath)===report.saveSha256&&hash(sdkPath)===sdkSha256&&hash(fixtureReceiptPath)===report.fixtureReceiptSha256;
  if(!report.sourceStable){report.status='failed';report.error='Measurement inputs changed';process.exitCode=1}for(const runtime of session?.runtimes??[])try{runtime.destroy()}catch{}
  fs.writeFileSync(output,JSON.stringify(report,null,2));console.log(JSON.stringify({status:report.status,error:report.error,stages:report.stages.map(s=>({name:s.name,elapsedMs:s.elapsedMs,controls:s.controlsAfter})),sdkStepMs:report.sdkStepMs,faults:report.faults.length}));

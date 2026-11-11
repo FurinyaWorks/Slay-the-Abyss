@@ -58,6 +58,7 @@ local phases=setmetatable({},{__mode='k'})
 local activeHalos=setmetatable({},{__mode='k'})
 local decorations=setmetatable({},{__mode='k'})
 local pillWidths=setmetatable({},{__mode='k'})
+local bodyMaterialKinds=setmetatable({},{__mode='k'})
 -- Store only a boolean; a cached child handle could retain its weak-key parent.
 local flatGroups=setmetatable({},{__mode='k'})
 -- Native entry selects approved gold UI independently of illustration flags; nil keeps the legacy palette for isolated previews.
@@ -111,8 +112,15 @@ local function frame(box,definition,look,tint)
     local skin=box:GetChild('skin');tint(skin:GetChild('gloss'),rarity[4])
     for i=1,config.bandSteps do tint(skin:GetChild('band'..i),mix(rarity[2],rarity[3],(i-1)/(config.bandSteps-1)))end
 end
+local function neutralBattleMaterial(definition,scope)
+    if Theme.presentationProfile~='official-assets-first' or scope~='battle' then return end
+    if definition.type~='status' and definition.type~='curse' then return end
+    return Theme.officialAssets.battleCardBodyMaterials[definition.type]
+end
 local function window(box,definition,accent,tint,scope)
     local shape=definition.type
+    local neutral=neutralBattleMaterial(definition,scope)
+    if neutral then shape='skill' end
     local rarity=config.rarities[definition.rarity] or config.rarities.basic
     local edge=config.rarityWindow and rarity[4] or accent
     if not windowNames[shape] then shape='attack' end
@@ -122,13 +130,31 @@ local function window(box,definition,accent,tint,scope)
         if kind==shape then
             paint(group:GetChild('edge'),names,edge,tint)
             local wells=scope=='battle' and config.battleArtWells or config.artWells
-            local well=wells and wells[shape] or mix(Theme.color.cardWell,accent,.05)
+            local well=neutral and neutral.artWell or wells and wells[shape] or mix(Theme.color.cardWell,accent,.05)
             paint(group:GetChild('well'),names,well,tint)
         end
     end
     paint(box:GetChild('tagEdge'),roundNames,edge,tint)
     if config.typePlate then paint(box:GetChild('tagBody'),roundNames,config.typePlate,tint)end
     tint(box:GetChild('typeEdge'),edge)
+end
+local function battleBody(box,definition,scope,tint)
+    if Theme.presentationProfile~='official-assets-first' or scope~='battle' then return end
+    local kind=(definition.type=='status' or definition.type=='curse') and definition.type or 'red'
+    if bodyMaterialKinds[box]==kind then return end
+    local prior=bodyMaterialKinds[box]
+    if not prior and kind=='red' then bodyMaterialKinds[box]=kind;return end -- generated chrome already has this material
+    local material=Theme.officialAssets.battleCardBodyMaterials[kind]
+    local body=box:GetChild('nativeCardBody')
+    for _,name in ipairs({'outerBevel','paperBevel','recessShadow','innerWell'})do
+        paint(body:GetChild(name),roundNames,material[name],tint)
+    end
+    local opacities=Theme.officialAssets.battleCardBodyLayerOpacity
+    for _,name in ipairs({'topCatchlight','leftCatchlight','bottomShade'})do
+        local c=material[name]
+        tint(body:GetChild(name),{r=c.r,g=c.g,b=c.b,a=math.floor(opacities[name]*255+.5)})
+    end
+    bodyMaterialKinds[box]=kind
 end
 local function emblem(box,role,accent,tint)
     for key in pairs(config.roles)do
@@ -196,7 +222,10 @@ local function sizeRounded(group,w,h,r)
 end
 local function blockedState(box,look)
     local shown=look.dim==true and not look.overlayCovered
-    for _,name in ipairs({'blockedVeil','blockedPill','blockedLock','blockedReason'})do box:GetChild(name):SetVisible(shown)end
+    local original=Theme.presentationProfile=='official-assets-first' and look.surfaceScope=='battle'
+    box:GetChild('blockedVeil'):SetVisible(shown)
+    for _,name in ipairs({'blockedPill','blockedLock','blockedReason'})do box:GetChild(name):SetVisible(shown and not original)end
+    if original then return end
     local reason=box:GetChild('blockedReason')
     reason.text=look.reason or blockedCopy[look.blockReason] or '当前不可打出'
     if not shown then return end
@@ -231,6 +260,7 @@ function M.apply(box,definition,platform,look)
     local key=table.concat({role,definition.rarity or 'basic',definition.type or 'status',tostring(look.dim),tostring(look.selected),tostring(premium~=nil),tostring(look.surfaceScope)},':')
     if decorations[box]~=key then
         frame(box,definition,look,tint);window(box,definition,accent,tint,look.surfaceScope)
+        battleBody(box,definition,look.surfaceScope,tint)
         emblem(box,role,accent,tint);decorations[box]=key
     end
     local rarities=config.rarities

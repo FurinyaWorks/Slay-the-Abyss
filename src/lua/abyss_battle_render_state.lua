@@ -1,8 +1,32 @@
 -- Read state, issue Run commands. No damage/energy/outcome rules live in this view.
 local Run = require("abyss_run")
+local Combat = require("abyss_combat")
 local Theme = require("abyss_theme")
 local M = {}
 local L = Theme.layout
+-- Bottle faces need catalog text and physical slot identity, not a staged use.
+-- Detached small effect rows keep presentation writes away from definitions.
+local function potionMetadata(run)
+    local rows={}
+    for slot=1,Run.potionCapacity(run)do
+        local id=run.potions[slot]
+        if id then
+            rows[slot]={slot=slot,id=id,name=id,effects={}}
+            for _,definition in ipairs(run.data.potions.potions)do
+                if definition.id==id then
+                    rows[slot]={slot=slot,id=id,name=definition.name,targetPolicy=definition.targetPolicy,
+                        needTarget=definition.targetPolicy=='enemy_one',effects=Combat.copy(definition.effects)}
+                    break
+                end
+            end
+        end
+    end
+    return rows
+end
+local function renderPotionRows(run)
+    if Theme.presentationProfile=='official-assets-first' then return potionMetadata(run) end
+    return Run.potionView(run)
+end
 -- Explicit ports preserve the approved implementation without a shared constructor closure.
 function M.install(owner, ownership, _host, dependencies)
     local R = L.rewardPick
@@ -113,7 +137,7 @@ function M.install(owner, ownership, _host, dependencies)
         local run, battle = frame.run, frame.battle
         frame.active = owner.active and frame.fighting and battle.phase == "player" and not owner.busy
         -- Stage transactions once while input is available, never per animation step.
-        frame.potions = owner.busy and owner.potionViewCache or frame.fighting and Run.potionView(run) or {}
+        frame.potions = owner.busy and owner.potionViewCache or frame.fighting and renderPotionRows(run) or {}
         if not owner.busy then owner.potionViewCache = frame.potions end
         frame.potionCapacity = run and Run.potionCapacity(run) or 0
         owner.potionTargetAvailable = targetPotionAvailable(frame)

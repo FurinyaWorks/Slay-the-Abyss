@@ -1,0 +1,10 @@
+{
+  "reviewer": "/root/review_mouse_aim",
+  "mode": "independent read-only review; no browser or test rerun",
+  "sourceCommit": "d7ac8353c1d74f84f7c8fa161685ba73da0023cc",
+  "sourceEpochArchiveSha256": "2fbf3dba8ff4992cae4eccef2d8c27af70fc7a22c726fa72ece6fe5dfb3a1ccd",
+  "p1": 0,
+  "p2": 0,
+  "findings": "Exact complete before/after source archive, frozen projection and unchanged legacy assertions reviewed. Manifest gzip identities, four raw browser reports, SDK 1060 samples/15 stages, 13 original PNGs, seven return and three grid regions, and ten original-frame hashes independently matched. CPU/FPS/device boundaries and correction of image-display misinterpretation accurately recorded.",
+  "recordedAt": "2026-11-11T07:15:28.433Z"
+}

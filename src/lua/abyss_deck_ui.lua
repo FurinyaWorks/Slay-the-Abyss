@@ -14,7 +14,7 @@ local browseFilters={{id='all',control='All'},{id='attack',control='Attack'},
     {id='skill',control='Skill'},{id='power',control='Power'},
     {id='status',control='Status'},{id='curse',control='Curse'}}
 local browseSorts={'original','type','cost'}
-local sortNames={original='获得顺序',cost='耗能',type='类型'}
+local sortNames={original='获得顺序',cost='耗能',type='类型',name='名称'}
 
 -- Observe native click metadata only; leave drag handlers and scroll offsets
 -- to the native Grid rather than synthesizing scrolling. Click-only C-mode works.
@@ -66,17 +66,10 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     local pileGrid = root:GetChild('pileGrid')
     local grid = browserGrid
     local function gridColumns() return self.pileView and 5 or Theme.layout.deckView.columns end
-    local function pileLayout(count)
-        local l=Theme.layout.deckView
-        -- FixedCount is read-only in ClientUIGridScrollerControl. A narrower
-        -- viewport centers the occupied first row without moving recycled items.
-        local columns=math.max(1,math.min(5,count))
-        local w,h=grid:GetItemSize()
-        local spacing=grid:GetItemSpacing()
-        local top,bottom,left,right=grid:GetPadding()
-        local height=count<=5 and h+top+bottom or l.viewport[4]
-        grid:SetSizeDelta(columns*w+(columns-1)*spacing+left+right,height)
-        grid:SetAnchoredPosition(l.viewport[1],l.viewport[2])
+    local function pileLayout()
+        -- V25 keeps five columns even for one card; list origin never jumps.
+        grid:SetSizeDelta(918,557)
+        grid:SetAnchoredPosition(0,-75.5)
     end
     local function liveFaces(fn)
         for control,binding in pairs(self.bindings)do
@@ -98,7 +91,14 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     end
     local function paintBrowse()
         local active=canBrowse()
-        root:GetChild('title'):SetVisible(not active)
+        if self.pileView and not self.detailPages then root:GetChild('pileChrome'):GetChild('heading').text=self.listTitle end
+        if Theme.presentationProfile=='official-assets-first' then root:GetChild('pileTools'):SetVisible(self.pileView and not self.detailPages)end
+        if self.pileView then for _,mode in ipairs({'original','type','cost','name'})do
+            local label=root:GetChild('pileTools'):GetChild(mode):GetChild('label')
+            label.text=(mode=='original' and '默认' or mode=='cost' and '费用' or sortNames[mode])..(self.sortMode==mode and not self.sortAscending and ' ▾' or ' ▴')
+            if platform.color then label.fontColor=self.sortMode==mode and platform.color(228,211,94,255) or platform.color(233,230,220,255)end
+        end end
+        root:GetChild('title'):SetVisible(not active and not self.pileView)
         local heading=root:GetChild('browseTitle')
         heading:SetVisible(active)
         if active then heading.text=self.listTitle end
@@ -121,7 +121,8 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     end
     local function detailPage()
         root:GetChild('title').text=self.detailTitle..' · '..self.detailPage..'/'..#self.detailPages
-        details.text=self.detailPages[self.detailPage]..'\n\n点按正文翻页 · 右上角返回'
+        if self.pileView then root:GetChild('pileChrome'):GetChild('heading').text=root:GetChild('title').text end
+        details.text=self.detailPages[self.detailPage]..'\n\n点按正文翻页 · '..(self.pileView and '左下角返回' or '右上角返回')
     end
     function self.showDetails(_,definition,upgraded)
         if not self.visible or self.choiceToken or not definition.originalV4 then return false end
@@ -197,7 +198,9 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         liveFaces(CardDisplay.clearNativeArt)
         self.detailTitle=title
         self.detailPage=1;grid:SetVisible(false);details:SetVisible(true);detailHit:SetVisible(true)
-        closeLabel('返回');detailPage();paintBrowse();return true
+        closeLabel('返回');detailPage();paintBrowse()
+        if self.pileView then root:GetChild('pileReturn'):SetAsLastSibling()end
+        return true
     end
     function self.inspectText(_,run,title,raw)
         if self.visible then return false end
@@ -302,6 +305,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         local suffix=entry.card.upgraded and ('+'..(entry.definition.repeatable and tostring(entry.card.upgrades or 1) or '')) or ''
         local name=assert(presentation[entry.card.cardId],'missing deck name').name..suffix
         if self.sortMode=='type' then return string.upper(entry.definition.type)..name end
+        if self.sortMode=='name' then return name end
         -- MasterDeck compares printed cost, not the transient costForTurn adapter.
         local base=self.catalog.cards[entry.card.cardId]
         local cost=entry.card.upgraded and (base.upgrade or {}).cost or base.cost
@@ -317,7 +321,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
                 entries[#entries+1]={card=card,index=i,definition=definition}
             end
         end
-        if not self.pileKind then
+        if not self.pileKind or self.pileView then
             table.sort(entries,function(a,b)
                 local x,y=a.index,b.index
                 if self.sortMode~='original' then x,y=sortKey(a),sortKey(b) end
@@ -353,6 +357,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         root:GetChild('title').text=self.listTitle
         paintBrowse()
         refreshGrid()
+        if self.pileView then root:GetChild('pileReturn'):SetAsLastSibling()end
         return true
     end
     function self.setFilter(_,kind)
@@ -369,6 +374,12 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         self.sortDirections[mode]=not self.sortDirections[mode]
         self.sortAscending=self.sortDirections[mode]
         self.masterSort={run=self.run,mode=mode,directions=self.sortDirections,ascending=self.sortAscending}
+        return changeBrowse()
+    end
+    function self.setPileSort(_,mode)
+        if not self.visible or not self.pileView or self.detailPages or not sortNames[mode] then return false end
+        self.sortAscending=self.sortMode~=mode or not self.sortAscending
+        self.sortMode=mode
         return changeBrowse()
     end
     local function restoreSort(run)
@@ -393,8 +404,14 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         browserGrid:SetVisible(not self.pileView)
         if pileGrid then pileGrid:SetVisible(self.pileView) end
         root:GetChild('pileVeil'):SetVisible(self.pileView)
+        if Theme.presentationProfile=='official-assets-first' then
+            local chrome=root:GetChild('pileChrome')
+            chrome:SetVisible(self.pileView)
+            root:GetChild('veil'):SetVisible(not self.pileView)
+        end
         root:GetChild('header'):SetVisible(not self.pileView)
         if pileKind then cards,catalog=pileCards(run,pileKind,presentation),run.combat.catalog end
+        if Theme.presentationProfile=='official-assets-first' then root:GetChild('pileChrome'):GetChild('empty'):SetVisible(self.pileView and #cards==0)end
         self.multiple,self.choiceSelected=choice and choice.multiple,choice and choice.selected
         self.optional=choice and choice.optional
         if choice then
@@ -420,16 +437,23 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             exhaustMany='选择任意张手牌消耗（可不选）',discardRedraw='选择任意张手牌丢弃并重抽',discardToHand='选择弃牌回手，本回合费用为0',
             handToDraw="选择放回抽牌堆顶的手牌",upgradeHand="选择要升级的牌",dualWield="选择要复制的攻击或能力牌"}
         self.listTitle=(pileNames[pileKind] or "卡组").." · "..#cards.." 张"
+        if self.pileView then self.sortMode,self.sortAscending='original',true end
         if self.browseEnabled then projectCards() end
-        if self.pileView then pileLayout(#self.cards) end
+        if self.pileView then pileLayout() end
         root:GetChild("title").text = choice and prompts[choice.op] or self.listTitle
+        if Theme.presentationProfile=='official-assets-first' then
+            root:GetChild('pileChrome'):GetChild('heading').text=self.listTitle
+            root:GetChild('pileReturn'):SetVisible(self.pileView)
+        end
         if self.multiple then root:GetChild('title').text=root:GetChild('title').text..' · 已选'..#choice.selected..(choice.required and '/'..choice.required or '') end
         root:GetChild("close"):SetVisible(not choice or self.multiple == true or self.optional==true)
+        if self.pileView then root:GetChild('close'):SetVisible(false)end
         local close=root:GetChild('close'):GetChild('hit')
         close.interactable=not choice or self.optional==true or self.multiple and (not choice.required or #choice.selected==choice.required) or false;close.raycastTarget=close.interactable
         for _,state in ipairs({'normal','hover','pressed','disabled'}) do close:GetChild(state):GetChild('label').text=self.optional and '跳过' or self.multiple and '确认选择' or '关闭' end
         paintBrowse()
         refreshGrid()
+        if self.pileView then root:GetChild('pileReturn'):SetAsLastSibling()end
         return true
     end
     function self.openPile(_, run, kind)
@@ -567,6 +591,20 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         return swallow or result
     end)
     Controller.bind(platform.controller,close,'deck',function()return self:back()end,nil,100)
+    if Theme.presentationProfile=='official-assets-first' then
+        for _,mode in ipairs({'original','type','cost','name'})do
+            local hit=root:GetChild('pileTools'):GetChild(mode):GetChild('hit')
+            local action=function()return self:setPileSort(mode)end
+            hit:AddCursorEventListener(clickEvent,function()if Controller.pointerBlocked(platform.controller)then return true end;return action()end)
+            Controller.bind(platform.controller,hit,'deck',action,function()return self.visible and self.pileView and not self.detailPages end,80)
+        end
+        local hit=root:GetChild('pileReturn'):GetChild('hit')
+        hit:AddCursorEventListener(clickEvent,function()
+            if Controller.pointerBlocked(platform.controller)then return true end
+            return self:back()
+        end)
+        Controller.bind(platform.controller,hit,'deck',function()return self:back()end,function()return self.visible and self.pileView end,100)
+    end
     for _,name in ipairs({'previous','next'})do
         local box=root:GetChild(name)
         if box then

@@ -57,6 +57,15 @@ local function needsTarget(state, instance)
     local _, reason = Combat.canPlay(state, instance.uid, nil)
     return reason == "invalid_target"
 end
+local function aimsAtAllEnemies(battle,uid)
+    for _,instance in ipairs(battle.hand) do
+        if instance.uid==uid then return Combat.cardDefinition(battle,instance).target=='ALL_ENEMY' end
+    end
+    return false
+end
+local function enemyPortraitIcon(enemy)
+    return Theme.icon.enemy[enemy.definitionId] or Theme.icon.node[enemy.tier == 'normal' and 'combat' or enemy.tier]
+end
 -- Explicit ports preserve the approved implementation without a shared constructor closure.
 function M.install(owner, ownership, host, dependencies)
     -- A new view binding starts fresh; weak native keys cannot retain retired actors.
@@ -167,11 +176,16 @@ function M.install(owner, ownership, host, dependencies)
         local aimed = owner.gesture or owner.carry
         local projection = { pendingTarget = pendingCardTarget(frame) }
         if aimed and aimed.moving then projection.valid, projection.target = dependencies.dragTarget(aimed) end
-        if projection.valid then projection.losses = DamageView.preview(frame.battle, aimed.uid, projection.target) end
+        -- Original targeting updates card damage, not future enemy HP. Keep the
+        -- legacy preview outside this profile; cloning and playing a detached
+        -- battle on pointer input is both unnecessary and expensive here.
+        local futureHp = Theme.presentationProfile ~= 'official-assets-first'
+        if projection.valid and not futureHp then projection.allEnemies=aimsAtAllEnemies(frame.battle,aimed.uid) end
+        if projection.valid and futureHp then projection.losses = DamageView.preview(frame.battle, aimed.uid, projection.target) end
         local potion=owner.potionAim
         if potion and potion.moving then
             projection.valid,projection.target=dependencies.potionDragTarget(potion)
-            if projection.valid then projection.losses=DamageView.potionPreview(owner.run,potion.slot,projection.target) end
+            if projection.valid and futureHp then projection.losses=DamageView.potionPreview(owner.run,potion.slot,projection.target) end
         end
         return projection
     end
@@ -183,14 +197,12 @@ function M.install(owner, ownership, host, dependencies)
         preview.text = loss and loss.loss > 0 and (loss.hp <= 0 and '击杀' or '−' .. number(loss.loss)) or ''
         if loss and loss.loss > 0 then box:GetChild('hpFill').fillAmount = math.max(0, loss.hp / enemy.maxHp) end
     end
-    local function enemyPortraitIcon(enemy)
-        return Theme.icon.enemy[enemy.definitionId] or Theme.icon.node[enemy.tier == 'normal' and 'combat' or enemy.tier]
-    end
     local function renderEnemySlot(frame, box, entry, slot, count, aim)
         local enemy = entry.actor
         local x, width, portrait, step, y = dependencies.enemySlot(count, slot, enemy)
         box:SetAnchoredPosition(x, y)
         local selected = enemyHighlighted(frame, enemy, entry.index, aim.pendingTarget)
+            or aim.allEnemies==true and Actors.isActive(enemy)
         local loss = aim.losses and aim.losses[entry.index]
         if aim.valid and not aim.target and loss and loss.loss > 0 then selected = true end
         local geometry=EnemyView.geometry(enemy)
@@ -369,8 +381,9 @@ function M.install(owner, ownership, host, dependencies)
     end
     local function paintPotionCaption(slot,item,visible)
         local caption=dependencies.child('potionCaption'..slot)
-        local shown=visible==true and item~=nil
-        local text=item and PotionView.slotLabel(item)or ''
+        local original=Theme.presentationProfile=='official-assets-first'
+        local shown=not original and visible==true and item~=nil
+        local text=not original and item and PotionView.slotLabel(item)or ''
         local prior=potionCaptions[caption]
         if not prior or prior.shown~=shown or prior.text~=text then
             potionCaptions[caption]=nil

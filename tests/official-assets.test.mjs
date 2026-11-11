@@ -62,6 +62,14 @@ test('approved battle geometry keeps live field identities and input contracts w
  const result=applyOfficialAssets([layout,template],theme);
  const current=new Map([...paths(layout),...paths(template)]);
   for(const [path,node,before] of semantic){
+   if(path.startsWith('/SlayTheAbyss/deckPanel/pileReturn/')){
+    // The approved pile return uses permanent artwork plus one native receiver.
+    if(path.endsWith('/hit')){
+     const hit=current.get(path);assert.equal(hit.kind,'cursorArea');
+     assert.deepEqual(hit.size,before.size);assert.equal(hit.focusable,true);
+    }
+    continue;
+   }
    assert.equal(current.get(path),node,path);
    if(path.includes('/battlePanel/')){
     // Battle geometry is intentionally restored to the approved V25 tokens.
@@ -72,7 +80,7 @@ test('approved battle geometry keeps live field identities and input contracts w
   for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget'])assert.deepEqual(node[key],before[key],path+' '+key);
    if(node.text){const actual={...node.text},expected={...before.text};delete actual.colour;delete expected.colour;if(expected.autoSize&&(expected.minFontSize*1.45+4>before.size?.[1]||path.endsWith('/shopView/removal/description')))expected.minFontSize=nativeTheme.font.minimum;assert.deepEqual(actual,expected,path);}
  }
-  for(const [path,node,before]of containers){if(path.includes('/battlePanel/'))continue;assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
+  for(const [path,node,before]of containers){if(path.includes('/battlePanel/')||path.startsWith('/SlayTheAbyss/deckPanel/pileReturn'))continue;assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
  assert.equal(result.cardHosts,cards.length);assert(cards.length>=40);assert(result.removedControls>500);
  const battleBodies=new Set(all(child(layout,'battlePanel')));
@@ -93,6 +101,13 @@ test('approved battle geometry keeps live field identities and input contracts w
    assert(hx+hit.size[0]/2<turn.position[0]-turn.size[0]/2||hx-hit.size[0]/2>turn.position[0]+turn.size[0]/2,'pile target must not overlap irreversible End Turn');
   }
   const hints=child(battle,'resourceHints');
+  for(let slot=1;slot<=5;slot++){
+   const help=child(battle,'potionHelp'),caption=child(help,'potionCaption'+slot);
+   assert.equal(caption.active,false);assert.equal(caption.visible,false);assert.equal(caption.text.content,'','original potion slots have no permanent abbreviations');
+   const bottle=child(battle,'potion'+slot)??child(help,'potion'+slot);
+   assert.deepEqual(bottle.position,[nativeTheme.officialAssets.battleHud.potionX+(slot-1)*nativeTheme.officialAssets.battleHud.potionStep,nativeTheme.officialAssets.battleHud.y]);
+   assert.deepEqual(bottle.size,[44,44]);
+  }
   for(const kind of ['hp','gold']){
    const box=child(hints,kind),hit=child(box,'hit');
    for(let slot=1;slot<=3;slot++){
@@ -101,6 +116,12 @@ test('approved battle geometry keeps live field identities and input contracts w
    }
   }
   const exhaust=child(battle,'exhaustIcon'),discard=child(battle,'discardIcon');
+  assert.deepEqual(exhaust.size,[32,32],'exhaust must remain a compact visual entry');
+  assert.deepEqual(child(exhaust,'hit').size,[44,44],'compact art retains a native touch target');
+  assert.equal(child(exhaust,'image').image,102049,'reuse the verified existing exhaust keyword glyph');
+  assert.notEqual(child(exhaust,'image').colour,'#000000','do not restore the solid black circle');
+  assert.equal(child(battle,'exhaust').text.fontSize,18);
+  assert.ok(child(battle,'exhaust').size[1]>=18*1.45+4,'counter retains one native text row');
   assert(exhaust.position[1]-child(exhaust,'hit').size[1]/2>discard.position[1]+child(discard,'hit').size[1]/2,'exhaust and discard hits overlap');
   for(let i=1;i<=10;i++){
    const card=child(battle,'card'+i);assert(card);
@@ -111,11 +132,34 @@ test('approved battle geometry keeps live field identities and input contracts w
    assert.equal(child(card,'cost').text.fontSize,25);
    assert.equal(child(child(card,'roundBody'),'nativePaperTrim').visible,false,'old square paper must not leak through rounded corners');
    assert.equal(child(card,'nameBand').visible,false);
-   const ribbon=child(card,'nativeRibbon');assert.equal(ribbon.children.length,18);
-   assert(ribbon.children.slice(-8).every(n=>n.name.startsWith('face')),'all curved faces must cover backing seams');
+   const ribbon=child(card,'nativeRibbon');assert.equal(ribbon.children.length,34);
+   assert(ribbon.children.slice(10,18).every(n=>n.name.startsWith('face')),'all curved faces must cover backing seams before the soft edge lighting');
+   for(const prefix of ['shade','shine'])assert.equal(ribbon.children.filter(n=>n.name.startsWith(prefix)&&n.feather?.pixels).length,8,'soft ribbon edge lighting');
    assert.deepEqual(child(child(card,'skin'),'skill').size,[126,86.09375],'final computed reference window');
    assert.deepEqual(child(card,'nativeCostOrb').size,[41,41]);
-   assert.equal(child(card,'nativeCostOrb').children.length,6);
+   const orb=child(card,'nativeCostOrb');
+   assert.equal(orb.children.length,4,'cost uses native gradients rather than hard concentric rings');
+   assert.deepEqual(child(orb,'rim').size,[34,34]);
+   assert.deepEqual(child(orb,'rim').position,[-.4,.3]);
+   assert.equal(child(orb,'rim').image,107270);
+   assert.equal(child(orb,'aura').image,106056);
+   assert.equal(child(orb,'warmLight').image,106056);
+   assert.equal(child(orb,'highlight').image,106057);
+   const glow=child(card,'nativePlayableRim');
+   assert.deepEqual(nativeTheme.officialAssets.battleGlowSource.rgba,[.2,.9,1,.25],'source float color remains explicit despite native 8-bit quantization');
+   assert.equal(child(glow,'softEdge').children[0].opacity,.25,'main border retains source alpha');
+   for(const control of all(glow)){
+    assert(control.size[0]>0&&control.size[0]<=1600&&control.size[1]>0&&control.size[1]<=900,'every glow control must satisfy formal encoder rect limits before scale');
+   }
+   for(const layer of glow.children){
+    assert.equal(layer.children.length,8,'bounded soft contour has four edges and four corners');
+    assert(layer.children.every(n=>n.image===106056||n.image===106057),'glow must use verified continuous alpha textures');
+    for(const part of layer.children)assert.equal(part.imageType,part.name.startsWith('corner')?'basic':'stretch');
+    for(const part of layer.children.filter(n=>n.name.startsWith('corner'))){
+     assert.equal(Math.abs(part.position[0]),66,'radial center stays under the rounded card corner');
+     assert.equal(Math.abs(part.position[1]),96,'radial peak must not float outside the silhouette');
+    }
+   }
   }
  assertNativeUiCapacity(layout);assertNativeUiCapacity(template);
 });

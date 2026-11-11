@@ -1,0 +1,23 @@
+{
+  "base": "http://127.0.0.1:52608",
+  "checks": [
+    "same candidate ready",
+    "foreign Host rejected (native HTTP; fetch overrides Host)",
+    "foreign Origin rejected",
+    "served renderer exact",
+    "index and both playable links"
+  ],
+  "initialSessions": [
+    {
+      "id": "battle-stage-ten",
+      "loaded": true,
+      "startedByLauncher": false
+    },
+    {
+      "id": "battle-stage-five",
+      "loaded": true,
+      "startedByLauncher": false
+    }
+  ],
+  "status": "passed"
+}

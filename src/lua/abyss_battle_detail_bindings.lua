@@ -17,6 +17,11 @@ function M.install(owner, _ownership, host, dependencies)
     local function hasCursorPair(first,second)
         return host.cursor and host.cursor[first] and host.cursor[second]
     end
+    local function closeAutomaticCard(control)
+        local info=owner.info
+        if Theme.presentationProfile=='official-assets-first' and info and info.source==control
+            and info.transient and info.kind=='card' then dependencies.closeInfo()end
+    end
     local function forgetHelp(control,hoverSlot,input)
         input.held,input.released,input.consumed=nil,nil,nil
         if hoverSlot and owner.hover==hoverSlot then owner.hover=nil end
@@ -32,6 +37,7 @@ function M.install(owner, _ownership, host, dependencies)
             if engineDestroyed then input.engineDestroyed=true end
             if input.engineDestroyed then forgetHelp(control,hoverSlot,input);return end
             input.held,input.released,input.consumed=nil,nil,nil
+            closeAutomaticCard(control)
             if hoverSlot and owner.hover==hoverSlot then owner:setHover(nil) end
             if owner.help and owner.help.source==control then owner.help=nil end
             if owner.info and owner.info.source==control and owner.info.transient then dependencies.closeInfo();if silent~=true then owner:render() end end

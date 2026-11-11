@@ -1,0 +1,163 @@
+{
+  "base": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "alreadyIntegratedOfficialSource": "a1a3ba4b6b83ab1ddca76268e08bba9c014ad375",
+  "originalPlayableHead": "6aff0b4be5fa0b90cb084b1c11fd8ee6428814ec",
+  "authoredUiModules": 31,
+  "authored": [
+    {
+      "path": "scripts/battle-card-coverage-scenario.mjs",
+      "sha256": "58782a54ef209f8485be844ea8451da19cc3a809b04d9e117bee904b7275556f"
+    },
+    {
+      "path": "scripts/battle-preview-scenario.mjs",
+      "sha256": "22f5a8f9a84bf1080cb147349e80357f881ef19a1f09f2d1295233c388b8977c"
+    },
+    {
+      "path": "scripts/capture-battle-card-coverage.mjs",
+      "sha256": "d3367793a981495ad8ac8038699e78b4bb6cb48eb609d07f5015ae1ce3d0d6ba"
+    },
+    {
+      "path": "scripts/deck-ui-layout.mjs",
+      "sha256": "03538df7c04ee57f79a3ef9b551fdca3334562f3074f026f2a8c15292aad88cd"
+    },
+    {
+      "path": "scripts/measure-battle-card-coverage.mjs",
+      "sha256": "363cb83daeff3729b5127610ed3eb76e10e9635f646c7812731d2e020ea5ea3d"
+    },
+    {
+      "path": "scripts/measure-battle-preview-state.mjs",
+      "sha256": "90e70fef121f016d84defe2edbc646cbc1df65f361d3479ad8596c966c8281e2"
+    },
+    {
+      "path": "scripts/measure-official-battle.mjs",
+      "sha256": "66b6760c4174b4367dbeda72ee97b85c4e64763e105bf1ee56a4cfa79477ae73"
+    },
+    {
+      "path": "scripts/native-candidate-preview.mjs",
+      "sha256": "20acc6daadd94715c0a10c3b912d876dc2e94e4885d25a260d73b8cc6d35cb84"
+    },
+    {
+      "path": "scripts/official-assets-layout.mjs",
+      "sha256": "fe3d18f225b9c54c78e3f7d477a8100c743f9fa87e628b615db2bb52119ad1db"
+    },
+    {
+      "path": "scripts/official-battle-card-chrome.mjs",
+      "sha256": "28659332e743836d8d471404fa1cd4817076b1e8dece62a9a248e377a8621c80"
+    },
+    {
+      "path": "scripts/official-battle-hud.mjs",
+      "sha256": "7b63b0fdd2d9aaef425656c70fe7419da69d98b0835a73817e52795ab82b157e"
+    },
+    {
+      "path": "scripts/official-battle-pile-chrome.mjs",
+      "sha256": "2712016ed4352bf534139e40a4d98329bb95c7d54024c19e72d586f396433118"
+    },
+    {
+      "path": "scripts/relic-view-layout.mjs",
+      "sha256": "4be861dad097dc601883c96e1d37e6cbd0716bad2c5d30c5deb8a24f49cfd377"
+    },
+    {
+      "path": "scripts/v25-battle-chrome.mjs",
+      "sha256": "848c3d01897bccbd8c763555f91108a308a1346d074a5cd2b2b0ca6fb54cba3f"
+    },
+    {
+      "path": "src/lua/abyss_battle_actions.lua",
+      "sha256": "11222422d46898fdc10f26eb5cc17fc700f8bbb3d4aaba375ab53721206af5e0"
+    },
+    {
+      "path": "src/lua/abyss_battle_card_gestures.lua",
+      "sha256": "de9e504ed35a936825925169fd031f9144645c95f3d15fbbbb8d73a92d009153"
+    },
+    {
+      "path": "src/lua/abyss_battle_card_glow.lua",
+      "sha256": "921f0f46d30add572a84aea2b68864e642233f0d73fca3c598a3d7e98c721cce"
+    },
+    {
+      "path": "src/lua/abyss_battle_card_layout.lua",
+      "sha256": "c2fa8d4037eba23644a0b5e8f3b6f5b8b60e10f5ee75e52a7cb0524770da3f62"
+    },
+    {
+      "path": "src/lua/abyss_battle_card_view.lua",
+      "sha256": "696e15ac5e319f8640f70e1e7fc43f5a75617d5fd3609e20da4b2d2a92d1ab5d"
+    },
+    {
+      "path": "src/lua/abyss_battle_detail_bindings.lua",
+      "sha256": "21df821f45a2e712e2a55f1bae3a3a6a81d2d2b308fed424ca57800218a33b49"
+    },
+    {
+      "path": "src/lua/abyss_battle_details.lua",
+      "sha256": "086cc3ca4927fa48b5f1a06246b89966bebf9c94c7142c82d7778ee13ea8ea94"
+    },
+    {
+      "path": "src/lua/abyss_battle_info_content.lua",
+      "sha256": "344a4f1c50aa88594aab2062a36ed0319ce818ac22bc1a22a6494f2313ec8275"
+    },
+    {
+      "path": "src/lua/abyss_battle_info_view.lua",
+      "sha256": "1dcee05980b5a29696fe9c5223965cbd8a94cd7808a471bc7f817bd364762f18"
+    },
+    {
+      "path": "src/lua/abyss_battle_render_actors.lua",
+      "sha256": "5680f9b0b4991fabb38d7b9bde3df06bdffe78f3f9dd4c962961ca44321b3ff7"
+    },
+    {
+      "path": "src/lua/abyss_battle_render_state.lua",
+      "sha256": "1f839edce94f4ace6b59b2c53225e06aee9ce20a650bf505ff88a1b367176e6a"
+    },
+    {
+      "path": "src/lua/abyss_battle_ui.lua",
+      "sha256": "c703bb46e116735b9c3805bacc814cee8ade3ea07bb39f79c75151b6fa728481"
+    },
+    {
+      "path": "src/lua/abyss_card_skin.lua",
+      "sha256": "f6e3b9316edbd6ffb4eeb9c536680757723d68151d8a4424508b05df1644f194"
+    },
+    {
+      "path": "src/lua/abyss_deck_ui.lua",
+      "sha256": "a3fb5637c7fba593e0c798a567f83eaf9953c0cf3677a1d297003e6c16c1493b"
+    },
+    {
+      "path": "src/lua/abyss_feedback.lua",
+      "sha256": "08222c8a38dffd84d75957cdecfc1c612e136b953775d97ef026398c054d148f"
+    },
+    {
+      "path": "src/lua/abyss_relic_view_ui.lua",
+      "sha256": "e6ff0b3832c0f7f6f92a3e348ebc30ad00c0566884919e35a728e4f7feb117df"
+    },
+    {
+      "path": "src/lua/abyss_ui.lua",
+      "sha256": "463817b8644cf81094d918b1f44449577f31f64a49a18ef080b77b265aaa74d0"
+    }
+  ],
+  "mainOnlyPreserved": 27,
+  "mainOnlyPaths": [
+    ".github/workflows/quality.yml",
+    "config/luacheck-baseline.json",
+    "config/product-outcomes.json",
+    "config/sprint-intake.json",
+    "config/task-intake.json",
+    "scripts/benchmark-component-lifecycle.mjs",
+    "scripts/check-architecture.mjs",
+    "scripts/check-engineering-quality.mjs",
+    "scripts/check-task-intake.mjs",
+    "scripts/ci-impact.mjs",
+    "scripts/lua-quality-metrics.mjs",
+    "scripts/product-outcome.mjs",
+    "scripts/replay-ui-outcome.mjs",
+    "scripts/ui-outcome-identity.mjs",
+    "scripts/v25-layout.mjs",
+    "scripts/v25-map-layout.mjs",
+    "scripts/v25-node-layout.mjs",
+    "scripts/verify-backlog-roadmap.mjs",
+    "src/lua/abyss_game_ui_view.lua",
+    "src/lua/abyss_map_ui.lua",
+    "src/lua/abyss_match_event_ui.lua",
+    "src/lua/abyss_node_ui.lua",
+    "src/lua/abyss_node_ui_events.lua",
+    "src/lua/abyss_node_ui_faces.lua",
+    "src/lua/abyss_node_ui_feedback.lua",
+    "src/lua/abyss_potion_discard_ui.lua",
+    "src/lua/abyss_shop_ui.lua"
+  ],
+  "failures": []
+}

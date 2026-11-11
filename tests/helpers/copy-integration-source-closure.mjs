@@ -64,8 +64,13 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/combined-epoch/source-epoch.mjs": "9c13e8134088d55a7a7b57e7f4fe905fd87cdc9a36e6c636049285e6fa99faf1",
   "tests/helpers/room-ui-source-epoch.mjs": "ddcb90da9fdaa1b93ccdc903cb348dd99c2ccaeaa2d5350bc2ed586631612500",
   "tests/helpers/room-ui-source-epoch.json.gz": "0b3cb34acf85e814bd3e7d82254e9586a6a60c78e20fd95603b2e96e877d7bfc",
-  "tests/helpers/joint-ui-source-epoch.mjs": "f35a2626dfd4ae6e8aa0c8c2b8897859be2796d84ae0fd05e29595c785cc7692",
+  "tests/helpers/joint-ui-source-epoch.mjs": "033a325d77259b895aafed57d59326d002125b1ab04f68ff40054e6f57ca202f",
   "tests/helpers/joint-ui-source-epoch.json.gz": "67777c3571d86bc82427fbb6ac5cd2254ed480b58285f41aa17d05d7490413f9"
+},...{
+  "tests/helpers/combined-epoch/source-epoch.mjs": "dc462323119c368713381bd5e1148b3781df82fbb84b7987b3118794bbaded88",
+  "tests/helpers/joint-ui-source-epoch.mjs": "033a325d77259b895aafed57d59326d002125b1ab04f68ff40054e6f57ca202f",
+  "tests/helpers/battle-queue-source-epoch.mjs": "faccad167ed2c051cc861f6df0a061beaa2e67fbaa962cf62e760118929dc890",
+  "tests/helpers/battle-queue-source-epoch.json.gz": "e82f3c47155271784ed25d87abcf19306e7a752fe1cb5aab5f3d269d26fdd42d"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

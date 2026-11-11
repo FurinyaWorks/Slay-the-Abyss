@@ -1,4 +1,5 @@
 // Exact source and inventory views for immutable CI receipts; current Full stays raw.
+import {preBattleQueueCiSource} from './battle-queue-ci-source-epoch.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
@@ -11,17 +12,19 @@ for(const row of Object.values(proof.files))assert.equal(hash(row.current),row.s
 const views=['componentAliasFix','officialAssetsFlow','defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt'];
 export function jointCiMatches(path,source,target){
  assert(views.includes(target),'known joint CI view');
+ source=preBattleQueueCiSource(path,source);
  const row=Object.hasOwn(proof.files,path)?proof.files[path]:null;
  return !!(row&&Object.hasOwn(row.targets,target)&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===row.sha256);
 }
 export function jointCiSourceAt(path,source,target){
  assert(views.includes(target),'known joint CI view');
+ source=preBattleQueueCiSource(path,source);
  const row=Object.hasOwn(proof.files,path)?proof.files[path]:null;
  return row&&Object.hasOwn(row.targets,target)&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===row.sha256?row.targets[target]:source;
 }
 export function jointCiInventoryAt(paths,target){
  assert.equal(target,'officialAssetsFlow','known joint inventory view');
  assert.deepEqual([...paths].sort(),[...proof.currentInventory].sort(),'complete current inventory');
- for(const [path,sha]of Object.entries(proof.added))assert.equal(hash(readFileSync(path,'utf8').replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
+ for(const [path,sha]of Object.entries(proof.added))assert.equal(hash(preBattleQueueCiSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
  return [...proof.flowInventory];
 }

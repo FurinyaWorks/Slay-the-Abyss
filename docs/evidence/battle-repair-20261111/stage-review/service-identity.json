@@ -1,0 +1,34 @@
+{
+  "stage": "阶段评审，未验收",
+  "buildId": "52aee9f0-9c5e-40dd-a39e-6715383cda5f",
+  "gilSha256": "758f8baa510a37dae443d053f731684ad7ad350b9193a252e127e3eeaea17fc2",
+  "saveSha256": "05f6ee2d14083100ecea892e6827afd47aad116c039744538019bb95f0425189",
+  "sourceCommit": "d885f9a481809c6991c2c6622e7ddbe4f8b0b3e8",
+  "sourceDirty": true,
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "backendExtension": "private typed fullgraph snapshot; not official client",
+  "cases": [
+    {
+      "name": "ten",
+      "file": "hud.save.json",
+      "title": "十牌、双敌、三药水",
+      "description": "主要评审场景，包含遗物和消耗牌。",
+      "sha256": "86653a48a00b51064802bf65ddb6aa47922bf762c0b0de1053d236db89ef516a",
+      "archive": "review-ten.save.json",
+      "session": "battle-stage-ten"
+    },
+    {
+      "name": "five",
+      "file": "five.save.json",
+      "title": "标准五牌开局",
+      "description": "无额外测试药水；用于查看较宽松手牌布局。",
+      "sha256": "2a85a3f22e210839f78306bd8a352c0f82f645f6793c7ce693b8efeae2e4e926",
+      "archive": "review-five.save.json",
+      "session": "battle-stage-five"
+    }
+  ],
+  "url": "http://127.0.0.1:52608",
+  "pid": 4772,
+  "backendURL": "http://127.0.0.1:53894",
+  "ready": true
+}

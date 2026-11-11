@@ -1,4 +1,5 @@
 // Exact composition; original room/component/official archives remain immutable.
+import {preBattleQueueSource} from './battle-queue-source-epoch.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
@@ -13,6 +14,7 @@ for(const row of Object.values(archive.files))for(const b of Object.values(row))
 freeze(archive);
 export function jointUiSourceAt(path,source,view){
  assert(['room','component','official'].includes(view),'explicit UI source view');
+ if(view!=='official')source=preBattleQueueSource(path,source);
  const row=Object.hasOwn(archive.files,path)?archive.files[path]:null;
  return row&&row[view]&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===row.current.sha256?row[view].source:source;
 }

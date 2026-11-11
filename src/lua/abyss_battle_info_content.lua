@@ -11,14 +11,14 @@ local tailStates={
 }
 
 -- CJK glyphs take one font size; ASCII takes about half. Count UTF-8 lead bytes.
-function M.lines(text)
+function M.lines(text, boxWidth, fontSize)
     if not text or text == "" then return 0 end
     local I, width = L.statusInfo, 0
     for i = 1, #text do
         local b = text:byte(i)
         width = width + (b < 128 and 0.55 or b >= 192 and 1 or 0)
     end
-    local per = math.floor((I.width - I.pad * 2 - I.icon - I.gap) / Theme.font.reading)
+    local per = math.max(1,math.floor(((boxWidth or I.width) - I.pad * 2 - I.icon - I.gap) / (fontSize or Theme.font.reading)))
     return math.max(1, math.ceil(width / per))
 end
 
@@ -85,19 +85,23 @@ function M.new(self, describe, lines)
             note = require('abyss_potion_text').note(definition) or (definition.targetPolicy == "enemy_one" and "对选中的一名敌人；先选药水，再点击敌人" or "对自己使用；短按药水生效"), colour = C.goldBright}}
     end
 
-    local function keywordRows(effects, battle, actor, rows)
+    local function keywordRow(status,id,effect,battle,actor,keywordText)
+        if keywordText then return {status=id,name=status.name,text=status.description,
+            colour=status.kind=='buff' and C.buff or C.debuff}end
+        local row=statusRow({id=id,name=status.name,amount=effect.value,
+            temporary=describe.temporaryOps[effect.op] and effect.value or 0,
+            kind=status.kind,description=status.description,stack=status.stack},battle,actor)
+        if status.stack=='duration' then row.tag='持续 '..number(effect.value)..' 回合'end
+        return row
+    end
+    local function keywordRows(effects, battle, actor, rows, keywordText)
         for _, effect in ipairs(effects) do
             local id = effect.status or effect.op == "gainTemporaryStrength" and "strength"
             local status = id and battle.catalog.statuses[id]
-            if status then
-                local row = statusRow({id = id, name = status.name, amount = effect.value,
-                    temporary = describe.temporaryOps[effect.op] and effect.value or 0,
-                    kind = status.kind, description = status.description, stack = status.stack}, battle, actor)
-                -- A keyword has not been applied: describe its duration rather than remaining turns.
-                if status.stack == "duration" then row.tag = "持续 " .. number(effect.value) .. " 回合" end
-                rows[#rows + 1] = row
+            if status and (not keywordText or keywordText:find(status.name,1,true)) then
+                rows[#rows + 1] = keywordRow(status,id,effect,battle,actor,keywordText)
             end
-            if effect["then"] then keywordRows(effect["then"], battle, actor, rows) end
+            if effect["then"] then keywordRows(effect["then"], battle, actor, rows, keywordText) end
         end
     end
 
@@ -133,8 +137,8 @@ function M.new(self, describe, lines)
         flush()
     end
 
-    local function cardTraits(definition, rows)
-        if definition.strikeTag then rows[#rows+1]={intent='unknown',colour=C.goldBright,name='打击类',
+    local function cardTraits(definition, rows, keywordOnly)
+        if definition.strikeTag and not keywordOnly then rows[#rows+1]={intent='unknown',colour=C.goldBright,name='打击类',
             text='带有打击标签',note='计入剑势如虹等效果'} end
         if definition.exhaust then rows[#rows + 1] = {icon = Theme.icon.exhaust, colour = C.goldBright, name = "消耗",
             text = "打出后移出本场战斗", note = "不进入弃牌堆"} end
@@ -150,6 +154,21 @@ function M.new(self, describe, lines)
     local function standardCardEffectRows(kind,definition,instance,battle,rows,reward)
         if kind~='potion' and not definition.originalV4 then fullEffectRows(definition,instance,battle,rows,reward)end
     end
+    local function automaticKeywords(info)
+        return Theme.presentationProfile=='official-assets-first' and info.kind=='card' and info.transient==true
+    end
+    local function cardRows(info,definition,instance,battle,actor,rows)
+        local keywordOnly=automaticKeywords(info)
+        if definition.originalV4 and not keywordOnly then fullEffectRows(definition,instance,battle,rows,info.reward)end
+        local keywordText=keywordOnly and require('abyss_card_display').permanentText(self.presentation[instance.cardId],definition,instance)
+        keywordRows(definition.effects, battle, actor, rows, keywordText)
+        cardTraits(definition, rows, keywordOnly)
+        if not keywordOnly then
+            originRow(info,instance,rows)
+            standardCardEffectRows(info.kind,definition,instance,battle,rows,info.reward)
+        end
+        return keywordOnly
+    end
     local function keywordCard(card, data, presentation, battle, info, actor)
         local reward=info.reward
         if reward and not require('abyss_battle_reward_owner').ready(self,reward) then return end
@@ -162,14 +181,12 @@ function M.new(self, describe, lines)
             if not instance then return end
             definition, rows = Combat.cardDefinition(battle, instance), {}
         end
-        if definition.originalV4 then fullEffectRows(definition,instance,battle,rows,reward)end
-        keywordRows(definition.effects, battle, actor, rows)
-        cardTraits(definition, rows)
-        originRow(info,instance,rows)
-        standardCardEffectRows(info.kind,definition,instance,battle,rows,reward)
+        local keywordOnly=cardRows(info,definition,instance,battle,actor,rows)
         if #rows == 0 then return end
         card.title, card.tag, card.hp = info.kind == "potion" and definition.name or presentation[instance.cardId].name, "关键词", nil
         card.subtitle = info.kind == "potion" and "药水说明，尚未使用 · 查看不消耗" or "卡牌效果说明，尚未生效"
+        card.keywordOnly=keywordOnly
+        if keywordOnly then card.subtitle=nil end
         card.sections[1] = { rows = rows }
         return card
     end
