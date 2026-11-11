@@ -6243,6 +6243,46 @@
     "docs/evidence/event-v25-20261110/revision-2/treasure-open.png": {
       "sha256": "6fd5e23ee3cfa78b55f2ffc517758846d2f4934b7df16269fe3c457879247685",
       "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-01-menu.png": {
+      "sha256": "f3e858462fc14a3039f76d9f18c2cab388d1fd8cc93009ab22a34a8a7d3e3794",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-04-exit-confirm.png": {
+      "sha256": "45f682ede1281eed739fdd7bd77518490b0c5bcbc710e086b656f003f8f455f4",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-05-selection-ready.png": {
+      "sha256": "2e2cdef71fa77d0accbca5bf083fcae9707bd2d275c0a6424540c1e6a2e6c73b",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-06-starter-deck.png": {
+      "sha256": "d9dda9bd447168cea0e2d0df552e9c53e33fd024fe001f4631d35f22b1cc6db0",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-08-neow-offers.png": {
+      "sha256": "df0cd9c4dd3c2ed33cb549239f5614103e43e2a8488f8fdad9dab6c919fd5e0c",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-10-map.png": {
+      "sha256": "038a15665adc08480476edfe891615a1337b07350e0df900ab2c61965ec69534",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-12-defend-played.png": {
+      "sha256": "e3fe66e9580118838ae3c44496c54f1e1fd2643233c0d5c5a91b6bef0ddf5e1c",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/lament-11-first-battle.png": {
+      "sha256": "0b8121ae3e7a991799b26f60392e51b1dec923559e97a3a46bca66602254e615",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
     }
   }
 }

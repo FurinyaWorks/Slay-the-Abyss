@@ -1,0 +1,37 @@
+{
+  "renderProfile": "selection-budget-v1",
+  "hiddenBuild": true,
+  "cache": true,
+  "revealGroupsPerFrame": 4,
+  "selectionUses": "battlePixel",
+  "assets": [
+    {
+      "asset": "traveler-geo/portraits/avatar96",
+      "images": 457,
+      "sourceSha256": "c30551e1fed1cd7f18c61b67fe0ad0cd6e52c61bfa6ae937ccd9e4c90e7f72bb",
+      "groups": 8,
+      "pages": 1
+    },
+    {
+      "asset": "temporary-pixel-traveler-selection",
+      "images": 57,
+      "sourceSha256": "b396f1af9e5c259fab4b63f973f184ffee3612404a8abc993d65fe698e8a65e0",
+      "groups": 1,
+      "pages": 1
+    },
+    {
+      "asset": "temporary-pixel-traveler",
+      "images": 57,
+      "sourceSha256": "b396f1af9e5c259fab4b63f973f184ffee3612404a8abc993d65fe698e8a65e0",
+      "groups": 1,
+      "pages": 1
+    }
+  ],
+  "instances": 3,
+  "batchSize": 64,
+  "peakDynamicControls": 584,
+  "maxDirectDynamicChildren": 60,
+  "officialCapacity": "not_measured",
+  "measurement": "offline-runtime-control-contract-not-official-capacity",
+  "devicePerformance": "not_run"
+}
