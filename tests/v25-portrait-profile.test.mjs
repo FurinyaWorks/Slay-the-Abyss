@@ -111,6 +111,7 @@ assert(a:release() and LiveCount()==0)
 test('official title uses on-demand selection while partial cancellation and ready cache remain intact',()=>{
  withPortraitVm(`
 Theme.presentationProfile='official-assets-first'
+traveler:SetVisible(true) -- Full-source roster is visible; competition hides this parent.
 local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
@@ -141,6 +142,42 @@ for _=1,5 do
  assert(selectionHost.visible and avatar.visible and LiveCount()==complete)
  assert(a:status().selection.generation==generation,'cached official selection was rebuilt')
 end
+assert(a:release() and LiveCount()==0)
+`,{runtimeV2:true});
+});
+
+test('official hidden roster does not build its avatar and visible roster can prepare cancel and resume',()=>{
+ withPortraitVm(`
+Theme.presentationProfile='official-assets-first'
+local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local note=tree();note.text=''
+stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
+ portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
+traveler:SetVisible(false)
+local a=Portraits.new(stage,nil,{selectionAvatar=true})
+assert(a:sync('menu',true,false,'ironclad',true))
+for _=1,1000 do a:tick();if a:status().selection.phase=='ready' then break end end
+for _=1,20 do a:tick()end
+assert(a:status().selection.phase=='ready' and selectionHost.visible)
+assert(a:status().avatar.phase=='idle' and a:status().avatar.owned==0,
+ 'official hidden roster allocated an invisible avatar')
+assert(LiveCount()==a:status().selection.owned)
+traveler:SetVisible(true);assert(a:sync('menu',true,false,'ironclad',true));a:tick()
+local partial=a:status().avatar;local count=LiveCount()
+assert(partial.phase=='building' and partial.owned>0,'visible full-source roster did not begin its avatar')
+traveler:SetVisible(false);assert(a:sync('menu',true,false,'ironclad',true))
+for _=1,20 do a:tick()end
+assert(not avatar.visible and LiveCount()==count and a:status().avatar.nextIndex==partial.nextIndex,
+ 'hiding roster did not pause and retain its partial avatar')
+assert(a:status().selection.phase=='ready' and selectionHost.visible,'avatar visibility disturbed main art')
+traveler:SetVisible(true);assert(a:sync('menu',true,false,'ironclad',true))
+for _=1,1000 do a:tick();if a:status().avatar.phase=='ready' then break end end
+assert(a:status().avatar.phase=='ready' and avatar.visible)
+local complete=LiveCount();local generation=a:status().avatar.generation
+traveler:SetVisible(false);assert(a:sync('menu',true,false,'ironclad',true));a:tick()
+assert(not avatar.visible and LiveCount()==complete)
+traveler:SetVisible(true);assert(a:sync('menu',true,false,'ironclad',true));a:tick()
+assert(avatar.visible and LiveCount()==complete and a:status().avatar.generation==generation)
 assert(a:release() and LiveCount()==0)
 `,{runtimeV2:true});
 });

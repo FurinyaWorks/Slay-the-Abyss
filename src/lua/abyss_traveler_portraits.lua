@@ -390,7 +390,7 @@ function M.new(stage,report,flags,cardTemplates)
                 nativeLifecycle=true,ownerEpoch=function()return epoch end})
             rows[#rows+1]={name='selection',adapter=selection,fallback={details:GetChild('portraits'):GetChild('traveler_ironclad')},active=false}
         end
-        local row={name='avatar',adapter=avatar,fallback={},active=false}
+        local row={name='avatar',adapter=avatar,fallback={},active=false,visibleOwner=traveler}
         for _,name in ipairs({'normal','hover','pressed','disabled'})do row.fallback[#row.fallback+1]=traveler:GetChild('hit'):GetChild(name):GetChild('bust')end
         rows[#rows+1]=row
     end
@@ -507,6 +507,9 @@ function M.new(stage,report,flags,cardTemplates)
         if profile or official then preloadSelection=false end
         local wanted=activeTargets(mode,characterOpen,stopped,character,preloadSelection)
         for _,row in ipairs(rows)do
+            -- Competition hides the one-role legacy roster; its V25 badge has
+            -- its own official symbol and does not consume this avatar drawing.
+            if official and row.name=='avatar' and row.visibleOwner.visible~=true then wanted.avatar=false end
             local accepted=true
             -- MenuView owns result outcome selection; ordinary scene sync may
             -- pause it on departure, but must never publish a default victory
