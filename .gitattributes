@@ -519,3 +519,7 @@ experiments/native-ui-ab/run.mjs -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.gz -text
 docs/evidence/native-ui-ab-20261111/*.log -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.json text eol=lf
+# Protected-call dependency evidence keeps exact diagnostic and source identities.
+docs/evidence/m7-protected-calls-20261111/*.txt -text -whitespace
+docs/evidence/m7-protected-calls-20261111/*.json text eol=lf
+docs/evidence/m7-protected-calls-20261111/*.gz -text

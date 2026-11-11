@@ -160,3 +160,54 @@ test('one reviewed pair permits repeated deferred calls while module-level calls
   assert(mixed.errors.some(error=>/Dependency cycle/.test(error.message)));
   assert(!mixed.errors.some(error=>/Stale deferred/.test(error.message)));
 });
+
+test('global protected calls invoke known functions during module initialization',()=>{
+  for(const [label,a] of [
+    ['pcall local','local function init() return require("b") end; return pcall(init)'],
+    ['pcall inline','return pcall(function() return require("b") end)'],
+    ['pcall alias argument','local function init() return require("b") end; local alias=init; return pcall(alias)'],
+    ['pcall assigned argument','local init; init=function() return require("b") end; return pcall(init)'],
+    ['pcall factory result','local function factory() return function() return require("b") end end; return pcall(factory())'],
+    ['pcall recursive','local function init() require("b"); return pcall(init) end; return pcall(init)'],
+    ['pcall called owner','local function outer() return pcall(function() return require("b") end) end; return outer()'],
+    ['xpcall local','local function init() return require("b") end; return xpcall(init,function(err) return err end)'],
+    ['xpcall inline','return xpcall(function() return require("b") end,function(err) return err end)'],
+    ['xpcall handler','return xpcall(function() error("boom") end,function() return require("b") end)'],
+    ['xpcall handler alias','local function failed() return require("b") end; local alias=failed; return xpcall(function() error("boom") end,alias)'],
+    ['xpcall handler factory','local function factory() return function() return require("b") end end; return xpcall(function() error("boom") end,factory())'],
+    ['nested protected calls','return pcall(function() return xpcall(function() return require("b") end,function(err) return err end) end)'],
+    ['argument expression still executes','local function argument() return require("b") end; return pcall(function() end,argument())'],
+  ]) {
+    const report=analyzeSources({a,b:'return require("a")'},deferredPolicy,{});
+    assert(report.errors.some(error=>/Dependency cycle/.test(error.message)),label);
+    assert(report.errors.some(error=>/Stale deferred import exception/.test(error.message)),label);
+    assert.equal(report.edges.find(edge=>edge.from==='a').reviewedDeferred,false,label);
+  }
+});
+
+test('protected call values and lexical shadows do not activate unrelated callbacks',()=>{
+  for(const [label,a] of [
+    ['pcall argument value','local function later() return require("b") end; return pcall(function() end,later)'],
+    ['xpcall argument value','local function later() return require("b") end; return xpcall(function() end,function(err) return err end,later)'],
+    ['pcall returned function','return pcall(function() return function() return require("b") end end)'],
+    ['xpcall returned function','return xpcall(function() return function() return require("b") end end,function(err) return err end)'],
+    ['handler returned function','return xpcall(function() error("boom") end,function() return function() return require("b") end end)'],
+    ['dormant pcall owner','return function() return pcall(function() return require("b") end) end'],
+    ['dormant xpcall owner','return function() return xpcall(function() end,function() return require("b") end) end'],
+    ['shadowed local pcall','local pcall=function(fn) return fn end; return pcall(function() return require("b") end)'],
+    ['shadowed local xpcall','local xpcall=function(fn,handler) return handler end; return xpcall(function() end,function() return require("b") end)'],
+    ['shadowed parameter','local function invoke(pcall) return pcall(function() return require("b") end) end; return invoke(function(fn) return fn end)'],
+    ['shadowed loop variable','for pcall in function() end do pcall(function() return require("b") end) end'],
+    ['factory second result','local function factory() return function() end,function() return require("b") end end; return pcall(factory())'],
+    ['reassigned callback stays unknown','local init=function() end; local old=init; init=function() return require("b") end; return pcall(old)'],
+    ['member is not standard pcall','local protect={pcall=function(fn) return fn end}; return protect.pcall(function() return require("b") end)'],
+  ])assert.deepEqual(analyzeSources({a,b:'return require("a")'},deferredPolicy,{}).errors,[],label);
+});
+
+test('protected initialization and dormant callbacks retain separate import occurrences',()=>{
+  const a='pcall(function() return require("b") end); return function() return require("b") end';
+  const report=analyzeSources({a,b:'return require("a")'},deferredPolicy,{});
+  assert.deepEqual(report.edges.filter(edge=>edge.from==='a').map(edge=>edge.reviewedDeferred),[false,true]);
+  assert(report.errors.some(error=>/Dependency cycle/.test(error.message)));
+  assert(!report.errors.some(error=>/Stale deferred/.test(error.message)));
+});

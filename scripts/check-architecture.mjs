@@ -11,7 +11,10 @@ import { discoverSources, architectureSources } from './lua-quality-metrics.mjs'
 // reference are resolved. Reassigned/captured writes remain unknown, rather than
 // activating a future callback through an old alias. This is not flow analysis:
 // parameter callbacks, logical-expression callees, table dispatch and dynamic
-// return values are not inferred. Explicit deferred-pair review is still required.
+// return values are not inferred. Direct global pcall/xpcall are known synchronous
+// calls; xpcall's explicit error handler may run before it returns. This assumes
+// standard global builtins; aliases, global reassignment and multiple-result
+// argument expansion are not analyzed. Deferred-pair review is still required.
 function initializationFunctions(ast) {
   const references=new WeakMap(),calls=new Map(),returns=new Map();
   const scope=parent=>({parent,bindings:new Map()});
@@ -48,7 +51,17 @@ function initializationFunctions(ast) {
     }
     // A call used as a callee/initializer consumes its first result only.
     if(node.type==='ReturnStatement'&&node.arguments[0])add(returns,owner,node.arguments[0]);
-    if(['CallExpression','StringCallExpression','TableCallExpression'].includes(node.type))add(calls,owner,node.base);
+    if(['CallExpression','StringCallExpression','TableCallExpression'].includes(node.type)) {
+      add(calls,owner,node.base);
+      // Lua's protected calls invoke the first argument, and xpcall may invoke
+      // its second argument on failure. Other arguments remain ordinary values.
+      // Keep the same lexical owner so a dormant function is not made eager.
+      if(node.base?.type==='Identifier'&&node.base.isLocal===false&&
+        ['pcall','xpcall'].includes(node.base.name)) {
+        add(calls,owner,node.arguments?.[0]);
+        if(node.base.name==='xpcall')add(calls,owner,node.arguments?.[1]);
+      }
+    }
     // Generic-for implicitly calls its first iterator expression. The remaining
     // expressions supply state/control values; their functions are not invoked.
     if(node.type==='ForGenericStatement')add(calls,owner,node.iterators[0]);

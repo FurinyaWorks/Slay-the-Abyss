@@ -4,8 +4,8 @@ title: 收敛核心依赖环与领域状态所有权
 status: In Progress
 assignee:
   - Furinya
-created_date: '2026-11-06 01:46'
-updated_date: '2026-11-10 14:35'
+created_date: 2026-11-06 01:46
+updated_date: '2026-11-11T08:22:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -13,6 +13,7 @@ documentation:
   - docs/backlog-details/M7-DEPENDENCY-AUDIT-20261106.md
   - docs/backlog-details/M7-POTION-REFACTOR-INTEGRATION-20261108.md
   - docs/backlog-details/M7-SEVEN-CURRENT-INTEGRATION-20261108.md
+  - docs/backlog-details/M7-PROTECTED-CALLS-20261111.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -56,6 +57,8 @@ ordinal: 161000
 2026-11-08 接续既有授权的独立职责片：WatcherAttack 只保留卡牌数据与纯效果计划；Halt 的 Actor 格挡算术由 queued-play 逐次提供延迟能力。仅改两生产源，保持动态方法读取、验证顺序与快照；原断言和完整历史来源保留，定向测试、全源码 SCC/CC 测量、独审后仅本地保存，不上传或重复 Full。
 
 2026-11-08 接续七项已有本地重构：基于已合#560的a0c35db8进行真实增量适配，保全两侧来源、合同与原始证据。只做定向测试及独立深审，不重复Full；从当前基线形成单父线性提交，明确批准后可按Ruleset正常上传及提PR，仍不得绕过质量门禁。
+
+2026-11-11 依赖门禁窄修复：复现模块初始化中的全局pcall/xpcall同步调用已知local函数被错误标成deferred；复用现有词法与调用闭包，只补标准保护调用的函数/错误处理器，保留局部遮蔽、未调用owner和普通参数边界。避开#619成员判断及#618/CharacterProfiles共享来源，先红后绿、原全架构报告对照与独审后Draft交付。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -104,4 +107,6 @@ WatcherAttack 已改由 queued-play 显式提供延迟 Actor 算术，完整333�
 Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
 
 清理期间另一执行线新增#608@ce10c988，也已完整保全到.archifacts/integration-20261110-policy-followup.bundle及归档ref，统一从#607/本任务接续。源任务编号与本轮TASK-74.22可能冲突，后续需CLI核对编号，不直接覆盖任务。
+
+2026-11-11 保护调用依赖门禁已实做：直接全局pcall/xpcall的静态函数及显式错误处理器纳入原初始化调用图，原12项10过2失败，修后架构/质量等三文件28/28、共享9/9；独立14项Fengari配对通过。345模块/1953引用完整架构报告前后逐字相同，生产Lua不变，不报解环/CC收益。别名、全局重绑定和多返回handler仍明确未支持；原执行误写和报告边界保留。正常CI/精确独审准入及合后验收待，owner/status/AC保持；见新增附件。
 <!-- SECTION:NOTES:END -->
