@@ -1,22 +1,34 @@
-# 千星动态图片绑定 vs Lua SetImage：隔离 A/B（Codex 接手）
+# 千星变量图片绑定 vs Lua SetImage：仅验证缺失能力（Codex 接手）
 
-> 2026-11-11 Owner 授权的**技术可行性与性能实验**，不是正式 UI 改造、设备验证或新框架立项。仅此文件为交接；源码实验和结果尚未实施。
+> 2026-11-11 查重收缩版。此 PR 仍只有交接文档；未实施、未测得新性能。今天尚无 GI/沙箱操作窗口。
 
-## 问题与来源
+## 唯一未证实的假设
 
-- 视频：[千星奇域顶级 UI 框架讲解，BV1xFu26AER3](https://www.bilibili.com/video/BV1xFu26AER3/) 的 **01:45–03:20**：固定格位的列表值与图片动态文本域关联，机关/角色/技能分层；**03:20–09:43**：客户端处理高频事件。
-- 已观察到作者演示数据驱动的界面变化，**没有**证明只需两个绘制调用、比 Lua 更快、支持直接载入自定义 PNG，或能够在当前 7.1 Lua 客户端 UI 中使用相同机制。原视频没有设备 FPS / 初始化耗时 / 内存的可靠性能基准。
-- 本项目已采用客户端 Lua、原生图片 API、固定卡位、同值去重与页面生命周期；对照现有 [abyss_map_ui.lua](../../src/lua/abyss_map_ui.lua)、[abyss_battle_card_view.lua](../../src/lua/abyss_battle_card_view.lua)、[#582](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/582) 和 [TASK-104 的测量机制](../backlog-details/TASK-104-PRODUCT-OUTCOME-LOOP-20261109.md)。不要重复研究已有的 Lua 差分或 Tween；它们由 [PR #613](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/613) 承接。
+视频 [BV1xFu26AER3](https://www.bilibili.com/video/BV1xFu26AER3/) 01:45–03:20 展示「固定列表索引 → 动态文本域/图片变化」。**未证明** 7.1 Lua 客户端控件能原样使用、无需节点图桥接、比现有 `SetImage` 快，或减少 Draw Call。不要把视频中的“两个空白图片区域”解释成底层只有两个控件/绘制调用。
 
-## 最小执行范围（先验证平台接口，再测性能）
+官方 [7.1 更新日志](https://act.mihoyo.com/ys/ugc/tutorial/detail/mhiufi00ceh4) 把新客户端控件/脚本与旧界面控件体系分列；[自定义变量说明](https://act.mihoyo.com/ys/ugc/tutorial/detail/mhso1b9wjica) 说明配置在组件里的默认变量才能同步至本地，但**不证明 Lua 可以直接驱动旧控件的列表图片绑定**。先查可用 API/格式；禁止只依据模拟器或 Lua 类型注解推定支持。
 
-1. **兼容性门槛**：先用官方 7.1 工具/API、实际可读的 GIL/GIA 或复现样本查明视频中的「动态文本域 → 图片 → 列表索引」属于哪类控件/节点图，能否从**当前项目的客户端 Lua**合法更新；分清旧节点图能力、Lua UI 能力和 SDK/mock 能力。若无可用 API，提交可复核证据，直接 **NO-GO**，不凭空模拟新功能，也不改成全项目节点图。
-2. **一个小样品**：有合法途径才在 `experiments/` 中做独立可运行 A/B。相同官方图片 ID、相同可见格位/层级、同一 70 格状态和预定的 100 次局部变化序列：A 使用现有 Lua `SetImage` / 控件复用，B 使用视频的**真正原生列表/变量图片绑定**。不能让 B 内部偷偷再调用同样的 `SetImage` 然后宣称验证了绑定方案。两边须等画质、等规则、等输入，并记录不同的实际控件数量；变量绑定需要额外节点/控件时如实披露，不能强行假定相同。
-3. **测量与反证**：优先复用已有 SDK/BeyondSimulator、`replay:outcome` 和结果报告，不增加第二套测量框架；对照冷启动到**完整可见**、暖更新 P50/P95/长阻塞、原生调用/注册/销毁、20 次重入、输入命中、空槽/索引、乱序或延迟更新。模拟器不支持真正绑定时只能作功能/成本辅助，**不得得出原生 FPS 结论**。有当前合法官方输入窗口时再取同候选 PC 实测；手机、官方 ready/容量缺项如实写 `UNVERIFIED`。
-4. **Go/No-Go**：交一张简短、可复核的 A/B 数据表，链接源码、种子、原始收据、截图和失败结果；若 B 不可实现、不具可测的实际收益或明显增加维护/兼容成本，直接 **NO-GO**。若确有收益，再建议是否应用于地图图标/状态槽，不在本 PR 直接全面迁移战斗 UI。
+## 现有成果：直接复用，不准重跑成“新 A/B”
 
-## 协作与不做什么
+| 已有证据 / 工具 | 已经解决或测试过什么 | 本次避免什么 |
+| --- | --- | --- |
+| [TASK-4.21](../backlog-details/TASK-4.21.md) / [abyss_map_ui.lua](../../src/lua/abyss_map_ui.lua) | 地图静止 300 次尺寸提交 15,000→1,200；战斗意图图片/文字 300→0，已有 setter 成功后缓存与生命周期失效 | 不重做 Lua 同值过滤/控件复用 |
+| [地图 V25 专项](../evidence/map-v25-20261110/README.md) 及 [summary.json](../evidence/map-v25-20261110/summary.json) | 同视觉差分绘制、浏览器 Pixi/Chrome、真实地图输入；20 次隐藏/滚动及同局地图回访；负控 P95 有改善也有退步，均保留 | 不重跑地图同类负控、泛化 70 格压力和设备性能推断 |
+| [TASK-100.1](../backlog-details/TASK-100.1.md) 的 [SDK 最终 A/B](../evidence/task-100-1-sdk-final-comparison-20261109.json) / [#582](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/582) | eager/lazy 同源各 3 新实例×20 往返，控件/冷暖时间/残留；暖态 P95 并未改善 | 不重复通用冷载/20 次切页/生命周期实验 |
+| [PR #613](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/613) | 已单独立项 Lua 差分写入和原生 Tween A/B | 不碰 #613 的任务或源码 |
+| [map-ab.mjs](../../experiments/art-tech-lab/map-ab.mjs)、[map-measure.mjs](../../experiments/art-tech-lab/map-measure.mjs)、[map-game-measure.mjs](../../experiments/art-tech-lab/map-game-measure.mjs)、[measure-official-battle.mjs](../../scripts/measure-official-battle.mjs)、[replay:outcome](../../scripts/replay-ui-outcome.mjs) | 已有测量、同源记录和输入/对象回归工具 | 不创建新的通用 benchmark、reporter、mock 引擎 |
 
-- Codex 接手时先读 `AGENTS.md`，按 Backlog CLI 查重、检查现有任务和独立 worktree；沿用已有任务承接，不手改任务文件或创建 GitHub 内部 Issue。
-- **仅本实验目录**；不改生产 Run/Combat、主题、默认美术、现有 #613 分支、CI 阈值或发布内容；不复制作者美术及未授权 GIL。需要实验性接线，使用独立候选与显式开关。
-- 未授权 GUI 输入时仅做离线研究/实验，不能操作用户游戏窗口。源码变更经既有独审、CI 和原生合并队列流程；本 PR 先保持 Draft。
+注意：旧数据属于原候选和原负载，**不能把旧值直接当作新绑定候选的配对性能数据**；只复用测量方法、基线知识与原收据。当前最重要的是验证**新机制能否真实调用**，不是再跑大矩阵。
+
+## 执行：先短路，再做最小探针
+
+1. **阶段 0｜只读能力确认，最高优先级**：核实视频「旧界面控件组/动态文本域/列表变量」机制能否在当前 7.1 客户端 Lua 控件上直接使用，或通过合法的已有客户端 API/现成节点图桥接使用。优先现有官方资料、项目代码/工具以及可合法读取的 GIA/GIL 样本；写明确切 API、数据流和限制。查不到证据就是 **UNVERIFIED**，不能凭模拟器自制方法宣称可用；确证不兼容则 **NO-GO/停止**。
+2. **阶段 1｜仅在可行时**：先用**最少控件、两张已知官方图、空值/变值/连续触发**做真正变量绑定的可观察样品。B 不能偷偷回退 `SetImage`。若没有支持原生绑定的运行环境，停止在能力证据层，不为了交“实验”写一个假的 B。
+3. **阶段 2｜仅在样品成功且合理可测时**：以**等视觉、等输入、同环境**做一次针对性 A（现有 `SetImage`）/B（原生变量绑定）测量；复用前述工具，只采集**新增机制**的更新时间、调用/控件开销及可见一致性，记录身份/不利样本。**70 格、100 更新、20 往返均不是硬指标**；只有需要证明真实收益、并且已有工具不足以回答时才增加样本。SDK/mock 不能模拟 B 时不做虚假的“性能对比”。
+4. **结论**：提交一份短报告：已证实/未证实的平台能力、最小运行截图或调用证据、必要的原始测量、**GO / NO-GO / UNVERIFIED** 及原因。若非显著收益，止于研究，不改生产 UI；若成功，只建议下一步可否用于地图图标/状态槽，不在本 PR 迁移。
+
+## 边界与交接
+
+- Codex 按 `AGENTS.md` 查现有 Backlog/任务负责人及 PR，沿 #615 原分支的独立工作树继续；不要再创建 PR/内部 Issue、手改任务、复制报告或改 #613。
+- 不改 Run/Combat、正式 UI、V25/官方美术来源、CI 阈值、原始证据；不用未授权的他人 GIL/贴图，新增文件尽量局限于本研究/实验目录。
+- **现在不打开/操作 GI 和用户键鼠**。今晚“可能有空”不是提前授权；如需官方 UI、ready、PC/手机 FPS、容量，暂留 `UNVERIFIED`，等待用户单独提供窗口。完成后仍遵循项目原独审、CI、队列规则；不自动发布或动 master。
