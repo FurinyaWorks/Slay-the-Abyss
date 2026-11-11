@@ -9,14 +9,14 @@ export function battlePileChrome(theme){
   {name:'heading',kind:'text',position:[-143,282],size:[570,56],text:{content:'',fontSize:26,minFontSize:26,align:'left',valign:'middle',colour:'#E9DDB6'}},
  ]};
 }
-export function battlePileReturn(button,pile,texture){
+export function battlePileReturn(button,pile,texture,ink='#E0BC73'){
  button.position=pile?[-550,-237]:button.position;
  for(const state of button.children[0].children){
   const colour=state.name==='hover'?'#A84D43':state.name==='pressed'?'#592A2B':'#8E3632';
   for(const part of state.children){
    if(part.name==='border'&&pile){part.image=100001;part.colour='#9B7A4E';}
    if(part.name==='plate'&&pile){part.image=texture??100001;part.colour=colour;part.size=button.size.map(v=>v-4);}
-   if(part.name==='label'&&pile){part.text.colour='#E0BC73';part.text.content='返回';}
+   if(part.name==='label'&&pile){part.text.colour=ink;part.text.content='返回';}
   }
  }
  if(pile&&texture){

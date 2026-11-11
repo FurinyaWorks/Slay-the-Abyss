@@ -1,0 +1,121 @@
+{
+  "base": "680be9c5740a7f0c4fd4b1ce82ee2e9018a2612b",
+  "verdict": "APPROVE narrow repair; no P1/P2 findings",
+  "files": {
+    "scripts/official-battle-pile-chrome.mjs": "54757a835b657ae9f467dc4f05e094c0566a4940661867dce0790dcf12bc80d7",
+    "scripts/deck-ui-layout.mjs": "4e0cf50c14cb77a0a92d065563b29b14b9df2de4f3500aeff81ff9694bd47169",
+    "scripts/official-assets-layout.mjs": "bf1ee63e4e9edb0f77543a23c48d20a7d03301f1211fbed080c0340f05f5b6a9",
+    "tests/official-battle-pile-layout.test.mjs": "9227c0795eb771794bf9e07460882efaa817c3ca526d3957035b31dbb3e698be"
+  },
+  "findings": [],
+  "verification": [
+    "Read four-file diff and all production battlePileReturn call sites. Both callers pass supplied theme.officialAssets.buttonInk; no missing production caller.",
+    "Independent recursive full generated native and official gameLayout comparison: exactly 5 changed leaves, all text.colour #E0BC73 to #FFF8E7. Native normal/hover/pressed/disabled plus official permanent art. Object keys, values, receiver geometry and other structure unchanged.",
+    "git diff --check passed. Parent owns targeted test runs; reviewer did not duplicate those suites or run Full.",
+    "Tests assert 4 native states, contrast >=4.5, theme forwarding with a distinct #FDFDFD value on both routes, and official receiver geometry/focusability/visibility. The custom-theme assertion catches the official late override as well as ordinary construction.",
+    "Independently verified all six parent raw-log SHA256 values, unchanged before/after snapshots (9657 entries / 9450 materialized), and current four-file hashes against validated snapshot. Read behavior/static logs; no failed check found."
+  ],
+  "identity": [
+    "scripts/build-native-candidate.mjs sourceInputs recursively includes scripts/*.mjs, so all three changed production modules affect candidate payloadDigest. Old candidate, startup and real-device evidence cannot validate the new source.",
+    "scripts/native-candidate-ui-cache.mjs checks generated game-ui.json SHA, so the intended color delta invalidates reuse of stale layout identity.",
+    "No central epoch/copy/CI integration, branch conflicts, font minimum repair or sorting repair is included or certified. New exact-head CI and required Full/branch gates remain necessary before merge."
+  ],
+  "limits": [
+    "Offline generated structure review only; no GUI, official import, ready or real-device acceptance.",
+    "backlog executable unavailable in this checkout. No Backlog state was changed.",
+    "git archive HEAD failed on an unrelated missing experiments/archive object. Comparison instead used copied scripts/data/config/package.json with all three modified production modules replaced by exact git show HEAD contents; no source was edited.",
+    "Initial independent probe guessed the new token incorrectly; corrected expected token to actual theme #FFF8E7 and reran successfully. This was a probe expectation correction, not a source failure."
+  ],
+  "parentValidationReviewed": {
+    "commands": [
+      {
+        "name": "behavior",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=1",
+          "tests/mobile-typography.test.mjs",
+          "tests/official-battle-pile-layout.test.mjs",
+          "tests/official-assets.test.mjs"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 11.304698467254639,
+        "logSha256": "70151215b39ea26fd3165607d749ece9170df13a105418f25d5bf211f5743282"
+      },
+      {
+        "name": "syntax",
+        "command": [
+          "npm",
+          "run",
+          "check:syntax"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 40.88551187515259,
+        "logSha256": "428404b2b437d79c58abbb235c75251e8c750236bbddc10c71280bdcc64eafae"
+      },
+      {
+        "name": "guidance",
+        "command": [
+          "npm",
+          "run",
+          "check:guidance"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.28861260414123535,
+        "logSha256": "af2b7464920286d7e2a83524802dfaab6533efcd97570f630eb8344030927915"
+      },
+      {
+        "name": "backlog",
+        "command": [
+          "npm",
+          "run",
+          "verify:backlog"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.36921215057373047,
+        "logSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+      },
+      {
+        "name": "network",
+        "command": [
+          "npm",
+          "run",
+          "check:network"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.27628207206726074,
+        "logSha256": "4aab41d2dd6f678bd9cf6b0a9fcdb5e8fba0023181640e02685af361f3646faa"
+      },
+      {
+        "name": "diff",
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.0069310665130615234,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "snapshotsEqual": true,
+    "snapshotItems": 9657,
+    "materializedItems": 9450,
+    "validationSha256": "fcd4fec2c9fd983c78d111060cdf6a01cb0dd83e0518e1eb1c00ca583be39137",
+    "trackedDiffExactlyFourExpectedPaths": [
+      "scripts/deck-ui-layout.mjs",
+      "scripts/official-assets-layout.mjs",
+      "scripts/official-battle-pile-chrome.mjs",
+      "tests/official-battle-pile-layout.test.mjs"
+    ],
+    "untracked": "node_modules symlink only; not part of tracked repair",
+    "behavior": "24 passed, 0 failed/cancelled/skipped; independently read log and verified SHA; no duplicate run"
+  },
+  "admissionBoundary": [
+    "No specific additional source-epoch/copy/CI adapter requirement established for these three production JS changes. Imported current sourceEpoch proof has 88 owners: none of the changed JS files is an owner or a current source binding.",
+    "Inspected official-battle-pile-source-inverse and its compressed proof: exact live projection binds only abyss_battle_ui.lua, abyss_deck_ui.lua and abyss_relic_view_ui.lua; all untouched. Its unprojectedChanges is empty and is not a blanket tracked-change gate.",
+    "Historical deck source witnesses mention scripts/deck-ui-layout.mjs, but deck-browse-source-inverse.test.mjs executes through historicalTest using isolated original baseline inputs. Those original bytes stay immutable; no reason to replace historical fixtures for this repair.",
+    "copy-integration-source-closure authenticates epoch helper/oracle overlays; none of these four repair files changes those bindings. Current generic payload/source hashes must change normally, not be adapted to accept stale evidence.",
+    "Approval is scoped to reviewed four-file bytes and inspected offline tests. Exact final commit and test merge still require repository Full/CI/branch admission. No claim that targeted pass proves all source/copy/CI gates, or that existing unrelated base conflicts are resolved."
+  ]
+}

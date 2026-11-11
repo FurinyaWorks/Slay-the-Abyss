@@ -164,7 +164,7 @@ export function deckControls(theme = nativeTheme) {
         size: l.deckView.viewport.slice(2), focusable: true, visible: false },
       { ...button('upgradePreview', l.deckView.upgradePreview, '升级预览'), visible: false },
       button('close', l.deckView.close, '关闭'),
-      {...battlePileReturn(button('pileReturn',[-550,-237,180,54],'返回'),true),visible:false},
+      {...battlePileReturn(button('pileReturn',[-550,-237,180,54],'返回'),true,undefined,theme.officialAssets.buttonInk),visible:false},
       {name:'pileTools',kind:'container',position:[0,241.5],size:[856,33],visible:false,children:[
         plate('plate',[0,0,856,33],'#76191B'),
         ...['original','type','cost','name'].map((mode,i)=>({name:mode,kind:'container',position:[(i-1.5)*150,0],size:[150,44],children:[

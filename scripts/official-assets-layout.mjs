@@ -245,7 +245,7 @@ export function applyOfficialAssets(trees,theme){
    else {buttonFaces(node,theme);panelSurfaces(node,theme);pageBackgrounds(node,theme);roomTextFits(node,theme);}
   });
   const pileReturn=child(child(tree,'stage')??tree,'deckPanel');
-  if(child(pileReturn,'pileReturn'))battlePileReturn(child(pileReturn,'pileReturn'),true,theme.officialAssets.images.button);
+  if(child(pileReturn,'pileReturn'))battlePileReturn(child(pileReturn,'pileReturn'),true,theme.officialAssets.images.button,theme.officialAssets.buttonInk);
   const tools=child(pileReturn,'pileTools');
   if(tools)for(const control of children(tools)){
    const backing=child(control,'officialButtonBacking');if(backing)backing.visible=false;

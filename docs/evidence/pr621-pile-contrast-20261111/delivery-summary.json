@@ -1,0 +1,88 @@
+{
+  "commands": [
+    {
+      "name": "behavior",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/mobile-typography.test.mjs",
+        "tests/official-battle-pile-layout.test.mjs",
+        "tests/official-assets.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 11.304698467254639,
+      "logSha256": "70151215b39ea26fd3165607d749ece9170df13a105418f25d5bf211f5743282"
+    },
+    {
+      "name": "syntax",
+      "command": [
+        "npm",
+        "run",
+        "check:syntax"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 40.88551187515259,
+      "logSha256": "428404b2b437d79c58abbb235c75251e8c750236bbddc10c71280bdcc64eafae"
+    },
+    {
+      "name": "guidance",
+      "command": [
+        "npm",
+        "run",
+        "check:guidance"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.28861260414123535,
+      "logSha256": "af2b7464920286d7e2a83524802dfaab6533efcd97570f630eb8344030927915"
+    },
+    {
+      "name": "backlog",
+      "command": [
+        "npm",
+        "run",
+        "verify:backlog"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.36921215057373047,
+      "logSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+    },
+    {
+      "name": "network",
+      "command": [
+        "npm",
+        "run",
+        "check:network"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.27628207206726074,
+      "logSha256": "4aab41d2dd6f678bd9cf6b0a9fcdb5e8fba0023181640e02685af361f3646faa"
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.0069310665130615234,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "snapshotItems": 9657,
+  "materializedItems": 9450,
+  "inputChanges": [],
+  "base": "680be9c5740a7f0c4fd4b1ce82ee2e9018a2612b",
+  "scope": "Existing #621 pile-return contrast regression; not full PR admission",
+  "behaviorTests": 24,
+  "behaviorPassed": 24,
+  "behaviorFailed": 0,
+  "behaviorCancelled": 0,
+  "behaviorSkipped": 0,
+  "fullRun": false,
+  "guiUsed": false,
+  "deviceValidation": false,
+  "sourceEpochIntegration": false,
+  "backlogCli": "unavailable; no state modification"
+}
