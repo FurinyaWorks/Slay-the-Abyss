@@ -1125,6 +1125,48 @@ test('pre-Formation Full36 inventory and forecasts remain independently reproduc
  }
 });
 
+test('Act1 event history restores the exact Formation receipt without replacing the current Full fixture',()=>{
+ const file='tests/lua/act1_event_content.lua',raw=diskReadFileSync(file,'utf8'),current=raw.replaceAll('\r\n','\n');
+ const beforeSha='8af87e0dd5a776d19436c613a8c9bd5dba4bfc381d03ca7260a574e3b6a16a00';
+ assert.equal(hash(current),'557a6f941bf154e07443aa6b6b9481ea328a350062790a4fbcb96a9d43cb7410');
+ assert.equal(encounterFormationCiInventory.luaSha256[file],beforeSha);
+ for(const source of [current,current.replaceAll('\n','\r\n')]){
+  assert.equal(jointCiMatches(file,source,'formationReceipt'),true);
+  const historical=jointCiSourceAt(file,source,'formationReceipt');
+  assert.equal(hash(historical),beforeSha,'the complete original Lua source, not a skipped hash check');
+  assert.equal(historical.includes('\r'),false);
+  assert.equal(jointCiMatches(file,historical,'formationReceipt'),false,'old input is not the approved current source');
+  assert.equal(jointCiSourceAt(file,historical,'formationReceipt'),historical);
+  for(const target of ['componentAliasFix','officialAssetsFlow','defectReceipt','officialFirstReceipt','officialFlowReceipt']){
+   assert.equal(jointCiMatches(file,source,target),false);assert.equal(jointCiSourceAt(file,source,target),source);
+  }
+  assert.equal(preComponentUiCiSource(file,source),source,'other source readers remain in their own epoch');
+ }
+ assert.equal(hash(formationReceiptRead(file)),beforeSha,'the real Buffer receipt reader is wired');
+ assert.equal(hash(formationReceiptRead(file,'utf8')),beforeSha,'the real text receipt reader is wired');
+ assert.ok(currentLua().includes(file),'current Full discovery still includes the actual fixture');
+ assert.equal(diskReadFileSync(file,'utf8'),raw,'receipt reads never rewrite the fixture');
+});
+
+test('Act1 Formation source view rejects tampering partial reversals duplicates and unrelated targets',()=>{
+ const file='tests/lua/act1_event_content.lua',source=diskReadFileSync(file,'utf8').replaceAll('\r\n','\n'),lines=source.split('\n');
+ const oldEq="local function eq(a,b)assert(a==b,tostring(a)..' ~= '..tostring(b))end";
+ const oldSame="local function same(a,b)eq(type(a),type(b));if type(a)~='table'then eq(a,b);return end;for k,v in pairs(a)do same(v,b[k])end;for k in pairs(b)do assert(a[k]~=nil)end end";
+ for(const foreign of [source+'\n','\n'+source,source.slice(1),source.slice(0,-1),source+source,
+  source.replace(lines[3],oldEq),source.replace(lines[4],oldSame),source.replace(lines[3],lines[3]+'\n'+lines[3]),
+  source.replace('Run.new(Data,42)','Run.new(Data,43)'),source.replace('\n','\r'),null,undefined,{},42,Buffer.from(source)]){
+  assert.notEqual(foreign,source);
+  assert.equal(jointCiMatches(file,foreign,'formationReceipt'),false);assert.equal(jointCiSourceAt(file,foreign,'formationReceipt'),foreign);
+ }
+ for(const foreign of ['__proto__','constructor','foreign/'+file,file+'/extra','tests/helpers/act1-choice-boundaries.lua']){
+  assert.equal(jointCiMatches(foreign,source,'formationReceipt'),false);assert.equal(jointCiSourceAt(foreign,source,'formationReceipt'),source);
+ }
+ for(const target of ['currentFull','foreign',undefined]){
+  assert.throws(()=>jointCiMatches(file,source,target),/known joint CI view/);
+  assert.throws(()=>jointCiSourceAt(file,source,target),/known joint CI view/);
+ }
+});
+
 test('POSIX15 accepts only its complete approved source and preserves the exact published POSIX14 epoch',()=>{
  const {path,beforeSource,afterSource,beforeSha256,afterSha256}=posix15ShapeProof;
  assert.equal(rawReadFileSync(path,'utf8').replaceAll('\r\n','\n'),afterSource);

@@ -19,7 +19,7 @@ const inventoryAdditions=Object.freeze({
 // Only these complete reviewed source updates may enter their original named
 // receipt views. The archived source/targets and unrelated files remain frozen.
 const sourceAdditions=Object.freeze({
- "tests/ci-complete-calibration.test.mjs":Object.freeze({"beforeSha256":"8c5046164021603181e3816d8c1b3facd14d1ea926dc5d95a84b1f153c2bf4ec","afterSha256":"b2f86a28c982022308c8677e9370cd3ef74bff49ed8343da29aac3c0236eb276"}),
+ "tests/ci-complete-calibration.test.mjs":Object.freeze({"beforeSha256":"8c5046164021603181e3816d8c1b3facd14d1ea926dc5d95a84b1f153c2bf4ec","afterSha256":"996bf9ba484ca5d3a10d66cd56d5e934a6fc107e75e2c914330ba528ff6c1c21"}),
  "scripts/ci-test-timings.json":Object.freeze({"beforeSha256":"18174c289e1f6f49b62e7c060bb98b6d41420dcfa77df8b668aa730a385ccc80","afterSha256":"a423700109c482cd5fdea24be4649463c4c7287fa2ed725a71dc323290da93a1"}),
  "tests/helpers/ci-complete-calibration-source-inverse.mjs":Object.freeze({"beforeSha256":"fcfd93b82e97cb81158ce01daa54b48cfa2f9c8dee7a06fceb572708c0f3db64","afterSha256":"a54e59fc162811dc2eabc3c562e3ba5f3afd7f99867c6d8c23d3f49e9d77efe0"}),
  "tests/helpers/combined-epoch/source-epoch.mjs":Object.freeze({"beforeSha256":"9c13e8134088d55a7a7b57e7f4fe905fd87cdc9a36e6c636049285e6fa99faf1","afterSha256":"ebb69c0778a5465273edae9b2fd2d523d3efa6cb248e2a02316b757a1bc3840a"}),
@@ -33,15 +33,30 @@ function sourceMatches(path,source,row){
  const sha=hash(source.replaceAll('\r\n','\n'));
  return sha===row.sha256||(Object.hasOwn(sourceAdditions,path)&&sha===sourceAdditions[path].afterSha256);
 }
+// The Act1 comparison-only update is newer than the frozen Formation Lua
+// inventory and is absent from proof.files. Only this complete current fixture
+// may reconstruct its original receipt bytes; every other view stays untouched.
+function act1FormationReceiptSource(path,source,target){
+ if(path!=='tests/lua/act1_event_content.lua'||target!=='formationReceipt'||typeof source!=='string')return null;
+ const current=source.replaceAll('\r\n','\n');
+ if(hash(current)!=='557a6f941bf154e07443aa6b6b9481ea328a350062790a4fbcb96a9d43cb7410')return null;
+ const after="local function eq(a,b,different)if different or not (a==b)then assert(false,tostring(a)..' ~= '..tostring(b))end end\nlocal function same(a,b)local ta,tb=type(a),type(b);if ta~=tb then eq(ta,tb,true)end;if ta~='table'then if not (a==b)then eq(a,b,true)end;return end;for k,v in pairs(a)do same(v,b[k])end;for k in pairs(b)do if a[k]==nil then assert(false)end end end\n";
+ const before="local function eq(a,b)assert(a==b,tostring(a)..' ~= '..tostring(b))end\nlocal function same(a,b)eq(type(a),type(b));if type(a)~='table'then eq(a,b);return end;for k,v in pairs(a)do same(v,b[k])end;for k in pairs(b)do assert(a[k]~=nil)end end\n";
+ const historical=current.replace(after,before);
+ assert.equal(hash(historical),'8af87e0dd5a776d19436c613a8c9bd5dba4bfc381d03ca7260a574e3b6a16a00','complete Act1 Formation receipt source');
+ return historical;
+}
 const views=['componentAliasFix','officialAssetsFlow','defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt'];
 export function jointCiMatches(path,source,target){
  assert(views.includes(target),'known joint CI view');
+ if(act1FormationReceiptSource(path,source,target)!==null)return true;
  if(target==='officialAssetsFlow'&&cursesReceiptMatches(path,source))return true;
  const row=Object.hasOwn(proof.files,path)?proof.files[path]:null;
  return !!(row&&Object.hasOwn(row.targets,target)&&sourceMatches(path,source,row));
 }
 export function jointCiSourceAt(path,source,target){
  assert(views.includes(target),'known joint CI view');
+ const act1=act1FormationReceiptSource(path,source,target);if(act1!==null)return act1;
  if(target==='officialAssetsFlow'&&cursesReceiptMatches(path,source))return preCursesReceiptSource(path,source);
  const row=Object.hasOwn(proof.files,path)?proof.files[path]:null;
  return row&&Object.hasOwn(row.targets,target)&&sourceMatches(path,source,row)?row.targets[target]:source;
