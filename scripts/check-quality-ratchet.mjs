@@ -10,14 +10,14 @@ import {discoverSources,architectureSources,measureSources,dependencyCycles} fro
 import {evaluateQualityRatchet} from './quality-ratchet-policy.mjs';
 
 const sha=v=>/^[a-f0-9]{40}$/.test(v??'');
-const lua=file=>/^src\\/lua\\/(?:[^/\\\\\\0]+\\/)*[^/\\\\\\0]+\\.lua$/.test(file)&&!file.split('/').includes('..');
+const lua=file=>file.startsWith('src/lua/')&&file.endsWith('.lua')&&!file.split('/').some(p=>p==='..'||p==='.'||!p)&&!file.includes(String.fromCharCode(92))&&!file.includes(String.fromCharCode(0));
 const git=(args,options={})=>{
   const r=spawnSync('git',args,{encoding:'utf8',timeout:30000,maxBuffer:8*1024*1024,...options});
   if(r.error||r.status!==0)throw Error('git '+args[0]+': '+(r.error?.message??r.stderr??r.status));
   return r.stdout;
 };
 export function parseChangedLua(output){
-  const words=output.split('\\0');
+  const words=output.split(String.fromCharCode(0));
   if(words.at(-1)==='')words.pop();
   if(words.length%2)throw Error('Malformed Git name-status output');
   const changed=[];
@@ -48,7 +48,7 @@ function measure(changedSources,tool){
     for(const [file,source] of Object.entries(changedSources)){
       if(!lua(file))throw Error('Invalid Lua source path '+file);
       const path=resolve(root,file);
-      if(!path.startsWith(root+'/')&&!path.startsWith(root+'\\\\'))throw Error('Source escaped temp root');
+      if(!path.startsWith(root+'/')&&!path.startsWith(root+String.fromCharCode(92)))throw Error('Source escaped temp root');
       mkdirSync(dirname(path),{recursive:true});
       writeFileSync(path,source);
     }
@@ -103,7 +103,7 @@ export function main(base=process.env.QUALITY_RATCHET_BASE){
     report.sccAfter=newGraph.cycles.map(c=>c.members.length);
   }
   mkdirSync('build',{recursive:true});
-  writeFileSync('build/quality-ratchet.json',JSON.stringify(report,null,2)+'\\n');
+  writeFileSync('build/quality-ratchet.json',JSON.stringify(report,null,2)+String.fromCharCode(10));
   for(const e of report.errors)console.error(e.file+':'+e.line+': '+e.message);
   console.log('Quality ratchet '+report.status+': '+changes.length+' changed Lua; '+
     report.errors.length+' new violations; '+base.slice(0,8)+' -> '+head.slice(0,8));
