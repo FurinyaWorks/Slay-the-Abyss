@@ -5,10 +5,8 @@ import {withViewport} from '../scripts/viewport-layout.mjs';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {officialAssetsTheme} from '../scripts/official-assets-layout.mjs';
 import {attachOfficialPortraits} from '../scripts/official-portraits.mjs';
-import {applyOfficialNoncombatLayout} from '../scripts/noncombat-v25-layout.mjs';
-import {readFileSync} from 'node:fs';
-import {createHash} from 'node:crypto';
-import {decodeRgbaRectangles} from '../scripts/v25-private-card-assets.mjs';
+import {applyOfficialNoncombatLayout,selectedPixelAvatarSource} from '../scripts/noncombat-v25-layout.mjs';
+import {lightweightAssets} from '../scripts/art/lightweight-2d-assets.mjs';
 const parts=n=>n?.controls??n?.children??[],child=(n,name)=>parts(n).find(c=>c.name===name);
 const all=n=>[n,...parts(n).flatMap(all)];
 test('official menu and selection reuse live inputs with bounded native decoration',()=>{
@@ -39,11 +37,11 @@ test('official menu and selection reuse live inputs with bounded native decorati
   assert.equal(all(flag).some(n=>n.image===theme.officialAssets.images.button),false,'official rectangle must not replace original flag');
  }
  assert.equal(child(panel,'v25Background').visible,true);
- assert.equal(all(panel).filter(n=>n.name==='officialGeoBadge').length,0,'the supplied constellation cannot be replaced with the geo icon');
+ assert.equal(all(panel).filter(n=>n.name==='officialGeoBadge').length,0,'the selected character must not become an unrelated geo icon');
  const constellation=child(child(child(panel,'v25Roster'),'selected'),'v25Constellation');
- assert(constellation.visible);assert.deepEqual(constellation.size,[118,118]);
- assert(all(constellation).length<2000);
- for(const n of all(constellation)){assert(parts(n).length<=60);if(n.kind==='image'){assert.equal(n.image,100001);assert.equal(n.colour.toUpperCase(),'#FFE0A2');}}
+ assert.equal(constellation.visible,false);assert.equal(parts(constellation).length,0);
+ const avatar=child(selectedSlot(panel),'selectedPixelAvatar');
+ assert(avatar.visible);assert.deepEqual(avatar.size,[118,118]);assert(parts(avatar).length<=20);
  const details=child(panel,'details'),bag=child(details,'v25GoldIcon');
  assert.equal(bag.kind,'container');assert.equal(all(bag).some(n=>n.image===theme.icon.gold),false,'approved grey money bag must not become a round coin');
  assert(all(bag).filter(n=>n.kind==='image').every(n=>n.image===theme.image.rect));
@@ -53,21 +51,21 @@ test('official menu and selection reuse live inputs with bounded native decorati
 });
 function selectedSlot(panel){return child(child(panel,'v25Roster'),'selected');}
 
-test('constellation derivative is pinned to the supplied full-bounds PNG and explicitly sampled',()=>{
- const original=readFileSync('docs/design/reference-ui-lab/constellation-exact.png');
- assert.equal(createHash('sha256').update(original).digest('hex'),'5780bc541d322b369b61f656908da59bdeee7f3ad83988edca8be23776720ecd');
- const derivative=JSON.parse(readFileSync('data/presentation/v25-constellation-118.json','utf8'));
- assert.equal(derivative.source.sha256,createHash('sha256').update(original).digest('hex'));
- assert.deepEqual(derivative.source.size,[512,512]);assert.deepEqual(derivative.displaySize,[118,118]);
- assert.equal(derivative.tint,'#FFE0A2');assert.equal(derivative.sampling.alphaLevels,32);
- assert.equal(derivative.sampling.filter,'Pillow-LANCZOS');assert.equal(derivative.sampling.crop,'none');
- assert.equal(derivative.originalSourceLossless,false);assert.equal(derivative.cssRasterExact,false);
- assert.equal(derivative.error.maxAbsAlpha,4);assert(derivative.error.meanAbsAlpha<=.436);
- // Independent fixed golden from original PNG alpha -> Pillow LANCZOS 118px ->
- // round(round(alpha/255*31)*255/31). Decode actual blocks, not claimed metadata.
- const rgba=decodeRgbaRectangles(derivative.asset),alpha=Buffer.alloc(118*118);
- for(let i=0;i<alpha.length;i++){
-  assert.deepEqual([...rgba.subarray(i*4,i*4+3)],[255,224,162]);alpha[i]=rgba[i*4+3];
+test('selected avatar preserves the actual battlePixel head identity and proportions',()=>{
+ const asset=lightweightAssets().battle133;
+ assert.equal(asset.sourceSha256,'b396f1af9e5c259fab4b63f973f184ffee3612404a8abc993d65fe698e8a65e0');
+ assert.equal(selectedPixelAvatarSource.sourceSha256,asset.sourceSha256);
+ assert.equal(selectedPixelAvatarSource.firstShape,40);assert.equal(selectedPixelAvatarSource.count,17);
+ const theme=officialAssetsTheme(nativeTheme),layout=withViewport(gameLayout(),theme);applyOfficialNoncombatLayout(layout,theme);
+ const panel=child(child(layout,'stage')??layout,'characterPanel'),avatar=child(selectedSlot(panel),'selectedPixelAvatar'),images=parts(avatar);
+ assert.equal(images.length,17);const rows=asset.rows.slice(40),scale=images[0].size[0]/rows[0][3];
+ for(let i=0;i<17;i++){
+  const n=images[i],r=rows[i];assert.equal(n.name,'head'+(40+i));assert.equal(n.image,r[0]);
+  assert.equal(n.colour,'#'+r.slice(14,17).map(c=>c.toString(16).padStart(2,'0')).join(''));assert.equal(n.opacity,r[17]/255);
+  for(const axis of [0,1]){
+   assert(Math.abs(n.size[axis]-r[3+axis]*scale)<1e-9);
+   assert(Math.abs((n.position[axis]-images[0].position[axis])-(r[1+axis]-rows[0][1+axis])*scale)<1e-9);
+   assert(Math.abs(n.position[axis])+n.size[axis]/2<=50.001,'full head bounds fit within 118px selected slot');
+  }
  }
- assert.equal(createHash('sha256').update(alpha).digest('hex'),'2613175996511aee8912765edc03260d3808f53c47093b5e16a5ebfd07eeaab4');
 });

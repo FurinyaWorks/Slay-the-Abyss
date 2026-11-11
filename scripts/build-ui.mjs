@@ -22,7 +22,6 @@ import { nativeCardArtArgs, prepareNativeCardArt, attachNativeCardArt, bindNativ
 import {loadPerformancePack} from './art/performance-pack.mjs';
 import {writeLightweightProfile} from './lightweight-2d-profile.mjs';
 import {compactBoundedCardFaces} from './lightweight-card-layout.mjs';
-import {constellationDisplayInputs} from './noncombat-constellation.mjs';
 import {validateUiProfileOptions,uiProfileArgs,uiProfileModule,uiProfileSource} from './ui-profile.mjs';
 import {validateV25Chrome,v25ChromeArgs} from './v25-profile.mjs';
 import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
@@ -138,7 +137,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   const performance=compact?loadPerformancePack():null;
   if(flags.menuBackground)backgroundSources();
   portraitSources(process.cwd(),flags);
-  rejectInputOutputAliases(outputDirectory, [...(officialAssets?constellationDisplayInputs.map(path=>fileURLToPath(new URL('../'+path,import.meta.url))):[]),...(v25Cards?.inputs.map(row=>row.path)??[]),...(v25Masks?.inputs.map(row=>row.path)??[]),...(flags.menuBackground?backgroundInputs:[]),...portraitRuntimeInputs(flags), ...(readyArt?readyArtSourceInputs():[]), ...(art?.inputPaths??[])].map(path=>resolve(path)));
+  rejectInputOutputAliases(outputDirectory, [...(v25Cards?.inputs.map(row=>row.path)??[]),...(v25Masks?.inputs.map(row=>row.path)??[]),...(flags.menuBackground?backgroundInputs:[]),...portraitRuntimeInputs(flags), ...(readyArt?readyArtSourceInputs():[]), ...(art?.inputPaths??[])].map(path=>resolve(path)));
   // The optional-art identity scan above also protects grass sources before decoding.
   const monsterArt=flags.monsters?prepareMonsterArt(options.monsterArt):null;
   if(flags.monsters&&!monsterArt)throw Error('Enabled monster artwork requires its registry');
