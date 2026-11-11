@@ -33,6 +33,7 @@ import {applyV25PortraitProfile} from './v25-portrait-profile.mjs';
 import {applyV25CharacterLayout} from './v25-character-layout.mjs';
 import {applyV25MapLayout} from './v25-map-layout.mjs';
 import {applyV25MenuLayout} from './v25-menu-layout.mjs';
+import {applyMonolithMenuOverlay} from '../docs/art/monolith-menu-native/monolith-menu-overlay.mjs';
 import {applyV25ResultLayout} from './v25-result-layout.mjs';
 import {applyV25NodeLayout,applyV25RewardLayout} from './v25-node-layout.mjs';
 import {prepareV25CardTemplates} from './v25-card-templates.mjs';
@@ -183,6 +184,10 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
     applyOfficialAssets([battle,layout,...templates],theme);
     templates.push(battlePileCardTemplate(layout,templates[0]));
   }
+  if(options.monolithMenu===true){
+    if(options.releaseCandidate===true||flags.menuBackground===true)throw Error('Native monolith menu is an isolated non-release scene probe');
+    applyMonolithMenuOverlay(layout,theme);
+  }
   for (const tree of [battle, layout, ...templates]) assertNativeUiCapacity(tree);
   const rendered = spawnSync(python, ['tools/render_traveler_cards.py', 'data/cards.json', 'data/presentation/traveler.zh-CN.json'],
     { encoding: 'utf8', timeout: 15000, maxBuffer: 1024 * 1024, env: { ...process.env, PYTHONUTF8: '1' } });
@@ -229,11 +234,13 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
     const official=officialAssetsArgs(process.argv.slice(2));
     const chrome=v25ChromeArgs(official.args);
     const profile=uiProfileArgs(chrome.args),args = profile.args, experimentalCharacters = args.includes('--experimental-characters'),lightweight2d=args.includes('--lightweight-2d'),legacyCardFrames=args.includes('--legacy-card-frames');
-    const features=artFeatureArgs(args.filter(arg => !['--experimental-characters','--lightweight-2d','--legacy-card-frames'].includes(arg)));
+    const monolithMenu=args.includes('--monolith-menu');
+    if(args.filter(arg=>arg==='--monolith-menu').length>1)throw Error('Duplicate monolith menu flag');
+    const features=artFeatureArgs(args.filter(arg => !['--experimental-characters','--lightweight-2d','--legacy-card-frames','--monolith-menu'].includes(arg)));
     const native = nativeCardArtArgs(features.args);
     const { paths, options } = releaseBuildArgs(native.args);
     if (paths.length > 1) throw new Error('Expected at most one output directory');
-    buildUI(paths[0], undefined, {officialAssets:official.officialAssets, v25BattleChrome:chrome.v25BattleChrome,v25CardAssets:chrome.v25CardAssets,v25UiMasks:chrome.v25UiMasks, experimentalCharacters, lightweight2d, legacyCardFrames, nativePageLifecycle:profile.nativePageLifecycle, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
+    buildUI(paths[0], undefined, {officialAssets:official.officialAssets, v25BattleChrome:chrome.v25BattleChrome,v25CardAssets:chrome.v25CardAssets,v25UiMasks:chrome.v25UiMasks, experimentalCharacters, lightweight2d, legacyCardFrames, monolithMenu, nativePageLifecycle:profile.nativePageLifecycle, ...options, artFeatures:features.artFeatures, nativeCardArt:native.nativeCardArt, readyCardArt:native.readyCardArt });
     console.log('Native battle UI and Traveler display module built.');
   }
   catch (error) { console.error(error.message); process.exitCode = 1; }
