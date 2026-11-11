@@ -1,0 +1,108 @@
+{
+  "commit": "5b4c90f46a4cff14aa7f0b9c2458cfd40c170a01",
+  "checks": 9,
+  "records": [
+    {
+      "name": "indexed assignment cannot borrow another key",
+      "blocked": true,
+      "errors": [
+        {
+          "file": "src/lua/a.lua",
+          "line": 1,
+          "message": "<anonymous>: CC new -> 20 exceeds 15"
+        }
+      ]
+    },
+    {
+      "name": "table computed keys remain separate",
+      "blocked": true,
+      "errors": [
+        {
+          "file": "src/lua/a.lua",
+          "line": 1,
+          "message": "<anonymous>: CC new -> 20 exceeds 15"
+        }
+      ]
+    },
+    {
+      "name": "argument position transfer is new debt",
+      "blocked": true,
+      "errors": [
+        {
+          "file": "src/lua/a.lua",
+          "line": 1,
+          "message": "<anonymous>: CC new -> 20 exceeds 15"
+        }
+      ]
+    },
+    {
+      "name": "literal escape spelling preserves ownership",
+      "blocked": false,
+      "errors": []
+    },
+    {
+      "name": "numeric sibling callback event separates identity",
+      "blocked": true,
+      "errors": [
+        {
+          "file": "src/lua/a.lua",
+          "line": 1,
+          "message": "<anonymous>: CC new -> 20 exceeds 15"
+        }
+      ]
+    },
+    {
+      "name": "else branch cannot borrow if branch",
+      "blocked": true,
+      "errors": [
+        {
+          "file": "src/lua/a.lua",
+          "line": 4,
+          "message": "<anonymous>: CC new -> 20 exceeds 15"
+        }
+      ]
+    },
+    {
+      "name": "unmatched renamed outer owner cannot lend nested debt",
+      "blocked": true,
+      "errors": [
+        {
+          "file": "src/lua/a.lua",
+          "line": 1,
+          "message": "<anonymous>: CC new -> 20 exceeds 15"
+        }
+      ]
+    },
+    {
+      "name": "unchanged duplicate nested owner survives inserted twin",
+      "blocked": false,
+      "errors": []
+    },
+    {
+      "name": "same context reorder preserves exact functions",
+      "blocked": false,
+      "errors": []
+    }
+  ],
+  "legacyOutputComparison": "all probes and three largest files equal",
+  "performance": [
+    {
+      "file": "abyss_combat",
+      "bytes": 116002,
+      "functions": 186,
+      "identityMs": 90.51670998334885
+    },
+    {
+      "file": "abyss_actor",
+      "bytes": 51893,
+      "functions": 89,
+      "identityMs": 55.285697013139725
+    },
+    {
+      "file": "abyss_map_ui",
+      "bytes": 44074,
+      "functions": 76,
+      "identityMs": 31.074248999357224
+    }
+  ]
+}

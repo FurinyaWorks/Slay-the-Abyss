@@ -1,0 +1,34 @@
+✖ real CLI passes a no-Lua commit without needing a tool or measuring existing debt (471.800449ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 677.957252
+
+✖ failing tests:
+
+test at tests/quality-ratchet-policy.test.mjs:260:1
+✖ real CLI passes a no-Lua commit without needing a tool or measuring existing debt (471.800449ms)
+  AssertionError [ERR_ASSERTION]: Quality ratchet failed closed: Unsupported Lua change: A src/lua/README.md
+  
+  
+  1 !== 0
+  
+      at runFixtureRatchet (file:///workspace/scratch/c1a4970a76e0/m7-quality-ratchet-review/tests/quality-ratchet-policy.test.mjs:213:10)
+      at file:///workspace/scratch/c1a4970a76e0/m7-quality-ratchet-review/tests/quality-ratchet-policy.test.mjs:265:20
+      at gitFixture (file:///workspace/scratch/c1a4970a76e0/m7-quality-ratchet-review/tests/quality-ratchet-policy.test.mjs:74:27)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-quality-ratchet-review/tests/quality-ratchet-policy.test.mjs:261:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

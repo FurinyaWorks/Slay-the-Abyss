@@ -1,0 +1,17 @@
+✔ new CC16 fails while CC15 passes and unrelated old debt is grandfathered (1.780598ms)
+✔ old high CC cannot increase; improvements and low debt within limit are permitted (0.319943ms)
+✔ new modules have a line budget; existing oversized owners cannot grow (0.154025ms)
+✔ new, expanded or denser SCC is blocked; unchanged and eliminated SCC are fine (0.344917ms)
+✔ splitting a large SCC is allowed but its internal edge allowance cannot expand (0.147046ms)
+✔ missing/corrupt measurements fail closed (0.515985ms)
+✔ committed source graphs preserve Git bytes and ignore checkout, staged and untracked changes (48.280033ms)
+✔ committed linked source files and directory entries fail closed without following checkout paths (101.051985ms)
+✔ real CLI keeps committed CC16 blocked after checkout source and policy are replaced (1025.375018ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1372.96263

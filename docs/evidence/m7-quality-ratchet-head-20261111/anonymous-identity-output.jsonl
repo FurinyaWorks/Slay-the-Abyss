@@ -1,0 +1,2 @@
+{"name":"insert-small-before-unchanged","before":[["$",1],["$/<anonymous>#1",20]],"after":[["$",1],["$/<anonymous>#1",1],["$/<anonymous>#2",20]],"errors":[{"file":"src/lua/a.lua","line":4,"message":"<anonymous>: CC new -> 20 exceeds 15"}]}
+{"name":"new-large-borrows-old","before":[["$",1],["$/<anonymous>#1",20]],"after":[["$",1],["$/<anonymous>#1",20],["$/<anonymous>#2",1]],"errors":[]}

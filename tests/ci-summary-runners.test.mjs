@@ -193,3 +193,27 @@ historicalTest('direct platform projection and layered replay share the same exa
     workflow.replace('    runs-on: ubuntu-24.04', '    runs-on: ubuntu-slim'),
   ]) assert.notEqual(digest(beforePlatformWorkflow(changed)), expected, 'external workflow drift remains visible');
 });
+
+import {beforeQualityRatchetWorkflow,qualityRatchetWorkflowGates} from './helpers/quality-ratchet-workflow.mjs';
+test('ratchet gates project only their exact complete placements and preserve current execution',()=>{
+ const beforeSha='28957431693a0c07dedcda5a1b8ffff031f94f93ca838203d65661343b46709d';
+ for(const eol of ['\n','\r\n']){
+  const live=workflow.replaceAll('\r\n','\n').replaceAll('\n',eol),prior=beforeQualityRatchetWorkflow(live);
+  assert.notEqual(prior,live);
+  assert.equal(createHash('sha256').update(prior.replaceAll('\r\n','\n')).digest('hex'),beforeSha);
+  assert.equal(live.split('run: node scripts/check-quality-ratchet.mjs').length-1,2);
+  assert(!prior.includes('run: node scripts/check-quality-ratchet.mjs'));
+  assert.equal(beforeQualityRatchetWorkflow(prior),prior);
+  for(const gate of qualityRatchetWorkflowGates){
+   const block=gate.replaceAll('\n',eol);
+   for(const drift of [live.replace(block,''),live+block,live.replace(block,block.replace('QUALITY_RATCHET_BASE','WRONG_BASE')),
+    live.replace(block,block.replace('node scripts/check-quality-ratchet.mjs','echo skipped'))]){
+    assert.notEqual(drift,live);assert.equal(beforeQualityRatchetWorkflow(drift),drift);
+   }
+   const moved=live.replace(block,'')+block;assert.notEqual(moved,live);assert.equal(beforeQualityRatchetWorkflow(moved),moved);
+  }
+  const altered=live.replace('contents: read','contents: write');
+  assert(beforeQualityRatchetWorkflow(altered).includes('contents: write'),'unrelated drift remains visible');
+  assert.notEqual(createHash('sha256').update(beforeQualityRatchetWorkflow(altered).replaceAll('\r\n','\n')).digest('hex'),beforeSha);
+ }
+});

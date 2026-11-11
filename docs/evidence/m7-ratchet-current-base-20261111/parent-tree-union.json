@@ -1,0 +1,1249 @@
+{
+  "schemaVersion": 1,
+  "base": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "prHead": "9789fd6d0d903542fa87aa495949c85cf47a7a3d",
+  "mergeBase": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "mergedIndexTreeBeforeNewRecords": "62b0500b62f8aff96066fcd330fa66033e03c43e",
+  "baseChangedPaths": 25,
+  "prChangedPaths": 61,
+  "overlap": [
+    ".gitattributes"
+  ],
+  "baseNonconflictingPathsPreserved": 24,
+  "prNonconflictingPathsPreserved": 60,
+  "productionLuaByteIdenticalToBothParents": 345,
+  "taskPlanPendingCliAddition": true,
+  "scope": "Exact parent-tree union; no new source, CI policy, inventory, budget or production changes. New current-base records tracked separately.",
+  "paths": [
+    {
+      "path": ".gitattributes",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c414f14eba281c366f6ff814de4c827c1ff6778d"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4e9b54e7aa3069464a76109e4f7af5e7e498b481"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a3692b70acd0362a7b5a5f64a694366933780979"
+      }
+    },
+    {
+      "path": ".github/workflows/quality.yml",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6399aa1d8d531c0693a0f251c0b8cf8cebd4a864"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0ff34f1b36ddd8a7b240b6b1b757f569c69dd3c5"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0ff34f1b36ddd8a7b240b6b1b757f569c69dd3c5"
+      }
+    },
+    {
+      "path": "backlog/tasks/task-100.2 - 对照验证原生差分更新与Tween的战斗收益.md",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fc85a0f39f6ec41b412032363b524f1f74e0d563"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fc85a0f39f6ec41b412032363b524f1f74e0d563"
+      }
+    },
+    {
+      "path": "backlog/tasks/task-74.22 - 阻止未治理模块新增复杂度债务.md",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4145c3138a0d95d35d8c865b45ef969d13fb9bdc"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "58126263beac0441abe568c5f86a974066f41870"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "58126263beac0441abe568c5f86a974066f41870"
+      }
+    },
+    {
+      "path": "docs/ENGINEERING_QUALITY.md",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "377d5887526d2b6201ee29e6e26d2381fbb0221d"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "954ec0fb05b521a93dd1c9aa6d7cd92b33251ca5"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "954ec0fb05b521a93dd1c9aa6d7cd92b33251ca5"
+      }
+    },
+    {
+      "path": "docs/MILESTONES.md",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "931c538650fb8899c9e5574af8661565eb2ba539"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2026293d6837fbd9ae6f8fe4e1005e6e7b64c9bc"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "931c538650fb8899c9e5574af8661565eb2ba539"
+      }
+    },
+    {
+      "path": "docs/backlog-details/M7-QUALITY-RATCHET-CLOSEOUT-20261111.md",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "151ba5d92ad4592a78e08cb2f824e145670b72eb"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "151ba5d92ad4592a78e08cb2f824e145670b72eb"
+      }
+    },
+    {
+      "path": "docs/backlog-details/M7-QUALITY-RATCHET-HEAD-20261111.md",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b43f17cf6fa99e333181d8a5736aa1caa1127528"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b43f17cf6fa99e333181d8a5736aa1caa1127528"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/SHA256SUMS",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "846f0ac105cdf09d80310623dacf1e3f5376abf7"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "846f0ac105cdf09d80310623dacf1e3f5376abf7"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/backlog-final.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5fdef30dfa9d343baae608b8a0617c5decf8b1c8"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5fdef30dfa9d343baae608b8a0617c5decf8b1c8"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/calibration-integrated.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2096109f88066984acdce79d8a5ff12217bd6264"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2096109f88066984acdce79d8a5ff12217bd6264"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/ci-consumers-first.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1e567b941c10b49fc791e30f43771a5b0802d160"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1e567b941c10b49fc791e30f43771a5b0802d160"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/ci-final-dual-binding.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "eccc5f33786e73ffd270a527a50e65ceb83794ce"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "eccc5f33786e73ffd270a527a50e65ceb83794ce"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/ci-final-pathspec-negative-controls.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "10253d6ce8054b13d09af03857084e79b53e531e"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "10253d6ce8054b13d09af03857084e79b53e531e"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/ci-negative-controls.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "24c5f29fd8f230555412045b04aad5bc9c251833"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "24c5f29fd8f230555412045b04aad5bc9c251833"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/code-review.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "17d791c94980a8d16dc7db8e86bb5cbd4f7fb55a"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "17d791c94980a8d16dc7db8e86bb5cbd4f7fb55a"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/default-parity.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "32f4b934ac6749aefbb73e9024f878a04f2aac6c"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "32f4b934ac6749aefbb73e9024f878a04f2aac6c"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/final-pathspec-review.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e629004c6b6fdc671c51f749923e86269cf7508b"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e629004c6b6fdc671c51f749923e86269cf7508b"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/final-pathspec-review.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "57ac05ffb7ed97ccdf54a8efa6c04f435424d5e1"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "57ac05ffb7ed97ccdf54a8efa6c04f435424d5e1"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/full-engineering-final.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "010c34c3c484fece3453f72b4a230601f80b33e7"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "010c34c3c484fece3453f72b4a230601f80b33e7"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/full-engineering.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "dffaefd237b25095a8bd75e92600e2ebbce789f5"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "dffaefd237b25095a8bd75e92600e2ebbce789f5"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/guidance-final.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d323829166a57165c34381d5f99f1ffc27af54e2"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d323829166a57165c34381d5f99f1ffc27af54e2"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/identity-combination.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d7356eed338301991cbc7175b6d4a9a6f3cb2baf"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d7356eed338301991cbc7175b6d4a9a6f3cb2baf"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/identity-independent-probes.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "371b7514137ed5d6755ed84ff14b902389c33cd4"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "371b7514137ed5d6755ed84ff14b902389c33cd4"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/identity-independent-probes.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a2a6279bc099ebd001e583490a34cf6b4c311800"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a2a6279bc099ebd001e583490a34cf6b4c311800"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/identity-reproduce.sh",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "65e16b9b4917cfdcdeca4d5c75a78b5757f81065"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "65e16b9b4917cfdcdeca4d5c75a78b5757f81065"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/inventory-pathspec-final.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7b7fcf0bcc744e2fd62a9860aac7ac1ee02e0a81"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7b7fcf0bcc744e2fd62a9860aac7ac1ee02e0a81"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/m7-ratchet-identity-adjacent.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "90474c6291b465077538e5b5e557b2c523b7fb1e"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "90474c6291b465077538e5b5e557b2c523b7fb1e"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/m7-ratchet-identity-final-green.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3e86dce91429da5adcb3585f0fd323b400b51837"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3e86dce91429da5adcb3585f0fd323b400b51837"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/m7-ratchet-identity-green.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0431a7734bcd81f260203f547cf7ee2cf1a9459c"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0431a7734bcd81f260203f547cf7ee2cf1a9459c"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/m7-ratchet-identity-red.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f864d3d7dd097309ee75aaabf8b139848e97c6cd"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f864d3d7dd097309ee75aaabf8b139848e97c6cd"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/mutation-final.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6ee1f3311140d363afde4b13c331e9ce10a64fe5"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6ee1f3311140d363afde4b13c331e9ce10a64fe5"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/mutation-infrastructure.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9af9e83dda4d8fce798f103b64a7d7e61af3e6fb"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9af9e83dda4d8fce798f103b64a7d7e61af3e6fb"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/network-final.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "65fbef0643f3db3c1e7baa54a6862816e3141142"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "65fbef0643f3db3c1e7baa54a6862816e3141142"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/nonlua-red.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a1f8019a690a8808658f17c28e6a91a3293f762b"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a1f8019a690a8808658f17c28e6a91a3293f762b"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/nonlua-subtree-probe.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7e4da84bd9cdafcad7c084f2232d021fa1b03298"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7e4da84bd9cdafcad7c084f2232d021fa1b03298"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/ratchet-pathspec-final.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ed7f7b64227ffaf6b5dca6834e3cd216110b7ca8"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ed7f7b64227ffaf6b5dca6834e3cd216110b7ca8"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-closeout-20261111/syntax-final.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6272a7ad433ba4c25ada4925e91855cefd2206f8"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6272a7ad433ba4c25ada4925e91855cefd2206f8"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/SHA256SUMS",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "17eb4d8f2ab8d2ce1fbdbc12a7a1049b8bbc3dea"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "17eb4d8f2ab8d2ce1fbdbc12a7a1049b8bbc3dea"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/adjacent.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e65cf8cd92eabb4fea5d6091410f90c865dba302"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e65cf8cd92eabb4fea5d6091410f90c865dba302"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/anonymous-identity-output.jsonl",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7302bc165dc7b30c55e857b604ed59761ceafc61"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7302bc165dc7b30c55e857b604ed59761ceafc61"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/anonymous-identity-repro.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e816986defcd5d22f0f9f367aa9dd33ccf46fecf"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e816986defcd5d22f0f9f367aa9dd33ccf46fecf"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/backlog.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5fdef30dfa9d343baae608b8a0617c5decf8b1c8"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5fdef30dfa9d343baae608b8a0617c5decf8b1c8"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/exact-head-after.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a8ecccc7f367547aa6ec461eb8a1d4086bc277db"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a8ecccc7f367547aa6ec461eb8a1d4086bc277db"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/exact-head-before.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b11de6786e32e0940ffd57b493615455b3744dc0"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b11de6786e32e0940ffd57b493615455b3744dc0"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/exact-head-probe.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "716b3b60b1250b5dc934a8b9ea8d88ba9c88d017"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "716b3b60b1250b5dc934a8b9ea8d88ba9c88d017"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/git-object-edge-output.txt",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "42ea394fd7cf5f7ff178e9f2fdec9296e507447a"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "42ea394fd7cf5f7ff178e9f2fdec9296e507447a"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/git-object-edge-repro.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ff9d028070964553427d2e9376968cdb5c41bb86"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ff9d028070964553427d2e9376968cdb5c41bb86"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/guidance.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d323829166a57165c34381d5f99f1ffc27af54e2"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d323829166a57165c34381d5f99f1ffc27af54e2"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/network.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "65fbef0643f3db3c1e7baa54a6862816e3141142"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "65fbef0643f3db3c1e7baa54a6862816e3141142"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/review-scope.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d890ae473fe7f3575c30288c1f24d838e18fd700"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d890ae473fe7f3575c30288c1f24d838e18fd700"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/snapshot-parity.json",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2c0d82ef4d17fd380723535ee4f48a185f6a2b1f"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2c0d82ef4d17fd380723535ee4f48a185f6a2b1f"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/syntax.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6272a7ad433ba4c25ada4925e91855cefd2206f8"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6272a7ad433ba4c25ada4925e91855cefd2206f8"
+      }
+    },
+    {
+      "path": "docs/evidence/m7-quality-ratchet-head-20261111/tests-first.log",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2eb65b131d5591e086dee71ece2b479377ba0f55"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2eb65b131d5591e086dee71ece2b479377ba0f55"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/README.md",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "005b46bebe79b753c185f36b584be5cbafedf2a7"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "005b46bebe79b753c185f36b584be5cbafedf2a7"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/backlog-check-2.log",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "16fab6ceebe767e548f72b331a2116ca60c655c0"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "16fab6ceebe767e548f72b331a2116ca60c655c0"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/candidate-A.json.gz",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "43294f14e5442fb1129b99e5653de36efa21622d"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "43294f14e5442fb1129b99e5653de36efa21622d"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/manifest.json",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7b5fe6eb58b261271b9d026daf6cbb79d6e17d83"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7b5fe6eb58b261271b9d026daf6cbb79d6e17d83"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/name-boundaries.log",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "84249e6c8ae043da222e55229eab6ecd798fc674"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "84249e6c8ae043da222e55229eab6ecd798fc674"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/negative-pair.log",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2fc3827b3e0b151c9d7ca76fc72fa1a631b5d95f"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2fc3827b3e0b151c9d7ca76fc72fa1a631b5d95f"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/regression-actor_feedback_lifecycle.log",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1ab7541b8b128b1096b37e3d5ad499d2c3336cb2"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1ab7541b8b128b1096b37e3d5ad499d2c3336cb2"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/regression-feedback_start_recovery.log",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "019e4b7f08e646219427189754c420c35b6bcadc"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "019e4b7f08e646219427189754c420c35b6bcadc"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/regression-intent_visibility_cache.log",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "555347dcd4a24f62f4820c78eb1edec0b181d8cf"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "555347dcd4a24f62f4820c78eb1edec0b181d8cf"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/sdk-A.json.gz",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "10f3d594ad7e12dd43809050e6235f8a9fdabbef"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "10f3d594ad7e12dd43809050e6235f8a9fdabbef"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/sdk-diff.json.gz",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "26b7aeac4b4fd1a0629df68ac1464f03ebe7a2c6"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "26b7aeac4b4fd1a0629df68ac1464f03ebe7a2c6"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/sdk-tween.json.gz",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e95c1dd14184fae7ad4f0d3dc5c69c014cf74db0"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e95c1dd14184fae7ad4f0d3dc5c69c014cf74db0"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/summary.json",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "13caff5f82ba37dab01a63d45dc55bdf5f015399"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "13caff5f82ba37dab01a63d45dc55bdf5f015399"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/tween-boundaries.log",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5304ff6bdf11bcc031bfa41383546148ee0e5695"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5304ff6bdf11bcc031bfa41383546148ee0e5695"
+      }
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/verify-pair-2.log",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e65d418a7a1ed5e0c54494fc5d57cfaea0369b3f"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e65d418a7a1ed5e0c54494fc5d57cfaea0369b3f"
+      }
+    },
+    {
+      "path": "docs/research/2026-11-11-native-ui-ab.md",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2bd7f4cfc97a175f13ad39608bee6aa61f9c4a3b"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2bd7f4cfc97a175f13ad39608bee6aa61f9c4a3b"
+      }
+    },
+    {
+      "path": "experiments/native-ui-ab/README.md",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "59ab3547ac3b3b337f2d4367fa00dcb7ccead8ec"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "59ab3547ac3b3b337f2d4367fa00dcb7ccead8ec"
+      }
+    },
+    {
+      "path": "experiments/native-ui-ab/name-boundaries.lua",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "de42c3b81a76adf6d507066836edb1e64529b2fc"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "de42c3b81a76adf6d507066836edb1e64529b2fc"
+      }
+    },
+    {
+      "path": "experiments/native-ui-ab/run.mjs",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "259bbfa362fa1d6d4fb5ade3cc1afb8d27ba5504"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "259bbfa362fa1d6d4fb5ade3cc1afb8d27ba5504"
+      }
+    },
+    {
+      "path": "experiments/native-ui-ab/tween-boundaries.lua",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "627ba3c1d6136bc2976ce57e2d32f1b18a715d57"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "627ba3c1d6136bc2976ce57e2d32f1b18a715d57"
+      }
+    },
+    {
+      "path": "experiments/native-ui-ab/variants.mjs",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "97cb0c7c886290837f581e70c3a82ce7878fe4d8"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "97cb0c7c886290837f581e70c3a82ce7878fe4d8"
+      }
+    },
+    {
+      "path": "experiments/native-ui-ab/verify.mjs",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0ff6a4860c5222f7ae5028d1bd11a50cdfae6869"
+      },
+      "pr": null,
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0ff6a4860c5222f7ae5028d1bd11a50cdfae6869"
+      }
+    },
+    {
+      "path": "scripts/check-quality-ratchet.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3a8d94f9e4535633ed7ff1dd8e41149e4a0143a8"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3a8d94f9e4535633ed7ff1dd8e41149e4a0143a8"
+      }
+    },
+    {
+      "path": "scripts/lua-quality-metrics.mjs",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9acd675aba8b01bb31fcea6c5be90741b57cdf76"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "13415e9517cb01b3823e832cc104b1f7a132c669"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "13415e9517cb01b3823e832cc104b1f7a132c669"
+      }
+    },
+    {
+      "path": "scripts/quality-ratchet-policy.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "18d7b94a70077f6769ea98f62e2b52d098d72b73"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "18d7b94a70077f6769ea98f62e2b52d098d72b73"
+      }
+    },
+    {
+      "path": "tests/ci-complete-calibration.test.mjs",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c4d6052ca604723508de4a0ba9dea331f1f1f18a"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1e70426050b9cfd53948ae3bae8cb8109bcf7be9"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1e70426050b9cfd53948ae3bae8cb8109bcf7be9"
+      }
+    },
+    {
+      "path": "tests/ci-summary-runners.test.mjs",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d1971082c6965dff6be12e8739ecf490c27ba6d3"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f19159547e1e024aecf78ca40604c164c49650eb"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f19159547e1e024aecf78ca40604c164c49650eb"
+      }
+    },
+    {
+      "path": "tests/helpers/draft-quality-workflow.mjs",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "243eeaaaa086eaabdaca5964f66fed2b2fd7f38b"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a6f6fd08ed64907f4c66705886bc358b98867605"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a6f6fd08ed64907f4c66705886bc358b98867605"
+      }
+    },
+    {
+      "path": "tests/helpers/joint-ui-ci-source-inverse.mjs",
+      "base": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0ad00c31fc3efec625f273f663a8901cbaae35c4"
+      },
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1be0b455778e5999023c621446b03c30b142cc11"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1be0b455778e5999023c621446b03c30b142cc11"
+      }
+    },
+    {
+      "path": "tests/helpers/quality-ratchet-workflow.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0eab30805ec55be7d4efc2a69afab2c55e1819c0"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0eab30805ec55be7d4efc2a69afab2c55e1819c0"
+      }
+    },
+    {
+      "path": "tests/quality-ratchet-policy.test.mjs",
+      "base": null,
+      "pr": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "095f79f2b03d58e17aee11b7ea5cec4c5e151f3b"
+      },
+      "combinedIndex": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "095f79f2b03d58e17aee11b7ea5cec4c5e151f3b"
+      }
+    }
+  ]
+}

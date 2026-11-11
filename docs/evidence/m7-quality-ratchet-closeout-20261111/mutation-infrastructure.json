@@ -1,0 +1,76 @@
+{
+  "scope": "Four registered Lua regressions only; not a repository-wide mutation score",
+  "results": [
+    {
+      "id": "M1",
+      "sourceSha256": "609e75ba6e83da7b2311629adfdc2fd101c8167d3d17dbb1cdc0748baa9b1d1c",
+      "testSha256": "d4837908e20c1c64570f0e1ea056544a5ea67df8fe8cc207e70ecd6b6bfe4474",
+      "runtime": "v24.22.1",
+      "diff": {
+        "before": "        local called,result=pcall(resolveNativePlay,state,uid,targetIndex,instance,position,card)\n        if not called then restore();error(result,0) end",
+        "after": "        local called,result=pcall(resolveNativePlay,state,uid,targetIndex,instance,position,card)\n        if not called then error(result,0) end -- mutation: native rollback omitted"
+      },
+      "baseline": "not_run",
+      "syntax": "not_run",
+      "status": "infrastructure_error",
+      "test": "tests/lua/atomic_play.lua",
+      "reason": "ENOENT: no such file or directory, lstat '/workspace/scratch/c1a4970a76e0/m7-quality-ratchet-review/build/lua'",
+      "durationMs": 7,
+      "originalUnchanged": true
+    },
+    {
+      "id": "M2",
+      "sourceSha256": "609e75ba6e83da7b2311629adfdc2fd101c8167d3d17dbb1cdc0748baa9b1d1c",
+      "testSha256": "8fac276c293088d07cfd3f23c090b372e77badd385ec9b63f46c05ef4d9b33c1",
+      "runtime": "v24.22.1",
+      "diff": {
+        "before": "if #state.hand >= state.rules.player.maxHand then break end",
+        "after": "if #state.hand > state.rules.player.maxHand then break end"
+      },
+      "baseline": "not_run",
+      "syntax": "not_run",
+      "status": "infrastructure_error",
+      "test": "tests/lua/combat.lua",
+      "reason": "ENOENT: no such file or directory, lstat '/workspace/scratch/c1a4970a76e0/m7-quality-ratchet-review/build/lua'",
+      "durationMs": 8,
+      "originalUnchanged": true
+    },
+    {
+      "id": "M3",
+      "sourceSha256": "f685e7a59b57f66721e3c2f8143b99aa37efd05be77371bbda61fd6e4a4a4d9f",
+      "testSha256": "cd7550177e1e6108ab82eefecb60ffcb8d358307f731858e4ed1868f8f5d9544",
+      "runtime": "v24.22.1",
+      "diff": {
+        "before": "run.nodeFlow and Combat.copy(run.nodeFlow) or nil",
+        "after": "run.nodeFlow"
+      },
+      "baseline": "not_run",
+      "syntax": "not_run",
+      "status": "infrastructure_error",
+      "test": "tests/lua/node_transactions.lua",
+      "caseName": "shop and camp views are detached even for nested offers, card instances and navigation",
+      "reason": "ENOENT: no such file or directory, lstat '/workspace/scratch/c1a4970a76e0/m7-quality-ratchet-review/build/lua'",
+      "durationMs": 8,
+      "originalUnchanged": true
+    },
+    {
+      "id": "M4",
+      "sourceSha256": "59434df0d36cecd33dbe58fc9c3be19aa42700011e0440c3e568390a68ba5be1",
+      "testSha256": "8a4f74234c9d9bec0c4490d5030d25b9a4ffa11f5bdd7cfa4d3a51aa0a6b7d87",
+      "runtime": "v24.22.1",
+      "diff": {
+        "before": "            if not called or not ok then return false, \"potion_effect_failed\" end",
+        "after": "            -- mutation: finalization failure ignored"
+      },
+      "baseline": "not_run",
+      "syntax": "not_run",
+      "status": "infrastructure_error",
+      "test": "tests/lua/inventory.lua",
+      "caseName": "potion finalization failure preserves complete state and original references",
+      "reason": "ENOENT: no such file or directory, lstat '/workspace/scratch/c1a4970a76e0/m7-quality-ratchet-review/build/lua'",
+      "durationMs": 7,
+      "originalUnchanged": true
+    }
+  ],
+  "durationMs": 40
+}

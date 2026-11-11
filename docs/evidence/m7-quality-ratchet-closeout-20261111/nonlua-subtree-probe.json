@@ -1,0 +1,6 @@
+{
+  "scenario": "Only committed change is src/lua/README.md",
+  "status": 1,
+  "stdout": "",
+  "stderr": "Quality ratchet failed closed: Unsupported Lua change: A src/lua/README.md\n"
+}
