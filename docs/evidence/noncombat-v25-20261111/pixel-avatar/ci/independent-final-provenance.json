@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "records": 54,
+  "added": 4,
+  "details": [
+    {
+      "archive": "noncombat-demand-source-epoch",
+      "before": "bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9",
+      "after": "ee94f929f31970bdf7992dcfb291bdb3c1930aaa",
+      "completePaths": 2,
+      "addedInputs": 0
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "before": "bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9",
+      "after": "255fac46ea937feb7fb7b7d2ea3b7ddeeb8a7f95",
+      "completePaths": 25,
+      "addedInputs": 4
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const bytes=readFileSync(new URL('./noncombat-demand-ci-source-epoch.json.gz',import.meta.url));
-assert.equal(hash(bytes),'82e4c5f0b9112d5098fca6e15e01b727cd89710afe350b724792e9d8a8b5904f','noncombat demand CI archive');
+assert.equal(hash(bytes),'05ef031199d3504977cf07bb78a476a19accf4a37cf9882a5a7762e2eb8e1efb','noncombat demand CI archive');
 const proof=JSON.parse(gunzipSync(bytes));
 for(const row of Object.values(proof.files))for(const side of ['before','after']){
  const b=row[side];assert.equal(hash(b.source),b.sha256);
