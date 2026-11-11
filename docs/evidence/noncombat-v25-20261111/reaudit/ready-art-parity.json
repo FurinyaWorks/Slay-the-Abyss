@@ -1,0 +1,12 @@
+{
+  "kind": "complete-art-tree-parity",
+  "normalization": [
+    "id"
+  ],
+  "equal": true,
+  "selectionNodes": 4390,
+  "avatarNodes": 467,
+  "sha256": "e456223646d2062af73dd3d0f34ee2b572a9f955a499aee844fc9c5cb4f170e9",
+  "beforeSaveSha256": "b1dd3d30379813bc3a454d3f275ffbf44d25a66fa9c56ead75bd36722bdc652b",
+  "afterSaveSha256": "65b492adc8ff5f432fc5de25600a1943cf02353b824b21d3569efe8350360283"
+}

@@ -223,6 +223,22 @@ assert(LiveCount()==0)
 `,{runtimeV2:true,officialAssets:true});
 });
 
+test('official selection rejects unmarked or foreign source schema without building a fallback',()=>{
+ for(const marker of ['nil',"'battle133'"]){
+  withPortraitVm(`
+local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local note=tree();note.text=''
+stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
+ portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
+Asset.selectionUses=${marker}
+assert(Asset.battlePixel and Asset.battlePixel.count==57)
+local ok,reason=pcall(Portraits.new,stage,nil,{selectionAvatar=true})
+assert(not ok and tostring(reason):find('shared battle pixel schema',1,true),'unmarked official source was accepted')
+assert(LiveCount()==0)
+`,{runtimeV2:true,officialAssets:true});
+ }
+});
+
 test('legacy explicit title warming remains available without the official or V25 profile',()=>{
  withPortraitVm(`
 Theme.presentationProfile='legacy'

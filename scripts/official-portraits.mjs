@@ -169,6 +169,7 @@ export function writePortraitModule(directory,{root=process.cwd(),imageTemplateI
  // Official selection and battle share one temporary bounded actor; full-body
  // literals stay available for the other profiles and later artwork review.
  if(officialAssets&&(selectionAvatar||battlePortrait))data.push(`battlePixel=${toLua(lightweightAssets().battle133)}`);
+ if(officialAssets&&selectionAvatar)data.push("selectionUses='battlePixel'");
  if(v25BattleChrome){
   const theme=v25Theme(JSON.parse(readFileSync(join(root,'data/presentation/ui_theme.json'),'utf8')));
   data.push(`v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(theme))}`);
@@ -218,11 +219,17 @@ export function portraitRuntimeInventory(directory) {
  if(!existsSync(join(directory,`${portraitModule}.lua`)))return undefined;
  const source=readFileSync(join(directory,`${portraitModule}.lua`),'utf8');
  const flags={selectionAvatar:/\bavatar96=/.test(source),battlePortrait:/\bbattle133=/.test(source)};
+ const officialAssets=source.includes('battlePixel=');
+ const selectionMarkers=source.split(/\r?\n/).filter(line=>line.startsWith('selectionUses='));
+ if(flags.selectionAvatar&&(officialAssets||selectionMarkers.length)){
+  if(!officialAssets||selectionMarkers.length!==1||!/^selectionUses='battlePixel',?$/.test(selectionMarkers[0]))
+   throw Error('Unsupported official selection schema; read historical candidates with their pinned producer');
+ }
  if(existsSync(join(directory,'art-performance.json'))){
   const pack=JSON.parse(readFileSync(join(directory,'art-performance.json'),'utf8'));
   const rows=selectedAssets(flags).map(a=>{const row=pack.assets[a.kind];return {asset:`traveler-geo/portraits/${a.kind}`,images:row.count,
    groups:Math.ceil(row.count/60),pages:Math.ceil(row.count/3600),sourcePreviewSha256:row.sha256,grid:row.grid};});
   return combineInventory(rows.length?{renderProfile:'compact-v1',assets:rows,instances:rows.length,batchSize:64,peakDynamicControls:rows.reduce((n,a)=>n+a.images+a.groups+a.pages,0),maxDirectDynamicChildren:60,officialCapacity:'not_measured',devicePerformance:'not_run'}:undefined,lowpolyInventory(source));
  }
- return combineInventory(portraitInventory(flags,{budget:existsSync(join(directory,'art-render-v2.json'))||source.includes('selection133='),lowpoly:false,v25:source.includes('v25PortraitProfile=')||source.includes('v25SceneOwnerCount='),officialAssets:source.includes('battlePixel=')}),lowpolyInventory(source));
+ return combineInventory(portraitInventory(flags,{budget:existsSync(join(directory,'art-render-v2.json'))||source.includes('selection133='),lowpoly:false,v25:source.includes('v25PortraitProfile=')||source.includes('v25SceneOwnerCount='),officialAssets}),lowpolyInventory(source));
 }

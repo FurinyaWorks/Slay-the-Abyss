@@ -6186,6 +6186,31 @@
       "sha256": "2100163f4dd8d6f150cb7698cd1e8f609d3b2685b2fac974cb24a9ba5a133b43",
       "category": "v25-native-simulator-evidence"
     },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/defend-played-wide.png": {
+      "sha256": "a98ee0658084abf8b1b74657e96f3d52217ec31698f5e7b0e0334545e6c7a864",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/menu-wide.png": {
+      "sha256": "972ec7e1a31c48826edaf7ba6b11f59a3d1d96c19c7f25c5fb75b81286b9c2f8",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/neow-four-diagnostic.png": {
+      "sha256": "02de9f8447da65bfcc914558ed662b8cac48b0bcf3c601adc17b5be1fc6987ba",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/REAUDIT.md; synthetic prior-boss component fixture, not natural gameplay or official device acceptance"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/neow-wide.png": {
+      "sha256": "57390956ba314f9a0bfd6946032782215bc0385b7839f3e8a35dacf8cba2f273",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/selection-wide.png": {
+      "sha256": "4bc943db10786a6c24058f1c1470f4e8933f70212a95b9e09286a3e9a550d1e0",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/starter-deck-r5.png": {
+      "sha256": "16d7c20bf15e7bb28bbb08c56aa429d7ac6cf09b72a49120f474d8dfe5e23ab3",
+      "category": "v25-native-simulator-evidence"
+    },
     "docs/evidence/noncombat-v25-20261111/visual/01-menu.png": {
       "sha256": "f3e858462fc14a3039f76d9f18c2cab388d1fd8cc93009ab22a34a8a7d3e3794",
       "category": "v25-native-simulator-evidence",

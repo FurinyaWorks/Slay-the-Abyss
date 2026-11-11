@@ -1,0 +1,121 @@
+{
+  "kind": "final-R6-candidate-binding-and-scope",
+  "buildId": "1116ae97-6147-4dba-abb1-e74e5b1004a8",
+  "sourceCommit": "1972060732470ba4c928f3a299cc9e2f8cb8fdc4",
+  "sourceDirty": false,
+  "gilSha256": "24cc86f6eb858229941ef58682c3ce4a2a375abb8a6542b4c31cdd8495e52acb",
+  "saveSha256": "5a0743b6d6402cd8a58b76fd7ad2f29bee632edabbb4668d9b1059fa152e0061",
+  "readbackFaults": [],
+  "reports": {
+    "sdk": {
+      "path": ".artifacts\\noncombat-reaudit\\r6-lifecycle.json",
+      "sha256": "2632df0afe3937fb7e424b0544c9c0ac7769556b674ec1e199df9c831657146e",
+      "status": "pass"
+    },
+    "phone": {
+      "path": ".artifacts\\noncombat-reaudit\\r6-phone-1794389270122\\report.json",
+      "sha256": "43e0fd4ac02345622655b1de20cb1428c0027a79804a91d1dea3a4f10b47857f",
+      "status": "pass"
+    },
+    "fourDiagnostic": {
+      "path": ".artifacts\\noncombat-reaudit\\r6-four-1794389352743\\report.json",
+      "sha256": "84dc2632f4c2642dfcc774107d850da61be9e37b19ef4f9ab057502fdbd3b4cd",
+      "status": "pass"
+    },
+    "browserPerf": {
+      "path": ".artifacts\\noncombat-reaudit\\r6-browser-perf\\report.json",
+      "sha256": "6b7af998c14d98cdf193c595cdee331a88f7afe05716c40e5b99f0055491a45a",
+      "status": "captured"
+    },
+    "desktopHpHistorical": {
+      "path": ".artifacts\\noncombat-reaudit\\r5-browser-1794388638454\\report.json",
+      "sha256": "72a9a4fe85daaf55d82ba6a7a5ae065987e0a71ae9cc0085568dbca68940c3ed",
+      "status": "failed"
+    },
+    "desktopLamentHistorical": {
+      "path": ".artifacts\\noncombat-reaudit\\r5-lament-1794388958672\\report.json",
+      "sha256": "69012583eb1ac00864def6d870a52c703511ae3d19db428220862473d1942654",
+      "status": "pass"
+    }
+  },
+  "r5R6UiDiff": [
+    {
+      "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone15/size/0",
+      "before": 154,
+      "after": 97
+    },
+    {
+      "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone15/position/0",
+      "before": 620,
+      "after": 591.5
+    },
+    {
+      "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone31/size/0",
+      "before": 154,
+      "after": 97
+    },
+    {
+      "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone31/position/0",
+      "before": 620,
+      "after": 591.5
+    },
+    {
+      "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone47/size/0",
+      "before": 154,
+      "after": 97
+    },
+    {
+      "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone47/position/0",
+      "before": 620,
+      "after": 591.5
+    }
+  ],
+  "r5R6ChangedModuleDigests": [
+    "abyss_ui"
+  ],
+  "scope": [
+    "R6 SDK 28 checks includes natural defeat and restart; main owns4389, hidden avatar remains idle/owned0; twenty warm counts17886",
+    "R6 phone is simulator mobile19.5:9 canvas, not physical phone; all21 boundary checks pass",
+    "R5 desktop HP21 passed but Lament HTTP fetch failed in combined run; same branch passed9 on fresh process; original failed report preserved",
+    "R6 actual readback UI differs from R5 only six numeric brick-edge fields. R5 desktop is historical same-flow evidence, not R6 exact-render proof",
+    "R6 four-offer diagnostic uses explicit synthetic prior-boss in one history module; not natural run or actual-GIL Lua exact proof. Its original UI/templates are actualR6",
+    "R6 browser perf uses fresh independent one-session process, no screenshots or parallel SDK; page first draw and 4390-node main-art complete draw are distinct",
+    "R3 legacy-kind reports remain original raw evidence; finalR6 SDK report explicitly binds correct build/save",
+    "Official client, device FPS, physical phone, capacity and publication were not verified"
+  ],
+  "representativeShots": [
+    ".artifacts\\noncombat-reaudit\\r6-phone-1794389270122\\hp-01-menu.png",
+    ".artifacts\\noncombat-reaudit\\r6-phone-1794389270122\\hp-05-selection-ready.png",
+    ".artifacts\\noncombat-reaudit\\r6-phone-1794389270122\\hp-08-neow-offers.png",
+    ".artifacts\\noncombat-reaudit\\r6-four-1794389352743\\hp-08-neow-offers.png"
+  ],
+  "restartCommand": "powershell -ExecutionPolicy Bypass -File \"F:/New folder/.worktrees/noncombat-v25/.artifacts/noncombat-reaudit/start.ps1\"",
+  "url": "http://127.0.0.1:55877/",
+  "startupScriptSha256": "1b4bdb40b6ef65ebed88e0c56eeef16d113ada27ffd64dc5c619484331be3c99",
+  "metrics": {
+    "archiveLoadMs": 10710.6979,
+    "navigationToPositiveFrameMs": 8280.9939,
+    "selectionArtReadyDrawMs": 3742.800000000745,
+    "selectionFigureNodes": 4390,
+    "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "errors": [],
+    "clickToChangedDrawMs": [
+      215.30000000074506,
+      967.3999999985099,
+      173.70000000298023,
+      189.90000000223517,
+      200.60000000149012,
+      663.5
+    ]
+  },
+  "finalService": {
+    "pid": 17316,
+    "url": "http://127.0.0.1:55877",
+    "buildId": "1116ae97-6147-4dba-abb1-e74e5b1004a8",
+    "gilSha256": "24cc86f6eb858229941ef58682c3ce4a2a375abb8a6542b4c31cdd8495e52acb",
+    "saveSha256": "5a0743b6d6402cd8a58b76fd7ad2f29bee632edabbb4668d9b1059fa152e0061",
+    "httpStatus": 200,
+    "qaSessionsStopped": true,
+    "diagnosticArchiveRemovedFromPublicWorkspace": true
+  }
+}

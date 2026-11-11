@@ -381,6 +381,7 @@ function M.new(stage,report,flags,cardTemplates)
         details=panel:GetChild('details')
         local host=details and details:GetChild('officialSelectionFigure')
         if host then
+            if official then assert(Asset.selectionUses=='battlePixel','official selection requires shared battle pixel schema')end
             local figure=official and assert(Asset.battlePixel,'official selection requires shared battle pixel')
                 or profile and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
             if figure.renderProfile~='lowpoly-v1' then
