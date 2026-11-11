@@ -1,0 +1,47 @@
+{
+  "reviewId": "independent-review-import-membership-20261111",
+  "reviewedBaseSha": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "reviewedHeadSha": null,
+  "conclusion": "pass",
+  "unresolved": [],
+  "findings": [],
+  "reviewScope": "Two own-property membership checks; own/inherited import regressions; evidence-byte .gitattributes rule; TASK-74.19 CLI plan/doc/notes with owner/status/AC unchanged; final Chinese scope/validation note; red/green/probe/identity/selection evidence.",
+  "fileSha256": {
+    ".gitattributes": "138f76cc964a557a88a0b77d15344456068ceb5f3f674e241c93512b57b92069",
+    "backlog/tasks/task-74.19 - 收敛核心依赖环与领域状态所有权.md": "c163601a94af51893635b285a0724230ee39a1e7f870549b382504ae1dc63903",
+    "scripts/check-architecture.mjs": "fde7712d67c942dd66440096b4e36eb84f1c42a26ac6d8c9c694226dc77ac7c7",
+    "tests/architecture.test.mjs": "32bdf009eed8589ec504b5701b40c5e0ca561315af6c33436760999d5d8ddb96",
+    "docs/backlog-details/M7-IMPORT-MEMBERSHIP-20261111.md": "e4b30d227bc93f0c3f53578d8a72b27a02e9a39c8a044867490cfada6a68ffc4",
+    "docs/evidence/m7-import-membership-20261111/check-architecture.log": "d5756a234f6120e0a05e02cc158584057738a8ef7901c07ae6cc00c53f25f954",
+    "docs/evidence/m7-import-membership-20261111/check-guidance.log": "af2b7464920286d7e2a83524802dfaab6533efcd97570f630eb8344030927915",
+    "docs/evidence/m7-import-membership-20261111/check-network.log": "4aab41d2dd6f678bd9cf6b0a9fcdb5e8fba0023181640e02685af361f3646faa",
+    "docs/evidence/m7-import-membership-20261111/check-syntax.log": "428404b2b437d79c58abbb235c75251e8c750236bbddc10c71280bdcc64eafae",
+    "docs/evidence/m7-import-membership-20261111/green.log": "bdabafc3ee0a74852b154eaa53c2f50ef668f02ef292293c85d7e8051c7ebc31",
+    "docs/evidence/m7-import-membership-20261111/identity.json": "a86c3e0992acea74d6d534fe38861c67cc427a399c29773fbddb0070ae58472c",
+    "docs/evidence/m7-import-membership-20261111/independent-probes.json": "c65d478d3081cd762152b82ac792b7d3dd2b49e3232afb588baafbe7d4a23b6f",
+    "docs/evidence/m7-import-membership-20261111/red.log": "76d3aad951857eccfdebed3255a400fcf732724a4a53f3fb68c5e01ccf58457d",
+    "docs/evidence/m7-import-membership-20261111/related-plan.log": "2ca21d4131d53f89567c70fc5fa8e3f60290402dd0b0b641d8e9a8e38c975d7c",
+    "docs/evidence/m7-import-membership-20261111/verify-backlog-final.log": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+    "docs/evidence/m7-import-membership-20261111/verify-backlog.log": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+  },
+  "evidence": {
+    "independentProbes": "independent-probes.json",
+    "newRegression": "node --test --test-name-pattern=\"only own source and generated entries\" tests/architecture.test.mjs: pass 1/1",
+    "currentGraph": {
+      "byteIdentical": true,
+      "sha256": "37c94bdc4ff351195f4553f314379187569ec4c265c0bd2040d1924dfb328fba",
+      "nodes": 345,
+      "edges": 1953,
+      "errors": 0
+    },
+    "diffCheck": "pass",
+    "compatibility": "Node >=22 supported; Object.hasOwn already used in same function; tested Node v24.22.1",
+    "finalAdditions": "Reviewed all final additions; copied logs/probes equal originals; red 9 pass/1 fail and green 35 pass/0 fail/0 skipped confirmed. No findings. Source/test hashes unchanged.",
+    "hashScope": "All current deliverable files except the independent-review.json copy itself, excluded to prevent self-referential hashing. Postcommit external review will bind exact HEAD/tree."
+  },
+  "limits": [
+    "No Full, official import, game ready, UI or device testing performed.",
+    "Existing added regression exercises unknown-import guard. Cycle guard is consistent hardening; reverting only it is observationally redundant for plain stable source maps because inherited modules have no parsed outgoing edges.",
+    "Review pending binding to committed HEAD; file hashes bind reviewed content."
+  ]
+}

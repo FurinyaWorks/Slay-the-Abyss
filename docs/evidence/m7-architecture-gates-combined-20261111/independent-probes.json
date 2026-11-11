@@ -1,0 +1,425 @@
+{
+  "head": "266dc278f8d583cbb13ce0a34493738f9fe94d0d",
+  "mergeHead": "38c569aeaeda3eef2ab25cc27fe72f52657d3cc3",
+  "sourceSha256": "6817a43d39957c7f645f92ad2216268b8ee6c11191b2e40117d7ea776856cea6",
+  "testsSha256": "71d9f988c88f8b88aa7efe488d9c0037ab671132f0866a89bb56bfe7b2be5cf6",
+  "cases": [
+    {
+      "name": "constructor",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "constructor",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__defineGetter__",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__defineGetter__",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__defineSetter__",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__defineSetter__",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "hasOwnProperty",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "hasOwnProperty",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__lookupGetter__",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__lookupGetter__",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__lookupSetter__",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__lookupSetter__",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "isPrototypeOf",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "isPrototypeOf",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "propertyIsEnumerable",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "propertyIsEnumerable",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "toString",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "toString",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "valueOf",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "valueOf",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__proto__",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "__proto__",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "toLocaleString",
+      "mode": "pcall",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    },
+    {
+      "name": "toLocaleString",
+      "mode": "xpcall-handler",
+      "ownCycle": true,
+      "ownStale": true,
+      "missingRejected": true,
+      "generatedAccepted": true,
+      "dormantDeferred": true
+    }
+  ],
+  "preservation": [
+    {
+      "ref": "266dc278",
+      "path": "docs/backlog-details/M7-PROTECTED-CALLS-20261111.md",
+      "sha256": "71cb55c6dceafbebd4c8f40362e6e1dfd6c36922b88501967ba92cd35938d11c"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/SHA256SUMS",
+      "sha256": "0606402092bc8095bda0c61c62502aff4c25d8d4d6c9eaf8634506a477aeaf3b"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/backlog.txt",
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/baseline-architecture.txt",
+      "sha256": "b4b59fe22db2c0a99578d3d4c7f35922c42e357daba5aaca037c4288f3161796"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/current-architecture.txt",
+      "sha256": "b4b59fe22db2c0a99578d3d4c7f35922c42e357daba5aaca037c4288f3161796"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/green.txt",
+      "sha256": "3456eb2b1fe1aef9dff17768bfb5332bc4832787aa4a244f631aef2ed4d8d8c1"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/guidance.txt",
+      "sha256": "af2b7464920286d7e2a83524802dfaab6533efcd97570f630eb8344030927915"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/independent-probes.json",
+      "sha256": "9eb7ec8df2f1a9b9b60705c9f5b21c178fc3a951130d2b462af26e458462e7b4"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/network.txt",
+      "sha256": "4aab41d2dd6f678bd9cf6b0a9fcdb5e8fba0023181640e02685af361f3646faa"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/red.txt",
+      "sha256": "6973cc8cf8c4e660f817a0ccc5032ac3f90d87046b2653857836f7109996e6e9"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/related-plan-corrected.txt",
+      "sha256": "033015ae62a3cb1e96a6975fa0c15e0fb4d572aabdb939f8f09f6bb517e5c012"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/related-plan.txt",
+      "sha256": "dc8e78751593a06cff9237e65847ec448a1c7b6321ab630fc9822a44a4ee28be"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/review.json",
+      "sha256": "b1fc1d98b00e81b8823abb035efe821b9297200f5fd88f324dbf81a7b4a66c36"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/shared-inputs.txt",
+      "sha256": "648b01b8f8676be93cefb9bfcd398de4c16ea338df21127a26b71b7d843839d9"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/syntax.txt",
+      "sha256": "428404b2b437d79c58abbb235c75251e8c750236bbddc10c71280bdcc64eafae"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/unchanged-architecture.json.gz",
+      "sha256": "4c6028387a66504a934f8ae3e4106c95b6f700cd48dafe6a56a9445758d3bccd"
+    },
+    {
+      "ref": "266dc278",
+      "path": "docs/evidence/m7-protected-calls-20261111/validation.json",
+      "sha256": "5765167f77f9f75157be0ee8fad1e3f1bd8f7dcf00e4cd9a0292b947a53c9a4a"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/backlog-details/M7-IMPORT-MEMBERSHIP-20261111.md",
+      "sha256": "e4b30d227bc93f0c3f53578d8a72b27a02e9a39c8a044867490cfada6a68ffc4"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/SHA256SUMS",
+      "sha256": "8bb051a8435b7c4f704b706393b5647a5543a22d875dd5dc93c4948f620d4114"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/check-architecture.log",
+      "sha256": "d5756a234f6120e0a05e02cc158584057738a8ef7901c07ae6cc00c53f25f954"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/check-guidance.log",
+      "sha256": "af2b7464920286d7e2a83524802dfaab6533efcd97570f630eb8344030927915"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/check-network.log",
+      "sha256": "4aab41d2dd6f678bd9cf6b0a9fcdb5e8fba0023181640e02685af361f3646faa"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/check-syntax.log",
+      "sha256": "428404b2b437d79c58abbb235c75251e8c750236bbddc10c71280bdcc64eafae"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/green.log",
+      "sha256": "bdabafc3ee0a74852b154eaa53c2f50ef668f02ef292293c85d7e8051c7ebc31"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/identity.json",
+      "sha256": "a86c3e0992acea74d6d534fe38861c67cc427a399c29773fbddb0070ae58472c"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/independent-probes.json",
+      "sha256": "c65d478d3081cd762152b82ac792b7d3dd2b49e3232afb588baafbe7d4a23b6f"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/independent-review.json",
+      "sha256": "70c98065a0546b396221052a23343179308a501f2b9c97f006054b6d53cc14ad"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/red.log",
+      "sha256": "76d3aad951857eccfdebed3255a400fcf732724a4a53f3fb68c5e01ccf58457d"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/related-plan.log",
+      "sha256": "2ca21d4131d53f89567c70fc5fa8e3f60290402dd0b0b641d8e9a8e38c975d7c"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/verify-backlog-final.log",
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+    },
+    {
+      "ref": "38c569ae",
+      "path": "docs/evidence/m7-import-membership-20261111/verify-backlog.log",
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+    }
+  ],
+  "historicalEvidenceFilesUnchanged": 2063,
+  "changedPaths": [
+    ".gitattributes",
+    "backlog/tasks/task-74.19 - 收敛核心依赖环与领域状态所有权.md",
+    "docs/backlog-details/M7-IMPORT-MEMBERSHIP-20261111.md",
+    "docs/backlog-details/M7-PROTECTED-CALLS-20261111.md",
+    "docs/evidence/m7-import-membership-20261111/SHA256SUMS",
+    "docs/evidence/m7-import-membership-20261111/check-architecture.log",
+    "docs/evidence/m7-import-membership-20261111/check-guidance.log",
+    "docs/evidence/m7-import-membership-20261111/check-network.log",
+    "docs/evidence/m7-import-membership-20261111/check-syntax.log",
+    "docs/evidence/m7-import-membership-20261111/green.log",
+    "docs/evidence/m7-import-membership-20261111/identity.json",
+    "docs/evidence/m7-import-membership-20261111/independent-probes.json",
+    "docs/evidence/m7-import-membership-20261111/independent-review.json",
+    "docs/evidence/m7-import-membership-20261111/red.log",
+    "docs/evidence/m7-import-membership-20261111/related-plan.log",
+    "docs/evidence/m7-import-membership-20261111/verify-backlog-final.log",
+    "docs/evidence/m7-import-membership-20261111/verify-backlog.log",
+    "docs/evidence/m7-protected-calls-20261111/SHA256SUMS",
+    "docs/evidence/m7-protected-calls-20261111/backlog.txt",
+    "docs/evidence/m7-protected-calls-20261111/baseline-architecture.txt",
+    "docs/evidence/m7-protected-calls-20261111/current-architecture.txt",
+    "docs/evidence/m7-protected-calls-20261111/green.txt",
+    "docs/evidence/m7-protected-calls-20261111/guidance.txt",
+    "docs/evidence/m7-protected-calls-20261111/independent-probes.json",
+    "docs/evidence/m7-protected-calls-20261111/network.txt",
+    "docs/evidence/m7-protected-calls-20261111/red.txt",
+    "docs/evidence/m7-protected-calls-20261111/related-plan-corrected.txt",
+    "docs/evidence/m7-protected-calls-20261111/related-plan.txt",
+    "docs/evidence/m7-protected-calls-20261111/review.json",
+    "docs/evidence/m7-protected-calls-20261111/shared-inputs.txt",
+    "docs/evidence/m7-protected-calls-20261111/syntax.txt",
+    "docs/evidence/m7-protected-calls-20261111/unchanged-architecture.json.gz",
+    "docs/evidence/m7-protected-calls-20261111/validation.json",
+    "scripts/check-architecture.mjs",
+    "tests/architecture.test.mjs"
+  ],
+  "architecture": {
+    "nodes": 345,
+    "edges": 1953,
+    "errors": [],
+    "sha256": "8fb23fd4d39e82ad075efedeab34181e222b759a9eba5122acd811198cf846eb"
+  }
+}

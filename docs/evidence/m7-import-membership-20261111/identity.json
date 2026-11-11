@@ -1,0 +1,20 @@
+{
+  "base": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "node": "v24.22.1",
+  "beforeReportSha256": "37c94bdc4ff351195f4553f314379187569ec4c265c0bd2040d1924dfb328fba",
+  "afterReportSha256": "37c94bdc4ff351195f4553f314379187569ec4c265c0bd2040d1924dfb328fba",
+  "equalReports": true,
+  "modules": 345,
+  "dependencyLocations": 1953,
+  "architectureErrorsBefore": [],
+  "architectureErrorsAfter": [],
+  "productionLuaFiles": 345,
+  "productionDifferences": [],
+  "changedRuntimeLines": 2,
+  "limits": [
+    "POSIX local targeted checks only",
+    "No Hosted Full or Windows execution",
+    "No official import, ready, device or release validation",
+    "No SCC or cyclomatic-complexity reduction claimed"
+  ]
+}
