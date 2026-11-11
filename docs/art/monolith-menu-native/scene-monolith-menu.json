@@ -1,0 +1,489 @@
+{
+  "name": "Abyss_Menu_Monolith_NativeV1",
+  "install": false,
+  "blocks": [
+    {
+      "template": 20003078,
+      "name": "ARTMENU_GroundSeal",
+      "position": [
+        -1,
+        -0.38,
+        -0.5
+      ],
+      "scale": 1.12,
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_BrokenFore",
+      "position": [
+        -3.2,
+        -0.24,
+        -1.5
+      ],
+      "scale": 0.9,
+      "rotation": [
+        0,
+        16,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_Step00",
+      "position": [
+        0.4,
+        -0.25,
+        0.8
+      ],
+      "scale": 0.88,
+      "rotation": [
+        0,
+        -5,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_Step01",
+      "position": [
+        1.35,
+        -0.03,
+        1.9
+      ],
+      "scale": 0.845,
+      "rotation": [
+        0,
+        2,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_Step02",
+      "position": [
+        2.3,
+        0.19,
+        3
+      ],
+      "scale": 0.81,
+      "rotation": [
+        0,
+        -4,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_Step03",
+      "position": [
+        3.25,
+        0.41,
+        4.1
+      ],
+      "scale": 0.775,
+      "rotation": [
+        0,
+        3,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_Step04",
+      "position": [
+        4.2,
+        0.63,
+        5.2
+      ],
+      "scale": 0.74,
+      "rotation": [
+        0,
+        -3,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_Step05",
+      "position": [
+        5.15,
+        0.85,
+        6.3
+      ],
+      "scale": 0.705,
+      "rotation": [
+        0,
+        4,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_Step06",
+      "position": [
+        6.1,
+        1.07,
+        7.4
+      ],
+      "scale": 0.67,
+      "rotation": [
+        0,
+        -2,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_Step07",
+      "position": [
+        7.05,
+        1.29,
+        8.5
+      ],
+      "scale": 0.635,
+      "rotation": [
+        0,
+        5,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002902,
+      "name": "ARTMENU_TabletBaseLeft",
+      "position": [
+        6,
+        2.9,
+        12.1
+      ],
+      "scale": 2.05,
+      "rotation": [
+        0,
+        10,
+        -5
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002902,
+      "name": "ARTMENU_TabletBaseRight",
+      "position": [
+        8.7,
+        3.4,
+        12.4
+      ],
+      "scale": 2.23,
+      "rotation": [
+        0,
+        4,
+        7
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002902,
+      "name": "ARTMENU_TabletMiddle",
+      "position": [
+        7.5,
+        7.1,
+        12.4
+      ],
+      "scale": 2.3,
+      "rotation": [
+        0,
+        7,
+        4
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002902,
+      "name": "ARTMENU_TabletCrown",
+      "position": [
+        7,
+        11.2,
+        12.7
+      ],
+      "scale": 1.65,
+      "rotation": [
+        0,
+        12,
+        -9
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001711,
+      "name": "ARTMENU_TabletBrokenEdge",
+      "position": [
+        10.3,
+        5.3,
+        13.4
+      ],
+      "scale": 1.25,
+      "rotation": [
+        0,
+        21,
+        17
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001874,
+      "name": "ARTMENU_SeamLower",
+      "position": [
+        7.45,
+        4.65,
+        9
+      ],
+      "size": [
+        0.16,
+        5.9,
+        0.15
+      ],
+      "rotation": [
+        0,
+        -4,
+        -3
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001874,
+      "name": "ARTMENU_SeamUpper",
+      "position": [
+        7.6,
+        9.2,
+        9
+      ],
+      "size": [
+        0.11,
+        3.4,
+        0.15
+      ],
+      "rotation": [
+        0,
+        -4,
+        5
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002083,
+      "name": "ARTMENU_TabletFootLeft",
+      "position": [
+        4.6,
+        -0.8,
+        10.3
+      ],
+      "scale": 1.45,
+      "rotation": [
+        0,
+        22,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002083,
+      "name": "ARTMENU_TabletFootRight",
+      "position": [
+        11.2,
+        -0.9,
+        11.5
+      ],
+      "scale": 1.28,
+      "rotation": [
+        0,
+        -31,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002083,
+      "name": "ARTMENU_ApproachPier",
+      "position": [
+        4.3,
+        -1.1,
+        7.4
+      ],
+      "scale": 0.92,
+      "rotation": [
+        0,
+        -9,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002586,
+      "name": "ARTMENU_RightArch",
+      "position": [
+        12.9,
+        -0.1,
+        14.5
+      ],
+      "scale": 0.9,
+      "rotation": [
+        0,
+        11,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001043,
+      "name": "ARTMENU_FarRidgeR",
+      "position": [
+        16.5,
+        -3.7,
+        28
+      ],
+      "scale": 2.05,
+      "rotation": [
+        0,
+        19,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001044,
+      "name": "ARTMENU_FarRidgeL",
+      "position": [
+        -9.5,
+        -4.5,
+        29
+      ],
+      "scale": 1.95,
+      "rotation": [
+        0,
+        -35,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001043,
+      "name": "ARTMENU_FarRidgeCenter",
+      "position": [
+        1,
+        -3.8,
+        35
+      ],
+      "scale": 1.42,
+      "rotation": [
+        0,
+        52,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001711,
+      "name": "ARTMENU_FarPillarA",
+      "position": [
+        -1.6,
+        1,
+        25
+      ],
+      "scale": 0.75,
+      "rotation": [
+        0,
+        11,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001711,
+      "name": "ARTMENU_FarPillarB",
+      "position": [
+        14.2,
+        0.1,
+        20
+      ],
+      "scale": 0.8,
+      "rotation": [
+        0,
+        -16,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001711,
+      "name": "ARTMENU_FarPillarC",
+      "position": [
+        18.1,
+        1.4,
+        26
+      ],
+      "scale": 0.67,
+      "rotation": [
+        0,
+        20,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20001711,
+      "name": "ARTMENU_FarPillarD",
+      "position": [
+        3.5,
+        -0.9,
+        24
+      ],
+      "scale": 0.57,
+      "rotation": [
+        0,
+        -17,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002899,
+      "name": "ARTMENU_RightNearRubble",
+      "position": [
+        12,
+        -0.55,
+        -1.7
+      ],
+      "scale": 0.79,
+      "rotation": [
+        0,
+        -32,
+        0
+      ],
+      "solid": false
+    },
+    {
+      "template": 20002083,
+      "name": "ARTMENU_RightNearRock",
+      "position": [
+        13.7,
+        -1.5,
+        1.7
+      ],
+      "scale": 0.87,
+      "rotation": [
+        0,
+        22,
+        0
+      ],
+      "solid": false
+    }
+  ]
+}
