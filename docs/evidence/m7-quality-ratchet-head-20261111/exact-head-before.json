@@ -1,0 +1,47 @@
+{
+  "root": "/tmp/ratchet-exact-head-3ZPQ4h",
+  "base": "98934cc886d8aba011192d82ce4dbe1a2c23ee8e",
+  "head": "ef74b8dde5653786b59cdfeb1529730916f70537",
+  "clean": {
+    "label": "committed CC16",
+    "code": 1,
+    "stdout": "Quality ratchet blocked: 1 changed Lua; 1 new violations; 98934cc8 -> ef74b8dd\n",
+    "stderr": "src/lua/a.lua:2: M.added: CC new -> 16 exceeds 15\n",
+    "report": {
+      "schemaVersion": 1,
+      "base": "98934cc886d8aba011192d82ce4dbe1a2c23ee8e",
+      "head": "ef74b8dde5653786b59cdfeb1529730916f70537",
+      "changedLua": [
+        "src/lua/a.lua"
+      ],
+      "status": "blocked",
+      "errors": [
+        {
+          "file": "src/lua/a.lua",
+          "line": 2,
+          "message": "M.added: CC new -> 16 exceeds 15"
+        }
+      ],
+      "sccBefore": [],
+      "sccAfter": []
+    }
+  },
+  "dirty": {
+    "label": "same committed HEAD, safe uncommitted worktree",
+    "code": 0,
+    "stdout": "Quality ratchet pass: 1 changed Lua; 0 new violations; 98934cc8 -> ef74b8dd\n",
+    "stderr": "",
+    "report": {
+      "schemaVersion": 1,
+      "base": "98934cc886d8aba011192d82ce4dbe1a2c23ee8e",
+      "head": "ef74b8dde5653786b59cdfeb1529730916f70537",
+      "changedLua": [
+        "src/lua/a.lua"
+      ],
+      "status": "pass",
+      "errors": [],
+      "sccBefore": [],
+      "sccAfter": []
+    }
+  }
+}

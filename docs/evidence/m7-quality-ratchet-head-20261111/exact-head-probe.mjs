@@ -1,0 +1,17 @@
+import {mkdtempSync,mkdirSync,writeFileSync,copyFileSync,readFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join,resolve} from 'node:path';
+import {spawnSync} from 'node:child_process';
+const repo=process.cwd(), root=mkdtempSync(join(tmpdir(),'ratchet-exact-head-'));
+const git=(...args)=>{const r=spawnSync('git',args,{cwd:root,encoding:'utf8'});if(r.status)throw Error(r.stderr);return r.stdout.trim()};
+for(const dir of ['src/lua','config','build/tools/luacheck'])mkdirSync(join(root,dir),{recursive:true});
+writeFileSync(join(root,'.luacheckrc'),'std="lua53"\n');
+writeFileSync(join(root,'config/architecture.json'),JSON.stringify({layers:{a:'core'}}));
+writeFileSync(join(root,'src/lua/a.lua'),'return {}\n');
+copyFileSync(join(repo,'build/tools/luacheck/luacheck'),join(root,'build/tools/luacheck/luacheck'));
+git('init','-q');git('add','.luacheckrc','config','src');git('-c','user.name=Local probe','-c','user.email=probe@example.invalid','commit','-qm','baseline');const base=git('rev-parse','HEAD');
+const violation='local M={}\nfunction M.added(n)\n'+Array.from({length:15},(_,i)=>` if n==${i} then return ${i} end\n`).join('')+' return -1\nend\nreturn M\n';
+writeFileSync(join(root,'src/lua/a.lua'),violation);git('add','src');git('-c','user.name=Local probe','-c','user.email=probe@example.invalid','commit','-qm','add CC16');const head=git('rev-parse','HEAD');
+const run=label=>{const r=spawnSync(process.execPath,[resolve(repo,'scripts/check-quality-ratchet.mjs'),'--base',base],{cwd:root,encoding:'utf8'});let report;try{report=JSON.parse(readFileSync(join(root,'build/quality-ratchet.json'),'utf8'))}catch{};return {label,code:r.status,stdout:r.stdout,stderr:r.stderr,report};};
+const clean=run('committed CC16');writeFileSync(join(root,'src/lua/a.lua'),'return {}\n');const dirty=run('same committed HEAD, safe uncommitted worktree');
+console.log(JSON.stringify({root,base,head,clean,dirty},null,2));

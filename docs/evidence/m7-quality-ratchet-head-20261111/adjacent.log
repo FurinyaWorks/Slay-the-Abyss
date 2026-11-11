@@ -1,0 +1,23 @@
+✔ active policy pins exactly the lint/tool inputs and rejects changes, missing pins and exception options (2.892907ms)
+✔ active policy preserves historical lint except exact reviewed SDK owner and callback declarations (6.364116ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (6.947473ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.462608ms)
+✔ collection failures and existing gate failures propagate (0.707736ms)
+✔ a failed shared collection writes a fresh failed quality report (6.18765ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (1.579698ms)
+✔ standalone architecture and shared collection inspect the same recursive modules and source paths (24.271953ms)
+✔ both architecture entries reject empty scans and ambiguous Lua module identities (0.870943ms)
+✔ both architecture entries refuse linked source directories instead of silently omitting them (0.705847ms)
+✔ nested source changes and dependency boundaries are freshly checked by both architecture entries (3.485321ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 229.206406

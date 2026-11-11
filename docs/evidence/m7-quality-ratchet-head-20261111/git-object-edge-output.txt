@@ -1,0 +1,3 @@
+PASS byte-sized framing: repeated blob, apparent header, NUL, CRLF, UTF8
+PASS invalid UTF8 fails closed
+PASS source-root symlink fails closed

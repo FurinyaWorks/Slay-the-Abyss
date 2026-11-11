@@ -1,4 +1,4 @@
-import {readFileSync,writeFileSync,mkdirSync,mkdtempSync,rmSync} from 'node:fs';
+import {writeFileSync,mkdirSync,mkdtempSync,rmSync} from 'node:fs';
 import {join,dirname,resolve} from 'node:path';
 import {tmpdir} from 'node:os';
 import {spawnSync} from 'node:child_process';
@@ -6,7 +6,7 @@ import {pathToFileURL} from 'node:url';
 import {requireLuaTool} from './setup-lua-static.mjs';
 import {parseDiagnostics} from './check-lua-static.mjs';
 import {analyzeSources} from './check-architecture.mjs';
-import {discoverSources,architectureSources,measureSources,dependencyCycles} from './lua-quality-metrics.mjs';
+import {architectureSources,measureSources,dependencyCycles} from './lua-quality-metrics.mjs';
 import {evaluateQualityRatchet} from './quality-ratchet-policy.mjs';
 
 const sha=v=>/^[a-f0-9]{40}$/.test(v??'');
@@ -29,6 +29,36 @@ export function parseChangedLua(output){
   if(new Set(changed.map(c=>c.file)).size!==changed.length)throw Error('Duplicate changed Lua file');
   return changed;
 }
+// The receipt names commits, so both source graphs must come from Git objects,
+// not from mutable checkout bytes (including ignored or untracked Lua files).
+export function committedSources(revision){
+  if(!sha(revision))throw Error('Exact source revision required');
+  const entries=git(['ls-tree','-r','-z','--full-tree',revision,'--','src/lua'])
+    .split(String.fromCharCode(0)).filter(Boolean).map(row=>{
+      const match=/^(100644|100755) blob ([a-f0-9]{40})\t([\s\S]+)$/.exec(row);
+      if(!match)throw Error('Unsupported committed source entry: '+row);
+      return {oid:match[2],file:match[3]};
+    }).filter(row=>row.file.endsWith('.lua'));
+  if(!entries.length)throw Error('No committed Lua sources discovered');
+  for(const {file} of entries)if(!lua(file))throw Error('Invalid committed Lua source path '+file);
+  const output=git(['cat-file','--batch'],{
+    input:entries.map(row=>row.oid).join('\n')+'\n',encoding:null
+  });
+  const sources={};let offset=0;
+  for(const {oid,file} of entries){
+    const end=output.indexOf(10,offset);
+    if(end<0)throw Error('Missing Git source object header');
+    const match=/^([a-f0-9]{40}) blob (0|[1-9]\d*)$/.exec(output.subarray(offset,end).toString('ascii'));
+    const size=Number(match?.[2]);
+    if(match?.[1]!==oid||!Number.isSafeInteger(size))throw Error('Invalid Git source object header');
+    offset=end+1;
+    if(output[offset+size]!==10)throw Error('Incomplete Git source object');
+    sources[file]=new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(output.subarray(offset,offset+size));
+    offset+=size+1;
+  }
+  if(offset!==output.length)throw Error('Unexpected Git source object bytes');
+  return sources;
+}
 function pinnedTool(){
   try{return requireLuaTool();}
   catch(error){
@@ -40,11 +70,11 @@ function pinnedTool(){
     return requireLuaTool();
   }
 }
-function measure(changedSources,tool){
+function measure(changedSources,tool,luacheckConfig){
   if(!Object.keys(changedSources).length)return [];
   const root=mkdtempSync(join(tmpdir(),'abyss-quality-ratchet-'));
   try{
-    writeFileSync(join(root,'.luacheckrc'),readFileSync('.luacheckrc'));
+    writeFileSync(join(root,'.luacheckrc'),luacheckConfig);
     for(const [file,source] of Object.entries(changedSources)){
       if(!lua(file))throw Error('Invalid Lua source path '+file);
       const path=resolve(root,file);
@@ -82,20 +112,23 @@ export function main(base=process.env.QUALITY_RATCHET_BASE){
   const changes=parseChangedLua(git(['diff','--name-status','--no-renames','-z',base,head,'--','src/lua']));
   const report={schemaVersion:1,base,head,changedLua:changes.map(c=>c.file),status:'pass',errors:[]};
   if(changes.length){
-    const current=discoverSources(),previous={...current},oldFiles={},newFiles={};
+    const current=committedSources(head),previous=committedSources(base),oldFiles={},newFiles={};
     for(const {status,file} of changes){
-      if(status==='A')delete previous[file];
-      else{const source=git(['show',base+':'+file]);previous[file]=source;oldFiles[file]=source;}
+      if(status!=='A'){
+        if(!(file in previous))throw Error('Base Lua source missing: '+file);
+        oldFiles[file]=previous[file];
+      }
       if(status!=='D'){
         if(!(file in current))throw Error('Changed Lua source missing: '+file);
         newFiles[file]=current[file];
       }else if(file in current)throw Error('Deleted Lua file still exists: '+file);
     }
-    const tool=pinnedTool(),policy=JSON.parse(readFileSync('config/architecture.json','utf8'));
+    const tool=pinnedTool(),policy=JSON.parse(git(['show',head+':config/architecture.json']));
+    const luacheckConfig=git(['show',head+':.luacheckrc']);
     const oldGraph=graph(previous,policy),newGraph=graph(current,policy);
     if(newGraph.errors.length)throw Error('Current architecture invalid: '+JSON.stringify(newGraph.errors.slice(0,5)));
     report.errors=evaluateQualityRatchet({
-      beforeModules:measure(oldFiles,tool),afterModules:measure(newFiles,tool),
+      beforeModules:measure(oldFiles,tool,luacheckConfig),afterModules:measure(newFiles,tool,luacheckConfig),
       beforeCycles:oldGraph.cycles,afterCycles:newGraph.cycles
     });
     report.status=report.errors.length?'blocked':'pass';

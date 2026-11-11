@@ -74,9 +74,11 @@ CLI只有可选基线文件路径供独立比对，无自动刷新基线、忽�
 
 - 新 Lua 函数（含匿名、嵌套和初始化块）：CC ≤15；已有函数原本 CC>15 时不可进一步增长。新 Lua 模块 ≤1000 物理行；已超限旧模块不可继续增长。既有更严专项门禁保持。
 - 依赖图仍复用原 AST/SCC 算法并包含延迟 require：不得产生新 SCC、扩大旧 SCC，或增加旧 SCC 内部唯一依赖对总数。拆环和减少耦合可通过；数值不能证明职责拆分有意义。
-- 只对 Git diff 中改动的 Lua 文件重新测量两侧 CC；全量依赖图复用现有扫描器。代码未涉及 Lua 时直接跳过 Luacheck，减少不必要的 CI 开销。旧源码由 `git show <BASE_SHA>:<path>` 获得，不读取旧工作树或历史 build 报告。
+- 只对 Git diff 中改动的 Lua 文件重新测量两侧 CC；全量依赖图复用现有扫描器。代码未涉及 Lua 时直接跳过 Luacheck，减少不必要的 CI 开销。两侧完整源码从精确 Git 提交树和 blob 批量读取；架构与 Luacheck 配置从候选 HEAD 读取，不以工作树、暂存区或未跟踪文件替代，不读取历史 build 报告。
 - Fast 在 Linux 受影响测试前执行；Full 在 Windows 首个 rules 分片执行（不增加作业）。均使用当前 PR 目标 SHA、Merge Queue base SHA 或 develop push 前 SHA；基线缺失/源码缺测/工具身份错误按失败处理。产物：`build/quality-ratchet.json`。
 - 本地复查：`node scripts/check-quality-ratchet.mjs --base <40位目标提交SHA>`，先运行 `npm run setup:lua-static`。不允许通过刷新冻结基线、放宽测量器、把新增大函数挪到非扫描目录来绕过。
 - 这个增量规则只阻止新债，不冒称全部旧债已清零。函数改名/移动的词法身份变化仍须在独立评审中确认业务职责与行为等价。
 
 独立评审、真实 Fast/Full GitHub 运行、队列和合后 push 验证必须基于最终精确 HEAD，当前分支不得凭本地单测直接合并。
+
+精确提交输入修复及仍未解决的匿名身份/历史库存阻断见 [本轮记录](backlog-details/M7-QUALITY-RATCHET-HEAD-20261111.md)；该修复不构成整 PR 准入通过。

@@ -512,3 +512,6 @@ docs/evidence/pr588-native-mock-20261110/independent-rim-guard-false.log -whites
 docs/evidence/pr588-native-mock-20261110/independent-rim-guard-true.log -whitespace
 docs/evidence/pr588-native-mock-20261110/local-before.log -whitespace
 docs/evidence/pr588-native-mock-20261110/quick-failure.log -whitespace
+
+# Preserve ratchet input-binding red/green and independent review evidence.
+docs/evidence/m7-quality-ratchet-head-20261111/** -text
