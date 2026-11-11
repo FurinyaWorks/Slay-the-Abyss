@@ -1,0 +1,3 @@
+ABYSS_RUN seed=1 source=explicit
+LUA_ACTOR_FEEDBACK_LIFECYCLE_PASS death-ledger/visual-retirement/reactivation/new-battle/cancel
+Lua fixture tests/lua/actor_feedback_lifecycle.lua: 2481 ms

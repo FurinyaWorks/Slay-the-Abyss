@@ -1,0 +1,25 @@
+ABYSS_FEEDBACK recovered ...trees\native-ui-ab\tests\lua\feedback_start_recovery.lua:61: INJECTED_UNBOUND_START_FAILURE
+ABYSS_RUN seed=1 source=explicit
+ABYSS_FEEDBACK recovered ...trees\native-ui-ab\tests\lua\feedback_start_recovery.lua:82: INJECTED_FEEDBACK_START_FAILURE
+ABYSS_FEEDBACK enemy_turn source=- target=- amount=0
+ABYSS_FEEDBACK intent source=cultist_1 target=- amount=0
+ABYSS_FEEDBACK status source=cultist_1 target=cultist_1 amount=3
+ABYSS_FEEDBACK reshuffle source=- target=- amount=0
+ABYSS_FEEDBACK player_turn source=- target=- amount=0
+ok feedback_start_recovery 1 - early native reset failure restores host input after a committed command
+ok feedback_start_recovery 2 - an empty event batch completes once without leaving a host waiting
+ABYSS_FEEDBACK recovered ...trees\native-ui-ab\tests\lua\feedback_start_recovery.lua:117: INJECTED_FIRST_PRESENT_FAILURE
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=6
+ok feedback_start_recovery 3 - first-frame presentation failure reports one completion and permits another batch
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=6
+ABYSS_FEEDBACK recovered ...trees\native-ui-ab\tests\lua\feedback_start_recovery.lua:133: INJECTED_COMPLETION_FAILURE
+ok feedback_start_recovery 4 - a throwing completion callback is not retried by recovery or idle updates
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=6
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=6
+ok feedback_start_recovery 5 - completion may start another batch without stale cleanup cancelling it
+LUA_FEEDBACK_START_RECOVERY_PASS 5
+Lua fixture tests/lua/feedback_start_recovery.lua: 3879 ms

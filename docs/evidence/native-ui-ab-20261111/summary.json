@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "status": "EARLY_STOPPED",
+  "singleInterventionIdentity": "PASS",
+  "identities": {
+    "A": {
+      "gilSha256": "9d0d13b85086aa0cea0fbf77cb5bb201d67843ad803f76580e9cacebf44caa18",
+      "projectionSha256": "051c8519ed3ea7960cdaf361ab51b70b5516c9b572461421e439b48ce1e62943",
+      "reportSha256": "82ecae38f836e449f13b4dbe275399dc61bad70f20cdb3f90bb501f916a9cb12"
+    },
+    "diff": {
+      "gilSha256": "ac0ba29dc4ae1fba0fb6e02ac0affba5dfa53f2a929e57116177da8ccb2f96bd",
+      "projectionSha256": "e30e52bb76f045cde49b6dc246bd1e1e3f3fe91bff615ff1cec6c1d8b3e15032",
+      "reportSha256": "128fe6a6554bd116180fc7656d8b209f24e5a72c6ab52cc53a5c92e0417d112a",
+      "module": "abyss_battle_render_actors",
+      "baselineModuleSha256": "08083b26ea514604c336bfa0c8d1262e114969cceebf64b96f5129f77cf4994e",
+      "interventionModuleSha256": "b1e659ad691468299811f4ca29832e7f9168c14e9799029643a581f6f5524c59",
+      "originSourceCommit": "a423259c1d669344ff5ee1f235aa58e455c22c5b",
+      "originBuildId": "b1ff7883-fac5-4f02-a92d-be06ca871d8a",
+      "originPayloadDigest": "97d61a9d7e3c9ed7aca96982bb93541f38a44bf43b1d5c7ba1c956c6396a20fa",
+      "experimentalPayloadDigest": "NOT_A_PRODUCTION_REBUILD"
+    },
+    "tween": {
+      "gilSha256": "30a410728a865426bd8a09bf6a3ff104dda2043bf71d3b1317b638fa8e35a9e2",
+      "projectionSha256": "d1a2c4bccaa00285d87c62249392a3b5c58583a4152be30c57a3d9f434e12906",
+      "reportSha256": "5d667525425cffd05dee266038adee9f42e6d4f7996b8517ed1cb38de838b1ef",
+      "module": "abyss_feedback",
+      "baselineModuleSha256": "846baa7c22cb3219de5220fb2c077f997a1ae5ff42fec1b292ae78de26502a5e",
+      "interventionModuleSha256": "696131137bfde9878fe25998ad7962925fe4884629f24961da382dc70f0c61f3",
+      "originSourceCommit": "a423259c1d669344ff5ee1f235aa58e455c22c5b",
+      "originBuildId": "b1ff7883-fac5-4f02-a92d-be06ca871d8a",
+      "originPayloadDigest": "97d61a9d7e3c9ed7aca96982bb93541f38a44bf43b1d5c7ba1c956c6396a20fa",
+      "experimentalPayloadDigest": "NOT_A_PRODUCTION_REBUILD"
+    }
+  },
+  "diff": {
+    "status": "EARLY_STOPPED",
+    "decision": "NO-GO",
+    "frames": 600,
+    "actors": 2,
+    "A": {
+      "writes": 1200,
+      "reads": 0
+    },
+    "B": {
+      "writes": 0,
+      "reads": 1200
+    }
+  },
+  "tween": {
+    "status": "EARLY_STOPPED",
+    "decision": "NO-GO",
+    "sampleIndex": 13,
+    "A": {
+      "visible": true,
+      "x": -324,
+      "y": 18.833333333333314,
+      "sx": 0.37075617283950624,
+      "sy": 0.37075617283950624
+    },
+    "B": {
+      "visible": true,
+      "x": -324,
+      "y": 18.833333333333314,
+      "sx": 0.5,
+      "sy": 0.5
+    },
+    "firstHiddenSample": {
+      "A": {
+        "visible": false,
+        "x": -324,
+        "y": 18.833333333333314,
+        "sx": 0,
+        "sy": 0
+      },
+      "B": {
+        "visible": false,
+        "x": -324,
+        "y": 18.833333333333314,
+        "sx": 0.0003858024691357764,
+        "sy": 0.0003858024691357764
+      }
+    },
+    "curveSamples": 27,
+    "scope": "Control bridge calls only; game.Tween and Tween lifecycle/internal engine writes were not counted. No total-native-call saving claim."
+  },
+  "environment": {
+    "node": "v22.22.1",
+    "platform": "win32",
+    "arch": "x64",
+    "pid": 35076
+  },
+  "timing": "REPORT_ONLY: one sequential sample each; readiness uses wall-clock budgets; observer and system load uncontrolled.",
+  "reportOnlyWarmTimings": {
+    "A": {
+      "samples": 600,
+      "p50Ms": 8.692399999999907,
+      "p95Ms": 11.70810000000347,
+      "p99Ms": 12.562700000002224,
+      "maxMs": 13.850500000000466
+    },
+    "diff": {
+      "samples": 600,
+      "p50Ms": 14.600199999986216,
+      "p95Ms": 21.34389999999985,
+      "p99Ms": 28.98530000000028,
+      "maxMs": 34.97049999999581
+    },
+    "tween": {
+      "samples": 600,
+      "p50Ms": 15.395599999988917,
+      "p95Ms": 20.346099999995204,
+      "p99Ms": 21.909499999994296,
+      "maxMs": 296.6782999999996
+    }
+  },
+  "completed": [
+    "actual GIL projection and complete Lua/mount/native-tree pairing",
+    "10 cards/2 enemies seed17",
+    "actual SDK cancel/play/enemy-turn pointers",
+    "SDK root close after animation completion",
+    "Fengari false/throw/other-writer retry and cancel/disable probes"
+  ],
+  "notRun": [
+    "20 real page round trips",
+    "target invalidation",
+    "late callback injection",
+    "native Tween destruction during animation",
+    "cold/warm repeated or order-balanced timing runs",
+    "renderer visual acceptance",
+    "official import/ready",
+    "PC and phone frame time/input latency/capacity"
+  ],
+  "deviceStatus": "UNVERIFIED",
+  "productionAdoption": "NO",
+  "baselineIdentityNote": "B reports retain A buildId/payloadDigest as origin metadata, not a rebuilt B payload identity. GIL/module hashes above identify actual interventions."
+}
