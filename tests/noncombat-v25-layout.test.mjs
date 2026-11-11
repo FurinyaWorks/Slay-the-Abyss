@@ -6,6 +6,9 @@ import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {officialAssetsTheme} from '../scripts/official-assets-layout.mjs';
 import {attachOfficialPortraits} from '../scripts/official-portraits.mjs';
 import {applyOfficialNoncombatLayout} from '../scripts/noncombat-v25-layout.mjs';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {decodeRgbaRectangles} from '../scripts/v25-private-card-assets.mjs';
 const parts=n=>n?.controls??n?.children??[],child=(n,name)=>parts(n).find(c=>c.name===name);
 const all=n=>[n,...parts(n).flatMap(all)];
 test('official menu and selection reuse live inputs with bounded native decoration',()=>{
@@ -24,12 +27,47 @@ test('official menu and selection reuse live inputs with bounded native decorati
  assert.equal(child(menu,'emblem').visible,false);
  assert.deepEqual(child(menu,'start').position,[-430,-71]);
  assert.deepEqual(child(child(menu,'start'),'officialResultLabel'),{...resultLabel,name:'officialResultLabel',visible:false});
+ const fills={cancel:{normal:'#8C3739',hover:'#A54243',pressed:'#813335',disabled:'#5A4447'},
+  confirm:{normal:'#477B89',hover:'#5491A2',pressed:'#41717E',disabled:'#414F55'}};
  for(const key of ['confirm','cancel'])for(const state of parts(child(child(panel,key),'hit'))){
-  const flag=child(state,'v25Flag');assert.equal(parts(flag).length,1);
-  assert.equal(parts(flag)[0].image,theme.officialAssets.images.button);
+  const flag=child(state,'v25Flag'),cloth=child(flag,'cloth'),rim=child(flag,'rim');
+  assert(rim&&cloth,'approved flag has separate irregular rim and cloth');
+  assert(parts(cloth).length<=30);assert(parts(rim).length<=30);
+  for(const band of parts(cloth)){assert.equal(band.image,theme.image.rect);assert.equal(band.colour,fills[key][state.name]);}
+  assert.equal(child(state,'label').text.colour,state.name==='disabled'?'#B8B4A5':'#FFF0B1');
+  assert.equal(child(state,'plate').visible,false);assert.equal(child(state,'border').visible,false);
+  assert.equal(all(flag).some(n=>n.image===theme.officialAssets.images.button),false,'official rectangle must not replace original flag');
  }
- assert.equal(['confirm','cancel'].flatMap(k=>all(child(panel,k))).filter(n=>/^band\d+$/.test(n.name)&&n.kind==='image').length,0);
  assert.equal(child(panel,'v25Background').visible,true);
- assert.equal(all(panel).filter(n=>n.name==='officialGeoBadge').length,1);
+ assert.equal(all(panel).filter(n=>n.name==='officialGeoBadge').length,0,'the supplied constellation cannot be replaced with the geo icon');
+ const constellation=child(child(child(panel,'v25Roster'),'selected'),'v25Constellation');
+ assert(constellation.visible);assert.deepEqual(constellation.size,[118,118]);
+ assert(all(constellation).length<2000);
+ for(const n of all(constellation)){assert(parts(n).length<=60);if(n.kind==='image'){assert.equal(n.image,100001);assert.equal(n.colour.toUpperCase(),'#FFE0A2');}}
+ const details=child(panel,'details'),bag=child(details,'v25GoldIcon');
+ assert.equal(bag.kind,'container');assert.equal(all(bag).some(n=>n.image===theme.icon.gold),false,'approved grey money bag must not become a round coin');
+ assert(all(bag).filter(n=>n.kind==='image').every(n=>n.image===theme.image.rect));
+ assert.equal(child(bag,'bag').children[0].colour,'#D1D0BD');
+ assert.equal(child(selectedSlot(panel),'innerFrame0').colour,'#957749');
  assert.deepEqual(child(child(panel,'details'),'officialSelectionFigure').scale,[1,1]);
+});
+function selectedSlot(panel){return child(child(panel,'v25Roster'),'selected');}
+
+test('constellation derivative is pinned to the supplied full-bounds PNG and explicitly sampled',()=>{
+ const original=readFileSync('docs/design/reference-ui-lab/constellation-exact.png');
+ assert.equal(createHash('sha256').update(original).digest('hex'),'5780bc541d322b369b61f656908da59bdeee7f3ad83988edca8be23776720ecd');
+ const derivative=JSON.parse(readFileSync('data/presentation/v25-constellation-118.json','utf8'));
+ assert.equal(derivative.source.sha256,createHash('sha256').update(original).digest('hex'));
+ assert.deepEqual(derivative.source.size,[512,512]);assert.deepEqual(derivative.displaySize,[118,118]);
+ assert.equal(derivative.tint,'#FFE0A2');assert.equal(derivative.sampling.alphaLevels,32);
+ assert.equal(derivative.sampling.filter,'Pillow-LANCZOS');assert.equal(derivative.sampling.crop,'none');
+ assert.equal(derivative.originalSourceLossless,false);assert.equal(derivative.cssRasterExact,false);
+ assert.equal(derivative.error.maxAbsAlpha,4);assert(derivative.error.meanAbsAlpha<=.436);
+ // Independent fixed golden from original PNG alpha -> Pillow LANCZOS 118px ->
+ // round(round(alpha/255*31)*255/31). Decode actual blocks, not claimed metadata.
+ const rgba=decodeRgbaRectangles(derivative.asset),alpha=Buffer.alloc(118*118);
+ for(let i=0;i<alpha.length;i++){
+  assert.deepEqual([...rgba.subarray(i*4,i*4+3)],[255,224,162]);alpha[i]=rgba[i*4+3];
+ }
+ assert.equal(createHash('sha256').update(alpha).digest('hex'),'2613175996511aee8912765edc03260d3808f53c47093b5e16a5ebfd07eeaab4');
 });

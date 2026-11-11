@@ -69,7 +69,13 @@ function selection:allowsElement(id)return id=='ironclad'end
 function selection:canConfirm()return true end
 SelectionView.render(panel,selection,{})
 local details=panel:GetChild('details')
-assert(details:GetChild('stats').text=='80 / 80' and details:GetChild('gold').text=='99','official icon labels must not repeat resource names')
+assert(details:GetChild('stats').text=='生命：80/80' and details:GetChild('gold').text=='金币：99',
+    'official selection must retain the approved resource labels')
+assert(panel:GetChild('hint').text=='','the approved selection has no extra default helper line')
+selection.notice='当前无法开始挑战'
+SelectionView.render(panel,selection,{})
+assert(panel:GetChild('hint').text==selection.notice,'selection errors must remain readable')
+selection.notice=nil
 SelectionView.render(panel,selection,{portraits={status=function()return{selection={phase='ready'}}end}})
 assert(not details:GetChild('portraits'):GetChild('traveler_ironclad').visible,'native selection must retain ownership over the fallback portrait')
 local Run=require('abyss_run')
