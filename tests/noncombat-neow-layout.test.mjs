@@ -15,6 +15,10 @@ test('blessing replaces decoration with bounded battle-native shapes and keeps a
  assert.deepEqual(all(event).filter(n=>n.kind==='cursorArea'),inputs);
  const figure=child(event,'neowFigure');assert(all(figure).length<150);
  assert.equal(child(figure,'scene').image,theme.image.rect);
+ for(const stone of parts(child(figure,'masonry'))){
+  assert(stone.position[0]-stone.size[0]/2>=-640&&stone.position[0]+stone.size[0]/2<=640,
+   'wide canvases must not reveal masonry outside the design stage');
+ }
  assert.equal(child(event,'bubble').image,theme.image.discSoft);
  assert.deepEqual(child(figure,'scene').size,[1280,640]);
  for(const n of all(figure).filter(n=>n.kind==='image'&&!n.name.includes('Tri'))){
