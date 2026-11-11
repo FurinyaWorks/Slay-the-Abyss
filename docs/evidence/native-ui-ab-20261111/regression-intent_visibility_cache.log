@@ -1,0 +1,4 @@
+INTENT_VISIBILITY_CACHE_PASS first/300/switch/owner/reentry/failure/dead/fresh
+INTENT_ESCAPE_VISIBILITY_PASS success/false/throw before/after five-controls
+INTENT_VISIBILITY_FAILURE_PASS six-controls false/throw
+Lua fixture tests/lua/intent_visibility_cache.lua: 625 ms

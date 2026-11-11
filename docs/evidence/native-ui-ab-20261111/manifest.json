@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "status": "EARLY_STOPPED",
+  "files": [
+    {
+      "file": "sdk-A.json.gz",
+      "sha256": "9bf541289af8c8143a3c607725d60bb36ef330a1793731687725e4015588189c",
+      "uncompressedSha256": "82ecae38f836e449f13b4dbe275399dc61bad70f20cdb3f90bb501f916a9cb12",
+      "uncompressedBytes": 24549907
+    },
+    {
+      "file": "sdk-diff.json.gz",
+      "sha256": "609e6a500e7099fb12b8cd5ccc8a07fa868907113fb09a6a932cf8aedb3c103c",
+      "uncompressedSha256": "128fe6a6554bd116180fc7656d8b209f24e5a72c6ab52cc53a5c92e0417d112a",
+      "uncompressedBytes": 24595706
+    },
+    {
+      "file": "sdk-tween.json.gz",
+      "sha256": "bcc45e726426f3ab5f857d28be6aebcd90843c4bebabe02cec26395afc0f76c3",
+      "uncompressedSha256": "5d667525425cffd05dee266038adee9f42e6d4f7996b8517ed1cb38de838b1ef",
+      "uncompressedBytes": 25389704
+    },
+    {
+      "file": "summary.json",
+      "sha256": "fd140e59ec6332784bfd821f1e8c5bcd6bd928e9fdebcfc28a08d2ba10b6c9f0"
+    },
+    {
+      "file": "name-boundaries.log",
+      "sha256": "d4ecf3c744985eda7500ef8590148d0e0327aa732a3402631925a5a4fb7d4cfb"
+    },
+    {
+      "file": "tween-boundaries.log",
+      "sha256": "edca89f351cd5e6d722fad54a60e10f84320f3083a0780e9f736a06a2d0e89c9"
+    },
+    {
+      "file": "negative-pair.log",
+      "sha256": "fb5602e6f61fb9f58dd34b39fb397ab44b41784359a1757a28c76cce188dfe41"
+    },
+    {
+      "file": "verify-pair-2.log",
+      "sha256": "0dbf6d8a6ccf7e68b30835484be66114ee5b8344a1f1ebe178d22039da0e2c29"
+    },
+    {
+      "file": "regression-intent_visibility_cache.log",
+      "sha256": "424f735dc6307a853f6147dae35e48ed6dd46b258be8fcc65f1e3baa977fae0e"
+    },
+    {
+      "file": "regression-actor_feedback_lifecycle.log",
+      "sha256": "003c91154845a16a9797e41645dde274d1b49c5ae836e46bce4d83a0557978dd"
+    },
+    {
+      "file": "regression-feedback_start_recovery.log",
+      "sha256": "a2c5dd6b44be31cfdd98cf1351ce263b11968b6ed5710f3d6489397670254710"
+    },
+    {
+      "file": "backlog-check-2.log",
+      "sha256": "430ec8698152e1e07d41332da9de2d657205b92b9b8733a2e3dd003ed21243e3"
+    },
+    {
+      "file": "candidate-A.json.gz",
+      "sha256": "10024d45ca8bd7f633d2c3fbb48b121bc1defc6a47c25b7e1b6ddb806bf7b990",
+      "uncompressedSha256": "1bfaf9e7798f8bab3163054817ff1526b486b2f203343f966e964f0b561b7d6a"
+    }
+  ],
+  "tools": [
+    {
+      "file": "experiments/native-ui-ab/run.mjs",
+      "sha256": "0e5111765c0c9331bcfa48c02909139b0f7ea60dd0408a3567c06a14ddedfd52"
+    },
+    {
+      "file": "experiments/native-ui-ab/variants.mjs",
+      "sha256": "832d59e1a4d290584a02c2fa8790185f77d95a4e9b93090533ef4f9f61d788c7"
+    },
+    {
+      "file": "experiments/native-ui-ab/verify.mjs",
+      "sha256": "23a7694d0ede5ca1ef5c2fba9e566e572434657d2c84286ed5704b630cff93d5"
+    },
+    {
+      "file": "experiments/native-ui-ab/name-boundaries.lua",
+      "sha256": "5b22fa3528d207f913ea87e2d8edcdd151020c19e6781c8fa4378ab6ae29b40f"
+    },
+    {
+      "file": "experiments/native-ui-ab/tween-boundaries.lua",
+      "sha256": "4b15b68d96ca1c52e937d44c5a98c1e8808d3ceda9c35fc90a290e3afe286a61"
+    }
+  ],
+  "privateInputs": "Actual GILs, source inventories/projections and fixed SDK retained under isolated .artifacts/native-ui-ab; no SDK/private asset redistribution.",
+  "reportIdentities": "A is rebuilt baseline; B origin payload/build IDs inherited, actual intervention GIL and module hashes in summary.json."
+}
