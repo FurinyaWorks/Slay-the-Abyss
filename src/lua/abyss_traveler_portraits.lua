@@ -502,9 +502,9 @@ function M.new(stage,report,flags,cardTemplates)
     function self.sync(_,mode,characterOpen,stopped,character,preloadSelection)
         if busy or destroyed then return false end
         busy=true;local token=epoch
-        -- V25 opens the selection artwork on demand. The legacy host's warm
+        -- V25 and official pages open selection artwork on demand. The legacy host's warm
         -- hint must not allocate hidden figures during its title screen.
-        if profile then preloadSelection=false end
+        if profile or official then preloadSelection=false end
         local wanted=activeTargets(mode,characterOpen,stopped,character,preloadSelection)
         for _,row in ipairs(rows)do
             local accepted=true

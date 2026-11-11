@@ -108,6 +108,58 @@ assert(a:release() and LiveCount()==0)
 `,{runtimeV2:true});
 });
 
+test('official title uses on-demand selection while partial cancellation and ready cache remain intact',()=>{
+ withPortraitVm(`
+Theme.presentationProfile='official-assets-first'
+local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local note=tree();note.text=''
+stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
+ portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
+local a=Portraits.new(stage,nil,{selectionAvatar=true})
+assert(a:sync('menu',false,false,'ironclad',true))
+for _=1,120 do a:tick()end
+assert(a:status().selection.owned==0 and a:status().avatar.owned==0 and LiveCount()==0,
+ 'official title eagerly built hidden selection')
+assert(a:sync('menu',true,false,'ironclad',true));a:tick()
+local partial=a:status().selection;local allocated=LiveCount()
+assert(partial.owned>0 and partial.phase=='building' and partial.total==#Asset.battle133.rows)
+assert(not selectionHost.visible,'partial official selection was exposed')
+assert(a:sync('menu',false,false,'ironclad',true))
+for _=1,20 do a:tick()end
+assert(LiveCount()==allocated and a:status().selection.nextIndex==partial.nextIndex,
+ 'cancelled official selection kept building or discarded its cached partial drawing')
+assert(not selectionHost.visible and not avatar.visible)
+assert(a:sync('menu',true,false,'ironclad',true))
+for _=1,1000 do a:tick();if a:status().selection.phase=='ready' and a:status().avatar.phase=='ready' then break end end
+assert(a:status().selection.phase=='ready' and a:status().avatar.phase=='ready')
+local complete=LiveCount();local generation=a:status().selection.generation
+assert(selectionHost.visible and avatar.visible)
+for _=1,5 do
+ assert(a:sync('menu',false,false,'ironclad',true));for _=1,5 do a:tick()end
+ assert(not selectionHost.visible and not avatar.visible and LiveCount()==complete)
+ assert(a:sync('menu',true,false,'ironclad',true));a:tick()
+ assert(selectionHost.visible and avatar.visible and LiveCount()==complete)
+ assert(a:status().selection.generation==generation,'cached official selection was rebuilt')
+end
+assert(a:release() and LiveCount()==0)
+`,{runtimeV2:true});
+});
+
+test('legacy explicit title warming remains available without the official or V25 profile',()=>{
+ withPortraitVm(`
+Theme.presentationProfile='legacy'
+local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local note=tree();note.text=''
+stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
+ portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
+local a=Portraits.new(stage,nil,{selectionAvatar=true})
+assert(a:sync('menu',false,false,'ironclad',true));a:tick()
+assert(LiveCount()>0 and a:status().selection.owned>0,'legacy explicit warming was removed')
+assert(not selectionHost.visible and not avatar.visible)
+assert(a:release() and LiveCount()==0)
+`,{runtimeV2:true});
+});
+
 test('invalid V25 reference identity and bounded replacement fail before host allocation',()=>{
  for(const extra of ["Asset.v25PortraitProfile.sourceSha256=string.rep('0',64)","Asset.v25PortraitProfile.battleDisplay=0", "Asset.battle133.renderProfile='bounded-2d-v1'"]){
   withPortraitVm(`Asset.v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(nativeTheme))}\n${extra}\nlocal ok=pcall(Portraits.new,stage,nil,{battlePortrait=true});assert(not ok,'invalid V25 config accepted');assert(LiveCount()==0)`);

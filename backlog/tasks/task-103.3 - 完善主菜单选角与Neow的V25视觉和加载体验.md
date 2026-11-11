@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-11 08:07'
-updated_date: '2026-11-11 08:34'
+updated_date: '2026-11-11 08:47'
 labels: []
 milestone: m-8
 dependencies: []
@@ -31,6 +31,8 @@ ordinal: 171000
 
 <!-- SECTION:PLAN:BEGIN -->
 1.核对621与现有三页/冻结原稿，复现真实画面和加载症状。2.在现有布局与生命周期内复用官方素材和有限组件，保留规则与其他页面。3.同候选SDK/真实渲染黑盒及性能配对回归，621合入后验证完整流程。4.独立复审与相关门禁，交付试玩入口和独立PR，不合并发布。
+
+5.按用户要求重新完整验收：修复实际Licenses失败，扩充菜单退出/选角牌组/双祝福分支/首战出牌黑盒；定位加载等待真实根因，复核实际画面与最新集成边界，不以原流程通过结案。主菜单背景仍留技术评审。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
