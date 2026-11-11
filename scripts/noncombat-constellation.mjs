@@ -9,6 +9,10 @@ import {compileRgbaRectangles,decodeRgbaRectangles} from './v25-private-card-ass
 import {expandUiMaskTexture} from './v25-ui-mask-assets.mjs';
 const sourceUrl=new URL('../docs/design/reference-ui-lab/constellation-exact.png',import.meta.url);
 const dataUrl=new URL('../data/presentation/v25-constellation-118.json',import.meta.url);
+export const constellationDisplayInputs=Object.freeze([
+ 'data/presentation/v25-constellation-118.json',
+ 'docs/design/reference-ui-lab/constellation-exact.png',
+]);
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 export const constellationDisplayContract=Object.freeze({
  sourcePath:'docs/design/reference-ui-lab/constellation-exact.png',

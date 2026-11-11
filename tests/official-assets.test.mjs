@@ -1,7 +1,7 @@
 import {nativeAudioBuildArgs,buildNativeAudioGame} from '../scripts/build-native-audio-game.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtempSync,mkdirSync,readFileSync,rmSync} from 'node:fs';
+import {mkdtempSync,mkdirSync,readFileSync,rmSync,linkSync} from 'node:fs';
 import {join,resolve} from 'node:path';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {gameLayout} from '../scripts/game-ui-layout.mjs';
@@ -13,13 +13,33 @@ import {portraitInventory,portraitRuntimeInputs} from '../scripts/official-portr
 import {auditUiBuildArgs} from '../scripts/audit-native-candidate.mjs';
 import {uiProfileReceipt,uiProfileFromReceipt,validateUiProfileOptions} from '../scripts/ui-profile.mjs';
 import {buildUI,assertNativeUiCapacity} from '../scripts/build-ui.mjs';
-import {buildNativeCandidate} from '../scripts/build-native-candidate.mjs';
+import {buildNativeCandidate,sourceInputs} from '../scripts/build-native-candidate.mjs';
+import {constellationDisplayInputs} from '../scripts/noncombat-constellation.mjs';
 import {gameBuildArgs} from '../scripts/build-game.mjs';
 const children=node=>node.controls??node.children??[];
 const all=node=>[node,...children(node).flatMap(all)];
 const paths=(node,prefix='')=>allPaths(node,prefix);
 function allPaths(node,prefix){const path=prefix+'/'+node.name;return [[path,node],...children(node).flatMap(item=>allPaths(item,path))];}
 const child=(node,name)=>children(node).find(item=>item.name===name);
+test('official candidate records the supplied constellation PNG and sampled data exactly once',()=>{
+ const inputs=sourceInputs(process.cwd(),{artFeatures:officialAssetFlags,officialAssets:true});
+ for(const path of constellationDisplayInputs){
+  const rows=inputs.filter(row=>row.path===path);assert.equal(rows.length,1,path);
+  assert.equal(rows[0].bytes,readFileSync(path).length);
+ }
+ const ordinary=sourceInputs(process.cwd(),{artFeatures:{cards:false,menuBackground:false,selectionAvatar:false,battlePortrait:false,monsters:false}});
+ assert.equal(ordinary.some(row=>row.path===constellationDisplayInputs[1]),false,
+  'disabled official art must not add a PNG dependency');
+});
+test('official UI rejects output aliases of the actual constellation inputs before writing',t=>{
+ const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});
+ for(const input of constellationDisplayInputs){
+  const dir=mkdtempSync(join(root,'constellation-alias-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));
+  const before=readFileSync(input);linkSync(resolve(input),join(dir,'abyss_theme.lua'));
+  assert.throws(()=>buildUI(dir,undefined,{officialAssets:true}),/Output must not overwrite an input file/);
+  assert.deepEqual(readFileSync(input),before,input+' must remain unchanged');
+ }
+});
 const restoredPagePath=path=>path.includes('/battlePanel/')||path.includes('/characterPanel/')
  ||path.includes('/menuPanel/start/')||/\/menuPanel\/(?:start|emblem|vista|heroArt)$/.test(path);
 function receipt(){return {officialAssetsProfile,artFeatures:artFeatureReceipt(officialAssetFlags),uiProfile:uiProfileReceipt(true),
