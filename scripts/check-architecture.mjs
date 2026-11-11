@@ -108,7 +108,7 @@ export function analyzeSources(sources,policy,generated=generatedRuntimeModules,
           const to=target.value;
           const reviewedDeferred=owner!==null&&!eager.has(owner)&&deferredImports.has(`${name}:${to}`);
           edges.push({from:name,to,line:node.loc.start.line,reviewedDeferred});
-          if(!(to in sources)&&!(to in generated))say(node,`unknown module ${to}`);
+          if(!Object.hasOwn(sources,to)&&!Object.hasOwn(generated,to))say(node,`unknown module ${to}`);
           if(layer==='core'&&layers[to]!=='core')say(node,`core cannot depend on ${to}`);
           if(layer==='ui'&&layers[to]==='platform')say(node,`UI cannot depend on platform ${to}`);
         }
@@ -157,7 +157,7 @@ export function analyzeSources(sources,policy,generated=generatedRuntimeModules,
   function cycle(name,trail=[]) {
     if(active.has(name)){errors.push({file:sourceFile(name),line:1,message:`Dependency cycle: ${[...trail,name].join(' -> ')}`});return;}
     if(done.has(name))return;
-    active.add(name);for(const edge of edges.filter(edge=>edge.from===name&&!edge.reviewedDeferred))if(edge.to in sources)cycle(edge.to,[...trail,name]);
+    active.add(name);for(const edge of edges.filter(edge=>edge.from===name&&!edge.reviewedDeferred))if(Object.hasOwn(sources,edge.to))cycle(edge.to,[...trail,name]);
     active.delete(name);done.add(name);
   }
   nodes.forEach(name=>cycle(name));

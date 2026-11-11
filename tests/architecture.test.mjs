@@ -31,6 +31,28 @@ const deferredPolicy = {
   deferredImports: [{from:'a', to:'b', reason:'Reviewed callback after initialization'}],
 };
 
+test('only own source and generated entries register Lua imports',()=>{
+  const policy={layers:{a:'ui',b:'core'}};
+  for(const name of Object.getOwnPropertyNames(Object.prototype)) {
+    const report=analyzeSources({a:`return require("${name}")`},policy,{});
+    assert(report.errors.some(error=>error.message===`unknown module ${name}`),name);
+    assert.deepEqual(report.nodes,['a'],name);
+    const registered=Object.fromEntries([[name,'builder']]);
+    assert.deepEqual(analyzeSources({a:`return require("${name}")`},policy,registered).errors,[],name);
+  }
+  const source='return require("b")';
+  const inheritedSources=Object.assign(Object.create({b:'return {}'}),{a:source});
+  const inheritedGenerated=Object.create({b:'builder'});
+  for(const [sources,generated] of [[inheritedSources,{}],[{a:source},inheritedGenerated]]) {
+    const report=analyzeSources(sources,policy,generated);
+    assert.deepEqual(report.nodes,['a']);
+    assert(report.errors.some(error=>error.message==='unknown module b'));
+  }
+  assert.deepEqual(analyzeSources({a:source,b:'return {}'},policy,{}).errors,[]);
+  assert.deepEqual(analyzeSources({a:source},policy,{b:'builder'}).errors,[]);
+  assert.deepEqual(analyzeSources({a:source},policy,Object.assign(Object.create(null),{b:'builder'})).errors,[]);
+});
+
 test('initialization calls cannot borrow a deferred import exception',()=>{
   for(const [label,a] of [
     ['IIFE','return (function() return require("b") end)()'],

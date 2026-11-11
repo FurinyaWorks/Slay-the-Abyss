@@ -1,0 +1,96 @@
+{
+  "base": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "node": "v24.22.1",
+  "hashes": {
+    "scripts/check-architecture.mjs": "fde7712d67c942dd66440096b4e36eb84f1c42a26ac6d8c9c694226dc77ac7c7",
+    "tests/architecture.test.mjs": "32bdf009eed8589ec504b5701b40c5e0ca561315af6c33436760999d5d8ddb96"
+  },
+  "observations": [
+    {
+      "name": "constructor",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "__defineGetter__",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "__defineSetter__",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "hasOwnProperty",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "__lookupGetter__",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "__lookupSetter__",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "isPrototypeOf",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "propertyIsEnumerable",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "toString",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "valueOf",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "__proto__",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "name": "toLocaleString",
+      "oldFalseAcceptance": true,
+      "newRejected": true,
+      "ownSourceCycleDetected": true
+    },
+    {
+      "kind": "source",
+      "oldFalseAcceptance": true,
+      "newRejected": true
+    },
+    {
+      "kind": "generated",
+      "oldFalseAcceptance": true,
+      "newRejected": true
+    },
+    {
+      "nullPrototypeSources": true,
+      "ownHasOwnPropertySource": true
+    }
+  ]
+}

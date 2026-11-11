@@ -519,3 +519,6 @@ experiments/native-ui-ab/run.mjs -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.gz -text
 docs/evidence/native-ui-ab-20261111/*.log -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.json text eol=lf
+
+# Preserve exact import-membership regression evidence bytes.
+docs/evidence/m7-import-membership-20261111/** -text
