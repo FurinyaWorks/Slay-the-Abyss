@@ -6186,6 +6186,35 @@
       "sha256": "2100163f4dd8d6f150cb7698cd1e8f609d3b2685b2fac974cb24a9ba5a133b43",
       "category": "v25-native-simulator-evidence"
     },
+    "docs/evidence/noncombat-v25-20261111/visual/01-menu.png": {
+      "sha256": "f3e858462fc14a3039f76d9f18c2cab388d1fd8cc93009ab22a34a8a7d3e3794",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/README.md; R2 actual-GIL browser canvas, official picture-library IP and existing pixel portrait; no original V25 bitmap or SDK redistribution"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/02-character.png": {
+      "sha256": "350f0c18e89957879f1c57f84d3fd9d886961f80cdc16d528bcdb22093e4e096",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/03-neow.png": {
+      "sha256": "bb632fc626dd7ececf6e2031d0f62fa27c2dcef690962045aedbbb70cd2cdf8f",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/04-neow-offers.png": {
+      "sha256": "c46896921a2c71851cbdf491746bcaa3b179549bf4fb72b7eee364773bb1ad94",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/05-neow-result.png": {
+      "sha256": "961b33fbb80ae9ecf2e7f3043f7cbdbf7d9d40bd65d23dcc65024395985373c6",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/06-map.png": {
+      "sha256": "d48d29c6f5af29ff8af59f408f079d902f6864beb6ed51508b3dd8ae80ce4a06",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/07-first-battle.png": {
+      "sha256": "2b2eb3743fde21f982a73a0e39ea91bd1839e816b457a99205a8e9bc825d3ba0",
+      "category": "v25-native-simulator-evidence"
+    },
     "docs/evidence/event-v25-20261110/revision-2/treasure-open.png": {
       "sha256": "6fd5e23ee3cfa78b55f2ffc517758846d2f4934b7df16269fe3c457879247685",
       "category": "v25-native-simulator-evidence"
