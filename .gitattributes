@@ -519,3 +519,7 @@ experiments/native-ui-ab/run.mjs -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.gz -text
 docs/evidence/native-ui-ab-20261111/*.log -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.json text eol=lf
+
+# Preserve source-root regression evidence as originally captured.
+docs/evidence/m7-source-root-boundary-20261111/** -text
+docs/evidence/m7-source-root-current-20261111/** -text

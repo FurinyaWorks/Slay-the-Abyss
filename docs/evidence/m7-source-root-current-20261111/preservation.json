@@ -1,0 +1,173 @@
+{
+  "base": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "previousPrHead": "170a4f0a3b67aa358e9363e795871febe9c970f2",
+  "commonAncestor": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "preservedBaseFiles": [
+    {
+      "path": "backlog/tasks/task-100.2 - 对照验证原生差分更新与Tween的战斗收益.md",
+      "blob": "fc85a0f39f6ec41b412032363b524f1f74e0d563"
+    },
+    {
+      "path": "docs/MILESTONES.md",
+      "blob": "931c538650fb8899c9e5574af8661565eb2ba539"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/README.md",
+      "blob": "005b46bebe79b753c185f36b584be5cbafedf2a7"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/backlog-check-2.log",
+      "blob": "16fab6ceebe767e548f72b331a2116ca60c655c0"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/candidate-A.json.gz",
+      "blob": "43294f14e5442fb1129b99e5653de36efa21622d"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/manifest.json",
+      "blob": "7b5fe6eb58b261271b9d026daf6cbb79d6e17d83"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/name-boundaries.log",
+      "blob": "84249e6c8ae043da222e55229eab6ecd798fc674"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/negative-pair.log",
+      "blob": "2fc3827b3e0b151c9d7ca76fc72fa1a631b5d95f"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/regression-actor_feedback_lifecycle.log",
+      "blob": "1ab7541b8b128b1096b37e3d5ad499d2c3336cb2"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/regression-feedback_start_recovery.log",
+      "blob": "019e4b7f08e646219427189754c420c35b6bcadc"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/regression-intent_visibility_cache.log",
+      "blob": "555347dcd4a24f62f4820c78eb1edec0b181d8cf"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/sdk-A.json.gz",
+      "blob": "10f3d594ad7e12dd43809050e6235f8a9fdabbef"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/sdk-diff.json.gz",
+      "blob": "26b7aeac4b4fd1a0629df68ac1464f03ebe7a2c6"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/sdk-tween.json.gz",
+      "blob": "e95c1dd14184fae7ad4f0d3dc5c69c014cf74db0"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/summary.json",
+      "blob": "13caff5f82ba37dab01a63d45dc55bdf5f015399"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/tween-boundaries.log",
+      "blob": "5304ff6bdf11bcc031bfa41383546148ee0e5695"
+    },
+    {
+      "path": "docs/evidence/native-ui-ab-20261111/verify-pair-2.log",
+      "blob": "e65d418a7a1ed5e0c54494fc5d57cfaea0369b3f"
+    },
+    {
+      "path": "docs/research/2026-11-11-native-ui-ab.md",
+      "blob": "2bd7f4cfc97a175f13ad39608bee6aa61f9c4a3b"
+    },
+    {
+      "path": "experiments/native-ui-ab/README.md",
+      "blob": "59ab3547ac3b3b337f2d4367fa00dcb7ccead8ec"
+    },
+    {
+      "path": "experiments/native-ui-ab/name-boundaries.lua",
+      "blob": "de42c3b81a76adf6d507066836edb1e64529b2fc"
+    },
+    {
+      "path": "experiments/native-ui-ab/run.mjs",
+      "blob": "259bbfa362fa1d6d4fb5ade3cc1afb8d27ba5504"
+    },
+    {
+      "path": "experiments/native-ui-ab/tween-boundaries.lua",
+      "blob": "627ba3c1d6136bc2976ce57e2d32f1b18a715d57"
+    },
+    {
+      "path": "experiments/native-ui-ab/variants.mjs",
+      "blob": "97cb0c7c886290837f581e70c3a82ce7878fe4d8"
+    },
+    {
+      "path": "experiments/native-ui-ab/verify.mjs",
+      "blob": "0ff6a4860c5222f7ae5028d1bd11a50cdfae6869"
+    }
+  ],
+  "preservedPrFiles": [
+    {
+      "path": "docs/backlog-details/M7-SOURCE-ROOT-BOUNDARY-20261111.md",
+      "blob": "d50f02cd683904baa5dd82605b680ca66e8612ba"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/SHA256SUMS",
+      "blob": "2a304ed19d33c094fe5d01c66fa3d7c0c1f1a3cb"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/backlog.log",
+      "blob": "5fdef30dfa9d343baae608b8a0617c5decf8b1c8"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/boundaries.log",
+      "blob": "12d10848221febd71b9398b4036037eee4b9ff1f"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/discovery-timing.json",
+      "blob": "95256667ac8f3a420782d50216a786b0cd102ad3"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/engineering.log",
+      "blob": "a32083d8f1805f151e8654bb11aa75a9ae5e6fbb"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/green.log",
+      "blob": "14c9be14650dc24b21dbce085a4e560e2369ff3c"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/guidance-rerun.log",
+      "blob": "d323829166a57165c34381d5f99f1ffc27af54e2"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/guidance.log",
+      "blob": "6d5feef79ae82e10862bb4c92528d32e97c2e33c"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/network.log",
+      "blob": "65fbef0643f3db3c1e7baa54a6862816e3141142"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/red.log",
+      "blob": "785ade15d7a0eb9fa50781a8a3f5e189ff70cd09"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/review.json",
+      "blob": "bbb295ee95c2a78d0a3e7b5a3810bc03d092ad70"
+    },
+    {
+      "path": "docs/evidence/m7-source-root-boundary-20261111/syntax.log",
+      "blob": "6272a7ad433ba4c25ada4925e91855cefd2206f8"
+    },
+    {
+      "path": "scripts/lua-quality-metrics.mjs",
+      "blob": "e85c6abeef06571309b18ba185862999d2b90985"
+    },
+    {
+      "path": "tests/engineering-shared-inputs.test.mjs",
+      "blob": "dbe2fc857657c06e3eb7ac2cfe0c2c6497be956d"
+    }
+  ],
+  "luaSourceCount": 345,
+  "allProductionLuaUnchanged": true,
+  "attributesPreserveFullBasePrefix": true,
+  "attributesSuffix": "\n# Preserve source-root regression evidence as originally captured.\ndocs/evidence/m7-source-root-boundary-20261111/** -text\n",
+  "scripts/lua-quality-metrics.mjs": "df99cbef194dc74cc22fc980a3790ed3aced5ef3664124683041d44ce3f8d614",
+  "tests/engineering-shared-inputs.test.mjs": "a90d3e3af423fbe5ba3015eaad7986e2bb932d4f0bfac6b810a69ddebbbcc693",
+  "finalAttributesSuffix": "\n# Preserve source-root regression evidence as originally captured.\ndocs/evidence/m7-source-root-boundary-20261111/** -text\ndocs/evidence/m7-source-root-current-20261111/** -text\n",
+  "finalAttributesExactConcatenation": true
+}

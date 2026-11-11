@@ -1,0 +1,26 @@
+✔ responsibility boundaries validate policy and reject immediate and deferred imports (9.177664ms)
+✔ production policy permanently protects Actor and the independently loadable reaction entry (1425.022473ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (5.271158ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.46641ms)
+✔ collection failures and existing gate failures propagate (0.740064ms)
+✔ a failed shared collection writes a fresh failed quality report (7.871391ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (1.279048ms)
+✔ standalone architecture and shared collection inspect the same recursive modules and source paths (17.039192ms)
+✔ both architecture entries reject empty scans and ambiguous Lua module identities (0.954613ms)
+✔ both architecture entries refuse linked source directories instead of silently omitting them (0.972977ms)
+✔ nested source changes and dependency boundaries are freshly checked by both architecture entries (1.570241ms)
+✔ both architecture entries reject a linked src scan root (1.040685ms)
+✔ both architecture entries reject a linked src/lua scan root (0.757257ms)
+✔ selecting a repository through a directory alias still checks its real source entries (1.174346ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1841.091143

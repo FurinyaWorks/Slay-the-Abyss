@@ -1,0 +1,49 @@
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (9.766035ms)
+✔ initialization calls cannot borrow a deferred import exception (8.20756ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (5.04278ms)
+✔ generic-for initialization invokes the known iterator, including aliases and factory results (2.893363ms)
+✔ generic-for does not invoke state, control, unused results or dormant loop owners (2.806984ms)
+✔ an immediate and a deferred require retain their individual execution classification (1.02585ms)
+✔ deferred import exceptions must still match an actual function-scoped require (0.600678ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.251614ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (0.901659ms)
+✔ active policy pins exactly the lint/tool inputs and rejects changes, missing pins and exception options (2.711774ms)
+✔ active policy preserves historical lint except exact reviewed SDK owner and callback declarations (10.771777ms)
+✔ physical lines and inclusive function spans include comments, blank lines and nested bodies (6.08418ms)
+✔ CRLF and LF have identical canonical metrics and source hashes (0.836658ms)
+✔ every function and chunk needs exactly one matching Luacheck coordinate (1.694911ms)
+✔ Unicode codepoint columns map to UTF8 AST bytes, including emoji and combining marks (1.441039ms)
+✔ all files and extracted helpers are discovered recursively; empty scans fail (15.594328ms)
+✔ full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically (3.140611ms)
+✔ baseline diff keeps full metrics, exact warning multiplicity and changed/deleted/new modules visible (2.153197ms)
+✔ baseline contract/tool/scope mismatch and malformed snapshots cannot be treated as improvement (1.632027ms)
+✔ JSON object key ordering does not create false warning changes or contract mismatches (0.783504ms)
+✔ all new numeric metrics remain report-only, including high complexity and new helper hotspots (7.362982ms)
+✔ the frozen baseline covers every recorded module/function and is not an exemption configuration (18.062005ms)
+✔ dependency and cycle changes are visible even when total module and warning counts stay equal (0.703425ms)
+✔ quality reports are collected by the existing gate and uploaded on failed runs without changing older CI guards (5.381039ms)
+✔ historical package replay inverts only the exact quality entry and gate wiring without changing its old hash (316.781083ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (9.100186ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (4.002831ms)
+✔ collection failures and existing gate failures propagate (0.743412ms)
+✔ a failed shared collection writes a fresh failed quality report (13.557034ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (1.315763ms)
+✔ standalone architecture and shared collection inspect the same recursive modules and source paths (18.937517ms)
+✔ both architecture entries reject empty scans and ambiguous Lua module identities (3.574667ms)
+✔ both architecture entries refuse linked source directories instead of silently omitting them (0.730819ms)
+✔ nested source changes and dependency boundaries are freshly checked by both architecture entries (1.915252ms)
+✔ both architecture entries reject a linked src scan root (1.388964ms)
+✔ both architecture entries reject a linked src/lua scan root (0.668496ms)
+✔ selecting a repository through a directory alias still checks its real source entries (0.856959ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16014.484617
