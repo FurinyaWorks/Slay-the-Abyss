@@ -1,13 +1,13 @@
 {
   "format": "qxqy-simulator-save",
   "version": 4,
-  "candidateSha256": "1c22bd9f8dc20649c76b31d13222353e4853614ebb7b952e7c83a20be8a94bfb",
-  "sourceCommit": "9cece5dc8a0040139449f056a24ce98f275c4f4f",
+  "candidateSha256": "7f13c927697563bce1e4d288bf1ff899c73018742bb95b29ea1d4e41e5a48fd6",
+  "sourceCommit": "50a5dae348160d51f101a8721f39404c604ecd7e",
   "sourceDirty": false,
-  "buildId": "0222683d-4448-43a9-987d-733f90e0ff02",
-  "save": "F:\\New folder\\.worktrees\\official-mobile-aim-hud\\.artifacts\\official-ui-bugs\\after-preview\\pr588.actual.save.json",
-  "saveSha256": "696ac396b46f9fbcc427b503658983b3e73faf192a3f790a72aacb8dadeb2f9f",
-  "bytes": 26356524,
+  "buildId": "d3b4c46e-acf0-454d-8193-4618d548fbae",
+  "save": "F:\\New folder\\.worktrees\\official-mobile-aim-hud\\.artifacts\\official-ui-bugs\\v2\\preview\\pr588.actual.save.json",
+  "saveSha256": "e6d3abaf6a5bd701ad33c5a023eb68e67b23deb00a79292e47edef9ec75aff96",
+  "bytes": 26356530,
   "controlsConverted": 14083,
   "templates": [
     {

@@ -35,13 +35,12 @@
         "wall": 1.3346000000014901,
         "game": 1.3399999999999999
       },
-      "archiveLoadMs": 13037.919100000001,
       "reportSha256": "d01ceb50347d7c54f330b03492edb11720e3e1500164b327a93c81e5e15fb70a"
     },
     {
       "variant": "after",
-      "buildId": "0222683d-4448-43a9-987d-733f90e0ff02",
-      "saveSha256": "20f2f60b15f74f4efd1363a62ccc2f3adaf25765fb7fbf4d722009c0c42330c7",
+      "buildId": "d3b4c46e-acf0-454d-8193-4618d548fbae",
+      "saveSha256": "520483100e84bd3f42488e50e165cadd29c5d4cdb34c6ab8f1eb4f0580cbb077",
       "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
       "canvas": {
         "x": 60,
@@ -49,33 +48,32 @@
         "width": 1280,
         "height": 720
       },
-      "medianMs": 41.75,
-      "maxMs": 51.400000005960464,
+      "medianMs": 42.30000000074506,
+      "maxMs": 45.399999998509884,
       "samplesMs": [
-        36.70000000298023,
-        39.600000001490116,
-        41.20000000298023,
-        42.29999999701977,
-        46.30000000447035,
-        48.100000001490116,
-        39,
-        51.400000005960464
+        36.600000001490116,
+        44.70000000298023,
+        45.399999998509884,
+        42.80000000447035,
+        37.900000005960464,
+        38.400000005960464,
+        42.5,
+        42.100000001490116
       ],
       "stream": {
         "events": 48,
         "requests": 48,
         "changedFrames": 47,
-        "wall": 1.7632999999970198,
-        "game": 1.7699999999999996
+        "wall": 1.8482000000029801,
+        "game": 1.8499999999999996
       },
-      "archiveLoadMs": 10148.066400000002,
-      "reportSha256": "d830db09309b6d89ed62e76c5f6214292c9c2deb11428dfa8f6c0354a370a1e2"
+      "reportSha256": "7751223d6a765adc5f4193d682093738824188f37b5e29af1bc3c7b4de6917c6"
     }
   ],
   "limitations": [
     "One noisy serial pair; no speedup or official/device claim.",
     "48 stream inputs are backpressured, actual durations differ.",
     "Before uses diagnostic old HUD, not a valid deliverable packaging receipt.",
-    "Probe only checks drag/cancel; live touch attack smoke is separately recorded."
+    "After is the exact rebuilt final GIL; original after022 pair is retained separately in v1 archive/history."
   ]
 }

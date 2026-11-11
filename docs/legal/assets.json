@@ -6283,11 +6283,11 @@
       "category": "battle-piles-browser-20261111"
     },
     "docs/evidence/official-ui-repair-20261112/energy-comparison-1x.png": {
-      "sha256": "6fb5ae0d560d1c98e80aa7e8bf1f47a53915714f60b4cda22e976a509a7a838a",
+      "sha256": "2024573ad4f8ba7d6cb844a1efa1b67b054e0670f8d6f75b4f75b5fc72d6a607",
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/hud-after.png": {
-      "sha256": "fb03a6758bc83c2306d3615206d24add143d1c8c6ade57599cee4d71450e8ec3",
+      "sha256": "80f7d486dd7460e050ad96154a574a35b3c97d214d93e19b744a11e2327bf476",
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/hud-before.png": {
@@ -6295,27 +6295,27 @@
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/touch-after-cancel.png": {
-      "sha256": "0b8c9e31fd3f8efd6620c7f8bf9652eec77e9ed9d51297f183efd22bf2d54ae5",
+      "sha256": "57757488eadd532e0440cb78bbd1670e14b95acfd5f22a18f221a9e0b3efcbb3",
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/touch-after-free.png": {
-      "sha256": "33653036255989dcab54a929b36c02e085a48f7a746f5b6003ed266a9911951f",
+      "sha256": "0fc852be2f8f95edbcdde0272059944c9cdace9ace29df5aafd14abbeedb2f23",
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/touch-after-lock-first.png": {
-      "sha256": "a3bebe37f4cf3aa0a811819598d15a4e8cff5fbfd48431d765fcc5d212b93f8e",
+      "sha256": "bd43423fd472efa66d540a956262d87b355fb27744c3c9347b4ebbf42aef5bf3",
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/touch-after-lock-second.png": {
-      "sha256": "a72aa1f3690cab57cd9a66cc0ead80ee78b75ff52b8a01ceb3b325cb048866d9",
+      "sha256": "b55c13639f8d89987d33085d59bf6fef5887aee4e4a07a1aa9521a4b4e43fa02",
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/touch-after-play.png": {
-      "sha256": "e5624ff38b32dd6cc3f72c6d98aee3d81869a6e5e51eef2ce1b8ced46c996d47",
+      "sha256": "325d592d5df7fe0451d648d181b5e887f85a5c0957b5d557b56e262fa47f553b",
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/touch-after-ready.png": {
-      "sha256": "647b63ac24c75abbd00de2ecab51e3bb38f8b38fc086d9eced8d2c32a7f11074",
+      "sha256": "80f7d486dd7460e050ad96154a574a35b3c97d214d93e19b744a11e2327bf476",
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/touch-before-lock.png": {
@@ -6323,7 +6323,7 @@
       "category": "official-ui-repair-simulator-evidence"
     },
     "docs/evidence/official-ui-repair-20261112/touch-comparison.png": {
-      "sha256": "919c85eb72f3ba679041818f3cb2cdca5f60aea4abd8fbf0e0f55bc3ab85b070",
+      "sha256": "76e544346cae2c84b37cc70ca2d985576a015e9ae7a068ddba870eaf26535ef5",
       "category": "official-ui-repair-simulator-evidence"
     }
   }
