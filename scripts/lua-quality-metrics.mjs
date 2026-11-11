@@ -1,10 +1,15 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { lstatSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import luaparse from 'luaparse';
 import { sha256 } from './evidence-files.mjs';
 
 export function discoverSources(root=process.cwd()) {
   const sources={};
+  // readdir reports the entries below its argument, not a link used to reach
+  // that directory. Check both repository-relative source roots before scanning.
+  for(const path of [join(root,'src'),join(root,'src/lua')]) {
+    if(lstatSync(path).isSymbolicLink())throw new Error(`Linked source entry is not supported: ${path}`);
+  }
   function scan(directory) {
     for(const entry of readdirSync(directory,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name,'en'))) {
       const path=join(directory,entry.name);

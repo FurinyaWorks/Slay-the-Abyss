@@ -5,12 +5,13 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-10T11:21:00Z'
-updated_date: '2026-11-10T11:26:00Z'
+updated_date: '2026-11-11T00:19:00Z'
 labels: []
 milestone: m-7
 dependencies: []
 documentation:
   - docs/backlog-details/M7-ARCHITECTURE-DISCOVERY-20261110.md
+  - docs/backlog-details/M7-SOURCE-ROOT-BOUNDARY-20261111.md
 parent_task_id: TASK-74
 priority: medium
 type: bug
@@ -34,10 +35,14 @@ ordinal: 166000
 
 <!-- SECTION:PLAN:BEGIN -->
 1.复现独立入口漏掉嵌套Lua及空扫描。2.复用现有递归发现并共用模块身份转换，保持初始化解析和当前源码报告不变。3.覆盖嵌套违规、环、分类、冲突与链接拒绝，运行相关消费者和独立复审。4.发布Draft，保留必要CI、合并队列和合后验收未完成状态。
+
+2026-11-11遗漏修复：在独立树复现src及src/lua入口链接可穿出边界；最小加固既有源码发现，保留内部链接拒绝和真实文件路径，补同入口正反回归及全库报告一致性，不更改AST策略、生产Lua、Full预算或历史oracle。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
 当前递归发现与真实路径修复已验证。四份完整工程消费者32/32、架构边界2/2通过；旧实现新增4项回归全部失败，修复后9/9。完整338模块1929引用报告逐字不变，独立负控与#601精确组合通过。初次路线登记缺失日志保留，补登记后Backlog通过。当前仅本地与独审证据，HEAD必要CI和正常合并/合后验收未完成，保持In Progress。
+
+2026-11-11补漏：src/src-lua入口链接原先可被跟随，新增3条真实红测后由两级lstat拒绝；保留仓库根别名。四份完整工程消费者37/37、架构边界2/2及独审通过；当前345模块1953引用报告逐字不变。详见docs/backlog-details/M7-SOURCE-ROOT-BOUNDARY-20261111.md；原始失败与通过流保留，Windows/HEAD Full/正常合并/合后push未验，AC3保持未完成。
 <!-- SECTION:NOTES:END -->

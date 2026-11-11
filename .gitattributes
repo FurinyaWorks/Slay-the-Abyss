@@ -512,3 +512,6 @@ docs/evidence/pr588-native-mock-20261110/independent-rim-guard-false.log -whites
 docs/evidence/pr588-native-mock-20261110/independent-rim-guard-true.log -whitespace
 docs/evidence/pr588-native-mock-20261110/local-before.log -whitespace
 docs/evidence/pr588-native-mock-20261110/quick-failure.log -whitespace
+
+# Preserve source-root regression evidence as originally captured.
+docs/evidence/m7-source-root-boundary-20261111/** -text
