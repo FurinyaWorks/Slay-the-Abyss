@@ -82,8 +82,10 @@ local function pose(ctx)
     paintVeil(ctx)
     paintEntrance(ctx)
     local m=ctx.owner.motion
-    local breathe=1+R.breatheScale*math.sin(2*math.pi*math.max(0,m.t-T.slow)/R.breathe)
-    ctx.emblem:GetChild("glow"):SetLocalScale(breathe,breathe,1)
+    if ctx.emblem.visible then
+        local breathe=1+R.breatheScale*math.sin(2*math.pi*math.max(0,m.t-T.slow)/R.breathe)
+        ctx.emblem:GetChild("glow"):SetLocalScale(breathe,breathe,1)
+    end
     paintSettlement(ctx)
     paintVista(ctx)
 end

@@ -20,6 +20,8 @@ const all=node=>[node,...children(node).flatMap(all)];
 const paths=(node,prefix='')=>allPaths(node,prefix);
 function allPaths(node,prefix){const path=prefix+'/'+node.name;return [[path,node],...children(node).flatMap(item=>allPaths(item,path))];}
 const child=(node,name)=>children(node).find(item=>item.name===name);
+const restoredPagePath=path=>path.includes('/battlePanel/')||path.includes('/characterPanel/')
+ ||path.includes('/menuPanel/start/')||/\/menuPanel\/(?:start|emblem|vista|heroArt)$/.test(path);
 function receipt(){return {officialAssetsProfile,artFeatures:artFeatureReceipt(officialAssetFlags),uiProfile:uiProfileReceipt(true),
  officialPortraits:{...portraitInventory(officialAssetFlags,{officialAssets:true}),inputs:portraitRuntimeInputs(officialAssetFlags).map(path=>({path}))}};}
 
@@ -53,7 +55,7 @@ test('receipts and pinned source audits reconstruct official art and reject mism
   assert.throws(()=>officialAssetsFromReceipt({...value,...patch}));
 });
 
-test('approved battle geometry keeps live field identities and input contracts while other pages retain their geometry',()=>{
+test('approved pages keep live input identities while unrelated pages retain their geometry',()=>{
  const layout=gameLayout(),template=deckCardTemplate(),theme=officialAssetsTheme(nativeTheme);
  const nodes=[...paths(layout),...paths(template)];
  const semantic=nodes.filter(([,node])=>['text','cursorArea','presetButton'].includes(node.kind))
@@ -63,7 +65,7 @@ test('approved battle geometry keeps live field identities and input contracts w
  const current=new Map([...paths(layout),...paths(template)]);
   for(const [path,node,before] of semantic){
    assert.equal(current.get(path),node,path);
-   if(path.includes('/battlePanel/')){
+   if(restoredPagePath(path)){
     // Battle geometry is intentionally restored to the approved V25 tokens.
     // The existing event-bearing objects and input/state contracts still survive.
     for(const key of ['kind','states','focusable','interactable','raycastTarget'])assert.deepEqual(node[key],before[key],path+' '+key);
@@ -72,7 +74,7 @@ test('approved battle geometry keeps live field identities and input contracts w
   for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget'])assert.deepEqual(node[key],before[key],path+' '+key);
    if(node.text){const actual={...node.text},expected={...before.text};delete actual.colour;delete expected.colour;if(expected.autoSize&&(expected.minFontSize*1.45+4>before.size?.[1]||path.endsWith('/shopView/removal/description')))expected.minFontSize=nativeTheme.font.minimum;assert.deepEqual(actual,expected,path);}
  }
-  for(const [path,node,before]of containers){if(path.includes('/battlePanel/'))continue;assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
+  for(const [path,node,before]of containers){if(restoredPagePath(path))continue;assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
  assert.equal(result.cardHosts,cards.length);assert(cards.length>=40);assert(result.removedControls>500);
  const battleBodies=new Set(all(child(layout,'battlePanel')));

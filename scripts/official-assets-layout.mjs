@@ -5,6 +5,8 @@ import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
 import {v25Theme,applyV25BattleLayout} from './v25-layout.mjs';
 import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
 import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
+import {applyOfficialNoncombatLayout} from './noncombat-v25-layout.mjs';
+import {applyOfficialNeowLayout} from './noncombat-neow-layout.mjs';
 const children=node=>node?.controls??node?.children??[];
 const child=(node,name)=>children(node).find(item=>item.name===name);
 const required=(node,name)=>{const value=child(node,name);if(!value)throw Error('Official assets missing '+name);return value;};
@@ -19,6 +21,8 @@ const setImage=(control,id,colour)=>{
 export function officialAssetsTheme(source){
   const theme=structuredClone(source);
   const approved=v25Theme(source);
+  theme.layout.v25Menu=structuredClone(approved.layout.v25Menu);
+  theme.layout.nativeNode.event.neow.bubbleText=[-45,65,270,130];
  if(theme.officialAssets?.profile!=='official-assets-first-v1')throw Error('Missing official asset theme');
  theme.presentationProfile='official-assets-first';
  theme.cardSkin.text.body=theme.officialAssets.cardInk;
@@ -234,6 +238,8 @@ export function applyOfficialAssets(trees,theme){
    if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme,battleCards.has(node));cardHosts++;}
    else {buttonFaces(node,theme);panelSurfaces(node,theme);pageBackgrounds(node,theme);roomTextFits(node,theme);}
   });
+  applyOfficialNoncombatLayout(tree,theme);
+  applyOfficialNeowLayout(tree,theme);
  }
  return {cardHosts,removedControls};
 }

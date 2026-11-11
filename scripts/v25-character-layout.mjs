@@ -70,7 +70,7 @@ const palettes={
  cancel:{normal:['#BCA348','#8C3739','#B95B4A'],hover:['#DFC154','#A54243','#DA6B57'],pressed:['#AD9642','#813335','#AA5444'],disabled:['#807556','#5A4447','#80675D']},
  confirm:{normal:['#A2B4B5','#477B89','#77A4AF'],hover:['#BFD4D6','#5491A2','#8CC1CF'],pressed:['#95A6A7','#41717E','#6D97A1'],disabled:['#7E8B8C','#414F55','#64777D']},
 };
-function flagButton(button,name,theme){
+function flagButton(button,name,theme,options){
  Object.assign(button,frame(name==='cancel'?0:1100,561,180,60));
  const hit=child(button,'hit');hit.position=[0,0];hit.size=[180,60];
  const points=outlines[name],inner=points.map(([x,y])=>[90+(x-90)*178/180,30+(y-30)*58/60]);
@@ -79,7 +79,7 @@ function flagButton(button,name,theme){
   state.size=[180,60];state.scale=[1,1];
   child(state,'border').visible=false;child(state,'plate').visible=false;
   const [rim,fill,light]=palettes[name][stateName];
-  const flag=group('v25Flag',[180,60],[bands('rim',points,rim,theme),bands('cloth',inner,fill,theme),
+  const flag=options?.nativeFlagImage ? group('v25Flag',[180,60],[image('cloth',[0,0],[180,60],options.nativeFlagImage,fill,{imageType:'basic'})]) : group('v25Flag',[180,60],[bands('rim',points,rim,theme),bands('cloth',inner,fill,theme),
    image('upperThread',[name==='cancel'?-8:13,16],[145,1.5],theme.image.rect,light),
    image('lowerThread',[name==='cancel'?-16:15,-24],[128,1.5],theme.image.rect,light)]);
   upsert(state,flag,children(state).indexOf(label));
@@ -136,7 +136,7 @@ function detailsLayout(details,theme){
   const label=child(state,'label');label.size=[170,32];label.text.fontSize=14;label.text.minFontSize=14;
  }
 }
-export function applyV25CharacterLayout(layout,theme){
+export function applyV25CharacterLayout(layout,theme,options={}){
  const stage=optional(layout,'stage')??layout,panel=child(stage,'characterPanel'),details=child(panel,'details');
  for(const name of ['veil','border','face','themes','scrim'])child(panel,name).visible=false;
  // No old scene host: the legacy portrait scene owner otherwise reactivates it.
@@ -148,7 +148,7 @@ export function applyV25CharacterLayout(layout,theme){
  upsert(panel,image('v25HeadingDivider',frame(104,23.5,1,34).position,[1,34],theme.image.rect,'#E8D1B4',{opacity:.55}));
  upsert(panel,image('v25HeadingRule',frame(261.734375,39.5,146,2).position,[146,2],theme.image.rect,'#CCAA7A'));
  detailsLayout(details,theme);upsert(panel,roster(theme));
- flagButton(child(panel,'cancel'),'cancel',theme);flagButton(child(panel,'confirm'),'confirm',theme);
+ flagButton(child(panel,'cancel'),'cancel',theme,options);flagButton(child(panel,'confirm'),'confirm',theme,options);
  // The existing live deck modal must stay above all new read-only decoration.
  const modal=child(panel,'deckView'),items=children(panel);items.splice(items.indexOf(modal),1);items.push(modal);
  return layout;

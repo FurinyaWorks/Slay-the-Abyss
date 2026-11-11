@@ -119,8 +119,9 @@ function M.render(panel,state,platform)
     confirm.interactable,confirm.raycastTarget=state:canConfirm(),state:canConfirm()
     if not info then return end
     details:GetChild('name').text=info.name
-    details:GetChild('stats').text='生命  '..number(info.maxHp)..' / '..number(info.maxHp)
-    details:GetChild('gold').text='金币  '..number(info.gold)
+    local nativeV25=Theme.presentationProfile=='official-assets-first' and panel:GetChild('v25Roster')~=nil
+    details:GetChild('stats').text=(nativeV25 and '' or '生命  ')..number(info.maxHp)..' / '..number(info.maxHp)
+    details:GetChild('gold').text=(nativeV25 and '' or '金币  ')..number(info.gold)
     local relics,texts={},{}
     for _,r in ipairs(info.relics)do relics[#relics+1]=r.name;if r.text and r.text~='' then texts[#texts+1]=r.text end end
     details:GetChild('relic').text=#relics>0 and table.concat(relics,'、') or '无'
