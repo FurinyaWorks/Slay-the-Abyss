@@ -695,7 +695,9 @@ end
             assert(grid.size[1]==918 and grid.x==0 and grid.y==-75.5,'V25 keeps a fixed five-column list origin')
             assert(grid.size[2]==557,'V25 scroll viewport remains fixed for every pile size')
             local original={};for i,c in ipairs(host.deckUI.cards)do original[i]=c.uid end
+            assert(not host.deckUI:setSort('name'),'pile-only sort cannot enter permanent preference')
             assert(host.deckUI:setPileSort('name'));assert(host.deckUI:setPileSort('cost'))
+            assert(host.deckUI:setPileSort('type'));assert(not host.deckUI:setPileSort('rarity'))
             assert(host.deckUI:setPileSort('original'));if not host.deckUI.sortAscending then assert(host.deckUI:setPileSort('original'))end
             for i,c in ipairs(host.deckUI.cards)do assert(c.uid==original[i],'default sort did not restore the displayed snapshot')end
             host.deckUI:update()
@@ -730,6 +732,10 @@ end
         assert(host.deckUI:open(host.run));host.deckUI:update()
         assert(panel:GetChild('grid').visible and not grid.visible and panel:GetChild('filterAll').visible)
         assert(panel:GetChild('header').visible and not host.deckUI.pileView)
+        assert(not host.deckUI:setSort('name') and not host.deckUI:setPileSort('name'),
+            'permanent deck rejects name through both sorting entry points')
+        assert(host.deckUI.sortMode=='original' and host.deckUI.sortAscending,
+            'pile sorting must not leak into permanent deck preferences')
         host.deckUI:close()
 
 `, 'OFFICIAL_PILE_FACE_PASS');
