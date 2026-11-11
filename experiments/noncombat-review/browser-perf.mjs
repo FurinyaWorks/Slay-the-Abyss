@@ -29,9 +29,3 @@ try{
  report.status='captured';
 }catch(error){report.status='failed';report.error=String(error.stack);console.log(report.error);process.exitCode=1}
 finally{await context?.close();await browser.close();try{await api('/editor/api/play',{sessionId:sid,action:'stop',args:{}})}catch(error){report.stopError=String(error)}fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2));console.log(out)}
-
-
-
-
-
-

@@ -61,8 +61,3 @@ try{
  report.status='pass';report.sdkStepMs=timing(stepTimes);report.logs=session.runtime.logs;
 }catch(error){report.status='failed';report.error=String(error.stack);console.log(report.error);process.exitCode=1}
 finally{report.logs=session?.runtime.logs??[];report.faults=report.logs.filter(l=>l.level==='lua-error'||/ABYSS_UI failed|prepare_failed|command_failed/.test(l.text));report.sourceStable=hash(savePath)===report.saveSha256&&hash(sdkPath)===sdkSha256;report.sdkStepMs=timing(stepTimes);report.pointerEvents=pointerEvents;if(report.faults.length||!report.sourceStable){report.status='failed';process.exitCode=1}for(const runtime of session?.runtimes??[])try{runtime.destroy()}catch{}fs.writeFileSync(output,JSON.stringify(report,null,2));console.log(output)}
-
-
-
-
-

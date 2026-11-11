@@ -76,4 +76,3 @@ try{
 }catch(e){console.error(e);await backend.close();front.close();process.exitCode=1;}
 async function close(){if(closing)return;closing=true;await backend.close();await new Promise(resolve=>front.close(resolve));}
 for(const signal of ['SIGINT','SIGTERM'])process.once(signal,()=>close().finally(()=>process.exit(0)));
-

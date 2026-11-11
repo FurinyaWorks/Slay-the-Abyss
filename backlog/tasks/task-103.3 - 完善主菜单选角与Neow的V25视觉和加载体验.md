@@ -5,8 +5,9 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-11 08:07'
-updated_date: '2026-11-11 08:21'
+updated_date: '2026-11-11 08:34'
 labels: []
+milestone: m-8
 dependencies: []
 parent_task_id: TASK-103
 priority: medium
@@ -36,4 +37,8 @@ ordinal: 171000
 
 <!-- SECTION:NOTES:BEGIN -->
 已从develop3a061a76建立feat/noncombat-v25；621仍OPEN自动合并。第一轮源码31886413复用V25菜单/选角布局、官方旗帜与现有有限战斗形状；独审发现结果页串样后已修，两种结果往返及负控通过。自然实际GIL截图与性能正在验证，不勾AC。
+
+用户追加：主菜单原高图元背景优化先留技术评审，不轻举妄动；已撤回未提交的塔景替代实验。保留原背景源码/资产/开关，不把当前官方候选底图当原高塔还原。独立Draft PR623，不启用Auto-merge。R2真实候选已构建，最终实拍/黑盒中；旧源码证明/新增测试清单接续正在整改，状态保持In Progress。
+
+R2候选10a39d5c实际GIL读回13855控件/360Lua/0逆差异，七页自然黑盒、80→88祝福与首战通过，20次选角返回控件18352稳定/根销毁0。SDK step P95 17.29ms；浏览器归档12.10s、正帧7.59s、确认→Neow1214ms，仍有加载等待，不宣称提速。试玩http://127.0.0.1:55875/，证据docs/evidence/noncombat-v25-20261111/README.md。621仍OPEN，尚待合入后最新战斗集成；历史源码证明接续整改中，AC不勾。
 <!-- SECTION:NOTES:END -->
