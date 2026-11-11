@@ -47,8 +47,8 @@ local expectedPages=math.ceil(#run.relics/perPage)
 assert(expectedPages==11 and h.relicUI:pages()==expectedPages)
 assert(panel:GetChild('pageHint').text=='第 1/'..expectedPages..' 页')
 assert(panel:GetChild('next'):GetChild('hit').click())
-assert(h.relicUI.page==2 and panel:GetChild('row1'):GetChild('name').text=='余烬之心')
-assert(panel:GetChild('row1'):GetChild('description').text:find('回复 6 点生命',1,true))
+assert(h.relicUI.page==2 and panel:GetChild('row1'):GetChild('name').text=='岩脉残晶')
+assert(panel:GetChild('row1'):GetChild('description').text:find('回复6点生命',1,true))
 -- No English placeholders anywhere in the visible panel.
 for slot=1,perPage do
   local row=panel:GetChild('row'..slot)
