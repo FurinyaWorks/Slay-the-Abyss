@@ -92,10 +92,9 @@ const threads={
  cancel:[curve([-2,12],[[152,12]],[[168,12],[173,7]]),curve([-2,55],[[143,55]],[[160,55],[171,46]])],
  confirm:[curve([180,13],[[48,13]],[[32,13],[18,30],[7,17]]),curve([8,32],[[17,51],[37,55],[55,56]],[[182,56]])],
 };
-const palettes={
- cancel:{normal:['#BCA348','#8C3739','#B95B4A'],hover:['#DFC154','#A54243','#DA6B57'],pressed:['#AD9642','#813335','#AA5444'],disabled:['#807556','#5A4447','#80675D']},
- confirm:{normal:['#A2B4B5','#477B89','#77A4AF'],hover:['#BFD4D6','#5491A2','#8CC1CF'],pressed:['#95A6A7','#41717E','#6D97A1'],disabled:['#7E8B8C','#414F55','#64777D']},
-};
+const brightness=(hex,factor)=>'#'+hex.slice(1).match(/../g).map(n=>Math.min(255,Math.round(parseInt(n,16)*factor)).toString(16).padStart(2,'0')).join('').toUpperCase();
+const palettes=Object.fromEntries(Object.entries({cancel:['#BCA348','#8C3739','#B95B4A'],confirm:['#A2B4B5','#477B89','#77A4AF']})
+ .map(([name,normal])=>[name,{normal,hover:normal.map(c=>brightness(c,1.18)),pressed:normal.map(c=>brightness(c,.92)),disabled:normal}]));
 function flagButton(button,name,theme,options){
  Object.assign(button,frame(name==='cancel'?0:1100,561,180,60));
  const hit=child(button,'hit');hit.position=[0,0];hit.size=[180,60];
@@ -109,7 +108,7 @@ function flagButton(button,name,theme,options){
    ...threads[name].map((points,i)=>lines(i?'lowerThread':'upperThread',points,1.5,light,theme,{opacity:name==='cancel'?.55:.6}))]);
   upsert(state,flag,children(state).indexOf(label));
   label.position=[name==='cancel'?-10:10,-6];label.size=[150,42];
-  label.text={...label.text,content:name==='cancel'?'返回':'开始挑战',fontSize:26,minFontSize:26,colour:stateName==='disabled'?'#B8B4A5':'#FFF0B1',align:'centre',valign:'middle'};
+  label.text={...label.text,content:name==='cancel'?'返回':'开始挑战',fontSize:26,minFontSize:26,colour:'#FFF0B1',align:'centre',valign:'middle'};
  }
 }
 function roster(theme){

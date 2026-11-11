@@ -27,14 +27,14 @@ test('official menu and selection reuse live inputs with bounded native decorati
  assert.equal(child(menu,'emblem').visible,false);
  assert.deepEqual(child(menu,'start').position,[-430,-71]);
  assert.deepEqual(child(child(menu,'start'),'officialResultLabel'),{...resultLabel,name:'officialResultLabel',visible:false});
- const fills={cancel:{normal:'#8C3739',hover:'#A54243',pressed:'#813335',disabled:'#5A4447'},
-  confirm:{normal:'#477B89',hover:'#5491A2',pressed:'#41717E',disabled:'#414F55'}};
+ const fills={cancel:{normal:'#8C3739',hover:'#A54143',pressed:'#813334',disabled:'#8C3739'},
+  confirm:{normal:'#477B89',hover:'#5491A2',pressed:'#41717E',disabled:'#477B89'}};
  for(const key of ['confirm','cancel'])for(const state of parts(child(child(panel,key),'hit'))){
   const flag=child(state,'v25Flag'),cloth=child(flag,'cloth'),rim=child(flag,'rim');
   assert(rim&&cloth,'approved flag has separate irregular rim and cloth');
   assert(parts(cloth).length<=30);assert(parts(rim).length<=30);
   for(const band of parts(cloth)){assert.equal(band.image,theme.image.rect);assert.equal(band.colour,fills[key][state.name]);}
-  assert.equal(child(state,'label').text.colour,state.name==='disabled'?'#B8B4A5':'#FFF0B1');
+  assert.equal(child(state,'label').text.colour,'#FFF0B1');
   assert.equal(child(state,'plate').visible,false);assert.equal(child(state,'border').visible,false);
   assert.equal(all(flag).some(n=>n.image===theme.officialAssets.images.button),false,'official rectangle must not replace original flag');
  }
