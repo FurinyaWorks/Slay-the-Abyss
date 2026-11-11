@@ -519,3 +519,8 @@ experiments/native-ui-ab/run.mjs -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.gz -text
 docs/evidence/native-ui-ab-20261111/*.log -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.json text eol=lf
+
+# Preserve this reviewed feedback witness and raw local evidence across checkout.
+tests/fixtures/skill-feedback-before.lua text eol=lf
+docs/evidence/m7-skill-feedback-20261111/*.gz -text
+docs/evidence/m7-skill-feedback-20261111/*.json text eol=lf

@@ -325,3 +325,19 @@ test('the complete Act3 AI responsibility budgets future helpers, nested callbac
  assert.ok(reviewResponsibilityComplexity([row(path,1,1,'main chunk',1),row(path,1,1,"function 'M.advance'",46)],{[path]:legacy})
   .errors.some(e=>e.file===path&&e.message.includes('46 exceeds 15')));
 });
+
+// The entire read-only feedback vocabulary is governed, including future helpers.
+test('skill feedback includes its initialization, helpers and nested callbacks in CC15',()=>{
+  const path='src/lua/abyss_skill_feedback.lua';
+  const source='local function classify() return function() end end';
+  const diagnostics=[row(path,1,1,'main chunk',1),row(path,1,7,"function 'classify'",1),
+    row(path,1,source.indexOf('function()')+1,'function',1)];
+  const errors=rows=>reviewResponsibilityComplexity(rows,{[path]:source}).errors.filter(e=>e.file===path);
+  assert.deepEqual(errors(diagnostics),[]);
+  for(let i=0;i<diagnostics.length;i++){
+    const mutated=structuredClone(diagnostics);mutated[i].message=mutated[i].message.replace('(1 > 0)','(16 > 0)');
+    assert.ok(errors(mutated).some(e=>e.message.includes('16 exceeds 15')));
+  }
+  assert.ok(errors(diagnostics.slice(0,-1)).some(e=>e.message.includes('Incomplete')));
+  assert.ok(reviewResponsibilityComplexity([],{}).errors.some(e=>e.file===path&&e.message.includes('missing')));
+});
