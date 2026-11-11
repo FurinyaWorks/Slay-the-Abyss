@@ -18,7 +18,7 @@ const paths=Object.keys(proof.files);
 test('portrait demand layer authenticates fresh complete owners and rejects warm drift before entering the prior epoch',()=>{
  const path='src/lua/abyss_traveler_portraits.lua',raw=p=>readFileSync(p,'utf8');
  const source=raw(path).replaceAll('\r\n','\n'),target=sourceEpoch.proof.targets.noncombatDemandPrior;
- assert.equal(sourceEpoch.proof.currentCommit,'ee94f929f31970bdf7992dcfb291bdb3c1930aaa');
+ assert.equal(sourceEpoch.proof.currentCommit,'6702ed26d779eec4d237aa991471b0344c3c3f92');
  assert.equal(target.commit,'bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9');
  assert.equal(target.files[path].source,preNoncombatDemandEpoch.proof.current[path].source);
  let reads=0;const reader=p=>{reads++;return raw(p);};
