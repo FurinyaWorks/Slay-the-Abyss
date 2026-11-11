@@ -1,0 +1,4 @@
+{
+  "passed": 63,
+  "checks": "legal targets exact LF and normalized CRLF; one-byte drift; unsupported paths with valid and invalid targets"
+}

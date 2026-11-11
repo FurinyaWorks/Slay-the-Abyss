@@ -512,3 +512,21 @@ docs/evidence/pr588-native-mock-20261110/independent-rim-guard-false.log -whites
 docs/evidence/pr588-native-mock-20261110/independent-rim-guard-true.log -whitespace
 docs/evidence/pr588-native-mock-20261110/local-before.log -whitespace
 docs/evidence/pr588-native-mock-20261110/quick-failure.log -whitespace
+
+# Golden Idol responsibility source authentication.
+tests/helpers/combined-epoch/pre-golden-idol-source-epoch.mjs text eol=lf
+tests/helpers/golden-idol-source-epoch.json.gz -text
+tests/helpers/golden-idol-source-epoch.mjs text eol=lf
+tests/golden-idol-source-epoch.test.mjs text eol=lf
+
+# Golden Idol complete source and cost receipts retain authenticated LF bytes.
+tests/fixtures/golden-idol-before.lua text eol=lf
+tests/helpers/golden-idol-vm.mjs text eol=lf
+tests/helpers/golden-idol-cases.lua text eol=lf
+tests/golden-idol-responsibilities.test.mjs text eol=lf
+tests/helpers/golden-idol-ci-source-inverse.mjs text eol=lf
+# Current Golden Idol composition retains exact evidence and source bytes.
+docs/evidence/m7-golden-idol-current-20261111/** -text
+tests/helpers/golden-idol-current-source-epoch.json.gz -text
+tests/helpers/golden-idol-current-ci-source-epoch.json.gz -text
+tests/helpers/golden-idol-current-ci-source-inverse.mjs text eol=lf

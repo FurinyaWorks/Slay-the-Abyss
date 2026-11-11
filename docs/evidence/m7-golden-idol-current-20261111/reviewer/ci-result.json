@@ -1,0 +1,16 @@
+{
+  "exactBaselineBindings": [
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+    "tests/encounter-formation-source-epoch.test.mjs",
+    "tests/ci-complete-calibration.test.mjs",
+    "tests/ci-runtime.test.mjs",
+    "scripts/check-lua-static.mjs",
+    "src/lua/abyss_golden_idol_event.lua",
+    "tests/helpers/combined-epoch/source-epoch.mjs",
+    "tests/helpers/copy-integration-source-closure.mjs",
+    "scripts/ci-test-timings.json"
+  ],
+  "receiptInputs": 488,
+  "currentJs": 836,
+  "checks": "exact baseline; current hashes; LF/CRLF; BOM/loneCR/drift/nonstring/unknown paths; complete JS inventory; all receipt hashes; exact prior timing JSON"
+}

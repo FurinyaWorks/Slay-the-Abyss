@@ -1,0 +1,40 @@
+{
+  "baseCommit": "1eb288472d7b33b7450eec97a624ca2ffa526f39",
+  "scope": "One Golden Idol raw owner, 52 authenticated owners, unchanged 339-file current inventory. Existing complete predecessor archives retained.",
+  "files": {
+    ".gitattributes": "48c85ae56a703d368d7bd8b99895dd80801e2236f29d95c730c83acd6f0d33ac",
+    "tests/encounter-formation-source-epoch.test.mjs": "5db4c36a1522d6c7d1daaaac95fd39178813ca2173c3d0d51878b1540b9bd0c0",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "e3da0087a67e07a1ab1c7e7413ac800aa6ef3d1f0ffc266e75dfd32bf9c27c01",
+    "tests/helpers/copy-integration-source-closure.mjs": "255bd5f4e4b44e7823b0fe26c6f2e0ca8bb7393864bd81320687075f7fb3f6f9",
+    "tests/helpers/combined-epoch/pre-golden-idol-source-epoch.mjs": "aa8af380489b609a4911717eb3ad41cb05cde946690dfeeb594539c04f0e8d96",
+    "tests/helpers/golden-idol-source-epoch.mjs": "07b019ba22c7d99bdd277cc5e822884d9a9bb910383de7e4c0c252120f5d32c3",
+    "tests/helpers/golden-idol-source-epoch.json.gz": "567be86608fc6c7f9f29a42d81f80ee77b3f769367720501f4ecbac55c1be313",
+    "tests/golden-idol-source-epoch.test.mjs": "e80849a632fb5945d31609d15a0a47a376d75fa52717b73410ca08088f7be6a7"
+  },
+  "epoch": {
+    "command": "node --test tests/golden-idol-source-epoch.test.mjs tests/encounter-formation-source-epoch.test.mjs",
+    "tests": 22,
+    "pass": 22,
+    "fail": 0,
+    "durationMs": 28200.732664,
+    "log": "epoch.log"
+  },
+  "historicalRegression": {
+    "command": "node --test --test-concurrency=1 tests/integration-source-epoch.test.mjs tests/pure-source-projection-cache.test.mjs tests/defect-final-source-epoch.test.mjs tests/golden-idol-source.test.mjs tests/event-production-source-inverse.test.mjs",
+    "log": "historical-regression.log",
+    "status": "passed",
+    "tests": 63,
+    "passed": 63,
+    "failed": 0,
+    "durationMs": 126470.561701
+  },
+  "beforeSourceExactGitMatch": true,
+  "predecessorFacadeExactGitMatch": true,
+  "hostedCiRuns": 0,
+  "externalPaidCalls": 0,
+  "fullSuiteRun": false,
+  "logSha256": {
+    "epoch.log": "a21620da3592dbced6095d66f5b7d2ed0baa07f97a5081fb1eba839a046fac93",
+    "historical-regression.log": "4a877ef6bfb8dd66f0177c511a044afc41858144729723d53b9fb027952a3f07"
+  }
+}
