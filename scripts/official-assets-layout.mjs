@@ -22,7 +22,7 @@ export function officialAssetsTheme(source){
   const theme=structuredClone(source);
   const approved=v25Theme(source);
   theme.layout.v25Menu=structuredClone(approved.layout.v25Menu);
-  theme.layout.nativeNode.event.neow.bubbleText=[-45,65,270,130];
+  theme.layout.nativeNode.event.neow.bubbleText=[-45,96,270,130];
  if(theme.officialAssets?.profile!=='official-assets-first-v1')throw Error('Missing official asset theme');
  theme.presentationProfile='official-assets-first';
  theme.cardSkin.text.body=theme.officialAssets.cardInk;

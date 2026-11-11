@@ -24,5 +24,10 @@ test('blessing replaces decoration with bounded battle-native shapes and keeps a
  const [x,y,w,h]=theme.layout.nativeNode.event.neow.bubbleText,bubble=child(event,'bubble');
  assert.equal(x,bubble.position[0]);assert.equal(y,bubble.position[1]);
  assert(w<bubble.size[0]&&h<bubble.size[1]);
+ const choices=theme.layout.nativeNode.event.neow.options;
+ const maxChoices=theme.layout.nativeNode.event.options.rows.length;
+ const highestChoice=choices.bottom+(maxChoices-1)*choices.spacing+choices.size[1]/2;
+ assert(bubble.position[1]-bubble.size[1]/2>=highestChoice+12,
+  'speech must leave a readable gap above the full four-choice stack');
  assert.equal(theme.layout.nativeNode.event.neow.options.rows,undefined);
 });

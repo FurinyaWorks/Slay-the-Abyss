@@ -40,6 +40,6 @@ export function applyOfficialNeowLayout(layout,theme){
  // delayed/reward paths. The native autosizer handles variable blessing copy.
  const bubble=child(event,'bubble');bubble.image=theme.image.discSoft;
  bubble.colour='#C9E3DE';bubble.opacity=1;
- bubble.position=[-45,65];bubble.size=[310,160];
+ bubble.position=[-45,96];bubble.size=[310,160];
  return layout;
 }
