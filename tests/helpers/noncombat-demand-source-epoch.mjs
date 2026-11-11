@@ -1,4 +1,4 @@
-// Exact single-Lua continuation for official selection preparation on demand.
+// Exact full-source continuation for official portrait demand and selection.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const bytes=readFileSync(new URL('./noncombat-demand-source-epoch.json.gz',import.meta.url));
-assert.equal(hash(bytes),'488a06607e32dd37d078b4a9b0b15adf09c15cd2a2ac0ac2a36536106573c750','noncombat demand source archive');
+assert.equal(hash(bytes),'766334ff3da52ddc01bb19b686ffd9a41fc5addd66853bba76f26e954dcdd172','noncombat demand source archive');
 const archive=JSON.parse(gunzipSync(bytes));
 const freeze=x=>{if(x&&typeof x==='object'&&!Object.isFrozen(x)){for(const v of Object.values(x))freeze(v);Object.freeze(x);}return x;};
 export function extendNoncombatDemandEpoch(prior){

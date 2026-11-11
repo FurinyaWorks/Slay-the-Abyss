@@ -1,11 +1,15 @@
+import {dragReplay} from './helpers/historical-drag-replay.mjs';
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {preAcceptedPr323Source} from './helpers/pr323-accepted-source-inverse.mjs';
-import test from 'node:test';
-import {historicalTest,withHistoricalBaseline} from './helpers/historical-baseline-inputs.mjs';
+import test,{after as afterTests} from 'node:test';
+import {historicalTest,withHistoricalBaseline,loadHistoricalBaselineInputs} from './helpers/historical-baseline-inputs.mjs';
+import {verifiedHistoricalMonsterSources} from './helpers/historical-monster-ui-materialize.mjs';
+import {exactHistoricalDragTarget} from './helpers/historical-drag-target.mjs';
 import assert from 'node:assert/strict';
-import {readFileSync,readdirSync} from 'node:fs';
+import {readFileSync,readdirSync,writeFileSync,rmSync} from 'node:fs';
+import {join} from 'node:path';
 import {createHash} from 'node:crypto';
-import {runLua,shardLuaScripts} from '../scripts/test-lua.mjs';
+import {shardLuaScripts} from '../scripts/test-lua.mjs';
 import {discoverJs,jsShard,timings} from '../scripts/ci-shards.mjs';
 import {p0Presentation,preAcceptedPresentation,preCardDragClickSource} from './helpers/p0-presentation-inverse.mjs';
 import {acceptedPresentationSource} from './helpers/presentation-m3-integration.mjs';
@@ -37,19 +41,44 @@ function originalDragClickSource(value){
   assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'),'b3af07866d92841699bd3ee436a9506e0884a620');
   return value;
 }
+let verifiedDragRoot;
+afterTests(()=>dragReplay.close());
+test('derived drag target equals every complete original inverse output and rejects foreign readers',()=>{
+ const inputs=loadHistoricalBaselineInputs(),original=verifiedHistoricalMonsterSources(process.cwd(),p=>{assert(Object.hasOwn(inputs,p));return inputs[p].toString('utf8');});
+ const target=exactHistoricalDragTarget(inputs);
+ assert.deepEqual(Object.entries(target).map(([p,b])=>[p,b===null?null:b.toString('utf8')]),original);
+ for(const mutant of [{...inputs,'src/lua/abyss_battle_ui.lua':Buffer.from('foreign')},Object.fromEntries(Object.entries(inputs).slice(1))])assert.throws(()=>exactHistoricalDragTarget(mutant),/complete original drag/);
+});
 for(const slice of slices){
-  test(`real drag release preserves independent Click-only actions and original card ownership, cases ${slice.first}–${slice.last}`,t=>{
-    const started=Date.now(),result=runLua(slice.path,{timeout:30000});
+  test(`real drag release preserves independent Click-only actions and original card ownership, cases ${slice.first}–${slice.last}`,async t=>{
+    const started=Date.now(),result=await dragReplay.run(slice.path,{timeout:30000});
     assert.equal(result.status,0,result.stdout+result.stderr);
+    verifiedDragRoot=result.verificationRoot;
     const expected=Array.from({length:slice.last-slice.first+1},(_,i)=>slice.first+i);
     assert.match(result.stdout,new RegExp(`LUA_DRAG_CLICK_COMPATIBILITY ${expected.length} passed; 0 failed`));
     assert.equal([...result.stdout.matchAll(/^PASS /gm)].length,expected.length);
     assert.deepEqual([...result.stdout.matchAll(/^DRAG_CLICK_COMPATIBILITY_CASE (\d+)$/gm)].map(match=>Number(match[1])),expected);
     assert.match(result.stdout,new RegExp(`DRAG_CLICK_COMPATIBILITY_SLICE ${slice.first} ${slice.last} ${expected.length}`));
     t.diagnostic(`Lua fixture ${slice.path}: ${Date.now()-started} ms; original cases ${expected.join(',')}`);
+    t.diagnostic('HISTORICAL_DRAG_PREPARATION '+JSON.stringify(result.preparation));
     t.diagnostic(result.stdout.split('\n').filter(line=>line.startsWith('PASS ')||line.startsWith('LUA_DRAG_CLICK_COMPATIBILITY ')).join('\n'));
   });
 }
+test('shared immutable drag preparation refuses actual warm source and generated-output mutation or deletion before starting another VM',async()=>{
+ assert(verifiedDragRoot);assert.equal(dragReplay.status().executions,2);
+ for(const path of ['src/lua/abyss_battle_ui.lua','build/lua/abyss_data.lua']){
+  const file=join(verifiedDragRoot,path),bytes=readFileSync(file);
+  try{
+   writeFileSync(file,Buffer.concat([bytes,Buffer.from('\n')]));
+   await assert.rejects(dragReplay.run(entry,{timeout:30000}),/fresh complete historical fixture/);
+   rmSync(file);
+   await assert.rejects(dragReplay.run(entry,{timeout:30000}),/ENOENT|fresh complete historical fixture/);
+  }finally{writeFileSync(file,bytes);}
+ }
+ const foreign=join(verifiedDragRoot,'build/lua/foreign.lua');
+ try{writeFileSync(foreign,'return {}');await assert.rejects(dragReplay.run(entry,{timeout:30000}),/fresh complete historical fixture inventory/);}finally{rmSync(foreign,{force:true});}
+ assert.equal(dragReplay.status().executions,2,'failed freshness checks never reuse a result or enter another Lua VM');
+});
 historicalTest('bounded drag registrar preserves every original byte and rejects case, range or execution drift',()=>{
   const bounded=read(entry),original=originalDragClickSource(bounded);
   assert.equal(read(slices[1].path),`assert(loadfile("${entry}"))(8,15)\n`);

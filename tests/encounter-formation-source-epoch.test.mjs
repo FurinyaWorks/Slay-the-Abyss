@@ -16,9 +16,11 @@ const raw=p=>proof.current[p]?.source??null;
 // Current UI admission is independently checked against all raw owners below.
 // Original Formation assertions read its explicit frozen predecessor view.
 // Actual composed raw owners are independently checked by currentSourceEpoch below.
-const componentRead=file=>jointUiSourceAt(file,diskReadFileSync(file,'utf8'),'component');
+const rawCurrent=file=>diskReadFileSync(file,'utf8');
+const noncombatPriorRead=currentSourceEpoch.combinedReader(rawCurrent,'noncombatPrior');
+const componentRead=file=>jointUiSourceAt(file,noncombatPriorRead(file),'component');
 const readFileSync=(file,...args)=>{
- const source=diskReadFileSync(file,...args).replaceAll('\r\n','\n');
+ const source=currentSourceEpoch.preCombinedSource(file,diskReadFileSync(file,...args).replaceAll('\r\n','\n'),{target:'noncombatPrior',readSource:rawCurrent});
  const component=jointUiSourceAt(file,source,'component');
  return preComponentUiCiSource(file,componentUiSourceEpoch.preCombinedSource(file,component,{target:'componentPrior',readSource:componentRead}));
 };
