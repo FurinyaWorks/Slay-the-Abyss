@@ -18,10 +18,10 @@ export function applyOfficialNeowLayout(layout,theme){
  ];
  figure.children=[
   image('scene',[0,-40],[1280,640],theme.image.rect,'#101C1C'),
-  ...Array.from({length:56},(_,i)=>{
+  {name:'masonry',kind:'container',position:[0,0],size:[1280,720],children:Array.from({length:56},(_,i)=>{
    const row=Math.floor(i/8),col=i%8;
    return image('stone'+i,[-560+col*160+(row%2?60:0),249-row*64],[154,62],theme.image.rect,['#252B25','#202922','#293027'][i%3]);
-  }),
+  })},
   image('floor',[0,-250],[1280,220],theme.image.rect,'#344238'),
   ...[0,1,2].map(i=>image('floorJoint'+i,[0,-207-i*68],[1280,3],theme.image.rect,'#111F1E')),
   ...[0,1].flatMap(i=>[

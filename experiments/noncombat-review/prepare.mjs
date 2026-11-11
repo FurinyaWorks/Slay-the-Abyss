@@ -26,6 +26,8 @@ collect(ui.interface);
 for(const name of names){const result=native.getClientUi({mapPath,template:name});assert.equal(result.template.name,name);collect(result.template);write(name,result)}
 write('readback-receipt',{ok:true,sourceCommit:candidate.sourceCommit,candidate:{sha256Before:candidate.candidate.sha256}});
 let source=fs.readFileSync(adapterArg,'utf8');
+const adapterSourceSha256=hash(source);
+assert.equal(adapterSourceSha256,'bf6a46a780905b2693d2f0060a2d8f610c0ac5478bf9f3ad25bea2d50fc5a152','existing validated adapter identity changed');
 source=source.replace(/const root=.*?out=.*?;/,`const root=${JSON.stringify(root)},out=${JSON.stringify(out)};`)
  .replace(/const pinned=.*?;/,`const pinned=${JSON.stringify(pinned)};`)
  .replace(/const candidatePath=.*?;/,`const candidatePath=${JSON.stringify(candidatePath)};`)
@@ -37,3 +39,6 @@ source=source.replace(/const root=.*?out=.*?;/,`const root=${JSON.stringify(root
  .replace('enableOutline:t.outline===true','enableOutline:t.outline!==false')
  .replace("?'Pixels':'Percentage'","?'Pixel':'Percentage'");
 const adapter=path.join(out,'adapter.mjs');fs.writeFileSync(adapter,source);await import(pathToFileURL(adapter));
+const receiptPath=path.join(out,'adapter-receipt.json'),receipt=JSON.parse(fs.readFileSync(receiptPath));
+receipt.adapterSourceSha256=adapterSourceSha256;receipt.adapterSha256=hash(source);
+fs.writeFileSync(receiptPath,JSON.stringify(receipt,null,2));

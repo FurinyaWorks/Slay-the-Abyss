@@ -3,12 +3,14 @@ import assert from 'node:assert/strict';
 import {gameLayout} from '../scripts/game-ui-layout.mjs';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {applyOfficialAssets,officialAssetsTheme} from '../scripts/official-assets-layout.mjs';
+import {assertNativeUiCapacity} from '../scripts/build-ui.mjs';
 const parts=n=>n?.controls??n?.children??[],child=(n,name)=>parts(n).find(c=>c.name===name);
 const all=n=>[n,...parts(n).flatMap(all)];
 test('blessing replaces decoration with bounded battle-native shapes and keeps all choices',()=>{
  const theme=officialAssetsTheme(nativeTheme),layout=gameLayout(),event=child(child(layout,'nodePanel'),'eventView');
  const inputs=all(event).filter(n=>n.kind==='cursorArea'),body=child(event,'body');
  applyOfficialAssets([layout],theme);
+ assertNativeUiCapacity(layout);
  assert.equal(child(event,'body'),body);
  assert.deepEqual(all(event).filter(n=>n.kind==='cursorArea'),inputs);
  const figure=child(event,'neowFigure');assert(all(figure).length<150);
