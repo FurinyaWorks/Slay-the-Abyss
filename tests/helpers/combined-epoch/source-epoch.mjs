@@ -1,5 +1,6 @@
 import {extendJointUiEpoch} from '../joint-ui-source-epoch.mjs';
 import {extendNoncombatEpoch} from '../noncombat-source-epoch.mjs';
+import {extendNoncombatDemandEpoch} from '../noncombat-demand-source-epoch.mjs';
 import {extendComponentUiEpoch} from '../component-ui-source-epoch.mjs';
 import {extendRoomUiEpoch} from '../room-ui-source-epoch.mjs';
 // Preserve the complete Defect predecessor as an independently importable epoch.
@@ -11,4 +12,5 @@ export {preEncounterFormationEpoch};
 export const preComponentUiEpoch=extendEncounterFormationEpoch(preEncounterFormationEpoch);
 export const preRoomUiEpoch=extendComponentUiEpoch(preComponentUiEpoch);
 export const preJointUiEpoch=extendRoomUiEpoch(preRoomUiEpoch);
-export const sourceEpoch=extendNoncombatEpoch(extendJointUiEpoch(preJointUiEpoch));
+export const preNoncombatDemandEpoch=extendNoncombatEpoch(extendJointUiEpoch(preJointUiEpoch));
+export const sourceEpoch=extendNoncombatDemandEpoch(preNoncombatDemandEpoch);

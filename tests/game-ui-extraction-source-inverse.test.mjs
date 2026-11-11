@@ -9,28 +9,48 @@ import {spawnSync} from 'node:child_process';
 import {gameUiExtractionProof as proof,gameUiExtractionAddedPaths as added,preGameUiExtractionSource as project,preNativePageSource,gameUiExtractionReader,prepareGameUiExtractionModuleRetirement as prepare} from './helpers/game-ui-extraction-source-inverse.mjs';
 import {preCoreLifecycleSource} from './helpers/core-lifecycle-source-inverse.mjs';
 import {preRelicQuerySource} from './helpers/relic-query-source-inverse.mjs';
-import {sourceEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {sourceEpoch,preNoncombatDemandEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 // Keep the existing two/four-owner contracts in their original source epochs.
 const nativeRead=p=>preNativePageSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
 const read=p=>preRelicQuerySource(p,nativeRead(p),{readSource:nativeRead});
 const host='src/lua/abyss_game_ui.lua',architecture='config/architecture.json';
 const paths=Object.keys(proof.files);
+test('portrait demand layer authenticates fresh complete owners and rejects warm drift before entering the prior epoch',()=>{
+ const path='src/lua/abyss_traveler_portraits.lua',raw=p=>readFileSync(p,'utf8');
+ const source=raw(path).replaceAll('\r\n','\n'),target=sourceEpoch.proof.targets.noncombatDemandPrior;
+ assert.equal(sourceEpoch.proof.currentCommit,'87b6626b7f93f0ea22ccafede23ddc3a71ba1b22');
+ assert.equal(target.commit,'bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9');
+ assert.equal(target.files[path].source,preNoncombatDemandEpoch.proof.current[path].source);
+ let reads=0;const reader=p=>{reads++;return raw(p);};
+ for(const input of [source,source.replaceAll('\n','\r\n')]){
+  reads=0;assert.equal(sourceEpoch.preCombinedSource(path,input,{target:'noncombatDemandPrior',readSource:reader}),target.files[path].source);
+  assert.equal(reads,sourceEpoch.proof.owners.length);
+ }
+ for(const input of [source+'\n',source.slice(1),target.files[path].source,null,{}]){
+  reads=0;assert.equal(sourceEpoch.preCombinedSource(path,input,{target:'noncombatDemandPrior',readSource:()=>{reads++;throw Error('foreign linked read');}}),input);assert.equal(reads,0);
+ }
+ let live=source;const mutable=p=>p===path?live:raw(p);
+ assert.equal(sourceEpoch.preCombinedSource(path,source,{target:'noncombatDemandPrior',readSource:mutable}),target.files[path].source);
+ for(const drift of [source+'\n',null]){live=drift;assert.throws(()=>sourceEpoch.preCombinedSource(path,source,{target:'noncombatDemandPrior',readSource:mutable}),/combined linked owner identity/);}
+});
 test('noncombat committed source layer authenticates all linked owners and rejects each new owner drift',()=>{
+ const epoch=preNoncombatDemandEpoch;
  const changed=['src/lua/abyss_character_select_view.lua','src/lua/abyss_game_ui_input.lua','src/lua/abyss_game_ui_menu_view.lua','src/lua/abyss_v25_menu_view.lua'];
- const current=sourceEpoch.proof.current,target=sourceEpoch.proof.targets.noncombatPrior;
- assert.equal(sourceEpoch.proof.currentCommit,'31886413b6140f7f666aa89e2ac3d9673c9524dd');
+ const current=epoch.proof.current,target=epoch.proof.targets.noncombatPrior;
+ assert.equal(epoch.proof.currentCommit,'31886413b6140f7f666aa89e2ac3d9673c9524dd');
  assert.equal(target.commit,'3a061a76b5eb917ac0f4213c01a9cbafd28d1824');
- const live=p=>readFileSync(p,'utf8');
+ const raw=p=>readFileSync(p,'utf8');
+ const live=p=>sourceEpoch.preCombinedSource(p,raw(p),{target:'noncombatDemandPrior',readSource:raw});
  for(const path of changed){
   const source=live(path);let reads=0;
-  assert.equal(sourceEpoch.preCombinedSource(path,source,{target:'noncombatPrior',readSource:p=>{reads++;return live(p);}}),target.files[path].source);
-  assert.equal(reads,sourceEpoch.proof.owners.length,'every owner read freshly');
+  assert.equal(epoch.preCombinedSource(path,source,{target:'noncombatPrior',readSource:p=>{reads++;return live(p);}}),target.files[path].source);
+  assert.equal(reads,epoch.proof.owners.length,'every owner read freshly');
   for(const input of [source+'\n',source.slice(1),target.files[path].source,null,{}]){
-   reads=0;assert.equal(sourceEpoch.preCombinedSource(path,input,{target:'noncombatPrior',readSource:()=>{reads++;throw Error('foreign read');}}),input);
+   reads=0;assert.equal(epoch.preCombinedSource(path,input,{target:'noncombatPrior',readSource:()=>{reads++;throw Error('foreign read');}}),input);
    assert.equal(reads,0,'old and foreign input cannot authorize linked reads');
   }
   for(const owner of changed)for(const value of [live(owner)+'\n',null])
-   assert.throws(()=>sourceEpoch.preCombinedSource(path,source,{target:'noncombatPrior',readSource:p=>p===owner?value:live(p)}),/combined linked owner identity/);
+   assert.throws(()=>epoch.preCombinedSource(path,source,{target:'noncombatPrior',readSource:p=>p===owner?value:live(p)}),/combined linked owner identity/);
  }
 });
 const lifecycleSources=['src/lua/abyss_actor.lua','src/lua/abyss_combat.lua','src/lua/abyss_actor_power_rules.lua'];
