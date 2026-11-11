@@ -530,3 +530,6 @@ tests/helpers/curses-shape-differential.lua text eol=lf
 tests/helpers/curses-source-epoch.mjs text eol=lf
 tests/helpers/curses-ci-planning.mjs text eol=lf
 docs/evidence/replay-curses-ci-20261111/planning/** -text
+# Preserve source-root regression evidence as originally captured.
+docs/evidence/m7-source-root-boundary-20261111/** -text
+docs/evidence/m7-source-root-current-20261111/** -text
