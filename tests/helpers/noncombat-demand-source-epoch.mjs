@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const bytes=readFileSync(new URL('./noncombat-demand-source-epoch.json.gz',import.meta.url));
-assert.equal(hash(bytes),'59a888812008c9c7f4a3ed3be31d6dce19318357977edb1dc45731b6882a1d52','noncombat demand source archive');
+assert.equal(hash(bytes),'488a06607e32dd37d078b4a9b0b15adf09c15cd2a2ac0ac2a36536106573c750','noncombat demand source archive');
 const archive=JSON.parse(gunzipSync(bytes));
 const freeze=x=>{if(x&&typeof x==='object'&&!Object.isFrozen(x)){for(const v of Object.values(x))freeze(v);Object.freeze(x);}return x;};
 export function extendNoncombatDemandEpoch(prior){

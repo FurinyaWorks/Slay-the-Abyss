@@ -74,8 +74,8 @@ const files={...JSON.parse(bytes),...{
 },...{
   // Official portrait-demand continuation; previous source overlays stay frozen.
   "tests/helpers/combined-epoch/source-epoch.mjs": "64d9e3d0f3e8c30867417c36d92c5a2c962c89209d0f23c3fca8f81020435fa5",
-  "tests/helpers/noncombat-demand-source-epoch.mjs": "65afe959c5b9ff02f929943ffb2c188f5b5e256d670e2d37ffbfad759973ce05",
-  "tests/helpers/noncombat-demand-source-epoch.json.gz": "59a888812008c9c7f4a3ed3be31d6dce19318357977edb1dc45731b6882a1d52"
+  "tests/helpers/noncombat-demand-source-epoch.mjs": "be430a6b8c6514304dfa8e2e134e43bdad8ce704af5e9735a68101cafb4af8ae",
+  "tests/helpers/noncombat-demand-source-epoch.json.gz": "488a06607e32dd37d078b4a9b0b15adf09c15cd2a2ac0ac2a36536106573c750"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);
