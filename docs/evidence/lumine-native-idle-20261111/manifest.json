@@ -1,0 +1,195 @@
+{
+  "kind": "lumine-native-idle-evidence",
+  "conclusion": "NO-GO for replacing default skin",
+  "buildId": "1a8110bf-a7f5-4983-ab00-3196f41a317c",
+  "gilSha256": "7d848f252d50fe6d649498cb1d7e3980dd2e87920809b27ad76bae60c0723dc6",
+  "sdkSha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "files": [
+    {
+      "name": "adapter-210.json.gz",
+      "bytes": 1501,
+      "sha256": "4dad1cf36e089b117ed4c4d9f64442287eca2f9800361117d54e5a1bc488d480"
+    },
+    {
+      "name": "adapter-font-state-210.json.gz",
+      "bytes": 1505,
+      "sha256": "6f28618c37c043b8a622e1b5fb6a31a0593625db7f7885b52b0845cc1fdef08a"
+    },
+    {
+      "name": "backlog.log.gz",
+      "bytes": 293,
+      "sha256": "e252dad9f6c621d72f8297ca476a9dd1ac920c0e85cc9074b4fe365c74fc7d26"
+    },
+    {
+      "name": "battle-actual.png",
+      "bytes": 423672,
+      "sha256": "e0bda79955bc9040817536c7feb089cb179e9e21e2ad234b49810dd2b549a726"
+    },
+    {
+      "name": "battle-baseline.png",
+      "bytes": 405924,
+      "sha256": "aeebe0b40bcce3cbfbd8d9d2cd3a5532b11456ca7b21ae160cd7142f57d608f7"
+    },
+    {
+      "name": "browser-210.json.gz",
+      "bytes": 70009,
+      "sha256": "f76de729d3ab78086c96404d4d4e64cecd1f54e37b11e92f837c5b7b2044f0da"
+    },
+    {
+      "name": "browser-baseline.json.gz",
+      "bytes": 87382,
+      "sha256": "1d168d7091eb8b159f00d404ed05ed6b928c0493cb5dba5b70ec63c6dfc97782"
+    },
+    {
+      "name": "candidate-133.json.gz",
+      "bytes": 22899,
+      "sha256": "534434d25fc08900f6db0ff470b21ec7d5ea12909e5e180db16bd4cde72ccfd8"
+    },
+    {
+      "name": "candidate-210.json.gz",
+      "bytes": 22899,
+      "sha256": "e8a6d36b409741c5ee51a30d08821065fa4d0e54d930e2d1b291af6b7e20fee8"
+    },
+    {
+      "name": "candidate-baseline.json.gz",
+      "bytes": 22792,
+      "sha256": "bd8fbb3c6d07d97ce2e0821480b3d9f3e343d1df0faf4b2f1a24b1956bd81ede"
+    },
+    {
+      "name": "capture-210.json.gz",
+      "bytes": 2335,
+      "sha256": "35efeeb7e0a56033d125ddf1c68112e787ea103217f5cc760172a2aed6619f4a"
+    },
+    {
+      "name": "capture-baseline.json.gz",
+      "bytes": 1045,
+      "sha256": "7e93e35bda6d1f92fdcc45430d3e4d137cc49342c5f10b9b65cf0980e6d8eb84"
+    },
+    {
+      "name": "engineering.log.gz",
+      "bytes": 974,
+      "sha256": "78631e4d8d231e4adcee19bf9b75d01b81359b2e5d293c270c614ef1a7bf5294"
+    },
+    {
+      "name": "final-idle-tests.log.gz",
+      "bytes": 399,
+      "sha256": "5b630f740bf0b9549554e0e7b1df95af5aa351eabc85ceef00485262ed02dba1"
+    },
+    {
+      "name": "final-related-43.log.gz",
+      "bytes": 2096,
+      "sha256": "2538c70f7d9e9ca522d82d4544a776923e39322901efbc95ffd42b0f4bb4a66e"
+    },
+    {
+      "name": "guidance.log.gz",
+      "bytes": 230,
+      "sha256": "06625c17f662e65db999987c2c68b4bb1211803dd231ad31ef15dc65e2a7e1f4"
+    },
+    {
+      "name": "hybrid-768-rejected.png",
+      "bytes": 33569,
+      "sha256": "610e57ccd39898c3e2653b9121c28252febc506090b1ce85086dafef9b099c40"
+    },
+    {
+      "name": "hybrid-api-failure.log.gz",
+      "bytes": 249,
+      "sha256": "f12c8d82663c814e494d04c3db5b0a99eb60b5487c78214b5027ed30611ab77d"
+    },
+    {
+      "name": "hybrid-encoding-failure.log.gz",
+      "bytes": 456,
+      "sha256": "537e9db27bec22f4caffb0392591b186ead63b46df0b39cd8ddfdd66471b9f45"
+    },
+    {
+      "name": "hybrid-receipt.json.gz",
+      "bytes": 642,
+      "sha256": "f7b16b0d477b893dc5a5bc33a9d22c8d1d3d3b6740e78f8f43f8a93a2d7befe2"
+    },
+    {
+      "name": "hybrid-runtime.lua.gz",
+      "bytes": 19886,
+      "sha256": "086f7c90f6e0944688d81060d4eb7d528d56784b9fd69024f58df432d6d31a99"
+    },
+    {
+      "name": "hybrid-scene.json.gz",
+      "bytes": 28651,
+      "sha256": "876403b52c0a187e3141bee5f580303f50032c342d4fff114837097d67483422"
+    },
+    {
+      "name": "hybrid-temp-failure.log.gz",
+      "bytes": 568,
+      "sha256": "cc4b9f9f58cb993de07f75dae201e15d430995487f6c411e01f4052088c93c34"
+    },
+    {
+      "name": "idle-210-asset.json.gz",
+      "bytes": 37786,
+      "sha256": "9510391de457ed32e20d64cb416e71a7a56518de03c0a1102bb3fa30b53449d7"
+    },
+    {
+      "name": "idle-actual.gif",
+      "bytes": 931503,
+      "sha256": "2967e5bdfb52ba2dc001ab6ee5f92eebd255e5ad2435d7ffea1220daa6ad793a"
+    },
+    {
+      "name": "metrics-summary.json",
+      "bytes": 9359,
+      "sha256": "e6b25e2ad872b901b07bba6752b273dbecff37f92b27e8dfa3f483759a74cddb"
+    },
+    {
+      "name": "native-keyposes.png",
+      "bytes": 133940,
+      "sha256": "9fe123e34df925583f770df432323b02ba87be5f1232e384cc780a754f966a1c"
+    },
+    {
+      "name": "portrait-lifecycle-36.log.gz",
+      "bytes": 1747,
+      "sha256": "3e5952f47c5b12f490962b05cbb8e09468b7b6a1ed8fded8ccc96baf5df27721"
+    },
+    {
+      "name": "quality-comparison.png",
+      "bytes": 94927,
+      "sha256": "4683c37ec58a4f378ed1b1178f66d9b10e8786ae5df05ba7f6c8692df09de30e"
+    },
+    {
+      "name": "README.md",
+      "bytes": 5963,
+      "sha256": "d2751d047c701a0d228642ec4b875bb54334aac5abfd799e927b30d19bb7b3af"
+    },
+    {
+      "name": "runtime-regressions.log.gz",
+      "bytes": 571,
+      "sha256": "b3654f577d564e0ad93448c1ec4ec097da15e63fa1530189f213d7e9f50cddac"
+    },
+    {
+      "name": "sdk-133.json.gz",
+      "bytes": 18021,
+      "sha256": "fef3ab97696b14daca4dc55bb90f1b2c73ac56ce653c3df0c8bb518319474f56"
+    },
+    {
+      "name": "sdk-210.json.gz",
+      "bytes": 18056,
+      "sha256": "52526767ed1fd3d2211a4d8ec4ca3e16ce9bbb9e10337803a924aa8c5907b5ec"
+    },
+    {
+      "name": "sdk-baseline-a.json.gz",
+      "bytes": 17975,
+      "sha256": "75f5a007363c6125091cca66e17c96438e8d839f63fbe90c80f279394ef5b551"
+    },
+    {
+      "name": "sdk-baseline-b.json.gz",
+      "bytes": 17916,
+      "sha256": "beea44aa6c39bcaa51127f464087b1f6ec9e22407336ec7a84434cb7a50859bc"
+    },
+    {
+      "name": "visual-measurements.json",
+      "bytes": 2831,
+      "sha256": "79828696607e21d2d787607e02910f9ab6868197ed396a3db320693c08efe649"
+    },
+    {
+      "name": "visual-strict-failure.log.gz",
+      "bytes": 313,
+      "sha256": "c807c6b6d4f08babbae7e05eba227f6e498bbbfbd902469a1dfc4213a38b30e6"
+    }
+  ]
+}

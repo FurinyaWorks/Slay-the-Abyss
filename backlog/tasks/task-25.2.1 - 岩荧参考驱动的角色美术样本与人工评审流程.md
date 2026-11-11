@@ -1,11 +1,11 @@
 ---
 id: TASK-25.2.1
 title: 岩荧战斗待机动画：保留原构图、整体运动与低负载验证
-status: To Do
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-10 09:38'
-updated_date: '2026-11-10 14:19'
+updated_date: '2026-11-11 11:38'
 labels:
   - art
   - design
@@ -14,7 +14,8 @@ dependencies: []
 references:
   - 'https://wiki.hoyolab.com/pc/genshin/entry/2674?lang=ja-jp'
   - 'https://genshin-impact.fandom.com/wiki/Traveler/Gallery'
-  - 'https://github-wiki-see.page/m/daviscook477/BaseMod/wiki/Custom-Character-Animations'
+  - >-
+    https://github-wiki-see.page/m/daviscook477/BaseMod/wiki/Custom-Character-Animations
   - 'https://store.steampowered.com/news/posts/?appids=646570&enddate=1542327142'
   - experiments/native-2d-vertical-slice/reference-handbook/RECIPES.md
   - docs/art/CARD_ILLUSTRATION_STANDARD.md
@@ -46,18 +47,24 @@ type: task
 - v1：8帧×230ms，最大位移约3.51原图像素，缩到游戏尺寸后基本不动，**FAIL**。
 - v2：16帧×110ms，以分区光学变形增加位移，Owner 指出人物像被割裂、不像一个整体，**FAIL**；不继续按此方法加工，不以其帧数/振幅作为待机规格。
 - **不为补救待机而开发攻击/受击动画。** 保留现有整个人物反馈和游戏规则，不额外制造动画技术债。
-
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 原作待机参考和荧原静态构图有来源、身份/画面 SHA、锚点与可见动作说明；未拿到原作关键帧则注明未验证。
 - [ ] #2 只交付一个同构图、整体协调、自然循环的荧战斗 idle；AI 自检和独立复核通过，Owner 在实际展示尺寸能看出动作且认可角色整体观感。
-- [ ] #3 用实际候选核对低资源计数、加载及可见运动；有同一角色图元/控件真实统计而非“57图元”宣称，并能明确说明回退或取舍。
+- [x] #3 用实际候选核对低资源计数、加载及可见运动；有同一角色图元/控件真实统计而非“57图元”宣称，并能明确说明回退或取舍。
 - [ ] #4 独立的待机原生候选可在可用的真实客户端/模拟器验证：循环、战斗进入/退出、中断与恢复可靠，不影响现有整人攻击/受击位移与特效；官方 PC/手机性能按设备分层，未测不得勾。
 <!-- AC:END -->
 
 ## Implementation Plan
+
 <!-- SECTION:PLAN:BEGIN -->
-只推进一个真实待机竖切，先复用既有工具和原始视觉参照，做整体动画和小范围次级运动；视觉不合格就回退重新调，不扩成动作系统重构。继续遵守当前 Sprint、Backlog CLI、审查/CI和真实设备验证门禁；本 PR 仅修改任务文档，不声称已实现原生 GIL 或已获得 Owner 动画验收。攻击/受击角色专属动画不进入当前任务，未来另案。
+1. 锁定批准素材与 develop、PR621 身份，核实官方图片/材质与混合图元可行性。2. 按真实展示尺寸转换一个可回退角色候选，复用生命周期/缓存，保留整体攻击受击。3. 跑 Simulator 可见对照、调用与性能验证，尽可能生成 GIL。4. 独立复审、PR 与证据交付，明确 GO/NO-GO 和官方设备未测项。
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-11-11：基于 develop 3a061a76 与 PR621 680be9c5 完成批准原图的原生候选与同条件对照。210px 7303图片/7459角色控件，旧59；SDK完整显示准备3.87s对旧0.09–0.13s，浏览器输入至绘制中位87.5ms对39.1ms。待机2s真实2160父容器setter、0创建；20次牌堆/卡库/地图往返及根清理通过。768混合图元同源实做视觉FAIL；严格脚部像素不变量FAIL。交付可试玩Simulator、GIL副本、实际截图/GIF与数据，正式皮肤替换NO-GO。证据 docs/evidence/lumine-native-idle-20261111/README.md；官方导入/ready/PC/手机/容量未测，AC1/2/4不勾，不标Done。
+<!-- SECTION:NOTES:END -->

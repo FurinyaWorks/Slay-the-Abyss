@@ -302,7 +302,9 @@ function M.paint(ctx,id, dt, shakes)
     local portrait = box:GetChild("portrait")
     portrait:SetAnchoredPosition(x, y)
     portrait:SetLocalScale(sx, sy, 1)
-    if id == "player" and ctx.platform.portraits then ctx.platform.portraits:battlePose(x,y,sx,sy) end
+    if id == "player" and ctx.platform.portraits then
+        ctx.platform.portraits:battlePose(x,y,sx,sy,dt,motionState)
+    end
     local tone=portraitTone(ctx,id,base,ink,flash)
     tint(ctx,portrait,tone,alpha)
     MonsterArt.pose(box,x,y,sx,sy,tone,alpha)
