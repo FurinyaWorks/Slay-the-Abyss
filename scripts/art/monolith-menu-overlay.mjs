@@ -5,6 +5,8 @@
 const marker=Symbol('monolith-menu-applied');
 export function applyMonolithMenuOverlay(layout,theme,{opacity=.08}={}){
  if(!Number.isFinite(opacity)||opacity<0||opacity>.25)throw Error('Invalid title veil');
+ const canvasBackdrop=(layout.controls??[]).find(x=>x.name==='canvasBackdrop');
+ if(canvasBackdrop&&canvasBackdrop.kind==='image')canvasBackdrop.visible=false;
  const root=(layout.controls??layout.children??[]).find(x=>x.name==='stage')??layout;
  const menu=(root.controls??root.children??[]).find(x=>x.name==='menuPanel');
  if(!menu)throw Error('Missing main menu');
