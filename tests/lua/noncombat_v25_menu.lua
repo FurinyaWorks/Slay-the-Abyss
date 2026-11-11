@@ -72,6 +72,12 @@ local details=panel:GetChild('details')
 assert(details:GetChild('stats').text=='生命：80/80' and details:GetChild('gold').text=='金币：99',
     'official selection must retain the approved resource labels')
 assert(panel:GetChild('hint').text=='','the approved selection has no extra default helper line')
+local initial=panel:GetChild('v25Roster'):GetChild('selected'):GetChild('selectedInitial')
+assert(initial.text=='荧','Traveler uses the requested release placeholder')
+selection.character='raiden';selection.info.name='雷电将军'
+SelectionView.render(panel,selection,{})
+assert(initial.text=='雷','another character uses its first complete UTF-8 glyph')
+selection.character='traveler';selection.info.name='旅行者·荧'
 selection.notice='当前无法开始挑战'
 SelectionView.render(panel,selection,{})
 assert(panel:GetChild('hint').text==selection.notice,'selection errors must remain readable')
