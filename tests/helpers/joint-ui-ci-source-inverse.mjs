@@ -26,6 +26,6 @@ export function jointCiInventoryAt(paths,target){
  paths=noncombatPriorInventory(paths);
  assert.equal(target,'officialAssetsFlow','known joint inventory view');
  assert.deepEqual([...paths].sort(),[...proof.currentInventory].sort(),'complete current inventory');
- for(const [path,sha]of Object.entries(proof.added))assert.equal(hash(readFileSync(path,'utf8').replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
+ for(const [path,sha]of Object.entries(proof.added))assert.equal(hash(preNoncombatCiSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'))),sha,'added inventory source: '+path);
  return [...proof.flowInventory];
 }
