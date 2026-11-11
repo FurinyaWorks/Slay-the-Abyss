@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - Furinya
 created_date: '2026-10-31 10:47'
-updated_date: '2026-11-07 03:48'
+updated_date: '2026-11-11 03:19'
 labels:
   - art
   - technical-spike
@@ -40,6 +40,8 @@ ordinal: 134000
 
 <!-- SECTION:PLAN:BEGIN -->
 2026-11-01 用户重新授权：仅重启离线同源基线审计小切片，复用现有 rectangles 与 compact 数据，对真实三张卡输出重建图、误差、数据身份和生成成本。算法研究不阻塞其他 M4；保留完整未来实验范围，正式接入仍另需批准。父级完整 AC 本轮不勾选。
+
+PR615独立离线切片：核对官方API/已有桥接与模拟器；仅真实绑定可运行才做两图探针及配对A/B；否则提交NO-GO采用结论与UNVERIFIED能力边界。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -50,4 +52,8 @@ ordinal: 134000
 离线审计结果见 experiments/art-tech-lab/baseline-audit/README.md、results/comparison.png 与 results/results.json：strike/defend/bash 同源 144×64，918/835/916 矩形，既有 compact 编码逐字节复现；MAE 15.408/12.847/14.077，PSNR 19.927/20.949/20.653dB。已查看实际对照图，compact 明显丢失细节，不称同画质胜出。5项定向测试通过，含确定性、LFS指针/非法输入拒绝与已知误差校验。只是离线生成成本，不是官方加载/FPS。完整仓库CI、官方GIA、设备及混合算法未验证；父级AC保持未勾，待独审。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-11 用户明确接手PR615：只验证列表变量图片绑定能否用于现有Lua UI，不重启背景拟合或正式UI。沿原PR独立工作树完成能力审计；查无独立同题任务，不新建重复任务。实机无授权，父任务状态及AC不变。
+
+PR615离线结果：NO-GO用于现有Lua UI优化；真实旧控件桥接与性能UNVERIFIED。已执行现有BeyondSimulator0.5.2的1控件/两图片ID API正控、列表注入与监听；未配置原生绑定，故不将图片未更新当成平台不支持。报告及原始调用见docs/research/2026-11-11-video-image-binding-spike.md及pr615-image-binding/evidence.md；不重跑旧实验、不改生产、不勾父AC。verify:backlog通过；相关选测因Backlog正文属于未建模输入要求Full，交现有Hosted Quality，不以离线探针代替完整CI。
 <!-- SECTION:NOTES:END -->

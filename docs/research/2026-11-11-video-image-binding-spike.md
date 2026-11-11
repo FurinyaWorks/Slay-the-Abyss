@@ -1,6 +1,26 @@
-# 千星变量图片绑定 vs Lua SetImage：仅验证缺失能力（Codex 接手）
+# 千星列表变量图片绑定：离线结论 NO-GO（暂不采用）
 
-> 2026-11-11 查重收缩版。此 PR 仍只有交接文档；未实施、未测得新性能。今天尚无 GI/沙箱操作窗口。
+2026-11-11 接续 PR #615 原分支。**现有工具链未证实可运行的原生绑定 B，也没有相对 SetImage 的性能优势证据，停止在能力审计层，不迁移正式 UI。** 平台整体及旧节点图桥接能力为 **UNVERIFIED**，不是“千星永远不支持”。[本轮来源摘要、复现脚本及完整调用响应](pr615-image-binding/evidence.md)。无 GI、沙箱或桌面输入操作。
+
+## 本轮结果
+
+| 路径 | 已证实的事实 | 本轮判断 |
+| --- | --- | --- |
+| 旧图片控件 | [官方图片指南](https://act.mihoyo.com/ys/ugc/tutorial/detail/mh2oih9jou22) 旧界面章节支持通过自定义变量指定非静态图片标识 | 有变量配置概念；未取得目标“固定列表索引→动态文本域”完整合法样本，不能据此断言已适配 Lua |
+| 客户端 Lua 图片 | [官方 API](https://act.mihoyo.com/ys/ugc/tutorial/detail/mhtakr07vej4) 的 ClientUIImageControl：imageId/imageSource 只读，公开换图方法 SetImage；ImageSource 枚举列有 StaticReference/Item/Equipment/Skill/UnitStatus/Faction/Currency/Prefab，未列 DynamicReference | 公开文档未提供直接列表图片绑定入口；枚举名称相近不等于旧动态引用兼容 |
+| 变量与通信 | 同一 API 支持读取全局变量、监听变化、ServerSignal 的列表参数，未列 Lua 直接写全局变量接口；变量指南要求组件默认变量才同步本地 | Lua→服务器信号→节点图写默认变量→旧控件绑定是待验证可能路径；不能把“无直接 setter”推导成“无桥接” |
+| 现有导入工具 | 本机 scene-save.mjs 的 clientRecords/图片读回处理图片ID、颜色及遮罩，未找到目标列表图片绑定配置链 | 无法用现有客户端图片写入器构建可信 B；不猜字段或新造框架 |
+| BeyondSimulator 0.5.2 | 本轮实际调用 tools/list、project_open、studio_play 的 start/serverSet/serverSend/get/stop，执行1图片控件、两已知ID的 API 正控 | 变量监听与 SetImage 有效；没有目标旧控件绑定执行链，不能充当 B 或实机 |
+
+官方事实取自本机安装包的官方离线正文，逐文件 SHA256 见证据。在线页面未返回可读正文，版本新鲜度待核验；不是仅凭类型注解推定。视频网页本轮抓取失败，沿用 PR 描述作为假设，未声称重新观看或确定底层控件数/Draw Call。
+
+API sanity 原始日志：初始化 SetImage→100001；注入列表 [100002]、[100001] 后回调分别读到两值，图片仍为100001；随后显式 SetImage 正控切为100002。直接写 imageId 被拒绝，DynamicReference 枚举及假设的变量直接写入口在模拟器中为 nil。**未配置原生绑定，因此图片不变只证明变量读取本身不会自动换图，不证明平台不支持绑定。** serverSet 是测试端注入，不是客户端 Lua 写变量接口。正控只核对API/图片ID状态，没有像素截图。
+
+未达到“真实绑定可运行”前置条件：不制作绑定样品或 GIL，不跑 70格/100更新/20往返，不生成假的 B、性能百分比或 FPS。变量监听后再 SetImage 仍走相同 setter，不能回答新机制收益；经服务器桥接可能增加通信和同步成本，是否划算需测量。
+
+后续仅在取得目标合法样本或官方绑定配置说明后继续：确认现有工具保留字段，做一格两图、空值/变值/连续触发，必要时复用 ServerSignal→节点图写默认列表变量。B 不调用 SetImage，先构建副本并读回；Owner 另行授权本轮 GUI 窗口后再官方导入、取新 ready 与图片变化证据。样品通过才复用下述工具做等视觉、等输入 A/B，测完整桥接成本并保留不利样本。官方导入、真实 ready、PC/手机性能、容量及视觉均 **UNVERIFIED**。
+
+TASK-94 仅追加此切片计划和记录，不重启背景拟合，不勾选父任务 AC。当前决策：**NO-GO 用于现有 UI 优化；平台桥接能力 UNVERIFIED，实机待后续授权。** 下文保留原查重与执行约束供后续复用。
 
 ## 唯一未证实的假设
 
