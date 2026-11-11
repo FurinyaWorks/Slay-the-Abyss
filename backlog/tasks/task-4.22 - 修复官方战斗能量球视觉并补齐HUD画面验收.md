@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-11 14:56'
-updated_date: '2026-11-11 23:20'
+updated_date: '2026-11-11 23:33'
 labels:
   - ui
   - combat
@@ -43,4 +43,6 @@ ordinal: 172000
 最小修复仅作用official-assets-first：保留86尺寸/位置，官方原生圆面6层替代暗色材质堆叠；29→26字号适配原生字形，连续轮廓替代重复阴影。零/正常/溢出能量当前官方Host回归通过。verify:ui新增HUD画面评审和实际phone/touch来源要求，Simulator独立记录。
 
 2026-11-12独立源码与实际1280x720 Simulator画面复审PASS；并非Owner/官方客户端或实体手机验收。标准GIL build0222683d由干净9cece5dc构建，360模块精确读回；另有只改一个启动模块、非脚本section相同的双敌十牌直达副本。见docs/evidence/official-ui-repair-20261112，官方/手机项保持未完成、不发布。
+
+最终集成CI：补截图来源登记并修正#621牌库最小字号14→26，原测试不放宽；Licenses/Quick feedback在50a5dae3通过，Draft Full未运行。为候选身份一致，最终重新由干净50a5dae3构建d3b4c46e，当前官方回归与同候选触屏/性能/图像均重取；初版022仅为历史。标准SHA7f13c927…，直达SHA68d7c998…，详见同目录最终收据。实机继续待验。
 <!-- SECTION:NOTES:END -->
