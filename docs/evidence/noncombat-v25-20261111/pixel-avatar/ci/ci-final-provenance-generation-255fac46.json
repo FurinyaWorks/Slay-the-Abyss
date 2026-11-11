@@ -1,0 +1,56 @@
+{
+  "beforeCommit": "bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9",
+  "afterCommit": "ee94f929f31970bdf7992dcfb291bdb3c1930aaa",
+  "afterIntegrationCommit": "255fac46ea937feb7fb7b7d2ea3b7ddeeb8a7f95",
+  "sourceArchiveSha256": "766334ff3da52ddc01bb19b686ffd9a41fc5addd66853bba76f26e954dcdd172",
+  "ciArchiveSha256": "82e4c5f0b9112d5098fca6e15e01b727cd89710afe350b724792e9d8a8b5904f",
+  "files": [
+    "src/lua/abyss_traveler_portraits.lua",
+    "src/lua/abyss_character_select_view.lua",
+    ".gitattributes",
+    "tests/v25-portrait-profile.test.mjs",
+    "tests/helpers/combined-epoch/source-epoch.mjs",
+    "tests/helpers/copy-integration-source-closure.mjs",
+    "tests/game-ui-extraction-source-inverse.test.mjs",
+    "tests/helpers/noncombat-ci-source-inverse.mjs",
+    "tests/helpers/joint-ui-ci-source-inverse.mjs",
+    "scripts/official-assets-layout.mjs",
+    "tests/noncombat-neow-layout.test.mjs",
+    "scripts/official-portraits.mjs",
+    "tests/helpers/portrait-runtime-vm.mjs",
+    "tests/official-assets.test.mjs",
+    "tests/official-portraits-build.test.mjs",
+    "scripts/noncombat-neow-layout.mjs",
+    "scripts/noncombat-v25-layout.mjs",
+    "scripts/v25-character-layout.mjs",
+    "tests/noncombat-v25-layout.test.mjs",
+    "tests/v25-character-layout.test.mjs",
+    "tests/lua/noncombat_v25_menu.lua",
+    "tests/battle-drag-click-compatibility.test.mjs",
+    "tests/encounter-formation-source-epoch.test.mjs",
+    "tests/room-ui-source-epoch.test.mjs",
+    "tests/seven-refactor-source-epoch.test.mjs"
+  ],
+  "addedInputs": {
+    "tests/helpers/historical-drag-replay.mjs": {
+      "sha256": "caac30673edc2b0634230389171e9023cd5bcd5f3235482706d12d5311454e93",
+      "gitBlob": "429a8c5233e9e00f2ab7df14cfc59e833cec6ce2",
+      "encoding": "LF"
+    },
+    "tests/helpers/historical-drag-target.mjs": {
+      "sha256": "403a1ac8b609856524221a344e35d426ed0128f2ee1f463050e7c2836d79e228",
+      "gitBlob": "913d9914325a7af89660f1504efdc26f04c4dbec",
+      "encoding": "LF"
+    },
+    "tests/helpers/historical-drag-worker.mjs": {
+      "sha256": "b7f9fdc9854ab6e8ebd80606ee4b5a44e2926a5fd9dac311307c23f9548c2fdf",
+      "gitBlob": "55e2175e16eeaa0ef42f3bb97f0cae4c2d0f9ed1",
+      "encoding": "LF"
+    },
+    "tests/fixtures/historical-drag-prepared-target.json.gz": {
+      "sha256": "b633435a6f16cdaed58f3716766fb65239d8f0ac8c798e10d5a4662beb9e49f6",
+      "gitBlob": "96e7b33273c54f0b1afe64b0b23eb549e9b35f77",
+      "encoding": "binary"
+    }
+  }
+}
