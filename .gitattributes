@@ -519,3 +519,14 @@ experiments/native-ui-ab/run.mjs -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.gz -text
 docs/evidence/native-ui-ab-20261111/*.log -text -whitespace
 docs/evidence/native-ui-ab-20261111/*.json text eol=lf
+
+# Curses source witnesses and complete-file cost receipts are byte-authenticated.
+src/lua/abyss_curses.lua text eol=lf
+tests/curses-shape-responsibilities.test.mjs text eol=lf
+tests/curses-source-epoch.test.mjs text eol=lf
+tests/fixtures/curses-shape-before.lua text eol=lf
+tests/fixtures/curses-source-epoch.json text eol=lf
+tests/helpers/curses-shape-differential.lua text eol=lf
+tests/helpers/curses-source-epoch.mjs text eol=lf
+tests/helpers/curses-ci-planning.mjs text eol=lf
+docs/evidence/replay-curses-ci-20261111/planning/** -text

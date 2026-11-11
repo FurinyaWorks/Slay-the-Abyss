@@ -66,6 +66,11 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/room-ui-source-epoch.json.gz": "0b3cb34acf85e814bd3e7d82254e9586a6a60c78e20fd95603b2e96e877d7bfc",
   "tests/helpers/joint-ui-source-epoch.mjs": "f35a2626dfd4ae6e8aa0c8c2b8897859be2796d84ae0fd05e29595c785cc7692",
   "tests/helpers/joint-ui-source-epoch.json.gz": "67777c3571d86bc82427fbb6ac5cd2254ed480b58285f41aa17d05d7490413f9"
+},...{
+  // Exact Curses source extension; historical closure snapshots remain unchanged.
+  "tests/helpers/combined-epoch/source-epoch.mjs": "ebb69c0778a5465273edae9b2fd2d523d3efa6cb248e2a02316b757a1bc3840a",
+  "tests/helpers/curses-source-epoch.mjs": "b7f29a17bc19039e9b6db70616b1cb4e3efc26668f0935ef3fa6b0992aace18e",
+  "tests/fixtures/curses-source-epoch.json": "b0ffcdfa75863215c76913faafe1c15100aef9b5d44df3e44b4cda56a77e1018"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

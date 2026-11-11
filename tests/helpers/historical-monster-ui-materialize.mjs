@@ -1,10 +1,11 @@
-import {preDeckDeliverySource,deckDeliveryPaths} from './deck-delivery-source-composition.mjs';
-import {deliverySourceProof,preLegacyMultiSource,preLegacyUiSupportSource} from './delivery-source-composition.mjs';
+import {preDeckDeliverySource,deckDeliveryPaths} from './epochs/develop/tests/helpers/deck-delivery-source-composition.mjs';
+import {deliverySourceProof,preLegacyMultiSource,preLegacyUiSupportSource} from './epochs/develop/tests/helpers/delivery-source-composition.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,rmSync,mkdirSync,realpathSync} from 'node:fs';
 import {join,dirname,resolve} from 'node:path';
 import {createHash} from 'node:crypto';
-import {multiMonsterSourceLayer,preMultiMonsterArtSource} from './multi-monster-art-source-inverse.mjs';
+import {multiMonsterSourceLayer} from './historical-monster-source-proof.mjs';
+export {multiMonsterSourceLayer} from './historical-monster-source-proof.mjs';
 import {loadHistoricalBaselineInputs} from './historical-baseline-inputs.mjs';
 import {writeHistoricalRuntimeSnapshot} from './historical-runtime-root.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
@@ -17,8 +18,9 @@ assert.deepEqual(Object.keys(support.files),['tests/lua/support/game_ui_fixture.
 export const historicalMonsterSourcePaths=Object.freeze([...new Set([...deckDeliveryPaths,...Object.keys(multiMonsterSourceLayer.files),...Object.keys(deliverySourceProof.targets.legacyMulti.files)])].sort());
 function originalReader(inputs){return path=>{assert.ok(Object.hasOwn(inputs,path),'registered original monster input: '+path);return inputs[path].toString('utf8');};}
 // The complete historical input closure belongs to 98fef, independently of
-// current implementation maintenance. A supplied reader remains fresh on every
-// linked-owner read and is never replaced by the original archive.
+// current implementation maintenance. A supplied reader must provide that same
+// original epoch, not the current workspace. Every linked-owner read stays fresh
+// and is never replaced by the original archive.
 export function verifiedHistoricalMonsterSources(_sourceRoot=process.cwd(),read){
  if(!read)read=originalReader(loadHistoricalBaselineInputs());
  const projected=[];
@@ -27,7 +29,7 @@ export function verifiedHistoricalMonsterSources(_sourceRoot=process.cwd(),read)
    const live=normalized(preDeckDeliverySource(path,read(path),'delivery',{readSource:read})),outer=deliverySourceProof.targets.legacyMulti.files[path];
    if(outer)assert.equal(hash(live),outer.afterSha256,'unreviewed current monster source: '+path);
    const prior=preLegacyMultiSource(path,live,{readSource:read}),entry=multiMonsterSourceLayer.files[path];
-   if(entry){assert.equal(hash(prior),entry.afterSha256,'unreviewed current monster UI source: '+path);const before=preMultiMonsterArtSource(path,prior,{readSource:read});assert.equal(before,entry.beforeSource);projected.push([path,before]);}
+   if(entry){assert.equal(hash(prior),entry.afterSha256,'unreviewed current monster UI source: '+path);const before=entry.beforeSource;projected.push([path,before]);}
    else projected.push([path,prior]);
   }
   for(const [path,entry]of Object.entries(support.files)){

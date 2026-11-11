@@ -1,8 +1,8 @@
 package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local C,Run,Map,Nodes,Pool=require('abyss_combat'),require('abyss_run'),require('abyss_map'),require('abyss_nodes'),require('abyss_event_pool')
 local Data=require('abyss_data')
-local function eq(a,b)assert(a==b,tostring(a)..' ~= '..tostring(b))end
-local function same(a,b)eq(type(a),type(b));if type(a)~='table'then eq(a,b);return end;for k,v in pairs(a)do same(v,b[k])end;for k in pairs(b)do assert(a[k]~=nil)end end
+local function eq(a,b,different)if different or not (a==b)then assert(false,tostring(a)..' ~= '..tostring(b))end end
+local function same(a,b)local ta,tb=type(a),type(b);if ta~=tb then eq(ta,tb,true)end;if ta~='table'then if not (a==b)then eq(a,b,true)end;return end;for k,v in pairs(a)do same(v,b[k])end;for k in pairs(b)do if a[k]==nil then assert(false)end end end
 local function fixture(id,deck)
  local r,m=Run.new(Data,42),Map.generate(Data,42)
  if deck then r.deck=C.copy(deck)end
