@@ -512,3 +512,10 @@ docs/evidence/pr588-native-mock-20261110/independent-rim-guard-false.log -whites
 docs/evidence/pr588-native-mock-20261110/independent-rim-guard-true.log -whitespace
 docs/evidence/pr588-native-mock-20261110/local-before.log -whitespace
 docs/evidence/pr588-native-mock-20261110/quick-failure.log -whitespace
+# Defect Actor evidence and complete source archives retain their exact bytes.
+docs/evidence/m7-defect-actor-20261111/** -text
+docs/evidence/m7-defect-actor-20261111/*.log -whitespace
+tests/helpers/defect-actor-source-epoch.mjs text eol=lf
+tests/helpers/defect-actor-source-epoch.json.gz -text
+tests/helpers/defect-actor-ci-source-epoch.json.gz -text
+tests/fixtures/defect-actor-before.json.gz -text

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-complete-file-planning-floor",
+  "file": "tests/defect-actor-boundary.test.mjs",
+  "command": [
+    "node",
+    "--test",
+    "tests/defect-actor-boundary.test.mjs"
+  ],
+  "notHostedCiMeasurement": true,
+  "nodeReportedDurationMs": 47112.322039,
+  "wallDurationMs": null,
+  "wallDurationNote": "No independent wall clock was collected. This is the complete local Node test-file duration, not hosted CI.",
+  "tests": 18,
+  "pass": 18,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "todo": 0,
+  "planningFloorMs": 50000,
+  "sourceLog": "docs/evidence/m7-defect-actor-20261111/cost-behavior.log",
+  "sourceLogSha256": "151075dbd336247079338e59bba4f489cfa0f2468abcec3e38993593de59077f",
+  "inputHashes": {
+    "tests/defect-actor-boundary.test.mjs": "ccd87cde9794e22c1af05ba20002c3c39a60a5a3897a02a784ec2d0d027b6fa6",
+    "tests/helpers/defect-actor-vm.mjs": "79a7794c38e508a0f5318cdfd55dc36980e038f2601ea92989b85a75618a6226",
+    "src/lua/abyss_defect_utility_cards.lua": "59d054c36752cdf0eb20cf037e51f4b6909222d2e11620fae42de06748342db2",
+    "src/lua/abyss_combat_queued_play.lua": "30c181220820118b505bee3fe5c94eaaac3b0e542bc8bb519f05c8fff22fd728"
+  }
+}

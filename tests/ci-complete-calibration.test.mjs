@@ -1,3 +1,4 @@
+import {preDefectActorCiSource,preDefectActorCiInventory,defectActorPlanningKey,defectActorPlanningFloor,defectActorCiProof} from './helpers/defect-actor-ci-source-inverse.mjs';
 import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches} from './helpers/joint-ui-ci-source-inverse.mjs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors,officialAssetsFlowCiSourceProof,preOfficialAssetsFlowCiSource} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import {officialAssetsPlanningFloors as firstOfficialAssetsPlanningFloors,officialAssetsCiSourceProof,preOfficialAssetsCiSource} from './helpers/official-assets-ci-source-inverse.mjs';
@@ -29,7 +30,7 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as liveDiskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -37,8 +38,15 @@ import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs as liveDiscoverJs,partition,jsShard as liveJsShard,jsPlanningWeights as liveJsPlanningWeights,timings as liveTimings} from '../scripts/ci-shards.mjs';
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
+// Preserve every pre-Actor assertion in its exact authenticated source/inventory
+// epoch. The appended Actor contracts separately exercise raw current Full work.
+const diskReadFileSync=(file,encoding)=>{const bytes=liveDiskReadFileSync(file),text=bytes.toString('utf8'),prior=preDefectActorCiSource(file,text);return encoding?prior:prior===text?bytes:Buffer.from(prior);};
+const discoverJs=()=>preDefectActorCiInventory(liveDiscoverJs());
+const actualCurrentTimings=JSON.parse(diskReadFileSync('scripts/ci-test-timings.json','utf8'));
+const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const jointRead=(view,file,encoding)=>{const bytes=diskReadFileSync(file),text=bytes.toString('utf8'),source=jointCiSourceAt(file,text,view);return encoding?source:source===text?bytes:Buffer.from(source);};
@@ -1285,5 +1293,69 @@ test('joint historical inventory rejects missing duplicate and unknown files whi
   assert.notEqual(jointCiSourceAt(file,source,target),source);
   for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(jointCiSourceAt(file,foreign,target),foreign);
   assert.equal(jointCiSourceAt('__proto__',source,target),source);
+ }
+});
+
+// Raw current Actor cost contracts. These are deliberately outside every
+// historical read/inventory projection above.
+test('Defect Actor cost layer accepts only complete current bytes and authenticates the sole added inventory',()=>{
+ const source=liveDiskReadFileSync(path,'utf8'),prior=preDefectActorCiSource(path,source);
+ assert.notEqual(source,prior);assert.equal(prior,defectActorCiProof.files[path].beforeSource);
+ const current=JSON.parse(source),previous=JSON.parse(prior);
+ assert.equal(previous.jsPlanning.localLowerBounds[defectActorPlanningKey],undefined);
+ assert.deepEqual(current.jsPlanning.localLowerBounds[defectActorPlanningKey],defectActorPlanningFloor);
+ delete current.jsPlanning.localLowerBounds[defectActorPlanningKey];
+ assert.deepEqual(current,previous,'only the new local floor changes; old floors, hosted observations, Lua weights, reserves and budgets stay unchanged');
+ assert.equal(preDefectActorCiSource(path,source.replaceAll('\n','\r\n')),prior);
+ for(const value of [source+'\n',source.slice(1),prior,null,undefined,{},17,source.replace('"durationMs": 50000','"durationMs": 49999'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999')])assert.equal(preDefectActorCiSource(path,value),value);
+ for(const foreign of ['foreign','__proto__','constructor'])assert.equal(preDefectActorCiSource(foreign,source),source);
+ for(const [file,row]of Object.entries(defectActorCiProof.files)){
+  const source=liveDiskReadFileSync(file,'utf8');
+  assert.equal(hash(source.replaceAll('\r\n','\n')),row.afterSha256,file);
+  assert.equal(preDefectActorCiSource(file,source),row.beforeSource,file);
+  assert.equal(preDefectActorCiSource(file,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),row.beforeSource,file);
+  for(const drift of [source+'\n',source.slice(1),null,{},17])assert.equal(preDefectActorCiSource(file,drift),drift,file);
+ }
+ const all=liveDiscoverJs(),old=preDefectActorCiInventory(all);
+ assert.equal(all.length,835);assert.equal(old.length,834);
+ assert.deepEqual(all.filter(file=>!old.includes(file)),[defectActorPlanningKey]);
+ for(const bad of [all.filter(f=>f!==defectActorPlanningKey),[...all,defectActorPlanningKey],[...all,'tests/foreign.test.mjs'],all.filter(f=>f!==old[0])])assert.throws(()=>preDefectActorCiInventory(bad),/inventory/);
+});
+
+test('Defect Actor floor binds the complete 18-case local run and actual behavior sources without inventing a wall clock or hosted data',()=>{
+ const floor=defectActorPlanningFloor,bytes=liveDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(bytes),log=liveDiskReadFileSync(floor.sourceLog);
+ assert.equal(hash(bytes),floor.sourceReceiptSha256);assert.equal(hash(log),floor.sourceLogSha256);
+ assert.equal(receipt.sourceLog,floor.sourceLog);assert.equal(receipt.sourceLogSha256,hash(log));
+ assert.equal(receipt.kind,'local-complete-file-planning-floor');assert.equal(receipt.notHostedCiMeasurement,true);
+ assert.equal(receipt.file,defectActorPlanningKey);assert.deepEqual(receipt.command,['node','--test',defectActorPlanningKey]);
+ assert.deepEqual([receipt.tests,receipt.pass,receipt.fail,receipt.cancelled,receipt.skipped,receipt.todo],[18,18,0,0,0,0]);
+ assert.equal(receipt.nodeReportedDurationMs,47112.322039);assert.equal(receipt.wallDurationMs,null);assert.equal(floor.wallDurationMs,null);
+ assert.equal(floor.nodeReportedDurationMs,receipt.nodeReportedDurationMs);assert.equal(floor.durationMs,50000);assert.equal(receipt.planningFloorMs,floor.durationMs);assert.ok(floor.durationMs>=Math.ceil(receipt.nodeReportedDurationMs));
+ for(const line of ['tests 18','pass 18','fail 0','cancelled 0','skipped 0','todo 0','duration_ms 47112.322039'])assert.ok(log.toString().includes('ℹ '+line+'\n'),line);
+ assert.deepEqual(Object.keys(receipt.inputHashes).sort(),[defectActorPlanningKey,'tests/helpers/defect-actor-vm.mjs','src/lua/abyss_defect_utility_cards.lua','src/lua/abyss_combat_queued_play.lua'].sort());
+ for(const [file,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(liveDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n')),sha,file);
+ for(const platform of ['win32','linux']){assert.equal(liveTimings.js[platform][defectActorPlanningKey],undefined);assert.equal(liveJsPlanningWeights([defectActorPlanningKey],platform)[defectActorPlanningKey],50000);}
+});
+
+test('complete current Defect Actor Full38 inventory fits original Windows18 POSIX15 budgets including the new floor and unchanged reserve',t=>{
+ const js=liveDiscoverJs(),lua=currentLua();
+ assert.equal(js.length,835);assert.equal(lua.length,1415);
+ assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:18},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
+ assert.equal(currentFullQualityJobs.length,38);
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const loads=liveJsShard(js,`1/${count}`,platform).loads;
+  const jsBins=Array.from({length:count},(_,i)=>liveJsShard(js,`${i+1}/${count}`,platform).files);
+  assert.deepEqual(jsBins.flat().sort(),[...js].sort());assert.equal(new Set(jsBins.flat()).size,js.length);
+  let combined=loads;
+  if(platform==='win32'){
+   const planning={...liveTimings,windowsJsShardMs:loads};
+   const bins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,planning,2));
+   assert.deepEqual(bins.flat().sort(),[...lua].sort());assert.equal(new Set(bins.flat()).size,lua.length);
+   const cost=f=>liveTimings.luaShard[f]??liveTimings.lua[f]??liveTimings.unknownLuaMs,safety=f=>liveTimings.lua[f]??liveTimings.unknownLuaMs;
+   combined=bins.map((bin,i)=>{const pool=[0,0];for(const f of bin.filter(f=>safety(f)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(f);return loads[i]+bin.filter(f=>safety(f)>=10000).reduce((sum,f)=>sum+cost(f),0)+Math.max(...pool);});
+  }
+  const forecast=Math.max(...combined)+60000;
+  t.diagnostic(`${platform} complete current Actor forecast ${forecast} ms; unchanged budget ${budget} ms; no hosted Full pass claimed`);
+  assert.ok(forecast<budget,`${platform} complete current work must fit original budget with 60-second reserve`);
  }
 });

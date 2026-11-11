@@ -6225,6 +6225,19 @@
         "sourceReceiptSha256": "03d5ac05315c21c0a97ed594dc44f24d91be103230295e7e005e86836f7a045f",
         "sourceLog": "docs/evidence/official-assets-first-20261109/planning-flow/official-assets-visual/stdout.log",
         "sourceLogSha256": "757a95cbbfcad4cea56875aa45cac05b4e4feb11430c2bc918fa208f52707c44"
+      },
+      "tests/defect-actor-boundary.test.mjs": {
+        "durationMs": 50000,
+        "environment": "cloud Linux local",
+        "tests": 18,
+        "coverage": "18/18 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 47112.322039,
+        "wallDurationMs": null,
+        "sourceLog": "docs/evidence/m7-defect-actor-20261111/cost-behavior.log",
+        "sourceLogSha256": "151075dbd336247079338e59bba4f489cfa0f2468abcec3e38993593de59077f",
+        "sourceReceipt": "docs/evidence/m7-defect-actor-20261111/cost-receipt.json",
+        "sourceReceiptSha256": "4a0946a2952943197358e5982f91880a141467d55fa5882368f6211713aaf5ad"
       }
     }
   },

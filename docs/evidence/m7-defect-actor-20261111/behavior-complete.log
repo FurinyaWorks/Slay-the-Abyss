@@ -1,0 +1,26 @@
+✔ complete before sources and original 52-scenario fixture bind to develop Git blobs (5.710477ms)
+✔ cold data and non-target preparation never resolve execution capabilities (50.338489ms)
+✔ production changes remain the two narrow capability edits and one policy rule (5.772014ms)
+✔ all 345 modules retain complete immediate/deferred graphs and reject transitive runtime owners (1401.919485ms)
+✔ original 52 scenarios preserve complete return, error, state and alias graphs in independent VMs (15467.653709ms)
+✔ copy and original input validation precede capability resolution (6.365817ms)
+✔ FTL threshold remains after Actor side effects, errors and result validation (5.428164ms)
+✔ each call uses live capability and method slots, one return and detached input (6.106382ms)
+✔ real Barrage FTL and X block failures roll back complete state and retry through live Actor slots (27213.624004ms)
+✔ frozen protocol and complete old Utility match actual current host: barrage (779.554492ms)
+✔ frozen protocol and complete old Utility match actual current host: ftl (687.421267ms)
+✔ frozen protocol and complete old Utility match actual current host: reinforced_body (634.60333ms)
+✔ parseable semantic regression is rejected: host removed (371.874707ms)
+✔ parseable semantic regression is rejected: Barrage amount lost (5.269241ms)
+✔ parseable semantic regression is rejected: X block amount lost (5.680921ms)
+✔ parseable semantic regression is rejected: input copy aliased (39.933693ms)
+✔ parseable semantic regression is rejected: FTL threshold moved early (24.016743ms)
+✔ parseable semantic regression is rejected: invalid input reaches host (10.364694ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47112.322039

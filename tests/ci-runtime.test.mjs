@@ -1,3 +1,4 @@
+import {defectActorPlanningKey,defectActorPlanningFloor} from './helpers/defect-actor-ci-source-inverse.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -255,6 +256,8 @@ test('current timing records preserve all measured corrections without duplicate
   }else if(file===watcherPlanningKey){
    assert.deepEqual(entry,watcherPlanningFloor);assert.equal(entry.durationMs,30000);
    assert.ok(entry.durationMs>=21763.220989+1218.265678);
+  }else if(file===defectActorPlanningKey){
+   assert.deepEqual(entry,defectActorPlanningFloor);
   }else if(Object.hasOwn(officialAssetsPlanningFloors,file)){
    assert.deepEqual(entry,officialAssetsPlanningFloors[file],'retain each published official checkpoint floor independently');
   }else{
@@ -262,7 +265,7 @@ test('current timing records preserve all measured corrections without duplicate
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,28+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length+Object.keys(officialAssetsPlanningFloors).length);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,29+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length+Object.keys(officialAssetsPlanningFloors).length);
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 

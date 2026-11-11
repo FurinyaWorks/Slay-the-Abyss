@@ -1,3 +1,4 @@
+import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 import {originalPlanningSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {preDefectIntegrationPlanningSource} from './helpers/defect-integration-planning-source-inverse.mjs';
 import {preEnemyIntegrationPlanningSource} from './helpers/enemy-integration-planning-source-inverse.mjs';
@@ -9,7 +10,8 @@ import {createHash} from 'node:crypto';
 import {preWatcherActorSource as prior,watcherActorReader,watcherActorSourceProof as proof} from './helpers/watcher-actor-source-inverse.mjs';
 import {preM7FinalSource} from './helpers/m7-core-final-source-inverse.mjs';
 import {standaloneArchitectureSource} from './helpers/class-potion-watcher-source-inverse.mjs';
-const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
+const rawRead=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
+const read=p=>preDefectActorSource(p,rawRead(p),{readSource:rawRead});
 const before=JSON.parse(gunzipSync(readFileSync('tests/fixtures/watcher-actor-before.json.gz')));
 const owners=Object.keys(proof),live=Object.fromEntries(owners.map(p=>[p,read(p)]));
 // Explicit historical standalone view; actual combined sources are verified separately.

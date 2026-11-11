@@ -1,3 +1,4 @@
+import {extendDefectActorEpoch} from '../defect-actor-source-epoch.mjs';
 import {extendJointUiEpoch} from '../joint-ui-source-epoch.mjs';
 import {extendComponentUiEpoch} from '../component-ui-source-epoch.mjs';
 import {extendRoomUiEpoch} from '../room-ui-source-epoch.mjs';
@@ -10,4 +11,5 @@ export {preEncounterFormationEpoch};
 export const preComponentUiEpoch=extendEncounterFormationEpoch(preEncounterFormationEpoch);
 export const preRoomUiEpoch=extendComponentUiEpoch(preComponentUiEpoch);
 export const preJointUiEpoch=extendRoomUiEpoch(preRoomUiEpoch);
-export const sourceEpoch=extendJointUiEpoch(preJointUiEpoch);
+export const preDefectActorEpoch=extendJointUiEpoch(preJointUiEpoch);
+export const sourceEpoch=extendDefectActorEpoch(preDefectActorEpoch);

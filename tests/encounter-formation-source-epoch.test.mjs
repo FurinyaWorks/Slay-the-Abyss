@@ -1,3 +1,4 @@
+import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as diskReadFileSync,mkdtempSync,rmSync} from 'node:fs';
@@ -16,9 +17,10 @@ const raw=p=>proof.current[p]?.source??null;
 // Current UI admission is independently checked against all raw owners below.
 // Original Formation assertions read its explicit frozen predecessor view.
 // Actual composed raw owners are independently checked by currentSourceEpoch below.
-const componentRead=file=>jointUiSourceAt(file,diskReadFileSync(file,'utf8'),'component');
+const actorRawRead=file=>diskReadFileSync(file,'utf8');
+const componentRead=file=>jointUiSourceAt(file,preDefectActorSource(file,actorRawRead(file),{readSource:actorRawRead}),'component');
 const readFileSync=(file,...args)=>{
- const source=diskReadFileSync(file,...args).replaceAll('\r\n','\n');
+ const source=preDefectActorSource(file,diskReadFileSync(file,...args).replaceAll('\r\n','\n'),{readSource:actorRawRead});
  const component=jointUiSourceAt(file,source,'component');
  return preComponentUiCiSource(file,componentUiSourceEpoch.preCombinedSource(file,component,{target:'componentPrior',readSource:componentRead}));
 };

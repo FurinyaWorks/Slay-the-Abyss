@@ -1,0 +1,52 @@
+✖ M7 live and explicit current readers preserve the queued historical capability chain (4.795362ms)
+✖ M7 queued capability authenticates all 79 current owners freshly after warm success (1.075597ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14194.005628
+
+✖ failing tests:
+
+test at tests/defect-integration-source.test.mjs:153:1
+✖ M7 live and explicit current readers preserve the queued historical capability chain (4.795362ms)
+  AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json
+      at preClassPotionWatcherSource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/class-potion-watcher-source-inverse.mjs:61:3)
+      at preIntegratedCapabilitySource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/class-potion-watcher-source-inverse.mjs:87:10)
+      at preM7FinalSource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/m7-core-final-source-inverse.mjs:16:19)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/defect-integration-source.test.mjs:155:20)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/defect-integration-source.test.mjs:163:1
+✖ M7 queued capability authenticates all 79 current owners freshly after warm success (1.075597ms)
+  AssertionError [ERR_ASSERTION]: combined linked owner identity: config/architecture.json
+      at preClassPotionWatcherSource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/class-potion-watcher-source-inverse.mjs:61:3)
+      at preIntegratedCapabilitySource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/class-potion-watcher-source-inverse.mjs:87:10)
+      at preM7FinalSource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/m7-core-final-source-inverse.mjs:16:19)
+      at project (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/defect-integration-source.test.mjs:168:20)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/defect-integration-source.test.mjs:169:20)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

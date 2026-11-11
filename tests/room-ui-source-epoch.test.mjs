@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as nativeReadFileSync} from 'node:fs';
 import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
+import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 // Original assertions retain their explicit frozen source view.
-const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,value,'room'):value;};
+const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,preDefectActorSource(p,value),'room'):value;};
 import {roomUiSourceEpoch as room} from './helpers/room-ui-source-epoch.mjs';
 import {componentUiSourceEpoch as component} from './helpers/component-ui-source-epoch.mjs';
 import {preJointUiEpoch as epoch,preRoomUiEpoch as prior} from './helpers/combined-epoch/source-epoch.mjs';

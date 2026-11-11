@@ -66,6 +66,12 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/room-ui-source-epoch.json.gz": "0b3cb34acf85e814bd3e7d82254e9586a6a60c78e20fd95603b2e96e877d7bfc",
   "tests/helpers/joint-ui-source-epoch.mjs": "f35a2626dfd4ae6e8aa0c8c2b8897859be2796d84ae0fd05e29595c785cc7692",
   "tests/helpers/joint-ui-source-epoch.json.gz": "67777c3571d86bc82427fbb6ac5cd2254ed480b58285f41aa17d05d7490413f9"
+},...{
+  // Defect Actor capability overlay; all earlier closure identities remain above.
+  "tests/helpers/defect-actor-source-epoch.mjs": "5060235c781acfde3e4db7878c9810526de00d8431194488d194b7d50b9632b6",
+  "tests/helpers/defect-actor-source-epoch.json.gz": "c41e28bf8a5d51f0e29f80b48f31cc5d416741ec8d54f4f6c03ce924d1027e17",
+  "tests/helpers/combined-epoch/source-epoch.mjs": "23cf0aaaedf2dc9fe90b659953699f3387504dd7cc0cd10fac305739d5352c48",
+  "tests/helpers/m7-core-final-source-inverse.mjs": "0c754fc25ffe6f7101c708028187606aa6a378e360591faa8610bd401bd5ac33"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

@@ -1,0 +1,98 @@
+✔ utility planner frozen complete source remains authenticated to develop d8a57cae (1.800332ms)
+✔ independent old/new VMs preserve plans, input graphs, validation order, dynamic reads and original errors (1756.283461ms)
+✔ the unchanged 52-case combat regression runs against old and current utility implementations (16228.988249ms)
+✔ every utility function and chunk has a complete CC15 measurement, including all new responsibilities (1166.179217ms)
+✔ differential rejects semantic mutation: distinct orb count (1028.121363ms)
+✔ differential rejects semantic mutation: late intent validation (1392.012745ms)
+✔ differential rejects semantic mutation: X capture fallback (1932.394049ms)
+✔ differential rejects semantic mutation: X free spending (1672.445767ms)
+✔ differential rejects semantic mutation: FTL threshold (1958.434991ms)
+✔ differential rejects semantic mutation: FTL queue priority (1679.800076ms)
+✔ exact single-source inverse preserves frozen history and does not bless drift, fragments, other files or nonstrings (6.707467ms)
+✔ M9 old protocol bodies are authenticated to the accepted aa4d56f5 source (1.536779ms)
+✔ M9 preserves both complete use preparation graphs and ordered protocol traces (5011.716754ms)
+✔ M9 trajectory rejects mutation: native retained reaction array is not cleared (1199.90731ms)
+✔ M9 trajectory rejects mutation: advanced multihit forgets physical hit expansion (7587.604834ms)
+✔ M9 trajectory rejects mutation: paused play is finalized early (4523.35586ms)
+✔ M9 trajectory rejects mutation: use hook replaces the originally captured target (6127.040692ms)
+ok watcher_attack_build 1 - eighteen independent source definitions and original data isolation
+ok watcher_attack_build 2 - Bowling preparation freezes separate hits and ignores dead or escaped enemies
+ok watcher_attack_build 3 - Halt snapshots each Dexterity/Frail calculation and chooses stance later
+ok watcher_attack_build 4 - previous-card plan includes current card and Brilliance adds Mantra once
+ok watcher_attack_build 5 - Consecrate and Flying Sleeves use real area and repeated attack damage
+ok watcher_attack_build 6 - Bowling Bash freezes live enemy count and applies Strength to every hit
+ok watcher_attack_build 7 - Follow-Up first card has no refund and upgrade refunds after preceding attack
+ok watcher_attack_build 8 - Crush Joints and Sash Whip conditions use different previous card types
+ok watcher_attack_build 9 - Follow-Up previous attack persists across actual endTurn
+ok watcher_attack_build 10 - Follow-Up damage killing final enemy cancels its queued energy refund
+ok watcher_attack_build 11 - Empty Mind draws before Calm exit and respects NoDraw without blocking exit
+ok watcher_attack_build 12 - Halt real play doubles Dexterity contribution with independently floored Frail
+ok watcher_attack_build 13 - Evaluate creates unupgraded Insight inside draw without moving existing top
+ok watcher_attack_build 14 - Carve and Deceive upgrades preserve unupgraded generated cards
+ok watcher_attack_build 15 - Sanctity draws after preceding skill and NoDraw still allows Block
+ok watcher_attack_build 16 - Signature Move rejects another attack instance with no mutation
+ok watcher_attack_build 17 - Scrawl upgrade draws genuine deck to ten before exhausting
+ok watcher_attack_build 18 - Brilliance combines Mantra with Strength and stance once
+ok watcher_attack_build 19 - generated cards retain through actual endTurn and exhaust when played
+ok watcher_attack_build 20 - upgraded special cards use their own upgrade values and remain exhaustible
+ok watcher_attack_build 21 - Scrawl NoDraw and Halt negative Dexterity honor shared arithmetic
+ok watcher_attack_build 22 - Evaluate empty draw skips card RNG while singleton draw consumes one call
+ok watcher_attack_build 23 - real insertion RNG then thrown error restores all original state references
+watcher_attack_build: 23 passed
+ok watcher_attack_build 1 - eighteen independent source definitions and original data isolation
+ok watcher_attack_build 2 - Bowling preparation freezes separate hits and ignores dead or escaped enemies
+ok watcher_attack_build 3 - Halt snapshots each Dexterity/Frail calculation and chooses stance later
+ok watcher_attack_build 4 - previous-card plan includes current card and Brilliance adds Mantra once
+ok watcher_attack_build 5 - Consecrate and Flying Sleeves use real area and repeated attack damage
+ok watcher_attack_build 6 - Bowling Bash freezes live enemy count and applies Strength to every hit
+ok watcher_attack_build 7 - Follow-Up first card has no refund and upgrade refunds after preceding attack
+ok watcher_attack_build 8 - Crush Joints and Sash Whip conditions use different previous card types
+ok watcher_attack_build 9 - Follow-Up previous attack persists across actual endTurn
+ok watcher_attack_build 10 - Follow-Up damage killing final enemy cancels its queued energy refund
+ok watcher_attack_build 11 - Empty Mind draws before Calm exit and respects NoDraw without blocking exit
+ok watcher_attack_build 12 - Halt real play doubles Dexterity contribution with independently floored Frail
+ok watcher_attack_build 13 - Evaluate creates unupgraded Insight inside draw without moving existing top
+ok watcher_attack_build 14 - Carve and Deceive upgrades preserve unupgraded generated cards
+ok watcher_attack_build 15 - Sanctity draws after preceding skill and NoDraw still allows Block
+ok watcher_attack_build 16 - Signature Move rejects another attack instance with no mutation
+ok watcher_attack_build 17 - Scrawl upgrade draws genuine deck to ten before exhausting
+ok watcher_attack_build 18 - Brilliance combines Mantra with Strength and stance once
+ok watcher_attack_build 19 - generated cards retain through actual endTurn and exhaust when played
+ok watcher_attack_build 20 - upgraded special cards use their own upgrade values and remain exhaustible
+ok watcher_attack_build 21 - Scrawl NoDraw and Halt negative Dexterity honor shared arithmetic
+ok watcher_attack_build 22 - Evaluate empty draw skips card RNG while singleton draw consumes one call
+ok watcher_attack_build 23 - real insertion RNG then thrown error restores all original state references
+watcher_attack_build: 23 passed
+WATCHER_EARLY_TURN_AUTOPLAY native tail followed by automatic Conclude/Vault ends exactly once passed
+WATCHER_EARLY_TURN_AUTOPLAY native tail followed by automatic Conclude/Vault ends exactly once passed
+ok watcher_attack_build 1 - eighteen independent source definitions and original data isolation
+ok watcher_attack_build 2 - Bowling preparation freezes separate hits and ignores dead or escaped enemies
+ok watcher_attack_build 3 - Halt snapshots each Dexterity/Frail calculation and chooses stance later
+ok watcher_attack_build 4 - previous-card plan includes current card and Brilliance adds Mantra once
+ok watcher_attack_build 5 - Consecrate and Flying Sleeves use real area and repeated attack damage
+ok watcher_attack_build 6 - Bowling Bash freezes live enemy count and applies Strength to every hit
+ok watcher_attack_build 7 - Follow-Up first card has no refund and upgrade refunds after preceding attack
+ok watcher_attack_build 8 - Crush Joints and Sash Whip conditions use different previous card types
+ok watcher_attack_build 9 - Follow-Up previous attack persists across actual endTurn
+ok watcher_attack_build 10 - Follow-Up damage killing final enemy cancels its queued energy refund
+ok watcher_attack_build 11 - Empty Mind draws before Calm exit and respects NoDraw without blocking exit
+ok watcher_attack_build 1 - eighteen independent source definitions and original data isolation
+ok watcher_attack_build 2 - Bowling preparation freezes separate hits and ignores dead or escaped enemies
+✔ complete original owners bind to independent develop Git blobs (2.863268ms)
+✔ Watcher planning leaves the complete SCC without hiding delayed requires (3723.282319ms)
+✔ unchanged behavior assertions and complete graphs match both VMs: tests/lua/watcher_attack_build.lua (24222.7562ms)
+✔ unchanged behavior assertions and complete graphs match both VMs: tests/lua/watcher_early_turn_autoplay.lua (1978.283871ms)
+✔ cold data-only planner admits no execution owner and resolves the host only after Halt validation (6.395141ms)
+✔ Halt retains two dynamic method reads, raw failure identity, return arity and detached input (5.583606ms)
+✔ real queued Halt rolls back a late arithmetic failure and retries through the current dynamic slot (788.550045ms)
+✔ real gameplay rejects missing capability: missing host (4253.421179ms)
+✔ second Halt amount mutation is rejected by the original exact block assertion (648.802639ms)
+✔ frozen protocol and complete frozen planner agree with current host for Halt (1038.532575ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103224.186419
