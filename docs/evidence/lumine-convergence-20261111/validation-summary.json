@@ -1,0 +1,109 @@
+{
+  "runtimeMatchesMeasuredInputs": true,
+  "runtimeRegressions": {
+    "tests": 69,
+    "passed": 69,
+    "failed": 0
+  },
+  "engineering": "passed including critical mutations and native lifecycle contract",
+  "platformDaily": "passed for the unchanged formal asset/build manifest; not official capacity of the experimental overlay",
+  "backlog": "passed",
+  "guidance": "passed",
+  "nodePythonSyntax": "passed",
+  "fullCi": "not_completed",
+  "officialImport": "not_run",
+  "officialReady": "not_run",
+  "officialPC": "not_run",
+  "phone": "not_run",
+  "officialCapacity": "not_measured",
+  "sourceHashes": [
+    {
+      "file": "src/lua/abyss_lumine_idle.lua",
+      "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+    },
+    {
+      "file": "src/lua/abyss_traveler_portraits.lua",
+      "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+    },
+    {
+      "file": "tests/lumine-idle.test.mjs",
+      "sha256": "f9942565f2b0253e4e938c76590e9c9f3e3f9df257970216c6ca90848e72b8e6"
+    },
+    {
+      "file": "experiments/lumine-idle/adaptive.py",
+      "sha256": "dd84bd183c000f38073ef2d326719dea51f7253c29aaf66fec1e2442db8a8bf3"
+    },
+    {
+      "file": "experiments/lumine-idle/audit.mjs",
+      "sha256": "038d36f7c6c3bbdbf35061ffda41e5d042a2e56325aca851fee69e521c952b17"
+    },
+    {
+      "file": "experiments/lumine-idle/benchmark.mjs",
+      "sha256": "b0700b1461a2350dd7753a81cd7da0ee378fd385ed426b1a787481c8300ff95c"
+    },
+    {
+      "file": "experiments/lumine-idle/browser-benchmark.mjs",
+      "sha256": "528c06f7b5ed9b96914d5f3fc79919f87b3fc9c88723e887bcd9dd9d9a30956f"
+    },
+    {
+      "file": "experiments/lumine-idle/capture.mjs",
+      "sha256": "78f2daa140507ac1ff4631b2d41c88f38170dd5a4a52540c936fe4f2923f48a2"
+    },
+    {
+      "file": "experiments/lumine-idle/converge-run.mjs",
+      "sha256": "5b4425c0841c7020a014cdb2a1dbe46d9e93f03e0863e52a4762d379a21fc589"
+    },
+    {
+      "file": "experiments/lumine-idle/convergence-deliver.py",
+      "sha256": "42c99ddb0a16112ab217260b09e5b66c1825b0b9c3ffa7a71a87fa8e00637987"
+    },
+    {
+      "file": "experiments/lumine-idle/convergence-report.mjs",
+      "sha256": "b80b8889bafd492d9fa7ea25fb3541d08907c2bcfca57dc3d8e4fbab991e14a3"
+    },
+    {
+      "file": "experiments/lumine-idle/convergence-visuals.py",
+      "sha256": "22b7dabf2999dec39dd55a597ea97fba165ac6190d9f65ba3d6d7c4cb20ef923"
+    },
+    {
+      "file": "experiments/lumine-idle/convert.py",
+      "sha256": "5434a6344bfb3c195a461c8c0c3004e9c7d171ceec87ec3bf71f1353317bb5f8"
+    },
+    {
+      "file": "experiments/lumine-idle/deliver.py",
+      "sha256": "10dfd4d4d17df09d742a34fb025b301897fba1094fea9b4550a4690240a68ef0"
+    },
+    {
+      "file": "experiments/lumine-idle/derive.mjs",
+      "sha256": "26819ed3fb1be8ac4560e3239a5e65996714be137b9f3faaff95353ff188ae33"
+    },
+    {
+      "file": "experiments/lumine-idle/finalize-evidence.mjs",
+      "sha256": "48c427dccdb3f5c513c1e83cfca7bb475a1469475b79229feec73a963619dda0"
+    },
+    {
+      "file": "experiments/lumine-idle/fixtures.mjs",
+      "sha256": "6646bf63c6316c16f22ab182e0d86ccc1052f8da20fd730cb71b55da4b8ba1f0"
+    },
+    {
+      "file": "experiments/lumine-idle/hybrid.py",
+      "sha256": "20ddae445753bd33e517a83b3d9349147fbf84a04a8ec976b33aadda66f73f9a"
+    },
+    {
+      "file": "experiments/lumine-idle/package.mjs",
+      "sha256": "74937d141d630e9c0bae447e3f5e42c38d4c8258bb1df210cf1452a53422f84b"
+    },
+    {
+      "file": "experiments/lumine-idle/serve.mjs",
+      "sha256": "120a9da5d5eaaa03d533a64dd9f5599f49b8d327b5aeb4911f90280b9cf72bbc"
+    },
+    {
+      "file": "experiments/lumine-idle/simplify-motion.mjs",
+      "sha256": "c1f86500fbf2ff33ec6616c4599d7eb6c65f21c0b9297c1d2e07fed8b3427a2f"
+    },
+    {
+      "file": "experiments/lumine-idle/visuals.py",
+      "sha256": "928d73ffcec0cac5a34de7ed6907cf2e9ceb7d6ff83649ecefb8b2e9797316cc"
+    }
+  ]
+}

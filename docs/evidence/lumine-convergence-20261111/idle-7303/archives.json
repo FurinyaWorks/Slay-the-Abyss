@@ -1,0 +1,56 @@
+[
+  {
+    "source": "case.json",
+    "sourceSha256": "cdb8eefe46fbc9d4356ddfce9e75001b15293fe268600602a9611661bb548453",
+    "archive": "case.json.gz",
+    "archiveSha256": "e47c2265375422ea0ea0253f9854713f208dabc38d66752a3d664ba9528896ee"
+  },
+  {
+    "source": "sdk.json",
+    "sourceSha256": "85833a7644638952cb6021a4215c3de116378e68d600fc8494784cbd46ce361b",
+    "archive": "sdk.json.gz",
+    "archiveSha256": "7d18b90b5d8271379033f52f2c8e520b6cc1744599f97a688c0875473bd2fcd1"
+  },
+  {
+    "source": "sdk-runner.mjs",
+    "sourceSha256": "c0d651de62dd665aab85de7cad26b9b353705b54c5d643557c4b12427c09943c",
+    "archive": "sdk-runner.mjs.gz",
+    "archiveSha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+  },
+  {
+    "source": "browser/report.json",
+    "sourceSha256": "12b3fd55de41f0ac956093314f832cafcdaf2f951328981fae1ecff5385937a6",
+    "archive": "browser--report.json.gz",
+    "archiveSha256": "4e54d9946fb09d69f95f1250338a1014be510945145e29ccd12af7dc02db6672"
+  },
+  {
+    "source": "browser/browser.mjs",
+    "sourceSha256": "288612f63a8347f51946cefc76007bfc6f27a5b68cd0c13a39db82546dbf1cb2",
+    "archive": "browser--browser.mjs.gz",
+    "archiveSha256": "88bbb0209bc1e1176c7aeeb629b9d1f36048112cbd000511d1b36e2491ced386"
+  },
+  {
+    "source": "visual/receipt.json",
+    "sourceSha256": "74c3a57dabab2b7b1999f253c96d3e8e1a295ac4ce59442dbfad7bd5fc246d3b",
+    "archive": "visual--receipt.json.gz",
+    "archiveSha256": "29b08ce07ffbcac1f0dffe3d6927b063475fb986a61b2ac2769404eb28a0c906"
+  },
+  {
+    "source": "gil/candidate.json",
+    "sourceSha256": "8d43cfa1fc1ae75dc2e41ba5af3f9a17edd13903ffb2d86e45b122465dc44d70",
+    "archive": "gil--candidate.json.gz",
+    "archiveSha256": "c91934db13e79d82691076f49033187abd2da650e2ff5694637feca548ee7d77"
+  },
+  {
+    "source": "preview/adapter-receipt.json",
+    "sourceSha256": "8d76b06e0aa707f75fc74868a3ea03d91b6204b4dcdb412c4295e6af5c3b2836",
+    "archive": "preview--adapter-receipt.json.gz",
+    "archiveSha256": "e1e31b48d5314f5cdad1c607a76d34ac79cd89d5a125cad132398914e686cfe4"
+  },
+  {
+    "source": ".artifacts/lumine-idle/converted/idle-210.json",
+    "sourceSha256": "caa7505c9485ae46555c130088c7d486542865c4ae694090935843d5e0b41af5",
+    "archive": "asset.json.gz",
+    "archiveSha256": "5efc6c9296936471f4a4abafc2f04213e04b9ceee000a51becc1dfddc3635676"
+  }
+]

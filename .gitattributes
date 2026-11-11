@@ -1,4 +1,7 @@
 # Golden evidence is byte-hashed; keep it identical on Windows and Linux.
+src/lua/abyss_lumine_idle.lua text eol=lf
+src/lua/abyss_traveler_portraits.lua text eol=lf
+docs/evidence/lumine-convergence-20261111/** -text
 experiments/lumine-idle/battle-fixture.lua text eol=lf
 docs/evidence/lumine-native-idle-20261111/*.json text eol=lf
 docs/evidence/lumine-native-idle-20261111/*.md text eol=lf

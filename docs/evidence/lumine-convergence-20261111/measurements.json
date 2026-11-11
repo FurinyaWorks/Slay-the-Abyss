@@ -1,0 +1,2999 @@
+{
+  "scope": "same ten-card two-enemy three-potion fixture; actual headless Simulator; independent fresh backends; performance excludes screenshots",
+  "uncertainty": "serial, small samples and shared-host drift; render() wall time is not GPU timestamp or device FPS",
+  "reports": [
+    {
+      "name": "adaptive-1826",
+      "gilSha256": "1da1c7a2e19f6b747187a6886e25045cb7157f05eee5cf069c956de185af9070",
+      "saveSha256": "7aa8cf462acae2829302e0037dc37dea1daf3e0e924eb4b37dc21cf5fff5fd33",
+      "buildId": "ae3abb1e-cead-49a2-a831-749bf2bb3d3c",
+      "images": 1826,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "1c042dc05ac14af2e8809c6ad3de957687b44f6e76c06655f8fa34ec92a26082"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "030c2b96d9ab218f89733c12f88a1f9d381178c283ffe1afe38ed0b8514a665a"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": null,
+      "sampleRateHz": 30,
+      "controls": 15645,
+      "characterOwned": 1892,
+      "readyCpuMs": 2873.7097000000003,
+      "readySteps": 63,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 17.483000000000175,
+        "p95": 23.615499999999884,
+        "p99": 25.46259999999893,
+        "max": 26.378500000000713
+      },
+      "nativeIdle": {
+        "writes": 2160,
+        "paints": 60,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 128.60000000009313,
+        "p95": 143.19999999944122,
+        "max": 143.8999999994412
+      },
+      "stream": {
+        "events": 48,
+        "requests": 17,
+        "changedFrames": 15,
+        "wall": 1.6189000000003726,
+        "game": 1.4800000000000004
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 17,
+        "p50": 78.80000000074506,
+        "p95": 88.02000000011175,
+        "max": 92.1000000005588
+      },
+      "steadyStepRoundtripMs": {
+        "n": 53,
+        "p50": 53.90000000037253,
+        "p95": 85.64000000003725,
+        "max": 90.09999999962747
+      },
+      "steadyApplyMs": {
+        "n": 53,
+        "p50": 18.200000000186265,
+        "p95": 45.979999999888236,
+        "max": 57.09999999962747
+      },
+      "steadyRenderMs": {
+        "n": 53,
+        "p50": 15,
+        "p95": 44.12000000029802,
+        "max": 55.700000000186265
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 913.8999999994412,
+        "p95": 1768.4500000002793,
+        "max": 1863.4000000003725
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 730.1000000005588,
+        "p95": 895.519999999553,
+        "max": 913.8999999994412
+      },
+      "flightObservedBeforeDamage": false,
+      "coldFirstPositiveFrameMs": 19662.8651,
+      "figureReadyAfterFirstObservedFrameMs": 21241.852099999996,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "adaptive-1826-s20",
+      "gilSha256": "423bf4ffd9f1729baff3f79641f4892823b6a799d1d47b578a8e500103932ed1",
+      "saveSha256": "8064cc2741d54cc6a4b002adb49e628524832437de249cf3617313a4a1faa0ce",
+      "buildId": "3f6ea217-c83c-4c43-89a9-1db468943129",
+      "images": 1826,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 15645,
+      "characterOwned": 1892,
+      "readyCpuMs": 3666.689799999999,
+      "readySteps": 70,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 17.898699999999735,
+        "p95": 21.542499999999563,
+        "p99": 22.5658999999996,
+        "max": 23.723299999999654
+      },
+      "nativeIdle": {
+        "writes": 684,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 82.5,
+        "p95": 92.08500000024215,
+        "max": 92.40000000037253
+      },
+      "stream": {
+        "events": 48,
+        "requests": 21,
+        "changedFrames": 19,
+        "wall": 1.246,
+        "game": 1.209999999999999
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 21,
+        "p50": 53.5,
+        "p95": 56.40000000037253,
+        "max": 60.600000001490116
+      },
+      "steadyStepRoundtripMs": {
+        "n": 95,
+        "p50": 31.699999999254942,
+        "p95": 36.43000000026077,
+        "max": 39.09999999962747
+      },
+      "steadyApplyMs": {
+        "n": 95,
+        "p50": 8.599999999627471,
+        "p95": 10.699999999813736,
+        "max": 12.599999999627471
+      },
+      "steadyRenderMs": {
+        "n": 95,
+        "p50": 7.799999998882413,
+        "p95": 9.900000000372529,
+        "max": 11.599999999627471
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 214.5,
+        "p95": 339.77999999932945,
+        "max": 353.69999999925494
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 292.69999999925494,
+        "p95": 470.6300000002608,
+        "max": 490.40000000037253
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 13265.191599999998,
+      "figureReadyAfterFirstObservedFrameMs": 8164.9323,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "adaptive-3652",
+      "gilSha256": "c6ff4eaec3ee57f435f044bdd85aa84c70c013787e5ea6f44e7b5fb36021bf2c",
+      "saveSha256": "3825cf4ffaa0d13a7500970994db50a29a52a244481a7303f0a79608e69ef157",
+      "buildId": "ba49d692-fcab-49d2-ad7e-2460c4593f9c",
+      "images": 3652,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "1c042dc05ac14af2e8809c6ad3de957687b44f6e76c06655f8fa34ec92a26082"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "030c2b96d9ab218f89733c12f88a1f9d381178c283ffe1afe38ed0b8514a665a"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": null,
+      "sampleRateHz": 30,
+      "controls": 17501,
+      "characterOwned": 3748,
+      "readyCpuMs": 2193.8833000000004,
+      "readySteps": 83,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 7.947000000000116,
+        "p95": 11.737800000000789,
+        "p99": 13.062799999999697,
+        "max": 13.52100000000064
+      },
+      "nativeIdle": {
+        "writes": 2160,
+        "paints": 60,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 103.85000000009313,
+        "p95": 123.82499999999999,
+        "max": 127.5
+      },
+      "stream": {
+        "events": 48,
+        "requests": 17,
+        "changedFrames": 12,
+        "wall": 1.1227000000001863,
+        "game": 1.0600000000000005
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 17,
+        "p50": 65.5,
+        "p95": 76.30000000037253,
+        "max": 77.09999999962747
+      },
+      "steadyStepRoundtripMs": {
+        "n": 113,
+        "p50": 25.600000000558794,
+        "p95": 36.25999999977648,
+        "max": 43.90000000037253
+      },
+      "steadyApplyMs": {
+        "n": 113,
+        "p50": 8,
+        "p95": 18.299999999999983,
+        "max": 23.200000000186265
+      },
+      "steadyRenderMs": {
+        "n": 113,
+        "p50": 6.6000000005587935,
+        "p95": 17.159999999776463,
+        "max": 22.100000000558794
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 286.1000000005588,
+        "p95": 359.26999999955297,
+        "max": 367.3999999994412
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 395.1000000005588,
+        "p95": 489.5999999997206,
+        "max": 500.09999999962747
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 11081.0341,
+      "figureReadyAfterFirstObservedFrameMs": 10807.416099999995,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "adaptive-913",
+      "gilSha256": "149c6295c4b9212517a9bc5528b35287a3d526b14b5a7c4e6427c2bed602962e",
+      "saveSha256": "88132ad38fb803c7fae1735c98fae9f2faf7d1adc7577a44b0fc0d632bba8993",
+      "buildId": "c3e00329-b9bd-40e8-b8a4-94f19d16b88f",
+      "images": 913,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "1c042dc05ac14af2e8809c6ad3de957687b44f6e76c06655f8fa34ec92a26082"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "030c2b96d9ab218f89733c12f88a1f9d381178c283ffe1afe38ed0b8514a665a"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": null,
+      "sampleRateHz": 30,
+      "controls": 14717,
+      "characterOwned": 964,
+      "readyCpuMs": 1948.7284,
+      "readySteps": 39,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 17.423499999998967,
+        "p95": 21.777499999998327,
+        "p99": 23.837499999999636,
+        "max": 24.178600000001097
+      },
+      "nativeIdle": {
+        "writes": 2160,
+        "paints": 60,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 111.9499999997206,
+        "p95": 119.32999999974854,
+        "max": 120.79999999981374
+      },
+      "stream": {
+        "events": 48,
+        "requests": 28,
+        "changedFrames": 26,
+        "wall": 2.5442999999998137,
+        "game": 2.4799999999999986
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 28,
+        "p50": 54.049999999813735,
+        "p95": 80.74500000029802,
+        "max": 85.69999999925494
+      },
+      "steadyStepRoundtripMs": {
+        "n": 60,
+        "p50": 49.75,
+        "p95": 71.21500000003724,
+        "max": 83.40000000037253
+      },
+      "steadyApplyMs": {
+        "n": 60,
+        "p50": 13.799999999813735,
+        "p95": 40.07000000039115,
+        "max": 51.40000000037253
+      },
+      "steadyRenderMs": {
+        "n": 60,
+        "p50": 12.799999999813735,
+        "p95": 38.604999999469136,
+        "max": 50.40000000037253
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 342.79999999981374,
+        "p95": 489.67999999998136,
+        "max": 506
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 470,
+        "p95": 629.4800000001676,
+        "max": 647.2000000001863
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 15935.054800000002,
+      "figureReadyAfterFirstObservedFrameMs": 9686.712199999994,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "edge-2283-final",
+      "gilSha256": "ba2a1b72fb0c6d327bb0eb79bfd7de1cdf0cea184f560c9884431ceb262a5a40",
+      "saveSha256": "aea40477e4ae60138e413f29ca1e1999bbad526904ba8ed3842e287d94782c5f",
+      "buildId": "48e1cd09-bd22-4a86-ba43-e6e74ad40792",
+      "images": 2283,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 16082,
+      "characterOwned": 2329,
+      "readyCpuMs": 2002.5524000000005,
+      "readySteps": 57,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 10.488100000000486,
+        "p95": 15.696599999999307,
+        "p99": 17.150500000001557,
+        "max": 19.255999999999403
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 133.40000000037253,
+        "p95": 168.5499999988824,
+        "max": 170.2999999988824
+      },
+      "stream": {
+        "events": 48,
+        "requests": 28,
+        "changedFrames": 24,
+        "wall": 2.0355999999996275,
+        "game": 2.0199999999999996
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 42,
+        "receivedSpanMs": 775,
+        "pointerRequests": 13,
+        "changedFrames": 13,
+        "lastInputToLastObservedPositionDrawMs": 216.69999999925494,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 4.819416666671415,
+        "p95": 12.7211116666697,
+        "max": 13.70560000000114
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 13,
+        "p50": 63.19999999925494,
+        "p95": 75.14000000022351,
+        "max": 78.5
+      },
+      "streamPointerRoundtripMs": {
+        "n": 28,
+        "p50": 61.60000000055879,
+        "p95": 81.11500000013038,
+        "max": 84.90000000037253
+      },
+      "steadyStepRoundtripMs": {
+        "n": 64,
+        "p50": 45.69999999925494,
+        "p95": 59.35499999867752,
+        "max": 68.80000000074506
+      },
+      "steadyApplyMs": {
+        "n": 64,
+        "p50": 24.90000000037253,
+        "p95": 36.56999999945983,
+        "max": 45.40000000037253
+      },
+      "steadyRenderMs": {
+        "n": 64,
+        "p50": 24.149999999441206,
+        "p95": 35.58499999968335,
+        "max": 44.70000000111759
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 345.40000000037253,
+        "p95": 441.9699999993667,
+        "max": 452.69999999925494
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 469.6000000014901,
+        "p95": 582.8200000004842,
+        "max": 595.4000000003725
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 14222.086299999999,
+      "figureReadyAfterFirstObservedFrameMs": 12116.824,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "edge-2739-final",
+      "gilSha256": "51824fd77a639e2e06fbfc5796f85640d317db941a1d2a1426ffb79a78699c5f",
+      "saveSha256": "f4926dcbe34ce6d96aef2131af8652dd4801de02f52e1efbc28c19e809f31d75",
+      "buildId": "114dcf67-6d57-4789-a98f-ac3544a1c6e1",
+      "images": 2739,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 16545,
+      "characterOwned": 2792,
+      "readyCpuMs": 1982.4742,
+      "readySteps": 66,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 9.128500000000713,
+        "p95": 12.766700000000128,
+        "p99": 13.420000000000073,
+        "max": 13.524199999999837
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 100,
+        "p95": 124.39999999999999,
+        "max": 130
+      },
+      "stream": {
+        "events": 48,
+        "requests": 23,
+        "changedFrames": 19,
+        "wall": 1.534199999999255,
+        "game": 1.4499999999999993
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 48,
+        "receivedSpanMs": 777.2000000011176,
+        "pointerRequests": 12,
+        "changedFrames": 11,
+        "lastInputToLastObservedPositionDrawMs": 166.69999999925494,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 3.492599999997765,
+        "p95": 12.507651666669206,
+        "max": 13.871866666663323
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 12,
+        "p50": 62.25,
+        "p95": 104.82500000074505,
+        "max": 107.30000000074506
+      },
+      "streamPointerRoundtripMs": {
+        "n": 23,
+        "p50": 59.399999998509884,
+        "p95": 70.4300000000745,
+        "max": 89.69999999925494
+      },
+      "steadyStepRoundtripMs": {
+        "n": 63,
+        "p50": 46.90000000037253,
+        "p95": 60.799999998696144,
+        "max": 63.19999999925494
+      },
+      "steadyApplyMs": {
+        "n": 63,
+        "p50": 18.5,
+        "p95": 32.489999999664725,
+        "max": 38.90000000037253
+      },
+      "steadyRenderMs": {
+        "n": 63,
+        "p50": 16.90000000037253,
+        "p95": 30.300000000745058,
+        "max": 37.90000000037253
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 235.19999999925494,
+        "p95": 451.01999999992546,
+        "max": 475
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 345,
+        "p95": 534.1799999993294,
+        "max": 555.1999999992549
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 11053.674200000001,
+      "figureReadyAfterFirstObservedFrameMs": 17554.630600000004,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "idle-7303",
+      "gilSha256": "c367e56293f688860aa0c68381b2e55a872779ea5038a4fbb4b9a717acbc651c",
+      "saveSha256": "c3d87f118b6517286138fdcc6b70b74ac4e20aae06a3a3d62bfe56a7f21df23d",
+      "buildId": "69d06c2a-53cc-4b69-b360-4d4c3f5c9a51",
+      "images": 7303,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "1c042dc05ac14af2e8809c6ad3de957687b44f6e76c06655f8fa34ec92a26082"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "030c2b96d9ab218f89733c12f88a1f9d381178c283ffe1afe38ed0b8514a665a"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": null,
+      "sampleRateHz": 30,
+      "controls": 21212,
+      "characterOwned": 7459,
+      "readyCpuMs": 3283.5062999999996,
+      "readySteps": 155,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 7.745599999998376,
+        "p95": 16.832300000000032,
+        "p99": 19.27429999999913,
+        "max": 19.507700000000114
+      },
+      "nativeIdle": {
+        "writes": 2160,
+        "paints": 60,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 182.15000000037253,
+        "p95": 248.4049999999348,
+        "max": 249
+      },
+      "stream": {
+        "events": 48,
+        "requests": 11,
+        "changedFrames": 7,
+        "wall": 1.4781000000005589,
+        "game": 1.490000000000002
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 11,
+        "p50": 135.79999999981374,
+        "p95": 151.79999999981374,
+        "max": 153.29999999981374
+      },
+      "steadyStepRoundtripMs": {
+        "n": 98,
+        "p50": 27.100000000093132,
+        "p95": 47.81500000054948,
+        "max": 58.69999999925494
+      },
+      "steadyApplyMs": {
+        "n": 98,
+        "p50": 10.350000000093132,
+        "p95": 24.10999999968332,
+        "max": 38.39999999944121
+      },
+      "steadyRenderMs": {
+        "n": 98,
+        "p50": 8.400000000372529,
+        "p95": 22.710000000102415,
+        "max": 36.299999999813735
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": null,
+        "p95": null,
+        "max": 0
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 710.1000000005588,
+        "p95": 904.1400000002235,
+        "max": 925.7000000001863
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 17204.4768,
+      "figureReadyAfterFirstObservedFrameMs": 27192.975999999995,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "old-a",
+      "gilSha256": "8abbe2a581e6d29257a839b02cea62161c6a81c572e09cbe21a2b0c4b5d428b0",
+      "saveSha256": "81994ecacf641da48ab6e3caed0f76a7c601d08ec754d9178dd1ee5a0ffef354",
+      "buildId": "92884fa3-49c8-45ed-9471-710a4be76e4c",
+      "images": 57,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "1c042dc05ac14af2e8809c6ad3de957687b44f6e76c06655f8fa34ec92a26082"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "030c2b96d9ab218f89733c12f88a1f9d381178c283ffe1afe38ed0b8514a665a"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "legacy",
+      "samplesPerCycle": null,
+      "sampleRateHz": null,
+      "controls": 13812,
+      "characterOwned": 59,
+      "readyCpuMs": 119.04720000000043,
+      "readySteps": 2,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 5.688699999999699,
+        "p95": 8.621099999999387,
+        "p99": 9.688100000000304,
+        "max": 9.806299999999283
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 66.14999999990687,
+        "p95": 145.18999999999062,
+        "max": 183.20000000018626
+      },
+      "stream": {
+        "events": 48,
+        "requests": 30,
+        "changedFrames": 29,
+        "wall": 1.1862000000001862,
+        "game": 1.200000000000001
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 30,
+        "p50": 34.0500000002794,
+        "p95": 48.240000000456334,
+        "max": 51.40000000037253
+      },
+      "steadyStepRoundtripMs": {
+        "n": 116,
+        "p50": 24,
+        "p95": 38.22499999962747,
+        "max": 42.90000000037253
+      },
+      "steadyApplyMs": {
+        "n": 116,
+        "p50": 6.3999999994412065,
+        "p95": 10.349999999860302,
+        "max": 14.100000000558794
+      },
+      "steadyRenderMs": {
+        "n": 116,
+        "p50": 5.800000000279397,
+        "p95": 9.700000000419095,
+        "max": 13.200000000186265
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 121.79999999981374,
+        "p95": 157.6199999996461,
+        "max": 161.59999999962747
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 171.90000000037253,
+        "p95": 213.39000000003725,
+        "max": 218
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 11232.167200000002,
+      "figureReadyAfterFirstObservedFrameMs": 2006.181700000001,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "old-b",
+      "gilSha256": "8eb355257fdbeb27250afa5632a13dd3e1cd4b130995b5d48b6b0a2e82d527f0",
+      "saveSha256": "b0275462db1881e2dee75da9f8ccf2617e1d166192fc910d8ce6f63464e054cf",
+      "buildId": "5f742a77-13a5-41cc-948b-24dd60d6a55b",
+      "images": 57,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "1c042dc05ac14af2e8809c6ad3de957687b44f6e76c06655f8fa34ec92a26082"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "030c2b96d9ab218f89733c12f88a1f9d381178c283ffe1afe38ed0b8514a665a"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "legacy",
+      "samplesPerCycle": null,
+      "sampleRateHz": null,
+      "controls": 13812,
+      "characterOwned": 59,
+      "readyCpuMs": 242.61209999999937,
+      "readySteps": 3,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 15.180200000000696,
+        "p95": 19.58560000000034,
+        "p99": 20.869300000000294,
+        "max": 21.65060000000085
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 94.25,
+        "p95": 172.13499999977643,
+        "max": 202.19999999925494
+      },
+      "stream": {
+        "events": 48,
+        "requests": 31,
+        "changedFrames": 30,
+        "wall": 1.7767000000001862,
+        "game": 1.7599999999999998
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 31,
+        "p50": 51.40000000037253,
+        "p95": 61.35000000009313,
+        "max": 63.700000000186265
+      },
+      "steadyStepRoundtripMs": {
+        "n": 88,
+        "p50": 33.85000000009313,
+        "p95": 58.71000000005587,
+        "max": 69.70000000018626
+      },
+      "steadyApplyMs": {
+        "n": 88,
+        "p50": 12.049999999813735,
+        "p95": 33.81000000019555,
+        "max": 47.200000000186265
+      },
+      "steadyRenderMs": {
+        "n": 88,
+        "p50": 11.549999999813735,
+        "p95": 33.24499999983233,
+        "max": 45.60000000055879
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 386.09999999962747,
+        "p95": 459.720000000298,
+        "max": 467.90000000037253
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 526.5999999996275,
+        "p95": 636.8500000004657,
+        "max": 649.1000000005588
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 5958.9452,
+      "figureReadyAfterFirstObservedFrameMs": 493.28709999999955,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "old-c",
+      "gilSha256": "5de8a1e85006f679434138c380725275fc20802b0750598a888b1c351f8ebe4d",
+      "saveSha256": "e7409e2516bfd4891f153e9eb5457b1a2543811ed97ff0eb1a158748a1da5022",
+      "buildId": "92e6314d-d84b-408a-989a-b5e03865045b",
+      "images": 57,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8c9831ad8318dd44e95eb4894442335c068498f1368f8b47b9ca82546a57a17a"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "legacy",
+      "samplesPerCycle": null,
+      "sampleRateHz": null,
+      "controls": 13812,
+      "characterOwned": 59,
+      "readyCpuMs": 369.27620000000024,
+      "readySteps": 4,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 15.77520000000004,
+        "p95": 19.671399999999267,
+        "p99": 22.42909999999938,
+        "max": 23.105999999999767
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 89.85000000009313,
+        "p95": 109.79500000011176,
+        "max": 109.90000000037253
+      },
+      "stream": {
+        "events": 48,
+        "requests": 48,
+        "changedFrames": 47,
+        "wall": 4.3665,
+        "game": 4.43
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 48,
+        "p50": 38.85000000009313,
+        "p95": 62.540000000549476,
+        "max": 70.8999999994412
+      },
+      "steadyStepRoundtripMs": {
+        "n": 61,
+        "p50": 45,
+        "p95": 70.20000000018626,
+        "max": 198.1000000005588
+      },
+      "steadyApplyMs": {
+        "n": 61,
+        "p50": 15.600000000558794,
+        "p95": 33.799999999813735,
+        "max": 60.90000000037253
+      },
+      "steadyRenderMs": {
+        "n": 61,
+        "p50": 14.700000000186265,
+        "p95": 32.90000000037253,
+        "max": 59.700000000186265
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 316.40000000037253,
+        "p95": 406.6700000002049,
+        "max": 416.70000000018626
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 457.40000000037253,
+        "p95": 560.3599999998696,
+        "max": 571.7999999998137
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 15327.1152,
+      "figureReadyAfterFirstObservedFrameMs": 2502.029699999999,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "old-final-a",
+      "gilSha256": "afb1de4d3c0f1265fd786e869c7567e605d10ea9fbfd228a45c68acbf551b15e",
+      "saveSha256": "8a45a9f91a83c37bac9d1cc4a0bd92e94059b7127cfc4b227eeb51599e7fa9cb",
+      "buildId": "d47e4242-397b-4c4d-af62-49fbb7818d38",
+      "images": 57,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "legacy",
+      "samplesPerCycle": null,
+      "sampleRateHz": null,
+      "controls": 13812,
+      "characterOwned": 59,
+      "readyCpuMs": 263.08300000000054,
+      "readySteps": 3,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 9.53230000000076,
+        "p95": 14.85070000000087,
+        "p99": 15.69840000000113,
+        "max": 15.852399999999761
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 90.15000000037253,
+        "p95": 109.47999999988824,
+        "max": 117.59999999962747
+      },
+      "stream": {
+        "events": 48,
+        "requests": 48,
+        "changedFrames": 47,
+        "wall": 3.612699999999255,
+        "game": 3.630000000000001
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 32,
+        "receivedSpanMs": 883.3000000007451,
+        "pointerRequests": 21,
+        "changedFrames": 21,
+        "lastInputToLastObservedPositionDrawMs": 81.30000000074506,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 3.297183333337074,
+        "p95": 11.909106666672487,
+        "max": 13.589400000004389
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 21,
+        "p50": 38.70000000111759,
+        "p95": 52.80000000074506,
+        "max": 53.59999999962747
+      },
+      "streamPointerRoundtripMs": {
+        "n": 48,
+        "p50": 24.09999999962747,
+        "p95": 45.92000000085682,
+        "max": 52.30000000074506
+      },
+      "steadyStepRoundtripMs": {
+        "n": 89,
+        "p50": 32.90000000037253,
+        "p95": 45.519999999925496,
+        "max": 50.59999999962747
+      },
+      "steadyApplyMs": {
+        "n": 89,
+        "p50": 11.900000000372529,
+        "p95": 25.700000000372526,
+        "max": 30
+      },
+      "steadyRenderMs": {
+        "n": 89,
+        "p50": 11.400000000372529,
+        "p95": 25.200000000372526,
+        "max": 29.59999999962747
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 245.09999999962747,
+        "p95": 344.45999999996275,
+        "max": 355.5
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 335.40000000037253,
+        "p95": 353.49000000003724,
+        "max": 355.5
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 13456.979600000002,
+      "figureReadyAfterFirstObservedFrameMs": 2317.9297000000006,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "old-final-b",
+      "gilSha256": "76e5bdcd954de86959b1cfa481ffb3cb242f1a708e8c43485f47141d9c3bc00d",
+      "saveSha256": "f9d981f3bf442f11ec1902511db35ed3b0310c206b0c39e698928c660f348bb1",
+      "buildId": "292e6f33-778b-4fbe-b5fb-9e4b5b308db7",
+      "images": 57,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "legacy",
+      "samplesPerCycle": null,
+      "sampleRateHz": null,
+      "controls": 13812,
+      "characterOwned": 59,
+      "readyCpuMs": 194.76220000000012,
+      "readySteps": 3,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 10.009900000000926,
+        "p95": 15.096600000000763,
+        "p99": 16.98199999999997,
+        "max": 19.280299999999443
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 60.39999999944121,
+        "p95": 80.51499999975785,
+        "max": 85.09999999962747
+      },
+      "stream": {
+        "events": 48,
+        "requests": 23,
+        "changedFrames": 22,
+        "wall": 1.34,
+        "game": 1.33
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 43,
+        "receivedSpanMs": 803.5,
+        "pointerRequests": 15,
+        "changedFrames": 15,
+        "lastInputToLastObservedPositionDrawMs": 119.40000000037253,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 3.030183333329944,
+        "p95": 14.312056666665631,
+        "max": 15.902566666666303
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 15,
+        "p50": 55.40000000037253,
+        "p95": 73.34000000022351,
+        "max": 75.30000000074506
+      },
+      "streamPointerRoundtripMs": {
+        "n": 23,
+        "p50": 55.09999999962747,
+        "p95": 64.79000000022351,
+        "max": 66.29999999888241
+      },
+      "steadyStepRoundtripMs": {
+        "n": 61,
+        "p50": 46.29999999888241,
+        "p95": 60.5,
+        "max": 97.59999999962747
+      },
+      "steadyApplyMs": {
+        "n": 61,
+        "p50": 12.099999999627471,
+        "p95": 19,
+        "max": 31.299999998882413
+      },
+      "steadyRenderMs": {
+        "n": 61,
+        "p50": 11.400000000372529,
+        "p95": 18.299999998882413,
+        "max": 30.699999999254942
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 248,
+        "p95": 332.23999999966475,
+        "max": 341.59999999962747
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 331.90000000037253,
+        "p95": 434.3199999993667,
+        "max": 445.69999999925494
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 12855.2035,
+      "figureReadyAfterFirstObservedFrameMs": 1936.7284,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "old-fixed-a2",
+      "gilSha256": "1cca07d3651a07b439d94fcd23c1d1f51703e7dcc694d0d6bbb38bdd1593c4b0",
+      "saveSha256": "f059cb0c9206045db115f775a8af5a1ab84c0c388921c7754a2641b1e4786395",
+      "buildId": "2dae0849-75df-4b8e-8e44-e21bc63f2d76",
+      "images": 57,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "legacy",
+      "samplesPerCycle": null,
+      "sampleRateHz": null,
+      "controls": 13812,
+      "characterOwned": 59,
+      "readyCpuMs": 221.2407000000003,
+      "readySteps": 3,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 8.283100000000559,
+        "p95": 12.551800000000185,
+        "p99": 13.97649999999976,
+        "max": 14.740199999999277
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 72.6000000005588,
+        "p95": 92.66999999927356,
+        "max": 100.29999999888241
+      },
+      "stream": {
+        "events": 48,
+        "requests": 37,
+        "changedFrames": 36,
+        "wall": 1.8955999999996274,
+        "game": 1.8600000000000012
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 44,
+        "receivedSpanMs": 792.4000000003725,
+        "pointerRequests": 21,
+        "changedFrames": 21,
+        "lastInputToLastObservedPositionDrawMs": 86.59999999962747,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 3.1722666666634325,
+        "p95": 12.253499999998152,
+        "max": 14.634166666665465
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 21,
+        "p50": 37.90000000037253,
+        "p95": 47.59999999962747,
+        "max": 48.59999999962747
+      },
+      "streamPointerRoundtripMs": {
+        "n": 37,
+        "p50": 35.80000000074506,
+        "p95": 47.18000000044702,
+        "max": 49.59999999962747
+      },
+      "steadyStepRoundtripMs": {
+        "n": 87,
+        "p50": 33,
+        "p95": 50.34000000003725,
+        "max": 55.90000000037253
+      },
+      "steadyApplyMs": {
+        "n": 87,
+        "p50": 10.400000000372529,
+        "p95": 26.139999999664727,
+        "max": 32.899999998509884
+      },
+      "steadyRenderMs": {
+        "n": 87,
+        "p50": 9.900000000372529,
+        "p95": 25.539999998733403,
+        "max": 32.399999998509884
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 257.6000000014901,
+        "p95": 264.1699999988079,
+        "max": 264.8999999985099
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 350,
+        "p95": 357.65,
+        "max": 358.5
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 11024.2509,
+      "figureReadyAfterFirstObservedFrameMs": 1960.434000000001,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "old-fixed-b",
+      "gilSha256": "6ce57ea9cf4dbd281795fd47fe182275c7dfaf4b763e0b541e4c9e0e35c544f6",
+      "saveSha256": "83b1b78eb84c5d4d82f67cfd5f8f3f7aa11cfa1f467ef0080dad06f5579c3eaa",
+      "buildId": "35a0effb-bf81-40eb-b5ad-1b8da736d06c",
+      "images": 57,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "legacy",
+      "samplesPerCycle": null,
+      "sampleRateHz": null,
+      "controls": 13812,
+      "characterOwned": 59,
+      "readyCpuMs": 206.54849999999988,
+      "readySteps": 3,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 20.148300000000745,
+        "p95": 42.25600000000122,
+        "p99": 56.28799999999865,
+        "max": 67.14750000000095
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 48.450000000186265,
+        "p95": 53.72000000039115,
+        "max": 54
+      },
+      "stream": {
+        "events": 48,
+        "requests": 48,
+        "changedFrames": 47,
+        "wall": 2.18,
+        "game": 2.17
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 37,
+        "receivedSpanMs": 791,
+        "pointerRequests": 27,
+        "changedFrames": 27,
+        "lastInputToLastObservedPositionDrawMs": 75,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 2.716999999996915,
+        "p95": 11.479269999997475,
+        "max": 12.018666666665638
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 27,
+        "p50": 29.09999999962747,
+        "p95": 33.59999999962747,
+        "max": 43.70000000111759
+      },
+      "streamPointerRoundtripMs": {
+        "n": 48,
+        "p50": 19.350000000558794,
+        "p95": 23.40000000037253,
+        "max": 31.40000000037253
+      },
+      "steadyStepRoundtripMs": {
+        "n": 111,
+        "p50": 27,
+        "p95": 33.59999999962747,
+        "max": 37.79999999888241
+      },
+      "steadyApplyMs": {
+        "n": 111,
+        "p50": 13.299999998882413,
+        "p95": 18.399999999441206,
+        "max": 25.199999999254942
+      },
+      "steadyRenderMs": {
+        "n": 111,
+        "p50": 12.900000000372529,
+        "p95": 18.149999999441206,
+        "max": 24.90000000037253
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 180.5,
+        "p95": 279.4100000003353,
+        "max": 290.40000000037253
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 244.40000000037253,
+        "p95": 362.3900000000373,
+        "max": 375.5
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 8612.6658,
+      "figureReadyAfterFirstObservedFrameMs": 1936.6337999999996,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "old-fixed-c",
+      "gilSha256": "a894a7991d2019d79419a606a759b9386a9429b686cc148e71fd25a6df318bab",
+      "saveSha256": "17d60ca89904234d8f7302a1396a17a839c61e57fdd5d22f3f358518f46a1d59",
+      "buildId": "7c99a5af-21b8-4966-b959-4624681d680c",
+      "images": 57,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "legacy",
+      "samplesPerCycle": null,
+      "sampleRateHz": null,
+      "controls": 13812,
+      "characterOwned": 59,
+      "readyCpuMs": 87.30209999999988,
+      "readySteps": 2,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 5.543999999999869,
+        "p95": 6.556300000000192,
+        "p99": 6.985400000000482,
+        "max": 7.007599999999911
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 47.89999999944121,
+        "p95": 59.62000000011175,
+        "max": 63.40000000037253
+      },
+      "stream": {
+        "events": 48,
+        "requests": 48,
+        "changedFrames": 47,
+        "wall": 1.856800000000745,
+        "game": 1.8699999999999992
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 47,
+        "receivedSpanMs": 775.7999999988824,
+        "pointerRequests": 25,
+        "changedFrames": 25,
+        "lastInputToLastObservedPositionDrawMs": 123,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 1.8738833333330263,
+        "p95": 12.370583333332547,
+        "max": 14.72780000000057
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 25,
+        "p50": 32.59999999962747,
+        "p95": 35.86000000014901,
+        "max": 38.5
+      },
+      "streamPointerRoundtripMs": {
+        "n": 48,
+        "p50": 20.000000000931323,
+        "p95": 27.945000000111758,
+        "max": 30.59999999962747
+      },
+      "steadyStepRoundtripMs": {
+        "n": 128,
+        "p50": 22.049999999813735,
+        "p95": 29.800000000745058,
+        "max": 32.80000000074506
+      },
+      "steadyApplyMs": {
+        "n": 128,
+        "p50": 8.749999999068677,
+        "p95": 14.900000000372529,
+        "max": 19.200000001117587
+      },
+      "steadyRenderMs": {
+        "n": 128,
+        "p50": 8.399999998509884,
+        "p95": 14.465000000130384,
+        "max": 18.90000000037253
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 170.40000000037253,
+        "p95": 177.95999999903142,
+        "max": 178.7999999988824
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 232.90000000037253,
+        "p95": 237.49000000003724,
+        "max": 238
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 7217.8326,
+      "figureReadyAfterFirstObservedFrameMs": 607.3158999999978,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "old-fixed-d",
+      "gilSha256": "4ca9b82514ca5521fca6442bea74f979d507e086ad6d06ff42223200566347c6",
+      "saveSha256": "cf3f244e973533bb2fd4ca1a2bc4ccf573dc76b56408e1512d488a3d636f9ff3",
+      "buildId": "3f55b0c1-db53-4f03-8b2b-e2a5bffebeb0",
+      "images": 57,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "legacy",
+      "samplesPerCycle": null,
+      "sampleRateHz": null,
+      "controls": 13812,
+      "characterOwned": 59,
+      "readyCpuMs": 96.0590000000002,
+      "readySteps": 2,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 6.1871000000001,
+        "p95": 7.509999999999309,
+        "p99": 7.933799999999792,
+        "max": 8.449999999999818
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 85.69999999925494,
+        "p95": 161.01999999964605,
+        "max": 190.69999999925494
+      },
+      "stream": {
+        "events": 48,
+        "requests": 29,
+        "changedFrames": 28,
+        "wall": 1.6512999999988824,
+        "game": 1.6400000000000006
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 44,
+        "receivedSpanMs": 780.4000000003725,
+        "pointerRequests": 19,
+        "changedFrames": 19,
+        "lastInputToLastObservedPositionDrawMs": 72.5,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 3.6649333333328578,
+        "p95": 14.01229500000115,
+        "max": 14.721733333333134
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 19,
+        "p50": 42.30000000074506,
+        "p95": 50.900000001117576,
+        "max": 57.20000000111759
+      },
+      "streamPointerRoundtripMs": {
+        "n": 29,
+        "p50": 52.09999999962747,
+        "p95": 66.27999999970197,
+        "max": 85.59999999962747
+      },
+      "steadyStepRoundtripMs": {
+        "n": 141,
+        "p50": 18,
+        "p95": 33.79999999888241,
+        "max": 53.19999999925494
+      },
+      "steadyApplyMs": {
+        "n": 141,
+        "p50": 4.199999999254942,
+        "p95": 9.799999998882413,
+        "max": 17.899999998509884
+      },
+      "steadyRenderMs": {
+        "n": 141,
+        "p50": 3.799999998882413,
+        "p95": 9.199999999254942,
+        "max": 17.399999998509884
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 368,
+        "p95": 371.68999999966474,
+        "max": 372.09999999962747
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 479.7000000011176,
+        "p95": 487.17000000011177,
+        "max": 488
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 6470.374100000001,
+      "figureReadyAfterFirstObservedFrameMs": 1347.1718999999994,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "original-7303-b4",
+      "gilSha256": "eae3a527ea832c07ec1326f8986fc753463d942cdbe6fcb5eec6dca0456277d2",
+      "saveSha256": "49a1aba068ec3acd723447ad12ae1263c150dbe1439243b62b43e991614aa000",
+      "buildId": "8f476c54-dbc9-46c5-8200-86df84b0c11a",
+      "images": 7303,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 21185,
+      "characterOwned": 7432,
+      "readyCpuMs": 5479.618,
+      "readySteps": 166,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 7.386799999998402,
+        "p95": 11.969199999999546,
+        "p99": 12.811599999999089,
+        "max": 14.168999999999869
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 115.55000000074506,
+        "p95": 153.1299999995157,
+        "max": 160.19999999925494
+      },
+      "stream": {
+        "events": 48,
+        "requests": 15,
+        "changedFrames": 12,
+        "wall": 1.3477999999988823,
+        "game": 1.240000000000002
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 48,
+        "receivedSpanMs": 782.7999999988824,
+        "pointerRequests": 6,
+        "changedFrames": 7,
+        "lastInputToLastObservedPositionDrawMs": 353.5,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 4.431283333332743,
+        "p95": 13.868164999999127,
+        "max": 14.574000000000524
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 6,
+        "p50": 116.1000000005588,
+        "p95": 271.02499999990687,
+        "max": 313.09999999962747
+      },
+      "streamPointerRoundtripMs": {
+        "n": 15,
+        "p50": 76.80000000074506,
+        "p95": 100.83999999966473,
+        "max": 102.79999999888241
+      },
+      "steadyStepRoundtripMs": {
+        "n": 90,
+        "p50": 32.55000000074506,
+        "p95": 45.65999999959021,
+        "max": 60.70000000111759
+      },
+      "steadyApplyMs": {
+        "n": 90,
+        "p50": 12.700000001117587,
+        "p95": 26.48499999921769,
+        "max": 36.30000000074506
+      },
+      "steadyRenderMs": {
+        "n": 90,
+        "p50": 11.150000001303852,
+        "p95": 24.909999999497085,
+        "max": 34.90000000037253
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 249.80000000074506,
+        "p95": 343.1300000000745,
+        "max": 353.5
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 378,
+        "p95": 462.42000000067054,
+        "max": 471.80000000074506
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 10188.693800000001,
+      "figureReadyAfterFirstObservedFrameMs": 22753.3579,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "pinned-1369-s20",
+      "gilSha256": "ee19b3ef6889e1ad7c0c36190b36fa75de3d374be1a57c06f43854bfdd0a5ac3",
+      "saveSha256": "5b4392de8255827e5cea069e9949fa779bc046c8c18558a75d7db3a7f4afa650",
+      "buildId": "72cd2290-b23a-49e4-9ec3-c114b3b5d90e",
+      "images": 1369,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 15180,
+      "characterOwned": 1427,
+      "readyCpuMs": 1103.6030999999998,
+      "readySteps": 36,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 7.947799999999916,
+        "p95": 11.569300000000112,
+        "p99": 13.194400000000314,
+        "max": 13.510199999999713
+      },
+      "nativeIdle": {
+        "writes": 684,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 89.54999999981374,
+        "p95": 106.7100000007078,
+        "max": 112.10000000149012
+      },
+      "stream": {
+        "events": 48,
+        "requests": 23,
+        "changedFrames": 19,
+        "wall": 1.2362999999988824,
+        "game": 1.1899999999999995
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 23,
+        "p50": 48.100000001490116,
+        "p95": 59.29000000003725,
+        "max": 63
+      },
+      "steadyStepRoundtripMs": {
+        "n": 104,
+        "p50": 28.59999999962747,
+        "p95": 34.17000000094995,
+        "max": 42.70000000111759
+      },
+      "steadyApplyMs": {
+        "n": 104,
+        "p50": 7.300000000745058,
+        "p95": 10,
+        "max": 10.800000000745058
+      },
+      "steadyRenderMs": {
+        "n": 104,
+        "p50": 6.650000000372529,
+        "p95": 9.08499999968335,
+        "max": 9.900000000372529
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 300.8999999985099,
+        "p95": 316.02000000085684,
+        "max": 317.7000000011176
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 423.7000000011176,
+        "p95": 439.17999999877065,
+        "max": 440.8999999985099
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 10867.438,
+      "figureReadyAfterFirstObservedFrameMs": 5018.1831999999995,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "pinned-1826-b4",
+      "gilSha256": "c4396f760c05db239e5df0345f4f5cd2f048a8f8144a0375a64053b08beeee14",
+      "saveSha256": "6be355bf6a3920e11d5492798f801f155d81d77dc71ab83b8de98843693bcb49",
+      "buildId": "3a0f7f12-5877-49c3-81d1-5b4248038f60",
+      "images": 1826,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 15617,
+      "characterOwned": 1864,
+      "readyCpuMs": 1755.2958000000003,
+      "readySteps": 48,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 7.744599999999991,
+        "p95": 12.57970000000023,
+        "p99": 13.85360000000037,
+        "max": 14.008099999999104
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 77.04999999981374,
+        "p95": 89.9050000006333,
+        "max": 91.90000000037253
+      },
+      "stream": {
+        "events": 48,
+        "requests": 17,
+        "changedFrames": 15,
+        "wall": 1.1174000000003725,
+        "game": 1.0300000000000011
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 47,
+        "receivedSpanMs": 778.2000000011176,
+        "pointerRequests": 15,
+        "changedFrames": 14,
+        "lastInputToLastObservedPositionDrawMs": 132.59999999962747,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 2.0603666666635547,
+        "p95": 11.070388333332222,
+        "max": 14.394399999997404
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 15,
+        "p50": 55.59999999962747,
+        "p95": 68.92000000067056,
+        "max": 70.59999999962747
+      },
+      "streamPointerRoundtripMs": {
+        "n": 17,
+        "p50": 57.70000000111759,
+        "p95": 73.16000000052153,
+        "max": 74.59999999962747
+      },
+      "steadyStepRoundtripMs": {
+        "n": 108,
+        "p50": 27.549999999813735,
+        "p95": 32.764999999664724,
+        "max": 34.40000000037253
+      },
+      "steadyApplyMs": {
+        "n": 108,
+        "p50": 7.400000000372529,
+        "p95": 10.10000000083819,
+        "max": 10.5
+      },
+      "steadyRenderMs": {
+        "n": 108,
+        "p50": 6.599999999627471,
+        "p95": 9.094999999646095,
+        "max": 9.599999999627471
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 241,
+        "p95": 418.9299999993294,
+        "max": 438.69999999925494
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 340.2999999988824,
+        "p95": 428.8599999992177,
+        "max": 438.69999999925494
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 11226.032799999999,
+      "figureReadyAfterFirstObservedFrameMs": 6204.930400000001,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "pinned-1826-s20",
+      "gilSha256": "aeb0fa5d4eee598a912a3163792e6491ad795ef55c780fcd1137b25a24b983c2",
+      "saveSha256": "120ab1872e36bd7e3cb625c664dd910f9dc7a26daadb6099739414fc2a8c549c",
+      "buildId": "020216c6-3cc9-4b23-89cd-8c0d9e9accc5",
+      "images": 1826,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 15645,
+      "characterOwned": 1892,
+      "readyCpuMs": 1345.2559999999999,
+      "readySteps": 46,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 8.206699999998818,
+        "p95": 13.234699999999975,
+        "p99": 15.121399999999994,
+        "max": 15.66610000000037
+      },
+      "nativeIdle": {
+        "writes": 684,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 79.84999999962747,
+        "p95": 94.37999999960884,
+        "max": 95.5
+      },
+      "stream": {
+        "events": 48,
+        "requests": 23,
+        "changedFrames": 21,
+        "wall": 1.4662999999988824,
+        "game": 1.4000000000000004
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 23,
+        "p50": 51.5,
+        "p95": 63.40999999940395,
+        "max": 67.19999999925494
+      },
+      "steadyStepRoundtripMs": {
+        "n": 94,
+        "p50": 30.049999999813735,
+        "p95": 45.34500000001862,
+        "max": 58.100000001490116
+      },
+      "steadyApplyMs": {
+        "n": 94,
+        "p50": 10.799999998882413,
+        "p95": 23.930000000353893,
+        "max": 35.80000000074506
+      },
+      "steadyRenderMs": {
+        "n": 94,
+        "p50": 9.900000000372529,
+        "p95": 22.895000000484277,
+        "max": 35
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 256.80000000074506,
+        "p95": 264.45000000074504,
+        "max": 265.30000000074506
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 331.80000000074506,
+        "p95": 359.9700000014156,
+        "max": 363.1000000014901
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 11196.4264,
+      "figureReadyAfterFirstObservedFrameMs": 5762.416300000001,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "pinned-2739-b4",
+      "gilSha256": "26d0842f02ada36f1eb65073b3ad9dc0a459822ab9b4200bbb15a71e7fa0b135",
+      "saveSha256": "bfd14f72424824ac4f6c22ac1377b37042a570255b683c41051bce1cd4a880c5",
+      "buildId": "709ecbce-8e40-483c-8780-fec15a7cdb6e",
+      "images": 2739,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 16545,
+      "characterOwned": 2792,
+      "readyCpuMs": 1792.9931000000001,
+      "readySteps": 62,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 7.830699999998615,
+        "p95": 13.804400000000896,
+        "p99": 15.767499999999927,
+        "max": 16.180500000000393
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 92.29999999981374,
+        "p95": 112.31500000003724,
+        "max": 116.19999999925494
+      },
+      "stream": {
+        "events": 48,
+        "requests": 16,
+        "changedFrames": 14,
+        "wall": 1.2564000000003726,
+        "game": 1.2200000000000006
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 47,
+        "receivedSpanMs": 778.5,
+        "pointerRequests": 13,
+        "changedFrames": 13,
+        "lastInputToLastObservedPositionDrawMs": 112.79999999888241,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 3.276549999998668,
+        "p95": 11.822601666662619,
+        "max": 14.35303333333043
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 13,
+        "p50": 52.5,
+        "p95": 74.25999999940395,
+        "max": 79.59999999962747
+      },
+      "streamPointerRoundtripMs": {
+        "n": 16,
+        "p50": 64.29999999981374,
+        "p95": 102.04999999934807,
+        "max": 128.59999999962747
+      },
+      "steadyStepRoundtripMs": {
+        "n": 94,
+        "p50": 29.34999999962747,
+        "p95": 47.765000000502894,
+        "max": 60.59999999962747
+      },
+      "steadyApplyMs": {
+        "n": 94,
+        "p50": 10.449999999254942,
+        "p95": 28.43999999966472,
+        "max": 35.90000000037253
+      },
+      "steadyRenderMs": {
+        "n": 94,
+        "p50": 9.349999999627471,
+        "p95": 27.54000000050291,
+        "max": 34.09999999962747
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 269.2000000011176,
+        "p95": 323.4700000001118,
+        "max": 329.5
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 352.2000000011176,
+        "p95": 433.7400000007823,
+        "max": 442.80000000074506
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 11410.0251,
+      "figureReadyAfterFirstObservedFrameMs": 9605.973499999996,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "pinned-3195-b4",
+      "gilSha256": "330b414a10eb897f80d90b0b41a0dd7663cc57f90623e5b835c2f2e7a5abbd8a",
+      "saveSha256": "a27e596bde9f8d736882b58e20096586df444a08e19378c38af36fe4f671d139",
+      "buildId": "2d50b277-92a8-4f63-ac56-c0eea1b11d5b",
+      "images": 3195,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 17009,
+      "characterOwned": 3256,
+      "readyCpuMs": 1329.3030999999996,
+      "readySteps": 66,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 5.899300000000039,
+        "p95": 7.203700000000026,
+        "p99": 8.024100000000544,
+        "max": 8.09439999999995
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 53.700000000186265,
+        "p95": 73.5499999991618,
+        "max": 77.39999999850988
+      },
+      "stream": {
+        "events": 48,
+        "requests": 24,
+        "changedFrames": 23,
+        "wall": 0.946199999999255,
+        "game": 0.9499999999999993
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 48,
+        "receivedSpanMs": 787.0999999996275,
+        "pointerRequests": 21,
+        "changedFrames": 21,
+        "lastInputToLastObservedPositionDrawMs": 86.80000000074506,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 2.778016666664058,
+        "p95": 11.33763333333131,
+        "max": 13.14433333333119
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 21,
+        "p50": 36.09999999962747,
+        "p95": 46,
+        "max": 50
+      },
+      "streamPointerRoundtripMs": {
+        "n": 24,
+        "p50": 33.200000000186265,
+        "p95": 44.75000000009313,
+        "max": 45.90000000037253
+      },
+      "steadyStepRoundtripMs": {
+        "n": 153,
+        "p50": 12.300000000745058,
+        "p95": 21.90000000037253,
+        "max": 23.899999998509884
+      },
+      "steadyApplyMs": {
+        "n": 153,
+        "p50": 7.099999999627471,
+        "p95": 9.900000000372529,
+        "max": 11.600000001490116
+      },
+      "steadyRenderMs": {
+        "n": 153,
+        "p50": 6.399999998509884,
+        "p95": 8.920000000298025,
+        "max": 10.800000000745058
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 158,
+        "p95": 272.2100000003353,
+        "max": 284.90000000037253
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 225.40000000037253,
+        "p95": 342.04000000003725,
+        "max": 355
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 6217.424999999999,
+      "figureReadyAfterFirstObservedFrameMs": 4559.9328000000005,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "pinned-3652-b4",
+      "gilSha256": "de96d7dceaf3fb7c4e67a13e61d98d01c744725df0bdec833359b224f1293030",
+      "saveSha256": "6b282db7e241192a1669e2cae328f5c748e1e319f74450a4127f7a1cc341cdea",
+      "buildId": "2e961339-bcc3-4aa3-a76e-c19910b4d3c5",
+      "images": 3652,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 17473,
+      "characterOwned": 3720,
+      "readyCpuMs": 2321.4236,
+      "readySteps": 80,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 7.499899999998888,
+        "p95": 12.646999999999025,
+        "p99": 14.602500000000873,
+        "max": 15.356900000000678
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 57.30000000074506,
+        "p95": 67.36999999973924,
+        "max": 68
+      },
+      "stream": {
+        "events": 48,
+        "requests": 21,
+        "changedFrames": 20,
+        "wall": 0.908699999999255,
+        "game": 0.9100000000000001
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 48,
+        "receivedSpanMs": 770.1999999992549,
+        "pointerRequests": 21,
+        "changedFrames": 21,
+        "lastInputToLastObservedPositionDrawMs": 130.60000000149012,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 3.13773333333242,
+        "p95": 10.983674999999856,
+        "max": 14.054299999999785
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 21,
+        "p50": 36.90000000037253,
+        "p95": 48.30000000074506,
+        "max": 48.70000000111759
+      },
+      "streamPointerRoundtripMs": {
+        "n": 21,
+        "p50": 36.399999998509884,
+        "p95": 49.09999999962747,
+        "max": 50.90000000037253
+      },
+      "steadyStepRoundtripMs": {
+        "n": 164,
+        "p50": 11.549999999813735,
+        "p95": 15.710000000800934,
+        "max": 26.40000000037253
+      },
+      "steadyApplyMs": {
+        "n": 164,
+        "p50": 4.700000001117587,
+        "p95": 5.900000000093132,
+        "max": 7.400000000372529
+      },
+      "steadyRenderMs": {
+        "n": 164,
+        "p50": 3.900000000372529,
+        "p95": 5,
+        "max": 6.600000001490116
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 151.7000000011176,
+        "p95": 185.99000000078232,
+        "max": 189.80000000074506
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 224.59999999962747,
+        "p95": 261.5899999992922,
+        "max": 265.69999999925494
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 6384.495199999999,
+      "figureReadyAfterFirstObservedFrameMs": 5565.5489,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "pinned-edge-1826-b4",
+      "gilSha256": "714d3bfff6ddc2b538de82247158d81dc26d1c02d2a9b9cd31564e3e6f64f7ba",
+      "saveSha256": "215529bbea26987c5c1fd5d09725ac5a8cb03f7c6ebd33631aba716faeedfd1e",
+      "buildId": "4bfe24b0-5ec0-4c11-a9f2-f57619524420",
+      "images": 1826,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 15617,
+      "characterOwned": 1864,
+      "readyCpuMs": 883.1801,
+      "readySteps": 39,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 7.144999999999527,
+        "p95": 9.888500000000022,
+        "p99": 10.65939999999955,
+        "max": 11.517699999999422
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 63.049999999813735,
+        "p95": 66.49499999927357,
+        "max": 67.29999999888241
+      },
+      "stream": {
+        "events": 48,
+        "requests": 27,
+        "changedFrames": 25,
+        "wall": 1.0399000000003726,
+        "game": 1.0199999999999996
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 46,
+        "receivedSpanMs": 784.1999999992549,
+        "pointerRequests": 22,
+        "changedFrames": 22,
+        "lastInputToLastObservedPositionDrawMs": 117.70000000111759,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 2.045333333332877,
+        "p95": 10.985368333332321,
+        "max": 13.566633333333243
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 22,
+        "p50": 36.14999999944121,
+        "p95": 49.795000000018625,
+        "max": 50.899999998509884
+      },
+      "streamPointerRoundtripMs": {
+        "n": 27,
+        "p50": 34.30000000074506,
+        "p95": 40.07999999914318,
+        "max": 44.5
+      },
+      "steadyStepRoundtripMs": {
+        "n": 129,
+        "p50": 18.799999998882413,
+        "p95": 27.86000000052154,
+        "max": 29.5
+      },
+      "steadyApplyMs": {
+        "n": 129,
+        "p50": 9.299999998882413,
+        "p95": 14,
+        "max": 17.5
+      },
+      "steadyRenderMs": {
+        "n": 129,
+        "p50": 8.599999999627471,
+        "p95": 13.079999999701975,
+        "max": 16.5
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 174.09999999962747,
+        "p95": 189.1300000006333,
+        "max": 190.80000000074506
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 236.40000000037253,
+        "p95": 269.88000000137833,
+        "max": 273.6000000014901
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 7176.7613,
+      "figureReadyAfterFirstObservedFrameMs": 3057.2289999999994,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "pinned-edge-2283-b4",
+      "gilSha256": "d67f8df9a46e6607ae9483801e2b4afe6a4f0bd2917935052661b74447d4e1ea",
+      "saveSha256": "4696cc10aaeaad978aa191d1e3d36b27fb0cc44d0e26f36f80774013c9d43136",
+      "buildId": "cccda04f-3175-4e7a-9661-48ae5f3c6605",
+      "images": 2283,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 16082,
+      "characterOwned": 2329,
+      "readyCpuMs": 999.3628999999996,
+      "readySteps": 48,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 6.571400000000722,
+        "p95": 7.840700000000652,
+        "p99": 10.43619999999919,
+        "max": 13.223799999999756
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 67.8500000005588,
+        "p95": 83.20500000063329,
+        "max": 89.40000000037253
+      },
+      "stream": {
+        "events": 48,
+        "requests": 22,
+        "changedFrames": 21,
+        "wall": 0.937,
+        "game": 0.8900000000000006
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 47,
+        "receivedSpanMs": 785.4000000003725,
+        "pointerRequests": 19,
+        "changedFrames": 19,
+        "lastInputToLastObservedPositionDrawMs": 113.90000000037253,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 3.010883333331833,
+        "p95": 11.896581666666936,
+        "max": 13.943466666666303
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 19,
+        "p50": 39.70000000111759,
+        "p95": 50.43000000026077,
+        "max": 50.69999999925494
+      },
+      "streamPointerRoundtripMs": {
+        "n": 22,
+        "p50": 36.55000000074506,
+        "p95": 44.53999999957159,
+        "max": 45
+      },
+      "steadyStepRoundtripMs": {
+        "n": 152,
+        "p50": 19.25,
+        "p95": 22,
+        "max": 27.59999999962747
+      },
+      "steadyApplyMs": {
+        "n": 152,
+        "p50": 4.6000000005587935,
+        "p95": 6.0450000006705515,
+        "max": 8.300000000745058
+      },
+      "steadyRenderMs": {
+        "n": 152,
+        "p50": 3.900000000372529,
+        "p95": 5.299999998882413,
+        "max": 7.400000000372529
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 201.30000000074506,
+        "p95": 236.66999999973922,
+        "max": 240.59999999962747
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 274.40000000037253,
+        "p95": 320.75000000037255,
+        "max": 325.90000000037253
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 6965.3588,
+      "figureReadyAfterFirstObservedFrameMs": 3742.8076,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "pinned-edge-2739-b4",
+      "gilSha256": "0758aa97f3105a9f97fdaf233a4af2f48c58f06cedf919fdedc708f662488df9",
+      "saveSha256": "5affd279989687b4849f4af1d69c001004be1741dd9847891d160d1bf8f79b1f",
+      "buildId": "2d2a41b8-e607-4e52-8224-0a8f3fe53704",
+      "images": 2739,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "8945b73b1be5f567657a6997d2239bdaa5130e5a6813bb45054489027d29e9a5"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "b9ab01a9b6a03b2874fb9ee807c67dc1e3f1b34bc2f99d4f1ce1f4ecb528677d"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "idle",
+      "samplesPerCycle": 20,
+      "sampleRateHz": 9.09090909090909,
+      "controls": 16545,
+      "characterOwned": 2792,
+      "readyCpuMs": 1151.8025000000002,
+      "readySteps": 57,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 6.142899999999827,
+        "p95": 7.241299999999683,
+        "p99": 7.749499999999898,
+        "max": 7.841899999999441
+      },
+      "nativeIdle": {
+        "writes": 152,
+        "paints": 19,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 53.69999999925494,
+        "p95": 71.51500000050291,
+        "max": 71.90000000037253
+      },
+      "stream": {
+        "events": 48,
+        "requests": 25,
+        "changedFrames": 24,
+        "wall": 1.0180999999996274,
+        "game": 0.9800000000000004
+      },
+      "fixedStream": {
+        "targetEvents": 48,
+        "completedDispatches": 48,
+        "targetHz": 60,
+        "receivedEvents": 47,
+        "receivedSpanMs": 780.5999999996275,
+        "pointerRequests": 21,
+        "changedFrames": 21,
+        "lastInputToLastObservedPositionDrawMs": 89.59999999962747,
+        "endpointVerified": false
+      },
+      "fixedDispatchJitterMs": {
+        "n": 48,
+        "p50": 3.0592666666677246,
+        "p95": 11.612693333334695,
+        "max": 14.360233333334122
+      },
+      "fixedPointerRoundtripMs": {
+        "n": 21,
+        "p50": 34.90000000037253,
+        "p95": 47,
+        "max": 49.30000000074506
+      },
+      "streamPointerRoundtripMs": {
+        "n": 25,
+        "p50": 34.5,
+        "p95": 43.86000000052154,
+        "max": 45.90000000037253
+      },
+      "steadyStepRoundtripMs": {
+        "n": 133,
+        "p50": 21.699999999254942,
+        "p95": 27.380000000447033,
+        "max": 31.199999999254942
+      },
+      "steadyApplyMs": {
+        "n": 133,
+        "p50": 9.699999999254942,
+        "p95": 15.039999999850988,
+        "max": 17.200000001117587
+      },
+      "steadyRenderMs": {
+        "n": 133,
+        "p50": 8.699999999254942,
+        "p95": 14.219999999180434,
+        "max": 16.200000001117587
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 153.59999999962747,
+        "p95": 210.56999999862165,
+        "max": 216.89999999850988
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 226.59999999962747,
+        "p95": 303.1899999992922,
+        "max": 311.69999999925494
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 6652.260200000001,
+      "figureReadyAfterFirstObservedFrameMs": 4877.001300000002,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    },
+    {
+      "name": "static-7303",
+      "gilSha256": "295aa0492a4f13bb1e83702ddc8645325fa939b21170c51fbfed2287cd0207d3",
+      "saveSha256": "b8a808062d7a99e35553d2e3684c9bc545e27d5cf27dba05ae9d68284a244768",
+      "buildId": "67f5adb4-cfff-416e-9868-7deec2f5589d",
+      "images": 7303,
+      "runtimeInputHashes": [
+        {
+          "module": "abyss_traveler_portraits.lua",
+          "sha256": "1c042dc05ac14af2e8809c6ad3de957687b44f6e76c06655f8fa34ec92a26082"
+        },
+        {
+          "module": "abyss_lumine_idle.lua",
+          "sha256": "030c2b96d9ab218f89733c12f88a1f9d381178c283ffe1afe38ed0b8514a665a"
+        },
+        {
+          "module": "abyss_feedback_actor_painter.lua",
+          "sha256": "4d874b8c203034f5a575d631035decf2d301b19cef37f30d22339184e641af0b"
+        }
+      ],
+      "motion": "static",
+      "samplesPerCycle": null,
+      "sampleRateHz": 30,
+      "controls": 21212,
+      "characterOwned": 7459,
+      "readyCpuMs": 2852.9354000000003,
+      "readySteps": 152,
+      "steadySdkStepMs": {
+        "samples": 120,
+        "p50": 5.3880000000008295,
+        "p95": 6.6489999999994325,
+        "p99": 8.60280000000057,
+        "max": 9.902500000000146
+      },
+      "nativeIdle": {
+        "writes": 0,
+        "paints": 0,
+        "creates": 0
+      },
+      "rootControlsAfterCleanup": 0,
+      "inputToDrawMs": {
+        "n": 8,
+        "p50": 84.45000000018626,
+        "p95": 150.69500000011175,
+        "max": 166.90000000037253
+      },
+      "stream": {
+        "events": 48,
+        "requests": 16,
+        "changedFrames": 14,
+        "wall": 0.9495,
+        "game": 0.8999999999999986
+      },
+      "fixedStream": null,
+      "fixedDispatchJitterMs": null,
+      "fixedPointerRoundtripMs": null,
+      "streamPointerRoundtripMs": {
+        "n": 16,
+        "p50": 58.4499999997206,
+        "p95": 71.1500000001397,
+        "max": 75.5
+      },
+      "steadyStepRoundtripMs": {
+        "n": 107,
+        "p50": 27.09999999962747,
+        "p95": 40.220000000204884,
+        "max": 45.5
+      },
+      "steadyApplyMs": {
+        "n": 107,
+        "p50": 9.799999999813735,
+        "p95": 20.61000000024214,
+        "max": 23.09999999962747
+      },
+      "steadyRenderMs": {
+        "n": 107,
+        "p50": 8.399999999441206,
+        "p95": 19.180000000633296,
+        "max": 21.200000000186265
+      },
+      "flightMs": {
+        "n": 3,
+        "p50": 190,
+        "p95": 235.81000000033526,
+        "max": 240.90000000037253
+      },
+      "damageMs": {
+        "n": 3,
+        "p50": 272.70000000018626,
+        "p95": 315.98999999985097,
+        "max": 320.79999999981374
+      },
+      "flightObservedBeforeDamage": true,
+      "coldFirstPositiveFrameMs": 6029.894600000001,
+      "figureReadyAfterFirstObservedFrameMs": 15638.767000000002,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "officialImport": "not_run",
+      "physicalDevices": "not_run"
+    }
+  ]
+}

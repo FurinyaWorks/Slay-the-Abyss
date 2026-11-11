@@ -1,0 +1,56 @@
+[
+  {
+    "source": "case.json",
+    "sourceSha256": "37ec622a2407292f1e6a7d115f9c09db7c9b40f3b251aadb490fdfd09b9b6945",
+    "archive": "case.json.gz",
+    "archiveSha256": "aa983dc316adc20860dcbb9853d89800b320f36909bf3619a56d2c6ae8517e65"
+  },
+  {
+    "source": "sdk.json",
+    "sourceSha256": "8195c808436e23d7dfddcff3aef8e22287f58524167b02a4b6aa64bb78f19640",
+    "archive": "sdk.json.gz",
+    "archiveSha256": "bf16e017e00dc72e87b3472e437fe1af4b51a9bd046736aae3ebc77550dee489"
+  },
+  {
+    "source": "sdk-runner.mjs",
+    "sourceSha256": "c0d651de62dd665aab85de7cad26b9b353705b54c5d643557c4b12427c09943c",
+    "archive": "sdk-runner.mjs.gz",
+    "archiveSha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+  },
+  {
+    "source": "browser/report.json",
+    "sourceSha256": "a81829b3c2787d81bc5d022601b6c14418eed16acf4008828166b6ad96332e02",
+    "archive": "browser--report.json.gz",
+    "archiveSha256": "7b82fd3a3896af5e4a3ec2dee41f5840e78240196def860dcaed96fa3758f23a"
+  },
+  {
+    "source": "browser/browser.mjs",
+    "sourceSha256": "3134a22046a4e473ac2bc2dc602d0bd7ee4b3053dede0b6ea6a9c325b59426ee",
+    "archive": "browser--browser.mjs.gz",
+    "archiveSha256": "86fac84bfddee84625c093912770ee822d12178fcf0c8c63962d703e0324a0a5"
+  },
+  {
+    "source": "visual/receipt.json",
+    "sourceSha256": "c0022c6b5a4cc292730c0f41574e96e1ec385000cdca16f0587b600d68de731f",
+    "archive": "visual--receipt.json.gz",
+    "archiveSha256": "516096d72054a4bd40293a697b1cbd29c109da77ff0078637a5e3fbe1f90f5c3"
+  },
+  {
+    "source": "gil/candidate.json",
+    "sourceSha256": "ada4433cb0fc4b2f13d3efad1f31b68015c0955c907595d62147c48435d20f44",
+    "archive": "gil--candidate.json.gz",
+    "archiveSha256": "349b5f1796712e22b870fc0ae481310152f5e8ae7c871053240c42a7bc2d64a3"
+  },
+  {
+    "source": "preview/adapter-receipt.json",
+    "sourceSha256": "d58a111317f0c5ca9a2bcd052c1b3eb785d95bad4103d292e60bef5112f53207",
+    "archive": "preview--adapter-receipt.json.gz",
+    "archiveSha256": "9462a3d1f74b945d0c95a77fb2a32f72530623bf900b305ccdc6d6f6a55f0d77"
+  },
+  {
+    "source": ".artifacts/lumine-convergence-inputs/static-7303.json",
+    "sourceSha256": "9a95e3c81b05965768e3b5cd46afa6b67bdc8c0624e371ca6dd674faa8c6e47f",
+    "archive": "asset.json.gz",
+    "archiveSha256": "cee81d4c5224c17920aeb6dbc227f6e120508da652d376bc12ef71aa8a01f5c1"
+  }
+]

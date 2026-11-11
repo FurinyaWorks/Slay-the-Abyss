@@ -3,6 +3,8 @@ local M={}
 local SOURCE='32830a9ab3f0b181202205bba59447efe660ce3225ab26f32943c54753a105de'
 function M.enabled(data)return data.renderProfile=='approved-idle-v1'end
 function M.validate(data)
+    assert(data.motion==nil or data.motion=='static','invalid approved idle motion mode')
+    assert(data.samplesPerCycle==nil or data.samplesPerCycle==20,'invalid approved idle sampling')
     assert(data.sourceSha256==SOURCE and (data.width==133 or data.width==210)
         and data.height==math.floor(data.width*585/640+.5) and data.period==2.2
         and data.count>0 and data.count<=8192 and #data.rows==data.count
@@ -14,6 +16,12 @@ function M.validate(data)
             and #row==18 and row[1]==100001,'invalid idle band')
         previous=band
     end
+end
+function M.sample(data,clock)
+    local rate=30
+    if data.samplesPerCycle then rate=data.samplesPerCycle/data.period end
+    local sample=math.floor(clock*rate+1e-9)
+    return sample,sample/rate
 end
 -- Same period, first-order horizontal-band approximation of the approved field.
 -- Wind is sampled at the canvas center; this is not a frame-exact GIF replay.

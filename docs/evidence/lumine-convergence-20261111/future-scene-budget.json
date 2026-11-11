@@ -1,0 +1,387 @@
+{
+  "scope": "arithmetic planning only; no custom monster implemented, no multi-actor performance or official capacity verified",
+  "retainedOtherUiControls": 13753,
+  "assumption": "each future actor owns the same geometry/cache hierarchy as the measured hero; existing official fallback controls stay retained",
+  "projections": [
+    {
+      "case": "adaptive-1826",
+      "imagesPerActor": 1826,
+      "controlsPerActor": 1892,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 5478,
+          "actorOwnedControls": 5676,
+          "retainedUiPlusActorControls": 19429,
+          "bandSetterCallsPerTwoSeconds": 6480
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 7304,
+          "actorOwnedControls": 7568,
+          "retainedUiPlusActorControls": 21321,
+          "bandSetterCallsPerTwoSeconds": 8640
+        }
+      ]
+    },
+    {
+      "case": "adaptive-1826-s20",
+      "imagesPerActor": 1826,
+      "controlsPerActor": 1892,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 5478,
+          "actorOwnedControls": 5676,
+          "retainedUiPlusActorControls": 19429,
+          "bandSetterCallsPerTwoSeconds": 2052
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 7304,
+          "actorOwnedControls": 7568,
+          "retainedUiPlusActorControls": 21321,
+          "bandSetterCallsPerTwoSeconds": 2736
+        }
+      ]
+    },
+    {
+      "case": "adaptive-3652",
+      "imagesPerActor": 3652,
+      "controlsPerActor": 3748,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 10956,
+          "actorOwnedControls": 11244,
+          "retainedUiPlusActorControls": 24997,
+          "bandSetterCallsPerTwoSeconds": 6480
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 14608,
+          "actorOwnedControls": 14992,
+          "retainedUiPlusActorControls": 28745,
+          "bandSetterCallsPerTwoSeconds": 8640
+        }
+      ]
+    },
+    {
+      "case": "adaptive-913",
+      "imagesPerActor": 913,
+      "controlsPerActor": 964,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 2739,
+          "actorOwnedControls": 2892,
+          "retainedUiPlusActorControls": 16645,
+          "bandSetterCallsPerTwoSeconds": 6480
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 3652,
+          "actorOwnedControls": 3856,
+          "retainedUiPlusActorControls": 17609,
+          "bandSetterCallsPerTwoSeconds": 8640
+        }
+      ]
+    },
+    {
+      "case": "edge-2283-final",
+      "imagesPerActor": 2283,
+      "controlsPerActor": 2329,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 6849,
+          "actorOwnedControls": 6987,
+          "retainedUiPlusActorControls": 20740,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 9132,
+          "actorOwnedControls": 9316,
+          "retainedUiPlusActorControls": 23069,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "edge-2739-final",
+      "imagesPerActor": 2739,
+      "controlsPerActor": 2792,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 8217,
+          "actorOwnedControls": 8376,
+          "retainedUiPlusActorControls": 22129,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 10956,
+          "actorOwnedControls": 11168,
+          "retainedUiPlusActorControls": 24921,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "idle-7303",
+      "imagesPerActor": 7303,
+      "controlsPerActor": 7459,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 21909,
+          "actorOwnedControls": 22377,
+          "retainedUiPlusActorControls": 36130,
+          "bandSetterCallsPerTwoSeconds": 6480
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 29212,
+          "actorOwnedControls": 29836,
+          "retainedUiPlusActorControls": 43589,
+          "bandSetterCallsPerTwoSeconds": 8640
+        }
+      ]
+    },
+    {
+      "case": "original-7303-b4",
+      "imagesPerActor": 7303,
+      "controlsPerActor": 7432,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 21909,
+          "actorOwnedControls": 22296,
+          "retainedUiPlusActorControls": 36049,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 29212,
+          "actorOwnedControls": 29728,
+          "retainedUiPlusActorControls": 43481,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "pinned-1369-s20",
+      "imagesPerActor": 1369,
+      "controlsPerActor": 1427,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 4107,
+          "actorOwnedControls": 4281,
+          "retainedUiPlusActorControls": 18034,
+          "bandSetterCallsPerTwoSeconds": 2052
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 5476,
+          "actorOwnedControls": 5708,
+          "retainedUiPlusActorControls": 19461,
+          "bandSetterCallsPerTwoSeconds": 2736
+        }
+      ]
+    },
+    {
+      "case": "pinned-1826-b4",
+      "imagesPerActor": 1826,
+      "controlsPerActor": 1864,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 5478,
+          "actorOwnedControls": 5592,
+          "retainedUiPlusActorControls": 19345,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 7304,
+          "actorOwnedControls": 7456,
+          "retainedUiPlusActorControls": 21209,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "pinned-1826-s20",
+      "imagesPerActor": 1826,
+      "controlsPerActor": 1892,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 5478,
+          "actorOwnedControls": 5676,
+          "retainedUiPlusActorControls": 19429,
+          "bandSetterCallsPerTwoSeconds": 2052
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 7304,
+          "actorOwnedControls": 7568,
+          "retainedUiPlusActorControls": 21321,
+          "bandSetterCallsPerTwoSeconds": 2736
+        }
+      ]
+    },
+    {
+      "case": "pinned-2739-b4",
+      "imagesPerActor": 2739,
+      "controlsPerActor": 2792,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 8217,
+          "actorOwnedControls": 8376,
+          "retainedUiPlusActorControls": 22129,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 10956,
+          "actorOwnedControls": 11168,
+          "retainedUiPlusActorControls": 24921,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "pinned-3195-b4",
+      "imagesPerActor": 3195,
+      "controlsPerActor": 3256,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 9585,
+          "actorOwnedControls": 9768,
+          "retainedUiPlusActorControls": 23521,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 12780,
+          "actorOwnedControls": 13024,
+          "retainedUiPlusActorControls": 26777,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "pinned-3652-b4",
+      "imagesPerActor": 3652,
+      "controlsPerActor": 3720,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 10956,
+          "actorOwnedControls": 11160,
+          "retainedUiPlusActorControls": 24913,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 14608,
+          "actorOwnedControls": 14880,
+          "retainedUiPlusActorControls": 28633,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "pinned-edge-1826-b4",
+      "imagesPerActor": 1826,
+      "controlsPerActor": 1864,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 5478,
+          "actorOwnedControls": 5592,
+          "retainedUiPlusActorControls": 19345,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 7304,
+          "actorOwnedControls": 7456,
+          "retainedUiPlusActorControls": 21209,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "pinned-edge-2283-b4",
+      "imagesPerActor": 2283,
+      "controlsPerActor": 2329,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 6849,
+          "actorOwnedControls": 6987,
+          "retainedUiPlusActorControls": 20740,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 9132,
+          "actorOwnedControls": 9316,
+          "retainedUiPlusActorControls": 23069,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "pinned-edge-2739-b4",
+      "imagesPerActor": 2739,
+      "controlsPerActor": 2792,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 8217,
+          "actorOwnedControls": 8376,
+          "retainedUiPlusActorControls": 22129,
+          "bandSetterCallsPerTwoSeconds": 456
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 10956,
+          "actorOwnedControls": 11168,
+          "retainedUiPlusActorControls": 24921,
+          "bandSetterCallsPerTwoSeconds": 608
+        }
+      ]
+    },
+    {
+      "case": "static-7303",
+      "imagesPerActor": 7303,
+      "controlsPerActor": 7459,
+      "scenes": [
+        {
+          "actors": 3,
+          "visibleArtImages": 21909,
+          "actorOwnedControls": 22377,
+          "retainedUiPlusActorControls": 36130,
+          "bandSetterCallsPerTwoSeconds": 0
+        },
+        {
+          "actors": 4,
+          "visibleArtImages": 29212,
+          "actorOwnedControls": 29836,
+          "retainedUiPlusActorControls": 43589,
+          "bandSetterCallsPerTwoSeconds": 0
+        }
+      ]
+    }
+  ],
+  "performanceExtrapolation": "not available; these counts must not be reported as linear latency/FPS/official load",
+  "creationScheduling": "future actors require a shared scene creation budget; the current per-controller 64-call/8ms slice must not be multiplied as a scene guarantee"
+}

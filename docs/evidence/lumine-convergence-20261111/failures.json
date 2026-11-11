@@ -1,0 +1,14 @@
+[
+  {
+    "name": "old-fixed-a",
+    "asset": "-",
+    "parent": "build/lumine-final-baseline/a4ae5949-7f2f-45d1-a3b5-7166bc236360/candidate.json",
+    "startedAt": "2026-11-11T13:30:51.780Z",
+    "status": "failed",
+    "frames": 1,
+    "mode": "fixed-drag",
+    "error": "Error: experiments/lumine-idle/browser-benchmark.mjs failed 1; see F:\\New folder\\.worktrees\\lumine-native-idle\\.artifacts\\lumine-convergence-20261111\\old-fixed-a/browser.log\n    at ChildProcess.<anonymous> (file:///F:/New%20folder/.worktrees/lumine-native-idle/experiments/lumine-idle/converge-run.mjs:13:120)\n    at Object.onceWrapper (node:events:634:26)\n    at ChildProcess.emit (node:events:519:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)",
+    "elapsedMs": 101380,
+    "finishedAt": "2026-11-11T13:32:33.160Z"
+  }
+]

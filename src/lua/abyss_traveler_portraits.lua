@@ -337,11 +337,13 @@ local function controller(host, data, display, templates, options)
         working=true;poseTicket=generation
         local ok,err=pcall(function()
             if Idle.enabled(data) and phase=='ready' then
-                idleTime=(idleTime+math.min(dt or 0,.1))%data.period
-                local sample=math.floor(idleTime*30)
                 local idle=motionState=='idle'
-                if idleSample~=sample or wasIdle~=idle then
-                    Idle.paint(data,idlePages,sample/30,idle,poseWrite);idleSample=sample;wasIdle=idle
+                if data.motion~='static' then
+                    idleTime=(idleTime+math.min(dt or 0,.1))%data.period
+                    local sample,sampleTime=Idle.sample(data,idleTime)
+                    if idleSample~=sample or wasIdle~=idle then
+                        Idle.paint(data,idlePages,sampleTime,idle,poseWrite);idleSample=sample;wasIdle=idle
+                    end
                 end
                 if idle then x,y,sx,sy=0,0,1,1 end
             end

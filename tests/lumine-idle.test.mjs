@@ -51,3 +51,28 @@ c:pose(0,0,1,1,.1,'idle')
 assert(scaled==0,'continued native scale after synchronous pause')
 assert(c:status().phase=='ready' and not figure.visible)
 `));
+test('static ablation keeps the same cached geometry and preserves whole hit feedback',()=>withPortraitVm(setup.replace('Idle.validate(data)',"data.motion='static';Idle.validate(data)")+`
+local before=LiveCount();local pages={}
+for _,node in ipairs(controls)do if node.isGroup and node.parent==figure then pages[#pages+1]={node=node,writes=#node.trace}end end
+for i=1,120 do c:pose(0,0,1,1,1/60,'idle')end
+for _,entry in ipairs(pages)do assert(#entry.node.trace==entry.writes,'static mode rewrote band transforms')end
+assert(LiveCount()==before,'static mode changed image ownership')
+c:pose(19,-4,.9,.9,1/60,'hit')
+local position=figure.trace[#figure.trace-1]
+assert(position[1]=='SetAnchoredPosition' and position[2]==19 and position[3]==-4,'static mode dropped hit feedback')
+assert(c:release() and LiveCount()==0)
+`));
+test('approved twenty-sample cycle reduces band writes and still resets on hit immediately',()=>withPortraitVm(setup.replace('Idle.validate(data)',"data.samplesPerCycle=20;Idle.validate(data)")+`
+local page;for _,node in ipairs(controls)do if node.isGroup and node.parent==figure then page=node;break end end
+local paints=0;local position=page.SetAnchoredPosition
+page.SetAnchoredPosition=function(self,...)paints=paints+1;position(self,...)end
+local before=LiveCount()
+for i=1,120 do c:pose(0,0,1,1,1/60,'idle')end
+assert(paints>=18 and paints<=20,'not using the approved twenty-sample cycle')
+local count=paints;c:pose(19,-4,.9,.9,0,'hit')
+assert(paints==count+1,'hit reset waited for the next idle sample')
+assert(LiveCount()==before,'sampling rebuilt images')
+assert(c:pause());local writes=paints;c:pose(0,0,1,1,.1,'idle');assert(paints==writes)
+assert(c:begin());c:pose(0,0,1,1,0,'idle');assert(paints>writes,'resume lost idle transition')
+assert(c:release() and LiveCount()==0)
+`));

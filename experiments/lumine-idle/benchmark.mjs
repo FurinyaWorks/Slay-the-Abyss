@@ -1,7 +1,7 @@
 // Reuse the frozen #621 whole-page SDK benchmark, adding one isolated call census.
 import fs from 'node:fs';import path from 'node:path';import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';import assert from 'node:assert/strict';import {spawnSync} from 'node:child_process';
-const [save,sdk,output]=process.argv.slice(2);assert(save&&sdk&&output);
+const [save,sdk,output,...flags]=process.argv.slice(2);assert(save&&sdk&&output);
 let source=gunzipSync(fs.readFileSync('docs/evidence/battle-piles-final-20261111/whole-page-runner.mjs.gz')).toString();
 assert.equal(createHash('sha256').update(source).digest('hex'),'c7a52bbeb92fc4458fc70bab5a1a17ef7815fad9b932ff4c658bec0f3c1dd5b9');
 const anchor=" stage('engine-root-cleanup',";assert.equal(source.split(anchor).length,2);
@@ -20,6 +20,14 @@ source=source.replace(anchor,` stage('actual-idle-native-call-census',()=>{
   const counts=luaValue(-1);d.lua_settop(L,top);assert.equal(counts.creates,0);return counts;
  });
 `+anchor);
-const runner=path.resolve('.artifacts/lumine-idle/whole-page-census.mjs');fs.writeFileSync(runner,source);
+if(flags.includes('--quick')){
+ const start=source.indexOf(" stage('actual-select-cancel'"),end=source.indexOf(" stage('actual-idle-native-call-census'");
+ assert(start>0&&end>start);source=source.slice(0,start)+source.slice(end);
+}
+const runner=path.resolve(path.dirname(output),'sdk-runner.mjs');fs.writeFileSync(runner,source);
 const result=spawnSync(process.execPath,[runner,save,sdk,output],{stdio:'inherit',windowsHide:true,timeout:180000});
 if(result.error)throw result.error;process.exitCode=result.status??1;
+if(fs.existsSync(output)){
+ const report=JSON.parse(fs.readFileSync(output));report.benchmarkCoverage=flags.includes('--quick')?'focused init/ready/held/steady/census/cleanup; real attacks measured separately in browser':'original whole-page workflow plus call census';
+ report.runnerSha256=createHash('sha256').update(source).digest('hex');fs.writeFileSync(output,JSON.stringify(report,null,2));
+}

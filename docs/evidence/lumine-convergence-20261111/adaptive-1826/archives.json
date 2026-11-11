@@ -1,0 +1,56 @@
+[
+  {
+    "source": "case.json",
+    "sourceSha256": "7e80ede82d9db66e5f9ef35163fba7c8d27afd9a2b08d00051bb4b21bdba9839",
+    "archive": "case.json.gz",
+    "archiveSha256": "86c215fe949cca7bd87ce26842b7e5799cbd53255fc9b73fbd88a9350526cddb"
+  },
+  {
+    "source": "sdk.json",
+    "sourceSha256": "8c1d76cd0fa03a4c78d23cbb9433eb9511d9c2ab2b528d66db71b5d1ff914527",
+    "archive": "sdk.json.gz",
+    "archiveSha256": "70b56ee56449fdb8b0179e962806850c27be70df53b75063d1a960eeab714559"
+  },
+  {
+    "source": "sdk-runner.mjs",
+    "sourceSha256": "c0d651de62dd665aab85de7cad26b9b353705b54c5d643557c4b12427c09943c",
+    "archive": "sdk-runner.mjs.gz",
+    "archiveSha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+  },
+  {
+    "source": "browser/report.json",
+    "sourceSha256": "605c451cd1f18a1cf106cdc6f892745aee596593bdc680ccf76dcf08469b2553",
+    "archive": "browser--report.json.gz",
+    "archiveSha256": "c336dd3715937ab36bc0c2c8f978f1e2b3e96543e1423d758e448480c51fb5cc"
+  },
+  {
+    "source": "browser/browser.mjs",
+    "sourceSha256": "29f5f9492b09399f596bf64bbf96410473073682c9da7e4eda6da3ec5477e421",
+    "archive": "browser--browser.mjs.gz",
+    "archiveSha256": "fd871bb4a1a2e3cdbd459e581f147d57b3adf85558e669305bfce7e53c91d77d"
+  },
+  {
+    "source": "visual/receipt.json",
+    "sourceSha256": "56c5a57a75416e82056b42696f9d1414eae6bc668865cfcbfbc5321273d1afe8",
+    "archive": "visual--receipt.json.gz",
+    "archiveSha256": "0c0e6f4dee258a436121c1a416337cb9d854e5cf994142bfd734664ff2766f53"
+  },
+  {
+    "source": "gil/candidate.json",
+    "sourceSha256": "7617795b53c7b683130faaedc21e965ca79cdd22cd7a3f87d53d33732056b13e",
+    "archive": "gil--candidate.json.gz",
+    "archiveSha256": "d14f13ff527e05b6b455680323fdfd930ec1e197801725fc96ad8af277ea250f"
+  },
+  {
+    "source": "preview/adapter-receipt.json",
+    "sourceSha256": "e5bf78503a551c411d314f06b5d27294aa3db346b8007577e99963c814f69c6f",
+    "archive": "preview--adapter-receipt.json.gz",
+    "archiveSha256": "c102c6f33ffbfbe22c3d2f1ab458d97fa40370cfa685d51dd9eb92342f520efd"
+  },
+  {
+    "source": ".artifacts/lumine-convergence-inputs/adaptive-1826.json",
+    "sourceSha256": "113d7df580a0cd3a7a0b3cc746a0570b67c438e2bc1a6150ea38494104a6c9c6",
+    "archive": "asset.json.gz",
+    "archiveSha256": "4e680ce51befc3cf4d9d4a402fb8da59f0da19fe63f34571afcf9e894dc41d80"
+  }
+]

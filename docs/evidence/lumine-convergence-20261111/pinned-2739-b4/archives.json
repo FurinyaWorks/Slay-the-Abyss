@@ -1,0 +1,62 @@
+[
+  {
+    "source": "case.json",
+    "sourceSha256": "a2a3b3a1c26e1345103b59015bc5b8a5da2514614d89b1a52416fac080ebc1d5",
+    "archive": "case.json.gz",
+    "archiveSha256": "1d9c46f3d5887af18bd489bee13d8aa68cfa6ac080637896c08e2bd2e5ba9854"
+  },
+  {
+    "source": "sdk.json",
+    "sourceSha256": "929c47b820e3bb581317d9cc4d94dce783f38ee1809c00e902dfdb508eda6500",
+    "archive": "sdk.json.gz",
+    "archiveSha256": "7227c00717e8bd8fcad9d67b0c4abb4817840e0890aa600963dd157be53ea492"
+  },
+  {
+    "source": "sdk-runner.mjs",
+    "sourceSha256": "c0d651de62dd665aab85de7cad26b9b353705b54c5d643557c4b12427c09943c",
+    "archive": "sdk-runner.mjs.gz",
+    "archiveSha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+  },
+  {
+    "source": "browser/report.json",
+    "sourceSha256": "74f17c354805bd5a35b97eeb49e8e74cee10593c6238077f22868dd62f5c987d",
+    "archive": "browser--report.json.gz",
+    "archiveSha256": "8d3070d994e132d41bd4762ac83a70a50b52858da7a23828c9ee692fd8326853"
+  },
+  {
+    "source": "browser/browser.mjs",
+    "sourceSha256": "d9106c93ef6e462b0ccec7b4ca1e670150e67a4bdb6325a1077311232991e0b3",
+    "archive": "browser--browser.mjs.gz",
+    "archiveSha256": "e3b1397123c04b864c477fe17fc5b4a98980b07b4bd1099ceb04156e4e04803e"
+  },
+  {
+    "source": "visual/receipt.json",
+    "sourceSha256": "0f7048010b8e19164c32bc84cdca594440c37f8b06dfbd1323fe24fda6420794",
+    "archive": "visual--receipt.json.gz",
+    "archiveSha256": "dbe60f8b2854b53c611b678e8682215f42e64da96f4a176bc1f3c8bd8af06a20"
+  },
+  {
+    "source": "gil/candidate.json",
+    "sourceSha256": "b34bbc21ae7184b9eba0d3bd861e3c904c330a9109976e2bacbc398270b46a26",
+    "archive": "gil--candidate.json.gz",
+    "archiveSha256": "764277b9ed1cbedec73867591687bd869f316a4951d88a5c85b1e69f9bda9626"
+  },
+  {
+    "source": "preview/adapter-receipt.json",
+    "sourceSha256": "6ad55c7fa7ae7b9954ba260573964b0107bc9753699a3b3b26fa405fefebcb0c",
+    "archive": "preview--adapter-receipt.json.gz",
+    "archiveSha256": "422eecebf9a7013724a046ce96785b1b05b327024a70d209e2beb11a9bf1835f"
+  },
+  {
+    "source": ".artifacts/lumine-convergence-inputs/pinned-2739-b4.json.receipt.json",
+    "sourceSha256": "549b762011a8704f2f488212bcdbfc3b41b0f6218983a1a98cc400dfea54abf3",
+    "archive": "motion-transform.json.gz",
+    "archiveSha256": "f5799a1328bb4df8ddee4faacda4919ec9344419267cbf3bdda17288a4dab6e9"
+  },
+  {
+    "source": ".artifacts/lumine-convergence-inputs/pinned-2739-b4.json",
+    "sourceSha256": "f1ad6107bb8177f49611b9d865bc6cf2ca4c89ab01c66f12bddb4910d69cd24d",
+    "archive": "asset.json.gz",
+    "archiveSha256": "ae0904e17367c863b9de866f3a82b37d6fedbe30dba3b0eb7bacf5318de00613"
+  }
+]

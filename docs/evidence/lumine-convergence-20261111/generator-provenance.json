@@ -1,0 +1,4 @@
+{
+  "sha256": "b805a78bf2aa2e920a16a3de2929e8f125b1ecca9586415849bcdcf676d57c48",
+  "scope": "Exact measured generator reconstructed by reversing the later output-directory-only patch; SHA matches all edge generation receipts. Current generator adds a fresh output directory option without changing partitioning."
+}

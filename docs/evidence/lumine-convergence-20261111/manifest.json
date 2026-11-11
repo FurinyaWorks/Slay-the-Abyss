@@ -1,0 +1,1665 @@
+{
+  "scope": "byte identities, not acceptance certification",
+  "files": [
+    {
+      "file": "adaptive-1826/archives.json",
+      "bytes": 2366,
+      "sha256": "238741555df555713d91a05ad2771b7ddba43bc67e7bd428f5064d8a2ca84b2a"
+    },
+    {
+      "file": "adaptive-1826/asset.json.gz",
+      "bytes": 20750,
+      "sha256": "4e680ce51befc3cf4d9d4a402fb8da59f0da19fe63f34571afcf9e894dc41d80"
+    },
+    {
+      "file": "adaptive-1826/battle.png",
+      "bytes": 411466,
+      "sha256": "f8c460531b98f0e52cb37684182ff2ac93317cc8d1c20f729eca0382119e6cd8"
+    },
+    {
+      "file": "adaptive-1826/browser--browser.mjs.gz",
+      "bytes": 4928,
+      "sha256": "fd871bb4a1a2e3cdbd459e581f147d57b3adf85558e669305bfce7e53c91d77d"
+    },
+    {
+      "file": "adaptive-1826/browser--report.json.gz",
+      "bytes": 54126,
+      "sha256": "c336dd3715937ab36bc0c2c8f978f1e2b3e96543e1423d758e448480c51fb5cc"
+    },
+    {
+      "file": "adaptive-1826/case.json.gz",
+      "bytes": 430,
+      "sha256": "86c215fe949cca7bd87ce26842b7e5799cbd53255fc9b73fbd88a9350526cddb"
+    },
+    {
+      "file": "adaptive-1826/gil--candidate.json.gz",
+      "bytes": 23471,
+      "sha256": "d14f13ff527e05b6b455680323fdfd930ec1e197801725fc96ad8af277ea250f"
+    },
+    {
+      "file": "adaptive-1826/preview--adapter-receipt.json.gz",
+      "bytes": 1520,
+      "sha256": "c102c6f33ffbfbe22c3d2f1ab458d97fa40370cfa685d51dd9eb92342f520efd"
+    },
+    {
+      "file": "adaptive-1826/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "adaptive-1826/sdk.json.gz",
+      "bytes": 3298,
+      "sha256": "70b56ee56449fdb8b0179e962806850c27be70df53b75063d1a960eeab714559"
+    },
+    {
+      "file": "adaptive-1826/visual--receipt.json.gz",
+      "bytes": 1038,
+      "sha256": "0c0e6f4dee258a436121c1a416337cb9d854e5cf994142bfd734664ff2766f53"
+    },
+    {
+      "file": "adaptive-1826-s20/archives.json",
+      "bytes": 2370,
+      "sha256": "ac861cfdf2859c2b9f3e0e3888b5325c6a99c194b0f58c710d33e47714d802d9"
+    },
+    {
+      "file": "adaptive-1826-s20/asset.json.gz",
+      "bytes": 20592,
+      "sha256": "6e8c48b6aca957b5b2c2d27c04a9658dd101b24a0662a61bc6a8673c42cc0419"
+    },
+    {
+      "file": "adaptive-1826-s20/battle.png",
+      "bytes": 411446,
+      "sha256": "570378f6c14eee476bf63e74bd068a3dfc8a27659393368f0b3669069c3261ec"
+    },
+    {
+      "file": "adaptive-1826-s20/browser--browser.mjs.gz",
+      "bytes": 4932,
+      "sha256": "9a53118ee4269578b32a63d4ecf89281a890c9699425cb903829975172b1ddfe"
+    },
+    {
+      "file": "adaptive-1826-s20/browser--report.json.gz",
+      "bytes": 80312,
+      "sha256": "6ff1879a429b5c21f620bc4fe9cdec830cecfc9cdd6d2007a1a864515bd1ee0f"
+    },
+    {
+      "file": "adaptive-1826-s20/case.json.gz",
+      "bytes": 434,
+      "sha256": "408351007317add817fe9b3e39c9d316cb5051fb95513d868d54b918a0c2bf22"
+    },
+    {
+      "file": "adaptive-1826-s20/gil--candidate.json.gz",
+      "bytes": 23483,
+      "sha256": "0a7db1c7dc6813e046b39a78e40c8f4ad61af8bfdfd6cd1b4d36615fbd7dceea"
+    },
+    {
+      "file": "adaptive-1826-s20/preview--adapter-receipt.json.gz",
+      "bytes": 1528,
+      "sha256": "8684997cee8370f12af093d6633c08034eaa5cda8e58f1d49de4478ce7642960"
+    },
+    {
+      "file": "adaptive-1826-s20/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "adaptive-1826-s20/sdk.json.gz",
+      "bytes": 3281,
+      "sha256": "525650d7dace6d5c95e2ec4c10faa8eb1f4cc3ff3ccd3aae34dedeb5aae4ab57"
+    },
+    {
+      "file": "adaptive-1826-s20/visual--receipt.json.gz",
+      "bytes": 1042,
+      "sha256": "0a6d94854b1af277c6fdefa99e6a5a0cfe72968c943945e81f978121fd72e070"
+    },
+    {
+      "file": "adaptive-3652/archives.json",
+      "bytes": 2366,
+      "sha256": "c655f9ee3eb997547693433ce7d7f2d2a73b1230f3b1f59a08ac2406c782c2ab"
+    },
+    {
+      "file": "adaptive-3652/asset.json.gz",
+      "bytes": 37947,
+      "sha256": "fc474f9c92ab1c70e898780ca2953a6d5221512c305db5c2dda41a03442f4822"
+    },
+    {
+      "file": "adaptive-3652/battle.png",
+      "bytes": 417564,
+      "sha256": "20a757913a34bcc8fa08f7e451385dfe6a1714171f4baeaa2d22aa75459d21e7"
+    },
+    {
+      "file": "adaptive-3652/browser--browser.mjs.gz",
+      "bytes": 4928,
+      "sha256": "9fa286c13096d10809cc870b4a74a8253636f380b92b01d99f66ba4aaa3b4e8e"
+    },
+    {
+      "file": "adaptive-3652/browser--report.json.gz",
+      "bytes": 81481,
+      "sha256": "b7beb5588fd987029dc2a5ad4aa42a6437d932c854f131c58580cb76fff42247"
+    },
+    {
+      "file": "adaptive-3652/case.json.gz",
+      "bytes": 429,
+      "sha256": "509c00ed3c211e53f66f672682f4548aa398c0be7d30153318cfeb7b59487589"
+    },
+    {
+      "file": "adaptive-3652/gil--candidate.json.gz",
+      "bytes": 23473,
+      "sha256": "8e2ef990b892ad68b96980814562a485f94b32c98ff388a4e60459f6038a0b60"
+    },
+    {
+      "file": "adaptive-3652/preview--adapter-receipt.json.gz",
+      "bytes": 1524,
+      "sha256": "f60f1cd5a276a952f85b2908e85c9504ffd05ddb03e8b6aa7383ee5f06602436"
+    },
+    {
+      "file": "adaptive-3652/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "adaptive-3652/sdk.json.gz",
+      "bytes": 3287,
+      "sha256": "49d61a30a4f1eb562665ec088251847cbc04d92563acef680fa3e71405b7327d"
+    },
+    {
+      "file": "adaptive-3652/visual--receipt.json.gz",
+      "bytes": 1044,
+      "sha256": "93a90fd00b9f01aa6ec41e3b6536077a42c277af291f556c41d2a330dfe1bfd8"
+    },
+    {
+      "file": "adaptive-913/archives.json",
+      "bytes": 2365,
+      "sha256": "daee845b6ef29fa1d3c4041841ca004d835a005b7c7485d63b39e101fa8ed77d"
+    },
+    {
+      "file": "adaptive-913/asset.json.gz",
+      "bytes": 11415,
+      "sha256": "d9d50bf8a92f16fbd3d9c056c75341a8c2e50c6f50de9039439cd1703b874936"
+    },
+    {
+      "file": "adaptive-913/battle.png",
+      "bytes": 407074,
+      "sha256": "138a1e3adffecd51836b0e139d737485cda2d9d4bf58f3659dab0dd8bf06a654"
+    },
+    {
+      "file": "adaptive-913/browser--browser.mjs.gz",
+      "bytes": 4928,
+      "sha256": "bab7d8175b5e8c1eac27773d8c0659fadc86249fa4c4c9a28e1a82249f3d50d2"
+    },
+    {
+      "file": "adaptive-913/browser--report.json.gz",
+      "bytes": 69017,
+      "sha256": "defbec7de99492f8dc4518e53cedee0fff4771b08fffe98a2e5c178373a53dfe"
+    },
+    {
+      "file": "adaptive-913/case.json.gz",
+      "bytes": 428,
+      "sha256": "cf8ea9f8e362e5ebdfed3b364ceabe5b44c54cab16a636b0af14f363f16b56c5"
+    },
+    {
+      "file": "adaptive-913/gil--candidate.json.gz",
+      "bytes": 23469,
+      "sha256": "cd7cd858fb3829e4cdc0eb51fd925711cd4c10794455d1e6b2d91e2889bd5ccc"
+    },
+    {
+      "file": "adaptive-913/preview--adapter-receipt.json.gz",
+      "bytes": 1525,
+      "sha256": "6909d2e85d6ca0682e8c64032cf2a53078885aedb9783e58457700d3ed165022"
+    },
+    {
+      "file": "adaptive-913/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "adaptive-913/sdk.json.gz",
+      "bytes": 3275,
+      "sha256": "9d34343764291de2e0d011b67f2322ad715376af04f205c570689249a4cbd4f8"
+    },
+    {
+      "file": "adaptive-913/visual--receipt.json.gz",
+      "bytes": 1048,
+      "sha256": "19649753b51093a06818dfd23c7b555623619110aa3962f8ccd7298ebe779198"
+    },
+    {
+      "file": "backlog.log.gz",
+      "bytes": 293,
+      "sha256": "978c291f44996da8b6eea7d043d8b3cfae9605007e30bad3df42c52b1bcf9378"
+    },
+    {
+      "file": "battle-final.png",
+      "bytes": 405137,
+      "sha256": "0ec974d1fa1dc141cc43bd1a3454f209c48bb0d0b8441b692cd21cc8a3ad7546"
+    },
+    {
+      "file": "DIAGNOSIS.md",
+      "bytes": 5007,
+      "sha256": "ecc823f5872f0823e59286320aabf3930d8a5647332df424dd88214758a82aca"
+    },
+    {
+      "file": "edge-2283-final/archives.json",
+      "bytes": 2998,
+      "sha256": "d78bb83c2b2740f339eb2ab1fcfe44bcfef16dd3ea3bf209cb3105f8f472461f"
+    },
+    {
+      "file": "edge-2283-final/asset.json.gz",
+      "bytes": 23381,
+      "sha256": "ab0d784302edcf1de1f844c846b3d22e33ab0bd17bcf6a33e8a10c6d48077786"
+    },
+    {
+      "file": "edge-2283-final/battle.png",
+      "bytes": 412218,
+      "sha256": "a20ec92f81a2c816cc4235cc0bafddd2eae8bc3295f2db01331e428b62d660d1"
+    },
+    {
+      "file": "edge-2283-final/browser--browser.mjs.gz",
+      "bytes": 5522,
+      "sha256": "dbf0153ff8e3e46627d77476712db5a7ae4ea8ec0cac51e282b2ac8c9ff541cf"
+    },
+    {
+      "file": "edge-2283-final/browser--report.json.gz",
+      "bytes": 74056,
+      "sha256": "12e69787730f39518fc636d0c8ec9fdf7d8e0c2073255e0e94b3e51fe56ba1c6"
+    },
+    {
+      "file": "edge-2283-final/case.json.gz",
+      "bytes": 452,
+      "sha256": "7536412fcf4e544b96f7ab18d86738c49fca262743f221d91d8c135e09ed8bf3"
+    },
+    {
+      "file": "edge-2283-final/conversion.json.gz",
+      "bytes": 574,
+      "sha256": "1a234aff8fdaaaaf33205ad9c829e23fdeb3d6384f42f1d048859b390168f5a3"
+    },
+    {
+      "file": "edge-2283-final/gil--candidate.json.gz",
+      "bytes": 23489,
+      "sha256": "fc7775203d9743230b268cda6fe35868f45a6c287aaeae97d45efb372471704c"
+    },
+    {
+      "file": "edge-2283-final/motion-transform.json.gz",
+      "bytes": 375,
+      "sha256": "874f0a4219abfacc6eb70785b5b4993a66d1f34a442a4b8672b6ee9208b002bb"
+    },
+    {
+      "file": "edge-2283-final/preview--adapter-receipt.json.gz",
+      "bytes": 1525,
+      "sha256": "1260f94ef0f0e8835daa78e90f7754a4e1e7e11b2ec64f07d269c6a4789e7c92"
+    },
+    {
+      "file": "edge-2283-final/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "edge-2283-final/sdk.json.gz",
+      "bytes": 3285,
+      "sha256": "7cf30e878b9920fa3930b16dafd86a1668ec19d6b4d2ac9c56762aeb31a9b54a"
+    },
+    {
+      "file": "edge-2283-final/visual--receipt.json.gz",
+      "bytes": 2358,
+      "sha256": "378ab6ad689769649ded0ae2492562b32782a7dbf5c8167dee4111d96dfc4b69"
+    },
+    {
+      "file": "edge-2739-final/archives.json",
+      "bytes": 2998,
+      "sha256": "43de1bdb5429c7eb622bcfe1c3b67dbe8277a78debec21b289278879f6f9789e"
+    },
+    {
+      "file": "edge-2739-final/asset.json.gz",
+      "bytes": 28013,
+      "sha256": "9eccb6f1d9c99c7b012f0f4e1a7e49d1ebbd18a6cd15cd55753cfd77c51c0c5b"
+    },
+    {
+      "file": "edge-2739-final/battle.png",
+      "bytes": 414409,
+      "sha256": "e50f60dacf5d681d5ea0cd8dabfe2fe26f4c8d5808192871793a55a434e78ca5"
+    },
+    {
+      "file": "edge-2739-final/browser--browser.mjs.gz",
+      "bytes": 5522,
+      "sha256": "763c22fa5ca529309bbffa3d1bfb8534bbc7c457ed4b5e3eb52f60951fbee17b"
+    },
+    {
+      "file": "edge-2739-final/browser--report.json.gz",
+      "bytes": 78374,
+      "sha256": "d3f7932ce53be097f7faf5723fdf8ea7ba0b5422bded78f9e2d39deb0ae915e8"
+    },
+    {
+      "file": "edge-2739-final/case.json.gz",
+      "bytes": 451,
+      "sha256": "e6e422ecd6ad4b9f00e10843ad28506c41eb5d17afed91efdc7ba01ea46548f0"
+    },
+    {
+      "file": "edge-2739-final/conversion.json.gz",
+      "bytes": 575,
+      "sha256": "dbee1163095e73cda03b8e532ad73fbd6a0a0f6c0c25e8c8144df77409f7c696"
+    },
+    {
+      "file": "edge-2739-final/gil--candidate.json.gz",
+      "bytes": 23495,
+      "sha256": "9b01e6816592c7505d6e9f7d648ecaad67ca1166af07e1aa80b32b38be0fe726"
+    },
+    {
+      "file": "edge-2739-final/motion-transform.json.gz",
+      "bytes": 375,
+      "sha256": "8fb693b2177730ca53b1943f2bc015f99f78654c2ae1aff9c676eb68709b26a9"
+    },
+    {
+      "file": "edge-2739-final/preview--adapter-receipt.json.gz",
+      "bytes": 1532,
+      "sha256": "c4e19d0087973ac19a56779633bf33bba7864a5bd29d690901779473015616f6"
+    },
+    {
+      "file": "edge-2739-final/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "edge-2739-final/sdk.json.gz",
+      "bytes": 3274,
+      "sha256": "c5464138fb0c4679ba6bae1514a807152e97036227fed5930f334bf57722a38c"
+    },
+    {
+      "file": "edge-2739-final/visual--receipt.json.gz",
+      "bytes": 2363,
+      "sha256": "2b47436563d17a3f918a591f2e4f35892e7880cc11dc3e2854dc3fa02aa2d3a9"
+    },
+    {
+      "file": "engineering.log.gz",
+      "bytes": 977,
+      "sha256": "d46b037498d86170466c51846f112fe74ad41ad376a42cfd5f5d3febdcdd3c2c"
+    },
+    {
+      "file": "failures.json",
+      "bytes": 837,
+      "sha256": "42a6cc47eb59834672601d83e6f4d242ebb33ac8e8b8b8bd28f769c53b48e484"
+    },
+    {
+      "file": "final-comparison.png",
+      "bytes": 79536,
+      "sha256": "7a924ae24bbdb01fec4f11073621db7ac55bf8ea099e62b4a5c9b28a2109a5ae"
+    },
+    {
+      "file": "final-final.state.json.gz",
+      "bytes": 601731,
+      "sha256": "8b1f9ba68402ee366df514c6a6fd80c1d5bb6ad0185c40ccef38666cefc05f3d"
+    },
+    {
+      "file": "final-initial.state.json.gz",
+      "bytes": 601743,
+      "sha256": "8bdb789cf73f294be016e3b02a3371bbd13b6c6761c2b9ce0aefd3998e861c63"
+    },
+    {
+      "file": "future-scene-budget.json",
+      "bytes": 10682,
+      "sha256": "60416cb0c5814939818337af8f5d5c9508c352cb1658bfabe116246b08fcabaf"
+    },
+    {
+      "file": "generator-edge-measured.py.gz",
+      "bytes": 3810,
+      "sha256": "369fe39ecda94dfc0247a45910fdac117d46b23b7cd186cef5fe017ff4e58857"
+    },
+    {
+      "file": "generator-provenance.json",
+      "bytes": 316,
+      "sha256": "9ebfc9391b3a0d88b4dfc2c24623514a9a78437f47bca261ed2ec426b45f4829"
+    },
+    {
+      "file": "guidance.log.gz",
+      "bytes": 230,
+      "sha256": "bd22ac7126fa73daa6442505b4ae3f47a6182f761209d7079d0271e89c8423d9"
+    },
+    {
+      "file": "halving-actual.png",
+      "bytes": 116546,
+      "sha256": "f5e8c3ca5b82af4ca0bd92efd1555dd929db49e023367cbbc095b22ac6472b98"
+    },
+    {
+      "file": "idle-7303/archives.json",
+      "bytes": 2357,
+      "sha256": "fc21b9d22196841c81061a6fa248c1b4dd12cd1793af83659aaf3b0083ea4cf4"
+    },
+    {
+      "file": "idle-7303/asset.json.gz",
+      "bytes": 40089,
+      "sha256": "5efc6c9296936471f4a4abafc2f04213e04b9ceee000a51becc1dfddc3635676"
+    },
+    {
+      "file": "idle-7303/battle.png",
+      "bytes": 423373,
+      "sha256": "ec58a631a0396ef265ea045bf120ff3026f72674e7fb02752546dffb42b639ec"
+    },
+    {
+      "file": "idle-7303/browser--browser.mjs.gz",
+      "bytes": 4926,
+      "sha256": "88bbb0209bc1e1176c7aeeb629b9d1f36048112cbd000511d1b36e2491ced386"
+    },
+    {
+      "file": "idle-7303/browser--report.json.gz",
+      "bytes": 72424,
+      "sha256": "4e54d9946fb09d69f95f1250338a1014be510945145e29ccd12af7dc02db6672"
+    },
+    {
+      "file": "idle-7303/case.json.gz",
+      "bytes": 428,
+      "sha256": "e47c2265375422ea0ea0253f9854713f208dabc38d66752a3d664ba9528896ee"
+    },
+    {
+      "file": "idle-7303/gil--candidate.json.gz",
+      "bytes": 23454,
+      "sha256": "c91934db13e79d82691076f49033187abd2da650e2ff5694637feca548ee7d77"
+    },
+    {
+      "file": "idle-7303/preview--adapter-receipt.json.gz",
+      "bytes": 1525,
+      "sha256": "e1e31b48d5314f5cdad1c607a76d34ac79cd89d5a125cad132398914e686cfe4"
+    },
+    {
+      "file": "idle-7303/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "idle-7303/sdk.json.gz",
+      "bytes": 3303,
+      "sha256": "7d18b90b5d8271379033f52f2c8e520b6cc1744599f97a688c0875473bd2fcd1"
+    },
+    {
+      "file": "idle-7303/visual--receipt.json.gz",
+      "bytes": 1040,
+      "sha256": "29b08ce07ffbcac1f0dffe3d6927b063475fb986a61b2ac2769404eb28a0c906"
+    },
+    {
+      "file": "idle-final.gif",
+      "bytes": 850518,
+      "sha256": "318f131396b3c1102104a77ea7696c677863bed30f60ff0e5b3b2ec32f08ae67"
+    },
+    {
+      "file": "measurements.json",
+      "bytes": 90158,
+      "sha256": "98b2bb99233294df0972ca1568c48f78d99d7efc11e254f392d0a0773b37dfb3"
+    },
+    {
+      "file": "old-a/archives.json",
+      "bytes": 2076,
+      "sha256": "2731ea5295b8be5c5e79ac2154dfcc5d028bd4f4a0b2df95c4cf9e4244761da5"
+    },
+    {
+      "file": "old-a/battle.png",
+      "bytes": 394493,
+      "sha256": "af0698f6715cdc0dbbbd51d4324509a2ec4b44da18c5f4d635b75008f674d65c"
+    },
+    {
+      "file": "old-a/browser--browser.mjs.gz",
+      "bytes": 4924,
+      "sha256": "f9fe3c15c715bdb82986408359b556081ed52c4c4a1710009794b8638f553a01"
+    },
+    {
+      "file": "old-a/browser--report.json.gz",
+      "bytes": 105368,
+      "sha256": "d8fa12cffe509d7c86b43c06b0816c8f84351673ba04c582858422c5a1f92e56"
+    },
+    {
+      "file": "old-a/case.json.gz",
+      "bytes": 408,
+      "sha256": "55c5be797ddfe64ae08322c9a360e0019ca4d41b4f05ce84ec6c101d2567acd7"
+    },
+    {
+      "file": "old-a/gil--candidate.json.gz",
+      "bytes": 23336,
+      "sha256": "87906947079508d745d263e95cfac20115d01efafdaaa813fff710c021ff699f"
+    },
+    {
+      "file": "old-a/preview--adapter-receipt.json.gz",
+      "bytes": 1522,
+      "sha256": "53d14144535048aa90ca3b272dc8ab56faeff572f3ca8da22ba4daf86740b428"
+    },
+    {
+      "file": "old-a/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "old-a/sdk.json.gz",
+      "bytes": 3230,
+      "sha256": "57d82999ddbaf413d6960ff47fd48c0c1f1e132df0d750e47608025706845c12"
+    },
+    {
+      "file": "old-a/visual--receipt.json.gz",
+      "bytes": 1041,
+      "sha256": "9b8f0ac112d3f6db9f09e9252817b8aae1d519250fa24088e9c940dc74857da4"
+    },
+    {
+      "file": "old-b/archives.json",
+      "bytes": 2076,
+      "sha256": "fd173c015db86e851b580f304d2ca13f2e13a81a431437e882e5823d8a3dd716"
+    },
+    {
+      "file": "old-b/battle.png",
+      "bytes": 394351,
+      "sha256": "3728950b366e2420e485d3483d043c28f693c88f9e3ed628f9a127a61d854a11"
+    },
+    {
+      "file": "old-b/browser--browser.mjs.gz",
+      "bytes": 4924,
+      "sha256": "4130fd5c13a4ed86740e7641a3e3bd853096789318846529e700a80b3aaad33b"
+    },
+    {
+      "file": "old-b/browser--report.json.gz",
+      "bytes": 71284,
+      "sha256": "add222f69d4b8b50660caba3c3751663047c44dee87e5538f328201949e9d6f0"
+    },
+    {
+      "file": "old-b/case.json.gz",
+      "bytes": 410,
+      "sha256": "cfe1bb1cd24351887653f14116bf1a1e818ad29e98f4460dab96634e55894bef"
+    },
+    {
+      "file": "old-b/gil--candidate.json.gz",
+      "bytes": 23335,
+      "sha256": "2ad15407854c699f31891667564dcf7718b83107a50397b1787ecb09a68761b8"
+    },
+    {
+      "file": "old-b/preview--adapter-receipt.json.gz",
+      "bytes": 1518,
+      "sha256": "a1a638527659ad8df707b49c23e8c44e52431a7785f68d6b88b778d1ee6ea428"
+    },
+    {
+      "file": "old-b/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "old-b/sdk.json.gz",
+      "bytes": 3240,
+      "sha256": "11941559647f3c4df1afd42258bc25e53586a6fc754f7e337e979a4d075ab23d"
+    },
+    {
+      "file": "old-b/visual--receipt.json.gz",
+      "bytes": 1038,
+      "sha256": "a1e89f4959efaa23b4741d2fa1ab80e100301376556773cdccaa1d5e56045ea2"
+    },
+    {
+      "file": "old-c/archives.json",
+      "bytes": 2076,
+      "sha256": "0504bac6d410d92a7d266665bd755a7662bd9570fc607dc22ca85c862114db3d"
+    },
+    {
+      "file": "old-c/battle.png",
+      "bytes": 394255,
+      "sha256": "b3fca1f2e6e9df7ad741f73e5bee462c09f60225ac133bd8df6d63ae2e40d1d6"
+    },
+    {
+      "file": "old-c/browser--browser.mjs.gz",
+      "bytes": 4924,
+      "sha256": "6b6d43f831846c055b0708a4dae460ac3bda98b9c0fe55df9a8022b7151619fe"
+    },
+    {
+      "file": "old-c/browser--report.json.gz",
+      "bytes": 74914,
+      "sha256": "c2c94be6d0f7ef45a6e208201c6355bd41a3fd1e44eead60fd2d82ddacabc75b"
+    },
+    {
+      "file": "old-c/case.json.gz",
+      "bytes": 409,
+      "sha256": "627fce06ad9626ddcef5818bff62613f9ee230aad44fbb35f8241626c0323ec7"
+    },
+    {
+      "file": "old-c/gil--candidate.json.gz",
+      "bytes": 23340,
+      "sha256": "4c752b5dd160fb9627a4a2bffdaa4e018c96aa0af1dd4ee52384b62903d064f1"
+    },
+    {
+      "file": "old-c/preview--adapter-receipt.json.gz",
+      "bytes": 1521,
+      "sha256": "1d7c48976c097dc5b4e321f0b8e6208eb2e4bda82d3073b0959dbcfa66d234e4"
+    },
+    {
+      "file": "old-c/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "old-c/sdk.json.gz",
+      "bytes": 3245,
+      "sha256": "08db86fc4ed98ac077efb84be04573e10d89e7753967a0e1db77fea3315e3c27"
+    },
+    {
+      "file": "old-c/visual--receipt.json.gz",
+      "bytes": 1041,
+      "sha256": "f2ada56659ff09617f14287a9144ca2c36960d72074a9fb6b69dcf3ac6aac441"
+    },
+    {
+      "file": "old-final-a/archives.json",
+      "bytes": 2076,
+      "sha256": "e877b781f5fb076703d3d0aab4b91ec3716ffac1de5f4c4d7e66bdfc346b8413"
+    },
+    {
+      "file": "old-final-a/battle.png",
+      "bytes": 394682,
+      "sha256": "b6fe25a9612f7caff86eab1fbadf2fbb14b553ed3a74eb3486787897b1e98301"
+    },
+    {
+      "file": "old-final-a/browser--browser.mjs.gz",
+      "bytes": 5520,
+      "sha256": "b10c4743cce4b7b3acdfc243403b9a02d291cacf41d2278a2f20bca4c3c5b92e"
+    },
+    {
+      "file": "old-final-a/browser--report.json.gz",
+      "bytes": 97079,
+      "sha256": "9d2731e18692ab1b7c834515496dd282bcb137442f46f7e825f95700c659d9a9"
+    },
+    {
+      "file": "old-final-a/case.json.gz",
+      "bytes": 424,
+      "sha256": "9993b92398c0fbb2f1d9afc9c9384fd39085df71a1439d1f2b55de9fef4473fe"
+    },
+    {
+      "file": "old-final-a/gil--candidate.json.gz",
+      "bytes": 23349,
+      "sha256": "a6ffc8fa952add9543a7d5982cb0581f015d6c26a5c1bb965957055e5e47a2a8"
+    },
+    {
+      "file": "old-final-a/preview--adapter-receipt.json.gz",
+      "bytes": 1523,
+      "sha256": "6bd5ec58d84872042015a7624890075e2b7dbc04cd1bcfd757751dff7dc0ba75"
+    },
+    {
+      "file": "old-final-a/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "old-final-a/sdk.json.gz",
+      "bytes": 3245,
+      "sha256": "4d083d88831d3f83ba253c4bf07e9c2bf3ee2289af2228b88df6757c430eb6f0"
+    },
+    {
+      "file": "old-final-a/visual--receipt.json.gz",
+      "bytes": 1039,
+      "sha256": "90add13f7afd9076bbe105c6133679827d403bfc3414312a61e89f3e52639b4d"
+    },
+    {
+      "file": "old-final-b/archives.json",
+      "bytes": 2076,
+      "sha256": "737f1af14307b34354e7563956f08a349f981fa9627404c7eb07f188f08265f0"
+    },
+    {
+      "file": "old-final-b/battle.png",
+      "bytes": 406265,
+      "sha256": "3de6af4f5962ef698cfa9b769936216997081beee2624aad5d7c72dcb94a603d"
+    },
+    {
+      "file": "old-final-b/browser--browser.mjs.gz",
+      "bytes": 5520,
+      "sha256": "4b4e1795f5cc508dcd6dddbe41dcec0dc44155a15874bbb5971ddca28992a155"
+    },
+    {
+      "file": "old-final-b/browser--report.json.gz",
+      "bytes": 80692,
+      "sha256": "60beafec24652cb3916fef2c0b9e2f9cfa7960b2508aace2fdaa9ccc8973049e"
+    },
+    {
+      "file": "old-final-b/case.json.gz",
+      "bytes": 426,
+      "sha256": "10c6cd9e8d74431500146a6edffb3f9024c5694871a3c453e2083ed34d511c70"
+    },
+    {
+      "file": "old-final-b/gil--candidate.json.gz",
+      "bytes": 23351,
+      "sha256": "3ee71ee93feb9bce566fafca1cbf2c05a9d6676a52367e2b287ffdcb9f48d480"
+    },
+    {
+      "file": "old-final-b/preview--adapter-receipt.json.gz",
+      "bytes": 1524,
+      "sha256": "053982278217fc7341b877070dd81f3a6ffca3103d1b4c82aa0ab217b50535ce"
+    },
+    {
+      "file": "old-final-b/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "old-final-b/sdk.json.gz",
+      "bytes": 3254,
+      "sha256": "cd5274a64b099646b2dd9cd2cb358885ad0128dfb290a2f485d77d8b9d8962f6"
+    },
+    {
+      "file": "old-final-b/visual--receipt.json.gz",
+      "bytes": 1049,
+      "sha256": "bd23b3725df253f621d537e63c0731479403d9ed2ecfd66f564193a851cce031"
+    },
+    {
+      "file": "old-fixed-a/browser--browser.mjs.gz",
+      "bytes": 5475,
+      "sha256": "289872d8f79fca3c246f20592c59de53b284ec7eb9cac6666f893481822d6a8d"
+    },
+    {
+      "file": "old-fixed-a/browser--report.json.gz",
+      "bytes": 181431,
+      "sha256": "1152ae1704e07882e5d8b6b685dce6b07ca6ddbc74c68d46af3f8f63f7a83f29"
+    },
+    {
+      "file": "old-fixed-a/browser.log.gz",
+      "bytes": 1181,
+      "sha256": "443d4bdda90be68ae222e2a609b0d5ab671964d8c2b45eadb8ebc712584022b9"
+    },
+    {
+      "file": "old-fixed-a/case.json.gz",
+      "bytes": 472,
+      "sha256": "e09936e40c9f060802edbe13232db39ea8c93155376791352cd1e6f5a69a8301"
+    },
+    {
+      "file": "old-fixed-a2/archives.json",
+      "bytes": 2076,
+      "sha256": "e1a17254f1ef1db9ec1580a3bcb5092dd371e1643b8da2ebc06b9052e3a38d7c"
+    },
+    {
+      "file": "old-fixed-a2/battle.png",
+      "bytes": 394551,
+      "sha256": "43117df681651a239dfd492af8ec716b08dc87f29e59e24e1451e4101b020194"
+    },
+    {
+      "file": "old-fixed-a2/browser--browser.mjs.gz",
+      "bytes": 5519,
+      "sha256": "24947afb515dff5cd318f0ffce60af3c53514a3cba4dc92f6a8e688d86597b33"
+    },
+    {
+      "file": "old-fixed-a2/browser--report.json.gz",
+      "bytes": 93177,
+      "sha256": "7beb5672ea9f624378a39bed6a2ff7c1f9ddb513635e16d8300e321db5e401b8"
+    },
+    {
+      "file": "old-fixed-a2/case.json.gz",
+      "bytes": 426,
+      "sha256": "10fe1fb7cc134f049954d5367fac225d5ea0db09bdc250ce8ef685bf085ece47"
+    },
+    {
+      "file": "old-fixed-a2/gil--candidate.json.gz",
+      "bytes": 23348,
+      "sha256": "39693b8ff9e863c1eb745719c2f9b1ccde3ca053f878a6df83db6d0deb38ace5"
+    },
+    {
+      "file": "old-fixed-a2/preview--adapter-receipt.json.gz",
+      "bytes": 1525,
+      "sha256": "b9ec0a4e0b45a2e0f55e5bc2b28108d1d191cfa68d51fb5428cc9641c28d7efb"
+    },
+    {
+      "file": "old-fixed-a2/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "old-fixed-a2/sdk.json.gz",
+      "bytes": 3252,
+      "sha256": "67a8ccdbfcb153c048f5db4cbb57a19f9cca0a7c728774a86757f668e59bd75d"
+    },
+    {
+      "file": "old-fixed-a2/visual--receipt.json.gz",
+      "bytes": 1041,
+      "sha256": "a847ca47b78ec3333a3c613e04449e70f94962a420346bae2d454dfaf0005fea"
+    },
+    {
+      "file": "old-fixed-b/archives.json",
+      "bytes": 2076,
+      "sha256": "1372444747a48974d1b4fe59cea53e905536a387306fb713c1fa57e816403bfc"
+    },
+    {
+      "file": "old-fixed-b/battle.png",
+      "bytes": 399804,
+      "sha256": "b851d2d93cf8a8d6fe861b73f51ec725416237264618bdbf9e173bde72aac719"
+    },
+    {
+      "file": "old-fixed-b/browser--browser.mjs.gz",
+      "bytes": 5518,
+      "sha256": "16ec7302b480006cea7b330e3ff40fee89618abc5557fc73679762657c521ad3"
+    },
+    {
+      "file": "old-fixed-b/browser--report.json.gz",
+      "bytes": 114665,
+      "sha256": "cbedcd5c409dd999c21378cde02925a3d097370123be33a823aaeae192018cd0"
+    },
+    {
+      "file": "old-fixed-b/case.json.gz",
+      "bytes": 425,
+      "sha256": "2b5d887aafeb0f49d18d5085d65e26743ccc61892c48feb53a61b0d88dce7d93"
+    },
+    {
+      "file": "old-fixed-b/gil--candidate.json.gz",
+      "bytes": 23348,
+      "sha256": "c59a00abe5a68ae683fd00ce2246e65ba9b190a3ae8805461bee51b7a7f40c6d"
+    },
+    {
+      "file": "old-fixed-b/preview--adapter-receipt.json.gz",
+      "bytes": 1528,
+      "sha256": "ee098c48602975853c75e99ea61cc001ba8543e2fd4be1609b5abb95f155874d"
+    },
+    {
+      "file": "old-fixed-b/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "old-fixed-b/sdk.json.gz",
+      "bytes": 3237,
+      "sha256": "5f18d604a1671ac251b678e41f8a084b1160adbb27230b5feb3a86a40cc7d99d"
+    },
+    {
+      "file": "old-fixed-b/visual--receipt.json.gz",
+      "bytes": 1045,
+      "sha256": "50c532531b8814de0177c4f24f04307bd737e7f892a68db4127409384b53deb5"
+    },
+    {
+      "file": "old-fixed-c/archives.json",
+      "bytes": 2076,
+      "sha256": "5a3485494943457ac004baf44dc0786371600a9117de3c03f6da9282fa747153"
+    },
+    {
+      "file": "old-fixed-c/battle.png",
+      "bytes": 408101,
+      "sha256": "3df31c40b8044e9ae0c27fc623454d5fd06039cecb9d7ded5013fcd27af38e05"
+    },
+    {
+      "file": "old-fixed-c/browser--browser.mjs.gz",
+      "bytes": 5518,
+      "sha256": "ebd3537c1a64ba73a5db10af08ef6a0e777b04a74bfcdd9d6a5d11d6623a7707"
+    },
+    {
+      "file": "old-fixed-c/browser--report.json.gz",
+      "bytes": 124060,
+      "sha256": "840ef6b9af9efd85b4e23b86e4112d8fbc31a355d97a0f48484e2402eddbf97e"
+    },
+    {
+      "file": "old-fixed-c/case.json.gz",
+      "bytes": 424,
+      "sha256": "6d2ade61f9c0123e88cd44515903cb6442e5aa8bd884f77d0bf47d5295e5f75b"
+    },
+    {
+      "file": "old-fixed-c/gil--candidate.json.gz",
+      "bytes": 23352,
+      "sha256": "53e6e5b8f36709eb500af8687ba8a802c2cd9dc0adda3a868dbc5ae31a8d94bd"
+    },
+    {
+      "file": "old-fixed-c/preview--adapter-receipt.json.gz",
+      "bytes": 1527,
+      "sha256": "464f7a0945f9c81795c29056e0919c642a9183f2de924789d1e10a7875f617d2"
+    },
+    {
+      "file": "old-fixed-c/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "old-fixed-c/sdk.json.gz",
+      "bytes": 3245,
+      "sha256": "bf05cb85d721e9cfa3f0d22533a9f08ca36f26aa57ef97e1bc3115d7d379ee8f"
+    },
+    {
+      "file": "old-fixed-c/visual--receipt.json.gz",
+      "bytes": 1043,
+      "sha256": "a6e3df7aef897751ac6cbbda96c19b0bb3f3d5079f4695264a915ce20424b692"
+    },
+    {
+      "file": "old-fixed-d/archives.json",
+      "bytes": 2076,
+      "sha256": "33e71c926ec327d405c96b3049a1508085b0b1f270f43212a6553eb746197ab4"
+    },
+    {
+      "file": "old-fixed-d/battle.png",
+      "bytes": 394688,
+      "sha256": "288f0e90297402a4faf3cb729b561dbe6d0bb50aa2219f1955fe70b41730a0d0"
+    },
+    {
+      "file": "old-fixed-d/browser--browser.mjs.gz",
+      "bytes": 5518,
+      "sha256": "07a7a07889c1718d3880bf86528d44a15ea190ada3cbee25a5f3d31395cfaab1"
+    },
+    {
+      "file": "old-fixed-d/browser--report.json.gz",
+      "bytes": 90383,
+      "sha256": "4b4cf1958d7f3565e9aac74721c123111e8af770f399b0e0b9d46552ebf4bbe6"
+    },
+    {
+      "file": "old-fixed-d/case.json.gz",
+      "bytes": 426,
+      "sha256": "5d112c3dbfbbce1e5dba0383d7db03b3ef31cad2c91964b0eaf9ed0aee662d72"
+    },
+    {
+      "file": "old-fixed-d/gil--candidate.json.gz",
+      "bytes": 23348,
+      "sha256": "4cc486fa13edca36b2be5ae502f5b57b4860235ed921e6bc538fb5f5b314abff"
+    },
+    {
+      "file": "old-fixed-d/preview--adapter-receipt.json.gz",
+      "bytes": 1526,
+      "sha256": "7b304d860bf9fbef88ccaccb6c153cd4c8dad78e256b9ae8b337406ffbd07b82"
+    },
+    {
+      "file": "old-fixed-d/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "old-fixed-d/sdk.json.gz",
+      "bytes": 3218,
+      "sha256": "c100d818ab1bc1a6e42e18c7e986737279577d138f84339cc67a667b2105fa78"
+    },
+    {
+      "file": "old-fixed-d/visual--receipt.json.gz",
+      "bytes": 1043,
+      "sha256": "b06a69532d097e9f5ee94931dcfd67b1840eee3aa46054b7e31dcb48d7fbb8ba"
+    },
+    {
+      "file": "original-7303-b4/archives.json",
+      "bytes": 2686,
+      "sha256": "cd4eb26175b40787c3192cda7de03b8e10900f80339dfa6df145c767716c391c"
+    },
+    {
+      "file": "original-7303-b4/asset.json.gz",
+      "bytes": 39662,
+      "sha256": "057bacdc099da4636f6f2ff6500f0e9ae3e906bba9a29c73962a9777e89b37e8"
+    },
+    {
+      "file": "original-7303-b4/battle.png",
+      "bytes": 423393,
+      "sha256": "38e961507bed64be5769ac0083339ff90ae2c218630507c56d96a161e3ece6e0"
+    },
+    {
+      "file": "original-7303-b4/browser--browser.mjs.gz",
+      "bytes": 5523,
+      "sha256": "61922f5abb3ffd9de3b67b0cae57f41729cfeea1be0217b77fe33f2988d8f94a"
+    },
+    {
+      "file": "original-7303-b4/browser--report.json.gz",
+      "bytes": 89804,
+      "sha256": "2141c616c7b9ede2b35057e752c20d99c5e1fffbdf87580b50d6bab9ea9b2d02"
+    },
+    {
+      "file": "original-7303-b4/case.json.gz",
+      "bytes": 446,
+      "sha256": "18858ce03ff5baf68d940778f27465cd50e9f7b8e55b5dc73a34b71feb3f6c33"
+    },
+    {
+      "file": "original-7303-b4/gil--candidate.json.gz",
+      "bytes": 23489,
+      "sha256": "ca2d52f833149c6fe860fff347bead41bcee05fea479002c18165851e56fc106"
+    },
+    {
+      "file": "original-7303-b4/motion-transform.json.gz",
+      "bytes": 386,
+      "sha256": "e32ed59f88c3c8c877cd771c6a0b16a406bfc708948898e9bd360324180fbff3"
+    },
+    {
+      "file": "original-7303-b4/preview--adapter-receipt.json.gz",
+      "bytes": 1524,
+      "sha256": "54fb4c0de68d1931ec998abeb35aa466a4ed6356f188d37a0bad8c764854610f"
+    },
+    {
+      "file": "original-7303-b4/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "original-7303-b4/sdk.json.gz",
+      "bytes": 3307,
+      "sha256": "66934ce23cc314612e8b98becf1a21f7b0b82a7f680f4d18a1054226f9956e91"
+    },
+    {
+      "file": "original-7303-b4/visual--receipt.json.gz",
+      "bytes": 2371,
+      "sha256": "b1d5d53003f66cb86a13b98cc2dd8b71fd8983d4cf2c80b0cb5ed1e765843040"
+    },
+    {
+      "file": "pinned-1369-s20/archives.json",
+      "bytes": 2368,
+      "sha256": "083e30b1f8a9252fa04c697cbc16b9b036b71f3f7708456b84d5515db0164abc"
+    },
+    {
+      "file": "pinned-1369-s20/asset.json.gz",
+      "bytes": 13999,
+      "sha256": "bfe084551958b40dcf55a436f1547001c3ab972c741f5ad44ce249ced97fc904"
+    },
+    {
+      "file": "pinned-1369-s20/battle.png",
+      "bytes": 407868,
+      "sha256": "9464a2bb81cbe0a88178b48ca8fe178277b62d82aa5bac9d7df80ae8b35dd8e1"
+    },
+    {
+      "file": "pinned-1369-s20/browser--browser.mjs.gz",
+      "bytes": 4932,
+      "sha256": "13a0a7196d4b7124949ce70f607f1531005757abf4cd4cb11c609f0f45152dfa"
+    },
+    {
+      "file": "pinned-1369-s20/browser--report.json.gz",
+      "bytes": 77395,
+      "sha256": "2f385904973a51712dbba4f83bc7b11b8634541b5ee6e7eb3a680e31f1fd4280"
+    },
+    {
+      "file": "pinned-1369-s20/case.json.gz",
+      "bytes": 447,
+      "sha256": "ae4638590624a30bfb199efbcb212c18cd1f374e95ef573c1298557369210666"
+    },
+    {
+      "file": "pinned-1369-s20/gil--candidate.json.gz",
+      "bytes": 23489,
+      "sha256": "aac933a9de888293adaa0b843f56a8ab02790c9adf3d54b655c67c66d0824fe4"
+    },
+    {
+      "file": "pinned-1369-s20/preview--adapter-receipt.json.gz",
+      "bytes": 1530,
+      "sha256": "a3ad8ee9269c1b8838f9a63116e99b8e9577fbcf197616b86bf2d2c7fd928e91"
+    },
+    {
+      "file": "pinned-1369-s20/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "pinned-1369-s20/sdk.json.gz",
+      "bytes": 3278,
+      "sha256": "4ead79d3c61ac1a085c1465d45c3d3afcea0d6392a68adf18bf4335f0cc02469"
+    },
+    {
+      "file": "pinned-1369-s20/visual--receipt.json.gz",
+      "bytes": 1045,
+      "sha256": "5f5616f402c1f2f65f7536d29c84dc31ab21d2c7fc9a4618146340a7cd1bf7e9"
+    },
+    {
+      "file": "pinned-1826-b4/archives.json",
+      "bytes": 2682,
+      "sha256": "abbf2c69a6e9d4f181f94b630cd3980f35dee6275efda16b613cf988a6629ccc"
+    },
+    {
+      "file": "pinned-1826-b4/asset.json.gz",
+      "bytes": 18647,
+      "sha256": "b97c3023fcae971f0494d41afc1ea8726f18de60bdc323abcd206980b4ce32c6"
+    },
+    {
+      "file": "pinned-1826-b4/battle.png",
+      "bytes": 410407,
+      "sha256": "1a016608817159951e35fec70f0154860b0590526d62763ff900cc3de4c8f7fd"
+    },
+    {
+      "file": "pinned-1826-b4/browser--browser.mjs.gz",
+      "bytes": 5521,
+      "sha256": "17c1b51fa4daf730e597dc2c519d1582b77e989588f6d887b3bb79a8a505a6ef"
+    },
+    {
+      "file": "pinned-1826-b4/browser--report.json.gz",
+      "bytes": 85788,
+      "sha256": "216e94b40635063e5f57afef40153f922c056826faa50251f8d9ffb2b4c192f1"
+    },
+    {
+      "file": "pinned-1826-b4/case.json.gz",
+      "bytes": 446,
+      "sha256": "98d8b44778b7d3d42e517716db36a18948f91eb1cf39fa071c8d24b3416dd99c"
+    },
+    {
+      "file": "pinned-1826-b4/gil--candidate.json.gz",
+      "bytes": 23489,
+      "sha256": "5c368aec717de3a5fb75fc1b4fed26dff265a6e8923fec73ce80db8a80f0ee9f"
+    },
+    {
+      "file": "pinned-1826-b4/motion-transform.json.gz",
+      "bytes": 349,
+      "sha256": "71b139e0414aaf825592133dbfa6708ed266d1b604097b7a67fa1fc9bad2d38c"
+    },
+    {
+      "file": "pinned-1826-b4/preview--adapter-receipt.json.gz",
+      "bytes": 1530,
+      "sha256": "64ec3736fd7d1676556ec6fa2e011e96c98ac4b065a36efd1098edac4bf09135"
+    },
+    {
+      "file": "pinned-1826-b4/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "pinned-1826-b4/sdk.json.gz",
+      "bytes": 3273,
+      "sha256": "9829d82ed4e5030b16c3ad2f87733fee30a47da94a46df9263a6d98ba149cb0f"
+    },
+    {
+      "file": "pinned-1826-b4/visual--receipt.json.gz",
+      "bytes": 1046,
+      "sha256": "835e49fd817621d543c3ff6afb18f2f5a5363424386dd1a4b322096a4137ec6c"
+    },
+    {
+      "file": "pinned-1826-s20/archives.json",
+      "bytes": 2368,
+      "sha256": "c49b3f7b4f475e24e555676becdbd319e394bc56160d2dda9024a640ddf363e1"
+    },
+    {
+      "file": "pinned-1826-s20/asset.json.gz",
+      "bytes": 18768,
+      "sha256": "1dcd17ee7440113c5c6a47177a1b00ccb6c232eca4ae4762b002cbe360903104"
+    },
+    {
+      "file": "pinned-1826-s20/battle.png",
+      "bytes": 410352,
+      "sha256": "23669b27067cc0105f4b6fafe588bc1bc29f4023bbe50447c5bd41a6642436c1"
+    },
+    {
+      "file": "pinned-1826-s20/browser--browser.mjs.gz",
+      "bytes": 4932,
+      "sha256": "ae793522d9e5b7d044fa5368cd36115396c530d07d4e12777fa7746873420252"
+    },
+    {
+      "file": "pinned-1826-s20/browser--report.json.gz",
+      "bytes": 83431,
+      "sha256": "297e884afe188f545b4c5be36a6a762a6d5b55a17e6a4d51a90b6238148948ea"
+    },
+    {
+      "file": "pinned-1826-s20/case.json.gz",
+      "bytes": 448,
+      "sha256": "62ca3035e47af5e5c6112e26b6bccc657a1f2ba98fa971d4cca69940c663a3ab"
+    },
+    {
+      "file": "pinned-1826-s20/gil--candidate.json.gz",
+      "bytes": 23494,
+      "sha256": "f00e24070cf46c5ee0ed3a16bd1408d8f92e8d1e44092228b7391414696b3e99"
+    },
+    {
+      "file": "pinned-1826-s20/preview--adapter-receipt.json.gz",
+      "bytes": 1531,
+      "sha256": "c9a8d50227fc10dd7c41b752a334619ee7ff66fc75ab0ede6e2fb5c7b660cb6b"
+    },
+    {
+      "file": "pinned-1826-s20/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "pinned-1826-s20/sdk.json.gz",
+      "bytes": 3289,
+      "sha256": "f4a6cb13efb373faf0f1f7c00c79c8e46bb090f874c5826f2dd6fa4c24691918"
+    },
+    {
+      "file": "pinned-1826-s20/visual--receipt.json.gz",
+      "bytes": 1043,
+      "sha256": "ca4f091bb136030592a9c0c8929852c73bffaa4a70b20963afd0241c9d9929d4"
+    },
+    {
+      "file": "pinned-2739-b4/archives.json",
+      "bytes": 2682,
+      "sha256": "0db93dc1abb32690905245ab9169e7398b8ab72530d75f5f17b12402a4607750"
+    },
+    {
+      "file": "pinned-2739-b4/asset.json.gz",
+      "bytes": 27647,
+      "sha256": "ae0904e17367c863b9de866f3a82b37d6fedbe30dba3b0eb7bacf5318de00613"
+    },
+    {
+      "file": "pinned-2739-b4/battle.png",
+      "bytes": 414229,
+      "sha256": "4abcb1bdc87d2c916476cfb44f983d8c394790837f1aef99932940e73eb639e3"
+    },
+    {
+      "file": "pinned-2739-b4/browser--browser.mjs.gz",
+      "bytes": 5521,
+      "sha256": "e3b1397123c04b864c477fe17fc5b4a98980b07b4bd1099ceb04156e4e04803e"
+    },
+    {
+      "file": "pinned-2739-b4/browser--report.json.gz",
+      "bytes": 89060,
+      "sha256": "8d3070d994e132d41bd4762ac83a70a50b52858da7a23828c9ee692fd8326853"
+    },
+    {
+      "file": "pinned-2739-b4/case.json.gz",
+      "bytes": 446,
+      "sha256": "1d9c46f3d5887af18bd489bee13d8aa68cfa6ac080637896c08e2bd2e5ba9854"
+    },
+    {
+      "file": "pinned-2739-b4/gil--candidate.json.gz",
+      "bytes": 23480,
+      "sha256": "764277b9ed1cbedec73867591687bd869f316a4951d88a5c85b1e69f9bda9626"
+    },
+    {
+      "file": "pinned-2739-b4/motion-transform.json.gz",
+      "bytes": 350,
+      "sha256": "f5799a1328bb4df8ddee4faacda4919ec9344419267cbf3bdda17288a4dab6e9"
+    },
+    {
+      "file": "pinned-2739-b4/preview--adapter-receipt.json.gz",
+      "bytes": 1526,
+      "sha256": "422eecebf9a7013724a046ce96785b1b05b327024a70d209e2beb11a9bf1835f"
+    },
+    {
+      "file": "pinned-2739-b4/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "pinned-2739-b4/sdk.json.gz",
+      "bytes": 3302,
+      "sha256": "7227c00717e8bd8fcad9d67b0c4abb4817840e0890aa600963dd157be53ea492"
+    },
+    {
+      "file": "pinned-2739-b4/visual--receipt.json.gz",
+      "bytes": 2358,
+      "sha256": "dbe60f8b2854b53c611b678e8682215f42e64da96f4a176bc1f3c8bd8af06a20"
+    },
+    {
+      "file": "pinned-3195-b4/archives.json",
+      "bytes": 2983,
+      "sha256": "9bc07cb16382c05f29b2606953a021e533a3a569ea3d3364dfc7b8084d90b714"
+    },
+    {
+      "file": "pinned-3195-b4/asset.json.gz",
+      "bytes": 31814,
+      "sha256": "113af99aaec18e34757c66a4ba2b681ed610ad96a740376f82f344a2e14f7577"
+    },
+    {
+      "file": "pinned-3195-b4/battle.png",
+      "bytes": 415845,
+      "sha256": "2c898d2fb6b65f45aa8b837555735ee0adc8e5e292a020dd3ae922741c6a88e9"
+    },
+    {
+      "file": "pinned-3195-b4/browser--browser.mjs.gz",
+      "bytes": 5521,
+      "sha256": "b06e236d445a27700737bc29fc66414c4bbe498ee7c0e2b831894680aa7e1931"
+    },
+    {
+      "file": "pinned-3195-b4/browser--report.json.gz",
+      "bytes": 128277,
+      "sha256": "9b34c189ebd88f7930bfe08e1b907ea2143a8c4e60bd7476ddd4ebd62128206b"
+    },
+    {
+      "file": "pinned-3195-b4/case.json.gz",
+      "bytes": 446,
+      "sha256": "26a259a28a6f80294654b69cacc72e06cd8138d6dcbd2903da43e152897cbd77"
+    },
+    {
+      "file": "pinned-3195-b4/conversion.json.gz",
+      "bytes": 493,
+      "sha256": "0b522c4e292ac38e0c0a9125b25a0d94d49919db8523527fb85add4aabfb73e3"
+    },
+    {
+      "file": "pinned-3195-b4/gil--candidate.json.gz",
+      "bytes": 23482,
+      "sha256": "1158b2dd1f8072818f93c720ad5abee2bc88dd5ad1dd589dc5221728949bddb7"
+    },
+    {
+      "file": "pinned-3195-b4/motion-transform.json.gz",
+      "bytes": 372,
+      "sha256": "47e02b356eb24bd04fd254c18680aae93e1bc0b89acaab12adf6fbe892cb8a46"
+    },
+    {
+      "file": "pinned-3195-b4/preview--adapter-receipt.json.gz",
+      "bytes": 1528,
+      "sha256": "83be9065c9965bb27c66ef77a3700206dad5746798f400a9bf48becf21126911"
+    },
+    {
+      "file": "pinned-3195-b4/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "pinned-3195-b4/sdk.json.gz",
+      "bytes": 3280,
+      "sha256": "14730a94ab3bf104c66d20d8874587e49d93f465198c070fca531046f1a2b0a5"
+    },
+    {
+      "file": "pinned-3195-b4/visual--receipt.json.gz",
+      "bytes": 2356,
+      "sha256": "b458ba739af3ad9265abf44ff0c4b21326268d08451f7f46ded2dd3065003c43"
+    },
+    {
+      "file": "pinned-3652-b4/archives.json",
+      "bytes": 2983,
+      "sha256": "ba1ac26537e1b18835055d9242c59e44c493de1146295736625e03e03a3425d5"
+    },
+    {
+      "file": "pinned-3652-b4/asset.json.gz",
+      "bytes": 36050,
+      "sha256": "1a2c44aeb802fb5c9c385c27cf392b1246683a3cca9c20c901e6e6fdfac2d675"
+    },
+    {
+      "file": "pinned-3652-b4/battle.png",
+      "bytes": 417425,
+      "sha256": "b580ad3ab68b155a5d8dc59a0c460896875d86f4ef5604b501808a272b4cb477"
+    },
+    {
+      "file": "pinned-3652-b4/browser--browser.mjs.gz",
+      "bytes": 5521,
+      "sha256": "e735ba1804df9137cf7ab4211a115b6b82bb44778df1d63c9aeaf8f6696d903c"
+    },
+    {
+      "file": "pinned-3652-b4/browser--report.json.gz",
+      "bytes": 124460,
+      "sha256": "a7128212d215c7609002506416f9037eaf25689ac06c5681f707690e53f55bce"
+    },
+    {
+      "file": "pinned-3652-b4/case.json.gz",
+      "bytes": 446,
+      "sha256": "373326a8c6e4eb9213b4834385c83a04a6274531b8097eba7f49cd8f164f9e5a"
+    },
+    {
+      "file": "pinned-3652-b4/conversion.json.gz",
+      "bytes": 492,
+      "sha256": "50d6f08f909e04357f67e10fe40ef677661215ca2e2ce797fe60f248ded049f7"
+    },
+    {
+      "file": "pinned-3652-b4/gil--candidate.json.gz",
+      "bytes": 23487,
+      "sha256": "53ccd6c4538ac19ea7c343f439d4d5012044d13a5371a29708a740df8596e719"
+    },
+    {
+      "file": "pinned-3652-b4/motion-transform.json.gz",
+      "bytes": 371,
+      "sha256": "ea5573256f940c662177435e36132087b9df7ba143b77cd5fe5e4cf83f7751f0"
+    },
+    {
+      "file": "pinned-3652-b4/preview--adapter-receipt.json.gz",
+      "bytes": 1527,
+      "sha256": "80923106df70970a237efdd248136b219c2bfb89488116597b0b5bfb815f8246"
+    },
+    {
+      "file": "pinned-3652-b4/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "pinned-3652-b4/sdk.json.gz",
+      "bytes": 3274,
+      "sha256": "953c935064da535d9989059f32874437081dbd3ee60f536f5078afdcda2fa055"
+    },
+    {
+      "file": "pinned-3652-b4/visual--receipt.json.gz",
+      "bytes": 2347,
+      "sha256": "004d86f3fc1fe0cda6b0b8b9dc4910c027d804078c0e4e7c69e1bf68be185a42"
+    },
+    {
+      "file": "pinned-edge-1826-b4/archives.json",
+      "bytes": 2998,
+      "sha256": "400a3b245153b66ea89f27754eff4c6eb6725f2134cfb506f811b919494cd8fc"
+    },
+    {
+      "file": "pinned-edge-1826-b4/asset.json.gz",
+      "bytes": 18887,
+      "sha256": "773ae5f1b2e724322d9a3755cc0f3e8efc55716272070ca2105dcd685834838d"
+    },
+    {
+      "file": "pinned-edge-1826-b4/battle.png",
+      "bytes": 410149,
+      "sha256": "cd2443d3858e9c97cce1e1d3a4696cae4bda77c0142220dcd9a995605f903997"
+    },
+    {
+      "file": "pinned-edge-1826-b4/browser--browser.mjs.gz",
+      "bytes": 5525,
+      "sha256": "e4233c8a28235980668356f18fcf00f3b305f23b071609ecd4b7d22502e7ca16"
+    },
+    {
+      "file": "pinned-edge-1826-b4/browser--report.json.gz",
+      "bytes": 114915,
+      "sha256": "c797567775e57c6fa75d6c8cca1c6d7fa6fa6ae4a3b68e892aec3eef48ec2b27"
+    },
+    {
+      "file": "pinned-edge-1826-b4/case.json.gz",
+      "bytes": 448,
+      "sha256": "c81b5ca464a6b506015af101ebb15169dd873b4608c4240c30b0f075d78a9e1f"
+    },
+    {
+      "file": "pinned-edge-1826-b4/conversion.json.gz",
+      "bytes": 573,
+      "sha256": "a13012161544bba1d7d02b427724360eb4a4ba6b9ad49f69a3fa0535a2cfd3c5"
+    },
+    {
+      "file": "pinned-edge-1826-b4/gil--candidate.json.gz",
+      "bytes": 23501,
+      "sha256": "29e87dd7ff0b64bb0015aef50b970a194a5811ce503a30107ee74dc4d16c5533"
+    },
+    {
+      "file": "pinned-edge-1826-b4/motion-transform.json.gz",
+      "bytes": 377,
+      "sha256": "ed2ca26a9cb2b6ed4c2b56e18a16c87027ba93964ac33b6d65af02030c69ad92"
+    },
+    {
+      "file": "pinned-edge-1826-b4/preview--adapter-receipt.json.gz",
+      "bytes": 1532,
+      "sha256": "83ea2ad336f8b00bfcaa74c796540217418895b7c3209f04831251106ffa8691"
+    },
+    {
+      "file": "pinned-edge-1826-b4/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "pinned-edge-1826-b4/sdk.json.gz",
+      "bytes": 3291,
+      "sha256": "9b72e89672e0e232bd5dc21e765f2736aea60e34a6c4319be93f7684ce9d46da"
+    },
+    {
+      "file": "pinned-edge-1826-b4/visual--receipt.json.gz",
+      "bytes": 2340,
+      "sha256": "2550d60f4674f441021352069a1340ebfd2680992b5f9be3dca77497a8ffab48"
+    },
+    {
+      "file": "pinned-edge-2283-b4/archives.json",
+      "bytes": 2998,
+      "sha256": "1c69af25cf6a7810099dc2ceb44eb31bfc767af9ad4fa84a8fbaf38dfe495761"
+    },
+    {
+      "file": "pinned-edge-2283-b4/asset.json.gz",
+      "bytes": 23381,
+      "sha256": "ab0d784302edcf1de1f844c846b3d22e33ab0bd17bcf6a33e8a10c6d48077786"
+    },
+    {
+      "file": "pinned-edge-2283-b4/battle.png",
+      "bytes": 412178,
+      "sha256": "b37ec71a500c1fba3839b542f46c73814938f2bde26dd542dcba4831a8fbe087"
+    },
+    {
+      "file": "pinned-edge-2283-b4/browser--browser.mjs.gz",
+      "bytes": 5525,
+      "sha256": "1f19f7acf05b76232984fbc0b04e40f5201ba9efa749dd7259373c2911a2185d"
+    },
+    {
+      "file": "pinned-edge-2283-b4/browser--report.json.gz",
+      "bytes": 115705,
+      "sha256": "6b3f889f26edafc213908e2bcf0eb4d6ef47262bc8d07ee351c1aaa543b9c0b2"
+    },
+    {
+      "file": "pinned-edge-2283-b4/case.json.gz",
+      "bytes": 449,
+      "sha256": "9887c5bc4f31b2eff6777221fceb2f8cc652ffda50ca3d16c74e11c58a978a58"
+    },
+    {
+      "file": "pinned-edge-2283-b4/conversion.json.gz",
+      "bytes": 574,
+      "sha256": "1a234aff8fdaaaaf33205ad9c829e23fdeb3d6384f42f1d048859b390168f5a3"
+    },
+    {
+      "file": "pinned-edge-2283-b4/gil--candidate.json.gz",
+      "bytes": 23501,
+      "sha256": "583aa708df96b28f30e58e910610f3514b4cd0d94f49184a36d005cd37fd547c"
+    },
+    {
+      "file": "pinned-edge-2283-b4/motion-transform.json.gz",
+      "bytes": 375,
+      "sha256": "874f0a4219abfacc6eb70785b5b4993a66d1f34a442a4b8672b6ee9208b002bb"
+    },
+    {
+      "file": "pinned-edge-2283-b4/preview--adapter-receipt.json.gz",
+      "bytes": 1529,
+      "sha256": "c614dde54643628ad984255ff4254483d1aa30c65d5f528a07ed45c8e46bd72d"
+    },
+    {
+      "file": "pinned-edge-2283-b4/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "pinned-edge-2283-b4/sdk.json.gz",
+      "bytes": 3286,
+      "sha256": "18c383990f3ac4cba53d01ffd59c466ce4ba04e113631ae7ce0f3e610a9202d1"
+    },
+    {
+      "file": "pinned-edge-2283-b4/visual--receipt.json.gz",
+      "bytes": 2358,
+      "sha256": "e3125da1786d4a9c536461875af87f1b81b6df2f71da3e9a013eab69bba0e85f"
+    },
+    {
+      "file": "pinned-edge-2739-b4/archives.json",
+      "bytes": 2998,
+      "sha256": "d936b0b0d09e51ae649c1acb4b0786bd9fec6aae11d4bd4a705639cc7451bf79"
+    },
+    {
+      "file": "pinned-edge-2739-b4/asset.json.gz",
+      "bytes": 28013,
+      "sha256": "9eccb6f1d9c99c7b012f0f4e1a7e49d1ebbd18a6cd15cd55753cfd77c51c0c5b"
+    },
+    {
+      "file": "pinned-edge-2739-b4/battle.png",
+      "bytes": 414595,
+      "sha256": "914eab61a685e576d38ab70ef1f6fb1c477fdbf51c4cebbe280ae43cd9510641"
+    },
+    {
+      "file": "pinned-edge-2739-b4/browser--browser.mjs.gz",
+      "bytes": 5525,
+      "sha256": "68866be69b1818b48062a08542e331c5ad4220d81aa7b0bd840ff0d65f080270"
+    },
+    {
+      "file": "pinned-edge-2739-b4/browser--report.json.gz",
+      "bytes": 117323,
+      "sha256": "f6ef0b995bb940d7c95f0214731ae8882c4192983c8d5b2027bb9871894e7e8f"
+    },
+    {
+      "file": "pinned-edge-2739-b4/case.json.gz",
+      "bytes": 450,
+      "sha256": "f4c316b8f178f197a8ac5d23661d0e8c076417321dd3102ad10c653b4cd64a45"
+    },
+    {
+      "file": "pinned-edge-2739-b4/conversion.json.gz",
+      "bytes": 575,
+      "sha256": "dbee1163095e73cda03b8e532ad73fbd6a0a0f6c0c25e8c8144df77409f7c696"
+    },
+    {
+      "file": "pinned-edge-2739-b4/gil--candidate.json.gz",
+      "bytes": 23501,
+      "sha256": "1c6d5f2111da2485d9a933ff0c26a98ce78f8d4172e002e61c47b3b8c8535d49"
+    },
+    {
+      "file": "pinned-edge-2739-b4/motion-transform.json.gz",
+      "bytes": 375,
+      "sha256": "8fb693b2177730ca53b1943f2bc015f99f78654c2ae1aff9c676eb68709b26a9"
+    },
+    {
+      "file": "pinned-edge-2739-b4/preview--adapter-receipt.json.gz",
+      "bytes": 1531,
+      "sha256": "e7dea8b72a0d0f18f754f2df9dcb9071e863df62c9ae14b11c730cd29cea489e"
+    },
+    {
+      "file": "pinned-edge-2739-b4/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "pinned-edge-2739-b4/sdk.json.gz",
+      "bytes": 3297,
+      "sha256": "d5bc5d50ccbfa1745fc8fc25be9e084c810ba513e7c901092aed454fa639d760"
+    },
+    {
+      "file": "pinned-edge-2739-b4/visual--receipt.json.gz",
+      "bytes": 2346,
+      "sha256": "ca80539d06089ed3691545c4ed2276a517c3041ad22116d92d62483d4856e4f9"
+    },
+    {
+      "file": "platform-daily.log.gz",
+      "bytes": 990,
+      "sha256": "3b31c15f9031726aa5518b9ff5065018dbd8a74a1fdc4930119a703e174c722b"
+    },
+    {
+      "file": "README.md",
+      "bytes": 6874,
+      "sha256": "9f1f3a77952a33af319b9fca7debf24808b145566ff0b2389c991540569bf57b"
+    },
+    {
+      "file": "refinement-actual.png",
+      "bytes": 78155,
+      "sha256": "47e02917646333836f5f9971a4ea0647b58c583d8f1c1d494e0a54b38868c062"
+    },
+    {
+      "file": "related.log.gz",
+      "bytes": 3365,
+      "sha256": "46c676bb49736b98c55fb0896499ddb000eb5a926ad575825d4eb6d18b59e9b4"
+    },
+    {
+      "file": "sampling-test.log.gz",
+      "bytes": 437,
+      "sha256": "ce26013fcb53c3357dfb123a5c1babc9c45f4535ea6687d03569a350f6cd4157"
+    },
+    {
+      "file": "static-7303/archives.json",
+      "bytes": 2364,
+      "sha256": "ca16e18d5bea986e7b9f59fee0b8652bfb6041f0cfc393f95a9cc81601454f2e"
+    },
+    {
+      "file": "static-7303/asset.json.gz",
+      "bytes": 39817,
+      "sha256": "cee81d4c5224c17920aeb6dbc227f6e120508da652d376bc12ef71aa8a01f5c1"
+    },
+    {
+      "file": "static-7303/battle.png",
+      "bytes": 423224,
+      "sha256": "cc8ff7b75ac7e09b6578849a8699b9e3ec7db4c1bc4ba5ddc3bf117df3e1f2ab"
+    },
+    {
+      "file": "static-7303/browser--browser.mjs.gz",
+      "bytes": 4928,
+      "sha256": "86fac84bfddee84625c093912770ee822d12178fcf0c8c63962d703e0324a0a5"
+    },
+    {
+      "file": "static-7303/browser--report.json.gz",
+      "bytes": 98885,
+      "sha256": "7b82fd3a3896af5e4a3ec2dee41f5840e78240196def860dcaed96fa3758f23a"
+    },
+    {
+      "file": "static-7303/case.json.gz",
+      "bytes": 428,
+      "sha256": "aa983dc316adc20860dcbb9853d89800b320f36909bf3619a56d2c6ae8517e65"
+    },
+    {
+      "file": "static-7303/gil--candidate.json.gz",
+      "bytes": 23469,
+      "sha256": "349b5f1796712e22b870fc0ae481310152f5e8ae7c871053240c42a7bc2d64a3"
+    },
+    {
+      "file": "static-7303/preview--adapter-receipt.json.gz",
+      "bytes": 1523,
+      "sha256": "9462a3d1f74b945d0c95a77fb2a32f72530623bf900b305ccdc6d6f6a55f0d77"
+    },
+    {
+      "file": "static-7303/sdk-runner.mjs.gz",
+      "bytes": 3841,
+      "sha256": "9a7cf168a39761cb42c1462e6d3a59798e97f3375ebfb9bf0c593d3e3809e5c7"
+    },
+    {
+      "file": "static-7303/sdk.json.gz",
+      "bytes": 3295,
+      "sha256": "bf16e017e00dc72e87b3472e437fe1af4b51a9bd046736aae3ebc77550dee489"
+    },
+    {
+      "file": "static-7303/visual--receipt.json.gz",
+      "bytes": 1046,
+      "sha256": "516096d72054a4bd40293a697b1cbd29c109da77ff0078637a5e3fbe1f90f5c3"
+    },
+    {
+      "file": "table.md",
+      "bytes": 3082,
+      "sha256": "d42fc8364bc9e93a4b52b00810ec4c7795a18c7697bb9c5463237bed01d35a89"
+    },
+    {
+      "file": "validation-summary.json",
+      "bytes": 3940,
+      "sha256": "0dc7e49aa07d6ea8a50bb2f6351fca3374a5f4d0d355ea5a56f8ae101c7b9fcf"
+    },
+    {
+      "file": "visual-measurements.json",
+      "bytes": 2748,
+      "sha256": "ce65d5990a05a3d283a7ac2e2db7cef18a6adda47ccbf9c14987db1bd41e7824"
+    }
+  ]
+}
