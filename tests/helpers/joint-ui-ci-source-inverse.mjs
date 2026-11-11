@@ -1,3 +1,4 @@
+import {preIntegrationCalibrationSource} from './integration-1111-tooling.mjs';
 import {cursesReceiptMatches,preCursesReceiptSource} from './curses-ci-planning.mjs';
 // Exact source and inventory views for immutable CI receipts; current Full stays raw.
 import assert from 'node:assert/strict';
@@ -30,6 +31,7 @@ const sourceAdditions=Object.freeze({
 for(const [path,binding]of Object.entries(sourceAdditions))assert.equal(proof.files[path]?.sha256,binding.beforeSha256,'exact added CI source predecessor: '+path);
 function sourceMatches(path,source,row){
  if(!row||typeof source!=='string')return false;
+ source=preIntegrationCalibrationSource(path,source);
  const sha=hash(source.replaceAll('\r\n','\n'));
  return sha===row.sha256||(Object.hasOwn(sourceAdditions,path)&&sha===sourceAdditions[path].afterSha256);
 }

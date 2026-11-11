@@ -1,3 +1,4 @@
+import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
 import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helpers/curses-ci-planning.mjs';
 import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource} from './helpers/joint-ui-ci-source-inverse.mjs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors,officialAssetsFlowCiSourceProof,preOfficialAssetsFlowCiSource} from './helpers/official-assets-flow-ci-source-inverse.mjs';
@@ -53,7 +54,7 @@ const readFileSync=(file,encoding)=>{
 };
 const hash=s=>createHash('sha256').update(s).digest('hex'),read=p=>originalPlanningSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
 const receiptRead=(view,file,encoding,fallback)=>{
- const value=diskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8');
+ const value=diskReadFileSync(file,encoding),raw=typeof value==='string'?value:value.toString('utf8'),text=['officialFirstReceipt','officialFlowReceipt'].includes(view)?receiptToolingSource(file,raw,'curses'):raw;
  if(jointCiMatches(file,text,view)){const source=jointCiSourceAt(file,text,view);return typeof value==='string'?source:Buffer.from(source);}
  return fallback(file,encoding);
 };
@@ -1265,7 +1266,7 @@ test('official candidate floors authenticate complete serial runs and register o
   assert.equal(receipt.durationMs,floor.nodeReportedDurationMs);assert.equal(receipt.wallDurationMs,floor.wallDurationMs);
   assert.equal(floor.durationMs,Math.ceil(Math.max(receipt.durationMs,receipt.wallDurationMs)));
   assert.equal(receipt.inputHashes[file],floor.testSha256);
-  for(const [input,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(diskReadFileSync(input,'utf8').replaceAll('\r\n','\n')),sha,input);
+  for(const [input,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(receiptToolingSource(input,diskReadFileSync(input,'utf8'),'official').replaceAll('\r\n','\n')),sha,input);
   for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+receipt.durationMs])assert.ok(log.toString().includes('ℹ '+line),line);
   assert.equal(hash(diskReadFileSync(floor.sourceLog.replace('stdout.log','stderr.log'))),receipt.stderrSha256);
   for(const platform of ['win32','linux']){assert.equal(actualCurrentTimings.js[platform][file],undefined);assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(actualCurrentTimings.unknownJsMs,floor.durationMs));}
@@ -1309,7 +1310,7 @@ test('current official flow floors bind four complete local files while long cam
   assert.equal(receipt.durationMs,floor.nodeReportedDurationMs);assert.equal(receipt.wallDurationMs,floor.wallDurationMs);
   assert.equal(floor.durationMs,Math.max(firstOfficialAssetsPlanningFloors[file]?.durationMs??0,Math.ceil(Math.max(receipt.durationMs,receipt.wallDurationMs))));
   assert.equal(receipt.inputHashes[file],floor.testSha256);
-  for(const [input,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(diskReadFileSync(input,'utf8').replaceAll('\r\n','\n')),sha,input);
+  for(const [input,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(receiptToolingSource(input,diskReadFileSync(input,'utf8'),'official').replaceAll('\r\n','\n')),sha,input);
   for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+receipt.durationMs])assert.ok(log.toString().includes('ℹ '+line),line);
   assert.equal(hash(diskReadFileSync(floor.sourceLog.replace('stdout.log','stderr.log'))),receipt.stderrSha256);
   for(const platform of ['win32','linux']){assert.equal(actualCurrentTimings.js[platform][file],undefined);assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(actualCurrentTimings.unknownJsMs,floor.durationMs));}
@@ -1360,6 +1361,19 @@ test('joint historical inventory rejects missing duplicate and unknown files whi
 });
 
 
+test('integrated receipt tooling views retain frozen predecessors and reject drift or wrong scopes',()=>{
+ for(const [path,row]of Object.entries(toolingProof.files)){
+  const view=path.includes('network')?'official':'curses',raw=diskReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(raw,row.after);assert.equal(hash(row.after),row.afterSha256);assert.equal(hash(row.before),row.beforeSha256);
+  assert.equal(receiptToolingSource(path,raw,view),row.before);
+  assert.equal(receiptToolingSource(path,raw.replaceAll('\n','\r\n'),view),row.before);
+  for(const value of [raw+'\n',raw.slice(1),raw.slice(0,-1),raw.replaceAll('\n','\r\r\n'),null,{},17])assert.equal(receiptToolingSource(path,value,view),value);
+  for(const scope of ['raw','unknown',view==='official'?'curses':'official'])assert.equal(receiptToolingSource(path,raw,scope),raw);
+  for(const foreign of ['constructor','__proto__','foreign/'+path])assert.equal(receiptToolingSource(foreign,raw,view),raw);
+  assert.equal(diskReadFileSync(path,'utf8').replaceAll('\r\n','\n'),raw);
+ }
+});
+
 test('Curses planning floors authenticate complete current file runs without hosted measurements',()=>{
  for(const [file,count,oldFloor]of [['tests/curses-shape-responsibilities.test.mjs',3,37312],['tests/curses-source-epoch.test.mjs',5,13299]]){
   const name=file.slice(6,-9),directory='docs/evidence/replay-curses-ci-20261111/planning/'+name;
@@ -1370,7 +1384,7 @@ test('Curses planning floors authenticate complete current file runs without hos
   assert.deepEqual([receipt.tests,receipt.pass,receipt.fail,receipt.cancelled,receipt.skipped,receipt.todo],[count,count,0,0,0,0]);
   assert.deepEqual(receipt.inputHashes,receipt.afterInputHashes);
   for(const [path,sha]of Object.entries(receipt.inputHashes)){
-   const raw=diskReadFileSync(path),value=path.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n');assert.equal(hash(value),sha,path);
+   const raw=diskReadFileSync(path),value=path.endsWith('.gz')?raw:receiptToolingSource(path,raw.toString('utf8'),'curses').replaceAll('\r\n','\n');assert.equal(hash(value),sha,path);
   }
   assert.equal(hash(output),receipt.stdoutSha256);assert.equal(hash(errors),receipt.stderrSha256);assert.equal(errors.length,0);
   for(const line of ['tests '+count,'pass '+count,'fail 0','cancelled 0','skipped 0','duration_ms '+receipt.durationMs])assert.ok(output.toString().includes('ℹ '+line),line);

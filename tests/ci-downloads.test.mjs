@@ -162,7 +162,7 @@ test('hosted checkout conditions, empty baseline, retained packs and execution o
   const guard = workflow.match(/      - name: Check hosted checkout Git pack payload\r?\n[\s\S]*?(?=\r?\n      - )/)[0];
   assert.ok(checkNetworkPolicy(workflow.replace(guard, '').replace(`      - name: ${hostedName}`, guard + '\n' + `      - name: ${hostedName}`)).length);
   assert.ok(checkNetworkPolicy(workflow + '\n').length === 0);
-  assert.deepEqual(checkNetworkPolicy(workflow.replaceAll('\n', '\r\n')), []);
+  assert.deepEqual(checkNetworkPolicy(workflow.replaceAll('\r\n', '\n').replaceAll('\n', '\r\n')), []);
 });
 
 test('real fresh Git fetch retains pack payload and hosted CLI records exact revision without dependency installs', t => {
