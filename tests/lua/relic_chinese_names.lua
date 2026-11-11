@@ -24,7 +24,7 @@ local approved={burning_blood='岩脉残晶',black_blood='岩脉源晶'}
 local named,definitions={},{}
 for _,entry in ipairs(D.relics.relics)do
  local name=N.get(D,entry.id)
- assert(type(entry.name)=='string' and entry.name~='' and entry.name:find('[\\228-\\233]') and not entry.name:find('[A-Za-z]'),'non-Chinese authored name '..entry.id)
+ assert(type(entry.name)=='string' and entry.name~='' and entry.name:find('[\228-\233]') and not entry.name:find('[A-Za-z]'),'non-Chinese authored name '..entry.id)
  assert(name==entry.name,'relic definition/display name drift '..entry.id)
  if entry.sourceId then assert(N.get(nil,entry.sourceId)==entry.name,'relic source fallback name drift '..entry.id)end
  assert(not named[name],'duplicate relic name '..name);named[name]=entry.id
