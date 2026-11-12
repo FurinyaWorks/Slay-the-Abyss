@@ -63,6 +63,9 @@ test('utility production inverse composes with the current M7 source chain witho
 
 import {defectActorEpoch,extendDefectActorEpoch} from './helpers/defect-actor-source-epoch.mjs';
 import {sourceEpoch as actorCurrentEpoch,preDefectActorEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+// Freeze this original 79-owner Actor extension contract. Public sourceEpoch
+// continues to exercise the complete expanded current closure elsewhere.
+const historicalActorEpoch=extendDefectActorEpoch(preDefectActorEpoch);
 const actorProof=defectActorEpoch.proof;
 const actorPaths=['config/architecture.json','src/lua/abyss_combat_queued_play.lua','src/lua/abyss_defect_utility_cards.lua'];
 const actorRaw=p=>actorProof.current[p]?.source??null;
@@ -83,7 +86,7 @@ test('Actor capability predecessor binds all three complete owners to independen
  }
 });
 test('Actor capability extends the complete 79-owner epoch without replacing a historical binding',()=>{
- const current=actorCurrentEpoch.proof,prior=preDefectActorEpoch.proof;
+ const current=historicalActorEpoch.proof,prior=preDefectActorEpoch.proof;
  assert.deepEqual(current.owners,prior.owners);assert.equal(current.owners.length,79);
  assert.deepEqual(current.targets.defectActorPrior.files,prior.current);
  for(const [target,binding]of Object.entries(prior.targets))assert.deepEqual(current.targets[target],binding,target);

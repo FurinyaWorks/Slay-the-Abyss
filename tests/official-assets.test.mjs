@@ -67,8 +67,13 @@ test('approved pages keep live input identities while unrelated pages retain the
  const semantic=nodes.filter(([,node])=>['text','cursorArea','presetButton'].includes(node.kind))
   .map(([path,node])=>[path,node,structuredClone(node)]);
  const containers=nodes.filter(([,node])=>node.kind==='container').map(([path,node])=>[path,node,{position:node.position,size:node.size,visible:node.visible,scale:node.scale,rotation:node.rotation}]);
- const cardText=new Map();
- for(const [,face]of nodes)if(child(face,'roundFrame')&&child(face,'costDisc'))for(const key of ['name','cost'])cardText.set(child(face,key),key);
+ const cardText=new Map(),cardWells=new Map(),cardTags=new Map(),removedCardMarks=new Set();
+ for(const [,face]of nodes)if(child(face,'roundFrame')&&child(face,'costDisc')){
+  for(const key of ['name','cost'])cardText.set(child(face,key),key);
+  for(const kind of ['attack','skill','power'])cardWells.set(child(child(face,'skin'),kind).children.find(n=>n.name==='well'),kind);
+  for(const key of ['tagEdge','tagBody'])cardTags.set(child(face,key),key);
+  removedCardMarks.add(child(face,'roleMark'));
+ }
  const result=applyOfficialAssets([layout,template],theme);
  const current=new Map([...paths(layout),...paths(template)]);
   for(const [path,node,before] of semantic){
@@ -100,7 +105,20 @@ test('approved pages keep live input identities while unrelated pages retain the
     }
     if(expected.autoSize&&(expected.minFontSize*1.45+4>before.size?.[1]||path.endsWith('/shopView/removal/description')))expected.minFontSize=nativeTheme.font.minimum;assert.deepEqual(actual,expected,path);}
  }
-  for(const [path,node,before]of containers){if(restoredPagePath(path)||path.startsWith('/SlayTheAbyss/deckPanel/pileReturn'))continue;assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
+  const canonical=child(child(layout,'battlePanel'),'card1');
+  for(const [path,node,before]of containers){
+   if(restoredPagePath(path)||path.startsWith('/SlayTheAbyss/deckPanel/pileReturn'))continue;
+   assert.equal(current.get(path),node,path);
+   for(const key of Object.keys(before)){
+    // Only these shared card decoration fields adopt battle geometry; host
+    // placement, input identity and every unrelated transform stay unchanged.
+    const expected=key==='scale'&&cardWells.has(node)
+     ?child(child(child(canonical,'skin'),cardWells.get(node)),'well').scale
+     :key==='size'&&cardTags.has(node)?child(canonical,cardTags.get(node)).size
+     :key==='visible'&&removedCardMarks.has(node)?false:before[key];
+    assert.deepEqual(node[key],expected,path+' '+key);
+   }
+  }
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
  assert.equal(result.cardHosts,cards.length);assert(cards.length>=40);assert(result.removedControls>500);
  for(const card of cards){assert.equal(child(child(card,'roundBody'),'flat').image,100001);assert.equal(child(child(card,'roundFrame'),'flat').image,100001);assert.equal(child(card,'costCore').image,107203);}

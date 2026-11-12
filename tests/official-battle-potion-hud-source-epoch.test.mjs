@@ -5,6 +5,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {componentUiSourceEpoch} from './helpers/component-ui-source-epoch.mjs';
+import {sourceSlice} from './helpers/closeout-source-epoch.mjs';
 import {
  officialBattlePotionHudSourceProof as proof,preOfficialBattlePotionHudSource,
  preOfficialBattleSource,officialBattleResponseSourceProof as response,
@@ -13,6 +14,9 @@ import {
 } from './helpers/official-battle-source-inverse.mjs';
 
 const hash=source=>createHash('sha256').update(source).digest('hex');
+// This literal Git contract predates shared CardSkin; authenticate the current
+// closure before selecting the exact reviewed pre-repair battle source view.
+const historical=path=>sourceSlice(path,readFileSync(path,'utf8'),'officialUiRepairPrior');
 const changed=[
  'src/lua/abyss_battle_actions.lua','src/lua/abyss_battle_card_gestures.lua',
  'src/lua/abyss_battle_card_view.lua','src/lua/abyss_battle_info_content.lua',
@@ -35,7 +39,7 @@ test('potion HUD epoch authenticates all six Git sources and only the historical
    ??feedback.files[path]?.afterSource??componentUiSourceEpoch.proof.current[path]?.source;
   assert.equal(binding.beforeSource,predecessor,path+' exact immutable predecessor');
   assert.notEqual(binding.beforeSha256,binding.afterSha256);
-  assert.equal(preOfficialBattleMouseAimSource(path,preOfficialUiRepairSource(path,readFileSync(path,'utf8'))).replaceAll('\r\n','\n'),binding.afterSource,path+' committed after identity');
+  assert.equal(preOfficialBattleMouseAimSource(path,preOfficialUiRepairSource(path,historical(path))).replaceAll('\r\n','\n'),binding.afterSource,path+' committed after identity');
   assert.ok(Object.isFrozen(binding));
  }
  assert.ok(Object.isFrozen(proof)&&Object.isFrozen(proof.files)&&Object.isFrozen(proof.unprojectedChanges));
@@ -45,7 +49,7 @@ test('mouse aim epoch authenticates the complete single-owner Git change and ref
  const path='src/lua/abyss_battle_card_view.lua',binding=mouseAim.files[path];
  assert.deepEqual(Object.keys(mouseAim.files),[path]);assert.deepEqual(Object.keys(mouseAim.unprojectedChanges),[]);
  assert.equal(binding.beforeSource,proof.files[path].afterSource);
- assert.equal(preOfficialUiRepairSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),binding.afterSource);
+ assert.equal(preOfficialUiRepairSource(path,historical(path).replaceAll('\r\n','\n')),binding.afterSource);
  for(const side of ['before','after']){
   const source=binding[side+'Source'];assert.equal(hash(source),binding[side+'Sha256']);
   assert.equal(createHash('sha1').update('blob '+Buffer.byteLength(source)+'\0').update(source).digest('hex'),binding[side+'GitBlobSha1']);

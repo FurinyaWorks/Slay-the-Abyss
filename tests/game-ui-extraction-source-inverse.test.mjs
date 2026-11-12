@@ -9,14 +9,16 @@ import {spawnSync} from 'node:child_process';
 import {gameUiExtractionProof as proof,gameUiExtractionAddedPaths as added,preGameUiExtractionSource as project,preNativePageSource,gameUiExtractionReader,prepareGameUiExtractionModuleRetirement as prepare} from './helpers/game-ui-extraction-source-inverse.mjs';
 import {preCoreLifecycleSource} from './helpers/core-lifecycle-source-inverse.mjs';
 import {preRelicQuerySource} from './helpers/relic-query-source-inverse.mjs';
-import {sourceEpoch,preNoncombatDemandEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {sourceEpoch,preNoncombatDemandEpoch,preCursesEpoch as portraitDemandEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {sourceSlice} from './helpers/closeout-source-epoch.mjs';
 // Keep the existing two/four-owner contracts in their original source epochs.
 const nativeRead=p=>preNativePageSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
 const read=p=>preRelicQuerySource(p,nativeRead(p),{readSource:nativeRead});
 const host='src/lua/abyss_game_ui.lua',architecture='config/architecture.json';
 const paths=Object.keys(proof.files);
 test('portrait demand layer authenticates fresh complete owners and rejects warm drift before entering the prior epoch',()=>{
- const path='src/lua/abyss_traveler_portraits.lua',raw=p=>readFileSync(p,'utf8');
+ const sourceEpoch=portraitDemandEpoch;
+ const path='src/lua/abyss_traveler_portraits.lua',raw=p=>sourceSlice(p,readFileSync(p,'utf8'),'cursesPrior');
  const source=raw(path).replaceAll('\r\n','\n'),target=sourceEpoch.proof.targets.noncombatDemandPrior;
  assert.equal(sourceEpoch.proof.currentCommit,'6702ed26d779eec4d237aa991471b0344c3c3f92');
  assert.equal(target.commit,'bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9');
@@ -34,12 +36,13 @@ test('portrait demand layer authenticates fresh complete owners and rejects warm
  for(const drift of [source+'\n',null]){live=drift;assert.throws(()=>sourceEpoch.preCombinedSource(path,source,{target:'noncombatDemandPrior',readSource:mutable}),/combined linked owner identity/);}
 });
 test('noncombat committed source layer authenticates all linked owners and rejects each new owner drift',()=>{
+ const sourceEpoch=portraitDemandEpoch;
  const epoch=preNoncombatDemandEpoch;
  const changed=['src/lua/abyss_character_select_view.lua','src/lua/abyss_game_ui_input.lua','src/lua/abyss_game_ui_menu_view.lua','src/lua/abyss_v25_menu_view.lua'];
  const current=epoch.proof.current,target=epoch.proof.targets.noncombatPrior;
  assert.equal(epoch.proof.currentCommit,'31886413b6140f7f666aa89e2ac3d9673c9524dd');
  assert.equal(target.commit,'3a061a76b5eb917ac0f4213c01a9cbafd28d1824');
- const raw=p=>readFileSync(p,'utf8');
+ const raw=p=>sourceSlice(p,readFileSync(p,'utf8'),'cursesPrior');
  const live=p=>sourceEpoch.preCombinedSource(p,raw(p),{target:'noncombatDemandPrior',readSource:raw});
  for(const path of changed){
   const source=live(path);let reads=0;
