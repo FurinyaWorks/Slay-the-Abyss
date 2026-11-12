@@ -104,6 +104,8 @@ local function officialResult(ctx,isOutcome)
 end
 function M.present(ctx,isOutcome)
     if not enabled()then return end
+    local ruins=ctx.menu:GetChild('menuRuinsScene')
+    if ruins then ruins:SetVisible(not isOutcome)end
     if Theme.presentationProfile=='official-assets-first' and officialResult(ctx,isOutcome)then return end
     local menu,start=ctx.menu,ctx.start
     local layout=isOutcome and Theme.layout.v25Result or Theme.layout.v25Menu

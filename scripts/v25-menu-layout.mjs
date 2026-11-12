@@ -1,3 +1,4 @@
+import {menuRuinsScene} from './menu-ruins-scene.mjs';
 // Native controls measured from the approved V25 menu. The original tower and
 // logo still need a private image binding; these controls do not replace them.
 export const v25MenuReference={
@@ -5,7 +6,7 @@ export const v25MenuReference={
  record:'menus.js renderMenu/bindReferenceMenuMotion; menu-reference.css .mr-mainlinks/.mr-option',
  unverified:['tower-image-binding','logo-image-binding','native-font-and-gradient-parity'],
 };
-export const v25MenuRuntimeLayout={title:[90,105.5,760,353],start:[-430,-71,292,44],quit:[-430,-215,292,44]};
+export const v25MenuRuntimeLayout={title:[-350,160,500,160],start:[-430,-71,292,44],quit:[-430,-215,292,44]};
 const nodes=n=>n?.controls??n?.children??[];
 const get=(n,name)=>nodes(n).find(c=>c.name===name);
 const image=(name,position,size,id,colour,extra={})=>({name,kind:'image',position,size,image:id,colour,...extra});
@@ -31,6 +32,7 @@ export function applyV25MenuLayout(layout,theme){
  for(const name of ['emblem','vista','heroArt','lowpolyVeil','titleBand','taglineRuleL','taglineRuleR']){
   const old=get(menu,name);if(old)old.visible=false;
  }
+ if(!get(menu,'menuRuinsScene'))menu.children.splice(1,0,menuRuinsScene());
  style(start,theme);start.position=v25MenuRuntimeLayout.start.slice(0,2);
  let chrome=get(menu,'v25MainMenu');
  if(!chrome){
