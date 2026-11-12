@@ -174,7 +174,7 @@ test('official repair helper closure imports in isolation and rejects new-file d
  t.after(()=>{rmSync(root,{recursive:true,force:true});rmSync(destination,{recursive:true,force:true});});
  copyIntegrationSourceClosure(root);
  const module=pathToFileURL(join(root,'tests/helpers/combined-epoch/source-epoch.mjs')).href;
- const result=spawnSync(process.execPath,['--input-type=module','-e',`const m=await import(${JSON.stringify(module)});if(m.officialUiRepairIntegratedEpoch.proof.owners.length!==88)throw Error('isolated owner closure');if(m.sourceEpoch.proof.owners.length!==93)throw Error('combined owner closure');`],{encoding:'utf8',timeout:30000,windowsHide:true});
+ const result=spawnSync(process.execPath,['--input-type=module','-e',`const m=await import(${JSON.stringify(module)});if(m.officialUiRepairIntegratedEpoch.proof.owners.length!==88)throw Error('isolated owner closure');if(m.sourceEpoch.proof.owners.length!==94)throw Error('combined owner closure');`],{encoding:'utf8',timeout:30000,windowsHide:true});
  assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);
  for(const name of ['official-ui-repair-source-epoch.mjs','official-ui-repair-source-epoch.json.gz']){
   const file=join(root,'tests/helpers',name),bytes=diskReadFileSync(file),changed=Buffer.from(bytes);changed[changed.length-1]^=1;
@@ -186,8 +186,8 @@ test('official repair helper closure imports in isolation and rejects new-file d
 
 test('current UI facade authenticates every raw owner once in declared order after warm success',()=>{
  const current=currentSourceEpoch.proof,file='config/architecture.json',input=diskReadFileSync(file,'utf8'),target='develop';
- // Shared Curses and battle continuation add ten owners to the prior 79.
- assert.equal(current.owners.length,93);
+ // Current production retains component68 plus exact26 continuation owners.
+ assert.equal(current.owners.length,94);
  const expected=current.targets[target].files[file].source;
  for(const crlf of [false,true]){
   const reads=[];let bad=null,missing=false;
