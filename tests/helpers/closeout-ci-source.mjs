@@ -6,7 +6,7 @@ import {gunzipSync} from 'node:zlib';
 import {sourceSlice} from './closeout-source-epoch.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const bytes=readFileSync(new URL('./closeout-ci-source.json.gz',import.meta.url));
-assert.equal(hash(bytes),'abcbf13ce30d86778b50df628de88adb70730baf92af56704a7fa248e0c156ab');
+assert.equal(hash(bytes),'37e0798104037dda1f02f1b267b004fc5b1e049eada7445a0caf9a9317062fa7');
 const packed=JSON.parse(gunzipSync(bytes));
 for(const [id,source]of Object.entries(packed.records))assert.equal(hash(source),id,'complete closeout CI record');
 const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
