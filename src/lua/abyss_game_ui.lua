@@ -47,7 +47,8 @@ function M.new(root, data, presentation, clickEvent, platform)
     local runMenu = child("runMenu")
     local owner = {exitGeneration=0, menuGeneration=0, ready=false}
     -- Optional in legacy layout fixtures; the shipped layout always supplies it.
-    local diagnosticPanel = root:GetChild('diagnosticsPanel')
+    local foundDiagnostic, diagnosticPanel = pcall(function() return root:GetChild('diagnosticsPanel') end)
+    if not foundDiagnostic then diagnosticPanel = nil end
     self.diagnosticPanel = diagnosticPanel
     self.diagnosticsOpen = false
     if diagnosticPanel then
