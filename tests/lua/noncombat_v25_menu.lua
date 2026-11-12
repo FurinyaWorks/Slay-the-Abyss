@@ -24,6 +24,7 @@ menu:GetChild('vista').visible=false
 local owner={mode='menu'}
 local ctx=Menu.new(owner,menu,{}, {color=function(r,g,b,a)return{r=r,g=g,b=b,a=a}end})
 Menu.present(ctx)
+assert(menu:GetChild('menuRuinsScene').visible,'menu scenery is visible on entry')
 local start=menu:GetChild('start')
 assert(menu:GetChild('settle'):GetChild('border').visible,'menu must not mutate hidden official settlement surfaces')
 assert(start:GetChild('label').text=='开始游戏')
@@ -41,6 +42,7 @@ owner.mode='victory'
 assert(V25.entrance(ctx)==false,'official result keeps its existing presentation')
 assert(V25.settlementFrame(ctx,{1,2})[1]==1)
 V25.present(ctx,true)
+assert(not menu:GetChild('menuRuinsScene').visible,'result must hide menu scenery')
 -- Exercise the real menu binding and its pointer transaction, not direct calls
 -- to the presentation adapter alone. Quit only opens the existing exit flow.
 local Controller=require('abyss_controller')

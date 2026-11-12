@@ -1,6 +1,6 @@
 import {menuRuinsScene} from './menu-ruins-scene.mjs';
-// Native controls measured from the approved V25 menu. The original tower and
-// logo still need a private image binding; these controls do not replace them.
+// Retain the V25 menu controls and transactions. The native ruins background
+// uses the new user reference; the existing text title occupies its left clearance.
 export const v25MenuReference={
  sourceCommit:'7e40d2d361fff6b9c89d9f409db29a9d8ac44352',
  record:'menus.js renderMenu/bindReferenceMenuMotion; menu-reference.css .mr-mainlinks/.mr-option',

@@ -8,14 +8,52 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 const source=fs.readFileSync(path.join(web,'dist/public/play-renderer.js'),'utf8');
 if(hash(source)!=='9e89976ce304a896d8c5e57ce40545f795b8668a4a5460c8459adceb9a52d15a')throw Error('Simulator renderer identity differs');
 const renderer=source.replaceAll('this.app.render()','this.app.ticker.update(performance.now())').replaceAll('this.app?.render()','this.app?.ticker.update(performance.now())');
+// A persistent existing SDK session avoids editor archive snapshots/worker transfer.
+// Lua, controls, layout, clocks and pointer implementation are the installed Simulator.
+const sdkPath=process.env.MENU_REVIEW_SDK;
+const sdk=sdkPath?await import(pathToFileURL(path.resolve(sdkPath))):null,sessions=new Map(),sources=new Map();
+const closeSession=id=>{for(const r of sessions.get(id)?.runtimes??[])r.destroy();sessions.delete(id)};
+const send=(res,code,value)=>{res.writeHead(code,{'content-type':'application/json','cache-control':'no-store'});res.end(JSON.stringify(value))};
+async function direct(req,res){
+ let text='';for await(const part of req){text+=part;if(text.length>65536)throw Error('request too large')}
+ const body=JSON.parse(text),id=body.sessionId;if(typeof id!=='string'||!/^[a-zA-Z0-9_-]{1,100}$/.test(id))throw Error('invalid session');
+ if(req.url==='/editor/api/load-archive'){
+  if(body.path!=='menu.save.json'&&body.path!=='baseline.save.json')throw Error('unknown archive');
+  closeSession(id);sources.set(id,JSON.parse(fs.readFileSync(path.join(workspace,body.path))));send(res,200,{ok:true,value:{loaded:true}});return;
+ }
+ const a=body.args??{};let session=sessions.get(id);
+ if(body.action==='stop'){closeSession(id);sources.delete(id);send(res,200,{ok:true,value:{running:false}});return}
+ if(body.action==='start'||body.action==='device'){
+  closeSession(id);if(sessions.size>=4)throw Error('session limit');
+  const save=sources.get(id)??JSON.parse(fs.readFileSync(scene)),t=performance.now();
+  session=sdk.Gr(save.assets.server,{templatesProject:save.assets.client,scripts:save.assets.scripts,serverConfig:save.serverLogic,canvasId:a.canvasId??'pc-16-9',language:a.language??'LanguageChs'});
+  session.__startMs=performance.now()-t;sessions.set(id,session);
+ }
+ if(!session)throw Error('session has not started');
+ if(body.action==='step'&&!session.debugPaused)sdk.dn(session,Math.max(.001,Math.min(.25,a.dt??1/60)));
+ else if(body.action==='pointer')sdk.vi(session,a.type,a.x,a.y,{deltaX:a.deltaX,deltaY:a.deltaY});
+ else if(body.action==='key')session.runtime.injectKey(a.key);
+ else if(body.action==='pause')session.debugPaused=true;
+ else if(body.action==='resume')session.debugPaused=false;
+ else if(!['get','start','device','step'].includes(body.action))throw Error('unsupported preview action '+body.action);
+ const snapshot=sdk.ya(session,{inspect:a.inspect===true,view:a.view===true,paint:a.paint===true,compact:a.compact===true,sceneRev:a.sceneRev});
+ snapshot.clockMode='manual';snapshot.running=true;snapshot.previewSdkStartMs=session.__startMs;
+ send(res,200,{ok:true,value:snapshot});
+}
 const {createWebServer}=await import(pathToFileURL(path.join(web,'dist/server.js')));
 const backend=await createWebServer({host:'127.0.0.1',port:0,workspace}),base=new URL(backend.url);
+let url;
 const front=http.createServer((req,res)=>{
+ if(req.headers.host!==new URL(url).host){res.writeHead(403);res.end('local host required');return}
+ if(req.headers.origin&&req.headers.origin!==url){res.writeHead(403);res.end('foreign origin');return}
+ if(!req.url?.startsWith('/')||req.url.startsWith('//')){res.writeHead(400);res.end();return}
+ if(sdk&&req.method==='POST'&&['/editor/api/play','/editor/api/load-archive'].includes(req.url)){direct(req,res).catch(e=>{console.error(e);if(!res.headersSent)send(res,400,{ok:false,error:e.message});else res.destroy()});return}
  if(['/editor/play-renderer.js','/play-renderer.js'].includes(req.url?.split('?')[0])){res.writeHead(200,{'content-type':'text/javascript'});res.end(renderer);return}
- const headers={...req.headers,host:base.host};if(headers.origin)headers.origin=base.origin;
+ const headers={...req.headers,host:base.host};delete headers.cookie;delete headers.authorization;if(headers.origin)headers.origin=base.origin;
  const upstream=http.request({hostname:base.hostname,port:base.port,path:req.url,method:req.method,headers},answer=>{res.writeHead(answer.statusCode,answer.headers);answer.pipe(res)});upstream.on('error',()=>{res.writeHead(502);res.end()});req.pipe(upstream);
 });await new Promise(r=>front.listen(0,'127.0.0.1',r));
-const url='http://127.0.0.1:'+front.address().port;
-const receipt={url,pid:process.pid,saveSha256:hash(fs.readFileSync(scene)),rendererSha256:hash(renderer),scenePath:scene,web};
+url='http://127.0.0.1:'+front.address().port;
+const save=JSON.parse(fs.readFileSync(scene)),buildId=/ABYSS_BUILD ([0-9a-f-]+)/.exec(save.assets.scripts.find(s=>s.path.endsWith('abyss_ui.lua')).source)?.[1];
+const receipt={url,pid:process.pid,saveSha256:hash(fs.readFileSync(scene)),rendererSha256:hash(renderer),scenePath:scene,web,buildId,cases:[{archive:'menu.save.json',sha256:hash(fs.readFileSync(scene))}],...(sdk?{sdkPath,sdkSha256:hash(fs.readFileSync(sdkPath)),runtimeMode:'persistent installed Simulator SDK; no editor transactions'}:{runtimeMode:'editor worker'})};
 fs.writeFileSync(out+'/service.json',JSON.stringify(receipt,null,2));console.log(receipt);
 for(const signal of ['SIGINT','SIGTERM'])process.once(signal,async()=>{await backend.close();front.close();process.exit()});
