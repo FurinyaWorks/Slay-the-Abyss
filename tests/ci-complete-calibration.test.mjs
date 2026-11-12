@@ -1851,6 +1851,12 @@ test('combined closeout validates raw current sources and complete Full discover
  const lua=liveCloseoutLua();assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
  for(const file of lua)assert.equal(hash(nativeCloseoutRead(file,'utf8').replaceAll('\r\n','\n')),closeoutCiProof.luaHashes[file],file);
  const rawCalibration=nativeCloseoutRead('tests/ci-complete-calibration.test.mjs','utf8');
+ for(const view of Object.keys(closeoutCiProof.targets))for(const file of ['config/architecture.json','src/lua/abyss_ui.lua']){
+  const source=nativeCloseoutRead(file,'utf8');
+  assert.equal(preCloseoutCiSource(file,source,view),source,'CI views cannot intercept production owner authorization: '+view+':'+file);
+  assert.equal(preCurrentCiPlacementSource(file,source),source,'CI placement cannot intercept production owner authorization: '+file);
+  assert.equal(preCombinedPlanningSource(file,source),source,'CI planning cannot intercept production owner authorization: '+file);
+ }
  for(const view of ['defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt']){
   assert.equal(jointCiMatches('tests/ci-complete-calibration.test.mjs',rawCalibration,view),false);
   assert.equal(jointCiSourceAt('tests/ci-complete-calibration.test.mjs',rawCalibration,view),rawCalibration,'wrong scope preserves actual raw source');

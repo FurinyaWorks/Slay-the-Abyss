@@ -6,7 +6,7 @@ import {gunzipSync} from 'node:zlib';
 import {sourceSlice} from './closeout-source-epoch.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const bytes=readFileSync(new URL('./closeout-ci-source.json.gz',import.meta.url));
-assert.equal(hash(bytes),'93ad364ceaa09414ce500e067a2e733fa0135add493476b37234bfc6a26b472e');
+assert.equal(hash(bytes),'81c92be1cbb699b09a7d0e6968b3138ef782b0ff5657c6c197a517795daa5b6b');
 const packed=JSON.parse(gunzipSync(bytes));
 for(const [id,source]of Object.entries(packed.records))assert.equal(hash(source),id,'complete closeout CI record');
 const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
@@ -14,6 +14,9 @@ export const closeoutCiProof=freeze(packed);
 function target(name){assert(Object.hasOwn(packed.targets,name),'known closeout CI view');return packed.targets[name];}
 export function preCloseoutCiSource(path,source,view){
  const before=target(view);
+ // Production sources belong to the complete freshly authenticated owner
+ // closure; a CI receipt must never intercept them before that authorization.
+ if(path==='config/architecture.json'||path.startsWith('src/lua/'))return source;
  const id=Object.hasOwn(packed.current,path)?packed.current[path]:null;
  if(!id||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!==id)return source;
  const prior=before.files[path];

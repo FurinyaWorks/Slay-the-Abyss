@@ -48,6 +48,7 @@ export function prePosix14ShapeSource(path,source){
 // This placement-only bridge returns the existing complete approved source.
 // It adds no live owner, fixture dependency or permission-bearing cache.
 export function preCurrentCiPlacementSource(path,source){
+ if(path==='config/architecture.json'||path.startsWith('src/lua/'))return source;
  source=prePosix15ShapeSource(path,source);
  source=originalPlanningSource(path,source);
  source=preDefectUtilityPlanningSource(path,preDefectIntegrationPlanningSource(path,source));
@@ -146,6 +147,7 @@ export function preEffectsTargetGroupPlanningSource(path,source){
 // Only this complete combined identity can project to frozen sibling planning epochs.
 // Arbitrary source, partial floor sets and changed execution inputs pass through untouched.
 export function preCombinedPlanningSource(path,source,epoch='base'){
+ if(path==='config/architecture.json'||path.startsWith('src/lua/'))return source;
  source=preCurrentPlanningSource(path,source);
  source=preDefectActorCiSource(path,source);
  if(path==='scripts/ci-test-timings.json')source=preGoldenIdolCurrentCiSource(path,source);
