@@ -24,12 +24,15 @@ SOFTWARE.
 -- Two frozen Lumine hosts only. No rules, timers, fitting or original OnStart.
 -- Property order follows Primitive's MIT runtime, copyright 2026 LiuL.
 local M = {}
-local Idle=require('abyss_lumine_idle')
+-- Legacy and texture-only callers do not load the approved animation module.
+local function idleModule(data)
+    if data.renderProfile=='approved-idle-v1' then return require('abyss_lumine_idle') end
+end
 local owners = setmetatable({}, {__mode='k'})
 local CANCELLED = {}
 local function integer(n) return type(n)=='number' and n>0 and n<math.huge and n%1==0 end
 local function compactProfile(data)
-    return data.renderProfile=='compact-v1' or data.renderProfile=='bounded-2d-v1' or Idle.enabled(data)
+    return data.renderProfile=='compact-v1' or data.renderProfile=='bounded-2d-v1' or data.renderProfile=='approved-idle-v1'
 end
 local function digest(value)
     return type(value)=='string' and #value==64 and value:match('^[a-f0-9]+$')~=nil
@@ -49,7 +52,8 @@ local function validateRoot(r,width)
 end
 local function validate(data, width, count, source, json)
     assert(type(data)=='table','unexpected portrait data')
-    if Idle.enabled(data) then Idle.validate(data);return end
+    local idle=idleModule(data)
+    if idle then idle.validate(data);return end
     if data.renderProfile=='bounded-2d-v1' then validateBounded(data,width)
     else
         local compact=compactProfile(data) or data.renderProfile=='selection-budget-v1'
@@ -81,6 +85,7 @@ local function v25Profile(asset)
     return profile
 end
 local function controller(host, data, display, templates, options)
+    local Idle=idleModule(data)
     local Asset=templates or require('abyss_traveler_portrait_assets')
     local retryFailedOnPause=type(options)=='table' and options.retryFailedOnPause==true
     local nativeLifecycle=type(options)=='table' and options.nativeLifecycle==true
@@ -289,11 +294,11 @@ local function controller(host, data, display, templates, options)
             if pending then cleanup()end;working=false;return ok,'reveal'
         end
         local ok,err=pcall(function()
-            local p=Idle.enabled(data) and data.bandByRow[nextIndex] or math.floor((nextIndex-1)/3600)+1
+            local p=Idle and data.bandByRow[nextIndex] or math.floor((nextIndex-1)/3600)+1
             local g=math.floor((nextIndex-1)/60)+1
             if pageIndex~=p then
                 page=create(token,Asset.containerPrefabId,host);transform(token,page);pageIndex=p
-                if Idle.enabled(data) then idlePages[p]=page;groupIndex=0 end
+                if Idle then idlePages[p]=page;groupIndex=0 end
                 call(token,page,'SetActive',not data.runtimeV2);call(token,page,'SetVisible',not data.runtimeV2)
             elseif groupIndex~=g then
                 group=create(token,Asset.containerPrefabId,page);transform(token,group);groupIndex=g
@@ -346,17 +351,17 @@ local function controller(host, data, display, templates, options)
     end
     function self.pose(_,x,y,sx,sy,dt,motionState)
         if host.alive==false then self:destroy();return end
-        if working or Idle.enabled(data) and idlePaused or (phase~='building' and phase~='ready')then return end
+        if working or Idle and idlePaused or (phase~='building' and phase~='ready')then return end
         working=true;poseTicket=generation
         local ok,err=pcall(function()
-            if Idle.enabled(data) and phase=='ready' then
+            if Idle and phase=='ready' then
                 -- The approved bands own idle movement. Do not stack the old
                 -- whole-body ActorMotion breathing on top of the source field.
                 if paintIdle(dt,motionState) then x,y,sx,sy=0,0,1,1 end
             end
             assert(host:SetAnchoredPosition(x+(base and base[1] or 0),y+(base and base[2] or 0))~=false,'portrait pose rejected')
             if host.alive==false then self:destroy();return end
-            if Idle.enabled(data) and idlePaused then return end
+            if Idle and idlePaused then return end
             if phase=='building' or phase=='ready'then assert(host:SetLocalScale(sx*display/data.width,sy*display/data.width,1)~=false,'portrait scale rejected')end
         end)
         if not ok and err~=CANCELLED then fail(err)end

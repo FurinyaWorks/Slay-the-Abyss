@@ -6,7 +6,7 @@ import {buildUI} from '../scripts/build-ui.mjs';
 import {buildLuaData,luaString,toLua} from '../scripts/build-lua-data.mjs';
 import {runLua} from '../scripts/test-lua.mjs';
 
-test('official battle relic material overrides preserve legacy pages and exact owned detail identity',t=>{
+test('official relic material is shared across run phases while the legacy profile and owned detail identity remain exact',t=>{
  const theme=JSON.parse(readFileSync('data/presentation/ui_theme.json','utf8'));
  const relics=JSON.parse(readFileSync('data/relics.json','utf8')).relics;
  const icons=theme.officialAssets.battleRelicIcons;
@@ -39,7 +39,8 @@ end
 local F=dofile('tests/lua/support/game_ui_fixture.lua');local h,r=F.fixture();assert(F.start(h))
 h.run.relics={'burning_blood','kunai','ink_bottle'};h:refresh()
 local bar=r:GetChild('relicBar');local panel=r:GetChild('relicPanel')
-for i,id in ipairs(h.run.relics)do assert(bar:GetChild('slot'..i):GetChild('icon').imageId==baseIcon(id),'map icon changed')end
+local function runIcon(id)return official and Theme.officialAssets.battleRelicIcons[id].id or baseIcon(id)end
+for i,id in ipairs(h.run.relics)do assert(bar:GetChild('slot'..i):GetChild('icon').imageId==runIcon(id),'shared run map icon')end
 assert(require('abyss_run').startCombat(h.run,'cultist_solo'));h:refresh()
 for i,id in ipairs(h.run.relics)do assert(bar:GetChild('slot'..i):GetChild('icon').imageId==V.icon(id,true),'battle HUD icon')end
 local hp,energy,turn=h.run.hp,h.run.combat.energy,h.run.combat.turn
@@ -50,9 +51,15 @@ assert(panel:GetChild('single'):GetChild('icon').imageId==V.icon('ink_bottle',tr
 assert(h.relicUI:turn(-1));assert(h.relicUI.selected.id=='kunai');assert(h:closeDeck())
 assert(h.run.hp==hp and h.run.combat.energy==energy and h.run.combat.turn==turn,'read-only detail')
 h.run.phase='map';h:refresh()
-for i,id in ipairs(h.run.relics)do assert(bar:GetChild('slot'..i):GetChild('icon').imageId==baseIcon(id),'map restore')end
-assert(h:openRelics(1));assert(not h.relicUI.selectedIndex)
-assert(panel:GetChild('row1'):GetChild('slot'):GetChild('icon').imageId==baseIcon('burning_blood'),'list restore')
+for i,id in ipairs(h.run.relics)do assert(bar:GetChild('slot'..i):GetChild('icon').imageId==runIcon(id),'same atlas on return to map')end
+assert(h:openRelics(1))
+if official then
+ assert(h.relicUI.selectedIndex==1 and h.relicUI.selected.id=='burning_blood','shared single entry from map')
+ assert(panel:GetChild('single'):GetChild('icon').imageId==runIcon('burning_blood'),'same single atlas outside combat')
+else
+ assert(not h.relicUI.selectedIndex)
+ assert(panel:GetChild('row1'):GetChild('slot'):GetChild('icon').imageId==baseIcon('burning_blood'),'legacy list restore')
+end
 print('BATTLE_RELIC_ICONS_SCOPE_PASS')`);
   const result=runLua(script);assert.equal(result.status,0,result.stdout+result.stderr);assert.match(result.stdout,/BATTLE_RELIC_ICONS_SCOPE_PASS/);
  }

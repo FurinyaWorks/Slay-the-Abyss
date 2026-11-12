@@ -51,7 +51,7 @@ test('combined epoch fails closed on fragments, duplicates, foreign paths, nonst
 });
 
 test('utility production inverse composes with the current M7 source chain without live owner reads',()=>{
- const p=defectUtilitySourceProof.path,source=preDefectActorSource(p,read(p)),before=read('tests/fixtures/defect-utility-planning-before.lua');
+ const p=defectUtilitySourceProof.path,source=preDefectActorSource(p,read(p),{readSource:historicalActorRead}),before=read('tests/fixtures/defect-utility-planning-before.lua');
  const fail=()=>assert.fail('standalone utility has no linked owner permission');
  for(const input of [source,source.replaceAll('\n','\r\n')]){
   assert.equal(preDefectUtilitySource(p,input),before);
@@ -69,7 +69,11 @@ const historicalActorEpoch=extendDefectActorEpoch(preDefectActorEpoch);
 const actorProof=defectActorEpoch.proof;
 const actorPaths=['config/architecture.json','src/lua/abyss_combat_queued_play.lua','src/lua/abyss_defect_utility_cards.lua'];
 const actorRaw=p=>actorProof.current[p]?.source??null;
+// The Actor receipt checks its exact historical after-image, not today's
+// architecture spelling. Project only through the complete current verifier.
+const historicalActorRead=actorCurrentEpoch.combinedReader(read,'pr618');
 test('Actor capability predecessor binds all three complete owners to independent 6a614fc Git blobs',()=>{
+ const read=historicalActorRead;
  const blobs={
   'config/architecture.json':'3b79effde6d5cd59a502ecc32982dd98be1f24b6',
   'src/lua/abyss_combat_queued_play.lua':'d4fda1b3cc44b4a88a9f01fedc11c3e8716e66da',
@@ -168,7 +172,7 @@ test('M7 live and explicit current readers preserve the queued historical capabi
  const config=actorPaths[0];
  assert.equal(preM7FinalSource(config,read(config)),actorCurrentEpoch.proof.targets.develop.files[config].source);
 });
-test('M7 queued capability authenticates all 79 current owners freshly after warm success',()=>{
+test('M7 queued capability authenticates all current owners freshly after warm success',()=>{
  const p=actorPaths[1],source=read(p),proof=actorCurrentEpoch.proof;
  const expected=classPotionWatcherSourceProof[p].beforeSha256;
  let bad,value,reads=[];
@@ -182,4 +186,33 @@ test('M7 queued capability authenticates all 79 current owners freshly after war
   }
   bad=undefined;reads=[];assert.equal(hash(project()),expected);
  }
+});
+
+test('Actor entry authenticates the complete raw current closure before exposing its real historical target',()=>{
+ const epoch=actorCurrentEpoch,p=defectUtilitySourceProof.path,source=read(p),proof=epoch.proof;
+ assert.equal(proof.targets.pr618.commit,'5fb26dcc5b00637785b4d926839c296a735a305a');
+ for(const owner of actorPaths)for(const key of ['source','sha256','gitBlob'])
+  assert.equal(proof.targets.pr618.files[owner][key],actorProof.current[owner][key]);
+ const actual=Object.fromEntries(proof.owners.map(owner=>[owner,read(owner)]));
+ let bad,value,reads=[];
+ const reader=owner=>{reads.push(owner);if(owner===bad){if(value instanceof Error)throw value;return value;}return actual[owner];};
+ const project=()=>preM7FinalSource(p,source,{readSource:reader});
+ for(let warm=0;warm<2;warm++){
+  reads=[];assert.equal(project(),beforeUtility());
+  assert.deepEqual(reads.slice(0,proof.owners.length),proof.owners,'raw current authentication precedes Actor projection');
+ }
+ for(const owner of proof.owners)for(value of [actual[owner]+'\n',null,new Error('unavailable')]){
+  bad=owner;reads=[];assert.throws(project,/combined linked owner/);
+  assert.deepEqual(reads,proof.owners.slice(0,proof.owners.indexOf(owner)+1),'no target bytes before complete raw authentication');
+  bad=undefined;reads=[];assert.equal(project(),beforeUtility());
+  assert.deepEqual(reads.slice(0,proof.owners.length),proof.owners);
+ }
+ // Supplying just the old three-owner snapshot is never permission to bypass
+ // the real current owners, even though it matches the old Actor verifier.
+ assert.throws(()=>preM7FinalSource(p,source,{readSource:actorRaw}),/combined linked owner identity/);
+ const config='config/architecture.json';reads=[];
+ assert.throws(()=>preM7FinalSource(p,source,{readSource:owner=>{
+  reads.push(owner);return owner===config?proof.targets.pr618.files[config].source:actual[owner];
+ }}),/combined linked owner identity: config\/architecture\.json/);
+ assert.deepEqual(reads,proof.owners.slice(0,proof.owners.indexOf(config)+1),'old config cannot masquerade as a current raw owner');
 });
