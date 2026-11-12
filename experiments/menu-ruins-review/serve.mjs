@@ -42,18 +42,22 @@ async function direct(req,res){
 }
 const {createWebServer}=await import(pathToFileURL(path.join(web,'dist/server.js')));
 const backend=await createWebServer({host:'127.0.0.1',port:0,workspace}),base=new URL(backend.url);
-let url;
+let url,receipt;
 const front=http.createServer((req,res)=>{
  if(req.headers.host!==new URL(url).host){res.writeHead(403);res.end('local host required');return}
  if(req.headers.origin&&req.headers.origin!==url){res.writeHead(403);res.end('foreign origin');return}
  if(!req.url?.startsWith('/')||req.url.startsWith('//')){res.writeHead(400);res.end();return}
+ if(req.method==='GET'&&req.url==='/menu-health'){send(res,receipt?200:503,{app:'menu-native-2d-review',ready:!!receipt,buildId:receipt?.buildId,saveSha256:receipt?.saveSha256});return}
  if(sdk&&req.method==='POST'&&['/editor/api/play','/editor/api/load-archive'].includes(req.url)){direct(req,res).catch(e=>{console.error(e);if(!res.headersSent)send(res,400,{ok:false,error:e.message});else res.destroy()});return}
  if(['/editor/play-renderer.js','/play-renderer.js'].includes(req.url?.split('?')[0])){res.writeHead(200,{'content-type':'text/javascript'});res.end(renderer);return}
  const headers={...req.headers,host:base.host};delete headers.cookie;delete headers.authorization;if(headers.origin)headers.origin=base.origin;
  const upstream=http.request({hostname:base.hostname,port:base.port,path:req.url,method:req.method,headers},answer=>{res.writeHead(answer.statusCode,answer.headers);answer.pipe(res)});upstream.on('error',()=>{res.writeHead(502);res.end()});req.pipe(upstream);
-});await new Promise(r=>front.listen(0,'127.0.0.1',r));
+});
+const port=Number(process.env.MENU_REVIEW_PORT??0);
+if(!Number.isInteger(port)||port<0||port>65535)throw Error('Invalid MENU_REVIEW_PORT');
+await new Promise((resolve,reject)=>{front.once('error',reject);front.listen(port,'127.0.0.1',resolve)});
 url='http://127.0.0.1:'+front.address().port;
 const save=JSON.parse(fs.readFileSync(scene)),buildId=/ABYSS_BUILD ([0-9a-f-]+)/.exec(save.assets.scripts.find(s=>s.path.endsWith('abyss_ui.lua')).source)?.[1];
-const receipt={url,pid:process.pid,saveSha256:hash(fs.readFileSync(scene)),rendererSha256:hash(renderer),scenePath:scene,web,buildId,cases:[{archive:'menu.save.json',sha256:hash(fs.readFileSync(scene))}],...(sdk?{sdkPath,sdkSha256:hash(fs.readFileSync(sdkPath)),runtimeMode:'persistent installed Simulator SDK; no editor transactions'}:{runtimeMode:'editor worker'})};
+receipt={url,pid:process.pid,saveSha256:hash(fs.readFileSync(scene)),rendererSha256:hash(renderer),scenePath:scene,web,buildId,cases:[{archive:'menu.save.json',sha256:hash(fs.readFileSync(scene))}],...(sdk?{sdkPath,sdkSha256:hash(fs.readFileSync(sdkPath)),runtimeMode:'persistent installed Simulator SDK; no editor transactions'}:{runtimeMode:'editor worker'})};
 fs.writeFileSync(out+'/service.json',JSON.stringify(receipt,null,2));console.log(receipt);
 for(const signal of ['SIGINT','SIGTERM'])process.once(signal,async()=>{await backend.close();front.close();process.exit()});

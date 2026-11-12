@@ -1,0 +1,78 @@
+{
+  "saveSha256": "67ff1e2462dfc2b8c5f880dc856aa97a1516f8bab59c0ed6f7b292cc7dba33e0",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "errors": [],
+  "timings": [
+    {
+      "to": "characterPanel",
+      "clickToFullInspectReturnMs": 2118.6479999999992
+    },
+    {
+      "to": "menuPanel",
+      "clickToFullInspectReturnMs": 1999.666000000001
+    },
+    {
+      "to": "characterPanel",
+      "clickToFullInspectReturnMs": 2194.0269000000008
+    },
+    {
+      "to": "menuPanel",
+      "clickToFullInspectReturnMs": 2298.499799999998
+    },
+    {
+      "to": "characterPanel",
+      "clickToFullInspectReturnMs": 2061.678
+    },
+    {
+      "to": "menuPanel",
+      "clickToFullInspectReturnMs": 1907.9337999999989
+    },
+    {
+      "to": "characterPanel",
+      "clickToFullInspectReturnMs": 1773.9227000000028
+    },
+    {
+      "to": "menuPanel",
+      "clickToFullInspectReturnMs": 2079.4958000000006
+    },
+    {
+      "to": "characterPanel",
+      "clickToFullInspectReturnMs": 1883.4229000000014
+    },
+    {
+      "to": "menuPanel",
+      "clickToFullInspectReturnMs": 1854.211500000005
+    },
+    {
+      "to": "characterPanel",
+      "clickToFullInspectReturnMs": 1879.3562999999995
+    },
+    {
+      "to": "menuPanel",
+      "clickToFullInspectReturnMs": 1751.0734000000011
+    }
+  ],
+  "shots": [
+    "01-menu",
+    "02-character",
+    "03-return-menu"
+  ],
+  "scope": "Web Simulator actual renderer; not official client or GPU FPS",
+  "archive": "menu.save.json",
+  "archiveLoadMs": 830.0994999999999,
+  "navigationToFrameMs": 3635.6196,
+  "steadyDrawMs": {
+    "samples": 97,
+    "p50": 1.800000000745058,
+    "p95": 2.7999999998137355,
+    "max": 4.5
+  },
+  "roundtripCounts": [
+    14354,
+    14354,
+    14354,
+    14354,
+    14354
+  ],
+  "status": "captured"
+}

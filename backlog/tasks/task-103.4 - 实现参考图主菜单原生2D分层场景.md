@@ -5,7 +5,7 @@ status: Done
 assignee:
   - Furinya
 created_date: '2026-11-12 01:35'
-updated_date: '2026-11-12 02:32'
+updated_date: '2026-11-12 02:49'
 labels: []
 milestone: m-8
 dependencies: []
@@ -42,6 +42,10 @@ ordinal: 172000
 本轮完成150图元17容器的原生2D背景，独立视觉复审基本场景通过。接续PR623现有菜单，独立Draft背景增量；不合并发布。最终GIL447e7f20由干净3a2fee27构建，真实读回0差异；Simulator归档374ms、首帧2120ms、菜单到选角288ms，全部自然切页110至781ms。串行AB未观测明显背景增量，SDK683帧P95 7.96ms。截图/参考/数据与验收边界见docs/evidence/menu-native-2d-20261112。官方设备未测。
 
 已提交独立Draft PR633：https://github.com/FurinyaWorks/Slay-the-Abyss/pull/633；暂以623菜单分支为base，依赖其合入后转develop。保持Draft、无自动合并、不发布。Simulator本轮范围已交付，官方设备与Hosted Full不冒称通过。
+
+用户反馈试玩打不开；已复现52711拒绝连接且原PID35824不存在。恢复同候选原地址，并改为隐藏独立后台进程，补启动/健康检查入口与真实页面验证。
+
+试玩入口恢复：原进程已退出，改用start.ps1启动独立隐藏后台进程，固定原52711端口并校验候选/SDK及menu-health。父命令结束后进程仍健康；重复启动不重启同候选。恢复后真实主菜单截图与原实拍SHA相同，点击选角与五次往返通过，page/API errors0，控件恒14354。恢复功能原始报告service-recovery.json独立保存，不覆盖前轮性能报告。独立复审本次生命周期改动无必须修项。
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

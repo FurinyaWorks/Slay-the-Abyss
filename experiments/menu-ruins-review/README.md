@@ -14,6 +14,14 @@ node experiments/menu-ruins-review/serve.mjs <已有snapshot-private-web-v2目�
 
 服务只监听127.0.0.1。URL和原始 SDK、渲染器及归档摘要写在 `service.json`。打开 `<URL>/editor/play#menu-play` 可直接运行完整游戏。`MENU_REVIEW_SDK` 常驻模式调用原 SDK 的初始化、步进、快照与指针，省去编辑器归档快照和工作线程之间搬运27MB数据；不修改Lua或注入Run状态。这是Simulator适配成本的优化，不能称为原神客户端加载提速。省略该环境变量仍可复现早期编辑器worker路径。
 
+Windows交付试玩使用独立隐藏后台进程，避免启动命令结束后服务随之退出：
+
+```powershell
+./experiments/menu-ruins-review/start.ps1
+```
+
+启动器读取本轮原始 `service.json`，核对归档及SDK摘要，恢复同一端口；通过 `/menu-health` 核对服务身份后才返回链接。重复运行不会重启已健康的同候选服务。日志和新PID在 `.artifacts/menu-preview-service/`。若换用其他收据，可传 `-ReceiptPath`；不会抢占其他端口或终止已有进程。
+
 4. 串行取证，避免同时运行CPU基准和浏览器计时：
 
 ```powershell
