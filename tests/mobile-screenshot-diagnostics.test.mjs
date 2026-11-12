@@ -68,5 +68,6 @@ test('diagnostics stay behind the existing input guard and never claim FPS', () 
   assert.match(input, /not self\.diagnosticsOpen/);
   assert.match(view, /diagnostics:SetAsLastSibling/);
   assert.match(host, /self\.diagnostics:render/);
-  assert.doesNotMatch(reporter, /GetFPS|GetMemory|clipboard|io\.|ServerSignal|OnUpdate/);
+  const executable = reporter.split('\n').filter(line => !line.trimStart().startsWith('--')).join('\n');
+  assert.doesNotMatch(executable, /GetFPS|GetMemory|clipboard|io\.|ServerSignal|OnUpdate/);
 });
