@@ -506,6 +506,9 @@ tests/helpers/battle-queue-source-epoch.mjs text eol=lf
 tests/helpers/battle-queue-ci-source-epoch.mjs text eol=lf
 tests/helpers/battle-queue-source-epoch.json.gz -text
 tests/helpers/battle-queue-ci-source-epoch.json.gz -text
+tests/helpers/official-ui-repair-source-epoch.mjs text eol=lf
+tests/helpers/official-ui-repair-closure.mjs text eol=lf
+tests/helpers/official-ui-repair-source-epoch.json.gz -text
 docs/evidence/battle-input-performance-20261110/** -text
 docs/evidence/battle-repair-20261111/** -text
 docs/evidence/battle-piles-final-20261111/** -text

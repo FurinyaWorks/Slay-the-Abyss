@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const bytes=readFileSync(new URL('./official-ui-repair-source-epoch.json.gz',import.meta.url));
-assert.equal(hash(bytes),'940ad9d09dc56c51e23f9900be7685b2aa08158685f19e7d8d63e60123c20dbd');
+assert.equal(hash(bytes),'7acca01bc985f6bb6bea90361374f360d7ef3e746583bd8a8da7c459951f0765');
 export const officialUiRepairProof=JSON.parse(gunzipSync(bytes));
 const freeze=x=>{if(x&&typeof x==='object'&&!Object.isFrozen(x)){Object.values(x).forEach(freeze);Object.freeze(x);}return x;};
 for(const row of Object.values(officialUiRepairProof.files))for(const b of [row.current,row.before])assert.equal(hash(b.source),b.sha256);

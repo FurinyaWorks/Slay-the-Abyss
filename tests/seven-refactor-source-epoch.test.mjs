@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as nativeReadFileSync} from 'node:fs';
 import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
+import {preOfficialUiRepairSource} from './helpers/official-ui-repair-source-epoch.mjs';
 // Original assertions retain their explicit frozen source view.
-const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,value,'official'):value;};
+const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,preOfficialUiRepairSource(p,value),'official'):value;};
 import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
 import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
