@@ -27,7 +27,9 @@ test('Watcher planning leaves the complete SCC without hiding delayed requires',
  const additions=['abyss_actor_presence','abyss_colorless_catalog','abyss_native_pages','abyss_relic_potion_hooks','abyss_turn_power_phases'];
  const componentAdditions=Object.keys(componentUiSourceEpoch.proof.current).filter(path=>componentUiSourceEpoch.proof.targets.componentPrior.files[path]===null).map(path=>path.split('/').at(-1).slice(0,-4));
  const jointAdditions=Object.keys(currentEpoch.proof.current).filter(path=>path.startsWith('src/lua/')&&!Object.hasOwn(componentUiSourceEpoch.proof.current,path)).map(path=>path.split('/').at(-1).slice(0,-4));
- assert.deepEqual(jointAdditions,['abyss_battle_card_glow'],'explicit complete post-component addition');
+ assert.deepEqual(jointAdditions,['abyss_battle_card_glow','abyss_lumine_idle'],'explicit complete post-component additions');
+ assert.equal(Object.keys(sources).length,346,'complete current production inventory');
+ assert.equal(policy.layers.abyss_lumine_idle,'ui','the only new idle owner stays in presentation');
  const priorNames=Object.keys(sources).filter(name=>!componentAdditions.includes(name)&&!jointAdditions.includes(name));
  for(const name of additions)assert(Object.hasOwn(sources,name),'develop added owner: '+name);
  assert.equal(priorNames.filter(name=>!additions.includes(name)).length,333,'original inventory retained alongside five develop additions');

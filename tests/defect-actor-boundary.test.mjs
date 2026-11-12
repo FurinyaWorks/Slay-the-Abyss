@@ -7,10 +7,12 @@ import {baseline,defectVm} from './helpers/defect-actor-vm.mjs';
 import {analyzeSources} from '../scripts/check-architecture.mjs';
 import {discoverSources,dependencyCycles} from '../scripts/lua-quality-metrics.mjs';
 import {generatedRuntimeModules} from '../scripts/build-native-candidate.mjs';
+import {currentDefectActorReader} from './helpers/m7-core-final-source-inverse.mjs';
 const require=createRequire(import.meta.url),luaparse=require('luaparse');
 const utility='src/lua/abyss_defect_utility_cards.lua',queued='src/lua/abyss_combat_queued_play.lua';
 const fixture='tests/lua/defect_utility_build.lua',protocol='tests/lua/support/m9_combat_protocol_baseline.lua';
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
+const actorRead=currentDefectActorReader(read);
 const pass=options=>{const result=defectVm(options);assert.equal(result.status,0,result.error);return result;};
 const mutate=(path,from,to)=>{const source=read(path);assert.equal(source.split(from).length,2,'unique semantic mutation');const changed=source.replace(from,to);luaparse.parse(changed,{luaVersion:'5.3'});return {[path]:changed};};
 const cold=`
@@ -71,7 +73,11 @@ test('production changes remain the two narrow capability edits and one policy r
   .replaceAll('        local Actors=actorHost()\n',''),original[utility]);
  assert.equal(read(queued).replace("local function utilityActorHost()return require('abyss_actor')end\n",'')
   .replace('utility.prepareEffect(state,e,target,utilityActorHost)','utility.prepareEffect(state,e,target)'),original[queued]);
- const policy=JSON.parse(read('config/architecture.json')),prior=JSON.parse(original['config/architecture.json']);
+ const policy=JSON.parse(actorRead('config/architecture.json')),prior=JSON.parse(original['config/architecture.json']);
+ const livePolicy=JSON.parse(read('config/architecture.json'));
+ assert.equal(livePolicy.layers.abyss_lumine_idle,'ui');
+ delete livePolicy.layers.abyss_lumine_idle;
+ assert.deepEqual(livePolicy,policy,'the exact admitted idle layer is the only change outside the frozen capability policy');
  const rule=policy.dependencyBoundaries.pop();assert.equal(rule.id,'defect-utility-planning');assert.deepEqual(policy,prior);
  assert.deepEqual(rule.from,['abyss_defect_utility_cards']);
  assert.deepEqual(rule.forbiddenTargets,['abyss_actor','abyss_combat','abyss_combat_queued_play','abyss_card_actions']);
@@ -83,10 +89,12 @@ function reachable(report,root){
  return [...seen].sort();
 }
 const closure=report=>assert.deepEqual(reachable(report,'abyss_defect_utility_cards'),['abyss_defect_utility_cards','abyss_relic_queries'],'planner closure contains only the read-only query leaf, including deferred/transitive edges');
-test('all 345 modules retain complete immediate/deferred graphs and reject transitive runtime owners',()=>{
+test('all original 345 modules plus the admitted idle retain complete graphs and reject transitive runtime owners',()=>{
  const raw=discoverSources(),sources=Object.fromEntries(Object.entries(raw).map(([p,s])=>[p.split('/').at(-1).slice(0,-4),s]));
- assert.equal(Object.keys(sources).length,345,'complete current inventory');
- assert.deepEqual(Object.keys(sources).sort(),Object.keys(JSON.parse(baseline().sources['config/architecture.json']).layers).filter(n=>!Object.hasOwn(generatedRuntimeModules,n)).sort(),'every original source owner retained');
+ const originalNames=Object.keys(JSON.parse(baseline().sources['config/architecture.json']).layers).filter(n=>!Object.hasOwn(generatedRuntimeModules,n)).sort();
+ assert.equal(originalNames.length,345,'frozen original inventory');
+ assert.equal(Object.keys(sources).length,346,'complete current inventory');
+ assert.deepEqual(Object.keys(sources).filter(n=>n!=='abyss_lumine_idle').sort(),originalNames,'every original source owner retained alongside the one admitted addition');
  assert.deepEqual(Object.keys(sources).sort(),Object.keys(JSON.parse(read('config/architecture.json')).layers).filter(n=>!Object.hasOwn(generatedRuntimeModules,n)).sort(),'no unclassified or omitted source owners');
  const policy=JSON.parse(read('config/architecture.json')),report=analyzeSources(sources,policy);
  assert.deepEqual(report.errors,[]);closure(report);
@@ -97,7 +105,7 @@ test('all 345 modules retain complete immediate/deferred graphs and reject trans
  for(const name of ['utilityActorHost','watcherActorHost'])assert(hosts.some(e=>read(queued).split('\n')[e.line-1].includes(`local function ${name}()`)));
  // Parse the complete changed module for each mutant, then replace its edges
  // in this run's freshly collected FULL graph. Every other owner and edge is
- // retained, avoiding six redundant parses of 344 unchanged source files.
+ // retained, avoiding six redundant parses of 345 unchanged source files.
  const boundary=policy.dependencyBoundaries.find(r=>r.id==='defect-utility-planning');
  for(const [owner,target,delayed]of [
   ['abyss_defect_utility_cards','abyss_actor',false],['abyss_defect_utility_cards','abyss_actor',true],
@@ -110,7 +118,7 @@ test('all 345 modules retain complete immediate/deferred graphs and reject trans
   assert(!changed.errors.some(e=>e.message.includes('Lua parse failed')),'semantic mutation must parse');
   if(owner==='abyss_defect_utility_cards')assert(changed.errors.some(e=>e.message.includes('defect-utility-planning')),'policy rejects the direct/deferred back edge');
   const complete={...report,edges:[...report.edges.filter(e=>e.from!==owner),...changed.edges.filter(e=>e.from===owner)]};
-  assert.equal(complete.nodes.length,345);assert(complete.edges.some(e=>e.from===owner&&e.to===target));
+  assert.equal(complete.nodes.length,346);assert.deepEqual(complete.nodes.filter(n=>n!=='abyss_lumine_idle').sort(),originalNames);assert(complete.edges.some(e=>e.from===owner&&e.to===target));
   assert.throws(()=>closure(complete),/planner closure/,'full transitive graph rejects the runtime import');
  }
 });

@@ -184,7 +184,7 @@ assert(a:release() and LiveCount()==0)
 `,{runtimeV2:true,officialAssets:true});
 });
 
-test('official selection and battle use the same bounded artwork while full-body literals stay available',()=>{
+test('official selection retains its bounded cache while battle uses the approved idle and full-body literals remain available',()=>{
  withPortraitVm(`
 local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
@@ -193,17 +193,31 @@ stage.children.characterPanel.children.details=tree({officialSelectionFigure=sel
 traveler:SetVisible(false)
 assert(Asset.battle133.count==4315 and #Asset.battle133.rows==4315,'full-source figure was replaced')
 assert(Asset.battlePixel.count==57 and #Asset.battlePixel.rows==57)
+local idle=assert(Asset.battleApprovedIdle)
+assert(idle.renderProfile=='approved-idle-v1' and idle.count==7303 and #idle.rows==7303)
+assert(#idle.bands==18 and #idle.bandByRow==7303 and idle.samplesPerCycle==20 and idle.period==2.2)
+assert(idle.sourceSha256=='32830a9ab3f0b181202205bba59447efe660ce3225ab26f32943c54753a105de')
 local a=Portraits.new(stage,nil,{selectionAvatar=true,battlePortrait=true})
 assert(a:sync('menu',true,false,'ironclad'))
 for _=1,1000 do a:tick();if a:status().selection.phase=='ready' then break end end
 assert(a:status().selection.total==57 and a:status().selection.owned<=60,
- 'official selection did not use the shared bounded battle drawing')
+ 'official selection did not retain its explicit bounded source')
 assert(#Images()==57 and a:status().avatar.owned==0)
-local selected=Images()
+local selected=Images();local selectedTraces={}
+for i,image in ipairs(selected)do
+ selectedTraces[i]={};for j,record in ipairs(image.trace)do selectedTraces[i][j]={table.unpack(record)}end
+end
 assert(a:sync('battle',false,false,'ironclad'))
 for _=1,1000 do a:tick();if a:status().battle.phase=='ready' then break end end
-local both=Images();assert(a:status().battle.total==57 and #both==114)
-for i=1,57 do Equal(selected[i].trace,both[i+57].trace)end
+local both=Images();local battle=a:status().battle
+assert(battle.phase=='ready' and battle.total==7303 and battle.owned==7459,'approved source did not reach its measured native cache')
+assert(#both==57+7303,'selection and approved combat did not keep their exact independent image counts')
+for i=1,57 do assert(both[i]==selected[i],'battle replaced the selection cache');Equal(selectedTraces[i],selected[i].trace)end
+local generation=battle.generation;local complete=LiveCount()
+assert(a:sync('menu',true,false,'ironclad'));a:tick()
+assert(a:sync('battle',false,false,'ironclad'));a:tick()
+assert(a:status().battle.phase=='ready' and a:status().battle.generation==generation and LiveCount()==complete,'scene reentry rebuilt the approved cache')
+local resumed=Images();for i,image in ipairs(both)do assert(resumed[i]==image,'scene reentry replaced a cached image')end
 assert(Asset.battle133.count==4315 and #Asset.battle133.rows==4315)
 assert(a:release() and LiveCount()==0)
 `,{runtimeV2:true,officialAssets:true});

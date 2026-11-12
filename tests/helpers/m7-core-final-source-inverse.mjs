@@ -27,6 +27,8 @@ function actorReader(raw){
   return actorTarget.files[path].source;
  };
 }
+// Explicit compatibility readers share this same full-current admission gate.
+export {actorReader as currentDefectActorReader};
 export function preM7FinalSource(path,source,{readSource=live}={}){
  readSource=readers.get(readSource)??readSource;
  const input=source;source=preDefectActorSource(path,source,{readSource:actorReader(readSource)});

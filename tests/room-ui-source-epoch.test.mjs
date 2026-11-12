@@ -18,10 +18,23 @@ import {readdirSync} from 'node:fs';
 const currentLive=p=>{try{return sourceSlice(p,nativeReadFileSync(p,'utf8'),'pr612').replaceAll('\r\n','\n');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
 // Preserve the original joint UI assertions against their explicit predecessor.
 const jointLive=current.combinedReader(currentLive,'joustPrior');
+function retainedPaths(historical){
+ const actual=['config/architecture.json',...readdirSync('src/lua').filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)];
+ assert.deepEqual(actual.slice().sort(),Object.keys(combinedCurrent.proof.current).sort(),'complete live production inventory');
+ const added=actual.filter(p=>!Object.hasOwn(historical.proof.current,p));
+ assert.deepEqual(added,['src/lua/abyss_lumine_idle.lua'],'only the explicitly adopted idle may extend this historical corpus');
+ for(const p of added){
+  assert.equal(combinedCurrent.proof.targets.pr612.files[p],null,'original absence remains explicit');
+  assert.equal(currentRaw(p).replaceAll('\r\n','\n'),combinedCurrent.proof.current[p].source,'new owner retains its exact current source');
+ }
+ assert.deepEqual(actual.filter(p=>!added.includes(p)).sort(),Object.keys(historical.proof.current).sort(),'every historical module is retained');
+ return Object.keys(historical.proof.current);
+}
+
 
 test('joint UI current identity includes every live module and the entire inherited owner closure',()=>{
  for(const p of epoch.proof.owners)assert(joint.proof.owners.includes(p),p);
- for(const p of ['config/architecture.json',...readdirSync('src/lua').filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)])
+ for(const p of retainedPaths(joint))
   assert.equal(jointLive(p).replaceAll('\r\n','\n'),joint.proof.current[p].source,p);
  for(const target of Object.values(joint.proof.targets))assert.deepEqual(Object.keys(target.files).sort(),Object.keys(joint.proof.current).sort());
  assert.equal(joint.proof.targets.jointUiPrior.files['src/lua/abyss_battle_card_glow.lua'],null);
@@ -106,7 +119,7 @@ test('Joust current source identity preserves every inherited target and all liv
  assert.equal(current.proof.joustCollectedBaseCommit,'6a614fc82697750ddb408750e54f59f801c24f1e');
  assert.deepEqual(current.proof.targets.joustPrior.files,joint.proof.current);
  for(const [name,target]of Object.entries(joint.proof.targets))assert.deepEqual(current.proof.targets[name],target,name);
- for(const p of ['config/architecture.json',...readdirSync('src/lua').filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)])
+ for(const p of retainedPaths(current))
   assert.equal(currentLive(p).replaceAll('\r\n','\n'),current.proof.current[p].source,p);
  const changed=Object.keys(current.proof.current).filter(p=>current.proof.current[p]?.sha256!==joint.proof.current[p]?.sha256);
  assert.deepEqual(changed,[joustSourceProof.path]);
