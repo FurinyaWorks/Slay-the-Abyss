@@ -9,7 +9,11 @@ test('menu scenery stays static, bounded and outside the input transaction',()=>
  for(const n of all(scene)){
   assert(['image','container'].includes(n.kind));assert(!n.script&&!n.scripts&&!n.focusable);
   assert(new Set(nodes(n).map(c=>c.name)).size===nodes(n).length);
-  if(n.kind==='image'){assert(n.size.every(v=>Number.isFinite(v)&&v>0));assert([100001,100002,100003,100004,100006,106095].includes(n.image));}
+  if(n.kind==='image'){
+   assert(n.size.every(v=>Number.isFinite(v)&&v>0));assert(n.size[0]<=3200&&n.size[1]<=1800,'native encoder rectangle bounds');
+   assert(n.position.every(Number.isFinite));assert(Math.abs(n.position[0])<=3200&&Math.abs(n.position[1])<=1800);
+   assert([100001,100002,100003,100004,100006,106095].includes(n.image));
+  }
  }
  const layout=gameLayout(),menu=all(layout).find(n=>n.name==='menuPanel'),start=nodes(menu).find(n=>n.name==='start'),hit=nodes(start).find(n=>n.name==='hit');
  applyV25MenuLayout(layout,nativeTheme);applyV25MenuLayout(layout,nativeTheme);

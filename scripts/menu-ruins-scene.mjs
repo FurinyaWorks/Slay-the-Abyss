@@ -59,7 +59,7 @@ export function menuRuinsScene(){
  front.children.push(line('stoneLip',[1162,591],[1220,552],3,'#66798A'),line('moss',[1181,578],[1205,565],4,'#747F5B'));
  front.children.push(image('lowMist',640,700,2800,270,'#B8D0DC',100001,{opacity:.5,feather:{pixels:[100,130]}}));
  poly(front,'leftMass',[[0,0],[149,0],[178,34],[165,115],[263,228],[219,314],[334,451],[0,553]],'#1D2D3C');
- front.children.push(image('leftAtmosphere',-220,360,1400,2000,'#1D3042',100001,{opacity:.96,feather:{pixels:[420,100]}}));
+ front.children.push(image('leftAtmosphere',-220,360,1400,1800,'#1D3042',100001,{opacity:.96,feather:{pixels:[420,100]}}));
  poly(front,'nearRock',[[0,666],[88,639],[329,658],[452,720],[0,720]],'#1B2C3B');
  // Layer containers stay below 60 direct children and have no scripts or input targets.
  return group('menuRuinsScene',[sky,far,middle,stone,front]);
