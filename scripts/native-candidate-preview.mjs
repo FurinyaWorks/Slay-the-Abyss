@@ -124,7 +124,14 @@ function compareTree(original,restored,trail){
  if(original.image!==undefined&&original.image!==restored.image)inverseFaults.push('image '+trail);
  if(original.kind==='image'&&(original.imageType??'basic').toLowerCase()!==(restored.imageType??'basic').toLowerCase())inverseFaults.push('imageType '+trail);
  if(original.active===false&&restored.active!==false||original.visible===false&&restored.visible!==false)inverseFaults.push('visibility '+trail);
- if(original.text){for(const field of ['content','fontSize','minFontSize','align','valign'])if(original.text[field]!==undefined&&(original.text[field]||field!=='content')&&original.text[field]!==restored.text?.[field])inverseFaults.push('text.'+field+' '+trail);}
+ if(original.text){
+ if((original.text.autoSize===true)!==(restored.text?.autoSize===true))inverseFaults.push('text.autoSize '+trail);
+ for(const field of ['content','fontSize','minFontSize','align','valign']){
+  // Import omits the inactive minimum when adaptive sizing is off. Compare
+  // both the enable flag and every effective minimum; never drop active sizing.
+  if(field==='minFontSize'&&original.text.autoSize!==true&&restored.text?.autoSize!==true)continue;
+  if(original.text[field]!==undefined&&(original.text[field]||field!=='content')&&original.text[field]!==restored.text?.[field])inverseFaults.push('text.'+field+' '+trail);
+ }}
  if(original.text&&(original.text.outline!==false)!==(restored.text?.outline!==false))inverseFaults.push('text.outline '+trail);
  if(original.colour&&original.colour.toLowerCase()!==(restored.colour??'#ffffff').toLowerCase())inverseFaults.push('colour '+trail);
  if(original.opacity!==undefined&&Math.round(original.opacity*255)!==Math.round((restored.opacity??1)*255))inverseFaults.push('alpha '+trail);

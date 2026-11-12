@@ -1,0 +1,14 @@
+{
+  "liveWriteEnabled": false,
+  "resources": [
+    {
+      "uri": "miliastra://workflow",
+      "sha256": "7c019563e411c544cccbf57cfce35f8014c435c379771db6fd8831c07b4a97af"
+    },
+    {
+      "uri": "miliastra://platform-rules",
+      "sha256": "516c269939f764ef1ad8a071ebce777f7caca19b0c942d22cbd28085d48825c7"
+    }
+  ],
+  "readOn": "2026-11-11"
+}

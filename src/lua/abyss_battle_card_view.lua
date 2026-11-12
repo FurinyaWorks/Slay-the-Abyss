@@ -43,6 +43,17 @@ local function canAimCard(card,battle)
     end
     return false
 end
+local function touchSourceAim(g)
+    return g.touchScreen and Theme.presentationProfile=='official-assets-first'
+end
+local function aimStart(g,x,y,height)
+    -- A touch-carried card is lifted above the finger. Starting there folds the
+    -- official arrow back down onto the finger and makes its tangent point up.
+    if touchSourceAim(g) then
+        return g.origin[1],g.origin[2]+height/2
+    end
+    return x,y+height/2
+end
 
 local function lerpSnap(value, target, dt, rate, threshold)
     local nextValue=value+(target-value)*math.min(1,dt*rate)
@@ -487,7 +498,7 @@ function M.new(view, controls)
             ty = ty or L.enemyRow.y
             if aim.target ~= target then
                 -- 首次锁定直接落点；敌人之间切换从上次画出的终点出发插值。
-                aim.from = (aim.target and aim.ex) and {aim.ex, aim.ey} or nil
+                aim.from = not (view.fastMode and touchSourceAim(g)) and (aim.target and aim.ex) and {aim.ex, aim.ey} or nil
                 aim.target, aim.lock, aim.blend = target, 0, aim.from and 0 or 1
             end
             local k = aim.blend or 1
@@ -562,7 +573,8 @@ function M.new(view, controls)
             -- Dotted arc from the card's top edge to the reticle (or the bare pointer).
             local ex, ey, ring = aimEndpoint(g, target, enemy)
             renderReticle(layer, aiming, ex, ey, ring, enemy)
-            local sx, sy, fy = x, y+h/2, ey-(enemy and ring/2 or 0)
+            local sx, sy = aimStart(g,x,y,h)
+            local fy = ey-(enemy and ring/2 or 0)
             if Theme.presentationProfile=='official-assets-first' then fy=ey end
             AimArrow.render(layer, aiming, sx, sy, ex, fy, enemy, tint, aim.phase,aim.lock)
             layer:SetAsLastSibling()

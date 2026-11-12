@@ -1495,3 +1495,28 @@ test('battle continuation retains exact historical sources and complete current 
   assert(currentJsShard(current,'1/'+count,platform).loads.every(v=>v<budget),'unchanged '+platform+' execution budget');
  }
 });
+
+
+test('battle continuation retains exact historical sources and complete current Full coverage',()=>{
+ const proof=battleQueueCiProof,current=liveDiscoverJs();
+ assert.equal(proof.base,'3a061a76b5eb917ac0f4213c01a9cbafd28d1824');
+ assert.equal(current.length,proof.oldInventory.length+6);
+ assert.equal(new Set(current).size,current.length);
+ assert.deepEqual(preBattleQueueCiInventory(current),proof.oldInventory);
+ for(const [p,row]of Object.entries(proof.files)){
+  const source=diskReadFileSync(p,'utf8').replaceAll('\r\n','\n');
+  assert.equal(source,row.current,p);
+  assert.equal(preBattleQueueCiSource(p,source),row.before,p);
+  for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(preBattleQueueCiSource(p,foreign),foreign,p);
+ }
+ for(const p of Object.keys(proof.added)){
+  assert.throws(()=>preBattleQueueCiInventory(current.filter(f=>f!==p)),/inventory/);
+  assert.throws(()=>preBattleQueueCiInventory([...current,p]),/inventory/);
+ }
+ assert.throws(()=>preBattleQueueCiInventory([...current,'tests/foreign.test.mjs']),/inventory/);
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>currentJsShard(current,(i+1)+'/'+count,platform).files);
+  assert.deepEqual(bins.flat().sort(),[...current].sort());
+  assert(currentJsShard(current,'1/'+count,platform).loads.every(v=>v<budget),'unchanged '+platform+' execution budget');
+ }
+});

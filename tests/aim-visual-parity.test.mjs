@@ -1,3 +1,5 @@
+// Legacy diamond-star branch only. Current generated official compound-arrow
+// geometry/touch matrix is in official-assets-runtime.test.mjs.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {battleLayout,theme} from '../scripts/ui-layout.mjs';

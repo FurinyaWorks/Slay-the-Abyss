@@ -24,9 +24,14 @@ local function originalArrow(layer,aiming,sx,sy,ex,ey,enemy,tint,lock)
     local t=math.min(1,math.max(0,lock or 0))
     local spring=1-2^(-10*t)*math.cos(t*math.pi*6)
     local scale=enemy and 1+(style.lockScale-1)*spring or 1
-    head:SetAnchoredPosition(ex,ey);head:SetSizeDelta(style.headSize,style.headSize)
+    local angle=math.atan(ey-cy,ex-cx)-math.pi/2
+    -- The approved compound glyph has its apex 4 + 26/2 units above its
+    -- centre (official-battle-hud). Pin that visible apex, including lock scale.
+    local apex=17*scale
+    head:SetAnchoredPosition(ex+math.sin(angle)*apex,ey-math.cos(angle)*apex)
+    head:SetSizeDelta(style.headSize,style.headSize)
     head:SetLocalScale(scale,scale,1)
-    head.localRotationZ=math.atan(ey-cy,ex-cx)*180/math.pi-90
+    head.localRotationZ=angle*180/math.pi
     tint(head:GetChild('tip'),colour);tint(head:GetChild('stem'),colour)
 end
 -- STS TargetArrow behaviour: the dot chain flows along a quadratic Bezier toward

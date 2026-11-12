@@ -17,6 +17,10 @@
       "required": ["status"],
       "properties": {
         "status": {"enum": ["pass", "fail", "failed", "not_run", "blocked", "partial", "pending", "missing"]},
+        "captureSource": {"enum": ["official-client", "simulator"]},
+        "deviceClass": {"enum": ["pc", "phone", "tablet"]},
+        "inputMethod": {"enum": ["mouse", "touch", "controller"]},
+        "deviceModel": {"type": "string", "minLength": 1},
         "note": {"type": "string"}, "candidateHash": {"type": "string"},
         "runId": {"type": "string"}, "buildId": {"type": "string"},
         "baseline": {"type": "string"}, "baselineHash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},

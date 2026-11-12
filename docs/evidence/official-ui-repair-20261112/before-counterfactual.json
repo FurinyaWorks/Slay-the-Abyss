@@ -1,0 +1,21 @@
+{
+  "kind": "diagnostic-before-counterfactual",
+  "inputSha256": "3ec5b710c94fedad5afe8803104fa6579f9a8e92dc34ddda647dddea353d43a3",
+  "outputSha256": "8f1500e76b8a2bba37d556bfcb891bb94b51ddbe7f994eab9b7fe99c186344d8",
+  "mutations": [
+    {
+      "module": "abyss_battle_card_view.lua",
+      "beforeSha256": "acb104c7ef481678bad979535628d3c1f914c814af19075a33182104dd0a6cda",
+      "afterSha256": "696e15ac5e319f8640f70e1e7fc43f5a75617d5fd3609e20da4b2d2a92d1ab5d",
+      "gitSource": "680be9c5:src/lua/abyss_battle_card_view.lua"
+    },
+    {
+      "module": "abyss_battle_aim_arrow.lua",
+      "beforeSha256": "959d75de25bb1ee1c74fdd1d9f43601eb1b070655d27038bce2e179d26249990",
+      "afterSha256": "e250e3886f3cb6c3e6099dcaa04f54a457351a0edf13af087e276109e33e5ef9",
+      "gitSource": "680be9c5:src/lua/abyss_battle_aim_arrow.lua"
+    }
+  ],
+  "officialEvidence": false,
+  "gameplayRulesChanged": false
+}
