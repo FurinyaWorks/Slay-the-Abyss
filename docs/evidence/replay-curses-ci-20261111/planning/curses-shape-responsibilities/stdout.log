@@ -1,0 +1,24 @@
+✔ immutable full Curses source preserves eligibility returns aliases faults and dynamic dependency trace in separate VMs (42479.999615ms)
+ℹ CURSES_SHAPE_CASES 3304
+✔ all Curses functions including extracted responsibilities and nested callbacks are measured at CC15 (204.662346ms)
+✔ semantic validation regressions are killed by the immutable full-source oracle (4787.508805ms)
+ℹ unknown-id killed by short-id-no-type
+ℹ nonempty-effects killed by effects-real-entry
+ℹ false-upgrade killed by injury-upgrade-2
+ℹ clumsy-trait killed by clumsy-ethereal-2
+ℹ writhe-trait killed by writhe-innate-2
+ℹ decay-damage killed by valid-decay
+ℹ shame-status killed by valid-shame
+ℹ pain-loss killed by valid-pain
+ℹ normality-limit killed by valid-normality
+ℹ parasite-loss killed by valid-parasite
+ℹ traits-before-shape killed by short-shape-no-traits
+ℹ collapse-delegate-returns killed by necro-multi
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47623.685248

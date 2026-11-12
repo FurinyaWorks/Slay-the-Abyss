@@ -1,0 +1,49 @@
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (23.650311ms)
+✔ initialization calls cannot borrow a deferred import exception (5.593449ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (5.156167ms)
+✔ generic-for initialization invokes the known iterator, including aliases and factory results (4.719978ms)
+✔ generic-for does not invoke state, control, unused results or dormant loop owners (6.039668ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.488865ms)
+✔ deferred import exceptions must still match an actual function-scoped require (0.741426ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.435549ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (0.937836ms)
+✔ active policy pins exactly the lint/tool inputs and rejects changes, missing pins and exception options (2.030071ms)
+✔ active policy preserves historical lint except exact reviewed SDK owner and callback declarations (9.472814ms)
+✔ physical lines and inclusive function spans include comments, blank lines and nested bodies (8.592952ms)
+✔ CRLF and LF have identical canonical metrics and source hashes (0.735496ms)
+✔ every function and chunk needs exactly one matching Luacheck coordinate (1.924022ms)
+✔ Unicode codepoint columns map to UTF8 AST bytes, including emoji and combining marks (1.247761ms)
+✔ all files and extracted helpers are discovered recursively; empty scans fail (9.296425ms)
+✔ full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically (2.27373ms)
+✔ baseline diff keeps full metrics, exact warning multiplicity and changed/deleted/new modules visible (1.700993ms)
+✔ baseline contract/tool/scope mismatch and malformed snapshots cannot be treated as improvement (1.189511ms)
+✔ JSON object key ordering does not create false warning changes or contract mismatches (0.786278ms)
+✔ all new numeric metrics remain report-only, including high complexity and new helper hotspots (1.362587ms)
+✔ the frozen baseline covers every recorded module/function and is not an exemption configuration (27.165345ms)
+✔ dependency and cycle changes are visible even when total module and warning counts stay equal (4.41932ms)
+✔ quality reports are collected by the existing gate and uploaded on failed runs without changing older CI guards (12.527566ms)
+✔ historical package replay inverts only the exact quality entry and gate wiring without changing its old hash (269.534084ms)
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (7.421438ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.453603ms)
+✔ collection failures and existing gate failures propagate (1.050455ms)
+✔ a failed shared collection writes a fresh failed quality report (8.683388ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (2.392299ms)
+✔ standalone architecture and shared collection inspect the same recursive modules and source paths (30.35299ms)
+✔ both architecture entries reject empty scans and ambiguous Lua module identities (1.562239ms)
+✔ both architecture entries refuse linked source directories instead of silently omitting them (1.043824ms)
+✔ nested source changes and dependency boundaries are freshly checked by both architecture entries (2.267652ms)
+✔ both architecture entries reject a linked src scan root (1.912612ms)
+✔ both architecture entries reject a linked src/lua scan root (1.019ms)
+✔ selecting a repository through a directory alias still checks its real source entries (1.278591ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11898.78525

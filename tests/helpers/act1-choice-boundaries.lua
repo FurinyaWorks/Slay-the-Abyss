@@ -10,11 +10,11 @@ local count,registered=0,0
 local group=ACT1_BOUNDARY_GROUP
 assert(group==nil or (type(group)=='number' and group%1==0 and group>=1 and group<=4),
  'ACT1_BOUNDARY_GROUP must be an integer from 1 to 4')
-local function eq(a,b)assert(a==b,tostring(a)..' ~= '..tostring(b))end
+local function eq(a,b,different)if different or not (a==b)then assert(false,tostring(a)..' ~= '..tostring(b))end end
 local function same(a,b)
- eq(type(a),type(b));if type(a)~='table'then eq(a,b);return end
+ local ta,tb=type(a),type(b);if ta~=tb then eq(ta,tb,true)end;if ta~='table'then if not (a==b)then eq(a,b,true)end;return end
  for k,v in pairs(a)do same(v,b[k])end
- for k in pairs(b)do assert(a[k]~=nil,'missing key '..tostring(k))end
+ for k in pairs(b)do if a[k]==nil then assert(false,'missing key '..tostring(k))end end
 end
 local function observe(root,label)
  if ACT1_GRAPH_WRITE then ACT1_GRAPH_WRITE(root,label)end

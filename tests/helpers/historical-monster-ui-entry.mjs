@@ -6,10 +6,8 @@ import {spawnSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {pathToFileURL} from 'node:url';
 import {historicalMonsterUiFixtures,historicalMonsterLuaArgs,recordHistoricalMonsterPhase,closeHistoricalMonsterRuntime} from './historical-monster-ui-runner.mjs';
-import {verifiedHistoricalMonsterSources} from './historical-monster-ui-materialize.mjs';
+import {verifiedHistoricalMonsterSources,multiMonsterSourceLayer} from './historical-monster-ui-materialize.mjs';
 import {frozenBattleHandPrelude} from './battle-life-frozen-hand.mjs';
-import {approvedHistoricalBattleMonolith} from './approved-battle-responsibilities.mjs';
-import {multiMonsterSourceLayer} from './multi-monster-art-source-inverse.mjs';
 const script=process.argv[2],timeout=Number(process.argv[3]),started=Date.now(),originalCwd=process.cwd();
 assert.ok(historicalMonsterUiFixtures.includes(script)||script==='battle-refactor-render','only exact historical monster UI fixtures');
 const phase=name=>recordHistoricalMonsterPhase(process.argv[4],script,name);
@@ -60,6 +58,7 @@ try{
   return result;
  };
  if(script==='battle-refactor-render'){
+  const {approvedHistoricalBattleMonolith}=await import('./approved-battle-responsibilities.mjs');
   process.chdir(directory);
   const current=readFileSync('src/lua/abyss_battle_ui.lua','utf8');
   assert.equal(current,multiMonsterSourceLayer.files['src/lua/abyss_battle_ui.lua'].beforeSource,'capture executes the exact materialized historical host');

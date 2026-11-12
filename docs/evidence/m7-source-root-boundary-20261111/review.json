@@ -1,0 +1,24 @@
+{
+  "reviewId": "source-root-boundary-20261111-r1",
+  "conclusion": "pass",
+  "unresolved": [],
+  "baseSha": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "scope": [
+    "scripts/lua-quality-metrics.mjs",
+    "tests/engineering-shared-inputs.test.mjs"
+  ],
+  "sha256": {
+    "scripts/lua-quality-metrics.mjs": "df99cbef194dc74cc22fc980a3790ed3aced5ef3664124683041d44ce3f8d614",
+    "tests/engineering-shared-inputs.test.mjs": "a90d3e3af423fbe5ba3015eaad7986e2bb932d4f0bfac6b810a69ddebbbcc693"
+  },
+  "verification": [
+    "Independent engineering-shared-inputs.test.mjs: 12/12 passed, 0 skipped",
+    "Independent relative valid/dangling src and src/lua link controls: 4/4 passed",
+    "Repository two-level alias acceptance and nested dangling src rejection: 2/2 passed"
+  ],
+  "limitations": [
+    "POSIX only; Windows junction runtime remains for required CI",
+    "Not an atomic defense against concurrent hostile filesystem replacement",
+    "Review covers listed working-tree bytes; final remote HEAD/BASE binding still required"
+  ]
+}
