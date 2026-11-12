@@ -1,0 +1,31 @@
+{
+  "buildId": "447e7f20-8355-4dea-bbab-08cb033481f9",
+  "sourceCommit": "3a2fee2786797fc68f4f9531c94f2330aec09170",
+  "sourceDirty": false,
+  "payloadDigest": "c1a9165889bae3b8e7cabda140f3db429391a1b4c0a09bd6b204578c19e44b5a",
+  "candidate": {
+    "path": "F:\\New folder\\.worktrees\\menu-2d-scene\\build\\menu-ruins-final-r2\\447e7f20-8355-4dea-bbab-08cb033481f9\\candidate.gil",
+    "sha256": "73b040539d661e24436487b61153fd8d3aa80305c01b940fa9e1866bcd99c0d2",
+    "bytes": 15492014
+  },
+  "images": {
+    "menu_reference.png": "ca8965d77a74a2f1c6e7579f846d86298a619fb450586d148b02a21b73401bb1",
+    "menu.png": "e7914067459c4c68017cd65b17b92d65f29325e387b14b12ef42caa447e73ff6",
+    "returned-menu.png": "e7914067459c4c68017cd65b17b92d65f29325e387b14b12ef42caa447e73ff6",
+    "character.png": "41a8f539819687f4380882239a66a1b2f30d6b323b4e548aa9de451067e6e350"
+  },
+  "returnedMenuPixelFileIdentical": true,
+  "scene": {
+    "images": 150,
+    "containers": 17,
+    "totalControls": 167,
+    "animatedControls": 0,
+    "maxDirectChildren": 28
+  },
+  "verification": {
+    "officialImport": "not_run",
+    "officialReady": "not_run",
+    "phone": "not_run",
+    "scope": "Simulator only"
+  }
+}

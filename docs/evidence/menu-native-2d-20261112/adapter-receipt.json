@@ -1,0 +1,83 @@
+{
+  "format": "qxqy-simulator-save",
+  "version": 4,
+  "candidateSha256": "73b040539d661e24436487b61153fd8d3aa80305c01b940fa9e1866bcd99c0d2",
+  "sourceCommit": "3a2fee2786797fc68f4f9531c94f2330aec09170",
+  "sourceDirty": false,
+  "buildId": "447e7f20-8355-4dea-bbab-08cb033481f9",
+  "save": "F:\\New folder\\.worktrees\\menu-2d-scene\\.artifacts\\menu-release-preview\\pr588.actual.save.json",
+  "saveSha256": "67ff1e2462dfc2b8c5f880dc856aa97a1516f8bab59c0ed6f7b292cc7dba33e0",
+  "bytes": 27199796,
+  "controlsConverted": 14653,
+  "templates": [
+    {
+      "name": "AbyssBattlePileCard",
+      "actualId": 1073741998
+    },
+    {
+      "name": "AbyssDeckCard",
+      "actualId": 1073741845
+    },
+    {
+      "name": "AbyssMonsterActor",
+      "actualId": 1073741956
+    },
+    {
+      "name": "AbyssMonsterPower",
+      "actualId": 1073741991
+    },
+    {
+      "name": "AbyssReadyCardGroup",
+      "actualId": 1073741955
+    },
+    {
+      "name": "AbyssReadyCardImage",
+      "actualId": 1073741954
+    }
+  ],
+  "scripts": 360,
+  "luaSourceExact": true,
+  "allActualLuaGuidsReadFromGil": true,
+  "childOrder": "Every native readback children list reversed into simulator: installed renderer traverses children.reverse() and simulator native importer reverses parsed native lists.",
+  "inverseReadback": {
+    "nodesCompared": 14652,
+    "faults": [],
+    "notes": [
+      "The button \"hit\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"stolenGold\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"claimPotion\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"cardReward\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"goldReward\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"skip\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"continue\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"start\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"endTurn\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"emeraldKeyReward\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"relicReward2\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"relicReward1\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"discard\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"use\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potionHelp5\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potion5\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potionHelp4\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potion4\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potionHelp3\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potionHelp2\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potionHelp1\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potion3\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potion2\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it.",
+      "The button \"potion1\" has looks for some states and none for the state left alone (the simulator has no such slot; the game does, 默认状态): give states.normal the child it shows then, or the button may show nothing until the cursor is on it."
+    ]
+  },
+  "unknownProperties": {},
+  "warnings": [
+    "84 native preset buttons have normal states; simulator0.5.2 has no normalChildId slot. Normal remains original visible unbound child below mapped hover/pressed/disabled; simultaneous alpha overlap can differ. No selected-state proxy fabricated.",
+    "Native compiled server graphs are not automatically converted to simulator serverLogic rules; settlement/BGM/history platform signals remain simulator limitations. Actual candidate Lua sources preserved exactly.",
+    "Actual image IDs are preserved. Simulator asset catalog availability and default imageType semantics require actual playback; missing images are not substituted.",
+    "Native script public parameter nativeBgmEnabled is present in candidate parameters.json; simulator script parameter model may derive defaults differently. Not patched into Lua."
+  ],
+  "modifiedGil": false,
+  "played": false,
+  "adapterSourceSha256": "bf6a46a780905b2693d2f0060a2d8f610c0ac5478bf9f3ad25bea2d50fc5a152",
+  "adapterSha256": "40870e8c1e379528debc4318632634368f3e1d532646f7ec088ca05ca8f119f7"
+}

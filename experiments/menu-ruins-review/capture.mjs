@@ -9,7 +9,7 @@ const archive=process.env.MENU_ARCHIVE??'menu.save.json';report.archive=archive;
 const t0=performance.now();await api('/editor/api/load-archive',{sessionId:sid,path:archive});report.archiveLoadMs=performance.now()-t0;
 const browser=await chromium.launch({headless:true,executablePath:'C:/Users/Administrator/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe',args:['--enable-gpu','--disable-extensions']});
 try{
- const context=await browser.newContext({viewport:{width:1400,height:1000}}),page=await context.newPage();page.on('pageerror',e=>report.errors.push(String(e)));
+ const context=await browser.newContext({viewport:{width:1400,height:1000}}),page=await context.newPage();page.on('pageerror',e=>report.errors.push(String(e)));page.on('response',r=>{if(r.url().includes('/editor/api/play')&&r.status()>=400)report.errors.push('play API '+r.status())});
  const nav=performance.now();await page.goto(base+'/editor/play#'+sid);await page.addStyleTag({content:'#shell{width:1282px!important;height:722px!important;max-width:none!important;max-height:none!important;flex:none!important}'});
  await page.waitForFunction(()=>parseInt(document.querySelector('#frame')?.textContent.replace(/[^0-9]/g,''))>0,{},{timeout:60000});report.navigationToFrameMs=performance.now()-nav;await page.waitForTimeout(500);
  const cv=page.locator('canvas').first(),rect=await cv.boundingBox(),state=()=>api('/editor/api/play',{sessionId:sid,action:'get',args:{inspect:true}});
@@ -29,6 +29,6 @@ try{
   s=await tap(s,find(find(find(s.tree,'characterPanel'),'cancel'),'hit'),'menuPanel');await page.mouse.move(rect.x+600,rect.y+200);await page.waitForTimeout(500);await shot('03-return-menu');
   assert(new Set(report.roundtripCounts).size===1,'no accumulating controls');
  }
- report.status='captured';await context.close();
+ assert.equal(report.errors.length,0,'no page or play API errors');report.status='captured';await context.close();
 }catch(error){report.status='failed';report.error=String(error.stack);process.exitCode=1;console.log(report.error)}
 finally{await browser.close();await api('/editor/api/play',{sessionId:sid,action:'stop',args:{}});fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2));console.log(report)}
