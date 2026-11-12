@@ -6283,6 +6283,31 @@
       "sha256": "0b8121ae3e7a991799b26f60392e51b1dec923559e97a3a46bca66602254e615",
       "category": "v25-native-simulator-evidence",
       "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/hp-05-selection-ready.png": {
+      "sha256": "41a8f539819687f4380882239a66a1b2f30d6b323b4e548aa9de451067e6e350",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/hp-08-neow-offers.png": {
+      "sha256": "df0cd9c4dd3c2ed33cb549239f5614103e43e2a8488f8fdad9dab6c919fd5e0c",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/hp-10-map.png": {
+      "sha256": "0b8f8f0c63b3f815d4bf5277d2bdfea21dd19633f2dbfddd59af1b58c795b40f",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/lament-12-defend-played.png": {
+      "sha256": "ede1c1ce298275198b67e01d92304447daa1b5364ab9a08dda9f0ad23364c37a",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/selectedInitial.png": {
+      "sha256": "3dba22cfb9942d395c251f3cd02361d141adfc63d639ed8e627f92739594531c",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
     }
   }
 }
