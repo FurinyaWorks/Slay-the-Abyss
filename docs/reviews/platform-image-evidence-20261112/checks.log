@@ -1,0 +1,34 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 check:guidance
+> node scripts/check-agent-guidance.mjs
+
+{
+  "errors": [
+    ".cursor/rules/miliastra.mdc: missing guidance"
+  ],
+  "metrics": [
+    {
+      "file": "AGENTS.md",
+      "lines": 42,
+      "characters": 3250
+    },
+    {
+      "file": "CLAUDE.md",
+      "lines": 5,
+      "characters": 150
+    }
+  ]
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 verify:backlog
+> node scripts/verify-backlog-roadmap.mjs
+
+任务编号、首发排期、负责人及仅岩系旅行者前两幕规划范围检查通过；当前任务均有优先级、未完成High不超过5项；不认证运行时准入、平台或实机。
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 check:network
+> node scripts/check-network-policy.mjs
+
+CI download safeguards verified: incremental Git refs, size summary/limit, bounded npm retries

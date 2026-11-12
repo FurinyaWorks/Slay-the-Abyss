@@ -1,0 +1,16 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 test:related
+> node scripts/test-affected.mjs --files scripts/platform-load.mjs,tests/platform-load.test.mjs --plan
+
+{
+  "tier": "related",
+  "changed": [
+    "scripts/platform-load.mjs,tests/platform-load.test.mjs"
+  ],
+  "full": true,
+  "reason": "Unmodelled or deleted input: scripts/platform-load.mjs,tests/platform-load.test.mjs",
+  "fast": [],
+  "integration": [],
+  "lua": []
+}

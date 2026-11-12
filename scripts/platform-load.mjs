@@ -7,6 +7,7 @@ import { readFileSync, mkdirSync, writeFileSync, realpathSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
 import { candidateScriptFiles, excludedProductionModules } from './native-candidate-scripts.mjs';
 import { checkArchitecture } from './check-architecture.mjs';
 import { assertNativeUiCapacity } from './build-ui.mjs';
@@ -118,14 +119,15 @@ export function verifyPlatformRelease(receipt, evidence, readArtifact, now = Dat
       && parsed <= Date.parse(evidence.recordedAt);
   }
   if (!time(evidence.recordedAt)) fail('Invalid evidence time');
-  function artifacts(row, name) {
+  function artifacts(row, name, validateBytes) {
     if (!Array.isArray(row?.artifacts) || !row.artifacts.length) { fail(`${name}: raw evidence missing`); return; }
     for (const artifact of row.artifacts) {
       try {
         const bytes = readArtifact(artifact.path);
         if (!bytes.length || !/^[a-f0-9]{64}$/.test(artifact.sha256 ?? '') || hash(bytes) !== artifact.sha256)
           fail(`${name}: evidence hash mismatch`);
-      } catch { fail(`${name}: unreadable evidence`); }
+        else if (validateBytes) validateBytes(bytes);
+      } catch (error) { fail(`${name}: unreadable or invalid evidence (${error.message})`); }
     }
   }
   for (const [name, limit] of [['levelStorage', 20], ['serverStorage', 3]]) {
@@ -145,15 +147,18 @@ export function verifyPlatformRelease(receipt, evidence, readArtifact, now = Dat
   if (evidence.dynamicDetectionEnabled !== true || evidence.detectorOverheadAcknowledged !== true
     || evidence.rawDynamicReport?.source !== 'official-sandbox') fail('Official dynamic report/detector attestation missing');
   artifacts(evidence.rawDynamicReport, 'rawDynamicReport');
-  artifacts(evidence.screenshots, 'screenshots');
-  for (const artifact of evidence.screenshots?.artifacts ?? []) {
-    try {
-      const bytes = readArtifact(artifact.path);
-      const png = bytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]));
-      const jpeg = bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255;
-      if (!png && !jpeg) fail('screenshots: PNG/JPEG required');
-    } catch { fail('screenshots: unreadable image'); }
-  }
+  artifacts(evidence.screenshots, 'screenshots', bytes => {
+    // Decode the same bytes whose hash was checked, not a second read of the path.
+    // Pillow is already required by the UI acceptance and presentation tooling.
+    const decoded = spawnSync(process.env.ABYSS_PYTHON || 'python', ['-c',
+      ['from PIL import Image', 'from io import BytesIO', 'import sys',
+        'data=sys.stdin.buffer.read()', 'im=Image.open(BytesIO(data))',
+        'if im.format not in ("PNG", "JPEG"): raise ValueError("PNG/JPEG required")',
+        'im.verify()', 'im=Image.open(BytesIO(data))', 'im.load()',
+        'if im.width <= 0 or im.height <= 0: raise ValueError("Empty image")'].join('\n')],
+    {input: bytes, encoding: 'utf8', timeout: 10000});
+    if (decoded.error || decoded.status !== 0) throw Error('PNG/JPEG decode failed');
+  });
   return {status: errors.length ? 'BLOCKED' : 'PASS', identity, clientVersion: evidence.clientVersion,
     recordedAt: evidence.recordedAt, verifiedAt: new Date(now).toISOString(), errors, warnings};
 }

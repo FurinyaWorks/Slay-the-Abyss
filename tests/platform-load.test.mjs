@@ -10,7 +10,9 @@ import { checkArchitecture } from '../scripts/check-architecture.mjs';
 import { candidateScriptFiles, excludedProductionModules } from '../scripts/native-candidate-scripts.mjs';
 import { sourceInputs, payloadDigest } from '../scripts/build-native-candidate.mjs';
 
-const raw = Buffer.concat([Buffer.from([137,80,78,71,13,10,26,10]), Buffer.from('synthetic test evidence')]);
+// Complete 2x2 synthetic images, not official screenshots or device acceptance.
+const raw = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAFklEQVR4nGPUj2xmYGBgYmBgYGBgAAAMWgEPfzx+rwAAAABJRU5ErkJggg==', 'base64');
+const jpeg = Buffer.from('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAACAAIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDkKKKK9k8o/9k=', 'base64');
 const artifact = {path: 'report.txt', sha256: createHash('sha256').update(raw).digest('hex')};
 const measuredAt = '2026-10-30T01:00:00Z';
 const now = Date.parse('2026-10-30T02:00:00Z');
@@ -39,6 +41,41 @@ test('official evidence is mandatory and a complete matching synthetic fixture p
   assert.equal(verify().status, 'UNVERIFIED');
   assert.equal(verify(fixture()).status, 'PASS');
 });
+test('official screenshots require complete decoded PNG or JPEG bytes bound to the checked hash', () => {
+  const withImage = bytes => {
+    const evidence = fixture();
+    evidence.screenshots.artifacts = [{path: 'image', sha256: createHash('sha256').update(bytes).digest('hex')}];
+    return evidence;
+  };
+  for (const bytes of [raw, jpeg]) {
+    assert.equal(verify(withImage(bytes), receipt, path => path === 'image' ? bytes : raw).status, 'PASS');
+  }
+  const badCrc = Buffer.from(raw); badCrc[badCrc.length - 17] ^= 1;
+  const invalid = [raw.subarray(0, 8), raw.subarray(0, raw.length - 12), badCrc,
+    jpeg.subarray(0, 3), jpeg.subarray(0, jpeg.length - 20), Buffer.from('P6\n1 1\n255\nabc')];
+  for (const bytes of invalid) {
+    const result = verify(withImage(bytes), receipt, path => path === 'image' ? bytes : raw);
+    assert.equal(result.status, 'BLOCKED', `must reject incomplete or unsupported image (${bytes.length} bytes)`);
+    assert(result.errors.some(error => error.includes('screenshots:')));
+  }
+  const originalOptimize = process.env.PYTHONOPTIMIZE;
+  try {
+    process.env.PYTHONOPTIMIZE = '1';
+    const unsupported = Buffer.from('P6\n1 1\n255\nabc');
+    assert.equal(verify(withImage(unsupported), receipt, path => path === 'image' ? unsupported : raw).status, 'BLOCKED',
+      'optimized Python must not remove image format validation');
+    assert.equal(verify(withImage(raw), receipt, path => path === 'image' ? raw : raw).status, 'PASS');
+  } finally {
+    if (originalOptimize === undefined) delete process.env.PYTHONOPTIMIZE;
+    else process.env.PYTHONOPTIMIZE = originalOptimize;
+  }
+  let reads = 0;
+  const evidence = withImage(raw);
+  const result = verify(evidence, receipt, path => path === 'image' ? (++reads === 1 ? raw : raw.subarray(0, 8)) : raw);
+  assert.equal(result.status, 'PASS');
+  assert.equal(reads, 1, 'decode the exact bytes that passed the evidence hash, without a second path read');
+});
+
 test('20MB and 3MB are independent hard limits; 16MB is only a warning', () => {
   for (const [field, limit] of [['levelStorage', 20], ['serverStorage', 3]]) {
     const e = fixture(); e[field].valueMB = limit;

@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: official screenshots require complete decoded PNG or JPEG bytes bound to the checked hash
+ok 1 - official screenshots require complete decoded PNG or JPEG bytes bound to the checked hash
+  ---
+  duration_ms: 586.271923
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 770.469656
