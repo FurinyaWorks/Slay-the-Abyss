@@ -189,7 +189,9 @@ function M.refreshPotionEntry(child,inCombat,canManagePotions,platform)
             local potionHit=open:GetChild("hit")
             local anchor=Theme.presentationProfile=='v25-reference' and child('mapPanel'):GetChild('v25MapPotionAnchor')
             local official=Theme.presentationProfile=='official-assets-first'
-            local mapSlots=(anchor or official) and mapVisible==true
+            -- Battle rewards retain mode='battle' after combat has ended. The
+            -- shared official entry keeps its physical slots on every run page.
+            local mapSlots=official and run~=nil or anchor and mapVisible==true
             if anchor or official then mapPotionFrame(open,potionHit,run,mapSlots)end
             potionHit.interactable=not inCombat() and canManagePotions(run);potionHit.raycastTarget=potionHit.interactable
             PotionDiscardUI.refreshEntry(potionHit,run,platform,mapSlots)

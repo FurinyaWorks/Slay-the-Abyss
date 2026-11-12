@@ -21,7 +21,13 @@ const paths=(node,prefix='')=>allPaths(node,prefix);
 function allPaths(node,prefix){const path=prefix+'/'+node.name;return [[path,node],...children(node).flatMap(item=>allPaths(item,path))];}
 const child=(node,name)=>children(node).find(item=>item.name===name);
 const restoredPagePath=path=>path.includes('/battlePanel/')||path.includes('/characterPanel/')
- ||path.includes('/menuPanel/start/')||/\/menuPanel\/(?:start|emblem|vista|heroArt)$/.test(path);
+ ||path.includes('/menuPanel/start/')||/\/menuPanel\/(?:start|emblem|vista|heroArt)$/.test(path)
+ // Only the adopted map/chrome owners change geometry; other room and menu
+ // paths below must still retain their original transforms and input identity.
+ ||/^\/SlayTheAbyss\/mapPanel\/(?:mapGroup1\/(?:title|notice|typeLegend)(?:\/|$)|previewBack(?:\/|$)|resources\/(?:hpIcon|hp|goldIcon|gold)$|resourceHints\/(?:hp|gold)(?:\/hit)?$)/.test(path)
+ ||/^\/SlayTheAbyss\/nodePanel\/(?:title|hpIcon|hp|goldIcon|gold)$/.test(path)
+ ||/^\/SlayTheAbyss\/potionEntry\/open(?:\/hit)?$/.test(path)
+ ||/^\/SlayTheAbyss\/potionEntry\/open\/hit\/(?:normal|hover|pressed|disabled)\/slot[1-5](?:\/|$)/.test(path);
 function receipt(){return {officialAssetsProfile,artFeatures:artFeatureReceipt(officialAssetFlags),uiProfile:uiProfileReceipt(true),
  officialPortraits:{...portraitInventory(officialAssetFlags,{officialAssets:true}),inputs:portraitRuntimeInputs(officialAssetFlags).map(path=>({path}))}};}
 
@@ -61,6 +67,8 @@ test('approved pages keep live input identities while unrelated pages retain the
  const semantic=nodes.filter(([,node])=>['text','cursorArea','presetButton'].includes(node.kind))
   .map(([path,node])=>[path,node,structuredClone(node)]);
  const containers=nodes.filter(([,node])=>node.kind==='container').map(([path,node])=>[path,node,{position:node.position,size:node.size,visible:node.visible,scale:node.scale,rotation:node.rotation}]);
+ const cardText=new Map();
+ for(const [,face]of nodes)if(child(face,'roundFrame')&&child(face,'costDisc'))for(const key of ['name','cost'])cardText.set(child(face,key),key);
  const result=applyOfficialAssets([layout,template],theme);
  const current=new Map([...paths(layout),...paths(template)]);
   for(const [path,node,before] of semantic){
@@ -79,14 +87,23 @@ test('approved pages keep live input identities while unrelated pages retain the
     for(const key of ['kind','states','focusable','interactable','raycastTarget'])assert.deepEqual(node[key],before[key],path+' '+key);
     continue;
    }
-  for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget'])assert.deepEqual(node[key],before[key],path+' '+key);
-   if(node.text){const actual={...node.text},expected={...before.text};delete actual.colour;delete expected.colour;if(expected.autoSize&&(expected.minFontSize*1.45+4>before.size?.[1]||path.endsWith('/shopView/removal/description')))expected.minFontSize=nativeTheme.font.minimum;assert.deepEqual(actual,expected,path);}
+  for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget']){
+   const potionLabel=/^\/SlayTheAbyss\/potionEntry\/open\/hit\/(?:normal|hover|pressed|disabled)\/label$/.test(path);
+   const expected=key==='size'&&cardText.get(node)==='cost'
+    ?child(child(child(layout,'battlePanel'),'card1'),'cost').size:key==='visible'&&potionLabel?false:before[key];
+   assert.deepEqual(node[key],expected,path+' '+key);
+  }
+   if(node.text){const actual={...node.text},expected={...before.text};delete actual.colour;delete expected.colour;
+    if(cardText.has(node))for(const key of ['outline','outlineColour','outlineOpacity']){
+     const canonical=child(child(child(layout,'battlePanel'),'card1'),cardText.get(node)).text;
+     assert.deepEqual(actual[key],canonical[key],path+' shared '+key);expected[key]=canonical[key];
+    }
+    if(expected.autoSize&&(expected.minFontSize*1.45+4>before.size?.[1]||path.endsWith('/shopView/removal/description')))expected.minFontSize=nativeTheme.font.minimum;assert.deepEqual(actual,expected,path);}
  }
   for(const [path,node,before]of containers){if(restoredPagePath(path)||path.startsWith('/SlayTheAbyss/deckPanel/pileReturn'))continue;assert.equal(current.get(path),node,path);for(const key of Object.keys(before))assert.deepEqual(node[key],before[key],path+' '+key);}
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
  assert.equal(result.cardHosts,cards.length);assert(cards.length>=40);assert(result.removedControls>500);
- const battleBodies=new Set(all(child(layout,'battlePanel')));
- for(const card of cards){assert.equal(child(child(card,'roundBody'),'flat').image,battleBodies.has(card)?100001:107253);assert.equal(child(child(card,'roundFrame'),'flat').image,battleBodies.has(card)?100001:107253);assert.equal(child(card,'costCore').image,battleBodies.has(card)?107203:107270);}
+ for(const card of cards){assert.equal(child(child(card,'roundBody'),'flat').image,100001);assert.equal(child(child(card,'roundFrame'),'flat').image,100001);assert.equal(child(card,'costCore').image,107203);}
   const battle=child(layout,'battlePanel');
   assert.deepEqual(child(battle,'hero').position,[-324,-37]);
   assert.equal(child(child(battle,'hero'),'name').visible,false);

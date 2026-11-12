@@ -1,4 +1,5 @@
 // Approved 1280x720 HUD composition, using native controls and live owners.
+import {applyV25MapLayout} from './v25-map-layout.mjs';
 const child=(n,name)=>(n?.children??n?.controls??[]).find(c=>c.name===name);
 const text=(name,position,size,content,fontSize,colour)=>({name,kind:'text',position,size,text:{content,fontSize,minFontSize:fontSize,autoSize:true,align:'centre',valign:'middle',colour}});
 function energyFinish(root,theme){
@@ -35,6 +36,7 @@ export function officialRunChrome(tree,theme){
  const stage=child(tree,'stage')??tree,battle=child(stage,'battlePanel');
  const source=child(battle,'topBar');if(!source)return;
  const hud=theme.officialAssets.battleHud;
+ if(child(stage,'mapPanel'))applyV25MapLayout(tree,theme);
  const potions=child(child(stage,'potionEntry'),'open');
  if(potions){
   const frame=theme.layout.nativeNode.topBar.potions;
@@ -48,9 +50,12 @@ export function officialRunChrome(tree,theme){
   const resources=child(page,'resources')??page;
   const bar=structuredClone(source);bar.name='officialRunBar';
   bar.children=bar.children.filter(part=>part.name!=='battleRoute');
-  page.children.unshift(bar);
+  // The map's opaque paper and the node backdrop must paint before the bar.
+  // Keep live titles in their existing owners (MapUI resolves mapGroup/title).
+  const titleOwner=page.children.findIndex(part=>name==='mapPanel'?/^mapGroup\d+$/.test(part.name):part.name==='title');
+  page.children.splice(titleOwner<0?page.children.length:titleOwner,0,bar);
   const visit=node=>{
-   for(const key of ['headerShade','headerDivider','titleLineLeft','titleLineRight']){
+   for(const key of ['headerShade','headerDivider','titleLineLeft','titleLineRight','headerFace','headerDepth','headerRule']){
     const old=child(node,key);if(old)old.visible=false;
    }
    if(child(node,'headerShade')||node===page){
