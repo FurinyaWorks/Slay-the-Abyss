@@ -43,6 +43,10 @@ local function lowpoly(data)
     return type(data)=='table' and data.renderProfile=='lowpoly-v1' and integer(data.width) and integer(data.height)
         and integer(data.count) and data.count<=2304 and #data.rows==data.count and type(data.jsonSha256)=='string'
 end
+local function validateRoot(r,width)
+    assert(#r==13 and r[1]==0 and r[2]==0 and r[3]==width and r[4]==width and r[5]==.5 and r[6]==.5
+        and r[7]==.5 and r[8]==.5 and r[9]==.5 and r[10]==.5 and r[11]==1 and r[12]==1 and r[13]==0,'unexpected portrait ROOT')
+end
 local function validate(data, width, count, source, json)
     assert(type(data)=='table','unexpected portrait data')
     if Idle.enabled(data) then Idle.validate(data);return end
@@ -53,9 +57,7 @@ local function validate(data, width, count, source, json)
         assert(data.width==width and expected>0 and expected<=(compact and 2304 or count) and #data.rows==expected
             and data.sourceSha256==source and data.jsonSha256==json,'unexpected frozen portrait data')
     end
-    local r=data.root
-    assert(#r==13 and r[1]==0 and r[2]==0 and r[3]==width and r[4]==width and r[5]==.5 and r[6]==.5
-        and r[7]==.5 and r[8]==.5 and r[9]==.5 and r[10]==.5 and r[11]==1 and r[12]==1 and r[13]==0,'unexpected portrait ROOT')
+    validateRoot(data.root,width)
 end
 local function v25Profile(asset)
     local profile=asset.v25PortraitProfile
@@ -331,23 +333,26 @@ local function controller(host, data, display, templates, options)
         assert(c[method](c,...)~=false,'idle native setter rejected')
         if phase~='ready' or generation~=poseTicket or idlePaused or host.alive==false or c.alive==false then error(CANCELLED,0)end
     end
+    local function paintIdle(dt,motionState)
+        local idle=motionState=='idle'
+        if data.motion~='static' then
+            idleTime=(idleTime+math.min(dt or 0,.1))%data.period
+            local sample,sampleTime=Idle.sample(data,idleTime)
+            if idleSample~=sample or wasIdle~=idle then
+                Idle.paint(data,idlePages,sampleTime,idle,poseWrite);idleSample=sample;wasIdle=idle
+            end
+        end
+        return idle
+    end
     function self.pose(_,x,y,sx,sy,dt,motionState)
         if host.alive==false then self:destroy();return end
         if working or Idle.enabled(data) and idlePaused or (phase~='building' and phase~='ready')then return end
         working=true;poseTicket=generation
         local ok,err=pcall(function()
             if Idle.enabled(data) and phase=='ready' then
-                local idle=motionState=='idle'
-                if data.motion~='static' then
-                    idleTime=(idleTime+math.min(dt or 0,.1))%data.period
-                    local sample,sampleTime=Idle.sample(data,idleTime)
-                    if idleSample~=sample or wasIdle~=idle then
-                        Idle.paint(data,idlePages,sampleTime,idle,poseWrite);idleSample=sample;wasIdle=idle
-                    end
-                end
                 -- The approved bands own idle movement. Do not stack the old
                 -- whole-body ActorMotion breathing on top of the source field.
-                if idle then x,y,sx,sy=0,0,1,1 end
+                if paintIdle(dt,motionState) then x,y,sx,sy=0,0,1,1 end
             end
             assert(host:SetAnchoredPosition(x+(base and base[1] or 0),y+(base and base[2] or 0))~=false,'portrait pose rejected')
             if host.alive==false then self:destroy();return end

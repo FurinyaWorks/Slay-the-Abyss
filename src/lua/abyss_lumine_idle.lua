@@ -2,13 +2,7 @@
 local M={}
 local SOURCE='32830a9ab3f0b181202205bba59447efe660ce3225ab26f32943c54753a105de'
 function M.enabled(data)return data.renderProfile=='approved-idle-v1'end
-function M.validate(data)
-    assert(data.motion==nil or data.motion=='static','invalid approved idle motion mode')
-    assert(data.samplesPerCycle==nil or data.samplesPerCycle==20,'invalid approved idle sampling')
-    assert(data.sourceSha256==SOURCE and (data.width==133 or data.width==210)
-        and data.height==math.floor(data.width*585/640+.5) and data.period==2.2
-        and data.count>0 and data.count<=8192 and #data.rows==data.count
-        and #data.bandByRow==data.count and #data.bands<=24,'invalid approved idle candidate')
+local function validateBands(data)
     local previous=0
     for i,row in ipairs(data.rows)do
         local band=data.bandByRow[i]
@@ -16,6 +10,15 @@ function M.validate(data)
             and #row==18 and row[1]==100001,'invalid idle band')
         previous=band
     end
+end
+function M.validate(data)
+    assert(data.motion==nil or data.motion=='static','invalid approved idle motion mode')
+    assert(data.samplesPerCycle==nil or data.samplesPerCycle==20,'invalid approved idle sampling')
+    assert(data.sourceSha256==SOURCE and (data.width==133 or data.width==210)
+        and data.height==math.floor(data.width*585/640+.5) and data.period==2.2
+        and data.count>0 and data.count<=8192 and #data.rows==data.count
+        and #data.bandByRow==data.count and #data.bands<=24,'invalid approved idle candidate')
+    validateBands(data)
 end
 function M.sample(data,clock)
     local rate=30
