@@ -1,0 +1,34 @@
+{
+  "reviewId": "native-lua-lexical-guard-independent-20261112",
+  "verdict": "PASS_SOURCE_REVIEW",
+  "base": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "diffSha256": "137a30c17a426cedaa5069d765cd5df682aa4ce368aaaa140e33b1e8744ec643",
+  "sourceHashes": {
+    "scripts/native-script-batch.mjs": "54eae1798a02579aaae864c708798f0ad976b64c2f0021c26d9a721cedddeb5d",
+    "tests/native-script-batch.test.mjs": "79c474f96bf869ca3e18de1f81baa7d78e8979b9baf566018380acf3cb49b4a3",
+    "tests/art-feature-source-inverse.test.mjs": "5ae770913565e41ac8874943f092ac4ee8ad454aa80af82515f6c58a69ca6593"
+  },
+  "independentLexicalCases": 64,
+  "independentBoundaryCases": 9,
+  "finalSourceContracts": {
+    "passed": 24,
+    "failed": 0,
+    "logs": [
+      "source-contracts-final.log",
+      "beta-delivery-final.log"
+    ]
+  },
+  "initialSourceContracts": {
+    "passed": 23,
+    "failed": 1,
+    "log": "source-contracts-red.log",
+    "resolution": "Current diagnostic expects the new first unsupported owner; exact assertions and frozen witnesses preserved."
+  },
+  "scope": "Three source/test paths; no implementation edits by reviewer. Documentation package and exact commit binding pending separate check.",
+  "notClaimed": [
+    "Full CI",
+    "official import",
+    "device validation",
+    "merge authorization"
+  ]
+}

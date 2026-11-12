@@ -1,0 +1,12 @@
+✔ [historical 98fef source contract] all archived beta hosts and both destinations bind current delivery without changing frozen witnesses (269.902329ms)
+✔ [historical 98fef source contract] warm beta projections still re-read linked owners and reject unknown or missing bytes (205.17828ms)
+✔ [historical 98fef source contract] dynamic-monster historical UI tests retreat only exact reviewed whole sources (206.913658ms)
+✔ [historical 98fef source contract] public feature projections validate caller-owned beta sources in both target modes after warming (225.549618ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8184.297633

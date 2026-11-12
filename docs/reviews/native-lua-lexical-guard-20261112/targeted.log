@@ -1,0 +1,23 @@
+✔ native package excludes generated test fixtures, stale modules and UI serialization helpers (2.702863ms)
+✔ native package preflight rejects missing generated modules and name collisions (1.262622ms)
+✔ ordinary native package declares safe default UI parameters (1.244726ms)
+✔ actual game module set includes current AI and all generated runtime dependencies, never the W1 fixture (645.113189ms)
+✔ checker script projection preserves source and declared parameter names with fresh reads (3.706896ms)
+✔ original checker receives complete template names, mounts, dependencies and script filter; diagnostics propagate (7.838855ms)
+✔ map mutation and original checker exceptions are rejected (2.003469ms)
+✔ isolated native encoder runs the original checker with exact source, variables, filter and mount trees (7.808848ms)
+✔ loader leaves original imports untouched, fresh isolated loads use the fast dependency, checker errors propagate (7.347552ms)
+✔ upstream anchor count changes fail closed and failed module evaluation does not leave a hook active (4.696148ms)
+✔ the ESM load hook emits only the helper import and one original dependency replacement (3.585213ms)
+✔ encoder helper identity executes fresh disk bytes even when the plain helper URL was already cached (3.289337ms)
+✔ batch writer preserves native syntax and unavailable-API checks (4.261623ms)
+✔ native API checks distinguish Lua strings and comments from executable calls (0.907748ms)
+✔ batch additions preserve existing filenames and avoid existing and pending export collisions (6.777854ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1067.477558

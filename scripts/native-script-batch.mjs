@@ -1,8 +1,25 @@
 import {readFileSync,writeFileSync} from 'node:fs';
 import {join} from 'node:path';
+import luaparse from 'luaparse';
+
+function nativeExecutableText(source) {
+ // Lex in source order: comment markers inside literals are not comments,
+ // and long-bracket strings/comments may use any number of equals signs.
+ const lexer=luaparse.parse(source,{wait:true,comments:false,luaVersion:'5.3'});
+ const parts=[];let end=0;
+ for(let token=lexer.lex();token.type!==luaparse.tokenTypes.EOF;token=lexer.lex()) {
+  const [start,next]=token.range;
+  parts.push(source.slice(end,start).replace(/[^\s]/g,' '),
+   token.type===luaparse.tokenTypes.StringLiteral?'""':source.slice(start,next));
+  end=next;
+ }
+ return parts.join('');
+}
+
 export function validateNativeLua(source,luaSyntaxError) {
  if(typeof source!=='string'||!source.trim())throw Error('Empty native Lua');
- const stripped=source.replace(/--\[\[[\s\S]*?\]\]/g,'').replace(/--[^\n]*/g,'').replace(/"(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'/g,'""');
+ let stripped;
+ try {stripped=nativeExecutableText(source);}catch(error){throw Error('Lua syntax: '+error.message);}
  const forbidden=[/\bcoroutine\s*\./,/\bio\s*\./,/\bstring\s*\.\s*dump\b/,
   /\bos\s*\.\s*(?!time\b|date\b|clock\b|difftime\b)[A-Za-z_]+/,/\bdebug\s*\.\s*(?!traceback\b)[A-Za-z_]+/,
   /(?<![.:\w])(?:loadfile|dofile|load)\s*\(/,/\bpackage\s*\./];
