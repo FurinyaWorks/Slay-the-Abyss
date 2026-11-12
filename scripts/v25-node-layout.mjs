@@ -40,7 +40,7 @@ const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
 
 // Ear clipping of a small authored silhouette. Each triangle uses the observed
 // 100003 upward isosceles, half-filled to a right triangle; not a guessed atlas ID.
-function polygon(name,points,colour){
+export function polygon(name,points,colour){
  const area=points.reduce((s,p,i)=>{const q=points[(i+1)%points.length];return s+p[0]*q[1]-p[1]*q[0];},0),indices=Array.from(points.keys()),triangles=[];
  if(area<0)indices.reverse();
  while(indices.length>3){

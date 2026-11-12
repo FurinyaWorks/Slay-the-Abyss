@@ -1,0 +1,18 @@
+{
+  "url": "http://127.0.0.1:52711",
+  "pid": 35824,
+  "saveSha256": "67ff1e2462dfc2b8c5f880dc856aa97a1516f8bab59c0ed6f7b292cc7dba33e0",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "scenePath": "F:\\New folder\\.worktrees\\menu-2d-scene\\.artifacts\\menu-release-preview\\pr588.actual.save.json",
+  "web": "F:\\New folder\\.worktrees\\pr588-playable\\.artifacts\\battle-repair-20261111\\snapshot-private-web-v2",
+  "buildId": "447e7f20-8355-4dea-bbab-08cb033481f9",
+  "cases": [
+    {
+      "archive": "menu.save.json",
+      "sha256": "67ff1e2462dfc2b8c5f880dc856aa97a1516f8bab59c0ed6f7b292cc7dba33e0"
+    }
+  ],
+  "sdkPath": "F:/New folder/.worktrees/ui-lifecycle/.artifacts/task-100-1/final/v25/sdk-harness/sdk-export-only/actual-session.mjs",
+  "sdkSha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+  "runtimeMode": "persistent installed Simulator SDK; no editor transactions"
+}
