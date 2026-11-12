@@ -51,9 +51,11 @@ do
     assert(h2.relicUI.selectedIndex==2,'combat must select exact clicked relic')
     local single=assert(p:GetChild('single'),'missing single relic view')
     assert(single.visible and not p:GetChild('row1').visible)
-    assert(single:GetChild('name').text=='余烬之心')
+    -- RELIC_NAMING.md: approved display name; stable burning_blood identity below.
+    assert(single:GetChild('name').text=='岩脉残晶','single detail must show the approved starter relic name')
     assert(single:GetChild('rarity').text=='初始遗物')
-    assert(single:GetChild('description').text:find('回复 6 点生命',1,true))
+    assert(single:GetChild('description').text=='每场战斗胜利后，回复6点生命。',
+        'single detail must retain the approved trigger and 6-point healing description')
     assert(h2.relicUI.selected.id=='burning_blood')
     assert(h2.relicUI:turn(1) and h2.relicUI.selectedIndex==3)
     assert(single:GetChild('status').text=='已失效')
