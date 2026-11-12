@@ -1,0 +1,298 @@
+{
+  "base": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "mode": "local Linux offline engineering; not hosted Full, native Windows, official client or phone",
+  "before": {
+    "modules": 345,
+    "measurements": 5918,
+    "expectedMeasurements": 5918,
+    "ccOver15": 218,
+    "ccOver30": 34,
+    "maxCC": 72,
+    "maxSpan": 605,
+    "modulesOver1000": [
+      {
+        "file": "src/lua/abyss_combat.lua",
+        "lines": 2295
+      }
+    ],
+    "scc": [
+      68,
+      11,
+      2
+    ],
+    "dependencyPairs": 1578,
+    "dependencyPositions": 1953,
+    "warnings": 14
+  },
+  "after": {
+    "modules": 345,
+    "measurements": 5923,
+    "expectedMeasurements": 5923,
+    "ccOver15": 216,
+    "ccOver30": 33,
+    "maxCC": 72,
+    "maxSpan": 605,
+    "modulesOver1000": [
+      {
+        "file": "src/lua/abyss_combat.lua",
+        "lines": 2295
+      }
+    ],
+    "scc": [
+      68,
+      11,
+      2
+    ],
+    "dependencyPairs": 1578,
+    "dependencyPositions": 1953,
+    "warnings": 14
+  },
+  "skillBefore": {
+    "file": "src/lua/abyss_skill_feedback.lua",
+    "sha256": "6bc4bbfc994d1b031f0857a4f690a1c7e9a405ec457d542abf82497e91f3dce6",
+    "lines": 85,
+    "functions": [
+      {
+        "id": "$",
+        "name": "<chunk>",
+        "kind": "chunk",
+        "constructorName": false,
+        "line": 1,
+        "column": 1,
+        "endLine": 85,
+        "lines": 85,
+        "complexity": 1
+      },
+      {
+        "id": "$/clamp#1",
+        "name": "clamp",
+        "kind": "function",
+        "constructorName": false,
+        "line": 15,
+        "column": 7,
+        "endLine": 15,
+        "lines": 1,
+        "complexity": 1
+      },
+      {
+        "id": "$/smooth#1",
+        "name": "smooth",
+        "kind": "function",
+        "constructorName": false,
+        "line": 16,
+        "column": 7,
+        "endLine": 16,
+        "lines": 1,
+        "complexity": 1
+      },
+      {
+        "id": "$/effectsFamily#1",
+        "name": "effectsFamily",
+        "kind": "function",
+        "constructorName": false,
+        "line": 17,
+        "column": 7,
+        "endLine": 27,
+        "lines": 11,
+        "complexity": 19
+      },
+      {
+        "id": "$/M.resolve#1",
+        "name": "M.resolve",
+        "kind": "function",
+        "constructorName": false,
+        "line": 28,
+        "column": 1,
+        "endLine": 50,
+        "lines": 23,
+        "complexity": 34
+      },
+      {
+        "id": "$/M.sample#1",
+        "name": "M.sample",
+        "kind": "function",
+        "constructorName": false,
+        "line": 54,
+        "column": 1,
+        "endLine": 64,
+        "lines": 11,
+        "complexity": 9
+      },
+      {
+        "id": "$/M.travel#1",
+        "name": "M.travel",
+        "kind": "function",
+        "constructorName": false,
+        "line": 68,
+        "column": 1,
+        "endLine": 72,
+        "lines": 5,
+        "complexity": 5
+      },
+      {
+        "id": "$/M.cue#1",
+        "name": "M.cue",
+        "kind": "function",
+        "constructorName": false,
+        "line": 76,
+        "column": 1,
+        "endLine": 84,
+        "lines": 9,
+        "complexity": 14
+      }
+    ]
+  },
+  "skillAfter": {
+    "file": "src/lua/abyss_skill_feedback.lua",
+    "sha256": "9c7f717225fead5379871fbe8e2d42e1c252a53e7ff131416cb73271861aa0bb",
+    "lines": 104,
+    "functions": [
+      {
+        "id": "$",
+        "name": "<chunk>",
+        "kind": "chunk",
+        "constructorName": false,
+        "line": 1,
+        "column": 1,
+        "endLine": 104,
+        "lines": 104,
+        "complexity": 1
+      },
+      {
+        "id": "$/clamp#1",
+        "name": "clamp",
+        "kind": "function",
+        "constructorName": false,
+        "line": 15,
+        "column": 7,
+        "endLine": 15,
+        "lines": 1,
+        "complexity": 1
+      },
+      {
+        "id": "$/smooth#1",
+        "name": "smooth",
+        "kind": "function",
+        "constructorName": false,
+        "line": 16,
+        "column": 7,
+        "endLine": 16,
+        "lines": 1,
+        "complexity": 1
+      },
+      {
+        "id": "$/nonDamageFamily#1",
+        "name": "nonDamageFamily",
+        "kind": "function",
+        "constructorName": false,
+        "line": 19,
+        "column": 7,
+        "endLine": 21,
+        "lines": 3,
+        "complexity": 7
+      },
+      {
+        "id": "$/effectsFamily#1",
+        "name": "effectsFamily",
+        "kind": "function",
+        "constructorName": false,
+        "line": 22,
+        "column": 7,
+        "endLine": 32,
+        "lines": 11,
+        "complexity": 13
+      },
+      {
+        "id": "$/committedFamily#1",
+        "name": "committedFamily",
+        "kind": "function",
+        "constructorName": false,
+        "line": 35,
+        "column": 7,
+        "endLine": 45,
+        "lines": 11,
+        "complexity": 13
+      },
+      {
+        "id": "$/intentKindFamily#1",
+        "name": "intentKindFamily",
+        "kind": "function",
+        "constructorName": false,
+        "line": 46,
+        "column": 7,
+        "endLine": 50,
+        "lines": 5,
+        "complexity": 10
+      },
+      {
+        "id": "$/intentFamily#1",
+        "name": "intentFamily",
+        "kind": "function",
+        "constructorName": false,
+        "line": 51,
+        "column": 7,
+        "endLine": 56,
+        "lines": 6,
+        "complexity": 5
+      },
+      {
+        "id": "$/damageFamily#1",
+        "name": "damageFamily",
+        "kind": "function",
+        "constructorName": false,
+        "line": 57,
+        "column": 7,
+        "endLine": 61,
+        "lines": 5,
+        "complexity": 6
+      },
+      {
+        "id": "$/M.resolve#1",
+        "name": "M.resolve",
+        "kind": "function",
+        "constructorName": false,
+        "line": 62,
+        "column": 1,
+        "endLine": 69,
+        "lines": 8,
+        "complexity": 5
+      },
+      {
+        "id": "$/M.sample#1",
+        "name": "M.sample",
+        "kind": "function",
+        "constructorName": false,
+        "line": 73,
+        "column": 1,
+        "endLine": 83,
+        "lines": 11,
+        "complexity": 9
+      },
+      {
+        "id": "$/M.travel#1",
+        "name": "M.travel",
+        "kind": "function",
+        "constructorName": false,
+        "line": 87,
+        "column": 1,
+        "endLine": 91,
+        "lines": 5,
+        "complexity": 5
+      },
+      {
+        "id": "$/M.cue#1",
+        "name": "M.cue",
+        "kind": "function",
+        "constructorName": false,
+        "line": 95,
+        "column": 1,
+        "endLine": 103,
+        "lines": 9,
+        "complexity": 14
+      }
+    ]
+  },
+  "unchangedDependencies": true,
+  "unchangedCycles": true,
+  "unchangedDiagnostics": true
+}

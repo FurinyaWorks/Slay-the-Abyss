@@ -545,3 +545,7 @@ docs/evidence/m7-source-root-current-20261111/** -text
 
 docs/evidence/m7-hosted-pack-guard-20261111/ci-contracts.stdout -whitespace
 tests/fixtures/integration-1111-tooling.json -text
+# Preserve this reviewed feedback witness and raw local evidence across checkout.
+tests/fixtures/skill-feedback-before.lua text eol=lf
+docs/evidence/m7-skill-feedback-20261111/*.gz -text
+docs/evidence/m7-skill-feedback-20261111/*.json text eol=lf

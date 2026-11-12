@@ -14,6 +14,11 @@ local moves={
 }
 local function clamp(p) return math.max(0,math.min(1,p)) end
 local function smooth(p) return p*p*p*(p*(p*6-15)+10) end
+-- Damage takes precedence during the scan; non-damage effects are ranked only
+-- after every effect has been read. These helpers do not inspect game state.
+local function nonDamageFamily(block,buff,debuff)
+    return block and 'defend' or buff and 'buff' or debuff and 'bind' or 'none'
+end
 local function effectsFamily(effects)
     local block,buff,debuff=false,false,false
     for _,effect in ipairs(effects or {}) do
@@ -23,29 +28,43 @@ local function effectsFamily(effects)
         buff=buff or op=='gainStatus' or op=='enemyHealAll' or op=='enemyStrengthAll'
         debuff=debuff or op=='applyStatus' or op=='applyStatusAll'
     end
-    return block and 'defend' or buff and 'buff' or debuff and 'bind' or 'none'
+    return nonDamageFamily(block,buff,debuff)
+end
+-- Return a separate handled flag: a dynamic effectType may change between its
+-- membership read and return read, including returning false or nil.
+local function committedFamily(kind,d,c)
+    if kind=='status_damage' or kind=='hp_loss' then return true,d.status=='poison' and 'poison' or 'dot' end
+    if kind=='block' then return true,'defend' end
+    if kind=='heal' then return true,'buff' end
+    if families[d.effectType] then return true,d.effectType end
+    if kind=='status' then
+        if d.status=='poison' or c.family=='poison' then return true,'poison' end
+        return true,c.statusKind=='buff' and 'buff' or 'bind'
+    end
+    return false
+end
+local function intentKindFamily(c)
+    return c.intentKind=='attack' and 'melee' or c.intentKind=='defend' and 'defend'
+        or (c.intentKind=='buff' or c.intentKind=='charge') and 'buff'
+        or c.intentKind=='debuff' and 'bind' or 'none'
+end
+local function intentFamily(c)
+    local byEnemy=moves[c.enemyId]
+    local family=byEnemy and byEnemy[c.intentId] or c.family or effectsFamily(c.effects)
+    if family=='none' then family=intentKindFamily(c) end
+    return family
+end
+local function damageFamily(family,c)
+    if family~='projectile' and family~='poison' and family~='heavy' then family='melee' end
+    if c.weight=='heavy' and family=='melee' then family='heavy' end
+    return family
 end
 function M.resolve(kind,detail,context)
     local d,c=detail or {},context or {}
-    if kind=='status_damage' or kind=='hp_loss' then return d.status=='poison' and 'poison' or 'dot' end
-    if kind=='block' then return 'defend' end
-    if kind=='heal' then return 'buff' end
-    if families[d.effectType] then return d.effectType end
-    if kind=='status' then
-        if d.status=='poison' or c.family=='poison' then return 'poison' end
-        return c.statusKind=='buff' and 'buff' or 'bind'
-    end
-    local byEnemy=moves[c.enemyId]
-    local family=byEnemy and byEnemy[c.intentId] or c.family or effectsFamily(c.effects)
-    if family=='none' then
-        family=c.intentKind=='attack' and 'melee' or c.intentKind=='defend' and 'defend'
-            or (c.intentKind=='buff' or c.intentKind=='charge') and 'buff'
-            or c.intentKind=='debuff' and 'bind' or 'none'
-    end
-    if kind=='damage' then
-        if family~='projectile' and family~='poison' and family~='heavy' then family='melee' end
-        if c.weight=='heavy' and family=='melee' then family='heavy' end
-    end
+    local handled,family=committedFamily(kind,d,c)
+    if handled then return family end
+    family=intentFamily(c)
+    if kind=='damage' then family=damageFamily(family,c) end
     return family
 end
 
