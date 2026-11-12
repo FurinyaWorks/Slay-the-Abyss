@@ -1847,7 +1847,8 @@ test('combined closeout validates raw current sources and complete Full discover
  const files=nativeCloseoutDiscover();
  assert.deepEqual(files,closeoutCiProof.inventory,'every current test remains in raw discovery');
  assert.equal(new Set(files).size,files.length);
- assert.equal(files.length,853);
+ assert.equal(files.length,854);
+ assert(files.includes('tests/lumine-idle.test.mjs'),'approved idle remains in complete raw Full discovery');
  const lua=liveCloseoutLua();assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
  for(const file of lua)assert.equal(hash(nativeCloseoutRead(file,'utf8').replaceAll('\r\n','\n')),closeoutCiProof.luaHashes[file],file);
  const rawCalibration=nativeCloseoutRead('tests/ci-complete-calibration.test.mjs','utf8');

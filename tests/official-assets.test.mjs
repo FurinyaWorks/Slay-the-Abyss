@@ -236,7 +236,7 @@ test('scene and button substitutions preserve semantic icons and all four native
  assert.equal(description.text.autoSize,true);assert.deepEqual(description.size,[104,64]);
 });
 
-test('official battle and selection share the temporary pixel actor while preserving opt-out sources',t=>{
+test('official battle adopts approved idle while selection and opt-out retain their explicit sources',t=>{
  const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});const dir=mkdtempSync(join(root,'official-assets-'));
  t.after(()=>rmSync(dir,{force:true,recursive:true}));
  buildUI(dir,undefined,{officialAssets:true,nativePageLifecycle:true});
@@ -249,11 +249,14 @@ test('official battle and selection share the temporary pixel actor while preser
  assert.match(portrait,/battle133=/);assert.match(portrait,/avatar96=/);
  assert.match(portrait,/battlePixel=/);
  const inventory=portraitInventory(officialAssetFlags,{officialAssets:true});
- assert.equal(inventory.assets.find(a=>a.asset==='temporary-pixel-traveler').images,57);
+ assert.equal(inventory.assets.some(a=>a.asset==='temporary-pixel-traveler'),false);
+ assert.match(portrait,/battleApprovedIdle=/);
  const selected=inventory.assets.find(a=>a.asset==='temporary-pixel-traveler-selection');
- const fighting=inventory.assets.find(a=>a.asset==='temporary-pixel-traveler');
+ const fighting=inventory.assets.find(a=>a.asset==='traveler-geo/idle-approved-v1');
+ assert.equal(fighting?.images,7303);
+ assert.equal(fighting.motion,'approved-source-field-native-band-approximation');
  assert.equal(inventory.selectionUses,'battlePixel');assert.equal(selected?.images,57);
- assert.equal(selected.sourceSha256,fighting.sourceSha256);
+ assert.notEqual(selected.sourceSha256,fighting.sourceSha256,'selection and approved combat have explicit independent source identities');
  assert.equal(inventory.assets.some(a=>a.asset==='traveler-geo/portraits/battle133-selection'),false);
  assert.equal(inventory.assets.find(a=>a.asset==='traveler-geo/portraits/avatar96').images,457);
  assert.doesNotMatch(portrait,/lowpolyLand=/);
