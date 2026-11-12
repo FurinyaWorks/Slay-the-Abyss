@@ -9,6 +9,31 @@ import {v25PortraitRuntimeProfile} from './v25-portrait-profile.mjs';
 import {lightweightAssets} from './art/lightweight-2d-assets.mjs';
 
 export const portraitModule='abyss_traveler_portrait_assets';
+export const approvedBattleIdlePath='art/characters/traveler-geo/idle-approved-v1/native-idle-210.json';
+const approvedIdleSource='art/characters/traveler-geo/idle-approved-v1/lumine_static_approved.png';
+const approvedIdleGif='art/characters/traveler-geo/idle-approved-v1/lumine_idle_approved.gif';
+export function approvedBattleIdle(root=process.cwd()){
+ const bytes=readFileSync(join(root,approvedBattleIdlePath),'utf8').replaceAll('\r\n','\n');
+ if(createHash('sha256').update(bytes).digest('hex')!=='caa7505c9485ae46555c130088c7d486542865c4ae694090935843d5e0b41af5')throw Error('Approved Lumine idle data changed');
+ const data=JSON.parse(bytes);
+ if(data.sourceSha256!=='32830a9ab3f0b181202205bba59447efe660ce3225ab26f32943c54753a105de'
+  ||data.renderProfile!=='approved-idle-v1'||data.width!==210||data.height!==192||data.count!==7303||data.rows.length!==7303
+  ||data.bandByRow.length!==7303||data.bands.length!==18||data.period!==2.2)throw Error('Invalid approved Lumine idle identity');
+ // Match the approved GIF's twenty 110ms source poses on the same 2.2s loop.
+ // The existing renderer already supports this cadence; static rows stay exact.
+ return {...data,samplesPerCycle:20};
+}
+function approvedIdleInventory(){
+ const data=approvedBattleIdle();let page=0,group=0,groups=0;
+ for(let i=0;i<data.rows.length;i++){
+  const band=data.bandByRow[i],next=Math.floor(i/60)+1;
+  if(page!==band){page=band;group=0;}
+  if(group!==next){group=next;groups++;}
+ }
+ return {asset:'traveler-geo/idle-approved-v1',images:data.count,groups,pages:data.bands.length,
+  sourceSha256:data.sourceSha256,jsonSha256:data.jsonSha256,periodSeconds:data.period,
+  motion:'approved-source-field-native-band-approximation',officialCapacity:'not_measured',devicePerformance:'not_run'};
+}
 const base='art/characters/traveler-geo/portraits';
 const assets=[
  {kind:'avatar96',count:4822,width:96,display:32,runtime:'c30551e1fed1cd7f18c61b67fe0ad0cd6e52c61bfa6ae937ccd9e4c90e7f72bb',json:'93bcf4303d370f7faac2b8289146acfe655bae6dced0abf5257e407d69f748ef'},
@@ -17,7 +42,8 @@ const assets=[
 const licensePath=`${base}/avatar96/LICENSE-runtime-MIT.txt`;
 const selectionBudgetPath='art/performance/selection-budget-v1.json';
 export const portraitInputs=[...assets.flatMap(a=>['runtime-no-snapshot.lua','native-art.json'].map(f=>`${base}/${a.kind}/${f}`)),licensePath,selectionBudgetPath,
- `${base}/avatar96/preview-native-1x.png`,`${base}/battle133/preview-native-1x.png`,'art/lowpoly-select/select-lowpoly.json'];
+ `${base}/avatar96/preview-native-1x.png`,`${base}/battle133/preview-native-1x.png`,'art/lowpoly-select/select-lowpoly.json',
+ approvedBattleIdlePath,approvedIdleSource,approvedIdleGif];
 const hash=b=>createHash('sha256').update(b).digest('hex');
 export function selectionBudget(root=process.cwd()) {
  const bytes=readFileSync(join(root,selectionBudgetPath));
@@ -40,6 +66,7 @@ const selectedAssets=({selectionAvatar=true,battlePortrait=true}={})=>assets.fil
 export function portraitSourceInputs(options={}) {
  const selected=selectedAssets(options);if(!selected.length)return [];
  return [...selected.flatMap(a=>['runtime-no-snapshot.lua','native-art.json'].map(f=>`${base}/${a.kind}/${f}`)),licensePath,
+  ...(selected.some(a=>a.kind==='battle133')?[approvedBattleIdlePath,approvedIdleSource,approvedIdleGif]:[]),
   ...(selected.some(a=>a.kind==='avatar96')?[selectionBudgetPath,`${base}/avatar96/preview-native-1x.png`,`${base}/battle133/preview-native-1x.png`]:[])];
 }
 export function portraitSources(root=process.cwd(),options) {
@@ -170,6 +197,9 @@ export function writePortraitModule(directory,{root=process.cwd(),imageTemplateI
  // literals stay available for the other profiles and later artwork review.
  if(officialAssets&&(selectionAvatar||battlePortrait))data.push(`battlePixel=${toLua(lightweightAssets().battle133)}`);
  if(officialAssets&&selectionAvatar)data.push("selectionUses='battlePixel'");
+ // One approved combat figure. The temporary pixel remains selection-only;
+ // missing or changed approved idle data is a build error, never a fallback.
+ if(officialAssets&&battlePortrait)data.push(`battleApprovedIdle=${toLua(approvedBattleIdle(root))}`);
  if(v25BattleChrome){
   const theme=v25Theme(JSON.parse(readFileSync(join(root,'data/presentation/ui_theme.json'),'utf8')));
   data.push(`v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(theme))}`);
@@ -197,8 +227,7 @@ export function portraitInventory({selectionAvatar=true,battlePortrait=true,card
  const rows=inventoryRows(selectionAvatar,battlePortrait,budget,v25);
  if(officialAssets&&battlePortrait){
   const row=rows.find(a=>a.asset==='traveler-geo/portraits/battle133');
-  const pixel=lightweightAssets().battle133;
-  Object.assign(row,{asset:'temporary-pixel-traveler',images:pixel.count,groups:Math.ceil(pixel.count/60),pages:Math.ceil(pixel.count/3600),sourceSha256:pixel.sourceSha256});
+  Object.assign(row,approvedIdleInventory());
  }
  if(officialAssets&&selectionAvatar){
   const selected=rows.find(a=>a.asset==='traveler-geo/portraits/selection133'||a.asset==='traveler-geo/portraits/battle133-selection');
@@ -220,6 +249,10 @@ export function portraitRuntimeInventory(directory) {
  const source=readFileSync(join(directory,`${portraitModule}.lua`),'utf8');
  const flags={selectionAvatar:/\bavatar96=/.test(source),battlePortrait:/\bbattle133=/.test(source)};
  const officialAssets=source.includes('battlePixel=');
+ if(officialAssets&&flags.battlePortrait){
+  const expected=`battleApprovedIdle=${toLua(approvedBattleIdle())}`;
+  if(source.split(expected).length!==2)throw Error('Official battle idle differs from the pinned producer');
+ }
  const selectionMarkers=source.split(/\r?\n/).filter(line=>line.startsWith('selectionUses='));
  if(flags.selectionAvatar&&(officialAssets||selectionMarkers.length)){
   if(!officialAssets||selectionMarkers.length!==1||!/^selectionUses='battlePixel',?$/.test(selectionMarkers[0]))

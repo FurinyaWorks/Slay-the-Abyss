@@ -53,7 +53,8 @@ function Equal(a,b)assert(type(a)==type(b),'type mismatch');if type(a)=='table't
 `);
   if(before)run(before);
   run(`Theme=${toLua({...nativeTheme,...(officialAssets?{presentationProfile:'official-assets-first'}:{}),icon:{...nativeTheme.icon,player:themePlayer}})}
-PortraitAssetLoads=0;require=function(name)if name=='abyss_theme' then return Theme end;assert(name=='abyss_traveler_portrait_assets');PortraitAssetLoads=PortraitAssetLoads+1;return Asset end\nPortraits=(function()\n${readFileSync('src/lua/abyss_traveler_portraits.lua','utf8')}\nend)()`);
+Idle=(function()\n${readFileSync('src/lua/abyss_lumine_idle.lua','utf8')}\nend)()
+PortraitAssetLoads=0;require=function(name)if name=='abyss_theme' then return Theme end;if name=='abyss_lumine_idle'then return Idle end;assert(name=='abyss_traveler_portrait_assets');PortraitAssetLoads=PortraitAssetLoads+1;return Asset end\nPortraits=(function()\n${readFileSync('src/lua/abyss_traveler_portraits.lua','utf8')}\nend)()`);
   run(code);
  } finally {lauxlib.luaL_newstate=old;if(state)lua.lua_close(state);rmSync(dir,{recursive:true,force:true});}
 }

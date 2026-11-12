@@ -24,11 +24,12 @@ SOFTWARE.
 -- Two frozen Lumine hosts only. No rules, timers, fitting or original OnStart.
 -- Property order follows Primitive's MIT runtime, copyright 2026 LiuL.
 local M = {}
+local Idle=require('abyss_lumine_idle')
 local owners = setmetatable({}, {__mode='k'})
 local CANCELLED = {}
 local function integer(n) return type(n)=='number' and n>0 and n<math.huge and n%1==0 end
 local function compactProfile(data)
-    return data.renderProfile=='compact-v1' or data.renderProfile=='bounded-2d-v1'
+    return data.renderProfile=='compact-v1' or data.renderProfile=='bounded-2d-v1' or Idle.enabled(data)
 end
 local function digest(value)
     return type(value)=='string' and #value==64 and value:match('^[a-f0-9]+$')~=nil
@@ -44,6 +45,7 @@ local function lowpoly(data)
 end
 local function validate(data, width, count, source, json)
     assert(type(data)=='table','unexpected portrait data')
+    if Idle.enabled(data) then Idle.validate(data);return end
     if data.renderProfile=='bounded-2d-v1' then validateBounded(data,width)
     else
         local compact=compactProfile(data) or data.renderProfile=='selection-budget-v1'
@@ -87,6 +89,8 @@ local function controller(host, data, display, templates, options)
     if base then base={base[1],base[2]}end
     assert(host,'missing dedicated portrait host')
     local self,created={},{}
+    local idlePages,idleSample,idleTime,wasIdle,idlePaused={},nil,0,nil,false
+    local poseTicket
     local phase,generation,nextIndex='idle',0,1
     local page,group,pageIndex,groupIndex=nil,nil,0,0
     local revealGroups,revealIndex,revealedPages={},1,{}
@@ -103,6 +107,7 @@ local function controller(host, data, display, templates, options)
     end
     local function cleanup()
         local old,retained,blocked=created,{},{};created={};cleanupFailures=0
+        idlePages={};idleSample=nil;idleTime=0;wasIdle=nil
         for i=#old,1,-1 do
             if phase=='destroyed'then created={};return true end
             local node=old[i];local c=node.control
@@ -231,6 +236,7 @@ local function controller(host, data, display, templates, options)
     function self.begin(_)
         if working or phase=='destroyed' or phase=='failed' or phase=='release_failed'then return false end
         if host.alive==false then self:destroy();return false end
+        idlePaused=false
         if phase=='building' or phase=='revealing' or phase=='ready'then
             if nativeLifecycle then return transition(true,phase=='ready',true)end
             if data.cache or compactProfile(data) then host:SetActive(true);host:SetVisible(phase=='ready')end
@@ -281,9 +287,11 @@ local function controller(host, data, display, templates, options)
             if pending then cleanup()end;working=false;return ok,'reveal'
         end
         local ok,err=pcall(function()
-            local p=math.floor((nextIndex-1)/3600)+1;local g=math.floor((nextIndex-1)/60)+1
+            local p=Idle.enabled(data) and data.bandByRow[nextIndex] or math.floor((nextIndex-1)/3600)+1
+            local g=math.floor((nextIndex-1)/60)+1
             if pageIndex~=p then
                 page=create(token,Asset.containerPrefabId,host);transform(token,page);pageIndex=p
+                if Idle.enabled(data) then idlePages[p]=page;groupIndex=0 end
                 call(token,page,'SetActive',not data.runtimeV2);call(token,page,'SetVisible',not data.runtimeV2)
             elseif groupIndex~=g then
                 group=create(token,Asset.containerPrefabId,page);transform(token,group);groupIndex=g
@@ -302,6 +310,7 @@ local function controller(host, data, display, templates, options)
         working=false;return true
     end
     function self.pause(_)
+        idlePaused=true
         -- Only the battle portrait opts into scene-boundary failure recovery.
         -- Other cached adapters retain their explicit-release retry policy.
         if retryFailedOnPause and (phase=='failed' or phase=='release_failed')then return self:release()end
@@ -317,20 +326,39 @@ local function controller(host, data, display, templates, options)
         local hidden=hide();if wasWorking then return hidden end
         local cleaned=cleanup();working=false;return hidden and cleaned
     end
-    function self.pose(_,x,y,sx,sy)
+    local function poseWrite(c,method,...)
+        if phase~='ready' or generation~=poseTicket or idlePaused or host.alive==false or c.alive==false then error(CANCELLED,0)end
+        assert(c[method](c,...)~=false,'idle native setter rejected')
+        if phase~='ready' or generation~=poseTicket or idlePaused or host.alive==false or c.alive==false then error(CANCELLED,0)end
+    end
+    function self.pose(_,x,y,sx,sy,dt,motionState)
         if host.alive==false then self:destroy();return end
-        if working or (phase~='building' and phase~='ready')then return end
-        working=true
+        if working or Idle.enabled(data) and idlePaused or (phase~='building' and phase~='ready')then return end
+        working=true;poseTicket=generation
         local ok,err=pcall(function()
+            if Idle.enabled(data) and phase=='ready' then
+                local idle=motionState=='idle'
+                if data.motion~='static' then
+                    idleTime=(idleTime+math.min(dt or 0,.1))%data.period
+                    local sample,sampleTime=Idle.sample(data,idleTime)
+                    if idleSample~=sample or wasIdle~=idle then
+                        Idle.paint(data,idlePages,sampleTime,idle,poseWrite);idleSample=sample;wasIdle=idle
+                    end
+                end
+                -- The approved bands own idle movement. Do not stack the old
+                -- whole-body ActorMotion breathing on top of the source field.
+                if idle then x,y,sx,sy=0,0,1,1 end
+            end
             assert(host:SetAnchoredPosition(x+(base and base[1] or 0),y+(base and base[2] or 0))~=false,'portrait pose rejected')
             if host.alive==false then self:destroy();return end
+            if Idle.enabled(data) and idlePaused then return end
             if phase=='building' or phase=='ready'then assert(host:SetLocalScale(sx*display/data.width,sy*display/data.width,1)~=false,'portrait scale rejected')end
         end)
-        if not ok then fail(err)end
+        if not ok and err~=CANCELLED then fail(err)end
         if phase=='destroyed'then created={} elseif pending then cleanup()end
         working=false
     end
-    function self.destroy(_)generation=generation+1;phase='destroyed';pending=false;created={}end
+    function self.destroy(_)generation=generation+1;phase='destroyed';pending=false;created={};idlePages={}end
     return self
 end
 local function activeTargets(mode,characterOpen,stopped,character,preloadSelection)
@@ -414,7 +442,7 @@ function M.new(stage,report,flags,cardTemplates)
         end
     end
     if fighting then
-        local drawing=official and Asset.battlePixel or Asset.battle133
+        local drawing=official and assert(Asset.battleApprovedIdle,'official battle requires the approved Lumine idle') or Asset.battle133
         validate(drawing,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
         local hero=assert(stage:GetChild('battlePanel'):GetChild('hero'))
         battle=controller(hero:GetChild('officialFigure'),drawing,profile and profile.battleDisplay or official and theme.layout.player.portrait or 400/3,Asset,
@@ -444,7 +472,7 @@ function M.new(stage,report,flags,cardTemplates)
         end
     end
     if #rows==0 then return nil end
-    local timeBudget=selecting and Asset.avatar96.runtimeV2 or fighting and Asset.battle133.runtimeV2 or carding or landing
+    local timeBudget=selecting and Asset.avatar96.runtimeV2 or fighting and (official and Asset.battleApprovedIdle or Asset.battle133).runtimeV2 or carding or landing
     local self,busy,destroyed,painting={},false,false,false
     local fallbackVisibility=setmetatable({},{__mode='k'})
     local function paintFallback(control,visible,phase)
@@ -549,9 +577,9 @@ function M.new(stage,report,flags,cardTemplates)
         end
         paint();busy=false
     end
-    function self.battlePose(_,x,y,sx,sy)
+    function self.battlePose(_,x,y,sx,sy,dt,motionState)
         if busy or destroyed or not battle then return end
-        busy=true;battle:pose(x,y,sx,sy);paint();busy=false
+        busy=true;battle:pose(x,y,sx,sy,dt,motionState);paint();busy=false
     end
     function self.release(_)
         if destroyed then return true end

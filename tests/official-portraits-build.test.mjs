@@ -42,7 +42,7 @@ test('official shared selection inventory requires the explicit producer schema 
  assert.equal(portraitRuntimeInventory(dir).assets.find(row=>row.asset==='traveler-geo/portraits/battle133-selection').images,4315);
  const battleOnly=writePortraitModule(dir,{officialAssets:true,selectionAvatar:false,battlePortrait:true});
  assert.doesNotMatch(battleOnly,/^selectionUses=/m);
- assert.equal(portraitRuntimeInventory(dir).assets.find(row=>row.asset==='temporary-pixel-traveler').images,57);
+  assert.equal(portraitRuntimeInventory(dir).assets.find(row=>row.asset==='traveler-geo/idle-approved-v1').images,7303);
 });
 test('native selection budget changes only selection art and preserves the frozen battle literal',async t=>{
  const {writePortraitModule,selectionBudget,portraitRuntimeInventory}=await import(modulePath);

@@ -12,6 +12,7 @@
 | [lumine_idle_133px_spritesheet.png](lumine_idle_133px_spritesheet.png) | `8a9e8dda24e5678c1e279a3a1c42da357e4e5c87d61137da95c4fa18a89a5090` | 133px 可读性参考（5×4帧），并非千星原生资源 |
 | [create_lumine_idle.py](create_lumine_idle.py) | `见当前文件 git blob` | 已验证可按原图确定性重建所有图/逐帧图 |
 | [evidence.json](evidence.json) | 生成时记录的位移、足部不变量、尺寸和未验证边界 |
+| [native-idle-210.json](native-idle-210.json) | `caa7505c9485ae46555c130088c7d486542865c4ae694090935843d5e0b41af5` | 原7303图元/18横带转换，源自归档 `149e1c156` 的 `docs/evidence/lumine-native-idle-20261111/idle-210-asset.json.gz`；非新生成动画 |
 
 ### 复现与换角色的正确方法
 
@@ -25,6 +26,8 @@ python create_lumine_idle.py lumine_static_approved.png ./rebuild
 **运动规格**：不重新生成每帧人物外貌，始终固定鞋底；连续低幅身体位移与少量飘带相位滞后；每帧保留原图人物脸、服饰与剑。审查整体感、头/手/剑连接、首尾闭环、真实游戏展示尺寸和原生可迁移性。早期 v1 微动不可见、v2 光学分块割裂均 FAIL，见 [任务 #593](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/593)。
 
 ### 千星 / 许可边界
+
+2026-11-12 当前战斗构建采用 `native-idle-210.json`：复用归档原生转换 `149e1c156` 的7303张静态图元、18个运动父容器和2.2秒批准动作场，使用既有20样本参数匹配源GIF每110ms的节奏。源PNG/GIF原字节与许可不变，非重新生成动画；该原生横带形变是动作近似，不是GIF逐帧直放。正式official battle只挂此已批准荧资源，缺失或篡改立即报错，不回退57图元、2739档或未批准雷电。创建预算、原生硬限和打包门槛保持原值，实际设备压力仍待验证。
 
 这批是**审美批准的源媒体**，不是可直接作为自定义纹理导入千星的 GIL。下一步只能沿既有原生图元/模板/SDK路线转换，使用实际原生控件数、首次完整显示与手机帧时判定是否可交付；不承诺57控件或替换现有战斗皮肤。需要逐帧 PNG 时执行脚本重建 `frame_00.png`—`frame_19.png`，避免把20张相似图片都写进长期Git历史。
 

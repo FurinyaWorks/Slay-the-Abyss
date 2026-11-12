@@ -8079,6 +8079,10 @@
       "storage": "ci-media-lfs-v1",
       "bytes": 1092164
     },
+    "art/characters/traveler-geo/idle-approved-v1/native-idle-210.json": {
+      "category": "character-idle-source",
+      "sha256": "caa7505c9485ae46555c130088c7d486542865c4ae694090935843d5e0b41af5"
+    },
     "art/characters/raiden-shogun/idle-candidate-v1/asset_manifest.json": {
       "category": "art-production-record",
       "sha256": "0b549a8b1a5d67a2f7446eb347ff4162a330f1601837382c70d5ea2ee1fa87df"
