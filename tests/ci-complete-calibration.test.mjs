@@ -1286,7 +1286,7 @@ test('official candidate floors authenticate complete serial runs and register o
  const actualCurrentTimings=JSON.parse(diskReadFileSync(path,'utf8'));
  // This assertion reproduces the first immutable checkpoint, before the later flow floor.
  const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
- 
+
  assert.deepEqual(Object.keys(officialAssetsPlanningFloors).sort(),[...officialAssetsJs].sort());
  assert.deepEqual(discoverJs().filter(file=>file.startsWith('tests/official-assets')).sort(),[...officialAssetsJs].sort());
  for(const [file,floor]of Object.entries(officialAssetsPlanningFloors)){
