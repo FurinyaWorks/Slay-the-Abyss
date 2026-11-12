@@ -95,9 +95,9 @@ if require('abyss_theme').presentationProfile=='official-assets-first' then
     local events={CursorEnter='nativeRelicEnter',CursorExit='nativeRelicExit'}
     local h4,r4=F.fixture(nil,nil,nil,events)
     assert(F.start(h4));assert(require('abyss_run').startCombat(h4.run,'cultist_solo'))
-    h4.run.relics={'anchor','ancient_tea_set','maw_bank','omamori'}
-    h4.run.relicCounters={anchor=1,ancient_tea_set=-2,maw_bank=-2,omamori=0}
-    h4.run.combat.relicCounters={anchor=3}
+    h4.run.relics={'burning_blood','ancient_tea_set','maw_bank','omamori'}
+    h4.run.relicCounters={burning_blood=1,ancient_tea_set=-2,maw_bank=-2,omamori=0}
+    h4.run.combat.relicCounters={burning_blood=3}
     h4:refresh()
     local bar4=r4:GetChild('relicBar')
     local slot1,slot2=bar4:GetChild('slot1'),bar4:GetChild('slot2')
@@ -130,13 +130,15 @@ if require('abyss_theme').presentationProfile=='official-assets-first' then
         assert(icon1.sizeDeltaX==battleStyle.icon and hit1.sizeDeltaX==battleStyle.hit and hit1.sizeDeltaY==battleStyle.hit,phase..' changed canonical dimensions')
         assert(not slot1:GetChild('rim').visible and not slot1:GetChild('face').visible,phase..' restored old discs')
         assert(slot1:GetChild('counter').text==(phase=='combat' and '3'or'1'),'counter reads the actual phase owner')
+        assert(icon1.imageId==Theme.officialAssets.battleRelicIcons.burning_blood.id,phase..' HUD reverted to the old relic atlas')
         hit1.listeners[events.CursorEnter]();assert(icon1.localScaleX==1.25,phase..' lost shared hover')
         hit1.listeners[events.CursorExit]();assert(icon1.localScaleX==1)
-        assert(h4.relicUI:open(h4.run,2));assert(h4.relicUI.selectedIndex==2,phase..' reopened the old list')
+        assert(h4.relicUI:open(h4.run,1));assert(h4.relicUI.selectedIndex==1,phase..' reopened the old list')
         assert(h4.relicUI.root:GetChild('single').visible and not h4.relicUI.root:GetChild('row1').visible)
+        assert(h4.relicUI.root:GetChild('single'):GetChild('icon').imageId==Theme.officialAssets.battleRelicIcons.burning_blood.id,phase..' detail reverted to the old relic atlas')
         assert(h4.relicUI:close())
     end
     assert(h4.run==run and run.combat==combat and combat.turn==turn and combat.energy==energy and run.hp==hp and #combat.hand==hand,'inspection cannot mutate the controlled run')
-    assert(run.relicCounters.anchor==1 and combat.relicCounters.anchor==3 and #run.relics==4)
+    assert(run.relicCounters.burning_blood==1 and combat.relicCounters.burning_blood==3 and #run.relics==4)
     print('RELIC_HUD_FEEDBACK_PASS native hover raw counters charged and exhausted states')
 end

@@ -83,7 +83,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         local id=run.relics[i]
         local definition=Rewards.definition(run,id)
         local description=definition and describe(run,definition.id) or ''
-        return {id=id,name=definition and definition.name or '未识别遗物',icon=M.icon(id,self.selectedIndex~=nil and run.phase=='combat'),
+        return {id=id,name=definition and definition.name or '未识别遗物',icon=M.icon(id,official),
             rarity=definition and rarityNames[definition.rarity] or '遗物',
             status=M.status(run,id),description=description~='' and description or '效果说明待补充。'}
     end
@@ -186,7 +186,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             icon:SetVisible(not more)
             slot:GetChild('more'):SetVisible(more)
             slot:GetChild('more').text=more and cell or ''
-            if cell and not more then picture(icon,M.icon(relics[i],battle))end
+            if cell and not more then picture(icon,M.icon(relics[i],official))end
             paintCounter(slot,run,cell and not more and relics[i] or nil,official)
         end
     end
