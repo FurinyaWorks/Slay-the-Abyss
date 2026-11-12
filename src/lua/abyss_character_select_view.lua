@@ -96,6 +96,14 @@ local function paintPortraits(details,state,platform)
     if platform.imageSource and large then portraits:GetChild(key):SetImage(platform.imageSource,large.id) end
     return large,key,portraits
 end
+local function paintPortraitNote(details,info,platform,large,key,portraits)
+    local note=info.name
+    local native=platform.portraits and platform.portraits.status and platform.portraits:status().selection
+    if key=='traveler_ironclad' and native then portraits:GetChild(key):SetVisible(false)end
+    if (not large or large.status=='placeholder') and not native then note=note..' · 肖像待补' end
+    if large and large.playable==false then note=note..' · 非本次正式角色' end
+    details:GetChild('portraitNote').text=note
+end
 function M.render(panel,state,platform)
     local info=state.info
     local nativeV25=Theme.presentationProfile=='official-assets-first' and panel:GetChild('v25Roster')~=nil
@@ -146,11 +154,6 @@ function M.render(panel,state,platform)
     details:GetChild('relicText').text=table.concat(texts,' ')
     renderStarterDeck(details,info)
     local large,key,portraits=paintPortraits(details,state,platform)
-    local note=info.name
-    local native=platform.portraits and platform.portraits.status and platform.portraits:status().selection
-    if key=='traveler_ironclad' and native then portraits:GetChild(key):SetVisible(false)end
-    if (not large or large.status=='placeholder') and not native then note=note..' · 肖像待补' end
-    if large and large.playable==false then note=note..' · 非本次正式角色' end
-    details:GetChild('portraitNote').text=note
+    paintPortraitNote(details,info,platform,large,key,portraits)
 end
 return M

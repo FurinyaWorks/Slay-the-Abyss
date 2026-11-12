@@ -524,11 +524,10 @@ function M.new(stage,report,flags,cardTemplates)
             -- Competition hides the one-role legacy roster; its V25 badge has
             -- its own official symbol and does not consume this avatar drawing.
             if official and row.name=='avatar' and row.visibleOwner.visible~=true then wanted.avatar=false end
-            local accepted=true
             -- MenuView owns result outcome selection; ordinary scene sync may
             -- pause it on departure, but must never publish a default victory
             -- figure while a defeat outcome is still being prepared.
-            accepted=transitionRow(row,wanted,mode,stopped)
+            local accepted=transitionRow(row,wanted,mode,stopped)
             if epoch~=token or destroyed then busy=false;return false end
             if profile and accepted==false then paint();busy=false;return false end
         end
