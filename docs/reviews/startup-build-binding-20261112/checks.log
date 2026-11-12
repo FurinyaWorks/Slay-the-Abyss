@@ -1,0 +1,49 @@
+$ backlog instructions task-finalization
+Error: spawnSync backlog ENOENT
+exit=null
+
+$ node scripts/check-task-intake.mjs TASK-86
+ALLOW TASK-86
+Still check task dependencies, approvals, open PRs, task claims and file ownership; this command does not claim the task.
+exit=0
+
+$ node scripts/check-agent-guidance.mjs
+{
+  "errors": [],
+  "metrics": [
+    {
+      "file": "AGENTS.md",
+      "lines": 42,
+      "characters": 3250
+    },
+    {
+      "file": "CLAUDE.md",
+      "lines": 5,
+      "characters": 150
+    },
+    {
+      "file": ".cursor/rules/miliastra.mdc",
+      "lines": 6,
+      "characters": 82
+    }
+  ]
+}
+exit=0
+
+$ node scripts/verify-backlog-roadmap.mjs
+任务编号、首发排期、负责人及仅岩系旅行者前两幕规划范围检查通过；当前任务均有优先级、未完成High不超过5项；不认证运行时准入、平台或实机。
+exit=0
+
+$ node scripts/check-network-policy.mjs
+CI download safeguards verified: incremental Git refs, size summary/limit, bounded npm retries
+exit=0
+
+$ node --check scripts/native-playtest-evidence.mjs
+exit=0
+
+$ node --check tests/native-playtest-evidence.test.mjs
+exit=0
+
+$ git diff --check
+exit=0
+
