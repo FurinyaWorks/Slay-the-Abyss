@@ -1,7 +1,6 @@
 -- Independent card data, verified against the pinned 319009 community source.
 -- Action-time values (orb count, turn history, X energy) belong to Combat's queue.
 local M={}
-local Actors=require('abyss_actor')
 local MAX=2147483647
 local function integer(value)
     return type(value)=='number' and value==math.floor(value) and value>=0 and value<=MAX
@@ -94,16 +93,18 @@ function M.withCards(data)
 end
 -- Pure preparation: freeze card-modified damage/block before action resolution.
 -- Reactions remain NORMAL damage; a frozen amount is not fixed orb damage.
-function M.prepareEffect(state,effect,target)
+function M.prepareEffect(state,effect,target,actorHost)
     assert(type(effect)=='table','missing utility effect')
     local out=copy(effect)
     if effect.op=='barrageDamage' or effect.op=='ftlDamage' then
         assert(integer(effect.value) and target,'invalid utility attack')
+        local Actors=actorHost()
         out.normalAmount=Actors.attackAmount(state,state.player,target,effect.value)
         assert(integer(out.normalAmount),'utility attack overflow')
         if effect.op=='ftlDamage' then assert(integer(effect.threshold),'invalid FTL threshold') end
     elseif effect.op=='xBlock' then
         assert(integer(effect.value),'invalid X block')
+        local Actors=actorHost()
         out.blockAmount=Actors.blockAmount(state,state.player,effect.value)
         assert(integer(out.blockAmount),'utility block overflow')
     end

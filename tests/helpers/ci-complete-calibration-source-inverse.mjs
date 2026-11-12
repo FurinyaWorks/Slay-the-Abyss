@@ -1,5 +1,6 @@
 import {preCurrentPlanningSource} from './joint-ui-ci-source-inverse.mjs';
 import {preCursesGateSource} from './curses-ci-planning.mjs';
+import {preDefectActorCiSource} from './defect-actor-ci-source-inverse.mjs';
 import {preOfficialAssetsFlowCiSource} from './official-assets-flow-ci-source-inverse.mjs';
 import {preOfficialAssetsCiSource} from './official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource} from './encounter-formation-ci-source-inverse.mjs';
@@ -143,6 +144,7 @@ export function preEffectsTargetGroupPlanningSource(path,source){
 // Arbitrary source, partial floor sets and changed execution inputs pass through untouched.
 export function preCombinedPlanningSource(path,source,epoch='base'){
  source=preCurrentPlanningSource(path,source);
+ source=preDefectActorCiSource(path,source);
  source=preOfficialAssetsCiSource(path,preOfficialAssetsFlowCiSource(path,source));
  if(path==='scripts/ci-test-timings.json')source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,preDefectFinalCiSource(path,preEncounterFormationCiSource(path,source))));
  if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba')return source;

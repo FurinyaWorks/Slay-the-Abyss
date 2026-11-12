@@ -1,0 +1,5 @@
+{
+  "result": "failed",
+  "path": "docs/evidence/m7-defect-actor-20261111/cost-final-identities.json",
+  "reason": "Compared old staged 19-input identities against newer working-tree 20-input identities; no source or line-ending corruption inferred. Refresh index and rerun exact checkout comparison."
+}

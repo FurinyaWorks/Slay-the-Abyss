@@ -1,0 +1,182 @@
+✔ complete before sources and original 52-scenario fixture bind to develop Git blobs (5.810671ms)
+✔ cold data and non-target preparation never resolve execution capabilities (62.730698ms)
+✔ production changes remain the two narrow capability edits and one policy rule (2.492867ms)
+✖ all 345 modules retain complete immediate/deferred graphs and reject transitive runtime owners (34.819411ms)
+✔ original 52 scenarios preserve complete return, error, state and alias graphs in independent VMs (15886.416297ms)
+✔ copy and original input validation precede capability resolution (6.906301ms)
+✔ FTL threshold remains after Actor side effects, errors and result validation (5.649096ms)
+✔ each call uses live capability and method slots, one return and detached input (8.331795ms)
+✔ real Barrage FTL and X block failures roll back complete state and retry through live Actor slots (2269.548862ms)
+✔ frozen protocol and complete old Utility match actual current host: barrage (744.396495ms)
+✔ frozen protocol and complete old Utility match actual current host: ftl (785.409758ms)
+✔ frozen protocol and complete old Utility match actual current host: reinforced_body (676.146173ms)
+✔ parseable semantic regression is rejected: host removed (688.730077ms)
+✔ parseable semantic regression is rejected: Barrage amount lost (17.05991ms)
+✔ parseable semantic regression is rejected: X block amount lost (14.154351ms)
+✔ parseable semantic regression is rejected: input copy aliased (10.007789ms)
+✔ parseable semantic regression is rejected: FTL threshold moved early (9.721668ms)
+✔ parseable semantic regression is rejected: invalid input reaches host (27.619698ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21686.174481
+
+✖ failing tests:
+
+test at tests/defect-actor-boundary.test.mjs:86:1
+✖ all 345 modules retain complete immediate/deferred graphs and reject transitive runtime owners (34.819411ms)
+  AssertionError [ERR_ASSERTION]: no unclassified or omitted owners
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'abyss_acid_slime_m_ai',
+      'abyss_acid_slime_s_ai',
+      'abyss_act1_bosses',
+      'abyss_act1_events',
+  ...
+      'abyss_compendium_catalog',
+  -   'abyss_component_binding',
+      'abyss_component_bridge',
+      'abyss_component_pages',
+      'abyss_controller',
+      'abyss_copy',
+      'abyss_corrupt_heart',
+  ...
+      'abyss_menu_background',
+  -   'abyss_menu_background_asset',
+      'abyss_merchant',
+      'abyss_mind_bloom_event',
+      'abyss_moai_event',
+  -   'abyss_monster_actor_binding',
+      'abyss_monster_art',
+      'abyss_monster_displayed_intent',
+      'abyss_monster_escape',
+      'abyss_monster_intent_particle_view',
+      'abyss_monster_intent_particles',
+  ...
+      'abyss_original_v4',
+  -   'abyss_original_v4_data',
+      'abyss_original_v4_display',
+      'abyss_original_v4_health',
+      'abyss_original_v4_profiles',
+      'abyss_pile_choice',
+      'abyss_plated_armor',
+  ...
+      'abyss_rare_relics',
+  -   'abyss_ready_card_binding',
+      'abyss_red_slaver_ai',
+      'abyss_relic_card_rewards',
+      'abyss_relic_choices',
+      'abyss_relic_combat_hooks',
+      'abyss_relic_end_turn',
+  ...
+      'abyss_transform_card',
+  -   'abyss_traveler_portrait_assets',
+      'abyss_traveler_portraits',
+      'abyss_treasure',
+      'abyss_treasure_source',
+      'abyss_treasure_ui',
+      'abyss_turn_power_phases',
+      'abyss_turn_powers',
+      'abyss_ui',
+  -   'abyss_ui_profile',
+      'abyss_uncommon_relics',
+      'abyss_unknown',
+  -   'abyss_v25_card_assets',
+      'abyss_v25_card_surface',
+      'abyss_v25_menu_view',
+      'abyss_v25_texture_runtime',
+      'abyss_v25_turn_notice',
+      'abyss_vampires_event',
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/defect-actor-boundary.test.mjs:89:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'abyss_acid_slime_m_ai',        'abyss_acid_slime_s_ai',        'abyss_act1_bosses',
+      'abyss_act1_events',            'abyss_act2_ai',                'abyss_act2_ai_moves',
+      'abyss_act2_enemies',           'abyss_act2_event_relics',      'abyss_act2_events',
+      'abyss_act2_powers',            'abyss_act2_stasis',            'abyss_act2_summons',
+      'abyss_act3_ai',                'abyss_act3_bosses',            'abyss_act3_enemies',
+      'abyss_act3_events',            'abyss_act3_powers',            'abyss_act4_enemies',
+      'abyss_action_queue',           'abyss_actor',                  'abyss_actor_motion',
+      'abyss_actor_power_rules',      'abyss_actor_presence',         'abyss_acts',
+      'abyss_awakened_one',           'abyss_back_to_basics',         'abyss_battle_action_bindings',
+      'abyss_battle_actions',         'abyss_battle_aim_arrow',       'abyss_battle_card_bindings',
+      'abyss_battle_card_gestures',   'abyss_battle_card_glow',       'abyss_battle_card_layout',
+      'abyss_battle_card_view',       'abyss_battle_damage_view',     'abyss_battle_detail_bindings',
+      'abyss_battle_details',         'abyss_battle_ending_intent',   'abyss_battle_enemy_view',
+      'abyss_battle_info_content',    'abyss_battle_info_view',       'abyss_battle_input_state',
+      'abyss_battle_intent_view',     'abyss_battle_potion_bindings', 'abyss_battle_potion_popup',
+      'abyss_battle_potion_view',     'abyss_battle_render',          'abyss_battle_render_actors',
+      'abyss_battle_render_hud',      'abyss_battle_render_state',    'abyss_battle_reward_layout',
+      'abyss_battle_reward_owner',    'abyss_battle_status_view',     'abyss_battle_target_bindings',
+      'abyss_battle_targeting',       'abyss_battle_ui',              'abyss_battle_unit_view',
+      'abyss_bgm',                    'abyss_blue_slaver_ai',         'abyss_boss_relics',
+      'abyss_build_actions',          'abyss_card_actions',           'abyss_card_art_runtime',
+      'abyss_card_capability',        'abyss_card_display',           'abyss_card_flow',
+      'abyss_card_input',             'abyss_card_origin',            'abyss_card_origin_view',
+      'abyss_card_pool',              'abyss_card_random',            'abyss_card_skin',
+      'abyss_card_triggers',          'abyss_character_presentation', 'abyss_character_presentation_text',
+      'abyss_character_profiles',     'abyss_character_select',       'abyss_character_select_view',
+      'abyss_choice_ui',              'abyss_class_card_pools',       'abyss_class_potions',
+      'abyss_codex_relic',            'abyss_colorless_cards',        'abyss_colorless_catalog',
+      'abyss_colosseum_event',        'abyss_combat',                 'abyss_combat_catalog',
+      'abyss_combat_effect_cards',    'abyss_combat_effect_choice',   'abyss_combat_effect_damage',
+      'abyss_combat_effect_dispatch', 'abyss_combat_effect_powers',   'abyss_combat_enemy_setup',
+      'abyss_combat_native_play',     'abyss_combat_queued_play',     'abyss_combat_reactions',
+      'abyss_compendium_catalog',     'abyss_component_bridge',       'abyss_component_pages',
+      'abyss_controller',
+      ... 245 more items
+    ],
+    expected: [
+      'abyss_acid_slime_m_ai',        'abyss_acid_slime_s_ai',        'abyss_act1_bosses',
+      'abyss_act1_events',            'abyss_act2_ai',                'abyss_act2_ai_moves',
+      'abyss_act2_enemies',           'abyss_act2_event_relics',      'abyss_act2_events',
+      'abyss_act2_powers',            'abyss_act2_stasis',            'abyss_act2_summons',
+      'abyss_act3_ai',                'abyss_act3_bosses',            'abyss_act3_enemies',
+      'abyss_act3_events',            'abyss_act3_powers',            'abyss_act4_enemies',
+      'abyss_action_queue',           'abyss_actor',                  'abyss_actor_motion',
+      'abyss_actor_power_rules',      'abyss_actor_presence',         'abyss_acts',
+      'abyss_awakened_one',           'abyss_back_to_basics',         'abyss_battle_action_bindings',
+      'abyss_battle_actions',         'abyss_battle_aim_arrow',       'abyss_battle_card_bindings',
+      'abyss_battle_card_gestures',   'abyss_battle_card_glow',       'abyss_battle_card_layout',
+      'abyss_battle_card_view',       'abyss_battle_damage_view',     'abyss_battle_detail_bindings',
+      'abyss_battle_details',         'abyss_battle_ending_intent',   'abyss_battle_enemy_view',
+      'abyss_battle_info_content',    'abyss_battle_info_view',       'abyss_battle_input_state',
+      'abyss_battle_intent_view',     'abyss_battle_potion_bindings', 'abyss_battle_potion_popup',
+      'abyss_battle_potion_view',     'abyss_battle_render',          'abyss_battle_render_actors',
+      'abyss_battle_render_hud',      'abyss_battle_render_state',    'abyss_battle_reward_layout',
+      'abyss_battle_reward_owner',    'abyss_battle_status_view',     'abyss_battle_target_bindings',
+      'abyss_battle_targeting',       'abyss_battle_ui',              'abyss_battle_unit_view',
+      'abyss_bgm',                    'abyss_blue_slaver_ai',         'abyss_boss_relics',
+      'abyss_build_actions',          'abyss_card_actions',           'abyss_card_art_runtime',
+      'abyss_card_capability',        'abyss_card_display',           'abyss_card_flow',
+      'abyss_card_input',             'abyss_card_origin',            'abyss_card_origin_view',
+      'abyss_card_pool',              'abyss_card_random',            'abyss_card_skin',
+      'abyss_card_triggers',          'abyss_character_presentation', 'abyss_character_presentation_text',
+      'abyss_character_profiles',     'abyss_character_select',       'abyss_character_select_view',
+      'abyss_choice_ui',              'abyss_class_card_pools',       'abyss_class_potions',
+      'abyss_codex_relic',            'abyss_colorless_cards',        'abyss_colorless_catalog',
+      'abyss_colosseum_event',        'abyss_combat',                 'abyss_combat_catalog',
+      'abyss_combat_effect_cards',    'abyss_combat_effect_choice',   'abyss_combat_effect_damage',
+      'abyss_combat_effect_dispatch', 'abyss_combat_effect_powers',   'abyss_combat_enemy_setup',
+      'abyss_combat_native_play',     'abyss_combat_queued_play',     'abyss_combat_reactions',
+      'abyss_compendium_catalog',     'abyss_component_binding',      'abyss_component_bridge',
+      'abyss_component_pages',
+      ... 253 more items
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as nativeReadFileSync} from 'node:fs';
 import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
+import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 // Original assertions retain their explicit frozen source view.
 const currentRaw=p=>nativeReadFileSync(p,'utf8');
 const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,currentSourceEpoch.preCombinedSource(p,value,{target:'noncombatPrior',readSource:currentRaw}),'official'):value;};

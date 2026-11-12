@@ -1,0 +1,18 @@
+✔ combined planning authenticates both exact preserved parents without accepting unrelated source changes (251.095524ms)
+✔ the only difference from the six-slice cost inventory is the authenticated utility floor (8.475244ms)
+✔ combined epoch fails closed on fragments, duplicates, foreign paths, nonstrings and independent mutations (108.805776ms)
+✔ utility production inverse composes with the current M7 source chain without live owner reads (2.940026ms)
+✔ Actor capability predecessor binds all three complete owners to independent 6a614fc Git blobs (0.628456ms)
+✔ Actor capability extends the complete 79-owner epoch without replacing a historical binding (686.152264ms)
+✔ new capability sources require fresh three-owner permission before the old standalone Utility inverse (4.420678ms)
+✔ foreign capability source bytes cannot trigger reader calls or hide unknown targets (3.621089ms)
+✔ the full current facade freshly checks every original owner including after warm success (57.391429ms)
+✔ capability config layout accepts only an input spelling and still binds exact raw owners (3.587423ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12314.428174

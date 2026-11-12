@@ -1,0 +1,27 @@
+{
+  "src/lua/abyss_defect_utility_cards.lua": {
+    "blob": "414d1f260d3a617eb06b4caadfbef013296f1a70",
+    "sha256": "921a0e333377d12bd54551b71d1af2d142fc404172df7bf62ba1d4351b33cfb5",
+    "bytes": 13426
+  },
+  "src/lua/abyss_combat_queued_play.lua": {
+    "blob": "d4fda1b3cc44b4a88a9f01fedc11c3e8716e66da",
+    "sha256": "8cdb95b829af4572932daa356ca0456a385c5cad5afb7950da2f2b47a5152d15",
+    "bytes": 11652
+  },
+  "config/architecture.json": {
+    "blob": "3b79effde6d5cd59a502ecc32982dd98be1f24b6",
+    "sha256": "08bb95bacc63c67b9a510aefd22d81b4e53200b31aa57935fb60087cf8ecedec",
+    "bytes": 39830
+  },
+  "tests/lua/defect_utility_build.lua": {
+    "blob": "1b4d005fff243b7ef520f47a0784dfbd6d3721c7",
+    "sha256": "7ecd57aa1caae8a11fb316aa09695138c2181e38b71a575cb6f5996e017c0abe",
+    "bytes": 16142
+  },
+  "tests/lua/support/m9_combat_protocol_baseline.lua": {
+    "blob": "868275d2993c6efde5c732e79c57c039a9d411b9",
+    "sha256": "a186947c979554c8388ebe87b62e88b6cb3e3b2a003dc4a18a62c9666d2c119f",
+    "bytes": 15991
+  }
+}

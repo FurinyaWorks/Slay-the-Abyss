@@ -1,0 +1,11 @@
+✔ all three complete Watcher owners restore independent frozen sources through the historical boundary (7.141593ms)
+✔ each invocation freshly authenticates every linked owner, including reused wrapped readers (1.621332ms)
+✔ complete inputs reject missing, mixed, and drifted owners after prior successful projections (7.504988ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15416.297369

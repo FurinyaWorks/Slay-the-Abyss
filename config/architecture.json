@@ -1048,6 +1048,19 @@
         "abyss_card_actions"
       ],
       "reason": "Watcher attack plans contain data; the queued-play host supplies lazy Actor arithmetic for Halt snapshots."
+    },
+    {
+      "id": "defect-utility-planning",
+      "from": [
+        "abyss_defect_utility_cards"
+      ],
+      "forbiddenTargets": [
+        "abyss_actor",
+        "abyss_combat",
+        "abyss_combat_queued_play",
+        "abyss_card_actions"
+      ],
+      "reason": "Defect utility plans retain read-only relic queries; the queued-play host supplies lazy Actor arithmetic for Barrage, FTL and X block snapshots."
     }
   ]
 }

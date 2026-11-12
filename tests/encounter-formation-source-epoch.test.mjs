@@ -1,3 +1,4 @@
+import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as diskReadFileSync,mkdtempSync,rmSync} from 'node:fs';

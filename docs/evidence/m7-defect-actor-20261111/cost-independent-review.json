@@ -1,0 +1,66 @@
+{
+  "kind": "independent CI cost/source review",
+  "scope": "cost layer only; reviewer authored gameplay source-chain repair, not this cost implementation",
+  "checks": 303,
+  "unresolved": [],
+  "fullSuite": false,
+  "groups": [
+    {
+      "name": "all sixteen complete predecessor sources bind HEAD and current LF bytes exactly",
+      "status": "pass"
+    },
+    {
+      "name": "only one honest local floor changes; receipt log and inputs match",
+      "status": "pass"
+    },
+    {
+      "name": "complete inventory rejects omissions duplicates foreign paths and freshly checks added source after warm success",
+      "status": "pass"
+    },
+    {
+      "name": "raw complete current budget prediction includes all 835 JS and 1415 Lua without historical projection",
+      "status": "pass"
+    }
+  ],
+  "sourceHashes": {
+    "scripts/ci-test-timings.json": "a811d0f504cfd1f7683ed131b835214dba2e6e019b20ce1141a0abc78269b166",
+    "tests/helpers/defect-actor-ci-source-inverse.mjs": "c1be58094a1552f701c14701ed09a09468acbda2cb8f3a7a97d690d8d4e5bc22",
+    "tests/helpers/defect-actor-ci-source-epoch.json.gz": "ff74822922d54898ba7b33ddc3c89a1f41fdff3c774f162e16b4314be40517e8",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "02369fc283b34cf12fdf822095f3d893574a5b889b12a2106351f431d10b0777",
+    "tests/helpers/component-ui-ci-source-inverse.mjs": "7422a8f113fc3e592fa12574954a62d7e2c3a86f2a72da0d9d3f7b33b571a1d2",
+    "tests/ci-complete-calibration.test.mjs": "0df8aa5c433bd37f48ef2d75395ad23775ed43d5af040b5a7e777b815a969b3b",
+    "tests/ci-runtime.test.mjs": "541556133b9b9ad449488b92991c7fbc59c6e619ef14c919ab6a45d5204c9b79",
+    "docs/evidence/m7-defect-actor-20261111/cost-receipt.json": "4a0946a2952943197358e5982f91880a141467d55fa5882368f6211713aaf5ad",
+    "docs/evidence/m7-defect-actor-20261111/cost-behavior.log": "151075dbd336247079338e59bba4f489cfa0f2468abcec3e38993593de59077f"
+  },
+  "forecasts": {
+    "win32": {
+      "predicted": 1724775,
+      "budget": 1800000,
+      "reserve": 60000
+    },
+    "linux": {
+      "predicted": 1158040,
+      "budget": 1200000,
+      "reserve": 60000
+    }
+  },
+  "conclusion": "pass",
+  "manualReview": {
+    "historicalAssertions": [
+      {
+        "file": "tests/ci-complete-calibration.test.mjs",
+        "retainedOriginalAssertionLines": 548,
+        "allowedAdjustment": "none"
+      },
+      {
+        "file": "tests/ci-runtime.test.mjs",
+        "retainedOriginalAssertionLines": 183,
+        "allowedAdjustment": "one extra floor cardinality 28 to 29"
+      }
+    ],
+    "modifiedTrackedArchives": [],
+    "rawCurrentBudgetUses": "liveDiscoverJs, liveJsShard, liveTimings and unprojected currentLua",
+    "scopeBoundary": "Reviewer did not implement cost layer; gameplay-source repair independently assigned to another reviewer."
+  }
+}

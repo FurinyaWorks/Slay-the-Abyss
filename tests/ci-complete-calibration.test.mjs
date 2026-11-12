@@ -4,6 +4,7 @@ import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSour
 
 import {battleQueueCiProof,preBattleQueueCiInventory,preBattleQueueCiSource} from './helpers/battle-queue-ci-source-epoch.mjs';
 import {noncombatAddedTests,noncombatPriorInventory} from './helpers/noncombat-ci-source-inverse.mjs';
+import {preDefectActorCiSource,preDefectActorCiInventory,defectActorPlanningKey,defectActorPlanningFloor,defectActorCiProof} from './helpers/defect-actor-ci-source-inverse.mjs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors,officialAssetsFlowCiSourceProof,preOfficialAssetsFlowCiSource} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import {officialAssetsPlanningFloors as firstOfficialAssetsPlanningFloors,officialAssetsCiSourceProof,preOfficialAssetsCiSource} from './helpers/official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
@@ -34,7 +35,7 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as liveDiskReadFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -46,6 +47,13 @@ import {discoverJs as liveDiscoverJs,partition,jsShard as currentJsShard,jsPlann
 // Frozen receipts retain their complete inventory; current Full remains raw.
 const discoverJs=()=>preBattleQueueCiInventory(liveDiscoverJs());
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
+// Preserve every pre-Actor assertion in its exact authenticated source/inventory
+// epoch. The appended Actor contracts separately exercise raw current Full work.
+const diskReadFileSync=(file,encoding)=>{const bytes=liveDiskReadFileSync(file),text=bytes.toString('utf8'),prior=preDefectActorCiSource(file,text);return encoding?prior:prior===text?bytes:Buffer.from(prior);};
+const discoverJs=()=>preDefectActorCiInventory(liveDiscoverJs());
+const actualCurrentTimings=JSON.parse(diskReadFileSync('scripts/ci-test-timings.json','utf8'));
+const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const jointRead=(view,file,encoding)=>{const bytes=diskReadFileSync(file),text=bytes.toString('utf8'),source=jointCiSourceAt(file,text,view);return encoding?source:source===text?bytes:Buffer.from(source);};

@@ -6253,6 +6253,19 @@
         "sourceReceiptSha256": "5f7d23a231971d897bc7b80c006cccc690b43514a744faa35e61ef4d8eb308cb",
         "sourceLog": "docs/evidence/replay-curses-ci-20261111/planning/curses-source-epoch/stdout.log",
         "sourceLogSha256": "7700c937e0b23590996413973350b7304d4b97a82ae990736efb7a6c3e52ff53"
+      },
+      "tests/defect-actor-boundary.test.mjs": {
+        "durationMs": 50000,
+        "environment": "cloud Linux local",
+        "tests": 18,
+        "coverage": "18/18 complete file passed; 0 failed, cancelled or skipped.",
+        "kind": "Local complete-run planning floor only; not a hosted measurement, execution permission or timeout change.",
+        "nodeReportedDurationMs": 47112.322039,
+        "wallDurationMs": null,
+        "sourceLog": "docs/evidence/m7-defect-actor-20261111/cost-behavior.log",
+        "sourceLogSha256": "151075dbd336247079338e59bba4f489cfa0f2468abcec3e38993593de59077f",
+        "sourceReceipt": "docs/evidence/m7-defect-actor-20261111/cost-receipt.json",
+        "sourceReceiptSha256": "4a0946a2952943197358e5982f91880a141467d55fa5882368f6211713aaf5ad"
       }
     }
   },

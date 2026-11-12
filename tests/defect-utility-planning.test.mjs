@@ -1,3 +1,4 @@
+import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdtempSync,writeFileSync,rmSync} from 'node:fs';
@@ -22,7 +23,7 @@ function replay(source,fixture='tests/lua/defect_utility_planning.lua'){
 const pass=r=>assert.equal(r.status,0,r.stdout+r.stderr);
 test('utility planner frozen complete source remains authenticated to develop d8a57cae',()=>{
  assert.equal(createHash('sha256').update(before).digest('hex'),'e9372f029db58b62e4fff8f4889826607e8d114dcab2cfa00ca4f124fe29f670');
- assert.equal(read(file).split('-- Orb-derived plans')[0],before.split('-- Pure queue plan.')[0]);
+ assert.equal(preDefectActorSource(file,read(file)).split('-- Orb-derived plans')[0],before.split('-- Pure queue plan.')[0]);
 });
 test('independent old/new VMs preserve plans, input graphs, validation order, dynamic reads and original errors',()=>{
  const old=replay(before),current=replay(read(file));pass(old);pass(current);
@@ -57,7 +58,7 @@ for(const [name,from,to]of [
 
 test('exact single-source inverse preserves frozen history and does not bless drift, fragments, other files or nonstrings',async()=>{
  const {preDefectUtilitySource:inverse,defectUtilitySourceProof:proof}=await import('./helpers/defect-utility-source-inverse.mjs');
- const current=read(file);assert.equal(file,proof.path);
+ const current=preDefectActorSource(file,read(file));assert.equal(file,proof.path);
  for(const source of [current,current.replaceAll('\n','\r\n')])assert.equal(inverse(file,source),before);
  for(const source of [before,current+'\n',current.slice(1),current+current,null,undefined,{},17])assert.equal(inverse(file,source),source);
  assert.equal(inverse('foreign/'+file,current),current);

@@ -1,3 +1,4 @@
+import {defectActorEpoch} from './helpers/defect-actor-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -37,7 +38,12 @@ test('Watcher planning leaves the complete SCC without hiding delayed requires',
  assert(!dependencyCycles(report.nodes,report.edges).some(c=>c.members.includes('abyss_watcher_attack_cards')));
  assert.deepEqual(report.edges.filter(e=>e.from==='abyss_watcher_attack_cards'),[]);
  const actorEdges=report.edges.filter(e=>e.from==='abyss_combat_queued_play'&&e.to==='abyss_actor');
- assert.equal(actorEdges.length,2,'original eager import and new lazy host require are both measured');
+ const originalQueued=defectActorEpoch.proof.targets.prior.files[queued].source;
+ const originalReport=analyzeSources({...sources,abyss_combat_queued_play:originalQueued},policy);
+ const originalActorEdges=originalReport.edges.filter(e=>e.from==='abyss_combat_queued_play'&&e.to==='abyss_actor');
+ assert.equal(originalActorEdges.length,2,'original eager import and new lazy host require are both measured');
+ assert.equal(actorEdges.length,3,'original two Actor references plus the exact Defect utility host');
+ assert.equal(actorEdges.filter(e=>read(queued).split('\n')[e.line-1].includes('local function utilityActorHost()')).length,1);
  assert(actorEdges.some(e=>read(queued).split('\n')[e.line-1].includes('local function watcherActorHost()')));
  for(const injected of ["local X=require('abyss_actor')\n","local function X()return require('abyss_actor')end\n"]){
   const mutant=analyzeSources({...sources,abyss_watcher_attack_cards:injected+sources.abyss_watcher_attack_cards},policy);

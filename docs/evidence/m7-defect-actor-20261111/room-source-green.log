@@ -1,0 +1,14 @@
+✔ joint UI current identity includes every live module and the entire inherited owner closure (26.60437ms)
+✔ joint UI projection rejects every warm owner drift and deletion from the real composed source (802.438667ms)
+✔ room epoch binds the exact committed owner slice without replacing component history (124.386866ms)
+✔ all changed room owners project exactly through LF CRLF and every inherited target (70.022922ms)
+✔ changed-owner projection freshly rejects every inherited owner drift or deletion after warming (69.991829ms)
+✔ foreign predecessor and unchanged inputs stay opaque without authorizing reads (6.268421ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38026.977252

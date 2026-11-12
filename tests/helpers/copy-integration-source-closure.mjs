@@ -83,7 +83,12 @@ const files={...JSON.parse(bytes),...{
   // Official portrait-demand continuation; previous source overlays stay frozen.
   "tests/helpers/combined-epoch/source-epoch.mjs": "64d9e3d0f3e8c30867417c36d92c5a2c962c89209d0f23c3fca8f81020435fa5",
   "tests/helpers/noncombat-demand-source-epoch.mjs": "d7d7628790f25736b2ccad95c1878293e6bee7aa1e0012ad69c91372164c9932",
-  "tests/helpers/noncombat-demand-source-epoch.json.gz": "152c60444fc95fbf5b5aa68f5eaf82547cab9051dd9845eb0512dd2125c8ade1"
+  "tests/helpers/noncombat-demand-source-epoch.json.gz": "152c60444fc95fbf5b5aa68f5eaf82547cab9051dd9845eb0512dd2125c8ade1",
+  // Defect Actor capability overlay; all earlier closure identities remain above.
+  "tests/helpers/defect-actor-source-epoch.mjs": "5060235c781acfde3e4db7878c9810526de00d8431194488d194b7d50b9632b6",
+  "tests/helpers/defect-actor-source-epoch.json.gz": "c41e28bf8a5d51f0e29f80b48f31cc5d416741ec8d54f4f6c03ce924d1027e17",
+  "tests/helpers/combined-epoch/source-epoch.mjs": "23cf0aaaedf2dc9fe90b659953699f3387504dd7cc0cd10fac305739d5352c48",
+  "tests/helpers/m7-core-final-source-inverse.mjs": "0c754fc25ffe6f7101c708028187606aa6a378e360591faa8610bd401bd5ac33"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

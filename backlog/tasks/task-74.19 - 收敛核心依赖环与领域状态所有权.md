@@ -6,6 +6,7 @@ assignee:
   - Furinya
 created_date: 2026-11-06 01:46
 updated_date: '2026-11-11T09:22:00Z'
+updated_date: '2026-11-11T04:33:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -16,6 +17,7 @@ documentation:
   - docs/backlog-details/M7-PROTECTED-CALLS-20261111.md
   - docs/backlog-details/M7-IMPORT-MEMBERSHIP-20261111.md
   - docs/backlog-details/M7-ARCHITECTURE-GATES-COMBINED-20261111.md
+  - docs/backlog-details/M7-DEFECT-ACTOR-BOUNDARY-20261111.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -65,6 +67,7 @@ ordinal: 161000
 2026-11-11 接续未占用的架构导入登记边界：已核 develop 3a061a76、全部9个开放PR及协调执行线，check-architecture.mjs 无代码占用。先重现 JavaScript 原型字段被误当作已登记 Lua 模块，再只改精确 own-property 判定和既有文件内回归；验证显式源码/生成模块、继承输入拒绝与当前全图字节不变，独立复审后按原门禁交付。task:pick 因 In Progress 为 HOLD，不重新认领、不改 owner/status/AC，不碰 #610/#618/CharacterProfiles 共享层，不重复 Full。
 
 2026-11-11 本轮合流#619与#622：已核当前develop及两PR无新占用，保留两父提交及全部独立证据；仅合并同文件互不覆盖的门禁与回归，Backlog通过CLI追加两侧记录，.gitattributes保留两侧。完整定向验证、原全图对照与独立组合复审后更新原#622，不新增PR，不重复Full，不改生产Lua/共享来源或owner/status/AC。
+2026-11-11接续未占用DefectUtility准备能力切片：基线6a614fc8，核对8个开放PR及保全工作树，不重复认领。在现有queued-play宿主提供延迟Actor算术能力，Utility只保留纯数据规划；内部prepareEffect增加显式host参数，原校验、复制、动态方法、错误与回滚时机保持。先独立审查全部当前及冻结调用、源码桥和测试成本；保留旧完整源与冻结协议，补冷加载/完整图/负控、精确鲜读历史接线及全图SCC证据。只做必要定向测试，不重复Full、改预算或用户GUI；独立深审后按现有队列交付，owner/status/AC不变。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -119,4 +122,9 @@ Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯�
 2026-11-11 架构导入登记窄修复完成：原型继承属性不再冒充源码或生成模块，只有两处 own-property 判定变更。原版9过1败、修后四文件35/35；独立探针复现12种旧误接纳并验证真源码/生成及环保留，无未解决发现。当前345模块/1953位置完整报告逐字不变，生产Lua零变更，不宣称解环或CC降低。保留原始失败；正式HEAD CI/队列/合后push仍待，不重复Full、不改owner/status/AC。详见M7-IMPORT-MEMBERSHIP-20261111。
 
 2026-11-11 两个架构门禁已在#622接续组合：源码/回归为#619与#622增量并集，两侧31份文档/证据及2063份历史证据逐字保持。定向三文件29/29、正确共享入口9/9；独立24组交叉探针与基线重算完整图345/1953/0均通过。生产Lua、来源、库存和预算不改；未宣称解环或CC收益。精确远端独审/正式CI与原队列后续继续，未重复Full或操作GUI；详见新附件。
+2026-11-11接续DefectUtility已有脏树而不重复实施。远端develop仍6a614fc8，#610/#613由既有队列执行线负责。当前来源独立probe留下M7 live queued facade对config身份的拒绝，先修最小组合读取链并保全失败；生产两处能力注入保持，继续完整定向行为、全图SCC/工程与最终独审，不重跑Full、不操作GUI。
+
+DefectUtility当前完整345源实测退出核心SCC：68/513/324→67/511/321（成员/内部位置/唯一对），其他11/2环保持；全图1953位置不变、唯一对1578→1577，CC热点数量不变。新18项、相邻27项、完整工程及最终来源12项通过，行为/来源与成本独审通过。原历史读取漏边及失败均保全并逐项修复，不改原断言。新50秒floor仅本地完整Node耗时，835JS/1415Lua的Windows18/POSIX15预测在原预算。最终直接来源消费者和精确提交/正常CI交付继续，owner/status/AC保持。详见docs/backlog-details/M7-DEFECT-ACTOR-BOUNDARY-20261111.md。
+
+DefectUtility最终历史消费者补齐：Formation12、Room6、Seven19完整通过；旧Compendium/Relic/责任30项通过。成本最终20份精确来源身份已读回，最后14项CI身份回归通过，旧70项结果按原16map批次保留不冒充重跑。所有旧压缩档案和原断言不改。53份已暂存evidence/gzip经Linux真实Git autocrlf检出逐字一致，非Windows运行。独审最终身份与Draft可取回交付收口中，Hosted Full/队列/合后push未取得。
 <!-- SECTION:NOTES:END -->

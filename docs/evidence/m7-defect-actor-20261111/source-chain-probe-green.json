@@ -1,0 +1,45 @@
+{
+  "kind": "repair rerun of independent bounded source-only probe",
+  "fullSuite": false,
+  "groups": [
+    {
+      "name": "exact slice current and predecessor bindings",
+      "status": "pass"
+    },
+    {
+      "name": "three-owner projection freshly rejects every mutation deletion and missing owner",
+      "status": "pass"
+    },
+    {
+      "name": "foreign null primitive unknown path and original inputs do not touch readers",
+      "status": "pass"
+    },
+    {
+      "name": "invalid linked readers reject exact current input and factories remain strict",
+      "status": "pass"
+    },
+    {
+      "name": "full closure authenticates all 79 owners for current and previous Utility entry bytes",
+      "status": "pass"
+    },
+    {
+      "name": "all prior target transforms retain exact full-source destinations",
+      "status": "pass"
+    },
+    {
+      "name": "M7 current utility authenticates three owners before original standalone inverse",
+      "status": "pass"
+    },
+    {
+      "name": "M7 default live facade accepts current queued owner through historical chain",
+      "status": "pass"
+    }
+  ],
+  "failures": [],
+  "checks": 639,
+  "sourceHashes": {
+    "tests/helpers/defect-actor-source-epoch.mjs": "5060235c781acfde3e4db7878c9810526de00d8431194488d194b7d50b9632b6",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "23cf0aaaedf2dc9fe90b659953699f3387504dd7cc0cd10fac305739d5352c48",
+    "tests/helpers/m7-core-final-source-inverse.mjs": "0c754fc25ffe6f7101c708028187606aa6a378e360591faa8610bd401bd5ac33"
+  }
+}

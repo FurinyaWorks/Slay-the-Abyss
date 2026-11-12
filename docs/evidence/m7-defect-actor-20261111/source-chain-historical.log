@@ -1,0 +1,80 @@
+✔ all four complete potion owners restore independent frozen sources through the historical boundary (19.898428ms)
+✔ each invocation freshly authenticates every linked owner, including reused wrapped readers (2.622482ms)
+✔ old, foreign, partial and drifted inputs cannot authorize linked reads (10.013223ms)
+✔ complete inputs reject missing, mixed, and drifted owners after prior successful projections (13.461283ms)
+✔ the local planning floor changes only its declared entry and cannot authorize drift (88.068087ms)
+✖ all three complete Watcher owners restore independent frozen sources through the historical boundary (14.721596ms)
+✖ each invocation freshly authenticates every linked owner, including reused wrapped readers (1.250055ms)
+✔ old, foreign, partial and drifted inputs cannot authorize linked reads (5.036664ms)
+✖ complete inputs reject missing, mixed, and drifted owners after prior successful projections (1.513482ms)
+✔ the measured planning floor is isolated from all original costs and budgets (144.783706ms)
+✔ all six combined owners bind actual complete sources and preserve independent frozen identities (853.264359ms)
+✔ combined reads freshly authenticate all six owners on every call and reused wrapper (4.239612ms)
+✔ combined old, foreign, partial, duplicated and drifted inputs never authorize reads (0.699673ms)
+✔ every combined linked owner rejects drift, mixed epochs and missing sources after warmed projections (90.428975ms)
+✔ standalone config entry rejects every opposite-owner mixed epoch, drift and deletion after warmup (176.690375ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 12
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19171.425989
+
+✖ failing tests:
+
+test at tests/watcher-actor-source-inverse.test.mjs:20:1
+✖ all three complete Watcher owners restore independent frozen sources through the historical boundary (14.721596ms)
+  AssertionError [ERR_ASSERTION]: Watcher linked owner identity: src/lua/abyss_combat_queued_play.lua
+      at preWatcherActorSource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/watcher-actor-source-inverse.mjs:42:3)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/watcher-actor-source-inverse.test.mjs:26:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/watcher-actor-source-inverse.test.mjs:31:1
+✖ each invocation freshly authenticates every linked owner, including reused wrapped readers (1.250055ms)
+  AssertionError [ERR_ASSERTION]: Watcher linked owner identity: src/lua/abyss_combat_queued_play.lua
+      at preWatcherActorSource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/watcher-actor-source-inverse.mjs:42:3)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/watcher-actor-source-inverse.test.mjs:35:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/watcher-actor-source-inverse.test.mjs:45:1
+✖ complete inputs reject missing, mixed, and drifted owners after prior successful projections (1.513482ms)
+  AssertionError [ERR_ASSERTION]: Watcher linked owner identity: src/lua/abyss_combat_queued_play.lua
+      at preWatcherActorSource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/watcher-actor-source-inverse.mjs:42:3)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/watcher-actor-source-inverse.test.mjs:48:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

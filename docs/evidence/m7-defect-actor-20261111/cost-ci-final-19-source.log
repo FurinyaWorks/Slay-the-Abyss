@@ -1,0 +1,75 @@
+✔ component alias repair preserves exact old CI sources without accepting drift or foreign paths (91.222334ms)
+✔ component UI CI projection admits only complete current sources and preserves foreign drift (29.38926ms)
+✔ post281 CI fixes preserve the immutable71-source foundation and every exact foreign-source boundary (5.848171ms)
+✔ Silent final source-contract floor preserves the observed complete file cost above the unknown minimum (2.323874ms)
+✔ Defect final CI outer epoch preserves complete predecessor costs and exact source receipt inputs (19.710009ms)
+✔ Defect final floors authenticate complete fresh local files without inventing hosted observations (129.753249ms)
+✔ Encounter formation CI outer epoch preserves every prior cost and admits only complete current input identities (22.900028ms)
+✔ Encounter formation floors authenticate complete recurring files without fabricating hosted or repeated retained-scenario costs (29.914836ms)
+✔ official candidate CI epoch preserves exact historical bytes and rejects partial or unrelated drift (74.459428ms)
+✖ official candidate floors authenticate complete serial runs and register only current inventory (14.249173ms)
+✔ complete official flow CI epoch accepts only exact sources and monotonically extends the published checkpoint (49.272564ms)
+✖ current official flow floors bind four complete local files while long campaign remains standalone (2.348874ms)
+✔ Defect Actor cost layer accepts only complete current bytes and authenticates the sole added inventory (34.996645ms)
+✔ Defect Actor floor binds the complete 18-case local run and actual behavior sources without inventing a wall clock or hosted data (1.082791ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 12
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10159.666702
+
+✖ failing tests:
+
+test at tests/ci-complete-calibration.test.mjs:1210:1
+✖ official candidate floors authenticate complete serial runs and register only current inventory (14.249173ms)
+  AssertionError [ERR_ASSERTION]: added inventory source: tests/room-ui-source-epoch.test.mjs
+  + actual - expected
+  
+  + '98af163c1c2fb8273fe291ed0f409d3ea211fbea8e7377a5a41f5ca62ef40f99'
+  - '89109ecec1453f9bb568d45786ab1c7cad4bf1564b898fd2a4895c898085db1b'
+  
+      at jointCiInventoryAt (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/joint-ui-ci-source-inverse.mjs:25:60)
+      at currentOfficialDiscoverJs (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/ci-complete-calibration.test.mjs:1188:37)
+      at discoverJs (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/ci-complete-calibration.test.mjs:1215:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/ci-complete-calibration.test.mjs:1220:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '98af163c1c2fb8273fe291ed0f409d3ea211fbea8e7377a5a41f5ca62ef40f99',
+    expected: '89109ecec1453f9bb568d45786ab1c7cad4bf1564b898fd2a4895c898085db1b',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/ci-complete-calibration.test.mjs:1259:1
+✖ current official flow floors bind four complete local files while long campaign remains standalone (2.348874ms)
+  AssertionError [ERR_ASSERTION]: added inventory source: tests/room-ui-source-epoch.test.mjs
+  + actual - expected
+  
+  + '98af163c1c2fb8273fe291ed0f409d3ea211fbea8e7377a5a41f5ca62ef40f99'
+  - '89109ecec1453f9bb568d45786ab1c7cad4bf1564b898fd2a4895c898085db1b'
+  
+      at jointCiInventoryAt (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/joint-ui-ci-source-inverse.mjs:25:60)
+      at currentOfficialDiscoverJs (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/ci-complete-calibration.test.mjs:1188:37)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/ci-complete-calibration.test.mjs:1263:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '98af163c1c2fb8273fe291ed0f409d3ea211fbea8e7377a5a41f5ca62ef40f99',
+    expected: '89109ecec1453f9bb568d45786ab1c7cad4bf1564b898fd2a4895c898085db1b',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

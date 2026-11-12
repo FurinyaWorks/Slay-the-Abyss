@@ -1,0 +1,28 @@
+{
+  "archive": "tests/helpers/defect-actor-ci-source-epoch.json.gz",
+  "archiveSha256": "c7962302aa0363004b6d4c8e6afcb5a27431bf47b2eac2f2d3fdc2463566d638",
+  "bindings": 20,
+  "allCurrentSourceHashesMatch": true,
+  "files": {
+    "scripts/ci-test-timings.json": "a811d0f504cfd1f7683ed131b835214dba2e6e019b20ce1141a0abc78269b166",
+    "config/architecture.json": "28cef2eb01a0774076da9d8963a5bbac468e80ddbec447c4f0bec068ddc8326f",
+    "src/lua/abyss_combat_queued_play.lua": "30c181220820118b505bee3fe5c94eaaac3b0e542bc8bb519f05c8fff22fd728",
+    "src/lua/abyss_defect_utility_cards.lua": "59d054c36752cdf0eb20cf037e51f4b6909222d2e11620fae42de06748342db2",
+    "tests/ci-complete-calibration.test.mjs": "0df8aa5c433bd37f48ef2d75395ad23775ed43d5af040b5a7e777b815a969b3b",
+    "tests/ci-runtime.test.mjs": "541556133b9b9ad449488b92991c7fbc59c6e619ef14c919ab6a45d5204c9b79",
+    "tests/defect-integration-source.test.mjs": "bf44e5988530e0139168a530752ad63bbd9dcb755cfe62ad06fb4061abe77761",
+    "tests/defect-utility-planning.test.mjs": "8e20b585038e11b19267747d6532fa76b721373e645cac587d93332a6647f529",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "02369fc283b34cf12fdf822095f3d893574a5b889b12a2106351f431d10b0777",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "23cf0aaaedf2dc9fe90b659953699f3387504dd7cc0cd10fac305739d5352c48",
+    "tests/helpers/component-ui-ci-source-inverse.mjs": "7422a8f113fc3e592fa12574954a62d7e2c3a86f2a72da0d9d3f7b33b571a1d2",
+    "tests/helpers/copy-integration-source-closure.mjs": "6bae3ab43fd639d0e8723678c405eb8ff2aabd87700c1ead1af99db2562087bd",
+    "tests/helpers/m7-core-final-source-inverse.mjs": "0c754fc25ffe6f7101c708028187606aa6a378e360591faa8610bd401bd5ac33",
+    "tests/lua/defect_utility_build.lua": "a64e177dde875905cd04b21339c38d073d9eabfb8c89a04011f049a95a0bc6ef",
+    "tests/watcher-actor-boundary.test.mjs": "a4cfccf0d6d964ffc2ec818aacfb5468d1de563e96d340faff51a46d2bff3f2b",
+    "tests/watcher-actor-source-inverse.test.mjs": "d75c6ab1cd0994f03e205a1ce9d162aef64de74bb3af1aa94686240e64b1f9c9",
+    "tests/encounter-formation-source-epoch.test.mjs": "5148fb3366db441e6086f2a63251a304933cbd4bcd7e1ad24562916d6a0b5c0f",
+    "tests/room-ui-source-epoch.test.mjs": "98af163c1c2fb8273fe291ed0f409d3ea211fbea8e7377a5a41f5ca62ef40f99",
+    "tests/seven-refactor-source-epoch.test.mjs": "1b1c1f6cb7279820a14ecdc299224808c5c0cbcd9fdda3da8b16aeb4d24f2432",
+    "tests/helpers/joint-ui-ci-source-inverse.mjs": "02db99318eb32922867ab3636af0c270256da1bfc77190756d0eb4497bbe5ed7"
+  }
+}

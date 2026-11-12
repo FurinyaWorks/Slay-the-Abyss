@@ -570,3 +570,10 @@ docs/evidence/m7-quality-ratchet-closeout-20261111/nonlua-red.log -whitespace
 
 # Frozen current-base ratchet integration evidence.
 docs/evidence/m7-ratchet-current-base-20261111/** -text
+# Defect Actor evidence and complete source archives retain their exact bytes.
+docs/evidence/m7-defect-actor-20261111/** -text
+docs/evidence/m7-defect-actor-20261111/*.log -whitespace
+tests/helpers/defect-actor-source-epoch.mjs text eol=lf
+tests/helpers/defect-actor-source-epoch.json.gz -text
+tests/helpers/defect-actor-ci-source-epoch.json.gz -text
+tests/fixtures/defect-actor-before.json.gz -text

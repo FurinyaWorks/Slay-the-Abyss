@@ -134,11 +134,12 @@ local function captureAmounts(combat,state,target,e)
     end
 end
 
+local function utilityActorHost()return require('abyss_actor')end
 local function prepareQueued(combat,state,prepared,target,instance,uid)
     local e=require('abyss_silent_final_cards').prepare(combat,state,copy(prepared))
     captureAmounts(combat,state,target,e)
     local utility=require('abyss_defect_utility_cards')
-    if utility.prepareEffect then e=utility.prepareEffect(state,e,target)end
+    if utility.prepareEffect then e=utility.prepareEffect(state,e,target,utilityActorHost)end
     e=require('abyss_flow_actions').prepare(state,e,target,{instance=instance,uid=uid})
     if e.op=='gainExhaustPower'and e.status=='corruption'then require('abyss_corruption').prepare(state)end
     if e.op=='gainMantra'then e=require('abyss_mantra').prepareGain(state,e.value)end
