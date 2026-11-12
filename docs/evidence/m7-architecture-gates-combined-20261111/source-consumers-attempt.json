@@ -1,0 +1,8 @@
+{
+  "command": "node --test --test-concurrency=1 tests/architecture-source-format.test.mjs tests/architecture-composition-format.test.mjs tests/architecture-token-read.test.mjs",
+  "outcome": "cancelled",
+  "exitCode": 130,
+  "observedTestOutputBytes": 0,
+  "passed": false,
+  "reason": "Optional historical config-source consumers were stopped before any test result. No configuration or historical source input changed; retain this unsuccessful attempt separately from targeted checker/shared-collector verification."
+}

@@ -1,0 +1,21 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 test:related
+> node scripts/test-affected.mjs --base 3a061a76b5eb917ac0f4213c01a9cbafd28d1824 --plan
+
+{
+  "tier": "related",
+  "changed": [
+    "backlog/tasks/task-74.19 - 收敛核心依赖环与领域状态所有权.md",
+    "scripts/check-architecture.mjs",
+    "tests/architecture.test.mjs",
+    ".artifacts/import-membership/backlog-plan.txt",
+    ".artifacts/import-membership/baseline-architecture.json",
+    ".artifacts/import-membership/current-architecture.json"
+  ],
+  "full": true,
+  "reason": "Unmodelled or deleted input: backlog/tasks/task-74.19 - 收敛核心依赖环与领域状态所有权.md",
+  "fast": [],
+  "integration": [],
+  "lua": []
+}

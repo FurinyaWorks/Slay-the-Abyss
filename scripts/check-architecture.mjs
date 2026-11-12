@@ -11,7 +11,10 @@ import { discoverSources, architectureSources } from './lua-quality-metrics.mjs'
 // reference are resolved. Reassigned/captured writes remain unknown, rather than
 // activating a future callback through an old alias. This is not flow analysis:
 // parameter callbacks, logical-expression callees, table dispatch and dynamic
-// return values are not inferred. Explicit deferred-pair review is still required.
+// return values are not inferred. Direct global pcall/xpcall are known synchronous
+// calls; xpcall's explicit error handler may run before it returns. This assumes
+// standard global builtins; aliases, global reassignment and multiple-result
+// argument expansion are not analyzed. Deferred-pair review is still required.
 function initializationFunctions(ast) {
   const references=new WeakMap(),calls=new Map(),returns=new Map();
   const scope=parent=>({parent,bindings:new Map()});
@@ -48,7 +51,17 @@ function initializationFunctions(ast) {
     }
     // A call used as a callee/initializer consumes its first result only.
     if(node.type==='ReturnStatement'&&node.arguments[0])add(returns,owner,node.arguments[0]);
-    if(['CallExpression','StringCallExpression','TableCallExpression'].includes(node.type))add(calls,owner,node.base);
+    if(['CallExpression','StringCallExpression','TableCallExpression'].includes(node.type)) {
+      add(calls,owner,node.base);
+      // Lua's protected calls invoke the first argument, and xpcall may invoke
+      // its second argument on failure. Other arguments remain ordinary values.
+      // Keep the same lexical owner so a dormant function is not made eager.
+      if(node.base?.type==='Identifier'&&node.base.isLocal===false&&
+        ['pcall','xpcall'].includes(node.base.name)) {
+        add(calls,owner,node.arguments?.[0]);
+        if(node.base.name==='xpcall')add(calls,owner,node.arguments?.[1]);
+      }
+    }
     // Generic-for implicitly calls its first iterator expression. The remaining
     // expressions supply state/control values; their functions are not invoked.
     if(node.type==='ForGenericStatement')add(calls,owner,node.iterators[0]);
@@ -108,7 +121,7 @@ export function analyzeSources(sources,policy,generated=generatedRuntimeModules,
           const to=target.value;
           const reviewedDeferred=owner!==null&&!eager.has(owner)&&deferredImports.has(`${name}:${to}`);
           edges.push({from:name,to,line:node.loc.start.line,reviewedDeferred});
-          if(!(to in sources)&&!(to in generated))say(node,`unknown module ${to}`);
+          if(!Object.hasOwn(sources,to)&&!Object.hasOwn(generated,to))say(node,`unknown module ${to}`);
           if(layer==='core'&&layers[to]!=='core')say(node,`core cannot depend on ${to}`);
           if(layer==='ui'&&layers[to]==='platform')say(node,`UI cannot depend on platform ${to}`);
         }
@@ -157,7 +170,7 @@ export function analyzeSources(sources,policy,generated=generatedRuntimeModules,
   function cycle(name,trail=[]) {
     if(active.has(name)){errors.push({file:sourceFile(name),line:1,message:`Dependency cycle: ${[...trail,name].join(' -> ')}`});return;}
     if(done.has(name))return;
-    active.add(name);for(const edge of edges.filter(edge=>edge.from===name&&!edge.reviewedDeferred))if(edge.to in sources)cycle(edge.to,[...trail,name]);
+    active.add(name);for(const edge of edges.filter(edge=>edge.from===name&&!edge.reviewedDeferred))if(Object.hasOwn(sources,edge.to))cycle(edge.to,[...trail,name]);
     active.delete(name);done.add(name);
   }
   nodes.forEach(name=>cycle(name));

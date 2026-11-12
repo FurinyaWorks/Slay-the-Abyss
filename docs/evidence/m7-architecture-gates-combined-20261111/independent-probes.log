@@ -1,0 +1,12 @@
+{
+  "crossFeatureCases": 24,
+  "assertionsPerCase": 6,
+  "preservedBranchDocuments": 31,
+  "historicalEvidenceFilesUnchanged": 2063,
+  "architecture": {
+    "nodes": 345,
+    "edges": 1953,
+    "errors": [],
+    "sha256": "8fb23fd4d39e82ad075efedeab34181e222b759a9eba5122acd811198cf846eb"
+  }
+}

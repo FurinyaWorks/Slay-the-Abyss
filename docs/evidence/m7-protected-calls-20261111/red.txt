@@ -1,0 +1,66 @@
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (38.670991ms)
+✔ initialization calls cannot borrow a deferred import exception (29.807224ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (13.531306ms)
+✔ generic-for initialization invokes the known iterator, including aliases and factory results (8.41717ms)
+✔ generic-for does not invoke state, control, unused results or dormant loop owners (8.011431ms)
+✔ an immediate and a deferred require retain their individual execution classification (0.384356ms)
+✔ deferred import exceptions must still match an actual function-scoped require (0.803303ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.737057ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (3.098093ms)
+✖ global protected calls invoke known functions during module initialization (2.07264ms)
+✔ protected call values and lexical shadows do not activate unrelated callbacks (3.767289ms)
+✖ protected initialization and dormant callbacks retain separate import occurrences (1.610389ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 10
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1258.21577
+
+✖ failing tests:
+
+test at tests/architecture.test.mjs:164:1
+✖ global protected calls invoke known functions during module initialization (2.07264ms)
+  AssertionError [ERR_ASSERTION]: pcall local
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-independent-1111/tests/architecture.test.mjs:182:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/architecture.test.mjs:207:1
+✖ protected initialization and dormant callbacks retain separate import occurrences (1.610389ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   false,
+      true,
+  +   true
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-independent-1111/tests/architecture.test.mjs:210:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ true, true ],
+    expected: [ false, true ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

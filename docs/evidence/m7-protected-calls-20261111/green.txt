@@ -1,0 +1,36 @@
+✔ responsibility boundaries validate policy and reject immediate and deferred imports (23.326938ms)
+✔ production policy permanently protects Actor and the independently loadable reaction entry (8718.692654ms)
+✔ AST boundaries distinguish imports, shadowing, dynamic access, syntax and cycles (54.113569ms)
+✔ initialization calls cannot borrow a deferred import exception (23.45794ms)
+✔ uninvoked callbacks and lexical shadows remain deferred (17.771967ms)
+✔ generic-for initialization invokes the known iterator, including aliases and factory results (12.370798ms)
+✔ generic-for does not invoke state, control, unused results or dormant loop owners (13.532648ms)
+✔ an immediate and a deferred require retain their individual execution classification (9.690558ms)
+✔ deferred import exceptions must still match an actual function-scoped require (0.703349ms)
+✔ duplicate deferred import exceptions fail even with different review reasons (0.461923ms)
+✔ one reviewed pair permits repeated deferred calls while module-level calls retain cycle checks (7.32956ms)
+✔ global protected calls invoke known functions during module initialization (12.242ms)
+✔ protected call values and lexical shadows do not activate unrelated callbacks (9.667376ms)
+✔ protected initialization and dormant callbacks retain separate import occurrences (0.436351ms)
+✔ physical lines and inclusive function spans include comments, blank lines and nested bodies (6.774127ms)
+✔ CRLF and LF have identical canonical metrics and source hashes (1.751759ms)
+✔ every function and chunk needs exactly one matching Luacheck coordinate (3.728981ms)
+✔ Unicode codepoint columns map to UTF8 AST bytes, including emoji and combining marks (2.137947ms)
+✔ all files and extracted helpers are discovered recursively; empty scans fail (13.191086ms)
+✔ full graph reports reviewed deferred cycles, self cycles and disjoint SCCs deterministically (2.777724ms)
+✔ baseline diff keeps full metrics, exact warning multiplicity and changed/deleted/new modules visible (2.512488ms)
+✔ baseline contract/tool/scope mismatch and malformed snapshots cannot be treated as improvement (2.337029ms)
+✔ JSON object key ordering does not create false warning changes or contract mismatches (1.048815ms)
+✔ all new numeric metrics remain report-only, including high complexity and new helper hotspots (6.481708ms)
+✔ the frozen baseline covers every recorded module/function and is not an exemption configuration (21.921594ms)
+✔ dependency and cycle changes are visible even when total module and warning counts stay equal (0.759184ms)
+✔ quality reports are collected by the existing gate and uploaded on failed runs without changing older CI guards (7.470924ms)
+✔ historical package replay inverts only the exact quality entry and gate wiring without changing its old hash (481.671998ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48973.312942

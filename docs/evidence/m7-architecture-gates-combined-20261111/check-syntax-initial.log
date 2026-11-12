@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 check:syntax
+> node scripts/check-syntax.mjs
+
+tests/native-sharp-hide-order.test.mjs: Command failed: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node --check tests/native-sharp-hide-order.test.mjs
+
+tests/native-ui-parity.test.mjs: Command failed: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node --check tests/native-ui-parity.test.mjs
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
