@@ -4,6 +4,13 @@ const read=name=>JSON.parse(name.endsWith('.gz')?gunzipSync(fs.readFileSync(path
 const identity=read('identity.json'),visual=read('visual.json'),browser=read('browser.json.gz'),sdk=read('sdk.json'),paired=read('paired-sdk.json'),adapter=read('adapter-receipt.json'),service=read('service.json'),candidate=read('candidate.json.gz');
 for(const [file,sha]of Object.entries(identity.images))assert.equal(createHash('sha256').update(fs.readFileSync(path.join(dir,file))).digest('hex'),sha,file);
 assert.equal(identity.candidate.sha256,candidate.candidate.sha256);assert.equal(identity.buildId,adapter.buildId);assert.equal(identity.buildId,service.buildId);
+assert.equal(identity.buildId,candidate.buildId,'same candidate build');assert.equal(identity.buildId,browser.buildId,'same browser build');
+assert.equal(identity.sourceCommit,candidate.sourceCommit,'same candidate source');assert.equal(identity.sourceCommit,adapter.sourceCommit,'same adapter source');
+assert.equal(identity.sourceDirty,candidate.sourceDirty,'same candidate sourceDirty');assert.equal(identity.sourceDirty,adapter.sourceDirty,'same adapter sourceDirty');
+assert.equal(identity.payloadDigest,candidate.payloadDigest,'same candidate payload');
+for(const r of [visual,browser])assert.equal(r.rendererSha256,service.rendererSha256,'same renderer signature');
+for(const r of [sdk,paired])assert.equal(r.sdkSha256,service.sdkSha256,'same SDK signature');
+assert.equal(identity.images['menu.png'],identity.images['returned-menu.png'],'same actual entry and return PNG');
 assert.equal(identity.candidate.sha256,adapter.candidateSha256);assert.equal(adapter.inverseReadback.faults.length,0);
 for(const r of [visual,browser,sdk,paired,service])assert.equal(r.saveSha256,adapter.saveSha256,'same actual save');
 assert.equal(identity.sourceDirty,false);assert.equal(visual.status,'captured');assert.equal(sdk.status,'pass');assert.equal(browser.status,'captured');
