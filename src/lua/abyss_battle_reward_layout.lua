@@ -33,6 +33,8 @@ end
 local function positionHost(box,layout)
  -- The shared approved reward host follows the existing ordinary/expanded
  -- layout; its opaque field stays below the battle bar in canvas coordinates.
+ if Theme.presentationProfile~='v25-reference'
+  and Theme.presentationProfile~='official-assets-first' then return end
  local stage=layout.stage
  local field=box:GetChild('v25RewardField')
  if field then field:SetAnchoredPosition(-stage[1],-stage[2])end
