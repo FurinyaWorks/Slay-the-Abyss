@@ -4,9 +4,9 @@ local Theme = require("abyss_theme")
 local M = {}
 local L = Theme.layout
 -- Explicit ports preserve the approved implementation without a shared constructor closure.
-function M.install(owner, _ownership, _host, _dependencies)
+function M.install(owner, _ownership, host, _dependencies)
     local R = L.rewardPick
-    local function placeHandHit(box, w, h, restAngle, baseY, y, scale)
+    local function placeHandHit(box, w, h, restAngle, baseY, y, scale, laneWidth)
         local r = restAngle * math.pi / 180
         local c,s = math.abs(math.cos(r)),math.abs(math.sin(r))
         local restH,restW = (h*c+w*s)/2,(w*c+h*s)/2
@@ -18,7 +18,10 @@ function M.install(owner, _ownership, _host, _dependencies)
         local hit = box:GetChild('hit')
         -- Inverse the card transform: one world-space hit rectangle covers both poses.
         hit:SetAnchoredPosition(math.sin(a)*dy/scale,math.cos(a)*dy/scale)
-        hit:SetSizeDelta(math.max(restW*2,w*Theme.motion.hoverScale)/scale,(high-low)/scale)
+        local width=math.max(restW*2,w*Theme.motion.hoverScale)
+        -- Adjacent hand centres own disjoint horizontal lanes. Keeping a full
+        -- hover-width receiver here lets a later sibling steal the initial press.
+        hit:SetSizeDelta(math.min(width,laneWidth or width)/scale,(high-low)/scale)
         hit:SetLocalScale(1,1,1)
         hit.localRotationZ = -box.localRotationZ
     end
@@ -37,10 +40,11 @@ function M.install(owner, _ownership, _host, _dependencies)
         local scale = selected and Theme.motion.hoverScale or 1
         box:SetLocalScale(scale, scale, 1)
         box.localRotationZ = selected and 0 or angle
-        placeHandHit(box,w,h,angle,baseY,y,scale)
+        local laneWidth=count>1 and spacing or nil
+        placeHandHit(box,w,h,angle,baseY,y,scale,laneWidth)
         box:GetChild("glow"):SetVisible(selected)
         box:SetAsLastSibling()
-        return {x, y, baseY=baseY}
+        return {x, y, baseY=baseY,hitWidth=laneWidth}
     end
     local function rewardTarget(slot)
         local hot = owner.hover == slot
@@ -64,14 +68,20 @@ function M.install(owner, _ownership, _host, _dependencies)
     local function canHover()
         return owner.active and not owner.busy and not owner.gesture and not owner.carry
     end
+    local function refreshHover(previous,slot)
+        local view=host.cardView
+        return view and view.refreshHover and view.refreshHover(previous,slot)
+    end
     function owner:setHover(slot)
         local run = self.run
         local reward = run and run.phase == 'reward' and self.rewardScreen == 'cards' and Run.rewardOptions(run)[slot]
         local hand = run and run.phase == 'combat' and run.combat.phase == 'player' and run.combat.hand[slot]
         if slot and not (canHover() and (reward or hand)) then slot,hand = nil,nil end
         if self.hover == slot then return end
+        local previous=self.hover
         self.hover = slot
         self.handHover = hand and {run=run,battle=run.combat,turn=run.combat.turn,slot=slot,uid=hand.uid}
+        if refreshHover(previous,slot)then return end
         self:render(true)
     end
     return {

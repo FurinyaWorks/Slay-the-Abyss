@@ -1,6 +1,7 @@
 import {preIntegrationCalibrationSource} from './integration-1111-tooling.mjs';
 import {cursesReceiptMatches,preCursesReceiptSource} from './curses-ci-planning.mjs';
 // Exact source and inventory views for immutable CI receipts; current Full stays raw.
+import {preBattleQueueCiSource} from './battle-queue-ci-source-epoch.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
@@ -53,6 +54,7 @@ export function jointCiMatches(path,source,target){
  assert(views.includes(target),'known joint CI view');
  if(act1FormationReceiptSource(path,source,target)!==null)return true;
  if(target==='officialAssetsFlow'&&cursesReceiptMatches(path,source))return true;
+ source=preBattleQueueCiSource(path,source);
  const row=Object.hasOwn(proof.files,path)?proof.files[path]:null;
  return !!(row&&Object.hasOwn(row.targets,target)&&sourceMatches(path,source,row));
 }
@@ -60,13 +62,14 @@ export function jointCiSourceAt(path,source,target){
  assert(views.includes(target),'known joint CI view');
  const act1=act1FormationReceiptSource(path,source,target);if(act1!==null)return act1;
  if(target==='officialAssetsFlow'&&cursesReceiptMatches(path,source))return preCursesReceiptSource(path,source);
+ source=preBattleQueueCiSource(path,source);
  const row=Object.hasOwn(proof.files,path)?proof.files[path]:null;
  return row&&Object.hasOwn(row.targets,target)&&sourceMatches(path,source,row)?row.targets[target]:source;
 }
 export function jointCiInventoryAt(paths,target,readSource=readFileSync){
  assert.equal(target,'officialAssetsFlow','known joint inventory view');
  assert.deepEqual([...paths].sort(),[...proof.currentInventory,...Object.keys(inventoryAdditions)].sort(),'complete current inventory');
- for(const [path,sha]of Object.entries({...proof.added,...inventoryAdditions}))assert.equal(hash(readSource(path,'utf8').replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
+ for(const [path,sha]of Object.entries({...proof.added,...inventoryAdditions}))assert.equal(hash(preBattleQueueCiSource(path,readSource(path,'utf8')).replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
  return [...proof.flowInventory];
 }
 

@@ -35,9 +35,13 @@ export function officialBattleHud(root,theme){
  }
  const ex=hud.exhaustPile,exhaust=child(root,'exhaustIcon'),count=child(root,'exhaust');
  exhaust.position=[...ex.position];exhaust.size=[ex.diameter,ex.diameter];
- const exImage=child(exhaust,'image');exImage.image=100002;exImage.size=[ex.diameter,ex.diameter];exImage.colour='#000000';exImage.opacity=2/3;
+ const exImage=child(exhaust,'image');exImage.image=ex.image;exImage.size=[ex.diameter,ex.diameter];exImage.colour=ex.imageColour;exImage.opacity=ex.imageOpacity;
  child(exhaust,'hit').position=[0,0];child(exhaust,'hit').size=[ex.hit,ex.hit];
- count.position=[ex.position[0],ex.position[1]+4/3];count.size=[60,44];count.text.colour=ex.colour;
+ count.position=ex.position.map((value,i)=>value+ex.countOffset[i]);count.size=[...ex.countSize];
+ Object.assign(count.text,{colour:ex.colour,fontSize:ex.countFont,minFontSize:ex.countFont});
+ // Exhaust joins the same V25 red/cream numeric badge family as draw/discard.
+ exhaust.children.splice(exhaust.children.length-1,0,{name:'pileCountBadge',kind:'image',position:[...ex.countOffset],size:[28,28],image:100002,colour:'#B13927'});
+ count.text.colour='#FFF0D6';count.size=[28,32];
  const aim=child(root,'dragLayer'),aimStyle=theme.officialAssets.battleAim;
  for(let index=1;index<=aimStyle.segments;index++){
   let node=child(aim,'aim'+index);
@@ -54,7 +58,7 @@ export function officialBattleHud(root,theme){
   text('label',[0,0],hud.route.slice(2),'地图',18,'#D6CBA5'),
   {name:'hit',kind:'cursorArea',size:hud.route.slice(2),focusable:true},
  ]});
- for(let index=1;index<=3;index++)for(const button of [child(root,'potion'+index),child(child(root,'potionHelp'),'potionHelp'+index)]){
+ for(let index=1;index<=5;index++)for(const button of [child(root,'potion'+index)??child(child(root,'potionHelp'),'potion'+index),child(child(root,'potionHelp'),'potionHelp'+index)]){
   if(!button)continue;
   for(const variant of button.children??[]){
    const empty=child(variant,'emptyShell');if(!empty)continue;
@@ -63,9 +67,9 @@ export function officialBattleHud(root,theme){
    dashes.children=Array.from({length:12},(_,i)=>{const angle=i*Math.PI/6;return {name:'dash'+i,kind:'image',image:100001,size:[7,2],position:[r*Math.sin(angle),r*Math.cos(angle)],rotation:-i*30,colour:'#9C8C70',opacity:.8};});
   }
  }
- for(let index=1;index<=3;index++){
+ for(let index=1;index<=5;index++){
   const caption=child(child(root,'potionHelp'),'potionCaption'+index);
-  if(caption)caption.size=[20,28];
+  if(caption){caption.visible=false;caption.active=false;caption.text.content='';}
  }
  for(const kind of ['draw','discard']){
   const pile=child(root,kind+'Icon'),draw=kind==='draw';

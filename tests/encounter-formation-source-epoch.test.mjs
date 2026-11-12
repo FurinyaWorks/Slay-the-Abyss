@@ -150,8 +150,8 @@ test('source and configuration reject unknown targets and malformed live readers
 
 test('current UI facade authenticates every raw owner once in declared order after warm success',()=>{
  const current=currentSourceEpoch.proof,file='config/architecture.json',input=diskReadFileSync(file,'utf8'),target='develop';
- // Original component closure had 68; room/official adds 11 and Curses adds 1.
- assert.equal(current.owners.length,80);
+ // Shared Curses and battle continuation add ten owners to the prior 79.
+ assert.equal(current.owners.length,89);
  const expected=current.targets[target].files[file].source;
  for(const crlf of [false,true]){
   const reads=[];let bad=null,missing=false;

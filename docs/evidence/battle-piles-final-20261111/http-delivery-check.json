@@ -1,0 +1,21 @@
+{
+  "ready": true,
+  "url": "http://127.0.0.1:52608",
+  "buildId": "3a928e26-af7f-4860-ac29-fd078371b0d5",
+  "gilSha256": "f60e1f4dc800ab5eb16f8abbaa85ce6d0a6f9fc0a4e15b88ef2132fd923c6b10",
+  "gilBytes": 15074575,
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "cases": [
+    {
+      "name": "ten",
+      "sha256": "bde20bed09b286fd2916b396b40701f29734ccfa6525d978065dac3c3823e9a5",
+      "session": "battle-stage-ten"
+    },
+    {
+      "name": "five",
+      "sha256": "37e3843c370ff8857ba68fa0fc88c7d92cc914b4222ea920fb40d1207df6ad1a",
+      "session": "battle-stage-five"
+    }
+  ],
+  "boundary": "service archives loaded; user sessions unstarted; QA ready came from separately stopped sessions; not official ready"
+}

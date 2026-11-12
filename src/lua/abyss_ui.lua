@@ -199,6 +199,10 @@ function OnStart()
               monsterActors=setmetatable({instantiate=actorInstantiate,destroy=actorDestroy},{__index=actorBinding}),
               nativeMonsterArtEnabled=flags.monsters,
               color = Color, imageSource = Enum.ImageSource.StaticReference, cursorEvents = Enum.CursorEventType, keyEvents = Enum.KeyEventType,
+              tween = game.Tween and function(control,fields,duration)
+                  return game.Tween(componentBridge and componentBridge.unwrap(control) or control,fields,duration)
+              end,
+              tweenSequence = game.TweenSequence, easeTypes = Enum.EaseType,
               imageTypes = Enum.ImageType and {basic=Enum.ImageType.Basic,stretch=Enum.ImageType.Stretch},
               cursorPosition = function() return game.GetCursorUIPos() end,
               touchScreen = function() return game.GetDevice() == Enum.Device.Mobile end,

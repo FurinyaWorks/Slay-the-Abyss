@@ -1,0 +1,13 @@
+{
+  "status": "reviewed-for-this-offline-slice",
+  "buildId": "3a928e26-af7f-4860-ac29-fd078371b0d5",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "source": "13 original live-browser compositor PNGs; no renderer overrides or manually rebuilt artwork",
+  "review": "12 views inspected through internal labelled contact sheets; default-sort view has byte-identical grid pixels to draw/returned views; seven return button regions match; ten repeated original-renderer screen readbacks are byte-identical.",
+  "pixelEvidence": "visual-pixel-check.json",
+  "limitations": [
+    "Native material, typography and card reader differ from CSS V25; see README.",
+    "No official-client or mobile acceptance."
+  ],
+  "correction": "Earlier missing-text/return inference from repeated image-tool display was wrong. Raw original pixel evidence disproves it. Experimental renderer patches were not adopted."
+}

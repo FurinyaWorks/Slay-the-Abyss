@@ -16,10 +16,19 @@ local reasons = { insufficient_energy = "能量不足", invalid_target = "请选
     smoke_not_allowed = '此战斗不能使用烟雾弹',
     effect_overflow = "当前状态已达上限", potion_slots_full = "药水槽已满，请先丢弃旧药水。",
     potion_content_unavailable = "该稀有度药水尚未实装。", potion_blocked_by_sozu = "遗物阻止获得药水。" }
+local function feedbackPresented(owner,battle)
+    local feedback=owner.feedback
+    return owner.busy==true and feedback and feedback.busy==true and owner.run and owner.feedbackRun==owner.run and owner.run.combat==battle
+        and owner.feedbackBattle==battle and feedback.battle==battle and owner.displayBattle==feedback.shadow
+end
+local function selectedPotionView(run,slot)
+    if Theme.presentationProfile=='official-assets-first' then return Run.potionSlotView(run,slot) end
+    return Run.potionView(run)[slot]
+end
 -- Explicit ports preserve the approved implementation without a shared constructor closure.
 function M.install(owner, _ownership, host, dependencies)
     local R = L.rewardPick
-    local function refresh(changed)
+    local function reconcileSelection()
         if owner.run and owner.run.phase == "combat" then
             local battle, found = owner.run.combat, false
             if not battle.enemies[owner.target] or not Actors.isActive(battle.enemies[owner.target]) then
@@ -28,10 +37,13 @@ function M.install(owner, _ownership, host, dependencies)
             for _, card in ipairs(battle.hand) do if card.uid == owner.selected then found = true break end end
             if not found then owner.selected = nil end
         else owner.selected = nil end
+    end
+    local function refresh(changed)
+        reconcileSelection()
         owner:render()
         if changed and host.options.onChange then host.options.onChange(owner) end
     end
-    local function perform(command, origin)
+    local function perform(command, origin, clearPlayedSelection)
         local battle = owner.run.combat
         local before, first = Events.frame(battle), #battle.events + 1
         owner.busy, owner.feedbackRun, owner.feedbackBattle = true, owner.run, battle
@@ -51,11 +63,17 @@ function M.install(owner, _ownership, host, dependencies)
             refresh()
             return false, called and reason or "command_failed"
         end
+        if clearPlayedSelection then
+            -- Publish UI-only selection before feedback's mandatory first frame;
+            -- that frame can then serve as the post-command refresh as well.
+            owner.selected=nil
+            reconcileSelection()
+        end
         -- No core callback is retained by playback. The committed result is immutable to it.
         owner.feedbackLast = #battle.events
         owner.feedback:setFastMode(owner.fastMode==true)
         owner.feedback:begin(before, battle, first, owner.presentation, origin)
-        return ok, reason
+        return ok, reason, clearPlayedSelection and feedbackPresented(owner,battle)
     end
     function owner:chooseCards(kind, uids, token, generation,battle)
         if self.busy or not self.run or self.run.phase~="combat" then return false, "not_in_combat" end
@@ -134,6 +152,9 @@ function M.install(owner, _ownership, host, dependencies)
         dependencies.updateEnemyNames(dt)
         updateRewardCards(dt)
         host.cardView.update(dt)
+        if self.info and self.info.transient and self.info.kind=='card' then
+            host.renderInfo(self.run and self.run.combat,true)
+        end
     end
     function owner:setActive(active, suspend, deferRender)
         assert(type(active) == "boolean", "active must be boolean")
@@ -159,10 +180,11 @@ function M.install(owner, _ownership, host, dependencies)
     function owner:playSelected(target)
         if not self.active or not self.selected or self.busy or self.gesture or not self.run or self.run.phase ~= "combat" then return end
         local uid, origin = self.selected, self.cardPositions[self.selected]
-        local ok, reason = perform(function() return Run.play(self.run, uid, target) end, origin)
+        local ok, reason, presented = perform(function() return Run.play(self.run, uid, target) end, origin,
+            Theme.presentationProfile=='official-assets-first')
         if ok then self.selected = nil end
         dependencies.notice(ok and "" or reasons[reason] or "当前无法使用这张牌。")
-        if reason ~= "presentation_unavailable" then refresh() end
+        if reason ~= "presentation_unavailable" and not presented then refresh() end
     end
     function owner:chooseCard(token,uid)
         if self.busy or not self.run or self.run.phase~="combat" then return false end
@@ -233,7 +255,7 @@ function M.install(owner, _ownership, host, dependencies)
         if not self.active or self.busy or self.gesture or self.suppressClick or not self.run or self.run.phase ~= "combat" then return false end
         local binding = potionBinding(index)
         if not binding then return false end
-        local item = Run.potionView(self.run)[binding.slot]
+        local item = selectedPotionView(self.run,binding.slot)
         if not item or not item.canUse then dependencies.notice(reasons[item and item.reason] or "当前无法使用此药水。") return false end
         local previous = self.potionAim
         dependencies.cancelPotionAim()

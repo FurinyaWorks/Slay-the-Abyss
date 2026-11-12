@@ -1,4 +1,5 @@
 import {extendCursesEpoch} from '../curses-source-epoch.mjs';
+import {extendBattleQueueEpoch} from '../battle-queue-source-epoch.mjs';
 import {extendJointUiEpoch} from '../joint-ui-source-epoch.mjs';
 import {extendComponentUiEpoch} from '../component-ui-source-epoch.mjs';
 import {extendRoomUiEpoch} from '../room-ui-source-epoch.mjs';
@@ -12,4 +13,5 @@ export const preComponentUiEpoch=extendEncounterFormationEpoch(preEncounterForma
 export const preRoomUiEpoch=extendComponentUiEpoch(preComponentUiEpoch);
 export const preJointUiEpoch=extendRoomUiEpoch(preRoomUiEpoch);
 export const preCursesEpoch=extendJointUiEpoch(preJointUiEpoch);
-export const sourceEpoch=extendCursesEpoch(preCursesEpoch);
+export const preBattleQueueEpoch=extendCursesEpoch(preCursesEpoch);
+export const sourceEpoch=extendBattleQueueEpoch(preBattleQueueEpoch);

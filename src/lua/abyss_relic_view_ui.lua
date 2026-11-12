@@ -9,8 +9,13 @@ local M={}
 local rarityNames={starter='初始遗物',common='普通遗物',uncommon='罕见遗物',rare='稀有遗物',
     boss='首领遗物',shop='商店遗物',special='特殊遗物'}
 local function iconId(value)if type(value)=='table'then value=value.id end return type(value)=='number' and value or nil end
-function M.icon(id)
+function M.icon(id,battle)
     local local_=Hooks.localId(id)
+    if battle and Theme.presentationProfile=='official-assets-first' then
+        local icons=Theme.officialAssets.battleRelicIcons
+        local override=icons and (iconId(icons[local_]) or iconId(icons[id]))
+        if override then return override end
+    end
     return iconId(Theme.icon.relic[local_]) or iconId(Theme.icon.relic[id]) or iconId(Theme.icon.node.treasure)
 end
 local function counterValue(run,id)
@@ -78,7 +83,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         local id=run.relics[i]
         local definition=Rewards.definition(run,id)
         local description=definition and describe(run,definition.id) or ''
-        return {id=id,name=definition and definition.name or '未识别遗物',icon=M.icon(id),
+        return {id=id,name=definition and definition.name or '未识别遗物',icon=M.icon(id,self.selectedIndex~=nil and run.phase=='combat'),
             rarity=definition and rarityNames[definition.rarity] or '遗物',
             status=M.status(run,id),description=description~='' and description or '效果说明待补充。'}
     end
@@ -92,6 +97,11 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         child('frame'):SetSizeDelta(width,height)
         child('plate'):SetSizeDelta(width-Theme.space.border*2,height-Theme.space.border*2)
         child('contentBlocker'):SetSizeDelta(width,height)
+        if Theme.presentationProfile=='official-assets-first' and platform.color then
+            local p,f=Theme.color.panelSunken,Theme.color.goldDim
+            child('plate').imageColor=single and platform.color(18,30,40,255) or platform.color(p.r,p.g,p.b,p.a or 255)
+            child('frame').imageColor=single and platform.color(155,122,78,255) or platform.color(f.r,f.g,f.b,f.a or 255)
+        end
         child('close'):SetAnchoredPosition(single and width/2-58 or Theme.layout.relicView.close[1],Theme.layout.relicView.close[2])
         child('title').text=single and '遗物详情' or '持有遗物 · '..#run.relics..' 件'
         if single then
@@ -174,7 +184,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             icon:SetVisible(not more)
             slot:GetChild('more'):SetVisible(more)
             slot:GetChild('more').text=more and cell or ''
-            if cell and not more then picture(icon,M.icon(relics[i]))end
+            if cell and not more then picture(icon,M.icon(relics[i],battle))end
             paintCounter(slot,run,cell and not more and relics[i] or nil,battle)
         end
     end

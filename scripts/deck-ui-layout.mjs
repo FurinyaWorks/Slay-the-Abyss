@@ -1,5 +1,6 @@
 import { nativeControls, nativeTheme } from './native-ui-theme.mjs';
 import { cardFaceChildren } from './card-face.mjs';
+import {battlePileChrome,battlePileReturn} from './official-battle-pile-chrome.mjs';
 
 // Reserve a real native line below the unchanged card face for choice feedback.
 const itemSize = theme => [theme.layout.deckView.itemSize[0], Math.max(theme.layout.deckView.itemSize[1],
@@ -139,15 +140,14 @@ export function deckControls(theme = nativeTheme) {
       // Pile screens have a fixed five-column native scroller. The SDK exposes
       // its column constraint read-only, so keep the six-column browser intact.
       { ...plate('pileVeil', [0, 0, ...theme.canvas.base], '#000000'), opacity: 0.9, visible: false },
+      battlePileChrome(theme),
       { name: 'blocker', kind: 'cursorArea', size: [...theme.canvas.base], focusable: false },
       { name: 'grid', kind: 'grid', position: l.deckView.viewport.slice(0, 2), size: l.deckView.viewport.slice(2),
         itemTemplate: deckCardTemplate(theme).name, grid: { columns: l.deckView.columns, horizontal: false,
           itemSize: itemSize(theme), spacing: [...l.deckView.spacing], padding: [...l.deckView.padding], scrollbar: true } },
       { name: 'pileGrid', kind: 'grid', visible: false, position: l.deckView.viewport.slice(0, 2), size: l.deckView.viewport.slice(2),
         itemTemplate: deckCardTemplate(theme).name, grid: { columns: 5, horizontal: false,
-          itemSize: [Math.max(itemSize(theme)[0], theme.v25Battle.layout.card.size[0]), itemSize(theme)[1]],
-          spacing: [...l.deckView.spacing], padding: [l.deckView.padding[0], l.deckView.padding[1],
-            l.deckView.padding[2], l.deckView.padding[2]], scrollbar: true } },
+          itemSize: [150,210], spacing: [27,27], padding: [18,45,30,30], scrollbar: true } },
       plate('header', [0, l.deckView.title[1], l.deckView.viewport[2],
         Math.max(l.deckView.title[3], l.deckView.close[3]) + s.s], c.panel),
       text('title', l.deckView.title, '', f.heading, c.goldBright),
@@ -164,6 +164,14 @@ export function deckControls(theme = nativeTheme) {
         size: l.deckView.viewport.slice(2), focusable: true, visible: false },
       { ...button('upgradePreview', l.deckView.upgradePreview, '升级预览'), visible: false },
       button('close', l.deckView.close, '关闭'),
+      {...battlePileReturn(button('pileReturn',[-550,-237,180,54],'返回'),true),visible:false},
+      {name:'pileTools',kind:'container',position:[0,241.5],size:[856,33],visible:false,children:[
+        plate('plate',[0,0,856,33],'#76191B'),
+        ...['original','type','cost','name'].map((mode,i)=>({name:mode,kind:'container',position:[(i-1.5)*150,0],size:[150,44],children:[
+          text('label',[0,0,150,40],['默认 ▴','类型 ▴','费用 ▴','名称 ▴'][i],18,'#E9E6DC'),
+          {name:'hit',kind:'cursorArea',size:[150,44],focusable:true},
+        ]})),
+      ]},
       { ...button('previous', l.deckView.previous, '上一页'), visible: false },
       { ...button('next', l.deckView.next, '下一页'), visible: false },
       { ...text('pageHint', l.deckView.pageHint, '', f.small, c.textDim), visible: false },

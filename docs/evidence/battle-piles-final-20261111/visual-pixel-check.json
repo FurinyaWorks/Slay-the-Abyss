@@ -1,0 +1,159 @@
+{
+  "kind": "raw-original-png-pixel-identity-counterevidence",
+  "candidate": "3a928e26-af7f-4860-ac29-fd078371b0d5",
+  "originalRendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "shots": [
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\00-empty-draw.png",
+      "sha256": "16e5b1de61342a912fa3ef17aa9c21ba3f4a8939b40bebb8f1cba807ffdbbfc8",
+      "size": [
+        1280,
+        720
+      ],
+      "returnRgbaSha256": "ae525e7d578f850546d8b953b92cc01d9102f70adc3b83868ed156119ab52dc4",
+      "returnGoldPixels": 1792
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\00-relic-detail.png",
+      "sha256": "7f302ec040730769d16e38f57019c511a15d00cdc1b29a4969b9eabf796e7ca2",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\00-relic-next.png",
+      "sha256": "18219a29af20eba90d3f17d6d2a1040ee835a00de2c0ba418d5900d33e0ca22c",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\01-whole.png",
+      "sha256": "af0698f6715cdc0dbbbd51d4324509a2ec4b44da18c5f4d635b75008f674d65c",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\02-defend-hover.png",
+      "sha256": "5bf4420a95919c5d9b209461021506d46370073fdee5c436bff93dd79c44a945",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\03-bash-centred-aim.png",
+      "sha256": "51dafbddc480e142185998d86216719b9cfb82c75bb6083972fbda23310af8db",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\04-exhaust-offering.png",
+      "sha256": "7b54d8a97bf76eead72738807389bbd2a22084228c2bdf3e1245ca22f5bbf724",
+      "size": [
+        1280,
+        720
+      ],
+      "returnRgbaSha256": "ae525e7d578f850546d8b953b92cc01d9102f70adc3b83868ed156119ab52dc4",
+      "returnGoldPixels": 1792
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\04a-exhaust-entry-live.png",
+      "sha256": "a758bf78f282a3c077138b657a2d6eeaf8cd66927883dfa0089d8a373b97e5a6",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\05-discard-strike.png",
+      "sha256": "c6198c54e468fcf178ea943f9444a49d7d243daba490881e6097a081a9b4ffb4",
+      "size": [
+        1280,
+        720
+      ],
+      "returnRgbaSha256": "ae525e7d578f850546d8b953b92cc01d9102f70adc3b83868ed156119ab52dc4",
+      "returnGoldPixels": 1792
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\06-draw-next-turn.png",
+      "sha256": "ad55119b9cebb8b41120ece53bc1c36194f725ab106fdc34452751f247d06c58",
+      "size": [
+        1280,
+        720
+      ],
+      "returnRgbaSha256": "ae525e7d578f850546d8b953b92cc01d9102f70adc3b83868ed156119ab52dc4",
+      "returnGoldPixels": 1792,
+      "fourCardGridRgbaSha256": "d779371c672fb6bd28086811d4d2d75c05a41e4e5f02f86197301c4a670800ec"
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\07-pile-sort-default-restored.png",
+      "sha256": "ad55119b9cebb8b41120ece53bc1c36194f725ab106fdc34452751f247d06c58",
+      "size": [
+        1280,
+        720
+      ],
+      "returnRgbaSha256": "ae525e7d578f850546d8b953b92cc01d9102f70adc3b83868ed156119ab52dc4",
+      "returnGoldPixels": 1792,
+      "fourCardGridRgbaSha256": "d779371c672fb6bd28086811d4d2d75c05a41e4e5f02f86197301c4a670800ec"
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\08-card-detail-heading.png",
+      "sha256": "4f8910646962fd9ad6c0860f1a1fa862faba85b232e98d11a3c82ceb5b0422f0",
+      "size": [
+        1280,
+        720
+      ],
+      "returnRgbaSha256": "ae525e7d578f850546d8b953b92cc01d9102f70adc3b83868ed156119ab52dc4",
+      "returnGoldPixels": 1792
+    },
+    {
+      "file": ".artifacts\\pile-final-visual-1794375825480\\09-return-to-pile.png",
+      "sha256": "ad55119b9cebb8b41120ece53bc1c36194f725ab106fdc34452751f247d06c58",
+      "size": [
+        1280,
+        720
+      ],
+      "returnRgbaSha256": "ae525e7d578f850546d8b953b92cc01d9102f70adc3b83868ed156119ab52dc4",
+      "returnGoldPixels": 1792,
+      "fourCardGridRgbaSha256": "d779371c672fb6bd28086811d4d2d75c05a41e4e5f02f86197301c4a670800ec"
+    }
+  ],
+  "sameReturnPixelsAcrossSevenViews": true,
+  "tenConsecutiveOriginalRendererPngs": [
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+    "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d"
+  ],
+  "tenConsecutiveIdentical": true,
+  "note": "Original saved PNGs contain the same complete return pixels. Earlier visual-tool repeated-image display was misinterpreted as missing render content. Experimental renderer patches are rejected; no claim based on altered renderer.",
+  "roiCoordinates": {
+    "units": "original 1280x720 PNG pixels, left/top/right/bottom; RGBA bytes without resizing",
+    "return": [
+      0,
+      570,
+      180,
+      624
+    ],
+    "fourCardGrid": [
+      180,
+      180,
+      920,
+      425
+    ]
+  },
+  "consecutiveOriginalPngLocation": ".artifacts/pile-final-visual-1794379150422/mask-frame-0.png through mask-frame-9.png; all retained locally, representative full PNG committed as visual/consecutive-original-frame.png"
+}

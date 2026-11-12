@@ -142,6 +142,14 @@
     "v25-native-simulator-evidence": {
       "status": "Project-authored Lua/layout rendered by the actual Beyond Simulator SDK/Pixi with official platform picture references. Screenshots contain game IP; no asset sublicense, commercial clearance or official import/device acceptance. Private approved reference images are not redistributed. Earlier rejected/diagnostic frames remain evidence only.",
       "evidence": "docs/evidence/event-v25-20261110/README.md; docs/evidence/map-v25-20261110/README.md; source-generated Simulator saves and SDK/browser receipts; official materials retain their original rights."
+    },
+    "battle-stage-browser-20261111": {
+      "status": "Actual project battle UI screenshots captured by headless Chromium from a read-back GIL-derived Simulator fixture. Contains official platform picture-library textures and game IP; those remain their owners rights. Diagnostic evidence only; no IP sublicense, commercial clearance, official-client import or device performance acceptance. No reference STS assets redistributed.",
+      "evidence": "docs/evidence/battle-repair-20261111/stage-review/README.md; visual-receipt.json; manifest.json"
+    },
+    "battle-piles-browser-20261111": {
+      "status": "Actual project battle UI compositor screenshots from headless Chromium, using the unchanged existing Simulator renderer and an actual-GIL-derived pressure fixture. Contains project artwork and official platform picture-library/game IP, which remain their owners rights. Diagnostic evidence, not an IP sublicense, commercial clearance, official import or device acceptance. No private reference STS assets redistributed.",
+      "evidence": "docs/evidence/battle-piles-final-20261111/README.md; visual-receipt.json; visual-review.json; visual-pixel-check.json"
     }
   },
   "files": {
@@ -6189,6 +6197,86 @@
     "docs/evidence/event-v25-20261110/revision-2/treasure-open.png": {
       "sha256": "6fd5e23ee3cfa78b55f2ffc517758846d2f4934b7df16269fe3c457879247685",
       "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/battle-repair-20261111/stage-review/visual/01-whole.png": {
+      "sha256": "5931d75247e2b2a31df51a3a95ee80a56aee248fadef880475364fd3efedea59",
+      "category": "battle-stage-browser-20261111"
+    },
+    "docs/evidence/battle-repair-20261111/stage-review/visual/02-defend-hover.png": {
+      "sha256": "3fbe2d2e342507196e7801de055eb84faba0af5e6720d74b4a578b1c346d1693",
+      "category": "battle-stage-browser-20261111"
+    },
+    "docs/evidence/battle-repair-20261111/stage-review/visual/03-bash-centred-aim.png": {
+      "sha256": "ed70d90c06781bd0f6397ee13f48df911ebf7979361de54bbd4e25adc5e0d833",
+      "category": "battle-stage-browser-20261111"
+    },
+    "docs/evidence/battle-repair-20261111/stage-review/visual/04-exhaust-offering.png": {
+      "sha256": "673fcf1d872296f22bf0517097a59d92c82e0073dbc0938cbc6e248f84ee2b8f",
+      "category": "battle-stage-browser-20261111"
+    },
+    "docs/evidence/battle-repair-20261111/stage-review/visual/05-discard-strike.png": {
+      "sha256": "d095604f17665967b494d9ceb9a7c576747d9a67081d315b9961a50db151b9f9",
+      "category": "battle-stage-browser-20261111"
+    },
+    "docs/evidence/battle-repair-20261111/stage-review/visual/06-draw-next-turn.png": {
+      "sha256": "93c6984a25bbc2de6afd28d17cab1d73f2b64c4b189dbef375e71d84a8c4ef29",
+      "category": "battle-stage-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/00-empty-draw.png": {
+      "sha256": "16e5b1de61342a912fa3ef17aa9c21ba3f4a8939b40bebb8f1cba807ffdbbfc8",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/00-relic-detail.png": {
+      "sha256": "7f302ec040730769d16e38f57019c511a15d00cdc1b29a4969b9eabf796e7ca2",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/00-relic-next.png": {
+      "sha256": "18219a29af20eba90d3f17d6d2a1040ee835a00de2c0ba418d5900d33e0ca22c",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/01-whole.png": {
+      "sha256": "af0698f6715cdc0dbbbd51d4324509a2ec4b44da18c5f4d635b75008f674d65c",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/02-defend-hover.png": {
+      "sha256": "5bf4420a95919c5d9b209461021506d46370073fdee5c436bff93dd79c44a945",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/03-bash-centred-aim.png": {
+      "sha256": "51dafbddc480e142185998d86216719b9cfb82c75bb6083972fbda23310af8db",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/04-exhaust-offering.png": {
+      "sha256": "7b54d8a97bf76eead72738807389bbd2a22084228c2bdf3e1245ca22f5bbf724",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/04a-exhaust-entry-live.png": {
+      "sha256": "a758bf78f282a3c077138b657a2d6eeaf8cd66927883dfa0089d8a373b97e5a6",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/05-discard-strike.png": {
+      "sha256": "c6198c54e468fcf178ea943f9444a49d7d243daba490881e6097a081a9b4ffb4",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/06-draw-next-turn.png": {
+      "sha256": "ad55119b9cebb8b41120ece53bc1c36194f725ab106fdc34452751f247d06c58",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/07-pile-sort-default-restored.png": {
+      "sha256": "ad55119b9cebb8b41120ece53bc1c36194f725ab106fdc34452751f247d06c58",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/08-card-detail-heading.png": {
+      "sha256": "4f8910646962fd9ad6c0860f1a1fa862faba85b232e98d11a3c82ceb5b0422f0",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/09-return-to-pile.png": {
+      "sha256": "ad55119b9cebb8b41120ece53bc1c36194f725ab106fdc34452751f247d06c58",
+      "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/battle-piles-final-20261111/visual/consecutive-original-frame.png": {
+      "sha256": "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
+      "category": "battle-piles-browser-20261111"
     }
   }
 }

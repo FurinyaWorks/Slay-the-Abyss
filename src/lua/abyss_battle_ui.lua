@@ -122,7 +122,7 @@ function M.new(root, data, presentation, clickEvent, platform, options)
     connect(links, services)
     -- Runtime bindings keep only their own ports, not the construction registry.
     services = {
-        picture=services.picture, tint=services.tint, ink=services.ink, child=services.child, enemyPosition=services.enemyPosition,
+        picture=services.picture, tint=services.tint, ink=services.ink, child=services.child, enemyPosition=services.enemyPosition, renderEnemies=services.renderEnemies,
         describeInfo=services.describeInfo, show=services.show, placeCard=services.placeCard, placeReward=services.placeReward, dragTarget=services.dragTarget,
         dragPose=services.dragPose, notice=services.notice, refresh=services.refresh, bind=services.bind, cancelPotionAim=services.cancelPotionAim,
         rewardScreen=services.rewardScreen, bindPotionControls=services.bindPotionControls, bindCardControls=services.bindCardControls, bindEnemyControl=services.bindEnemyControl, unbindEnemyControl=services.unbindEnemyControl,
@@ -169,12 +169,14 @@ function M.new(root, data, presentation, clickEvent, platform, options)
         function(_,box,engineDestroyed)services.unbindEnemyPowerControl(box,engineDestroyed)end)
     host.monsterIntentParticles=require('abyss_monster_intent_particle_view').new(host.platform,services.picture,services.tint)
     function self.releaseMonsterSurfaces(_)
+        if host.cardView then host.cardView.destroy()end
         local ok,why=pcall(host.monsterSurfaces.clear,host.monsterSurfaces)
         local cleared,reason=pcall(host.monsterIntentParticles.clear,host.monsterIntentParticles)
         assert(ok and cleared,why or reason)
     end
     function self.onEngineDestroy(_)
         self.active=false
+        if host.cardView then host.cardView.destroy()end
         local failure
         for _,manager in ipairs({host.monsterSurfaces,host.monsterPowers,host.monsterIntentParticles,host.monsterArt})do
             local ok,why=pcall(manager.onEngineDestroy,manager)
@@ -199,6 +201,7 @@ function M.new(root, data, presentation, clickEvent, platform, options)
         child = services.child, show = services.show, ink = services.ink, tint = services.tint, picture = services.picture, platform = host.platform,
         placeCard = services.placeCard, placeReward = services.placeReward,
         dragTarget = services.dragTarget, dragPose = services.dragPose, enemyPosition = services.enemyPosition,
+        renderAimActors = services.renderEnemies,
         potionTarget = services.potionDragTarget,
     })
     self.feedback = Feedback.new(host.stage, host.platform, function(battle, acting)
@@ -334,10 +337,6 @@ function M.new(root, data, presentation, clickEvent, platform, options)
         end
         local function openPile()
             if available()then
-                if Theme.presentationProfile=='official-assets-first' and #self.run.combat[kind]==0 then
-                    local names={draw='抽牌堆',discard='弃牌堆',exhaust='消耗堆'}
-                    services.notice(names[kind]..'为空。');return true
-                end
                 return host.options.onPile(kind)
             end
             return false

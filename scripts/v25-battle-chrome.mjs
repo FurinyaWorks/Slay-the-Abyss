@@ -44,20 +44,19 @@ function turnChrome(state,size,theme){
 }
 
 function energyChrome(icon,theme){
- const size=icon.size[0],disc=theme.image.disc;
+ const size=icon.size[0];
  // Shared semantic face/light/core/valueShadow survive the charged/empty writer.
  const ring=requireChild(icon,'face'),light=requireChild(icon,'light'),core=requireChild(icon,'core');
  ring.size=[size*.84,size*.84];
  light.size=[size*.64,size*.64];light.position=[-size*.05,size*.08];
  core.size=[size*.36,size*.36];
+ for(const part of [ring,light,core]){part.image=106056;part.imageType='basic';}
  const chrome=group('v25Chrome',icon.size,[
-  image('aura',[size+16,size+16],theme.image.ring,'#EB8F30',[0,0],{rotation:25,opacity:.65,feather:{pixels:[2,2]}}),
-  image('metal',[size-6,size-6],disc,'#C8BAA2'),
-  image('darkRim',[size-12,size-12],disc,'#393238'),
-  image('emberRim',[size-17,size-17],disc,'#852024'),
-  image('ember',[size-24,size-24],disc,'#E84D12'),
-  image('amber',[size*.62,size*.62],disc,'#FFAD20',[-size*.025,size*.04]),
-  image('warmLight',[size*.58,size*.58],100002,'#FFF7A6',[-size*.05,size*.08],{feather:{pixels:[12,12]}}),
+  image('aura',[size+20,size+20],106056,'#D68C3B',[0,0],{imageType:'basic',opacity:.22}),
+  image('metal',[size-6,size-6],107270,'#682F33',[0,0],{imageType:'basic'}),
+  image('darkRim',[size-12,size-12],theme.image.disc,'#4C2A2B'),
+  image('amber',[size*.84,size*.84],106056,'#FFB936',[-size*.025,size*.04],{imageType:'basic'}),
+  image('warmLight',[size*.64,size*.64],106056,'#FFF3A6',[-size*.05,size*.08],{imageType:'basic'}),
  ]);
  // The runtime-owned light sits above the new ornament and still hides at 0 energy.
  light.image=100002;light.feather={pixels:[14,14]};

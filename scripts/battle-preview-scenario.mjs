@@ -6,8 +6,9 @@ import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 const [input,output]=process.argv.slice(2);
 const hud=process.argv[4]==='--hud';
-const ten=process.argv[4]==='--ten'||hud;
-if(process.argv.length>5||process.argv[4]&&!ten)throw Error('Optional argument: --ten or --hud');
+const status=process.argv[4]==='--status';
+const ten=process.argv[4]==='--ten'||hud||status;
+if(process.argv.length>5||process.argv[4]&&!ten)throw Error('Optional argument: --ten, --hud or --status');
 if(!input||!output)throw Error('Usage: node scripts/battle-preview-scenario.mjs <actual.save.json> <new.save.json>');
 const save=JSON.parse(readFileSync(input,'utf8'));
 const mod=save.assets.scripts.find(s=>/abyss_game_ui\.lua$/.test(s.path));
@@ -35,13 +36,14 @@ function M.new(root,data,presentation,event,platform)
  local positions={{x=-230,y=32},{x=35,y=8}}
  for index,actor in ipairs(host.run.combat.enemies)do actor.sourcePosition=positions[index] end
  ${ten?"require('abyss_combat').draw(host.run.combat,20)":"-- Standard opening draw remains five cards."}
+ ${status?"local C=require('abyss_combat');local b=host.run.combat;C.addStatus(b.player,'strength',4);C.addStatus(b.player,'weak',1);C.addStatus(b.enemies[2],'vulnerable',1);C.block(b,b.enemies[2],5,true)":"-- No synthetic status setup."}
  host:refresh()
  print('BATTLE_PREVIEW_FIXTURE ready hand='..#host.run.combat.hand..' enemies='..#host.run.combat.enemies)
  return host
 end
 return M
 `;
-save.meta.name=ten?'战斗整页试玩 · 真实十牌双敌压力场景（非官方客户端）':'战斗整页试玩 · 标准五牌双敌（非官方客户端）';
+save.meta.name=status?'伤害预估对照 · 力量4/虚弱1/易伤1/敌格挡5（离线配置，非官方客户端）':ten?'战斗整页试玩 · 真实十牌双敌压力场景（非官方客户端）':'战斗整页试玩 · 标准五牌双敌（非官方客户端）';
 writeFileSync(resolve(output),JSON.stringify(save),{flag:'wx'});
 writeFileSync(resolve(output)+'.receipt.json',JSON.stringify({kind:'offline-sdk-pressure-fixture',input:resolve(input),inputSha256:createHash('sha256').update(readFileSync(input)).digest('hex'),modifiedModule:mod.path,originalModuleSha256:original,fixtureModuleSha256:createHash('sha256').update(mod.source).digest('hex'),gameRulesChanged:false,officialImport:false},null,2));
 console.log(resolve(output));

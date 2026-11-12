@@ -1,6 +1,8 @@
 import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
 import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helpers/curses-ci-planning.mjs';
 import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource} from './helpers/joint-ui-ci-source-inverse.mjs';
+
+import {battleQueueCiProof,preBattleQueueCiInventory,preBattleQueueCiSource} from './helpers/battle-queue-ci-source-epoch.mjs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors,officialAssetsFlowCiSourceProof,preOfficialAssetsFlowCiSource} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import {officialAssetsPlanningFloors as firstOfficialAssetsPlanningFloors,officialAssetsCiSourceProof,preOfficialAssetsCiSource} from './helpers/official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
@@ -39,7 +41,9 @@ import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs as liveDiscoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+// Frozen receipts retain their complete inventory; current Full remains raw.
+const discoverJs=()=>preBattleQueueCiInventory(liveDiscoverJs());
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
@@ -1456,4 +1460,28 @@ test('Curses receipt source is exact and cannot substitute for raw current sourc
  }
  for(const foreign of ['__proto__','constructor','foreign/'+path,path+'/extra'])assert.equal(jointCiSourceAt(foreign,raw,'officialAssetsFlow'),raw);
  assert.equal(diskReadFileSync(path,'utf8'),raw,'historical receipt projection never rewrites current production');
+});
+
+test('battle continuation retains exact historical sources and complete current Full coverage',()=>{
+ const proof=battleQueueCiProof,current=liveDiscoverJs();
+ assert.equal(proof.base,'3a061a76b5eb917ac0f4213c01a9cbafd28d1824');
+ assert.equal(current.length,proof.oldInventory.length+6);
+ assert.equal(new Set(current).size,current.length);
+ assert.deepEqual(preBattleQueueCiInventory(current),proof.oldInventory);
+ for(const [p,row]of Object.entries(proof.files)){
+  const source=diskReadFileSync(p,'utf8').replaceAll('\r\n','\n');
+  assert.equal(source,row.current,p);
+  assert.equal(preBattleQueueCiSource(p,source),row.before,p);
+  for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(preBattleQueueCiSource(p,foreign),foreign,p);
+ }
+ for(const p of Object.keys(proof.added)){
+  assert.throws(()=>preBattleQueueCiInventory(current.filter(f=>f!==p)),/inventory/);
+  assert.throws(()=>preBattleQueueCiInventory([...current,p]),/inventory/);
+ }
+ assert.throws(()=>preBattleQueueCiInventory([...current,'tests/foreign.test.mjs']),/inventory/);
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>currentJsShard(current,(i+1)+'/'+count,platform).files);
+  assert.deepEqual(bins.flat().sort(),[...current].sort());
+  assert(currentJsShard(current,'1/'+count,platform).loads.every(v=>v<budget),'unchanged '+platform+' execution budget');
+ }
 });
