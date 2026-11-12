@@ -7,6 +7,7 @@ import {battleQueueCiProof,preBattleQueueCiInventory,preBattleQueueCiSource} fro
 import {noncombatAddedTests,noncombatPriorInventory} from './helpers/noncombat-ci-source-inverse.mjs';
 import {preDefectActorCiSource,preDefectActorCiInventory,defectActorPlanningKey,defectActorPlanningFloor,defectActorCiProof} from './helpers/defect-actor-ci-source-inverse.mjs';
 import {goldenIdolPlanningFloors as legacyGoldenIdolPlanningFloors} from './helpers/golden-idol-ci-source-inverse.mjs';
+import {preOfficialUiRepairSource} from './helpers/official-ui-repair-source-epoch.mjs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors,officialAssetsFlowCiSourceProof,preOfficialAssetsFlowCiSource} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import {officialAssetsPlanningFloors as firstOfficialAssetsPlanningFloors,officialAssetsCiSourceProof,preOfficialAssetsCiSource} from './helpers/official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
@@ -1504,7 +1505,7 @@ test('battle continuation retains exact historical sources and complete current 
  assert.deepEqual(preBattleQueueCiInventory(current),proof.oldInventory);
  for(const [p,row]of Object.entries(proof.files)){
   const source=diskReadFileSync(p,'utf8').replaceAll('\r\n','\n');
-  assert.equal(source,row.current,p);
+  assert.equal(preOfficialUiRepairSource(p,source),row.current,p);
   assert.equal(preBattleQueueCiSource(p,source),row.before,p);
   for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(preBattleQueueCiSource(p,foreign),foreign,p);
  }

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {preOfficialUiRepairSource} from './helpers/official-ui-repair-source-epoch.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -34,7 +35,7 @@ test('potion HUD epoch authenticates all six Git sources and only the historical
    ??feedback.files[path]?.afterSource??componentUiSourceEpoch.proof.current[path]?.source;
   assert.equal(binding.beforeSource,predecessor,path+' exact immutable predecessor');
   assert.notEqual(binding.beforeSha256,binding.afterSha256);
-  assert.equal(preOfficialBattleMouseAimSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n'),binding.afterSource,path+' committed after identity');
+  assert.equal(preOfficialBattleMouseAimSource(path,preOfficialUiRepairSource(path,readFileSync(path,'utf8'))).replaceAll('\r\n','\n'),binding.afterSource,path+' committed after identity');
   assert.ok(Object.isFrozen(binding));
  }
  assert.ok(Object.isFrozen(proof)&&Object.isFrozen(proof.files)&&Object.isFrozen(proof.unprojectedChanges));
@@ -44,7 +45,7 @@ test('mouse aim epoch authenticates the complete single-owner Git change and ref
  const path='src/lua/abyss_battle_card_view.lua',binding=mouseAim.files[path];
  assert.deepEqual(Object.keys(mouseAim.files),[path]);assert.deepEqual(Object.keys(mouseAim.unprojectedChanges),[]);
  assert.equal(binding.beforeSource,proof.files[path].afterSource);
- assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),binding.afterSource);
+ assert.equal(preOfficialUiRepairSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n')),binding.afterSource);
  for(const side of ['before','after']){
   const source=binding[side+'Source'];assert.equal(hash(source),binding[side+'Sha256']);
   assert.equal(createHash('sha1').update('blob '+Buffer.byteLength(source)+'\0').update(source).digest('hex'),binding[side+'GitBlobSha1']);

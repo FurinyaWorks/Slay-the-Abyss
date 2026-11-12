@@ -1,6 +1,7 @@
 import {preCloseoutCiSource,closeoutInventory,closeoutRead} from './closeout-ci-source.mjs';
 // Preserve historical scheduling receipts while Full discovers every new test.
 import assert from 'node:assert/strict';
+import {preOfficialUiRepairSource} from './official-ui-repair-source-epoch.mjs';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
@@ -12,6 +13,7 @@ for(const row of Object.values(battleQueueCiProof.files))assert.equal(hash(row.c
 const freeze=x=>{if(x&&typeof x==='object'&&!Object.isFrozen(x)){Object.values(x).forEach(freeze);Object.freeze(x);}return x;};
 freeze(battleQueueCiProof);
 export function preBattleQueueCiSource(path,source){
+ source=preOfficialUiRepairSource(path,source);
  const row=Object.hasOwn(battleQueueCiProof.files,path)?battleQueueCiProof.files[path]:null;
  if(row)source=preCloseoutCiSource(path,source,'pr621');
  return row&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===row.sha256?row.before:source;

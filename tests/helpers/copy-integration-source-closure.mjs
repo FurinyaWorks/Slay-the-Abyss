@@ -1,5 +1,6 @@
 // Copies only immutable test helper dependencies; production owners remain explicit fixtures.
 import assert from 'node:assert/strict';
+import {officialUiRepairClosure} from './official-ui-repair-closure.mjs';
 import {readFileSync,writeFileSync,mkdirSync,realpathSync,existsSync} from 'node:fs';
 import {join,dirname,relative,isAbsolute} from 'node:path';
 import {createHash} from 'node:crypto';

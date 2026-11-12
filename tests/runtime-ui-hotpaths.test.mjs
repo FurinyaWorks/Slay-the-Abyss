@@ -10,10 +10,41 @@ for(const name of ['runtime_ui_hotpaths','hand_geometry_cache','potion_drag_hotp
  const result=runLua(`tests/lua/${name}.lua`);
  assert.equal(result.status,0,result.stdout+result.stderr);
 });
-test('real Host ordered trajectory equals the exact pre-change production source',()=>{
- const result=runLua('tests/lua/runtime_ui_trajectory.lua');assert.equal(result.status,0,result.stdout+result.stderr);
+function assertLaneTrajectory(stdout){
  const lines=text=>text.split(/\r?\n/).filter(line=>line.startsWith('RUNTIME_TRAJECTORY '));
- assert.deepEqual(lines(result.stdout),lines(readFileSync('docs/evidence/m9-runtime-20261103/baseline-trajectory.txt','utf8')));
+ const actual=lines(stdout),before=lines(readFileSync('docs/evidence/m9-runtime-20261103/baseline-trajectory.txt','utf8'));
+ assert.equal(actual.length,before.length);
+ const settled=before[0].split('|').slice(10).map(s=>Number(s.split(',')[1]));
+ const settledLane=Math.min(...settled.slice(1).map((x,j)=>Math.abs(x-settled[j])));
+ for(let i=0;i<actual.length;i++){
+  const a=actual[i].split('|'),b=before[i].split('|');assert.equal(a.length,b.length);
+  assert.deepEqual(a.slice(0,10),b.slice(0,10),'game state and event order');
+  const cards=b.slice(10).map(s=>s.split(','));
+  for(let k=10;k<a.length;k++){
+   const fields=a[k].split(','),prior=b[k].split(',');assert.equal(fields.length,prior.length);
+   // #621 intentionally capped overlapping hit rectangles to adjacent card
+   // lanes. Derive the lane independently from the immutable card positions;
+   // every other old transform/value must still match byte-for-byte.
+   const lane=cards.length>1?settledLane:Infinity;
+   const settledWidth=Number(before[0].split('|')[k].split(',')[7]);
+   // Drag frames retain the last painted hand hit rectangle while the carried
+   // card scales independently. Preserve that cached geometry's old ratio.
+   const width=Number(prior[7])*Math.min(1,lane/settledWidth);
+   assert(Math.abs(Number(fields[7])-width)<1e-8,'hand hit width must fill exactly one non-overlapping lane');
+   for(let f=0;f<fields.length;f++)if(f!==7)assert.equal(fields[f],prior[f],`trajectory ${i} card ${k-10} field ${f}`);
+  }
+ }
+}
+test('real Host ordered trajectory preserves the frozen values with disjoint hand hit lanes',()=>{
+ const result=runLua('tests/lua/runtime_ui_trajectory.lua');assert.equal(result.status,0,result.stdout+result.stderr);
+ assertLaneTrajectory(result.stdout);
+});
+test('real trajectory rejects removal of the disjoint hand lane cap',()=>{
+ const module='abyss_battle_card_view',source=readFileSync(`src/lua/${module}.lua`,'utf8');
+ const anchor='math.min(width,target.hitWidth or width)';assert.equal(source.split(anchor).length,2);
+ const file=join(tmpdir(),`hand-lane-mutant-${randomUUID()}.lua`);
+ writeFileSync(file,`package.preload[${luaString(module)}]=assert(load(${luaString(source.replace(anchor,'width'))},'@lane-mutant'))\ndofile('tests/lua/runtime_ui_trajectory.lua')\n`);
+ try{const result=runLua(file);assert.equal(result.status,0,result.stdout+result.stderr);assert.throws(()=>assertLaneTrajectory(result.stdout),/hand hit width must fill exactly one non-overlapping lane/);}finally{unlinkSync(file);}
 });
 const mutations=[
  ['owner','painted.owner==owner and ','','shared native owner was ignored'],

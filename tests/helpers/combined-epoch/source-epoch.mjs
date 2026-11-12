@@ -2,6 +2,7 @@ import {extendCursesEpoch} from '../curses-source-epoch.mjs';
 import {extendBattleQueueEpoch} from '../battle-queue-source-epoch.mjs';
 import {extendDefectActorEpoch} from '../defect-actor-source-epoch.mjs';
 import {extendJoustEpoch} from '../joust-source-epoch.mjs';
+import {extendOfficialUiRepairEpoch} from '../official-ui-repair-source-epoch.mjs';
 import {extendJointUiEpoch} from '../joint-ui-source-epoch.mjs';
 import {extendNoncombatEpoch} from '../noncombat-source-epoch.mjs';
 import {extendNoncombatDemandEpoch} from '../noncombat-demand-source-epoch.mjs';
@@ -29,3 +30,6 @@ export {preGoldenIdolEpoch};
 export const goldenIdolIntegratedEpoch=extendGoldenIdolEpoch(preGoldenIdolEpoch);
 
 export const joustIntegratedEpoch=extendJoustEpoch(preJoustEpoch);
+
+export const preOfficialUiRepairEpoch=extendBattleQueueEpoch(preBattleQueueEpoch);
+export const officialUiRepairIntegratedEpoch=extendOfficialUiRepairEpoch(preOfficialUiRepairEpoch);
