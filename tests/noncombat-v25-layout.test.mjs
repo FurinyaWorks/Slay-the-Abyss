@@ -31,7 +31,7 @@ test('official menu and selection reuse live inputs with bounded native decorati
   assert(rim&&cloth,'approved flag has separate irregular rim and cloth');
   assert(parts(cloth).length<=30);assert(parts(rim).length<=30);
   for(const band of parts(cloth)){assert.equal(band.image,theme.image.rect);assert.equal(band.colour,fills[key][state.name]);}
-  assert.equal(child(state,'label').text.colour,'#FFF0B1');
+  assert.equal(child(state,'label').text.colour,state.name==='disabled'?theme.color.textMuted:theme.officialAssets.buttonInk,'shared official button ink preserves disabled distinction');
   assert.equal(child(state,'plate').visible,false);assert.equal(child(state,'border').visible,false);
   assert.equal(all(flag).some(n=>n.image===theme.officialAssets.images.button),false,'official rectangle must not replace original flag');
  }

@@ -154,6 +154,14 @@
     "official-ui-repair-simulator-evidence": {
       "status": "Actual project GIL/Simulator UI evidence with existing Genshin platform picture IDs and project-native geometry. Platform-project evidence only; no official asset/IP sublicense, commercial clearance, official-client or physical-device acceptance. No private V25 reference pixels or SDK bundle redistributed.",
       "evidence": "docs/evidence/official-ui-repair-20261112/README.md; candidate.json; capture receipts and raw states. Project screenshots/crops/comparison composition from current native UI; beyond-simulator 0.5.2 installation retains its own GPL license."
+    },
+    "menu-native-2d-evidence": {
+      "status": "Project Simulator screenshots of project-authored native 2D geometry and existing platform UI. Official platform picture IDs and game identities remain their owners IP; evidence-only, no asset/IP sublicense, commercial clearance, official import or device acceptance.",
+      "evidence": "docs/evidence/menu-native-2d-20261112/README.md; identity.json binds screenshots to original candidate 447e7f20 and source3a2fee27; PR633 independent visual/code review. Simulator SDK/tool license remains separate."
+    },
+    "menu-user-reference": {
+      "status": "User-supplied visual reference retained for the requested TASK-103.4 composition comparison. Original authorship and third-party rights remain with their owners; no redistribution sublicense or commercial clearance inferred. Reference-only, not a runtime asset.",
+      "evidence": "docs/evidence/menu-native-2d-20261112/README.md and menu_reference.png; PR633 records the unique user attachment and the permitted abstract reconstruction. Existing repository noncommercial scope remains unchanged."
     }
   },
   "files": {
@@ -6444,6 +6452,22 @@
     "docs/evidence/official-ui-repair-20261112/touch-comparison.png": {
       "sha256": "76e544346cae2c84b37cc70ca2d985576a015e9ae7a068ddba870eaf26535ef5",
       "category": "official-ui-repair-simulator-evidence"
+    },
+    "docs/evidence/menu-native-2d-20261112/menu.png": {
+      "sha256": "e7914067459c4c68017cd65b17b92d65f29325e387b14b12ef42caa447e73ff6",
+      "category": "menu-native-2d-evidence"
+    },
+    "docs/evidence/menu-native-2d-20261112/returned-menu.png": {
+      "sha256": "e7914067459c4c68017cd65b17b92d65f29325e387b14b12ef42caa447e73ff6",
+      "category": "menu-native-2d-evidence"
+    },
+    "docs/evidence/menu-native-2d-20261112/character.png": {
+      "sha256": "41a8f539819687f4380882239a66a1b2f30d6b323b4e548aa9de451067e6e350",
+      "category": "menu-native-2d-evidence"
+    },
+    "docs/evidence/menu-native-2d-20261112/menu_reference.png": {
+      "sha256": "ca8965d77a74a2f1c6e7579f846d86298a619fb450586d148b02a21b73401bb1",
+      "category": "menu-user-reference"
     }
   }
 }
