@@ -15,7 +15,7 @@ test('relic controller Confirm suppresses only its same-frame native Click acros
   assert.match(result.stdout,/RELIC_CONTROLLER_CLICK_PASS/);
 });
 
-test('official generated relic HUD uses native hover, raw counters and restores noncombat geometry',t=>{
+test('official generated relic HUD shares geometry, hover and owned details across run pages',t=>{
   const parent=resolve('.artifacts/test-tmp');mkdirSync(parent,{recursive:true});
   const directory=mkdtempSync(join(parent,'relic-hud-'));
   t.after(()=>rmSync(directory,{recursive:true,force:true}));

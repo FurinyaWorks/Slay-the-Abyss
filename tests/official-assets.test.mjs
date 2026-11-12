@@ -94,7 +94,8 @@ test('approved pages keep live input identities while unrelated pages retain the
    }
   for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget']){
    const potionLabel=/^\/SlayTheAbyss\/potionEntry\/open\/hit\/(?:normal|hover|pressed|disabled)\/label$/.test(path);
-   const expected=key==='size'&&cardText.get(node)==='cost'
+   const relicHit=/^\/SlayTheAbyss\/relicBar\/slot\d+\/hit$/.test(path);
+   const expected=key==='size'&&relicHit?[theme.officialAssets.battleRelicBar.hit,theme.officialAssets.battleRelicBar.hit]:key==='size'&&cardText.get(node)==='cost'
     ?child(child(child(layout,'battlePanel'),'card1'),'cost').size:key==='visible'&&potionLabel?false:before[key];
    assert.deepEqual(node[key],expected,path+' '+key);
   }
@@ -110,6 +111,11 @@ test('approved pages keep live input identities while unrelated pages retain the
    if(restoredPagePath(path)||path.startsWith('/SlayTheAbyss/deckPanel/pileReturn'))continue;
    assert.equal(current.get(path),node,path);
    for(const key of Object.keys(before)){
+    const relicSlot=/^\/SlayTheAbyss\/relicBar\/slot(\d+)$/.exec(path);
+    if(relicSlot&&key==='position'){
+     const bar=theme.officialAssets.battleRelicBar;
+     assert.deepEqual(node.position,[bar.origin[0]+bar.step*(Number(relicSlot[1])-1),bar.origin[1]],path+' canonical position');continue;
+    }
     // Only these shared card decoration fields adopt battle geometry; host
     // placement, input identity and every unrelated transform stay unchanged.
     const expected=key==='scale'&&cardWells.has(node)

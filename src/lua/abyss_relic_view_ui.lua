@@ -143,7 +143,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         if self.visible or not run then return false end
         self:resetBarHover()
         self.visible,self.run=true,run
-        self.selectedIndex=run.phase=='combat' and type(index)=='number' and run.relics[index] and index or nil
+        self.selectedIndex=(official or run.phase=='combat') and type(index)=='number' and run.relics[index] and index or nil
         self.page=index and math.floor((index-1)/perPage())+1 or 1
         root:SetVisible(true);root:SetAsLastSibling()
         self:render();return true
@@ -167,9 +167,8 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
     -- becomes a +N overflow chip that opens the paginated overlay there.
     function self.refreshBar(_,run,visible)
         local relics=run and run.relics or {}
-        local battle=official and run and run.phase=='combat'
-        local style=battle and battleBar or baseBar
-        self.barInteractive=battle and visible and not self.visible or false
+        local style=official and battleBar or baseBar
+        self.barInteractive=official and visible and not self.visible or false
         if not self.barInteractive then self:resetBarHover()end
         bar:SetVisible(visible and run~=nil)
         bar:GetChild('tray'):SetVisible(false) -- STS: discs float under the HP row, no tray capsule
@@ -182,13 +181,13 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             local icon,hit=slot:GetChild('icon'),slot:GetChild('hit')
             icon:SetSizeDelta(style.icon,style.icon)
             hit:SetSizeDelta(style.hit or style.step,style.hit or 44)
-            for _,name in ipairs({'rim','face'})do slot:GetChild(name):SetVisible(not battle)end
+            for _,name in ipairs({'rim','face'})do slot:GetChild(name):SetVisible(not official)end
             local more=type(cell)=='string'
             icon:SetVisible(not more)
             slot:GetChild('more'):SetVisible(more)
             slot:GetChild('more').text=more and cell or ''
             if cell and not more then picture(icon,M.icon(relics[i],battle))end
-            paintCounter(slot,run,cell and not more and relics[i] or nil,battle)
+            paintCounter(slot,run,cell and not more and relics[i] or nil,official)
         end
     end
     root.disableCursorEventPassthrough=true
@@ -206,6 +205,11 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             return action()
         end)
         Controller.bind(platform.controller,hit,'deck',action,function()return self.visible end)
+    end
+    local function openSlot(i)
+        -- The overflow cell represents a collection, not the relic at its index.
+        if bar:GetChild('slot'..i):GetChild('more').visible then return onSlot()end
+        return onSlot(i)
     end
     for i=1,boundCount do
         local hit=bar:GetChild('slot'..i):GetChild('hit')
@@ -226,9 +230,9 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         end
         hit:AddCursorEventListener(clickEvent,function()
             if Controller.pointerBlocked(platform.controller)then return false end
-            return onSlot(i)
+            return openSlot(i)
         end)
-        Controller.bind(platform.controller,hit,barScope,function()return onSlot(i)end)
+        Controller.bind(platform.controller,hit,barScope,function()return openSlot(i)end)
     end
     return self
 end

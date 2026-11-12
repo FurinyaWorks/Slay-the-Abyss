@@ -9,6 +9,25 @@ import { applyOfficialAssets, officialAssetsTheme } from '../scripts/official-as
 const frame = c => [...(c.position ?? [0, 0]), ...c.size];
 const clear = (a, b) => Math.abs(a[0] - b[0]) >= (a[2] + b[2]) / 2 ||
   Math.abs(a[1] - b[1]) >= (a[3] + b[3]) / 2;
+test('official relic surfaces reuse the battle information-window material and preserve controls',()=>{
+  const layout=gameLayout(),t=officialAssetsTheme(theme),parts=n=>n.controls??n.children??[],child=(n,k)=>parts(n).find(c=>c.name===k);
+  const panel=child(layout,'relicPanel'),bar=child(layout,'relicBar');
+  const rows=parts(panel).filter(n=>/^row\d+$/.test(n.name)),live=[panel,...rows,...['blocker','contentBlocker','single','close','next','previous'].map(k=>child(panel,k))];
+  const before=live.map(n=>JSON.stringify([n.position,n.size]));
+  applyOfficialAssets([layout],t);
+  live.forEach((n,i)=>assert.equal(JSON.stringify([n.position,n.size]),before[i]));
+  for(const host of [panel,...rows]){
+    const border=child(host,host===panel?'frame':'border'),plate=child(host,'plate');
+    assert.equal(border.image,t.image.rect);assert.equal(border.colour,t.color.goldDim);
+    assert.equal(plate.image,t.image.rect);assert.equal(plate.colour,t.color.panelSunken);
+  }
+  const style=t.officialAssets.battleRelicBar;
+  for(let i=1;i<=style.count;i++){
+    const slot=child(bar,'slot'+i);assert.deepEqual(slot.position,[style.origin[0]+style.step*(i-1),style.origin[1]]);
+    assert.deepEqual(child(slot,'icon').size,[style.icon,style.icon]);assert.deepEqual(child(slot,'hit').size,[style.hit,style.hit]);
+    assert.equal(child(slot,'rim').visible,false);assert.equal(child(slot,'face').visible,false);
+  }
+});
 function assertBarGeometry(t) {
   const [bar] = relicViewControls(t), [tray, ...slots] = bar.children;
   const obstacles = Object.values(t.layout.nativeNode.topBar);

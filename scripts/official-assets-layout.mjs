@@ -176,10 +176,28 @@ function buttonFaces(node,theme){
     label.text.colour=face.name==='disabled'?theme.color.textMuted:theme.officialAssets.buttonInk;
  }
 }
-function panelSurfaces(node,theme){
+function relicSurfaces(stage,theme){
+ const bar=child(stage,'relicBar'),panel=child(stage,'relicPanel'),protectedHosts=new Set();
+ if(bar){
+  const style=theme.officialAssets.battleRelicBar;
+  for(let i=1;i<=style.count;i++){
+   const slot=required(bar,'slot'+i);slot.position=[style.origin[0]+style.step*(i-1),style.origin[1]];
+   required(slot,'icon').size=[style.icon,style.icon];required(slot,'hit').size=[style.hit,style.hit];
+   required(slot,'rim').visible=false;required(slot,'face').visible=false;
+  }
+ }
+ if(panel)for(const host of [panel,...children(panel).filter(n=>/^row\d+$/.test(n.name))]){
+  // The existing battle potion information window uses these same native
+  // rectangle materials. Keep its live bounds and every read-only input owner.
+  setImage(required(host,host===panel?'frame':'border'),theme.image.rect,theme.color.goldDim);
+  setImage(required(host,'plate'),theme.image.rect,theme.color.panelSunken);protectedHosts.add(host);
+ }
+ return protectedHosts;
+}
+function panelSurfaces(node,theme,protectedHosts){
  // Keep all modal catchers, live field paths, sizes and visibility. Only replace
 // large landscape image surfaces; do not stretch the landscape plaque into icons.
- if(node.kind!=='container')return;
+ if(node.kind!=='container'||protectedHosts?.has(node))return;
  const hasText=children(node).some(item=>item.kind==='text');
  if(!hasText)return;
  for(const name of ['face','panel','plate']){
@@ -241,6 +259,7 @@ export function applyOfficialAssets(trees,theme){
    for(const host of [child(stage,'relicBar'),child(stage,'relicPanel')])if(host)walk(host,node=>{
     if(node.kind==='image'&&node.name==='icon')node.colour='#FFFFFF';
    });
+   const relicHosts=relicSurfaces(stage,theme);
    if(child(stage,'battlePanel')||child(stage,'endTurn')){
     applyV25BattleLayout(tree,theme);
     applyV25BattleChrome(tree,theme);
@@ -257,7 +276,7 @@ export function applyOfficialAssets(trees,theme){
     // geometry and preferred sizes, and let the existing autosizer fit the text.
     if(node.kind==='text'&&node.text?.autoSize&&node.text.minFontSize*1.45+4>node.size?.[1])node.text.minFontSize=theme.font.minimum;
    if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme);cardHosts++;}
-   else {buttonFaces(node,theme);panelSurfaces(node,theme);pageBackgrounds(node,theme);roomTextFits(node,theme);}
+   else {buttonFaces(node,theme);panelSurfaces(node,theme,relicHosts);pageBackgrounds(node,theme);roomTextFits(node,theme);}
   });
   const pileReturn=child(child(tree,'stage')??tree,'deckPanel');
   if(child(pileReturn,'pileReturn'))battlePileReturn(child(pileReturn,'pileReturn'),true,theme.officialAssets.images.button,theme.officialAssets.buttonInk);
