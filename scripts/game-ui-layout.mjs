@@ -135,7 +135,7 @@ export function gameLayout(theme = nativeTheme, options = {}) {
       ...exitControls(theme),
     ],
   };
-  const overlays = new Set(['deckPanel', 'relicPanel', 'potionPanel', 'choicePanel', 'characterPanel', 'exitPanel', 'runMenu', 'prologuePanel']);
+  const overlays = new Set(['deckPanel', 'relicPanel', 'potionPanel', 'choicePanel', 'characterPanel', 'exitPanel', 'runMenu', 'diagnosticsPanel', 'prologuePanel']);
   for (const control of layoutTree.controls) if (overlays.has(control.name)) control.isolateNavigation = true;
   const menuPanel=layoutTree.controls.find(c=>c.name==='menuPanel');
   for(const name of ['vista','heroArt']){const old=menuPanel.children.find(c=>c.name===name);if(old)old.visible=false;}

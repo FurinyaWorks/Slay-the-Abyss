@@ -87,6 +87,7 @@ function M.disable(self,platform,controller,characterPanel,owner)
             if controller then controller:disable() end
             owner.exitGeneration=owner.exitGeneration+1;owner.menuGeneration=owner.menuGeneration+1
             self.characterOpen=false
+            self.diagnosticsOpen=false
             if characterPanel then characterPanel:SetVisible(false) end
             -- Set every controller inert before cancelling feedback: cancellation
             -- invokes its completion callback synchronously, which now cannot refresh.

@@ -419,7 +419,7 @@ function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVis
             exitEntry:SetVisible(exitEntryVisible())
             exitEntry:SetAsLastSibling()
             exitPanel:SetVisible(exitDialogOwnsForeground())
-            runMenu:SetVisible(self.exitOpen == true and self.menuOpen == true and not self.controlsOpen and not self.routeOpen)
+            runMenu:SetVisible(self.exitOpen == true and self.menuOpen == true and not self.controlsOpen and not self.routeOpen and not self.diagnosticsOpen)
             -- TASK-4.16 AC#2：未启程时地图入口整颗隐藏（不再挂「启程后可用」的灰按钮）。
             local routeBox=runMenu:GetChild('map')
             local routeHit=routeBox:GetChild('hit')
@@ -454,6 +454,12 @@ function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVis
                 self.mapUI:setVisible(true)
                 self.mapUI:setNavigationEnabled(false)
                 child('mapPanel'):SetAsLastSibling()
+            end
+            local diagnostics = self.diagnosticPanel
+            if diagnostics then
+                local visible = self.exitOpen == true and self.diagnosticsOpen == true
+                diagnostics:SetVisible(visible)
+                if visible then diagnostics:SetAsLastSibling() end
             end
             refreshExitDialog()
         end
@@ -516,6 +522,7 @@ function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleS
             finishRunFlow(run)
             local covering = syncOpening(run)
             selectMode(run)
+            if self.diagnostics then self.diagnostics:observe(self.mode,run) end
             syncOfficialBattleScene(run)
             local inMenu = self.mode == "menu" or self.mode == "defeat" or self.mode == "victory"
             syncMenuContext(run,inMenu)

@@ -46,6 +46,29 @@ function M.new(root, data, presentation, clickEvent, platform)
     local exitPanel, exitEntry = child("exitPanel"), child("exitEntry")
     local runMenu = child("runMenu")
     local owner = {exitGeneration=0, menuGeneration=0, ready=false}
+    -- Optional in legacy layout fixtures; the shipped layout always supplies it.
+    local diagnosticPanel = root:GetChild('diagnosticsPanel')
+    self.diagnosticPanel = diagnosticPanel
+    self.diagnosticsOpen = false
+    if diagnosticPanel then
+        self.diagnostics = require('abyss_diagnostic_report').new(require('abyss_narrative').codeVersion)
+    end
+    function self:openDiagnostics()
+        if not self.diagnostics or self.disabled or not self.exitOpen or not self.menuOpen
+            or self.controlsOpen or self.routeOpen or self.diagnosticsOpen or self.settlementBusy then return false end
+        self.diagnostics:render(diagnosticPanel,self,platform)
+        owner.exitGeneration = owner.exitGeneration + 1
+        self.diagnosticsOpen = true
+        self:refresh()
+        return true
+    end
+    function self:closeDiagnostics()
+        if not self.diagnosticsOpen then return false end
+        owner.exitGeneration = owner.exitGeneration + 1
+        self.diagnosticsOpen = false
+        self:refresh()
+        return true
+    end
     local characterPanel = child("characterPanel")
     self.characterSelection=CharacterSelect.new(data,presentation,platform.campaignProfile or platform.characterProfile)
     self.fastMode=false

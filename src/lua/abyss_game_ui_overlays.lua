@@ -120,6 +120,11 @@ function M.closeExit(self,exitPanel,owner)
     return function(_)
             if not self.exitOpen or self.settlementRequested or self.settlementBusy then return false end
             owner.exitGeneration = owner.exitGeneration + 1
+            if self.diagnosticsOpen then
+                self.diagnosticsOpen = false
+                self:refresh()
+                return true
+            end
             if self.routeOpen then
                 self.routeOpen = false
                 -- Route preview returns directly to its caller, not a hidden parent menu.
@@ -140,7 +145,7 @@ end
 function M.confirmExit(self,owner)
     return function(_)
             if self.disabled then return false,"ui_disabled" end
-            if self.controlsOpen or self.menuOpen or self.routeOpen then return false,"menu_open" end
+            if self.controlsOpen or self.diagnosticsOpen or self.menuOpen or self.routeOpen then return false,"menu_open" end
             if not self.exitOpen then return false, "exit_not_open" end
             -- Voluntary departure never changes combat HP, awards a victory, or
             -- fakes a defeated Run. An already-earned victory keeps its outcome.

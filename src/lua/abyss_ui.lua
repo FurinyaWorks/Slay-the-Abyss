@@ -16,7 +16,7 @@ local function failed(phase, reason)
     pcall(function()
         local stage = script.object:GetChild("stage")
         for _, name in ipairs({"battlePanel", "mapPanel", "nodePanel", "deckEntry", "deckPanel",
-            "characterPanel", "choicePanel", "potionPanel", "potionEntry", "prologuePanel", "exitPanel", "exitEntry", "combatRewards", "victoryEasterEgg"}) do
+            "characterPanel", "choicePanel", "potionPanel", "potionEntry", "prologuePanel", "exitPanel", "exitEntry", "combatRewards", "diagnosticsPanel", "victoryEasterEgg"}) do
             local panel=stage:GetChild(name)
             if panel then panel:SetVisible(false) end
         end
@@ -187,6 +187,7 @@ function OnStart()
               -- foreground/background transitions. Do not publish it as accurate
               -- elapsed time; retain the internal Host counter unchanged.
               runTimeUnavailable = true,
+              getViewport = function() return game.GetUICanvasSize() end,
               createEasterEggArt=createEasterEggArt,
               characterProfile = (alpha or isTest and testPlay == true) and "competition-candidate" or "production",
               controllerApi = {events=Enum.ControllerNavigationEventType,directions=Enum.ControllerNavigationDir,

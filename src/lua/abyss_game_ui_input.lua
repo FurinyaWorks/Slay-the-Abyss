@@ -103,7 +103,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                 return resultAvailable()
             end
             local function runMenuAvailable()
-                if runMenuAction then return self.exitOpen and self.menuOpen == true and not self.routeOpen and (not enabled or enabled()) end
+                if runMenuAction then return self.exitOpen and self.menuOpen == true and not self.routeOpen and not self.diagnosticsOpen and (not enabled or enabled()) end
                 if self.menuOpen or self.routeOpen then return false end
                 return characterAvailable()
             end
@@ -112,7 +112,8 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                 if kind == 'routeClose' then return self.exitOpen and self.routeOpen == true end
                 if mapReturn then return M.mapReturnAvailable(self) end
                 if kind == 'helpClose' then return self.exitOpen and self.controlsOpen == true end
-                if self.controlsOpen then return false end
+                if kind == 'diagnosticsClose' then return self.exitOpen and self.diagnosticsOpen == true end
+                if self.controlsOpen or self.diagnosticsOpen then return false end
                 return runMenuAvailable()
             end
             local function available()
@@ -172,7 +173,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                 if kind=='egg_close' then return 'easterEgg'end
                 if characterAction then return 'characters' end
                 if mapReturn then return self.routeOpen and 'exit' or 'map' end
-                if runMenuAction or kind=='routeClose' or kind=='cancel' or kind=='confirm' or kind=='help' or kind=='helpClose' then return 'exit' end
+                if runMenuAction or kind=='routeClose' or kind=='cancel' or kind=='confirm' or kind=='help' or kind=='helpClose' or kind=='diagnosticsClose' then return 'exit' end
                 return self.mode
             end,action,available,order or (kind=='cancel' and 1 or kind=='open' and 200 or 100),group,onFocus)
             hit:AddCursorEventListener(clickEvent, function(event)
@@ -212,6 +213,12 @@ function M.installUtilities(self,child,clickEvent,controller,inCombat,exitPanel,
         return true
     end)
     runMenu:GetChild('catch'):AddCursorEventListener(clickEvent, function() return true end)
+    local diagnostics = self.diagnosticPanel
+    if diagnostics then
+        diagnostics.disableCursorEventPassthrough = true
+        diagnostics:GetChild('blocker'):AddCursorEventListener(clickEvent,function() return true end)
+        diagnostics:GetChild('catch'):AddCursorEventListener(clickEvent,function() return true end)
+    end
     return dismissFromOutside
 end
 
@@ -277,6 +284,10 @@ function M.installGuide(self,exitPanel,clickEvent,bindCommand,dismissFromOutside
         self:refresh()
         return true
     end)
+    if self.diagnosticPanel then
+        bindCommand(runMenu:GetChild('diagnostics'), 'run_diagnostics', function() return self:openDiagnostics() end)
+        bindCommand(self.diagnosticPanel:GetChild('close'), 'diagnosticsClose', function() return self:closeDiagnostics() end)
+    end
     bindCommand(runMenu:GetChild('resume'), 'run_resume', function() return self:closeExit() end)
     bindCommand(runMenu:GetChild('abandon'), 'run_abandon', function()
         owner.exitGeneration = owner.exitGeneration + 1
