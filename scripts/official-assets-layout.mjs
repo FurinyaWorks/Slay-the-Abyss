@@ -6,7 +6,7 @@ import {v25Theme,applyV25BattleLayout,rebuildV25CardFaces} from './v25-layout.mj
 import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
 import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
 import {battlePileReturn} from './official-battle-pile-chrome.mjs';
-import {preflightOfficialRoots,composeOfficialRun,assertOfficialRunContracts} from './official-run-layout.mjs';
+import {preflightOfficialRoots,composeOfficialRun,finishOfficialComposition} from './official-run-layout.mjs';
 const children=node=>node?.controls??node?.children??[];
 const child=(node,name)=>children(node).find(item=>item.name===name);
 const required=(node,name)=>{const value=child(node,name);if(!value)throw Error('Official assets missing '+name);return value;};
@@ -286,6 +286,6 @@ export function applyOfficialAssets(trees,theme){
   }
   composeOfficialRun(tree,theme);
  }
- assertOfficialRunContracts(trees);
+ finishOfficialComposition(trees);
  return {cardHosts,removedControls};
 }

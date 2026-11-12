@@ -12,6 +12,7 @@ const stage=tree=>child(tree,'stage')??tree;
 const walk=(node,visit)=>{visit(node);for(const part of parts(node))walk(part,visit);};
 const templates=new Set(['AbyssDeckCard','AbyssBattlePileCard','AbyssReadyCardGroup',
  'AbyssReadyCardImage','AbyssMonsterActor','AbyssMonsterPower']);
+const composed=new WeakSet();
 const runRoles=['menuPanel','characterPanel','mapPanel','nodePanel','battlePanel',
  'deckPanel','potionEntry','relicBar','relicPanel'];
 function required(node,name){
@@ -25,6 +26,11 @@ function rootKind(tree){
  if(templates.has(tree?.name))return 'template';
  throw Error('Unregistered official root '+tree?.name);
 }
+function preflightCard(face){
+ for(const role of ['roundFrame','roundShadow','roundBody','skin','costCore','costDisc',
+  'roleRing','roleMark','nameBand','nameRule','name','cost','tagEdge','tagBody'])required(face,role);
+ for(const role of ['attack','skill','power'])required(required(face,'skin'),role);
+}
 export function preflightOfficialRoots(trees){
  // Validate the entire batch before any host is changed.
  const roots=new Set();
@@ -32,17 +38,24 @@ export function preflightOfficialRoots(trees){
   if(roots.has(tree))throw Error('Duplicate official root '+tree.name);
   roots.add(tree);
   const kind=rootKind(tree),host=stage(tree);
-  if(['AbyssDeckCard','AbyssBattlePileCard'].includes(tree.name))required(tree,'face');
+  if(composed.has(tree))throw Error('Official composition already applied: '+tree.name);
+  if(['AbyssDeckCard','AbyssBattlePileCard'].includes(tree.name))preflightCard(required(tree,'face'));
   if(kind==='run')for(const role of runRoles)required(host,role);
   if(kind!=='template'){
    const battle=kind==='run'?child(host,'battlePanel'):host;
    for(const role of ['topBar','card1','rewardStage','rewardList','endTurn'])required(battle,role);
+   preflightCard(child(battle,'card1'));
   }
   walk(tree,node=>{
    if(['nativeCardBody','officialRunBar','v25MapPaper'].includes(node.name))
     throw Error('Official composition already applied: '+tree.name+'/'+node.name);
+   if(child(node,'roundFrame')||child(node,'skin')||child(node,'costDisc'))preflightCard(node);
   });
  }
+}
+export function finishOfficialComposition(trees){
+ assertOfficialRunContracts(trees);
+ for(const tree of trees)composed.add(tree);
 }
 export function composeOfficialRun(tree,theme){
  const kind=rootKind(tree);

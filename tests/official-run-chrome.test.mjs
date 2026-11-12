@@ -36,6 +36,13 @@ test('official composition validates the whole batch and rejects repeated compos
  const applied=structuredClone(first);
  assert.throws(()=>applyOfficialAssets([first],theme),/already applied/);
  assert.deepEqual(first,applied);
+ const nested=deckCardTemplate();child(nested,'face').children=[];
+ const valid=gameLayout(),untouched=structuredClone(valid);
+ assert.throws(()=>applyOfficialAssets([valid,nested],theme),/missing roundFrame/);
+ assert.deepEqual(valid,untouched,'a malformed later card cannot partly convert earlier run roots');
+ const template={name:'AbyssReadyCardGroup',kind:'container',children:[],size:[144,64]};
+ applyOfficialAssets([template],theme);
+ assert.throws(()=>applyOfficialAssets([template],theme),/already applied/);
 });
 
 test('final contracts cover every card host and reject local skin, bar and relic regressions',()=>{
