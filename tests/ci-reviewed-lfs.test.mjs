@@ -242,7 +242,7 @@ test('complete existing media are freshly authenticated on a cache hit without a
 test('cold partial checkout checks all text and exact media pointers without downloading old binary',async t=>{
  const directory=mkdtempSync(join(tmpdir(),'media-ws-'));t.after(()=>rmSync(directory,{recursive:true,force:true}));
  const source=join(directory,'source'),clone=join(directory,'clone');mkdirSync(source);
- const env={...process.env,CI_COMPARISON_BASE:'',GIT_LFS_SKIP_SMUDGE:'1',GIT_TERMINAL_PROMPT:'0'};
+ const env={...process.env,CI_COMPARISON_BASE:'',GIT_LFS_SKIP_SMUDGE:'1',GIT_TERMINAL_PROMPT:'0',GIT_NO_LAZY_FETCH:'1'};
  const run=(cwd,args,input,extra={})=>{const result=spawnSync('git',args,{cwd,input,env:{...env,...extra},encoding:'utf8',windowsHide:true,timeout:30000,maxBuffer:8*1024*1024});assert.equal(result.status,0,result.stdout+result.stderr);return result.stdout.trim();};
  run(source,['init']);run(source,['config','user.name','Media CI fixture']);run(source,['config','user.email','media@example.invalid']);run(source,['config','core.longpaths','true']);run(source,['config','uploadpack.allowFilter','true']);run(source,['config','uploadpack.allowAnySHA1InWant','true']);
  for(const row of mediaFiles){const path=join(source,row.path);mkdirSync(resolve(path,'..'),{recursive:true});writeFileSync(path,mediaPointer(row));}
@@ -254,7 +254,10 @@ test('cold partial checkout checks all text and exact media pointers without dow
  const old=run(source,['hash-object','-w','--stdin'],original);assert(small.oldBinaryGitBlobs.includes(old));
  run(source,['update-index','--cacheinfo','100644,'+old+','+small.path]);run(source,['commit','-m','binary baseline']);const base=run(source,['rev-parse','HEAD']);
  writeFileSync(join(source,'source.txt'),'after\n');run(source,['add','.']);run(source,['commit','-m','pointer candidate']);const head=run(source,['rev-parse','HEAD']);
- run(directory,['clone','--no-checkout','--filter=blob:none','--depth=2',pathToFileURL(source).href,clone]);run(clone,['config','core.longpaths','true']);run(clone,['checkout','--detach','HEAD']);run(clone,['config','user.name','Media CI fixture']);run(clone,['config','user.email','media@example.invalid']);
+ run(directory,['clone','--no-checkout','--filter=blob:none','--depth=2',pathToFileURL(source).href,clone]);run(clone,['config','core.longpaths','true']);
+ // Match the real pre-guard checkout: materialize HEAD first. Every subsequent
+ // operation inherits the explicit no-lazy-fetch setting, including local runs.
+ run(clone,['checkout','--detach','HEAD'],undefined,{GIT_NO_LAZY_FETCH:'0'});run(clone,['config','user.name','Media CI fixture']);run(clone,['config','user.email','media@example.invalid']);
  const prepared=prepareComparisonBlobs({root:clone,env:{...env,CI_COMPARISON_TOKEN:'local-fixture'}});assert.equal(prepared.parents[0],base);assert(prepared.fetched>0&&prepared.bytes<8*1024*1024);
  const absent=()=>run(clone,['cat-file','--batch-check'],old+'\n',{GIT_NO_LAZY_FETCH:'1'});assert.match(absent(),/ missing$/);
  const measured=()=>checkHostedCheckout({cwd:clone,sha:head,summary:join(directory,'summary'),log(){}});

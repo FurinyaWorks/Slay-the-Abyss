@@ -1,6 +1,6 @@
 // Independent, bounded Lua VM. Preserve complete graphs and exact return arity.
 import assert from 'node:assert/strict';
-import {readFileSync,writeFileSync} from 'node:fs';
+import {readFileSync,writeFileSync,openSync,closeSync} from 'node:fs';
 import {createRequire} from 'node:module';
 import {luaString} from '../../scripts/build-lua-data.mjs';
 import {comparableAct1ChoiceError,verifyAct1ChoiceErrorSite} from './epochs/act1/tests/helpers/act1-choice-source-inverse.mjs';
@@ -10,12 +10,17 @@ const {lua,lauxlib,lualib,to_luastring,to_jsstring}=require('fengari');
 const {source,fixture,output,group}=JSON.parse(readFileSync(0,'utf8'));
 verifyAct1ChoiceErrorSite(readFileSync('src/lua/abyss_act1_events.lua','utf8'));
 const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);
-const records=[],logs=[];let bytes=0;
+const logs=[];let bytes=0,checkpoints=0;
+const graphFile=openSync(output,'w');
+try{
 installLuaGraphObserver(L,'ACT1_GRAPH',(label,graph)=>{
  // The observer already returns canonical JSON. Preserve it verbatim instead
  // of allocating and re-encoding the complete graph at every checkpoint.
  const row=`{"label":${JSON.stringify(label)},"graph":${graph}}`;bytes+=Buffer.byteLength(row)+1;
- assert(bytes<=1024**3,'complete graph output budget');records.push(row);
+ assert(bytes<=1024**3,'complete graph output budget');
+ // Keep one complete row in memory; writeFileSync handles short UTF-8 writes
+ // on the already-open descriptor without retaining another whole graph stream.
+ writeFileSync(graphFile,row+'\n');checkpoints++;
 });
 lua.lua_pushcfunction(L,L=>{logs.push(to_jsstring(lauxlib.luaL_tolstring(L,1)));return 0;});
 lua.lua_setglobal(L,to_luastring('print'));
@@ -46,9 +51,7 @@ const prelude=`package.path='tests/lua/?.lua;src/lua/?.lua;build/lua/?.lua;'..pa
  end
  ACT1_BOUNDARY_GROUP=${group??'nil'}
  dofile(${luaString(fixture)})`;
-try{
  const status=lauxlib.luaL_dostring(L,to_luastring(prelude));
  const error=status===lua.LUA_OK?null:to_jsstring(lua.lua_tostring(L,-1));
- writeFileSync(output,records.length?records.join('\n')+'\n':'');
- console.log(JSON.stringify({status,error,checkpoints:records.length,bytes,logs}));
-}finally{lua.lua_close(L);}
+ console.log(JSON.stringify({status,error,checkpoints,bytes,logs}));
+}finally{try{closeSync(graphFile);}finally{lua.lua_close(L);}}
