@@ -76,8 +76,9 @@ export function exitControls(theme = nativeTheme) {
       // 层级：标题 → 主操作「继续游戏」→ 次要查看 → 分隔线 → 破坏性「放弃本局」。
       text('title', menu.title, '暂停', f.heading, c.goldBright),
       button('resume', menu.resume, '继续游戏', true),
-      button('help', [menu.help[0] - 66, menu.help[1], 120, menu.help[3]], '操作说明'),
-      button('diagnostics', [menu.help[0] + 66, menu.help[1], 120, menu.help[3]], '诊断报告'),
+      button('help', menu.help, '操作说明'),
+      // Preserve the approved menu actions; diagnostics is a small header utility.
+      button('diagnostics', [menu.title[0] + 95, menu.title[1], 100, 48], '诊断'),
       // 未启程时整颗隐藏，不留灰色空头承诺；启程后出现并可进入。
       button('map', menu.map, '查看地图'),
       plate('rule', menu.rule, c.goldDim),
