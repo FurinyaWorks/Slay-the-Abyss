@@ -1,0 +1,28 @@
+✔ [historical 98fef source contract] exact feature/fallback inverse binds every current source and restores complete baseline identities (763.694931ms)
+✔ [historical 98fef source contract] unknown, partial, duplicate, cross-path and reordered feature sources remain exposed (1872.632087ms)
+✔ [historical 98fef source contract] recognized feature hosts bind every added owner and reject missing or drifting linked sources (1222.82637ms)
+✔ [historical 98fef source contract] feature normalization precedes both frozen art/performance and ready-art source chains (971.896869ms)
+✔ [historical 98fef source contract] combined feature and old-module retirement validates all owners before removing any destination (365.889623ms)
+✔ [historical 98fef source contract] feature retirement revalidates destinations after preparation and before any removal (288.25908ms)
+✔ [historical 98fef source contract] combined retirement revalidates feature and catalog owners before old-module deletions (267.640815ms)
+✔ [historical 98fef source contract] combined retirement rejects same-byte catalog retargeting before any deletion (242.497764ms)
+✔ [historical 98fef source contract] feature retirement rejects live roots and symlink aliases without touching live source (226.159874ms)
+✔ current feature and history entries authenticate supported intermediates and freshly read every raw owner (71750.443719ms)
+✔ current feature entries preserve unsupported input bytes and never use unknown input to authorize raw reads (58.618243ms)
+✔ pre-component unsupported feature and art compositions expose their exact linked identities (96.742526ms)
+✔ current feature consumers reject the exact first unsupported component-era linked owner (3.111193ms)
+✔ [historical 98fef source contract] current combined retirement checks catalog identity before preparation or removal and preserves every owner (460.14921ms)
+✔ [historical 98fef source contract] current combined retirement rejects same-byte catalog retargeting before any owner is removed (266.087143ms)
+✔ original helper closure rejects changed reused or embedded bytes and wrong provenance (19.613233ms)
+✔ [historical 98fef source contract] beta composition retains both complete source targets and immutable prior witnesses (456.761553ms)
+✔ [historical 98fef source contract] recognized beta hosts validate every added owner on every invocation (236.810778ms)
+✔ [historical 98fef source contract] beta retirement checks all owners twice and never deletes partially (205.499498ms)
+✔ [historical 98fef source contract] outer retirement refuses changed beta owners before deleting an older source owner (210.719407ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 98314.416259
