@@ -3,6 +3,7 @@ import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helper
 import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource} from './helpers/joint-ui-ci-source-inverse.mjs';
 
 import {battleQueueCiProof,preBattleQueueCiInventory,preBattleQueueCiSource} from './helpers/battle-queue-ci-source-epoch.mjs';
+import {noncombatAddedTests,noncombatPriorInventory} from './helpers/noncombat-ci-source-inverse.mjs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors,officialAssetsFlowCiSourceProof,preOfficialAssetsFlowCiSource} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import {officialAssetsPlanningFloors as firstOfficialAssetsPlanningFloors,officialAssetsCiSourceProof,preOfficialAssetsCiSource} from './helpers/official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
@@ -91,7 +92,7 @@ const encounterFormationJs=["tests/encounter-formation-responsibilities.test.mjs
 const defectFinalJs=["tests/defect-final-execute.test.mjs","tests/defect-final-execute-complexity.test.mjs","tests/defect-final-source-epoch.test.mjs"];
 const silentFinalJs=["tests/silent-final-apply.test.mjs","tests/silent-final-apply-complexity.test.mjs","tests/silent-final-source-epoch.test.mjs"];
 const relicEquipJs=["tests/relic-equip-complexity.test.mjs","tests/relic-equip-responsibilities.test.mjs","tests/relic-equip-source-epoch.test.mjs"];
-const postSnapshotJs=['tests/event-simulator-fixture.test.mjs','tests/official-assets-legibility.test.mjs','tests/room-ui-source-epoch.test.mjs','tests/historical-monster-import-boundary.test.mjs','tests/curses-shape-responsibilities.test.mjs','tests/curses-source-epoch.test.mjs'];
+const postSnapshotJs=['tests/event-simulator-fixture.test.mjs','tests/official-assets-legibility.test.mjs','tests/room-ui-source-epoch.test.mjs','tests/historical-monster-import-boundary.test.mjs','tests/curses-shape-responsibilities.test.mjs','tests/curses-source-epoch.test.mjs','tests/noncombat-neow-layout.test.mjs','tests/noncombat-v25-layout.test.mjs'];
 const officialAssetsJs=['tests/official-assets-visual.test.mjs','tests/official-assets.test.mjs','tests/official-assets-runtime.test.mjs','tests/official-assets-flow.test.mjs'];
 const postPlacementJs=[...officialAssetsJs,...encounterFormationJs,...defectFinalJs,...silentFinalJs,...relicEquipJs,"tests/act1-choice-responsibilities.test.mjs","tests/act3-ai-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/class-potion-orb-boundary.test.mjs","tests/class-potion-orb-source-inverse.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-integration-source.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/defect-utility-planning.test.mjs","tests/effects-target-group-source-epoch.test.mjs","tests/effects-target-group.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/enemy-ai-lifecycle.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/scry-choice-responsibilities.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/seven-refactor-source-epoch.test.mjs","tests/shiv-turn-responsibilities.test.mjs","tests/silent-tactics-planning.test.mjs","tests/silent-tactics-source-epoch.test.mjs","tests/watcher-actor-boundary.test.mjs","tests/watcher-actor-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs","tests/watcher-flow-planning.test.mjs","tests/watcher-flow-source-epoch.test.mjs","tests/watcher-potion-integration-source.test.mjs"].sort();
 const postPlacementLua=["tests/lua/actor_presence_contract.lua","tests/lua/colorless_catalog_contract.lua","tests/lua/defect_utility_planning.lua","tests/lua/enemy_ai_lifecycle.lua","tests/lua/intent_visibility_cache.lua","tests/lua/potion_callback_contract.lua","tests/lua/silent_tactics_planning.lua","tests/lua/watcher_final_execution_boundaries.lua","tests/lua/watcher_flow_planning.lua"].sort();
@@ -127,7 +128,7 @@ const componentAddedJs=['tests/enemy-name-stability.test.mjs',
  'tests/component-lifecycle-benchmark.test.mjs','tests/component-portrait-diagnosis.test.mjs'];
 const componentAddedLua=['tests/lua/v25_texture_runtime.lua','tests/lua/component_pages.lua',
  'tests/lua/native_card_art_image_capabilities.lua','tests/lua/component_content_retry.lua',
- 'tests/lua/component_page_failures.lua'];
+ 'tests/lua/component_page_failures.lua','tests/lua/noncombat_v25_menu.lua'];
 postPlacementJs.push(...currentV25Js,...componentAddedJs,...postSnapshotJs);postPlacementJs.sort();
 postPlacementLua.push(...componentAddedLua);postPlacementLua.sort();
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
@@ -1326,6 +1327,15 @@ test('joint historical inventory rejects missing duplicate and unknown files whi
  const current=discoverJs(),historical=jointCiInventoryAt(current,'officialAssetsFlow');
  assert.equal(current.length,837);assert.equal(historical.length,829);
  const added=current.filter(f=>!historical.includes(f));assert.equal(added.length,8);
+ for(const f of noncombatAddedTests){
+  assert(current.includes(f));
+  assert.throws(()=>jointCiInventoryAt(current.filter(p=>p!==f),'officialAssetsFlow'),/inventory/);
+  assert.throws(()=>jointCiInventoryAt([...current,f],'officialAssetsFlow'),/inventory/);
+  for(const platform of ['win32','linux']){
+   assert.equal(actualCurrentTimings.js[platform][f],undefined,'new test is unmeasured');
+   assert.equal(currentJsPlanningWeights([f],platform)[f],actualCurrentTimings.unknownJsMs);
+  }
+ }
  for(const f of added){
   assert.throws(()=>jointCiInventoryAt(current.filter(p=>p!==f),'officialAssetsFlow'),/inventory/);
   assert.throws(()=>jointCiInventoryAt([...current,f],'officialAssetsFlow'),/inventory/);

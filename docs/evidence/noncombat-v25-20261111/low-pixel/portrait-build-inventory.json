@@ -1,0 +1,86 @@
+{
+  "renderProfile": "selection-budget-v1",
+  "hiddenBuild": true,
+  "cache": true,
+  "revealGroupsPerFrame": 4,
+  "selectionUses": "battlePixel",
+  "assets": [
+    {
+      "asset": "traveler-geo/portraits/avatar96",
+      "images": 457,
+      "sourceSha256": "c30551e1fed1cd7f18c61b67fe0ad0cd6e52c61bfa6ae937ccd9e4c90e7f72bb",
+      "groups": 8,
+      "pages": 1
+    },
+    {
+      "asset": "temporary-pixel-traveler-selection",
+      "images": 57,
+      "sourceSha256": "b396f1af9e5c259fab4b63f973f184ffee3612404a8abc993d65fe698e8a65e0",
+      "groups": 1,
+      "pages": 1
+    },
+    {
+      "asset": "temporary-pixel-traveler",
+      "images": 57,
+      "sourceSha256": "b396f1af9e5c259fab4b63f973f184ffee3612404a8abc993d65fe698e8a65e0",
+      "groups": 1,
+      "pages": 1
+    }
+  ],
+  "instances": 3,
+  "batchSize": 64,
+  "peakDynamicControls": 584,
+  "maxDirectDynamicChildren": 60,
+  "officialCapacity": "not_measured",
+  "measurement": "offline-runtime-control-contract-not-official-capacity",
+  "devicePerformance": "not_run",
+  "imageTemplateIndex": 1073741954,
+  "containerTemplateIndex": 1073741955,
+  "inputs": [
+    {
+      "path": "F:\\New folder\\.worktrees\\noncombat-v25\\art\\characters\\traveler-geo\\portraits\\avatar96\\runtime-no-snapshot.lua",
+      "sha256": "c30551e1fed1cd7f18c61b67fe0ad0cd6e52c61bfa6ae937ccd9e4c90e7f72bb",
+      "bytes": 395396
+    },
+    {
+      "path": "F:\\New folder\\.worktrees\\noncombat-v25\\art\\characters\\traveler-geo\\portraits\\avatar96\\native-art.json",
+      "sha256": "93bcf4303d370f7faac2b8289146acfe655bae6dced0abf5257e407d69f748ef",
+      "bytes": 2658277
+    },
+    {
+      "path": "F:\\New folder\\.worktrees\\noncombat-v25\\art\\characters\\traveler-geo\\portraits\\battle133\\runtime-no-snapshot.lua",
+      "sha256": "ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880",
+      "bytes": 356825
+    },
+    {
+      "path": "F:\\New folder\\.worktrees\\noncombat-v25\\art\\characters\\traveler-geo\\portraits\\battle133\\native-art.json",
+      "sha256": "f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248",
+      "bytes": 2377377
+    },
+    {
+      "path": "F:\\New folder\\.worktrees\\noncombat-v25\\art\\characters\\traveler-geo\\portraits\\avatar96\\LICENSE-runtime-MIT.txt",
+      "sha256": "b5f34362abd2e8c31b7a7bc62c2977f158faa4cd78b17ef7c197fb464e56a6ef",
+      "bytes": 1061
+    },
+    {
+      "path": "F:\\New folder\\.worktrees\\noncombat-v25\\art\\performance\\selection-budget-v1.json",
+      "sha256": "df3b34983dafd051842c820e6c7bf0931926fccba00fce0cc8873cab0f803b82",
+      "bytes": 189593
+    },
+    {
+      "path": "F:\\New folder\\.worktrees\\noncombat-v25\\art\\characters\\traveler-geo\\portraits\\avatar96\\preview-native-1x.png",
+      "sha256": "d96f7f81c436971a5d7aa78740b580a7bb237d5ac2962e51f5532dbb51f9eb80",
+      "bytes": 17710
+    },
+    {
+      "path": "F:\\New folder\\.worktrees\\noncombat-v25\\art\\characters\\traveler-geo\\portraits\\battle133\\preview-native-1x.png",
+      "sha256": "93b4d73290c3a20da7b02f02b05786b57fd5d381da71b02b5839a8c6a344f80b",
+      "bytes": 18329
+    },
+    {
+      "path": "F:\\New folder\\.worktrees\\noncombat-v25\\art\\lowpoly-select\\select-lowpoly.json",
+      "sha256": "afa2154db602e3503e0758307d300b4100c77dad5e427470218b1221d970a2a1",
+      "bytes": 255787
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "beforeCommit": "bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9",
+  "afterCommit": "ee94f929f31970bdf7992dcfb291bdb3c1930aaa",
+  "sourceArchiveSha256": "766334ff3da52ddc01bb19b686ffd9a41fc5addd66853bba76f26e954dcdd172",
+  "files": [
+    "src/lua/abyss_traveler_portraits.lua",
+    "src/lua/abyss_character_select_view.lua"
+  ]
+}

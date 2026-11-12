@@ -47,7 +47,8 @@ function M.dismissFromOutside(controller,self)
 end
 
 local function bindV25Hover(box,hit,cursor,available)
-    if Theme.presentationProfile~='v25-reference' or not cursor.CursorEnter then return end
+    local officialMenu=Theme.presentationProfile=='official-assets-first' and box:GetChild('v25MenuFace')
+    if (Theme.presentationProfile~='v25-reference' and not officialMenu) or not cursor.CursorEnter then return end
     if not box:GetChild('v25Face') and not box:GetChild('v25MenuFace')then return end
     hit:AddCursorEventListener(cursor.CursorEnter,function()V25View.pointer(box,'enter',available())end)
 end
@@ -226,7 +227,7 @@ function M.installMenu(self,child,clickEvent,resourceHint,bindCommand,start,sett
     -- expire whenever their menu/run context is hidden or replaced.
     bindCommand(start, "start", function() return self:start() end)
     local quit=child('menuPanel'):GetChild('titleQuit')
-    if Theme.presentationProfile=='v25-reference' and quit then
+    if (Theme.presentationProfile=='v25-reference' or Theme.presentationProfile=='official-assets-first') and quit then
         bindCommand(quit,'titleQuit',function()return self:openExit()end,nil,190)
     end
     bindCommand(settlement, "settle", function() return self:settle() end)

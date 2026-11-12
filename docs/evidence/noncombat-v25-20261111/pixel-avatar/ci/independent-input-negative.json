@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "completeInputs": 25,
+  "positiveExactLfCrLf": 50,
+  "independentPureInputDriftNegatives": 225,
+  "scope": "Pure exact-source projection checks only; no VM/test suite or current-owner authorization bypass"
+}

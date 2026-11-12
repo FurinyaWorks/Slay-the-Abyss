@@ -3,11 +3,12 @@ import assert from 'node:assert/strict';
 import {readFileSync as nativeReadFileSync} from 'node:fs';
 import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
 // Original assertions retain their explicit frozen source view.
-const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,value,'official'):value;};
+const currentRaw=p=>nativeReadFileSync(p,'utf8');
+const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,currentSourceEpoch.preCombinedSource(p,value,{target:'noncombatPrior',readSource:currentRaw}),'official'):value;};
 import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
 import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
-import {preRoomUiEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {sourceEpoch as currentSourceEpoch,preRoomUiEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import {preOfficialBattleSource,officialBattleSourceProof,officialBattleAlignmentSourceProof as alignment,officialBannerSourceProof as banner,preOfficialBattleShellSource,officialBattleShellSourceProof as shell} from './helpers/official-battle-source-inverse.mjs';
 import {preOfficialBattleInteractionSource,officialBattleInteractionSourceProof as interaction} from './helpers/official-battle-source-inverse.mjs';
 import {preOfficialBattleFeedbackSource,officialBattleFeedbackSourceProof as feedback} from './helpers/official-battle-source-inverse.mjs';

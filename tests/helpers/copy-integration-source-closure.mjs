@@ -74,7 +74,16 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/combined-epoch/source-epoch.mjs": "dc462323119c368713381bd5e1148b3781df82fbb84b7987b3118794bbaded88",
   "tests/helpers/joint-ui-source-epoch.mjs": "033a325d77259b895aafed57d59326d002125b1ab04f68ff40054e6f57ca202f",
   "tests/helpers/battle-queue-source-epoch.mjs": "faccad167ed2c051cc861f6df0a061beaa2e67fbaa962cf62e760118929dc890",
-  "tests/helpers/battle-queue-source-epoch.json.gz": "e82f3c47155271784ed25d87abcf19306e7a752fe1cb5aab5f3d269d26fdd42d"
+  "tests/helpers/battle-queue-source-epoch.json.gz": "e82f3c47155271784ed25d87abcf19306e7a752fe1cb5aab5f3d269d26fdd42d",
+  // Noncombat committed source continuation; all predecessor overlays stay frozen.
+  "tests/helpers/combined-epoch/source-epoch.mjs": "015422425a4ba84788ab9dfb29bcd2f53b7cdf98bf262edafb72bd22849fb820",
+  "tests/helpers/noncombat-source-epoch.mjs": "6c012fe3e62431051d2ac6dbfe2af96c97fa1a7f617cda3413582ea50b6cbb50",
+  "tests/helpers/noncombat-source-epoch.json.gz": "748b7965ddf39f1e297da92094f1ed865204177ca344aacca7e78a826d78f279"
+},...{
+  // Official portrait-demand continuation; previous source overlays stay frozen.
+  "tests/helpers/combined-epoch/source-epoch.mjs": "64d9e3d0f3e8c30867417c36d92c5a2c962c89209d0f23c3fca8f81020435fa5",
+  "tests/helpers/noncombat-demand-source-epoch.mjs": "d7d7628790f25736b2ccad95c1878293e6bee7aa1e0012ad69c91372164c9932",
+  "tests/helpers/noncombat-demand-source-epoch.json.gz": "152c60444fc95fbf5b5aa68f5eaf82547cab9051dd9845eb0512dd2125c8ade1"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

@@ -1,0 +1,98 @@
+{
+  "reviewedHeadSha": "9cfeb96ba10d4da0d4f0d0802756ab59a50e07c5",
+  "reviewedBaseSha": "bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9",
+  "assertions": 78,
+  "files": [
+    {
+      "archive": "noncombat-demand-source-epoch",
+      "path": "src/lua/abyss_traveler_portraits.lua",
+      "beforeSha256": "f0d570c1bc746f7d645b386afecc1be370b44e3c6c81f2ef8ff1dc2105532903",
+      "afterSha256": "e99b8fc034fc3a32eeca231a2d7f0a0b50c9fc542ed697ac65f6bc53ec70b36d",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "src/lua/abyss_traveler_portraits.lua",
+      "beforeSha256": "f0d570c1bc746f7d645b386afecc1be370b44e3c6c81f2ef8ff1dc2105532903",
+      "afterSha256": "e99b8fc034fc3a32eeca231a2d7f0a0b50c9fc542ed697ac65f6bc53ec70b36d",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "tests/v25-portrait-profile.test.mjs",
+      "beforeSha256": "3c5c0edb672a5eccb2c0003dcf471238f8546b5c9f59ace3e4a276ecbff96d8d",
+      "afterSha256": "720ec374a36eeef1df62f21263702db57fdd791144fb2b3aa5696e64dbbf0de3",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "tests/helpers/combined-epoch/source-epoch.mjs",
+      "beforeSha256": "015422425a4ba84788ab9dfb29bcd2f53b7cdf98bf262edafb72bd22849fb820",
+      "afterSha256": "64d9e3d0f3e8c30867417c36d92c5a2c962c89209d0f23c3fca8f81020435fa5",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "tests/helpers/copy-integration-source-closure.mjs",
+      "beforeSha256": "d75d72938b1cbbfd48c3aa5f52c4a778cb804b084b4726958dba8c6edf36051d",
+      "afterSha256": "1b2be71afe9e66ac4a88f07ba9751e3286b9958c16cd8ed8566e7cfde37cf18f",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "tests/game-ui-extraction-source-inverse.test.mjs",
+      "beforeSha256": "0647f4be6c7302cac8e842af7d6d07131489fea38673e0ed25d7d19b98810125",
+      "afterSha256": "fd5fb56754f028a779b63b722baef8a20b3cce256fd13cba51491c915b5f65f8",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "tests/helpers/noncombat-ci-source-inverse.mjs",
+      "beforeSha256": "8735687786f979f9f90d6618732be09eee796c88eef5657b99f255f80d42564e",
+      "afterSha256": "92446329bf6dd85693e02d5e8ef102aecc602717a4ebccbe2d092f1510fcf17f",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "scripts/official-assets-layout.mjs",
+      "beforeSha256": "2b4f255a6e7b8cff07344ac97e9425e646c2c059d1af812cddd15f7c452b01fe",
+      "afterSha256": "5a7202f367ebb17f3b554c9a7b5066ce25f5f13fad0a6ba0452f35bb12e0abf0",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "tests/noncombat-neow-layout.test.mjs",
+      "beforeSha256": "374f9fd7e5aea35b68792a2c9642f3260cfb564cf48f2ca6b1e41e41c44639c1",
+      "afterSha256": "46da3da324996b5e293ce7938bf5a656bcfb9ee88125cb682c5e5dad40d7c610",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "scripts/official-portraits.mjs",
+      "beforeSha256": "c693082f10c31db1dcb36a2448bac31c8a18fcfc1ccdc58ccc5ef2b115a6464a",
+      "afterSha256": "1de19c2cc7b632b12ad987564dd065c791945a27f8852a569755aeaf065c44d1",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "tests/helpers/portrait-runtime-vm.mjs",
+      "beforeSha256": "daa71f4859192bec0ac0ac9c0b273725c9a4fb8fccc55f9e0ae5e94ef27784e9",
+      "afterSha256": "9449db90768c412b635c0fd142eb877c420a2d60b89aff78ac38fbd70f63f3eb",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "tests/official-assets.test.mjs",
+      "beforeSha256": "599ab3a109790315c88f11eb18f1a3b357101530f16749bc11a86b6a20e0388e",
+      "afterSha256": "92d2390f82109e3ac881318383ad329f7c387ecc373d503f004f22c3903900c4",
+      "status": "PASS"
+    },
+    {
+      "archive": "noncombat-demand-ci-source-epoch",
+      "path": "tests/official-portraits-build.test.mjs",
+      "beforeSha256": "91d87021f5ffb580e28908af786de67f696c2d4ba5d1dfd282ad9d1597a56bed",
+      "afterSha256": "3805da290dfc2d403ee69c59ef02b0d14da1079915c131c684350c159fa46173",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "beforeCommit": "bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9",
+  "afterCommit": "d67163bcec017ec1073659e4138cd48438d35e6c",
+  "sourceArchiveSha256": "488a06607e32dd37d078b4a9b0b15adf09c15cd2a2ac0ac2a36536106573c750",
+  "ciArchiveSha256": "d5dc4739f16dfa8749165efab35aecb2d818aac7e64ca5cb9074fb446de6fea1",
+  "files": [
+    "src/lua/abyss_traveler_portraits.lua",
+    "tests/v25-portrait-profile.test.mjs",
+    "tests/helpers/combined-epoch/source-epoch.mjs",
+    "tests/helpers/copy-integration-source-closure.mjs",
+    "tests/game-ui-extraction-source-inverse.test.mjs",
+    "tests/helpers/noncombat-ci-source-inverse.mjs",
+    "scripts/official-assets-layout.mjs",
+    "tests/noncombat-neow-layout.test.mjs",
+    "scripts/official-portraits.mjs",
+    "tests/helpers/portrait-runtime-vm.mjs",
+    "tests/official-assets.test.mjs",
+    "tests/official-portraits-build.test.mjs"
+  ]
+}

@@ -498,6 +498,8 @@ docs/evidence/official-assets-first-20261109/full-flow/** -text whitespace=cr-at
 
 tests/helpers/room-ui-source-epoch.mjs text eol=lf
 tests/helpers/joint-ui-source-epoch.mjs text eol=lf
+tests/helpers/noncombat-source-epoch.mjs text eol=lf
+tests/helpers/noncombat-demand-source-epoch.mjs text eol=lf
 tests/helpers/room-ui-source-epoch.json.gz -text
 tests/helpers/joint-ui-source-epoch.json.gz -text
 tests/helpers/joint-ui-ci-source-inverse.mjs text eol=lf

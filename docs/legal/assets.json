@@ -6277,6 +6277,125 @@
     "docs/evidence/battle-piles-final-20261111/visual/consecutive-original-frame.png": {
       "sha256": "501c45220ef057ef4c4436bec2e927ca3a0ec54961df43a31dbde22fa618290d",
       "category": "battle-piles-browser-20261111"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/defend-played-wide.png": {
+      "sha256": "a98ee0658084abf8b1b74657e96f3d52217ec31698f5e7b0e0334545e6c7a864",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/menu-wide.png": {
+      "sha256": "972ec7e1a31c48826edaf7ba6b11f59a3d1d96c19c7f25c5fb75b81286b9c2f8",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/neow-four-diagnostic.png": {
+      "sha256": "02de9f8447da65bfcc914558ed662b8cac48b0bcf3c601adc17b5be1fc6987ba",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/REAUDIT.md; synthetic prior-boss component fixture, not natural gameplay or official device acceptance"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/neow-wide.png": {
+      "sha256": "57390956ba314f9a0bfd6946032782215bc0385b7839f3e8a35dacf8cba2f273",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/selection-wide.png": {
+      "sha256": "4bc943db10786a6c24058f1c1470f4e8933f70212a95b9e09286a3e9a550d1e0",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/reaudit/visual/starter-deck-r5.png": {
+      "sha256": "16d7c20bf15e7bb28bbb08c56aa429d7ac6cf09b72a49120f474d8dfe5e23ab3",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/01-menu.png": {
+      "sha256": "f3e858462fc14a3039f76d9f18c2cab388d1fd8cc93009ab22a34a8a7d3e3794",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/README.md; R2 actual-GIL browser canvas, official picture-library IP and existing pixel portrait; no original V25 bitmap or SDK redistribution"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/02-character.png": {
+      "sha256": "350f0c18e89957879f1c57f84d3fd9d886961f80cdc16d528bcdb22093e4e096",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/03-neow.png": {
+      "sha256": "bb632fc626dd7ececf6e2031d0f62fa27c2dcef690962045aedbbb70cd2cdf8f",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/04-neow-offers.png": {
+      "sha256": "c46896921a2c71851cbdf491746bcaa3b179549bf4fb72b7eee364773bb1ad94",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/05-neow-result.png": {
+      "sha256": "961b33fbb80ae9ecf2e7f3043f7cbdbf7d9d40bd65d23dcc65024395985373c6",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/06-map.png": {
+      "sha256": "d48d29c6f5af29ff8af59f408f079d902f6864beb6ed51508b3dd8ae80ce4a06",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/visual/07-first-battle.png": {
+      "sha256": "2b2eb3743fde21f982a73a0e39ea91bd1839e816b457a99205a8e9bc825d3ba0",
+      "category": "v25-native-simulator-evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-01-menu.png": {
+      "sha256": "f3e858462fc14a3039f76d9f18c2cab388d1fd8cc93009ab22a34a8a7d3e3794",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-04-exit-confirm.png": {
+      "sha256": "45f682ede1281eed739fdd7bd77518490b0c5bcbc710e086b656f003f8f455f4",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-05-selection-ready.png": {
+      "sha256": "2e2cdef71fa77d0accbca5bf083fcae9707bd2d275c0a6424540c1e6a2e6c73b",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-06-starter-deck.png": {
+      "sha256": "d9dda9bd447168cea0e2d0df552e9c53e33fd024fe001f4631d35f22b1cc6db0",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-08-neow-offers.png": {
+      "sha256": "df0cd9c4dd3c2ed33cb549239f5614103e43e2a8488f8fdad9dab6c919fd5e0c",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-10-map.png": {
+      "sha256": "038a15665adc08480476edfe891615a1337b07350e0df900ab2c61965ec69534",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/hp-12-defend-played.png": {
+      "sha256": "e3fe66e9580118838ae3c44496c54f1e1fd2643233c0d5c5a91b6bef0ddf5e1c",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/low-pixel/visual/lament-11-first-battle.png": {
+      "sha256": "0b8121ae3e7a991799b26f60392e51b1dec923559e97a3a46bca66602254e615",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/LOW_PIXEL.md; R7 actual-GIL natural browser canvas, shared battlePixel57 selection; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/hp-05-selection-ready.png": {
+      "sha256": "41a8f539819687f4380882239a66a1b2f30d6b323b4e548aa9de451067e6e350",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/hp-08-neow-offers.png": {
+      "sha256": "df0cd9c4dd3c2ed33cb549239f5614103e43e2a8488f8fdad9dab6c919fd5e0c",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/hp-10-map.png": {
+      "sha256": "0b8f8f0c63b3f815d4bf5277d2bdfea21dd19633f2dbfddd59af1b58c795b40f",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/lament-12-defend-played.png": {
+      "sha256": "ede1c1ce298275198b67e01d92304447daa1b5364ab9a08dda9f0ad23364c37a",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
+    },
+    "docs/evidence/noncombat-v25-20261111/pixel-avatar/visual/selectedInitial.png": {
+      "sha256": "3dba22cfb9942d395c251f3cd02361d141adfc63d639ed8e627f92739594531c",
+      "category": "v25-native-simulator-evidence",
+      "evidence": "docs/evidence/noncombat-v25-20261111/PIXEL_AVATAR.md; final clean e13bdaa2 initial-letter actual-GIL browser canvas; Simulator, not official device evidence"
     }
   }
 }

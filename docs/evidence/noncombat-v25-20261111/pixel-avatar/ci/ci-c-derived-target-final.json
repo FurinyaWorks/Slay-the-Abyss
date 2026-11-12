@@ -1,0 +1,21 @@
+{
+  "kind": "derived-exact-immutable-drag-target",
+  "path": ".artifacts/noncombat-low-pixel/drag-derived-target.review.json.gz",
+  "sha256": "b633435a6f16cdaed58f3716766fb65239d8f0ac8c798e10d5a4662beb9e49f6",
+  "bytes": 613653,
+  "baseline": {
+    "path": "tests/fixtures/pr323-historical-fixtures.json.gz",
+    "sha256": "0016ea0a00171a413c2697329ea87487c19c575b6148a325285e35a24b4e8759",
+    "sourceCommit": "98fef95d047652aa6a8880241ddff28ef320a484"
+  },
+  "inputFiles": 1795,
+  "projectedFiles": 148,
+  "absent": 41,
+  "fullIndependentProjectionEqual": true,
+  "oracles": {
+    "tests/fixtures/deck-delivery-source-composition.json": "fad6258a3cf9b8d0c1062e960ae518ba6dc338bc591a6f2192f770aa0bc8d79b",
+    "tests/fixtures/delivery-source-composition.json.gz": "d7bf28b224aaec821ac215f81adcef436fff51b009c21ef8b75d50bd16c2fa4b",
+    "tests/fixtures/multi-monster-art-source-layer.json": "21a0f191c00c20fc21695f87d4cfe0242cf7f2571a20b5db4878c1f58397839f",
+    "tests/fixtures/historical-monster-ui-support.json": "f536f06de7bea3052a7303db34ec37cc68b631704f337ae3efba2d39515821ed"
+  }
+}

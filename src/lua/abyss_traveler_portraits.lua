@@ -381,7 +381,9 @@ function M.new(stage,report,flags,cardTemplates)
         details=panel:GetChild('details')
         local host=details and details:GetChild('officialSelectionFigure')
         if host then
-            local figure=(profile or official) and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
+            if official then assert(Asset.selectionUses=='battlePixel','official selection requires shared battle pixel schema')end
+            local figure=official and assert(Asset.battlePixel,'official selection requires shared battle pixel')
+                or profile and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
             if figure.renderProfile~='lowpoly-v1' then
                 validate(figure,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
             end
@@ -390,7 +392,7 @@ function M.new(stage,report,flags,cardTemplates)
                 nativeLifecycle=true,ownerEpoch=function()return epoch end})
             rows[#rows+1]={name='selection',adapter=selection,fallback={details:GetChild('portraits'):GetChild('traveler_ironclad')},active=false}
         end
-        local row={name='avatar',adapter=avatar,fallback={},active=false}
+        local row={name='avatar',adapter=avatar,fallback={},active=false,visibleOwner=traveler}
         for _,name in ipairs({'normal','hover','pressed','disabled'})do row.fallback[#row.fallback+1]=traveler:GetChild('hit'):GetChild(name):GetChild('bust')end
         rows[#rows+1]=row
     end
@@ -502,11 +504,14 @@ function M.new(stage,report,flags,cardTemplates)
     function self.sync(_,mode,characterOpen,stopped,character,preloadSelection)
         if busy or destroyed then return false end
         busy=true;local token=epoch
-        -- V25 opens the selection artwork on demand. The legacy host's warm
+        -- V25 and official pages open selection artwork on demand. The legacy host's warm
         -- hint must not allocate hidden figures during its title screen.
-        if profile then preloadSelection=false end
+        if profile or official then preloadSelection=false end
         local wanted=activeTargets(mode,characterOpen,stopped,character,preloadSelection)
         for _,row in ipairs(rows)do
+            -- Competition hides the one-role legacy roster; its V25 badge has
+            -- its own official symbol and does not consume this avatar drawing.
+            if official and row.name=='avatar' and row.visibleOwner.visible~=true then wanted.avatar=false end
             local accepted=true
             -- MenuView owns result outcome selection; ordinary scene sync may
             -- pause it on departure, but must never publish a default victory

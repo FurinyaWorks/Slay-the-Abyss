@@ -1,0 +1,23 @@
+{
+  "kind": "actual-windows-git-index-checkout",
+  "root": "F:\\New folder\\.worktrees\\noncombat-v25\\.artifacts\\noncombat-low-pixel\\checkout-xyYkvd",
+  "coreAutocrlf": "true",
+  "controlConvertedToCrlf": true,
+  "records": [
+    {
+      "file": "tests/helpers/noncombat-source-epoch.mjs",
+      "expectedLfSha256": "6c012fe3e62431051d2ac6dbfe2af96c97fa1a7f617cda3413582ea50b6cbb50",
+      "beforeCheckoutSha256": "f4502e734a2239dccd8a98ae4f8261d60f7f706f719363bc6fc4d3168b744571",
+      "afterCheckoutSha256": "6c012fe3e62431051d2ac6dbfe2af96c97fa1a7f617cda3413582ea50b6cbb50",
+      "afterLfExact": true
+    },
+    {
+      "file": "tests/helpers/noncombat-demand-source-epoch.mjs",
+      "expectedLfSha256": "4129a7ed227217733d31666ffd8195984ef431db116e1872d72f6a488a142416",
+      "beforeCheckoutSha256": "9c9a30be2b85765f83f0342040ca978c1d1fca8fb4b1188a43baf9b3b9cc1576",
+      "afterCheckoutSha256": "4129a7ed227217733d31666ffd8195984ef431db116e1872d72f6a488a142416",
+      "afterLfExact": true
+    }
+  ],
+  "status": "RED_THEN_GREEN"
+}

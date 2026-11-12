@@ -1,0 +1,27 @@
+{
+  "kind": "independent-derived-fixture-design-review",
+  "status": "design-approved-for-implementation-not-runtime-acceptance",
+  "artifact": ".artifacts/noncombat-low-pixel/drag-derived-target.review.json.gz",
+  "artifactSha256": "45a9d9847a20bbdee8fb4049e0d2654509e70d22ceae2999774d95fbe268842b",
+  "baselineSha256": "0016ea0a00171a413c2697329ea87487c19c575b6148a325285e35a24b4e8759",
+  "verified": {
+    "inputFiles": 1795,
+    "completeInputPathSet": true,
+    "allInputSha256AndGitBlobs": true,
+    "targetFiles": 148,
+    "absentTargets": 41,
+    "allTargetFullSourcesSha256AndGitBlobs": true,
+    "currentRawOracles": 4,
+    "originalFunctionFullOrderedSourceAndNullEquality": true
+  },
+  "scope": "Direct independent invocation of original verifiedHistoricalMonsterSources with exact original inputs rebuilt from baseline gzip. No Lua VM, playtest or CI suite executed.",
+  "implementationConditions": [
+    "Use only the fixed98fef baseline reader; no replacement for arbitrary/current readers or current-source authorization.",
+    "Keep independent original-function complete-source equality and existing current-owner fresh/drift tests.",
+    "Pin JSON oracle normalizedLF identities and gzip raw identities; never trust fixture metadata as its own authority.",
+    "Arm first hard30s before fork, include cold imports/staging/projection/build/Lua; no uncountedwarmup. Each later slice its own hard30s.",
+    "Every slice rereads complete immutable source and generated files, archive and oracle identities; drift/deletion fails before freshVM.",
+    "Preserve original15cases/1MiB and newVM per slice, keep stdout/stderr/phase on failure."
+  ],
+  "finalImplementationReviewed": false
+}

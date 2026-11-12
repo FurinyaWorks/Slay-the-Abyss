@@ -1,0 +1,10 @@
+{
+  "kind": "component-stress-synthetic-prior-boss-NOT-natural-history",
+  "actualGilForFixture": false,
+  "originalSaveSha256": "5a0743b6d6402cd8a58b76fd7ad2f29bee632edabbb4668d9b1059fa152e0061",
+  "fixtureSaveSha256": "86180ca921daacd5c95fb0723ad853de6109066f6d739f8fded89cd1c2a65d66",
+  "modifiedModule": "abyss_neow_history.lua",
+  "beforeSha256": "c10b8b169f6c3464a5b5edaf06baebca82165764e13d3c3435d57ab36cff5390",
+  "afterSha256": "47904e8b5a9c83f8c9bbff4fc089e537e603423a208ff83a2328ea7ccbd0c110",
+  "changes": "Only session initial ironclad history bossCount=1; actual UI/templates/all other Lua identical"
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "R6-R7-actual-GIL-interface-and-Lua-digest-binding",
+  "beforeCandidate": "build/noncombat-review-r6/1116ae97-6147-4dba-abb1-e74e5b1004a8/candidate.json",
+  "afterCandidate": "build/noncombat-review-r7/91df6805-3e0f-4fe8-ac02-125ac6687d3b/candidate.json",
+  "beforeGilSha256": "24cc86f6eb858229941ef58682c3ce4a2a375abb8a6542b4c31cdd8495e52acb",
+  "afterGilSha256": "fb137624a6cc92cf0f17b35ce724a5994e584e2eb7bf82b7d5a510cb045d1878",
+  "beforeUiReadback": ".artifacts\\noncombat-reaudit\\r6-preview\\readback\\ui.json",
+  "afterUiReadback": ".artifacts\\noncombat-low-pixel\\r7-preview\\readback\\ui.json",
+  "interfaceExactEquality": true,
+  "interfaceCanonicalSha256": "b554a93d78d4e546d002081aed40be4c9d0307e6c094242692cfce043a0ee636",
+  "moduleKeySetsEqual": true,
+  "beforeModuleCount": 360,
+  "afterModuleCount": 360,
+  "changedModules": [
+    {
+      "module": "abyss_traveler_portrait_assets",
+      "beforeSha256": "4f456f63c167b03dcaa625d06f3c65bc9a86ee58d5ccb6b6b94d8ee2def026aa",
+      "afterSha256": "7515974854a63974757305b70a84efe6915a0d6e31ca3adfae39e412025ab300"
+    },
+    {
+      "module": "abyss_traveler_portraits",
+      "beforeSha256": "1861bb57de47cf38bcaef0310dea3323bbe8e0c349cadc143a6f076dfab1f0bd",
+      "afterSha256": "f64945776163e93c8f29a274251989e739f1bd2fc2c30b67cde00ec67629e864"
+    },
+    {
+      "module": "abyss_ui",
+      "beforeSha256": "24f9362dc8554d2374db3bcb1323eb61a59abf519d136cbb217ba9fa51044614",
+      "afterSha256": "05730ee04a18040b7eb66d7100e83584794c5db8217f7c2e73e25014ff9435be"
+    }
+  ],
+  "unchangedDigestCount": 357,
+  "abyssUiActualChangedLines": [
+    "-print(\"ABYSS_BUILD 1116ae97-6147-4dba-abb1-e74e5b1004a8\")",
+    "+print(\"ABYSS_BUILD 91df6805-3e0f-4fe8-ac02-125ac6687d3b\")"
+  ],
+  "scope": "Raw actual interface objects fully equal. Phone/four-offer inheritance applies only geometry/input paths/materials; R7 main art is changed content and validated in new actual screenshots. R6 main art and R6 latency metrics are not inherited."
+}

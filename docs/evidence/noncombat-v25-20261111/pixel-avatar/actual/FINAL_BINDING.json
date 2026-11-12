@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "8c882428d18d48bf555a3cadbfab6688215fcf7d",
+  "sourceDirty": false,
+  "buildId": "e13bdaa2-3c7f-4e3c-97fb-af9ca02f0d88",
+  "gilSha256": "20762a798d701359a9aada33829928cfa39a8d3a6165bf79cc80caaffc5ced37",
+  "saveSha256": "1c3d671d3d96168f3b7852ca1ec008289cd90d8931ad41ec77e9d5aa289367ea",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "sdkSha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+  "productionCommit": "6702ed26d779eec4d237aa991471b0344c3c3f92",
+  "productionDriftFromBuild": false,
+  "sdkChecks": 31,
+  "browserEvidence": "browser-report-original.json.gz; HP legal random initial hand invalidated old must-contain-Defend assertion; Lament natural Defend passed",
+  "scope": "Simulator actual-GIL only; official/device/latest621 integration unverified",
+  "playableURL": "http://127.0.0.1:55877"
+}

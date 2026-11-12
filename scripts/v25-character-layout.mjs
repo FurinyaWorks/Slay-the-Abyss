@@ -45,10 +45,10 @@ function rounded(name,w,h,radius,colour,theme){
 
 // Scan the small fixed native banner silhouette into merged horizontal bands.
 // No per-frame drawing, external assets, pixel card conversion or new input.
-function bands(name,points,colour,theme){
+function bands(name,points,colour,theme,{width=180,height=60,step=2}={}){
  const rows=[];
- for(let y=0;y<60;y+=2){
-  const scan=y+1,xs=[];
+ for(let y=0;y<height;y+=step){
+  const scan=y+step/2,xs=[];
   for(let i=0;i<points.length;i++){
    const a=points[i],b=points[(i+1)%points.length];
    if((a[1]<=scan&&b[1]>scan)||(b[1]<=scan&&a[1]>scan))xs.push(a[0]+(scan-a[1])*(b[0]-a[0])/(b[1]-a[1]));
@@ -56,21 +56,46 @@ function bands(name,points,colour,theme){
   if(xs.length<2)continue;
   xs.sort((a,b)=>a-b);const left=Math.round(xs[0]),right=Math.round(xs.at(-1));
   const previous=rows.at(-1);
-  if(previous&&previous.left===left&&previous.right===right&&previous.y+previous.h===y)previous.h+=2;
-  else rows.push({left,right,y,h:2});
+  if(previous&&previous.left===left&&previous.right===right&&Math.abs(previous.y+previous.h-y)<.001)previous.h+=step;
+  else rows.push({left,right,y,h:step});
  }
- return group(name,[180,60],rows.map((row,i)=>image('band'+i,[(row.left+row.right)/2-90,30-row.y-row.h/2],
+ return group(name,[width,height],rows.map((row,i)=>image('band'+i,[(row.left+row.right)/2-width/2,height/2-row.y-row.h/2],
   [row.right-row.left,row.h],theme.image.rect,colour)));
 }
+// Fixed Bezier samples from the approved inline SVG paths. This runs once at
+// layout build time; the runtime receives only existing static native shapes.
+function curve(start,...segments){
+ const points=[start];
+ for(const controls of segments){
+  const a=points.at(-1);
+  if(controls.length===1){points.push(controls[0]);continue;}
+  for(let i=1;i<=8;i++){
+   const t=i/8,u=1-t;
+   points.push(controls.length===2?[0,1].map(d=>u*u*a[d]+2*u*t*controls[0][d]+t*t*controls[1][d]):
+    [0,1].map(d=>u*u*u*a[d]+3*u*u*t*controls[0][d]+3*u*t*t*controls[1][d]+t*t*t*controls[2][d]));
+  }
+ }
+ return points;
+}
+function lines(name,points,width,colour,theme,{w=180,h=60,opacity=1}={}){
+ const items=points.slice(1).map((b,i)=>{
+  const a=points[i],dx=b[0]-a[0],dy=b[1]-a[1];
+  return image('segment'+i,[(a[0]+b[0])/2-w/2,h/2-(a[1]+b[1])/2],[Math.hypot(dx,dy),width],theme.image.rect,colour,{rotation:-Math.atan2(dy,dx)*180/Math.PI,opacity});
+ });
+ return group(name,[w,h],Array.from({length:Math.ceil(items.length/60)},(_,i)=>group('part'+i,[w,h],items.slice(i*60,i*60+60))));
+}
 const outlines={
- cancel:[[-3,9],[153,9],[166,7],[174,2],[178,12],[174,21],[163,28],[151,33],[161,37],[174,36],[177,44],[173,50],[160,57],[143,59],[-3,59]],
- confirm:[[183,10],[47,10],[33,11],[21,20],[13,20],[4,12],[1,26],[6,40],[26,53],[41,58],[56,59],[183,59]],
+ cancel:curve([-3,9],[[153,9]],[[170,9],[174,2]],[[182,11],[170,23]],[[162,30],[151,33]],[[159,40],[174,36]],[[181,45],[169,53]],[[159,59],[143,59]],[[-3,59]]),
+ confirm:curve([183,10],[[47,10]],[[32,10],[17,28],[4,12]],[[-2,29],[8,45],[26,53]],[[36,58],[45,59],[56,59]],[[183,59]]),
 };
-const palettes={
- cancel:{normal:['#BCA348','#8C3739','#B95B4A'],hover:['#DFC154','#A54243','#DA6B57'],pressed:['#AD9642','#813335','#AA5444'],disabled:['#807556','#5A4447','#80675D']},
- confirm:{normal:['#A2B4B5','#477B89','#77A4AF'],hover:['#BFD4D6','#5491A2','#8CC1CF'],pressed:['#95A6A7','#41717E','#6D97A1'],disabled:['#7E8B8C','#414F55','#64777D']},
+const threads={
+ cancel:[curve([-2,12],[[152,12]],[[168,12],[173,7]]),curve([-2,55],[[143,55]],[[160,55],[171,46]])],
+ confirm:[curve([180,13],[[48,13]],[[32,13],[18,30],[7,17]]),curve([8,32],[[17,51],[37,55],[55,56]],[[182,56]])],
 };
-function flagButton(button,name,theme){
+const brightness=(hex,factor)=>'#'+hex.slice(1).match(/../g).map(n=>Math.min(255,Math.round(parseInt(n,16)*factor)).toString(16).padStart(2,'0')).join('').toUpperCase();
+const palettes=Object.fromEntries(Object.entries({cancel:['#BCA348','#8C3739','#B95B4A'],confirm:['#A2B4B5','#477B89','#77A4AF']})
+ .map(([name,normal])=>[name,{normal,hover:normal.map(c=>brightness(c,1.18)),pressed:normal.map(c=>brightness(c,.92)),disabled:normal}]));
+function flagButton(button,name,theme,options){
  Object.assign(button,frame(name==='cancel'?0:1100,561,180,60));
  const hit=child(button,'hit');hit.position=[0,0];hit.size=[180,60];
  const points=outlines[name],inner=points.map(([x,y])=>[90+(x-90)*178/180,30+(y-30)*58/60]);
@@ -79,12 +104,11 @@ function flagButton(button,name,theme){
   state.size=[180,60];state.scale=[1,1];
   child(state,'border').visible=false;child(state,'plate').visible=false;
   const [rim,fill,light]=palettes[name][stateName];
-  const flag=group('v25Flag',[180,60],[bands('rim',points,rim,theme),bands('cloth',inner,fill,theme),
-   image('upperThread',[name==='cancel'?-8:13,16],[145,1.5],theme.image.rect,light),
-   image('lowerThread',[name==='cancel'?-16:15,-24],[128,1.5],theme.image.rect,light)]);
+  const flag=options?.nativeFlagImage ? group('v25Flag',[180,60],[image('cloth',[0,0],[180,60],options.nativeFlagImage,fill,{imageType:'basic'})]) : group('v25Flag',[180,60],[bands('rim',points,rim,theme),bands('cloth',inner,fill,theme),
+   ...threads[name].map((points,i)=>lines(i?'lowerThread':'upperThread',points,1.5,light,theme,{opacity:name==='cancel'?.55:.6}))]);
   upsert(state,flag,children(state).indexOf(label));
   label.position=[name==='cancel'?-10:10,-6];label.size=[150,42];
-  label.text={...label.text,content:name==='cancel'?'返回':'开始挑战',fontSize:26,minFontSize:26,colour:stateName==='disabled'?'#B8B4A5':'#FFF0B1',align:'centre',valign:'middle'};
+  label.text={...label.text,content:name==='cancel'?'返回':'开始挑战',fontSize:26,minFontSize:26,colour:'#FFF0B1',align:'centre',valign:'middle'};
  }
 }
 function roster(theme){
@@ -92,6 +116,7 @@ function roster(theme){
   image('glow',[0,0],[142,142],theme.image.glow,'#DBA44B',{opacity:.5}),
   rounded('rim',124,124,9,'#FFE0A2',theme),rounded('gold',118,118,6,'#B68B4D',theme),
   rounded('body',112,112,4,'#303341',theme),
+  ...[[-1,0],[1,0],[0,-1],[0,1]].map(([x,y],i)=>image('innerFrame'+i,[x*55.5,y*55.5],[x?1:94,y?1:94],theme.image.rect,'#957749')),
   {...group('v25Constellation',[110,110]),visible:false},
   {...nativeSingleLine(text('spark',[0,0,24,26],'✦',21,'#FFF2CE')),position:[62,12]},
  ],frame(399,515,124,124).position);
@@ -121,7 +146,16 @@ function detailsLayout(details,theme){
  upsert(details,text('v25Story',[75,287.25,503,71.28125],typeof theme.v25Character?.story==='string'?theme.v25Character.story:'',23,'#EEDBBF'));
  const iconId=value=>typeof value==='object'?value.id:value;
  upsert(details,image('v25HealthIcon',frame(75,223.75,24,23).position,[24,23],iconId(theme.icon.hp),'#ED6460'));
- upsert(details,image('v25GoldIcon',frame(252.421875,221.25,25,28).position,[25,28],iconId(theme.icon.gold),'#D1D0BD'));
+ // Approved SVG money-bag silhouette, not the unrelated round gold asset.
+ const bagPath=curve([13,3],[[17,1],[24,1],[27,4]],[[23,13]],[[25,19],[34,27],[32,33]],[[30,40],[9,39],[7,34]],[[5,28],[12,19],[16,13]],[[13,3]]);
+ const bag=group('v25GoldIcon',[36,40],[bands('bag',bagPath,'#D1D0BD',theme,{width:36,height:40,step:1}),
+  lines('outline',[...bagPath,bagPath[0]],2.5,'#45443B',theme,{w:36,h:40}),
+  lines('tie',curve([15,13],[[24,13]]),2.5,'#8B8D81',theme,{w:36,h:40}),
+  lines('leftCord',curve([14,14],[[7,13],[6,20],[2,18]]),2.5,'#8B8D81',theme,{w:36,h:40}),
+  lines('rightCord',curve([14,16],[[10,17],[12,22],[7,23]]),2.5,'#8B8D81',theme,{w:36,h:40}),
+  lines('mark',[[20,21],[15,29],[25,29]],2.5,'#77796C',theme,{w:36,h:40}),
+  lines('markStem',[[22,21],[22,33]],2.5,'#77796C',theme,{w:36,h:40})],frame(252.421875,221.25,25,28).position);
+ bag.scale=[25/36,28/40];upsert(details,bag);
  const icon=group('v25RelicIcon',[67,76],[],frame(75,414.6875,67,76).position),id=theme.v25Character?.relicImageId;
  icon.visible=Number.isSafeInteger(id)&&id>0;
  if(icon.visible)icon.children.push(image('image',[0,0],[67,67*90/83],id,'#FFFFFF'));
@@ -136,7 +170,7 @@ function detailsLayout(details,theme){
   const label=child(state,'label');label.size=[170,32];label.text.fontSize=14;label.text.minFontSize=14;
  }
 }
-export function applyV25CharacterLayout(layout,theme){
+export function applyV25CharacterLayout(layout,theme,options={}){
  const stage=optional(layout,'stage')??layout,panel=child(stage,'characterPanel'),details=child(panel,'details');
  for(const name of ['veil','border','face','themes','scrim'])child(panel,name).visible=false;
  // No old scene host: the legacy portrait scene owner otherwise reactivates it.
@@ -148,7 +182,7 @@ export function applyV25CharacterLayout(layout,theme){
  upsert(panel,image('v25HeadingDivider',frame(104,23.5,1,34).position,[1,34],theme.image.rect,'#E8D1B4',{opacity:.55}));
  upsert(panel,image('v25HeadingRule',frame(261.734375,39.5,146,2).position,[146,2],theme.image.rect,'#CCAA7A'));
  detailsLayout(details,theme);upsert(panel,roster(theme));
- flagButton(child(panel,'cancel'),'cancel',theme);flagButton(child(panel,'confirm'),'confirm',theme);
+ flagButton(child(panel,'cancel'),'cancel',theme,options);flagButton(child(panel,'confirm'),'confirm',theme,options);
  // The existing live deck modal must stay above all new read-only decoration.
  const modal=child(panel,'deckView'),items=children(panel);items.splice(items.indexOf(modal),1);items.push(modal);
  return layout;

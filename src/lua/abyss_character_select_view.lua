@@ -84,7 +84,8 @@ local function largeSlot(character,element)
 end
 function M.render(panel,state,platform)
     local info=state.info
-    panel:GetChild('hint').text=state.notice or (info and '查看初始信息，确认后开始冒险。' or '点击下方角色查看详情，再确认出发。')
+    local nativeV25=Theme.presentationProfile=='official-assets-first' and panel:GetChild('v25Roster')~=nil
+    panel:GetChild('hint').text=state.notice or (nativeV25 and '' or (info and '查看初始信息，确认后开始冒险。' or '点击下方角色查看详情，再确认出发。'))
     -- 只剩一个可选角色/元素时不摆假选择钮（Pan 2026-10-31：单角色发版）。
     local open,elementsOpen=0,0
     for _,id in ipairs(Select.characters)do if state:allowsCharacter(id)then open=open+1 end end
@@ -119,8 +120,12 @@ function M.render(panel,state,platform)
     confirm.interactable,confirm.raycastTarget=state:canConfirm(),state:canConfirm()
     if not info then return end
     details:GetChild('name').text=info.name
-    details:GetChild('stats').text='生命  '..number(info.maxHp)..' / '..number(info.maxHp)
-    details:GetChild('gold').text='金币  '..number(info.gold)
+    if nativeV25 then
+        local name=state.character=='traveler' and '荧' or info.name
+        panel:GetChild('v25Roster'):GetChild('selected'):GetChild('selectedInitial').text=utf8.char(utf8.codepoint(name))
+    end
+    details:GetChild('stats').text=(nativeV25 and '生命：' or '生命  ')..number(info.maxHp)..(nativeV25 and '/' or ' / ')..number(info.maxHp)
+    details:GetChild('gold').text=(nativeV25 and '金币：' or '金币  ')..number(info.gold)
     local relics,texts={},{}
     for _,r in ipairs(info.relics)do relics[#relics+1]=r.name;if r.text and r.text~='' then texts[#texts+1]=r.text end end
     details:GetChild('relic').text=#relics>0 and table.concat(relics,'、') or '无'

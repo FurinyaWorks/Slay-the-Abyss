@@ -1,0 +1,25 @@
+{
+  "stage": "阶段评审，未验收",
+  "buildId": "10a39d5c-6156-4545-bcff-0aeed03a8aae",
+  "gilSha256": "3d866b0f8f1d1a8ea0e65b4b54a0edfea9f9fa6d0e7e0ab68a30ecc533613e2a",
+  "saveSha256": "b1dd3d30379813bc3a454d3f275ffbf44d25a66fa9c56ead75bd36722bdc652b",
+  "sourceCommit": "cbfeffc080e59ee655603e1fe49d6210e2a598a5",
+  "sourceDirty": true,
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "backendExtension": "private typed fullgraph snapshot; not official client",
+  "cases": [
+    {
+      "name": "natural",
+      "file": "pr588.actual.save.json",
+      "title": "开始冒险",
+      "description": "主菜单 → 角色选择 → 开局祝福 → 地图 → 战斗。",
+      "sha256": "b1dd3d30379813bc3a454d3f275ffbf44d25a66fa9c56ead75bd36722bdc652b",
+      "archive": "review-natural.save.json",
+      "session": "noncombat-natural"
+    }
+  ],
+  "url": "http://127.0.0.1:55875",
+  "pid": 5808,
+  "backendURL": "http://127.0.0.1:55874",
+  "ready": true
+}
