@@ -1,6 +1,6 @@
 import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
 import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helpers/curses-ci-planning.mjs';
-import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource} from './helpers/joint-ui-ci-source-inverse.mjs';
+import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource,preRatchetInventory,ratchetInventoryFile} from './helpers/joint-ui-ci-source-inverse.mjs';
 
 import {battleQueueCiProof,preBattleQueueCiInventory,preBattleQueueCiSource} from './helpers/battle-queue-ci-source-epoch.mjs';
 import {noncombatAddedTests,noncombatPriorInventory} from './helpers/noncombat-ci-source-inverse.mjs';
@@ -129,6 +129,7 @@ const componentAddedJs=['tests/enemy-name-stability.test.mjs',
 const componentAddedLua=['tests/lua/v25_texture_runtime.lua','tests/lua/component_pages.lua',
  'tests/lua/native_card_art_image_capabilities.lua','tests/lua/component_content_retry.lua',
  'tests/lua/component_page_failures.lua','tests/lua/noncombat_v25_menu.lua'];
+postSnapshotJs.push(ratchetInventoryFile);
 postPlacementJs.push(...currentV25Js,...componentAddedJs,...postSnapshotJs);postPlacementJs.sort();
 postPlacementLua.push(...componentAddedLua);postPlacementLua.sort();
 const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
@@ -1519,4 +1520,29 @@ test('battle continuation retains exact historical sources and complete current 
   assert.deepEqual(bins.flat().sort(),[...current].sort());
   assert(currentJsShard(current,'1/'+count,platform).loads.every(v=>v<budget),'unchanged '+platform+' execution budget');
  }
+});
+
+
+test('ratchet current inventory preserves raw Full coverage and refuses source drift after a warm projection',()=>{
+ const current=discoverJs(),prior=preRatchetInventory(current),historical=jointCiInventoryAt(current,'officialAssetsFlow');
+ assert.equal(current.length,835);assert.equal(prior.length,834);assert.equal(historical.length,829);
+ assert(current.includes(ratchetInventoryFile));assert(!prior.includes(ratchetInventoryFile));
+ for(const platform of ['win32','linux']){
+  assert.equal(actualCurrentTimings.js[platform][ratchetInventoryFile],undefined);
+  assert.equal(actualCurrentTimings.jsPlanning.localLowerBounds[ratchetInventoryFile],undefined);
+  const count=platform==='win32'?18:15;
+  const bins=Array.from({length:count},(_,i)=>currentJsShard(current,`${i+1}/${count}`,platform).files);
+  assert.deepEqual(bins.flat().sort(),[...current].sort());
+  assert.equal(bins.flat().filter(file=>file===ratchetInventoryFile).length,1);
+ }
+ for(const files of [current.filter(f=>f!==ratchetInventoryFile),[...current,ratchetInventoryFile],
+  [...current,'tests/foreign.test.mjs']])assert.throws(()=>preRatchetInventory(files),/inventory/);
+ const source=diskReadFileSync(ratchetInventoryFile,'utf8');
+ for(const changed of [source+'\n',source.slice(1),source.replace('new CC16','new CC99'),null,Buffer.from(source)]){
+  assert.notEqual(changed,source);
+  const reader=(file,encoding)=>file===ratchetInventoryFile?changed:diskReadFileSync(file,encoding);
+  assert.throws(()=>jointCiInventoryAt(current,'officialAssetsFlow',reader));
+ }
+ assert.throws(()=>jointCiInventoryAt(current,'officialAssetsFlow',()=>{throw Error('fresh read failed');}),/fresh read failed/);
+ assert.deepEqual(preRatchetInventory(current,(file,encoding)=>diskReadFileSync(file,encoding).replaceAll('\r\n','\n').replaceAll('\n','\r\n')),prior);
 });

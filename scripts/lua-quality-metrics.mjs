@@ -40,7 +40,28 @@ export function architectureSources(sources) {
 const symbol = node => node?.type==='Identifier' ? node.name
   : node?.type==='MemberExpression' ? `${symbol(node.base)}${node.indexer}${symbol(node.identifier)}` : null;
 
-function functionLocations(source) {
+// Ratchet-only structural keys deliberately omit source positions and statement
+// ordinals. The legacy metrics/id output remains unchanged unless requested.
+function identityShape(value, shell=false) {
+  if(Array.isArray(value))return value.map(v=>identityShape(v,shell));
+  if(!value||typeof value!=='object')return value;
+  const out={};
+  for(const key of Object.keys(value).sort()) {
+    if(['loc','range','comments','globals','raw'].includes(key))continue;
+    if(shell&&value.type==='FunctionDeclaration'&&key==='body')continue;
+    out[key]=identityShape(value[key],shell);
+  }
+  return out;
+}
+function identityStep(node,key,index) {
+  const shallow=Object.fromEntries(Object.entries(node).filter(([field])=>
+    !['body','clauses','fields'].includes(field)&&(field!==key||key==='arguments')));
+  const shape=identityShape(shallow,true);
+  // The child supplies its own structure. Call arguments retain sibling literal
+  // event keys and the callee, but never callback bodies.
+  return [shape,key,['body','clauses','fields'].includes(key)?null:index];
+}
+function functionLocations(source,ratchetIdentity=false) {
   const parsed=Buffer.from(source).toString('latin1');
   const options={luaVersion:'5.3',encodingMode:'pseudo-latin1',locations:true,ranges:true,comments:false};
   const ast=luaparse.parse(parsed,options);
@@ -50,7 +71,7 @@ function functionLocations(source) {
     if(token.type===luaparse.tokenTypes.Keyword&&token.value==='function')keywords.push(token);
   }
   const lines=source.split('\n'),functions=[],counts=new Map();
-  function visit(node,parent,key,index,owner='$') {
+  function visit(node,parent,key,index,owner='$',context=[]) {
     if(!node||typeof node!=='object')return;
     if(node.type==='FunctionDeclaration') {
       const token=keywords.find(t=>t.range[0]>=node.range[0]&&t.range[0]<node.range[1]);
@@ -63,20 +84,24 @@ function functionLocations(source) {
       const id=`${identity}#${ordinal}`;
       const line=token.line,column=token.range[0]-token.lineStart;
       const unicodeColumn=Array.from(Buffer.from(lines[line-1]).subarray(0,column).toString('utf8')).length+1;
+      const extraIdentity=ratchetIdentity?{ratchetIdentity:{
+        owner,context:sha256(JSON.stringify([...context,identityShape(node,true)])),
+        fingerprint:sha256(JSON.stringify(identityShape(node)))
+      }}:{};
       functions.push({id,name,kind:'function',constructorName:/(?:^|[.:])(?:new|create)$/.test(name),
-        line,column:unicodeColumn,endLine:node.loc.end.line,lines:node.loc.end.line-node.loc.start.line+1});
-      owner=id;
+        line,column:unicodeColumn,endLine:node.loc.end.line,lines:node.loc.end.line-node.loc.start.line+1,...extraIdentity});
+      owner=id;context=[];
     }
     for(const [childKey,value] of Object.entries(node))if(!['loc','range','comments','globals'].includes(childKey)) {
-      if(Array.isArray(value))value.forEach((child,i)=>visit(child,node,childKey,i,owner));
-      else if(value&&typeof value==='object')visit(value,node,childKey,0,owner);
+      if(Array.isArray(value))value.forEach((child,i)=>visit(child,node,childKey,i,owner,ratchetIdentity?[...context,identityStep(node,childKey,i)]:[]));
+      else if(value&&typeof value==='object')visit(value,node,childKey,0,owner,ratchetIdentity?[...context,identityStep(node,childKey,0)]:[]);
     }
   }
   visit(ast);
   return functions;
 }
 
-export function measureSources(sources,diagnostics) {
+export function measureSources(sources,diagnostics,{ratchetIdentity=false}={}) {
   const modules=[],errors=[];
   const files=Object.keys(sources).sort();
   if(!files.length)errors.push({message:'No Lua sources measured'});
@@ -86,7 +111,7 @@ export function measureSources(sources,diagnostics) {
     const lines=source.length ? source.split('\n').length-(source.endsWith('\n')?1:0) : 0;
     try {
       const functions=[{id:'$',name:'<chunk>',kind:'chunk',constructorName:false,line:1,column:1,endLine:Math.max(1,lines),lines},
-        ...functionLocations(source)];
+        ...functionLocations(source,ratchetIdentity)];
       const positions=new Map(functions.map(f=>[`${f.kind}:${f.line}:${f.column}`,f]));
       if(positions.size!==functions.length)errors.push({file,message:'Duplicate AST function positions'});
       const seen=new Set();

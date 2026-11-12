@@ -1,0 +1,23 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 check:engineering
+> node scripts/check-engineering.mjs && npm run check:test-strength && npm run check:native-ui-contract
+
+Quality reported: 345 modules; 5918/5918 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+Architecture passed: 345 modules, 1953 edges; build/architecture.json
+Luacheck 1.2.0: no new diagnostics; 14 explicit historical warnings. Battle render <=10; scoped functions <=15 (Enemy AI initialize <=21); 2122 governed responsibility measurements.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 check:test-strength
+> node scripts/check-test-strength.mjs
+
+M1: infrastructure_error (7ms)
+M2: infrastructure_error (8ms)
+M3: infrastructure_error (8ms)
+M4: infrastructure_error (7ms)
+Mutation evidence: build/test-strength/497b76c0-2de7-4b97-91d7-4e03f3f99b89/report.json
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

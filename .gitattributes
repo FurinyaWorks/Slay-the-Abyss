@@ -558,3 +558,15 @@ docs/evidence/m7-protected-calls-20261111/*.gz -text
 docs/evidence/m7-import-membership-20261111/** -text
 # Preserve combined architecture-gate evidence across checkout modes.
 docs/evidence/m7-architecture-gates-combined-20261111/** -text
+# Preserve ratchet input-binding red/green and independent review evidence.
+docs/evidence/m7-quality-ratchet-head-20261111/** -text
+
+# Immutable ratchet identity, historical-contract and failure/repair evidence.
+docs/evidence/m7-quality-ratchet-closeout-20261111/** -text
+# Exact Node failure diagnostics retain their original blank-line indentation.
+docs/evidence/m7-quality-ratchet-closeout-20261111/m7-ratchet-identity-adjacent.log -whitespace
+docs/evidence/m7-quality-ratchet-closeout-20261111/m7-ratchet-identity-red.log -whitespace
+docs/evidence/m7-quality-ratchet-closeout-20261111/nonlua-red.log -whitespace
+
+# Frozen current-base ratchet integration evidence.
+docs/evidence/m7-ratchet-current-base-20261111/** -text

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "quality-ratchet-head-inputs-20261111-r1",
+  "reviewedParentSha": "ae27b9467a8d26a676db61abc01144afe35b5e12",
+  "reviewedTargetBaseSha": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "scope": "Only the exact Git input binding delta, not admission of PR 616",
+  "scopeConclusion": "pass",
+  "scopeUnresolved": [],
+  "sourceSha256": {
+    "scripts/check-quality-ratchet.mjs": "d7d43187f6846da37c56e6fdc57f800023a6844eb63fd9c2dc55e5b020dc3a7f",
+    "tests/quality-ratchet-policy.test.mjs": "5df14b8e35a4ee3a76a247ac4a9dd863f6d67f68ec84f01035193a7845e92af8"
+  },
+  "independentChecks": {
+    "existingRatchetFile": {
+      "passed": 9,
+      "failed": 0
+    },
+    "extraGitBoundaryChecks": {
+      "passed": 3,
+      "failed": 0
+    },
+    "windows": "static review only; native run not performed"
+  },
+  "fullPrConclusion": "blocked",
+  "remaining": [
+    "Anonymous function ordinal identities can inherit unrelated old debt or reject unchanged old debt",
+    "Current 835-file inventory lacks the strict 834/829 historical outer view",
+    "Workflow/source consumer validation, final HEAD normal Quality, merge queue and post-merge push remain unverified"
+  ],
+  "admissionStatusWritten": false,
+  "autoMergeEnabled": false
+}

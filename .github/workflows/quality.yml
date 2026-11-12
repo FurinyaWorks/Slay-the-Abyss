@@ -127,6 +127,11 @@ jobs:
         if: steps.runtime.outputs.tests == 'true'
       - run: npm run check:network && npm run verify:backlog && npm run check:syntax
         if: runner.os == 'Linux'
+      - name: Enforce new Lua quality debt in Fast PRs
+        if: runner.os == 'Linux'
+        env:
+          QUALITY_RATCHET_BASE: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/check-quality-ratchet.mjs
       - name: Complete affected regression set
         env:
           CI_LFS_TOKEN: ${{ github.token }}
@@ -349,6 +354,11 @@ jobs:
         if: matrix.shard == 1
       - run: npm run check:engineering
         if: matrix.shard == 1
+      - name: Enforce incremental Lua CC and SCC ratchet
+        if: matrix.shard == 1 && (github.event_name == 'pull_request' || github.event_name == 'merge_group' || github.event_name == 'push')
+        env:
+          QUALITY_RATCHET_BASE: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before }}
+        run: node scripts/check-quality-ratchet.mjs
       - name: Check production platform load
         if: matrix.shard == 1
         run: node scripts/platform-load.mjs daily
