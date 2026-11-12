@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {requireRelicCompletionSource,preRelicCompletionSource} from './helpers/relic-completion-inverse.mjs';
+import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 const read=path=>JSON.parse(readFileSync(path,'utf8'));
 const lock=read('tests/fixtures/toxic-egg-source.json');
 test('Toxic Egg pins the seven actual fixed source members and narrow ownership contract',()=>{
@@ -34,7 +35,7 @@ test('real Toxic Egg identity, manifest and source max-floor join the unchanged 
   {id:'frozen_egg',sourceId:'Frozen Egg 2',rarity:'uncommon',trigger:'hooks',effects:[]});
  // The original Toxic Egg slice excluded these later additions. Preserve that
  // historical boundary without applying it to today's complete production pool.
- const current=readFileSync('data/relics.json','utf8');
+ const current=closeoutRead('pr620')('data/relics.json','utf8');
  requireRelicCompletionSource('data/relics.json',current);
  const historical=JSON.parse(preRelicCompletionSource('data/relics.json',current));
  for(const id of ['question_card','busted_crown','singing_bowl'])assert.ok(!historical.relics.some(r=>r.id===id));

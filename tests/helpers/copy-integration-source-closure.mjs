@@ -5,6 +5,15 @@ import {readFileSync,writeFileSync,mkdirSync,realpathSync,existsSync} from 'node
 import {join,dirname,relative,isAbsolute} from 'node:path';
 import {createHash} from 'node:crypto';
 const hash=b=>createHash('sha256').update(b).digest('hex');
+// Git source identities use LF; binary witnesses (especially gzip) retain
+// their exact bytes. Never decode an arbitrary helper dependency as text.
+export function integrationClosureBytes(path,content){
+ assert(Buffer.isBuffer(content),'helper closure requires bytes');
+ if(!/\.(?:mjs|js|json|lua|md|yml|yaml)$/.test(path))return content;
+ const text=content.toString('utf8');
+ assert(Buffer.from(text).equals(content),'helper source must be valid UTF-8: '+path);
+ return Buffer.from(text.replaceAll('\r\n','\n'));
+}
 const bytes=readFileSync(new URL('./integration-source-closure.json',import.meta.url));
 assert.equal(hash(bytes),'800fcc9efd889f482259d0e1e9f1501f0e9597ac05552622ede00dd3dcdb4a94','complete integration helper closure identity');
 const currentBytes=readFileSync(new URL('./closeout-source-closure.json',import.meta.url));
@@ -15,7 +24,7 @@ export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()
  assert.notEqual(destination,realpathSync.native(sourceRoot),'isolated helper copy destination');
  for(const [path,sha]of Object.entries(files)){
   assert((path.startsWith('tests/helpers/')||path.startsWith('tests/fixtures/'))&&!path.split('/').includes('..'),'fixed helper path');
-  const source=join(sourceRoot,path),content=readFileSync(source);assert.equal(hash(content),sha,'fresh helper copy identity: '+path);
+  const source=join(sourceRoot,path),content=integrationClosureBytes(path,readFileSync(source));assert.equal(hash(content),sha,'fresh helper copy identity: '+path);
   const target=join(directory,path);mkdirSync(dirname(target),{recursive:true});
   assert(inside(destination,realpathSync.native(dirname(target))),'helper destination parent escaped');
   if(existsSync(target))assert(inside(destination,realpathSync.native(target))&&realpathSync.native(target)!==realpathSync.native(source),'helper destination aliases source');

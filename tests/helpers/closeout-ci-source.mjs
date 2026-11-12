@@ -6,7 +6,7 @@ import {gunzipSync} from 'node:zlib';
 import {sourceSlice} from './closeout-source-epoch.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const bytes=readFileSync(new URL('./closeout-ci-source.json.gz',import.meta.url));
-assert.equal(hash(bytes),'da94b335d72d3aef4787c7a586f975e07c997b222adaf8097576e169d8143b74');
+assert.equal(hash(bytes),'8722857e92be3ddd96346812df8e3aa29ccc9a715159b9470e034bf1707b0cc6');
 const packed=JSON.parse(gunzipSync(bytes));
 for(const [id,source]of Object.entries(packed.records))assert.equal(hash(source),id,'complete closeout CI record');
 const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
@@ -14,6 +14,7 @@ export const closeoutCiProof=freeze(packed);
 function target(name){assert(Object.hasOwn(packed.targets,name),'known closeout CI view');return packed.targets[name];}
 export function preCloseoutCiSource(path,source,view){
  const before=target(view);
+ if(before.scope==='workflow-only'&&path!=='.github/workflows/quality.yml')return source;
  // Production sources belong to the complete freshly authenticated owner
  // closure; a CI receipt must never intercept them before that authorization.
  if(path==='config/architecture.json'||path.startsWith('src/lua/'))return source;
@@ -24,6 +25,7 @@ export function preCloseoutCiSource(path,source,view){
 }
 export function closeoutInventory(paths,view,readSource=readFileSync){
  const before=target(view),sorted=[...paths].sort();
+ assert.notEqual(before.scope,'workflow-only','workflow-only views cannot project test inventories');
  if(JSON.stringify(sorted)===JSON.stringify(before.inventory))return [...paths];
  assert.deepEqual(sorted,packed.inventory,'complete raw closeout inventory');
  for(const path of packed.inventory.filter(p=>!before.inventory.includes(p))){
@@ -33,11 +35,11 @@ export function closeoutInventory(paths,view,readSource=readFileSync){
  return [...before.inventory];
 }
 export function closeoutRead(view,read=readFileSync){
- target(view);
+ const before=target(view);
  return (path,encoding)=>{
   const value=read(path,encoding),source=typeof value==='string'?value:value.toString('utf8');
   let prior=preCloseoutCiSource(path,source,view);
-  if(prior===source&&(path==='config/architecture.json'||path.startsWith('src/lua/')))
+  if(before.scope!=='workflow-only'&&prior===source&&(path==='config/architecture.json'||path.startsWith('src/lua/')))
    prior=sourceSlice(path,source,view,p=>read(p,'utf8'));
   return typeof value==='string'?prior:prior===source?value:Buffer.from(prior);
  };
