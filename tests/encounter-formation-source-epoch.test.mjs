@@ -15,6 +15,7 @@ import {componentUiSourceEpoch} from './helpers/component-ui-source-epoch.mjs';
 import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
 import {encounterFormationEpoch} from './helpers/encounter-formation-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
+import {closeoutPriorEpoch} from './helpers/closeout-source-epoch.mjs';
 const path='src/lua/abyss_encounter_formation.lua',proof=sourceEpoch.proof,prior=preEncounterFormationEpoch.proof;
 const raw=p=>proof.current[p]?.source??null;
 // The original 51-owner assertions describe the frozen Formation predecessor.
@@ -174,9 +175,10 @@ test('official repair helper closure imports in isolation and rejects new-file d
  t.after(()=>{rmSync(root,{recursive:true,force:true});rmSync(destination,{recursive:true,force:true});});
  copyIntegrationSourceClosure(root);
  const module=pathToFileURL(join(root,'tests/helpers/combined-epoch/source-epoch.mjs')).href;
- const result=spawnSync(process.execPath,['--input-type=module','-e',`const m=await import(${JSON.stringify(module)});if(m.officialUiRepairIntegratedEpoch.proof.owners.length!==88)throw Error('isolated owner closure');if(m.sourceEpoch.proof.owners.length!==96)throw Error('combined owner closure');`],{encoding:'utf8',timeout:30000,windowsHide:true});
+ assert.equal(closeoutPriorEpoch.proof.owners.length,96,'unchanged closeout predecessor');
+ const result=spawnSync(process.execPath,['--input-type=module','-e',`const m=await import(${JSON.stringify(module)});if(m.officialUiRepairIntegratedEpoch.proof.owners.length!==88)throw Error('isolated owner closure');if(m.sourceEpoch.proof.owners.length!==97)throw Error('combined owner closure');`],{encoding:'utf8',timeout:30000,windowsHide:true});
  assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);
- for(const name of ['official-ui-repair-source-epoch.mjs','official-ui-repair-source-epoch.json.gz']){
+ for(const name of ['official-ui-repair-source-epoch.mjs','official-ui-repair-source-epoch.json.gz','shop-deck-source-epoch.json.gz']){
   const file=join(root,'tests/helpers',name),bytes=diskReadFileSync(file),changed=Buffer.from(bytes);changed[changed.length-1]^=1;
   writeFileSync(file,changed);assert.throws(()=>copyIntegrationSourceClosure(destination,{sourceRoot:root}),/fresh helper copy identity/,name);
   unlinkSync(file);assert.throws(()=>copyIntegrationSourceClosure(destination,{sourceRoot:root}),/ENOENT/,name);
@@ -186,8 +188,10 @@ test('official repair helper closure imports in isolation and rejects new-file d
 
 test('current UI facade authenticates every raw owner once in declared order after warm success',()=>{
  const current=currentSourceEpoch.proof,file='config/architecture.json',input=diskReadFileSync(file,'utf8'),target='develop';
- // Current production retains component68 plus exact28 continuation owners.
- assert.equal(current.owners.length,96);
+ // Keep the component68 + exact28 predecessor; current admission adds merchant.
+ assert.equal(closeoutPriorEpoch.proof.owners.length,96);
+ assert.deepEqual(current.owners.filter(p=>!closeoutPriorEpoch.proof.owners.includes(p)),['src/lua/abyss_merchant.lua']);
+ assert.equal(current.owners.length,97);
  const expected=current.targets[target].files[file].source;
  for(const crlf of [false,true]){
   const reads=[];let bad=null,missing=false;

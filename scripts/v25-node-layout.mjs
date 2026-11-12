@@ -1,3 +1,4 @@
+import {merchantControl} from './cinematic-ui-layout.mjs';
 // Independently authored native geometry from the frozen V25 room composition.
 // No private raster, SVG path, sample transactions or random data is embedded.
 export const v25NodeSource=Object.freeze({
@@ -21,7 +22,6 @@ export const v25NodeThemePatch=Object.freeze({layout:{
    options:{x:225,rows:[-88,-143,-198,-253],size:[700,44],title:[0,0,650,36],description:[0,0,650,36]},
    neow:{bubbleText:[190,135,230,72]}},
  },
- merchant:{frame:[0,273,680,66],box:[0,273,676,62],portrait:[-300,273,54,54],name:[-15,288,500,28],line:[25,259,560,32],next:[320,251,14,14]},
  rewardPick:{stage:[0,0,1280,720],title:[0,180,550,70],subtitle:[0,130,760,40],y:-50,step:270,scale:1.133333333333,hoverScale:1.18,hoverLift:6,skip:[0,-235,186,44]},
 }});
 
@@ -224,6 +224,22 @@ function styleTreasure(panel,theme){
 }
 
 function styleMerchant(panel,theme){
+ if(theme.layout.merchant.bubble){
+  // Project the complete component, retaining existing objects and live text.
+  // Build starts from the unprojected theme; partial old-bar positioning would
+  // otherwise leave the bubble, line and input target in different geometries.
+  const project=(live,spec)=>{
+   const children=live.children,content=live.text?.content;
+   Object.assign(live,spec);
+   if(content!==undefined)live.text={...spec.text,content};
+   if(children)live.children=spec.children.map(next=>{
+    const prior=children.find(node=>node.name===next.name);
+    if(!prior)return next;
+    project(prior,next);return prior;
+   });
+  };
+  project(panel,merchantControl(theme));return;
+ }
  const m=theme.layout.merchant,relative=v=>[v[0]-m.frame[0],v[1]-m.frame[1],...v.slice(2)];setRect(panel,m.frame);
  setRect(must(panel,'panel'),relative(m.box));setRect(must(panel,'border'),relative([m.box[0],m.box[1],m.box[2]+4,m.box[3]+4]));
  const portrait=must(panel,'portrait'),ratio=m.portrait[2]/portrait.size[0];setRect(portrait,relative(m.portrait));portrait.scale=[ratio,ratio];

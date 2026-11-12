@@ -17,7 +17,7 @@ export function integrationClosureBytes(path,content){
 const bytes=readFileSync(new URL('./integration-source-closure.json',import.meta.url));
 assert.equal(hash(bytes),'800fcc9efd889f482259d0e1e9f1501f0e9597ac05552622ede00dd3dcdb4a94','complete integration helper closure identity');
 const currentBytes=readFileSync(new URL('./closeout-source-closure.json',import.meta.url));
-assert.equal(hash(currentBytes),'6d67f526b5c871b8bd0079534849cb16ff853bcc5759a7531c2a9cdfb561cdcc','complete closeout source helper closure');
+assert.equal(hash(currentBytes),'e4f72923f6494a65891cbd64f23936355c30de44931a4ae0dae363608064229b','complete closeout source helper closure');
 const files=JSON.parse(currentBytes),inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

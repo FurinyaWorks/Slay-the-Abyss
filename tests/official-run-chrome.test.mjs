@@ -164,6 +164,16 @@ test('run headers paint above opaque page backgrounds and below their live resou
  }
 });
 
+test('official shop has an explicit reachable map shortcut outside its decorative header',()=>{
+ const {layout,theme}=officialLayout(),node=child(layout,'nodePanel'),route=child(node,'runRoute');
+ assert(route,'shop must expose the same direct map action as combat');
+ assert.equal(child(route,'label').text.content,'地图');
+ assert.deepEqual(route.position,theme.officialAssets.battleHud.route.slice(0,2));
+ assert(child(route,'hit').size.every(value=>value>=44),'direct map needs a touch target');
+ assert(node.children.indexOf(route)>node.children.indexOf(child(node,'officialRunBar')));
+ assert(!child(child(layout,'mapPanel'),'runRoute'),'map cannot preview itself');
+});
+
 test('official potion slots survive battle rewards, map, node and return-to-combat transitions',()=>{
  const {theme}=officialLayout(),require=createRequire(import.meta.url),f=require('fengari');
  const L=f.lauxlib.luaL_newstate();f.lualib.luaL_openlibs(L);

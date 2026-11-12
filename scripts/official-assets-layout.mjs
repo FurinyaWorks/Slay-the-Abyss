@@ -62,8 +62,11 @@ export function officialAssetsTheme(source){
   // The frozen original maps starter/basic shells to the common silver frame.
   theme.cardSkin.rarities.basic=structuredClone(theme.cardSkin.rarities.common);
   theme.cardSkin.rarityWindow=true;
-  theme.cardSkin.typePlate=theme.officialAssets.battleTypePlaque.plate;
- return theme;
+   theme.cardSkin.typePlate=theme.officialAssets.battleTypePlaque.plate;
+   const {shelfColumns,...merchant}=theme.layout.merchant.official;
+   Object.assign(theme.layout.merchant,structuredClone(merchant));
+   theme.layout.nativeNode.shop.columns=[...shelfColumns];
+  return theme;
 }
 function cardFace(face,theme){
  const art=theme.officialAssets;

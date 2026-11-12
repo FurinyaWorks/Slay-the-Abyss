@@ -1,11 +1,11 @@
 ---
 id: TASK-25.4
 title: 补齐所有场景共享卡框的原稿设计
-status: To Do
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-28 09:39'
-updated_date: '2026-11-07 03:47'
+updated_date: '2026-11-12 16:12'
 labels:
   - 待验
 milestone: m-8
@@ -34,6 +34,8 @@ ordinal: 121000
 
 <!-- SECTION:PLAN:BEGIN -->
 核对原稿与原生图库；共享装配与皮肤绑定；各场景复用；生成预览并运行回归；提交PR。
+
+本轮永久卡组沿已合共享战斗卡面，复用五列暗场、四项排序与左下返回，browserShell只控制表现、永久run.deck与临时战斗费用隔离。补17张商店、0/1/5/6边界、详情/滚动、回收与迟到输入、新choice保护。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -44,4 +46,6 @@ ordinal: 121000
 2026-10-28排期复核：共享卡框是前两幕M4必做品质项，补齐Medium优先级并列入M4排期；原生能力、同候选及设备实测缺口保留，状态和未勾验收不变。负责人按项目约定统一Furinya。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+已实际渲染并核对17张永久卡组五列、滚底末行两张、详情返回及商店恢复；独审R2通过，工程/变异/原生合同通过。当前为离线实际Lua/Simulator证据，未取得官方同候选设备验证，不勾AC。Owner授权提交并在准入通过后auto merge。
 <!-- SECTION:NOTES:END -->

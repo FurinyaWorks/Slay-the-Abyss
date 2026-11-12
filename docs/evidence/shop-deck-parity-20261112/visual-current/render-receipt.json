@@ -1,0 +1,254 @@
+{
+  "kind": "headless-actual-simulator-render-generated-current-official-profile",
+  "sourceClosureSha256": "fe9c9210795a618770ff119fa20e447cf9b6b3b6de40ab94145f422d22232e80",
+  "saveSha256": "9ce663ebd8e5ce95cceebbf2114a18e8d7317be926a31fb2fc2b308210e29fdd",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "sdkSha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+  "browserPath": "C:/Users/Administrator/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe",
+  "rendering": "headless Chromium SwiftShader software WebGL; not official/GPU/device evidence",
+  "sid": "offline-shop-deck-1794497960891",
+  "shots": [
+    {
+      "name": "01-shop-bubble",
+      "checks": {
+        "expected": "merchant pale head bubble, shelf unobstructed, bottom black bar removed, pale leave text, top map"
+      },
+      "sha256": "ea96634ca03613852a1cec340b451a511dc0f377ad75c5ba2499cd6698584909",
+      "time": 2.630199999999255,
+      "frame": 13
+    },
+    {
+      "name": "02-leave-hover",
+      "checks": {},
+      "sha256": "c955dab7bc5a9f085f7a8ec67a0d035482db79a52ecac7e4021dd93e2b8dabf7",
+      "time": 5.265399999994785,
+      "frame": 26
+    },
+    {
+      "name": "03-leave-pressed",
+      "checks": {},
+      "sha256": "b11f1a72c9be0f823c2aed8e4cec9e18771dcd22179467cbfe0c9e70b1c2d38b",
+      "time": 7.765399999994785,
+      "frame": 36
+    },
+    {
+      "name": "04-map-preview",
+      "checks": {},
+      "sha256": "8af5606aeeb93207ba45e3429f8ba307fbf8ba94a40a6c21f62a0836be30b21a",
+      "time": 12.398299999993293,
+      "frame": 57
+    },
+    {
+      "name": "05-shop-map-return",
+      "checks": {},
+      "sha256": "343b18d4e18ec132d21de5d43cdae896503b01067ea0352338b2193545b520bf",
+      "time": 17.054699999995528,
+      "frame": 80
+    },
+    {
+      "name": "06-deck17-top",
+      "checks": {
+        "expected": "permanent deck 17 cards; dark veil; five columns; red sort row"
+      },
+      "sha256": "ab7a3084491bbaeb54d9f4bdc3d411087777ecdf85db1dbc47e3fa7abf9bbac4",
+      "time": 20.880099999994037,
+      "frame": 96
+    },
+    {
+      "name": "07-deck17-bottom",
+      "checks": {
+        "expected": "lower rows, including cards16/17, rendered after actual grid scroll"
+      },
+      "sha256": "53668e808001a64352010b72012fe03623aefa9e9bbb17912e930e5acafb9144",
+      "time": 23.804799999993293,
+      "frame": 110
+    },
+    {
+      "name": "08-deck-card-detail",
+      "checks": {},
+      "sha256": "c205f2efddec9f00d676b786a0a54a17fe603e2a9f3a6871c46b7688ff0f7846",
+      "time": 28.415699999991805,
+      "frame": 130
+    },
+    {
+      "name": "09-deck-return-list",
+      "checks": {},
+      "sha256": "ab7a3084491bbaeb54d9f4bdc3d411087777ecdf85db1dbc47e3fa7abf9bbac4",
+      "time": 32.44129999998957,
+      "frame": 151
+    },
+    {
+      "name": "10-shop-deck-return",
+      "checks": {},
+      "sha256": "b23daac8325990eefe80b20535532ce1e789097d9b7b12740dd866ae900a5502",
+      "time": 35.7491999999918,
+      "frame": 169
+    }
+  ],
+  "errors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "resourceResponses": [
+    {
+      "status": 400,
+      "path": "/editor/api/play",
+      "queryKeys": []
+    }
+  ],
+  "requests": [
+    {
+      "kind": "headless-browser-pointer",
+      "control": "hit",
+      "id": 9090,
+      "point": {
+        "x": 170,
+        "y": 551
+      }
+    },
+    {
+      "kind": "headless-browser-pointer",
+      "control": "hit",
+      "id": 9054,
+      "point": {
+        "x": 1143.8046875,
+        "y": 173
+      }
+    },
+    {
+      "kind": "headless-browser-pointer",
+      "control": "hit",
+      "id": 16735,
+      "point": {
+        "x": 148,
+        "y": 746
+      }
+    },
+    {
+      "kind": "headless-browser-pointer",
+      "control": "hit",
+      "id": 8597,
+      "point": {
+        "x": 1220.078125,
+        "y": 172.5
+      }
+    },
+    {
+      "kind": "headless-browser-pointer",
+      "control": "hit",
+      "id": 22843,
+      "point": {
+        "x": 334,
+        "y": 458
+      }
+    },
+    {
+      "kind": "headless-browser-pointer",
+      "control": "hit",
+      "id": 8368,
+      "point": {
+        "x": 150,
+        "y": 748
+      }
+    },
+    {
+      "kind": "headless-browser-pointer",
+      "control": "hit",
+      "id": 8368,
+      "point": {
+        "x": 150,
+        "y": 748
+      }
+    }
+  ],
+  "mapPreviewOpened": true,
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_RUN seed=42 source=explicit",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=map nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_SHOP_FIXTURE seed=42 permanentDeck=17 node=f2_l3",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    }
+  ],
+  "status": "captured-awaiting-human-image-review",
+  "stop": {
+    "running": false,
+    "tree": [],
+    "logs": [],
+    "serverLogs": [],
+    "serverVars": [],
+    "clockMode": "manual",
+    "audioMuted": true
+  }
+}

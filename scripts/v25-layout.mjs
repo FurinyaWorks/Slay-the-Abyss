@@ -15,7 +15,12 @@ export function v25Theme(source){
  const theme=merge(structuredClone(source),source.v25Battle);
  merge(theme,v25NodeThemePatch);
  // Room-only tokens must not enter the shared battle profile enumeration.
- merge(theme.layout.nativeNode,source.v25Nodes??{});
+  merge(theme.layout.nativeNode,source.v25Nodes??{});
+  if(theme.layout.merchant.bubble){
+   const {shelfColumns,...merchant}=source.layout.merchant.official;
+   Object.assign(theme.layout.merchant,structuredClone(merchant));
+   theme.layout.nativeNode.shop.columns=[...shelfColumns];
+  }
  theme.layout.v25Menu=structuredClone(v25MenuRuntimeLayout);
  theme.layout.v25Result=structuredClone(v25ResultRuntimeLayout);
  return theme;

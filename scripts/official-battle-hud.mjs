@@ -50,8 +50,15 @@ export function officialRunChrome(tree,theme){
   bar.children=bar.children.filter(part=>part.name!=='battleRoute');
   // The map's opaque paper and the node backdrop must paint before the bar.
   // Keep live titles in their existing owners (MapUI resolves mapGroup/title).
-  const titleOwner=page.children.findIndex(part=>name==='mapPanel'?/^mapGroup\d+$/.test(part.name):part.name==='title');
-  page.children.splice(titleOwner<0?page.children.length:titleOwner,0,bar);
+   const titleOwner=page.children.findIndex(part=>name==='mapPanel'?/^mapGroup\d+$/.test(part.name):part.name==='title');
+   page.children.splice(titleOwner<0?page.children.length:titleOwner,0,bar);
+   if(name==='nodePanel'){
+    // A live action belongs to the node page, never to a decorative bar clone.
+    // Reuse the battle shortcut face and let GameUI own its context and input.
+    const route=structuredClone(child(source,'battleRoute'));
+    route.name='runRoute';route.position=[hud.route[0],hud.route[1]];
+    page.children.push(route);
+   }
   const visit=node=>{
    for(const key of ['headerShade','headerDivider','titleLineLeft','titleLineRight','headerFace','headerDepth','headerRule']){
     const old=child(node,key);if(old)old.visible=false;
@@ -124,7 +131,7 @@ export function officialBattleHud(root,theme){
  const title=child(root,'title');title.visible=true;title.position=hud.location.slice(0,2);title.size=hud.location.slice(2);title.text.fontSize=14;title.text.minFontSize=14;title.text.colour='#B1ACA5';
  bar.children.push({name:'battleRoute',kind:'container',position:[hud.route[0],hud.route[1]-hud.y],size:hud.route.slice(2),children:[
   text('label',[0,0],hud.route.slice(2),'地图',18,'#D6CBA5'),
-  {name:'hit',kind:'cursorArea',size:hud.route.slice(2),focusable:true},
+   {name:'hit',kind:'cursorArea',position:[0,-.5],size:hud.route.slice(2).map(value=>Math.max(44,value)),focusable:true},
  ]});
  for(let index=1;index<=5;index++)for(const button of [child(root,'potion'+index)??child(child(root,'potionHelp'),'potion'+index),child(child(root,'potionHelp'),'potionHelp'+index)]){
   if(!button)continue;

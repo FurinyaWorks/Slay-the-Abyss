@@ -71,6 +71,12 @@ function M.install(ctx)
                 local label = box:GetChild("label")
                 if label then ctx.ink(label, not look.enabled and C.textMuted or pressed and C.buttonPressedText
                         or look.selected and C.goldBright or look.primary and C.textOnLight or C.goldBright) end
+                -- The official material is dark in every state. Its shared ink
+                -- must survive render/hover/press instead of inheriting the old
+                -- light-primary-button contract from the unskinned node page.
+                if label and Theme.presentationProfile=='official-assets-first' then
+                    ctx.ink(label,look.enabled and Theme.officialAssets.buttonInk or C.textMuted)
+                end
             end
             paintButtonLabel()
 

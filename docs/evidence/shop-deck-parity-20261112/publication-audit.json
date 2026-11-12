@@ -1,0 +1,185 @@
+{
+  "kind": "visual-evidence-publication-scope-audit",
+  "auditedAt": "2026-11-12T15:49:50.087Z",
+  "sourceClosureSha256": "fe9c9210795a618770ff119fa20e447cf9b6b3b6de40ab94145f422d22232e80",
+  "localOnlyArtifacts": {
+    "sourceClosure": {
+      "path": ".artifacts/shop-deck-parity-20261112/current-final/source-closure.json.gz",
+      "sha256": "6dd8f36d6080bd74b9c6af6815c8cdab9671481060fe5dafe09f4322fad0d5e8"
+    },
+    "fixtureSave": {
+      "path": ".artifacts/shop-deck-parity-20261112/current-final/fixture-save.json.gz",
+      "sha256": "d20e8db27a93c5744413351d6cdd3c38c86703e3c6eacc9f1362a8c611e11675"
+    },
+    "generatedDirectory": ".artifacts/shop-deck-parity-20261112/current-final/generated",
+    "publicDistribution": "raw closure, fixture save and generated adapter stay in .artifacts; publish only hashes, current PNG and reviewed runtime snapshots"
+  },
+  "counts": {
+    "sourceFiles": 652,
+    "embeddedProjectLuaModules": 365,
+    "sdkSourceMatches": 0,
+    "embeddedImagePayloads": 0,
+    "sensitiveLiteralPatterns": 0,
+    "accountValues": 0,
+    "licenseMentions": 0,
+    "privateReferenceTextMentions": 3
+  },
+  "method": "Parse decompressed JSON; check source roots and all fixture script paths; compare three 320-character signatures from each existing SDK export/worker; scan all strings for embedded image payloads, credential literals and account fields; inspect actual PNG separately. Textual reference paths are not images. This is a bounded audit, not a proof of absence of all secrets.",
+  "publicationDecision": "Do not stage raw source closure, fixture save, generated adapter, .artifacts, prior screenshot rounds or bundled SDK/assets. Publish only explicitly listed final evidence paths. Original project and third-party licenses stay unchanged.",
+  "snapshots": [
+    {
+      "name": "01-shop-bubble.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    },
+    {
+      "name": "02-leave-hover.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    },
+    {
+      "name": "03-leave-pressed.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    },
+    {
+      "name": "04-map-preview.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    },
+    {
+      "name": "05-shop-map-return.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    },
+    {
+      "name": "06-deck17-top.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    },
+    {
+      "name": "07-deck17-bottom.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    },
+    {
+      "name": "08-deck-card-detail.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    },
+    {
+      "name": "09-deck-return-list.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    },
+    {
+      "name": "10-shop-deck-return.state.json.gz",
+      "playerLabels": [
+        "玩家1"
+      ],
+      "noNewSensitiveFindings": true
+    }
+  ],
+  "previousRoundComparison": [
+    {
+      "name": "01-shop-bubble",
+      "pngByteEqual": false
+    },
+    {
+      "name": "02-leave-hover",
+      "pngByteEqual": false
+    },
+    {
+      "name": "03-leave-pressed",
+      "pngByteEqual": false
+    },
+    {
+      "name": "04-map-preview",
+      "pngByteEqual": true
+    },
+    {
+      "name": "05-shop-map-return",
+      "pngByteEqual": false
+    },
+    {
+      "name": "06-deck17-top",
+      "pngByteEqual": true
+    },
+    {
+      "name": "07-deck17-bottom",
+      "pngByteEqual": true
+    },
+    {
+      "name": "08-deck-card-detail",
+      "pngByteEqual": true
+    },
+    {
+      "name": "09-deck-return-list",
+      "pngByteEqual": true
+    },
+    {
+      "name": "10-shop-deck-return",
+      "pngByteEqual": false
+    }
+  ],
+  "publicFiles": [
+    "docs/evidence/shop-deck-parity-20261112/PUBLICATION.md",
+    "docs/evidence/shop-deck-parity-20261112/README.md",
+    "docs/evidence/shop-deck-parity-20261112/audit-publication.mjs",
+    "docs/evidence/shop-deck-parity-20261112/capture-visual.mjs",
+    "docs/evidence/shop-deck-parity-20261112/prepare-visual.mjs",
+    "docs/evidence/shop-deck-parity-20261112/publication-audit.json",
+    "docs/evidence/shop-deck-parity-20261112/shop-fixture.lua",
+    "docs/evidence/shop-deck-parity-20261112/source-manifest.json",
+    "docs/evidence/shop-deck-parity-20261112/unpack-pipeline.mjs",
+    "docs/evidence/shop-deck-parity-20261112/verification.json",
+    "docs/evidence/shop-deck-parity-20261112/verify-evidence.mjs",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/01-shop-bubble.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/01-shop-bubble.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/02-leave-hover.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/02-leave-hover.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/03-leave-pressed.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/03-leave-pressed.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/04-map-preview.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/04-map-preview.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/05-shop-map-return.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/05-shop-map-return.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/06-deck17-top.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/06-deck17-top.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/07-deck17-bottom.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/07-deck17-bottom.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/08-deck-card-detail.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/08-deck-card-detail.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/09-deck-return-list.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/09-deck-return-list.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/10-shop-deck-return.png",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/10-shop-deck-return.state.json.gz",
+    "docs/evidence/shop-deck-parity-20261112/visual-current/render-receipt.json",
+    "docs/evidence/shop-deck-parity-20261112/visual-review.md"
+  ],
+  "notOwnedByThisAudit": [
+    "docs/evidence/shop-deck-parity-20261112/independent-review.md"
+  ],
+  "licenseHashes": {
+    "LICENSE": "75f5f2ae732cdc31adf8ad90a42ed4ed47476b3f27fcdf90de13e79d6788309d",
+    "THIRD_PARTY_NOTICES": "1d17baf54acdc448289a0cc14313b250b5449d214988bb4018ca56836bb9e84d"
+  }
+}
