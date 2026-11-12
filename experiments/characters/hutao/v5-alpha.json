@@ -1,0 +1,583 @@
+{
+  "schema_version": "hutao-v5-draft-1",
+  "status": "candidate_only_not_imported_not_balanced",
+  "generated_on": "2026-11-12",
+  "design_rules_dependency": "PR #635; character production rules are still Draft and not on develop",
+  "prior_role": "HT original_v4 frozen: HT2-* cards/rules remain unchanged",
+  "environment": {
+    "max_hp": 72,
+    "energy_per_turn": 3,
+    "draw_per_turn": 5,
+    "hand_cap": 10,
+    "relic": {
+      "name": "引蝶灯",
+      "effect": "first_successful_hp_payment_per_combat_grants_4_block",
+      "block": 4
+    },
+    "shared_healing_cap_per_combat": 12,
+    "lowest_legal_hp_after_cost": 1,
+    "natural_relic_camp_shop_enemy_balance": "unverified"
+  },
+  "character_rules": {
+    "low_hp": {
+      "formula": "2 * hp <= max_hp",
+      "snapshot": "after all mandatory HP payments, before card effects",
+      "dynamic_recheck_between_card_plays": true
+    },
+    "butterfly": {
+      "duration_own_end_phases": 2,
+      "includes_cast_turn": true,
+      "refresh": "max(old,new)",
+      "attack_bonus_on_first_live_hit_per_card": {
+        "hp_above_half": 3,
+        "hp_half_or_below": 5
+      },
+      "attack_tag_only": true
+    },
+    "charged_bloom": {
+      "when": "charged attack successfully hits a surviving enemy while butterfly is active",
+      "apply": "blood_blossom",
+      "ticks": 2
+    },
+    "blood_blossom": {
+      "damage_per_tick": 2,
+      "ticks": 2,
+      "refresh": "replace_remaining_ticks_with_2_no_stack",
+      "timing": "own_end_before_surviving_enemy_actions",
+      "damage_uses_enemy_block": true
+    },
+    "hp_payment": {
+      "requires_survival": true,
+      "paid_before_effects": true,
+      "first_payment_triggers_relic": true,
+      "failed_payment_is_atomic": true
+    },
+    "healing": {
+      "only_when_hit_on_an_enemy_for_spirit_soother": true,
+      "shared_cap_per_battle": 12,
+      "never_beyond_missing_hp": true
+    },
+    "card_exhaust": {
+      "scope": "battle_only"
+    },
+    "same_turn_energy_refunds": false,
+    "combat_end": "clear temporary butterfly and bloom; persist actual hp between battles",
+    "status_checks": "enemy status on dead target not applied; end phase DOT once per enemy in formation order"
+  },
+  "starter": [
+    [
+      "HT5-001",
+      3
+    ],
+    [
+      "HT5-002",
+      3
+    ],
+    [
+      "HT5-003",
+      1
+    ],
+    [
+      "HT5-004",
+      1
+    ],
+    [
+      "HT5-005",
+      1
+    ],
+    [
+      "HT5-006",
+      1
+    ]
+  ],
+  "cards": [
+    {
+      "id": "HT5-001",
+      "name": "普通攻击",
+      "type": "attack",
+      "rarity": "basic",
+      "cost": 1,
+      "upgraded_cost": 1,
+      "tags": [
+        "normal"
+      ],
+      "base": [
+        {
+          "op": "damage_one",
+          "n": 6
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "damage_one",
+          "n": 9
+        }
+      ],
+      "role": "基础单体攻击",
+      "source": {
+        "kind": "generic_foundation",
+        "verification": "not_an_official_skill_claim"
+      }
+    },
+    {
+      "id": "HT5-002",
+      "name": "防御",
+      "type": "skill",
+      "rarity": "basic",
+      "cost": 1,
+      "upgraded_cost": 1,
+      "tags": [],
+      "base": [
+        {
+          "op": "gain_block",
+          "n": 5
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "gain_block",
+          "n": 8
+        }
+      ],
+      "role": "基础防御",
+      "source": {
+        "kind": "generic_foundation",
+        "verification": "not_an_official_skill_claim"
+      }
+    },
+    {
+      "id": "HT5-003",
+      "name": "重击",
+      "type": "attack",
+      "rarity": "basic",
+      "cost": 1,
+      "upgraded_cost": 1,
+      "tags": [
+        "charged"
+      ],
+      "base": [
+        {
+          "op": "damage_one",
+          "n": 7
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "damage_one",
+          "n": 10
+        }
+      ],
+      "role": "蝶舞后挂血梅香的普及来源",
+      "source": {
+        "kind": "generic_foundation",
+        "verification": "not_an_official_skill_claim"
+      }
+    },
+    {
+      "id": "HT5-004",
+      "name": "蝶引来生",
+      "type": "skill",
+      "rarity": "basic",
+      "cost": 1,
+      "upgraded_cost": 1,
+      "tags": [],
+      "base": [
+        {
+          "op": "pay_hp",
+          "n": 6
+        },
+        {
+          "op": "apply_self_state",
+          "state": "butterfly",
+          "end_phases": 2
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "pay_hp",
+          "n": 6
+        },
+        {
+          "op": "apply_self_state",
+          "state": "butterfly",
+          "end_phases": 2
+        },
+        {
+          "op": "gain_block",
+          "n": 3
+        }
+      ],
+      "role": "先付真实生命换两阶段攻击强化",
+      "source": {
+        "kind": "official_skill_adapted",
+        "url": "https://baike.mihoyo.com/ys/obc/content/1627/detail?bbs_presentation_style=no_header",
+        "secondary_url": "https://wiki.hoyolab.com/pc/genshin/entry/34/?crawler=Googlebot&lang=",
+        "verification": "name_correlated; final per-item citation/audit required"
+      }
+    },
+    {
+      "id": "HT5-005",
+      "name": "安神秘法",
+      "type": "skill",
+      "rarity": "basic",
+      "cost": 2,
+      "upgraded_cost": 2,
+      "tags": [
+        "exhaust"
+      ],
+      "base": [
+        {
+          "op": "damage_all",
+          "n": 11
+        },
+        {
+          "op": "heal_if_hit",
+          "high_hp": 4,
+          "low_hp": 7
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "damage_all",
+          "n": 14
+        },
+        {
+          "op": "heal_if_hit",
+          "high_hp": 5,
+          "low_hp": 8
+        }
+      ],
+      "role": "群攻兼战中一次安全回血；回血可能退出半血档",
+      "source": {
+        "kind": "official_skill_adapted",
+        "url": "https://baike.mihoyo.com/ys/obc/content/1627/detail?bbs_presentation_style=no_header",
+        "secondary_url": "https://wiki.hoyolab.com/pc/genshin/entry/34/?crawler=Googlebot&lang=",
+        "verification": "name_correlated; final per-item citation/audit required"
+      }
+    },
+    {
+      "id": "HT5-006",
+      "name": "灯还亮着",
+      "type": "skill",
+      "rarity": "basic",
+      "cost": 1,
+      "upgraded_cost": 1,
+      "tags": [],
+      "base": [
+        {
+          "op": "gain_block",
+          "n": 7
+        },
+        {
+          "op": "if_low_hp",
+          "effects": [
+            {
+              "op": "gain_block",
+              "n": 3
+            }
+          ]
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "gain_block",
+          "n": 10
+        },
+        {
+          "op": "if_low_hp",
+          "effects": [
+            {
+              "op": "gain_block",
+              "n": 3
+            }
+          ]
+        }
+      ],
+      "role": "高低血都可用的稳健防御",
+      "source": {
+        "kind": "original_design",
+        "verification": "original_not_official"
+      }
+    },
+    {
+      "id": "HT5-007",
+      "name": "朱砂点梅",
+      "type": "skill",
+      "rarity": "common",
+      "cost": 1,
+      "upgraded_cost": 1,
+      "tags": [],
+      "base": [
+        {
+          "op": "damage_one",
+          "n": 4
+        },
+        {
+          "op": "apply_enemy_state",
+          "state": "blood_blossom",
+          "ticks": 2
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "damage_one",
+          "n": 6
+        },
+        {
+          "op": "apply_enemy_state",
+          "state": "blood_blossom",
+          "ticks": 2
+        }
+      ],
+      "role": "不依赖蝶舞也能提供血梅香来源",
+      "source": {
+        "kind": "original_design",
+        "verification": "original_not_official"
+      }
+    },
+    {
+      "id": "HT5-008",
+      "name": "灯下定神",
+      "type": "skill",
+      "rarity": "common",
+      "cost": 1,
+      "upgraded_cost": 1,
+      "tags": [],
+      "base": [
+        {
+          "op": "gain_block",
+          "n": 7
+        },
+        {
+          "op": "draw",
+          "n": 1
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "gain_block",
+          "n": 10
+        },
+        {
+          "op": "draw",
+          "n": 1
+        }
+      ],
+      "role": "稳健防御及过牌，弱于STS1 Shrug It Off同位置样本",
+      "source": {
+        "kind": "original_design",
+        "verification": "original_not_official"
+      }
+    },
+    {
+      "id": "HT5-009",
+      "name": "一瓣归灯",
+      "type": "skill",
+      "rarity": "common",
+      "cost": 0,
+      "upgraded_cost": 0,
+      "tags": [
+        "exhaust"
+      ],
+      "base": [
+        {
+          "op": "gain_block",
+          "n": 3
+        },
+        {
+          "op": "if_any_enemy_has",
+          "state": "blood_blossom",
+          "effects": [
+            {
+              "op": "draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "gain_block",
+          "n": 5
+        },
+        {
+          "op": "if_any_enemy_has",
+          "state": "blood_blossom",
+          "effects": [
+            {
+              "op": "draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "role": "带标记时0费防御过牌",
+      "source": {
+        "kind": "original_design",
+        "verification": "original_not_official"
+      }
+    },
+    {
+      "id": "HT5-010",
+      "name": "落梅收灯",
+      "type": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "upgraded_cost": 1,
+      "tags": [],
+      "base": [
+        {
+          "op": "damage_one",
+          "n": 6
+        },
+        {
+          "op": "consume_enemy_state_damage",
+          "state": "blood_blossom",
+          "damage_per_remaining_tick": 3
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "damage_one",
+          "n": 8
+        },
+        {
+          "op": "consume_enemy_state_damage",
+          "state": "blood_blossom",
+          "damage_per_remaining_tick": 4
+        }
+      ],
+      "role": "放弃未来两次DOT换即时结算",
+      "source": {
+        "kind": "original_design",
+        "verification": "original_not_official"
+      }
+    },
+    {
+      "id": "HT5-011",
+      "name": "余火一刺",
+      "type": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "upgraded_cost": 1,
+      "tags": [
+        "normal"
+      ],
+      "base": [
+        {
+          "op": "pay_hp",
+          "n": 2
+        },
+        {
+          "op": "damage_one",
+          "n": 14
+        }
+      ],
+      "upgraded": [
+        {
+          "op": "pay_hp",
+          "n": 2
+        },
+        {
+          "op": "damage_one",
+          "n": 17
+        }
+      ],
+      "role": "高输出且付血，不能无脑打",
+      "source": {
+        "kind": "original_design",
+        "verification": "original_not_official"
+      }
+    }
+  ],
+  "benchmark_notes": [
+    {
+      "card": "Hemokinesis",
+      "sts1": "1 energy; lose 2 HP; deal 15 (20 upgrade)",
+      "use": "HT5-011 14(17) + variable butterfly bonus; cannot claim universally weaker due to synergy",
+      "url": "https://www.slaythespire.gg/cards/ironclad/Hemokinesis"
+    },
+    {
+      "card": "Shrug It Off",
+      "sts1": "1 energy; gain 8(11) Block and draw 1",
+      "use": "HT5-008 7(10) Block/draw1; no free raw value advantage",
+      "url": "https://www.slaythespire.gg/cards/ironclad/Shrug_it_Off"
+    },
+    {
+      "card": "Iron Wave",
+      "sts1": "1 energy; deal 5(7) damage and gain 5(7) Block",
+      "use": "compare mixed attack/block defensive choices rather than summing incomparable numbers",
+      "url": "https://www.slaythespire.gg/cards/ironclad/Iron_Wave"
+    }
+  ],
+  "manual_scenarios": [
+    {
+      "id": "A",
+      "hero_hp": 40,
+      "enemy_hp": 21,
+      "enemy_intent_attack": 22,
+      "hand": [
+        "HT5-004",
+        "HT5-003",
+        "HT5-001",
+        "HT5-005",
+        "HT5-002"
+      ],
+      "risk_line": [
+        "HT5-004",
+        "HT5-003",
+        "HT5-001"
+      ],
+      "safe_line": [
+        "HT5-005",
+        "HT5-002"
+      ],
+      "expected": {
+        "risk": {
+          "hero_hp": 34,
+          "enemy_hp": 0,
+          "enemy_attack_prevented": true
+        },
+        "safe": {
+          "hero_hp": 27,
+          "enemy_hp": 10,
+          "enemy_attack_prevented": false
+        }
+      }
+    },
+    {
+      "id": "B",
+      "hero_hp": 40,
+      "enemy_hp": 60,
+      "enemy_intent_attack": 22,
+      "hand": [
+        "HT5-004",
+        "HT5-003",
+        "HT5-001",
+        "HT5-005",
+        "HT5-002"
+      ],
+      "risk_line": [
+        "HT5-004",
+        "HT5-003",
+        "HT5-001"
+      ],
+      "safe_line": [
+        "HT5-005",
+        "HT5-002"
+      ],
+      "expected": {
+        "risk": {
+          "hero_hp": 16,
+          "enemy_hp": 35,
+          "enemy_attack_prevented": false
+        },
+        "safe": {
+          "hero_hp": 27,
+          "enemy_hp": 49,
+          "enemy_attack_prevented": false
+        }
+      }
+    }
+  ]
+}
