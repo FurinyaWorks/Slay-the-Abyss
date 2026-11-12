@@ -1,0 +1,58 @@
+{
+  "README.md": {
+    "sha256": "b445386ffba5af615f08c7cfeac853a861e1b19dd7b6ce3face5c8f9764191fa",
+    "bytes": 2376
+  },
+  "build.log": {
+    "sha256": "e59a18f5cdafe0be447ab97ee81b330f75cad84d1df76e01d40032ca84c2396f",
+    "bytes": 453
+  },
+  "checks-final.log": {
+    "sha256": "a18f7b104add010fad945c2e5c52c6e7a69a2b63e84d315e89d8f5dcfd87ae10",
+    "bytes": 1137
+  },
+  "checks.log": {
+    "sha256": "c9e3aa9021cebb3cfdfc35873cba45ae66402a9275e19772609af66ed35635c7",
+    "bytes": 1093
+  },
+  "green-final.log": {
+    "sha256": "456ad69c33a52bbc00acc90a645f8462f849e517b1400492f3961ba94bf7e4e9",
+    "bytes": 2605
+  },
+  "green-focused.log": {
+    "sha256": "56d584789bc1632064f3c9bc33ac52799c0c775aeb6d1d27c4bf239fe55df3e5",
+    "bytes": 370
+  },
+  "green-full.log": {
+    "sha256": "8cf049c223fc202ab1f1fca3bb955e3a9a8c6a810dd8c907f55d03b7a8f026f8",
+    "bytes": 2606
+  },
+  "independent-missing-decoder.log": {
+    "sha256": "2e896210c87977e2f318ad101427dcf20cb94ce2648f82a8096cf9064f8d8fc0",
+    "bytes": 118
+  },
+  "independent-python-optimize-fixed.log": {
+    "sha256": "670f0c260ec7ca50b66b16b57a9f93db37ee0ac252d73001c7c642a6c615babe",
+    "bytes": 372
+  },
+  "independent-python-optimize.log": {
+    "sha256": "920be3faa604f02c2d18fcd9c9d5274507f0c7091d3dadc5ad5a3d9d378ad04f",
+    "bytes": 1048
+  },
+  "independent-review.json": {
+    "sha256": "c80825a0cd89986caac2ddbfb7b1dffe46ba614348034b8ad93a50b82c9fd60e",
+    "bytes": 3948
+  },
+  "red.log": {
+    "sha256": "5ac5e41aa0e9792af4c38b6e6819c9296300d652e4b40980b5c7d111c89ba7f4",
+    "bytes": 1079
+  },
+  "related-plan-final.log.gz": {
+    "sha256": "cc59d68bf628fd9147eee8cdb0486270351a9c9728f59f7f19ba42be1a6a2db2",
+    "bytes": 7118
+  },
+  "related-plan.log": {
+    "sha256": "34e8673d14a822a494e899985127a14a55a42ef28a4473776253ba28fc6bef77",
+    "bytes": 508
+  }
+}
