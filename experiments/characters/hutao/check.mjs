@@ -1,6 +1,7 @@
 // Offline deterministic pilot check ONLY. Does not import production Lua or prove game balance.
 // Run: node experiments/characters/hutao/check.mjs
 import fs from "node:fs";
+import {validateCharacterNames} from "../../../scripts/validate-character-names.mjs";
 const model=JSON.parse(fs.readFileSync(new URL("./v5-alpha.json", import.meta.url),"utf8"));
 const audit=function audit(model){
  const fail=(m)=>{throw new Error(m)};
@@ -109,4 +110,7 @@ const audit=function audit(model){
  if(!(actionsLog[0].risk.enemy_attack_prevented && actionsLog[0].risk.hero_hp>actionsLog[0].safe.hero_hp && actionsLog[1].safe.hero_hp>actionsLog[1].risk.hero_hp))fail("missing opposite-scenario decision evidence");
  return {card_count:all.length,starter_count:model.starter.reduce((a,x)=>a+x[1],0),effects_checked:all.reduce((a,c)=>a+c.base.length+c.upgraded.length,0),atomic_reject:true,single_enemy_replay:actionsLog,status:"offline pilot contract check; NOT G4 runtime or G5 balance"};
 };
-console.log(JSON.stringify(audit(model),null,2));
+const denials=JSON.parse(fs.readFileSync(new URL("../../../tests/fixtures/character-naming-rejections.json",import.meta.url),"utf8"));
+const review=validateCharacterNames(model,denials);
+if(review.errors.length)throw new Error("naming metadata violation: "+review.errors.join("; "));
+console.log(JSON.stringify({...audit(model),naming_gate:review.namingReady?"EVIDENCE_RECORDED_REQUIRES_INDEPENDENT_APPROVAL":"BLOCKED_PENDING_REVIEW",unresolved_naming:{blocked:review.blocked,pending:review.pending}},null,2));
