@@ -175,6 +175,10 @@ local function mapPotionFrame(open,hit,run,mapSlots)
         local capacity=run and require('abyss_run').potionCapacity(run) or 3
         -- Keep the leftmost slot clear of live gold when Potion Belt adds two.
         x,y,w,h=-250+math.max(0,capacity-3)*21,338,capacity*42,44
+        if Theme.presentationProfile=='official-assets-first' then
+            local hud=Theme.officialAssets.battleHud
+            x,y,w,h=hud.potionX+(capacity-1)*hud.potionStep/2,hud.y,capacity*hud.potionStep,44
+        end
     end
     open:SetAnchoredPosition(x,y);hit:SetSizeDelta(w,h)
 end
@@ -184,8 +188,9 @@ function M.refreshPotionEntry(child,inCombat,canManagePotions,platform)
             local open=child("potionEntry"):GetChild("open")
             local potionHit=open:GetChild("hit")
             local anchor=Theme.presentationProfile=='v25-reference' and child('mapPanel'):GetChild('v25MapPotionAnchor')
-            local mapSlots=anchor and mapVisible==true
-            if anchor then mapPotionFrame(open,potionHit,run,mapSlots)end
+            local official=Theme.presentationProfile=='official-assets-first'
+            local mapSlots=(anchor or official) and mapVisible==true
+            if anchor or official then mapPotionFrame(open,potionHit,run,mapSlots)end
             potionHit.interactable=not inCombat() and canManagePotions(run);potionHit.raycastTarget=potionHit.interactable
             PotionDiscardUI.refreshEntry(potionHit,run,platform,mapSlots)
         end
@@ -369,9 +374,7 @@ end
 
 function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVisible,exitPanel,exitDialogOwnsForeground,runMenu,canViewRoute,child,refreshExitDialog)
     local hud=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleHud
-    local priorBattleHud
-    local hudScales={}
-    local hudVisibility={}
+    local utilitiesReady=false
     local routeLabels={}
     local function routeCaption(back)
         if not hud then return end
@@ -380,40 +383,24 @@ function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVis
         if routeLabels[label]==nil then routeLabels[label]=label.text or ''end
         label.text=self.routeOpen and self.mode=='battle' and hud.routeBackText or routeLabels[label]
     end
-    local function utilityFace(variant,fighting)
+    local function utilityFace(variant)
         local overlay=variant:GetChild('officialBattleHud')
         if not overlay then return end
-        local originals=hudVisibility[variant]
-        if not originals then
-            originals={};hudVisibility[variant]=originals
-            for _,part in ipairs(variant:GetChildren())do if part~=overlay then originals[part]=part.visible~=false end end
-        end
-        for part,visible in pairs(originals)do part:SetVisible(not fighting and visible)end
-        overlay:SetVisible(fighting)
+        for _,part in ipairs(variant:GetChildren())do part:SetVisible(part==overlay)end
     end
     local function battleUtilities()
-        if not hud then return end
-        local fighting=self.mode=='battle'
-        if priorBattleHud==fighting then return end
+        if not hud or utilitiesReady then return end
         for _,entry in ipairs({{child('deckEntry'):GetChild('open'),hud.deck},{exitEntry:GetChild('open'),hud.menu}})do
             local control,values=entry[1],entry[2]
-            if fighting then
-                control:SetAnchoredPosition(values[1],values[2])
-            else
-                local defaults=entry[1]==exitEntry:GetChild('open') and Theme.layout.exitMenu.entry or Theme.layout.deckView.entry
-                if defaults then control:SetAnchoredPosition(defaults[1],defaults[2])end
-            end
+            control:SetAnchoredPosition(values[1],values[2])
             local hit=control:GetChild('hit')
             for _,name in ipairs({'normal','hover','pressed','disabled'})do
                 local variant=hit:GetChild(name)
-                local original=hudScales[variant]
-                if not original then original={variant.localScaleX or 1,variant.localScaleY or 1};hudScales[variant]=original end
-                local scale=fighting and values[3] or 1
-                variant:SetLocalScale(original[1]*scale,original[2]*scale,1)
-                utilityFace(variant,fighting)
+                variant:SetLocalScale((variant.localScaleX or 1)*values[3],(variant.localScaleY or 1)*values[3],1)
+                utilityFace(variant)
             end
         end
-        priorBattleHud=fighting
+        utilitiesReady=true
     end
     return function()
             battleUtilities()

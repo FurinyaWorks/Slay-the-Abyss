@@ -30,6 +30,53 @@ export function officialBattleUtilityFaces(stage,theme){
   }
  }
 }
+// Reuse the final battle bar and resource tokens on every run page.
+export function officialRunChrome(tree,theme){
+ const stage=child(tree,'stage')??tree,battle=child(stage,'battlePanel');
+ const source=child(battle,'topBar');if(!source)return;
+ const hud=theme.officialAssets.battleHud;
+ const potions=child(child(stage,'potionEntry'),'open');
+ if(potions){
+  const frame=theme.layout.nativeNode.topBar.potions;
+  potions.position=frame.slice(0,2);child(potions,'hit').size=frame.slice(2);
+  for(const variant of child(potions,'hit').children)for(const name of ['label','entryFace','officialButtonBacking']){
+   const old=child(variant,name);if(old)old.visible=false;
+  }
+ }
+ for(const name of ['mapPanel','nodePanel']){
+  const page=child(stage,name);if(!page)continue;
+  const resources=child(page,'resources')??page;
+  const bar=structuredClone(source);bar.name='officialRunBar';
+  bar.children=bar.children.filter(part=>part.name!=='battleRoute');
+  page.children.unshift(bar);
+  const visit=node=>{
+   for(const key of ['headerShade','headerDivider','titleLineLeft','titleLineRight']){
+    const old=child(node,key);if(old)old.visible=false;
+   }
+   if(child(node,'headerShade')||node===page){
+    const title=child(node,'title'),reference=child(battle,'title');
+    if(title&&reference){title.position=[...reference.position];title.size=[...reference.size];title.text={...reference.text,content:title.text.content};}
+   }
+   for(const part of node.children??[])visit(part);
+  };
+  visit(page);
+  for(const [name,key]of [['hpIcon','hpIcon'],['hp','hp'],['goldIcon','goldIcon'],['gold','gold']]){
+   const node=child(resources,name);if(!node)continue;
+   node.position=hud[key].slice(0,2);node.size=hud[key].slice(2);
+   const reference=child(battle,name==='hp'?'player':name==='gold'?'piles':name);
+   if(node.text)node.text={...reference.text,content:node.text.content};
+   else {node.image=reference.image;node.colour=reference.colour;}
+  }
+  const hints=child(page,'resourceHints');
+  if(hints)for(const kind of ['hp','gold']){
+   const icon=hud[kind+'Icon'],value=hud[kind],host=child(hints,kind),hit=child(host,'hit');
+   const left=Math.min(icon[0]-icon[2]/2,value[0]-value[2]/2);
+   const right=Math.min(Math.max(icon[0]+icon[2]/2,value[0]+value[2]/2),kind==='gold'?hud.potionX-26:Infinity);
+   host.position=[(left+right)/2,hud.y];host.size=[Math.max(44,right-left),44];
+   hit.position=[0,0];hit.size=[...host.size];
+  }
+ }
+}
 export function officialBattleHud(root,theme){
  const hud=theme.officialAssets.battleHud,bar=child(root,'topBar');if(!bar)return;
  energyFinish(root,theme);

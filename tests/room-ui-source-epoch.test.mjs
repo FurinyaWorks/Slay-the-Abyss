@@ -1,3 +1,4 @@
+import {sourceEpoch as combinedCurrent,sourceSlice} from './helpers/closeout-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as nativeReadFileSync} from 'node:fs';
@@ -5,16 +6,16 @@ import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
 import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 // Original assertions retain their explicit frozen source view.
 const currentRaw=p=>nativeReadFileSync(p,'utf8');
-const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,joint.preCombinedSource(p,value,{target:'noncombatPrior',readSource:currentRaw}),'room'):value;};
+const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,combinedCurrent.preCombinedSource(p,value,{target:'jointUiPrior',readSource:currentRaw}),'room'):value;};
 import {roomUiSourceEpoch as room} from './helpers/room-ui-source-epoch.mjs';
 import {componentUiSourceEpoch as component} from './helpers/component-ui-source-epoch.mjs';
 import {preJointUiEpoch as epoch,preRoomUiEpoch as prior} from './helpers/combined-epoch/source-epoch.mjs';
 const live=p=>readFileSync(p,'utf8'),raw=p=>epoch.proof.current[p]?.source??null;
 const changed=['src/lua/abyss_game_ui_view.lua','src/lua/abyss_map_ui.lua','src/lua/abyss_node_ui_faces.lua'];
-import {preJoustEpoch as joint,sourceEpoch as current} from './helpers/combined-epoch/source-epoch.mjs';
+import {preJoustEpoch as joint,joustIntegratedEpoch as current} from './helpers/combined-epoch/source-epoch.mjs';
 import {joustSourceProof} from './helpers/joust-source-epoch.mjs';
 import {readdirSync} from 'node:fs';
-const currentLive=p=>{try{return nativeReadFileSync(p,'utf8');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+const currentLive=p=>{try{return sourceSlice(p,nativeReadFileSync(p,'utf8'),'pr612');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
 // Preserve the original joint UI assertions against their explicit predecessor.
 const jointLive=current.combinedReader(currentLive,'joustPrior');
 

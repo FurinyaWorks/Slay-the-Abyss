@@ -21,7 +21,11 @@ export const preDefectActorEpoch=extendJointUiEpoch(preJointUiEpoch);
 export const preBattleQueueEpoch=extendJointUiEpoch(preJointUiEpoch);
 export const preNoncombatDemandEpoch=extendNoncombatEpoch(extendBattleQueueEpoch(preBattleQueueEpoch));
 export const preCursesEpoch=extendNoncombatDemandEpoch(preNoncombatDemandEpoch);
-export const sourceEpoch=extendCursesEpoch(preCursesEpoch);
+export const cursesIntegratedEpoch=extendCursesEpoch(preCursesEpoch);
+export {sourceEpoch} from '../closeout-source-epoch.mjs';
 import {sourceEpoch as preGoldenIdolEpoch} from './pre-golden-idol-source-epoch.mjs';
 import {extendGoldenIdolEpoch} from '../golden-idol-source-epoch.mjs';
 export {preGoldenIdolEpoch};
+export const goldenIdolIntegratedEpoch=extendGoldenIdolEpoch(preGoldenIdolEpoch);
+
+export const joustIntegratedEpoch=extendJoustEpoch(preJoustEpoch);

@@ -34,6 +34,10 @@ export function battlePileCardTemplate(layout, template) {
     const control = face.children.find(child => child.name === name);
     if (control) control.visible = false;
   }
+  const ordinary=structuredClone(face),old=template.children.find(child=>child.name==='face');
+  ordinary.position=[...old.position];
+  template.children[template.children.indexOf(old)]=ordinary;
+  Object.assign(template.children.find(child=>child.name==='hit'),{size:[...hand.size]});
   pile.children[pile.children.findIndex(child => child.name === 'face')] = face;
   Object.assign(pile.children.find(child => child.name === 'hit'), { position: [0, 0], size: [...hand.size] });
   pile.children.find(child => child.name === 'uid').visible = false;

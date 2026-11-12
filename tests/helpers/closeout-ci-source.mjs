@@ -1,0 +1,41 @@
+// Exact named views for immutable receipts. Current Full uses raw discovery.
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
+import {sourceSlice} from './closeout-source-epoch.mjs';
+const hash=value=>createHash('sha256').update(value).digest('hex');
+const bytes=readFileSync(new URL('./closeout-ci-source.json.gz',import.meta.url));
+assert.equal(hash(bytes),'b4e7a64a44499c2bb67adc9e1ac428124c15ab00345fa06bfb4fd73a72073aac');
+const packed=JSON.parse(gunzipSync(bytes));
+for(const [id,source]of Object.entries(packed.records))assert.equal(hash(source),id,'complete closeout CI record');
+const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
+export const closeoutCiProof=freeze(packed);
+function target(name){assert(Object.hasOwn(packed.targets,name),'known closeout CI view');return packed.targets[name];}
+export function preCloseoutCiSource(path,source,view){
+ const before=target(view);
+ const id=Object.hasOwn(packed.current,path)?packed.current[path]:null;
+ if(!id||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!==id)return source;
+ const prior=before.files[path];
+ return prior?packed.records[prior]:source;
+}
+export function closeoutInventory(paths,view,readSource=readFileSync){
+ const before=target(view),sorted=[...paths].sort();
+ if(JSON.stringify(sorted)===JSON.stringify(before.inventory))return [...paths];
+ assert.deepEqual(sorted,packed.inventory,'complete raw closeout inventory');
+ for(const path of packed.inventory.filter(p=>!before.inventory.includes(p))){
+  const source=readSource(path,'utf8');
+  assert.equal(hash(source.replaceAll('\r\n','\n')),packed.current[path],'closeout added inventory source: '+path);
+ }
+ return [...before.inventory];
+}
+export function closeoutRead(view,read=readFileSync){
+ target(view);
+ return (path,encoding)=>{
+  const value=read(path,encoding),source=typeof value==='string'?value:value.toString('utf8');
+  let prior=preCloseoutCiSource(path,source,view);
+  if(prior===source&&(path==='config/architecture.json'||path.startsWith('src/lua/')))
+   prior=sourceSlice(path,source,view,p=>read(p,'utf8'));
+  return typeof value==='string'?prior:prior===source?value:Buffer.from(prior);
+ };
+}

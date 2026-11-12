@@ -1,3 +1,4 @@
+import {preCloseoutCiSource,closeoutInventory,closeoutRead} from './closeout-ci-source.mjs';
 import {preCurrentPlanningSource} from './joint-ui-ci-source-inverse.mjs';
 import {preCursesGateSource} from './curses-ci-planning.mjs';
 import {preDefectActorCiSource} from './defect-actor-ci-source-inverse.mjs';
@@ -165,6 +166,7 @@ export function preCombinedPlanningSource(path,source,epoch='base'){
 
 // Historical receipt source proof, gated by both complete merged and published identities.
 export function preCombinedGateSource(path,source,epoch){
+ if(path==='scripts/check-lua-static.mjs'&&['flow','silent','effects'].includes(epoch))source=preCloseoutCiSource(path,source,'pr620');
  source=preCursesGateSource(path,source);
  if(path==='scripts/check-lua-static.mjs')source=preGoldenIdolCurrentCiSource(path,source);
  if(path==='scripts/check-lua-static.mjs')source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,preDefectFinalCiSource(path,preEncounterFormationCiSource(path,source))));

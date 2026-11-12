@@ -3,7 +3,7 @@ import {applyV25BattleScene} from './v25-battle-scene.mjs';
 import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
 import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
 import {v25Theme,applyV25BattleLayout} from './v25-layout.mjs';
-import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
+import {officialBattleHud,officialBattleUtilityFaces,officialRunChrome} from './official-battle-hud.mjs';
 import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
 import {battlePileReturn} from './official-battle-pile-chrome.mjs';
 import {applyOfficialNoncombatLayout} from './noncombat-v25-layout.mjs';
@@ -27,7 +27,10 @@ export function officialAssetsTheme(source){
  if(theme.officialAssets?.profile!=='official-assets-first-v1')throw Error('Missing official asset theme');
  theme.presentationProfile='official-assets-first';
  theme.cardSkin.text.body=theme.officialAssets.cardInk;
-  theme.cardSkin.costText=theme.officialAssets.costInk;
+  theme.cardSkin.costText=theme.officialAssets.battleCostInk;
+  theme.cardSkin.text.title=theme.officialAssets.battleCardTitleInk;
+  const runHud=theme.officialAssets.battleHud;
+  theme.layout.nativeNode.topBar.potions=[runHud.potionX+runHud.potionStep,runHud.y,runHud.potionStep*3,44];
   theme.cardSkin.battleCostText=theme.officialAssets.battleCostInk;
   theme.cardSkin.battleCostRingOpacity=theme.officialAssets.battleCostRingOpacity;
   theme.cardSkin.battleArtWells=theme.officialAssets.battleArtWells;
@@ -45,7 +48,7 @@ export function officialAssetsTheme(source){
   // Existing exhaust-flight readers retain their historical topBar token path.
   const exhaust=theme.officialAssets.battleHud.exhaustPile.position;
   theme.layout.topBar.exhaustIcon[0]=exhaust[0];theme.layout.topBar.y=exhaust[1];
-  theme.cardSkin.artWells=structuredClone(approved.cardSkin.artWells);
+  theme.cardSkin.artWells=structuredClone(theme.officialAssets.battleArtWells);
   theme.cardSkin.typeInk=approved.cardSkin.typeInk;
   // The frozen original maps starter/basic shells to the common silver frame.
   theme.cardSkin.rarities.basic=structuredClone(theme.cardSkin.rarities.common);
@@ -53,13 +56,12 @@ export function officialAssetsTheme(source){
   theme.cardSkin.typePlate=theme.cardSkin.rarities.common[4];
  return theme;
 }
-function cardFace(face,theme,battle=false){
+function cardFace(face,theme){
  const art=theme.officialAssets;
  for(const name of ['roundShadow','roundFrame','roundBody']){
   const image=required(required(face,name),'flat');
-   setImage(image,battle?theme.image.rect:art.images.cardPanel,name==='roundBody'?art.cardBodyTint:undefined);
+   setImage(image,theme.image.rect,name==='roundBody'?art.cardBodyTint:undefined);
  }
- if(battle){
   face.children.unshift({name:'nativePlayableRim',kind:'container',visible:false,size:[150,210],children:[
    ...[-1,1].map(side=>({name:'side'+side,kind:'image',position:[side*75,0],size:[4,212],image:100001,colour:'#43C6BD',opacity:.55,feather:{pixels:[2,2]}})),
    ...[-1,1].map(side=>({name:'edge'+side,kind:'image',position:[0,side*105],size:[154,4],image:100001,colour:'#43C6BD',opacity:.55,feather:{pixels:[2,2]}})),
@@ -88,19 +90,16 @@ function cardFace(face,theme,battle=false){
    const window=required(skin,kind),well=required(window,'well');
    for(const [index,scale]of [.95,.7,.45].entries())well.children.push({name:'nativeWindowLight'+index,kind:'image',position:[0,window.size[1]*.12],size:[window.size[0]*scale,window.size[1]*scale*.8],image:106056,imageType:'basic',colour:kind==='attack'?'#A94D47':'#C46A60',opacity:.14});
   }
- }
  for(const name of ['label','description']){
   const text=child(face,name);if(text?.kind==='text')text.text.colour=art.cardInk;
  }
- setImage(required(face,'costCore'),battle?art.images.battleCoin:art.images.costDisc,battle?'#FFD06A':'#FFFFFF');
+ setImage(required(face,'costCore'),art.images.battleCoin,'#FFD06A');
  // Preserve the animated, semantic cost ring and red/green cost deltas. The
 // official medallion is a single untinted backing, never the dynamic number.
  const disc=required(face,'costCore');disc.size=[Math.min(...disc.size),Math.min(...disc.size)];
- if(battle){
   disc.size=[34,34];disc.imageType='basic';
   const cost=required(face,'cost');cost.text.outline=true;cost.text.outlineColour='#4A2B27';cost.text.outlineOpacity=1;
   officialBattleCardChrome(face,theme);
- }
 }
 function battleSurfaces(root,theme){
  walk(root,node=>{
@@ -213,7 +212,7 @@ export function applyOfficialAssets(trees,theme){
  if(!Array.isArray(trees)||!trees.length)throw Error('Official assets require layout trees');
  const images=theme.officialAssets?.images;
  if(!images||Object.values(images).some(id=>!Number.isSafeInteger(id)||id<=0))throw Error('Invalid official image manifest');
- let cardHosts=0,removedControls=0;const battleCards=new Set();
+ let cardHosts=0,removedControls=0;
   for(const tree of trees){
    const stage=child(tree,'stage')??tree;
    const relicBar=child(stage,'relicBar');
@@ -231,7 +230,6 @@ export function applyOfficialAssets(trees,theme){
     applyV25TurnNoticeLayout(tree,theme);
     applyV25BattleScene(tree,theme);
     const battle=child(stage,'battlePanel')??stage;
-    for(const node of children(battle))if(/^card\d+$/.test(node.name))battleCards.add(node);
     battleSurfaces(battle,theme);
     officialBattleHud(battle,theme);officialBattleUtilityFaces(stage,theme);
    }
@@ -241,7 +239,7 @@ export function applyOfficialAssets(trees,theme){
     // preferred/minimum sizes leave no whole line in the real renderer. Keep
     // geometry and preferred sizes, and let the existing autosizer fit the text.
     if(node.kind==='text'&&node.text?.autoSize&&node.text.minFontSize*1.45+4>node.size?.[1])node.text.minFontSize=theme.font.minimum;
-   if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme,battleCards.has(node));cardHosts++;}
+   if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme);cardHosts++;}
    else {buttonFaces(node,theme);panelSurfaces(node,theme);pageBackgrounds(node,theme);roomTextFits(node,theme);}
   });
   const pileReturn=child(child(tree,'stage')??tree,'deckPanel');
@@ -252,6 +250,7 @@ export function applyOfficialAssets(trees,theme){
   }
   applyOfficialNoncombatLayout(tree,theme);
   applyOfficialNeowLayout(tree,theme);
+  officialRunChrome(tree,theme);
  }
  return {cardHosts,removedControls};
 }

@@ -102,13 +102,16 @@ function flagButton(button,name,theme,options){
  for(const stateName of ['normal','hover','pressed','disabled']){
   const state=child(hit,stateName),label=child(state,'label');
   state.size=[180,60];state.scale=[1,1];
+  child(state,'border').size=[180,60];child(state,'plate').size=[180,60];
+  const backing=optional(state,'officialButtonBacking');if(backing)backing.size=[180,60];
   child(state,'border').visible=false;child(state,'plate').visible=false;
   const [rim,fill,light]=palettes[name][stateName];
   const flag=options?.nativeFlagImage ? group('v25Flag',[180,60],[image('cloth',[0,0],[180,60],options.nativeFlagImage,fill,{imageType:'basic'})]) : group('v25Flag',[180,60],[bands('rim',points,rim,theme),bands('cloth',inner,fill,theme),
    ...threads[name].map((points,i)=>lines(i?'lowerThread':'upperThread',points,1.5,light,theme,{opacity:name==='cancel'?.55:.6}))]);
   upsert(state,flag,children(state).indexOf(label));
   label.position=[name==='cancel'?-10:10,-6];label.size=[150,42];
-  label.text={...label.text,content:name==='cancel'?'返回':'开始挑战',fontSize:26,minFontSize:26,colour:'#FFF0B1',align:'centre',valign:'middle'};
+  const ink=stateName==='disabled'?theme.color.textMuted:theme.presentationProfile==='official-assets-first'?theme.officialAssets.buttonInk:'#FFF0B1';
+  label.text={...label.text,content:name==='cancel'?'返回':'开始挑战',fontSize:26,minFontSize:26,colour:ink,align:'centre',valign:'middle'};
  }
 }
 function roster(theme){

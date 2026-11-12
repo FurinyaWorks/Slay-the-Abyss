@@ -1,3 +1,4 @@
+import {preCloseoutCiSource,closeoutInventory,closeoutRead} from './closeout-ci-source.mjs';
 // Exact outer recovery to develop 6a614fc; the legacy 1eb Golden Idol archive stays frozen.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -14,12 +15,14 @@ for(const binding of Object.values(goldenIdolCurrentCiProof.files))assert.equal(
 export const goldenIdolCurrentJs=Object.freeze(Object.keys(goldenIdolCurrentCiProof.added));
 export function preGoldenIdolCurrentCiSource(path,source){
  const binding=Object.hasOwn(goldenIdolCurrentCiProof.files,path)?goldenIdolCurrentCiProof.files[path]:null;
+ if(binding)source=preCloseoutCiSource(path,source,'pr614');
  if(!binding||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!==binding.afterSha256)return source;
  return binding.beforeSource;
 }
 export function preGoldenIdolCurrentCiInventory(paths){
+ paths=closeoutInventory(paths,'pr614');
  assert.deepEqual([...paths].sort(),[...goldenIdolCurrentCiProof.inventory.js,...goldenIdolCurrentJs].sort(),'complete current Golden Idol inventory');
- for(const [path,sha]of Object.entries(goldenIdolCurrentCiProof.added))assert.equal(hash(readFileSync(path,'utf8').replaceAll('\r\n','\n')),sha,'added Golden Idol inventory source: '+path);
+ for(const [path,sha]of Object.entries(goldenIdolCurrentCiProof.added))assert.equal(hash(preCloseoutCiSource(path,readFileSync(path,'utf8'),'pr614').replaceAll('\r\n','\n')),sha,'added Golden Idol inventory source: '+path);
  return [...goldenIdolCurrentCiProof.inventory.js];
 }
 

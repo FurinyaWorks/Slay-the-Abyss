@@ -8,7 +8,7 @@ import {join} from 'node:path';
 import * as epochs from './helpers/combined-epoch/source-epoch.mjs';
 import {parseDiagnostics,reviewResponsibilityComplexity} from '../scripts/check-lua-static.mjs';
 import {requireLuaTool} from '../scripts/setup-lua-static.mjs';
-const path='src/lua/abyss_curses.lua',epoch=epochs.sourceEpoch;
+const path='src/lua/abyss_curses.lua',epoch=epochs.cursesIntegratedEpoch;
 const before='942e7c65da29875fefbff132182ce7a7aab16afb4405e28d2a71e31d589a44b7';
 const after='65d912f1d2dbd5245bb4734103c762eb9667c5161c33e4c850062e35572c3642';
 const hash=s=>createHash('sha256').update(s).digest('hex');

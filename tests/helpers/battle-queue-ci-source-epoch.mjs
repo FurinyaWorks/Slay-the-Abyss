@@ -1,3 +1,4 @@
+import {preCloseoutCiSource,closeoutInventory,closeoutRead} from './closeout-ci-source.mjs';
 // Preserve historical scheduling receipts while Full discovers every new test.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -12,11 +13,13 @@ const freeze=x=>{if(x&&typeof x==='object'&&!Object.isFrozen(x)){Object.values(x
 freeze(battleQueueCiProof);
 export function preBattleQueueCiSource(path,source){
  const row=Object.hasOwn(battleQueueCiProof.files,path)?battleQueueCiProof.files[path]:null;
+ if(row)source=preCloseoutCiSource(path,source,'pr621');
  return row&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===row.sha256?row.before:source;
 }
 export function preBattleQueueCiInventory(paths){
+ paths=closeoutInventory(paths,'pr621');
  const proof=battleQueueCiProof;
  assert.deepEqual([...paths].sort(),[...proof.oldInventory,...Object.keys(proof.added)].sort(),'complete battle continuation inventory');
- for(const [p,sha]of Object.entries(proof.added))assert.equal(hash(readFileSync(p,'utf8').replaceAll('\r\n','\n')),sha,'battle added source: '+p);
+ for(const [p,sha]of Object.entries(proof.added))assert.equal(hash(preCloseoutCiSource(p,readFileSync(p,'utf8'),'pr621').replaceAll('\r\n','\n')),sha,'battle added source: '+p);
  return [...proof.oldInventory];
 }

@@ -31,7 +31,9 @@ function runOfficial(t,body,marker,overrides={}){
  for(const name of ['glow','nativePlayableRim','costHalo'])expected.children.find(c=>c.name===name).visible=false;
  assert.deepEqual(pile.children.find(c=>c.name==='face'),expected,'pile must reuse the final official hand face exactly');
  assert.deepEqual(pile.children.find(c=>c.name==='hit').size,[150,210]);
- assert.equal(templates.find(c=>c.name==='AbyssDeckCard').children.find(c=>c.name==='face').children.some(c=>c.name==='nativeRibbon'),false,'ordinary deck template retained its existing surface');
+ const ordinary=structuredClone(templates.find(c=>c.name==='AbyssDeckCard').children.find(c=>c.name==='face'));
+ ordinary.position=[0,0];
+ assert.deepEqual(ordinary,expected,'permanent and combat piles share the final hand face');
  assert.equal(face.children.find(c=>c.name==='roundBody').children.find(c=>c.name==='flat').image,theme.image.rect);
  const overrideLoads=Object.entries(overrides).map(([name,source])=>{
   assert.match(name,/^abyss_[a-z_]+$/);
@@ -203,8 +205,7 @@ assert(count4==4,'default real drag path changed: '..count4)
 `, 'OFFICIAL_REAL_DRAG_RELEASE_PASS');
 });
 
-test('official proven single-hit source cards separate pre-contact damage wait from post-contact action wait',t=>{
- runOfficial(t,`
+const officialSingleDamageSetup=`
 local Theme=H.F.Theme
 local function start(id,fast)
  local h,u,p=H.setup({id},{'cultist'})
@@ -213,7 +214,9 @@ local function start(id,fast)
  assert(u.feedback.current.kind=='play' and u.busy)
  return h,u,battle,p
 end
-for _,id in ipairs({'strike','bash','anger','pommel_strike','headbutt'})do
+`;
+test('official proven single-hit contact and FAST action waits',t=>{
+ runOfficial(t,officialSingleDamageSetup+`for _,id in ipairs({'strike','bash','anger','pommel_strike','headbutt'})do
  local h,u,b=start(id);local committed=b.enemies[1].hp
  assert(u.displayBattle.enemies[1].hp>committed,'core must commit before presentation '..id)
  h:update(.099)
@@ -225,7 +228,11 @@ for _,id in ipairs({'strike','bash','anger','pommel_strike','headbutt'})do
 end
 local h,u,b=start('strike',true);h:update(.101);assert(u.feedback.current.kind=='damage')
 h:update(0);assert(not u.busy,'FAST must not invent the non-FAST post-contact wait')
-local h,u,b,p=start('strike');local flight=u.feedback.flight;local card=p:GetChild('feedback'):GetChild('playedCard')
+`, 'OFFICIAL_SINGLE_DAMAGE_TIMING_PASS');
+});
+
+test('official proven single-hit flight interpolation and contact continuity',t=>{
+ runOfficial(t,officialSingleDamageSetup+`local h,u,b,p=start('strike');local flight=u.feedback.flight;local card=p:GetChild('feedback'):GetChild('playedCard')
 local dx=flight.tx-flight.x;assert(math.abs(dx)>1,'flight probe needs distinct X endpoints')
 local previous=0
 for i=1,9 do
@@ -237,7 +244,11 @@ assert(near>.96,'source-contact flight remained near its old .2s starting pose')
 h:update(.002)
 assert(math.abs(card.x-flight.tx)<.001 and math.abs(card.y-(flight.ty-(flight.stop or 0)))<.001,'contact must complete the flight')
 assert(1-near<.04,'contact introduced a mid-flight snap')
--- Source exceptions retain their explicit VFX, action waits and existing gates.
+`, 'OFFICIAL_SINGLE_DAMAGE_TIMING_PASS');
+});
+
+test('official proven single-hit source exceptions and default theme isolation',t=>{
+ runOfficial(t,officialSingleDamageSetup+`-- Source exceptions retain their explicit VFX, action waits and existing gates.
 for _,id in ipairs({'bludgeon','cleave','twin_strike','iron_wave','defend'})do
  local h,u,b=start(id);h:update(.101)
  assert(u.feedback.current.kind=='play','unverified source group was generalized '..id)
@@ -346,7 +357,7 @@ local Skin=require('abyss_card_skin');local theme=H.F.Theme
 local card=p:GetChild('card1');local number=card:GetChild('cost')
 local ink=theme.cardSkin.costText
 local battleInk=theme.cardSkin.battleCostText
-assert(ink.r==64 and ink.g==56 and ink.b==41,'official neutral ink')
+assert(ink.r==255 and ink.g==248 and ink.b==216,'shared official coin neutral ink')
 assert(battleInk.r==255 and battleInk.g==248 and battleInk.b==216,'battle coin neutral ink')
 local function colour(actual,expected,label)
  assert(actual and actual.r==expected.r and actual.g==expected.g and actual.b==expected.b,label)

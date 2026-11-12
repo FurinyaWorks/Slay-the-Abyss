@@ -1,12 +1,20 @@
+import {sourceSlice} from './helpers/closeout-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
+import {readFileSync as nativeReadFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {sourceEpoch,preGoldenIdolEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {goldenIdolIntegratedEpoch as sourceEpoch,preGoldenIdolEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import {goldenIdolEpoch} from './helpers/golden-idol-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
+
+const readFileSync=(file,encoding)=>{
+ const value=nativeReadFileSync(file,encoding);
+ if(file!=='config/architecture.json'&&!file.startsWith('src/lua/'))return value;
+ const source=typeof value==='string'?value:value.toString('utf8'),prior=sourceSlice(file,source,'pr614');
+ return typeof value==='string'?prior:prior===source?value:Buffer.from(prior);
+};
 const path='src/lua/abyss_golden_idol_event.lua',proof=sourceEpoch.proof,prior=preGoldenIdolEpoch.proof;
 const raw=p=>proof.current[p]?.source??null;
 test('Golden Idol outer epoch preserves every prior binding and exact frozen production byte',()=>{
@@ -52,7 +60,7 @@ test('isolated authenticated helper closure retains the exact Golden Idol epoch 
  const directory=mkdtempSync(join(tmpdir(),'golden-idol-epoch-closure-'));
  try{
   copyIntegrationSourceClosure(directory);
-  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).sourceEpoch;
+  const isolated=(await import(pathToFileURL(join(directory,'tests/helpers/combined-epoch/source-epoch.mjs')).href)).goldenIdolIntegratedEpoch;
   assert.deepEqual(isolated.proof,proof);
   assert.equal(isolated.preCombinedSource(path,raw(path),{target:'goldenIdolPrior',readSource:raw}),prior.current[path].source);
   assert.throws(()=>isolated.preCombinedSource(path,raw(path),{target:'goldenIdolPrior',readSource:p=>p===path?raw(p)+'\n':raw(p)}),/linked owner identity/);
@@ -68,7 +76,7 @@ test('unknown source targets are rejected rather than gaining an identity fallba
 });
 
 test('configuration layout admission preserves exact tokens and freshly authenticates all 80 current raw owners',async()=>{
- const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
+ const {goldenIdolIntegratedEpoch:sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
  const proof=sourceEpoch.proof,path='config/architecture.json',source=proof.current[path].source;
  const raw=p=>proof.current[p]?.source??null,expected=proof.targets.actor.files[path].source;
  assert.equal(proof.owners.length,80);

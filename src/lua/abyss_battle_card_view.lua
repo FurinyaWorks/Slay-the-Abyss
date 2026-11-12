@@ -10,31 +10,10 @@ local CardDisplay = require("abyss_card_display")
 local number = require("abyss_numbers").integer
 local C, L = Theme.color, Theme.layout
 local titleInk=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleCardTitleInk or Theme.cardSkin.text.title
-local bannerTints=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleBannerByRarity
 local D = L.cardDrag
 local typeNames = { attack = "攻击", skill = "技能", power = "能力", status = "状态", curse = "诅咒" }
 local M = {}
-local function bannerInk(definition)
-    if bannerTints then return bannerTints[definition.rarity]or bannerTints.basic end
-    return C.rarityBand[definition.rarity]or C.rarityBand.basic
-end
-local ribbonColours=setmetatable({},{__mode='k'})
-local function paintRibbon(box,tone,tint)
-    local ribbon=assert(box:GetChild('nativeRibbon'),'official battle ribbon is required')
-    if ribbonColours[box]==tone then return end
-    for _,part in ipairs(ribbon:GetChildren())do
-        if part.name:match('^face')then tint(part,tone)end
-    end
-    ribbonColours[box]=tone
-end
--- Shared by the hand and read-only combat piles using the same native face.
-function M.paintBanner(box,definition,tint)
-    tint(box:GetChild('nameBand'),bannerInk(definition))
-    if Theme.presentationProfile=='official-assets-first' then
-        tint(assert(box:GetChild('nativeBannerRight'),'official battle banner is required'),bannerInk(definition))
-        paintRibbon(box,bannerInk(definition),tint)
-    end
-end
+M.paintBanner=CardSkin.paintBanner
 local function canAimCard(card,battle)
     if card.playable then return true end
     if card.blockReason~='invalid_target' or not card.instance or not battle then return false end

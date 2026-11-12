@@ -33,7 +33,7 @@ test('official cost medallions pair the selected light material with neutral dar
  // 5b3e9f11 replaced dark 107202 with light 107270. Bind both sides of that
  // material/ink choice; this is a source contract, not measured texture contrast.
  assert.equal(theme.officialAssets.images.costDisc,107270);
- assert.equal(theme.cardSkin.costText,'#403829');
+ assert.equal(theme.cardSkin.costText,'#FFF8D8');
  assert.equal(theme.cardSkin.battleCostText,'#FFF8D8');
  const battleCards=new Set(all(child(layout,'battlePanel')).filter(n=>child(n,'roundFrame')&&child(n,'costDisc')));
  assert.equal(battleCards.size,10);
@@ -41,8 +41,9 @@ test('official cost medallions pair the selected light material with neutral dar
  assert(cards.length>=40);
  for(const card of cards){
   const core=child(card,'costCore');
-  assert.equal(core.image,battleCards.has(card)?107203:107270,card.name+' scoped cost material');
-  assert.equal(core.colour,battleCards.has(card)?'#FFD06A':'#FFFFFF',card.name+' scoped cost tint');
+  assert.equal(core.image,107203,card.name+' shared cost material');
+  assert.equal(core.colour,'#FFD06A',card.name+' shared cost tint');
+  assert(child(card,'nativeRibbon')&&child(card,'nativeCardBody')&&child(card,'nativeCostOrb'),card.name+' shares battle chrome');
   assert.equal(core.size[0],core.size[1],card.name+' cost material must remain circular');
  }
  assert.deepEqual(theme.cardSkin.costTone,nativeTheme.cardSkin.costTone,'red/green cost semantics');
@@ -67,8 +68,7 @@ test('approved card inner frames retain their point/rounded silhouettes and unch
  const skill=child(child(skin,'skill'),'edge');
  assert(children(skill).some(n=>n.name==='corner-1_-1'));
  assert(!children(skill).some(n=>n.name==='flat'));
- assert.equal(theme.cardSkin.artWells.attack,'#551C24');
- assert.equal(theme.cardSkin.artWells.skill,'#1A3042');
+ assert.deepEqual(theme.cardSkin.artWells,theme.officialAssets.battleArtWells);
  assert.deepEqual(theme.icon.cardPortraits,nativeTheme.icon.cardPortraits);
  assert.deepEqual(theme.icon.cardArt,nativeTheme.icon.cardArt);
  assert.deepEqual(theme.cardSkin.rarities.basic,nativeTheme.cardSkin.rarities.common);
@@ -87,4 +87,22 @@ test('generic disabled buttons remain visibly distinct from enabled buttons',()=
  assert.equal(child(disabled,'label').text.colour,nativeTheme.color.textMuted);
  assert.notEqual(child(disabled,'label').text.colour,child(enabled,'label').text.colour);
  assert.notEqual(child(disabled,'plate').colour,child(enabled,'plate').colour);
+});
+
+test('run pages share the final battle bar without copied inputs or a covering legacy header',()=>{
+ const theme=officialAssetsTheme(nativeTheme),layout=gameLayout(theme);applyOfficialAssets([layout],theme);
+ const battle=child(layout,'battlePanel'),hud=theme.officialAssets.battleHud;
+ const original=structuredClone(child(battle,'topBar'));original.name='officialRunBar';
+ original.children=children(original).filter(part=>part.name!=='battleRoute');
+ for(const name of ['mapPanel','nodePanel']){
+  const page=child(layout,name),bar=child(page,'officialRunBar'),resources=child(page,'resources')??page;
+  assert.deepEqual(bar,original,name+' shares the canonical bar');
+  assert(!all(bar).some(control=>control.kind==='cursorArea'),name+' has no unbound cloned receiver');
+  for(const control of all(page).filter(control=>['headerShade','headerDivider','titleLineLeft','titleLineRight'].includes(control.name)))assert.equal(control.visible,false,name+'/'+control.name);
+  for(const [key,reference]of [['hp','player'],['gold','piles']]){
+   assert.deepEqual(child(resources,key).position,hud[key].slice(0,2));
+   assert.equal(child(resources,key).text.colour,child(battle,reference).text.colour);
+  }
+ }
+ assert.equal(child(child(layout,'potionEntry'),'open').position[1],hud.y);
 });

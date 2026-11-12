@@ -244,7 +244,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         end
         CardDisplay.writeTitle(face:GetChild("name"),display.name,instance.upgraded,
             definition.repeatable and (instance.upgrades or 1) or nil,face:GetChild("type"),typeNames[definition.type] or definition.type)
-        face:GetChild("name").fontColor = colour(self.pileView and Theme.officialAssets.battleCardTitleInk or Theme.cardSkin.text.title)
+        face:GetChild("name").fontColor = colour(Theme.cardSkin.text.title)
         -- Permanent cards carry no combat modifiers: fill live tokens with their own values.
         local text=battle and CardDisplay.combatText(display,definition,instance,Combat.cardPreview(battle,instance),battle)
             or CardDisplay.permanentText(display,definition,instance)
@@ -253,7 +253,6 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         face:GetChild("cost").text = definition.cost == -2 and "" or definition.costMode == "all_energy" and "X" or tostring(definition.cost)
         tint(face:GetChild("border"), Theme.color.rarity[definition.rarity] or Theme.color.line)
         tint(face:GetChild("nameBand"), Theme.color.rarityBand[definition.rarity] or Theme.color.rarityBand.basic)
-        if self.pileView then require('abyss_battle_card_view').paintBanner(face,definition,tint) end
         tint(face:GetChild("nameRule"), Theme.color.rarity[definition.rarity] or Theme.color.line)
         tint(face:GetChild("artPlate"), Theme.color.cardType[definition.type] or Theme.color.panelRaised)
         CardDisplay.writeArt(face:GetChild("art"), definition, picture,face);CardDisplay.writeNativeArt(face,definition,display.nativeArt,platform,face:GetChild('art'),instance.uid)

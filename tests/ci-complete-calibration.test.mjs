@@ -1,3 +1,4 @@
+import {closeoutRead,closeoutInventory,preCloseoutCiSource,closeoutCiProof} from './helpers/closeout-ci-source.mjs';
 import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
 import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helpers/curses-ci-planning.mjs';
 import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource,preRatchetInventory,ratchetInventoryFile} from './helpers/joint-ui-ci-source-inverse.mjs';
@@ -49,13 +50,24 @@ import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs as liveDiscoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs as liveDiscoverJs,partition,jsShard as rawCurrentJsShard,jsPlanningWeights as rawCurrentJsPlanningWeights,timings as rawCurrentTimings} from '../scripts/ci-shards.mjs';
 // Frozen receipts retain their complete inventory; current Full remains raw.
-const discoverJs=()=>preBattleQueueCiInventory(liveDiscoverJs());
+const discoverJs=()=>closeoutInventory(liveDiscoverJs(),'pr620');
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
 // Preserve every pre-Actor assertion in its exact authenticated source/inventory
 // epoch. The appended Actor contracts separately exercise raw current Full work.
-const diskReadFileSync=(file,encoding)=>{const bytes=liveDiskReadFileSync(file),text=bytes.toString('utf8'),prior=preDefectActorCiSource(file,text);return encoding?prior:prior===text?bytes:Buffer.from(prior);};
+const diskReadFileSync=closeoutRead('pr620',liveDiskReadFileSync);
+const actualCurrentTimings=JSON.parse(diskReadFileSync('scripts/ci-test-timings.json','utf8'));
+const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
+const nativeCloseoutRead=liveDiskReadFileSync,nativeCloseoutDiscover=liveDiscoverJs,nativeCloseoutJointInventory=jointCiInventoryAt;
+function sliceTools(view){
+ const read=closeoutRead(view,nativeCloseoutRead),timings=JSON.parse(read('scripts/ci-test-timings.json','utf8'));
+ const weights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(timings.js[platform][file]??timings.unknownJsMs,timings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+ const shard=(files,value,platform)=>partition(files,value,weights(files,platform),timings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?timings.initialMs[platform][0]:0));
+ return {read,timings,weights,shard,inventory:()=>closeoutInventory(nativeCloseoutDiscover(),view)};
+}
+
 import {preGoldenIdolCurrentCiSource,preGoldenIdolCurrentCiInventory,goldenIdolCurrentCiProof,goldenIdolCurrentJs,goldenIdolCurrentPlanningFloors} from './helpers/golden-idol-current-ci-source-inverse.mjs';
 const actualDiscoverJs=liveDiscoverJs,actualJsShard=currentJsShard,actualJsPlanningWeights=currentJsPlanningWeights,liveTimings=actualCurrentTimings;
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
@@ -1339,15 +1351,6 @@ test('joint historical inventory rejects missing duplicate and unknown files whi
  const current=discoverJs(),historical=jointCiInventoryAt(current,'officialAssetsFlow');
  assert.equal(current.length,837);assert.equal(historical.length,829);
  const added=current.filter(f=>!historical.includes(f));assert.equal(added.length,8);
- for(const f of noncombatAddedTests){
-  assert(current.includes(f));
-  assert.throws(()=>jointCiInventoryAt(current.filter(p=>p!==f),'officialAssetsFlow'),/inventory/);
-  assert.throws(()=>jointCiInventoryAt([...current,f],'officialAssetsFlow'),/inventory/);
-  for(const platform of ['win32','linux']){
-   assert.equal(actualCurrentTimings.js[platform][f],undefined,'new test is unmeasured');
-   assert.equal(currentJsPlanningWeights([f],platform)[f],actualCurrentTimings.unknownJsMs);
-  }
- }
  for(const f of added){
   assert.throws(()=>jointCiInventoryAt(current.filter(p=>p!==f),'officialAssetsFlow'),/inventory/);
   assert.throws(()=>jointCiInventoryAt([...current,f],'officialAssetsFlow'),/inventory/);
@@ -1485,31 +1488,15 @@ test('Curses receipt source is exact and cannot substitute for raw current sourc
 });
 
 test('battle continuation retains exact historical sources and complete current Full coverage',()=>{
- const proof=battleQueueCiProof,current=liveDiscoverJs();
- assert.equal(proof.base,'3a061a76b5eb917ac0f4213c01a9cbafd28d1824');
- assert.equal(current.length,proof.oldInventory.length+6);
- assert.equal(new Set(current).size,current.length);
- assert.deepEqual(preBattleQueueCiInventory(current),proof.oldInventory);
- for(const [p,row]of Object.entries(proof.files)){
-  const source=diskReadFileSync(p,'utf8').replaceAll('\r\n','\n');
-  assert.equal(source,row.current,p);
-  assert.equal(preBattleQueueCiSource(p,source),row.before,p);
-  for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(preBattleQueueCiSource(p,foreign),foreign,p);
- }
- for(const p of Object.keys(proof.added)){
-  assert.throws(()=>preBattleQueueCiInventory(current.filter(f=>f!==p)),/inventory/);
-  assert.throws(()=>preBattleQueueCiInventory([...current,p]),/inventory/);
- }
- assert.throws(()=>preBattleQueueCiInventory([...current,'tests/foreign.test.mjs']),/inventory/);
- for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
-  const bins=Array.from({length:count},(_,i)=>currentJsShard(current,(i+1)+'/'+count,platform).files);
-  assert.deepEqual(bins.flat().sort(),[...current].sort());
-  assert(currentJsShard(current,'1/'+count,platform).loads.every(v=>v<budget),'unchanged '+platform+' execution budget');
- }
-});
+ // Immutable pr621 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr621');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr621');
 
-
-test('battle continuation retains exact historical sources and complete current Full coverage',()=>{
  const proof=battleQueueCiProof,current=liveDiscoverJs();
  assert.equal(proof.base,'3a061a76b5eb917ac0f4213c01a9cbafd28d1824');
  assert.equal(current.length,proof.oldInventory.length+6);
@@ -1535,6 +1522,15 @@ test('battle continuation retains exact historical sources and complete current 
 
 
 test('ratchet current inventory preserves raw Full coverage and refuses source drift after a warm projection',()=>{
+ // Immutable pr616 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr616');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr616');
+
  const current=discoverJs(),prior=preRatchetInventory(current),historical=jointCiInventoryAt(current,'officialAssetsFlow');
  assert.equal(current.length,835);assert.equal(prior.length,834);assert.equal(historical.length,829);
  assert(current.includes(ratchetInventoryFile));assert(!prior.includes(ratchetInventoryFile));
@@ -1558,6 +1554,15 @@ test('ratchet current inventory preserves raw Full coverage and refuses source d
  assert.deepEqual(preRatchetInventory(current,(file,encoding)=>diskReadFileSync(file,encoding).replaceAll('\r\n','\n').replaceAll('\n','\r\n')),prior);
 });
 test('Joust gate outer view accepts only the complete two-line addition and preserves historical bytes',()=>{
+ // Immutable pr612 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr612');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr612');
+
  const path='scripts/check-lua-static.mjs',source=currentReadFileSync(path,'utf8').replaceAll('\r\n','\n');
  const prior=preJoustCiSource(path,joustEpoch.preCombinedSource(path,source,{target:'joustPrior',readSource:joustCurrentSource}));
  assert.notEqual(prior,source);
@@ -1573,6 +1578,15 @@ test('Joust gate outer view accepts only the complete two-line addition and pres
 
 
 test('Joust CI outer identities retain complete predecessors and reject foreign drift',()=>{
+ // Immutable pr612 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr612');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr612');
+
  for(const [path,row]of Object.entries(joustCiProof.files)){
   const source=currentReadFileSync(path,'utf8').replaceAll('\r\n','\n');
   assert.equal(source,row.afterSource,path+' exact current identity');
@@ -1584,6 +1598,15 @@ test('Joust CI outer identities retain complete predecessors and reject foreign 
 });
 
 test('Golden Idol recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
+ // Immutable pr614 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr614');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr614');
+
  for(const [file,binding]of Object.entries(goldenIdolCurrentCiProof.files)){
   const raw=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
   assert.equal(hash(raw),binding.afterSha256,file);
@@ -1595,6 +1618,15 @@ test('Golden Idol recovery preserves exact predecessor CI receipt sources and re
 });
 
 test('current Golden Idol836 Full38 inventory adds only two files under unchanged budgets and complete effective costs',t=>{
+ // Immutable pr614 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr614');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr614');
+
  const js=actualDiscoverJs(),lua=currentLua();
  assert.equal(js.length,836);assert.equal(lua.length,1415);
  assert.deepEqual(js.filter(file=>!discoverJs().includes(file)).sort(),[...goldenIdolCurrentJs].sort());
@@ -1635,6 +1667,15 @@ test('current Golden Idol836 Full38 inventory adds only two files under unchange
 
 
 test('Golden Idol complete local floors authenticate actual files and preserve every prior observation',()=>{
+ // Immutable pr614 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr614');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr614');
+
  assert.deepEqual(Object.keys(goldenIdolCurrentPlanningFloors),['tests/golden-idol-source-epoch.test.mjs']);
  const current=JSON.parse(actualDiskReadFileSync(path,'utf8'));
  for(const [key,floor]of Object.entries(goldenIdolCurrentPlanningFloors)){
@@ -1661,6 +1702,15 @@ test('Golden Idol complete local floors authenticate actual files and preserve e
 
 
 test('Golden Idol shared CI entry points preserve path type and target rejection boundaries',()=>{
+ // Immutable pr614 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr614');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr614');
+
  const timingPath='scripts/ci-test-timings.json',gatePath='scripts/check-lua-static.mjs';
  const timing=actualDiskReadFileSync(timingPath,'utf8'),gate=actualDiskReadFileSync(gatePath,'utf8');
  const priorTiming=goldenIdolCurrentCiProof.files[timingPath].beforeSource,priorGate=goldenIdolCurrentCiProof.files[gatePath].beforeSource;
@@ -1685,4 +1735,163 @@ test('Golden Idol shared CI entry points preserve path type and target rejection
  }
  assert.notEqual(preCombinedPlanningSource(timingPath,timing,'base'),timing);
  assert.notEqual(preCombinedGateSource(gatePath,gate,'flow'),gate);
+});
+
+test('Defect Actor cost layer accepts only complete current bytes and authenticates the sole added inventory',()=>{
+ // Immutable pr618 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr618');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr618');
+
+ const source=liveDiskReadFileSync(path,'utf8'),prior=preDefectActorCiSource(path,source);
+ assert.notEqual(source,prior);assert.equal(prior,defectActorCiProof.files[path].beforeSource);
+ const current=JSON.parse(source),previous=JSON.parse(prior);
+ assert.equal(previous.jsPlanning.localLowerBounds[defectActorPlanningKey],undefined);
+ assert.deepEqual(current.jsPlanning.localLowerBounds[defectActorPlanningKey],defectActorPlanningFloor);
+ delete current.jsPlanning.localLowerBounds[defectActorPlanningKey];
+ assert.deepEqual(current,previous,'only the new local floor changes; old floors, hosted observations, Lua weights, reserves and budgets stay unchanged');
+ assert.equal(preDefectActorCiSource(path,source.replaceAll('\n','\r\n')),prior);
+ for(const value of [source+'\n',source.slice(1),prior,null,undefined,{},17,source.replace('"durationMs": 50000','"durationMs": 49999'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999')])assert.equal(preDefectActorCiSource(path,value),value);
+ for(const foreign of ['foreign','__proto__','constructor'])assert.equal(preDefectActorCiSource(foreign,source),source);
+ for(const [file,row]of Object.entries(defectActorCiProof.files)){
+  const source=liveDiskReadFileSync(file,'utf8');
+  assert.equal(hash(source.replaceAll('\r\n','\n')),row.afterSha256,file);
+  assert.equal(preDefectActorCiSource(file,source),row.beforeSource,file);
+  assert.equal(preDefectActorCiSource(file,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),row.beforeSource,file);
+  for(const drift of [source+'\n',source.slice(1),null,{},17])assert.equal(preDefectActorCiSource(file,drift),drift,file);
+ }
+ const all=liveDiscoverJs(),old=preDefectActorCiInventory(all);
+ assert.equal(all.length,835);assert.equal(old.length,834);
+ assert.deepEqual(all.filter(file=>!old.includes(file)),[defectActorPlanningKey]);
+ for(const bad of [all.filter(f=>f!==defectActorPlanningKey),[...all,defectActorPlanningKey],[...all,'tests/foreign.test.mjs'],all.filter(f=>f!==old[0])])assert.throws(()=>preDefectActorCiInventory(bad),/inventory/);
+});
+
+
+test('Defect Actor floor binds the complete 18-case local run and actual behavior sources without inventing a wall clock or hosted data',()=>{
+ // Immutable pr618 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr618');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr618');
+
+ const floor=defectActorPlanningFloor,bytes=liveDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(bytes),log=liveDiskReadFileSync(floor.sourceLog);
+ assert.equal(hash(bytes),floor.sourceReceiptSha256);assert.equal(hash(log),floor.sourceLogSha256);
+ assert.equal(receipt.sourceLog,floor.sourceLog);assert.equal(receipt.sourceLogSha256,hash(log));
+ assert.equal(receipt.kind,'local-complete-file-planning-floor');assert.equal(receipt.notHostedCiMeasurement,true);
+ assert.equal(receipt.file,defectActorPlanningKey);assert.deepEqual(receipt.command,['node','--test',defectActorPlanningKey]);
+ assert.deepEqual([receipt.tests,receipt.pass,receipt.fail,receipt.cancelled,receipt.skipped,receipt.todo],[18,18,0,0,0,0]);
+ assert.equal(receipt.nodeReportedDurationMs,47112.322039);assert.equal(receipt.wallDurationMs,null);assert.equal(floor.wallDurationMs,null);
+ assert.equal(floor.nodeReportedDurationMs,receipt.nodeReportedDurationMs);assert.equal(floor.durationMs,50000);assert.equal(receipt.planningFloorMs,floor.durationMs);assert.ok(floor.durationMs>=Math.ceil(receipt.nodeReportedDurationMs));
+ for(const line of ['tests 18','pass 18','fail 0','cancelled 0','skipped 0','todo 0','duration_ms 47112.322039'])assert.ok(log.toString().includes('ℹ '+line+'\n'),line);
+ assert.deepEqual(Object.keys(receipt.inputHashes).sort(),[defectActorPlanningKey,'tests/helpers/defect-actor-vm.mjs','src/lua/abyss_defect_utility_cards.lua','src/lua/abyss_combat_queued_play.lua'].sort());
+ for(const [file,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(liveDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n')),sha,file);
+ for(const platform of ['win32','linux']){assert.equal(liveTimings.js[platform][defectActorPlanningKey],undefined);assert.equal(liveJsPlanningWeights([defectActorPlanningKey],platform)[defectActorPlanningKey],50000);}
+});
+
+
+test('complete current Defect Actor Full38 inventory fits original Windows18 POSIX15 budgets including the new floor and unchanged reserve',t=>{
+ // Immutable pr618 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr618');
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr618');
+
+ const js=liveDiscoverJs(),lua=currentLua();
+ assert.equal(js.length,835);assert.equal(lua.length,1415);
+ assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:18},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
+ assert.equal(currentFullQualityJobs.length,38);
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const loads=liveJsShard(js,`1/${count}`,platform).loads;
+  const jsBins=Array.from({length:count},(_,i)=>liveJsShard(js,`${i+1}/${count}`,platform).files);
+  assert.deepEqual(jsBins.flat().sort(),[...js].sort());assert.equal(new Set(jsBins.flat()).size,js.length);
+  let combined=loads;
+  if(platform==='win32'){
+   const planning={...liveTimings,windowsJsShardMs:loads};
+   const bins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,planning,2));
+   assert.deepEqual(bins.flat().sort(),[...lua].sort());assert.equal(new Set(bins.flat()).size,lua.length);
+   const cost=f=>liveTimings.luaShard[f]??liveTimings.lua[f]??liveTimings.unknownLuaMs,safety=f=>liveTimings.lua[f]??liveTimings.unknownLuaMs;
+   combined=bins.map((bin,i)=>{const pool=[0,0];for(const f of bin.filter(f=>safety(f)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(f);return loads[i]+bin.filter(f=>safety(f)>=10000).reduce((sum,f)=>sum+cost(f),0)+Math.max(...pool);});
+  }
+  const forecast=Math.max(...combined)+60000;
+  t.diagnostic(`${platform} complete current Actor forecast ${forecast} ms; unchanged budget ${budget} ms; no hosted Full pass claimed`);
+  assert.ok(forecast<budget,`${platform} complete current work must fit original budget with 60-second reserve`);
+ }
+});
+
+test('combined closeout validates raw current sources and complete Full discovery independently of immutable slice views',t=>{
+ const files=nativeCloseoutDiscover();
+ assert.deepEqual(files,closeoutCiProof.inventory,'every current test remains in raw discovery');
+ assert.equal(new Set(files).size,files.length);
+ assert.equal(files.length,849);
+ const lua=currentLua();assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
+ for(const file of lua)assert.equal(hash(nativeCloseoutRead(file,'utf8').replaceAll('\r\n','\n')),closeoutCiProof.luaHashes[file],file);
+ const rawCalibration=nativeCloseoutRead('tests/ci-complete-calibration.test.mjs','utf8');
+ for(const view of ['defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt']){
+  assert.equal(jointCiMatches('tests/ci-complete-calibration.test.mjs',rawCalibration,view),false);
+  assert.equal(jointCiSourceAt('tests/ci-complete-calibration.test.mjs',rawCalibration,view),rawCalibration,'wrong scope preserves actual raw source');
+ }
+ for(const [path,id]of Object.entries(closeoutCiProof.current)){
+  if(id===null)continue;
+  const source=nativeCloseoutRead(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(source),id,'raw current source: '+path);
+  for(const view of Object.keys(closeoutCiProof.targets)){
+   for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(preCloseoutCiSource(path,foreign,view),foreign,path+'/'+view);
+   for(const unknown of ['__proto__','constructor','foreign/'+path])assert.equal(preCloseoutCiSource(unknown,source,view),source);
+  }
+ }
+ for(const [platform,count]of [['win32',18],['linux',15]]){
+  const bins=Array.from({length:count},(_,i)=>rawCurrentJsShard(files,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),files,'raw Full covers each file on '+platform);
+  assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,files.length);
+  const loads=bins[0].loads;let combined=loads;
+  if(platform==='win32'){
+   const luaBins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...rawCurrentTimings,windowsJsShardMs:loads},2));
+   assert.deepEqual(luaBins.flat().sort(),lua);assert.equal(new Set(luaBins.flat()).size,lua.length);
+   const cost=file=>rawCurrentTimings.luaShard[file]??rawCurrentTimings.lua[file]??rawCurrentTimings.unknownLuaMs;
+   const safety=file=>rawCurrentTimings.lua[file]??rawCurrentTimings.unknownLuaMs;
+   combined=luaBins.map((bin,i)=>{
+    const pool=[0,0];
+    for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);
+    return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);
+   });
+  }
+  const forecast=Math.max(...combined)+60000,budget=platform==='win32'?1800000:1200000;
+  assert.ok(forecast<budget,platform+' final complete workload and reserve fit unchanged budget');
+  t.diagnostic(`${platform} final 849JS/1416Lua forecast ${forecast}ms < ${budget}ms; actual hosted completion remains separate`);
+  for(const file of files)assert(rawCurrentJsPlanningWeights([file],platform)[file]>=rawCurrentTimings.unknownJsMs||rawCurrentTimings.js[platform][file]>0);
+ }
+ for(const view of Object.keys(closeoutCiProof.targets)){
+  assert.throws(()=>closeoutInventory([...files,'tests/foreign.test.mjs'],view),/inventory/);
+  assert.throws(()=>closeoutInventory([...files,files[0]],view),/inventory/);
+  const added=files.find(path=>!closeoutCiProof.targets[view].inventory.includes(path));
+  if(added){
+   assert.throws(()=>closeoutInventory(files.filter(path=>path!==added),view),/inventory/);
+   assert.throws(()=>closeoutInventory(files,view,(path,encoding)=>nativeCloseoutRead(path,encoding)+(path===added?'\n':'')),/added inventory source/);
+  }
+ }
+});
+
+test('noncombat immutable added inventory keeps its full source and unknown-cost rejection checks',()=>{
+ const slice=sliceTools('pr623'),current=slice.inventory(),actualCurrentTimings=slice.timings;
+ const jointCiInventoryAt=(paths,target)=>nativeCloseoutJointInventory(paths,target,slice.read,'pr623');
+ const currentJsPlanningWeights=slice.weights;
+ for(const f of noncombatAddedTests){
+  assert(current.includes(f));
+  assert.throws(()=>jointCiInventoryAt(current.filter(p=>p!==f),'officialAssetsFlow'),/inventory/);
+  assert.throws(()=>jointCiInventoryAt([...current,f],'officialAssetsFlow'),/inventory/);
+  for(const platform of ['win32','linux']){
+   assert.equal(actualCurrentTimings.js[platform][f],undefined,'new test is unmeasured');
+   assert.equal(currentJsPlanningWeights([f],platform)[f],actualCurrentTimings.unknownJsMs);
+  }
+ }
 });

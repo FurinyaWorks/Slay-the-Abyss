@@ -1,3 +1,4 @@
+import {preCloseoutCiSource,closeoutInventory,closeoutRead} from './closeout-ci-source.mjs';
 // Pure source compatibility for frozen CI receipts; does not claim the new
 // tests or implementation were measured by any historical hosted run.
 import {preNoncombatDemandCiSource} from './noncombat-demand-ci-source-inverse.mjs';
@@ -16,13 +17,15 @@ for(const row of Object.values(proof.files))for(const side of ['before','after']
 }
 export const noncombatAddedTests=Object.freeze(Object.keys(proof.added));
 export function preNoncombatCiSource(path,source){
+ if(Object.hasOwn(proof.files,path))source=preCloseoutCiSource(path,source,'pr623');
  source=preNoncombatDemandCiSource(path,source);
  const row=Object.hasOwn(proof.files,path)?proof.files[path]:null;
  return row&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===row.after.sha256?row.before.source:source;
 }
 export function noncombatPriorInventory(paths){
+ paths=closeoutInventory(paths,'pr623');
  const added=noncombatAddedTests;
  assert.deepEqual([...paths].sort(),[...proof.beforeInventory,...added].sort(),'complete noncombat inventory');
- for(const path of added)assert.equal(hash(preNoncombatDemandCiSource(path,readFileSync(path,'utf8').replaceAll('\r\n','\n'))),proof.added[path],'unmeasured noncombat source: '+path);
+ for(const path of added)assert.equal(hash(preNoncombatDemandCiSource(path,preCloseoutCiSource(path,readFileSync(path,'utf8'),'pr623').replaceAll('\r\n','\n'))),proof.added[path],'unmeasured noncombat source: '+path);
  return paths.filter(path=>!added.includes(path));
 }

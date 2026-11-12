@@ -1,9 +1,11 @@
-import {preDefectActorCiSource} from './defect-actor-ci-source-inverse.mjs';
+import {preCloseoutCiSource,closeoutInventory,closeoutRead} from './closeout-ci-source.mjs';
+import {preDefectActorCiSource,preDefectActorCiInventory} from './defect-actor-ci-source-inverse.mjs';
+import {preGoldenIdolCurrentCiSource,preGoldenIdolCurrentCiInventory} from './golden-idol-current-ci-source-inverse.mjs';
 import {preIntegrationCalibrationSource} from './integration-1111-tooling.mjs';
 import {cursesReceiptMatches,preCursesReceiptSource} from './curses-ci-planning.mjs';
 import {preJoustCiSource} from './joust-ci-source-inverse.mjs';
 // Exact source and inventory views for immutable CI receipts; current Full stays raw.
-import {preBattleQueueCiSource} from './battle-queue-ci-source-epoch.mjs';
+import {preBattleQueueCiSource,preBattleQueueCiInventory} from './battle-queue-ci-source-epoch.mjs';
 import {preNoncombatCiSource,noncombatPriorInventory} from './noncombat-ci-source-inverse.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -62,6 +64,8 @@ const ratchetSourceBindings=Object.freeze({
 });
 for(const [file,row]of Object.entries(ratchetSourceBindings))assert.equal(proof.files[file]?.sha256,row.beforeSha256,'ratchet exact predecessor');
 export function preRatchetInventory(paths,readSource=readFileSync){
+ paths=closeoutInventory(paths,'pr616',readSource);
+ readSource=closeoutRead('pr616',readSource);
  assert.equal(typeof readSource,'function','inventory source reader');
  assert.deepEqual([...paths].sort(),[...proof.currentInventory,ratchetInventoryFile].sort(),'complete ratchet inventory');
  assert.equal(hash(readSource(ratchetInventoryFile,'utf8').replaceAll('\r\n','\n')),ratchetInventorySha,'ratchet inventory source');
@@ -69,6 +73,7 @@ export function preRatchetInventory(paths,readSource=readFileSync){
 }
 const views=['componentAliasFix','officialAssetsFlow','defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt'];
 export function jointCiMatches(path,source,target){
+ source=preCloseoutCiSource(path,source,'pr620');
  source=preNoncombatCiSource(path,source);
  source=preDefectActorCiSource(path,source);
  assert(views.includes(target),'known joint CI view');
@@ -79,6 +84,8 @@ export function jointCiMatches(path,source,target){
  return !!(row&&Object.hasOwn(row.targets,target)&&sourceMatches(path,source,row));
 }
 export function jointCiSourceAt(path,source,target){
+ const original=source;
+ source=preCloseoutCiSource(path,source,'pr620');
  source=preNoncombatCiSource(path,source);
  source=preDefectActorCiSource(path,source);
  assert(views.includes(target),'known joint CI view');
@@ -86,19 +93,34 @@ export function jointCiSourceAt(path,source,target){
  if(target==='officialAssetsFlow'&&cursesReceiptMatches(path,source))return preCursesReceiptSource(path,source);
  source=preBattleQueueCiSource(path,source);
  const row=Object.hasOwn(proof.files,path)?proof.files[path]:null;
- return row&&Object.hasOwn(row.targets,target)&&sourceMatches(path,source,row)?row.targets[target]:source;
+ return row&&Object.hasOwn(row.targets,target)&&sourceMatches(path,source,row)?row.targets[target]:original;
 }
-export function jointCiInventoryAt(paths,target,readSource=readFileSync){
- paths=noncombatPriorInventory(paths);
+export function jointCiInventoryAt(paths,target,readSource=readFileSync,sourceView='pr620'){
+ paths=closeoutInventory(paths,sourceView,readSource);
+ readSource=closeoutRead(sourceView,readSource);
+ if(sourceView==='pr616')paths=preRatchetInventory(paths,readSource);
+ else if(sourceView==='pr621')paths=preBattleQueueCiInventory(paths);
+ else if(sourceView==='pr623')paths=noncombatPriorInventory(paths);
+ else if(sourceView==='pr618')paths=preDefectActorCiInventory(paths);
+ else if(sourceView==='pr614')paths=preGoldenIdolCurrentCiInventory(paths);
+ else assert(['pr620','pr612','pr0'].includes(sourceView),'known joint inventory source view');
  assert.equal(target,'officialAssetsFlow','known joint inventory view');
- assert.deepEqual([...paths].sort(),[...proof.currentInventory,...Object.keys(inventoryAdditions)].sort(),'complete current inventory');
- for(const [path,sha]of Object.entries({...proof.added,...inventoryAdditions}))assert.equal(hash(preBattleQueueCiSource(path,preNoncombatCiSource(path,readSource(path,'utf8'))).replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
+ const additions=sourceView==='pr620'?inventoryAdditions:{};
+ assert.deepEqual([...paths].sort(),[...proof.currentInventory,...Object.keys(additions)].sort(),'complete current inventory');
+ for(const [path,sha]of Object.entries({...proof.added,...additions})){
+  let source=readSource(path,'utf8');
+  if(sourceView==='pr618')source=preDefectActorCiSource(path,source);
+  if(sourceView==='pr614')source=preGoldenIdolCurrentCiSource(path,source);
+  source=preJoustCiSource(path,preBattleQueueCiSource(path,preNoncombatCiSource(path,source)));
+  assert.equal(hash(source.replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
+ }
  return [...proof.flowInventory];
 }
 
 // Return only the exact complete current timing extension to its frozen raw
 // predecessor; old/foreign/partial source is never generically stripped.
 export function preCurrentPlanningSource(path,source){
+ if(path==='scripts/ci-test-timings.json')source=preCloseoutCiSource(path,source,'pr620');
  if(path!=='scripts/ci-test-timings.json'||typeof source!=='string')return source;
  return hash(source.replaceAll('\r\n','\n'))===sourceAdditions[path].afterSha256?proof.files[path].current:source;
 }

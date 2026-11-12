@@ -1,3 +1,4 @@
+import {sourceSlice} from './helpers/closeout-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -12,7 +13,7 @@ import {preComponentUiCiSource} from './helpers/component-ui-ci-source-inverse.m
 import {sourceEpoch as currentEpoch,preRoomUiEpoch as componentEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 // The original50-owner source contracts retain the frozen Defect epoch;
 // Actual current80-owner admission is independently exercised below.
-const readFileSync=(file,...args)=>preComponentUiCiSource(file,diskReadFileSync(file,...args).replaceAll('\r\n','\n'));
+const readFileSync=(file,...args)=>preComponentUiCiSource(file,sourceSlice(file,diskReadFileSync(file,...args).replaceAll('\r\n','\n'),'encounterFormationPrior'));
 const path='src/lua/abyss_defect_final_cards.lua',proof=sourceEpoch.proof,prior=preDefectFinalEpoch.proof;
 const raw=p=>proof.current[p]?.source??null;
 test('Defect final outer epoch preserves every prior binding and exact frozen production byte',()=>{
@@ -141,15 +142,15 @@ test('source and configuration reject unknown targets and malformed live readers
  }
 });
 
-test('current raw production authenticates the original68 and exact12 added owners without the historical CI source view',()=>{
+test('current raw production authenticates the original68 and exact25 combined owners without the historical CI source view',()=>{
  const current=currentEpoch.proof,file='config/architecture.json',source=diskReadFileSync(file,'utf8');
  const actual=Object.fromEntries(current.owners.map(path=>[path,diskReadFileSync(path,'utf8')]));
  assert.equal(componentEpoch.proof.owners.length,68);
  assert.deepEqual(current.owners.filter(path=>!componentEpoch.proof.owners.includes(path)).sort(),[
-  'battle_aim_arrow','battle_render_hud','battle_ui','match_event_ui','node_ui','node_ui_events','node_ui_feedback','potion_discard_ui','relic_view_ui','shop_ui','battle_card_glow','curses','joust_event'
+  'battle_actions','battle_aim_arrow','battle_card_gestures','battle_card_layout','battle_detail_bindings','battle_details','battle_info_content','battle_info_view','battle_render_actors','battle_render_hud','battle_render_state','battle_ui','curses','golden_idol_event','joust_event','match_event_ui','node_ui','node_ui_events','node_ui_feedback','potion_discard_ui','relic_names','relic_view_ui','shop_ui','skill_feedback','battle_card_glow'
  ].map(name=>'src/lua/abyss_'+name+'.lua').sort());
  assert(componentEpoch.proof.owners.every(path=>current.owners.includes(path)),'retain all original component owners');
- assert.equal(current.owners.length,80);let changed,replacement,reads=[];
+ assert.equal(current.owners.length,93);let changed,replacement,reads=[];
  const reader=path=>{reads.push(path);if(path===changed){if(replacement instanceof Error)throw replacement;return replacement;}return actual[path];};
  const project=input=>currentEpoch.preCombinedSource(file,input,{target:'develop',readSource:reader});
  const expected=current.targets.develop.files[file].source;

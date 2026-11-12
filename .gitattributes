@@ -582,6 +582,9 @@ tests/fixtures/defect-actor-before.json.gz -text
 tests/helpers/combined-epoch/pre-golden-idol-source-epoch.mjs text eol=lf
 tests/helpers/golden-idol-source-epoch.json.gz -text
 tests/helpers/golden-idol-source-epoch.mjs text eol=lf
+tests/helpers/closeout-*.mjs text eol=lf
+tests/helpers/closeout-*.json text eol=lf
+tests/helpers/closeout-*.gz -text
 tests/golden-idol-source-epoch.test.mjs text eol=lf
 
 # Golden Idol complete source and cost receipts retain authenticated LF bytes.

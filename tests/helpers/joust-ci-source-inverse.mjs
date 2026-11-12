@@ -1,3 +1,4 @@
+import {preCloseoutCiSource,closeoutInventory,closeoutRead} from './closeout-ci-source.mjs';
 // Exact outer CI identities. Old archives and execution budgets remain untouched.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -15,5 +16,6 @@ for(const row of Object.values(joustCiProof.files)){
 }
 export function preJoustCiSource(path,source){
  const row=Object.hasOwn(joustCiProof.files,path)?joustCiProof.files[path]:null;
+ if(row)source=preCloseoutCiSource(path,source,'pr612');
  return row&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===row.afterSha256?row.beforeSource:source;
 }

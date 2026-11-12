@@ -1,3 +1,4 @@
+import {preCloseoutCiSource,closeoutInventory,closeoutRead} from './closeout-ci-source.mjs';
 // Exact CI receipt source/inventory epoch. No historical archive or live gameplay owner is rewritten.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -15,10 +16,12 @@ export const defectActorPlanningFloor=Object.freeze(proof.floor);
 export const defectActorCiProof=proof;
 export function preDefectActorCiSource(path,source){
  const row=Object.hasOwn(proof.files,path)?proof.files[path]:null;
+ if(row)source=preCloseoutCiSource(path,source,'pr618');
  return row&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===row.afterSha256?row.beforeSource:source;
 }
 export function preDefectActorCiInventory(paths){
+ paths=closeoutInventory(paths,'pr618');
  assert.deepEqual([...paths].sort(),proof.currentInventory,'complete Defect Actor current inventory');
- for(const [path,sha]of Object.entries(proof.added))assert.equal(hash(readFileSync(path,'utf8').replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
+ for(const [path,sha]of Object.entries(proof.added))assert.equal(hash(preCloseoutCiSource(path,readFileSync(path,'utf8'),'pr618').replaceAll('\r\n','\n')),sha,'added inventory source: '+path);
  return [...proof.beforeInventory];
 }
