@@ -1847,7 +1847,7 @@ test('combined closeout validates raw current sources and complete Full discover
  const files=nativeCloseoutDiscover();
  assert.deepEqual(files,closeoutCiProof.inventory,'every current test remains in raw discovery');
  assert.equal(new Set(files).size,files.length);
- assert.equal(files.length,851);
+ assert.equal(files.length,853);
  const lua=liveCloseoutLua();assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
  for(const file of lua)assert.equal(hash(nativeCloseoutRead(file,'utf8').replaceAll('\r\n','\n')),closeoutCiProof.luaHashes[file],file);
  const rawCalibration=nativeCloseoutRead('tests/ci-complete-calibration.test.mjs','utf8');
@@ -1892,6 +1892,15 @@ test('combined closeout validates raw current sources and complete Full discover
   for(const file of files)assert(rawCurrentJsPlanningWeights([file],platform)[file]>=rawCurrentTimings.unknownJsMs||rawCurrentTimings.js[platform][file]>0);
  }
  for(const view of Object.keys(closeoutCiProof.targets)){
+  if(closeoutCiProof.targets[view].scope==='workflow-only'){
+   assert.deepEqual(Object.keys(closeoutCiProof.targets[view].files),['.github/workflows/quality.yml'],'workflow-only view has no production or test sources');
+   let reads=0;
+   for(const paths of [files,[...files,'tests/foreign.test.mjs'],[...files,files[0]],files.slice(1)]){
+    assert.throws(()=>closeoutInventory(paths,view,()=>{reads++;throw Error('unexpected inventory read');}),/workflow-only views cannot project test inventories/);
+   }
+   assert.equal(reads,0,'workflow-only inventory rejection precedes every source read');
+   continue;
+  }
   assert.throws(()=>closeoutInventory([...files,'tests/foreign.test.mjs'],view),/inventory/);
   assert.throws(()=>closeoutInventory([...files,files[0]],view),/inventory/);
   const added=files.find(path=>!closeoutCiProof.targets[view].inventory.includes(path));
