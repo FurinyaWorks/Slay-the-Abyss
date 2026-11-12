@@ -2,13 +2,11 @@ import {compactBoundedCardFaces} from './lightweight-card-layout.mjs';
 import {applyV25BattleScene} from './v25-battle-scene.mjs';
 import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
 import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
-import {v25Theme,applyV25BattleLayout} from './v25-layout.mjs';
-import {officialBattleHud,officialBattleUtilityFaces,officialRunChrome} from './official-battle-hud.mjs';
+import {v25Theme,applyV25BattleLayout,rebuildV25CardFaces} from './v25-layout.mjs';
+import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
 import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
 import {battlePileReturn} from './official-battle-pile-chrome.mjs';
-import {applyOfficialNoncombatLayout} from './noncombat-v25-layout.mjs';
-import {applyOfficialNeowLayout} from './noncombat-neow-layout.mjs';
-import {applyV25RewardLayout} from './v25-node-layout.mjs';
+import {preflightOfficialRoots,composeOfficialRun,assertOfficialRunContracts} from './official-run-layout.mjs';
 const children=node=>node?.controls??node?.children??[];
 const child=(node,name)=>children(node).find(item=>item.name===name);
 const required=(node,name)=>{const value=child(node,name);if(!value)throw Error('Official assets missing '+name);return value;};
@@ -247,6 +245,7 @@ export function applyOfficialAssets(trees,theme){
  if(!Array.isArray(trees)||!trees.length)throw Error('Official assets require layout trees');
  const images=theme.officialAssets?.images;
  if(!images||Object.values(images).some(id=>!Number.isSafeInteger(id)||id<=0))throw Error('Invalid official image manifest');
+ preflightOfficialRoots(trees);
  let cardHosts=0,removedControls=0;
   for(const tree of trees){
    const stage=child(tree,'stage')??tree;
@@ -269,6 +268,7 @@ export function applyOfficialAssets(trees,theme){
     battleSurfaces(battle,theme);
     officialBattleHud(battle,theme);officialBattleUtilityFaces(stage,theme);
    }
+   rebuildV25CardFaces(tree,theme);
    const result=compactBoundedCardFaces(tree,[],{preserveWindows:true});removedControls+=result.removedControls;
    walk(tree,node=>{
     // Several native 28px labels are only 44px high. Their formerly identical
@@ -284,11 +284,8 @@ export function applyOfficialAssets(trees,theme){
   if(tools)for(const control of children(tools)){
    const backing=child(control,'officialButtonBacking');if(backing)backing.visible=false;
   }
-  applyOfficialNoncombatLayout(tree,theme);
-  applyOfficialNeowLayout(tree,theme);
-  const battle=child(child(tree,'stage')??tree,'battlePanel')??(child(tree,'rewardStage')?tree:null);
-  if(battle)applyV25RewardLayout(tree,theme);
-  officialRunChrome(tree,theme);
+  composeOfficialRun(tree,theme);
  }
+ assertOfficialRunContracts(trees);
  return {cardHosts,removedControls};
 }

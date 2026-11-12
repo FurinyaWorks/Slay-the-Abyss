@@ -5,10 +5,62 @@ import {createRequire} from 'node:module';
 import {gameLayout} from '../scripts/game-ui-layout.mjs';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {applyOfficialAssets,officialAssetsTheme} from '../scripts/official-assets-layout.mjs';
+import {assertOfficialRunContracts} from '../scripts/official-run-layout.mjs';
+import {deckCardTemplate,battlePileCardTemplate} from '../scripts/deck-ui-layout.mjs';
 import {toLua,luaString} from '../scripts/build-lua-data.mjs';
 
 const child=(node,name)=>(node?.children??node?.controls??[]).find(part=>part.name===name);
 const all=node=>[node,...(node.children??node.controls??[]).flatMap(all)];
+
+test('official composition rejects a missing run page before mutating any host',()=>{
+ const theme=officialAssetsTheme(nativeTheme),layout=gameLayout();
+ const stage=child(layout,'stage')??layout,key=stage.children?'children':'controls';
+ stage[key]=stage[key].filter(node=>node.name!=='mapPanel');
+ const before=structuredClone(layout);
+ assert.throws(()=>applyOfficialAssets([layout],theme),/official run root.*mapPanel/i);
+ assert.deepEqual(layout,before,'missing roles cannot leave a partly restyled tree');
+});
+
+test('official composition rejects unregistered roots rather than treating them as templates',()=>{
+ const root={name:'UnregisteredRunRoot',controls:[]};
+ assert.throws(()=>applyOfficialAssets([root],officialAssetsTheme(nativeTheme)),/unregistered official root/i);
+});
+
+test('official composition validates the whole batch and rejects repeated composition',()=>{
+ const first=gameLayout(),second=gameLayout(),before=structuredClone(first);
+ second.controls=second.controls.filter(node=>node.name!=='relicPanel');
+ const theme=officialAssetsTheme(nativeTheme);
+ assert.throws(()=>applyOfficialAssets([first,second],theme),/missing relicPanel/);
+ assert.deepEqual(first,before);
+ applyOfficialAssets([first],theme);
+ const applied=structuredClone(first);
+ assert.throws(()=>applyOfficialAssets([first],theme),/already applied/);
+ assert.deepEqual(first,applied);
+});
+
+test('final contracts cover every card host and reject local skin, bar and relic regressions',()=>{
+ const theme=officialAssetsTheme(nativeTheme),layout=gameLayout(),deck=deckCardTemplate();
+ applyOfficialAssets([layout,deck],theme);
+ const pile=battlePileCardTemplate(layout,deck),trees=[layout,deck,pile];
+ assert.doesNotThrow(()=>assertOfficialRunContracts(trees));
+ for(const face of all(layout).filter(node=>child(node,'nativeCardBody'))){
+  const bevel=child(child(face,'nativeCardBody'),'outerBevel'),old=bevel.size;
+  bevel.size=[151,210];
+  assert.throws(()=>assertOfficialRunContracts(trees),/Shared card material drift/);
+  bevel.size=old;
+ }
+ for(const template of [deck,pile]){
+  const body=child(child(template,'face'),'nativeCardBody'),old=body.size;
+  body.size=[151,210];assert.throws(()=>assertOfficialRunContracts(trees),/Shared card material drift/);body.size=old;
+ }
+ const map=child(layout,'mapPanel'),index=map.children.findIndex(node=>node.name==='officialRunBar');
+ const [bar]=map.children.splice(index,1);map.children.unshift(bar);
+ assert.throws(()=>assertOfficialRunContracts(trees),/bar covered/);
+ map.children.shift();map.children.splice(index,0,bar);
+ const relic=child(layout,'relicPanel');relic.children.push({name:'regressedCatalog',kind:'image',image:107311,size:[600,400]});
+ assert.throws(()=>assertOfficialRunContracts(trees),/Shared relic surface/);
+ relic.children.pop();assert.doesNotThrow(()=>assertOfficialRunContracts(trees));
+});
 test('reward overview reuses the approved dark and paper host while retaining live rows',()=>{
  const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme),battle=child(layout,'battlePanel');
  const list=child(battle,'rewardList'),live=[list,child(list,'title'),child(list,'subtitle'),...['goldReward','cardReward','claimPotion','continue'].map(name=>child(battle,name))];

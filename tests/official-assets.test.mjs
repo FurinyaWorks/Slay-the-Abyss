@@ -1,5 +1,6 @@
 import {nativeAudioBuildArgs,buildNativeAudioGame} from '../scripts/build-native-audio-game.mjs';
 import test from 'node:test';
+import {cardFaceChildren} from '../scripts/card-face.mjs';
 import assert from 'node:assert/strict';
 import {mkdtempSync,mkdirSync,readFileSync,rmSync} from 'node:fs';
 import {join,resolve} from 'node:path';
@@ -67,12 +68,11 @@ test('approved pages keep live input identities while unrelated pages retain the
  const semantic=nodes.filter(([,node])=>['text','cursorArea','presetButton'].includes(node.kind))
   .map(([path,node])=>[path,node,structuredClone(node)]);
  const containers=nodes.filter(([,node])=>node.kind==='container').map(([path,node])=>[path,node,{position:node.position,size:node.size,visible:node.visible,scale:node.scale,rotation:node.rotation}]);
- const cardText=new Map(),cardWells=new Map(),cardTags=new Map(),removedCardMarks=new Set();
- for(const [,face]of nodes)if(child(face,'roundFrame')&&child(face,'costDisc')){
-  for(const key of ['name','cost'])cardText.set(child(face,key),key);
-  for(const kind of ['attack','skill','power'])cardWells.set(child(child(face,'skin'),kind).children.find(n=>n.name==='well'),kind);
-  for(const key of ['tagEdge','tagBody'])cardTags.set(child(face,key),key);
-  removedCardMarks.add(child(face,'roleMark'));
+ const cardText=new Map(),cardDecorationPaths=new Set(),cardHosts=new Set();
+ for(const [path,face]of nodes)if(child(face,'roundFrame')&&child(face,'costDisc')){
+  cardHosts.add(face);
+  for(const key of ['name','cost','costDirection','type','label','description','stamp','hit'])if(child(face,key))cardText.set(child(face,key),key==='description'?'label':key);
+  for(const [inner,node]of nodes)if(inner.startsWith(path+'/')&&node.kind==='container')cardDecorationPaths.add(inner);
  }
  const result=applyOfficialAssets([layout,template],theme);
  const current=new Map([...paths(layout),...paths(template)]);
@@ -86,6 +86,12 @@ test('approved pages keep live input identities while unrelated pages retain the
     continue;
    }
    assert.equal(current.get(path),node,path);
+   if(cardText.has(node)){
+    const canonical=child(child(child(layout,'battlePanel'),'card1'),cardText.get(node))??cardFaceChildren(theme,'node').find(part=>part.name===cardText.get(node));
+    if(canonical.text?.autoSize&&canonical.text.minFontSize*1.45+4>canonical.size[1])canonical.text.minFontSize=theme.font.minimum;
+    for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget','text'])assert.deepEqual(node[key],canonical[key],path+' shared '+key);
+    continue;
+   }
    if(restoredPagePath(path)){
     // Battle geometry is intentionally restored to the approved V25 tokens.
     // The existing event-bearing objects and input/state contracts still survive.
@@ -109,6 +115,7 @@ test('approved pages keep live input identities while unrelated pages retain the
   const canonical=child(child(layout,'battlePanel'),'card1');
   for(const [path,node,before]of containers){
    if(restoredPagePath(path)||path.startsWith('/SlayTheAbyss/deckPanel/pileReturn'))continue;
+   if(cardDecorationPaths.has(path)){assert(current.has(path),path+' shared decoration remains addressable');continue;}
    assert.equal(current.get(path),node,path);
    for(const key of Object.keys(before)){
     const relicSlot=/^\/SlayTheAbyss\/relicBar\/slot(\d+)$/.exec(path);
@@ -116,13 +123,7 @@ test('approved pages keep live input identities while unrelated pages retain the
      const bar=theme.officialAssets.battleRelicBar;
      assert.deepEqual(node.position,[bar.origin[0]+bar.step*(Number(relicSlot[1])-1),bar.origin[1]],path+' canonical position');continue;
     }
-    // Only these shared card decoration fields adopt battle geometry; host
-    // placement, input identity and every unrelated transform stay unchanged.
-    const expected=key==='scale'&&cardWells.has(node)
-     ?child(child(child(canonical,'skin'),cardWells.get(node)),'well').scale
-     :key==='size'&&cardTags.has(node)?child(canonical,cardTags.get(node)).size
-     :key==='visible'&&removedCardMarks.has(node)?false:before[key];
-    assert.deepEqual(node[key],expected,path+' '+key);
+    assert.deepEqual(node[key],key==='size'&&cardHosts.has(node)?theme.layout.card.size:before[key],path+' '+key);
    }
   }
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
