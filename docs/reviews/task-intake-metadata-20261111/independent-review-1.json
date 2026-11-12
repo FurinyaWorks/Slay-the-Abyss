@@ -1,0 +1,62 @@
+{
+  "reviewId": "review_intake_metadata_guard-20261111-1",
+  "reviewedBaseSha": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "reviewedHeadSha": null,
+  "reviewScope": "Uncommitted two-file patch over reviewedBaseSha; no commit SHA approval",
+  "conclusion": "blocked",
+  "unresolved": [
+    {
+      "id": "R1",
+      "severity": "high",
+      "path": "scripts/check-task-intake.mjs",
+      "lines": [
+        22,
+        23
+      ],
+      "title": "Empty first frontmatter is skipped, allowing body metadata",
+      "input": "---\n---\nid: TASK-25\nstatus: To Do\n---\n",
+      "actual": "loadTask returns TASK-25 / To Do; evaluateIntake ALLOW",
+      "expected": "Read only the empty first block, then reject missing identity/status",
+      "cause": "Opening newline is consumed before capture; closing regex requires an additional newline, so an immediate closing delimiter cannot match."
+    },
+    {
+      "id": "R2",
+      "severity": "medium",
+      "path": "scripts/check-task-intake.mjs",
+      "lines": [
+        27,
+        35
+      ],
+      "title": "Plain multiline status is truncated into eligible To Do",
+      "input": "---\nid: TASK-25\nstatus: To Do\n  In Progress\n---\n",
+      "actual": "loadTask reports status To Do; evaluateIntake ALLOW",
+      "expected": "Reject unsupported multiline scalar rather than trusting its first line",
+      "cause": "Single-line match ignores following indented continuation, which makes YAML plain scalar value To Do In Progress."
+    }
+  ],
+  "additionalObservation": {
+    "path": "scripts/check-task-intake.mjs",
+    "line": 27,
+    "input": "---\nid: TASK-25\nstatus: To Do\n? status\n: In Progress\n---\n",
+    "actual": "ALLOW",
+    "note": "Explicit YAML key syntax bypasses duplicate counting. Native-only scope may reject rather than parse such input; include if ambiguous metadata is intended to fail closed universally."
+  },
+  "validation": {
+    "targetedSuite": "node --test tests/sprint-intake.test.mjs: 15/15 pass",
+    "existingAssertions": "All existing test source retained, patch only adds tests/helper",
+    "policyFunction": "evaluateIntake unchanged",
+    "backlogEvidence": "Inspected parent current-backlog-compatibility.json: 173 identical decisions, zero metadata changes; not independently rerun",
+    "boundedAdversarial": "Three malformed cases ALLOW; valid absent milestone and EOF delimiter ALLOW",
+    "notRun": [
+      "Full",
+      "CI",
+      "production",
+      "GitHub writes"
+    ],
+    "guidance": "Read AGENTS.md and docs/ENGINEERING.md. backlog instructions overview/task-execution attempted but command not found."
+  },
+  "fileSha256": {
+    "scripts/check-task-intake.mjs": "a876d48c6a36da1fd1f158799cca7a93ef71f271602b24ccf4462f2d0e47f6fb",
+    "tests/sprint-intake.test.mjs": "24b0f364f3004524274da027fa92f652abe56502e7bd96d323a8543c929e73d7"
+  }
+}
