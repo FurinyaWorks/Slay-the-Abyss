@@ -195,9 +195,11 @@ jobs:
           GIT_CONFIG_COUNT: '1'
           GIT_CONFIG_KEY_0: fetch.unpackLimit
           GIT_CONFIG_VALUE_0: '1'
+          GIT_LFS_SKIP_SMUDGE: '1'
         with:
           ref: ${{ github.sha }}
           fetch-depth: 2
+          filter: blob:none
           persist-credentials: false
       - name: Check out exact revision with installed Git
         if: runner.environment == 'self-hosted'
@@ -269,6 +271,12 @@ jobs:
           if ((git rev-parse HEAD) -ne $env:CI_SHA) { throw 'Revision mismatch' }
           git clean -ffd
           if ($LASTEXITCODE -ne 0) { throw 'Workspace cleanup failed' }
+      - name: Prepare exact non-media comparison blobs
+        if: runner.environment == 'github-hosted'
+        env:
+          CI_COMPARISON_TOKEN: ${{ github.token }}
+          CI_COMPARISON_BASE: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before }}
+        run: node scripts/ci-comparison-blobs.mjs
       - name: Check hosted checkout Git pack payload
         if: runner.environment == 'github-hosted'
         run: node scripts/check-network-policy.mjs --hosted-checkout
@@ -285,6 +293,7 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before }}
           GIT_TERMINAL_PROMPT: '0'
+          EXECUTION_ENVIRONMENT: ${{ runner.environment }}
         run: |
           $ErrorActionPreference = 'Stop'
           # A missing shallow parent is expected, not a PowerShell native error.
@@ -294,13 +303,16 @@ jobs:
             if ($env:BASE_SHA -notmatch '^[0-9a-fA-F]{40}$') { throw 'Invalid base SHA' }
             git cat-file -e "${env:BASE_SHA}^{commit}" 2>$null
             if ($LASTEXITCODE -ne 0) {
-              # Public origin, no persisted token, one bounded fetch for long pushes.
+              if ($env:EXECUTION_ENVIRONMENT -ne 'self-hosted') { throw 'Exact comparison base was not prepared before the pack guard' }
+              # Preserve the installed runner's existing bounded long-push fallback.
               git -c credential.helper= -c http.lowSpeedLimit=1024 -c http.lowSpeedTime=30 fetch --depth=1 --no-auto-maintenance --no-tags origin $env:BASE_SHA
               if ($LASTEXITCODE -ne 0) { throw 'Could not fetch exact comparison base' }
             }
-            git diff --check $env:BASE_SHA HEAD
+            node scripts/ci-whitespace.mjs $env:BASE_SHA $env:GITHUB_SHA
           } else {
-            git show --format= --check HEAD
+            $comparisonParent = git rev-parse HEAD^
+            if ($LASTEXITCODE -ne 0) { throw 'Exact comparison parent is missing' }
+            node scripts/ci-whitespace.mjs $comparisonParent $env:GITHUB_SHA
           }
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Check Conventional Commit PR title
@@ -449,6 +461,9 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.18.0'
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         if: runner.environment == 'github-hosted'
         with:
@@ -456,6 +471,10 @@ jobs:
           cache: pip
           cache-dependency-path: .github/workflows/quality.yml
       - run: python3 -m pip install --disable-pip-version-check --retries 0 --timeout 30 Pillow==12.3.0
+      - name: Restore exact existing media for presentation
+        env:
+          CI_LFS_TOKEN: ${{ github.token }}
+        run: node scripts/ci-media-lfs.mjs
       - run: python3 -m unittest discover -s tests -p 'test_*.py'
         env:
           PYTHONUTF8: '1'

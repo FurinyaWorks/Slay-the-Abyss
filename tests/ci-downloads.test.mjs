@@ -8,6 +8,7 @@ import { pathToFileURL } from 'node:url';
 import { createHash, randomBytes } from 'node:crypto';
 import { beforeHostedCheckoutWorkflow, hostedCheckoutWorkflowEdits } from './helpers/hosted-checkout-workflow.mjs';
 import { checkNetworkPolicy, checkHostedCheckout } from '../scripts/check-network-policy.mjs';
+import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 
 const workflow = readFileSync('.github/workflows/quality.yml', 'utf8');
 test('every Fast and Full dependency installation retains bounded download retries', () => {
@@ -47,7 +48,9 @@ test('real workflow checkout keeps cross-branch deltas, bounded refs and exact r
     // Only replace transport: execute the actual production PowerShell body offline.
     // Windows TEMP can be ADMINI~1; GitHub supplies a canonical workspace path.
     writeFileSync(file, 'Set-Location -LiteralPath $env:GITHUB_WORKSPACE\n$env:GITHUB_WORKSPACE = (Get-Location).Path\n' + script.replaceAll('https://github.com/$env:CI_REPOSITORY.git', remote));
-    const r = spawnSync(process.platform === 'win32' ? 'powershell.exe' : 'pwsh', ['-NoProfile', '-File', file], {
+    // Execute only this test-authored workflow fixture; leave user/machine
+    // execution policy unchanged, including when the host requires signed files.
+    const r = spawnSync(process.platform === 'win32' ? 'powershell.exe' : 'pwsh', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', file], {
       cwd: dir, encoding: 'utf8', windowsHide: true,
       env: { ...process.env, CI_TOKEN: 'offline-test-only', CI_SHA: sha, CI_REF: ref, CI_REPOSITORY: 'CHNISam/Slay-the-Abyss', GITHUB_WORKSPACE: dir, GITHUB_STEP_SUMMARY: join(root, 'summary.md') }
     });
@@ -209,6 +212,9 @@ test('real fresh Git fetch retains pack payload and hosted CLI records exact rev
 });
 
 test('hosted workflow projection restores exact prior bytes and preserves partial, duplicate and unrelated drift', () => {
+  // This exact historical projection keeps its accepted source slice. Current
+  // checkout/whitespace/pointer safety is exercised against raw inputs above.
+  const workflow=closeoutRead('pr620')('.github/workflows/quality.yml','utf8');
   // Exact quality.yml Git blob 6399aa1d from base 6a614fc8, not an updated oracle.
   const baseline = '28957431693a0c07dedcda5a1b8ffff031f94f93ca838203d65661343b46709d';
   const digest = text => createHash('sha256').update(text.replaceAll('\r\n', '\n')).digest('hex');

@@ -43,6 +43,7 @@ export function checkNetworkPolicy(text) {
   const hosted = step('Check out exact revision on a fresh hosted VM');
   const local = step('Check out exact revision with installed Git');
   const guard = step('Check hosted checkout Git pack payload');
+  const comparison = step('Prepare exact non-media comparison blobs');
   const condition = (value, expected) => {
     const conditions = [...value.matchAll(/^        if: (.*)\r?$/gm)];
     return conditions.length === 1 && conditions[0][1].trim() === expected;
@@ -50,17 +51,23 @@ export function checkNetworkPolicy(text) {
   if (!condition(hosted, "runner.environment == 'github-hosted'") || !condition(guard, "runner.environment == 'github-hosted'"))
     errors.push('Hosted checkout and pack guard must share the reachable hosted condition');
   if (!condition(local, "runner.environment == 'self-hosted'")) errors.push('Local checkout must use the reachable self-hosted condition');
-  if (/^        if:/m.test(preparation) || [preparation, hosted, local, guard].some(value => /^        continue-on-error:/m.test(value)))
+  if (/^        if:/m.test(preparation) || [preparation, hosted, local, comparison, guard].some(value => /^        continue-on-error:/m.test(value)))
     errors.push('Checkout safeguards must not be conditional or continue on error');
   if (!preparation.split(/\r?\n/).includes('          EXECUTION_ENVIRONMENT: ${{ runner.environment }}'))
     errors.push('Hosted empty-database guard must bind the real runner environment');
   if (!preparation.includes("          if ($env:EXECUTION_ENVIRONMENT -eq 'github-hosted' -and (Test-Path -LiteralPath '.git')) { throw 'Hosted checkout must start without a Git database' }"))
     errors.push('Hosted checkout must prove an empty starting Git database');
   for (const required of ["          GIT_CONFIG_COUNT: '1'", '          GIT_CONFIG_KEY_0: fetch.unpackLimit', "          GIT_CONFIG_VALUE_0: '1'",
-    '          ref: ${{ github.sha }}', '          fetch-depth: 2', '          persist-credentials: false'])
+    "          GIT_LFS_SKIP_SMUDGE: '1'", '          ref: ${{ github.sha }}', '          fetch-depth: 2', '          filter: blob:none', '          persist-credentials: false'])
     if (!hosted.split(/\r?\n/).includes(required)) errors.push(`Missing hosted checkout safeguard: ${required.trim()}`);
   if (!/^        run: node scripts\/check-network-policy\.mjs --hosted-checkout\r?$/m.test(guard))
     errors.push('Hosted checkout must execute the pack guard');
+  if(!condition(comparison,"runner.environment == 'github-hosted'")||
+    !/^        run: node scripts\/ci-comparison-blobs\.mjs\r?$/m.test(comparison)||
+    !comparison.includes('CI_COMPARISON_TOKEN: ${{ github.token }}')||
+    !(steps.indexOf(local)<steps.indexOf(comparison)&&steps.indexOf(comparison)<steps.indexOf(guard)))
+    errors.push('Every non-media comparison input must be prepared before the unchanged pack guard');
+  if(!check.includes('node scripts/ci-whitespace.mjs $env:BASE_SHA $env:GITHUB_SHA'))errors.push('Complete authenticated text/pointer whitespace comparison is missing');
   if (!(steps.indexOf(preparation) < steps.indexOf(hosted) && steps.indexOf(hosted) < steps.indexOf(local)
     && steps.indexOf(local) < steps.indexOf(guard) && steps.indexOf(guard) < steps.findIndex(value => value.includes('uses: actions/setup-node@'))))
     errors.push('Hosted pack guard must follow checkout and precede dependency setup');

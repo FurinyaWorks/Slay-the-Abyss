@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { prepareReviewedAssets, prepareRuntimePreviews, needsRuntimePreviews } from './ci-reviewed-lfs.mjs';
+import {prepareMediaAssets} from './ci-media-lfs.mjs';
 
 export const timings = JSON.parse(readFileSync(new URL('./ci-test-timings.json', import.meta.url), 'utf8'));
 
@@ -58,6 +59,7 @@ export function main(args) {
   const shard = args[0].split('=')[1], plan = jsShard(discoverJs(), shard);
   console.log(JSON.stringify({ shard, platform: process.platform, ...plan }));
   if (args[0].startsWith('--prepare=')) {
+    console.log(JSON.stringify(prepareMediaAssets()));
     console.log(JSON.stringify(plan.files.includes('tests/reviewed-traveler-geo-assets.test.mjs')
       ? prepareReviewedAssets() : { status: 'not-needed', shard }));
     console.log(JSON.stringify(prepareRuntimePreviews({ needed: needsRuntimePreviews(plan.files) })));

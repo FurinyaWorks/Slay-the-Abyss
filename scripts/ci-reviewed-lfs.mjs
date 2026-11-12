@@ -1,6 +1,7 @@
 // Read-only CI materialization for the six current reviewed PNGs, not a general asset downloader.
 import { createHash } from 'node:crypto';
-import { globSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
+import * as filesystem from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
@@ -82,7 +83,7 @@ export function lfsEnvironment(env = process.env) {
 }
 
 export function prepareReviewedAssets({ root = process.cwd(), shard, env = process.env } = {}) {
-  const files = shard === undefined ? [] : globSync('tests/*.test.mjs', { cwd: root });
+  const files = shard === undefined ? [] : filesystem.globSync('tests/*.test.mjs', { cwd: root });
   if (!needsReviewedAssets(files, shard)) return { status: 'not-needed', shard };
   verifyPointerBudget(root, env); // Also reject stale/mismatched index pointers on a cache hit.
   try { return { status: 'cached', ...verifyReviewedPngs(root) }; }

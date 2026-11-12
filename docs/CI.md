@@ -148,3 +148,14 @@ checkout 默认 skip-smudge，自托管路径也显式禁用自动 smudge。仅�
 同一SHA的Full因临时runner故障失败时，保存日志、定位原因后可用GitHub原生`gh run rerun <run-id> --failed`只重跑失败作业；已有证据验证器按同run、同SHA、每个作业最新执行验证，保留前次成功作业。当前develop基线与tested组合也必须相同，基线推进后旧组合不能借用。业务失败必须修复，新SHA仍重新执行完整验证；不自动循环重试，不将旧失败记为成功。Fast仍要求当前attempt完整双平台，合并队列始终Full。
 
 两项required汇总使用`!cancelled()`：普通失败或跳过依赖仍进入原严格shell断言，整轮被取消则不再排队执行汇总，避免旧run占着同PR并发组阻塞新候选。取消没有成功资格。已卡住的历史运行在核对精确过期HEAD并保留证据后，可用GitHub原生force-cancel清理，不反复取消或重跑业务。
+
+
+## 既有媒体的精确 LFS 存储与完整比较
+
+2026-11-12 合流冷检出为218235384字节，原128MiB门禁据实拒绝。既有738条PNG/JPEG/GIF路径改为LFS，705个不同对象合计117369505字节；这是既有原字节的存储迁移，不是新增素材、授权或运行时容量。`config/ci-media-lfs.json` 固定每路径原SHA、大小、原许可类别及source9ed/base3a的真实旧binary Git OID。原六PNG的5983528字节上限、四预览组、原资产校验与所有许可正文不变。新清单只允许当前精确对象，不抓历史、不用目录通配；对象总量按OID去重，不冒称HTTP/TCP或费用上限。
+
+Windows hosted仍从空Git数据库检出精确SHA、depth2及双父，增加blob:none。pack guard前取全实际parent/比较base中缺失的非清单blob，保留fetch pack并禁止自动维护；新增missing对象实际原字节总量超过8MiB即失败。原128MiB原样计算全部检出及预取pack；之后禁止lazy fetch。数据量断言是下载后验，不冒充传输前限流。安装式runner的原增量128MiB检查和有界long-push后备保留。
+
+二进制转换不能靠漏读旧对象来跳过有效空白检查。`ci-whitespace.mjs` 鲜查全部before/after/index路径的cached及working属性，排除集合只能恰为清单；每路径必须是精确普通100644指针，旧侧只能是该路径已实读确认前8000字节含NUL的冻结旧OID或当前pointer，且旧diff属性不得强制text。指针采用完整字节验证，其余所有文本仍执行原git diff --check及rename语义。未知旧OID、额外排除属性、symlink mode或指针漂移均拒绝。冷partial clone负控证明旧binary保持missing，文本空白仍失败，比较后没有新增未计量pack。
+
+Full、Fast、Quick、Licenses及presentation在实际读取媒体前恢复并逐文件验证原始SHA和大小；无token的缓存命中同样重验索引/模式/内容。只读token仅放Git子进程，不持久化或回显认证信息；关闭额外重试，准备共用90秒期限及原步骤时限。metadata导入不依赖可选globSync，实际分片仍在固定Node24.18.0运行，presentation显式同版。新实现不新增job、worker或放宽测试/官方容量门槛。
