@@ -369,7 +369,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         return changeBrowse()
     end
     function self.setSort(_,mode)
-        if not canBrowse() or self.pileKind or not sortNames[mode] then return false end
+        if not canBrowse() or self.pileKind or not(mode=='original' or mode=='type' or mode=='cost') then return false end
         self.sortMode=mode
         self.sortDirections[mode]=not self.sortDirections[mode]
         self.sortAscending=self.sortDirections[mode]

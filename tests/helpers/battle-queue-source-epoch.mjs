@@ -1,5 +1,6 @@
 // Exact additive battle continuation over the integrated joint UI tree.
 import assert from 'node:assert/strict';
+import {preOfficialUiRepairSource} from './official-ui-repair-source-epoch.mjs';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
@@ -12,6 +13,7 @@ const freeze=x=>{if(x&&typeof x==='object'&&!Object.isFrozen(x)){Object.values(x
 for(const row of Object.values(battleQueueProof.files))for(const b of Object.values(row))assert.equal(hash(b.source),b.sha256);
 freeze(battleQueueProof);
 export function preBattleQueueSource(path,source){
+ source=preOfficialUiRepairSource(path,source);
  const row=Object.hasOwn(battleQueueProof.files,path)?battleQueueProof.files[path]:null;
  return row&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===row.current.sha256?row.before.source:source;
 }

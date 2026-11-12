@@ -88,34 +88,46 @@ test('warm LivingWall projections freshly bind linked policy bytes, including gu
  assert.equal(reaction(path,source),source);
 });
 
-test('both outer entries authenticate foreign tokens before IO and reread reviewed linked inputs after warmup',t=>{
+for(const entry of ['outer','reaction'])test(`${entry} authenticates foreign tokens before IO and rereads the linked policy after warmup`,t=>{
  const root=mkdtempSync(join(tmpdir(),'living-wall-token-reads-'));
  t.after(()=>rmSync(root,{recursive:true,force:true}));
  const reads={};
  for(const mode of ['foreign','reviewed']){
-  const output=join(root,mode+'.json');
+  const output=join(root,mode+'.json'),pathsFile=join(root,mode+'-paths.json');
   const script=`
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createTracing} from 'node:trace_events';
+import fs from 'node:fs';
+import {syncBuiltinESMExports} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
 import {preLivingWallCopyArchitecture as outer,preCombatReactionArchitecture as reaction} from ${JSON.stringify(new URL('./helpers/architecture-source-format.mjs',import.meta.url).href)};
 const path='config/architecture.json',source=readFileSync(path,'utf8');
 const policy=JSON.parse(source);policy.unreviewed_token_probe=true;
 const input=${JSON.stringify(mode)}==='foreign'?JSON.stringify(policy):source;
 const trace=createTracing({categories:['node.fs.sync']});
+const original=fs.readFileSync,paths=[];
+fs.readFileSync=function(file,...args){paths.push(file instanceof URL?fileURLToPath(file):String(file));return original.call(this,file,...args)};
+syncBuiltinESMExports();
 trace.enable();
-for(let repeat=0;repeat<2;repeat++)for(const project of [outer,reaction]){
+const project=${entry};
+for(let repeat=0;repeat<2;repeat++){
  const result=project(path,input);
  if(${JSON.stringify(mode)}==='foreign')assert.equal(result,input);
- else assert.notEqual(result,input);
+ else assert.equal(createHash('sha256').update(result).digest('hex'),${JSON.stringify(entry==='outer'?'f610861cba597e017340433a1d0dcdc4930745bcbe0347ec24facdb3630bf96a':'3cc15d6f573fa5a5c637c2d2a4ef9086f444bb761a64ee1e6aef80dad40d0cc5')});
 }
-trace.disable();`;
+trace.disable();fs.readFileSync=original;syncBuiltinESMExports();
+fs.writeFileSync(${JSON.stringify(pathsFile)},JSON.stringify(paths));`;
   const result=spawnSync(process.execPath,['--trace-event-file-pattern='+output,'--input-type=module','-e',script],
    {encoding:'utf8',timeout:30000,maxBuffer:1024*1024,windowsHide:true});
   assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);
   reads[mode]=JSON.parse(readFileSync(output,'utf8')).traceEvents
    .filter(event=>event.ph==='B'&&event.name.startsWith('fs.sync.read')).length;
+  const actualPaths=JSON.parse(readFileSync(pathsFile,'utf8'));
+  if(mode==='foreign')assert.deepEqual(actualPaths,[],'foreign tokens must never open any linked owner');
+  else assert(actualPaths.filter(p=>p.replaceAll('\\','/').endsWith('/config/architecture.json')).length>=2,'each cold/warm call reads the actual linked policy');
  }
  assert.equal(reads.foreign,0,'neither outer entry reads a linked owner for foreign tokens');
- assert.ok(reads.reviewed>=4,'each reviewed call, including warm repeats, reads the actual linked policy');
+ assert.ok(reads.reviewed>=2,'each reviewed call, including warm repeats, performs real IO');
 });

@@ -1,5 +1,6 @@
 // Copies only immutable test helper dependencies; production owners remain explicit fixtures.
 import assert from 'node:assert/strict';
+import {officialUiRepairClosure} from './official-ui-repair-closure.mjs';
 import {readFileSync,writeFileSync,mkdirSync,realpathSync,existsSync} from 'node:fs';
 import {join,dirname,relative,isAbsolute} from 'node:path';
 import {createHash} from 'node:crypto';
@@ -71,7 +72,7 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/joint-ui-source-epoch.mjs": "033a325d77259b895aafed57d59326d002125b1ab04f68ff40054e6f57ca202f",
   "tests/helpers/battle-queue-source-epoch.mjs": "faccad167ed2c051cc861f6df0a061beaa2e67fbaa962cf62e760118929dc890",
   "tests/helpers/battle-queue-source-epoch.json.gz": "e82f3c47155271784ed25d87abcf19306e7a752fe1cb5aab5f3d269d26fdd42d"
-}},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
+},...officialUiRepairClosure},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);
  assert.notEqual(destination,realpathSync.native(sourceRoot),'isolated helper copy destination');

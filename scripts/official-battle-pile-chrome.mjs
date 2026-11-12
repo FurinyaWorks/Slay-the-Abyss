@@ -16,7 +16,7 @@ export function battlePileReturn(button,pile,texture){
   for(const part of state.children){
    if(part.name==='border'&&pile){part.image=100001;part.colour='#9B7A4E';}
    if(part.name==='plate'&&pile){part.image=texture??100001;part.colour=colour;part.size=button.size.map(v=>v-4);}
-   if(part.name==='label'&&pile){part.text.colour='#E0BC73';part.text.content='返回';}
+   if(part.name==='label'&&pile){part.text.colour='#FFF0D6';part.text.content='返回';}
   }
  }
  if(pile&&texture){
