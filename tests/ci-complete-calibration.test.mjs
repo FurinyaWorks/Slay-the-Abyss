@@ -117,7 +117,7 @@ const encounterFormationJs=["tests/encounter-formation-responsibilities.test.mjs
 const defectFinalJs=["tests/defect-final-execute.test.mjs","tests/defect-final-execute-complexity.test.mjs","tests/defect-final-source-epoch.test.mjs"];
 const silentFinalJs=["tests/silent-final-apply.test.mjs","tests/silent-final-apply-complexity.test.mjs","tests/silent-final-source-epoch.test.mjs"];
 const relicEquipJs=["tests/relic-equip-complexity.test.mjs","tests/relic-equip-responsibilities.test.mjs","tests/relic-equip-source-epoch.test.mjs"];
-const postSnapshotJs=['tests/event-simulator-fixture.test.mjs','tests/official-assets-legibility.test.mjs','tests/room-ui-source-epoch.test.mjs','tests/historical-monster-import-boundary.test.mjs','tests/curses-shape-responsibilities.test.mjs','tests/curses-source-epoch.test.mjs','tests/noncombat-neow-layout.test.mjs','tests/noncombat-v25-layout.test.mjs'];
+const postSnapshotJs=['tests/event-simulator-fixture.test.mjs','tests/official-assets-legibility.test.mjs','tests/room-ui-source-epoch.test.mjs','tests/historical-monster-import-boundary.test.mjs','tests/curses-shape-responsibilities.test.mjs','tests/curses-source-epoch.test.mjs'];
 const officialAssetsJs=['tests/official-assets-visual.test.mjs','tests/official-assets.test.mjs','tests/official-assets-runtime.test.mjs','tests/official-assets-flow.test.mjs'];
 const postPlacementJs=[...officialAssetsJs,...encounterFormationJs,...defectFinalJs,...silentFinalJs,...relicEquipJs,"tests/act1-choice-responsibilities.test.mjs","tests/act3-ai-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/class-potion-orb-boundary.test.mjs","tests/class-potion-orb-source-inverse.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-integration-source.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/defect-utility-planning.test.mjs","tests/effects-target-group-source-epoch.test.mjs","tests/effects-target-group.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/enemy-ai-lifecycle.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/scry-choice-responsibilities.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/seven-refactor-source-epoch.test.mjs","tests/shiv-turn-responsibilities.test.mjs","tests/silent-tactics-planning.test.mjs","tests/silent-tactics-source-epoch.test.mjs","tests/watcher-actor-boundary.test.mjs","tests/watcher-actor-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs","tests/watcher-flow-planning.test.mjs","tests/watcher-flow-source-epoch.test.mjs","tests/watcher-potion-integration-source.test.mjs"].sort();
 const postPlacementLua=["tests/lua/actor_presence_contract.lua","tests/lua/colorless_catalog_contract.lua","tests/lua/defect_utility_planning.lua","tests/lua/enemy_ai_lifecycle.lua","tests/lua/intent_visibility_cache.lua","tests/lua/potion_callback_contract.lua","tests/lua/silent_tactics_planning.lua","tests/lua/watcher_final_execution_boundaries.lua","tests/lua/watcher_flow_planning.lua"].sort();
@@ -153,11 +153,11 @@ const componentAddedJs=['tests/enemy-name-stability.test.mjs',
  'tests/component-lifecycle-benchmark.test.mjs','tests/component-portrait-diagnosis.test.mjs'];
 const componentAddedLua=['tests/lua/v25_texture_runtime.lua','tests/lua/component_pages.lua',
  'tests/lua/native_card_art_image_capabilities.lua','tests/lua/component_content_retry.lua',
- 'tests/lua/component_page_failures.lua','tests/lua/noncombat_v25_menu.lua'];
-postSnapshotJs.push(ratchetInventoryFile);
+ 'tests/lua/component_page_failures.lua'];
 postPlacementJs.push(...currentV25Js,...componentAddedJs,...postSnapshotJs);postPlacementJs.sort();
 postPlacementLua.push(...componentAddedLua);postPlacementLua.sort();
-const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
+const liveCloseoutLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
+const currentLua=()=>[...closeoutCiProof.targets.pr620.luaInventory];
 // Only these explicitly registered UI additions postdate the original M7
 // inventories. Current Full below still discovers and checks every file.
 const preComponentJs=()=>discoverJs().filter(file=>!officialAssetsJs.includes(file)&&!currentV25Js.includes(file)&&!componentAddedJs.includes(file)&&!postSnapshotJs.includes(file));
@@ -1284,6 +1284,8 @@ test('official candidate floors authenticate complete serial runs and register o
 
  const discoverJs=()=>currentOfficialDiscoverJs().filter(file=>file!=='tests/official-assets-visual.test.mjs');
  const actualCurrentTimings=JSON.parse(diskReadFileSync(path,'utf8'));
+ // This assertion reproduces the first immutable checkpoint, before the later flow floor.
+ const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
  
  assert.deepEqual(Object.keys(officialAssetsPlanningFloors).sort(),[...officialAssetsJs].sort());
  assert.deepEqual(discoverJs().filter(file=>file.startsWith('tests/official-assets')).sort(),[...officialAssetsJs].sort());
@@ -1491,6 +1493,7 @@ test('Curses receipt source is exact and cannot substitute for raw current sourc
 test('battle continuation retains exact historical sources and complete current Full coverage',()=>{
  // Immutable pr621 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr621');
+ const currentLua=()=>[...closeoutCiProof.targets.pr621.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
@@ -1525,6 +1528,7 @@ test('battle continuation retains exact historical sources and complete current 
 test('ratchet current inventory preserves raw Full coverage and refuses source drift after a warm projection',()=>{
  // Immutable pr616 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr616');
+ const currentLua=()=>[...closeoutCiProof.targets.pr616.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
@@ -1557,6 +1561,7 @@ test('ratchet current inventory preserves raw Full coverage and refuses source d
 test('Joust gate outer view accepts only the complete two-line addition and preserves historical bytes',()=>{
  // Immutable pr612 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr612');
+ const currentLua=()=>[...closeoutCiProof.targets.pr612.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
@@ -1581,6 +1586,7 @@ test('Joust gate outer view accepts only the complete two-line addition and pres
 test('Joust CI outer identities retain complete predecessors and reject foreign drift',()=>{
  // Immutable pr612 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr612');
+ const currentLua=()=>[...closeoutCiProof.targets.pr612.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
@@ -1601,6 +1607,7 @@ test('Joust CI outer identities retain complete predecessors and reject foreign 
 test('Golden Idol recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
  // Immutable pr614 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr614');
+ const currentLua=()=>[...closeoutCiProof.targets.pr614.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
@@ -1621,8 +1628,10 @@ test('Golden Idol recovery preserves exact predecessor CI receipt sources and re
 test('current Golden Idol836 Full38 inventory adds only two files under unchanged budgets and complete effective costs',t=>{
  // Immutable pr614 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr614');
+ const currentLua=()=>[...closeoutCiProof.targets.pr614.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
- const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualDiscoverJs=slice.inventory,liveDiscoverJs=slice.inventory;
+ const discoverJs=()=>preGoldenIdolCurrentCiInventory(actualDiscoverJs());
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
  const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
  const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
@@ -1670,9 +1679,10 @@ test('current Golden Idol836 Full38 inventory adds only two files under unchange
 test('Golden Idol complete local floors authenticate actual files and preserve every prior observation',()=>{
  // Immutable pr614 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr614');
+ const currentLua=()=>[...closeoutCiProof.targets.pr614.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
- const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const actualCurrentTimings=JSON.parse(goldenIdolCurrentCiProof.files['scripts/ci-test-timings.json'].beforeSource),liveTimings=slice.timings;
  const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
  const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
  const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr614');
@@ -1705,6 +1715,7 @@ test('Golden Idol complete local floors authenticate actual files and preserve e
 test('Golden Idol shared CI entry points preserve path type and target rejection boundaries',()=>{
  // Immutable pr614 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr614');
+ const currentLua=()=>[...closeoutCiProof.targets.pr614.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
@@ -1741,6 +1752,7 @@ test('Golden Idol shared CI entry points preserve path type and target rejection
 test('Defect Actor cost layer accepts only complete current bytes and authenticates the sole added inventory',()=>{
  // Immutable pr618 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr618');
+ const currentLua=()=>[...closeoutCiProof.targets.pr618.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
@@ -1775,6 +1787,7 @@ test('Defect Actor cost layer accepts only complete current bytes and authentica
 test('Defect Actor floor binds the complete 18-case local run and actual behavior sources without inventing a wall clock or hosted data',()=>{
  // Immutable pr618 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr618');
+ const currentLua=()=>[...closeoutCiProof.targets.pr618.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
@@ -1800,6 +1813,7 @@ test('Defect Actor floor binds the complete 18-case local run and actual behavio
 test('complete current Defect Actor Full38 inventory fits original Windows18 POSIX15 budgets including the new floor and unchanged reserve',t=>{
  // Immutable pr618 receipt; the combined raw tree is verified separately below.
  const slice=sliceTools('pr618');
+ const currentLua=()=>[...closeoutCiProof.targets.pr618.luaInventory];
  const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
  const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
  const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
@@ -1834,7 +1848,7 @@ test('combined closeout validates raw current sources and complete Full discover
  assert.deepEqual(files,closeoutCiProof.inventory,'every current test remains in raw discovery');
  assert.equal(new Set(files).size,files.length);
  assert.equal(files.length,849);
- const lua=currentLua();assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
+ const lua=liveCloseoutLua();assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
  for(const file of lua)assert.equal(hash(nativeCloseoutRead(file,'utf8').replaceAll('\r\n','\n')),closeoutCiProof.luaHashes[file],file);
  const rawCalibration=nativeCloseoutRead('tests/ci-complete-calibration.test.mjs','utf8');
  for(const view of ['defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt']){

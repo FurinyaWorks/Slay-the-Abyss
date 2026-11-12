@@ -2,6 +2,8 @@ import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 import test from 'node:test';
 import {officialUiRepairProof,preOfficialUiRepairSource} from './helpers/official-ui-repair-source-epoch.mjs';
 import {preOfficialUiRepairEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {sourceSlice} from './helpers/closeout-source-epoch.mjs';
+import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync as diskReadFileSync,mkdtempSync,rmSync,writeFileSync,unlinkSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
@@ -157,7 +159,7 @@ test('source and configuration reject unknown targets and malformed live readers
 test('official repair adds exact complete-file identities without rewriting the battle predecessor',()=>{
  const files=officialUiRepairProof.files;
  for(const [file,row]of Object.entries(files)){
-  const actual=diskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  const actual=closeoutRead('pr629')(file,'utf8').replaceAll('\r\n','\n');
   assert.equal(actual,row.current.source,'raw repair source: '+file);
   for(const source of [actual,actual.replaceAll('\n','\r\n')])assert.equal(preOfficialUiRepairSource(file,source),row.before.source,file);
   for(const source of [actual+'\n',actual.slice(1),null,{},17])assert.equal(preOfficialUiRepairSource(file,source),source,file);
@@ -173,7 +175,7 @@ test('official repair helper closure imports in isolation and rejects new-file d
  t.after(()=>{rmSync(root,{recursive:true,force:true});rmSync(destination,{recursive:true,force:true});});
  copyIntegrationSourceClosure(root);
  const module=pathToFileURL(join(root,'tests/helpers/combined-epoch/source-epoch.mjs')).href;
- const result=spawnSync(process.execPath,['--input-type=module','-e',`const m=await import(${JSON.stringify(module)});if(m.sourceEpoch.proof.owners.length!==88)throw Error('isolated owner closure');`],{encoding:'utf8',timeout:30000,windowsHide:true});
+ const result=spawnSync(process.execPath,['--input-type=module','-e',`const m=await import(${JSON.stringify(module)});if(m.officialUiRepairIntegratedEpoch.proof.owners.length!==88)throw Error('isolated owner closure');if(m.sourceEpoch.proof.owners.length!==93)throw Error('combined owner closure');`],{encoding:'utf8',timeout:30000,windowsHide:true});
  assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);
  for(const name of ['official-ui-repair-source-epoch.mjs','official-ui-repair-source-epoch.json.gz']){
   const file=join(root,'tests/helpers',name),bytes=diskReadFileSync(file),changed=Buffer.from(bytes);changed[changed.length-1]^=1;

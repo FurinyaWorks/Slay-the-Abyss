@@ -15,7 +15,7 @@ const changed=['src/lua/abyss_game_ui_view.lua','src/lua/abyss_map_ui.lua','src/
 import {preJoustEpoch as joint,joustIntegratedEpoch as current} from './helpers/combined-epoch/source-epoch.mjs';
 import {joustSourceProof} from './helpers/joust-source-epoch.mjs';
 import {readdirSync} from 'node:fs';
-const currentLive=p=>{try{return sourceSlice(p,nativeReadFileSync(p,'utf8'),'pr612');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+const currentLive=p=>{try{return sourceSlice(p,nativeReadFileSync(p,'utf8'),'pr612').replaceAll('\r\n','\n');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
 // Preserve the original joint UI assertions against their explicit predecessor.
 const jointLive=current.combinedReader(currentLive,'joustPrior');
 
