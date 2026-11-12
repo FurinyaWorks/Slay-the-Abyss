@@ -341,6 +341,10 @@ local function activeTargets(mode,characterOpen,stopped,character,preloadSelecti
     return {avatar=choosing or warm,battle=mode=='battle' and character=='ironclad',selection=selection,cardFan=selection,
         selectScene=choosing or warm,battleScene=mode=='battle',menuScene=mode=='menu' and not choosing}
 end
+local function selectionFigure(Asset,official,profile)
+    return official and assert(Asset.battlePixel,'official selection requires shared battle pixel')
+                or profile and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
+end
 -- cardTemplates: ready-card image/container template indices, used when only the cards flag is on.
 function M.new(stage,report,flags,cardTemplates)
     local selecting=type(flags)=='table' and flags.selectionAvatar==true
@@ -382,8 +386,7 @@ function M.new(stage,report,flags,cardTemplates)
         local host=details and details:GetChild('officialSelectionFigure')
         if host then
             if official then assert(Asset.selectionUses=='battlePixel','official selection requires shared battle pixel schema')end
-            local figure=official and assert(Asset.battlePixel,'official selection requires shared battle pixel')
-                or profile and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
+            local figure=selectionFigure(Asset,official,profile)
             if figure.renderProfile~='lowpoly-v1' then
                 validate(figure,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
             end
@@ -501,6 +504,15 @@ function M.new(stage,report,flags,cardTemplates)
         local valid=phase~='failed' and phase~='release_failed' and phase~='destroyed'
         paint();busy=false;return accepted~=false and valid and epoch==token and not destroyed
     end
+    local function transitionRow(row,wanted,mode,stopped)
+        local accepted=true
+            local resultOwned=row.name=='result' and not stopped and (mode=='victory' or mode=='defeat')
+            if not resultOwned then
+                if wanted[row.name] and not row.active then row.active=true;accepted=row.adapter:begin()
+                elseif not wanted[row.name] and row.active then row.active=false;accepted=row.adapter:pause()end
+            end
+        return accepted
+    end
     function self.sync(_,mode,characterOpen,stopped,character,preloadSelection)
         if busy or destroyed then return false end
         busy=true;local token=epoch
@@ -516,11 +528,7 @@ function M.new(stage,report,flags,cardTemplates)
             -- MenuView owns result outcome selection; ordinary scene sync may
             -- pause it on departure, but must never publish a default victory
             -- figure while a defeat outcome is still being prepared.
-            local resultOwned=row.name=='result' and not stopped and (mode=='victory' or mode=='defeat')
-            if not resultOwned then
-                if wanted[row.name] and not row.active then row.active=true;accepted=row.adapter:begin()
-                elseif not wanted[row.name] and row.active then row.active=false;accepted=row.adapter:pause()end
-            end
+            accepted=transitionRow(row,wanted,mode,stopped)
             if epoch~=token or destroyed then busy=false;return false end
             if profile and accepted==false then paint();busy=false;return false end
         end

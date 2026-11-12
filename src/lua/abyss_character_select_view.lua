@@ -82,6 +82,20 @@ local function largeSlot(character,element)
     if character=='traveler' then return slots.large.traveler[element or 'ironclad'], slots.bust.traveler[element or 'ironclad'] end
     return slots.large[character], slots.bust[character]
 end
+local function paintPortraits(details,state,platform)
+    local large=largeSlot(state.character,state.element)
+    local portraits=details:GetChild('portraits')
+    local key=state.character=='traveler' and ('traveler_'..(state.element or 'ironclad')) or state.character
+    for _,id in ipairs(Select.characters)do
+        if id=='traveler' then
+            for _,element in ipairs(Select.elements)do
+                portraits:GetChild('traveler_'..element):SetVisible(key=='traveler_'..element)
+            end
+        else portraits:GetChild(id):SetVisible(id==key) end
+    end
+    if platform.imageSource and large then portraits:GetChild(key):SetImage(platform.imageSource,large.id) end
+    return large,key,portraits
+end
 function M.render(panel,state,platform)
     local info=state.info
     local nativeV25=Theme.presentationProfile=='official-assets-first' and panel:GetChild('v25Roster')~=nil
@@ -131,17 +145,7 @@ function M.render(panel,state,platform)
     details:GetChild('relic').text=#relics>0 and table.concat(relics,'、') or '无'
     details:GetChild('relicText').text=table.concat(texts,' ')
     renderStarterDeck(details,info)
-    local large=largeSlot(state.character,state.element)
-    local portraits=details:GetChild('portraits')
-    local key=state.character=='traveler' and ('traveler_'..(state.element or 'ironclad')) or state.character
-    for _,id in ipairs(Select.characters)do
-        if id=='traveler' then
-            for _,element in ipairs(Select.elements)do
-                portraits:GetChild('traveler_'..element):SetVisible(key=='traveler_'..element)
-            end
-        else portraits:GetChild(id):SetVisible(id==key) end
-    end
-    if platform.imageSource and large then portraits:GetChild(key):SetImage(platform.imageSource,large.id) end
+    local large,key,portraits=paintPortraits(details,state,platform)
     local note=info.name
     local native=platform.portraits and platform.portraits.status and platform.portraits:status().selection
     if key=='traveler_ironclad' and native then portraits:GetChild(key):SetVisible(false)end

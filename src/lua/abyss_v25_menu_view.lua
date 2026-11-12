@@ -102,6 +102,10 @@ local function officialResult(ctx,isOutcome)
     end
     return true
 end
+local function menuAvailable(self)
+    return not self.disabled and not self.exitOpen and not self.characterOpen
+        and not self.settlementRequested and not self.settlementBusy and not self.motion.deathReveal
+end
 function M.present(ctx,isOutcome)
     if not enabled()then return end
     local ruins=ctx.menu:GetChild('menuRuinsScene')
@@ -121,8 +125,7 @@ function M.present(ctx,isOutcome)
     hideLegacy(start)
     if Theme.presentationProfile~='official-assets-first'then hideLegacy(ctx.settlement)end
     local self=ctx.owner
-    local available=not self.disabled and not self.exitOpen and not self.characterOpen
-        and not self.settlementRequested and not self.settlementBusy and not self.motion.deathReveal
+    local available=menuAvailable(self)
     M.button(start,available);M.button(quit,available)
     M.button(ctx.settlement,available and type(ctx.platform.settle)=='function')
     if isOutcome then resultValues(ctx)end

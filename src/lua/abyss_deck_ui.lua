@@ -89,19 +89,14 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     local function canBrowse()
         return self.visible == true and self.browseEnabled == true and not self.pileView and not self.detailOnly and not self.detailPages
     end
-    local function paintBrowse()
-        local active=canBrowse()
-        if self.pileView and not self.detailPages then root:GetChild('pileChrome'):GetChild('heading').text=self.listTitle end
-        if Theme.presentationProfile=='official-assets-first' then root:GetChild('pileTools'):SetVisible(self.pileView and not self.detailPages)end
+    local function paintPileSort()
         if self.pileView then for _,mode in ipairs({'original','type','cost','name'})do
             local label=root:GetChild('pileTools'):GetChild(mode):GetChild('label')
             label.text=(mode=='original' and '默认' or mode=='cost' and '费用' or sortNames[mode])..(self.sortMode==mode and not self.sortAscending and ' ▾' or ' ▴')
             if platform.color then label.fontColor=self.sortMode==mode and platform.color(228,211,94,255) or platform.color(233,230,220,255)end
         end end
-        root:GetChild('title'):SetVisible(not active and not self.pileView)
-        local heading=root:GetChild('browseTitle')
-        heading:SetVisible(active)
-        if active then heading.text=self.listTitle end
+    end
+    local function paintBrowseSort(active)
         for _,mode in ipairs(browseSorts)do
             local control=root:GetChild('sort'..mode)
             control:SetVisible(active and not self.pileKind)
@@ -113,6 +108,17 @@ function M.new(root, presentation, clickEvent, platform, onClose)
                 control:GetChild('hit'):GetChild(state):GetChild('label').text=label
             end
         end
+    end
+    local function paintBrowse()
+        local active=canBrowse()
+        if self.pileView and not self.detailPages then root:GetChild('pileChrome'):GetChild('heading').text=self.listTitle end
+        if Theme.presentationProfile=='official-assets-first' then root:GetChild('pileTools'):SetVisible(self.pileView and not self.detailPages)end
+        paintPileSort()
+        root:GetChild('title'):SetVisible(not active and not self.pileView)
+        local heading=root:GetChild('browseTitle')
+        heading:SetVisible(active)
+        if active then heading.text=self.listTitle end
+        paintBrowseSort(active)
         for _,filter in ipairs(browseFilters)do
             local control=root:GetChild('filter'..filter.control)
             control:SetVisible(active)
@@ -393,6 +399,11 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             self.sortMode,self.sortAscending,self.sortDirections=saved.mode,saved.ascending,saved.directions
         end
     end
+    local function choicePrompts(choice)
+        return {codex='尼利宝典：选择一张牌洗入抽牌堆（可跳过）',silentFinal=choice and (choice.kind=='retain'and '选择本回合保留的手牌（可不选）'or choice.kind=='setup'and '选择放回牌堆顶并准备的牌'or '选择下回合复制的手牌'),watcher_final=choice and choice.kind=='wish' and '许愿：选择一种效果' or '异界之援：选择一张攻击',discover="选择加入手牌的牌，本回合费用为0",colorless='选择卡牌',exhaustChoose="选择要消耗的牌",recoverExhaust="选择要回收的牌",discardToDraw="选择放回抽牌堆顶的牌",
+            exhaustMany='选择任意张手牌消耗（可不选）',discardRedraw='选择任意张手牌丢弃并重抽',discardToHand='选择弃牌回手，本回合费用为0',
+            handToDraw="选择放回抽牌堆顶的手牌",upgradeHand="选择要升级的牌",dualWield="选择要复制的攻击或能力牌"}
+    end
     function self.open(_, run, choice, onPick, pileKind)
         if self.visible then return false end
         self.generation = self.generation + 1
@@ -435,9 +446,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         self.indexBase, self.pending, self.calibrating = nil, false, true
         root:SetVisible(true)
         root:SetAsLastSibling()
-        local prompts={codex='尼利宝典：选择一张牌洗入抽牌堆（可跳过）',silentFinal=choice and (choice.kind=='retain'and '选择本回合保留的手牌（可不选）'or choice.kind=='setup'and '选择放回牌堆顶并准备的牌'or '选择下回合复制的手牌'),watcher_final=choice and choice.kind=='wish' and '许愿：选择一种效果' or '异界之援：选择一张攻击',discover="选择加入手牌的牌，本回合费用为0",colorless='选择卡牌',exhaustChoose="选择要消耗的牌",recoverExhaust="选择要回收的牌",discardToDraw="选择放回抽牌堆顶的牌",
-            exhaustMany='选择任意张手牌消耗（可不选）',discardRedraw='选择任意张手牌丢弃并重抽',discardToHand='选择弃牌回手，本回合费用为0',
-            handToDraw="选择放回抽牌堆顶的手牌",upgradeHand="选择要升级的牌",dualWield="选择要复制的攻击或能力牌"}
+        local prompts=choicePrompts(choice)
         self.listTitle=(pileNames[pileKind] or "卡组").." · "..#cards.." 张"
         if self.pileView then self.sortMode,self.sortAscending='original',true end
         if self.browseEnabled then projectCards() end

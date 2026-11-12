@@ -88,6 +88,13 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             status=M.status(run,id),description=description~='' and description or '效果说明待补充。'}
     end
     function self.pages()return math.max(1,math.ceil(#(self.run and self.run.relics or {})/perPage()))end
+    local function paintFrame(single)
+        if Theme.presentationProfile=='official-assets-first' and platform.color then
+            local p,f=Theme.color.panelSunken,Theme.color.goldDim
+            child('plate').imageColor=single and platform.color(18,30,40,255) or platform.color(p.r,p.g,p.b,p.a or 255)
+            child('frame').imageColor=single and platform.color(155,122,78,255) or platform.color(f.r,f.g,f.b,f.a or 255)
+        end
+    end
     function self.render(_)
         local run,n=self.run,perPage()
         local single=self.selectedIndex~=nil
@@ -97,11 +104,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         child('frame'):SetSizeDelta(width,height)
         child('plate'):SetSizeDelta(width-Theme.space.border*2,height-Theme.space.border*2)
         child('contentBlocker'):SetSizeDelta(width,height)
-        if Theme.presentationProfile=='official-assets-first' and platform.color then
-            local p,f=Theme.color.panelSunken,Theme.color.goldDim
-            child('plate').imageColor=single and platform.color(18,30,40,255) or platform.color(p.r,p.g,p.b,p.a or 255)
-            child('frame').imageColor=single and platform.color(155,122,78,255) or platform.color(f.r,f.g,f.b,f.a or 255)
-        end
+        paintFrame(single)
         child('close'):SetAnchoredPosition(single and width/2-58 or Theme.layout.relicView.close[1],Theme.layout.relicView.close[2])
         child('title').text=single and '遗物详情' or '持有遗物 · '..#run.relics..' 件'
         if single then
