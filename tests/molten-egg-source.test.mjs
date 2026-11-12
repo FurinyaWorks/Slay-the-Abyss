@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {requireRelicCompletionSource,preRelicCompletionSource} from './helpers/relic-completion-inverse.mjs';
+import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 const read=path=>JSON.parse(readFileSync(path,'utf8'));
 const lock=read('tests/fixtures/molten-egg-source.json');
 test('Molten Egg pins the seven actual fixed source members and narrow ownership contract',()=>{
@@ -34,7 +35,7 @@ test('real Molten Egg identity, manifest and source max-floor join the unchanged
   {id:'frozen_egg',sourceId:'Frozen Egg 2',rarity:'uncommon',trigger:'hooks',effects:[]});
  // Preserve the original slice's absence checks against its matching data;
  // today's production identity checks above still read the complete pool.
- const current=readFileSync('data/relics.json','utf8');
+ const current=closeoutRead('pr620')('data/relics.json','utf8');
  requireRelicCompletionSource('data/relics.json',current);
  const historical=JSON.parse(preRelicCompletionSource('data/relics.json',current));
  for(const id of ['question_card','busted_crown','singing_bowl'])assert.ok(!historical.relics.some(r=>r.id===id));

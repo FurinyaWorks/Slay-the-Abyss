@@ -1,6 +1,6 @@
 import {cursesPlanningFloors} from './helpers/curses-ci-planning.mjs';
 import {defectActorPlanningKey,defectActorPlanningFloor} from './helpers/defect-actor-ci-source-inverse.mjs';
-import {preGoldenIdolCurrentCiSource} from './helpers/golden-idol-current-ci-source-inverse.mjs';
+import {preGoldenIdolCurrentCiSource,goldenIdolCurrentPlanningFloors} from './helpers/golden-idol-current-ci-source-inverse.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -173,7 +173,9 @@ test('real executor preserves test failure, continues later files, reports timin
 
 
 test('current timing records preserve all measured corrections without duplicate JSON keys',()=>{
- const raw=preGoldenIdolCurrentCiSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8'));
+ // This is the live scheduling contract. Historical callers retain the
+ // separate exact predecessor reader above; current scheduling must stay raw.
+ const raw=actualReadFileSync('scripts/ci-test-timings.json','utf8');
  const timings=JSON.parse(raw);
  assert.equal((raw.match(/^  "jsCorrections":/gm)||[]).length,1,'one unambiguous correction inventory');
  assert.equal(timings.jsCorrections.length,3);
@@ -195,7 +197,7 @@ test('current timing records preserve all measured corrections without duplicate
  }
  assert.equal(timings.jsCalibration.runId,41097231681);assert.equal(timings.jsCalibration.runAttempt,1);
  assert.equal(timings.jsCalibration.headSha,'568d47a8f51164ed9e3cfb0656f57f2d832ed546');
- let localFloorCount=0;
+ let localFloorCount=0;const originalLocalFloorKeys=[];
  for(const [file,entry]of Object.entries(timings.jsPlanning.localLowerBounds)){
   if(file==='tests/run-max-hp-config-inverse.test.mjs'){
    assert.equal(entry.environment,'hosted Windows');assert.equal(entry.durationMs,889638);
@@ -272,12 +274,29 @@ test('current timing records preserve all measured corrections without duplicate
    assert.deepEqual(entry,officialAssetsPlanningFloors[file],'retain each published official checkpoint floor independently');
   }else if(Object.hasOwn(cursesPlanningFloors,file)){
    assert.deepEqual(entry,cursesPlanningFloors[file]);
+  }else if(Object.hasOwn(goldenIdolCurrentPlanningFloors,file)){
+   assert.deepEqual(entry,goldenIdolCurrentPlanningFloors[file]);
   }else{
-   assert.match(entry.environment,/local/);assert.match(entry.kind,/not .*hosted/);localFloorCount++;
+   assert.match(entry.environment,/local/);assert.match(entry.kind,/not .*hosted/);localFloorCount++;originalLocalFloorKeys.push(file);
   }
   for(const platform of ['win32','linux'])assert.equal(jsPlanningWeights([file],platform)[file],Math.max(timings.js[platform][file]??timings.unknownJsMs,entry.durationMs));
  }
- assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');assert.equal(Object.keys(timings.jsPlanning.localLowerBounds).length,29+Object.keys(defectFinalPlanningFloors).length+Object.keys(encounterFormationPlanningFloors).length+Object.keys(officialAssetsPlanningFloors).length+Object.keys(cursesPlanningFloors).length);
+ assert.equal(localFloorCount,8,'all eight original local floor contracts remain checked');
+ assert.deepEqual(originalLocalFloorKeys.sort(),[
+  'tests/presentation-native-m3-contract.test.mjs','tests/final-integration-source.test.mjs',
+  'tests/presentation-m3-integration.test.mjs','tests/death-settlement-guard-inverse.test.mjs',
+  'tests/pr262-ui-fixture-budget.test.mjs','tests/pr372-integration-source.test.mjs',
+  'tests/unknown-routing-partitions.test.mjs','tests/formal-campaign-entry.test.mjs',
+ ].sort(),'the original eight floor members stay exact');
+ const expectedFloorKeys=[...originalLocalFloorKeys,
+  'tests/run-max-hp-config-inverse.test.mjs','tests/power-shop-boundaries.test.mjs',
+  ...Object.keys(partialCasePlanningFloors),gameUiLocalPlanningKey,runCatalogFloorKey,potionCallbackFloorKey,endTurnFloorKey,
+  'tests/actor-presence.test.mjs','tests/reward-query-boundary.test.mjs',defectUtilityPlanningKey,enemyAiPlanningKey,classPotionPlanningKey,watcherPlanningKey,
+  silentFinalSourcePlanningKey,silentFinalPlanningKey,relicEquipPlanningKey,silentTacticsPlanningKey,effectsTargetGroupPlanningKey,watcherFlowPlanningKey,defectActorPlanningKey,
+  ...Object.keys(defectFinalPlanningFloors),...Object.keys(encounterFormationPlanningFloors),...Object.keys(officialAssetsPlanningFloors),...Object.keys(cursesPlanningFloors),...Object.keys(goldenIdolCurrentPlanningFloors),
+ ];
+ assert.equal(new Set(expectedFloorKeys).size,expectedFloorKeys.length,'every independently evidenced floor has one current key');
+ assert.deepEqual(Object.keys(timings.jsPlanning.localLowerBounds).sort(),expectedFloorKeys.sort(),'the complete raw current floor inventory has no omission or unreviewed addition');
  assert.ok(jsPlanningWeights(['tests/task77-current-source-layers.test.mjs'],'win32')['tests/task77-current-source-layers.test.mjs']>=394262,'retain the first complete successful hosted floor');
 });
 

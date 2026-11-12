@@ -19,7 +19,6 @@ import { nativeCardArtArgs, prepareNativeCardArt, nativeCardArtBuildReceipt, ver
 import {reusableUi} from './native-candidate-ui-cache.mjs';
 import {embeddedScripts} from './native-script-inventory.mjs';
 import {runNativeClientCheck} from './native-client-check.mjs';
-import {writeScriptBatch} from './native-script-batch.mjs';
 import {assertCandidateArtPolicy,assertCandidateArtReceipt} from './candidate-art-policy.mjs';
 import {lightweightProfile} from './lightweight-2d-profile.mjs';
 import {validateUiProfileOptions,uiProfileArgs,uiProfileModule,uiProfileSource,uiProfileReceipt} from './ui-profile.mjs';
@@ -385,6 +384,9 @@ export async function buildNativeCandidate({baseMap,output='build/candidates',ro
 export async function buildNativeCandidateFromToolchain(options) {
     const root=options?.root??process.cwd();
     assertCandidateArtPolicy(resolveArtFeatures(options),{root});
+    // The zero-art layout CLI imports this module without npm dependencies.
+    // Load the Lua parser only when actual native-script writing is requested.
+    const {writeScriptBatch}=await import('./native-script-batch.mjs');
     const toolRoot=process.env.MILIASTRA_MCP_ROOT||'D:/MiliastraTools/genshin-miliastra-mcp';
     const sdk=join(toolRoot,'node_modules/@modelcontextprotocol/sdk/dist/esm/client');
     const {Client}=await import(pathToFileURL(join(sdk,'index.js'))),{StdioClientTransport}=await import(pathToFileURL(join(sdk,'stdio.js')));
