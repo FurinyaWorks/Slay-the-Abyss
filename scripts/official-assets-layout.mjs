@@ -8,6 +8,7 @@ import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
 import {battlePileReturn} from './official-battle-pile-chrome.mjs';
 import {applyOfficialNoncombatLayout} from './noncombat-v25-layout.mjs';
 import {applyOfficialNeowLayout} from './noncombat-neow-layout.mjs';
+import {applyV25RewardLayout} from './v25-node-layout.mjs';
 const children=node=>node?.controls??node?.children??[];
 const child=(node,name)=>children(node).find(item=>item.name===name);
 const required=(node,name)=>{const value=child(node,name);if(!value)throw Error('Official assets missing '+name);return value;};
@@ -23,6 +24,7 @@ export function officialAssetsTheme(source){
   const theme=structuredClone(source);
   const approved=v25Theme(source);
   theme.layout.v25Menu=structuredClone(approved.layout.v25Menu);
+  Object.assign(theme.layout.rewardPick,structuredClone(approved.layout.rewardPick));
   theme.layout.nativeNode.event.neow.bubbleText=[-45,96,270,130];
  if(theme.officialAssets?.profile!=='official-assets-first-v1')throw Error('Missing official asset theme');
  theme.presentationProfile='official-assets-first';
@@ -39,6 +41,15 @@ export function officialAssetsTheme(source){
   for(const key of Object.keys(source.v25Battle.layout))theme.layout[key]=structuredClone(approved.layout[key]);
   for(const key of Object.keys(source.v25Battle.font))theme.font[key]=approved.font[key];
   Object.assign(theme.motion,source.v25Battle.motion);
+  // One full illustration slot and five native body rows for every card;
+  // long descriptions never borrow height from a single card's illustration.
+  const content=theme.layout.card.v25Content,slots=theme.officialAssets.battleCardContent;
+  theme.layout.card.art=slots.art;theme.layout.card.textBox=[...slots.textBox];
+  content.bodyPosition=[...slots.bodyPosition];content.typePosition=[...slots.typePosition];
+  for(const kind of ['attack','skill','power']){
+   content.windows[kind].size[1]=slots.windowHeight;content.windows[kind].position=[...slots.windowPosition];
+   content.icons[kind]=[...slots.iconPosition];
+  }
   theme.layout.energy.faceColour='#FFE35D00';
   // The native sans glyph occupies more area than V25's serif. Owner's
   // device feedback calls for a quieter readout inside the unchanged 86px orb.
@@ -58,6 +69,9 @@ export function officialAssetsTheme(source){
 }
 function cardFace(face,theme){
  const art=theme.officialAssets;
+ // The bottom role medallion is decoration, not a card state. Retain handles
+ // for shared runtime writers while removing it from every official card host.
+ for(const name of ['roleRing','roleMark'])required(face,name).visible=false;
  for(const name of ['roundShadow','roundFrame','roundBody']){
   const image=required(required(face,name),'flat');
    setImage(image,theme.image.rect,name==='roundBody'?art.cardBodyTint:undefined);
@@ -88,6 +102,9 @@ function cardFace(face,theme){
   }
   for(const kind of ['attack','skill','power']){
    const window=required(skin,kind),well=required(window,'well');
+   // Leave a substantial inset frame around each type silhouette, rather than
+   // the previous hairline. Scale only the well: icon and hit geometry stay put.
+   well.scale=[.975,.965];
    for(const [index,scale]of [.95,.7,.45].entries())well.children.push({name:'nativeWindowLight'+index,kind:'image',position:[0,window.size[1]*.12],size:[window.size[0]*scale,window.size[1]*scale*.8],image:106056,imageType:'basic',colour:kind==='attack'?'#A94D47':'#C46A60',opacity:.14});
   }
  for(const name of ['label','description']){
@@ -250,6 +267,8 @@ export function applyOfficialAssets(trees,theme){
   }
   applyOfficialNoncombatLayout(tree,theme);
   applyOfficialNeowLayout(tree,theme);
+  const battle=child(child(tree,'stage')??tree,'battlePanel')??(child(tree,'rewardStage')?tree:null);
+  if(battle)applyV25RewardLayout(tree,theme);
   officialRunChrome(tree,theme);
  }
  return {cardHosts,removedControls};

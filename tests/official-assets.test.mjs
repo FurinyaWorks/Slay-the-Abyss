@@ -130,14 +130,14 @@ test('approved pages keep live input identities while unrelated pages retain the
    assert.deepEqual(card.size,[150,210]);
    assert.deepEqual(child(card,'cost').position,[-66.5078125,95]);
    assert.deepEqual(child(card,'name').position,[0,79.8046875]);
-   assert.deepEqual(child(card,'label').size,[114,60.921875]);
+   assert.deepEqual(child(card,'label').size,[124,92]);
    assert.equal(child(card,'cost').text.fontSize,25);
    assert.equal(child(child(card,'roundBody'),'nativePaperTrim').visible,false,'old square paper must not leak through rounded corners');
    assert.equal(child(card,'nameBand').visible,false);
    const ribbon=child(card,'nativeRibbon');assert.equal(ribbon.children.length,34);
    assert(ribbon.children.slice(10,18).every(n=>n.name.startsWith('face')),'all curved faces must cover backing seams before the soft edge lighting');
    for(const prefix of ['shade','shine'])assert.equal(ribbon.children.filter(n=>n.name.startsWith(prefix)&&n.feather?.pixels).length,8,'soft ribbon edge lighting');
-   assert.deepEqual(child(child(card,'skin'),'skill').size,[126,86.09375],'final computed reference window');
+   assert.deepEqual(child(child(card,'skin'),'skill').size,[126,68],'shared fixed full illustration slot');
    assert.deepEqual(child(card,'nativeCostOrb').size,[41,41]);
    const orb=child(card,'nativeCostOrb');
    assert.equal(orb.children.length,4,'cost uses native gradients rather than hard concentric rings');

@@ -76,11 +76,12 @@
     "battleCostMaterial": {"hardSize":34,"offset":[-0.4,0.3],"rim":107270,"soft":106056,"highlight":106057,"rimTint":"#682F33","warm":"#F7B62A","light":"#FFEA70"},
     "battleGlowSource": {"rgba":[0.2,0.9,1,0.25],"blend":[770,1],"note":"STS AbstractCard BLUE_BORDER_GLOW_COLOR; native RGB uses nearest 8-bit values. Current native Image compositing is not additive."},
     "battleGlowFocus": {"normal":{"coreSoftness":2,"pulseSoftness":3,"spread":3,"opacity":1},"selected":{"coreSoftness":2,"pulseSoftness":3,"spread":3,"opacity":1}},
-    "battleCardChrome": {"shell":["#713635","#AD4E49"],"ready":"#33E6FF","ribbonHeight":24,"ribbonEdge":"#626B66","ribbonFold":"#7D827D","costSize":41,"glow":{"motion":"static","staticFocus":{"normal":{"coreSoftness":2,"pulseSoftness":3,"colours":["#73E5D7","#43C6BD"]},"selected":{"coreSoftness":3,"pulseSoftness":5,"colours":["#88F7E7","#3CE2D0"]}},"duration":1.2,"expansion":[1.03,1.11],"alpha":0.6,"colour":"#33E6FF"},"orb":["#BBAA85","#482E2B","#9A2023","#D96C21","#F4AD2D","#FFF7B4"]},
+    "battleCardChrome": {"shell":["#713635","#AD4E49"],"ready":"#33E6FF","ribbonHeight":24,"ribbonEdge":"#75644B","ribbonFold":"#71604B","costSize":41,"glow":{"motion":"static","staticFocus":{"normal":{"coreSoftness":2,"pulseSoftness":3,"colours":["#73E5D7","#43C6BD"]},"selected":{"coreSoftness":3,"pulseSoftness":5,"colours":["#88F7E7","#3CE2D0"]}},"duration":1.2,"expansion":[1.03,1.11],"alpha":0.6,"colour":"#33E6FF"},"orb":["#BBAA85","#482E2B","#9A2023","#D96C21","#F4AD2D","#FFF7B4"]},
     "battleCardBodyTint": "#473936",
+    "battleCardContent": {"art":68,"textBox":[124,92],"bodyPosition":[0,-50],"typePosition":[0,6],"windowHeight":68,"windowPosition":[0,42],"iconPosition":[0,42]},
     "battleCardBodyLayerOpacity":{"topCatchlight":0.5,"leftCatchlight":0.3,"bottomShade":0.45},
     "battleCardBodyMaterials": {
-      "red":{"outerBevel":"#524237","paperBevel":"#6E5C48","recessShadow":"#30292D","innerWell":"#2E282D","topCatchlight":"#9A8463","leftCatchlight":"#BEA986","bottomShade":"#32292C"},
+      "red":{"outerBevel":"#70352E","paperBevel":"#B65B43","recessShadow":"#382821","innerWell":"#403530","topCatchlight":"#E0A176","leftCatchlight":"#D98761","bottomShade":"#45252A"},
       "status":{"outerBevel":"#646464","paperBevel":"#818181","recessShadow":"#3D3D3D","innerWell":"#404040","topCatchlight":"#9A9A9A","leftCatchlight":"#818181","bottomShade":"#3D3D3D","artWell":"#7C7C7C"},
       "curse":{"outerBevel":"#1D1D1D","paperBevel":"#343A40","recessShadow":"#150215","innerWell":"#1D1D1D","topCatchlight":"#3B3B3B","leftCatchlight":"#3B3B3B","bottomShade":"#150215","artWell":"#343A40"}
     },

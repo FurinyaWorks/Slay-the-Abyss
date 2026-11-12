@@ -333,7 +333,9 @@ function M.writeBody(control,text,face)
     local card=Theme.layout.card
     local box=card.textBox
     local font,fits=M.fitBody(text,box)
-    local compact=not fits
+    -- Official cards share fixed illustration/type/body slots. The legacy
+    -- long-text fallback shrinks only one card's picture into a narrow strip.
+    local compact=not fits and Theme.presentationProfile~='official-assets-first'
     if compact then box=card.longTextBox;font,fits=M.fitBody(text,box)end
     if control.SetSizeDelta then
         control:SetSizeDelta(box[1],box[2])

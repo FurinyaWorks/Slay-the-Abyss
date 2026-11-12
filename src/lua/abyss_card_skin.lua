@@ -258,7 +258,8 @@ end
 surfaceDecorations=function(box,ready)
     if surfaceVisibility[box]==ready then return end
     for _,name in ipairs({'roundShadow','roundFrame','roundBody','nameBand','nameRule','roleRing','roleMark','tagEdge','tagBody'})do
-        box:GetChild(name):SetVisible(not ready)
+        local decoration=Theme.presentationProfile=='official-assets-first' and (name=='roleRing' or name=='roleMark')
+        box:GetChild(name):SetVisible(not ready and not decoration)
     end
     local skin=box:GetChild('skin')
     skin:GetChild('gloss'):SetVisible(not ready)

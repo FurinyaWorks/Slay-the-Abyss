@@ -44,6 +44,12 @@ test('official cost medallions pair the selected light material with neutral dar
   assert.equal(core.image,107203,card.name+' shared cost material');
   assert.equal(core.colour,'#FFD06A',card.name+' shared cost tint');
   assert(child(card,'nativeRibbon')&&child(card,'nativeCardBody')&&child(card,'nativeCostOrb'),card.name+' shares battle chrome');
+  assert.equal(child(card,'roleRing').visible,false,card.name+' has no bottom medallion');
+  assert.equal(child(card,'roleMark').visible,false,card.name+' has no bottom star');
+  const body=child(card,'nativeCardBody');
+  assert.deepEqual(child(body,'paperBevel').size,[144,204],card.name+' substantial shared frame');
+  assert.deepEqual(child(body,'innerWell').size,[132,192],card.name+' recessed reading well');
+  for(const kind of ['attack','skill','power'])assert.deepEqual(child(child(child(card,'skin'),kind),'well').scale,[.975,.965]);
   assert.equal(core.size[0],core.size[1],card.name+' cost material must remain circular');
  }
  assert.deepEqual(theme.cardSkin.costTone,nativeTheme.cardSkin.costTone,'red/green cost semantics');
@@ -79,6 +85,19 @@ test('standalone battle output receives the same geometry and required turn-noti
  assert.deepEqual(child(stage,'card1').size,[150,210]);
  assert(child(child(stage,'feedback'),'v25TurnNotice'));
  assert(child(stage,'v25BattleScene'));
+});
+
+test('official reward choice adopts the approved dark field and title ribbon without a stretched catalog panel',()=>{
+ const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme);applyOfficialAssets([layout],theme);
+ const battle=child(layout,'battlePanel'),stage=child(battle,'rewardStage');
+ assert.deepEqual(stage.size,[1280,720]);
+ assert.equal(child(stage,'plate').opacity,0);
+ assert.equal(child(stage,'border').opacity,0);
+ assert(child(stage,'v25RewardField')&&child(stage,'v25RewardPaper'));
+ assert.deepEqual(child(stage,'title').position,[0,180]);
+ assert.deepEqual(child(battle,'skip').position,[0,-235]);
+ assert.equal(theme.layout.rewardPick.scale,1.133333333333);
+ assert.equal(theme.layout.rewardPick.step,270);
 });
 test('generic disabled buttons remain visibly distinct from enabled buttons',()=>{
  const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme);applyOfficialAssets([layout],theme);

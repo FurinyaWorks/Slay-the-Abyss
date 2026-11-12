@@ -84,6 +84,28 @@ print('${marker}')
  assert.match(result.stdout,new RegExp(marker));
 }
 
+test('official long reward descriptions keep the same full illustration and type slots on recycled shared faces',t=>{
+ runOfficial(t,`
+local h,u,p,_,_,_,_,root=H.setup({'blood_for_blood','body_slam','armaments'},{'cultist'})
+local D=require('abyss_card_display');local template=require('abyss_ui_templates')
+local faces={p:GetChild('card1'),H.F.control(template.AbyssDeckCard):GetChild('face'),
+ root:GetChild('nodePanel'):GetChild('shopView'):GetChild('card1')}
+local long='本场战斗每失去 一 次生命，本牌费用 减少一。造成 18 点伤害。'
+for _,face in ipairs(faces)do
+ local body=face:GetChild('label')or face:GetChild('description')
+ local picture=face:GetChild('skin'):GetChild('attack')
+ for _,text in ipairs({long,'获得 5 点格挡。',long})do
+  assert(D.writeBody(body,text,face),'full unchanged reward text must fit')
+  assert(body.text==text and body.fontSize>=14,'full text and native minimum')
+  assert(body.sizeDeltaX==124 and body.sizeDeltaY==92,'fixed reading slot')
+  assert((picture.localScaleY or 1)==1,'long text compressed illustration')
+  assert(body.y+body.sizeDeltaY/2<=-4 and body.y-body.sizeDeltaY/2>=-96,'reading slot leaves the card')
+ end
+end
+dofile('tests/lua/warrior75_card_text.lua')
+`, 'official fixed long card slots ok')
+});
+
 test('official successful card command reuses its presented feedback frame while preflight and recovery remain live',t=>{
  runOfficial(t,`
 local Run=require('abyss_run');local Theme=H.F.Theme
@@ -1060,12 +1082,12 @@ local function colour(actual,expected,label)
 end
 local frozenWells={attack={r=85,g=28,b=36},skill={r=26,g=48,b=66},power={r=37,g=37,b=54}}
 for kind,expected in pairs(frozenWells)do colour(theme.officialAssets.battleArtWells[kind],expected,'final project-card-theme.css '..kind)end
--- Actual 1280x720 V25 02-hover-settled.png samples, corroborated by the
--- geo-card-zhongli SVG's embedded PNG and explicit sRGB transfer table.
-local frozenBody={outerBevel={r=82,g=66,b=55},paperBevel={r=110,g=92,b=72},innerWell={r=46,g=40,b=45},topCatchlight={r=154,g=132,b=99},leftCatchlight={r=190,g=169,b=134},bottomShade={r=50,g=41,b=44}}
-for part,expected in pairs(frozenBody)do colour(theme.officialAssets.battleCardBodyMaterials.red[part],expected,'approved V25 ref02 sample '..part)end
+-- Owner's StS1 reference refinement supersedes the thin brown V25 frame.
+local frozenBody={outerBevel={r=112,g=53,b=46},paperBevel={r=182,g=91,b=67},innerWell={r=64,g=53,b=48},topCatchlight={r=224,g=161,b=118},leftCatchlight={r=217,g=135,b=97},bottomShade={r=69,g=37,b=42}}
+for part,expected in pairs(frozenBody)do colour(theme.officialAssets.battleCardBodyMaterials.red[part],expected,'StS1 material reference '..part)end
 local function material(id,kind,shape)
  instance.cardId=id;u:render()
+ assert(not box:GetChild('roleRing').visible and not box:GetChild('roleMark').visible,'recycled card restored removed bottom ornament')
  local token=theme.officialAssets.battleCardBodyMaterials[kind]
  for _,group in ipairs({'outerBevel','paperBevel','recessShadow','innerWell'})do
   for _,part in ipairs(body:GetChild(group):GetChildren())do colour(part.imageColor,token[group],id..' '..group)end

@@ -30,9 +30,9 @@ export function officialBattleCardChrome(face,theme){
  const body={name:'nativeCardBody',kind:'container',size:[150,210],children:[
   {...rounded('castShadow',152,212,10,'#0A1012',{opacity:.32,feather:{pixels:[4,4]}}),position:[1,-2]},
   rounded('outerBevel',150,210,9,material.outerBevel),
-  {...rounded('paperBevel',146,206,7,material.paperBevel),position:[-.35,.35]},
-  {...rounded('recessShadow',139,199,6,material.recessShadow),position:[.5,-.5]},
-  rounded('innerWell',136,196,5,material.innerWell),
+  {...rounded('paperBevel',144,204,7,material.paperBevel),position:[-.6,.6]},
+  {...rounded('recessShadow',136,196,6,material.recessShadow),position:[.6,-.6]},
+  rounded('innerWell',132,192,5,material.innerWell),
   image('topCatchlight',[130,1.2],material.topCatchlight,[0,102],{opacity:layerOpacity.topCatchlight,feather:{pixels:[2,.5]}}),
   image('leftCatchlight',[1,184],material.leftCatchlight,[-72,0],{opacity:layerOpacity.leftCatchlight,feather:{pixels:[.4,4]}}),
   image('bottomShade',[130,1.4],material.bottomShade,[0,-102],{opacity:layerOpacity.bottomShade,feather:{pixels:[2,.5]}}),
@@ -40,13 +40,13 @@ export function officialBattleCardChrome(face,theme){
  face.children.splice(face.children.indexOf(child(face,'roundBody'))+1,0,body);
  const ribbon={name:'nativeRibbon',kind:'container',size:[159,38],children:[]};
  for(let i=0;i<8;i++){
-  const x=(i-3.5)*159/8,y=86-10*(x/79.5)**2,rotation=Math.atan(-20*x/(79.5**2))*180/Math.PI;
+  const x=(i-3.5)*159/8,y=86-13*(x/79.5)**2,rotation=Math.atan(-26*x/(79.5**2))*180/Math.PI;
   ribbon.children.push(image('rim'+i,[159/8+.8,22],chrome.ribbonEdge,[x,y],{rotation}),
    image('face'+i,[159/8+.8,19],art.battleCardBannerTint,[x,y+.4],{rotation}),
-   image('shade'+i,[159/8+.8,3.2],'#4F5552',[x,y-7.8],{rotation,opacity:.23,feather:{pixels:[.5,1.4]}}),
-   image('shine'+i,[159/8+.8,3.8],'#E2E2D5',[x,y+7.8],{rotation,opacity:.25,feather:{pixels:[.5,1.8]}}));
+   image('shade'+i,[159/8+.8,4.5],'#40362D',[x,y-7],{rotation,opacity:.32,feather:{pixels:[.5,1.8]}}),
+   image('shine'+i,[159/8+.8,4.2],'#FFF4CF',[x,y+7.5],{rotation,opacity:.42,feather:{pixels:[.5,1.8]}}));
  }
- for(const side of [-1,1])ribbon.children.unshift(image('fold'+side,[19,16],chrome.ribbonFold,[side*73,68],{image:100003,rotation:side*105}));
+ for(const side of [-1,1])ribbon.children.unshift(image('fold'+side,[23,20],chrome.ribbonFold,[side*74,66],{image:100003,rotation:side*105}));
  // Paint every backing first: interleaving rim/face pairs exposes dark seams
  // where adjacent rotated segments overlap.
  const ribbonOrder=name=>name.startsWith('fold')?0:name.startsWith('rim')?1:name.startsWith('face')?2:3;
