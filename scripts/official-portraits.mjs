@@ -193,8 +193,8 @@ export function writePortraitModule(directory,{root=process.cwd(),imageTemplateI
  });
  if(budget&&!v25BattleChrome)data.push(`selection133=${budgetLiteral(assets[1],budget.assets.selection133)}`);
  data.push(...lowpoly);
- // Official selection and battle share one temporary bounded actor; full-body
- // literals stay available for the other profiles and later artwork review.
+ // Selection keeps its bounded temporary actor. Full-body literals remain
+ // available to other profiles; official combat uses the approved idle below.
  if(officialAssets&&(selectionAvatar||battlePortrait))data.push(`battlePixel=${toLua(lightweightAssets().battle133)}`);
  if(officialAssets&&selectionAvatar)data.push("selectionUses='battlePixel'");
  // One approved combat figure. The temporary pixel remains selection-only;
