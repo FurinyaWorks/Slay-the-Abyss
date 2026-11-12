@@ -6,7 +6,7 @@ import {gunzipSync} from 'node:zlib';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const bytes=readFileSync(new URL('./closeout-source-epoch.json.gz',import.meta.url));
-assert.equal(hash(bytes),'7ada3ec4f299515d83d4379215598c6bda6b6adb2841134c8c446f57a35b0745');
+assert.equal(hash(bytes),'f2cd602108af82f0a4b730c7c5c413d18ac713f4a0f99060e0cd4108cbfb3efb');
 const packed=JSON.parse(gunzipSync(bytes));
 const expand=files=>Object.fromEntries(Object.entries(files).map(([path,id])=>[path,id===null?null:packed.records[id]]));
 const proof={...packed,current:expand(packed.current),targets:Object.fromEntries(Object.entries(packed.targets).map(([name,target])=>[name,{...target,files:expand(target.files)}]))};
