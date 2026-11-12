@@ -79,7 +79,10 @@
     "battleCardChrome": {"shell":["#713635","#AD4E49"],"ready":"#33E6FF","ribbonHeight":24,"ribbonEdge":"#75644B","ribbonFold":"#71604B","costSize":41,"glow":{"motion":"static","staticFocus":{"normal":{"coreSoftness":2,"pulseSoftness":3,"colours":["#73E5D7","#43C6BD"]},"selected":{"coreSoftness":3,"pulseSoftness":5,"colours":["#88F7E7","#3CE2D0"]}},"duration":1.2,"expansion":[1.03,1.11],"alpha":0.6,"colour":"#33E6FF"},"orb":["#BBAA85","#482E2B","#9A2023","#D96C21","#F4AD2D","#FFF7B4"]},
     "battleCardBodyTint": "#473936",
     "battleCardContent": {"art":68,"textBox":[124,92],"bodyPosition":[0,-50],"typePosition":[0,6],"windowHeight":68,"windowPosition":[0,42],"iconPosition":[0,42]},
-    "battleCardBodyLayerOpacity":{"topCatchlight":0.5,"leftCatchlight":0.3,"bottomShade":0.45},
+    "battleCardBodyGeometry":{"paperBevel":[145,205,7.5,-0.6,0.6],"recessShadow":[137,197,6,0.6,-0.6],"innerWell":[134,194,4.5,0,0]},
+    "battleCardBodyLayerOpacity":{"topCatchlight":0.7,"leftCatchlight":0.45,"bottomShade":0.6},
+    "battleRibbonMaterial":{"shade":{"height":3.2,"colour":"#40362D","y":-7.8,"opacity":0.28},"shine":{"height":2,"colour":"#FFF4CF","y":8.3,"opacity":0.58},"fold":{"size":[23,18],"position":[74,67]}},
+    "battleTypePlaque":{"plate":"#D9C8A8","ink":"#332B25","edgeSize":[45,18],"bodySize":[42,15],"bodyOffset":[0,0.6]},
     "battleCardBodyMaterials": {
       "red":{"outerBevel":"#70352E","paperBevel":"#B65B43","recessShadow":"#382821","innerWell":"#403530","topCatchlight":"#E0A176","leftCatchlight":"#D98761","bottomShade":"#45252A"},
       "status":{"outerBevel":"#646464","paperBevel":"#818181","recessShadow":"#3D3D3D","innerWell":"#404040","topCatchlight":"#9A9A9A","leftCatchlight":"#818181","bottomShade":"#3D3D3D","artWell":"#7C7C7C"},

@@ -47,8 +47,11 @@ test('official cost medallions pair the selected light material with neutral dar
   assert.equal(child(card,'roleRing').visible,false,card.name+' has no bottom medallion');
   assert.equal(child(card,'roleMark').visible,false,card.name+' has no bottom star');
   const body=child(card,'nativeCardBody');
-  assert.deepEqual(child(body,'paperBevel').size,[144,204],card.name+' substantial shared frame');
-  assert.deepEqual(child(body,'innerWell').size,[132,192],card.name+' recessed reading well');
+  assert.deepEqual(child(body,'paperBevel').size,[145,205],card.name+' substantial shared frame');
+  assert.deepEqual(child(body,'innerWell').size,[134,194],card.name+' recessed reading well');
+  assert.equal(all(body).filter(n=>n.kind==='image').length,33,'eight body layers retain their bounded drawing cost');
+  assert.equal(all(child(card,'nativeRibbon')).filter(n=>n.kind==='image').length,34,'existing ribbon drawings only');
+  assert.deepEqual(child(child(card,'tagBody'),'flat').position,[0,.6],'raised paper type plaque');
   for(const kind of ['attack','skill','power'])assert.deepEqual(child(child(child(card,'skin'),kind),'well').scale,[.975,.965]);
   assert.equal(core.size[0],core.size[1],card.name+' cost material must remain circular');
  }

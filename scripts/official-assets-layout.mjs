@@ -60,11 +60,11 @@ export function officialAssetsTheme(source){
   const exhaust=theme.officialAssets.battleHud.exhaustPile.position;
   theme.layout.topBar.exhaustIcon[0]=exhaust[0];theme.layout.topBar.y=exhaust[1];
   theme.cardSkin.artWells=structuredClone(theme.officialAssets.battleArtWells);
-  theme.cardSkin.typeInk=approved.cardSkin.typeInk;
+  theme.cardSkin.typeInk=theme.officialAssets.battleTypePlaque.ink;
   // The frozen original maps starter/basic shells to the common silver frame.
   theme.cardSkin.rarities.basic=structuredClone(theme.cardSkin.rarities.common);
   theme.cardSkin.rarityWindow=true;
-  theme.cardSkin.typePlate=theme.cardSkin.rarities.common[4];
+  theme.cardSkin.typePlate=theme.officialAssets.battleTypePlaque.plate;
  return theme;
 }
 function cardFace(face,theme){
@@ -96,9 +96,9 @@ function cardFace(face,theme){
   for(const part of children(skin))if(part.name==='gloss'||/^band\d+$/.test(part.name))part.visible=false;
   title.text.fontSize=14;title.text.minFontSize=14;
   title.text.colour=art.battleCardTitleInk;title.text.outline=true;title.text.outlineColour='#373737';title.text.outlineOpacity=1;
-  for(const [name,width]of [['tagEdge',45],['tagBody',42]]){
-   const tag=required(face,name);tag.size[0]=width;required(tag,'flat').size[0]=width;
-   if(name==='tagBody')required(tag,'flat').colour='#C4CAD3';
+  for(const [name,size]of [['tagEdge',art.battleTypePlaque.edgeSize],['tagBody',art.battleTypePlaque.bodySize]]){
+   const tag=required(face,name),flat=required(tag,'flat');tag.size=[...size];flat.size=[...size];
+   if(name==='tagBody'){flat.colour=theme.cardSkin.typePlate;flat.position=[...art.battleTypePlaque.bodyOffset];}
   }
   for(const kind of ['attack','skill','power']){
    const window=required(skin,kind),well=required(window,'well');
