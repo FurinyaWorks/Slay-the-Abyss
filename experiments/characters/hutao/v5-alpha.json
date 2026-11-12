@@ -117,6 +117,30 @@
       "source": {
         "kind": "generic_foundation",
         "verification": "not_an_official_skill_claim"
+      },
+      "naming_review": {
+        "status": "pending",
+        "reason": "通用基础名称，不等于正式人审已通过。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "generic_foundation",
+        "source_locator": "本作原创名或通用基础名；不可冒称官方原名",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "history": [],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
@@ -143,6 +167,30 @@
       "source": {
         "kind": "generic_foundation",
         "verification": "not_an_official_skill_claim"
+      },
+      "naming_review": {
+        "status": "pending",
+        "reason": "通用基础名称，不等于正式人审已通过。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "generic_foundation",
+        "source_locator": "本作原创名或通用基础名；不可冒称官方原名",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "history": [],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
@@ -171,6 +219,30 @@
       "source": {
         "kind": "generic_foundation",
         "verification": "not_an_official_skill_claim"
+      },
+      "naming_review": {
+        "status": "pending",
+        "reason": "通用基础名称，不等于正式人审已通过。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "generic_foundation",
+        "source_locator": "本作原创名或通用基础名；不可冒称官方原名",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "history": [],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
@@ -213,6 +285,30 @@
         "url": "https://baike.mihoyo.com/ys/obc/content/1627/detail?bbs_presentation_style=no_header",
         "secondary_url": "https://wiki.hoyolab.com/pc/genshin/entry/34/?crawler=Googlebot&lang=",
         "verification": "name_correlated; final per-item citation/audit required"
+      },
+      "naming_review": {
+        "status": "pending",
+        "reason": "保留官方名称但须逐项核验来源与本作效果适配，人审未完成。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "official_skill_adapted",
+        "source_locator": "观测枢 胡桃 天赋/技能：蝶引来生",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "history": [],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
@@ -253,11 +349,35 @@
         "url": "https://baike.mihoyo.com/ys/obc/content/1627/detail?bbs_presentation_style=no_header",
         "secondary_url": "https://wiki.hoyolab.com/pc/genshin/entry/34/?crawler=Googlebot&lang=",
         "verification": "name_correlated; final per-item citation/audit required"
+      },
+      "naming_review": {
+        "status": "pending",
+        "reason": "保留官方名称但须逐项核验来源与本作效果适配，人审未完成。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "official_skill_adapted",
+        "source_locator": "观测枢 胡桃 天赋/技能：安神秘法",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "history": [],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
       "id": "HT5-006",
-      "name": "灯还亮着",
+      "name": "待命名·HT5-006",
       "type": "skill",
       "rarity": "basic",
       "cost": 1,
@@ -297,6 +417,41 @@
       "source": {
         "kind": "original_design",
         "verification": "original_not_official"
+      },
+      "naming_review": {
+        "status": "blocked",
+        "reason": "口语叙事句，未与低血格挡职责建立对应，旧版亦未通过终审。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "original_design",
+        "source_locator": "本作原创名或通用基础名；不可冒称官方原名",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "fail",
+          "N3": "pending",
+          "N4": "fail",
+          "N5": "pending",
+          "N6": "fail"
+        },
+        "history": [
+          {
+            "name": "守住烛火",
+            "decision": "historical_old_name",
+            "source": "v2.1 Sheet 19_命名优化记录"
+          },
+          {
+            "name": "灯还亮着",
+            "decision": "rejected_2026_11_12",
+            "source": "V4 old name or V5 generated"
+          }
+        ],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
@@ -333,11 +488,35 @@
       "source": {
         "kind": "original_design",
         "verification": "original_not_official"
+      },
+      "naming_review": {
+        "status": "pending",
+        "reason": "施加血梅香的意象有关联，但缺少可靠出处/人物风格终审。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "original_design",
+        "source_locator": "本作原创名或通用基础名；不可冒称官方原名",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "history": [],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
       "id": "HT5-008",
-      "name": "灯下定神",
+      "name": "待命名·HT5-008",
       "type": "skill",
       "rarity": "common",
       "cost": 1,
@@ -367,11 +546,41 @@
       "source": {
         "kind": "original_design",
         "verification": "original_not_official"
+      },
+      "naming_review": {
+        "status": "blocked",
+        "reason": "泛化的防御过牌名字，胡桃特征薄弱，与灯字词根重复。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "original_design",
+        "source_locator": "本作原创名或通用基础名；不可冒称官方原名",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "fail",
+          "N3": "pending",
+          "N4": "fail",
+          "N5": "pending",
+          "N6": "fail"
+        },
+        "history": [
+          {
+            "name": "灯下定神",
+            "decision": "rejected_2026_11_12",
+            "source": "V4 old name or V5 generated"
+          }
+        ],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
       "id": "HT5-009",
-      "name": "一瓣归灯",
+      "name": "待命名·HT5-009",
       "type": "skill",
       "rarity": "common",
       "cost": 0,
@@ -415,11 +624,41 @@
       "source": {
         "kind": "original_design",
         "verification": "original_not_official"
+      },
+      "naming_review": {
+        "status": "blocked",
+        "reason": "抽象拼词，未表现血梅香触发防御抽牌的牌义。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "original_design",
+        "source_locator": "本作原创名或通用基础名；不可冒称官方原名",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "fail",
+          "N3": "pending",
+          "N4": "fail",
+          "N5": "pending",
+          "N6": "fail"
+        },
+        "history": [
+          {
+            "name": "一瓣归灯",
+            "decision": "rejected_2026_11_12",
+            "source": "V4 old name or V5 generated"
+          }
+        ],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
       "id": "HT5-010",
-      "name": "落梅收灯",
+      "name": "待命名·HT5-010",
       "type": "skill",
       "rarity": "uncommon",
       "cost": 1,
@@ -451,6 +690,36 @@
       "source": {
         "kind": "original_design",
         "verification": "original_not_official"
+      },
+      "naming_review": {
+        "status": "blocked",
+        "reason": "拼词不顺，未表现提前消费血梅香的动作。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "original_design",
+        "source_locator": "本作原创名或通用基础名；不可冒称官方原名",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "fail",
+          "N3": "pending",
+          "N4": "fail",
+          "N5": "pending",
+          "N6": "fail"
+        },
+        "history": [
+          {
+            "name": "落梅收灯",
+            "decision": "rejected_2026_11_12",
+            "source": "V4 old name or V5 generated"
+          }
+        ],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     },
     {
@@ -487,6 +756,30 @@
       "source": {
         "kind": "original_design",
         "verification": "original_not_official"
+      },
+      "naming_review": {
+        "status": "pending",
+        "reason": "付血突刺的动作关联存在，但名字偏泛用、需审人设。",
+        "naming_rules": "N-GATE v1.1; SOURCE-GATE S1-S5; L01-L22",
+        "source_kind": "original_design",
+        "source_locator": "本作原创名或通用基础名；不可冒称官方原名",
+        "source_verified": false,
+        "checks": {
+          "N0": "pending",
+          "N1": "pending",
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "history": [],
+        "human_review": {
+          "approved": false,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence_url": null
+        }
       }
     }
   ],
@@ -579,5 +872,8 @@
         }
       }
     }
-  ]
+  ],
+  "naming_clearance": "BLOCKED_PENDING_REVIEW",
+  "naming_reviewed_at": "2026-11-12",
+  "g3_naming_status": "failed"
 }
