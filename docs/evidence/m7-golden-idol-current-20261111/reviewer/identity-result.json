@@ -1,0 +1,19 @@
+{
+  "base": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "slice": "f1481459c",
+  "production": "96a6c25fde12de016eb631e11325349d45c10794c9259f243fa42fc0e8129e0f",
+  "historicalEvidenceFilesUnchanged": 45,
+  "adversarialGraphHash": "a965a9a74bece6e0f66269f660ec40bac2f8ae435d1b4d89cc0b3fdf63cff5d4",
+  "checks": [
+    "production byte identity",
+    "before fixture current-base identity",
+    "predecessor facade current-base identity",
+    "runtime unchanged",
+    "prepare/options AST identity",
+    "intro body AST identity",
+    "health short-circuit AST identity",
+    "all historical evidence byte identity",
+    "historical archive identities",
+    "historical full graph equality"
+  ]
+}

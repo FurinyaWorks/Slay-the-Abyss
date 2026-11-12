@@ -52,7 +52,14 @@ test('permanent card views filter and sort copies, retaining stable UIDs and run
     assert(ids(host.deckUI.cards)=='11,12,13,14,15','first acquisition click restores captured deck order')
     assert(click(panel,'sortoriginal'));host:update(0)
     assert(ids(host.deckUI.cards)=='15,14,13,12,11','acquisition descending is safe snapshot reverse')
+    local sortBefore=Combat.copy({mode=host.deckUI.sortMode,ascending=host.deckUI.sortAscending,
+        directions=host.deckUI.sortDirections,cards=host.deckUI.cards,generation=host.deckUI.generation})
+    local masterBefore=host.deckUI.masterSort
     assert(not host.deckUI:setSort('rarity') and not host.deckUI:setSort('name'))
+    assert(host.deckUI.masterSort==masterBefore,'rejected sort must not replace the master preference')
+    assert(same(sortBefore,{mode=host.deckUI.sortMode,ascending=host.deckUI.sortAscending,
+        directions=host.deckUI.sortDirections,cards=host.deckUI.cards,generation=host.deckUI.generation}),
+        'rejected sort must not change the projection or remembered direction')
     assert(not panel:GetChild('pageHint').visible)
     assert(same(before,host.run),'browse mutated the run or random state')
     assert(host:closeDeck())
@@ -92,6 +99,8 @@ test('printed X and unplayable costs and equal keys follow original ordering wit
         assert(not battleRoot:GetChild('deckPanel'):GetChild('sort'..mode).visible)
         assert(not battle.deckUI:setSort(mode),'pending choice cannot change sort')
     end
+    assert(not battle.deckUI:setSort('name') and not battle.deckUI:setPileSort('name'),
+        'pending choice rejects both sorting entry points')
     battle.deckUI:close();assert(battle.deckUI:open(battle.run))
     assert(battle.deckUI.sortMode=='cost' and battle.deckUI.sortAscending,'pile and choice preserve master preference')
     assert(battle.deckUI:setSort('cost') and not battle.deckUI.sortAscending)
@@ -115,6 +124,8 @@ test('empty categories, stale callbacks and text detail pages cannot leak intera
     assert(not panel:GetChild('filterAttack').visible)
     assert(not host.deckUI:setFilter('attack'),'detail page rejects browse changes')
     assert(not host.deckUI:setSort('type'),'detail page rejects sorting')
+    assert(not host.deckUI:setSort('name') and not host.deckUI:setPileSort('name'),
+        'detail page rejects pile-only name sorting')
     assert(host.deckUI:back() and panel:GetChild('filterAttack').visible)
     host:update(0)
     assert(not panel:GetChild('pageHint').visible,'browse rule footer must not obscure battle')

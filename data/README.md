@@ -15,6 +15,8 @@
 | [original_v4/](original_v4/) | 原创角色数据；构建与接入边界见[原创角色说明](../docs/ORIGINAL_V4.md) |
 | [presentation/](presentation/) | 主题、卡面表现与文案源；遵循[批准稿](../docs/design/UI_DESIGN.md)，不作为玩法数值替代源 |
 
+遗物中文展示及命名审核遵循 [R-GATE v1.0](../docs/design/RELIC_NAMING.md)；数据定义名、来源 ID 回退和玩家界面须一致，命名改动不能影响稳定 ID、数值与掉落规则。
+
 来源与适配证据见[SOURCES](SOURCES.md)。加载文件和数据契约以[validate-data.mjs](../scripts/validate-data.mjs)为准；`npm run validate:data`校验内容，`npm run build:data`先校验再生成`build/lua/abyss_data.lua`及原创角色数据模块。生成Lua不要手工编辑。下方规则摘要用于定位概念，实际数值、顺序和兼容边界以当前数据、Lua核心及专项回归为准。
 
 ## 效果契约

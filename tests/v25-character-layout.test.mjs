@@ -120,7 +120,16 @@ test('approved header, live properties and relic hierarchy occupy the measured s
  assert.equal(child(d,'v25Story').text.content,theme().v25Character.story);
  assert.equal(child(d,'stats').text.content,'');assert.equal(child(d,'gold').text.content,'');
  assert.equal(child(d,'relic').text.content,'');assert.equal(child(d,'relicText').text.content,'');
- assert(child(d,'v25HealthIcon').image>0);assert(child(d,'v25GoldIcon').image>0);
+ assert(child(d,'v25HealthIcon').image>0);
+ const bag=child(d,'v25GoldIcon');
+ assert.equal(bag.kind,'container','approved currency uses the SVG money-bag silhouette');
+ assert.deepEqual(bag.size,[36,40]);assert.deepEqual(bag.scale,[25/36,28/40]);
+ assert.deepEqual(bag.position,frame(252.421875,221.25,25,28).position);
+ assert(all(bag).length<=120,'currency icon remains bounded native geometry');
+ assert(all(bag).some(n=>n.colour==='#D1D0BD'));
+ assert(all(bag).some(n=>n.colour==='#45443B'));
+ assert(all(bag).filter(n=>n.kind==='image').every(n=>n.image===nativeTheme.image.rect),
+  'an unrelated official coin must not replace the approved money bag');
  assert.deepEqual(child(d,'relic').position,frame(165,430.53125,350,39.140625).position);
  assert.deepEqual(child(d,'officialSelectionFigure').position,[273,-239]);
  assert.deepEqual(child(d,'officialSelectionFigure').scale,[1380/133,1380/133]);
@@ -152,7 +161,7 @@ test('native single-line character fields fit actual glyph lines without moving 
  assert.deepEqual(child(p,'hint').size,[503,28]);
 });
 
-test('red back and cyan start use the existing hit and label with four distinct native flag states',()=>{
+test('red back and cyan start retain four input states and the approved CSS appearance',()=>{
  const layout=build(),p=panel(layout),identities={};
  for(const name of ['cancel','confirm'])identities[name]=child(child(p,name),'hit');
  applyV25CharacterLayout(layout,theme());
@@ -160,8 +169,11 @@ test('red back and cyan start use the existing hit and label with four distinct 
   const b=child(p,name),hit=child(b,'hit');assert.equal(hit,identities[name]);
   assert.deepEqual(b.position,frame(x,561,180,60).position);assert.deepEqual(hit.size,[180,60]);
   assert.deepEqual(hit.states,{normal:'normal',hover:'hover',pressed:'pressed',disabled:'disabled'});
-  const flags=children(hit).map(state=>child(state,'v25Flag'));
-  assert.equal(new Set(flags.map(x=>JSON.stringify(children(x)))).size,4);
+  const normal=children(child(child(hit,'normal'),'v25Flag'));
+  assert.deepEqual(children(child(child(hit,'disabled'),'v25Flag')),normal,
+   'approved CSS keeps disabled artwork unchanged; input remains disabled by its existing hit');
+  for(const active of ['hover','pressed'])assert.notDeepEqual(children(child(child(hit,active),'v25Flag')),normal,
+   'approved CSS changes flag brightness for '+active);
   for(const state of children(hit)){
    assert.equal(child(state,'plate').visible,false);assert.equal(child(state,'border').visible,false);
    assert.equal(child(state,'label').text.fontSize,26);

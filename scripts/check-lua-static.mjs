@@ -94,6 +94,10 @@ export function reviewRenderComplexity(diagnostics, sources) {
 // Budget only this governance slice and every extracted responsibility module.
 // Unrelated pre-existing Combat/UI hotspots keep their diagnostic reports.
 const responsibilityRoots = {
+  'src/lua/abyss_curses.lua': ["function 'M.isImplemented'"],
+  'src/lua/abyss_skill_feedback.lua': [],
+  'src/lua/abyss_joust_event.lua': [],
+  'src/lua/abyss_golden_idol_event.lua': ['M.choose','chooseIntro','invalidTrapHealth','obtainInjury','applyTrapCost'].map(name=>`function '${name}'`),
   'src/lua/abyss_encounter_formation.lua': ['M.assemble','fixedFormation','shapeFormation','gremlinFormation',
     'slimeFormation','louseFormation','mixedFormation'].map(name=>`function '${name}'`),
   'src/lua/abyss_defect_final_cards.lua': ['M.execute','generate','applyFinalPower','recurOrb','scrapeDrawn','recoverZeroCost','recoverDiscard','fissionOrbs','rebootPiles']
@@ -261,6 +265,10 @@ const responsibilityRoots = {
 // All Run orchestration and newly extracted Run helpers receive the full budget.
 const responsibilityHelper = file => /^src\/lua\/abyss_(?:effects_.+|combat_effect.*|combat_catalog|combat_reactions|combat_native_play|combat_queued_play|act2_ai_.+|character_presentation_.+|feedback_.+|node_ui(?:_.+)?|game_ui_.+|run(?:_(?!(?:card_catalog|red_card_contract|seed)\.lua$).+)?|nodes(?:_.+)?)\.lua$/.test(file);
 const completeResponsibility = file => responsibilityHelper(file)
+  || file==='src/lua/abyss_curses.lua'
+  || file==='src/lua/abyss_skill_feedback.lua'
+  || file==='src/lua/abyss_joust_event.lua'
+  || file==='src/lua/abyss_golden_idol_event.lua'
   || file==='src/lua/abyss_silent_tactics_cards.lua'
   || file==='src/lua/abyss_shivs.lua'
   || file==='src/lua/abyss_act3_ai.lua'

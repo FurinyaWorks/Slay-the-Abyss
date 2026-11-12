@@ -1,0 +1,79 @@
+{
+  "kind": "single-pair-Simulator-drag-cancel-subset",
+  "officialClient": false,
+  "physicalPhone": false,
+  "notFPS": true,
+  "notFixed60Hz": true,
+  "cases": [
+    {
+      "variant": "before",
+      "buildId": "a003b8a3-8139-4048-a9c4-e1de1002c6d0",
+      "saveSha256": "3ec5b710c94fedad5afe8803104fa6579f9a8e92dc34ddda647dddea353d43a3",
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "canvas": {
+        "x": 60,
+        "y": 151,
+        "width": 1280,
+        "height": 720
+      },
+      "medianMs": 55.75,
+      "maxMs": 62.80000000447035,
+      "samplesMs": [
+        53,
+        62.80000000447035,
+        58.5,
+        61.79999999701977,
+        39.70000000298023,
+        52.29999999701977,
+        48.20000000298023,
+        61.19999999552965
+      ],
+      "stream": {
+        "events": 48,
+        "requests": 31,
+        "changedFrames": 30,
+        "wall": 1.3346000000014901,
+        "game": 1.3399999999999999
+      },
+      "reportSha256": "d01ceb50347d7c54f330b03492edb11720e3e1500164b327a93c81e5e15fb70a"
+    },
+    {
+      "variant": "after",
+      "buildId": "d3b4c46e-acf0-454d-8193-4618d548fbae",
+      "saveSha256": "520483100e84bd3f42488e50e165cadd29c5d4cdb34c6ab8f1eb4f0580cbb077",
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "canvas": {
+        "x": 60,
+        "y": 151,
+        "width": 1280,
+        "height": 720
+      },
+      "medianMs": 42.30000000074506,
+      "maxMs": 45.399999998509884,
+      "samplesMs": [
+        36.600000001490116,
+        44.70000000298023,
+        45.399999998509884,
+        42.80000000447035,
+        37.900000005960464,
+        38.400000005960464,
+        42.5,
+        42.100000001490116
+      ],
+      "stream": {
+        "events": 48,
+        "requests": 48,
+        "changedFrames": 47,
+        "wall": 1.8482000000029801,
+        "game": 1.8499999999999996
+      },
+      "reportSha256": "7751223d6a765adc5f4193d682093738824188f37b5e29af1bc3c7b4de6917c6"
+    }
+  ],
+  "limitations": [
+    "One noisy serial pair; no speedup or official/device claim.",
+    "48 stream inputs are backpressured, actual durations differ.",
+    "Before uses diagnostic old HUD, not a valid deliverable packaging receipt.",
+    "After is the exact rebuilt final GIL; original after022 pair is retained separately in v1 archive/history."
+  ]
+}

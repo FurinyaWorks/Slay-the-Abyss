@@ -2,9 +2,11 @@ import {compactBoundedCardFaces} from './lightweight-card-layout.mjs';
 import {applyV25BattleScene} from './v25-battle-scene.mjs';
 import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
 import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
-import {v25Theme,applyV25BattleLayout} from './v25-layout.mjs';
+import {v25Theme,applyV25BattleLayout,rebuildV25CardFaces} from './v25-layout.mjs';
 import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
 import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
+import {battlePileReturn} from './official-battle-pile-chrome.mjs';
+import {preflightOfficialRoots,composeOfficialRun,finishOfficialComposition} from './official-run-layout.mjs';
 const children=node=>node?.controls??node?.children??[];
 const child=(node,name)=>children(node).find(item=>item.name===name);
 const required=(node,name)=>{const value=child(node,name);if(!value)throw Error('Official assets missing '+name);return value;};
@@ -19,10 +21,16 @@ const setImage=(control,id,colour)=>{
 export function officialAssetsTheme(source){
   const theme=structuredClone(source);
   const approved=v25Theme(source);
+  theme.layout.v25Menu=structuredClone(approved.layout.v25Menu);
+  Object.assign(theme.layout.rewardPick,structuredClone(approved.layout.rewardPick));
+  theme.layout.nativeNode.event.neow.bubbleText=[-45,96,270,130];
  if(theme.officialAssets?.profile!=='official-assets-first-v1')throw Error('Missing official asset theme');
  theme.presentationProfile='official-assets-first';
  theme.cardSkin.text.body=theme.officialAssets.cardInk;
-  theme.cardSkin.costText=theme.officialAssets.costInk;
+  theme.cardSkin.costText=theme.officialAssets.battleCostInk;
+  theme.cardSkin.text.title=theme.officialAssets.battleCardTitleInk;
+  const runHud=theme.officialAssets.battleHud;
+  theme.layout.nativeNode.topBar.potions=[runHud.potionX+runHud.potionStep,runHud.y,runHud.potionStep*3,44];
   theme.cardSkin.battleCostText=theme.officialAssets.battleCostInk;
   theme.cardSkin.battleCostRingOpacity=theme.officialAssets.battleCostRingOpacity;
   theme.cardSkin.battleArtWells=theme.officialAssets.battleArtWells;
@@ -31,27 +39,41 @@ export function officialAssetsTheme(source){
   for(const key of Object.keys(source.v25Battle.layout))theme.layout[key]=structuredClone(approved.layout[key]);
   for(const key of Object.keys(source.v25Battle.font))theme.font[key]=approved.font[key];
   Object.assign(theme.motion,source.v25Battle.motion);
+  // One full illustration slot and five native body rows for every card;
+  // long descriptions never borrow height from a single card's illustration.
+  const content=theme.layout.card.v25Content,slots=theme.officialAssets.battleCardContent;
+  theme.layout.card.art=slots.art;theme.layout.card.textBox=[...slots.textBox];
+  content.bodyPosition=[...slots.bodyPosition];content.typePosition=[...slots.typePosition];
+  for(const kind of ['attack','skill','power']){
+   content.windows[kind].size[1]=slots.windowHeight;content.windows[kind].position=[...slots.windowPosition];
+   content.icons[kind]=[...slots.iconPosition];
+  }
   theme.layout.energy.faceColour='#FFE35D00';
+  // The native sans glyph occupies more area than V25's serif. Owner's
+  // device feedback calls for a quieter readout inside the unchanged 86px orb.
+  theme.layout.energy.numberSize=26;
   theme.layout.cardDrag.aimDots=theme.officialAssets.battleAim.segments;
   theme.layout.cardDrag.aimBend=[...theme.officialAssets.battleAim.bend];
   // Existing exhaust-flight readers retain their historical topBar token path.
   const exhaust=theme.officialAssets.battleHud.exhaustPile.position;
   theme.layout.topBar.exhaustIcon[0]=exhaust[0];theme.layout.topBar.y=exhaust[1];
-  theme.cardSkin.artWells=structuredClone(approved.cardSkin.artWells);
-  theme.cardSkin.typeInk=approved.cardSkin.typeInk;
+  theme.cardSkin.artWells=structuredClone(theme.officialAssets.battleArtWells);
+  theme.cardSkin.typeInk=theme.officialAssets.battleTypePlaque.ink;
   // The frozen original maps starter/basic shells to the common silver frame.
   theme.cardSkin.rarities.basic=structuredClone(theme.cardSkin.rarities.common);
   theme.cardSkin.rarityWindow=true;
-  theme.cardSkin.typePlate=theme.cardSkin.rarities.common[4];
+  theme.cardSkin.typePlate=theme.officialAssets.battleTypePlaque.plate;
  return theme;
 }
-function cardFace(face,theme,battle=false){
+function cardFace(face,theme){
  const art=theme.officialAssets;
+ // The bottom role medallion is decoration, not a card state. Retain handles
+ // for shared runtime writers while removing it from every official card host.
+ for(const name of ['roleRing','roleMark'])required(face,name).visible=false;
  for(const name of ['roundShadow','roundFrame','roundBody']){
   const image=required(required(face,name),'flat');
-   setImage(image,battle?theme.image.rect:art.images.cardPanel,name==='roundBody'?art.cardBodyTint:undefined);
+   setImage(image,theme.image.rect,name==='roundBody'?art.cardBodyTint:undefined);
  }
- if(battle){
   face.children.unshift({name:'nativePlayableRim',kind:'container',visible:false,size:[150,210],children:[
    ...[-1,1].map(side=>({name:'side'+side,kind:'image',position:[side*75,0],size:[4,212],image:100001,colour:'#43C6BD',opacity:.55,feather:{pixels:[2,2]}})),
    ...[-1,1].map(side=>({name:'edge'+side,kind:'image',position:[0,side*105],size:[154,4],image:100001,colour:'#43C6BD',opacity:.55,feather:{pixels:[2,2]}})),
@@ -72,27 +94,27 @@ function cardFace(face,theme,battle=false){
   for(const part of children(skin))if(part.name==='gloss'||/^band\d+$/.test(part.name))part.visible=false;
   title.text.fontSize=14;title.text.minFontSize=14;
   title.text.colour=art.battleCardTitleInk;title.text.outline=true;title.text.outlineColour='#373737';title.text.outlineOpacity=1;
-  for(const [name,width]of [['tagEdge',45],['tagBody',42]]){
-   const tag=required(face,name);tag.size[0]=width;required(tag,'flat').size[0]=width;
-   if(name==='tagBody')required(tag,'flat').colour='#C4CAD3';
+  for(const [name,size]of [['tagEdge',art.battleTypePlaque.edgeSize],['tagBody',art.battleTypePlaque.bodySize]]){
+   const tag=required(face,name),flat=required(tag,'flat');tag.size=[...size];flat.size=[...size];
+   if(name==='tagBody'){flat.colour=theme.cardSkin.typePlate;flat.position=[...art.battleTypePlaque.bodyOffset];}
   }
   for(const kind of ['attack','skill','power']){
    const window=required(skin,kind),well=required(window,'well');
-   for(const [index,scale]of [.95,.7,.45].entries())well.children.push({name:'nativeWindowLight'+index,kind:'image',position:[0,window.size[1]*.12],size:[window.size[0]*scale,window.size[1]*scale*.8],image:100002,colour:kind==='attack'?'#A53630':kind==='skill'?'#45636A':'#A48049',opacity:.14,feather:{pixels:[26,14]}});
+   // Leave a substantial inset frame around each type silhouette, rather than
+   // the previous hairline. Scale only the well: icon and hit geometry stay put.
+   well.scale=[.975,.965];
+   for(const [index,scale]of [.95,.7,.45].entries())well.children.push({name:'nativeWindowLight'+index,kind:'image',position:[0,window.size[1]*.12],size:[window.size[0]*scale,window.size[1]*scale*.8],image:106056,imageType:'basic',colour:kind==='attack'?'#A94D47':'#C46A60',opacity:.14});
   }
- }
  for(const name of ['label','description']){
   const text=child(face,name);if(text?.kind==='text')text.text.colour=art.cardInk;
  }
- setImage(required(face,'costCore'),battle?art.images.battleCoin:art.images.costDisc,battle?'#FFD06A':'#FFFFFF');
+ setImage(required(face,'costCore'),art.images.battleCoin,'#FFD06A');
  // Preserve the animated, semantic cost ring and red/green cost deltas. The
 // official medallion is a single untinted backing, never the dynamic number.
  const disc=required(face,'costCore');disc.size=[Math.min(...disc.size),Math.min(...disc.size)];
- if(battle){
   disc.size=[34,34];disc.imageType='basic';
   const cost=required(face,'cost');cost.text.outline=true;cost.text.outlineColour='#4A2B27';cost.text.outlineOpacity=1;
   officialBattleCardChrome(face,theme);
- }
 }
 function battleSurfaces(root,theme){
  walk(root,node=>{
@@ -117,9 +139,11 @@ function battleSurfaces(root,theme){
  for(const name of ['title','floorIcon','floor'])required(root,name).visible=false;
  const heading=structuredClone(required(root,'player'));heading.name='officialHeroHeading';heading.position=hud.heading.slice(0,2);heading.size=hud.heading.slice(2);heading.text.content=hud.headingText;heading.text.fontSize=hud.headingSize;heading.text.colour=theme.color.gold;
  heading.position[1]-=hud.y;bar.children.push(heading);
- for(let index=1;index<=3;index++){
+ for(let index=1;index<=5;index++){
   const x=hud.potionX+(index-1)*hud.potionStep;
-  for(const node of [required(root,'potion'+index),child(child(root,'potionHelp'),'potionHelp'+index)]){
+  const bottle=child(root,'potion'+index)??child(child(root,'potionHelp'),'potion'+index);
+  if(!bottle)throw Error('Missing battle potion '+index);
+  for(const node of [bottle,child(child(root,'potionHelp'),'potionHelp'+index)]){
    if(node){
     node.position=[x,hud.y];
     for(const face of children(node))if(['normal','hover','pressed','disabled'].includes(face.name))face.scale=(face.scale??[1,1]).map((value,axis)=>value*(Array.isArray(hud.potionScale)?hud.potionScale[axis]:hud.potionScale));
@@ -150,10 +174,28 @@ function buttonFaces(node,theme){
     label.text.colour=face.name==='disabled'?theme.color.textMuted:theme.officialAssets.buttonInk;
  }
 }
-function panelSurfaces(node,theme){
+function relicSurfaces(stage,theme){
+ const bar=child(stage,'relicBar'),panel=child(stage,'relicPanel'),protectedHosts=new Set();
+ if(bar){
+  const style=theme.officialAssets.battleRelicBar;
+  for(let i=1;i<=style.count;i++){
+   const slot=required(bar,'slot'+i);slot.position=[style.origin[0]+style.step*(i-1),style.origin[1]];
+   required(slot,'icon').size=[style.icon,style.icon];required(slot,'hit').size=[style.hit,style.hit];
+   required(slot,'rim').visible=false;required(slot,'face').visible=false;
+  }
+ }
+ if(panel)for(const host of [panel,...children(panel).filter(n=>/^row\d+$/.test(n.name))]){
+  // The existing battle potion information window uses these same native
+  // rectangle materials. Keep its live bounds and every read-only input owner.
+  setImage(required(host,host===panel?'frame':'border'),theme.image.rect,theme.color.goldDim);
+  setImage(required(host,'plate'),theme.image.rect,theme.color.panelSunken);protectedHosts.add(host);
+ }
+ return protectedHosts;
+}
+function panelSurfaces(node,theme,protectedHosts){
  // Keep all modal catchers, live field paths, sizes and visibility. Only replace
 // large landscape image surfaces; do not stretch the landscape plaque into icons.
- if(node.kind!=='container')return;
+ if(node.kind!=='container'||protectedHosts?.has(node))return;
  const hasText=children(node).some(item=>item.kind==='text');
  if(!hasText)return;
  for(const name of ['face','panel','plate']){
@@ -203,7 +245,8 @@ export function applyOfficialAssets(trees,theme){
  if(!Array.isArray(trees)||!trees.length)throw Error('Official assets require layout trees');
  const images=theme.officialAssets?.images;
  if(!images||Object.values(images).some(id=>!Number.isSafeInteger(id)||id<=0))throw Error('Invalid official image manifest');
- let cardHosts=0,removedControls=0;const battleCards=new Set();
+ preflightOfficialRoots(trees);
+ let cardHosts=0,removedControls=0;
   for(const tree of trees){
    const stage=child(tree,'stage')??tree;
    const relicBar=child(stage,'relicBar');
@@ -215,25 +258,34 @@ export function applyOfficialAssets(trees,theme){
    for(const host of [child(stage,'relicBar'),child(stage,'relicPanel')])if(host)walk(host,node=>{
     if(node.kind==='image'&&node.name==='icon')node.colour='#FFFFFF';
    });
+   const relicHosts=relicSurfaces(stage,theme);
    if(child(stage,'battlePanel')||child(stage,'endTurn')){
     applyV25BattleLayout(tree,theme);
     applyV25BattleChrome(tree,theme);
     applyV25TurnNoticeLayout(tree,theme);
     applyV25BattleScene(tree,theme);
     const battle=child(stage,'battlePanel')??stage;
-    for(const node of children(battle))if(/^card\d+$/.test(node.name))battleCards.add(node);
     battleSurfaces(battle,theme);
     officialBattleHud(battle,theme);officialBattleUtilityFaces(stage,theme);
    }
+   rebuildV25CardFaces(tree,theme);
    const result=compactBoundedCardFaces(tree,[],{preserveWindows:true});removedControls+=result.removedControls;
    walk(tree,node=>{
     // Several native 28px labels are only 44px high. Their formerly identical
     // preferred/minimum sizes leave no whole line in the real renderer. Keep
     // geometry and preferred sizes, and let the existing autosizer fit the text.
     if(node.kind==='text'&&node.text?.autoSize&&node.text.minFontSize*1.45+4>node.size?.[1])node.text.minFontSize=theme.font.minimum;
-   if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme,battleCards.has(node));cardHosts++;}
-   else {buttonFaces(node,theme);panelSurfaces(node,theme);pageBackgrounds(node,theme);roomTextFits(node,theme);}
+   if(child(node,'roundFrame')&&child(node,'skin')&&child(node,'costDisc')){cardFace(node,theme);cardHosts++;}
+   else {buttonFaces(node,theme);panelSurfaces(node,theme,relicHosts);pageBackgrounds(node,theme);roomTextFits(node,theme);}
   });
+  const pileReturn=child(child(tree,'stage')??tree,'deckPanel');
+  if(child(pileReturn,'pileReturn'))battlePileReturn(child(pileReturn,'pileReturn'),true,theme.officialAssets.images.button,theme.officialAssets.buttonInk);
+  const tools=child(pileReturn,'pileTools');
+  if(tools)for(const control of children(tools)){
+   const backing=child(control,'officialButtonBacking');if(backing)backing.visible=false;
+  }
+  composeOfficialRun(tree,theme);
  }
+ finishOfficialComposition(trees);
  return {cardHosts,removedControls};
 }

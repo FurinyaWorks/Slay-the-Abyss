@@ -1,0 +1,12 @@
+[
+  {
+    "path": "scripts/check-architecture.mjs",
+    "exactThreeWayMerge": true,
+    "sha256": "6817a43d39957c7f645f92ad2216268b8ee6c11191b2e40117d7ea776856cea6"
+  },
+  {
+    "path": "tests/architecture.test.mjs",
+    "exactThreeWayMerge": true,
+    "sha256": "71d9f988c88f8b88aa7efe488d9c0037ab671132f0866a89bb56bfe7b2be5cf6"
+  }
+]

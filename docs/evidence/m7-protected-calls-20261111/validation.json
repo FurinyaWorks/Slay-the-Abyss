@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "base": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "scope": [
+    "scripts/check-architecture.mjs",
+    "tests/architecture.test.mjs"
+  ],
+  "productionChanged": false,
+  "architecture": {
+    "modules": 345,
+    "dependencyOccurrences": 1953,
+    "beforeEqualsAfter": true,
+    "jsonSha256": "8fb23fd4d39e82ad075efedeab34181e222b759a9eba5122acd811198cf846eb",
+    "errors": []
+  },
+  "validation": {
+    "red": {
+      "tests": 12,
+      "pass": 10,
+      "fail": 2
+    },
+    "greenThreeFiles": {
+      "tests": 28,
+      "pass": 28,
+      "fail": 0
+    },
+    "sharedInputs": {
+      "tests": 9,
+      "pass": 9,
+      "fail": 0
+    },
+    "independentFengariProbes": 14,
+    "fullRun": false,
+    "syntax": true,
+    "guidance": true,
+    "backlog": true,
+    "network": true
+  },
+  "executionNotes": [
+    "Initial batch named nonexistent engineering-collection.test.mjs; Node executed the other three real files (28 tests). Correct engineering-shared-inputs.test.mjs subsequently ran all 9 tests separately.",
+    "Initial related --files comma value was parsed as one path. Original output retained; corrected space-separated invocation records actual selection. Neither plan executed tests.",
+    "Source final change after tests only clarifies the documented existing inference limits."
+  ],
+  "limits": [
+    "Only direct standard globals pcall/xpcall and statically known explicit callable/handler arguments.",
+    "Builtin aliases, global reassignment identities and Lua multi-return handler expansion remain unsupported.",
+    "Existing first-return, single-write local, parameter callback and dynamic dispatch limits remain.",
+    "Known xpcall error handler is conservatively eager even if protected function happens to succeed.",
+    "No runtime product changes, SCC/CC reduction, native Windows, Hosted Full, queue, post-merge or device validation claimed."
+  ]
+}

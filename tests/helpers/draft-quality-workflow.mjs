@@ -1,3 +1,5 @@
+import {beforeHostedCheckoutWorkflow} from './hosted-checkout-workflow.mjs';
+import {beforeQualityRatchetWorkflow} from './quality-ratchet-workflow.mjs';
 // Project only the complete reviewed #584 Draft/Fast workflow change before
 // entering older, immutable workflow contracts. Partial or duplicate wiring
 // stays visible; unrelated source bytes are never removed.
@@ -29,9 +31,12 @@ export const draftQualityWorkflowEdits = Object.freeze([
 ].map(Object.freeze));
 
 export function beforeDraftQualityWorkflow(text) {
+  const original = text;
+  text = beforeHostedCheckoutWorkflow(text);
+  text = beforeQualityRatchetWorkflow(text);
   const eol = text.includes('\r\n') ? '\r\n' : '\n';
   const edits = draftQualityWorkflowEdits.map(pair => pair.map(value => value.replaceAll('\n', eol)));
-  if (!edits.every(([, after]) => text.split(after).length === 2)) return text;
+  if (!edits.every(([, after]) => text.split(after).length === 2)) return original;
   for (const [before, after] of edits) text = text.replace(after, before);
   return text;
 }

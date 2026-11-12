@@ -1,0 +1,127 @@
+{
+  "kind": "final-R7-actual-candidate-QA-binding",
+  "buildId": "91df6805-3e0f-4fe8-ac02-125ac6687d3b",
+  "sourceCommit": "9cfeb96ba10d4da0d4f0d0802756ab59a50e07c5",
+  "sourceDirty": false,
+  "gilSha256": "fb137624a6cc92cf0f17b35ce724a5994e584e2eb7bf82b7d5a510cb045d1878",
+  "saveSha256": "89b2ea01f8b5206ce7c157df9e8790aaf23a9b8489f0a9b71dbce8463a9d9734",
+  "controlsReadBack": 13855,
+  "inverseFaults": [],
+  "selectionUsesLuaValue": "battlePixel",
+  "sharedPixelShapes": 57,
+  "selectionOwnedReady": 59,
+  "selectionCompleteTreeNodes": 60,
+  "avatarOwned": 0,
+  "coldMenuControls": 13497,
+  "warmControls": 13556,
+  "sdk": {
+    "path": ".artifacts\\noncombat-low-pixel\\r7-lifecycle.json",
+    "sha256": "c35a2913ac9e7e6d02e71d8acaf0f7719d776306b55d541884714c24888e44e6",
+    "status": "pass",
+    "checks": 28,
+    "warmCounts": [
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556,
+      13556
+    ],
+    "faults": [],
+    "sourceStable": true,
+    "scope": "120 cold frames zero art; early cancel/reopen;20 warm loops; natural no-attack defeat/result/restart/newNeow; roots0.57-shape art can finish before cancellation; does not claim an actual interrupted partial-build proof"
+  },
+  "browser": {
+    "path": ".artifacts\\noncombat-low-pixel\\r7-browser-1794395681925\\report.json",
+    "sha256": "e9db892340bd56484147e087a290c0fcd443f4735b58a6651da8b0b2e205e79a",
+    "status": "pass",
+    "cases": [
+      {
+        "branch": "hp",
+        "status": "pass",
+        "checks": 21,
+        "errors": []
+      },
+      {
+        "branch": "lament",
+        "status": "pass",
+        "checks": 9,
+        "errors": []
+      }
+    ]
+  },
+  "browserPerf": {
+    "path": ".artifacts\\noncombat-low-pixel\\r7-browser-perf\\report.json",
+    "sha256": "cbd74d19554ffa27c2d5ea312a9409f5bfce7262159ca7df29e6252a23b9b081",
+    "status": "captured",
+    "archiveLoadMs": 11468.628999999999,
+    "navigationToPositiveFrameMs": 7640.704299999999,
+    "selectionArtReadyDrawMs": 305.39999999990687,
+    "selectionFigureNodes": 60,
+    "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "errors": [],
+    "clickToChangedDrawMs": [
+      241.89999999990687,
+      997.5,
+      167.70000000006985,
+      158.19999999995343,
+      240,
+      523
+    ],
+    "scope": "Fresh independent one-session process; no screenshot/SDK parallel. Page first change differs from complete57-shape draw. Different main art fromR6; not same-quality speedup or total-loading improvement"
+  },
+  "r6R7InterfaceAndModuleBinding": {
+    "path": ".artifacts\\noncombat-low-pixel\\r6-r7-binding.json",
+    "sha256": "a180b79e21f91aafa14704fb9d39949baa1276975ae97636ce4ed0195a133708",
+    "interfaceExactEquality": true,
+    "unchangedDigestCount": 357,
+    "changedModuleNames": [
+      "abyss_traveler_portrait_assets",
+      "abyss_traveler_portraits",
+      "abyss_ui"
+    ],
+    "abyssUiActualChanges": [
+      "-print(\"ABYSS_BUILD 1116ae97-6147-4dba-abb1-e74e5b1004a8\")",
+      "+print(\"ABYSS_BUILD 91df6805-3e0f-4fe8-ac02-125ac6687d3b\")"
+    ]
+  },
+  "inheritedR6Scope": "Only phone/four-offer geometry, material and input-path observations. R6 main-art content and R6 performance are not inherited. R7 main has new actual screenshots.",
+  "artReview": "57-shape main is consistent with existing battle pixel actor, clear and complete. It is materially different art content/style fromR6 original133px character and frozenV25; not original-art restoration or equal-quality optimization.",
+  "representativeShots": [
+    ".artifacts\\noncombat-low-pixel\\r7-browser-1794395681925\\hp-05-selection-ready.png",
+    ".artifacts\\noncombat-low-pixel\\r7-browser-1794395681925\\hp-06-starter-deck.png",
+    ".artifacts\\noncombat-low-pixel\\r7-browser-1794395681925\\hp-08-neow-offers.png",
+    ".artifacts\\noncombat-low-pixel\\r7-browser-1794395681925\\lament-11-first-battle.png"
+  ],
+  "url": "http://127.0.0.1:55877/",
+  "startScript": ".artifacts\\noncombat-low-pixel\\start.ps1",
+  "startScriptSha256": "163be80251a34c9ab3556cad97a63bdef219c8158dccd05278a683aa765539a6",
+  "restartCommand": "powershell -ExecutionPolicy Bypass -File \"F:/New folder/.worktrees/noncombat-v25/.artifacts/noncombat-low-pixel/start.ps1\"",
+  "officialClientVerified": false,
+  "physicalPhoneVerified": false,
+  "gpuFpsMeasured": false,
+  "finalService": {
+    "pid": 29756,
+    "url": "http://127.0.0.1:55877",
+    "buildId": "91df6805-3e0f-4fe8-ac02-125ac6687d3b",
+    "gilSha256": "fb137624a6cc92cf0f17b35ce724a5994e584e2eb7bf82b7d5a510cb045d1878",
+    "saveSha256": "89b2ea01f8b5206ce7c157df9e8790aaf23a9b8489f0a9b71dbce8463a9d9734",
+    "httpStatus": 200,
+    "qaAndPerfInstancesStopped": true,
+    "cleanSessionState": true
+  }
+}

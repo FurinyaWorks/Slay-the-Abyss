@@ -1,0 +1,25 @@
+✔ active policy pins exactly the lint/tool inputs and rejects changes, missing pins and exception options (3.299858ms)
+✔ active policy preserves historical lint except exact reviewed SDK owner and callback declarations (10.439873ms)
+✔ new CC16 fails while CC15 passes and unrelated old debt is grandfathered (4.39876ms)
+✔ old high CC cannot increase; improvements and low debt within limit are permitted (0.837076ms)
+✔ new modules have a line budget; existing oversized owners cannot grow (1.242695ms)
+✔ new, expanded or denser SCC is blocked; unchanged and eliminated SCC are fine (1.386814ms)
+✔ splitting a large SCC is allowed but its internal edge allowance cannot expand (2.91569ms)
+✔ missing/corrupt measurements fail closed (0.973396ms)
+✔ committed source graphs preserve Git bytes and ignore checkout, staged and untracked changes (58.224239ms)
+✔ committed linked source files and directory entries fail closed without following checkout paths (175.978058ms)
+✔ real CLI keeps committed CC16 blocked after checkout source and policy are replaced (818.130021ms)
+✔ real anonymous insertions preserve old hotspots without lending their debt to another target (540.007388ms)
+✔ registration event arguments and table owners cannot share an anonymous allowance (995.135141ms)
+✔ ambiguous same-context functions match unchanged content first and never infer residual uniqueness (1261.054949ms)
+✔ nested debt follows matched lexical owners, not names or shifted ordinals (415.095745ms)
+✔ file moves and generated committed sources use the same explicit identity boundary (358.241121ms)
+✔ ratchet identity is optional for legacy metrics but mandatory to inherit function debt (202.359386ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5111.49858

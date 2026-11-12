@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, symlinkSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, symlinkSync, renameSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { collectEngineeringInputs, collectQuality } from '../scripts/check-engineering-quality.mjs';
@@ -136,5 +136,33 @@ test('nested source changes and dependency boundaries are freshly checked by bot
     const changed=checkArchitecture(root);assert.deepEqual(changed,shared());
     assert.notEqual(first.sourceHashes['nested.helper'],changed.sourceHashes['nested.helper']);
     assert(changed.errors.some(error=>error.file==='src/lua/nested/helper.lua'&&/Dependency boundary/.test(error.message)));
+  });
+});
+
+for(const entry of ['src','src/lua'])test(`both architecture entries reject a linked ${entry} scan root`,()=>{
+  sourceTree({'main.lua':'return {}'},{layers:{main:'core'}},(root,shared)=>{
+    const original=checkArchitecture(root);
+    assert.deepEqual(original,shared());assert.deepEqual(original.errors,[]);
+    const linked=join(root,entry),external=join(root,'external');
+    renameSync(linked,external);
+    symlinkSync(external,linked,'junction');
+    assert.throws(()=>discoverSources(root),/Linked source entry is not supported/);
+    assert.throws(()=>checkArchitecture(root),/Linked source entry is not supported/);
+    assert.throws(shared,/Linked source entry is not supported/);
+  });
+});
+
+test('selecting a repository through a directory alias still checks its real source entries',()=>{
+  sourceTree({'main.lua':'return {}'},{layers:{main:'core'}},(root,shared)=>{
+    const directory=mkdtempSync(join(tmpdir(),'architecture-root-alias-')),alias=join(directory,'repository');
+    try {
+      symlinkSync(root,alias,'junction');
+      assert.deepEqual(checkArchitecture(alias),shared());
+      assert.deepEqual(discoverSources(alias),discoverSources(root));
+      const linked=join(root,'src/lua'),external=join(root,'external');
+      renameSync(linked,external);symlinkSync(external,linked,'junction');
+      assert.throws(()=>discoverSources(alias),/Linked source entry is not supported/);
+      assert.throws(()=>checkArchitecture(alias),/Linked source entry is not supported/);
+    }finally{rmSync(directory,{recursive:true,force:true});}
   });
 });

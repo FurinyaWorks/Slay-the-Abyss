@@ -1,0 +1,26 @@
+✔ new CC16 fails while CC15 passes and unrelated old debt is grandfathered (4.101841ms)
+✔ old high CC cannot increase; improvements and low debt within limit are permitted (0.614153ms)
+✔ new modules have a line budget; existing oversized owners cannot grow (0.236293ms)
+✔ new, expanded or denser SCC is blocked; unchanged and eliminated SCC are fine (0.505703ms)
+✔ splitting a large SCC is allowed but its internal edge allowance cannot expand (0.30936ms)
+✔ missing/corrupt measurements fail closed (0.681273ms)
+✔ committed source graphs preserve Git bytes and ignore checkout, staged and untracked changes (97.072929ms)
+✔ committed linked source files and directory entries fail closed without following checkout paths (226.531596ms)
+✔ real CLI keeps committed CC16 blocked after checkout source and policy are replaced (4616.792209ms)
+✔ real anonymous insertions preserve old hotspots without lending their debt to another target (949.831814ms)
+✔ registration event arguments and table owners cannot share an anonymous allowance (1597.047828ms)
+✔ ambiguous same-context functions match unchanged content first and never infer residual uniqueness (2101.192001ms)
+✔ nested debt follows matched lexical owners, not names or shifted ordinals (1066.662335ms)
+✔ file moves and generated committed sources use the same explicit identity boundary (1098.21526ms)
+✔ ratchet identity is optional for legacy metrics but mandatory to inherit function debt (417.96977ms)
+✔ real CLI blocks a new full-graph SCC including reviewed deferred imports (1028.46944ms)
+✔ real CLI preserves an old full-graph SCC and CC debt but blocks CC growth (2898.694881ms)
+✔ real CLI passes a no-Lua commit without needing a tool or measuring existing debt (893.430007ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17310.778214

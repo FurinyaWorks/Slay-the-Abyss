@@ -12,7 +12,9 @@ local open,close=h.openRelics,h.closeDeck
 local opens,closes=0,0
 h.openRelics=function(self,...)opens=opens+1;return open(self,...)end
 h.closeDeck=function(self,...)closes=closes+1;return close(self,...)end
-local bar=root:GetChild('relicBar'):GetChild('slot1'):GetChild('hit')
+local Theme=require('abyss_theme')
+local collectionSlot=Theme.presentationProfile=='official-assets-first' and Theme.officialAssets.battleRelicBar.count or 1
+local bar=root:GetChild('relicBar'):GetChild('slot'..collectionSlot):GetChild('hit')
 local panel=root:GetChild('relicPanel')
 local function confirm(hit)
     h:syncController();api.setFocus(hit)
@@ -51,9 +53,11 @@ do
     assert(h2.relicUI.selectedIndex==2,'combat must select exact clicked relic')
     local single=assert(p:GetChild('single'),'missing single relic view')
     assert(single.visible and not p:GetChild('row1').visible)
-    assert(single:GetChild('name').text=='余烬之心')
+    -- RELIC_NAMING.md: approved display name; stable burning_blood identity below.
+    assert(single:GetChild('name').text=='岩脉残晶','single detail must show the approved starter relic name')
     assert(single:GetChild('rarity').text=='初始遗物')
-    assert(single:GetChild('description').text:find('回复 6 点生命',1,true))
+    assert(single:GetChild('description').text=='每场战斗胜利后，回复6点生命。',
+        'single detail must retain the approved trigger and 6-point healing description')
     assert(h2.relicUI.selected.id=='burning_blood')
     assert(h2.relicUI:turn(1) and h2.relicUI.selectedIndex==3)
     assert(single:GetChild('status').text=='已失效')
@@ -91,9 +95,9 @@ if require('abyss_theme').presentationProfile=='official-assets-first' then
     local events={CursorEnter='nativeRelicEnter',CursorExit='nativeRelicExit'}
     local h4,r4=F.fixture(nil,nil,nil,events)
     assert(F.start(h4));assert(require('abyss_run').startCombat(h4.run,'cultist_solo'))
-    h4.run.relics={'anchor','ancient_tea_set','maw_bank','omamori'}
-    h4.run.relicCounters={anchor=1,ancient_tea_set=-2,maw_bank=-2,omamori=0}
-    h4.run.combat.relicCounters={anchor=3}
+    h4.run.relics={'burning_blood','ancient_tea_set','maw_bank','omamori'}
+    h4.run.relicCounters={burning_blood=1,ancient_tea_set=-2,maw_bank=-2,omamori=0}
+    h4.run.combat.relicCounters={burning_blood=3}
     h4:refresh()
     local bar4=r4:GetChild('relicBar')
     local slot1,slot2=bar4:GetChild('slot1'),bar4:GetChild('slot2')
@@ -117,13 +121,24 @@ if require('abyss_theme').presentationProfile=='official-assets-first' then
     hit1.listeners[events.CursorEnter]();assert(icon1.localScaleX==1,'covered HUD cannot acquire hover')
     assert(h4:closeDeck());hit1.listeners[events.CursorEnter]();assert(icon1.localScaleX==1.25)
     h4.relicUI:refreshBar(h4.run,false);assert(icon1.localScaleX==1,'hidden HUD resets hover')
-    -- Leaving combat restores the shared map/node strip, including backgrounds.
-    local base=Theme.layout.relicView.bar
-    h4.run.phase='map';h4.relicUI:refreshBar(h4.run,true)
-    assert(slot1.x==base.origin[1] and slot1.y==base.origin[2])
-    assert(icon1.sizeDeltaX==base.icon and hit1.sizeDeltaX==base.step and hit1.sizeDeltaY==44)
-    assert(slot1:GetChild('rim').visible and slot1:GetChild('face').visible)
-    assert(not slot1:GetChild('counter').visible)
-    for i=base.count+1,Theme.officialAssets.battleRelicBar.count do assert(not bar4:GetChild('slot'..i).visible)end
+    -- One profile selects one shared strip and one owned-detail entrance.
+    local run,combat=h4.run,h4.run.combat
+    local turn,energy,hp,hand=combat.turn,combat.energy,run.hp,#combat.hand
+    for _,phase in ipairs({'map','node','reward','combat','map'})do
+        h4.run.phase=phase;h4.relicUI:refreshBar(h4.run,true)
+        assert(slot1.x==battleStyle.origin[1] and slot1.y==battleStyle.origin[2],phase..' changed canonical position')
+        assert(icon1.sizeDeltaX==battleStyle.icon and hit1.sizeDeltaX==battleStyle.hit and hit1.sizeDeltaY==battleStyle.hit,phase..' changed canonical dimensions')
+        assert(not slot1:GetChild('rim').visible and not slot1:GetChild('face').visible,phase..' restored old discs')
+        assert(slot1:GetChild('counter').text==(phase=='combat' and '3'or'1'),'counter reads the actual phase owner')
+        assert(icon1.imageId==Theme.officialAssets.battleRelicIcons.burning_blood.id,phase..' HUD reverted to the old relic atlas')
+        hit1.listeners[events.CursorEnter]();assert(icon1.localScaleX==1.25,phase..' lost shared hover')
+        hit1.listeners[events.CursorExit]();assert(icon1.localScaleX==1)
+        assert(h4.relicUI:open(h4.run,1));assert(h4.relicUI.selectedIndex==1,phase..' reopened the old list')
+        assert(h4.relicUI.root:GetChild('single').visible and not h4.relicUI.root:GetChild('row1').visible)
+        assert(h4.relicUI.root:GetChild('single'):GetChild('icon').imageId==Theme.officialAssets.battleRelicIcons.burning_blood.id,phase..' detail reverted to the old relic atlas')
+        assert(h4.relicUI:close())
+    end
+    assert(h4.run==run and run.combat==combat and combat.turn==turn and combat.energy==energy and run.hp==hp and #combat.hand==hand,'inspection cannot mutate the controlled run')
+    assert(run.relicCounters.burning_blood==1 and combat.relicCounters.burning_blood==3 and #run.relics==4)
     print('RELIC_HUD_FEEDBACK_PASS native hover raw counters charged and exhausted states')
 end

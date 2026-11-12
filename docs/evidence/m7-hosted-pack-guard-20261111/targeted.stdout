@@ -1,0 +1,12 @@
+✔ every Fast and Full dependency installation retains bounded download retries (4.876786ms)
+✔ lightweight engineering check catches old refs, removed size guard and unlimited dependency retry (3.527702ms)
+✔ hosted checkout conditions, empty baseline, retained packs and execution order fail closed (5.788733ms)
+✔ real fresh Git fetch retains pack payload and hosted CLI records exact revision without dependency installs (217.727268ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 353.552299

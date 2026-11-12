@@ -1,0 +1,5 @@
+{
+  "kind": "Linux Git index checkout with autocrlf=true/eol=crlf; not native Windows execution",
+  "exactFiles": 53,
+  "result": "pass"
+}

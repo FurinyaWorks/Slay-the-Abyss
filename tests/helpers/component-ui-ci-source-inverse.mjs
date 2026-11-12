@@ -1,3 +1,4 @@
+import {preDefectActorCiSource} from './defect-actor-ci-source-inverse.mjs';
 import {jointCiSourceAt} from './joint-ui-ci-source-inverse.mjs';
 import {preOfficialAssetsFlowCiSource} from './official-assets-flow-ci-source-inverse.mjs';
 import {preOfficialAssetsCiSource} from './official-assets-ci-source-inverse.mjs';
@@ -44,6 +45,7 @@ const epochs=Object.freeze([
  Object.freeze({name:'officialAssetsFlow',project:preOfficialAssetsFlowCiSource}),
 ]);
 export function ciSourceAtEpoch(path,source,target){
+ source=preDefectActorCiSource(path,source);
  if(target==='componentAliasFix'){const alias=jointCiSourceAt(path,source,'componentAliasFix');if(alias!==source)return alias;}
  source=jointCiSourceAt(path,source,'officialAssetsFlow');
  const index=epochs.findIndex(epoch=>epoch.name===target);assert(index>=0,'known CI source epoch');
@@ -51,6 +53,7 @@ export function ciSourceAtEpoch(path,source,target){
  return source;
 }
 export function preComponentUiCiSource(path,source){
+ source=preDefectActorCiSource(path,source);
  source=jointCiSourceAt(path,source,'officialAssetsFlow');
  for(let i=epochs.length-1;i>=0;i--)source=epochs[i].project(path,source);
  return source;

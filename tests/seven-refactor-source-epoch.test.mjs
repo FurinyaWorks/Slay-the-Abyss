@@ -2,17 +2,161 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as nativeReadFileSync} from 'node:fs';
 import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
+import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 // Original assertions retain their explicit frozen source view.
-const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,value,'official'):value;};
+const currentRaw=p=>nativeReadFileSync(p,'utf8');
+const readFileSync=(p,encoding)=>{const value=nativeReadFileSync(p,encoding);return typeof value==='string'?jointUiSourceAt(p,currentSourceEpoch.preCombinedSource(p,value,{target:'noncombatPrior',readSource:currentRaw}),'official'):value;};
 import {createHash} from 'node:crypto';
 import {sevenRefactorEpoch as epoch} from './helpers/seven-refactor-source-epoch.mjs';
 import {componentUiSourceEpoch as componentEpoch} from './helpers/component-ui-source-epoch.mjs';
-import {preRoomUiEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {sourceEpoch as currentSourceEpoch,preRoomUiEpoch as currentEpoch,preComponentUiEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 import {preOfficialBattleSource,officialBattleSourceProof,officialBattleAlignmentSourceProof as alignment,officialBannerSourceProof as banner,preOfficialBattleShellSource,officialBattleShellSourceProof as shell} from './helpers/official-battle-source-inverse.mjs';
 import {preOfficialBattleInteractionSource,officialBattleInteractionSourceProof as interaction} from './helpers/official-battle-source-inverse.mjs';
+import {preOfficialBattleFeedbackSource,officialBattleFeedbackSourceProof as feedback} from './helpers/official-battle-source-inverse.mjs';
+import {preOfficialBattleTargetSource,officialBattleTargetSourceProof as targeting} from './helpers/official-battle-source-inverse.mjs';
+import {preOfficialBattleLocalRenderSource,officialBattleLocalRenderSourceProof as localRender} from './helpers/official-battle-source-inverse.mjs';
+import {preOfficialBattleResponseSource,officialBattleResponseSourceProof as responseRepair} from './helpers/official-battle-source-inverse.mjs';
+import {preOfficialBattlePotionHudSource,preOfficialBattleMouseAimSource} from './helpers/official-battle-source-inverse.mjs';
+import {prePileSource} from './helpers/official-battle-pile-source-inverse.mjs';
+import {gunzipSync} from 'node:zlib';
 const proof=epoch.proof,read=p=>proof.current[p]?.source??null;
 // Authenticate both the input and every linked owner in the same exact historical view.
 const componentRead=path=>preOfficialBattleSource(path,readFileSync(path,'utf8'));
+const prePotionHudRead=path=>preOfficialBattlePotionHudSource(path,preOfficialBattleMouseAimSource(path,prePileSource(path,readFileSync(path,'utf8'))));
+const preResponseRead=path=>preOfficialBattleResponseSource(path,prePotionHudRead(path));
+const preLocalRenderRead=path=>preOfficialBattleLocalRenderSource(path,preResponseRead(path));
+const preTargetRead=path=>preOfficialBattleTargetSource(path,preLocalRenderRead(path));
+const preFeedbackRead=path=>preOfficialBattleFeedbackSource(path,preTargetRead(path));
+
+test('official response repair binds exactly the protected intersection and keeps new glow outside historical admission',()=>{
+ assert.equal(responseRepair.beforeCommit,'f47441142e1e40e3e05fc0222594b4e32e95858a');
+ assert.equal(responseRepair.afterCommit,'de029d631eb53196f24e3f515eb4e62423b6bd99');
+ assert.deepEqual(Object.keys(responseRepair.files),['src/lua/abyss_battle_actions.lua','src/lua/abyss_feedback.lua']);
+ assert.deepEqual(Object.keys(responseRepair.unprojectedChanges),['src/lua/abyss_battle_card_glow.lua']);
+ const protectedProof=JSON.parse(gunzipSync(readFileSync(new URL('./helpers/combined-epoch/source-epoch.json.gz',import.meta.url))));
+ for(const [path,binding]of Object.entries({...responseRepair.files,...responseRepair.unprojectedChanges})){
+  const projected=Object.hasOwn(responseRepair.files,path),actual=prePotionHudRead(path).replaceAll('\r\n','\n');
+  assert.equal(protectedProof.owners.includes(path),projected,'exact changed-owner/protected intersection '+path);
+  assert.equal(actual,binding.afterSource,path);
+  for(const side of ['before','after']){
+   const source=binding[side+'Source'];assert.equal(createHash('sha256').update(source).digest('hex'),binding[side+'Sha256']);
+   assert.equal(createHash('sha1').update('blob '+Buffer.byteLength(source)+'\0').update(source).digest('hex'),binding[side+'GitBlobSha1']);
+  }
+  if(projected){
+   assert.equal(binding.beforeSource,feedback.files[path]?.afterSource??componentEpoch.proof.current[path].source,path);
+   for(const source of [actual,actual.replaceAll('\n','\r\n')]){
+    assert.equal(preOfficialBattleResponseSource(path,source),binding.beforeSource,path);
+    assert.equal(preOfficialBattleSource(path,source),preOfficialBattleSource(path,binding.beforeSource),path);
+   }
+  }else for(const source of [actual,actual.replaceAll('\n','\r\n')]){
+   assert.equal(preOfficialBattleResponseSource(path,source),source,'glow witness is not projection permission');
+   assert.equal(preOfficialBattleSource(path,source),source,'new owner stays outside old history');
+  }
+  for(const source of [actual+'\n',actual.slice(1),actual.replace(/\n/,'\n '),'\ufeff'+actual,null,undefined,{},17]){
+   assert.equal(preOfficialBattleResponseSource(path,source),source,path);assert.equal(preOfficialBattleSource(path,source),source,path);
+  }
+  assert.equal(preOfficialBattleResponseSource(path,binding.beforeSource),binding.beforeSource);
+  for(const foreign of ['foreign','__proto__','constructor',...Object.keys(responseRepair.files).filter(p=>p!==path)]){
+   assert.equal(preOfficialBattleResponseSource(foreign,actual),actual);assert.equal(preOfficialBattleSource(foreign,actual),actual);
+  }
+  assert.ok(Object.isFrozen(binding));
+ }
+ assert.ok(Object.isFrozen(responseRepair)&&Object.isFrozen(responseRepair.files)&&Object.isFrozen(responseRepair.unprojectedChanges));
+});
+
+test('official local-render continuation authenticates all seven changed protected owners and rejects late source drift',()=>{
+ assert.equal(localRender.beforeCommit,'38ed037c1d8880560b9788e659d57722fa54a84c');
+ assert.equal(localRender.afterCommit,'181f1692a410ec039e92eee566768e2b04f347f2');
+ const owners=['src/lua/abyss_battle_card_gestures.lua','src/lua/abyss_battle_card_layout.lua',
+  'src/lua/abyss_battle_card_view.lua','src/lua/abyss_battle_detail_bindings.lua',
+  'src/lua/abyss_battle_render_actors.lua','src/lua/abyss_battle_ui.lua','src/lua/abyss_card_skin.lua'];
+ assert.deepEqual(Object.keys(localRender.files),owners);
+ const protectedProof=JSON.parse(gunzipSync(readFileSync(new URL('./helpers/combined-epoch/source-epoch.json.gz',import.meta.url))));
+ for(const [path,binding]of Object.entries(localRender.files)){
+  assert.ok(protectedProof.owners.includes(path),'changed historical protected owner '+path);
+  const actual=prePotionHudRead(path).replaceAll('\r\n','\n');assert.equal(actual,binding.afterSource,path);
+  assert.equal(binding.beforeSource,targeting.files[path]?.afterSource??feedback.files[path]?.afterSource??componentEpoch.proof.current[path].source,path);
+  for(const side of ['before','after']){
+   const source=binding[side+'Source'];
+   assert.equal(createHash('sha256').update(source).digest('hex'),binding[side+'Sha256']);
+   assert.equal(createHash('sha1').update('blob '+Buffer.byteLength(source)+'\0').update(source).digest('hex'),binding[side+'GitBlobSha1']);
+  }
+  for(const source of [actual,actual.replaceAll('\n','\r\n')]){
+   assert.equal(preOfficialBattleLocalRenderSource(path,source),binding.beforeSource,path);
+   assert.equal(preOfficialBattleSource(path,source),preOfficialBattleSource(path,binding.beforeSource),path);
+  }
+  for(const source of [actual+'\n',actual.slice(1),actual.replace(/\n/,'\n '),'\ufeff'+actual,null,undefined,{},17]){
+   assert.equal(preOfficialBattleLocalRenderSource(path,source),source,path);assert.equal(preOfficialBattleSource(path,source),source,path);
+  }
+  assert.equal(preOfficialBattleLocalRenderSource(path,binding.beforeSource),binding.beforeSource);
+  for(const foreign of ['foreign','__proto__','constructor',...owners.filter(p=>p!==path)]){
+   assert.equal(preOfficialBattleLocalRenderSource(foreign,actual),actual);assert.equal(preOfficialBattleSource(foreign,actual),actual);
+  }
+  assert.ok(Object.isFrozen(binding));
+ }
+ assert.ok(Object.isFrozen(localRender)&&Object.isFrozen(localRender.files));
+});
+
+test('official targeting continuation binds one complete committed owner and refuses nonexact source',()=>{
+ assert.equal(targeting.beforeCommit,'0fd7b052293857637483e55a0e8d009ef3583a49');
+ assert.equal(targeting.afterCommit,'fd868b338bc6b0aa053c78a0e8c099a230593dc2');
+ assert.deepEqual(Object.keys(targeting.files),['src/lua/abyss_battle_render_actors.lua']);
+ for(const [path,binding]of Object.entries(targeting.files)){
+  const actual=preLocalRenderRead(path).replaceAll('\r\n','\n');
+  assert.equal(actual,binding.afterSource,path);
+  assert.equal(binding.beforeSource,feedback.files[path].afterSource,path);
+  for(const side of ['before','after']){
+   const source=binding[side+'Source'];
+   assert.equal(createHash('sha256').update(source).digest('hex'),binding[side+'Sha256']);
+   assert.equal(createHash('sha1').update('blob '+Buffer.byteLength(source)+'\0').update(source).digest('hex'),binding[side+'GitBlobSha1']);
+  }
+  assert.equal(binding.beforeGitBlobSha1,'bfda0a0062fde382c459103f14e1e0c5b24025f8');
+  assert.equal(binding.afterGitBlobSha1,'29e92dad323714be3852ee6c3ba1f28cacb301a5');
+  for(const source of [actual,actual.replaceAll('\n','\r\n')]){
+   assert.equal(preOfficialBattleTargetSource(path,source),binding.beforeSource);
+   assert.equal(preOfficialBattleSource(path,source),preOfficialBattleSource(path,binding.beforeSource));
+  }
+  for(const source of [actual+'\n',actual.slice(1),actual.replace(/\n/,'\n '),'\ufeff'+actual,null,undefined,{},17]){
+   assert.equal(preOfficialBattleTargetSource(path,source),source);
+   assert.equal(preOfficialBattleSource(path,source),source);
+  }
+  assert.equal(preOfficialBattleTargetSource(path,binding.beforeSource),binding.beforeSource,'old complete identity stays opaque to the new layer');
+  for(const foreign of ['foreign','__proto__','constructor',...Object.keys(feedback.files).filter(p=>p!==path)]){
+   assert.equal(preOfficialBattleTargetSource(foreign,actual),actual);
+   assert.equal(preOfficialBattleSource(foreign,actual),actual);
+  }
+ }
+});
+
+test('official feedback continuation authenticates all twelve changed historical linked witnesses and rejects nonexact input',()=>{
+ assert.equal(feedback.beforeCommit,'a1a3ba4b6b83ab1ddca76268e08bba9c014ad375');
+ assert.equal(feedback.afterCommit,'5489e9659b05c614ace0cfeb5f3f0ad5632ef624');
+ const protectedProof=JSON.parse(gunzipSync(readFileSync(new URL('./helpers/combined-epoch/source-epoch.json.gz',import.meta.url))));
+ assert.equal(protectedProof.owners.length,339);
+ assert.equal(Object.keys(feedback.files).length,12);
+ for(const [path,binding]of Object.entries(feedback.files)){
+  assert.ok(protectedProof.owners.includes(path),'full historical linked owner: '+path);
+  const actual=preTargetRead(path).replaceAll('\r\n','\n');
+  assert.equal(actual,binding.afterSource,path);
+  for(const side of ['before','after'])assert.equal(createHash('sha256').update(binding[side+'Source']).digest('hex'),binding[side+'Sha256']);
+  for(const source of [actual,actual.replaceAll('\n','\r\n')]){
+   assert.equal(preOfficialBattleFeedbackSource(path,source),binding.beforeSource,path);
+   assert.equal(preOfficialBattleSource(path,source),preOfficialBattleSource(path,binding.beforeSource),'new outer layer must retain the complete old chain: '+path);
+  }
+  for(const source of [actual+'\n',actual.slice(1),actual.replace(/\n/,'\n '),'\ufeff'+actual,binding.beforeSource,null,undefined,{},17]){
+   assert.equal(preOfficialBattleFeedbackSource(path,source),source,path);
+   if(source!==binding.beforeSource)assert.equal(preOfficialBattleSource(path,source),source,path);
+  }
+  for(const foreign of ['foreign','__proto__','constructor','src/lua/abyss_battle_card_glow.lua']){
+   assert.equal(preOfficialBattleFeedbackSource(foreign,actual),actual);
+   assert.equal(preOfficialBattleSource(foreign,actual),actual);
+  }
+  for(const other of Object.keys(feedback.files).filter(other=>other!==path))assert.equal(preOfficialBattleFeedbackSource(other,actual),actual,'cross-owner source must stay opaque');
+ }
+ // The complete declaration protects info/actor witnesses even though the
+ // flattened runtime filters unchanged target owners out of its 68-owner loop.
+ for(const path of ['src/lua/abyss_battle_info_view.lua','src/lua/abyss_battle_info_content.lua','src/lua/abyss_battle_render_actors.lua'])assert.ok(Object.hasOwn(feedback.files,path));
+});
 test('seven-refactor exact outer epoch restores every complete predecessor owner',()=>{
  assert.equal(proof.owners.length,11);
  for(const path of proof.owners){
@@ -47,7 +191,7 @@ test('official battle interaction continuation binds only three complete frozen 
  assert.equal(interaction.afterCommit,'e4b2e702a89b0f09650e0c47e3a80434488470cd');
  assert.deepEqual(Object.keys(interaction.files),['config/architecture.json','src/lua/abyss_battle_card_view.lua','src/lua/abyss_deck_ui.lua']);
  for(const [path,binding]of Object.entries(interaction.files)){
-  const actual=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  const actual=preFeedbackRead(path).replaceAll('\r\n','\n');
   assert.equal(actual,binding.afterSource,path);
   assert.equal(binding.beforeSource,shell.files[path]?.afterSource??componentEpoch.proof.current[path].source,path);
   for(const source of [actual,actual.replaceAll('\n','\r\n')]){
@@ -79,7 +223,7 @@ test('official battle historical view binds complete committed sources and rejec
  assert.equal(shell.beforeCommit,'4278561b4df3defaf879cf4be62ab415d6998e72');
  assert.equal(shell.afterCommit,'95fab6acf45c5292d6a48dbe7c9cf12d5e6e03b2');
  for(const [path,binding]of Object.entries(shell.files)){
-  const actual=preOfficialBattleInteractionSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
+  const actual=preOfficialBattleInteractionSource(path,preFeedbackRead(path)).replaceAll('\r\n','\n');
   assert.equal(actual,binding.afterSource,path);
   assert.equal(binding.beforeSource,banner.files[path]?.afterSource??alignment.files[path].afterSource,path);
   for(const source of [actual,actual.replaceAll('\n','\r\n')])assert.equal(preOfficialBattleShellSource(path,source),binding.beforeSource,path);
@@ -89,7 +233,7 @@ test('official battle historical view binds complete committed sources and rejec
  for(const [path,binding]of Object.entries(alignment.files)){
   const predecessor=officialBattleSourceProof.files[path]?.afterSource??componentEpoch.proof.current[path].source;
   assert.equal(binding.beforeSource,predecessor,path);
-  const actual=preOfficialBattleInteractionSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
+  const actual=preOfficialBattleInteractionSource(path,preFeedbackRead(path)).replaceAll('\r\n','\n');
   assert.equal(preOfficialBattleShellSource(path,actual),banner.files[path]?.afterSource??binding.afterSource,path);
   for(const source of [actual,actual.replaceAll('\n','\r\n')])
    assert.equal(preOfficialBattleSource(path,source),componentEpoch.proof.current[path].source,path);
@@ -99,7 +243,7 @@ test('official battle historical view binds complete committed sources and rejec
  for(const [path,binding]of Object.entries(officialBattleSourceProof.files)){
   assert.equal(binding.beforeSource,componentEpoch.proof.current[path].source,path);
   assert.equal(alignment.files[path].beforeSource,binding.afterSource,path);
-  const actual=preOfficialBattleInteractionSource(path,readFileSync(path,'utf8')).replaceAll('\r\n','\n');
+  const actual=preOfficialBattleInteractionSource(path,preFeedbackRead(path)).replaceAll('\r\n','\n');
   assert.equal(preOfficialBattleShellSource(path,actual),banner.files[path]?.afterSource??alignment.files[path].afterSource,path);
   assert.equal(preOfficialBattleSource(path,binding.afterSource),binding.beforeSource,path);
   for(const source of [actual,actual.replaceAll('\n','\r\n')])

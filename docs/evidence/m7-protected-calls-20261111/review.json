@@ -1,0 +1,18 @@
+{
+  "reviewId": "protected-call-edges-independent-20261111",
+  "reviewedBaseSha": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "conclusion": "pass",
+  "unresolved": [],
+  "scope": "Direct global protected-call initialization inference. No claim of complete call/value analysis or merge admission.",
+  "checks": [
+    "Existing owner/lexical/single-write resolution retained",
+    "14 independent probes paired with actual Fengari Lua execution, including explicit limitation demonstrations",
+    "Current production source and architecture report unchanged",
+    "Original tests and budgets preserved"
+  ],
+  "limitations": [
+    "Global builtin aliases and reassignments are not modeled",
+    "Multiple-return xpcall handler expansion remains unresolved",
+    "An explicit known xpcall handler is conservatively eager even when protected function returns successfully"
+  ]
+}

@@ -92,6 +92,7 @@ test('real fast and shard entrypoints dispatch bounded preparation only for sele
  mkdirSync(join(root,'scripts'));mkdirSync(join(root,'tests'));mkdirSync(join(root,'tests/lua'));
  // Replace only external preparation/build side effects; execute the actual CI entrypoints.
  for(const file of ['ci-fast.mjs','ci-shards.mjs','ci-test-timings.json'])writeFileSync(join(root,'scripts',file),readFileSync('scripts/'+file));
+ writeFileSync(join(root,'scripts/ci-media-lfs.mjs'),`import {appendFileSync} from 'node:fs';export function prepareMediaAssets(){appendFileSync('calls.jsonl','"media"\\n');return {};}`);
  writeFileSync(join(root,'scripts/ci-reviewed-lfs.mjs'),`import {appendFileSync} from 'node:fs';
  export function needsRuntimePreviews(files){return files.some(p=>/^tests\\/[^/]+\\.test\\.mjs$/.test(p));}
  export function prepareRuntimePreviews(options){appendFileSync('calls.jsonl',JSON.stringify(options)+'\\n');return options;}
@@ -103,11 +104,11 @@ test('real fast and shard entrypoints dispatch bounded preparation only for sele
   writeFileSync(join(root,'ci-impact.json'),JSON.stringify({mode:'fast',sha:'exact',js,lua}));writeFileSync(join(root,'calls.jsonl'),'');
   const result=spawnSync(process.execPath,['scripts/ci-fast.mjs'],{cwd:root,env,encoding:'utf8'});assert.equal(result.status,0,result.stderr);
   const calls=readFileSync(join(root,'calls.jsonl'),'utf8').trim().split('\n').map(JSON.parse);
-  assert.deepEqual(calls,expected?['reviewed',{needed:true}]:[{needed:false}]);
+  assert.deepEqual(calls,expected?['media','reviewed',{needed:true}]:['media',{needed:false}]);
  }
  writeFileSync(join(root,'calls.jsonl'),'');
  const result=spawnSync(process.execPath,['scripts/ci-shards.mjs','--prepare=1/1'],{cwd:root,env,encoding:'utf8'});assert.equal(result.status,0,result.stderr);
- assert.deepEqual(readFileSync(join(root,'calls.jsonl'),'utf8').trim().split('\n').map(JSON.parse),['reviewed',{needed:true}]);
+ assert.deepEqual(readFileSync(join(root,'calls.jsonl'),'utf8').trim().split('\n').map(JSON.parse),['media','reviewed',{needed:true}]);
 });
 
 test('already materialized shared card previews do not require their missing LFS cache again',async t=>{

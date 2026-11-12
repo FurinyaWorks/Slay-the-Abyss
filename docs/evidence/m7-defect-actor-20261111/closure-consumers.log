@@ -1,0 +1,59 @@
+✔ Defect final outer epoch preserves every prior binding and exact frozen production byte (57.174082ms)
+✔ all advertised historical targets restore Defect final from LF and CRLF without rewriting originals (7.206418ms)
+✔ current facade retains exact config identity and rechecks all 50 owners after warm success (11.657465ms)
+✔ foreign bytes never authorize reads and composed readers preserve explicit raw reader ownership (2.812599ms)
+✔ isolated authenticated helper closure retains the exact Defect final epoch and rejects owner drift (8907.373005ms)
+✔ unknown source targets are rejected rather than gaining an identity fallback (0.984092ms)
+✔ configuration layout admission preserves exact tokens and freshly authenticates all 50 current raw owners (16.834593ms)
+✔ outer foreign-source fallback preserves invalid raw-reader semantics (0.964546ms)
+✔ live LF and CRLF raw owner reads authenticate 50 current owners on every call (415.317074ms)
+✔ outer metadata preserves the full predecessor and rejects altered predecessor metadata (1062.764669ms)
+✔ source and configuration reject unknown targets and malformed live readers after warm authorization (6.493273ms)
+✔ current raw production authenticates the original68 and exact11 added owners without the historical CI source view (128.13058ms)
+✔ Encounter formation outer epoch preserves every prior binding and exact frozen production byte (117.448285ms)
+✔ all advertised historical targets restore Encounter formation from LF and CRLF without rewriting originals (6.680454ms)
+✔ current facade retains exact config identity and rechecks all 51 owners after warm success (13.461827ms)
+✔ foreign bytes never authorize reads and composed readers preserve explicit raw reader ownership (2.629531ms)
+✔ isolated authenticated helper closure retains the exact Encounter formation epoch and rejects owner drift (15283.168358ms)
+✔ unknown source targets are rejected rather than gaining an identity fallback (2.094064ms)
+✔ configuration layout admission preserves exact tokens and freshly authenticates all 51 current raw owners (18.642023ms)
+✔ outer foreign-source fallback preserves invalid raw-reader semantics (0.827803ms)
+✖ live LF and CRLF raw owner reads authenticate 51 current owners on every call (6.7795ms)
+✔ outer metadata preserves the full predecessor and rejects altered predecessor metadata (2013.466614ms)
+✔ source and configuration reject unknown targets and malformed live readers after warm authorization (14.679802ms)
+✔ current UI facade authenticates every raw owner once in declared order after warm success (2412.941585ms)
+✔ Flow outer epoch preserves every prior binding and exact frozen production byte (36.526108ms)
+✔ all advertised historical targets restore Flow from LF and CRLF without rewriting originals (4.252915ms)
+✔ current facade retains config token semantics and rechecks all 46 owners after warm success (13.808239ms)
+✔ foreign bytes never authorize reads and composed readers preserve explicit raw reader ownership (4.044811ms)
+✔ isolated authenticated helper closure retains the exact Flow epoch and rejects owner drift (6648.202981ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 28
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 75847.364182
+
+✖ failing tests:
+
+test at tests/encounter-formation-source-epoch.test.mjs:110:1
+✖ live LF and CRLF raw owner reads authenticate 51 current owners on every call (6.7795ms)
+  AssertionError [ERR_ASSERTION]: combined linked owner missing: src/lua/abyss_card_skin.lua: combined linked owner identity: config/architecture.json
+      at Object.preCombinedSource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/combined-epoch/source-epoch-runtime.mjs:106:65)
+      at Object.preCombinedSource (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/helpers/encounter-formation-source-epoch.mjs:23:27)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/encounter-formation-source-epoch.test.mjs:115:78)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'fail',
+    diff: 'simple'
+  }

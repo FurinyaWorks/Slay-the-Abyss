@@ -67,6 +67,70 @@ function fixture(t) {
 function writeTask(root,id,status='To Do',suffix='fixture') {
   writeFileSync(join(root,`backlog/tasks/${id.toLowerCase()} - ${suffix}.md`),`---\nid: ${id}\nstatus: ${status}\nmilestone: m-8\n---\n`);
 }
+function writeRawTask(root,source) {
+  writeFileSync(join(root,'backlog/tasks/task-25 - fixture.md'),source);
+}
+test('task loading requires a complete frontmatter block at the start',t=>{
+  const root=fixture(t);
+  for(const source of [
+    'id: TASK-25\nstatus: To Do\n',
+    '---\nid: TASK-25\nstatus: To Do\n',
+    '---\n---\nid: TASK-25\nstatus: To Do\n---\n',
+    '# Notes\n---\nid: TASK-25\nstatus: To Do\n---\n',
+    '---\ntitle: No identity\n---\nid: TASK-25\nstatus: To Do\n',
+  ]) {
+    writeRawTask(root,source);
+    assert.equal(loadTask('TASK-25',root),null,source);
+  }
+});
+test('duplicate intake fields cannot conceal active work or a different identity',t=>{
+  const root=fixture(t);
+  for(const duplicate of ['id: TASK-96','id: TASK-25',"'id': TASK-96",'"id": TASK-96',
+    'status: In Progress','status: To Do',"'status': Done",'"status": Blocked','milestone: m-9','status : In Progress','id \t: TASK-96',
+    '? status\n: In Progress','"\\x73tatus": In Progress','<<: {status: In Progress}']) {
+    writeRawTask(root,`---\nid: TASK-25\nstatus: To Do\nmilestone: m-8\n${duplicate}\n---\n`);
+    const task=loadTask('TASK-25',root);
+    assert.equal(task,null,duplicate);
+    assert.equal(evaluateIntake({id:'TASK-25',task,policy}).decision,'HOLD',duplicate);
+  }
+});
+test('empty, multiline and mismatched quoted identity/status are not scalar claims',t=>{
+  const root=fixture(t);
+  for(const fields of [
+    "id: 'TASK-25\"\nstatus: To Do", "id: TASK-25\nstatus: 'To Do\"",
+    "id: TASK-25'\nstatus: To Do", 'id: TASK-25\nstatus: To Do"',
+    'id:\nTASK-25\nstatus: To Do', 'id: TASK-25\nstatus:\nTo Do',
+    'id: TASK-25\nstatus: To Do\n  In Progress',
+    'id: TASK-25\nstatus: To Do\n\n # comment\n  In Progress',
+    'id: TASK-25\n  extra identity\nstatus: To Do',
+    'id: TASK-25\nstatus:', 'id:\nstatus: To Do',
+  ]) {
+    writeRawTask(root,`---\n${fields}\n---\n`);
+    assert.equal(loadTask('TASK-25',root),null,fields);
+  }
+  writeRawTask(root,'---\nid: TASK-25\nstatus: To Do\n # comment\n\nlabels:\n  - example\n---\n');
+  assert.deepEqual(loadTask('TASK-25',root),{id:'TASK-25',status:'To Do',milestone:null});
+});
+test('native scalar forms, BOM/CRLF and body examples retain their meaning',t=>{
+  const root=fixture(t);
+  for(const quote of ['',"'",'"']) for(const eol of ['\n','\r\n']) {
+    writeRawTask(root,'\uFEFF'+`---\nid: ${quote}TASK-25${quote}\nstatus: ${quote}To Do${quote}\nmilestone: ${quote}m-8${quote}\n---\n# Example\n---\nid: TASK-96\nstatus: In Progress\n---\n`.replaceAll('\n',eol));
+    assert.deepEqual(loadTask('TASK-25',root),{id:'TASK-25',status:'To Do',milestone:'m-8'});
+  }
+});
+test('CLI holds ambiguous metadata without changing the task or policy',t=>{
+  const root=fixture(t),script=fileURLToPath(new URL('../scripts/check-task-intake.mjs',import.meta.url));
+  const source='---\nid: TASK-25\nstatus: To Do\nstatus: In Progress\n---\n';
+  writeRawTask(root,source);
+  const policyPath=join(root,'config/task-intake.json'),beforePolicy=readFileSync(policyPath,'utf8');
+  const result=spawnSync(process.execPath,[script,'TASK-25'],{cwd:root,encoding:'utf8'});
+  assert.ifError(result.error);
+  assert.equal(result.status,1,result.stdout+result.stderr);
+  assert.match(result.stdout,/^HOLD TASK-25\n/);
+  assert.match(result.stderr,/task not found or identity mismatch/);
+  assert.equal(readFileSync(join(root,'backlog/tasks/task-25 - fixture.md'),'utf8'),source);
+  assert.equal(readFileSync(policyPath,'utf8'),beforePolicy);
+});
 test('task loading rejects missing and duplicate task files',t=>{
   const root=fixture(t);
   assert.equal(loadTask('TASK-25',root),null);

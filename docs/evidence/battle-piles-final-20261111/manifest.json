@@ -1,0 +1,394 @@
+{
+  "kind": "battle-piles-final-offline-evidence",
+  "sourceBefore": "97b755a5bdcd42b4ef06fc78fc09433f32baafe5",
+  "sourceAfter": "d7ac8353c1d74f84f7c8fa161685ba73da0023cc",
+  "buildId": "3a928e26-af7f-4860-ac29-fd078371b0d5",
+  "gilSha256": "f60e1f4dc800ab5eb16f8abbaa85ce6d0a6f9fc0a4e15b88ef2132fd923c6b10",
+  "saveSha256": "ffd1561311d0dcc06695f37727cb3ca78fad5f6a0571059f8368d12c2c9814f0",
+  "files": [
+    {
+      "source": "build/pr588-pile-final-r12/3a928e26-af7f-4860-ac29-fd078371b0d5/candidate.json",
+      "sha256": "22202df5edac91e72e9d5ce66ae91024f443bfdceca4ea99035d5319dafb6928",
+      "bytes": 465958,
+      "archive": "candidate.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/candidate-r12/adapter.mjs",
+      "sha256": "34d98b2861b2da7bd50f55df8d47cd6b9b93412d048060dc43c3718348c9d61d",
+      "bytes": 15771,
+      "archive": "readback-adapter.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/candidate-r12/adapter-receipt.json",
+      "sha256": "9041bdac65c13cf56e4d8a06b457a8a48d959582e4a8951b4f81b278bd6c00d4",
+      "bytes": 8625,
+      "archive": "adapter-receipt.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/candidate-r12/hud.save.json.receipt.json",
+      "sha256": "564804c7eae77e303c0dc4e4d3de8f3787eb59ba9db811831e62f82107104420",
+      "bytes": 550,
+      "archive": "ten-fixture-receipt.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/candidate-r12/five.save.json.receipt.json",
+      "sha256": "b90ae0fdda9e2270234883a51ec59d5945559ef37946eb606c04965413677dd9",
+      "bytes": 550,
+      "archive": "five-fixture-receipt.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/build-r12.log",
+      "sha256": "4403233244d87805b78902a5630d8bde91cc9ac800ba36dfde9573bf8fe2deef",
+      "bytes": 213,
+      "archive": "build.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/readback-r12.log",
+      "sha256": "3495a4d46300fceb0ffb21f8929a001f03bac4046624d3644ef8ca321fe9060f",
+      "bytes": 8709,
+      "archive": "readback.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/tests-r12.log",
+      "sha256": "2bd567172a35c7d7f708e52418efa3ee837e74256f9a0681cfcc51869cfb6d85",
+      "bytes": 12875,
+      "archive": "runtime-and-source-tests.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/engineering-r12.log",
+      "sha256": "13f7c051416e24d0b0a47b7b08b235090262d9efbf688b4616bde409531742f0",
+      "bytes": 378,
+      "archive": "engineering.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/native-contract-r12.log",
+      "sha256": "cd4b1c8c87cf2e0ec23b79bf783307d0b5e1946cbb2f4cf8428c6b03183a16f2",
+      "bytes": 1713,
+      "archive": "native-contract.log.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-card-parity.json",
+      "sha256": "157aabe5511822dca7c4db7994e35c520a3511b37a395d5558fcce90a383ab0a",
+      "bytes": 1218,
+      "archive": "hand-parity.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/prepare-r12.mjs",
+      "sha256": "14b225c5dd4dfdcddbb70a5aacbc3bde693f87f6b413c102d33d3ab433b31d01",
+      "bytes": 2632,
+      "archive": "prepare-readback.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/source-epoch-r12.mjs",
+      "sha256": "eff14011349b9f5538d60e0d71c397c800278ddc283eb005c70384cb8aca1f3d",
+      "bytes": 2479,
+      "archive": "generate-source-epoch.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/whole-r12.json",
+      "sha256": "dbf609acfc763a9e6f5f5a6d413dc210ce6d7c24ad40faff9cab8314e86014bf",
+      "bytes": 248269,
+      "archive": "whole-page.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-whole.mjs",
+      "sha256": "c7a52bbeb92fc4458fc70bab5a1a17ef7815fad9b932ff4c658bec0f3c1dd5b9",
+      "bytes": 14008,
+      "archive": "whole-page-runner.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-repair-20261111/input-cadence/geometry-pile-final.json",
+      "sha256": "f3531131ccf718cf7541e16789cfa5036a9c11602ab9e6d24ef8c692a1b2ce2b",
+      "bytes": 226481,
+      "archive": "geometry.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/geometry-r12.mjs",
+      "sha256": "648079350d7f7c97bbfaee1df2cc1b56a218f87baf2b17b88e7b937123e6e1c9",
+      "bytes": 4627,
+      "archive": "geometry-runner.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/browser-r12.mjs",
+      "sha256": "51ae99873713c881a1b591ee970391de12659200a4dcdd5864ad49dcdbca23c8",
+      "bytes": 12653,
+      "archive": "browser-runner-before-cleanup.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/baseline-browser-r12.mjs",
+      "sha256": "dee519e488d290df655978da6c728c6599afe46e645a3256da0bc2966a226a4e",
+      "bytes": 12657,
+      "archive": "baseline-browser-runner-before-cleanup.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/browser-r10.log",
+      "sha256": "c2c8d958cd5bf971b01d25848150c8a4b4b52f1857f10428f84dce1bced34871",
+      "bytes": 2394,
+      "archive": "historical-browser-r10.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/browser-r10-repeat.log",
+      "sha256": "7a330d908c1dd05c78a2545b4a95fbb244a5df431c63fa13e49f8dd0d8914cb4",
+      "bytes": 2447,
+      "archive": "historical-browser-r10-repeat.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/baseline-browser-r10.log",
+      "sha256": "82c2c85014201ce139ec2c55a20b3b09a2f65ccb61074a3c9fdb503244c29a1d",
+      "bytes": 540,
+      "archive": "historical-baseline-browser-r10.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/baseline-browser-r10-repeat.log",
+      "sha256": "82c2c85014201ce139ec2c55a20b3b09a2f65ccb61074a3c9fdb503244c29a1d",
+      "bytes": 540,
+      "archive": "historical-baseline-browser-r10-repeat.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/browser-r8.log",
+      "sha256": "550bd3b6bebcd3830cd461f93245b579258adc2581310335ad55bdd311603f32",
+      "bytes": 2355,
+      "archive": "historical-browser-r8.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/baseline-browser-r8.log",
+      "sha256": "87706890892811cb2c5b9d69c0486d0d189e7f269b670198dea1909405cd5a21",
+      "bytes": 2401,
+      "archive": "historical-baseline-browser-r8.log.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/01-whole.state.json",
+      "sha256": "b92d3f454d27b0bd7fea3a14cc0159f03849fe3cad48285ef5b77a96486820cb",
+      "bytes": 5280597,
+      "archive": "visual/01-whole.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/00-empty-draw.state.json",
+      "sha256": "605075ec7964b15ea72e22f67f1223644c6e6e1d5d31565550b8308a025f0720",
+      "bytes": 5280780,
+      "archive": "visual/00-empty-draw.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/00-relic-detail.state.json",
+      "sha256": "8376547b9e164b3f7e999af5f663bb248fa88fc6481bd2290d2482171dade000",
+      "bytes": 5280832,
+      "archive": "visual/00-relic-detail.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/00-relic-next.state.json",
+      "sha256": "8c1a3782869986764fdb2efa3a2d0961dce623f59bded20e9d9c75f07eddbb46",
+      "bytes": 5280846,
+      "archive": "visual/00-relic-next.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/02-defend-hover.state.json",
+      "sha256": "06b6c6151e7a7b84e8ddfca7ead0dc8ca5391747e33f74cc0634a08b05301d1b",
+      "bytes": 5281043,
+      "archive": "visual/02-defend-hover.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/03-bash-centred-aim.state.json",
+      "sha256": "20b72b9f5311f1321cc819ba39391f9c3b70bb140882ad297f95f3b0edea3a48",
+      "bytes": 5277858,
+      "archive": "visual/03-bash-centred-aim.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/04a-exhaust-entry-live.state.json",
+      "sha256": "4c799bfd7564731fb41a776b796c8b1014a5e5bb767001917d3c29a7d98bdf65",
+      "bytes": 5266971,
+      "archive": "visual/04a-exhaust-entry-live.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/04-exhaust-offering.state.json",
+      "sha256": "159629b68c4e1c9f66273d3248e5b5a88de7e6a49f394f803636fdd2fac4cf50",
+      "bytes": 5540969,
+      "archive": "visual/04-exhaust-offering.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/05-discard-strike.state.json",
+      "sha256": "b7eeaef64c4153c354777023ef8e8a994c40fd722ef39095debe65b63c15fee4",
+      "bytes": 5550721,
+      "archive": "visual/05-discard-strike.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/06-draw-next-turn.state.json",
+      "sha256": "72964e0605c7d58fe97f94a8c7a351e66e1cd741df9fa15f90acedc52210900b",
+      "bytes": 6368020,
+      "archive": "visual/06-draw-next-turn.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/07-pile-sort-default-restored.state.json",
+      "sha256": "16c2045d43011a2a65121f4fac0f1e9266d8d7df989fcebdd72e5a689663fba9",
+      "bytes": 6368020,
+      "archive": "visual/07-pile-sort-default-restored.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/08-card-detail-heading.state.json",
+      "sha256": "38b68290157766c2b39c69549bc61ca94e18793d81727551a71e760769154386",
+      "bytes": 6368132,
+      "archive": "visual/08-card-detail-heading.state.json.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794375825480/09-return-to-pile.state.json",
+      "sha256": "67af3a550bab4ce721b96061850830d0ef0f11a8008ca8364a48dc2192eebf5c",
+      "bytes": 6368123,
+      "archive": "visual/09-return-to-pile.state.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/visual-r12.mjs",
+      "sha256": "08f8a7495472ad86320a715c17c907c315d6bc63201a1a466ac60a6778a2d9b9",
+      "bytes": 8309,
+      "archive": "visual-capture.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/verify-original-pixels.py",
+      "sha256": "8b8160550245e734a3a28179281d5ffc66782a2466a936acd77019b087982ff4",
+      "bytes": 2576,
+      "archive": "verify-original-pixels.py.gz"
+    },
+    {
+      "source": ".artifacts/pile-final-visual-1794379150422/mask-trace.json",
+      "sha256": "91da1f2ec41e77d9f742e5eeedcc0d671915eade0d7ffeca19cb12c27d65bd83",
+      "bytes": 5204047,
+      "archive": "original-ten-frames-trace.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/mask-trace.mjs",
+      "sha256": "eb31a8ee1f2d54a4bd262ed33264686819fc65ab1b26c09bdbc5f6a2999b7238",
+      "bytes": 7217,
+      "archive": "original-ten-frames-trace.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-repair-20261111/input-cadence/pile-baseline-qa-1794378738939/report.json",
+      "sha256": "5dc1c26f29327cb00060ada601aac7f863de11aecfb2c907447d0a60db0bc3ae",
+      "bytes": 2309817,
+      "archive": "browser-baseline-1.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/controlled-baseline-1.log",
+      "sha256": "939233a2d64791ca7a6ccaa8a6df7b3e9d07cbf57f0736aa310aefbc759db1cf",
+      "bytes": 2412,
+      "archive": "browser-baseline-1.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/memory-baseline-1.json",
+      "sha256": "b6a1a8445947725d559c83b5161857c6c4387ec5c892846b03feb2cd2e043cd5",
+      "bytes": 78,
+      "archive": "memory-baseline-1.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/service-controlled-baseline-1/service.json",
+      "sha256": "d83a2d79ae7e08b3c985b026c8e677aa20e47ee44787acecaeb3edd2dbb731a5",
+      "bytes": 1314,
+      "archive": "service-baseline-1.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-repair-20261111/input-cadence/pile-final-qa-1794378800971/report.json",
+      "sha256": "9c61e8073026f4c619ea8037745bbaf53f8cd95b4a796d7533e82d1599144f34",
+      "bytes": 2392384,
+      "archive": "browser-current-1.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/controlled-current-1.log",
+      "sha256": "6906c374d3ae609a1b4057fdd281c0c28c2236a2bb88e5bece1a2c10955387b0",
+      "bytes": 2370,
+      "archive": "browser-current-1.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/memory-current-1.json",
+      "sha256": "18ae318020d60fd45d89d6ea6011b25ebecf1be33a9f236e804e5ed5333a8e7c",
+      "bytes": 78,
+      "archive": "memory-current-1.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/service-controlled-current-1/service.json",
+      "sha256": "f0d97aea55afd9c13cd8fb5b970457126604229acad3b8d5380c8cef2a6a8de5",
+      "bytes": 1314,
+      "archive": "service-current-1.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-repair-20261111/input-cadence/pile-final-qa-1794378863467/report.json",
+      "sha256": "2c8fd2f05c5a4e4636ff3920b83045ad2dfed059258512b7bbceda047b2e6603",
+      "bytes": 1812370,
+      "archive": "browser-current-2.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/controlled-current-2.log",
+      "sha256": "ef375449b42ff6772a124cff6ce3b335c4586564e6a44b286c20a0f17d57d2b2",
+      "bytes": 2481,
+      "archive": "browser-current-2.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/memory-current-2.json",
+      "sha256": "e6803901a76a0e793564a16616571ed89238cf7fd8d438d980cb75c1e2dc3124",
+      "bytes": 78,
+      "archive": "memory-current-2.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/service-controlled-current-2/service.json",
+      "sha256": "08605c998c94d9ae5c213c4a8300edc8bb5621d9c144b8ccc8a98a2c13a1c42e",
+      "bytes": 1314,
+      "archive": "service-current-2.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-repair-20261111/input-cadence/pile-baseline-qa-1794378931939/report.json",
+      "sha256": "c8d42a7135005dba1a540ea0e0acfb5f89829c3611f6ca5676096b005558f50e",
+      "bytes": 1875540,
+      "archive": "browser-baseline-2.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/controlled-baseline-2.log",
+      "sha256": "22e7da4dd2747cdc9f461c72c5e8a688a02efb2d0fac735b2cc85458ced56111",
+      "bytes": 2381,
+      "archive": "browser-baseline-2.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/memory-baseline-2.json",
+      "sha256": "ed990daec2a95b1235ed31f48ed8d6a2baac8d17155af582b6f979cc50866292",
+      "bytes": 78,
+      "archive": "memory-baseline-2.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/service-controlled-baseline-2/service.json",
+      "sha256": "e4e3a5ea96ccdd7d9d16f5c3b4fdc9ab95ff0eb0c49905664ecfd1dbac00dd5d",
+      "bytes": 1314,
+      "archive": "service-baseline-2.json.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/controlled-perf.ps1",
+      "sha256": "c404dc35f96d62eb5af4dd173d0f076200da91bbc9a14410f7fed1e404afccdf",
+      "bytes": 2755,
+      "archive": "controlled-perf.ps1.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/browser-controlled.mjs",
+      "sha256": "1e8436bb96c0f02241801a89b8cfff9caf857f8cee64f0e404a48b660c1293f9",
+      "bytes": 12652,
+      "archive": "browser-qa.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/baseline-controlled.mjs",
+      "sha256": "b072640de85933dfa8c21e0f404ddd59d0f3b493b3196887f2c8ec35d4bf2fb7",
+      "bytes": 12656,
+      "archive": "baseline-browser-qa.mjs.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/license-final.log",
+      "sha256": "9a8a240e70a35bec1599c938bdcf60767e063b0b16b8622c6980f342d4390bfb",
+      "bytes": 104,
+      "archive": "license-final.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/backlog-final.log",
+      "sha256": "430ec8698152e1e07d41332da9de2d657205b92b9b8733a2e3dd003ed21243e3",
+      "bytes": 288,
+      "archive": "backlog-final.log.gz"
+    },
+    {
+      "source": ".artifacts/battle-piles-final-20261111/finalize-evidence.mjs",
+      "sha256": "41376e6bf2ac63c77ae14cb39e52ce8dee20b2a99a337bbaca6542238de98a7b",
+      "bytes": 6207,
+      "archive": "package-evidence.mjs.gz"
+    }
+  ]
+}

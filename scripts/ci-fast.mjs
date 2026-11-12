@@ -1,11 +1,13 @@
 import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { prepareReviewedAssets, prepareRuntimePreviews, needsRuntimePreviews } from './ci-reviewed-lfs.mjs';
+import {prepareMediaAssets} from './ci-media-lfs.mjs';
 
 const plan = JSON.parse(readFileSync('ci-impact.json', 'utf8'));
 if (plan.mode !== 'fast' || plan.sha !== process.env.GITHUB_SHA) throw new Error('Invalid impact plan identity');
 const files = [...plan.js, ...plan.lua];
 if (new Set(files).size !== files.length || files.some(p => !/^tests\/(?:[^/]+\.test\.mjs|lua\/[^/]+\.lua)$/.test(p))) throw new Error('Invalid test paths');
+prepareMediaAssets();
 function run(args) {
   const r = spawnSync(process.execPath, args, { stdio: 'inherit', windowsHide: true });
   if (r.error || r.status !== 0) throw r.error ?? new Error(`Failed ${JSON.stringify(args)}: ${r.status ?? r.signal}`);

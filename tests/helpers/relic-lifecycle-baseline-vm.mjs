@@ -9,7 +9,9 @@ const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);
 const loadedFrozen=[],frozen=variant!=='current',trace=mode==='trace';let snapshots=0;
 const tracePath=`${directory}/trace.jsonl`;writeFileSync(tracePath,'');
 if(trace)installLuaGraphObserver(L,'RELIC_LIFECYCLE_GRAPH',(label,graph)=>{
- snapshots++;appendFileSync(tracePath,JSON.stringify({label,graph:JSON.parse(graph)})+'\n');
+ // The observer already emits canonical JSON; preserve every graph byte rather
+ // than parsing and re-encoding its full definitions at each checkpoint.
+ appendFileSync(tracePath,`{"label":${JSON.stringify(label)},"graph":${graph}}\n`);snapshots++;
 });
 if(frozen){
  if(mode==='isolation')lauxlib.luaL_dostring(L,to_luastring(`RELIC_TRAP_CALLS=0;for _,name in ipairs({'abyss_relic_queries','abyss_purge_candidates','abyss_relic_combat_hooks','abyss_relic_family_combat'})do package.preload[name]=function()RELIC_TRAP_CALLS=RELIC_TRAP_CALLS+1;return {}end end`));

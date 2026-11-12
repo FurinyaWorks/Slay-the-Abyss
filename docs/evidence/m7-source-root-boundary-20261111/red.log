@@ -1,0 +1,86 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Quality failed: 0 modules; 0/0 measurements; new thresholds report-only. See build/engineering-quality.{json,md}
+: tool missing
+✔ each invocation collects fresh sources, architecture and both Luacheck passes exactly once (8.977153ms)
+✔ combined entry shares the same in-memory inputs across all three existing gates (0.745663ms)
+✔ collection failures and existing gate failures propagate (1.120441ms)
+✔ a failed shared collection writes a fresh failed quality report (16.906776ms)
+✔ Node UI size reports are identical for independent and shared discovery orders (3.025082ms)
+✔ standalone architecture and shared collection inspect the same recursive modules and source paths (28.63406ms)
+✔ both architecture entries reject empty scans and ambiguous Lua module identities (1.143471ms)
+✔ both architecture entries refuse linked source directories instead of silently omitting them (0.948826ms)
+✔ nested source changes and dependency boundaries are freshly checked by both architecture entries (3.704079ms)
+✖ both architecture entries reject a linked src scan root (1.852675ms)
+✖ both architecture entries reject a linked src/lua scan root (1.02057ms)
+✖ selecting a repository through a directory alias still checks its real source entries (1.372918ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 9
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 317.955965
+
+✖ failing tests:
+
+test at tests/engineering-shared-inputs.test.mjs:142:38
+✖ both architecture entries reject a linked src scan root (1.852675ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///workspace/scratch/c1a4970a76e0/m7-newday-runtime/tests/engineering-shared-inputs.test.mjs:149:12
+      at sourceTree (file:///workspace/scratch/c1a4970a76e0/m7-newday-runtime/tests/engineering-shared-inputs.test.mjs:77:5)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-newday-runtime/tests/engineering-shared-inputs.test.mjs:143:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Linked source entry is not supported/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/engineering-shared-inputs.test.mjs:142:38
+✖ both architecture entries reject a linked src/lua scan root (1.02057ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///workspace/scratch/c1a4970a76e0/m7-newday-runtime/tests/engineering-shared-inputs.test.mjs:149:12
+      at sourceTree (file:///workspace/scratch/c1a4970a76e0/m7-newday-runtime/tests/engineering-shared-inputs.test.mjs:77:5)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-newday-runtime/tests/engineering-shared-inputs.test.mjs:143:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Linked source entry is not supported/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/engineering-shared-inputs.test.mjs:155:1
+✖ selecting a repository through a directory alias still checks its real source entries (1.372918ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///workspace/scratch/c1a4970a76e0/m7-newday-runtime/tests/engineering-shared-inputs.test.mjs:164:14
+      at sourceTree (file:///workspace/scratch/c1a4970a76e0/m7-newday-runtime/tests/engineering-shared-inputs.test.mjs:77:5)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-newday-runtime/tests/engineering-shared-inputs.test.mjs:156:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Linked source entry is not supported/,
+    operator: 'throws',
+    diff: 'simple'
+  }

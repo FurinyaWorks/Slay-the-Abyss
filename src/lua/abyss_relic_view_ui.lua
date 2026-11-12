@@ -9,8 +9,13 @@ local M={}
 local rarityNames={starter='初始遗物',common='普通遗物',uncommon='罕见遗物',rare='稀有遗物',
     boss='首领遗物',shop='商店遗物',special='特殊遗物'}
 local function iconId(value)if type(value)=='table'then value=value.id end return type(value)=='number' and value or nil end
-function M.icon(id)
+function M.icon(id,battle)
     local local_=Hooks.localId(id)
+    if battle and Theme.presentationProfile=='official-assets-first' then
+        local icons=Theme.officialAssets.battleRelicIcons
+        local override=icons and (iconId(icons[local_]) or iconId(icons[id]))
+        if override then return override end
+    end
     return iconId(Theme.icon.relic[local_]) or iconId(Theme.icon.relic[id]) or iconId(Theme.icon.node.treasure)
 end
 local function counterValue(run,id)
@@ -78,11 +83,18 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         local id=run.relics[i]
         local definition=Rewards.definition(run,id)
         local description=definition and describe(run,definition.id) or ''
-        return {id=id,name=definition and definition.name or '未识别遗物',icon=M.icon(id),
+        return {id=id,name=definition and definition.name or '未识别遗物',icon=M.icon(id,official),
             rarity=definition and rarityNames[definition.rarity] or '遗物',
             status=M.status(run,id),description=description~='' and description or '效果说明待补充。'}
     end
     function self.pages()return math.max(1,math.ceil(#(self.run and self.run.relics or {})/perPage()))end
+    local function paintFrame(single)
+        if Theme.presentationProfile=='official-assets-first' and platform.color then
+            local p,f=Theme.color.panelSunken,Theme.color.goldDim
+            child('plate').imageColor=single and platform.color(18,30,40,255) or platform.color(p.r,p.g,p.b,p.a or 255)
+            child('frame').imageColor=single and platform.color(155,122,78,255) or platform.color(f.r,f.g,f.b,f.a or 255)
+        end
+    end
     function self.render(_)
         local run,n=self.run,perPage()
         local single=self.selectedIndex~=nil
@@ -92,6 +104,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         child('frame'):SetSizeDelta(width,height)
         child('plate'):SetSizeDelta(width-Theme.space.border*2,height-Theme.space.border*2)
         child('contentBlocker'):SetSizeDelta(width,height)
+        paintFrame(single)
         child('close'):SetAnchoredPosition(single and width/2-58 or Theme.layout.relicView.close[1],Theme.layout.relicView.close[2])
         child('title').text=single and '遗物详情' or '持有遗物 · '..#run.relics..' 件'
         if single then
@@ -130,7 +143,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         if self.visible or not run then return false end
         self:resetBarHover()
         self.visible,self.run=true,run
-        self.selectedIndex=run.phase=='combat' and type(index)=='number' and run.relics[index] and index or nil
+        self.selectedIndex=(official or run.phase=='combat') and type(index)=='number' and run.relics[index] and index or nil
         self.page=index and math.floor((index-1)/perPage())+1 or 1
         root:SetVisible(true);root:SetAsLastSibling()
         self:render();return true
@@ -154,9 +167,8 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
     -- becomes a +N overflow chip that opens the paginated overlay there.
     function self.refreshBar(_,run,visible)
         local relics=run and run.relics or {}
-        local battle=official and run and run.phase=='combat'
-        local style=battle and battleBar or baseBar
-        self.barInteractive=battle and visible and not self.visible or false
+        local style=official and battleBar or baseBar
+        self.barInteractive=official and visible and not self.visible or false
         if not self.barInteractive then self:resetBarHover()end
         bar:SetVisible(visible and run~=nil)
         bar:GetChild('tray'):SetVisible(false) -- STS: discs float under the HP row, no tray capsule
@@ -169,13 +181,13 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             local icon,hit=slot:GetChild('icon'),slot:GetChild('hit')
             icon:SetSizeDelta(style.icon,style.icon)
             hit:SetSizeDelta(style.hit or style.step,style.hit or 44)
-            for _,name in ipairs({'rim','face'})do slot:GetChild(name):SetVisible(not battle)end
+            for _,name in ipairs({'rim','face'})do slot:GetChild(name):SetVisible(not official)end
             local more=type(cell)=='string'
             icon:SetVisible(not more)
             slot:GetChild('more'):SetVisible(more)
             slot:GetChild('more').text=more and cell or ''
-            if cell and not more then picture(icon,M.icon(relics[i]))end
-            paintCounter(slot,run,cell and not more and relics[i] or nil,battle)
+            if cell and not more then picture(icon,M.icon(relics[i],official))end
+            paintCounter(slot,run,cell and not more and relics[i] or nil,official)
         end
     end
     root.disableCursorEventPassthrough=true
@@ -193,6 +205,11 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             return action()
         end)
         Controller.bind(platform.controller,hit,'deck',action,function()return self.visible end)
+    end
+    local function openSlot(i)
+        -- The overflow cell represents a collection, not the relic at its index.
+        if bar:GetChild('slot'..i):GetChild('more').visible then return onSlot()end
+        return onSlot(i)
     end
     for i=1,boundCount do
         local hit=bar:GetChild('slot'..i):GetChild('hit')
@@ -213,9 +230,9 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
         end
         hit:AddCursorEventListener(clickEvent,function()
             if Controller.pointerBlocked(platform.controller)then return false end
-            return onSlot(i)
+            return openSlot(i)
         end)
-        Controller.bind(platform.controller,hit,barScope,function()return onSlot(i)end)
+        Controller.bind(platform.controller,hit,barScope,function()return openSlot(i)end)
     end
     return self
 end

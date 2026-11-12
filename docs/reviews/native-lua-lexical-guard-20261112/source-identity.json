@@ -1,0 +1,20 @@
+{
+  "base": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "node": "v24.22.1",
+  "luaparse": "0.3.1",
+  "sourceDiffSha256": "137a30c17a426cedaa5069d765cd5df682aa4ce368aaaa140e33b1e8744ec643",
+  "sources": {
+    "scripts/native-script-batch.mjs": {
+      "sha256": "54eae1798a02579aaae864c708798f0ad976b64c2f0021c26d9a721cedddeb5d",
+      "gitBlob": "692e451d321299bfe84f151b2f15bbf906c6a64e"
+    },
+    "tests/native-script-batch.test.mjs": {
+      "sha256": "79c474f96bf869ca3e18de1f81baa7d78e8979b9baf566018380acf3cb49b4a3",
+      "gitBlob": "b069c135db9be20096539bff4474a3ae92d36dd2"
+    },
+    "tests/art-feature-source-inverse.test.mjs": {
+      "sha256": "5ae770913565e41ac8874943f092ac4ee8ad454aa80af82515f6c58a69ca6593",
+      "gitBlob": "17de029a91b6c66b63b3eaca34795d0c8bd9a59d"
+    }
+  }
+}

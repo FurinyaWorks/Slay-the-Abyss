@@ -8,6 +8,10 @@ import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import * as lfs from '../scripts/ci-reviewed-lfs.mjs';
 import { reviewedPngPaths, needsReviewedAssets, verifyReviewedPngs, prepareReviewedAssets, lfsEnvironment, lfsArguments } from '../scripts/ci-reviewed-lfs.mjs';
+import {mediaFiles,mediaPointer,maxMediaPayloadBytes,validateMediaPointers,prepareMediaAssets} from '../scripts/ci-media-lfs.mjs';
+import {checkWhitespace,validateMediaBases} from '../scripts/ci-whitespace.mjs';
+import {prepareComparisonBlobs,comparisonBlobIds} from '../scripts/ci-comparison-blobs.mjs';
+import {checkHostedCheckout,checkNetworkPolicy} from '../scripts/check-network-policy.mjs';
 
 const root = resolve('.');
 const expectedPaths = ['armaments', 'cleave', 'heavy_blade'].flatMap(id => ['source.png', 'preview-native.png'].map(name => `art/cards/traveler-geo/${id}/${name}`));
@@ -68,6 +72,7 @@ function fixture(t) {
   return {dir,bytes,object,extra};
 }
 function workflowContract(quality, licenses) {
+  assert.deepEqual(checkNetworkPolicy(quality),[],'current transport safety remains complete');
   assert.match(quality,/\npermissions:\n  contents: read\n/); assert.match(licenses,/\npermissions:\n  contents: read\n/);
   assert.doesNotMatch(quality+licenses,/contents: write|lfs:\s*true|persist-credentials:\s*true|actions\/cache/);
   assert.equal(quality.split(shardStep).length-1,2);
@@ -120,7 +125,7 @@ test('real native Node CLI agrees with asset owner before and after insertion sh
 });
 
 test('non-owner shard does not inspect PNGs or start Git, while materialized bytes reuse the local cache', t => {
-  const dir=temp(t); mkdirSync(join(dir,'tests')); writeFileSync(join(dir,'tests/reviewed-traveler-geo-assets.test.mjs'),'');
+  const dir=temp(t); git(dir,'init'); mkdirSync(join(dir,'tests')); writeFileSync(join(dir,'tests/reviewed-traveler-geo-assets.test.mjs'),'');
   assert.deepEqual(prepareReviewedAssets({root:dir,shard:'2/2',env:{...process.env,CI_LFS_TOKEN:''}}),{status:'not-needed',shard:'2/2'});
   const f=fixture(t);
   for(const p of expectedPaths) writeFileSync(join(f.dir,p),f.bytes.get(p));
@@ -179,7 +184,7 @@ test('negative controls reject expanded include, retained token, omitted real PN
   assert.equal(noVerify.prepareReviewedAssets({root:f.dir,env:{...process.env,CI_LFS_TOKEN:''}}).status, 'materialized');
   assert.equal(readFileSync(join(f.dir,expectedPaths[0]), 'utf8'), 'corrupted');
   const unconditional=await mutant("if (!needsReviewedAssets(files, shard)) return { status: 'not-needed', shard };", '// shard guard removed');
-  const dir=temp(t); mkdirSync(join(dir,'tests')); writeFileSync(join(dir,'tests/reviewed-traveler-geo-assets.test.mjs'),'');
+  const dir=temp(t); git(dir,'init'); mkdirSync(join(dir,'tests')); writeFileSync(join(dir,'tests/reviewed-traveler-geo-assets.test.mjs'),'');
   assert.throws(()=>unconditional.prepareReviewedAssets({root:dir,shard:'2/2',env:{...process.env,CI_LFS_TOKEN:''}}), /Invalid reviewed LFS index pointer/);
 });
 
@@ -215,4 +220,73 @@ test('current reviewed PNG budget includes the identity-repair pair, not archive
   assert.equal(lfs.maxReviewedPngBytes, 5983528);
   assert.equal(lfs.frozenObjects.reduce((sum, row) => sum + row[1], 0), lfs.maxReviewedPngBytes);
   assert.ok(!lfs.frozenObjects.some(([sha]) => sha === 'f396062d29b6845b58bf0043c1941a2219d9ca501ae6520c8579d555d73008d5'));
+});
+
+test('existing media pointers retain their exact original ledger identities and separate bounded payload',()=>{
+ const ledger=JSON.parse(readFileSync('docs/legal/assets.json','utf8'));
+ const pointers=new Map(mediaFiles.map(row=>[row.path,mediaPointer(row)]));
+ assert.deepEqual(validateMediaPointers(pointers),{files:738,objects:705,bytes:117369505});
+ assert.equal(maxMediaPayloadBytes,117369505);assert.equal(lfs.maxReviewedPngBytes,5983528);
+ for(const row of mediaFiles){const entry=ledger.files[row.path];assert.equal(entry.sha256,row.sha256);assert.equal(entry.bytes,row.bytes);assert.equal(entry.category,row.category);assert.equal(entry.storage,'ci-media-lfs-v1');}
+ const first=mediaFiles[0],wrong=new Map(pointers);wrong.set(first.path,Buffer.from(mediaPointer(first).toString().replace(first.sha256,'0'.repeat(64))));
+ assert.throws(()=>validateMediaPointers(wrong),/frozen media index pointer/);
+ const large=new Map(pointers);large.set(first.path,mediaPointer({...first,bytes:first.bytes+1}));assert.throws(()=>validateMediaPointers(large),/frozen media index pointer/);
+ const missing=new Map(pointers);missing.delete(first.path);assert.throws(()=>validateMediaPointers(missing),/complete media pointer inventory/);
+ const extra=new Map(pointers);extra.set('foreign.png',mediaPointer(first));assert.throws(()=>validateMediaPointers(extra),/complete media pointer inventory/);
+});
+
+test('complete existing media are freshly authenticated on a cache hit without a transfer token',()=>{
+ assert.deepEqual(prepareMediaAssets({env:{...process.env,CI_LFS_TOKEN:''}}),{status:'cached',files:738,objects:705,bytes:117369505});
+});
+
+test('cold partial checkout checks all text and exact media pointers without downloading old binary',async t=>{
+ const directory=mkdtempSync(join(tmpdir(),'media-ws-'));t.after(()=>rmSync(directory,{recursive:true,force:true}));
+ const source=join(directory,'source'),clone=join(directory,'clone');mkdirSync(source);
+ const env={...process.env,CI_COMPARISON_BASE:'',GIT_LFS_SKIP_SMUDGE:'1',GIT_TERMINAL_PROMPT:'0',GIT_NO_LAZY_FETCH:'1'};
+ const run=(cwd,args,input,extra={})=>{const result=spawnSync('git',args,{cwd,input,env:{...env,...extra},encoding:'utf8',windowsHide:true,timeout:30000,maxBuffer:8*1024*1024});assert.equal(result.status,0,result.stdout+result.stderr);return result.stdout.trim();};
+ run(source,['init']);run(source,['config','user.name','Media CI fixture']);run(source,['config','user.email','media@example.invalid']);run(source,['config','core.longpaths','true']);run(source,['config','uploadpack.allowFilter','true']);run(source,['config','uploadpack.allowAnySHA1InWant','true']);
+ for(const row of mediaFiles){const path=join(source,row.path);mkdirSync(resolve(path,'..'),{recursive:true});writeFileSync(path,mediaPointer(row));}
+ writeFileSync(join(source,'.gitattributes'),readFileSync('.gitattributes'));writeFileSync(join(source,'source.txt'),'before\n');
+ run(source,['add','--force','.']);
+ const small=mediaFiles.find(row=>row.path==='art/cards/shared/type-attack.png');
+ const original=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAgUlEQVR4nO3XsQnDMAAF0dNN4p1SZMYU2cmbJBO4MCj4iPx6CXGg4sNq9vfrM/M+ifMX9faJFfMFx4xL9oNi2+M5/r6gxEmcxEmcxEmcxEmcxEmcxEmcxEmcxEmcxI2zB2YMou3EFMgXlDiJkxV28dHnuXdxgcRJnMRJnFc/4La8LwVtFeMzsF6fAAAAAElFTkSuQmCC','base64');
+ assert.equal(createHash('sha256').update(original).digest('hex'),small.sha256);assert(original.subarray(0,8000).includes(0));
+ const old=run(source,['hash-object','-w','--stdin'],original);assert(small.oldBinaryGitBlobs.includes(old));
+ run(source,['update-index','--cacheinfo','100644,'+old+','+small.path]);run(source,['commit','-m','binary baseline']);const base=run(source,['rev-parse','HEAD']);
+ writeFileSync(join(source,'source.txt'),'after\n');run(source,['add','.']);run(source,['commit','-m','pointer candidate']);const head=run(source,['rev-parse','HEAD']);
+ run(directory,['clone','--no-checkout','--filter=blob:none','--depth=2',pathToFileURL(source).href,clone]);run(clone,['config','core.longpaths','true']);
+ // Match the real pre-guard checkout: materialize HEAD first. Every subsequent
+ // operation inherits the explicit no-lazy-fetch setting, including local runs.
+ run(clone,['checkout','--detach','HEAD'],undefined,{GIT_NO_LAZY_FETCH:'0'});run(clone,['config','user.name','Media CI fixture']);run(clone,['config','user.email','media@example.invalid']);
+ const prepared=prepareComparisonBlobs({root:clone,env:{...env,CI_COMPARISON_TOKEN:'local-fixture'}});assert.equal(prepared.parents[0],base);assert(prepared.fetched>0&&prepared.bytes<8*1024*1024);
+ const absent=()=>run(clone,['cat-file','--batch-check'],old+'\n',{GIT_NO_LAZY_FETCH:'1'});assert.match(absent(),/ missing$/);
+ const measured=()=>checkHostedCheckout({cwd:clone,sha:head,summary:join(directory,'summary'),log(){}});
+ const packBytes=measured();assert(packBytes<128*1024*1024);
+ assert.equal(checkWhitespace({root:clone,base,head}).status,'pass');assert.match(absent(),/ missing$/,'no hidden media fetch after the guard');assert.equal(measured(),packBytes,'whitespace cannot add unmeasured packs');
+ const decode=ref=>new Map(run(clone,['ls-tree','-rz',ref]).split('\0').filter(Boolean).map(line=>{const [meta,path]=line.split('\t');const [mode,,oid]=meta.split(' ');return [path,{mode,oid}];}));
+ const before=decode(base),after=decode(head),badBefore=new Map(before);badBefore.set(small.path,{mode:'100644',oid:mediaFiles.find(row=>!row.oldBinaryGitBlobs.includes(old)).oldBinaryGitBlobs[0]});assert.throws(()=>validateMediaBases(badBefore,after),/unknown old media/);
+ const badAfter=new Map(after);badAfter.set(small.path,{...after.get(small.path),mode:'120000'});assert.throws(()=>validateMediaBases(before,badAfter),/ordinary current media pointer/);
+ run(clone,['update-index','--cacheinfo','120000,'+after.get(small.path).oid+','+small.path]);assert.throws(()=>prepareMediaAssets({root:clone,env}),/ordinary media index mode/);run(clone,['update-index','--cacheinfo','100644,'+after.get(small.path).oid+','+small.path]);
+ writeFileSync(join(clone,small.path),Buffer.alloc(small.bytes));assert.throws(()=>prepareMediaAssets({root:clone,env}),/changed media content/);writeFileSync(join(clone,small.path),mediaPointer(small));
+ writeFileSync(join(clone,'.gitattributes'),readFileSync(join(clone,'.gitattributes'),'utf8')+'\nsource.txt ci-immutable-media\n');assert.throws(()=>checkWhitespace({root:clone,base,head}),/exact media-only attribute scope/);run(clone,['checkout','--','.gitattributes']);
+ writeFileSync(join(clone,'.git/info/attributes'),'source.txt ci-immutable-media\n');assert.throws(()=>checkWhitespace({root:clone,base,head}),/exact media-only attribute scope/);writeFileSync(join(clone,'.git/info/attributes'),'');
+ run(source,['checkout','--detach',base]);writeFileSync(join(source,'.gitattributes'),readFileSync(join(source,'.gitattributes'),'utf8')+'\n'+small.path+' diff\n');run(source,['add','.gitattributes']);run(source,['commit','-m','forced text is not a binary exemption']);const forced=run(source,['rev-parse','HEAD']);
+ prepareComparisonBlobs({root:clone,env:{...env,CI_COMPARISON_TOKEN:'local-fixture',CI_COMPARISON_BASE:forced}});assert.throws(()=>checkWhitespace({root:clone,base:forced,head}),/old media was never forced text/);assert.match(absent(),/ missing$/);
+ writeFileSync(join(clone,'source.txt'),'bad trailing space \n');run(clone,['add','source.txt']);run(clone,['commit','-m','invalid whitespace']);assert.throws(()=>checkWhitespace({root:clone,base,head:run(clone,['rev-parse','HEAD'])}),/trailing whitespace/);
+ assert.match(absent(),/ missing$/);
+});
+
+test('comparison inventory includes all non-media parents and rejects malformed blob metadata',()=>{
+ const id='1'.repeat(40),row=mediaFiles[0];
+ assert.deepEqual(comparisonBlobIds('100644 blob '+id+'\tsrc/lua/module.lua\n100644 blob '+id+'\tconfig/architecture.json\n100644 blob '+'2'.repeat(40)+'\t'+row.path+'\n'),[id]);
+ assert.throws(()=>comparisonBlobIds('100644 tree '+id+'\tsource.txt'),/ordinary comparison source blob/);
+});
+
+test('pre-setup comparison metadata imports without optional Node24 glob support',()=>{
+ const module=pathToFileURL(resolve('scripts/ci-comparison-blobs.mjs')).href;
+ const script=`import fs from 'node:fs';import {syncBuiltinESMExports}from'node:module';fs.globSync=undefined;syncBuiltinESMExports();const m=await import(${JSON.stringify(module)});if(typeof m.prepareComparisonBlobs!=='function')throw Error('missing metadata entry');console.log('NO_GLOB_METADATA_OK');`;
+ const result=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:root,encoding:'utf8',windowsHide:true,timeout:30000});
+ assert.equal(result.status,0,result.stderr);assert.match(result.stdout,/NO_GLOB_METADATA_OK/);
+ const quality=readFileSync('.github/workflows/quality.yml','utf8');const presentation=quality.split('\n  presentation:')[1].split('\n  engineering-posix-shards:')[0];
+ assert.match(presentation,/node-version: '24\.18\.0'/);assert(presentation.indexOf('actions/setup-node@')<presentation.indexOf('node scripts/ci-media-lfs.mjs'));
 });

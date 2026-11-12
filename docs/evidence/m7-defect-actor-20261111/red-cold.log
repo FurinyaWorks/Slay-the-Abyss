@@ -1,0 +1,31 @@
+✖ cold data and non-target preparation never resolve execution capabilities (110.518884ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 316.370765
+
+✖ failing tests:
+
+test at tests/defect-actor-boundary.test.mjs:63:1
+✖ cold data and non-target preparation never resolve execution capabilities (110.518884ms)
+  AssertionError [ERR_ASSERTION]: [string "package.path='src/lua/?.lua;build/lua/?.lua;'..."]:4: cold planner imported Actor
+  
+  2 !== 0
+  
+      at pass (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/defect-actor-boundary.test.mjs:13:60)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-defect-actor-capability/tests/defect-actor-boundary.test.mjs:63:86)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

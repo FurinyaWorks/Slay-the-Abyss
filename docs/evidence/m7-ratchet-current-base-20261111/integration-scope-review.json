@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "pr616-current-base-integration-independent-20261111",
+  "reviewer": "review_ratchet_base_merge",
+  "scope": "Current-base tree integration only; retain prior independent source reviews. Final commit binding pending.",
+  "reviewedBaseSha": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "originalHeadSha": "9789fd6d0d903542fa87aa495949c85cf47a7a3d",
+  "commonAncestorSha": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "scopeConclusion": "pass",
+  "scopeUnresolved": [],
+  "checks": {
+    "baseChangedPaths": 25,
+    "prChangedPaths": 61,
+    "overlap": [
+      ".gitattributes"
+    ],
+    "baseExclusive24BlobsPreserved": true,
+    "prExclusive60BlobsPreserved": true,
+    "unexpectedIndexChanges": [],
+    "originalEvidence46FilesByteExact": true,
+    "originalEvidenceAutocrlfCleanIdentity": true,
+    "reviewedSource9HashesMatch": true,
+    "currentPreviousHistoricalInventory": [
+      835,
+      834,
+      829
+    ],
+    "workflowExactBaseInverseLFAndCRLF": true,
+    "malformedWorkflowProjectionFailClosed": true,
+    "taskOwnerStatusAcceptanceUnchanged": true,
+    "bothAttributeAppendsAndNewEvidenceProtectionRetained": true
+  },
+  "limitations": [
+    "Final additional records and exact local HEAD awaiting parent",
+    "No remote CI/admission authorization is asserted",
+    "No Full or native Windows run repeated",
+    "Calibration regression being run by parent, not claimed as this reviewers execution"
+  ]
+}

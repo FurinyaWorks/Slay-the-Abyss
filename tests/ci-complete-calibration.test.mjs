@@ -1,4 +1,13 @@
-import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches} from './helpers/joint-ui-ci-source-inverse.mjs';
+import {closeoutRead,closeoutInventory,preCloseoutCiSource,closeoutCiProof} from './helpers/closeout-ci-source.mjs';
+import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
+import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helpers/curses-ci-planning.mjs';
+import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource,preRatchetInventory,ratchetInventoryFile} from './helpers/joint-ui-ci-source-inverse.mjs';
+
+import {battleQueueCiProof,preBattleQueueCiInventory,preBattleQueueCiSource} from './helpers/battle-queue-ci-source-epoch.mjs';
+import {noncombatAddedTests,noncombatPriorInventory} from './helpers/noncombat-ci-source-inverse.mjs';
+import {preDefectActorCiSource,preDefectActorCiInventory,defectActorPlanningKey,defectActorPlanningFloor,defectActorCiProof} from './helpers/defect-actor-ci-source-inverse.mjs';
+import {goldenIdolPlanningFloors as legacyGoldenIdolPlanningFloors} from './helpers/golden-idol-ci-source-inverse.mjs';
+import {preOfficialUiRepairSource} from './helpers/official-ui-repair-source-epoch.mjs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors,officialAssetsFlowCiSourceProof,preOfficialAssetsFlowCiSource} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import {officialAssetsPlanningFloors as firstOfficialAssetsPlanningFloors,officialAssetsCiSourceProof,preOfficialAssetsCiSource} from './helpers/official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
@@ -29,7 +38,12 @@ import {preWatcherPlanningSource,watcherPlanningKey,watcherPlanningFloor} from '
 import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-potion-planning-source-inverse.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,readdirSync} from 'node:fs';
+import {readFileSync as liveDiskReadFileSync,readdirSync} from 'node:fs';
+import {preJoustCiSource,joustCiProof} from './helpers/joust-ci-source-inverse.mjs';
+import {sourceEpoch as joustEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+const currentReadFileSync=liveDiskReadFileSync;
+const joustCurrentSource=p=>{try{return currentReadFileSync(p,'utf8');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+const actualDiskReadFileSync=liveDiskReadFileSync;
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -37,8 +51,26 @@ import {ciWindowsShapeProof,preCiWindowsShapeSource} from './helpers/ci-windows-
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import {qualityShardMatrices as currentQualityShardMatrices,qualityShardJobs as currentQualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {currentFullQualityJobs} from '../scripts/verify-delivery.mjs';
-import {discoverJs,partition,jsShard as currentJsShard,jsPlanningWeights as currentJsPlanningWeights,timings as actualCurrentTimings} from '../scripts/ci-shards.mjs';
+import {discoverJs as liveDiscoverJs,partition,jsShard as rawCurrentJsShard,jsPlanningWeights as rawCurrentJsPlanningWeights,timings as rawCurrentTimings} from '../scripts/ci-shards.mjs';
+// Frozen receipts retain their complete inventory; current Full remains raw.
+const discoverJs=()=>closeoutInventory(liveDiscoverJs(),'pr620');
 import {shardLuaScripts} from '../scripts/test-lua.mjs';
+// Preserve every pre-Actor assertion in its exact authenticated source/inventory
+// epoch. The appended Actor contracts separately exercise raw current Full work.
+const diskReadFileSync=closeoutRead('pr620',liveDiskReadFileSync);
+const actualCurrentTimings=JSON.parse(diskReadFileSync('scripts/ci-test-timings.json','utf8'));
+const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
+const nativeCloseoutRead=liveDiskReadFileSync,nativeCloseoutDiscover=liveDiscoverJs,nativeCloseoutJointInventory=jointCiInventoryAt;
+function sliceTools(view){
+ const read=closeoutRead(view,nativeCloseoutRead),timings=JSON.parse(read('scripts/ci-test-timings.json','utf8'));
+ const weights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(timings.js[platform][file]??timings.unknownJsMs,timings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
+ const shard=(files,value,platform)=>partition(files,value,weights(files,platform),timings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?timings.initialMs[platform][0]:0));
+ return {read,timings,weights,shard,inventory:()=>closeoutInventory(nativeCloseoutDiscover(),view)};
+}
+
+import {preGoldenIdolCurrentCiSource,preGoldenIdolCurrentCiInventory,goldenIdolCurrentCiProof,goldenIdolCurrentJs,goldenIdolCurrentPlanningFloors} from './helpers/golden-idol-current-ci-source-inverse.mjs';
+const actualDiscoverJs=liveDiscoverJs,actualJsShard=currentJsShard,actualJsPlanningWeights=currentJsPlanningWeights,liveTimings=actualCurrentTimings;
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const jointRead=(view,file,encoding)=>{const bytes=diskReadFileSync(file),text=bytes.toString('utf8'),source=jointCiSourceAt(file,text,view);return encoding?source:source===text?bytes:Buffer.from(source);};
@@ -52,7 +84,7 @@ const readFileSync=(file,encoding)=>{
 };
 const hash=s=>createHash('sha256').update(s).digest('hex'),read=p=>originalPlanningSource(p,readFileSync(p,'utf8').replaceAll('\r\n','\n'));
 const receiptRead=(view,file,encoding,fallback)=>{
- const value=diskReadFileSync(file,encoding),text=typeof value==='string'?value:value.toString('utf8');
+ const value=diskReadFileSync(file,encoding),raw=typeof value==='string'?value:value.toString('utf8'),text=['officialFirstReceipt','officialFlowReceipt'].includes(view)?receiptToolingSource(file,raw,'curses'):raw;
  if(jointCiMatches(file,text,view)){const source=jointCiSourceAt(file,text,view);return typeof value==='string'?source:Buffer.from(source);}
  return fallback(file,encoding);
 };
@@ -85,7 +117,7 @@ const encounterFormationJs=["tests/encounter-formation-responsibilities.test.mjs
 const defectFinalJs=["tests/defect-final-execute.test.mjs","tests/defect-final-execute-complexity.test.mjs","tests/defect-final-source-epoch.test.mjs"];
 const silentFinalJs=["tests/silent-final-apply.test.mjs","tests/silent-final-apply-complexity.test.mjs","tests/silent-final-source-epoch.test.mjs"];
 const relicEquipJs=["tests/relic-equip-complexity.test.mjs","tests/relic-equip-responsibilities.test.mjs","tests/relic-equip-source-epoch.test.mjs"];
-const postSnapshotJs=['tests/event-simulator-fixture.test.mjs','tests/official-assets-legibility.test.mjs','tests/room-ui-source-epoch.test.mjs'];
+const postSnapshotJs=['tests/event-simulator-fixture.test.mjs','tests/official-assets-legibility.test.mjs','tests/room-ui-source-epoch.test.mjs','tests/historical-monster-import-boundary.test.mjs','tests/curses-shape-responsibilities.test.mjs','tests/curses-source-epoch.test.mjs'];
 const officialAssetsJs=['tests/official-assets-visual.test.mjs','tests/official-assets.test.mjs','tests/official-assets-runtime.test.mjs','tests/official-assets-flow.test.mjs'];
 const postPlacementJs=[...officialAssetsJs,...encounterFormationJs,...defectFinalJs,...silentFinalJs,...relicEquipJs,"tests/act1-choice-responsibilities.test.mjs","tests/act3-ai-responsibilities.test.mjs","tests/actor-presence-source.test.mjs","tests/actor-presence.test.mjs","tests/card-capability-responsibilities.test.mjs","tests/class-potion-orb-boundary.test.mjs","tests/class-potion-orb-source-inverse.test.mjs","tests/colorless-catalog-source.test.mjs","tests/colorless-catalog.test.mjs","tests/defect-integration-source.test.mjs","tests/defect-plan-responsibilities.test.mjs","tests/defect-utility-planning.test.mjs","tests/effects-target-group-source-epoch.test.mjs","tests/effects-target-group.test.mjs","tests/end-turn-responsibilities.test.mjs","tests/enemy-ai-lifecycle.test.mjs","tests/game-build-modes.test.mjs","tests/integration-source-epoch.test.mjs","tests/intent-visibility-cache.test.mjs","tests/inventory-responsibilities.test.mjs","tests/lightweight-2d-profile.test.mjs","tests/lightweight-card-layout.test.mjs","tests/m7-core-final.test.mjs","tests/native-page-lifecycle.test.mjs","tests/portrait-paint-cache.test.mjs","tests/potion-callback-source.test.mjs","tests/potion-callback.test.mjs","tests/power-shop-boundaries.test.mjs","tests/pr-quality-evidence.test.mjs","tests/repository-costs.test.mjs","tests/reward-query-boundary-source.test.mjs","tests/reward-query-boundary.test.mjs","tests/run-catalog-responsibilities.test.mjs","tests/runtime-path-baseline.test.mjs","tests/scry-choice-responsibilities.test.mjs","tests/session-reward-capabilities.test.mjs","tests/session-reward-source-inverse.test.mjs","tests/seven-refactor-source-epoch.test.mjs","tests/shiv-turn-responsibilities.test.mjs","tests/silent-tactics-planning.test.mjs","tests/silent-tactics-source-epoch.test.mjs","tests/watcher-actor-boundary.test.mjs","tests/watcher-actor-source-inverse.test.mjs","tests/watcher-final-execution.test.mjs","tests/watcher-flow-planning.test.mjs","tests/watcher-flow-source-epoch.test.mjs","tests/watcher-potion-integration-source.test.mjs"].sort();
 const postPlacementLua=["tests/lua/actor_presence_contract.lua","tests/lua/colorless_catalog_contract.lua","tests/lua/defect_utility_planning.lua","tests/lua/enemy_ai_lifecycle.lua","tests/lua/intent_visibility_cache.lua","tests/lua/potion_callback_contract.lua","tests/lua/silent_tactics_planning.lua","tests/lua/watcher_final_execution_boundaries.lua","tests/lua/watcher_flow_planning.lua"].sort();
@@ -124,7 +156,8 @@ const componentAddedLua=['tests/lua/v25_texture_runtime.lua','tests/lua/componen
  'tests/lua/component_page_failures.lua'];
 postPlacementJs.push(...currentV25Js,...componentAddedJs,...postSnapshotJs);postPlacementJs.sort();
 postPlacementLua.push(...componentAddedLua);postPlacementLua.sort();
-const currentLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
+const liveCloseoutLua=()=>readdirSync('tests/lua').filter(n=>n.endsWith('.lua')).map(n=>'tests/lua/'+n).sort();
+const currentLua=()=>[...closeoutCiProof.targets.pr620.luaInventory];
 // Only these explicitly registered UI additions postdate the original M7
 // inventories. Current Full below still discovers and checks every file.
 const preComponentJs=()=>discoverJs().filter(file=>!officialAssetsJs.includes(file)&&!currentV25Js.includes(file)&&!componentAddedJs.includes(file)&&!postSnapshotJs.includes(file));
@@ -426,6 +459,9 @@ test('current Full38 retains full coverage and reports performance targets under
    const floor=({[defectUtilityPlanningKey]:defectUtilityPlanningFloor,[enemyAiPlanningKey]:enemyAiPlanningFloor,[classPotionPlanningKey]:classPotionPlanningFloor,[watcherPlanningKey]:watcherPlanningFloor})[file];
    assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],floor);
    assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(currentTimings.unknownJsMs,floor.durationMs));
+  }else if(Object.hasOwn(cursesPlanningFloors,file)){
+   assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[file],cursesPlanningFloors[file]);
+   assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(currentTimings.unknownJsMs,cursesPlanningFloors[file].durationMs));
   }else{
    assert.equal(currentTimings.jsPlanning.localLowerBounds[file],undefined,'other new files have no fabricated planning floors');
    assert.equal(currentJsPlanningWeights([file],platform)[file],currentTimings.unknownJsMs);
@@ -584,13 +620,13 @@ test('current 129 placement raises reconstruct exact timings while preserving al
  expected.jsPlanning.localLowerBounds[silentFinalPlanningKey]=silentFinalPlanningFloor;
  expected.jsPlanning.localLowerBounds[silentFinalSourcePlanningKey]=silentFinalSourcePlanningFloor;
  Object.assign(expected.jsPlanning.localLowerBounds,defectFinalPlanningFloors,encounterFormationPlanningFloors);
- Object.assign(expected.jsPlanning.localLowerBounds,officialAssetsPlanningFloors);
+ Object.assign(expected.jsPlanning.localLowerBounds,officialAssetsPlanningFloors,cursesPlanningFloors);
  assert.deepEqual(currentTimings,expected);
  for(const platform of ['win32','linux'])for(const [file,value]of Object.entries(after.js[platform]))assert.ok(currentTimings.js[platform][file]>=value);
  const luaBlock=s=>s.slice(s.indexOf('  "lua": {'),s.indexOf('  "jsSource":'));
  assert.equal(luaBlock(read(path)),luaBlock(binding.afterSource),'literal worker-safety bytes remain frozen');
  for(const key of ['lua','luaShard','luaShardCalibrationUpdates','initialMs','unknownJsMs','unknownLuaMs'])assert.deepEqual(currentTimings[key],after[key],key+' remains unchanged');
- const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);for(const key of Object.keys(officialAssetsPlanningFloors))delete priorFloors[key];for(const key of Object.keys(encounterFormationPlanningFloors))delete priorFloors[key];for(const key of Object.keys(defectFinalPlanningFloors))delete priorFloors[key];delete priorFloors[silentFinalSourcePlanningKey];delete priorFloors[silentFinalPlanningKey];delete priorFloors[relicEquipPlanningKey];delete priorFloors[watcherFlowPlanningKey];delete priorFloors[silentTacticsPlanningKey];delete priorFloors[effectsTargetGroupPlanningKey];for(const key of Object.keys(partialCasePlanningFloors))delete priorFloors[key];delete priorFloors[gameUiLocalPlanningKey];delete priorFloors[floorKey];delete priorFloors[localFloorKey];delete priorFloors[runCatalogFloorKey];delete priorFloors[potionCallbackFloorKey];delete priorFloors[endTurnFloorKey];delete priorFloors['tests/actor-presence.test.mjs'];delete priorFloors['tests/reward-query-boundary.test.mjs'];for(const key of [defectUtilityPlanningKey,enemyAiPlanningKey,classPotionPlanningKey,watcherPlanningKey])delete priorFloors[key];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
+ const priorFloors=structuredClone(currentTimings.jsPlanning.localLowerBounds);for(const key of Object.keys(cursesPlanningFloors))delete priorFloors[key];for(const key of Object.keys(officialAssetsPlanningFloors))delete priorFloors[key];for(const key of Object.keys(encounterFormationPlanningFloors))delete priorFloors[key];for(const key of Object.keys(defectFinalPlanningFloors))delete priorFloors[key];delete priorFloors[silentFinalSourcePlanningKey];delete priorFloors[silentFinalPlanningKey];delete priorFloors[relicEquipPlanningKey];delete priorFloors[watcherFlowPlanningKey];delete priorFloors[silentTacticsPlanningKey];delete priorFloors[effectsTargetGroupPlanningKey];for(const key of Object.keys(partialCasePlanningFloors))delete priorFloors[key];delete priorFloors[gameUiLocalPlanningKey];delete priorFloors[floorKey];delete priorFloors[localFloorKey];delete priorFloors[runCatalogFloorKey];delete priorFloors[potionCallbackFloorKey];delete priorFloors[endTurnFloorKey];delete priorFloors['tests/actor-presence.test.mjs'];delete priorFloors['tests/reward-query-boundary.test.mjs'];for(const key of [defectUtilityPlanningKey,enemyAiPlanningKey,classPotionPlanningKey,watcherPlanningKey])delete priorFloors[key];assert.deepEqual(priorFloors,after.jsPlanning.localLowerBounds,'all eight existing local floors remain exact');assert.equal(Object.keys(priorFloors).length,8);
  for(const platform of ['win32','linux'])assert.equal(currentJsPlanningWeights([floorKey],platform)[floorKey],889638);
  assert.equal(placement.forecast.reserveMs,60000);assert.deepEqual(placement.forecast.budgets,{win32:1800000,linux:1200000});assert.equal(placement.forecast.workers,2);assert.equal(placement.forecast.concurrencyCapUnchanged,12);
 });
@@ -1121,6 +1157,48 @@ test('pre-Formation Full36 inventory and forecasts remain independently reproduc
  }
 });
 
+test('Act1 event history restores the exact Formation receipt without replacing the current Full fixture',()=>{
+ const file='tests/lua/act1_event_content.lua',raw=diskReadFileSync(file,'utf8'),current=raw.replaceAll('\r\n','\n');
+ const beforeSha='8af87e0dd5a776d19436c613a8c9bd5dba4bfc381d03ca7260a574e3b6a16a00';
+ assert.equal(hash(current),'557a6f941bf154e07443aa6b6b9481ea328a350062790a4fbcb96a9d43cb7410');
+ assert.equal(encounterFormationCiInventory.luaSha256[file],beforeSha);
+ for(const source of [current,current.replaceAll('\n','\r\n')]){
+  assert.equal(jointCiMatches(file,source,'formationReceipt'),true);
+  const historical=jointCiSourceAt(file,source,'formationReceipt');
+  assert.equal(hash(historical),beforeSha,'the complete original Lua source, not a skipped hash check');
+  assert.equal(historical.includes('\r'),false);
+  assert.equal(jointCiMatches(file,historical,'formationReceipt'),false,'old input is not the approved current source');
+  assert.equal(jointCiSourceAt(file,historical,'formationReceipt'),historical);
+  for(const target of ['componentAliasFix','officialAssetsFlow','defectReceipt','officialFirstReceipt','officialFlowReceipt']){
+   assert.equal(jointCiMatches(file,source,target),false);assert.equal(jointCiSourceAt(file,source,target),source);
+  }
+  assert.equal(preComponentUiCiSource(file,source),source,'other source readers remain in their own epoch');
+ }
+ assert.equal(hash(formationReceiptRead(file)),beforeSha,'the real Buffer receipt reader is wired');
+ assert.equal(hash(formationReceiptRead(file,'utf8')),beforeSha,'the real text receipt reader is wired');
+ assert.ok(currentLua().includes(file),'current Full discovery still includes the actual fixture');
+ assert.equal(diskReadFileSync(file,'utf8'),raw,'receipt reads never rewrite the fixture');
+});
+
+test('Act1 Formation source view rejects tampering partial reversals duplicates and unrelated targets',()=>{
+ const file='tests/lua/act1_event_content.lua',source=diskReadFileSync(file,'utf8').replaceAll('\r\n','\n'),lines=source.split('\n');
+ const oldEq="local function eq(a,b)assert(a==b,tostring(a)..' ~= '..tostring(b))end";
+ const oldSame="local function same(a,b)eq(type(a),type(b));if type(a)~='table'then eq(a,b);return end;for k,v in pairs(a)do same(v,b[k])end;for k in pairs(b)do assert(a[k]~=nil)end end";
+ for(const foreign of [source+'\n','\n'+source,source.slice(1),source.slice(0,-1),source+source,
+  source.replace(lines[3],oldEq),source.replace(lines[4],oldSame),source.replace(lines[3],lines[3]+'\n'+lines[3]),
+  source.replace('Run.new(Data,42)','Run.new(Data,43)'),source.replace('\n','\r'),null,undefined,{},42,Buffer.from(source)]){
+  assert.notEqual(foreign,source);
+  assert.equal(jointCiMatches(file,foreign,'formationReceipt'),false);assert.equal(jointCiSourceAt(file,foreign,'formationReceipt'),foreign);
+ }
+ for(const foreign of ['__proto__','constructor','foreign/'+file,file+'/extra','tests/helpers/act1-choice-boundaries.lua']){
+  assert.equal(jointCiMatches(foreign,source,'formationReceipt'),false);assert.equal(jointCiSourceAt(foreign,source,'formationReceipt'),source);
+ }
+ for(const target of ['currentFull','foreign',undefined]){
+  assert.throws(()=>jointCiMatches(file,source,target),/known joint CI view/);
+  assert.throws(()=>jointCiSourceAt(file,source,target),/known joint CI view/);
+ }
+});
+
 test('POSIX15 accepts only its complete approved source and preserves the exact published POSIX14 epoch',()=>{
  const {path,beforeSource,afterSource,beforeSha256,afterSha256}=posix15ShapeProof;
  assert.equal(rawReadFileSync(path,'utf8').replaceAll('\r\n','\n'),afterSource);
@@ -1169,8 +1247,8 @@ test('combined Formation800 inventory preserves both blocked POSIX14 and feasibl
  assert.deepEqual(totals,[16032072,16032072],'redistribution does not claim a runtime or modeled-work reduction');
  assert.equal(totals[0]-15994730,37342,'only the three Formation files add planned work at their unchanged effective costs');
  assert.ok(totals[0]>14*(1200000-60000),'even ideal balancing cannot fit all complete work into fourteen original budgets');
- assert.equal(currentTimings.unknownJsMs,10000);assert.equal(Object.keys(JSON.parse(preOfficialAssetsCiSource(path,preOfficialAssetsFlowCiSource(path,diskReadFileSync(path,'utf8')))).jsPlanning.localLowerBounds).length,32);
- assert.equal(Object.keys(currentTimings.jsPlanning.localLowerBounds).length,32+officialAssetsJs.length);
+ assert.equal(currentTimings.unknownJsMs,10000);assert.equal(Object.keys(JSON.parse(preOfficialAssetsCiSource(path,preOfficialAssetsFlowCiSource(path,preCurrentPlanningSource(path,diskReadFileSync(path,'utf8'))))).jsPlanning.localLowerBounds).length,32);
+ assert.equal(Object.keys(currentTimings.jsPlanning.localLowerBounds).length,32+officialAssetsJs.length+Object.keys(cursesPlanningFloors).length);
  for(const [key,floor]of Object.entries(encounterFormationPlanningFloors))assert.deepEqual(currentTimings.jsPlanning.localLowerBounds[key],floor);
  const workflow=componentReadFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
  assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
@@ -1206,6 +1284,7 @@ test('official candidate floors authenticate complete serial runs and register o
 
  const discoverJs=()=>currentOfficialDiscoverJs().filter(file=>file!=='tests/official-assets-visual.test.mjs');
  const actualCurrentTimings=JSON.parse(diskReadFileSync(path,'utf8'));
+ // This assertion reproduces the first immutable checkpoint, before the later flow floor.
  const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
 
  assert.deepEqual(Object.keys(officialAssetsPlanningFloors).sort(),[...officialAssetsJs].sort());
@@ -1219,7 +1298,7 @@ test('official candidate floors authenticate complete serial runs and register o
   assert.equal(receipt.durationMs,floor.nodeReportedDurationMs);assert.equal(receipt.wallDurationMs,floor.wallDurationMs);
   assert.equal(floor.durationMs,Math.ceil(Math.max(receipt.durationMs,receipt.wallDurationMs)));
   assert.equal(receipt.inputHashes[file],floor.testSha256);
-  for(const [input,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(diskReadFileSync(input,'utf8').replaceAll('\r\n','\n')),sha,input);
+  for(const [input,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(receiptToolingSource(input,diskReadFileSync(input,'utf8'),'official').replaceAll('\r\n','\n')),sha,input);
   for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+receipt.durationMs])assert.ok(log.toString().includes('ℹ '+line),line);
   assert.equal(hash(diskReadFileSync(floor.sourceLog.replace('stdout.log','stderr.log'))),receipt.stderrSha256);
   for(const platform of ['win32','linux']){assert.equal(actualCurrentTimings.js[platform][file],undefined);assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(actualCurrentTimings.unknownJsMs,floor.durationMs));}
@@ -1263,7 +1342,7 @@ test('current official flow floors bind four complete local files while long cam
   assert.equal(receipt.durationMs,floor.nodeReportedDurationMs);assert.equal(receipt.wallDurationMs,floor.wallDurationMs);
   assert.equal(floor.durationMs,Math.max(firstOfficialAssetsPlanningFloors[file]?.durationMs??0,Math.ceil(Math.max(receipt.durationMs,receipt.wallDurationMs))));
   assert.equal(receipt.inputHashes[file],floor.testSha256);
-  for(const [input,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(diskReadFileSync(input,'utf8').replaceAll('\r\n','\n')),sha,input);
+  for(const [input,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(receiptToolingSource(input,diskReadFileSync(input,'utf8'),'official').replaceAll('\r\n','\n')),sha,input);
   for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+receipt.durationMs])assert.ok(log.toString().includes('ℹ '+line),line);
   assert.equal(hash(diskReadFileSync(floor.sourceLog.replace('stdout.log','stderr.log'))),receipt.stderrSha256);
   for(const platform of ['win32','linux']){assert.equal(actualCurrentTimings.js[platform][file],undefined);assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(actualCurrentTimings.unknownJsMs,floor.durationMs));}
@@ -1273,17 +1352,577 @@ test('current official flow floors bind four complete local files while long cam
 
 test('joint historical inventory rejects missing duplicate and unknown files while current discovery remains complete',()=>{
  const current=discoverJs(),historical=jointCiInventoryAt(current,'officialAssetsFlow');
- assert.equal(current.length,834);assert.equal(historical.length,829);
- const added=current.filter(f=>!historical.includes(f));assert.equal(added.length,5);
+ assert.equal(current.length,837);assert.equal(historical.length,829);
+ const added=current.filter(f=>!historical.includes(f));assert.equal(added.length,8);
  for(const f of added){
   assert.throws(()=>jointCiInventoryAt(current.filter(p=>p!==f),'officialAssetsFlow'),/inventory/);
   assert.throws(()=>jointCiInventoryAt([...current,f],'officialAssetsFlow'),/inventory/);
  }
  assert.throws(()=>jointCiInventoryAt([...current,'tests/foreign.test.mjs'],'officialAssetsFlow'),/inventory/);
- for(const target of ['officialAssetsFlow','componentAliasFix']){
-  const file='scripts/build-ui.mjs',source=diskReadFileSync(file,'utf8');
-  assert.notEqual(jointCiSourceAt(file,source,target),source);
-  for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(jointCiSourceAt(file,foreign,target),foreign);
-  assert.equal(jointCiSourceAt('__proto__',source,target),source);
+ const file='tests/historical-monster-import-boundary.test.mjs',source=diskReadFileSync(file,'utf8');
+ assert.deepEqual(jointCiInventoryAt(current,'officialAssetsFlow',(path,encoding)=>path===file?source.replaceAll('\r\n','\n').replaceAll('\n','\r\n'):diskReadFileSync(path,encoding)),historical);
+ for(const foreign of [source+'\n',source.slice(1),source.slice(0,-1)]){
+  assert.throws(()=>jointCiInventoryAt(current,'officialAssetsFlow',(path,encoding)=>path===file?foreign:diskReadFileSync(path,encoding)),/added inventory source/);
+ }
+ const archiveBytes=diskReadFileSync('tests/helpers/joint-ui-ci-source-epoch.json.gz');
+ assert.equal(hash(archiveBytes),'9fee4e85665d37746b68368fced892a316db490c8e01273328391bc57acfd840');
+ const archive=JSON.parse(gunzipSync(archiveBytes)),calibration='tests/ci-complete-calibration.test.mjs';
+ for(const target of ['officialAssetsFlow','componentAliasFix'])for(const file of ['scripts/build-ui.mjs','tests/ci-complete-calibration.test.mjs']){
+  const source=diskReadFileSync(file,'utf8'),prior=archive.files[file].targets[target];
+  assert.equal(jointCiSourceAt(file,source,target),prior);
+  assert.equal(jointCiSourceAt(file,archive.files[file].current,target),prior);
+  assert.notEqual(prior,source);assert.equal(jointCiMatches(file,source,target),true);
+  assert.equal(jointCiSourceAt(file,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n'),target),prior);
+  for(const foreign of [source+'\n',source.slice(1),source.slice(0,-1),null,{},17]){
+   assert.equal(jointCiSourceAt(file,foreign,target),foreign);assert.equal(jointCiMatches(file,foreign,target),false);
+  }
+  for(const foreign of ['__proto__','constructor','foreign/'+file,file+'/extra']){
+   assert.equal(jointCiSourceAt(foreign,source,target),source);assert.equal(jointCiMatches(foreign,source,target),false);
+  }
+ }
+ const raw=diskReadFileSync(calibration,'utf8');
+ for(const target of ['defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt']){
+  assert.equal(jointCiMatches(calibration,raw,target),false);assert.equal(jointCiSourceAt(calibration,raw,target),raw);
+ }
+ for(const partial of [raw.replace(",837)",",836)"),raw.replace(",'tests/historical-monster-import-boundary.test.mjs'",''),raw.replace('source.slice(0,-1),','')]){
+  assert.notEqual(partial,raw);
+  for(const target of ['officialAssetsFlow','componentAliasFix']){
+   assert.equal(jointCiMatches(calibration,partial,target),false);assert.equal(jointCiSourceAt(calibration,partial,target),partial);
+  }
+ }
+});
+
+
+test('integrated receipt tooling views retain frozen predecessors and reject drift or wrong scopes',()=>{
+ for(const [path,row]of Object.entries(toolingProof.files)){
+  const view=path.includes('network')?'official':'curses',raw=diskReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(raw,row.after);assert.equal(hash(row.after),row.afterSha256);assert.equal(hash(row.before),row.beforeSha256);
+  assert.equal(receiptToolingSource(path,raw,view),row.before);
+  assert.equal(receiptToolingSource(path,raw.replaceAll('\n','\r\n'),view),row.before);
+  for(const value of [raw+'\n',raw.slice(1),raw.slice(0,-1),raw.replaceAll('\n','\r\r\n'),null,{},17])assert.equal(receiptToolingSource(path,value,view),value);
+  for(const scope of ['raw','unknown',view==='official'?'curses':'official'])assert.equal(receiptToolingSource(path,raw,scope),raw);
+  for(const foreign of ['constructor','__proto__','foreign/'+path])assert.equal(receiptToolingSource(foreign,raw,view),raw);
+  assert.equal(diskReadFileSync(path,'utf8').replaceAll('\r\n','\n'),raw);
+ }
+});
+
+test('Curses planning floors authenticate complete current file runs without hosted measurements',()=>{
+ for(const [file,count,oldFloor]of [['tests/curses-shape-responsibilities.test.mjs',3,37312],['tests/curses-source-epoch.test.mjs',5,13299]]){
+  const name=file.slice(6,-9),directory='docs/evidence/replay-curses-ci-20261111/planning/'+name;
+  const receiptPath=directory+'/measurement.json',bytes=diskReadFileSync(receiptPath),receipt=JSON.parse(bytes),output=diskReadFileSync(directory+'/stdout.log'),errors=diskReadFileSync(directory+'/stderr.log');
+  assert.equal(receipt.schemaVersion,1);assert.equal(receipt.kind,'local-complete-file-planning-floor');assert.equal(receipt.notHostedCiMeasurement,true);
+  assert.deepEqual(receipt.command,['node','--test',file]);assert.equal(receipt.testFile,file);
+  assert.deepEqual([receipt.exitCode,receipt.signal,receipt.error,receipt.inputsUnchanged],[0,null,null,true]);
+  assert.deepEqual([receipt.tests,receipt.pass,receipt.fail,receipt.cancelled,receipt.skipped,receipt.todo],[count,count,0,0,0,0]);
+  assert.deepEqual(receipt.inputHashes,receipt.afterInputHashes);
+  for(const [path,sha]of Object.entries(receipt.inputHashes)){
+   const raw=diskReadFileSync(path),value=path.endsWith('.gz')?raw:receiptToolingSource(path,raw.toString('utf8'),'curses').replaceAll('\r\n','\n');assert.equal(hash(value),sha,path);
+  }
+  assert.equal(hash(output),receipt.stdoutSha256);assert.equal(hash(errors),receipt.stderrSha256);assert.equal(errors.length,0);
+  for(const line of ['tests '+count,'pass '+count,'fail 0','cancelled 0','skipped 0','duration_ms '+receipt.durationMs])assert.ok(output.toString().includes('ℹ '+line),line);
+  assert.equal(receipt.tool.sha256,JSON.parse(diskReadFileSync('config/lua-tools.json','utf8')).linux.sha256);
+  const floor=currentTimings.jsPlanning.localLowerBounds[file];assert.ok(floor,'complete file has an explicit planning floor: '+file);assert.deepEqual(floor,cursesPlanningFloors[file]);
+  assert.equal(floor.durationMs,Math.max(oldFloor,Math.ceil(Math.max(receipt.durationMs,receipt.wallDurationMs))));
+  assert.equal(floor.sourceReceipt,receiptPath);assert.equal(floor.sourceReceiptSha256,hash(bytes));
+  assert.equal(floor.sourceLog,directory+'/stdout.log');assert.equal(floor.sourceLogSha256,hash(output));
+  assert.equal(floor.nodeReportedDurationMs,receipt.durationMs);assert.equal(floor.wallDurationMs,receipt.wallDurationMs);assert.equal(floor.tests,count);
+  for(const platform of ['win32','linux']){assert.equal(currentTimings.js[platform][file],undefined);assert.equal(currentJsPlanningWeights([file],platform)[file],Math.max(currentTimings.unknownJsMs,floor.durationMs));}
+ }
+});
+
+test('Curses CI outer source views reject partial identities and preserve every frozen predecessor',()=>{
+ const archive=JSON.parse(gunzipSync(diskReadFileSync('tests/helpers/joint-ui-ci-source-epoch.json.gz')));
+ const paths=['scripts/ci-test-timings.json','tests/helpers/ci-complete-calibration-source-inverse.mjs','tests/helpers/combined-epoch/source-epoch.mjs','tests/helpers/copy-integration-source-closure.mjs','tests/defect-final-source-epoch.test.mjs','tests/encounter-formation-source-epoch.test.mjs'];
+ for(const file of paths){
+  const source=diskReadFileSync(file,'utf8'),row=archive.files[file];
+  assert.deepEqual(Object.keys(row.targets),['officialAssetsFlow']);
+  for(const input of [source,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n'),row.current]){
+   assert.equal(jointCiMatches(file,input,'officialAssetsFlow'),true);assert.equal(jointCiSourceAt(file,input,'officialAssetsFlow'),row.targets.officialAssetsFlow);
+  }
+  for(const foreign of [source+'\n',source.slice(1),source.slice(0,-1),null,{},17]){
+   assert.equal(jointCiMatches(file,foreign,'officialAssetsFlow'),false);assert.equal(jointCiSourceAt(file,foreign,'officialAssetsFlow'),foreign);
+  }
+  for(const target of ['componentAliasFix','defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt']){
+   assert.equal(jointCiMatches(file,source,target),false);assert.equal(jointCiSourceAt(file,source,target),source);
+  }
+ }
+ const file='scripts/ci-test-timings.json',source=diskReadFileSync(file,'utf8'),before=archive.files[file].current;
+ assert.equal(preCurrentPlanningSource(file,source),before);assert.equal(preCurrentPlanningSource(file,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),before);
+ const value=JSON.parse(source);for(const key of Object.keys(cursesPlanningFloors))delete value.jsPlanning.localLowerBounds[key];
+ assert.deepEqual(value,JSON.parse(before),'only the two measured floors change; every original field is preserved');
+ for(const key of Object.keys(cursesPlanningFloors)){
+  const partial=JSON.parse(source);delete partial.jsPlanning.localLowerBounds[key];const text=JSON.stringify(partial,null,2)+'\n';assert.equal(preCurrentPlanningSource(file,text),text);
+ }
+ for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(preCurrentPlanningSource(file,foreign),foreign);
+ for(const path of ['__proto__','constructor','foreign/'+file,file+'/extra'])assert.equal(preCurrentPlanningSource(path,source),source);
+ const gate=cursesGateProof.path,raw=diskReadFileSync(gate,'utf8'),prior=preCursesGateSource(gate,raw);
+ assert.equal(hash(prior),'b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066','immutable develop6a gate identity');
+ assert.equal(preCursesGateSource(gate,raw.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),prior);assert.equal(preCursesGateSource(gate,prior),prior);
+ assert.equal(jointCiSourceAt(gate,raw,'officialAssetsFlow'),prior);assert.equal(jointCiMatches(gate,raw,'officialAssetsFlow'),true);
+ for(const target of ['componentAliasFix','defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt']){
+  assert.equal(jointCiMatches(gate,raw,target),false);assert.equal(jointCiSourceAt(gate,raw,target),raw);
+ }
+ const line="  || file==='src/lua/abyss_curses.lua'\n",lf=raw.replaceAll('\r\n','\n');
+ const missing=lf.replace(line,''),duplicate=lf.replace(line,line+line);
+ assert.notEqual(missing,lf);assert.notEqual(duplicate,lf);
+ for(const foreign of [raw+'\n',raw.slice(1),missing,duplicate,null,{},17]){
+  assert.equal(preCursesGateSource(gate,foreign),foreign);assert.equal(jointCiMatches(gate,foreign,'officialAssetsFlow'),false);assert.equal(jointCiSourceAt(gate,foreign,'officialAssetsFlow'),foreign);
+ }
+ for(const path of ['__proto__','constructor','foreign/'+gate,gate+'/extra'])assert.equal(preCursesGateSource(path,raw),raw);
+});
+
+
+test('Curses receipt source is exact and cannot substitute for raw current source validation',()=>{
+ const path='src/lua/abyss_curses.lua',raw=diskReadFileSync(path,'utf8'),before=diskReadFileSync('tests/fixtures/curses-shape-before.lua','utf8').replaceAll('\r\n','\n');
+ assert.equal(hash(raw),'65d912f1d2dbd5245bb4734103c762eb9667c5161c33e4c850062e35572c3642');
+ assert.equal(hash(before),'942e7c65da29875fefbff132182ce7a7aab16afb4405e28d2a71e31d589a44b7');
+ for(const source of [raw,raw.replaceAll('\r\n','\n').replaceAll('\n','\r\n')]){
+  assert.equal(jointCiMatches(path,source,'officialAssetsFlow'),true);assert.equal(jointCiSourceAt(path,source,'officialAssetsFlow'),before);
+ }
+ assert.equal(jointCiSourceAt(path,before,'officialAssetsFlow'),before);
+ for(const source of [raw+'\n',raw.slice(1),raw.slice(0,-1),null,{},17]){
+  assert.equal(jointCiMatches(path,source,'officialAssetsFlow'),false);assert.equal(jointCiSourceAt(path,source,'officialAssetsFlow'),source);
+ }
+ for(const target of ['componentAliasFix','defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt']){
+  assert.equal(jointCiMatches(path,raw,target),false);assert.equal(jointCiSourceAt(path,raw,target),raw);
+ }
+ for(const foreign of ['__proto__','constructor','foreign/'+path,path+'/extra'])assert.equal(jointCiSourceAt(foreign,raw,'officialAssetsFlow'),raw);
+ assert.equal(diskReadFileSync(path,'utf8'),raw,'historical receipt projection never rewrites current production');
+});
+
+test('battle continuation retains exact historical sources and complete current Full coverage',()=>{
+ // Immutable pr621 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr621');
+ const currentLua=()=>[...closeoutCiProof.targets.pr621.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr621');
+
+ const proof=battleQueueCiProof,current=liveDiscoverJs();
+ assert.equal(proof.base,'3a061a76b5eb917ac0f4213c01a9cbafd28d1824');
+ assert.equal(current.length,proof.oldInventory.length+6);
+ assert.equal(new Set(current).size,current.length);
+ assert.deepEqual(preBattleQueueCiInventory(current),proof.oldInventory);
+ for(const [p,row]of Object.entries(proof.files)){
+  const source=diskReadFileSync(p,'utf8').replaceAll('\r\n','\n');
+  assert.equal(preOfficialUiRepairSource(p,source),row.current,p);
+  assert.equal(preBattleQueueCiSource(p,source),row.before,p);
+  for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(preBattleQueueCiSource(p,foreign),foreign,p);
+ }
+ for(const p of Object.keys(proof.added)){
+  assert.throws(()=>preBattleQueueCiInventory(current.filter(f=>f!==p)),/inventory/);
+  assert.throws(()=>preBattleQueueCiInventory([...current,p]),/inventory/);
+ }
+ assert.throws(()=>preBattleQueueCiInventory([...current,'tests/foreign.test.mjs']),/inventory/);
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>currentJsShard(current,(i+1)+'/'+count,platform).files);
+  assert.deepEqual(bins.flat().sort(),[...current].sort());
+  assert(currentJsShard(current,'1/'+count,platform).loads.every(v=>v<budget),'unchanged '+platform+' execution budget');
+ }
+});
+
+
+test('ratchet current inventory preserves raw Full coverage and refuses source drift after a warm projection',()=>{
+ // Immutable pr616 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr616');
+ const currentLua=()=>[...closeoutCiProof.targets.pr616.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr616');
+
+ const current=discoverJs(),prior=preRatchetInventory(current),historical=jointCiInventoryAt(current,'officialAssetsFlow');
+ assert.equal(current.length,835);assert.equal(prior.length,834);assert.equal(historical.length,829);
+ assert(current.includes(ratchetInventoryFile));assert(!prior.includes(ratchetInventoryFile));
+ for(const platform of ['win32','linux']){
+  assert.equal(actualCurrentTimings.js[platform][ratchetInventoryFile],undefined);
+  assert.equal(actualCurrentTimings.jsPlanning.localLowerBounds[ratchetInventoryFile],undefined);
+  const count=platform==='win32'?18:15;
+  const bins=Array.from({length:count},(_,i)=>currentJsShard(current,`${i+1}/${count}`,platform).files);
+  assert.deepEqual(bins.flat().sort(),[...current].sort());
+  assert.equal(bins.flat().filter(file=>file===ratchetInventoryFile).length,1);
+ }
+ for(const files of [current.filter(f=>f!==ratchetInventoryFile),[...current,ratchetInventoryFile],
+  [...current,'tests/foreign.test.mjs']])assert.throws(()=>preRatchetInventory(files),/inventory/);
+ const source=diskReadFileSync(ratchetInventoryFile,'utf8');
+ for(const changed of [source+'\n',source.slice(1),source.replace('new CC16','new CC99'),null,Buffer.from(source)]){
+  assert.notEqual(changed,source);
+  const reader=(file,encoding)=>file===ratchetInventoryFile?changed:diskReadFileSync(file,encoding);
+  assert.throws(()=>jointCiInventoryAt(current,'officialAssetsFlow',reader));
+ }
+ assert.throws(()=>jointCiInventoryAt(current,'officialAssetsFlow',()=>{throw Error('fresh read failed');}),/fresh read failed/);
+ assert.deepEqual(preRatchetInventory(current,(file,encoding)=>diskReadFileSync(file,encoding).replaceAll('\r\n','\n').replaceAll('\n','\r\n')),prior);
+});
+test('Joust gate outer view accepts only the complete two-line addition and preserves historical bytes',()=>{
+ // Immutable pr612 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr612');
+ const currentLua=()=>[...closeoutCiProof.targets.pr612.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr612');
+
+ const path='scripts/check-lua-static.mjs',source=currentReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+ const prior=preJoustCiSource(path,joustEpoch.preCombinedSource(path,source,{target:'joustPrior',readSource:joustCurrentSource}));
+ assert.notEqual(prior,source);
+ assert.equal(hash(prior),'b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066');
+ const additions=["  'src/lua/abyss_joust_event.lua': [],\n","  || file==='src/lua/abyss_joust_event.lua'\n"];
+ assert.equal(prior,additions.reduce((s,line)=>s.replace(line,''),source));
+ assert.equal(preJoustCiSource(path,source.replaceAll('\n','\r\n')),prior);
+ for(const input of [prior,source+'\n',source.replaceAll('\n','\r\r\n'),source.replace('const responsibilityRoots','const foreignRoots'),
+  ...additions.flatMap(line=>[source.replace(line,''),source.replace(line,line+line)]),null,42,{}])
+  assert.equal(preJoustCiSource(path,input),input,'partial, duplicate or foreign source remains opaque');
+ assert.equal(preJoustCiSource('foreign',source),source);
+});
+
+
+test('Joust CI outer identities retain complete predecessors and reject foreign drift',()=>{
+ // Immutable pr612 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr612');
+ const currentLua=()=>[...closeoutCiProof.targets.pr612.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr612');
+
+ for(const [path,row]of Object.entries(joustCiProof.files)){
+  const source=currentReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(source,row.afterSource,path+' exact current identity');
+  assert.equal(preJoustCiSource(path,source),row.beforeSource);
+  assert.equal(preJoustCiSource(path,source.replaceAll('\n','\r\n')),row.beforeSource);
+  for(const value of [source+'\n',source.slice(1),source.replaceAll('\n','\r\r\n'),row.beforeSource,null,{}])
+   assert.equal(preJoustCiSource(path,value),value,path+' drift opaque');
+ }
+});
+
+test('Golden Idol recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
+ // Immutable pr614 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr614');
+ const currentLua=()=>[...closeoutCiProof.targets.pr614.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr614');
+
+ for(const [file,binding]of Object.entries(goldenIdolCurrentCiProof.files)){
+  const raw=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(raw),binding.afterSha256,file);
+  assert.equal(hash(binding.beforeSource),binding.beforeSha256,file);
+  for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preGoldenIdolCurrentCiSource(file,source),binding.beforeSource);
+  for(const source of [raw+'\n',raw.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preGoldenIdolCurrentCiSource(file,source),source);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preGoldenIdolCurrentCiSource(unknown,raw),raw);
+ }
+});
+
+test('current Golden Idol836 Full38 inventory adds only two files under unchanged budgets and complete effective costs',t=>{
+ // Immutable pr614 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr614');
+ const currentLua=()=>[...closeoutCiProof.targets.pr614.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const actualDiscoverJs=slice.inventory,liveDiscoverJs=slice.inventory;
+ const discoverJs=()=>preGoldenIdolCurrentCiInventory(actualDiscoverJs());
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr614');
+
+ const js=actualDiscoverJs(),lua=currentLua();
+ assert.equal(js.length,836);assert.equal(lua.length,1415);
+ assert.deepEqual(js.filter(file=>!discoverJs().includes(file)).sort(),[...goldenIdolCurrentJs].sort());
+ assert.deepEqual([...discoverJs()].sort(),goldenIdolCurrentCiProof.inventory.js);
+ assert.deepEqual(lua,Object.keys(goldenIdolCurrentCiProof.inventory.luaSha256));
+ for(const [file,sha]of Object.entries(goldenIdolCurrentCiProof.inventory.luaSha256))assert.equal(hash(actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n')),sha,file);
+ for(const file of goldenIdolCurrentJs){
+  assert.throws(()=>preGoldenIdolCurrentCiInventory(js.filter(p=>p!==file)),/inventory/);
+  assert.throws(()=>preGoldenIdolCurrentCiInventory([...js,file]),/inventory/);
+ }
+ assert.throws(()=>preGoldenIdolCurrentCiInventory([...js,'tests/foreign.test.mjs']),/inventory/);
+ assert.equal(liveTimings.unknownJsMs,10000);
+ for(const platform of ['win32','linux'])for(const file of goldenIdolCurrentJs){
+  assert.equal(liveTimings.js[platform][file],undefined);
+  assert.equal(actualJsPlanningWeights([file],platform)[file],Math.max(liveTimings.unknownJsMs,liveTimings.jsPlanning.localLowerBounds[file]?.durationMs??0));
+ }
+ assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:18},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
+ assert.equal(currentFullQualityJobs.length,38);
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>actualJsShard(js,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,836);
+  const loads=bins[0].loads,old=actualJsShard(discoverJs(),`1/${count}`,platform).loads;
+  assert.equal(loads.reduce((a,b)=>a+b,0)-old.reduce((a,b)=>a+b,0),Object.values(actualJsPlanningWeights(goldenIdolCurrentJs,platform)).reduce((a,b)=>a+b,0));
+  let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const luaBins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...liveTimings,windowsJsShardMs:loads},2));
+   assert.deepEqual(luaBins.flat().sort(),[...lua].sort());assert.equal(new Set(luaBins.flat()).size,1415);
+   const cost=file=>liveTimings.luaShard[file]??liveTimings.lua[file]??liveTimings.unknownLuaMs,safety=file=>liveTimings.lua[file]??liveTimings.unknownLuaMs;
+   maximum=Math.max(...luaBins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
+  }
+  const forecast=maximum+60000;t.diagnostic(`${platform} complete Golden Idol836 forecast ${forecast} ms; budget ${budget} ms; actual Full pass not claimed`);
+  assert.ok(forecast<budget);
+ }
+ const workflow=actualDiskReadFileSync('.github/workflows/quality.yml','utf8');
+ assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+});
+
+
+
+test('Golden Idol complete local floors authenticate actual files and preserve every prior observation',()=>{
+ // Immutable pr614 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr614');
+ const currentLua=()=>[...closeoutCiProof.targets.pr614.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=JSON.parse(goldenIdolCurrentCiProof.files['scripts/ci-test-timings.json'].beforeSource),liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr614');
+
+ assert.deepEqual(Object.keys(goldenIdolCurrentPlanningFloors),['tests/golden-idol-source-epoch.test.mjs']);
+ const current=JSON.parse(actualDiskReadFileSync(path,'utf8'));
+ for(const [key,floor]of Object.entries(goldenIdolCurrentPlanningFloors)){
+  assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);delete current.jsPlanning.localLowerBounds[key];
+  const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+  const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+  assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+  assert.equal(receipt.test,key);assert.deepEqual([receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[floor.tests,floor.tests,0,0,0]);
+  assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);
+  assert.equal(receipt.sourceLogSha256,floor.sourceLogSha256);assert.equal(receipt.sourceLogUncompressedSha256,floor.sourceLogUncompressedSha256);
+  assert.equal(hash(actualDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n')),floor.testSha256);
+  assert.equal(receipt.inputSha256[key],floor.testSha256);
+  assert.equal(floor.durationMs,Math.max(Math.ceil(floor.nodeReportedDurationMs),legacyGoldenIdolPlanningFloors[key].durationMs));assert.equal(floor.historicalFloorMs,legacyGoldenIdolPlanningFloors[key].durationMs);assert.match(floor.kind,/Not a hosted/);
+  assert.equal(receipt.wallDurationMs,null);assert.equal(floor.wallDurationMs,null);assert.deepEqual([receipt.status,receipt.signal],[0,null]);
+  for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+  assert.ok(Object.keys(receipt.inputSha256).length>0);
+  for(const [file,sha]of Object.entries(receipt.inputSha256)){
+   const raw=actualDiskReadFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n')),sha,file);
+  }
+ }
+ assert.deepEqual(current,actualCurrentTimings,'all old costs, hosted measurements, safety inputs and thresholds remain unchanged');
+});
+
+
+test('Golden Idol shared CI entry points preserve path type and target rejection boundaries',()=>{
+ // Immutable pr614 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr614');
+ const currentLua=()=>[...closeoutCiProof.targets.pr614.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr614');
+
+ const timingPath='scripts/ci-test-timings.json',gatePath='scripts/check-lua-static.mjs';
+ const timing=actualDiskReadFileSync(timingPath,'utf8'),gate=actualDiskReadFileSync(gatePath,'utf8');
+ const priorTiming=goldenIdolCurrentCiProof.files[timingPath].beforeSource,priorGate=goldenIdolCurrentCiProof.files[gatePath].beforeSource;
+ for(const [project,ownPath,ownSource,otherPath,otherSource]of [
+  [preCombinedGateSource,gatePath,gate,timingPath,timing],
+  [preCombinedPlanningSource,timingPath,timing,gatePath,gate],
+  [originalPlanningSource,timingPath,timing,gatePath,gate],
+ ]){
+  for(const target of ['flow','unknown','__proto__']){
+   assert.equal(project(otherPath,otherSource,target),otherSource,'unsupported path never enters the new outer epoch');
+   for(const foreign of ['foreign','__proto__','constructor'])assert.equal(project(foreign,ownSource,target),ownSource);
+   for(const value of [null,undefined,{},17])assert.equal(project(ownPath,value,target),value);
+   assert.equal(project(ownPath,ownSource+'\n',target),ownSource+'\n','unknown target does not authenticate drift');
+  }
+ }
+ for(const target of ['base','flow','silent','effects'])assert.equal(preCombinedPlanningSource(timingPath,timing,target),preCombinedPlanningSource(timingPath,priorTiming,target));
+ for(const target of ['flow','silent','effects'])assert.equal(preCombinedGateSource(gatePath,gate,target),preCombinedGateSource(gatePath,priorGate,target));
+ for(const target of ['develop','seven','unknown'])assert.equal(originalPlanningSource(timingPath,timing,target),originalPlanningSource(timingPath,priorTiming,target),'original unknown-target fallback stays identical');
+ for(const target of ['unknown','__proto__','constructor']){
+  assert.throws(()=>preCombinedPlanningSource(timingPath,timing,target),/known frozen sibling planning epoch/);
+  assert.throws(()=>preCombinedGateSource(gatePath,gate,target),/known frozen sibling gate epoch/);
+ }
+ assert.notEqual(preCombinedPlanningSource(timingPath,timing,'base'),timing);
+ assert.notEqual(preCombinedGateSource(gatePath,gate,'flow'),gate);
+});
+
+test('Defect Actor cost layer accepts only complete current bytes and authenticates the sole added inventory',()=>{
+ // Immutable pr618 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr618');
+ const currentLua=()=>[...closeoutCiProof.targets.pr618.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr618');
+
+ const source=liveDiskReadFileSync(path,'utf8'),prior=preDefectActorCiSource(path,source);
+ assert.notEqual(source,prior);assert.equal(prior,defectActorCiProof.files[path].beforeSource);
+ const current=JSON.parse(source),previous=JSON.parse(prior);
+ assert.equal(previous.jsPlanning.localLowerBounds[defectActorPlanningKey],undefined);
+ assert.deepEqual(current.jsPlanning.localLowerBounds[defectActorPlanningKey],defectActorPlanningFloor);
+ delete current.jsPlanning.localLowerBounds[defectActorPlanningKey];
+ assert.deepEqual(current,previous,'only the new local floor changes; old floors, hosted observations, Lua weights, reserves and budgets stay unchanged');
+ assert.equal(preDefectActorCiSource(path,source.replaceAll('\n','\r\n')),prior);
+ for(const value of [source+'\n',source.slice(1),prior,null,undefined,{},17,source.replace('"durationMs": 50000','"durationMs": 49999'),source.replace('"unknownJsMs": 10000','"unknownJsMs": 9999')])assert.equal(preDefectActorCiSource(path,value),value);
+ for(const foreign of ['foreign','__proto__','constructor'])assert.equal(preDefectActorCiSource(foreign,source),source);
+ for(const [file,row]of Object.entries(defectActorCiProof.files)){
+  const source=liveDiskReadFileSync(file,'utf8');
+  assert.equal(hash(source.replaceAll('\r\n','\n')),row.afterSha256,file);
+  assert.equal(preDefectActorCiSource(file,source),row.beforeSource,file);
+  assert.equal(preDefectActorCiSource(file,source.replaceAll('\r\n','\n').replaceAll('\n','\r\n')),row.beforeSource,file);
+  for(const drift of [source+'\n',source.slice(1),null,{},17])assert.equal(preDefectActorCiSource(file,drift),drift,file);
+ }
+ const all=liveDiscoverJs(),old=preDefectActorCiInventory(all);
+ assert.equal(all.length,835);assert.equal(old.length,834);
+ assert.deepEqual(all.filter(file=>!old.includes(file)),[defectActorPlanningKey]);
+ for(const bad of [all.filter(f=>f!==defectActorPlanningKey),[...all,defectActorPlanningKey],[...all,'tests/foreign.test.mjs'],all.filter(f=>f!==old[0])])assert.throws(()=>preDefectActorCiInventory(bad),/inventory/);
+});
+
+
+test('Defect Actor floor binds the complete 18-case local run and actual behavior sources without inventing a wall clock or hosted data',()=>{
+ // Immutable pr618 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr618');
+ const currentLua=()=>[...closeoutCiProof.targets.pr618.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr618');
+
+ const floor=defectActorPlanningFloor,bytes=liveDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(bytes),log=liveDiskReadFileSync(floor.sourceLog);
+ assert.equal(hash(bytes),floor.sourceReceiptSha256);assert.equal(hash(log),floor.sourceLogSha256);
+ assert.equal(receipt.sourceLog,floor.sourceLog);assert.equal(receipt.sourceLogSha256,hash(log));
+ assert.equal(receipt.kind,'local-complete-file-planning-floor');assert.equal(receipt.notHostedCiMeasurement,true);
+ assert.equal(receipt.file,defectActorPlanningKey);assert.deepEqual(receipt.command,['node','--test',defectActorPlanningKey]);
+ assert.deepEqual([receipt.tests,receipt.pass,receipt.fail,receipt.cancelled,receipt.skipped,receipt.todo],[18,18,0,0,0,0]);
+ assert.equal(receipt.nodeReportedDurationMs,47112.322039);assert.equal(receipt.wallDurationMs,null);assert.equal(floor.wallDurationMs,null);
+ assert.equal(floor.nodeReportedDurationMs,receipt.nodeReportedDurationMs);assert.equal(floor.durationMs,50000);assert.equal(receipt.planningFloorMs,floor.durationMs);assert.ok(floor.durationMs>=Math.ceil(receipt.nodeReportedDurationMs));
+ for(const line of ['tests 18','pass 18','fail 0','cancelled 0','skipped 0','todo 0','duration_ms 47112.322039'])assert.ok(log.toString().includes('ℹ '+line+'\n'),line);
+ assert.deepEqual(Object.keys(receipt.inputHashes).sort(),[defectActorPlanningKey,'tests/helpers/defect-actor-vm.mjs','src/lua/abyss_defect_utility_cards.lua','src/lua/abyss_combat_queued_play.lua'].sort());
+ for(const [file,sha]of Object.entries(receipt.inputHashes))assert.equal(hash(liveDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n')),sha,file);
+ for(const platform of ['win32','linux']){assert.equal(liveTimings.js[platform][defectActorPlanningKey],undefined);assert.equal(liveJsPlanningWeights([defectActorPlanningKey],platform)[defectActorPlanningKey],50000);}
+});
+
+
+test('complete current Defect Actor Full38 inventory fits original Windows18 POSIX15 budgets including the new floor and unchanged reserve',t=>{
+ // Immutable pr618 receipt; the combined raw tree is verified separately below.
+ const slice=sliceTools('pr618');
+ const currentLua=()=>[...closeoutCiProof.targets.pr618.luaInventory];
+ const diskReadFileSync=slice.read,liveDiskReadFileSync=slice.read,currentReadFileSync=slice.read,actualDiskReadFileSync=slice.read;
+ const discoverJs=slice.inventory,liveDiscoverJs=slice.inventory,actualDiscoverJs=slice.inventory;
+ const actualCurrentTimings=slice.timings,liveTimings=slice.timings;
+ const currentJsPlanningWeights=slice.weights,currentJsShard=slice.shard,actualJsPlanningWeights=slice.weights,actualJsShard=slice.shard;
+ const liveJsPlanningWeights=slice.weights,liveJsShard=slice.shard;
+ const jointCiInventoryAt=(paths,target,reader=slice.read)=>nativeCloseoutJointInventory(paths,target,reader,'pr618');
+
+ const js=liveDiscoverJs(),lua=currentLua();
+ assert.equal(js.length,835);assert.equal(lua.length,1415);
+ assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:18},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
+ assert.equal(currentFullQualityJobs.length,38);
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const loads=liveJsShard(js,`1/${count}`,platform).loads;
+  const jsBins=Array.from({length:count},(_,i)=>liveJsShard(js,`${i+1}/${count}`,platform).files);
+  assert.deepEqual(jsBins.flat().sort(),[...js].sort());assert.equal(new Set(jsBins.flat()).size,js.length);
+  let combined=loads;
+  if(platform==='win32'){
+   const planning={...liveTimings,windowsJsShardMs:loads};
+   const bins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,planning,2));
+   assert.deepEqual(bins.flat().sort(),[...lua].sort());assert.equal(new Set(bins.flat()).size,lua.length);
+   const cost=f=>liveTimings.luaShard[f]??liveTimings.lua[f]??liveTimings.unknownLuaMs,safety=f=>liveTimings.lua[f]??liveTimings.unknownLuaMs;
+   combined=bins.map((bin,i)=>{const pool=[0,0];for(const f of bin.filter(f=>safety(f)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(f);return loads[i]+bin.filter(f=>safety(f)>=10000).reduce((sum,f)=>sum+cost(f),0)+Math.max(...pool);});
+  }
+  const forecast=Math.max(...combined)+60000;
+  t.diagnostic(`${platform} complete current Actor forecast ${forecast} ms; unchanged budget ${budget} ms; no hosted Full pass claimed`);
+  assert.ok(forecast<budget,`${platform} complete current work must fit original budget with 60-second reserve`);
+ }
+});
+
+test('combined closeout validates raw current sources and complete Full discovery independently of immutable slice views',t=>{
+ const files=nativeCloseoutDiscover();
+ assert.deepEqual(files,closeoutCiProof.inventory,'every current test remains in raw discovery');
+ assert.equal(new Set(files).size,files.length);
+ assert.equal(files.length,854);
+ assert(files.includes('tests/lumine-idle.test.mjs'),'approved idle remains in complete raw Full discovery');
+ const lua=liveCloseoutLua();assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
+ for(const file of lua)assert.equal(hash(nativeCloseoutRead(file,'utf8').replaceAll('\r\n','\n')),closeoutCiProof.luaHashes[file],file);
+ const rawCalibration=nativeCloseoutRead('tests/ci-complete-calibration.test.mjs','utf8');
+ for(const view of Object.keys(closeoutCiProof.targets))for(const file of ['config/architecture.json','src/lua/abyss_ui.lua']){
+  const source=nativeCloseoutRead(file,'utf8');
+  assert.equal(preCloseoutCiSource(file,source,view),source,'CI views cannot intercept production owner authorization: '+view+':'+file);
+  assert.equal(preCurrentCiPlacementSource(file,source),source,'CI placement cannot intercept production owner authorization: '+file);
+  assert.equal(preCombinedPlanningSource(file,source),source,'CI planning cannot intercept production owner authorization: '+file);
+ }
+ for(const view of ['defectReceipt','formationReceipt','officialFirstReceipt','officialFlowReceipt']){
+  assert.equal(jointCiMatches('tests/ci-complete-calibration.test.mjs',rawCalibration,view),false);
+  assert.equal(jointCiSourceAt('tests/ci-complete-calibration.test.mjs',rawCalibration,view),rawCalibration,'wrong scope preserves actual raw source');
+ }
+ for(const [path,id]of Object.entries(closeoutCiProof.current)){
+  if(id===null)continue;
+  const source=nativeCloseoutRead(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(source),id,'raw current source: '+path);
+  for(const view of Object.keys(closeoutCiProof.targets)){
+   for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(preCloseoutCiSource(path,foreign,view),foreign,path+'/'+view);
+   for(const unknown of ['__proto__','constructor','foreign/'+path])assert.equal(preCloseoutCiSource(unknown,source,view),source);
+  }
+ }
+ for(const [platform,count]of [['win32',18],['linux',15]]){
+  const bins=Array.from({length:count},(_,i)=>rawCurrentJsShard(files,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),files,'raw Full covers each file on '+platform);
+  assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,files.length);
+  const loads=bins[0].loads;let combined=loads;
+  if(platform==='win32'){
+   const luaBins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...rawCurrentTimings,windowsJsShardMs:loads},2));
+   assert.deepEqual(luaBins.flat().sort(),lua);assert.equal(new Set(luaBins.flat()).size,lua.length);
+   const cost=file=>rawCurrentTimings.luaShard[file]??rawCurrentTimings.lua[file]??rawCurrentTimings.unknownLuaMs;
+   const safety=file=>rawCurrentTimings.lua[file]??rawCurrentTimings.unknownLuaMs;
+   combined=luaBins.map((bin,i)=>{
+    const pool=[0,0];
+    for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);
+    return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);
+   });
+  }
+  const forecast=Math.max(...combined)+60000,budget=platform==='win32'?1800000:1200000;
+  assert.ok(forecast<budget,platform+' final complete workload and reserve fit unchanged budget');
+  t.diagnostic(`${platform} final ${files.length}JS/${lua.length}Lua forecast ${forecast}ms < ${budget}ms; actual hosted completion remains separate`);
+  for(const file of files)assert(rawCurrentJsPlanningWeights([file],platform)[file]>=rawCurrentTimings.unknownJsMs||rawCurrentTimings.js[platform][file]>0);
+ }
+ for(const view of Object.keys(closeoutCiProof.targets)){
+  if(closeoutCiProof.targets[view].scope==='workflow-only'){
+   assert.deepEqual(Object.keys(closeoutCiProof.targets[view].files),['.github/workflows/quality.yml'],'workflow-only view has no production or test sources');
+   let reads=0;
+   for(const paths of [files,[...files,'tests/foreign.test.mjs'],[...files,files[0]],files.slice(1)]){
+    assert.throws(()=>closeoutInventory(paths,view,()=>{reads++;throw Error('unexpected inventory read');}),/workflow-only views cannot project test inventories/);
+   }
+   assert.equal(reads,0,'workflow-only inventory rejection precedes every source read');
+   continue;
+  }
+  assert.throws(()=>closeoutInventory([...files,'tests/foreign.test.mjs'],view),/inventory/);
+  assert.throws(()=>closeoutInventory([...files,files[0]],view),/inventory/);
+  const added=files.find(path=>!closeoutCiProof.targets[view].inventory.includes(path));
+  if(added){
+   assert.throws(()=>closeoutInventory(files.filter(path=>path!==added),view),/inventory/);
+   assert.throws(()=>closeoutInventory(files,view,(path,encoding)=>nativeCloseoutRead(path,encoding)+(path===added?'\n':'')),/added inventory source/);
+  }
+ }
+});
+
+test('noncombat immutable added inventory keeps its full source and unknown-cost rejection checks',()=>{
+ const slice=sliceTools('pr623'),current=slice.inventory(),actualCurrentTimings=slice.timings;
+ const jointCiInventoryAt=(paths,target)=>nativeCloseoutJointInventory(paths,target,slice.read,'pr623');
+ const currentJsPlanningWeights=slice.weights;
+ for(const f of noncombatAddedTests){
+  assert(current.includes(f));
+  assert.throws(()=>jointCiInventoryAt(current.filter(p=>p!==f),'officialAssetsFlow'),/inventory/);
+  assert.throws(()=>jointCiInventoryAt([...current,f],'officialAssetsFlow'),/inventory/);
+  for(const platform of ['win32','linux']){
+   assert.equal(actualCurrentTimings.js[platform][f],undefined,'new test is unmeasured');
+   assert.equal(currentJsPlanningWeights([f],platform)[f],actualCurrentTimings.unknownJsMs);
+  }
  }
 });

@@ -1,0 +1,58 @@
+✔ [historical 98fef source contract] exact feature/fallback inverse binds every current source and restores complete baseline identities (884.569739ms)
+✔ [historical 98fef source contract] unknown, partial, duplicate, cross-path and reordered feature sources remain exposed (2087.771055ms)
+✔ [historical 98fef source contract] recognized feature hosts bind every added owner and reject missing or drifting linked sources (1290.09896ms)
+✔ [historical 98fef source contract] feature normalization precedes both frozen art/performance and ready-art source chains (938.150749ms)
+✔ [historical 98fef source contract] combined feature and old-module retirement validates all owners before removing any destination (465.644075ms)
+✔ [historical 98fef source contract] feature retirement revalidates destinations after preparation and before any removal (262.041163ms)
+✔ [historical 98fef source contract] combined retirement revalidates feature and catalog owners before old-module deletions (268.726673ms)
+✔ [historical 98fef source contract] combined retirement rejects same-byte catalog retargeting before any deletion (221.227494ms)
+✔ [historical 98fef source contract] feature retirement rejects live roots and symlink aliases without touching live source (238.572906ms)
+✔ current feature and history entries authenticate supported intermediates and freshly read every raw owner (72100.162218ms)
+✔ current feature entries preserve unsupported input bytes and never use unknown input to authorize raw reads (52.426307ms)
+✖ pre-component unsupported feature and art compositions expose their exact linked identities (7.792303ms)
+✔ current feature consumers reject the exact first unsupported component-era linked owner (2.30326ms)
+✔ [historical 98fef source contract] current combined retirement checks catalog identity before preparation or removal and preserves every owner (515.418013ms)
+✔ [historical 98fef source contract] current combined retirement rejects same-byte catalog retargeting before any owner is removed (334.694565ms)
+✔ original helper closure rejects changed reused or embedded bytes and wrong provenance (20.969527ms)
+✔ [historical 98fef source contract] all archived beta hosts and both destinations bind current delivery without changing frozen witnesses (411.153064ms)
+✔ [historical 98fef source contract] warm beta projections still re-read linked owners and reject unknown or missing bytes (296.17197ms)
+✔ [historical 98fef source contract] dynamic-monster historical UI tests retreat only exact reviewed whole sources (202.631891ms)
+✔ [historical 98fef source contract] public feature projections validate caller-owned beta sources in both target modes after warming (249.05372ms)
+✔ [historical 98fef source contract] beta composition retains both complete source targets and immutable prior witnesses (609.850312ms)
+✔ [historical 98fef source contract] recognized beta hosts validate every added owner on every invocation (233.203063ms)
+✔ [historical 98fef source contract] beta retirement checks all owners twice and never deletes partially (243.011784ms)
+✔ [historical 98fef source contract] outer retirement refuses changed beta owners before deleting an older source owner (321.074635ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 23
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 88307.621504
+
+✖ failing tests:
+
+test at tests/art-feature-source-inverse.test.mjs:294:1
+✖ pre-component unsupported feature and art compositions expose their exact linked identities (7.792303ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(error.message.startsWith('unreviewed beta linked owner; linked source drift: '+featureOwner))
+  
+      at Object.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-26/tests/art-feature-source-inverse.test.mjs:303:3)
+      at expectedException (node:assert:578:17)
+      at expectsError (node:assert:703:21)
+      at strict.throws (node:assert:759:3)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-26/tests/art-feature-source-inverse.test.mjs:301:62)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

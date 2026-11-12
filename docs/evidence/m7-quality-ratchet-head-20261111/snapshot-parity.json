@@ -1,0 +1,13 @@
+{
+  "head": "ae27b9467a8d26a676db61abc01144afe35b5e12",
+  "modules": 345,
+  "bytes": 2813915,
+  "snapshotMs": 51.922717999999975,
+  "edges": 1953,
+  "scc": [
+    68,
+    11,
+    2
+  ],
+  "errors": []
+}

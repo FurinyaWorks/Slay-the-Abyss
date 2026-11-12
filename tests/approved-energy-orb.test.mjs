@@ -1,3 +1,6 @@
+// Historical/default skin configuration and energy behavior, not a visual
+// quality verdict. Official generated HUD and real-picture acceptance are
+// covered separately by official-assets-runtime and verify:ui.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';

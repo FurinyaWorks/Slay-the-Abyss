@@ -1,0 +1,51 @@
+{
+  "kind": "actual-stage-visual-not-performance",
+  "buildId": "52aee9f0-9c5e-40dd-a39e-6715383cda5f",
+  "fixtureSha256": "86653a48a00b51064802bf65ddb6aa47922bf762c0b0de1053d236db89ef516a",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "sid": "qa-stage-visual-1794360834592",
+  "shots": [
+    {
+      "name": "01-whole",
+      "checks": {},
+      "sha256": "5931d75247e2b2a31df51a3a95ee80a56aee248fadef880475364fd3efedea59"
+    },
+    {
+      "name": "02-defend-hover",
+      "checks": {},
+      "sha256": "3fbe2d2e342507196e7801de055eb84faba0af5e6720d74b4a578b1c346d1693"
+    },
+    {
+      "name": "03-bash-centred-aim",
+      "checks": {},
+      "sha256": "ed70d90c06781bd0f6397ee13f48df911ebf7979361de54bbd4e25adc5e0d833"
+    },
+    {
+      "name": "04-exhaust-offering",
+      "checks": {},
+      "sha256": "673fcf1d872296f22bf0517097a59d92c82e0073dbc0938cbc6e248f84ee2b8f"
+    },
+    {
+      "name": "05-discard-strike",
+      "checks": {},
+      "sha256": "d095604f17665967b494d9ceb9a7c576747d9a67081d315b9961a50db151b9f9"
+    },
+    {
+      "name": "06-draw-next-turn",
+      "checks": {},
+      "sha256": "93c6984a25bbc2de6afd28d17cab1d73f2b64c4b189dbef375e71d84a8c4ef29"
+    }
+  ],
+  "errors": [],
+  "status": "captured-awaiting-review",
+  "stop": {
+    "running": false,
+    "tree": [],
+    "logs": []
+  },
+  "visualReview": {
+    "reviewed": true,
+    "scope": "all six actual PNGs inspected; materials/arrow remain approximate; not performance acceptance",
+    "reviewer": "Codex main"
+  }
+}

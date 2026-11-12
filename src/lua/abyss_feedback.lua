@@ -19,6 +19,14 @@ local OVERSHOOT, SWELL = 1 / 3, 1 / 6
 -- Theme hit-stop belongs to the independent VFX clock, never the action gate.
 local DAMAGE_DURATION, AREA_DURATION, POST_ATTACK_WAIT = 0.1, 0.25, 0.1
 local skipDamageWait = {brilliance = true, flechettes = true, barrage = true}
+-- These pinned red-card use() methods queue one DamageAction first. Cards with
+-- pre-hit VFX/waits, area/random or repeated hits are deliberately excluded.
+local immediateSingleDamage={strike=true,bash=true,anger=true,pommel_strike=true,headbutt=true}
+local function sourceSingleDamage(style)
+    local context=style and style.context
+    return Theme.presentationProfile=='official-assets-first' and context and context.kind=='play'
+        and immediateSingleDamage[context.cardId]==true and not context.area and #context.hits==1
+end
 local function n(value) return string.format("%.0f", value or 0) end
 local function clamp(x) return x < 0 and 0 or x > 1 and 1 or x end
 local function easeOut(x) x = clamp(x) return 1 - (1 - x) * (1 - x) end
@@ -108,12 +116,22 @@ local function classify(queue, catalog)
     return styles
 end
 
+local function damageDuration(style,fastMode)
+        local context = style.context or {}
+        -- The .1 DamageAction delay now precedes this source group's contact;
+        -- only its separate non-FAST WaitAction remains after the hit.
+        if sourceSingleDamage(style) then return fastMode and 0 or POST_ATTACK_WAIT end
+        local base = style.form == "area" and context.cardId ~= "whirlwind" and AREA_DURATION or DAMAGE_DURATION
+        local skip = fastMode or skipDamageWait[context.cardId] and style.form ~= "area"
+        return base + (not skip and POST_ATTACK_WAIT or 0)
+end
+
 local function duration(entry, style, fastMode)
     local kind = entry.kind
     if kind == "action_wait" then
         return fastMode and math.min(entry.detail.seconds, 0.1) or entry.detail.seconds
     end
-    if kind == "play" then return T.base end
+    if kind == "play" then return sourceSingleDamage(style) and DAMAGE_DURATION or T.base end
     if kind == "player_death" then return T.playerDeath end
     if banners[kind] then return T.banner end
     if kind == "intent" then return T.enemyActionGap end
@@ -124,10 +142,7 @@ local function duration(entry, style, fastMode)
     -- Area hits land on consecutive rendered frames: one shockwave rippling across the row.
     if kind == "damage" and style.form == "area" and style.hit < style.hits then return 0 end
     if kind == "damage" then
-        local context = style.context or {}
-        local base = style.form == "area" and context.cardId ~= "whirlwind" and AREA_DURATION or DAMAGE_DURATION
-        local skip = fastMode or skipDamageWait[context.cardId] and style.form ~= "area"
-        return base + (not skip and POST_ATTACK_WAIT or 0)
+        return damageDuration(style,fastMode)
     end
     if hurts(kind) or kind == "block" or kind == "status" or kind == "heal" then return T.base end
     return 0
@@ -300,7 +315,7 @@ function M.new(stage, platform, present, complete)
         if d.target ~= "player" then for _, value in ipairs(old.enemies) do if value.id == d.target then previous = value break end end end
         return previous
     end
-    local function playStep(d)
+    local function playStep(d,_kind,style)
         local card = overlay:GetChild("playedCard")
         local definition = self.shadow.catalog.cards[d.cardId]
         local display = self.presentation[d.cardId]
@@ -309,6 +324,7 @@ function M.new(stage, platform, present, complete)
         card:GetChild("art"):SetImage(platform.imageSource, Theme.icon.cardArt[definition.type] or Theme.icon.cardArt.status)
         local targetsEnemy,area,attack=cardShape(definition)
         cardFlight(d,targetsEnemy,area)
+        self.flight.duration=sourceSingleDamage(style) and DAMAGE_DURATION or T.base
         self.cardFlow:playing(d,self.flight)
         card:SetAnchoredPosition(self.flight.x, self.flight.y) card:SetLocalScale(1, 1, 1)
         card:SetVisible(true) overlay:SetAsLastSibling() sound("player_action")
@@ -613,6 +629,20 @@ function M.new(stage, platform, present, complete)
         if #self.queue == 0 then finish() return end
         self.index=0;advanceQueue()
     end
+    local function paintCast()
+            if self.cast then
+                local cast=self.cast
+                local total=cast.kind=='play' and T.base or T.enemyActionGap
+                local p=clamp(self.elapsed/total)
+                local x,y,alpha=SkillFeedback.travel(cast.family,p,cast.sx,cast.sy,cast.tx,cast.ty)
+                local sweep=overlay:GetChild('sweep')
+                sweep:SetVisible(alpha>0)
+                sweep:SetAnchoredPosition(x,y)
+                sweep:SetLocalScale(S.xl/(L.enemyRow.xTo-L.enemyRow.xFrom+L.enemyRow.bossPortrait),0.5,1)
+                sweep.localRotationZ=cast.family=='bind' and p*180 or 0
+                tint(sweep,cast.family=='poison' and C.positive or cast.family=='bind' and C.debuff or C.block,alpha)
+            end
+    end
     function self.update(_owner,dt)
         if not self.idleBattle and not self.busy and next(self.effects) == nil and next(self.poses) == nil and next(self.dying) == nil and next(self.escaping)==nil and not self.sweep and not self.dissolve and not self.cardFlow:busy() then return end
         local ok, failure = pcall(function()
@@ -630,8 +660,8 @@ function M.new(stage, platform, present, complete)
             end
             if self.busy and self.current.kind == "play" then
                 -- Lift and gather, then accelerate into the target: arrival is the contact frame.
-                local p, lift = clamp(self.elapsed / T.base), T.anticipation
                 local card, f = overlay:GetChild("playedCard"), self.flight
+                local p, lift = clamp(self.elapsed / (f.duration or T.base)), T.anticipation
                 if p < lift then
                     local q = easeOut(p / lift)
                     card:SetAnchoredPosition(f.x, f.y + S.l * q)
@@ -673,18 +703,7 @@ function M.new(stage, platform, present, complete)
                 tint(sweep, C.geo, 1 - easeIn(p))
                 if p >= 1 then self.sweep = nil end
             end
-            if self.cast then
-                local cast=self.cast
-                local total=cast.kind=='play' and T.base or T.enemyActionGap
-                local p=clamp(self.elapsed/total)
-                local x,y,alpha=SkillFeedback.travel(cast.family,p,cast.sx,cast.sy,cast.tx,cast.ty)
-                local sweep=overlay:GetChild('sweep')
-                sweep:SetVisible(alpha>0)
-                sweep:SetAnchoredPosition(x,y)
-                sweep:SetLocalScale(S.xl/(L.enemyRow.xTo-L.enemyRow.xFrom+L.enemyRow.bossPortrait),0.5,1)
-                sweep.localRotationZ=cast.family=='bind' and p*180 or 0
-                tint(sweep,cast.family=='poison' and C.positive or cast.family=='bind' and C.debuff or C.block,alpha)
-            end
+            paintCast()
             local shakes, ids = {}, {}
             if self.idleBattle and self.shadow then
                 if self.shadow.player.hp>0 then ids.player=true end

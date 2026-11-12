@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-10T22:28:37.965Z",
+  "node": "v24.22.1",
+  "git": "git version 2.52.0",
+  "selfHostedBodyIdentical": true,
+  "sourceHashes": {
+    ".github/workflows/quality.yml": "1f1b3ee579cfae0abcc3910f46ffa9858d0bfc80f8192c2cd207097876e28bfc",
+    "scripts/check-network-policy.mjs": "d100c4ce8b3638076db0b35b28af87fb4cd7c6714d08ef1f41234cf60be7581b",
+    "tests/ci-downloads.test.mjs": "fd03cbb378f7ba3c9228805bdb72802da6902d2c1e7b6ca4d5d8933be17bffde"
+  },
+  "preparationBindingNegativeControls": {
+    "removed": [
+      "Hosted empty-database guard must bind the real runner environment"
+    ],
+    "wrongValue": [
+      "Hosted empty-database guard must bind the real runner environment"
+    ]
+  },
+  "smallFetch": {
+    "default": {
+      "packs": 0,
+      "bytes": 0
+    },
+    "retained": {
+      "packs": 1,
+      "bytes": 202
+    }
+  },
+  "symlinkRejected": true,
+  "cliSummaryFailureNonzero": true
+}

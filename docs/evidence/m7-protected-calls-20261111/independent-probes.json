@@ -1,0 +1,124 @@
+[
+  {
+    "name": "lexical local initializer uses outer builtin",
+    "source": "local pcall=pcall(function() return require(\"b\") end)",
+    "reviewedDeferred": false,
+    "runtimeRequireCalls": 1,
+    "errors": [
+      "Stale deferred import exception: a -> b",
+      "Dependency cycle: a -> b -> a"
+    ]
+  },
+  {
+    "name": "later local declaration does not shadow earlier use",
+    "source": "pcall(function() return require(\"b\") end); local pcall=function(fn) return fn end",
+    "reviewedDeferred": false,
+    "runtimeRequireCalls": 1,
+    "errors": [
+      "Stale deferred import exception: a -> b",
+      "Dependency cycle: a -> b -> a"
+    ]
+  },
+  {
+    "name": "inner local leaves outer builtin intact",
+    "source": "do local pcall=function(fn) return fn end end; pcall(function() return require(\"b\") end)",
+    "reviewedDeferred": false,
+    "runtimeRequireCalls": 1,
+    "errors": [
+      "Stale deferred import exception: a -> b",
+      "Dependency cycle: a -> b -> a"
+    ]
+  },
+  {
+    "name": "repeat condition sees shadow",
+    "source": "repeat local pcall=function(fn) return true end until pcall(function() return require(\"b\") end)",
+    "reviewedDeferred": true,
+    "runtimeRequireCalls": 0,
+    "errors": []
+  },
+  {
+    "name": "numeric loop shadow",
+    "source": "for pcall=1,0 do pcall(function() return require(\"b\") end) end",
+    "reviewedDeferred": true,
+    "runtimeRequireCalls": 0,
+    "errors": []
+  },
+  {
+    "name": "xpcall handler forward local",
+    "source": "local handler; function handler() return require(\"b\") end; xpcall(function() error(\"fail\") end,handler)",
+    "reviewedDeferred": false,
+    "runtimeRequireCalls": 1,
+    "errors": [
+      "Stale deferred import exception: a -> b",
+      "Dependency cycle: a -> b -> a"
+    ]
+  },
+  {
+    "name": "shadowed xpcall still executes its own body",
+    "source": "local function xpcall(fn,handler) return require(\"b\") end; xpcall(function() end,function() end)",
+    "reviewedDeferred": false,
+    "runtimeRequireCalls": 1,
+    "errors": [
+      "Stale deferred import exception: a -> b",
+      "Dependency cycle: a -> b -> a"
+    ]
+  },
+  {
+    "name": "handler caller owner is dormant",
+    "source": "local function later() xpcall(function() error(\"fail\") end,function() return require(\"b\") end) end; return later",
+    "reviewedDeferred": true,
+    "runtimeRequireCalls": 0,
+    "errors": []
+  },
+  {
+    "name": "nested pcall handler executes synchronously",
+    "source": "xpcall(function() error(\"fail\") end,function() pcall(function() return require(\"b\") end) end)",
+    "reviewedDeferred": false,
+    "runtimeRequireCalls": 1,
+    "errors": [
+      "Stale deferred import exception: a -> b",
+      "Dependency cycle: a -> b -> a"
+    ]
+  },
+  {
+    "name": "passed callback value not called",
+    "source": "local function later() return require(\"b\") end; pcall(function(value) return value end,later)",
+    "reviewedDeferred": true,
+    "runtimeRequireCalls": 0,
+    "errors": []
+  },
+  {
+    "name": "xpcall no-error handler conservatively eager",
+    "source": "xpcall(function() end,function() return require(\"b\") end)",
+    "reviewedDeferred": false,
+    "runtimeRequireCalls": 0,
+    "errors": [
+      "Stale deferred import exception: a -> b",
+      "Dependency cycle: a -> b -> a"
+    ]
+  },
+  {
+    "name": "known limitation multi-return handler",
+    "source": "local function both() return function() error(\"fail\") end,function() return require(\"b\") end end; xpcall(both())",
+    "reviewedDeferred": true,
+    "runtimeRequireCalls": 1,
+    "errors": []
+  },
+  {
+    "name": "known limitation global alias",
+    "source": "local protect=pcall; protect(function() return require(\"b\") end)",
+    "reviewedDeferred": true,
+    "runtimeRequireCalls": 1,
+    "errors": []
+  },
+  {
+    "name": "known limitation overwritten global",
+    "source": "pcall=function(fn) return fn end; pcall(function() return require(\"b\") end)",
+    "reviewedDeferred": false,
+    "runtimeRequireCalls": 0,
+    "errors": [
+      "Stale deferred import exception: a -> b",
+      "Dependency cycle: a -> b -> a"
+    ]
+  }
+]

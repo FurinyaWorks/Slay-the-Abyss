@@ -1,0 +1,22 @@
+✔ component alias repair preserves exact old CI sources without accepting drift or foreign paths (112.716101ms)
+✔ component UI CI projection admits only complete current sources and preserves foreign drift (50.286785ms)
+✔ post281 CI fixes preserve the immutable71-source foundation and every exact foreign-source boundary (6.593284ms)
+✔ Silent final source-contract floor preserves the observed complete file cost above the unknown minimum (2.736834ms)
+✔ Defect final CI outer epoch preserves complete predecessor costs and exact source receipt inputs (72.113758ms)
+✔ Defect final floors authenticate complete fresh local files without inventing hosted observations (163.891151ms)
+✔ Encounter formation CI outer epoch preserves every prior cost and admits only complete current input identities (21.929295ms)
+✔ Encounter formation floors authenticate complete recurring files without fabricating hosted or repeated retained-scenario costs (31.419476ms)
+✔ official candidate CI epoch preserves exact historical bytes and rejects partial or unrelated drift (30.890126ms)
+✔ official candidate floors authenticate complete serial runs and register only current inventory (329.221152ms)
+✔ complete official flow CI epoch accepts only exact sources and monotonically extends the published checkpoint (65.708687ms)
+✔ current official flow floors bind four complete local files while long campaign remains standalone (295.316073ms)
+✔ Defect Actor cost layer accepts only complete current bytes and authenticates the sole added inventory (28.403831ms)
+✔ Defect Actor floor binds the complete 18-case local run and actual behavior sources without inventing a wall clock or hosted data (0.963596ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17605.88327

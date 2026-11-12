@@ -1,0 +1,181 @@
+{
+  "kind": "headless-Simulator-trusted-touch",
+  "service": {
+    "stage": "阶段评审，未验收",
+    "buildId": "d3b4c46e-acf0-454d-8193-4618d548fbae",
+    "gilSha256": "7f13c927697563bce1e4d288bf1ff899c73018742bb95b29ea1d4e41e5a48fd6",
+    "saveSha256": "e6d3abaf6a5bd701ad33c5a023eb68e67b23deb00a79292e47edef9ec75aff96",
+    "sourceCommit": "50a5dae348160d51f101a8721f39404c604ecd7e",
+    "sourceDirty": false,
+    "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+    "backendExtension": "private typed fullgraph snapshot; not official client",
+    "cases": [
+      {
+        "name": "ten",
+        "file": "hud.save.json",
+        "title": "双敌十牌 · UI修复候选",
+        "description": "拖攻击牌检查方向、换敌、自由瞄准与取消。",
+        "sha256": "520483100e84bd3f42488e50e165cadd29c5d4cdb34c6ab8f1eb4f0580cbb077",
+        "archive": "review-ten.save.json",
+        "session": "battle-stage-ten"
+      }
+    ],
+    "url": "http://127.0.0.1:60810",
+    "pid": 9244,
+    "backendURL": "http://127.0.0.1:60809",
+    "ready": true
+  },
+  "archive": "review-ten.save.json",
+  "device": "mobile-16-9",
+  "officialClient": false,
+  "physicalPhone": false,
+  "shots": [
+    {
+      "name": "ready",
+      "sha256": "80f7d486dd7460e050ad96154a574a35b3c97d214d93e19b744a11e2327bf476",
+      "frame": 48
+    },
+    {
+      "name": "lock-first",
+      "sha256": "bd43423fd472efa66d540a956262d87b355fb27744c3c9347b4ebbf42aef5bf3",
+      "frame": 94
+    },
+    {
+      "name": "lock-second",
+      "sha256": "b55c13639f8d89987d33085d59bf6fef5887aee4e4a07a1aa9521a4b4e43fa02",
+      "frame": 126
+    },
+    {
+      "name": "free",
+      "sha256": "0fc852be2f8f95edbcdde0272059944c9cdace9ace29df5aafd14abbeedb2f23",
+      "frame": 163
+    },
+    {
+      "name": "cancel",
+      "sha256": "57757488eadd532e0440cb78bbd1670e14b95acfd5f22a18f221a9e0b3efcbb3",
+      "frame": 204
+    },
+    {
+      "name": "before-release",
+      "sha256": "043f3c62302758d61f92a4b2b9b4475e9c8e800cc668707640004ba9e3e08db1",
+      "frame": 288
+    },
+    {
+      "name": "after-play",
+      "sha256": "325d592d5df7fe0451d648d181b5e887f85a5c0957b5d557b56e262fa47f553b",
+      "frame": 342
+    }
+  ],
+  "errors": [],
+  "firstObservedReadyMs": 17811.653,
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "platform": "TOUCHSCREEN",
+    "device": "Mobile"
+  },
+  "canvasRect": {
+    "x": 210,
+    "y": 176,
+    "width": 1280,
+    "height": 720
+  },
+  "points": {
+    "pickup": {
+      "x": 638.4444444444445,
+      "y": 774.3563937183208
+    },
+    "target1": {
+      "x": 1193.3333333333333,
+      "y": 627.3333333333333
+    },
+    "target2": {
+      "x": 1016.6666666666665,
+      "y": 637.3333333333334
+    }
+  },
+  "play": {
+    "energy": "2/3",
+    "lastSlotVisible": false
+  },
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_BUILD d3b4c46e-acf0-454d-8193-4618d548fbae",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT avatar phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_RUN seed=42 source=explicit",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "BATTLE_PREVIEW_FIXTURE ready hand=10 enemies=2",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=ready owned=59 reason=nil",
+      "time": 0.5511999999955297
+    }
+  ],
+  "status": "captured-awaiting-human-and-physical-phone-review",
+  "stop": {
+    "running": false,
+    "tree": [],
+    "logs": []
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "backlog.log": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+  "baseline-contrast.log": "893ef39e753649c3d16a7e2fa4eca4ef464a820b8a8ed3a340ca94730eb76a7a",
+  "behavior.log": "70151215b39ea26fd3165607d749ece9170df13a105418f25d5bf211f5743282",
+  "delivery-summary.json": "240ee7ffc08959cd6bcd505016700f4ce26b592c96b1e54a1523a21952213ad8",
+  "diff.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "first-focused.log": "c5a83ab0c600a204eb745f572ce4cbb71e9e26bfc8dd5297320781ddad3188e2",
+  "guidance.log": "af2b7464920286d7e2a83524802dfaab6533efcd97570f630eb8344030927915",
+  "independent-probe.mjs": "e936a95fbb2954abd65d37f873e42db6eb7e5744263239468c9499fa1e093869",
+  "independent-review.json": "b040acad0ed4d257faa34336031f0c301cab10e59d5986f3d69a2da48bec88c3",
+  "independent-structure-diff.json": "7a2a085805c1b0b8a1168079b6266f156224d9a103da26c4fd1b4b7b3de420b2",
+  "inputs-after.json": "0989f4878b508a9be2a2abc4f61d24da11abf319b7afb77a633c797599b329b7",
+  "inputs-before.json": "0989f4878b508a9be2a2abc4f61d24da11abf319b7afb77a633c797599b329b7",
+  "network.log": "4aab41d2dd6f678bd9cf6b0a9fcdb5e8fba0023181640e02685af361f3646faa",
+  "repair.patch": "a2596d337a2d548766cc710b867ffa41e773b94b66bf8707d2ca8fcfb6ae9e99",
+  "syntax.log": "428404b2b437d79c58abbb235c75251e8c750236bbddc10c71280bdcc64eafae",
+  "validate.py": "9cae9e83b2ea83b391acf449bff8d52d2a1faaadc2e98f6f741dfe2ec476b31d",
+  "validation.json": "fcd4fec2c9fd983c78d111060cdf6a01cb0dd83e0518e1eb1c00ca583be39137"
+}

@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {readAcceptedPr323Source} from './helpers/pr323-accepted-source-inverse.mjs';
+import {preAcceptedPr323Source} from './helpers/pr323-accepted-source-inverse.mjs';
+import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 import {canSpawn, drawRelic, rollTier, javaShuffle, screenlessReject, nonCampfireReject, tiers} from '../tools/oracles/sts1_relic_queues.mjs';
 
 const read = path => readFileSync(path, 'utf8');
@@ -107,7 +108,7 @@ test('chosen-class local bindings cannot disappear, cross classes or alter the I
 test('historical project effects retain the exact original mapped and missing sets', () => {
   // This fixed catalog records the complete pre-mobile-QA definition boundary.
   // Current effects/channels remain exercised by the live missing-relic suites.
-  const data = JSON.parse(readAcceptedPr323Source('data/relics.json')).relics;
+  const data = JSON.parse(preAcceptedPr323Source('data/relics.json',closeoutRead('pr620')('data/relics.json','utf8'))).relics;
   const mapped = catalog.relics.filter(row => row.projectId);
   const fallbacks = catalog.fallbacks.filter(row => row.projectId);
   const fallbackIds = [...new Set(fallbacks.map(row => row.projectId))];

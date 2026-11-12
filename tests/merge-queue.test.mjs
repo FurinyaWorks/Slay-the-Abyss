@@ -9,6 +9,7 @@ import {impact} from '../scripts/ci-impact.mjs';
 import {qualityShardMatrices,qualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {beforeNativeMergeQueueWorkflow} from './helpers/merge-queue-workflow.mjs';
 import {admissionFixture,admissionQuery} from './helpers/merge-queue-admission.mjs';
+import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 
 const sha=c=>c.repeat(40),repo='FurinyaWorks/Slay-the-Abyss';
 function fixture(){
@@ -264,7 +265,7 @@ test('queue reuses existing Full matrix, never selects Fast, and preserves PR/pu
 });
 
 test('historical Quality projection preserves exact LF and CRLF sources',()=>{
- const live=readFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
+ const live=closeoutRead('pr620')('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
  const old=beforeNativeMergeQueueWorkflow(live);
  assert.equal(typeof old,'string');
  assert(!old.includes('  merge_group:'));
@@ -280,7 +281,7 @@ test('historical Quality projection preserves exact LF and CRLF sources',()=>{
  }
 });
 test('historical Quality projection rejects partial or changed queue wiring in LF and CRLF',()=>{
- const live=readFileSync('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
+ const live=closeoutRead('pr620')('.github/workflows/quality.yml','utf8').replaceAll('\r\n','\n');
  for(const eol of ['\n','\r\n'])for(const drift of [
   live.replace('run: node scripts/publish-merge-group.mjs --pending','run: echo skip'),
   live.replace('run: node scripts/publish-merge-group.mjs\n','run: echo skip\n'),

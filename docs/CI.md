@@ -87,6 +87,19 @@ Full 未结束时，schemaVersion 4 授权保存精确组合和 pending run，�
 
 自动入口仅用于同仓库的 develop PR，不改变 master 的 release/hotfix CI。Fork 的只读 token 不能发布新必需状态，其成果须由维护者接续到同仓库短分支后重新审查、验证；不是直接绕过门禁手动合入 fork PR。旧 run/attempt 的 planner 与 aggregate 不得覆盖新运行已写入的 pending/success。
 
+### 异步交接与失败对账
+
+**边界**：`npm run merge:auto` 完成精确 HEAD/BASE 的独审准入与原生 Auto-merge 授权、读回成功后，GitHub Merge Queue 接管后续等待、组合 Full 和 squash。Agent 不得为等待状态在会话内反复调用 `gh run view` / `gh pr checks` / `gh run watch` / `sleep`；需要诊断时只读一次当前状态，发现明确的新失败或身份变化才继续。合并排队和仓库检查由 GitHub 自行推进，不以 Codex 会话常驻为前提。
+
+**交接**：保留 PR 链接、当前精确 HEAD/BASE、原生授权结果、`build/delivery/auto-merge-*.json` 证明文件位置与下步 `verify:delivery --merged` 命令；在真正验收完成前不清理唯一证据来源/工作树，不把任务标 Done。授权证明目前是本地文件，不是 GitHub 自动持久化附件；跨机器接续缺失时必须报告证据缺失，不能用 PR 绿灯伪造预审证明。可继续其他不冲突的任务，或结束当前 Agent 会话。
+
+**恢复架构**（事件优先、低频对账兜底；需要单独实现和验收，不因本文而视为已上线）：
+
+- 事件提示：`workflow_run.completed`（Quality / Licenses）、PR 合并/出队事件，以及 develop push 的结果，用于触发轻量状态复核；事件只是一条提示，绝不单凭事件载荷授权合并或认定完成。GitHub Webhook 可能投递失败，不将“没收到通知”视为仍在运行。
+- 低频补偿：在既有巡检/编排入口以固定低频（建议每数小时，非每分钟）复核尚未收口的 PR；复核只读 GitHub 最新状态、队列成员和当前 run/attempt，比较上次已处理的状态，幂等去重。发现长期无进展时按实时 Ruleset 的 merge-queue 检查超时及 Quality 作业预算判断，不靠反复模型调用；GitHub Actions 的 `schedule` 自身也可能延迟或漏触发，不能称为严格实时保障。
+- 判定与动作：仍在正常运行/排队则静默；新失败、超时、出队、冲突、Ruleset/HEAD/BASE 变化或缺必需收据则记录阻塞及可追溯链接，再由 Agent 按风险诊断。基础设施瞬断只在有证据时做有界重试；业务失败必须修复再重审，不自动重入队、不绕过独审/原六项检查、不更改严格基线。已合入但 push Full 未完成为 `merged_pending`，须以原授权证明及当前实际合入 SHA 执行 `verify:delivery --merged` 才能报 `merged_passed`。
+- 补偿与事件共用同一套状态判定；由 PR/Backlog 与 GitHub 作为持久事实来源，勿另造第二套合并队列、守候进程、Full 回归或后台 Codex 轮询。若需要外部自动唤醒 Agent，必须另有明确的编排接收者；GitHub Actions 事件本身不会重启已退出的交互式 Codex 会话。
+
 ## 一次批准的基础设施应急合并
 
 本轮 master/develop 均无 PR bypass；下列流程保存历史批准与验证合同，不代表当前账号仍有应急合并能力。不能为赶进度自行修改保护或恢复历史豁免；正常排队与业务失败继续按原门禁处理。
@@ -135,3 +148,14 @@ checkout 默认 skip-smudge，自托管路径也显式禁用自动 smudge。仅�
 同一SHA的Full因临时runner故障失败时，保存日志、定位原因后可用GitHub原生`gh run rerun <run-id> --failed`只重跑失败作业；已有证据验证器按同run、同SHA、每个作业最新执行验证，保留前次成功作业。当前develop基线与tested组合也必须相同，基线推进后旧组合不能借用。业务失败必须修复，新SHA仍重新执行完整验证；不自动循环重试，不将旧失败记为成功。Fast仍要求当前attempt完整双平台，合并队列始终Full。
 
 两项required汇总使用`!cancelled()`：普通失败或跳过依赖仍进入原严格shell断言，整轮被取消则不再排队执行汇总，避免旧run占着同PR并发组阻塞新候选。取消没有成功资格。已卡住的历史运行在核对精确过期HEAD并保留证据后，可用GitHub原生force-cancel清理，不反复取消或重跑业务。
+
+
+## 既有媒体的精确 LFS 存储与完整比较
+
+2026-11-12 合流冷检出为218235384字节，原128MiB门禁据实拒绝。既有738条PNG/JPEG/GIF路径改为LFS，705个不同对象合计117369505字节；这是既有原字节的存储迁移，不是新增素材、授权或运行时容量。`config/ci-media-lfs.json` 固定每路径原SHA、大小、原许可类别及source9ed/base3a的真实旧binary Git OID。原六PNG的5983528字节上限、四预览组、原资产校验与所有许可正文不变。新清单只允许当前精确对象，不抓历史、不用目录通配；对象总量按OID去重，不冒称HTTP/TCP或费用上限。
+
+Windows hosted仍从空Git数据库检出精确SHA、depth2及双父，增加blob:none。pack guard前取全实际parent/比较base中缺失的非清单blob，保留fetch pack并禁止自动维护；新增missing对象实际原字节总量超过8MiB即失败。原128MiB原样计算全部检出及预取pack；之后禁止lazy fetch。数据量断言是下载后验，不冒充传输前限流。安装式runner的原增量128MiB检查和有界long-push后备保留。
+
+二进制转换不能靠漏读旧对象来跳过有效空白检查。`ci-whitespace.mjs` 鲜查全部before/after/index路径的cached及working属性，排除集合只能恰为清单；每路径必须是精确普通100644指针，旧侧只能是该路径已实读确认前8000字节含NUL的冻结旧OID或当前pointer，且旧diff属性不得强制text。指针采用完整字节验证，其余所有文本仍执行原git diff --check及rename语义。未知旧OID、额外排除属性、symlink mode或指针漂移均拒绝。冷partial clone负控证明旧binary保持missing，文本空白仍失败，比较后没有新增未计量pack。
+
+Full、Fast、Quick、Licenses及presentation在实际读取媒体前恢复并逐文件验证原始SHA和大小；无token的缓存命中同样重验索引/模式/内容。只读token仅放Git子进程，不持久化或回显认证信息；关闭额外重试，准备共用90秒期限及原步骤时限。metadata导入不依赖可选globSync，实际分片仍在固定Node24.18.0运行，presentation显式同版。新实现不新增job、worker或放宽测试/官方容量门槛。

@@ -4,6 +4,15 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 import {loadNativeUiEncoder} from './native-ui-encoder.mjs';
 import {embeddedScripts} from './native-script-inventory.mjs';
+export function previewImageMaskFields(spec){
+ return {enableMask:!!(spec.mask||spec.fill||spec.feather||spec.invertMask),enableFill:!!spec.fill,
+  enableSoftEdge:!!spec.feather,reverseMaskArea:spec.invertMask===true,
+  // The browser renderer accepts singular Pixel; Pixels silently means percent.
+  softEdgeMode:spec.feather?.pixels?'Pixel':'Percentage',
+  softEdgeWidthX:spec.feather?.pixels?.[0]??8,softEdgeWidthY:spec.feather?.pixels?.[1]??8,
+  horizontalSoftRange:spec.feather?.percent?.[0]??85,verticalSoftRange:spec.feather?.percent?.[1]??85};
+}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
 const root=process.cwd(),candidatePath=path.resolve(process.argv[2]??''),out=path.resolve(process.argv[3]??'');
 if(process.argv.length!==4||!out.startsWith(path.resolve('.artifacts')+path.sep)||fs.existsSync(out))throw Error('Usage: node scripts/native-candidate-preview.mjs <candidate.json> <new .artifacts/output>');
 fs.mkdirSync(out,{recursive:true});
@@ -68,7 +77,7 @@ function node(spec,ids,trail,templateRoot=false){
   if(kind==='textwindow'){n.interactable=t.scrollable!==false;n.showScrollBar=t.scrollbar!==false;}
  }
  if(kind==='image'){
-  Object.assign(n,{imageSource:'StaticReference',imageType:spec.image>100006?cap(spec.imageType??'basic'):null,imageId:spec.image??null,imageColor:argb(spec.colour,spec.opacity??1),enableMask:!!(spec.mask||spec.fill||spec.feather||spec.invertMask),enableFill:!!spec.fill,enableSoftEdge:!!spec.feather,reverseMaskArea:spec.invertMask===true,fillAmount:spec.fill?.amount??1,fillType:cap(spec.fill?.shape??'horizontal'),fillClockwise:spec.fill?.clockwise!==false,softEdgeMode:spec.feather?.pixels?'Pixels':'Percentage',softEdgeWidthX:spec.feather?.pixels?.[0]??8,softEdgeWidthY:spec.feather?.pixels?.[1]??8,horizontalSoftRange:spec.feather?.percent?.[0]??85,verticalSoftRange:spec.feather?.percent?.[1]??85});
+  Object.assign(n,{imageSource:'StaticReference',imageType:spec.image>100006?cap(spec.imageType??'basic'):null,imageId:spec.image??null,imageColor:argb(spec.colour,spec.opacity??1),...previewImageMaskFields(spec),fillAmount:spec.fill?.amount??1,fillType:cap(spec.fill?.shape??'horizontal'),fillClockwise:spec.fill?.clockwise!==false});
   if(spec.fill?.from){const field={horizontal:'fillHorizontalType',vertical:'fillVerticalType',radial90:'fillRadial90Type'}[spec.fill.shape]??'fillRadialType';n[field]=cap(spec.fill.from);}
  }
  if(kind==='cursor')n.raycastTarget=true;
@@ -115,7 +124,14 @@ function compareTree(original,restored,trail){
  if(original.image!==undefined&&original.image!==restored.image)inverseFaults.push('image '+trail);
  if(original.kind==='image'&&(original.imageType??'basic').toLowerCase()!==(restored.imageType??'basic').toLowerCase())inverseFaults.push('imageType '+trail);
  if(original.active===false&&restored.active!==false||original.visible===false&&restored.visible!==false)inverseFaults.push('visibility '+trail);
- if(original.text){for(const field of ['content','fontSize','minFontSize','align','valign'])if(original.text[field]!==undefined&&(original.text[field]||field!=='content')&&original.text[field]!==restored.text?.[field])inverseFaults.push('text.'+field+' '+trail);}
+ if(original.text){
+ if((original.text.autoSize===true)!==(restored.text?.autoSize===true))inverseFaults.push('text.autoSize '+trail);
+ for(const field of ['content','fontSize','minFontSize','align','valign']){
+  // Import omits the inactive minimum when adaptive sizing is off. Compare
+  // both the enable flag and every effective minimum; never drop active sizing.
+  if(field==='minFontSize'&&original.text.autoSize!==true&&restored.text?.autoSize!==true)continue;
+  if(original.text[field]!==undefined&&(original.text[field]||field!=='content')&&original.text[field]!==restored.text?.[field])inverseFaults.push('text.'+field+' '+trail);
+ }}
  if(original.text&&(original.text.outline!==false)!==(restored.text?.outline!==false))inverseFaults.push('text.outline '+trail);
  if(original.colour&&original.colour.toLowerCase()!==(restored.colour??'#ffffff').toLowerCase())inverseFaults.push('colour '+trail);
  if(original.opacity!==undefined&&Math.round(original.opacity*255)!==Math.round((restored.opacity??1)*255))inverseFaults.push('alpha '+trail);
@@ -135,3 +151,4 @@ if(hash(gil)!==candidate.candidate.sha256)throw Error('GIL changed during previe
 fs.writeFileSync(path.join(out,'adapter-receipt.json'),JSON.stringify(summary,null,2));
 if(inverseFaults.length||unknown.size)throw Error('Preview conversion differs: '+inverseFaults.slice(0,8).join(';')+' unknown='+[...unknown.keys()].join(','));
 console.log(JSON.stringify({save:output,sha256:hash(output),nodes:converted,modules:scripts.length,inverseFaults:inverseFaults.length,officialImport:false}));
+}

@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent native agent review_deck_sort_scope",
+  "reviewedAt": "2026-11-11T13:24:26.006641+00:00",
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "pullRequest": 621,
+  "baseCommit": "680be9c5740a7f0c4fd4b1ce82ee2e9018a2612b",
+  "scope": "Uncommitted three-file permanent-deck sorting repair; code review, not integration admission",
+  "verdict": "SOURCE_AND_BOUNDED_VALIDATION_REVIEW_PASS_NOT_ADMISSION_READY",
+  "admissible": false,
+  "files": [
+    {
+      "path": "src/lua/abyss_deck_ui.lua",
+      "sha256": "d584bb37d1d6d72a71dab3a3fad03a1e9a255d958266fdb4797441366208ea99"
+    },
+    {
+      "path": "tests/lua/deck_browse_filters.lua",
+      "sha256": "615d7f1fa72ac5246cc7041df598ae2480b477e5c1d6033b0323733e1ac25bfa"
+    },
+    {
+      "path": "tests/official-assets-runtime.test.mjs",
+      "sha256": "7bb8a9227364bb20ae3439c09cbe9ff4c760adcdc06dc36d5359413c3bef27e4"
+    }
+  ],
+  "diffSha256": "9318c22ffc46b1685b6499190838ec5464205299b54030bff3da6b7712360135",
+  "findings": [],
+  "propertiesReviewed": [
+    "Permanent sorting accepts only original/type/cost from existing browseSorts, matching visible controls.",
+    "Invalid values return before any preference, projection or generation mutation.",
+    "Pile sorting retains original/name/cost/type and rejects rarity.",
+    "Existing closed/choice/detail/pile guards and read-only copied run behavior remain intact.",
+    "Original name and rarity rejection assertion remains; additional rejection state, choice/detail and official profile dual-entry assertions added."
+  ],
+  "integrationBlockers": [
+    {
+      "file": "tests/official-battle-pile-source-epoch.test.mjs",
+      "line": 9,
+      "reason": "Current raw source is asserted equal to immutable historical afterSource. The changed abyss_deck_ui.lua no longer matches.",
+      "resolution": "Central integrator must add an authenticated complete-source continuation epoch and route current source through it before older projections. Preserve frozen archive hashes, identities, drift rejection and original historical assertions."
+    },
+    {
+      "file": "tests/helpers/official-battle-pile-source-inverse.mjs",
+      "line": 12,
+      "reason": "prePileSource only recognizes the exact frozen afterSha256. New source remains unprojected through preOfficialBattleSource, exposing current-source drift to historical tests.",
+      "resolution": "Validate complete current owner closure and historical boundaries after integrating the new epoch; do not weaken source matching."
+    }
+  ],
+  "validationReviewed": [
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/baseline-deck-browse.log",
+      "sha256": "0f704c2462ed9dff02f4aa79349cb6cc0b62e890baa32a99aa7ba8520f38a912",
+      "result": "Existing assertion failed at Lua line 55; supplied executor log, not independently rerun."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/green-deck-browse.log",
+      "sha256": "3ec2d7c5efe190a513277ccb9c0e9df68c28e1280351cc3d38a3af025f7be22f",
+      "result": "Node wrapper passed; wrapper requires Lua DECK_BROWSE_FILTER_PASS 5 marker."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/behavior.log",
+      "sha256": "b527e0c0949720482b94822deb44a6a54f38a71c1710626f4d89080cf8665bee",
+      "result": "R1: 24 cases, 4 passed (3 deck files and default-profile case), 20 failed with ENOENT during official build; no behavioral result for those 20. Inputs stable for this command."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/pile-view.log",
+      "sha256": "b13724f3f2142df3e564eb7310baa71b76c0f2d56503a64393830158786e9ad2",
+      "result": "Five Lua groups passed; receipt reports unchanged inputs."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/pile-entry.log",
+      "sha256": "7251f75642d05b41d9168e9cabf49dd353aff5d591045dceb74ec75268f49d1c",
+      "result": "Four Lua groups passed; receipt reports unchanged inputs."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/source-epoch-blocker.log",
+      "sha256": "2daa8a72f9d166fd6c447ab471c0ac0e81c1aced417aff2991dbd61dac4ee66a",
+      "result": "One original full test failed on raw source equality, exposing changed owner as intended. Blocker remains."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/syntax.log",
+      "sha256": "428404b2b437d79c58abbb235c75251e8c750236bbddc10c71280bdcc64eafae",
+      "result": "Syntax passed, but 1130 inputs materialized during this command. Independently checked all were absent before and exact HEAD blobs after: 1126 art files and 4 .codebuddy files. No src/tests/scripts/config/data change. Do not describe R1 as input-stable."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/guidance.log",
+      "sha256": "7ee1cca188409b16cbd3b44ccac6f0297187c03b9b52f14bff35ccd3b9c0243b",
+      "result": "Initial guidance failed because sparse checkout omitted .cursor/rules/miliastra.mdc."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/guidance-repaired-checkout.log",
+      "sha256": "af2b7464920286d7e2a83524802dfaab6533efcd97570f630eb8344030927915",
+      "result": "Guidance passed after materialization; not a source-contract change."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/official-complete.log",
+      "sha256": "71a8479a40f7de955d4289e73e6d849318842140b7342c9c35d251edc7e7d438",
+      "result": "R2: complete official-assets-runtime file passed 21/21 with 0 failed/cancelled/skipped; receipt elapsed 104.15863084793091 seconds. Independently compared manifests: 9657 entries, 9449 materialized, identical before/after, log SHA256 matches receipt. Separate rerun, not a single 24-case green R1."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/official-validation.json",
+      "sha256": "0c2afccbcd02000dd10069cb88684efcb36f1a7bc7c741383cc78bbe4fe410e1",
+      "result": "Receipt and complete original official runtime log cross-checked; no tests repeated by reviewer."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/validation.json",
+      "sha256": "5c290ca80709dc0200791121572ebe5d5997bc9f5a55bbdd192540d17866ae93",
+      "result": "All nine command log SHA256 values verified. behavior/source-epoch/guidance exit 1 preserved. Only syntax records 1130 input changes."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/lua-static.log",
+      "sha256": "1003737376b0b3b48f4c80176d4f04a4ceb18da22f4200c80260cb8b2819f520",
+      "result": "Pinned Luacheck 1.2.0 reports no new diagnostics, 14 explicit historical warnings, 2122 governed responsibility measurements."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/lua-tool-setup.log",
+      "sha256": "20dbc3a2a41d7ecc9ee00ba76190da61a0c3ce3416ece6cb1a45f2ae527fc527",
+      "result": "Pinned binary SHA256 d68da17fca0697d9e2fb04201f3884abd259fa558b3a449bccaed47f1390defc reported."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/backlog.log",
+      "sha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946",
+      "result": "verify:backlog passed; does not authenticate runtime admission."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/network.log",
+      "sha256": "4aab41d2dd6f678bd9cf6b0a9fcdb5e8fba0023181640e02685af361f3646faa",
+      "result": "Network policy guard passed."
+    },
+    {
+      "path": "/workspace/scratch/c1a4970a76e0/m7-deck-sort-evidence/diff.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "Empty log and receipt exit 0 for git diff --check."
+    }
+  ],
+  "validationNotPerformed": [
+    "Full Quality and complete historical/source-epoch integration suite not passed.",
+    "Exact final remote commit CI not verified.",
+    "No official import, live ready, GUI, phone/device or product acceptance."
+  ],
+  "limitations": [
+    "Backlog CLI instructions command unavailable to reviewer; main-executor verify:backlog passed (different command).",
+    "Exact published commit/tree binding still pending.",
+    "No reviewer rerun of tests; review authenticates supplied evidence against current files and snapshots, not cryptographic execution provenance."
+  ],
+  "check": "git diff --check returned exit 0.",
+  "finalBoundedEvidenceReviewedAt": "2026-11-11T13:29:47.256277+00:00",
+  "publicationRecommendation": "May publish the independently reviewed candidate commit under existing authorization; do not treat it as admission-ready or enable merge. Bind exact remote commit and tree before final publication report.",
+  "severityAssessment": {
+    "newP1": 0,
+    "newP2": 0,
+    "knownIntegrationBlocker": "Historical raw-source equality and projection no longer recognize the changed owner. Must remain blocked until the central authenticated continuation epoch is independently validated."
+  }
+}

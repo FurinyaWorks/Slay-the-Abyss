@@ -1,0 +1,35 @@
+{
+  "localDirectory": "F:\\New folder\\.artifacts\\pr-cleanup-20261112",
+  "refs": "refs/archive/closeout-20261112/",
+  "bundles": {
+    "additional-prs.bundle": {
+      "bytes": 195062323,
+      "sha256": "32e25b9474b7a14d9b673350c239fdb67fbcbdbc4bc2d34a438d1b08418a0cd1"
+    },
+    "concurrent-updates.bundle": {
+      "bytes": 208994412,
+      "sha256": "cef88280680168a4889c11417f7aaf0becae97ce827c28453c83ffdae369d3a2"
+    },
+    "menu-final.bundle": {
+      "bytes": 195056569,
+      "sha256": "34cf0bdcfd8b3c89fba9f03cfc5efbd82541dad564cefaec35cea6676b7a84f9"
+    },
+    "mobile-final.bundle": {
+      "bytes": 208975576,
+      "sha256": "85ca61c788dac5480bbf53c511a1c9dcb366b66f29fed1e026c91d7355823435"
+    },
+    "sources-and-wip.bundle": {
+      "bytes": 351548910,
+      "sha256": "fd9a077de461b68ac5ed00594669930fbe8374bcb8c0d221804bfdcd9323b2ef"
+    }
+  },
+  "worktreeManifest": "snapshot.json",
+  "ignoredInventory": "ignored-inventory.json",
+  "ignoredReadback": "ignored/*.json",
+  "regenerableExclusions": [
+    "node_modules",
+    "__pycache__",
+    ".pytest_cache"
+  ],
+  "residualDirectory": "residual-v25-port (Windows unreadable queue; separately preserved)"
+}

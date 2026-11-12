@@ -1,6 +1,11 @@
+import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 import test from 'node:test';
+import {officialUiRepairProof,preOfficialUiRepairSource} from './helpers/official-ui-repair-source-epoch.mjs';
+import {preOfficialUiRepairEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 import assert from 'node:assert/strict';
-import {readFileSync as diskReadFileSync,mkdtempSync,rmSync} from 'node:fs';
+import {readFileSync as diskReadFileSync,mkdtempSync,rmSync,writeFileSync,unlinkSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -16,9 +21,11 @@ const raw=p=>proof.current[p]?.source??null;
 // Current UI admission is independently checked against all raw owners below.
 // Original Formation assertions read its explicit frozen predecessor view.
 // Actual composed raw owners are independently checked by currentSourceEpoch below.
-const componentRead=file=>jointUiSourceAt(file,diskReadFileSync(file,'utf8'),'component');
+const rawCurrent=file=>diskReadFileSync(file,'utf8');
+const noncombatPriorRead=currentSourceEpoch.combinedReader(rawCurrent,'noncombatPrior');
+const componentRead=file=>jointUiSourceAt(file,noncombatPriorRead(file),'component');
 const readFileSync=(file,...args)=>{
- const source=diskReadFileSync(file,...args).replaceAll('\r\n','\n');
+ const source=currentSourceEpoch.preCombinedSource(file,diskReadFileSync(file,...args).replaceAll('\r\n','\n'),{target:'noncombatPrior',readSource:rawCurrent});
  const component=jointUiSourceAt(file,source,'component');
  return preComponentUiCiSource(file,componentUiSourceEpoch.preCombinedSource(file,component,{target:'componentPrior',readSource:componentRead}));
 };
@@ -148,10 +155,39 @@ test('source and configuration reject unknown targets and malformed live readers
  }
 });
 
+test('official repair adds exact complete-file identities without rewriting the battle predecessor',()=>{
+ const files=officialUiRepairProof.files;
+ for(const [file,row]of Object.entries(files)){
+  const actual=closeoutRead('pr629')(file,'utf8').replaceAll('\r\n','\n');
+  assert.equal(actual,row.current.source,'raw repair source: '+file);
+  for(const source of [actual,actual.replaceAll('\n','\r\n')])assert.equal(preOfficialUiRepairSource(file,source),row.before.source,file);
+  for(const source of [actual+'\n',actual.slice(1),null,{},17])assert.equal(preOfficialUiRepairSource(file,source),source,file);
+  if(Object.hasOwn(preOfficialUiRepairEpoch.proof.current,file))assert.deepEqual(row.before,preOfficialUiRepairEpoch.proof.current[file]);
+ }
+ const repairRead=closeoutRead('pr629'),config=repairRead('config/architecture.json','utf8');
+ assert.throws(()=>preOfficialUiRepairEpoch.preCombinedSource('config/architecture.json',config,{target:'develop',readSource:p=>repairRead(p,'utf8')}),/linked owner identity/,'removing the new layer must reject the actual repair');
+ assert.equal(preOfficialUiRepairSource('unknown','foreign'),'foreign');
+});
+
+test('official repair helper closure imports in isolation and rejects new-file drift or removal',t=>{
+ const root=mkdtempSync(join(tmpdir(),'official-repair-closure-')),destination=mkdtempSync(join(tmpdir(),'official-repair-copy-'));
+ t.after(()=>{rmSync(root,{recursive:true,force:true});rmSync(destination,{recursive:true,force:true});});
+ copyIntegrationSourceClosure(root);
+ const module=pathToFileURL(join(root,'tests/helpers/combined-epoch/source-epoch.mjs')).href;
+ const result=spawnSync(process.execPath,['--input-type=module','-e',`const m=await import(${JSON.stringify(module)});if(m.officialUiRepairIntegratedEpoch.proof.owners.length!==88)throw Error('isolated owner closure');if(m.sourceEpoch.proof.owners.length!==96)throw Error('combined owner closure');`],{encoding:'utf8',timeout:30000,windowsHide:true});
+ assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);
+ for(const name of ['official-ui-repair-source-epoch.mjs','official-ui-repair-source-epoch.json.gz']){
+  const file=join(root,'tests/helpers',name),bytes=diskReadFileSync(file),changed=Buffer.from(bytes);changed[changed.length-1]^=1;
+  writeFileSync(file,changed);assert.throws(()=>copyIntegrationSourceClosure(destination,{sourceRoot:root}),/fresh helper copy identity/,name);
+  unlinkSync(file);assert.throws(()=>copyIntegrationSourceClosure(destination,{sourceRoot:root}),/ENOENT/,name);
+  writeFileSync(file,bytes);copyIntegrationSourceClosure(destination,{sourceRoot:root});
+ }
+});
+
 test('current UI facade authenticates every raw owner once in declared order after warm success',()=>{
  const current=currentSourceEpoch.proof,file='config/architecture.json',input=diskReadFileSync(file,'utf8'),target='develop';
- // Original component closure had 68; the exact room/official union adds 11.
- assert.equal(current.owners.length,79);
+ // Current production retains component68 plus exact28 continuation owners.
+ assert.equal(current.owners.length,96);
  const expected=current.targets[target].files[file].source;
  for(const crlf of [false,true]){
   const reads=[];let bad=null,missing=false;

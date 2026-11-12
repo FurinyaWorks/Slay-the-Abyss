@@ -292,10 +292,11 @@ test('current feature entries preserve unsupported input bytes and never use unk
 });
 
 test('pre-component unsupported feature and art compositions expose their exact linked identities',()=>{
- // Preserve the pre-component consumer's exact first unsupported owner. The
- // outer admits only a complete known current source, never foreign drift.
+ // The lexical batch guard now differs before the backdrop owner in the
+ // pre-component chain. Keep that original rejection, not an identity adapter.
+ // The outer admits only a complete known current source, never foreign drift.
  const readSource=path=>preComponentUiCiSource(path,readFileSync(path,'utf8'));
- const featurePath='scripts/art/ready-card-runtime.mjs',featureOwner='scripts/official-backdrop-layout.mjs';
+ const featurePath='scripts/art/ready-card-runtime.mjs',featureOwner='scripts/native-script-batch.mjs';
  const featureActual=hash(readFileSync(featureOwner,'utf8').replaceAll('\r\n','\n')),featureExpected=betaSources[featureOwner].sha256;
  assert.notEqual(featureActual,featureExpected);
  for(const project of [currentFeature,currentHistory])assert.throws(()=>project(featurePath,readFileSync(featurePath,'utf8'),{readSource}),error=>{

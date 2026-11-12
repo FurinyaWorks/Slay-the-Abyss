@@ -1,0 +1,21 @@
+{
+  "tier": "related",
+  "changed": [
+    "backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+    "scripts/check-lua-static.mjs",
+    "src/lua/abyss_joust_event.lua",
+    "tests/joust-event.test.mjs",
+    "docs/evidence/m7-joust-20261111/after-quality.json",
+    "docs/evidence/m7-joust-20261111/before-quality.json",
+    "docs/evidence/m7-joust-20261111/related-plan.json",
+    "node_modules",
+    "tests/fixtures/joust-event-before.lua",
+    "tests/helpers/joust-trace.lua",
+    "tests/helpers/joust-trace.mjs"
+  ],
+  "full": true,
+  "reason": "Unmodelled or deleted input: backlog/tasks/task-74.20 - 治理阻碍角色扩展的高风险复杂度.md",
+  "fast": [],
+  "integration": [],
+  "lua": []
+}

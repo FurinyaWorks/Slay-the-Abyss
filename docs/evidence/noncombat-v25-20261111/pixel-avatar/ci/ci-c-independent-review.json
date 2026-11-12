@@ -1,0 +1,35 @@
+{
+  "kind": "independent-incremental-C-implementation-review",
+  "conclusion": "pass",
+  "unresolved": [],
+  "files": {
+    "tests/helpers/historical-drag-replay.mjs": "caac30673edc2b0634230389171e9023cd5bcd5f3235482706d12d5311454e93",
+    "tests/helpers/historical-drag-target.mjs": "403a1ac8b609856524221a344e35d426ed0128f2ee1f463050e7c2836d79e228",
+    "tests/helpers/historical-drag-worker.mjs": "b7f9fdc9854ab6e8ebd80606ee4b5a44e2926a5fd9dac311307c23f9548c2fdf",
+    "tests/fixtures/historical-drag-prepared-target.json.gz": "b633435a6f16cdaed58f3716766fb65239d8f0ac8c798e10d5a4662beb9e49f6",
+    "tests/battle-drag-click-compatibility.test.mjs": "511cc5113352e100268ec6aecca34a8660ff25169f6ab51a33db71c25effef79"
+  },
+  "proof": "Original function invoked independently with exact baseline reader;148 ordered full sources/null outputs match derived fixture exactly.1795 complete inputs and Git blobs checked. Final b633 fixture differs from independently checked review fixture only in normalized oracle identity metadata.",
+  "freshness": "Each request reauthenticates raw baseline,3LF JSON oracles+1raw gzip, fixed derived gzip, every complete source/target/generated file and declared absence, parent aliases and source/scripts/data/build inventory; mutable entry guarded and included after creation.",
+  "budget": "Parent hard timer starts before first fork. No warmup or parent preparation;worker cold imports and build included. Each slice has new Fengari process, original30000ms hard budget/1MiB streams; wall-clock checked again before accepting IPC result.",
+  "failureAndCleanup": "Parent live streams preserve partial timeout diagnostics;complete captured IPC result is authoritative. Owned process tree killed on deadline;owned temp root path validated and cleaned,exit cleanup is idempotent.",
+  "testEvidence": {
+    "path": ".artifacts/noncombat-low-pixel/ci-c-drag-complete-final.log",
+    "sha256": "b76e10d15f267fdf33714f09f779c19532b5c0b2c05ff2eba8833d60bf8acb4b",
+    "executedBy": "CI worker; reviewed raw final complete-file output,not rerun",
+    "tests": 9,
+    "pass": 9,
+    "fail": 0,
+    "skipped": 0,
+    "cases": 15,
+    "firstColdSliceMs": 26219.9054,
+    "secondSliceMs": 22706.9865,
+    "preparationIncluded": true,
+    "mutationDeletionForeignChecks": 5
+  },
+  "boundaries": [
+    "Test-harness immutable derivation reuse only;not current game runtime acceleration.",
+    "Fixed98fef archived reader only;current-owner authorization/inverse contracts retained and no authorization result cache.",
+    "Not finalPR/head binding or Hosted Full/actual device acceptance."
+  ]
+}

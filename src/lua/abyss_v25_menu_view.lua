@@ -4,7 +4,7 @@ local number=require('abyss_numbers').integer
 local M={}
 local pointers=setmetatable({},{__mode='k'})
 local states={'normal','hover','pressed','disabled'}
-local function enabled()return Theme.presentationProfile=='v25-reference'end
+local function enabled()return Theme.presentationProfile=='v25-reference' or Theme.presentationProfile=='official-assets-first'end
 local function frame(control,box)
     control:SetAnchoredPosition(box[1],box[2])
     control:SetSizeDelta(box[3],box[4])
@@ -38,7 +38,7 @@ local function hideLegacy(button)
 end
 local function outcome(ctx)return ctx.owner.mode=='victory' or ctx.owner.mode=='defeat'end
 function M.settlementFrame(ctx,fallback)
-    return enabled() and outcome(ctx) and Theme.layout.v25Result.settle or fallback
+    return Theme.presentationProfile=='v25-reference' and outcome(ctx) and Theme.layout.v25Result.settle or fallback
 end
 local function resultValues(ctx)
     local run=ctx.owner.run
@@ -67,22 +67,65 @@ local function presentStart(ctx,layout,isOutcome)
     label:SetSizeDelta(isOutcome and 140 or 218,52)
     label.text=isOutcome and '重新启程' or '开始游戏'
 end
+local function officialResult(ctx,isOutcome)
+    local menu,start=ctx.menu,ctx.start
+    local resultLabel=start:GetChild('officialResultLabel')
+    if resultLabel then
+        resultLabel:SetVisible(isOutcome)
+        if isOutcome then resultLabel.text=start:GetChild('label').text end
+    end
+    start:GetChild('label'):SetVisible(not isOutcome)
+    for _,name in ipairs({'emblem','lowpolyVeil','titleBand','taglineRuleL','taglineRuleR'})do
+        local part=menu:GetChild(name);if part then part:SetVisible(isOutcome)end
+    end
+    if not isOutcome then return false end
+    -- These were already hidden by the official profile before this menu
+    -- slice; a result restores that profile, not the legacy title landscape.
+    for _,name in ipairs({'vista','heroArt'})do
+        local part=menu:GetChild(name);if part then part:SetVisible(false)end
+    end
+    menu:GetChild('v25MainMenu'):SetVisible(false)
+    menu:GetChild('titleQuit'):SetVisible(false)
+    start:GetChild('v25MenuFace'):SetVisible(false)
+    local layout=Theme.layout.nativeMenu
+    frame(menu:GetChild('title'),layout.title)
+    menu:GetChild('title').fontSize=Theme.font.display
+    frame(start,layout.resultRestart)
+    frame(start:GetChild('hit'),{0,0,layout.resultRestart[3],layout.resultRestart[4]})
+    for _,name in ipairs({'plate','border'})do
+        local part=start:GetChild(name)
+        if part then
+            local extra=name=='border' and Theme.space.border*2 or 0
+            part:SetSizeDelta(layout.resultRestart[3]+extra,layout.resultRestart[4]+extra)
+            part:SetVisible(true)
+        end
+    end
+    return true
+end
+local function menuAvailable(self)
+    return not self.disabled and not self.exitOpen and not self.characterOpen
+        and not self.settlementRequested and not self.settlementBusy and not self.motion.deathReveal
+end
 function M.present(ctx,isOutcome)
     if not enabled()then return end
+    local ruins=ctx.menu:GetChild('menuRuinsScene')
+    if ruins then ruins:SetVisible(not isOutcome)end
+    if Theme.presentationProfile=='official-assets-first' and officialResult(ctx,isOutcome)then return end
     local menu,start=ctx.menu,ctx.start
     local layout=isOutcome and Theme.layout.v25Result or Theme.layout.v25Menu
     frame(menu:GetChild('title'),layout.title)
     menu:GetChild('title').fontSize=isOutcome and 36 or 64
     presentStart(ctx,layout,isOutcome)
     start:GetChild('v25MenuFace'):SetVisible(not isOutcome)
-    start:GetChild('v25Face'):SetVisible(isOutcome)
+    local resultFace=start:GetChild('v25Face')
+    if resultFace then resultFace:SetVisible(isOutcome)end
     menu:GetChild('v25MainMenu'):SetVisible(not isOutcome)
     local quit=menu:GetChild('titleQuit');quit:SetVisible(not isOutcome)
     menu:GetChild('tagline'):SetVisible(false)
-    hideLegacy(start);hideLegacy(ctx.settlement)
+    hideLegacy(start)
+    if Theme.presentationProfile~='official-assets-first'then hideLegacy(ctx.settlement)end
     local self=ctx.owner
-    local available=not self.disabled and not self.exitOpen and not self.characterOpen
-        and not self.settlementRequested and not self.settlementBusy and not self.motion.deathReveal
+    local available=menuAvailable(self)
     M.button(start,available);M.button(quit,available)
     M.button(ctx.settlement,available and type(ctx.platform.settle)=='function')
     if isOutcome then resultValues(ctx)end
@@ -92,6 +135,7 @@ function M.present(ctx,isOutcome)
 end
 function M.entrance(ctx)
     if not enabled()then return false end
+    if outcome(ctx) and Theme.presentationProfile=='official-assets-first'then return false end
     if ctx.owner.motion.entranceDone then return true end
     local layout=Theme.layout.v25Result
     if outcome(ctx)then

@@ -1,0 +1,57 @@
+{
+  "reviewId": "independent-platform-image-evidence-20261112",
+  "reviewedBaseSha": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "reviewedHeadSha": null,
+  "reviewedState": "uncommitted candidate on feat/platform-image-evidence",
+  "reviewer": "independent native review agent",
+  "conclusion": "pass",
+  "sourceSha256": {
+    "scripts/platform-load.mjs": "020cfad431d2924bc925690d972a4f732eff73de35af72c3592997404af6bf39",
+    "tests/platform-load.test.mjs": "0c1bc43441bf22c0dfcdeac8a2512faff28fc6da31f962711229c66f71feaab5"
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "file": "scripts/platform-load.mjs",
+      "line": 156,
+      "title": "Python optimization disables the PNG/JPEG acceptance restriction",
+      "detail": "The spawned interpreter inherits PYTHONOPTIMIZE. With PYTHONOPTIMIZE=1 or an optimized interpreter wrapper, assert statements are removed. A decodable PPM with correctly bound hash returns PASS, contradicting the PNG/JPEG contract. The existing 14-byte PPM negative fixture independently reproduced this false pass.",
+      "requestedChange": "Use explicit runtime validation and raise on disallowed format or invalid dimensions instead of assert. Add regression coverage for optimized Python.",
+      "reproduce": "PYTHONOPTIMIZE=1 node --test --test-name-pattern='official screenshots require complete decoded' tests/platform-load.test.mjs",
+      "evidence": "independent-python-optimize.log",
+      "status": "resolved",
+      "resolution": "Main worker replaced assertions with explicit ValueError checks and added optimized-Python negative/positive coverage. Independent optimized-Python focused rerun passed (1 test), bound to final sourceSha256."
+    }
+  ],
+  "unresolved": [],
+  "reviewNotes": [
+    "Hash validation and decoding operate on the same Buffer in one read; the previous unbound second path read is removed.",
+    "Decoder execution failure, nonzero exit, and timeout fail closed. Existing documented Python/Pillow and ABYSS_PYTHON toolchain is reused.",
+    "PNG/JPEG verify followed by reopen/load covers header-only and truncated payload cases in normal interpreter mode.",
+    "RED and normal GREEN focused logs inspected; RED proves the original eight-byte signature false pass and normal GREEN addresses that reproduction.",
+    "Synthetic images are clearly marked as synthetic and are not official client, mobile, visual-quality, or release acceptance evidence. Decoding and hashing cannot authenticate screenshot content.",
+    "No implementation modifications, Full suite, public-branch operations, GUI use, or official release actions performed.",
+    "Final explicit format and dimension conditions remain active with PYTHONOPTIMIZE. Regression restores the parent environment variable in finally. No unresolved findings in reviewed two-file scope."
+  ],
+  "limits": [
+    "Targeted/full file and adjacent checks owned by main worker, intentionally not duplicated.",
+    "backlog instructions overview and task-execution could not execute because backlog is not on PATH. Repo AGENTS.md, ENGINEERING.md, PLATFORM_LOAD.md, TOOLCHAIN.md were read."
+  ],
+  "initialSourceSha256": {
+    "scripts/platform-load.mjs": "b5f7dc1282da0a65dad8d962d8b7ccd5354e2131a319e1e374a8e60634c00ec0",
+    "tests/platform-load.test.mjs": "aaa109e77de18359a3a7555f3cbb35debae13e72322f3c7c0673280a87269787"
+  },
+  "independentChecks": [
+    {
+      "command": "PYTHONOPTIMIZE=1 node --test --test-reporter=tap --test-name-pattern='official screenshots require complete decoded' tests/platform-load.test.mjs",
+      "result": "PASS, 1 test",
+      "log": "independent-python-optimize-fixed.log"
+    },
+    {
+      "command": "Independent verifyPlatformRelease synthetic fixture with ABYSS_PYTHON=/definitely-missing-platform-review-python",
+      "result": "BLOCKED with screenshots decode error, both assertions passed",
+      "log": "independent-missing-decoder.log"
+    }
+  ]
+}

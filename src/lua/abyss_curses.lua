@@ -3,19 +3,27 @@
 local M={}
 local ids={regret=true,injury=true,doubt=true,pain=true,decay=true,shame=true,
     writhe=true,clumsy=true,normality=true,parasite=true,curse_of_the_bell=true}
-function M.isImplemented(card)
-    if card and card.id=='necronomicurse'then return require('abyss_necronomicurse').supported(card)end
+-- Ordinary curse definitions share shape requirements before identity traits.
+-- Keep the two checks ordered: dynamic fields and malformed-input failures are
+-- part of the existing validation boundary.
+local function commonShape(card)
     return type(card)=='table' and ids[card.id]==true and card.type=='curse'
         and card.rarity=='curse' and card.cost==-2 and type(card.effects)=='table'
         and next(card.effects)==nil and card.upgrade==nil and not card.exhaust
         and not card.repeatable and not card.costMode and not card.condition
-        and (card.ethereal==true)==(card.id=='clumsy')
+end
+local function curseTraits(card)
+    return (card.ethereal==true)==(card.id=='clumsy')
         and (card.innate==true)==(card.id=='writhe')
         and (card.id~='decay' or card.endTurnDamage==2)
         and ((card.id~='doubt' and card.id~='shame') or card.endTurnStatusAmount==1)
         and (card.id~='pain' or card.onOtherCardHpLoss==1)
         and (card.id~='normality' or card.playLimit==3)
         and (card.id~='parasite' or card.onRemoveMaxHpLoss==3)
+end
+function M.isImplemented(card)
+    if card and card.id=='necronomicurse'then return require('abyss_necronomicurse').supported(card)end
+    return commonShape(card) and curseTraits(card)
 end
 function M.limitsPlay(state)
     for _,c in ipairs(state.hand) do

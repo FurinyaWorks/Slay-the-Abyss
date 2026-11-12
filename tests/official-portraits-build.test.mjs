@@ -17,6 +17,33 @@ test('V25 inventory counts the actual independent selection and result source in
  }
  assert.equal(actual.assets.filter(row=>row.asset.endsWith('-result')).length,1);
 });
+
+test('official shared selection inventory requires the explicit producer schema and rejects unmarked historical modules',async t=>{
+ const {writePortraitModule,portraitRuntimeInventory,portraitModule}=await import(modulePath);
+ const dir=mkdtempSync(join(tmpdir(),'abyss-official-selection-schema-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));
+ const source=writePortraitModule(dir,{officialAssets:true});
+ assert.match(source,/^selectionUses='battlePixel',?$/m,'new producer must declare its selection source');
+ const actual=portraitRuntimeInventory(dir);
+ assert.equal(actual.selectionUses,'battlePixel');
+ assert.equal(actual.assets.find(row=>row.asset==='temporary-pixel-traveler-selection').images,57);
+ const file=join(dir,portraitModule+'.lua');
+ for(const invalid of [
+  source.replace(/^selectionUses='battlePixel',?\r?\n/m,''),
+  source.replace("selectionUses='battlePixel'","selectionUses='battle133'"),
+  source.replace(/^battlePixel=.*\r?\n/m,''),
+  source.replace("selectionUses='battlePixel'","selectionUses='battlePixel',\nselectionUses='battlePixel'"),
+ ]){
+  writeFileSync(file,invalid);
+  assert.throws(()=>portraitRuntimeInventory(dir),/selection schema.*pinned producer/i,
+   'historical or ambiguous source must not be relabelled as 57 primitives');
+ }
+ writePortraitModule(dir);assert.doesNotThrow(()=>portraitRuntimeInventory(dir),'legacy remains independently readable');
+ writePortraitModule(dir,{v25BattleChrome:true});
+ assert.equal(portraitRuntimeInventory(dir).assets.find(row=>row.asset==='traveler-geo/portraits/battle133-selection').images,4315);
+ const battleOnly=writePortraitModule(dir,{officialAssets:true,selectionAvatar:false,battlePortrait:true});
+ assert.doesNotMatch(battleOnly,/^selectionUses=/m);
+  assert.equal(portraitRuntimeInventory(dir).assets.find(row=>row.asset==='traveler-geo/idle-approved-v1').images,7303);
+});
 test('native selection budget changes only selection art and preserves the frozen battle literal',async t=>{
  const {writePortraitModule,selectionBudget,portraitRuntimeInventory}=await import(modulePath);
  const dir=mkdtempSync(join(tmpdir(),'abyss-selection-budget-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));

@@ -1,0 +1,151 @@
+✔ new CC16 fails while CC15 passes and unrelated old debt is grandfathered (3.917693ms)
+✔ old high CC cannot increase; improvements and low debt within limit are permitted (0.727188ms)
+✔ new modules have a line budget; existing oversized owners cannot grow (0.488493ms)
+✔ new, expanded or denser SCC is blocked; unchanged and eliminated SCC are fine (0.50465ms)
+✔ splitting a large SCC is allowed but its internal edge allowance cannot expand (0.346673ms)
+✔ missing/corrupt measurements fail closed (0.684244ms)
+✔ committed source graphs preserve Git bytes and ignore checkout, staged and untracked changes (50.360197ms)
+✔ committed linked source files and directory entries fail closed without following checkout paths (232.058824ms)
+✔ real CLI keeps committed CC16 blocked after checkout source and policy are replaced (784.182985ms)
+✖ real anonymous insertions preserve old hotspots without lending their debt to another target (155.280134ms)
+✖ registration event arguments and table owners cannot share an anonymous allowance (141.143418ms)
+✖ ambiguous same-context functions match unchanged content first and never infer residual uniqueness (141.582687ms)
+✖ nested debt follows matched lexical owners, not names or shifted ordinals (102.934719ms)
+✔ file moves and generated committed sources use the same explicit identity boundary (478.42834ms)
+✖ ratchet identity is optional for legacy metrics but mandatory to inherit function debt (176.266784ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 10
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2450.819565
+
+✖ failing tests:
+
+test at tests/quality-ratchet-policy.test.mjs:147:1
+✖ real anonymous insertions preserve old hotspots without lending their debt to another target (155.280134ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     file: 'src/lua/a.lua',
+  +     line: 5,
+  +     message: '<anonymous>: CC new -> 20 exceeds 15'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-ratchet-identities/tests/quality-ratchet-policy.test.mjs:149:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { file: 'src/lua/a.lua', line: 5, message: '<anonymous>: CC new -> 20 exceeds 15' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/quality-ratchet-policy.test.mjs:155:1
+✖ registration event arguments and table owners cannot share an anonymous allowance (141.143418ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-ratchet-identities/tests/quality-ratchet-policy.test.mjs:163:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/quality-ratchet-policy.test.mjs:168:1
+✖ ambiguous same-context functions match unchanged content first and never infer residual uniqueness (141.582687ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     file: 'src/lua/a.lua',
+  +     line: 5,
+  +     message: '<anonymous>: CC new -> 20 exceeds 15'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-ratchet-identities/tests/quality-ratchet-policy.test.mjs:171:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { file: 'src/lua/a.lua', line: 5, message: '<anonymous>: CC new -> 20 exceeds 15' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/quality-ratchet-policy.test.mjs:180:1
+✖ nested debt follows matched lexical owners, not names or shifted ordinals (102.934719ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     file: 'src/lua/a.lua',
+  +     line: 5,
+  +     message: '<anonymous>: CC new -> 20 exceeds 15'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-ratchet-identities/tests/quality-ratchet-policy.test.mjs:183:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { file: 'src/lua/a.lua', line: 5, message: '<anonymous>: CC new -> 20 exceeds 15' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/quality-ratchet-policy.test.mjs:197:1
+✖ ratchet identity is optional for legacy metrics but mandatory to inherit function debt (176.266784ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-ratchet-identities/tests/quality-ratchet-policy.test.mjs:201:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Invalid base function identity/,
+    operator: 'throws',
+    diff: 'simple'
+  }

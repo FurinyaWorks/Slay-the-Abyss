@@ -1,0 +1,129 @@
+node:fs:483
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/workspace/scratch/c1a4970a76e0/m7-round-24/schemas/ui-acceptance.schema.json'
+    at readFileSync (node:fs:483:20)
+    at file:///workspace/scratch/c1a4970a76e0/m7-round-24/scripts/verify-ui-acceptance.mjs:13:73 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/workspace/scratch/c1a4970a76e0/m7-round-24/schemas/ui-acceptance.schema.json'
+}
+
+Node.js v24.22.1
+✖ tests/evidence-binding.test.mjs (167.668458ms)
+✔ only a receipt bound to the exact candidate can add its exact entry marker (1.356095ms)
+✔ native text false autoSize is its omitted default; true and text changes remain detectable (5.686178ms)
+✔ native default minimum font twenty is omitted without hiding other values or metadata (4.857928ms)
+✔ native empty child lists are omitted without hiding nonempty children or opaque payloads (2.400691ms)
+✔ native omitted image ink equals only opaque white, with byte-rounded source alpha (14.416167ms)
+✔ interface identity, visibility and every root input flag must match source defaults (7.851835ms)
+✔ hex colour spelling is tolerated only in colour fields, never text or control/interface names (6.229718ms)
+✔ real readback slice matches fixed source, CRLF and implicit platform defaults (1.221172ms)
+✔ native omitted opaque white text matches explicit white, while other missing colours fail (2.761115ms)
+✔ bad module, missing/extra module and wrong UI geometry cannot pass a static-clean candidate (2.57179ms)
+✔ candidate hash changes, static faults and unmounted or wrong-signal graphs fail (1.931384ms)
+✔ BGM requires both real native parameter records true and explicit BGM opt-in (1.482116ms)
+✔ ordinary source that declares BGM disabled requires two correctly typed false records (3.111063ms)
+✔ source SHA is mandatory, complete and hexadecimal; unrelated label is never accepted (0.229917ms)
+✔ native image and text alpha use exact ARGB byte encoding, including opaque defaults (4.838279ms)
+✔ alpha encoding cannot hide wrong bytes, invalid readback or unrelated float changes (4.784798ms)
+✔ candidate symlink/.. retains filesystem identity and hash before lexical normalization (10.625499ms)
+✔ direct and aliased official-save directory components reject before creating evidence (0.936933ms)
+✔ file symlink to an official-save directory rejects before creating evidence (0.412563ms)
+✔ raw official-save spelling stays forbidden even if an alias escapes the directory (0.269987ms)
+✔ non-file candidate rejects before output while similarly named export directories remain allowed (3.698729ms)
+✔ output symlink/.. writes only to the filesystem-selected new directory (3.017212ms)
+✔ canonical output identity preserves existing evidence and rejects unresolved parent traversal (0.640396ms)
+✔ CLI report link names the actual canonical evidence destination (116.671276ms)
+✖ generated host starts under native capability guards and rejects the escaped startup write (605.711914ms)
+✔ playing input checks the actual run twice, uses the fresh focus capture and sends once (2.136533ms)
+✔ original succeeded run refuses without focus or input (0.646415ms)
+✔ original failed run refuses without focus or input (0.199501ms)
+✔ original starting run refuses without focus or input (0.133711ms)
+✔ original unknown run refuses without focus or input (0.190327ms)
+✔ original missing run refuses without focus or input (0.13239ms)
+✔ running but not yet playing refuses even with a large elapsed time (0.239522ms)
+✔ running with left-playtest evidence refuses before focus (0.942922ms)
+✔ running with log-collected evidence refuses before focus (0.202996ms)
+✔ run ending during focus (succeeded) sends zero inputs (0.506294ms)
+✔ run ending during focus (running) sends zero inputs (0.197498ms)
+✔ official result page still running permits its normal Leave input (0.171669ms)
+✔ unavailable/error/malformed status refuses at either observation (0.310338ms)
+✔ unavailable/error/malformed status refuses at either observation (0.125459ms)
+✔ unavailable/error/malformed status refuses at either observation (0.224058ms)
+✔ unavailable/error/malformed status refuses at either observation (0.167082ms)
+✔ unavailable/error/malformed status refuses at either observation (0.137157ms)
+✔ unavailable/error/malformed status refuses at either observation (0.144548ms)
+✔ unavailable/error/malformed status refuses at either observation (0.363579ms)
+✔ wrong or missing actual run identity refuses at either observation (0.342156ms)
+✔ wrong or missing actual run identity refuses at either observation (0.318561ms)
+✔ wrong or missing actual run identity refuses at either observation (0.303809ms)
+✔ wrong or missing actual run identity refuses at either observation (0.191379ms)
+✔ wrong or missing actual run identity refuses at either observation (0.131909ms)
+✔ text-only MCP status payload is accepted using the same checks (0.173121ms)
+✔ focus errors or missing capture refuse before any input (0.292792ms)
+✔ input failure is not retried because it may have reached the game (0.267855ms)
+✔ missing run/window and path-traversal run identities refuse before any RPC (0.149535ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 52
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1398.32103
+
+✖ failing tests:
+
+test at tests/evidence-binding.test.mjs:1:1
+✖ tests/evidence-binding.test.mjs (167.668458ms)
+  'test failed'
+
+test at tests/native-startup-contract.test.mjs:10:1
+✖ generated host starts under native capability guards and rejects the escaped startup write (605.711914ms)
+  AssertionError [ERR_ASSERTION]: ./src/lua/abyss_battle_ui.lua:4: module 'abyss_theme' not found:
+  	no field package.preload['abyss_theme']
+  	no file './build/lua/abyss_theme.lua'
+  	no file './src/lua/abyss_theme.lua'
+  	no file '/usr/local/share/lua/5.3/abyss_theme.lua'
+  	no file '/usr/local/share/lua/5.3/abyss_theme/init.lua'
+  	no file '/usr/share/lua/5.3/abyss_theme.lua'
+  	no file '/usr/share/lua/5.3/abyss_theme/init.lua'
+  	no file './abyss_theme.lua'
+  	no file './abyss_theme/init.lua'
+  	no file '/usr/local/share/lua/5.3/abyss_theme.js'
+  	no file '/usr/local/share/lua/5.3/loadall.js'
+  	no file '/usr/share/lua/5.3/abyss_theme.js'
+  	no file '/usr/share/lua/5.3/loadall.js'
+  	no file './abyss_theme.js'
+  stack traceback:
+  	[JS]: in function 'require'
+  	./src/lua/abyss_battle_ui.lua:4: in main chunk
+  	[JS]: in function 'require'
+  	./src/lua/abyss_game_ui.lua:5: in main chunk
+  	[JS]: in function 'require'
+  	tests/lua/support/game_ui_fixture.lua:2: in main chunk
+  	[JS]: in function 'dofile'
+  	tests/lua/support/native_startup_contract.lua:1: in main chunk
+  	[JS]: in function 'dofile'
+  	...native-contract-555223d4-93be-4b9f-b291-52cbc3efda9a.lua:2: in main chunk
+  	[JS]: in function 'dofile'
+  	(command line):1: in main chunk
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/m7-round-24/tests/native-startup-contract.test.mjs:19:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

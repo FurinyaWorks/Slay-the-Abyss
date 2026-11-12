@@ -1,5 +1,6 @@
 import {validateOfficialAssets,officialAssetsArgs,officialAssetFlags} from './official-assets-profile.mjs';
 import {applyOfficialAssets,officialAssetsTheme} from './official-assets-layout.mjs';
+import {assertOfficialRunContracts} from './official-run-layout.mjs';
 import {resolveArtFeatures,artFeatureArgs,writeArtFeatures,artFeatureModule} from './art-features.mjs';
 import {portraitRuntimeInputs,portraitSources,attachOfficialPortraits,attachLowpolyScenes,writePortraitModule} from './official-portraits.mjs';
 import {attachReadyCardHosts,readyArtTemplates,writeReadyCardAssets,prepareReadyCardAssets,readyArtGroupTemplate,readyArtImageTemplate,writeReadyArtBinding,readyArtSourceInputs} from './art/ready-card-runtime.mjs';
@@ -182,6 +183,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   if(officialAssets){
     applyOfficialAssets([battle,layout,...templates],theme);
     templates.push(battlePileCardTemplate(layout,templates[0]));
+    assertOfficialRunContracts([battle,layout,...templates]);
   }
   for (const tree of [battle, layout, ...templates]) assertNativeUiCapacity(tree);
   const rendered = spawnSync(python, ['tools/render_traveler_cards.py', 'data/cards.json', 'data/presentation/traveler.zh-CN.json'],

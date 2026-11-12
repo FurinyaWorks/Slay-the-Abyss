@@ -65,6 +65,18 @@ end
 local function boundIndex(value)
     return type(value)=='number' and value>0 and value<math.huge and value%1==0
 end
+local function attachComponents(stage,flags)
+        local hasComponents, componentControls = pcall(function()return script:GetParam('nativeComponentControls')end)
+        if hasComponents and componentControls==true then
+            for key,value in pairs(flags)do assert(value==false,'component comparison forbids legacy artwork: '..key)end
+            local binding=require('abyss_component_binding')
+            componentBridge=require('abyss_component_bridge').new(stage,binding,{
+                instantiate=game.InstantiateClientUIControl,destroy=game.DestroyClientUIControl,color=Color,imageSource=Enum.ImageSource.StaticReference})
+            stage=componentBridge.root
+            print('ABYSS_COMPONENTS attached original-components-control-v1')
+        end
+    return stage
+end
 function OnStart()
     if attempted then return end
     attempted = true
@@ -80,15 +92,7 @@ function OnStart()
         nativeStage=stage
         print("ABYSS_UI viewport_ready")
         local flags = artFeatures()
-        local hasComponents, componentControls = pcall(function()return script:GetParam('nativeComponentControls')end)
-        if hasComponents and componentControls==true then
-            for key,value in pairs(flags)do assert(value==false,'component comparison forbids legacy artwork: '..key)end
-            local binding=require('abyss_component_binding')
-            componentBridge=require('abyss_component_bridge').new(stage,binding,{
-                instantiate=game.InstantiateClientUIControl,destroy=game.DestroyClientUIControl,color=Color,imageSource=Enum.ImageSource.StaticReference})
-            stage=componentBridge.root
-            print('ABYSS_COMPONENTS attached original-components-control-v1')
-        end
+        stage=attachComponents(stage,flags)
         local createEasterEggArt
         if not flags.cards then
             -- Legacy static candidates embed nativeArt in presentation. Suppress
@@ -199,6 +203,10 @@ function OnStart()
               monsterActors=setmetatable({instantiate=actorInstantiate,destroy=actorDestroy},{__index=actorBinding}),
               nativeMonsterArtEnabled=flags.monsters,
               color = Color, imageSource = Enum.ImageSource.StaticReference, cursorEvents = Enum.CursorEventType, keyEvents = Enum.KeyEventType,
+              tween = game.Tween and function(control,fields,duration)
+                  return game.Tween(componentBridge and componentBridge.unwrap(control) or control,fields,duration)
+              end,
+              tweenSequence = game.TweenSequence, easeTypes = Enum.EaseType,
               imageTypes = Enum.ImageType and {basic=Enum.ImageType.Basic,stretch=Enum.ImageType.Stretch},
               cursorPosition = function() return game.GetCursorUIPos() end,
               touchScreen = function() return game.GetDevice() == Enum.Device.Mobile end,

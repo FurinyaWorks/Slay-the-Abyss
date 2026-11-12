@@ -1,0 +1,391 @@
+{
+  "before": {
+    "coverage": {
+      "modules": 345,
+      "functions": 5573,
+      "measurements": 5918,
+      "expectedMeasurements": 5918
+    },
+    "modules": 345,
+    "requireSites": 1953,
+    "dependencyPairs": 1578,
+    "sccMembers": [
+      68,
+      11,
+      2
+    ],
+    "joust": {
+      "file": "src/lua/abyss_joust_event.lua",
+      "sha256": "c579ccb9efe508634e712388ccdf1ac61b54295922f59b89f47f032be2ea1a04",
+      "lines": 57,
+      "functions": [
+        {
+          "id": "$",
+          "name": "<chunk>",
+          "kind": "chunk",
+          "constructorName": false,
+          "line": 1,
+          "column": 1,
+          "endLine": 57,
+          "lines": 57,
+          "complexity": 1
+        },
+        {
+          "id": "$/row#1",
+          "name": "row",
+          "kind": "function",
+          "constructorName": false,
+          "line": 7,
+          "column": 7,
+          "endLine": 9,
+          "lines": 3,
+          "complexity": 1
+        },
+        {
+          "id": "$/M.prepare#1",
+          "name": "M.prepare",
+          "kind": "function",
+          "constructorName": false,
+          "line": 10,
+          "column": 1,
+          "endLine": 13,
+          "lines": 4,
+          "complexity": 1
+        },
+        {
+          "id": "$/M.options#1",
+          "name": "M.options",
+          "kind": "function",
+          "constructorName": false,
+          "line": 14,
+          "column": 1,
+          "endLine": 24,
+          "lines": 11,
+          "complexity": 6
+        },
+        {
+          "id": "$/M.choose#1",
+          "name": "M.choose",
+          "kind": "function",
+          "constructorName": false,
+          "line": 25,
+          "column": 1,
+          "endLine": 56,
+          "lines": 32,
+          "complexity": 23
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "file": "src/lua/abyss_acid_slime_s_ai.lua",
+        "line": 19,
+        "column": 20,
+        "code": "W212",
+        "message": "unused argument 'state'"
+      },
+      {
+        "file": "src/lua/abyss_bgm.lua",
+        "line": 21,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 20"
+      },
+      {
+        "file": "src/lua/abyss_looter_ai.lua",
+        "line": 40,
+        "column": 24,
+        "code": "W212",
+        "message": "unused argument 'state'"
+      },
+      {
+        "file": "src/lua/abyss_potion_discard_ui.lua",
+        "line": 70,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_potion_discard_ui.lua",
+        "line": 91,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_potion_discard_ui.lua",
+        "line": 96,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 79,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 92,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 99,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 100,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 104,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 113,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 123,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 203,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      }
+    ]
+  },
+  "after": {
+    "coverage": {
+      "modules": 345,
+      "functions": 5576,
+      "measurements": 5921,
+      "expectedMeasurements": 5921
+    },
+    "modules": 345,
+    "requireSites": 1953,
+    "dependencyPairs": 1578,
+    "sccMembers": [
+      68,
+      11,
+      2
+    ],
+    "joust": {
+      "file": "src/lua/abyss_joust_event.lua",
+      "sha256": "fde9993e1b625fb8d98645cf3bebfe995fbc3cf4c92a5c6e477c1b1776d616a9",
+      "lines": 66,
+      "functions": [
+        {
+          "id": "$",
+          "name": "<chunk>",
+          "kind": "chunk",
+          "constructorName": false,
+          "line": 1,
+          "column": 1,
+          "endLine": 66,
+          "lines": 66,
+          "complexity": 1
+        },
+        {
+          "id": "$/row#1",
+          "name": "row",
+          "kind": "function",
+          "constructorName": false,
+          "line": 7,
+          "column": 7,
+          "endLine": 9,
+          "lines": 3,
+          "complexity": 1
+        },
+        {
+          "id": "$/M.prepare#1",
+          "name": "M.prepare",
+          "kind": "function",
+          "constructorName": false,
+          "line": 10,
+          "column": 1,
+          "endLine": 13,
+          "lines": 4,
+          "complexity": 1
+        },
+        {
+          "id": "$/M.options#1",
+          "name": "M.options",
+          "kind": "function",
+          "constructorName": false,
+          "line": 14,
+          "column": 1,
+          "endLine": 24,
+          "lines": 11,
+          "complexity": 6
+        },
+        {
+          "id": "$/placeBet#1",
+          "name": "placeBet",
+          "kind": "function",
+          "constructorName": false,
+          "line": 25,
+          "column": 7,
+          "endLine": 33,
+          "lines": 9,
+          "complexity": 1
+        },
+        {
+          "id": "$/rollJoust#1",
+          "name": "rollJoust",
+          "kind": "function",
+          "constructorName": false,
+          "line": 34,
+          "column": 7,
+          "endLine": 40,
+          "lines": 7,
+          "complexity": 1
+        },
+        {
+          "id": "$/settleBet#1",
+          "name": "settleBet",
+          "kind": "function",
+          "constructorName": false,
+          "line": 41,
+          "column": 7,
+          "endLine": 48,
+          "lines": 8,
+          "complexity": 11
+        },
+        {
+          "id": "$/M.choose#1",
+          "name": "M.choose",
+          "kind": "function",
+          "constructorName": false,
+          "line": 49,
+          "column": 1,
+          "endLine": 65,
+          "lines": 17,
+          "complexity": 13
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "file": "src/lua/abyss_acid_slime_s_ai.lua",
+        "line": 19,
+        "column": 20,
+        "code": "W212",
+        "message": "unused argument 'state'"
+      },
+      {
+        "file": "src/lua/abyss_bgm.lua",
+        "line": 21,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 20"
+      },
+      {
+        "file": "src/lua/abyss_looter_ai.lua",
+        "line": 40,
+        "column": 24,
+        "code": "W212",
+        "message": "unused argument 'state'"
+      },
+      {
+        "file": "src/lua/abyss_potion_discard_ui.lua",
+        "line": 70,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_potion_discard_ui.lua",
+        "line": 91,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_potion_discard_ui.lua",
+        "line": 96,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 79,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 92,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 99,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 100,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 104,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 113,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 123,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      },
+      {
+        "file": "src/lua/abyss_prologue.lua",
+        "line": 203,
+        "column": 18,
+        "code": "W431",
+        "message": "shadowing upvalue 'self' on line 41"
+      }
+    ]
+  }
+}

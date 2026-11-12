@@ -1,0 +1,17 @@
+import {runEngineering}from'../../../scripts/check-engineering.mjs';
+import assert from 'node:assert/strict';import{readFileSync,writeFileSync}from'node:fs';import{spawnSync,execFileSync}from'node:child_process';import{createHash}from'node:crypto';
+import{collectEngineeringInputs,collectQuality,qualitySnapshot}from'../../../scripts/check-engineering-quality.mjs';
+import{measureSources}from'../../../scripts/lua-quality-metrics.mjs';import{analyzeSources}from'../../../scripts/check-architecture.mjs';import{parseDiagnostics}from'../../../scripts/check-lua-static.mjs';import{requireLuaTool}from'../../../scripts/setup-lua-static.mjs';
+const file='src/lua/abyss_golden_idol_event.lua',prior='tests/fixtures/golden-idol-before.lua',base='1eb288472d7b33b7450eec97a624ca2ffa526f39';
+const old=readFileSync(prior,'utf8'),original=execFileSync('git',['show',base+':'+file],{encoding:'utf8'});assert.equal(old,original);
+const fresh=collectEngineeringInputs(),current=collectQuality(fresh);runEngineering({collect:()=>fresh});assert.deepEqual(current.errors,[]);
+const r=spawnSync(requireLuaTool().file,[prior,'--formatter','plain','--codes','--ranges','--no-color','--max-cyclomatic-complexity','0','--only','561'],{encoding:'utf8',timeout:30000});assert.equal(r.status,1);assert.equal(r.stderr,'');
+const diagnostics=[...fresh.complexity.diagnostics.filter(x=>x.file!==file),...parseDiagnostics(r.stdout).map(x=>({...x,file}))],sources={...fresh.sources,[file]:old};
+const measured=measureSources(sources,diagnostics);assert.deepEqual(measured.errors,[]);
+const modules=Object.fromEntries(Object.entries(sources).map(([p,s])=>[p.slice(8,-4),s]));
+const architecture=analyzeSources(modules,JSON.parse(readFileSync('config/architecture.json')));assert.deepEqual(architecture.errors,[]);
+const before=qualitySnapshot(measured,architecture,fresh.warnings.diagnostics);
+for(const[path,source]of Object.entries(sources))assert.equal(source,execFileSync('git',['show',base+':'+path],{encoding:'utf8'}),path);
+const summarize=s=>({modules:s.modules.length,measurements:s.modules.flatMap(m=>m.functions).length,over30:s.modules.flatMap(m=>m.functions).filter(f=>f.complexity>30).length,over15:s.modules.flatMap(m=>m.functions).filter(f=>f.complexity>15).length,max:Math.max(...s.modules.flatMap(m=>m.functions).map(f=>f.complexity)),scc:s.cycles.map(x=>({members:x.members.length,positions:x.edges.length})),warnings:s.diagnostics.length});
+const report={base,before:summarize(before),after:summarize(current.snapshot),sourceSha256:createHash('sha256').update(fresh.sources[file]).digest('hex'),sourceFile:file,scoped:current.snapshot.modules.find(m=>m.file===file).functions,unchangedDependencies:JSON.stringify(before.dependencies)===JSON.stringify(current.snapshot.dependencies)};
+writeFileSync('.artifacts/golden-idol/metrics.json',JSON.stringify(report,null,2)+'\n');writeFileSync('.artifacts/golden-idol/quality-before.json',JSON.stringify(before));writeFileSync('.artifacts/golden-idol/quality-after.json',JSON.stringify(current.snapshot));console.log(JSON.stringify(report,null,2));

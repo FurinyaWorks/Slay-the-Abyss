@@ -1,0 +1,50 @@
+{
+  "reviewId": "source-root-current-base-20261111-r2",
+  "conclusion": "pass",
+  "unresolved": [],
+  "reviewedBaseSha": "3a061a76b5eb917ac0f4213c01a9cbafd28d1824",
+  "reviewSource": "Independent native subagent review_source_root_integration",
+  "bindingStatus": "Working-tree bytes reviewed; final HEAD and tree pending parent commit",
+  "scope": [
+    "scripts/lua-quality-metrics.mjs",
+    "tests/engineering-shared-inputs.test.mjs",
+    ".gitattributes",
+    "new-base preservation and adjacent discovery consumers"
+  ],
+  "sha256": {
+    "scripts/lua-quality-metrics.mjs": "df99cbef194dc74cc22fc980a3790ed3aced5ef3664124683041d44ce3f8d614",
+    "tests/engineering-shared-inputs.test.mjs": "a90d3e3af423fbe5ba3015eaad7986e2bb932d4f0bfac6b810a69ddebbbcc693"
+  },
+  "verification": [
+    {
+      "command": "node --test --test-name-pattern='scan root|directory alias' tests/engineering-shared-inputs.test.mjs",
+      "exitCode": 0,
+      "stdout": "✔ both architecture entries reject a linked src scan root (5.444667ms)\n✔ both architecture entries reject a linked src/lua scan root (1.107783ms)\n✔ selecting a repository through a directory alias still checks its real source entries (1.164617ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 184.81813\n"
+    },
+    {
+      "command": "node --input-type=module (temporary fixture: relative dangling src and src/lua links; assert original Linked source entry error for discoverSources, checkArchitecture and collectEngineeringInputs)",
+      "exitCode": 0,
+      "stdout": "Dangling relative root link refusal: 6/6 PASS (discovery, standalone architecture, shared collection)\n"
+    },
+    {
+      "command": "python byte comparisons against git show of old base, new base and old PR head",
+      "exitCode": 0,
+      "stdout": "New-base changes preserved byte-for-byte: 24 files\nBoth .gitattributes additions preserved\nOld PR code, tests, documentation and evidence preserved byte-for-byte\n"
+    },
+    {
+      "command": "git diff --cached --check",
+      "exitCode": 0,
+      "stdout": ""
+    }
+  ],
+  "findings": [
+    "No integration defect found. Source-root rejection precedes traversal and shared/standalone architecture consume the same discoverSources implementation.",
+    "New base changes are experiment/evidence additions and do not alter adjacent discovery consumers. Both attribute additions are preserved.",
+    "No production Lua, CI limits, inventories or historical evidence was changed by this integration."
+  ],
+  "limitations": [
+    "POSIX only; Windows junction behavior and exact-HEAD Full CI remain required.",
+    "Not an atomic defense against concurrent hostile filesystem replacement.",
+    "No Full suite repeated; no live GUI or product validation performed."
+  ]
+}

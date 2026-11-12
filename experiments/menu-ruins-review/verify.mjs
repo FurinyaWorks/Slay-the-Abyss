@@ -1,0 +1,31 @@
+import fs from 'node:fs';import path from 'node:path';import {gunzipSync} from 'node:zlib';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+const dir=process.argv[2]??'docs/evidence/menu-native-2d-20261112';
+const read=name=>JSON.parse(name.endsWith('.gz')?gunzipSync(fs.readFileSync(path.join(dir,name))):fs.readFileSync(path.join(dir,name)));
+const identity=read('identity.json'),visual=read('visual.json'),browser=read('browser.json.gz'),sdk=read('sdk.json'),paired=read('paired-sdk.json'),adapter=read('adapter-receipt.json'),service=read('service.json'),candidate=read('candidate.json.gz');
+for(const [file,sha]of Object.entries(identity.images))assert.equal(createHash('sha256').update(fs.readFileSync(path.join(dir,file))).digest('hex'),sha,file);
+assert.equal(identity.candidate.sha256,candidate.candidate.sha256);assert.equal(identity.buildId,adapter.buildId);assert.equal(identity.buildId,service.buildId);
+assert.equal(identity.buildId,candidate.buildId,'same candidate build');assert.equal(identity.buildId,browser.buildId,'same browser build');
+assert.equal(identity.sourceCommit,candidate.sourceCommit,'same candidate source');assert.equal(identity.sourceCommit,adapter.sourceCommit,'same adapter source');
+assert.equal(identity.sourceDirty,candidate.sourceDirty,'same candidate sourceDirty');assert.equal(identity.sourceDirty,adapter.sourceDirty,'same adapter sourceDirty');
+assert.equal(identity.payloadDigest,candidate.payloadDigest,'same candidate payload');
+for(const r of [visual,browser])assert.equal(r.rendererSha256,service.rendererSha256,'same renderer signature');
+for(const r of [sdk,paired])assert.equal(r.sdkSha256,service.sdkSha256,'same SDK signature');
+assert.equal(identity.images['menu.png'],identity.images['returned-menu.png'],'same actual entry and return PNG');
+assert.equal(identity.candidate.sha256,adapter.candidateSha256);assert.equal(adapter.inverseReadback.faults.length,0);
+for(const r of [visual,browser,sdk,paired,service])assert.equal(r.saveSha256,adapter.saveSha256,'same actual save');
+assert.equal(identity.sourceDirty,false);assert.equal(visual.status,'captured');assert.equal(sdk.status,'pass');assert.equal(browser.status,'captured');
+assert.equal(visual.errors.length+browser.errors.length+sdk.faults.length,0);assert(identity.returnedMenuPixelFileIdentical);
+assert.equal(new Set(visual.roundtripCounts).size,1);assert.equal(sdk.stages.find(s=>s.name==='root-destroy').controlsAfter,0);
+// Reference machine stage-review budgets. This is a Simulator regression gate,
+// not a substitute for native device/official storage acceptance.
+assert(browser.archiveLoadMs<=1000,'archive read must stay below 1s');
+assert(browser.navigationToPositiveFrameMs<=3000,'first running frame must stay below 3s');
+assert(browser.transitions.length>=6&&browser.transitions.every(t=>Number.isFinite(t.clickToFirstChangedDrawMs)&&t.clickToFirstChangedDrawMs<=1000),'each natural page transition must draw within 1s');
+assert(browser.transitions[0].clickToFirstChangedDrawMs<=400,'menu to selection must draw within 400ms');
+assert(visual.steadyDrawMs.samples>=60&&visual.steadyDrawMs.p95<=4,'steady renderer P95 must stay within 4ms');
+assert(sdk.sdkStepMs.samples>=600&&sdk.sdkStepMs.p95<=12,'full natural-flow SDK P95 must stay within 12ms');
+assert.equal(paired.samples.length,6);assert.equal(paired.delta.controls,167);
+assert(paired.with.startMs.p50<=1500,'SDK start median must stay within 1.5s');
+assert(paired.delta.startMedianMs<=Math.max(100,paired.without.startMs.p50*.1),'background must not materially increase startup');
+assert(paired.with.stepP95Ms.p50<=8&&paired.delta.stepP95MedianMs<=1,'background must not materially increase steady CPU');
+console.log('MENU_NATIVE_SCENE_ACCEPTED Simulator visual evidence binding + loading/transition/steady budgets');

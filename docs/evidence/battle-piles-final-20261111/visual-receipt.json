@@ -1,0 +1,81 @@
+{
+  "kind": "actual-stage-visual-not-performance",
+  "buildId": "3a928e26-af7f-4860-ac29-fd078371b0d5",
+  "fixtureSha256": "bde20bed09b286fd2916b396b40701f29734ccfa6525d978065dac3c3823e9a5",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "sid": "qa-stage-visual-1794375825480",
+  "shots": [
+    {
+      "name": "01-whole",
+      "checks": {},
+      "sha256": "af0698f6715cdc0dbbbd51d4324509a2ec4b44da18c5f4d635b75008f674d65c"
+    },
+    {
+      "name": "00-empty-draw",
+      "checks": {},
+      "sha256": "16e5b1de61342a912fa3ef17aa9c21ba3f4a8939b40bebb8f1cba807ffdbbfc8"
+    },
+    {
+      "name": "00-relic-detail",
+      "checks": {},
+      "sha256": "7f302ec040730769d16e38f57019c511a15d00cdc1b29a4969b9eabf796e7ca2"
+    },
+    {
+      "name": "00-relic-next",
+      "checks": {},
+      "sha256": "18219a29af20eba90d3f17d6d2a1040ee835a00de2c0ba418d5900d33e0ca22c"
+    },
+    {
+      "name": "02-defend-hover",
+      "checks": {},
+      "sha256": "5bf4420a95919c5d9b209461021506d46370073fdee5c436bff93dd79c44a945"
+    },
+    {
+      "name": "03-bash-centred-aim",
+      "checks": {},
+      "sha256": "51dafbddc480e142185998d86216719b9cfb82c75bb6083972fbda23310af8db"
+    },
+    {
+      "name": "04a-exhaust-entry-live",
+      "checks": {},
+      "sha256": "a758bf78f282a3c077138b657a2d6eeaf8cd66927883dfa0089d8a373b97e5a6"
+    },
+    {
+      "name": "04-exhaust-offering",
+      "checks": {},
+      "sha256": "7b54d8a97bf76eead72738807389bbd2a22084228c2bdf3e1245ca22f5bbf724"
+    },
+    {
+      "name": "05-discard-strike",
+      "checks": {},
+      "sha256": "c6198c54e468fcf178ea943f9444a49d7d243daba490881e6097a081a9b4ffb4"
+    },
+    {
+      "name": "06-draw-next-turn",
+      "checks": {},
+      "sha256": "ad55119b9cebb8b41120ece53bc1c36194f725ab106fdc34452751f247d06c58"
+    },
+    {
+      "name": "07-pile-sort-default-restored",
+      "checks": {},
+      "sha256": "ad55119b9cebb8b41120ece53bc1c36194f725ab106fdc34452751f247d06c58"
+    },
+    {
+      "name": "08-card-detail-heading",
+      "checks": {},
+      "sha256": "4f8910646962fd9ad6c0860f1a1fa862faba85b232e98d11a3c82ceb5b0422f0"
+    },
+    {
+      "name": "09-return-to-pile",
+      "checks": {},
+      "sha256": "ad55119b9cebb8b41120ece53bc1c36194f725ab106fdc34452751f247d06c58"
+    }
+  ],
+  "errors": [],
+  "status": "captured-awaiting-review",
+  "stop": {
+    "running": false,
+    "tree": [],
+    "logs": []
+  }
+}

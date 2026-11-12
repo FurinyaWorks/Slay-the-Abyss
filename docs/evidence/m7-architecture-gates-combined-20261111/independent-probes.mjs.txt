@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {analyzeSources,checkArchitecture} from '../../scripts/check-architecture.mjs';
+const git=(...a)=>execFileSync('git',a,{maxBuffer:50*1024*1024});
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const cases=[];
+for(const name of Object.getOwnPropertyNames(Object.prototype)) for(const mode of ['pcall','xpcall-handler']) {
+ const fn=`function() return require("${name}") end`;
+ const a=mode==='pcall'?`return pcall(${fn})`:`return xpcall(function() error('x') end,${fn})`;
+ const policy={layers:Object.fromEntries([['a','ui'],[name,'ui']]),deferredImports:[{from:'a',to:name,reason:'reviewed dormant'}]};
+ const ownSources=Object.fromEntries([['a',a],[name,'return require("a")']]);
+ const own=analyzeSources(ownSources,policy,{});
+ assert(own.errors.some(e=>e.message.startsWith('Dependency cycle:')));
+ assert(own.errors.some(e=>e.message.startsWith('Stale deferred')));
+ assert(!own.errors.some(e=>e.message.startsWith('unknown module')));
+ const missing=analyzeSources({a},policy,{});
+ assert(missing.errors.some(e=>e.message===`unknown module ${name}`));
+ const generated=analyzeSources({a},policy,Object.fromEntries([[name,'builder']]));
+ assert(!generated.errors.some(e=>e.message.startsWith('unknown module')));
+ const dormant=analyzeSources(Object.fromEntries([['a',`return function() ${a} end`],[name,'return require("a")']]),policy,{});
+ assert.deepEqual(dormant.errors,[]);
+ cases.push({name,mode,ownCycle:true,ownStale:true,missingRejected:true,generatedAccepted:true,dormantDeferred:true});
+}
+const preservation=[];
+for(const ref of ['266dc278','38c569ae']) {
+ const names=git('diff','--name-only','-z','3a061a76',ref).toString().split('\0').filter(Boolean);
+ for(const path of names.filter(n=>n.startsWith('docs/'))) {
+  const expected=git('show',`${ref}:${path}`),actual=readFileSync(path);
+  assert(expected.equals(actual),`${ref}:${path}`);preservation.push({ref,path,sha256:sha(actual)});
+ }
+ const task=names.find(n=>n.startsWith('backlog/'));
+ const base=git('show',`3a061a76:${task}`).toString();
+ const branch=git('show',`${ref}:${task}`).toString();
+ const current=readFileSync(task,'utf8');
+ for(const line of branch.split('\n').filter(l=>l&&!base.split('\n').includes(l)&&!l.startsWith('updated_date:'))) assert(current.includes(line),`Missing task line ${line}`);
+}
+const changes=git('diff','--name-only','-z','3a061a76').toString().split('\0').filter(Boolean);
+assert(changes.every(n=>n==='.gitattributes'||n.startsWith('docs/')||n.startsWith('backlog/')||['scripts/check-architecture.mjs','tests/architecture.test.mjs'].includes(n)));
+const historical=git('ls-tree','-r','--name-only','-z','3a061a76','docs/evidence').toString().split('\0').filter(Boolean);
+assert.equal(git('diff','3a061a76','--',...historical).length,0);
+const report=checkArchitecture();assert.equal(report.errors.length,0);
+const result={head:git('rev-parse','HEAD').toString().trim(),mergeHead:git('rev-parse','MERGE_HEAD').toString().trim(),sourceSha256:sha(readFileSync('scripts/check-architecture.mjs')),testsSha256:sha(readFileSync('tests/architecture.test.mjs')),cases,preservation,historicalEvidenceFilesUnchanged:historical.length,changedPaths:changes,architecture:{nodes:report.nodes.length,edges:report.edges.length,errors:report.errors,sha256:sha(JSON.stringify(report,null,2)+'\n')}};
+writeFileSync('.artifacts/combined-review/results.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({crossFeatureCases:cases.length,assertionsPerCase:6,preservedBranchDocuments:preservation.length,historicalEvidenceFilesUnchanged:historical.length,architecture:result.architecture},null,2));

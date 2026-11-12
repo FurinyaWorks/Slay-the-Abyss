@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: current fast and Full platform gates retain their package commands, owners and daily artifacts
+ok 1 - current fast and Full platform gates retain their package commands, owners and daily artifacts
+  ---
+  duration_ms: 5.249161
+  type: 'test'
+  ...
+# Subtest: new platform gates and uploads preserve the entire accepted CI and package bytes
+ok 2 - new platform gates and uploads preserve the entire accepted CI and package bytes
+  ---
+  duration_ms: 217.432135
+  type: 'test'
+  ...
+# Subtest: missing, duplicated, moved or altered gate wiring cannot disappear in historical replay
+ok 3 - missing, duplicated, moved or altered gate wiring cannot disappear in historical replay
+  ---
+  duration_ms: 5.197483
+  type: 'test'
+  ...
+# Subtest: official evidence is mandatory and a complete matching synthetic fixture passes
+ok 4 - official evidence is mandatory and a complete matching synthetic fixture passes
+  ---
+  duration_ms: 47.76033
+  type: 'test'
+  ...
+# Subtest: official screenshots require complete decoded PNG or JPEG bytes bound to the checked hash
+ok 5 - official screenshots require complete decoded PNG or JPEG bytes bound to the checked hash
+  ---
+  duration_ms: 453.283112
+  type: 'test'
+  ...
+# Subtest: 20MB and 3MB are independent hard limits; 16MB is only a warning
+ok 6 - 20MB and 3MB are independent hard limits; 16MB is only a warning
+  ---
+  duration_ms: 713.856831
+  type: 'test'
+  ...
+# Subtest: each official load and mobile check is required, unresolved anomalies cannot pass
+ok 7 - each official load and mobile check is required, unresolved anomalies cannot pass
+  ---
+  duration_ms: 1394.883699
+  type: 'test'
+  ...
+# Subtest: rejects another candidate, old times, altered evidence, dirty source and missing detector report
+ok 8 - rejects another candidate, old times, altered evidence, dirty source and missing detector report
+  ---
+  duration_ms: 830.720602
+  type: 'test'
+  ...
+# Subtest: production exclusion has no imports, and growth is reported without treating source bytes as platform MB
+ok 9 - production exclusion has no imports, and growth is reported without treating source bytes as platform MB
+  ---
+  duration_ms: 837.279174
+  type: 'test'
+  ...
+# Subtest: release CLI rejects missing evidence, changed candidate, current payload drift and broken art provenance
+ok 10 - release CLI rejects missing evidence, changed candidate, current payload drift and broken art provenance
+  ---
+  duration_ms: 489.963319
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15477.002706

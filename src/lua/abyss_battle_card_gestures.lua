@@ -105,7 +105,9 @@ function M.install(owner, ownership, host, dependencies)
         end
         if not owner.gesture then owner.suppressClick = false end
         owner.swallow = nil
-        if owner.gesture or not dependencies.closeInfo() then return false end
+        if owner.gesture then return false end
+        local closed,automaticCard=dependencies.closeInfo()
+        if not closed or automaticCard then return false end
         owner.swallow = {touch = event and event.touchId}
         owner:render()
         return true
@@ -113,9 +115,13 @@ function M.install(owner, ownership, host, dependencies)
     local function swallowed(event)
         local swallow = owner.swallow
         if swallow and swallow.touch == (event and event.touchId) then owner.swallow = nil return true end
-        if not dependencies.closeInfo() then return false end -- click-only hosts dismiss on the click itself
+        local closed,automaticCard=dependencies.closeInfo()
+        if not closed or automaticCard then return false end -- automatic card hover preserves this click
         owner:render()
         return true
+    end
+    local function renderAimChange(g,valid,target,aiming)
+        if not host.cardView.refreshAim or not host.cardView.refreshAim(g,valid,target,aiming)then owner:render()end
     end
     local function renderCardMotion(g)
         owner.suppressClick,owner.selected = true,g.uid
@@ -127,7 +133,7 @@ function M.install(owner, ownership, host, dependencies)
             owner:render(); return
         end
         if g.drawnValid ~= valid or g.drawnTarget ~= target or g.drawnAiming ~= aiming then
-            owner:render()
+            renderAimChange(g,valid,target,aiming)
         else host.cardView.renderDrag(valid, target, aiming, true) end
     end
     -- Short EMA of finger velocity, kept on the gesture for a later fling port.
@@ -158,8 +164,10 @@ function M.install(owner, ownership, host, dependencies)
             g.bx = x
         end
         if owner.hover == g.slot then return end
+        local previous=owner.hover
         owner.hover = g.slot
         owner.handHover = {run=g.run,battle=g.battle,turn=g.battle.turn,slot=g.slot,uid=g.uid}
+        if host.cardView.refreshHover and host.cardView.refreshHover(previous,g.slot)then return end
         owner:render(true)
     end
     local function startBrowse(g, x, y)
@@ -215,7 +223,7 @@ function M.install(owner, ownership, host, dependencies)
             owner.carry,owner.selected,owner.hover,owner.handHover = nil,nil,nil,nil
             owner:render()
         elseif g.drawnValid ~= valid or g.drawnTarget ~= target or g.drawnAiming ~= aiming then
-            owner:render()
+            renderAimChange(g,valid,target,aiming)
         else host.cardView.renderDrag(valid,target,aiming,true) end
     end
     local function releaseCardTap(event, input, ended)
@@ -240,6 +248,13 @@ function M.install(owner, ownership, host, dependencies)
         end
         return action
     end
+    local function finishReleaseAction(action,target)
+        -- playSelected retains its mandatory busy preflight. The drawn pose was
+        -- already published by renderDrag; an extra nonbusy full render adds no state.
+        if action=='play' and Theme.presentationProfile=='official-assets-first' then owner:playSelected(target);return end
+        owner:render()
+        if action=='play' then owner:playSelected(target) else dependencies.notice("") end
+    end
     local function finishCardRelease(g, event, ended)
         local x, releaseY = point(event)
         local valid,target = false,nil
@@ -258,9 +273,7 @@ function M.install(owner, ownership, host, dependencies)
         -- Keep the trailing Click bound to this drag, not a persistent global lock.
         ownership.releasedDragTouch = g.touch
         owner.suppressClick,owner.selected = g,action ~= 'cancel' and g.uid or nil
-        owner:render()
-        if action == 'play' then owner:playSelected(target)
-        else dependencies.notice("") end
+        finishReleaseAction(action,target)
     end
     local function release(event, input, ended)
         if owner.potionAim and owner.potionAim.moving and dependencies.releasePotionDrag then return dependencies.releasePotionDrag(event,input) end

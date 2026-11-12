@@ -99,7 +99,7 @@ function polygonTone(hex,alpha){
  const sky='#516371';return tone('#'+[1,3,5].map(i=>Math.round(parseInt(hex.slice(i,i+2),16)*alpha+parseInt(sky.slice(i,i+2),16)*(1-alpha)).toString(16).padStart(2,'0')).join(''));
 }
 const group=(name,items)=>({name,kind:'container',position:[0,0],size:[1280,676],children:items});
-function nativeShape(shape,theme){
+export function nativeShape(shape,theme){
  const picture=(name,box,image,extra={})=>({name,kind:'image',position:nativePoint([box[0]+box[2]/2,box[1]+box[3]/2]),size:box.slice(2),image,colour:tone(shape.colour),opacity:shape.opacity,...extra});
  if(shape.type==='rect')return [picture(shape.name,shape.box,theme.image.rect)];
  // 106095 is vertically transparent-to-white in the local catalog photo.

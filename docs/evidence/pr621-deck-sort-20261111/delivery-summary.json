@@ -1,0 +1,48 @@
+{
+  "base": "680be9c5740a7f0c4fd4b1ce82ee2e9018a2612b",
+  "branch": "feat/permanent-deck-sort-scope",
+  "status": "FUNCTIONAL_PASS_NOT_ADMISSION_READY",
+  "candidateFiles": {
+    "src/lua/abyss_deck_ui.lua": "d584bb37d1d6d72a71dab3a3fad03a1e9a255d958266fdb4797441366208ea99",
+    "tests/lua/deck_browse_filters.lua": "615d7f1fa72ac5246cc7041df598ae2480b477e5c1d6033b0323733e1ac25bfa",
+    "tests/official-assets-runtime.test.mjs": "7bb8a9227364bb20ae3439c09cbe9ff4c760adcdc06dc36d5359413c3bef27e4"
+  },
+  "patchSha256": "9318c22ffc46b1685b6499190838ec5464205299b54030bff3da6b7712360135",
+  "sourceBeforeSha256": "a3fb5637c7fba593e0c798a567f83eaf9953c0cf3677a1d297003e6c16c1493b",
+  "sourceAfterSha256": "d584bb37d1d6d72a71dab3a3fad03a1e9a255d958266fdb4797441366208ea99",
+  "retainedBlocker": "tests/official-battle-pile-source-epoch.test.mjs current-source equality fails, pending authenticated outer epoch on final combined tree",
+  "checks": {
+    "lua-tool-setup.log": {
+      "observedExitCode": 0,
+      "logSha256": "20dbc3a2a41d7ecc9ee00ba76190da61a0c3ce3416ece6cb1a45f2ae527fc527"
+    },
+    "lua-static.log": {
+      "observedExitCode": 0,
+      "logSha256": "1003737376b0b3b48f4c80176d4f04a4ceb18da22f4200c80260cb8b2819f520"
+    },
+    "guidance-repaired-checkout.log": {
+      "observedExitCode": 0,
+      "logSha256": "af2b7464920286d7e2a83524802dfaab6533efcd97570f630eb8344030927915"
+    },
+    "backlog.log": {
+      "observedExitCode": 0,
+      "logSha256": "a4713a2d2fedb45f490a85a35d164af8d315b96821d0f1a7348e42ef69544946"
+    },
+    "network.log": {
+      "observedExitCode": 0,
+      "logSha256": "4aab41d2dd6f678bd9cf6b0a9fcdb5e8fba0023181640e02685af361f3646faa"
+    },
+    "diff.log": {
+      "observedExitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "luaTool": {
+    "sha256": "d68da17fca0697d9e2fb04201f3884abd259fa558b3a449bccaed47f1390defc",
+    "version": "1.2.0"
+  },
+  "node": {
+    "version": "v24.22.1",
+    "sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d"
+  }
+}

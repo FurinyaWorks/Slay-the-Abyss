@@ -1,0 +1,11 @@
+{
+  "modules": 345,
+  "measurements": 5918,
+  "defaultUnchanged": true,
+  "extendedMetricsUnchanged": true,
+  "oldMs": 16104.913400000001,
+  "defaultMs": 1364.0050550000014,
+  "extendedMs": 2724.943217,
+  "matchMs": 37.7578539999995,
+  "notHostedMeasurement": true
+}

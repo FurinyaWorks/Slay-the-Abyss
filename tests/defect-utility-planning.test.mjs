@@ -1,3 +1,6 @@
+import {preDefectActorSource,defectActorEpoch} from './helpers/defect-actor-source-epoch.mjs';
+import {currentDefectActorReader} from './helpers/m7-core-final-source-inverse.mjs';
+import {sourceEpoch as currentEpoch} from './helpers/closeout-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdtempSync,writeFileSync,rmSync} from 'node:fs';
@@ -10,6 +13,8 @@ import {runStatic} from '../scripts/check-lua-static.mjs';
 import {measureSources} from '../scripts/lua-quality-metrics.mjs';
 const file='src/lua/abyss_defect_utility_cards.lua';
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
+const actorRead=currentDefectActorReader(read);
+const actorSource=p=>preDefectActorSource(p,read(p),{readSource:actorRead});
 const before=read('tests/fixtures/defect-utility-planning-before.lua');
 function replay(source,fixture='tests/lua/defect_utility_planning.lua'){
  const dir=mkdtempSync(join(tmpdir(),'defect-utility-'));
@@ -22,7 +27,23 @@ function replay(source,fixture='tests/lua/defect_utility_planning.lua'){
 const pass=r=>assert.equal(r.status,0,r.stdout+r.stderr);
 test('utility planner frozen complete source remains authenticated to develop d8a57cae',()=>{
  assert.equal(createHash('sha256').update(before).digest('hex'),'e9372f029db58b62e4fff8f4889826607e8d114dcab2cfa00ca4f124fe29f670');
- assert.equal(read(file).split('-- Orb-derived plans')[0],before.split('-- Pure queue plan.')[0]);
+ assert.equal(actorSource(file).split('-- Orb-derived plans')[0],before.split('-- Pure queue plan.')[0]);
+});
+
+test('the explicit historical reader requires current owners and rejects a stale configuration after warm success',()=>{
+ const proof=currentEpoch.proof,config='config/architecture.json';
+ const actual=Object.fromEntries(proof.owners.map(p=>[p,read(p)]));let reads=[],changed,value;
+ const reader=currentDefectActorReader(p=>{reads.push(p);if(p===changed){if(value instanceof Error)throw value;return value;}return actual[p];});
+ for(let warm=0;warm<2;warm++){
+  reads=[];assert.equal(reader(config),defectActorEpoch.proof.current[config].source);
+  assert.deepEqual(reads,proof.owners,'all raw current owners precede historical bytes');
+ }
+ changed=config;value=defectActorEpoch.proof.current[config].source;
+ assert.throws(()=>reader(config),/combined linked owner identity: config\/architecture\.json/,'an otherwise correct old Actor config is not current permission');
+ changed=proof.owners.find(p=>!Object.hasOwn(defectActorEpoch.proof.current,p));
+ for(value of [actual[changed]+'\n',null,new Error('unavailable')])assert.throws(()=>reader(config),/combined linked owner/);
+ changed=undefined;reads=[];assert.equal(reader(config),defectActorEpoch.proof.current[config].source);assert.deepEqual(reads,proof.owners);
+ assert.throws(()=>reader('src/lua/not_an_actor_owner.lua'),/known Actor owner/,'unknown paths cannot receive projected source');
 });
 test('independent old/new VMs preserve plans, input graphs, validation order, dynamic reads and original errors',()=>{
  const old=replay(before),current=replay(read(file));pass(old);pass(current);
@@ -57,7 +78,7 @@ for(const [name,from,to]of [
 
 test('exact single-source inverse preserves frozen history and does not bless drift, fragments, other files or nonstrings',async()=>{
  const {preDefectUtilitySource:inverse,defectUtilitySourceProof:proof}=await import('./helpers/defect-utility-source-inverse.mjs');
- const current=read(file);assert.equal(file,proof.path);
+ const current=actorSource(file);assert.equal(file,proof.path);
  for(const source of [current,current.replaceAll('\n','\r\n')])assert.equal(inverse(file,source),before);
  for(const source of [before,current+'\n',current.slice(1),current+current,null,undefined,{},17])assert.equal(inverse(file,source),source);
  assert.equal(inverse('foreign/'+file,current),current);

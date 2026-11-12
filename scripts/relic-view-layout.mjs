@@ -85,7 +85,7 @@ export function relicViewControls(theme = nativeTheme) {
           image: theme.icon.node.treasure.id ?? theme.icon.node.treasure, colour: '#FFFFFF' },
         text('name', [0, 42, v.row[0], 48], '', f.heading, c.goldBright),
         text('rarity', [0, 0, v.row[0], 36], '', f.label, c.textDim),
-        top(text('description', [0, -102, v.row[0], v.description[3]], '', f.small, c.text)),
+        top(text('description', [0, -102, v.row[0]-48, v.description[3]], '', theme.presentationProfile==='official-assets-first'?f.body:f.small, c.text)),
         text('status', [0, -210, v.row[0], 36], '', f.label, c.goldBright),
       ] },
       { ...text('placeholder', [0, 0, 600, 48], '本局尚未获得遗物。', f.body, c.textDim), visible: false },

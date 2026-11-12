@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "m7-defect-actor-plan-independent-20261111",
+  "reviewer": "native independent reviewer /root/advance_m7_current/review_defect_actor_boundary",
+  "phase": "plan-only",
+  "baseline": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "conclusion": "pass_with_required_validation",
+  "unresolvedBlockingPlanFindings": [],
+  "scope": "Read-only architectural and behavior-contract review. No product edits or test executions. This is not final source review, CI approval, merge approval or product acceptance.",
+  "sourceSha256Lf": {
+    "src/lua/abyss_defect_utility_cards.lua": "921a0e333377d12bd54551b71d1af2d142fc404172df7bf62ba1d4351b33cfb5",
+    "src/lua/abyss_combat_queued_play.lua": "8cdb95b829af4572932daa356ca0456a385c5cad5afb7950da2f2b47a5152d15",
+    "src/lua/abyss_watcher_attack_cards.lua": "f34c4b292fa104724b98a05324ed931448ee21d9cf58ca946c8e33f6b22b4f00",
+    "config/architecture.json": "08bb95bacc63c67b9a510aefd22d81b4e53200b31aa57935fb60087cf8ecedec",
+    "tests/lua/defect_utility_build.lua": "7ecd57aa1caae8a11fb316aa09695138c2181e38b71a575cb6f5996e017c0abe",
+    "tests/lua/support/m9_combat_protocol_baseline.lua": "a186947c979554c8388ebe87b62e88b6cb3e3b2a003dc4a18a62c9666d2c119f",
+    "tests/defect-utility-planning.test.mjs": "7744eb13dc4f9f2ab577c9ffb662c74a963031243629a50f888ec2c5c410b85c",
+    "tests/watcher-actor-boundary.test.mjs": "a1b56609000be395058b22146cbe8ae860860fe347b109acfcb3bb5d6c1e552f",
+    "tests/helpers/defect-utility-source-inverse.mjs": "e7b65594c3e0623dc5b81dded943f4ddf069aeb176577f2b1a6c34bb43a56242",
+    "tests/helpers/watcher-actor-source-inverse.mjs": "fa386ca691f8943af41becf2cb5896fee2d69bcdf84a8dfc297db050fde8f4f0",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "9c13e8134088d55a7a7b57e7f4fe905fd87cdc9a36e6c636049285e6fa99faf1"
+  },
+  "findings": [
+    {
+      "area": "boundary",
+      "conclusion": "The proposed explicit fourth actorHost argument removes the only Actor dependency from Utility without moving state ownership. Utility retains copy, validation, arithmetic query and immutable effect preparation; queued-play already owns the preparation lifecycle and imports Actor."
+    },
+    {
+      "area": "ABI",
+      "conclusion": "The internal prepareEffect ABI changes only for barrageDamage/ftlDamage/xBlock. Migrate the sole live production caller in queued-play and three direct current fixture calls. Keep original first three arguments, return arity, detached copy and operation behavior. Non-arithmetic effects must remain usable without a host. flow-actions is not a Utility dispatcher."
+    },
+    {
+      "area": "evaluation-order",
+      "conclusion": "Resolve actorHost exactly once after original attack/value validation, never before copy or original assert. Preserve state.player/target/value method argument evaluation, one real attackAmount/blockAmount call per prepared effect, result integer check, and FTL threshold validation after attack and overflow. Do not prebind arithmetic functions, use Combat aliases, save host in game state or add a registry."
+    },
+    {
+      "area": "loading",
+      "conclusion": "Cold Utility no longer loads Actor, intentionally. In normal production queued-play retains its eager Actor import, and delayed host require returns the canonical Actor table. Replacing dynamic methods on that table remains observable. Whole-table package.loaded replacement between Utility initialization and preparation would differ from the old captured table and is not part of an unqualified equivalence claim."
+    },
+    {
+      "area": "host-placement",
+      "conclusion": "A new private one-line utilityActorHost immediately before prepareQueued is appropriate and avoids moving or renaming the existing watcherActorHost. It adds one require position but no new queued-to-Actor unique pair."
+    },
+    {
+      "area": "historical-pairing",
+      "conclusion": "Freeze m9_combat_protocol_baseline.lua body and preserve its original source hash. For new Defect historical comparison, pair its old three-argument call with the entire frozen old Utility in an independent VM; current VM uses actual new Utility and queued-play. Do not rewrite old protocol or fake a compatibility fallback in production."
+    },
+    {
+      "area": "source-epoch",
+      "conclusion": "Authenticate all changed complete outer owners and fresh linked owner reads, then project exact bytes into existing epoch chain. Preserve original frozen fixtures, proof hashes, assertions and archives. Source-prefix and inverse tests in defect-utility-planning need a verified old-epoch projection, while current API and full graph tests must still read actual current sources."
+    },
+    {
+      "area": "architecture-test-impact",
+      "conclusion": "Watcher boundary currently requires exactly two queued-to-Actor positions. Preserve those two exact historical sites and explicitly require the third utilityActorHost site in current graph; do not weaken to an inequality or delete the historical count contract."
+    },
+    {
+      "area": "benefit",
+      "conclusion": "Existing full-graph evidence has SCC sizes 68/11/2; edge-removal counterfactual yields 67/11/2 and large-SCC positions/pairs 513/324 to 510/321. A separate Utility host adds a surviving internal queued-to-Actor position, so final measured large-SCC position total is expected 511 rather than 510. This is a prediction only; remeasure complete current graph and report all absolute values, internal edges and residual risks."
+    }
+  ],
+  "requiredValidation": [
+    "Cold-load Utility alone: no Actor, Combat or execution host loaded; withCards and non-arithmetic prepareEffect remain independent.",
+    "Exact host-call count and order for missing effect, copy metamethod failure, invalid attack value/target, invalid X value, unknown op, attack overflow, block overflow and late FTL threshold failure. Verify original error object identity and Actor side effects.",
+    "Dynamic attackAmount/blockAmount replacement across calls, callable slots if supported, method failures and single return value. Preserve detached nested effect input and player/target identity.",
+    "Real queued Barrage, FTL and Reinforced Body, including upgraded effects, zero and captured X, free-to-play, modifier snapshots versus live orb count, queue order, full state/alias/RNG/event graphs, and late failures through Combat rollback with successful retry.",
+    "Independent old/new VMs with complete frozen old Utility plus relevant old queued/protocol owners. Frozen protocol/source hashes remain unchanged; no new fallback for old ABI.",
+    "Full-graph guard rejects direct, deferred and transitive paths from Utility back to Actor, Combat and execution owners, with named genuine negative controls and complete source inventory.",
+    "Outer source epoch requires exact complete live owner match and rereads on every call; reject owner drift, restoration gaps, mixed epochs, missing owner, fragments, unrelated paths and wrong types. Verify old historical consumers continue to run with unchanged proofs.",
+    "Necessary current Defect, M9, Watcher, source-chain and architecture/complexity tests, not duplicate Full. Preserve all old CI budgets, timeout limits, floors, inventory and original failures; measure any new test cost honestly.",
+    "Final independent exact-source review after implementation and source adapters stabilize, plus exact candidate SHA gate verification by coordinator before any completion claim."
+  ],
+  "constraints": {
+    "newModulesDependenciesScanners": false,
+    "fullRerun": false,
+    "gui": false,
+    "budgetChanges": false,
+    "taskReclaim": false,
+    "ownerStatusACChanges": false
+  },
+  "toolLimitations": [
+    "backlog command was not present in this reviewer shell PATH. No task files were changed and no task claim was attempted; owner continuation was supplied by coordinator."
+  ],
+  "evidenceRead": [
+    "AGENTS.md",
+    "docs/ENGINEERING.md",
+    "docs/TASK_EXECUTION.md",
+    "backlog/tasks/task-74.19 - 收敛核心依赖环与领域状态所有权.md",
+    "/tmp/m7-defect-utility-boundary-plan-20261111.json"
+  ]
+}

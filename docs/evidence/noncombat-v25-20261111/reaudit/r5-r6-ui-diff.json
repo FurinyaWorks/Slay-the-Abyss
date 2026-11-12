@@ -1,0 +1,32 @@
+[
+  {
+    "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone15/size/0",
+    "before": 154,
+    "after": 97
+  },
+  {
+    "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone15/position/0",
+    "before": 620,
+    "after": 591.5
+  },
+  {
+    "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone31/size/0",
+    "before": 154,
+    "after": 97
+  },
+  {
+    "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone31/position/0",
+    "before": 620,
+    "after": 591.5
+  },
+  {
+    "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone47/size/0",
+    "before": 154,
+    "after": 97
+  },
+  {
+    "path": "controls/stage/children/nodePanel/children/eventView/children/neowFigure/children/masonry/children/stone47/position/0",
+    "before": 620,
+    "after": 591.5
+  }
+]

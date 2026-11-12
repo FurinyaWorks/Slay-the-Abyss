@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "beforeCommit": "bd9fc7ee15bca14a9ad7fe43f6fc9d1c35aa4bf9",
+  "afterProductionCommit": "6702ed26d779eec4d237aa991471b0344c3c3f92",
+  "afterIntegrationCommit": "a0e217559b7c47ee6b217b36c172904258b3da6c",
+  "completeSourceInputs": 25,
+  "pureInputNegativeCases": 225,
+  "addedInputs": [
+    "tests/helpers/historical-drag-replay.mjs",
+    "tests/helpers/historical-drag-target.mjs",
+    "tests/helpers/historical-drag-worker.mjs",
+    "tests/fixtures/historical-drag-prepared-target.json.gz"
+  ],
+  "addedInputsVerified": true
+}

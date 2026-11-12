@@ -1,0 +1,130 @@
+[
+  {
+    "fixture": "tests/lua/golden_idol_event.lua",
+    "label": "before",
+    "durationMs": 8871.535132,
+    "logs": [
+      "GOLDEN_IDOL_EVENT_PASS actual public obtain before mandatory trap, Injury permanent UID and no body RNG"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_event.lua",
+    "label": "current",
+    "durationMs": 5751.016819,
+    "logs": [
+      "GOLDEN_IDOL_EVENT_PASS actual public obtain before mandatory trap, Injury permanent UID and no body RNG"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_costs.lua",
+    "label": "before",
+    "durationMs": 7981.090746999998,
+    "logs": [
+      "GOLDEN_IDOL_COSTS_PASS exact truncation/min1, three trap costs/fatal/Fairy/Omamori, real Tail once across events, real duplicate Circlet, live Fruit and missing-hook refusals"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_costs.lua",
+    "label": "current",
+    "durationMs": 8330.746996000002,
+    "logs": [
+      "GOLDEN_IDOL_COSTS_PASS exact truncation/min1, three trap costs/fatal/Fairy/Omamori, real Tail once across events, real duplicate Circlet, live Fruit and missing-hook refusals"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_rollback.lua",
+    "label": "before",
+    "durationMs": 26583.430067999998,
+    "logs": [
+      "GOLDEN_IDOL_ROLLBACK_PASS actual obtain/curse/fatal-damage late failures preserve stage owner and RNG; wrong stage/UID/missing definition atomic"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_rollback.lua",
+    "label": "current",
+    "durationMs": 17938.970884000002,
+    "logs": [
+      "GOLDEN_IDOL_ROLLBACK_PASS actual obtain/curse/fatal-damage late failures preserve stage owner and RNG; wrong stage/UID/missing definition atomic"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_rounding.lua",
+    "label": "before",
+    "durationMs": 4248.870569999999,
+    "logs": [
+      "GOLDEN_IDOL_ROUNDING_PASS independent IEEE32 truncation for cached .25/.08 costs including minimum-one and large int boundaries"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_rounding.lua",
+    "label": "current",
+    "durationMs": 5381.40834400001,
+    "logs": [
+      "GOLDEN_IDOL_ROUNDING_PASS independent IEEE32 truncation for cached .25/.08 costs including minimum-one and large int boundaries"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_channels.lua",
+    "label": "before",
+    "durationMs": 4957.091655000011,
+    "logs": [
+      "GOLDEN_IDOL_CHANNELS_PASS actual event acquire -> real starter source battle/unchanged gold RNG/claim -> same-owner Moai333 sacrifice (Act3 boundary, not whole campaign)"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_channels.lua",
+    "label": "current",
+    "durationMs": 6217.4736850000045,
+    "logs": [
+      "GOLDEN_IDOL_CHANNELS_PASS actual event acquire -> real starter source battle/unchanged gold RNG/claim -> same-owner Moai333 sacrifice (Act3 boundary, not whole campaign)"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_gold.lua",
+    "label": "before",
+    "durationMs": 9665.627448999992,
+    "logs": [
+      "GOLDEN_IDOL_GOLD_PASS 33 raw source outcomes/RNG preserved; offer-frozen round bonus, late owner changes, direct/stolen exclusion and Ectoplasm claim gate"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_gold.lua",
+    "label": "current",
+    "durationMs": 5868.155905000007,
+    "logs": [
+      "GOLDEN_IDOL_GOLD_PASS 33 raw source outcomes/RNG preserved; offer-frozen round bonus, late owner changes, direct/stolen exclusion and Ectoplasm claim gate"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_natural.lua",
+    "label": "before",
+    "durationMs": 5861.715311000007,
+    "logs": [
+      "GOLDEN_IDOL_NATURAL_PASS seed16 full unfiltered source pool/only selected removal/once preservation/exact RNG; actual acquire and cost (room boundary, not campaign clear)"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_natural.lua",
+    "label": "current",
+    "durationMs": 4209.326015999992,
+    "logs": [
+      "GOLDEN_IDOL_NATURAL_PASS seed16 full unfiltered source pool/only selected removal/once preservation/exact RNG; actual acquire and cost (room boundary, not campaign clear)"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_ui.lua",
+    "label": "before",
+    "durationMs": 10719.54570100001,
+    "logs": [
+      "GOLDEN_IDOL_UI_PASS intro/trap/result, actual immediate owner, three costs/card name, Fruit cached value, stale callback/touch and fatal defeat"
+    ]
+  },
+  {
+    "fixture": "tests/lua/golden_idol_ui.lua",
+    "label": "current",
+    "durationMs": 8146.017660000012,
+    "logs": [
+      "GOLDEN_IDOL_UI_PASS intro/trap/result, actual immediate owner, three costs/card name, Fruit cached value, stale callback/touch and fatal defeat"
+    ]
+  }
+]

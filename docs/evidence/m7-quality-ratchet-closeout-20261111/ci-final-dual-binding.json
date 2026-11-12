@@ -1,0 +1,19 @@
+{
+  "scope": "Final exact dual source binding only",
+  "checks": 60,
+  "hashes": {
+    "scripts/lua-quality-metrics.mjs": "7230ccd48a4818e7c42ce2d180ba9b0a5bf36862cff4135dbc17285ac7eda842",
+    "tests/ci-complete-calibration.test.mjs": "aaa4e166215b8af571f74ce1475b24e36550473b0ed7bb74225577d48afe7286"
+  },
+  "targets": {
+    "scripts/lua-quality-metrics.mjs": [
+      "officialFirstReceipt",
+      "officialFlowReceipt"
+    ],
+    "tests/ci-complete-calibration.test.mjs": [
+      "componentAliasFix",
+      "officialAssetsFlow"
+    ]
+  },
+  "conclusion": "verified; unsupported target and arbitrary source drift remain visible"
+}

@@ -1,0 +1,15 @@
+✔ audio packaging reuses existing BGM graph and signals without duplicates (107.720962ms)
+✔ real BGM CLI preserves exact packaged startup marker and all entry parameters, then binds final adjacent artifact (104.343979ms)
+✔ BGM final readback rejects corrupted abyss_ui instead of inheriting pre-audio provenance (82.443548ms)
+✔ BGM final readback rejects corrupted abyss_narrative instead of inheriting pre-audio provenance (88.66655ms)
+✔ BGM final readback rejects corrupted abyss_art_features instead of inheriting pre-audio provenance (100.600229ms)
+✔ audio CLI preserves official skin and lifecycle identity and rejects changed policy readback (200.408646ms)
+✔ startup uses raw decoding and actual run request, not claimed metadata (10.393087ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 839.087648
