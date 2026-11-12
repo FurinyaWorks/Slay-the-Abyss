@@ -267,15 +267,23 @@ function nodeCardChrome(face,theme){
  for(const child of parts(face))nodeCardChrome(child,theme);
 }
 
-function styleRewards(battle,theme){
- const stage=must(battle,'rewardStage'),r=theme.layout.rewardPick;setRect(stage,r.stage);
+function rewardHost(stage,title){
  must(stage,'border').opacity=0;must(stage,'plate').opacity=0;
- stage.children.unshift(group('v25RewardField',[rect('dark',0,-22,1280,676,'#070B0B')]));
- stage.children.splice(3,0,group('v25RewardPaper',[polygon('banner',[[365,170],[409,164],[425,153],[563,151],[859,153],[877,165],[915,171],[893,205],[855,202],[849,211],[431,211],[420,202],[387,205]],'#A79E80'),
+ stage.children.unshift(group('v25RewardField',[rect('dark',0,-22,1280,676,'#070B0B')],[0,-stage.position[1]]));
+ const paper=group('v25RewardPaper',[polygon('banner',[[365,170],[409,164],[425,153],[563,151],[859,153],[877,165],[915,171],[893,205],[855,202],[849,211],[431,211],[420,202],[387,205]],'#A79E80'),
   // A continuous native centre closes antialias seams between the silhouette's
   // triangles without changing its authored outline or adding an atlas plate.
   rect('paperCore',0,180,420,38,'#A79E80'),
-  fade('paperLight',0,180,450,55,'#D0C8AA',{rotation:180,opacity:.14})]));
+  fade('paperLight',0,180,450,55,'#D0C8AA',{rotation:180,opacity:.14})],title.slice(0,2));
+ for(const item of paper.children)item.position=[item.position?.[0]??0,(item.position?.[1]??0)-180];
+ paper.scale=[title[2]/550,title[3]/70];stage.children.splice(3,0,paper);
+}
+function styleRewards(battle,theme){
+ const stage=must(battle,'rewardStage'),r=theme.layout.rewardPick;setRect(stage,r.stage);
+ rewardHost(stage,r.title);
+ const list=must(battle,'rewardList'),base=theme.layout.battleRewards;
+ rewardHost(list,[base.title[0]-base.stage[0],base.title[1]-base.stage[1],...base.title.slice(2)]);
+ must(list,'title').text.colour='#EFE8D4';must(list,'subtitle').text.colour='#D6D5C5';
  setRect(must(stage,'title'),r.title);type(must(stage,'title'),29,'#EFE8D4');
  setRect(must(stage,'subtitle'),r.subtitle);type(must(stage,'subtitle'),16,'#D6D5C5');
  const skip=must(battle,'skip');setRect(skip,r.skip);for(const state of parts(skip))state.size=r.skip.slice(2);stylePreset(skip);

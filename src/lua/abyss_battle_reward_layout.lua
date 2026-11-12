@@ -30,6 +30,15 @@ local function visibleRewards(frame)
  end
  return visible
 end
+local function positionHost(box,layout)
+ -- The shared approved reward host follows the existing ordinary/expanded
+ -- layout; its opaque field stays below the battle bar in canvas coordinates.
+ local stage=layout.stage
+ local field=box:GetChild('v25RewardField')
+ if field then field:SetAnchoredPosition(-stage[1],-stage[2])end
+ local paper=box:GetChild('v25RewardPaper')
+ if paper then paper:SetAnchoredPosition(layout.title[1]-stage[1],layout.title[2]-stage[2])end
+end
 function M.render(frame,child,sizeOwner)
  local visible=visibleRewards(frame)
  local count=0;for _,name in ipairs(names)do if visible[name]then count=count+1 end end
@@ -37,6 +46,7 @@ function M.render(frame,child,sizeOwner)
  local layout=count>4 and base.expanded or base
  local box=child('rewardList');local stage=layout.stage
  box:SetAnchoredPosition(stage[1],stage[2]);size(box,stage[3],stage[4],sizeOwner)
+ positionHost(box,layout)
  size(box:GetChild('border'),stage[3],stage[4],sizeOwner)
  size(box:GetChild('plate'),stage[3]-Theme.space.border*2,stage[4]-Theme.space.border*2,sizeOwner)
  for _,name in ipairs({'title','subtitle'})do

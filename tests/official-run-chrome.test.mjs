@@ -9,6 +9,57 @@ import {toLua,luaString} from '../scripts/build-lua-data.mjs';
 
 const child=(node,name)=>(node?.children??node?.controls??[]).find(part=>part.name===name);
 const all=node=>[node,...(node.children??node.controls??[]).flatMap(all)];
+test('reward overview reuses the approved dark and paper host while retaining live rows',()=>{
+ const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme),battle=child(layout,'battlePanel');
+ const list=child(battle,'rewardList'),live=[list,child(list,'title'),child(list,'subtitle'),...['goldReward','cardReward','claimPotion','continue'].map(name=>child(battle,name))];
+ const geometry=new Map(live.map(n=>[n,{position:n.position?.slice(),size:n.size?.slice()}]));
+ applyOfficialAssets([layout],theme);
+ for(const node of live){assert(all(battle).includes(node));assert.deepEqual(node.position,geometry.get(node).position);assert.deepEqual(node.size,geometry.get(node).size);}
+ assert.equal(child(list,'title').text.content,'战斗奖励');
+ assert.equal(child(list,'plate').opacity,0);assert.equal(child(list,'border').opacity,0);
+ const field=child(list,'v25RewardField'),paper=child(list,'v25RewardPaper');
+ assert.equal(child(field,'dark').colour,'#070B0B');
+ assert.equal(field.position[1]+list.position[1],0);
+ assert.equal(paper.position[1],child(list,'title').position[1]);
+ assert(child(paper,'paperCore'));
+ const visibleCatalog=all(list).filter(n=>n.kind==='image'&&n.image===theme.officialAssets.images.panel&&n.opacity!==0&&n.visible!==false);
+ assert.deepEqual(visibleCatalog,[],'summary must not expose the catalog plaque');
+ const picking=child(battle,'rewardStage');assert(child(picking,'v25RewardPaper'));assert(child(picking,'v25RewardField'));
+});
+test('real reward layout keeps the shared host aligned through expanded and ordinary lists',()=>{
+ const f=createRequire(import.meta.url)('fengari'),L=f.lauxlib.luaL_newstate();f.lualib.luaL_openlibs(L);
+ const theme=officialAssetsTheme(nativeTheme),source=readFileSync(new URL('../src/lua/abyss_battle_reward_layout.lua',import.meta.url),'utf8');
+ const script=`
+local theme=${toLua(theme)}
+package.preload.abyss_theme=function()return theme end
+local Layout=assert(load(${luaString(source)}))()
+local function node()
+ local n={children={}}
+ function n:GetChild(k)if not self.children[k]then self.children[k]=node()end;return self.children[k]end
+ function n:SetAnchoredPosition(x,y)self.x,self.y=x,y end
+ function n:SetSizeDelta(w,h)self.w,self.h=w,h end
+ function n:SetVisible(v)self.visible=v end
+ return n
+end
+local root=node();local function child(k)return root:GetChild(k)end
+local box=child('rewardList');local owner={}
+for _,expanded in ipairs({false,true,true,false})do
+ local rewards={goldClaimed=false,cardResolved=false,relics=expanded and {{},{}}or{},emeraldKey=expanded and {}or nil}
+ local frame={run={rewards=rewards},listing=true,manual=true,pendingPotion=expanded}
+ Layout.render(frame,child,owner)
+ local contract=expanded and theme.layout.battleRewards.expanded or theme.layout.battleRewards
+ assert(frame.rewardRows==(expanded and 6 or 2))
+ assert(box.x==contract.stage[1]and box.y==contract.stage[2])
+ local field,paper=box:GetChild('v25RewardField'),box:GetChild('v25RewardPaper')
+ assert(box.x+field.x==0 and box.y+field.y==0,'dark field canvas placement must not jump or cover battle bar')
+ assert(box.x+paper.x==contract.title[1]and box.y+paper.y==contract.title[2],'paper follows actual title writer')
+ assert(child('goldReward').y==contract.rowOrigin[2])
+ assert(child('continue').y==contract.continue[2])
+ assert(box.w==contract.stage[3]and box.h==contract.stage[4])
+end
+`;
+ try{const code=f.lauxlib.luaL_dostring(L,f.to_luastring(script));assert.equal(code,0,code===0?'':f.to_jsstring(f.lua.lua_tostring(L,-1)));}finally{f.lua.lua_close(L);}
+});
 function painted(node,y=0,root=true){
  if(!root&&node.visible===false)return [];
  const centre=y+(node.position?.[1]??0);
