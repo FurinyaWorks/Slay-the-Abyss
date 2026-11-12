@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "scope": "known rejected names for Hu Tao; feedback examples, not a global Chinese vocabulary ban",
+  "rejected": [
+    {
+      "role": "HT",
+      "name": "灯还亮着",
+      "rule": "N2/N4/N6",
+      "reason": "owner feedback 2026-11-12; legacy renaming never approved"
+    },
+    {
+      "role": "HT",
+      "name": "灯下定神",
+      "rule": "N4/N6",
+      "reason": "generic with clustered 灯"
+    },
+    {
+      "role": "HT",
+      "name": "一瓣归灯",
+      "rule": "N2/N3/N6",
+      "reason": "unnatural metaphor"
+    },
+    {
+      "role": "HT",
+      "name": "落梅收灯",
+      "rule": "N2/N3/N6",
+      "reason": "unnatural metaphor, mismatched bloom payoff"
+    }
+  ]
+}
