@@ -88,7 +88,10 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/defect-actor-source-epoch.mjs": "5060235c781acfde3e4db7878c9810526de00d8431194488d194b7d50b9632b6",
   "tests/helpers/defect-actor-source-epoch.json.gz": "c41e28bf8a5d51f0e29f80b48f31cc5d416741ec8d54f4f6c03ce924d1027e17",
   "tests/helpers/combined-epoch/source-epoch.mjs": "23cf0aaaedf2dc9fe90b659953699f3387504dd7cc0cd10fac305739d5352c48",
-  "tests/helpers/m7-core-final-source-inverse.mjs": "0c754fc25ffe6f7101c708028187606aa6a378e360591faa8610bd401bd5ac33"
+  "tests/helpers/m7-core-final-source-inverse.mjs": "0c754fc25ffe6f7101c708028187606aa6a378e360591faa8610bd401bd5ac33",
+  "tests/helpers/combined-epoch/source-epoch.mjs": "99dcd60d6612a172e18645b773c648f8045b7809bd2a5afe6b684892806b461b",
+  "tests/helpers/joust-source-epoch.mjs": "0a22c6c04cd5b399d11b495fc6838d5396022887b239ee0e7be79f8626194851",
+  "tests/helpers/joust-source-epoch.json.gz": "fa0c3a6e28217ca6c5c7731c399f911cb6008b84c2c6d1afa5f3c042dee47a0d"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

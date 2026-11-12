@@ -96,6 +96,7 @@ export function reviewRenderComplexity(diagnostics, sources) {
 const responsibilityRoots = {
   'src/lua/abyss_curses.lua': ["function 'M.isImplemented'"],
   'src/lua/abyss_skill_feedback.lua': [],
+  'src/lua/abyss_joust_event.lua': [],
   'src/lua/abyss_encounter_formation.lua': ['M.assemble','fixedFormation','shapeFormation','gremlinFormation',
     'slimeFormation','louseFormation','mixedFormation'].map(name=>`function '${name}'`),
   'src/lua/abyss_defect_final_cards.lua': ['M.execute','generate','applyFinalPower','recurOrb','scrapeDrawn','recoverZeroCost','recoverDiscard','fissionOrbs','rebootPiles']
@@ -265,6 +266,7 @@ const responsibilityHelper = file => /^src\/lua\/abyss_(?:effects_.+|combat_effe
 const completeResponsibility = file => responsibilityHelper(file)
   || file==='src/lua/abyss_curses.lua'
   || file==='src/lua/abyss_skill_feedback.lua'
+  || file==='src/lua/abyss_joust_event.lua'
   || file==='src/lua/abyss_silent_tactics_cards.lua'
   || file==='src/lua/abyss_shivs.lua'
   || file==='src/lua/abyss_act3_ai.lua'

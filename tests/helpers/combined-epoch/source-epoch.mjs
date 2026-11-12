@@ -1,6 +1,7 @@
 import {extendCursesEpoch} from '../curses-source-epoch.mjs';
 import {extendBattleQueueEpoch} from '../battle-queue-source-epoch.mjs';
 import {extendDefectActorEpoch} from '../defect-actor-source-epoch.mjs';
+import {extendJoustEpoch} from '../joust-source-epoch.mjs';
 import {extendJointUiEpoch} from '../joint-ui-source-epoch.mjs';
 import {extendNoncombatEpoch} from '../noncombat-source-epoch.mjs';
 import {extendNoncombatDemandEpoch} from '../noncombat-demand-source-epoch.mjs';
@@ -15,6 +16,7 @@ export {preEncounterFormationEpoch};
 export const preComponentUiEpoch=extendEncounterFormationEpoch(preEncounterFormationEpoch);
 export const preRoomUiEpoch=extendComponentUiEpoch(preComponentUiEpoch);
 export const preJointUiEpoch=extendRoomUiEpoch(preRoomUiEpoch);
+export const preJoustEpoch=extendJointUiEpoch(preJointUiEpoch);
 export const preDefectActorEpoch=extendJointUiEpoch(preJointUiEpoch);
 export const preBattleQueueEpoch=extendJointUiEpoch(preJointUiEpoch);
 export const preNoncombatDemandEpoch=extendNoncombatEpoch(extendBattleQueueEpoch(preBattleQueueEpoch));

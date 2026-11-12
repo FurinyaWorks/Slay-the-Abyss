@@ -85,3 +85,67 @@ test('Joust preserves five screens, exact RNG timing, payout rules and rollback'
  });
  assertJoustCoverage(outputs);
 });
+
+// M7: exercise the complete event responsibility, including future helpers.
+import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {requireLuaTool} from '../scripts/setup-lua-static.mjs';
+import {parseDiagnostics,reviewResponsibilityComplexity} from '../scripts/check-lua-static.mjs';
+import {joustTrace} from './helpers/joust-trace.mjs';
+const joustPath='src/lua/abyss_joust_event.lua';
+const joustBefore=read('tests/fixtures/joust-event-before.lua');
+const joustErrors=(source,rows)=>reviewResponsibilityComplexity(rows,{[joustPath]:source}).errors.filter(e=>e.file===joustPath);
+function measureJoust(source){
+ const dir=mkdtempSync(join(tmpdir(),'joust-cc-'));
+ try{
+  const file=join(dir,'joust.lua');writeFileSync(file,source);
+  const result=spawnSync(requireLuaTool().file,[file,'--formatter','plain','--codes','--ranges','--no-color',
+   '--max-cyclomatic-complexity','0','--only','561'],{encoding:'utf8',timeout:10000});
+  assert.ifError(result.error);assert([0,1].includes(result.status),result.stdout+result.stderr);
+  assert.equal(result.stderr,'');return parseDiagnostics(result.stdout).map(row=>({...row,file:joustPath}));
+ }finally{rmSync(dir,{recursive:true,force:true});}
+}
+test('Joust complete module meets CC15 and retains the immutable baseline',()=>{
+ assert.equal(hash(joustBefore),'c579ccb9efe508634e712388ccdf1ac61b54295922f59b89f47f032be2ea1a04');
+ const rows=measureJoust(read(joustPath));
+ assert(rows.length>=5);assert(rows.every(row=>Number(row.message.match(/\((\d+) > 0\)/)[1])<=15),JSON.stringify(rows));
+ assert.deepEqual(joustErrors(read(joustPath),rows),[]);
+ console.log('JOUST_COMPLEXITY '+JSON.stringify(rows));
+});
+test('Joust stages preserve independent old/new graph, RNG, callback and failure traces',()=>{
+ const old=joustTrace(joustBefore),current=joustTrace(read(joustPath));
+ assert(old.length>100);assert.deepEqual(current,old);
+ console.log('JOUST_TRACE '+JSON.stringify({checkpoints:old.length,sha256:hash(JSON.stringify(old))}));
+});
+test('Joust hard gate rejects old hotspot, future helpers, anonymous functions and chunk regressions',()=>{
+ const source=read(joustPath),current=measureJoust(source);
+ assert(joustErrors(joustBefore,measureJoust(joustBefore)).some(e=>e.message.includes('23 exceeds 15')));
+ const branches=Array.from({length:16},(_,i)=>`if probe==${i} then probe=${i+1} end`).join('\n');
+ for(const extra of [`local probe=0\n${branches}\n`,
+  `local function futureHelper(probe)\n${branches}\nend\n`,
+  `local futureHelper=function(probe)\n${branches}\nend\n`]){
+  const mutant=source.replace('\nreturn M','\n'+extra+'return M');assert.notEqual(mutant,source);
+  assert(joustErrors(mutant,measureJoust(mutant)).some(e=>e.message.includes('exceeds 15')));
+ }
+ assert(joustErrors(source,current.slice(1)).some(e=>e.message.includes('Incomplete')));
+ assert(joustErrors(source,[...current,current[1]]).some(e=>e.message.includes('Duplicate')));
+ assert(joustErrors(source,current.map((r,i)=>i===1?{...r,column:r.column+1}:r)).some(e=>e.message.includes('AST')));
+});
+test('Joust real semantic mutations change the trace or fail a named assertion',()=>{
+ const source=read(joustPath),expected=joustTrace(joustBefore);
+ for(const [from,to]of [
+  ['math.max(0,run.gold-50)','math.max(0,run.gold-49)'],
+  ['Random.randomBooleanChance(run.miscRng,OWNER_CHANCE)','not Random.randomBooleanChance(run.miscRng,OWNER_CHANCE)'],
+  ['event.betFor and 250 or 100','event.betFor and 251 or 100'],
+  ["event.stage='complete'","event.stage='halt'"],
+  ['uid~=nil','uid'],
+ ]){
+  assert.equal(source.split(from).length,2,from+' unique mutation');
+  let result;
+  try{result=joustTrace(source.replace(from,to));}
+  catch(error){assert.match(error.message,/:\d+: (valid payout|UID rejection before stage effects|partial payout failure)$/);continue;}
+  assert.notDeepEqual(result,expected,from);
+ }
+});

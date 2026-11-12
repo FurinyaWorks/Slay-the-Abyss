@@ -6,6 +6,8 @@ assignee:
   - Furinya
 created_date: 2026-11-06 01:46
 updated_date: '2026-11-11T10:32:00Z'
+created_date: '2026-11-06 01:46'
+updated_date: '2026-11-11 01:13'
 labels: []
 milestone: m-7
 dependencies: []
@@ -108,6 +110,7 @@ ordinal: 162000
 2026-11-09 按主控指派，将已公开#574@841510b7整树合入#575@d21be2fb，在独立工作树保全两父历史与生产字节。只组合共享CI来源/历史断言、Backlog及属性冲突，重新计算800JS/1410Lua的17/15完整规划、定向验证和独审；更新原PR，不重复Full、不绕过保护或操作用户设备。
 
 2026-11-11 本轮接续主控明确指派的未占用 SkillFeedback.resolve 职责切片：以 develop 3a061a76 核对开放 PR 与本地分支，保留已提交事件、精确敌人意图、效果及伤害修饰的优先级和短路读取；冻结完整旧源，双 VM 逐字段及读取/失败轨迹对照和真实语义负控，全部新增 helper 纳入 CC15 硬门禁，再独立深审和正常 Draft/队列交付。不碰 #620/#618/#622/CharacterProfiles/UI 在途，不重复 Full，不改 owner/status/AC。
+2026-11-11 接续未占用Joust事件阶段职责：基线6a614fc8，已核开放PR609/610/611与归档十项；保留choose分支及读取次序，分离下注扣款、开奖、奖金结算。冻结旧源，独立VM差分覆盖动态接口、失败部分写入、随机及别名；全模块CC15和原Joust回归后独审，仅本轮窄验证，不重复Full，不改原owner/status/AC。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -198,4 +201,5 @@ POSIX15整树接续已完成23完整文件245/245（101267.758538ms），输入�
 Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
 
 2026-11-11 SkillFeedback单片实际完成：resolve CC34→5、effectsFamily19→13，完整模块最大14且受CC15；345模块5923完整测量，>30为34→33、>15为218→216，SCC68/11/2及依赖/告警不变。双新VM1533场景、6语义负控、原54断言/120意图及原生7组通过，完整工程入口通过；独审额外25938场景并修正测试false探针后复验。完整本地日志与成本波动保留，精确独审/正常CI队列/合后证据仍待，不重复Full，不改owner/status/AC。
+2026-11-11 Joust阶段切片已实现：choose CC23→13，settleBet11，全模块8项CC15；旧新764图检查点、完整Joust8/8、校准53/53及来源闭包通过。完整静态5921/5921，345模块1953引用和SCC68/11/2不变。独立AST对照通过，最终身份审查待绑定；未重复Full，未合入，不改owner/status/AC。详情docs/backlog-details/M7-JOUST-RESPONSIBILITIES-20261111.md。
 <!-- SECTION:NOTES:END -->

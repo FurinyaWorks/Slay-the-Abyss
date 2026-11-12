@@ -36,6 +36,10 @@ import {preClassPotionPlanningSource,classPotionPlanningKey,classPotionPlanningF
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as liveDiskReadFileSync,readdirSync} from 'node:fs';
+import {preJoustCiSource,joustCiProof} from './helpers/joust-ci-source-inverse.mjs';
+import {sourceEpoch as joustEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+const currentReadFileSync=liveDiskReadFileSync;
+const joustCurrentSource=p=>{try{return currentReadFileSync(p,'utf8');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -50,10 +54,6 @@ import {shardLuaScripts} from '../scripts/test-lua.mjs';
 // Preserve every pre-Actor assertion in its exact authenticated source/inventory
 // epoch. The appended Actor contracts separately exercise raw current Full work.
 const diskReadFileSync=(file,encoding)=>{const bytes=liveDiskReadFileSync(file),text=bytes.toString('utf8'),prior=preDefectActorCiSource(file,text);return encoding?prior:prior===text?bytes:Buffer.from(prior);};
-const discoverJs=()=>preDefectActorCiInventory(liveDiscoverJs());
-const actualCurrentTimings=JSON.parse(diskReadFileSync('scripts/ci-test-timings.json','utf8'));
-const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
-const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const jointRead=(view,file,encoding)=>{const bytes=diskReadFileSync(file),text=bytes.toString('utf8'),source=jointCiSourceAt(file,text,view);return encoding?source:source===text?bytes:Buffer.from(source);};
@@ -1267,8 +1267,7 @@ test('official candidate floors authenticate complete serial runs and register o
 
  const discoverJs=()=>currentOfficialDiscoverJs().filter(file=>file!=='tests/official-assets-visual.test.mjs');
  const actualCurrentTimings=JSON.parse(diskReadFileSync(path,'utf8'));
- const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
-
+ 
  assert.deepEqual(Object.keys(officialAssetsPlanningFloors).sort(),[...officialAssetsJs].sort());
  assert.deepEqual(discoverJs().filter(file=>file.startsWith('tests/official-assets')).sort(),[...officialAssetsJs].sort());
  for(const [file,floor]of Object.entries(officialAssetsPlanningFloors)){
@@ -1553,4 +1552,29 @@ test('ratchet current inventory preserves raw Full coverage and refuses source d
  }
  assert.throws(()=>jointCiInventoryAt(current,'officialAssetsFlow',()=>{throw Error('fresh read failed');}),/fresh read failed/);
  assert.deepEqual(preRatchetInventory(current,(file,encoding)=>diskReadFileSync(file,encoding).replaceAll('\r\n','\n').replaceAll('\n','\r\n')),prior);
+});
+test('Joust gate outer view accepts only the complete two-line addition and preserves historical bytes',()=>{
+ const path='scripts/check-lua-static.mjs',source=currentReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+ const prior=preJoustCiSource(path,joustEpoch.preCombinedSource(path,source,{target:'joustPrior',readSource:joustCurrentSource}));
+ assert.notEqual(prior,source);
+ assert.equal(hash(prior),'b0beb25d11044e525285d778d60c82a552c31d518228a04f4c3967fe25936066');
+ const additions=["  'src/lua/abyss_joust_event.lua': [],\n","  || file==='src/lua/abyss_joust_event.lua'\n"];
+ assert.equal(prior,additions.reduce((s,line)=>s.replace(line,''),source));
+ assert.equal(preJoustCiSource(path,source.replaceAll('\n','\r\n')),prior);
+ for(const input of [prior,source+'\n',source.replaceAll('\n','\r\r\n'),source.replace('const responsibilityRoots','const foreignRoots'),
+  ...additions.flatMap(line=>[source.replace(line,''),source.replace(line,line+line)]),null,42,{}])
+  assert.equal(preJoustCiSource(path,input),input,'partial, duplicate or foreign source remains opaque');
+ assert.equal(preJoustCiSource('foreign',source),source);
+});
+
+
+test('Joust CI outer identities retain complete predecessors and reject foreign drift',()=>{
+ for(const [path,row]of Object.entries(joustCiProof.files)){
+  const source=currentReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(source,row.afterSource,path+' exact current identity');
+  assert.equal(preJoustCiSource(path,source),row.beforeSource);
+  assert.equal(preJoustCiSource(path,source.replaceAll('\n','\r\n')),row.beforeSource);
+  for(const value of [source+'\n',source.slice(1),source.replaceAll('\n','\r\r\n'),row.beforeSource,null,{}])
+   assert.equal(preJoustCiSource(path,value),value,path+' drift opaque');
+ }
 });

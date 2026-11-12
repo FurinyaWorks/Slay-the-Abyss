@@ -1,6 +1,7 @@
 import {preDefectActorCiSource} from './defect-actor-ci-source-inverse.mjs';
 import {preIntegrationCalibrationSource} from './integration-1111-tooling.mjs';
 import {cursesReceiptMatches,preCursesReceiptSource} from './curses-ci-planning.mjs';
+import {preJoustCiSource} from './joust-ci-source-inverse.mjs';
 // Exact source and inventory views for immutable CI receipts; current Full stays raw.
 import {preBattleQueueCiSource} from './battle-queue-ci-source-epoch.mjs';
 import {preNoncombatCiSource,noncombatPriorInventory} from './noncombat-ci-source-inverse.mjs';

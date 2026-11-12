@@ -146,7 +146,7 @@ test('current raw production authenticates the original68 and exact12 added owne
  const actual=Object.fromEntries(current.owners.map(path=>[path,diskReadFileSync(path,'utf8')]));
  assert.equal(componentEpoch.proof.owners.length,68);
  assert.deepEqual(current.owners.filter(path=>!componentEpoch.proof.owners.includes(path)).sort(),[
-  'battle_aim_arrow','battle_render_hud','battle_ui','match_event_ui','node_ui','node_ui_events','node_ui_feedback','potion_discard_ui','relic_view_ui','shop_ui','battle_card_glow','curses'
+  'battle_aim_arrow','battle_render_hud','battle_ui','match_event_ui','node_ui','node_ui_events','node_ui_feedback','potion_discard_ui','relic_view_ui','shop_ui','battle_card_glow','curses','joust_event'
  ].map(name=>'src/lua/abyss_'+name+'.lua').sort());
  assert(componentEpoch.proof.owners.every(path=>current.owners.includes(path)),'retain all original component owners');
  assert.equal(current.owners.length,80);let changed,replacement,reads=[];
