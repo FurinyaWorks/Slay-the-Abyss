@@ -1847,7 +1847,7 @@ test('combined closeout validates raw current sources and complete Full discover
  const files=nativeCloseoutDiscover();
  assert.deepEqual(files,closeoutCiProof.inventory,'every current test remains in raw discovery');
  assert.equal(new Set(files).size,files.length);
- assert.equal(files.length,849);
+ assert.equal(files.length,851);
  const lua=liveCloseoutLua();assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
  for(const file of lua)assert.equal(hash(nativeCloseoutRead(file,'utf8').replaceAll('\r\n','\n')),closeoutCiProof.luaHashes[file],file);
  const rawCalibration=nativeCloseoutRead('tests/ci-complete-calibration.test.mjs','utf8');
@@ -1882,7 +1882,7 @@ test('combined closeout validates raw current sources and complete Full discover
   }
   const forecast=Math.max(...combined)+60000,budget=platform==='win32'?1800000:1200000;
   assert.ok(forecast<budget,platform+' final complete workload and reserve fit unchanged budget');
-  t.diagnostic(`${platform} final 849JS/1416Lua forecast ${forecast}ms < ${budget}ms; actual hosted completion remains separate`);
+  t.diagnostic(`${platform} final ${files.length}JS/${lua.length}Lua forecast ${forecast}ms < ${budget}ms; actual hosted completion remains separate`);
   for(const file of files)assert(rawCurrentJsPlanningWeights([file],platform)[file]>=rawCurrentTimings.unknownJsMs||rawCurrentTimings.js[platform][file]>0);
  }
  for(const view of Object.keys(closeoutCiProof.targets)){

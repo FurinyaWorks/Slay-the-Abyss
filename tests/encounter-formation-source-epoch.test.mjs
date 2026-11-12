@@ -2,7 +2,6 @@ import {preDefectActorSource} from './helpers/defect-actor-source-epoch.mjs';
 import test from 'node:test';
 import {officialUiRepairProof,preOfficialUiRepairSource} from './helpers/official-ui-repair-source-epoch.mjs';
 import {preOfficialUiRepairEpoch} from './helpers/combined-epoch/source-epoch.mjs';
-import {sourceSlice} from './helpers/closeout-source-epoch.mjs';
 import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync as diskReadFileSync,mkdtempSync,rmSync,writeFileSync,unlinkSync} from 'node:fs';
@@ -165,8 +164,8 @@ test('official repair adds exact complete-file identities without rewriting the 
   for(const source of [actual+'\n',actual.slice(1),null,{},17])assert.equal(preOfficialUiRepairSource(file,source),source,file);
   if(Object.hasOwn(preOfficialUiRepairEpoch.proof.current,file))assert.deepEqual(row.before,preOfficialUiRepairEpoch.proof.current[file]);
  }
- const config=diskReadFileSync('config/architecture.json','utf8');
- assert.throws(()=>preOfficialUiRepairEpoch.preCombinedSource('config/architecture.json',config,{target:'develop',readSource:p=>diskReadFileSync(p,'utf8')}),/linked owner identity/,'removing the new layer must reject the actual repair');
+ const repairRead=closeoutRead('pr629'),config=repairRead('config/architecture.json','utf8');
+ assert.throws(()=>preOfficialUiRepairEpoch.preCombinedSource('config/architecture.json',config,{target:'develop',readSource:p=>repairRead(p,'utf8')}),/linked owner identity/,'removing the new layer must reject the actual repair');
  assert.equal(preOfficialUiRepairSource('unknown','foreign'),'foreign');
 });
 

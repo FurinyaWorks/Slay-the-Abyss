@@ -1,0 +1,142 @@
+[
+  {
+    "pr": 612,
+    "branch": "feat/m7-joust-responsibilities",
+    "head": "4090beaeb4fb16568cacf7eec552bd4e75ac532b",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/m7-joust-responsibilities"
+  },
+  {
+    "pr": 614,
+    "branch": "feat/golden-idol-current",
+    "head": "5010253ba56735a087caa895adb3ba56853b1662",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/golden-idol-current"
+  },
+  {
+    "pr": 616,
+    "branch": "feat/quality-ratchet-20261111",
+    "head": "3bdf8caa5648c4c1db93925d053462117ac2f896",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/quality-ratchet-20261111"
+  },
+  {
+    "pr": 617,
+    "branch": "feat/ci-async-handoff-20261111",
+    "head": "0795cbb115f63516568c86291ed53cd1916c0e5f",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/ci-async-handoff-20261111"
+  },
+  {
+    "pr": 618,
+    "branch": "feat/defect-actor-capability",
+    "head": "5fb26dcc5b00637785b4d926839c296a735a305a",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/defect-actor-capability"
+  },
+  {
+    "pr": 620,
+    "branch": "feat/integration-1111",
+    "head": "1ceb8b0342813cc62f6783f773dc3adefe181f87",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/integration-1111"
+  },
+  {
+    "pr": 621,
+    "branch": "feat/pr588-battle-merge-20261111",
+    "head": "680be9c5740a7f0c4fd4b1ce82ee2e9018a2612b",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/pr588-battle-merge-20261111"
+  },
+  {
+    "pr": 622,
+    "branch": "feat/m7-protected-calls",
+    "head": "f7db701aaad423d07b971bb85e561bde170253d4",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/m7-protected-calls"
+  },
+  {
+    "pr": 623,
+    "branch": "feat/noncombat-v25",
+    "head": "509a86201640a805c20ece5742db13c0156dc4d7",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/noncombat-v25"
+  },
+  {
+    "pr": 624,
+    "branch": "feat/r-gate-v1-relic-names-20261111",
+    "head": "5e800c4b1af35ea2b2927bfbb9b95d79148640b1",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/r-gate-v1-relic-names-20261111"
+  },
+  {
+    "pr": 625,
+    "branch": "feat/skill-feedback-responsibilities",
+    "head": "37d997e195e7c1655821bc6cb3214419038f69b8",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/skill-feedback-responsibilities"
+  },
+  {
+    "pr": 628,
+    "branch": "feat/task-intake-metadata",
+    "head": "167afede987fe5baff904689490b475deeb3e554",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/task-intake-metadata"
+  },
+  {
+    "pr": 629,
+    "branch": "feat/official-mobile-aim-hud",
+    "head": "2faa46bc1131b3d7361c78d8bd1e5716752adc2a",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/pr629-final"
+  },
+  {
+    "pr": 630,
+    "branch": "feat/startup-build-binding",
+    "head": "47297a9374b6ef322f7b5e3db23d705aaa85cd35",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/startup-build-binding"
+  },
+  {
+    "pr": 631,
+    "branch": "feat/platform-image-evidence-20261112",
+    "head": "3a947080943bf1eb21b00a2c7c690a0d46b066f6",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/pr631"
+  },
+  {
+    "pr": 632,
+    "branch": "feat/native-lua-lexical-guard-20261112",
+    "head": "7284ced22f40ffac5f0386c770fbdb6ca11eacf5",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/pr632"
+  },
+  {
+    "pr": 633,
+    "branch": "feat/menu-2d-scene",
+    "head": "f2f1424ca0efd9dda33a64ee0af1111127f2f546",
+    "disposition": "integrated-source",
+    "archiveRef": "refs/archive/closeout-20261112/pr633"
+  },
+  {
+    "pr": 615,
+    "branch": "feat/ui-image-binding-spike-20261111",
+    "head": "d2446c26660067bbfaeb0fc9e2aa712c1ea7dee3",
+    "disposition": "archived-experiment",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/ui-image-binding-spike-20261111"
+  },
+  {
+    "pr": 626,
+    "branch": "feat/lumine-native-idle",
+    "head": "149e1c156bfa867b2deccd682dbf0d5667b99bce",
+    "disposition": "archived-experiment",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/lumine-native-idle"
+  },
+  {
+    "pr": 627,
+    "branch": "feat/monolith-menu-native-scene-20261111",
+    "head": "5629a388e174b0a79852ec606729e4f78b2b0c75",
+    "disposition": "archived-experiment",
+    "archiveRef": "refs/archive/closeout-20261112/refs/remotes/origin/feat/monolith-menu-native-scene-20261111"
+  }
+]
