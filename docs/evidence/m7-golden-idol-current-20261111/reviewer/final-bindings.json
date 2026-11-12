@@ -1,0 +1,39 @@
+{
+  "base": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "status": "reviewed working code bytes; final commit and documentation pending",
+  "unresolved": [],
+  "resolvedFindings": [
+    {
+      "file": "tests/helpers/ci-complete-calibration-source-inverse.mjs",
+      "finding": "unsupported-path intermediate projection",
+      "resolution": "three outer projections are path-gated; independent63 checks passed"
+    }
+  ],
+  "files": {
+    ".gitattributes": "2ed5887abaf3a3704f4005bde11681819b27cae24bd9459bee2357a0a484f77f",
+    "docs/evidence/m7-golden-idol-current-20261111/source-final.log.gz": "34cf2e9769f1fdbe0ec314876870c937e4866056a19ee9c4e03456d340ac1b59",
+    "docs/evidence/m7-golden-idol-current-20261111/source-receipt.json": "943d5446780f34dea1e23514eb381bd77430d463b0221db496f390623be31993",
+    "scripts/check-lua-static.mjs": "51ebee13dfcb7d3eb66713ff87f6c7e4bc5c96de8e897be2b84969133e8a9dba",
+    "scripts/ci-test-timings.json": "aa0ee978b2bb1122702dd043166904e0cea18c1322c79d6c5d25d60c29c73510",
+    "src/lua/abyss_golden_idol_event.lua": "96a6c25fde12de016eb631e11325349d45c10794c9259f243fa42fc0e8129e0f",
+    "tests/ci-complete-calibration.test.mjs": "3d6e19349f92fb372dc9a4eee6e2996ac6d5de714b237c31ee8a1160310641db",
+    "tests/ci-runtime.test.mjs": "94c6f0f281381a9f637406c0c867341dc040d2cb47b0664c46b257d4068d3d09",
+    "tests/encounter-formation-source-epoch.test.mjs": "1c2351e94f7a906f6c5460e311fe0964cf334b97876bbcf4d0d9d075cdd717c5",
+    "tests/fixtures/golden-idol-before.lua": "14ea045b9e85ee54a6b7bbf3b5a633b3a077f85962ab92dc088b95c46e7f2af2",
+    "tests/golden-idol-responsibilities.test.mjs": "df4196edb1fd6394a03358e5d5de02f04ee6a90508ffe672d50bc3453d68b06f",
+    "tests/golden-idol-source-epoch.test.mjs": "8709c8de6cd8fdc5ee8aad61e6c68f25d2ba077c7a545c13f1908f30549006d4",
+    "tests/helpers/ci-complete-calibration-source-inverse.mjs": "15088746a432568430c3fe8018db8ed4a1ada97d1871fe0ee7ea8aa052808e7e",
+    "tests/helpers/combined-epoch/pre-golden-idol-source-epoch.mjs": "9c13e8134088d55a7a7b57e7f4fe905fd87cdc9a36e6c636049285e6fa99faf1",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "143f4f090df6388783c7c7b67af278df45bb2c81d84a910bd66242442dedac06",
+    "tests/helpers/copy-integration-source-closure.mjs": "ebbad15ec6009f1f855014435ef6c4ed2716dfcd0d60d56482e4bcf963dd127b",
+    "tests/helpers/golden-idol-cases.lua": "b686161ed794df28a38bb3d1bdd70ea09b12ae9232bf7389e2274ee0d0611720",
+    "tests/helpers/golden-idol-ci-source-epoch.json.gz": "04f512415676b3110285c40f6c19324010c1f5ecf7ffe68e063bf6aedd17b24a",
+    "tests/helpers/golden-idol-ci-source-inverse.mjs": "ad645782ab312ac7c7f276aa2aaf3de52021912399ee83108fa839c3fd87d774",
+    "tests/helpers/golden-idol-current-ci-source-epoch.json.gz": "c422925a6eed65e71973693175391884442636d28a583cd1633f4937a5102216",
+    "tests/helpers/golden-idol-current-ci-source-inverse.mjs": "3fcae751c4783e13bfc36ab84db0fc0d450f5227b0a665ab3f55a1ced20baa46",
+    "tests/helpers/golden-idol-current-source-epoch.json.gz": "b46c8ed0a17d8dcfa442861b4452cae2250b9ce2da31ef0bb1619be7e416fc46",
+    "tests/helpers/golden-idol-source-epoch.json.gz": "567be86608fc6c7f9f29a42d81f80ee77b3f769367720501f4ecbac55c1be313",
+    "tests/helpers/golden-idol-source-epoch.mjs": "db273965fc5d1398e604b5b2b46ed33aacbe2d477312e672a285f00ff06e92b4",
+    "tests/helpers/golden-idol-vm.mjs": "78e30a83a7b6530241968c1e0956327774db9fb5d78a0e1a138eb894400a6068"
+  }
+}

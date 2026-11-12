@@ -22,3 +22,6 @@ export const preBattleQueueEpoch=extendJointUiEpoch(preJointUiEpoch);
 export const preNoncombatDemandEpoch=extendNoncombatEpoch(extendBattleQueueEpoch(preBattleQueueEpoch));
 export const preCursesEpoch=extendNoncombatDemandEpoch(preNoncombatDemandEpoch);
 export const sourceEpoch=extendCursesEpoch(preCursesEpoch);
+import {sourceEpoch as preGoldenIdolEpoch} from './pre-golden-idol-source-epoch.mjs';
+import {extendGoldenIdolEpoch} from '../golden-idol-source-epoch.mjs';
+export {preGoldenIdolEpoch};

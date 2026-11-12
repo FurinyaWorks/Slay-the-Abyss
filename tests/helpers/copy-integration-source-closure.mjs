@@ -91,7 +91,11 @@ const files={...JSON.parse(bytes),...{
   "tests/helpers/m7-core-final-source-inverse.mjs": "0c754fc25ffe6f7101c708028187606aa6a378e360591faa8610bd401bd5ac33",
   "tests/helpers/combined-epoch/source-epoch.mjs": "99dcd60d6612a172e18645b773c648f8045b7809bd2a5afe6b684892806b461b",
   "tests/helpers/joust-source-epoch.mjs": "0a22c6c04cd5b399d11b495fc6838d5396022887b239ee0e7be79f8626194851",
-  "tests/helpers/joust-source-epoch.json.gz": "fa0c3a6e28217ca6c5c7731c399f911cb6008b84c2c6d1afa5f3c042dee47a0d"
+  "tests/helpers/joust-source-epoch.json.gz": "fa0c3a6e28217ca6c5c7731c399f911cb6008b84c2c6d1afa5f3c042dee47a0d",
+  "tests/helpers/combined-epoch/pre-golden-idol-source-epoch.mjs": "9c13e8134088d55a7a7b57e7f4fe905fd87cdc9a36e6c636049285e6fa99faf1",
+  "tests/helpers/combined-epoch/source-epoch.mjs": "143f4f090df6388783c7c7b67af278df45bb2c81d84a910bd66242442dedac06",
+  "tests/helpers/golden-idol-current-source-epoch.json.gz": "b46c8ed0a17d8dcfa442861b4452cae2250b9ce2da31ef0bb1619be7e416fc46",
+  "tests/helpers/golden-idol-source-epoch.mjs": "db273965fc5d1398e604b5b2b46ed33aacbe2d477312e672a285f00ff06e92b4"
 }},inside=(root,path)=>{const r=relative(root,path);return r!==''&&!isAbsolute(r)&&r!=='..'&&!r.startsWith('../')&&!r.startsWith('..\\');};
 export function copyIntegrationSourceClosure(directory,{sourceRoot=process.cwd()}={}){
  const destination=realpathSync.native(directory);

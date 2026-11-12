@@ -1,0 +1,17 @@
+{
+  "base": "6a614fc82697750ddb408750e54f59f801c24f1e",
+  "scope": "production/source only, not CI final candidate",
+  "files": {
+    "src/lua/abyss_golden_idol_event.lua": "96a6c25fde12de016eb631e11325349d45c10794c9259f243fa42fc0e8129e0f",
+    "scripts/check-lua-static.mjs": "51ebee13dfcb7d3eb66713ff87f6c7e4bc5c96de8e897be2b84969133e8a9dba",
+    "tests/golden-idol-responsibilities.test.mjs": "df4196edb1fd6394a03358e5d5de02f04ee6a90508ffe672d50bc3453d68b06f",
+    "tests/golden-idol-source-epoch.test.mjs": "8709c8de6cd8fdc5ee8aad61e6c68f25d2ba077c7a545c13f1908f30549006d4",
+    "tests/encounter-formation-source-epoch.test.mjs": "1c2351e94f7a906f6c5460e311fe0964cf334b97876bbcf4d0d9d075cdd717c5",
+    "tests/helpers/golden-idol-source-epoch.mjs": "db273965fc5d1398e604b5b2b46ed33aacbe2d477312e672a285f00ff06e92b4",
+    "tests/helpers/golden-idol-current-source-epoch.json.gz": "b46c8ed0a17d8dcfa442861b4452cae2250b9ce2da31ef0bb1619be7e416fc46",
+    "tests/helpers/combined-epoch/pre-golden-idol-source-epoch.mjs": "9c13e8134088d55a7a7b57e7f4fe905fd87cdc9a36e6c636049285e6fa99faf1",
+    "tests/helpers/combined-epoch/source-epoch.mjs": "143f4f090df6388783c7c7b67af278df45bb2c81d84a910bd66242442dedac06",
+    "tests/helpers/combined-epoch/source-epoch-runtime.mjs": "5341c965ce41e956f153caf90c2e2097ccaee447a2d1e53a5aa666d15a238882",
+    "tests/helpers/copy-integration-source-closure.mjs": "ebbad15ec6009f1f855014435ef6c4ed2716dfcd0d60d56482e4bcf963dd127b"
+  }
+}

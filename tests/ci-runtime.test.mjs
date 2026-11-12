@@ -1,5 +1,6 @@
 import {cursesPlanningFloors} from './helpers/curses-ci-planning.mjs';
 import {defectActorPlanningKey,defectActorPlanningFloor} from './helpers/defect-actor-ci-source-inverse.mjs';
+import {preGoldenIdolCurrentCiSource} from './helpers/golden-idol-current-ci-source-inverse.mjs';
 import {encounterFormationPlanningFloors} from './helpers/encounter-formation-ci-source-inverse.mjs';
 import {defectFinalPlanningFloors} from './helpers/defect-final-ci-source-inverse.mjs';
 import {silentFinalPlanningKey,silentFinalPlanningFloor,silentFinalSourcePlanningKey,silentFinalSourcePlanningFloor} from './helpers/silent-final-ci-source-inverse.mjs';
@@ -22,7 +23,7 @@ import {classPotionPlanningKey,classPotionPlanningFloor} from './helpers/class-p
 import {preIntegrationSource} from './helpers/pr372-integration-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
+import { readdirSync, readFileSync as actualReadFileSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync, rmSync } from 'node:fs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
@@ -35,6 +36,13 @@ import { partition, jsShard, jsPlanningWeights, discoverJs, timings } from '../s
 import { shardLuaScripts } from '../scripts/test-lua.mjs';
 import {historicalTest,readHistoricalBaselineSource} from './helpers/historical-baseline-inputs.mjs';
 import {qualityShardMatrices} from '../scripts/ci-quality-shape.mjs';
+
+// Historical assertions consume exact predecessor bytes, while scheduling imports stay live.
+const readFileSync=(file,encoding)=>{
+ const raw=actualReadFileSync(file,encoding),text=typeof raw==='string'?raw:raw.toString('utf8');
+ const prior=preGoldenIdolCurrentCiSource(file,text);
+ return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
+};
 
 historicalTest('scheduler inverse preserves the frozen runner for LF/CRLF and rejects unrelated changes', () => {
   const source = readBeforeMobileQaSource('scripts/test-lua.mjs').replaceAll('\r\n', '\n');
@@ -165,7 +173,8 @@ test('real executor preserves test failure, continues later files, reports timin
 
 
 test('current timing records preserve all measured corrections without duplicate JSON keys',()=>{
- const raw=readFileSync('scripts/ci-test-timings.json','utf8');
+ const raw=preGoldenIdolCurrentCiSource('scripts/ci-test-timings.json',readFileSync('scripts/ci-test-timings.json','utf8'));
+ const timings=JSON.parse(raw);
  assert.equal((raw.match(/^  "jsCorrections":/gm)||[]).length,1,'one unambiguous correction inventory');
  assert.equal(timings.jsCorrections.length,3);
  for(const entry of timings.jsCorrections){

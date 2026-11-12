@@ -1,0 +1,50 @@
+[
+  {
+    "fixture": "tests/lua/golden_idol_event.lua",
+    "status": 0,
+    "durationMs": 2873.160675,
+    "stdout": "GOLDEN_IDOL_EVENT_PASS actual public obtain before mandatory trap, Injury permanent UID and no body RNG\n"
+  },
+  {
+    "fixture": "tests/lua/golden_idol_costs.lua",
+    "status": 0,
+    "durationMs": 4969.392191,
+    "stdout": "GOLDEN_IDOL_COSTS_PASS exact truncation/min1, three trap costs/fatal/Fairy/Omamori, real Tail once across events, real duplicate Circlet, live Fruit and missing-hook refusals\n"
+  },
+  {
+    "fixture": "tests/lua/golden_idol_rollback.lua",
+    "status": 0,
+    "durationMs": 19150.484472,
+    "stdout": "GOLDEN_IDOL_ROLLBACK_PASS actual obtain/curse/fatal-damage late failures preserve stage owner and RNG; wrong stage/UID/missing definition atomic\n"
+  },
+  {
+    "fixture": "tests/lua/golden_idol_rounding.lua",
+    "status": 0,
+    "durationMs": 6348.329055000002,
+    "stdout": "GOLDEN_IDOL_ROUNDING_PASS independent IEEE32 truncation for cached .25/.08 costs including minimum-one and large int boundaries\n"
+  },
+  {
+    "fixture": "tests/lua/golden_idol_channels.lua",
+    "status": 0,
+    "durationMs": 4154.9837199999965,
+    "stdout": "GOLDEN_IDOL_CHANNELS_PASS actual event acquire -> real starter source battle/unchanged gold RNG/claim -> same-owner Moai333 sacrifice (Act3 boundary, not whole campaign)\n"
+  },
+  {
+    "fixture": "tests/lua/golden_idol_gold.lua",
+    "status": 0,
+    "durationMs": 5199.892542000001,
+    "stdout": "GOLDEN_IDOL_GOLD_PASS 33 raw source outcomes/RNG preserved; offer-frozen round bonus, late owner changes, direct/stolen exclusion and Ectoplasm claim gate\n"
+  },
+  {
+    "fixture": "tests/lua/golden_idol_natural.lua",
+    "status": 0,
+    "durationMs": 1493.8293970000013,
+    "stdout": "GOLDEN_IDOL_NATURAL_PASS seed16 full unfiltered source pool/only selected removal/once preservation/exact RNG; actual acquire and cost (room boundary, not campaign clear)\n"
+  },
+  {
+    "fixture": "tests/lua/golden_idol_ui.lua",
+    "status": 0,
+    "durationMs": 4218.643957,
+    "stdout": "GOLDEN_IDOL_UI_PASS intro/trap/result, actual immediate owner, three costs/card name, Fruit cached value, stale callback/touch and fatal defeat\n"
+  }
+]

@@ -8,6 +8,7 @@ created_date: 2026-11-06 01:46
 updated_date: '2026-11-11T10:32:00Z'
 created_date: '2026-11-06 01:46'
 updated_date: '2026-11-11 01:13'
+updated_date: '2026-11-11T01:30:00Z'
 labels: []
 milestone: m-7
 dependencies: []
@@ -34,6 +35,7 @@ documentation:
   - docs/backlog-details/M7-ENCOUNTER-FORMATION-20261109.md
   - docs/backlog-details/M7-FORMATION-POSIX15-INTEGRATION-20261109.md
   - docs/backlog-details/M7-SKILL-FEEDBACK-20261111.md
+  - docs/backlog-details/M7-GOLDEN-IDOL-CURRENT-20261111.md
 parent_task_id: TASK-74
 priority: medium
 type: task
@@ -111,6 +113,7 @@ ordinal: 162000
 
 2026-11-11 本轮接续主控明确指派的未占用 SkillFeedback.resolve 职责切片：以 develop 3a061a76 核对开放 PR 与本地分支，保留已提交事件、精确敌人意图、效果及伤害修饰的优先级和短路读取；冻结完整旧源，双 VM 逐字段及读取/失败轨迹对照和真实语义负控，全部新增 helper 纳入 CC15 硬门禁，再独立深审和正常 Draft/队列交付。不碰 #620/#618/#622/CharacterProfiles/UI 在途，不重复 Full，不改 owner/status/AC。
 2026-11-11 接续未占用Joust事件阶段职责：基线6a614fc8，已核开放PR609/610/611与归档十项；保留choose分支及读取次序，分离下注扣款、开奖、奖金结算。冻结旧源，独立VM差分覆盖动态接口、失败部分写入、随机及别名；全模块CC15和原Joust回归后独审，仅本轮窄验证，不重复Full，不改原owner/status/AC。
+2026-11-11 接续已保全Golden Idol f1481459c，不新领父任务。以当前develop6a614fc8独立组合保留原生产重构与证据，适配当前来源闭包及成本合同；只做定向回归、全源码度量与独审，不重复Full，不触碰其他候选或GUI；原owner/status/AC保持。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -202,4 +205,7 @@ Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯�
 
 2026-11-11 SkillFeedback单片实际完成：resolve CC34→5、effectsFamily19→13，完整模块最大14且受CC15；345模块5923完整测量，>30为34→33、>15为218→216，SCC68/11/2及依赖/告警不变。双新VM1533场景、6语义负控、原54断言/120意图及原生7组通过，完整工程入口通过；独审额外25938场景并修正测试false探针后复验。完整本地日志与成本波动保留，精确独审/正常CI队列/合后证据仍待，不重复Full，不改owner/status/AC。
 2026-11-11 Joust阶段切片已实现：choose CC23→13，settleBet11，全模块8项CC15；旧新764图检查点、完整Joust8/8、校准53/53及来源闭包通过。完整静态5921/5921，345模块1953引用和SCC68/11/2不变。独立AST对照通过，最终身份审查待绑定；未重复Full，未合入，不改owner/status/AC。详情docs/backlog-details/M7-JOUST-RESPONSIBILITIES-20261111.md。
+2026-11-11 接续保全Golden Idol f1481459c到当前6a614fc8，原生产和45份证据逐字保留。choose CC31→9、全模块最高9；当前全库345模块5922测量，CC>30 34→33、>15 218→217，SCC68/11/2和最大72保持。行为7/7、来源11/11、原8Lua、formation12/12、room6/6、静态19/19通过；完整CI消费者84/84加独立9/9通过。旧epoch整图克隆OOM以主线既有冻结共享API消除，不增预算；保守来源floor32448ms。独审/最终发布身份继续，未Full/合并/平台验收，状态与AC保持。
+
+本片独审发现的CI unsupported-path提前投影已按原路径闸门修正；修后6文件85/85和独立63项负控通过，最终生产/source/CI代码独审无未解决问题。当前精确发布/正常Full仍待，不把旧84/9当修后验收，不勾AC。
 <!-- SECTION:NOTES:END -->

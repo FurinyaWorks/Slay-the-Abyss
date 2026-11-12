@@ -5,6 +5,7 @@ import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSour
 import {battleQueueCiProof,preBattleQueueCiInventory,preBattleQueueCiSource} from './helpers/battle-queue-ci-source-epoch.mjs';
 import {noncombatAddedTests,noncombatPriorInventory} from './helpers/noncombat-ci-source-inverse.mjs';
 import {preDefectActorCiSource,preDefectActorCiInventory,defectActorPlanningKey,defectActorPlanningFloor,defectActorCiProof} from './helpers/defect-actor-ci-source-inverse.mjs';
+import {goldenIdolPlanningFloors as legacyGoldenIdolPlanningFloors} from './helpers/golden-idol-ci-source-inverse.mjs';
 import {officialAssetsFlowPlanningFloors as officialAssetsPlanningFloors,officialAssetsFlowCiSourceProof,preOfficialAssetsFlowCiSource} from './helpers/official-assets-flow-ci-source-inverse.mjs';
 import {officialAssetsPlanningFloors as firstOfficialAssetsPlanningFloors,officialAssetsCiSourceProof,preOfficialAssetsCiSource} from './helpers/official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource,encounterFormationPlanningFloors,encounterFormationCiInventory} from './helpers/encounter-formation-ci-source-inverse.mjs';
@@ -40,6 +41,7 @@ import {preJoustCiSource,joustCiProof} from './helpers/joust-ci-source-inverse.m
 import {sourceEpoch as joustEpoch} from './helpers/combined-epoch/source-epoch.mjs';
 const currentReadFileSync=liveDiskReadFileSync;
 const joustCurrentSource=p=>{try{return currentReadFileSync(p,'utf8');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+const actualDiskReadFileSync=liveDiskReadFileSync;
 import {createHash} from 'node:crypto';
 import {ciCompleteCalibrationProof as proof,preCiCompleteCalibrationSource as project,preCurrentCiPlacementSource,prePosix14ShapeSource} from './helpers/ci-complete-calibration-source-inverse.mjs';
 import {ciHostTimingProof,preCiHostTimingSource} from './helpers/ci-host-timing-source-inverse.mjs';
@@ -54,6 +56,8 @@ import {shardLuaScripts} from '../scripts/test-lua.mjs';
 // Preserve every pre-Actor assertion in its exact authenticated source/inventory
 // epoch. The appended Actor contracts separately exercise raw current Full work.
 const diskReadFileSync=(file,encoding)=>{const bytes=liveDiskReadFileSync(file),text=bytes.toString('utf8'),prior=preDefectActorCiSource(file,text);return encoding?prior:prior===text?bytes:Buffer.from(prior);};
+import {preGoldenIdolCurrentCiSource,preGoldenIdolCurrentCiInventory,goldenIdolCurrentCiProof,goldenIdolCurrentJs,goldenIdolCurrentPlanningFloors} from './helpers/golden-idol-current-ci-source-inverse.mjs';
+const actualDiscoverJs=liveDiscoverJs,actualJsShard=currentJsShard,actualJsPlanningWeights=currentJsPlanningWeights,liveTimings=actualCurrentTimings;
 // Existing receipt contracts retain exact pre-Formation and pre-Defect inputs. Current
 // costs/inventory use live imports; the new outer tests below use raw disk bytes.
 const jointRead=(view,file,encoding)=>{const bytes=diskReadFileSync(file),text=bytes.toString('utf8'),source=jointCiSourceAt(file,text,view);return encoding?source:source===text?bytes:Buffer.from(source);};
@@ -1577,4 +1581,108 @@ test('Joust CI outer identities retain complete predecessors and reject foreign 
   for(const value of [source+'\n',source.slice(1),source.replaceAll('\n','\r\r\n'),row.beforeSource,null,{}])
    assert.equal(preJoustCiSource(path,value),value,path+' drift opaque');
  }
+});
+
+test('Golden Idol recovery preserves exact predecessor CI receipt sources and rejects foreign inputs',()=>{
+ for(const [file,binding]of Object.entries(goldenIdolCurrentCiProof.files)){
+  const raw=actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(raw),binding.afterSha256,file);
+  assert.equal(hash(binding.beforeSource),binding.beforeSha256,file);
+  for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preGoldenIdolCurrentCiSource(file,source),binding.beforeSource);
+  for(const source of [raw+'\n',raw.slice(1),binding.beforeSource,null,undefined,{},17])assert.equal(preGoldenIdolCurrentCiSource(file,source),source);
+  for(const unknown of ['foreign','__proto__','constructor'])assert.equal(preGoldenIdolCurrentCiSource(unknown,raw),raw);
+ }
+});
+
+test('current Golden Idol836 Full38 inventory adds only two files under unchanged budgets and complete effective costs',t=>{
+ const js=actualDiscoverJs(),lua=currentLua();
+ assert.equal(js.length,836);assert.equal(lua.length,1415);
+ assert.deepEqual(js.filter(file=>!discoverJs().includes(file)).sort(),[...goldenIdolCurrentJs].sort());
+ assert.deepEqual([...discoverJs()].sort(),goldenIdolCurrentCiProof.inventory.js);
+ assert.deepEqual(lua,Object.keys(goldenIdolCurrentCiProof.inventory.luaSha256));
+ for(const [file,sha]of Object.entries(goldenIdolCurrentCiProof.inventory.luaSha256))assert.equal(hash(actualDiskReadFileSync(file,'utf8').replaceAll('\r\n','\n')),sha,file);
+ for(const file of goldenIdolCurrentJs){
+  assert.throws(()=>preGoldenIdolCurrentCiInventory(js.filter(p=>p!==file)),/inventory/);
+  assert.throws(()=>preGoldenIdolCurrentCiInventory([...js,file]),/inventory/);
+ }
+ assert.throws(()=>preGoldenIdolCurrentCiInventory([...js,'tests/foreign.test.mjs']),/inventory/);
+ assert.equal(liveTimings.unknownJsMs,10000);
+ for(const platform of ['win32','linux'])for(const file of goldenIdolCurrentJs){
+  assert.equal(liveTimings.js[platform][file],undefined);
+  assert.equal(actualJsPlanningWeights([file],platform)[file],Math.max(liveTimings.unknownJsMs,liveTimings.jsPlanning.localLowerBounds[file]?.durationMs??0));
+ }
+ assert.deepEqual(currentQualityShardMatrices,{windows:Array.from({length:18},(_,i)=>i+1),posix:Array.from({length:15},(_,i)=>i+1)});
+ assert.equal(currentFullQualityJobs.length,38);
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>actualJsShard(js,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(bin=>bin.files).sort(),[...js].sort());assert.equal(new Set(bins.flatMap(bin=>bin.files)).size,836);
+  const loads=bins[0].loads,old=actualJsShard(discoverJs(),`1/${count}`,platform).loads;
+  assert.equal(loads.reduce((a,b)=>a+b,0)-old.reduce((a,b)=>a+b,0),Object.values(actualJsPlanningWeights(goldenIdolCurrentJs,platform)).reduce((a,b)=>a+b,0));
+  let maximum=Math.max(...loads);
+  if(platform==='win32'){
+   const luaBins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...liveTimings,windowsJsShardMs:loads},2));
+   assert.deepEqual(luaBins.flat().sort(),[...lua].sort());assert.equal(new Set(luaBins.flat()).size,1415);
+   const cost=file=>liveTimings.luaShard[file]??liveTimings.lua[file]??liveTimings.unknownLuaMs,safety=file=>liveTimings.lua[file]??liveTimings.unknownLuaMs;
+   maximum=Math.max(...luaBins.map((bin,i)=>{const pool=[0,0];for(const file of bin.filter(file=>safety(file)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(file);return loads[i]+bin.filter(file=>safety(file)>=10000).reduce((sum,file)=>sum+cost(file),0)+Math.max(...pool);}));
+  }
+  const forecast=maximum+60000;t.diagnostic(`${platform} complete Golden Idol836 forecast ${forecast} ms; budget ${budget} ms; actual Full pass not claimed`);
+  assert.ok(forecast<budget);
+ }
+ const workflow=actualDiskReadFileSync('.github/workflows/quality.yml','utf8');
+ assert.match(workflow,/max-parallel: 12/);assert.ok(workflow.includes("--workers ${{ inputs.runner_pool == 'local-special' && 1 || 2 }}"));
+});
+
+
+
+test('Golden Idol complete local floors authenticate actual files and preserve every prior observation',()=>{
+ assert.deepEqual(Object.keys(goldenIdolCurrentPlanningFloors),['tests/golden-idol-source-epoch.test.mjs']);
+ const current=JSON.parse(actualDiskReadFileSync(path,'utf8'));
+ for(const [key,floor]of Object.entries(goldenIdolCurrentPlanningFloors)){
+  assert.deepEqual(current.jsPlanning.localLowerBounds[key],floor);delete current.jsPlanning.localLowerBounds[key];
+  const bytes=actualDiskReadFileSync(floor.sourceLog),log=gunzipSync(bytes).toString('utf8');
+  assert.equal(hash(bytes),floor.sourceLogSha256);assert.equal(hash(log),floor.sourceLogUncompressedSha256);
+  const receiptBytes=actualDiskReadFileSync(floor.sourceReceipt),receipt=JSON.parse(receiptBytes);
+  assert.equal(hash(receiptBytes),floor.sourceReceiptSha256);
+  assert.equal(receipt.test,key);assert.deepEqual([receipt.tests,receipt.passed,receipt.failed,receipt.cancelled,receipt.skipped],[floor.tests,floor.tests,0,0,0]);
+  assert.equal(receipt.nodeReportedDurationMs,floor.nodeReportedDurationMs);
+  assert.equal(receipt.sourceLogSha256,floor.sourceLogSha256);assert.equal(receipt.sourceLogUncompressedSha256,floor.sourceLogUncompressedSha256);
+  assert.equal(hash(actualDiskReadFileSync(key,'utf8').replaceAll('\r\n','\n')),floor.testSha256);
+  assert.equal(receipt.inputSha256[key],floor.testSha256);
+  assert.equal(floor.durationMs,Math.max(Math.ceil(floor.nodeReportedDurationMs),legacyGoldenIdolPlanningFloors[key].durationMs));assert.equal(floor.historicalFloorMs,legacyGoldenIdolPlanningFloors[key].durationMs);assert.match(floor.kind,/Not a hosted/);
+  assert.equal(receipt.wallDurationMs,null);assert.equal(floor.wallDurationMs,null);assert.deepEqual([receipt.status,receipt.signal],[0,null]);
+  for(const line of ['tests '+floor.tests,'pass '+floor.tests,'fail 0','cancelled 0','skipped 0','duration_ms '+floor.nodeReportedDurationMs])assert.ok(log.includes('ℹ '+line),line);
+  assert.ok(Object.keys(receipt.inputSha256).length>0);
+  for(const [file,sha]of Object.entries(receipt.inputSha256)){
+   const raw=actualDiskReadFileSync(file);assert.equal(hash(file.endsWith('.gz')?raw:raw.toString('utf8').replaceAll('\r\n','\n')),sha,file);
+  }
+ }
+ assert.deepEqual(current,actualCurrentTimings,'all old costs, hosted measurements, safety inputs and thresholds remain unchanged');
+});
+
+
+test('Golden Idol shared CI entry points preserve path type and target rejection boundaries',()=>{
+ const timingPath='scripts/ci-test-timings.json',gatePath='scripts/check-lua-static.mjs';
+ const timing=actualDiskReadFileSync(timingPath,'utf8'),gate=actualDiskReadFileSync(gatePath,'utf8');
+ const priorTiming=goldenIdolCurrentCiProof.files[timingPath].beforeSource,priorGate=goldenIdolCurrentCiProof.files[gatePath].beforeSource;
+ for(const [project,ownPath,ownSource,otherPath,otherSource]of [
+  [preCombinedGateSource,gatePath,gate,timingPath,timing],
+  [preCombinedPlanningSource,timingPath,timing,gatePath,gate],
+  [originalPlanningSource,timingPath,timing,gatePath,gate],
+ ]){
+  for(const target of ['flow','unknown','__proto__']){
+   assert.equal(project(otherPath,otherSource,target),otherSource,'unsupported path never enters the new outer epoch');
+   for(const foreign of ['foreign','__proto__','constructor'])assert.equal(project(foreign,ownSource,target),ownSource);
+   for(const value of [null,undefined,{},17])assert.equal(project(ownPath,value,target),value);
+   assert.equal(project(ownPath,ownSource+'\n',target),ownSource+'\n','unknown target does not authenticate drift');
+  }
+ }
+ for(const target of ['base','flow','silent','effects'])assert.equal(preCombinedPlanningSource(timingPath,timing,target),preCombinedPlanningSource(timingPath,priorTiming,target));
+ for(const target of ['flow','silent','effects'])assert.equal(preCombinedGateSource(gatePath,gate,target),preCombinedGateSource(gatePath,priorGate,target));
+ for(const target of ['develop','seven','unknown'])assert.equal(originalPlanningSource(timingPath,timing,target),originalPlanningSource(timingPath,priorTiming,target),'original unknown-target fallback stays identical');
+ for(const target of ['unknown','__proto__','constructor']){
+  assert.throws(()=>preCombinedPlanningSource(timingPath,timing,target),/known frozen sibling planning epoch/);
+  assert.throws(()=>preCombinedGateSource(gatePath,gate,target),/known frozen sibling gate epoch/);
+ }
+ assert.notEqual(preCombinedPlanningSource(timingPath,timing,'base'),timing);
+ assert.notEqual(preCombinedGateSource(gatePath,gate,'flow'),gate);
 });

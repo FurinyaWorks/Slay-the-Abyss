@@ -1,6 +1,7 @@
 import {preCurrentPlanningSource} from './joint-ui-ci-source-inverse.mjs';
 import {preCursesGateSource} from './curses-ci-planning.mjs';
 import {preDefectActorCiSource} from './defect-actor-ci-source-inverse.mjs';
+import {preGoldenIdolCurrentCiSource} from './golden-idol-current-ci-source-inverse.mjs';
 import {preOfficialAssetsFlowCiSource} from './official-assets-flow-ci-source-inverse.mjs';
 import {preOfficialAssetsCiSource} from './official-assets-ci-source-inverse.mjs';
 import {preEncounterFormationCiSource} from './encounter-formation-ci-source-inverse.mjs';
@@ -63,6 +64,7 @@ export function preCiCompleteCalibrationSource(path,source){
 // Only the complete merged source may enter either immutable original epoch.
 // Removing extra floors is never a generic drift-masking fallback.
 export function originalPlanningSource(path,source,epoch='develop'){
+ if(path==='scripts/ci-test-timings.json')source=preGoldenIdolCurrentCiSource(path,source);
  source=preCombinedPlanningSource(path,source);
  source=preWatcherFlowPlanningSource(path,preSilentTacticsPlanningSource(path,preEffectsTargetGroupPlanningSource(path,source)));
  source=preGameUiLocalPlanningSource(path,prePartialCasePlanningSource(path,source));
@@ -145,6 +147,7 @@ export function preEffectsTargetGroupPlanningSource(path,source){
 export function preCombinedPlanningSource(path,source,epoch='base'){
  source=preCurrentPlanningSource(path,source);
  source=preDefectActorCiSource(path,source);
+ if(path==='scripts/ci-test-timings.json')source=preGoldenIdolCurrentCiSource(path,source);
  source=preOfficialAssetsCiSource(path,preOfficialAssetsFlowCiSource(path,source));
  if(path==='scripts/ci-test-timings.json')source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,preDefectFinalCiSource(path,preEncounterFormationCiSource(path,source))));
  if(path!=='scripts/ci-test-timings.json'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='db3b3dbb80f68d57c655f30efc2fb851fc83a61c5ce682b726a5369dc34ad9ba')return source;
@@ -163,6 +166,7 @@ export function preCombinedPlanningSource(path,source,epoch='base'){
 // Historical receipt source proof, gated by both complete merged and published identities.
 export function preCombinedGateSource(path,source,epoch){
  source=preCursesGateSource(path,source);
+ if(path==='scripts/check-lua-static.mjs')source=preGoldenIdolCurrentCiSource(path,source);
  if(path==='scripts/check-lua-static.mjs')source=preRelicEquipCiSource(path,preSilentFinalCiSource(path,preDefectFinalCiSource(path,preEncounterFormationCiSource(path,source))));
  if(path!=='scripts/check-lua-static.mjs'||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!=='8253029479f041be7ec8235fcff181f941f9e3190412c587a3b06904452903c1')return source;
  const targets={"flow": "c90c522a35efa86a444d973d6c90d0e42c7e02cc4bd1d4a49e5e94fdd331fa51", "silent": "61b3588acbea2e47e2812903acfbbe149eac1858fbb6a0ed86d38fe96074df8d", "effects": "10d11c5f5294ac48929d9d4946cb7b92d18881507c09b5825e1dd2b8a813715c"},edits={"flow": [["  'src/lua/abyss_silent_tactics_cards.lua': [],\n", ""], ["    ...['visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',\n      'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n", "    ...['denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n"], ["  || file==='src/lua/abyss_silent_tactics_cards.lua'\n", ""]], "silent": [["  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']\n    .map(name=>`function '${name}'`),\n", ""], ["    ...['visitTargetGroup','discoverTargetGroup','targetGroupCount','validTargetGroupMember',\n      'targetGroupMembers','validTargetGroupPair','targetGroup','denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n", "    ...['denseEffectCount','scrySequenceSupported','supportedEffectOp','conditionalAllowed',\n"]], "effects": [["  'src/lua/abyss_silent_tactics_cards.lua': [],\n  'src/lua/abyss_watcher_flow_cards.lua': ['M.planEffect','planDamage','planStance','planCollect','planPower','planRecall']\n    .map(name=>`function '${name}'`),\n", ""], ["  || file==='src/lua/abyss_silent_tactics_cards.lua'\n", ""]]};
