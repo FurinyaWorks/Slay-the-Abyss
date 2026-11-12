@@ -1,0 +1,13 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 build:data
+> node scripts/build-lua-data.mjs
+
+Validated Lua data module built.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 build:ui
+> node scripts/build-ui.mjs
+
+Native battle UI and Traveler display module built.
+Map controls and Lua layout contract built.
