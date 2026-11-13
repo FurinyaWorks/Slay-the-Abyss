@@ -115,3 +115,29 @@ free automatic use and native/unmarked rejection, target lifetime validation,
 extra-metadata rejection, real thorns stopping queued bloom, and no-candidate
 constructor compatibility. Synthetic pause insertion is test-only, not an
 additional Ganyu skill. No bank/storm, relic or complete-character claim.
+
+## Xiao x01/x04 paid-only vertical slice
+
+Explicit kind `xiao` initializes the per-battle resource, first-entry relic flag
+and private xiao_mask Power definition. Reviewed role modules are copied from
+`3c72f61e` unchanged; only x01/x04 canonical definitions/effect records are
+accepted by the host gate. Other role plans/data remain unreachable through
+this candidate admission. There is no ready catalog, class or reward registration.
+
+The same actual-instance `cardId` gate and HP prerequisite cover manual and
+automatic uses. Real native loseHp occurs before maskCommit; the queued role
+commit and actual relic draw are protected by the shared whole-command
+Snapshot. Turn, accepted-use ordinal, UID and cursor guard the private stage.
+Inactive selected targets fail preflight; targets invalidated after acceptance
+are skipped like native damage rather than refunding a successful paid command.
+
+The author's public C.play base/upgrade/payment/HP/UID/relic/exception tests
+run against src modules (no experimental package-path shadowing). Additional
+real-queue checks cover autoplay rejection, resumed Scry faults, exact aliases,
+extra metadata, dead/escaped targets, post-use powers and target invalidation.
+Synthetic pause/invalidation actions are test-only, not authored character skills.
+
+**Lifecycle boundary:** owner-end mask loss/expiry and reserved-energy turn-start
+are not wired by this batch. Intangible uses the native loseHp reduction (2 to
+1), differing from the JS proposal. These remain explicit design/integration
+HOLDs; this is not a complete playable character or lifecycle approval.

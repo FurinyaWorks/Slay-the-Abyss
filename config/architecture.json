@@ -1,6 +1,11 @@
 {
   "layers": {
     "abyss_keqing_paid_cards": "core",
+    "abyss_xiao_play_bridge": "core",
+    "abyss_xiao_dispatch": "core",
+    "abyss_xiao_core_data": "core",
+    "abyss_xiao_card_plan": "core",
+    "abyss_xiao_paid_cards": "core",
     "abyss_ganyu_resources": "core",
     "abyss_ganyu_queued_card": "core",
     "abyss_ganyu_paid_cards": "core",

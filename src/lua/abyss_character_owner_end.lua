@@ -7,6 +7,13 @@ function M.init(state,option)
  if option==nil then return end
  assert(type(option)=='table'and getmetatable(option)==nil,'invalid candidate lifecycle option')
  for key in pairs(option)do assert(key=='kind'or key=='relicEnabled','unknown candidate lifecycle option')end
+ if option.kind=='xiao'then
+  assert(type(option.relicEnabled)=='boolean'and not state.originalV4,'invalid Xiao candidate option')
+  state.experimentalMechanics=true;state.characterCandidate='xiao'
+  state.xiao={relicUsed=false,startingRelic=option.relicEnabled,reservedEnergy=0}
+  state.catalog.statuses.xiao_mask={id='xiao_mask',priority=5,kind='buff',stack='intensity',decay='none'}
+  return
+ end
  if option.kind=='ganyu'then
   assert(option.relicEnabled==false and not state.originalV4,'Ganyu relic/lifecycle not enabled')
   state.experimentalMechanics=true;state.characterCandidate='ganyu'
