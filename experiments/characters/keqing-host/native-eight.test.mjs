@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('eight source-native cards through actual paid host and Run acquisition',()=>{buildLuaData();const r=runLua('experiments/characters/keqing-host/native-eight.test.lua',{timeout:90000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KQ_NATIVE_EIGHT_PUBLIC_48_RUN16_TERMINAL28_PASS/);});
