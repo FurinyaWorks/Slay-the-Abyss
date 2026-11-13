@@ -1,5 +1,6 @@
 {
   "layers": {
+    "abyss_ganyu_shield_charge_reward_run": "core",
     "abyss_ganyu_shield_charge_definitions": "core",
     "abyss_keqing_setup_cards": "core",
     "abyss_keqing_setup_reward_run": "core",
