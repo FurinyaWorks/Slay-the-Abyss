@@ -50,11 +50,18 @@ export async function loadAdapter(root,character,expectedHead,{run=false}={}){
   const outcome=s=>s.phase==='won'?'victory':s.phase==='lost'?'defeat':'playing';
   a={catalog:Object.entries(m.cards).map(([id,c])=>row(id,u=>m.describe(id,u),c.role)),
    start:(seed,mode)=>b.createBattle({seed,deckIds:mode==='all'?Object.keys(m.cards):b.starterIds}),
-   play:(s,i,t)=>b.useCard(s,s.hand[i].instance,t??0),end:b.finishTurn,outcome,
+   play:(s,i,t,options={})=>{
+    if(!options||Array.isArray(options)||typeof options!=='object'||Object.keys(options).some(k=>!['retain','move','purge'].includes(k)))throw Error('only explicit visible retain/move/purge choices supported');
+    const card=m.cards[s.hand[i].id],effects=card.effects[s.hand[i].upgraded?'upgraded':'base'];
+    if(effects.some(e=>e.op==='inspect'||e.op==='chooseDiscard'))throw Error('synchronous revealed choice unsupported in shared UI; no automatic choice or hidden preview');
+    return b.useCard(s,s.hand[i].instance,t??0,options);
+   },end:b.finishTurn,outcome,
    view:s=>({...pick(s,['hp','energy','block','turn','wedgeUntil','infusion']),outcome:outcome(s),zones:zones(s),
     relic:{id:b.starterRelic.id,text:b.describeRelic(),equipped:s.relicEnabled,used:s.relicUsed},
     enemies:s.enemies.map((e,i)=>({target:i+1,hp:e.hp,block:e.block,intent:e.hp?e.intent:0})),
-    hand:s.hand.map((c,i)=>({slot:i+1,id:c.id,text:m.describe(c.id,c.upgraded===true)}))})};
+    selectionLimits:'Visible retain/move/purge only; synchronous inspect/chooseDiscard blocked, no fair pause/resume UI',
+    discardChoices:s.discard.map(c=>({instance:c.instance,id:c.id,text:m.describe(c.id,c.upgraded===true)})),
+    hand:s.hand.map((c,i)=>({slot:i+1,instance:c.instance,id:c.id,text:m.describe(c.id,c.upgraded===true)}))})};
  }
  if(run&&character==='ganyu'){
   const acquisition=await mod('acquisition.mjs'),consoleModel=await mod('run-console.mjs'),m=await mod('engine.mjs');

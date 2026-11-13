@@ -112,3 +112,21 @@ test('current Xiao run keeps campaign immediate-next-room reward semantics',{ski
  for(const k of ['rng','seed','rewardRng','draw'])assert.equal(Object.hasOwn(a.view(raw),k),false);
  const skipped=a.reward(raw,'proceed');assert.equal(skipped.stage,1);assert.equal(skipped.deck.length,deck);assert.equal(skipped.battle.hp,hp);
 });
+test('latest Keqing 75-card adapter forwards only explicit visible choices and blocks synchronous reveals',{skip:!process.env.KEQING_LATEST_ROOT},async()=>{
+ const root=process.env.KEQING_LATEST_ROOT,a=await loadAdapter(root,'keqing',process.env.KEQING_LATEST_HEAD);
+ const {pathToFileURL}=await import('node:url');const b=await import(pathToFileURL(join(root,'experiments/characters/keqing/battle.mjs')).href);
+ assert.equal(a.catalog.length,75);
+ const setup=id=>b.createBattle({deckIds:[id,'KQ001','KQ003',...Array(7).fill('KQ002')],order:Array.from({length:10},(_,i)=>i)});
+ for(const upgraded of [false,true]){
+  for(const [id,opts] of [['KQ016',{move:'starter-2'}],['KQ048',{move:'starter-1'}],['KQ024',{retain:['starter-1']}],['KQ060',{purge:[]}]] ){
+   const state=setup(id);state.hand[0].upgraded=upgraded;const before=structuredClone(state);
+   assert.deepEqual(a.play(state,0,0,opts),b.useCard(state,'starter-0',0,opts));assert.deepEqual(state,before);
+  }
+  for(const id of ['KQ043','KQ044']){const s=setup(id);s.hand[0].upgraded=upgraded;const before=structuredClone(s);assert.throws(()=>a.play(s,0,0),/synchronous revealed/);assert.deepEqual(s,before);}
+ }
+ const s=setup('KQ016');for(const opts of [{choose:()=>null},{drawCards:()=>{}},null,[]])assert.throws(()=>a.play(s,0,0,opts));
+ const session=createSession({...a,start:()=>setup('KQ024')});const result=session.dispatch({type:'play',revision:0,slot:1,target:1,options:{retain:['starter-1']}});assert.equal(result.ok,true);assert.deepEqual(result.view.hand,a.view(b.useCard(setup('KQ024'),'starter-0',0,{retain:['starter-1']})).hand);
+ const view=a.view(s);assert.equal(view.hand[0].instance,'starter-0');assert.equal(Object.hasOwn(view,'draw'),false);assert.equal(Object.hasOwn(view,'rng'),false);
+ assert.deepEqual(parseCommand('j {"type":"play","revision":0,"slot":1,"target":1,"options":{"retain":["starter-1"]}}').options,{retain:['starter-1']});
+ for(const x of ['j null','j []','j {"type":"end"}','j {"type":"play","unexpected":1}'])assert.throws(()=>parseCommand(x));
+});

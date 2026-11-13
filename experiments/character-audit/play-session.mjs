@@ -24,7 +24,7 @@ export function createSession(adapter,{seed=37,mode='starter'}={}) {
    else {
     if(!Number.isInteger(command.slot)||command.slot<1||command.slot>adapter.view(state).hand.length)throw Error('invalid hand slot');
     if(command.target!==undefined&&(!Number.isInteger(command.target)||command.target<1||command.target>adapter.view(state).enemies.length))throw Error('invalid target slot');
-    next=adapter.play(structuredClone(state),command.slot-1,command.target===undefined?undefined:command.target-1);
+    next=adapter.play(structuredClone(state),command.slot-1,command.target===undefined?undefined:command.target-1,command.options);
    }
    // Evaluate rendering before committing, so malformed adapter output cannot half-commit.
    const rendered=adapter.view(structuredClone(next));guard();
@@ -35,6 +35,7 @@ export function createSession(adapter,{seed=37,mode='starter'}={}) {
  return {view,dispatch,catalog:()=>{guard();return structuredClone(adapter.catalog);}};
 }
 export function parseCommand(line){
+ if(line.trim().startsWith('j ')){const c=JSON.parse(line.trim().slice(2));if(!c||Array.isArray(c)||c.type!=='play'||Object.keys(c).some(k=>!['type','revision','slot','target','options'].includes(k)))throw Error('invalid JSON play command');return c;}
  const words=line.trim().split(/\s+/);const op=words[0];
  if(['show','catalog','q'].includes(op)&&words.length===1)return {type:op};
  const types={p:'play',e:'end',c:'cancel',r:'reset',o:'open',s:'skip',k:'claim',n:'proceed'};
