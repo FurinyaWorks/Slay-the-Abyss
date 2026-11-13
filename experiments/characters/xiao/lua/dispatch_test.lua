@@ -36,3 +36,41 @@ for _,effect in ipairs({{op='xiaoCard',kind='damage',value=6,uid=911},{op='xiaoC
  s=fresh(0);local n=#s.events;assert(not pcall(X.dispatch,C,s,effect,Q));eq(#s.events,n);eq(s.enemies[2].hp,50)
 end
 print('PASS death grants no entry and invalid paid context rejects before mutation')
+
+s=fresh(0);local aimed=s.enemies[2]
+Q.start(s,{{kind='effect',effect={op='pauseProbe'}},{kind='effect',effect={op='xiaoCard',kind='damage',value=9,uid=910}}})
+eq(Q.run(s,handlers),'pause');s.enemies[1],s.enemies[2]=s.enemies[2],s.enemies[1]
+Q.resume(s,handlers);eq(aimed.hp,41);eq(s.enemies[2].hp,50)
+print('PASS paused attack resolves paid stable ID after enemy list reorder')
+for _,bad in ipairs({'dead','inUse','paidMissing','uidFalse'})do
+ s=fresh(0)
+ if bad=='dead'then s.enemies[2].hp=0 elseif bad=='inUse'then s.cardInUse.uid=911 elseif bad=='paidMissing'then s.pendingPlay=nil else s.pendingPlay.uid=false;s.cardInUse.uid=false end
+ local enemy=s.enemies[2];local hp=enemy.hp;local events=#s.events
+ assert(not pcall(X.dispatch,C,s,{op='xiaoCard',kind='damage',value=6,uid=910},Q));eq(enemy.hp,hp);eq(#s.events,events);eq(s.actionQueue,nil)
+end
+print('PASS dead target missing paid context and mismatched resolving UID reject without queue effects')
+local Snapshot=require('abyss_snapshot');local Copy=require('abyss_copy').copy
+local function same(a,b,seen)
+ if type(a)~='table'or type(b)~='table'then return a==b end
+ seen=seen or {};if seen[a]==b then return true end;seen[a]=b
+ for k,v in pairs(a)do if not same(v,b[k],seen)then return false end end
+ for k in pairs(b)do if a[k]==nil then return false end end
+ return true
+end
+for _,up in ipairs({false,true})do
+ s=fresh(0);s.draw=s.hand;s.hand={};s.pendingPlay=nil;s.cardInUse=nil
+ local originalCard={uid=910,id='strike',upgraded=up};s.hand[1]=originalCard;s.energy=3
+ local before=Copy(s);local hand=s.hand;local draw=s.draw;local player=s.player;local restore=Snapshot.capture(s)
+ local reached=false;local faultHandlers={effect=function(st,a,q)
+  if a.effect.op=='faultProbe'then reached=true;eq(st.player.hp,before.player.hp-2);eq(st.energy,2);eq(#st.hand,1);eq(st.xiao.relicUsed,true);error('post-entry deliberate fault')end
+  return handlers.effect(st,a,q)
+ end}
+ local ok=pcall(function()
+  -- Explicit payment fixture: public beginQueuedPlay registration is not present.
+  s.energy=s.energy-1;s.cardInUse=table.remove(s.hand,1);s.pendingPlay={uid=910,targetId=s.enemies[2].id}
+  Q.start(s,{{kind='effect',effect={op='loseHp',value=2}},{kind='effect',effect={op='xiaoCard',kind='maskCommit',value=up and 3 or 2,uid=910}},{kind='effect',effect={op='faultProbe'}}})
+  Q.run(s,faultHandlers)
+ end)
+ assert(not ok and reached);restore();assert(same(s,before));eq(s.hand,hand);eq(s.draw,draw);eq(s.player,player);eq(s.hand[1],originalCard);eq(s.pendingPlay,nil);eq(s.actionQueue,nil)
+end
+print('PASS real host Snapshot restores whole graph and object identity after payment entry draw and fault')

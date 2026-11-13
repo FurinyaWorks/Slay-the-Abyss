@@ -65,3 +65,7 @@ x25依据目标当前攻击威胁>0加基础额外伤害；x26仅全活敌当前
 abyss_xiao_dispatch.dispatch(combat,state,effect,queue)只执行damage/plunge/maskCommit。effect.uid必须等于pendingPlay.uid和cardInUse.uid；显式targetId必须等于paid targetId，查稳定enemy.id不保存索引。单体活目标验证，面具plunge排入原生damageAll；伤害基础加面具4后交宿主真实伤害/护甲/反应。maskCommit在真实付款后读HP，死不入场、不领遗物；真入场标准Actors.applyPower与Schedule登记，主动退出删除登记，首次遗物draw排在当前动作之后且下个卡效果之前。刷新不重领。现只覆盖首8、不支持后续退出/入场能力钩子，不应与全75并用。
 
 4条隔离真实C.new/Combat.applyEffects/ActionQueue探针通过，含双敌单体/群体护甲、前置pause后付款与真实抽1、刷新不重抽、退出Schedule删除、UID/target坏值拒绝。测试人为构造已付款pendingPlay及inUse，不证明公共C.play的begin/useCard完成或自动扣能移牌；原生效果handler仅测试夹具，不冒充共享正式handler。全部动作必须宿主整命令Snapshot，适配器不是本地原子事务，不负责反复手工调用幂等；共享owner统一schema/gate注册后再跑公开命令验收。Intangible差异保持HOLD。
+
+### 纵切补强：稳定目标与宿主快照（7探针）
+
+新增暂停后敌列表换序仍命中paid targetId；死目标、缺pendingPlay、cardInUse UID不符和false UID在队列写入之前拒绝。新增基础/升级两条完整Snapshot.capture回归：先快照，付款夹具扣1能/移走真实card对象，再执行原生loseHp、mask入场/登记、真实遗物抽牌，最后故意异常；捕获后调用真实restore，深比较整个state并确认hand/draw/player/card原引用恢复。这个测试确证采用该宿主快照可恢复多阶段副作用，不表示当前公共C.play已经为魈接了快照或付款；shared owner确认目前没有魈公开入口，未猴补共享代码。

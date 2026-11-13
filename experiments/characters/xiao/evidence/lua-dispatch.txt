@@ -2,3 +2,6 @@ PASS actual host damage uses stable paid target mask bonus and armor
 PASS actual host plunge distinguishes all-enemy mask and single-target calm
 PASS queue pause resumes real payment then first entry schedule and actual exit removal
 PASS death grants no entry and invalid paid context rejects before mutation
+PASS paused attack resolves paid stable ID after enemy list reorder
+PASS dead target missing paid context and mismatched resolving UID reject without queue effects
+PASS real host Snapshot restores whole graph and object identity after payment entry draw and fault
