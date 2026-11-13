@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.24.0",
+  "version": "ganyu-sample-0.25.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -2553,6 +2553,133 @@
         ]
       },
       "source_ref": "ganyu-70",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-71",
+      "name": "待命名·ganyu-71",
+      "candidate_name": null,
+      "role": "一次同时铺雨与供蓄",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 2
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-71",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-72",
+      "name": "待命名·ganyu-72",
+      "candidate_name": null,
+      "role": "一次满蓄防守兑付扩展手牌",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 5,
+            "bonus": 6
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 7,
+            "bonus": 8
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-72",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-73",
+      "name": "待命名·ganyu-73",
+      "candidate_name": null,
+      "role": "一次单体攻击并扩展手牌",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-73",
       "review": {
         "status": "HOLD",
         "human_approved": false,

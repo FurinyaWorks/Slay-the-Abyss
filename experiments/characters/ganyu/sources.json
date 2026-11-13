@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.24.0",
+  "version": "ganyu-sample-0.25.0",
   "status": "HOLD",
   "records": [
     {
@@ -2082,6 +2082,96 @@
       "source_kind": "mechanical-adaptation-pending-primary",
       "source_text": null,
       "source_locator": "batch-24.md",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "Existing official 1.2 index supports Ice Lotus taunt / AoE Cryo only; no new per-card name approved",
+      "p2_checked": "No new per-card P2 claim; exact primary text still incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-71",
+      "decision_role": "一次同时铺雨与供蓄",
+      "effect_ref": "cards.json#ganyu-71",
+      "name": "待命名·ganyu-71",
+      "proposed_name": null,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-25.md",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "Existing official 1.2 index supports Ice Lotus taunt / AoE Cryo only; no new per-card name approved",
+      "p2_checked": "No new per-card P2 claim; exact primary text still incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-72",
+      "decision_role": "一次满蓄防守兑付扩展手牌",
+      "effect_ref": "cards.json#ganyu-72",
+      "name": "待命名·ganyu-72",
+      "proposed_name": null,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-25.md",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "Existing official 1.2 index supports Ice Lotus taunt / AoE Cryo only; no new per-card name approved",
+      "p2_checked": "No new per-card P2 claim; exact primary text still incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-73",
+      "decision_role": "一次单体攻击并扩展手牌",
+      "effect_ref": "cards.json#ganyu-73",
+      "name": "待命名·ganyu-73",
+      "proposed_name": null,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-25.md",
       "source_version": "unknown; research 2026-11-13",
       "source_verified": false,
       "p1_checked": "Existing official 1.2 index supports Ice Lotus taunt / AoE Cryo only; no new per-card name approved",
