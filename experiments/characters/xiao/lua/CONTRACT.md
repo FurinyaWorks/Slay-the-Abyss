@@ -97,3 +97,9 @@ dispatch新增damageAll、breakBlock；群攻不需要不相关单目标，实�
 ## 独立可执行扩展：x20条件抽牌与x21/x22消耗计数
 
 dispatch新增unmaskedDraw/exhaustDamage/exhaustBlock。当前面具0才排原生draw；消耗实体区须稠密，再按真实公开数量算基础伤害/盾并封顶，面具加4在伤害封顶之后，宿主护甲/格挡修正仍原规则。此处不将结算牌提前放消耗区，也不新造回收/复制。exhaust_dispatch_test三探针涵盖真实C.new实例移入消耗区0/1/边界/超额、两版有无面具护甲、真实抽牌排除结算牌及稀疏拒绝；这段移区为效果级场景构造，不冒称通过正式消耗触发牌取得了燃料。旧10+4+3回归通过，仍无新增公共注册/付款或自然获取验收。
+
+## 独立可执行扩展：主动退出盾与缩短面具
+
+新增exitGuard真实能力取得/叠加与shortenMask执行。缩短不是刷新：直接取max(mask-value,0)，仅正→0走主动退出盾；maskCommit主动清零也接同钩子。自然owner-end到期仍不触退出盾，空退出/部分缩短/死玩家均不领取。退出盾通过原生block队列受宿主修正，未实现exitDraw等未开放能力，不能假称全75相互作用闭合。
+
+exit_dispatch_test三探针覆盖基础/升级盾、2→1→0、空退出/自然到期不领、能力Schedule叠加单槽、死玩家、false前验和真实Snapshot恢复。既有10+4+3+3回归通过。仅effect级，桥接/gate范围未扩，公共x01/x04仍待集成。

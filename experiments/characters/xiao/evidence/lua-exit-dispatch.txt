@@ -1,0 +1,3 @@
+PASS x27 partial reduction versus true exit and x29 not triggered by natural expiry or empty exit
+PASS exit ability accumulates once in schedule and death cannot collect exit defense
+PASS malformed exit guard pre-reject and real snapshot restores acquired ability mask and shield
