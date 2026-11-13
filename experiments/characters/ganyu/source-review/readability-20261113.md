@@ -35,3 +35,15 @@ per-card.json的两项STS是候选维度参考；组合效果可能只有一部�
 - [开发者1.2 PlayStation博客](https://blog.playstation.com/2020/12/11/genshin-impact-v1-2-get-ready-to-chill-in-dragonspine/)正文可读，但主题为龙脊雪山，不提供甘雨技能细节，排除作技能证据。
 
 再次定向检索官方作者+Trail of the Qilin/Frostflake，返回玩家攻略与KQM，未找到新的可读官方技能正文；不以平台域名或攻略引用官方图片替代作者核验。未观看/转录视频，未读取图片中的技能文字。75逐卡source_verified仍false，双STS原文/中文命名/人审HOLD不变。这两份可读官方人物资料缩小的是身份语境缺口，不是75份机制来源缺口。
+
+## 来源职责一致性修正
+
+全75候选与sources/per-card矩阵交叉核对发现07/08的sources.decision_role
+落后于当前卡池说明。现按cards.json同步：07明确付出能量及抽牌机会成本，
+08明确以低格挡换轮转。只改来源记录中的职责描述，未改卡值、显示名、
+候选名、逐卡来源验证或人审标记。矩阵effects是操作集合，不是结算顺序。
+
+`node --test experiments/characters/ganyu/source-review/integrity.test.mjs`
+检查75条ID/名字/职责/基升操作集合/效果引用/本地文件及标题定位，含13个
+反例。该检查只证明记录内部可追溯，不证明官方正文内容、P1优先级穷尽、
+两个STS原文或角色适配；所有这些门禁仍HOLD。

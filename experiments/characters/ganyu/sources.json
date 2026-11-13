@@ -184,7 +184,7 @@
     },
     {
       "card_id": "ganyu-07",
-      "decision_role": "以能量换即时过牌，改善找箭但不保证获取",
+      "decision_role": "以能量与抽牌机会换即时过牌，改善找箭但不保证直接获取",
       "effect_ref": "cards.json#ganyu-07",
       "name": "待命名·ganyu-07",
       "proposed_name": null,
@@ -214,7 +214,7 @@
     },
     {
       "card_id": "ganyu-08",
-      "decision_role": "防守兼慢速轮转，改善生命与找箭的共同成本",
+      "decision_role": "防守兼慢速轮转，以低格挡换过牌，避免纯过牌耗尽防御预算",
       "effect_ref": "cards.json#ganyu-08",
       "name": "待命名·ganyu-08",
       "proposed_name": null,
