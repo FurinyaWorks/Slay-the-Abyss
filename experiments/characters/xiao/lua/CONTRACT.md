@@ -29,3 +29,11 @@
 `startTurnPlan`在已有合法state.xiao.reservedEnergy>0时只提出带turn的reservedEnergy action，不立即加能或清空。共享owner计划放在基础能量充值后、正常抽牌动作前，正式实现须按当时状态领取一次、去重且snapshot回滚。
 
 候选definition未来须experimental=true经QueuedPlay，费用由begin而非本模块重复支付；目前这8卡不是实际已注册牌，更非75卡完整Lua接入。其余67显式unsupported。首8基升16计划、生命门槛、非法升级、遗物时序和turn-start纯计划5条Lua探针通过，未声称公共C.playCard验收。
+
+## 第二批 x09–x16 纯计划（取代上文仅首8支持范围）
+
+生成器当前覆盖16卡32基升计划，x17–x75仍显式拒绝。新特殊子类为damageAll、maskBlock、maskGuard、breakBlock、recoverExit；不把JS操作直接当已支持的宿主op，未知操作一律拒绝。原16卡数值均源自cards.json，没有改卡。
+
+执行合同：x09先真实退出再抽；x10先真实付血、存活才入场再加盾，不缩短旧长面具；x11伤害用执行时面具后退出。x12群攻不依赖无关单体目标。x13在执行时读面具，maskBlock纯函数给全值或floor(value/2)，实际加盾仍宿主修正。x14 addMaskGuard只给安全累加值，正式能力须标准Power取得及Schedule.recordApplied，不即时给盾。x15必须先验合法活目标后剥同一目标护甲再伤害，不能转移死人。x16按当前公开弃牌顺序取首张含mask=0效果的实体，保留UID/升级，不能取消耗区/自身；空结果仍付费，手限由宿主、回收先于防御，自己最终消耗由完成边界处理。
+
+这些目标、实体、牌区、能力登记与伤害均是待共享dispatch落实的执行合同，不是本纯计划已实现的功能。maskBlock/addMaskGuard仅纯数值参考，不写state；post-payment死亡和暂停/整命令回滚仍由宿主控制。7条Lua探针见lua-core-plan.txt，涵盖计划顺序及数值上界；不证明实际C.play可用、自然获取或平衡。所有HOLD不变。

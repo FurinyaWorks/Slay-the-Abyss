@@ -1,4 +1,4 @@
--- Pure first-eight-card proposal. Host owns cost, target, snapshots and effects.
+-- Pure first-sixteen-card proposal. Host owns cost, target, snapshots and effects.
 local Data=require('abyss_xiao_core_data')
 local M={supported={}}
 local cards={};for _,c in ipairs(Data.cards)do cards[c.id]=c;M.supported[c.id]=true end
@@ -20,9 +20,11 @@ function M.plan(resource,payload)
    effects[#effects+1]={op='xiaoCard',kind='maskCommit',value=e.value,requiresAlive=true}
    local entered=after.mask==0 and e.value>0;after.mask=e.value==0 and 0 or math.max(after.mask,e.value)
    if entered and resource.startingRelic and not after.relicUsed then after.relicUsed=true end
-  elseif e.op=='plunge'then effects[#effects+1]={op='xiaoCard',kind='plunge',value=e.value}
-  elseif e.op=='damage'then effects[#effects+1]={op='xiaoCard',kind='damage',value=e.value}
-  else effects[#effects+1]=copy(e)end
+  elseif e.op=='block'or e.op=='draw'or e.op=='loseHp'then effects[#effects+1]=copy(e)
+  else
+   assert(({damage=true,plunge=true,damageAll=true,maskBlock=true,maskGuard=true,breakBlock=true,recoverExit=true})[e.op],'unsupported Xiao effect')
+   effects[#effects+1]={op='xiaoCard',kind=e.op,value=e.value}
+  end
  end
  return {id=c.id,cost=c.cost,kind=c.kind,exhaust=c.exhaust,lifePrerequisite=hpCost,
   orderedEffects=effects,expectedResourceAfterIfAlive=after,requiresHostTransaction=true,
@@ -44,5 +46,15 @@ function M.startTurnPlan(state)
  int(state.turn,2147483647);int(state.xiao.reservedEnergy,2147483647)
  if state.xiao.reservedEnergy==0 then return {}end
  return {{op='xiaoCard',kind='reservedEnergy',turn=state.turn}}
+end
+-- Numeric proposals only; called with execution-time values, never stale plan state.
+function M.maskBlock(mask,value)
+ int(mask,Data.maskRules.maxDuration);int(value,2147483647)
+ return mask>0 and value or math.floor(value/2)
+end
+function M.addMaskGuard(current,value)
+ int(current,2147483647);int(value,2147483647)
+ assert(current<=2147483647-value,'mask guard overflow')
+ return current+value
 end
 return M
