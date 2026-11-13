@@ -1,4 +1,4 @@
--- Pure first-twenty-four-card proposal. Host owns cost, target, snapshots and effects.
+-- Pure first-thirty-two-card proposal. Host owns cost, target, snapshots and effects.
 local Data=require('abyss_xiao_core_data')
 local M={supported={}}
 local cards={};for _,c in ipairs(Data.cards)do cards[c.id]=c;M.supported[c.id]=true end
@@ -20,9 +20,11 @@ function M.plan(resource,payload)
    effects[#effects+1]={op='xiaoCard',kind='maskCommit',value=e.value,requiresAlive=true}
    local entered=after.mask==0 and e.value>0;after.mask=e.value==0 and 0 or math.max(after.mask,e.value)
    if entered and resource.startingRelic and not after.relicUsed then after.relicUsed=true end
+  elseif e.op=='shortenMask'then
+   effects[#effects+1]={op='xiaoCard',kind=e.op,value=e.value};after.mask=math.max(0,after.mask-e.value)
   elseif e.op=='block'or e.op=='draw'or e.op=='loseHp'or e.op=='energy'then effects[#effects+1]=copy(e)
   else
-   assert(({damage=true,plunge=true,damageAll=true,maskBlock=true,maskGuard=true,breakBlock=true,recoverExit=true,burnSkillsBlock=true,unmaskedDraw=true,exhaustDamage=true,exhaustBlock=true,spendEnergyBlock=true,discardAttacksDraw=true})[e.op],'unsupported Xiao effect')
+   assert(({damage=true,plunge=true,damageAll=true,maskBlock=true,maskGuard=true,breakBlock=true,recoverExit=true,burnSkillsBlock=true,unmaskedDraw=true,exhaustDamage=true,exhaustBlock=true,spendEnergyBlock=true,discardAttacksDraw=true,threatDamage=true,quietDraw=true,shortenMask=true,lastMaskDamage=true,exitGuard=true,suppress=true,coveredDraw=true})[e.op],'unsupported Xiao effect')
    local effect=copy(e);effect.op='xiaoCard';effect.kind=e.op;effects[#effects+1]=effect
   end
  end
@@ -66,5 +68,25 @@ function M.scaledCount(count,value,cap)
   if count>math.floor(cap/value)then return cap end
  elseif value>0 then assert(count<=math.floor(2147483647/value),'scaled count overflow')end
  return count*value
+end
+-- Host supplies certified current visible threat, not a future-intent sequence.
+function M.threatDamage(threat,value,bonus)
+ int(threat,2147483647);int(value,2147483647);int(bonus,2147483647)
+ local extra=threat>0 and bonus or 0
+ assert(value<=2147483647-extra,'threat damage overflow');return value+extra
+end
+function M.coveredDraw(block,threat,count)
+ int(block,2147483647);int(threat,2147483647);int(count,2147483647)
+ return block>=threat and count or 0
+end
+function M.lastMaskDamage(mask,value,bonus)
+ int(mask,Data.maskRules.maxDuration);int(value,2147483647);int(bonus,2147483647)
+ local extra=mask==1 and bonus or 0
+ assert(value<=2147483647-extra,'last mask damage overflow');return value+extra
+end
+function M.shortenMask(mask,value)
+ int(mask,Data.maskRules.maxDuration);int(value,Data.maskRules.maxDuration)
+ local after=math.max(0,mask-value)
+ return {mask=after,exited=mask>0 and after==0}
 end
 return M

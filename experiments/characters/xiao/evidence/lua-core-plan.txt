@@ -1,4 +1,4 @@
-PASS all twenty-four base/upgraded plans preserve costs effects and inputs
+PASS all thirty-two base/upgraded plans preserve costs effects and inputs
 PASS life payment precedes guarded mask commit; planning never spends relic
 PASS life prerequisite unknown cards and nonboolean upgrade reject
 PASS actual entry relic once, refresh/reentry/death do not redraw
@@ -7,3 +7,5 @@ PASS x09-x16 base/up ordered exit payment damage break and recovery proposals
 PASS execution-time mask defense and guard accumulation exact bounds
 PASS x17-x24 retain payment order caps and upgraded structured parameters
 PASS capped public count saturation and uncapped spending overflow reject
+PASS x25-x32 preserve bonuses shortened preview and defense-before-draw order
+PASS certified threat and shortened mask reducers boundaries reject unknown intent
