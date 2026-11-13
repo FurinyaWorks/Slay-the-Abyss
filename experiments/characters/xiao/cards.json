@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.23",
+  "version": "xiao-g2-lab-0.24",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1655,6 +1655,76 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x55",
+      "name": "待命名·x55",
+      "role": "群敌退场掩护：退出面具后压低各敌本回合意图",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "suppressAll",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "suppressAll",
+          "value": 6
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x56",
+      "name": "待命名·x56",
+      "role": "维持窗口：只延长已有面具一回合并抽牌",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "extendMask",
+          "value": 1
+        },
+        {
+          "op": "draw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "extendMask",
+          "value": 1
+        },
+        {
+          "op": "draw",
+          "value": 2
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1719,7 +1789,9 @@
     "x51",
     "x52",
     "x53",
-    "x54"
+    "x54",
+    "x55",
+    "x56"
   ],
   "maskRules": {
     "attackBonus": 4,

@@ -43,6 +43,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'suppressAll') { for(const enemy of s.enemies.filter(e=>e.hp>0)){currentIntent(s,enemy);enemy.suppression=(enemy.suppression??0)+value;} }
+  else if (op === 'extendMask') { if(s.mask>0)s.mask=Math.min(catalog.maskRules.maxDuration,s.mask+value); }
   else if (op === 'entryGuard') s.entryGuard+=value;
   else if (op === 'missingHpDamage') damage(s.enemies[target],value+Math.min(effect.cap,Math.floor((catalog.maxHp-s.hp)/effect.step)*effect.bonus)+(s.mask>0?catalog.maskRules.attackBonus:0));
   else if (op === 'refillHand') drawCards(s,Math.max(0,value-s.hand.length));
@@ -163,6 +165,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits, step}) => ({
+    suppressAll: `所有存活敌人本回合意图伤害降低${value}（最低0，可叠加）；下个玩家回合清除。`,
+    extendMask: `已有面具延长${value}回合，最多${catalog.maskRules.maxDuration}；无面具不进入、不触发入场。延长后仍须支付每回合生命，可能致死。`,
     entryGuard: `本场每次从无面具实际进入面具获得${value}点格挡；刷新不算，不追溯，可叠加。`,
     missingHpDamage: `造成${value}点伤害；每已损失${step}点生命另加${bonus}点，额外最多${cap}点；面具另加${catalog.maskRules.attackBonus}点。不再扣血，也不回血。`,
     refillHand: `抽牌直到手中有${value}张；打出的本牌已离手，已有不少于该数量则不抽；不保证空牌库也能补满。`,
