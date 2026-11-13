@@ -75,3 +75,7 @@ abyss_xiao_dispatch.dispatch(combat,state,effect,queue)只执行damage/plunge/ma
 abyss_xiao_play_bridge提供definitions()首8独立副本，ID为xiao_candidate_x01..x08，experimental=true且xiaoCandidate=true。target=NONE不是免检：共享owner必须在任何付款前调用canUse(state,instance,targetIndex)，单体damage及无面具plunge检查真实活目标，面具群攻不要求无关单体；x04生命>2与严格升级/资源前验。未知ID拒绝。费用仍共享begin负责。prepare(state,effect)仅在已有paid pendingPlay/inUse后给特殊effect绑定稳定UID/target，不扣能、不移牌、也不替代schema合法性验证。
 
 共享接线缺一不可：候选gate限制首8；Effects.supported/schema允许经验证的xiaoCard；canUse在付款前；prepare在消费后的pending上下文；special dispatch；完成边界useCard仍原宿主。未接完整链时不可把这些definition注册为可玩。9隔离探针证明factory复制、预验及binder→真实damage，依然没有公共C.play测试，不把辅助接口数量当正式交付。
+
+## 待共享接线后的公开验收规格（未执行）
+
+public_play_test.lua仅语法编译通过，没有调用执行：当前共享还未支持candidateLifecycle.kind=xiao，不能将该规格列为PASS。它约定真实C.new opt-in与C.play，覆盖x01/x04基升费用/坏目标UID/零能量/HP2拒绝、真实UseCard弃置与遗物仅一次，以及实际注册dispatch执行后故意异常的公共命令整图/原引用恢复。若共享模块命名或初始化合同改变须与owner对齐后实跑，不以夹具代替缺失入口。此文件预期缺gate时立即失败，不允许跳过后写绿色报告。
