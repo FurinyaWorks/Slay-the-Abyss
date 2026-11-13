@@ -11,7 +11,32 @@ local function same(a,b)
  return true
 end
 local M={}
-local allowed={damage=true,damageAll=true,block=true,scry=true,keqingDiscard=true,keqingInspect=true}
+local allowed={damage=true,damageAll=true,block=true,scry=true,keqingDiscard=true,keqingInspect=true,keqingDefense=true}
+local defenseSpec={KQ006={kind='wedge',value=5},KQ007={kind='infusion',value=4}}
+function M.defenseDefinitions()
+ local out={cards={}}
+ for _,id in ipairs({'KQ006','KQ007'})do local spec=defenseSpec[id]
+  out.cards[#out.cards+1]={id=id,name='HOLD '..id,type='skill',target='SELF',cost=1,rarity='special',color='keqing_candidate',sourceId=id,
+   experimental=true,keqingCandidate=true,keqingStage=id:sub(-3),productionEnabled=false,
+   effects={{op='block',value=5},{op='keqingDefense',kind=spec.kind,value=spec.value}},
+   upgrade={cost=1,effects={{op='block',value=8},{op='keqingDefense',kind=spec.kind,value=spec.value}}}}
+ end;return out
+end
+function M.supportsDefense(e)
+ if type(e)~='table'or getmetatable(e)or e.op~='keqingDefense'then return false end
+ for k in pairs(e)do if k~='op'and k~='kind'and k~='value'then return false end end
+ return e.kind=='wedge'and e.value==5 or e.kind=='infusion'and e.value==4
+end
+local function defenseUse(state,card,instance)
+ local spec=instance and defenseSpec[instance.cardId]
+ if not spec or instance.upgraded~=nil and type(instance.upgraded)~='boolean' or not Lifecycle.active(state)
+  or card.experimental~=true or card.keqingCandidate~=true or card.keqingStage~=instance.cardId:sub(-3)
+  or card.type~='skill'or card.target~='SELF'or card.exhaust or card.selfRetain or card.runNativeABI or card.originalV4
+  or card.silentFinalCard or card.costMode or card.ganyuCandidate~=nil or card.xiaoCandidate~=nil or card.zhongliCandidate~=nil
+  or not same(card.effects,{{op='block',value=instance.upgraded and 8 or 5},{op='keqingDefense',kind=spec.kind,value=spec.value}})
+  or not M.supportsDefense(card.effects[2])then return false,'keqing_defense_unavailable'end
+ return true
+end
 function M.supportsDiscard(e)
  if type(e)~='table'or getmetatable(e)or e.op~='keqingDiscard'or(e.value~=4 and e.value~=7)then return false end
  for key in pairs(e)do if key~='op'and key~='value'then return false end end
@@ -22,7 +47,10 @@ function M.supportsInspect(e)
  for key in pairs(e)do if key~='op'and key~='value'then return false end end
  return true
 end
-function M.canUse(state,card)
+function M.canUse(state,card,instance)
+ local defense=instance and defenseSpec[instance.cardId]or card.keqingStage=='006'or card.keqingStage=='007'
+ for _,e in ipairs(card.effects)do if e.op=='keqingDefense'then defense=true end end
+ if defense then return defenseUse(state,card,instance)end
  if card.keqingCandidate==nil then
   for _,e in ipairs(card.effects)do if e.op=='keqingDiscard'or e.op=='keqingInspect'then return false,'unmarked_keqing_choice'end end
   if state.characterOwnerEnd=='keqing'and card.type=='attack'then return false,'keqing_candidate_effect_unavailable'end
@@ -64,11 +92,19 @@ function M.inspect(state,e)
 end
 function M.prepare(state,card,effects,combat,target)
  if card.keqingCandidate==nil then return effects end
- local ok,why=M.canUse(state,card);assert(ok,why)
+ local ok,why=M.canUse(state,card,state.cardInUse);assert(ok,why)
  local r=state.keqingResource;local snapshot=Resources.attackSnapshot(r)
  local context=assert(state.pendingPlay,'missing paid card context')
  assert(context.keqingPaid==nil,'duplicate paid card plan')
  context.keqingPaid={turn=state.turn,uid=context.uid,attack=card.type=='attack',infused=card.type=='attack'and r.infusion>0}
+ if card.keqingStage=='006'or card.keqingStage=='007'then
+  local paid=context.keqingPaid;local spec=defenseSpec[state.cardInUse.cardId]
+  paid.playId=#state.cardsPlayedThisCombat
+  paid.defense={op='resourceBlock',kind=spec.kind,value=spec.value,uid=context.uid,turn=state.turn,playId=paid.playId}
+  paid.defensePayload={op='block',value=combat.blockAmount(state,state.player,spec.value),fixed=true,
+   blockCallbackAmount=require('abyss_actor').blockFloat(state,state.player,spec.value)}
+  return {copy(effects[1]),{op='keqingCardStage',action=copy(paid.defense),payload=copy(paid.defensePayload),targetId=context.targetId}}
+ end
  if card.keqingStage=='044'then
   local instance=assert(state.cardInUse,'missing paid inspect instance')
   assert(instance.uid==context.uid and card.effects[1].value==(instance.upgraded and 4 or 3),'invalid inspect face')
@@ -127,6 +163,17 @@ function M.dispatch(_combat,state,effect,queue)
  local instance=assert(state.cardInUse,'missing staged limbo card')
  assert(Lifecycle.active(state) and instance.uid==context.uid and paid.uid==instance.uid
   and paid.turn==state.turn and not paid.completed and effect.targetId==context.targetId,'stale staged context')
+ if paid.defense then
+  assert(not paid.defenseDone and same(effect.action,paid.defense)and same(effect.payload,paid.defensePayload),'mutated defense stage')
+  assert(paid.defense.playId==paid.playId and paid.defense.turn==state.turn and paid.defense.uid==instance.uid,'stale defense identity')
+  local r=state.keqingResource;Resources.attackSnapshot(r)
+  local active=paid.defense.kind=='wedge'and r.wedgeUntil~=nil or paid.defense.kind=='infusion'and r.infusion>0
+  if active then
+   if paid.defense.kind=='wedge'then r.wedgeUntil=nil else r.infusion=r.infusion-1 end
+   queue.pushTop(state,{kind='effect',effect=copy(paid.defensePayload)})
+  end
+  paid.defenseDone=true;return true
+ end
  local plan=assert(paid.plan,'missing staged plan');local a=effect.action
  local expected=assert(plan.actions[paid.cursor],'staged action exhausted')
  assert(same(a,expected),'mutated staged action')

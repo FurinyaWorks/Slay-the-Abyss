@@ -754,7 +754,7 @@ local function playCardRequirements(state,instance,card,targetIndex)
     if not xiaoReady then return false,xiaoWhy end
     local ganyuReady,ganyuWhy=require('abyss_ganyu_paid_cards').canUse(state,card,targetIndex,instance)
     if not ganyuReady then return false,ganyuWhy end
-    local ready,why=require('abyss_keqing_paid_cards').canUse(state,card)
+    local ready,why=require('abyss_keqing_paid_cards').canUse(state,card,instance)
     if not ready then return false,why end
     local usable,refusal=require('abyss_watcher_attack_cards').canUse(state,instance,card)
     if not usable then return false,refusal end
@@ -1290,7 +1290,7 @@ function M.resolveQueuedCard(state,e)
     if not xiaoAllowed then rejected();return end
     local ganyuAllowed=require('abyss_ganyu_paid_cards').canUse(state,d,e.targetIndex,c)
     if not ganyuAllowed then rejected();return end
-    local candidateAllowed=require('abyss_keqing_paid_cards').canUse(state,d)
+    local candidateAllowed=require('abyss_keqing_paid_cards').canUse(state,d,c)
     if not candidateAllowed then rejected();return end
     -- A queued targeted card whose original target died is removed from limbo;
     -- it does not retarget, execute, or emit a real exhaust event.

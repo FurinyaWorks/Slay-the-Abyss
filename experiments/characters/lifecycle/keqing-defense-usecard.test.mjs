@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Keqing 006/007 real paid resource defense and Run acquisition',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/keqing-defense-usecard.test.lua',{timeout:60000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KQ_DEFENSE_MATRIX_PASS 16/);assert.match(r.stdout,/KQ_DEFENSE_TRANSACTION_RUN_PASS/)});

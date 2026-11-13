@@ -542,3 +542,23 @@ publication and late Combat initialization exceptions against the whole Run
 snapshot and original aliases. Hand placement and fixed rewards are explicit
 fixtures, not natural deck draw or reward generation evidence. Existing terminal
 resource behavior and balance HOLDs remain unchanged.
+
+## Keqing006/007 paid defense stages
+
+`abyss_keqing_paid_cards.defenseDefinitions()` exposes two explicit candidate
+skills (cost1, SELF, no exhaust): native block5/up8 first, then an actual queued
+resource stage. 006 consumes an execution-time wedge for a second block5; 007
+consumes one execution-time infusion for block4. Without that resource the first
+shield still works and the card is paid/discarded normally. Skills do not incur
+an additional attack infusion decrement and neither action triggers setup relics.
+Both shields independently use ordinary native Dex/Frail block capture; second
+shield modifiers are captured at use time, while resource availability is read
+when its queued stage runs. This timing is explicit host behavior, not a claim
+of equality with JS models lacking intervening reactions; design remains HOLD.
+
+The stage binds accepted ordinal/UID/turn, detached action and captured payload;
+manual and automatic admission validate real card ID and strict boolean upgrade.
+Actual tests cover16 base/up/resource/modifier combinations,12 automatic cases,
+real Scry boundary/failure/alias retry, controlled native death after first block
+(no resource consumption or extra relic), and four fixed-reward Run.play chains.
+No natural reward pool, full75 registration or production menu is enabled.
