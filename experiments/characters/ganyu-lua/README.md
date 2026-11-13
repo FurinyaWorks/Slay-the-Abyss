@@ -195,3 +195,19 @@ Strength/Dexterity changes after preparation do not alter native captured values
 The test seeds paid context manually: it does not prove public payment or card
 finalization. Shared host acceptance remains NOT_YET_VERIFIED, type choices are
 proposals, and no 44 redesign or source/human/balance approval is introduced.
+
+### Source-bound resource draw and native exhaust hooks
+
+Separate `compile-draw.mjs` projects 30/33/43 and preserves 33/43's exhaust flag;
+changing/omitting that one-use lifecycle is rejected, not silently normalized.
+Two Node tests include 21 invalid cases. The first overflow negative used MAX
+with base zero (legal); it was corrected to MAX+1, not an artificial cap change.
+`draw-generated.test.lua` loads real generated card variants, executes native
+queue draw and `abyss_exhaust.move` with Feel No Pain/Dark Embrace: 24 base/up ×
+normal/full/empty/NoDraw cases, three post-draw payment-shaped rollback/retries,
+and two post-exhaust-movement rollback/retries pass. The first harness used an
+unsupported queue kind; it now uses the native queue's useCard handler slot.
+That handler is still a test adapter, not shared Combat's complete UseCard flow.
+Payment is manually staged under Snapshot; 30 intentionally remains in-use here,
+so this does not claim normal discard finalization or public C.play integration.
+Source costs/values and held gates are unchanged; shared acceptance is pending.
