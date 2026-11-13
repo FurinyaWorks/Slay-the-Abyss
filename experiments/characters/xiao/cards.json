@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.20",
+  "version": "xiao-g2-lab-0.21",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1461,6 +1461,62 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x49",
+      "name": "待命名·x49",
+      "role": "残局补手：补至手牌阈值，不按固定张数抽",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "refillHand",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "refillHand",
+          "value": 5
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x50",
+      "name": "待命名·x50",
+      "role": "空手收势：没有其他手牌时的单次攻击兑现",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "emptyHandDamage",
+          "value": 5,
+          "bonus": 9
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "emptyHandDamage",
+          "value": 7,
+          "bonus": 11
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1519,7 +1575,9 @@
     "x45",
     "x46",
     "x47",
-    "x48"
+    "x48",
+    "x49",
+    "x50"
   ],
   "maskRules": {
     "attackBonus": 4,

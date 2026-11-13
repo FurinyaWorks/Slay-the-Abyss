@@ -42,6 +42,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'refillHand') drawCards(s,Math.max(0,value-s.hand.length));
+  else if (op === 'emptyHandDamage') damage(s.enemies[target],value+(s.hand.length===0?effect.bonus:0)+(s.mask>0?catalog.maskRules.attackBonus:0));
   else if (op === 'exhaustGuard') s.exhaustGuard+=value;
   else if (op === 'burnTopDraw') { const id=takeTop(s);if(id!==null){exhaustCards(s,[id]);drawCards(s,value);} }
   else if (op === 'reserveEnergy') s.reservedEnergy+=value;
@@ -117,7 +119,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'damageGuard' || e.op === 'killDraw' || e.op === 'sequenceDamage' || e.op === 'blockDamage' || e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'emptyHandDamage' || e.op === 'damageGuard' || e.op === 'killDraw' || e.op === 'sequenceDamage' || e.op === 'blockDamage' || e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -158,6 +160,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits}) => ({
+    refillHand: `抽牌直到手中有${value}张；打出的本牌已离手，已有不少于该数量则不抽；不保证空牌库也能补满。`,
+    emptyHandDamage: `造成${value}点伤害，若本牌离手后没有其他手牌，额外${bonus}点；面具另加${catalog.maskRules.attackBonus}点。后续能力抽牌不影响此判定。`,
     exhaustGuard: `本场每实际消耗一张牌获得${value}点格挡；包括自身消耗的牌，可叠加，不追溯此前消耗。`,
     burnTopDraw: `消耗抽牌堆顶1张（空堆按正常规则洗弃牌堆）；实际消耗成功后抽${value}张，无牌可消耗则不抽。不能选择牺牲牌，手牌上限10。`,
     reserveEnergy: `下个玩家回合开始时一次性获得${value}点额外能量，随后清除储备；本回合不返能，可叠加，不跨战。`,

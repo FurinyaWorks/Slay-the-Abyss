@@ -19,8 +19,9 @@ export function choose(view, policy) {
     let score=-Infinity;
     if(id==='x06'&&view.mask>0)score=view.hp<=2?1000:(policy==='guard'&&incoming>view.block?30:-10);
     if(card.kind==='attack'){
-      let damage=card.base.find(e=>e.op==='damageGuard'||e.op==='sequenceDamage'||e.op==='blockDamage'||e.op==='damageHits'||e.op==='lastMaskDamage'||e.op==='threatDamage'||e.op==='exhaustDamage'||e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
+      let damage=card.base.find(e=>e.op==='emptyHandDamage'||e.op==='damageGuard'||e.op==='sequenceDamage'||e.op==='blockDamage'||e.op==='damageHits'||e.op==='lastMaskDamage'||e.op==='threatDamage'||e.op==='exhaustDamage'||e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
       if(id==='x35')damage*=2;
+      if(id==='x50'&&view.hand.length===1)damage+=9;
       if(id==='x41')damage+=Math.min(3,view.attacksPlayed??0)*3;
       if(id==='x37')damage=Math.min(14,view.block)+(view.mask?catalog.maskRules.attackBonus:0);
       if(id==='x28'&&view.mask===1)damage+=10;
