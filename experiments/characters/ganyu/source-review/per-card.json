@@ -1,0 +1,1733 @@
+{
+  "scope": "75 per-card gap and candidate comparator matrix; no gate approval",
+  "rows": [
+    {
+      "id": "ganyu-01",
+      "role": "基础单体击杀",
+      "effects": [
+        "damage"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-02",
+      "role": "基础当回合防守",
+      "effects": [
+        "block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-03",
+      "role": "立即单杀或消耗蓄力兑现群伤",
+      "effects": [
+        "charged_shot"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "two-stage charged arrow theme: official exact text unreadable"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-04",
+      "role": "付能防守兼群体收尾，减少可留蓄力",
+      "effects": [
+        "aoe",
+        "block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-05",
+      "role": "高费延迟群伤，适合多敌长战",
+      "effects": [
+        "storm"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-06",
+      "role": "用一张手牌把本回合能量立即转成蓄力",
+      "effects": [
+        "charge"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-07",
+      "role": "以能量与抽牌机会换即时过牌，改善找箭但不保证直接获取",
+      "effects": [
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-08",
+      "role": "防守兼慢速轮转，以低格挡换过牌，避免纯过牌耗尽防御预算",
+      "effects": [
+        "block",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/shrug-it-off"
+      ],
+      "sts_scope": "shield plus card-flow only; charge/field/exhaust/retain costs not benchmarked",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-09",
+      "role": "两能量防守蓄力，为剩余1能量的箭创造同回合兑现窗口",
+      "effects": [
+        "block",
+        "charge"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-10",
+      "role": "花能量从抽牌堆取得核心箭，改善牌底等待但不从弃牌堆无条件回收",
+      "effects": [
+        "seek_card"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-11",
+      "role": "保留能量的小防守",
+      "effects": [
+        "block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-12",
+      "role": "击杀压力下的攻防过渡",
+      "effects": [
+        "block",
+        "damage"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-13",
+      "role": "花双能量覆盖当前爆发",
+      "effects": [
+        "block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-14",
+      "role": "全回合能量换冰雨建立期防守",
+      "effects": [
+        "block",
+        "storm"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations",
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-15",
+      "role": "无满蓄前置的双费单体处置",
+      "effects": [
+        "damage"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-16",
+      "role": "即时小伤与主动蓄力衔接",
+      "effects": [
+        "charge",
+        "damage"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-17",
+      "role": "满蓄单体兑现而非群体绽放",
+      "effects": [
+        "charged_direct"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-18",
+      "role": "低费长周期雨场与逐跳强度取舍",
+      "effects": [
+        "storm"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-19",
+      "role": "牺牲满蓄进攻机会换当前防守",
+      "effects": [
+        "charged_block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-20",
+      "role": "支付双费过牌兼单层主动蓄力",
+      "effects": [
+        "charge",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-21",
+      "role": "无蓄力前置的即时群体处置",
+      "effects": [
+        "aoe"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-22",
+      "role": "牺牲部分即时伤害换下一张选择",
+      "effects": [
+        "damage",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-23",
+      "role": "一次性免费满蓄启动但不能每轮重复",
+      "effects": [
+        "block",
+        "charge"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-24",
+      "role": "一次性支付费用换较大手牌选择",
+      "effects": [
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-25",
+      "role": "一次性弃牌堆核心回收而非抽牌堆检索",
+      "effects": [
+        "seek_card"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-26",
+      "role": "可等待高压回合的保留防守",
+      "effects": [
+        "block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-27",
+      "role": "已抽到核心后的保留兑现选择",
+      "effects": [
+        "charged_shot"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "two-stage charged arrow theme: official exact text unreadable"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-28",
+      "role": "一次性集中群体伤害而非反复群攻",
+      "effects": [
+        "aoe"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-29",
+      "role": "提前兑现雨场并减少剩余触发次数",
+      "effects": [
+        "storm_release"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-30",
+      "role": "满蓄资源换手牌选择而非伤害防守",
+      "effects": [
+        "charged_draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-31",
+      "role": "一次性长雨场启动",
+      "effects": [
+        "storm"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-32",
+      "role": "建立雨场后维持防线的条件收益",
+      "effects": [
+        "storm_block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations",
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-33",
+      "role": "雨场已建立后的一次性免费过牌窗口",
+      "effects": [
+        "storm_draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-34",
+      "role": "一次性零费满蓄单体收尾",
+      "effects": [
+        "charged_direct"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-35",
+      "role": "满蓄纯群伤而非主目标加绽放",
+      "effects": [
+        "charged_aoe"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-36",
+      "role": "轻防守兼主动单层蓄力",
+      "effects": [
+        "block",
+        "charge"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-37",
+      "role": "移除雨场将剩余群伤预算集中单体",
+      "effects": [
+        "storm_focus"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-38",
+      "role": "一次性零费以满蓄换应急格挡",
+      "effects": [
+        "charged_block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-39",
+      "role": "一次性调度抽牌堆首张雨场来源",
+      "effects": [
+        "seek_effect"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-40",
+      "role": "保留至满蓄后投入整回合的群体兑现",
+      "effects": [
+        "charged_aoe"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-41",
+      "role": "消耗一层蓄力的小额单体兑现",
+      "effects": [
+        "spend_one_damage"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-42",
+      "role": "消耗一层蓄力的小额当前防守",
+      "effects": [
+        "spend_one_block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-43",
+      "role": "一次性零费单层蓄力换过牌",
+      "effects": [
+        "spend_one_draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-44",
+      "role": "保持满蓄时的小额防守而不消费资源",
+      "effects": [
+        "full_charge_block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-45",
+      "role": "保持满蓄的小额伤害为之后核心让路",
+      "effects": [
+        "full_charge_damage"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-46",
+      "role": "支付两费防守兼满蓄绽放",
+      "effects": [
+        "block",
+        "charged_shot"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "two-stage charged arrow theme: official exact text unreadable",
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-47",
+      "role": "一次性少量防守兼抽牌堆基础防守调度",
+      "effects": [
+        "block",
+        "seek_effect"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-48",
+      "role": "一次性主动蓄力来源调度",
+      "effects": [
+        "seek_effect"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-49",
+      "role": "较弱雨场兼一张立即过牌",
+      "effects": [
+        "draw",
+        "storm"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-50",
+      "role": "降低绽放强度换结算后过牌",
+      "effects": [
+        "charged_shot",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "two-stage charged arrow theme: official exact text unreadable"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-51",
+      "role": "一次性较高单体加绽放兑现",
+      "effects": [
+        "charged_shot"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "two-stage charged arrow theme: official exact text unreadable"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-52",
+      "role": "支付两费防守兼提前一次雨场",
+      "effects": [
+        "block",
+        "storm_release"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations",
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-53",
+      "role": "保持满蓄的两费防守兼过牌",
+      "effects": [
+        "draw",
+        "full_charge_block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/shrug-it-off"
+      ],
+      "sts_scope": "shield plus card-flow only; charge/field/exhaust/retain costs not benchmarked",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-54",
+      "role": "保留到需要时支付两费扩展手牌选择",
+      "effects": [
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-55",
+      "role": "一次性零费小防守兼轮转",
+      "effects": [
+        "block",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/shrug-it-off"
+      ],
+      "sts_scope": "shield plus card-flow only; charge/field/exhaust/retain costs not benchmarked",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-56",
+      "role": "保留防守蓄满准备",
+      "effects": [
+        "block",
+        "charge"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-57",
+      "role": "两费群攻兼轮转",
+      "effects": [
+        "aoe",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-58",
+      "role": "一次提前雨场结算兼轮转",
+      "effects": [
+        "draw",
+        "storm_release"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-59",
+      "role": "保留雨场来源等待窗口",
+      "effects": [
+        "storm"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-60",
+      "role": "一次供蓄兼轮转",
+      "effects": [
+        "charge",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "card-flow attached to other effects only, not matched pure draw or resource payoff",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-61",
+      "role": "重费即时群攻防守",
+      "effects": [
+        "aoe",
+        "block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-62",
+      "role": "保留低费单体等待击杀窗口",
+      "effects": [
+        "damage"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-63",
+      "role": "一次两费防守扩展选择",
+      "effects": [
+        "block",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/shrug-it-off"
+      ],
+      "sts_scope": "shield plus card-flow only; charge/field/exhaust/retain costs not benchmarked",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-64",
+      "role": "现有雨场下防守轮转",
+      "effects": [
+        "draw",
+        "storm_block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations",
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/shrug-it-off"
+      ],
+      "sts_scope": "shield plus card-flow only; charge/field/exhaust/retain costs not benchmarked",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-65",
+      "role": "保留两费集中防守等待爆发",
+      "effects": [
+        "block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-66",
+      "role": "两费满蓄单段兑付兼轮转",
+      "effects": [
+        "charged_direct",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-67",
+      "role": "一次单体点杀并建立短雨场",
+      "effects": [
+        "damage",
+        "storm"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-68",
+      "role": "保留防守检索核心箭等待连携",
+      "effects": [
+        "block",
+        "seek_card"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-69",
+      "role": "一次群伤供给单层蓄力",
+      "effects": [
+        "aoe",
+        "charge"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-70",
+      "role": "一次单层蓄力防守兑付兼轮转",
+      "effects": [
+        "draw",
+        "spend_one_block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/shrug-it-off"
+      ],
+      "sts_scope": "shield plus card-flow only; charge/field/exhaust/retain costs not benchmarked",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-71",
+      "role": "一次同时铺雨与供蓄",
+      "effects": [
+        "charge",
+        "storm"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations"
+      ],
+      "sts_candidate_urls": [],
+      "sts_scope": "no sufficiently close verified comparison found; missing rather than forcing two names",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-72",
+      "role": "一次满蓄防守兑付扩展手牌",
+      "effects": [
+        "charged_block",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/backflip",
+        "https://slaythespire.org/wiki/cards/shrug-it-off"
+      ],
+      "sts_scope": "shield plus card-flow only; charge/field/exhaust/retain costs not benchmarked",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-73",
+      "role": "一次单体攻击并扩展手牌",
+      "effects": [
+        "damage",
+        "draw"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "general combat/system adaptation, no exact per-card official anchor"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/cleave",
+        "https://slaythespire.org/wiki/cards/pommel-strike"
+      ],
+      "sts_scope": "area-versus-target and damage-versus-draw dimensions only; not matched complete mechanics",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-74",
+      "role": "保留单层防守兑付等待意图",
+      "effects": [
+        "spend_one_block"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    },
+    {
+      "id": "ganyu-75",
+      "role": "一次重费防守铺设长雨",
+      "effects": [
+        "block",
+        "storm"
+      ],
+      "official_readability": "BLOCKED_ZERO_READABLE_LINES",
+      "primary_verified": false,
+      "official_urls": [
+        "https://genshin.hoyoverse.com/en/news/detail/103809",
+        "https://genshin.hoyoverse.com/en/news/detail/103816"
+      ],
+      "theme_limits": [
+        "ice field theme: official exact text unreadable; durations/consumption/refresh invented adaptations",
+        "lotus defensive theme is not proof of immediate Block"
+      ],
+      "sts_candidate_urls": [
+        "https://slaythespire.org/wiki/cards/leap",
+        "https://slaythespire.org/wiki/cards/deflect"
+      ],
+      "sts_scope": "immediate shield and energy only; conditional resource/retention not equivalent",
+      "sts_status": "SECONDARY_TRANSCRIPTION_ONLY_NOT_GATE_PASS",
+      "human_approved": false
+    }
+  ]
+}

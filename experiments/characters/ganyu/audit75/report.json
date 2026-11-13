@@ -3,7 +3,7 @@
   "scope": "75-candidate finite-state dominance screen and default-ten-card multi-room acquisition research",
   "inputs": {
     "audit75/plan.json": "e896539b1618ced487377be7ec673b4761b5936d1a4292e1e491309856221b48",
-    "audit75/run.mjs": "a3de110013a637fc2b6eea04dad081ee09236c2d277dbd96ef524a71c2513239",
+    "audit75/run.mjs": "7df2a1c434584565b9cbe1d47cbf6cacbcb68bc7843057d5898f3c851e978f4e",
     "cards.json": "2412ea17b3ff3b190cf30bea9ba7f5f84d01f6aec3eb684f5fb4685f043e5f9d",
     "sources.json": "d6be97b871f011698b767e208fa2a6624c1a3846b1603fdf94ba2997bb78d23b",
     "relic.json": "b29f62a33296851f77631ec88a9e279b008868f7d0487727d989af61d008a9e3",
@@ -465,8 +465,8 @@
         "truncated": 0,
         "meanFinalHp": 38.2,
         "claimed": 0,
-        "drawn": 0,
-        "played": 0
+        "claimedRecordsWithIdSeen": 0,
+        "claimedRecordsWithIdPlay": 0
       },
       "take_first_offer": {
         "runs": 30,
@@ -475,8 +475,8 @@
         "truncated": 0,
         "meanFinalHp": 41.8,
         "claimed": 90,
-        "drawn": 90,
-        "played": 67
+        "claimedRecordsWithIdSeen": 90,
+        "claimedRecordsWithIdPlay": 67
       }
     },
     "rows": [
@@ -557,8 +557,8 @@
               "ganyu-33",
               "ganyu-46"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           },
           {
             "id": "ganyu-65",
@@ -568,8 +568,8 @@
               "ganyu-41",
               "ganyu-11"
             ],
-            "drawn": true,
-            "played": 4
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 4
           },
           {
             "id": "ganyu-28",
@@ -579,8 +579,8 @@
               "ganyu-53",
               "ganyu-30"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -661,8 +661,8 @@
               "ganyu-45",
               "ganyu-14"
             ],
-            "drawn": true,
-            "played": 8
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 8
           },
           {
             "id": "ganyu-10",
@@ -672,8 +672,8 @@
               "ganyu-26",
               "ganyu-70"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-11",
@@ -683,8 +683,8 @@
               "ganyu-07",
               "ganyu-42"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           }
         ]
       },
@@ -765,8 +765,8 @@
               "ganyu-56",
               "ganyu-63"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-05",
@@ -776,8 +776,8 @@
               "ganyu-21",
               "ganyu-06"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           },
           {
             "id": "ganyu-08",
@@ -787,8 +787,8 @@
               "ganyu-61",
               "ganyu-24"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -869,8 +869,8 @@
               "ganyu-36",
               "ganyu-13"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-58",
@@ -880,8 +880,8 @@
               "ganyu-04",
               "ganyu-17"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-38",
@@ -891,8 +891,8 @@
               "ganyu-53",
               "ganyu-33"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -973,8 +973,8 @@
               "ganyu-70",
               "ganyu-47"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           },
           {
             "id": "ganyu-30",
@@ -984,8 +984,8 @@
               "ganyu-04",
               "ganyu-06"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-25",
@@ -995,8 +995,8 @@
               "ganyu-70",
               "ganyu-52"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           }
         ]
       },
@@ -1077,8 +1077,8 @@
               "ganyu-40",
               "ganyu-46"
             ],
-            "drawn": true,
-            "played": 5
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 5
           },
           {
             "id": "ganyu-58",
@@ -1088,8 +1088,8 @@
               "ganyu-62",
               "ganyu-75"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-10",
@@ -1099,8 +1099,8 @@
               "ganyu-43",
               "ganyu-25"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           }
         ]
       },
@@ -1181,8 +1181,8 @@
               "ganyu-15",
               "ganyu-27"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           },
           {
             "id": "ganyu-44",
@@ -1192,8 +1192,8 @@
               "ganyu-43",
               "ganyu-69"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-30",
@@ -1203,8 +1203,8 @@
               "ganyu-47",
               "ganyu-13"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           }
         ]
       },
@@ -1285,8 +1285,8 @@
               "ganyu-50",
               "ganyu-75"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-62",
@@ -1296,8 +1296,8 @@
               "ganyu-72",
               "ganyu-73"
             ],
-            "drawn": true,
-            "played": 4
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 4
           },
           {
             "id": "ganyu-72",
@@ -1307,8 +1307,8 @@
               "ganyu-11",
               "ganyu-22"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -1389,8 +1389,8 @@
               "ganyu-18",
               "ganyu-71"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-13",
@@ -1400,8 +1400,8 @@
               "ganyu-39",
               "ganyu-40"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-75",
@@ -1411,8 +1411,8 @@
               "ganyu-56",
               "ganyu-09"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -1493,8 +1493,8 @@
               "ganyu-66",
               "ganyu-60"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-31",
@@ -1504,8 +1504,8 @@
               "ganyu-21",
               "ganyu-39"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-52",
@@ -1515,8 +1515,8 @@
               "ganyu-57",
               "ganyu-14"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           }
         ]
       },
@@ -1597,8 +1597,8 @@
               "ganyu-51",
               "ganyu-50"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-09",
@@ -1608,8 +1608,8 @@
               "ganyu-18",
               "ganyu-14"
             ],
-            "drawn": true,
-            "played": 5
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 5
           },
           {
             "id": "ganyu-09",
@@ -1619,8 +1619,8 @@
               "ganyu-32",
               "ganyu-52"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           }
         ]
       },
@@ -1701,8 +1701,8 @@
               "ganyu-52",
               "ganyu-15"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           },
           {
             "id": "ganyu-52",
@@ -1712,8 +1712,8 @@
               "ganyu-59",
               "ganyu-48"
             ],
-            "drawn": true,
-            "played": 4
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 4
           },
           {
             "id": "ganyu-50",
@@ -1723,8 +1723,8 @@
               "ganyu-28",
               "ganyu-38"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -1805,8 +1805,8 @@
               "ganyu-66",
               "ganyu-03"
             ],
-            "drawn": true,
-            "played": 5
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 5
           },
           {
             "id": "ganyu-06",
@@ -1816,8 +1816,8 @@
               "ganyu-47",
               "ganyu-62"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-64",
@@ -1827,8 +1827,8 @@
               "ganyu-05",
               "ganyu-62"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           }
         ]
       },
@@ -1909,8 +1909,8 @@
               "ganyu-54",
               "ganyu-37"
             ],
-            "drawn": true,
-            "played": 8
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 8
           },
           {
             "id": "ganyu-25",
@@ -1920,8 +1920,8 @@
               "ganyu-72",
               "ganyu-66"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           },
           {
             "id": "ganyu-68",
@@ -1931,8 +1931,8 @@
               "ganyu-59",
               "ganyu-19"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           }
         ]
       },
@@ -2013,8 +2013,8 @@
               "ganyu-70",
               "ganyu-60"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           },
           {
             "id": "ganyu-23",
@@ -2024,8 +2024,8 @@
               "ganyu-45",
               "ganyu-56"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-19",
@@ -2035,8 +2035,8 @@
               "ganyu-14",
               "ganyu-55"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -2117,8 +2117,8 @@
               "ganyu-16",
               "ganyu-39"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-12",
@@ -2128,8 +2128,8 @@
               "ganyu-37",
               "ganyu-33"
             ],
-            "drawn": true,
-            "played": 6
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 6
           },
           {
             "id": "ganyu-12",
@@ -2139,8 +2139,8 @@
               "ganyu-64",
               "ganyu-50"
             ],
-            "drawn": true,
-            "played": 5
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 5
           }
         ]
       },
@@ -2221,8 +2221,8 @@
               "ganyu-29",
               "ganyu-49"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           },
           {
             "id": "ganyu-60",
@@ -2232,8 +2232,8 @@
               "ganyu-73",
               "ganyu-41"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-07",
@@ -2243,8 +2243,8 @@
               "ganyu-50",
               "ganyu-26"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           }
         ]
       },
@@ -2325,8 +2325,8 @@
               "ganyu-29",
               "ganyu-38"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           },
           {
             "id": "ganyu-38",
@@ -2336,8 +2336,8 @@
               "ganyu-75",
               "ganyu-70"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-34",
@@ -2347,8 +2347,8 @@
               "ganyu-66",
               "ganyu-67"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -2429,8 +2429,8 @@
               "ganyu-19",
               "ganyu-59"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-08",
@@ -2440,8 +2440,8 @@
               "ganyu-69",
               "ganyu-49"
             ],
-            "drawn": true,
-            "played": 4
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 4
           },
           {
             "id": "ganyu-48",
@@ -2451,8 +2451,8 @@
               "ganyu-62",
               "ganyu-42"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           }
         ]
       },
@@ -2533,8 +2533,8 @@
               "ganyu-73",
               "ganyu-44"
             ],
-            "drawn": true,
-            "played": 5
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 5
           },
           {
             "id": "ganyu-06",
@@ -2544,8 +2544,8 @@
               "ganyu-47",
               "ganyu-17"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-52",
@@ -2555,8 +2555,8 @@
               "ganyu-26",
               "ganyu-28"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           }
         ]
       },
@@ -2637,8 +2637,8 @@
               "ganyu-39",
               "ganyu-37"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-52",
@@ -2648,8 +2648,8 @@
               "ganyu-23",
               "ganyu-57"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           },
           {
             "id": "ganyu-47",
@@ -2659,8 +2659,8 @@
               "ganyu-34",
               "ganyu-42"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           }
         ]
       },
@@ -2741,8 +2741,8 @@
               "ganyu-12",
               "ganyu-35"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-04",
@@ -2752,8 +2752,8 @@
               "ganyu-27",
               "ganyu-12"
             ],
-            "drawn": true,
-            "played": 10
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 10
           },
           {
             "id": "ganyu-73",
@@ -2763,8 +2763,8 @@
               "ganyu-59",
               "ganyu-16"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -2845,8 +2845,8 @@
               "ganyu-09",
               "ganyu-12"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           },
           {
             "id": "ganyu-32",
@@ -2856,8 +2856,8 @@
               "ganyu-47",
               "ganyu-29"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           },
           {
             "id": "ganyu-46",
@@ -2867,8 +2867,8 @@
               "ganyu-58",
               "ganyu-38"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           }
         ]
       },
@@ -2949,8 +2949,8 @@
               "ganyu-55",
               "ganyu-14"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           },
           {
             "id": "ganyu-07",
@@ -2960,8 +2960,8 @@
               "ganyu-25",
               "ganyu-18"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-51",
@@ -2971,8 +2971,8 @@
               "ganyu-33",
               "ganyu-36"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -3053,8 +3053,8 @@
               "ganyu-72",
               "ganyu-10"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           },
           {
             "id": "ganyu-46",
@@ -3064,8 +3064,8 @@
               "ganyu-35",
               "ganyu-13"
             ],
-            "drawn": true,
-            "played": 5
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 5
           },
           {
             "id": "ganyu-39",
@@ -3075,8 +3075,8 @@
               "ganyu-71",
               "ganyu-61"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           }
         ]
       },
@@ -3157,8 +3157,8 @@
               "ganyu-20",
               "ganyu-18"
             ],
-            "drawn": true,
-            "played": 5
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 5
           },
           {
             "id": "ganyu-70",
@@ -3168,8 +3168,8 @@
               "ganyu-71",
               "ganyu-55"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-68",
@@ -3179,8 +3179,8 @@
               "ganyu-40",
               "ganyu-03"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           }
         ]
       },
@@ -3261,8 +3261,8 @@
               "ganyu-43",
               "ganyu-63"
             ],
-            "drawn": true,
-            "played": 5
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 5
           },
           {
             "id": "ganyu-43",
@@ -3272,8 +3272,8 @@
               "ganyu-58",
               "ganyu-55"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-53",
@@ -3283,8 +3283,8 @@
               "ganyu-74",
               "ganyu-38"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           }
         ]
       },
@@ -3365,8 +3365,8 @@
               "ganyu-39",
               "ganyu-06"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           },
           {
             "id": "ganyu-37",
@@ -3376,8 +3376,8 @@
               "ganyu-64",
               "ganyu-13"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-12",
@@ -3387,8 +3387,8 @@
               "ganyu-48",
               "ganyu-19"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           }
         ]
       },
@@ -3469,8 +3469,8 @@
               "ganyu-67",
               "ganyu-66"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           },
           {
             "id": "ganyu-45",
@@ -3480,8 +3480,8 @@
               "ganyu-59",
               "ganyu-38"
             ],
-            "drawn": true,
-            "played": 0
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 0
           },
           {
             "id": "ganyu-33",
@@ -3491,8 +3491,8 @@
               "ganyu-39",
               "ganyu-21"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       },
@@ -3573,8 +3573,8 @@
               "ganyu-54",
               "ganyu-12"
             ],
-            "drawn": true,
-            "played": 3
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 3
           },
           {
             "id": "ganyu-36",
@@ -3584,8 +3584,8 @@
               "ganyu-14",
               "ganyu-04"
             ],
-            "drawn": true,
-            "played": 2
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 2
           },
           {
             "id": "ganyu-32",
@@ -3595,14 +3595,15 @@
               "ganyu-69",
               "ganyu-26"
             ],
-            "drawn": true,
-            "played": 1
+            "idSeenInLaterHand": true,
+            "idPlayEventsAfterClaim": 1
           }
         ]
       }
     ],
     "policyNotOptimal": true,
-    "productionRewards": false
+    "productionRewards": false,
+    "trackingUnit": "card id, not individual reward instance; duplicate IDs and starter IDs confound per-claim attribution"
   },
   "sourceRows": [
     {
