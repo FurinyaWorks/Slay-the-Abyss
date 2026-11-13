@@ -16,8 +16,9 @@ local function same(a,b)
 end
 function M.supports(e)
  if type(e)~='table'or getmetatable(e)or e.op~='xiaoCard'
-  or e.kind~='maskBlock'and e.kind~='breakBlock'and e.kind~='damage'and e.kind~='damageAll'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
- for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
+  or e.kind~='unmaskedDraw'and e.kind~='exhaustDamage'and e.kind~='exhaustBlock'and e.kind~='maskBlock'and e.kind~='breakBlock'and e.kind~='damage'and e.kind~='damageAll'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
+ for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='cap'and(e.kind=='exhaustDamage'or e.kind=='exhaustBlock'))and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
+ if e.kind=='exhaustDamage'or e.kind=='exhaustBlock'then if type(e.cap)~='number'or e.cap%1~=0 or e.cap<0 or e.cap>2147483647 then return false end end
  return type(e.value)=='number'and e.value%1==0 and e.value>=0 and e.value<=2147483647
 end
 function M.canUse(state,instance,card,targetIndex)
@@ -33,7 +34,7 @@ function M.canUse(state,instance,card,targetIndex)
   or card.type~=c.type or card.target~=c.target
   or card.exhaust~=c.exhaust
   or not same(card.effects,instance.upgraded and c.upgrade.effects or c.effects)then return false,'xiao_candidate_unavailable'end
- if (instance.cardId=='xiao_candidate_x01'or instance.cardId=='xiao_candidate_x03'or instance.cardId=='xiao_candidate_x07'or instance.cardId=='xiao_candidate_x11'or instance.cardId=='xiao_candidate_x15')and not Presence.isActive(state.enemies[targetIndex])then return false,'invalid_target'end
+ if (instance.cardId=='xiao_candidate_x01'or instance.cardId=='xiao_candidate_x03'or instance.cardId=='xiao_candidate_x07'or instance.cardId=='xiao_candidate_x11'or instance.cardId=='xiao_candidate_x15'or instance.cardId=='xiao_candidate_x21')and not Presence.isActive(state.enemies[targetIndex])then return false,'invalid_target'end
  return Bridge.canUse(state,instance,targetIndex)
 end
 function M.prepare(state,card,effects,target)
@@ -67,7 +68,7 @@ function M.dispatch(combat,state,e,queue)
  assert(type(e.payload)=='table'and e.payload.op=='xiaoCard'and e.payload.uid==paid.uid
   and(e.payload.targetId==nil or e.payload.targetId==context.targetId),'wrong Xiao stage payload')
  local skip=false
- if e.payload.kind=='breakBlock'or e.payload.kind=='damage'or e.payload.kind=='plunge'and(state.player.statuses.xiao_mask or 0)==0 then
+ if e.payload.kind=='exhaustDamage'or e.payload.kind=='breakBlock'or e.payload.kind=='damage'or e.payload.kind=='plunge'and(state.player.statuses.xiao_mask or 0)==0 then
   local target;for _,enemy in ipairs(state.enemies)do if enemy.id==context.targetId then target=enemy end end
   skip=not Presence.isActive(target)
  end
