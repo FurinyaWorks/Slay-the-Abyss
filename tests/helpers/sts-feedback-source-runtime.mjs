@@ -10,7 +10,7 @@ export const feedbackProductionPaths=Object.freeze([
  'game_ui','game_ui_view','monster_power_view','node_ui','node_ui_events','node_ui_feedback','page_reveal','ui',
 ].map(n=>'src/lua/abyss_'+n+'.lua').sort());
 export const feedbackAddedTests=Object.freeze(['tests/deck-browser-reveal-reuse.test.mjs','tests/enemy-status-hand-clearance.test.mjs',
- 'tests/sts-reward-row.test.mjs','tests/sts-reward-row-runtime.test.mjs'].sort());
+ 'tests/event-option-rim-clipping.test.mjs','tests/sts-reward-row.test.mjs','tests/sts-reward-row-runtime.test.mjs'].sort());
 export const feedbackHelperPaths=Object.freeze([
  'tests/helpers/closeout-source-epoch.mjs','tests/helpers/copy-integration-source-closure.mjs',
  'tests/helpers/sts-style-ci-source.mjs','tests/helpers/sts-feedback-source-runtime.mjs',
@@ -22,7 +22,8 @@ export const feedbackProductCiPaths=Object.freeze(['data/presentation/ui_theme.j
 export const feedbackCiPaths=Object.freeze([
  ...feedbackHelperPaths,...feedbackProductCiPaths,
  'tests/sts-card-reference.test.mjs','tests/sts-card-reference-runtime.test.mjs',
- 'tests/sts-style-source-epoch.test.mjs','tests/v25-map-theme.test.mjs','tests/sts-neow-runtime.test.mjs',...feedbackAddedTests,
+ 'tests/sts-style-source-epoch.test.mjs','tests/v25-map-theme.test.mjs','tests/sts-neow-runtime.test.mjs',
+ 'tests/v25-event-readability.test.mjs','tests/v25-node-layout.test.mjs',...feedbackAddedTests,
 ].sort());
 export const feedbackClosurePaths=Object.freeze([
  'tests/helpers/closeout-source-epoch.mjs','tests/helpers/sts-feedback-source-runtime.mjs',

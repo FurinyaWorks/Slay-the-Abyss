@@ -3,4 +3,4 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 export const feedbackCiBytes=readFileSync(new URL('./sts-feedback-ci.json.gz',import.meta.url));
-assert.equal(createHash('sha256').update(feedbackCiBytes).digest('hex'),"654afb7b2d28a258c7285e215defe53e3f51aa77a41a51a9d10c54dcb69d0e38",'complete feedback CI continuation');
+assert.equal(createHash('sha256').update(feedbackCiBytes).digest('hex'),"400925b5a24090e098ada9ab9787aac93e85c193918712365e688f3e2df05bd8",'complete feedback CI continuation');
