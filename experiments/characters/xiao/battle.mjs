@@ -39,5 +39,6 @@ export function advance(input) {
     s.block -= absorbed; s.hp = Math.max(0, s.hp - damage + absorbed);
     if (s.hp === 0) return s;
   }
-  return startTurn(s);
+  const next=startTurn(s);
+  return next.phase==='player'?next:structuredClone(input);
 }

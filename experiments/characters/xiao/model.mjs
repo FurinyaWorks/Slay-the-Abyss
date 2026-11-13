@@ -5,12 +5,12 @@ import { drawCards } from './deck.mjs';
 export { catalog };
 const byId = new Map(catalog.cards.map(card => [card.id, card]));
 export function state({ hp = catalog.maxHp, energy = catalog.energyPerTurn, enemies = [{ hp: 30, block: 0 }], hand = [], draw = [], startingRelic = false } = {}) {
-  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
+  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, reservedEnergy: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
 }
 const nonnegative = value => Number.isSafeInteger(value) && value >= 0;
 export function validState(s) {
   if (!s || typeof s !== 'object') return false;
-  if (![s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
+  if (![s.reservedEnergy, s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
   if (!['fixed', 'shuffle'].includes(s.deckMode)) return false;
   if (s.deckMode === 'shuffle' && (!Number.isInteger(s.rng) || s.rng < 0 || s.rng > 0xffffffff)) return false;
   if (s.hp > catalog.maxHp || s.mask > catalog.maskRules.maxDuration) return false;
@@ -41,6 +41,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'reserveEnergy') s.reservedEnergy+=value;
+  else if (op === 'damageGuard') { const enemy=s.enemies[target],before=enemy.hp;damage(enemy,value+(s.mask>0?catalog.maskRules.attackBonus:0));s.block+=Math.min(effect.cap,before-enemy.hp); }
   else if (op === 'carryBlock') s.carryBlock+=value;
   else if (op === 'killDraw') { if(s.enemies[target].hp===0)drawCards(s,value); }
   else if (op === 'sequenceDamage') damage(s.enemies[target],value+Math.min(effect.cap,s.attacksPlayed)*effect.bonus+(s.mask>0?catalog.maskRules.attackBonus:0));
@@ -112,7 +114,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'killDraw' || e.op === 'sequenceDamage' || e.op === 'blockDamage' || e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'damageGuard' || e.op === 'killDraw' || e.op === 'sequenceDamage' || e.op === 'blockDamage' || e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -145,14 +147,16 @@ export function startTurn(input) {
   if (!validState(input)) return s;
   if (s.phase !== 'enemy' || s.hp <= 0 || !s.enemies.some(e => e.hp > 0)) return s;
   s.phase = 'player';
-  s.turn++;s.attacksPlayed=0;s.maskedDrawUsed=false; for(const e of s.enemies) if(e.suppression!==undefined)e.suppression=0; s.block = Math.min(s.block,s.carryBlock); s.energy = catalog.energyPerTurn;
+  s.turn++;s.attacksPlayed=0;s.maskedDrawUsed=false; for(const e of s.enemies) if(e.suppression!==undefined)e.suppression=0; s.block = Math.min(s.block,s.carryBlock); s.energy = catalog.energyPerTurn+s.reservedEnergy;s.reservedEnergy=0;
   apply(s, { op: 'draw', value: catalog.drawPerTurn });
   if(s.mask===0)drawCards(s,s.calmDraw);
-  return s;
+  return validState(s)?s:structuredClone(input);
 }
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits}) => ({
+    reserveEnergy: `下个玩家回合开始时一次性获得${value}点额外能量，随后清除储备；本回合不返能，可叠加，不跨战。`,
+    damageGuard: `造成${value}点伤害（面具另加${catalog.maskRules.attackBonus}）；按实际削减的目标生命获得格挡，最多${cap}点；被格挡部分不计，不回血。`,
     carryBlock: `本场每次玩家回合开始，保留至多${value}点剩余格挡而非全部移除；保留上限可叠加，不生成格挡。`,
     killDraw: `若选中目标已被本牌击杀，抽${value}张（手牌上限10）；未击杀不抽。`,
     sequenceDamage: `造成${value}点伤害，本回合此前每张成功打出的攻击另加${bonus}点，最多计${cap}张；本牌不计自身，面具另加${catalog.maskRules.attackBonus}点。`,

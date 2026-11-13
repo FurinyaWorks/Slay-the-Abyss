@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.18",
+  "version": "xiao-g2-lab-0.19",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1351,6 +1351,62 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x45",
+      "name": "待命名·x45",
+      "role": "延迟行动储备：付费本回合，下回合一次能量",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "reserveEnergy",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "reserveEnergy",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x46",
+      "name": "待命名·x46",
+      "role": "破防护身：按实际削减目标生命获得有限格挡",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damageGuard",
+          "value": 7,
+          "cap": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damageGuard",
+          "value": 10,
+          "cap": 6
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1405,7 +1461,9 @@
     "x41",
     "x42",
     "x43",
-    "x44"
+    "x44",
+    "x45",
+    "x46"
   ],
   "maskRules": {
     "attackBonus": 4,
