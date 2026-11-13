@@ -5,12 +5,12 @@ import { drawCards } from './deck.mjs';
 export { catalog };
 const byId = new Map(catalog.cards.map(card => [card.id, card]));
 export function state({ hp = catalog.maxHp, energy = catalog.energyPerTurn, enemies = [{ hp: 30, block: 0 }], hand = [], draw = [], startingRelic = false } = {}) {
-  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, maskGuard: 0, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
+  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, maskGuard: 0, exitGuard: 0, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
 }
 const nonnegative = value => Number.isSafeInteger(value) && value >= 0;
 export function validState(s) {
   if (!s || typeof s !== 'object') return false;
-  if (![s.hp, s.energy, s.block, s.mask, s.maskGuard].every(nonnegative)) return false;
+  if (![s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard].every(nonnegative)) return false;
   if (!['fixed', 'shuffle'].includes(s.deckMode)) return false;
   if (s.deckMode === 'shuffle' && (!Number.isInteger(s.rng) || s.rng < 0 || s.rng > 0xffffffff)) return false;
   if (s.hp > catalog.maxHp || s.mask > catalog.maskRules.maxDuration) return false;
@@ -26,18 +26,23 @@ function damage(enemy, amount) {
   enemy.block -= absorbed;
   enemy.hp = Math.max(0, enemy.hp - amount + absorbed);
 }
+function setMaskFromCard(s,value) {
+  const exited=s.mask>0&&value===0;s.mask=value;
+  if(exited)s.block+=s.exitGuard;
+}
 function apply(s, effect, target) {
   const { op, value } = effect;
   if (op === 'loseHp') s.hp -= value;
   else if (op === 'mask') {
     const entered = s.mask === 0 && value > 0;
-    s.mask = value === 0 ? 0 : Math.min(catalog.maskRules.maxDuration, Math.max(s.mask, value));
+    setMaskFromCard(s,value === 0 ? 0 : Math.min(catalog.maskRules.maxDuration, Math.max(s.mask, value)));
     if (entered && s.startingRelic && !s.relicUsed) {
       s.relicUsed = true;
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
-  else if (op === 'shortenMask') s.mask=Math.max(0,s.mask-value);
+  else if (op === 'exitGuard') s.exitGuard+=value;
+  else if (op === 'shortenMask') setMaskFromCard(s,Math.max(0,s.mask-value));
   else if (op === 'lastMaskDamage') damage(s.enemies[target],value+(s.mask===1?effect.bonus:0)+(s.mask>0?catalog.maskRules.attackBonus:0));
   else if (op === 'threatDamage') damage(s.enemies[target],value+(currentIntent(s,s.enemies[target])>0?effect.bonus:0)+(s.mask>0?catalog.maskRules.attackBonus:0));
   else if (op === 'quietDraw') { if(s.enemies.filter(e=>e.hp>0).map(e=>currentIntent(s,e)).every(n=>n===0))drawCards(s,value); }
@@ -123,6 +128,7 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus}) => ({
+    exitGuard: `本场每次卡牌使面具从有变无，获得${value}点格挡；自然到期不触发，可叠加。`,
     shortenMask: `面具剩余回合减少${value}（最低0）；不是保证退出。`,
     lastMaskDamage: `造成${value}点伤害；若面具恰剩1回合，额外${bonus}点；面具期间另加${catalog.maskRules.attackBonus}点。不改变面具时长。`,
     threatDamage: `造成${value}点伤害；若目标当前意图为攻击，额外${bonus}点；面具期间另加${catalog.maskRules.attackBonus}点。`,

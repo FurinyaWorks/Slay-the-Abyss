@@ -30,9 +30,15 @@ test('real alternating encounter supports both windows without changing old rout
  const n=battlePlay(s,{index:s.hand.indexOf('x26')});assert.equal(n.ok,true);assert.ok(n.state.exhaust.includes('x26'));
  s=advance(n.state);assert.equal(intent(s,s.enemies[0]),16);
 });
-test('real reward seed28 acquires x25 and plays it next battle',async()=>{
+test('bounded real reward search acquires x25 and plays it next battle',async()=>{
  const {newCampaign,campaignAction}=await import('./campaign.mjs');const {observe,choose}=await import('./research.mjs');
- let c=newCampaign(28);
+ let c;
+ for(let seed=1;seed<=128;seed++){
+  let candidate=newCampaign(seed);
+  for(let i=0;i<200&&candidate.phase==='battle';i++){const a=choose(observe(candidate.battle),'guard');candidate=campaignAction(candidate,a?{type:'play',...a}:{type:'end'}).state;}
+  if(candidate.phase==='reward'&&candidate.offer.includes('x25')){c=candidate;break;}
+ }
+ assert.ok(c);
  for(let i=0;i<200&&c.phase==='battle';i++){const a=choose(observe(c.battle),'guard');const r=campaignAction(c,a?{type:'play',...a}:{type:'end'});assert.equal(r.ok,true);c=r.state;}
  assert.equal(c.phase,'reward');assert.ok(c.offer.includes('x25'));c=campaignAction(c,{type:'reward',card:'x25'}).state;
  let played=false;

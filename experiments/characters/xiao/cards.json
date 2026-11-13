@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.10",
+  "version": "xiao-g2-lab-0.11",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -865,6 +865,68 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x29",
+      "name": "待命名·x29",
+      "role": "主动退场防线：提前投入后，卡牌退出时获得格挡",
+      "kind": "power",
+      "rarity": "rare",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "exitGuard",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exitGuard",
+          "value": 6
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x30",
+      "name": "待命名·x30",
+      "role": "常态攻击轮转：无面具才在攻击后补一张牌",
+      "kind": "attack",
+      "rarity": "common",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 5
+        },
+        {
+          "op": "unmaskedDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 8
+        },
+        {
+          "op": "unmaskedDraw",
+          "value": 1
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -903,7 +965,9 @@
     "x25",
     "x26",
     "x27",
-    "x28"
+    "x28",
+    "x29",
+    "x30"
   ],
   "maskRules": {
     "attackBonus": 4,
