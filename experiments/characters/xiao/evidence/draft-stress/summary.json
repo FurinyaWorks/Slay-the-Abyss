@@ -1,0 +1,154 @@
+{
+  "version": "xiao-draft-stress-1",
+  "seedRange": [
+    10001,
+    10064
+  ],
+  "scope": "Fixed synthetic route, uniform offers, no permanent upgrades, not natural G6.",
+  "summary": [
+    {
+      "policy": "guard",
+      "draft": "skip",
+      "n": 64,
+      "wins": 63,
+      "deathsByStage": [
+        0,
+        0,
+        1
+      ],
+      "lossP50": 19,
+      "lossP90": 28,
+      "fightDenominator": 192,
+      "rejected": 0,
+      "truncated": 0
+    },
+    {
+      "policy": "guard",
+      "draft": "first",
+      "n": 64,
+      "wins": 62,
+      "deathsByStage": [
+        0,
+        0,
+        2
+      ],
+      "lossP50": 17,
+      "lossP90": 26,
+      "fightDenominator": 192,
+      "rejected": 0,
+      "truncated": 0
+    },
+    {
+      "policy": "guard",
+      "draft": "defense",
+      "n": 64,
+      "wins": 62,
+      "deathsByStage": [
+        0,
+        0,
+        2
+      ],
+      "lossP50": 19,
+      "lossP90": 27,
+      "fightDenominator": 192,
+      "rejected": 0,
+      "truncated": 0
+    },
+    {
+      "policy": "burst",
+      "draft": "skip",
+      "n": 64,
+      "wins": 42,
+      "deathsByStage": [
+        0,
+        0,
+        22
+      ],
+      "lossP50": 21,
+      "lossP90": 31,
+      "fightDenominator": 192,
+      "rejected": 0,
+      "truncated": 0
+    },
+    {
+      "policy": "burst",
+      "draft": "first",
+      "n": 64,
+      "wins": 51,
+      "deathsByStage": [
+        0,
+        0,
+        13
+      ],
+      "lossP50": 21,
+      "lossP90": 30,
+      "fightDenominator": 192,
+      "rejected": 0,
+      "truncated": 0
+    },
+    {
+      "policy": "burst",
+      "draft": "defense",
+      "n": 64,
+      "wins": 47,
+      "deathsByStage": [
+        0,
+        0,
+        17
+      ],
+      "lossP50": 21,
+      "lossP90": 31,
+      "fightDenominator": 192,
+      "rejected": 0,
+      "truncated": 0
+    },
+    {
+      "policy": "never-mask",
+      "draft": "skip",
+      "n": 64,
+      "wins": 62,
+      "deathsByStage": [
+        0,
+        0,
+        2
+      ],
+      "lossP50": 19,
+      "lossP90": 22,
+      "fightDenominator": 192,
+      "rejected": 0,
+      "truncated": 0
+    },
+    {
+      "policy": "never-mask",
+      "draft": "first",
+      "n": 64,
+      "wins": 62,
+      "deathsByStage": [
+        0,
+        0,
+        2
+      ],
+      "lossP50": 19,
+      "lossP90": 26,
+      "fightDenominator": 192,
+      "rejected": 0,
+      "truncated": 0
+    },
+    {
+      "policy": "never-mask",
+      "draft": "defense",
+      "n": 64,
+      "wins": 59,
+      "deathsByStage": [
+        0,
+        0,
+        5
+      ],
+      "lossP50": 19,
+      "lossP90": 26,
+      "fightDenominator": 192,
+      "rejected": 0,
+      "truncated": 0
+    }
+  ]
+}
