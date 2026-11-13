@@ -46,3 +46,25 @@ for _,field in ipairs({'uid','targetId','normalAmount'})do
  assert(not pcall(M.dispatch,C,s,e,Q));eq(s.ganyuResource.charge,2);eq(#s.actionQueue.actions,0)
 end
 print('PASS isolated real ActionQueue/Actor captures, Snapshot payment rollback and context rejection')
+
+-- Prepare must capture only the actual paid context and active state-owned Actor.
+local raw={op='ganyuCard',kind='chargedShot',direct=7,bloom=6}
+do
+ local s=fresh(2);local uid=s.cardInUse.uid;local target=s.enemies[1]
+ assert(not pcall(M.prepare,C,s,raw,C.copy(target),uid))
+ assert(not pcall(M.prepare,C,s,raw,s.enemies[2],uid))
+ assert(not pcall(M.prepare,C,s,raw,target,'fake-uid'))
+ local pending=s.pendingPlay;s.pendingPlay=nil;assert(not pcall(M.prepare,C,s,raw,target,uid));s.pendingPlay=pending
+ for _,flag in ipairs({'escaped','halfDead','isDying'})do
+  target[flag]=true;assert(not pcall(M.prepare,C,s,raw,target,uid));target[flag]=nil
+ end
+ target.hp=0;assert(not pcall(M.prepare,C,s,raw,target,uid));target.hp=100
+ eq(s.ganyuResource.charge,2);eq(s.actionQueue,nil)
+ for _,flag in ipairs({'escaped','halfDead','isDying'})do
+  local e=M.prepare(C,s,raw,target,uid);s.player[flag]=true
+  assert(not pcall(M.prepare,C,s,raw,target,uid));Q.start(s,{})
+  assert(not pcall(M.dispatch,C,s,e,Q));eq(#s.actionQueue.actions,0);eq(s.ganyuResource.charge,2)
+  s.actionQueue=nil;s.player[flag]=nil
+ end
+end
+print('PASS state-owned ActorPresence and actual paid UID guards')
