@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3;
@@ -12,7 +12,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if([0,3,4,6,7,8,10,13,16,17].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
-    if(i===2)assert.equal(r.state.jade,value);
+    if(i===2||i===18)assert.equal(r.state.jade,value);
     if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
@@ -20,7 +20,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if(i===12)assert.equal(r.state.enemy.vulnerable,upgrade?3:2);
     if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
-    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11].includes(i)?[]:['a']); if(i===11){assert.equal(r.state.pendingDraw,upgrade?2:1);assert.equal(r.state.inUse,'a');} if(i===9)assert.deepEqual(r.state.exhaust,['a']);
+    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9)assert.deepEqual(r.state.exhaust,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
   });
 }
@@ -268,4 +268,14 @@ test('reserve payoff does not strictly dominate fixed threshold or sacrifice pay
  const high=initialState();high.jade=20;assert.equal(run('zl18',high).state.enemy.hp,20);assert.equal(run('zl11',high).state.enemy.hp,29);assert.equal(run('zl04',high).state.enemy.hp,26);assert.equal(run('zl18',high).state.jade,20);
  high.energy=1;assert.equal(run('zl18',high).ok,false);assert.equal(run('zl11',high).ok,true);assert.equal(run('zl04',high).ok,true);
  // One instance alternative, not a proof that full arbitrary hands favor any card.
+});
+
+test('one-shot reserve access saturates without refund and stays pending until draw disposal',()=>{
+ for(let jade=0;jade<=20;jade++)for(const u of [false,true]){const s=initialState();s.jade=jade;const before=structuredClone(s);const r=run('zl19',s,u);assert.equal(r.ok,true);assert.equal(r.state.jade,Math.min(20,jade+(u?8:6)));assert.equal(r.state.energy,1);assert.equal(r.state.pendingDraw,u?3:2);assert.equal(r.state.inUse,'a');assert.deepEqual(r.state.exhaust,[]);assert.deepEqual(s,before);assert.throws(()=>endTurn(r.state,[]),/unresolved/);}
+ const s=initialState(['a']);s.instances.a={id:'zl19',upgraded:false};const before=structuredClone(s);assert.equal(play(s,{id:'zl19',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);s.energy=1;assert.equal(play(s,{id:'zl19',instance:'a'}).state,s);
+});
+test('one-shot access does not dominate pure jade or cheaper repeatable access; invalid draw rolls back jade',()=>{
+ const pure=run('zl03').state,access=run('zl19').state;assert.equal(pure.jade,12);assert.equal(access.jade,6);assert.equal(pure.energy,1);assert.equal(access.energy,1);assert.equal(access.pendingDraw,2);
+ const cheap=initialState();cheap.energy=1;assert.equal(run('zl19',cheap).ok,false);assert.equal(run('zl12',cheap).ok,true);
+ const c=cards.find(c=>c.id==='zl19'),old=c.base;try{c.base=[['jade',6],['draw',Number.MAX_SAFE_INTEGER]];const s=initialState(['a']);s.instances.a={id:'zl19',upgraded:false};const before=structuredClone(s);assert.equal(play(s,{id:'zl19',instance:'a'}).state,s);assert.deepEqual(s,before);}finally{c.base=old;}
 });

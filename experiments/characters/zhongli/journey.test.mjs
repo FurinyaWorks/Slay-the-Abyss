@@ -89,3 +89,9 @@ test('v8 reserve payoff lifecycle acquisition fixture preserves older pools',()=
  assert.equal(n.deck.at(-1),'zl18');assert.equal(n.deck.length,11);assert.throws(()=>takeReward(n,1));
  for(const v of ['v1','v2','v3','v4','v5','v6','v7'])assert.equal(offers(seed,1,v).includes('zl18'),false);
 });
+
+test('v9 one-shot access follows reward lifecycle while older offers remain unchanged',()=>{
+ let seed=1;while(!offers(seed,1,'v9').includes('zl19'))seed++;
+ const s=journeyStart(seed,{poolVersion:'v9'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'reserveAccess'));
+ assert.equal(n.deck.at(-1),'zl19');assert.equal(n.deck.length,11);assert.throws(()=>takeReward(n,1));for(const v of ['v1','v2','v3','v4','v5','v6','v7','v8'])assert.equal(offers(seed,1,v).includes('zl19'),false);
+});

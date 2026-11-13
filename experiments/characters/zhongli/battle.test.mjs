@@ -77,3 +77,19 @@ test('retained terminal states do not revive, draw or discount; duplicate zones 
  for(const dead of ['player','enemy']){const t=structuredClone(s);if(dead==='player')t.hp=0;else t.enemy.hp=0;const saved=structuredClone(t);assert.equal(playInstance(t,key).ok,false);assert.deepEqual(nextTurn(t,[99]),saved);}
  const doomed=structuredClone(s);doomed.hp=1;doomed.jade=0;const ended=nextTurn(doomed,[99]);assert.equal(ended.hp,0);assert.equal(ended.hand.length,0);assert.ok(ended.discard.includes(key));
 });
+
+test('reserve access draws before exhaust and never shuffles its in-use instance',()=>{
+ for(const u of [false,true]){
+  const s=battleStart({deck:['zl19','zl01','zl02','zl03','zl04'],relic:false});const key=Object.keys(s.instances).find(k=>s.instances[k].id==='zl19');
+  s.hand=[key];s.draw=[];s.discard=Object.keys(s.instances).filter(k=>k!==key);s.instances[key].upgraded=u;const before=structuredClone(s);
+  const r=playInstance(s,key);assert.equal(r.ok,true);assert.equal(r.state.hand.length,u?3:2);assert.equal(r.state.jade,u?8:6);assert.equal(r.state.energy,1);assert.deepEqual(r.state.exhaust,[key]);assert.equal(r.state.inUse,null);assert.equal(r.state.pendingDraw,0);assert.equal(r.state.hand.includes(key),false);assert.deepEqual(s,before);
+  let later=r.state;for(let i=0;i<30;i++){later=nextTurn(later,[]);const all=[...zones(later),...later.exhaust];assert.equal(all.length,5);assert.equal(new Set(all).size,5);assert.equal(later.hand.includes(key),false);assert.deepEqual(later.exhaust,[key]);}
+ }
+});
+test('reserve access handles only-card, full-hand and invalid boundary without free draw or resources',()=>{
+ const alone=battleStart({deck:['zl19'],relic:false}),key=alone.hand[0];const used=playInstance(alone,key).state;assert.equal(used.hand.length,0);assert.deepEqual(used.exhaust,[key]);assert.equal(nextTurn(used,[]).hand.length,0);
+ const s=battleStart({deck:['zl19',...Array(11).fill('zl01')],relic:false});const k=Object.keys(s.instances).find(x=>s.instances[x].id==='zl19'),others=Object.keys(s.instances).filter(x=>x!==k);s.hand=[k,...others.slice(0,9)];s.draw=others.slice(9);s.instances[k].upgraded=true;
+ const r=playInstance(s,k).state;assert.equal(r.hand.length,10);assert.equal(r.draw.length,1);assert.deepEqual(r.exhaust,[k]);assert.equal(r.jade,8);assert.equal(r.energy,1);
+ for(const bad of [{...s,rng:NaN},{...s,draw:[...s.draw,k]}]){const before=structuredClone(bad);assert.throws(()=>playInstance(bad,k));assert.deepEqual(bad,before);}
+ for(const terminal of ['hp','enemy']){const t=structuredClone(s);if(terminal==='hp')t.hp=0;else t.enemy.hp=0;const before=structuredClone(t);assert.equal(playInstance(t,k).ok,false);assert.deepEqual(t,before);}
+});

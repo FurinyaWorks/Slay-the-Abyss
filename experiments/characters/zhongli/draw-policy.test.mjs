@@ -12,3 +12,8 @@ test('policy projection recognizes counter-kill stopping a later lethal hit',()=
  const view=visibleState(s,[0,99]);const key=view.hand.find(c=>c.id==='zl15').instance;
  assert.equal(choose(view,'defense')[0],key);
 });
+test('one-shot access policy stops before hidden draw and resolves actual fresh hand',()=>{
+ const s=battleStart({deck:['zl19','zl01'],relic:false});const key=Object.keys(s.instances).find(k=>s.instances[k].id==='zl19'),attack=Object.keys(s.instances).find(k=>k!==key);s.hand=[key];s.draw=[attack];s.discard=[];
+ const view=visibleState(s,[8]);for(const hidden of ['draw','rng','discard'])Object.defineProperty(view,hidden,{get(){throw new Error('hidden access');}});
+ assert.deepEqual(choose(view,'defense'),[key]);const result=visibleTurn(s,[8],'defense');assert.deepEqual(result.actions.map(a=>a.id),['zl19','zl01']);assert.equal(result.state.energy,0);assert.deepEqual(result.state.exhaust,[key]);
+});
