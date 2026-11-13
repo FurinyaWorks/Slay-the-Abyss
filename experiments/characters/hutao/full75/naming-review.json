@@ -1,0 +1,3915 @@
+{
+  "schema_version": "source-priority-review-v1",
+  "role": "HT",
+  "status": "HOLD",
+  "artifact": "experiments/characters/hutao/full75/胡桃V5_75卡命名修订五战试玩版.html",
+  "expected_cards": 75,
+  "source_status": "all tiers provisional; no human final approval",
+  "official_inventory": {
+    "P1": {
+      "complete": false,
+      "required": [
+        "normal_attack",
+        "elemental_skill",
+        "elemental_burst",
+        "passive_talent",
+        "constellation",
+        "tcg",
+        "combat_voice"
+      ],
+      "notes": "No complete official source index with exact item/scene verification committed."
+    },
+    "P2": {
+      "complete": false,
+      "required": [
+        "daily_voice",
+        "character_story",
+        "quest",
+        "official_promo"
+      ],
+      "notes": "No complete official character source index with exact item/scene verification committed."
+    }
+  },
+  "cards": [
+    {
+      "id": "normal",
+      "name": "普通攻击",
+      "decision_role": "基本攻击",
+      "effect_ref": "HTML:CARD:normal",
+      "source": {
+        "tier": "SYS",
+        "kind": "generic",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "guard",
+      "name": "防御",
+      "decision_role": "基本防御",
+      "effect_ref": "HTML:CARD:guard",
+      "source": {
+        "tier": "SYS",
+        "kind": "generic",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "heavy",
+      "name": "重击",
+      "decision_role": "蝶舞中重击挂梅",
+      "effect_ref": "HTML:CARD:heavy",
+      "source": {
+        "tier": "SYS",
+        "kind": "generic",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "e",
+      "name": "蝶引来生",
+      "decision_role": "付血开启蝶舞",
+      "effect_ref": "HTML:CARD:e",
+      "source": {
+        "tier": "P1",
+        "kind": "skill",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "q",
+      "name": "安神秘法",
+      "decision_role": "群攻与回血",
+      "effect_ref": "HTML:CARD:q",
+      "source": {
+        "tier": "P1",
+        "kind": "skill",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "caution",
+      "name": "悠着点！",
+      "decision_role": "低血防御",
+      "effect_ref": "HTML:CARD:caution",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "mark",
+      "name": "血梅香",
+      "decision_role": "标记/持续伤害",
+      "effect_ref": "HTML:CARD:mark",
+      "source": {
+        "tier": "P1",
+        "kind": "status",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "aid",
+      "name": "放着我来！",
+      "decision_role": "格挡抽牌",
+      "effect_ref": "HTML:CARD:aid",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "trick",
+      "name": "变个戏法",
+      "decision_role": "零费过牌",
+      "effect_ref": "HTML:CARD:trick",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "farewell",
+      "name": "再会啦！",
+      "decision_role": "标记提前兑现",
+      "effect_ref": "HTML:CARD:farewell",
+      "source": {
+        "tier": "P1",
+        "kind": "combat_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "bloodshot",
+      "name": "枪开黄泉路",
+      "decision_role": "付血高伤/被u11上位",
+      "effect_ref": "HTML:CARD:bloodshot",
+      "source": {
+        "tier": "P1",
+        "kind": "skill_phrase",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "red",
+      "name": "赤团开时斜飞去",
+      "decision_role": "蝶舞0费输出",
+      "effect_ref": "HTML:CARD:red",
+      "source": {
+        "tier": "P1",
+        "kind": "constellation",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "wildfire",
+      "name": "蝶火燎原！",
+      "decision_role": "群体梅香联动",
+      "effect_ref": "HTML:CARD:wildfire",
+      "source": {
+        "tier": "P1",
+        "kind": "combat_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "hearth",
+      "name": "血之灶火",
+      "decision_role": "低血持续增伤",
+      "effect_ref": "HTML:CARD:hearth",
+      "source": {
+        "tier": "P1",
+        "kind": "talent",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "afterglow",
+      "name": "蝶隐之时",
+      "decision_role": "蝶舞退场后抽牌",
+      "effect_ref": "HTML:CARD:afterglow",
+      "source": {
+        "tier": "P1",
+        "kind": "talent",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "spear",
+      "name": "往生秘传枪法",
+      "decision_role": "多段攻击",
+      "effect_ref": "HTML:CARD:spear",
+      "source": {
+        "tier": "P1",
+        "kind": "skill",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "last",
+      "name": "幽蝶能留一缕芳",
+      "decision_role": "濒死保命",
+      "effect_ref": "HTML:CARD:last",
+      "source": {
+        "tier": "P1",
+        "kind": "constellation",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "renew",
+      "name": "逗留采血色",
+      "decision_role": "蝶舞延续",
+      "effect_ref": "HTML:CARD:renew",
+      "source": {
+        "tier": "P1",
+        "kind": "constellation",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c01",
+      "name": "待命名·c01",
+      "decision_role": "攻守一体",
+      "effect_ref": "HTML:CARD:c01",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "BLOCKED",
+        "reason": "用户指出不自然；没有验证过的枪术原词，也没有官方P1/P2检索和拒绝证据，旧审查只给原创情境。",
+        "checks": {
+          "N2": "fail",
+          "N3": "fail",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": [
+          {
+            "name": "掩袖回枪",
+            "decision": "rejected",
+            "reason": "用户指出不自然；没有验证过的枪术原词，也没有官方P1/P2检索和拒绝证据，旧审查只给原创情境。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c02",
+      "name": "火蝴蝶",
+      "decision_role": "E攻击挂梅，同质化待审",
+      "effect_ref": "HTML:CARD:c02",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "此前机制或命名含义阻塞，尚待独立评审",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c03",
+      "name": "整衣待行",
+      "decision_role": "延迟防守",
+      "effect_ref": "HTML:CARD:c03",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c04",
+      "name": "起身啦！",
+      "decision_role": "过牌",
+      "effect_ref": "HTML:CARD:c04",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c05",
+      "name": "暂且止步",
+      "decision_role": "格挡/削弱",
+      "effect_ref": "HTML:CARD:c05",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c06",
+      "name": "待命名·c06",
+      "decision_role": "挂梅+防守",
+      "effect_ref": "HTML:CARD:c06",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "BLOCKED",
+        "reason": "用户指出拼词不自然；只有梅香机制联想，没有官方来源或真实动作解释，跳过了官方优先级。",
+        "checks": {
+          "N2": "fail",
+          "N3": "fail",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": [
+          {
+            "name": "顺势点梅",
+            "decision": "rejected",
+            "reason": "用户指出拼词不自然；只有梅香机制联想，没有官方来源或真实动作解释，跳过了官方优先级。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c07",
+      "name": "枪尖回转",
+      "decision_role": "多段攻守",
+      "effect_ref": "HTML:CARD:c07",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c08",
+      "name": "我来啦！",
+      "decision_role": "过牌+蝶舞格挡",
+      "effect_ref": "HTML:CARD:c08",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c09",
+      "name": "缓一缓",
+      "decision_role": "低血防守",
+      "effect_ref": "HTML:CARD:c09",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c10",
+      "name": "出枪探路",
+      "decision_role": "低血过牌",
+      "effect_ref": "HTML:CARD:c10",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c11",
+      "name": "转身避锋",
+      "decision_role": "蝶舞下回合防守",
+      "effect_ref": "HTML:CARD:c11",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c12",
+      "name": "又见梅开",
+      "decision_role": "旧标记增伤",
+      "effect_ref": "HTML:CARD:c12",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c13",
+      "name": "该我出马了？",
+      "decision_role": "低血攻击",
+      "effect_ref": "HTML:CARD:c13",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c14",
+      "name": "瞧好了哦",
+      "decision_role": "攻击准备",
+      "effect_ref": "HTML:CARD:c14",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c15",
+      "name": "还没完呢",
+      "decision_role": "带标记目标输出+过牌",
+      "effect_ref": "HTML:CARD:c15",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c16",
+      "name": "顺风顺水",
+      "decision_role": "零费格挡抽牌，来源条目已纠正",
+      "effect_ref": "HTML:CARD:c16",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c17",
+      "name": "吃饱喝饱",
+      "decision_role": "回血/防御",
+      "effect_ref": "HTML:CARD:c17",
+      "source": {
+        "tier": "P1",
+        "kind": "combat_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c18",
+      "name": "蝶影一闪",
+      "decision_role": "攻击挂梅与低血防守",
+      "effect_ref": "HTML:CARD:c18",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "c19",
+      "name": "待命名·c19",
+      "decision_role": "延迟抽牌",
+      "effect_ref": "HTML:CARD:c19",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "BLOCKED",
+        "reason": "用户指出不自然且作用不贴；仅以夜间备灯说明下回合抽牌，缺少真实动作/语义对应与官方检索。",
+        "checks": {
+          "N2": "fail",
+          "N3": "fail",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": [
+          {
+            "name": "夜路照明",
+            "decision": "rejected",
+            "reason": "用户指出不自然且作用不贴；仅以夜间备灯说明下回合抽牌，缺少真实动作/语义对应与官方检索。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "u01",
+      "name": "催绽",
+      "decision_role": "提前兑现梅香",
+      "effect_ref": "HTML:CARD:u01",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u02",
+      "name": "半生烟火",
+      "decision_role": "低血单体爆发",
+      "effect_ref": "HTML:CARD:u02",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u03",
+      "name": "蝶舞回身",
+      "decision_role": "蝶舞期间攻击/格挡",
+      "effect_ref": "HTML:CARD:u03",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u04",
+      "name": "梅开彼岸",
+      "decision_role": "全体施加梅香",
+      "effect_ref": "HTML:CARD:u04",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u05",
+      "name": "无妄夜行",
+      "decision_role": "群体减伤",
+      "effect_ref": "HTML:CARD:u05",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u06",
+      "name": "借火问路",
+      "decision_role": "短E付血与抽牌",
+      "effect_ref": "HTML:CARD:u06",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u07",
+      "name": "收枪立定",
+      "decision_role": "防守与延迟抽牌",
+      "effect_ref": "HTML:CARD:u07",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u08",
+      "name": "余香未尽",
+      "decision_role": "挂梅与延迟抽牌",
+      "effect_ref": "HTML:CARD:u08",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u09",
+      "name": "送客有礼",
+      "decision_role": "旧标记高伤+格挡",
+      "effect_ref": "HTML:CARD:u09",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u10",
+      "name": "伴君眠花房",
+      "decision_role": "机制与原命座不相同，N3阻塞",
+      "effect_ref": "HTML:CARD:u10",
+      "source": {
+        "tier": "P1",
+        "kind": "constellation",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "此前机制或命名含义阻塞，尚待独立评审",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u11",
+      "name": "踏火而行",
+      "decision_role": "同稀有付血牌数值上位，B阻塞",
+      "effect_ref": "HTML:CARD:u11",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "此前机制或命名含义阻塞，尚待独立评审",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u12",
+      "name": "好戏开场",
+      "decision_role": "短E付血格挡",
+      "effect_ref": "HTML:CARD:u12",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u13",
+      "name": "花影连刺",
+      "decision_role": "三段攻击/挂梅",
+      "effect_ref": "HTML:CARD:u13",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u14",
+      "name": "余火未消",
+      "decision_role": "先挂梅再攻；快照条件",
+      "effect_ref": "HTML:CARD:u14",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u15",
+      "name": "作诗一首",
+      "decision_role": "抽牌+强化",
+      "effect_ref": "HTML:CARD:u15",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u16",
+      "name": "守礼如初",
+      "decision_role": "格挡/削弱",
+      "effect_ref": "HTML:CARD:u16",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u17",
+      "name": "归途有光",
+      "decision_role": "本回合与下一回合格挡",
+      "effect_ref": "HTML:CARD:u17",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u18",
+      "name": "适可而止",
+      "decision_role": "关闭蝶舞回血",
+      "effect_ref": "HTML:CARD:u18",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u19",
+      "name": "焰尾横扫",
+      "decision_role": "群体伤害+低血格挡",
+      "effect_ref": "HTML:CARD:u19",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u20",
+      "name": "花落知时",
+      "decision_role": "目标旧梅提前兑现",
+      "effect_ref": "HTML:CARD:u20",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "u21",
+      "name": "枪影连环",
+      "decision_role": "三段攻击+格挡",
+      "effect_ref": "HTML:CARD:u21",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r01",
+      "name": "最不安神晴又复雨",
+      "decision_role": "群攻/挂梅改编",
+      "effect_ref": "HTML:CARD:r01",
+      "source": {
+        "tier": "P1",
+        "kind": "constellation",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r02",
+      "name": "无可奈何燃花作香",
+      "decision_role": "群攻与梅香增伤改编",
+      "effect_ref": "HTML:CARD:r02",
+      "source": {
+        "tier": "P1",
+        "kind": "constellation",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r03",
+      "name": "雪霁梅香",
+      "decision_role": "群体梅香+过牌",
+      "effect_ref": "HTML:CARD:r03",
+      "source": {
+        "tier": "P2",
+        "kind": "title",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r04",
+      "name": "生死有时",
+      "decision_role": "付血防守+抽牌",
+      "effect_ref": "HTML:CARD:r04",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r05",
+      "name": "一波送走",
+      "decision_role": "群体高费斩杀",
+      "effect_ref": "HTML:CARD:r05",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r06",
+      "name": "彼岸蝶舞",
+      "decision_role": "免付血开蝶舞，风险",
+      "effect_ref": "HTML:CARD:r06",
+      "source": {
+        "tier": "P1",
+        "kind": "status",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "此前机制或命名含义阻塞，尚待独立评审",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r07",
+      "name": "蝶引来世桥",
+      "decision_role": "单体/挂梅/延迟能量",
+      "effect_ref": "HTML:CARD:r07",
+      "source": {
+        "tier": "P1",
+        "kind": "skill_phrase",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r08",
+      "name": "晚上可得小心点",
+      "decision_role": "两回合防守",
+      "effect_ref": "HTML:CARD:r08",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r09",
+      "name": "一路走好！",
+      "decision_role": "单体梅香结算",
+      "effect_ref": "HTML:CARD:r09",
+      "source": {
+        "tier": "P1",
+        "kind": "combat_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r10",
+      "name": "好好休息",
+      "decision_role": "退出蝶舞回血",
+      "effect_ref": "HTML:CARD:r10",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r11",
+      "name": "花影成双",
+      "decision_role": "双段攻击/挂梅",
+      "effect_ref": "HTML:CARD:r11",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r12",
+      "name": "全力以赴",
+      "decision_role": "延期资源+格挡",
+      "effect_ref": "HTML:CARD:r12",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r13",
+      "name": "梅香遍野",
+      "decision_role": "梅香伤害强化",
+      "effect_ref": "HTML:CARD:r13",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r14",
+      "name": "日暮回枪",
+      "decision_role": "低血攻守",
+      "effect_ref": "HTML:CARD:r14",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r15",
+      "name": "喝杯茶",
+      "decision_role": "格挡/回血",
+      "effect_ref": "HTML:CARD:r15",
+      "source": {
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r16",
+      "name": "压轴好戏",
+      "decision_role": "单体高费终结",
+      "effect_ref": "HTML:CARD:r16",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    },
+    {
+      "id": "r17",
+      "name": "此行珍重",
+      "decision_role": "梅香引爆+下回合防御",
+      "effect_ref": "HTML:CARD:r17",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "exact_text": null,
+        "url": null,
+        "section": null,
+        "version": null,
+        "name_original": true
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": []
+      }
+    }
+  ]
+}

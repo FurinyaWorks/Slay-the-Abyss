@@ -39,3 +39,7 @@
 这些是待解决的 **B/C/N3 gate**；不因改好名称就擅自修改游戏平衡、认定正式职业已完成。
 
 来源入口：[官方观测枢胡桃](https://baike.mihoyo.com/ys/obc/content/1627/detail?bbs_presentation_style=no_header)；[胡桃中文语音逐条](https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3)。
+
+## 2026-11-13 N-GATE机制修复中的状态
+
+因用户复审指出“夜路照明/掩袖回枪/顺势点梅”均缺合格的官方优先级证据与贴效说明，本轮将其退回待命名占位，保留旧名审计，所有机械效果和数值不变。增加 [结构化命名审查清单](naming-review.json)，记录75卡当前 source_tier、P1/P2覆盖缺失及全部 H O L D 状态；配合独立命名准入PR校验。**这不是75卡重新命名完成的证明。**
