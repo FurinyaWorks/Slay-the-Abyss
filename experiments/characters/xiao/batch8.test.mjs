@@ -31,3 +31,22 @@ test('life-funded energy then all-energy defense remains finite and loses life',
  let s=state({hp:10,energy:0,hand:['x17','x23']});s=play(s,{index:0}).state;s=play(s,{index:0}).state;
  assert.equal(s.hp,7);assert.equal(s.energy,0);assert.equal(s.block,10);assert.deepEqual(s.exhaust,['x17']);assert.deepEqual(s.discard,['x23']);
 });
+test('card text rejects nonboolean upgrades consistently with play',()=>{
+ const c=catalog.cards.find(c=>c.id==='x23');
+ for(const value of [null,0,1,'false',{},[]])assert.throws(()=>cardText(c,value),TypeError);
+ assert.doesNotThrow(()=>cardText(c));assert.doesNotThrow(()=>cardText(c,true));
+});
+test('all-energy exact safe aggregate boundary succeeds and next point rejects',()=>{
+ for(const upgraded of [false,true]){
+  const rate=upgraded?7:5,energy=Math.floor(Number.MAX_SAFE_INTEGER/rate);
+  const s=state({hand:['x23'],energy});s.block=Number.MAX_SAFE_INTEGER-energy*rate;
+  const r=play(s,{index:0,upgraded});assert.equal(r.ok,true);assert.equal(r.state.block,Number.MAX_SAFE_INTEGER);
+  const bad=structuredClone(s);bad.block++;assert.equal(play(bad,{index:0,upgraded}).ok,false);assert.deepEqual(play(bad,{index:0,upgraded}).state,bad);
+ }
+});
+test('upgraded redraw fault after actual discard shuffle restores input and RNG',()=>{
+ const c=catalog.cards.find(c=>c.id==='x24'),old=structuredClone(c.upgrade);
+ try{c.upgrade.push({op:'fault',value:0});const s=newBattle({deck:['x24','x01','x03']});const before=structuredClone(s);
+  assert.deepEqual(battlePlay(s,{index:s.hand.indexOf('x24'),upgraded:true}).state,before);assert.deepEqual(s,before);
+ }finally{c.upgrade=old;}
+});

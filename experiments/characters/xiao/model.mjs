@@ -116,6 +116,7 @@ export function startTurn(input) {
   return s;
 }
 export function cardText(card, upgraded = false) {
+  if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap}) => ({
     spendEnergyBlock: `消耗所有剩余能量，每点获得${value}点格挡（0能量可打出但不获盾）。`,
     discardAttacksDraw: `弃掉手中所有其他攻击牌；若至少弃1张，抽弃牌张数${value?'加'+value:''}的牌（手牌上限10），可能洗回刚弃的攻击。`,
