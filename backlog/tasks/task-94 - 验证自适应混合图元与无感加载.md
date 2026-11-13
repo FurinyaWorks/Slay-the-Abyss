@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-31 10:47'
-updated_date: '2026-11-13 16:20'
+updated_date: '2026-11-13 16:31'
 labels:
   - art
   - technical-spike
@@ -70,4 +70,6 @@ Draft PR https://github.com/FurinyaWorks/Slay-the-Abyss/pull/647 已建立，源
 2026-11-14 Owner明确认可已查看的1600图元画质，认为3200已属奢侈。画质门槛改为GO（仅绑定当前be81ce01…f541/1600），1600固定为主候选，3200只留历史对照，不再追加美术拟合或强压图元。剩余集中于完整加载/热切换性能与官方客户端验证；本条不代表性能通过，不授予键鼠窗口、官方导入、合并或发布。独立确认记录experiments/lumine-native-fit/owner-acceptance.json。
 
 2026-11-14 Owner追加授权：若无问题，将既有PR647完成准入后挂正常自动合并。此授权针对隔离实验与工具的源码合入，不启用正式背景、不批准发布或官方客户端输入。已将最新develop e805a87d纳入分支，唯一素材清单冲突按保留最新清单+本实验11项记录解决；旧GIL/性能数据仍绑定原903bf2a31实验，当前合并组合另行独审及CI。
+
+自动合并准入发现仓库要求特性分支本身线性，原647的基线merge提交不符合。为避免强推/改写历史，原PR与8ca分支全部保留，关闭647并由 https://github.com/FurinyaWorks/Slay-the-Abyss/pull/648 接续；新分支feat/lumine-native-fit-admission以e805a87d为唯一父，初始source tree与已审8ca逐字一致，无运行代码或测量变更。后续仅补PR链接，重新绑定精确HEAD独审及Full准入。
 <!-- SECTION:NOTES:END -->

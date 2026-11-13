@@ -1,8 +1,8 @@
 # 岩荧原生背景实验（TASK-94）
 
-独立实验分支 `feat/lumine-native-fit`，起始基线 `903bf2a31`（含 #634）。不改变正式构建入口；Owner允许工具及实验代码通过准入后合入develop，不发布、不写入玩家存档。目标是画质、完整显示延迟与资源成本同时可用；图元数不是单独的验收标准。
+当前集成分支 `feat/lumine-native-fit-admission`，原实验起始基线 `903bf2a31`（含 #634）。不改变正式构建入口；Owner允许工具及实验代码通过准入后合入develop，不发布、不写入玩家存档。目标是画质、完整显示延迟与资源成本同时可用；图元数不是单独的验收标准。
 
-[PR #647](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/647)。实际候选源码/证据提交 `fd5e161b84cee02e02d112cd917b99ea40febc2e`，GIL/25冷50热仍冻结于原实验基线供复现。2026-11-14 Owner认可1600画质并授权实验PR走正常自动合并；已纳入最新develop `e805a87d` 并保留双方素材清单，当前源码组合另走独审/CI准入。合并仅纳入隔离工具和实验记录，不自动启用正式背景；旧GIL数据不冒充新组合的官方或设备实测。
+[PR #648](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/648) 接续已关闭的[历史PR #647](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/647)，原分支与记录全部保留。实际候选源码/证据提交 `fd5e161b84cee02e02d112cd917b99ea40febc2e`，GIL/25冷50热仍冻结于原实验基线供复现。2026-11-14 Owner认可1600画质并授权实验PR走正常自动合并；已以最新develop `e805a87d` 为唯一父建立线性继任分支，保留双方素材清单，当前源码组合另走独审/CI准入。合并仅纳入隔离工具和实验记录，不自动启用正式背景；旧GIL数据不冒充新组合的官方或设备实测。
 
 ## 输入与画质选择
 
