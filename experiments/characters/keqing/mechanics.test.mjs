@@ -63,7 +63,7 @@ test('bonus is per hit but duration per card; no retroactive bonus', () => {
 test('block absorbs sequential hits; zero spill after death', () => {
   const state = initial(hand('KQ004'), [enemy(4,5),enemy()]);
   const result = play(state, 'i0', 0);
-  assert.deepEqual(result.enemies, [enemy(1,0), enemy()]);
+  assert.deepEqual(result.enemies, [{...enemy(1,0), attackedThisTurn:true}, enemy()]);
 });
 test('invalid target, insufficient energy and reused instance do not mutate input', () => {
   const state = initial(hand('KQ003'), [enemy()]);

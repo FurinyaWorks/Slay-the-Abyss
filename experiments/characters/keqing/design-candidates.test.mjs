@@ -9,7 +9,8 @@ test('75 concrete candidate slots are not confused with implemented or approved 
   assert.equal(data.implemented,Object.keys(cards).length);
   for(const x of data.entries){
     assert.ok(x.role&&x.base&&x.upgraded&&x.criticalProbe);
-    assert.ok(Number.isInteger(x.cost)&&x.cost>=1&&x.cost<=3);
+    assert.ok(Number.isInteger(x.cost)&&x.cost>=0&&x.cost<=3);
+    if(x.cost===0){assert.equal(x.id,'KQ021');assert.equal(cards[x.id].exhaust,true);}
     assert.equal(x.status,'HOLD'); assert.equal(x.rarity,'pending');
     assert.ok(Object.values(x.gates).every(v=>v===false)); assert.equal(x.source.verified,false);
     if(x.implementation==='isolated_implemented'){

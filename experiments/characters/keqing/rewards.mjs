@@ -26,6 +26,7 @@ export function acceptReward(deck,offer,choice=null) {
 export function runCombat({seed,deck=[...starterIds],encounter,policy,hp=60,maxTurns=30}) {
   if(!Object.hasOwn(encounters,encounter)) throw new Error('invalid encounter');
   if(!Object.hasOwn(policies,policy)) throw new Error('invalid policy');
+  if (deck.some(id=>!Object.hasOwn(cards,id)||cards[id]?.cost===0||cards[id]?.effects.base.some(e=>e.op==='draw'||e.op==='moveCard'||e.op==='wedgeDiscount'||e.op==='inspect'||e.op==='purgeStatus'))) throw new Error('draw deck requires an observation-replanning policy; legacy experiment unsupported');
   let s=createBattle({seed,deckIds:deck,enemies:encounters[encounter]});
   if(!Number.isInteger(hp)||hp<1||hp>60||!Number.isInteger(maxTurns)||maxTurns<1) throw new Error('invalid bounds');
   s.hp=hp;
@@ -42,7 +43,7 @@ export function runCombat({seed,deck=[...starterIds],encounter,policy,hp=60,maxT
     }
     if(s.phase==='player') s=finishTurn(s);
   }
-  return {...result,outcome:s.phase==='player'?'truncated':s.phase,endHp:s.hp,loss:hp-s.hp,finalInstanceCount:s.hand.length+s.draw.length+s.discard.length};
+  return {...result,outcome:s.phase==='player'?'truncated':s.phase,endHp:s.hp,loss:hp-s.hp,finalInstanceCount:s.hand.length+s.draw.length+s.discard.length+s.exhaust.length};
 }
 export function buildRewardReport() {
   const rows=[];

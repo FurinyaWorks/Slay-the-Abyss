@@ -1,0 +1,9 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{createBattle,starterIds,playerView,useCard}from './battle.mjs';import{chooseObservedAction,runObservedCombat}from './observation-policy.mjs';
+test('observation strategy does not access hidden order or RNG',()=>{const s=createBattle({deckIds:[...starterIds,'KQ042'],order:[10,0,1,2,3,4,5,6,7,8,9]});const v=playerView(s);for(const key of ['draw','rng','discard'])Object.defineProperty(v,key,{get(){throw new Error('hidden read');}});assert.doesNotThrow(()=>chooseObservedAction(v));});
+test('actual newly drawn attack is seen only in next action',()=>{
+ const s=createBattle({deckIds:[...starterIds,'KQ042'],order:[10,3,4,5,6,0,1,2,7,8,9],enemies:[{hp:100,block:0,intent:0}]});const first=chooseObservedAction(playerView(s));assert.equal(first.instance,'starter-10');const next=useCard(s,first.instance,first.target);const action=chooseObservedAction(playerView(next));assert.ok(['starter-0','starter-1'].includes(action.instance));assert.equal(next.energy,2);
+});
+test('fixed observations replay deterministic and conserve acquired draw rewards',()=>{for(const id of ['KQ031','KQ042','KQ046','KQ049'])for(const policy of ['aggressive','balanced','defensive']){const args={seed:19001,deck:[...starterIds,id],encounter:'pair',policy};const r=runObservedCombat(args);assert.deepEqual(r,runObservedCombat(args));assert.equal(r.finalInstanceCount,11);assert.ok(r.actions.every(a=>a.energy>=0));}});
+test('draw attack targets a publicly living enemy, not fixed index zero',()=>{
+ const s=createBattle({deckIds:[...starterIds,'KQ047'],order:[10,3,4,5,6,0,1,2,7,8,9],enemies:[{hp:0,block:0,intent:0},{hp:100,block:0,intent:0}]});const step=chooseObservedAction(playerView(s));assert.equal(step.instance,'starter-10');assert.equal(step.target,1);assert.doesNotThrow(()=>useCard(s,step.instance,step.target));
+});
