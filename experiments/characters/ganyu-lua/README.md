@@ -167,3 +167,17 @@ It reuses the paid compiler's strict shape helpers without expanding the existin
 Public storm contract can load it through `GANYU_STORM_DEFINITIONS`; host acceptance
 is explicitly NOT_YET_VERIFIED until the shared owner wires and tests ganyuStorm.
 The skill type remains an integration proposal, not human-approved classification.
+
+### Single-layer and held-full charge native execution
+
+The existing strict conditional adapter now also handles `spendOneDamage`,
+`spendOneBlock`, and `fullChargeDamage`, corresponding to frozen 41/42/45
+base/up single effects. It reuses paid state-owned target guards and native
+use-time snapshots. Eighteen real Actor/Effects combinations cover charge 0/1/2,
+three post-native failures restore resource/payment/card references then retry,
+two wrong-target cases reject, and three prepare-empty/execute-full cases verify
+execution-time resource decisions without recalculating Strength/Dexterity.
+The previous 48-case conditional suite and capture rejection regressions pass.
+This is isolated queue execution, not shared C.play registration. The extension
+does not change source card values, approve the single-layer/held-full playstyle,
+or implement 44's disputed redesign; that design blocker remains unresolved.
