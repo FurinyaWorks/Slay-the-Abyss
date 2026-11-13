@@ -86,6 +86,12 @@ export function play(input, handIndex, target = null, cancel = false) {
         // Single field; refresh duration, keep strongest potency, never stack fields.
         s.storm = { amount: Math.max(s.storm?.amount ?? 0, effect.amount), turns: Math.max(s.storm?.turns ?? 0, effect.turns) };
         break;
+      case 'charged_direct': {
+        const charged = s.charge === rules.maxCharge;
+        if (charged) s.charge = 0;
+        hit(s.enemies[target], effect.direct + (charged ? effect.bonus : 0));
+        break;
+      }
       case 'charged_shot': {
         const charged = s.charge === rules.maxCharge;
         if (charged) s.charge = 0;
@@ -139,7 +145,7 @@ export function cardText(id, upgraded = false) {
   if (typeof upgraded !== 'boolean') throw new Error('invalid upgrade');
   const card = variants.get(id); if (!card) throw new Error('unknown card');
   const v = upgraded ? card.upgrade : card.base;
-  const effects = v.effects.map(e => ({seek_card:`从抽牌堆将1张${variants.get(e.card_id)?.name ?? e.card_id}加入手牌。不检索弃牌堆；没有目标时无效果，不退款。`,draw:`抽${e.amount}张牌（手牌上限${rules.handLimit}）。`,damage:`对目标造成${e.amount}点伤害。`,block:`获得${e.amount}点格挡。`,aoe:`对所有存活敌人造成${e.amount}点伤害。`,charge:`获得${e.amount}层蓄力（上限${rules.maxCharge}）。`,storm:`建立冰雨：从本回合起连续${e.turns}个回合结束时，对所有存活敌人造成${e.amount}点伤害；重复施放取较高伤害与剩余次数，不叠加。`,charged_shot:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，随后对所有存活敌人造成${e.bloom}点伤害。`})[e.op]);
+  const effects = v.effects.map(e => ({seek_card:`从抽牌堆将1张${variants.get(e.card_id)?.name ?? e.card_id}加入手牌。不检索弃牌堆；没有目标时无效果，不退款。`,draw:`抽${e.amount}张牌（手牌上限${rules.handLimit}）。`,charged_direct:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，本次伤害增加${e.bonus}（合为单次命中，不绽放）。`,damage:`对目标造成${e.amount}点伤害。`,block:`获得${e.amount}点格挡。`,aoe:`对所有存活敌人造成${e.amount}点伤害。`,charge:`获得${e.amount}层蓄力（上限${rules.maxCharge}）。`,storm:`建立冰雨：从本回合起连续${e.turns}个回合结束时，对所有存活敌人造成${e.amount}点伤害；重复施放取较高伤害与剩余次数，不叠加。`,charged_shot:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，随后对所有存活敌人造成${e.bloom}点伤害。`})[e.op]);
   return `${card.name}${upgraded ? '+' : ''}｜${v.cost}能量｜${effects.join('')}`;
 }
 

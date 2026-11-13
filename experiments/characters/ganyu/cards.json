@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.6.0",
+  "version": "ganyu-sample-0.7.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -493,6 +493,146 @@
         ]
       },
       "source_ref": "ganyu-14",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-15",
+      "name": "待命名·ganyu-15",
+      "candidate_name": null,
+      "role": "无满蓄前置的双费单体处置",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 14
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 18
+          }
+        ]
+      },
+      "source_ref": "ganyu-15",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-16",
+      "name": "待命名·ganyu-16",
+      "candidate_name": null,
+      "role": "即时小伤与主动蓄力衔接",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-16",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-17",
+      "name": "待命名·ganyu-17",
+      "candidate_name": null,
+      "role": "满蓄单体兑现而非群体绽放",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 8,
+            "bonus": 14
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 11,
+            "bonus": 17
+          }
+        ]
+      },
+      "source_ref": "ganyu-17",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-18",
+      "name": "待命名·ganyu-18",
+      "candidate_name": null,
+      "role": "低费长周期雨场与逐跳强度取舍",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 2,
+            "turns": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-18",
       "review": {
         "status": "HOLD",
         "human_approved": false,
