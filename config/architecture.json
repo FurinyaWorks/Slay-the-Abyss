@@ -1,6 +1,8 @@
 {
   "layers": {
     "abyss_ganyu_shield_charge_definitions": "core",
+    "abyss_keqing_setup_cards": "core",
+    "abyss_keqing_setup_reward_run": "core",
     "abyss_xiao_owner_end": "core",
     "abyss_xiao_turn_start": "core",
     "abyss_xiao_lifecycle_host": "core",

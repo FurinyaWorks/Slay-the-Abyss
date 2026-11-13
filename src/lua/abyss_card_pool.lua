@@ -44,7 +44,7 @@ end
 function M.prepareRewards(run)
     if run.candidateRewardPool=='xiao-reviewed-nonbasic-twelve-v1'then return require('abyss_xiao_card_rewards').prepare(run,M)end
     if run.candidateRewardPool=='zhongli-reviewed-common-fourteen-v1'then return require('abyss_zhongli_card_rewards').prepare(run,M)end
-    if run.candidateRewardPool=='keqing-reviewed-eight-v1'or run.candidateRewardPool=='keqing-reviewed-ten-v1'or run.candidateRewardPool=='keqing-reviewed-thirteen-v1'then return require('abyss_keqing_card_rewards').prepare(run,M)end
+    if run.candidateRewardPool=='keqing-reviewed-eight-v1'or run.candidateRewardPool=='keqing-reviewed-ten-v1'or run.candidateRewardPool=='keqing-reviewed-thirteen-v1'or run.candidateRewardPool=='keqing-reviewed-sixteen-v1'then return require('abyss_keqing_card_rewards').prepare(run,M)end
     if run.candidateRewardPool~=nil then return require('abyss_candidate_card_rewards').prepare(run,M)end
     local rng=R.cloneState(run.cardRng)
     local offset,choices,used=run.cardRarityOffset or 5,{},{}
