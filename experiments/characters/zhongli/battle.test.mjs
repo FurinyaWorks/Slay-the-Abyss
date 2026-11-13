@@ -135,3 +135,30 @@ test('reserve search singleton pays for no cards and cannot return through reshu
  let s=battleStart({deck:['zl24']});const key=s.hand[0];s=playInstance(s,key).state;assert.equal(s.hand.length,0);assert.equal(s.jade,0);assert.equal(s.energy,2);assert.deepEqual(s.exhaust,[key]);
  for(let i=0;i<10;i++){s=nextTurn(s,[]);assert.equal(s.hand.length,0);assert.deepEqual(s.exhaust,[key]);}
 });
+
+test('held reserve survives unplayed rounds, caps a full hand and pays lower immediate reserve for timing',()=>{
+ let s=battleStart({deck:[...Array(10).fill('zl26'),...Array(5).fill('zl02')]});
+ const reserve=Object.keys(s.instances).filter(k=>s.instances[k].id==='zl26'),others=Object.keys(s.instances).filter(k=>s.instances[k].id!=='zl26');
+ s.hand=reserve;s.draw=others;s.discard=[];s.jade=20;
+ const next=nextTurn(s,[6]);assert.equal(next.jade,14);assert.deepEqual(next.hand,reserve);assert.deepEqual(next.draw,others);assert.equal(next.hand.length,10);
+ const key=next.hand[0],r=playInstance(next,key);assert.equal(r.ok,true);assert.equal(r.state.jade,20);assert.equal(r.state.energy,1);assert.ok(r.state.discard.includes(key));assert.ok(!r.state.hand.includes(key));
+ const zones=[...r.state.hand,...r.state.draw,...r.state.discard,...r.state.exhaust,...r.state.powers];assert.equal(zones.length,15);assert.equal(new Set(zones).size,15);
+});
+test('held reserve may wait for depletion but retained cards are not free shield or extra draws',()=>{
+ let s=battleStart({deck:['zl26','zl02']});const key=s.hand.find(k=>s.instances[k].id==='zl26');const before=structuredClone(s);
+ const waited=nextTurn(s,[5]);assert.equal(waited.hp,58);assert.equal(waited.jade,0);assert.ok(waited.hand.includes(key));assert.deepEqual(s,before);
+ const r=playInstance(waited,key);assert.equal(r.state.jade,10);assert.equal(r.state.energy,1);
+ const dead={...s,hp:0};assert.equal(playInstance(dead,key).ok,false);
+});
+
+test('paired visible reserve window: standard gains two more now, held reserve alone remains accessible after waiting',()=>{
+ const states=['zl03','zl26'].map(id=>{
+  const s=battleStart({deck:[id,...Array(5).fill('zl02')]});const key=Object.keys(s.instances).find(k=>s.instances[k].id===id);
+  s.hand=[key];s.draw=Object.keys(s.instances).filter(k=>k!==key);s.discard=[];s.jade=20;
+  return {key,s,next:nextTurn(s,[10])};
+ });
+ assert.equal(states[0].next.jade,10);assert.equal(states[1].next.jade,10);
+ assert.ok(!states[0].next.hand.includes(states[0].key));assert.ok(states[0].next.discard.includes(states[0].key));
+ assert.ok(states[1].next.hand.includes(states[1].key));assert.equal(playInstance(states[1].next,states[1].key).state.jade,20);
+ // Deliberately controlled piles establish a timing counterexample, not a natural-run frequency.
+});

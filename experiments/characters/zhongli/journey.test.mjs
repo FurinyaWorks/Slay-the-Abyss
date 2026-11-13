@@ -131,3 +131,18 @@ test('reserve search v14 is offered and enters deck through an actual winning re
  const choice=selectReward(rewardView(s),'reserveSearch');assert.equal(s.offer[choice-1],'zl24');s=takeReward(s,choice);assert.ok(s.deck.includes('zl24'));assert.equal(s.room,2);
  for(let i=1;i<=500;i++){assert.ok(!offers(i,1,'v13').includes('zl24'));assert.equal(new Set(offers(i,1,'v14')).size,3);}
 });
+
+test('pillar guard v15 uses only owned setup and real reward choice, prior pools exclude it',()=>{
+ let seed=1;while(seed<=10000&&!(offers(seed,1,'v15').includes('zl21')&&offers(seed,2,'v15').includes('zl25')))seed++;assert.ok(seed<=10000);
+ let s=journeyStart(seed,{poolVersion:'v15'});
+ for(let room=1;room<=2;room++){s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const choice=selectReward(rewardView(s),'pillarGuard');assert.equal(s.offer[choice-1],room===1?'zl21':'zl25');s=takeReward(s,choice);}
+ assert.ok(s.deck.includes('zl21'));assert.ok(s.deck.includes('zl25'));
+ for(let seed=1;seed<=100;seed++)assert.ok(!offers(seed,1,'v14').includes('zl25'));
+});
+
+test('held reserve is obtained through v16 reward and not injected into earlier pools',()=>{
+ let seed=1;while(seed<10000&&!offers(seed,1,'v16').includes('zl26'))seed++;assert.ok(seed<10000);
+ let s=journeyStart(seed,{poolVersion:'v16'});s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');
+ const choice=selectReward(rewardView(s),'heldReserve');assert.equal(s.offer[choice-1],'zl26');s=takeReward(s,choice);assert.ok(s.deck.includes('zl26'));
+ for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v15').includes('zl26'));
+});

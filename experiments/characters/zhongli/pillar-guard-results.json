@@ -1,0 +1,4715 @@
+{
+  "acquisitionWitness": {
+    "seed": 58,
+    "selection": "first seed in 1..10000 with room1 offering21 and room2 offering25; selection by offers, deliberately not an unbiased cohort",
+    "outcome": "complete",
+    "hp": 54,
+    "deck": [
+      "zl01",
+      "zl01",
+      "zl01",
+      "zl01",
+      "zl02",
+      "zl02",
+      "zl02",
+      "zl02",
+      "zl03",
+      "zl04",
+      "zl21",
+      "zl25"
+    ],
+    "history": [
+      {
+        "room": 1,
+        "family": "multi",
+        "turns": 5,
+        "startHp": 60,
+        "endHp": 60,
+        "loss": 0,
+        "deckSize": 10,
+        "deadPayoffDraws": 1,
+        "outcome": "reward",
+        "offer": [
+          "zl21",
+          "zl14",
+          "zl13"
+        ],
+        "choice": "zl21"
+      },
+      {
+        "room": 2,
+        "family": "multi",
+        "turns": 4,
+        "startHp": 60,
+        "endHp": 58,
+        "loss": 2,
+        "deckSize": 11,
+        "deadPayoffDraws": 1,
+        "outcome": "reward",
+        "offer": [
+          "zl25",
+          "zl19",
+          "zl24"
+        ],
+        "choice": "zl25"
+      },
+      {
+        "room": 3,
+        "family": "multi",
+        "turns": 4,
+        "startHp": 58,
+        "endHp": 54,
+        "loss": 4,
+        "deckSize": 12,
+        "deadPayoffDraws": 2,
+        "outcome": "complete",
+        "offer": []
+      }
+    ]
+  },
+  "scope": "80 synthetic three-room runs. Visible reward policy first acquires pillar if offered, then pillarGuardr if offered; otherwise abandons. No injected prerequisite.",
+  "seeds": "18001..18020 exploratory no tuning",
+  "probability": {
+    "pool": [
+      "zl03",
+      "zl04",
+      "zl06",
+      "zl07",
+      "zl08",
+      "zl09",
+      "zl11",
+      "zl12",
+      "zl13",
+      "zl14",
+      "zl15",
+      "zl16",
+      "zl17",
+      "zl18",
+      "zl19",
+      "zl20",
+      "zl21",
+      "zl22",
+      "zl23",
+      "zl24",
+      "zl25"
+    ],
+    "common": 1,
+    "uncommon": 0,
+    "rare": 0,
+    "idealUniformInclusion": 0.14285714285714285,
+    "empiricalOffers": 20000,
+    "inclusion": {
+      "zl03": 2825,
+      "zl04": 2823,
+      "zl06": 2793,
+      "zl07": 2880,
+      "zl08": 2869,
+      "zl09": 2826,
+      "zl11": 2772,
+      "zl12": 2922,
+      "zl13": 2938,
+      "zl14": 2822,
+      "zl15": 2837,
+      "zl16": 2889,
+      "zl17": 2809,
+      "zl18": 2803,
+      "zl19": 2982,
+      "zl20": 2871,
+      "zl21": 2887,
+      "zl22": 2825,
+      "zl23": 2894,
+      "zl24": 2893,
+      "zl25": 2840
+    },
+    "warning": "finite LCG bias, pair not guaranteed, two reward windows only"
+  },
+  "groups": [
+    {
+      "family": "large",
+      "policy": "skip",
+      "n": 20,
+      "complete": 0,
+      "deaths": 20,
+      "truncated": 0,
+      "pillarAcquired": 0,
+      "pairAcquired": 0,
+      "lossP50": 60,
+      "lossP90": 60,
+      "rows": [
+        {
+          "seed": 18001,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 10,
+              "startHp": 60,
+              "endHp": 24,
+              "loss": 36,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl21",
+                "zl13",
+                "zl19"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 6,
+              "startHp": 24,
+              "endHp": 0,
+              "loss": 24,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18002,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 12,
+              "startHp": 60,
+              "endHp": 15,
+              "loss": 45,
+              "deckSize": 10,
+              "deadPayoffDraws": 6,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl11",
+                "zl03"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 15,
+              "endHp": 0,
+              "loss": 15,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18003,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 9,
+              "startHp": 60,
+              "endHp": 27,
+              "loss": 33,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl09",
+                "zl06"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 7,
+              "startHp": 27,
+              "endHp": 0,
+              "loss": 27,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18004,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 14,
+              "startHp": 60,
+              "endHp": 11,
+              "loss": 49,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl22",
+                "zl13",
+                "zl25"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 5,
+              "startHp": 11,
+              "endHp": 0,
+              "loss": 11,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18005,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 10,
+              "startHp": 60,
+              "endHp": 19,
+              "loss": 41,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl17",
+                "zl21"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 19,
+              "endHp": 0,
+              "loss": 19,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18006,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 7,
+              "startHp": 60,
+              "endHp": 31,
+              "loss": 29,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl14",
+                "zl24",
+                "zl22"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 9,
+              "startHp": 31,
+              "endHp": 0,
+              "loss": 31,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18007,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 13,
+              "startHp": 60,
+              "endHp": 19,
+              "loss": 41,
+              "deckSize": 10,
+              "deadPayoffDraws": 6,
+              "outcome": "reward",
+              "offer": [
+                "zl15",
+                "zl22",
+                "zl21"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 8,
+              "startHp": 19,
+              "endHp": 0,
+              "loss": 19,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18008,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 11,
+              "startHp": 60,
+              "endHp": 18,
+              "loss": 42,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl11",
+                "zl18"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 6,
+              "startHp": 18,
+              "endHp": 0,
+              "loss": 18,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18009,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 11,
+              "startHp": 60,
+              "endHp": 18,
+              "loss": 42,
+              "deckSize": 10,
+              "deadPayoffDraws": 6,
+              "outcome": "reward",
+              "offer": [
+                "zl11",
+                "zl14",
+                "zl23"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 18,
+              "endHp": 0,
+              "loss": 18,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18010,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 7,
+              "startHp": 60,
+              "endHp": 31,
+              "loss": 29,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl23",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 8,
+              "startHp": 31,
+              "endHp": 0,
+              "loss": 31,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18011,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 15,
+              "startHp": 60,
+              "endHp": 10,
+              "loss": 50,
+              "deckSize": 10,
+              "deadPayoffDraws": 8,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl21",
+                "zl07"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 10,
+              "endHp": 0,
+              "loss": 10,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18012,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 15,
+              "startHp": 60,
+              "endHp": 10,
+              "loss": 50,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl23",
+                "zl07",
+                "zl06"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 10,
+              "endHp": 0,
+              "loss": 10,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18013,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 34,
+              "loss": 26,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl04",
+                "zl17",
+                "zl11"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 10,
+              "startHp": 34,
+              "endHp": 0,
+              "loss": 34,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18014,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 9,
+              "startHp": 60,
+              "endHp": 27,
+              "loss": 33,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl21",
+                "zl08"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 5,
+              "startHp": 27,
+              "endHp": 0,
+              "loss": 27,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18015,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 8,
+              "startHp": 60,
+              "endHp": 23,
+              "loss": 37,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "reward",
+              "offer": [
+                "zl04",
+                "zl15",
+                "zl13"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 7,
+              "startHp": 23,
+              "endHp": 0,
+              "loss": 23,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18016,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 16,
+              "startHp": 60,
+              "endHp": 7,
+              "loss": 53,
+              "deckSize": 10,
+              "deadPayoffDraws": 8,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl14",
+                "zl24"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 3,
+              "startHp": 7,
+              "endHp": 0,
+              "loss": 7,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18017,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 13,
+              "startHp": 60,
+              "endHp": 14,
+              "loss": 46,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl16",
+                "zl04"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 14,
+              "endHp": 0,
+              "loss": 14,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18018,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 14,
+              "startHp": 60,
+              "endHp": 11,
+              "loss": 49,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl07",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 2,
+              "startHp": 11,
+              "endHp": 0,
+              "loss": 11,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18019,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 14,
+              "startHp": 60,
+              "endHp": 18,
+              "loss": 42,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl03",
+                "zl24"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 8,
+              "startHp": 18,
+              "endHp": 0,
+              "loss": 18,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18020,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 8,
+              "startHp": 60,
+              "endHp": 30,
+              "loss": 30,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "reward",
+              "offer": [
+                "zl09",
+                "zl13",
+                "zl07"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 10,
+              "startHp": 30,
+              "endHp": 0,
+              "loss": 30,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "family": "large",
+      "policy": "pillarGuard",
+      "n": 20,
+      "complete": 0,
+      "deaths": 20,
+      "truncated": 0,
+      "pillarAcquired": 5,
+      "pairAcquired": 0,
+      "lossP50": 60,
+      "lossP90": 60,
+      "rows": [
+        {
+          "seed": 18001,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 10,
+              "startHp": 60,
+              "endHp": 24,
+              "loss": 36,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl21",
+                "zl13",
+                "zl19"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 9,
+              "startHp": 24,
+              "endHp": 0,
+              "loss": 24,
+              "deckSize": 11,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18002,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 12,
+              "startHp": 60,
+              "endHp": 15,
+              "loss": 45,
+              "deckSize": 10,
+              "deadPayoffDraws": 6,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl11",
+                "zl03"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 15,
+              "endHp": 0,
+              "loss": 15,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18003,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 9,
+              "startHp": 60,
+              "endHp": 27,
+              "loss": 33,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl09",
+                "zl06"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 7,
+              "startHp": 27,
+              "endHp": 0,
+              "loss": 27,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18004,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 14,
+              "startHp": 60,
+              "endHp": 11,
+              "loss": 49,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl22",
+                "zl13",
+                "zl25"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 5,
+              "startHp": 11,
+              "endHp": 0,
+              "loss": 11,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18005,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 10,
+              "startHp": 60,
+              "endHp": 19,
+              "loss": 41,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl17",
+                "zl21"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 5,
+              "startHp": 19,
+              "endHp": 0,
+              "loss": 19,
+              "deckSize": 11,
+              "deadPayoffDraws": 3,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18006,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 7,
+              "startHp": 60,
+              "endHp": 31,
+              "loss": 29,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl14",
+                "zl24",
+                "zl22"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 9,
+              "startHp": 31,
+              "endHp": 0,
+              "loss": 31,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18007,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 13,
+              "startHp": 60,
+              "endHp": 19,
+              "loss": 41,
+              "deckSize": 10,
+              "deadPayoffDraws": 6,
+              "outcome": "reward",
+              "offer": [
+                "zl15",
+                "zl22",
+                "zl21"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 5,
+              "startHp": 19,
+              "endHp": 0,
+              "loss": 19,
+              "deckSize": 11,
+              "deadPayoffDraws": 3,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18008,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 11,
+              "startHp": 60,
+              "endHp": 18,
+              "loss": 42,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl11",
+                "zl18"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 6,
+              "startHp": 18,
+              "endHp": 0,
+              "loss": 18,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18009,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 11,
+              "startHp": 60,
+              "endHp": 18,
+              "loss": 42,
+              "deckSize": 10,
+              "deadPayoffDraws": 6,
+              "outcome": "reward",
+              "offer": [
+                "zl11",
+                "zl14",
+                "zl23"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 18,
+              "endHp": 0,
+              "loss": 18,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18010,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 7,
+              "startHp": 60,
+              "endHp": 31,
+              "loss": 29,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl23",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 8,
+              "startHp": 31,
+              "endHp": 0,
+              "loss": 31,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18011,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 15,
+              "startHp": 60,
+              "endHp": 10,
+              "loss": 50,
+              "deckSize": 10,
+              "deadPayoffDraws": 8,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl21",
+                "zl07"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 3,
+              "startHp": 10,
+              "endHp": 0,
+              "loss": 10,
+              "deckSize": 11,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18012,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 15,
+              "startHp": 60,
+              "endHp": 10,
+              "loss": 50,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl23",
+                "zl07",
+                "zl06"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 10,
+              "endHp": 0,
+              "loss": 10,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18013,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 34,
+              "loss": 26,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl04",
+                "zl17",
+                "zl11"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 10,
+              "startHp": 34,
+              "endHp": 0,
+              "loss": 34,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18014,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 9,
+              "startHp": 60,
+              "endHp": 27,
+              "loss": 33,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl21",
+                "zl08"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 5,
+              "startHp": 27,
+              "endHp": 0,
+              "loss": 27,
+              "deckSize": 11,
+              "deadPayoffDraws": 1,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18015,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 8,
+              "startHp": 60,
+              "endHp": 23,
+              "loss": 37,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "reward",
+              "offer": [
+                "zl04",
+                "zl15",
+                "zl13"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 7,
+              "startHp": 23,
+              "endHp": 0,
+              "loss": 23,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18016,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 16,
+              "startHp": 60,
+              "endHp": 7,
+              "loss": 53,
+              "deckSize": 10,
+              "deadPayoffDraws": 8,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl14",
+                "zl24"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 3,
+              "startHp": 7,
+              "endHp": 0,
+              "loss": 7,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18017,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 13,
+              "startHp": 60,
+              "endHp": 14,
+              "loss": 46,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl16",
+                "zl04"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 4,
+              "startHp": 14,
+              "endHp": 0,
+              "loss": 14,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18018,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 14,
+              "startHp": 60,
+              "endHp": 11,
+              "loss": 49,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl07",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 2,
+              "startHp": 11,
+              "endHp": 0,
+              "loss": 11,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18019,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 14,
+              "startHp": 60,
+              "endHp": 18,
+              "loss": 42,
+              "deckSize": 10,
+              "deadPayoffDraws": 7,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl03",
+                "zl24"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 8,
+              "startHp": 18,
+              "endHp": 0,
+              "loss": 18,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18020,
+          "outcome": "death",
+          "hp": 0,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "large",
+              "turns": 8,
+              "startHp": 60,
+              "endHp": 30,
+              "loss": 30,
+              "deckSize": 10,
+              "deadPayoffDraws": 4,
+              "outcome": "reward",
+              "offer": [
+                "zl09",
+                "zl13",
+                "zl07"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "large",
+              "turns": 10,
+              "startHp": 30,
+              "endHp": 0,
+              "loss": 30,
+              "deckSize": 10,
+              "deadPayoffDraws": 5,
+              "outcome": "death",
+              "offer": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "family": "multi",
+      "policy": "skip",
+      "n": 20,
+      "complete": 20,
+      "deaths": 0,
+      "truncated": 0,
+      "pillarAcquired": 0,
+      "pairAcquired": 0,
+      "lossP50": 0,
+      "lossP90": 2,
+      "rows": [
+        {
+          "seed": 18001,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl21",
+                "zl13",
+                "zl19"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl18",
+                "zl20",
+                "zl22"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18002,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl11",
+                "zl03"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl24",
+                "zl16"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18003,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl09",
+                "zl06"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl11",
+                "zl15",
+                "zl20"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18004,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl22",
+                "zl13",
+                "zl25"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl18",
+                "zl07",
+                "zl16"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18005,
+          "outcome": "complete",
+          "hp": 58,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 59,
+              "loss": 1,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl17",
+                "zl21"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 59,
+              "endHp": 58,
+              "loss": 1,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl21",
+                "zl08"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 58,
+              "endHp": 58,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18006,
+          "outcome": "complete",
+          "hp": 58,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl14",
+                "zl24",
+                "zl22"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 58,
+              "loss": 2,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl03",
+                "zl25"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 58,
+              "endHp": 58,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18007,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl15",
+                "zl22",
+                "zl21"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl20",
+                "zl25"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18008,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl11",
+                "zl18"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl24",
+                "zl12",
+                "zl04"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18009,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl11",
+                "zl14",
+                "zl23"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl09",
+                "zl04",
+                "zl12"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18010,
+          "outcome": "complete",
+          "hp": 56,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl23",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 56,
+              "loss": 4,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl16",
+                "zl04",
+                "zl22"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 56,
+              "endHp": 56,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18011,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl21",
+                "zl07"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl18",
+                "zl04",
+                "zl11"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18012,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl23",
+                "zl07",
+                "zl06"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl24",
+                "zl22",
+                "zl08"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18013,
+          "outcome": "complete",
+          "hp": 59,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 59,
+              "loss": 1,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl04",
+                "zl17",
+                "zl11"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 59,
+              "endHp": 59,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl18",
+                "zl14"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 59,
+              "endHp": 59,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18014,
+          "outcome": "complete",
+          "hp": 59,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl21",
+                "zl08"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 59,
+              "loss": 1,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl04",
+                "zl08"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 59,
+              "endHp": 59,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18015,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl04",
+                "zl15",
+                "zl13"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl16",
+                "zl20"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18016,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl14",
+                "zl24"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl15",
+                "zl07"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18017,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl16",
+                "zl04"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl11",
+                "zl08",
+                "zl18"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18018,
+          "outcome": "complete",
+          "hp": 59,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl07",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 59,
+              "loss": 1,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl20",
+                "zl24",
+                "zl03"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 59,
+              "endHp": 59,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18019,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl03",
+                "zl24"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl08",
+                "zl25"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18020,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl09",
+                "zl13",
+                "zl07"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl11",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "family": "multi",
+      "policy": "pillarGuard",
+      "n": 20,
+      "complete": 20,
+      "deaths": 0,
+      "truncated": 0,
+      "pillarAcquired": 5,
+      "pairAcquired": 1,
+      "lossP50": 0,
+      "lossP90": 4,
+      "rows": [
+        {
+          "seed": 18001,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl21",
+                "zl13",
+                "zl19"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 11,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl18",
+                "zl20",
+                "zl22"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 11,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18002,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl11",
+                "zl03"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl24",
+                "zl16"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18003,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl09",
+                "zl06"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl11",
+                "zl15",
+                "zl20"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18004,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl22",
+                "zl13",
+                "zl25"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl18",
+                "zl07",
+                "zl16"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18005,
+          "outcome": "complete",
+          "hp": 58,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 59,
+              "loss": 1,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl17",
+                "zl21"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 59,
+              "endHp": 58,
+              "loss": 1,
+              "deckSize": 11,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl21",
+                "zl08"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 58,
+              "endHp": 58,
+              "loss": 0,
+              "deckSize": 11,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18006,
+          "outcome": "complete",
+          "hp": 58,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl14",
+                "zl24",
+                "zl22"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 58,
+              "loss": 2,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl03",
+                "zl25"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 58,
+              "endHp": 58,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18007,
+          "outcome": "complete",
+          "hp": 56,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21",
+            "zl25"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl15",
+                "zl22",
+                "zl21"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 11,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl20",
+                "zl25"
+              ],
+              "choice": "zl25"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 56,
+              "loss": 4,
+              "deckSize": 12,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18008,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl11",
+                "zl18"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl24",
+                "zl12",
+                "zl04"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18009,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl11",
+                "zl14",
+                "zl23"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl09",
+                "zl04",
+                "zl12"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18010,
+          "outcome": "complete",
+          "hp": 56,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl23",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 56,
+              "loss": 4,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl16",
+                "zl04",
+                "zl22"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 56,
+              "endHp": 56,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18011,
+          "outcome": "complete",
+          "hp": 55,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl21",
+                "zl07"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 56,
+              "loss": 4,
+              "deckSize": 11,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl18",
+                "zl04",
+                "zl11"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 56,
+              "endHp": 55,
+              "loss": 1,
+              "deckSize": 11,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18012,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl23",
+                "zl07",
+                "zl06"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl24",
+                "zl22",
+                "zl08"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18013,
+          "outcome": "complete",
+          "hp": 59,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 59,
+              "loss": 1,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl04",
+                "zl17",
+                "zl11"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 59,
+              "endHp": 59,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl19",
+                "zl18",
+                "zl14"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 59,
+              "endHp": 59,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18014,
+          "outcome": "complete",
+          "hp": 59,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04",
+            "zl21"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl21",
+                "zl08"
+              ],
+              "choice": "zl21"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 59,
+              "loss": 1,
+              "deckSize": 11,
+              "deadPayoffDraws": 0,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl04",
+                "zl08"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 59,
+              "endHp": 59,
+              "loss": 0,
+              "deckSize": 11,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18015,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl04",
+                "zl15",
+                "zl13"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl16",
+                "zl20"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18016,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl17",
+                "zl14",
+                "zl24"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl08",
+                "zl15",
+                "zl07"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18017,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl16",
+                "zl04"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 6,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl11",
+                "zl08",
+                "zl18"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18018,
+          "outcome": "complete",
+          "hp": 59,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl07",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 59,
+              "loss": 1,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl20",
+                "zl24",
+                "zl03"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 59,
+              "endHp": 59,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18019,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl03",
+                "zl24"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 2,
+              "outcome": "reward",
+              "offer": [
+                "zl07",
+                "zl08",
+                "zl25"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 4,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        },
+        {
+          "seed": 18020,
+          "outcome": "complete",
+          "hp": 60,
+          "deck": [
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl01",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl02",
+            "zl03",
+            "zl04"
+          ],
+          "history": [
+            {
+              "room": 1,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl09",
+                "zl13",
+                "zl07"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 2,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 1,
+              "outcome": "reward",
+              "offer": [
+                "zl12",
+                "zl11",
+                "zl09"
+              ],
+              "choice": "abandon"
+            },
+            {
+              "room": 3,
+              "family": "multi",
+              "turns": 5,
+              "startHp": 60,
+              "endHp": 60,
+              "loss": 0,
+              "deckSize": 10,
+              "deadPayoffDraws": 3,
+              "outcome": "complete",
+              "offer": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
