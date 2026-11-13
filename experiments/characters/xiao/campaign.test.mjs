@@ -29,3 +29,17 @@ test('defeat offers no rewards or restart healing',()=>{
 test('malformed choice history or illegal phase cannot create reward copies',()=>{
   for(const edit of [c=>delete c.choices,c=>c.choices.push({}),c=>c.deck.push('x06'),c=>c.phase='victory']){const c=newCampaign();edit(c);const before=structuredClone(c);const r=campaignAction(c,{type:'end'});assert.equal(r.reason,'state');assert.deepEqual(r.state,before);assert.deepEqual(c,before);}
 });
+test('reward RNG is independent of combat RNG consumption',()=>{
+  const a=newCampaign(79);a.battle.hand=['x01'];a.battle.enemies[0].hp=1;a.battle.enemies[0].block=0;
+  const b=structuredClone(a);b.battle.rng=0xffffffff;b.battle.draw.reverse();
+  const ra=campaignAction(a,{type:'play',index:0}),rb=campaignAction(b,{type:'play',index:0});
+  assert.equal(ra.state.phase,'reward');assert.deepEqual(ra.state.offer,rb.state.offer);assert.equal(ra.state.rewardRng,rb.state.rewardRng);
+});
+test('three real battles with skips reach terminal victory and reject further reward',()=>{
+  let c=newCampaign(1),actions=0;
+  while(!['victory','defeat'].includes(c.phase)&&actions++<300){
+    const choice=c.phase==='reward'?{type:'reward',card:null}:(()=>{const a=choose(observe(c.battle),'guard');return a?{type:'play',...a}:{type:'end'};})();
+    const r=campaignAction(c,choice);assert.equal(r.ok,true);c=r.state;
+  }
+  assert.equal(c.phase,'victory');assert.equal(c.stage,2);assert.equal(c.choices.length,2);assert.equal(c.battle.hp,3);assert.equal(campaignAction(c,{type:'reward',card:null}).ok,false);
+});

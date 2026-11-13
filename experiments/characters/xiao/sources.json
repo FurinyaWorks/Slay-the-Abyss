@@ -11,16 +11,69 @@
       "locator": "I. New Character, Xiao; extracted lines 73-82",
       "language": "en",
       "verified": true,
-      "supports": ["护法夜叉守护璃月，使用长柄武器", "战技为突进攻击，可在空中使用", "爆发戴面具强化攻击与跳跃，同时流失生命"],
-      "doesNotSupport": ["本作启动2HP费用", "本作每回合结束扣2HP和可致死规则", "本作固定+4伤害及回合数", "初始遗物抽1张", "所有中文卡面名的精确拼写或审美批准"],
-      "nameTokens": ["Vigilant Yaksha", "Lemniscatic Wing Cycling", "Bane of All Evil"],
+      "supports": [
+        "护法夜叉守护璃月，使用长柄武器",
+        "战技为突进攻击，可在空中使用",
+        "爆发戴面具强化攻击与跳跃，同时流失生命"
+      ],
+      "doesNotSupport": [
+        "本作启动2HP费用",
+        "本作每回合结束扣2HP和可致死规则",
+        "本作固定+4伤害及回合数",
+        "初始遗物抽1张",
+        "所有中文卡面名的精确拼写或审美批准"
+      ],
+      "nameTokens": [
+        "Vigilant Yaksha",
+        "Lemniscatic Wing Cycling",
+        "Bane of All Evil"
+      ],
       "notes": "保留该公告战技英文Wing原字，不自行修成其他版本拼写；中文逐条技能/语音/命座/TCG待核。",
       "humanApproved": false
     }
   ],
-  "pendingCategories": ["中文技能", "天赋", "命座", "TCG", "战斗语音", "日常语音", "官方故事逐条定位", "逐卡来源与独立人审"],
+  "pendingCategories": [
+    "中文技能",
+    "天赋",
+    "命座",
+    "TCG",
+    "战斗语音",
+    "日常语音",
+    "官方故事逐条定位",
+    "逐卡来源与独立人审"
+  ],
   "unreadableOfficialPages": [
     "https://wiki.hoyolab.com/pc/genshin/entry/51",
     "https://genshin.hoyoverse.com/zh-tw/news/detail/103849"
+  ],
+  "secondaryResearch": [
+    {
+      "id": "bwiki-xiao-talents-20261113",
+      "url": "https://wiki.biligame.com/ys/%E9%AD%88",
+      "publisherClass": "community transcription, not official publication",
+      "checkedAt": "2026-11-13",
+      "locator": "Talents lines 795-804,823-829,848-859; Constellations lines 776-782",
+      "readable": true,
+      "officialPrimaryVerified": false,
+      "nameTokens": [
+        "卷积微尘",
+        "风轮两立",
+        "靖妖傩舞",
+        "神通·诸苦灭尽"
+      ],
+      "paraphrase": "社区转录描述普攻连枪、空中突进、下坠范围攻击、戴面具强化同时失血，以及低生命防御增强。",
+      "designDifferences": [
+        "本作x05常态单体、面具群体是特意改编；社区原作下落攻击条目本来就是范围，不能冒称一比一复刻。",
+        "x07当前无低血条件，不能把低生命防御命座当其已核对应命名。"
+      ],
+      "use": "只作待核P1词条索引与角色机制反例研究，不提升G1或人审状态"
+    }
+  ],
+  "blockedFetches": [
+    {
+      "url": "https://www.bilibili.com/video/BV1Th411C7ex/",
+      "result": "HTTP 412; title indexed but video/transcript not read",
+      "checkedAt": "2026-11-13"
+    }
   ]
 }
