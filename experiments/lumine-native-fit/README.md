@@ -2,6 +2,8 @@
 
 独立实验分支 `feat/lumine-native-fit`，起始基线 `903bf2a31`（含 #634）。不改变正式构建入口，不合并、发布或写入玩家存档。目标是画质、完整显示延迟与资源成本同时可用；图元数不是单独的验收标准。
 
+[Draft PR #647](https://github.com/FurinyaWorks/Slay-the-Abyss/pull/647)。实际候选源码/证据提交 `fd5e161b84cee02e02d112cd917b99ea40febc2e`，后续说明提交不改变已测代码。收尾时develop已前移至`e805a87d`，Draft存在合并冲突，保留冻结实验基线供复现；新基线组合未测试，不授予合并准入。
+
 ## 输入与画质选择
 
 - `input/source.png`：用户第一张附件；保留眼睛、眉毛、鼻、嘴的来源。SHA256 `84cc7161fe5312e0f72223d50e8ac6aaa65c4be7d45d558b810a2443db5c1faa`。
