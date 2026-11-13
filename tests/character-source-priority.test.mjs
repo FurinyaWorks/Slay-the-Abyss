@@ -79,11 +79,45 @@ test('a generic homepage link without rejected official candidates cannot approv
 test('documented high-priority rejections and N-GATE evidence allow a genuine P4 exception',()=>{
  const m=baseApproved(),c=m.cards[0];
  c.source={tier:'P4',kind:'original',verified:true,name_original:true};
+ c.action_context='card_management';
  const rejected=(group)=>({completed:true,categories:[group],
  lookups:[{query:'胡桃 '+group,locator:'官方具体角色条目',url:'https://example.org/entry',entry:'技能与语音具体章节'}],
  rejected_candidates:[{text:'具体官方短语',source_url:'https://example.org/entry',source_entry:'该短语具体条目',rejection_reason:'This expression does not describe a supportive draw ability'}],
  reason:'Official sources have no phrase that fits this defensive draw role',result:'no_suitable'});
  c.search={P1:rejected('skills'),P2:rejected('story'),P3:{status:'not_applicable',reason:'No real weapon or ritual technique fits a general draw action'}};
+ assert.equal(validateNamingManifest(m).ready,true);
+});
+test('P4 weapon action cannot skip P3 by claiming martial art not applicable',()=>{
+ const m=baseApproved(),c=m.cards[0];
+ c.source={tier:'P4',kind:'original',verified:true,name_original:true};
+ const documented=(group)=>({completed:true,categories:[group],
+ lookups:[{query:'Hu Tao '+group,locator:'exact skill or voice line',url:'https://example.org/entry',entry:'specified source entry'}],
+ rejected_candidates:[{text:'official phrase',source_url:'https://example.org/entry',source_entry:'exact entry',rejection_reason:'This official phrase does not fit the physical thrusting action'}],
+ reason:'No suitable official source matches the requested physical action',result:'no_suitable'});
+ c.action_context='weapon_attack';
+ c.search={P1:documented('combat'),P2:documented('story'),P3:{status:'not_applicable',reason:'I have not searched real spear techniques but want an invented name instead'}};
+ assert.match(validateNamingManifest(m).errors.join(' / '),/P4 weapon action must search P3/);
+});
+test('P4 weapon action must record a real P3 candidate and its rejection',()=>{
+ const m=baseApproved(),c=m.cards[0];
+ c.source={tier:'P4',kind:'original',verified:true,name_original:true};
+ const documented=(group)=>({completed:true,categories:[group],
+ lookups:[{query:'Hu Tao '+group,locator:'exact skill or voice line',url:'https://example.org/entry',entry:'specified source entry'}],
+ rejected_candidates:[{text:'official phrase',source_url:'https://example.org/entry',source_entry:'exact entry',rejection_reason:'This official phrase does not fit the physical thrusting action'}],
+ reason:'No suitable official source matches the requested physical action',result:'no_suitable'});
+ c.action_context='weapon_combo';
+ c.search={P1:documented('combat'),P2:documented('story'),P3:{status:'searched',reason:'No suitable authentic technique matches the full effect'}};
+ assert.match(validateNamingManifest(m).errors.join(' / '),/P4 P3 search lacks concrete real terms/);
+});
+test('P4 nonweapon defense may mark P3 not applicable when reason is recorded',()=>{
+ const m=baseApproved(),c=m.cards[0];
+ c.source={tier:'P4',kind:'original',verified:true,name_original:true};
+ const documented=(group)=>({completed:true,categories:[group],
+ lookups:[{query:'Hu Tao '+group,locator:'exact skill or voice line',url:'https://example.org/entry',entry:'specified source entry'}],
+ rejected_candidates:[{text:'official phrase',source_url:'https://example.org/entry',source_entry:'exact entry',rejection_reason:'This official phrase does not map to draw and defend as used'}],
+ reason:'No suitable official source describes this abstract card-management effect',result:'no_suitable'});
+ c.action_context='card_management';
+ c.search={P1:documented('combat'),P2:documented('story'),P3:{status:'not_applicable',reason:'Pure card draw has no corresponding spear technique or real-world action'}};
  assert.equal(validateNamingManifest(m).ready,true);
 });
 test('source kind cannot masquerade as higher official priority',()=>{
