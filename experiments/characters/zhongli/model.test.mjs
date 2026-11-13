@@ -2,15 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
-    const s=initialState(); if(i===3||i===15)s.jade=6;
+    const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7,8,10,13].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([0,3,4,6,7,8,10,13,16].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
+    if(i===16)assert.equal(r.state.jade,0);
     if(i===2)assert.equal(r.state.jade,value);
     if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
@@ -218,4 +219,24 @@ test('shield conversion cancellation, no energy, dead battle and invalid effect 
  const s=initialState(['a']);s.instances.a={id:'zl16',upgraded:false};s.jade=6;
  for(const change of [{},{energy:0},{hp:0}]){const state={...s,...change};const before=structuredClone(state);const r=play(state,{id:'zl16',instance:'a',cancel:!Object.keys(change).length});assert.equal(r.ok,false);assert.equal(r.state,state);assert.deepEqual(state,before);}
  const c=cards.find(c=>c.id==='zl16'),old=c.base;try{c.base=[['spendJade',6],['block',NaN]];const before=structuredClone(s);const r=play(s,{id:'zl16',instance:'a'});assert.equal(r.state,s);assert.equal(r.ok,false);assert.deepEqual(s,before);}finally{c.base=old;}
+});
+
+test('armor removal precedes attack, is not damage, and vulnerability amplifies attack only',()=>{
+ for(const u of [false,true])for(const armor of [0,1,5,12,Number.MAX_SAFE_INTEGER])for(const vulnerable of [0,2]){
+  const s=initialState();s.jade=3;s.enemy.block=armor;s.enemy.vulnerable=vulnerable;const before=structuredClone(s);const r=run('zl17',s,u);
+  assert.equal(r.state.enemy.block,0);assert.equal(r.state.enemy.hp,40-(u?(vulnerable?9:6):(vulnerable?6:4)));assert.equal(r.state.energy,2);assert.deepEqual(s,before);
+ }
+});
+test('antiarmor trades away naked-target damage and cannot undo lethal battle or failed action',()=>{
+ const plain=initialState();plain.jade=3;assert.equal(run('zl17',plain).state.enemy.hp,36);assert.equal(run('zl01',plain).state.enemy.hp,34);
+ const armored=initialState();armored.jade=3;armored.enemy.block=12;assert.equal(run('zl17',armored).state.enemy.hp,36);assert.equal(run('zl01',armored).state.enemy.hp,40);
+ const s=initialState(['a']);s.instances.a={id:'zl17',upgraded:false};s.enemy.block=12;s.jade=3;
+ for(const patch of [{energy:0},{hp:0},{enemy:{...s.enemy,hp:0}}]){const state={...s,...patch};const before=structuredClone(state);assert.equal(play(state,{id:'zl17',instance:'a',target:'enemy'}).ok,false);assert.deepEqual(state,before);}
+ for(const opts of [{cancel:true},{target:'self'}]){const before=structuredClone(s);assert.equal(play(s,{id:'zl17',instance:'a',target:'enemy',...opts}).state,s);assert.deepEqual(s,before);}
+ const c=cards.find(c=>c.id==='zl17'),old=c.base;try{for(const n of [0,2,NaN]){c.base=[['removeBlock',n],['damage',4]];const before=structuredClone(s);assert.equal(play(s,{id:'zl17',instance:'a',target:'enemy'}).ok,false);assert.deepEqual(s,before);}}finally{c.base=old;}
+});
+
+test('antiarmor requires actual jade payment and gives up future protection at every boundary',()=>{
+ for(let jade=0;jade<=20;jade++)for(const u of [false,true]){const s=initialState();s.jade=jade;s.enemy.block=12;const before=structuredClone(s);const r=run('zl17',s,u);assert.equal(r.ok,jade>=3);assert.deepEqual(s,before);if(r.ok)assert.equal(r.state.jade,jade-3);}
+ const s=initialState();s.jade=3;const used=run('zl17',s).state;assert.equal(endTurn(used,[3]).hp,57);assert.equal(endTurn(s,[3]).hp,60);
 });

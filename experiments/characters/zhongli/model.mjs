@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.10.0';
+export const VERSION = 'zhongli-mechanics-0.11.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -21,6 +21,7 @@ export const cards = [
   {...card('zl14', '保留攻击直到有利输出窗口而非立即兑现', 'common', 2, [['damage', 13]], [['damage', 18]], 'enemy'), selfRetain: true},
   card('zl15', '迎击本轮多段攻击而非建立永久防线', 'common', 2, [['block', 8], ['counter', 3]], [['block', 11], ['counter', 4]]),
   card('zl16', '将跨回合玉璋转为本轮应急格挡，承担空过损失', 'common', 1, [['spendJade', 6], ['block', 16]], [['spendJade', 6], ['block', 21]]),
+  card('zl17', '牺牲玉璋拆除敌方格挡，放弃裸敌输出与防守储备', 'common', 1, [['spendJade', 3], ['removeBlock', 1], ['damage', 4]], [['spendJade', 3], ['removeBlock', 1], ['damage', 6]], 'enemy'),
 ];
 export const JADE_CAP = 20;
 export const GUARD_THRESHOLD = 6;
@@ -31,7 +32,7 @@ export function incomingAttack(hit, weak = 0) { return weak > 0 ? Math.floor(hit
 export function textFor(id, upgraded = false) {
   const c = cards.find(c => c.id === id);
   if (!c) throw new Error('unknown card');
-  const terms = { counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
+  const terms = { removeBlock: () => `先移除目标全部格挡（不是伤害）`, counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
   return `${c.cost}能量；${(upgraded ? c.upgraded : c.base).map(([op, n]) => terms[op](n)).join('；')}${c.exhaust ? '；消耗（本战不再抽到）' : ''}${c.selfRetain ? '；保留（未打出则留在手中，占用手牌槽）' : ''}。`;
 }
 export function initialState(hand = ['a','b','c','d','e','f']) {
@@ -55,7 +56,8 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if (c.target === 'enemy' && target !== 'enemy') return { ok: false, reason: 'invalid target', state };
   if (typeof upgraded !== 'boolean' || upgraded !== state.instances[instance].upgraded) return { ok: false, reason: 'invalid upgrade', state };
   const effects = upgraded ? c.upgraded : c.base;
-  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
+  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter','removeBlock'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
+  if(effects.some(([op,n])=>op==='removeBlock'&&n!==1))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op],i)=>op==='draw'&&i!==effects.length-1))return {ok:false,reason:'invalid effect',state};
   const draws=effects.filter(([op])=>op==='draw').reduce((n,[,v])=>n+v,0);
   if(draws>10)return {ok:false,reason:'invalid effect',state};
@@ -71,6 +73,7 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   next.energy -= c.cost;
   next.hand.splice(next.hand.indexOf(instance), 1);
   for (const [op, n] of effects) {
+    if(op==='removeBlock'&&next.enemy.hp>0)next.enemy.block=0;
     if (op === 'draw')next.pendingDraw=(next.pendingDraw ?? 0)+n;
     if(op==='counter')next.counter=(next.counter ?? 0)+n;
     if(op==='vulnerable'&&next.enemy.hp>0)next.enemy.vulnerable=(next.enemy.vulnerable ?? 0)+n;

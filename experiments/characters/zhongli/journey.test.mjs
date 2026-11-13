@@ -75,3 +75,10 @@ test('v6 conversion is acquired exactly once after victory, not silently added t
  assert.equal(n.deck.at(-1),'zl16');assert.equal(n.deck.length,11);assert.throws(()=>takeReward(n,1));
  for(const v of ['v1','v2','v3','v4','v5'])assert.equal(offers(seed,1,v).includes('zl16'),false);
 });
+
+test('v7 antiarmor candidate follows victory reward and leaves historical pools intact',()=>{
+ let seed=1;while(!offers(seed,1,'v7').includes('zl17'))seed++;
+ const s=journeyStart(seed,{poolVersion:'v7'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'breach'));
+ assert.equal(n.deck.at(-1),'zl17');assert.equal(n.deck.length,11);assert.throws(()=>takeReward(n,1));
+ for(const v of ['v1','v2','v3','v4','v5','v6'])assert.equal(offers(seed,1,v).includes('zl17'),false);
+});

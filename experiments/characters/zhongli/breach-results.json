@@ -1,0 +1,413 @@
+{
+  "scope": "40 fixed one-card-addition battles; initial enemy block 0/12 only, 9 damage each turn, visible full-turn defense policy. No natural acquisition or balance approval.",
+  "seeds": "10001..10010 exploratory, no tuning",
+  "confounds": "deck thickness changes shuffle; fixed addition unlike reward; enemy armor never refreshes; only single enemy no block-loss triggers",
+  "probability": {
+    "pool": [
+      "zl03",
+      "zl04",
+      "zl06",
+      "zl07",
+      "zl08",
+      "zl09",
+      "zl11",
+      "zl12",
+      "zl13",
+      "zl14",
+      "zl15",
+      "zl16",
+      "zl17"
+    ],
+    "common": 1,
+    "uncommon": 0,
+    "rare": 0,
+    "idealUniformInclusion": 0.23076923076923078,
+    "empiricalOffers": 20000,
+    "inclusion": {
+      "zl03": 4533,
+      "zl04": 4622,
+      "zl06": 4636,
+      "zl07": 4560,
+      "zl08": 4616,
+      "zl09": 4548,
+      "zl11": 4511,
+      "zl12": 4697,
+      "zl13": 4745,
+      "zl14": 4708,
+      "zl15": 4599,
+      "zl16": 4624,
+      "zl17": 4601
+    },
+    "warning": "finite LCG bias"
+  },
+  "groups": [
+    {
+      "armor": 0,
+      "added": false,
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 0,
+      "rows": [
+        {
+          "seed": 10001,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10002,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10003,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10004,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 5,
+          "plays": 0
+        },
+        {
+          "seed": 10005,
+          "outcome": "win",
+          "hp": 56,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10006,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10007,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10008,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10009,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 5,
+          "plays": 0
+        },
+        {
+          "seed": 10010,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 5,
+          "plays": 0
+        }
+      ]
+    },
+    {
+      "armor": 0,
+      "added": true,
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 0,
+      "rows": [
+        {
+          "seed": 10001,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 5,
+          "plays": 0
+        },
+        {
+          "seed": 10002,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 1
+        },
+        {
+          "seed": 10003,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 5,
+          "plays": 0
+        },
+        {
+          "seed": 10004,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10005,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10006,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 1
+        },
+        {
+          "seed": 10007,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 5,
+          "plays": 0
+        },
+        {
+          "seed": 10008,
+          "outcome": "win",
+          "hp": 54,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10009,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        },
+        {
+          "seed": 10010,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 0
+        }
+      ]
+    },
+    {
+      "armor": 12,
+      "added": false,
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 1,
+      "rows": [
+        {
+          "seed": 10001,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10002,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10003,
+          "outcome": "win",
+          "hp": 59,
+          "enemyHp": 0,
+          "turns": 5,
+          "plays": 0
+        },
+        {
+          "seed": 10004,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10005,
+          "outcome": "win",
+          "hp": 56,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10006,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10007,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 7,
+          "plays": 0
+        },
+        {
+          "seed": 10008,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10009,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10010,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 7,
+          "plays": 0
+        }
+      ]
+    },
+    {
+      "armor": 12,
+      "added": true,
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 4,
+      "rows": [
+        {
+          "seed": 10001,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10002,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 5,
+          "plays": 0
+        },
+        {
+          "seed": 10003,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10004,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 7,
+          "plays": 0
+        },
+        {
+          "seed": 10005,
+          "outcome": "win",
+          "hp": 59,
+          "enemyHp": 0,
+          "turns": 7,
+          "plays": 0
+        },
+        {
+          "seed": 10006,
+          "outcome": "win",
+          "hp": 56,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 1
+        },
+        {
+          "seed": 10007,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 5,
+          "plays": 1
+        },
+        {
+          "seed": 10008,
+          "outcome": "win",
+          "hp": 54,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 0
+        },
+        {
+          "seed": 10009,
+          "outcome": "win",
+          "hp": 60,
+          "enemyHp": 0,
+          "turns": 4,
+          "plays": 1
+        },
+        {
+          "seed": 10010,
+          "outcome": "win",
+          "hp": 59,
+          "enemyHp": 0,
+          "turns": 6,
+          "plays": 1
+        }
+      ]
+    }
+  ]
+}
