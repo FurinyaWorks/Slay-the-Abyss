@@ -347,3 +347,14 @@ prior dead targets, final kill followed by isolated queued exit and host Snapsho
 That final-kill case is NOT public terminal/UseCard certification. At mask zero,
 base native damage 0 can still receive Strength or other host modifiers: literal
 JS zero-damage parity is not claimed. Public payment, terminal gate and balance HOLD.
+
+## x58 reserved block (not shared)
+`reserveBlock` safely accumulates frozen 10/14 without immediate block. Independent
+`xiaoStartBlock` consumes once for the current trusted turn and delegates native
+block, after the host's old-block cleanup. Dead players receive nothing. Native
+Dexterity/Frail modify payout; this is not JS literal shield parity. Host owns stage
+placement, native output bounds and full-command Snapshot on downstream errors.
+`reserve_block_test.lua` covers base/up, no repeat, accumulation, native Dexterity,
+death, false/overflow rejection and actual Snapshot restoration. Explicit paid and
+turn fixtures are not public x58/Run/automatic enemy-turn certification. Shared
+only has the separately frozen earlier energy executor; this file is not installed.

@@ -1,0 +1,3 @@
+PASS x58 base upgrade reserve no immediate shield; native payout once and no repeated next-turn reward
+PASS accumulated reserve uses native block modifiers; dead player neither paid nor marker consumed
+PASS false resources and reserve overflow reject; host Snapshot restores reward and once marker for retry
