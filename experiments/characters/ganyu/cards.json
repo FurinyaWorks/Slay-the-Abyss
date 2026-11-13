@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.12.0",
+  "version": "ganyu-sample-0.13.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -1188,6 +1188,113 @@
         ]
       },
       "source_ref": "ganyu-34",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-35",
+      "name": "待命名·ganyu-35",
+      "candidate_name": null,
+      "role": "满蓄纯群伤而非主目标加绽放",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 2,
+            "bonus": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 3,
+            "bonus": 7
+          }
+        ]
+      },
+      "source_ref": "ganyu-35",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-36",
+      "name": "待命名·ganyu-36",
+      "candidate_name": null,
+      "role": "轻防守兼主动单层蓄力",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 4
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 7
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-36",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-37",
+      "name": "待命名·ganyu-37",
+      "candidate_name": null,
+      "role": "移除雨场将剩余群伤预算集中单体",
+      "rarity": "rare",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_focus",
+            "amount": 4
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_focus",
+            "amount": 7
+          }
+        ]
+      },
+      "source_ref": "ganyu-37",
       "review": {
         "status": "HOLD",
         "human_approved": false,
