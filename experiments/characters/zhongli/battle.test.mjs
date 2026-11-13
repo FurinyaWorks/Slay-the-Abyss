@@ -177,3 +177,11 @@ test('guarded exposure survives one real turn to enable subsequent expensive fin
   const r=playInstance(s,key);assert.equal(r.ok,true);return r.state.enemy.hp;
  });assert.deepEqual(outcomes,[0,5]);
 });
+
+test('reserve burst zero jade still pays and exhausts, while lethal stops enemy action after clearing reserve',()=>{
+ for(const jade of [0,20]){
+  let s=battleStart({deck:['zl30'],enemyHp:40});s.jade=jade;const key=s.hand[0],r=playInstance(s,key);assert.equal(r.ok,true);s=r.state;
+  assert.equal(s.jade,0);assert.equal(s.energy,2);assert.deepEqual(s.exhaust,[key]);assert.equal(s.enemy.hp,jade?0:40);
+  const next=nextTurn(s,[10]);assert.equal(next.hp,jade?60:50);assert.equal(next.hand.length,0);assert.deepEqual(next.exhaust,[key]);
+ }
+});

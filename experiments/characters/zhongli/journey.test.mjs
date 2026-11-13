@@ -165,3 +165,9 @@ test('guarded exposure v19 reward has actual acquisition and previous pool uncha
  let s=journeyStart(seed,{poolVersion:'v19'});s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const choice=selectReward(rewardView(s),'guardedExpose');assert.equal(s.offer[choice-1],'zl29');s=takeReward(s,choice);assert.ok(s.deck.includes('zl29'));
  for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v18').includes('zl29'));
 });
+
+test('reserve burst enters v20 reward chain without appearing in v19',()=>{
+ let seed=1;while(seed<10000&&!offers(seed,1,'v20').includes('zl30'))seed++;assert.ok(seed<10000);
+ let s=journeyStart(seed,{poolVersion:'v20'});s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const choice=selectReward(rewardView(s),'reserveBurst');assert.equal(s.offer[choice-1],'zl30');s=takeReward(s,choice);assert.ok(s.deck.includes('zl30'));
+ for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v19').includes('zl30'));
+});
