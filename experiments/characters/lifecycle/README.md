@@ -475,3 +475,16 @@ This extends Combat support to 32 Ganyu cards, not 75 or a registered character.
 Fixed rewards are not natural reward-pool evidence; source starter/catalog work is
 separate. Proposed types, balance, ordinary terminal semantics and formal release
 remain HOLD. No full suite or production registration is claimed.
+
+## Zhongli dynamic encounter safety restriction
+
+The single-enemy experimental lifecycle cannot handle a later split/summon.
+Actual large acid/spike slime entry is now explicitly refused with
+`unsupported_zhongli_dynamic_encounter` before relic opening or Combat creation.
+The Run remains unchanged and the requested encounter is not silently replaced.
+A second guard checks the actually constructed actors before first-turn effects,
+covering source/prepared encounter replacement under the whole-Run snapshot.
+Native split metadata and known summon effect operations are rejected as well.
+This is a safety restriction, NOT multi-enemy completion or a complete ordinary
+map: pillar target semantics and dynamic multi-enemy lifecycle remain unresolved.
+Ganyu and ordinary Run behavior are not subject to this Zhongli-only restriction.

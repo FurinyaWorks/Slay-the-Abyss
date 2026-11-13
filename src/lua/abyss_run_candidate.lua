@@ -22,4 +22,20 @@ function M.forCombat(run)
   and not run.data.experimentalCharacter,'invalid experimental run candidate')
  return M.copy(run.candidateLifecycle)
 end
+-- Current Zhongli lifecycle is single-actor only. Reject known native population
+-- growth instead of admitting a battle that will become unrecoverable after split.
+local growingIds={acid_slime_l=true,spike_slime_l=true,slime_boss=true,
+ reptomancer=true,gremlin_leader=true,the_collector=true,collector=true,bronze_automaton=true}
+local growingOps={reptomancerSummon=true,enemyBronzeSpawn=true,enemyTorchSpawn=true,enemyTorchRevive=true,enemyRally=true}
+function M.stableZhongliEnemy(enemy)
+ if type(enemy)~='table'then return false end
+ if growingIds[enemy.definitionId or enemy.id]then return false end
+ local ai=enemy.ai or{}
+ if ai.splitEnemy or ai.splitEnemies or ai.splitCount then return false end
+ for _,intent in ipairs(enemy.intents or{})do
+  if intent.kind=='split'then return false end
+  for _,effect in ipairs(intent.effects or{})do if growingOps[effect.op]then return false end end
+ end
+ return true
+end
 return M

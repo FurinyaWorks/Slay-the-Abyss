@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Zhongli explicitly rejects native population growth before Run encounter payment/setup',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/zhongli-run-dynamic-guard.test.lua',{timeout:60000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/ZHONGLI_DYNAMIC_ENCOUNTER_GUARD_PASS/)});

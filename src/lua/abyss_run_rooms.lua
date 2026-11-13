@@ -87,6 +87,13 @@ function M.install(Run, shared)
     local function startEncounterBody(run, encounter, sourceRoom,candidate)
         local valid,generation=validateEncounter(run,encounter,sourceRoom)
         if not valid then return false,generation end
+        if candidate and candidate.kind=='zhongli'then
+            local preview=encounterEnemies(run,encounter,sourceRoom)
+            if #preview~=1 then return false,'unsupported_zhongli_encounter'end
+            if not require('abyss_run_candidate').stableZhongliEnemy(find(run.data.enemies.enemies,preview[1]))then
+                return false,'unsupported_zhongli_dynamic_encounter'
+            end
+        end
         local opening, reason = Inventory.opening(run.data.relics.relics, run.relics,
             run.relicCounters,{tier=encounter.tier,eliteTrigger=encounter.eliteTrigger})
         if not opening then return false, reason end
@@ -112,6 +119,13 @@ function M.install(Run, shared)
                 return Inventory.applyOpening(state,opening.beforeDraw)
             end}
         options.beforeFirstTurn=function(state)
+            -- Source/prepared encounter construction can replace the preview.
+            if candidate and candidate.kind=='zhongli'then
+                if #state.enemies~=1 then return false,'unsupported_zhongli_encounter'end
+                if not require('abyss_run_candidate').stableZhongliEnemy(state.enemies[1])then
+                    return false,'unsupported_zhongli_dynamic_encounter'
+                end
+            end
             state.potionRng=run.shopRng and EventRandom.cloneState(run.shopRng.potion)or EventRandom.fromSeed(run.runSeed)
             state.potionCharacter=require('abyss_potion_random').character(run)
             state.potionInventory=Combat.copy(run.potions)
