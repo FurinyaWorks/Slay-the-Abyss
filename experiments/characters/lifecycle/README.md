@@ -336,3 +336,16 @@ Whole-command rollback preserves HP, resource and public aliases. Native
 Intangible still changes the nominal 2 HP loss to 1; this research-parity/balance
 HOLD is intentionally retained, not bypassed. Formal character registration and
 full CI remain outside this slice.
+
+## Zhongli 20/62 paid empty-jade slice
+
+Explicit candidate-only zl20 (9/12 empty-jade) and zl62 (6/8 empty-jade,
+then native draw 1/2, mandatory exhaust) now reuse the existing paid UID wrapper.
+Nonempty jade is a legitimate paid no-op. Native draw, hand cap, empty draw/discard,
+and UseCard exhaust remain engine-owned; no incoming-damage absorption is added.
+The author matrix runs 24 cases (two cards × two faces × three jade
+levels × two hand sizes). Additional real C.play checks cover post-draw failure
+rollback including RNG/pile aliases, Scry revealed-boundary failure/retry, no
+energy/missing exhaust, and manual/automatic mutated-op/tail rejection. Test pile
+rearrangement and synthetic Scry insertion are controlled fixtures, not natural
+card acquisition claims. No class/catalog registration or full CI is implied.
