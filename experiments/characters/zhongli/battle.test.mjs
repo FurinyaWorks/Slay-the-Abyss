@@ -11,3 +11,26 @@ test('dead player/target never gets new hand or relic from turn advance',()=>{co
 test('visible policy input hides seed, draw order and discard contents',()=>{const s=battleStart();const v=visibleState(s,[10]);for(const key of ['rng','draw','discard','instances'])assert.equal(key in v,false);assert.equal(v.hand.length,5);});
 test('invalid initialization rejected; relic name remains unapproved',()=>{for(const setup of [{seed:-1},{hp:61},{deck:[]},{deck:['bad']},{relic:'true'}])assert.throws(()=>battleStart(setup));assert.throws(()=>draw(battleStart(),-1));assert.equal(RELIC.status,'HOLD');});
 test('resource and HP boundaries hold under seeded 30-turn stress',()=>{for(let seed=0;seed<20;seed++){let s=battleStart({seed,enemyHp:1000});for(let t=0;t<30&&s.hp;t++){for(const key of [...s.hand]){const r=playInstance(s,key);if(r.ok)s=r.state;}s=nextTurn(s,[t%3]);assert.ok(s.hp>=0&&s.hp<=60);assert.ok(s.jade>=0&&s.jade<=20);assert.ok(s.energy>=0&&s.energy<=3);assert.equal(new Set(zones(s)).size,10);}}});
+test('terminal battles cannot draw or gain relic resources',()=>{
+  for(const field of ['hp','enemy']){
+    const s=battleStart();if(field==='hp')s.hp=0;else s.enemy.hp=0;
+    const before=structuredClone(s);
+    assert.strictEqual(draw(s,5),s);assert.strictEqual(applyRelic(s),s);
+    assert.equal(playInstance(s,s.hand[0]).ok,false);assert.deepEqual(s,before);
+  }
+});
+test('every public boundary rejects malformed battle atomically',()=>{
+  const mutations=[
+    s=>s.rng=NaN,s=>s.rng=-1,s=>s.rng=4294967296,
+    s=>s.draw.push(s.hand[0]),s=>s.draw.pop(),
+    s=>s.instances[s.hand[0]].upgraded='false',
+    s=>s.instances[s.hand[0]].id='unknown',s=>s.hp=Infinity,
+    s=>s.relicApplied=1,s=>s.turn=0
+  ];
+  for(const mutate of mutations){
+    const s=battleStart();mutate(s);const before=structuredClone(s);
+    for(const invoke of [()=>draw(s),()=>applyRelic(s),()=>playInstance(s,s.hand[0]),()=>nextTurn(s,[]),()=>visibleState(s,[])]){
+      assert.throws(invoke,/invalid battle/);assert.deepEqual(s,before);
+    }
+  }
+});
