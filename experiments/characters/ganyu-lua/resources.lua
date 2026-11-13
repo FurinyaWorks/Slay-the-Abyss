@@ -32,6 +32,21 @@ function M.plan(r,e)
    if e.op~='storm_block'then after.charge=0 end
   end
   effects[1]={op=direct and 'damage'or(e.op=='charged_aoe'and 'damageAll'or 'block'),value=value}
+ elseif e.op=='storm_release'then
+  keys(e,{op=true})
+  if after.storm then
+   effects[1]={op='damageAll',value=after.storm.amount}
+   after.storm.turns=after.storm.turns-1
+   if after.storm.turns==0 then after.storm=nil end
+  end
+ elseif e.op=='storm_focus'then
+  keys(e,{op=true,amount=true});local value=int(e.amount)
+  if after.storm then
+   -- Check multiplication BEFORE doing it on the 32-bit Lua runtime.
+   assert(after.storm.amount<=math.floor((MAX-value)/after.storm.turns),'Ganyu storm focus overflow')
+   value=value+after.storm.amount*after.storm.turns;after.storm=nil
+  end
+  effects[1]={op='damage',value=value}
  elseif e.op=='charged_shot'then
   keys(e,{op=true,direct=true,bloom=true});int(e.direct);int(e.bloom)
   effects[1]={op='damage',value=e.direct}

@@ -79,3 +79,38 @@ for _,case in ipairs(cases)do
  effect.bonus=1;effect.extra=true;assert(not pcall(R.plan,input,effect))
 end
 print('PASS '..count..' conditional resource/native Effects oracles and checked aggregate boundary')
+
+-- Manual release consumes one trigger, independent of owner-end turn markers.
+for _,turns in ipairs({1,2,3})do for _,amount in ipairs({0,4,6})do
+ local input={charge=2,storm={amount=amount,turns=turns},lastBank=1,lastOwnerEnd=1}
+ local p=R.plan(input,{op='storm_release'})
+ eq(input.storm.turns,turns);eq(p.after.charge,2);eq(p.after.lastOwnerEnd,1)
+ eq(p.effects[1].op,'damageAll');eq(p.effects[1].value,amount)
+ if turns==1 then eq(p.after.storm,nil)else eq(p.after.storm.turns,turns-1)end
+ local s=C.new(data,{deck={'strike'},enemies={'jaw_worm','jaw_worm'},seed=42})
+ s.enemies[1].hp=100;s.enemies[1].block=2;s.enemies[2].hp=100;s.enemies[2].block=1
+ E.apply(C,s,p.effects,s.player,nil)
+ eq(s.enemies[1].hp,100-math.max(0,amount-2));eq(s.enemies[2].hp,100-math.max(0,amount-1))
+end end
+local absent=R.plan({charge=1},{op='storm_release'});eq(#absent.effects,0);eq(absent.after.charge,1)
+local r1=R.plan({charge=0,storm={amount=4,turns=2}},{op='storm_release'})
+local r2=R.plan(r1.after,{op='storm_release'});eq(r2.after.storm,nil)
+eq(#R.plan(r2.after,{op='storm_release'}).effects,0)
+-- Candidate 37 base/up literal oracles; stays unapproved, not registered.
+for _,base in ipairs({4,7})do for _,turns in ipairs({1,2,3})do
+ local input={charge=1,storm={amount=6,turns=turns}}
+ local p=R.plan(input,{op='storm_focus',amount=base})
+ eq(p.effects[1].value,base+6*turns);eq(p.after.storm,nil);eq(p.after.charge,1);eq(input.storm.turns,turns)
+ local s=C.new(data,{deck={'strike'},enemies={'jaw_worm','jaw_worm'},seed=42})
+ s.enemies[1].hp=100;s.enemies[1].block=2;s.enemies[2].hp=100
+ E.apply(C,s,p.effects,s.player,s.enemies[1]);eq(s.enemies[1].hp,102-base-6*turns);eq(s.enemies[2].hp,100)
+end end
+local zero=R.plan({charge=0,storm={amount=0,turns=2147483647}},{op='storm_focus',amount=7});eq(zero.effects[1].value,7);eq(zero.after.storm,nil)
+eq(R.plan({charge=0},{op='storm_focus',amount=7}).effects[1].value,7)
+local maxInput={charge=2,storm={amount=1073741823,turns=2}}
+eq(R.plan(maxInput,{op='storm_focus',amount=1}).effects[1].value,2147483647)
+assert(not pcall(R.plan,maxInput,{op='storm_focus',amount=2}));eq(maxInput.storm.turns,2);eq(maxInput.charge,2)
+assert(not pcall(R.plan,{charge=0,storm={amount=2147483647,turns=2147483647}},{op='storm_focus',amount=0}))
+assert(not pcall(R.plan,{charge=0},{op='storm_release',amount=1}))
+assert(not pcall(R.plan,{charge=0},{op='storm_focus',amount=-1}))
+print('PASS storm release/focus native damage, expiry, zero field and overflow boundaries')
