@@ -1,10 +1,29 @@
 {
-  "status": "PENDING_SHARED_HOOK",
+  "status": "LIMITED_PUBLIC_ACCEPTANCE_PASS",
   "negativeBaselineCommit": "3d1ec96620a3808067ad96fb978a4ba47500c0a5",
   "observed": "First lethal-pillar case fails: enemy HP remains 1 instead of expected 0 after public C.endTurn.",
-  "interpretation": "Paid Power installation does not yet imply lifecycle execution. This is an expected red acceptance spec, not a passed test or a discovered regression in admitted scope.",
+  "interpretation": "Original paid-only baseline remains a documented red result. Corrected shared 3d2221b0 passes the limited public lifecycle acceptance; earlier 7c3cda80 removal-history defect is not approved.",
   "plannedCases": 24,
   "scope": "both versions and acquisition orders; low/high enemy HP and Block; pillar before repair; first cultist non-damaging intent; controlled energy refill only to prepare installed states",
-  "excluded": ["jade absorption", "natural four-energy acquisition", "full terminal trigger matrix", "multi-enemy", "device gameplay"],
-  "runnerCaution": "Fengari CLI can print a Lua assertion while returning process status zero. Require the explicit AUTHOR_PUBLIC_ZL_OWNER_END_PASS marker and no traceback before marking passed."
+  "excluded": [
+    "jade absorption",
+    "natural four-energy acquisition",
+    "full terminal trigger matrix",
+    "multi-enemy",
+    "device gameplay"
+  ],
+  "runnerCaution": "Fengari CLI can print a Lua assertion while returning process status zero. Require the explicit AUTHOR_PUBLIC_ZL_OWNER_END_PASS marker and no traceback before marking passed.",
+  "verifiedIntegrationCommit": "3d2221b06113dcd4e2386af1d95915d7616b425c",
+  "verificationMethod": "Independent exact minimal git archive in workspace, rebuilt Lua data, Fengari execution of author spec plus frozen shared transaction/removal test",
+  "passedOutputs": [
+    "AUTHOR_PUBLIC_ZL_OWNER_END_PASS 24 exact public lifecycle cases",
+    "ZHONGLI_PUBLIC_END_TURN_TRANSACTION_PASS",
+    "ZHONGLI_REMOVE_REBUILD_PASS"
+  ],
+  "verifiedAdditionalScope": [
+    "public endTurn whole-command rollback after real pillar damage and next-player-start fault",
+    "actual Codex pause, invalid choice, failed continuation and successful retry preserving aliases and RNG",
+    "terminal cleanup without repair or enemy turn",
+    "pillar remove/reinstall/strongest-wins with single powerOrder and Schedule slots then actual endTurn"
+  ]
 }

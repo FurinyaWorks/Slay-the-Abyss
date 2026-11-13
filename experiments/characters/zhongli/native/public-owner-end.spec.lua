@@ -1,5 +1,5 @@
--- PENDING ACCEPTANCE SPEC. Shared 3d1ec966 pays install but does not wire owner-end.
--- Never report this spec as passed until a reviewed shared hook actually runs.
+-- ACCEPTANCE SPEC: author-verified against corrected shared 3d2221b0; old 3d1ec966 is a red baseline.
+-- See public-owner-end-status.json for exact limited execution evidence and exclusions.
 package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local H=dofile('tests/helpers/act2_event_relics.lua');local C,D,eq=H.C,H.Data,H.eq
 local function fresh(up,reverse)
