@@ -1,0 +1,3 @@
+PASS x16 recovery before block and x39 topdeck before x09 actual draw preserve UID and base/up counts
+PASS no eligible discard still grants configured defense without duplicating cards
+PASS topdeck draw and actual reshuffle host snapshot restores original pile references

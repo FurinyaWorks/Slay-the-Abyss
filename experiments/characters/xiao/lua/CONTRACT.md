@@ -167,3 +167,14 @@ compositions is not certified. Existing bridge/gate remains unchanged.
 An explicit x17 Intangible probe confirms native loseHp(3) pays only 1 while
 energy remains 2. This is a material JS/native cost difference, not balance
 approval or permission to bypass native HP reactions. G5/semantic parity HOLD.
+
+### Recovery/draw effect-order regression
+`recovery_chain_test.lua` executes x16's recovery-before-shield and x39's
+put-back-before-shield; a following x09 effect plan draws the exact topdecked
+instance and then reshuffles actual discard. Base/upgrade and no-target fallback
+shield are checked, plus whole-sequence Snapshot restore of UID/pile references.
+This is an effect-composition harness: two plans reuse one explicitly constructed
+paid context and do NOT prove two paid card uses, legal deck accessibility, or
+UseCard/exhaust lifecycle. In particular the recovered exit is not free-played.
+The public x02/x06 script remains pending host gate expansion; no shared code or
+formal registration is changed by these tests.
