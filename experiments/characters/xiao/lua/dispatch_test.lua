@@ -80,14 +80,28 @@ for _,c in ipairs(defs)do eq(c.experimental,true);eq(c.xiaoCandidate,true)end
 defs[1].effects[1].value=999;eq(Bridge.definitions()[1].effects[1].value,6)
 s=fresh(0);local hp=s.player.hp
 for _,up in ipairs({false,true})do
- local c={id='xiao_candidate_x04',uid=910,upgraded=up};s.player.hp=2;eq(Bridge.canUse(s,c,1),false);s.player.hp=3;eq(Bridge.canUse(s,c,1),true)
+ local c={cardId='xiao_candidate_x04',uid=910,upgraded=up};s.player.hp=2;eq(Bridge.canUse(s,c,1),false);s.player.hp=3;eq(Bridge.canUse(s,c,1),true)
 end
-s.player.hp=hp;s.enemies[2].hp=0;eq(Bridge.canUse(s,{id='xiao_candidate_x01'},2),false)
-eq(Bridge.canUse(s,{id='xiao_candidate_x05'},2),false);s.player.statuses.xiao_mask=1;eq(Bridge.canUse(s,{id='xiao_candidate_x05'},2),true)
-eq(Bridge.canUse(s,{id='xiao_candidate_x09'},1),false);eq(Bridge.canUse(s,{id='xiao_candidate_x01',upgraded='true'},1),false)
-s.xiao=false;eq(Bridge.canUse(s,{id='xiao_candidate_x04'},1),false)
+s.player.hp=hp;s.enemies[2].hp=0;eq(Bridge.canUse(s,{cardId='xiao_candidate_x01'},2),false)
+eq(Bridge.canUse(s,{cardId='xiao_candidate_x05'},2),false);s.player.statuses.xiao_mask=1;eq(Bridge.canUse(s,{cardId='xiao_candidate_x05'},2),true)
+eq(Bridge.canUse(s,{cardId='xiao_candidate_x09'},1),false);eq(Bridge.canUse(s,{cardId='xiao_candidate_x01',upgraded='true'},1),false)
+s.xiao=false;eq(Bridge.canUse(s,{cardId='xiao_candidate_x04'},1),false)
 print('PASS isolated factory canonical copies and prepayment life target upgrade resource rejection')
-s=fresh(0);s.cardInUse.id='xiao_candidate_x01';local effect={op='xiaoCard',kind='damage',value=6}
-local bound=Bridge.prepare(s,effect);eq(bound.uid,910);eq(bound.targetId,s.enemies[2].id);eq(effect.uid,nil)
+s=fresh(0);local data=C.copy(D);for _,def in ipairs(Bridge.definitions())do def.rarity='special';def.color='colorless';data.cards.cards[#data.cards.cards+1]=def end
+local real=C.new(data,{deck={{cardId='xiao_candidate_x01',upgraded=false}},enemies={'cultist'},seed=42});s.cardInUse=real.hand[1];assert(s.cardInUse.id==nil);eq(s.cardInUse.cardId,'xiao_candidate_x01');s.pendingPlay.uid=s.cardInUse.uid
+local actualUid=s.cardInUse.uid;local effect={op='xiaoCard',kind='damage',value=6}
+local bound=Bridge.prepare(s,effect);eq(bound.uid,actualUid);eq(bound.targetId,s.enemies[2].id);eq(effect.uid,nil)
 run(s,bound);eq(s.enemies[2].hp,44);s.cardInUse.uid=911;assert(not pcall(Bridge.prepare,s,effect))
 print('PASS isolated post-payment binder preserves canonical effect and dispatch paid target')
+
+for _,up in ipairs({false,true})do
+ local data=C.copy(D);for _,def in ipairs(Bridge.definitions())do def.rarity='special';def.color='colorless';data.cards.cards[#data.cards.cards+1]=def end
+ local actual=C.new(data,{deck={{cardId='xiao_candidate_x04',upgraded=up}},enemies={'cultist'},seed=42})
+ actual.xiao={relicUsed=false,startingRelic=true};local instance=actual.hand[1]
+ assert(instance.id==nil);eq(instance.cardId,'xiao_candidate_x04');actual.player.hp=2;eq(Bridge.canUse(actual,instance,1),false)
+ actual.player.hp=3;eq(Bridge.canUse(actual,instance,1),true)
+ eq(Bridge.canUse(actual,{id='xiao_candidate_x04',uid=instance.uid,upgraded=up},1),false)
+ actual.pendingPlay={uid=instance.uid,targetId=actual.enemies[1].id};actual.cardInUse=instance
+ eq(Bridge.prepare(actual,{op='xiaoCard',kind='maskCommit',value=up and 3 or 2}).uid,instance.uid)
+end
+print('PASS real constructor cardId instances feed preflight and paid binder without fabricated id')

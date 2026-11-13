@@ -25,7 +25,7 @@ function M.definitions()
  return out
 end
 function M.canUse(state,instance,targetIndex)
- local c=type(instance)=='table'and allowed[instance.id];if not c then return false,'unsupported_xiao_card'end
+ local c=type(instance)=='table'and allowed[instance.cardId];if not c then return false,'unsupported_xiao_card'end
  local ok,plan=pcall(function()return Plan.plan(resource(state),{id=c.id,upgraded=upgraded(instance.upgraded)})end)
  if not ok then return false,'xiao_life_or_resource_prerequisite'end
  local mask=resource(state).mask
@@ -39,7 +39,7 @@ end
 -- Called only after shared consume/pending, never a substitute for payment.
 function M.prepare(state,effect)
  local context=assert(state.pendingPlay,'missing paid context');local instance=assert(state.cardInUse,'missing resolving card')
- assert(allowed[instance.id],'unsupported resolving Xiao card')
+ assert(allowed[instance.cardId],'unsupported resolving Xiao card')
  assert(context.uid==instance.uid and context.uid~=nil,'paid Xiao UID mismatch')
  local out=Copy(effect)
  if out.op=='xiaoCard'then out.uid=context.uid;out.targetId=context.targetId end

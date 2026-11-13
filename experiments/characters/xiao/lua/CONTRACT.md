@@ -79,3 +79,7 @@ abyss_xiao_play_bridge提供definitions()首8独立副本，ID为xiao_candidate_
 ## 待共享接线后的公开验收规格（未执行）
 
 public_play_test.lua仅语法编译通过，没有调用执行：当前共享还未支持candidateLifecycle.kind=xiao，不能将该规格列为PASS。它约定真实C.new opt-in与C.play，覆盖x01/x04基升费用/坏目标UID/零能量/HP2拒绝、真实UseCard弃置与遗物仅一次，以及实际注册dispatch执行后故意异常的公共命令整图/原引用恢复。若共享模块命名或初始化合同改变须与owner对齐后实跑，不以夹具代替缺失入口。此文件预期缺gate时立即失败，不允许跳过后写绿色报告。
+
+### 独审纠错：真实实例身份
+
+此前bridge将instance误读为定义的id，手写夹具掩盖，不能据旧9PASS认为可直接接宿主。现canUse参数明确是实际手牌实例（cardId/uid/upgraded），prepare同样读取cardInUse.cardId；不兼容伪造id别名。新增真实C.new生成x01与x04基升实例，未添加id字段，验证binder与生命前验；仅id的伪实例拒绝。10探针通过待复审，此修复不替代尚未接线的公共play验收。

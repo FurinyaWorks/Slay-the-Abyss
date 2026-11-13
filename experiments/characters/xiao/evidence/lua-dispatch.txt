@@ -7,3 +7,4 @@ PASS dead target missing paid context and mismatched resolving UID reject withou
 PASS real host Snapshot restores whole graph and object identity after payment entry draw and fault
 PASS isolated factory canonical copies and prepayment life target upgrade resource rejection
 PASS isolated post-payment binder preserves canonical effect and dispatch paid target
+PASS real constructor cardId instances feed preflight and paid binder without fabricated id
