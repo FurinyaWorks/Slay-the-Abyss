@@ -106,7 +106,11 @@
     "zl65",
     "zl66",
     "zl67",
-    "zl68"
+    "zl68",
+    "zl69",
+    "zl70",
+    "zl71",
+    "zl72"
   ],
   "degradation": "No P2/P3/P4 name adopted; higher priority evidence incomplete. Display names stay unique pending placeholders.",
   "next": "Complete Chinese P1/P2 index, validate proposed shield-consumption identity, obtain naming and balance review; no human approval inferred.",
@@ -198,6 +202,10 @@
     "zl65": "Retained jade-paid armor removal is project timing utility, not official elemental shield breaking. Source/identity/naming/rarity/balance HOLD.",
     "zl66": "Jade plus attacked retaliation trades immediate cover for persistent reserve; no official reflective shield. Source/identity/naming/rarity/balance HOLD.",
     "zl67": "Pillar installation and ordinary spear damage compress investment; no official combo timing or multipillar claim. Source/identity/naming/rarity/balance HOLD.",
-    "zl68": "Jade-gated Vulnerable and draw is project access payoff, not official resistance aura. Source/identity/naming/rarity/balance HOLD."
+    "zl68": "Jade-gated Vulnerable and draw is project access payoff, not official resistance aura. Source/identity/naming/rarity/balance HOLD.",
+    "zl69": "Retained counter timing without cover is project tactical anticipation, not official reflection. Source/identity/naming/rarity/balance HOLD.",
+    "zl70": "One-shot attack plus jade compresses paid combat and protection, not an official shield-on-hit skill. Source/identity/naming/rarity/balance HOLD.",
+    "zl71": "Jade-funded attack and draw is project tempo conversion, not original Zhongli refund. Source/identity/naming/rarity/balance HOLD.",
+    "zl72": "Pillar-scaled temporary cover plus small jade is a project maintenance package, not official Geo resonance. Source/identity/naming/rarity/balance HOLD."
   }
 }

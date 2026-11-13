@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.39.0';
+export const VERSION = 'zhongli-mechanics-0.40.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -73,6 +73,10 @@ export const cards = [
   card('zl66', '补持久储备并迎击本轮攻击，当前大伤覆盖较弱', 'common', 2, [['jade', 5], ['counter', 3]], [['jade', 7], ['counter', 4]]),
   {...card('zl67', '高费建立岩脊并推进击杀，无法拆开投入且无当前防守', 'common', 3, [['pillar', 3], ['damage', 4]], [['pillar', 4], ['damage', 6]], 'enemy'), power: true},
   {...card('zl68', '保住防线时暴露敌人并找跟进，储备低时只有一次浅检索', 'common', 1, [['guardedVulnerable', 1], ['draw', 1]], [['guardedVulnerable', 2], ['draw', 2]], 'enemy'), exhaust: true},
+  {...card('zl69', '保留反击等待多段攻击，缺少即时掩护且占手牌', 'common', 1, [['counter', 2]], [['counter', 3]]), selfRetain: true},
+  {...card('zl70', '一次集中攻击并建立储备，较高能量与消耗换单牌效率', 'common', 2, [['damage', 8], ['jade', 7]], [['damage', 11], ['jade', 9]], 'enemy'), exhaust: true},
+  {...card('zl71', '支付少量防线推进攻击并检索后续，失去储备与重复利用', 'common', 1, [['spendJade', 3], ['damage', 5], ['draw', 1]], [['spendJade', 3], ['damage', 7], ['draw', 2]], 'enemy'), exhaust: true},
+  card('zl72', '借岩脊掩护同时补持久储备，以临时防御效率换后续防线', 'common', 2, [['pillarBlock', 3], ['jade', 3]], [['pillarBlock', 4], ['jade', 4]]),
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
@@ -122,8 +126,8 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if(effects.some(([op,n])=>op==='jadeDamage'&&(!Number.isSafeInteger(JADE_CAP+n)||!Number.isSafeInteger(outgoingAttack(JADE_CAP+n,vulnerability)))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='pulse'&&(n<1||n>PULSE_LIMIT||!Number.isSafeInteger((state.pillar ?? 0)*n))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op])=>op==='pulse')&&effects.length!==1&&!(effects.length===2&&effects[0][0]==='pulse'&&effects[1][0]==='block'&&Number.isSafeInteger(state.block+effects[1][1])))return {ok:false,reason:'invalid effect',state};
-  if(effects.some(([op,n])=>op==='pillarBlock'&&(effects.length!==1||n<1||n>5||!Number.isSafeInteger((state.pillar ?? 0)*n)||!Number.isSafeInteger(state.block+(state.pillar ?? 0)*n))))return {ok:false,reason:'invalid effect',state};
-  if(effects.some(([op,n])=>op==='jadeBurst'&&(effects.length!==1||n<1||n>3||!Number.isSafeInteger(outgoingAttack(JADE_CAP*n,vulnerability)))))return {ok:false,reason:'invalid effect',state};
+  if(effects.some(([op,n])=>op==='pillarBlock'&&((effects.length!==1&&!(effects.length===2&&effects[0][0]==='pillarBlock'&&effects[1][0]==='jade'&&effects[1][1]<=JADE_CAP))||n<1||n>5||!Number.isSafeInteger((state.pillar ?? 0)*n)||!Number.isSafeInteger(state.block+(state.pillar ?? 0)*n))))return {ok:false,reason:'invalid effect',state};
+  if(effects.some(([op,n])=>op==='jadeBurst'&&((effects.length!==1&&!(effects.length===2&&effects[0][0]==='pillarBlock'&&effects[1][0]==='jade'&&effects[1][1]<=JADE_CAP))||n<1||n>3||!Number.isSafeInteger(outgoingAttack(JADE_CAP*n,vulnerability)))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='repair'&&(n<1||n>3)))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='growPillar'&&(effects.length!==2||effects[0][0]!=='spendJade'||effects[0][1]!==6||effects[1][0]!=='growPillar'||n<1||n>2||!(state.pillar>0)||state.pillar>PILLAR_GROWTH_CAP||effects.filter(([x])=>x==='growPillar').length!==1)))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='exposedJade'&&n>JADE_CAP))return {ok:false,reason:'invalid effect',state};
