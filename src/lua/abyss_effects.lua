@@ -2,7 +2,7 @@
 local M = {}
 local Actors = require("abyss_actor")
 local CardActions = require("abyss_card_actions")
-local extensionOps={keqingSetup=true,keqingConditional=true,ganyuRetrieve=true,ganyuDraw=true,keqingDefense=true,ganyuConditional=true,ganyuStorm=true,keqingDiscard=true,keqingInspect=true,zhongliCard=true,xiaoCard=true,ganyuCard=true,defectFinal=true,gainMantra=true,applyMantra=true,removeMantra=true,gainDevotion=true,gainExhaustPower=true,gainOrbPower=true,
+local extensionOps={keqingConversion=true,keqingSetup=true,keqingConditional=true,ganyuRetrieve=true,ganyuDraw=true,keqingDefense=true,ganyuConditional=true,ganyuStorm=true,keqingDiscard=true,keqingInspect=true,zhongliCard=true,xiaoCard=true,ganyuCard=true,defectFinal=true,gainMantra=true,applyMantra=true,removeMantra=true,gainDevotion=true,gainExhaustPower=true,gainOrbPower=true,
     gainEnergyIfDiscard=true,calculatedGamble=true}
 for op in pairs(require('abyss_build_actions').ops) do extensionOps[op]=true end
 for op in pairs(require('abyss_flow_actions').ops) do extensionOps[op]=true end
@@ -182,6 +182,7 @@ local function supportedEffectOp(effect)
     if op=='keqingDiscard'and not require('abyss_keqing_paid_cards').supportsDiscard(effect)then return nil,'invalid_keqing_discard'end
     if op=='zhongliCard' and not require('abyss_zhongli_paid_cards').supports(effect)then return nil,'invalid_zhongli_card'end
     if op=='xiaoCard' and not require('abyss_xiao_paid_cards').supports(effect)then return nil,'invalid_xiao_card'end
+    if op=='keqingConversion'and not require('abyss_keqing_paid_cards').supportsConversion(effect)then return nil,'invalid_keqing_conversion'end
     if op=='keqingSetup'and not require('abyss_keqing_paid_cards').supportsSetup(effect)then return nil,'invalid_keqing_setup'end
     if op=='keqingConditional'and not require('abyss_keqing_paid_cards').supportsConditional(effect)then return nil,'invalid_keqing_conditional'end
     if op=='keqingDefense'and not require('abyss_keqing_paid_cards').supportsDefense(effect)then return nil,'invalid_keqing_defense'end

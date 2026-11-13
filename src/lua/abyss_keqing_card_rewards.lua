@@ -9,7 +9,8 @@ local function same(a,b)
  return true
 end
 function M.prepare(run,api)
- local setup=run.candidateRewardPool=='keqing-reviewed-sixteen-v1'
+ local conversion=run.candidateRewardPool=='keqing-reviewed-eighteen-v1'
+ local setup=run.candidateRewardPool=='keqing-reviewed-sixteen-v1'or conversion
  local conditional=run.candidateRewardPool=='keqing-reviewed-thirteen-v1'or setup
  local support=run.candidateRewardPool=='keqing-reviewed-ten-v1'or conditional
  assert(run.candidateRewardPool=='keqing-reviewed-eight-v1'or support,'unknown candidate reward domain')
@@ -22,12 +23,13 @@ function M.prepare(run,api)
  if support then for _,c in ipairs(require('abyss_keqing_native_support').definitions().cards)do sources[#sources+1]=c end end
  if conditional then for _,c in ipairs(require('abyss_keqing_conditional_attacks').definitions().cards)do sources[#sources+1]=c end end
  if setup then for _,c in ipairs(require('abyss_keqing_setup_cards').definitions().cards)do sources[#sources+1]=c end end
+ if conversion then for _,c in ipairs(require('abyss_keqing_conversion_cards').definitions().cards)do sources[#sources+1]=c end end
  for _,source in ipairs(sources)do
   assert(source.rarity=='special'and not seen[source.id],'invalid candidate source')
   assert(same(actual[source.id],source),'candidate reward definition drift')
   seen[source.id]=true;pool[#pool+1]=source.id
  end
- assert(#pool==(setup and 16 or conditional and 13 or support and 10 or 8),'invalid reviewed candidate catalog')
+ assert(#pool==(conversion and 18 or setup and 16 or conditional and 13 or support and 10 or 8),'invalid reviewed candidate catalog')
  local rng=R.cloneState(run.cardRng);local count=api.rewardCount(run)
  assert(type(count)=='number'and count>=0 and count%1==0 and count<=100,'invalid candidate reward count')
  local ids={}

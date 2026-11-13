@@ -1,5 +1,7 @@
 {
   "layers": {
+    "abyss_keqing_conversion_cards": "core",
+    "abyss_keqing_conversion_reward_run": "core",
     "abyss_xiao_exhaust_reward_source": "core",
     "abyss_xiao_exhaust_reward_catalog": "core",
     "abyss_xiao_exhaust_card_rewards": "core",
