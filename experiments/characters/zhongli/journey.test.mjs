@@ -189,3 +189,9 @@ test('pillar growth v23 requires real two-stage reward acquisition',()=>{
  let s=journeyStart(seed,{poolVersion:'v23'});for(let room=1;room<=2;room++){s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const c=selectReward(rewardView(s),'growPillar');assert.equal(s.offer[c-1],room===1?'zl21':'zl33');s=takeReward(s,c);}
  assert.ok(s.deck.includes('zl33'));for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v22').includes('zl33'));
 });
+
+test('held weak v24 has real reward acquisition with earlier pool exclusion',()=>{
+ let seed=1;while(seed<10000&&!offers(seed,1,'v24').includes('zl34'))seed++;assert.ok(seed<10000);
+ let s=journeyStart(seed,{poolVersion:'v24'});s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const choice=selectReward(rewardView(s),'heldWeak');assert.equal(s.offer[choice-1],'zl34');s=takeReward(s,choice);assert.ok(s.deck.includes('zl34'));
+ for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v23').includes('zl34'));
+});

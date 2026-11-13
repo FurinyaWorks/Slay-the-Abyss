@@ -199,3 +199,18 @@ test('pillar growth exhausts while original Power remains out, no new construct,
  s=nextTurn(s,[]);assert.equal(s.enemy.hp,36);assert.equal(s.hand.length,0);assert.equal(s.powers.length+s.exhaust.length,2);
  assert.equal(battleStart({deck:['zl21','zl33']}).pillar,0);
 });
+
+test('held weak waits in real hand while09 leaves hand, preserving suppression for a later attack',()=>{
+ const states=['zl09','zl34'].map(id=>{
+  let s=battleStart({deck:[id,...Array(5).fill('zl02')],relic:false});const key=Object.keys(s.instances).find(k=>s.instances[k].id===id);
+  s.hand=[key];s.draw=Object.keys(s.instances).filter(k=>k!==key);s.discard=[];s=nextTurn(s,[]);return {s,key};
+ });
+ assert.ok(!states[0].s.hand.includes(states[0].key));assert.ok(states[1].s.hand.includes(states[1].key));
+ const r=playInstance(states[1].s,states[1].key);assert.equal(r.ok,true);assert.ok(r.state.discard.includes(states[1].key));
+ assert.equal(nextTurn(r.state,[20]).hp,45);assert.equal(nextTurn(states[0].s,[20]).hp,40);
+});
+test('ten held weak cards block fresh draw and never grant a passive debuff',()=>{
+ let s=battleStart({deck:[...Array(10).fill('zl34'),...Array(5).fill('zl02')]});const keys=Object.keys(s.instances);
+ s.hand=keys.filter(k=>s.instances[k].id==='zl34');s.draw=keys.filter(k=>s.instances[k].id!=='zl34');s.discard=[];
+ for(let i=0;i<3;i++){s=nextTurn(s,[]);assert.equal(s.hand.length,10);assert.equal(s.draw.length,5);assert.equal(s.enemy.weak,0);}
+});
