@@ -2,15 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0],[2,3],[6,8],[4,5],[1,2],[5,8],[4,5],[10,14],[2,3],[6,8],[12,16],[4,6],[3,4],[4,6],[8,12],[3,5],[24,30],[2,4],[3,4],[2,3],[0,0],[3,5],[4,5],[0,0],[1,2],[1,2],[9,12],[3,4],[5,8],[1,2],[10,14],[4,6]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0],[2,3],[6,8],[4,5],[1,2],[5,8],[4,5],[10,14],[2,3],[6,8],[12,16],[4,6],[3,4],[4,6],[8,12],[3,5],[24,30],[2,4],[3,4],[2,3],[0,0],[3,5],[4,5],[0,0],[1,2],[1,2],[9,12],[3,4],[5,8],[1,2],[10,14],[4,6],[6,8],[6,9],[4,5]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
-    const s=initialState(); if(i===3||i===15||i===59)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23||i===31||i===48||i===53||i===56)s.jade=3; if(i===32){s.jade=6;s.pillar=3;} if(i===34||i===38||i===39||i===43)s.jade=3; if(i===35||i===45||i===51||i===60)s.pillar=3;
+    const s=initialState(); if(i===3||i===15||i===59)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23||i===31||i===48||i===53||i===56)s.jade=3; if(i===32){s.jade=6;s.pillar=3;} if(i===34||i===38||i===39||i===43)s.jade=3; if(i===35||i===45||i===51||i===60||i===63)s.pillar=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
     if([0,3,4,6,7,8,10,13,16,17,21,26,28,29,38,40,43,46,49,52,59].includes(i))assert.equal(r.state.enemy.hp,40-value);
-    if([1,5,9,11,14,15,34,36,39,42,44,45,50,55,57,60].includes(i))assert.equal(r.state.block,value);
+    if([1,5,9,11,14,15,34,36,39,42,44,45,50,55,57,60,62].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
     if(i===20||i===32||i===47||i===54)assert.equal(r.state.pillar,value);if(i===30){assert.equal(r.state.repair,value);assert.equal(r.state.jade,0);}
     if(i===35){assert.equal(r.state.pillar,0);assert.equal(r.state.pendingDraw,value);assert.equal(r.state.inUse,'a');}if(i===36){assert.equal(r.state.pendingDraw,upgrade?2:1);assert.equal(r.state.inUse,'a');}
@@ -22,12 +22,13 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
     if(i===31){assert.equal(r.state.counter,value);assert.equal(r.state.jade,0);}
     if(i===14)assert.equal(r.state.counter,upgrade?4:3);
-    if(i===58)assert.equal(r.state.enemy.vulnerable,value);
+    if(i===61)assert.equal(r.state.jade,value);
+    if(i===58||i===63)assert.equal(r.state.enemy.vulnerable,value);
     if(i===12)assert.equal(r.state.enemy.vulnerable,upgrade?3:2);
     if(i===51||i===56)assert.equal(r.state.enemy.weak,value);
     if(i===8||i===33)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
-    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18,20,23,26,29,30,32,35,36,37,38,39,45,47,48,50,51,53,54,60].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9||i===26||i===29||i===32||i===37||i===38||i===39||i===45||i===51||i===60)assert.deepEqual(r.state.exhaust,['a']); if(i===20||i===30||i===47||i===50||i===54)assert.deepEqual(r.state.powers,['a']);
+    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18,20,23,26,29,30,32,35,36,37,38,39,45,47,48,50,51,53,54,60,61,63].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9||i===26||i===29||i===32||i===37||i===38||i===39||i===45||i===51||i===60||i===63)assert.deepEqual(r.state.exhaust,['a']); if(i===20||i===30||i===47||i===50||i===54)assert.deepEqual(r.state.powers,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
   });
 }
