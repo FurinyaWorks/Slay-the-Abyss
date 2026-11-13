@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.18.0",
+  "version": "ganyu-sample-0.19.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -1848,6 +1848,122 @@
         "human_approved": false,
         "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       }
+    },
+    {
+      "id": "ganyu-53",
+      "name": "待命名·ganyu-53",
+      "candidate_name": null,
+      "role": "保持满蓄的两费防守兼过牌",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 7,
+            "bonus": 5
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 10,
+            "bonus": 7
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-53",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-54",
+      "name": "待命名·ganyu-54",
+      "candidate_name": null,
+      "role": "保留到需要时支付两费扩展手牌选择",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-54",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-55",
+      "name": "待命名·ganyu-55",
+      "candidate_name": null,
+      "role": "一次性零费小防守兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 1
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 3
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-55",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
     }
   ],
   "environment": {
