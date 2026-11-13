@@ -1,0 +1,54 @@
+{
+  "sourceSha256": "29c47e50581951d1f3cf509eb39b1a73bf8d6ae4934a5b0606a3c76f9857c050",
+  "sourceSize": [
+    1672,
+    941
+  ],
+  "width": 836,
+  "height": 470,
+  "colors": 16,
+  "regions": 214,
+  "algorithm": "Pillow median-cut / OpenCV CCOMP / Shapely constrained triangulation / V25 half-triangles",
+  "fitterSha256": "3e8ef3d9ac4977832f48a877b9bf07f2bb5966721bf1cd556f8a4783eb6f6293",
+  "triangleMode": "single-axis",
+  "componentColour": "mean of original source pixels within each connected palette block",
+  "featuresSourceSha256": "84cc7161fe5312e0f72223d50e8ac6aaa65c4be7d45d558b810a2443db5c1faa",
+  "characterPriority": false,
+  "segmentation": {
+    "meanShiftSpatial": 16,
+    "meanShiftColor": 32,
+    "minimumRegionArea": 24,
+    "facePalette": 16,
+    "faceSpatial": 3,
+    "faceMinimumArea": 2,
+    "faceFraction": 0.3
+  },
+  "versions": {
+    "opencv": "5.0.0",
+    "shapely": "2.2.0",
+    "numpy": "2.5.4"
+  },
+  "results": [
+    {
+      "budget": 400,
+      "nativeImages": 400,
+      "epsilon": 57.621589965820306
+    },
+    {
+      "budget": 800,
+      "nativeImages": 798,
+      "epsilon": 23.87589904785156
+    },
+    {
+      "budget": 1600,
+      "nativeImages": 1600,
+      "epsilon": 6.4599493408203115
+    },
+    {
+      "budget": 3200,
+      "nativeImages": 3200,
+      "epsilon": 2.237161254882812
+    }
+  ],
+  "fitSeconds": 68.06941050000023
+}
