@@ -5,6 +5,8 @@ local Jade=require('abyss_zhongli_jade_resource')
 local Presence=require('abyss_actor_presence')
 local Copy=require('abyss_copy').copy
 local M={}
+local starterNative={}
+for _,d in ipairs(require('abyss_zhongli_starter_source').definitions())do if d.id=='zl01'or d.id=='zl02'then starterNative[d.id]=d end end
 local specs={zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
  zl26={kind='gainJade',base=10,upgraded=14,type='skill',target='SELF',retain=true,exactExhaust=false},
  zl38={kind='gainJade',base=2,upgraded=3,type='skill',target='SELF',retain=false,exactExhaust=true},
@@ -18,8 +20,23 @@ local specs={zl21={kind='installPillar',base=3,upgraded=4,type='power',target='S
  zl04={kind='spendJade',base=6,upgraded=6,type='attack',target='ENEMY',damage=14,upDamage=18}}
 local function same(a,b)
  if type(a)~='table'or type(b)~='table'then return a==b end
+ if getmetatable(a)or getmetatable(b)then return false end
  for k,v in pairs(a)do if not same(v,b[k])then return false end end
  for k in pairs(b)do if a[k]==nil then return false end end;return true
+end
+local function nativeUse(state,instance,card,targetIndex)
+ local d=instance and starterNative[instance.cardId]
+ if not d or instance.upgraded~=nil and type(instance.upgraded)~='boolean'
+  or card.zhongliCandidate~=true or state.characterCandidate~='zhongli'or state.experimentalMechanics~=true
+  or state.originalV4 or card.experimental~=true or card.originalV4 or card.runNativeABI or card.silentFinalCard
+  or card.costMode or card.keqingCandidate~=nil or card.ganyuCandidate~=nil or card.xiaoCandidate~=nil
+  or card.exhaust or card.selfRetain or card.type~=d.type or card.target~=d.target
+  or getmetatable(card.effects)or not same(card.effects,instance.upgraded and d.upgrade.effects or d.effects)
+  then return false,'zhongli_native_unavailable'end
+ if #state.enemies~=1 or not Presence.isActive(state.player)or not Presence.isActive(state.enemies[1])then return false,'inactive_zhongli_battle'end
+ if d.target=='ENEMY'and targetIndex~=1 then return false,'invalid_target'end
+ if not pcall(Lifecycle.validate,state)then return false,'invalid_zhongli_resource'end
+ return true
 end
 function M.supports(e)
  if type(e)~='table'or getmetatable(e)or e.op~='zhongliCard'then return false end
@@ -28,6 +45,7 @@ function M.supports(e)
  return max~=false and max~=nil and type(e.value)=='number'and e.value%1==0 and e.value>=1 and e.value<=max
 end
 function M.canUse(state,instance,card,targetIndex)
+ if instance and starterNative[instance.cardId]then return nativeUse(state,instance,card,targetIndex)end
  if card.zhongliCandidate==nil then
   for _,e in ipairs(card.effects)do if e.op=='zhongliCard'then return false,'unmarked_zhongli_card'end end
   return true
@@ -60,6 +78,7 @@ function M.prepare(state,card,effects)
  local index;for i,enemy in ipairs(state.enemies)do if enemy.id==context.targetId then index=i end end
  local ok,why=M.canUse(state,instance,card,index);assert(ok,why)
  assert(instance.uid==context.uid and context.zhongliPaid==nil,'duplicate or invalid Zhongli paid context')
+ if starterNative[instance.cardId]then return Copy(effects)end
  local playId=#assert(state.cardsPlayedThisCombat,'missing Zhongli accepted history')
  context.zhongliPaid={uid=instance.uid,turn=state.turn,playId=playId,payload=Copy(effects[1])}
  local out={{op='zhongliPaidStage',payload=Copy(effects[1]),uid=instance.uid,turn=state.turn,playId=playId}}

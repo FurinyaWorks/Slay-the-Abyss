@@ -33,7 +33,7 @@ assert(Run.play(r,c.uid,1));assert(r.phase~='combat');eq(z.jade,6);eq(battle.ene
 assert(Run.leaveCombatRewards(r));assert(Run.startCombat(r,'cultist_solo'));eq(r.combat.zhongliCandidate.jade,0);eq(get(r,'zl04').deckUid,deckUid)
 print('AUTHOR_ZL_RUN_PUBLIC_PASS real paid03/21/31 then upgraded reward04 across three battles, resource/Power reset and whole-Run reward rollback')
 -- The supported Run remains single-enemy and no starter-jade absorption.
-for _,bad in ipairs({true,'false',0})do eq(pcall(Run.new,D,19,{experimental=true,candidateLifecycle={kind='zhongli',relicEnabled=bad}}),false)end
+for _,bad in ipairs({'false',0,{}})do eq(pcall(Run.new,D,19,{experimental=true,candidateLifecycle={kind='zhongli',relicEnabled=bad}}),false)end
 do
  local option={experimental=true,candidateLifecycle={kind='zhongli',relicEnabled=false}};local run=Run.new(D,19,option);local cfg=run.candidateLifecycle
  option.candidateLifecycle.kind='ganyu';eq(cfg.kind,'zhongli')

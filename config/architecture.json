@@ -32,6 +32,8 @@
     "abyss_ganyu_draw_reward_run": "core",
     "abyss_ganyu_draw_card": "core",
     "abyss_ganyu_draw_definitions": "core",
+    "abyss_zhongli_starter_source": "core",
+    "abyss_zhongli_starter_run": "core",
     "abyss_ganyu_starter_run": "core",
     "abyss_keqing_starter_run": "core",
     "abyss_xiao_starter_run": "core",

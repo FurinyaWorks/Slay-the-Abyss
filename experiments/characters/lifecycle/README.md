@@ -638,3 +638,28 @@ uses12 fixed seeds without replacing offers; encountered IDs are reported, not
 claimed to cover every new card. Source derivation is reviewed dfaba927 draw ABI
 and8b0bf853 generated definitions. Fixed offers/hand placement/death injection are
 explicit fixtures, not ordinary gameplay balance certification.
+
+### Zhongli source starter and virtual battle-start jade3
+
+`abyss_zhongli_starter_run.new(data,seed)` is a closed experimental launcher:
+source60HP/3energy/5draw/hand10,01×4/02×4/03/04, no inherited Burning Blood.
+01/02 now have strict marked native paid admission, preserving ordinary damage
+and block.03/04 retain existing reviewed resource stages. Source provenance is
+zhongli-mechanics-0.41.0 model/battle digests embedded in the private manifest;
+all content remains HOLD, not a formal class or reward-pool registration.
+
+Explicit Zhongli lifecycle equipment now accepts a strict boolean: true creates
+exactly3 jade in every fresh combat, false preserves previous0 behavior. This
+models ONLY the already-defined battle-start part of virtual zl-relic01. There
+is NO jade damage absorption, no inventory replacement/removal integration and
+no implied Buffer/Torii ordering decision. Native incoming damage still changes
+HP while jade is untouched. Single-enemy/dynamic-growth admission remains closed.
+
+Tests cover source10UID composition, real3-energy03→04, normal01/02 faces and
+strict manual/auto rejection, true/false initial resources, cross-battleHP/reset,
+postnative and post-init wholeRun rollback, formal75×4 and caller preservation.
+A fixed harmless enemy additionally permits all10 source deckUIDs to be naturally
+drawn/paid across recharge/reshuffle without moving cards or granting energy;
+that is an execution/identity proof, not survival balance. An actual11th instance
+proves native hand10 truncation. The former relictrue refusal test is intentionally
+replaced by malformed-type refusal; existing false-mode regression remains.

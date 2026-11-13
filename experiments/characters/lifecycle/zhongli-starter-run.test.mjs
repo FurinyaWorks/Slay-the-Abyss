@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Zhongli source starter and virtual jade3, explicitly no absorption',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/zhongli-starter-run.test.lua',{timeout:120000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/ZHONGLI_STARTER_RUN_PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);});
