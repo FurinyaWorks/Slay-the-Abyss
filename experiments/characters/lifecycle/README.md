@@ -296,3 +296,21 @@ Thorns death without resource refund, and a controlled real-entity Scry window
 between payment and spending. A failed resumed spend restores the revealed pause;
 a deliberately changed insufficient balance is rejected again before consumption.
 No formal registration, multi-enemy support or incoming mitigation policy is added.
+
+### Ganyu 05 paid field-to-lifecycle loop
+
+The explicit candidate accepts the reviewed `ganyuStorm` namespace with only
+amount4/6 and turns2. The shared paid stage validates the actual upgraded face,
+binds pending/cardInUse UID, turn and accepted-use ordinal, and compares a detached
+payload before invoking the reviewed storm adapter. There is no immediate damage.
+Actual subsequent C.endTurn calls execute the existing bank/discard/storm phases
+and expire the field after two ticks. Lower-strength paid refresh keeps the higher
+amount while refreshing duration, matching the candidate pure planner.
+
+Public tests exercise base/upgraded two-tick loops, insufficient energy/replayed
+UID, the actual starter-relic constructor option, natural next-turn refresh,
+setup failure and a controlled real-entity Scry pause with resumed setup failure,
+public alias restoration, and free automatic admission/rejection. The 03/06 paid
+payload now uses the same detached equality guard; existing paid/lifecycle tests
+remain required. These are opt-in definitions, not formal class/catalog release;
+prior balance and dynamic reaction HOLDs are unchanged.

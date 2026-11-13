@@ -2,7 +2,7 @@
 local M = {}
 local Actors = require("abyss_actor")
 local CardActions = require("abyss_card_actions")
-local extensionOps={keqingDiscard=true,zhongliCard=true,xiaoCard=true,ganyuCard=true,defectFinal=true,gainMantra=true,applyMantra=true,removeMantra=true,gainDevotion=true,gainExhaustPower=true,gainOrbPower=true,
+local extensionOps={ganyuStorm=true,keqingDiscard=true,zhongliCard=true,xiaoCard=true,ganyuCard=true,defectFinal=true,gainMantra=true,applyMantra=true,removeMantra=true,gainDevotion=true,gainExhaustPower=true,gainOrbPower=true,
     gainEnergyIfDiscard=true,calculatedGamble=true}
 for op in pairs(require('abyss_build_actions').ops) do extensionOps[op]=true end
 for op in pairs(require('abyss_flow_actions').ops) do extensionOps[op]=true end
@@ -181,6 +181,7 @@ local function supportedEffectOp(effect)
     if op=='keqingDiscard'and not require('abyss_keqing_paid_cards').supportsDiscard(effect)then return nil,'invalid_keqing_discard'end
     if op=='zhongliCard' and not require('abyss_zhongli_paid_cards').supports(effect)then return nil,'invalid_zhongli_card'end
     if op=='xiaoCard' and not require('abyss_xiao_paid_cards').supports(effect)then return nil,'invalid_xiao_card'end
+    if op=='ganyuStorm'and not require('abyss_ganyu_paid_cards').supportsStorm(effect)then return nil,'invalid_ganyu_storm'end
     if op=='ganyuCard' and not require('abyss_ganyu_paid_cards').supports(effect)then return nil,'invalid_ganyu_card'end
     if op=='defectFinal' and not require('abyss_defect_final_cards').supports(effect) then return nil,'invalid_defect_final' end
     return op
