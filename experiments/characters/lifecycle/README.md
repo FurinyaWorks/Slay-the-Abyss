@@ -805,3 +805,29 @@ Storm-family transaction fixture initially set exhaust-hook statuses without nat
 Power history, so the expected Dark Embrace fault was not reached. The fixture
 was corrected to call Exhaust.rememberPower for both powers, preserving the real
 hook and reached-marker assertions; this was not a runtime card defect.
+
+## Ganyu 14/75 mixed defensive storm experiment
+
+The closed `abyss_ganyu_defensive_storm_reward_run.new(Data,seed)` extends only
+its own `ganyu-reviewed-44-v1` domain: 44 executable definitions, 42 eligible
+rewards (10 common, 30 uncommon, 2 rare). Older 32/35/39/42 domains and formal
+reward/shop pools remain unchanged. Both new source cards are uncommon 3-cost
+skills: 14 ordinary block 8/11 then storm 3/4 x2; 75 ordinary block 10/14 then
+storm 4/6 x3 and native exhaust. Generated definitions remain byte-identical to
+reviewed be6a9a46, SHA256 63f30031b9adcd7061d1b5bfe193feb410601093e6d086ebf1884b03f6a6bc1f.
+
+Known IDs require exact face/type/target/retain/exhaust/effect order and ordinary
+candidate flags. The first block remains a native queued action captured at use
+time (Dexterity/Frail), followed by the existing UID-bound immutable storm stage.
+Live field maximum-strength/duration refresh is unchanged and remains design
+HOLD. Native death after the shield prevents the later custom setup. No new
+opcode or owner-end rule is introduced. Whole-command and revealed-pause
+transactions preserve original references and RNG on failure.
+
+Tests distinguish 24 controlled public matrix cases and four fixed-offer Run
+cases from twelve actual sampled-offer claim-to-next-play chains. The sampled
+chains use controlled victory/hand placement and do not establish all-pool
+natural acquisition, survival balance, formal UI or device acceptance. The
+first new pause probe hooked an inactive dispatch layer and failed to reach
+Scry; it was corrected to insert a real Scry action during preparation, before
+native block execution, rather than changing runtime behavior to satisfy it.
