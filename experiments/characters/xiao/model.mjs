@@ -1,14 +1,17 @@
 // Isolated mechanism laboratory, not the production combat engine.
-import { readFileSync } from 'node:fs';
-export const catalog = JSON.parse(readFileSync(new URL('./cards.json', import.meta.url)));
+import catalog from './cards.json' with { type: 'json' };
+import { drawCards } from './deck.mjs';
+export { catalog };
 const byId = new Map(catalog.cards.map(card => [card.id, card]));
 export function state({ hp = catalog.maxHp, energy = catalog.energyPerTurn, enemies = [{ hp: 30, block: 0 }], hand = [], draw = [], startingRelic = false } = {}) {
-  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, turn: 1, phase: 'player', startingRelic, relicUsed: false };
+  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
 }
 const nonnegative = value => Number.isSafeInteger(value) && value >= 0;
 export function validState(s) {
   if (!s || typeof s !== 'object') return false;
   if (![s.hp, s.energy, s.block, s.mask].every(nonnegative)) return false;
+  if (!['fixed', 'shuffle'].includes(s.deckMode)) return false;
+  if (s.deckMode === 'shuffle' && (!Number.isInteger(s.rng) || s.rng < 0 || s.rng > 0xffffffff)) return false;
   if (s.hp > catalog.maxHp || s.mask > catalog.maskRules.maxDuration) return false;
   if (!Number.isSafeInteger(s.turn) || s.turn < 1 || !['player','enemy'].includes(s.phase)) return false;
   if (typeof s.startingRelic !== 'boolean' || typeof s.relicUsed !== 'boolean') return false;
@@ -35,7 +38,7 @@ function apply(s, effect, target) {
   }
   else if (op === 'block') s.block += value;
   else if (op === 'draw') {
-    for (let i = 0; i < value && s.draw.length && s.hand.length < 10; i++) s.hand.push(s.draw.shift());
+    drawCards(s, value);
   } else if (op === 'damage' || op === 'plunge') {
     const targets = op === 'plunge' && s.mask > 0 ? s.enemies : [s.enemies[target]];
     for (const enemy of targets) damage(enemy, value + (s.mask > 0 ? catalog.maskRules.attackBonus : 0));

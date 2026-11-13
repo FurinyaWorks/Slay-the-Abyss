@@ -19,7 +19,7 @@ test('exit accessibility is actual deck size not guaranteed by relic or retentio
   const s=newBattle({deck:['x06',...Array(10).fill('x01')],seed:1});assert.equal(s.hand.length+s.draw.length,11);
 });
 test('custom deck and starting life validated, real shuffle keeps inventory',()=>{
-  assert.throws(()=>newBattle({hp:0}));assert.throws(()=>newBattle({hp:NaN}));assert.throws(()=>newBattle({deck:['unknown']}));assert.throws(()=>newBattle({deck:['x08']}));
+  assert.throws(()=>newBattle({hp:0}));assert.throws(()=>newBattle({hp:NaN}));assert.throws(()=>newBattle({deck:['unknown']}));assert.equal(newBattle({deck:['x08']}).hand[0],'x08');
   let s=newBattle({hp:17,deck:['x06',...catalog.starter]});s.enemies[0].intent=[0];
   for(let i=0;i<10;i++){s=advance(s);assert.equal(s.hp,17);assert.equal(s.hand.length+s.draw.length+s.discard.length,11);}
 });

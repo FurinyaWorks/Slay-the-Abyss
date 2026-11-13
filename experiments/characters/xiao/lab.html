@@ -2,22 +2,28 @@
 <html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>魈 · 面具时机研究</title>
 <style>body{font:16px/1.6 system-ui;max-width:960px;margin:24px auto;padding:0 16px;background:#102321;color:#e1f0e9}button,select,input{font:inherit;padding:10px;margin:4px;border:1px solid #8aa69c;border-radius:6px}button{cursor:pointer}button:disabled{opacity:.5}#hand{display:flex;flex-wrap:wrap;gap:8px}#hand button{flex:1 1 190px;text-align:left;background:#e7e7d4;color:#102321}.warning{color:#f4d58b}pre{white-space:pre-wrap}</style>
-<h1>魈 · 面具时机研究</h1><p class="warning">候选/HOLD · 8卡机制实验，仅基础10张牌组 · 非75卡成品 · 合成敌人，不代表平衡或官方游戏</p>
+<h1>魈 · 面具时机研究</h1><p class="warning">候选/HOLD · 8卡机制实验，10张初始牌+有限奖励 · 非75卡成品 · 合成敌人，不代表平衡或官方游戏</p>
 <p>初始遗物（待命名）：每战首次成功进入面具时抽1张；无战后回血。</p>
 <label>种子 <input id="seed" type="number" min="0" max="4294967295" value="42"></label>
 <label>遭遇 <select id="encounter"><option value="duel">单体连续攻击</option><option value="swarm">双目标</option><option value="armor">护甲与爆发</option></select></label>
-<button id="reset">新战斗</button><p id="status" aria-live="polite"></p><label>目标 <select id="target"></select></label><div id="hand"></div><button id="end">结束回合</button><pre id="log" aria-live="polite"></pre>
+<button id="reset">新三战实验</button><div id="rewards"></div><p id="status" aria-live="polite"></p><label>目标 <select id="target"></select></label><div id="hand"></div><button id="end">结束回合</button><pre id="log" aria-live="polite"></pre>
 <script type="module">
 import {catalog,cardText} from './model.mjs';
-import {newBattle,battlePlay,advance,outcome,intent} from './battle.mjs';
-const $=id=>document.getElementById(id);let battle=newBattle({seed:42});let history=[];
+import {outcome,intent} from './battle.mjs';
+import {newCampaign,campaignAction} from './campaign.mjs';
+const $=id=>document.getElementById(id);let campaign=newCampaign(42);let battle=campaign.battle;let history=[];
 function render(){
- $('status').textContent=`回合 ${battle.turn} | HP ${battle.hp}/${catalog.maxHp} | 能量 ${battle.energy} | 格挡 ${battle.block} | 面具 ${battle.mask} | 遗物${battle.relicUsed?'已用':'未用'} | ${outcome(battle)}`;
+ battle=campaign.battle;
+ $('encounter').disabled=true;$('encounter').value=battle.encounter;
+ $('rewards').replaceChildren();
+ if(campaign.phase==='reward'){for(const id of [...campaign.offer,null]){const b=document.createElement('button');b.textContent=id===null?'跳过奖励':`${id}：${cardText(catalog.cards.find(c=>c.id===id))}`;b.onclick=()=>{const r=campaignAction(campaign,{type:'reward',card:id});if(r.ok){campaign=r.state;history.push(id?`获得${id}`:'跳过奖励');}render();};$('rewards').append(b);}}
+
+ $('status').textContent=`回合 ${battle.turn} | HP ${battle.hp}/${catalog.maxHp} | 能量 ${battle.energy} | 格挡 ${battle.block} | 面具 ${battle.mask} | 遗物${battle.relicUsed?'已用':'未用'} | ${campaign.phase}（第${campaign.stage+1}/3战）`;
  const selected=$('target').value;$('target').replaceChildren();battle.enemies.forEach((e,i)=>{const o=document.createElement('option');o.value=String(i);o.disabled=e.hp===0;o.textContent=`敌${i+1} HP ${e.hp} 护甲 ${e.block} 本回合攻击 ${intent(battle,e)}`;$('target').append(o);});
  if(battle.enemies[Number(selected)]?.hp>0)$('target').value=selected;else $('target').value=String(battle.enemies.findIndex(e=>e.hp>0));
- $('hand').replaceChildren();battle.hand.forEach((id,index)=>{const card=catalog.cards.find(c=>c.id===id);const button=document.createElement('button');button.textContent=`${card.name}（${card.role}）\n${cardText(card)}`;button.disabled=outcome(battle)!=='playing';button.onclick=()=>{const result=battlePlay(battle,{index,target:Number($('target').value)});if(result.ok){battle=result.state;history.push(`打出 ${id}`);}else history.push(`拒绝：${result.reason}`);render();};$('hand').append(button);});
+ $('hand').replaceChildren();battle.hand.forEach((id,index)=>{const card=catalog.cards.find(c=>c.id===id);const button=document.createElement('button');button.textContent=`${card.name}（${card.role}）\n${cardText(card)}`;button.disabled=outcome(battle)!=='playing';button.onclick=()=>{const result=campaignAction(campaign,{type:'play',index,target:Number($('target').value)});if(result.ok){campaign=result.state;history.push(`打出 ${id}`);}else history.push(`拒绝：${result.reason}`);render();};$('hand').append(button);});
  $('end').disabled=outcome(battle)!=='playing';$('log').textContent=history.slice(-12).join('\n');
 }
-$('reset').onclick=()=>{try{battle=newBattle({seed:Number($('seed').value),encounter:$('encounter').value});history=['新战斗，生命与牌组重置（不是连续战）'];render();}catch{history.push('无效种子');$('log').textContent=history.join('\n');}};
-$('end').onclick=()=>{battle=advance(battle);history.push(`结束回合，剩余生命${battle.hp}`);render();};render();
+$('reset').onclick=()=>{try{campaign=newCampaign(Number($('seed').value));history=['新实验重置生命；接续三战携带HP，无回血'];render();}catch{history.push('无效种子');$('log').textContent=history.join('\n');}};
+$('end').onclick=()=>{const r=campaignAction(campaign,{type:'end'});if(r.ok)campaign=r.state;history.push(`结束回合，剩余生命${campaign.battle.hp}`);render();};render();
 </script></html>
