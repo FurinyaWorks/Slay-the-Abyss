@@ -1,12 +1,13 @@
 ---
 id: TASK-103.3
 title: 完善主菜单选角与Neow的V25视觉和加载体验
-status: In Progress
+status: To Do
 assignee:
   - Furinya
 created_date: '2026-11-11 08:07'
-updated_date: '2026-11-11 23:42'
-labels: []
+updated_date: '2026-11-13 09:23'
+labels:
+  - 待验
 milestone: m-8
 dependencies: []
 parent_task_id: TASK-103
@@ -42,6 +43,7 @@ ordinal: 171000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
+2026-11-13对账：独立PR #623关闭未直接merge，但成果已由PR #634合并提交903bf2a31e91f10fb24763ab4cea23d586d0bb83整合；源码切片已接入，不重复开入口。当前无该任务独立在途PR，转To Do/待验以承接正式候选官方、PC和手机体验核验；三项原AC仍未勾。
 已从develop3a061a76建立feat/noncombat-v25；621仍OPEN自动合并。第一轮源码31886413复用V25菜单/选角布局、官方旗帜与现有有限战斗形状；独审发现结果页串样后已修，两种结果往返及负控通过。自然实际GIL截图与性能正在验证，不勾AC。
 
 用户追加：主菜单原高图元背景优化先留技术评审，不轻举妄动；已撤回未提交的塔景替代实验。保留原背景源码/资产/开关，不把当前官方候选底图当原高塔还原。独立Draft PR623，不启用Auto-merge。R2真实候选已构建，最终实拍/黑盒中；旧源码证明/新增测试清单接续正在整改，状态保持In Progress。
