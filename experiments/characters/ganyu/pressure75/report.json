@@ -1,0 +1,8278 @@
+{
+  "status": "RESEARCH_NOT_APPROVAL",
+  "inputs": {
+    "pressure75/plan.json": "a683c396d2693660cd8ec1eb3c628af259f6cbbef2b0f1f72263e87f015d731b",
+    "pressure75/run.mjs": "085e259ab9616bd235f2fa1f14f6b4dfc6da259573152b87450fa4901745dec7",
+    "pressure75/policy.mjs": "a7ed9efb3d74b1314f0c527490dcf553151ad0186ac62d04972ad2a0d62a134f",
+    "audit75/plan.json": "e896539b1618ced487377be7ec673b4761b5936d1a4292e1e491309856221b48",
+    "cards.json": "2412ea17b3ff3b190cf30bea9ba7f5f84d01f6aec3eb684f5fb4685f043e5f9d",
+    "relic.json": "b29f62a33296851f77631ec88a9e279b008868f7d0487727d989af61d008a9e3",
+    "engine.mjs": "931e7cb54ae5652fe1a3bdfaf06b0fa8c7deefc45a86f565a68aa005d816e4fe",
+    "battle.mjs": "6ce15f3c8135171ce5fca7d60b22a1b9c870eb2a4965ea5aad0c5ceb99a2c7cf",
+    "deck.mjs": "75fcd21733d8994e3a7ebcfaececc992de0afdfa56dd56ec30f4d6bff77270f7",
+    "acquisition.mjs": "71651650ac2a5e819f195cd70a08e970ad5bbbf305d52810d2882517f3112093"
+  },
+  "summary": [
+    {
+      "mode": "skip_all",
+      "weight": 1.4,
+      "runs": 30,
+      "completed": 0,
+      "lost": 30,
+      "truncated": 0,
+      "meanFinalHp": 0,
+      "deathRooms": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 30
+      }
+    },
+    {
+      "mode": "skip_all",
+      "weight": 2.5,
+      "runs": 30,
+      "completed": 0,
+      "lost": 30,
+      "truncated": 0,
+      "meanFinalHp": 0,
+      "deathRooms": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 30
+      }
+    },
+    {
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "runs": 30,
+      "completed": 0,
+      "lost": 30,
+      "truncated": 0,
+      "meanFinalHp": 0,
+      "deathRooms": {
+        "1": 0,
+        "2": 0,
+        "3": 3,
+        "4": 27
+      }
+    },
+    {
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "runs": 30,
+      "completed": 0,
+      "lost": 30,
+      "truncated": 0,
+      "meanFinalHp": 0,
+      "deathRooms": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 30
+      }
+    }
+  ],
+  "rows": [
+    {
+      "seed": 4001,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 36,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 36,
+          "exitHp": 18,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 18,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4001,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 44,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 44,
+          "exitHp": 29,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 29,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4001,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 40,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 19,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 19,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-45",
+          "room": 1,
+          "offer": [
+            "ganyu-45",
+            "ganyu-67",
+            "ganyu-72"
+          ]
+        },
+        {
+          "id": "ganyu-34",
+          "room": 2,
+          "offer": [
+            "ganyu-34",
+            "ganyu-61",
+            "ganyu-56"
+          ]
+        },
+        {
+          "id": "ganyu-64",
+          "room": 3,
+          "offer": [
+            "ganyu-64",
+            "ganyu-18",
+            "ganyu-39"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4001,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 48,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 48,
+          "exitHp": 29,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 29,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-45",
+          "room": 1,
+          "offer": [
+            "ganyu-45",
+            "ganyu-67",
+            "ganyu-72"
+          ]
+        },
+        {
+          "id": "ganyu-34",
+          "room": 2,
+          "offer": [
+            "ganyu-34",
+            "ganyu-61",
+            "ganyu-56"
+          ]
+        },
+        {
+          "id": "ganyu-64",
+          "room": 3,
+          "offer": [
+            "ganyu-64",
+            "ganyu-18",
+            "ganyu-39"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4002,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 36,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 36,
+          "exitHp": 18,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 18,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4002,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 40,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 22,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 22,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4002,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 20,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 20,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-59",
+          "room": 1,
+          "offer": [
+            "ganyu-59",
+            "ganyu-10",
+            "ganyu-39"
+          ]
+        },
+        {
+          "id": "ganyu-75",
+          "room": 2,
+          "offer": [
+            "ganyu-75",
+            "ganyu-12",
+            "ganyu-48"
+          ]
+        },
+        {
+          "id": "ganyu-58",
+          "room": 3,
+          "offer": [
+            "ganyu-58",
+            "ganyu-14",
+            "ganyu-22"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4002,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 39,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 24,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 24,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-59",
+          "room": 1,
+          "offer": [
+            "ganyu-59",
+            "ganyu-10",
+            "ganyu-39"
+          ]
+        },
+        {
+          "id": "ganyu-75",
+          "room": 2,
+          "offer": [
+            "ganyu-75",
+            "ganyu-12",
+            "ganyu-48"
+          ]
+        },
+        {
+          "id": "ganyu-58",
+          "room": 3,
+          "offer": [
+            "ganyu-58",
+            "ganyu-14",
+            "ganyu-22"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4003,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 28,
+          "turns": 7
+        },
+        {
+          "room": 3,
+          "entryHp": 28,
+          "exitHp": 11,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 11,
+          "exitHp": 0,
+          "turns": 2
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4003,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 56,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 56,
+          "exitHp": 32,
+          "turns": 7
+        },
+        {
+          "room": 3,
+          "entryHp": 32,
+          "exitHp": 15,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 15,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4003,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 12,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 25,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 25,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-57",
+          "room": 1,
+          "offer": [
+            "ganyu-57",
+            "ganyu-72",
+            "ganyu-62"
+          ]
+        },
+        {
+          "id": "ganyu-05",
+          "room": 2,
+          "offer": [
+            "ganyu-05",
+            "ganyu-25",
+            "ganyu-58"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4003,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 56,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 56,
+          "exitHp": 44,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 44,
+          "exitHp": 16,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 16,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-57",
+          "room": 1,
+          "offer": [
+            "ganyu-57",
+            "ganyu-72",
+            "ganyu-62"
+          ]
+        },
+        {
+          "id": "ganyu-05",
+          "room": 2,
+          "offer": [
+            "ganyu-05",
+            "ganyu-25",
+            "ganyu-58"
+          ]
+        },
+        {
+          "id": "ganyu-65",
+          "room": 3,
+          "offer": [
+            "ganyu-65",
+            "ganyu-61",
+            "ganyu-71"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4004,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 31,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 13,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 13,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4004,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 30,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 30,
+          "exitHp": 12,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 12,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4004,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 34,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 34,
+          "exitHp": 21,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 21,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-67",
+          "room": 1,
+          "offer": [
+            "ganyu-67",
+            "ganyu-40",
+            "ganyu-12"
+          ]
+        },
+        {
+          "id": "ganyu-23",
+          "room": 2,
+          "offer": [
+            "ganyu-23",
+            "ganyu-20",
+            "ganyu-58"
+          ]
+        },
+        {
+          "id": "ganyu-10",
+          "room": 3,
+          "offer": [
+            "ganyu-10",
+            "ganyu-49",
+            "ganyu-09"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4004,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 33,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 33,
+          "exitHp": 20,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 20,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-67",
+          "room": 1,
+          "offer": [
+            "ganyu-67",
+            "ganyu-40",
+            "ganyu-12"
+          ]
+        },
+        {
+          "id": "ganyu-23",
+          "room": 2,
+          "offer": [
+            "ganyu-23",
+            "ganyu-20",
+            "ganyu-58"
+          ]
+        },
+        {
+          "id": "ganyu-10",
+          "room": 3,
+          "offer": [
+            "ganyu-10",
+            "ganyu-49",
+            "ganyu-09"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4005,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 17,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 17,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4005,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 20,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 20,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4005,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 41,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 41,
+          "exitHp": 27,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 27,
+          "exitHp": 0,
+          "turns": 9
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-26",
+          "room": 1,
+          "offer": [
+            "ganyu-26",
+            "ganyu-36",
+            "ganyu-14"
+          ]
+        },
+        {
+          "id": "ganyu-31",
+          "room": 2,
+          "offer": [
+            "ganyu-31",
+            "ganyu-56",
+            "ganyu-61"
+          ]
+        },
+        {
+          "id": "ganyu-73",
+          "room": 3,
+          "offer": [
+            "ganyu-73",
+            "ganyu-28",
+            "ganyu-14"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4005,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 41,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 41,
+          "exitHp": 27,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 27,
+          "exitHp": 0,
+          "turns": 11
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-26",
+          "room": 1,
+          "offer": [
+            "ganyu-26",
+            "ganyu-36",
+            "ganyu-14"
+          ]
+        },
+        {
+          "id": "ganyu-31",
+          "room": 2,
+          "offer": [
+            "ganyu-31",
+            "ganyu-56",
+            "ganyu-61"
+          ]
+        },
+        {
+          "id": "ganyu-73",
+          "room": 3,
+          "offer": [
+            "ganyu-73",
+            "ganyu-28",
+            "ganyu-14"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4006,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 36,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 36,
+          "exitHp": 16,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 16,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4006,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 40,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 22,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 22,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4006,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 33,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 33,
+          "exitHp": 14,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 14,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-24",
+          "room": 1,
+          "offer": [
+            "ganyu-24",
+            "ganyu-26",
+            "ganyu-19"
+          ]
+        },
+        {
+          "id": "ganyu-48",
+          "room": 2,
+          "offer": [
+            "ganyu-48",
+            "ganyu-40",
+            "ganyu-43"
+          ]
+        },
+        {
+          "id": "ganyu-31",
+          "room": 3,
+          "offer": [
+            "ganyu-31",
+            "ganyu-64",
+            "ganyu-73"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4006,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 34,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 34,
+          "exitHp": 13,
+          "turns": 10
+        },
+        {
+          "room": 4,
+          "entryHp": 13,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-24",
+          "room": 1,
+          "offer": [
+            "ganyu-24",
+            "ganyu-26",
+            "ganyu-19"
+          ]
+        },
+        {
+          "id": "ganyu-48",
+          "room": 2,
+          "offer": [
+            "ganyu-48",
+            "ganyu-40",
+            "ganyu-43"
+          ]
+        },
+        {
+          "id": "ganyu-31",
+          "room": 3,
+          "offer": [
+            "ganyu-31",
+            "ganyu-64",
+            "ganyu-73"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4007,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 23,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 23,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4007,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 34,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 34,
+          "exitHp": 22,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 22,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4007,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 30,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 30,
+          "exitHp": 12,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 12,
+          "exitHp": 0,
+          "turns": 2
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-70",
+          "room": 1,
+          "offer": [
+            "ganyu-70",
+            "ganyu-51",
+            "ganyu-75"
+          ]
+        },
+        {
+          "id": "ganyu-35",
+          "room": 2,
+          "offer": [
+            "ganyu-35",
+            "ganyu-42",
+            "ganyu-18"
+          ]
+        },
+        {
+          "id": "ganyu-16",
+          "room": 3,
+          "offer": [
+            "ganyu-16",
+            "ganyu-12",
+            "ganyu-51"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4007,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 35,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 23,
+          "turns": 11
+        },
+        {
+          "room": 4,
+          "entryHp": 23,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-70",
+          "room": 1,
+          "offer": [
+            "ganyu-70",
+            "ganyu-51",
+            "ganyu-75"
+          ]
+        },
+        {
+          "id": "ganyu-35",
+          "room": 2,
+          "offer": [
+            "ganyu-35",
+            "ganyu-42",
+            "ganyu-18"
+          ]
+        },
+        {
+          "id": "ganyu-16",
+          "room": 3,
+          "offer": [
+            "ganyu-16",
+            "ganyu-12",
+            "ganyu-51"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4008,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 31,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 12,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 12,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4008,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 19,
+          "turns": 10
+        },
+        {
+          "room": 4,
+          "entryHp": 19,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4008,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 12,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 12,
+          "turns": 10
+        },
+        {
+          "room": 3,
+          "entryHp": 12,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-57",
+          "room": 1,
+          "offer": [
+            "ganyu-57",
+            "ganyu-31",
+            "ganyu-06"
+          ]
+        },
+        {
+          "id": "ganyu-17",
+          "room": 2,
+          "offer": [
+            "ganyu-17",
+            "ganyu-18",
+            "ganyu-26"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4008,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 35,
+          "turns": 10
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 3,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 3,
+          "exitHp": 0,
+          "turns": 1
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-57",
+          "room": 1,
+          "offer": [
+            "ganyu-57",
+            "ganyu-31",
+            "ganyu-06"
+          ]
+        },
+        {
+          "id": "ganyu-17",
+          "room": 2,
+          "offer": [
+            "ganyu-17",
+            "ganyu-18",
+            "ganyu-26"
+          ]
+        },
+        {
+          "id": "ganyu-09",
+          "room": 3,
+          "offer": [
+            "ganyu-09",
+            "ganyu-37",
+            "ganyu-25"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4009,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 37,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 37,
+          "exitHp": 22,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 22,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4009,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 56,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 56,
+          "exitHp": 41,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 41,
+          "exitHp": 28,
+          "turns": 10
+        },
+        {
+          "room": 4,
+          "entryHp": 28,
+          "exitHp": 0,
+          "turns": 10
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4009,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 35,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 15,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 15,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-44",
+          "room": 1,
+          "offer": [
+            "ganyu-44",
+            "ganyu-05",
+            "ganyu-68"
+          ]
+        },
+        {
+          "id": "ganyu-41",
+          "room": 2,
+          "offer": [
+            "ganyu-41",
+            "ganyu-24",
+            "ganyu-71"
+          ]
+        },
+        {
+          "id": "ganyu-26",
+          "room": 3,
+          "offer": [
+            "ganyu-26",
+            "ganyu-46",
+            "ganyu-64"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4009,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 56,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 56,
+          "exitHp": 42,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 42,
+          "exitHp": 19,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 19,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-44",
+          "room": 1,
+          "offer": [
+            "ganyu-44",
+            "ganyu-05",
+            "ganyu-68"
+          ]
+        },
+        {
+          "id": "ganyu-41",
+          "room": 2,
+          "offer": [
+            "ganyu-41",
+            "ganyu-24",
+            "ganyu-71"
+          ]
+        },
+        {
+          "id": "ganyu-26",
+          "room": 3,
+          "offer": [
+            "ganyu-26",
+            "ganyu-46",
+            "ganyu-64"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4010,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 39,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 26,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 26,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4010,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 40,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 27,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 27,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4010,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 42,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 42,
+          "exitHp": 27,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 27,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-26",
+          "room": 1,
+          "offer": [
+            "ganyu-26",
+            "ganyu-36",
+            "ganyu-51"
+          ]
+        },
+        {
+          "id": "ganyu-50",
+          "room": 2,
+          "offer": [
+            "ganyu-50",
+            "ganyu-13",
+            "ganyu-49"
+          ]
+        },
+        {
+          "id": "ganyu-44",
+          "room": 3,
+          "offer": [
+            "ganyu-44",
+            "ganyu-30",
+            "ganyu-04"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4010,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 46,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 46,
+          "exitHp": 33,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 33,
+          "exitHp": 0,
+          "turns": 12
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-26",
+          "room": 1,
+          "offer": [
+            "ganyu-26",
+            "ganyu-36",
+            "ganyu-51"
+          ]
+        },
+        {
+          "id": "ganyu-50",
+          "room": 2,
+          "offer": [
+            "ganyu-50",
+            "ganyu-13",
+            "ganyu-49"
+          ]
+        },
+        {
+          "id": "ganyu-44",
+          "room": 3,
+          "offer": [
+            "ganyu-44",
+            "ganyu-30",
+            "ganyu-04"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4011,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 31,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 16,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 16,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4011,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 39,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 21,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 21,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4011,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 26,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 26,
+          "exitHp": 5,
+          "turns": 6
+        },
+        {
+          "room": 4,
+          "entryHp": 5,
+          "exitHp": 0,
+          "turns": 1
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-21",
+          "room": 1,
+          "offer": [
+            "ganyu-21",
+            "ganyu-51",
+            "ganyu-04"
+          ]
+        },
+        {
+          "id": "ganyu-33",
+          "room": 2,
+          "offer": [
+            "ganyu-33",
+            "ganyu-36",
+            "ganyu-07"
+          ]
+        },
+        {
+          "id": "ganyu-16",
+          "room": 3,
+          "offer": [
+            "ganyu-16",
+            "ganyu-56",
+            "ganyu-73"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4011,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 43,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 43,
+          "exitHp": 21,
+          "turns": 6
+        },
+        {
+          "room": 4,
+          "entryHp": 21,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-21",
+          "room": 1,
+          "offer": [
+            "ganyu-21",
+            "ganyu-51",
+            "ganyu-04"
+          ]
+        },
+        {
+          "id": "ganyu-33",
+          "room": 2,
+          "offer": [
+            "ganyu-33",
+            "ganyu-36",
+            "ganyu-07"
+          ]
+        },
+        {
+          "id": "ganyu-16",
+          "room": 3,
+          "offer": [
+            "ganyu-16",
+            "ganyu-56",
+            "ganyu-73"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4012,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 40,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 27,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 27,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4012,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 56,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 56,
+          "exitHp": 37,
+          "turns": 7
+        },
+        {
+          "room": 3,
+          "entryHp": 37,
+          "exitHp": 25,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 25,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4012,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 40,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 20,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 20,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-48",
+          "room": 1,
+          "offer": [
+            "ganyu-48",
+            "ganyu-74",
+            "ganyu-67"
+          ]
+        },
+        {
+          "id": "ganyu-35",
+          "room": 2,
+          "offer": [
+            "ganyu-35",
+            "ganyu-47",
+            "ganyu-53"
+          ]
+        },
+        {
+          "id": "ganyu-30",
+          "room": 3,
+          "offer": [
+            "ganyu-30",
+            "ganyu-28",
+            "ganyu-58"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4012,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 56,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 56,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 20,
+          "turns": 11
+        },
+        {
+          "room": 4,
+          "entryHp": 20,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-48",
+          "room": 1,
+          "offer": [
+            "ganyu-48",
+            "ganyu-74",
+            "ganyu-67"
+          ]
+        },
+        {
+          "id": "ganyu-35",
+          "room": 2,
+          "offer": [
+            "ganyu-35",
+            "ganyu-47",
+            "ganyu-53"
+          ]
+        },
+        {
+          "id": "ganyu-30",
+          "room": 3,
+          "offer": [
+            "ganyu-30",
+            "ganyu-28",
+            "ganyu-58"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4013,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 40,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 24,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 24,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4013,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 38,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 38,
+          "exitHp": 20,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 20,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4013,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 33,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 33,
+          "exitHp": 20,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 20,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-59",
+          "room": 1,
+          "offer": [
+            "ganyu-59",
+            "ganyu-25",
+            "ganyu-14"
+          ]
+        },
+        {
+          "id": "ganyu-59",
+          "room": 2,
+          "offer": [
+            "ganyu-59",
+            "ganyu-57",
+            "ganyu-04"
+          ]
+        },
+        {
+          "id": "ganyu-17",
+          "room": 3,
+          "offer": [
+            "ganyu-17",
+            "ganyu-37",
+            "ganyu-15"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4013,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 31,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 18,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 18,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-59",
+          "room": 1,
+          "offer": [
+            "ganyu-59",
+            "ganyu-25",
+            "ganyu-14"
+          ]
+        },
+        {
+          "id": "ganyu-59",
+          "room": 2,
+          "offer": [
+            "ganyu-59",
+            "ganyu-57",
+            "ganyu-04"
+          ]
+        },
+        {
+          "id": "ganyu-17",
+          "room": 3,
+          "offer": [
+            "ganyu-17",
+            "ganyu-37",
+            "ganyu-15"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4014,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 40,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 20,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 20,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4014,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 48,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 48,
+          "exitHp": 28,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 28,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4014,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 34,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 34,
+          "exitHp": 19,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 19,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-09",
+          "room": 1,
+          "offer": [
+            "ganyu-09",
+            "ganyu-37",
+            "ganyu-30"
+          ]
+        },
+        {
+          "id": "ganyu-28",
+          "room": 2,
+          "offer": [
+            "ganyu-28",
+            "ganyu-36",
+            "ganyu-57"
+          ]
+        },
+        {
+          "id": "ganyu-64",
+          "room": 3,
+          "offer": [
+            "ganyu-64",
+            "ganyu-42",
+            "ganyu-73"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4014,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 49,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 49,
+          "exitHp": 34,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 34,
+          "exitHp": 0,
+          "turns": 10
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-09",
+          "room": 1,
+          "offer": [
+            "ganyu-09",
+            "ganyu-37",
+            "ganyu-30"
+          ]
+        },
+        {
+          "id": "ganyu-28",
+          "room": 2,
+          "offer": [
+            "ganyu-28",
+            "ganyu-36",
+            "ganyu-57"
+          ]
+        },
+        {
+          "id": "ganyu-64",
+          "room": 3,
+          "offer": [
+            "ganyu-64",
+            "ganyu-42",
+            "ganyu-73"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4015,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 31,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 17,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 17,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4015,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 39,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 27,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 27,
+          "exitHp": 0,
+          "turns": 10
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4015,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 31,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 13,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 13,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-70",
+          "room": 1,
+          "offer": [
+            "ganyu-70",
+            "ganyu-66",
+            "ganyu-57"
+          ]
+        },
+        {
+          "id": "ganyu-30",
+          "room": 2,
+          "offer": [
+            "ganyu-30",
+            "ganyu-46",
+            "ganyu-12"
+          ]
+        },
+        {
+          "id": "ganyu-51",
+          "room": 3,
+          "offer": [
+            "ganyu-51",
+            "ganyu-67",
+            "ganyu-49"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4015,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 48,
+          "turns": 10
+        },
+        {
+          "room": 3,
+          "entryHp": 48,
+          "exitHp": 32,
+          "turns": 10
+        },
+        {
+          "room": 4,
+          "entryHp": 32,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-70",
+          "room": 1,
+          "offer": [
+            "ganyu-70",
+            "ganyu-66",
+            "ganyu-57"
+          ]
+        },
+        {
+          "id": "ganyu-30",
+          "room": 2,
+          "offer": [
+            "ganyu-30",
+            "ganyu-46",
+            "ganyu-12"
+          ]
+        },
+        {
+          "id": "ganyu-51",
+          "room": 3,
+          "offer": [
+            "ganyu-51",
+            "ganyu-67",
+            "ganyu-49"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4016,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 39,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 26,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 26,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4016,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 40,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 31,
+          "turns": 10
+        },
+        {
+          "room": 4,
+          "entryHp": 31,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4016,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 30,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 30,
+          "exitHp": 14,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 14,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-29",
+          "room": 1,
+          "offer": [
+            "ganyu-29",
+            "ganyu-45",
+            "ganyu-60"
+          ]
+        },
+        {
+          "id": "ganyu-16",
+          "room": 2,
+          "offer": [
+            "ganyu-16",
+            "ganyu-26",
+            "ganyu-68"
+          ]
+        },
+        {
+          "id": "ganyu-34",
+          "room": 3,
+          "offer": [
+            "ganyu-34",
+            "ganyu-66",
+            "ganyu-57"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4016,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 14,
+          "turns": 10
+        },
+        {
+          "room": 4,
+          "entryHp": 14,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-29",
+          "room": 1,
+          "offer": [
+            "ganyu-29",
+            "ganyu-45",
+            "ganyu-60"
+          ]
+        },
+        {
+          "id": "ganyu-16",
+          "room": 2,
+          "offer": [
+            "ganyu-16",
+            "ganyu-26",
+            "ganyu-68"
+          ]
+        },
+        {
+          "id": "ganyu-34",
+          "room": 3,
+          "offer": [
+            "ganyu-34",
+            "ganyu-66",
+            "ganyu-57"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4017,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 39,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 24,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 24,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4017,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 8
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 48,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 48,
+          "exitHp": 31,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 31,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4017,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 34,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 34,
+          "exitHp": 16,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 16,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-10",
+          "room": 1,
+          "offer": [
+            "ganyu-10",
+            "ganyu-69",
+            "ganyu-19"
+          ]
+        },
+        {
+          "id": "ganyu-35",
+          "room": 2,
+          "offer": [
+            "ganyu-35",
+            "ganyu-63",
+            "ganyu-42"
+          ]
+        },
+        {
+          "id": "ganyu-55",
+          "room": 3,
+          "offer": [
+            "ganyu-55",
+            "ganyu-57",
+            "ganyu-69"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4017,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 8
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 48,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 48,
+          "exitHp": 30,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 30,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-10",
+          "room": 1,
+          "offer": [
+            "ganyu-10",
+            "ganyu-69",
+            "ganyu-19"
+          ]
+        },
+        {
+          "id": "ganyu-35",
+          "room": 2,
+          "offer": [
+            "ganyu-35",
+            "ganyu-63",
+            "ganyu-42"
+          ]
+        },
+        {
+          "id": "ganyu-55",
+          "room": 3,
+          "offer": [
+            "ganyu-55",
+            "ganyu-57",
+            "ganyu-69"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4018,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 37,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 37,
+          "exitHp": 21,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 21,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4018,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 48,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 48,
+          "exitHp": 35,
+          "turns": 10
+        },
+        {
+          "room": 4,
+          "entryHp": 35,
+          "exitHp": 0,
+          "turns": 11
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4018,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 31,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 9,
+          "turns": 11
+        },
+        {
+          "room": 4,
+          "entryHp": 9,
+          "exitHp": 0,
+          "turns": 2
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-19",
+          "room": 1,
+          "offer": [
+            "ganyu-19",
+            "ganyu-69",
+            "ganyu-70"
+          ]
+        },
+        {
+          "id": "ganyu-20",
+          "room": 2,
+          "offer": [
+            "ganyu-20",
+            "ganyu-55",
+            "ganyu-73"
+          ]
+        },
+        {
+          "id": "ganyu-49",
+          "room": 3,
+          "offer": [
+            "ganyu-49",
+            "ganyu-24",
+            "ganyu-56"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4018,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 39,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 19,
+          "turns": 10
+        },
+        {
+          "room": 4,
+          "entryHp": 19,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-19",
+          "room": 1,
+          "offer": [
+            "ganyu-19",
+            "ganyu-69",
+            "ganyu-70"
+          ]
+        },
+        {
+          "id": "ganyu-20",
+          "room": 2,
+          "offer": [
+            "ganyu-20",
+            "ganyu-55",
+            "ganyu-73"
+          ]
+        },
+        {
+          "id": "ganyu-49",
+          "room": 3,
+          "offer": [
+            "ganyu-49",
+            "ganyu-24",
+            "ganyu-56"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4019,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 40,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 22,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 22,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4019,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 48,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 48,
+          "exitHp": 30,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 30,
+          "exitHp": 0,
+          "turns": 9
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4019,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 31,
+          "turns": 5
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 8,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 8,
+          "exitHp": 0,
+          "turns": 1
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-15",
+          "room": 1,
+          "offer": [
+            "ganyu-15",
+            "ganyu-05",
+            "ganyu-42"
+          ]
+        },
+        {
+          "id": "ganyu-63",
+          "room": 2,
+          "offer": [
+            "ganyu-63",
+            "ganyu-35",
+            "ganyu-28"
+          ]
+        },
+        {
+          "id": "ganyu-34",
+          "room": 3,
+          "offer": [
+            "ganyu-34",
+            "ganyu-32",
+            "ganyu-15"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4019,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 38,
+          "turns": 6
+        },
+        {
+          "room": 3,
+          "entryHp": 38,
+          "exitHp": 15,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 15,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-15",
+          "room": 1,
+          "offer": [
+            "ganyu-15",
+            "ganyu-05",
+            "ganyu-42"
+          ]
+        },
+        {
+          "id": "ganyu-63",
+          "room": 2,
+          "offer": [
+            "ganyu-63",
+            "ganyu-35",
+            "ganyu-28"
+          ]
+        },
+        {
+          "id": "ganyu-34",
+          "room": 3,
+          "offer": [
+            "ganyu-34",
+            "ganyu-32",
+            "ganyu-15"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4020,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 37,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 37,
+          "exitHp": 21,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 21,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4020,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 45,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 45,
+          "exitHp": 32,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 32,
+          "exitHp": 0,
+          "turns": 11
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4020,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 34,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 34,
+          "exitHp": 21,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 21,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-45",
+          "room": 1,
+          "offer": [
+            "ganyu-45",
+            "ganyu-61",
+            "ganyu-04"
+          ]
+        },
+        {
+          "id": "ganyu-46",
+          "room": 2,
+          "offer": [
+            "ganyu-46",
+            "ganyu-07",
+            "ganyu-58"
+          ]
+        },
+        {
+          "id": "ganyu-73",
+          "room": 3,
+          "offer": [
+            "ganyu-73",
+            "ganyu-51",
+            "ganyu-74"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4020,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 42,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 42,
+          "exitHp": 32,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 32,
+          "exitHp": 0,
+          "turns": 9
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-45",
+          "room": 1,
+          "offer": [
+            "ganyu-45",
+            "ganyu-61",
+            "ganyu-04"
+          ]
+        },
+        {
+          "id": "ganyu-46",
+          "room": 2,
+          "offer": [
+            "ganyu-46",
+            "ganyu-07",
+            "ganyu-58"
+          ]
+        },
+        {
+          "id": "ganyu-73",
+          "room": 3,
+          "offer": [
+            "ganyu-73",
+            "ganyu-51",
+            "ganyu-74"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4021,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 40,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 23,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 23,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4021,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 39,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 24,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 24,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4021,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 38,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 38,
+          "exitHp": 21,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 21,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-55",
+          "room": 1,
+          "offer": [
+            "ganyu-55",
+            "ganyu-62",
+            "ganyu-63"
+          ]
+        },
+        {
+          "id": "ganyu-58",
+          "room": 2,
+          "offer": [
+            "ganyu-58",
+            "ganyu-14",
+            "ganyu-66"
+          ]
+        },
+        {
+          "id": "ganyu-31",
+          "room": 3,
+          "offer": [
+            "ganyu-31",
+            "ganyu-14",
+            "ganyu-11"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4021,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 41,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 41,
+          "exitHp": 24,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 24,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-55",
+          "room": 1,
+          "offer": [
+            "ganyu-55",
+            "ganyu-62",
+            "ganyu-63"
+          ]
+        },
+        {
+          "id": "ganyu-58",
+          "room": 2,
+          "offer": [
+            "ganyu-58",
+            "ganyu-14",
+            "ganyu-66"
+          ]
+        },
+        {
+          "id": "ganyu-31",
+          "room": 3,
+          "offer": [
+            "ganyu-31",
+            "ganyu-14",
+            "ganyu-11"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4022,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 32,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 32,
+          "exitHp": 18,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 18,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4022,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 40,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 29,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 29,
+          "exitHp": 0,
+          "turns": 10
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4022,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 12,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 24,
+          "turns": 15
+        },
+        {
+          "room": 3,
+          "entryHp": 24,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-68",
+          "room": 1,
+          "offer": [
+            "ganyu-68",
+            "ganyu-17",
+            "ganyu-11"
+          ]
+        },
+        {
+          "id": "ganyu-39",
+          "room": 2,
+          "offer": [
+            "ganyu-39",
+            "ganyu-25",
+            "ganyu-73"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4022,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 36,
+          "turns": 11
+        },
+        {
+          "room": 3,
+          "entryHp": 36,
+          "exitHp": 13,
+          "turns": 12
+        },
+        {
+          "room": 4,
+          "entryHp": 13,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-68",
+          "room": 1,
+          "offer": [
+            "ganyu-68",
+            "ganyu-17",
+            "ganyu-11"
+          ]
+        },
+        {
+          "id": "ganyu-39",
+          "room": 2,
+          "offer": [
+            "ganyu-39",
+            "ganyu-25",
+            "ganyu-73"
+          ]
+        },
+        {
+          "id": "ganyu-20",
+          "room": 3,
+          "offer": [
+            "ganyu-20",
+            "ganyu-11",
+            "ganyu-26"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4023,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 40,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 27,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 27,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4023,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 36,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 36,
+          "exitHp": 25,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 25,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4023,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 38,
+          "turns": 10
+        },
+        {
+          "room": 3,
+          "entryHp": 38,
+          "exitHp": 17,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 17,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-22",
+          "room": 1,
+          "offer": [
+            "ganyu-22",
+            "ganyu-58",
+            "ganyu-17"
+          ]
+        },
+        {
+          "id": "ganyu-32",
+          "room": 2,
+          "offer": [
+            "ganyu-32",
+            "ganyu-10",
+            "ganyu-73"
+          ]
+        },
+        {
+          "id": "ganyu-25",
+          "room": 3,
+          "offer": [
+            "ganyu-25",
+            "ganyu-48",
+            "ganyu-04"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4023,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 38,
+          "turns": 10
+        },
+        {
+          "room": 3,
+          "entryHp": 38,
+          "exitHp": 20,
+          "turns": 10
+        },
+        {
+          "room": 4,
+          "entryHp": 20,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-22",
+          "room": 1,
+          "offer": [
+            "ganyu-22",
+            "ganyu-58",
+            "ganyu-17"
+          ]
+        },
+        {
+          "id": "ganyu-32",
+          "room": 2,
+          "offer": [
+            "ganyu-32",
+            "ganyu-10",
+            "ganyu-73"
+          ]
+        },
+        {
+          "id": "ganyu-25",
+          "room": 3,
+          "offer": [
+            "ganyu-25",
+            "ganyu-48",
+            "ganyu-04"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4024,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 31,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 13,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 13,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4024,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 56,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 56,
+          "exitHp": 44,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 44,
+          "exitHp": 26,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 26,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4024,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 40,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 24,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 24,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-19",
+          "room": 1,
+          "offer": [
+            "ganyu-19",
+            "ganyu-15",
+            "ganyu-43"
+          ]
+        },
+        {
+          "id": "ganyu-60",
+          "room": 2,
+          "offer": [
+            "ganyu-60",
+            "ganyu-71",
+            "ganyu-40"
+          ]
+        },
+        {
+          "id": "ganyu-48",
+          "room": 3,
+          "offer": [
+            "ganyu-48",
+            "ganyu-36",
+            "ganyu-55"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4024,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 56,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 56,
+          "exitHp": 44,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 44,
+          "exitHp": 27,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 27,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-19",
+          "room": 1,
+          "offer": [
+            "ganyu-19",
+            "ganyu-15",
+            "ganyu-43"
+          ]
+        },
+        {
+          "id": "ganyu-60",
+          "room": 2,
+          "offer": [
+            "ganyu-60",
+            "ganyu-71",
+            "ganyu-40"
+          ]
+        },
+        {
+          "id": "ganyu-48",
+          "room": 3,
+          "offer": [
+            "ganyu-48",
+            "ganyu-36",
+            "ganyu-55"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4025,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 37,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 37,
+          "exitHp": 19,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 19,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4025,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 45,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 45,
+          "exitHp": 24,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 24,
+          "exitHp": 0,
+          "turns": 8
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4025,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 33,
+          "turns": 10
+        },
+        {
+          "room": 3,
+          "entryHp": 33,
+          "exitHp": 14,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 14,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-20",
+          "room": 1,
+          "offer": [
+            "ganyu-20",
+            "ganyu-16",
+            "ganyu-71"
+          ]
+        },
+        {
+          "id": "ganyu-54",
+          "room": 2,
+          "offer": [
+            "ganyu-54",
+            "ganyu-65",
+            "ganyu-51"
+          ]
+        },
+        {
+          "id": "ganyu-16",
+          "room": 3,
+          "offer": [
+            "ganyu-16",
+            "ganyu-50",
+            "ganyu-56"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4025,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 44,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 44,
+          "exitHp": 22,
+          "turns": 11
+        },
+        {
+          "room": 4,
+          "entryHp": 22,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-20",
+          "room": 1,
+          "offer": [
+            "ganyu-20",
+            "ganyu-16",
+            "ganyu-71"
+          ]
+        },
+        {
+          "id": "ganyu-54",
+          "room": 2,
+          "offer": [
+            "ganyu-54",
+            "ganyu-65",
+            "ganyu-51"
+          ]
+        },
+        {
+          "id": "ganyu-16",
+          "room": 3,
+          "offer": [
+            "ganyu-16",
+            "ganyu-50",
+            "ganyu-56"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4026,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 17,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 17,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4026,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 34,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 34,
+          "exitHp": 16,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 16,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4026,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 39,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 26,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 26,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-34",
+          "room": 1,
+          "offer": [
+            "ganyu-34",
+            "ganyu-29",
+            "ganyu-60"
+          ]
+        },
+        {
+          "id": "ganyu-36",
+          "room": 2,
+          "offer": [
+            "ganyu-36",
+            "ganyu-69",
+            "ganyu-49"
+          ]
+        },
+        {
+          "id": "ganyu-17",
+          "room": 3,
+          "offer": [
+            "ganyu-17",
+            "ganyu-70",
+            "ganyu-41"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4026,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 40,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 30,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 30,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-34",
+          "room": 1,
+          "offer": [
+            "ganyu-34",
+            "ganyu-29",
+            "ganyu-60"
+          ]
+        },
+        {
+          "id": "ganyu-36",
+          "room": 2,
+          "offer": [
+            "ganyu-36",
+            "ganyu-69",
+            "ganyu-49"
+          ]
+        },
+        {
+          "id": "ganyu-17",
+          "room": 3,
+          "offer": [
+            "ganyu-17",
+            "ganyu-70",
+            "ganyu-41"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4027,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 16,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 16,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4027,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 17,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 17,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4027,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 40,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 14,
+          "turns": 6
+        },
+        {
+          "room": 4,
+          "entryHp": 14,
+          "exitHp": 0,
+          "turns": 2
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-10",
+          "room": 1,
+          "offer": [
+            "ganyu-10",
+            "ganyu-04",
+            "ganyu-44"
+          ]
+        },
+        {
+          "id": "ganyu-57",
+          "room": 2,
+          "offer": [
+            "ganyu-57",
+            "ganyu-75",
+            "ganyu-39"
+          ]
+        },
+        {
+          "id": "ganyu-06",
+          "room": 3,
+          "offer": [
+            "ganyu-06",
+            "ganyu-37",
+            "ganyu-27"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4027,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 50,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 50,
+          "exitHp": 40,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 16,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 16,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-10",
+          "room": 1,
+          "offer": [
+            "ganyu-10",
+            "ganyu-04",
+            "ganyu-44"
+          ]
+        },
+        {
+          "id": "ganyu-57",
+          "room": 2,
+          "offer": [
+            "ganyu-57",
+            "ganyu-75",
+            "ganyu-39"
+          ]
+        },
+        {
+          "id": "ganyu-06",
+          "room": 3,
+          "offer": [
+            "ganyu-06",
+            "ganyu-37",
+            "ganyu-27"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4028,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 37,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 37,
+          "exitHp": 19,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 19,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4028,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 40,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 40,
+          "exitHp": 24,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 24,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4028,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 35,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 26,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 26,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-72",
+          "room": 1,
+          "offer": [
+            "ganyu-72",
+            "ganyu-51",
+            "ganyu-28"
+          ]
+        },
+        {
+          "id": "ganyu-11",
+          "room": 2,
+          "offer": [
+            "ganyu-11",
+            "ganyu-16",
+            "ganyu-29"
+          ]
+        },
+        {
+          "id": "ganyu-07",
+          "room": 3,
+          "offer": [
+            "ganyu-07",
+            "ganyu-10",
+            "ganyu-32"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4028,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 39,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 30,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 30,
+          "exitHp": 0,
+          "turns": 11
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-72",
+          "room": 1,
+          "offer": [
+            "ganyu-72",
+            "ganyu-51",
+            "ganyu-28"
+          ]
+        },
+        {
+          "id": "ganyu-11",
+          "room": 2,
+          "offer": [
+            "ganyu-11",
+            "ganyu-16",
+            "ganyu-29"
+          ]
+        },
+        {
+          "id": "ganyu-07",
+          "room": 3,
+          "offer": [
+            "ganyu-07",
+            "ganyu-10",
+            "ganyu-32"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4029,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 31,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 31,
+          "exitHp": 12,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 12,
+          "exitHp": 0,
+          "turns": 4
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4029,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 39,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 39,
+          "exitHp": 23,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 23,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4029,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 52,
+          "turns": 5
+        },
+        {
+          "room": 2,
+          "entryHp": 52,
+          "exitHp": 38,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 38,
+          "exitHp": 27,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 27,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-11",
+          "room": 1,
+          "offer": [
+            "ganyu-11",
+            "ganyu-30",
+            "ganyu-56"
+          ]
+        },
+        {
+          "id": "ganyu-07",
+          "room": 2,
+          "offer": [
+            "ganyu-07",
+            "ganyu-36",
+            "ganyu-23"
+          ]
+        },
+        {
+          "id": "ganyu-40",
+          "room": 3,
+          "offer": [
+            "ganyu-40",
+            "ganyu-60",
+            "ganyu-16"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4029,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 55,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 55,
+          "exitHp": 46,
+          "turns": 8
+        },
+        {
+          "room": 3,
+          "entryHp": 46,
+          "exitHp": 35,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 35,
+          "exitHp": 0,
+          "turns": 9
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-11",
+          "room": 1,
+          "offer": [
+            "ganyu-11",
+            "ganyu-30",
+            "ganyu-56"
+          ]
+        },
+        {
+          "id": "ganyu-07",
+          "room": 2,
+          "offer": [
+            "ganyu-07",
+            "ganyu-36",
+            "ganyu-23"
+          ]
+        },
+        {
+          "id": "ganyu-40",
+          "room": 3,
+          "offer": [
+            "ganyu-40",
+            "ganyu-60",
+            "ganyu-16"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4030,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 32,
+          "turns": 7
+        },
+        {
+          "room": 3,
+          "entryHp": 32,
+          "exitHp": 15,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 15,
+          "exitHp": 0,
+          "turns": 3
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4030,
+      "mode": "skip_all",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 41,
+          "turns": 7
+        },
+        {
+          "room": 3,
+          "entryHp": 41,
+          "exitHp": 23,
+          "turns": 8
+        },
+        {
+          "room": 4,
+          "entryHp": 23,
+          "exitHp": 0,
+          "turns": 6
+        }
+      ],
+      "claims": []
+    },
+    {
+      "seed": 4030,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 51,
+          "turns": 6
+        },
+        {
+          "room": 2,
+          "entryHp": 51,
+          "exitHp": 35,
+          "turns": 7
+        },
+        {
+          "room": 3,
+          "entryHp": 35,
+          "exitHp": 19,
+          "turns": 7
+        },
+        {
+          "room": 4,
+          "entryHp": 19,
+          "exitHp": 0,
+          "turns": 5
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-36",
+          "room": 1,
+          "offer": [
+            "ganyu-36",
+            "ganyu-73",
+            "ganyu-68"
+          ]
+        },
+        {
+          "id": "ganyu-22",
+          "room": 2,
+          "offer": [
+            "ganyu-22",
+            "ganyu-55",
+            "ganyu-32"
+          ]
+        },
+        {
+          "id": "ganyu-56",
+          "room": 3,
+          "offer": [
+            "ganyu-56",
+            "ganyu-24",
+            "ganyu-15"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 4030,
+      "mode": "take_first_offer",
+      "weight": 2.5,
+      "outcome": "lost",
+      "hp": 0,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 60,
+          "turns": 7
+        },
+        {
+          "room": 2,
+          "entryHp": 60,
+          "exitHp": 48,
+          "turns": 9
+        },
+        {
+          "room": 3,
+          "entryHp": 48,
+          "exitHp": 34,
+          "turns": 9
+        },
+        {
+          "room": 4,
+          "entryHp": 34,
+          "exitHp": 0,
+          "turns": 7
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-36",
+          "room": 1,
+          "offer": [
+            "ganyu-36",
+            "ganyu-73",
+            "ganyu-68"
+          ]
+        },
+        {
+          "id": "ganyu-22",
+          "room": 2,
+          "offer": [
+            "ganyu-22",
+            "ganyu-55",
+            "ganyu-32"
+          ]
+        },
+        {
+          "id": "ganyu-56",
+          "room": 3,
+          "offer": [
+            "ganyu-56",
+            "ganyu-24",
+            "ganyu-15"
+          ]
+        }
+      ]
+    }
+  ],
+  "diagnostic": [
+    {
+      "seed": 3007,
+      "mode": "skip_all",
+      "weight": 1.4,
+      "outcome": "complete",
+      "hp": 40,
+      "deckSize": 10,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 59,
+          "turns": 3
+        },
+        {
+          "room": 2,
+          "entryHp": 59,
+          "exitHp": 55,
+          "turns": 4
+        },
+        {
+          "room": 3,
+          "entryHp": 55,
+          "exitHp": 54,
+          "turns": 5
+        },
+        {
+          "room": 4,
+          "entryHp": 54,
+          "exitHp": 40,
+          "turns": 5
+        }
+      ],
+      "claims": [],
+      "events": [
+        {
+          "room": 1,
+          "turn": 1,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-04",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            32
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 1,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            26
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 1,
+          "action": "end",
+          "target": null,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            26
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 2,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 3,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-03",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            19
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 2,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 2,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            19
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 2,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            13
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 2,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 60,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            13
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 3,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 3,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-03",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            6
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 3,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 2,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            6
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            0
+          ]
+        },
+        {
+          "event": "reward",
+          "room": 1,
+          "offered": [
+            "ganyu-28",
+            "ganyu-15",
+            "ganyu-27"
+          ],
+          "selected": null
+        },
+        {
+          "room": 2,
+          "turn": 1,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-03",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            45
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 1,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-03",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            38
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 1,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            32
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 1,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 59,
+          "hpAfter": 57,
+          "enemyHpAfter": [
+            32
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 2,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-04",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 57,
+          "hpAfter": 57,
+          "enemyHpAfter": [
+            29
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 2,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 57,
+          "hpAfter": 57,
+          "enemyHpAfter": [
+            23
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 2,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 57,
+          "hpAfter": 57,
+          "enemyHpAfter": [
+            17
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 2,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 57,
+          "hpAfter": 56,
+          "enemyHpAfter": [
+            17
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 3,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-04"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 56,
+          "hpAfter": 56,
+          "enemyHpAfter": [
+            14
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 56,
+          "hpAfter": 56,
+          "enemyHpAfter": [
+            8
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 56,
+          "hpAfter": 56,
+          "enemyHpAfter": [
+            2
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 3,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 56,
+          "hpAfter": 55,
+          "enemyHpAfter": [
+            2
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 4,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-03",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 55,
+          "hpAfter": 55,
+          "enemyHpAfter": [
+            0
+          ]
+        },
+        {
+          "event": "reward",
+          "room": 2,
+          "offered": [
+            "ganyu-44",
+            "ganyu-43",
+            "ganyu-69"
+          ],
+          "selected": null
+        },
+        {
+          "room": 3,
+          "turn": 1,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 55,
+          "hpAfter": 55,
+          "enemyHpAfter": [
+            30,
+            25
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 1,
+          "action": "ganyu-01",
+          "target": 1,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 55,
+          "hpAfter": 55,
+          "enemyHpAfter": [
+            30,
+            19
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 1,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 55,
+          "hpAfter": 55,
+          "enemyHpAfter": [
+            30,
+            19
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 1,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 10,
+          "hpBefore": 55,
+          "hpAfter": 55,
+          "enemyHpAfter": [
+            30,
+            19
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 2,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-03",
+            "ganyu-04",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 55,
+          "hpAfter": 55,
+          "enemyHpAfter": [
+            27,
+            16
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 2,
+          "action": "ganyu-03",
+          "target": 1,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-03",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 55,
+          "hpAfter": 55,
+          "enemyHpAfter": [
+            27,
+            9
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 2,
+          "action": "ganyu-01",
+          "target": 1,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 55,
+          "hpAfter": 55,
+          "enemyHpAfter": [
+            27,
+            3
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 2,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 55,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            27,
+            3
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 3,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-03"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            27,
+            3
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 3,
+          "action": "ganyu-03",
+          "target": 1,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-03"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            27,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            21,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 3,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            21,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 4,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-04",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            18,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 4,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            12,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 4,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            6,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 4,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            6,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 5,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            0,
+            0
+          ]
+        },
+        {
+          "event": "reward",
+          "room": 3,
+          "offered": [
+            "ganyu-30",
+            "ganyu-47",
+            "ganyu-13"
+          ],
+          "selected": null
+        },
+        {
+          "room": 4,
+          "turn": 1,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-03",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            60
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 1,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            60
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 1,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 54,
+          "hpAfter": 54,
+          "enemyHpAfter": [
+            55
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 1,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 54,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            55
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 2,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-04",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            52
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 2,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            46
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 2,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            40
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 2,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 47,
+          "enemyHpAfter": [
+            40
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 3,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 47,
+          "hpAfter": 47,
+          "enemyHpAfter": [
+            40
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 47,
+          "hpAfter": 47,
+          "enemyHpAfter": [
+            34
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 47,
+          "hpAfter": 47,
+          "enemyHpAfter": [
+            28
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 3,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 47,
+          "hpAfter": 43,
+          "enemyHpAfter": [
+            28
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 4,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-03",
+            "ganyu-04"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 43,
+          "hpAfter": 43,
+          "enemyHpAfter": [
+            25
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 4,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-03"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 43,
+          "hpAfter": 43,
+          "enemyHpAfter": [
+            18
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 4,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 43,
+          "hpAfter": 43,
+          "enemyHpAfter": [
+            12
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 4,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 43,
+          "hpAfter": 40,
+          "enemyHpAfter": [
+            12
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 5,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-03",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 40,
+          "hpAfter": 40,
+          "enemyHpAfter": [
+            5
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 5,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 40,
+          "hpAfter": 40,
+          "enemyHpAfter": [
+            5
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 5,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 40,
+          "hpAfter": 40,
+          "enemyHpAfter": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 3007,
+      "mode": "take_first_offer",
+      "weight": 1.4,
+      "outcome": "complete",
+      "hp": 29,
+      "deckSize": 13,
+      "rooms": [
+        {
+          "room": 1,
+          "entryHp": 60,
+          "exitHp": 59,
+          "turns": 3
+        },
+        {
+          "room": 2,
+          "entryHp": 59,
+          "exitHp": 52,
+          "turns": 3
+        },
+        {
+          "room": 3,
+          "entryHp": 52,
+          "exitHp": 50,
+          "turns": 3
+        },
+        {
+          "room": 4,
+          "entryHp": 50,
+          "exitHp": 29,
+          "turns": 5
+        }
+      ],
+      "claims": [
+        {
+          "id": "ganyu-28",
+          "room": 1,
+          "offer": [
+            "ganyu-28",
+            "ganyu-15",
+            "ganyu-27"
+          ]
+        },
+        {
+          "id": "ganyu-44",
+          "room": 2,
+          "offer": [
+            "ganyu-44",
+            "ganyu-43",
+            "ganyu-69"
+          ]
+        },
+        {
+          "id": "ganyu-30",
+          "room": 3,
+          "offer": [
+            "ganyu-30",
+            "ganyu-47",
+            "ganyu-13"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "room": 1,
+          "turn": 1,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-04",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            32
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 1,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            26
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 1,
+          "action": "end",
+          "target": null,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            26
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 2,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 3,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-03",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            19
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 2,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 2,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            19
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 2,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 60,
+          "hpAfter": 60,
+          "enemyHpAfter": [
+            13
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 2,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 60,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            13
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 3,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 3,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-03",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            6
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 3,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 2,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            6
+          ]
+        },
+        {
+          "room": 1,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            0
+          ]
+        },
+        {
+          "event": "reward",
+          "room": 1,
+          "offered": [
+            "ganyu-28",
+            "ganyu-15",
+            "ganyu-27"
+          ],
+          "selected": "ganyu-28"
+        },
+        {
+          "room": 2,
+          "turn": 1,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-04",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            42
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 1,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            36
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 1,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            36
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 1,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 11,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            36
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 2,
+          "action": "ganyu-28",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-03",
+            "ganyu-01",
+            "ganyu-28",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            20
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 2,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-03",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 59,
+          "hpAfter": 59,
+          "enemyHpAfter": [
+            13
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 2,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 59,
+          "hpAfter": 52,
+          "enemyHpAfter": [
+            13
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 3,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-04",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 52,
+          "hpAfter": 52,
+          "enemyHpAfter": [
+            10
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 52,
+          "hpAfter": 52,
+          "enemyHpAfter": [
+            4
+          ]
+        },
+        {
+          "room": 2,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 52,
+          "hpAfter": 52,
+          "enemyHpAfter": [
+            0
+          ]
+        },
+        {
+          "event": "reward",
+          "room": 2,
+          "offered": [
+            "ganyu-44",
+            "ganyu-43",
+            "ganyu-69"
+          ],
+          "selected": "ganyu-44"
+        },
+        {
+          "room": 3,
+          "turn": 1,
+          "action": "ganyu-28",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-03",
+            "ganyu-28",
+            "ganyu-44"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 52,
+          "hpAfter": 52,
+          "enemyHpAfter": [
+            14,
+            9
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 1,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-03",
+            "ganyu-44"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 52,
+          "hpAfter": 52,
+          "enemyHpAfter": [
+            14,
+            9
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 1,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-03",
+            "ganyu-44"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 52,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            14,
+            9
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 2,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-04",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            11,
+            6
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 2,
+          "action": "ganyu-01",
+          "target": 1,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-01"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            11,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 2,
+          "action": "end",
+          "target": null,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            11,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 3,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-04",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            8,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            2,
+            0
+          ]
+        },
+        {
+          "room": 3,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 1,
+          "chargeAfter": 1,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            0,
+            0
+          ]
+        },
+        {
+          "event": "reward",
+          "room": 3,
+          "offered": [
+            "ganyu-30",
+            "ganyu-47",
+            "ganyu-13"
+          ],
+          "selected": "ganyu-30"
+        },
+        {
+          "room": 4,
+          "turn": 1,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-04",
+            "ganyu-02"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            60
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 1,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            59
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 1,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 50,
+          "enemyHpAfter": [
+            53
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 1,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 50,
+          "hpAfter": 47,
+          "enemyHpAfter": [
+            53
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 2,
+          "action": "ganyu-28",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-44",
+            "ganyu-01",
+            "ganyu-28",
+            "ganyu-03",
+            "ganyu-30"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 47,
+          "hpAfter": 47,
+          "enemyHpAfter": [
+            37
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 2,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-44",
+            "ganyu-01",
+            "ganyu-03",
+            "ganyu-30"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 47,
+          "hpAfter": 47,
+          "enemyHpAfter": [
+            30
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 2,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-44",
+            "ganyu-01",
+            "ganyu-30"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 47,
+          "hpAfter": 38,
+          "enemyHpAfter": [
+            30
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 3,
+          "action": "ganyu-04",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-30",
+            "ganyu-04"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 38,
+          "hpAfter": 38,
+          "enemyHpAfter": [
+            27
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 3,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-01",
+            "ganyu-30"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 38,
+          "hpAfter": 38,
+          "enemyHpAfter": [
+            21
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 3,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-30"
+          ],
+          "blockBefore": 6,
+          "hpBefore": 38,
+          "hpAfter": 38,
+          "enemyHpAfter": [
+            21
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 3,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-30"
+          ],
+          "blockBefore": 11,
+          "hpBefore": 38,
+          "hpAfter": 38,
+          "enemyHpAfter": [
+            21
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 4,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-44",
+            "ganyu-03",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 38,
+          "hpAfter": 38,
+          "enemyHpAfter": [
+            14
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 4,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-01",
+            "ganyu-44",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 38,
+          "hpAfter": 38,
+          "enemyHpAfter": [
+            8
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 4,
+          "action": "ganyu-01",
+          "target": 0,
+          "energyBefore": 1,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-01",
+            "ganyu-44",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 38,
+          "hpAfter": 38,
+          "enemyHpAfter": [
+            2
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 4,
+          "action": "end",
+          "target": null,
+          "energyBefore": 0,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-44",
+            "ganyu-01"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 38,
+          "hpAfter": 29,
+          "enemyHpAfter": [
+            2
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 5,
+          "action": "ganyu-02",
+          "target": null,
+          "energyBefore": 3,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-02",
+            "ganyu-03",
+            "ganyu-01",
+            "ganyu-44"
+          ],
+          "blockBefore": 0,
+          "hpBefore": 29,
+          "hpAfter": 29,
+          "enemyHpAfter": [
+            2
+          ]
+        },
+        {
+          "room": 4,
+          "turn": 5,
+          "action": "ganyu-03",
+          "target": 0,
+          "energyBefore": 2,
+          "chargeBefore": 0,
+          "chargeAfter": 0,
+          "handBefore": [
+            "ganyu-02",
+            "ganyu-03",
+            "ganyu-01",
+            "ganyu-44"
+          ],
+          "blockBefore": 5,
+          "hpBefore": 29,
+          "hpAfter": 29,
+          "enemyHpAfter": [
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}
