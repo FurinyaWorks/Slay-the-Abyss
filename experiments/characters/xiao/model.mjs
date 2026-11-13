@@ -41,6 +41,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'blockDamage') damage(s.enemies[target],Math.min(effect.cap,s.block*value)+(s.mask>0?catalog.maskRules.attackBonus:0));
+  else if (op === 'spendBlockDraw') { const count=Math.min(effect.cap,Math.floor(s.block/value));s.block=0;drawCards(s,count); }
   else if (op === 'maskedAttackDraw') s.maskedAttackDraw+=value;
   else if (op === 'damageHits') { for(let n=0;n<effect.hits;n++)damage(s.enemies[target],value+(s.mask>0?catalog.maskRules.attackBonus:0)); }
   else if (op === 'calmDraw') s.calmDraw+=value;
@@ -104,7 +106,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'blockDamage' || e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -144,6 +146,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits}) => ({
+    blockDamage: `按当前格挡每点造成${value}点伤害，最多${cap}点；不移除格挡，面具另加${catalog.maskRules.attackBonus}点。`,
+    spendBlockDraw: `移除全部格挡，每满${value}点抽1张，最多${cap}张（手牌上限10）；不足部分也移除。`,
     damageHits: `对目标造成${value}点伤害，共${hits}次；面具期间每次另加${catalog.maskRules.attackBonus}点。不转移死亡目标。`,
     maskedAttackDraw: `本场每回合首次在出牌时戴面具的攻击结算后抽${value}张（上限10）；每张攻击最多触发一次，退场攻击仍算，可叠加抽量。尚未有此能力时的攻击不消耗资格；追加同类能力不重置已耗资格。`,
     calmDraw: `本场每个玩家回合开始，若无面具，在正常抽牌后额外抽${value}张（总手牌上限10）；本次打出不立即抽，可叠加。`,
