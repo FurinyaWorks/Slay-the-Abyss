@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.21.0",
+  "version": "ganyu-sample-0.22.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -2195,6 +2195,122 @@
         ]
       },
       "source_ref": "ganyu-61",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-62",
+      "name": "待命名·ganyu-62",
+      "candidate_name": null,
+      "role": "保留低费单体等待击杀窗口",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 7
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-62",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-63",
+      "name": "待命名·ganyu-63",
+      "candidate_name": null,
+      "role": "一次两费防守扩展选择",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 11
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-63",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-64",
+      "name": "待命名·ganyu-64",
+      "candidate_name": null,
+      "role": "现有雨场下防守轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 2,
+            "bonus": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 3,
+            "bonus": 8
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-64",
       "review": {
         "status": "HOLD",
         "human_approved": false,
