@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0],[2,3]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23)s.jade=3;
@@ -12,7 +12,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if([0,3,4,6,7,8,10,13,16,17,21,26,28,29].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
-    if(i===20)assert.equal(r.state.pillar,value);
+    if(i===20)assert.equal(r.state.pillar,value);if(i===30){assert.equal(r.state.repair,value);assert.equal(r.state.jade,0);}
     if(i===23){assert.equal(r.state.jade,0);assert.equal(r.state.pendingDraw,value);assert.equal(r.state.inUse,'a');}
     if(i===22){assert.equal(r.state.jade,value);assert.equal(r.state.pillar,0);}
     if(i===2||i===18||i===19||i===25||i===27)assert.equal(r.state.jade,value);
@@ -23,7 +23,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if(i===12)assert.equal(r.state.enemy.vulnerable,upgrade?3:2);
     if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
-    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18,20,23,26,29].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9||i===26||i===29)assert.deepEqual(r.state.exhaust,['a']); if(i===20)assert.deepEqual(r.state.powers,['a']);
+    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18,20,23,26,29,30].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9||i===26||i===29)assert.deepEqual(r.state.exhaust,['a']); if(i===20||i===30)assert.deepEqual(r.state.powers,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
   });
 }
@@ -504,4 +504,31 @@ test('reserve burst cancellation, target, terminal and invalid coefficient/mixed
 test('reserve burst is strictly single-target, not a multi-enemy reserve allocation interface',()=>{
  const s=initialState(['a']);s.instances.a={id:'zl30',upgraded:false};s.jade=20;const before=structuredClone(s);
  for(const target of ['enemy2',['enemy'],['enemy','enemy2'],null]){const r=play(s,{id:'zl30',instance:'a',target});assert.equal(r.ok,false);assert.equal(r.state,s);assert.deepEqual(s,before);}
+});
+
+test('repair installs without immediate jade, ticks after pillar before enemy and uses strongest intensity',()=>{
+ for(const u of [false,true]){
+  const s=initialState(),r=run('zl31',s,u).state;assert.equal(r.jade,0);assert.equal(r.repair,u?3:2);assert.equal(r.energy,1);
+  const waited=endTurn(r,[]);assert.equal(waited.jade,u?3:2);const attacked=endTurn(r,[5]);assert.equal(attacked.hp,u?58:57);assert.equal(attacked.jade,0);
+  const full=endTurn({...r,jade:19},[]);assert.equal(full.jade,20);
+ }
+ let s={...initialState(),energy:6};s=run('zl31',s).state;s=run('zl31',s,true).state;s=run('zl31',s).state;assert.equal(s.repair,3);assert.equal(s.energy,0);assert.equal(s.powers.length,3);assert.equal(endTurn(s,[]).jade,3);
+});
+test('repair terminal and pillar lethal stop jade gain, while nonlethal pulse allows repair and enemy absorption',()=>{
+ const s=run('zl31').state;s.pillar=3;s.enemy.hp=3;const done=endTurn(s,[99]);assert.equal(done.enemy.hp,0);assert.equal(done.hp,60);assert.equal(done.jade,0);
+ for(const patch of [{hp:0},{enemy:{...s.enemy,hp:0}}]){const t={...s,...patch};assert.deepEqual(endTurn(t,[9]),t);}
+ s.enemy.hp=4;const live=endTurn(s,[3]);assert.equal(live.enemy.hp,1);assert.equal(live.hp,59);assert.equal(live.jade,0);
+});
+test('repair has short-window cost versus instantaneous reserve and idle long-window saturation',()=>{
+ let slow=run('zl31').state,instant=run('zl03').state;
+ assert.equal(endTurn(slow,[12]).hp,50);assert.equal(endTurn(instant,[12]).hp,60);
+ for(let i=0;i<10;i++)slow=endTurn(slow,[]);
+ assert.equal(slow.jade,20);assert.equal(instant.jade,12);assert.equal(slow.repair,2);
+});
+test('repair invalid state/intensity and payment cancellation remain atomic',()=>{
+ const s=initialState(['a']);s.instances.a={id:'zl31',upgraded:false};const before=structuredClone(s);
+ assert.equal(play(s,{id:'zl31',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);
+ const c=cards.find(c=>c.id==='zl31'),old=c.base;try{for(const n of [0,4,NaN,Number.MAX_SAFE_INTEGER]){c.base=[['repair',n]];assert.equal(play(s,{id:'zl31',instance:'a'}).state,s);assert.deepEqual(s,before);}}finally{c.base=old;}
+ for(const repair of [4,-1,NaN]){const t={...s,repair},copy=structuredClone(t);assert.throws(()=>endTurn(t,[]));assert.deepEqual(t,copy);}
+ const poor={...s,energy:1};assert.equal(play(poor,{id:'zl31',instance:'a'}).state,poor);
 });

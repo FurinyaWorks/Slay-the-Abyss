@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.24.0';
+export const VERSION = 'zhongli-mechanics-0.25.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -35,6 +35,7 @@ export const cards = [
   card('zl28', '放弃伤害以延长敌方减压并储备少量持久防线', 'common', 2, [['jade', 5], ['weak', 2]], [['jade', 7], ['weak', 3]], 'enemy'),
   card('zl29', '维持防线开启后续易伤窗口，残弱防线仅给低伤害', 'common', 1, [['guardedVulnerable', 2], ['damage', 4]], [['guardedVulnerable', 3], ['damage', 6]], 'enemy'),
   {...card('zl30', '一次清空全部防线换高储备终结，低储备或未击杀将暴露', 'common', 1, [['jadeBurst', 2]], [['jadeBurst', 3]], 'enemy'), exhaust: true},
+  {...card('zl31', '投入当轮能量建立缓慢修补，短战不如即时防线', 'common', 2, [['repair', 2]], [['repair', 3]]), power: true},
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
@@ -46,15 +47,16 @@ export function incomingAttack(hit, weak = 0) { return weak > 0 ? Math.floor(hit
 export function textFor(id, upgraded = false) {
   const c = cards.find(c => c.id === id);
   if (!c) throw new Error('unknown card');
-  const terms = { jadeBurst: n => `清空当前全部玉璋，造成支付前玉璋×${n}点普通伤害（0玉璋仍付费）`, guardedVulnerable: n => `若当前玉璋至少${GUARD_THRESHOLD}，先施加${n}回合易伤（普通伤害${VULNERABLE_PERCENT}%，时长相加，不消耗玉璋）`, pillarBlock: n => `获得当前岩脊强度×${n}点格挡（无柱则0，不消耗岩脊）`, spendPillar: () => `需已有岩脊；拆除全部岩脊强度（不回收能力牌，本战后续脉冲停止）`, pulse: n => `触发当前岩脊${n}次固定伤害（未建立则0；逐次扣敌格挡，击杀停止，不消耗岩脊）`, pillar: n => `建立每轮玩家结束时造成${n}点固定伤害的岩脊（先扣敌格挡；取较高强度，不叠加；本战持续）`, emptyJade: n => `若结算时玉璋为0，获得${n}点玉璋（上限${JADE_CAP}；否则无收益，费用不退）`, jadeDamage: n => `造成等同结算时当前玉璋${n?`+${n}`:''}的单次普通伤害（不消耗玉璋）`, removeBlock: () => `先移除目标全部格挡（不是伤害）`, counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
+  const terms = { repair: n => `本战每轮玩家结束时补${n}玉璋（岩脊之后、敌行动之前；上限${JADE_CAP}；取较高强度不叠加；战斗已结束不补）`, jadeBurst: n => `清空当前全部玉璋，造成支付前玉璋×${n}点普通伤害（0玉璋仍付费）`, guardedVulnerable: n => `若当前玉璋至少${GUARD_THRESHOLD}，先施加${n}回合易伤（普通伤害${VULNERABLE_PERCENT}%，时长相加，不消耗玉璋）`, pillarBlock: n => `获得当前岩脊强度×${n}点格挡（无柱则0，不消耗岩脊）`, spendPillar: () => `需已有岩脊；拆除全部岩脊强度（不回收能力牌，本战后续脉冲停止）`, pulse: n => `触发当前岩脊${n}次固定伤害（未建立则0；逐次扣敌格挡，击杀停止，不消耗岩脊）`, pillar: n => `建立每轮玩家结束时造成${n}点固定伤害的岩脊（先扣敌格挡；取较高强度，不叠加；本战持续）`, emptyJade: n => `若结算时玉璋为0，获得${n}点玉璋（上限${JADE_CAP}；否则无收益，费用不退）`, jadeDamage: n => `造成等同结算时当前玉璋${n?`+${n}`:''}的单次普通伤害（不消耗玉璋）`, removeBlock: () => `先移除目标全部格挡（不是伤害）`, counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
   return `${c.cost}能量；${(upgraded ? c.upgraded : c.base).map(([op, n]) => terms[op](n)).join('；')}${c.exhaust ? '；消耗（本战不再抽到）' : ''}${c.power ? '；能力（打出后离开抽弃消耗循环）' : ''}${c.selfRetain ? '；保留（未打出则留在手中，占用手牌槽）' : ''}。`;
 }
 export function initialState(hand = ['a','b','c','d','e','f']) {
-  return { hp: 60, energy: 3, block: 0, jade: 0, counter: 0, pillar: 0, powers: [], enemy: { hp: 40, block: 0, weak: 0, vulnerable: 0 }, hand: [...hand], discard: [], exhaust: [], pendingDraw: 0, inUse: null, instances: Object.fromEntries(hand.map((key, i) => [key, {id: cards[i % cards.length].id, upgraded: false}])), turn: 1 };
+  return { hp: 60, energy: 3, block: 0, jade: 0, counter: 0, pillar: 0, repair: 0, powers: [], enemy: { hp: 40, block: 0, weak: 0, vulnerable: 0 }, hand: [...hand], discard: [], exhaust: [], pendingDraw: 0, inUse: null, instances: Object.fromEntries(hand.map((key, i) => [key, {id: cards[i % cards.length].id, upgraded: false}])), turn: 1 };
 }
 function validate(s) {
-  for (const n of [s.hp, s.energy, s.block, s.jade, s.counter ?? 0, s.pillar ?? 0, s.enemy.hp, s.enemy.block, s.enemy.weak ?? 0, s.enemy.vulnerable ?? 0, s.pendingDraw ?? 0, s.turn])
+  for (const n of [s.hp, s.energy, s.block, s.jade, s.counter ?? 0, s.pillar ?? 0, s.repair ?? 0, s.enemy.hp, s.enemy.block, s.enemy.weak ?? 0, s.enemy.vulnerable ?? 0, s.pendingDraw ?? 0, s.turn])
     if (!Number.isSafeInteger(n) || n < 0) throw new Error('invalid state');
+  if((s.repair ?? 0)>3)throw new Error('invalid state');
   if ((s.pendingDraw ?? 0)>10 || Boolean(s.inUse)!==Boolean(s.pendingDraw))throw new Error('invalid pending draw');
   if (s.jade > JADE_CAP || !Array.isArray(s.hand) || !Array.isArray(s.discard) || !Array.isArray(s.exhaust ?? []) || !Array.isArray(s.powers ?? []) || new Set([...s.hand, ...s.discard, ...(s.exhaust ?? []), ...(s.powers ?? []), ...(s.inUse ? [s.inUse] : [])]).size !== s.hand.length + s.discard.length + (s.exhaust ?? []).length + (s.powers ?? []).length + (s.inUse ? 1 : 0))
     throw new Error('invalid state');
@@ -70,7 +72,7 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if (c.target === 'enemy' && target !== 'enemy') return { ok: false, reason: 'invalid target', state };
   if (typeof upgraded !== 'boolean' || upgraded !== state.instances[instance].upgraded) return { ok: false, reason: 'invalid upgrade', state };
   const effects = upgraded ? c.upgraded : c.base;
-  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter','removeBlock','jadeDamage','emptyJade','pillar','pulse','spendPillar','pillarBlock','guardedVulnerable','jadeBurst'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
+  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter','removeBlock','jadeDamage','emptyJade','pillar','pulse','spendPillar','pillarBlock','guardedVulnerable','jadeBurst','repair'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
   if(effects.some(([op,n])=>['removeBlock','spendPillar'].includes(op)&&n!==1))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op],i)=>op==='draw'&&i!==effects.length-1))return {ok:false,reason:'invalid effect',state};
   const draws=effects.filter(([op])=>op==='draw').reduce((n,[,v])=>n+v,0);
@@ -84,6 +86,7 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if(effects.some(([op])=>op==='pulse')&&effects.length!==1)return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='pillarBlock'&&(effects.length!==1||n<1||n>5||!Number.isSafeInteger((state.pillar ?? 0)*n)||!Number.isSafeInteger(state.block+(state.pillar ?? 0)*n))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='jadeBurst'&&(effects.length!==1||n<1||n>3||!Number.isSafeInteger(outgoingAttack(JADE_CAP*n,vulnerability)))))return {ok:false,reason:'invalid effect',state};
+  if(effects.some(([op,n])=>op==='repair'&&(n<1||n>3)))return {ok:false,reason:'invalid effect',state};
   const weakAdded = effects.filter(([op])=>op==='weak').reduce((n,[,v])=>n+v,0);
   if(!Number.isSafeInteger((state.enemy.weak ?? 0)+weakAdded))return {ok:false,reason:'invalid effect',state};
   const required = effects.filter(([op]) => op === 'spendJade').reduce((n, [,v]) => n + v, 0);
@@ -99,6 +102,7 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
     if(op==='jadeBurst'){const amount=outgoingAttack(next.jade*n,next.enemy.vulnerable ?? 0),absorbed=Math.min(next.enemy.block,amount);next.jade=0;next.enemy.block-=absorbed;next.enemy.hp=Math.max(0,next.enemy.hp-amount+absorbed);}
     if(op==='pillarBlock')next.block+=(next.pillar ?? 0)*n;
     if(op==='pillar')next.pillar=Math.max(next.pillar ?? 0,n);
+    if(op==='repair')next.repair=Math.max(next.repair ?? 0,n);
     if (op === 'draw')next.pendingDraw=(next.pendingDraw ?? 0)+n;
     if(op==='counter')next.counter=(next.counter ?? 0)+n;
     if(op==='guardedVulnerable'&&next.enemy.hp>0&&next.jade>=GUARD_THRESHOLD)next.enemy.vulnerable=(next.enemy.vulnerable ?? 0)+n;
@@ -142,6 +146,7 @@ export function previewRound(state,hits){
   if(!Array.isArray(hits)||hits.some(n=>!Number.isSafeInteger(n)||n<0))throw new Error('invalid hits');
   const next=structuredClone(state);
   if(next.hp&&next.enemy.hp){const amount=next.pillar ?? 0,blocked=Math.min(next.enemy.block,amount);next.enemy.block-=blocked;next.enemy.hp=Math.max(0,next.enemy.hp-amount+blocked);}
+  if(next.hp&&next.enemy.hp)next.jade=Math.min(JADE_CAP,next.jade+(next.repair ?? 0));
   return previewEnemyAction(next,hits);
 }
 /** Stable boundary: incoming attacks, then decay/cleanup and next-turn counter removal. */

@@ -185,3 +185,10 @@ test('reserve burst zero jade still pays and exhausts, while lethal stops enemy 
   const next=nextTurn(s,[10]);assert.equal(next.hp,jade?60:50);assert.equal(next.hand.length,0);assert.deepEqual(next.exhaust,[key]);
  }
 });
+
+test('repair Power leaves circulation and resets per battle, visible preview is not hidden information',()=>{
+ let s=battleStart({deck:['zl31','zl02']});const key=s.hand.find(k=>s.instances[k].id==='zl31');s=playInstance(s,key).state;assert.deepEqual(s.powers,[key]);assert.equal(visibleState(s,[]).repair,2);
+ for(let i=0;i<30;i++){s=nextTurn(s,[]);assert.ok(!s.hand.includes(key));assert.equal(s.powers.length,1);assert.equal(s.hand.length+s.draw.length+s.discard.length+s.powers.length+s.exhaust.length,2);assert.ok(s.jade<=20);}
+ const fresh=battleStart({deck:['zl31','zl02']});assert.equal(fresh.repair,0);assert.equal(fresh.powers.length,0);
+ for(const repair of [4,-1,NaN]){const t={...fresh,repair};assert.throws(()=>nextTurn(t,[]));assert.throws(()=>draw(t,1));}
+});

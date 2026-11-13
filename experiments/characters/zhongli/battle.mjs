@@ -7,9 +7,10 @@ function shuffle(s, xs) { const out=[...xs]; for(let i=out.length-1;i>0;i--){con
 /** Validate the whole battle boundary, including zones absent from the math kernel. */
 export function validateBattle(s) {
   if(!s || !s.enemy || !s.instances || typeof s.instances!=='object')throw new Error('invalid battle');
-  for(const n of [s.hp,s.energy,s.block,s.jade,s.counter ?? 0,s.pillar ?? 0,s.enemy.hp,s.enemy.block,s.enemy.weak ?? 0,s.enemy.vulnerable ?? 0,s.turn,s.rng,s.pendingDraw ?? 0])
+  for(const n of [s.hp,s.energy,s.block,s.jade,s.counter ?? 0,s.pillar ?? 0,s.repair ?? 0,s.enemy.hp,s.enemy.block,s.enemy.weak ?? 0,s.enemy.vulnerable ?? 0,s.turn,s.rng,s.pendingDraw ?? 0])
     if(!Number.isSafeInteger(n)||n<0)throw new Error('invalid battle');
   if((s.pendingDraw ?? 0)>10||Boolean(s.inUse)!==Boolean(s.pendingDraw))throw new Error('invalid battle');
+  if((s.repair ?? 0)>3)throw new Error('invalid battle');
   if(s.hp>60||s.jade>JADE_CAP||s.turn<1||s.rng>0xffffffff||typeof s.relicApplied!=='boolean')throw new Error('invalid battle');
   if(![s.hand,s.draw,s.discard,s.exhaust,s.powers].every(Array.isArray)||s.hand.length>10)throw new Error('invalid battle');
   const zones=[...s.hand,...s.draw,...s.discard,...s.exhaust,...s.powers,...(s.inUse?[s.inUse]:[])], keys=Object.keys(s.instances);
@@ -60,4 +61,4 @@ export function nextTurn(state,hits){
   validateBattle(state);
   const s=endTurn(state,hits);if(!s.hp||!s.enemy.hp)return s;return draw(s);
 }
-export function visibleState(s,intent){validateBattle(s);if(s.pendingDraw)throw new Error('unresolved draw');if(!Array.isArray(intent)||intent.some(n=>!Number.isSafeInteger(n)||n<0))throw new Error('invalid intent');return {hp:s.hp,enemy:{...s.enemy},energy:s.energy,block:s.block,jade:s.jade,counter:s.counter ?? 0,pillar:s.pillar ?? 0,turn:s.turn,intent:[...intent],hand:s.hand.map(instance=>({instance,...s.instances[instance],text:textFor(s.instances[instance].id,s.instances[instance].upgraded)}))};}
+export function visibleState(s,intent){validateBattle(s);if(s.pendingDraw)throw new Error('unresolved draw');if(!Array.isArray(intent)||intent.some(n=>!Number.isSafeInteger(n)||n<0))throw new Error('invalid intent');return {hp:s.hp,enemy:{...s.enemy},energy:s.energy,block:s.block,jade:s.jade,counter:s.counter ?? 0,pillar:s.pillar ?? 0,repair:s.repair ?? 0,turn:s.turn,intent:[...intent],hand:s.hand.map(instance=>({instance,...s.instances[instance],text:textFor(s.instances[instance].id,s.instances[instance].upgraded)}))};}
