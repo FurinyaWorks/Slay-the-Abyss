@@ -21,7 +21,7 @@ function M.start(state,battleId,withRelic)
  local s=Copy.copy(state)
  for _,id in pairs(ids)do assert(s.player.statuses[id]==nil,'stale candidate Power')end
  -- Definitions belong to this copied fixture, never the shared catalog.
- for _,id in pairs(ids)do s.player.statusDefinitions[id]={id=id,priority=5}end
+ for _,id in pairs(ids)do s.player.statusDefinitions[id]={id=id,priority=5,stack='intensity',decay='none',kind='buff'}end
  s.zhongliCandidate={battleId=battleId,jade=withRelic and 3 or 0,lastOwnerEnd=0}
  validate(s);return s
 end
@@ -46,7 +46,7 @@ function M.removePillar(state)
  validate(s);return s
 end
 function M.ownerEnd(state,sequence)
- local z=validate(state);assert(alive(state),'inactive battle')
+ local z=validate(state);assert(not z.ownerEndPending,'queued owner-end pending');assert(alive(state),'inactive battle')
  assert(integer(sequence,1,2147483646)and sequence==z.lastOwnerEnd+1,'duplicate or skipped owner-end')
  local s=Copy.copy(state);s.zhongliCandidate.lastOwnerEnd=sequence
  local pillar=s.player.statuses[ids.pillar]or 0
