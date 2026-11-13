@@ -1,4 +1,4 @@
--- Pure first-sixteen-card proposal. Host owns cost, target, snapshots and effects.
+-- Pure first-twenty-four-card proposal. Host owns cost, target, snapshots and effects.
 local Data=require('abyss_xiao_core_data')
 local M={supported={}}
 local cards={};for _,c in ipairs(Data.cards)do cards[c.id]=c;M.supported[c.id]=true end
@@ -20,10 +20,10 @@ function M.plan(resource,payload)
    effects[#effects+1]={op='xiaoCard',kind='maskCommit',value=e.value,requiresAlive=true}
    local entered=after.mask==0 and e.value>0;after.mask=e.value==0 and 0 or math.max(after.mask,e.value)
    if entered and resource.startingRelic and not after.relicUsed then after.relicUsed=true end
-  elseif e.op=='block'or e.op=='draw'or e.op=='loseHp'then effects[#effects+1]=copy(e)
+  elseif e.op=='block'or e.op=='draw'or e.op=='loseHp'or e.op=='energy'then effects[#effects+1]=copy(e)
   else
-   assert(({damage=true,plunge=true,damageAll=true,maskBlock=true,maskGuard=true,breakBlock=true,recoverExit=true})[e.op],'unsupported Xiao effect')
-   effects[#effects+1]={op='xiaoCard',kind=e.op,value=e.value}
+   assert(({damage=true,plunge=true,damageAll=true,maskBlock=true,maskGuard=true,breakBlock=true,recoverExit=true,burnSkillsBlock=true,unmaskedDraw=true,exhaustDamage=true,exhaustBlock=true,spendEnergyBlock=true,discardAttacksDraw=true})[e.op],'unsupported Xiao effect')
+   local effect=copy(e);effect.op='xiaoCard';effect.kind=e.op;effects[#effects+1]=effect
   end
  end
  return {id=c.id,cost=c.cost,kind=c.kind,exhaust=c.exhaust,lifePrerequisite=hpCost,
@@ -56,5 +56,15 @@ function M.addMaskGuard(current,value)
  int(current,2147483647);int(value,2147483647)
  assert(current<=2147483647-value,'mask guard overflow')
  return current+value
+end
+-- Evaluate public counts safely; capped effects saturate before multiplication.
+function M.scaledCount(count,value,cap)
+ int(count,2147483647);int(value,2147483647)
+ if cap~=nil then
+  int(cap,2147483647)
+  if value==0 then return 0 end
+  if count>math.floor(cap/value)then return cap end
+ elseif value>0 then assert(count<=math.floor(2147483647/value),'scaled count overflow')end
+ return count*value
 end
 return M

@@ -4,11 +4,11 @@ local function eq(a,b)assert(a==b,tostring(a)..' ~= '..tostring(b))end
 for _,up in ipairs({false,true})do for _,c in ipairs(D.cards)do
  local r={hp=70,mask=0,relicUsed=false,startingRelic=true};local p=P.plan(r,{id=c.id,upgraded=up});eq(p.cost,c.cost);eq(p.exhaust,c.exhaust);eq(#p.orderedEffects,#(up and c.upgrade or c.base));eq(r.mask,0);eq(r.relicUsed,false)
 end end
-print('PASS all sixteen base/upgraded plans preserve costs effects and inputs')
+print('PASS all twenty-four base/upgraded plans preserve costs effects and inputs')
 local r={hp=70,mask=0,relicUsed=false,startingRelic=true};local p=P.plan(r,{id='x04',upgraded=true});eq(p.orderedEffects[1].op,'loseHp');eq(p.orderedEffects[2].op,'xiaoCard');eq(p.orderedEffects[2].kind,'maskCommit');eq(p.expectedResourceAfterIfAlive.mask,3);eq(r.relicUsed,false)
 print('PASS life payment precedes guarded mask commit; planning never spends relic')
 for _,hp in ipairs({0,1,2})do assert(not pcall(P.plan,{hp=hp,mask=0,relicUsed=false,startingRelic=true},{id='x04',upgraded=false}))end
-assert(not pcall(P.plan,r,{id='x17',upgraded=false}));assert(not pcall(P.plan,r,{id='x01',upgraded=1}))
+assert(not pcall(P.plan,r,{id='x25',upgraded=false}));assert(not pcall(P.plan,r,{id='x01',upgraded=1}))
 print('PASS life prerequisite unknown cards and nonboolean upgrade reject')
 local n=P.maskCommit(r,2);eq(n.mask,2);eq(n.relicUsed,true);eq(n.effects[1].op,'draw');eq(n.effects[1].value,1)
 r={hp=70,mask=2,relicUsed=true,startingRelic=true};n=P.maskCommit(r,1);eq(n.mask,2);eq(#n.effects,0);r.mask=0;n=P.maskCommit(r,1);eq(#n.effects,0)
@@ -33,3 +33,17 @@ for _,value in ipairs({8,12})do eq(P.maskBlock(0,value),value/2);for mask=1,3 do
 for _,value in ipairs({3,4})do eq(P.addMaskGuard(2147483647-value,value),2147483647);assert(not pcall(P.addMaskGuard,2147483648-value,value))end
 for _,v in ipairs({false,-1,0/0,1.5})do assert(not pcall(P.maskBlock,v,8));assert(not pcall(P.addMaskGuard,v,3))end
 print('PASS execution-time mask defense and guard accumulation exact bounds')
+
+for _,up in ipairs({false,true})do
+ local r={hp=4,mask=2,relicUsed=true,startingRelic=true}
+ local p=P.plan(r,{id='x17',upgraded=up});eq(p.cost,0);eq(p.lifePrerequisite,3);eq(p.orderedEffects[1].op,'loseHp');eq(p.orderedEffects[2].op,'energy');eq(p.orderedEffects[2].value,up and 3 or 2);eq(p.exhaust,true)
+ r.hp=3;assert(not pcall(P.plan,r,{id='x17',upgraded=up}));r.hp=4
+ p=P.plan(r,{id='x18',upgraded=up});eq(p.cost,2);eq(p.orderedEffects[1].kind,'damageAll');eq(p.orderedEffects[1].value,up and 24 or 18);eq(p.orderedEffects[2].kind,'maskCommit');eq(p.exhaust,true)
+ local expects={x19={'burnSkillsBlock',up and 6 or 4},x20={'unmaskedDraw',up and 3 or 2},x21={'exhaustDamage',3,up and 24 or 18},x22={'exhaustBlock',2,up and 14 or 10},x23={'spendEnergyBlock',up and 7 or 5},x24={'discardAttacksDraw',up and 1 or 0}}
+ for id,e in pairs(expects)do p=P.plan(r,{id=id,upgraded=up});eq(p.orderedEffects[1].kind,e[1]);eq(p.orderedEffects[1].value,e[2]);eq(p.orderedEffects[1].cap,e[3])end
+end
+print('PASS x17-x24 retain payment order caps and upgraded structured parameters')
+eq(P.scaledCount(0,3,18),0);eq(P.scaledCount(5,3,18),15);eq(P.scaledCount(6,3,18),18);eq(P.scaledCount(2147483647,3,18),18)
+eq(P.scaledCount(306783378,7),2147483646);assert(not pcall(P.scaledCount,306783379,7));eq(P.scaledCount(2147483647,0),0)
+for _,v in ipairs({false,-1,0/0,1.5})do assert(not pcall(P.scaledCount,v,3,18));assert(not pcall(P.scaledCount,1,3,v))end
+print('PASS capped public count saturation and uncapped spending overflow reject')
