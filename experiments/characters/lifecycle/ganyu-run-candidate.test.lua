@@ -38,7 +38,7 @@ do
  eq(pcall(Run.startCombat,run,'cultist_solo'),false);C.new=new;assert(hit);same(run,before);eq(run.candidateLifecycle,cfg);eq(run.deck,deck);eq(run.data,data)
  assert(Run.startCombat(run,'cultist_solo'))
 end
-for _,bad in ipairs({false,'yes',{kind='ganyu',relicEnabled=1},{kind='xiao',relicEnabled=false},{kind='ganyu',relicEnabled=false,other=true}})do
+for _,bad in ipairs({false,'yes',{kind='ganyu',relicEnabled=1},{kind='unknown',relicEnabled=false},{kind='ganyu',relicEnabled=false,other=true}})do
  eq(pcall(Run.new,D,42,{experimental=true,candidateLifecycle=bad}),false)
 end
 for _,options in ipairs({{candidateLifecycle={kind='ganyu',relicEnabled=false}},{experimental=true,character='ironclad',candidateLifecycle={kind='ganyu',relicEnabled=false}},{experimental=true,campaign=true,campaignProfile='competition-two-act',candidateLifecycle={kind='ganyu',relicEnabled=false}}})do eq(pcall(Run.new,D,42,options),false)end

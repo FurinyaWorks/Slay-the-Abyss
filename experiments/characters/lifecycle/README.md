@@ -442,3 +442,16 @@ repair Power state. Run.play failure after actual reward publication restores
 the original entire Run/combat/config/deck/resource graph, and startup failures
 restore the original context. This is explicit fixed-deck/reward validation,
 not automatic production class or natural-pool registration.
+
+## Xiao explicit Run propagation
+
+The private Run context additionally accepts kind='xiao' and an actual boolean
+relicEnabled. Existing 01/02/04/06 card gates are unchanged; the remaining source
+bridge definitions are not thereby enabled. Fixed rewarded upgraded 01 retains
+its master UID across three actual battles. New battles clear mask, reserved
+energy and used-starter state while retaining the selected relic option. True
+Run.play lethal reward-publication faults and candidate start faults restore the
+original whole graph. A controlled fixed starter/hand fixture also executes
+paid 04 entry, actual Run.endTurn mask payment, and paid/free06 exit/exhaust.
+Native Intangible blood-cost and native shield differences remain design HOLD;
+this change does not introduce natural reward pools or formal class registration.
