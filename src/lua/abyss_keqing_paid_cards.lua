@@ -11,9 +11,15 @@ local function same(a,b)
  return true
 end
 local M={}
-local allowed={damage=true,damageAll=true,block=true,scry=true}
+local allowed={damage=true,damageAll=true,block=true,scry=true,keqingDiscard=true}
+function M.supportsDiscard(e)
+ if type(e)~='table'or getmetatable(e)or e.op~='keqingDiscard'or(e.value~=4 and e.value~=7)then return false end
+ for key in pairs(e)do if key~='op'and key~='value'then return false end end
+ return true
+end
 function M.canUse(state,card)
  if card.keqingCandidate==nil then
+  for _,e in ipairs(card.effects)do if e.op=='keqingDiscard'then return false,'unmarked_keqing_discard'end end
   if state.characterOwnerEnd=='keqing'and card.type=='attack'then return false,'keqing_candidate_effect_unavailable'end
   return true
  end
@@ -23,6 +29,11 @@ function M.canUse(state,card)
  for _,e in ipairs(card.effects)do
   if not allowed[e.op]or e.times=='X'then return false,'keqing_candidate_effect_unavailable'end
  end
+ if card.keqingStage=='043'then
+  if card.type~='skill'or card.target~='SELF'or #card.effects~=1 or not M.supportsDiscard(card.effects[1])then return false,'keqing_discard_unavailable'end
+  return true
+ end
+ for _,e in ipairs(card.effects)do if e.op=='keqingDiscard'then return false,'missing_keqing_discard_stage'end end
  if card.keqingStage~=nil then
   if card.keqingStage~='003'and card.keqingStage~='004' or card.type~='attack' or card.target~='ENEMY' or #card.effects~=1
    or card.effects[1].op~='damage' then return false,'keqing_staged_card_unavailable'end
@@ -40,6 +51,13 @@ function M.prepare(state,card,effects,combat,target)
  local context=assert(state.pendingPlay,'missing paid card context')
  assert(context.keqingPaid==nil,'duplicate paid card plan')
  context.keqingPaid={turn=state.turn,uid=context.uid,attack=card.type=='attack',infused=card.type=='attack'and r.infusion>0}
+ if card.keqingStage=='043'then
+  local instance=assert(state.cardInUse,'missing paid discard instance')
+  assert(instance.uid==context.uid and card.effects[1].value==(instance.upgraded and 7 or 4),'invalid discard face')
+  -- Normal queued preparation captures block modifiers before the reveal.
+  -- The native requestDiscard owns the non-cancellable choice and continuation.
+  return {{op='draw',value=1},{op='requestDiscard',value=1},{op='block',value=card.effects[1].value}}
+ end
  if card.keqingStage=='003'or card.keqingStage=='004'then
   local instance=assert(state.cardInUse,'missing paid instance')
   assert(instance.uid==context.uid and target and target.id==context.targetId,'stale staged target')

@@ -255,3 +255,25 @@ check Schedule removal, empty exit and fault rollback. Additional automatic
 normal/override/unmarked cases and a controlled real-entity Scry arrangement test
 resumed exit rollback and exactly-once retry. No owner-end or start-turn hook is
 newly enabled for Xiao, and the Intangible HP-payment design HOLD remains.
+
+### KQ043 native intermediate discard continuation
+
+Experimental skill KQ043 uses strict `keqingStage='043'`, `target='SELF'`, and one
+`keqingDiscard` effect containing only its base/upgraded block value 4/7. Its
+candidate source base cost is 1; the real host remains authoritative for dynamic
+costs. Paid preparation expands to native draw1 → requestDiscard1 → block, with
+normal use-time block modifier capture. Ordinary direct draw/discard/block still
+fails the pre-existing `discard_must_end_card` rule; no global restriction was
+relaxed. Revealed choices cannot be cancelled into a pre-draw state: invalid
+choices, replayed tokens, further plays and end-turn refuse without mutation.
+Errors before revelation restore the full payment/draw/shuffle preimage; errors
+after revelation restore the paused choice, paid UID, RNG and public aliases.
+
+Actual trigger probes establish Tactician TOP energy before block, and Reflex
+BOTTOM draw after the completed UseCard while pendingPlay still awaits queue-tail
+cleanup. No Draw/empty and one-card hands follow native automatic discard. A
+controlled draw-time native HP-loss injection verifies terminal suppression of
+choice and block. Use-time block capture follows the host contract; it is not a
+claim of equivalence with the research engine if intervening reactions change
+Dexterity/Frail. That interaction remains a design HOLD. No formal registration
+or full-CI result is claimed.
