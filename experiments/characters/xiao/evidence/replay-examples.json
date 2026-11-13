@@ -141,7 +141,7 @@
         "turn": 4,
         "plays": 12,
         "firstMask": 1,
-        "firstExitSeen": 4,
+        "firstExitSeen": 1,
         "failedActions": 0,
         "truncated": false
       }
@@ -191,7 +191,7 @@
         "turn": 4,
         "plays": 12,
         "firstMask": 1,
-        "firstExitSeen": 4,
+        "firstExitSeen": 1,
         "failedActions": 0,
         "truncated": false
       }

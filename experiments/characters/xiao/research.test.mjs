@@ -23,3 +23,8 @@ test('custom deck and starting life validated, real shuffle keeps inventory',()=
   let s=newBattle({hp:17,deck:['x06',...catalog.starter]});s.enemies[0].intent=[0];
   for(let i=0;i<10;i++){s=advance(s);assert.equal(s.hp,17);assert.equal(s.hand.length+s.draw.length+s.discard.length,11);}
 });
+
+test('seed23 relic draw records exit availability in the same turn',()=>{
+  const r=runCampaign({seed:23,policy:'guard',exit:true,upgradeMask:false});
+  assert.equal(r.fights[0].firstMask,1);assert.equal(r.fights[0].firstExitSeen,1);
+});

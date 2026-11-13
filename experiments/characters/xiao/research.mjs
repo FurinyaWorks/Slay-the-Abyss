@@ -44,6 +44,7 @@ export function runCampaign({seed,policy,exit=false,upgradeMask=false}) {
         const action=choose(observe(s),policy);if(!action)break;
         const id=s.hand[action.index];const result=battlePlay(s,{...action,upgraded:upgradeMask&&id==='x04'});
         if(!result.ok){failedActions++;break;}s=result.state;plays++;
+        if(s.hand.includes('x06')&&firstExitSeen===null)firstExitSeen=s.turn;
         if(id==='x04'&&firstMask===null)firstMask=s.turn;
         if(outcome(s)!=='playing')break;
         if(actions===19)truncated=true;
