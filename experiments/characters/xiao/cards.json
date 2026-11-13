@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.12",
+  "version": "xiao-g2-lab-0.13",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -997,6 +997,60 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x33",
+      "name": "待命名·x33",
+      "role": "常态长线手牌：投入能力后只在无面具回合开始额外抽牌",
+      "kind": "power",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "calmDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "calmDraw",
+          "value": 2
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x34",
+      "name": "待命名·x34",
+      "role": "一次退场行动调度：实际退出后返能而非回血",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "exitEnergy",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exitEnergy",
+          "value": 2
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1039,7 +1093,9 @@
     "x29",
     "x30",
     "x31",
-    "x32"
+    "x32",
+    "x33",
+    "x34"
   ],
   "maskRules": {
     "attackBonus": 4,

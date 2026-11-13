@@ -4,7 +4,7 @@ import { catalog } from './model.mjs';
 import { newBattle, battlePlay, advance, outcome, intent } from './battle.mjs';
 export function observe(s) {
   return { hp:s.hp, energy:s.energy, block:s.block, mask:s.mask,
-    hand:[...s.hand], exhaustedCount:s.exhaust.length, exitInDiscard:s.discard.some(id=>catalog.cards.find(c=>c.id===id)?.base.some(e=>e.op==='mask'&&e.value===0)), enemies:s.enemies.map(e=>({hp:e.hp,block:e.block,intent:intent(s,e)})) };
+    hand:[...s.hand], exhaustedCount:s.exhaust.length, exitInDiscard:s.discard.some(id=>catalog.cards.find(c=>c.id===id)?.base.some(e=>(e.op==='mask'&&e.value===0)||e.op==='exitEnergy')), enemies:s.enemies.map(e=>({hp:e.hp,block:e.block,intent:intent(s,e)})) };
 }
 export function choose(view, policy) {
   if (!['burst','guard','never-mask'].includes(policy)) throw Error('policy');
@@ -53,6 +53,8 @@ export function choose(view, policy) {
     if(id==='x30'&&view.mask===0&&card.cost<=view.energy)score+=3;
     if(id==='x31')score+=Math.min(4,target.intent)*(policy==='guard'?2:1);
     if(id==='x32')score=Math.min(4,Math.max(0,incoming-view.block))*(policy==='guard'?3:1)+(view.block+4>=incoming?3:0);
+    if(id==='x33'&&view.mask===0&&incoming<=view.block&&policy==='guard')score=6;
+    if(id==='x34'&&view.mask>0)score=view.hp<=2?1000:(policy==='guard'?12:1);
     if(score>0)choices.push({index,target:target.index,score});
   });
   return choices.sort((a,b)=>b.score-a.score||a.index-b.index)[0]??null;
