@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.16.0",
+  "version": "ganyu-sample-0.17.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -1612,6 +1612,122 @@
         ]
       },
       "source_ref": "ganyu-46",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-47",
+      "name": "待命名·ganyu-47",
+      "candidate_name": null,
+      "role": "一次性少量防守兼抽牌堆基础防守调度",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 2
+          },
+          {
+            "op": "seek_effect",
+            "effect_op": "block"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 2
+          },
+          {
+            "op": "seek_effect",
+            "effect_op": "block"
+          }
+        ]
+      },
+      "source_ref": "ganyu-47",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-48",
+      "name": "待命名·ganyu-48",
+      "candidate_name": null,
+      "role": "一次性主动蓄力来源调度",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "charge"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "charge"
+          }
+        ]
+      },
+      "source_ref": "ganyu-48",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-49",
+      "name": "待命名·ganyu-49",
+      "candidate_name": null,
+      "role": "较弱雨场兼一张立即过牌",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 2
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-49",
       "review": {
         "status": "HOLD",
         "human_approved": false,

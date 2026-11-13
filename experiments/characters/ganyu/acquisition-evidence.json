@@ -1,537 +1,89 @@
 {
   "scope": "synthetic lifecycle reachability, not natural production rewards or balance",
-  "poolDigest": "812d4790e97c7bbaec4fc5bb979ed1726878579ba542278e2bbe12960976ea63",
+  "poolDigest": "9c8b2d82f63c4a08f216c623f1a2ead121f68fafd2a8553f698e8f038714aed0",
   "inputs": {
     "acquisition.mjs": "71651650ac2a5e819f195cd70a08e970ad5bbbf305d52810d2882517f3112093",
     "acquisition-evidence.mjs": "a17eaca1066119cdb337cd5e56a304b92d3b2510d01803fe3fdc21185fd50536",
-    "engine.mjs": "ac70bf0ace201ad3f86101135583cd59bb0bb0ea0018f54be9cf7220e2712569",
-    "cards.json": "0af146ce29abd6d1b646bd7a855061b670867a615abd18767de0c5d8c301698b",
-    "relic.json": "6b526b27e3f3f5c96a5c9995f4f2ba270fdbba99d84c8d2a61f291082a4dd5d4",
+    "engine.mjs": "931e7cb54ae5652fe1a3bdfaf06b0fa8c7deefc45a86f565a68aa005d816e4fe",
+    "cards.json": "0856e2a20b7ad9a21ec6be7f4102f40deac9662fcb5f0adae799e9a105cbb529",
+    "relic.json": "9213f29aa867d4ca79403e7ea252a72847205eb8c9b94c89f331a15e99122dd4",
     "battle.mjs": "6ce15f3c8135171ce5fca7d60b22a1b9c870eb2a4965ea5aad0c5ceb99a2c7cf",
     "deck.mjs": "75fcd21733d8994e3a7ebcfaececc992de0afdfa56dd56ec30f4d6bff77270f7"
   },
-  "eligible": 44,
-  "covered": 44,
+  "eligible": 47,
+  "covered": 47,
   "fixture": "one starter attack, 1hp first enemy then 999hp inert target; no hand insertion",
   "rows": [
     {
-      "id": "ganyu-17",
-      "seed": 1,
-      "offer": [
-        "ganyu-17",
-        "ganyu-35",
-        "ganyu-07"
-      ],
-      "choice": 0,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 1210136899,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-35",
-      "seed": 1,
-      "offer": [
-        "ganyu-17",
-        "ganyu-35",
-        "ganyu-07"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 1210136899,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-07",
-      "seed": 1,
-      "offer": [
-        "ganyu-17",
-        "ganyu-35",
-        "ganyu-07"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 1210136899,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-34",
-      "seed": 2,
-      "offer": [
-        "ganyu-34",
-        "ganyu-19",
-        "ganyu-28"
-      ],
-      "choice": 0,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "exhausted",
-      "rewardRngAfter": 3865335061,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-19",
-      "seed": 2,
-      "offer": [
-        "ganyu-34",
-        "ganyu-19",
-        "ganyu-28"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 3865335061,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-28",
-      "seed": 2,
-      "offer": [
-        "ganyu-34",
-        "ganyu-19",
-        "ganyu-28"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "exhausted",
-      "rewardRngAfter": 3865335061,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-16",
-      "seed": 3,
-      "offer": [
-        "ganyu-16",
-        "ganyu-19",
-        "ganyu-29"
-      ],
-      "choice": 0,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 2923785302,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-29",
-      "seed": 3,
-      "offer": [
-        "ganyu-16",
-        "ganyu-19",
-        "ganyu-29"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 2923785302,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-25",
-      "seed": 4,
-      "offer": [
-        "ganyu-25",
-        "ganyu-46",
-        "ganyu-20"
-      ],
-      "choice": 0,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "exhausted",
-      "rewardRngAfter": 262936346,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-46",
-      "seed": 4,
-      "offer": [
-        "ganyu-25",
-        "ganyu-46",
-        "ganyu-20"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 262936346,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-20",
-      "seed": 4,
-      "offer": [
-        "ganyu-25",
-        "ganyu-46",
-        "ganyu-20"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 262936346,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-39",
-      "seed": 5,
-      "offer": [
-        "ganyu-39",
-        "ganyu-28",
-        "ganyu-16"
-      ],
-      "choice": 0,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "exhausted",
-      "rewardRngAfter": 1200434777,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-32",
-      "seed": 6,
-      "offer": [
-        "ganyu-32",
-        "ganyu-11",
-        "ganyu-33"
-      ],
-      "choice": 0,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 3922215439,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-11",
-      "seed": 6,
-      "offer": [
-        "ganyu-32",
-        "ganyu-11",
-        "ganyu-33"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 3922215439,
-      "nextDrawRng": 10273956
-    },
-    {
       "id": "ganyu-33",
-      "seed": 6,
+      "seed": 1,
       "offer": [
-        "ganyu-32",
-        "ganyu-11",
-        "ganyu-33"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "exhausted",
-      "rewardRngAfter": 3922215439,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-24",
-      "seed": 7,
-      "offer": [
-        "ganyu-46",
-        "ganyu-24",
-        "ganyu-06"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "exhausted",
-      "rewardRngAfter": 2716433228,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-06",
-      "seed": 7,
-      "offer": [
-        "ganyu-46",
-        "ganyu-24",
-        "ganyu-06"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 2716433228,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-10",
-      "seed": 8,
-      "offer": [
-        "ganyu-19",
-        "ganyu-10",
-        "ganyu-22"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 1079940871,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-22",
-      "seed": 8,
-      "offer": [
-        "ganyu-19",
-        "ganyu-10",
-        "ganyu-22"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 1079940871,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-31",
-      "seed": 9,
-      "offer": [
-        "ganyu-31",
-        "ganyu-37",
-        "ganyu-42"
+        "ganyu-33",
+        "ganyu-08",
+        "ganyu-29"
       ],
       "choice": 0,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "exhausted",
-      "rewardRngAfter": 142585412,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-37",
-      "seed": 9,
-      "offer": [
-        "ganyu-31",
-        "ganyu-37",
-        "ganyu-42"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "exhausted",
-      "rewardRngAfter": 142585412,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-42",
-      "seed": 9,
-      "offer": [
-        "ganyu-31",
-        "ganyu-37",
-        "ganyu-42"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 142585412,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-13",
-      "seed": 10,
-      "offer": [
-        "ganyu-13",
-        "ganyu-27",
-        "ganyu-16"
-      ],
-      "choice": 0,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 2788868626,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-27",
-      "seed": 10,
-      "offer": [
-        "ganyu-13",
-        "ganyu-27",
-        "ganyu-16"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 2788868626,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-36",
-      "seed": 11,
-      "offer": [
-        "ganyu-24",
-        "ganyu-36",
-        "ganyu-19"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 3994811217,
+      "rewardRngAfter": 3108354793,
       "nextDrawRng": 10273956
     },
     {
       "id": "ganyu-08",
-      "seed": 12,
+      "seed": 1,
       "offer": [
-        "ganyu-27",
+        "ganyu-33",
         "ganyu-08",
-        "ganyu-30"
+        "ganyu-29"
       ],
       "choice": 1,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 1341292573,
+      "rewardRngAfter": 3108354793,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-30",
-      "seed": 12,
+      "id": "ganyu-29",
+      "seed": 1,
       "offer": [
-        "ganyu-27",
+        "ganyu-33",
         "ganyu-08",
-        "ganyu-30"
+        "ganyu-29"
       ],
       "choice": 2,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 1341292573,
+      "rewardRngAfter": 3108354793,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-40",
-      "seed": 13,
+      "id": "ganyu-21",
+      "seed": 2,
       "offer": [
-        "ganyu-08",
-        "ganyu-46",
-        "ganyu-40"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 131316062,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-44",
-      "seed": 15,
-      "offer": [
-        "ganyu-44",
-        "ganyu-35",
-        "ganyu-23"
+        "ganyu-21",
+        "ganyu-25",
+        "ganyu-36"
       ],
       "choice": 0,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 3786927179,
+      "rewardRngAfter": 1056909827,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-23",
-      "seed": 15,
+      "id": "ganyu-25",
+      "seed": 2,
       "offer": [
-        "ganyu-44",
-        "ganyu-35",
-        "ganyu-23"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "exhausted",
-      "rewardRngAfter": 3786927179,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-12",
-      "seed": 20,
-      "offer": [
-        "ganyu-12",
-        "ganyu-15",
-        "ganyu-27"
-      ],
-      "choice": 0,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 4200446255,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-15",
-      "seed": 20,
-      "offer": [
-        "ganyu-12",
-        "ganyu-15",
-        "ganyu-27"
-      ],
-      "choice": 1,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 4200446255,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-38",
-      "seed": 22,
-      "offer": [
-        "ganyu-20",
-        "ganyu-38",
+        "ganyu-21",
+        "ganyu-25",
         "ganyu-36"
       ],
       "choice": 1,
@@ -539,15 +91,399 @@
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "exhausted",
-      "rewardRngAfter": 473558074,
+      "rewardRngAfter": 1056909827,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-36",
+      "seed": 2,
+      "offer": [
+        "ganyu-21",
+        "ganyu-25",
+        "ganyu-36"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 1056909827,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-09",
+      "seed": 3,
+      "offer": [
+        "ganyu-09",
+        "ganyu-45",
+        "ganyu-19"
+      ],
+      "choice": 0,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 2277150954,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-45",
+      "seed": 3,
+      "offer": [
+        "ganyu-09",
+        "ganyu-45",
+        "ganyu-19"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 2277150954,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-19",
+      "seed": 3,
+      "offer": [
+        "ganyu-09",
+        "ganyu-45",
+        "ganyu-19"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 2277150954,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-20",
+      "seed": 4,
+      "offer": [
+        "ganyu-20",
+        "ganyu-48",
+        "ganyu-28"
+      ],
+      "choice": 0,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 4139242855,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-48",
+      "seed": 4,
+      "offer": [
+        "ganyu-20",
+        "ganyu-48",
+        "ganyu-28"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 4139242855,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-28",
+      "seed": 4,
+      "offer": [
+        "ganyu-20",
+        "ganyu-48",
+        "ganyu-28"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 4139242855,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-41",
+      "seed": 5,
+      "offer": [
+        "ganyu-41",
+        "ganyu-16",
+        "ganyu-09"
+      ],
+      "choice": 0,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 1341288334,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-16",
+      "seed": 5,
+      "offer": [
+        "ganyu-41",
+        "ganyu-16",
+        "ganyu-09"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 1341288334,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-26",
+      "seed": 6,
+      "offer": [
+        "ganyu-33",
+        "ganyu-26",
+        "ganyu-47"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 3360227172,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-47",
+      "seed": 6,
+      "offer": [
+        "ganyu-33",
+        "ganyu-26",
+        "ganyu-47"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 3360227172,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-49",
+      "seed": 7,
+      "offer": [
+        "ganyu-47",
+        "ganyu-49",
+        "ganyu-26"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 1896695181,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-12",
+      "seed": 8,
+      "offer": [
+        "ganyu-41",
+        "ganyu-12",
+        "ganyu-30"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 3093901465,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-30",
+      "seed": 8,
+      "offer": [
+        "ganyu-41",
+        "ganyu-12",
+        "ganyu-30"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 3093901465,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-38",
+      "seed": 10,
+      "offer": [
+        "ganyu-38",
+        "ganyu-12",
+        "ganyu-47"
+      ],
+      "choice": 0,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 2257984154,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-34",
+      "seed": 11,
+      "offer": [
+        "ganyu-34",
+        "ganyu-13",
+        "ganyu-04"
+      ],
+      "choice": 0,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 1070833779,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-13",
+      "seed": 11,
+      "offer": [
+        "ganyu-34",
+        "ganyu-13",
+        "ganyu-04"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 1070833779,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-04",
+      "seed": 11,
+      "offer": [
+        "ganyu-34",
+        "ganyu-13",
+        "ganyu-04"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 1070833779,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-22",
+      "seed": 12,
+      "offer": [
+        "ganyu-22",
+        "ganyu-43",
+        "ganyu-20"
+      ],
+      "choice": 0,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 1323230718,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-43",
+      "seed": 12,
+      "offer": [
+        "ganyu-22",
+        "ganyu-43",
+        "ganyu-20"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 1323230718,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-44",
+      "seed": 13,
+      "offer": [
+        "ganyu-43",
+        "ganyu-44",
+        "ganyu-32"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 4154154775,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-32",
+      "seed": 13,
+      "offer": [
+        "ganyu-43",
+        "ganyu-44",
+        "ganyu-32"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 4154154775,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-40",
+      "seed": 14,
+      "offer": [
+        "ganyu-40",
+        "ganyu-47",
+        "ganyu-25"
+      ],
+      "choice": 0,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 1881264125,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-23",
+      "seed": 16,
+      "offer": [
+        "ganyu-23",
+        "ganyu-04",
+        "ganyu-25"
+      ],
+      "choice": 0,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 4125134021,
       "nextDrawRng": 10273956
     },
     {
       "id": "ganyu-05",
-      "seed": 25,
+      "seed": 17,
       "offer": [
-        "ganyu-23",
-        "ganyu-38",
+        "ganyu-41",
+        "ganyu-36",
         "ganyu-05"
       ],
       "choice": 2,
@@ -555,159 +491,271 @@
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 4253941873,
+      "rewardRngAfter": 1285895724,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-45",
-      "seed": 28,
+      "id": "ganyu-14",
+      "seed": 20,
       "offer": [
-        "ganyu-45",
-        "ganyu-40",
-        "ganyu-41"
+        "ganyu-14",
+        "ganyu-43",
+        "ganyu-22"
       ],
       "choice": 0,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 3120770600,
+      "rewardRngAfter": 56056226,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-41",
-      "seed": 28,
+      "id": "ganyu-17",
+      "seed": 22,
       "offer": [
-        "ganyu-45",
-        "ganyu-40",
-        "ganyu-41"
-      ],
-      "choice": 2,
-      "deckBefore": 1,
-      "deckAfter": 2,
-      "nextDrawn": true,
-      "playedZone": "discard",
-      "rewardRngAfter": 3120770600,
-      "nextDrawRng": 10273956
-    },
-    {
-      "id": "ganyu-26",
-      "seed": 29,
-      "offer": [
-        "ganyu-26",
-        "ganyu-21",
-        "ganyu-12"
+        "ganyu-17",
+        "ganyu-38",
+        "ganyu-22"
       ],
       "choice": 0,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 4062320491,
+      "rewardRngAfter": 1034449825,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-21",
-      "seed": 29,
+      "id": "ganyu-35",
+      "seed": 23,
       "offer": [
-        "ganyu-26",
-        "ganyu-21",
-        "ganyu-12"
+        "ganyu-47",
+        "ganyu-35",
+        "ganyu-10"
       ],
       "choice": 1,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 4062320491,
+      "rewardRngAfter": 2230176072,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-18",
-      "seed": 33,
+      "id": "ganyu-10",
+      "seed": 23,
       "offer": [
-        "ganyu-17",
-        "ganyu-31",
-        "ganyu-18"
+        "ganyu-47",
+        "ganyu-35",
+        "ganyu-10"
       ],
       "choice": 2,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 2563233129,
+      "rewardRngAfter": 2230176072,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-04",
-      "seed": 38,
+      "id": "ganyu-07",
+      "seed": 24,
       "offer": [
-        "ganyu-04",
-        "ganyu-38",
-        "ganyu-42"
+        "ganyu-21",
+        "ganyu-07",
+        "ganyu-24"
       ],
-      "choice": 0,
+      "choice": 1,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 959360549,
+      "rewardRngAfter": 1300872284,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-43",
-      "seed": 50,
+      "id": "ganyu-24",
+      "seed": 24,
       "offer": [
-        "ganyu-43",
-        "ganyu-41",
-        "ganyu-11"
+        "ganyu-21",
+        "ganyu-07",
+        "ganyu-24"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 1300872284,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-06",
+      "seed": 25,
+      "offer": [
+        "ganyu-35",
+        "ganyu-06",
+        "ganyu-46"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 4107011765,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-46",
+      "seed": 25,
+      "offer": [
+        "ganyu-35",
+        "ganyu-06",
+        "ganyu-46"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 4107011765,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-42",
+      "seed": 28,
+      "offer": [
+        "ganyu-38",
+        "ganyu-14",
+        "ganyu-42"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 3141429563,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-39",
+      "seed": 30,
+      "offer": [
+        "ganyu-39",
+        "ganyu-22",
+        "ganyu-38"
       ],
       "choice": 0,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "exhausted",
-      "rewardRngAfter": 3279099658,
+      "rewardRngAfter": 2244035384,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-14",
-      "seed": 56,
+      "id": "ganyu-11",
+      "seed": 31,
       "offer": [
-        "ganyu-17",
+        "ganyu-08",
+        "ganyu-11",
+        "ganyu-43"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 1015347665,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-37",
+      "seed": 32,
+      "offer": [
+        "ganyu-37",
+        "ganyu-39",
+        "ganyu-25"
+      ],
+      "choice": 0,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 2616112913,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-27",
+      "seed": 46,
+      "offer": [
         "ganyu-26",
-        "ganyu-14"
+        "ganyu-45",
+        "ganyu-27"
       ],
       "choice": 2,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 1699337496,
+      "rewardRngAfter": 3956242668,
       "nextDrawRng": 10273956
     },
     {
-      "id": "ganyu-09",
-      "seed": 80,
+      "id": "ganyu-15",
+      "seed": 48,
       "offer": [
-        "ganyu-09",
-        "ganyu-19",
-        "ganyu-17"
+        "ganyu-15",
+        "ganyu-42",
+        "ganyu-45"
       ],
       "choice": 0,
       "deckBefore": 1,
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 3044366990,
+      "rewardRngAfter": 1846426580,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-31",
+      "seed": 50,
+      "offer": [
+        "ganyu-10",
+        "ganyu-41",
+        "ganyu-31"
+      ],
+      "choice": 2,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "exhausted",
+      "rewardRngAfter": 1357976023,
+      "nextDrawRng": 10273956
+    },
+    {
+      "id": "ganyu-18",
+      "seed": 68,
+      "offer": [
+        "ganyu-27",
+        "ganyu-18",
+        "ganyu-30"
+      ],
+      "choice": 1,
+      "deckBefore": 1,
+      "deckAfter": 2,
+      "nextDrawn": true,
+      "playedZone": "discard",
+      "rewardRngAfter": 3987660794,
       "nextDrawRng": 10273956
     },
     {
       "id": "ganyu-03",
-      "seed": 396,
+      "seed": 343,
       "offer": [
-        "ganyu-06",
-        "ganyu-38",
+        "ganyu-29",
+        "ganyu-22",
         "ganyu-03"
       ],
       "choice": 2,
@@ -715,7 +763,7 @@
       "deckAfter": 2,
       "nextDrawn": true,
       "playedZone": "discard",
-      "rewardRngAfter": 2127998063,
+      "rewardRngAfter": 2366698677,
       "nextDrawRng": 10273956
     }
   ]
