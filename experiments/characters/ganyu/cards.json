@@ -1,0 +1,213 @@
+{
+  "version": "ganyu-sample-0.1.0",
+  "status": "CANDIDATE",
+  "character_id": "ganyu",
+  "production_enabled": false,
+  "rules_ref": "c53e3511dcc4af631f541f71e21afc66797c4dd2",
+  "cards": [
+    {
+      "id": "ganyu-01",
+      "name": "待命名·ganyu-01",
+      "candidate_name": "普通攻击",
+      "role": "基础单体击杀",
+      "rarity": "basic",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 9
+          }
+        ]
+      },
+      "source_ref": "ganyu-01",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-02",
+      "name": "待命名·ganyu-02",
+      "candidate_name": "防御",
+      "role": "基础当回合防守",
+      "rarity": "basic",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-02",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-03",
+      "name": "待命名·ganyu-03",
+      "candidate_name": "霜华矢",
+      "role": "立即单杀或消耗蓄力兑现群伤",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 7,
+            "bloom": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 9,
+            "bloom": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-03",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-04",
+      "name": "待命名·ganyu-04",
+      "candidate_name": "山泽麟迹",
+      "role": "付能防守兼群体收尾，减少可留蓄力",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 6
+          },
+          {
+            "op": "aoe",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "aoe",
+            "amount": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-04",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-05",
+      "name": "待命名·ganyu-05",
+      "candidate_name": "降众天华",
+      "role": "高费延迟群伤，适合多敌长战",
+      "rarity": "rare",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 6,
+            "turns": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-05",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-06",
+      "name": "待命名·ganyu-06",
+      "candidate_name": null,
+      "role": "用一张手牌把本回合能量立即转成蓄力",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-06",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    }
+  ]
+}

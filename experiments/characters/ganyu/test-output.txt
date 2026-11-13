@@ -1,0 +1,20 @@
+✔ independent base/upgrade oracles, charge 0/1/2 (2.39252ms)
+✔ primary lethal still blooms; armor consumed separately, exact lethal (0.259452ms)
+✔ invalid target/payment/index and cancel cannot mint resources or move cards (0.947434ms)
+✔ all other base/upgrade effect contracts (0.548487ms)
+✔ bank unused energy at end, saturation, no passive per-card grant (2.607576ms)
+✔ storm two ticks, refresh max not sum, dead enemies cannot attack (0.287233ms)
+✔ storm cannot be funded by future banking, and no enemy turn after victory (0.231631ms)
+✔ block persists across enemy multihits then clears next turn; death stops turn (0.230779ms)
+✔ no retain/shuffle implied, draw has hand cap and actual availability (0.331908ms)
+✔ opposite reachable choices: lethal now vs preserve charge economy (0.487417ms)
+✔ display generated from same structured variants, no false approval (0.61821ms)
+✔ upgrade flag must be boolean; string false never grants upgrade (0.243028ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 126.290297

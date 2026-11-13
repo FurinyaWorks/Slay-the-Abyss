@@ -1,0 +1,77 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { initial, play, endTurn, startTurn, catalogue, cardText } from './engine.mjs';
+const hand = (s,id,upgraded=false) => ({...s,hand:[{id,upgraded}]});
+test('independent base/upgrade oracles, charge 0/1/2',()=>{
+ for (const upgraded of [false,true]) for(const charge of [0,1,2]) {
+  const s=hand(initial([{hp:40,block:0,intent:0},{hp:40,block:0,intent:0}]),'ganyu-03',upgraded); s.charge=charge;
+  const out=play(s,0,0); const direct=upgraded?9:7,bloom=charge===2?(upgraded?8:6):0;
+  assert.deepEqual(out.enemies.map(e=>e.hp),[40-direct-bloom,40-bloom]);
+  assert.equal(out.charge,charge===2?0:charge); assert.equal(out.energy,2); assert.equal(out.discard.length,1);
+ }
+});
+test('primary lethal still blooms; armor consumed separately, exact lethal',()=>{
+ const s=hand(initial([{hp:7,block:0,intent:99},{hp:6,block:0,intent:99}]),'ganyu-03'); s.charge=2;
+ assert.equal(play(s,0,0).phase,'won');
+ s.enemies=[{hp:20,block:8,intent:0}]; assert.equal(play(s,0,0).enemies[0].hp,15);
+});
+test('invalid target/payment/index and cancel cannot mint resources or move cards',()=>{
+ const s=hand(initial(),'ganyu-06'); s.energy=0; const before=structuredClone(s);
+ assert.throws(()=>play(s,0),/unpayable/); assert.deepEqual(s,before); assert.deepEqual(play(s,0,null,true),s);
+ assert.throws(()=>play(s,-1)); s.hand=[{id:'ganyu-03'}]; s.energy=3;
+ assert.throws(()=>play(s,0,9),/invalid target/); assert.equal(s.energy,3);
+});
+test('all other base/upgrade effect contracts',()=>{
+ for(const up of [false,true]) {
+  assert.equal(play(hand(initial(),'ganyu-01',up),0,0).enemies[0].hp,up?21:24);
+  assert.equal(play(hand(initial(),'ganyu-02',up),0).block,up?8:5);
+  const e=play(hand(initial(),'ganyu-04',up),0); assert.equal(e.block,up?8:6);assert.equal(e.enemies[0].hp,up?26:27);
+  assert.equal(play(hand(initial(),'ganyu-06',up),0).charge,up?2:1);
+ }
+});
+test('bank unused energy at end, saturation, no passive per-card grant',()=>{
+ const s=initial();s.energy=3;s.charge=1;const out=endTurn(s);assert.equal(out.charge,2);assert.equal(out.energy,0);
+ assert.equal(play(hand(initial(),'ganyu-01'),0,0).charge,0);
+ for(let i=0;i<100;i++){const a=hand(initial(),'ganyu-06');a.charge=2;assert.equal(play(a,0).charge,2);}
+});
+test('storm two ticks, refresh max not sum, dead enemies cannot attack',()=>{
+ let s=hand(initial([{hp:4,block:0,intent:99},{hp:40,block:0,intent:3}]),'ganyu-05');
+ s=play(s,0);s=endTurn(s);assert.equal(s.hp,57);assert.equal(s.storm.turns,1);
+ s=startTurn(s);s=endTurn(s);assert.equal(s.storm,null);assert.equal(s.enemies[1].hp,32);
+ let q=hand(initial(),'ganyu-05',true);q=play(q,0);q.energy=2;q.hand=[{id:'ganyu-05'}];q=play(q,0);
+ assert.deepEqual(q.storm,{amount:6,turns:2});
+});
+test('storm cannot be funded by future banking, and no enemy turn after victory',()=>{
+ const s=hand(initial([{hp:4,block:0,intent:999}]),'ganyu-05');s.energy=1;assert.throws(()=>play(s,0));
+ s.energy=3;const out=endTurn(play(s,0));assert.equal(out.phase,'won');assert.equal(out.hp,60);assert.throws(()=>endTurn(out));
+});
+test('block persists across enemy multihits then clears next turn; death stops turn',()=>{
+ const s=initial([{hp:20,block:0,intent:[3,4]}]);s.block=5;
+ const out=endTurn(s);assert.equal(out.hp,58);assert.equal(startTurn(out).block,0);
+ s.hp=1;s.block=0;assert.equal(endTurn(s).phase,'lost');assert.throws(()=>startTurn(endTurn(s)));
+});
+test('no retain/shuffle implied, draw has hand cap and actual availability',()=>{
+ const s=initial();s.hand=[{id:'ganyu-03'}];s.draw=Array.from({length:7},()=>({id:'ganyu-01'}));
+ const out=startTurn(endTurn(s));assert.equal(out.hand.length,5);assert.equal(out.draw.length,2);assert.equal(out.discard.length,1);
+ out.phase='between';out.hand=Array(9).fill({id:'ganyu-01'});assert.equal(startTurn(out).hand.length,10);
+});
+test('opposite reachable choices: lethal now vs preserve charge economy',()=>{
+ const s=hand(initial([{hp:6,block:0,intent:10}]),'ganyu-01');s.hp=8;
+ assert.equal(play(s,0,0).phase,'won');assert.equal(endTurn(s).phase,'lost');
+ const setup=initial([{hp:35,block:0,intent:0}]);setup.hand=[{id:'ganyu-01'}];setup.draw=[{id:'ganyu-03'}];setup.energy=2;
+ const bank=startTurn(endTurn(setup));const spend=startTurn(endTurn(play(setup,0,0)));
+ assert.equal(play(bank,0,0).enemies[0].hp,22);assert.equal(play(spend,0,0).enemies[0].hp,22);
+ // Single target ties; extra enemy makes saved charge strictly useful.
+ setup.enemies.push({hp:20,block:0,intent:0});
+ assert.equal(play(startTurn(endTurn(setup)),0,0).enemies[1].hp,14);
+ assert.equal(play(startTurn(endTurn(play(setup,0,0))),0,0).enemies[1].hp,20);
+});
+test('display generated from same structured variants, no false approval',()=>{
+ assert.equal(catalogue.cards.length,6);assert.equal(catalogue.production_enabled,false);
+ for(const c of catalogue.cards){assert.equal(c.review.human_approved,false);assert.match(c.name,/^待命名·/);for(const up of [false,true]) assert.match(cardText(c.id,up),/能量/);}
+ assert.match(cardText('ganyu-03',true),/9点伤害.*8点伤害/);
+});
+
+test('upgrade flag must be boolean; string false never grants upgrade',()=>{
+ const s=hand(initial(),'ganyu-01');s.hand[0].upgraded='false';assert.throws(()=>play(s,0,0),/invalid upgrade/);assert.equal(s.energy,3);
+});

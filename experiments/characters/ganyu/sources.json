@@ -1,0 +1,186 @@
+{
+  "version": "ganyu-sample-0.1.0",
+  "status": "HOLD",
+  "records": [
+    {
+      "card_id": "ganyu-01",
+      "decision_role": "基础单体击杀",
+      "effect_ref": "cards.json#ganyu-01",
+      "name": "待命名·ganyu-01",
+      "proposed_name": "普通攻击",
+      "source_tier": "SYS-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "普通攻击",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "search performed; primary verification incomplete",
+      "p2_checked": "search performed; primary verification incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-02",
+      "decision_role": "基础当回合防守",
+      "effect_ref": "cards.json#ganyu-02",
+      "name": "待命名·ganyu-02",
+      "proposed_name": "防御",
+      "source_tier": "SYS-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "防御",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "search performed; primary verification incomplete",
+      "p2_checked": "search performed; primary verification incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-03",
+      "decision_role": "立即单杀或消耗蓄力兑现群伤",
+      "effect_ref": "cards.json#ganyu-03",
+      "name": "待命名·ganyu-03",
+      "proposed_name": "霜华矢",
+      "source_tier": "P1-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "霜华矢",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "search performed; primary verification incomplete",
+      "p2_checked": "search performed; primary verification incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-04",
+      "decision_role": "付能防守兼群体收尾，减少可留蓄力",
+      "effect_ref": "cards.json#ganyu-04",
+      "name": "待命名·ganyu-04",
+      "proposed_name": "山泽麟迹",
+      "source_tier": "P1-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "山泽麟迹",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "search performed; primary verification incomplete",
+      "p2_checked": "search performed; primary verification incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-05",
+      "decision_role": "高费延迟群伤，适合多敌长战",
+      "effect_ref": "cards.json#ganyu-05",
+      "name": "待命名·ganyu-05",
+      "proposed_name": "降众天华",
+      "source_tier": "P1-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "降众天华",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "search performed; primary verification incomplete",
+      "p2_checked": "search performed; primary verification incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-06",
+      "decision_role": "用一张手牌把本回合能量立即转成蓄力",
+      "effect_ref": "cards.json#ganyu-06",
+      "name": "待命名·ganyu-06",
+      "proposed_name": null,
+      "source_tier": "unassigned",
+      "source_kind": "unverified-transcription-index",
+      "source_text": null,
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "search performed; primary verification incomplete",
+      "p2_checked": "search performed; primary verification incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    }
+  ]
+}
