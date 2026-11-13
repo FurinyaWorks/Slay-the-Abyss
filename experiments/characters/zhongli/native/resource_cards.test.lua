@@ -32,3 +32,15 @@ for _,id in ipairs({'zl20','zl62'})do for _,up in ipairs({false,true})do for jad
  assert(s.zhongliCandidate.jade==(jade==0 and amount or jade)and s.energy==3 and #s.hand==1)
 end end end
 print('REBUILD_CARD_CONTRACT_PASS 84 UID/version/reserve cases; 62 draw/exhaust only declared, not publicly exercised')
+
+for _,id in ipairs({'zl19','zl24'})do for _,up in ipairs({false,true})do for jade=0,20 do
+ local s=L.start(C.new(D,{seed=42,deck={'strike'},enemies={'cultist'}}),'search',false)
+ s.zhongliCandidate.jade=jade;s.hand[1].cardId=id;s.hand[1].upgraded=up;local uid=s.hand[1].uid
+ local ok=R.canUse(s,uid);assert(ok==(id=='zl19'or jade>=3));assert(s.energy==3 and s.zhongliCandidate.jade==jade)
+ if ok then local p=R.prepare(s,uid);assert(p.baseCost==(id=='zl19'and 2 or 1)and p.definition.exhaust)
+  assert(p.effects[2].op=='draw'and p.effects[2].value==(id=='zl19'and(up and 3 or 2)or(up and 4 or 3)))
+  Q.start(s,{{kind='effect',effect=p.effects[1]}});assert(Q.run(s,{effect=function(st,a,q)return R.dispatch(C,st,a.effect,q)end}))
+  assert(s.zhongliCandidate.jade==(id=='zl19'and math.min(20,jade+(up and 8 or 6))or jade-3))
+ end
+end end end
+print('SEARCH_CARD_CONTRACT_PASS 84 UID/version/resource cases; draw/payment/exhaust awaits shared admission')
