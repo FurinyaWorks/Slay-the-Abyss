@@ -1,0 +1,1224 @@
+{
+  "date": "2026-11-13",
+  "validation": {
+    "focusedTests": 8,
+    "passed": 8,
+    "method": "Exact source/test bodies executed as Node module stdin, no local file writes",
+    "full": "NOT_RUN",
+    "browser": "NOT_RUN",
+    "native": "NOT_RUN"
+  },
+  "observations": [
+    {
+      "schemaVersion": 1,
+      "scope_complete": false,
+      "character": "ganyu",
+      "root": "/workspace/scratch/c1a4970a76e0/ganyu-production",
+      "source": {
+        "head": "0e771bd8aea7b5cc85d250da5e8bda87e828135b",
+        "dirty": "",
+        "files": {
+          "accessibility.mjs": "a050b5f14898a2821170d5f45a0ed6283f789cfab2f15725305175ee3f97d997",
+          "batch-06.test.mjs": "27d632ff252b1f2bb97712b47d61ee6f041a2b31567827ac7572e1d41c2ebdd0",
+          "batch-07.test.mjs": "ee9a82fcb6f1314581c80fcd2a4859e2dd79bc1a684a1674d132fc91cbb7c608",
+          "batch-08.test.mjs": "c82cafef3b5951caed6f857e14517871b48f48684dbf7dde22c8be32836c52d7",
+          "battle.mjs": "6ce15f3c8135171ce5fca7d60b22a1b9c870eb2a4965ea5aad0c5ceb99a2c7cf",
+          "battle.test.mjs": "8aaa39cd6d7f32170198e17a2b9e92eb258e6cff23dcc9db9f236a3e8b9a7033",
+          "cards.json": "b19a4ef69bb8e21297bca2f561b25a5db3b0ce7336919f1b55a5573a24dc5f47",
+          "core-support-experiment.mjs": "eed242ffe4f21733dc24e4299cae9796692c17341b14b2c761ce98115035dac2",
+          "deck.mjs": "75fcd21733d8994e3a7ebcfaececc992de0afdfa56dd56ec30f4d6bff77270f7",
+          "defense-experiment.mjs": "a62e3ccfaaa2e63b1f2c698d7467f2271e32fb9241667488661df7b106f6c70f",
+          "draw-experiment.mjs": "acfd3779b2ed34bc2259f84b92a763340cab02a864327fa25757e319c1f63065",
+          "encounter-matrix.mjs": "4d5c55250c1b7250c4a6dd32f80fd4448aedde9ff430efa8e7790b1ad5c58849",
+          "engine.mjs": "c43647dbb64eb1ebd40756899222e99ae9f938f728bb809ca3d61d96438631fe",
+          "engine.test.mjs": "92ddad39ac0aef73c4ada1582467950bea035b64f8c0b52fcd0babba947be6b2",
+          "play.mjs": "699d5edfeb02fa36781a1afccef7e0c9e29a8f8285e5deb14230217d7be28672",
+          "relic.json": "1e88d9e24f772b56f79560abd885119066f1b8c37b2ddb784fd2fa1a756f6aa1",
+          "replay-inputs.mjs": "a3d4ecd40c5ba70038666f0bf802c2c1a43abe0691a32f2002932f3b5b7c7466",
+          "sources.json": "781d2f637981d81f6a2ec2ad76d7be8ab56561679cc971a2de1845c5a88ef3f5",
+          "validate.mjs": "8b73a8e673244318cc5d243dd23b7d1a8b5effe8d58cb33a235a7d4ca2759570",
+          "validate.test.mjs": "27619f3046c134e4f6a8a974c4c3fef2bda9fe908de487c235bcd4f4935764d9"
+        }
+      },
+      "naming": "HOLD",
+      "balance": "HOLD",
+      "production": "HOLD",
+      "browser": "NOT_RUN",
+      "native": "NOT_RUN",
+      "limitations": [
+        "Imports reviewed local modules: trusted checkouts only; not an OS sandbox.",
+        "Access checks concern declared local channels, not win rate or earned rewards.",
+        "Text probe tests renderability and input types, not natural-language semantic equivalence.",
+        "Relic activation, duplicates, cancellation, upgrades acquisition and cross-battle reset need existing owner tests."
+      ],
+      "status": "REVIEW_REQUIRED",
+      "channel": "play.mjs default starter-only terminal battle; custom-deck research harness excluded",
+      "access": {
+        "defined": 22,
+        "starter": [
+          "ganyu-01",
+          "ganyu-02",
+          "ganyu-03",
+          "ganyu-04"
+        ],
+        "declaredReward": [],
+        "unknown": [],
+        "uncovered": [
+          "ganyu-05",
+          "ganyu-06",
+          "ganyu-07",
+          "ganyu-08",
+          "ganyu-09",
+          "ganyu-10",
+          "ganyu-11",
+          "ganyu-12",
+          "ganyu-13",
+          "ganyu-14",
+          "ganyu-15",
+          "ganyu-16",
+          "ganyu-17",
+          "ganyu-18",
+          "ganyu-19",
+          "ganyu-20",
+          "ganyu-21",
+          "ganyu-22"
+        ],
+        "scope": "Only the named local entry path; not global impossibility or natural acquisition probability."
+      },
+      "text": [
+        {
+          "id": "ganyu-01",
+          "texts": {
+            "base": "待命名·ganyu-01｜1能量｜对目标造成6点伤害。",
+            "upgraded": "待命名·ganyu-01+｜1能量｜对目标造成9点伤害。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-02",
+          "texts": {
+            "base": "待命名·ganyu-02｜1能量｜获得5点格挡。",
+            "upgraded": "待命名·ganyu-02+｜1能量｜获得8点格挡。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-03",
+          "texts": {
+            "base": "待命名·ganyu-03｜1能量｜对目标造成7点伤害。若结算前蓄力为2，消耗全部蓄力，随后对所有存活敌人造成6点伤害。",
+            "upgraded": "待命名·ganyu-03+｜1能量｜对目标造成9点伤害。若结算前蓄力为2，消耗全部蓄力，随后对所有存活敌人造成8点伤害。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-04",
+          "texts": {
+            "base": "待命名·ganyu-04｜1能量｜获得6点格挡。对所有存活敌人造成3点伤害。",
+            "upgraded": "待命名·ganyu-04+｜1能量｜获得8点格挡。对所有存活敌人造成4点伤害。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-05",
+          "texts": {
+            "base": "待命名·ganyu-05｜2能量｜建立冰雨：从本回合起连续2个回合结束时，对所有存活敌人造成4点伤害；重复施放取较高伤害与剩余次数，不叠加。",
+            "upgraded": "待命名·ganyu-05+｜2能量｜建立冰雨：从本回合起连续2个回合结束时，对所有存活敌人造成6点伤害；重复施放取较高伤害与剩余次数，不叠加。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-06",
+          "texts": {
+            "base": "待命名·ganyu-06｜1能量｜获得1层蓄力（上限2）。",
+            "upgraded": "待命名·ganyu-06+｜1能量｜获得2层蓄力（上限2）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-07",
+          "texts": {
+            "base": "待命名·ganyu-07｜1能量｜抽2张牌（手牌上限10）。",
+            "upgraded": "待命名·ganyu-07+｜1能量｜抽3张牌（手牌上限10）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-08",
+          "texts": {
+            "base": "待命名·ganyu-08｜1能量｜获得5点格挡。抽1张牌（手牌上限10）。",
+            "upgraded": "待命名·ganyu-08+｜1能量｜获得8点格挡。抽1张牌（手牌上限10）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-09",
+          "texts": {
+            "base": "待命名·ganyu-09｜2能量｜获得8点格挡。获得2层蓄力（上限2）。",
+            "upgraded": "待命名·ganyu-09+｜2能量｜获得11点格挡。获得2层蓄力（上限2）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-10",
+          "texts": {
+            "base": "待命名·ganyu-10｜1能量｜从抽牌堆将1张待命名·ganyu-03加入手牌。不检索弃牌堆；没有目标时无效果，不退款。",
+            "upgraded": "待命名·ganyu-10+｜0能量｜从抽牌堆将1张待命名·ganyu-03加入手牌。不检索弃牌堆；没有目标时无效果，不退款。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-11",
+          "texts": {
+            "base": "待命名·ganyu-11｜0能量｜获得3点格挡。",
+            "upgraded": "待命名·ganyu-11+｜0能量｜获得5点格挡。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-12",
+          "texts": {
+            "base": "待命名·ganyu-12｜1能量｜对目标造成4点伤害。获得3点格挡。",
+            "upgraded": "待命名·ganyu-12+｜1能量｜对目标造成6点伤害。获得4点格挡。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-13",
+          "texts": {
+            "base": "待命名·ganyu-13｜2能量｜获得14点格挡。",
+            "upgraded": "待命名·ganyu-13+｜2能量｜获得18点格挡。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-14",
+          "texts": {
+            "base": "待命名·ganyu-14｜3能量｜获得8点格挡。建立冰雨：从本回合起连续2个回合结束时，对所有存活敌人造成3点伤害；重复施放取较高伤害与剩余次数，不叠加。",
+            "upgraded": "待命名·ganyu-14+｜3能量｜获得11点格挡。建立冰雨：从本回合起连续2个回合结束时，对所有存活敌人造成4点伤害；重复施放取较高伤害与剩余次数，不叠加。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-15",
+          "texts": {
+            "base": "待命名·ganyu-15｜2能量｜对目标造成14点伤害。",
+            "upgraded": "待命名·ganyu-15+｜2能量｜对目标造成18点伤害。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-16",
+          "texts": {
+            "base": "待命名·ganyu-16｜1能量｜对目标造成4点伤害。获得1层蓄力（上限2）。",
+            "upgraded": "待命名·ganyu-16+｜1能量｜对目标造成6点伤害。获得1层蓄力（上限2）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-17",
+          "texts": {
+            "base": "待命名·ganyu-17｜2能量｜对目标造成8点伤害。若结算前蓄力为2，消耗全部蓄力，本次伤害增加14（合为单次命中，不绽放）。",
+            "upgraded": "待命名·ganyu-17+｜2能量｜对目标造成11点伤害。若结算前蓄力为2，消耗全部蓄力，本次伤害增加17（合为单次命中，不绽放）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-18",
+          "texts": {
+            "base": "待命名·ganyu-18｜1能量｜建立冰雨：从本回合起连续3个回合结束时，对所有存活敌人造成2点伤害；重复施放取较高伤害与剩余次数，不叠加。",
+            "upgraded": "待命名·ganyu-18+｜1能量｜建立冰雨：从本回合起连续3个回合结束时，对所有存活敌人造成3点伤害；重复施放取较高伤害与剩余次数，不叠加。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-19",
+          "texts": {
+            "base": "待命名·ganyu-19｜1能量｜获得5点格挡。若结算前蓄力为2，消耗全部蓄力，额外获得8点格挡。",
+            "upgraded": "待命名·ganyu-19+｜1能量｜获得7点格挡。若结算前蓄力为2，消耗全部蓄力，额外获得10点格挡。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-20",
+          "texts": {
+            "base": "待命名·ganyu-20｜2能量｜抽2张牌（手牌上限10）。获得1层蓄力（上限2）。",
+            "upgraded": "待命名·ganyu-20+｜2能量｜抽3张牌（手牌上限10）。获得1层蓄力（上限2）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-21",
+          "texts": {
+            "base": "待命名·ganyu-21｜2能量｜对所有存活敌人造成10点伤害。",
+            "upgraded": "待命名·ganyu-21+｜2能量｜对所有存活敌人造成14点伤害。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        },
+        {
+          "id": "ganyu-22",
+          "texts": {
+            "base": "待命名·ganyu-22｜1能量｜对目标造成4点伤害。抽1张牌（手牌上限10）。",
+            "upgraded": "待命名·ganyu-22+｜1能量｜对目标造成6点伤害。抽1张牌（手牌上限10）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": []
+        }
+      ],
+      "relic": {
+        "id": "ganyu-starter-01",
+        "text": "待命名·ganyu-starter-01：回合结束时，每1点未用能量转为1层蓄力（上限2，溢出丢弃）。不额外产生能量。",
+        "initiallyEquipped": true,
+        "effectTriggered": "NOT_PROBED"
+      },
+      "findings": [
+        {
+          "code": "ACQUISITION_UNCOVERED",
+          "ids": [
+            "ganyu-05",
+            "ganyu-06",
+            "ganyu-07",
+            "ganyu-08",
+            "ganyu-09",
+            "ganyu-10",
+            "ganyu-11",
+            "ganyu-12",
+            "ganyu-13",
+            "ganyu-14",
+            "ganyu-15",
+            "ganyu-16",
+            "ganyu-17",
+            "ganyu-18",
+            "ganyu-19",
+            "ganyu-20",
+            "ganyu-21",
+            "ganyu-22"
+          ],
+          "channel": "play.mjs default starter-only terminal battle; custom-deck research harness excluded"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "scope_complete": false,
+      "character": "xiao",
+      "root": "/workspace/scratch/c1a4970a76e0/character-xiao-nov13",
+      "source": {
+        "head": "4b525d31e03164dd5a243de3fa4fd0480adfe455",
+        "dirty": "",
+        "files": {
+          "batch2.test.mjs": "a37845f0f109ce7a2a978b59a37592e8de856d6496cea532fc723015cb9de94d",
+          "batch3.test.mjs": "0a6b88d399b6ebb61bebf98029e00487d4f5dc05e60d44fa1d090cfb4e781f44",
+          "batch4.test.mjs": "d3d9442a3196ee03a20b5729ded452ca9004ed6f7c5e40135f1a0d8d02101fe7",
+          "batch5.test.mjs": "e8b3ed9c7f299e07d41ddc72062fadf9efe4e84056f150913d704b07ed30778b",
+          "batch6.test.mjs": "50c9fccd9b9fdfb8adfe67699770aa0fccdb418c9c4b8c869666322bb437c463",
+          "battle.mjs": "5057fc297bf98288fc172c9e46b6d6ddd5233d8e63b59ec0ba46668c4ad0bad9",
+          "battle.test.mjs": "217417189d0a7715e4986463ff9b9dc34dee1fbe4644ae57da004b8bf23b8085",
+          "campaign.mjs": "ef0a967f091b79415a32a946ac3561b88dabe8460f4ef439367cda6ba16f52c5",
+          "campaign.test.mjs": "c82d0afa692cd37a4ed7c80fd15881d4e2c5cd65c2b0b00ebb5f41c8188377c7",
+          "cards.json": "b6bfcffcc2ecc57ed59f9d005d8fa7b9ff8f4c59cedd3d0b642a554fe186cdb3",
+          "deck.mjs": "607545e48c3b79f9c65db4e9bec2dc0bfda3466e3404c66c554e2f01e20223fa",
+          "model.mjs": "3535708e43de4124500e8a6786b3bfaac792ba99d3edd03551dfc6356cec5469",
+          "model.test.mjs": "ebc050e5a039af2bc7674f14eca6aaba9ab6baa208246d66f02cbdd40ad63b2a",
+          "research.mjs": "21ca3b38de409b1a277ab29ef647f9c51abf08d9b6a8c48aee49ea6523e19bb8",
+          "research.test.mjs": "e45fc9ee71f8c34609ab644a72d4fe76af1c2a5a6391cf6309b70752e7d00bd3",
+          "sources.json": "edd32b354aa74550797158ed30aa09b5676406ff265200d38f06dd7cc0ae5510"
+        }
+      },
+      "naming": "HOLD",
+      "balance": "HOLD",
+      "production": "HOLD",
+      "browser": "NOT_RUN",
+      "native": "NOT_RUN",
+      "limitations": [
+        "Imports reviewed local modules: trusted checkouts only; not an OS sandbox.",
+        "Access checks concern declared local channels, not win rate or earned rewards.",
+        "Text probe tests renderability and input types, not natural-language semantic equivalence.",
+        "Relic activation, duplicates, cancellation, upgrades acquisition and cross-battle reset need existing owner tests."
+      ],
+      "status": "REVIEW_REQUIRED",
+      "channel": "campaign.mjs declared rewardCandidates plus starter; no probability claim",
+      "access": {
+        "defined": 20,
+        "starter": [
+          "x01",
+          "x02",
+          "x04",
+          "x05"
+        ],
+        "declaredReward": [
+          "x03",
+          "x06",
+          "x07",
+          "x08",
+          "x09",
+          "x10",
+          "x11",
+          "x12",
+          "x13",
+          "x14",
+          "x15",
+          "x16",
+          "x17",
+          "x18",
+          "x19",
+          "x20"
+        ],
+        "unknown": [],
+        "uncovered": [],
+        "scope": "Only the named local entry path; not global impossibility or natural acquisition probability."
+      },
+      "text": [
+        {
+          "id": "x01",
+          "texts": {
+            "base": "1费。造成6点伤害（面具期间+4）。",
+            "upgraded": "1费。造成9点伤害（面具期间+4）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x02",
+          "texts": {
+            "base": "1费。获得5点格挡。",
+            "upgraded": "1费。获得8点格挡。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x03",
+          "texts": {
+            "base": "1费。造成9点伤害（面具期间+4）。",
+            "upgraded": "1费。造成12点伤害（面具期间+4）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x04",
+          "texts": {
+            "base": "1费。失去2点生命（须保留至少1点）。进入面具状态2回合（取更长，不相加）；攻击+4；每回合结束先失去2生命再减少1回合，可致死。",
+            "upgraded": "1费。失去2点生命（须保留至少1点）。进入面具状态3回合（取更长，不相加）；攻击+4；每回合结束先失去2生命再减少1回合，可致死。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x05",
+          "texts": {
+            "base": "1费。造成6点伤害；面具期间改为对所有敌人造成10点伤害。",
+            "upgraded": "1费。造成9点伤害；面具期间改为对所有敌人造成13点伤害。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x06",
+          "texts": {
+            "base": "0费。退出面具状态。获得4点格挡。消耗。",
+            "upgraded": "0费。退出面具状态。获得6点格挡。消耗。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x07",
+          "texts": {
+            "base": "1费。造成5点伤害（面具期间+4）。获得5点格挡。",
+            "upgraded": "1费。造成7点伤害（面具期间+4）。获得7点格挡。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x08",
+          "texts": {
+            "base": "1费。抽2张牌（手牌上限10）。",
+            "upgraded": "1费。抽3张牌（手牌上限10）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x09",
+          "texts": {
+            "base": "1费。退出面具状态。抽2张牌（手牌上限10）。",
+            "upgraded": "1费。退出面具状态。抽3张牌（手牌上限10）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x10",
+          "texts": {
+            "base": "1费。失去2点生命（须保留至少1点）。进入面具状态1回合（取更长，不相加）；攻击+4；每回合结束先失去2生命再减少1回合，可致死。获得8点格挡。",
+            "upgraded": "1费。失去2点生命（须保留至少1点）。进入面具状态1回合（取更长，不相加）；攻击+4；每回合结束先失去2生命再减少1回合，可致死。获得11点格挡。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x11",
+          "texts": {
+            "base": "1费。造成10点伤害（面具期间+4）。退出面具状态。",
+            "upgraded": "1费。造成14点伤害（面具期间+4）。退出面具状态。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x12",
+          "texts": {
+            "base": "1费。对所有敌人造成6点伤害（面具期间+4）。",
+            "upgraded": "1费。对所有敌人造成9点伤害（面具期间+4）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x13",
+          "texts": {
+            "base": "1费。获得4点格挡；面具期间改为8点。",
+            "upgraded": "1费。获得6点格挡；面具期间改为12点。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x14",
+          "texts": {
+            "base": "1费。本场战斗每个面具回合末，先支付生命；若存活，获得3点格挡。可叠加。能力：离开牌堆，本场生效。",
+            "upgraded": "1费。本场战斗每个面具回合末，先支付生命；若存活，获得4点格挡。可叠加。能力：离开牌堆，本场生效。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x15",
+          "texts": {
+            "base": "1费。移除目标所有格挡。造成6点伤害（面具期间+4）。",
+            "upgraded": "1费。移除目标所有格挡。造成9点伤害（面具期间+4）。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x16",
+          "texts": {
+            "base": "1费。从弃牌堆按顺序取回至多1张含退出面具效果的牌；手牌上限10，没有则不取。获得3点格挡。消耗。",
+            "upgraded": "1费。从弃牌堆按顺序取回至多1张含退出面具效果的牌；手牌上限10，没有则不取。获得6点格挡。消耗。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x17",
+          "texts": {
+            "base": "0费。失去3点生命（须保留至少1点）。获得2点能量（仅本回合）。消耗。",
+            "upgraded": "0费。失去3点生命（须保留至少1点）。获得3点能量（仅本回合）。消耗。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x18",
+          "texts": {
+            "base": "2费。对所有敌人造成18点伤害（面具期间+4）。退出面具状态。消耗。",
+            "upgraded": "2费。对所有敌人造成24点伤害（面具期间+4）。退出面具状态。消耗。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x19",
+          "texts": {
+            "base": "1费。消耗手中所有其他技能牌，每张获得4点格挡；没有则不获格挡。",
+            "upgraded": "1费。消耗手中所有其他技能牌，每张获得6点格挡；没有则不获格挡。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "x20",
+          "texts": {
+            "base": "0费。若当前没有面具，抽2张牌（手牌上限10）；有面具则不抽。消耗。",
+            "upgraded": "0费。若当前没有面具，抽3张牌（手牌上限10）；有面具则不抽。消耗。"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        }
+      ],
+      "relic": {
+        "id": "xiao_relic_01",
+        "initiallyEquipped": true,
+        "effectTriggered": "NOT_PROBED"
+      },
+      "findings": [
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x01",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x02",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x03",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x04",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x05",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x06",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x07",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x08",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x09",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x10",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x11",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x12",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x13",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x14",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x15",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x16",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x17",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x18",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x19",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "x20",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "scope_complete": false,
+      "character": "keqing",
+      "root": "/workspace/scratch/c1a4970a76e0/character-keqing",
+      "source": {
+        "head": "732ddf1eaf39c81de69e40237a639487e6feb355",
+        "dirty": "",
+        "files": {
+          "batch2.test.mjs": "b27c9b35c25cf57f4728e45590838bc65f4c32c7921718ba56aef3d102b41e46",
+          "batch3.test.mjs": "e4a8a57bbd035f667c66d10c99cc8ad9412fec65f91e9f0caa1cbb9137b9e693",
+          "batch4.test.mjs": "a93b28eff2e1cf6e98103e700c3bc7db9a34c780a0bd2acb1e4ab51eaabb7e5c",
+          "battle.mjs": "ae54be102ef9bbd8a68d6e103cd0a90d49e8aa151adc84c16a330fda3c92ff0c",
+          "battle.test.mjs": "03476963627c74405f4fc0b6a8843bc7652bf1e43e6c7f71d0c2bc790dfe643a",
+          "design-candidates.test.mjs": "01488ec0c77075d3be7ef0eb5e90c362e2ceb880051ec36d6afd4494ed1b61df",
+          "mechanics.mjs": "111a0355065d1b6430a8aaa3f0386bdd526848790f79de52488b7aa45cdee914",
+          "mechanics.test.mjs": "68b9f2c842cc4d093f50a22a24a81a3564f43905c919ce541d4321d8b47e4fbc",
+          "pressure-v2.mjs": "07fd120e45eb26cc4a4cc18025a454b964f01a48691e4b74fbe1154c2b67b619",
+          "pressure-v2.test.mjs": "6efbf32af6a60b4742ff675deb559fb0a08b44b4d197bfb7743f1ea84b95b63e",
+          "pressure.mjs": "325572206f92f47ce3af938abe34c75ac2ea49e39cbaacdf7b97cb8e459111d3",
+          "pressure.test.mjs": "12f2d04551fa2dba0bb652585d2f131267ec1d5701a753c3601adec868c3121f",
+          "rewards.mjs": "1316907bfa5f91a63eff81869434be855477ef60e0639b349e92f6b70d56511f",
+          "rewards.test.mjs": "777ad2998f527bd06ef1f693962c3dbb1375337afde1f4cdb2eb475b83f61aba",
+          "sources.json": "8445e27f6644326b4271a35cfa7f2c968db58c6b566c57a52ee05468308dda71"
+        }
+      },
+      "naming": "HOLD",
+      "balance": "HOLD",
+      "production": "HOLD",
+      "browser": "NOT_RUN",
+      "native": "NOT_RUN",
+      "limitations": [
+        "Imports reviewed local modules: trusted checkouts only; not an OS sandbox.",
+        "Access checks concern declared local channels, not win rate or earned rewards.",
+        "Text probe tests renderability and input types, not natural-language semantic equivalence.",
+        "Relic activation, duplicates, cancellation, upgrades acquisition and cross-battle reset need existing owner tests."
+      ],
+      "status": "REVIEW_REQUIRED",
+      "channel": "rewards.mjs declared two-offer pool plus starterIds",
+      "access": {
+        "defined": 12,
+        "starter": [
+          "KQ001",
+          "KQ002",
+          "KQ003",
+          "KQ004"
+        ],
+        "declaredReward": [
+          "KQ005",
+          "KQ006",
+          "KQ007",
+          "KQ008",
+          "KQ009"
+        ],
+        "unknown": [],
+        "uncovered": [
+          "KQ052",
+          "KQ053",
+          "KQ054"
+        ],
+        "scope": "Only the named local entry path; not global impossibility or natural acquisition probability."
+      },
+      "text": [
+        {
+          "id": "KQ001",
+          "texts": {
+            "base": "待命名·KQ001；1能量；对目标造成6伤害，共1段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ001；1能量；对目标造成9伤害，共1段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ002",
+          "texts": {
+            "base": "待命名·KQ002；1能量；获得5格挡",
+            "upgraded": "待命名·KQ002；1能量；获得8格挡"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ003",
+          "texts": {
+            "base": "待命名·KQ003；1能量；无雷楔：对目标造成5伤害，设置1枚雷楔；有雷楔：消费雷楔，对目标造成8伤害，随后获得附魔2次；雷楔：上限1枚，下一己方回合结束清除，不叠加；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ003；1能量；无雷楔：对目标造成7伤害，设置1枚雷楔；有雷楔：消费雷楔，对目标造成11伤害，随后获得附魔2次；雷楔：上限1枚，下一己方回合结束清除，不叠加；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ004",
+          "texts": {
+            "base": "待命名·KQ004；1能量；对目标造成4伤害，共2段；若有雷楔，消费它并对所有存活敌人造成4伤害；雷楔：上限1枚，下一己方回合结束清除，不叠加；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ004；1能量；对目标造成5伤害，共2段；若有雷楔，消费它并对所有存活敌人造成6伤害；雷楔：上限1枚，下一己方回合结束清除，不叠加；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ006",
+          "texts": {
+            "base": "待命名·KQ006；1能量；获得5格挡；若有雷楔，消费雷楔，额外获得5格挡；雷楔：上限1枚，下一己方回合结束清除，不叠加",
+            "upgraded": "待命名·KQ006；1能量；获得8格挡；若有雷楔，消费雷楔，额外获得5格挡；雷楔：上限1枚，下一己方回合结束清除，不叠加"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ007",
+          "texts": {
+            "base": "待命名·KQ007；1能量；获得5格挡；若有附魔，消费1次附魔，额外获得4格挡；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ007；1能量；获得8格挡；若有附魔，消费1次附魔，额外获得4格挡；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ008",
+          "texts": {
+            "base": "待命名·KQ008；1能量；对目标造成5伤害；若有雷楔则改为8伤害，不消费或刷新雷楔；雷楔：上限1枚，下一己方回合结束清除，不叠加；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ008；1能量；对目标造成8伤害；若有雷楔则改为11伤害，不消费或刷新雷楔；雷楔：上限1枚，下一己方回合结束清除，不叠加；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ009",
+          "texts": {
+            "base": "待命名·KQ009；1能量；对目标造成3伤害，共1段；获得4格挡；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ009；1能量；对目标造成5伤害，共1段；获得6格挡；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ052",
+          "texts": {
+            "base": "待命名·KQ052；1能量；对所有存活敌人造成6伤害，共1段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ052；1能量；对所有存活敌人造成9伤害，共1段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ053",
+          "texts": {
+            "base": "待命名·KQ053；2能量；对目标造成16伤害，共1段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ053；2能量；对目标造成20伤害，共1段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ054",
+          "texts": {
+            "base": "待命名·KQ054；1能量；对目标造成2伤害，共3段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ054；1能量；对目标造成3伤害，共3段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "id": "KQ005",
+          "texts": {
+            "base": "待命名·KQ005；2能量；对所有存活敌人造成3伤害，共2段；对所有存活敌人造成5伤害，共1段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯",
+            "upgraded": "待命名·KQ005；2能量；对所有存活敌人造成4伤害，共2段；对所有存活敌人造成7伤害，共1段；附魔：每段伤害+2，每张攻击牌结算后扣1次，本回合结束清除，刷新不叠加；结算后新获得不追溯"
+          },
+          "errors": [],
+          "acceptedInvalidFlags": [
+            "false",
+            1,
+            null
+          ]
+        }
+      ],
+      "relic": {
+        "id": "KQR001",
+        "text": "待命名·KQR001：每场战斗首次设置雷楔后，获得4格挡。",
+        "effectTriggered": "NOT_PROBED"
+      },
+      "findings": [
+        {
+          "code": "ACQUISITION_UNCOVERED",
+          "ids": [
+            "KQ052",
+            "KQ053",
+            "KQ054"
+          ],
+          "channel": "rewards.mjs declared two-offer pool plus starterIds"
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ001",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ002",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ003",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ004",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ006",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ007",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ008",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ009",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ052",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ053",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ054",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        },
+        {
+          "code": "TEXT_ACCEPTS_INVALID_UPGRADE_TYPE",
+          "id": "KQ005",
+          "accepted": [
+            "false",
+            1,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "scope_complete": false,
+      "character": "zhongli",
+      "root": "/workspace/scratch/c1a4970a76e0/character-zhongli-nov13",
+      "source": {
+        "head": "7bd88fe9a2e84372e44845aeca85673a90c68970",
+        "dirty": "M experiments/characters/zhongli/battle.mjs\n M experiments/characters/zhongli/battle.test.mjs\n M experiments/characters/zhongli/model.mjs\n M experiments/characters/zhongli/model.test.mjs\n?? experiments/characters/zhongli/batch-two-results.json\n?? experiments/characters/zhongli/batch-two.mjs",
+        "files": {
+          "batch-one.mjs": "2c21b425a5f4d573bc67d17ae3b4304fc93daeefd83b8d4e5684fd2629b03e89",
+          "batch-two.mjs": "9bfae032c06d677656f5dbe95d6b9eea1af60f5d80bb47641b5ece6c6ead311e",
+          "battle.mjs": "a910fa7f7310b718bd2c461e9f4443cfbcc2b3d28ce07c8aed47a82a2b4305c6",
+          "battle.test.mjs": "67c65c3cae4002a003b39a025d32b4d1f071a37b746f5f5180fae9770eaaa727",
+          "journey-study.mjs": "08047868007647b0b9de2ff1b4faddac2ed3f818e1f047509e81329c27d50168",
+          "journey.mjs": "143c77f3f967bf565d27e29199359871ac638dcf2410824856aea59fe5df64cf",
+          "journey.test.mjs": "9f854025889638e401e6329db6b715637fd17246228a0ce6a99e8344ddf6b1b6",
+          "model.mjs": "8877395bca3334c93b9a051c8244d9b0df8d379ded74c38060928421463610a6",
+          "model.test.mjs": "4bd83fad0d848259de67a0b280a6e5daf7f1c38e3a50e2881c3a1c26e268de4a",
+          "play.mjs": "d966a72e941f9ee2c3025362966f114647df7cbd1f051eb42adc4c0d11495551",
+          "pressure.mjs": "9d9cf21825c77c8ad9d203f4fadd85eb9d95aca3d209cedfdc9c40072d43a255",
+          "sources.json": "842aafc18b5fcc46650f66db4a9bdb054e7307afbc735ec79b1b64985f7d7484"
+        }
+      },
+      "naming": "HOLD",
+      "balance": "HOLD",
+      "production": "HOLD",
+      "browser": "NOT_RUN",
+      "native": "NOT_RUN",
+      "limitations": [
+        "Imports reviewed local modules: trusted checkouts only; not an OS sandbox.",
+        "Access checks concern declared local channels, not win rate or earned rewards.",
+        "Text probe tests renderability and input types, not natural-language semantic equivalence.",
+        "Relic activation, duplicates, cancellation, upgrades acquisition and cross-battle reset need existing owner tests."
+      ],
+      "status": "DIRTY_SNAPSHOT",
+      "findings": []
+    }
+  ]
+}
