@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditRoadmap, auditPriorities, auditQueueOwners, auditMilestoneScope, auditCompetitionRoster, readTaskHeader } from '../scripts/verify-backlog-roadmap.mjs';
+import { auditRoleCapacityGate, auditRoadmap, auditPriorities, auditQueueOwners, auditMilestoneScope, auditCompetitionRoster, readTaskHeader } from '../scripts/verify-backlog-roadmap.mjs';
 
 const competitionTitles = ['M3｜岩系旅行者第一幕与第二幕核心闭环验收', 'M4｜前两幕首局UI、输入、音画与性能'];
 const competitionDecision = '最终选择仅岩系旅行者（Ironclad）完整玩通第一幕与第二幕并正常结算。';
@@ -368,4 +368,42 @@ test('engineering parent and UI display child keep distinct milestone ownership'
   const phases={'m-7':'M7','m-8':'M8'};
   const tasks=[task('TASK-74',{milestone:'m-7'}),task('TASK-74.1',{milestone:'m-8',parentTaskId:'TASK-74'})];
   assert.deepEqual(auditRoadmap(tasks,'### M7\n- TASK-74：工程\n### M8\n- TASK-74.1：展示证据\n',phases),[]);
+});
+
+const role=(status='To Do',dependencies=['TASK-105'])=>({id:'TASK-97',status,dependencies});
+const capacity=(status='To Do')=>({id:'TASK-105',status});
+
+test('Backlog CLI block list parses the role expansion dependency',()=>{
+  const source='---\nid: TASK-97\nstatus: To Do\nassignee:\n  - Furinya\ndependencies:\n  - TASK-105\n---\n';
+  assert.deepEqual(readTaskHeader(source).dependencies,['TASK-105']);
+  assert.deepEqual(readTaskHeader(source.replace('dependencies:\n  - TASK-105','dependencies: []')).dependencies,[]);
+});
+test('mass character rollout requires the exact capacity task, even when still queued',()=>{
+  assert.deepEqual(auditRoleCapacityGate([role(),capacity()]),[]);
+  assert.match(auditRoleCapacityGate([role('To Do',[]),capacity()]).join('\n'),/显式依赖/);
+  assert.match(auditRoleCapacityGate([role()]).join('\n'),/缺少/);
+});
+test('mass rollout cannot start or complete before capacity GO',()=>{
+  for(const s of ['In Progress','Done'])
+    assert.match(auditRoleCapacityGate([role(s),capacity('To Do')]).join('\n'),/未取得GO/);
+  assert.deepEqual(auditRoleCapacityGate([role('In Progress'),capacity('Done')]),[]);
+  assert.deepEqual(auditRoleCapacityGate([role('Done'),capacity('Done')]),[]);
+});
+test('unrelated release, single-character experiment and other milestones remain unblocked',()=>{
+  assert.deepEqual(auditRoleCapacityGate([{id:'TASK-85',status:'In Progress'},{id:'TASK-103',status:'To Do'}]),[]);
+  assert.deepEqual(auditRoleCapacityGate([role('Blocked'),capacity('To Do')]),[]);
+});
+
+
+test('capacity source view authenticates complete current bytes and refuses drift',async()=>{
+  const {readFileSync}=await import('node:fs');
+  const {preCloseoutCiSource}=await import('./helpers/closeout-ci-source.mjs');
+  const path='scripts/verify-backlog-roadmap.mjs',current=readFileSync(path,'utf8');
+  const binding=JSON.parse(readFileSync('tests/helpers/role-capacity-roadmap-source.json','utf8'));
+  assert.equal(preCloseoutCiSource(path,current,'pr620'),binding.source);
+  assert.equal(preCloseoutCiSource(path,current,'qualityRatchetIntegrated'),current);
+  for(const drift of [current+'\n',current.slice(1),current.replace('auditRoleCapacityGate','foreignGate')])
+    assert.equal(preCloseoutCiSource(path,drift,'pr620'),drift);
+  assert.equal(preCloseoutCiSource('foreign.mjs',current,'pr620'),current);
+  assert.throws(()=>preCloseoutCiSource(path,current,'foreign-view'));
 });
