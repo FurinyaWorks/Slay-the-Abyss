@@ -150,6 +150,12 @@ test('literal P3 title is rare, requiring separate exception evidence and explic
  const m=sourcedP3('舞花枪','literal_exception');
  assert.match(validateNamingManifest(m).errors.join(' | '),/P3 literal-title exception lacks independent evidence/);
 });
+test('a technical term plus a decorative suffix is not meaningful cultural adaptation',()=>{
+ const m=sourcedP3('蝶·舞花枪','cultural_adaptation');
+ m.cards[0].source.cultural.display_derivation='The source action is a circular spear movement, but this title is only a decorative prefix added to its name';
+ m.cards[0].review.character_signature='The title would still look like a training-manual term rather than Hu Tao game skill expression';
+ assert.match(validateNamingManifest(m).errors.join(' | '),/P3 cosmetic affix is not a character-specific skill name/);
+});
 test('P3 research can inform an original player-facing name without masquerading as original skill',()=>{
  const m=sourcedP3('测试用·焰环回击','cultural_adaptation');
  m.cards[0].source.cultural.display_derivation='The real circular spear motion informs the fictional sweeping action, but not its literal title';

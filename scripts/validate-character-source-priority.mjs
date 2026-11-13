@@ -25,6 +25,12 @@ function culturalDisplayReady(c,add){
    return;
  }
  if(literal&&method!=='literal_exception')add('raw martial term requires independent literal exception');
+ if(method==='cultural_adaptation'){
+   const title=normalizeTitle(c.name),technicalTerm=normalizeTitle(term);
+   if(technicalTerm&&title.includes(technicalTerm)&&title.length<=technicalTerm.length+2){
+     add('P3 cosmetic affix is not a character-specific skill name');
+   }
+ }
  if(method==='literal_exception'&&!hasLiteralException(c.review))add('P3 literal-title exception lacks independent evidence');
  if(method==='cultural_adaptation'&&c.review?.status==='APPROVED'){
    if(!detail(src.cultural?.display_derivation)||!detail(c.review?.character_signature)){
