@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.26",
+  "version": "xiao-g2-lab-0.27",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1843,6 +1843,68 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x61",
+      "name": "待命名·x61",
+      "role": "越盾精刺：绕过而不消除目标护甲",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "pierceDamage",
+          "value": 8
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "pierceDamage",
+          "value": 11
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x62",
+      "name": "待命名·x62",
+      "role": "夺取敌盾：有限实际转移后补一张",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "stealBlock",
+          "value": 8
+        },
+        {
+          "op": "draw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "stealBlock",
+          "value": 12
+        },
+        {
+          "op": "draw",
+          "value": 1
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1913,7 +1975,9 @@
     "x57",
     "x58",
     "x59",
-    "x60"
+    "x60",
+    "x61",
+    "x62"
   ],
   "maskRules": {
     "attackBonus": 4,

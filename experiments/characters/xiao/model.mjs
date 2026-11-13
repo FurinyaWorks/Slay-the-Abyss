@@ -43,6 +43,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'pierceDamage') { const enemy=s.enemies[target];enemy.hp=Math.max(0,enemy.hp-value-(s.mask>0?catalog.maskRules.attackBonus:0)); }
+  else if (op === 'stealBlock') { const enemy=s.enemies[target],taken=Math.min(value,enemy.block);enemy.block-=taken;s.block+=taken; }
   else if (op === 'calmAttackGuard') s.calmAttackGuard+=value;
   else if (op === 'harvestAll') { let kills=0;for(const enemy of s.enemies){const alive=enemy.hp>0;damage(enemy,value+(s.mask>0?catalog.maskRules.attackBonus:0));if(alive&&enemy.hp===0)kills++;}drawCards(s,Math.min(effect.cap,kills)); }
   else if (op === 'reserveBlock') s.reservedBlock+=value;
@@ -128,7 +130,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'missingHpDamage' || e.op === 'emptyHandDamage' || e.op === 'damageGuard' || e.op === 'killDraw' || e.op === 'sequenceDamage' || e.op === 'blockDamage' || e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'pierceDamage' || e.op === 'stealBlock' || e.op === 'missingHpDamage' || e.op === 'emptyHandDamage' || e.op === 'damageGuard' || e.op === 'killDraw' || e.op === 'sequenceDamage' || e.op === 'blockDamage' || e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -169,6 +171,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits, step}) => ({
+    pierceDamage: `造成${value}点无视目标格挡的伤害（面具另加${catalog.maskRules.attackBonus}）；不移除格挡，仍算攻击，不是支付生命。`,
+    stealBlock: `将目标至多${value}点现有格挡转为自己的格挡，无格挡则获得0；不造成伤害。`,
     calmAttackGuard: `本场每张出牌时未戴面具的攻击结算后获得${value}点格挡，按卡非命中，可叠加；进场攻击按出牌前状态，零伤成功攻击也算。`,
     harvestAll: `对所有敌人造成${value}点伤害（有面具另加${catalog.maskRules.attackBonus}）；每实际击杀1名抽1张，最多${cap}张，死敌不计，手牌上限10。`,
     reserveBlock: `下个玩家回合开始一次获得${value}点格挡，随后清除储备；本回合不获盾，可叠加，不跨战。`,
