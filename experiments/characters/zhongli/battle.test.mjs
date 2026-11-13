@@ -114,3 +114,10 @@ test('pillar then accelerator consumes all three energy and keeps Power outside 
  assert.equal(s.energy,0);assert.equal(s.enemy.hp,31);assert.deepEqual(s.powers,[idKey('zl21')]);assert.ok(s.discard.includes(idKey('zl22')));
  s=nextTurn(s,[]);assert.equal(s.enemy.hp,28);assert.equal(s.pillar,3);assert.equal(s.hand.includes(idKey('zl21')),false);assert.ok(s.hand.includes(idKey('zl22')));
 });
+
+test('dismantling never recycles Power instance and only a new copy can rebuild this battle',()=>{
+ let s=battleStart({deck:['zl21','zl21','zl23'],relic:false});const pillars=s.hand.filter(k=>s.instances[k].id==='zl21'),key=s.hand.find(k=>s.instances[k].id==='zl23');
+ s=playInstance(s,pillars[0]).state;s=playInstance(s,key).state;assert.equal(s.energy,0);assert.equal(s.pillar,0);assert.equal(s.jade,12);assert.deepEqual(s.powers,[pillars[0]]);assert.deepEqual(s.exhaust,[]);
+ s=nextTurn(s,[]);assert.equal(s.enemy.hp,40);assert.equal(s.hand.includes(pillars[0]),false);assert.equal(playInstance(s,key).ok,false);s=playInstance(s,pillars[1]).state;assert.equal(s.pillar,3);assert.deepEqual(s.powers,pillars);assert.equal(endlessCount(s),3);
+ function endlessCount(x){return new Set([...x.hand,...x.draw,...x.discard,...x.exhaust,...x.powers]).size;}
+});

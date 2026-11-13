@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.16.0';
+export const VERSION = 'zhongli-mechanics-0.17.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -27,6 +27,7 @@ export const cards = [
   card('zl20', '仅在玉璋完全耗尽时重建储备，残余盾会关闭窗口', 'common', 1, [['emptyJade', 9]], [['emptyJade', 12]]),
   {...card('zl21', '投入能量建立单一持续岩脊脉冲，不能叠加多柱', 'common', 2, [['pillar', 3]], [['pillar', 4]]), power: true},
   card('zl22', '用行动激发已有岩脊，未建立时空费', 'common', 1, [['pulse', 3]], [['pulse', 4]], 'enemy'),
+  card('zl23', '拆除已建岩脊换紧急储备，放弃未来脉冲', 'common', 1, [['spendPillar', 1], ['jade', 12]], [['spendPillar', 1], ['jade', 16]]),
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
@@ -38,7 +39,7 @@ export function incomingAttack(hit, weak = 0) { return weak > 0 ? Math.floor(hit
 export function textFor(id, upgraded = false) {
   const c = cards.find(c => c.id === id);
   if (!c) throw new Error('unknown card');
-  const terms = { pulse: n => `触发当前岩脊${n}次固定伤害（未建立则0；逐次扣敌格挡，击杀停止，不消耗岩脊）`, pillar: n => `建立每轮玩家结束时造成${n}点固定伤害的岩脊（先扣敌格挡；取较高强度，不叠加；本战持续）`, emptyJade: n => `若结算时玉璋为0，获得${n}点玉璋（上限${JADE_CAP}；否则无收益，费用不退）`, jadeDamage: n => `造成等同结算时当前玉璋${n?`+${n}`:''}的单次普通伤害（不消耗玉璋）`, removeBlock: () => `先移除目标全部格挡（不是伤害）`, counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
+  const terms = { spendPillar: () => `需已有岩脊；拆除全部岩脊强度（不回收能力牌，本战后续脉冲停止）`, pulse: n => `触发当前岩脊${n}次固定伤害（未建立则0；逐次扣敌格挡，击杀停止，不消耗岩脊）`, pillar: n => `建立每轮玩家结束时造成${n}点固定伤害的岩脊（先扣敌格挡；取较高强度，不叠加；本战持续）`, emptyJade: n => `若结算时玉璋为0，获得${n}点玉璋（上限${JADE_CAP}；否则无收益，费用不退）`, jadeDamage: n => `造成等同结算时当前玉璋${n?`+${n}`:''}的单次普通伤害（不消耗玉璋）`, removeBlock: () => `先移除目标全部格挡（不是伤害）`, counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
   return `${c.cost}能量；${(upgraded ? c.upgraded : c.base).map(([op, n]) => terms[op](n)).join('；')}${c.exhaust ? '；消耗（本战不再抽到）' : ''}${c.power ? '；能力（打出后离开抽弃消耗循环）' : ''}${c.selfRetain ? '；保留（未打出则留在手中，占用手牌槽）' : ''}。`;
 }
 export function initialState(hand = ['a','b','c','d','e','f']) {
@@ -62,8 +63,8 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if (c.target === 'enemy' && target !== 'enemy') return { ok: false, reason: 'invalid target', state };
   if (typeof upgraded !== 'boolean' || upgraded !== state.instances[instance].upgraded) return { ok: false, reason: 'invalid upgrade', state };
   const effects = upgraded ? c.upgraded : c.base;
-  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter','removeBlock','jadeDamage','emptyJade','pillar','pulse'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
-  if(effects.some(([op,n])=>op==='removeBlock'&&n!==1))return {ok:false,reason:'invalid effect',state};
+  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter','removeBlock','jadeDamage','emptyJade','pillar','pulse','spendPillar'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
+  if(effects.some(([op,n])=>['removeBlock','spendPillar'].includes(op)&&n!==1))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op],i)=>op==='draw'&&i!==effects.length-1))return {ok:false,reason:'invalid effect',state};
   const draws=effects.filter(([op])=>op==='draw').reduce((n,[,v])=>n+v,0);
   if(draws>10)return {ok:false,reason:'invalid effect',state};
@@ -78,12 +79,14 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if(!Number.isSafeInteger((state.enemy.weak ?? 0)+weakAdded))return {ok:false,reason:'invalid effect',state};
   const required = effects.filter(([op]) => op === 'spendJade').reduce((n, [,v]) => n + v, 0);
   if (state.energy < c.cost || state.jade < required) return { ok: false, reason: 'cannot pay', state };
+  if(effects.some(([op])=>op==='spendPillar')&&(!(state.pillar>0)||effects.filter(([op])=>op==='spendPillar').length!==1))return {ok:false,reason:'cannot pay',state};
   const next = structuredClone(state);
   next.energy -= c.cost;
   next.hand.splice(next.hand.indexOf(instance), 1);
   for (const [op, n] of effects) {
     if(op==='removeBlock'&&next.enemy.hp>0)next.enemy.block=0;
     if(op==='pulse')for(let i=0;i<n&&next.enemy.hp>0;i++){const amount=next.pillar ?? 0,absorbed=Math.min(next.enemy.block,amount);next.enemy.block-=absorbed;next.enemy.hp=Math.max(0,next.enemy.hp-amount+absorbed);}
+    if(op==='spendPillar')next.pillar=0;
     if(op==='pillar')next.pillar=Math.max(next.pillar ?? 0,n);
     if (op === 'draw')next.pendingDraw=(next.pendingDraw ?? 0)+n;
     if(op==='counter')next.counter=(next.counter ?? 0)+n;

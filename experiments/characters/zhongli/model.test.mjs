@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
-    const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3;
+    const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22)s.pillar=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
@@ -13,6 +13,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
     if(i===20)assert.equal(r.state.pillar,value);
+    if(i===22){assert.equal(r.state.jade,value);assert.equal(r.state.pillar,0);}
     if(i===2||i===18||i===19)assert.equal(r.state.jade,value);
     if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
@@ -336,4 +337,16 @@ test('pulse bounded count and cumulative damage overflow reject atomically, incl
 test('pulse mixed-effect lists are unsupported and reject before earlier effects mutate state',()=>{
  const c=cards.find(c=>c.id==='zl22'),old=c.base,s=initialState(['a']);s.instances.a={id:'zl22',upgraded:false};s.pillar=3;const before=structuredClone(s);
  try{for(const effects of [[['pulse',3],['pulse',3]],[['pillar',Number.MAX_SAFE_INTEGER],['pulse',3]],[['damage',1],['pulse',3]]]){c.base=effects;assert.equal(play(s,{id:'zl22',instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,before);}}finally{c.base=old;}
+});
+
+test('dismantle consumes all pillar, saturates jade, and forfeits future pulse on both versions',()=>{
+ for(const pillar of [3,4])for(let jade=0;jade<=20;jade++)for(const u of [false,true]){
+  const s=initialState();s.pillar=pillar;s.jade=jade;const before=structuredClone(s);const r=run('zl23',s,u);assert.equal(r.ok,true);assert.equal(r.state.pillar,0);assert.equal(r.state.jade,Math.min(20,jade+(u?16:12)));assert.equal(r.state.energy,2);assert.equal(endTurn(r.state,[]).enemy.hp,40);assert.equal(endTurn(s,[]).enemy.hp,40-pillar);assert.deepEqual(s,before);
+ }
+});
+test('dismantle requires actual installed strength and cannot pay twice, cancel or malformed marker',()=>{
+ assert.equal(run('zl23').ok,false);const s=initialState(['a']);s.instances.a={id:'zl23',upgraded:false};s.pillar=3;const before=structuredClone(s);assert.equal(play(s,{id:'zl23',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);
+ const low={...s,energy:0};assert.equal(play(low,{id:'zl23',instance:'a'}).state,low);
+ const c=cards.find(c=>c.id==='zl23'),old=c.base;try{for(const effects of [[['spendPillar',0],['jade',12]],[['spendPillar',1],['jade',NaN]],[['spendPillar',1],['spendPillar',1],['jade',12]]]){c.base=effects;assert.equal(play(s,{id:'zl23',instance:'a'}).state,s);assert.deepEqual(s,before);}}finally{c.base=old;}
+ const r=run('zl23',{...initialState(),pillar:3}).state;assert.equal(run('zl23',r).ok,false);
 });

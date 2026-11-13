@@ -119,3 +119,8 @@ test('resonance reward policy uses only visible acquired prerequisites, not futu
  assert.equal(selectReward(v,'resonance'),2);assert.equal(selectReward({...v,deck:['zl21']},'resonance'),1);assert.equal(selectReward({...v,deck:['zl21','zl22']},'resonance'),0);
  assert.equal(selectReward({hp:60,deck:[],offer:['zl22','zl03','zl04']},'resonance'),0);
 });
+test('v13 dismantle prerequisite policy and lifecycle never grant an unearned Power',()=>{
+ assert.equal(selectReward({hp:60,deck:[],offer:['zl23','zl03','zl21']},'dismantle'),3);assert.equal(selectReward({hp:60,deck:['zl21'],offer:['zl23','zl03','zl21']},'dismantle'),1);
+ let seed=1;while(!offers(seed,1,'v13').includes('zl21'))seed++;const s=journeyStart(seed,{poolVersion:'v13'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'dismantle'));assert.equal(n.deck.at(-1),'zl21');assert.equal(n.battle.pillar,0);
+ for(const v of ['v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12'])assert.equal(offers(seed,1,v).includes('zl23'),false);
+});
