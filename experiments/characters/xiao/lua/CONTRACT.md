@@ -302,3 +302,16 @@ this is not a promise to achieve the target through draw restrictions. Canonical
 paid-context/unique-zone validation, public cost/exhaust/UseCard and reactive
 hand changes across real queue pauses remain host integration work. No values
 or shared gates are changed, and 50 projected plans do not mean 50 public cards.
+
+### x51/x52 actual life economy execution
+Projection extends to 52 frozen candidates. x51 composes already-native loseHp
+then block with strict planning life prerequisite (>3). x52 reads current actual
+player maxHp minus hp, floors by step ten, caps the bonus before adding base and
+mask and native damage. Four tests cover base/up tier boundaries/cap, life→shield
+then crossing a damage tier, hp3 rejection, actual Snapshot and inconsistent HP.
+An Intangible probe shows cost 3→1 leaves HP61 instead of59, so the later x52
+bonus also changes; the native difference is preserved as HOLD, not hidden.
+Actual maxHp can change in production whereas the JS lab uses fixed catalog70:
+that broader rule is not approved by this adapter. Tests use maxHp70 explicitly.
+Public payment/self-exhaust/UseCard and real multi-card legality remain untested;
+this is composed effects under a paid-context fixture and host full snapshot.

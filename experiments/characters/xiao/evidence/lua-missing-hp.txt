@@ -1,0 +1,4 @@
+PASS x52 base/up current actual missing HP tiers and bonus cap do not spend or heal life
+PASS x51 native life payment before defense crosses x52 tier; hp3 prerequisite rejects
+PASS native Intangible changes blood cost and following damage tier; explicit parity HOLD
+PASS host Snapshot restores life defense damage and inconsistent HP rejects before effects
