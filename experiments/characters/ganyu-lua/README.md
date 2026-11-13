@@ -128,3 +128,15 @@ cases and a fractional prepare callback are rejected before enqueue/resource
 commit. Existing normal queue and Snapshot tests still pass. This is not yet
 copied into shared host d55b, which retains the previously reviewed ABI; its
 normal attackAmount produces integers and its outer transaction owns rollback.
+
+### Paid storm setup preparation (separate ABI)
+
+`storm-card.lua` gives candidate 05's 4/6 damage, two-turn field a paid-context
+queue action. It preserves charge and refreshes each field dimension by max;
+there is no immediate damage. Six base/up/old-field combinations execute real
+native Effects on a subsequent isolated tick, two post-setup failures restore
+payment/resources/card aliases and retry, and five malformed dispatches reject.
+This is NOT shared C.play registration or public owner-end evidence. The host
+must provide one payment/prepare/dispatch Snapshot transaction and schedule ticks.
+The first harness run referenced `tick.effects` incorrectly; corrected to the
+existing `afterDiscard` API before the passing run. No source values changed.
