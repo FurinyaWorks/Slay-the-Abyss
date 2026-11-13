@@ -154,3 +154,16 @@ Zero fuel still produces native block(0), so Dexterity 2 yields 2 block, unlike
 JS's literal zero: explicit semantic HOLD, not a claimed no-fuel no-benefit rule.
 Full mixed exhaust-reactive pauses, character exhaustGuard, and public UseCard
 remain unverified/unimplemented; the host owns queue lifecycle and unique piles.
+
+### Composed plan execution: x10/x11/x17/x18/x30
+Five focused actual queue tests now feed the frozen base/upgrade plan outputs,
+in order, into the isolated dispatch plus native host effects. These cover
+life→short entry→block with first relic draw, long-mask refresh, single/group
+attack before exit, blood→energy and calm post-attack draw; full-sequence host
+Snapshot restore and life precondition rejection are checked. The harness uses
+a real constructor instance as paid-context fixture, not these cards' actual
+public payment/UseCard completion. Last-enemy victory/choice suspension for these
+compositions is not certified. Existing bridge/gate remains unchanged.
+An explicit x17 Intangible probe confirms native loseHp(3) pays only 1 while
+energy remains 2. This is a material JS/native cost difference, not balance
+approval or permission to bypass native HP reactions. G5/semantic parity HOLD.

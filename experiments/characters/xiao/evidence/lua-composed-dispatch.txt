@@ -1,0 +1,5 @@
+PASS composed x11/x18 base/up damage uses pre-exit mask then actual schedule exit
+PASS composed x10 pays life before entry and draw, refresh does not shorten or trigger relic
+PASS composed x17 actual loseHp then energy and x30 actual conditional post-attack draw
+PASS composed life precondition rejects before queue and full native sequence host rollback
+PASS native Intangible reduces x17 life cost to one but keeps energy; parity HOLD
