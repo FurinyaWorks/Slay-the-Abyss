@@ -120,6 +120,42 @@ test('P4 nonweapon defense may mark P3 not applicable when reason is recorded',(
  c.search={P1:documented('combat'),P2:documented('story'),P3:{status:'not_applicable',reason:'Pure card draw has no corresponding spear technique or real-world action'}};
  assert.equal(validateNamingManifest(m).ready,true);
 });
+// Regression: authentic terminology is research for action/animation; it is not automatically a good card name.
+const sourcedP3=(name='舞花枪',method='reference_only')=>{
+ const m=baseApproved(), c=m.cards[0];
+ c.id='u19'; c.name=name; c.decision_role='group attack with low-HP defense';
+ c.source={tier:'P3',kind:'martial',verified:true,exact_text:'舞花枪',
+  url:'https://iwuf.org/example.pdf',section:'武术套路·枪术',version:'2005',
+  name_method:method,
+  cultural:{original_term:'舞花枪',source_url:'https://iwuf.org/example.pdf',source_entry:'枪术动作',
+   real_action_meaning:'The spear rotates in fast circular movements close to the body',
+   mechanic_mapping:'A sweeping group attack with some defensive motion'}};
+ const search=(category)=>({completed:true,categories:[category],lookups:[
+  {query:'Hu Tao '+category,locator:'specific entry',entry:'exact source passage',url:'https://example.org/entry'}],
+  rejected_candidates:[{text:'official phrase',source_url:'https://example.org/entry',source_entry:'specific entry',
+   rejection_reason:'This official term is a named burst and not a comparable sweeping move'}],
+  result:'no_suitable',reason:'No suitable official player-facing expression for this particular weapon move'});
+ c.search={P1:search('skill'),P2:search('story')}; 
+ return m;
+};
+test('raw cultural technique must not reach player display while pending (舞花枪)',()=>{
+ const m=sourcedP3(); m.status='HOLD';m.cards[0].review.status='PENDING';
+ assert.match(validateNamingManifest(m).errors.join(' | '),/P3 reference-only technique cannot be player-facing/);
+});
+test('even fully cited P3 movement cannot automatically become its card name',()=>{
+ const m=sourcedP3('舞花枪','cultural_adaptation');
+ assert.match(validateNamingManifest(m).errors.join(' | '),/raw martial term requires independent literal exception/);
+});
+test('literal P3 title is rare, requiring separate exception evidence and explicit signoff',()=>{
+ const m=sourcedP3('舞花枪','literal_exception');
+ assert.match(validateNamingManifest(m).errors.join(' | '),/P3 literal-title exception lacks independent evidence/);
+});
+test('P3 research can inform an original player-facing name without masquerading as original skill',()=>{
+ const m=sourcedP3('测试用·焰环回击','cultural_adaptation');
+ m.cards[0].source.cultural.display_derivation='The real circular spear motion informs the fictional sweeping action, but not its literal title';
+ m.cards[0].review.character_signature='This is merely a test fixture; a human reviewer must still separately approve its character-specific imagery';
+ assert.equal(validateNamingManifest(m).ready,true);
+});
 test('source kind cannot masquerade as higher official priority',()=>{
  const m=baseApproved();m.cards[0].source.kind='original';
  assert.match(validateNamingManifest(m).errors.join(' / '),/invalid tier or source kind/);
