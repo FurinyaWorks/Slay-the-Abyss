@@ -26,18 +26,19 @@ end
 local function finite(n)
  assert(type(n)=='number'and n==n and n>=0 and n<=2147483647,'invalid conditional capture number')
 end
+local function integer(n)finite(n);assert(n%1==0,'invalid integral capture')end
 local function validateNative(state,e,native,expected)
  assert(type(native)=='table'and getmetatable(native)==nil and native.op==expected.op,'mismatched conditional capture')
  local allowed=expected.op=='damage'and {op=true,value=true,targetId=true,normalAmount=true}
   or expected.op=='damageAll'and {op=true,value=true,normalAmounts=true}
   or {op=true,value=true,fixed=true,blockCallbackAmount=true}
  for k in pairs(native)do assert(allowed[k],'unknown native capture field')end
- finite(native.value)
+ integer(native.value)
  if expected.op=='damage'then
-  assert(native.value==expected.value and native.targetId==e.targetId,'conditional captured target/value mismatch');finite(native.normalAmount)
+  assert(native.value==expected.value and native.targetId==e.targetId,'conditional captured target/value mismatch');integer(native.normalAmount)
  elseif expected.op=='damageAll'then
   assert(native.value==expected.value and type(native.normalAmounts)=='table'and getmetatable(native.normalAmounts)==nil,'invalid conditional area capture')
-  local ids={};for _,enemy in ipairs(state.enemies)do ids[enemy.id]=true;finite(native.normalAmounts[enemy.id])end
+  local ids={};for _,enemy in ipairs(state.enemies)do ids[enemy.id]=true;integer(native.normalAmounts[enemy.id])end
   for id in pairs(native.normalAmounts)do assert(ids[id],'unknown captured enemy')end
  else
   assert(native.fixed==true,'missing fixed block capture');finite(native.blockCallbackAmount)

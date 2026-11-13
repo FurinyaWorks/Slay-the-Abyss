@@ -60,3 +60,10 @@ for _,row in ipairs(corruptions)do
  row[2](e,s);Q.start(s,{});assert(not pcall(M.dispatch,C,s,e,Q));eq(s.ganyuResource.charge,2);eq(#s.actionQueue.actions,0);eq(s.enemies[1].hp,100);eq(s.enemies[2].hp,100)
 end
 print('PASS7 malformed native captures reject before queue/resource commit')
+for _,v in ipairs(cases)do
+ local s=fresh(2,true);local e=M.prepare(C,s,{op='ganyuConditional',kind=v[1],amount=v[2],bonus=v[3]},s.enemies[1],s.cardInUse.uid)
+ local native=e.captures[tostring(v[2]+v[3])]
+ if native.op=='damage'then native.normalAmount=1.5 elseif native.op=='damageAll'then native.normalAmounts[s.enemies[1].id]=1.5 else native.value=1.5 end
+ Q.start(s,{});assert(not pcall(M.dispatch,C,s,e,Q));eq(s.ganyuResource.charge,2);eq(#s.actionQueue.actions,0)
+end
+print('PASS4 fractional integral-native fields reject before resource consumption')
