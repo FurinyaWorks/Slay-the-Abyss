@@ -7,7 +7,6 @@ assignee:
 created_date: '2026-11-06 05:36'
 updated_date: '2026-11-08 01:16'
 labels: []
-milestone: m-7
 dependencies: []
 parent_task_id: TASK-81
 priority: medium

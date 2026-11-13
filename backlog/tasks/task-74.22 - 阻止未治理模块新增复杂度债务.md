@@ -7,7 +7,6 @@ assignee:
 created_date: 2026-11-10 14:01
 updated_date: '2026-11-11T07:24:00Z'
 labels: []
-milestone: m-7
 dependencies: []
 references:
   - https://github.com/FurinyaWorks/Slay-the-Abyss/issues/600

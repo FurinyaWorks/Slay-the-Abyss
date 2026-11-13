@@ -7,7 +7,6 @@ assignee:
 created_date: '2026-11-10T11:21:00Z'
 updated_date: '2026-11-11T05:24:00Z'
 labels: []
-milestone: m-7
 dependencies: []
 documentation:
   - docs/backlog-details/M7-ARCHITECTURE-DISCOVERY-20261110.md

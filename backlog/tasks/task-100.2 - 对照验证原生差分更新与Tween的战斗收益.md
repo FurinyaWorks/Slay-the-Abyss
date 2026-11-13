@@ -7,7 +7,7 @@ assignee:
 created_date: '2026-11-11 02:12'
 updated_date: '2026-11-11 02:32'
 labels: []
-milestone: m-7
+milestone: m-8
 dependencies: []
 references:
   - 'https://github.com/FurinyaWorks/Slay-the-Abyss/pull/613'
