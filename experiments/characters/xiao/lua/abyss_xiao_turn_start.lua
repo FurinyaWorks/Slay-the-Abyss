@@ -1,5 +1,6 @@
 -- Isolated candidate turn-start executor. Host invokes after base energy refill,
--- before normal draw, inside the whole command snapshot. Not shared registered.
+-- Energy is before normal draw; CalmDraw is after normal draw. Both require
+-- the whole command snapshot. Neither is shared registered.
 local M={ops={xiaoStartEnergy=true,xiaoStartCalmDraw=true}}
 local MAX=2147483647
 local function integer(v)assert(type(v)=='number'and v==v and v%1==0 and v>=0 and v<=MAX,'invalid Xiao start resource');return v end

@@ -1,0 +1,4 @@
+PASS x36 base/up captures pre-effect mask and draws once per attack and turn even after exit
+PASS attacks before Power do not spend eligibility and added Power cannot reset spent turn
+PASS wrong UID rejects before mutation and real Snapshot restores capture eligibility and draw
+PASS calm attack skill and dead player cannot collect masked attack draw

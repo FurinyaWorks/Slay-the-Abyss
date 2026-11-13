@@ -205,3 +205,18 @@ cap, actual shuffle Snapshot restoration, false and overflow rejection. Existing
 energy-hook tests remain passing. These are explicitly called isolated hooks;
 no shared turn-start order, real x33 payment/UseCard, persistent-save lifecycle or
 formal registration is claimed. Host owns turn identity and whole-command rollback.
+
+### x36 isolated per-attack capture/finish
+Actual maskedAttackDraw Power stacks through Actors/Schedule. The new independent
+attack-finish adapter captures real cardDefinition.type and mask while paid UID
+and cardInUse agree, before effects; finishing after effects validates the same
+UID/turn then consumes capture. Eligible living attacks trigger native draw at
+most once per turn, including attacks which have since exited the mask. An
+attack with no Power does not consume eligibility; adding more Power later does
+not reset an already spent turn. Host must clear/restore all context on failed
+commands through its full Snapshot. Four tests verify base/upgrade, repeat and
+next-turn, late Power, UID rejection, death/skill/calm exclusions and rollback.
+This is an explicitly invoked boundary API, NOT a new shared UseCard hook or
+proof of actual two-card payment. Attack reactions/terminal victory pause order
+must still be certified when integrating with the owner. Turn-start module
+comments now distinguish energy-before-draw from calm-after-draw as reviewed.
