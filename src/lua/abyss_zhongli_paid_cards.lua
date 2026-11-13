@@ -7,6 +7,7 @@ local Copy=require('abyss_copy').copy
 local M={}
 local starterNative={}
 for _,d in ipairs(require('abyss_zhongli_starter_source').definitions())do if d.id=='zl01'or d.id=='zl02'then starterNative[d.id]=d end end
+for _,d in ipairs(require('abyss_zhongli_native_definitions').definitions())do starterNative[d.id]=d end
 local specs={zl32={kind='spendJade',base=3,upgraded=3,type='skill',target='SELF',counter=6,upCounter=8,retain=false,exactExhaust=false},
  zl40={kind='spendJade',base=3,upgraded=3,type='skill',target='SELF',block=12,upBlock=16,retain=true,exactExhaust=true},
  zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
@@ -36,7 +37,7 @@ local function nativeUse(state,instance,card,targetIndex)
   or card.zhongliCandidate~=true or state.characterCandidate~='zhongli'or state.experimentalMechanics~=true
   or state.originalV4 or card.experimental~=true or card.originalV4 or card.runNativeABI or card.silentFinalCard
   or card.costMode or card.keqingCandidate~=nil or card.ganyuCandidate~=nil or card.xiaoCandidate~=nil
-  or card.exhaust or card.selfRetain or card.type~=d.type or card.target~=d.target
+  or card.exhaust or (d.selfRetain and card.selfRetain~=true or not d.selfRetain and card.selfRetain~=nil and card.selfRetain~=false) or card.type~=d.type or card.target~=d.target
   or getmetatable(card.effects)or not same(card.effects,instance.upgraded and d.upgrade.effects or d.effects)
   then return false,'zhongli_native_unavailable'end
  if #state.enemies~=1 or not Presence.isActive(state.player)or not Presence.isActive(state.enemies[1])then return false,'inactive_zhongli_battle'end

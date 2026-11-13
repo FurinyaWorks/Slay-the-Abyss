@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Zhongli native 07/12/13/14/15 source paid and actual Run transaction',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/zhongli-native-usecard.test.lua',{timeout:180000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/ZHONGLI_NATIVE_PAID_PASS/);});
