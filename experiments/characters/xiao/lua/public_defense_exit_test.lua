@@ -1,4 +1,4 @@
--- PENDING SPEC: requires canonical shared gate expansion for x02/x06.
+-- ACCEPTANCE: passed exact shared 4da6e475; requires its canonical x02/x06 gate.
 -- Inject only canonical candidate definitions; never replace C.play or its gate.
 package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local H=dofile('tests/helpers/act2_event_relics.lua')
