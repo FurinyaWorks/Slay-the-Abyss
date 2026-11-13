@@ -6,6 +6,8 @@ import {gunzipSync} from 'node:zlib';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
 import {extendStsStyleEpoch} from './sts-style-source-epoch-runtime.mjs';
 import {stsStylePatch} from './sts-style-source-proof.mjs';
+import {extendFeedbackSourceEpoch} from './sts-feedback-source-runtime.mjs';
+import {feedbackProductionPatch} from './sts-feedback-production.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const bytes=readFileSync(new URL('./closeout-source-epoch.json.gz',import.meta.url));
 assert.equal(hash(bytes),'36aba7fc07f732a191a750d437eefd27e9b9567221811747abf13c97a9ac237a');
@@ -39,7 +41,8 @@ const targets={...priorProof.targets,shopDeckPrior:{commit:outer.targets.prior.c
 const owners=Object.keys(current).filter(path=>Object.values(targets).some(target=>target.files[path]?.sha256!==current[path]?.sha256));
 export const ciRepairSourceEpoch=createSourceEpochProjector(freeze({...priorProof,currentTreeCommitted:false,
  currentCommit:outer.currentCommit,currentCommitRole:outer.currentCommitRole,current,targets,owners}),{allowConfigLayout:true,reuseFrozenInput:true});
-export const sourceEpoch=extendStsStyleEpoch(ciRepairSourceEpoch,stsStylePatch);
+export const stsStyleEpoch=extendStsStyleEpoch(ciRepairSourceEpoch,stsStylePatch);
+export const sourceEpoch=extendFeedbackSourceEpoch(stsStyleEpoch,feedbackProductionPatch);
 const proof=sourceEpoch.proof;
 // Snapshot consumers must first authenticate every live current owner. This is
 // per invocation; neither live reads nor authorization are cached.

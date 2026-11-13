@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_CHECKS_AND_INDEPENDENT_REVIEW_PASS",
+  "baseCommit": "d359015e567aa2d8ee39cce069f2a151206d1f1d",
+  "sourceCommit": "fa7273ec3187931e2cd598934e00f214c2d35237",
+  "normalization": "Source identities use LF-normalized UTF-8 and canonical Git blobs; binary archive bytes remain exact. Raw and LF file hashes are recorded separately in the private checkpoint.",
+  "scope": {
+    "changedLuaInputs": 14,
+    "completeProductionInventory": 348,
+    "runtimeFreshLinkedOwners": 105,
+    "oldHistoricalTargets": 53,
+    "currentHistoricalTargets": 54,
+    "ciDeltaInputs": 22,
+    "currentCiWitnessInputs": 68,
+    "currentFreshHelperInputs": 16,
+    "previousFullJsFiles": 864,
+    "currentActualFullJsFiles": 868,
+    "newFullJsFiles": 4,
+    "collector": "Complete recursive current inventory, linked source rejection, Git-committed product binding, second reads; runtime per-view authentication is 105 linked owners, not all 348 sources."
+  },
+  "archives": {
+    "tests/helpers/sts-feedback-production.json.gz": {
+      "rawSha256": "93e45ddd9ce871295047cc80d2c8041e46f73ea49bb348b2898d1ee506bddd4f",
+      "lfSha256": null,
+      "bytes": 114392
+    },
+    "tests/helpers/sts-feedback-ci.json.gz": {
+      "rawSha256": "654afb7b2d28a258c7285e215defe53e3f51aa77a41a51a9d10c54dcb69d0e38",
+      "lfSha256": null,
+      "bytes": 142196
+    },
+    "tests/helpers/sts-feedback-ci-binding.mjs": {
+      "rawSha256": "cc7e5d34e24af6dedf9b17e891f86bd0163a00191ca114b487328c0852d5e038",
+      "lfSha256": "cc7e5d34e24af6dedf9b17e891f86bd0163a00191ca114b487328c0852d5e038",
+      "bytes": 467
+    }
+  },
+  "immutableArchives": {
+    "tests/helpers/sts-style-source-epoch.json.gz": {
+      "sha256": "cc47fd96c79d7a604d2c5c269b012354d887762aecbe2990ac89fbf2ac74c1a9",
+      "bytes": 195169
+    },
+    "tests/helpers/sts-style-ci-source.json.gz": {
+      "sha256": "4dc022273fd7ca381b1de6bca1fdd1c9eb49ceb94df292d9e490b4ab2abc80f5",
+      "bytes": 632971
+    },
+    "tests/helpers/sts-style-prior-runtime.json.gz": {
+      "sha256": "10bf3b7d960e4c02ae2d64e26d8d5f16824439b9396949973f08ccec1c9d9330",
+      "bytes": 4216851
+    },
+    "tests/helpers/closeout-source-closure.json": {
+      "sha256": "031c42758ec5b37d1782c5fdb70542358d4b2631a5ee9b486b6bb5faccc988b5",
+      "bytes": 21785
+    }
+  },
+  "beforeAfter": {
+    "production": "14 complete original d359 source texts and 14 complete product C source texts are in the new production delta.",
+    "ci": "22 complete d359/current execution inputs are in the new CI delta. All 57 original 4dc cb-before records remain unchanged in the composed proof.",
+    "helperCopy": "Original 031c map bytes remain unchanged. Four exact current helper dependency changes are carried in the CI delta.",
+    "currentRuntime": "Current source and actual Full discovery execute the new version. Historical projection is an explicit named view; no current-runtime ghost inventory."
+  },
+  "validation": {
+    "node": "v24.18.0",
+    "TEMP": "F:/New folder/.artifacts/style-ci-repair-temp-20261113",
+    "TMP": "F:/New folder/.artifacts/style-ci-repair-temp-20261113",
+    "originalAssertionsAndTimeBudgetsRetained": true,
+    "full144Or868NotRepeated": true,
+    "collectorCheck": {
+      "command": "node24 tests/helpers/generate-sts-feedback-source.mjs --check fa7273ec3187931e2cd598934e00f214c2d35237",
+      "exitCode": 0,
+      "productionAndCiBytesExact": true,
+      "fixedLeafFullTemplateExact": true
+    },
+    "results": {
+      "source": {
+        "command": "node24 --test tests/sts-style-source-epoch.test.mjs",
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0,
+        "durationMs": 4072.4223,
+        "processExitCode": 0,
+        "log": {
+          "path": "docs/evidence/sts-feedback-20261113/source-10.log.gz",
+          "sha256": "0aa64495c431a7c047f00d6dd44bc986af18d87297afa9c0e510cdc9759e66aa",
+          "bytes": 655,
+          "rawSha256": "97a14f04b9d361e29cc4467b6543b016a72a91bfe46352108785b19aa490a4b1",
+          "rawBytes": 1342
+        }
+      },
+      "isolation": {
+        "command": "node24 --test --test-name-pattern '^isolated authenticated helper closure retains the exact Defect final epoch and rejects owner drift$' tests/defect-final-source-epoch.test.mjs",
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0,
+        "durationMs": 31830.9245,
+        "processExitCode": 0,
+        "log": {
+          "path": "docs/evidence/sts-feedback-20261113/defect-isolation-1.log.gz",
+          "sha256": "7b8c115804340f9a1518732cee037b9bb1eb2548fd1e33ef84607a4c1c899726",
+          "bytes": 189,
+          "rawSha256": "06797394dbeca199fceb49a820bf64841172a341913852a216c9ab28f8b18977",
+          "rawBytes": 242
+        }
+      }
+    },
+    "negativeCoverage": [
+      "Every one of the 14 real changed Lua inputs rejects missing and foreign bytes after warm success through the complete linked-owner gate.",
+      "Every one of the 22 real CI delta inputs rejects fresh source drift; all retained helper witnesses remain active.",
+      "Unknown source bytes/targets, extra or incomplete production/CI inventories, invented predecessors and helper dependencies are rejected.",
+      "The existing Defect isolation test copies the complete current helper closure and retains its exact historical epoch and owner-drift rejection."
+    ],
+    "executionMode": "Portable Node24 via require_escalated; default sandbox DLL_INIT_FAILED is separately recorded as environment-only.",
+    "environmentRecovery": {
+      "sourceOrAssertionsChanged": false,
+      "record": ".artifacts/sts-feedback-source-20261113/environment-interruption-D.json",
+      "restoredBytes": ".artifacts/sts-feedback-source-20261113/disk-restore-verification-D.json",
+      "verifiedOldArchives": 4,
+      "verifiedProductFiles": 14,
+      "verifiedToolFiles": 11,
+      "source10FirstInterruptedCommandNotCounted": true
+    }
+  },
+  "independentReview": {
+    "reviewer": "deck_reuse_audit",
+    "status": "PASS",
+    "sourceCommit": "fa7273ec3187931e2cd598934e00f214c2d35237",
+    "report": ".artifacts/sts-feedback-source-20261113/independent-review.json",
+    "reportSha256": "7dfc85af66219a75b222818a94758a50c8130763af6c2e23490d7f4c55551f54",
+    "method": "Independent final D Git/source/archives/checkpoint inspection and readback of the two new author logs; no suite repeated."
+  },
+  "privateTraceability": {
+    "checkpoint": ".artifacts/sts-feedback-source-20261113/source-checkpoint.json",
+    "beforeCandidateB": ".artifacts/sts-feedback-source-20261113/B-diagnostic",
+    "beforeCandidateC": ".artifacts/sts-feedback-source-20261113/C-diagnostic",
+    "beforeCandidatesFinal": false
+  },
+  "boundaries": {
+    "sourceOnly": true,
+    "remoteExactShaFull": "reported separately",
+    "officialImport": false,
+    "officialDeviceReady": false,
+    "mobileValidation": false,
+    "SDKVisualResults": "reported separately; not inferred from source validation"
+  },
+  "finalCandidate": true,
+  "candidateDisposition": "Final D source continuation after the legacy-grid cache correction; overall SDK/CI QA is reported separately."
+}

@@ -3,6 +3,10 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {createSourceEpochProjector} from './helpers/combined-epoch/source-epoch-runtime.mjs';
 import {extendStsStyleEpoch} from './helpers/sts-style-source-epoch-runtime.mjs';
+import {extendFeedbackSourceEpoch,extendFeedbackCiProof,extendFeedbackHelperClosure,feedbackBase,feedbackBinding,
+ feedbackHash,feedbackProductionPaths,feedbackCiPaths,feedbackHelperPaths,feedbackClosurePaths,feedbackAddedTests,
+ feedbackPriorCiSha,feedbackPriorClosureSha,renderFeedbackCiBinding} from './helpers/sts-feedback-source-runtime.mjs';
+import {gunzipSync} from 'node:zlib';
 import {readFileSync,readdirSync} from 'node:fs';
 import {discoverJs,jsPlanningWeights,timings} from '../scripts/ci-shards.mjs';
 const hash=source=>createHash('sha256').update(source).digest('hex');
@@ -92,4 +96,94 @@ test('real style CI admits only full inventory, complete source and freshly veri
  }
  assert(p.helperSources['tests/helpers/historical-sts-style-entry.mjs']);
  assert(p.helperSources['tests/helpers/generate-sts-style-source-epoch.mjs']);
+});
+
+function feedbackFixture(){
+ const current=Object.fromEntries(['config/architecture.json',...feedbackProductionPaths].map((p,i)=>[p,feedbackBinding(p.endsWith('.json')?'{}\n':`return ${i}\n`)]));
+ const original=createSourceEpochProjector({schemaVersion:1,normalization:'LF',currentCommit:'a'.repeat(40),
+  current,owners:[],targets:{develop:{commit:'b'.repeat(40),files:current}}});
+ const patch={schemaVersion:1,normalization:'LF',baseCommit:feedbackBase,sourceCommit:'c'.repeat(40),inventory:Object.keys(current).sort(),
+  before:Object.fromEntries(feedbackProductionPaths.map(p=>[p,current[p]])),
+  current:Object.fromEntries(feedbackProductionPaths.map((p,i)=>[p,feedbackBinding(`return ${i+20}\n`)]))};
+ return {original,patch};
+}
+test('feedback synthetic source delta preserves all prior targets and materializes only the exact forward target',()=>{
+ const f=feedbackFixture(),before=JSON.stringify(f.patch),next=extendFeedbackSourceEpoch(f.original,f.patch),p=next.proof;
+ assert.equal(JSON.stringify(f.patch),before);assert.deepEqual(p.targets.develop,f.original.proof.targets.develop);
+ assert.deepEqual(p.targets.stsFeedbackPrior,{commit:feedbackBase,files:f.original.proof.current});
+ assert.deepEqual(Object.keys(p.current).sort(),f.patch.inventory);
+ for(const path of feedbackProductionPaths)assert.deepEqual(p.current[path],f.patch.current[path]);
+ for(const mutate of [p=>{p.before[feedbackProductionPaths[0]]=feedbackBinding('foreign\n');},p=>{p.inventory.push('src/lua/ghost.lua');},p=>{p.current['src/lua/ghost.lua']=feedbackBinding('return true\n');}]){
+  const changed=structuredClone(f.patch);mutate(changed);assert.throws(()=>extendFeedbackSourceEpoch(f.original,changed));
+ }
+});
+test('feedback synthetic owners remain fresh after success and unknown source never authorizes a view',()=>{
+ const f=feedbackFixture(),next=extendFeedbackSourceEpoch(f.original,f.patch),p=next.proof,path=feedbackProductionPaths[0];
+ const raw=owner=>p.current[owner]?.source??null,prior=f.original.proof.current[path].source;
+ assert.equal(next.preCombinedSource(path,raw(path),{target:'stsFeedbackPrior',readSource:raw}),prior);
+ for(const owner of p.owners)for(const bad of [null,raw(owner)+'\n'])assert.throws(()=>next.preCombinedSource(path,raw(path),
+  {target:'stsFeedbackPrior',readSource:p=>p===owner?bad:raw(p)}),/linked owner identity/);
+ let reads=0;const read=()=>{reads++;throw Error('must not read');};
+ for(const foreign of ['foreign\n',null,{},17])assert.equal(next.preCombinedSource(path,foreign,{target:'stsFeedbackPrior',readSource:read}),foreign);
+ assert.equal(next.preCombinedSource('src/lua/unknown.lua','return true\n',{target:'stsFeedbackPrior',readSource:read}),'return true\n');assert.equal(reads,0);
+ assert.throws(()=>next.preCombinedSource(path,raw(path),{target:'unknown',readSource:raw}),/unknown source target/);
+});
+function feedbackCiFixture(){
+ const original=JSON.parse(gunzipSync(readFileSync('tests/helpers/sts-style-ci-source.json.gz'))),files={};
+ for(const path of feedbackCiPaths){const before=original.files[path]?.after??original.helperSources[path]??null;
+  files[path]={before,after:feedbackBinding((before?.source??'')+'// feedback fixture\n')};
+ }
+ const closure=JSON.parse(original.files['tests/helpers/closeout-source-closure.json'].after.source);
+ const patch={schemaVersion:1,normalization:'LF',baseCommit:feedbackBase,sourceCommit:'c'.repeat(40),priorArchiveSha256:feedbackPriorCiSha,
+  inventoryBefore:original.afterInventory,inventoryAfter:[...original.afterInventory,...feedbackAddedTests].sort(),addedTests:feedbackAddedTests,
+  files,helperSources:Object.fromEntries(feedbackHelperPaths.map(p=>[p,files[p].after])),
+  helperClosure:Object.fromEntries(feedbackClosurePaths.map(p=>[p,{before:closure[p]??null,after:'d'.repeat(64)}]))};
+ return {original,patch,closure};
+}
+test('feedback synthetic CI retains immutable before sources and real Full inventory without accepting unregistered inputs',()=>{
+ const f=feedbackCiFixture(),snapshot=JSON.stringify(f.original),next=extendFeedbackCiProof(f.original,f.patch);
+ assert.equal(JSON.stringify(f.original),snapshot);
+ for(const [p,row]of Object.entries(f.original.files))assert.deepEqual(next.files[p].before,row.before,'cb predecessor unchanged: '+p);
+ assert.deepEqual(next.afterInventory,f.patch.inventoryAfter);assert.equal(next.afterInventory.length,f.original.afterInventory.length+feedbackAddedTests.length);
+ for(const path of feedbackAddedTests){assert.equal(f.patch.files[path].before,null);assert(next.addedTests.includes(path));}
+ for(const mutate of [p=>{p.files['scripts/unknown.mjs']=p.files[feedbackCiPaths[0]];},p=>{p.inventoryAfter=p.inventoryBefore;},
+  p=>{p.files['scripts/official-assets-layout.mjs'].before=feedbackBinding('foreign\n');},p=>{delete p.helperSources[feedbackHelperPaths[0]];}]){
+  const changed=structuredClone(f.patch);mutate(changed);assert.throws(()=>extendFeedbackCiProof(f.original,changed));
+ }
+});
+test('feedback synthetic helper-copy closure extends exact dependencies while preserving the original map',()=>{
+ const f=feedbackCiFixture(),snapshot=JSON.stringify(f.closure),next=extendFeedbackHelperClosure(f.closure,f.patch.helperClosure);
+ assert.equal(JSON.stringify(f.closure),snapshot);
+ for(const [p,sha]of Object.entries(f.closure))if(!feedbackClosurePaths.includes(p))assert.equal(next[p],sha);
+ for(const mutate of [p=>{p['tests/helpers/ghost.mjs']={before:null,after:'d'.repeat(64)};},p=>{p[feedbackClosurePaths[0]].before='e'.repeat(64);},p=>{delete p[feedbackClosurePaths[0]];}]){
+  const changed=structuredClone(f.patch.helperClosure);mutate(changed);assert.throws(()=>extendFeedbackHelperClosure(f.closure,changed));
+ }
+});
+test('feedback real current source and CI preserve all four immutable archives and every historical view',async()=>{
+ assert.equal(readFileSync('tests/helpers/sts-feedback-ci-binding.mjs','utf8').replaceAll('\r\n','\n'),
+  renderFeedbackCiBinding(feedbackHash(readFileSync('tests/helpers/sts-feedback-ci.json.gz'))),'new trust leaf cannot grow arbitrary authorization policy');
+ for(const [path,sha]of Object.entries({
+  'tests/helpers/sts-style-source-epoch.json.gz':'cc47fd96c79d7a604d2c5c269b012354d887762aecbe2990ac89fbf2ac74c1a9',
+  'tests/helpers/sts-style-prior-runtime.json.gz':'10bf3b7d960e4c02ae2d64e26d8d5f16824439b9396949973f08ccec1c9d9330',
+  'tests/helpers/sts-style-ci-source.json.gz':feedbackPriorCiSha,'tests/helpers/closeout-source-closure.json':feedbackPriorClosureSha,
+ }))assert.equal(feedbackHash(readFileSync(path)),sha,path);
+ const {sourceEpoch,stsStyleEpoch}=await import('./helpers/closeout-source-epoch.mjs'),p=sourceEpoch.proof;
+ assert.deepEqual(p.targets.stsFeedbackPrior.files,stsStyleEpoch.proof.current);
+ for(const [name,target]of Object.entries(stsStyleEpoch.proof.targets))assert.deepEqual(p.targets[name],target,name);
+ for(const [path,row]of Object.entries(p.current))assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),row.source,path);
+ const anchor=feedbackProductionPaths[0],raw=path=>readFileSync(path,'utf8');
+ assert.equal(sourceEpoch.preCombinedSource(anchor,raw(anchor),{target:'stsFeedbackPrior',readSource:raw}),stsStyleEpoch.proof.current[anchor].source);
+ for(const path of feedbackProductionPaths){
+  assert(p.owners.includes(path),'current owner must guard every changed feedback source: '+path);
+  for(const missing of [null,raw(path)+'\n'])assert.throws(()=>sourceEpoch.preCombinedSource(anchor,raw(anchor),
+   {target:'stsFeedbackPrior',readSource:p=>p===path?missing:raw(p)}),/linked owner identity/,path);
+ }
+ const {assertStsStyleCiCurrent,stsStyleCiProof,stsStyleBeforeFeedbackCiProof:previousCi}=await import('./helpers/sts-style-ci-source.mjs');assertStsStyleCiCurrent(discoverJs());
+ assert.equal(stsStyleCiProof.feedback.sourceCommit,p.currentCommit,'production and CI continue the same exact source slice');
+ assert.deepEqual(stsStyleCiProof.afterInventory,[...previousCi.afterInventory,...feedbackAddedTests].sort());
+ for(const [path,row]of Object.entries(previousCi.files))assert.deepEqual(stsStyleCiProof.files[path].before,row.before,'complete original CI before: '+path);
+ for(const path of feedbackCiPaths)assert.throws(()=>assertStsStyleCiCurrent(discoverJs(),(p,e)=>readFileSync(p,e)+(p===path?'\n':'')),/fresh (?:complete StS CI|StS helper) source/,path);
+ for(const path of feedbackAddedTests)for(const platform of ['win32','linux']){
+  assert.equal(timings.js[platform][path],undefined);assert(jsPlanningWeights([path],platform)[path]>=timings.unknownJsMs);
+ }
 });
