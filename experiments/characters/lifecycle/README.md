@@ -61,3 +61,32 @@ node --test experiments/characters/lifecycle/keqing-paid-usecard.test.mjs
 验证 KQ001 6/9 和 KQ002 5/8 两面、费用一次、无能量/无目标拒绝不变、新战资源隔离、末敌死亡仍按共享 UseCard 完成，以及源 Sharp Hide 在 UseCard 前致死不消费。Scry+双段是显式合成压力夹具，不是给 KQ001 增加新设计：真实 pause 保留未消费附魔，恢复后两段各 +2 而整牌只扣一次；恢复期间或初次命令在完成后故障，真实 Snapshot 还原能量、伤害、手牌、pending/actionQueue 和资源原引用。旧角色差分也加入每回合一次真实出牌。
 
 **未实现/不应冒称完成**：003 setup/recast 的清楔/伤害/设楔顺序、004 引爆、初始遗物首次设楔 +4 的卡内反应/致死策略、75 卡、完整存档 ABI、正式注册。遗物 flag 初始化不等于遗物触发已接入。原 JS 来源没有卡内反应模型，不能把 `Resources.resolved` 一次性结果当作 003 的逐步正式时序；当前只交付无此歧义的 001/002。
+
+## KQ003 staged paid candidate (not formally enabled)
+
+`keqingCandidate=true, keqingStage='003'` uses a canonical single damage face
+(5 base / 7 upgraded) and the actual paid queue. The frozen pure planner is
+copied from character snapshot `765268f28f22d7f73ef797d9b4082e168839ead8`.
+Each stage is bound to turn, real limbo UID and accepted-use ordinal from the
+engine's combat use history. Payment and history are owned by the existing
+snapshot; rollback removes that ordinal and every action generated from it.
+Setup queues captured damage then wedge creation. Recast consumes the wedge,
+queues captured release damage, then records a deferred refresh. The actual
+UseCard boundary consumes the old infusion once, applies a refresh only if its
+stage executed, and queues the initial relic's fixed 4 block only after a
+completed setup. No post-return wrapper is used. Different uses of the same
+UID receive different ordinals; phase cursor rejects stale or duplicate stages.
+
+**Terminal semantic HOLD:** existing host allow rules are unchanged. The new
+resource op is not retained after victory, so a setup killing the last enemy
+does not create a wedge or fire its relic. Recast kills do not execute deferred
+refresh, while retained UseCard still consumes old infusion. Player death
+stops subsequent resource actions and completion. This is intentionally NOT
+claimed equivalent to the isolated JS model's after-whole-play outcome check,
+and blocks formal registration until the product contract is decided.
+
+`keqing-staged-usecard.test.mjs` runs real C.play, the 12 base/upgraded × old
+infusion × setup/recast combinations, fixed/repeat relic, controlled same-UID replay with a new accepted
+use ordinal (not a natural acquisition test), terminal boundaries, damage-reaction death, complete paid rollback, and
+synthetic real Scry pause/resume/failure rollback at a staged boundary. The
+synthetic interruption is test-only and is not an extra ability on KQ003.

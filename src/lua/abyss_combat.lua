@@ -996,7 +996,7 @@ queuedHandlers.useCard = function(state, _action, queue)
     -- A lethal on-use retaliation stops before the source UseCard disposal.
     -- Preserve the original cardInUse identity on the death screen.
     if state.player.hp<=0 then return true end
-    require('abyss_keqing_paid_cards').complete(state,context,instance)
+    require('abyss_keqing_paid_cards').complete(state,context,instance,queue)
     afterUsePowers(state,context,instance)
     RelicHooks.afterCard(state)
     if not context.purge then instance.freeToPlayOnce=nil end

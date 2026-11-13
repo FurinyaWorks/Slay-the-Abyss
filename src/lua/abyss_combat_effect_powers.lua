@@ -3,6 +3,9 @@ local Actors=require('abyss_actor')
 local Events=require('abyss_events')
 local EnemyAI=require('abyss_enemy_ai')
 local Handlers={}
+function Handlers.keqingCardStage(c)
+    return require('abyss_keqing_paid_cards').dispatch(c.combat,c.state,c.effect,c.queue)
+end
 function Handlers.keqingOwnerEnd(c)
     return require('abyss_character_owner_end').apply(c.state,c.effect)
 end
