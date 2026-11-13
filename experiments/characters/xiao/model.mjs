@@ -5,12 +5,12 @@ import { drawCards, takeTop } from './deck.mjs';
 export { catalog };
 const byId = new Map(catalog.cards.map(card => [card.id, card]));
 export function state({ hp = catalog.maxHp, energy = catalog.energyPerTurn, enemies = [{ hp: 30, block: 0 }], hand = [], draw = [], startingRelic = false } = {}) {
-  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, entryDraw: 0, expiryEnergy: 0, calmAttackGuard: 0, reservedBlock: 0, entryGuard: 0, exhaustGuard: 0, reservedEnergy: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
+  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, exitDraw: 0, entryDraw: 0, expiryEnergy: 0, calmAttackGuard: 0, reservedBlock: 0, entryGuard: 0, exhaustGuard: 0, reservedEnergy: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
 }
 const nonnegative = value => Number.isSafeInteger(value) && value >= 0;
 export function validState(s) {
   if (!s || typeof s !== 'object') return false;
-  if (![s.entryDraw, s.expiryEnergy, s.calmAttackGuard, s.reservedBlock, s.entryGuard, s.exhaustGuard, s.reservedEnergy, s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
+  if (![s.exitDraw, s.entryDraw, s.expiryEnergy, s.calmAttackGuard, s.reservedBlock, s.entryGuard, s.exhaustGuard, s.reservedEnergy, s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
   if (!['fixed', 'shuffle'].includes(s.deckMode)) return false;
   if (s.deckMode === 'shuffle' && (!Number.isInteger(s.rng) || s.rng < 0 || s.rng > 0xffffffff)) return false;
   if (s.hp > catalog.maxHp || s.mask > catalog.maskRules.maxDuration) return false;
@@ -29,7 +29,7 @@ function damage(enemy, amount) {
 function exhaustCards(s,cards) { s.exhaust.push(...cards);s.block+=cards.length*s.exhaustGuard; }
 function setMaskFromCard(s,value) {
   const exited=s.mask>0&&value===0;s.mask=value;
-  if(exited)s.block+=s.exitGuard;
+  if(exited){s.block+=s.exitGuard;drawCards(s,s.exitDraw);}
 }
 function apply(s, effect, target) {
   const { op, value } = effect;
@@ -44,6 +44,7 @@ function apply(s, effect, target) {
     }
     if(entered)drawCards(s,s.entryDraw);
   }
+  else if (op === 'exitDraw') s.exitDraw+=value;
   else if (op === 'entryDraw') s.entryDraw+=value;
   else if (op === 'recoverEntry') {
     if(s.hand.length<10){const i=s.discard.findIndex(id=>byId.get(id)?.base.some(e=>e.op==='mask'&&e.value>0));if(i>=0)s.hand.push(s.discard.splice(i,1)[0]);}
@@ -183,6 +184,7 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits, step, block}) => ({
+    exitDraw: `本场卡牌使面具从有变无时，在退出护盾后抽${value}张，手限10，可叠加；自然到期/部分缩短/空退出不触发。`,
     entryDraw: `本场每次实际从无面具进入面具抽${value}张，手限10；刷新不算，可叠加。首次入场遗物先抽，再此能力。`,
     recoverEntry: `从弃牌堆按顺序取回首张含进入面具效果的牌，不碰消耗区；无则略过，手限10。`,
     expiryEnergy: `本场面具自然到期时，支付末次生命后仍存活，向下回合储备${value}能量；主动退出不触发，可叠加，不跨战。`,

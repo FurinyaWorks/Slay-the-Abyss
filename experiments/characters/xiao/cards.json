@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.31",
+  "version": "xiao-g2-lab-0.32",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -2159,6 +2159,68 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x71",
+      "name": "待命名·x71",
+      "role": "主动退场补手：只在卡牌真正解除面具后抽牌",
+      "kind": "power",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "exitDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exitDraw",
+          "value": 2
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x72",
+      "name": "待命名·x72",
+      "role": "前突留势：攻击并预置下一回合少量防御",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 4
+        },
+        {
+          "op": "reserveBlock",
+          "value": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 6
+        },
+        {
+          "op": "reserveBlock",
+          "value": 7
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -2239,7 +2301,9 @@
     "x67",
     "x68",
     "x69",
-    "x70"
+    "x70",
+    "x71",
+    "x72"
   ],
   "maskRules": {
     "attackBonus": 4,
