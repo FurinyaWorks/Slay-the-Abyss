@@ -45,3 +45,7 @@ test('intent card texts expose base upgrade and conditional scope',()=>{
   assert.ok(cardText(catalog.cards.find(c=>c.id==='x26'),upgraded).includes(upgraded?'3张':'2张'));
  }
 });
+test('quiet condition validates all live intentions even after an attacking enemy',()=>{
+ const s=state({hand:['x26'],enemies:[{hp:20,block:0,intent:[8]},{hp:20,block:0}]});
+ assert.equal(play(s,{index:0}).ok,false);assert.deepEqual(play(s,{index:0}).state,s);
+});

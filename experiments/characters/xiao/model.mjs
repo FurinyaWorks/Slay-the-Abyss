@@ -38,7 +38,7 @@ function apply(s, effect, target) {
     }
   }
   else if (op === 'threatDamage') damage(s.enemies[target],value+(currentIntent(s,s.enemies[target])>0?effect.bonus:0)+(s.mask>0?catalog.maskRules.attackBonus:0));
-  else if (op === 'quietDraw') { if(s.enemies.filter(e=>e.hp>0).every(e=>currentIntent(s,e)===0))drawCards(s,value); }
+  else if (op === 'quietDraw') { if(s.enemies.filter(e=>e.hp>0).map(e=>currentIntent(s,e)).every(n=>n===0))drawCards(s,value); }
   else if (op === 'spendEnergyBlock') { s.block+=s.energy*value;s.energy=0; }
   else if (op === 'discardAttacksDraw') {
     const removed=s.hand.filter(id=>byId.get(id)?.kind==='attack');
