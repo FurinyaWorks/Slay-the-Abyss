@@ -170,12 +170,14 @@ function styleCamp(panel,theme){
  setRect(must(result,'description'),[0,90,600,120]);type(must(result,'description'),26,'#F0ECDB');
 }
 
-function styleEvent(panel,theme){
+export function styleEvent(panel,theme){
  // plateBorder is visibility-only in the real event writer, including Neow.
  // Keep its identity and path, adding children only after making it a container.
  const border=must(panel,'plateBorder');border.kind='container';border.position=[0,0];border.size=[1280,720];delete border.image;delete border.colour;
+ const hud=theme.officialAssets.battleHud,top=theme.presentationProfile==='official-assets-first'?
+  theme.canvas.base[1]/2-(hud.y-hud.height/2):44;
  border.children=[group('v25EventParchment',[
-  rect('field',0,-22,1280,676,'#2E3B38'),rect('storyPanel',...theme.layout.nativeNode.event.plate,'#020504'),
+  rect('field',0,-top/2,1280,720-top,'#2E3B38'),rect('storyPanel',...theme.layout.nativeNode.event.plate,'#020504'),
   image('panelShadow',0,-55,1260,522,theme.image.glowWide,'#000000'),
   polygon('ribbon',[[14,145],[49,132],[219,129],[558,130],[678,139],[704,152],[676,163],[697,173],[626,177],[138,176],[42,186]],'#A3967E'),
   rect('storyWell',-372,-50,410,410,'#121B18'),

@@ -22,10 +22,17 @@ const setImage=(control,id,colour)=>{
 export function officialAssetsTheme(source){
   const theme=structuredClone(source);
   const approved=v25Theme(source);
+  // Map geometry already uses the approved paper; its live ink writers must
+  // receive the same palette instead of the retired dark-map gold/lavender.
+  theme.color.mapCanvas=structuredClone(approved.color.mapCanvas);
+  theme.color.node=structuredClone(approved.color.node);
   theme.layout.v25Menu=structuredClone(approved.layout.v25Menu);
   Object.assign(theme.layout.rewardPick,structuredClone(approved.layout.rewardPick));
+  theme.layout.nativeNode.event=structuredClone(approved.layout.nativeNode.event);
   theme.layout.nativeNode.event.neow.bubbleText=[-45,96,270,130];
  if(theme.officialAssets?.profile!=='official-assets-first-v1')throw Error('Missing official asset theme');
+  Object.assign(theme.officialAssets.rewardRows,{pressed:theme.officialAssets.neowChoice.pressed,
+   disabled:theme.officialAssets.neowChoice.disabled,ink:theme.officialAssets.buttonInk});
  theme.officialAssets.stsCardReference={...geoCardReferenceTokens(theme),geometry:structuredClone(stsReferenceRuntimeGeometry)};
  theme.presentationProfile='official-assets-first';
  theme.cardSkin.text.body=theme.officialAssets.cardInk;

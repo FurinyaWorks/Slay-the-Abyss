@@ -524,7 +524,7 @@ end
 local function requestReveal(self,platform)
     local intent=PageReveal.intent(self)
     PageReveal.registerSource(platform,intent.page)
-    if self.pageReveal then self.pageReveal:request(intent)end
+    if self.pageReveal then self.pageReveal:begin(intent)end
 end
 local function paintReveal(self)
     if not self.pageReveal then return end
@@ -533,6 +533,11 @@ local function paintReveal(self)
         self.root:GetChild('runMenu'):SetAsLastSibling()
         self.root:GetChild('exitPanel'):SetAsLastSibling()
     end
+end
+local function finishReveal(self,platform)
+    local intent=PageReveal.intent(self)
+    PageReveal.registerSource(platform,intent.page)
+    if self.pageReveal then self.pageReveal:finish(intent)end
 end
 function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleScene,syncMenuContext,platform,syncCardChoice,closeStaleDeck,openCardChoice,canManagePotions,overlaysBlocked,syncRewardReturn,refreshUtilities,refreshPageVisibility,renderCurrentPage,bgm,present,refreshForeground,syncPortraits,openingForeground)
     return function(_)
@@ -563,11 +568,11 @@ function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleS
             refreshForeground()
             if self.easterEgg then self.easterEgg:refresh()end
             syncPortraits()
-            requestReveal(self,platform)
+            CardSkin.endFrame(surfaceFrame,surfaceScopes(self))
+            finishReveal(self,platform)
             paintReveal(self)
             openingForeground(covering)
             self:syncController()
-            CardSkin.endFrame(surfaceFrame,surfaceScopes(self))
         end
 end
 

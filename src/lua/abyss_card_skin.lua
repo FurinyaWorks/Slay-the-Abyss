@@ -80,7 +80,7 @@ local referenceMaterials={frame='frame',frameRails='frame',frameShadow='frameSha
 local function referenceState(box,root)
     local state=referenceStates[box]
     if state then return state end
-    state={root=root,groups={},materials={},banner={front={},fold={}},bodyMaterials={},frameParts={}}
+    state={root=root,groups={},materials={},wells={},banner={front={},fold={}},bodyMaterials={},frameParts={}}
     -- One bounded discovery per face; type/rarity updates never walk the tree.
     local function collect(node,list)
         local children=node:GetChildren()
@@ -93,7 +93,9 @@ local function referenceState(box,root)
         local group=portraits:GetChild(kind);state.groups[kind]=group
         for _,part in ipairs(group:GetChildren())do
             local key=referenceMaterials[part.name]or'frame'
-            state.materials[key]=state.materials[key]or{};collect(part,state.materials[key])
+            if key=='portrait'then
+                state.wells[kind]={};collect(part,state.wells[kind])
+            else state.materials[key]=state.materials[key]or{};collect(part,state.materials[key])end
         end
     end
     local frame=root:GetChild('frame')
@@ -119,8 +121,15 @@ local function referenceBody(state,definition,tint)
     local neutral=kind~='geo'and Theme.officialAssets.battleCardBodyMaterials[kind]
     local colours=neutral and{outer=neutral.outerBevel,shade=neutral.paperBevel,body=neutral.innerWell,bevel=neutral.leftCatchlight}or tokens.character
     for key,parts in pairs(state.bodyMaterials)do for _,part in ipairs(parts)do tint(part,colours[key])end end
-    for _,part in ipairs(state.materials.portrait or{})do tint(part,neutral and neutral.artWell or tokens.portrait)end
     state.bodyKind=kind
+end
+local function referencePortrait(state,definition,tint)
+    if state.wellKind==definition.type then return end
+    local tokens=Theme.officialAssets.stsCardReference
+    local neutral=Theme.officialAssets.battleCardBodyMaterials[definition.type]
+    local colour=neutral and neutral.artWell or config.artWells and config.artWells[state.kind]or tokens.portrait
+    for _,part in ipairs(state.wells[state.kind])do tint(part,colour)end
+    state.wellKind=definition.type
 end
 local function referenceBanner(box,definition,tint,root)
     local state=referenceState(box,root)
@@ -375,11 +384,13 @@ local function referenceInk(box,platform)
     local tokens=Theme.officialAssets.stsCardReference
     local function ink(name,tone)local part=box:GetChild(name);part.fontColor=platform.color(tone.r,tone.g,tone.b,255)end
     ink('name',tokens.rarity.common.ink);ink('type',tokens.text.type)
+    box:GetChild('type').enableOutline=false
 end
 local function applyReference(box,definition,platform,look,accent,tint,reference)
     local state=referenceBanner(box,definition,tint,reference)
     referenceKind(state,definition)
     referenceBody(state,definition,tint)
+    referencePortrait(state,definition,tint)
     costs(box,definition,look,accent,platform,tint,false)
     referenceInk(box,platform)
     blockedState(box,look)

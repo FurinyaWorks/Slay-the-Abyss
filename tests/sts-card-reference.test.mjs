@@ -5,6 +5,7 @@ import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {gameLayout} from '../scripts/game-ui-layout.mjs';
 import {applyOfficialAssets,officialAssetsTheme} from '../scripts/official-assets-layout.mjs';
 import {nativeShape,nativeSceneEdgeBleed} from '../scripts/v25-battle-scene.mjs';
+import {deckCardTemplate} from '../scripts/deck-ui-layout.mjs';
 const all=n=>[n,...(n.children??n.controls??[]).flatMap(all)];
 const inside=([x,y],points)=>{
  let result=false;
@@ -14,6 +15,41 @@ const inside=([x,y],points)=>{
  }
  return result;
 };
+
+test('official hand and browser wells retain approved type colours and type labels explicitly disable the inherited outline',()=>{
+ const theme=officialAssetsTheme(nativeTheme);
+ theme.cardSkin.artWells.attack='#123456';theme.cardSkin.artWells.skill='#654321';
+ const tree=gameLayout(),deck=deckCardTemplate(theme);
+ applyOfficialAssets([tree,deck],theme);
+ for(const face of [all(tree).find(n=>n.name==='card1'),deck.children.find(n=>n.name==='face')]){
+  const portraits=all(face).find(n=>n.name==='portraits');
+  for(const kind of ['attack','skill','power']){
+   const well=portraits.children.find(n=>n.name===kind).children.find(n=>n.name==='well');
+   assert(all(well).filter(n=>n.kind==='image').every(n=>n.colour===theme.cardSkin.artWells[kind]),kind+' well must resolve the existing cardSkin token');
+  }
+  const labels=all(face).filter(n=>n.name==='type');assert.equal(labels.length,1);
+  assert.equal(labels[0].text.outline,false,'small dark type text must not inherit the native dark outline');
+  assert.equal(labels[0].text.fontSize,14,'outline correction cannot silently change the native font contract');
+ }
+});
+
+test('official type text opts out of the native default dark outline',()=>{
+ const theme=officialAssetsTheme(nativeTheme),tree=gameLayout();applyOfficialAssets([tree],theme);
+ const face=all(tree).find(n=>n.name==='card1');
+ assert.equal(face.children.find(n=>n.name==='type').text.outline,false);
+});
+
+test('native minimum-size Chinese type text keeps a light backing over its full layout budget',()=>{
+ const theme=officialAssetsTheme(nativeTheme),tree=gameLayout(),deck=deckCardTemplate(theme);applyOfficialAssets([tree,deck],theme);
+ for(const face of [all(tree).find(n=>n.name==='card1'),deck.children.find(n=>n.name==='face')]){
+  const plaque=face.children.find(n=>n.name==='stsReferenceChrome').children.find(n=>n.name==='plaqueFace');
+  const label=face.children.find(n=>n.name==='type');
+  assert.deepEqual(plaque.position,label.position,'the backing must be centred on the actual type label');
+  assert.deepEqual(plaque.size,[42,21],'38px available text width and 16.8px line-height retain about 2px inset');
+  assert.equal(label.text.fontSize,14);assert.deepEqual(label.size,[42,28]);
+ }
+ assert.deepEqual(stsAngerReference.materialGeometry.plaque.size,[80,30],'original 20x7.5 source measurement remains unchanged');
+});
 
 test('Anger study keeps the pinned source coordinate system and angular attack corner',()=>{
  const p=stsAngerReference;

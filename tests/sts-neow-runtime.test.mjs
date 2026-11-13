@@ -37,6 +37,9 @@ local function visibleBody(i)
  assert(math.abs(b.sizeDeltaY-59*2/3)<.00001,'old tall panel returned at runtime')
  assert(b:GetChild('hit').sizeDeltaY>=44,'visible body cannot shrink native hit')
  assert(not b:GetChild('title').visible and not b:GetChild('description').visible,'old separate title/description returned')
+ for _,name in ipairs({'v25BaseMaterial','v25StateChrome','v25Corner0_0','v25Corner0_1','v25Corner1_0','v25Corner1_1'})do
+  assert(not b:GetChild(name).visible,'ordinary event material leaked over Neow: '..name)
+ end
  for _,s in ipairs({'border','normal','hover','pressed','disabled','selected'})do assert(not b:GetChild(s).visible,'legacy material revived '..s)end
  assert(b:GetChild('stsNeowText').visible)
  return b:GetChild('stsNeowText').text
@@ -79,11 +82,30 @@ local disabled=row(1):GetChild('stsNeowText').fontColor
 assert(disabled.r==tokens.disabledInk.r and disabled.g==tokens.disabledInk.g and disabled.b==tokens.disabledInk.b)
 assert(not row(1):GetChild('hit').click(),'disabled choice cannot execute')
 Neow.options=options
--- A reused ordinary room must restore its original two-field writer and skin.
+-- A reused ordinary room restores its approved compact event writer and skin.
 local Rooms=dofile('tests/helpers/act2_event_ui.lua')
 local ordinary,ordinaryMap=Rooms.fixture('big_fish');ui.run,ui.map=ordinary,ordinaryMap
 ui:render();assert(not row(1):GetChild('stsNeowChrome').visible);assert(not row(1):GetChild('stsNeowText').visible)
-assert(row(1):GetChild('title').visible and row(1):GetChild('description').visible)
+assert(row(1):GetChild('title').visible and not row(1):GetChild('description').visible)
+assert(row(1):GetChild('v25BaseMaterial').visible and row(1):GetChild('v25StateChrome').visible)
+assert(event:GetChild('plateBorder'):GetChild('v25EventParchment').visible)
+assert(not event:GetChild('caption').visible)
+local lab,labMap=Rooms.fixture('lab');ui.run,ui.map=lab,labMap;ui:render()
+assert(event:GetChild('name').text=='实验室')
+assert(ui:press('eventView/option1'));assert(lab.nodeFlow.event.stage=='potion_rewards')
+assert(row(4).visible and not row(4):GetChild('description').visible,'all three potions plus leave must remain reachable')
+assert(row(1):GetChild('title').text:find('药水',1,true),'actual potion choice missing')
+assert(event:GetChild('body').x==225 and event:GetChild('body').y==58,'ordinary body must use its approved column')
+ui.notice=event:GetChild('body').text;ui:render()
+assert(root:GetChild('notice').text=='','story instruction was duplicated above the event')
+ui.notice='受控错误';ui.failed=true;ui:render()
+assert(root:GetChild('notice').text=='受控错误','deduplication must retain transaction failures')
+ui.failed=false;ui.notice='';ui:render()
+local labBefore=C.copy(lab);local first=require('abyss_act1_events').options(lab,lab.nodeFlow.event)[1]
+assert(first and first.enabled)
+assert(ui:press('eventView/option1'))
+local labExpected=C.copy(labBefore);assert(F.Nodes.chooseEvent(labExpected,first.choice))
+assert(same(lab,labExpected),'new event presentation changed potion or RNG transactions')
 print('STS_NEOW_RUNTIME_PASS')
 `;
  const result=spawnSync(process.execPath,[require.resolve('fengari-node-cli/src/lua-cli.js'),'-e',script],

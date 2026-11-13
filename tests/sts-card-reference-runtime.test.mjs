@@ -8,13 +8,14 @@ import {officialAssetsTheme,applyOfficialAssets} from '../scripts/official-asset
 import {buildUiTheme} from '../scripts/build-ui-theme.mjs';
 import {luaString,toLua} from '../scripts/build-lua-data.mjs';
 import {runLua} from '../scripts/test-lua.mjs';
+import {deckCardTemplate} from '../scripts/deck-ui-layout.mjs';
 const all=n=>[n,...(n.children??n.controls??[]).flatMap(all)];
 
-test('real CardSkin and Display reuse type/rarity handles without recursive repaints, preserve long text and source anchors',t=>{
+for(const host of ['hand','browser'])test('real '+host+' CardSkin and Display reuse type/rarity handles without recursive repaints, preserve long text and source anchors',t=>{
  const base=resolve('.artifacts/test-tmp');mkdirSync(base,{recursive:true});
  const directory=mkdtempSync(join(base,'sts-card-runtime-'));t.after(()=>rmSync(directory,{recursive:true,force:true}));
- const theme=officialAssetsTheme(nativeTheme),tree=gameLayout();applyOfficialAssets([tree],theme);
- const spec=all(tree).find(n=>n.name==='card1');assert(spec);
+ const theme=officialAssetsTheme(nativeTheme),tree=gameLayout(),deck=deckCardTemplate(theme);applyOfficialAssets([tree,deck],theme);
+ const spec=host==='hand'?all(tree).find(n=>n.name==='card1'):deck.children.find(n=>n.name==='face');assert(spec);
  const changed=structuredClone(nativeTheme);changed.officialAssets.stsCardReference.typography.title=18;
  const changedTree=gameLayout();applyOfficialAssets([changedTree],officialAssetsTheme(changed));
  const changedFace=all(changedTree).find(n=>n.name==='card1');
@@ -55,13 +56,29 @@ assert(not box:GetChild('nativeRibbon').visible and not box:GetChild('nativeCard
 local framePart=root:GetChild('frame'):GetChild('batch0'):GetChild('part1')
 local bannerPart=root:GetChild('banner'):GetChild('front'):GetChild('strip0')
 local function colourIs(actual,expected)return actual.r==expected.r and actual.g==expected.g and actual.b==expected.b and actual.a==255 end
+local function leaves(node,out)
+ local children=node.order;if #children==0 then out[#out+1]=node else for _,child in ipairs(children)do leaves(child,out)end end
+end
+local function currentWell(kind,expected)
+ local parts={};leaves(portraits:GetChild(kind):GetChild('well'),parts)
+ for _,p in ipairs(parts)do assert(colourIs(p.imageColor,expected),kind..' well must retain the approved type or neutral token')end
+ return parts[1]
+end
+currentWell('skill',Theme.cardSkin.artWells.skill)
 assert(colourIs(framePart.imageColor,Theme.officialAssets.stsCardReference.rarity.uncommon.frame))
 assert(colourIs(bannerPart.imageColor,Theme.officialAssets.stsCardReference.rarity.uncommon.banner))
 Skin.apply(box,definition('power','rare'),api,{cost=1,baseCost=1})
 assert(reads==firstReads and portraits:GetChild('power').visible)
+currentWell('power',Theme.cardSkin.artWells.power)
 assert(colourIs(framePart.imageColor,Theme.officialAssets.stsCardReference.rarity.rare.frame))
 assert(colourIs(bannerPart.imageColor,Theme.officialAssets.stsCardReference.rarity.rare.banner))
 Skin.apply(box,definition('attack','common'),api,{cost=1,baseCost=1})
+local attackWell=currentWell('attack',Theme.cardSkin.artWells.attack)
+local priorWellColour=attackWell.imageColor
+box:GetChild('type').enableOutline=true
+Skin.apply(box,definition('attack','common'),api,{cost=1,baseCost=1})
+assert(attackWell.imageColor==priorWellColour,'idle apply cannot repaint cached illustration material')
+assert(box:GetChild('type').enableOutline==false,'reference writer must clear an inherited type outline')
 assert(colourIs(framePart.imageColor,Theme.officialAssets.stsCardReference.rarity.common.frame))
 assert(colourIs(bannerPart.imageColor,Theme.officialAssets.stsCardReference.rarity.common.banner))
 local part=root:GetChild('frame'):GetChild('batch2'):GetChild('part142')
@@ -80,6 +97,7 @@ for _,kind in ipairs({'status','curse'})do
 end
 Skin.apply(box,definition('attack','common'),api,{cost=1,baseCost=1})
 assert(outer.imageColor.r==geo.r and outer.imageColor.g==geo.g,'returning to ordinary card must restore Geo')
+currentWell('attack',Theme.cardSkin.artWells.attack)
 local long=string.rep('对所有敌人造成伤害并施加易伤，然后抽牌。',8)
 local label=box:GetChild('label');local fits=Display.writeBody(label,long,box)
 assert(label.text==long and label.fontSize>=14 and not fits,'full text must remain intact when card space is exceeded')

@@ -6,10 +6,10 @@ end
 function M.basePage(mode)
     return ({battle='battlePanel',node='nodePanel',map='mapPanel'})[mode] or 'menuPanel'
 end
-local function same(a,b)
+local function same(a,b,except)
     if not a or not b then return false end
-    for key,value in pairs(a)do if b[key]~=value then return false end end
-    for key,value in pairs(b)do if a[key]~=value then return false end end
+    for key,value in pairs(a)do if key~=except and b[key]~=value then return false end end
+    for key,value in pairs(b)do if key~=except and a[key]~=value then return false end end
     return true
 end
 local function reject(gate,message)
@@ -25,7 +25,7 @@ local function pageFor(owner)
     return M.basePage(owner.mode)
 end
 local function overlayVersion(owner,page)
-    if page=='deckPanel' then return owner.deckUI.generation,owner.deckUI.detailPages,owner.deckUI.detailPage end
+    if page=='deckPanel' then return owner.deckUI.openSession,owner.deckUI.detailPages,owner.deckUI.detailPage,owner.deckUI.contentRevision end
     if page=='choicePanel' then return owner.choiceUI.context,nil,owner.choiceUI.page end
 end
 function M.intent(owner)
@@ -33,14 +33,35 @@ function M.intent(owner)
     local selection=owner.characterSelection or {};local character=selection.info or {}
     local node=owner.nodeUI or {};local flow=run.nodeFlow or {};local event=flow.event or {}
     local battle=owner.battleUI or {}
-    local revision,details,detailPage=overlayVersion(owner,page)
+    local revision,details,detailPage,content=overlayVersion(owner,page)
     return {page=page,mode=owner.mode,run=owner.run,phase=run.phase,
         battle=run.combat,node=run.nodeFlow,characterOpen=owner.characterOpen==true,
         character=character.id,characterDeck=selection.deckOpen==true,act=run.act,floor=run.floor,
-        nodeMode=node.mode,picker=node.picker,eventStage=event.stage,opened=node.opened,
+        nodeMode=node.mode,picker=node.picker,eventStage=event.stage,event=flow.event,neow=flow.roomKind=='neow',opened=node.opened,
         nodePage=node.page,pickPage=node.pickPage,relicPage=node.relicPage,complete=flow.complete,
         rewards=run.phase=='reward' and battle.rewardScreen or nil,
-        overlayRevision=revision,details=details,detailPage=detailPage}
+        overlayRevision=revision,details=details,detailPage=detailPage,overlayContent=content}
+end
+local function sameOwner(a,b)
+    if not a or not b then return false end
+    for _,key in ipairs({'page','mode','run','phase','battle','node','characterOpen','character','characterDeck','act','floor','overlayRevision'})do
+        if a[key]~=b[key]then return false end
+    end
+    return true
+end
+local function sameNeowText(a,b)
+    local stages={neow_intro=true,neow_blessing=true,neow_result=true}
+    return a.neow and b.neow and a.event==b.event and stages[a.eventStage] and stages[b.eventStage]
+        and a.picker==b.picker and a.nodeMode==b.nodeMode
+end
+local function canUpdate(a,b)
+    if not sameOwner(a,b)then return false end
+    if a.page=='deckPanel'then return a.overlayContent~=b.overlayContent and same(a,b,'overlayContent')end
+    return a.page=='nodePanel' and sameNeowText(a,b)
+end
+local function readiness(ready,intent)
+    local ok,value,reason=pcall(ready,intent)
+    return ok and value==true and not reason,not ok and tostring(value) or reason
 end
 function M.new(cover,ready,onIntent)
     assert(cover and type(ready)=='function','page reveal requires cover and readiness source')
@@ -48,10 +69,35 @@ function M.new(cover,ready,onIntent)
     function gate:covered()return self.state~='visible' end
     function gate:request(intent)
         if same(intent,self.intent)then return false end
+        self.painting=nil
         self.epoch=self.epoch+1;self.intent=intent;self.state='preparing';self.armed=nil;self.error=nil
         if onIntent then onIntent(self.epoch)end
         print('ABYSS_PAGE_REVEAL preparing page='..tostring(intent.page)..' epoch='..self.epoch)
         cover:SetVisible(true);cover:SetAsLastSibling();return true
+    end
+    function gate:begin(intent)
+        local fast=self.state=='visible' and canUpdate(intent,self.intent)
+        if not fast then self:request(intent)end
+        self.painting={epoch=self.epoch,intent=intent,fast=fast,changed=not same(intent,self.intent)}
+    end
+    function gate:finish(intent)
+        local ticket=self.painting
+        if not ticket or not same(ticket.intent,intent)then self:request(intent);return false end
+        if ticket.epoch~=self.epoch then return false end
+        if not ticket.fast or not ticket.changed then self.painting=nil;return false end
+        -- Only the explicit post-paint caller can use readiness for new leases.
+        local value,reason=readiness(ready,intent)
+        if self.painting~=ticket or ticket.epoch~=self.epoch then return false end
+        self.painting=nil
+        if reason or value~=true then
+            self:request(intent)
+            if reason then return reject(self,tostring(reason))end
+            return false
+        end
+        self.epoch=self.epoch+1;self.intent=intent;self.armed=nil;self.error=nil
+        if onIntent then onIntent(self.epoch)end
+        print('ABYSS_PAGE_REVEAL updated page='..tostring(intent.page)..' epoch='..self.epoch)
+        return true
     end
     function gate:paint(raise)
         cover:SetVisible(self:covered())
@@ -63,9 +109,8 @@ function M.new(cover,ready,onIntent)
         self.tick=self.tick+1;self:request(intent)
         if self.state=='visible'then return false end
         local ticket=self.epoch
-        local ok,value,reason=pcall(ready,intent)
+        local value,reason=readiness(ready,intent)
         if ticket~=self.epoch then return false end
-        if not ok then return reject(self,tostring(value))end
         if reason then return reject(self,tostring(reason))end
         if value~=true then self.state='preparing';self.armed=nil;return false end
         -- Confirm on the next real scheduler turn, after asynchronous owners ran.

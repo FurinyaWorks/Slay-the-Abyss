@@ -136,7 +136,7 @@ export const stsReferenceRuntimeGeometry=freeze({
  profile:stsAngerReference.id,characterMapping:{traveler:'ironclad'},
  title:{position:anchor(stsAngerReference.anchors.title),size:[122,30]},
  cost:{position:anchor(stsAngerReference.anchors.cost),size:[34,36]},
- type:{position:anchor(stsAngerReference.anchors.type),size:[42,28]},
+ type:{position:anchor(stsAngerReference.anchors.type),size:[42,28],backingSize:[42,21]},
  portrait:{position:anchor(stsAngerReference.anchors.portrait),size:[48,48],viewport:[120,82]},
  body:{position:[0,-57.5],size:[120,76]},
  frameProfiles:Object.fromEntries(['attack','skill','power'].map(kind=>[kind,frameGeometry(kind)])),
@@ -146,17 +146,18 @@ function roundedSource(name,bounds,radius,colour){
  const [l,t,r,b]=bounds,k=.25;
  return {...nativeRoundedMaterial(name,(r-l)*k,(b-t)*k,radius*k,colour),position:anchor([(l+r)/2,(t+b)/2])};
 }
-export function buildReferencePortrait(kind,tokens){
+export function buildReferencePortrait(kind,tokens,artWells){
  const r=tokens.rarity.common,c=stsAngerReference.contours.frame,g=stsAngerReference.materialGeometry;
+ const well=artWells?.[kind]??tokens.portrait;
  const common=[sourceRect('plaqueFace',g.plaque.centre,g.plaque.size,r.plaque)];
  if(kind==='attack')return {name:kind,kind:'container',position:[0,0],size:[150,210],children:[
-  referenceGeometry('well',[[62,114],[542,114],[544,381],[300,455],[66,384]],tokens.portrait),
+  referenceGeometry('well',[[62,114],[542,114],[544,381],[300,455],[66,384]],well),
   referenceGeometry('frame',c.points,r.frame,c.offset),...common]};
  if(kind==='skill')return {name:kind,kind:'container',position:[0,0],size:[150,210],children:[
-  roundedSource('well',[62,60,542,436],20,tokens.portrait),referenceGeometry('frame',stsTypeFrameReference.skill.points,r.frame,c.offset),...common]};
+  roundedSource('well',[62,60,542,436],20,well),referenceGeometry('frame',stsTypeFrameReference.skill.points,r.frame,c.offset),...common]};
  const power=stsTypeFrameReference.power,ring=[...power.points,power.points[0],...power.inner,power.inner[0]];
  return {name:kind,kind:'container',position:[0,0],size:[150,210],children:[
-  sourceRect('well',[303,233],[494,420],tokens.portrait,100002),referenceGeometry('frame',ring,r.frame,c.offset),...common]};
+  sourceRect('well',[303,233],[494,420],well,100002),referenceGeometry('frame',ring,r.frame,c.offset),...common]};
 }
 export function buildStsSharedCardChrome(theme){
  const tokens=geoCardReferenceTokens(theme),m=tokens.character,r=tokens.rarity.common,g=stsAngerReference.materialGeometry,c=stsAngerReference.contours;
@@ -177,10 +178,15 @@ export function buildStsSharedCardChrome(theme){
   pivot:[.5,0],fill:{shape:'horizontal',from:'right',amount:.5},visible:i<profiles.attack.length,
   ...(profiles.attack[i]??{position:[0,0],size:[1,1],rotation:0,scale:[1,1]})}));
  const frame={name:'frame',kind:'container',position:[0,0],size:[150,210],children:Array.from({length:Math.ceil(capacity/50)},(_,i)=>({name:'batch'+i,kind:'container',position:[0,0],size:[150,210],children:pool.slice(i*50,(i+1)*50)}))};
+ // Native CJK minimum 14px uses a 38px content-width/16.8px line budget.
+ // Keep the measured source plaque unchanged; this light backing is the
+ // explicit native readability adaptation, with about 2px inset per side.
+ const plaque={...sourceRect('plaqueFace',g.plaque.centre,g.plaque.size,r.plaque),
+  position:[...geometry.type.position],size:[...geometry.type.backingSize]};
  return {name:'stsReferenceChrome',kind:'container',position:[0,0],size:[150,210],children:[body,
   {name:'portraits',kind:'container',position:[0,0],size:[150,210],children:['attack','skill','power'].map(kind=>{
-   const well=buildReferencePortrait(kind,tokens);well.children=well.children.filter(n=>n.name==='well');return {...well,visible:kind==='attack'};
-  })},frame,sourceRect('plaqueFace',g.plaque.centre,g.plaque.size,r.plaque),banner,cost]};
+   const well=buildReferencePortrait(kind,tokens,theme.cardSkin.artWells);well.children=well.children.filter(n=>n.name==='well');return {...well,visible:kind==='attack'};
+  })},frame,plaque,banner,cost]};
 }
 // The installer keeps semantic top-level controls and removes obsolete hidden
 // decoration payloads. Runtime writers dispatch on the one new root.
@@ -203,7 +209,7 @@ export function installStsReferenceCardChrome(face,theme){
  for(const [name,spec,key]of [['name',geometry.title,'title'],['cost',geometry.cost,'cost'],['type',geometry.type,'type'],['label',geometry.body,'body'],['description',geometry.body,'body']]){
   const node=find(name);if(!node)continue;node.position=[...spec.position];node.size=[...spec.size];
   const size=Math.max(font,tokens.typography[key]);Object.assign(node.text,{fontSize:size,minFontSize:size,autoSize:false,align:'centre',valign:'middle'});
-  if(name==='type')node.text.colour=tokens.text.type;
+  if(name==='type')Object.assign(node.text,{colour:tokens.text.type,outline:false});
   if(name==='label'||name==='description')node.text.colour=tokens.text.body;
  }
  for(const node of face.children)if(node.name==='art'||node.name.startsWith('art_')){node.position=[...geometry.portrait.position];node.size=[...geometry.portrait.size];}

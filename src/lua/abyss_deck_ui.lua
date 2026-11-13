@@ -72,7 +72,8 @@ local function pileCards(run, kind, presentation)
 end
 
 function M.new(root, presentation, clickEvent, platform, onClose)
-    local self = { root = root, visible = false, generation = 0, bindings={} }
+    local self = { root = root, visible = false, generation = 0, openSession=0,contentRevision=0,bindings={} }
+    local onChanged=platform.deckChanged
     function self.setPresentation(_, value)
         assert(not self.visible and type(value)=="table", "cannot replace visible deck presentation")
         presentation=value
@@ -80,6 +81,8 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     local browserGrid = assert(root:GetChild("grid"), "missing deck grid")
     local pileGrid = root:GetChild('pileGrid')
     local grid = browserGrid
+    local indexBases=setmetatable({},{__mode='k'})
+    local visibleCounts=setmetatable({},{__mode='k'})
     local function gridColumns() return self.browserShell and 5 or Theme.layout.deckView.columns end
     local function browserHeading(kind)
         if self.previewInfo then return '初始牌组' end
@@ -256,6 +259,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     local function picture(control,id) control:SetImage(platform.imageSource,id) end
     local function tint(control, value) control.imageColor = colour(value) end
     local function fill(control, instance, catalog)
+        require('abyss_page_reveal').registerSource(platform,'deckPanel')
         local battle=(self.choiceToken or self.pileKind) and self.battle
         local definition = Combat.cardDefinition(battle or {catalog=catalog}, instance)
         local display = assert(presentation[instance.cardId], "missing deck presentation " .. instance.cardId)
@@ -365,23 +369,35 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         local generation=self.generation
         local cards,catalog=self.cards,self.catalog
         self.controllerPage=1
-        self.indexBase,self.pending,self.calibrating=nil,false,true
+        self.indexBase=indexBases[grid]
+        self.pending,self.calibrating=false,false
         grid.scrollProgress=0
-        liveFaces(CardDisplay.clearNativeArt)
+        if #cards==0 then
+            self.pendingGrid=false
+            liveFaces(CardDisplay.clearNativeArt)
+            grid:RefreshItems(0,function()end);liveFaces();return
+        end
+        if self.indexBase~=nil then
+            self.pending=true;self:update(0);return
+        end
+        self.calibrating=true
         -- Calibrate native 0/1 based indices before scheduling the complete list.
         grid:RefreshItems(#cards>0 and 1 or 0,function(control,index)
             if not self.visible or self.generation~=generation or not self.calibrating then return end
             self.indexBase,self.pending=index,true
+            indexBases[grid]=index
             fill(control,cards[1],catalog)
         end)
         liveFaces()
     end
     local function changeBrowse()
+        self.contentRevision=self.contentRevision+1
         projectCards()
         root:GetChild('title').text=self.listTitle
         paintBrowse()
         refreshGrid()
         if self.browserShell then root:GetChild('pileReturn'):SetAsLastSibling()end
+        if onChanged then onChanged()end
         return true
     end
     function self.setFilter(_,kind)
@@ -442,6 +458,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     end
     function self.open(_, run, choice, onPick, pileKind)
         if self.visible then return false end
+        self.openSession=self.openSession+1
         self.generation = self.generation + 1
         -- A copied permanent instance never acquires temporary hand cost/growth/status.
         local cards, catalog = Combat.copy(run.deck), {cards={}}
@@ -512,13 +529,30 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             or run.combat.phase~="player" or type(run.combat[kind])~="table" then return false end
         return self:open(run,nil,nil,kind)
     end
+    local function paintGrid(cards,catalog,base,generation)
+        local expected=math.min(#cards,visibleCounts[grid] or 1)
+        local seen,count={},0
+        self.pendingGrid=#cards>0
+        grid:RefreshItems(#cards,function(control,index)
+            if not self.visible or self.generation~=generation then return end
+            local instance=cards[index-base+1]
+            if not instance then CardDisplay.clearNativeArt(control:GetChild('face'));control:SetVisible(false);return end
+            fill(control,instance,catalog)
+            if not seen[control]then seen[control]=true;count=count+1 end
+            visibleCounts[grid]=math.max(visibleCounts[grid] or 0,count)
+            if count>=expected then self.pendingGrid=false end
+        end)
+    end
+    local function controllerModeChanged()
+        local mode=platform.controllerApi and platform.controllerApi.isController() or false
+        if self.controllerMode==mode then return false end
+        self.controllerMode=mode;self.controllerPage=1
+        return not self.calibrating and self.cards and #self.cards>0
+    end
     function self.update(_, dt)
         if not self.visible then liveFaces();return end
-        local mode=platform.controllerApi and platform.controllerApi.isController() or false
-        if self.controllerMode~=mode then
-            self.controllerMode=mode;self.controllerPage=1
-            if not self.calibrating and self.cards then self.generation=self.generation+1;self.pending=true end
-        end
+        if controllerModeChanged()then self.generation=self.generation+1;self.pending=true end
+        local mode=self.controllerMode
         local pageSize=gridColumns()*2
         local pages=math.max(1,math.ceil(#(self.cards or {})/pageSize))
         for _,name in ipairs({'previous','next','pageHint'})do
@@ -541,12 +575,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             for i=((self.controllerPage or 1)-1)*pageSize+1,math.min((self.controllerPage or 1)*pageSize,#cards)do subset[#subset+1]=cards[i]end
             cards=subset;grid.scrollProgress=0
         end
-        liveFaces(CardDisplay.clearNativeArt)
-        grid:RefreshItems(#cards, function(control, index)
-            if not self.visible or self.generation ~= generation then return end
-            local instance = cards[index - base + 1]
-            if instance then fill(control, instance, catalog) else CardDisplay.clearNativeArt(control:GetChild('face'));control:SetVisible(false) end
-        end)
+        paintGrid(cards,catalog,base,generation)
         liveFaces()
     end
     function self.controllerStep(_,delta)
@@ -562,6 +591,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         self.previewInfo,self.previousPresentation,self.previewMasterSort=nil,nil,nil
         self.generation = self.generation + 1
         self.visible, self.pending, self.calibrating, self.run, self.cards, self.catalog = false, false, false, nil, nil, nil
+        self.pendingGrid=false
         self.allCards,self.browseEnabled,self.typeFilter,self.sortMode=nil,nil,nil,nil
         self.choiceToken,self.onPick,self.battle=nil,nil,nil
         self.pileKind,self.listTitle=nil,nil

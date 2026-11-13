@@ -3,6 +3,7 @@
 local Combat=require('abyss_combat')
 local Theme=require('abyss_theme')
 local Surfaces=require('abyss_monster_power_surfaces')
+local EnemyView=require('abyss_battle_enemy_view')
 local number=require('abyss_numbers').integer
 local M={}
 function M.new(platform,picture,tint,ink,onCreate,onRetire)
@@ -13,15 +14,14 @@ function M.new(platform,picture,tint,ink,onCreate,onRetire)
  end
  local function paint(box,entry,index,g)
   local mobile=platform.touchScreen and platform.touchScreen()
-  local s=g.sourceScale;local pitch=(mobile and 55 or 48)*s
-  local x=g.healthX-g.hitWidth/2+(10+(index-1)*(mobile and 55 or 48))*s
-  local iconSize=48*s*(mobile and 1.17 or 1)
+  local layout=EnemyView.powerLayout(g,mobile)
+  local x=layout.firstX+(index-1)%layout.columns*layout.pitch
+  local y=layout.firstY-math.floor((index-1)/layout.columns)*layout.rowPitch
   -- Native icons have no transparent atlas padding: keep their full rectangle below HP.
-  local y=g.healthY-math.max(g.healthHeight,Theme.font.small)/2-Theme.space.s-iconSize/2
   native(box,'SetAnchoredPosition',x,y)
   for _,name in ipairs({'edge','body','badge'})do native(box,'GetChild',name):SetVisible(false)end
   local icon=native(box,'GetChild','icon');native(icon,'SetVisible',true)
-  native(icon,'SetAnchoredPosition',0,0);native(icon,'SetSizeDelta',iconSize,iconSize)
+  native(icon,'SetAnchoredPosition',0,0);native(icon,'SetSizeDelta',layout.icon,layout.icon)
   local image=Theme.icon.status[entry.icon or entry.id]
   if (not image or Theme.icon.statusReplacementNotes and Theme.icon.statusReplacementNotes[entry.id])and not self.missingIcons[entry.id]then
    self.missingIcons[entry.id]=true;print('ABYSS_POWER_ICON_MISSING '..entry.id..' using labelled unknown placeholder')
@@ -33,12 +33,12 @@ function M.new(platform,picture,tint,ink,onCreate,onRetire)
   local shown=amount>0 or amount<0 and entry.canGoNegative==true
   native(count,'SetVisible',shown)
   valid();count.text=shown and number(amount)or '';valid()
-  local width=math.max(40,utf8.len(count.text)*Theme.font.small)
+  local width=math.max(Theme.layout.nativeText.lineHeight,utf8.len(count.text)*Theme.font.small)
   native(count,'SetSizeDelta',width,Theme.layout.nativeText.lineHeight)
-  native(count,'SetAnchoredPosition',22*s-width/2,(mobile and -22 or -18)*s-Theme.layout.nativeText.lineHeight/2)
+  native(count,'SetAnchoredPosition',layout.countX-width/2,layout.countY)
   local colour=amount<0 and {r=255,g=0,b=0,a=255}or entry.isTurnBased and {r=255,g=255,b=255,a=255}or {r=0,g=255,b=0,a=255}
   ink(count,colour);valid()
-  local hit=native(box,'GetChild','hit');native(hit,'SetVisible',true);native(hit,'SetAnchoredPosition',0,0);native(hit,'SetSizeDelta',pitch,48*s)
+  local hit=native(box,'GetChild','hit');native(hit,'SetVisible',true);native(hit,'SetAnchoredPosition',0,0);native(hit,'SetSizeDelta',layout.pitch,layout.hitHeight)
   native(box,'SetVisible',true)
  end
  function self.release(_,actorBox,engineDestroyed)

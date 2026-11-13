@@ -93,6 +93,9 @@ local function preparedArtOwners(page)
     end
     return true
 end
+local function deckPending(intent)
+    return view and intent.page=='deckPanel' and (view.deckUI.pending or view.deckUI.calibrating or view.deckUI.pendingGrid)
+end
 local function presentationReady(intent)
     local prepared,why=preparedArtOwners(intent.page)
     if not prepared then return false,why end
@@ -100,7 +103,7 @@ local function presentationReady(intent)
         local ready,reason=portraits:readyForPage(intent.mode,intent.characterOpen,intent.character,intent.page)
         if not ready then return false,reason end
     end
-    if view and intent.page=='deckPanel' and (view.deckUI.pending or view.deckUI.calibrating) then return false end
+    if deckPending(intent)then return false end
     if background and intent.page=='menuPanel' then
         local state=background:status()
         if state.phase=='failed' then return false,state.reason end
