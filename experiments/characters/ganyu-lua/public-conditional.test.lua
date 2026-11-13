@@ -1,4 +1,4 @@
--- PENDING actual shared conditional admission. No manual paid or resource dispatch.
+-- Verified exact shared548629f host. No manual paid or resource dispatch.
 -- The shared owner supplies its definitions factory result via GANYU_CONDITIONAL_DEFINITIONS.
 package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local C=require('abyss_combat');local D=require('abyss_data')

@@ -1,4 +1,4 @@
--- PENDING shared seven-condition admission; fixed rewards, actual Run.play only.
+-- Verified shared548629f seven-condition admission; fixed rewards, actual Run.play only.
 -- Fixed offer integration fixtures, NOT natural pool generation or balance evidence.
 package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local Run=require('abyss_run');local C=require('abyss_combat');local D=require('abyss_data');local R=require('abyss_sts_random')
