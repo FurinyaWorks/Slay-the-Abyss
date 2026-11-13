@@ -1,0 +1,7 @@
+# Native039/049 Run failure-boundary evidence (HOLD)
+
+Depends on reviewed minimal installer f18bab4b and successful ownership test6add7992. The data is explicitly experimentalKeqingNative; it includes only039/049 additions and no starting relics. This is not the shared candidateLifecycle=keqing Run admission (still pending separately).
+
+Actual Run.new/removeCard/obtainCard/startCombat/play create an eight-copy controlled deck for each card and upgrade state (four cases). A temporary C.play wrapper calls the real implementation to successful completion, verifies actual positive block and source disposal, then throws before Run publication. The real Run.play snapshot must restore the whole pre-command value graph, permanent deck/data/combat references, hand/draw/discard/exhaust/RNG/queue/player identities and every original combat instance object and its deckUid/cardId/upgrade association. All four cases passed; retry spends one energy and applies one benefit. Replaying the discarded UID and a second card at zero energy are rejected without changes.
+
+This fault is a deliberate test injection at the Combat-to-Run return boundary, not an observed product crash or failure inside the draw/shuffle interpreter. It proves outer Run rollback after a successful inner command, not every native hook, terminal reward publication, save/load, natural rewards, complete character registration, gameplay balance or human acceptance. The earlier source039 status/experimental-mode causal correction remains in force.
