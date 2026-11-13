@@ -290,3 +290,15 @@ native Feel No Pain after host drain. Public payment/UseCard/self-exhaust and
 all shuffle/exhaust-reactive ordering or pauses remain unverified. Host owns
 unique/valid card zones and entire-command rollback, including a bad resolving
 UID encountered after reshuffle. No shared gate or frozen numeric values change.
+
+### x49/x50 real hand-window execution
+Projection now covers 50 frozen candidates. refillHand queues only missing native
+draw up to the configured target (four/five), using current hand after the host
+removed the resolving card. emptyHandDamage reads that same actual hand at effect
+time and adds its bonus only when empty, then mask bonus/native damage/armor.
+Three tests span base/up hand sizes 0/1/4/5/10, mask states, real reshuffle, short
+library and full host Snapshot restore. Native noDraw/hand-cap rules still apply;
+this is not a promise to achieve the target through draw restrictions. Canonical
+paid-context/unique-zone validation, public cost/exhaust/UseCard and reactive
+hand changes across real queue pauses remain host integration work. No values
+or shared gates are changed, and 50 projected plans do not mean 50 public cards.

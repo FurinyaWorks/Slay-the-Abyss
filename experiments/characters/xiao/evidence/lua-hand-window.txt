@@ -1,0 +1,3 @@
+PASS x49 base/up refills only missing actual hand slots, excluding resolving card
+PASS x50 evaluates actual empty-other-hand then applies mask and native armor
+PASS refill uses native reshuffle/short library and whole Snapshot restores draws or damage
