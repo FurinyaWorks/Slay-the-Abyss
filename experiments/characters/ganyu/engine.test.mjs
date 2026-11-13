@@ -99,3 +99,10 @@ test('reject malformed numeric/terminal inputs atomically at every boundary',()=
   const s=hand(initial(),'ganyu-01');mutate(s);const before=structuredClone(s);assert.throws(()=>fn(s));assert.deepEqual(s,before);
  }
 });
+
+test('starter relic explicitly owns bank hook; removal, cap and active alternative',()=>{
+ const s=initial();s.energy=3;s.charge=1;s.relics=[];
+ assert.equal(endTurn(s).charge,1);assert.equal(endTurn(s).energy,0);
+ s.hand=[{id:'ganyu-06'}];assert.equal(play(s,0).charge,2);
+ s.relics=['ganyu-starter-01','ganyu-starter-01'];assert.throws(()=>endTurn(s),/invalid relics/);
+});

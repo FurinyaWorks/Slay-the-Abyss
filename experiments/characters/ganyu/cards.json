@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.1.0",
+  "version": "ganyu-sample-0.2.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -216,5 +216,17 @@
     "initialHp": 60,
     "drawPerTurn": 5,
     "handLimit": 10
-  }
+  },
+  "starting_deck": [
+    "ganyu-01",
+    "ganyu-01",
+    "ganyu-01",
+    "ganyu-01",
+    "ganyu-02",
+    "ganyu-02",
+    "ganyu-02",
+    "ganyu-02",
+    "ganyu-03",
+    "ganyu-04"
+  ]
 }

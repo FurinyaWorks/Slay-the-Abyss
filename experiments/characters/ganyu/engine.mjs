@@ -2,6 +2,7 @@
 import { readFileSync } from 'node:fs';
 export const catalogue = JSON.parse(readFileSync(new URL('./cards.json', import.meta.url)));
 export const rules = catalogue.environment;
+export const starterRelic = JSON.parse(readFileSync(new URL('./relic.json', import.meta.url)));
 const variants = new Map(catalogue.cards.map(c => [c.id, c]));
 const clone = value => structuredClone(value);
 function natural(value, label, min = 0) {
@@ -31,12 +32,13 @@ export function validateState(s) {
       if (card.upgraded !== undefined && typeof card.upgraded !== 'boolean') throw new Error('invalid upgrade');
     }
   }
+  if (!Array.isArray(s.relics) || s.relics.some(id => id !== starterRelic.id) || new Set(s.relics).size !== s.relics.length) throw new Error('invalid relics');
   if (s.hand.length > rules.handLimit) throw new Error('invalid hand size');
 }
 
 export function initial(enemies = [{ hp: 30, block: 0, intent: 8 }]) {
   const s = { phase: 'player', hp: rules.initialHp, block: 0, energy: rules.energyPerTurn, charge: 0, storm: null,
-    enemies: clone(enemies), hand: [], draw: [], discard: [], exhausted: [], turn: 1 };
+    enemies: clone(enemies), hand: [], draw: [], discard: [], exhausted: [], relics: [starterRelic.id], turn: 1 };
   validateState(s); return s;
 }
 function hit(enemy, damage) {
@@ -94,7 +96,10 @@ export function endTurn(input) {
   validateState(input);
   if (input.phase !== 'player') throw new Error('not player phase');
   const s = clone(input);
-  s.charge = Math.min(rules.maxCharge, s.charge + s.energy); s.energy = 0;
+  if (s.relics.includes(starterRelic.id)) {
+    s.charge = Math.min(rules.maxCharge, s.charge + Math.floor(s.energy / starterRelic.effect.energy_per_charge));
+  }
+  s.energy = 0;
   s.discard.push(...s.hand); s.hand = [];
   if (s.storm) {
     all(s, s.storm.amount);
@@ -126,4 +131,8 @@ export function cardText(id, upgraded = false) {
   const v = upgraded ? card.upgrade : card.base;
   const effects = v.effects.map(e => ({damage:`对目标造成${e.amount}点伤害。`,block:`获得${e.amount}点格挡。`,aoe:`对所有存活敌人造成${e.amount}点伤害。`,charge:`获得${e.amount}层蓄力（上限${rules.maxCharge}）。`,storm:`建立冰雨：从本回合起连续${e.turns}个回合结束时，对所有存活敌人造成${e.amount}点伤害；重复施放取较高伤害与剩余次数，不叠加。`,charged_shot:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，随后对所有存活敌人造成${e.bloom}点伤害。`})[e.op]);
   return `${card.name}${upgraded ? '+' : ''}｜${v.cost}能量｜${effects.join('')}`;
+}
+
+export function relicText() {
+  return `${starterRelic.name}：回合结束时，每${starterRelic.effect.energy_per_charge}点未用能量转为1层蓄力（上限${rules.maxCharge}，溢出丢弃）。不额外产生能量。`;
 }

@@ -1,0 +1,21 @@
+{
+  "version": "ganyu-sample-0.2.0",
+  "id": "ganyu-starter-01",
+  "name": "待命名·ganyu-starter-01",
+  "candidate_name": null,
+  "rarity": "starter",
+  "status": "CANDIDATE",
+  "effect": {
+    "trigger": "player_turn_end_before_discard_and_storm",
+    "op": "bank_unused_energy",
+    "energy_per_charge": 1,
+    "cap_ref": "cards.json.environment.maxCharge",
+    "overflow": "discard",
+    "requires_equipped": true
+  },
+  "role": "让本回合未花能量成为后续蓄力箭机会，而不是赠送额外能量",
+  "source_status": "HOLD: no relic name chosen; mechanic is original turn-based adaptation",
+  "human_approved": false,
+  "balance_status": "HOLD",
+  "replacement_rule": "移除后保留已获蓄力，但不再自动转化；主动蓄力牌仍可产出"
+}
