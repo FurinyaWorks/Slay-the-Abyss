@@ -5,12 +5,12 @@ import { drawCards, takeTop } from './deck.mjs';
 export { catalog };
 const byId = new Map(catalog.cards.map(card => [card.id, card]));
 export function state({ hp = catalog.maxHp, energy = catalog.energyPerTurn, enemies = [{ hp: 30, block: 0 }], hand = [], draw = [], startingRelic = false } = {}) {
-  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, reservedBlock: 0, entryGuard: 0, exhaustGuard: 0, reservedEnergy: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
+  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, calmAttackGuard: 0, reservedBlock: 0, entryGuard: 0, exhaustGuard: 0, reservedEnergy: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
 }
 const nonnegative = value => Number.isSafeInteger(value) && value >= 0;
 export function validState(s) {
   if (!s || typeof s !== 'object') return false;
-  if (![s.reservedBlock, s.entryGuard, s.exhaustGuard, s.reservedEnergy, s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
+  if (![s.calmAttackGuard, s.reservedBlock, s.entryGuard, s.exhaustGuard, s.reservedEnergy, s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
   if (!['fixed', 'shuffle'].includes(s.deckMode)) return false;
   if (s.deckMode === 'shuffle' && (!Number.isInteger(s.rng) || s.rng < 0 || s.rng > 0xffffffff)) return false;
   if (s.hp > catalog.maxHp || s.mask > catalog.maskRules.maxDuration) return false;
@@ -43,6 +43,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'calmAttackGuard') s.calmAttackGuard+=value;
+  else if (op === 'harvestAll') { let kills=0;for(const enemy of s.enemies){const alive=enemy.hp>0;damage(enemy,value+(s.mask>0?catalog.maskRules.attackBonus:0));if(alive&&enemy.hp===0)kills++;}drawCards(s,Math.min(effect.cap,kills)); }
   else if (op === 'reserveBlock') s.reservedBlock+=value;
   else if (op === 'maskBurstAll') { const amount=s.mask*value+(s.mask>0?catalog.maskRules.attackBonus:0);for(const enemy of s.enemies)damage(enemy,amount); }
   else if (op === 'suppressAll') { for(const enemy of s.enemies.filter(e=>e.hp>0)){currentIntent(s,enemy);enemy.suppression=(enemy.suppression??0)+value;} }
@@ -133,7 +135,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   s.hand.splice(index, 1); // resolving card no longer occupies the hand
   try {
     for (const effect of effects) apply(s, effect, target);
-    if(card.kind==='attack')s.attacksPlayed++;
+    if(card.kind==='attack'){s.attacksPlayed++;if(input.mask===0)s.block+=s.calmAttackGuard;}
     if(card.kind==='attack' && input.mask>0 && s.maskedAttackDraw>0 && !s.maskedDrawUsed){
       s.maskedDrawUsed=true;drawCards(s,s.maskedAttackDraw);
     }
@@ -167,6 +169,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits, step}) => ({
+    calmAttackGuard: `本场每张出牌时未戴面具的攻击结算后获得${value}点格挡，按卡非命中，可叠加；进场攻击按出牌前状态，零伤成功攻击也算。`,
+    harvestAll: `对所有敌人造成${value}点伤害（有面具另加${catalog.maskRules.attackBonus}）；每实际击杀1名抽1张，最多${cap}张，死敌不计，手牌上限10。`,
     reserveBlock: `下个玩家回合开始一次获得${value}点格挡，随后清除储备；本回合不获盾，可叠加，不跨战。`,
     maskBurstAll: `对所有敌人造成当前剩余面具回合数×${value}点伤害；有面具另加${catalog.maskRules.attackBonus}点，无面具零伤。`,
     suppressAll: `所有存活敌人本回合意图伤害降低${value}（最低0，可叠加）；下个玩家回合清除。`,

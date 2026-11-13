@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.25",
+  "version": "xiao-g2-lab-0.26",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1787,6 +1787,62 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x59",
+      "name": "待命名·x59",
+      "role": "群体收割补手：实际击杀数量有限抽牌",
+      "kind": "attack",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "harvestAll",
+          "value": 10,
+          "cap": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "harvestAll",
+          "value": 14,
+          "cap": 2
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x60",
+      "name": "待命名·x60",
+      "role": "常态攻守转换：出牌时未戴面具的攻击结算后获盾",
+      "kind": "power",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "calmAttackGuard",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "calmAttackGuard",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1855,7 +1911,9 @@
     "x55",
     "x56",
     "x57",
-    "x58"
+    "x58",
+    "x59",
+    "x60"
   ],
   "maskRules": {
     "attackBonus": 4,
