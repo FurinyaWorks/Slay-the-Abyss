@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('role setup stages through actual native queue with explicitly temporary test routing',()=>{buildLuaData();const r=runLua('experiments/characters/keqing-host/setup-stages.test.lua',{timeout:120000});console.log(r.stdout);assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KQ_SETUP_STAGE_PASS/);});
