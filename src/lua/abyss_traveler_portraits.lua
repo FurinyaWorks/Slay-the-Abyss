@@ -84,6 +84,11 @@ local function v25Profile(asset)
     validate(drawing,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
     return profile
 end
+local function validateCrop(data,crop)
+    if not crop then return end
+    assert(data.renderProfile=='approved-idle-v1' and crop.left<crop.right and crop.bottom<crop.top,'invalid shared idle crop')
+    assert(crop.left>=-data.width/2 and crop.right<=data.width/2 and crop.bottom>=-data.height/2 and crop.top<=data.height/2,'shared idle crop outside source')
+end
 local function controller(host, data, display, templates, options)
     local Idle=idleModule(data)
     local Asset=templates or require('abyss_traveler_portrait_assets')
@@ -94,10 +99,7 @@ local function controller(host, data, display, templates, options)
     local tint=type(options)=='table' and options.tint
     local base=type(options)=='table' and options.position or nil
     local crop=type(options)=='table' and options.crop or nil
-    if crop then
-        assert(data.renderProfile=='approved-idle-v1' and crop.left<crop.right and crop.bottom<crop.top,'invalid shared idle crop')
-        assert(crop.left>=-data.width/2 and crop.right<=data.width/2 and crop.bottom>=-data.height/2 and crop.top<=data.height/2,'shared idle crop outside source')
-    end
+    validateCrop(data,crop)
     if base then base={base[1],base[2]}end
     assert(host,'missing dedicated portrait host')
     local self,created={},{}
@@ -400,6 +402,31 @@ local function selectionFigure(Asset,official,profile)
     return official and assert(Asset.battleApprovedIdle,'official selection requires the shared approved battle idle')
                 or profile and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
 end
+local function selectionController(Asset,official,profile,details,host,ownerEpoch)
+    if official then assert(Asset.selectionUses=='battleApprovedIdle','official selection requires shared approved idle schema')end
+    local figure=selectionFigure(Asset,official,profile)
+    if figure.renderProfile~='lowpoly-v1' then
+        validate(figure,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
+    end
+    local slot=official and assert(Asset.selectionProfile,'official selection requires the reference slot')
+    local display=slot and slot.display or profile and profile.selectionDisplay or assert(details:GetChild('portraitFrame').sizeDeltaX)
+    return controller(host,figure,display,Asset,slot and {position=slot.position,crop=slot.crop,nativeLifecycle=true,ownerEpoch=ownerEpoch}
+        or profile and {position=profile.selectionPosition,nativeLifecycle=true,ownerEpoch=ownerEpoch})
+end
+local function requiredPortrait(row,scope,wanted,mode)
+    return (not scope or scope[row.name]) and (wanted[row.name] or row.name=='result' and (mode=='victory' or mode=='defeat'))
+end
+local function portraitReadiness(row,mode,resultOutcome)
+    local state=row.adapter:status()
+    if state.phase=='failed' or state.phase=='release_failed' or state.phase=='destroyed' then return false,state.reason or state.phase end
+    if not row.active or state.phase~='ready' or row.name=='result' and resultOutcome~=mode then return false end
+    return true
+end
+local function poseSelection(official,selection,dt,rows)
+    if official and selection and dt then
+        for _,row in ipairs(rows)do if row.name=='selection' and row.active then selection:pose(0,0,1,1,dt,'idle')end end
+    end
+end
 -- cardTemplates: ready-card image/container template indices, used when only the cards flag is on.
 function M.new(stage,report,flags,cardTemplates)
     local selecting=type(flags)=='table' and flags.selectionAvatar==true
@@ -442,15 +469,7 @@ function M.new(stage,report,flags,cardTemplates)
         details=panel:GetChild('details')
         local host=details and details:GetChild('officialSelectionFigure')
         if host then
-            if official then assert(Asset.selectionUses=='battleApprovedIdle','official selection requires shared approved idle schema')end
-            local figure=selectionFigure(Asset,official,profile)
-            if figure.renderProfile~='lowpoly-v1' then
-                validate(figure,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
-            end
-            local slot=official and assert(Asset.selectionProfile,'official selection requires the reference slot')
-            local display=slot and slot.display or profile and profile.selectionDisplay or assert(details:GetChild('portraitFrame').sizeDeltaX)
-            selection=controller(host,figure,display,Asset,slot and {position=slot.position,crop=slot.crop,nativeLifecycle=true,ownerEpoch=function()return epoch end}
-                or profile and {position=profile.selectionPosition,nativeLifecycle=true,ownerEpoch=function()return epoch end})
+            selection=selectionController(Asset,official,profile,details,host,function()return epoch end)
             rows[#rows+1]={name='selection',adapter=selection,fallback={details:GetChild('portraits'):GetChild('traveler_ironclad')},active=false}
         end
         if avatar then
@@ -604,11 +623,9 @@ function M.new(stage,report,flags,cardTemplates)
         if busy then return false end
         local wanted=activeTargets(mode,characterOpen,false,character,false)
         for _,row in ipairs(rows)do
-            local required=(not scope or scope[row.name]) and (wanted[row.name] or row.name=='result' and (mode=='victory' or mode=='defeat'))
-            if required then
-                local state=row.adapter:status()
-                if state.phase=='failed' or state.phase=='release_failed' or state.phase=='destroyed' then return false,state.reason or state.phase end
-                if not row.active or state.phase~='ready' or row.name=='result' and resultOutcome~=mode then return false end
+            if requiredPortrait(row,scope,wanted,mode) then
+                local ready,reason=portraitReadiness(row,mode,resultOutcome)
+                if not ready then return false,reason end
             end
         end
         return true
@@ -625,9 +642,7 @@ function M.new(stage,report,flags,cardTemplates)
             end end
             if not progressed or kind=='reveal' or timeBudget and i%8==0 and os.clock()-start>=.008 then break end
         end
-        if official and selection and dt then
-            for _,row in ipairs(rows)do if row.name=='selection' and row.active then selection:pose(0,0,1,1,dt,'idle')end end
-        end
+        poseSelection(official,selection,dt,rows)
         paint();busy=false
     end
     function self.battlePose(_,x,y,sx,sy,dt,motionState)

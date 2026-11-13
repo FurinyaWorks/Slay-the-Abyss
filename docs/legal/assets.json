@@ -170,6 +170,10 @@
     "shared-run-hud-simulator-evidence": {
       "status": "Project-authored UI verification screenshots rendered with the existing offline Simulator SDK and official platform picture IDs. Screenshots contain game IP; no IP sublicense or commercial clearance. Not official import, ready, device or performance acceptance.",
       "evidence": "docs/evidence/shared-run-hud-20261113/README.md; visual-final-current/render-receipt.json; visual-final-current/verification.json"
+    },
+    "sts-style-project-sdk-evidence": {
+      "status": "Project-generated offline SDK and headless diagnostic captures of native geometry and existing platform image references. Original Slay the Spire rasters are linked and measured privately, not redistributed in this category. Game and platform IP remains with its owners; no asset sublicense or commercial clearance. Software rendering is not official import, ready, GPU or device acceptance.",
+      "evidence": "docs/design/UI_DESIGN.md; docs/evidence/sts-neow-reference-20261113/README.md; docs/evidence/sts-character-reference-20261113/README.md; docs/evidence/sts-card-reference-20261113/README.md"
     }
   },
   "files": {
@@ -8766,6 +8770,38 @@
     "docs/evidence/shared-run-hud-20261113/visual-final-current/map-permanent-deck.png": {
       "sha256": "2a6685759c34098a8cc52cc37394d6f6902d30e8a39a82ce44411f585763efc8",
       "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-final/character-select.png": {
+      "sha256": "725bb8246e04b8107311f32c38e118f97ae70c637c3d1cd90bb5efa7b66de5c5",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-final/character-selected-idle.png": {
+      "sha256": "44c63b1f4991cb95bd8f88949ddcc9ae4435fc599c52bcb25663b5d4a24e4d88",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/approved-guide-position.png": {
+      "sha256": "3b14866e11a96e800ce4008ab441a885be7797f170b639f77d104dfcfc76a202",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/guide-same-position-comparison.png": {
+      "sha256": "925bd41c8d912d31f396e3c20f6c37c5810f34d356fa5629a820c8d9b5a5f08e",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/hood-mask-difference.png": {
+      "sha256": "2856cb0d7486e6a77495ee5d917b6d052d5e4cc787cbc2912bdee33c8866bdbf",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-hover-functional-unverified.png": {
+      "sha256": "88dddaf8beb94250a23fb70e4469c213286004b131b5d299c4cb26f62796c6b6",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-intro.png": {
+      "sha256": "8fb90fddcf960a533c2585aaa91878db2144880e1a858775c91c4b43ccc84c3a",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-normal.png": {
+      "sha256": "bb1ee4af0de414887c322430bc4273ce99250ea703a2b32d44927b27c5e00e5a",
+      "category": "sts-style-project-sdk-evidence"
     }
   }
 }

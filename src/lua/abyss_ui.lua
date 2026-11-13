@@ -82,15 +82,20 @@ local function attachComponents(stage,flags)
         end
     return stage
 end
-local function presentationReady(intent)
+local function preparedArtOwners(page)
     for name,reason in pairs(artFailures)do
         if name=='portraits' or name=='cards' or name=='v25CardSurface' then return false,reason end
     end
     if componentBridge then
-        local state,reason=componentBridge:pageState(intent.page)
+        local state,reason=componentBridge:pageState(page)
         if state=='failed' then return false,reason end
         if state~='visible' then return false end
     end
+    return true
+end
+local function presentationReady(intent)
+    local prepared,why=preparedArtOwners(intent.page)
+    if not prepared then return false,why end
     if portraits then
         local ready,reason=portraits:readyForPage(intent.mode,intent.characterOpen,intent.character,intent.page)
         if not ready then return false,reason end

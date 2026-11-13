@@ -62,6 +62,16 @@ local function paintPortraitNote(details,info,platform,large,key,portraits)
     if large and large.playable==false then note=note..' · 非本次正式角色' end
     details:GetChild('portraitNote').text=note
 end
+local function paintCharacterButtons(panel,state,platform,originalSts,open)
+    for i,id in ipairs(Select.characters)do
+        local box=panel:GetChild(i==5 and 'traveler' or 'character'..i)
+        local allowed=(originalSts or open>1) and state:allowsCharacter(id)
+        if box.visible~=allowed then box:SetVisible(allowed)end
+        selected(box,state.character==id)
+        local _,bust=largeSlot(id,id=='traveler' and (state.element or 'ironclad') or nil)
+        if not originalSts or id~='traveler' then paintBust(box,bust,platform)end
+    end
+end
 function M.render(panel,state,platform)
     local info=state.info
     local originalSts=Theme.presentationProfile=='official-assets-first' and panel:GetChild('stsCharacter')~=nil
@@ -71,14 +81,7 @@ function M.render(panel,state,platform)
     local open,elementsOpen=0,0
     for _,id in ipairs(Select.characters)do if state:allowsCharacter(id)then open=open+1 end end
     for _,id in ipairs(Select.elements)do if state:allowsElement(id)then elementsOpen=elementsOpen+1 end end
-    for i,id in ipairs(Select.characters)do
-        local box=panel:GetChild(i==5 and 'traveler' or 'character'..i)
-        local allowed=(originalSts or open>1) and state:allowsCharacter(id)
-        if box.visible~=allowed then box:SetVisible(allowed)end
-        selected(box,state.character==id)
-        local _,bust=largeSlot(id,id=='traveler' and (state.element or 'ironclad') or nil)
-        if not originalSts or id~='traveler' then paintBust(box,bust,platform)end
-    end
+    paintCharacterButtons(panel,state,platform,originalSts,open)
     local traveler=state.character=='traveler'
     -- Theme layers are prebuilt per character/element; only visibility changes.
     local theme=traveler and state.element or state.character

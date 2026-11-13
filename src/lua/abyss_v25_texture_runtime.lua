@@ -135,6 +135,14 @@ local function allocate(s,row,data)
  end
  return root
 end
+local function allocateLease(s,id,parent,parentRows,data)
+ s.serial=s.serial+1
+ local row={id=id,parent=parent,serial=s.serial,epoch=s.epoch,data=data,page=s.page}
+ s.records[row.serial]=row;parentRows=parentRows or {};s.byParent[parent]=parentRows;parentRows[id]=row
+ local root=allocate(s,row,data)
+ if root and s.failures[parent]then s.failures[parent][id]=nil end
+ return root
+end
 local function instantiate(s,id,parent)
  local token=s.epoch
  if blocked(s) or not alive(parent) or not epochValid(s,token)then return nil end
@@ -144,12 +152,7 @@ local function instantiate(s,id,parent)
  if old and not retire(s,old)then return nil end
  if not epochValid(s,token)then return nil end
  local ok,data=pcall(dataFor,s,asset);if not ok then s.reason=tostring(data);return nil end
- s.serial=s.serial+1
- local row={id=id,parent=parent,serial=s.serial,epoch=s.epoch,data=data,page=s.page}
- s.records[row.serial]=row;parentRows=parentRows or {};s.byParent[parent]=parentRows;parentRows[id]=row
- local root=allocate(s,row,data)
- if root and s.failures[parent]then s.failures[parent][id]=nil end
- return root
+ return allocateLease(s,id,parent,parentRows,data)
 end
 local function ready(s,control)
  local row=s.byRoot[control];return row~=nil and row.ready==true and valid(s,row)
