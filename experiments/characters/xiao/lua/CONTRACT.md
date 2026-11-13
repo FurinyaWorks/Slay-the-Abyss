@@ -327,3 +327,13 @@ Power stacking, false validation and whole-sequence host Snapshot. First-eight
 10-test adapter regression passes. These remain explicit paid-context effect
 sequences, not public x53/x54 two-card payment/UseCard. Positive block uses native
 modifiers and Intangible still alters life cost; those known HOLDs remain.
+
+## x56 existing-window extension (isolated executor)
+`extendMask` extends only a positive window, capped at 3, without entry hooks,
+relic draws, extra shield, or schedule reinsertion. Base/upgrade then use native
+1/2-card draw. Existing windows remain liable for later native owner-end HP loss;
+HP4 followed by two payments is a retained lethal example. `extend_mask_test.lua`
+runs real native draw and owner-end payment, but constructs paid context: no public
+x56 payment/UseCard/phase validation is claimed. Whole-command Snapshot is required.
+Projection includes x55 only for data continuity; suppressAll is deliberately NOT
+supported or mapped without a trusted current-intent integration contract.

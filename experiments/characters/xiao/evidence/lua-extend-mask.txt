@@ -1,0 +1,3 @@
+PASS x56 base upgrade actual draws at each duration; no entry relic shield or immediate HP payment
+PASS extension preserves schedule membership and still permits later native owner-end lethal life cost
+PASS host Snapshot restores duration draws and pile references; false mask rejected before mutation
