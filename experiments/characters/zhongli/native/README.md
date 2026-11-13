@@ -116,3 +116,6 @@ Exact shared `a2d9ed317963570d2874593459d5506be3a75c82` was independently archiv
 
 ## Parked32/40 role slice
 32 cost1/spend3/counter6 or8 and40 cost1/spend3/Block12 or16/selfRetain/exhaust reuse existing native ops. The84 reserve/version effect cases and four after-effect Snapshot restores passed before integration priority moved to the actual Run propagation blocker. This slice is parked, not queued for release: no public payment,40 retain/exhaust combination or32 full retaliation lifecycle is claimed. Further unintegrated card expansion pauses in favor of the shared Run work. Existing definitions are unchanged.
+
+## Cross-role Run acceptance assistance
+To prioritize the shared product blocker rather than grow unintegrated modules, `run-negative-author.spec.lua` independently checks the Ganyu-only explicit experimental Run slice at exact shared663a294a35ebadf31616a91e19b016055db61cee. Actual workspace archive/build execution produced AUTHOR_RUN_NEGATIVE_PASS for30 malformed/mixed-state rejections and two failures after real Combat.new candidate initialization with original references restored and successful retries. The two lawful relic booleans are both supported; malformed whole-config false and string relic flags are not. This is not Zhongli Run integration or natural reward coverage. See `run-negative-author-results.json`.

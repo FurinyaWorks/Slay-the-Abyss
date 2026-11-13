@@ -1,0 +1,25 @@
+{
+  "sharedCommit": "663a294a35ebadf31616a91e19b016055db61cee",
+  "method": "Independent exact workspace archive and Lua data rebuild; author negative spec actually executed",
+  "marker": "AUTHOR_RUN_NEGATIVE_PASS 30 tampered-state rejects plus2 post-init whole-Run reference restores and retries",
+  "scope": "Ganyu explicit experimental Run only; cross-role independent acceptance",
+  "cases": {
+    "mutations": 15,
+    "validRelicFlags": 2,
+    "rejectedTamperedStates": 30,
+    "postInitializationFailuresAndRetries": 2
+  },
+  "verified": [
+    "unknown and malformed lifecycle fields rejected",
+    "original profile, prepared character and competitive campaign mixing rejected",
+    "whole run deep equality after refusal",
+    "original deck/data/config table references restored",
+    "real Combat.new completed candidate initialization before injected failure; retry succeeds"
+  ],
+  "limitations": [
+    "Not Zhongli Run admission",
+    "Does not test natural card reward generation",
+    "Fault injection is controlled, not a natural crash observation",
+    "Other integration suites and source/balance/human gates remain separate"
+  ]
+}
