@@ -18,6 +18,11 @@ test('actual official Neow writer keeps measured one-line choices, structured in
  const field=story.children.find(n=>n.name==='field'),hud=theme.officialAssets.battleHud;
  assert.equal(field.position[1]+field.size[1]/2,hud.y-hud.height/2,'ordinary event field must start exactly below the shared HUD');
  assert.equal(field.position[1]-field.size[1]/2,-theme.canvas.base[1]/2,'ordinary event field must reach the canvas bottom');
+ const ordinaryArt=descendants(tree).find(n=>n.name==='eventView').children.find(n=>n.name==='art');
+ assert.equal(ordinaryArt.image,theme.icon.eventArt.default,'initial ordinary art must also be a real sprite');
+ assert.equal(ordinaryArt.opacity,1,'event illustrations must not inherit the question-mark watermark opacity');
+ assert.equal(ordinaryArt.colour,theme.layout.nativeNode.event.reference.figureInk,'initial event art and runtime must share the full-colour tint token');
+ assert(ordinaryArt.size.every(v=>v>=250&&v<410),'readable event art must fill its well without crossing the border');
  const modules=readdirSync(out).filter(f=>f.endsWith('.lua')).map(f=>f.slice(0,-4));
  const script=`
 local generated=${luaString(out.replaceAll('\\','/'))}
@@ -99,8 +104,14 @@ assert(row(1):GetChild('title').visible and not row(1):GetChild('description').v
 assert(row(1):GetChild('v25BaseMaterial').visible and row(1):GetChild('v25StateChrome').visible)
 assert(event:GetChild('plateBorder'):GetChild('v25EventParchment').visible)
 assert(not event:GetChild('caption').visible)
+assert(event:GetChild('art').imageId==F.Theme.icon.eventArt.big_fish,'big fish must use its actual food illustration')
+assert(event:GetChild('art').imageColor.a==255,'event art must remain full colour')
+local fishArt=F.Theme.icon.eventArt.big_fish;F.Theme.icon.eventArt.big_fish=nil;ui:render()
+assert(event:GetChild('art').imageId==F.Theme.icon.eventArt.default,'unlisted event must fall back to real parchment, not a question mark')
+F.Theme.icon.eventArt.big_fish=fishArt;ui:render()
 local lab,labMap=Rooms.fixture('lab');ui.run,ui.map=lab,labMap;ui:render()
 assert(event:GetChild('name').text=='实验室')
+assert(event:GetChild('art').imageId==F.Theme.icon.eventArt.lab,'reused event must replace the previous room illustration')
 assert(ui:press('eventView/option1'));assert(lab.nodeFlow.event.stage=='potion_rewards')
 assert(row(4).visible and not row(4):GetChild('description').visible,'all three potions plus leave must remain reachable')
 assert(row(1):GetChild('title').text:find('药水',1,true),'actual potion choice missing')
@@ -116,6 +127,7 @@ assert(ui:press('eventView/option1'))
 local labExpected=C.copy(labBefore);assert(F.Nodes.chooseEvent(labExpected,first.choice))
 assert(same(lab,labExpected),'new event presentation changed potion or RNG transactions')
 ui.run,ui.map=r,m;ui:render()
+assert(not event:GetChild('art').visible,'ordinary event art must not leak into Neow')
 assert(event:GetChild('body').horizontalAlignment=='Middle' and event:GetChild('body').verticalAlignment=='Middle','reused Neow speech must center again after ordinary event')
 print('STS_NEOW_RUNTIME_PASS')
 `;

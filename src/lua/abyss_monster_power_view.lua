@@ -6,6 +6,9 @@ local Surfaces=require('abyss_monster_power_surfaces')
 local EnemyView=require('abyss_battle_enemy_view')
 local number=require('abyss_numbers').integer
 local M={}
+local function countColour(entry,amount)
+ return entry.overflow and Theme.color.text or amount<0 and {r=255,g=0,b=0,a=255}or entry.isTurnBased and {r=255,g=255,b=255,a=255}or {r=0,g=255,b=0,a=255}
+end
 function M.new(platform,picture,tint,ink,onCreate,onRetire)
  local self={pools={},missingIcons={}}
  local function valid()assert(not self.engineDestroyed,'monster power publication cancelled')end
@@ -40,8 +43,7 @@ function M.new(platform,picture,tint,ink,onCreate,onRetire)
   local width=math.max(Theme.layout.nativeText.lineHeight,utf8.len(count.text)*Theme.font.small)
   native(count,'SetSizeDelta',width,Theme.layout.nativeText.lineHeight)
   native(count,'SetAnchoredPosition',layout.countX-width/2,layout.countY)
-  local colour=entry.overflow and Theme.color.text or amount<0 and {r=255,g=0,b=0,a=255}or entry.isTurnBased and {r=255,g=255,b=255,a=255}or {r=0,g=255,b=0,a=255}
-  ink(count,colour);valid()
+  ink(count,countColour(entry,amount));valid()
   local hit=native(box,'GetChild','hit');native(hit,'SetVisible',true);native(hit,'SetAnchoredPosition',0,0);native(hit,'SetSizeDelta',layout.pitch,layout.hitHeight)
   native(box,'SetVisible',visible)
  end

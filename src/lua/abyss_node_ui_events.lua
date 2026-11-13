@@ -173,7 +173,8 @@ end
 local function renderEventArt(ctx, event, id)
     local reference = layout.event.reference
     if not reference or id == 'neow' then return end
-    ctx.picture(event:GetChild('art'), reference.icon)
+    local illustrations=Theme.icon.eventArt or {}
+    ctx.picture(event:GetChild('art'), illustrations[id] or illustrations.default or reference.icon)
     ctx.tint(event:GetChild('art'), reference.figureInk)
 end
 

@@ -516,6 +516,15 @@
     "merchant": 112030
   },
   "icon": {
+    "eventArt": {
+      "default":111049,"big_fish":111027,"lab":111046,"woman_in_blue":111048,
+      "we_meet_again":111050,"the_library":111053,"cursed_tome":111055,
+      "mushrooms":111003,"upgrade_shrine":111065,"accursed_blacksmith":111065,
+      "dead_adventurer":111065,"golden_idol":111064,"golden_shrine":111064,
+      "mausoleum":111064,"shining_light":111036,"sensory_stone":111036,
+      "bonfire":111007,"fountain":111048,"cleric":111048,"purifier":111048,
+      "duplicator":111051,"designer":111052
+    },
     "hp": 102018,
     "block": 102014,
     "gold": {
@@ -3631,8 +3640,9 @@
       "rarities": {"basic": "#B8AC90", "common": "#B7B4AA", "uncommon": "#71D4D8", "rare": "#E4B855"}
     },
     "event": {
+      "art": [-372,-50,330,330],
       "reference": {
-        "icon": 100114, "figureInk": "#C3C9BF40",
+        "icon": 111049, "figureInk": "#FFFFFF", "figureOpacity": 1,
         "textInk": "#EDEEDF", "disabledInk": "#777E6E",
         "costInk": "#D77C7E", "rewardInk": "#9DD740",
         "hover": "#427D81", "pressed": "#183B40",
