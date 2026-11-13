@@ -696,3 +696,42 @@ incorrectly removed the source card from the end of hand when arranging a draw;
 it was corrected to select a non-source UID, without weakening the assertion.
 Formal registration, UI selection, natural full-run balance and device acceptance
 remain HOLD.
+
+## Ganyu retrieval 10/25/39/48 and isolated 39-definition domain
+
+`abyss_ganyu_retrieval_reward_run.new(Data,seed)` is a new closed experiment,
+39 executable definitions / 37 eligible rewards. Old 32/30 and 35/33 launchers
+remain separate. All four source cards are uncommon, cost 1 / upgraded 0;
+10 discards normally, 25/39/48 exhaust through native UseCard.
+The source definitions are byte-identical to reviewed d7a98e72
+(SHA256 `03594a785902256166298afe0d6673e1419a411ff4a86ead5ada974838646ecd`).
+Reviewed retrieval ABI SHA256
+`b1e5cc16718f13b0ecff0e207cdde27925943da3c38a987733aa8cb8cef1fbab`
+is copied with only the queued-card import moved to the shared module.
+
+Retrieval scans the current selected zone in its existing array order. 10/25
+select the first ganyu_lab_03 in draw/discard; 39 selects the first direct
+storm definition; 48 selects the first direct charge definition. It moves the
+original instance to hand, preserving UID/upgraded state and all remaining order.
+It is not native draw: no draw RNG, onDraw trigger, reshuffle, or NoDraw veto.
+Payment may free a hand slot; capacity is independently rechecked when the paid
+stage actually executes. The source card remains in use and cannot retrieve itself.
+No new generic selection API or hidden-pile UI is added.
+
+The native paid host retains strict source face/effect/marker/exhaust validation,
+immutable detached payload, paid UID/turn/play ordinal, terminal interruption and
+whole-command Snapshot including revealed Scry boundaries. Tests distinguish
+controlled full-hand pile fixtures from an actual Scry pause followed by a full
+hand at execution; the latter uses extra constructed UID instances, not obtained
+rewards. Transaction tests inject faults after real toHand and after resumed
+retrieval, restore the original references, and retry once. Fixed-offer eight Run
+cases cover both faces; generated 12-seed cases do not replace reward identities,
+but use controlled victory and acquired-card hand placement, not natural-map play.
+The first combined wrapper expected the wrong Run PASS label despite its eight
+Lua cases succeeding; the wrapper marker was corrected before the final rerun.
+
+Reward sampling reuses the reviewed same-rarity finite provider: short rare boss
+offers, no cross-rarity fallback, explicit zero-offer/Prismatic failure, full
+source comparison, and unchanged formal reward/shop pools. New cards are not
+in the old 35 domain. Explicit Lua acquisition is not formal UI/class registration,
+full 75-card coverage, natural-run balance or device acceptance.
