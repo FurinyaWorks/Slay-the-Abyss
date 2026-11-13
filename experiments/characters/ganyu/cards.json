@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.23.0",
+  "version": "ganyu-sample-0.24.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -2428,6 +2428,131 @@
         ]
       },
       "source_ref": "ganyu-67",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-68",
+      "name": "待命名·ganyu-68",
+      "candidate_name": null,
+      "role": "保留防守检索核心箭等待连携",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 4
+          },
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 7
+          },
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "source_ref": "ganyu-68",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-69",
+      "name": "待命名·ganyu-69",
+      "candidate_name": null,
+      "role": "一次群伤供给单层蓄力",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 4
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 6
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-69",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-70",
+      "name": "待命名·ganyu-70",
+      "candidate_name": null,
+      "role": "一次单层蓄力防守兑付兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 2,
+            "bonus": 5
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 3,
+            "bonus": 7
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-70",
       "review": {
         "status": "HOLD",
         "human_approved": false,
