@@ -1,0 +1,70 @@
+{
+  "candidate": "0.5",
+  "status": "prospective-plan-before-first-run",
+  "inputs": {
+    "candidate": "ganyu-sample-0.5.0",
+    "sha256": {
+      "cards.json": "0a77679d5c8c7bce93342713fd863a3244e260427e4037abf09b4a0bf6b4d5dd",
+      "relic.json": "f5e1c9144ecc11a0f17439e099bac08e6f01b50b0542299295524fc2cedc23ea",
+      "engine.mjs": "6841330c5def19f1ac4cc64b0889918a6a1951c7e8ba81dc1af29b6f481f62b8",
+      "deck.mjs": "75fcd21733d8994e3a7ebcfaececc992de0afdfa56dd56ec30f4d6bff77270f7",
+      "battle.mjs": "6ce15f3c8135171ce5fca7d60b22a1b9c870eb2a4965ea5aad0c5ceb99a2c7cf",
+      "accessibility.mjs": "a050b5f14898a2821170d5f45a0ed6283f789cfab2f15725305175ee3f97d997",
+      "replay-inputs.mjs": "a3d4ecd40c5ba70038666f0bf802c2c1a43abe0691a32f2002932f3b5b7c7466",
+      "encounter-matrix.mjs": "4d5c55250c1b7250c4a6dd32f80fd4448aedde9ff430efa8e7790b1ad5c58849"
+    }
+  },
+  "seeds": "2001..2025",
+  "sizes": [
+    10,
+    20,
+    40
+  ],
+  "policies": [
+    "defend_bank",
+    "immediate"
+  ],
+  "definitions": {
+    "swarm": [
+      {
+        "hp": 40,
+        "block": 0,
+        "intent": 6
+      },
+      {
+        "hp": 30,
+        "block": 0,
+        "intent": 4
+      }
+    ],
+    "armored": [
+      {
+        "hp": 80,
+        "block": 14,
+        "intent": 8
+      }
+    ],
+    "burst": [
+      {
+        "hp": 80,
+        "block": 0,
+        "intent": 4
+      }
+    ]
+  },
+  "cases": {
+    "baseline": [],
+    "guard": [
+      "ganyu-09"
+    ],
+    "seek": [
+      "ganyu-10"
+    ],
+    "both": [
+      "ganyu-09",
+      "ganyu-10"
+    ]
+  },
+  "maxTurns": 30,
+  "scope": "synthetic single encounters only, not production enemy/reward distribution"
+}
