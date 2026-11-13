@@ -49,3 +49,11 @@ test('quiet condition validates all live intentions even after an attacking enem
  const s=state({hand:['x26'],enemies:[{hp:20,block:0,intent:[8]},{hp:20,block:0}]});
  assert.equal(play(s,{index:0}).ok,false);assert.deepEqual(play(s,{index:0}).state,s);
 });
+test('sparse intentions at current or future slots reject core and adapter atomically',()=>{
+ for(const pattern of [Array(1),[0,,8],[,0]])for(const id of ['x25','x26']){
+  const s=state({hand:[id],enemies:[{hp:30,block:0,intent:pattern}]});
+  assert.equal(play(s,{index:0}).ok,false);assert.deepEqual(play(s,{index:0}).state,s);
+  const b=newBattle({deck:[id]});b.enemies[0].intent=pattern;
+  assert.equal(battlePlay(b,{index:0}).ok,false);assert.deepEqual(battlePlay(b,{index:0}).state,b);assert.deepEqual(advance(b),b);
+ }
+});
