@@ -34,6 +34,7 @@ local r=Run.new(F.Data,'42');local m=Map.generate(r.data,'42');assert(F.Nodes.be
 local host=F.control({name='fixture',children={assert(find(F.Layout,'nodePanel'))}})
 local root=host:GetChild('nodePanel')
 local ui=NodeUI.new(root,r,m,F.Presentation,'click',function()end,{imageSource='static',
+ textAlignments={horizontal={Left='Left',Middle='Middle'},vertical={Top='Top',Middle='Middle'}},
  cursorEvents={CursorEnter='enter',CursorExit='exit',CursorDown='down',CursorUp='up',CursorEndDrag='endDrag'},
  color=function(red,green,blue,alpha)return{r=red,g=green,b=blue,a=alpha}end})
 ui:setVisible(true)
@@ -51,6 +52,7 @@ local function visibleBody(i)
  return b:GetChild('stsNeowText').text
 end
 assert(visibleBody(1)=='[ 继续 ]')
+assert(event:GetChild('body').horizontalAlignment=='Middle' and event:GetChild('body').verticalAlignment=='Middle','Neow must restore centered speech after the generic left/top text skin')
 assert(row(1):GetChild('hit').click());assert(r.nodeFlow.event.stage=='neow_blessing')
 for i=1,2 do local text=visibleBody(i);assert(not text:find('恩赐',1,true));assert(text:find('<color=#7FFF00>',1,true))end
 assert(math.abs(row(1).y-row(2).y-79*2/3)<.00001,'measured row pitch changed')
@@ -92,6 +94,7 @@ Neow.options=options
 local Rooms=dofile('tests/helpers/act2_event_ui.lua')
 local ordinary,ordinaryMap=Rooms.fixture('big_fish');ui.run,ui.map=ordinary,ordinaryMap
 ui:render();assert(not row(1):GetChild('stsNeowChrome').visible);assert(not row(1):GetChild('stsNeowText').visible)
+assert(event:GetChild('body').horizontalAlignment=='Left' and event:GetChild('body').verticalAlignment=='Top','ordinary paragraph must restore left/top alignment')
 assert(row(1):GetChild('title').visible and not row(1):GetChild('description').visible)
 assert(row(1):GetChild('v25BaseMaterial').visible and row(1):GetChild('v25StateChrome').visible)
 assert(event:GetChild('plateBorder'):GetChild('v25EventParchment').visible)
@@ -112,6 +115,8 @@ assert(first and first.enabled)
 assert(ui:press('eventView/option1'))
 local labExpected=C.copy(labBefore);assert(F.Nodes.chooseEvent(labExpected,first.choice))
 assert(same(lab,labExpected),'new event presentation changed potion or RNG transactions')
+ui.run,ui.map=r,m;ui:render()
+assert(event:GetChild('body').horizontalAlignment=='Middle' and event:GetChild('body').verticalAlignment=='Middle','reused Neow speech must center again after ordinary event')
 print('STS_NEOW_RUNTIME_PASS')
 `;
  const result=spawnSync(process.execPath,[require.resolve('fengari-node-cli/src/lua-cli.js'),'-e',script],

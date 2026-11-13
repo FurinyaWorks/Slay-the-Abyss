@@ -67,7 +67,12 @@ local function place(control, rect)
     control:SetAnchoredPosition(rect[1], rect[2])
     if rect[3] then control:SetSizeDelta(rect[3], rect[4]) end
 end
-local function renderEventFigure(event, id)
+local function alignEventBody(body, neow, alignment)
+    if not alignment or not alignment.horizontal or not alignment.vertical then return end
+    body.horizontalAlignment = neow and alignment.horizontal.Middle or alignment.horizontal.Left
+    body.verticalAlignment = neow and alignment.vertical.Middle or alignment.vertical.Top
+end
+local function renderEventFigure(event, id, alignment)
     local neow = id == 'neow' and NEOW ~= nil
     local figure, art = event:GetChild('neowFigure'), event:GetChild('art')
     if figure then figure:SetVisible(neow) end
@@ -83,6 +88,7 @@ local function renderEventFigure(event, id)
     name:SetVisible(not neow)
     -- talk(): Neow's line lives in the InfiniteSpeechBubble, dark ink on the light bubble.
     place(body, neow and NEOW.bubbleText or layout.event.body)
+    alignEventBody(body, neow, alignment)
 end
 -- LargeDialogOptionButton.calculateY (ROOM): bottom-aligned stack, -82px per slot, x = 620.
 local function inlineLines(text)
@@ -262,7 +268,7 @@ function M.install(ctx)
                 or mode=='restricted-six' and "未知事件 · 受限事件池（6种）" or kinds.event
         end
         writeEventHeading()
-        renderEventFigure(event, id)
+        renderEventFigure(event, id, ctx.options.textAlignments)
         renderEventArt(ctx, event, id)
         local body
         local function eventOutcomeBody()

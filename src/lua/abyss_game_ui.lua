@@ -83,6 +83,7 @@ function M.new(root, data, presentation, clickEvent, platform)
     self.nodeUI = NodeUI.new(child("nodePanel"), nil, nil,
         presentation, clickEvent, changed, { color = platform.color, imageSource = platform.imageSource,
             imageTypes = platform.imageTypes,
+            textAlignments = platform.textAlignments,
             cursorEvents = platform.cursorEvents, sound = platform.sound, controller = controller, touchScreen = platform.touchScreen,
             enhancedRooms=true,
             onInspectCard=function(definition,upgraded)
