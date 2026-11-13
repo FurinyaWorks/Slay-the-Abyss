@@ -8,7 +8,7 @@ const zones=s=>({draw:s.draw.length,discard:s.discard.length,exhaust:(s.exhaust?
 const row=(id,text,role)=>({id,name:'待命名·'+id,base:text(false),upgraded:text(true),role,source:'HOLD',naming:'HOLD',balance:'HOLD'});
 const accept=r=>{if(!r.ok)throw Error(r.reason||'model rejected');return r.state;};
 export async function loadAdapter(root,character,expectedHead,{run=false}={}){
- if(run&&character!=='ganyu')throw Error('run mode currently available only for Ganyu');
+ if(run&&!['ganyu','xiao'].includes(character))throw Error('run mode currently available only for Ganyu and Xiao');
  if(!['ganyu','xiao','zhongli','keqing'].includes(character)||!/^[a-f0-9]{40}$/.test(expectedHead))throw Error('character and exact expected HEAD required');
  root=realpathSync(resolve(root));const dir=join(root,'experiments','characters',character);
  const before=identity(root,dir);
@@ -56,7 +56,7 @@ export async function loadAdapter(root,character,expectedHead,{run=false}={}){
     enemies:s.enemies.map((e,i)=>({target:i+1,hp:e.hp,block:e.block,intent:e.hp?e.intent:0})),
     hand:s.hand.map((c,i)=>({slot:i+1,id:c.id,text:m.describe(c.id,c.upgraded===true)}))})};
  }
- if(run){
+ if(run&&character==='ganyu'){
   const acquisition=await mod('acquisition.mjs'),consoleModel=await mod('run-console.mjs'),m=await mod('engine.mjs');
   const battleView=a.view;
   const outcome=r=>r.phase==='complete'?'victory':r.phase==='lost'?'defeat':r.phase==='reward'?'reward':'playing';
@@ -65,6 +65,19 @@ export async function loadAdapter(root,character,expectedHead,{run=false}={}){
    reward:(r,action,choice)=>action==='open'?acquisition.openReward(r):action==='skip'?acquisition.skipReward(r,acquisition.selectionToken(r)):action==='claim'?acquisition.claimReward(r,acquisition.selectionToken(r),choice):action==='proceed'?acquisition.proceed(r):(()=>{throw Error('unknown reward action');})(),
    view:r=>({...battleView(r.battle),outcome:outcome(r),room:r.index+1,rooms:r.encounters.length,persistentDeckSize:r.deck.length,
     reward:r.offer?{open:r.offer.open,claimed:r.offer.claimed,cards:r.offer.open?r.offer.cards.map((id,i)=>({choice:i+1,id,text:m.cardText(id)})):[]}:null})};
+ }
+ if(run&&character==='xiao'){
+  const campaign=await mod('campaign.mjs'),m=await mod('model.mjs');const battleView=a.view;
+  const outcome=r=>r.phase==='battle'?'playing':r.phase;
+  a={...a,start:seed=>campaign.newCampaign(seed),outcome,
+   play:(r,index,target)=>accept(campaign.campaignAction(r,{type:'play',index,target:target??0,upgraded:false})),
+   end:r=>accept(campaign.campaignAction(r,{type:'end'})),
+   reward:(r,action,choice)=>{
+    if(action!=='claim'&&action!=='proceed')throw Error('Xiao rewards are already visible; claim or proceed immediately starts next room');
+    return accept(campaign.campaignAction(r,{type:'reward',card:action==='claim'?r.offer[choice]:null}));
+   },
+   view:r=>({...battleView(r.battle),outcome:outcome(r),room:r.stage+1,rooms:3,persistentDeckSize:r.deck.length,
+    reward:r.phase==='reward'?{open:true,claimed:false,immediateNextRoom:true,cards:r.offer.map((id,i)=>({choice:i+1,id,text:m.cardText(m.catalog.cards.find(c=>c.id===id),false)}))}:null})};
  }
  const assertCurrent=()=>{if(JSON.stringify(before)!==JSON.stringify(identity(root,dir)))throw Error('model snapshot changed; quit and reopen a clean pinned version');};
  assertCurrent();return {...a,assertCurrent,identity:{character,root,...before}};

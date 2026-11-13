@@ -93,3 +93,22 @@ test('real current Ganyu four-room adapter reaches and carries reward without du
  v=session.dispatch({type:'proceed',revision:v.revision}).view;assert.equal(v.room,2);assert.equal(v.hp,hp);assert.equal(v.reward,null);assert.equal(v.persistentDeckSize,n+1);
  for(const key of ['draw','drawSeed','rewardSeed','battleSeed'])assert.equal(Object.hasOwn(v,key),false);
 });
+test('current Xiao run keeps campaign immediate-next-room reward semantics',{skip:!process.env.XIAO_RUN_ROOT},async()=>{
+ const root=process.env.XIAO_RUN_ROOT;
+ const a=await loadAdapter(root,'xiao',process.env.XIAO_RUN_HEAD,{run:true});
+ const {pathToFileURL}=await import('node:url');
+ const {observe,choose}=await import(pathToFileURL(join(root,'experiments/characters/xiao/research.mjs')).href);
+ const session=createSession(a,{seed:37,mode:'run'});let raw=a.start(37),v=session.view();
+ for(let n=0;n<200&&v.outcome==='playing';n++){
+  const action=choose(observe(raw.battle),'guard');const c=action?{type:'play',revision:v.revision,slot:action.index+1,target:action.target+1}:{type:'end',revision:v.revision};
+  raw=action?a.play(raw,action.index,action.target):a.end(raw);
+  const r=session.dispatch(c);assert.equal(r.ok,true);v=r.view;assert.deepEqual({...v,revision:undefined,seed:undefined,mode:undefined},{...a.view(raw),revision:undefined,seed:undefined,mode:undefined});
+ }
+ assert.equal(v.outcome,'reward');assert.equal(v.reward.open,true);assert.equal(v.reward.immediateNextRoom,true);const hp=v.hp,deck=v.persistentDeckSize,rev=v.revision;
+ for(const type of ['open','skip']){assert.equal(session.dispatch({type,revision:rev}).ok,false);assert.equal(session.view().revision,rev);}
+ const result=session.dispatch({type:'claim',revision:rev,choice:1});assert.equal(result.ok,true);v=result.view;
+ assert.equal(v.room,2);assert.equal(v.hp,hp);assert.equal(v.persistentDeckSize,deck+1);assert.equal(v.reward,null);
+ assert.equal(session.dispatch({type:'claim',revision:rev,choice:1}).ok,false);
+ for(const k of ['rng','seed','rewardRng','draw'])assert.equal(Object.hasOwn(a.view(raw),k),false);
+ const skipped=a.reward(raw,'proceed');assert.equal(skipped.stage,1);assert.equal(skipped.deck.length,deck);assert.equal(skipped.battle.hp,hp);
+});
