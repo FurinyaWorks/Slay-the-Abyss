@@ -60,12 +60,12 @@ export function runMatrix() {
     for(const seed of [...Array.from({length:25},(_,i)=>i+1),...Array.from({length:25},(_,i)=>1001+i)])rows.push(trial({size,seed,policy,intent}));
   }
   const groups=[];
-  for(const size of [10,20,30,40])for(const intent of [0,8,14])for(const policy of ['defend_bank','immediate'])for(const cohort of ['exploratory','holdout']) {
-    const rs=rows.filter(r=>r.size===size && r.intent===intent && r.policy===policy && !r.ordered && (cohort==='holdout'?r.seed>=1001:r.seed<1001));
+  for(const size of [10,20,30,40])for(const intent of [0,8,14])for(const policy of ['defend_bank','immediate'])for(const cohort of ['exploratory','known_regression']) {
+    const rs=rows.filter(r=>r.size===size && r.intent===intent && r.policy===policy && !r.ordered && (cohort==='known_regression'?r.seed>=1001:r.seed<1001));
     const losses=rs.map(r=>r.damageLost).sort((a,b)=>a-b);
     groups.push({size,intent,policy,cohort,n:rs.length,wins:rs.filter(r=>r.outcome==='won').length,deaths:rs.filter(r=>r.outcome==='lost').length,truncated:rs.filter(r=>r.outcome==='truncated').length,neverSawCore:rs.filter(r=>r.firstSeen===null).length,neverCharged:rs.filter(r=>r.firstCharged===null).length,lossP50:losses[Math.ceil(rs.length*0.5)-1],lossP90:losses[Math.ceil(rs.length*0.9)-1],saturatedWaitingTurns:rs.reduce((n,r)=>n+r.saturatedWaitingTurns,0),coreUnpayable:rs.reduce((n,r)=>n+r.coreUnpayable,0)});
   }
-  return {inputs:replayInputs('accessibility.mjs'),version:'ganyu-accessibility-0.4',kind:'fixed-artificial-single-enemy-stress',notNaturalAcquisition:true,seeds:{exploratory:'1..25',holdout:'1001..1025',bottom:37},rng:'xorshift32 draw-only',maxTurns:30,policyVisible:'hand, enemy hp/block/intent, energy, charge, block only',samples:rows.length,groups,rows};
+  return {inputs:replayInputs('accessibility.mjs'),version:'ganyu-accessibility-0.4',kind:'fixed-artificial-single-enemy-stress',notNaturalAcquisition:true,seeds:{exploratory:'1..25',knownRegression:'1001..1025 (seen during earlier candidate design; not untouched holdout)',bottom:37},rng:'xorshift32 draw-only',maxTurns:30,policyVisible:'hand, enemy hp/block/intent, energy, charge, block only',samples:rows.length,groups,rows};
 }
 if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {
  const report=runMatrix();writeFileSync(new URL('./accessibility-results.json.gz',import.meta.url),gzipSync(JSON.stringify(report,null,2)+'\n'));

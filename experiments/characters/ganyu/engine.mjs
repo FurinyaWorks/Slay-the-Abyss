@@ -23,6 +23,7 @@ export function validateState(s) {
     if (!hits.length) throw new Error('invalid intent');
     hits.forEach(n => natural(n,'intent'));
   }
+  if (['player','between'].includes(s.phase) && !s.enemies.some(e=>e.hp>0)) throw new Error('invalid living enemies');
   if (s.storm !== null) {
     if (!s.storm || typeof s.storm !== 'object') throw new Error('invalid storm');
     natural(s.storm.amount,'storm amount'); natural(s.storm.turns,'storm turns',1);
@@ -68,7 +69,7 @@ export function play(input, handIndex, target = null, cancel = false) {
   if (input.energy < spec.cost) throw new Error('unpayable');
   const s = clone(input);
   s.energy -= spec.cost;
-  s.hand.splice(handIndex, 1);
+  const [resolved] = s.hand.splice(handIndex, 1);
   for (const effect of spec.effects) {
     switch (effect.op) {
       case 'draw': drawCards(s, effect.amount, rules.handLimit); break;
@@ -91,7 +92,7 @@ export function play(input, handIndex, target = null, cancel = false) {
       default: throw new Error('unknown effect');
     }
   }
-  s.discard.push(instance);
+  s.discard.push(resolved);
   victory(s);
   return s;
 }

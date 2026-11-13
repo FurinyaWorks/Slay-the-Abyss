@@ -124,3 +124,12 @@ test('defensive draw settles block then exact draw without refund or starting-de
  for(const up of [false,true]){const s=hand(initial(),'ganyu-08',up);s.draw=[{id:'ganyu-03'}];const r=play(s,0);assert.equal(r.block,up?8:5);assert.equal(r.energy,2);assert.deepEqual(r.hand,[{id:'ganyu-03'}]);assert.equal(r.discard[0].id,'ganyu-08');}
  assert.equal(catalogue.starting_deck.includes('ganyu-08'),false);
 });
+
+test('resolved discard instance never aliases caller hand',()=>{
+ const s=hand(initial(),'ganyu-01');const before=structuredClone(s);const out=play(s,0,0);out.discard[0].upgraded=true;assert.deepEqual(s,before);assert.equal(s.hand[0].upgraded,false);
+});
+
+test('all-dead enemy arrays cannot start or continue resource generation',()=>{
+ assert.throws(()=>initial([{hp:0,block:0,intent:0}]),/living enemies/);
+ for(const phase of ['player','between']){const s=hand(initial(),'ganyu-06');s.phase=phase;s.enemies[0].hp=0;const before=structuredClone(s);for(const fn of [x=>play(x,0),endTurn,startTurn]){assert.throws(()=>fn(s),/living enemies/);assert.deepEqual(s,before);}}
+});
