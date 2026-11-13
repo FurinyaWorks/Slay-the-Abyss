@@ -1,0 +1,3 @@
+PASS x21/x22 real exhausted instances count capped base effect before host modifiers
+PASS x20 real draw only unmasked excludes resolving card and retains actual instances
+PASS sparse exhaust rejects before queued effects or state mutation

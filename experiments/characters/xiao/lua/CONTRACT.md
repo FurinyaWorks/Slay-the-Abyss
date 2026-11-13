@@ -93,3 +93,7 @@ defense_dispatch_test.lua四探针通过，含x13基升各mask与Dexterity、x14
 ## 独立可执行扩展：x12群攻与x15剥盾
 
 dispatch新增damageAll、breakBlock；群攻不需要不相关单目标，实际群伤经宿主原生damageAll逐敌护甲处理；剥盾按paid稳定ID查活目标后设置其block=0，与宿主removeBlock效果一致，再由后续damage伤同一目标。不是直接改HP，没有更换目标。attack_dispatch_test三探针：两版有无面具双敌护甲、剥盾→攻击同目标顺序、死目标预拒绝，以及故意伤害后异常Snapshot整图与敌引用恢复。旧10+防守4定向回归均通过。仅effect层实际执行，无新增bridge/gate/获取或公共C.play；x13/x14已独审通过的宿主block修饰器差异仍待正式规则确认。
+
+## 独立可执行扩展：x20条件抽牌与x21/x22消耗计数
+
+dispatch新增unmaskedDraw/exhaustDamage/exhaustBlock。当前面具0才排原生draw；消耗实体区须稠密，再按真实公开数量算基础伤害/盾并封顶，面具加4在伤害封顶之后，宿主护甲/格挡修正仍原规则。此处不将结算牌提前放消耗区，也不新造回收/复制。exhaust_dispatch_test三探针涵盖真实C.new实例移入消耗区0/1/边界/超额、两版有无面具护甲、真实抽牌排除结算牌及稀疏拒绝；这段移区为效果级场景构造，不冒称通过正式消耗触发牌取得了燃料。旧10+4+3回归通过，仍无新增公共注册/付款或自然获取验收。
