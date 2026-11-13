@@ -1,0 +1,39 @@
+{
+  "kind": "loopback-preview-image-compatibility",
+  "nativeIdsUnchanged": true,
+  "sdkUnmodified": true,
+  "registrations": [
+    106048,
+    107279,
+    112046,
+    112050,
+    112065
+  ],
+  "images": [
+    {
+      "id": 112046,
+      "sourceStatus": 404,
+      "servedId": 112027,
+      "bytes": 93659,
+      "sha256": "50197d37005de55ad9c0ca469beb644f30a75b8fe379e7accce40f448573a703",
+      "metadataSha256": "8d926d27f486ed37188a8edcdd9d385e3bb1b67af3955d796cb5fc7e00503b10"
+    },
+    {
+      "id": 112050,
+      "sourceStatus": 404,
+      "servedId": 112031,
+      "bytes": 50852,
+      "sha256": "797e6b0f6d7f4597c6d3da3c67b4b591c0160c99252d820f6016b4ad4ccb1eed",
+      "metadataSha256": "8d926d27f486ed37188a8edcdd9d385e3bb1b67af3955d796cb5fc7e00503b10"
+    },
+    {
+      "id": 112065,
+      "sourceStatus": 404,
+      "servedId": 112039,
+      "bytes": 37347,
+      "sha256": "b36514be21fb5295f6355d5854a3846490801d5ba22a28d5a54cc85da225e6d2",
+      "metadataSha256": "e0570260234e07972902a4f271f24cf562045a748da7419e78130440ff4b5038"
+    }
+  ],
+  "boundary": "Three known native creature IDs may use existing native sprites in this local SDK preview only, and only when their original source returns HTTP 404. Official client parity is unverified."
+}

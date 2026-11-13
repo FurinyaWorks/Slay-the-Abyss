@@ -19,6 +19,9 @@ try{
   const find=nodes=>{for(const n of nodes){if(n.id===line.Id)return n;const r=find(n.children??[]);if(r)return r}};
   const a=find(snapshot.tree);assert(a);return a.imageColor>>>24;
  }
+ const reveal=(()=>{const find=n=>n.name==='pageReveal'?n:n.children.map(find).find(Boolean);return session.runtime.roots.map(find).find(Boolean)})();
+ for(let i=0;reveal?.visible&&i<180;i++)frame();
+ assert(!reveal?.visible,'the current application must finish its existing page reveal');
  frame();const idle=alpha();report.idleAlpha=idle;
  sdk.vi(session,'move',point.x,point.y);assert.equal(alpha(),idle,'enter is continuous before the next update');
  for(let i=0;i<3;i++){frame();report.alphas.push(alpha())}
