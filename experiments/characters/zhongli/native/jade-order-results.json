@@ -1,0 +1,16 @@
+{
+  "baseline": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+  "status": "ORDER_UNRESOLVED",
+  "passMarker": "JADE_ORDER_PROBE_PASS: alternatives differ; neither order selected or integrated",
+  "fixtures": "actual Combat.new and Actor.damage; player50HP, zero Block and no Intangible/Weak/Vulnerable/Strength scaling; ordinary enemy attack",
+  "method": "Native loss is real. Pre-modifier candidate is simulated by subtracting jade from base only in the restricted no-scaling fixture. Post-modifier candidate is arithmetic from native loss, NOT a modified Actor execution or event stream.",
+  "rows": [
+    {"case":"ordinary","hit":5,"jade":3,"nativeLoss":5,"preLoss":2,"preJade":0,"postArithmeticLoss":2,"postArithmeticJade":0},
+    {"case":"Torii","hit":5,"jade":3,"nativeLoss":1,"preLoss":1,"preJade":0,"postArithmeticLoss":0,"postArithmeticJade":2},
+    {"case":"Tungsten","hit":5,"jade":3,"nativeLoss":4,"preLoss":1,"preJade":0,"postArithmeticLoss":1,"postArithmeticJade":0},
+    {"case":"Buffer","hit":5,"jade":3,"nativeLoss":0,"preLoss":0,"preJade":0,"postArithmeticLoss":0,"postArithmeticJade":3},
+    {"case":"Buffer-full-jade","hit":3,"jade":3,"nativeLoss":0,"preLoss":0,"preJade":0,"postArithmeticLoss":0,"postArithmeticJade":3,"nativeBufferRemaining":0,"preBufferRemaining":1}
+  ],
+  "conclusion": "The isolated candidate had no Buffer/Torii contract. Both interpretations preserve plain damage but differ materially with existing modifiers, including shield economy and Buffer lifetime. No production placement selected.",
+  "notCovered": ["queued attacked reactions", "Heart cap", "HP-lost callbacks/scoring", "player weakness or damage scaling", "actual jade interception", "nonordinary damage"]
+}
