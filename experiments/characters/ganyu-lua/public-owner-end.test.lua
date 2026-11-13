@@ -65,4 +65,10 @@ do
  assert(C.chooseCard(s,pending.token,0));eq(s.ganyuResource.charge,2);eq(s.ganyuResource.storm.turns,1)
  local finished=C.copy(s);eq(C.chooseCard(s,pending.token,0),false);same(s,finished)
 end
-print('PASS5 real public owner-end banking/discard/storm/terminal/Codex transaction contracts')
+-- Real native Ice Cream must retain energy unless the candidate banking relic consumes it.
+for _,equipped in ipairs({false,true})do
+ local s=fresh(equipped);s.relics={'ice_cream'};s.ganyuResource.charge=2;s.energy=2
+ assert(C.endTurn(s));eq(s.energy,equipped and 3 or 5);eq(s.ganyuResource.charge,2)
+ eq(s.ganyuResource.storm.turns,1)
+end
+print('PASS7 real owner-end contracts including native Ice Cream with/without banking relic')

@@ -140,3 +140,19 @@ This is NOT shared C.play registration or public owner-end evidence. The host
 must provide one payment/prepare/dispatch Snapshot transaction and schedule ticks.
 The first harness run referenced `tick.effects` incorrectly; corrected to the
 existing `afterDiscard` API before the passing run. No source values changed.
+
+### Owner-end compatibility and next public storm contract
+
+The original five public owner-end scenarios passed an independent exact archive
+of shared host 8aabc418. That is not a complete compatibility pass: adding native
+Ice Cream with no Ganyu starter relic reproduced 3 energy instead of expected 5.
+The contract now includes Ice Cream both without and with banking (full charge,
+2 spare energy: expected next-turn 5 / 3 respectively). The latter follows the
+candidate's explicit overflow-discard rule, not a newly approved balance decision.
+Await the shared fix before claiming all seven pass.
+
+`public-storm-contract.test.lua` is the next real C.play-to-two-owner-end contract
+for 05 base/up (manual card definition fixture, no natural pool claim). It checks
+insufficient energy and stale UID no-ops, real payment/limbo/discard completion,
+no immediate damage, and two ticks then expiry. Host 8aabc418 rejects the card;
+this is explicitly BLOCKED, not two passing scenarios or implemented registration.
