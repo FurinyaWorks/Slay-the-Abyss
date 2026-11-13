@@ -43,3 +43,39 @@ print('PASS independent bank/discard/tick boundaries and exact-once stages')
 assert(not pcall(R.bankBeforeDiscard,bank.after,2,2,true));eq(bank.after.lastBank,1);eq(bank.after.storm.turns,2)
 local nextBank=R.bankBeforeDiscard(tick.after,2,0,false);eq(nextBank.after.lastBank,2)
 print('PASS unfinished bank cannot skip prior storm stage')
+
+-- Independent literal base/upgrade oracles for 17/19/35/32; not compiler-generated.
+local cases={
+ {op='charged_direct',a=8,b=14,upA=11,upB=17,native='damage'},
+ {op='charged_block',a=5,b=8,upA=7,upB=10,native='block'},
+ {op='charged_aoe',a=2,b=5,upA=3,upB=7,native='damageAll'},
+ {op='storm_block',a=3,b=6,upA=4,upB=8,native='block'},
+}
+local count=0
+for _,case in ipairs(cases)do for _,up in ipairs({false,true})do for charge=0,2 do for _,hasStorm in ipairs({false,true})do
+ local input={charge=charge,storm=hasStorm and {amount=0,turns=2}or nil}
+ local a,b=up and case.upA or case.a,up and case.upB or case.b
+ local effect={op=case.op,bonus=b};effect[case.op=='charged_direct'and 'direct'or 'amount']=a
+ local active=case.op=='storm_block'and hasStorm or(case.op~='storm_block'and charge==2)
+ local expected=a+(active and b or 0)
+ local p=R.plan(input,effect)
+ eq(p.effects[1].op,case.native);eq(p.effects[1].value,expected)
+ eq(p.after.charge,active and case.op~='storm_block'and 0 or charge)
+ eq(input.charge,charge);if hasStorm then eq(input.storm.turns,2);eq(p.after.storm.turns,2);assert(input.storm~=p.after.storm)end
+ local s=C.new(data,{deck={'strike'},enemies={'jaw_worm','jaw_worm'},seed=42})
+ s.enemies[1].hp=100;s.enemies[1].block=2;s.enemies[2].hp=100;s.enemies[2].block=1;s.player.block=0
+ E.apply(C,s,p.effects,s.player,s.enemies[1])
+ eq(s.player.block,case.native=='block'and expected or 0)
+ eq(s.enemies[1].hp,case.native~='block'and 100-math.max(0,expected-2)or 100)
+ eq(s.enemies[2].hp,case.native=='damageAll'and 100-math.max(0,expected-1)or 100)
+ count=count+1
+end end end end
+for _,case in ipairs(cases)do
+ local input={charge=2,storm={amount=1,turns=2}};local key=case.op=='charged_direct'and 'direct'or 'amount'
+ local effect={op=case.op,bonus=1};effect[key]=2147483646
+ eq(R.plan(input,effect).effects[1].value,2147483647)
+ effect[key]=2147483647;assert(not pcall(R.plan,input,effect));eq(input.charge,2);eq(input.storm.turns,2)
+ for _,bad in ipairs({-1,false,0/0,2147483648})do effect[key]=1;effect.bonus=bad;assert(not pcall(R.plan,input,effect))end
+ effect.bonus=1;effect.extra=true;assert(not pcall(R.plan,input,effect))
+end
+print('PASS '..count..' conditional resource/native Effects oracles and checked aggregate boundary')

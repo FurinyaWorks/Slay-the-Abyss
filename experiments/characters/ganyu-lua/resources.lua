@@ -20,6 +20,18 @@ function M.plan(r,e)
  elseif e.op=='storm'then
   keys(e,{op=true,amount=true,turns=true});local amount,turns=int(e.amount),int(e.turns,1)
   after.storm={amount=math.max(after.storm and after.storm.amount or 0,amount),turns=math.max(after.storm and after.storm.turns or 0,turns)}
+ elseif e.op=='charged_direct'or e.op=='charged_block'or e.op=='charged_aoe'or e.op=='storm_block'then
+  local direct=e.op=='charged_direct'
+  keys(e,direct and {op=true,direct=true,bonus=true}or {op=true,amount=true,bonus=true})
+  local base,bonus=int(direct and e.direct or e.amount),int(e.bonus)
+  local active
+  if e.op=='storm_block'then active=after.storm~=nil else active=after.charge==2 end
+  local value=base
+  if active then
+   assert(bonus<=MAX-base,'Ganyu conditional effect overflow');value=base+bonus
+   if e.op~='storm_block'then after.charge=0 end
+  end
+  effects[1]={op=direct and 'damage'or(e.op=='charged_aoe'and 'damageAll'or 'block'),value=value}
  elseif e.op=='charged_shot'then
   keys(e,{op=true,direct=true,bloom=true});int(e.direct);int(e.bloom)
   effects[1]={op='damage',value=e.direct}
