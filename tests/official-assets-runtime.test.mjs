@@ -673,6 +673,267 @@ test('official hand centres resolve the initial hover and owned drag without nei
  runOfficial(t,`ABYSS_HAND_HIT_COUNTS={10};dofile('tests/lua/hand_hover_hit_bounds.lua')`, 'OFFICIAL_HAND_HIT_PASS');
 });
 
+test('official shop keeps readable button ink after repaint and directly previews the map without changing stock',t=>{
+ runOfficial(t,`
+local F=H.F;local Map=require('abyss_map')
+local host,root=F.fixture(nil,nil,nil,{CursorEnter='enter',CursorExit='exit',CursorDown='down',CursorUp='up',CursorEndDrag='endDrag'})
+host.seed=42;assert(F.start(host));local shop
+while not shop do
+ local choices=Map.available(host.map);assert(#choices>0)
+ for _,node in ipairs(choices)do if node.type=='shop'then shop=node;break end end
+ if not shop then assert(Map.choose(host.map,choices[1].id))end
+end
+host.run.floor=host.map.floor;host:refresh();assert(F.Nodes.restoreMap(host.run,host.map))
+assert(host.mapUI:choose(shop.id)and host.mode=='node')
+local page,Theme=root:GetChild('nodePanel'),require('abyss_theme')
+local button,label=page:GetChild('confirm'),page:GetChild('confirm'):GetChild('label')
+local function ink(expected)
+ assert(label.fontColor.r==expected.r and label.fontColor.g==expected.g and label.fontColor.b==expected.b,'official dark button ink was overwritten by light-button ink')
+end
+assert(label.text=='离开商店');ink(Theme.officialAssets.buttonInk)
+local hit=button:GetChild('hit')
+hit.listeners.enter({touchId=800});ink(Theme.officialAssets.buttonInk)
+hit.listeners.down({touchId=800});ink(Theme.officialAssets.buttonInk)
+hit.listeners.endDrag({touchId=800});host:refresh();ink(Theme.officialAssets.buttonInk)
+local route=assert(page:GetChild('runRoute'),'shop direct map shortcut missing'):GetChild('hit')
+local function event(kind,id)return route.listeners[kind]({touchId=id})end
+local function tap(id)event('down',id);event('up',id);return event('click',id)end
+local before,mapBefore=C.copy(host.run),C.copy(host.map)
+event('down',801);host.choiceUI.generation=host.choiceUI.generation+1
+event('up',801);assert(not event('click',801)and not host.routeOpen,'late route click crossed choice generation')
+assert(host:openDeck());assert(not tap(802)and not host.routeOpen)
+assert(host:closeDeck());assert(tap(803)and host.routeOpen and not host.mapUI.navigationEnabled)
+assert(not event('click',803),'duplicate click reopened map')
+assert(not host.mapUI:choose(Map.available(host.map)[1].id))
+assert(host:closeExit()and not host.routeOpen and host.mode=='node'and host.nodeUI.visible)
+unchanged(host.run,before,'map preview changed shop stock, selected offer or RNG')
+unchanged(host.map,mapBefore,'map preview changed navigation')
+host:refresh();ink(Theme.officialAssets.buttonInk)
+`, 'OFFICIAL_SHOP_ROUTE_INK_PASS');
+});
+
+test('official browser return rejects stale clicks across new choices and browser generations',t=>{
+ runOfficial(t,`
+local host,_,_,_,_,_,_,root=H.setup({'strike','defend'},{'cultist'})
+local deck,panel=host.deckUI,root:GetChild('deckPanel')
+assert(host:openDeck());host:update(0)
+local hit=panel:GetChild('pileReturn'):GetChild('hit')
+assert(host:closeDeck())
+for _,multiple in ipairs({false,true})do
+ local picked=0
+ local choice={token='new-choice',op='codex',optional=not multiple,multiple=multiple,
+  selected=multiple and {999}or nil,required=multiple and 1 or nil,cards={{uid=999,cardId='defend'}}}
+ host.run.combat.pendingChoice=choice
+ assert(deck:open(host.run,choice,function()picked=picked+1;return true end));deck:update(0)
+ assert(not hit.listeners.click({touchId=901})and deck.visible and picked==0,'hidden browser return submitted a new choice token')
+ deck:close();host.run.combat.pendingChoice=nil
+end
+assert(host:openDeck());host:update(0)
+hit.listeners.down({touchId=902});assert(host:closeDeck());assert(host:openDeck());host:update(0)
+hit.listeners.up({touchId=902})
+assert(not hit.listeners.click({touchId=902})and deck.visible,'old pointer release closed a new browser generation')
+hit.listeners.down({touchId=903});hit.listeners.up({touchId=903})
+assert(hit.listeners.click({touchId=903})and not deck.visible,'fresh browser return must still work')
+`, 'OFFICIAL_BROWSER_RETURN_GENERATIONS_PASS');
+});
+
+test('official 17-card shop permanent deck uses the approved dark five-column browser and returns to the same shop',t=>{
+ runOfficial(t,`
+local F=H.F;local Map=require('abyss_map');local Nodes=require('abyss_nodes')
+local host,root=F.fixture();host.seed=42;assert(F.start(host))
+-- Controlled navigation to a real reachable shop, using its canonical node/stock.
+local shop
+while not shop do
+ local choices=Map.available(host.map);assert(#choices>0,'canonical shop route missing')
+ for _,node in ipairs(choices)do if node.type=='shop'then shop=node;break end end
+ if not shop then assert(Map.choose(host.map,choices[1].id))end
+end
+host.run.floor=host.map.floor;assert(Nodes.restoreMap(host.run,host.map));host:refresh()
+assert(host.mapUI:choose(shop.id) and host.mode=='node' and host.run.nodeFlow.type=='shop')
+host.run.deck={}
+for i=1,17 do host.run.deck[i]={uid=200+i,cardId=i%2==0 and 'defend' or 'bash',upgraded=i==1}end
+host:refresh()
+local before,mapBefore=C.copy(host.run),C.copy(host.map)
+local panel=root:GetChild('deckPanel');local grid=panel:GetChild('pileGrid')
+assert(root:GetChild('deckEntry'):GetChild('open'):GetChild('hit').click());host:update(0)
+assert(grid.visible and grid.itemCount==17 and not panel:GetChild('grid').visible,
+ '17-card shop permanent deck still uses the old six-column transparent browser')
+local spec
+local function find(entries)for _,entry in ipairs(entries)do
+ if entry.name=='pileGrid'then spec=entry end;find(entry.children or {})
+end end
+find(F.Layout)
+assert(spec.grid.columns==5 and same(spec.grid.itemSize,{150,210}) and same(spec.grid.spacing,{27,27}))
+assert(grid.size[1]==918 and grid.size[2]==557 and grid.x==0 and grid.y==-75.5)
+assert(panel:GetChild('pileVeil').visible and panel:GetChild('pileChrome').visible and not panel:GetChild('veil').visible)
+assert(not panel:GetChild('header').visible and not panel:GetChild('title').visible and not panel:GetChild('browseTitle').visible)
+assert(panel:GetChild('pileChrome'):GetChild('heading').text=='卡组 · 17 张')
+assert(panel:GetChild('pileTools').visible and panel:GetChild('pileReturn').visible and not panel:GetChild('close').visible)
+for _,name in ipairs({'All','Attack','Skill','Power','Status','Curse'})do assert(not panel:GetChild('filter'..name).visible)end
+assert(host.deckUI.pileKind==nil and host.deckUI.battle==nil and not host.deckUI.pileView,'visual reuse changed permanent data semantics')
+assert(root:GetChild('nodePanel').visible and not host.nodeUI.visible,'covered shop must retain its scene but reject transactions')
+assert(not host.nodeUI:press('shopView/card1') and not host.nodeUI:press('confirm'))
+grid.scrollProgress=.4
+local first=grid.items[0];local uid=host.deckUI.bindings[first].uid
+assert(first:GetChild('hit').click() and host.deckUI.cardDetail.instance.uid==uid)
+assert(panel:GetChild('pileReturn'):GetChild('hit').click());host:update(0)
+assert(grid.visible and grid.scrollProgress==.4 and not host.deckUI.detailPages and panel:GetChild('pileTools').visible)
+assert(panel:GetChild('pileReturn'):GetChild('hit').click())
+assert(not host.deckUI.visible and host.mode=='node' and host.nodeUI.visible and host.run.nodeFlow.id==shop.id)
+assert(not grid.visible and grid.itemCount==0)
+unchanged(host.run,before,'shop deck inspection changed Run/stock/RNG')
+unchanged(host.map,mapBefore,'shop deck inspection changed the route')
+`, 'OFFICIAL_SHOP_PERMANENT_DECK_PASS');
+});
+
+const officialDeckBrowserSetup=`
+local F=H.F;local host=H.setup();local panelSpec
+local function find(entries)for _,entry in ipairs(entries)do
+ if entry.name=='deckPanel'then panelSpec=entry end;find(entry.children or {})
+end end
+find(F.Layout)
+local panel=F.control(assert(panelSpec));local grid=panel:GetChild('pileGrid')
+local controller=false;local deck
+deck=require('abyss_deck_ui').new(panel,F.Presentation,'click',{
+ imageSource='static',color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end,
+ controllerApi={isController=function()return controller end}},function()return deck:close()end)
+local function instance(uid,id,upgraded)return {uid=uid,cardId=id,upgraded=upgraded==true}end
+local function tool(mode)return panel:GetChild('pileTools'):GetChild(mode):GetChild('hit').click()end
+`;
+
+test('official permanent browser handles 0/1/5/6/17 cards, deferred index origins, detail return and recycled late callbacks',t=>{
+ runOfficial(t,officialDeckBrowserSetup+`
+for _,origin in ipairs({0,1})do for _,amount in ipairs({0,1,5,6,17})do
+ host.run.deck={}
+ for i=1,amount do host.run.deck[i]=instance(200+i,i%2==0 and 'defend' or 'bash',i==1)end
+ local before=C.copy(host.run)
+ grid.indexBase,grid.deferRefresh,grid.destroyOnRefresh=origin,true,true
+ assert(deck:open(host.run))
+ assert(grid.visible and not panel:GetChild('grid').visible,'permanent view did not select shared browser')
+ local calibration=grid.refreshCallback
+ deck:update();assert(grid.itemCount==(amount>0 and 1 or 0),'deferred calibration lost ownership')
+ grid:flush();deck:update();grid:flush()
+ assert(grid.itemCount==amount and grid.scrollProgress==0)
+ assert(panel:GetChild('pileChrome'):GetChild('empty').visible==(amount==0))
+ assert(not deck:setFilter('skill'),'hidden legacy filters must not alter the official snapshot')
+ assert(panel:GetChild('pileChrome'):GetChild('heading').text=='卡组 · '..amount..' 张')
+ if amount>0 then
+  local first=grid.items[0];local uid=deck.bindings[first].uid
+  assert(uid==201 and first:GetChild('face').y==0 and not first:GetChild('uid').visible)
+  calibration(first,origin);assert(not deck.pending and deck.bindings[first].uid==uid)
+  local late=grid.refreshCallback;local hit=first:GetChild('hit')
+  grid.scrollProgress=.45
+  assert(hit.listeners.drag==nil and hit.listeners.endDrag==nil)
+  assert(not hit.click({dragging=true}) and not deck.detailPages and grid.scrollProgress==.45)
+  assert(hit.click() and deck.cardDetail.instance.uid==uid and not grid.visible)
+  assert(not panel:GetChild('pileTools').visible and not tool('cost'),'detail cannot sort the hidden list')
+  assert(panel:GetChild('details').text:find('左下角返回',1,true))
+  assert(panel:GetChild('pileReturn'):GetChild('hit').click());deck:update();grid:flush()
+  assert(not deck.detailPages and grid.visible and grid.scrollProgress==.45)
+  local fresh=grid.items[0];local freshUid=deck.bindings[fresh].uid
+  late(fresh,origin+amount-1)
+  assert(deck.bindings[fresh].uid==freshUid,'late list callback rebound the returned detail list')
+  assert(first.alive==false and not deck.bindings[first] and not hit.click(),'retired detail receiver remained live')
+  if amount==17 then
+   grid.deferRefresh,grid.destroyOnRefresh=false,false
+   local reused=grid:recycle(0,origin+16)
+   assert(reused==fresh and deck.bindings[reused].uid==217,'native reuse lost the current permanent UID')
+   grid.destroyOnRecycle=true
+   local oldHit=reused:GetChild('hit');local retired=reused
+   local replacement=grid:recycle(0,origin+5);deck:update()
+   assert(retired.alive==false and not deck.bindings[retired] and not oldHit.click())
+   assert(deck.bindings[replacement].uid==206)
+   grid.destroyOnRecycle=false
+   controller=true;deck:update()
+   assert(grid.itemCount==10 and panel:GetChild('next').visible,'C-mode must page two five-column rows')
+   assert(deck:controllerStep(1) and grid.itemCount==7 and deck.bindings[grid.items[0]].uid==211)
+   assert(deck:controllerStep(-1) and deck.bindings[grid.items[0]].uid==201)
+   controller=false;deck:update();assert(grid.itemCount==17,'pointer mode did not restore the entire list')
+  end
+ end
+ local late=grid.refreshCallback;local old=grid.items[0]
+ assert(panel:GetChild('pileReturn'):GetChild('hit').click())
+ if old then late(old,origin)end
+ assert(not deck.visible and not grid.visible and grid.itemCount==0 and not panel:GetChild('pileVeil').visible)
+ unchanged(host.run,before,'permanent browsing changed Run or RNG')
+end end
+`, 'OFFICIAL_PERMANENT_BROWSER_LIFECYCLE_PASS');
+});
+
+test('official shared browser keeps permanent cost, growth, details and sort preferences separate from combat piles and forced choices',t=>{
+ runOfficial(t,officialDeckBrowserSetup+`
+host.run.deck={instance(201,'barricade',true),instance(202,'whirlwind',true),instance(203,'rampage',true),instance(204,'rampage')}
+host.run.combat.discard=C.copy(host.run.deck)
+for _,card in ipairs(host.run.combat.discard)do card.costForTurn=0;card.damageBonus=123 end
+local before=C.copy(host.run)
+local Skin=require('abyss_card_skin');local apply=Skin.apply;local scopes={}
+Skin.apply=function(face,definition,platform,look)scopes[face]=look.surfaceScope;return apply(face,definition,platform,look)end
+local function plain(text)return text:gsub('<[^>]+>','')end
+local function order()
+ local result={};for i=0,3 do result[#result+1]=deck.bindings[grid.items[i]].uid end
+ return table.concat(result,',')
+end
+local function permanent()
+ assert(deck.pileKind==nil and deck.battle==nil and not deck.pileView)
+ assert(grid.visible and grid.itemCount==4,'permanent data must render through the shared browser')
+ assert(grid.items[0]:GetChild('face'):GetChild('cost').text=='2')
+ assert(grid.items[1]:GetChild('face'):GetChild('cost').text=='X')
+ for i=2,3 do
+  local face=grid.items[i]:GetChild('face')
+  assert(plain(face:GetChild('label').text)==plain(i==2 and F.Presentation.rampage.upgradeText or F.Presentation.rampage.text))
+  assert(scopes[face]=='deck','permanent presentation must keep its deck surface owner')
+  for _,name in ipairs({'nativePlayableRim','glow','costHalo'})do assert(not face:GetChild(name).visible)end
+ end
+end
+assert(deck:open(host.run));deck:update();permanent()
+assert(grid.items[3]:GetChild('hit').click())
+assert(not deck.cardDetail.combat and not panel:GetChild('details').text:find('131',1,true))
+assert(deck:toggleUpgradePreview() and deck.cardDetail.preview and not deck.cardDetail.combat)
+assert(panel:GetChild('pileReturn'):GetChild('hit').click());deck:update();permanent()
+assert(tool('name'));deck:update()
+assert(deck.sortMode=='name' and deck.sortAscending and deck.masterSort.mode=='name')
+assert(order()=='202,201,204,203','name ascending must sort the actual displayed permanent UIDs, including upgrade suffix')
+assert(tool('name'));deck:update();assert(not deck.sortAscending)
+assert(order()=='203,204,201,202','name descending must reverse the complete displayed name key')
+local preference=C.copy({mode=deck.masterSort.mode,ascending=deck.masterSort.ascending,directions=deck.masterSort.directions})
+local stale=grid.refreshCallback
+assert(deck:close())
+assert(deck:openPile(host.run,'discard'));deck:update()
+assert(deck.pileKind=='discard' and deck.battle==host.run.combat and deck.pileView)
+local face=grid.items[0]:GetChild('face');local uid=deck.bindings[grid.items[0]].uid
+assert(face:GetChild('cost').text=='0' and scopes[face]=='battle','pile lost transient cost or surface owner')
+assert(plain(grid.items[2]:GetChild('face'):GetChild('label').text):find('131',1,true),'pile lost temporary Rampage growth')
+stale(grid.items[0],3);assert(deck.bindings[grid.items[0]].uid==uid,'permanent callback rebound a combat pile')
+assert(grid.items[2]:GetChild('hit').click() and deck.cardDetail.combat)
+assert(panel:GetChild('details').text:find('131',1,true),'pile detail lost its current combat instance')
+assert(panel:GetChild('pileReturn'):GetChild('hit').click());deck:update()
+assert(tool('cost'));deck:update();assert(tool('type'));deck:update()
+local pileLate=grid.refreshCallback
+assert(deck:close());assert(deck:open(host.run));deck:update()
+assert(deck.sortMode==preference.mode and deck.sortAscending==preference.ascending and same(deck.sortDirections,preference.directions),
+ 'combat sorting overwrote permanent preferences')
+assert(tool('original'));deck:update();permanent()
+pileLate(grid.items[0],3);permanent()
+assert(deck:close())
+-- Forced choices still use their feedback-line grid, exact token/UID and close gate.
+local choice=instance(301,'rampage');choice.costForTurn=0;choice.damageBonus=123
+host.run.combat.hand={choice};host.run.combat.pendingChoice={token='official-choice',op='upgradeHand',uids={301}}
+local picked
+assert(deck:open(host.run,host.run.combat.pendingChoice,function(token,uid)picked={token,uid}end));deck:update()
+local legacy=panel:GetChild('grid')
+assert(legacy.visible and not grid.visible and not panel:GetChild('pileTools').visible and not panel:GetChild('pileReturn').visible)
+assert(not panel:GetChild('close').visible and not deck:back() and not tool('cost'))
+assert(not deck:setSort('name') and not deck:setPileSort('name'))
+local hit=legacy.items[0]:GetChild('hit')
+assert(legacy.items[0]:GetChild('face'):GetChild('cost').text=='0')
+assert(not hit.click({dragging=true}) and not picked)
+hit.click();assert(picked[1]=='official-choice' and picked[2]==301 and not deck.visible)
+host.run.combat.hand=before.combat.hand;host.run.combat.pendingChoice=before.combat.pendingChoice
+unchanged(host.run,before,'shared browser changed permanent/combat state or RNG')
+Skin.apply=apply
+`, 'OFFICIAL_BROWSER_DATA_ISOLATION_PASS');
+});
+
 test('official pile faces reuse hand chrome across small rows, native recycling and C-mode pages',t=>{
  runOfficial(t,`
 local Theme=H.F.Theme
@@ -763,12 +1024,12 @@ end
             assert(same(before,host.run),'official pile inspection changed state or RNG')
         end
         assert(host.deckUI:open(host.run));host.deckUI:update()
-        assert(panel:GetChild('grid').visible and not grid.visible and panel:GetChild('filterAll').visible)
-        assert(panel:GetChild('header').visible and not host.deckUI.pileView)
-        assert(not host.deckUI:setSort('name') and not host.deckUI:setPileSort('name'),
-            'permanent deck rejects name through both sorting entry points')
+        assert(not panel:GetChild('grid').visible and grid.visible and not panel:GetChild('filterAll').visible)
+        assert(not panel:GetChild('header').visible and not host.deckUI.pileView and not host.deckUI.pileKind)
         assert(host.deckUI.sortMode=='original' and host.deckUI.sortAscending,
             'pile sorting must not leak into permanent deck preferences')
+        assert(host.deckUI:setSort('name') and not host.deckUI:setPileSort('name'),
+            'shared name sorting must retain the permanent preference owner')
         host.deckUI:close()
 
 `, 'OFFICIAL_PILE_FACE_PASS');

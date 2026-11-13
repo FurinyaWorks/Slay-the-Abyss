@@ -218,16 +218,16 @@ test('source reward rows and the twelve-card smithing grid fit without hiding ne
  }
 });
 
- test('merchant pages fit one readable line inside the dialogue panel',()=>{
- const m=nativeTheme.layout.merchant, merchant=find(panel.children,'merchant');
- const line=find(merchant.children,'line'), name=find(merchant.children,'name');
- const box=find(merchant.children,'panel');
- assert.ok(m.pageCharacters*line.text.fontSize+16<=line.size[0], 'page must fit without a second clipped line');
- for(const text of [line,name]){
-  const a=bounds(text), b=bounds(box);
-  assert.ok(a.left>=b.left && a.right<=b.right && a.bottom>=b.bottom && a.top<=b.top,'merchant text must remain inside panel');
- }
-});
+ test('merchant pages fit wrapped short text inside the head-relative bubble',()=>{
+  const m=nativeTheme.layout.merchant, merchant=find(panel.children,'merchant');
+  const line=find(merchant.children,'line'),box=find(merchant.children,'bubble');
+  const columns=Math.floor(line.size[0]/line.text.fontSize);
+  const rows=Math.floor(line.size[1]/(line.text.fontSize*1.4));
+  assert.ok(columns*rows>=m.pageCharacters,'every page must fit without clipping or shrinking');
+  const a=bounds(line),b=bounds(box);
+  assert.ok(a.left>=b.left && a.right<=b.right && a.bottom>=b.bottom && a.top<=b.top,'merchant text must remain inside the bubble');
+  for(const name of ['name','namePlate','panel','border','accent'])assert.equal(find(merchant.children,name).visible,false,'RPG bar must remain absent');
+ });
 
 test('shop purchase and cancel form one adjacent action group outside merchant dialogue',()=>{
  const back=find(panel.children,'back'),confirm=find(panel.children,'confirm');

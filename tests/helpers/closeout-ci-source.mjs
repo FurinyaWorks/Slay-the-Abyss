@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {sourceSlice} from './closeout-source-epoch.mjs';
+import {preRunHudCiSource,runHudPriorRead,runHudPriorInventory} from './run-hud-ci-source.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const bytes=readFileSync(new URL('./closeout-ci-source.json.gz',import.meta.url));
 assert.equal(hash(bytes),'cfc72306af30d0d4b0b61398e3ed0eea36767d6e005c146eb215897fc431a8f8');
@@ -18,14 +19,17 @@ export function preCloseoutCiSource(path,source,view){
  // Production sources belong to the complete freshly authenticated owner
  // closure; a CI receipt must never intercept them before that authorization.
  if(path==='config/architecture.json'||path.startsWith('src/lua/'))return source;
+ source=preRunHudCiSource(path,source);
  const id=Object.hasOwn(packed.current,path)?packed.current[path]:null;
  if(!id||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!==id)return source;
  const prior=before.files[path];
  return prior?packed.records[prior]:source;
 }
 export function closeoutInventory(paths,view,readSource=readFileSync){
- const before=target(view),sorted=[...paths].sort();
+ const before=target(view);
  assert.notEqual(before.scope,'workflow-only','workflow-only views cannot project test inventories');
+ paths=runHudPriorInventory(paths,readSource);readSource=runHudPriorRead(readSource);
+ const sorted=[...paths].sort();
  if(JSON.stringify(sorted)===JSON.stringify(before.inventory))return [...paths];
  assert.deepEqual(sorted,packed.inventory,'complete raw closeout inventory');
  for(const path of packed.inventory.filter(p=>!before.inventory.includes(p))){

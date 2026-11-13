@@ -19,8 +19,8 @@ export function deckCardTemplate(theme = nativeTheme) {
   ] };
 }
 
-// Clone the final imported hand face after every V25/official pass. Piles own
-// only their read-only receiver; artwork, geometry and typography stay shared.
+// Clone the final imported hand face after every V25/official pass. Read-only
+// deck/pile browsers share this receiver; their data projections stay separate.
 export function battlePileCardTemplate(layout, template) {
   const find = (node, name) => node.name === name ? node
     : (node.controls ?? node.children ?? []).map(child => find(child, name)).find(Boolean);
@@ -141,8 +141,9 @@ export function deckControls(theme = nativeTheme) {
     { name: 'deckPanel', kind: 'container', size: [...theme.canvas.base], visible: false, children: [
       { ...plate('veil', [0, 0, ...theme.canvas.base], c.backdropVeil.slice(0, 7)),
         opacity: c.backdropVeil.length === 9 ? parseInt(c.backdropVeil.slice(7), 16) / 255 : 1 },
-      // Pile screens have a fixed five-column native scroller. The SDK exposes
-      // its column constraint read-only, so keep the six-column browser intact.
+      // Official read-only deck/pile browsers share the fixed five-column shell.
+      // Keep the six-column feedback grid for choices and the legacy profile:
+      // the SDK exposes the column constraint read-only.
       { ...plate('pileVeil', [0, 0, ...theme.canvas.base], '#000000'), opacity: 0.9, visible: false },
       battlePileChrome(theme),
       { name: 'blocker', kind: 'cursorArea', size: [...theme.canvas.base], focusable: false },

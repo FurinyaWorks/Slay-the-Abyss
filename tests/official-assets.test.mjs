@@ -15,6 +15,7 @@ import {auditUiBuildArgs} from '../scripts/audit-native-candidate.mjs';
 import {uiProfileReceipt,uiProfileFromReceipt,validateUiProfileOptions} from '../scripts/ui-profile.mjs';
 import {buildUI,assertNativeUiCapacity} from '../scripts/build-ui.mjs';
 import {buildNativeCandidate} from '../scripts/build-native-candidate.mjs';
+import {merchantControl} from '../scripts/cinematic-ui-layout.mjs';
 import {gameBuildArgs} from '../scripts/build-game.mjs';
 const children=node=>node.controls??node.children??[];
 const all=node=>[node,...children(node).flatMap(all)];
@@ -76,6 +77,7 @@ test('approved pages keep live input identities while unrelated pages retain the
  }
  const result=applyOfficialAssets([layout,template],theme);
  const current=new Map([...paths(layout),...paths(template)]);
+ const merchant=new Map(paths(merchantControl(theme),'/SlayTheAbyss/nodePanel'));
   for(const [path,node,before] of semantic){
    if(path.startsWith('/SlayTheAbyss/deckPanel/pileReturn/')){
     // The approved pile return uses permanent artwork plus one native receiver.
@@ -86,6 +88,11 @@ test('approved pages keep live input identities while unrelated pages retain the
     continue;
    }
    assert.equal(current.get(path),node,path);
+   if(merchant.has(path)){
+    const expected=structuredClone(merchant.get(path));
+    if(expected.text)expected.text.content=before.text.content;
+    assert.deepEqual(node,expected,path+' shared merchant projection');continue;
+   }
    if(cardText.has(node)){
     const canonical=child(child(child(layout,'battlePanel'),'card1'),cardText.get(node))??cardFaceChildren(theme,'node').find(part=>part.name===cardText.get(node));
     if(canonical.text?.autoSize&&canonical.text.minFontSize*1.45+4>canonical.size[1])canonical.text.minFontSize=theme.font.minimum;
@@ -117,7 +124,13 @@ test('approved pages keep live input identities while unrelated pages retain the
    if(restoredPagePath(path)||path.startsWith('/SlayTheAbyss/deckPanel/pileReturn'))continue;
    if(cardDecorationPaths.has(path)){assert(current.has(path),path+' shared decoration remains addressable');continue;}
    assert.equal(current.get(path),node,path);
+   if(merchant.has(path)){
+    assert.deepEqual(node,merchant.get(path),path+' shared merchant projection');continue;
+   }
    for(const key of Object.keys(before)){
+    if(key==='scale'&&/^\/SlayTheAbyss\/potionEntry\/open\/hit\/(?:normal|hover|pressed|disabled)$/.test(path)){
+     assert.deepEqual(node.scale,[1,1],path+' battle slot states already own their scale');continue;
+    }
     const relicSlot=/^\/SlayTheAbyss\/relicBar\/slot(\d+)$/.exec(path);
     if(relicSlot&&key==='position'){
      const bar=theme.officialAssets.battleRelicBar;
