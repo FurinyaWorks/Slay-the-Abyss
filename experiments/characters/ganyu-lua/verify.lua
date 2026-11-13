@@ -28,5 +28,14 @@ for _,up in ipairs({false,true})do
  s,u=state('ganyu_lab_22',up);s.enemies[1].hp=1;assert(Combat.play(s,u,1));eq(#s.hand,0)
 end
 for _,c in ipairs(data.cards.cards)do assert(not c.id:match('ganyu_lab'))end
-eq(#defs.cards,4);eq(#defs.unmapped,71)
+eq(#defs.cards,8);eq(#defs.unmapped,67)
 print('PASS 14 base/upgrade native-queue cases; original registration untouched')
+
+for _,up in ipairs({false,true})do
+ local s,u=state('ganyu_lab_04',up);local enemy=s.enemies[1];enemy.block=2
+ assert(Combat.play(s,u));eq(s.player.block,up and 8 or 6);eq(enemy.hp,up and 98 or 99);eq(s.energy,2)
+ s,u=state('ganyu_lab_08',up);assert(Combat.play(s,u));eq(s.player.block,up and 8 or 5);eq(#s.hand,1)
+ s,u=state('ganyu_lab_21',up);assert(Combat.play(s,u));eq(s.enemies[1].hp,up and 86 or 90);eq(s.energy,1)
+ s,u=state('ganyu_lab_55',up);s.energy=0;assert(Combat.play(s,u));eq(s.player.block,up and 3 or 1);eq(#s.hand,1);eq(#s.exhaust,1);eq(s.energy,0)
+end
+print('PASS 8 additional base/upgrade AOE/defense-draw/free-exhaust native cases')

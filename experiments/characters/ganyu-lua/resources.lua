@@ -30,6 +30,7 @@ end
 -- Separate host commit boundaries: never consume a storm tick before discard.
 function M.bankBeforeDiscard(r,turn,energy,equipped)
  local after=resource(r);int(turn,1);int(energy);assert(type(equipped)=='boolean','invalid relic flag')
+ assert(not after.lastBank or after.lastBank==after.lastOwnerEnd,'unfinished bank stage')
  assert(not after.lastBank or turn>after.lastBank,'duplicate or stale bank')
  assert(not after.lastOwnerEnd or turn>after.lastOwnerEnd,'stale owner end')
  if equipped then after.charge=after.charge+math.min(2-after.charge,energy)end

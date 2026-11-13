@@ -32,3 +32,7 @@ node node_modules/fengari-node-cli/src/lua-cli.js -e "dofile('experiments/charac
 resources.lua 是无共享注册的纯数据计划器，尚未接入正式回合生命周期。实现蓄力0–2、主动产蓄、满蓄两段箭、单雨场取max刷新、回合末剩余能量入蓄（遗物真实合同不是战斗开始赠蓄）、消耗tick与重复owner-end拒绝。输出仅标准damage/damageAll动作及待提交资源，不直接改Actor，也不自建伤害引擎。resources-test.lua 实际调用正式Effects.apply验证主目标死亡仍对第二敌人绽放、雨伤击杀结果；资源输入不变和异常断言通过。
 
 挂接约束：正式Combat.endTurn事务须在弃牌前提交bank，弃牌后/敌行动前排tick；资源与能量必须同一事务回滚。lastOwnerEnd需随战斗重建，不是跨战永久资源。当前仅计划器加真实伤害执行测试，不证明上述自动挂钩已完成。共享待协调点为abyss_flow_actions、abyss_end_turn_powers和正式资源可见视图；本分支均未改。类型、伤害修正与遗物来源适配仍需批准及审查。
+
+## 第二切片（待独审）
+
+扩至8个未注册定义：新增04、08、21、55，复用正式damageAll、block/draw、零费exhaust。3编译测试与22组原Combat.play基升检查通过；其余67未映射。卡文/升级文从同结构输出，ALL_ENEMY采用正式定义ABI，不能当设计批准。数值生成限制为Lua平台32位非负整数。04 attack类型与其他类型仍属接入提案；正式力量/虚弱/敏捷等修正将由原引擎承担，不强求与未建这些状态的研究模型等价。资源阶段另加未完成bank禁止新bank，防跳前轮冰雨；集成owner需取最新快照。

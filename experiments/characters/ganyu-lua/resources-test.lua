@@ -39,3 +39,7 @@ assert(not pcall(R.stormAfterDiscard,staged,1))
 local tick=R.stormAfterDiscard(bank.after,1);eq(tick.after.storm.turns,1)
 assert(not pcall(R.stormAfterDiscard,tick.after,1));eq(bank.after.storm.turns,2)
 print('PASS independent bank/discard/tick boundaries and exact-once stages')
+
+assert(not pcall(R.bankBeforeDiscard,bank.after,2,2,true));eq(bank.after.lastBank,1);eq(bank.after.storm.turns,2)
+local nextBank=R.bankBeforeDiscard(tick.after,2,0,false);eq(nextBank.after.lastBank,2)
+print('PASS unfinished bank cannot skip prior storm stage')
