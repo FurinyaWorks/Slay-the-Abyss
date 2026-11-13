@@ -6,6 +6,8 @@ local Presence=require('abyss_actor_presence')
 local Copy=require('abyss_copy').copy
 local M={}
 local specs={zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
+ zl26={kind='gainJade',base=10,upgraded=14,type='skill',target='SELF',retain=true,exactExhaust=false},
+ zl38={kind='gainJade',base=2,upgraded=3,type='skill',target='SELF',retain=false,exactExhaust=true},
  zl03={kind='gainJade',base=12,upgraded=16,type='skill',target='SELF'},
  zl16={kind='spendJade',base=6,upgraded=6,type='skill',target='SELF',block=16,upBlock=21},
  zl57={kind='spendJade',base=3,upgraded=3,type='skill',target='ENEMY',weak=3,upWeak=4},
@@ -35,6 +37,8 @@ function M.canUse(state,instance,card,targetIndex)
   or state.originalV4 or card.experimental~=true or card.originalV4 or card.runNativeABI or card.silentFinalCard
   or card.costMode or card.keqingCandidate~=nil or card.ganyuCandidate~=nil or card.xiaoCandidate~=nil
   or card.type~=spec.type or card.target~=spec.target or #card.effects~=((spec.damage or spec.draw or spec.block or spec.weak)and 2 or 1)
+  or spec.retain~=nil and (spec.retain and card.selfRetain~=true or not spec.retain and card.selfRetain~=nil and card.selfRetain~=false)
+  or spec.exactExhaust~=nil and (spec.exactExhaust and card.exhaust~=true or not spec.exactExhaust and card.exhaust~=nil and card.exhaust~=false)
   or spec.exhaust and card.exhaust~=true
   or instance.upgraded~=nil and type(instance.upgraded)~='boolean'then return false,'zhongli_candidate_unavailable'end
  local e=card.effects[1]
