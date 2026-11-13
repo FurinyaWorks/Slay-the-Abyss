@@ -41,3 +41,20 @@ for _,zone in ipairs({'draw','discard'})do
  assert(not pcall(M.prepare,C,n,{op='ganyuRetrieve',zone='exhaust'},n.cardInUse.uid))
 end
 print('PASS absent match does not touch other zones; duplicate instances and unsupported source rejected')
+-- Effect search consults the actual instance variant, not base-card tags.
+for _,selector in ipairs({'block','charge'})do for _,up in ipairs({false,true})do
+ local s,a=fresh('draw',false)
+ local wanted=selector=='block'and{op='block',value=3}or{op='ganyuCard',kind='charge',amount=1}
+ s.catalog.cards.ganyu_match_probe={id='ganyu_match_probe',name='variant fixture',cost=1,type='skill',target='SELF',effects={wanted},upgrade={effects={{op='draw',value=1}}}}
+ s.catalog.cards.ganyu_inverse_probe={id='ganyu_inverse_probe',name='inverse fixture',cost=1,type='skill',target='SELF',effects={{op='draw',value=1}},upgrade={effects={wanted}}}
+ local first=s.draw[1];local second=s.draw[3]
+ first.cardId='ganyu_match_probe';first.upgraded=up;second.cardId='ganyu_inverse_probe';second.upgraded=up
+ -- Remove ordinary defend block effects from other potential matches.
+ for _,card in ipairs(s.draw)do if card~=first and card~=second and card.cardId=='defend'then card.cardId='strike'end end
+ local before=C.copy(s.draw);local expected=up and second or first
+ local e=M.prepare(C,s,{op='ganyuRetrieve',zone='draw',selector=selector},s.cardInUse.uid)
+ assert(run(s,e));eq(s.hand[1],expected);eq(expected.upgraded,up)
+ local rest={};for _,card in ipairs(before)do if card.uid~=expected.uid then rest[#rest+1]=card end end;same(s.draw,rest)
+ assert(not pcall(M.prepare,C,s,{op='ganyuRetrieve',zone='discard',selector=selector},s.cardInUse.uid))
+end end
+print('PASS4 effect-selected real-variant retrievals, source order and draw-only restriction')

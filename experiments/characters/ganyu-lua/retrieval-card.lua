@@ -4,12 +4,14 @@ local Actions=require('abyss_card_actions')
 local M={}
 local function validate(e,prepared)
  assert(type(e)=='table'and getmetatable(e)==nil and e.op=='ganyuRetrieve','invalid retrieval namespace')
- for k in pairs(e)do assert(k=='op'or k=='zone'or prepared and k=='uid','unknown retrieval field')end
+ for k in pairs(e)do assert(k=='op'or k=='zone'or k=='selector'or prepared and k=='uid','unknown retrieval field')end
  assert(e.zone=='draw'or e.zone=='discard','invalid retrieval zone')
+ assert(e.selector==nil or e.selector=='block'or e.selector=='charge','invalid retrieval selector')
+ assert(e.selector==nil or e.zone=='draw','effect retrieval only searches draw')
 end
 function M.prepare(combat,state,e,uid)
  validate(e,false);Paid.prepare(combat,state,{op='ganyuCard',kind='charge',amount=0},nil,uid)
- return {op=e.op,zone=e.zone,uid=uid}
+ return {op=e.op,zone=e.zone,selector=e.selector,uid=uid}
 end
 function M.dispatch(combat,state,e,queue)
  validate(e,true);assert(e.uid~=nil,'missing retrieval uid')
@@ -24,7 +26,14 @@ function M.dispatch(combat,state,e,queue)
  if #state.hand>=state.rules.player.maxHand then return true end
  local pile=state[e.zone]
  for i,card in ipairs(pile)do
-  if card.cardId=='ganyu_lab_03'then
+  local match=not e.selector and card.cardId=='ganyu_lab_03'
+  if e.selector then
+   local definition=combat.cardDefinition(state,card)
+   for _,effect in ipairs(definition.effects)do
+    if e.selector=='block'and effect.op=='block'or e.selector=='charge'and effect.op=='ganyuCard'and effect.kind=='charge'then match=true end
+   end
+  end
+  if match then
    table.remove(pile,i);Actions.toHand(state,card);break
   end
  end
