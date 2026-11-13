@@ -89,3 +89,7 @@ public_play_test.lua仅语法编译通过，没有调用执行：当前共享还
 dispatch新增maskBlock与maskGuard，不改变首8bridge支持范围，不要求共享扩大01/04 gate。maskBlock按当前面具算基础盾，原生block队列应用Dexterity等宿主修正；maskGuard通过真实Actors.applyPower叠加，Schedule.recordApplied保留原始nil和已有membership区别（首次取得不能传0冒充旧状态），叠加不新增取得位置。真实owner-end依原模块先扣HP再给防守，致死不加盾。
 
 defense_dispatch_test.lua四探针通过，含x13基升各mask与Dexterity、x14基升叠加后真实owner-end、死亡/新战不泄漏、坏数值/false以及Snapshot恢复。首8dispatch_test十探针回归通过。仍是角色模块隔离调用，不宣称x13/x14正式获取、付款、UseCard或共享注册。此前首次本地测试因nil错传0被Schedule拒绝，已修复并重新运行，未保存失败结果为成功证据。
+
+## 独立可执行扩展：x12群攻与x15剥盾
+
+dispatch新增damageAll、breakBlock；群攻不需要不相关单目标，实际群伤经宿主原生damageAll逐敌护甲处理；剥盾按paid稳定ID查活目标后设置其block=0，与宿主removeBlock效果一致，再由后续damage伤同一目标。不是直接改HP，没有更换目标。attack_dispatch_test三探针：两版有无面具双敌护甲、剥盾→攻击同目标顺序、死目标预拒绝，以及故意伤害后异常Snapshot整图与敌引用恢复。旧10+防守4定向回归均通过。仅effect层实际执行，无新增bridge/gate/获取或公共C.play；x13/x14已独审通过的宿主block修饰器差异仍待正式规则确认。

@@ -1,4 +1,4 @@
--- Isolated first-eight plus x13/x14 effect adapter; not registered in shared dispatch.
+-- Isolated first-eight plus x12-x15 effect adapter; not registered in shared dispatch.
 local Plan=require('abyss_xiao_card_plan')
 local Data=require('abyss_xiao_core_data')
 local Actors=require('abyss_actor')
@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -45,12 +45,13 @@ function M.dispatch(combat,state,effect,queue)
   for i=#patch.effects,1,-1 do queue.pushTop(state,{kind='effect',effect=patch.effects[i]})end
   return true
  end
- local all=effect.kind=='plunge'and r.mask>0
+ local all=effect.kind=='damageAll'or effect.kind=='plunge'and r.mask>0
  local target
  if not all then
   for _,enemy in ipairs(state.enemies)do if enemy.id==paid.targetId then target=enemy;break end end
   assert(target and Actors.isActive(target),'invalid Xiao living target')
  end
+ if effect.kind=='breakBlock'then target.block=0;return true end
  local bonus=r.mask>0 and Data.maskRules.attackBonus or 0
  assert(effect.value<=2147483647-bonus,'Xiao attack overflow')
  -- Delegate actual damage, modifiers and reactions to the host queue.

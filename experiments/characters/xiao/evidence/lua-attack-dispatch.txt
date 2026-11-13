@@ -1,0 +1,3 @@
+PASS x12 base/up real AoE armor and mask bonus without single target
+PASS x15 base/up removes same paid targets armor before real damage
+PASS dead target rejects before break and host snapshot restores armor damage and queue
