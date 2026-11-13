@@ -113,3 +113,6 @@ Exact shared `a2d9ed317963570d2874593459d5506be3a75c82` was independently archiv
 
 ## Zero-energy spend contracts39/73
 39 preserves cost0/spend3 jade/ordinary damage6 or8/exhaust;73 cost0/spend3/Weak1 or2/exhaust.84 role admission/effect cases run at zero energy but still require3 jade and a live enemy target. Four actual Snapshot restorations follow faults after native tails; two native damage fixtures independently check Strength/Weak/Vulnerable/Block. This role path never moves the source UID, so it cannot prove exhaustion, duplicate public play rejection or absence of an external resource cycle. Those remain mandatory shared-admission tests; no zero-cost permission bypass is implied. Only existing resource/native ops are reused.
+
+## Parked32/40 role slice
+32 cost1/spend3/counter6 or8 and40 cost1/spend3/Block12 or16/selfRetain/exhaust reuse existing native ops. The84 reserve/version effect cases and four after-effect Snapshot restores passed before integration priority moved to the actual Run propagation blocker. This slice is parked, not queued for release: no public payment,40 retain/exhaust combination or32 full retaliation lifecycle is claimed. Further unintegrated card expansion pauses in favor of the shared Run work. Existing definitions are unchanged.
