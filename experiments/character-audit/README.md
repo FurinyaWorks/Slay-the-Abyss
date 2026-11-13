@@ -51,3 +51,8 @@ At the final captured pass, Ganyu/Keqing/Xiao were clean and produced findings; 
 This directory is a separate utility only. It does not own or modify the character branches, register production data, create an approval, or launch a PR/merge. Backlog CLI was unavailable; no task files were hand-edited.
 
 Independent source review of the first commit found no backup blocker and identified path-alias caching and ambiguous literal parsing. Before backup, roots were canonicalized with realpathSync and private-pool parsing was tightened with an added negative test. Reports in evidence.json were captured before this adapter hardening; the changes do not alter the recorded catalog values. Duplicate-path refusal, mid-run snapshot drift and CLI exit paths have not received dedicated automated fixtures. A future general-purpose parser should use an AST; this small adapter remains limited to manually reviewed declarations.
+
+
+## Unified terminal playground
+
+See [PLAYGROUND.md](PLAYGROUND.md) for the pinned four-character single-battle entry, commands, model snapshots and exact validation boundary. It reuses this audit's snapshot helper and the owners' battle engines.

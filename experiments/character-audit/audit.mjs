@@ -41,7 +41,7 @@ export function literalPool(source,name) {
   const tokens=body.split(',').map(t=>t.trim());if(tokens.at(-1)==='')tokens.pop();
   return tokens.map(t=>{const m=t.match(/^(['"])([A-Za-z0-9_-]+)\1$/);if(!m)throw Error('unsupported pool literals');return m[2];});
 }
-function snapshot(root,dir){
+export function snapshot(root,dir){
  const files=readdirSync(dir).filter(f=>f.endsWith('.mjs')||['cards.json','relic.json','sources.json'].includes(f)).sort();
  return {head:git(root,['rev-parse','HEAD']),dirty:git(root,['status','--porcelain','--untracked-files=all']),
    files:Object.fromEntries(files.map(f=>[f,hash(readFileSync(join(dir,f)))]))};

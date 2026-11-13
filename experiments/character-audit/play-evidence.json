@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "ISOLATED_PLAYGROUND_CANDIDATE",
+  "sourceNamingBalance": "HOLD",
+  "modelSnapshots": [
+    {
+      "character": "ganyu",
+      "cards": 31,
+      "identity": {
+        "character": "ganyu",
+        "root": "/workspace/scratch/c1a4970a76e0/play-pin-ganyu",
+        "head": "c3b152dae42af9c8ddfd1e24d7e2d6026572bf37",
+        "dirty": "",
+        "files": {
+          "accessibility.mjs": "a050b5f14898a2821170d5f45a0ed6283f789cfab2f15725305175ee3f97d997",
+          "acquisition-evidence.mjs": "a17eaca1066119cdb337cd5e56a304b92d3b2510d01803fe3fdc21185fd50536",
+          "acquisition.mjs": "71651650ac2a5e819f195cd70a08e970ad5bbbf305d52810d2882517f3112093",
+          "acquisition.test.mjs": "089a86e5318c621ca024626f78f8af596660de851c5ac83b61269e0f52b762cf",
+          "batch-06.test.mjs": "27d632ff252b1f2bb97712b47d61ee6f041a2b31567827ac7572e1d41c2ebdd0",
+          "batch-07.test.mjs": "ee9a82fcb6f1314581c80fcd2a4859e2dd79bc1a684a1674d132fc91cbb7c608",
+          "batch-08.test.mjs": "e99659957cc9b39fddd89feb8f21a7710919d35b581e5feee0585269a7e2f8f2",
+          "batch-09.test.mjs": "7949a5670dcb5d48184c9030792eea685b0d67abdf46342b86c07f9194cfec01",
+          "batch-10.test.mjs": "2c9302023fe6f045ad94601dad77d13a56ea2d973cf87f8b585d649050e62088",
+          "batch-11.test.mjs": "08e01208086a728ba10ba024e0de150c6b0573005038614c066fb2f51eefe59c",
+          "battle.mjs": "6ce15f3c8135171ce5fca7d60b22a1b9c870eb2a4965ea5aad0c5ceb99a2c7cf",
+          "battle.test.mjs": "8aaa39cd6d7f32170198e17a2b9e92eb258e6cff23dcc9db9f236a3e8b9a7033",
+          "cards.json": "1da423f5e69b43b7b920a31370e329beae60ead18a9298d6fe326b648cb5d40b",
+          "core-support-experiment.mjs": "eed242ffe4f21733dc24e4299cae9796692c17341b14b2c761ce98115035dac2",
+          "deck.mjs": "75fcd21733d8994e3a7ebcfaececc992de0afdfa56dd56ec30f4d6bff77270f7",
+          "defense-experiment.mjs": "a62e3ccfaaa2e63b1f2c698d7467f2271e32fb9241667488661df7b106f6c70f",
+          "draw-experiment.mjs": "acfd3779b2ed34bc2259f84b92a763340cab02a864327fa25757e319c1f63065",
+          "encounter-matrix.mjs": "4d5c55250c1b7250c4a6dd32f80fd4448aedde9ff430efa8e7790b1ad5c58849",
+          "engine.mjs": "266314d3d439936cec493d97f0894595a15709ae3b24098c1b551429a82d7d42",
+          "engine.test.mjs": "83158d450fe804154565bdf771358cf2eb832557d7947321b5e5b6ec7634364d",
+          "play.mjs": "54c509c84bbaab99c3ce94c1b8fd7418b9016b67d466d19a27a9af7644c5c401",
+          "relic.json": "7d033e3d7ce120fe4fa7dccc73918b917d41ea8bd98586047e6c7fe474634e39",
+          "replay-inputs.mjs": "a3d4ecd40c5ba70038666f0bf802c2c1a43abe0691a32f2002932f3b5b7c7466",
+          "sources.json": "08ce0e944186113763d732e2e3381a2d60b3648cf621b9031b999c2d5ae9a321",
+          "validate.mjs": "0ba1501e2357af006b5bc46d2e9a325b21d11458bf9d8ec660f984b8c2fac5e5",
+          "validate.test.mjs": "27619f3046c134e4f6a8a974c4c3fef2bda9fe908de487c235bcd4f4935764d9"
+        }
+      }
+    },
+    {
+      "character": "xiao",
+      "cards": 32,
+      "identity": {
+        "character": "xiao",
+        "root": "/workspace/scratch/c1a4970a76e0/play-pin-xiao",
+        "head": "1e4d02a092f06dbca33f697ffbfdb61925a838bd",
+        "dirty": "",
+        "files": {
+          "batch10.test.mjs": "9956d4a145d1fc5197e71ac83aa7d18763a242a27a513ed53b6e3521835176f6",
+          "batch11.test.mjs": "77fa4dd90ec4e76cb42d362d92edaca7a33498bd93377cdb00f5c105770dbcd8",
+          "batch12.test.mjs": "7734625c792e5adaa82ebdede423a4a7d7d93bfd59ab872d7fe3fd5f950c1400",
+          "batch2.test.mjs": "a37845f0f109ce7a2a978b59a37592e8de856d6496cea532fc723015cb9de94d",
+          "batch3.test.mjs": "0a6b88d399b6ebb61bebf98029e00487d4f5dc05e60d44fa1d090cfb4e781f44",
+          "batch4.test.mjs": "d3d9442a3196ee03a20b5729ded452ca9004ed6f7c5e40135f1a0d8d02101fe7",
+          "batch5.test.mjs": "e8b3ed9c7f299e07d41ddc72062fadf9efe4e84056f150913d704b07ed30778b",
+          "batch6.test.mjs": "98ddf7b719a0ca526123cde490462eb3e6046aa7057a9957c150780213c26b29",
+          "batch7.test.mjs": "ea73ea16bab08345cdc98003179bc20b47c42f35916eae1dbde034b1bacc7e10",
+          "batch8.test.mjs": "ed92846de6f2f0bf6b71916293a7a765bda5799ddba5c99b6964cf49084a1988",
+          "batch9.test.mjs": "510d01927138451ff1306d451f461165c6d7343547cf833a10f5d919e7d283d8",
+          "battle.mjs": "7af5b2d4e7d5fc057d041f427105911f4c379e23a73b21b7ccaebbc58e22d263",
+          "battle.test.mjs": "217417189d0a7715e4986463ff9b9dc34dee1fbe4644ae57da004b8bf23b8085",
+          "campaign.mjs": "ef0a967f091b79415a32a946ac3561b88dabe8460f4ef439367cda6ba16f52c5",
+          "campaign.test.mjs": "c82d0afa692cd37a4ed7c80fd15881d4e2c5cd65c2b0b00ebb5f41c8188377c7",
+          "cards.json": "e34ea6b7aec3f4900869882d80776e157060ea6b84cedf8f258c4e3241ef904d",
+          "deck.mjs": "607545e48c3b79f9c65db4e9bec2dc0bfda3466e3404c66c554e2f01e20223fa",
+          "intent.mjs": "b921e51636577c43e7e2d82c1c5224600bd0a712733d7cbe2f2ad3408c210c75",
+          "model.mjs": "0605b5fbf30b88e9c38a40a3fc34ee74bce23ea74fc0ded390380cd1bbc06055",
+          "model.test.mjs": "b3f78becfa7a8e00ab89ec372c421594acb41fc7253bef6c083147a17e4a7850",
+          "research.mjs": "0440be4e5607cd9eeddd4239239c8b7b2d7e61b852ba261ca5392de607af491f",
+          "research.test.mjs": "e45fc9ee71f8c34609ab644a72d4fe76af1c2a5a6391cf6309b70752e7d00bd3",
+          "sources.json": "edd32b354aa74550797158ed30aa09b5676406ff265200d38f06dd7cc0ae5510"
+        }
+      }
+    },
+    {
+      "character": "keqing",
+      "cards": 24,
+      "identity": {
+        "character": "keqing",
+        "root": "/workspace/scratch/c1a4970a76e0/play-pin-keqing",
+        "head": "d2b078e33260549ffe3da17adb71e46f730fd0d0",
+        "dirty": "",
+        "files": {
+          "acquisition-v2.mjs": "671260877ad3112e4e85a15e9d615a2ab2955ec8ccd67e2a63bd1eb1815f24a6",
+          "acquisition.mjs": "3760b09458188e3a40d4eba6dceb5ec4fcd73f8ee198c9d719ca16c2d80113de",
+          "acquisition.test.mjs": "24ee519acbb41590bf197f3259426bf0600f785d13b5cfb1323e138a6688f9b2",
+          "batch2.test.mjs": "b27c9b35c25cf57f4728e45590838bc65f4c32c7921718ba56aef3d102b41e46",
+          "batch3.test.mjs": "e4a8a57bbd035f667c66d10c99cc8ad9412fec65f91e9f0caa1cbb9137b9e693",
+          "batch4.test.mjs": "a93b28eff2e1cf6e98103e700c3bc7db9a34c780a0bd2acb1e4ab51eaabb7e5c",
+          "batch5.test.mjs": "23efdf74baa0e2f6245aacbbe692b185c440cae39526c5ff90db5bd583adaa48",
+          "batch6.test.mjs": "7d6d359c9ed9a3b447a1420ce1348162ad39a0fd6f2edf81556809f542af0cf7",
+          "battle.mjs": "de7f383545a60eb44052de6229c4b0cc468f756c150dbc5df84d0de288b14ed9",
+          "battle.test.mjs": "03476963627c74405f4fc0b6a8843bc7652bf1e43e6c7f71d0c2bc790dfe643a",
+          "design-candidates.test.mjs": "01488ec0c77075d3be7ef0eb5e90c362e2ceb880051ec36d6afd4494ed1b61df",
+          "mechanics.mjs": "867a2dc9fcc33933901385eb3bfda60f60905a70cdb53c4fb8522a7fbfa5d12a",
+          "mechanics.test.mjs": "68b9f2c842cc4d093f50a22a24a81a3564f43905c919ce541d4321d8b47e4fbc",
+          "pressure-v2.mjs": "07fd120e45eb26cc4a4cc18025a454b964f01a48691e4b74fbe1154c2b67b619",
+          "pressure-v2.test.mjs": "6efbf32af6a60b4742ff675deb559fb0a08b44b4d197bfb7743f1ea84b95b63e",
+          "pressure.mjs": "325572206f92f47ce3af938abe34c75ac2ea49e39cbaacdf7b97cb8e459111d3",
+          "pressure.test.mjs": "12f2d04551fa2dba0bb652585d2f131267ec1d5701a753c3601adec868c3121f",
+          "rewards.mjs": "c4b5f9c06b98290f031fef404f68787f1b8587b58604ca4efaa9e054c9b86265",
+          "rewards.test.mjs": "777ad2998f527bd06ef1f693962c3dbb1375337afde1f4cdb2eb475b83f61aba",
+          "sources.json": "8445e27f6644326b4271a35cfa7f2c968db58c6b566c57a52ee05468308dda71"
+        }
+      }
+    },
+    {
+      "character": "zhongli",
+      "cards": 14,
+      "identity": {
+        "character": "zhongli",
+        "root": "/workspace/scratch/c1a4970a76e0/play-pin-zhongli",
+        "head": "60c54bdea796b6770f129b02f4c6fa76e2367172",
+        "dirty": "",
+        "files": {
+          "access-study.mjs": "7f4eb911187c35cf6c1044ebfab6ee92f1c3c9d9043e75e2d20a80fc2d3c4753",
+          "batch-one.mjs": "2c21b425a5f4d573bc67d17ae3b4304fc93daeefd83b8d4e5684fd2629b03e89",
+          "batch-two.mjs": "9bfae032c06d677656f5dbe95d6b9eea1af60f5d80bb47641b5ece6c6ead311e",
+          "battle.mjs": "d65ed6e3052131773ff6d25ccf51696a9f518d534bda6f1f6c78a307666d0f29",
+          "battle.test.mjs": "49b4f4db387ec0717ec95c6812371fdea648c4bba7c7543e9465a0d6e9c1207e",
+          "draw-policy.test.mjs": "ca88b7ac611e9c3137903ddeb0efac0c90dac86aaa5f2d777059ba6b6d6b09f2",
+          "exposure-study.mjs": "6776a3c4b2630f25b13ae0e3c753cbbef33c65945112b78dd6c4ac179c44a035",
+          "journey-study.mjs": "08047868007647b0b9de2ff1b4faddac2ed3f818e1f047509e81329c27d50168",
+          "journey.mjs": "cc489e43f3138ba39a54b9c99b7be740bac2f2a57ee9732f6e2fa21c66e190d2",
+          "journey.test.mjs": "cbac776e9c09cd7841b88d32f9de183b417fc21150485be1049c61248a5ba94b",
+          "model.mjs": "fe2e66faa3bd3920f68bf528dbe5d16ea5f203366a8a14ef122cf6a65dc34df3",
+          "model.test.mjs": "d05d8b8cabb8db875e499ec53c9b14f4d7b5484badfe619ac3a5c58733d8af31",
+          "play.mjs": "d966a72e941f9ee2c3025362966f114647df7cbd1f051eb42adc4c0d11495551",
+          "pressure.mjs": "92ddfb04d44f7ed7e2d1e3cd7b7381ae0eb25c22a7d7e1c9145d19f081430b20",
+          "retention-study.mjs": "b4d9745708e2a6f39766d054bf606bd9eef02371d2bddf13dec7e1d7f4667252",
+          "sources.json": "2dc950fae55590c2a8766cfba6693faba329d5f047e6ed6cb629dcb471a89cf1"
+        }
+      }
+    }
+  ],
+  "remoteRuntimeComparison": [
+    {
+      "path": "ganyu/engine.mjs",
+      "match": true,
+      "localBlob": "3a0c6cc22a8acda56480db1bea984bd12e9632a8",
+      "remoteBlob": "3a0c6cc22a8acda56480db1bea984bd12e9632a8"
+    },
+    {
+      "path": "ganyu/battle.mjs",
+      "match": true,
+      "localBlob": "1ea7af7503dc509e08bfeebfbb1c3bb78f2f7ec9",
+      "remoteBlob": "1ea7af7503dc509e08bfeebfbb1c3bb78f2f7ec9"
+    },
+    {
+      "path": "ganyu/deck.mjs",
+      "match": true,
+      "localBlob": "f0381aec0a530093ed2e8401804aaacb47ade16f",
+      "remoteBlob": "f0381aec0a530093ed2e8401804aaacb47ade16f"
+    },
+    {
+      "path": "ganyu/cards.json",
+      "match": true,
+      "localBlob": "8fbe069134dd9837dee57de3944da6d59f4a44d7",
+      "remoteBlob": "8fbe069134dd9837dee57de3944da6d59f4a44d7"
+    },
+    {
+      "path": "ganyu/relic.json",
+      "match": true,
+      "localBlob": "40b87fc4c37c7deb6e784420f0bf59c2204c253a",
+      "remoteBlob": "40b87fc4c37c7deb6e784420f0bf59c2204c253a"
+    },
+    {
+      "path": "xiao/model.mjs",
+      "match": true,
+      "localBlob": "bcf70da3aec95bca903920c37ea626c664a722cb",
+      "remoteBlob": "bcf70da3aec95bca903920c37ea626c664a722cb"
+    },
+    {
+      "path": "xiao/battle.mjs",
+      "match": true,
+      "localBlob": "6a93181b7e0a88204325d6a3964505622abd8955",
+      "remoteBlob": "6a93181b7e0a88204325d6a3964505622abd8955"
+    },
+    {
+      "path": "xiao/deck.mjs",
+      "match": true,
+      "localBlob": "32b607be47efad39caba96b972e249d85a13d9e9",
+      "remoteBlob": "32b607be47efad39caba96b972e249d85a13d9e9"
+    },
+    {
+      "path": "xiao/cards.json",
+      "match": true,
+      "localBlob": "b1daf620cd4381566859839ea0aa7ad8d795e2d0",
+      "remoteBlob": "b1daf620cd4381566859839ea0aa7ad8d795e2d0"
+    },
+    {
+      "path": "keqing/mechanics.mjs",
+      "match": false,
+      "localBlob": "bf81bf5bb558bacb33b68f51c8e16e77b040aaaf",
+      "remoteBlob": "87ca3c7aec571f15bec036df03717af68f03b1ac"
+    },
+    {
+      "path": "keqing/battle.mjs",
+      "match": true,
+      "localBlob": "4fda07154670c70f9703d6b9fcc352d66d912f6a",
+      "remoteBlob": "4fda07154670c70f9703d6b9fcc352d66d912f6a"
+    },
+    {
+      "path": "zhongli/model.mjs",
+      "match": true,
+      "localBlob": "e703efb75581e564e90134e61b9988de62b2720d",
+      "remoteBlob": "e703efb75581e564e90134e61b9988de62b2720d"
+    },
+    {
+      "path": "zhongli/battle.mjs",
+      "match": true,
+      "localBlob": "e09613deb4e463de8a65c9fea1f39b028454f74f",
+      "remoteBlob": "e09613deb4e463de8a65c9fea1f39b028454f74f"
+    },
+    {
+      "path": "xiao/intent.mjs",
+      "localBlob": "7a49cd4d612f5c167d3b152133447c6898feb3fa",
+      "remoteBlob": "7a49cd4d612f5c167d3b152133447c6898feb3fa",
+      "match": true
+    }
+  ],
+  "remoteCandidates": {
+    "ganyu": {
+      "sha": "699939561abb1cdf81523d6faaaddb2979afae0d",
+      "files": [
+        "engine.mjs",
+        "battle.mjs",
+        "deck.mjs",
+        "cards.json",
+        "relic.json"
+      ]
+    },
+    "xiao": {
+      "sha": "638b233d7e281ce8d93498073d0c1feb107044df",
+      "files": [
+        "model.mjs",
+        "battle.mjs",
+        "deck.mjs",
+        "cards.json"
+      ]
+    },
+    "keqing": {
+      "sha": "8cab47dc1e3d3316d56c64428924af07360c9a7d",
+      "files": [
+        "mechanics.mjs",
+        "battle.mjs"
+      ]
+    },
+    "zhongli": {
+      "sha": "bcd763bae34a9122140f9d990849839a0a743eb3",
+      "files": [
+        "model.mjs",
+        "battle.mjs"
+      ]
+    }
+  },
+  "tests": {
+    "total": 19,
+    "pass": 19,
+    "skip": 0,
+    "full": "NOT_RUN",
+    "independentReview": {
+      "reviewers": 2,
+      "playTestsEach": 10,
+      "passEach": 10,
+      "scope": "source and pinned terminal contracts; no human approval"
+    },
+    "browser": "NOT_RUN",
+    "native": "NOT_RUN"
+  },
+  "cliSmoke": [
+    {
+      "character": "ganyu",
+      "exit": 0,
+      "stderr": "",
+      "stdout_sha256": "f8ec8d87cd8d1c941bfd8af1204de3f22f27c3e5eff807da417651e86876966a",
+      "stdout_bytes": 25040,
+      "stale_rejection_seen": true,
+      "cancel_seen": true,
+      "reset_seen": true,
+      "end_action_count": 1
+    },
+    {
+      "character": "xiao",
+      "exit": 0,
+      "stderr": "",
+      "stdout_sha256": "d082a05fc1eb2990196afa1853387bb61d37bc84b465d472f2a247c9326d2de0",
+      "stdout_bytes": 23569,
+      "stale_rejection_seen": true,
+      "cancel_seen": true,
+      "reset_seen": true,
+      "end_action_count": 1
+    },
+    {
+      "character": "keqing",
+      "exit": 0,
+      "stderr": "",
+      "stdout_sha256": "1b2658d2f2c0dbf1b46a878948af7998940980633a867039447b4152e195f19a",
+      "stdout_bytes": 27938,
+      "stale_rejection_seen": true,
+      "cancel_seen": true,
+      "reset_seen": true,
+      "end_action_count": 1
+    },
+    {
+      "character": "zhongli",
+      "exit": 0,
+      "stderr": "",
+      "stdout_sha256": "3c3d47b8d31441158ffe1b32feb12553faa443b34c40792ba9070b7376372064",
+      "stdout_bytes": 13350,
+      "stale_rejection_seen": true,
+      "cancel_seen": true,
+      "reset_seen": true,
+      "end_action_count": 1
+    }
+  ],
+  "limitations": [
+    "Single synthetic battle only",
+    "All-candidate mode is an injected test deck, not acquisition",
+    "No persistent upgrades or reward transitions",
+    "Keqing tested local runtime not matched to discovered remote snapshot"
+  ]
+}
