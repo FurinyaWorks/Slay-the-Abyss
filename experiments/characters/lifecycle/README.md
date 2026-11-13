@@ -591,3 +591,27 @@ observed distinct IDs are reported rather than claiming all30 were sampled.
 Focused boundary tests cover rare short offers, finite common exhaustion,
 zero/Prismatic rejection, repeatability, whole-Run publication rollback with RNG
 and object identities, formal pool equality, and caller-source preservation.
+
+### Keqing reviewed-eight equal-weight research acquisition
+
+`abyss_keqing_reward_run.new(data, seed)` adds only the reviewed source-native
+005/009/019/034/052–055 definitions before real source-starter Run construction.
+It explicitly opts into `keqing-reviewed-eight-v1`; starter and other paid cards
+are not silently added to its reward allowlist. Definitions retain special/HOLD
+rarity and exact reviewed source semantics (070c116d), including upgraded values
+and 055 exhaust. The complete source object is checked before each offer.
+
+This research-only domain samples equal-weight identities without replacement,
+up to the requested reward count or eight available identities. It does not roll
+or change rarity offset and does not fabricate common/uncommon/rare. Boss offers
+use this same explicitly limited domain, not a false rare classification. Upgrade
+bits use the existing act chance after identities have all been selected. Short
+offers, zero-offer failure and Prismatic rejection use the explicit experiment
+contract; formal catalogs, reward/shop pools and default Runs remain unchanged.
+The shared CardPool routing also reaches previously scoped relic/event callbacks.
+
+Tests exercise eight fixed seeds' genuinely generated identities, actual claim,
+permanent UID and next Run.play (controlled victory/hand placement), full-source
+flag rejection, bounded exhaustion, zero/Prismatic failure, post-sampling whole
+Run/RNG/alias restoration, repeatability and formal pool preservation. This is
+not official rarity, natural map balance or a complete 75-card release.

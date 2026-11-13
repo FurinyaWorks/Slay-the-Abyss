@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Keqing reviewed eight explicit finite research reward domain',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/keqing-reward-pool.test.lua',{timeout:120000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KEQING_GENERATED_REWARD_PASS 8/);assert.match(r.stdout,/KEQING_REWARD_DOMAIN_PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);});
