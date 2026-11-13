@@ -5,7 +5,7 @@ local Snapshot=require("abyss_snapshot")
 local M={}
 local MAX=2147483647
 local pileNames={"hand","draw","discard","exhaust"}
-local specs={headbutt={source="discard",destination="draw"},exhume={source="exhaust",destination="hand"},
+local specs={keqingInspect={source="draw",destination="hand"},headbutt={source="discard",destination="draw"},exhume={source="exhaust",destination="hand"},
     hologram={source="discard",destination="hand"},seek={source="draw",destination="hand"},
     meditate={source='discard',destination='hand'},omniscience={source='draw',destination='autoplay'}}
 local rarity={basic=0,special=1,common=2,uncommon=3,rare=4,curse=5,status=1}
@@ -54,8 +54,13 @@ end
 local function isExhume(s,card)
     return card.cardId=="exhume" or s.catalog.cards[card.cardId].sourceId=="Exhume"
 end
-local function candidates(s,mode,requested)
+local function candidates(s,mode,requested,window)
     local spec=specs[mode];local result,excluded={},{}
+    if mode=='keqingInspect' then
+        assert(window==3 or window==4,'invalid inspect window')
+        for i=#s.draw,math.max(1,#s.draw-window+1),-1 do result[#result+1]=s.draw[i].uid end
+        return result,excluded
+    end
     for _,card in ipairs(s[spec.source]) do
         if mode=="exhume" and isExhume(s,card) then excluded[#excluded+1]=card.uid
         else result[#result+1]=card.uid end
@@ -102,9 +107,15 @@ local function fresh(s,p,generation)
         or not integer(p.generation,0,MAX) or p.generation~=generation
         or not integer(p.requested,1,MAX) or not integer(p.count,1,p.requested)
         or p.minCount~=p.count or p.maxCount~=p.count or type(p.piles)~="table" then return nil end
+    if p.mode=='keqingInspect' and (p.window~=3 and p.window~=4 or p.requested~=1 or #s.hand>=10 or s.player.noDraw)then return nil end
+    if p.mode=='keqingInspect'then
+        local play=s.pendingPlay;local paid=play and play.keqingPaid
+        if not paid or not paid.inspectStarted or paid.inspectWindow~=p.window or not s.cardInUse
+            or play.uid~=s.cardInUse.uid or paid.uid~=play.uid or paid.turn~=s.turn then return nil end
+    end
     local current=graph(s);if not current or not sameFact(current.using,p.using) then return nil end
     for _,name in ipairs(pileNames) do if not sameList(current.piles[name],p.piles[name]) then return nil end end
-    local uids,excluded=candidates(s,p.mode,p.requested)
+    local uids,excluded=candidates(s,p.mode,p.requested,p.window)
     if not sameList(uids,p.candidateUids) or not sameList(excluded,p.excludedUids)
         or #uids<p.count or p.count~=math.min(p.requested,#uids) then return nil end
     return current
@@ -166,26 +177,30 @@ local function resolve(s,p,uids,current,combat,auto)
     return true
 end
 function M.active(s) return type(s)=="table" and s.pendingPileChoice~=nil end
-function M.begin(s,mode,count,generation,combat)
+function M.begin(s,mode,count,generation,combat,window)
     local spec=assert(specs[mode],"unknown retrieval mode")
     assert(integer(count,0,MAX) and ((mode=="seek" or mode=="hologram" or mode=='meditate') or count==1),"invalid retrieval count")
     assert(integer(generation,0,MAX),"retrieval requires explicit combat generation")
     assert(type(s)=="table" and not s.pendingPileChoice and not s.pendingHandChoice and not s.pendingScry and not s.pendingDiscard,
         "another selection is pending")
     if not live(s) then return true end
+    if mode=='keqingInspect'then
+        assert(window==3 or window==4,'invalid inspect window')
+        if s.player.noDraw or #s.hand>=10 then return true end
+    end
     local current=assert(graph(s),"invalid retrieval piles")
     assert(type(s.events)=="table" and integer(s.turn,0,MAX),"invalid retrieval event state")
     if count==0 or mode=="exhume" and #s.hand==10 then return true end
-    local uids,excluded=candidates(s,mode,count)
+    local uids,excluded=candidates(s,mode,count,window)
     if #uids==0 then return true end
     assert(integer(s.pileChoiceSerial or 0,0,MAX-1),"retrieval token overflow")
     local rawCount=#s[spec.source]
-    local auto=mode~='omniscience' and (mode=="exhume" and rawCount==1 or mode~="exhume" and rawCount<=count)
+    local auto=mode=='keqingInspect'and #uids==1 or mode~='keqingInspect'and mode~='omniscience' and (mode=="exhume" and rawCount==1 or mode~="exhume" and rawCount<=count)
     return transaction(s,function()
         s.pileChoiceSerial=(s.pileChoiceSerial or 0)+1
         local p={mode=mode,source=spec.source,destination=spec.destination,requested=count,count=math.min(count,#uids),
             minCount=math.min(count,#uids),maxCount=math.min(count,#uids),token=s.pileChoiceSerial,generation=generation,
-            turn=s.turn,piles=current.piles,using=current.using,candidateUids=uids,excludedUids=excluded}
+            turn=s.turn,window=window,piles=current.piles,using=current.using,candidateUids=uids,excludedUids=excluded}
         if auto then return resolve(s,p,uids,current,combat,true) end
         s.pendingPileChoice=p
         Events.emit(s,"pile_choice",{mode=mode,source=spec.source,count=p.count,candidates=#uids,token=p.token,generation=generation})

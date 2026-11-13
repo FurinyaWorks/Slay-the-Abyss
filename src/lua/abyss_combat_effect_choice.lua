@@ -1,5 +1,8 @@
 -- Continuation-owned choice operations. Return values preserve pause and early exits.
 local Handlers={}
+function Handlers.keqingInspectStage(c)
+ return require('abyss_keqing_paid_cards').inspect(c.state,c.effect)
+end
 function Handlers.pileChoice(c)
     local state=c.state
     local effect=c.effect

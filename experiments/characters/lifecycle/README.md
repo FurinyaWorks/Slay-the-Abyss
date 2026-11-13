@@ -349,3 +349,17 @@ rollback including RNG/pile aliases, Scry revealed-boundary failure/retry, no
 energy/missing exhaust, and manual/automatic mutated-op/tail rejection. Test pile
 rearrangement and synthetic Scry insertion are controlled fixtures, not natural
 card acquisition claims. No class/catalog registration or full CI is implied.
+
+## Keqing 044 bounded inspect candidate
+
+044 is a strict experimental skill/exhaust face (`keqingInspect` 3/4), not Seek
+or Scry. After real payment it offers only the top 3/4 draw UIDs, top first,
+selects exactly one into hand, and leaves every other draw instance in original
+order. Empty draw, NoDraw, or full hand at effect execution skip without shuffle;
+a single available card moves automatically. Public `C.choosePile` continues the
+same paid queue with token/generation and complete ordered pile graph checks.
+Selection-time NoDraw/capacity or graph changes reject rather than regenerate an
+offer. A revealed choice cannot be cancelled or replayed; faults restore either
+the pre-payment boundary (before play returns) or the already-paid offer boundary
+(on choose), including original pile, pending, RNG and queue aliases. This is a
+candidate-only mode; no formal character/reward registration or balance approval.

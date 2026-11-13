@@ -11,15 +11,20 @@ local function same(a,b)
  return true
 end
 local M={}
-local allowed={damage=true,damageAll=true,block=true,scry=true,keqingDiscard=true}
+local allowed={damage=true,damageAll=true,block=true,scry=true,keqingDiscard=true,keqingInspect=true}
 function M.supportsDiscard(e)
  if type(e)~='table'or getmetatable(e)or e.op~='keqingDiscard'or(e.value~=4 and e.value~=7)then return false end
  for key in pairs(e)do if key~='op'and key~='value'then return false end end
  return true
 end
+function M.supportsInspect(e)
+ if type(e)~='table'or getmetatable(e)or e.op~='keqingInspect'or(e.value~=3 and e.value~=4)then return false end
+ for key in pairs(e)do if key~='op'and key~='value'then return false end end
+ return true
+end
 function M.canUse(state,card)
  if card.keqingCandidate==nil then
-  for _,e in ipairs(card.effects)do if e.op=='keqingDiscard'then return false,'unmarked_keqing_discard'end end
+  for _,e in ipairs(card.effects)do if e.op=='keqingDiscard'or e.op=='keqingInspect'then return false,'unmarked_keqing_choice'end end
   if state.characterOwnerEnd=='keqing'and card.type=='attack'then return false,'keqing_candidate_effect_unavailable'end
   return true
  end
@@ -29,6 +34,11 @@ function M.canUse(state,card)
  for _,e in ipairs(card.effects)do
   if not allowed[e.op]or e.times=='X'then return false,'keqing_candidate_effect_unavailable'end
  end
+ if card.keqingStage=='044'then
+  if card.type~='skill'or card.target~='SELF'or card.exhaust~=true or #card.effects~=1 or not M.supportsInspect(card.effects[1])then return false,'keqing_inspect_unavailable'end
+  return true
+ end
+ for _,e in ipairs(card.effects)do if e.op=='keqingInspect'then return false,'missing_keqing_inspect_stage'end end
  if card.keqingStage=='043'then
   if card.type~='skill'or card.target~='SELF'or #card.effects~=1 or not M.supportsDiscard(card.effects[1])then return false,'keqing_discard_unavailable'end
   return true
@@ -44,6 +54,14 @@ function M.canUse(state,card)
  end
  return true
 end
+function M.inspect(state,e)
+ local p=assert(state.pendingPlay,'missing inspect paid context');local paid=assert(p.keqingPaid,'missing paid inspect plan')
+ assert(Lifecycle.active(state)and state.cardInUse and state.cardInUse.uid==p.uid and p.uid==e.uid
+  and paid.uid==e.uid and paid.turn==state.turn and e.turn==state.turn and e.playId==paid.playId
+  and e.value==paid.inspectWindow and not paid.inspectStarted,'stale inspect stage')
+ paid.inspectStarted=true
+ return require('abyss_pile_choice').begin(state,'keqingInspect',1,state.combatGeneration or 0,nil,e.value)
+end
 function M.prepare(state,card,effects,combat,target)
  if card.keqingCandidate==nil then return effects end
  local ok,why=M.canUse(state,card);assert(ok,why)
@@ -51,6 +69,12 @@ function M.prepare(state,card,effects,combat,target)
  local context=assert(state.pendingPlay,'missing paid card context')
  assert(context.keqingPaid==nil,'duplicate paid card plan')
  context.keqingPaid={turn=state.turn,uid=context.uid,attack=card.type=='attack',infused=card.type=='attack'and r.infusion>0}
+ if card.keqingStage=='044'then
+  local instance=assert(state.cardInUse,'missing paid inspect instance')
+  assert(instance.uid==context.uid and card.effects[1].value==(instance.upgraded and 4 or 3),'invalid inspect face')
+  local paid=context.keqingPaid;paid.inspectWindow=card.effects[1].value;paid.playId=#state.cardsPlayedThisCombat
+  return {{op='keqingInspectStage',value=paid.inspectWindow,uid=context.uid,turn=state.turn,playId=paid.playId}}
+ end
  if card.keqingStage=='043'then
   local instance=assert(state.cardInUse,'missing paid discard instance')
   assert(instance.uid==context.uid and card.effects[1].value==(instance.upgraded and 7 or 4),'invalid discard face')
