@@ -14,11 +14,13 @@ end
 do
  local s=fresh(true);local turn=s.turn
  s.catalog.cards.dazed={id='dazed',type='status',cost=-2,ethereal=true,effects={}}
- s.hand[1].cardId='dazed';s.player.statuses.dark_embrace=1;s.exhaustPowerOrder={'dark_embrace'};s.player.powerOrder={'dark_embrace'}
+ s.hand[1].cardId='dazed';local etherealUid=s.hand[1].uid;s.player.statuses.dark_embrace=1;s.exhaustPowerOrder={'dark_embrace'};s.player.powerOrder={'dark_embrace'}
  local draw=C.draw;local observed=false
  C.draw=function(state,n,...)
   if state==s and not observed then
-   observed=true;eq(state.ganyuResource.charge,2);eq(state.energy,0);eq(state.ganyuResource.storm.turns,2)
+   observed=true;eq(n,1);eq(state.turn,turn)
+   local exhausted=false;for _,c in ipairs(state.exhaust)do if c.uid==etherealUid then exhausted=true end end;assert(exhausted,'draw must follow actual ethereal UID exhaust')
+   eq(state.ganyuResource.charge,2);eq(state.energy,0);eq(state.ganyuResource.storm.turns,2)
   end
   return draw(state,n,...)
  end
