@@ -78,3 +78,5 @@ review_xiao固定01ae745，42/42通过，旧14卡/environment对象比对不变�
 Audit75修订review_xiao正式结案绑定06ce315/treeb3cbf5f3（作者核远端7ac4d8b6）：60条轨迹逐字重放、ID级字段及重复/初始同名限制准确，原实例归因口径阻断关闭。范围仅audit75三文件，不认可source-review已独审，不放行来源/人物/平衡。
 
 Pressure75独审review_xiao绑定1b346913/tree39f5e408（作者核远端27baeaaa）：171/171，120压力和seed3007双trace重放逐字一致；计划先于结果，可见视图不含隐藏堆/RNG。全部死与提前死分布吻合，无技术阻断，不能放行平衡/真人/来源。44-expanded另待审。
+
+44-expanded独审character_rules，review character-rules-ganyu-835ccd9-44-expanded-20261113，绑定835ccd9：171回归、288×8完整结果、7输入hash、gzip重放字节一致，ea17f7a祖先先有计划。目录旧值未改，候选内存finally恢复；固定核心/空堆/保留限制明确，无本证据技术阻断，不代表批准修改或解决设计门禁。

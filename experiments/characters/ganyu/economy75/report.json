@@ -1,0 +1,626 @@
+{
+  "status": "STATIC_RESEARCH_NOT_APPROVAL",
+  "inputs": {
+    "economy75/audit.mjs": "dbceb40a24f49ce46a20cbab9887d6cfa8cc94c248e8a96b7abda3421fffc298",
+    "cards.json": "2412ea17b3ff3b190cf30bea9ba7f5f84d01f6aec3eb684f5fb4685f043e5f9d",
+    "engine.mjs": "931e7cb54ae5652fe1a3bdfaf06b0fa8c7deefc45a86f565a68aa005d816e4fe",
+    "deck.mjs": "75fcd21733d8994e3a7ebcfaececc992de0afdfa56dd56ec30f4d6bff77270f7",
+    "relic.json": "b29f62a33296851f77631ec88a9e279b008868f7d0487727d989af61d008a9e3"
+  },
+  "cards": 75,
+  "flags": {
+    "retain": 11,
+    "exhaust": 25
+  },
+  "maxAdmissionPerPlay": 4,
+  "freeVariants": [
+    {
+      "id": "ganyu-10",
+      "level": "upgrade",
+      "exhaust": false,
+      "admissionBound": 1,
+      "effects": [
+        {
+          "op": "seek_card",
+          "card_id": "ganyu-03"
+        }
+      ]
+    },
+    {
+      "id": "ganyu-11",
+      "level": "base",
+      "exhaust": false,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "block",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ganyu-11",
+      "level": "upgrade",
+      "exhaust": false,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "block",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "ganyu-23",
+      "level": "base",
+      "exhaust": true,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "charge",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ganyu-23",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "charge",
+          "amount": 2
+        },
+        {
+          "op": "block",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ganyu-25",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 1,
+      "effects": [
+        {
+          "op": "seek_card",
+          "card_id": "ganyu-03",
+          "zone": "discard"
+        }
+      ]
+    },
+    {
+      "id": "ganyu-29",
+      "level": "upgrade",
+      "exhaust": false,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "storm_release"
+        }
+      ]
+    },
+    {
+      "id": "ganyu-33",
+      "level": "base",
+      "exhaust": true,
+      "admissionBound": 2,
+      "effects": [
+        {
+          "op": "storm_draw",
+          "amount": 1,
+          "bonus": 1
+        }
+      ]
+    },
+    {
+      "id": "ganyu-33",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 3,
+      "effects": [
+        {
+          "op": "storm_draw",
+          "amount": 1,
+          "bonus": 2
+        }
+      ]
+    },
+    {
+      "id": "ganyu-34",
+      "level": "base",
+      "exhaust": true,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "charged_direct",
+          "direct": 2,
+          "bonus": 6
+        }
+      ]
+    },
+    {
+      "id": "ganyu-34",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "charged_direct",
+          "direct": 3,
+          "bonus": 9
+        }
+      ]
+    },
+    {
+      "id": "ganyu-38",
+      "level": "base",
+      "exhaust": true,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "charged_block",
+          "amount": 2,
+          "bonus": 8
+        }
+      ]
+    },
+    {
+      "id": "ganyu-38",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "charged_block",
+          "amount": 4,
+          "bonus": 10
+        }
+      ]
+    },
+    {
+      "id": "ganyu-39",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 1,
+      "effects": [
+        {
+          "op": "seek_effect",
+          "effect_op": "storm"
+        }
+      ]
+    },
+    {
+      "id": "ganyu-43",
+      "level": "base",
+      "exhaust": true,
+      "admissionBound": 2,
+      "effects": [
+        {
+          "op": "spend_one_draw",
+          "amount": 0,
+          "bonus": 2
+        }
+      ]
+    },
+    {
+      "id": "ganyu-43",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 3,
+      "effects": [
+        {
+          "op": "spend_one_draw",
+          "amount": 0,
+          "bonus": 3
+        }
+      ]
+    },
+    {
+      "id": "ganyu-47",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 1,
+      "effects": [
+        {
+          "op": "block",
+          "amount": 2
+        },
+        {
+          "op": "seek_effect",
+          "effect_op": "block"
+        }
+      ]
+    },
+    {
+      "id": "ganyu-48",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 1,
+      "effects": [
+        {
+          "op": "seek_effect",
+          "effect_op": "charge"
+        }
+      ]
+    },
+    {
+      "id": "ganyu-55",
+      "level": "base",
+      "exhaust": true,
+      "admissionBound": 1,
+      "effects": [
+        {
+          "op": "block",
+          "amount": 1
+        },
+        {
+          "op": "draw",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ganyu-55",
+      "level": "upgrade",
+      "exhaust": true,
+      "admissionBound": 1,
+      "effects": [
+        {
+          "op": "block",
+          "amount": 3
+        },
+        {
+          "op": "draw",
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "reusableFree": [
+    {
+      "id": "ganyu-10",
+      "level": "upgrade",
+      "exhaust": false,
+      "admissionBound": 1,
+      "effects": [
+        {
+          "op": "seek_card",
+          "card_id": "ganyu-03"
+        }
+      ]
+    },
+    {
+      "id": "ganyu-11",
+      "level": "base",
+      "exhaust": false,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "block",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ganyu-11",
+      "level": "upgrade",
+      "exhaust": false,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "block",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "ganyu-29",
+      "level": "upgrade",
+      "exhaust": false,
+      "admissionBound": 0,
+      "effects": [
+        {
+          "op": "storm_release"
+        }
+      ]
+    }
+  ],
+  "nearRoleFamilies": [
+    {
+      "signature": {
+        "target": "enemy",
+        "base": [
+          "damage"
+        ],
+        "upgrade": [
+          "damage"
+        ]
+      },
+      "ids": [
+        "ganyu-01",
+        "ganyu-15",
+        "ganyu-62"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "block"
+        ],
+        "upgrade": [
+          "block"
+        ]
+      },
+      "ids": [
+        "ganyu-02",
+        "ganyu-11",
+        "ganyu-13",
+        "ganyu-26",
+        "ganyu-65"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "enemy",
+        "base": [
+          "charged_shot"
+        ],
+        "upgrade": [
+          "charged_shot"
+        ]
+      },
+      "ids": [
+        "ganyu-03",
+        "ganyu-27",
+        "ganyu-51"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "block",
+          "aoe"
+        ],
+        "upgrade": [
+          "block",
+          "aoe"
+        ]
+      },
+      "ids": [
+        "ganyu-04",
+        "ganyu-61"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "storm"
+        ],
+        "upgrade": [
+          "storm"
+        ]
+      },
+      "ids": [
+        "ganyu-05",
+        "ganyu-18",
+        "ganyu-31",
+        "ganyu-59"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "draw"
+        ],
+        "upgrade": [
+          "draw"
+        ]
+      },
+      "ids": [
+        "ganyu-07",
+        "ganyu-24",
+        "ganyu-54"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "block",
+          "draw"
+        ],
+        "upgrade": [
+          "block",
+          "draw"
+        ]
+      },
+      "ids": [
+        "ganyu-08",
+        "ganyu-55",
+        "ganyu-63"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "block",
+          "charge"
+        ],
+        "upgrade": [
+          "block",
+          "charge"
+        ]
+      },
+      "ids": [
+        "ganyu-09",
+        "ganyu-36",
+        "ganyu-56"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "seek_card"
+        ],
+        "upgrade": [
+          "seek_card"
+        ]
+      },
+      "ids": [
+        "ganyu-10",
+        "ganyu-25"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "block",
+          "storm"
+        ],
+        "upgrade": [
+          "block",
+          "storm"
+        ]
+      },
+      "ids": [
+        "ganyu-14",
+        "ganyu-75"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "enemy",
+        "base": [
+          "charged_direct"
+        ],
+        "upgrade": [
+          "charged_direct"
+        ]
+      },
+      "ids": [
+        "ganyu-17",
+        "ganyu-34"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "charged_block"
+        ],
+        "upgrade": [
+          "charged_block"
+        ]
+      },
+      "ids": [
+        "ganyu-19",
+        "ganyu-38"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "aoe"
+        ],
+        "upgrade": [
+          "aoe"
+        ]
+      },
+      "ids": [
+        "ganyu-21",
+        "ganyu-28"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "enemy",
+        "base": [
+          "damage",
+          "draw"
+        ],
+        "upgrade": [
+          "damage",
+          "draw"
+        ]
+      },
+      "ids": [
+        "ganyu-22",
+        "ganyu-73"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "charged_aoe"
+        ],
+        "upgrade": [
+          "charged_aoe"
+        ]
+      },
+      "ids": [
+        "ganyu-35",
+        "ganyu-40"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "seek_effect"
+        ],
+        "upgrade": [
+          "seek_effect"
+        ]
+      },
+      "ids": [
+        "ganyu-39",
+        "ganyu-48"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    },
+    {
+      "signature": {
+        "target": "self",
+        "base": [
+          "spend_one_block"
+        ],
+        "upgrade": [
+          "spend_one_block"
+        ]
+      },
+      "ids": [
+        "ganyu-42",
+        "ganyu-74"
+      ],
+      "reason": "same effect-order skeleton only; flags/cost/values/conditional availability may differ, not a redundancy verdict"
+    }
+  ],
+  "finiteTurnScope": "Finite initial inventory N and starting energy E, no external card/energy generators and no turn advance. Positive plays <=E, zero-cost exhaust plays <=N. Other free plays have no draw except seeking positive-cost core03. Conservatively hand-start + (maxAdmission+1)*(N+E) bounds plays (free core seeks <=N+E); not a runtime bound across turns or external production effects."
+}
