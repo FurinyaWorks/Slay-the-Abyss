@@ -173,3 +173,40 @@ Action enumeration now evaluates the resulting Weak state, not original intent d
 and lethal handling. Source and balance review remain HOLD. STS1 comparison candidates are
 Clothesline (attack plus Weak) and Sucker Punch (attack plus Weak); their exact pinned source
 values have NOT been verified here, so they do not yet count as B-GATE references.
+
+### Second responsibility batch: eleven research candidates (0.5, HOLD)
+Prior ninth-card snapshot a10b3df/local7bd88fe was independently checked as
+character-rules-zhongli-7bd88fe-weak-20261113: 53/53 plus 1002 independent rounding oracle
+cases. That review does not automatically approve this new batch.
+
+zl10: cost2 block20, upgrade26; exhaust after resolution. Unlike zl03's reusable jade,
+this saves a heavy-hit turn but leaves no persistent protection on quiet turns and cannot
+be redrawn this battle. Complete hand/draw/discard/exhaust ownership is validated. Exhaust
+resets on the next battle. Production baseline903bf2a abyss_combat.lua:887 routes exhaust
+cards to exhaust rather than discard; this experiment does not port exhaust triggers,
+recovery effects or relic interactions. They remain unsupported rather than silently tested.
+
+zl11: cost1 damage5 then, if jade>=6, extra6; upgrade damage7 then extra8. No jade spent.
+This adds a maintain-defense payoff, distinct from zl04's risky consume-defense payoff.
+Threshold is shared by text/runtime. Below threshold it underperforms the basic strike;
+above threshold it offers tempo while preserving the defense resource. The two sequential
+damage effects are deliberate. Both slots are project adaptations, not official named
+abilities or approved character identity; pending display names and source HOLD retained.
+Old card numbers unchanged. Candidate values are unapproved hypotheses, not balance fixes.
+
+61 local tests include independent base/upgrade outputs, threshold0/5/6/7/20, enemy armor,
+no resource consumption, opposite quiet/heavy contexts, exhausted ownership across ten
+reshuffles, duplicate-in-exhaust rejection, new-battle reset, cancellation/payment/target.
+Balance reference candidates: Impervious/Flame Barrier for emergency defense; Body Slam/
+Sucker Punch for conditional output comparisons. Exact original-source numerical comparisons
+are still missing and do not count as completed B-GATE evidence.
+
+New evidence batch-two.mjs: 120 single battles on seeds4001..4010; three families, baseline
+and fixed single addition of zl09/zl10/zl11, defensive visible-state policy. Deliberately
+not natural rewards: guaranteed added card and changed deck-size shuffle mapping are
+confounders. In heavy fixtures baseline9 wins/1 truncate, loss P50/P90 45/54; zl09 10wins
+20/29; zl10 10wins30/40; zl11 10wins32/42. Growing all groups zero-loss floor. Multi-hit
+zl11 P90loss4 versus baseline1 is a downside case, not silently discarded. Small-n and
+myopic policy prohibit population balance/fun inference; no values changed after results.
+The frozen three-room reward pool is unchanged and still does not include these additions.
+Full75 still64 missing; this batch does not pass G1/G5/G7/G8 or production integration.

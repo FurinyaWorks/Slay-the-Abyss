@@ -47,7 +47,9 @@
     "zl06",
     "zl07",
     "zl08",
-    "zl09"
+    "zl09",
+    "zl10",
+    "zl11"
   ],
   "degradation": "No P2/P3/P4 name adopted; higher priority evidence incomplete. Display names stay unique pending placeholders.",
   "next": "Complete Chinese P1/P2 index, validate proposed shield-consumption identity, obtain naming and balance review; no human approval inferred.",
@@ -80,6 +82,8 @@
     "zl-relic01": "Battle-start three jade is a new unapproved starter relic effect. No official relic claimed.",
     "zl07": "Hybrid damage/block research slot; Chinese name and P1 mapping pending.",
     "zl08": "Damage plus persistent jade research slot; no official named skill asserted.",
-    "zl09": "Ordinary-attack Weak duration is a project combat vocabulary adaptation of defensive suppression, NOT official Zhongli petrification or resistance reduction. Name and identity review HOLD."
+    "zl09": "Ordinary-attack Weak duration is a project combat vocabulary adaptation of defensive suppression, NOT official Zhongli petrification or resistance reduction. Name and identity review HOLD.",
+    "zl10": "Single-battle exhaust emergency block is a proposed project adaptation, not an official named Zhongli skill; official shielding supports general role only. Naming/balance HOLD.",
+    "zl11": "Guard-threshold damage payoff without consuming jade is a project adaptation. Not an official shield-to-damage formula. Naming/balance HOLD."
   }
 }

@@ -1,0 +1,1231 @@
+{
+  "scope": "120 single battles with fixed one-card additions, visible-state defense policy. Not reward/natural construction or balance approval.",
+  "seeds": "4001..4010 exploratory previously unused; no tuning",
+  "limitations": "deck thickness and shuffle mapping differ; fixed added candidate is guaranteed unlike real rewards; no Artifact or complex enemy effects",
+  "groups": [
+    {
+      "family": "growing",
+      "added": null,
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 0,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 5,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 5,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 0,
+          "unpayableAtStart": 0,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 3
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 4
+        }
+      ]
+    },
+    {
+      "family": "growing",
+      "added": "zl09",
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 0,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        }
+      ]
+    },
+    {
+      "family": "growing",
+      "added": "zl10",
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 0,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 5,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        }
+      ]
+    },
+    {
+      "family": "growing",
+      "added": "zl11",
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 0,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        }
+      ]
+    },
+    {
+      "family": "large",
+      "added": null,
+      "n": 10,
+      "wins": 9,
+      "deaths": 0,
+      "truncated": 1,
+      "lossP50": 45,
+      "lossP90": 54,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 54,
+          "turns": 17,
+          "deadPayoffDraws": 8,
+          "unpayableAtStart": 8,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 38,
+          "turns": 9,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 45,
+          "turns": 12,
+          "deadPayoffDraws": 6,
+          "unpayableAtStart": 6,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 38,
+          "turns": 12,
+          "deadPayoffDraws": 6,
+          "unpayableAtStart": 6,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4005,
+          "outcome": "truncated",
+          "loss": 52,
+          "turns": 20,
+          "deadPayoffDraws": 10,
+          "unpayableAtStart": 10,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 45,
+          "turns": 12,
+          "deadPayoffDraws": 6,
+          "unpayableAtStart": 6,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 33,
+          "turns": 9,
+          "deadPayoffDraws": 5,
+          "unpayableAtStart": 5,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 47,
+          "turns": 11,
+          "deadPayoffDraws": 5,
+          "unpayableAtStart": 5,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 34,
+          "turns": 10,
+          "deadPayoffDraws": 5,
+          "unpayableAtStart": 5,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 58,
+          "turns": 19,
+          "deadPayoffDraws": 9,
+          "unpayableAtStart": 9,
+          "firstPayoff": null
+        }
+      ]
+    },
+    {
+      "family": "large",
+      "added": "zl09",
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 20,
+      "lossP90": 29,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 20,
+          "turns": 5,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 18,
+          "turns": 9,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 29,
+          "turns": 7,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 15,
+          "turns": 5,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 26,
+          "turns": 10,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 19,
+          "turns": 7,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": 7
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 18,
+          "turns": 6,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 23,
+          "turns": 9,
+          "deadPayoffDraws": 5,
+          "unpayableAtStart": 5,
+          "firstPayoff": 9
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 31,
+          "turns": 10,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 26,
+          "turns": 10,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        }
+      ]
+    },
+    {
+      "family": "large",
+      "added": "zl10",
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 30,
+      "lossP90": 40,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 25,
+          "turns": 9,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 25,
+          "turns": 9,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 23,
+          "turns": 7,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 29,
+          "turns": 8,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 30,
+          "turns": 9,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 31,
+          "turns": 10,
+          "deadPayoffDraws": 5,
+          "unpayableAtStart": 5,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 33,
+          "turns": 10,
+          "deadPayoffDraws": 5,
+          "unpayableAtStart": 5,
+          "firstPayoff": 10
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 40,
+          "turns": 13,
+          "deadPayoffDraws": 6,
+          "unpayableAtStart": 6,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 50,
+          "turns": 19,
+          "deadPayoffDraws": 9,
+          "unpayableAtStart": 9,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 33,
+          "turns": 13,
+          "deadPayoffDraws": 6,
+          "unpayableAtStart": 6,
+          "firstPayoff": null
+        }
+      ]
+    },
+    {
+      "family": "large",
+      "added": "zl11",
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 32,
+      "lossP90": 42,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 29,
+          "turns": 7,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 41,
+          "turns": 10,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 34,
+          "turns": 7,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 25,
+          "turns": 5,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 32,
+          "turns": 8,
+          "deadPayoffDraws": 4,
+          "unpayableAtStart": 4,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 40,
+          "turns": 9,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 29,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 4
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 45,
+          "turns": 12,
+          "deadPayoffDraws": 6,
+          "unpayableAtStart": 6,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 42,
+          "turns": 11,
+          "deadPayoffDraws": 5,
+          "unpayableAtStart": 5,
+          "firstPayoff": 11
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 29,
+          "turns": 7,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": null
+        }
+      ]
+    },
+    {
+      "family": "multi",
+      "added": null,
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 1,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 4
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 5,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 4
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 5,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 1,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 3
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 4,
+          "turns": 5,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        }
+      ]
+    },
+    {
+      "family": "multi",
+      "added": "zl09",
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 1,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 0,
+          "unpayableAtStart": 0,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 5,
+          "deadPayoffDraws": 3,
+          "unpayableAtStart": 3,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 1,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 1,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 5,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 1,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        }
+      ]
+    },
+    {
+      "family": "multi",
+      "added": "zl10",
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 0,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 5,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 6,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 4,
+          "turns": 5,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 1
+        }
+      ]
+    },
+    {
+      "family": "multi",
+      "added": "zl11",
+      "n": 10,
+      "wins": 10,
+      "deaths": 0,
+      "truncated": 0,
+      "lossP50": 0,
+      "lossP90": 4,
+      "rows": [
+        {
+          "seed": 4001,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 0,
+          "unpayableAtStart": 0,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4002,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4003,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4004,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 3,
+          "deadPayoffDraws": 0,
+          "unpayableAtStart": 0,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4005,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": null
+        },
+        {
+          "seed": 4006,
+          "outcome": "win",
+          "loss": 4,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4007,
+          "outcome": "win",
+          "loss": 4,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4008,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 2
+        },
+        {
+          "seed": 4009,
+          "outcome": "win",
+          "loss": 0,
+          "turns": 4,
+          "deadPayoffDraws": 2,
+          "unpayableAtStart": 2,
+          "firstPayoff": 1
+        },
+        {
+          "seed": 4010,
+          "outcome": "win",
+          "loss": 4,
+          "turns": 3,
+          "deadPayoffDraws": 1,
+          "unpayableAtStart": 1,
+          "firstPayoff": 1
+        }
+      ]
+    }
+  ]
+}

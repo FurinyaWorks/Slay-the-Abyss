@@ -34,3 +34,10 @@ test('every public boundary rejects malformed battle atomically',()=>{
     }
   }
 });
+test('exhausted card remains owned but never reshuffles into battle hand',()=>{
+ let s=battleStart({deck:['zl10','zl01']});const key=s.hand.find(k=>s.instances[k].id==='zl10');s=playInstance(s,key).state;
+ assert.deepEqual(s.exhaust,[key]);assert.equal(Object.keys(s.instances).length,2);
+ for(let i=0;i<10;i++){s=nextTurn(s,[]);assert.equal(s.hand.length,1);assert.equal(s.hand.includes(key),false);}
+ const broken=structuredClone(s);broken.draw.push(key);const before=structuredClone(broken);assert.throws(()=>draw(broken),/invalid battle/);assert.deepEqual(broken,before);
+ assert.equal(battleStart({deck:['zl10','zl01']}).exhaust.length,0);
+});

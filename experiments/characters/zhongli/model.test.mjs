@@ -2,22 +2,22 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3)s.jade=6;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7,8].includes(i))assert.equal(r.state.enemy.hp,40-value);
-    if([1,5].includes(i))assert.equal(r.state.block,value);
+    if([0,3,4,6,7,8,10].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([1,5,9].includes(i))assert.equal(r.state.block,value);
     if(i===2)assert.equal(r.state.jade,value);
     if(i===3)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
     if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
-    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,['a']);
+    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,i===9?[]:['a']); if(i===9)assert.deepEqual(r.state.exhaust,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
   });
 }
@@ -105,4 +105,27 @@ test('weak invalid target, payment, cancel, overflow rollback and lethal does no
  const poor=initialState();poor.energy=0;assert.equal(run('zl09',poor).ok,false);
  const overflow=initialState();overflow.enemy.weak=Number.MAX_SAFE_INTEGER;const before=structuredClone(overflow);assert.equal(run('zl09',overflow).ok,false);assert.deepEqual(overflow,before);
  const dying=initialState();dying.enemy.hp=5;const killed=run('zl09',dying).state;assert.equal(killed.enemy.hp,0);assert.equal(killed.enemy.weak,0);assert.equal(endTurn(killed,[99]).hp,60);
+});
+test('guarded payoff threshold minus/at/plus, both versions, armor and no shield spend',()=>{
+ for(const u of [false,true])for(const jade of [0,5,6,7,20]){
+  const s=initialState();s.jade=jade;s.enemy.block=3;
+  const r=run('zl11',s,u).state;assert.equal(r.enemy.hp,40-(u?7:5)-(jade>=6?(u?8:6):0)+3);assert.equal(r.jade,jade);
+ }
+ const unguarded=run('zl11').state;assert.equal(unguarded.enemy.hp,35);
+ const basic=run('zl01').state;assert.equal(basic.enemy.hp,34);
+});
+test('one-shot block trades persistent resource for stronger immediate defense',()=>{
+ const s=initialState();const burst=run('zl10',s).state,wall=run('zl03',s).state;
+ assert.equal(endTurn(burst,[20]).hp,60);assert.equal(endTurn(wall,[20]).hp,52);
+ assert.equal(endTurn(burst,[]).jade,0);assert.equal(endTurn(wall,[]).jade,12);
+ assert.equal(burst.energy,1);assert.deepEqual(burst.exhaust,['a']);
+ assert.equal(play(burst,{id:'zl10',instance:'a'}).ok,false);
+});
+test('new cards reject cancellation, wrong enemy target and insufficient payment atomically',()=>{
+ for(const id of ['zl10','zl11'])for(const u of [false,true]){
+  const s=initialState();s.instances.a={id,upgraded:u};const before=structuredClone(s);
+  const cancelled=play(s,{id,instance:'a',upgraded:u,cancel:true,target:'enemy'});assert.equal(cancelled.state,s);assert.deepEqual(s,before);
+  s.energy=0;const poor=structuredClone(s);assert.equal(play(s,{id,instance:'a',upgraded:u,target:'enemy'}).ok,false);assert.deepEqual(s,poor);
+ }
+ const s=initialState();s.instances.a={id:'zl11',upgraded:false};assert.equal(play(s,{id:'zl11',instance:'a',target:'self'}).ok,false);
 });

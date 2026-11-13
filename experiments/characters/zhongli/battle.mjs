@@ -10,8 +10,8 @@ export function validateBattle(s) {
   for(const n of [s.hp,s.energy,s.block,s.jade,s.enemy.hp,s.enemy.block,s.enemy.weak ?? 0,s.turn,s.rng])
     if(!Number.isSafeInteger(n)||n<0)throw new Error('invalid battle');
   if(s.hp>60||s.jade>JADE_CAP||s.turn<1||s.rng>0xffffffff||typeof s.relicApplied!=='boolean')throw new Error('invalid battle');
-  if(![s.hand,s.draw,s.discard].every(Array.isArray)||s.hand.length>10)throw new Error('invalid battle');
-  const zones=[...s.hand,...s.draw,...s.discard], keys=Object.keys(s.instances);
+  if(![s.hand,s.draw,s.discard,s.exhaust].every(Array.isArray)||s.hand.length>10)throw new Error('invalid battle');
+  const zones=[...s.hand,...s.draw,...s.discard,...s.exhaust], keys=Object.keys(s.instances);
   if(new Set(zones).size!==zones.length||zones.length!==keys.length)throw new Error('invalid battle');
   for(const key of zones){
     const c=s.instances[key];
