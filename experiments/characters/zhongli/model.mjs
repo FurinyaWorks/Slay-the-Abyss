@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.22.0';
+export const VERSION = 'zhongli-mechanics-0.23.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -33,6 +33,7 @@ export const cards = [
   {...card('zl26', '保留储备直到防线耗损，牺牲即时强度并占手牌槽', 'common', 2, [['jade', 10]], [['jade', 14]]), selfRetain: true},
   {...card('zl27', '拆除已投资岩脊兑现一次终结，失去后续持续输出', 'common', 1, [['spendPillar', 1], ['damage', 24]], [['spendPillar', 1], ['damage', 32]], 'enemy'), exhaust: true},
   card('zl28', '放弃伤害以延长敌方减压并储备少量持久防线', 'common', 2, [['jade', 5], ['weak', 2]], [['jade', 7], ['weak', 3]], 'enemy'),
+  card('zl29', '维持防线开启后续易伤窗口，残弱防线仅给低伤害', 'common', 1, [['guardedVulnerable', 2], ['damage', 4]], [['guardedVulnerable', 3], ['damage', 6]], 'enemy'),
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
@@ -44,7 +45,7 @@ export function incomingAttack(hit, weak = 0) { return weak > 0 ? Math.floor(hit
 export function textFor(id, upgraded = false) {
   const c = cards.find(c => c.id === id);
   if (!c) throw new Error('unknown card');
-  const terms = { pillarBlock: n => `获得当前岩脊强度×${n}点格挡（无柱则0，不消耗岩脊）`, spendPillar: () => `需已有岩脊；拆除全部岩脊强度（不回收能力牌，本战后续脉冲停止）`, pulse: n => `触发当前岩脊${n}次固定伤害（未建立则0；逐次扣敌格挡，击杀停止，不消耗岩脊）`, pillar: n => `建立每轮玩家结束时造成${n}点固定伤害的岩脊（先扣敌格挡；取较高强度，不叠加；本战持续）`, emptyJade: n => `若结算时玉璋为0，获得${n}点玉璋（上限${JADE_CAP}；否则无收益，费用不退）`, jadeDamage: n => `造成等同结算时当前玉璋${n?`+${n}`:''}的单次普通伤害（不消耗玉璋）`, removeBlock: () => `先移除目标全部格挡（不是伤害）`, counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
+  const terms = { guardedVulnerable: n => `若当前玉璋至少${GUARD_THRESHOLD}，先施加${n}回合易伤（普通伤害${VULNERABLE_PERCENT}%，时长相加，不消耗玉璋）`, pillarBlock: n => `获得当前岩脊强度×${n}点格挡（无柱则0，不消耗岩脊）`, spendPillar: () => `需已有岩脊；拆除全部岩脊强度（不回收能力牌，本战后续脉冲停止）`, pulse: n => `触发当前岩脊${n}次固定伤害（未建立则0；逐次扣敌格挡，击杀停止，不消耗岩脊）`, pillar: n => `建立每轮玩家结束时造成${n}点固定伤害的岩脊（先扣敌格挡；取较高强度，不叠加；本战持续）`, emptyJade: n => `若结算时玉璋为0，获得${n}点玉璋（上限${JADE_CAP}；否则无收益，费用不退）`, jadeDamage: n => `造成等同结算时当前玉璋${n?`+${n}`:''}的单次普通伤害（不消耗玉璋）`, removeBlock: () => `先移除目标全部格挡（不是伤害）`, counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
   return `${c.cost}能量；${(upgraded ? c.upgraded : c.base).map(([op, n]) => terms[op](n)).join('；')}${c.exhaust ? '；消耗（本战不再抽到）' : ''}${c.power ? '；能力（打出后离开抽弃消耗循环）' : ''}${c.selfRetain ? '；保留（未打出则留在手中，占用手牌槽）' : ''}。`;
 }
 export function initialState(hand = ['a','b','c','d','e','f']) {
@@ -68,14 +69,14 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if (c.target === 'enemy' && target !== 'enemy') return { ok: false, reason: 'invalid target', state };
   if (typeof upgraded !== 'boolean' || upgraded !== state.instances[instance].upgraded) return { ok: false, reason: 'invalid upgrade', state };
   const effects = upgraded ? c.upgraded : c.base;
-  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter','removeBlock','jadeDamage','emptyJade','pillar','pulse','spendPillar','pillarBlock'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
+  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter','removeBlock','jadeDamage','emptyJade','pillar','pulse','spendPillar','pillarBlock','guardedVulnerable'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
   if(effects.some(([op,n])=>['removeBlock','spendPillar'].includes(op)&&n!==1))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op],i)=>op==='draw'&&i!==effects.length-1))return {ok:false,reason:'invalid effect',state};
   const draws=effects.filter(([op])=>op==='draw').reduce((n,[,v])=>n+v,0);
   if(draws>10)return {ok:false,reason:'invalid effect',state};
   const retaliation=effects.filter(([op])=>op==='counter').reduce((n,[,v])=>n+v,state.counter ?? 0);
   if(!Number.isSafeInteger(retaliation))return {ok:false,reason:'invalid effect',state};
-  const vulnerability=effects.filter(([op])=>op==='vulnerable').reduce((n,[,v])=>n+v,state.enemy.vulnerable ?? 0);
+  const vulnerability=effects.filter(([op])=>op==='vulnerable'||op==='guardedVulnerable').reduce((n,[,v])=>n+v,state.enemy.vulnerable ?? 0);
   if(!Number.isSafeInteger(vulnerability)||effects.some(([op,n])=>['damage','guardedDamage'].includes(op)&&!Number.isSafeInteger(outgoingAttack(n,vulnerability))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='jadeDamage'&&(!Number.isSafeInteger(JADE_CAP+n)||!Number.isSafeInteger(outgoingAttack(JADE_CAP+n,vulnerability)))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='pulse'&&(n<1||n>PULSE_LIMIT||!Number.isSafeInteger((state.pillar ?? 0)*n))))return {ok:false,reason:'invalid effect',state};
@@ -97,6 +98,7 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
     if(op==='pillar')next.pillar=Math.max(next.pillar ?? 0,n);
     if (op === 'draw')next.pendingDraw=(next.pendingDraw ?? 0)+n;
     if(op==='counter')next.counter=(next.counter ?? 0)+n;
+    if(op==='guardedVulnerable'&&next.enemy.hp>0&&next.jade>=GUARD_THRESHOLD)next.enemy.vulnerable=(next.enemy.vulnerable ?? 0)+n;
     if(op==='vulnerable'&&next.enemy.hp>0)next.enemy.vulnerable=(next.enemy.vulnerable ?? 0)+n;
     if (op === 'weak' && next.enemy.hp > 0) next.enemy.weak = (next.enemy.weak ?? 0) + n;
     if (op === 'block') next.block += n;

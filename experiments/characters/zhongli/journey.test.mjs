@@ -159,3 +159,9 @@ test('suppression reserve v18 can be acquired without injecting it and older poo
  let s=journeyStart(seed,{poolVersion:'v18'});s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const choice=selectReward(rewardView(s),'suppressReserve');
  assert.equal(s.offer[choice-1],'zl28');s=takeReward(s,choice);assert.ok(s.deck.includes('zl28'));for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v17').includes('zl28'));
 });
+
+test('guarded exposure v19 reward has actual acquisition and previous pool unchanged',()=>{
+ let seed=1;while(seed<10000&&!offers(seed,1,'v19').includes('zl29'))seed++;assert.ok(seed<10000);
+ let s=journeyStart(seed,{poolVersion:'v19'});s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const choice=selectReward(rewardView(s),'guardedExpose');assert.equal(s.offer[choice-1],'zl29');s=takeReward(s,choice);assert.ok(s.deck.includes('zl29'));
+ for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v18').includes('zl29'));
+});

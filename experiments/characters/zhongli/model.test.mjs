@@ -2,14 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23)s.jade=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7,8,10,13,16,17,21,26].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([0,3,4,6,7,8,10,13,16,17,21,26,28].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
     if(i===20)assert.equal(r.state.pillar,value);
@@ -451,4 +451,29 @@ test('suppression reserve longer window can favor next-turn defense but not inst
  assert.equal(endTurn(a,[20]).hp,43);assert.equal(endTurn(b,[20]).hp,50);
  const s=initialState(['a']);s.instances.a={id:'zl28',upgraded:false};
  for(const change of [{hp:0},{enemy:{...s.enemy,hp:0}},{energy:1}]){const t={...s,...change},before=structuredClone(t);assert.equal(play(t,{id:'zl28',instance:'a',target:'enemy'}).state,t);assert.deepEqual(t,before);}
+});
+
+test('guarded exposure threshold is inclusive and sampled before own ordinary hit without consuming jade',()=>{
+ for(const u of [false,true])for(const jade of [0,5,6,20])for(const existing of [0,2])for(const block of [0,5,20]){
+  const s=initialState();s.jade=jade;s.enemy.vulnerable=existing;s.enemy.block=block;const before=structuredClone(s),r=run('zl29',s,u);
+  const duration=existing+(jade>=6?(u?3:2):0),damage=(u?6:4)*(duration?1.5:1);
+  assert.equal(r.ok,true);assert.equal(r.state.enemy.vulnerable,duration);assert.equal(r.state.enemy.hp,40-Math.max(0,damage-block));assert.equal(r.state.enemy.block,Math.max(0,block-damage));assert.equal(r.state.jade,jade);assert.equal(r.state.energy,2);assert.deepEqual(s,before);
+ }
+});
+test('guarded exposure state changes the useful choice versus unconditional debuff and direct guarded damage',()=>{
+ const low=initialState();low.jade=5;const conditional=run('zl29',low).state,unconditional=run('zl13',low).state;assert.equal(conditional.enemy.vulnerable,0);assert.equal(unconditional.enemy.vulnerable,2);
+ const high=initialState();high.jade=6;const exposed=run('zl29',high).state,direct=run('zl11',high).state;
+ assert.equal(exposed.enemy.hp,34);assert.equal(direct.enemy.hp,29);assert.equal(exposed.enemy.vulnerable,2);assert.equal(direct.enemy.vulnerable,0);
+});
+test('guarded exposure rejects invalid target, payment, malformed duration and potential stacking overflow without changes',()=>{
+ const s=initialState(['a']);s.instances.a={id:'zl29',upgraded:false};s.jade=6;const before=structuredClone(s);
+ for(const options of [{cancel:true},{target:'self'}]){assert.equal(play(s,{id:'zl29',instance:'a',target:'enemy',...options}).state,s);assert.deepEqual(s,before);}
+ for(const patch of [{energy:0},{hp:0},{enemy:{...s.enemy,hp:0}},{enemy:{...s.enemy,vulnerable:Number.MAX_SAFE_INTEGER}}]){const t={...s,...patch},copy=structuredClone(t);assert.equal(play(t,{id:'zl29',instance:'a',target:'enemy'}).state,t);assert.deepEqual(t,copy);}
+ const c=cards.find(c=>c.id==='zl29'),old=c.base;try{for(const n of [NaN,-1,Number.MAX_SAFE_INTEGER]){c.base=[['guardedVulnerable',n],['damage',Number.MAX_SAFE_INTEGER]];assert.equal(play(s,{id:'zl29',instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,before);}}finally{c.base=old;}
+});
+
+test('guarded exposure versus unconditional debuff plus strike trades setup for one fewer card and energy',()=>{
+ const low=initialState(),pair=run('zl01',run('zl13',low).state).state;assert.equal(pair.enemy.hp,31);assert.equal(pair.enemy.vulnerable,2);assert.equal(pair.energy,1);
+ const high={...initialState(),jade:6},single=run('zl29',high).state;assert.equal(single.enemy.hp,34);assert.equal(single.enemy.vulnerable,2);assert.equal(single.energy,2);assert.equal(single.jade,6);
+ const missing=run('zl29',low).state;assert.equal(missing.enemy.hp,36);assert.equal(missing.enemy.vulnerable,0);
 });

@@ -169,3 +169,11 @@ test('collapse does not return Power to circulation, exhausts once and new battl
  for(let i=0;i<10;i++){s=nextTurn(s,[]);assert.equal(s.hand.length,0);assert.equal(s.enemy.hp,16);}
  const reset=battleStart({deck:['zl21','zl27']});assert.equal(reset.hand.length,2);assert.equal(reset.pillar,0);assert.equal(reset.exhaust.length,0);assert.equal(reset.powers.length,0);
 });
+
+test('guarded exposure survives one real turn to enable subsequent expensive finisher unlike direct guarded hit',()=>{
+ const outcomes=['zl29','zl11'].map(id=>{
+  let s=battleStart({deck:[id,'zl05']});s.jade=6;s=playInstance(s,s.hand.find(k=>s.instances[k].id===id)).state;
+  s=nextTurn(s,[]);assert.equal(s.energy,3);const key=s.hand.find(k=>s.instances[k].id==='zl05');assert.ok(key);
+  const r=playInstance(s,key);assert.equal(r.ok,true);return r.state.enemy.hp;
+ });assert.deepEqual(outcomes,[0,5]);
+});
