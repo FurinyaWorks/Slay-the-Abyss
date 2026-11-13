@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.34.0';
+export const VERSION = 'zhongli-mechanics-0.35.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -57,6 +57,9 @@ export const cards = [
   {...card('zl50', '保留岩脊激发等待输出窗口，牺牲一次脉冲并占手牌', 'common', 1, [['pulse', 2]], [['pulse', 3]], 'enemy'), selfRetain: true},
   {...card('zl51', '整回合投入修补并获得少量即时掩护，压缩两张投资牌', 'common', 3, [['repair', 2], ['block', 3]], [['repair', 3], ['block', 5]]), power: true},
   {...card('zl52', '拆除岩脊换长减压窗口，失去持续输出且不补当前防线', 'common', 1, [['spendPillar', 1], ['weak', 4]], [['spendPillar', 1], ['weak', 5]], 'enemy'), exhaust: true},
+  card('zl53', '维持防线压制敌人并以阈值获得攻击，残盾时无伤害', 'common', 2, [['weak', 2], ['guardedDamage', 10]], [['weak', 3], ['guardedDamage', 14]], 'enemy'),
+  {...card('zl54', '支出玉璋拆敌格挡并找后续攻击，自己不造成伤害', 'common', 1, [['spendJade', 3], ['removeBlock', 1], ['draw', 1]], [['spendJade', 3], ['removeBlock', 1], ['draw', 2]], 'enemy'), exhaust: true},
+  {...card('zl55', '一张牌建立低强度柱与修补，节省投入但降低长期速率', 'common', 3, [['pillar', 1], ['repair', 1]], [['pillar', 2], ['repair', 2]]), power: true},
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
