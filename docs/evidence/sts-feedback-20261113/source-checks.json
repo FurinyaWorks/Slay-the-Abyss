@@ -54,7 +54,7 @@
     }
   },
   "beforeAfter": {
-    "production": "14 complete original d359 source texts and 14 complete product C source texts are in the new production delta.",
+    "production": "14 complete original d359 source texts and 14 complete product D source texts are in the new production delta.",
     "ci": "22 complete d359/current execution inputs are in the new CI delta. All 57 original 4dc cb-before records remain unchanged in the composed proof.",
     "helperCopy": "Original 031c map bytes remain unchanged. Four exact current helper dependency changes are carried in the CI delta.",
     "currentRuntime": "Current source and actual Full discovery execute the new version. Historical projection is an explicit named view; no current-runtime ghost inventory."
