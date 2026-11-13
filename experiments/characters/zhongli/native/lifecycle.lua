@@ -11,7 +11,7 @@ local function validate(s)
  local z=s.zhongliCandidate
  assert(integer(z.jade,0,20)and integer(z.lastOwnerEnd,0,2147483646),'invalid lifecycle state')
  assert(#s.enemies==1,'single-enemy prototype only')
- for _,id in pairs(ids)do assert(integer(s.player.statuses[id]or 0,0,6),'invalid candidate Power')end
+ for kind,id in pairs(ids)do assert(integer(s.player.statuses[id]or 0,0,kind=='pillar'and 6 or 3),'invalid candidate Power')end
  return z
 end
 function M.start(state,battleId,withRelic)
@@ -23,7 +23,7 @@ function M.start(state,battleId,withRelic)
  -- Definitions belong to this copied fixture, never the shared catalog.
  for _,id in pairs(ids)do s.player.statusDefinitions[id]={id=id,priority=5}end
  s.zhongliCandidate={battleId=battleId,jade=withRelic and 3 or 0,lastOwnerEnd=0}
- return s
+ validate(s);return s
 end
 function M.install(state,kind,strength)
  validate(state);assert(alive(state),'inactive battle')
@@ -32,13 +32,13 @@ function M.install(state,kind,strength)
  local s=Copy.copy(state);local before=s.player.statuses[id]
  s.player.statuses[id]=math.max(before or 0,strength)
  Schedule.recordApplied(s,s.player,id,before)
- return s
+ validate(s);return s
 end
 function M.removePillar(state)
  validate(state);assert(alive(state),'inactive battle')
  assert((state.player.statuses[ids.pillar]or 0)>0,'missing pillar')
  local s=Copy.copy(state);Schedule.remove(s,s.player,ids.pillar);s.player.statuses[ids.pillar]=nil
- return s
+ validate(s);return s
 end
 function M.ownerEnd(state,sequence)
  local z=validate(state);assert(alive(state),'inactive battle')
@@ -49,6 +49,6 @@ function M.ownerEnd(state,sequence)
  if pillar>0 then Actors.damage(s,s.player,s.enemies[1],pillar,true)end
  -- Actual native reactions can kill the player. Never repair either dead side.
  if alive(s)then s.zhongliCandidate.jade=math.min(20,s.zhongliCandidate.jade+(s.player.statuses[ids.repair]or 0))end
- return s
+ validate(s);return s
 end
 return M

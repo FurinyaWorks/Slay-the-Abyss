@@ -30,3 +30,13 @@ local multi=fresh();multi.enemies[2]=C.copy(multi.enemies[1]);assert(not pcall(L
 local a=L.install(L.start(fresh(),'intangible',false),'pillar',4);a.enemies[1].statuses.intangible=1
 local hp=a.enemies[1].hp;local b=L.ownerEnd(a,1);assert(hp-b.enemies[1].hp==1)
 print('isolated native lifecycle '..count..' owner-end matrix cases; relic once/fresh reset, real Schedule max/removal, fixed Actor damage and Intangible, rejection unchanged passed')
+
+for value=4,6 do
+ local bad=L.install(L.start(fresh(),'invalidrepair',true),'pillar',3)
+ bad.player.statuses.zl_candidate_repair=value
+ local before=C.copy(bad)
+ for _,fn in ipairs({function()L.ownerEnd(bad,1)end,function()L.install(bad,'pillar',4)end,function()L.removePillar(bad)end})do
+  assert(not pcall(fn));same(bad,before)
+ end
+end
+print('repair4..6 invalid-state rejection through every existing-state entry passed')
