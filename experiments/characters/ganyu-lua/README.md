@@ -226,3 +226,20 @@ Eight generated native-card-definition cases exercise actual generated 03/05/06
 targets, NoDraw, first-match order, unchanged RNG and post-movement Snapshot
 rollback/retry. Source-card payment/disposal are not public C.play here; exhaust
 is preserved in data, not newly claimed as verified host finalization.
+
+### Long/one-use/retained storm family preparation
+
+A separate source projection covers 18 (1-cost 2/3 damage ×3), 31 (2-cost 6/8 ×3,
+exhaust), and 59 (2-cost 3/4 ×2, selfRetain). Shared strict compiler helpers are
+reused, but compileStorm still accepts only 05; its generated output remains
+byte-identical. Four combined Node tests check values and lifecycle mismatch
+rejection. Six generated real-card-definition cases pass isolated storm setup,
+native Effects ticks to expiry, native 31 exhaust movement and native unplayed
+59 end-turn retention with original UID. Paid context is manually established;
+non-exhaust card disposal is not claimed here.
+
+A public family contract was also tried on exact shared host 13938b92 and correctly
+rejected at admission (`unsupported_effect:invalid_ganyu_storm`). Its narrow 05
+whitelist was NOT expanded or bypassed. `public-storm-family.test.lua` is therefore
+pending, not six passing public tests. Future shared admission is a separate task;
+all source/human/balance holds and stronger-field-refresh risks remain.
