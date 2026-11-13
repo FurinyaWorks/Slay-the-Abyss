@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('actual ten-domain generation claim and support paid outcome without rearranging state',()=>{buildLuaData();const r=runLua('experiments/characters/keqing-host/support-generated-author.test.lua',{timeout:120000});console.log(r.stdout);assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KQ_SUPPORT_GENERATED_AUTHOR_PASS/);});
