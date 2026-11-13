@@ -32,3 +32,7 @@ test('reward combat is deterministic, keeps starting hp and explicit truncation'
   assert.equal(r.startHp,40); assert.equal(r.finalInstanceCount,11); assert.equal(r.outcome,'truncated');
   assert.deepEqual(r,runCombat(args));
 });
+test('unknown and inherited encounter/policy names cannot silently relabel default simulation',()=>{
+  for(const encounter of ['not-real','toString','__proto__',undefined,null]) assert.throws(()=>runCombat({seed:1,encounter,policy:'balanced',maxTurns:1}),/encounter/);
+  for(const policy of ['not-real','toString','__proto__',undefined,null]) assert.throws(()=>runCombat({seed:1,encounter:'solo',policy,maxTurns:1}),/policy/);
+});

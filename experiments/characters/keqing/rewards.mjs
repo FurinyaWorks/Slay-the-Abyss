@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { cards } from './mechanics.mjs';
 import { createBattle, starterIds, playerView, useCard, finishTurn } from './battle.mjs';
 import { choosePlan } from './pressure-v2.mjs';
-import { encounters } from './pressure.mjs';
+import { encounters, policies } from './pressure.mjs';
 export const rewardPool=Object.freeze(['KQ005','KQ006','KQ007','KQ008','KQ009']);
 export const rewardSeeds=Object.freeze([3001,3011,3019,3023,3037,3041,3049,3061]);
 export function offerReward(seed) {
@@ -24,6 +24,8 @@ export function acceptReward(deck,offer,choice=null) {
   return choice===null?[...deck]:[...deck,choice];
 }
 export function runCombat({seed,deck=[...starterIds],encounter,policy,hp=60,maxTurns=30}) {
+  if(!Object.hasOwn(encounters,encounter)) throw new Error('invalid encounter');
+  if(!Object.hasOwn(policies,policy)) throw new Error('invalid policy');
   let s=createBattle({seed,deckIds:deck,enemies:encounters[encounter]});
   if(!Number.isInteger(hp)||hp<1||hp>60||!Number.isInteger(maxTurns)||maxTurns<1) throw new Error('invalid bounds');
   s.hp=hp;

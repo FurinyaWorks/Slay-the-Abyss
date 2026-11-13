@@ -22,6 +22,12 @@ export const cards = Object.freeze({
     effects: versions([{ op: 'wedgeDamage', absent: 5, present: 8 }], [{ op: 'wedgeDamage', absent: 8, present: 11 }]) },
   KQ009: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '低伤单段攻防，保留雷楔但攻击仍消耗一次附魔', type: 'attack', cost: 1,
     effects: versions([attack(3), { op: 'block', amount: 4 }], [attack(5), { op: 'block', amount: 6 }]) },
+  KQ052: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '低费无资源群伤，比KQ005低预算低段数', type: 'attack', cost: 1,
+    effects: versions([attack(6, 1, 'all')], [attack(9, 1, 'all')]) },
+  KQ053: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '高费单段可靠击杀，放弃多段附魔倍率', type: 'attack', cost: 2,
+    effects: versions([attack(16)], [attack(20)]) },
+  KQ054: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '低基础三段攻击，强化后才竞争兑现', type: 'attack', cost: 1,
+    effects: versions([attack(2, 3)], [attack(3, 3)]) },
   KQ005: { rarity: 'pending', channel: 'reward_candidate', candidateName: '天街巡游', role: '无雷楔前置的群体多段', type: 'attack', cost: 2,
     effects: versions([attack(3, 2, 'all'), attack(5, 1, 'all')], [attack(4, 2, 'all'), attack(7, 1, 'all')]) },
 });
