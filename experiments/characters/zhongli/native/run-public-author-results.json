@@ -1,0 +1,24 @@
+{
+  "sharedCommit": "c3d13aa19cc9cdc3199008151889fbbe48f9c55f",
+  "method": "Independent exact workspace archive and Lua-data rebuild; original author spec and frozen shared context tests executed",
+  "markers": [
+    "AUTHOR_ZL_RUN_PUBLIC_PASS real paid03/21/31 then upgraded reward04 across three battles, resource/Power reset and whole-Run reward rollback",
+    "ZHONGLI_RUN_CONTEXT_GATES_PASS"
+  ],
+  "verified": [
+    "paid03/21/31 over real Run turns without energy refill",
+    "fixed upgraded04 reward claim retains deckUid across battles",
+    "jade/pillar/repair fresh-state reset",
+    "natural3-energy03 then04; reward publication fault restores wholeRun and references, retry succeeds",
+    "multi-enemy unsupported result preserves wholeRun and references",
+    "relictrue/string/number rejected, config copied",
+    "fault after real Combat initialization restores state and retries"
+  ],
+  "limitations": [
+    "Fixed starter/reward and hand rearrangement fixtures, not natural pool registration",
+    "First battle fixture finish uses fixed damage, second enemy reduced to1HP for terminal test",
+    "Explicit experimental single-enemy relicEnabledfalse only",
+    "No jade absorption, complete75 admission or source/human/balance approval",
+    "Repeated host copy of author three-battle test not independent unique campaign coverage"
+  ]
+}
