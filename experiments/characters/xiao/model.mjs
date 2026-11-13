@@ -1,5 +1,6 @@
 // Isolated mechanism laboratory, not the production combat engine.
 import catalog from './cards.json' with { type: 'json' };
+import { currentIntent } from './intent.mjs';
 import { drawCards } from './deck.mjs';
 export { catalog };
 const byId = new Map(catalog.cards.map(card => [card.id, card]));
@@ -36,6 +37,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'threatDamage') damage(s.enemies[target],value+(currentIntent(s,s.enemies[target])>0?effect.bonus:0)+(s.mask>0?catalog.maskRules.attackBonus:0));
+  else if (op === 'quietDraw') { if(s.enemies.filter(e=>e.hp>0).every(e=>currentIntent(s,e)===0))drawCards(s,value); }
   else if (op === 'spendEnergyBlock') { s.block+=s.energy*value;s.energy=0; }
   else if (op === 'discardAttacksDraw') {
     const removed=s.hand.filter(id=>byId.get(id)?.kind==='attack');
@@ -84,7 +87,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -117,7 +120,9 @@ export function startTurn(input) {
 }
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
-  const text = ({op, value, cap}) => ({
+  const text = ({op, value, cap, bonus}) => ({
+    threatDamage: `造成${value}点伤害；若目标当前意图为攻击，额外${bonus}点；面具期间另加${catalog.maskRules.attackBonus}点。`,
+    quietDraw: `若所有存活敌人当前意图均不造成伤害，抽${value}张牌（手牌上限10）；否则不抽。`,
     spendEnergyBlock: `消耗所有剩余能量，每点获得${value}点格挡（0能量可打出但不获盾）。`,
     discardAttacksDraw: `弃掉手中所有其他攻击牌；若至少弃1张，抽弃牌张数${value?'加'+value:''}的牌（手牌上限10），可能洗回刚弃的攻击。`,
     exhaustDamage: `每张已消耗牌造成${value}点伤害，最多${cap}点；面具期间另加${catalog.maskRules.attackBonus}点。`,
