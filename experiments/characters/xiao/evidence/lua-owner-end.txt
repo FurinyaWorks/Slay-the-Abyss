@@ -3,4 +3,6 @@ PASS lethal payment prevents guard and expiry
 PASS retained mask, duplicate and stale actions reject before payment
 PASS formal host Intangible modifies HP payment: explicitly not raw JS parity
 PASS pending action pause does not prepay; resume pays once
-PASS resource overflow preflight is nonmutating
+PASS pure reducer overflow check is nonmutating; host owns apply rollback
+PASS all false resources reject before HP payment or state mutation
+PASS lethal tick ignores unreceived reward overflow

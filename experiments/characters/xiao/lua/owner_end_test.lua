@@ -25,5 +25,14 @@ s=fresh(8,1);A.applyPower(s,s.player,'intangible',1,s.player);Q.start(s,{{kind='
 print('PASS formal host Intangible modifies HP payment: explicitly not raw JS parity')
 s=fresh(8,1);local plan=End.prepare(s,C,M);Q.start(s,{{kind='effect',effect={op='testPause'}},plan[1]});local handlers={effect=function(st,a)if a.effect.op=='testPause'then return 'pause'end return M.apply(C,st,a.effect,Q)end};eq(Q.run(s,handlers),'pause');eq(s.player.hp,8);eq(s.xiao,nil);Q.resume(s,handlers);eq(s.player.hp,6);eq(s.xiao.reservedEnergy,2)
 print('PASS pending action pause does not prepay; resume pays once')
-s=fresh(8,1);s.player.block=2147483647;local before=s.player.hp;assert(not pcall(M.apply,C,s,{op='xiaoOwnerEndMask',turn=s.turn},Q));eq(s.player.hp,before);eq(s.xiao,nil)
-print('PASS resource overflow preflight is nonmutating')
+s=fresh(8,1);s.player.block=2147483647;local before=s.player.hp;assert(not pcall(M.reduceAfterPayment,s));eq(s.player.hp,before);eq(s.xiao,nil)
+print('PASS pure reducer overflow check is nonmutating; host owns apply rollback')
+
+for _,field in ipairs({'xiao','xiao_mask','xiao_mask_guard','xiao_expiry_energy','reservedEnergy'})do
+ s=fresh(8,1);if field=='xiao'then s.xiao=false elseif field=='reservedEnergy'then s.xiao={reservedEnergy=false}else s.player.statuses[field]=false end
+ local ref=s.xiao;local events=#s.events;local hp=s.player.hp;local block=s.player.block
+ assert(not pcall(M.apply,C,s,{op='xiaoOwnerEndMask',turn=s.turn},Q));eq(s.player.hp,hp);eq(s.player.block,block);eq(s.xiao,ref);eq(#s.events,events)
+end
+print('PASS all false resources reject before HP payment or state mutation')
+s=fresh(2,1);s.player.block=2147483647;execute(s);eq(s.player.hp,0);eq(s.player.block,2147483647);eq(s.xiao.reservedEnergy,nil)
+print('PASS lethal tick ignores unreceived reward overflow')

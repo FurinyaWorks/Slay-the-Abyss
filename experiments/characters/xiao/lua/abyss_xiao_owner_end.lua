@@ -3,10 +3,12 @@ local Schedule=require('abyss_power_schedule')
 local M={ownerEndIds={xiao_mask=true},ops={xiaoOwnerEndMask=true}}
 local MAX=2147483647 -- production Power schedule integer domain, not JS MAX_SAFE_INTEGER
 local function number(n,hi)assert(type(n)=='number'and n==n and n%1==0 and n>=0 and n<=(hi or MAX),'invalid Xiao resource');return n end
+local function default(value,fallback)if value==nil then return fallback end return value end
+local function plain(value,why)assert(type(value)=='table'and getmetatable(value)==nil,why);return value end
 local function resources(state)
- local p=assert(state.player,'missing player');local statuses=assert(p.statuses,'missing statuses')
- local x=state.xiao or {};assert(type(x)=='table'and getmetatable(x)==nil,'invalid Xiao state')
- return p,statuses,x,number(statuses.xiao_mask or 0,3),number(statuses.xiao_mask_guard or 0),number(statuses.xiao_expiry_energy or 0),number(x.reservedEnergy or 0)
+ plain(state,'invalid state');local p=plain(state.player,'missing player');local statuses=plain(p.statuses,'missing statuses')
+ local x=plain(default(state.xiao,{}),'invalid Xiao state');number(p.hp);number(p.block)
+ return p,statuses,x,number(default(statuses.xiao_mask,0),3),number(default(statuses.xiao_mask_guard,0)),number(default(statuses.xiao_expiry_energy,0)),number(default(x.reservedEnergy,0))
 end
 function M.ownerEndPlan(state,id,n)
  assert(id=='xiao_mask','unsupported Xiao owner')
@@ -30,8 +32,9 @@ function M.apply(combat,state,effect,_queue)
  assert(effect.turn==state.turn,'stale Xiao owner-end action')
  assert(x.ownerEndTurn~=state.turn,'duplicate Xiao owner-end action')
  if mask==0 or p.hp<=0 then return true end
- -- Check deterministic numeric bounds before requesting irreversible host hooks.
- M.reduceAfterPayment(state)
+ -- Input validation precedes payment. Output overflow is checked AFTER host
+ -- payment: a lethal tick must not be rejected for a reward never received.
+ -- Host command snapshot owns rollback if post-payment reduction throws.
  state.xiao=state.xiao or {};state.xiao.ownerEndTurn=state.turn
  -- Use real HP-loss interpreter: Intangible, Rupture/relic/death semantics are
  -- host-owned. This is intentionally NOT a raw hp subtraction parity shim.
