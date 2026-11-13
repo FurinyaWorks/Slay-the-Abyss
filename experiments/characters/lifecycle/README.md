@@ -410,3 +410,22 @@ native exhaust power order, not just untracked status fields. Printed costs in
 these source definitions are tested, without replacing dynamic-cost semantics.
 Terminal damage-then-block remains native; damage-then-draw may stop at victory.
 No natural rewards, UI selection, production registration or balance approval.
+
+## Explicit Ganyu Run propagation
+
+Run.new(data, seed, {experimental=true, candidateLifecycle={kind='ganyu',
+relicEnabled=false}}) now preserves a private validated context; true starter
+relic is also accepted. This first Run slice supports only Ganyu, rejects formal
+character/profile mixtures and competition runs, and never infers role from a
+card ID or deck. Each actual startEncounter validates/clones the context into
+Combat.new, resetting battle resources rather than carrying the old combat graph.
+The opt-in start command has a whole-Run Snapshot around creation/publication;
+default Run startup remains the unchanged path.
+
+Tests use explicit fixed reward fixtures (not natural pools), claim an upgraded
+card, preserve master deck UID across later battles, then execute Run.play so
+permanent data and terminal reward publication share its real transaction.
+Failure after real finishCombat restores the original Run/combat/config/deck and
+resource references. Start creation failure also restores original aliases.
+No new save format, production character selector, natural reward registration,
+or blanket approval of all 75 cards is implied.

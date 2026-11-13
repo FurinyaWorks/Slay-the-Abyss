@@ -84,7 +84,7 @@ function M.install(Run, shared)
         return true,generation
     end
 
-    local function startEncounter(run, encounter, sourceRoom)
+    local function startEncounterBody(run, encounter, sourceRoom,candidate)
         local valid,generation=validateEncounter(run,encounter,sourceRoom)
         if not valid then return false,generation end
         local opening, reason = Inventory.opening(run.data.relics.relics, run.relics,
@@ -122,6 +122,7 @@ function M.install(Run, shared)
             require('abyss_boss_relics').preBattle(state,run)
             return true
         end
+        options.candidateLifecycle=candidate
         options.encounterSource=encounter.source
         configureEncounterOptions(run, encounter, sourceRoom, options)
         battle, reason = Combat.new(combatData, options)
@@ -142,6 +143,20 @@ function M.install(Run, shared)
         run.emeraldCombat = nil
         run.pendingCombatRewards = nil
         return true
+    end
+
+    local function startEncounter(run,encounter,sourceRoom)
+        if run.candidateLifecycle==nil and run.experimentalCandidate==nil then
+            return startEncounterBody(run,encounter,sourceRoom)
+        end
+        local restore=require('abyss_snapshot').capture(run)
+        local called,ok,why=pcall(function()
+            local candidate=require('abyss_run_candidate').forCombat(run)
+            return startEncounterBody(run,encounter,sourceRoom,candidate)
+        end)
+        if not called then restore();error(ok,0)end
+        if not ok then restore()end
+        return ok,why
     end
 
     -- Explicit-ID development/replay entry; ordinary map rooms use startRoomCombat.

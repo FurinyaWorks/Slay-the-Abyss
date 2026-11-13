@@ -126,6 +126,7 @@ function M.install(Run, shared)
             run.deck[#run.deck + 1] = { uid = run.nextDeckUid, cardId = id, upgraded = false }
             run.nextDeckUid = run.nextDeckUid + 1
         end
+        require('abyss_run_candidate').initialize(run,options)
         initializeRelicPool(run, data, profile, legacyPrepared, runData, eventSeed)
         return run
     end
