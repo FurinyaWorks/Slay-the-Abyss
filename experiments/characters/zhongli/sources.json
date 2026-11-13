@@ -1,0 +1,27 @@
+{
+  "version": "zhongli-source-research-0.1",
+  "checkedAt": "2026-11-13",
+  "character": "zhongli",
+  "status": "HOLD",
+  "humanReview": {"approved": false, "reviewer": null, "evidence": null},
+  "searches": ["site.genshin.hoyoverse.com 钟离 地心 天星 岩雨", "site.hoyolab.com 钟离 玉璋护盾 天星"],
+  "entry": "https://wiki.hoyolab.com/pc/genshin/entry/46?lang=zh-cn",
+  "access": "Search snippet available; opened page returned no readable lines. Not enough to verify exact entries or official authorship.",
+  "categories": {
+    "skills": "searched; precise text unverified",
+    "talents": "pending",
+    "constellations": "search snippet only; exact entry unverified",
+    "tcg": "pending",
+    "battleVoice": "pending",
+    "dailyVoice": "pending",
+    "story": "pending",
+    "promotion": "pending"
+  },
+  "candidateAnchors": [
+    {"term": "地心", "intendedSlot": "zl03", "locationNeeded": "元素战技/长按/玉璋护盾", "verified": false},
+    {"term": "天星", "intendedSlot": "zl05", "locationNeeded": "元素爆发", "verified": false}
+  ],
+  "cardIds": ["zl01", "zl02", "zl03", "zl04", "zl05", "zl06"],
+  "degradation": "No P2/P3/P4 name adopted; higher priority evidence incomplete. Display names stay unique pending placeholders.",
+  "next": "Read exact official in-game or authored published entries, preserve locators/context/version, map roles, obtain independent naming review. Do not manufacture source_verified or human approval."
+}
