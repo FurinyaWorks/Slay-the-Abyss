@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.15",
+  "version": "xiao-g2-lab-0.16",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1165,6 +1165,70 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x39",
+      "name": "待命名·x39",
+      "role": "预备攻击：公开弃牌首张攻击置顶，不立即抽",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "topdeckAttack",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "topdeckAttack",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 7
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x40",
+      "name": "待命名·x40",
+      "role": "多敌防御：按存活敌人数获得格挡，上限3名",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "enemyCountBlock",
+          "value": 4,
+          "cap": 3
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "enemyCountBlock",
+          "value": 6,
+          "cap": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1213,7 +1277,9 @@
     "x35",
     "x36",
     "x37",
-    "x38"
+    "x38",
+    "x39",
+    "x40"
   ],
   "maskRules": {
     "attackBonus": 4,

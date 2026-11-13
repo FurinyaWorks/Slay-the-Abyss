@@ -41,6 +41,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'topdeckAttack') { const i=s.discard.findIndex(id=>byId.get(id)?.kind==='attack');if(i>=0)s.draw.unshift(s.discard.splice(i,1)[0]); }
+  else if (op === 'enemyCountBlock') s.block+=Math.min(effect.cap,s.enemies.filter(e=>e.hp>0).length)*value;
   else if (op === 'blockDamage') damage(s.enemies[target],Math.min(effect.cap,s.block*value)+(s.mask>0?catalog.maskRules.attackBonus:0));
   else if (op === 'spendBlockDraw') { const count=Math.min(effect.cap,Math.floor(s.block/value));s.block=0;drawCards(s,count); }
   else if (op === 'maskedAttackDraw') s.maskedAttackDraw+=value;
@@ -146,6 +148,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits}) => ({
+    topdeckAttack: '将弃牌堆中按顺序首张攻击放至抽牌堆顶（不立即抽，无则略过）。',
+    enemyCountBlock: `每名存活敌人获得${value}点格挡，最多计算${cap}名。`,
     blockDamage: `按当前格挡每点造成${value}点伤害，最多${cap}点；不移除格挡，面具另加${catalog.maskRules.attackBonus}点。`,
     spendBlockDraw: `移除全部格挡，每满${value}点抽1张，最多${cap}张（手牌上限10）；不足部分也移除。`,
     damageHits: `对目标造成${value}点伤害，共${hits}次；面具期间每次另加${catalog.maskRules.attackBonus}点。不转移死亡目标。`,
