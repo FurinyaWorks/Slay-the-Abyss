@@ -11,6 +11,7 @@ export function validateCandidate(data,relic,sources) {
  for(const c of data.cards) {
   if(typeof c.id!=='string'||!c.id||ids.has(c.id))errors.push('invalid or duplicate id');ids.add(c.id);
   if(c.name!==`待命名·${c.id}` || c.review?.human_approved!==false || c.review?.status!=='HOLD')errors.push(`unreviewed display ${c.id}`);
+  if(c.retain!==undefined && typeof c.retain!=='boolean')errors.push(`invalid retain ${c.id}`);
   if(c.exhaust!==undefined && typeof c.exhaust!=='boolean')errors.push(`invalid exhaust ${c.id}`);
   if(c.source_ref!==c.id || !sourceIds.has(c.id))errors.push(`missing source record ${c.id}`);
   if(!['self','enemy'].includes(c.target))errors.push(`invalid target ${c.id}`);

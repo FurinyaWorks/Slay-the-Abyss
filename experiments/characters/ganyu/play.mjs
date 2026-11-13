@@ -2,7 +2,7 @@ import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import { catalogue, cardText, endTurn, play, relicText } from './engine.mjs';
 import { createBattle, nextBattleTurn } from './battle.mjs';
-const seed=Number(process.argv[2] ?? 37);
+const seed=Number(process.argv.slice(2).find(arg=>!arg.startsWith('--')) ?? 37);
 const candidateAll=process.argv.includes('--candidate-all');
 let state=createBattle([{hp:35,block:0,intent:6},{hp:22,block:0,intent:4}],seed,candidateAll?catalogue.cards.map(c=>({id:c.id})):undefined);
 const io=createInterface({input:stdin,output:stdout});

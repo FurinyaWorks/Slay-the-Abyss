@@ -124,7 +124,8 @@ export function endTurn(input) {
     s.charge = Math.min(rules.maxCharge, s.charge + Math.floor(s.energy / starterRelic.effect.energy_per_charge));
   }
   s.energy = 0;
-  s.discard.push(...s.hand); s.hand = [];
+  s.discard.push(...s.hand.filter(c => variants.get(c.id).retain !== true));
+  s.hand = s.hand.filter(c => variants.get(c.id).retain === true);
   if (s.storm) {
     all(s, s.storm.amount);
     s.storm.turns -= 1;
@@ -155,7 +156,7 @@ export function cardText(id, upgraded = false) {
   const card = variants.get(id); if (!card) throw new Error('unknown card');
   const v = upgraded ? card.upgrade : card.base;
   const effects = v.effects.map(e => ({seek_card:`从${e.zone === 'discard' ? '弃牌堆' : '抽牌堆'}将1张${variants.get(e.card_id)?.name ?? e.card_id}加入手牌。只检索指定牌堆；没有目标时无效果，不退款。`,draw:`抽${e.amount}张牌（手牌上限${rules.handLimit}）。`,charged_block:`获得${e.amount}点格挡。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，额外获得${e.bonus}点格挡。`,charged_direct:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，本次伤害增加${e.bonus}（合为单次命中，不绽放）。`,damage:`对目标造成${e.amount}点伤害。`,block:`获得${e.amount}点格挡。`,aoe:`对所有存活敌人造成${e.amount}点伤害。`,charge:`获得${e.amount}层蓄力（上限${rules.maxCharge}）。`,storm:`建立冰雨：从本回合起连续${e.turns}个回合结束时，对所有存活敌人造成${e.amount}点伤害；重复施放取较高伤害与剩余次数，不叠加。`,charged_shot:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，随后对所有存活敌人造成${e.bloom}点伤害。`})[e.op]);
-  return `${card.name}${upgraded ? '+' : ''}｜${v.cost}能量｜${effects.join('')}${card.exhaust === true ? '消耗：本场战斗不再进入抽牌循环。' : ''}`;
+  return `${card.name}${upgraded ? '+' : ''}｜${v.cost}能量｜${effects.join('')}${card.exhaust === true ? '消耗：本场战斗不再进入抽牌循环。' : ''}${card.retain === true ? '保留：回合结束不弃置，仍占手牌上限。' : ''}`;
 }
 
 export function relicText() {

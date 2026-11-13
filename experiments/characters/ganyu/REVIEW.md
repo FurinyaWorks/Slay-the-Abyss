@@ -40,3 +40,5 @@ review_xiao固定01ae745，42/42通过，旧14卡/environment对象比对不变�
 0.8独审review_xiao实际48/48后额外发现聚合溢出：合法MAX_SAFE_INTEGER格挡再加满蓄19会返回非法格挡且耗蓄。作者在play提交结果前统一validateState(s)，输出非法即抛错，原输入仍不变；追加19及旧02基升溢出与刚好边界测试。此处只记录修复，等待独立复核，不提前写PASS。
 
 0.8修复复核：review_xiao固定ccdb8a1762c689539931526adbf58ee8d0415621独立49/49通过，play结果在副本validate；旧02/新19基升聚合溢出整态保持，恰好MAX边界成功，阻断关闭。已备份远端c9d8794b43bbba78f4c48cfc410366313ebe4d5f，树0ccadc4f与本地一致（作者工具比对）。0.9新增消耗/弃牌检索/人工全候选CLI尚待独审，不能继承PASS。
+
+0.9独审最终：review_xiao固定46ada653实际55/55、旧22卡对象不变；真实重洗后fault完整输入/RNG不变、连续4回合消耗牌不返抽洗探针通过。CLI flag误当seed经独立提交550dd9d修复；审核者从该固定归档重跑55/55及flag-only/flag-first/seed-first三种q smoke通过，阻断关闭。没有自然奖励/正式平衡等批准。0.10未继承PASS。

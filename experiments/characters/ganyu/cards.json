@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.9.0",
+  "version": "ganyu-sample-0.10.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -888,6 +888,108 @@
         "human_approved": false,
         "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-26",
+      "name": "待命名·ganyu-26",
+      "candidate_name": null,
+      "role": "可等待高压回合的保留防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 9
+          }
+        ]
+      },
+      "source_ref": "ganyu-26",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-27",
+      "name": "待命名·ganyu-27",
+      "candidate_name": null,
+      "role": "已抽到核心后的保留兑现选择",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 7,
+            "bloom": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 10,
+            "bloom": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-27",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-28",
+      "name": "待命名·ganyu-28",
+      "candidate_name": null,
+      "role": "一次性集中群体伤害而非反复群攻",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 16
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 20
+          }
+        ]
+      },
+      "source_ref": "ganyu-28",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true,
       "exhaust": true
     }
   ],
