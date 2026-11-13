@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.7",
+  "version": "xiao-g2-lab-0.8",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -691,6 +691,60 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x23",
+      "name": "待命名·x23",
+      "role": "余能防守：放弃所有剩余行动换当回合盾",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 0,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "spendEnergyBlock",
+          "value": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "spendEnergyBlock",
+          "value": 7
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x24",
+      "name": "待命名·x24",
+      "role": "攻击卡手整手：放弃当前攻击重新寻找防守或出口",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "discardAttacksDraw",
+          "value": 0
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "discardAttacksDraw",
+          "value": 1
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -723,7 +777,9 @@
     "x19",
     "x20",
     "x21",
-    "x22"
+    "x22",
+    "x23",
+    "x24"
   ],
   "maskRules": {
     "attackBonus": 4,

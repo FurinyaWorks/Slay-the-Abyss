@@ -43,6 +43,8 @@ export function choose(view, policy) {
       score=Math.min(fuel*4,Math.max(0,incoming-view.block))*(policy==='guard'?2:1)-fuel*2;
     }
     if(id==='x22')score=Math.min(10,view.exhaustedCount*2,Math.max(0,incoming-view.block))*(policy==='guard'?3:1);
+    if(id==='x23')score=Math.min(view.energy*5,Math.max(0,incoming-view.block))*(policy==='guard'?2:1)-view.energy*2;
+    if(id==='x24'&&attacks>0&&view.energy>=2&&incoming>view.block)score=policy==='guard'?9:1;
     if(score>0)choices.push({index,target:target.index,score});
   });
   return choices.sort((a,b)=>b.score-a.score||a.index-b.index)[0]??null;

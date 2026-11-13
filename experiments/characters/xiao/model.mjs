@@ -36,6 +36,12 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'spendEnergyBlock') { s.block+=s.energy*value;s.energy=0; }
+  else if (op === 'discardAttacksDraw') {
+    const removed=s.hand.filter(id=>byId.get(id)?.kind==='attack');
+    s.hand=s.hand.filter(id=>byId.get(id)?.kind!=='attack');s.discard.push(...removed);
+    if(removed.length)drawCards(s,removed.length+value);
+  }
   else if (op === 'exhaustDamage') damage(s.enemies[target],Math.min(effect.cap,s.exhaust.length*value)+(s.mask>0?catalog.maskRules.attackBonus:0));
   else if (op === 'exhaustBlock') s.block+=Math.min(effect.cap,s.exhaust.length*value);
   else if (op === 'unmaskedDraw') { if(s.mask === 0) drawCards(s,value); }
@@ -111,6 +117,8 @@ export function startTurn(input) {
 }
 export function cardText(card, upgraded = false) {
   const text = ({op, value, cap}) => ({
+    spendEnergyBlock: `消耗所有剩余能量，每点获得${value}点格挡（0能量可打出但不获盾）。`,
+    discardAttacksDraw: `弃掉手中所有其他攻击牌；若至少弃1张，抽弃牌张数${value?'加'+value:''}的牌（手牌上限10），可能洗回刚弃的攻击。`,
     exhaustDamage: `每张已消耗牌造成${value}点伤害，最多${cap}点；面具期间另加${catalog.maskRules.attackBonus}点。`,
     exhaustBlock: `每张已消耗牌获得${value}点格挡，最多${cap}点。`,
     unmaskedDraw: `若当前没有面具，抽${value}张牌（手牌上限10）；有面具则不抽。`,
