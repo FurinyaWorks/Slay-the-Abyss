@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3;
@@ -12,7 +12,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if([0,3,4,6,7,8,10,13,16,17].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
-    if(i===2||i===18)assert.equal(r.state.jade,value);
+    if(i===2||i===18||i===19)assert.equal(r.state.jade,value);
     if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
@@ -278,4 +278,21 @@ test('one-shot access does not dominate pure jade or cheaper repeatable access; 
  const pure=run('zl03').state,access=run('zl19').state;assert.equal(pure.jade,12);assert.equal(access.jade,6);assert.equal(pure.energy,1);assert.equal(access.energy,1);assert.equal(access.pendingDraw,2);
  const cheap=initialState();cheap.energy=1;assert.equal(run('zl19',cheap).ok,false);assert.equal(run('zl12',cheap).ok,true);
  const c=cards.find(c=>c.id==='zl19'),old=c.base;try{c.base=[['jade',6],['draw',Number.MAX_SAFE_INTEGER]];const s=initialState(['a']);s.instances.a={id:'zl19',upgraded:false};const before=structuredClone(s);assert.equal(play(s,{id:'zl19',instance:'a'}).state,s);assert.deepEqual(s,before);}finally{c.base=old;}
+});
+
+test('empty-jade rebuild tests only persistent resource, all levels and both versions',()=>{
+ for(let jade=0;jade<=20;jade++)for(const u of [false,true])for(const block of [0,99]){const s=initialState();s.jade=jade;s.block=block;const before=structuredClone(s);const r=run('zl20',s,u);assert.equal(r.ok,true);assert.equal(r.state.jade,jade===0?(u?12:9):jade);assert.equal(r.state.block,block);assert.equal(r.state.energy,2);assert.deepEqual(s,before);}
+});
+test('depletion opens rebuild; residual jade and repeated rebuild waste cost without stacking',()=>{
+ const s=initialState();s.jade=6;const spent=run('zl04',s).state;const rebuilt=run('zl20',spent).state;assert.equal(rebuilt.jade,9);assert.equal(rebuilt.energy,1);assert.equal(rebuilt.enemy.hp,26);
+ const again=run('zl20',rebuilt,true).state;assert.equal(again.jade,9);assert.equal(again.energy,0);
+ const residual=initialState();residual.jade=1;assert.equal(run('zl20',residual).state.jade,1);assert.equal(run('zl03',residual).state.jade,13);
+ const hit=endTurn({...initialState(),jade:3},[3]);hit.hand=['next'];hit.instances.next={id:'zl20',upgraded:false};assert.equal(run('zl20',hit).state.jade,9);
+ const notBroken=endTurn({...initialState(),jade:3},[2]);notBroken.hand=['next'];notBroken.instances.next={id:'zl20',upgraded:false};assert.equal(run('zl20',notBroken).state.jade,1);
+});
+test('rebuild cancellation, no energy, terminal and invalid gain preserve input',()=>{
+ const s=initialState(['a']);s.instances.a={id:'zl20',upgraded:false};
+ for(const patch of [{energy:0},{hp:0},{enemy:{...s.enemy,hp:0}}]){const t={...s,...patch},before=structuredClone(t);assert.equal(play(t,{id:'zl20',instance:'a'}).state,t);assert.deepEqual(t,before);}
+ const before=structuredClone(s);assert.equal(play(s,{id:'zl20',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);
+ const c=cards.find(c=>c.id==='zl20'),old=c.base;try{c.base=[['emptyJade',NaN]];assert.equal(play(s,{id:'zl20',instance:'a'}).state,s);assert.deepEqual(s,before);}finally{c.base=old;}
 });

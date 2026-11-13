@@ -93,3 +93,8 @@ test('reserve access handles only-card, full-hand and invalid boundary without f
  for(const bad of [{...s,rng:NaN},{...s,draw:[...s.draw,k]}]){const before=structuredClone(bad);assert.throws(()=>playInstance(bad,k));assert.deepEqual(bad,before);}
  for(const terminal of ['hp','enemy']){const t=structuredClone(s);if(terminal==='hp')t.hp=0;else t.enemy.hp=0;const before=structuredClone(t);assert.equal(playInstance(t,k).ok,false);assert.deepEqual(t,before);}
 });
+test('rebuild window is reachable through real starter relic, setup, spending and incoming depletion',()=>{
+ let s=battleStart({deck:['zl03','zl04','zl20']});const key=id=>Object.keys(s.instances).find(k=>s.instances[k].id===id);
+ assert.equal(s.jade,3);s=playInstance(s,key('zl03')).state;assert.equal(s.jade,15);s=playInstance(s,key('zl04')).state;assert.equal(s.jade,9);s=nextTurn(s,[9]);assert.equal(s.jade,0);assert.ok(s.hand.includes(key('zl20')));
+ s=playInstance(s,key('zl20')).state;assert.equal(s.jade,9);assert.equal(s.energy,2);assert.equal(s.hp,60);
+});

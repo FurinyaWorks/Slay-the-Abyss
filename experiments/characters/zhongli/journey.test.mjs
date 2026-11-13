@@ -95,3 +95,9 @@ test('v9 one-shot access follows reward lifecycle while older offers remain unch
  const s=journeyStart(seed,{poolVersion:'v9'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'reserveAccess'));
  assert.equal(n.deck.at(-1),'zl19');assert.equal(n.deck.length,11);assert.throws(()=>takeReward(n,1));for(const v of ['v1','v2','v3','v4','v5','v6','v7','v8'])assert.equal(offers(seed,1,v).includes('zl19'),false);
 });
+
+test('v10 rebuild acquisition is a lifecycle fixture, never added to historical pools',()=>{
+ let seed=1;while(!offers(seed,1,'v10').includes('zl20'))seed++;
+ const s=journeyStart(seed,{poolVersion:'v10'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'rebuild'));
+ assert.equal(n.deck.at(-1),'zl20');assert.equal(n.deck.length,11);assert.throws(()=>takeReward(n,1));for(const v of ['v1','v2','v3','v4','v5','v6','v7','v8','v9'])assert.equal(offers(seed,1,v).includes('zl20'),false);
+});
