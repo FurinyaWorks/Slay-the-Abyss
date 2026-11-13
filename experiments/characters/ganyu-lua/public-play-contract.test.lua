@@ -42,3 +42,13 @@ for _,up in ipairs({false,true})do
  count=count+1
 end
 print('PASS '..count..' public Ganyu C.play base/up resource, target, payment and UID contracts')
+
+for _,up in ipairs({false,true})do
+ local s,c=fresh('ganyu_lab_03',up,2)
+ s.player.statuses.strength=2;s.player.statuses.weak=1;s.enemies[1].statuses.vulnerable=1
+ assert(C.play(s,c.uid,1))
+ eq(s.enemies[1].hp,up and 79 or 83);eq(s.enemies[2].hp,up and 94 or 95);eq(s.ganyuResource.charge,0)
+ local n,d=fresh('ganyu_lab_03',up,2);n.player.hp=1;n.enemies[1].statuses.thorns=3
+ assert(C.play(n,d.uid,1));eq(n.player.hp,0);eq(n.enemies[2].hp,100);eq(n.ganyuResource.charge,0)
+end
+print('PASS independent 4 public modifier/retaliation terminal probes')
