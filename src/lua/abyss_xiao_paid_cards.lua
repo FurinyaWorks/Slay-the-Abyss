@@ -16,7 +16,7 @@ local function same(a,b)
 end
 function M.supports(e)
  if type(e)~='table'or getmetatable(e)or e.op~='xiaoCard'
-  or e.kind~='damage'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
+  or e.kind~='damage'and e.kind~='damageAll'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
  for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
  return type(e.value)=='number'and e.value%1==0 and e.value>=0 and e.value<=2147483647
 end

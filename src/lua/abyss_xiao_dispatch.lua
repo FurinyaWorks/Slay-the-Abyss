@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='damageAll'or effect.kind=='plunge'or effect.kind=='maskCommit','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -33,7 +33,7 @@ function M.dispatch(combat,state,effect,queue)
   for i=#patch.effects,1,-1 do queue.pushTop(state,{kind='effect',effect=patch.effects[i]})end
   return true
  end
- local all=effect.kind=='plunge'and r.mask>0
+ local all=effect.kind=='damageAll'or effect.kind=='plunge'and r.mask>0
  local target
  if not all then
   for _,enemy in ipairs(state.enemies)do if enemy.id==paid.targetId then target=enemy;break end end
