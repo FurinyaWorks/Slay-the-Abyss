@@ -967,27 +967,20 @@
     },
     {
       "id": "c01",
-      "name": "待命名·c01",
+      "name": "一进一退",
       "decision_role": "攻守一体",
       "effect_ref": "HTML:CARD:c01",
       "source": {
-        "tier": "P3",
-        "kind": "martial",
-        "verified": true,
-        "exact_text": "拦、拿、扎枪",
-        "url": "https://www.iwuf.org/wp-content/uploads/2021/09/CN-%E5%9B%BD%E9%99%85%E6%AD%A6%E8%81%94%E6%AD%A6%E6%9C%AF%E5%A5%97%E8%B7%AF%E7%AB%9E%E8%B5%9B%E8%A7%84%E5%88%99%E4%B8%8E%E8%A3%81%E5%88%A4%E6%B3%95%EF%BC%88%E8%8A%82%E9%80%89%EF%BC%892019.pdf",
-        "section": "2019 第三十条枪术拦拿扎组合",
-        "version": "2019",
-        "cultural": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "name_original": true,
+        "previous_research_tier": "P3",
+        "cultural_research": {
           "original_term": "拦、拿、扎枪",
           "source_url": "https://www.iwuf.org/wp-content/uploads/2021/09/CN-%E5%9B%BD%E9%99%85%E6%AD%A6%E8%81%94%E6%AD%A6%E6%9C%AF%E5%A5%97%E8%B7%AF%E7%AB%9E%E8%B5%9B%E8%A7%84%E5%88%99%E4%B8%8E%E8%A3%81%E5%88%A4%E6%B3%95%EF%BC%88%E8%8A%82%E9%80%89%EF%BC%892019.pdf",
-          "source_entry": "第三十条·拦、拿、扎枪",
-          "real_action_meaning": "攻击兼格挡：拦挡、拿拨后突刺的动作组合",
-          "mechanic_mapping": "实际卡牌职责：攻守一体；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
-          "reference_role": "technical_motion_reference_not_display_title",
-          "player_facing_name_approved": false
-        },
-        "name_method": "reference_only"
+          "meaning": "攻击兼格挡：拦挡、拿拨后突刺的动作组合"
+        }
       },
       "search": {
         "P1": {
@@ -1072,14 +1065,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「拦拿扎枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "fail",
+          "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -1104,6 +1097,12 @@
             "decision": "rejected_as_player_facing_name",
             "date": "2026-11-13",
             "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·c01",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
@@ -1161,18 +1160,15 @@
     },
     {
       "id": "c03",
-      "name": "整衣待行",
+      "name": "有备无患",
       "decision_role": "延迟防守",
       "effect_ref": "HTML:CARD:c03",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -1194,7 +1190,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -1208,7 +1204,14 @@
           "date": null,
           "evidence": null
         },
-        "history": [],
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "整衣待行",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ],
         "red_flags": [
           {
             "gate": "N3/N4/N6",
@@ -1220,17 +1223,17 @@
     },
     {
       "id": "c04",
-      "name": "起身啦！",
+      "name": "撞大运咯！",
       "decision_role": "过牌",
       "effect_ref": "HTML:CARD:c04",
       "source": {
         "tier": "P2",
         "kind": "daily_voice",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null
+        "exact_text": "撞大运咯！",
+        "url": "https://wiki.biligame.com/ys/胡桃语音",
+        "section": "打开宝箱·其一",
+        "version": "2026-11-13 candidate; verify voice at production gate"
       },
       "search": {
         "P1": {
@@ -1252,7 +1255,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -1266,7 +1269,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "起身啦！",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ]
       }
     },
     {
@@ -1323,76 +1333,15 @@
     },
     {
       "id": "c06",
-      "name": "待命名·c06",
+      "name": "先留个记号",
       "decision_role": "挂梅+防守",
       "effect_ref": "HTML:CARD:c06",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
-      },
-      "search": {
-        "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
-        },
-        "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
-        },
-        "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
-        }
-      },
-      "review": {
-        "status": "BLOCKED",
-        "reason": "用户指出拼词不自然；只有梅香机制联想，没有官方来源或真实动作解释，跳过了官方优先级。",
-        "checks": {
-          "N2": "fail",
-          "N3": "fail",
-          "N4": "pending",
-          "N5": "pending",
-          "N6": "pending"
-        },
-        "human": {
-          "approved": false,
-          "reviewer": null,
-          "date": null,
-          "evidence": null
-        },
-        "history": [
-          {
-            "name": "顺势点梅",
-            "decision": "rejected",
-            "reason": "用户指出拼词不自然；只有梅香机制联想，没有官方来源或真实动作解释，跳过了官方优先级。"
-          }
-        ]
-      }
-    },
-    {
-      "id": "c07",
-      "name": "枪尖回转",
-      "decision_role": "多段攻守",
-      "effect_ref": "HTML:CARD:c07",
-      "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -1414,7 +1363,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -1428,7 +1377,75 @@
           "date": null,
           "evidence": null
         },
-        "history": [],
+        "history": [
+          {
+            "name": "顺势点梅",
+            "decision": "rejected",
+            "reason": "用户指出拼词不自然；只有梅香机制联想，没有官方来源或真实动作解释，跳过了官方优先级。"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·c06",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c07",
+      "name": "双重突刺",
+      "decision_role": "多段攻守",
+      "effect_ref": "HTML:CARD:c07",
+      "source": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "name_original": true,
+        "previous_research_tier": "P4"
+      },
+      "search": {
+        "P1": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P2": {
+          "completed": false,
+          "categories": [],
+          "lookups": [],
+          "result": "unchecked"
+        },
+        "P3": {
+          "status": "unchecked",
+          "reason": "P3 only when official names cannot fit; no culture source approved"
+        }
+      },
+      "review": {
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
+        "checks": {
+          "N2": "pending",
+          "N3": "pending",
+          "N4": "pending",
+          "N5": "pending",
+          "N6": "pending"
+        },
+        "human": {
+          "approved": false,
+          "reviewer": null,
+          "date": null,
+          "evidence": null
+        },
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "枪尖回转",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ],
         "red_flags": [
           {
             "gate": "N3/N4/N6",
@@ -1491,18 +1508,17 @@
     },
     {
       "id": "c09",
-      "name": "缓一缓",
+      "name": "糟糕！",
       "decision_role": "低血防守",
       "effect_ref": "HTML:CARD:c09",
       "source": {
-        "tier": "P4",
-        "kind": "original",
+        "tier": "P2",
+        "kind": "daily_voice",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "exact_text": "糟糕！",
+        "url": "https://wiki.biligame.com/ys/胡桃语音",
+        "section": "生命值低·其三",
+        "version": "2026-11-13 candidate; verify voice at production gate"
       },
       "search": {
         "P1": {
@@ -1524,7 +1540,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -1538,32 +1554,32 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "缓一缓",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ]
       }
     },
     {
       "id": "c10",
-      "name": "待命名·c10",
+      "name": "险中求进",
       "decision_role": "低血过牌",
       "effect_ref": "HTML:CARD:c10",
       "source": {
-        "tier": "P3",
-        "kind": "martial",
-        "verified": true,
-        "exact_text": "扎枪",
-        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
-        "version": "2005-11",
-        "cultural": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "name_original": true,
+        "previous_research_tier": "P3",
+        "cultural_research": {
           "original_term": "扎枪",
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-          "source_entry": "枪术主要动作技术要求",
-          "real_action_meaning": "一次直刺对应单体伤害；半血抽牌是另加的回合制效果",
-          "mechanic_mapping": "实际卡牌职责：低血过牌；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
-          "reference_role": "technical_motion_reference_not_display_title",
-          "player_facing_name_approved": false
-        },
-        "name_method": "reference_only"
+          "meaning": "一次直刺对应单体伤害；半血抽牌是另加的回合制效果"
+        }
       },
       "search": {
         "P1": {
@@ -1648,14 +1664,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「扎枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "fail",
+          "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -1675,33 +1691,32 @@
             "decision": "rejected_as_player_facing_name",
             "date": "2026-11-13",
             "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·c10",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
     },
     {
       "id": "c11",
-      "name": "待命名·c11",
+      "name": "暂避锋芒",
       "decision_role": "蝶舞下回合防守",
       "effect_ref": "HTML:CARD:c11",
       "source": {
-        "tier": "P3",
-        "kind": "martial",
-        "verified": true,
-        "exact_text": "拦枪",
-        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
-        "version": "2005-11",
-        "cultural": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "name_original": true,
+        "previous_research_tier": "P3",
+        "cultural_research": {
           "original_term": "拦枪",
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-          "source_entry": "枪术主要动作技术要求",
-          "real_action_meaning": "向外划弧拦挡，对应当前防御及蝶舞后的续防",
-          "mechanic_mapping": "实际卡牌职责：蝶舞下回合防守；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
-          "reference_role": "technical_motion_reference_not_display_title",
-          "player_facing_name_approved": false
-        },
-        "name_method": "reference_only"
+          "meaning": "向外划弧拦挡，对应当前防御及蝶舞后的续防"
+        }
       },
       "search": {
         "P1": {
@@ -1786,14 +1801,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「拦枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "fail",
+          "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -1813,6 +1828,12 @@
             "decision": "rejected_as_player_facing_name",
             "date": "2026-11-13",
             "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·c11",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
@@ -2134,18 +2155,15 @@
     },
     {
       "id": "c18",
-      "name": "蝶影一闪",
+      "name": "见招拆招",
       "decision_role": "攻击挂梅与低血防守",
       "effect_ref": "HTML:CARD:c18",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -2167,7 +2185,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2181,7 +2199,14 @@
           "date": null,
           "evidence": null
         },
-        "history": [],
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "蝶影一闪",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ],
         "red_flags": [
           {
             "gate": "N3/N4/N6",
@@ -2352,27 +2377,20 @@
     },
     {
       "id": "u02",
-      "name": "待命名·u02",
+      "name": "背水一战",
       "decision_role": "低血单体爆发",
       "effect_ref": "HTML:CARD:u02",
       "source": {
-        "tier": "P3",
-        "kind": "martial",
-        "verified": true,
-        "exact_text": "崩枪",
-        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
-        "version": "2005-11",
-        "cultural": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "name_original": true,
+        "previous_research_tier": "P3",
+        "cultural_research": {
           "original_term": "崩枪",
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-          "source_entry": "枪术主要动作技术要求",
-          "real_action_meaning": "枪尖短促弹抖发力，对应单体爆发，低血增伤另见效果",
-          "mechanic_mapping": "实际卡牌职责：低血单体爆发；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
-          "reference_role": "technical_motion_reference_not_display_title",
-          "player_facing_name_approved": false
-        },
-        "name_method": "reference_only"
+          "meaning": "枪尖短促弹抖发力，对应单体爆发，低血增伤另见效果"
+        }
       },
       "search": {
         "P1": {
@@ -2457,14 +2475,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「崩枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "fail",
+          "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -2484,24 +2502,27 @@
             "decision": "rejected_as_player_facing_name",
             "date": "2026-11-13",
             "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·u02",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
     },
     {
       "id": "u03",
-      "name": "蝶舞回身",
+      "name": "侧身还击",
       "decision_role": "蝶舞期间攻击/格挡",
       "effect_ref": "HTML:CARD:u03",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -2523,7 +2544,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2537,7 +2558,14 @@
           "date": null,
           "evidence": null
         },
-        "history": [],
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "蝶舞回身",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ],
         "red_flags": [
           {
             "gate": "N3/N4/N6",
@@ -2549,18 +2577,15 @@
     },
     {
       "id": "u04",
-      "name": "梅开彼岸",
+      "name": "花开正好",
       "decision_role": "全体施加梅香",
       "effect_ref": "HTML:CARD:u04",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -2582,7 +2607,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2596,23 +2621,27 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "梅开彼岸",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ]
       }
     },
     {
       "id": "u05",
-      "name": "无妄夜行",
+      "name": "都别乱动！",
       "decision_role": "群体减伤",
       "effect_ref": "HTML:CARD:u05",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -2634,7 +2663,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2648,7 +2677,14 @@
           "date": null,
           "evidence": null
         },
-        "history": [],
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "无妄夜行",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ],
         "red_flags": [
           {
             "gate": "N3/N4/N6",
@@ -2660,18 +2696,15 @@
     },
     {
       "id": "u06",
-      "name": "借火问路",
+      "name": "再燃一瞬",
       "decision_role": "短E付血与抽牌",
       "effect_ref": "HTML:CARD:u06",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -2693,7 +2726,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2707,7 +2740,14 @@
           "date": null,
           "evidence": null
         },
-        "history": [],
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "借火问路",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ],
         "red_flags": [
           {
             "gate": "N3/N4/N6",
@@ -2719,18 +2759,15 @@
     },
     {
       "id": "u07",
-      "name": "收枪立定",
+      "name": "稳住阵脚",
       "decision_role": "防守与延迟抽牌",
       "effect_ref": "HTML:CARD:u07",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -2752,7 +2789,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2766,7 +2803,14 @@
           "date": null,
           "evidence": null
         },
-        "history": [],
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "收枪立定",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ],
         "red_flags": [
           {
             "gate": "N3/N4/N6",
@@ -2830,18 +2874,15 @@
     },
     {
       "id": "u09",
-      "name": "送客有礼",
+      "name": "有来有往",
       "decision_role": "旧标记高伤+格挡",
       "effect_ref": "HTML:CARD:u09",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -2863,7 +2904,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2877,7 +2918,14 @@
           "date": null,
           "evidence": null
         },
-        "history": [],
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "送客有礼",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ],
         "red_flags": [
           {
             "gate": "N3/N4/N6",
@@ -2889,17 +2937,15 @@
     },
     {
       "id": "u10",
-      "name": "伴君眠花房",
+      "name": "归于安宁",
       "decision_role": "机制与原命座不相同，N3阻塞",
       "effect_ref": "HTML:CARD:u10",
       "source": {
-        "tier": "P1",
-        "kind": "constellation",
+        "tier": "P4",
+        "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null
+        "name_original": true,
+        "previous_research_tier": "P1"
       },
       "search": {
         "P1": {
@@ -2920,11 +2966,11 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "已记录的机制/语义阻塞，不能以官方标签或名称已出现就豁免：此前机制或命名含义阻塞，尚待独立评审",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
-          "N3": "fail",
+          "N3": "pending",
           "N4": "pending",
           "N5": "pending",
           "N6": "pending"
@@ -2935,7 +2981,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "伴君眠花房",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ]
       }
     },
     {
@@ -3051,18 +3104,15 @@
     },
     {
       "id": "u13",
-      "name": "待命名·u13",
+      "name": "三枪连珠",
       "decision_role": "三段攻击/挂梅",
       "effect_ref": "HTML:CARD:u13",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -3083,14 +3133,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "三段攻击与蝶舞挂梅的职责和u21三段攻击相撞；当前未完成适用P3复核",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
-          "N2": "fail",
+          "N2": "pending",
           "N3": "pending",
           "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -3104,24 +3154,27 @@
             "decision": "rejected_for_current_version",
             "reason": "三段攻击+蝶舞挂梅，与u21名字和战术过于相似，需先审独立职责",
             "date": "2026-11-13"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·u13",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
     },
     {
       "id": "u14",
-      "name": "待命名·u14",
+      "name": "火上浇油",
       "decision_role": "先挂梅再攻；快照条件",
       "effect_ref": "HTML:CARD:u14",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -3142,14 +3195,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "旧名“余火未消”与余香未尽雷同，挂梅+追击不能用拼词解释",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
-          "N2": "fail",
+          "N2": "pending",
           "N3": "pending",
           "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -3163,6 +3216,12 @@
             "decision": "rejected_for_current_version",
             "reason": "余火未消与余香未尽撞意象，不能把刷新梅香当新名已经通过",
             "date": "2026-11-13"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·u14",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
@@ -3220,27 +3279,20 @@
     },
     {
       "id": "u16",
-      "name": "待命名·u16",
+      "name": "稍安勿躁",
       "decision_role": "格挡/削弱",
       "effect_ref": "HTML:CARD:u16",
       "source": {
-        "tier": "P3",
-        "kind": "martial",
-        "verified": true,
-        "exact_text": "拿枪",
-        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
-        "version": "2005-11",
-        "cultural": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "name_original": true,
+        "previous_research_tier": "P3",
+        "cultural_research": {
           "original_term": "拿枪",
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-          "source_entry": "枪术主要动作技术要求",
-          "real_action_meaning": "向内划弧的拿拨动作，对应格挡与降低下一攻击",
-          "mechanic_mapping": "实际卡牌职责：格挡/削弱；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
-          "reference_role": "technical_motion_reference_not_display_title",
-          "player_facing_name_approved": false
-        },
-        "name_method": "reference_only"
+          "meaning": "向内划弧的拿拨动作，对应格挡与降低下一攻击"
+        }
       },
       "search": {
         "P1": {
@@ -3325,14 +3377,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「拿枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "fail",
+          "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -3352,6 +3404,12 @@
             "decision": "rejected_as_player_facing_name",
             "date": "2026-11-13",
             "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·u16",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
@@ -3512,27 +3570,20 @@
     },
     {
       "id": "u19",
-      "name": "待命名·u19",
+      "name": "闹个痛快！",
       "decision_role": "群体伤害+低血格挡",
       "effect_ref": "HTML:CARD:u19",
       "source": {
-        "tier": "P3",
-        "kind": "martial",
-        "verified": true,
-        "exact_text": "舞花枪",
-        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
-        "version": "2005-11",
-        "cultural": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "name_original": true,
+        "previous_research_tier": "P3",
+        "cultural_research": {
           "original_term": "舞花枪",
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-          "source_entry": "枪术主要动作技术要求",
-          "real_action_meaning": "贴近身体连续快速立圆绕行，对应群体攻击与回防",
-          "mechanic_mapping": "实际卡牌职责：群体伤害+低血格挡；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
-          "reference_role": "technical_motion_reference_not_display_title",
-          "player_facing_name_approved": false
-        },
-        "name_method": "reference_only"
+          "meaning": "贴近身体连续快速立圆绕行，对应群体攻击与回防"
+        }
       },
       "search": {
         "P1": {
@@ -3617,14 +3668,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「舞花枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "fail",
+          "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -3644,33 +3695,32 @@
             "decision": "rejected_as_player_facing_name",
             "date": "2026-11-13",
             "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·u19",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
     },
     {
       "id": "u20",
-      "name": "待命名·u20",
+      "name": "收工啦！",
       "decision_role": "目标旧梅提前兑现",
       "effect_ref": "HTML:CARD:u20",
       "source": {
-        "tier": "P3",
-        "kind": "martial",
-        "verified": true,
-        "exact_text": "点枪",
-        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
-        "version": "2005-11",
-        "cultural": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "name_original": true,
+        "previous_research_tier": "P3",
+        "cultural_research": {
           "original_term": "点枪",
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-          "source_entry": "枪术主要动作技术要求",
-          "real_action_meaning": "短促点击目标，梅香提前结算是本作附加的特殊收益",
-          "mechanic_mapping": "实际卡牌职责：目标旧梅提前兑现；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
-          "reference_role": "technical_motion_reference_not_display_title",
-          "player_facing_name_approved": false
-        },
-        "name_method": "reference_only"
+          "meaning": "短促点击目标，梅香提前结算是本作附加的特殊收益"
+        }
       },
       "search": {
         "P1": {
@@ -3755,14 +3805,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「点枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "fail",
+          "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -3782,24 +3832,27 @@
             "decision": "rejected_as_player_facing_name",
             "date": "2026-11-13",
             "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·u20",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
     },
     {
       "id": "u21",
-      "name": "待命名·u21",
+      "name": "收放自如",
       "decision_role": "三段攻击+格挡",
       "effect_ref": "HTML:CARD:u21",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -3820,14 +3873,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "三段攻击与u13近似，必须先证明不同构筑地位，再命名",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
-          "N2": "fail",
+          "N2": "pending",
           "N3": "pending",
           "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -3841,6 +3894,12 @@
             "decision": "rejected_for_current_version",
             "reason": "三段攻击+蝶舞格挡与u13重复构筑位，不能仅用枪影词根区分",
             "date": "2026-11-13"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·u21",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
@@ -4358,18 +4417,15 @@
     },
     {
       "id": "r11",
-      "name": "花影成双",
+      "name": "双蝶齐飞",
       "decision_role": "双段攻击/挂梅",
       "effect_ref": "HTML:CARD:r11",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -4391,7 +4447,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -4405,7 +4461,14 @@
           "date": null,
           "evidence": null
         },
-        "history": [],
+        "history": [
+          {
+            "date": "2026-11-13",
+            "name": "花影成双",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
+          }
+        ],
         "red_flags": [
           {
             "gate": "N3/N4/N6",
@@ -4527,27 +4590,20 @@
     },
     {
       "id": "r14",
-      "name": "待命名·r14",
+      "name": "留一手",
       "decision_role": "低血攻守",
       "effect_ref": "HTML:CARD:r14",
       "source": {
-        "tier": "P3",
-        "kind": "martial",
-        "verified": true,
-        "exact_text": "挑把",
-        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
-        "version": "2005-11",
-        "cultural": {
+        "tier": "P4",
+        "kind": "original",
+        "verified": false,
+        "name_original": true,
+        "previous_research_tier": "P3",
+        "cultural_research": {
           "original_term": "挑把",
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
-          "source_entry": "枪术主要动作技术要求",
-          "real_action_meaning": "枪把由下向上挑击，低血格挡是本作额外收益",
-          "mechanic_mapping": "实际卡牌职责：低血攻守；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
-          "reference_role": "technical_motion_reference_not_display_title",
-          "player_facing_name_approved": false
-        },
-        "name_method": "reference_only"
+          "meaning": "枪把由下向上挑击，低血格挡是本作额外收益"
+        }
       },
       "search": {
         "P1": {
@@ -4632,14 +4688,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「挑把」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "fail",
+          "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -4659,6 +4715,12 @@
             "decision": "rejected_as_player_facing_name",
             "date": "2026-11-13",
             "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·r14",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
@@ -4804,18 +4866,15 @@
     },
     {
       "id": "r17",
-      "name": "待命名·r17",
+      "name": "收拾残局",
       "decision_role": "梅香引爆+下回合防御",
       "effect_ref": "HTML:CARD:r17",
       "source": {
         "tier": "P4",
         "kind": "original",
         "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "name_original": true,
+        "previous_research_tier": "P4"
       },
       "search": {
         "P1": {
@@ -4836,14 +4895,14 @@
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "送别+引爆语义已在再会啦/一路走好使用，旧名此行珍重无法形成足够区分",
+        "status": "PENDING",
+        "reason": "新版可读名称候选：尚需玩家/独立审美终审及逐条官方来源检验。",
         "checks": {
-          "N2": "fail",
+          "N2": "pending",
           "N3": "pending",
           "N4": "pending",
           "N5": "pending",
-          "N6": "fail"
+          "N6": "pending"
         },
         "human": {
           "approved": false,
@@ -4857,6 +4916,12 @@
             "decision": "rejected_for_current_version",
             "reason": "此行珍重与一路走好/再会啦均为送别引爆牌，辨识度不足",
             "date": "2026-11-13"
+          },
+          {
+            "date": "2026-11-13",
+            "name": "待命名·r17",
+            "decision": "superseded",
+            "reason": "Player-facing natural name candidate, separate from martial art source reference"
           }
         ]
       }
@@ -4898,8 +4963,15 @@
       ],
       "human_approval_count": 0,
       "mechanics_invariant": true
+    },
+    {
+      "date": "2026-11-13",
+      "scope": "75 cards, 26 updated names, readable offline browser",
+      "ready_to_play": true,
+      "human_approval_count": 0,
+      "mechanical_changes": 0
     }
   ],
-  "naming_policy": "SOURCE_PRIORITY_v2_reference_vs_player_facing_title",
+  "naming_policy": "P1_P2_first_P3_reference_and_separate_player_titles",
   "priorities_provenance_note": "P1>P2>P3>P4 refers to research/source selection; P3 martial terminology is not itself approved as display text"
 }
