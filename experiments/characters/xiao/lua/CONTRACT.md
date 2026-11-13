@@ -117,3 +117,9 @@ damageHits将每击面具基础加成及times=2传给原生damage，不复制卡
 ## 独立effect增量：x37当前盾伤害与x40活敌盾
 
 blockDamage以当前block取基础封顶，不花盾，之后加面具伤害再走原生damage；enemyCountBlock读取实际Actors.isActive敌人数，人数cap3后乘值，再原生block。state_attack_dispatch_test三探针通过基升边界/超额/面具、活敌0..4及Dexterity、false前验和Snapshot恢复。此增量尚待独审且未加入共享01/04 gate。
+
+## 独立可执行扩展：x28末窗口攻击与x34退出返能
+
+lastMaskDamage在执行时读取mask，只有1才加结构化bonus，其后正常面具4点及宿主护甲；不会自动退出，前一动作缩短可以改变当前资格。exitEnergy只在真正→0时先退出盾、再原生energy，空退出不返，重复不能再领；未来host付款仍须先支付基础费用，本效果不回退费用。能量安全和加法上界在变面具前校验，所有效果仍须宿主命令Snapshot。
+
+window_dispatch_test三探针覆盖基升mask0..3、先缩短、实际返能、重复空退、退出盾组合、溢出预拒与恢复；首8十条及退出三条定向回归通过。只effect执行，x34正式消耗/支付/UseCard尚未注册，不能把该测试算免费循环或自然构筑验收。

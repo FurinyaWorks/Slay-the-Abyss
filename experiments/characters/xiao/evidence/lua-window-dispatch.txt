@@ -1,0 +1,3 @@
+PASS x28 actual current last-mask window bonus after prior shortening without auto-exit
+PASS x34 actual energy refund only once on real positive-to-zero exit
+PASS exit shield plus refund and overflow pre-rejection with host rollback

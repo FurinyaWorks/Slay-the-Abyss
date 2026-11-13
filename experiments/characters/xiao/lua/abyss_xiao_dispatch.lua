@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -22,6 +22,7 @@ function M.dispatch(combat,state,effect,queue)
  local r=resource(state);integer(effect.value,effect.kind=='maskCommit'and 3 or 2147483647)
  if r.hp==0 then return true end
  local value=effect.value
+ if effect.kind=='lastMaskDamage'then value=Plan.lastMaskDamage(r.mask,value,effect.bonus)end
  if effect.kind=='blockDamage'then
   integer(state.player.block);integer(effect.cap);value=Plan.scaledCount(state.player.block,value,effect.cap)
  end
@@ -63,12 +64,16 @@ function M.dispatch(combat,state,effect,queue)
   Schedule.recordApplied(state,state.player,status,previous)
   return true
  end
- if effect.kind=='maskCommit'or effect.kind=='shortenMask'then
-  local duration=effect.kind=='shortenMask'and Plan.shortenMask(r.mask,effect.value).mask or effect.value
+ if effect.kind=='maskCommit'or effect.kind=='shortenMask'or effect.kind=='exitEnergy'then
+  local duration=effect.kind=='exitEnergy'and 0 or effect.kind=='shortenMask'and Plan.shortenMask(r.mask,effect.value).mask or effect.value
   local patch=effect.kind=='shortenMask'and {mask=duration,relicUsed=r.relicUsed,effects={}}or Plan.maskCommit(r,duration)
   local exitGuard=state.player.statuses.xiao_exit_guard;if exitGuard==nil then exitGuard=0 end
   integer(exitGuard)
   if r.mask>0 and patch.mask==0 and exitGuard>0 then patch.effects[#patch.effects+1]={op='block',value=exitGuard}end
+  if effect.kind=='exitEnergy'and r.mask>0 then
+   integer(state.energy);assert(effect.value<=2147483647-state.energy,'Xiao exit energy overflow')
+   patch.effects[#patch.effects+1]={op='energy',value=effect.value}
+  end
   if patch.mask==0 then
    Schedule.remove(state,state.player,'xiao_mask');state.player.statuses.xiao_mask=nil
   elseif r.mask==0 then
