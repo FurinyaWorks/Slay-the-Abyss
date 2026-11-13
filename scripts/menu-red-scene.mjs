@@ -1,4 +1,5 @@
 import {readFileSync} from 'node:fs';
+import {flatTriangle} from './menu-flat-triangle.mjs';
 const pack=JSON.parse(readFileSync(new URL('../data/presentation/native-menu-red.json',import.meta.url),'utf8'));
 const group=(name,children)=>({name,kind:'container',size:[1280,720],children});
 // A = R(u) diag(s1,s2) R(v). Parent scale/rotation and child rotation are
@@ -17,14 +18,19 @@ export function nativeMenuTriangle([left,right,tip],name,colour){
 }
 // One static, source-fitted scene. Keep the existing menu scenery handle so
 // result/menu lifecycle ownership does not change. No runtime fitting/loading.
-export function menuRedScene(){
+export function menuRedBackground(pack,compact=false){
  const kx=1280/pack.width,ky=720/pack.height;
  const images=pack.shapes.map((s,i)=>{
-  if(s.type==='rect')return {name:'facet'+i,kind:'image',position:[(s.box[0]+s.box[2]/2)*kx-640,360-(s.box[1]+s.box[3]/2)*ky],size:[s.box[2]*kx,s.box[3]*ky],image:100001,colour:s.colour};
+  if(s.type==='rect'||s.type==='ellipse')return {name:'facet'+i,kind:'image',position:[(s.box[0]+s.box[2]/2)*kx-640,360-(s.box[1]+s.box[3]/2)*ky],size:[s.box[2]*kx,s.box[3]*ky],image:s.type==='ellipse'?100002:100001,colour:s.colour};
   if(s.type!=='polygon'||s.points.length!==3)throw Error('Menu fit must contain rectangles or triangles');
-  return nativeMenuTriangle(s.points.map(([x,y])=>[x*kx-640,360-y*ky]),'facet'+i,s.colour);
+  const points=s.points.map(([x,y])=>[x*kx-640,360-y*ky]);
+  return (compact&&flatTriangle(points,'facet'+i,s.colour))||nativeMenuTriangle(points,'facet'+i,s.colour);
  });
- if(images.length>1600)throw Error('Menu native image budget exceeded');
+ if(images.length>1800)throw Error('Menu native image budget exceeded');
  const batches=Array.from({length:Math.ceil(images.length/60)},(_,i)=>group('batch'+i,images.slice(i*60,(i+1)*60)));
- return group('menuRuinsScene',[group('menuRedBackground',batches)]);
+ const result=group('menuRedBackground',batches);
+ const count=n=>1+(n.children??[]).reduce((sum,c)=>sum+count(c),0);
+ if(compact&&count(result)>1800)throw Error('Total menu background control budget exceeded');
+ return result;
 }
+export function menuRedScene(){return group('menuRuinsScene',[menuRedBackground(pack,pack.nativeMode==='single-axis-static-xyz')]);}

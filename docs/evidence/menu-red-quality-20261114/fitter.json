@@ -1,0 +1,12 @@
+{
+  "fitterSha256": "f662fc272ecd4c7d30190b01bda8f7785f54c25e7ea2e6e3c75f6e2de7ebe4fe",
+  "results": [
+    {
+      "images": 1600,
+      "mae": 6.076651033971744,
+      "faceMAE": 8.597882357537753,
+      "epsilon": 4.99396728515625
+    }
+  ],
+  "seconds": 16.14588129999902
+}

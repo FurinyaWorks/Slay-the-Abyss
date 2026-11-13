@@ -17,10 +17,12 @@ const sdkPath=process.env.MENU_REVIEW_SDK;
 const sdk=sdkPath?await import(pathToFileURL(path.resolve(sdkPath))):null,sessions=new Map(),sources=new Map();
 const entryId=process.env.MENU_REVIEW_SESSION??'menu-play';
 if(!/^[a-zA-Z0-9_-]{1,100}$/.test(entryId))throw Error('Invalid preview entry identity');
-const archive=JSON.parse(fs.readFileSync(scene));
+const parsedAt=performance.now();
+const {archive,archiveSha256}=(()=>{const bytes=fs.readFileSync(scene);return{archive:JSON.parse(bytes),archiveSha256:hash(bytes)}})();
+const archiveParseMs=performance.now()-parsedAt;
 let parked=null,parkedMs=null;
 function preloadMenu(){
- if(!sdk||parked)return;
+ if(process.env.MENU_REVIEW_PRELOAD==='0'||!sdk||parked||sessions.has(entryId))return;
  const started=performance.now();
  parked=sdk.Gr(archive.assets.server,{templatesProject:archive.assets.client,scripts:archive.assets.scripts,serverConfig:archive.serverLogic,canvasId:'pc-16-9',language:'LanguageChs'});
  parkedMs=performance.now()-started;
@@ -32,9 +34,10 @@ function openSession(id,a){
  if((a.playerCount??1)!==1||(a.viewPlayerIndex??1)!==1)throw Error('This menu review supports one player');
  closeSession(id);if(sessions.size>=4)throw Error('session limit');
  const save=sources.get(id)??archive,t=performance.now();let session;
- if(id===entryId&&parked&&(!a.canvasId||a.canvasId==='pc-16-9')&&(!a.language||a.language==='LanguageChs')){
+ if(id===entryId&&parked&&save===archive&&(!a.canvasId||a.canvasId==='pc-16-9')&&(!a.language||a.language==='LanguageChs')){
   session=parked;parked=null;session.__attachedPreloaded=true;
  }else{
+  if(id===entryId&&parked){const unused=parked;parked=null;for(const r of unused.runtimes??[])r.destroy();}
   session=sdk.Gr(save.assets.server,{templatesProject:save.assets.client,scripts:save.assets.scripts,serverConfig:save.serverLogic,canvasId:a.canvasId??'pc-16-9',language:a.language??'LanguageChs'});
   session.__startMs=performance.now()-t;
  }
@@ -81,7 +84,7 @@ const front=http.createServer((req,res)=>{
  if(req.headers.origin&&req.headers.origin!==url){res.writeHead(403);res.end('foreign origin');return}
  if(!req.url?.startsWith('/')||req.url.startsWith('//')){res.writeHead(400);res.end();return}
  if(req.method==='GET'&&new URL(req.url,url).pathname==='/'){res.writeHead(302,{location:'/editor/play#'+entryId,'cache-control':'no-store'});res.end();return}
- if(req.method==='GET'&&req.url==='/menu-health'){send(res,receipt?200:503,{app:'menu-native-2d-review',ready:!!receipt,buildId:receipt?.buildId,saveSha256:receipt?.saveSha256});return}
+ if(req.method==='GET'&&req.url==='/menu-health'){send(res,receipt?200:503,{app:'menu-native-2d-review',ready:!!receipt,buildId:receipt?.buildId,saveSha256:receipt?.saveSha256,activeSessions:sessions.size,parkedSessions:parked?1:0});return}
  if(req.method==='GET'&&new URL(req.url,url).pathname==='/editor/play'){
   const html=fs.readFileSync(path.join(web,'dist/public/play.html'),'utf8').replace('</head>','<style>#playerCountSel,#playerViewSel{display:none!important}</style></head>');
   res.writeHead(200,{'content-type':'text/html; charset=utf-8','cache-control':'no-store'});res.end(html);return;
@@ -96,7 +99,7 @@ if(!Number.isInteger(port)||port<0||port>65535)throw Error('Invalid MENU_REVIEW_
 preloadMenu();
 await new Promise((resolve,reject)=>{front.once('error',reject);front.listen(port,'127.0.0.1',resolve)});
 url='http://127.0.0.1:'+front.address().port;
-const save=JSON.parse(fs.readFileSync(scene)),buildId=/ABYSS_BUILD ([0-9a-f-]+)/.exec(save.assets.scripts.find(s=>s.path.endsWith('abyss_ui.lua')).source)?.[1];
-receipt={url,pid:process.pid,saveSha256:hash(fs.readFileSync(scene)),rendererSha256:hash(renderer),scenePath:scene,web,buildId,preloadedEntry:entryId,preloadMs:parkedMs,coldLoadAccepted:false,assetBaseUrl:base.origin,autoAttach:process.env.MENU_REVIEW_AUTO_ATTACH==='1',cases:[{archive:'menu.save.json',sha256:hash(fs.readFileSync(scene))}],...(sdk?{sdkPath,sdkSha256:hash(fs.readFileSync(sdkPath)),runtimeMode:'persistent installed Simulator SDK; no editor transactions'}:{runtimeMode:'editor worker'})};
+const buildId=/ABYSS_BUILD ([0-9a-f-]+)/.exec(archive.assets.scripts.find(s=>s.path.endsWith('abyss_ui.lua')).source)?.[1];
+receipt={url,pid:process.pid,saveSha256:archiveSha256,rendererSha256:hash(renderer),scenePath:scene,web,buildId,preloadedEntry:entryId,preloadMs:parkedMs,archiveParseMs,archiveParsedOnce:true,coldLoadAccepted:false,assetBaseUrl:base.origin,autoAttach:process.env.MENU_REVIEW_AUTO_ATTACH==='1',cases:[{archive:'menu.save.json',sha256:archiveSha256}],...(sdk?{sdkPath,sdkSha256:hash(fs.readFileSync(sdkPath)),runtimeMode:'persistent installed Simulator SDK; no editor transactions'}:{runtimeMode:'editor worker'})};
 fs.writeFileSync(out+'/service.json',JSON.stringify(receipt,null,2));console.log(receipt);
 for(const signal of ['SIGINT','SIGTERM'])process.once(signal,async()=>{for(const id of sessions.keys())closeSession(id);for(const r of parked?.runtimes??[])r.destroy();await backend.close();front.close();process.exit()});

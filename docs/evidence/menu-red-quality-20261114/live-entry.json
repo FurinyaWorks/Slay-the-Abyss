@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:56706/editor/play#style-d359015e",
+  "health": {
+    "app": "menu-native-2d-review",
+    "ready": true,
+    "buildId": "53629ec8-5a99-4a54-97ed-04e152adeb21",
+    "saveSha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa",
+    "activeSessions": 0,
+    "parkedSessions": 1
+  },
+  "rootRedirect": "/editor/play#style-d359015e",
+  "servicePid": 21668,
+  "preloadMs": 1475.3765000000003,
+  "archiveParseMs": 687.6819,
+  "scope": "Same original entry and current archive verified by HTTP; no user desktop input or extra session created"
+}

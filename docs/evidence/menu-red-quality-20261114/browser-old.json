@@ -1,0 +1,30 @@
+{
+  "kind": "actual-natural-browser-draw-timing",
+  "buildId": "1af131dd-ee8d-4e67-80e6-7a6c1dba2da0",
+  "saveSha256": "44e1c68acef46297a2369f92e715fc1e1b8a0f811cdc11226fd5322403526145",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "sid": "qa-stage-visual-1794593337899",
+  "shots": [
+    {
+      "name": "01-menu",
+      "frame": 6,
+      "checks": {},
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622"
+    }
+  ],
+  "errors": [],
+  "archiveLoadMs": 792.6491000000001,
+  "navigationToPositiveFrameMs": 28366.8874,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "status": "captured",
+  "menuRendererCpuMs": {
+    "samples": 220,
+    "p50": 0.19999999925494194,
+    "p95": 0.3999999985098839,
+    "max": 0.8000000007450581,
+    "scope": "WebGL renderer command submission wall time; not GPU/official FPS"
+  },
+  "rawReportSha256": "d5ae40fdbc3fa6e7a80065102f5548364be52b0016dcec8a96bd4f469b443f60",
+  "rawReportPath": ".artifacts/menu-quality-r1/browser-old/report.json",
+  "drawSamples": 282
+}

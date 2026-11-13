@@ -1,41 +1,46 @@
-# 红白黑主菜单试用
+# 红白黑主菜单原生拟合
 
-用户明确要求把附件通过原生素材拼接/拟合接入，主菜单只留开始游戏、退出游戏。原图保存在 [input/source.png](input/source.png)，SHA256 `16bdf7b614f0fb6fdbc2414271682446c0012a9e8ff8da70abad3b7a0374480d`。没有直接纹理导入或新生成图。
+当前采用本轮原附件重做的 **1600 个绘图图元、1732 个背景控件**，符合Owner确认的约1500–1600绘图图元、上限1800预算。只保留开始游戏/退出游戏；原图不作为运行时纹理导入，没有新生成图。
 
-实现与当前结论见 [证据](../../docs/evidence/menu-red-20261113/README.md)。**这是可试玩实验，首屏无感加载尚未达标；不是发布候选验收。**
+实际原入口：<http://127.0.0.1:56706/editor/play#style-d359015e>。本轮画面、原生写入/读回和资源证据见 [质量与资源重做](../../docs/evidence/menu-red-quality-20261114/README.md)。Owner审美、整游无感冷加载及官方PC/手机验收仍独立保留；本机进程重启后须重启临时服务。
 
-用户反馈原页面仍为旧版后的入口修复见 [本轮证据](../../docs/evidence/menu-red-entry-20261114/README.md)。当前恢复原 `http://127.0.0.1:56706/editor/play#style-d359015e`，组合最新冻结样式归档与原生菜单切片；不是新编译的GIL。`compose.mjs` 校验整份样式归档与366脚本身份，并断言五个菜单子树以外的UI、模板和服务逻辑保持。`verify-entry.mjs <service.json> <新目录>` 实测重连全量重置、单人限制、控件隐藏和真实菜单截图。此入口限定单人Simulator试用。
+## 离线拟合
 
-## 美术与运行时
+原图 [input/source.png](input/source.png)，SHA256 16bdf7b614f0fb6fdbc2414271682446c0012a9e8ff8da70abad3b7a0374480d。运行图元只用原生100001矩形、100002圆形/椭圆、100003三角。
 
-- `fit.py` 复用 TASK-94 轮廓分区适配器，原始实现 SHA256 `17317259a9be17782c645ae6466e2611447d5379cffb37a31e24db6316124cb5`，本分支只改本附件的头部/眼睛预算。未修改并行选角实验。
-- 选中数据记录生成时的生成器摘要 `c700a4e9…56bf`；交付时仅规范脚本末尾空行，原字节可由当前LF脚本再附加一个CRLF恢复，已独立核对摘要。几何和预算未变化。
-- 环境为已安装 Python/Pillow/OpenCV/Shapely/NumPy。颜色32、宽836；对比800/1600/3200预算，选3200轮廓档。`data/presentation/native-menu-red.json` 保存选中轮廓和来源身份。
-- 数据中 `nativeImages=3195` 是旧转换器的**遮罩半三角预算**。实际 `menu-red-scene.mjs` 用有符号奇异值分解，将每个完整三角放成“一容器+一原生100003图片”，连同底色实际1598图片；不再使用三角fill/stencil。仅使用原生100001/100003和2D旋转/缩放，背景不接输入、不逐帧重建。
-- 标题和占位选项移除；使用无描边的原生28号字。hover进160ms、出100ms，按当前值反向，固定280×56命中区域；稳定后停止属性写入，结算文字与传统菜单退出入口保留。
+stack-fit.py 使用固定版 [VTracer 0.6.15](https://pypi.org/project/vtracer/0.6.15/)（MIT，仅开发时使用），分层轮廓追踪、区域精度分配、完全遮挡三角裁除及可见面的颜色拟合。面部单独精细处理；source-details.json 保留阈值以下的瞳孔、嘴线、发饰窗口和宝石。SVG/PNG诊断图不进入运行时，输出为普通数值几何。
 
-在本目录离线拟合复现（输出新目录）：
+复用工具链已有Python3.12/Pillow/OpenCV/NumPy/Shapely，新增依赖仅安装到隔离目录，不改系统Python。自仓库根执行：
 
-```powershell
-python fit.py input/source.png fit-rN --budgets 800 1600 3200 --colors 32 --width 836
-python diagnostic.py fit-rN
-```
+    python -m pip install --target .artifacts/menu-quality-tools/python -r experiments/menu-red-fit/requirements-fit.txt
+    $env:PYTHONPATH=(Resolve-Path .artifacts/menu-quality-tools/python).Path
+    python experiments/menu-red-fit/stack-fit.py experiments/menu-red-fit/input/source.png <新目录> --budgets 1600 --difference 24 --speckle 8 --features --prune --refit
 
-诊断图只用于挑预算；运行截图必须来自候选读回。
+解释器实际位置以 [工具链](../../docs/TOOLCHAIN.md) 为准。选中数据存 data/presentation/native-menu-red.json；原图、生成器与包身份独立保留。
 
-## 候选与预览
+## 原生放置与候选
 
-从仓库根目录运行，解释器/本机工具位置沿用 [工具链](../../docs/TOOLCHAIN.md)：
+多数三角通过项目既有单轴投影解法成为一张图片，不能精确放置的保留原2D SVD回退。所有回退容器都算入1732总数，每组最多60子项，无逐三角遮罩、软蒙版或运行时拟合。
 
-```powershell
-node experiments/menu-red-fit/build.mjs <同develop基线的candidate.json> <新输出目录>
-node experiments/noncombat-review/prepare.mjs <新candidate.json> <新读回目录> <已验证readback-adapter.mjs>
-node experiments/menu-red-fit/serve.mjs <已有Simulator web> <实际save.json> <新服务目录>
-node experiments/menu-red-fit/hover.mjs <实际save.json> <已有SDK export> <新报告.json>
-```
+native-ui-encoder 仅在隔离模块URL补齐原生矩形XYZ编解码，原标量Z保持相同字节；native-simulator-importer 补齐独立读取器原来遗漏的X/Y。固定字段锚点改变时拒绝，安装文件不写。生成的XYZ控件须经本仓库编码器进入GIL，不能交给只支持Z的旧高层JSON入口后声称等价。
 
-候选构建器保留已有编译图和模板ID，使用当前标准UI与生成的肖像绑定，逐Lua读回；收据是独立 `menu-native-fit-experiment`，不继承旧生产收据的payload/时间/产物。`--reuse-layout` 只接收本实验候选且核对五项布局输入完全相同，供纯Lua纠正使用。它不能冒充标准生产构建/官方导入。
+    node experiments/menu-red-fit/build.mjs <同基线candidate.json> <新候选目录>
+    node scripts/native-candidate-preview.mjs <新candidate.json> <新实际读回目录>
+    node experiments/menu-red-fit/compose-native.mjs <冻结当前样式save.json> <实际读回目录> <candidate.json> <新组合目录>
 
-服务复用已安装SDK和渲染器，保持编辑器工作目录为空，避免启动时反复索引巨型归档；游戏仍运行实际GIL Lua。Windows的SDK依赖如已重定位，沿用既有 `preview-tools.mjs` 预加载；Node的 `--import` 使用file URL。隐藏后台启动，不抢桌面焦点。正式客户端操作仍需本轮窗口授权。
+构建器保留已有图、模板ID和Lua，使用独立 menu-native-fit-experiment 收据。组合器只换实际GIL读回背景及构建标记，保留当前样式其余365Lua、其他UI、模板及服务逻辑。**背景来自新GIL读回，不代表整份组合预览是新编译的最新整游GIL。**
 
-旧版编辑器投影的 inactive `minFontSize` 会被官方导入器略去；保留逆转换原始差异，不删除断言或称零差异。当前SDK身份也不受旧 `replay:outcome` 投影合同支持，其失败尝试和未验收状态均保留在证据中。
+## 试用与验证
+
+    node experiments/menu-red-fit/serve.mjs <已有Simulator web> <组合scene.save.json> <新服务目录>
+    node experiments/menu-red-fit/verify-entry.mjs <service.json> <新证据目录>
+    node experiments/menu-red-fit/browser-proof.mjs <service.json> <新浏览器证据目录>
+    node experiments/menu-red-fit/hover.mjs <scene.save.json> <已有SDK export> <新hover.json>
+    node experiments/menu-red-fit/cache-proof.mjs <scene.save.json> <已有SDK export> <新cache.json>
+    node --expose-gc experiments/menu-red-fit/measure.mjs <scene.save.json> <已有SDK export> <新样本.json> full
+
+Windows依赖重定位沿用现有 preview-tools.mjs 预加载，--import 使用file URL。服务设置 MENU_REVIEW_SDK；MENU_REVIEW_PORT / MENU_REVIEW_SESSION 指定入口，MENU_REVIEW_IMAGE_CACHE 指向工作树内原生素材缓存。隐藏后台启动，不抢桌面。
+
+归档只解析一次。默认预建一份入口；entry活跃时不再预建，归档/设备/语言不匹配时释放未用副本。MENU_REVIEW_PRELOAD=0 用于公平冷建测量，不把预载开页称为无感冷加载。probe-reload.mjs 用独立进程复现旧/新重载及GC堆采样；cache-proof 等实际揭幕后操作，20轮检查背景同对象/ID，并保留血量、首战与销毁断言。
+
+原 fit.py 与 [20261113证据](../../docs/evidence/menu-red-20261113/README.md) 仅作旧版基线；其3195半三角预算、1598图片及旧性能数不能用于本轮验收。旧投影合同不支持当前SDK的失败也保留，不能用旧日志或PC结果补官方/手机证据。

@@ -10,7 +10,8 @@ test('minimal menu uses the supplied native background, fixed input and two acti
  const scene=all(menu).find(n=>n.name==='menuRedBackground');assert(scene,'new reference must be in the actual layout');
  assert.equal(children(menu).filter(n=>n.name==='menuRuinsScene').length,1,'stable scene handle remains idempotent');
  assert.equal(all(scene).filter(n=>n.kind==='image').length<=1600,true);
- for(const n of all(scene)){assert(['container','image'].includes(n.kind));assert(children(n).length<=60);assert(!n.focusable&&!n.scripts);if(n.kind==='image'){assert([100001,100003].includes(n.image));assert(!n.fill&&!n.feather,'static background has no per-triangle stencil/soft masks');}}
+ assert(all(scene).length<=1800,'Total background controls, including transform holders, must remain inside the user budget');
+ for(const n of all(scene)){assert(['container','image'].includes(n.kind));assert(children(n).length<=60);assert(!n.focusable&&!n.scripts);if(n.kind==='image'){assert([100001,100002,100003].includes(n.image));assert(!n.fill&&!n.feather,'static background has no per-triangle stencil/soft masks');}}
  assert.equal(children(menu).find(n=>n.name==='title').visible,false);
  assert(!all(menu).some(n=>['图鉴','游戏记录'].includes(n.text?.content)));
  for(const name of ['start','titleQuit']){

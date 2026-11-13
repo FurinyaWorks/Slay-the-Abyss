@@ -1,0 +1,74 @@
+{
+  "status": "passed",
+  "samples": 1,
+  "reports": [
+    {
+      "label": "old",
+      "saveSha256": "44e1c68acef46297a2369f92e715fc1e1b8a0f811cdc11226fd5322403526145",
+      "originalServiceSha256": "12d77d66dbf74b8dcb926bff336b08c3b0e4f11bbf71ff21635eaa02d693d95c",
+      "instrumentedServiceSha256": "a903f1468d24c6aee7d202e9779df50d37d6bc2c0cfc625810fbc18d3b27c14f",
+      "initial": {
+        "active": 0,
+        "parked": 1,
+        "parkedSdkMs": 2015.2912999999999,
+        "memory": {
+          "rss": 593858560,
+          "heapTotal": 379912192,
+          "heapUsed": 320270120,
+          "external": 4343066,
+          "arrayBuffers": 126033
+        }
+      },
+      "after": {
+        "active": 1,
+        "parked": 1,
+        "parkedSdkMs": 1538.8599000000004,
+        "memory": {
+          "rss": 1014042624,
+          "heapTotal": 811483136,
+          "heapUsed": 515384360,
+          "external": 6897514,
+          "arrayBuffers": 183676
+        }
+      },
+      "restartReplyMs": 1683.1633999999995,
+      "restartToObservedStableMs": 3369.459999999999,
+      "mobileSingleRuntime": null,
+      "scope": "One local HTTP stop/start reproduction; GC heap sample and 300ms observation wait included; not official/device load or GPU performance"
+    },
+    {
+      "label": "new",
+      "saveSha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa",
+      "originalServiceSha256": "ef9659b463158d68bdd7447ba7b41ee9fbc84114b5c3f37fa5ac4581aff851ea",
+      "instrumentedServiceSha256": "80e22becd9ae85c948eb1c8ebd964245c5d3eb5eea06b27681f787efbb448123",
+      "initial": {
+        "active": 0,
+        "parked": 1,
+        "parkedSdkMs": 1824.6119999999999,
+        "memory": {
+          "rss": 498917376,
+          "heapTotal": 406126592,
+          "heapUsed": 312410784,
+          "external": 63036840,
+          "arrayBuffers": 126033
+        }
+      },
+      "after": {
+        "active": 1,
+        "parked": 0,
+        "parkedSdkMs": null,
+        "memory": {
+          "rss": 714756096,
+          "heapTotal": 544276480,
+          "heapUsed": 313116808,
+          "external": 5574317,
+          "arrayBuffers": 126033
+        }
+      },
+      "restartReplyMs": 1726.8389000000006,
+      "restartToObservedStableMs": 2118.5939,
+      "mobileSingleRuntime": true,
+      "scope": "One local HTTP stop/start reproduction; GC heap sample and 300ms observation wait included; not official/device load or GPU performance"
+    }
+  ]
+}
