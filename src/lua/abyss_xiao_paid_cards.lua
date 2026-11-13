@@ -7,6 +7,7 @@ local canonical={}
 for _,d in ipairs(Bridge.definitions())do
  if d.id=='xiao_candidate_x01'or d.id=='xiao_candidate_x02'or d.id=='xiao_candidate_x04'or d.id=='xiao_candidate_x05'or d.id=='xiao_candidate_x06'or d.id=='xiao_candidate_x03'or d.id=='xiao_candidate_x07'or d.id=='xiao_candidate_x08'then canonical[d.id]=d end
 end
+for _,d in ipairs(Bridge.additionalDefinitions())do canonical[d.id]=d end
 local function same(a,b)
  if type(a)~='table'or type(b)~='table'then return a==b end
  for k,v in pairs(a)do if not same(v,b[k])then return false end end
@@ -32,7 +33,7 @@ function M.canUse(state,instance,card,targetIndex)
   or card.type~=c.type or card.target~=c.target
   or card.exhaust~=c.exhaust
   or not same(card.effects,instance.upgraded and c.upgrade.effects or c.effects)then return false,'xiao_candidate_unavailable'end
- if (instance.cardId=='xiao_candidate_x01'or instance.cardId=='xiao_candidate_x03'or instance.cardId=='xiao_candidate_x07')and not Presence.isActive(state.enemies[targetIndex])then return false,'invalid_target'end
+ if (instance.cardId=='xiao_candidate_x01'or instance.cardId=='xiao_candidate_x03'or instance.cardId=='xiao_candidate_x07'or instance.cardId=='xiao_candidate_x11')and not Presence.isActive(state.enemies[targetIndex])then return false,'invalid_target'end
  return Bridge.canUse(state,instance,targetIndex)
 end
 function M.prepare(state,card,effects,target)
