@@ -13,15 +13,23 @@ export function choose(view,policy){
   const better=(a,b)=>{for(let i=0;i<a.length;i++){if(a[i]!==b[i])return a[i]>b[i];}return false;};
   let best={score:score(state),path:[]};
   function walk(s,path){const value=score(s);if(better(value,best.score))best={score:value,path};
+    if(s.pendingDraw)return;
     for(const key of s.hand){const c=s.instances[key];const r=play(s,{id:c.id,instance:key,upgraded:c.upgraded,target:'enemy'});if(r.ok)walk(r.state,[...path,key]);}}
   walk(state,[]);return best.path;
+}
+export function visibleTurn(state,hits,policy){
+  let s=state;const actions=[];
+  while(s.hp&&s.enemy.hp){const path=choose(visibleState(s,hits),policy);if(!path.length)break;
+    for(const key of path){const id=s.instances[key].id;const r=playInstance(s,key);if(!r.ok)throw new Error('illegal visible action');s=r.state;actions.push({instance:key,id});}
+  }
+  return {state:s,actions};
 }
 export function trial(seed,family,policy,relic,withTrace=false,deck){const trace=[];let s=battleStart({seed,relic,deck});let deadPayoffDraws=0,unpayableAtStart=0,turns=0,firstPayoff=null;
   for(;turns<20&&s.hp&&s.enemy.hp;turns++){
     const hits=families[family](s.turn),view=visibleState(s,hits);
     for(const c of view.hand){if(c.id==='zl04'&&s.jade<6)deadPayoffDraws++;if(!playInstance(s,c.instance).ok)unpayableAtStart++;}
-    const path=choose(view,policy);const record={turn:s.turn,hp:s.hp,enemyHp:s.enemy.hp,jade:s.jade,hand:view.hand.map(c=>c.id),intent:hits,chosen:path.map(key=>s.instances[key].id)};
-    for(const key of path){const id=s.instances[key].id;const r=playInstance(s,key);if(!r.ok)throw new Error('policy emitted illegal action');s=r.state;if(id==='zl04'&&firstPayoff===null)firstPayoff=turns+1;}
+    const turnResult=visibleTurn(s,hits,policy);const record={turn:s.turn,hp:s.hp,enemyHp:s.enemy.hp,jade:s.jade,hand:view.hand.map(c=>c.id),intent:hits,chosen:turnResult.actions.map(a=>a.id)};
+    s=turnResult.state;if(turnResult.actions.some(a=>a.id==='zl04')&&firstPayoff===null)firstPayoff=turns+1;
     s=nextTurn(s,hits);if(withTrace)trace.push({...record,after:{hp:s.hp,enemyHp:s.enemy.hp,jade:s.jade}});
   }
   return {seed,outcome:s.enemy.hp===0?'win':s.hp===0?'death':'truncated',loss:60-s.hp,turns,deadPayoffDraws,unpayableAtStart,firstPayoff,...(withTrace?{trace}:{})};

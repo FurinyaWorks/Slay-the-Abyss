@@ -35,3 +35,18 @@ test('terminal phase consistency rejects fourth room and forged outcomes atomica
  }
  const live=journeyStart();live.phase='complete';live.room=3;assert.throws(()=>rewardView(live));
 });
+test('versioned restricted common pool keeps historical offers and exposes 9/11/12',()=>{
+ let found=new Set();for(let seed=1;seed<=100;seed++){
+  assert.deepEqual(offers(seed,1),offers(seed,1,'v1'));
+  const o=offers(seed,1,'v2');assert.equal(new Set(o).size,3);o.forEach(x=>found.add(x));
+ }
+ for(const id of ['zl09','zl11','zl12'])assert.ok(found.has(id));
+ assert.equal(found.has('zl05'),false);assert.equal(found.has('zl10'),false);
+ assert.throws(()=>journeyStart(1,{poolVersion:'complete75'}));
+ for(const [id,policy] of [['zl09','suppress'],['zl11','guarded'],['zl12','access']]){
+  let seed=1;while(!offers(seed,1,'v2').includes(id))seed++;
+  const s=journeyStart(seed,{poolVersion:'v2'});s.battle.enemy.hp=1;
+  const reward=fightRoom(s,'offense','low'),choice=selectReward(rewardView(reward),policy),next=takeReward(reward,choice);
+  assert.ok(choice>0);assert.equal(next.deck.at(-1),id);assert.equal(next.deck.length,11);
+ }
+});

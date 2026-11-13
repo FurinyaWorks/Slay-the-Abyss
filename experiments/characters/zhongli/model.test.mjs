@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3)s.jade=6;
@@ -10,14 +10,14 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
     if([0,3,4,6,7,8,10].includes(i))assert.equal(r.state.enemy.hp,40-value);
-    if([1,5,9].includes(i))assert.equal(r.state.block,value);
+    if([1,5,9,11].includes(i))assert.equal(r.state.block,value);
     if(i===2)assert.equal(r.state.jade,value);
     if(i===3)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
     if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
-    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,i===9?[]:['a']); if(i===9)assert.deepEqual(r.state.exhaust,['a']);
+    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11].includes(i)?[]:['a']); if(i===11){assert.equal(r.state.pendingDraw,upgrade?2:1);assert.equal(r.state.inUse,'a');} if(i===9)assert.deepEqual(r.state.exhaust,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
   });
 }
@@ -66,7 +66,7 @@ test('source then payoff affordable at 3 energy; reverse order illegal with zero
 test('played instance cannot be replayed; no zero-cost refund loop',()=>{
   const s=initialState(); const r=run('zl01',s).state;
   assert.equal(play(r,{id:'zl01',instance:'a',target:'enemy'}).ok,false);
-  assert.ok(cards.every(c=>c.cost>0));assert.ok(cards.every(c=>[...c.base,...c.upgraded].every(([op])=>!['energy','draw','recover'].includes(op))));
+  assert.ok(cards.every(c=>c.cost>0));assert.ok(cards.every(c=>[...c.base,...c.upgraded].every(([op])=>!['energy','recover'].includes(op))));
 });
 test('text shares effects, explicit expected upgrade card text',()=>{
   assert.equal(textFor('zl04',true),'1能量；消耗6点玉璋；造成18点伤害。');
@@ -128,4 +128,19 @@ test('new cards reject cancellation, wrong enemy target and insufficient payment
   s.energy=0;const poor=structuredClone(s);assert.equal(play(s,{id,instance:'a',upgraded:u,target:'enemy'}).ok,false);assert.deepEqual(s,poor);
  }
  const s=initialState();s.instances.a={id:'zl11',upgraded:false};assert.equal(play(s,{id:'zl11',instance:'a',target:'self'}).ok,false);
+});
+test('pending draw kernel is not a resolved turn and cannot replay in-use card',()=>{
+ const s=initialState();const r=run('zl12',s).state;
+ assert.throws(()=>endTurn(r,[]),/unresolved draw/);assert.equal(play(r,{id:'zl01',instance:'b',target:'enemy'}).ok,false);
+ const bad=structuredClone(r);bad.hand.push('a');assert.throws(()=>play(bad,{id:'zl12',instance:'a'}));
+});
+test('draw payload range/order errors and cancellations rollback before costs',()=>{
+ const c=cards.find(c=>c.id==='zl12'),old=c.base;
+ try{for(const effects of [[['block',3],['draw',11]],[['draw',1],['block',3]]]){
+  c.base=effects;const s=initialState();s.instances.a={id:'zl12',upgraded:false};const before=structuredClone(s);
+  const r=play(s,{id:'zl12',instance:'a'});assert.equal(r.ok,false);assert.equal(r.state,s);assert.deepEqual(s,before);
+ }}finally{c.base=old;}
+ const s=initialState();s.instances.a={id:'zl12',upgraded:false};const before=structuredClone(s);
+ assert.equal(play(s,{id:'zl12',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);
+ s.energy=0;assert.equal(play(s,{id:'zl12',instance:'a'}).ok,false);
 });

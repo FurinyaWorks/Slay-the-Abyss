@@ -7,11 +7,12 @@ function shuffle(s, xs) { const out=[...xs]; for(let i=out.length-1;i>0;i--){con
 /** Validate the whole battle boundary, including zones absent from the math kernel. */
 export function validateBattle(s) {
   if(!s || !s.enemy || !s.instances || typeof s.instances!=='object')throw new Error('invalid battle');
-  for(const n of [s.hp,s.energy,s.block,s.jade,s.enemy.hp,s.enemy.block,s.enemy.weak ?? 0,s.turn,s.rng])
+  for(const n of [s.hp,s.energy,s.block,s.jade,s.enemy.hp,s.enemy.block,s.enemy.weak ?? 0,s.turn,s.rng,s.pendingDraw ?? 0])
     if(!Number.isSafeInteger(n)||n<0)throw new Error('invalid battle');
+  if((s.pendingDraw ?? 0)>10||Boolean(s.inUse)!==Boolean(s.pendingDraw))throw new Error('invalid battle');
   if(s.hp>60||s.jade>JADE_CAP||s.turn<1||s.rng>0xffffffff||typeof s.relicApplied!=='boolean')throw new Error('invalid battle');
   if(![s.hand,s.draw,s.discard,s.exhaust].every(Array.isArray)||s.hand.length>10)throw new Error('invalid battle');
-  const zones=[...s.hand,...s.draw,...s.discard,...s.exhaust], keys=Object.keys(s.instances);
+  const zones=[...s.hand,...s.draw,...s.discard,...s.exhaust,...(s.inUse?[s.inUse]:[])], keys=Object.keys(s.instances);
   if(new Set(zones).size!==zones.length||zones.length!==keys.length)throw new Error('invalid battle');
   for(const key of zones){
     const c=s.instances[key];
@@ -47,10 +48,15 @@ export function applyRelic(state,enabled=true){
 export function playInstance(state,instance){
   validateBattle(state);
   const c=state.instances[instance];if(!c)return {ok:false,reason:'missing instance',state};
-  return play(state,{instance,id:c.id,upgraded:c.upgraded,target:'enemy'});
+  const r=play(state,{instance,id:c.id,upgraded:c.upgraded,target:'enemy'});
+  if(!r.ok||!r.state.pendingDraw)return r;
+  const next=draw(r.state,r.state.pendingDraw);
+  next.pendingDraw=0;next.inUse=null;
+  (cards.find(x=>x.id===c.id).exhaust?next.exhaust:next.discard).push(instance);
+  validateBattle(next);return {ok:true,state:next};
 }
 export function nextTurn(state,hits){
   validateBattle(state);
   const s=endTurn(state,hits);if(!s.hp||!s.enemy.hp)return s;return draw(s);
 }
-export function visibleState(s,intent){validateBattle(s);if(!Array.isArray(intent)||intent.some(n=>!Number.isSafeInteger(n)||n<0))throw new Error('invalid intent');return {hp:s.hp,enemy:{...s.enemy},energy:s.energy,block:s.block,jade:s.jade,turn:s.turn,intent:[...intent],hand:s.hand.map(instance=>({instance,...s.instances[instance],text:textFor(s.instances[instance].id,s.instances[instance].upgraded)}))};}
+export function visibleState(s,intent){validateBattle(s);if(s.pendingDraw)throw new Error('unresolved draw');if(!Array.isArray(intent)||intent.some(n=>!Number.isSafeInteger(n)||n<0))throw new Error('invalid intent');return {hp:s.hp,enemy:{...s.enemy},energy:s.energy,block:s.block,jade:s.jade,turn:s.turn,intent:[...intent],hand:s.hand.map(instance=>({instance,...s.instances[instance],text:textFor(s.instances[instance].id,s.instances[instance].upgraded)}))};}

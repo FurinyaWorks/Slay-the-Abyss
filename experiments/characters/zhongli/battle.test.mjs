@@ -41,3 +41,22 @@ test('exhausted card remains owned but never reshuffles into battle hand',()=>{
  const broken=structuredClone(s);broken.draw.push(key);const before=structuredClone(broken);assert.throws(()=>draw(broken),/invalid battle/);assert.deepEqual(broken,before);
  assert.equal(battleStart({deck:['zl10','zl01']}).exhaust.length,0);
 });
+test('draw card cannot reshuffle itself and upgrades draw exact independent amounts',()=>{
+ const solo=battleStart({deck:['zl12']});const only=solo.hand[0];const r=playInstance(solo,only).state;
+ assert.equal(r.energy,2);assert.equal(r.block,3);assert.equal(r.hand.length,0);assert.deepEqual(r.discard,[only]);assert.equal(r.inUse,null);assert.equal(r.pendingDraw,0);
+ for(const upgraded of [false,true]){
+  const s=battleStart({deck:['zl12','zl01','zl02','zl03','zl06','zl07','zl08'],seed:7});
+  const key=Object.keys(s.instances).find(k=>s.instances[k].id==='zl12');
+  s.hand=[key];s.draw=[];s.discard=Object.keys(s.instances).filter(k=>k!==key);s.instances[key].upgraded=upgraded;
+  const before=structuredClone(s);const n=playInstance(s,key).state;
+  assert.equal(n.hand.length,upgraded?2:1);assert.equal(n.block,upgraded?4:3);assert.equal(n.hand.includes(key),false);assert.deepEqual(n.discard,[key]);assert.deepEqual(s,before);
+ }
+});
+test('draw full hand respects ten after in-use removal, and invalid RNG pays nothing',()=>{
+ const s=draw(battleStart({deck:['zl12',...Array(11).fill('zl01')]}),10);
+ const key=Object.keys(s.instances).find(k=>s.instances[k].id==='zl12');
+ if(!s.hand.includes(key)){const old=s.hand.pop();s.draw.splice(s.draw.indexOf(key),1);s.draw.push(old);s.hand.push(key);}
+ s.instances[key].upgraded=true;const next=playInstance(s,key).state;
+ assert.equal(next.hand.length,10);assert.equal(next.draw.length,1);assert.equal(next.discard.length,1);
+ const bad=structuredClone(s);bad.rng=NaN;const before=structuredClone(bad);assert.throws(()=>playInstance(bad,key));assert.deepEqual(bad,before);
+});

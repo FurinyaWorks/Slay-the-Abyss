@@ -1,21 +1,24 @@
 /** Three-room synthetic acquisition experiment. NOT the production rarity generator. */
 import {STARTER,battleStart,validateBattle,playInstance,nextTurn,visibleState} from './battle.mjs';
-import {choose} from './pressure.mjs';
-const POOL=Object.freeze(['zl03','zl04','zl06','zl07','zl08']);
-export function offers(seed,room){
+import {visibleTurn} from './pressure.mjs';
+export const POOLS=Object.freeze({v1:Object.freeze(['zl03','zl04','zl06','zl07','zl08']),v2:Object.freeze(['zl03','zl04','zl06','zl07','zl08','zl09','zl11','zl12'])});
+export function offers(seed,room,poolVersion='v1'){
+  if(!Object.hasOwn(POOLS,poolVersion))throw new Error('invalid pool version');
   if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff||!Number.isInteger(room)||room<1||room>3)throw new Error('invalid offer setup');
   let rng=(seed ^ Math.imul(room,2654435761))>>>0;
-  const pool=[...POOL];
+  const pool=[...POOLS[poolVersion]];
   for(let i=pool.length-1;i>0;i--){rng=(Math.imul(rng,1664525)+1013904223)>>>0;const j=Math.floor(rng/4294967296*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
   return pool.slice(0,3);
 }
-export function journeyStart(seed=1){
+export function journeyStart(seed=1,{poolVersion='v1'}={}){
+  if(!Object.hasOwn(POOLS,poolVersion))throw new Error('invalid pool version');
   const battle=battleStart({seed});
-  return {seed,room:1,deck:[...STARTER],battle,phase:'battle',offer:[],history:[]};
+  return {seed,poolVersion,room:1,deck:[...STARTER],battle,phase:'battle',offer:[],history:[]};
 }
 function validate(s){
   if(!s||!Number.isInteger(s.seed)||s.seed<0||s.seed>0xffffffff||!Number.isInteger(s.room)||s.room<1||s.room>3||
     !['battle','reward','complete','death','truncated'].includes(s.phase)||!Array.isArray(s.deck)||!Array.isArray(s.offer)||!Array.isArray(s.history))throw new Error('invalid journey');
+  if(!Object.hasOwn(POOLS,s.poolVersion ?? 'v1'))throw new Error('invalid pool version');
   validateBattle(s.battle);
   if(s.phase==='reward'&&s.room>=3)throw new Error('invalid terminal reward');
   if(s.phase==='complete'&&(s.room!==3||s.battle.enemy.hp!==0||s.battle.hp===0))throw new Error('invalid completion');
@@ -23,7 +26,7 @@ function validate(s){
   if(s.phase==='truncated'&&(!s.battle.hp||!s.battle.enemy.hp))throw new Error('invalid truncation');
   const ids=Object.values(s.battle.instances).map(c=>c.id).sort();
   if(JSON.stringify(ids)!==JSON.stringify([...s.deck].sort()))throw new Error('invalid journey deck');
-  if(s.phase==='reward'&&(s.battle.enemy.hp!==0||s.battle.hp===0||JSON.stringify(s.offer)!==JSON.stringify(offers(s.seed,s.room))))throw new Error('invalid reward');
+  if(s.phase==='reward'&&(s.battle.enemy.hp!==0||s.battle.hp===0||JSON.stringify(s.offer)!==JSON.stringify(offers(s.seed,s.room,s.poolVersion ?? 'v1'))))throw new Error('invalid reward');
 }
 export function fightRoom(state,policy='defense',family='multi'){
   validate(state);if(state.phase!=='battle')throw new Error('not battle');
@@ -33,11 +36,11 @@ export function fightRoom(state,policy='defense',family='multi'){
     const hits=family==='low'?[4]:family==='multi'?[3,3,3]:family==='large'?[18]:[3+2*s.battle.turn];
     const view=visibleState(s.battle,hits);
     deadPayoffDraws+=view.hand.filter(c=>c.id==='zl04'&&view.jade<6).length;
-    for(const key of choose(view,policy)){const r=playInstance(s.battle,key);if(!r.ok)throw new Error('illegal policy action');s.battle=r.state;}
+    s.battle=visibleTurn(s.battle,hits,policy).state;
     s.battle=nextTurn(s.battle,hits);
   }
   s.phase=!s.battle.hp?'death':s.battle.enemy.hp?'truncated':s.room===3?'complete':'reward';
-  s.offer=s.phase==='reward'?offers(s.seed,s.room):[];
+  s.offer=s.phase==='reward'?offers(s.seed,s.room,s.poolVersion ?? 'v1'):[];
   s.history.push({room:s.room,family,turns,startHp,endHp:s.battle.hp,loss:startHp-s.battle.hp,deckSize:s.deck.length,deadPayoffDraws,outcome:s.phase,offer:[...s.offer]});
   validate(s);return s;
 }
@@ -56,7 +59,7 @@ export function rewardView(s){validate(s);return {hp:s.battle.hp,deck:[...s.deck
 export function selectReward(view,policy){
   if(policy==='skip')return 0;
   // Known deck composition only, no future enemies, offers, draws or outcomes.
-  const preferred=policy==='hybrid'?'zl07':policy==='reserve'?'zl08':null;
+  const preferred=policy==='hybrid'?'zl07':policy==='reserve'?'zl08':policy==='suppress'?'zl09':policy==='guarded'?'zl11':policy==='access'?'zl12':null;
   if(!preferred)throw new Error('invalid reward policy');
   return view.deck.filter(id=>id===preferred).length>=1?0:view.offer.indexOf(preferred)+1;
 }

@@ -210,3 +210,44 @@ zl11 P90loss4 versus baseline1 is a downside case, not silently discarded. Small
 myopic policy prohibit population balance/fun inference; no values changed after results.
 The frozen three-room reward pool is unchanged and still does not include these additions.
 Full75 still64 missing; this batch does not pass G1/G5/G7/G8 or production integration.
+
+### Paid draw access and explicit restricted-pool v2 (0.6, HOLD)
+Twelve candidate roles now exist, not twelve production-approved/playable cards.
+zl12 costs1, block3 then draw1; upgrade block4 then draw2. Existing values unchanged.
+This is tactical access adapted for this project, not an official Zhongli skill name.
+Opposing cost: a draw card spends energy and offers less immediate protection than a
+basic defense; drawing cannot create energy or guarantee a specific payoff.
+
+Pinned903bf2a abyss_combat.lua resolvePlay removes played card from hand and sets cardInUse
+before effects; only after resolution does it enter discard/exhaust. shuffleDiscardIntoDraw
+requires an empty draw pile. Candidate matches those boundaries without claiming trigger parity.
+Kernel returns pendingDraw and inUse (not a completed play); full battle wrapper resolves
+draw/shuffle from cloned state, then disposes played instance. It cannot draw itself.
+Unresolved kernels reject another play/endTurn/view; ownership validation includes inUse.
+Only a final draw effect is currently supported; interleaved draw/effect lists are rejected,
+not silently reordered. Maximum hand10, overflow draw stops without consuming draw pile.
+No on-draw status damage, relic triggers, draw denial, retain, or exhaust retrieval support.
+
+Planner enumerates only current visible cards, stops at a draw boundary, then reobserves
+actual resulting hand. It does not evaluate unseen draw/discard/RNG. Tests poison hidden
+getters and verify a newly drawn attack can be played afterwards. Fixed positive costs,
+no energy generation and no retrieval bound action count by energy; no zero-cost loops.
+69 local tests include basic/upgraded draw, self-reshuffle exclusion, ten-card cap, partial
+draw, invalid RNG, pending-state rejection, malformed draw range/order, cancel and payment.
+B-GATE comparison candidates: Shrug It Off and Backflip; exact source values still HOLD.
+
+Versioned reward pool: v1 unchanged five commons; v2 adds zl09/zl11/zl12, eight commons
+in total. offers(seed,room,version) is replayable and returns three distinct IDs. zl05 rare
+and zl10 uncommon still have no journey acquisition channel; they remain kernel/fixed-deck
+research only. This is NOT a complete rarity system. Common probability=100%, uncommon=0,
+rare=0 in this deliberately restricted study. Ideal uniform per-offer inclusion is3/8;
+actual finite LCG sampling is not asserted perfectly uniform. access-results.json records
+20000 diagnostic offers (seeds1..10000, rooms1/2), observed inclusion counts for every ID.
+
+access-study.mjs:160 three-room runs on fresh seeds5001..5010, two versions x two families
+x four visible reward preferences. Neither version guarantees the desired card, accepted
+copies are capped at one by policy, and skip remains a real choice. Large-family all groups
+die; multi-family all complete, guarded policy v2 P90loss3 vs baseline2. Thus reachable
+cards are not proof of balance or improved survival. Actual original320/oldjourney120 outputs
+remain byte-for-byte equal with the legacy default. New source/naming/human/integration
+and full-rarity gates remain HOLD; full75 is63 candidates short.
