@@ -1,13 +1,13 @@
 /** Reproducible starter-only pressure study, not natural reward construction. */
 import {battleStart,playInstance,nextTurn,visibleState} from './battle.mjs';
-import {play,previewEnemyAction} from './model.mjs';
+import {play,previewRound} from './model.mjs';
 import {pathToFileURL} from 'node:url';
 const families={low:()=>[4],growing:turn=>[3+turn*2],large:()=>[18],multi:()=>[3,3,3]};
 // Enumerate full legal sequences from ONLY visible state. No future hand/intent access.
 export function choose(view,policy){
-  const state={hp:view.hp,enemy:view.enemy,energy:view.energy,block:view.block,jade:view.jade,counter:view.counter ?? 0,turn:view.turn,
+  const state={hp:view.hp,enemy:view.enemy,energy:view.energy,block:view.block,jade:view.jade,counter:view.counter ?? 0,pillar:view.pillar ?? 0,turn:view.turn,
     hand:view.hand.map(c=>c.instance),discard:[],instances:Object.fromEntries(view.hand.map(c=>[c.instance,{id:c.id,upgraded:c.upgraded}]))};
-  const projected=s=>previewEnemyAction(s,view.intent);
+  const projected=s=>previewRound(s,view.intent);
   const damage=s=>view.enemy.hp-projected(s).enemy.hp;
   const loss=s=>s.hp-projected(s).hp;
   const score=s=>policy==='defense'?[-loss(s),damage(s),s.jade]:[projected(s).enemy.hp===0&&projected(s).hp>0?1:0,damage(s),-loss(s),s.jade];

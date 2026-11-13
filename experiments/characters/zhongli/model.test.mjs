@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3;
@@ -12,6 +12,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if([0,3,4,6,7,8,10,13,16,17].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
+    if(i===20)assert.equal(r.state.pillar,value);
     if(i===2||i===18||i===19)assert.equal(r.state.jade,value);
     if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
@@ -20,7 +21,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if(i===12)assert.equal(r.state.enemy.vulnerable,upgrade?3:2);
     if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
-    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9)assert.deepEqual(r.state.exhaust,['a']);
+    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18,20].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9)assert.deepEqual(r.state.exhaust,['a']); if(i===20)assert.deepEqual(r.state.powers,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
   });
 }
@@ -295,4 +296,21 @@ test('rebuild cancellation, no energy, terminal and invalid gain preserve input'
  for(const patch of [{energy:0},{hp:0},{enemy:{...s.enemy,hp:0}}]){const t={...s,...patch},before=structuredClone(t);assert.equal(play(t,{id:'zl20',instance:'a'}).state,t);assert.deepEqual(t,before);}
  const before=structuredClone(s);assert.equal(play(s,{id:'zl20',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);
  const c=cards.find(c=>c.id==='zl20'),old=c.base;try{c.base=[['emptyJade',NaN]];assert.equal(play(s,{id:'zl20',instance:'a'}).state,s);assert.deepEqual(s,before);}finally{c.base=old;}
+});
+
+test('pillar starts at owner end, repeats once each turn and is fixed against vulnerability',()=>{
+ for(const u of [false,true]){const s=initialState();s.enemy.vulnerable=3;s.enemy.block=2;const placed=run('zl21',s,u).state;assert.equal(placed.enemy.hp,40);assert.equal(placed.energy,1);assert.equal(placed.pillar,u?4:3);
+ const a=endTurn(placed,[]);assert.equal(a.enemy.hp,u?38:39);const b=endTurn(a,[]);assert.equal(b.enemy.hp,u?34:36);assert.equal(b.pillar,u?4:3);}
+});
+test('pillar lethal stops enemy turn, while preexisting terminal does not tick',()=>{
+ const s=initialState();s.enemy.hp=3;s.hp=1;const placed=run('zl21',s).state;const end=endTurn(placed,[99,99]);assert.equal(end.enemy.hp,0);assert.equal(end.hp,1);
+ for(const t of [{...placed,hp:0},{...placed,enemy:{...placed.enemy,hp:0}}])assert.deepEqual(endTurn(t,[99]),t);
+});
+test('one pillar uses strongest intensity, not summing copies; duplicate investment still costs',()=>{
+ let s=initialState();s.energy=6;s=run('zl21',s).state;s=run('zl21',s,true).state;s=run('zl21',s).state;assert.equal(s.pillar,4);assert.equal(s.energy,0);assert.equal(s.powers.length,3);assert.equal(endTurn(s,[]).enemy.hp,36);
+});
+test('Power cancellation and invalid intensity reject before spending; invalid turn never ticks',()=>{
+ const s=initialState(['a']);s.instances.a={id:'zl21',upgraded:false};const before=structuredClone(s);assert.equal(play(s,{id:'zl21',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);
+ const c=cards.find(c=>c.id==='zl21'),old=c.base;try{for(const n of [NaN,-1,Number.MAX_SAFE_INTEGER+1]){c.base=[['pillar',n]];assert.equal(play(s,{id:'zl21',instance:'a'}).state,s);assert.deepEqual(s,before);}}finally{c.base=old;}
+ const placed=run('zl21',s).state,copy=structuredClone(placed);assert.throws(()=>endTurn(placed,[NaN]));assert.deepEqual(placed,copy);
 });

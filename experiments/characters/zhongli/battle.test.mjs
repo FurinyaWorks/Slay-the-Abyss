@@ -98,3 +98,14 @@ test('rebuild window is reachable through real starter relic, setup, spending an
  assert.equal(s.jade,3);s=playInstance(s,key('zl03')).state;assert.equal(s.jade,15);s=playInstance(s,key('zl04')).state;assert.equal(s.jade,9);s=nextTurn(s,[9]);assert.equal(s.jade,0);assert.ok(s.hand.includes(key('zl20')));
  s=playInstance(s,key('zl20')).state;assert.equal(s.jade,9);assert.equal(s.energy,2);assert.equal(s.hp,60);
 });
+test('Power leaves draw/discard/exhaust, persists through reshuffle and resets next battle',()=>{
+ for(const u of [false,true]){let s=battleStart({deck:['zl21','zl02'],enemyHp:10000});const key=s.hand.find(k=>s.instances[k].id==='zl21');s.instances[key].upgraded=u;const input=s,before=structuredClone(s);s=playInstance(s,key).state;assert.deepEqual(input,before);assert.deepEqual(s.powers,[key]);assert.deepEqual(s.exhaust,[]);assert.deepEqual(s.discard,[]);
+  for(let i=0;i<30;i++){s=nextTurn(s,[]);const all=[...zones(s),...s.exhaust,...s.powers];assert.equal(all.length,2);assert.equal(new Set(all).size,2);assert.equal(s.hand.includes(key),false);assert.equal(s.pillar,u?4:3);}
+  const fresh=battleStart({deck:['zl21','zl02']});assert.equal(fresh.pillar,0);assert.deepEqual(fresh.powers,[]);assert.ok(fresh.hand.some(k=>fresh.instances[k].id==='zl21'));
+ }
+});
+test('Power boundary rejects duplicate or nonpower installed cards and invalid pillar before payment',()=>{
+ const s=battleStart({deck:['zl21','zl02']});const key=s.hand.find(k=>s.instances[k].id==='zl21'),other=s.hand.find(k=>k!==key);
+ for(const change of [{powers:[key]},{powers:[other]},{pillar:NaN}]){const bad={...s,...change},before=structuredClone(bad);assert.throws(()=>playInstance(bad,key));assert.deepEqual(bad,before);}
+ s.energy=1;const saved=structuredClone(s);assert.equal(playInstance(s,key).ok,false);assert.deepEqual(s,saved);
+});

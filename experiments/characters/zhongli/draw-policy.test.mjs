@@ -17,3 +17,6 @@ test('one-shot access policy stops before hidden draw and resolves actual fresh 
  const view=visibleState(s,[8]);for(const hidden of ['draw','rng','discard'])Object.defineProperty(view,hidden,{get(){throw new Error('hidden access');}});
  assert.deepEqual(choose(view,'defense'),[key]);const result=visibleTurn(s,[8],'defense');assert.deepEqual(result.actions.map(a=>a.id),['zl19','zl01']);assert.equal(result.state.energy,0);assert.deepEqual(result.state.exhaust,[key]);
 });
+test('visible policy projects owner-end pillar kill before incoming lethal without future information',()=>{
+ const s=battleStart({deck:['zl21']});s.hp=1;s.jade=0;s.enemy.hp=3;const v=visibleState(s,[99]);for(const hidden of ['rng','draw'])Object.defineProperty(v,hidden,{get(){throw new Error('hidden');}});assert.deepEqual(choose(v,'defense'),[s.hand[0]]);
+});

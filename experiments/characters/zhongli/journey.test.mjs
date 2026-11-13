@@ -101,3 +101,9 @@ test('v10 rebuild acquisition is a lifecycle fixture, never added to historical 
  const s=journeyStart(seed,{poolVersion:'v10'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'rebuild'));
  assert.equal(n.deck.at(-1),'zl20');assert.equal(n.deck.length,11);assert.throws(()=>takeReward(n,1));for(const v of ['v1','v2','v3','v4','v5','v6','v7','v8','v9'])assert.equal(offers(seed,1,v).includes('zl20'),false);
 });
+test('v11 Power reward carries the card but resets installed effect between rooms',()=>{
+ let seed=1;while(!offers(seed,1,'v11').includes('zl21'))seed++;
+ const s=journeyStart(seed,{poolVersion:'v11'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'pillar'));
+ assert.equal(n.deck.at(-1),'zl21');assert.equal(n.battle.pillar,0);assert.deepEqual(n.battle.powers,[]);
+ for(const v of ['v1','v2','v3','v4','v5','v6','v7','v8','v9','v10'])assert.equal(offers(seed,1,v).includes('zl21'),false);
+});
