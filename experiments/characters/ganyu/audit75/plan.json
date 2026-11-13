@@ -1,0 +1,7 @@
+{
+ "status":"RESEARCH_NOT_APPROVAL",
+ "scope":"75-candidate finite-state dominance screen and default-ten-card multi-room acquisition research",
+ "dominance":{"charge":[0,1,2],"enemyBlock":[0,8],"field":[null,{"amount":4,"turns":2}],"enemies":[10000,10000],"requireEqual":["cost","rarity","target","retain","exhaust","resultCharge","resultStorm","handInstances","remainingDraw","drawSeed"],"improvement":"no less block or damage to either target in all 12 states, strictly better somewhere; finite-state screening only, not universal dominance proof"},
+ "campaign":{"seeds":[3001,3030],"deck":"unaltered catalogue starting ten","hp":60,"rewardModes":["skip_all","take_first_offer"],"route":[[{"hp":35,"block":0,"intent":6}],[{"hp":45,"block":0,"intent":7}],[{"hp":30,"block":0,"intent":4},{"hp":25,"block":0,"intent":3}],[{"hp":60,"block":8,"intent":9}]],"limitPerRoom":40,"policy":"fixed visible-only heuristic from card effect definitions, hand, current resource, field and incoming enemy intent; no draw/discard contents, RNG, simulations of hidden draws, or reward forecasting; reward choice always first or skip","report":"all deaths/truncations, HP, per-room turns, selected/drawn/played rewards, no hand injection; isolated uniform reward pool NOT production rarity/shop/event encounter integration"},
+ "sourceAudit":"per-card source verified flag, locator and naming status from saved records; no claim of fresh primary retrieval"
+}
