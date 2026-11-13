@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -22,6 +22,15 @@ function M.dispatch(combat,state,effect,queue)
  local r=resource(state);integer(effect.value,effect.kind=='maskCommit'and 3 or 2147483647)
  if r.hp==0 then return true end
  local value=effect.value
+ if effect.kind=='spendEnergyBlock'then
+  integer(state.energy);local block=Plan.scaledCount(state.energy,value)
+  state.energy=0;queue.pushTop(state,{kind='effect',effect={op='block',value=block}});return true
+ end
+ if effect.kind=='spendBlockDraw'then
+  local patch=Plan.spendBlockDraw(state.player.block,value,effect.cap)
+  state.player.block=patch.block
+  queue.pushTop(state,{kind='effect',effect={op='draw',value=patch.draw}});return true
+ end
  if effect.kind=='unmaskedDraw'then
   if r.mask==0 then queue.pushTop(state,{kind='effect',effect={op='draw',value=value}})end
   return true

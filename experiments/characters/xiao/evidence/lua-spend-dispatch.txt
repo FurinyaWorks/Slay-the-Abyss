@@ -1,0 +1,4 @@
+PASS x23 spends actual remaining energy once for base/up native block
+PASS x38 loses remainder and excess shield even when actual draw pile is empty
+PASS invalid spend input and product overflow pre-reject; host rollback restores spend draw and RNG
+PASS recorded semantic risk: native Dexterity grants block on zero-energy base-zero effect

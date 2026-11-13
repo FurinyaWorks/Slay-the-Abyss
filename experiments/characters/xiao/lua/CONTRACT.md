@@ -103,3 +103,9 @@ dispatch新增unmaskedDraw/exhaustDamage/exhaustBlock。当前面具0才排原�
 新增exitGuard真实能力取得/叠加与shortenMask执行。缩短不是刷新：直接取max(mask-value,0)，仅正→0走主动退出盾；maskCommit主动清零也接同钩子。自然owner-end到期仍不触退出盾，空退出/部分缩短/死玩家均不领取。退出盾通过原生block队列受宿主修正，未实现exitDraw等未开放能力，不能假称全75相互作用闭合。
 
 exit_dispatch_test三探针覆盖基础/升级盾、2→1→0、空退出/自然到期不领、能力Schedule叠加单槽、死玩家、false前验和真实Snapshot恢复。既有10+4+3+3回归通过。仅effect级，桥接/gate范围未扩，公共x01/x04仍待集成。
+
+## 独立可执行扩展：x23余能换盾与x38弃盾抽牌
+
+spendEnergyBlock读取真正当前energy，安全乘积前验后清0并排原生block；固定0费卡不是通用X费实现。spendBlockDraw按实际盾取整/封顶后清全部盾（包括余数/超额），再真实draw，空库也失去盾。spend_dispatch_test三探针涵盖基升零值/阈值/封顶/空库、假数值与乘积溢出预拒、花费和抽牌后故障的宿主Snapshot恢复。此前23条effect探针回归通过。普通block仍使用宿主修正，未确认正式数值平衡；不改shared gate/付款。
+
+新增明确负例：宿主blockFloat会对基础0也加Dexterity，x23零能量+Dex2实际获2盾（JS零能量0盾）。第四探针保存此语义差异；不得称零资源无收益/数值一致，不擅把原生block改fixed或跳过事件以隐藏差异。正式设计确认前仍HOLD（同类基础0的block效果须统一审查）。
