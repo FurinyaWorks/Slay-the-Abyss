@@ -1,4 +1,4 @@
--- Pending shared Run kind=xiao admission. src-only; fixed acquisition/hand fixtures, not natural pool proof.
+-- Passed exact shared fbe58fb0. src-only; fixed acquisition/hand fixtures, not natural pool proof.
 package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local H=dofile('tests/helpers/act2_event_relics.lua');local C,D,eq,same=H.C,H.Data,H.eq,H.same
 local Run=require('abyss_run');local Native=require('abyss_xiao_play_bridge')
