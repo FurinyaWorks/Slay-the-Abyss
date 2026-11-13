@@ -12,8 +12,9 @@ local function encode(value,seen)
  out[#out+1]='}';return table.concat(out)
 end
 for _,relics in ipairs({{}, {'Orichalcum'}, {"Nilry's Codex",'Orichalcum'}})do
- local _,s=H.battle(relics,{'defend','defend','defend','defend','defend','defend'})
+ local _,s=H.battle(relics,{'strike','defend','strike','defend','strike','defend'})
  for turn=1,2 do
+  assert(H.C.play(s,s.hand[1].uid,1))
   assert(H.C.endTurn(s))
   if s.pendingChoice then assert(H.C.chooseCard(s,s.pendingChoice.token,0))end
  end

@@ -748,6 +748,8 @@ local function playCardRequirements(state,instance,card,targetIndex)
         local usable,refusal=require('abyss_original_v4').preflight(state,card,targetIndex)
         if not usable then return false,refusal end
     end
+    local ready,why=require('abyss_keqing_paid_cards').canUse(state,card)
+    if not ready then return false,why end
     local usable,refusal=require('abyss_watcher_attack_cards').canUse(state,instance,card)
     if not usable then return false,refusal end
     return true
@@ -994,6 +996,7 @@ queuedHandlers.useCard = function(state, _action, queue)
     -- A lethal on-use retaliation stops before the source UseCard disposal.
     -- Preserve the original cardInUse identity on the death screen.
     if state.player.hp<=0 then return true end
+    require('abyss_keqing_paid_cards').complete(state,context,instance)
     afterUsePowers(state,context,instance)
     RelicHooks.afterCard(state)
     if not context.purge then instance.freeToPlayOnce=nil end
@@ -1274,6 +1277,8 @@ function M.resolveQueuedCard(state,e)
             CardActions.exhaust(M,state,c)
         elseif d.type~='power' then state.discard[#state.discard+1]=c end
     end
+    local candidateAllowed=require('abyss_keqing_paid_cards').canUse(state,d)
+    if not candidateAllowed then rejected();return end
     -- A queued targeted card whose original target died is removed from limbo;
     -- it does not retarget, execute, or emit a real exhaust event.
     if d.target=="ENEMY" and (not target or not Actors.isActive(target)) then rejected();return end
@@ -1289,7 +1294,7 @@ function M.resolveQueuedCard(state,e)
         rejected()
         return
     end
-    if not nativeDefinition(state,d) or Effects.requiresQueue(d.effects) then
+    if d.keqingCandidate==true or not nativeDefinition(state,d) or Effects.requiresQueue(d.effects) then
         beginQueuedPlay(state,c.uid,e.targetIndex,c,nil,d,{purge=e.purge,exhaustCards=forceExhaust,
             energyOnUse=e.energyOnUse})
     else queueNativePlay(state,c.uid,e.targetIndex,c,d,true,forceExhaust,e.purge,true,e.energyOnUse) end
@@ -2297,6 +2302,7 @@ function M.new(data, options)
     detectConstructorMechanics(state,data)
     constructorRandomStreams(state,data,options)
     constructorDevelopmentResources(state,options)
+    require('abyss_character_owner_end').init(state,options.candidateLifecycle)
     Actors.bindStatuses(state.player, state.catalog.statuses)
     constructorDeck(state,data,options)
     local openingDraw=constructorEnemies(state,options,rules)

@@ -3,6 +3,17 @@ local Act3=require('abyss_act3_powers')
 local Resource=require('abyss_keqing_resources')
 local M={ownerEndIds={keqing_owner_end_probe=true}}
 for id in pairs(Act3.ownerEndIds)do M.ownerEndIds[id]=true end
+function M.init(state,option)
+ if option==nil then return end
+ assert(type(option)=='table'and getmetatable(option)==nil,'invalid candidate lifecycle option')
+ for key in pairs(option)do assert(key=='kind'or key=='relicEnabled','unknown candidate lifecycle option')end
+ assert(option.kind=='keqing'and type(option.relicEnabled)=='boolean'and not state.originalV4,'unsupported candidate lifecycle option')
+ state.experimentalMechanics=true;state.characterOwnerEnd='keqing'
+ state.keqingResource=Resource.new(option.relicEnabled,{bonusPerHit=2,relicBlock=4})
+ state.catalog.statuses.keqing_owner_end_probe={id='keqing_owner_end_probe',kind='buff',stack='none',decay='none',priority=5}
+ state.player.statuses.keqing_owner_end_probe=1
+ state.player.powerOrder={'keqing_owner_end_probe'}
+end
 function M.active(state)
  if state.characterOwnerEnd==nil then return false end
  assert(state.characterOwnerEnd=='keqing'and state.experimentalMechanics==true

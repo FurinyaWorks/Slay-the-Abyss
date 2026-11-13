@@ -8,7 +8,7 @@ test('real public endTurn and Codex continuation preserve whole-command snapshot
 test('unchanged legacy full event and actor graph traces match exact develop',()=>{
  const dir=mkdtempSync(join(tmpdir(),'liyue-legacy-'));
  try{
-  for(const name of ['abyss_combat','abyss_combat_effect_powers'])writeFileSync(join(dir,name+'.lua'),execFileSync('git',['show',`903bf2a31e91f10fb24763ab4cea23d586d0bb83:src/lua/${name}.lua`]));
+  for(const name of ['abyss_combat','abyss_combat_effect_powers','abyss_combat_queued_play'])writeFileSync(join(dir,name+'.lua'),execFileSync('git',['show',`903bf2a31e91f10fb24763ab4cea23d586d0bb83:src/lua/${name}.lua`]));
   const current=runLua('experiments/characters/lifecycle/legacy-end-turn-trace.lua',{timeout:30000,maxBuffer:10*1024*1024});
   const wrapper=join(dir,'prior.lua');writeFileSync(wrapper,`LEGACY_ROOT=${luaString(dir)}\ndofile('experiments/characters/lifecycle/legacy-end-turn-trace.lua')\n`);
   const prior=runLua(wrapper,{timeout:30000,maxBuffer:10*1024*1024});

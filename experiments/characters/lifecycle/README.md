@@ -47,3 +47,17 @@ node --test experiments/characters/lifecycle/keqing-public-end-turn.test.mjs
 公开命令测试覆盖两回合实际结算、真实 Codex 暂停/重复 EndTurn 拒绝/错误 token 拒绝/失败后恢复原 pending 和队列图/成功续接、遗物先执行后的异常完整还原、资源已提交后敌阶段异常还原、Constricted 先致死及 Omega 先胜利不耗资源。Constricted 测例显式将候选 marker priority 设为 106，让已定义 priority105 的 Constricted 在前；这不是批准正式角色的 Power priority。
 
 旧角色差分使用精确 develop 原 Combat 与 effect dispatch，在同一其余源码上比较 3 类遗物×2回合的完整有序事件及 actor/pile 图（不是只比较哈希或最终 HP）。不是全量 CI、官方导入或所有角色验收。付款完成 hook、正式角色资源的保存初始化、其他三角色正式接线仍未完成。
+
+## 001/002 真实 paid UseCard 接线候选
+
+显式 `Combat.new(...,{candidateLifecycle={kind='keqing',relicEnabled=true|false}})` 才初始化本场资源和 owner-end marker；每个新战斗新建资源，不是职业注册。标记牌需要 `keqingCandidate=true, experimental=true`，当前只允许直接 damage/damageAll/block 与中断压力测试用 scry。未标记攻击在刻晴候选中拒绝，避免混入尚未适配的攻击后静默漏算附魔。普通非候选角色不受影响。
+
+`abyss_keqing_paid_cards.prepare` 在原 QueuedPlay 付款后捕获整牌入场附魔，并在原引擎逐段伤害快照前加每段 +2；只在真正的 `useCard` 完成动作中消费旧附魔一次。它不以 `Combat.play` 返回 true 作为结束（该值也可能是合法暂停）。队列、付款、手牌转移、选择及整体异常回滚仍由原 Combat 管理。
+
+```sh
+node --test experiments/characters/lifecycle/keqing-paid-usecard.test.mjs
+```
+
+验证 KQ001 6/9 和 KQ002 5/8 两面、费用一次、无能量/无目标拒绝不变、新战资源隔离、末敌死亡仍按共享 UseCard 完成，以及源 Sharp Hide 在 UseCard 前致死不消费。Scry+双段是显式合成压力夹具，不是给 KQ001 增加新设计：真实 pause 保留未消费附魔，恢复后两段各 +2 而整牌只扣一次；恢复期间或初次命令在完成后故障，真实 Snapshot 还原能量、伤害、手牌、pending/actionQueue 和资源原引用。旧角色差分也加入每回合一次真实出牌。
+
+**未实现/不应冒称完成**：003 setup/recast 的清楔/伤害/设楔顺序、004 引爆、初始遗物首次设楔 +4 的卡内反应/致死策略、75 卡、完整存档 ABI、正式注册。遗物 flag 初始化不等于遗物触发已接入。原 JS 来源没有卡内反应模型，不能把 `Resources.resolved` 一次性结果当作 003 的逐步正式时序；当前只交付无此歧义的 001/002。
