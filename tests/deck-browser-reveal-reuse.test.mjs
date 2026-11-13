@@ -17,7 +17,7 @@ test('post-paint fast publication is limited to existing deck content and Neow t
 local Gate=require('abyss_page_reveal');local ready=true;local callback;local shown=0
 local cover={SetVisible=function(_,v)if v then shown=shown+1 end end,SetAsLastSibling=function()end,GetChild=function()end}
 local gate=Gate.new(cover,function()if callback then local f=callback;callback=nil;f()end;return ready end)
-local flow,event={},{};local owner={mode='node',run={phase='node',nodeFlow=flow},nodeUI={mode='normal'}};flow.roomKind='neow';flow.event=event;event.stage='neow_intro'
+local flow,event={floor=0,mapSeed='seed',mapSignature='map'},{id='neow'};local owner={mode='node',run={phase='node',nodeFlow=flow},nodeUI={mode='normal'}};flow.roomKind='neow';flow.event=event;event.stage='neow_intro'
 local function strict(intent)gate:request(intent);assert(not gate:step(intent));assert(gate:step(intent))end
 strict(Gate.intent(owner));local initial=shown
 for _,stage in ipairs({'neow_blessing','neow_result'})do event.stage=stage;local intent=Gate.intent(owner);gate:begin(intent);assert(not gate:covered()and shown==initial);assert(gate:finish(intent));assert(not gate:covered()and shown==initial)end
@@ -107,4 +107,42 @@ local choice={token='grid-base',cards=F.Combat.copy(run.combat.draw),op='discove
 assert(host:openDeck('draw'));settle();assert(deck.indexBase==0,'browser/pile grids shared an index calibration');assert(host:closeDeck());settle()
 run.combat.draw={};assert(host:openDeck('draw'));settle();assert(#deck.cards==0 and not deck.pendingGrid and not deck.calibrating,'N to EMPTY left preparation pending')
 print('DECK_REUSE_PASS')`);
+});
+
+test('real Neow transactions keep their stable room identity through Host text updates but prepare different rooms and card pickers',t=>{
+ const base=resolve('.artifacts/test-tmp');mkdirSync(base,{recursive:true});const out=mkdtempSync(join(base,'neow-reveal-'));t.after(()=>rmSync(out,{recursive:true,force:true}));
+ buildLuaData('data',join(out,'abyss_data.lua'));buildUI(out,undefined,{officialAssets:true});
+ const preloads=readdirSync(out).filter(n=>n.endsWith('.lua')).map(n=>`package.preload[${luaString(n.slice(0,-4))}]=assert(loadfile(${luaString(join(out,n).replaceAll('\\','/'))}))`).join('\n');
+ lua(`package.path='src/lua/?.lua;tests/lua/?.lua;'..package.path
+${preloads}
+local G=require('abyss_game_ui');local make=G.new;local Art=require('abyss_card_art_runtime')
+G.new=function(root,data,presentation,event,p)
+ p.presentationReady=function(intent)return Art.presentationReady(intent.page)end
+ p.presentationPage=function(page)Art.setPresentationPage(page)end
+ return make(root,data,presentation,event,p)
+end
+local F=dofile('tests/lua/support/game_ui_fixture.lua');local host,root=F.fixture(nil,function()return true end)
+local Gate=require('abyss_page_reveal');local Run=require('abyss_run')
+local function settle()for _=1,4 do host:update(0);Art.update();host.pageReveal:step(Gate.intent(host));host:refresh()end;assert(not host.pageReveal:covered())end
+settle();assert(host:start());settle();assert(F.confirmStart(host));settle()
+local run=host.run;assert(F.Nodes.beginNeow(run,host.map,{bossCount=0}));host:refresh();settle()
+local cover=root:GetChild('pageReveal');local visibility=cover.SetVisible;local covered=0
+cover.SetVisible=function(self,v)if v then covered=covered+1 end;return visibility(self,v)end
+local event=root:GetChild('nodePanel'):GetChild('eventView')
+local function option(i)return event:GetChild('option'..i):GetChild('hit')end
+local flow,oldEvent=run.nodeFlow,run.nodeFlow.event
+assert(flow.event.stage=='neow_intro'and option(1).click())
+assert(host.run==run and run.nodeFlow~=flow and run.nodeFlow.event~=oldEvent,'real transaction did not replace copied child tables')
+assert(run.nodeFlow.event.stage=='neow_blessing'and not host.pageReveal:covered()and covered==0,'actual intro-to-offers transaction restarted full-page preparation')
+flow,oldEvent=run.nodeFlow,run.nodeFlow.event;local hp=run.maxHp
+assert(option(2).click())
+assert(run.nodeFlow~=flow and run.nodeFlow.event~=oldEvent and run.maxHp>hp and run.nodeFlow.event.stage=='neow_result')
+assert(not host.pageReveal:covered()and covered==0,'actual blessing-to-result transaction restarted preparation')
+-- Identity, not the mere fact that both pages have Neow text, owns the shortcut.
+assert(Run.transaction(run,function(staged)staged.nodeFlow.id='different-room';return true end));host:refresh()
+assert(host.pageReveal:covered(),'different stable node id used the old room readiness');settle()
+assert(Run.transaction(run,function(staged)staged.nodeFlow.id=nil;staged.nodeFlow.event.stage='neow_blessing';staged.nodeFlow.event.rewards={{type='UPGRADE_CARD',drawback='NONE'}};return true end));host:refresh();settle()
+assert(F.Nodes.chooseEvent(run,'reward_1'));host:refresh()
+assert(run.nodeFlow.event.stage=='neow_choose_card'and host.nodeUI.picker=='neow_card'and host.pageReveal:covered(),'real card picker incorrectly used the pure-text shortcut')
+settle();print('DECK_REUSE_PASS')`);
 });

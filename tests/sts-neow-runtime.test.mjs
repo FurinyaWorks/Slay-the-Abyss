@@ -12,6 +12,12 @@ test('actual official Neow writer keeps measured one-line choices, structured in
  const tmp=resolve('.artifacts/test-tmp');mkdirSync(tmp,{recursive:true});
  const out=mkdtempSync(join(tmp,'sts-neow-'));t.after(()=>rmSync(out,{recursive:true,force:true}));
  buildLuaData('data',join(out,'abyss_data.lua'));buildUI(out,undefined,{officialAssets:true});
+ const tree=JSON.parse(readFileSync(join(out,'game-ui.json'))),theme=JSON.parse(readFileSync(join(out,'official-assets-theme.json')));
+ const descendants=n=>[n,...(n.children??n.controls??[]).flatMap(descendants)];
+ const story=descendants(tree).find(n=>n.name==='v25EventParchment');assert(story);
+ const field=story.children.find(n=>n.name==='field'),hud=theme.officialAssets.battleHud;
+ assert.equal(field.position[1]+field.size[1]/2,hud.y-hud.height/2,'ordinary event field must start exactly below the shared HUD');
+ assert.equal(field.position[1]-field.size[1]/2,-theme.canvas.base[1]/2,'ordinary event field must reach the canvas bottom');
  const modules=readdirSync(out).filter(f=>f.endsWith('.lua')).map(f=>f.slice(0,-4));
  const script=`
 local generated=${luaString(out.replaceAll('\\','/'))}

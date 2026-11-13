@@ -27,8 +27,9 @@ local function top(card)
  local a=math.abs(card.localRotationZ)*math.pi/180
  return card.y+(Theme.layout.card.size[2]*math.cos(a)+Theme.layout.card.size[1]*math.sin(a))/2*(card.scale and card.scale[2]or 1)
 end
-local function fresh(ids,n,powers)
- local state=C.new(F.Data,{enemies=ids,deck={'strike'},seed=42})
+local function fresh(ids,n,powers,sourceEncounter)
+ local state=C.new(F.Data,{enemies=ids,deck={'strike'},seed=42,sourceEncounter=sourceEncounter,
+  encounterBoundary={misc={integer=function(lo)return lo end,boolean=function()return false end},visualFloat=function(lo)return lo end}})
  state.hand={};for i=1,n do state.hand[i]={uid=100+i,cardId='strike',upgraded=false}end
  for _,actor in ipairs(state.enemies)do for _,id in ipairs(powers or{})do A.addStatus(actor,id,99-(actor.statuses[id]or 0))end end
  host.run.phase='combat';host.run.combat=state;host:refresh();host:update(.8)
@@ -60,6 +61,7 @@ local function check(state,twoRows)
   local pool=assert(require('abyss_monster_power_surfaces').get(box:GetChild('statusRow')))
   local rows={};local bounds
   pool:each(function(chip,_,entry)
+   if not chip.visible then assert(entry.hidden,'hidden chip must retain its source entry');return end
    local icon,count,hit=chip:GetChild('icon'),chip:GetChild('count'),chip:GetChild('hit')
    local bottom=box.y+chip.y+icon.y-icon.sizeDeltaY/2
    if count.visible then bottom=math.min(bottom,box.y+chip.y+count.y+count.sizeDeltaY/2-Theme.font.small*1.2)end
@@ -72,6 +74,22 @@ local function check(state,twoRows)
    if count.visible then left=math.min(left,box.x+chip.x+count.x-count.sizeDeltaX/2);right=math.max(right,box.x+chip.x+count.x+count.sizeDeltaX/2)end
    bounds=bounds or {left=left,right=right};bounds.left=math.min(bounds.left,left);bounds.right=math.max(bounds.right,right)
    if entry.id=='strength' then hit.click();assert(host.battleUI.info and host.battleUI.info.statusId=='strength','power detail lost native identity');host.battleUI.info=nil end
+   if entry.status.overflow then
+    local entries=A.statusView(actor);local layout=E.powerLayout(g,touch)
+    assert(count.text=='+'..(#entries-layout.columns*Theme.layout.statusIcon.rows+1),'more count omitted a real status')
+    hit.click();assert(host.battleUI.info and not host.battleUI.info.statusId,'more must open the existing complete status view')
+    local text={}
+    local function collect(control)
+     if not control.visible then return end
+     text[#text+1]=control.text or'';for _,child in pairs(control.children)do collect(child)end
+    end
+    for page=1,host.battleUI.info.pages do
+     host.battleUI.info.page=page;host.battleUI:render();collect(panel:GetChild('statusInfo'))
+    end
+    local all=table.concat(text,'\\n')
+    for _,status in ipairs(entries)do assert(pool:find(status.id),'overflow removed native source membership');assert(all:find(status.name,1,true),'complete status detail lost '..status.id)end
+    host.battleUI.info=nil
+   end
   end)
   local n=0;for _ in pairs(rows)do n=n+1 end
   if twoRows then assert(n==2,'long power list must use two bounded rows')end
@@ -84,6 +102,9 @@ local function check(state,twoRows)
 end
 for _,mobile in ipairs({false,true})do
  touch=mobile
+ check(fresh({'acid_slime_s'},10,{'weak','vulnerable','poison'}),true)
+ check(fresh({'acid_slime_s'},10,powers),true)
+ check(fresh(nil,10,{'weak','vulnerable','poison','strength','artifact'},'Lots of Slimes'),true)
  check(fresh({'acid_slime_l'},10,powers),true)
  check(fresh({'spike_slime_l'},10,powers),true)
  for _,id in ipairs({'hexaghost','collector','guardian','champ'})do check(fresh({id},10))end

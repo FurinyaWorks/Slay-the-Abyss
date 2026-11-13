@@ -242,7 +242,10 @@ function M.install(owner, _ownership, host, dependencies)
             local power=powerManager:entry(powerSlot)
             local actor=entry and battle and battle.enemies[entry.index]
             if not entry or entry.id~=actorId or not actor or actor.id~=actorId
-                or not Actors.isPresent(actor) or not power or power.id~=powerId then return end
+                or not Actors.isPresent(actor) or not power or power.id~=powerId or power.hidden then return end
+            if power.status and power.status.overflow then
+                return {index=entry.index,screenSlot=actorSlot,controlBox=actorBox}
+            end
             -- Resolve by power identity, never the row position or a feedback snapshot.
             for _,status in ipairs(Combat.statusView(actor))do
                 if status.id==powerId then

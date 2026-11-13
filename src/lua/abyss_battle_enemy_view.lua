@@ -41,8 +41,10 @@ function M.powerLayout(g,mobile)
   local left=math.max(icon/2,(g.statusCountWidth or L.nativeText.lineHeight)-22*scale)
   local right=math.max(icon/2,22*scale)
   pitch=math.max(pitch,left+right)+L.statusIcon.gap
-  columns=math.max(1,math.min(L.statusIcon.perRow,math.floor(((g.statusWidth or g.hitWidth)-left-right)/pitch)+1))
-  firstX=g.healthX-(g.statusWidth or g.hitWidth)/2+left
+  local minimum=L.enemyRow.nativeStatusColumns
+  local width=math.max(g.statusWidth or g.hitWidth,left+right+(minimum-1)*pitch)
+  columns=math.max(minimum,math.min(L.statusIcon.perRow,math.floor((width-left-right)/pitch)+1))
+  firstX=g.healthX-width/2+left
   -- The top-aligned 40px native box has transparent leading below the text.
   -- Its 1.2em line fits inside the icon after compact lower-right placement.
   rowPitch=icon+L.statusIcon.gap

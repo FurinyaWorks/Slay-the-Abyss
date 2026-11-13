@@ -133,7 +133,9 @@
     "battleArtWells": {"attack":"#551C24","skill":"#1A3042","power":"#252536"},
     "rewardRows": {
       "reference": {"url":"https://interfaceingame.com/screenshots/slay-the-spire-rewards/","canvas":[1920,1080],"sha256":"24a5f5f4bdd35781811569fd94236e6fa05820d4ebd028b3aa90fb24e938b8c7"},
-      "rowSize":[296,56], "rowStep":67, "normal":"#5A6C6E", "hover":"#4C7474", "panel":"#262F34",
+      "rowSize":[296,56], "rowStep":67, "rowOrigin":[0,82], "titleY":192, "subtitleY":144,
+      "cornerRadius":3, "panelSize":[358,416], "panelPosition":[0,-47],
+      "normal":"#5A6C6E", "hover":"#4C7474", "panel":"#262F34",
       "iconSize":28, "iconX":-118, "textX":22, "textWidth":216, "fontSize":16
     },
     "buttonBacking": "#17252D",
@@ -3593,7 +3595,7 @@
       },
       "v25TurnNotice": { "position": [0, 43], "size": [1280, 100], "duration": 1.7, "enterEnd": 0.2, "exitStart": 0.65, "travel": 40, "titleSize": 37, "subtitleSize": 16, "titleInk": "#ECD193", "subtitleInk": "#C0B9A4", "shadeInk": "#03080CCD", "shadowInk": "#000000CC", "swordInk": { "edge": "#334947", "left": "#8DACA4", "right": "#AFC3B2", "guard": "#829A88", "handle": "#80958B" } },
       "player": { "position": [-324, -37], "portrait": 210 },
-      "enemyRow": { "floorY": 330, "nativeFloorY": 501 },
+      "enemyRow": { "floorY": 330, "nativeFloorY": 501, "nativeStatusColumns": 2 },
       "hpBar": { "size": [154, 11] },
       "battleUnit": { "heroFoot": 0, "heroNameGap": 0, "heroNameLine": 0, "heroHealthGap": 5, "heroHealthWidth": 154 },
       "energy": { "position": [-511, -233], "size": 86, "numberSize": 29, "rimColour": "#514247", "shellColour": "#24262A", "faceColour": "#FFE35DC0", "lightColour": "#FFF7A680", "elementColour": "#FFE35D30" },

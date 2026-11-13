@@ -35,29 +35,32 @@ function M.intent(owner)
     local battle=owner.battleUI or {}
     local revision,details,detailPage,content=overlayVersion(owner,page)
     return {page=page,mode=owner.mode,run=owner.run,phase=run.phase,
-        battle=run.combat,node=run.nodeFlow,characterOpen=owner.characterOpen==true,
+        battle=run.combat,node=run.nodeFlow,nodeId=flow.id,nodeFloor=flow.floor,mapSeed=flow.mapSeed,
+        mapSignature=flow.mapSignature,roomGeneration=run.roomGeneration,eventId=event.id,characterOpen=owner.characterOpen==true,
         character=character.id,characterDeck=selection.deckOpen==true,act=run.act,floor=run.floor,
         nodeMode=node.mode,picker=node.picker,eventStage=event.stage,event=flow.event,neow=flow.roomKind=='neow',opened=node.opened,
         nodePage=node.page,pickPage=node.pickPage,relicPage=node.relicPage,complete=flow.complete,
         rewards=run.phase=='reward' and battle.rewardScreen or nil,
         overlayRevision=revision,details=details,detailPage=detailPage,overlayContent=content}
 end
-local function sameOwner(a,b)
+local function sameOwner(a,b,except)
     if not a or not b then return false end
-    for _,key in ipairs({'page','mode','run','phase','battle','node','characterOpen','character','characterDeck','act','floor','overlayRevision'})do
-        if a[key]~=b[key]then return false end
+    for _,key in ipairs({'page','mode','run','phase','battle','node','nodeId','nodeFloor','mapSeed','mapSignature','roomGeneration','eventId','characterOpen','character','characterDeck','act','floor','overlayRevision'})do
+        if key~=except and a[key]~=b[key]then return false end
     end
     return true
 end
 local function sameNeowText(a,b)
     local stages={neow_intro=true,neow_blessing=true,neow_result=true}
-    return a.neow and b.neow and a.event==b.event and stages[a.eventStage] and stages[b.eventStage]
+    return a.neow and b.neow and a.eventId=='neow' and b.eventId=='neow'
+        and a.nodeFloor==0 and b.nodeFloor==0 and stages[a.eventStage] and stages[b.eventStage]
         and a.picker==b.picker and a.nodeMode==b.nodeMode
 end
 local function canUpdate(a,b)
+    if a.page=='nodePanel'then return sameOwner(a,b,'node') and sameNeowText(a,b)end
     if not sameOwner(a,b)then return false end
     if a.page=='deckPanel'then return a.overlayContent~=b.overlayContent and same(a,b,'overlayContent')end
-    return a.page=='nodePanel' and sameNeowText(a,b)
+    return false
 end
 local function readiness(ready,intent)
     local ok,value,reason=pcall(ready,intent)
