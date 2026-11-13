@@ -1,7 +1,7 @@
 {
   "status": "STATIC_RESEARCH_NOT_APPROVAL",
   "inputs": {
-    "economy75/audit.mjs": "dbceb40a24f49ce46a20cbab9887d6cfa8cc94c248e8a96b7abda3421fffc298",
+    "economy75/audit.mjs": "f61a2ff8d620a9d91002fed97a03f10ebe09da0080f3ffe8b017fcebd126026f",
     "cards.json": "2412ea17b3ff3b190cf30bea9ba7f5f84d01f6aec3eb684f5fb4685f043e5f9d",
     "engine.mjs": "931e7cb54ae5652fe1a3bdfaf06b0fa8c7deefc45a86f565a68aa005d816e4fe",
     "deck.mjs": "75fcd21733d8994e3a7ebcfaececc992de0afdfa56dd56ec30f4d6bff77270f7",
