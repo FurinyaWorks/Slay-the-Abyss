@@ -1,8 +1,15 @@
--- Opt-in paid bridge. KQ003 remains experimental: terminal resource policy is HOLD.
+-- Opt-in paid bridge. KQ003/004 remain experimental: terminal resource policy is HOLD.
 local Resources=require('abyss_keqing_resources')
 local Lifecycle=require('abyss_character_owner_end')
 local Planner=require('abyss_keqing_staged_plan')
+local Finisher=require('abyss_keqing_finisher_plan')
 local copy=require('abyss_copy').copy
+local function same(a,b)
+ if type(a)~='table'or type(b)~='table'then return a==b end
+ for k,v in pairs(a)do if not same(v,b[k])then return false end end
+ for k in pairs(b)do if a[k]==nil then return false end end
+ return true
+end
 local M={}
 local allowed={damage=true,damageAll=true,block=true,scry=true}
 function M.canUse(state,card)
@@ -17,11 +24,12 @@ function M.canUse(state,card)
   if not allowed[e.op]or e.times=='X'then return false,'keqing_candidate_effect_unavailable'end
  end
  if card.keqingStage~=nil then
-  if card.keqingStage~='003' or card.type~='attack' or card.target~='ENEMY' or #card.effects~=1
+  if card.keqingStage~='003'and card.keqingStage~='004' or card.type~='attack' or card.target~='ENEMY' or #card.effects~=1
    or card.effects[1].op~='damage' then return false,'keqing_staged_card_unavailable'end
   for key in pairs(card.effects[1])do
-   if key~='op'and key~='value'then return false,'keqing_staged_effect_unavailable'end
+   if key~='op'and key~='value'and not(card.keqingStage=='004'and key=='times'and card.effects[1].times==2)then return false,'keqing_staged_effect_unavailable'end
   end
+  if card.keqingStage=='004'and card.effects[1].times~=2 then return false,'keqing_finisher_hits_unavailable'end
  end
  return true
 end
@@ -32,25 +40,34 @@ function M.prepare(state,card,effects,combat,target)
  local context=assert(state.pendingPlay,'missing paid card context')
  assert(context.keqingPaid==nil,'duplicate paid card plan')
  context.keqingPaid={turn=state.turn,uid=context.uid,attack=card.type=='attack',infused=card.type=='attack'and r.infusion>0}
- if card.keqingStage=='003' then
+ if card.keqingStage=='003'or card.keqingStage=='004'then
   local instance=assert(state.cardInUse,'missing paid instance')
   assert(instance.uid==context.uid and target and target.id==context.targetId,'stale staged target')
   local up=instance.upgraded==true
-  assert(card.effects[1].value==(up and 7 or 5),'invalid staged face')
+  local finisher=card.keqingStage=='004'
+  assert(card.effects[1].value==(finisher and(up and 5 or 4)or(up and 7 or 5)),'invalid staged face')
   -- Accepted uses are recorded before prepare; snapshot rollback removes the record
   -- together with all its actions. A new use of the same UID has a new ordinal.
   local playId=#assert(state.cardsPlayedThisCombat,'missing accepted use history')
-  local plan=Planner.plan({turn=state.turn,uid=instance.uid,playId=playId,upgraded=up,
-   infusion=r.infusion,wedgeUntil=r.wedgeUntil},{base={setup=5,release=8,attacks=2},
-   upgraded={setup=7,release=11,attacks=2},bonusPerHit=2})
-  local paid=context.keqingPaid;paid.plan=plan;paid.cursor=1;paid.playId=playId
+  local input={turn=state.turn,uid=instance.uid,playId=playId,upgraded=up,infusion=r.infusion,wedgeUntil=r.wedgeUntil}
+  local contract={base={setup=5,release=8,attacks=2},upgraded={setup=7,release=11,attacks=2},bonusPerHit=2}
+  local plan
+  if finisher then
+   contract.finisher={base={hit=4,burst=4},upgraded={hit=5,burst=6}};plan=Finisher.plan(input,contract)
+  else plan=Planner.plan(input,contract)end
+  local paid=context.keqingPaid;paid.plan=plan;paid.cursor=1;paid.playId=playId;paid.finisher=finisher;paid.captures={}
   local out={}
   for _,a in ipairs(plan.actions)do
    local e={op='keqingCardStage',action=copy(a),targetId=context.targetId}
-   if a.op=='rawDamage'then
+   if a.op=='rawDamage'or a.op=='rawTargetHit'then
     local amount=a.value+plan.context.bonusPerHit
     e.payload={op='damage',value=amount,normalAmount=combat.attackAmount(state,state.player,target,amount),targetId=target.id}
+   elseif a.op=='currentWedgeBurstGate'then
+    local amount=a.value+plan.context.bonusPerHit
+    e.payload={op='damageAll',value=amount,normalAmounts={}}
+    for _,enemy in ipairs(state.enemies)do e.payload.normalAmounts[enemy.id]=combat.attackAmount(state,state.player,enemy,amount)end
    end
+   if e.payload then paid.captures[a.step]=copy(e.payload)end
    out[#out+1]=e
   end
   return out
@@ -69,14 +86,24 @@ function M.dispatch(_combat,state,effect,queue)
  assert(Lifecycle.active(state) and instance.uid==context.uid and paid.uid==instance.uid
   and paid.turn==state.turn and not paid.completed and effect.targetId==context.targetId,'stale staged context')
  local plan=assert(paid.plan,'missing staged plan');local a=effect.action
- Planner.validateAction(a,plan.binding,paid.cursor)
  local expected=assert(plan.actions[paid.cursor],'staged action exhausted')
- for k,v in pairs(expected)do assert(a[k]==v,'mutated staged action')end
- if a.op=='rawDamage'then
+ assert(same(a,expected),'mutated staged action')
+ if paid.finisher then
+  Planner.validateAction({op='rawDamage',value=0,turn=a.turn,uid=a.uid,playId=a.playId,step=1},plan.binding,1)
+ else Planner.validateAction(a,plan.binding,paid.cursor)end
+ if effect.payload then assert(same(effect.payload,paid.captures[a.step]),'mutated captured payload')end
+ if a.op=='rawDamage'or a.op=='rawTargetHit'then
   local payload=assert(effect.payload,'missing captured damage')
   assert(payload.op=='damage' and payload.targetId==context.targetId
    and payload.value==a.value+plan.context.bonusPerHit,'invalid staged damage')
   queue.pushTop(state,{kind='effect',effect=copy(payload)})
+ elseif a.op=='currentWedgeBurstGate'then
+  local actions=Finisher.gate(a,plan.binding,state.keqingResource.wedgeUntil)
+  if #actions>0 then
+   assert(effect.payload and effect.payload.op=='damageAll','missing captured burst')
+   state.keqingResource.wedgeUntil=nil
+   queue.pushTop(state,{kind='effect',effect=copy(effect.payload)})
+  end
  elseif a.op=='consumeWedge'then
   assert(state.keqingResource.wedgeUntil,'missing wedge')
   state.keqingResource.wedgeUntil=nil

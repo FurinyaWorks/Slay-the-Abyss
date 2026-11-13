@@ -165,3 +165,27 @@ claim of natural card acquisition.
 Owner-end pillar→repair execution, Jade interception and starter relic are
 NOT wired by this batch. `relicEnabled=true` is rejected. No ready catalog,
 formal character registration or full lifecycle approval is implied.
+
+## KQ004 dynamic wedge finisher
+
+`keqingStage='004'` accepts the precise native placeholder damage face
+4×2 (upgraded 5×2); extra effect fields or another hit count fail closed.
+The copied c1677216 pure plan generates two captured same-target hits followed
+by a **live-wedge gate**. Only when that third stage actually executes does it
+inspect current wedge presence, consume it, then enqueue captured native AoE
+4 (upgraded 6). Every hit uses the same entry-time infusion bonus; only the
+source UseCard completion consumes one old infusion. No new infusion or relic
+is granted. Captured payloads are additionally compared against detached saved
+captures, including target and all-enemy amounts, before they can execute.
+
+The author's 24 public scenarios plus real reaction deaths, source final
+victory behavior, automatic free plays, actual Scry pause/resume/failed-gate
+rollback and corrupted/replayed stage rejection are covered. Tests that flip
+wedge/Strength during a synthetic pause are explicit controlled fixtures for
+execution-time gate and use-time damage capture, not authored extra actions.
+
+**Terminal HOLD remains:** when the first hits end combat, the current host
+skips the resource gate and retains the wedge; retained UseCard still consumes
+old infusion. If the gate executes and a later burst reaction kills the player,
+the wedge stays consumed but UseCard consumption is skipped. These observed
+host policies are not declared equivalent to the isolated JS post-play model.
