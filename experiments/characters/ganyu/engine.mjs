@@ -1,10 +1,11 @@
 // Isolated candidate model. No production loader or frozen V4 dependency.
 import { readFileSync } from 'node:fs';
 export const catalogue = JSON.parse(readFileSync(new URL('./cards.json', import.meta.url)));
+export const rules = catalogue.environment;
 const variants = new Map(catalogue.cards.map(c => [c.id, c]));
 const clone = value => structuredClone(value);
 export function initial(enemies = [{ hp: 30, block: 0, intent: 8 }]) {
-  return { phase: 'player', hp: 60, block: 0, energy: 3, charge: 0, storm: null,
+  return { phase: 'player', hp: rules.initialHp, block: 0, energy: rules.energyPerTurn, charge: 0, storm: null,
     enemies: clone(enemies), hand: [], draw: [], discard: [], exhausted: [], turn: 1 };
 }
 function hit(enemy, damage) {
@@ -37,13 +38,13 @@ export function play(input, handIndex, target = null, cancel = false) {
       case 'damage': hit(s.enemies[target], effect.amount); break;
       case 'block': s.block += effect.amount; break;
       case 'aoe': all(s, effect.amount); break;
-      case 'charge': s.charge = Math.min(2, s.charge + effect.amount); break;
+      case 'charge': s.charge = Math.min(rules.maxCharge, s.charge + effect.amount); break;
       case 'storm':
         // Single field; refresh duration, keep strongest potency, never stack fields.
         s.storm = { amount: Math.max(s.storm?.amount ?? 0, effect.amount), turns: Math.max(s.storm?.turns ?? 0, effect.turns) };
         break;
       case 'charged_shot': {
-        const charged = s.charge === 2;
+        const charged = s.charge === rules.maxCharge;
         if (charged) s.charge = 0;
         hit(s.enemies[target], effect.direct);
         // Bloom is a separate all-living-enemies hit, even if primary died.
@@ -60,7 +61,7 @@ export function play(input, handIndex, target = null, cancel = false) {
 export function endTurn(input) {
   if (input.phase !== 'player') throw new Error('not player phase');
   const s = clone(input);
-  s.charge = Math.min(2, s.charge + s.energy); s.energy = 0;
+  s.charge = Math.min(rules.maxCharge, s.charge + s.energy); s.energy = 0;
   s.discard.push(...s.hand); s.hand = [];
   if (s.storm) {
     all(s, s.storm.amount);
@@ -82,13 +83,13 @@ export function endTurn(input) {
 // Explicit supplied draw order: no hidden shuffle or claimed natural-run simulation.
 export function startTurn(input) {
   if (input.phase !== 'between') throw new Error('not between turns');
-  const s = clone(input); s.block = 0; s.energy = 3; s.turn += 1; s.phase = 'player';
-  s.hand.push(...s.draw.splice(0, Math.max(0, Math.min(5, 10 - s.hand.length))));
+  const s = clone(input); s.block = 0; s.energy = rules.energyPerTurn; s.turn += 1; s.phase = 'player';
+  s.hand.push(...s.draw.splice(0, Math.max(0, Math.min(rules.drawPerTurn, rules.handLimit - s.hand.length))));
   return s;
 }
 export function cardText(id, upgraded = false) {
   const card = variants.get(id); if (!card) throw new Error('unknown card');
   const v = upgraded ? card.upgrade : card.base;
-  const effects = v.effects.map(e => ({damage:`对目标造成${e.amount}点伤害。`,block:`获得${e.amount}点格挡。`,aoe:`对所有存活敌人造成${e.amount}点伤害。`,charge:`获得${e.amount}层蓄力（上限2）。`,storm:`建立冰雨：本回合及下回合结束时，对所有存活敌人造成${e.amount}点伤害；重复施放取较高伤害与剩余次数，不叠加。`,charged_shot:`对目标造成${e.direct}点伤害。若结算前蓄力为2，消耗全部蓄力，随后对所有存活敌人造成${e.bloom}点伤害。`})[e.op]);
+  const effects = v.effects.map(e => ({damage:`对目标造成${e.amount}点伤害。`,block:`获得${e.amount}点格挡。`,aoe:`对所有存活敌人造成${e.amount}点伤害。`,charge:`获得${e.amount}层蓄力（上限${rules.maxCharge}）。`,storm:`建立冰雨：从本回合起连续${e.turns}个回合结束时，对所有存活敌人造成${e.amount}点伤害；重复施放取较高伤害与剩余次数，不叠加。`,charged_shot:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，随后对所有存活敌人造成${e.bloom}点伤害。`})[e.op]);
   return `${card.name}${upgraded ? '+' : ''}｜${v.cost}能量｜${effects.join('')}`;
 }

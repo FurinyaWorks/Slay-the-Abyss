@@ -75,3 +75,19 @@ test('display generated from same structured variants, no false approval',()=>{
 test('upgrade flag must be boolean; string false never grants upgrade',()=>{
  const s=hand(initial(),'ganyu-01');s.hand[0].upgraded='false';assert.throws(()=>play(s,0,0),/invalid upgrade/);assert.equal(s.energy,3);
 });
+
+test('storm independent base/upgraded costs, every tick and expiry',()=>{
+ for(const up of [false,true]) {
+  let s=play(hand(initial([{hp:50,block:0,intent:0}]),'ganyu-05',up),0);
+  assert.equal(s.energy,1);assert.equal(s.enemies[0].hp,50);
+  s=endTurn(s);assert.equal(s.enemies[0].hp,up?44:46);assert.equal(s.storm.turns,1);
+  s=endTurn(startTurn(s));assert.equal(s.enemies[0].hp,up?38:42);assert.equal(s.storm,null);
+  s=endTurn(startTurn(s));assert.equal(s.enemies[0].hp,up?38:42);
+ }
+});
+test('unknown effect after payment rolls back caller; text follows duration data',()=>{
+ const c=catalogue.cards.find(c=>c.id==='ganyu-05');const spec=c.base.effects[0];
+ const s=hand(initial(),'ganyu-05'),before=structuredClone(s);const previous=structuredClone(spec);
+ try {spec.turns=3;assert.match(cardText(c.id),/连续3个回合/);spec.op='unsupported';assert.throws(()=>play(s,0),/unknown effect/);assert.deepEqual(s,before);}
+ finally {Object.assign(spec,previous);}
+});

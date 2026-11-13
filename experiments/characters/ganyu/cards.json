@@ -209,5 +209,12 @@
         "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
       }
     }
-  ]
+  ],
+  "environment": {
+    "maxCharge": 2,
+    "energyPerTurn": 3,
+    "initialHp": 60,
+    "drawPerTurn": 5,
+    "handLimit": 10
+  }
 }
