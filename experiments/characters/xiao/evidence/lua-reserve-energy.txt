@@ -1,0 +1,3 @@
+PASS x45 base/up stores no immediate energy then native next-turn payout exactly once
+PASS multiple reserves add but dead player cannot collect future energy
+PASS exact accumulation bound and false rejection; host Snapshot restores deferred resource

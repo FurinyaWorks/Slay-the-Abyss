@@ -249,3 +249,16 @@ not exclusive attribution against all possible intervening reactive damage.
 Public x43 cost/exhaust/UseCard, last-enemy victory and complex reaction pauses
 remain unverified. Host canonical plan and paid UID context still govern which
 effects may be dispatched; this module is not a standalone untrusted-command API.
+
+### x45 deferred energy execution
+Projection is now first 45 frozen candidates. x44 carryBlock is a proposal only:
+its execution remains explicitly unsupported. x45 reserveEnergy now accumulates
+strictly validated state.xiao.reservedEnergy without instant energy gain. The
+previously reviewed isolated start-energy executor pays it through native energy
+once at the host's next start after base recharge. Three tests cover base/up
+projection cost, real deferred payout/no repeat, additive reserves, dead player,
+exact integer limit, false rejection and Snapshot resource-reference restoration.
+These tests do NOT pay x45's energy cost or exhaust it through UseCard. The host
+must enforce that a player-phase card cannot invoke the start hook immediately;
+shared phase admission and public lifecycle are not added by this role module.
+No approved numeric values changed. x04 upgrade survival counterexample remains.
