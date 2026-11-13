@@ -1,4 +1,4 @@
-import {sourceSlice,closeoutPriorEpoch} from './helpers/closeout-source-epoch.mjs';
+import {sourceSlice,closeoutPriorEpoch,ciRepairSourceEpoch} from './helpers/closeout-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -151,8 +151,10 @@ test('current raw production authenticates original68, exact28 and merchant owne
  ].map(name=>'src/lua/abyss_'+name+'.lua').sort());
  assert(componentEpoch.proof.owners.every(path=>current.owners.includes(path)),'retain all original component owners');
  assert.equal(closeoutPriorEpoch.proof.owners.length,96);
- assert.deepEqual(current.owners.filter(path=>!closeoutPriorEpoch.proof.owners.includes(path)),['src/lua/abyss_merchant.lua']);
- assert.equal(current.owners.length,97);let changed,replacement,reads=[];
+ assert.deepEqual(ciRepairSourceEpoch.proof.owners.filter(path=>!closeoutPriorEpoch.proof.owners.includes(path)),['src/lua/abyss_merchant.lua']);
+ assert.equal(ciRepairSourceEpoch.proof.owners.length,97);
+ assert.deepEqual(current.owners.filter(path=>!ciRepairSourceEpoch.proof.owners.includes(path)),['card_art_runtime','controller','game_ui_lifecycle','game_ui_overlays','game_ui_run','node_ui_lifecycle','page_reveal'].map(n=>'src/lua/abyss_'+n+'.lua'));
+ assert.equal(current.owners.length,104);let changed,replacement,reads=[];
  const reader=path=>{reads.push(path);if(path===changed){if(replacement instanceof Error)throw replacement;return replacement;}return actual[path];};
  const project=input=>currentEpoch.preCombinedSource(file,input,{target:'develop',readSource:reader});
  const expected=current.targets.develop.files[file].source;

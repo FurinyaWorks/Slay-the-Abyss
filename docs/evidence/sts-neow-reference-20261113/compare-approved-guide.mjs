@@ -5,7 +5,7 @@ const source=fs.readFileSync('docs/design/reference-ui-lab/blessing.js','utf8');
 const svg=source.match(/function guide\(\)\{return `([\s\S]*?)`\}/)?.[1];assert(svg,'approved guide SVG missing');
 const{chromium}=createRequire('C:/Users/Administrator/AppData/Roaming/npm/node_modules/playwright/package.json')('playwright');
 const executablePath=['C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Users/Administrator/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe','C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find(file=>fs.existsSync(file));assert(executablePath,'installed headless browser required');
-const browser=await chromium.launch({headless:true,executablePath,args:['--no-sandbox']});
+const browser=await chromium.launch({headless:true,executablePath});
 try{
  const page=await browser.newPage({viewport:{width:1280,height:720}});
  await page.setContent(`<style>body{margin:0;background:#101c1c;width:1280px;height:720px;overflow:hidden}.sts-guide{position:absolute;right:-26px;top:55px;width:567px;height:580px}</style>${svg}`);

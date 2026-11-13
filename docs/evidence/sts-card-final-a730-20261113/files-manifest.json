@@ -1,0 +1,435 @@
+{
+  "scope": "final evidence files and three collectors; manifest excludes itself",
+  "files": [
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-1-pending.json.gz",
+      "bytes": 38222,
+      "sha256": "b8a13e55c8b119edddfecddfc2ac752c6bbc4e1d9accc4b2c62a0e3a5e1c291d"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-1-ready.json.gz",
+      "bytes": 210073,
+      "sha256": "dc82893792765e28afc76ca78c8854287fd8021b34f3a28035961924dc583633"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-2-pending.json.gz",
+      "bytes": 43601,
+      "sha256": "8c36d8bb8c51024808454cee8945bfd13b1b00c64024ff978a667f62eb69c131"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-2-ready.json.gz",
+      "bytes": 574885,
+      "sha256": "b8769eda5ce0691bbddacbe07d8029d393cca8b9cc12278967222095e9c2003a"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-3-pending.json.gz",
+      "bytes": 63861,
+      "sha256": "8ba9756d4beec19b64e0f058a4afb61481523e27c6ca1a112ae0819f589ed727"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-3-ready.json.gz",
+      "bytes": 233720,
+      "sha256": "c0820334e93ce93e63059d72dbd05da610f275d11c4b5f71c6ba85d5dcfbf4eb"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-4-pending.json.gz",
+      "bytes": 38601,
+      "sha256": "0ab3d69f9fcb758e68f88e1405196e8de4988a23d59427eea0406a72c14b90df"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-4-ready.json.gz",
+      "bytes": 210374,
+      "sha256": "6a4a8b405fdf329897d1c2366a8f4ff1c31eb6d701dbb8af36bf182fd1bda100"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-5-pending.json.gz",
+      "bytes": 43832,
+      "sha256": "d342d8d06f02c4551708649bce2a3bd68dd8a4bd8f8baba773d4010ad2476747"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-5-ready.json.gz",
+      "bytes": 216435,
+      "sha256": "d1cb96c89c2c138de08b1cd91d0d97e70aacc35ed4a8a659f1b50c40b93e5534"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-6-pending.json.gz",
+      "bytes": 43379,
+      "sha256": "59c00ba69ad2c288bec80b29a580d87cc951e75d7a5388571cb8a278825c4b11"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-6-ready.json.gz",
+      "bytes": 43411,
+      "sha256": "35e0e3e7e474593502a4d9988a0c106a799d749a371d05f88eafc986d480ced7"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-7-pending.json.gz",
+      "bytes": 43517,
+      "sha256": "7d9b411c00b76f6783c1183817c44e5abe870177cb16d2f5bc6f26813d0f088a"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-7-ready.json.gz",
+      "bytes": 43535,
+      "sha256": "60c5781037d26ada90d4c75bfaab7d6ea7eb14e9e45fe43bbd0aaf214c529c18"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-8-pending.json.gz",
+      "bytes": 38877,
+      "sha256": "fa1a34d5b0fe2353c99d7a988b527c673d1caabd9aa01c72c9143f4ededc2142"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-8-ready.json.gz",
+      "bytes": 210733,
+      "sha256": "5abf825db2e6fa74c2e77bf684966ccd8172630dcc7c980b56a1ea94540f7792"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-9-pending.json.gz",
+      "bytes": 39309,
+      "sha256": "d1dcc63a5c1acb2f62501622b057d998028790b69df3f8d34de2cd893a98c815"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-9-ready.json.gz",
+      "bytes": 209636,
+      "sha256": "1dab29d19946a90cec9e0241fc1687b4043a55b07537d735fdd3ea07aa312f54"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/paint-layer-analysis.json",
+      "bytes": 5879,
+      "sha256": "cf2398248c63b2891e8fc4db1b018eb40b2c27f375053f737872e76a224ea9a9"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-pending.png",
+      "bytes": 107021,
+      "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-pending.state.json.gz",
+      "bytes": 38222,
+      "sha256": "b8a13e55c8b119edddfecddfc2ac752c6bbc4e1d9accc4b2c62a0e3a5e1c291d"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-ready.png",
+      "bytes": 137258,
+      "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-ready.state.json.gz",
+      "bytes": 210073,
+      "sha256": "dc82893792765e28afc76ca78c8854287fd8021b34f3a28035961924dc583633"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-pending.png",
+      "bytes": 111480,
+      "sha256": "adf52c6d5409d678dc038246d58ea5595a4739914e2cca9df63c2dec09bb2d7c"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-pending.state.json.gz",
+      "bytes": 43601,
+      "sha256": "8c36d8bb8c51024808454cee8945bfd13b1b00c64024ff978a667f62eb69c131"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-ready.png",
+      "bytes": 163776,
+      "sha256": "224714f2cf1be793ec422c241d4832a4bda52b922baac2344204517ccc98c3a9"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-ready.state.json.gz",
+      "bytes": 574885,
+      "sha256": "b8769eda5ce0691bbddacbe07d8029d393cca8b9cc12278967222095e9c2003a"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-pending.png",
+      "bytes": 111880,
+      "sha256": "d2b90cea5db6e3c565460b2ea401b9f7d9e1206910c188943b796b6cd36aa173"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-pending.state.json.gz",
+      "bytes": 63861,
+      "sha256": "8ba9756d4beec19b64e0f058a4afb61481523e27c6ca1a112ae0819f589ed727"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-ready.png",
+      "bytes": 134399,
+      "sha256": "40477acd7aa71c7974cf05c81a4c659b223602f2b554886222c9419fc7722a18"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-ready.state.json.gz",
+      "bytes": 233720,
+      "sha256": "c0820334e93ce93e63059d72dbd05da610f275d11c4b5f71c6ba85d5dcfbf4eb"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-pending.png",
+      "bytes": 107021,
+      "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-pending.state.json.gz",
+      "bytes": 38601,
+      "sha256": "0ab3d69f9fcb758e68f88e1405196e8de4988a23d59427eea0406a72c14b90df"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-ready.png",
+      "bytes": 137258,
+      "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-ready.state.json.gz",
+      "bytes": 210374,
+      "sha256": "6a4a8b405fdf329897d1c2366a8f4ff1c31eb6d701dbb8af36bf182fd1bda100"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-pending.png",
+      "bytes": 111823,
+      "sha256": "90306e323ef399af30702c23531ab64be7cf2a705518514906e0cc3679afd842"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-pending.state.json.gz",
+      "bytes": 43832,
+      "sha256": "d342d8d06f02c4551708649bce2a3bd68dd8a4bd8f8baba773d4010ad2476747"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-ready.png",
+      "bytes": 147805,
+      "sha256": "b4d50e9d992a5e97a03d5c09828b92645963872d86c6bef1ec6f95e602dcc618"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-ready.state.json.gz",
+      "bytes": 216435,
+      "sha256": "d1cb96c89c2c138de08b1cd91d0d97e70aacc35ed4a8a659f1b50c40b93e5534"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-pending.png",
+      "bytes": 93641,
+      "sha256": "76708de2696d7e89f96e45a421fba5eeae9aac9d3e36fad8871e4d2bf29617aa"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-pending.state.json.gz",
+      "bytes": 43379,
+      "sha256": "59c00ba69ad2c288bec80b29a580d87cc951e75d7a5388571cb8a278825c4b11"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-ready.png",
+      "bytes": 93641,
+      "sha256": "76708de2696d7e89f96e45a421fba5eeae9aac9d3e36fad8871e4d2bf29617aa"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-ready.state.json.gz",
+      "bytes": 43411,
+      "sha256": "35e0e3e7e474593502a4d9988a0c106a799d749a371d05f88eafc986d480ced7"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-pending.png",
+      "bytes": 101311,
+      "sha256": "9ff2365fcb0f733f2bf5b1f7d97442211b0e7f7abe9e59ca9dda6b8f0bd3d4ac"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-pending.state.json.gz",
+      "bytes": 43517,
+      "sha256": "7d9b411c00b76f6783c1183817c44e5abe870177cb16d2f5bc6f26813d0f088a"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-ready.png",
+      "bytes": 101311,
+      "sha256": "9ff2365fcb0f733f2bf5b1f7d97442211b0e7f7abe9e59ca9dda6b8f0bd3d4ac"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-ready.state.json.gz",
+      "bytes": 43535,
+      "sha256": "60c5781037d26ada90d4c75bfaab7d6ea7eb14e9e45fe43bbd0aaf214c529c18"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-pending.png",
+      "bytes": 107021,
+      "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-pending.state.json.gz",
+      "bytes": 38877,
+      "sha256": "fa1a34d5b0fe2353c99d7a988b527c673d1caabd9aa01c72c9143f4ededc2142"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-ready.png",
+      "bytes": 137258,
+      "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-ready.state.json.gz",
+      "bytes": 210733,
+      "sha256": "5abf825db2e6fa74c2e77bf684966ccd8172630dcc7c980b56a1ea94540f7792"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-pending.png",
+      "bytes": 130651,
+      "sha256": "fd3979e41b52418650de482e8aa6051fa08ffea563574131ede9ea63cde69f69"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-pending.state.json.gz",
+      "bytes": 39309,
+      "sha256": "d1dcc63a5c1acb2f62501622b057d998028790b69df3f8d34de2cd893a98c815"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-ready.png",
+      "bytes": 159249,
+      "sha256": "f3d29000e5a4dcf0839ea5d0b9c871f613a22e577c4a96f324b0907f60a58859"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-ready.state.json.gz",
+      "bytes": 209636,
+      "sha256": "1dab29d19946a90cec9e0241fc1687b4043a55b07537d735fdd3ea07aa312f54"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/report.json",
+      "bytes": 133769,
+      "sha256": "02da2b79708d82252c17b422dd7ee9ec77249796eb731efc5de471eedff9ad57"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-1.png",
+      "bytes": 74558,
+      "sha256": "87ada21aef0849bb513b335b717c12b7a33fba9ece3069ff081141fe748eaf82"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-1.state.json.gz",
+      "bytes": 17834,
+      "sha256": "9150e20ebd9abe1b78b328e3478ed8f5d08e36f800d16ea661ddedd7f9e46788"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-10.png",
+      "bytes": 111006,
+      "sha256": "dae2f682b788382768f8f94db9cde76ac03a18ff398fb6363b2ddb475464d315"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-10.state.json.gz",
+      "bytes": 166267,
+      "sha256": "3128447aa39375504d1eb39ce3a11478c401a53d7695030e8ae811ebf0c4e1a3"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-5.png",
+      "bytes": 78377,
+      "sha256": "e08cef5c7924cb6c327b1f3d496b1d95189a4f37d6d5fbbd24ec51f8825e3588"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-5.state.json.gz",
+      "bytes": 83575,
+      "sha256": "f3cf29e039f3b04f5dbabbc28592fb1170e268437f9574d3f01929673dec542f"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-1.png",
+      "bytes": 70384,
+      "sha256": "faee96a87429673a417b731773b2990f2d9a907b99d3cd1810b1e9a785cddc46"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-1.state.json.gz",
+      "bytes": 36868,
+      "sha256": "ed237b71ba0ce4b404e4e5be0b6457c34cb02426cd6e697cc3e4c04cba110f2b"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-10.png",
+      "bytes": 102373,
+      "sha256": "8f9529f11cac20a0f5bdd4f1cf7e2539bfb0700ef5ed6d49272a9c1492e048a6"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-10.state.json.gz",
+      "bytes": 355320,
+      "sha256": "ea0468ddcce55054dc629aca05a91c4541ea2015e77885c473ca31203a0979a8"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-5.png",
+      "bytes": 74130,
+      "sha256": "8f9b5a81265caf15307c0779444a2bf3c7550b6ddc1b1bb480d2de135f96a79a"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-5.state.json.gz",
+      "bytes": 178150,
+      "sha256": "190ac1604a5644244a3f3d3c35de888f6e57b911560a600d624f420dd632c564"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/collector-source.mjs.gz",
+      "bytes": 3436,
+      "sha256": "8ebb716b1aa1267c24f2f3db65227f2e8148e0e18b2525b74590a87c8e61a734"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/report.json",
+      "bytes": 13962,
+      "sha256": "6005f6c2dff141fa1fe144e2d7f2762e1159e639b5c55033d9c5796c0502c6d8"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/inputs/baseline-1.save.json.gz",
+      "bytes": 12229,
+      "sha256": "2d5405a7934953c3c0040d2e58b127c550d8874e16f652337fd0eaeda290e48d"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/inputs/baseline-10.save.json.gz",
+      "bytes": 106990,
+      "sha256": "bd6fb8b17b81adb1f687999be079e846a076c06604e225a418035c5ef497ae86"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/inputs/baseline-5.save.json.gz",
+      "bytes": 54337,
+      "sha256": "2afbd18e1d7ce779757bcbd8d6f5d877ae467ba37012f344f1f46133915d1e8f"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/inputs/compatibility.save.json.gz",
+      "bytes": 257716,
+      "sha256": "e6a52d02b4e7858c68b51f5f3286bfcc20dcd870421415add4b6726bf824ea6b"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/inputs/manifest.json",
+      "bytes": 2445,
+      "sha256": "9d8a1c644f705a3ccd46ac83945036050792347447e31ebacf1ce98dffb65634"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/inputs/official-1.save.json.gz",
+      "bytes": 82310,
+      "sha256": "a4620544c1b65c1fadbc8b7bca1b93514326fb3569983b8f1fc58ee49b2e2510"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/inputs/official-10.save.json.gz",
+      "bytes": 232185,
+      "sha256": "a88bfa4818e49e5b9dd4661d19f34d73d5d8df95eb97956632b8bbd7e3cce2b1"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/inputs/official-5.save.json.gz",
+      "bytes": 148273,
+      "sha256": "7b414b052f69a4a5d47742aa42cbd8e7f89ae9c1358775d9dcc0453a1e08929a"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/preflight-r6.json",
+      "bytes": 9009,
+      "sha256": "4c7fd7f61df56102c612f109a6b4d67db3836438f8b3906bdb2006ae34895a0a"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/preparation.json",
+      "bytes": 4598,
+      "sha256": "111b7eb3e4d73eaf4c055e05ad6532e3e7ed08f39929ff8c87cd73c83c8dc8cb"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/README.md",
+      "bytes": 6310,
+      "sha256": "73dbe2c073fed43f0f7c860b6eda76fab59add137daa129c23686f0c4a8c16c5"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/sampling-identity.json",
+      "bytes": 2959,
+      "sha256": "b1c8a49905c8eb36d57128a999283fd351f5d003fb37dc31d3d6b8c6125db800"
+    },
+    {
+      "path": "docs/evidence/sts-card-final-a730-20261113/summary.json",
+      "bytes": 5783,
+      "sha256": "26c8dba10d897a5accb8fc20c5259bbb67da207d7589ef885606446eb64e4bb0"
+    },
+    {
+      "path": "docs/evidence/sts-card-reference-20261113/prepare-final-sdk.mjs",
+      "bytes": 10274,
+      "sha256": "ac1325d3ad7a12e05fc01f4f88a7d06ec17cc5141f1eab373b74465b5482ee33"
+    },
+    {
+      "path": "docs/evidence/sts-card-reference-20261113/preflight-final-sdk.mjs",
+      "bytes": 4102,
+      "sha256": "35331954827d3dde9642276503e35316042f25db5728216499275e60daafaff6"
+    },
+    {
+      "path": "docs/evidence/sts-card-reference-20261113/capture-final-sdk.mjs",
+      "bytes": 9340,
+      "sha256": "6fccdaca19d0dc9ab3f5a35dc6c543cdf69a28edc4d74195ab51a3a99c51a624"
+    }
+  ]
+}

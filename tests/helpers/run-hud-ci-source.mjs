@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
+import {preStsStyleCiSource,stsStylePriorInventory,stsStylePriorRead} from './sts-style-ci-source.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const normalize=s=>s.replaceAll('\r\n','\n');
 const beforeRepairBytes=readFileSync(new URL('./run-hud-before-ci-repair-ci-source.json.gz',import.meta.url));
@@ -25,6 +26,7 @@ const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value))
 freeze(runHudCiProof);
 freeze(runHudBeforeCiRepairProof);
 export function preRunHudCiSource(path,source){
+ source=preStsStyleCiSource(path,source);
  const row=Object.hasOwn(runHudCiProof.files,path)?runHudCiProof.files[path]:null;
  if(!row||!row.before||typeof source!=='string'||hash(normalize(source))!==row.after.sha256)return source;
  return row.before.source;
@@ -35,6 +37,7 @@ export function runHudPriorRead(read=readFileSync){return(path,encoding)=>{
  return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
 };}
 export function runHudPriorInventory(paths,read=readFileSync){
+ paths=stsStylePriorInventory(paths,read);read=stsStylePriorRead(read);
  const sorted=[...paths].sort(),p=runHudCiProof;
  if(!p.addedTests.some(path=>sorted.includes(path)))return [...paths];
  assert.deepEqual(sorted,p.afterInventory,'complete run HUD inventory');

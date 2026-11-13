@@ -4,6 +4,8 @@
 
 结论：**本次源码/运行时接线限定pass，无遗留代码发现；最终整合视觉/设备验收尚未取得。** 精确源码与主题范围绑定见independent-review-hashes.json，不沿用旧单root或旧低成本轮廓的通过记录。
 
+线性整合后部分新文件由Git转为CRLF，第一次raw checkpoint校验因此拒绝出具摘要。已逐项核对七个作者checkpoint：均与当前raw或LF规范化之一精确相同，没有未解释的语义漂移；报告同时保存raw/LF与匹配方式，不静默覆盖旧摘要。
+
 已核对的边界：
 
 - 所有官方card host走同一installer；语义顶层文字、输入、artSamples对象保留，旧卡壳子payload清空后，CardSkin/reference与Node早返避免再访问旧skin/band/ribbon后代。普通非reference路径保留。

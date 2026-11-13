@@ -1,0 +1,356 @@
+{
+  "sourceReportSha256": "02da2b79708d82252c17b422dd7ee9ec77249796eb731efc5de471eedff9ad57",
+  "status": "all actual SDK paint-order assertions passed",
+  "rows": [
+    {
+      "phase": 1,
+      "stage": "pending",
+      "id": "bash",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          144
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 1,
+      "stage": "ready",
+      "id": "bash",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": [
+          25,
+          2580
+        ],
+        "front": [
+          2581,
+          2699
+        ]
+      },
+      "nativeImageCount": 2556
+    },
+    {
+      "phase": 2,
+      "stage": "pending",
+      "id": "armaments",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          164
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 2,
+      "stage": "ready",
+      "id": "armaments",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": [
+          25,
+          1858
+        ],
+        "front": [
+          1859,
+          1997
+        ]
+      },
+      "nativeImageCount": 1834
+    },
+    {
+      "phase": 3,
+      "stage": "pending",
+      "id": "inflame",
+      "paintOrder": {
+        "back": [
+          1,
+          19
+        ],
+        "nativeArt": null,
+        "front": [
+          21,
+          233
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 3,
+      "stage": "ready",
+      "id": "inflame",
+      "paintOrder": {
+        "back": [
+          1,
+          19
+        ],
+        "nativeArt": [
+          20,
+          2626
+        ],
+        "front": [
+          2627,
+          2839
+        ]
+      },
+      "nativeImageCount": 2607
+    },
+    {
+      "phase": 4,
+      "stage": "pending",
+      "id": "bash",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          144
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 4,
+      "stage": "ready",
+      "id": "bash",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": [
+          25,
+          2580
+        ],
+        "front": [
+          2581,
+          2699
+        ]
+      },
+      "nativeImageCount": 2556
+    },
+    {
+      "phase": 5,
+      "stage": "pending",
+      "id": "offering",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          164
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 5,
+      "stage": "ready",
+      "id": "offering",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": [
+          25,
+          2615
+        ],
+        "front": [
+          2616,
+          2754
+        ]
+      },
+      "nativeImageCount": 2591
+    },
+    {
+      "phase": 6,
+      "stage": "pending",
+      "id": "burn",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          161
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 6,
+      "stage": "ready",
+      "id": "burn",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          161
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 7,
+      "stage": "pending",
+      "id": "regret",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          161
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 7,
+      "stage": "ready",
+      "id": "regret",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          161
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 8,
+      "stage": "pending",
+      "id": "bash",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          144
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 8,
+      "stage": "ready",
+      "id": "bash",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": [
+          25,
+          2580
+        ],
+        "front": [
+          2581,
+          2699
+        ]
+      },
+      "nativeImageCount": 2556
+    },
+    {
+      "phase": 9,
+      "stage": "pending",
+      "id": "perfected_strike",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": null,
+        "front": [
+          26,
+          144
+        ]
+      },
+      "nativeImageCount": 0
+    },
+    {
+      "phase": 9,
+      "stage": "ready",
+      "id": "perfected_strike",
+      "paintOrder": {
+        "back": [
+          1,
+          24
+        ],
+        "nativeArt": [
+          25,
+          2619
+        ],
+        "front": [
+          2620,
+          2738
+        ]
+      },
+      "nativeImageCount": 2595
+    }
+  ],
+  "neutralMaterialChecks": [
+    {
+      "phase": 6,
+      "id": "burn",
+      "actual": "#646464",
+      "expected": "#646464",
+      "status": "passed"
+    },
+    {
+      "phase": 7,
+      "id": "regret",
+      "actual": "#1d1d1d",
+      "expected": "#1D1D1D",
+      "status": "passed"
+    },
+    {
+      "phase": 8,
+      "id": "bash",
+      "actual": "#5b472a",
+      "expected": "#5B472A",
+      "status": "passed"
+    }
+  ]
+}

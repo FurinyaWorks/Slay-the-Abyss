@@ -8802,6 +8802,158 @@
     "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-normal.png": {
       "sha256": "bb1ee4af0de414887c322430bc4273ce99250ea703a2b32d44927b27c5e00e5a",
       "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-pending.png": {
+      "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-ready.png": {
+      "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-pending.png": {
+      "sha256": "adf52c6d5409d678dc038246d58ea5595a4739914e2cca9df63c2dec09bb2d7c",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-ready.png": {
+      "sha256": "224714f2cf1be793ec422c241d4832a4bda52b922baac2344204517ccc98c3a9",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-pending.png": {
+      "sha256": "d2b90cea5db6e3c565460b2ea401b9f7d9e1206910c188943b796b6cd36aa173",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-ready.png": {
+      "sha256": "40477acd7aa71c7974cf05c81a4c659b223602f2b554886222c9419fc7722a18",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-pending.png": {
+      "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-ready.png": {
+      "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-pending.png": {
+      "sha256": "90306e323ef399af30702c23531ab64be7cf2a705518514906e0cc3679afd842",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-ready.png": {
+      "sha256": "b4d50e9d992a5e97a03d5c09828b92645963872d86c6bef1ec6f95e602dcc618",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-pending.png": {
+      "sha256": "76708de2696d7e89f96e45a421fba5eeae9aac9d3e36fad8871e4d2bf29617aa",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-ready.png": {
+      "sha256": "76708de2696d7e89f96e45a421fba5eeae9aac9d3e36fad8871e4d2bf29617aa",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-pending.png": {
+      "sha256": "9ff2365fcb0f733f2bf5b1f7d97442211b0e7f7abe9e59ca9dda6b8f0bd3d4ac",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-ready.png": {
+      "sha256": "9ff2365fcb0f733f2bf5b1f7d97442211b0e7f7abe9e59ca9dda6b8f0bd3d4ac",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-pending.png": {
+      "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-ready.png": {
+      "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-pending.png": {
+      "sha256": "fd3979e41b52418650de482e8aa6051fa08ffea563574131ede9ea63cde69f69",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-ready.png": {
+      "sha256": "f3d29000e5a4dcf0839ea5d0b9c871f613a22e577c4a96f324b0907f60a58859",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-1.png": {
+      "sha256": "87ada21aef0849bb513b335b717c12b7a33fba9ece3069ff081141fe748eaf82",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-10.png": {
+      "sha256": "dae2f682b788382768f8f94db9cde76ac03a18ff398fb6363b2ddb475464d315",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-5.png": {
+      "sha256": "e08cef5c7924cb6c327b1f3d496b1d95189a4f37d6d5fbbd24ec51f8825e3588",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-1.png": {
+      "sha256": "faee96a87429673a417b731773b2990f2d9a907b99d3cd1810b1e9a785cddc46",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-10.png": {
+      "sha256": "8f9529f11cac20a0f5bdd4f1cf7e2539bfb0700ef5ed6d49272a9c1492e048a6",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-5.png": {
+      "sha256": "8f9b5a81265caf15307c0779444a2bf3c7550b6ddc1b1bb480d2de135f96a79a",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-returned-selection.png": {
+      "sha256": "a8123049859139dd8b3088e23bd82b465c0fc7223c9a4b0d44b0046800cddf84",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-select.png": {
+      "sha256": "725bb8246e04b8107311f32c38e118f97ae70c637c3d1cd90bb5efa7b66de5c5",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-selected-idle.png": {
+      "sha256": "9a61339ccd1fcb85e56f639516351c9c1ee39e32312e6b88e7c8318d4028eed5",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-browser.png": {
+      "sha256": "19e650c7beb16c33630bfbe333b2a938a3c07046e9ec867253b884b8725d195f",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-detail.png": {
+      "sha256": "c35bb7122354f2ce66c7e18e0e76f14009395ed19110f66feec030a611fecb69",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/approved-guide-position.png": {
+      "sha256": "3b14866e11a96e800ce4008ab441a885be7797f170b639f77d104dfcfc76a202",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-hover-functional-unverified.png": {
+      "sha256": "d0bd0c3165e15cae8dc3ee0a2d7ee97f821df55d2a91e1b6657996ada5c4d976",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-intro.png": {
+      "sha256": "071bb7f5b2fb8fdc23b088824ecf44fde49b6fdce63fb0eca67ac4c69589cc1c",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-normal.png": {
+      "sha256": "af4a08a7e19ace9297bad4d5587c396cdcb16c8c7c8f102670d50b12afd9af96",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/guide-same-position-comparison.png": {
+      "sha256": "925bd41c8d912d31f396e3c20f6c37c5810f34d356fa5629a820c8d9b5a5f08e",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/hood-mask-difference.png": {
+      "sha256": "2856cb0d7486e6a77495ee5d917b6d052d5e4cc787cbc2912bdee33c8866bdbf",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-hover-functional-unverified.png": {
+      "sha256": "c630c7f9bf71f9860623cc0bcb94e486f335c643bf79321a7bc7d3515a69772f",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-intro.png": {
+      "sha256": "071bb7f5b2fb8fdc23b088824ecf44fde49b6fdce63fb0eca67ac4c69589cc1c",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-normal.png": {
+      "sha256": "973fea6cbd3736d2143632326bb543f27944641d2048970476f21fb2a0c8e61d",
+      "category": "sts-style-project-sdk-evidence"
     }
   }
 }

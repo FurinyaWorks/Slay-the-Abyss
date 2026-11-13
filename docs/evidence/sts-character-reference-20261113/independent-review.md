@@ -24,3 +24,7 @@
 没有重复SDK/整屏截图。现有软件渲染证据保留其原source closure；最终整合冻结后由主线程重新取证。旗面边缘、字体、背景与原生渐变的公开差异仍未提升为逐像素成品一致，官方PC/手机与正式容量仍未验证。
 
 最后工程CC修正仅把characterPanel显示/register/render/raise原段提为同作用域characterForeground，在battleUtilities后原位置调用；逐行核对参数、闭包与执行顺序未变，未放宽门槛。本报告hash已包含该最终view和entry。
+
+## a730增量职责提取补审
+
+独立逐读ba03607abd72e421e9497e66b031e501ad5b2997→a73043a738cd5c6d11b3f6a66ef7383cbd463c01的character_select_view、traveler_portraits、abyss_ui三文件薄diff，结论pass。角色按钮循环仍在原位置；crop断言仍在构造资源前；selectionController接收的ownerEpoch仍是读取活epoch的闭包；requiredPortrait保留原括号/结果owner限制，失败/未active/outcome门槛不变；idle pose仍在busy内且先于paint；entry仍先检查艺术失败账本，再component，再portrait。没有新API、规则或门槛变化。作者本轮17项及SDK结果不冒充本审查重跑；该补审只针对同义职责提取。精确commit和三文件raw/LF摘要见independent-review-a730-hashes.json，补充前述测试绑定，不把旧hash默认为新代码身份。

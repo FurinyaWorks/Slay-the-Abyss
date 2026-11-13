@@ -3,7 +3,7 @@ import json, sys, hashlib
 from pathlib import Path
 from PIL import Image, ImageDraw
 out=Path(sys.argv[1]);reference=out/'approved-guide-position.png';candidate=out/'two-normal.png'
-old=Path('docs/evidence/sts-neow-reference-20261113/visual-current-1/two-normal.png')
+old=Path(sys.argv[2]) if len(sys.argv)>2 else Path('.artifacts/style-fidelity-20261113/visual-history/neow/visual-current-1/two-normal.png')
 ref=Image.open(reference).convert('RGB');now=Image.open(candidate).convert('RGB');previous=Image.open(old).convert('RGB')
 roi=(930,110,1135,324)
 def mask(image,colour):

@@ -4,10 +4,14 @@
 
 ## 当前源码验证与已保存视觉
 
+集成冻结后新增 [visual-integrated](visual-integrated/render-receipt.json)，五张真实headless SDK截图闭包为 `52b6582bfc5a1eb2507fd6aaa2ced4272db7bd521781ff5ef3d738cdf73c5731`。新输出保留旧`visual-final`及其历史闭包。复用原准入并加浏览器检查的`verify-integrated.mjs`通过：真实ready后揭幕、3254图片/78分组、五列十牌/详情/返回恢复、无Run/RNG调用或loadout漂移，capture前后源码漂移及Lua/console/HTTP错误均为零。
+
+五张均已实际查看，选角、待机、五列卡组、详情及返回恢复通过。保留纠正记录：首次查看整图时误判详情左下返回缺绘；原PNG的`[0,570,180,55]`区域与浏览器及旧shared永久/弃牌完全一致，不同像素0，RGBA SHA均为`bfdd114a8677792d37281cc8c8a2a45661756ccd30ec47b5374a818a8615c35e`。提取4x原始局部已确认完整返回图文，撤销缺绘观察；该误判本身不能证明工具渲染故障。精确记录见 [image-review](visual-integrated/image-review.json)，像素报告/局部图在`.artifacts/sts-character-reference-20261113/return-pixel-review/`。没有因此另采或修改正确的生产代码。
+
 - `node tests/sts-character-reference.test.mjs`：5/5。原选择/返回/确认的hit对象保留；白名单实际角色与确认禁用保持；选择和战斗只引用一次相同approved idle literal；半身source crop边界、隐藏行不占原生创建预算、idle cache复用、缺图/出界crop拒绝及本页ready正反例通过。
 - `node tests/sts-character-browser.test.mjs`：3项当前合同通过。初始牌组不创建Run/RNG，复制实际定义与display、生成局部确定UID，直接使用共享五列浏览器；真实生成Host覆盖deck来源归属、整页遮幕、排序/详情/控制器返回、关闭恢复和旧projection失效。每张初始牌经共享Grid填入名称/费用/规则。关闭后再开真实牌组确实恢复原显示名；无整页门禁的旧Host中，确认按下→预览→两种返回→抬起均不能触发开始。第三项执行真实`OnStart`、GameUI、Portrait控制器及entry readiness，选角仍准备时公开入口保持阻挡，测试受控换页后当前preview只等自身来源，隐藏selection仍building时可以揭幕。旧12槽牌面writer与独立填充逻辑已移除。
 - `node tests/official-portraits-build.test.mjs`：5/5；`node tests/lumine-idle.test.mjs`：9/9。被用户要求替换的旧pixel正向断言已改为approved idle来源合同；修改前原测试gzip与SHA保存在 `historical-tests/`，历史负载缺失拒绝用例仍保留。
-- `visual-final/verification.json`：PASS。这是本轮选角布局阶段的两张实际SDK/headless截图，源闭包 `1b2268a08fca67f2785ced9e4b520341aa35dad71b38c04919df325d5d001b40`；后续共享浏览器接入尚未重新捕获，不能将此闭包当作后续源码的最终候选。每张额外等至少3次前端render pass，Lua/console/HTTP错误为0。实际3254个图片图元与78个分组都来自同一battle idle source，并按该候选主题声明crop，未导出独立头像图片。
+- `visual-final/verification.json`：PASS。这是本轮选角布局阶段的两张实际SDK/headless截图，源闭包 `1b2268a08fca67f2785ced9e4b520341aa35dad71b38c04919df325d5d001b40`；该旧闭包不含后续共享浏览器接入，后续集成结果见上述`visual-integrated`。每张额外等至少3次前端render pass，Lua/console/HTTP错误为0。实际3254个图片图元与78个分组都来自同一battle idle source，并按该候选主题声明crop，未导出独立头像图片。
 - 日志先出现本轮selection真实ready（owned3332），再出现characterPanel整页visible epoch2。截图用软件WebGL模拟器；ready日志仅属于该SDK，不是官方ready或设备性能结果。
 
 已肉眼查看两张PNG：不再有顶部“选择角色”标题、命之座、首字头像或假锁槽；只显示当前白名单的旅行者槽。姓名→生命金币→描述→遗物→真实初始牌组摘要保持原作左栏层级。半身在原作角色切换槽位置。中文统计字号降为16后生命数值与金币图标不再相撞。
@@ -21,9 +25,12 @@
 根目录使用新输出目录，复用已有SDK/Chrome，不覆盖证据：
 
 ```powershell
-node --import 'file:///F:/New%20folder/.artifacts/simulator-runtime/preview-tools.mjs' docs/evidence/sts-character-reference-20261113/prepare-visual.mjs .artifacts/sts-character-reference-20261113/current-final
-node --import 'file:///F:/New%20folder/.artifacts/simulator-runtime/preview-tools.mjs' docs/evidence/sts-character-reference-20261113/capture-visual.mjs .artifacts/sts-character-reference-20261113/current-final docs/evidence/sts-character-reference-20261113/visual-final
-node docs/evidence/sts-character-reference-20261113/verify-visual.mjs
+$captureId=Get-Date -Format 'yyyyMMdd-HHmmss'
+$captureOut=".artifacts/sts-character-reference-20261113/replay-$captureId"
+$visualOut=".artifacts/sts-character-reference-20261113/visual-replay-$captureId"
+node --import 'file:///F:/New%20folder/.artifacts/simulator-runtime/preview-tools.mjs' docs/evidence/sts-character-reference-20261113/prepare-integrated.mjs $captureOut
+node --import 'file:///F:/New%20folder/.artifacts/simulator-runtime/preview-tools.mjs' docs/evidence/sts-character-reference-20261113/capture-integrated.mjs $captureOut $visualOut
+node docs/evidence/sts-character-reference-20261113/verify-integrated.mjs $visualOut $captureOut
 ```
 
 取证仅在内存启动包装调用生产start/selectCharacter/selectElement；不确认开始、不创建Run、不改规则。候选生成布局及source closure保留在`.artifacts`，本目录只留脚本、哈希收据与评审用截图。外部投影工具复用上一轮已审的只读适配器，没有复制SDK。

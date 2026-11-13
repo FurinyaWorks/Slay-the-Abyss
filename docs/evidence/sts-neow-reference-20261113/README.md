@@ -57,3 +57,11 @@ CSS盒567×580、viewBox600×600默认xMidYMid meet，得到单一scale=.945、�
 - 新 `tests/sts-neow-guide.test.mjs` 3/3、既有选择几何2/2、真实Neow语义/事务1/1通过，`git diff --check`通过。没有改变Neow奖励/代价/迟到输入事务。
 
 这是可追溯软件渲染诊断，不是官方导入、官方ready、GPU或手机验收。与其它切片一起最终冻结/集成后的官方证据仍独立取得。
+
+## 最终组合闭包
+
+`visual-integrated-final/` 六帧来自与选角五帧相同的应用输入闭包 `52b6582bfc5a1eb2507fd6aaa2ced4272db7bd521781ff5ef3d738cdf73c5731`，366个真实Lua模块、未知适配属性0。2/4选项各包含intro、正常态与功能hover。每张额外4次前端render pass；实际pageReveal已撤、当前nodePanel可见，Lua/浏览器/资源错误与liveTreeDrift均为0。`verify-integrated.mjs`核对全部PNG/状态原始摘要、ready日志和批准稿对照，结果PASS。
+
+主线程已查看正常态、四项代价颜色、兜帽暗面与背景衔接。最终同位置mask IoU仍为99.34%，旧身体遮挡负控62.66%；原金色缝隙y44–79均为场景色。没有把软件结果称为官方设备呈现或原版hover逐像素一致。
+
+复现先以新的输出目录运行prepare/capture，再运行`compare-approved-guide.mjs <截图目录>`、`measure-approved-guide.py <截图目录> <旧错误截图>`与`verify-integrated.mjs <截图目录>`。旧错误截图为项目自产诊断，本机默认保存在`.artifacts/style-fidelity-20261113/visual-history/neow/visual-current-1/two-normal.png`；新机器需显式提供该负控输入，不能拿缺失负控当通过。
