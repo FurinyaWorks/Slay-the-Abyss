@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.4.0",
+  "version": "ganyu-sample-0.5.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -279,6 +279,78 @@
         "status": "HOLD",
         "human_approved": false,
         "reason": "防守轮转候选；待来源/审美/STS1对照核验，不改已有数值或初始卡组"
+      }
+    },
+    {
+      "id": "ganyu-09",
+      "name": "待命名·ganyu-09",
+      "candidate_name": null,
+      "role": "两能量防守蓄力，为剩余1能量的箭创造同回合兑现窗口",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 11
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-09",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-10",
+      "name": "待命名·ganyu-10",
+      "candidate_name": null,
+      "role": "花能量从抽牌堆取得核心箭，改善牌底等待但不从弃牌堆无条件回收",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "source_ref": "ganyu-10",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       }
     }
   ],

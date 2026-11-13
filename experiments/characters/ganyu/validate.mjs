@@ -4,6 +4,7 @@ const nat=(n,min=0)=>Number.isSafeInteger(n)&&n>=min;
 export function validateCandidate(data,relic,sources) {
  const errors=[];const ids=new Set();const sourceIds=new Set(sources.records.map(s=>s.card_id));
  if(data.production_enabled!==false || data.status!=='CANDIDATE')errors.push('candidate cannot claim production');
+ if(data.version!==relic.version)errors.push('relic version mismatch');
  if(data.version!==sources.version)errors.push('source version mismatch');
  for(const key of ['maxCharge','energyPerTurn','initialHp','drawPerTurn','handLimit'])if(!nat(data.environment[key],1))errors.push(`invalid environment ${key}`);
  if(!Array.isArray(data.cards)||!data.cards.length||data.cards.length>75)errors.push('invalid sample size');
@@ -15,7 +16,8 @@ export function validateCandidate(data,relic,sources) {
   for(const level of ['base','upgrade']) {
    const v=c[level];if(!v || !nat(v.cost)||!Array.isArray(v.effects)||!v.effects.length){errors.push(`invalid variant ${c.id}`);continue;}
    for(const e of v.effects) {
-    const fields={damage:['amount'],aoe:['amount'],block:['amount'],charge:['amount'],draw:['amount'],storm:['amount','turns'],charged_shot:['direct','bloom']}[e.op];
+    const fields={damage:['amount'],aoe:['amount'],block:['amount'],charge:['amount'],draw:['amount'],seek_card:[],storm:['amount','turns'],charged_shot:['direct','bloom']}[e.op];
+    if(e.op==='seek_card' && !data.cards.some(c=>c.id===e.card_id))errors.push(`unknown seek target ${c.id}`);
     if(!fields){errors.push(`unknown effect ${c.id}`);continue;}
     for(const k of fields)if(!nat(e[k],k==='turns'?1:0))errors.push(`invalid ${e.op}.${k} ${c.id}`);
     if(['damage','charged_shot'].includes(e.op)&&c.target!=='enemy')errors.push(`target mismatch ${c.id}`);

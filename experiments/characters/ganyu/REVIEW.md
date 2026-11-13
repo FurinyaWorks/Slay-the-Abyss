@@ -16,3 +16,9 @@
 第二轮复核关闭：`character_rules`（reviewId `character-rules-ganyu-e20fbd7-20261113`）独立重跑15/15，并执行28条phase-correct额外负例；负意图、NaN、负能量、charge溢出、死亡、storm零持续均拒绝且输入未改。其独立核对远端e20fbd7与本地82c68786引擎逐字一致，SHA256为660fb6516213ea8cc46a9c9d69cef0ad125b4a89dd53cade40014ebae4524fa0。该结论只覆盖0.1修复；新增0.2遗物/抽洗牌/终端入口尚待独评，不沿用旧PASS。
 
 0.2–0.4新独评中发现结果弃牌实例与原手牌别名及复用保留种子资格问题。已修实例隔离并加负例；1001–1025统一改称known_regression而非未触碰holdout，旧负结果保留。此处只记录修复，不提前写新版本复核PASS。
+
+## 0.4最终独立复核
+
+审核者character_rules，reviewId `character-rules-ganyu-19c54f7-v04-20261113`，固定本地19c54f796c6103f72d399604494a3b7484455b04：独立28/28通过，三报告1224/1200/1200逐行重放和inputs.sha256全部一致；alias、全死敌负例关闭，40回合实例守恒trace和终端q smoke通过。策略只接可见字段，无未来牌序/RNG；known_regression纠正准确。
+
+结论仅覆盖0.2–0.4八卡基础/升级、遗物hook、抽洗牌、终端、固定遭遇压力与校验器，不解除G1/命名/自然构筑/正式平衡/设备/Full门禁。该内容作者已备份远端08dfa35304d2fcdd0fc20eed9189b3485a40ec08，tree30e58beb9d0a00e9815c2600869f1f412bc366af与本地一致，engine读回blob0ac022617bdee4af0521cc003c03173c8be5b2b5一致；后一个远端核验由作者做，非审核者声明。

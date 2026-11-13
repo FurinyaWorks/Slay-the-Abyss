@@ -14,6 +14,10 @@ export function choose(view, policy) {
   const lethal=arrow && view.enemies[target].hp+view.enemies[target].block<=7;
   if(arrow && (view.charge===2 || lethal))return {index:arrow.i,target};
   const incoming=living.reduce((n,x)=>n+(Array.isArray(x.e.intent)?x.e.intent.reduce((a,b)=>a+b,0):x.e.intent),0);
+  const seek=legal.find(x=>x.c.id==='ganyu-10');
+  if(!arrow && seek && view.energy>=2 && view.coreInDraw>0)return {index:seek.i,target:null};
+  const guardCharge=legal.find(x=>x.c.id==='ganyu-09');
+  if(guardCharge && view.charge<2 && ((arrow && view.energy>=3) || (!arrow && view.block<incoming)))return {index:guardCharge.i,target:null};
   const defense=legal.find(x=>x.c.id==='ganyu-08') ?? legal.find(x=>x.c.id==='ganyu-04') ?? legal.find(x=>x.c.id==='ganyu-02');
   if(policy==='defend_bank' && defense && view.block<incoming)return {index:defense.i,target:null};
   const draw=legal.find(x=>x.c.id==='ganyu-07');
@@ -23,26 +27,29 @@ export function choose(view, policy) {
   if(defense && view.block<incoming)return {index:defense.i,target:null};
   return null;
 }
-export function trial({size,seed,ordered=false,policy='defend_bank',intent=8,extraDrawCards=0,extraDefDrawCards=0}) {
+export function trial({size,seed,ordered=false,policy='defend_bank',intent=8,extraDrawCards=0,extraDefDrawCards=0,extraGuardChargeCards=0,extraSeekCards=0}) {
   let deck=catalogue.starting_deck.map(id=>({id}));
   while(deck.length<size)deck.push({id:deck.length%2?'ganyu-01':'ganyu-02'});
   for(let i=0;i<extraDrawCards;i++)deck.push({id:'ganyu-07'});
   for(let i=0;i<extraDefDrawCards;i++)deck.push({id:'ganyu-08'});
+  for(let i=0;i<extraGuardChargeCards;i++)deck.push({id:'ganyu-09'});
+  for(let i=0;i<extraSeekCards;i++)deck.push({id:'ganyu-10'});
   if(ordered)deck=[...deck.filter(c=>c.id!=='ganyu-03'),{id:'ganyu-03'}];
   let s=createBattle([{hp:70,block:0,intent}],seed,deck,ordered);
-  const metric={size,actualSize:deck.length,extraDrawCards,extraDefDrawCards,seed,ordered,policy,intent,firstSeen:null,firstCharged:null,saturatedWaitingTurns:0,coreUnpayable:0,damageLost:0,turns:0,outcome:null};
+  const metric={size,actualSize:deck.length,extraDrawCards,extraDefDrawCards,extraGuardChargeCards,extraSeekCards,seed,ordered,policy,intent,firstSeen:null,firstCharged:null,saturatedWaitingTurns:0,coreUnpayable:0,seekMiss:0,damageLost:0,turns:0,outcome:null};
   while(s.phase==='player' && s.turn<=30) {
     const hadCore=s.hand.some(c=>c.id==='ganyu-03');
     if(hadCore && metric.firstSeen===null)metric.firstSeen=s.turn;
     if(!hadCore && s.charge===2)metric.saturatedWaitingTurns++;
     for(let i=0;i<10;i++) {
-      // No draw/discard/seed/hidden order supplied to decision policy.
+      // No ordered draw/discard/seed supplied; only public draw-pile core count to decision policy.
       if(s.hand.some(c=>c.id==='ganyu-03') && metric.firstSeen===null)metric.firstSeen=s.turn;
-      const decision=choose({hand:s.hand,enemies:s.enemies,energy:s.energy,charge:s.charge,block:s.block},policy);
+      const decision=choose({hand:s.hand,enemies:s.enemies,energy:s.energy,charge:s.charge,block:s.block,coreInDraw:s.draw.filter(c=>c.id==='ganyu-03').length},policy);
       if(!decision)break;
       const card=s.hand[decision.index];
       if(card.id==='ganyu-03' && s.charge===2 && metric.firstCharged===null)metric.firstCharged=s.turn;
       s=play(s,decision.index,decision.target);
+      if(card.id==='ganyu-10' && !s.hand.some(c=>c.id==='ganyu-03'))metric.seekMiss++;
       if(s.phase==='won')break;
     }
     if(s.hand.some(c=>c.id==='ganyu-03') && s.energy<1)metric.coreUnpayable++;
@@ -65,7 +72,7 @@ export function runMatrix() {
     const losses=rs.map(r=>r.damageLost).sort((a,b)=>a-b);
     groups.push({size,intent,policy,cohort,n:rs.length,wins:rs.filter(r=>r.outcome==='won').length,deaths:rs.filter(r=>r.outcome==='lost').length,truncated:rs.filter(r=>r.outcome==='truncated').length,neverSawCore:rs.filter(r=>r.firstSeen===null).length,neverCharged:rs.filter(r=>r.firstCharged===null).length,lossP50:losses[Math.ceil(rs.length*0.5)-1],lossP90:losses[Math.ceil(rs.length*0.9)-1],saturatedWaitingTurns:rs.reduce((n,r)=>n+r.saturatedWaitingTurns,0),coreUnpayable:rs.reduce((n,r)=>n+r.coreUnpayable,0)});
   }
-  return {inputs:replayInputs('accessibility.mjs'),version:'ganyu-accessibility-0.4',kind:'fixed-artificial-single-enemy-stress',notNaturalAcquisition:true,seeds:{exploratory:'1..25',knownRegression:'1001..1025 (seen during earlier candidate design; not untouched holdout)',bottom:37},rng:'xorshift32 draw-only',maxTurns:30,policyVisible:'hand, enemy hp/block/intent, energy, charge, block only',samples:rows.length,groups,rows};
+  return {inputs:replayInputs('accessibility.mjs'),version:'ganyu-accessibility-0.4',kind:'fixed-artificial-single-enemy-stress',notNaturalAcquisition:true,seeds:{exploratory:'1..25',knownRegression:'1001..1025 (seen during earlier candidate design; not untouched holdout)',bottom:37},rng:'xorshift32 draw-only',maxTurns:30,policyVisible:'hand, enemy hp/block/intent, energy, charge, block and unordered public core count in draw pile; no draw order',samples:rows.length,groups,rows};
 }
 if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {
  const report=runMatrix();writeFileSync(new URL('./accessibility-results.json.gz',import.meta.url),gzipSync(JSON.stringify(report,null,2)+'\n'));

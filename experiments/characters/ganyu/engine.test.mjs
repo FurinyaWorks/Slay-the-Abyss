@@ -67,7 +67,7 @@ test('opposite reachable choices: lethal now vs preserve charge economy',()=>{
  assert.equal(play(startTurn(endTurn(play(setup,0,0))),0,0).enemies[1].hp,20);
 });
 test('display generated from same structured variants, no false approval',()=>{
- assert.equal(catalogue.cards.length,8);assert.equal(catalogue.production_enabled,false);
+ assert.equal(catalogue.cards.length,10);assert.equal(catalogue.production_enabled,false);
  for(const c of catalogue.cards){assert.equal(c.review.human_approved,false);assert.match(c.name,/^待命名·/);for(const up of [false,true]) assert.match(cardText(c.id,up),/能量/);}
  assert.match(cardText('ganyu-03',true),/9点伤害.*8点伤害/);
 });
@@ -132,4 +132,14 @@ test('resolved discard instance never aliases caller hand',()=>{
 test('all-dead enemy arrays cannot start or continue resource generation',()=>{
  assert.throws(()=>initial([{hp:0,block:0,intent:0}]),/living enemies/);
  for(const phase of ['player','between']){const s=hand(initial(),'ganyu-06');s.phase=phase;s.enemies[0].hp=0;const before=structuredClone(s);for(const fn of [x=>play(x,0),endTurn,startTurn]){assert.throws(()=>fn(s),/living enemies/);assert.deepEqual(s,before);}}
+});
+
+test('two-cost guard charge plus arrow is payable in initial three energy',()=>{
+ for(const up of [false,true]){let s=initial();s.hand=[{id:'ganyu-09',upgraded:up},{id:'ganyu-03'}];s=play(s,0);assert.equal(s.energy,1);assert.equal(s.block,up?11:8);assert.equal(s.charge,2);s=play(s,0,0);assert.equal(s.energy,0);assert.equal(s.enemies[0].hp,17);assert.equal(s.charge,0);}
+});
+test('seek base/upgrade pays real cost, preserves order/RNG and instance upgrade',()=>{
+ for(const up of [false,true]){const s=hand(initial(),'ganyu-10',up);s.draw=[{id:'ganyu-02'},{id:'ganyu-03',upgraded:true},{id:'ganyu-01'}];const r=play(s,0);assert.equal(r.energy,up?3:2);assert.deepEqual(r.hand,[{id:'ganyu-03',upgraded:true}]);assert.deepEqual(r.draw,[{id:'ganyu-02'},{id:'ganyu-01'}]);assert.equal(r.drawSeed,s.drawSeed);assert.equal(r.discard[0].id,'ganyu-10');}
+});
+test('seek cannot recover discarded core or refund on a miss',()=>{
+ const s=hand(initial(),'ganyu-10');s.discard=[{id:'ganyu-03'}];const r=play(s,0);assert.equal(r.hand.length,0);assert.equal(r.energy,2);assert.deepEqual(r.discard.map(c=>c.id),['ganyu-03','ganyu-10']);assert.deepEqual(s.hand,[{id:'ganyu-10',upgraded:false}]);
 });

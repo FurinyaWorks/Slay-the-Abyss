@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.4.0",
+  "version": "ganyu-sample-0.5.0",
   "status": "HOLD",
   "records": [
     {
@@ -217,6 +217,66 @@
       "decision_role": "防守兼慢速轮转，改善生命与找箭的共同成本",
       "effect_ref": "cards.json#ganyu-08",
       "name": "待命名·ganyu-08",
+      "proposed_name": null,
+      "source_tier": "unassigned",
+      "source_kind": "unverified-transcription-index",
+      "source_text": null,
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "search performed; primary verification incomplete",
+      "p2_checked": "search performed; primary verification incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-09",
+      "decision_role": "两能量防守蓄力，为剩余1能量的箭创造同回合兑现窗口",
+      "effect_ref": "cards.json#ganyu-09",
+      "name": "待命名·ganyu-09",
+      "proposed_name": null,
+      "source_tier": "unassigned",
+      "source_kind": "unverified-transcription-index",
+      "source_text": null,
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "search performed; primary verification incomplete",
+      "p2_checked": "search performed; primary verification incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-10",
+      "decision_role": "花能量从抽牌堆取得核心箭，改善牌底等待但不从弃牌堆无条件回收",
+      "effect_ref": "cards.json#ganyu-10",
+      "name": "待命名·ganyu-10",
       "proposed_name": null,
       "source_tier": "unassigned",
       "source_kind": "unverified-transcription-index",

@@ -11,6 +11,7 @@ try {
  while(state.phase==='player') {
   console.log(`\n回合${state.turn} HP${state.hp} 格挡${state.block} 能量${state.energy} 蓄力${state.charge}`);
   console.log(state.enemies.map((e,i)=>`${i+1}:HP${e.hp} 格挡${e.block} 攻击${JSON.stringify(e.intent)}`).join(' | '));
+  console.log('公开抽牌堆核心箭数量（不显示牌序）：',state.draw.filter(c=>c.id==='ganyu-03').length);
   state.hand.forEach((c,i)=>console.log(`${i+1}. ${cardText(c.id,c.upgraded)} (${catalogue.cards.find(x=>x.id===c.id).role})`));
   const answer=(await io.question('出牌:牌号 目标号；结束:e；退出:q > ')).trim();
   if(answer==='q') break;
