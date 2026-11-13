@@ -66,7 +66,7 @@ test('a blocked card cannot claim real human approval',()=>{
  assert.equal(validateNamingManifest(m).ready,false);
 });
 test('html and manifest must match all 75 distinct card names',()=>{
- const html="const defs=[\\n ['c01','掩袖回枪','普通',\\n ['c02','火蝴蝶','普通',\\n];\\nconst CARDS=Object.freeze({\\n e:C('e','蝶引来生','基础'),\\n});";
+ const html="const defs=[\n ['c01','掩袖回枪','普通',\n ['c02','火蝴蝶','普通',\n];\nconst CARDS=Object.freeze({\n e:C('e','蝶引来生','基础'),\n});";
  const names=extractEmbeddedCardNames(html);
  assert.equal(names.map.size,3);
  const m={cards:[{id:'c01',name:'掩袖回枪'},{id:'c02',name:'火蝴蝶'},{id:'e',name:'蝶引来生'}],expected_cards:3};
