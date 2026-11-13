@@ -42,3 +42,9 @@ test('previous power and exit energy exact safe boundary behavior',()=>{
  const b=state({hand:['x34'],energy:Number.MAX_SAFE_INTEGER});b.mask=1;
  assert.equal(play(b,{index:0}).state.energy,Number.MAX_SAFE_INTEGER);assert.deepEqual(play(b,{index:0,upgraded:true}).state,b);
 });
+test('masked attack before power exists does not use quota, additional power never resets spent quota',()=>{
+ let s=state({hand:['x01','x36','x35','x36','x01'],energy:8,draw:['x02','x03','x06']});s.mask=2;
+ s=play(s,{index:0}).state;assert.equal(s.maskedDrawUsed,false);
+ s=play(s,{index:0}).state;s=play(s,{index:0}).state;assert.equal(s.maskedDrawUsed,true);
+ const before=s.draw.length;s=play(s,{index:0}).state;s=play(s,{index:0}).state;assert.equal(s.draw.length,before);
+});

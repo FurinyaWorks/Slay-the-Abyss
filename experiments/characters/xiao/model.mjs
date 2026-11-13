@@ -145,7 +145,7 @@ export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits}) => ({
     damageHits: `对目标造成${value}点伤害，共${hits}次；面具期间每次另加${catalog.maskRules.attackBonus}点。不转移死亡目标。`,
-    maskedAttackDraw: `本场每回合首次在出牌时戴面具的攻击结算后抽${value}张（上限10）；每张攻击最多触发一次，退场攻击仍算，可叠加抽量。`,
+    maskedAttackDraw: `本场每回合首次在出牌时戴面具的攻击结算后抽${value}张（上限10）；每张攻击最多触发一次，退场攻击仍算，可叠加抽量。尚未有此能力时的攻击不消耗资格；追加同类能力不重置已耗资格。`,
     calmDraw: `本场每个玩家回合开始，若无面具，在正常抽牌后额外抽${value}张（总手牌上限10）；本次打出不立即抽，可叠加。`,
     exitEnergy: `若当前有面具，退出并获得${value}点本回合能量；无面具不返能。仍须先支付费用。`,
     suppress: `目标本回合意图伤害降低${value}（最低0，可叠加）；下个玩家回合清除。`,
