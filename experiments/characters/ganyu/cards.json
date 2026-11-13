@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.19.0",
+  "version": "ganyu-sample-0.20.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -1958,6 +1958,126 @@
         ]
       },
       "source_ref": "ganyu-55",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-56",
+      "name": "待命名·ganyu-56",
+      "candidate_name": null,
+      "role": "保留防守蓄满准备",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-56",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-57",
+      "name": "待命名·ganyu-57",
+      "candidate_name": null,
+      "role": "两费群攻兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 9
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-57",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-58",
+      "name": "待命名·ganyu-58",
+      "candidate_name": null,
+      "role": "一次提前雨场结算兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_release"
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_release"
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-58",
       "review": {
         "status": "HOLD",
         "human_approved": false,
