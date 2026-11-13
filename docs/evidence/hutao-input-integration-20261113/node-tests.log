@@ -1,0 +1,32 @@
+✔ body Space ends exactly one turn (3.031879ms)
+✔ body digit plays one card (1.119357ms)
+✔ held shortcut does not repeat actions (2.224091ms)
+✔ interactive focus preserves native control behavior (6.059351ms)
+✔ editable content, composition and consumed events do not trigger combat (3.027221ms)
+✔ Escape closes modal even with button focus (1.073609ms)
+✔ modal and modifier shortcuts cannot change combat (6.364304ms)
+✔ opening sets initial focus and makes background inert; closing restores both (5.029041ms)
+✔ nested details preserves the original outside return target and inert state (2.017537ms)
+✔ Tab and Shift+Tab wrap at the two boundaries (2.33217ms)
+✔ hidden and disabled elements are excluded from focus loop (1.243549ms)
+✔ Escape from search closes and consumes event before combat handler (1.215388ms)
+✔ render-driven exit restores focus to replacement opener (1.39368ms)
+✔ prior inert state survives close and repeated open-close (1.270298ms)
+✔ capture helper leaves nonmodal keys and composing events to existing handlers (1.286351ms)
+✔ render-driven exit with an id-less opener returns to stable guide button (2.107389ms)
+✔ combined listeners close a search modal without ending a turn, then allow one body shortcut (2.436833ms)
+✔ combined listeners trap Tab and block combat shortcuts while a modal is open (1.838579ms)
+✔ native clipboard success preserves report content (5.708254ms)
+✔ native rejection falls back successfully (1.605891ms)
+✔ missing native API still supports local copy (1.34635ms)
+✔ false local copy result reports failure, never success (1.254065ms)
+✔ throwing local copy reports failure and cleans up (1.130183ms)
+✔ retry after a failed copy can succeed (2.528849ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 202.039375
