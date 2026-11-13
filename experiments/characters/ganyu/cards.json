@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.11.0",
+  "version": "ganyu-sample-0.12.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -1084,6 +1084,110 @@
         ]
       },
       "source_ref": "ganyu-31",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-32",
+      "name": "待命名·ganyu-32",
+      "candidate_name": null,
+      "role": "建立雨场后维持防线的条件收益",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 3,
+            "bonus": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 4,
+            "bonus": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-32",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-33",
+      "name": "待命名·ganyu-33",
+      "candidate_name": null,
+      "role": "雨场已建立后的一次性免费过牌窗口",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "storm_draw",
+            "amount": 1,
+            "bonus": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "storm_draw",
+            "amount": 1,
+            "bonus": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-33",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-34",
+      "name": "待命名·ganyu-34",
+      "candidate_name": null,
+      "role": "一次性零费满蓄单体收尾",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 2,
+            "bonus": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 3,
+            "bonus": 9
+          }
+        ]
+      },
+      "source_ref": "ganyu-34",
       "review": {
         "status": "HOLD",
         "human_approved": false,
