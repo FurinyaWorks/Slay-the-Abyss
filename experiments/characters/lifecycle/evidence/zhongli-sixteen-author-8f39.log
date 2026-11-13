@@ -1,0 +1,17 @@
+AUTHOR_GENERATED_SEED 1 card=zl28 upgraded=false used=true actions=8/1 persistentRunHp=45 currentCombatHp=45
+AUTHOR_GENERATED_SEED 2 card=zl39 upgraded=false used=true actions=11/4 persistentRunHp=33 currentCombatHp=33
+AUTHOR_40_RETAIN uid=11
+AUTHOR_40_EXHAUST uid=11 retained=true
+AUTHOR_GENERATED_SEED 3 card=zl40 upgraded=false used=true actions=11/9 persistentRunHp=33 currentCombatHp=32.0
+AUTHOR_GENERATED_SEED 4 card=zl32 upgraded=false used=true actions=11/6 persistentRunHp=50.0 currentCombatHp=49.0
+AUTHOR_GENERATED_SEED 5 card=zl20 upgraded=false used=true actions=9/3 persistentRunHp=45 currentCombatHp=45
+AUTHOR_GENERATED_SEED 6 card=zl66 upgraded=false used=true actions=10/3 persistentRunHp=50.0 currentCombatHp=50.0
+AUTHOR_GENERATED_SEED 7 card=zl62 upgraded=false used=true actions=10/3 persistentRunHp=50.0 currentCombatHp=50.0
+AUTHOR_GENERATED_SEED 8 card=zl73 upgraded=false used=true actions=11/1 persistentRunHp=33 currentCombatHp=33
+AUTHOR_40_RETAIN uid=11
+AUTHOR_40_EXHAUST uid=11 retained=true
+AUTHOR_GENERATED_SEED 9 card=zl40 upgraded=false used=true actions=9/3 persistentRunHp=45 currentCombatHp=45
+AUTHOR_GENERATED_SEED 10 card=zl38 upgraded=false used=true actions=11/3 persistentRunHp=44.0 currentCombatHp=44.0
+AUTHOR_GENERATED_SEED 11 card=zl04 upgraded=false used=true actions=10/6 persistentRunHp=45 currentCombatHp=39
+AUTHOR_GENERATED_SEED 12 card=zl16 upgraded=false used=true actions=8/3 persistentRunHp=45 currentCombatHp=45
+AUTHOR_ZL_SIXTEEN_DRAW_CHAIN_PASS seeds=1..12 firstWins=12 acquiredPlayed=12 losses=0 bounded=0; covered32=true covered40=true; no offer/HP/energy/jade/hand rewrite, fixed cultist rooms not map or balance proof

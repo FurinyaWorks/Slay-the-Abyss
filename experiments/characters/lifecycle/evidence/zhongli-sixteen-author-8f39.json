@@ -1,0 +1,164 @@
+{
+  "localShared": "8f39b5b4a91d9b1de1bef191674b2692d1efcd0c",
+  "remoteShared": "f099a84dec79ebdafe9170298f2dc690572be288",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "firstWins": 12,
+  "acquiredPlayed": 12,
+  "losses": 0,
+  "bounded": 0,
+  "uniqueBaseIds": [
+    "zl04",
+    "zl16",
+    "zl20",
+    "zl28",
+    "zl32",
+    "zl38",
+    "zl39",
+    "zl40",
+    "zl62",
+    "zl66",
+    "zl73"
+  ],
+  "rows": [
+    {
+      "seed": 1,
+      "card": "zl28",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 8,
+      "secondActions": 1,
+      "persistentRunHp": 45.0,
+      "currentCombatHp": 45.0
+    },
+    {
+      "seed": 2,
+      "card": "zl39",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 11,
+      "secondActions": 4,
+      "persistentRunHp": 33.0,
+      "currentCombatHp": 33.0
+    },
+    {
+      "seed": 3,
+      "card": "zl40",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 11,
+      "secondActions": 9,
+      "persistentRunHp": 33.0,
+      "currentCombatHp": 32.0
+    },
+    {
+      "seed": 4,
+      "card": "zl32",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 11,
+      "secondActions": 6,
+      "persistentRunHp": 50.0,
+      "currentCombatHp": 49.0
+    },
+    {
+      "seed": 5,
+      "card": "zl20",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 9,
+      "secondActions": 3,
+      "persistentRunHp": 45.0,
+      "currentCombatHp": 45.0
+    },
+    {
+      "seed": 6,
+      "card": "zl66",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 10,
+      "secondActions": 3,
+      "persistentRunHp": 50.0,
+      "currentCombatHp": 50.0
+    },
+    {
+      "seed": 7,
+      "card": "zl62",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 10,
+      "secondActions": 3,
+      "persistentRunHp": 50.0,
+      "currentCombatHp": 50.0
+    },
+    {
+      "seed": 8,
+      "card": "zl73",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 11,
+      "secondActions": 1,
+      "persistentRunHp": 33.0,
+      "currentCombatHp": 33.0
+    },
+    {
+      "seed": 9,
+      "card": "zl40",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 9,
+      "secondActions": 3,
+      "persistentRunHp": 45.0,
+      "currentCombatHp": 45.0
+    },
+    {
+      "seed": 10,
+      "card": "zl38",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 11,
+      "secondActions": 3,
+      "persistentRunHp": 44.0,
+      "currentCombatHp": 44.0
+    },
+    {
+      "seed": 11,
+      "card": "zl04",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 10,
+      "secondActions": 6,
+      "persistentRunHp": 45.0,
+      "currentCombatHp": 39.0
+    },
+    {
+      "seed": 12,
+      "card": "zl16",
+      "upgraded": false,
+      "used": true,
+      "firstActions": 8,
+      "secondActions": 3,
+      "persistentRunHp": 45.0,
+      "currentCombatHp": 45.0
+    }
+  ],
+  "limits": [
+    "fixed Cultist encounters, not natural map",
+    "next battle stops after acquired card paid, not victory",
+    "all base faces; no upgrade coverage",
+    "source starter HP/energy/jade/deck/offer untouched",
+    "32 lethal non-retaliation referenced from prior paid test, not forced here"
+  ]
+}
