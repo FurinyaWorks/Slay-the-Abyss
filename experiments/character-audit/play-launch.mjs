@@ -3,7 +3,7 @@ import {execFileSync} from 'node:child_process';import {resolve} from 'node:path
 export const pins=Object.freeze({
  ganyu:{cards:75,tree:'139addcb69e097f80f4314ebe3f6c9a5a4811370',modes:['starter','all','run'],note:'四房研究旅程；44仍旧值；非正式地图'},
  xiao:{cards:75,tree:'9d184954fd1160ef6f4ee6728362b2dc1919d665',modes:['starter','all','run'],note:'三房研究旅程；领取/跳过立即下一房'},
- keqing:{cards:75,tree:'c411d0e6f634208993fb258fc7e6f46ba67e668f',modes:['starter','all'],note:'已支付043/044待选单战；无存档/连续战，研究版'},
+ keqing:{cards:75,tree:'c411d0e6f634208993fb258fc7e6f46ba67e668f',modes:['starter','all','run'],note:'已支付043/044待选及三房研究旅程；无存档，待独审'},
  zhongli:{cards:75,tree:'43cf97c15c1d130cfc9cf9ff2e68fbe12e40cf06',modes:['starter','all','run'],note:'75候选/v37池三房；validator 修订定向复核待确认，所有正式门禁HOLD'},
 });
 export function select(character,tree,mode='starter',seed='37'){

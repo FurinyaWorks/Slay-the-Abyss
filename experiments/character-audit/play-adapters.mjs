@@ -1,6 +1,7 @@
 import {realpathSync} from 'node:fs';
 import {resolve,join} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {keqingRun} from './keqing-run.mjs';
 import {paidSession} from './keqing-paid-session.mjs';
 import {zhongliRun} from './zhongli-run.mjs';
 import {snapshot as identity} from './audit.mjs';
@@ -10,7 +11,7 @@ const zones=s=>({draw:s.draw.length,discard:s.discard.length,exhaust:(s.exhaust?
 const row=(id,text,role)=>({id,name:'待命名·'+id,base:text(false),upgraded:text(true),role,source:'HOLD',naming:'HOLD',balance:'HOLD'});
 const accept=r=>{if(!r.ok)throw Error(r.reason||'model rejected');return r.state;};
 export async function loadAdapter(root,character,expectedHead,{run=false}={}){
- if(run&&!['ganyu','xiao','zhongli'].includes(character))throw Error('run mode currently available only for Ganyu, Xiao and Zhongli');
+ if(run&&!['ganyu','xiao','zhongli','keqing'].includes(character))throw Error('run mode currently available only for Ganyu, Xiao and Zhongli');
  if(!['ganyu','xiao','zhongli','keqing'].includes(character)||!/^[a-f0-9]{40}$/.test(expectedHead))throw Error('character and exact expected HEAD required');
  root=realpathSync(resolve(root));const dir=join(root,'experiments','characters',character);
  const before=identity(root,dir);
@@ -65,7 +66,10 @@ export async function loadAdapter(root,character,expectedHead,{run=false}={}){
     selectionLimits:'Visible retain/move/purge only; synchronous inspect/chooseDiscard blocked, no fair pause/resume UI',
     discardChoices:s.discard.map(c=>({instance:c.instance,id:c.id,text:text(c.id,c.upgraded===true)})),
     hand:s.hand.map((c,i)=>({slot:i+1,instance:c.instance,id:c.id,text:text(c.id,c.upgraded===true)}))})};
-  if(typeof b.createChoiceSession==='function')a.paidFactory=(adapter,config)=>paidSession(adapter,b,text,config);
+  if(typeof b.createChoiceSession==='function'){
+   const rewards=run?await mod('rewards.mjs'):null;
+   a.paidFactory=(adapter,config)=>run?keqingRun(adapter,b,rewards,text,config):paidSession(adapter,b,text,config);
+  }else if(run)throw Error('Keqing run requires paid choice model');
  }
  if(run&&character==='ganyu'){
   const acquisition=await mod('acquisition.mjs'),consoleModel=await mod('run-console.mjs'),m=await mod('engine.mjs');
