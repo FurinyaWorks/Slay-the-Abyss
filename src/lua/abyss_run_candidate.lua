@@ -3,7 +3,7 @@ local M={}
 function M.copy(option)
  assert(type(option)=='table'and getmetatable(option)==nil,'invalid run candidate lifecycle')
  for k in pairs(option)do assert(k=='kind'or k=='relicEnabled','unknown run candidate field')end
- assert((option.kind=='ganyu'or option.kind=='xiao')and type(option.relicEnabled)=='boolean'
+ assert((option.kind=='ganyu'or option.kind=='xiao'or option.kind=='keqing')and type(option.relicEnabled)=='boolean'
   or option.kind=='zhongli'and option.relicEnabled==false,'unsupported run candidate lifecycle')
  return {kind=option.kind,relicEnabled=option.relicEnabled}
 end

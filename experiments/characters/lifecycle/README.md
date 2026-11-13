@@ -524,3 +524,21 @@ whole-Run exception recovery. Host tests add 16 automatic-admission combinations
 and a real Scry continuation whose native group damage failure restores the paid
 revealed graph/aliases and retries once. This raises the admitted Xiao set to
 01/02/04/05/06, not all75; native HP/Intangible differences and balance remain HOLD.
+
+## Keqing explicit Run and source starter
+
+Run candidate context accepts `kind='keqing'` with a strict boolean relic switch;
+no role is inferred from card IDs. `abyss_keqing_starter_run.new(data, seed)` uses
+the reviewed source-starter module (0da3c2b5, source89d898c): HP60, energy3/draw5,
+hand limit10 and ten unupgraded one-cost cards (001×3,002×4,003×2,004×1).
+It clears inherited Burning Blood and enables the existing first-successful-setup
+fixed4-block virtual relic. No inventory relic entry/removal/replacement or
+formal class/natural reward pool is introduced. The source types remain HOLD.
+
+The actual Run test performs setup/recast/burst, checks the original one-cost
+payment and single fixed4 trigger, carries upgraded reward deckUID and HP through
+three encounters, resets infusion/wedge/relic usage, and tests stage, reward
+publication and late Combat initialization exceptions against the whole Run
+snapshot and original aliases. Hand placement and fixed rewards are explicit
+fixtures, not natural deck draw or reward generation evidence. Existing terminal
+resource behavior and balance HOLDs remain unchanged.
