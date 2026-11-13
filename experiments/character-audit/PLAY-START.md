@@ -4,7 +4,7 @@
 
 ## 最短启动
 
-使用Node22+，在本工具分支feat/zhongli-shared-manual-run的独立干净检出中运行：
+使用Node22+，在本工具分支feat/keqing-shared-manual-run的独立干净检出中运行：
 
 ```
 node experiments/character-audit/play-launch.mjs --list
@@ -17,14 +17,14 @@ MODEL_ROOT是对应角色模型的独立检出路径，不是工具目录。启�
 |---|---|---:|---|---|
 |甘雨|139addcb|75|starter / all / run四房|44支配、正式地图/命名/自然平衡|
 |魈|9d184954|75|starter / all / run三房|正式地图/命名/自然平衡|
-|刻晴|c411d0e6|75|starter / all / run三房，043/044已支付待选|隔离研究版；无存档/重置，连续战独审待确认|
+|刻晴|c411d0e6|75|starter / all / run三房，043/044已支付待选|隔离研究版；无存档/重置，连续战限定技术独审通过；非自然平衡|
 |钟离|43cf97c1|75|starter / all / run三房|validator 修订定向复核待确认；v37池71暂定common，不是完整稀有度取得|
 
-starter是角色初始牌组；all是各候选一张人工测试，不是自然构筑。没有升级服务、保存、正式美术或设备验收。刻晴模型不能因为工具可下载就声称已远端备份。
+starter是角色初始牌组；all是各候选一张人工测试，不是自然构筑。没有升级服务、保存、正式美术或设备验收。刻晴模型隔离付费会话远端为720a8e68ac8c68923a315cd82be0c92906295934；不是原生产模型已接入正式游戏。
 
 ## 操作与差别
 
-界面每次给revision；`p REV SLOT TARGET`出牌、`e REV`结束、`show`查看、`catalog`读基升候选、`q`退出。旧revision拒绝，出牌后牌号重新编号。`r REV`从同一种子重开（当前没有已支付待选事务）。
+界面每次给revision；`p REV SLOT TARGET`出牌、`e REV`结束、`show`查看、`catalog`读基升候选、`q`退出。旧revision拒绝，出牌后牌号重新编号。非刻晴模式可用`r REV`从同一种子重开；刻晴付费会话拒绝重置/取消，待选必须明确选择或退出。
 
 - 甘雨奖励先`o REV`打开，`k REV 1`领取，`s REV`暂关可重开，`n REV`下一房。
 - 魈/钟离奖励直接展示；`k REV 1`领取或`n REV`放弃都立即下一房；不支持o/s暂关。

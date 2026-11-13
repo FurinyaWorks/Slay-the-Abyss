@@ -11,7 +11,7 @@ const zones=s=>({draw:s.draw.length,discard:s.discard.length,exhaust:(s.exhaust?
 const row=(id,text,role)=>({id,name:'待命名·'+id,base:text(false),upgraded:text(true),role,source:'HOLD',naming:'HOLD',balance:'HOLD'});
 const accept=r=>{if(!r.ok)throw Error(r.reason||'model rejected');return r.state;};
 export async function loadAdapter(root,character,expectedHead,{run=false}={}){
- if(run&&!['ganyu','xiao','zhongli','keqing'].includes(character))throw Error('run mode currently available only for Ganyu, Xiao and Zhongli');
+ if(run&&!['ganyu','xiao','zhongli','keqing'].includes(character))throw Error('run mode currently available only for Ganyu, Xiao, Zhongli and paid-session Keqing');
  if(!['ganyu','xiao','zhongli','keqing'].includes(character)||!/^[a-f0-9]{40}$/.test(expectedHead))throw Error('character and exact expected HEAD required');
  root=realpathSync(resolve(root));const dir=join(root,'experiments','characters',character);
  const before=identity(root,dir);
