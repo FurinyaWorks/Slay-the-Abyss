@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.19",
+  "version": "xiao-g2-lab-0.20",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1407,6 +1407,60 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x47",
+      "name": "待命名·x47",
+      "role": "消耗护身：每实际消耗一张牌获得有限即时盾",
+      "kind": "power",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "exhaustGuard",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exhaustGuard",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x48",
+      "name": "待命名·x48",
+      "role": "盲燃过牌：消耗抽堆顶一张作为真实代价后抽牌",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "burnTopDraw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "burnTopDraw",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1463,7 +1517,9 @@
     "x43",
     "x44",
     "x45",
-    "x46"
+    "x46",
+    "x47",
+    "x48"
   ],
   "maskRules": {
     "attackBonus": 4,

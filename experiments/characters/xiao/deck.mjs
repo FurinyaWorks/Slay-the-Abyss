@@ -12,12 +12,16 @@ export function shuffle(s, cards) {
   }
   return out;
 }
+export function takeTop(s) {
+  if (!s.draw.length && s.deckMode === 'shuffle' && s.discard.length) {
+    s.draw = shuffle(s, s.discard); s.discard = [];
+  }
+  return s.draw.length ? s.draw.shift() : null;
+}
 export function drawCards(s, count) {
   for (let i = 0; i < count && s.hand.length < 10; i++) {
-    if (!s.draw.length && s.deckMode === 'shuffle' && s.discard.length) {
-      s.draw = shuffle(s, s.discard); s.discard = [];
-    }
-    if (!s.draw.length) break;
-    s.hand.push(s.draw.shift());
+    const id=takeTop(s);
+    if(id===null)break;
+    s.hand.push(id);
   }
 }

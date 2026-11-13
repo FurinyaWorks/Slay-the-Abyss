@@ -1,16 +1,16 @@
 // Isolated mechanism laboratory, not the production combat engine.
 import catalog from './cards.json' with { type: 'json' };
 import { currentIntent } from './intent.mjs';
-import { drawCards } from './deck.mjs';
+import { drawCards, takeTop } from './deck.mjs';
 export { catalog };
 const byId = new Map(catalog.cards.map(card => [card.id, card]));
 export function state({ hp = catalog.maxHp, energy = catalog.energyPerTurn, enemies = [{ hp: 30, block: 0 }], hand = [], draw = [], startingRelic = false } = {}) {
-  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, reservedEnergy: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
+  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, exhaustGuard: 0, reservedEnergy: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
 }
 const nonnegative = value => Number.isSafeInteger(value) && value >= 0;
 export function validState(s) {
   if (!s || typeof s !== 'object') return false;
-  if (![s.reservedEnergy, s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
+  if (![s.exhaustGuard, s.reservedEnergy, s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
   if (!['fixed', 'shuffle'].includes(s.deckMode)) return false;
   if (s.deckMode === 'shuffle' && (!Number.isInteger(s.rng) || s.rng < 0 || s.rng > 0xffffffff)) return false;
   if (s.hp > catalog.maxHp || s.mask > catalog.maskRules.maxDuration) return false;
@@ -26,6 +26,7 @@ function damage(enemy, amount) {
   enemy.block -= absorbed;
   enemy.hp = Math.max(0, enemy.hp - amount + absorbed);
 }
+function exhaustCards(s,cards) { s.exhaust.push(...cards);s.block+=cards.length*s.exhaustGuard; }
 function setMaskFromCard(s,value) {
   const exited=s.mask>0&&value===0;s.mask=value;
   if(exited)s.block+=s.exitGuard;
@@ -41,6 +42,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'exhaustGuard') s.exhaustGuard+=value;
+  else if (op === 'burnTopDraw') { const id=takeTop(s);if(id!==null){exhaustCards(s,[id]);drawCards(s,value);} }
   else if (op === 'reserveEnergy') s.reservedEnergy+=value;
   else if (op === 'damageGuard') { const enemy=s.enemies[target],before=enemy.hp;damage(enemy,value+(s.mask>0?catalog.maskRules.attackBonus:0));s.block+=Math.min(effect.cap,before-enemy.hp); }
   else if (op === 'carryBlock') s.carryBlock+=value;
@@ -78,7 +81,7 @@ function apply(s, effect, target) {
   else if (op === 'burnSkillsBlock') {
     const removed=s.hand.filter(id=>byId.get(id)?.kind==='skill');
     s.hand=s.hand.filter(id=>byId.get(id)?.kind!=='skill');
-    s.exhaust.push(...removed);s.block+=removed.length*value;
+    exhaustCards(s,removed);s.block+=removed.length*value;
   }
   else if (op === 'energy') s.energy += value;
   else if (op === 'breakBlock') s.enemies[target].block = 0;
@@ -127,7 +130,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
     }
   }
   catch { return reject('effect'); }
-  (card.kind === 'power' ? s.powers : card.exhaust ? s.exhaust : s.discard).push(card.id);
+  if(card.kind==='power')s.powers.push(card.id);else if(card.exhaust)exhaustCards(s,[card.id]);else s.discard.push(card.id);
   if (!validState(s)) return reject('effect');
   return { ok: true, state: s };
 }
@@ -155,6 +158,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits}) => ({
+    exhaustGuard: `本场每实际消耗一张牌获得${value}点格挡；包括自身消耗的牌，可叠加，不追溯此前消耗。`,
+    burnTopDraw: `消耗抽牌堆顶1张（空堆按正常规则洗弃牌堆）；实际消耗成功后抽${value}张，无牌可消耗则不抽。不能选择牺牲牌，手牌上限10。`,
     reserveEnergy: `下个玩家回合开始时一次性获得${value}点额外能量，随后清除储备；本回合不返能，可叠加，不跨战。`,
     damageGuard: `造成${value}点伤害（面具另加${catalog.maskRules.attackBonus}）；按实际削减的目标生命获得格挡，最多${cap}点；被格挡部分不计，不回血。`,
     carryBlock: `本场每次玩家回合开始，保留至多${value}点剩余格挡而非全部移除；保留上限可叠加，不生成格挡。`,
