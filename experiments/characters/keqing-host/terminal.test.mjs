@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('real paid UseCard completion differs between victory and lethal retaliation',()=>{buildLuaData();const r=runLua('experiments/characters/keqing-host/terminal.test.lua',{timeout:30000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KEQING_HOST_TERMINAL_PASS/);});

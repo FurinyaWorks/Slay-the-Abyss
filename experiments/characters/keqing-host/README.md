@@ -1,0 +1,7 @@
+# Real host terminal control (limited)
+
+Based on shared owner commit 63700d2d. Only test files are added, no shared implementation changes. `node --test experiments/characters/keqing-host/terminal.test.mjs` runs actual Combat for both base/upgraded KQ001, living-player last-enemy kill and lethal enemy thorns retaliation: four controlled cases.
+
+Observed: victory completes the existing paid UseCard once, spends one entry infusion charge and disposes the card. Lethal retaliation pays energy but skips completion, preserves both infusion charges and the cardInUse identity, while pendingPlay is cleared by terminal cleanup. Replaying the UID after either terminal result rejects with the whole state unchanged. An initial exploratory assertion that pendingPlay survived death failed; the committed oracle reflects actual terminal cleanup rather than claiming a preserved pending context.
+
+This is evidence for the current direct attack host gate only. It does not execute KQ003's consume/set/defer descriptors, establish their after-victory retention policy, test its relic placement or approve broader card-internal reaction ordering. Thorns here is a real attack retaliation, not a forced artificial between-stage callback. Separate Scry and resume tests remain in the owner's lifecycle suite; this test does not duplicate them or claim coverage for them. Controlled HP/status fixtures are not natural-balance evidence.
