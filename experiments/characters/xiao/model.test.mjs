@@ -91,3 +91,7 @@ test('upgrade extra duration is documented negative life outcome, not free benef
 test('card text states structured mask bonus and life loss for each form',()=>{
   for(const up of [false,true]){const text=cardText(catalog.cards[3],up);assert.match(text,/攻击\+4/);assert.match(text,/先失去2生命/);assert.match(text,up?/状态3回合/:/状态2回合/);}
 });
+test('invalid numeric and structural states fail atomically including NaN exploits',()=>{
+  const invalid=[...['hp','energy','block','mask'].flatMap(key=>[NaN,Infinity,-1,1.5].map(value=>s=>s[key]=value)),s=>s.mask=4,s=>s.hp=71,s=>s.enemies[0].hp=NaN,s=>s.enemies[0].block=-1,s=>s.hand=Array(11).fill('x01'),s=>s.phase='finished',s=>s.turn=0,s=>s.relicUsed='false'];
+  for(const change of invalid){const s=state({hand:['x04']});change(s);const before=structuredClone(s);const r=play(s,{index:0});assert.equal(r.ok,false);assert.equal(r.reason,'state');assert.deepEqual(r.state,before);assert.deepEqual(s,before);assert.deepEqual(endTurn(s),before);assert.deepEqual(startTurn(s),before);}
+});

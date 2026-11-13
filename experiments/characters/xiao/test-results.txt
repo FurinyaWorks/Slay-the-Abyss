@@ -1,26 +1,38 @@
-✔ basic cost, damage, block and zones upgraded=false (2.350759ms)
-✔ mask and plunge independent expected values upgraded=false (0.363384ms)
-✔ draw cap, exhaust and exit upgraded=false (0.378517ms)
-✔ basic cost, damage, block and zones upgraded=true (0.248666ms)
-✔ mask and plunge independent expected values upgraded=true (0.243719ms)
-✔ draw cap, exhaust and exit upgraded=true (0.232882ms)
-✔ all rejection paths preserve exact input and clone result (0.949437ms)
-✔ end turn is idempotent, costs bypass block and can kill (0.38715ms)
-✔ duration and refresh are bounded, victory costs no further life (2.149002ms)
-✔ card order is meaningful without retroactive bonus (0.382723ms)
-✔ low-life choice differs from burst choice (0.32642ms)
-✔ one-turn resource loop is finite: no energy generation, each card leaves hand (3.646335ms)
-✔ turn guards prevent duplicate start, draws are not fabricated without deck (0.314243ms)
-✔ versioned cards all have both forms and HOLD names, texts derive each form (0.643487ms)
-✔ post-payment unknown effect rolls back all prior effects (0.288224ms)
-✔ duration one expires; weaker refresh never shortens; lethal thresholds exact (0.272611ms)
-✔ upgrade extra duration is documented negative life outcome, not free benefit (0.343335ms)
-✔ card text states structured mask bonus and life loss for each form (0.212914ms)
-ℹ tests 18
+✔ relic triggers once on successful entry, never cancelled/failed entry (2.477565ms)
+✔ relic empty deck consumes trigger without deferred refill; fresh combat resets use (0.464053ms)
+✔ same seed gives same deck, opening has five, no free turn draw (0.53669ms)
+✔ enemy intent, block and next-turn reset independent oracle (0.496621ms)
+✔ mask lethal stops before enemies, victory stops end-turn costs (0.426527ms)
+✔ reshuffle preserves card multiset across repeated pass turns (0.946042ms)
+✔ preparation shuffle on rejected/cancelled play rolls back RNG and piles (0.465435ms)
+✔ relic reshuffle excludes resolving card (0.311999ms)
+✔ bad intent and RNG reject atomically without corrupting life or block (2.232064ms)
+✔ ten-card hand gets one free slot before relic draw and no overflow (0.347782ms)
+✔ failure after relic draw rolls back RNG, piles, life and used flag (0.358317ms)
+✔ basic cost, damage, block and zones upgraded=false (2.71812ms)
+✔ mask and plunge independent expected values upgraded=false (0.364977ms)
+✔ draw cap, exhaust and exit upgraded=false (0.473507ms)
+✔ basic cost, damage, block and zones upgraded=true (0.87366ms)
+✔ mask and plunge independent expected values upgraded=true (0.344937ms)
+✔ draw cap, exhaust and exit upgraded=true (0.381862ms)
+✔ all rejection paths preserve exact input and clone result (1.483493ms)
+✔ end turn is idempotent, costs bypass block and can kill (1.795471ms)
+✔ duration and refresh are bounded, victory costs no further life (2.67075ms)
+✔ card order is meaningful without retroactive bonus (0.654884ms)
+✔ low-life choice differs from burst choice (0.411195ms)
+✔ one-turn resource loop is finite: no energy generation, each card leaves hand (0.364616ms)
+✔ turn guards prevent duplicate start, draws are not fabricated without deck (0.292701ms)
+✔ versioned cards all have both forms and HOLD names, texts derive each form (0.867597ms)
+✔ post-payment unknown effect rolls back all prior effects (0.443442ms)
+✔ duration one expires; weaker refresh never shortens; lethal thresholds exact (0.540636ms)
+✔ upgrade extra duration is documented negative life outcome, not free benefit (0.58384ms)
+✔ card text states structured mask bonus and life loss for each form (0.240884ms)
+✔ invalid numeric and structural states fail atomically including NaN exploits (3.702407ms)
+ℹ tests 30
 ℹ suites 0
-ℹ pass 18
+ℹ pass 30
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 135.405511
+ℹ duration_ms 155.181247

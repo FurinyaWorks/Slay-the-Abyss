@@ -269,5 +269,18 @@
     "attackBonus": 4,
     "endTurnHpLoss": 2,
     "maxDuration": 3
+  },
+  "startingRelic": {
+    "id": "xiao_relic_01",
+    "name": "待命名·xiao_relic_01",
+    "status": "HOLD",
+    "trigger": "first_successful_mask_entry_per_combat",
+    "effects": [
+      {
+        "op": "draw",
+        "value": 1
+      }
+    ],
+    "humanApproved": false
   }
 }
