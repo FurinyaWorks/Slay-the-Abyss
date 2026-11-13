@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.22",
+  "version": "xiao-g2-lab-0.23",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1585,6 +1585,76 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x53",
+      "name": "待命名·x53",
+      "role": "入场护持：仅真实重新进入面具时获盾",
+      "kind": "power",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "entryGuard",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "entryGuard",
+          "value": 6
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x54",
+      "name": "待命名·x54",
+      "role": "进势突击：支付生命进入短面具再攻击",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 1
+        },
+        {
+          "op": "damage",
+          "value": 7
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 1
+        },
+        {
+          "op": "damage",
+          "value": 10
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1647,7 +1717,9 @@
     "x49",
     "x50",
     "x51",
-    "x52"
+    "x52",
+    "x53",
+    "x54"
   ],
   "maskRules": {
     "attackBonus": 4,
