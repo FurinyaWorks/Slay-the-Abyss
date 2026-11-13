@@ -1,0 +1,7 @@
+# KQ047 first played card (HOLD)
+
+The dedicated adapter snapshots actual Combat.cardsPlayedThisTurn before submitting the paid card. An empty history includes draw1; a nonempty history omits draw entirely. A preceding skill counts, not only attacks. Strict exporter/contract rejects altered firstOnly trigger and unknown fields; history holes or nonnumeric indices reject. The actual public Combat play records this card and actual endTurn resets its history. No synthetic reset is done by the adapter. Generic resource wrapper rejects the marker; canonical definition restored afterward.
+
+Two tests: schema negatives; 8 base/upgraded × prior real KQ002/no prior × real No Draw/no lock opening paths, followed by a real enemy phase and next-turn first-card path. The 10-card controlled deck is actually shuffled; bounded seed search requires both card types in opening hand without reorder. Insufficient cost and invalid target preserve the input. A first test fixture forgot to include KQ002's exported definition and then used an incorrect applyEffects signature; both setup failures were corrected before final pass. No Draw uses existing noDrawThisTurn action on player.
+
+This is an isolated actual Lua research adapter. It retains the post-return infusion limitation and does not establish source approval, human/balance acceptance, auto-play policy or full draw reaction behavior. The existing reviewed visible-intent generic guard is preserved alongside this new marker to avoid regressing independent branches during backup. No shared source changed.

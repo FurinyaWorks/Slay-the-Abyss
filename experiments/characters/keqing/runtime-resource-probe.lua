@@ -54,6 +54,7 @@ function M.play(input,uid,target)
  local original=s.catalog.cards[instance.cardId]
  if not original or not original.keqingProbe then return nil,'outside_probe_scope' end
  if original.keqingVisibleIntent then return nil,'dedicated_visible_intent_adapter_required' end
+ if original.keqingFirstCard then return nil,'dedicated_first_card_adapter_required' end
  if original.keqingUnblocked then return nil,'dedicated_unblocked_adapter_required' end
  if original.keqingWedgeDraw then return nil,'dedicated_wedge_draw_adapter_required' end
  if original.keqingSetup then return nil,'dedicated_setup_adapter_required' end
