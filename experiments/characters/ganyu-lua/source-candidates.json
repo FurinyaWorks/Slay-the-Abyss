@@ -1,0 +1,2788 @@
+{
+  "version": "ganyu-sample-0.26.0",
+  "status": "CANDIDATE",
+  "character_id": "ganyu",
+  "production_enabled": false,
+  "rules_ref": "c53e3511dcc4af631f541f71e21afc66797c4dd2",
+  "cards": [
+    {
+      "id": "ganyu-01",
+      "name": "待命名·ganyu-01",
+      "candidate_name": "普通攻击",
+      "role": "基础单体击杀",
+      "rarity": "basic",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 9
+          }
+        ]
+      },
+      "source_ref": "ganyu-01",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-02",
+      "name": "待命名·ganyu-02",
+      "candidate_name": "防御",
+      "role": "基础当回合防守",
+      "rarity": "basic",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-02",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-03",
+      "name": "待命名·ganyu-03",
+      "candidate_name": "霜华矢",
+      "role": "立即单杀或消耗蓄力兑现群伤",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 7,
+            "bloom": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 9,
+            "bloom": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-03",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-04",
+      "name": "待命名·ganyu-04",
+      "candidate_name": "山泽麟迹",
+      "role": "付能防守兼群体收尾，减少可留蓄力",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 6
+          },
+          {
+            "op": "aoe",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "aoe",
+            "amount": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-04",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-05",
+      "name": "待命名·ganyu-05",
+      "candidate_name": "降众天华",
+      "role": "高费延迟群伤，适合多敌长战",
+      "rarity": "rare",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 6,
+            "turns": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-05",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-06",
+      "name": "待命名·ganyu-06",
+      "candidate_name": null,
+      "role": "用一张手牌把本回合能量立即转成蓄力",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-06",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-07",
+      "name": "待命名·ganyu-07",
+      "candidate_name": null,
+      "role": "以能量与抽牌机会换即时过牌，改善找箭但不保证直接获取",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-07",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "先效后名的过牌候选；待来源/审美/实际成本评审，不自动加入初始10张"
+      }
+    },
+    {
+      "id": "ganyu-08",
+      "name": "待命名·ganyu-08",
+      "candidate_name": null,
+      "role": "防守兼慢速轮转，以低格挡换过牌，避免纯过牌耗尽防御预算",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-08",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "防守轮转候选；待来源/审美/STS1对照核验，不改已有数值或初始卡组"
+      }
+    },
+    {
+      "id": "ganyu-09",
+      "name": "待命名·ganyu-09",
+      "candidate_name": null,
+      "role": "两能量防守蓄力，为剩余1能量的箭创造同回合兑现窗口",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 11
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-09",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-10",
+      "name": "待命名·ganyu-10",
+      "candidate_name": null,
+      "role": "花能量从抽牌堆取得核心箭，改善牌底等待但不从弃牌堆无条件回收",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "source_ref": "ganyu-10",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-11",
+      "name": "待命名·ganyu-11",
+      "candidate_name": null,
+      "role": "保留能量的小防守",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          }
+        ]
+      },
+      "source_ref": "ganyu-11",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-12",
+      "name": "待命名·ganyu-12",
+      "candidate_name": null,
+      "role": "击杀压力下的攻防过渡",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "block",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "block",
+            "amount": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-12",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-13",
+      "name": "待命名·ganyu-13",
+      "candidate_name": null,
+      "role": "花双能量覆盖当前爆发",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 14
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 18
+          }
+        ]
+      },
+      "source_ref": "ganyu-13",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-14",
+      "name": "待命名·ganyu-14",
+      "candidate_name": null,
+      "role": "全回合能量换冰雨建立期防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 11
+          },
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-14",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-15",
+      "name": "待命名·ganyu-15",
+      "candidate_name": null,
+      "role": "无满蓄前置的双费单体处置",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 14
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 18
+          }
+        ]
+      },
+      "source_ref": "ganyu-15",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-16",
+      "name": "待命名·ganyu-16",
+      "candidate_name": null,
+      "role": "即时小伤与主动蓄力衔接",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-16",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-17",
+      "name": "待命名·ganyu-17",
+      "candidate_name": null,
+      "role": "满蓄单体兑现而非群体绽放",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 8,
+            "bonus": 14
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 11,
+            "bonus": 17
+          }
+        ]
+      },
+      "source_ref": "ganyu-17",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-18",
+      "name": "待命名·ganyu-18",
+      "candidate_name": null,
+      "role": "低费长周期雨场与逐跳强度取舍",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 2,
+            "turns": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-18",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-19",
+      "name": "待命名·ganyu-19",
+      "candidate_name": null,
+      "role": "牺牲满蓄进攻机会换当前防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 5,
+            "bonus": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 7,
+            "bonus": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-19",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-20",
+      "name": "待命名·ganyu-20",
+      "candidate_name": null,
+      "role": "支付双费过牌兼单层主动蓄力",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 2
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-20",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-21",
+      "name": "待命名·ganyu-21",
+      "candidate_name": null,
+      "role": "无蓄力前置的即时群体处置",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 10
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 14
+          }
+        ]
+      },
+      "source_ref": "ganyu-21",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-22",
+      "name": "待命名·ganyu-22",
+      "candidate_name": null,
+      "role": "牺牲部分即时伤害换下一张选择",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-22",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-23",
+      "name": "待命名·ganyu-23",
+      "candidate_name": null,
+      "role": "一次性免费满蓄启动但不能每轮重复",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          },
+          {
+            "op": "block",
+            "amount": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-23",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-24",
+      "name": "待命名·ganyu-24",
+      "candidate_name": null,
+      "role": "一次性支付费用换较大手牌选择",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-24",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-25",
+      "name": "待命名·ganyu-25",
+      "candidate_name": null,
+      "role": "一次性弃牌堆核心回收而非抽牌堆检索",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03",
+            "zone": "discard"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03",
+            "zone": "discard"
+          }
+        ]
+      },
+      "source_ref": "ganyu-25",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-26",
+      "name": "待命名·ganyu-26",
+      "candidate_name": null,
+      "role": "可等待高压回合的保留防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 9
+          }
+        ]
+      },
+      "source_ref": "ganyu-26",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-27",
+      "name": "待命名·ganyu-27",
+      "candidate_name": null,
+      "role": "已抽到核心后的保留兑现选择",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 7,
+            "bloom": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 10,
+            "bloom": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-27",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-28",
+      "name": "待命名·ganyu-28",
+      "candidate_name": null,
+      "role": "一次性集中群体伤害而非反复群攻",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 16
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 20
+          }
+        ]
+      },
+      "source_ref": "ganyu-28",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true,
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-29",
+      "name": "待命名·ganyu-29",
+      "candidate_name": null,
+      "role": "提前兑现雨场并减少剩余触发次数",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "source_ref": "ganyu-29",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-30",
+      "name": "待命名·ganyu-30",
+      "candidate_name": null,
+      "role": "满蓄资源换手牌选择而非伤害防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_draw",
+            "amount": 1,
+            "bonus": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_draw",
+            "amount": 1,
+            "bonus": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-30",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-31",
+      "name": "待命名·ganyu-31",
+      "candidate_name": null,
+      "role": "一次性长雨场启动",
+      "rarity": "rare",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 6,
+            "turns": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 8,
+            "turns": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-31",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-32",
+      "name": "待命名·ganyu-32",
+      "candidate_name": null,
+      "role": "建立雨场后维持防线的条件收益",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 3,
+            "bonus": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 4,
+            "bonus": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-32",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-33",
+      "name": "待命名·ganyu-33",
+      "candidate_name": null,
+      "role": "雨场已建立后的一次性免费过牌窗口",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "storm_draw",
+            "amount": 1,
+            "bonus": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "storm_draw",
+            "amount": 1,
+            "bonus": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-33",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-34",
+      "name": "待命名·ganyu-34",
+      "candidate_name": null,
+      "role": "一次性零费满蓄单体收尾",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 2,
+            "bonus": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 3,
+            "bonus": 9
+          }
+        ]
+      },
+      "source_ref": "ganyu-34",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-35",
+      "name": "待命名·ganyu-35",
+      "candidate_name": null,
+      "role": "满蓄纯群伤而非主目标加绽放",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 2,
+            "bonus": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 3,
+            "bonus": 7
+          }
+        ]
+      },
+      "source_ref": "ganyu-35",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-36",
+      "name": "待命名·ganyu-36",
+      "candidate_name": null,
+      "role": "轻防守兼主动单层蓄力",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 4
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 7
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-36",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-37",
+      "name": "待命名·ganyu-37",
+      "candidate_name": null,
+      "role": "移除雨场将剩余群伤预算集中单体",
+      "rarity": "rare",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_focus",
+            "amount": 4
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_focus",
+            "amount": 7
+          }
+        ]
+      },
+      "source_ref": "ganyu-37",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-38",
+      "name": "待命名·ganyu-38",
+      "candidate_name": null,
+      "role": "一次性零费以满蓄换应急格挡",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 2,
+            "bonus": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 4,
+            "bonus": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-38",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-39",
+      "name": "待命名·ganyu-39",
+      "candidate_name": null,
+      "role": "一次性调度抽牌堆首张雨场来源",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "storm"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "storm"
+          }
+        ]
+      },
+      "source_ref": "ganyu-39",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-40",
+      "name": "待命名·ganyu-40",
+      "candidate_name": null,
+      "role": "保留至满蓄后投入整回合的群体兑现",
+      "rarity": "rare",
+      "target": "self",
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 6,
+            "bonus": 12
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 8,
+            "bonus": 16
+          }
+        ]
+      },
+      "source_ref": "ganyu-40",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-41",
+      "name": "待命名·ganyu-41",
+      "candidate_name": null,
+      "role": "消耗一层蓄力的小额单体兑现",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_damage",
+            "amount": 3,
+            "bonus": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_damage",
+            "amount": 4,
+            "bonus": 7
+          }
+        ]
+      },
+      "source_ref": "ganyu-41",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-42",
+      "name": "待命名·ganyu-42",
+      "candidate_name": null,
+      "role": "消耗一层蓄力的小额当前防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 3,
+            "bonus": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 4,
+            "bonus": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-42",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-43",
+      "name": "待命名·ganyu-43",
+      "candidate_name": null,
+      "role": "一次性零费单层蓄力换过牌",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "spend_one_draw",
+            "amount": 0,
+            "bonus": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "spend_one_draw",
+            "amount": 0,
+            "bonus": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-43",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-44",
+      "name": "待命名·ganyu-44",
+      "candidate_name": null,
+      "role": "保持满蓄时的小额防守而不消费资源",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 3,
+            "bonus": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 4,
+            "bonus": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-44",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-45",
+      "name": "待命名·ganyu-45",
+      "candidate_name": null,
+      "role": "保持满蓄的小额伤害为之后核心让路",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_damage",
+            "amount": 4,
+            "bonus": 4
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_damage",
+            "amount": 6,
+            "bonus": 5
+          }
+        ]
+      },
+      "source_ref": "ganyu-45",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-46",
+      "name": "待命名·ganyu-46",
+      "candidate_name": null,
+      "role": "支付两费防守兼满蓄绽放",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 7
+          },
+          {
+            "op": "charged_shot",
+            "direct": 5,
+            "bloom": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 10
+          },
+          {
+            "op": "charged_shot",
+            "direct": 7,
+            "bloom": 6
+          }
+        ]
+      },
+      "source_ref": "ganyu-46",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-47",
+      "name": "待命名·ganyu-47",
+      "candidate_name": null,
+      "role": "一次性少量防守兼抽牌堆基础防守调度",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 2
+          },
+          {
+            "op": "seek_effect",
+            "effect_op": "block"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 2
+          },
+          {
+            "op": "seek_effect",
+            "effect_op": "block"
+          }
+        ]
+      },
+      "source_ref": "ganyu-47",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-48",
+      "name": "待命名·ganyu-48",
+      "candidate_name": null,
+      "role": "一次性主动蓄力来源调度",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "charge"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "charge"
+          }
+        ]
+      },
+      "source_ref": "ganyu-48",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-49",
+      "name": "待命名·ganyu-49",
+      "candidate_name": null,
+      "role": "较弱雨场兼一张立即过牌",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 2
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-49",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-50",
+      "name": "待命名·ganyu-50",
+      "candidate_name": null,
+      "role": "降低绽放强度换结算后过牌",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 4,
+            "bloom": 4
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 6,
+            "bloom": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-50",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-51",
+      "name": "待命名·ganyu-51",
+      "candidate_name": null,
+      "role": "一次性较高单体加绽放兑现",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 8,
+            "bloom": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 11,
+            "bloom": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-51",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-52",
+      "name": "待命名·ganyu-52",
+      "candidate_name": null,
+      "role": "支付两费防守兼提前一次雨场",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 10
+          },
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 14
+          },
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "source_ref": "ganyu-52",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-53",
+      "name": "待命名·ganyu-53",
+      "candidate_name": null,
+      "role": "保持满蓄的两费防守兼过牌",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 7,
+            "bonus": 5
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 10,
+            "bonus": 7
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-53",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-54",
+      "name": "待命名·ganyu-54",
+      "candidate_name": null,
+      "role": "保留到需要时支付两费扩展手牌选择",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-54",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-55",
+      "name": "待命名·ganyu-55",
+      "candidate_name": null,
+      "role": "一次性零费小防守兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 1
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 3
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-55",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-56",
+      "name": "待命名·ganyu-56",
+      "candidate_name": null,
+      "role": "保留防守蓄满准备",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-56",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-57",
+      "name": "待命名·ganyu-57",
+      "candidate_name": null,
+      "role": "两费群攻兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 9
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-57",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-58",
+      "name": "待命名·ganyu-58",
+      "candidate_name": null,
+      "role": "一次提前雨场结算兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_release"
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_release"
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-58",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-59",
+      "name": "待命名·ganyu-59",
+      "candidate_name": null,
+      "role": "保留雨场来源等待窗口",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-59",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-60",
+      "name": "待命名·ganyu-60",
+      "candidate_name": null,
+      "role": "一次供蓄兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 1
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-60",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-61",
+      "name": "待命名·ganyu-61",
+      "candidate_name": null,
+      "role": "重费即时群攻防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 12
+          },
+          {
+            "op": "aoe",
+            "amount": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 16
+          },
+          {
+            "op": "aoe",
+            "amount": 11
+          }
+        ]
+      },
+      "source_ref": "ganyu-61",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-62",
+      "name": "待命名·ganyu-62",
+      "candidate_name": null,
+      "role": "保留低费单体等待击杀窗口",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 7
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-62",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-63",
+      "name": "待命名·ganyu-63",
+      "candidate_name": null,
+      "role": "一次两费防守扩展选择",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 11
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-63",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-64",
+      "name": "待命名·ganyu-64",
+      "candidate_name": null,
+      "role": "现有雨场下防守轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 2,
+            "bonus": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 3,
+            "bonus": 8
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-64",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-65",
+      "name": "待命名·ganyu-65",
+      "candidate_name": null,
+      "role": "保留两费集中防守等待爆发",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 10
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 14
+          }
+        ]
+      },
+      "source_ref": "ganyu-65",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-66",
+      "name": "待命名·ganyu-66",
+      "candidate_name": null,
+      "role": "两费满蓄单段兑付兼轮转",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "bonus": 10,
+            "direct": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "bonus": 14,
+            "direct": 8
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-66",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-67",
+      "name": "待命名·ganyu-67",
+      "candidate_name": null,
+      "role": "一次单体点杀并建立短雨场",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 3
+          },
+          {
+            "op": "storm",
+            "amount": 2,
+            "turns": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 5
+          },
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-67",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-68",
+      "name": "待命名·ganyu-68",
+      "candidate_name": null,
+      "role": "保留防守检索核心箭等待连携",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 4
+          },
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 7
+          },
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "source_ref": "ganyu-68",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-69",
+      "name": "待命名·ganyu-69",
+      "candidate_name": null,
+      "role": "一次群伤供给单层蓄力",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 4
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 6
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-69",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-70",
+      "name": "待命名·ganyu-70",
+      "candidate_name": null,
+      "role": "一次单层蓄力防守兑付兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 2,
+            "bonus": 5
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 3,
+            "bonus": 7
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-70",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-71",
+      "name": "待命名·ganyu-71",
+      "candidate_name": null,
+      "role": "一次同时铺雨与供蓄",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 2
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-71",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-72",
+      "name": "待命名·ganyu-72",
+      "candidate_name": null,
+      "role": "一次满蓄防守兑付扩展手牌",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 5,
+            "bonus": 6
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 7,
+            "bonus": 8
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-72",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-73",
+      "name": "待命名·ganyu-73",
+      "candidate_name": null,
+      "role": "一次单体攻击并扩展手牌",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-73",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-74",
+      "name": "待命名·ganyu-74",
+      "candidate_name": null,
+      "role": "保留单层防守兑付等待意图",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 2,
+            "bonus": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 3,
+            "bonus": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-74",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-75",
+      "name": "待命名·ganyu-75",
+      "candidate_name": null,
+      "role": "一次重费防守铺设长雨",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 10
+          },
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 14
+          },
+          {
+            "op": "storm",
+            "amount": 6,
+            "turns": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-75",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    }
+  ],
+  "environment": {
+    "maxCharge": 2,
+    "energyPerTurn": 3,
+    "initialHp": 60,
+    "drawPerTurn": 5,
+    "handLimit": 10
+  },
+  "starting_deck": [
+    "ganyu-01",
+    "ganyu-01",
+    "ganyu-01",
+    "ganyu-01",
+    "ganyu-02",
+    "ganyu-02",
+    "ganyu-02",
+    "ganyu-02",
+    "ganyu-03",
+    "ganyu-04"
+  ]
+}
