@@ -1,0 +1,16 @@
+{
+  "kind": "author-acceptance-record",
+  "testedLocalCommit": "f932ac15c6afa73f76f0f488f322f999d71a12f7",
+  "testedRemoteCommit": "4488a7523859cfe995526ba6d4cda550a743f574",
+  "testedTree": "f609e9ffd2476f709f2b80605be555fe50426714",
+  "originalImplementation": "44c5a1a0daaba5fc4fcbb4b2929a5918c40dd7bb",
+  "independentReviewId": "character-rules-lifecycle-44c5a1a0-zhongli-zero-paid-20261113",
+  "method": "exact git archive, sole serial test process; no runtime edits",
+  "command": "NODE_OPTIONS=--max-old-space-size=256 NODE_PATH=<installed-dependencies> node --test experiments/characters/lifecycle/zhongli-zero-usecard.test.mjs",
+  "observed": {"nodeTests": 1, "passed": 1, "failed": 0, "exitCode": 0, "testDurationMs": 29846.998386, "traceback": false},
+  "requiredLuaMarkers": ["ZHONGLI_ZERO_PAID_PASS", "AUTHOR_ZL_ZERO_RUN_PASS"],
+  "coverage": {"publicResourceAndUpgradeCases": 84, "postNativeTailFaultRestoreRetryCases": 4, "modifierAndArtifactCases": 4, "automaticAdmissionCases": 14, "invalidTargetCases": 4, "fixedRewardSourceStarterRunCases": 4},
+  "fixtures": ["fixed reward offers", "move same-combat acquired UID to hand", "set energy to zero", "post-effect injected exceptions"],
+  "notClaimed": ["natural reward pool", "universal loop prevention", "multi-enemy support", "jade absorption", "Full CI", "device acceptance", "human naming or balance approval"],
+  "provenance": "This JSON transcribes observed tool output and reviewed test scope; it is not a newly rerun test or raw log. Author test ended before this evidence-only commit."
+}
