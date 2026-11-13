@@ -19,3 +19,9 @@ test('source trace rejects drift, duplicate inventory, false approval and broken
  for(const mutate of mutations){const data=structuredClone(readInputs());mutate(data);assert.ok(checkTraceability(...data).length>0);}
 });
 test('matrix effect set order is not falsely interpreted as execution order',()=>{const data=readInputs();data[2].rows[3].effects.reverse();assert.deepEqual(checkTraceability(...data),[]);});
+
+test('fixed 75 inventory rejects synchronized omissions and replacements',()=>{
+ for(const mutate of [([c,s,m])=>{c.cards=[];s.records=[];m.rows=[];},([c,s,m])=>{c.cards.pop();s.records.pop();m.rows.pop();},([c,s,m])=>{c.cards[0].id='ganyu-76';s.records[0].card_id='ganyu-76';m.rows[0].id='ganyu-76';}]){
+  const data=readInputs();mutate(data);assert.ok(checkTraceability(...data).includes('incomplete fixed 75 inventory'));
+ }
+});

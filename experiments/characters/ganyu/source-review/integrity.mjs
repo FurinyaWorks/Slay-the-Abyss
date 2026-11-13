@@ -3,7 +3,9 @@ import {readFileSync,existsSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';import {fileURLToPath,pathToFileURL} from 'node:url';
 const dir=resolve(dirname(fileURLToPath(import.meta.url)),'..');const root=resolve(dir,'../../..');
 export function checkTraceability(cards,sources,matrix){
- const errors=[];const unique=(rows,key)=>new Set(rows.map(r=>r[key])).size===rows.length;
+ const errors=[];const expected=new Set(Array.from({length:75},(_,i)=>`ganyu-${String(i+1).padStart(2,'0')}`));
+ for(const [rows,key] of [[cards.cards,'id'],[sources.records,'card_id'],[matrix.rows,'id']])if(rows.length!==75||rows.some(r=>!expected.has(r[key])))errors.push('incomplete fixed 75 inventory');
+ const unique=(rows,key)=>new Set(rows.map(r=>r[key])).size===rows.length;
  if(!unique(cards.cards,'id')||!unique(sources.records,'card_id')||!unique(matrix.rows,'id'))errors.push('duplicate inventory');
  if(cards.cards.length!==sources.records.length||cards.cards.length!==matrix.rows.length)errors.push('inventory size');
  for(const c of cards.cards){
@@ -23,4 +25,4 @@ export function checkTraceability(cards,sources,matrix){
  return errors;
 }
 export function readInputs(){const read=p=>JSON.parse(readFileSync(resolve(dir,p),'utf8'));return [read('cards.json'),read('sources.json'),read('source-review/per-card.json')];}
-if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const errors=checkTraceability(...readInputs());console.log(JSON.stringify({cards:75,traceabilityValid:errors.length===0,sourceVerification:'HOLD',humanReview:'HOLD',errors},null,2));process.exitCode=errors.length?1:0;}
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const inputs=readInputs();const errors=checkTraceability(...inputs);console.log(JSON.stringify({cards:inputs[0].cards.length,traceabilityValid:errors.length===0,sourceVerification:'HOLD',humanReview:'HOLD',errors},null,2));process.exitCode=errors.length?1:0;}
