@@ -967,7 +967,7 @@
     },
     {
       "id": "c01",
-      "name": "拦拿扎枪",
+      "name": "待命名·c01",
       "decision_role": "攻守一体",
       "effect_ref": "HTML:CARD:c01",
       "source": {
@@ -983,8 +983,11 @@
           "source_url": "https://www.iwuf.org/wp-content/uploads/2021/09/CN-%E5%9B%BD%E9%99%85%E6%AD%A6%E8%81%94%E6%AD%A6%E6%9C%AF%E5%A5%97%E8%B7%AF%E7%AB%9E%E8%B5%9B%E8%A7%84%E5%88%99%E4%B8%8E%E8%A3%81%E5%88%A4%E6%B3%95%EF%BC%88%E8%8A%82%E9%80%89%EF%BC%892019.pdf",
           "source_entry": "第三十条·拦、拿、扎枪",
           "real_action_meaning": "攻击兼格挡：拦挡、拿拨后突刺的动作组合",
-          "mechanic_mapping": "实际卡牌职责：攻守一体；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
-        }
+          "mechanic_mapping": "实际卡牌职责：攻守一体；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
+          "reference_role": "technical_motion_reference_not_display_title",
+          "player_facing_name_approved": false
+        },
+        "name_method": "reference_only"
       },
       "search": {
         "P1": {
@@ -1069,14 +1072,14 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；攻击兼格挡：拦挡、拿拨后突刺的动作组合",
+        "status": "BLOCKED",
+        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「拦拿扎枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "pending",
+          "N4": "fail",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -1095,6 +1098,12 @@
             "decision": "superseded_by_candidate",
             "reason": "攻击兼格挡：拦挡、拿拨后突刺的动作组合",
             "date": "2026-11-13"
+          },
+          {
+            "name": "拦拿扎枪",
+            "decision": "rejected_as_player_facing_name",
+            "date": "2026-11-13",
+            "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
           }
         ]
       }
@@ -1199,7 +1208,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "通用备战/整衣场景，未证明与本牌下回合格挡有关联",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -1412,7 +1428,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "武器回转词根与多个攻守枪击混淆，需不同动作与卡图证据",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -1520,7 +1543,7 @@
     },
     {
       "id": "c10",
-      "name": "扎枪",
+      "name": "待命名·c10",
       "decision_role": "低血过牌",
       "effect_ref": "HTML:CARD:c10",
       "source": {
@@ -1536,8 +1559,11 @@
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
           "source_entry": "枪术主要动作技术要求",
           "real_action_meaning": "一次直刺对应单体伤害；半血抽牌是另加的回合制效果",
-          "mechanic_mapping": "实际卡牌职责：低血过牌；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
-        }
+          "mechanic_mapping": "实际卡牌职责：低血过牌；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
+          "reference_role": "technical_motion_reference_not_display_title",
+          "player_facing_name_approved": false
+        },
+        "name_method": "reference_only"
       },
       "search": {
         "P1": {
@@ -1622,14 +1648,14 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；一次直刺对应单体伤害；半血抽牌是另加的回合制效果",
+        "status": "BLOCKED",
+        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「扎枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "pending",
+          "N4": "fail",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -1643,13 +1669,19 @@
             "decision": "superseded_by_candidate",
             "reason": "一次直刺对应单体伤害；半血抽牌是另加的回合制效果",
             "date": "2026-11-13"
+          },
+          {
+            "name": "扎枪",
+            "decision": "rejected_as_player_facing_name",
+            "date": "2026-11-13",
+            "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
           }
         ]
       }
     },
     {
       "id": "c11",
-      "name": "拦枪",
+      "name": "待命名·c11",
       "decision_role": "蝶舞下回合防守",
       "effect_ref": "HTML:CARD:c11",
       "source": {
@@ -1665,8 +1697,11 @@
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
           "source_entry": "枪术主要动作技术要求",
           "real_action_meaning": "向外划弧拦挡，对应当前防御及蝶舞后的续防",
-          "mechanic_mapping": "实际卡牌职责：蝶舞下回合防守；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
-        }
+          "mechanic_mapping": "实际卡牌职责：蝶舞下回合防守；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
+          "reference_role": "technical_motion_reference_not_display_title",
+          "player_facing_name_approved": false
+        },
+        "name_method": "reference_only"
       },
       "search": {
         "P1": {
@@ -1751,14 +1786,14 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；向外划弧拦挡，对应当前防御及蝶舞后的续防",
+        "status": "BLOCKED",
+        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「拦枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "pending",
+          "N4": "fail",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -1772,6 +1807,12 @@
             "decision": "superseded_by_candidate",
             "reason": "向外划弧拦挡，对应当前防御及蝶舞后的续防",
             "date": "2026-11-13"
+          },
+          {
+            "name": "拦枪",
+            "decision": "rejected_as_player_facing_name",
+            "date": "2026-11-13",
+            "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
           }
         ]
       }
@@ -1825,7 +1866,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "梅花意象反复，未证明单张的特别视觉辨识",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2133,7 +2181,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "蝶影类命名多张，需明确与挂梅/低血补防的区分",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2233,6 +2288,13 @@
             "reason": "来自打开宝箱·其二，借查看行动表达到下一回合过牌",
             "date": "2026-11-13"
           }
+        ],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "「让我看看」来自开宝箱语音，是否能用于格挡+下回合抽牌仍待玩家理解验证",
+            "observed": "2026-11-13"
+          }
         ]
       }
     },
@@ -2290,7 +2352,7 @@
     },
     {
       "id": "u02",
-      "name": "崩枪",
+      "name": "待命名·u02",
       "decision_role": "低血单体爆发",
       "effect_ref": "HTML:CARD:u02",
       "source": {
@@ -2306,8 +2368,11 @@
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
           "source_entry": "枪术主要动作技术要求",
           "real_action_meaning": "枪尖短促弹抖发力，对应单体爆发，低血增伤另见效果",
-          "mechanic_mapping": "实际卡牌职责：低血单体爆发；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
-        }
+          "mechanic_mapping": "实际卡牌职责：低血单体爆发；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
+          "reference_role": "technical_motion_reference_not_display_title",
+          "player_facing_name_approved": false
+        },
+        "name_method": "reference_only"
       },
       "search": {
         "P1": {
@@ -2392,14 +2457,14 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；枪尖短促弹抖发力，对应单体爆发，低血增伤另见效果",
+        "status": "BLOCKED",
+        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「崩枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "pending",
+          "N4": "fail",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -2413,6 +2478,12 @@
             "decision": "superseded_by_candidate",
             "reason": "枪尖短促弹抖发力，对应单体爆发，低血增伤另见效果",
             "date": "2026-11-13"
+          },
+          {
+            "name": "崩枪",
+            "decision": "rejected_as_player_facing_name",
+            "date": "2026-11-13",
+            "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
           }
         ]
       }
@@ -2466,7 +2537,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "「蝶舞回身」是否只是常规动作命名仍待卡池内比较",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2570,7 +2648,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "借地点「无妄」写群体减伤，缺明确战斗演出依据",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2622,7 +2707,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "「借火问路」与付血开启蝶舞，词义跳跃需要证明",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2674,7 +2766,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "「收枪立定」与准备抽牌、其他防守枪击近似",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2778,7 +2877,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "「送客有礼」容易将胡桃送行礼仪写作攻击嘲讽，需要角色审查",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2881,7 +2987,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "付血纯伤和「枪开黄泉路」同费用下数值上位，先做职责区分",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -3107,7 +3220,7 @@
     },
     {
       "id": "u16",
-      "name": "拿枪",
+      "name": "待命名·u16",
       "decision_role": "格挡/削弱",
       "effect_ref": "HTML:CARD:u16",
       "source": {
@@ -3123,8 +3236,11 @@
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
           "source_entry": "枪术主要动作技术要求",
           "real_action_meaning": "向内划弧的拿拨动作，对应格挡与降低下一攻击",
-          "mechanic_mapping": "实际卡牌职责：格挡/削弱；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
-        }
+          "mechanic_mapping": "实际卡牌职责：格挡/削弱；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
+          "reference_role": "technical_motion_reference_not_display_title",
+          "player_facing_name_approved": false
+        },
+        "name_method": "reference_only"
       },
       "search": {
         "P1": {
@@ -3209,14 +3325,14 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；向内划弧的拿拨动作，对应格挡与降低下一攻击",
+        "status": "BLOCKED",
+        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「拿枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "pending",
+          "N4": "fail",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -3230,6 +3346,12 @@
             "decision": "superseded_by_candidate",
             "reason": "向内划弧的拿拨动作，对应格挡与降低下一攻击",
             "date": "2026-11-13"
+          },
+          {
+            "name": "拿枪",
+            "decision": "rejected_as_player_facing_name",
+            "date": "2026-11-13",
+            "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
           }
         ]
       }
@@ -3326,6 +3448,13 @@
             "reason": "来自有什么想要分享，承担责任对应连续两回合防守",
             "date": "2026-11-13"
           }
+        ],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "「受人之托」与两回合格挡的寓意贴合不足，虽是语音仍需N3人工验证",
+            "observed": "2026-11-13"
+          }
         ]
       }
     },
@@ -3383,7 +3512,7 @@
     },
     {
       "id": "u19",
-      "name": "舞花枪",
+      "name": "待命名·u19",
       "decision_role": "群体伤害+低血格挡",
       "effect_ref": "HTML:CARD:u19",
       "source": {
@@ -3399,8 +3528,11 @@
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
           "source_entry": "枪术主要动作技术要求",
           "real_action_meaning": "贴近身体连续快速立圆绕行，对应群体攻击与回防",
-          "mechanic_mapping": "实际卡牌职责：群体伤害+低血格挡；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
-        }
+          "mechanic_mapping": "实际卡牌职责：群体伤害+低血格挡；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
+          "reference_role": "technical_motion_reference_not_display_title",
+          "player_facing_name_approved": false
+        },
+        "name_method": "reference_only"
       },
       "search": {
         "P1": {
@@ -3485,14 +3617,14 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；贴近身体连续快速立圆绕行，对应群体攻击与回防",
+        "status": "BLOCKED",
+        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「舞花枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "pending",
+          "N4": "fail",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -3506,13 +3638,19 @@
             "decision": "superseded_by_candidate",
             "reason": "贴近身体连续快速立圆绕行，对应群体攻击与回防",
             "date": "2026-11-13"
+          },
+          {
+            "name": "舞花枪",
+            "decision": "rejected_as_player_facing_name",
+            "date": "2026-11-13",
+            "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
           }
         ]
       }
     },
     {
       "id": "u20",
-      "name": "点枪",
+      "name": "待命名·u20",
       "decision_role": "目标旧梅提前兑现",
       "effect_ref": "HTML:CARD:u20",
       "source": {
@@ -3528,8 +3666,11 @@
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
           "source_entry": "枪术主要动作技术要求",
           "real_action_meaning": "短促点击目标，梅香提前结算是本作附加的特殊收益",
-          "mechanic_mapping": "实际卡牌职责：目标旧梅提前兑现；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
-        }
+          "mechanic_mapping": "实际卡牌职责：目标旧梅提前兑现；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
+          "reference_role": "technical_motion_reference_not_display_title",
+          "player_facing_name_approved": false
+        },
+        "name_method": "reference_only"
       },
       "search": {
         "P1": {
@@ -3614,14 +3755,14 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；短促点击目标，梅香提前结算是本作附加的特殊收益",
+        "status": "BLOCKED",
+        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「点枪」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "pending",
+          "N4": "fail",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -3635,6 +3776,12 @@
             "decision": "superseded_by_candidate",
             "reason": "短促点击目标，梅香提前结算是本作附加的特殊收益",
             "date": "2026-11-13"
+          },
+          {
+            "name": "点枪",
+            "decision": "rejected_as_player_facing_name",
+            "date": "2026-11-13",
+            "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
           }
         ]
       }
@@ -4258,7 +4405,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "双段攻击挂梅、名称与其他枪击/蝶舞卡过近",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -4361,12 +4515,19 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [],
+        "red_flags": [
+          {
+            "gate": "N3/N4/N6",
+            "reason": "梅香类标题重复密集，需全池N6审查",
+            "observed": "2026-11-13"
+          }
+        ]
       }
     },
     {
       "id": "r14",
-      "name": "挑把",
+      "name": "待命名·r14",
       "decision_role": "低血攻守",
       "effect_ref": "HTML:CARD:r14",
       "source": {
@@ -4382,8 +4543,11 @@
           "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
           "source_entry": "枪术主要动作技术要求",
           "real_action_meaning": "枪把由下向上挑击，低血格挡是本作额外收益",
-          "mechanic_mapping": "实际卡牌职责：低血攻守；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
-        }
+          "mechanic_mapping": "实际卡牌职责：低血攻守；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。",
+          "reference_role": "technical_motion_reference_not_display_title",
+          "player_facing_name_approved": false
+        },
+        "name_method": "reference_only"
       },
       "search": {
         "P1": {
@@ -4468,14 +4632,14 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；枪把由下向上挑击，低血格挡是本作额外收益",
+        "status": "BLOCKED",
+        "reason": "已核实的P3枪术原词只能证明动作素材真实，不能自动成为胡桃的卡面技能名；现有「挑把」属于技术词条直搬，缺少角色化表达、技能辨识度和全池区分证据。保留技法研究资料，显示名退回待命名。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
-          "N4": "pending",
+          "N4": "fail",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -4489,6 +4653,12 @@
             "decision": "superseded_by_candidate",
             "reason": "枪把由下向上挑击，低血格挡是本作额外收益",
             "date": "2026-11-13"
+          },
+          {
+            "name": "挑把",
+            "decision": "rejected_as_player_facing_name",
+            "date": "2026-11-13",
+            "reason": "真实动作术语不等于可显示技能名称；用户指出「舞花枪」表现僵硬、缺角色专属气质。"
           }
         ]
       }
@@ -4712,6 +4882,24 @@
       "source_hierarchy": "P1 > P2 > P3 > P4",
       "mechanics_unchanged": true,
       "owner_approval": "PENDING"
+    },
+    {
+      "date": "2026-11-13",
+      "reason": "Cultural reference and player-facing title were conflated; reject all 8 literal technical titles",
+      "ids": [
+        "c01",
+        "c10",
+        "c11",
+        "u02",
+        "u16",
+        "u19",
+        "u20",
+        "r14"
+      ],
+      "human_approval_count": 0,
+      "mechanics_invariant": true
     }
-  ]
+  ],
+  "naming_policy": "SOURCE_PRIORITY_v2_reference_vs_player_facing_title",
+  "priorities_provenance_note": "P1>P2>P3>P4 refers to research/source selection; P3 martial terminology is not itself approved as display text"
 }
