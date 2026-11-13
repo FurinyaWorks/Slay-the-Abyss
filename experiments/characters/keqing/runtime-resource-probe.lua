@@ -46,12 +46,14 @@ function M.new(data,definitions,contract,options)
 end
 function M.play(input,uid,target)
  valid(input)
+ if C.outcome(input) or input.phase~='player' then return nil,'combat_not_active' end
  local s=C.copy(input)
  local instance
  for _,c in ipairs(s.hand)do if c.uid==uid then instance=c;break end end
  if not instance then return nil,'card_not_in_hand' end
  local original=s.catalog.cards[instance.cardId]
  if not original or not original.keqingProbe then return nil,'outside_probe_scope' end
+ if original.keqingDefense then return nil,'dedicated_defense_adapter_required' end
  local def=C.copy(original)
  local r=s.keqingResourceProbe
  local contract=s.keqingResourceContract
@@ -93,6 +95,7 @@ function M.play(input,uid,target)
 end
 function M.endTurn(input)
  valid(input)
+ if C.outcome(input) or input.phase~='player' then return nil,'combat_not_active' end
  local s=C.copy(input);local r=s.keqingResourceProbe
  r.infusion=0
  if r.wedgeUntil and r.wedgeUntil<=s.turn then r.wedgeUntil=nil end
