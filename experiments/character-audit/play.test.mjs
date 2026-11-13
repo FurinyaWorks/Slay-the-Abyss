@@ -124,6 +124,14 @@ test('latest Keqing 75-card adapter forwards only explicit visible choices and b
   }
   for(const id of ['KQ043','KQ044']){const s=setup(id);s.hand[0].upgraded=upgraded;const before=structuredClone(s);assert.throws(()=>a.play(s,0,0),/synchronous revealed/);assert.deepEqual(s,before);}
  }
+ for(const upgraded of [false,true]){
+  const status=b.createBattle({deckIds:['KQ060','KQS001','KQC001',...Array(7).fill('KQ002')],order:Array.from({length:10},(_,i)=>i)});status.hand[0].upgraded=upgraded;
+  const session=createSession({...a,start:()=>structuredClone(status)}),before=session.view();assert.match(before.hand[1].text,/状态/);assert.match(before.hand[2].text,/诅咒/);
+  assert.equal(session.dispatch({type:'play',revision:0,slot:1,target:1,options:{purge:['starter-2']}}).ok,false);assert.deepEqual(session.view(),before);
+  assert.equal(session.dispatch({type:'play',revision:0,slot:2,target:1}).ok,false);assert.deepEqual(session.view(),before);
+  const out=session.dispatch({type:'play',revision:0,slot:1,target:1,options:{purge:['starter-1']}});assert.equal(out.ok,true);assert.equal(out.view.block,upgraded?8:5);assert.equal(out.view.energy,2);assert.equal(out.view.zones.exhaust,1);assert.ok(out.view.hand.some(c=>c.id==='KQC001'));assert.ok(!out.view.hand.some(c=>c.id==='KQS001'));
+  const discard=structuredClone(status);discard.discard.push(...discard.hand.splice(1,2));assert.equal(a.view(discard).discardChoices.length,2);
+ }
  const s=setup('KQ016');for(const opts of [{choose:()=>null},{drawCards:()=>{}},null,[]])assert.throws(()=>a.play(s,0,0,opts));
  const session=createSession({...a,start:()=>setup('KQ024')});const result=session.dispatch({type:'play',revision:0,slot:1,target:1,options:{retain:['starter-1']}});assert.equal(result.ok,true);assert.deepEqual(result.view.hand,a.view(b.useCard(setup('KQ024'),'starter-0',0,{retain:['starter-1']})).hand);
  const view=a.view(s);assert.equal(view.hand[0].instance,'starter-0');assert.equal(Object.hasOwn(view,'draw'),false);assert.equal(Object.hasOwn(view,'rng'),false);
