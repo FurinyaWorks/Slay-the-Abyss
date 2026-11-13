@@ -19,3 +19,9 @@ Burning Blood healing. Fixed hand accessibility and victory damage fixtures rema
 no natural reward pool or complete playthrough claim. x05 belongs to exact starter
 but is still blocked by current public card gate: starter is NOT fully playable
 until owner expands canonical remaining-core admission. No shared files changed.
+
+Follow-up: test resolves factory/manifest relative to its own archived script path,
+not a mutable working tree absolute path. Re-executed both starter PASS lines.
+New public_starter_plunge_test.lua actually runs against fbe58fb0 and stops at
+`x05 public gate not admitted`. Its later 2x2 version/mask target matrix has NOT
+executed; copied two-cultist encounter and upgraded deck flags are explicit fixtures.
