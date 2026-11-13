@@ -26,3 +26,12 @@ test('reward policy sees known deck and offers only; no future information',()=>
  const n=takeReward(s,0);n.room=3;n.battle.enemy.hp=1;
  const final=fightRoom(n,'offense','low');assert.equal(final.phase,'complete');assert.deepEqual(final.offer,[]);
 });
+test('terminal phase consistency rejects fourth room and forged outcomes atomically',()=>{
+ const s=won();s.room=3;s.phase='reward';s.offer=offers(s.seed,3);
+ const before=structuredClone(s);assert.throws(()=>takeReward(s,1),/terminal reward/);assert.deepEqual(s,before);
+ for(const phase of ['complete','death','truncated']){
+  const invalid=won();invalid.phase=phase;
+  const original=structuredClone(invalid);assert.throws(()=>rewardView(invalid));assert.deepEqual(invalid,original);
+ }
+ const live=journeyStart();live.phase='complete';live.room=3;assert.throws(()=>rewardView(live));
+});

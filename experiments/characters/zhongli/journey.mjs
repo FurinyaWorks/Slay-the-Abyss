@@ -17,6 +17,10 @@ function validate(s){
   if(!s||!Number.isInteger(s.seed)||s.seed<0||s.seed>0xffffffff||!Number.isInteger(s.room)||s.room<1||s.room>3||
     !['battle','reward','complete','death','truncated'].includes(s.phase)||!Array.isArray(s.deck)||!Array.isArray(s.offer)||!Array.isArray(s.history))throw new Error('invalid journey');
   validateBattle(s.battle);
+  if(s.phase==='reward'&&s.room>=3)throw new Error('invalid terminal reward');
+  if(s.phase==='complete'&&(s.room!==3||s.battle.enemy.hp!==0||s.battle.hp===0))throw new Error('invalid completion');
+  if(s.phase==='death'&&s.battle.hp!==0)throw new Error('invalid death');
+  if(s.phase==='truncated'&&(!s.battle.hp||!s.battle.enemy.hp))throw new Error('invalid truncation');
   const ids=Object.values(s.battle.instances).map(c=>c.id).sort();
   if(JSON.stringify(ids)!==JSON.stringify([...s.deck].sort()))throw new Error('invalid journey deck');
   if(s.phase==='reward'&&(s.battle.enemy.hp!==0||s.battle.hp===0||JSON.stringify(s.offer)!==JSON.stringify(offers(s.seed,s.room))))throw new Error('invalid reward');
@@ -35,7 +39,7 @@ export function fightRoom(state,policy='defense',family='multi'){
   s.phase=!s.battle.hp?'death':s.battle.enemy.hp?'truncated':s.room===3?'complete':'reward';
   s.offer=s.phase==='reward'?offers(s.seed,s.room):[];
   s.history.push({room:s.room,family,turns,startHp,endHp:s.battle.hp,loss:startHp-s.battle.hp,deckSize:s.deck.length,deadPayoffDraws,outcome:s.phase,offer:[...s.offer]});
-  return s;
+  validate(s);return s;
 }
 /** 0 = explicit abandonment, not production modal close. Resolves once, starts next room. */
 export function takeReward(state,choice){
@@ -46,7 +50,7 @@ export function takeReward(state,choice){
   s.history.at(-1).choice=choice?s.offer[choice-1]:'abandon';
   s.room++;s.phase='battle';s.offer=[];
   s.battle=battleStart({seed:(s.seed+s.room*65537)>>>0,deck:s.deck,hp:s.battle.hp});
-  return s;
+  validate(s);return s;
 }
 export function rewardView(s){validate(s);return {hp:s.battle.hp,deck:[...s.deck],offer:[...s.offer]};}
 export function selectReward(view,policy){
