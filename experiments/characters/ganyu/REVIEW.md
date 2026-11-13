@@ -74,3 +74,5 @@ review_xiao固定01ae745，42/42通过，旧14卡/environment对象比对不变�
 0.23独审character_rules，review character-rules-ganyu-f7defd9-v23-20261113，固定f7defd92：152/152+108oracle、旧64不变、65/65报告重建，无增量技术阻断。67直伤杀最后敌仍建场但不允许未来tick；44设计阻断/51和62优势/续场与正式门禁仍保留。0.24待审。
 
 0.24–0.26逐版本独审character_rules，review character-rules-ganyu-6f686ef-v24-v26-20261113：560d420(158/158,68路径)、9b9c15a(164/164,71路径)、6f686ef(169/169,73路径)分别归档复现，各旧67/70/73逐卡不变且engine未改；终版另96独立oracle核68–75，未见新增技术阻断。远端作者核同树分别237080ba/f23c0e63/84f4b91c，非评审者独立读回证明。44支配及来源/双STS/人审/自然/生产门禁仍未通过；75只是研究候选。后续audit75另审。
+
+Audit75修订review_xiao正式结案绑定06ce315/treeb3cbf5f3（作者核远端7ac4d8b6）：60条轨迹逐字重放、ID级字段及重复/初始同名限制准确，原实例归因口径阻断关闭。范围仅audit75三文件，不认可source-review已独审，不放行来源/人物/平衡。
