@@ -4,5 +4,7 @@ export function validIntent(enemy) {
 }
 export function currentIntent(s,enemy) {
   if(!validIntent(enemy))throw new TypeError('missing or invalid current intention');
-  return enemy.intent[(s.turn-1)%enemy.intent.length];
+  const reduction=enemy.suppression??0;
+  if(!Number.isSafeInteger(reduction)||reduction<0)throw new TypeError('invalid suppression');
+  return Math.max(0,enemy.intent[(s.turn-1)%enemy.intent.length]-reduction);
 }

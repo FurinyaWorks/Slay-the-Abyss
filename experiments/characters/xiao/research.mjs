@@ -51,6 +51,8 @@ export function choose(view, policy) {
     if(id==='x27')score=view.mask===1&&view.hp<=2?1000:Math.min(7,Math.max(0,incoming-view.block))*(policy==='guard'?3:1);
     if(id==='x29'&&view.mask>0&&view.energy>=2&&policy==='guard')score=5;
     if(id==='x30'&&view.mask===0&&card.cost<=view.energy)score+=3;
+    if(id==='x31')score+=Math.min(4,target.intent)*(policy==='guard'?2:1);
+    if(id==='x32')score=Math.min(4,Math.max(0,incoming-view.block))*(policy==='guard'?3:1)+(view.block+4>=incoming?3:0);
     if(score>0)choices.push({index,target:target.index,score});
   });
   return choices.sort((a,b)=>b.score-a.score||a.index-b.index)[0]??null;

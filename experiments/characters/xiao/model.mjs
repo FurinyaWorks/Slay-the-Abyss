@@ -18,7 +18,7 @@ export function validState(s) {
   if (typeof s.startingRelic !== 'boolean' || typeof s.relicUsed !== 'boolean') return false;
   if (!['hand','draw','discard','exhaust','powers'].every(key => Array.isArray(s[key]) && s[key].every(id => typeof id === 'string'))) return false;
   if (s.hand.length > 10 || !Array.isArray(s.enemies) || !s.enemies.length) return false;
-  return s.enemies.every(e => e && nonnegative(e.hp) && nonnegative(e.block));
+  return s.enemies.every(e => e && nonnegative(e.hp) && nonnegative(e.block) && (e.suppression===undefined||nonnegative(e.suppression)));
 }
 function damage(enemy, amount) {
   if (enemy.hp <= 0) return;
@@ -40,6 +40,12 @@ function apply(s, effect, target) {
       s.relicUsed = true;
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
+  }
+  else if (op === 'suppress') { currentIntent(s,s.enemies[target]);s.enemies[target].suppression=(s.enemies[target].suppression??0)+value; }
+  else if (op === 'coveredDraw') {
+    const incoming=s.enemies.filter(e=>e.hp>0).map(e=>currentIntent(s,e)).reduce((a,b)=>a+b,0);
+    if(!Number.isSafeInteger(incoming))throw new TypeError('intent sum overflow');
+    if(s.block>=incoming)drawCards(s,value);
   }
   else if (op === 'exitGuard') s.exitGuard+=value;
   else if (op === 'shortenMask') setMaskFromCard(s,Math.max(0,s.mask-value));
@@ -94,7 +100,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -121,13 +127,15 @@ export function startTurn(input) {
   if (!validState(input)) return s;
   if (s.phase !== 'enemy' || s.hp <= 0 || !s.enemies.some(e => e.hp > 0)) return s;
   s.phase = 'player';
-  s.turn++; s.block = 0; s.energy = catalog.energyPerTurn;
+  s.turn++; for(const e of s.enemies) if(e.suppression!==undefined)e.suppression=0; s.block = 0; s.energy = catalog.energyPerTurn;
   apply(s, { op: 'draw', value: catalog.drawPerTurn });
   return s;
 }
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus}) => ({
+    suppress: `目标本回合意图伤害降低${value}（最低0，可叠加）；下个玩家回合清除。`,
+    coveredDraw: `若此时格挡覆盖所有存活敌人当前意图伤害之和，抽${value}张牌。面具耗血不算敌攻。`,
     exitGuard: `本场每次卡牌使面具从有变无，获得${value}点格挡；自然到期不触发，可叠加。`,
     shortenMask: `面具剩余回合减少${value}（最低0）；不是保证退出。`,
     lastMaskDamage: `造成${value}点伤害；若面具恰剩1回合，额外${bonus}点；面具期间另加${catalog.maskRules.attackBonus}点。不改变面具时长。`,

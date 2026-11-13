@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.11",
+  "version": "xiao-g2-lab-0.12",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -927,6 +927,76 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x31",
+      "name": "待命名·x31",
+      "role": "单体当前回合压制：小伤换敌方本次伤害降低",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 6
+        },
+        {
+          "op": "suppress",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 8
+        },
+        {
+          "op": "suppress",
+          "value": 6
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x32",
+      "name": "待命名·x32",
+      "role": "覆盖敌攻后的安全轮转：先防守，再检查是否可补牌",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "block",
+          "value": 4
+        },
+        {
+          "op": "coveredDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "block",
+          "value": 7
+        },
+        {
+          "op": "coveredDraw",
+          "value": 1
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -967,7 +1037,9 @@
     "x27",
     "x28",
     "x29",
-    "x30"
+    "x30",
+    "x31",
+    "x32"
   ],
   "maskRules": {
     "attackBonus": 4,
