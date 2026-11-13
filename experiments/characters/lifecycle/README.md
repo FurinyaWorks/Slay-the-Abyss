@@ -243,3 +243,15 @@ it is not a claim that fixed pillar triggers Thorns. The separate actual Thorns
 test confirms native fixed-damage non-attack behavior. No jade damage interception,
 starter relic, multi-enemy expansion, catalog registration or final balance
 approval is added. Full CI has not been run.
+
+### Xiao defense and active exit paid candidates
+
+The canonical gate now additionally admits x02 (native block) and x06 (zero-cost
+active mask exit plus native block and exhaustion). Canonical candidate IDs with
+missing candidate markers fail closed even when all effects are ordinary block;
+manual and automatic entry share that rule. x06 cannot drop its exhaustion flag.
+Public base/upgrade tests use real constructor/draw entities and payment/UseCard,
+check Schedule removal, empty exit and fault rollback. Additional automatic
+normal/override/unmarked cases and a controlled real-entity Scry arrangement test
+resumed exit rollback and exactly-once retry. No owner-end or start-turn hook is
+newly enabled for Xiao, and the Intangible HP-payment design HOLD remains.

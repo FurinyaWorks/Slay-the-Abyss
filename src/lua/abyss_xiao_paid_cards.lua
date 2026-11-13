@@ -1,11 +1,11 @@
--- Paid-only x01/x04 candidate boundary. No owner-end or turn-start activation.
+-- Paid-only x01/x02/x04/x06 candidate boundary. No owner-end or turn-start activation.
 local Bridge=require('abyss_xiao_play_bridge')
 local Dispatch=require('abyss_xiao_dispatch')
 local Presence=require('abyss_actor_presence')
 local M={}
 local canonical={}
 for _,d in ipairs(Bridge.definitions())do
- if d.id=='xiao_candidate_x01'or d.id=='xiao_candidate_x04'then canonical[d.id]=d end
+ if d.id=='xiao_candidate_x01'or d.id=='xiao_candidate_x02'or d.id=='xiao_candidate_x04'or d.id=='xiao_candidate_x06'then canonical[d.id]=d end
 end
 local function same(a,b)
  if type(a)~='table'or type(b)~='table'then return a==b end
@@ -21,6 +21,7 @@ function M.supports(e)
 end
 function M.canUse(state,instance,card,targetIndex)
  if card.xiaoCandidate==nil then
+  if canonical[instance.cardId]then return false,'unmarked_xiao_card'end
   for _,e in ipairs(card.effects)do if e.op=='xiaoCard'then return false,'unmarked_xiao_card'end end
   return true
  end
@@ -29,6 +30,7 @@ function M.canUse(state,instance,card,targetIndex)
   or state.originalV4 or card.experimental~=true or card.originalV4 or card.runNativeABI or card.silentFinalCard
   or card.costMode or card.keqingCandidate~=nil or card.ganyuCandidate~=nil
   or card.type~=c.type or card.target~=c.target
+  or instance.cardId=='xiao_candidate_x06'and card.exhaust~=true
   or not same(card.effects,instance.upgraded and c.upgrade.effects or c.effects)then return false,'xiao_candidate_unavailable'end
  if instance.cardId=='xiao_candidate_x01'and not Presence.isActive(state.enemies[targetIndex])then return false,'invalid_target'end
  return Bridge.canUse(state,instance,targetIndex)
