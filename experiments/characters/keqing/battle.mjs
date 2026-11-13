@@ -53,8 +53,7 @@ function validateBattle(state) {
   const instances = [...state.hand,...state.draw,...state.discard];
   if (instances.length !== 10 || new Set(instances.map(c => c.instance)).size !== 10 || instances.some(c => !cards[c.id] || typeof c.instance !== 'string' || typeof c.upgraded !== 'boolean')) throw new Error('invalid instances');
 }
-export function useCard(input, instance, target, options = {}) {
-  validateBattle(input);
+function resolveAction(input, instance, target, options = {}) {
   if (input.phase !== 'player') throw new Error('not player phase');
   const card = input.hand.find(c => c.instance === instance);
   const state = play(input, instance, target, options);
@@ -67,6 +66,14 @@ export function useCard(input, instance, target, options = {}) {
   }
   if (state.enemies.every(e => e.hp === 0)) state.phase = 'won';
   return state;
+}
+export function useCard(input, instance, target, options = {}) {
+  validateBattle(input);
+  return resolveAction(input, instance, target, options);
+}
+// Preview has no access to a future pile. No draw effects are supported in KQ-0.2.
+export function previewVisible(view, instance, target) {
+  return resolveAction({ ...structuredClone(view), discard: [], log: [] }, instance, target);
 }
 export function finishTurn(input) {
   validateBattle(input);
@@ -87,5 +94,5 @@ export function finishTurn(input) {
 }
 // Policies may only inspect this view: never expose draw order or future RNG.
 export function playerView(state) {
-  return structuredClone({ turn: state.turn, hp: state.hp, energy: state.energy, block: state.block, hand: state.hand, enemies: state.enemies, wedgeUntil: state.wedgeUntil, infusion: state.infusion, phase: state.phase, drawCount: state.draw.length, discardCount: state.discard.length });
+  return structuredClone({ turn: state.turn, hp: state.hp, energy: state.energy, block: state.block, hand: state.hand, enemies: state.enemies, wedgeUntil: state.wedgeUntil, infusion: state.infusion, phase: state.phase, relicEnabled: state.relicEnabled, relicUsed: state.relicUsed, drawCount: state.draw.length, discardCount: state.discard.length });
 }
