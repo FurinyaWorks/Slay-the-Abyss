@@ -31,7 +31,22 @@ function lowerTierReady(card,why){
  if(!decisionEvidence(s.P2))why.push('missing actual P2 searches and rejection evidence');
  if(t==='P3')return;
  const p3=s.P3;
- if(!p3||!['searched','not_applicable'].includes(p3.status)||!detail(p3.reason))why.push('P4 needs explicit P3 lower-priority applicability decision');
+ const physicalAction=new Set(['weapon_attack','weapon_defense','weapon_combo']);
+ const nonWeapon=new Set(['card_management','non_weapon_guard','health_restore','status_magic','narrative_ability']);
+ const context=card.action_context;
+ if(!physicalAction.has(context)&&!nonWeapon.has(context)){
+   why.push('P4 requires explicit recognized action_context (weapon or nonweapon)');
+ }
+ if(!p3||!['searched','not_applicable'].includes(p3.status)||!detail(p3.reason)){
+   why.push('P4 needs explicit P3 lower-priority applicability decision');
+   return;
+ }
+ if(physicalAction.has(context)&&p3.status!=='searched')why.push('P4 weapon action must search P3 before original fallback');
+ if(p3.status==='searched'){
+   const checkedTerms=Array.isArray(p3.lookups)&&p3.lookups.length>0&&p3.lookups.every(x=>NONEMPTY(x.original_term)&&NONEMPTY(x.url)&&/^https:\/\//.test(x.url)&&NONEMPTY(x.entry)&&detail(x.real_action_meaning));
+   const rejectedTerms=Array.isArray(p3.rejected_candidates)&&p3.rejected_candidates.length>0&&p3.rejected_candidates.every(x=>NONEMPTY(x.original_term)&&NONEMPTY(x.source_url)&&NONEMPTY(x.source_entry)&&detail(x.rejection_reason));
+   if(!checkedTerms||!rejectedTerms)why.push('P4 P3 search lacks concrete real terms and explicit rejection evidence');
+ }
 }
 export function validateNamingManifest(m,denialRegistry={}){
  const errors=[],blocked=[],seenIds=new Set(),seenNames=new Set();
