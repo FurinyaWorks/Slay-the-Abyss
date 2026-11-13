@@ -41,3 +41,20 @@ export function starterResourceProbe({definitions=cards}={}){
  }
  return {definition:{id:'KQ003',name:'待命名·KQ003',type:c.type,cost:c.cost,rarity:'special',color:'colorless',effects:[{op:'damage',value:faces.base.setup}],upgrade:{effects:[{op:'damage',value:faces.upgraded.setup}]},keqingProbe:{status:'HOLD',releaseEligible:false}},contract:{...faces,bonusPerHit:statusRules.infusion.bonusPerHit}};
 }
+
+// Full ten-card starter probe; the starter relic remains a separate pending hook.
+export function fullStarterProbe({definitions=cards}={}){
+ const p=starterResourceProbe({definitions}),c=definitions.KQ004;
+ if(!exact(c,['rarity','channel','candidateName','role','type','cost','effects'])||c.type!=='attack'||c.cost!==1||!exact(c.effects,['base','upgraded']))throw Error('unsupported finisher schema');
+ const faces={};
+ for(const key of ['base','upgraded']){
+  const a=c.effects[key];
+  if(!Array.isArray(a)||Object.getPrototypeOf(a)!==Array.prototype||Reflect.ownKeys(a).length!==3||a.length!==2||!Object.hasOwn(a,'0')||!Object.hasOwn(a,'1'))throw Error('unsupported finisher array');
+  if(!exact(a[0],['op','damage','hits','target'])||a[0].op!=='damage'||a[0].hits!==2||a[0].target!=='one'||!exact(a[1],['op','damage'])||a[1].op!=='detonate'||![a[0].damage,a[1].damage].every(n=>natural(n)&&n<=999))throw Error('unsupported finisher effects');
+  faces[key]={hit:a[0].damage,burst:a[1].damage};
+ }
+ p.contract.finisher=faces;
+ const make=f=>[{op:'damage',value:f.hit},{op:'damage',value:f.hit}];
+ p.finisher={id:'KQ004',name:'待命名·KQ004',type:'attack',cost:1,rarity:'special',color:'colorless',effects:make(faces.base),upgrade:{effects:make(faces.upgraded)},keqingProbe:{status:'HOLD',releaseEligible:false}};
+ return p;
+}

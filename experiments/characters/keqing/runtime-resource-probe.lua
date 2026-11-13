@@ -9,7 +9,16 @@ local function exact(t,keys)
  return true
 end
 local function contractValid(c)
- assert(exact(c,{base=true,upgraded=true,bonusPerHit=true}) and c.bonusPerHit==2,'invalid resource contract')
+ local keys={base=true,upgraded=true,bonusPerHit=true}
+ if type(c)=='table' and c.finisher~=nil then keys.finisher=true end
+ assert(exact(c,keys) and c.bonusPerHit==2,'invalid resource contract')
+ if c.finisher~=nil then
+  assert(exact(c.finisher,{base=true,upgraded=true}),'invalid finisher contract')
+  for _,name in ipairs({'base','upgraded'})do
+   local f=c.finisher[name];assert(exact(f,{hit=true,burst=true}),'invalid finisher face')
+   for _,k in ipairs({'hit','burst'})do assert(type(f[k])=='number' and f[k]%1==0 and f[k]>=0 and f[k]<=999,'invalid finisher value')end
+  end
+ end
  for _,name in ipairs({'base','upgraded'})do
   local f=c[name]
   assert(exact(f,{setup=true,release=true,attacks=true}) and f.attacks==2,'invalid resource face')
@@ -53,6 +62,14 @@ function M.play(input,uid,target)
   def.effects={{op='damage',value=damage}}
   def.upgrade={effects=C.copy(def.effects)}
  end
+ local detonate=instance.cardId=='KQ004' and r.wedgeUntil~=nil
+ if instance.cardId=='KQ004' then
+  if not contract.finisher then return nil,'outside_probe_scope' end
+  local face=contract.finisher[instance.upgraded and 'upgraded' or 'base']
+  def.effects={{op='damage',value=face.hit},{op='damage',value=face.hit}}
+  if detonate then def.effects[#def.effects+1]={op='damageAll',value=face.burst}end
+  def.upgrade={effects=C.copy(def.effects)}
+ end
  local function imbue(effects)
   for _,e in ipairs(effects)do
    if e.op=='damage' or e.op=='damageAll' then e.value=e.value+contract.bonusPerHit end
@@ -70,6 +87,7 @@ function M.play(input,uid,target)
   if release then r.wedgeUntil=nil;r.infusion=contract[instance.upgraded and 'upgraded' or 'base'].attacks
   else r.wedgeUntil=s.turn+1 end
  end
+ if detonate then r.wedgeUntil=nil end
  valid(s)
  return s
 end
