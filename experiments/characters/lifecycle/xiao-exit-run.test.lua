@@ -15,13 +15,13 @@ local function acquired(id,up)
  assert(card);s.hand[#s.hand+1]=card;s.enemies[1].hp=100;s.enemies[1].block=0
  eq(card.upgraded,up);eq(card.deckUid,uid);return r,card
 end
-eq(#B.definitions(),8);eq(#B.additionalDefinitions(),2)
+eq(#B.definitions(),8);eq(#B.additionalDefinitions(),4)
 local defs=B.additionalDefinitions()
 same(defs[1].effects,{{op='xiaoCard',kind='maskCommit',value=0,requiresAlive=true},{op='draw',value=2}})
 same(defs[1].upgrade.effects,{{op='xiaoCard',kind='maskCommit',value=0,requiresAlive=true},{op='draw',value=3}})
 same(defs[2].effects,{{op='xiaoCard',kind='damage',value=10},{op='xiaoCard',kind='maskCommit',value=0,requiresAlive=true}})
 same(defs[2].upgrade.effects,{{op='xiaoCard',kind='damage',value=14},{op='xiaoCard',kind='maskCommit',value=0,requiresAlive=true}})
-for _,d in ipairs(defs)do eq(d.cost,1);eq(d.exhaust,false)end
+for _,d in ipairs({defs[1],defs[2]})do eq(d.cost,1);eq(d.exhaust,false)end
 local Actors=require('abyss_actor')
 for _,up in ipairs({false,true})do for _,id in ipairs({'x09','x11'})do
  local r,c=acquired(id,up);local s=r.combat;Actors.applyPower(s,s.player,'xiao_mask',2,s.player)
