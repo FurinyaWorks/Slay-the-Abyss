@@ -129,3 +129,16 @@ window_dispatch_test三探针覆盖基升mask0..3、先缩短、实际返能、�
 recoverExit按当前弃牌顺序，经真实cardDefinition展开该实例升级后效果，选首个maskCommit=0，排除正在结算UID；手满不移牌，仅用toHand保原实体/uid/upgraded/费用，不套宿主discardToHand自带免费化。topdeckAttack选首攻击实体放draw尾（宿主下一次从尾抽），不复制。两者不读exhaust、不泄漏隐藏抽牌顺序。后续所有75新结构出口是否归入检索需按正式合同再扩，不把目前maskCommit结构匹配冒称全池语义识别。
 
 recover_dispatch_test三探针验证真实C.new基升实例、首出口/攻击置顶后真实C.draw、手满/消耗区不碰、整命令快照原引用恢复。实例取得来自构造器但移弃牌是效果场景夹具，不代表自然奖励或公开x16/x39 C.play；首8十回归通过，gate未扩。
+
+### Lua x24 discard redraw effect slice
+`discardAttacksDraw` collects the actual other attack instances in public hand,
+then moves them to discard in hand order and emits native manual discard events,
+then queues the native draw for count + base/upgrade bonus only with fuel.
+This mirrors host discardRedraw's pile/event convention; it can redraw the just
+discarded attacks after reshuffling. It never puts the resolving card in the
+shuffle. No-fuel upgrade draws nothing. Exact instances/UIDs survive the move.
+The 3 targeted tests cover both bonuses, actual reshuffle, no fuel, pre-mutation
+overflow and post-shuffle host Snapshot restoration. Local malformed queue-start
+state is not an effect-atomicity claim: host owns the entire command snapshot.
+This remains an isolated paid-context effect adapter, not x24 public registration,
+payment/UseCard or a claim that all discard-reaction combinations are verified.

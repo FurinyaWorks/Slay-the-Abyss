@@ -1,0 +1,3 @@
+PASS x24 base/up actual discard then reshuffle draws same attack entities without resolving card
+PASS no attack fuel means no bonus draw and no pile/RNG mutation
+PASS post-shuffle host Snapshot restores original references and overflow rejects before discard

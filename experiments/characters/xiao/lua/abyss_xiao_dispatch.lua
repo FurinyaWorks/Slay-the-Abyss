@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy'or effect.kind=='recoverExit'or effect.kind=='topdeckAttack','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy'or effect.kind=='recoverExit'or effect.kind=='topdeckAttack'or effect.kind=='discardAttacksDraw','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -22,6 +22,20 @@ function M.dispatch(combat,state,effect,queue)
  local r=resource(state);integer(effect.value,effect.kind=='maskCommit'and 3 or 2147483647)
  if r.hp==0 then return true end
  local value=effect.value
+ if effect.kind=='discardAttacksDraw'then
+  local selected={}
+  for _,instance in ipairs(state.hand)do
+   if instance.uid~=paid.uid and combat.cardDefinition(state,instance).type=='attack'then selected[#selected+1]=instance end
+  end
+  assert(value<=2147483647-#selected,'Xiao discard draw overflow')
+  for _,instance in ipairs(selected)do
+   for i,c in ipairs(state.hand)do if c==instance then table.remove(state.hand,i);break end end
+   state.discard[#state.discard+1]=instance
+   require('abyss_events').emit(state,'discard',{uid=instance.uid,cardId=instance.cardId,manual=true})
+  end
+  if #selected>0 then queue.pushTop(state,{kind='effect',effect={op='draw',value=#selected+value}})end
+  return true
+ end
  if effect.kind=='recoverExit'or effect.kind=='topdeckAttack'then
   assert(value==1,'unsupported recovery count')
   if effect.kind=='recoverExit'and #state.hand>=state.rules.player.maxHand then return true end
