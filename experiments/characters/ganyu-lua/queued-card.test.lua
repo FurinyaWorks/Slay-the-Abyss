@@ -79,3 +79,24 @@ for _,missing in ipairs({'all','effect','pending','card'})do
  assert(not pcall(M.dispatch,C,s,e,Q));eq(s.ganyuResource.charge,0);eq(#s.actionQueue.actions,0)
 end
 print('PASS absent paid UID cannot match through nil equality')
+
+-- Fail before enqueue/resource commit, not after native Actor rejects damage.
+for _,mutate in ipairs({
+ function(e,s)e.normalAmount=1.5 end,
+ function(e,s)e.normalAmounts[s.enemies[1].id]=1.5 end,
+ function(e,s)e.normalAmounts[s.enemies[2].id]=nil end,
+ function(e,s)e.normalAmounts.ghost=7 end,
+ function(e,s)setmetatable(e.normalAmounts,{__index=function()return 7 end})end,
+ function(e,s)e.normalAmount=nil end,
+})do
+ local s=fresh(2);local e=M.prepare(C,s,raw,s.enemies[1],s.cardInUse.uid)
+ mutate(e,s);Q.start(s,{});local resource=s.ganyuResource
+ assert(not pcall(M.dispatch,C,s,e,Q));eq(s.ganyuResource,resource);eq(resource.charge,2)
+ eq(#s.actionQueue.actions,0);eq(s.enemies[1].hp,100);eq(s.enemies[2].hp,100)
+end
+-- Catch malformed host attack snapshots at preparation as well.
+do
+ local s=fresh(2);local fake={attackAmount=function()return 1.5 end}
+ assert(not pcall(M.prepare,fake,s,raw,s.enemies[1],s.cardInUse.uid));eq(s.ganyuResource.charge,2);eq(s.actionQueue,nil)
+end
+print('PASS integral complete native captures reject before resource/queue commit')

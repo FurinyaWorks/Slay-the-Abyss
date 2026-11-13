@@ -119,3 +119,12 @@ This closes a JavaScript-call surface not representable in the frozen JSON.
 Three Node tests include 56 malformed object/array mutations and two sparse
 arrays; generated paid definitions remain byte-identical. This does not enable
 owner-end banking/storm stages, change card values, or expand production access.
+
+### Original 03/06 capture boundary hardening
+
+The isolated queued-card ABI now requires integral native damage snapshots and
+an exact plain AoE capture map for current enemy IDs. Six malformed dispatch
+cases and a fractional prepare callback are rejected before enqueue/resource
+commit. Existing normal queue and Snapshot tests still pass. This is not yet
+copied into shared host d55b, which retains the previously reviewed ABI; its
+normal attackAmount produces integers and its outer transaction owns rollback.
