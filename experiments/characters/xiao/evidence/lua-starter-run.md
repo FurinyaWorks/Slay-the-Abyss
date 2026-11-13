@@ -1,0 +1,21 @@
+# Source-bound experimental starter through real Run
+
+Author run against independently archived shared fbe58fb0, src/build-only Combat/Run/
+Bridge; only the role data factory and generated manifest are loaded explicitly.
+Generated manifest records SHA256 of cards.json, exact starter, maxHP70, candidate
+relic definition and first-eight rarity. It is repository provenance, NOT approved
+HoYoverse/source/naming evidence. Factory copies caller data, registers candidate
+color/source identity rather than misclassifying cards as Ironclad, and goes through
+normal Run catalogue preparation without bypass.
+
+Actual output:
+```
+XIAO_STARTER_RUN_PASS explicit copied starter HP70 no native starting relic and resolved canonical definitions
+XIAO_STARTER_RELIC_PASS actual mask payment plus first-entry draw; victory has no inherited Burning Blood healing
+```
+Explicit experimental configuration enables the reviewed Xiao first-entry relic,
+not an inventory registration. Native starting relic list is empty, avoiding hidden
+Burning Blood healing. Fixed hand accessibility and victory damage fixtures remain;
+no natural reward pool or complete playthrough claim. x05 belongs to exact starter
+but is still blocked by current public card gate: starter is NOT fully playable
+until owner expands canonical remaining-core admission. No shared files changed.
