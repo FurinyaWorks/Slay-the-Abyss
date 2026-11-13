@@ -1,0 +1,14 @@
+import {readFileSync,writeFileSync} from 'node:fs';import {createHash} from 'node:crypto';
+import {toLua} from '../../../scripts/build-lua-data.mjs';
+import {paidSchemaKeys as keys,paidInteger as integer} from './compile-paid.mjs';
+const top=['id','name','candidate_name','role','rarity','target','base','upgrade','source_ref','review','exhaust','retain','production_enabled'];
+function pair(a){if(!Array.isArray(a)||Object.getPrototypeOf(a)!==Array.prototype||a.length!==2)throw Error('two effects required');for(const k of Reflect.ownKeys(a)){const d=Object.getOwnPropertyDescriptor(a,k);if(!['0','1','length'].includes(k)||!('value'in d))throw Error('invalid pair properties');}if(!Object.hasOwn(a,'0')||!Object.hasOwn(a,'1'))throw Error('dense pair required');}
+export function compileUtilityStorm(c){
+ keys(c,top);if(!['ganyu-49','ganyu-71'].includes(c.id)||c.target!=='self'||c.production_enabled||c.review?.human_approved)throw Error('unsupported defensive storm');
+ const exhaust=c.id==='ganyu-71';for(const f of ['exhaust','retain'])if(c[f]!==undefined&&typeof c[f]!=='boolean')throw Error('invalid lifecycle');if((c.exhaust===true)!==exhaust||c.retain===true)throw Error('lifecycle mismatch');
+ const variant=v=>{keys(v,['cost','effects']);integer(v.cost);pair(v.effects);const[r,u]=v.effects;keys(r,['op','amount','turns']);keys(u,['op','amount']);if(r.op!=='storm'||u.op!==(exhaust?'charge':'draw'))throw Error('ordered storm then utility required');integer(r.amount);integer(r.turns);integer(u.amount);if(r.turns<1)throw Error('positive duration required');return{cost:v.cost,effects:[{op:'ganyuStorm',amount:r.amount,turns:r.turns},exhaust?{op:'ganyuCard',kind:'charge',amount:u.amount}:{op:'draw',value:u.amount}]};};
+ const base=variant(c.base),upgrade=variant(c.upgrade);const text=v=>`建立冰雨，每次回合末对所有敌人造成${v.effects[0].amount}点伤害，持续${v.effects[0].turns}次。已有冰雨时伤害和剩余次数分别取较大值；建场不立即伤害。${exhaust?`随后获得${v.effects[1].amount}层蓄力（上限2）。消耗。`:`随后抽${v.effects[1].value}张牌。`}`;
+ return{id:'ganyu_lab_'+c.id.slice(-2),name:c.name,type:'skill',target:'SELF',rarity:c.rarity,...base,upgrade,text:text(base),upgradeText:text(upgrade),exhaust,experimental:true,ganyuCandidate:true,productionEnabled:false,reviewStatus:'HOLD'};
+}
+export function build(){const raw=readFileSync(new URL('./source-candidates.json',import.meta.url));const source=JSON.parse(raw);const out={cards:['ganyu-49','ganyu-71'].map(id=>compileUtilityStorm(source.cards.find(c=>c.id===id))),sourceSHA256:createHash('sha256').update(raw).digest('hex'),hostAcceptance:'NOT_YET_VERIFIED',productionEnabled:false};writeFileSync(new URL('./utility-storm-definitions.lua',import.meta.url),'-- Isolated storm/utility compound candidates; not registered.\nreturn '+toLua(out)+'\n');return out;}
+if(process.argv[1]?.endsWith('/compile-utility-storm.mjs'))build();
