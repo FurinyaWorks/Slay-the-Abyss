@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.10.0",
+  "version": "ganyu-sample-0.11.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -990,6 +990,105 @@
         "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       },
       "retain": true,
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-29",
+      "name": "待命名·ganyu-29",
+      "candidate_name": null,
+      "role": "提前兑现雨场并减少剩余触发次数",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "source_ref": "ganyu-29",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-30",
+      "name": "待命名·ganyu-30",
+      "candidate_name": null,
+      "role": "满蓄资源换手牌选择而非伤害防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_draw",
+            "amount": 1,
+            "bonus": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_draw",
+            "amount": 1,
+            "bonus": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-30",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-31",
+      "name": "待命名·ganyu-31",
+      "candidate_name": null,
+      "role": "一次性长雨场启动",
+      "rarity": "rare",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 6,
+            "turns": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 8,
+            "turns": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-31",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
       "exhaust": true
     }
   ],

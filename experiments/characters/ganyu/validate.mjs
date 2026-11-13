@@ -18,7 +18,7 @@ export function validateCandidate(data,relic,sources) {
   for(const level of ['base','upgrade']) {
    const v=c[level];if(!v || !nat(v.cost)||!Array.isArray(v.effects)||!v.effects.length){errors.push(`invalid variant ${c.id}`);continue;}
    for(const e of v.effects) {
-    const fields={damage:['amount'],aoe:['amount'],block:['amount'],charge:['amount'],draw:['amount'],seek_card:[],storm:['amount','turns'],charged_block:['amount','bonus'],charged_direct:['direct','bonus'],charged_shot:['direct','bloom']}[e.op];
+    const fields={damage:['amount'],aoe:['amount'],block:['amount'],charge:['amount'],draw:['amount'],seek_card:[],storm:['amount','turns'],storm_release:[],charged_draw:['amount','bonus'],charged_block:['amount','bonus'],charged_direct:['direct','bonus'],charged_shot:['direct','bloom']}[e.op];
     if(e.op==='seek_card' && e.zone!==undefined && !['draw','discard'].includes(e.zone))errors.push(`invalid seek zone ${c.id}`);
     if(e.op==='seek_card' && !data.cards.some(c=>c.id===e.card_id))errors.push(`unknown seek target ${c.id}`);
     if(!fields){errors.push(`unknown effect ${c.id}`);continue;}
