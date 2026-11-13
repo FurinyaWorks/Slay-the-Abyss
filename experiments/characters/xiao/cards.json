@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.17",
+  "version": "xiao-g2-lab-0.18",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1289,6 +1289,68 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x43",
+      "name": "待命名·x43",
+      "role": "终结补牌：击杀选中敌人才抽牌，有限副本",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "damage",
+          "value": 12
+        },
+        {
+          "op": "killDraw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 16
+        },
+        {
+          "op": "killDraw",
+          "value": 2
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x44",
+      "name": "待命名·x44",
+      "role": "余盾延续：保留有限回合剩余盾，不凭空产盾",
+      "kind": "power",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "carryBlock",
+          "value": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "carryBlock",
+          "value": 8
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1341,7 +1403,9 @@
     "x39",
     "x40",
     "x41",
-    "x42"
+    "x42",
+    "x43",
+    "x44"
   ],
   "maskRules": {
     "attackBonus": 4,
