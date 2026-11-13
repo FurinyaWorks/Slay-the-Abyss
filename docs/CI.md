@@ -20,7 +20,21 @@ PR391 的官方超时与成功日志证明早期四片、六片及八加八规�
 
 合并须核对 PR 精确 head、base 和当前 attempt 的完整必要作业，通过下文 `npm run merge:auto` 的 pending→原生授权→success 握手入队。完整源码检查、平台构建、官方导入、实机与UI体验仍分层记录。日志空白时读取对应job的原始日志，不能判为通过。
 
-2026-10-28轻量治理：develop 的原 Ruleset 仅允许 squash，并要求线性历史；master 保留 release/hotfix 的 merge 流程。既有 Licenses/inventory 加入 develop 必需检查，不新增验证作业。Quality 的 Windows 第一片在安装依赖前运行 `check-pr-history.mjs`，用事件中的精确 base/head SHA 分页读取 GitHub comparison，拒绝 PR 引入的任何合并提交（不检查 GitHub 合成 merge commit）。新依赖先独立合入 develop，再从它开始后续短分支，无需为每次基线前进重跑同步。历史读取失败或不完整会明确失败，不视作通过。它只做一次轻量 API 读取，不增加锁、轮询或另一套完整回归。
+2026-11-13分离主干保护与来源分支历史：develop 仍仅允许 squash 并要求线性历史，master 的 release/hotfix merge 流程不变。`check-pr-history.mjs` 保留精确 base/head SHA、分页完整性、提交唯一性与父提交身份检查；功能/集成分支中的 merge commit 不再单独导致失败，而在日志的 `mergeCommits` 中列出，`status` 为 `linear` 或 `nonlinear`。两者仅表示历史形状，不表示代码已通过审查或测试。读取失败、缺页、重复、错误 HEAD/BASE 或无效父提交仍失败；不检查 GitHub 合成 merge commit，不增加作业、锁、轮询或完整回归层。此规则替代2026-10-28的来源分支一律线性要求，不放宽主干保护。
+
+## 多 Agent 协调集成
+
+日常仍优先独立短分支与小批 PR；仅需要外部前置能力时，先让依赖落入 develop。同步已落地主线可使用 merge；独占分支可自行选择 rebase，但不为历史外形要求重写已共享提交，不自动强推。现有 Strict 与精确 HEAD/BASE 授权仍适用：本次不承诺消除基线推进后的重新验证。
+
+多个 Agent 的成果需要一起交付时，采用一个协调集成 PR，而不是各分支相互反复合并；这是正常的受审集成路径，不是紧急绕过 CI：
+
+1. 指定一个协调者，从最新 develop 建独立工作树/短集成分支。只冻结本批来源身份和写入范围，不停掉其他独立任务；接管前按原 `merge:auto --pause` 暂停来源 PR 并读回出队，防止来源 PR 与集成 PR 重复交付。
+2. 在集成 PR 正文记录来源 PR/分支、完整固定 HEAD SHA、纳入范围及冲突取舍。按固定 SHA 合并，保留原提交与集成节点；后续来源新提交不自动纳入。不能把他人的脏文件、未知工作或未授权范围悄悄打包。
+3. `Depends-on` 只列**本次未包含、必须先独立合入**的外部前置 PR，仍须已落入受审 BASE；已整体纳入的工作列在来源清单，不伪称原 PR 已合并。只纳入部分成果时，逐项写清取舍与剩余依赖，不能把尚缺的前置改成 `none`。
+4. 对最终组合的精确 HEAD/BASE 重新独立评审与验证，重点核对来源完整性、冲突解法和跨模块行为；多来源集成使用已有 `ci:full` 请求 PR Full，再走原 Merge Queue 组合 Full 与合后验收。来源各自的绿灯或审查不能拼接成组合通过；失败在集成分支追加修复，不为过关清理历史、删测试或放宽门槛。
+5. 组合实际合入并验收后，逐来源核对固定 SHA 的成果、后续新提交、脏文件及唯一证据，再关闭已承接的 PR并注明集成去向。squash 不会让来源 SHA 成为 develop 祖先，不能只用 `--is-ancestor` 判定成果已交付；保留来源清单和恢复点，有新工作或未纳入内容的分支不删除、不误记 Done。
+
+来源范围与独立审查的真实性仍由现有协调/复审流程核实，历史审计不自证这些事项。复用现有 PR、Backlog、交付收据与队列，不新增常驻协调器或第二套任务锁。
 
 Licenses 与 Quality、Quick feedback 一样使用 GitHub 原生同引用 concurrency；新提交取消旧提交，PR 与 develop 的运行独立。已结束的 cancelled 保留历史；只有确认被更新 HEAD 或实际合入提交覆盖的非终态运行才手动取消。queued 先核对 runner/开始时间，pending 步骤表示依赖尚未执行，不能据此判断卡死。最终以最新 develop SHA 的完整必要检查成功为准。
 
@@ -72,7 +86,7 @@ develop PR 的独立评审与 CI 并行。审查与准入通过后可挂起原�
 
 ### 常规使用
 
-PR 正文必须有一行 `Depends-on: none` 或 `Depends-on: #123, #456`；关联 PR 必须已确认合并。先由独立 Agent 复审并形成符合现有 `verify:delivery` 字段的 JSON（`reviewId`、`reviewedHeadSha`、`reviewedBaseSha`、`conclusion: "pass"`、`unresolved: []`）。本地在有 GitHub CLI 和已授权仓库身份的工作树中运行：
+PR 正文必须有一行 `Depends-on: none` 或 `Depends-on: #123, #456`；所列外部前置 PR 必须已确认合并；本次已纳入的工作按上文来源清单记录。先由独立 Agent 复审并形成符合现有 `verify:delivery` 字段的 JSON（`reviewId`、`reviewedHeadSha`、`reviewedBaseSha`、`conclusion: "pass"`、`unresolved: []`）。本地在有 GitHub CLI 和已授权仓库身份的工作树中运行：
 
 ```bash
 npm run merge:auto -- <PR> <independent-review.json> --dry-run
