@@ -15,7 +15,7 @@ local function acquired(id,up)
  assert(card);s.hand[#s.hand+1]=card;s.enemies[1].hp=100;s.enemies[1].block=0
  eq(card.upgraded,up);eq(card.deckUid,uid);return r,card
 end
-eq(#B.definitions(),8);eq(#B.additionalDefinitions(),6)
+eq(#B.definitions(),8);eq(#B.additionalDefinitions(),8)
 local defs=B.additionalDefinitions()
 same(defs[3].effects,{{op='loseHp',value=2},{op='xiaoCard',kind='maskCommit',value=1,requiresAlive=true},{op='block',value=8}})
 same(defs[3].upgrade.effects,{{op='loseHp',value=2},{op='xiaoCard',kind='maskCommit',value=1,requiresAlive=true},{op='block',value=11}})
