@@ -83,3 +83,24 @@ test('enumerate 252 opening hands: 70 carryover choice opportunities, not victor
   choose(0,[]);
   assert.equal(count,252); assert.equal(opportunity,70);
 });
+test('all-dead setup is rejected; corrupt numeric public inputs cannot bypass payment', () => {
+  assert.throws(()=>createBattle({enemies:[{hp:0,block:0,intent:8}]}),/live/);
+  for(const value of [NaN,Infinity,-1,0.5]) {
+    const state=createBattle({order});
+    state.energy=value;
+    const snapshot=structuredClone(state);
+    assert.throws(()=>useCard(state,'starter-7',0),/numeric/);
+    assert.deepEqual(state,snapshot);
+    assert.throws(()=>finishTurn(state),/numeric/);
+  }
+  const state=createBattle({order}); state.enemies[0].intent=NaN;
+  const snapshot=structuredClone(state);
+  assert.throws(()=>finishTurn(state),/enemy/);
+  assert.deepEqual(state,snapshot);
+});
+test('invalid zones and expired wedge are rejected before transitions', () => {
+  const state=createBattle({order}); state.hand[0].instance=state.hand[1].instance;
+  assert.throws(()=>finishTurn(state),/instances/);
+  const expired=createBattle({order}); expired.wedgeUntil=0;
+  assert.throws(()=>useCard(expired,'starter-7',0),/wedge/);
+});

@@ -1,4 +1,4 @@
-import { initial, play, endTurn, nextTurn } from './mechanics.mjs';
+import { cards, initial, play, endTurn, nextTurn } from './mechanics.mjs';
 
 export const starterRelic = Object.freeze({
   id: 'KQR001', name: '待命名·KQR001', status: 'HOLD',
@@ -33,6 +33,7 @@ function draw(state, count) {
 export function createBattle({ seed = 1, enemies = [{ hp: 50, block: 0, intent: 8 }], relic = true, order = null } = {}) {
   if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('invalid seed');
   if (typeof relic !== 'boolean') throw new Error('invalid relic flag');
+  if (!Array.isArray(enemies) || !enemies.some(e => e.hp > 0)) throw new Error('no live enemies');
   if (enemies.some(e => !Number.isInteger(e.intent) || e.intent < 0)) throw new Error('invalid intent');
   const deck = starterIds.map((id, i) => ({ instance: `starter-${i}`, id, upgraded: false }));
   if (order && (order.length !== 10 || new Set(order).size !== 10 || order.some(n => !Number.isInteger(n) || n < 0 || n > 9))) throw new Error('invalid order');
@@ -41,7 +42,19 @@ export function createBattle({ seed = 1, enemies = [{ hp: 50, block: 0, intent: 
   draw(state, 5);
   return state;
 }
+function validateBattle(state) {
+  const natural = value => Number.isSafeInteger(value) && value >= 0;
+  if (!['hp','maxHp','energy','block','turn','infusion','rng'].every(key => natural(state[key])) || state.turn < 1 || state.maxHp < 1 || state.hp > state.maxHp || state.energy > 3 || state.infusion > 2 || state.rng > 0xffffffff) throw new Error('invalid numeric state');
+  if (state.wedgeUntil !== null && (!natural(state.wedgeUntil) || state.wedgeUntil < state.turn || state.wedgeUntil > state.turn + 1)) throw new Error('invalid wedge state');
+  if (typeof state.relicEnabled !== 'boolean' || typeof state.relicUsed !== 'boolean') throw new Error('invalid relic state');
+  if (!Array.isArray(state.enemies) || !state.enemies.length || state.enemies.some(e => !['hp','block','intent'].every(key => natural(e[key])))) throw new Error('invalid enemy state');
+  if (!['player','won','lost'].includes(state.phase) || (state.phase === 'player' && (!state.hp || state.enemies.every(e => !e.hp)))) throw new Error('invalid terminal state');
+  if (!['hand','draw','discard','log'].every(key => Array.isArray(state[key])) || state.hand.length > 10) throw new Error('invalid zones');
+  const instances = [...state.hand,...state.draw,...state.discard];
+  if (instances.length !== 10 || new Set(instances.map(c => c.instance)).size !== 10 || instances.some(c => !cards[c.id] || typeof c.instance !== 'string' || typeof c.upgraded !== 'boolean')) throw new Error('invalid instances');
+}
 export function useCard(input, instance, target, options = {}) {
+  validateBattle(input);
   if (input.phase !== 'player') throw new Error('not player phase');
   const card = input.hand.find(c => c.instance === instance);
   const state = play(input, instance, target, options);
@@ -56,6 +69,7 @@ export function useCard(input, instance, target, options = {}) {
   return state;
 }
 export function finishTurn(input) {
+  validateBattle(input);
   if (input.phase !== 'player') throw new Error('not player phase');
   let state = endTurn(input);
   for (const enemy of state.enemies) {

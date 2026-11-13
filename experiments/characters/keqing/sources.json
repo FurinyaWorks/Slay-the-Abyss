@@ -1,5 +1,5 @@
 {
-  "version": "KQ-0.1",
+  "version": "KQ-0.2",
   "read_at": "2026-11-13",
   "status": "HOLD",
   "note": "Unverified source index; null fields intentionally block approval, not a passed naming validator. CandidateName is research-only, not displayed.",
@@ -185,6 +185,47 @@
       "old_name": null,
       "change_reason": "new_candidate_no_approved_name",
       "status": "HOLD"
+    }
+  ],
+  "character_evidence": [
+    {
+      "tier": "P2",
+      "kind": "official_version_notice",
+      "url": "https://www.hoyolab.com/article/162350",
+      "version": "Genshin Impact 1.3 update notice; maintenance 2021-02-03",
+      "locator": "II. Rate-Boosted Characters / Driving Thunder Keqing / lines 87–92 (retrieved 2026-11-13)",
+      "short_anchor": "The Yuheng of the Liyue Qixing",
+      "verified_scope": [
+        "Electro",
+        "Sword",
+        "Yuheng identity",
+        "skeptical of unilateral divine policymaking"
+      ],
+      "not_verified": [
+        "Chinese card names",
+        "card effects",
+        "later plot identity"
+      ],
+      "verified": true
+    }
+  ],
+  "relics": [
+    {
+      "relic_id": "KQR001",
+      "name": "待命名·KQR001",
+      "decision_role": "首次雷楔启动的防守机会成本补偿",
+      "effect_ref": "battle.mjs#starterRelic.effect",
+      "status": "HOLD",
+      "source_text": null,
+      "source_locator": null,
+      "source_verified": false,
+      "candidate_mechanics": "本作原创机制，未声称原作有4格挡遗物",
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
     }
   ]
 }
