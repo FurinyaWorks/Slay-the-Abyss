@@ -4,7 +4,7 @@
 
 重新打开官方[1.3公告](https://www.hoyolab.com/article/162350)，73–82行及391行官方作者可读。只确认夜叉、长柄、空中突进、面具强化/失血主题，不由此认证任何新增卡名、数值或资源效果。官方[HoYoWiki魈](https://wiki.hoyolab.com/pc/genshin/entry/51)直接正文仍0行；检索摘要可见命座词句不能当逐字原文核验。查询 `site.hoyoverse.com 魈 风轮两立 靖妖傩舞`、`site.hoyolab.com Xiao Collected Miscellany Official` 没有得到本轮可核正文的新官方逐卡证据，不能把用户攻略在HoYoLAB域名上冒称官方。
 
-`evidence/source-ledger.json` 将75卡全部逐ID列出实际效果、锚点范围、未支持机制及优先级。不把共用面具锚点当75条完整来源。穿盾/夺盾、盾保留/加固、消耗引擎等列HIGH角色契合审查；目前所有specificMechanicVerified/nameVerified/humanApproved仍false。没有用“尚不可读”授权跳到原创命名，保留具体检索与否决债务。
+`evidence/source-ledger.json` 将75卡全部逐ID列出基础/升级实际效果分别列出且ops为两版并集、锚点范围、未支持机制及优先级。不把共用面具锚点当75条完整来源。穿盾/夺盾、盾保留/加固、消耗引擎等列HIGH角色契合审查；目前所有specificMechanicVerified/nameVerified/humanApproved仍false。没有用“尚不可读”授权跳到原创命名，保留具体检索与否决债务。
 
 ## STS1对照补强，但不冒充B0/B1完成
 

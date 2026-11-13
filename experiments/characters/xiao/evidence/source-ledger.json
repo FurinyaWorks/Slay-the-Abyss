@@ -147,7 +147,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage"
+      ],
+      "upgradeOps": [
+        "damage"
+      ]
     },
     {
       "id": "x02",
@@ -161,7 +167,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "block"
+      ],
+      "upgradeOps": [
+        "block"
+      ]
     },
     {
       "id": "x03",
@@ -175,7 +187,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage"
+      ],
+      "upgradeOps": [
+        "damage"
+      ]
     },
     {
       "id": "x04",
@@ -190,7 +208,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "loseHp",
+        "mask"
+      ],
+      "upgradeOps": [
+        "loseHp",
+        "mask"
+      ]
     },
     {
       "id": "x05",
@@ -204,7 +230,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "plunge"
+      ],
+      "upgradeOps": [
+        "plunge"
+      ]
     },
     {
       "id": "x06",
@@ -219,7 +251,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "mask",
+        "block"
+      ],
+      "upgradeOps": [
+        "mask",
+        "block"
+      ]
     },
     {
       "id": "x07",
@@ -234,7 +274,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage",
+        "block"
+      ],
+      "upgradeOps": [
+        "damage",
+        "block"
+      ]
     },
     {
       "id": "x08",
@@ -248,7 +296,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "draw"
+      ],
+      "upgradeOps": [
+        "draw"
+      ]
     },
     {
       "id": "x09",
@@ -263,7 +317,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "mask",
+        "draw"
+      ],
+      "upgradeOps": [
+        "mask",
+        "draw"
+      ]
     },
     {
       "id": "x10",
@@ -279,7 +341,17 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "loseHp",
+        "mask",
+        "block"
+      ],
+      "upgradeOps": [
+        "loseHp",
+        "mask",
+        "block"
+      ]
     },
     {
       "id": "x11",
@@ -294,7 +366,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage",
+        "mask"
+      ],
+      "upgradeOps": [
+        "damage",
+        "mask"
+      ]
     },
     {
       "id": "x12",
@@ -308,7 +388,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damageAll"
+      ],
+      "upgradeOps": [
+        "damageAll"
+      ]
     },
     {
       "id": "x13",
@@ -322,7 +408,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "maskBlock"
+      ],
+      "upgradeOps": [
+        "maskBlock"
+      ]
     },
     {
       "id": "x14",
@@ -336,7 +428,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "maskGuard"
+      ],
+      "upgradeOps": [
+        "maskGuard"
+      ]
     },
     {
       "id": "x15",
@@ -351,7 +449,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "breakBlock",
+        "damage"
+      ],
+      "upgradeOps": [
+        "breakBlock",
+        "damage"
+      ]
     },
     {
       "id": "x16",
@@ -366,7 +472,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "recoverExit",
+        "block"
+      ],
+      "upgradeOps": [
+        "recoverExit",
+        "block"
+      ]
     },
     {
       "id": "x17",
@@ -381,7 +495,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "loseHp",
+        "energy"
+      ],
+      "upgradeOps": [
+        "loseHp",
+        "energy"
+      ]
     },
     {
       "id": "x18",
@@ -396,7 +518,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damageAll",
+        "mask"
+      ],
+      "upgradeOps": [
+        "damageAll",
+        "mask"
+      ]
     },
     {
       "id": "x19",
@@ -410,7 +540,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "burnSkillsBlock"
+      ],
+      "upgradeOps": [
+        "burnSkillsBlock"
+      ]
     },
     {
       "id": "x20",
@@ -424,7 +560,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "unmaskedDraw"
+      ],
+      "upgradeOps": [
+        "unmaskedDraw"
+      ]
     },
     {
       "id": "x21",
@@ -438,7 +580,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "exhaustDamage"
+      ],
+      "upgradeOps": [
+        "exhaustDamage"
+      ]
     },
     {
       "id": "x22",
@@ -452,7 +600,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "exhaustBlock"
+      ],
+      "upgradeOps": [
+        "exhaustBlock"
+      ]
     },
     {
       "id": "x23",
@@ -466,7 +620,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "spendEnergyBlock"
+      ],
+      "upgradeOps": [
+        "spendEnergyBlock"
+      ]
     },
     {
       "id": "x24",
@@ -480,7 +640,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "discardAttacksDraw"
+      ],
+      "upgradeOps": [
+        "discardAttacksDraw"
+      ]
     },
     {
       "id": "x25",
@@ -494,7 +660,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "threatDamage"
+      ],
+      "upgradeOps": [
+        "threatDamage"
+      ]
     },
     {
       "id": "x26",
@@ -508,7 +680,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "quietDraw"
+      ],
+      "upgradeOps": [
+        "quietDraw"
+      ]
     },
     {
       "id": "x27",
@@ -523,7 +701,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "shortenMask",
+        "block"
+      ],
+      "upgradeOps": [
+        "shortenMask",
+        "block"
+      ]
     },
     {
       "id": "x28",
@@ -537,7 +723,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "lastMaskDamage"
+      ],
+      "upgradeOps": [
+        "lastMaskDamage"
+      ]
     },
     {
       "id": "x29",
@@ -551,7 +743,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "exitGuard"
+      ],
+      "upgradeOps": [
+        "exitGuard"
+      ]
     },
     {
       "id": "x30",
@@ -566,7 +764,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage",
+        "unmaskedDraw"
+      ],
+      "upgradeOps": [
+        "damage",
+        "unmaskedDraw"
+      ]
     },
     {
       "id": "x31",
@@ -581,7 +787,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage",
+        "suppress"
+      ],
+      "upgradeOps": [
+        "damage",
+        "suppress"
+      ]
     },
     {
       "id": "x32",
@@ -596,7 +810,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "block",
+        "coveredDraw"
+      ],
+      "upgradeOps": [
+        "block",
+        "coveredDraw"
+      ]
     },
     {
       "id": "x33",
@@ -610,7 +832,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "calmDraw"
+      ],
+      "upgradeOps": [
+        "calmDraw"
+      ]
     },
     {
       "id": "x34",
@@ -624,7 +852,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "exitEnergy"
+      ],
+      "upgradeOps": [
+        "exitEnergy"
+      ]
     },
     {
       "id": "x35",
@@ -638,7 +872,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damageHits"
+      ],
+      "upgradeOps": [
+        "damageHits"
+      ]
     },
     {
       "id": "x36",
@@ -652,7 +892,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "maskedAttackDraw"
+      ],
+      "upgradeOps": [
+        "maskedAttackDraw"
+      ]
     },
     {
       "id": "x37",
@@ -666,7 +912,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "blockDamage"
+      ],
+      "upgradeOps": [
+        "blockDamage"
+      ]
     },
     {
       "id": "x38",
@@ -680,7 +932,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "spendBlockDraw"
+      ],
+      "upgradeOps": [
+        "spendBlockDraw"
+      ]
     },
     {
       "id": "x39",
@@ -695,7 +953,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "topdeckAttack",
+        "block"
+      ],
+      "upgradeOps": [
+        "topdeckAttack",
+        "block"
+      ]
     },
     {
       "id": "x40",
@@ -709,7 +975,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "enemyCountBlock"
+      ],
+      "upgradeOps": [
+        "enemyCountBlock"
+      ]
     },
     {
       "id": "x41",
@@ -723,7 +995,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "sequenceDamage"
+      ],
+      "upgradeOps": [
+        "sequenceDamage"
+      ]
     },
     {
       "id": "x42",
@@ -737,7 +1015,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "beforeAttackBlock"
+      ],
+      "upgradeOps": [
+        "beforeAttackBlock"
+      ]
     },
     {
       "id": "x43",
@@ -752,7 +1036,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage",
+        "killDraw"
+      ],
+      "upgradeOps": [
+        "damage",
+        "killDraw"
+      ]
     },
     {
       "id": "x44",
@@ -766,7 +1058,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "HIGH",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "carryBlock"
+      ],
+      "upgradeOps": [
+        "carryBlock"
+      ]
     },
     {
       "id": "x45",
@@ -780,7 +1078,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "reserveEnergy"
+      ],
+      "upgradeOps": [
+        "reserveEnergy"
+      ]
     },
     {
       "id": "x46",
@@ -794,7 +1098,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damageGuard"
+      ],
+      "upgradeOps": [
+        "damageGuard"
+      ]
     },
     {
       "id": "x47",
@@ -808,7 +1118,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "HIGH",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "exhaustGuard"
+      ],
+      "upgradeOps": [
+        "exhaustGuard"
+      ]
     },
     {
       "id": "x48",
@@ -822,7 +1138,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "HIGH",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "burnTopDraw"
+      ],
+      "upgradeOps": [
+        "burnTopDraw"
+      ]
     },
     {
       "id": "x49",
@@ -836,7 +1158,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "refillHand"
+      ],
+      "upgradeOps": [
+        "refillHand"
+      ]
     },
     {
       "id": "x50",
@@ -850,7 +1178,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "emptyHandDamage"
+      ],
+      "upgradeOps": [
+        "emptyHandDamage"
+      ]
     },
     {
       "id": "x51",
@@ -865,7 +1199,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "loseHp",
+        "block"
+      ],
+      "upgradeOps": [
+        "loseHp",
+        "block"
+      ]
     },
     {
       "id": "x52",
@@ -879,7 +1221,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "missingHpDamage"
+      ],
+      "upgradeOps": [
+        "missingHpDamage"
+      ]
     },
     {
       "id": "x53",
@@ -893,7 +1241,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "entryGuard"
+      ],
+      "upgradeOps": [
+        "entryGuard"
+      ]
     },
     {
       "id": "x54",
@@ -909,7 +1263,17 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "loseHp",
+        "mask",
+        "damage"
+      ],
+      "upgradeOps": [
+        "loseHp",
+        "mask",
+        "damage"
+      ]
     },
     {
       "id": "x55",
@@ -924,7 +1288,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "mask",
+        "suppressAll"
+      ],
+      "upgradeOps": [
+        "mask",
+        "suppressAll"
+      ]
     },
     {
       "id": "x56",
@@ -939,7 +1311,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "extendMask",
+        "draw"
+      ],
+      "upgradeOps": [
+        "extendMask",
+        "draw"
+      ]
     },
     {
       "id": "x57",
@@ -954,7 +1334,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "maskBurstAll",
+        "mask"
+      ],
+      "upgradeOps": [
+        "maskBurstAll",
+        "mask"
+      ]
     },
     {
       "id": "x58",
@@ -968,7 +1356,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "reserveBlock"
+      ],
+      "upgradeOps": [
+        "reserveBlock"
+      ]
     },
     {
       "id": "x59",
@@ -982,7 +1376,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "harvestAll"
+      ],
+      "upgradeOps": [
+        "harvestAll"
+      ]
     },
     {
       "id": "x60",
@@ -996,7 +1396,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "calmAttackGuard"
+      ],
+      "upgradeOps": [
+        "calmAttackGuard"
+      ]
     },
     {
       "id": "x61",
@@ -1010,7 +1416,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "HIGH",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "pierceDamage"
+      ],
+      "upgradeOps": [
+        "pierceDamage"
+      ]
     },
     {
       "id": "x62",
@@ -1025,7 +1437,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "HIGH",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "stealBlock",
+        "draw"
+      ],
+      "upgradeOps": [
+        "stealBlock",
+        "draw"
+      ]
     },
     {
       "id": "x63",
@@ -1040,7 +1460,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage",
+        "shortenMask"
+      ],
+      "upgradeOps": [
+        "damage",
+        "shortenMask"
+      ]
     },
     {
       "id": "x64",
@@ -1054,7 +1482,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "stanceSupply"
+      ],
+      "upgradeOps": [
+        "stanceSupply"
+      ]
     },
     {
       "id": "x65",
@@ -1069,7 +1503,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "seekEntry",
+        "block"
+      ],
+      "upgradeOps": [
+        "seekEntry",
+        "block"
+      ]
     },
     {
       "id": "x66",
@@ -1084,7 +1526,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage",
+        "maskSuppress"
+      ],
+      "upgradeOps": [
+        "damage",
+        "maskSuppress"
+      ]
     },
     {
       "id": "x67",
@@ -1098,7 +1548,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "expiryEnergy"
+      ],
+      "upgradeOps": [
+        "expiryEnergy"
+      ]
     },
     {
       "id": "x68",
@@ -1112,7 +1568,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "spendBlockEnergy"
+      ],
+      "upgradeOps": [
+        "spendBlockEnergy"
+      ]
     },
     {
       "id": "x69",
@@ -1126,14 +1588,21 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "entryDraw"
+      ],
+      "upgradeOps": [
+        "entryDraw"
+      ]
     },
     {
       "id": "x70",
       "role": "退出整备再入场：回收公开弃牌中的入场牌",
       "ops": [
         "mask",
-        "recoverEntry"
+        "recoverEntry",
+        "draw"
       ],
       "officialAnchor": "official-v1.3-character",
       "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
@@ -1141,7 +1610,16 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "mask",
+        "recoverEntry"
+      ],
+      "upgradeOps": [
+        "mask",
+        "recoverEntry",
+        "draw"
+      ]
     },
     {
       "id": "x71",
@@ -1155,7 +1633,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "exitDraw"
+      ],
+      "upgradeOps": [
+        "exitDraw"
+      ]
     },
     {
       "id": "x72",
@@ -1170,7 +1654,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "damage",
+        "reserveBlock"
+      ],
+      "upgradeOps": [
+        "damage",
+        "reserveBlock"
+      ]
     },
     {
       "id": "x73",
@@ -1185,7 +1677,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "HIGH",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "fortifyBlock",
+        "mask"
+      ],
+      "upgradeOps": [
+        "fortifyBlock",
+        "mask"
+      ]
     },
     {
       "id": "x74",
@@ -1199,7 +1699,13 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "HIGH",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "burnFirstSkillDraw"
+      ],
+      "upgradeOps": [
+        "burnFirstSkillDraw"
+      ]
     },
     {
       "id": "x75",
@@ -1214,7 +1720,15 @@
       "nameVerified": false,
       "humanApproved": false,
       "reviewPriority": "OPEN",
-      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名",
+      "baseOps": [
+        "bankMaskBlock",
+        "mask"
+      ],
+      "upgradeOps": [
+        "bankMaskBlock",
+        "mask"
+      ]
     }
   ]
 }
