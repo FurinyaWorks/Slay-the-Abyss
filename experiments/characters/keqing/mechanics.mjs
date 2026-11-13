@@ -221,7 +221,19 @@ export function initial(hand, enemies) {
   if (!Array.isArray(enemies) || enemies.length === 0 || enemies.some(enemy => !Number.isInteger(enemy.hp) || enemy.hp < 0 || !Number.isInteger(enemy.block) || enemy.block < 0)) throw new Error('invalid enemies');
   return { turn: 1, energy: 3, block: 0, wedgeUntil: null, infusion: 0, hand: structuredClone(hand), discard: [], exhaust: [], enemies: structuredClone(enemies) };
 }
-export function play(input, instance, target, { cancel = false, drawCards, retain = [], move = null, choose, purge = [] } = {}) {
+// Legacy synchronous API and paid continuation share one effect interpreter.
+export function play(input, instance, target, options = {}) {
+  if (!options.cancel) {
+    const item=input.hand.find(c=>c.instance===instance);
+    const effects=cards[item?.id]?.effects[item?.upgraded?'upgraded':'base']??[];
+    if(effects.some(e=>e.op==='chooseDiscard'||e.op==='inspect') && typeof options.choose!=='function')throw new Error('choice resolver required');
+  }
+  const steps=playSteps(input,instance,target,options);
+  let step=steps.next();
+  while(!step.done)step=steps.next(options.choose(structuredClone(step.value.options)));
+  return step.value;
+}
+export function* playSteps(input, instance, target, { cancel = false, drawCards, retain = [], move = null, purge = [] } = {}) {
   if (cancel) return structuredClone(input);
   const index = input.hand.findIndex(item => item.instance === instance);
   if (index < 0) throw new Error('card not in hand');
@@ -239,7 +251,6 @@ export function play(input, instance, target, { cancel = false, drawCards, retai
   if ((effects.some(e=>e.op==='draw'||e.op==='recycleBottom'||e.op==='moveCard'||e.op==='inspect'||e.op==='purgeStatus') || (card.exhaust && input.powers?.exhaustDraw && !input.exhaustPowerUsed)) && typeof drawCards !== 'function') throw new Error('hidden draw requires battle resolver; visible preview unsupported');
   const purging=effects.find(e=>e.op==='purgeStatus');
   if(!Array.isArray(purge)||new Set(purge).size!==purge.length||purge.length>(purging?.count??0)||purge.some(key=>!input.hand.some(c=>c.instance===key&&cardDefinitions[c.id].type==='status')))throw new Error('invalid status choice');
-  if(effects.some(e=>e.op==='chooseDiscard'||e.op==='inspect') && typeof choose!=='function')throw new Error('choice resolver required');
   const moving=effects.find(e=>e.op==='moveCard'||e.op==='inspect'||e.op==='purgeStatus');
   if (moving) {
     const chosen=input[moving.from]?.find(c=>c.instance===move && c.instance!==instance);
@@ -276,7 +287,7 @@ export function play(input, instance, target, { cancel = false, drawCards, retai
     switch (effect.op) {
       case 'chooseDiscard': {
         if(!state.hand.length)break;
-        const key=choose(structuredClone(state.hand));
+        const key=yield {kind:'discard',state:structuredClone(state),inUse:structuredClone(resolved),options:structuredClone(state.hand)};
         const i=state.hand.findIndex(c=>c.instance===key);
         if(i<0)throw new Error('invalid revealed choice');
         const [chosen]=state.hand.splice(i,1);delete chosen.retainOnce;state.discard.push(chosen);break;
@@ -284,7 +295,7 @@ export function play(input, instance, target, { cancel = false, drawCards, retai
       case 'inspect': {
         if(state.drawLocked||state.hand.length>=10||!state.draw.length)break;
         const options=state.draw.slice(0,effect.count);
-        const key=choose(structuredClone(options));
+        const key=yield {kind:'inspect',state:structuredClone(state),inUse:structuredClone(resolved),options:structuredClone(options)};
         const i=options.findIndex(c=>c.instance===key);
         if(i<0)throw new Error('invalid revealed choice');
         state.hand.push(state.draw.splice(i,1)[0]);break;

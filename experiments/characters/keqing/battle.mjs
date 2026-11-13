@@ -1,4 +1,4 @@
-import { cards, cardDefinitions, initial, play, endTurn, nextTurn } from './mechanics.mjs';
+import { cards, cardDefinitions, initial, play, playSteps, endTurn, nextTurn } from './mechanics.mjs';
 
 export const starterRelic = Object.freeze({
   id: 'KQR001', name: '待命名·KQR001', status: 'HOLD',
@@ -78,6 +78,9 @@ function resolveAction(input, instance, target, options = {}) {
   if (input.phase !== 'player') throw new Error('not player phase');
   const state = play(input, instance, target, {...options, drawCards:Array.isArray(input.draw)?draw:undefined});
   if (options.cancel) return state;
+  return completeAction(input,state);
+}
+function completeAction(input,state) {
   const setup = input.wedgeUntil === null && state.wedgeUntil !== null;
   if (setup && state.relicEnabled && !state.relicUsed) {
     state.block += starterRelic.effect.amount;
@@ -127,3 +130,35 @@ export function playerView(state) {
 
 // Explicit research event adapter; no hidden enemy AI or official runtime claim.
 export function applyCondition(input,kind,stacks){validateBattle(input);if(input.phase!=='player'||!['weak','vulnerable'].includes(kind)||!Number.isSafeInteger(stacks)||stacks<1||stacks>99)throw new Error('invalid condition event');const state=structuredClone(input);if(kind==='vulnerable'&&state.preventVulnerable){delete state.preventVulnerable;return state;}state[kind]=Math.min(99,(state[kind]??0)+stacks);return state;}
+
+// In-memory research session: continuation stays private, never serialized or replayed.
+export function createChoiceSession(initialState) {
+  validateBattle(initialState);
+  let state=structuredClone(initialState), revision=0, pending=null, failed=false;
+  const check=rev=>{if(rev!==revision)throw new Error('stale revision');if(failed)throw new Error('session faulted');};
+  function view(){return structuredClone({revision,...playerView(pending?.state??state),
+    phase:failed?'faulted':pending?'choice':state.phase,
+    pending:pending?{token:pending.token,kind:pending.kind,inUse:pending.inUse,options:pending.options}:null});}
+  function accept(step,steps,input){
+    if(step.done){const next=completeAction(input,step.value);validateBattle(next);state=next;pending=null;}
+    else pending={...step.value,steps,input,token:`choice-${revision+1}`};
+    revision++;return view();
+  }
+  return Object.freeze({view,
+    begin(rev,instance,target,options={}){
+      check(rev);if(pending)throw new Error('choice pending');
+      if(state.phase!=='player')throw new Error('not player phase');
+      if(!options||typeof options!=='object'||Array.isArray(options)||Object.keys(options).some(k=>!['retain','move','purge'].includes(k)))throw new Error('invalid options');
+      const input=structuredClone(state), steps=playSteps(input,instance,target,{...structuredClone(options),drawCards:draw});
+      return accept(steps.next(),steps,input);
+    },
+    resume(rev,token,instance){
+      check(rev);if(!pending||token!==pending.token)throw new Error('invalid choice token');
+      if(typeof instance!=='string'||!pending.options.some(c=>c.instance===instance))throw new Error('invalid revealed choice');
+      const current=pending;
+      try{return accept(current.steps.next(instance),current.steps,current.input);}
+      catch(error){failed=true;revision++;throw error;} // never refund/replay an already revealed payment
+    },
+    end(rev){check(rev);if(pending)throw new Error('choice pending');const next=finishTurn(state);validateBattle(next);state=next;revision++;return view();}
+  });
+}
