@@ -30,15 +30,16 @@ function draw(state, count) {
     state.hand.push(state.draw.shift());
   }
 }
-export function createBattle({ seed = 1, enemies = [{ hp: 50, block: 0, intent: 8 }], relic = true, order = null } = {}) {
+export function createBattle({ seed = 1, enemies = [{ hp: 50, block: 0, intent: 8 }], relic = true, order = null, deckIds = starterIds } = {}) {
   if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('invalid seed');
   if (typeof relic !== 'boolean') throw new Error('invalid relic flag');
   if (!Array.isArray(enemies) || !enemies.some(e => e.hp > 0)) throw new Error('no live enemies');
   if (enemies.some(e => !Number.isInteger(e.intent) || e.intent < 0)) throw new Error('invalid intent');
-  const deck = starterIds.map((id, i) => ({ instance: `starter-${i}`, id, upgraded: false }));
-  if (order && (order.length !== 10 || new Set(order).size !== 10 || order.some(n => !Number.isInteger(n) || n < 0 || n > 9))) throw new Error('invalid order');
+  if (!Array.isArray(deckIds) || deckIds.length < 10 || deckIds.length > 75 || deckIds.some(id => typeof id !== 'string' || !Object.hasOwn(cards,id))) throw new Error('invalid deck');
+  const deck = deckIds.map((id, i) => ({ instance: `starter-${i}`, id, upgraded: false }));
+  if (order && (order.length !== deck.length || new Set(order).size !== deck.length || order.some(n => !Number.isInteger(n) || n < 0 || n >= deck.length))) throw new Error('invalid order');
   const shuffled = shuffle(deck, seed);
-  const state = { ...initial([], enemies), hp: 60, maxHp: 60, phase: 'player', draw: order ? order.map(i => deck[i]) : shuffled.cards, rng: shuffled.seed, relicEnabled: relic, relicUsed: false, log: [] };
+  const state = { ...initial([], enemies), hp: 60, maxHp: 60, phase: 'player', deckSize: deck.length, draw: order ? order.map(i => deck[i]) : shuffled.cards, rng: shuffled.seed, relicEnabled: relic, relicUsed: false, log: [] };
   draw(state, 5);
   return state;
 }
@@ -51,7 +52,7 @@ function validateBattle(state) {
   if (!['player','won','lost'].includes(state.phase) || (state.phase === 'player' && (!state.hp || state.enemies.every(e => !e.hp)))) throw new Error('invalid terminal state');
   if (!['hand','draw','discard','log'].every(key => Array.isArray(state[key])) || state.hand.length > 10) throw new Error('invalid zones');
   const instances = [...state.hand,...state.draw,...state.discard];
-  if (instances.length !== 10 || new Set(instances.map(c => c.instance)).size !== 10 || instances.some(c => !cards[c.id] || typeof c.instance !== 'string' || typeof c.upgraded !== 'boolean')) throw new Error('invalid instances');
+  if (!Number.isSafeInteger(state.deckSize) || state.deckSize < 10 || state.deckSize > 75 || instances.length !== state.deckSize || new Set(instances.map(c => c.instance)).size !== state.deckSize || instances.some(c => !Object.hasOwn(cards,c.id) || typeof c.instance !== 'string' || typeof c.upgraded !== 'boolean')) throw new Error('invalid instances');
 }
 function resolveAction(input, instance, target, options = {}) {
   if (input.phase !== 'player') throw new Error('not player phase');
