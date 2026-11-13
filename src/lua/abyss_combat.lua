@@ -725,6 +725,7 @@ local function playEnergy(state,card)
 end
 
 local cardTargetOps={
+    keqingConditional=true,
     damage=true,damageEqualToBlock=true,applyStatus=true,multiplyPoison=true,
     barrageDamage=true,ftlDamage=true,bowlingBash=true,spotWeakness=true,
     heelHook=true,fiendFire=true,sunderDamage=true,removeBlock=true,

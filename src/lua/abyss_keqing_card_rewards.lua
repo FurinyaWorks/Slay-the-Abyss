@@ -9,7 +9,8 @@ local function same(a,b)
  return true
 end
 function M.prepare(run,api)
- local support=run.candidateRewardPool=='keqing-reviewed-ten-v1'
+ local conditional=run.candidateRewardPool=='keqing-reviewed-thirteen-v1'
+ local support=run.candidateRewardPool=='keqing-reviewed-ten-v1'or conditional
  assert(run.candidateRewardPool=='keqing-reviewed-eight-v1'or support,'unknown candidate reward domain')
  local context=require('abyss_run_candidate').forCombat(run)
  assert(context and context.kind=='keqing','candidate reward context unavailable')
@@ -18,12 +19,13 @@ function M.prepare(run,api)
  local pool={};local seen={}
  local sources=require('abyss_keqing_native_eight').definitions().cards
  if support then for _,c in ipairs(require('abyss_keqing_native_support').definitions().cards)do sources[#sources+1]=c end end
+ if conditional then for _,c in ipairs(require('abyss_keqing_conditional_attacks').definitions().cards)do sources[#sources+1]=c end end
  for _,source in ipairs(sources)do
   assert(source.rarity=='special'and not seen[source.id],'invalid candidate source')
   assert(same(actual[source.id],source),'candidate reward definition drift')
   seen[source.id]=true;pool[#pool+1]=source.id
  end
- assert(#pool==(support and 10 or 8),'invalid reviewed candidate catalog')
+ assert(#pool==(conditional and 13 or support and 10 or 8),'invalid reviewed candidate catalog')
  local rng=R.cloneState(run.cardRng);local count=api.rewardCount(run)
  assert(type(count)=='number'and count>=0 and count%1==0 and count<=100,'invalid candidate reward count')
  local ids={}

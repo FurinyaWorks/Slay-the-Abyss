@@ -735,3 +735,37 @@ offers, no cross-rarity fallback, explicit zero-offer/Prismatic failure, full
 source comparison, and unchanged formal reward/shop pools. New cards are not
 in the old 35 domain. Explicit Lua acquisition is not formal UI/class registration,
 full 75-card coverage, natural-run balance or device acceptance.
+
+## KQ008/018/025 strict conditional paid stages
+
+`abyss_keqing_conditional_attacks.definitions()` projects candidate 89d898c into
+three exact `keqingConditional` carriers. 008/018 cost 1, 025 cost 2, all single
+target attacks without exhaust. 008 selects damage 5/8 or upgraded 8/11 from the
+wedge **when its stage executes**, without consuming/refreshing the wedge. 018
+hits twice for 4/5, then grants ordinary block 3/4 only for entry infusion zero.
+025 hits for 10/13, then another 7/9 only for entry infusion positive. The entry
+infusion bonus +2 applies to every native hit, and the existing UseCard completes
+one whole-card infusion use. These are not post-return wrappers.
+
+Each stage carries immutable UID/turn/play ordinal/cursor, original target ID,
+and snapshotted normal damage or normal block payload. 008 captures both native
+modifier results at use time but chooses the branch from live wedge state; 018
+and 025 capture the entry-infusion branch. This distinction is deliberate and
+not a claim that the original JS models arbitrary modifier/reaction timing.
+Native hits remain separate queued actions; dead targets do not redirect and
+native reaction death stops the remaining custom stages and UseCard completion.
+Last-enemy victory skips later custom stages but retains native UseCard, as in
+the earlier host slices. These terminal differences remain design HOLD.
+
+The new closed `abyss_keqing_conditional_reward_run.new(Data,seed)` has a separate
+`keqing-reviewed-thirteen-v1` equal-weight special research domain. The old eight
+and ten domains are unchanged. Three definitions keep source pending/HOLD rather
+than inventing formal common/uncommon/rare. Existing finite unique sampling,
+short offers, zero/Prismatic rejection, whole-source drift checks and whole-Run
+settlement rollback are reused. Tests separately cover 72 public matrix cases,
+6 Scry live/entry variations with alias rollback, native reaction/victory behavior,
+21 automatic gates, six real obtain-to-natural-draw Run acquisitions, and eight
+controlled-victory actual generated-offer claim-to-next-Run.play chains. Generated
+cases use hand placement and energy fixtures after claiming, and do not establish
+all-thirteen natural acquisition or balance. Formal menus, pools and device
+acceptance remain unchanged/HOLD.

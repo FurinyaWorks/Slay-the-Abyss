@@ -22,6 +22,8 @@
     "abyss_ganyu_paid_cards": "core",
     "abyss_ganyu_native_cards": "core",
     "abyss_keqing_native_support": "core",
+    "abyss_keqing_conditional_attacks": "core",
+    "abyss_keqing_conditional_reward_run": "core",
     "abyss_keqing_support_reward_run": "core",
     "abyss_keqing_native_eight": "core",
     "abyss_keqing_reward_run": "core",
