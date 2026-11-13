@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.17.0",
+  "version": "ganyu-sample-0.18.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -1728,6 +1728,121 @@
         ]
       },
       "source_ref": "ganyu-49",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-50",
+      "name": "待命名·ganyu-50",
+      "candidate_name": null,
+      "role": "降低绽放强度换结算后过牌",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 4,
+            "bloom": 4
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 6,
+            "bloom": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-50",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-51",
+      "name": "待命名·ganyu-51",
+      "candidate_name": null,
+      "role": "一次性较高单体加绽放兑现",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 8,
+            "bloom": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 11,
+            "bloom": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-51",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-52",
+      "name": "待命名·ganyu-52",
+      "candidate_name": null,
+      "role": "支付两费防守兼提前一次雨场",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 10
+          },
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 14
+          },
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "source_ref": "ganyu-52",
       "review": {
         "status": "HOLD",
         "human_approved": false,
