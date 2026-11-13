@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Zhongli fourteen resource reward provider and actual Run generation',()=>{buildLuaData();for(const file of ['zhongli-resource-rewards.test.lua','zhongli-resource-reward-run.test.lua']){const r=runLua('experiments/characters/lifecycle/'+file,{timeout:120000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);}});

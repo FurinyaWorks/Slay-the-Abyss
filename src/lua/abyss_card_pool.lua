@@ -42,6 +42,7 @@ function M.rarity(roll,offset,tier,relics)
     return adjusted<rare and 'rare' or adjusted<uncommon and 'uncommon' or 'common'
 end
 function M.prepareRewards(run)
+    if run.candidateRewardPool=='zhongli-reviewed-common-fourteen-v1'then return require('abyss_zhongli_card_rewards').prepare(run,M)end
     if run.candidateRewardPool=='keqing-reviewed-eight-v1'or run.candidateRewardPool=='keqing-reviewed-ten-v1'or run.candidateRewardPool=='keqing-reviewed-thirteen-v1'then return require('abyss_keqing_card_rewards').prepare(run,M)end
     if run.candidateRewardPool~=nil then return require('abyss_candidate_card_rewards').prepare(run,M)end
     local rng=R.cloneState(run.cardRng)
