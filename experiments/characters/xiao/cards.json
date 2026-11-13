@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.28",
+  "version": "xiao-g2-lab-0.29",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1969,6 +1969,76 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x65",
+      "name": "待命名·x65",
+      "role": "寻入场：从抽堆取首张入场牌而非任意抽",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "seekEntry",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 3
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "seekEntry",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 6
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x66",
+      "name": "待命名·x66",
+      "role": "窗口压制：攻击后按剩余面具时长减压",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 5
+        },
+        {
+          "op": "maskSuppress",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 7
+        },
+        {
+          "op": "maskSuppress",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -2043,7 +2113,9 @@
     "x61",
     "x62",
     "x63",
-    "x64"
+    "x64",
+    "x65",
+    "x66"
   ],
   "maskRules": {
     "attackBonus": 4,

@@ -43,6 +43,10 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'seekEntry') {
+    if(s.hand.length<10){const i=s.draw.findIndex(id=>byId.get(id)?.base.some(e=>e.op==='mask'&&e.value>0));if(i>=0)s.hand.push(s.draw.splice(i,1)[0]);}
+  }
+  else if (op === 'maskSuppress') { if(s.mask>0&&s.enemies[target].hp>0){currentIntent(s,s.enemies[target]);s.enemies[target].suppression=(s.enemies[target].suppression??0)+s.mask*value;} }
   else if (op === 'stanceSupply') { if(s.mask>0)drawCards(s,value);else s.block+=effect.block; }
   else if (op === 'pierceDamage') { const enemy=s.enemies[target];enemy.hp=Math.max(0,enemy.hp-value-(s.mask>0?catalog.maskRules.attackBonus:0)); }
   else if (op === 'stealBlock') { const enemy=s.enemies[target],taken=Math.min(value,enemy.block);enemy.block-=taken;s.block+=taken; }
@@ -131,7 +135,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'pierceDamage' || e.op === 'stealBlock' || e.op === 'missingHpDamage' || e.op === 'emptyHandDamage' || e.op === 'damageGuard' || e.op === 'killDraw' || e.op === 'sequenceDamage' || e.op === 'blockDamage' || e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'maskSuppress' || e.op === 'pierceDamage' || e.op === 'stealBlock' || e.op === 'missingHpDamage' || e.op === 'emptyHandDamage' || e.op === 'damageGuard' || e.op === 'killDraw' || e.op === 'sequenceDamage' || e.op === 'blockDamage' || e.op === 'damageHits' || e.op === 'suppress' || e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -172,6 +176,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits, step, block}) => ({
+    seekEntry: `从抽牌堆按现有顺序将首张含进入面具效果的牌移入手中；不洗弃牌堆、不复制，手限10，无则略过。`,
+    maskSuppress: `若仍戴面具且目标存活，目标本回合意图伤害降低剩余面具回合数×${value}（最低0）；不缩短面具，下个玩家回合清除。`,
     stanceSupply: `若当前戴面具，抽${value}张（手牌上限10）；否则获得${block}点格挡。两者只结算一种。`,
     pierceDamage: `造成${value}点无视目标格挡的伤害（面具另加${catalog.maskRules.attackBonus}）；不移除格挡，仍算攻击，不是支付生命。`,
     stealBlock: `将目标至多${value}点现有格挡转为自己的格挡，无格挡则获得0；不造成伤害。`,
