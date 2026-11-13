@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.22.0",
+  "version": "ganyu-sample-0.23.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -2316,6 +2316,124 @@
         "human_approved": false,
         "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       }
+    },
+    {
+      "id": "ganyu-65",
+      "name": "待命名·ganyu-65",
+      "candidate_name": null,
+      "role": "保留两费集中防守等待爆发",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 10
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 14
+          }
+        ]
+      },
+      "source_ref": "ganyu-65",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-66",
+      "name": "待命名·ganyu-66",
+      "candidate_name": null,
+      "role": "两费满蓄单段兑付兼轮转",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "bonus": 10,
+            "direct": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "bonus": 14,
+            "direct": 8
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-66",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-67",
+      "name": "待命名·ganyu-67",
+      "candidate_name": null,
+      "role": "一次单体点杀并建立短雨场",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 3
+          },
+          {
+            "op": "storm",
+            "amount": 2,
+            "turns": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 5
+          },
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-67",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
     }
   ],
   "environment": {
