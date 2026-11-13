@@ -1,0 +1,4 @@
+PASS real native reserved energy once after host refill; next turn cannot pay reserve again
+PASS exact native energy boundary accepted; overflow false flags and stale turn reject before mutation
+PASS dead player receives nothing and actual host Snapshot restores reserve marker and energy for retry
+PASS actual owner-end expiry reserve flows into separate next-turn native payout; host hooks remain unregistered

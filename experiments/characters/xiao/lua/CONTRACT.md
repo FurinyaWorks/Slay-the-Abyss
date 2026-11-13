@@ -178,3 +178,17 @@ paid context and do NOT prove two paid card uses, legal deck accessibility, or
 UseCard/exhaust lifecycle. In particular the recovered exit is not free-played.
 The public x02/x06 script remains pending host gate expansion; no shared code or
 formal registration is changed by these tests.
+
+### Isolated reserved-energy turn-start executor
+`abyss_xiao_turn_start.apply(combat,state,effect)` accepts only xiaoStartEnergy
+with the current turn identity. Host must invoke after base energy refill and
+before normal draw, inside its full start-turn command Snapshot. It validates
+state and exact native integer output first, marks the current turn, clears the
+reserve and calls native energy. A duplicate same-turn invocation rejects;
+next-turn invocation cannot re-pay the cleared reserve. Dead players get nothing.
+Four targeted tests include actual owner-end expiry→reserve→next-turn payout,
+strict false/stale/overflow rejection, and rollback restoring energy, reserve,
+marker and original resource reference. The sequence calls isolated adapters
+explicitly and models host refill; public endTurn/startPlayerTurn is NOT hooked
+or certified. Other start-turn Powers/relic ordering remains the shared owner's
+responsibility. No card value, shared registration or official gate changed.
