@@ -1,0 +1,3 @@
+PASS x35 base/up two native hits each receive mask bonus with sequential armor
+PASS first-hit kill cannot redirect remaining native hit to another enemy
+PASS malformed hit count pre-reject and real snapshot restores both damage events

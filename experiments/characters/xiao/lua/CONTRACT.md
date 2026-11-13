@@ -109,3 +109,7 @@ exit_dispatch_test三探针覆盖基础/升级盾、2→1→0、空退出/自然
 spendEnergyBlock读取真正当前energy，安全乘积前验后清0并排原生block；固定0费卡不是通用X费实现。spendBlockDraw按实际盾取整/封顶后清全部盾（包括余数/超额），再真实draw，空库也失去盾。spend_dispatch_test三探针涵盖基升零值/阈值/封顶/空库、假数值与乘积溢出预拒、花费和抽牌后故障的宿主Snapshot恢复。此前23条effect探针回归通过。普通block仍使用宿主修正，未确认正式数值平衡；不改shared gate/付款。
 
 新增明确负例：宿主blockFloat会对基础0也加Dexterity，x23零能量+Dex2实际获2盾（JS零能量0盾）。第四探针保存此语义差异；不得称零资源无收益/数值一致，不擅把原生block改fixed或跳过事件以隐藏差异。正式设计确认前仍HOLD（同类基础0的block效果须统一审查）。
+
+## 独立可执行扩展：x35原生两击
+
+damageHits将每击面具基础加成及times=2传给原生damage，不复制卡完成事件、不改paid UID/稳定目标；两击各自护甲处理，首击击杀不转移到其他敌人。hits_dispatch_test三探针验证基升/面具/序贯护甲、首击死亡不换目标、非法hits与真实Snapshot还原两击事件。只覆盖效果解释器内两击，正式shared队列逐击暂停/反击/UseCard和按卡一次能力触发尚未宣称验收；原首8十探针回归通过。未扩大公共gate。
