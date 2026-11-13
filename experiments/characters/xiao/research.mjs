@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { catalog } from './model.mjs';
 import { newBattle, battlePlay, advance, outcome, intent } from './battle.mjs';
 export function observe(s) {
-  return { hp:s.hp, energy:s.energy, block:s.block, mask:s.mask,
+  return { hp:s.hp,attacksPlayed:s.attacksPlayed, energy:s.energy, block:s.block, mask:s.mask,
     hand:[...s.hand], exhaustedCount:s.exhaust.length, exitInDiscard:s.discard.some(id=>catalog.cards.find(c=>c.id===id)?.base.some(e=>(e.op==='mask'&&e.value===0)||e.op==='exitEnergy')), enemies:s.enemies.map(e=>({hp:e.hp,block:e.block,intent:intent(s,e)})) };
 }
 export function choose(view, policy) {
@@ -19,8 +19,9 @@ export function choose(view, policy) {
     let score=-Infinity;
     if(id==='x06'&&view.mask>0)score=view.hp<=2?1000:(policy==='guard'&&incoming>view.block?30:-10);
     if(card.kind==='attack'){
-      let damage=card.base.find(e=>e.op==='blockDamage'||e.op==='damageHits'||e.op==='lastMaskDamage'||e.op==='threatDamage'||e.op==='exhaustDamage'||e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
+      let damage=card.base.find(e=>e.op==='sequenceDamage'||e.op==='blockDamage'||e.op==='damageHits'||e.op==='lastMaskDamage'||e.op==='threatDamage'||e.op==='exhaustDamage'||e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
       if(id==='x35')damage*=2;
+      if(id==='x41')damage+=Math.min(3,view.attacksPlayed??0)*3;
       if(id==='x37')damage=Math.min(14,view.block)+(view.mask?catalog.maskRules.attackBonus:0);
       if(id==='x28'&&view.mask===1)damage+=10;
       if(id==='x25'&&target.intent>0)damage+=4;

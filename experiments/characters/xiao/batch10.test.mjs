@@ -33,7 +33,7 @@ test('post-shortening fault and final-strike invalid target reject atomically',(
 });
 test('timing and rotation cards can be acquired after real win and drawn/played next battle',async()=>{
  const {newCampaign,campaignAction}=await import('./campaign.mjs');const {observe,choose}=await import('./research.mjs');
- for(const id of ['x27','x28','x29','x30','x31','x32','x33','x34','x35','x36','x37','x38','x39','x40']){
+ for(const id of ['x27','x28','x29','x30','x31','x32','x33','x34','x35','x36','x37','x38','x39','x40','x41','x42']){
   let c;
   for(let seed=1;seed<=128;seed++){
    let candidate=newCampaign(seed);

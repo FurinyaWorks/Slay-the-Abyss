@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.16",
+  "version": "xiao-g2-lab-0.17",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1229,6 +1229,66 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x41",
+      "name": "待命名·x41",
+      "role": "连攻终结：按本回合此前打出的攻击张数加伤，至多3张",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "sequenceDamage",
+          "value": 3,
+          "bonus": 3,
+          "cap": 3
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "sequenceDamage",
+          "value": 5,
+          "bonus": 4,
+          "cap": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x42",
+      "name": "待命名·x42",
+      "role": "先守后攻：尚未打出攻击时追加防御",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "beforeAttackBlock",
+          "value": 4,
+          "bonus": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "beforeAttackBlock",
+          "value": 6,
+          "bonus": 6
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1279,7 +1339,9 @@
     "x37",
     "x38",
     "x39",
-    "x40"
+    "x40",
+    "x41",
+    "x42"
   ],
   "maskRules": {
     "attackBonus": 4,
