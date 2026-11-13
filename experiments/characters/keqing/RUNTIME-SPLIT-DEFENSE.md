@@ -1,0 +1,7 @@
+# KQ039 public native deferred defense (HOLD)
+
+Candidate block4/up6 then nextBlock4/up6 maps directly to existing block/nextBlock operations, skill cost1. No shared code or post-return wrapper. Host dataset MUST include the native next_turn_block status definition, as supplied by abyss_silent_attack_cards.withCardDefinitions. Exported definition alone against bare abyss_data is insufficient: the first actual test failed with next-turn block0, leading to explicit native catalog provisioning. This dependency is not silently claimed to exist in the formal character loader.
+
+Two tests pass: strict schema rejection; eight base/upgrade × normal/Dex10Frail × one/two actual C.play uses and two actual C.endTurn transitions. Current block4/6 or modified10/12 is granted and the same captured amount accumulates in next_turn_block; changing Dexterity to50 after play does not change the next-turn amount. Status is removed once, following turn has no residual shield. Seven unique card UIDs survive. Enemy uses real AI on durable999HP controls; this is timing evidence, not natural balance or player survival analysis.
+
+Native captured normal block differs from an unspecified dynamic modifier interpretation, so source/human/balance/gameplay gates remain HOLD. No formal character/reward registration, no UI or full-suite claim; no complex extra-turn/terminal/death/Power interactions certified here. Dataset dependency must be supplied explicitly before adopting this mapping.
