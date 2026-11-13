@@ -25,3 +25,11 @@ not a mutable working tree absolute path. Re-executed both starter PASS lines.
 New public_starter_plunge_test.lua actually runs against fbe58fb0 and stops at
 `x05 public gate not admitted`. Its later 2x2 version/mask target matrix has NOT
 executed; copied two-cultist encounter and upgraded deck flags are explicit fixtures.
+
+Source/runtime drift prevention: manifest now projects first-eight cost/type/exhaust
+and exact base/upgraded structured effects. Factory compares them with the shared
+Bridge canonical definitions before returning data, rejecting stale modules rather
+than stamping the current JSON digest onto an older behavior. Actual fbe58fb0 run
+now emits a third XIAO_STARTER_SOURCE_PASS: changed cost/base/upgraded effect and
+unknown starter ID reject without caller mutation. Trusted repository manifest is
+still not a signature/externally supplied manifest authentication scheme.

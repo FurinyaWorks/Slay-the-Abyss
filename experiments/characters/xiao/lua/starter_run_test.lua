@@ -16,3 +16,9 @@ assert(entry);s.hand[#s.hand+1]=entry;local n=#s.hand;local hp=s.player.hp
 assert(Run.play(run,entry.uid,1));eq(s.player.hp,hp-2);eq(#s.hand,n);eq(s.xiao.relicUsed,true)
 local after=s.player.hp;for _,e in ipairs(s.enemies)do C.damage(s,s.player,e,999,true)end;assert(Run.finishCombat(run));eq(run.hp,after)
 print('XIAO_STARTER_RELIC_PASS actual mask payment plus first-entry draw; victory has no inherited Burning Blood healing')
+local expected=dofile(directory..'abyss_xiao_starter_data.lua')
+for _,mutate in ipairs({function(m)m.cards[1].cost=2 end,function(m)m.cards[1].effects[1].value=99 end,function(m)m.cards[5].upgradedEffects[1].value=99 end,function(m)m.starter[1]='x75'end})do
+ local changed=C.copy(expected);mutate(changed);local original=C.copy(D)
+ assert(not pcall(F.prepare,D,changed));same(D,original)
+end
+print('XIAO_STARTER_SOURCE_PASS stale cost base upgraded effects and unknown starter rejected without source mutation')
