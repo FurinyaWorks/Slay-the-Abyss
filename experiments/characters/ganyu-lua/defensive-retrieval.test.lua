@@ -11,7 +11,7 @@ local function fresh(def,up,mode)
  local s=C.new(d,{deck=deck,enemies={'jaw_worm'},seed=41})
  local card=table.remove(s.hand,1);card.cardId=def.id;card.upgraded=up;s.cardInUse=card;s.pendingPlay={uid=card.uid,cardType='skill'}
  local target=s.draw[2];target.cardId=def.exhaust and'defend'or'ganyu_lab_03';target.upgraded=up
- if mode=='missing'then target.cardId='strike' elseif mode=='full'then C.draw(s,6)end
+ if mode=='missing'then target.cardId='strike' elseif mode=='full'then C.draw(s,6);target=s.draw[2];target.cardId=def.exhaust and'defend'or'ganyu_lab_03';target.upgraded=up end
  s.player.noDraw=true;s.player.statuses.dexterity=2
  s.player.statuses.feel_no_pain=3;s.exhaustPowerOrder={'feel_no_pain'}
  return s,card,target,C.cardDefinition(s,card)
@@ -32,7 +32,7 @@ for _,def in ipairs(defs)do for _,up in ipairs({false,true})do for _,mode in ipa
  local s,c,target,card=fresh(def,up,mode);local hand=#s.hand;local draw=#s.draw;local seed=s.seed
  assert(run(s,card));eq(s.player.block,(def.exhaust and 2 or up and 7 or 4)+2+(def.exhaust and 3 or 0))
  eq(#s.hand,hand+(mode=='normal'and 1 or 0));eq(#s.draw,draw-(mode=='normal'and 1 or 0));eq(s.seed,seed)
- if mode=='normal'then eq(s.hand[#s.hand],target);eq(target.upgraded,up)end
+ if mode=='normal'then eq(s.hand[#s.hand],target);eq(target.upgraded,up)elseif mode=='full'then eq(s.draw[2],target);eq(target.upgraded,up)end
  if def.exhaust then eq(s.exhaust[#s.exhaust],c);eq(s.cardInUse,nil)else eq(s.cardInUse,c)end
  count=count+1
 end
