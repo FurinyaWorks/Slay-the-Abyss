@@ -27,6 +27,7 @@ function M.prepare(state,uid)
 end
 function M.canUse(state,uid)
  local ok,result=pcall(M.prepare,state,uid)
- return ok,ok and nil or result
+ if ok then return true,nil end
+ return false,result
 end
 return M

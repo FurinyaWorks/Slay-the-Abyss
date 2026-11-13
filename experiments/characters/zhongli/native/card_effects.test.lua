@@ -26,7 +26,7 @@ print('six experimental Power proposal base/upgraded install endpoints: real Que
 
 local s=L.start(C.new(Data,{seed=42,deck={'strike'},enemies={'cultist'}}),'preflight',true)
 s.hand[1].cardId='zl21';s.hand[1].upgraded=true;local uid=s.hand[1].uid
-assert(E.canUse(s,uid));local p=E.prepare(s,uid);assert(p.uid==uid and p.upgraded and p.effects[1].value==4)
+local ok,reason=E.canUse(s,uid);assert(ok and reason==nil);local rejected,why=E.canUse(s,'absent');assert(not rejected and type(why)=='string');local p=E.prepare(s,uid);assert(p.uid==uid and p.upgraded and p.effects[1].value==4)
 p.effects[1].value=99;assert(E.prepare(s,uid).effects[1].value==4)
 assert(not E.canUse(s,'absent'));s.pendingChoice={};assert(not E.canUse(s,uid));s.pendingChoice=nil
 s.player.hp=0;assert(not E.canUse(s,uid))
