@@ -121,3 +121,17 @@ test('dismantling never recycles Power instance and only a new copy can rebuild 
  s=nextTurn(s,[]);assert.equal(s.enemy.hp,40);assert.equal(s.hand.includes(pillars[0]),false);assert.equal(playInstance(s,key).ok,false);s=playInstance(s,pillars[1]).state;assert.equal(s.pillar,3);assert.deepEqual(s.powers,pillars);assert.equal(endlessCount(s),3);
  function endlessCount(x){return new Set([...x.hand,...x.draw,...x.discard,...x.exhaust,...x.powers]).size;}
 });
+
+test('reserve search draws independently specified count, cannot self-draw and exhausts with conserved zones',()=>{
+ for(const upgraded of [false,true])for(const full of [false,true]){
+  let s=battleStart({deck:['zl24',...Array(12).fill('zl02')]});const key=Object.keys(s.instances).find(k=>s.instances[k].id==='zl24');
+  const all=Object.keys(s.instances);s.hand=[key,...all.filter(k=>k!==key).slice(0,full?9:3)];s.draw=all.filter(k=>!s.hand.includes(k));s.discard=[];s.instances[key].upgraded=upgraded;
+  const before=structuredClone(s),r=playInstance(s,key);assert.equal(r.ok,true);const n=r.state;
+  assert.equal(n.hand.length,full?10:(upgraded?7:6));assert.equal(n.jade,0);assert.equal(n.energy,2);assert.deepEqual(n.exhaust,[key]);assert.equal(n.inUse,null);assert.equal(n.pendingDraw,0);
+  const zones=[...n.hand,...n.draw,...n.discard,...n.exhaust,...n.powers];assert.equal(zones.length,13);assert.equal(new Set(zones).size,13);assert.deepEqual(s,before);
+ }
+});
+test('reserve search singleton pays for no cards and cannot return through reshuffle',()=>{
+ let s=battleStart({deck:['zl24']});const key=s.hand[0];s=playInstance(s,key).state;assert.equal(s.hand.length,0);assert.equal(s.jade,0);assert.equal(s.energy,2);assert.deepEqual(s.exhaust,[key]);
+ for(let i=0;i<10;i++){s=nextTurn(s,[]);assert.equal(s.hand.length,0);assert.deepEqual(s.exhaust,[key]);}
+});

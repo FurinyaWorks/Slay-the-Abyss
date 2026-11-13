@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.17.0';
+export const VERSION = 'zhongli-mechanics-0.18.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -28,6 +28,7 @@ export const cards = [
   {...card('zl21', '投入能量建立单一持续岩脊脉冲，不能叠加多柱', 'common', 2, [['pillar', 3]], [['pillar', 4]]), power: true},
   card('zl22', '用行动激发已有岩脊，未建立时空费', 'common', 1, [['pulse', 3]], [['pulse', 4]], 'enemy'),
   card('zl23', '拆除已建岩脊换紧急储备，放弃未来脉冲', 'common', 1, [['spendPillar', 1], ['jade', 12]], [['spendPillar', 1], ['jade', 16]]),
+  {...card('zl24', '支出已有防线换本轮深度检索且本战消耗', 'common', 1, [['spendJade', 3], ['draw', 3]], [['spendJade', 3], ['draw', 4]]), exhaust: true},
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
