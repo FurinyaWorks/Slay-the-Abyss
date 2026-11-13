@@ -136,7 +136,7 @@ export function createChoiceSession(initialState) {
   validateBattle(initialState);
   let state=structuredClone(initialState), revision=0, pending=null, failed=false;
   const check=rev=>{if(rev!==revision)throw new Error('stale revision');if(failed)throw new Error('session faulted');};
-  function view(){return structuredClone({revision,...playerView(pending?.state??state),
+  function view(){return structuredClone({revision,...playerView(pending?.state??state),discardChoices:structuredClone((pending?.state??state).discard),
     phase:failed?'faulted':pending?'choice':state.phase,
     pending:pending?{token:pending.token,kind:pending.kind,inUse:pending.inUse,options:pending.options}:null});}
   function accept(step,steps,input){

@@ -16,9 +16,9 @@ for(const id of ['KQ043','KQ044'])for(const upgraded of [false,true])for(const r
    first.pending.options[0].id='poison';first.hand.length=0;assert.deepEqual(session.view(),snapshot);
    const resolved=session.resume(1,snapshot.pending.token,selected);
    const expected=playerView(useCard(s,'starter-0',0,{choose:()=>selected}));
-   const {revision,pending,...visible}=resolved;assert.equal(revision,2);assert.equal(pending,null);assert.deepEqual(visible,expected);
+   const {revision,pending,discardChoices,...visible}=resolved;assert.equal(revision,2);assert.equal(pending,null);assert.deepEqual(visible,expected);
    assert.throws(()=>session.resume(1,snapshot.pending.token,selected));
- }else{assert.equal(id,'KQ044');assert.equal(recycle,true);const {revision,pending,...visible}=first;assert.deepEqual(visible,playerView(useCard(s,'starter-0',0,{choose:()=>{throw Error('no options')}})));}
+ }else{assert.equal(id,'KQ044');assert.equal(recycle,true);const {revision,pending,discardChoices,...visible}=first;assert.deepEqual(visible,playerView(useCard(s,'starter-0',0,{choose:()=>{throw Error('no options')}})));}
 });
 test('paid inspect empty/locked and insufficient energy never expose hidden choices',()=>{
  for(const locked of [false,true]){
@@ -36,6 +36,14 @@ test('caller mutation after begin cannot alter continuation or reveal view',()=>
  const deckIds=['KQ043',...starterIds],s=createBattle({deckIds,order:deckIds.map((_,i)=>i)}),baseline=structuredClone(s);
  const session=createChoiceSession(s),v=session.begin(0,'starter-0',0),key=v.pending.options[0].instance;
  s.draw.length=0;s.hp=0;s.hand[0].id='invalid';
- const {revision,pending,...visible}=session.resume(1,v.pending.token,key);
+ const {revision,pending,discardChoices,...visible}=session.resume(1,v.pending.token,key);
  assert.deepEqual(visible,playerView(useCard(baseline,'starter-0',0,{choose:()=>key})));
+});
+
+test('session exposes detached public discard for move, never hidden draw',()=>{
+ const deckIds=['KQ045',...starterIds],s=createBattle({deckIds,order:deckIds.map((_,i)=>i)});s.discard.push(...s.hand.splice(1,1));
+ const session=createChoiceSession(s),v=session.view(),key=v.discardChoices[0].instance;v.discardChoices[0].id='bad';
+ const out=session.begin(0,'starter-0',0,{move:key});
+ assert.equal(out.discardChoices.some(c=>c.instance===key),false);assert.equal('draw' in out,false);
+ assert.equal(s.discard[0].id==='bad',false);
 });
