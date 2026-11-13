@@ -5,6 +5,10 @@ import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {sourceSlice} from './closeout-source-epoch.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
+const capacityRoadmapBytes=readFileSync(new URL('./role-capacity-roadmap-source.json',import.meta.url));
+assert.equal(hash(capacityRoadmapBytes.toString('utf8').replaceAll('\r\n','\n')),'3348d49e88b2062bd0404aef0183118b90f92c71f1c7c397b37e02cc73ffdb1c');
+const capacityRoadmapBinding=JSON.parse(capacityRoadmapBytes);
+assert.equal(hash(capacityRoadmapBinding.source),capacityRoadmapBinding.before);
 const bytes=readFileSync(new URL('./closeout-ci-source.json.gz',import.meta.url));
 assert.equal(hash(bytes),'cfc72306af30d0d4b0b61398e3ed0eea36767d6e005c146eb215897fc431a8f8');
 const packed=JSON.parse(gunzipSync(bytes));
@@ -15,6 +19,7 @@ function target(name){assert(Object.hasOwn(packed.targets,name),'known closeout 
 export function preCloseoutCiSource(path,source,view){
  const before=target(view);
  if(before.scope==='workflow-only'&&path!=='.github/workflows/quality.yml')return source;
+ if(path===capacityRoadmapBinding.path&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===capacityRoadmapBinding.current)return capacityRoadmapBinding.source;
  // Production sources belong to the complete freshly authenticated owner
  // closure; a CI receipt must never intercept them before that authorization.
  if(path==='config/architecture.json'||path.startsWith('src/lua/'))return source;
