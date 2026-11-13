@@ -5,7 +5,7 @@ import { cards } from './mechanics.mjs';
 import { createBattle, starterIds, playerView, useCard, finishTurn } from './battle.mjs';
 import { choosePlan } from './pressure-v2.mjs';
 import { encounters, policies } from './pressure.mjs';
-export const rewardPool=Object.freeze(['KQ005','KQ006','KQ007','KQ008','KQ009']);
+export const rewardPool=Object.freeze(Object.entries(cards).filter(([,card]) => card.channel === 'reward_candidate').map(([id]) => id));
 export const rewardSeeds=Object.freeze([3001,3011,3019,3023,3037,3041,3049,3061]);
 export function offerReward(seed) {
   if(!Number.isInteger(seed)||seed<0||seed>0xffffffff) throw new Error('invalid reward seed');
@@ -59,10 +59,10 @@ export function buildRewardReport() {
   }
   const hash=createHash('sha256');
   for(const file of ['mechanics.mjs','battle.mjs','pressure.mjs','pressure-v2.mjs','rewards.mjs']) hash.update(readFileSync(new URL(file,import.meta.url)));
-  return {version:'KQ-reward-probe-1',seeds:rewardSeeds,sourceDigest:hash.digest('hex'),scope:'Offline two-offer/skip branches after an earned first win; not player reward selection, full natural draft, actual monster families, or balance approval. Branches are independent counterfactuals, not serial battles.',rows};
+  return {version:'KQ-reward-probe-2',seeds:rewardSeeds,sourceDigest:hash.digest('hex'),scope:'Offline two-offer/skip branches after an earned first win; not player reward selection, full natural draft, actual monster families, or balance approval. Branches are independent counterfactuals, not serial battles.',rows};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)) {
   const report=buildRewardReport();
-  writeFileSync(new URL('reward-results.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
+  writeFileSync(new URL('reward-results-v2.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify({openings:report.rows.length,branches:report.rows.flatMap(r=>r.branches).length,digest:report.sourceDigest}));
 }

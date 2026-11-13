@@ -56,10 +56,9 @@ function validateBattle(state) {
 }
 function resolveAction(input, instance, target, options = {}) {
   if (input.phase !== 'player') throw new Error('not player phase');
-  const card = input.hand.find(c => c.instance === instance);
   const state = play(input, instance, target, options);
   if (options.cancel) return state;
-  const setup = card?.id === 'KQ003' && input.wedgeUntil === null;
+  const setup = input.wedgeUntil === null && state.wedgeUntil !== null;
   if (setup && state.relicEnabled && !state.relicUsed) {
     state.block += starterRelic.effect.amount;
     state.relicUsed = true;

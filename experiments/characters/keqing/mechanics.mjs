@@ -22,6 +22,16 @@ export const cards = Object.freeze({
     effects: versions([{ op: 'wedgeDamage', absent: 5, present: 8 }], [{ op: 'wedgeDamage', absent: 8, present: 11 }]) },
   KQ009: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '低伤单段攻防，保留雷楔但攻击仍消耗一次附魔', type: 'attack', cost: 1,
     effects: versions([attack(3), { op: 'block', amount: 4 }], [attack(5), { op: 'block', amount: 6 }]) },
+  KQ010: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '防守启动，不消费或刷新已有雷楔', type: 'skill', cost: 1,
+    effects: versions([{ op: 'block', amount: 4 }, { op: 'setWedgeIfAbsent' }], [{ op: 'block', amount: 7 }, { op: 'setWedgeIfAbsent' }]) },
+  KQ034: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '高费即时大伤防守，压缩后续进攻预算', type: 'skill', cost: 2,
+    effects: versions([{ op: 'block', amount: 13 }], [{ op: 'block', amount: 17 }]) },
+  KQ035: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '存活敌人数量驱动的有限群敌防守', type: 'skill', cost: 1,
+    effects: versions([{ op: 'block', amount: 4 }, { op: 'blockPerEnemy', amount: 1, cap: 3 }], [{ op: 'block', amount: 7 }, { op: 'blockPerEnemy', amount: 1, cap: 3 }]) },
+  KQ036: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '无雷楔也无附魔时的空窗防守', type: 'skill', cost: 1,
+    effects: versions([{ op: 'block', amount: 5 }, { op: 'conditionalBlock', when: 'noResources', amount: 3 }], [{ op: 'block', amount: 8 }, { op: 'conditionalBlock', when: 'noResources', amount: 3 }]) },
+  KQ067: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '单存活敌人防守，与多敌防守反向', type: 'skill', cost: 1,
+    effects: versions([{ op: 'block', amount: 4 }, { op: 'conditionalBlock', when: 'oneEnemy', amount: 3 }], [{ op: 'block', amount: 7 }, { op: 'conditionalBlock', when: 'oneEnemy', amount: 3 }]) },
   KQ052: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '低费无资源群伤，比KQ005低预算低段数', type: 'attack', cost: 1,
     effects: versions([attack(6, 1, 'all')], [attack(9, 1, 'all')]) },
   KQ053: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '高费单段可靠击杀，放弃多段附魔倍率', type: 'attack', cost: 2,
@@ -37,6 +47,9 @@ export function describe(id, upgraded = false) {
   return [`待命名·${id}`, `${card.cost}能量`, ...card.effects[upgraded ? 'upgraded' : 'base'].map(effect => {
     switch (effect.op) {
       case 'damage': return `对${effect.target === 'all' ? '所有存活敌人' : '目标'}造成${effect.damage}伤害，共${effect.hits}段`;
+      case 'setWedgeIfAbsent': return '若无雷楔则设置1枚；否则不消费、不刷新雷楔';
+      case 'blockPerEnemy': return `每有1个存活敌人，额外获得${effect.amount}格挡，最多计入${effect.cap}个敌人`;
+      case 'conditionalBlock': return `若${effect.when === 'noResources' ? '无雷楔且无附魔' : '仅1个存活敌人'}，额外获得${effect.amount}格挡`;
       case 'wedgeDamage': return `对目标造成${effect.absent}伤害；若有雷楔则改为${effect.present}伤害，不消费或刷新雷楔`;
       case 'resourceBlock': return `若有${effect.resource === 'wedge' ? '雷楔，消费雷楔' : '附魔，消费1次附魔'}，额外获得${effect.amount}格挡`;
       case 'block': return `获得${effect.amount}格挡`;
@@ -44,7 +57,7 @@ export function describe(id, upgraded = false) {
       case 'detonate': return `若有雷楔，消费它并对所有存活敌人造成${effect.damage}伤害`;
       default: throw new Error('unknown effect');
     }
-  }), ...(card.effects[upgraded ? 'upgraded' : 'base'].some(e => e.op === 'wedge' || e.op === 'wedgeDamage' || e.op === 'detonate' || (e.op === 'resourceBlock' && e.resource === 'wedge')) ? [describeStatus('wedge')] : []), ...((card.type === 'attack' || card.effects[upgraded ? 'upgraded' : 'base'].some(e => e.resource === 'infusion')) ? [describeStatus('infusion')] : [])].join('；');
+  }), ...(card.effects[upgraded ? 'upgraded' : 'base'].some(e => e.op === 'setWedgeIfAbsent' || e.op === 'wedge' || e.op === 'wedgeDamage' || e.op === 'detonate' || (e.op === 'resourceBlock' && e.resource === 'wedge')) ? [describeStatus('wedge')] : []), ...((card.type === 'attack' || card.effects[upgraded ? 'upgraded' : 'base'].some(e => e.resource === 'infusion')) ? [describeStatus('infusion')] : [])].join('；');
 }
 export function describeStatus(id) {
   if (id === 'wedge') return `雷楔：上限${statusRules.wedge.capacity}枚，${statusRules.wedge.expires}清除，${statusRules.wedge.stacking}`;
@@ -88,6 +101,13 @@ export function play(input, instance, target, { cancel = false } = {}) {
   for (const effect of effects) {
     switch (effect.op) {
       case 'damage': hit(effect.damage, effect.target === 'all' ? all : [target], effect.hits); break;
+      case 'setWedgeIfAbsent':
+        if (state.wedgeUntil === null) state.wedgeUntil = state.turn + statusRules.wedge.durationExtraTurns;
+        break;
+      case 'blockPerEnemy': state.block += effect.amount * Math.min(effect.cap, state.enemies.filter(e => e.hp > 0).length); break;
+      case 'conditionalBlock':
+        if ((effect.when === 'noResources' && state.wedgeUntil === null && state.infusion === 0) || (effect.when === 'oneEnemy' && state.enemies.filter(e => e.hp > 0).length === 1)) state.block += effect.amount;
+        break;
       case 'wedgeDamage': hit(state.wedgeUntil === null ? effect.absent : effect.present, [target]); break;
       case 'resourceBlock':
         if (effect.resource === 'wedge' && state.wedgeUntil !== null) { state.wedgeUntil = null; state.block += effect.amount; }
