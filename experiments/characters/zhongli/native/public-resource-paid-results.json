@@ -1,0 +1,10 @@
+{
+  "status": "LIMITED_PUBLIC_ACCEPTANCE_PASS",
+  "integrationCommit": "837f5d123ad0f08abf8f43ff34cc31de25671d09",
+  "method": "Independent exact workspace git archive of required source/data/scripts/helper/tests; rebuilt Lua data; original author spec copied from role branch, then frozen host transaction test executed using Fengari",
+  "outputs": ["AUTHOR_PUBLIC_ZL_RESOURCE_PAID_PASS: 03->04 fits natural3 energy; resource/UID/cap/ordinary modifiers/lethal disposition", "ZHONGLI_RESOURCE_TRANSACTION_PASS"],
+  "verified": ["base/upgraded natural 3-energy gain then spend attack", "insufficient jade and invalid target preserve state", "original UID discard and no duplicate play", "cap20 still spends energy", "ordinary Strength/Weak/Vulnerable/Block calculation", "lethal completion and no ad-hoc resource refund", "gain/spend and post-damage failures restore real pre-command state and public aliases", "real Scry continuation failure/low-balance recheck/retry and duplicate token rejection", "Thorns death after spend does not refund", "automatic admission and extra semantics rejection"],
+  "controlledFixtures": ["Scry source card moved from discard to draw because Scry does not reshuffle", "resource manually changed while paused solely to test execution-time recheck", "fault injection after actual resource/damage effects"],
+  "excluded": ["incoming jade absorption", "modifier placement choice", "other resource cards", "full natural run balance", "production character registry", "full CI", "device gameplay"],
+  "tracebacks": false
+}

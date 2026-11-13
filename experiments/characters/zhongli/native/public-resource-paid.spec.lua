@@ -1,4 +1,5 @@
--- PENDING shared 03/04 admission. No replacement of public C.play/payment.
+-- Verified against shared 837f5d12; exact limited evidence in public-resource-paid-results.json.
+-- No replacement of public C.play/payment.
 package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local H=dofile('tests/helpers/act2_event_relics.lua');local C,D,eq,same=H.C,H.Data,H.eq,H.same
 local Actors=require('abyss_actor')
