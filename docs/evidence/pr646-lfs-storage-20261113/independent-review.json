@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "reviewer": "/root/card_reference_audit",
+  "implementationAuthor": "/root/deck_reuse_audit",
+  "verdict": "PASS",
+  "blockingFindings": [],
+  "reviewedBase": "f34723b6d54b6153de8a333a8abcc77884737f8f",
+  "reviewedFilesSha256": {
+    ".gitattributes": "f70c51d682cc563ef51228b1bb8cfefcd140f8178cefdad45148c745aa845635",
+    "config/ci-media-lfs.json": "0e46748b74f04833ad78e6a042aab52168afdbafbbfaf0a814af29d3f9bd3f86",
+    "scripts/ci-media-lfs.mjs": "7d7243e1a4ed9968132637323c8073e485d155ae5021f6f5212c1da506fb5996",
+    "scripts/check-license.mjs": "ad18ed03e3ac2ffebedf8a3b2b31b06da90be3cf6cc2ee2564bf4144104b499b",
+    "tests/ci-reviewed-lfs.test.mjs": "79155ea3834864990aa02a4d1f862eab42369d0dedea7fc13c0650a6a337d50f",
+    "scripts/check-license.test.mjs": "0bacb730fc282a85850f63af6a20253e0932a25ec24085480440fdc63408bb2f",
+    "docs/legal/assets.json": "38ada837ae3fa62a94a3955e50aba63bc89f32f51adf80f4defaf900574259a8",
+    "docs/CI.md": "320aa243775c751ac1260d63205b8a23540880ae216721793f4b9a0a2bb04dce"
+  },
+  "independentRun": {
+    "command": "node --test scripts/check-license.test.mjs tests/ci-reviewed-lfs.test.mjs",
+    "node": "v24.18.0",
+    "passed": 23,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 39996.705,
+    "transcript": "Independent tool execution session 33315; author archived logs below are separate executions."
+  },
+  "independentChecks": {
+    "originalManifestDeepEqualBase": true,
+    "originalManifestCanonicalSha256": "732a8b8b64611a2a3f714bf41a7c2bc1f458b1a6f9dfb86f5d37d0dc0c3a715a",
+    "originalPaths": 738,
+    "originalObjects": 705,
+    "originalPayloadBytes": 117369505,
+    "oldLicenseRecordsUnchanged": 1576,
+    "licenseCategoriesUnchanged": true,
+    "extensionPaths": 76,
+    "extensionObjects": 58,
+    "extensionPayloadBytes": 37495268,
+    "allParentAliases": 76,
+    "exactAttributesAdded": 76,
+    "rawSha256SizeAndGitSha1Verified": 76,
+    "strictIndexPointersAndMode100644Verified": 76,
+    "sourceHelperGzipStagedChanges": 0,
+    "sameLengthRawMutationRejected": true,
+    "wrongPointerShaRejected": true,
+    "validRawAndPointerAccepted": true,
+    "unlistedGzipNotLicenseSensitiveOrComparisonExempt": true
+  },
+  "unchangedGates": {
+    "physicalGitPackBytes": 134217728,
+    "missingComparisonBlobBytes": 8388608,
+    "sharedLfsRestoreDeadlineMs": 90000,
+    "reviewedSixPngPayloadBytes": 5983528
+  },
+  "localColdCandidate": {
+    "tree": "6c715395ef45f730bc23f049e584319e720f5313",
+    "candidateCommit": "9df276c8d4fd79b3fb9825c9fa12a2a80e55ed8a",
+    "syntheticMerge": "e97e5627be8879de859970cc984b6aeae73bb93f",
+    "parents": ["903bf2a31e91f10fb24763ab4cea23d586d0bb83", "9df276c8d4fd79b3fb9825c9fa12a2a80e55ed8a"],
+    "cloneHasAlternates": false,
+    "physicalPacks": 3,
+    "physicalPackBytes": 125026148,
+    "comparisonFetchedBlobs": 74,
+    "comparisonPayloadBytes": 2027072,
+    "oldRawObjectsStillMissingWithNoLazyFetch": 58,
+    "restoredAliasesByteEqual": 76,
+    "packUnchangedAfterIndependentReads": true,
+    "finalPolicyAndDocumentationEqualCandidate": true,
+    "finalTestDifference": "Only test-only sensitive/checkAssets import and five added assertion/setup lines; physically measured candidate precedes these lines."
+  },
+  "evidenceSha256": {
+    "source-identities.json": "902a82ea4bb065ab170f4b6cf4102cde934b3d72e9a14bf6ded1d5d0232ec9b2",
+    "cold-clone-report.json": "5636f419f75181dc4b767b4c141f25ae68745757cf955e3f3afa3bc41a98ba20",
+    "restore-report.json": "a4e34fd5cec7d0a8e8c47dda1ed2c48d319c00cdb0bf397f01d98e7464fa832a",
+    "lfs-owned-suite.log.gz": "b71624107db09b60cfa08b89b518e212fa9b4aa0cff807f200ee9eff6fa1d170",
+    "lfs-final-extension-unit.log.gz": "55cf635534a75ae18bbd1e9b96e47abbf8c76c8e81951eb4347ab2cf09770a0a"
+  },
+  "privateIndependentProbe": {
+    "path": ".artifacts/storage-independent-review-20261113.mjs",
+    "sha256": "ec6b68b988aa793e8cf3339a99b60e0bd1cfde4addcc73867e1f3bdc8c0c55d8",
+    "published": false
+  },
+  "unverified": [
+    "Uploading the 58 new LFS objects",
+    "Cold remote network restoration and completion within the unchanged 90-second deadline",
+    "Final integrated commit GitHub-hosted physical checkout and Full CI"
+  ],
+  "boundary": "Local real Git partial clone and local-cache Git LFS restoration only. This review does not certify remote object availability, network transfer bytes/time, or final hosted admission."
+}

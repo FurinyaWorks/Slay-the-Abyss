@@ -38,3 +38,9 @@ node docs/evidence/sts-character-reference-20261113/verify-integrated.mjs $visua
 过程截图已保全至 `.artifacts/style-fidelity-20261113/visual-history/character/`。其中`visual-current-2/3`记录取证工具默认15秒窗口截止：第一次building，裁剪预算修正后第二次已revealing。两次遮幕都保持，未冒充ready；第三次使用有界60秒等待真实ready成功。`visual-current-4`是首次成功视觉检查，随后按实际中文容量及原图边界修正主题，已保存布局阶段结果见上述`visual-final`。
 
 未操作用户桌面、官方客户端或正式存档。官方导入、同候选ready、手机/PC实测与正式容量均未验证。
+
+## CI与存储修复后的同输入证明
+
+保留原五图及`source-integrated-manifest.json`的闭包52b6582b…。新`source-ci-storage-manifest.json`记录闭包b1271f18…，差异只有四个已审CI路径。共享的`verify-runtime-equivalence.mjs`以显式`character`模式核对完整658输入、当前fresh哈希、全部25生成物与实际53,306,522字节SDK存档；所有应用输出逐字节相同，存档SHA仍为90296e9c…。结果见`ci-storage-runtime-equivalence.json`。未剥离observer或只比较Lua片段，也未把旧截图改称新拍摄。
+
+复核：`node docs/evidence/sts-neow-reference-20261113/verify-runtime-equivalence.mjs <原选角prepare输出> <新选角prepare输出> <新的报告> character`。这证明同一软件输入，设备边界保持上述状态。

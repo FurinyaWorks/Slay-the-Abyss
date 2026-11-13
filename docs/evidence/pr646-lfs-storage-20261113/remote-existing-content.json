@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/FurinyaWorks/Slay-the-Abyss",
+  "visibility": "PUBLIC",
+  "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f",
+  "paths": 76,
+  "objects": 58,
+  "status": "ALL_EXACT_BYTES_ALREADY_PRESENT_AT_SAME_REMOTE",
+  "newContent": false,
+  "checkedAgainst": "GitHub authenticated git tree API and actual local SHA256/Git blob SHA1"
+}

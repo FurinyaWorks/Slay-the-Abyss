@@ -1,0 +1,22 @@
+{
+  "kind": "Actual native Git LFS exact-path checkout from a local object cache; missing remote object rejects without network fallback",
+  "clone": "F:\\New folder\\.worktrees\\sts-style-fidelity\\.artifacts\\pr646-ci-diagnosis-20261113\\full-cold\\candidate",
+  "paths": 76,
+  "objects": 58,
+  "bytes": 37495268,
+  "restored": {
+    "status": "materialized",
+    "files": 814,
+    "objects": 763,
+    "bytes": 154864773
+  },
+  "allAliasesExact": true,
+  "missingObjectRejected": true,
+  "missingSha256": "b8a13e55c8b119edddfecddfc2ac752c6bbc4e1d9accc4b2c62a0e3a5e1c291d",
+  "recovered": {
+    "status": "materialized",
+    "files": 814,
+    "objects": 763,
+    "bytes": 154864773
+  }
+}

@@ -45,13 +45,15 @@ export function collectStsStyleProduction(){
   inventoryBefore:beforeInventory,inventoryAfter:afterInventory,addedPaths,owners:stsStyleOwners,current,before};
 }
 const reviewedCiPaths=Object.freeze([
- 'data/presentation/ui_theme.json',...[
+ 'data/presentation/ui_theme.json','.gitattributes','config/ci-media-lfs.json','docs/legal/assets.json',
+ 'docs/evidence/sts-neow-reference-20261113/verify-runtime-equivalence.mjs',...[
   'game-ui-layout','noncombat-neow-layout','noncombat-v25-layout','official-assets-layout','official-battle-card-chrome',
   'official-portraits','official-run-layout','sts-card-reference-profile','sts-character-select-layout','sts-neow-choice-layout',
-  'sts-neow-guide-layout','v25-battle-scene','v25-character-layout','test-lua',
+  'sts-neow-guide-layout','v25-battle-scene','v25-character-layout','test-lua','test-affected','ci-media-lfs','check-license',
  ].map(n=>'scripts/'+n+'.mjs'),...[
   'ci-complete-calibration','integration-source-epoch','defect-final-source-epoch','encounter-formation-source-epoch',
   'lumine-idle','official-assets','official-portraits-build','official-run-chrome',
+  'noncombat-v25-layout','official-assets-legibility','defect-actor-boundary','test-affected','ci-reviewed-lfs',
  ].map(n=>'tests/'+n+'.test.mjs'),...stsStyleAddedTests,
  'tests/helpers/closeout-source-epoch.mjs','tests/helpers/closeout-source-closure.json','tests/helpers/copy-integration-source-closure.mjs',
 ]);
@@ -60,11 +62,16 @@ const reviewedHelpers=Object.freeze([
  'historical-sts-style-runner','historical-sts-style-entry','run-hud-ci-source','generate-shop-deck-source-epoch',
  'closeout-source-epoch','copy-integration-source-closure',
 ].map(n=>'tests/helpers/'+n+'.mjs').concat('tests/helpers/combined-epoch/source-epoch.mjs'));
+// These exact non-application inputs participate in CI execution. Never scan
+// all docs or config; state-evidence payloads remain under their LFS manifest.
+const reviewedCiInputs=Object.freeze(['.gitattributes','config/ci-media-lfs.json','docs/legal/assets.json',
+ 'docs/evidence/sts-neow-reference-20261113/verify-runtime-equivalence.mjs']);
 export function collectStsStyleCi(){
- const basePaths=new Set(git(['ls-tree','-r','--name-only',stsStyleBase,'--','scripts','tests','data']).trim().split('\n'));
- const changed=git(['diff',stsStyleBase,'--name-only','--','scripts','tests','data']).trim().split('\n').filter(Boolean);
+ const scope=['scripts','tests','data',...reviewedCiInputs];
+ const basePaths=new Set(git(['ls-tree','-r','--name-only',stsStyleBase,'--',...scope]).trim().split('\n'));
+ const changed=git(['diff',stsStyleBase,'--name-only','--',...scope]).trim().split('\n').filter(Boolean);
  const wanted=new Set([...changed.filter(p=>!p.startsWith('tests/helpers/')),...stsStyleAddedTests,
-  ...reviewedHelpers,'tests/helpers/closeout-source-epoch.mjs','tests/helpers/closeout-source-closure.json','tests/helpers/copy-integration-source-closure.mjs']);
+  ...reviewedHelpers,...reviewedCiInputs,'tests/helpers/closeout-source-epoch.mjs','tests/helpers/closeout-source-closure.json','tests/helpers/copy-integration-source-closure.mjs']);
  const files={};
  for(const path of [...wanted].sort()){
   assert(reviewedCiPaths.includes(path)||reviewedHelpers.includes(path),'unregistered style CI source: '+path);

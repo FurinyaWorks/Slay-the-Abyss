@@ -65,3 +65,9 @@ CSS盒567×580、viewBox600×600默认xMidYMid meet，得到单一scale=.945、�
 主线程已查看正常态、四项代价颜色、兜帽暗面与背景衔接。最终同位置mask IoU仍为99.34%，旧身体遮挡负控62.66%；原金色缝隙y44–79均为场景色。没有把软件结果称为官方设备呈现或原版hover逐像素一致。
 
 复现先以新的输出目录运行prepare/capture，再运行`compare-approved-guide.mjs <截图目录>`、`measure-approved-guide.py <截图目录> <旧错误截图>`与`verify-integrated.mjs <截图目录>`。旧错误截图为项目自产诊断，本机默认保存在`.artifacts/style-fidelity-20261113/visual-history/neow/visual-current-1/two-normal.png`；新机器需显式提供该负控输入，不能拿缺失负控当通过。
+
+## CI与证据存储修复后的应用身份
+
+后续只修CI选择器、精确LFS清单及许可检查。新生成收据保存在`source-ci-storage-manifest.json`，原截图的`source-manifest.json`与六张截图身份保持原样。`ci-storage-runtime-equivalence.json`记录闭包52b6582b…到b1271f18…的关联：658项输入完整核对，差异精确限制为四个已审CI路径；25份生成物与two/four两份实际完整SDK输入逐字节一致。因此继续引用原截图，不将它们标成新拍摄。
+
+复核命令：`node docs/evidence/sts-neow-reference-20261113/verify-runtime-equivalence.mjs <原prepare输出> <新prepare输出> <新的等价报告>`。校验器拒绝不完整输入/生成物、陈旧当前输入、未批准变化、磁盘额外输出或SDK输入漂移。仍不代表官方导入、ready、GPU或设备证据。

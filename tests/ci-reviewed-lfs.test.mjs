@@ -8,10 +8,11 @@ import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import * as lfs from '../scripts/ci-reviewed-lfs.mjs';
 import { reviewedPngPaths, needsReviewedAssets, verifyReviewedPngs, prepareReviewedAssets, lfsEnvironment, lfsArguments } from '../scripts/ci-reviewed-lfs.mjs';
-import {mediaFiles,mediaPointer,maxMediaPayloadBytes,validateMediaPointers,prepareMediaAssets} from '../scripts/ci-media-lfs.mjs';
+import {mediaFiles,originalMediaFiles,evidenceFiles,mediaPointer,maxMediaPayloadBytes,maxEvidencePayloadBytes,validateMediaPointers,prepareMediaAssets} from '../scripts/ci-media-lfs.mjs';
 import {checkWhitespace,validateMediaBases} from '../scripts/ci-whitespace.mjs';
 import {prepareComparisonBlobs,comparisonBlobIds} from '../scripts/ci-comparison-blobs.mjs';
 import {checkHostedCheckout,checkNetworkPolicy} from '../scripts/check-network-policy.mjs';
+import {sensitive,checkAssets} from '../scripts/check-license.mjs';
 
 const root = resolve('.');
 const expectedPaths = ['armaments', 'cleave', 'heavy_blade'].flatMap(id => ['source.png', 'preview-native.png'].map(name => `art/cards/traveler-geo/${id}/${name}`));
@@ -222,11 +223,39 @@ test('current reviewed PNG budget includes the identity-repair pair, not archive
   assert.ok(!lfs.frozenObjects.some(([sha]) => sha === 'f396062d29b6845b58bf0043c1941a2219d9ca501ae6520c8579d555d73008d5'));
 });
 
+test('state evidence storage extension freezes all aliases and leaves the original media contract unchanged',()=>{
+ const manifest=JSON.parse(readFileSync('config/ci-media-lfs.json','utf8'));
+ const extension=manifest.evidenceExtension;
+ assert(extension,'the state evidence extension must be explicit');
+ assert.equal(extension.sourceCommit,'f34723b6d54b6153de8a333a8abcc77884737f8f');
+ assert.equal(extension.maxPayloadBytes,37495268);
+ assert.equal(extension.files.length,76);
+ assert.equal(new Set(extension.files.map(row=>row.sha256)).size,58);
+ assert.equal(extension.files.filter(row=>row.path.includes('/inspection-')).length,18);
+ const original={...manifest};delete original.evidenceExtension;
+ assert.equal(createHash('sha256').update(JSON.stringify(original,null,2)+'\n').digest('hex'),'732a8b8b64611a2a3f714bf41a7c2bc1f458b1a6f9dfb86f5d37d0dc0c3a715a','all original manifest records, categories, OIDs and budget are byte-preserved');
+ const ids=new Set(extension.files.flatMap(row=>row.oldBinaryGitBlobs));assert.equal(ids.size,58);
+ const ledger=JSON.parse(readFileSync('docs/legal/assets.json','utf8'));
+ assert.equal(sensitive('docs/evidence/foreign/unregistered.json.gz'),false,'the license scope does not permit arbitrary gzip');
+ for(const row of extension.files){
+  assert.match(row.path,/^docs\/evidence\/.+\.json\.gz$/);
+  assert(!row.path.startsWith('tests/helpers/'));
+  assert.equal(row.sourceCommit,extension.sourceCommit);
+  const bytes=readFileSync(row.path);
+  assert.equal(bytes.length,row.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),row.sha256);
+  assert.deepEqual(row.oldBinaryGitBlobs,[createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')]);
+  assert(sensitive(row.path),'registered evidence is never skipped because of its gzip extension');
+  assert.deepEqual(checkAssets(root,[row.path],{categories:ledger.categories,files:{[row.path]:ledger.files[row.path]}}),[]);
+ }
+});
+
 test('existing media pointers retain their exact original ledger identities and separate bounded payload',()=>{
  const ledger=JSON.parse(readFileSync('docs/legal/assets.json','utf8'));
  const pointers=new Map(mediaFiles.map(row=>[row.path,mediaPointer(row)]));
- assert.deepEqual(validateMediaPointers(pointers),{files:738,objects:705,bytes:117369505});
- assert.equal(maxMediaPayloadBytes,117369505);assert.equal(lfs.maxReviewedPngBytes,5983528);
+ assert.equal(originalMediaFiles.length,738);assert.equal(new Set(originalMediaFiles.map(row=>row.sha256)).size,705);
+ assert.equal([...new Map(originalMediaFiles.map(row=>[row.sha256,row.bytes])).values()].reduce((a,b)=>a+b,0),117369505);
+ assert.deepEqual(validateMediaPointers(pointers),{files:814,objects:763,bytes:154864773});
+ assert.equal(maxMediaPayloadBytes,117369505);assert.equal(maxEvidencePayloadBytes,37495268);assert.equal(lfs.maxReviewedPngBytes,5983528);
  for(const row of mediaFiles){const entry=ledger.files[row.path];assert.equal(entry.sha256,row.sha256);assert.equal(entry.bytes,row.bytes);assert.equal(entry.category,row.category);assert.equal(entry.storage,'ci-media-lfs-v1');}
  const first=mediaFiles[0],wrong=new Map(pointers);wrong.set(first.path,Buffer.from(mediaPointer(first).toString().replace(first.sha256,'0'.repeat(64))));
  assert.throws(()=>validateMediaPointers(wrong),/frozen media index pointer/);
@@ -236,7 +265,7 @@ test('existing media pointers retain their exact original ledger identities and 
 });
 
 test('complete existing media are freshly authenticated on a cache hit without a transfer token',()=>{
- assert.deepEqual(prepareMediaAssets({env:{...process.env,CI_LFS_TOKEN:''}}),{status:'cached',files:738,objects:705,bytes:117369505});
+ assert.deepEqual(prepareMediaAssets({env:{...process.env,CI_LFS_TOKEN:''}}),{status:'cached',files:814,objects:763,bytes:154864773});
 });
 
 test('cold partial checkout checks all text and exact media pointers without downloading old binary',async t=>{
@@ -252,28 +281,40 @@ test('cold partial checkout checks all text and exact media pointers without dow
  const original=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAgUlEQVR4nO3XsQnDMAAF0dNN4p1SZMYU2cmbJBO4MCj4iPx6CXGg4sNq9vfrM/M+ifMX9faJFfMFx4xL9oNi2+M5/r6gxEmcxEmcxEmcxEmcxEmcxEmcxEmcxEmcxI2zB2YMou3EFMgXlDiJkxV28dHnuXdxgcRJnMRJnFc/4La8LwVtFeMzsF6fAAAAAElFTkSuQmCC','base64');
  assert.equal(createHash('sha256').update(original).digest('hex'),small.sha256);assert(original.subarray(0,8000).includes(0));
  const old=run(source,['hash-object','-w','--stdin'],original);assert(small.oldBinaryGitBlobs.includes(old));
- run(source,['update-index','--cacheinfo','100644,'+old+','+small.path]);run(source,['commit','-m','binary baseline']);const base=run(source,['rev-parse','HEAD']);
+ run(source,['update-index','--cacheinfo','100644,'+old+','+small.path]);
+ // Every f347 raw state object and alias is a real parent-tree entry. The
+ // append-only pointer commit must avoid downloading all of them, not only PNGs.
+ const originalEvidence=run(source,['hash-object','-w','--no-filters','--stdin-paths'],evidenceFiles.map(row=>JSON.stringify(resolve(root,row.path))).join('\n')+'\n').split('\n');
+ assert.equal(originalEvidence.length,evidenceFiles.length);
+ for(const [i,row]of evidenceFiles.entries())assert.deepEqual(row.oldBinaryGitBlobs,[originalEvidence[i]]);
+ run(source,['update-index','--index-info'],evidenceFiles.map((row,i)=>'100644 '+originalEvidence[i]+'\t'+row.path).join('\n')+'\n');
+ run(source,['commit','-m','binary baseline']);const base=run(source,['rev-parse','HEAD']);
  writeFileSync(join(source,'source.txt'),'after\n');run(source,['add','.']);run(source,['commit','-m','pointer candidate']);const head=run(source,['rev-parse','HEAD']);
  run(directory,['clone','--no-checkout','--filter=blob:none','--depth=2',pathToFileURL(source).href,clone]);run(clone,['config','core.longpaths','true']);
  // Match the real pre-guard checkout: materialize HEAD first. Every subsequent
  // operation inherits the explicit no-lazy-fetch setting, including local runs.
  run(clone,['checkout','--detach','HEAD'],undefined,{GIT_NO_LAZY_FETCH:'0'});run(clone,['config','user.name','Media CI fixture']);run(clone,['config','user.email','media@example.invalid']);
  const prepared=prepareComparisonBlobs({root:clone,env:{...env,CI_COMPARISON_TOKEN:'local-fixture'}});assert.equal(prepared.parents[0],base);assert(prepared.fetched>0&&prepared.bytes<8*1024*1024);
- const absent=()=>run(clone,['cat-file','--batch-check'],old+'\n',{GIT_NO_LAZY_FETCH:'1'});assert.match(absent(),/ missing$/);
+ const oldObjects=[...new Set([old,...originalEvidence])];
+ const absent=()=>run(clone,['cat-file','--batch-check'],oldObjects.join('\n')+'\n',{GIT_NO_LAZY_FETCH:'1'});
+ const assertAbsent=()=>{const rows=absent().split('\n');assert.equal(rows.length,oldObjects.length);for(const row of rows)assert.match(row,/ missing$/);};assertAbsent();
  const measured=()=>checkHostedCheckout({cwd:clone,sha:head,summary:join(directory,'summary'),log(){}});
  const packBytes=measured();assert(packBytes<128*1024*1024);
- assert.equal(checkWhitespace({root:clone,base,head}).status,'pass');assert.match(absent(),/ missing$/,'no hidden media fetch after the guard');assert.equal(measured(),packBytes,'whitespace cannot add unmeasured packs');
+ assert.equal(checkWhitespace({root:clone,base,head}).status,'pass');assertAbsent();assert.equal(measured(),packBytes,'whitespace cannot add unmeasured packs');
  const decode=ref=>new Map(run(clone,['ls-tree','-rz',ref]).split('\0').filter(Boolean).map(line=>{const [meta,path]=line.split('\t');const [mode,,oid]=meta.split(' ');return [path,{mode,oid}];}));
  const before=decode(base),after=decode(head),badBefore=new Map(before);badBefore.set(small.path,{mode:'100644',oid:mediaFiles.find(row=>!row.oldBinaryGitBlobs.includes(old)).oldBinaryGitBlobs[0]});assert.throws(()=>validateMediaBases(badBefore,after),/unknown old media/);
  const badAfter=new Map(after);badAfter.set(small.path,{...after.get(small.path),mode:'120000'});assert.throws(()=>validateMediaBases(before,badAfter),/ordinary current media pointer/);
  run(clone,['update-index','--cacheinfo','120000,'+after.get(small.path).oid+','+small.path]);assert.throws(()=>prepareMediaAssets({root:clone,env}),/ordinary media index mode/);run(clone,['update-index','--cacheinfo','100644,'+after.get(small.path).oid+','+small.path]);
  writeFileSync(join(clone,small.path),Buffer.alloc(small.bytes));assert.throws(()=>prepareMediaAssets({root:clone,env}),/changed media content/);writeFileSync(join(clone,small.path),mediaPointer(small));
+ const state=evidenceFiles[0];writeFileSync(join(clone,state.path),Buffer.alloc(state.bytes));assert.throws(()=>prepareMediaAssets({root:clone,env}),/changed media content/);writeFileSync(join(clone,state.path),mediaPointer(state));
+ const foreignGzip='docs/evidence/foreign/inspection-unregistered.json.gz';
+ assert.deepEqual(comparisonBlobIds('100644 blob '+'1'.repeat(40)+'\t'+foreignGzip+'\n'),['1'.repeat(40)],'unknown gzip is still a required comparison source');
  writeFileSync(join(clone,'.gitattributes'),readFileSync(join(clone,'.gitattributes'),'utf8')+'\nsource.txt ci-immutable-media\n');assert.throws(()=>checkWhitespace({root:clone,base,head}),/exact media-only attribute scope/);run(clone,['checkout','--','.gitattributes']);
  writeFileSync(join(clone,'.git/info/attributes'),'source.txt ci-immutable-media\n');assert.throws(()=>checkWhitespace({root:clone,base,head}),/exact media-only attribute scope/);writeFileSync(join(clone,'.git/info/attributes'),'');
  run(source,['checkout','--detach',base]);writeFileSync(join(source,'.gitattributes'),readFileSync(join(source,'.gitattributes'),'utf8')+'\n'+small.path+' diff\n');run(source,['add','.gitattributes']);run(source,['commit','-m','forced text is not a binary exemption']);const forced=run(source,['rev-parse','HEAD']);
  prepareComparisonBlobs({root:clone,env:{...env,CI_COMPARISON_TOKEN:'local-fixture',CI_COMPARISON_BASE:forced}});assert.throws(()=>checkWhitespace({root:clone,base:forced,head}),/old media was never forced text/);assert.match(absent(),/ missing$/);
  writeFileSync(join(clone,'source.txt'),'bad trailing space \n');run(clone,['add','source.txt']);run(clone,['commit','-m','invalid whitespace']);assert.throws(()=>checkWhitespace({root:clone,base,head:run(clone,['rev-parse','HEAD'])}),/trailing whitespace/);
- assert.match(absent(),/ missing$/);
+ assertAbsent();
 });
 
 test('comparison inventory includes all non-media parents and rejects malformed blob metadata',()=>{

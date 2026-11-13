@@ -72,6 +72,18 @@ test('real style CI admits only full inventory, complete source and freshly veri
   assert.equal(preStsStyleCiSource(path,raw),row.before?.source??raw);
   for(const foreign of [raw+'\n',null,{},17])assert.equal(preStsStyleCiSource(path,foreign),foreign);
  }
+ for(const [path,sha]of Object.entries({
+  'tests/noncombat-v25-layout.test.mjs':'f5a4a31b19d4cb9dddf39b2395e762ca5b1841e949b359767fe1a961ecea5819',
+  'tests/official-assets-legibility.test.mjs':'746cb957243c1874348a76b41c3a4cac861b55e69bf232578c38281d5ca6b595',
+  'tests/defect-actor-boundary.test.mjs':'190f4e4d0975c34181a961642ff3c51bf55d24d9af2ccd6b59e07e4e88654acf',
+ }))assert.equal(p.files[path]?.before?.sha256,sha,'complete unchanged cb test predecessor: '+path);
+ for(const path of ['scripts/test-affected.mjs','tests/test-affected.test.mjs','scripts/ci-media-lfs.mjs',
+  'scripts/check-license.mjs','tests/ci-reviewed-lfs.test.mjs','.gitattributes','config/ci-media-lfs.json','docs/legal/assets.json',
+  'docs/evidence/sts-neow-reference-20261113/verify-runtime-equivalence.mjs']){
+  assert(p.files[path]?.after,'exact CI/storage execution witness: '+path);
+  assert.throws(()=>assertStsStyleCiCurrent(files,(p,e)=>readFileSync(p,e)+(p===path?'\n':'')),/fresh complete StS CI source/,path);
+ }
+ assert.equal(p.files['docs/evidence/sts-neow-reference-20261113/verify-runtime-equivalence.mjs'].before,null,'new verifier cannot invent a historical source');
  for(const path of Object.keys(p.helperSources))assert.throws(()=>assertStsStyleCiCurrent(files,(p,e)=>readFileSync(p,e)+(p===path?'\n':'')),/fresh (?:StS helper|complete StS CI) source/,path);
  for(const changed of [files.slice(1),[...files,files[0]],[...files,'tests/foreign.test.mjs']])assert.throws(()=>assertStsStyleCiCurrent(changed),/inventory/);
  for(const path of p.addedTests)for(const platform of ['win32','linux']){

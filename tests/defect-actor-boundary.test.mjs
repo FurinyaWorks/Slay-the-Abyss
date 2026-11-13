@@ -8,11 +8,26 @@ import {analyzeSources} from '../scripts/check-architecture.mjs';
 import {discoverSources,dependencyCycles} from '../scripts/lua-quality-metrics.mjs';
 import {generatedRuntimeModules} from '../scripts/build-native-candidate.mjs';
 import {currentDefectActorReader} from './helpers/m7-core-final-source-inverse.mjs';
+import {sourceEpoch,ciRepairSourceEpoch} from './helpers/closeout-source-epoch.mjs';
 const require=createRequire(import.meta.url),luaparse=require('luaparse');
 const utility='src/lua/abyss_defect_utility_cards.lua',queued='src/lua/abyss_combat_queued_play.lua';
 const fixture='tests/lua/defect_utility_build.lua',protocol='tests/lua/support/m9_combat_protocol_baseline.lua';
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
 const actorRead=currentDefectActorReader(read);
+// These two original capability-policy contracts describe the complete cb
+// runtime, before StS adds a UI-only owner. Authenticate the entire live input
+// before materializing that explicit view; never filter arbitrary live modules.
+function capabilityPreStyle(raw=discoverSources()){
+ const config='config/architecture.json',live={...raw,[config]:read(config)},proof=sourceEpoch.proof;
+ assert.deepEqual(Object.keys(live).sort(),Object.keys(proof.current).sort(),'complete live source inventory before preStyle');
+ for(const [path,binding]of Object.entries(proof.current))assert.equal(live[path].replaceAll('\r\n','\n'),binding.source,'live preStyle input identity: '+path);
+ const admitted=sourceEpoch.preCombinedSource(config,live[config],{target:'stsStylePrior',readSource:read});
+ assert.equal(admitted,ciRepairSourceEpoch.proof.current[config].source,'fresh complete current owners authorize the cb view');
+ const prior=proof.targets.stsStylePrior.files;
+ for(const [path,binding]of Object.entries(ciRepairSourceEpoch.proof.current))assert.deepEqual(prior[path],binding,'complete preStyle target: '+path);
+ const sources=Object.fromEntries(Object.entries(prior).filter(([path,binding])=>path.startsWith('src/lua/')&&binding!==null).map(([path,binding])=>[path,binding.source]));
+ return {sources,read:path=>{assert(prior[path],'known complete preStyle input');return prior[path].source;}};
+}
 const pass=options=>{const result=defectVm(options);assert.equal(result.status,0,result.error);return result;};
 const mutate=(path,from,to)=>{const source=read(path);assert.equal(source.split(from).length,2,'unique semantic mutation');const changed=source.replace(from,to);luaparse.parse(changed,{luaVersion:'5.3'});return {[path]:changed};};
 const cold=`
@@ -74,13 +89,15 @@ test('production changes remain the two narrow capability edits and one policy r
  assert.equal(read(queued).replace("local function utilityActorHost()return require('abyss_actor')end\n",'')
   .replace('utility.prepareEffect(state,e,target,utilityActorHost)','utility.prepareEffect(state,e,target)'),original[queued]);
  const policy=JSON.parse(actorRead('config/architecture.json')),prior=JSON.parse(original['config/architecture.json']);
- const livePolicy=JSON.parse(read('config/architecture.json'));
+ const view=capabilityPreStyle(),livePolicy=JSON.parse(view.read('config/architecture.json'));
  assert.equal(livePolicy.layers.abyss_lumine_idle,'ui');
  delete livePolicy.layers.abyss_lumine_idle;
  assert.deepEqual(livePolicy,policy,'the exact admitted idle layer is the only change outside the frozen capability policy');
  const rule=policy.dependencyBoundaries.pop();assert.equal(rule.id,'defect-utility-planning');assert.deepEqual(policy,prior);
  assert.deepEqual(rule.from,['abyss_defect_utility_cards']);
  assert.deepEqual(rule.forbiddenTargets,['abyss_actor','abyss_combat','abyss_combat_queued_play','abyss_card_actions']);
+ const foreign=discoverSources();foreign['src/lua/abyss_page_reveal.lua']+='\n-- unrelated drift';
+ assert.throws(()=>capabilityPreStyle(foreign),/live preStyle input identity/,'historical policy cannot conceal current owner drift');
 });
 
 function reachable(report,root){
@@ -90,13 +107,13 @@ function reachable(report,root){
 }
 const closure=report=>assert.deepEqual(reachable(report,'abyss_defect_utility_cards'),['abyss_defect_utility_cards','abyss_relic_queries'],'planner closure contains only the read-only query leaf, including deferred/transitive edges');
 test('all original 345 modules plus the admitted idle retain complete graphs and reject transitive runtime owners',()=>{
- const raw=discoverSources(),sources=Object.fromEntries(Object.entries(raw).map(([p,s])=>[p.split('/').at(-1).slice(0,-4),s]));
+ const view=capabilityPreStyle(),raw=view.sources,sources=Object.fromEntries(Object.entries(raw).map(([p,s])=>[p.split('/').at(-1).slice(0,-4),s]));
  const originalNames=Object.keys(JSON.parse(baseline().sources['config/architecture.json']).layers).filter(n=>!Object.hasOwn(generatedRuntimeModules,n)).sort();
  assert.equal(originalNames.length,345,'frozen original inventory');
  assert.equal(Object.keys(sources).length,346,'complete current inventory');
  assert.deepEqual(Object.keys(sources).filter(n=>n!=='abyss_lumine_idle').sort(),originalNames,'every original source owner retained alongside the one admitted addition');
- assert.deepEqual(Object.keys(sources).sort(),Object.keys(JSON.parse(read('config/architecture.json')).layers).filter(n=>!Object.hasOwn(generatedRuntimeModules,n)).sort(),'no unclassified or omitted source owners');
- const policy=JSON.parse(read('config/architecture.json')),report=analyzeSources(sources,policy);
+ assert.deepEqual(Object.keys(sources).sort(),Object.keys(JSON.parse(view.read('config/architecture.json')).layers).filter(n=>!Object.hasOwn(generatedRuntimeModules,n)).sort(),'no unclassified or omitted source owners');
+ const policy=JSON.parse(view.read('config/architecture.json')),report=analyzeSources(sources,policy);
  assert.deepEqual(report.errors,[]);closure(report);
  assert(!dependencyCycles(report.nodes,report.edges).some(c=>c.members.includes('abyss_defect_utility_cards')),'planner leaves even the delayed SCC');
  assert.deepEqual(report.edges.filter(e=>e.from==='abyss_defect_utility_cards').map(e=>e.to),['abyss_relic_queries']);
@@ -121,6 +138,8 @@ test('all original 345 modules plus the admitted idle retain complete graphs and
   assert.equal(complete.nodes.length,346);assert.deepEqual(complete.nodes.filter(n=>n!=='abyss_lumine_idle').sort(),originalNames);assert(complete.edges.some(e=>e.from===owner&&e.to===target));
   assert.throws(()=>closure(complete),/planner closure/,'full transitive graph rejects the runtime import');
  }
+ const extra={...discoverSources(),'src/lua/unregistered_style_owner.lua':'return {}\n'};
+ assert.throws(()=>capabilityPreStyle(extra),/complete live source inventory/,'preStyle must reject rather than drop unknown live source owners');
 });
 
 test('original 52 scenarios preserve complete return, error, state and alias graphs in independent VMs',()=>{

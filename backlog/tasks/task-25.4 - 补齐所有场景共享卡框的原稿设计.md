@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-28 09:39'
-updated_date: '2026-11-13 10:00'
+updated_date: '2026-11-13 13:07'
 labels:
   - 待验
 milestone: m-8
@@ -55,4 +55,6 @@ ordinal: 121000
 用户2026-11-13再次拒收卡面风格，要求准确样式移植而非泛泛参考；参照在精不在多，用一张主样卡与最少单变量对照环环相扣。当前先核验原始参照、轮廓/比例/边框/分区/文字/材质及元素token映射，未做新卡面生产修改。旧统一组件通过不表示卡面质量已获认可。
 
 本轮共享卡框候选已覆盖攻击/技能/能力、Geo与灰蓝金token，采用精确轮廓固定池及back/art/front层序，保留中性材料、完整文案和升级信息。来源与19项定向回归见docs/evidence/sts-card-reference-20261113；已跑实际工程门禁。尚缺最终集成SDK/成本，费用火焰、纸面手绘和官方设备不声称完成。
+
+最终集成实际SDK九阶段pending/ready与同源成本取证已完成，见sts-card-final-a730-20261113；共享牌型轮廓、Geo/稀有度token及back/art/front顺序经独审。PR646远端首次Full暴露冷检出与旧结构断言，现按原门槛修复并复收完整来源，不改产品或旧档案。费用火焰/手绘纸面及原生设备仍未完成，不勾验收。
 <!-- SECTION:NOTES:END -->
