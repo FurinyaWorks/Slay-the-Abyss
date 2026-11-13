@@ -26,6 +26,8 @@
 
 以下从仓库根运行。使用已有本机工具，不联网安装依赖。Python 需要 Pillow、NumPy、OpenCV、Shapely（本轮版本在 fit-receipt 中）。Simulator SDK、原始 GIL、官方图片缓存属于本机设施，不随源码重新分发。
 
+本实验PNG参考图和截图使用Git LFS，原始字节及SHA256不变。拟合前需取得实际图片（`git lfs pull --include="experiments/lumine-native-fit/**/*.png"`）；CI只校验指针与清单身份，不拿LFS指针做拟合或画质判断。此存储调整用于满足既有128MiB检出包限制，不改变官方容量合同或游戏资源读数。
+
 ```powershell
 $py = 'C:/Users/Administrator/AppData/Local/Programs/Python/Python312/python.exe'
 & $py scripts/art/segment-lowpoly.py experiments/lumine-native-fit/input/structure-reference.png experiments/lumine-native-fit/fit-new --features-source experiments/lumine-native-fit/input/source.png --colors 16 --spatial 16 --range 32 --minimum-area 24 --face-fraction .30 --triangle-mode single-axis
