@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {compileCard,build} from './compile.mjs';
 const cards=JSON.parse(readFileSync(new URL('./source-candidates.json',import.meta.url))).cards;
-test('seventeen staged definitions preserve independent base/up values and 58 remain unmapped',()=>{
- const r=build();assert.equal(r.cards.length,17);assert.equal(r.unmapped.length,58);assert.equal(r.productionEnabled,false);
+test('twenty-two staged definitions preserve independent base/up values and 53 remain unmapped',()=>{
+ const r=build();assert.equal(r.cards.length,22);assert.equal(r.unmapped.length,53);assert.equal(r.productionEnabled,false);
  assert.deepEqual(r.cards.filter(c=>["ganyu_lab_01","ganyu_lab_02","ganyu_lab_22","ganyu_lab_24"].includes(c.id)).map(c=>[c.cost,c.effects.map(e=>e.value),c.upgrade.cost,c.upgrade.effects.map(e=>e.value)]),[[1,[6],1,[9]],[1,[5],1,[8]],[1,[4,1],1,[6,1]],[1,[3],1,[4]]]);
  assert.equal(r.cards.find(c=>c.id==="ganyu_lab_24").exhaust,true);assert.ok(r.cards.every(c=>c.reviewStatus==='HOLD'&&!c.productionEnabled));
 });
@@ -16,4 +16,10 @@ test('native AOE target and generated dual-version card text remain structured',
  assert.equal(four.target,'ALL_ENEMY');assert.deepEqual(four.effects,[{op:'block',value:6},{op:'damageAll',value:3}]);
  assert.equal(four.text,'获得6点格挡。对所有敌人造成3点伤害。');
  assert.equal(free.upgradeText,'获得3点格挡。抽1张牌。消耗。');
+});
+
+test('native retain is explicit boolean, combined exhaust retained and resource retain still blocked',()=>{
+ const r=build();assert.equal(r.cards.filter(c=>c.selfRetain).length,5);const c=r.cards.find(c=>c.id==='ganyu_lab_28');assert.equal(c.selfRetain,true);assert.equal(c.exhaust,true);assert.equal(c.text,'对所有敌人造成16点伤害。保留。消耗。');
+ const bad=structuredClone(cards.find(c=>c.id==='ganyu-26'));bad.retain='true';assert.throws(()=>compileCard(bad));
+ assert.throws(()=>compileCard(cards.find(c=>c.id==='ganyu-27')));
 });

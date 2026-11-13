@@ -28,7 +28,7 @@ for _,up in ipairs({false,true})do
  s,u=state('ganyu_lab_22',up);s.enemies[1].hp=1;assert(Combat.play(s,u,1));eq(#s.hand,0)
 end
 for _,c in ipairs(data.cards.cards)do assert(not c.id:match('ganyu_lab'))end
-eq(#defs.cards,17);eq(#defs.unmapped,58)
+eq(#defs.cards,22);eq(#defs.unmapped,53)
 print('PASS 14 base/upgrade native-queue cases; original registration untouched')
 
 for _,up in ipairs({false,true})do
@@ -54,3 +54,16 @@ for _,c in ipairs(cases)do for _,up in ipairs({false,true})do
  eq(#s.hand+#s.draw+#s.discard+#s.exhaust,10)
 end end
 print('PASS 18 further base/upgrade normal effect, energy and pile-conservation cases')
+
+local retained={{'26',1,0,0,6,9,0,0,false},{'28',2,16,20,0,0,0,0,true},{'54',2,0,0,0,0,3,4,false},{'62',1,7,10,0,0,0,0,false},{'65',2,0,0,10,14,0,0,false}}
+for _,c in ipairs(retained)do for _,up in ipairs({false,true})do
+ local s,u=state('ganyu_lab_'..c[1],up);local initialBlock=s.player.block
+ assert(Combat.endTurn(s));local found=false;for _,card in ipairs(s.hand)do if card.uid==u then found=true end end;assert(found,'selfRetain UID missing')
+ eq(s.player.block,initialBlock) -- retaining never grants printed block
+ local priorDraw=#s.draw;local priorHand=#s.hand;local enemyHp=s.enemies[1].hp
+ assert(Combat.play(s,u,1));eq(s.energy,3-c[2]);eq(s.enemies[1].hp,enemyHp-c[up and 4 or 3]);eq(s.player.block,c[up and 6 or 5]);
+ eq(#s.hand,priorHand-1+c[up and 8 or 7]);eq(#s.exhaust,c[9]and 1 or 0)
+ local inHand=false;for _,card in ipairs(s.hand)do if card.uid==u then inHand=true end end;assert(not inHand,'played retain card stayed in hand')
+ eq(#s.hand+#s.draw+#s.discard+#s.exhaust,10)
+end end
+print('PASS 10 base/upgrade retained UID endTurn-to-play lifecycle cases')
