@@ -156,3 +156,14 @@ for 05 base/up (manual card definition fixture, no natural pool claim). It check
 insufficient energy and stale UID no-ops, real payment/limbo/discard completion,
 no immediate damage, and two ticks then expiry. Host 8aabc418 rejects the card;
 this is explicitly BLOCKED, not two passing scenarios or implemented registration.
+
+### Source-bound storm05 definition preparation
+
+`compile-storm.mjs` reads the frozen candidate 05 and generates a separate
+`storm-definitions.lua`: skill/SELF, 2 energy, base 4×2 / upgraded 6×2 field.
+It reuses the paid compiler's strict shape helpers without expanding the existing
+03/06 allowlist or changing their output. Five combined Node tests pass, including
+12 new malformed storm-source cases. Card text derives from the same fields.
+Public storm contract can load it through `GANYU_STORM_DEFINITIONS`; host acceptance
+is explicitly NOT_YET_VERIFIED until the shared owner wires and tests ganyuStorm.
+The skill type remains an integration proposal, not human-approved classification.

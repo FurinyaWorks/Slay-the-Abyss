@@ -20,3 +20,5 @@ export function compilePaid(c){
 }
 export function buildPaid(){const raw=readFileSync(new URL('./source-candidates.json',import.meta.url));const source=JSON.parse(raw);const cards=['ganyu-03','ganyu-06'].map(id=>compilePaid(source.cards.find(c=>c.id===id)));const out={cards,sourceSHA256:createHash('sha256').update(raw).digest('hex'),host:'d55b0c32ea891a4faf978968e95a72fb76e63cef',relicEnabled:false,productionEnabled:false};writeFileSync(new URL('./paid-definitions.lua',import.meta.url),'-- Generated opt-in paid03/06; not registered.\nreturn '+toLua(out)+'\n');return out;}
 if(process.argv[1]?.endsWith('/compile-paid.mjs'))buildPaid();
+// Shared strict shape checks; exporting these does not expand compilePaid's allowlist.
+export {keys as paidSchemaKeys,effectsArray as paidEffectsArray,integer as paidInteger};
