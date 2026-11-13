@@ -50,3 +50,10 @@ test('versioned restricted common pool keeps historical offers and exposes 9/11/
   assert.ok(choice>0);assert.equal(next.deck.at(-1),id);assert.equal(next.deck.length,11);
  }
 });
+test('v3 adds exposure candidate without rewriting older offers and can acquire it after victory',()=>{
+ let seed=1;while(!offers(seed,1,'v3').includes('zl13'))seed++;
+ const s=journeyStart(seed,{poolVersion:'v3'});s.battle.enemy.hp=1;
+ const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'expose'));
+ assert.equal(n.deck.at(-1),'zl13');assert.equal(n.deck.length,11);assert.equal(n.battle.enemy.vulnerable,0);
+ assert.equal(offers(seed,1,'v1').includes('zl13'),false);assert.equal(offers(seed,1,'v2').includes('zl13'),false);
+});

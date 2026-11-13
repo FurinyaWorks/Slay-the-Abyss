@@ -7,7 +7,7 @@ function shuffle(s, xs) { const out=[...xs]; for(let i=out.length-1;i>0;i--){con
 /** Validate the whole battle boundary, including zones absent from the math kernel. */
 export function validateBattle(s) {
   if(!s || !s.enemy || !s.instances || typeof s.instances!=='object')throw new Error('invalid battle');
-  for(const n of [s.hp,s.energy,s.block,s.jade,s.enemy.hp,s.enemy.block,s.enemy.weak ?? 0,s.turn,s.rng,s.pendingDraw ?? 0])
+  for(const n of [s.hp,s.energy,s.block,s.jade,s.enemy.hp,s.enemy.block,s.enemy.weak ?? 0,s.enemy.vulnerable ?? 0,s.turn,s.rng,s.pendingDraw ?? 0])
     if(!Number.isSafeInteger(n)||n<0)throw new Error('invalid battle');
   if((s.pendingDraw ?? 0)>10||Boolean(s.inUse)!==Boolean(s.pendingDraw))throw new Error('invalid battle');
   if(s.hp>60||s.jade>JADE_CAP||s.turn<1||s.rng>0xffffffff||typeof s.relicApplied!=='boolean')throw new Error('invalid battle');

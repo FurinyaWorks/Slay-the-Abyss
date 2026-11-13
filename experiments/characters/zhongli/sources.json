@@ -50,7 +50,8 @@
     "zl09",
     "zl10",
     "zl11",
-    "zl12"
+    "zl12",
+    "zl13"
   ],
   "degradation": "No P2/P3/P4 name adopted; higher priority evidence incomplete. Display names stay unique pending placeholders.",
   "next": "Complete Chinese P1/P2 index, validate proposed shield-consumption identity, obtain naming and balance review; no human approval inferred.",
@@ -86,6 +87,7 @@
     "zl09": "Ordinary-attack Weak duration is a project combat vocabulary adaptation of defensive suppression, NOT official Zhongli petrification or resistance reduction. Name and identity review HOLD.",
     "zl10": "Single-battle exhaust emergency block is a proposed project adaptation, not an official named Zhongli skill; official shielding supports general role only. Naming/balance HOLD.",
     "zl11": "Guard-threshold damage payoff without consuming jade is a project adaptation. Not an official shield-to-damage formula. Naming/balance HOLD.",
-    "zl12": "Paid block plus card draw is a project tactical access role, not an official named Zhongli ability. Source, naming and balance HOLD."
+    "zl12": "Paid block plus card draw is a project tactical access role, not an official named Zhongli ability. Source, naming and balance HOLD.",
+    "zl13": "Official English 1.3 notice supports Zhongli nearby nonstacking resistance reduction. This project instead proposes targeted time-limited Vulnerable (+50% ordinary attack damage), which is not equivalent to resistance reduction and not petrification. Source/naming/balance HOLD."
   }
 }

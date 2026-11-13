@@ -251,3 +251,36 @@ die; multi-family all complete, guarded policy v2 P90loss3 vs baseline2. Thus re
 cards are not proof of balance or improved survival. Actual original320/oldjourney120 outputs
 remain byte-for-byte equal with the legacy default. New source/naming/human/integration
 and full-rarity gates remain HOLD; full75 is63 candidates short.
+
+### Thirteenth research role: offensive exposure window (0.7, HOLD)
+Prior 0.5/0.6 local86bec94 / remote8e8e962 independently reviewed by
+character-rules-zhongli-86bec94-access-20261113:69/69,18 independent role probes,20-turn
+all-draw-card conservation,160 journey/120 fixed-card reports and20000 offer counts.
+This recorded scope does not auto-approve the following candidate.
+
+zl13: common cost1, apply2 Vulnerable; upgrade3. No immediate damage, shield, draw or energy.
+The official1.3 English notice162350 documents nearby nonstacking resistance reduction.
+Our targeted timed +50% ordinary-attack Vulnerable is NOT that resistance formula, aura,
+stacking behavior or petrification. It is a proposed adaptation, not an authenticated name.
+Choosing setup can improve follow-up hits, but loses a last-energy immediate lethal and
+cannot save HP by itself. Original12 card numbers unchanged.
+
+Project903bf2a rules vulnerablePercent150; statuses vulnerable duration/round_end_minus_1;
+player-source status marking has no monster-source grace. Each player attack effect gains
+50%, floors before enemy block; two damage effects floor separately. Duration adds without
+increasing magnitude, decrements after enemy action including idle, clears at0 and newbattle.
+Incoming enemy attacks are NOT amplified by vulnerability on the enemy. Damage then status
+on dead targets is excluded. Unsafe duration/damage arithmetic rejects before payment.
+No Artifact, fixed damage/poison, full power-order or monster-source guarantees are claimed.
+75 local tests cover both versions, duration2+3, round expiry, separate-hit/armor arithmetic,
+no incoming amplification, last-energy tradeoff, target/cancel/payment/overflow rollback.
+Exact STS1 reference values for Bash/Trip remain unverified; no B-GATE approval claimed.
+
+v3 restricted common offers add zl13 without changing v1/v2. Three distinct out of nine;
+common100%,rare/uncommon0 remains deliberately incomplete. Ideal-uniform inclusion1/3,
+actual20000-offer diagnostic counts are saved, not asserted an exact LCG theorem.
+exposure-study.mjs:40 three-room heavy-pressure runs seeds6001..6010 comparing v2/v3 and
+skip/expose. Only v3/expose acquires zl13 (5/10); one reaches room3 vs0 for all controls.
+All40 still die. This is reachability evidence, NOT survival balance or successful natural
+full-pool construction. Current rare5/uncommon10 still lack journey acquisition channels.
+Full75 remains62 short; source/naming/character-contract/balance/human/integration HOLD.

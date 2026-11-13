@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3)s.jade=6;
@@ -15,6 +15,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if(i===3)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
+    if(i===12)assert.equal(r.state.enemy.vulnerable,upgrade?3:2);
     if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
     assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11].includes(i)?[]:['a']); if(i===11){assert.equal(r.state.pendingDraw,upgrade?2:1);assert.equal(r.state.inUse,'a');} if(i===9)assert.deepEqual(r.state.exhaust,['a']);
@@ -143,4 +144,21 @@ test('draw payload range/order errors and cancellations rollback before costs',(
  const s=initialState();s.instances.a={id:'zl12',upgraded:false};const before=structuredClone(s);
  assert.equal(play(s,{id:'zl12',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);
  s.energy=0;assert.equal(play(s,{id:'zl12',instance:'a'}).ok,false);
+});
+test('vulnerability setup sacrifices immediate damage but helps remaining attacks; durations add and decay',()=>{
+ const s=initialState();const setup=run('zl13',s).state;assert.equal(setup.energy,2);assert.equal(setup.enemy.hp,40);assert.equal(setup.enemy.vulnerable,2);
+ const hit=run('zl01',setup).state;assert.equal(hit.enemy.hp,31);assert.equal(hit.energy,1);
+ const stacked=run('zl13',setup,true).state;assert.equal(stacked.enemy.vulnerable,5);
+ let later=endTurn(setup,[]);assert.equal(later.enemy.vulnerable,1);later=endTurn(later,[]);assert.equal(later.enemy.vulnerable,0);
+});
+test('vulnerability floors each damage effect before armor; it does not amplify incoming damage',()=>{
+ const s=initialState();s.enemy.vulnerable=2;s.jade=6;s.enemy.block=4;
+ const r=run('zl11',s).state;assert.equal(r.enemy.hp,28);assert.equal(r.jade,6); // floor5*1.5=7 + floor6*1.5=9 - armor4
+ assert.equal(endTurn(r,[8]).hp,58);
+});
+test('setup loses the last-energy lethal race; control cancel/target/overflow remain atomic',()=>{
+ const s=initialState();s.energy=1;s.enemy.hp=6;assert.equal(run('zl01',s).state.enemy.hp,0);assert.equal(run('zl13',s).state.enemy.hp,6);
+ for(const o of [{cancel:true},{target:'self'}]){const state=initialState();state.instances.a={id:'zl13',upgraded:false};const before=structuredClone(state);assert.equal(play(state,{id:'zl13',instance:'a',target:'enemy',...o}).ok,false);assert.deepEqual(state,before);}
+ const max=initialState();max.enemy.vulnerable=Number.MAX_SAFE_INTEGER;const before=structuredClone(max);assert.equal(run('zl13',max).ok,false);assert.deepEqual(max,before);
+ const none=initialState();none.energy=0;assert.equal(run('zl13',none).ok,false);
 });
