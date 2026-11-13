@@ -30,3 +30,6 @@ node experiments/characters/zhongli/native/run.mjs
 ```
 
 需正常安装仓库 `fengari-node-cli`；本环境复用已有受信仓库依赖目录，通过 NODE_PATH 指定，未下载软件。首轮导出误传textFor对象而非ID，在运行前报unknown card；修正后生成。未运行全量CI、官方导入、ready或设备测试。没有PR/合并/发布，也不把此片标为原生75交付。
+
+## Schema hardening after independent review
+The initial exporter only checked operation names. Review reproduced ignored tuple metadata, an ignored onExhaust hook, and a negative damage value; that compiler was not fail-closed. The follow-up now rejects unknown card keys, accessors, non-plain records, sparse or decorated arrays, non-binary tuples, unsafe/negative numbers, invalid enums and non-boolean flags before mapping. Valid-shaped unsupported operations remain explicit blocked inventory entries. `node --test experiments/characters/zhongli/native/schema.test.mjs` covers these regressions and the unchanged 16/59 split. No candidate values, generated definitions or shared engine files changed. This is still only an offline opt-in bridge, not a released character.
