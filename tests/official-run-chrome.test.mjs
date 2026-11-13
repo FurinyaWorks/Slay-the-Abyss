@@ -51,6 +51,14 @@ test('final contracts cover every card host and reject local skin, bar and relic
  applyOfficialAssets([layout,deck],theme);
  const pile=battlePileCardTemplate(layout,deck),trees=[layout,deck,pile];
  assert.doesNotThrow(()=>assertOfficialRunContracts(trees));
+ // A page cannot preserve the old compatibility handles while replacing the
+ // actual visible shell with its own geometry or palette.
+ for(const template of [deck,pile])for(const role of ['stsReferenceBack','stsReferenceChrome']){
+  const shell=child(child(template,'face'),role),old=shell.position;
+  shell.position=[1,0];
+  assert.throws(()=>assertOfficialRunContracts(trees),new RegExp('Shared card material drift.*'+role));
+  shell.position=old;
+ }
  for(const face of all(layout).filter(node=>child(node,'nativeCardBody'))){
   const bevel=child(child(face,'nativeCardBody'),'outerBevel'),old=bevel.size;
   bevel.size=[151,210];

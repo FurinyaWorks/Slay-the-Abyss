@@ -9,6 +9,21 @@ local Controller = require('abyss_controller')
 local typeNames = { attack = "攻击", skill = "技能", power = "能力", status = "状态", curse = "诅咒" }
 local pileNames = {draw="抽牌堆",discard="弃牌堆",exhaust="消耗堆"}
 local rarityOrder = {basic=1,special=2,common=3,uncommon=4,rare=5,curse=6}
+-- Read-only browser input, not a Run/combat state. UIDs stay local to the
+-- preview and never consume the Run allocator or an RNG stream.
+function M.previewContext(info)
+    if type(info)~='table' or type(info.id)~='string' or type(info.deck)~='table' then return nil,'preview_unavailable' end
+    local deck,definitions,presentation={},{},{}
+    for index,entry in ipairs(info.deck)do
+        if type(entry)~='table' or type(entry.id)~='string' or type(entry.definition)~='table' or entry.definition.id~=entry.id
+            or type(entry.display)~='table' or type(entry.count)~='number' or entry.count<=0 or entry.count>=math.huge or entry.count%1~=0 then
+            return nil,'preview_content_unavailable'
+        end
+        definitions[#definitions+1]=Combat.copy(entry.definition);presentation[entry.id]=Combat.copy(entry.display)
+        for copy=1,entry.count do deck[#deck+1]={cardId=entry.id,uid='starter:'..info.id..':'..index..':'..copy,upgraded=false}end
+    end
+    return {readOnlyPreview=true,deck=deck,data={cards={cards=definitions}}},presentation
+end
 -- Match the original game's display categories; never sort an actual combat pile.
 local browseFilters={{id='all',control='All'},{id='attack',control='Attack'},
     {id='skill',control='Skill'},{id='power',control='Power'},
@@ -66,6 +81,10 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     local pileGrid = root:GetChild('pileGrid')
     local grid = browserGrid
     local function gridColumns() return self.browserShell and 5 or Theme.layout.deckView.columns end
+    local function browserHeading(kind)
+        if self.previewInfo then return '初始牌组' end
+        return pileNames[kind] or '卡组'
+    end
     local function browserLayout()
         -- V25 keeps five columns even for one card; list origin never jumps.
         grid:SetSizeDelta(918,557)
@@ -339,7 +358,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         for _,entry in ipairs(entries)do self.cards[#self.cards+1]=entry.card end
         local total=#(self.allCards or {})
         local amount=self.typeFilter=='all' and tostring(total) or #self.cards..'/'..total
-        self.listTitle=(pileNames[self.pileKind] or '卡组')..' · '..amount..' 张'
+        self.listTitle=browserHeading(self.pileKind)..' · '..amount..' 张'
     end
     local function refreshGrid()
         self.generation=self.generation+1
@@ -454,7 +473,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         root:SetVisible(true)
         root:SetAsLastSibling()
         local prompts=choicePrompts(choice)
-        self.listTitle=(pileNames[pileKind] or "卡组").." · "..#cards.." 张"
+        self.listTitle=browserHeading(pileKind).." · "..#cards.." 张"
         if self.pileView then self.sortMode,self.sortAscending='original',true end
         if self.browseEnabled then projectCards() end
         if self.browserShell then browserLayout() end
@@ -473,6 +492,20 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         refreshGrid()
         if self.browserShell then root:GetChild('pileReturn'):SetAsLastSibling()end
         return true
+    end
+    function self.openPreview(_,info)
+        if self.visible then return false end
+        local context,display=M.previewContext(info)
+        if not context then return false,display end
+        local previous,sort=presentation,self.masterSort
+        self.previewInfo,self.previousPresentation,self.previewMasterSort=info,previous,sort
+        presentation=display
+        local ok,reason=self:open(context)
+        if not ok then
+            presentation=previous;self.masterSort=sort
+            self.previewInfo,self.previousPresentation,self.previewMasterSort=nil,nil,nil
+        end
+        return ok,reason
     end
     function self.openPile(_, run, kind)
         if not pileNames[kind] or not run or run.phase~="combat" or not run.combat
@@ -525,6 +558,8 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     end
     function self.close(_)
         if not self.visible then return false end
+        if self.previewInfo then presentation=self.previousPresentation;self.masterSort=self.previewMasterSort end
+        self.previewInfo,self.previousPresentation,self.previewMasterSort=nil,nil,nil
         self.generation = self.generation + 1
         self.visible, self.pending, self.calibrating, self.run, self.cards, self.catalog = false, false, false, nil, nil, nil
         self.allCards,self.browseEnabled,self.typeFilter,self.sortMode=nil,nil,nil,nil

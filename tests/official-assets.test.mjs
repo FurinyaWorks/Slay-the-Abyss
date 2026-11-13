@@ -249,29 +249,29 @@ test('scene and button substitutions preserve semantic icons and all four native
  assert.equal(description.text.autoSize,true);assert.deepEqual(description.size,[104,64]);
 });
 
-test('official battle adopts approved idle while selection and opt-out retain their explicit sources',t=>{
+test('official selection and battle share the approved idle while opt-out retains its explicit source',t=>{
  const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});const dir=mkdtempSync(join(root,'official-assets-'));
  t.after(()=>rmSync(dir,{force:true,recursive:true}));
  buildUI(dir,undefined,{officialAssets:true,nativePageLifecycle:true});
  assert.deepEqual(readArtFeatures(dir),officialAssetFlags);
  const layout=JSON.parse(readFileSync(join(dir,'game-ui.json'),'utf8'));
  const battle=child(child(layout,'stage'),'battlePanel');
- assert.equal(child(child(child(battle,'card1'),'roundBody'),'flat').image,100001);
+ assert(child(child(battle,'card1'),'stsReferenceChrome'),'official battle card must mount the shared reference chrome');
  assert(child(child(battle,'hero'),'officialFigure'));
  const portrait=readFileSync(join(dir,'abyss_traveler_portrait_assets.lua'),'utf8');
  assert.match(portrait,/battle133=/);assert.match(portrait,/avatar96=/);
- assert.match(portrait,/battlePixel=/);
+ assert.doesNotMatch(portrait,/battlePixel=/);
  const inventory=portraitInventory(officialAssetFlags,{officialAssets:true});
  assert.equal(inventory.assets.some(a=>a.asset==='temporary-pixel-traveler'),false);
  assert.match(portrait,/battleApprovedIdle=/);
- const selected=inventory.assets.find(a=>a.asset==='temporary-pixel-traveler-selection');
+ const selected=inventory.assets.find(a=>a.asset==='traveler-geo/idle-approved-v1-selection-crop');
  const fighting=inventory.assets.find(a=>a.asset==='traveler-geo/idle-approved-v1');
  assert.equal(fighting?.images,7303);
  assert.equal(fighting.motion,'approved-source-field-native-band-approximation');
- assert.equal(inventory.selectionUses,'battlePixel');assert.equal(selected?.images,57);
- assert.notEqual(selected.sourceSha256,fighting.sourceSha256,'selection and approved combat have explicit independent source identities');
+ assert.equal(inventory.selectionUses,'battleApprovedIdle');assert.equal(selected?.images,7303);
+ assert.equal(selected.sourceSha256,fighting.sourceSha256,'selection crops the same approved combat source');
  assert.equal(inventory.assets.some(a=>a.asset==='traveler-geo/portraits/battle133-selection'),false);
- assert.equal(inventory.assets.find(a=>a.asset==='traveler-geo/portraits/avatar96').images,457);
+ assert.equal(inventory.assets.some(a=>a.asset==='traveler-geo/portraits/avatar96'),false,'no independently built avatar instance');
  assert.doesNotMatch(portrait,/lowpolyLand=/);
  assert.match(readFileSync(join(dir,'abyss_theme.lua'),'utf8'),/official-assets-first/);
  assert.match(readFileSync(join(dir,'abyss_ui_profile.lua'),'utf8'),/nativePageLifecycle=true/);

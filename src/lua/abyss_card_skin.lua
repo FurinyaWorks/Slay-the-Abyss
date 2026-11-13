@@ -60,7 +60,89 @@ local decorations=setmetatable({},{__mode='k'})
 local pillWidths=setmetatable({},{__mode='k'})
 local bodyMaterialKinds=setmetatable({},{__mode='k'})
 local ribbonColours=setmetatable({},{__mode='k'})
+local referenceRoots=setmetatable({},{__mode='k'})
+local referenceStates=setmetatable({},{__mode='k'})
+local function referenceRoot(box)
+    local tokens=Theme.officialAssets and Theme.officialAssets.stsCardReference
+    if Theme.presentationProfile~='official-assets-first' or not tokens or not tokens.geometry then return end
+    local root=referenceRoots[box]
+    if root==nil then
+        local ok,value=pcall(box.GetChild,box,'stsReferenceChrome')
+        root=ok and value or false;referenceRoots[box]=root
+    end
+    return root or nil
+end
+function M.referenceGeometry(box)
+    return referenceRoot(box)and Theme.officialAssets.stsCardReference.geometry or nil
+end
+local referenceMaterials={frame='frame',frameRails='frame',frameShadow='frameShadow',frameHighlight='frameHighlight',
+    plaqueOutline='frame',plaqueFace='plaque',well='portrait',joint0='frame',joint1='frame'}
+local function referenceState(box,root)
+    local state=referenceStates[box]
+    if state then return state end
+    state={root=root,groups={},materials={},banner={front={},fold={}},bodyMaterials={},frameParts={}}
+    -- One bounded discovery per face; type/rarity updates never walk the tree.
+    local function collect(node,list)
+        local children=node:GetChildren()
+        if #children==0 then list[#list+1]=node
+        else for _,child in ipairs(children)do collect(child,list)end end
+    end
+    local back=box:GetChild('stsReferenceBack')
+    local portraits=back:GetChild('portraits')
+    for _,kind in ipairs({'attack','skill','power'})do
+        local group=portraits:GetChild(kind);state.groups[kind]=group
+        for _,part in ipairs(group:GetChildren())do
+            local key=referenceMaterials[part.name]or'frame'
+            state.materials[key]=state.materials[key]or{};collect(part,state.materials[key])
+        end
+    end
+    local frame=root:GetChild('frame')
+    local capacity=#Theme.officialAssets.stsCardReference.geometry.frameProfiles.power
+    state.materials.frame={}
+    for i=1,capacity do
+        local part=frame:GetChild('batch'..math.floor((i-1)/50)):GetChild('part'..i)
+        state.frameParts[i]=part;state.materials.frame[i]=part
+    end
+    local plaque=root:GetChild('plaqueFace');state.materials.plaque={plaque}
+    local bodyKinds={bodyFit='outer',paperWell='body',topBevel='shade',leftBevel='shade',rightBevel='outer',bottomBevel='outer',innerLight='bevel',cornerBevel='bevel'}
+    for _,part in ipairs(back:GetChild('body'):GetChildren())do
+        local key=bodyKinds[part.name];state.bodyMaterials[key]=state.bodyMaterials[key]or{};collect(part,state.bodyMaterials[key])
+    end
+    for _,part in ipairs(root:GetChild('banner'):GetChildren())do collect(part,state.banner[part.name=='front'and'front'or'fold'])end
+    state.cost=root:GetChild('costMaterial')
+    referenceStates[box]=state;return state
+end
+local function referenceBody(state,definition,tint)
+    local kind=(definition.type=='status'or definition.type=='curse')and definition.type or'geo'
+    if state.bodyKind==kind then return end
+    local tokens=Theme.officialAssets.stsCardReference
+    local neutral=kind~='geo'and Theme.officialAssets.battleCardBodyMaterials[kind]
+    local colours=neutral and{outer=neutral.outerBevel,shade=neutral.paperBevel,body=neutral.innerWell,bevel=neutral.leftCatchlight}or tokens.character
+    for key,parts in pairs(state.bodyMaterials)do for _,part in ipairs(parts)do tint(part,colours[key])end end
+    for _,part in ipairs(state.materials.portrait or{})do tint(part,neutral and neutral.artWell or tokens.portrait)end
+    state.bodyKind=kind
+end
+local function referenceBanner(box,definition,tint,root)
+    local state=referenceState(box,root)
+    local key=(definition.rarity=='basic'or definition.rarity=='curse')and'common'or definition.rarity or'common'
+    if state.rarity==key then return state end
+    local tokens=Theme.officialAssets.stsCardReference
+    local rarity=tokens.rarity[key]or tokens.rarity.common
+    for material,parts in pairs(state.materials)do
+        -- Portrait colour belongs to character/neutral material, independently
+        -- of rarity. Repainting a banner must not turn a curse well back Geo.
+        if material~='portrait'then
+            local tone=rarity[material]or rarity.frame
+            for _,part in ipairs(parts)do tint(part,tone)end
+        end
+    end
+    for _,part in ipairs(state.banner.front)do tint(part,rarity.banner)end
+    for _,part in ipairs(state.banner.fold)do tint(part,rarity.bannerFold)end
+    state.rarity=key;return state
+end
 function M.paintBanner(box,definition,tint)
+    local reference=referenceRoot(box)
+    if reference then referenceBanner(box,definition,tint,reference);return end
     local official=Theme.presentationProfile=='official-assets-first'
     local tones=official and Theme.officialAssets.battleBannerByRarity or Theme.color.rarityBand
     local tone=tones[definition.rarity]or tones.basic
@@ -191,6 +273,12 @@ local function costState(look)
     return current>=0 and base>=0 and current~=base,current,base
 end
 local function costVisibility(box,hasCost,nativeSurface)
+    local reference=referenceRoot(box)
+    if reference then
+        referenceState(box,reference).cost:SetVisible(hasCost and not nativeSurface)
+        for _,name in ipairs({'costCore','costDisc','nativeCostOrb'})do box:GetChild(name):SetVisible(false)end
+        box:GetChild('cost'):SetVisible(hasCost);return
+    end
     if Theme.presentationProfile=='official-assets-first' then
         local orb=assert(box:GetChild('nativeCostOrb'),'official battle cost orb is required')
         orb:SetVisible(hasCost and not nativeSurface)
@@ -267,11 +355,44 @@ surfaceDecorations=function(box,ready)
     for kind in pairs(windowNames)do skin:GetChild(kind):GetChild('edge'):SetVisible(not ready)end
     surfaceVisibility[box]=ready
 end
+local function placeReferencePart(part,shape)
+    part:SetVisible(shape~=nil)
+    part:SetAnchoredPosition(shape and shape.position[1]or 0,shape and shape.position[2]or 0)
+    part:SetSizeDelta(shape and shape.size[1]or 1,shape and shape.size[2]or 1)
+    part:SetLocalScale(shape and shape.scale[1]or 1,shape and shape.scale[2]or 1,1)
+    part:SetLocalRotation(0,0,shape and shape.rotation or 0)
+end
+local function referenceKind(state,definition)
+    local kind=state.groups[definition.type]and definition.type or'skill'
+    if state.kind==kind then return end
+    for name,group in pairs(state.groups)do group:SetVisible(name==kind)end
+    local geometry=Theme.officialAssets.stsCardReference.geometry.frameProfiles[kind]
+    for i,part in ipairs(state.frameParts)do placeReferencePart(part,geometry[i])end
+    state.kind=kind
+end
+local function referenceInk(box,platform)
+    if not platform.color then return end
+    local tokens=Theme.officialAssets.stsCardReference
+    local function ink(name,tone)local part=box:GetChild(name);part.fontColor=platform.color(tone.r,tone.g,tone.b,255)end
+    ink('name',tokens.rarity.common.ink);ink('type',tokens.text.type)
+end
+local function applyReference(box,definition,platform,look,accent,tint,reference)
+    local state=referenceBanner(box,definition,tint,reference)
+    referenceKind(state,definition)
+    referenceBody(state,definition,tint)
+    costs(box,definition,look,accent,platform,tint,false)
+    referenceInk(box,platform)
+    blockedState(box,look)
+end
 function M.apply(box,definition,platform,look)
     look=look or {}
     local role=identity(definition)
     local accent=(config.roles[role] or config.roles.traveler).accent
     local tint=painter(platform)
+    local reference=referenceRoot(box)
+    if reference then
+        applyReference(box,definition,platform,look,accent,tint,reference);return
+    end
     if Theme.presentationProfile=='official-assets-first' then
         M.paintBanner(box,definition,tint)
         if platform.color then

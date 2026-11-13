@@ -2,12 +2,9 @@
 local Theme=require('abyss_theme')
 local Select=require('abyss_character_select')
 local number=require('abyss_numbers').integer
-local CardDisplay=require('abyss_card_display')
-local CardSkin=require('abyss_card_skin')
 local M={}
 -- 选角只做一眼扫读（对标 STS 选角页）：牌组按 攻击→技能→能力→其它 排好直接列出，不提供筛选。
 local typeOrder={attack=1,skill=2,power=3,status=4,curse=5}
-local typeNames={attack='攻击',skill='技能',power='能力',status='状态',curse='诅咒'}
 local function sortedDeck(info)
     local cards={}
     for i,card in ipairs(info.deck)do cards[i]=card end
@@ -19,51 +16,12 @@ local function sortedDeck(info)
     end)
     return cards
 end
--- 选角只给一行摘要 + 「查看牌组」入口；完整牌组在 deckView 以一张张卡面展示（STS 查看牌组）。
+-- Selection owns the summary only; the shared deck browser owns all card faces.
 local function renderStarterDeck(details,info)
     local parts={}
     for _,card in ipairs(sortedDeck(info))do parts[#parts+1]=card.name..'×'..number(card.count)end
     details:GetChild('deckTitle').text='初始牌组 · '..number(info.deckSize)..' 张'
     details:GetChild('deckSummary').text=table.concat(parts,'  ')
-end
--- 复用局内牌组卡面填充（abyss_deck_ui fill 同款）：只读展示，不建 Run、不改状态。
-local function fillFace(face,card,i,platform)
-    local definition,display=card.definition,card.display
-    if not definition or not display or not platform then
-        face:GetChild('name').text=card.name;face:GetChild('cost').text=card.cost~=nil and tostring(card.cost) or '';return
-    end
-    local instance={cardId=card.id,uid='select-'..card.id..'-'..i,upgraded=false}
-    local function colour(v)return platform.color and platform.color(v.r,v.g,v.b,v.a) end
-    local function tint(control,v)local c=colour(v);if c then control.imageColor=c end end
-    CardDisplay.writeTitle(face:GetChild('name'),display.name,false,nil,face:GetChild('type'),typeNames[definition.type] or definition.type)
-    local title=colour(Theme.cardSkin.text.title);if title then face:GetChild('name').fontColor=title end
-    CardDisplay.writeBody(face:GetChild('label'),CardDisplay.permanentText(display,definition,instance),face)
-    face:GetChild('cost').text=definition.cost==-2 and '' or definition.costMode=='all_energy' and 'X' or tostring(definition.cost)
-    tint(face:GetChild('border'),Theme.color.rarity[definition.rarity] or Theme.color.line)
-    tint(face:GetChild('nameBand'),Theme.color.rarityBand[definition.rarity] or Theme.color.rarityBand.basic)
-    tint(face:GetChild('nameRule'),Theme.color.rarity[definition.rarity] or Theme.color.line)
-    tint(face:GetChild('artPlate'),Theme.color.cardType[definition.type] or Theme.color.panelRaised)
-    if platform.imageSource then
-        CardDisplay.writeArt(face:GetChild('art'),definition,function(control,id)control:SetImage(platform.imageSource,id)end)
-        CardDisplay.writeNativeArt(face,definition,display.nativeArt,platform,face:GetChild('art'),instance.uid)
-    end
-    CardSkin.apply(face,definition,platform,{cost=definition.cost,baseCost=definition.cost,surfaceScope='character'})
-end
-function M.renderDeck(view,info,open,platform)
-    view:SetVisible(open==true and info~=nil)
-    if not open or not info then return end
-    view:GetChild('title').text='初始牌组 · '..number(info.deckSize)..' 张'
-    local each={}
-    for _,card in ipairs(sortedDeck(info))do for _=1,card.count do each[#each+1]=card end end
-    local i=1
-    while view:GetChild('deckCard'..i)do
-        local slot,card=view:GetChild('deckCard'..i),each[i]
-        slot:SetVisible(card~=nil)
-        if card then fillFace(slot:GetChild('face'),card,i,platform)end
-        i=i+1
-    end
-    -- 超出卡位时明确汇总，绝不静默丢牌。
-    view:GetChild('overflow').text=#each>=i and ('另有 '..number(#each-i+1)..' 张未展开') or ''
 end
 local function selected(box,value)
     box:GetChild('selected'):SetVisible(value)
@@ -106,7 +64,8 @@ local function paintPortraitNote(details,info,platform,large,key,portraits)
 end
 function M.render(panel,state,platform)
     local info=state.info
-    local nativeV25=Theme.presentationProfile=='official-assets-first' and panel:GetChild('v25Roster')~=nil
+    local originalSts=Theme.presentationProfile=='official-assets-first' and panel:GetChild('stsCharacter')~=nil
+    local nativeV25=Theme.presentationProfile=='official-assets-first' and (originalSts or panel:GetChild('v25Roster')~=nil)
     panel:GetChild('hint').text=state.notice or (nativeV25 and '' or (info and '查看初始信息，确认后开始冒险。' or '点击下方角色查看详情，再确认出发。'))
     -- 只剩一个可选角色/元素时不摆假选择钮（Pan 2026-10-31：单角色发版）。
     local open,elementsOpen=0,0
@@ -114,11 +73,11 @@ function M.render(panel,state,platform)
     for _,id in ipairs(Select.elements)do if state:allowsElement(id)then elementsOpen=elementsOpen+1 end end
     for i,id in ipairs(Select.characters)do
         local box=panel:GetChild(i==5 and 'traveler' or 'character'..i)
-        local allowed=open>1 and state:allowsCharacter(id)
+        local allowed=(originalSts or open>1) and state:allowsCharacter(id)
         if box.visible~=allowed then box:SetVisible(allowed)end
         selected(box,state.character==id)
         local _,bust=largeSlot(id,id=='traveler' and (state.element or 'ironclad') or nil)
-        paintBust(box,bust,platform)
+        if not originalSts or id~='traveler' then paintBust(box,bust,platform)end
     end
     local traveler=state.character=='traveler'
     -- Theme layers are prebuilt per character/element; only visibility changes.
@@ -137,12 +96,12 @@ function M.render(panel,state,platform)
         paintBust(box,Theme.icon.heroSlots.bust.traveler[id],platform)
     end
     local details=panel:GetChild('details');details:SetVisible(info~=nil)
-    M.renderDeck(panel:GetChild('deckView'),info,state.deckOpen,platform)
+    panel:GetChild('deckView'):SetVisible(false)
     local confirm=panel:GetChild('confirm'):GetChild('hit')
     confirm.interactable,confirm.raycastTarget=state:canConfirm(),state:canConfirm()
     if not info then return end
     details:GetChild('name').text=info.name
-    if nativeV25 then
+    if nativeV25 and not originalSts then
         local name=state.character=='traveler' and '荧' or info.name
         panel:GetChild('v25Roster'):GetChild('selected'):GetChild('selectedInitial').text=utf8.char(utf8.codepoint(name))
     end
@@ -154,6 +113,7 @@ function M.render(panel,state,platform)
     details:GetChild('relicText').text=table.concat(texts,' ')
     renderStarterDeck(details,info)
     local large,key,portraits=paintPortraits(details,state,platform)
+    if originalSts then portraits:SetVisible(false)end
     paintPortraitNote(details,info,platform,large,key,portraits)
 end
 return M

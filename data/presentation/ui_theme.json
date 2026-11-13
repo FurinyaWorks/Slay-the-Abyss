@@ -1,5 +1,40 @@
 {
   "officialAssets": {
+    "neowGuide": {
+      "scale":0.945,"origin":[739,61.5],
+      "cloak":"#7D827B","cloakBottom":"#222D30","outline":"#182528","void":"#111E24",
+      "fold":"#485455","foldLine":"#9B9E8D","sleeve":"#66716B","sleeveOutline":"#26383B",
+      "staff":"#65584A","gem":"#BFB286","gemOutline":"#3C4238","clasp":"#B4A97C","shadow":"#081316"
+    },
+    "stsCardReference": {
+      "typography":{"title":14,"cost":18,"type":8,"body":12},
+      "character": {"outer":"#5B472A","bevel":"#B99A59","light":"#E6CC8B","shade":"#806537","body":"#423B30"},
+      "rarity": {"common":{"frame":"#959595","frameHighlight":"#BABABA","frameShadow":"#777777","frameSeam":"#3E3E3E","plaque":"#CECECE","plaqueHighlight":"#D4D4D4","banner":"#9E9E9E","bannerFold":"#848484","bannerHighlight":"#A8A8A8","ink":"#F4F1E8"}},
+      "cost": {"rim":"#5D4724","light":"#E9D698","ink":"#FFF5DE"},
+      "text": {"body":"#F2EADB","type":"#373734","outline":"#282722"},
+      "portrait":"#31392C",
+      "portraitInk":"#E8E3D6"
+    },
+    "neowChoice": {
+      "scale": 0.6666666666666666,
+      "sourceSize": [880, 59],
+      "sourceStep": 79,
+      "origin": [-226.66666666666666, -276.3333333333333],
+      "hitHeight": 44,
+      "textSize": 20,
+      "border": "#172D30",
+      "bevel": "#326668",
+      "face": "#29494A",
+      "shadow": "#0C1719",
+      "ink": "#FFFFFF",
+      "outline": "#15191B",
+      "rewardInk": "#7FFF00",
+      "costInk": "#FF6563",
+      "disabledInk": "#8E9690",
+      "hover": "#426B6C",
+      "pressed": "#203A3C",
+      "disabled": "#24383A"
+    },
     "profile": "official-assets-first-v1",
     "note": "PR #588 opt-in candidate. Existing 2026-10-13 catalog thumbnails inspected; current-client visual acceptance is UNVERIFIED. Preserve all semantic icon IDs and actual Traveler portraits; no MCP catalog update.",
     "images": {
@@ -98,6 +133,15 @@
     "battleArtWells": {"attack":"#551C24","skill":"#1A3042","power":"#252536"},
     "buttonBacking": "#17252D",
     "buttonInk": "#FFF8E7",
+    "flagButton": {
+      "cancel": ["#BCA348", "#8C3739", "#B95B4A"],
+      "confirm": ["#A2B4B5", "#477B89", "#77A4AF"],
+      "hoverBrightness": 1.18,
+      "pressedBrightness": 0.92,
+      "fallbackInk": "#FFF0B1",
+      "labelFontSize": 26,
+      "labelMinFontSize": 26
+    },
     "costInk": "#403829",
     "battlePortraitDisplay": 210,
     "battlePortraitPosition": [0, 0],
@@ -1135,6 +1179,22 @@
     }
   },
   "layout": {
+    "stsCharacter": {
+      "reference": {"canvas":[1920,1080],"sourceSha256":"4828bd5150c250e0634fa6999d057ef68accd599187d24015c89b833c038a63d"},
+      "rectangles": {
+        "name":[114,218,430,60],"stats":[144,285,116,32],"gold":[278,285,110,32],
+        "hpIcon":[115,286,22,22],"goldIcon":[248,285,24,25],
+        "story":[115,328,360,50],"relicIcon":[115,389,36,36],
+        "relic":[162,381,355,31],"relicText":[162,402,440,33],
+        "deckTitle":[115,430,360,30],"deckSummary":[115,455,470,35],
+        "deckOpen":[115,491,180,32],"hint":[115,181,480,32],
+        "cancel":[0,565,180,54],"confirm":[1100,573,180,48]
+      },
+      "font":{"name":44,"stats":16,"story":18,"relic":21,"relicText":17,"deckTitle":17,"deckSummary":16,"button":24,"hint":16,"deckOpen":16},
+      "roster":{"origin":[414,586.5],"step":146.667,"size":[100,100]},
+      "colour":{"name":"#F5DE66","text":"#EEE9D2","muted":"#B7B4A8","hp":"#EF7777","gold":"#F1CA67","slot":"#ADC6C3","slotLight":"#D0E5DE","slotDark":"#6E8D90","selected":"#E5C846","buttonInk":"#F4E5AC"},
+      "portrait":{"source":"battleApprovedIdle","sourceSize":[210,192],"crop":{"left":-40,"bottom":0,"right":56,"top":96},"display":210}
+    },
     "battlePotions": {
       "count": 5,
       "origin": [-100, 264],

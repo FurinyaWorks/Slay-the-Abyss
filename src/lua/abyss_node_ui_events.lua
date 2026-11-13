@@ -105,6 +105,16 @@ local function compactFrames(rows)
     end
     return frames
 end
+local function sizeOptionInput(box, w, h, neow)
+    for _, part in ipairs({ 'border', 'hit' }) do
+        local control = box:GetChild(part)
+        if control then control:SetSizeDelta(w, h) end
+    end
+    if neow and NEOW.stsChoice then
+        box:GetChild('hit'):SetSizeDelta(w, math.max(h, NEOW.stsChoice.hitHeight))
+    end
+end
+
 local function placeOptions(event, neow, rows)
     local o = layout.event.options
     local count = math.min(#rows, OPTIONS)
@@ -128,9 +138,7 @@ local function placeOptions(event, neow, rows)
                 place(box:GetChild('description'), o.description)
             end
             box:SetSizeDelta(w, h)
-            for _, part in ipairs({ 'border', 'hit' }) do
-                local c = box:GetChild(part); if c then c:SetSizeDelta(w, h) end
-            end
+            sizeOptionInput(box, w, h, neow)
             for _, part in ipairs({ 'normal', 'disabled', 'hover', 'pressed', 'selected' }) do
                 local c = box:GetChild(part); if c then c:SetSizeDelta(w - 4, h - 4) end
             end
@@ -189,7 +197,51 @@ local function inlineOption(row)
     return text
 end
 
+-- The separators below belong specifically to abyss_neow.description's
+-- current structured offer contract. Unknown formatting stays neutral and full.
+local function neowOfferParts(offer, description)
+    if offer.type == 'BOSS_RELIC' then return description:match('^(.-)，(.+)$') end
+    if offer.drawback ~= 'NONE' then return description:match('^(.-)；(.+)$') end
+    return '', description
+end
+
+local function coloured(text, colour)
+    return '<color=' .. string.format('#%02X%02X%02X', colour.r, colour.g, colour.b) .. '>' .. text .. '</color>'
+end
+
+local function neowInlineOption(row)
+    local token = NEOW.stsChoice
+    local description = (row.description or ''):gsub('。$', '')
+    if row.neowOffer then
+        if not row.enabled then return '[ ' .. description .. ' ]' end
+        local cost, reward = neowOfferParts(row.neowOffer, description)
+        if not reward then return '[ ' .. description .. ' ]' end
+        local penalty = cost ~= '' and coloured(cost, token.costInk) .. ' ' or ''
+        return '[ ' .. penalty .. coloured(reward, token.rewardInk) .. ' ]'
+    end
+    local title = row.title:gsub('［', ''):gsub('］', '')
+    if title == '继续' or title == '启程' or title == '跳过' then return '[ ' .. title .. ' ]' end
+    return '[ ' .. title .. ' ' .. description .. ' ]'
+end
+
+local function neowOffer(info, choice)
+    if info.id ~= 'neow' or not info.rewards then return nil end
+    local index = tonumber(choice:match('^reward_(%d+)$'))
+    return index and info.rewards[index] or nil
+end
+
 local function writeOption(ctx, box, row, id)
+    local line = box:GetChild('stsNeowText')
+    if line then
+        local active = id == 'neow'
+        line:SetVisible(active);box:GetChild('title'):SetVisible(not active)
+        if active then
+            line.text = neowInlineOption(row)
+            ctx.ink(line, row.enabled and NEOW.stsChoice.ink or NEOW.stsChoice.disabledInk)
+            box:GetChild('description'):SetVisible(false)
+            return
+        end
+    end
     local compact = layout.event.reference and id ~= 'neow'
     box:GetChild('title').text = compact and inlineOption(row) or row.title
     box:GetChild('description').text = row.description
@@ -249,7 +301,7 @@ function M.install(ctx)
                         for _,option in ipairs(info.options) do
                             local selected=option
                             rows[#rows+1]={title='［'..(selected.rewardCard and ctx.cardName(selected.cardId,selected.upgraded)or selected.title)..'］',
-                                description=optionDescription(ctx,selected),enabled=selected.enabled,handler=function()
+                                description=optionDescription(ctx,selected),neowOffer=neowOffer(info,selected.choice),enabled=selected.enabled,handler=function()
                                     -- Repeated-search events retain the same command after
                                     -- rendering new odds. An old callback is still stale.
                                     if ctx.self.view~=view or ctx.self.renderRun~=ctx.self.run or ctx.self.renderMap~=ctx.self.map then return false,'stale_action' end

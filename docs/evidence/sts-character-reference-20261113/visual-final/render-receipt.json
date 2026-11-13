@@ -1,0 +1,135 @@
+{
+  "kind": "headless-original-sts-character-selection",
+  "createdAt": "2026-11-13T09:00:45.698Z",
+  "sourceClosureSha256": "1b2268a08fca67f2785ced9e4b520341aa35dad71b38c04919df325d5d001b40",
+  "scenarios": {
+    "character": {
+      "file": "current-character.save.json",
+      "sha256": "28dc5cf6d671cbe96ea16a7fdf73688b23468b1d39ce89adad0009938e75ed67",
+      "startupSha256": "e0cfd911ec18680fdebb751898c8d5fe03962ca2aa4cea9e18726a0568b4611d"
+    }
+  },
+  "rendererSha256": "3b34e80b712c56ba2bb8042446257c57b52b3d027e20446596ce7dc27afb2fb2",
+  "browserPath": "C:/Users/Administrator/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe",
+  "rendering": "headless Chromium SwiftShader software WebGL; offline SDK fixture; not official import/ready/GPU/device evidence",
+  "shots": [
+    {
+      "name": "character-select",
+      "scenario": "character",
+      "checks": "original PC selection geometry and shared approved battle idle half-body",
+      "sha256": "725bb8246e04b8107311f32c38e118f97ae70c637c3d1cd90bb5efa7b66de5c5",
+      "time": 20.441400000002243,
+      "frame": 107,
+      "frontendRenderPasses": {
+        "before": 113,
+        "after": 117
+      }
+    },
+    {
+      "name": "character-selected-idle",
+      "scenario": "character",
+      "checks": "same approved battle figure, half-body; no constellation asset",
+      "sha256": "44c63b1f4991cb95bd8f88949ddcc9ae4435fc599c52bcb25663b5d4a24e4d88",
+      "time": 24.569200000002986,
+      "frame": 138,
+      "frontendRenderPasses": {
+        "before": 144,
+        "after": 148
+      }
+    }
+  ],
+  "errors": [],
+  "resourceResponses": [],
+  "requests": [
+    {
+      "scenario": "character",
+      "control": "hit",
+      "id": 6826,
+      "point": {
+        "x": 474,
+        "y": 737.5
+      }
+    }
+  ],
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_STS_CHARACTER_FIXTURE scenario=character seed=42 selection-only",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=revealing owned=3332 reason=nil",
+      "time": 16.367500000003727
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=ready owned=3332 reason=nil",
+      "time": 19.260700000002988
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2",
+      "time": 19.510700000002988
+    }
+  ],
+  "status": "captured-awaiting-image-review"
+}

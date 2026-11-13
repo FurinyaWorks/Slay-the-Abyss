@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-28 09:39'
-updated_date: '2026-11-13 07:59'
+updated_date: '2026-11-13 10:00'
 labels:
   - 待验
 milestone: m-8
@@ -37,6 +37,8 @@ ordinal: 121000
 核对原稿与原生图库；共享装配与皮肤绑定；各场景复用；生成预览并运行回归；提交PR。
 
 本轮永久卡组沿已合共享战斗卡面，复用五列暗场、四项排序与左下返回，browserShell只控制表现、永久run.deck与临时战斗费用隔离。补17张商店、0/1/5/6边界、详情/滚动、回收与迟到输入、新choice保护。
+
+2026-11-13用户纠偏：锁定初代Steam Anger母版，交叉量测原始部件；按Armaments/Deflect/Battle Trance/Inflame单变量对照，独立职业结构、元素色与稀有度，逐层同尺寸比较与负控。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -51,4 +53,6 @@ ordinal: 121000
 已实际渲染并核对17张永久卡组五列、滚底末行两张、详情返回及商店恢复；独审R2通过，工程/变异/原生合同通过。当前为离线实际Lua/Simulator证据，未取得官方同候选设备验证，不勾AC。Owner授权提交并在准入通过后auto merge。
 
 用户2026-11-13再次拒收卡面风格，要求准确样式移植而非泛泛参考；参照在精不在多，用一张主样卡与最少单变量对照环环相扣。当前先核验原始参照、轮廓/比例/边框/分区/文字/材质及元素token映射，未做新卡面生产修改。旧统一组件通过不表示卡面质量已获认可。
+
+本轮共享卡框候选已覆盖攻击/技能/能力、Geo与灰蓝金token，采用精确轮廓固定池及back/art/front层序，保留中性材料、完整文案和升级信息。来源与19项定向回归见docs/evidence/sts-card-reference-20261113；已跑实际工程门禁。尚缺最终集成SDK/成本，费用火焰、纸面手绘和官方设备不声称完成。
 <!-- SECTION:NOTES:END -->

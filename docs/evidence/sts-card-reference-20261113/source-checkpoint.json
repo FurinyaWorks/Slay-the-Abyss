@@ -1,0 +1,17 @@
+{
+  "status": "preintegration source checkpoint, final SDK/cost pending after integrated epoch",
+  "face": {
+    "controls": 353,
+    "images": 304,
+    "texts": 6
+  },
+  "sha256": {
+    "scripts/sts-card-reference-profile.mjs": "1d59fcf524bac74a044ba3a81d997843c40cbf0485e61c19ecd75dc5bd3522b4",
+    "scripts/official-battle-card-chrome.mjs": "49d3677a6a74ab8cb7519e3128f7854245f9da2ff83e879422ab63a204ba2490",
+    "scripts/v25-battle-scene.mjs": "06469c986db21466c28476674fcfe96b921b934d611c0a3cb6952e53fd003230",
+    "src/lua/abyss_card_skin.lua": "b6ffeaa67366613028633ee1859f03686d9127d0f5024ddba5a4479165ce7ef6",
+    "src/lua/abyss_card_display.lua": "802bcf70f9e992d21096fc60f9e58e9feb3acba368ab7504d4101f8b9cf14889",
+    "tests/sts-card-reference.test.mjs": "84856ce971a760d890e8f1062f0af9bdd76c8e4567e3a384325134afcadf1657",
+    "tests/sts-card-reference-runtime.test.mjs": "01b99a70a66874241c8617498a045d9ec3687e0e1ba73d5d81899b4e01f91216"
+  }
+}

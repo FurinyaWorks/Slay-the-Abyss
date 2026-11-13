@@ -5,6 +5,19 @@ local C = Theme.color
 local layout = Theme.layout.nativeNode
 local M = {}
 
+local function neowChoiceChrome(ctx, box, look, hover, pressed)
+    local chrome = box:GetChild('stsNeowChrome')
+    if not chrome then return end
+    local flow = ctx.self.run.nodeFlow
+    local active = flow and flow.event and flow.event.id == 'neow'
+    chrome:SetVisible(active == true)
+    if not active then return end
+    for _, name in ipairs({'border','normal','hover','pressed','disabled','selected'}) do box:GetChild(name):SetVisible(false) end
+    local token = layout.event.neow.stsChoice
+    local face = not look.enabled and token.disabled or pressed and token.pressed or hover and token.hover or token.face
+    for _, part in ipairs(chrome:GetChild('face'):GetChildren()) do ctx.tint(part, face) end
+end
+
 local function referenceCamp(ctx, box)
     local reference, camp = layout.camp.reference, ctx.child('campView')
     if not reference or box.parent ~= camp then return end
@@ -83,6 +96,7 @@ function M.install(ctx)
         end
         paintButtonFrame()
         referenceChrome(ctx, box, look, hover)
+        neowChoiceChrome(ctx, box, look, hover, pressed)
         local scale = pressed and layout.buttonStates.pressedScale or layout.buttonStates.normalScale
         box:SetLocalScale(scale, scale, 1)
     end

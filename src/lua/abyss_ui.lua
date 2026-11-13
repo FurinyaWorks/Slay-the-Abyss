@@ -1,4 +1,5 @@
 local view, Viewport, background, cardArt, portraits, v25Textures, nativeStage, componentBridge
+local artFailures={}
 local canvasWidth, canvasHeight
 local attempted = false
 local function failed(phase, reason)
@@ -59,8 +60,12 @@ local function artFeatures()
 end
 local function optionalArt(name, create)
     local ok, value = pcall(create)
-    if ok then return value end
+    if ok then
+        if value==nil and (name=='portraits' or name=='cards') then artFailures[name]='requested art owner unavailable'end
+        return value
+    end
     print('ABYSS_ART '..name..' phase=unavailable reason='..tostring(value))
+    artFailures[name]=tostring(value)
 end
 local function boundIndex(value)
     return type(value)=='number' and value>0 and value<math.huge and value%1==0
@@ -76,6 +81,35 @@ local function attachComponents(stage,flags)
             print('ABYSS_COMPONENTS attached original-components-control-v1')
         end
     return stage
+end
+local function presentationReady(intent)
+    for name,reason in pairs(artFailures)do
+        if name=='portraits' or name=='cards' or name=='v25CardSurface' then return false,reason end
+    end
+    if componentBridge then
+        local state,reason=componentBridge:pageState(intent.page)
+        if state=='failed' then return false,reason end
+        if state~='visible' then return false end
+    end
+    if portraits then
+        local ready,reason=portraits:readyForPage(intent.mode,intent.characterOpen,intent.character,intent.page)
+        if not ready then return false,reason end
+    end
+    if view and intent.page=='deckPanel' and (view.deckUI.pending or view.deckUI.calibrating) then return false end
+    if background and intent.page=='menuPanel' then
+        local state=background:status()
+        if state.phase=='failed' then return false,state.reason end
+        if state.phase~='ready' and state.phase~='disabled' then return false end
+    end
+    if v25Textures then
+        local ready,reason=v25Textures:presentationReady(intent.page)
+        if not ready then return false,reason end
+    end
+    return require('abyss_card_art_runtime').presentationReady(intent.page)
+end
+local function presentationPage(page)
+    require('abyss_card_art_runtime').setPresentationPage(page)
+    if v25Textures then v25Textures:setPresentationPage(page)end
 end
 function OnStart()
     if attempted then return end
@@ -182,7 +216,7 @@ function OnStart()
         end
         view = GameUI.new(stage, Data, Presentation, Enum.CursorEventType.CursorClick,
             { background = background, portraits = portraits, cardArt = cardArt, music = music, campaign = true, campaignProfile = "competition-two-act",
-              nativePageLifecycle = nativePageLifecycle,
+              nativePageLifecycle = nativePageLifecycle,presentationReady=presentationReady,presentationPage=presentationPage,
               -- Native OnUpdate timing has not been verified across mobile
               -- foreground/background transitions. Do not publish it as accurate
               -- elapsed time; retain the internal Host counter unchanged.
@@ -238,13 +272,20 @@ function OnUpdate(dt)
             view:resize(width, height)
             canvasWidth, canvasHeight = width, height
         end
+        presentationPage(require('abyss_page_reveal').intent(view).page)
         view:update(dt)
+        presentationPage(require('abyss_page_reveal').intent(view).page)
         if componentBridge then componentBridge:step()end
         if v25Textures then
             v25Textures:syncMask(nativeStage)
             if v25Textures:update() then view:refresh()end
         end
         if cardArt then cardArt.update() end
+        if view.pageReveal then
+            local gate=view.pageReveal
+            if gate:step(require('abyss_page_reveal').intent(view)) then view:refresh()end
+            gate:paint(not view.exitOpen)
+        end
     end)
     if not ok then failed("update", reason) end
 end

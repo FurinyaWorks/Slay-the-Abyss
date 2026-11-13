@@ -1,0 +1,33 @@
+# 本轮选角还原结果
+
+准确初代PC参照、归属与测量见 [REFERENCE](REFERENCE.md)。使用本轮原图测量，没有把项目旧V25画稿当作参照，也没有把原游戏背景图片用于生产。
+
+## 当前源码验证与已保存视觉
+
+- `node tests/sts-character-reference.test.mjs`：5/5。原选择/返回/确认的hit对象保留；白名单实际角色与确认禁用保持；选择和战斗只引用一次相同approved idle literal；半身source crop边界、隐藏行不占原生创建预算、idle cache复用、缺图/出界crop拒绝及本页ready正反例通过。
+- `node tests/sts-character-browser.test.mjs`：3项当前合同通过。初始牌组不创建Run/RNG，复制实际定义与display、生成局部确定UID，直接使用共享五列浏览器；真实生成Host覆盖deck来源归属、整页遮幕、排序/详情/控制器返回、关闭恢复和旧projection失效。每张初始牌经共享Grid填入名称/费用/规则。关闭后再开真实牌组确实恢复原显示名；无整页门禁的旧Host中，确认按下→预览→两种返回→抬起均不能触发开始。第三项执行真实`OnStart`、GameUI、Portrait控制器及entry readiness，选角仍准备时公开入口保持阻挡，测试受控换页后当前preview只等自身来源，隐藏selection仍building时可以揭幕。旧12槽牌面writer与独立填充逻辑已移除。
+- `node tests/official-portraits-build.test.mjs`：5/5；`node tests/lumine-idle.test.mjs`：9/9。被用户要求替换的旧pixel正向断言已改为approved idle来源合同；修改前原测试gzip与SHA保存在 `historical-tests/`，历史负载缺失拒绝用例仍保留。
+- `visual-final/verification.json`：PASS。这是本轮选角布局阶段的两张实际SDK/headless截图，源闭包 `1b2268a08fca67f2785ced9e4b520341aa35dad71b38c04919df325d5d001b40`；后续共享浏览器接入尚未重新捕获，不能将此闭包当作后续源码的最终候选。每张额外等至少3次前端render pass，Lua/console/HTTP错误为0。实际3254个图片图元与78个分组都来自同一battle idle source，并按该候选主题声明crop，未导出独立头像图片。
+- 日志先出现本轮selection真实ready（owned3332），再出现characterPanel整页visible epoch2。截图用软件WebGL模拟器；ready日志仅属于该SDK，不是官方ready或设备性能结果。
+
+已肉眼查看两张PNG：不再有顶部“选择角色”标题、命之座、首字头像或假锁槽；只显示当前白名单的旅行者槽。姓名→生命金币→描述→遗物→真实初始牌组摘要保持原作左栏层级。半身在原作角色切换槽位置。中文统计字号降为16后生命数值与金币图标不再相撞。
+
+独立复审发现，最初仅将隐藏selection设为false，会在合法`menuBackground=true`配置下反向要求已暂停的menuScene。现由`readyForPage`第四可选参数显式筛选本页肖像owner，旧三参API保持兼容；deck/map/node等无肖像宿主页不等待隐藏row或owner.busy，其它卡面、纹理、Grid门禁仍保留。真实OnStart负控已改用`menuBackground=true`和真实lowpolyLand源，同时断言旧三参调用确实被暂停menuScene阻挡，以免测试配置漏掉该失败。
+
+原图旗面颜色像素抽查：红原图RGB140/56/54，本轮原生140/55/57；蓝原图71/121/132，本轮71/123/137。根据实际叶子可见bounds归一，而不是把V25容器60高当可见高度。原图红填充列÷1.5约y573.3..616，本轮y573..617；蓝原图中心列÷1.5约574.7..618，本轮574..620。边界约1–2px的native bands近似仍有差异，未宣称逐像素或字体等效。大背景保留替换槽。
+
+## 复现
+
+根目录使用新输出目录，复用已有SDK/Chrome，不覆盖证据：
+
+```powershell
+node --import 'file:///F:/New%20folder/.artifacts/simulator-runtime/preview-tools.mjs' docs/evidence/sts-character-reference-20261113/prepare-visual.mjs .artifacts/sts-character-reference-20261113/current-final
+node --import 'file:///F:/New%20folder/.artifacts/simulator-runtime/preview-tools.mjs' docs/evidence/sts-character-reference-20261113/capture-visual.mjs .artifacts/sts-character-reference-20261113/current-final docs/evidence/sts-character-reference-20261113/visual-final
+node docs/evidence/sts-character-reference-20261113/verify-visual.mjs
+```
+
+取证仅在内存启动包装调用生产start/selectCharacter/selectElement；不确认开始、不创建Run、不改规则。候选生成布局及source closure保留在`.artifacts`，本目录只留脚本、哈希收据与评审用截图。外部投影工具复用上一轮已审的只读适配器，没有复制SDK。
+
+过程截图已保全至 `.artifacts/style-fidelity-20261113/visual-history/character/`。其中`visual-current-2/3`记录取证工具默认15秒窗口截止：第一次building，裁剪预算修正后第二次已revealing。两次遮幕都保持，未冒充ready；第三次使用有界60秒等待真实ready成功。`visual-current-4`是首次成功视觉检查，随后按实际中文容量及原图边界修正主题，已保存布局阶段结果见上述`visual-final`。
+
+未操作用户桌面、官方客户端或正式存档。官方导入、同候选ready、手机/PC实测与正式容量均未验证。

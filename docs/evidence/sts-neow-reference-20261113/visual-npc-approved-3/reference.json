@@ -1,0 +1,27 @@
+{
+  "source": "docs/design/reference-ui-lab/blessing.js guide()",
+  "css": "sts-menus-restore.css .sts-guide",
+  "canvas": [
+    1280,
+    720
+  ],
+  "cssBox": [
+    739,
+    55,
+    567,
+    580
+  ],
+  "viewBox": [
+    600,
+    600
+  ],
+  "meet": {
+    "scale": 0.945,
+    "origin": [
+      739,
+      61.5
+    ]
+  },
+  "nativeGradientParity": "UNVERIFIED",
+  "officialClient": "not_run"
+}

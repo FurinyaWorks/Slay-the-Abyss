@@ -45,7 +45,7 @@ function rounded(name,w,h,radius,colour,theme){
 
 // Scan the small fixed native banner silhouette into merged horizontal bands.
 // No per-frame drawing, external assets, pixel card conversion or new input.
-function bands(name,points,colour,theme,{width=180,height=60,step=2}={}){
+export function bands(name,points,colour,theme,{width=180,height=60,step=2}={}){
  const rows=[];
  for(let y=0;y<height;y+=step){
   const scan=y+step/2,xs=[];
@@ -60,11 +60,11 @@ function bands(name,points,colour,theme,{width=180,height=60,step=2}={}){
   else rows.push({left,right,y,h:step});
  }
  return group(name,[width,height],rows.map((row,i)=>image('band'+i,[(row.left+row.right)/2-width/2,height/2-row.y-row.h/2],
-  [row.right-row.left,row.h],theme.image.rect,colour)));
+  [row.right-row.left,row.h],theme.image.rect,typeof colour==='function'?colour(row.y+row.h/2):colour)));
 }
 // Fixed Bezier samples from the approved inline SVG paths. This runs once at
 // layout build time; the runtime receives only existing static native shapes.
-function curve(start,...segments){
+export function curve(start,...segments){
  const points=[start];
  for(const controls of segments){
   const a=points.at(-1);
@@ -93,9 +93,11 @@ const threads={
  confirm:[curve([180,13],[[48,13]],[[32,13],[18,30],[7,17]]),curve([8,32],[[17,51],[37,55],[55,56]],[[182,56]])],
 };
 const brightness=(hex,factor)=>'#'+hex.slice(1).match(/../g).map(n=>Math.min(255,Math.round(parseInt(n,16)*factor)).toString(16).padStart(2,'0')).join('').toUpperCase();
-const palettes=Object.fromEntries(Object.entries({cancel:['#BCA348','#8C3739','#B95B4A'],confirm:['#A2B4B5','#477B89','#77A4AF']})
- .map(([name,normal])=>[name,{normal,hover:normal.map(c=>brightness(c,1.18)),pressed:normal.map(c=>brightness(c,.92)),disabled:normal}]));
-function flagButton(button,name,theme,options){
+export function flagButton(button,name,theme,options){
+ const tokens=theme.officialAssets?.flagButton;
+ if(!tokens||!Array.isArray(tokens[name]))throw Error('Missing shared flag button theme');
+ const normal=tokens[name],palette={normal,hover:normal.map(c=>brightness(c,tokens.hoverBrightness)),
+  pressed:normal.map(c=>brightness(c,tokens.pressedBrightness)),disabled:normal};
  Object.assign(button,frame(name==='cancel'?0:1100,561,180,60));
  const hit=child(button,'hit');hit.position=[0,0];hit.size=[180,60];
  const points=outlines[name],inner=points.map(([x,y])=>[90+(x-90)*178/180,30+(y-30)*58/60]);
@@ -105,13 +107,13 @@ function flagButton(button,name,theme,options){
   child(state,'border').size=[180,60];child(state,'plate').size=[180,60];
   const backing=optional(state,'officialButtonBacking');if(backing)backing.size=[180,60];
   child(state,'border').visible=false;child(state,'plate').visible=false;
-  const [rim,fill,light]=palettes[name][stateName];
+  const [rim,fill,light]=palette[stateName];
   const flag=options?.nativeFlagImage ? group('v25Flag',[180,60],[image('cloth',[0,0],[180,60],options.nativeFlagImage,fill,{imageType:'basic'})]) : group('v25Flag',[180,60],[bands('rim',points,rim,theme),bands('cloth',inner,fill,theme),
    ...threads[name].map((points,i)=>lines(i?'lowerThread':'upperThread',points,1.5,light,theme,{opacity:name==='cancel'?.55:.6}))]);
   upsert(state,flag,children(state).indexOf(label));
   label.position=[name==='cancel'?-10:10,-6];label.size=[150,42];
-  const ink=stateName==='disabled'?theme.color.textMuted:theme.presentationProfile==='official-assets-first'?theme.officialAssets.buttonInk:'#FFF0B1';
-  label.text={...label.text,content:name==='cancel'?'返回':'开始挑战',fontSize:26,minFontSize:26,colour:ink,align:'centre',valign:'middle'};
+  const ink=stateName==='disabled'?theme.color.textMuted:theme.presentationProfile==='official-assets-first'?theme.officialAssets.buttonInk:tokens.fallbackInk;
+  label.text={...label.text,content:name==='cancel'?'返回':'开始挑战',fontSize:tokens.labelFontSize,minFontSize:tokens.labelMinFontSize,colour:ink,align:'centre',valign:'middle'};
  }
 }
 function roster(theme){

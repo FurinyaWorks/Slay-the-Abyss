@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-11 08:07'
-updated_date: '2026-11-13 07:59'
+updated_date: '2026-11-13 10:00'
 labels: []
 milestone: m-8
 dependencies: []
@@ -65,4 +65,6 @@ R7最终复验：SDK28项、实际浏览器HP21+Lament9项通过，20次暖选�
 最终单字clean候选e13bdaa2/source8c882428：实际GIL20762a79…ced37，sourceDirty:false。SDK31项通过，实际荧居中且旧头像不存在，20次暖返回控件14187稳定、0fault、销毁根0。本轮quality345模块5919测量、Lua无新诊断14历史警告通过。来源54完整Git记录+4新增字节独立核验PASS；51校准和225负控归档。实际自然分支与最后性能证据收口后送正常准入，官方及手机不冒充已验。
 
 用户2026-11-13再次指出选祝福选项按钮反复返工且退步，要求严格初代杀戮尖塔实物风格。启动小样本精确Neow对照：固定原版普通/hover已知状态、保留证据与未知项，分解文字/行距/括号/底板/反馈；当前先审计参照与失真源，不用旧二次稿或属性绿灯当完成。
+
+2026-11-13最新用户决定覆盖旧选角稿：使用初代PC选角构图、共享旗帜token及同一battleApprovedIdle半身；初始牌组复用正式DeckUI，删除旧12槽writer。祝福选项按固定原作参照，人物仍按批准guide SVG修复兜帽遮挡与HUD金缝。显式page readiness防隐藏selection/menuScene阻挡当前卡组；独审及定向证据见本轮evidence，最终集成与实机未完成。
 <!-- SECTION:NOTES:END -->

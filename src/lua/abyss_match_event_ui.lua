@@ -6,7 +6,7 @@ local M={}
 local faceFields={'glow','shadow','border','plate','roundShadow','roundFrame','roundBody','nameBand','nameRule',
  'artPlate','artWell','skin','name','art_attack','art_skill','art_power','art_status','typeEdge','typeTag',
  'tagEdge','tagBody','type','description','roleRing','roleMark','blockedVeil','blockedPill','blockedLock',
- 'blockedReason','costHalo','costCore','costDisc','cost','costDirection','veil','stampPlate','stamp','artSamples'}
+ 'blockedReason','costHalo','costCore','costDisc','cost','costDirection','veil','stampPlate','stamp','artSamples','stsReferenceBack','stsReferenceChrome'}
 local textFields={name=true,type=true,description=true,cost=true}
 function M.isBoard(event)
  return event and event.id=='match_game'and(event.stage=='play'or event.stage=='resolving'or event.stage=='cleanup')
