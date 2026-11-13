@@ -7,6 +7,8 @@ local Copy=require('abyss_copy').copy
 local M={}
 local specs={zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
  zl03={kind='gainJade',base=12,upgraded=16,type='skill',target='SELF'},
+ zl19={kind='gainJade',base=6,upgraded=8,type='skill',target='SELF',draw=2,upDraw=3,exhaust=true},
+ zl24={kind='spendJade',base=3,upgraded=3,type='skill',target='SELF',draw=3,upDraw=4,exhaust=true},
  zl20={kind='emptyJade',base=9,upgraded=12,type='skill',target='SELF'},
  zl62={kind='emptyJade',base=6,upgraded=8,type='skill',target='SELF',draw=1,upDraw=2,exhaust=true},
  zl04={kind='spendJade',base=6,upgraded=6,type='attack',target='ENEMY',damage=14,upDamage=18}}

@@ -363,3 +363,15 @@ offer. A revealed choice cannot be cancelled or replayed; faults restore either
 the pre-payment boundary (before play returns) or the already-paid offer boundary
 (on choose), including original pile, pending, RNG and queue aliases. This is a
 candidate-only mode; no formal character/reward registration or balance approval.
+
+## Zhongli 19/24 resource search candidates
+
+Only two additional canonical specs are admitted: 19 costs the source catalog's
+2 energy, gains jade 6/8, draws 2/3, exhausts; 24 costs 1, spends jade 3, draws
+3/4, exhausts. Ordinary dynamic cost remains authoritative. Both reuse the
+existing paid stage and native draw/UseCard; no new resource opcode or absorption
+is introduced. Public tests cover 24 resource/upgrade/hand scenarios and four
+empty-pile cases, NoDraw, real FNP/DE exhaustion, a post-DE fault restoring the
+whole pre-payment graph and aliases, Scry resume failures and automatic gates.
+Explicit test power injection and pile fixtures are not claims of natural power
+acquisition. Formal registration and incoming-jade interception remain closed.
