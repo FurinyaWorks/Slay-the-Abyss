@@ -1,7 +1,7 @@
 {
-  "status": "partial_remote_backup_reports_pending",
+  "status": "core_and_lossless_historical_archive",
   "candidate_local_commit": "89d898c407e35db85b0bd053d92e6dfa9a4b549a",
-  "note": "75 isolated candidates and starter relic; 216 local tests and independent scoped review. Historical reports below NOT uploaded in this phase and NOT evidence for current 75-card pool. Source/human/balance/runtime/UI gates HOLD.",
+  "note": "75 isolated candidates and starter relic. Historical reports archived as bounded compact shards with exact byte restoration and SHA256 verification; NOT evidence for current 75-card pool. Source/human/balance/runtime/UI gates HOLD.",
   "reports": [
     {
       "path": "experiments/characters/keqing/acquisition-observed-results.json",
@@ -9,7 +9,8 @@
       "sha256": "e1a303ac7d46b234e6c7a967ebf4d39275dfe96765ddf66faf5653401088654f",
       "version": "KQ-acquisition-observed-1",
       "sourceDigest": "54ca7c8d34acda6d9cd9657d4f321047588d4f9a943690653e6b7096ff9773cc",
-      "remote_status": "pending"
+      "remote_status": "archived_lossless_shards",
+      "archive_index": "historical-report-archive/index.json"
     },
     {
       "path": "experiments/characters/keqing/acquisition-v2-results.json",
@@ -17,7 +18,8 @@
       "sha256": "099c9de5a4dada4217959756dd19e6e16ccd8561e3ee6b2d6318704543a1313c",
       "version": "KQ-acquisition-coverage-2",
       "sourceDigest": "7aee65e815bb7c89ad402eb9a005f9236a47af4166291792f68bd794de11b01f",
-      "remote_status": "pending"
+      "remote_status": "archived_lossless_shards",
+      "archive_index": "historical-report-archive/index.json"
     },
     {
       "path": "experiments/characters/keqing/acquisition-v3-results.json",
@@ -25,7 +27,8 @@
       "sha256": "8df0d1083564f7ce6fc6d56a48f4b3f1cb9139c87d12a20348ce50ac941437a1",
       "version": "KQ-acquisition-coverage-3",
       "sourceDigest": "61e6a2b221d705465a2d9dda23996275fc02931fd72a29231d7551497d10a14a",
-      "remote_status": "pending"
+      "remote_status": "archived_lossless_shards",
+      "archive_index": "historical-report-archive/index.json"
     },
     {
       "path": "experiments/characters/keqing/acquisition-v4-results.json",
@@ -33,7 +36,9 @@
       "sha256": "45dd4996054183024d6e33280905eec0e6d449f74b83ecf599e9b2c8f864ff8e",
       "version": "KQ-acquisition-coverage-4",
       "sourceDigest": "d47cd23480fe49d61487ab2de2630c8aa9c2b03c641871f51357bc1617ee86a0",
-      "remote_status": "pending"
+      "remote_status": "archived_lossless_shards",
+      "archive_index": "historical-report-archive/index.json"
     }
-  ]
+  ],
+  "restore_command": "node experiments/characters/keqing/restore-report-archive.mjs --restore NEW_DIRECTORY"
 }

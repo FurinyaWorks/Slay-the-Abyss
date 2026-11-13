@@ -1,0 +1,242 @@
+{
+  "version": 1,
+  "note": "Historical frozen reports; NOT evidence for current 75-card pool. JSON compact shards preserve semantic and exact pretty-original bytes via restore-report-archive.mjs.",
+  "reports": [
+    {
+      "path": "acquisition-observed-results.json",
+      "version": "KQ-acquisition-observed-1",
+      "sourceDigest": "54ca7c8d34acda6d9cd9657d4f321047588d4f9a943690653e6b7096ff9773cc",
+      "originalBytes": 3671084,
+      "originalSha256": "e1a303ac7d46b234e6c7a967ebf4d39275dfe96765ddf66faf5653401088654f",
+      "parts": [
+        {
+          "path": "acquisition-observed-results.json.000.part",
+          "sha256": "b6ce91a10144ce26174b670a553552fe8a9fcbc0875de39742fdddb142266376"
+        },
+        {
+          "path": "acquisition-observed-results.json.001.part",
+          "sha256": "4984e51e85a6b990ba52945bd1d141da35085919b01376f16e37efc15e768496"
+        },
+        {
+          "path": "acquisition-observed-results.json.002.part",
+          "sha256": "21cb69ae71592a93b3d6976b11f9eea9d012f5dd4df7b584a282b46ead23e87c"
+        },
+        {
+          "path": "acquisition-observed-results.json.003.part",
+          "sha256": "b151add454c44fe05133936c4d2a35fbab1ed52386b731bc92c0638ec5f232b2"
+        },
+        {
+          "path": "acquisition-observed-results.json.004.part",
+          "sha256": "ba586784ae7ff0978f6f0c1cd62ed5283d4f987a871b9351d8ed3ef02143fa74"
+        },
+        {
+          "path": "acquisition-observed-results.json.005.part",
+          "sha256": "b1a8567f15266912864f220d2477e3ee7391ee7740bb1717d42a11b768152dda"
+        },
+        {
+          "path": "acquisition-observed-results.json.006.part",
+          "sha256": "b264f2144eff3ac9ec4daa83a442156ceedcaf40a5e17cada93c975c91959656"
+        },
+        {
+          "path": "acquisition-observed-results.json.007.part",
+          "sha256": "cf740bbd5991a3da2d21915bb4f934c9c8b553c9607872f9e18aad366d719347"
+        },
+        {
+          "path": "acquisition-observed-results.json.008.part",
+          "sha256": "170b76c22e4fc25d38a26d6f784443b1bb8bf88a9287d09983d8b157c026447f"
+        },
+        {
+          "path": "acquisition-observed-results.json.009.part",
+          "sha256": "297a0d2a5450fc7ef5c3f90ed8c6900e88fd77e7341e6844d21c12880581d115"
+        },
+        {
+          "path": "acquisition-observed-results.json.010.part",
+          "sha256": "79b34fcfeb15ebe978e8545f25a23de75d3f6a9da3d91eac20c8be1650330bd9"
+        },
+        {
+          "path": "acquisition-observed-results.json.011.part",
+          "sha256": "e906d22efbd470b5db11de29db57cc01dfd52baebcce2c639a24f7157a84be9f"
+        },
+        {
+          "path": "acquisition-observed-results.json.012.part",
+          "sha256": "1753c5e9dab96cf89e574bd2f600d41ce158b9fbe699d5bdfab2d176e9a04c2b"
+        },
+        {
+          "path": "acquisition-observed-results.json.013.part",
+          "sha256": "90e8b5f094d935dafa905135fbbcfc4528875dc67a991360aa67c4b89fba24da"
+        },
+        {
+          "path": "acquisition-observed-results.json.014.part",
+          "sha256": "ba07d06d4bab90eefe12ba10f34788dc2cc4b07c5c95730ea861f65d00cc996e"
+        },
+        {
+          "path": "acquisition-observed-results.json.015.part",
+          "sha256": "371e0eab05de55b000e2af7a646664e4dbfc950279b60a3c6a5549552dbb8e5c"
+        },
+        {
+          "path": "acquisition-observed-results.json.016.part",
+          "sha256": "1b7baee5af56e9d9a08d168ab5a48c566e6bfcb4c32bd3e702e5c267bb284bd3"
+        },
+        {
+          "path": "acquisition-observed-results.json.017.part",
+          "sha256": "12cb1eab1c994c67bfdb9189823f05bab6b51af41062e27cbcec9eabc3370099"
+        },
+        {
+          "path": "acquisition-observed-results.json.018.part",
+          "sha256": "6fba8384afd0f200dc1137cb2b1ade36b5268cbd86b175e013ae01e10c85175b"
+        },
+        {
+          "path": "acquisition-observed-results.json.019.part",
+          "sha256": "c8c270b365413c62ccb3516d5f78cf345c1568a151a9b86b1c0708137e4903fa"
+        },
+        {
+          "path": "acquisition-observed-results.json.020.part",
+          "sha256": "c8d7fa4a0db1eb604970c89aa40c2fd63d767f90481b8da943ff4f9ce3edf9da"
+        },
+        {
+          "path": "acquisition-observed-results.json.021.part",
+          "sha256": "508bea22bc7d30a2cba1d0b8a47177f366a5616c4d10fc7e983e7fea71a7ea67"
+        },
+        {
+          "path": "acquisition-observed-results.json.022.part",
+          "sha256": "76d44f043e38070ab79e93c3c67fb3df866d76c757565e2e0de7d6727efae916"
+        },
+        {
+          "path": "acquisition-observed-results.json.023.part",
+          "sha256": "19ab3ee6870511ef68be8e99a77bf40cb29190e73a37624c741b01bd9aa35a8d"
+        },
+        {
+          "path": "acquisition-observed-results.json.024.part",
+          "sha256": "c012bfd05377737c7ff04dfb99bbc8109b047c4cff03df2f0fa3e5f6aa0e15a6"
+        },
+        {
+          "path": "acquisition-observed-results.json.025.part",
+          "sha256": "1653749183012765479b32d083c9edbe4b227b8415240960638ea5a91ce1dd8b"
+        },
+        {
+          "path": "acquisition-observed-results.json.026.part",
+          "sha256": "9cdb398013dedb791d26be4a944cfa0fb626517cb4f7b7f52c9e3a34bfb65300"
+        },
+        {
+          "path": "acquisition-observed-results.json.027.part",
+          "sha256": "1f082db2980b29621f6cb9d5521061e5b8afc605d8b41eeebae1f168e52197d2"
+        },
+        {
+          "path": "acquisition-observed-results.json.028.part",
+          "sha256": "8b0eeee524fd96206ca790dbb09b8e0986a75c659e6f5f5de8c99de41944436c"
+        },
+        {
+          "path": "acquisition-observed-results.json.029.part",
+          "sha256": "917218e89c1d0579ff1902e05c9e9b32fd02b0b6d66ca4bb0dd47cafbb054ba5"
+        },
+        {
+          "path": "acquisition-observed-results.json.030.part",
+          "sha256": "2713f935f62465d73c2b5c9b1044b60a15a7088d8f84417bba3ec391cef50ab9"
+        },
+        {
+          "path": "acquisition-observed-results.json.031.part",
+          "sha256": "53b7e0f260a9d9911a1052835a24d248ad6f8159d3741775da52257534bd9975"
+        }
+      ]
+    },
+    {
+      "path": "acquisition-v2-results.json",
+      "version": "KQ-acquisition-coverage-2",
+      "sourceDigest": "7aee65e815bb7c89ad402eb9a005f9236a47af4166291792f68bd794de11b01f",
+      "originalBytes": 507788,
+      "originalSha256": "099c9de5a4dada4217959756dd19e6e16ccd8561e3ee6b2d6318704543a1313c",
+      "parts": [
+        {
+          "path": "acquisition-v2-results.json.000.part",
+          "sha256": "e55ab8991f6ad5351b15cbd68c13c0d920b7b6406228e5fca41a4d9729414287"
+        },
+        {
+          "path": "acquisition-v2-results.json.001.part",
+          "sha256": "8a944264865ad5f1445549975944cf6ea7dbf7405c4673c1c4766eaa420c7861"
+        },
+        {
+          "path": "acquisition-v2-results.json.002.part",
+          "sha256": "15f216f16d3d35811c33e649bc736bdded9c5ac9e9d4ff3c38bfadfb5997f1f4"
+        },
+        {
+          "path": "acquisition-v2-results.json.003.part",
+          "sha256": "81fd5e6965e93f43144df71f6ef567d552036c9d6396cdd9686d2f2775cdd107"
+        },
+        {
+          "path": "acquisition-v2-results.json.004.part",
+          "sha256": "94aae6f157da909b7066eb62c3c835cbc46a7761c472ac40c1dcd2c148986c69"
+        }
+      ]
+    },
+    {
+      "path": "acquisition-v3-results.json",
+      "version": "KQ-acquisition-coverage-3",
+      "sourceDigest": "61e6a2b221d705465a2d9dda23996275fc02931fd72a29231d7551497d10a14a",
+      "originalBytes": 608711,
+      "originalSha256": "8df0d1083564f7ce6fc6d56a48f4b3f1cb9139c87d12a20348ce50ac941437a1",
+      "parts": [
+        {
+          "path": "acquisition-v3-results.json.000.part",
+          "sha256": "52a1acef2cf11773442593615b2f3db3e96285b21e85c36d7708de0d4fc58e5d"
+        },
+        {
+          "path": "acquisition-v3-results.json.001.part",
+          "sha256": "e55f04149dd35cc4758c85a588d515d5f6b52903a8d5ec6692370231c3c15bab"
+        },
+        {
+          "path": "acquisition-v3-results.json.002.part",
+          "sha256": "1bd54a1678b0804f0a651adc36070acaa360184b0979705b4d15ac3f6e590878"
+        },
+        {
+          "path": "acquisition-v3-results.json.003.part",
+          "sha256": "f88e327acb19043a6ca3b6d6996346eaa93f9a0a9a0f1c33e128d2a3f484cbed"
+        },
+        {
+          "path": "acquisition-v3-results.json.004.part",
+          "sha256": "fc7c6f38621a79102f0ccafd315e82d8aa7706b1c8a7c6790218fd99652b9580"
+        },
+        {
+          "path": "acquisition-v3-results.json.005.part",
+          "sha256": "0e40358bf462a8d2453c094f5e46556cb5e272ea2c78e9242a0d044678f7c38d"
+        }
+      ]
+    },
+    {
+      "path": "acquisition-v4-results.json",
+      "version": "KQ-acquisition-coverage-4",
+      "sourceDigest": "d47cd23480fe49d61487ab2de2630c8aa9c2b03c641871f51357bc1617ee86a0",
+      "originalBytes": 711671,
+      "originalSha256": "45dd4996054183024d6e33280905eec0e6d449f74b83ecf599e9b2c8f864ff8e",
+      "parts": [
+        {
+          "path": "acquisition-v4-results.json.000.part",
+          "sha256": "9388e9505d0be465da529b1cd46f33727518655c4d9e6e1887b221150b446597"
+        },
+        {
+          "path": "acquisition-v4-results.json.001.part",
+          "sha256": "d39fe6e4568f7db546912537019f8130f174c2df31ef2a73a01e0b1eeebfcd75"
+        },
+        {
+          "path": "acquisition-v4-results.json.002.part",
+          "sha256": "504f43d25f4274148a3f9d150d689974eaa62b7eabdedf5dc3f1b35d17b6a009"
+        },
+        {
+          "path": "acquisition-v4-results.json.003.part",
+          "sha256": "77c45d516ff2f5f6f98a8b20c07779d291b0c5385220797d77720c6ef1c96518"
+        },
+        {
+          "path": "acquisition-v4-results.json.004.part",
+          "sha256": "5ec3798b09a7f75d1f2b396e154dbaf7a8bb122f59bb252f245a2f171becd2e3"
+        },
+        {
+          "path": "acquisition-v4-results.json.005.part",
+          "sha256": "2deaa2c9f406494b5f5cd8b99911a371fcbdf664cb26fea04c563d78ed1bec99"
+        },
+        {
+          "path": "acquisition-v4-results.json.006.part",
+          "sha256": "1353fa17ad0d42c0e971bb24bf2d71655488dc495ffd4ddec0643fa68bcdcc6e"
+        }
+      ]
+    }
+  ]
+}
