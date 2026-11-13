@@ -138,3 +138,15 @@ test('latest Keqing 75-card adapter forwards only explicit visible choices and b
  assert.deepEqual(parseCommand('j {"type":"play","revision":0,"slot":1,"target":1,"options":{"retain":["starter-1"]}}').options,{retain:['starter-1']});
  for(const x of ['j null','j []','j {"type":"end"}','j {"type":"play","unexpected":1}'])assert.throws(()=>parseCommand(x));
 });
+test('Zhongli reviewed 49-card snapshot exposes current public resources but no hidden draw state',{skip:!process.env.ZHONGLI_LATEST_ROOT},async()=>{
+ const root=process.env.ZHONGLI_LATEST_ROOT,a=await loadAdapter(root,'zhongli',process.env.ZHONGLI_LATEST_HEAD);
+ const {pathToFileURL}=await import('node:url');const b=await import(pathToFileURL(join(root,'experiments/characters/zhongli/battle.mjs')).href);
+ assert.equal(a.catalog.length,49);
+ for(const mode of ['starter','all']){
+  const s=a.start(37,mode),before=structuredClone(s),v=a.view(s);
+  assert.deepEqual(v.hand.map(c=>c.text),b.visibleState(s,[8]).hand.map(c=>c.text));
+  for(const key of ['jade','counter','pillar','repair'])assert.equal(v[key]??0,s[key]??0);
+  for(const key of ['rng','draw','instances'])assert.equal(Object.hasOwn(v,key),false);
+  assert.deepEqual(a.end(s),b.nextTurn(s,[8]));assert.deepEqual(s,before);
+ }
+});

@@ -41,7 +41,7 @@ export async function loadAdapter(root,character,expectedHead,{run=false}={}){
   a={catalog:m.cards.map(c=>row(c.id,u=>m.textFor(c.id,u),c.role)),
    start:(seed,mode)=>b.battleStart({seed,deck:mode==='all'?m.cards.map(c=>c.id):b.STARTER}),
    play:(s,i)=>accept(b.playInstance(s,s.hand[i])),end:s=>b.nextTurn(s,hits(s)),outcome,
-   view:s=>({...pick(s,['hp','energy','block','turn','jade']),outcome:outcome(s),zones:zones(s),
+   view:s=>({...pick(s,['hp','energy','block','turn','jade','counter','pillar','repair']),outcome:outcome(s),zones:zones(s),
     relic:{id:b.RELIC.id,text:b.RELIC.description,initialized:s.relicApplied},
     enemies:[{target:1,...s.enemy,rawIntent:s.enemy.hp?hits(s):[],intent:s.enemy.hp?hits(s).map(n=>m.incomingAttack(n,s.enemy.weak??0)):[]}],
     hand:b.visibleState(s,hits(s)).hand.map((c,i)=>({slot:i+1,id:c.id,text:c.text}))})};
