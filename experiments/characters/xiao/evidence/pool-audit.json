@@ -1,0 +1,2262 @@
+{
+  "version": "xiao-g2-lab-0.33",
+  "candidates": 75,
+  "rewardCandidates": 71,
+  "kindCounts": {
+    "attack": 27,
+    "skill": 37,
+    "power": 11
+  },
+  "sourceVerified": 0,
+  "humanApproved": 0,
+  "exactMechanicalDuplicates": [],
+  "campaignRuns": [
+    {
+      "mode": "skip",
+      "seed": 1,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 3,
+      "actions": 66,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 2,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 28,
+      "actions": 83,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 3,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 27,
+      "actions": 69,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 4,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 10,
+      "actions": 69,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 5,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 22,
+      "actions": 77,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 6,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 32,
+      "actions": 89,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 7,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 2,
+      "actions": 61,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 8,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 10,
+      "actions": 67,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 9,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 75,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 10,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 15,
+      "actions": 67,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 11,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 17,
+      "actions": 71,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 12,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 24,
+      "actions": 71,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 13,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 18,
+      "actions": 75,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 14,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 12,
+      "actions": 75,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 15,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 21,
+      "actions": 80,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 16,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 8,
+      "actions": 71,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 17,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 24,
+      "actions": 80,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 18,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 12,
+      "actions": 76,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 19,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 14,
+      "actions": 60,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 20,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 16,
+      "actions": 74,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 21,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 25,
+      "actions": 68,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 22,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 18,
+      "actions": 76,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 23,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 16,
+      "actions": 73,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 24,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 68,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 25,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 64,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 26,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 2,
+      "actions": 52,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 27,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 11,
+      "actions": 72,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 28,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 21,
+      "actions": 69,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 29,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 13,
+      "actions": 76,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 30,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 19,
+      "actions": 77,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 31,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 67,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 32,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 20,
+      "actions": 71,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 33,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 11,
+      "actions": 70,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 34,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 21,
+      "actions": 79,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 35,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 3,
+      "actions": 64,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 36,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 21,
+      "actions": 76,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 37,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 5,
+      "actions": 57,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 38,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 7,
+      "actions": 66,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 39,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 65,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 40,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 18,
+      "actions": 63,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 41,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 13,
+      "actions": 72,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 42,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 21,
+      "actions": 85,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 43,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 8,
+      "actions": 65,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 44,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 19,
+      "actions": 81,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 45,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 24,
+      "actions": 81,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 46,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 3,
+      "actions": 73,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 47,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 19,
+      "actions": 73,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 48,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 18,
+      "actions": 69,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 49,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 72,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 50,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 15,
+      "actions": 81,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 51,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 8,
+      "actions": 65,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 52,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 8,
+      "actions": 60,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 53,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 22,
+      "actions": 74,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 54,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 19,
+      "actions": 72,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 55,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 65,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 56,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 65,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 57,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 25,
+      "actions": 87,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 58,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 21,
+      "actions": 79,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 59,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 16,
+      "actions": 65,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 60,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 13,
+      "actions": 84,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 61,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 8,
+      "actions": 73,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 62,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 10,
+      "actions": 78,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 63,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 20,
+      "actions": 72,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "skip",
+      "seed": 64,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 23,
+      "actions": 79,
+      "illegal": 0,
+      "choices": [
+        null,
+        null
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 1,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 3,
+      "actions": 77,
+      "illegal": 0,
+      "choices": [
+        "x23",
+        "x16"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 2,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 20,
+      "actions": 81,
+      "illegal": 0,
+      "choices": [
+        "x53",
+        "x61"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 3,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 18,
+      "actions": 62,
+      "illegal": 0,
+      "choices": [
+        "x42",
+        "x74"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 4,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 19,
+      "actions": 76,
+      "illegal": 0,
+      "choices": [
+        "x67",
+        "x49"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 5,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 17,
+      "actions": 72,
+      "illegal": 0,
+      "choices": [
+        "x51",
+        "x18"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 6,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 14,
+      "actions": 69,
+      "illegal": 0,
+      "choices": [
+        "x39",
+        "x08"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 7,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 6,
+      "actions": 62,
+      "illegal": 0,
+      "choices": [
+        "x16",
+        "x26"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 8,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 1,
+      "actions": 62,
+      "illegal": 0,
+      "choices": [
+        "x16",
+        "x59"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 9,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 3,
+      "actions": 57,
+      "illegal": 0,
+      "choices": [
+        "x44",
+        "x12"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 10,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 28,
+      "actions": 67,
+      "illegal": 0,
+      "choices": [
+        "x03",
+        "x43"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 11,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 8,
+      "actions": 71,
+      "illegal": 0,
+      "choices": [
+        "x33",
+        "x38"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 12,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 28,
+      "actions": 68,
+      "illegal": 0,
+      "choices": [
+        "x73",
+        "x68"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 13,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 7,
+      "actions": 66,
+      "illegal": 0,
+      "choices": [
+        "x16",
+        "x57"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 14,
+      "phase": "defeat",
+      "stage": 2,
+      "hp": 0,
+      "actions": 56,
+      "illegal": 0,
+      "choices": [
+        "x41",
+        "x44"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 15,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 1,
+      "actions": 73,
+      "illegal": 0,
+      "choices": [
+        "x54",
+        "x71"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 16,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 7,
+      "actions": 60,
+      "illegal": 0,
+      "choices": [
+        "x40",
+        "x29"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 17,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 25,
+      "actions": 67,
+      "illegal": 0,
+      "choices": [
+        "x43",
+        "x70"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 18,
+      "phase": "defeat",
+      "stage": 2,
+      "hp": 0,
+      "actions": 62,
+      "illegal": 0,
+      "choices": [
+        "x17",
+        "x47"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 19,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 15,
+      "actions": 77,
+      "illegal": 0,
+      "choices": [
+        "x21",
+        "x33"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 20,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 20,
+      "actions": 81,
+      "illegal": 0,
+      "choices": [
+        "x71",
+        "x41"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 21,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 14,
+      "actions": 82,
+      "illegal": 0,
+      "choices": [
+        "x56",
+        "x16"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 22,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 21,
+      "actions": 47,
+      "illegal": 0,
+      "choices": [
+        "x18",
+        "x61"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 23,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 15,
+      "actions": 64,
+      "illegal": 0,
+      "choices": [
+        "x53",
+        "x30"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 24,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 16,
+      "actions": 59,
+      "illegal": 0,
+      "choices": [
+        "x19",
+        "x58"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 25,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 66,
+      "illegal": 0,
+      "choices": [
+        "x13",
+        "x24"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 26,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 7,
+      "actions": 56,
+      "illegal": 0,
+      "choices": [
+        "x32",
+        "x25"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 27,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 13,
+      "actions": 84,
+      "illegal": 0,
+      "choices": [
+        "x24",
+        "x27"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 28,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 26,
+      "actions": 57,
+      "illegal": 0,
+      "choices": [
+        "x49",
+        "x11"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 29,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 11,
+      "actions": 74,
+      "illegal": 0,
+      "choices": [
+        "x53",
+        "x08"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 30,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 19,
+      "actions": 67,
+      "illegal": 0,
+      "choices": [
+        "x46",
+        "x46"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 31,
+      "phase": "defeat",
+      "stage": 2,
+      "hp": 0,
+      "actions": 49,
+      "illegal": 0,
+      "choices": [
+        "x53",
+        "x36"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 32,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 17,
+      "actions": 81,
+      "illegal": 0,
+      "choices": [
+        "x27",
+        "x62"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 33,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 12,
+      "actions": 49,
+      "illegal": 0,
+      "choices": [
+        "x08",
+        "x33"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 34,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 22,
+      "actions": 70,
+      "illegal": 0,
+      "choices": [
+        "x70",
+        "x15"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 35,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 10,
+      "actions": 70,
+      "illegal": 0,
+      "choices": [
+        "x36",
+        "x18"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 36,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 23,
+      "actions": 67,
+      "illegal": 0,
+      "choices": [
+        "x47",
+        "x16"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 37,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 3,
+      "actions": 63,
+      "illegal": 0,
+      "choices": [
+        "x37",
+        "x28"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 38,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 9,
+      "actions": 64,
+      "illegal": 0,
+      "choices": [
+        "x67",
+        "x34"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 39,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 6,
+      "actions": 55,
+      "illegal": 0,
+      "choices": [
+        "x70",
+        "x63"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 40,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 15,
+      "actions": 49,
+      "illegal": 0,
+      "choices": [
+        "x55",
+        "x35"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 41,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 16,
+      "actions": 76,
+      "illegal": 0,
+      "choices": [
+        "x16",
+        "x15"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 42,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 12,
+      "actions": 69,
+      "illegal": 0,
+      "choices": [
+        "x03",
+        "x30"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 43,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 11,
+      "actions": 68,
+      "illegal": 0,
+      "choices": [
+        "x53",
+        "x28"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 44,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 18,
+      "actions": 65,
+      "illegal": 0,
+      "choices": [
+        "x68",
+        "x53"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 45,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 20,
+      "actions": 74,
+      "illegal": 0,
+      "choices": [
+        "x55",
+        "x39"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 46,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 5,
+      "actions": 86,
+      "illegal": 0,
+      "choices": [
+        "x34",
+        "x67"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 47,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 15,
+      "actions": 77,
+      "illegal": 0,
+      "choices": [
+        "x20",
+        "x64"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 48,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 10,
+      "actions": 74,
+      "illegal": 0,
+      "choices": [
+        "x74",
+        "x42"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 49,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 16,
+      "actions": 62,
+      "illegal": 0,
+      "choices": [
+        "x10",
+        "x38"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 50,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 29,
+      "actions": 77,
+      "illegal": 0,
+      "choices": [
+        "x38",
+        "x68"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 51,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 18,
+      "actions": 66,
+      "illegal": 0,
+      "choices": [
+        "x06",
+        "x47"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 52,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 20,
+      "actions": 54,
+      "illegal": 0,
+      "choices": [
+        "x15",
+        "x24"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 53,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 16,
+      "actions": 76,
+      "illegal": 0,
+      "choices": [
+        "x08",
+        "x49"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 54,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 11,
+      "actions": 75,
+      "illegal": 0,
+      "choices": [
+        "x48",
+        "x50"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 55,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 15,
+      "actions": 75,
+      "illegal": 0,
+      "choices": [
+        "x49",
+        "x32"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 56,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 15,
+      "actions": 65,
+      "illegal": 0,
+      "choices": [
+        "x33",
+        "x10"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 57,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 14,
+      "actions": 70,
+      "illegal": 0,
+      "choices": [
+        "x54",
+        "x43"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 58,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 15,
+      "actions": 81,
+      "illegal": 0,
+      "choices": [
+        "x34",
+        "x29"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 59,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 13,
+      "actions": 77,
+      "illegal": 0,
+      "choices": [
+        "x58",
+        "x64"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 60,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 8,
+      "actions": 69,
+      "illegal": 0,
+      "choices": [
+        "x21",
+        "x56"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 61,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 13,
+      "actions": 63,
+      "illegal": 0,
+      "choices": [
+        "x65",
+        "x58"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 62,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 3,
+      "actions": 74,
+      "illegal": 0,
+      "choices": [
+        "x33",
+        "x19"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 63,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 26,
+      "actions": 63,
+      "illegal": 0,
+      "choices": [
+        "x59",
+        "x31"
+      ]
+    },
+    {
+      "mode": "first-offer",
+      "seed": 64,
+      "phase": "victory",
+      "stage": 2,
+      "hp": 27,
+      "actions": 77,
+      "illegal": 0,
+      "choices": [
+        "x68",
+        "x53"
+      ]
+    }
+  ],
+  "seedRange": [
+    1,
+    512
+  ],
+  "firstBattleWins": 512,
+  "rejectedActions": 0,
+  "access": [
+    {
+      "id": "x03",
+      "seed": 10,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 57
+    },
+    {
+      "id": "x06",
+      "seed": 13,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 55
+    },
+    {
+      "id": "x07",
+      "seed": 27,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 46
+    },
+    {
+      "id": "x08",
+      "seed": 10,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 57
+    },
+    {
+      "id": "x09",
+      "seed": 36,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 53
+    },
+    {
+      "id": "x10",
+      "seed": 26,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 48
+    },
+    {
+      "id": "x11",
+      "seed": 147,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 54
+    },
+    {
+      "id": "x12",
+      "seed": 18,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 48
+    },
+    {
+      "id": "x13",
+      "seed": 25,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 48
+    },
+    {
+      "id": "x14",
+      "seed": 7,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 48
+    },
+    {
+      "id": "x15",
+      "seed": 11,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 54
+    },
+    {
+      "id": "x16",
+      "seed": 7,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 48
+    },
+    {
+      "id": "x17",
+      "seed": 12,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 62
+    },
+    {
+      "id": "x18",
+      "seed": 22,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 55
+    },
+    {
+      "id": "x19",
+      "seed": 24,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 54
+    },
+    {
+      "id": "x20",
+      "seed": 6,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 61
+    },
+    {
+      "id": "x21",
+      "seed": 16,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 47
+    },
+    {
+      "id": "x22",
+      "seed": 44,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 53
+    },
+    {
+      "id": "x23",
+      "seed": 1,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 50
+    },
+    {
+      "id": "x24",
+      "seed": 27,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 46
+    },
+    {
+      "id": "x25",
+      "seed": 129,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 54
+    },
+    {
+      "id": "x26",
+      "seed": 23,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 54
+    },
+    {
+      "id": "x27",
+      "seed": 29,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 57
+    },
+    {
+      "id": "x28",
+      "seed": 2,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 64
+    },
+    {
+      "id": "x29",
+      "seed": 9,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 48
+    },
+    {
+      "id": "x30",
+      "seed": 25,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 48
+    },
+    {
+      "id": "x31",
+      "seed": 62,
+      "offered": true,
+      "played": true,
+      "action": 9,
+      "hp": 44
+    },
+    {
+      "id": "x32",
+      "seed": 16,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 47
+    },
+    {
+      "id": "x33",
+      "seed": 11,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 54
+    },
+    {
+      "id": "x34",
+      "seed": 23,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 54
+    },
+    {
+      "id": "x35",
+      "seed": 36,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 53
+    },
+    {
+      "id": "x36",
+      "seed": 15,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 51
+    },
+    {
+      "id": "x37",
+      "seed": 37,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 48
+    },
+    {
+      "id": "x38",
+      "seed": 50,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 59
+    },
+    {
+      "id": "x39",
+      "seed": 6,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 61
+    },
+    {
+      "id": "x40",
+      "seed": 16,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 47
+    },
+    {
+      "id": "x41",
+      "seed": 14,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 54
+    },
+    {
+      "id": "x42",
+      "seed": 3,
+      "offered": true,
+      "played": true,
+      "action": 7,
+      "hp": 51
+    },
+    {
+      "id": "x43",
+      "seed": 17,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 62
+    },
+    {
+      "id": "x44",
+      "seed": 9,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 48
+    },
+    {
+      "id": "x45",
+      "seed": 13,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 55
+    },
+    {
+      "id": "x46",
+      "seed": 1,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 50
+    },
+    {
+      "id": "x47",
+      "seed": 1,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 50
+    },
+    {
+      "id": "x48",
+      "seed": 3,
+      "offered": true,
+      "played": true,
+      "action": 7,
+      "hp": 51
+    },
+    {
+      "id": "x49",
+      "seed": 4,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 54
+    },
+    {
+      "id": "x50",
+      "seed": 19,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 56
+    },
+    {
+      "id": "x51",
+      "seed": 5,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 52
+    },
+    {
+      "id": "x52",
+      "seed": 5,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 55
+    },
+    {
+      "id": "x53",
+      "seed": 2,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 64
+    },
+    {
+      "id": "x54",
+      "seed": 15,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 49
+    },
+    {
+      "id": "x55",
+      "seed": 40,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 50
+    },
+    {
+      "id": "x56",
+      "seed": 21,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 55
+    },
+    {
+      "id": "x57",
+      "seed": 31,
+      "offered": true,
+      "played": true,
+      "action": 2,
+      "hp": 48
+    },
+    {
+      "id": "x58",
+      "seed": 21,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 55
+    },
+    {
+      "id": "x59",
+      "seed": 57,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 59
+    },
+    {
+      "id": "x60",
+      "seed": 56,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 46
+    },
+    {
+      "id": "x61",
+      "seed": 17,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 62
+    },
+    {
+      "id": "x62",
+      "seed": 9,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 48
+    },
+    {
+      "id": "x63",
+      "seed": 8,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 50
+    },
+    {
+      "id": "x64",
+      "seed": 4,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 54
+    },
+    {
+      "id": "x65",
+      "seed": 30,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 44
+    },
+    {
+      "id": "x66",
+      "seed": 78,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 57
+    },
+    {
+      "id": "x67",
+      "seed": 4,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 54
+    },
+    {
+      "id": "x68",
+      "seed": 31,
+      "offered": true,
+      "played": true,
+      "action": 2,
+      "hp": 48
+    },
+    {
+      "id": "x69",
+      "seed": 76,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 54
+    },
+    {
+      "id": "x70",
+      "seed": 33,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 50
+    },
+    {
+      "id": "x71",
+      "seed": 11,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 54
+    },
+    {
+      "id": "x72",
+      "seed": 3,
+      "offered": true,
+      "played": true,
+      "action": 7,
+      "hp": 51
+    },
+    {
+      "id": "x73",
+      "seed": 12,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 65
+    },
+    {
+      "id": "x74",
+      "seed": 2,
+      "offered": true,
+      "played": true,
+      "action": 5,
+      "hp": 64
+    },
+    {
+      "id": "x75",
+      "seed": 28,
+      "offered": true,
+      "played": true,
+      "action": 1,
+      "hp": 54
+    }
+  ],
+  "limits": [
+    "All rewards uniformly sampled, no rarity weighting or natural map.",
+    "One manually prioritized acquired card, no multi-card draft strategy.",
+    "No persistent upgrade instances; access proves base only.",
+    "Identical signatures only; absence of duplicates is not absence of domination.",
+    "Role descriptions and STS comparison names do not verify primary-source quotations."
+  ]
+}
