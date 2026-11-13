@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0],[2,3]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0],[2,3],[6,8]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
-    const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23)s.jade=3;
+    const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23||i===31)s.jade=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
@@ -19,6 +19,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
+    if(i===31){assert.equal(r.state.counter,value);assert.equal(r.state.jade,0);}
     if(i===14)assert.equal(r.state.counter,upgrade?4:3);
     if(i===12)assert.equal(r.state.enemy.vulnerable,upgrade?3:2);
     if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
@@ -531,4 +532,29 @@ test('repair invalid state/intensity and payment cancellation remain atomic',()=
  const c=cards.find(c=>c.id==='zl31'),old=c.base;try{for(const n of [0,4,NaN,Number.MAX_SAFE_INTEGER]){c.base=[['repair',n]];assert.equal(play(s,{id:'zl31',instance:'a'}).state,s);assert.deepEqual(s,before);}}finally{c.base=old;}
  for(const repair of [4,-1,NaN]){const t={...s,repair},copy=structuredClone(t);assert.throws(()=>endTurn(t,[]));assert.deepEqual(t,copy);}
  const poor={...s,energy:1};assert.equal(play(poor,{id:'zl31',instance:'a'}).state,poor);
+});
+
+test('sacrifice counter base/upgrade pays jade for temporary fixed retaliation without block or immediate damage',()=>{
+ for(const u of [false,true])for(const jade of [0,2,3,20]){
+  const s=initialState();s.jade=jade;const before=structuredClone(s),r=run('zl32',s,u);assert.equal(r.ok,jade>=3);
+  if(r.ok){assert.equal(r.state.jade,jade-3);assert.equal(r.state.counter,u?8:6);assert.equal(r.state.block,0);assert.equal(r.state.enemy.hp,40);assert.equal(r.state.energy,2);}
+  assert.deepEqual(s,before);
+ }
+});
+test('sacrifice counter idle wastes payment, zero hit triggers, multihit increases retaliation but damage happens first',()=>{
+ for(const u of [false,true])for(const hits of [[],[0],[12],[3,3,3]]){
+  const s={...initialState(),jade:6};s.enemy.hp=100;s.enemy.vulnerable=3;const r=run('zl32',s,u).state,end=endTurn(r,hits);
+  assert.equal(end.hp,60-Math.max(0,hits.reduce((a,b)=>a+b,0)-3));assert.equal(end.enemy.hp,100-hits.length*(u?8:6));assert.equal(end.counter,0);
+ }
+});
+test('sacrifice counter is faster retaliation but loses protection versus15 and simultaneous death remains a loss',()=>{
+ const s={...initialState(),jade:6},risk=endTurn(run('zl32',s).state,[3,3,3]),safe=endTurn(run('zl15',s).state,[3,3,3]);
+ assert.equal(risk.hp,54);assert.equal(safe.hp,60);assert.equal(risk.enemy.hp,22);assert.equal(safe.enemy.hp,31);
+ const fatal={...initialState(),jade:3,hp:3};fatal.enemy.hp=6;const both=endTurn(run('zl32',fatal).state,[4,99]);assert.equal(both.hp,0);assert.equal(both.enemy.hp,0);
+});
+test('sacrifice counter insufficient shield, overflow, cancellation and later invalid effect are atomic',()=>{
+ const s=initialState(['a']);s.instances.a={id:'zl32',upgraded:false};s.jade=3;const before=structuredClone(s);
+ assert.equal(play(s,{id:'zl32',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);
+ for(const patch of [{jade:2},{energy:0},{counter:Number.MAX_SAFE_INTEGER},{hp:0}]){const t={...s,...patch},copy=structuredClone(t);assert.equal(play(t,{id:'zl32',instance:'a'}).state,t);assert.deepEqual(t,copy);}
+ const c=cards.find(c=>c.id==='zl32'),old=c.base;try{c.base=[['spendJade',3],['counter',NaN]];assert.equal(play(s,{id:'zl32',instance:'a'}).state,s);assert.deepEqual(s,before);}finally{c.base=old;}
 });
