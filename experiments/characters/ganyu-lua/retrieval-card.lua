@@ -6,7 +6,7 @@ local function validate(e,prepared)
  assert(type(e)=='table'and getmetatable(e)==nil and e.op=='ganyuRetrieve','invalid retrieval namespace')
  for k in pairs(e)do assert(k=='op'or k=='zone'or k=='selector'or prepared and k=='uid','unknown retrieval field')end
  assert(e.zone=='draw'or e.zone=='discard','invalid retrieval zone')
- assert(e.selector==nil or e.selector=='block'or e.selector=='charge','invalid retrieval selector')
+ assert(e.selector==nil or e.selector=='block'or e.selector=='charge'or e.selector=='storm','invalid retrieval selector')
  assert(e.selector==nil or e.zone=='draw','effect retrieval only searches draw')
 end
 function M.prepare(combat,state,e,uid)
@@ -30,7 +30,7 @@ function M.dispatch(combat,state,e,queue)
   if e.selector then
    local definition=combat.cardDefinition(state,card)
    for _,effect in ipairs(definition.effects)do
-    if e.selector=='block'and effect.op=='block'or e.selector=='charge'and effect.op=='ganyuCard'and effect.kind=='charge'then match=true end
+    if e.selector=='block'and effect.op=='block'or e.selector=='charge'and effect.op=='ganyuCard'and effect.kind=='charge'or e.selector=='storm'and effect.op=='ganyuStorm'then match=true end
    end
   end
   if match then

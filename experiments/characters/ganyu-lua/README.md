@@ -211,3 +211,18 @@ That handler is still a test adapter, not shared Combat's complete UseCard flow.
 Payment is manually staged under Snapshot; 30 intentionally remains in-use here,
 so this does not claim normal discard finalization or public C.play integration.
 Source costs/values and held gates are unchanged; shared acceptance is pending.
+
+### Source-bound retrieval and direct storm selection
+
+The retrieval ABI now recognizes a direct `ganyuStorm` setup effect for 39,
+using the actual base/up instance definition just like charge/block selection.
+It does not match labels, conditional rain effects or other zones. The six
+variant-inversion tests pass together with existing arrow/full-hand/absence
+and rollback tests. Separate generated definitions cover 10/25/39/48 with their
+1→0 costs and 25/39/48 exhaust flags unchanged; 47/68 composite cards remain
+unsupported. Two Node tests cover 28 malformed inputs and rejection of 68.
+An initial test syntax typo was corrected before the passing run.
+Eight generated native-card-definition cases exercise actual generated 03/05/06
+targets, NoDraw, first-match order, unchanged RNG and post-movement Snapshot
+rollback/retry. Source-card payment/disposal are not public C.play here; exhaust
+is preserved in data, not newly claimed as verified host finalization.
