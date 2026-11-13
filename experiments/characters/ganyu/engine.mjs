@@ -4,9 +4,40 @@ export const catalogue = JSON.parse(readFileSync(new URL('./cards.json', import.
 export const rules = catalogue.environment;
 const variants = new Map(catalogue.cards.map(c => [c.id, c]));
 const clone = value => structuredClone(value);
+function natural(value, label, min = 0) {
+  if (!Number.isSafeInteger(value) || value < min) throw new Error(`invalid ${label}`);
+}
+export function validateState(s) {
+  if (!s || !['player','between','won','lost'].includes(s.phase)) throw new Error('invalid phase');
+  for (const key of ['hp','block','energy','charge','turn']) natural(s[key], key, key === 'turn' ? 1 : 0);
+  if (s.charge > rules.maxCharge) throw new Error('invalid charge');
+  if (['player','between'].includes(s.phase) && s.hp === 0) throw new Error('invalid living player');
+  if (!Array.isArray(s.enemies) || !s.enemies.length) throw new Error('invalid enemies');
+  for (const e of s.enemies) {
+    if (!e) throw new Error('invalid enemy');
+    natural(e.hp,'enemy hp'); natural(e.block,'enemy block');
+    const hits = Array.isArray(e.intent) ? e.intent : [e.intent];
+    if (!hits.length) throw new Error('invalid intent');
+    hits.forEach(n => natural(n,'intent'));
+  }
+  if (s.storm !== null) {
+    if (!s.storm || typeof s.storm !== 'object') throw new Error('invalid storm');
+    natural(s.storm.amount,'storm amount'); natural(s.storm.turns,'storm turns',1);
+  }
+  for (const zone of ['hand','draw','discard','exhausted']) {
+    if (!Array.isArray(s[zone])) throw new Error(`invalid ${zone}`);
+    for (const card of s[zone]) {
+      if (!card || !variants.has(card.id)) throw new Error('unknown card');
+      if (card.upgraded !== undefined && typeof card.upgraded !== 'boolean') throw new Error('invalid upgrade');
+    }
+  }
+  if (s.hand.length > rules.handLimit) throw new Error('invalid hand size');
+}
+
 export function initial(enemies = [{ hp: 30, block: 0, intent: 8 }]) {
-  return { phase: 'player', hp: rules.initialHp, block: 0, energy: rules.energyPerTurn, charge: 0, storm: null,
+  const s = { phase: 'player', hp: rules.initialHp, block: 0, energy: rules.energyPerTurn, charge: 0, storm: null,
     enemies: clone(enemies), hand: [], draw: [], discard: [], exhausted: [], turn: 1 };
+  validateState(s); return s;
 }
 function hit(enemy, damage) {
   if (enemy.hp <= 0) return;
@@ -20,6 +51,7 @@ function victory(state) {
 }
 // Pure transaction: invalid input never mutates caller, pays nothing, draws nothing.
 export function play(input, handIndex, target = null, cancel = false) {
+  validateState(input);
   if (cancel) return clone(input);
   if (input.phase !== 'player') throw new Error('not player phase');
   if (!Number.isInteger(handIndex) || !input.hand[handIndex]) throw new Error('invalid hand');
@@ -59,6 +91,7 @@ export function play(input, handIndex, target = null, cancel = false) {
   return s;
 }
 export function endTurn(input) {
+  validateState(input);
   if (input.phase !== 'player') throw new Error('not player phase');
   const s = clone(input);
   s.charge = Math.min(rules.maxCharge, s.charge + s.energy); s.energy = 0;
@@ -82,6 +115,7 @@ export function endTurn(input) {
 }
 // Explicit supplied draw order: no hidden shuffle or claimed natural-run simulation.
 export function startTurn(input) {
+  validateState(input);
   if (input.phase !== 'between') throw new Error('not between turns');
   const s = clone(input); s.block = 0; s.energy = rules.energyPerTurn; s.turn += 1; s.phase = 'player';
   s.hand.push(...s.draw.splice(0, Math.max(0, Math.min(rules.drawPerTurn, rules.handLimit - s.hand.length))));

@@ -1,22 +1,23 @@
-✔ independent base/upgrade oracles, charge 0/1/2 (2.881561ms)
-✔ primary lethal still blooms; armor consumed separately, exact lethal (0.280212ms)
-✔ invalid target/payment/index and cancel cannot mint resources or move cards (0.675985ms)
-✔ all other base/upgrade effect contracts (0.503441ms)
-✔ bank unused energy at end, saturation, no passive per-card grant (2.764898ms)
-✔ storm two ticks, refresh max not sum, dead enemies cannot attack (0.411435ms)
-✔ storm cannot be funded by future banking, and no enemy turn after victory (0.288905ms)
-✔ block persists across enemy multihits then clears next turn; death stops turn (0.363105ms)
-✔ no retain/shuffle implied, draw has hand cap and actual availability (0.363745ms)
-✔ opposite reachable choices: lethal now vs preserve charge economy (0.561907ms)
-✔ display generated from same structured variants, no false approval (0.698208ms)
-✔ upgrade flag must be boolean; string false never grants upgrade (0.207636ms)
-✔ storm independent base/upgraded costs, every tick and expiry (0.383054ms)
-✔ unknown effect after payment rolls back caller; text follows duration data (0.318158ms)
-ℹ tests 14
+✔ independent base/upgrade oracles, charge 0/1/2 (2.918314ms)
+✔ primary lethal still blooms; armor consumed separately, exact lethal (0.370274ms)
+✔ invalid target/payment/index and cancel cannot mint resources or move cards (0.840727ms)
+✔ all other base/upgrade effect contracts (0.619942ms)
+✔ bank unused energy at end, saturation, no passive per-card grant (3.337501ms)
+✔ storm two ticks, refresh max not sum, dead enemies cannot attack (0.955095ms)
+✔ storm cannot be funded by future banking, and no enemy turn after victory (0.518042ms)
+✔ block persists across enemy multihits then clears next turn; death stops turn (0.569828ms)
+✔ no retain/shuffle implied, draw has hand cap and actual availability (0.380981ms)
+✔ opposite reachable choices: lethal now vs preserve charge economy (0.816322ms)
+✔ display generated from same structured variants, no false approval (0.848699ms)
+✔ upgrade flag must be boolean; string false never grants upgrade (0.241886ms)
+✔ storm independent base/upgraded costs, every tick and expiry (0.576438ms)
+✔ unknown effect after payment rolls back caller; text follows duration data (0.354962ms)
+✔ reject malformed numeric/terminal inputs atomically at every boundary (3.583043ms)
+ℹ tests 15
 ℹ suites 0
-ℹ pass 14
+ℹ pass 15
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 154.047555
+ℹ duration_ms 185.194346

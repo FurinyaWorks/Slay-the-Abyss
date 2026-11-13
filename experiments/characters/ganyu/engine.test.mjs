@@ -91,3 +91,11 @@ test('unknown effect after payment rolls back caller; text follows duration data
  try {spec.turns=3;assert.match(cardText(c.id),/连续3个回合/);spec.op='unsupported';assert.throws(()=>play(s,0),/unknown effect/);assert.deepEqual(s,before);}
  finally {Object.assign(spec,previous);}
 });
+
+test('reject malformed numeric/terminal inputs atomically at every boundary',()=>{
+ assert.throws(()=>initial([{hp:30,block:0,intent:-10}]),/invalid intent/);
+ const mutations=[s=>s.energy=NaN,s=>s.hp=0,s=>s.block=-1,s=>s.charge=3,s=>s.charge=0.5,s=>s.enemies[0].hp=Infinity,s=>s.enemies[0].block=-2,s=>s.enemies[0].intent=[3,-1],s=>s.storm={amount:4,turns:0},s=>s.storm={amount:-1,turns:2}];
+ for(const mutate of mutations) for(const fn of [s=>play(s,0,0),endTurn,startTurn]) {
+  const s=hand(initial(),'ganyu-01');mutate(s);const before=structuredClone(s);assert.throws(()=>fn(s));assert.deepEqual(s,before);
+ }
+});
