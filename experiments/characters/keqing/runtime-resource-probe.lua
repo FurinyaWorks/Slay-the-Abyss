@@ -53,6 +53,7 @@ function M.play(input,uid,target)
  if not instance then return nil,'card_not_in_hand' end
  local original=s.catalog.cards[instance.cardId]
  if not original or not original.keqingProbe then return nil,'outside_probe_scope' end
+ if original.keqingConditional then return nil,'dedicated_conditional_adapter_required' end
  if original.keqingDefense then return nil,'dedicated_defense_adapter_required' end
  local def=C.copy(original)
  local r=s.keqingResourceProbe

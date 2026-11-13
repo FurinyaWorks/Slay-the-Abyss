@@ -1,0 +1,9 @@
+# Conditional attack adapter (HOLD)
+
+KQ008, KQ018 and KQ025 now have strict candidate export plus an isolated actual Lua Combat adapter. Conditions snapshot the resources before the card: 008 reads wedge presence without consuming/refreshing it; 018 grants its fallback block only when infusion was absent at entry; 025 appends its second damage segment only when infusion was present at entry. Existing resource wrapper applies the infusion bonus to every generated damage segment and charges it once per entire attack card.
+
+The generic wrapper refuses definitions marked `keqingConditional`, so empty placeholder effects cannot silently be used as the full card. The dedicated adapter validates both faces, builds a copied definition for the selected face, executes actual payment/effects and restores the original catalog definition on the output. Unsupported fields/ops, sparse arrays and invalid numeric values are rejected. The preceding defense terminal-input guard is retained; shared Combat/Actor and lifecycle interfaces are untouched.
+
+Two targeted tests pass: 36 actual Lua combinations (three cards × two faces × wedge present/absent × infusion 0/1/2), independently asserted damage/block/cost/resource preservation; generic-entry rejection; invalid-target and insufficient-energy input invariance; and lethal first KQ025 segment without redirecting its optional second segment to another enemy. This tests pre-card conditions explicitly, especially infusion=1, which becomes 0 after the card but must not create KQ018's fallback block.
+
+No formal acquisition/registration, full 75-card bridge, natural reward progression, Power reaction timing, queue pause/resume, human/source/naming approval or numerical balance is claimed. The adapter is a research entry and requires the coordinated formal dispatcher rather than direct placeholder loading. Existing HOLD gates persist.
