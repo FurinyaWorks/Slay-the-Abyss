@@ -1346,4 +1346,5 @@ config/ci-media-lfs.json text eol=lf
 docs/evidence/menu-red-20261113/** -text
 docs/evidence/menu-red-entry-20261114/** -text
 docs/evidence/menu-red-quality-20261114/** -text
+docs/evidence/menu-red-quality-20261114/** whitespace=cr-at-eol
 experiments/menu-red-fit/*.py text eol=lf
