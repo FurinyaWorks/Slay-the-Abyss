@@ -294,6 +294,10 @@ function M.rest(run)
             -- previous encounter. Its persistent card RNG/offset still advance.
             local context={data=owner.data,cardRng=owner.cardRng,
                 cardRarityOffset=owner.cardRarityOffset,encounterTier='normal'}
+            if owner.candidateRewardPool~=nil then
+                context={};for key,value in pairs(owner)do context[key]=value end
+                context.encounterTier='normal'
+            end
             local cards,rng,offset,upgrades=CardPool.prepareRewards(context)
             for _,id in ipairs(cards)do
                 if not Capability.isImplemented(find(owner.data.cards.cards,id))then error('card_content_unavailable')end

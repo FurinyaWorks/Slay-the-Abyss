@@ -562,3 +562,32 @@ Actual tests cover16 base/up/resource/modifier combinations,12 automatic cases,
 real Scry boundary/failure/alias retry, controlled native death after first block
 (no resource consumption or extra relic), and four fixed-reward Run.play chains.
 No natural reward pool, full75 registration or production menu is enabled.
+
+### Ganyu explicit finite reward domain (2026-11-13)
+
+`abyss_ganyu_reward_run.new(data, seed)` is a closed opt-in experimental launcher.
+It keeps the source-bound HP60/10-card starter and virtual starter equipment,
+prepares all 32 already-admitted definitions before Run construction, and routes
+CardPool reward generation to 30 source-rarity-eligible cards (2 basic excluded;
+10 common, 19 uncommon, 1 rare). Formal color catalogs and source reward/shop
+pools are unchanged. This is not formal character registration or shop support.
+
+Sampling retains each rarity roll and offset transition, but draws without
+replacement from that rarity's remaining candidates. An exhausted rarity skips
+that slot, without a rarity reroll or substitution. A boss rare-only offer may
+therefore contain one card, including with Question Card. A zero-card result
+raises `experimental_candidate_reward_empty`; Prismatic raises
+`experimental_candidate_prismatic_unsupported`. The provider never mutates Run
+RNG directly, and public Run callers retain their existing transactions. These
+are explicit experiment limitations, not source-game sampling or final balance.
+The marker routes all existing CardPool entry points (combat/event rewards,
+extra Prayer Wheel groups, Tiny House/Orrery and Dream Catcher rest callbacks);
+it does not change independent shop inventory generation or random transforms.
+
+The generated-reward test uses 12 fixed seeds and never edits generated identities
+or upgrade bits: real victory sampling, close/reopen, claim, persistent deck UID,
+next battle and real Run.play. Victory and next-hand placement are fixtures;
+observed distinct IDs are reported rather than claiming all30 were sampled.
+Focused boundary tests cover rare short offers, finite common exhaustion,
+zero/Prismatic rejection, repeatability, whole-Run publication rollback with RNG
+and object identities, formal pool equality, and caller-source preservation.
