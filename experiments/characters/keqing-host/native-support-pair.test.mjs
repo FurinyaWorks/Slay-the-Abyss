@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('source-bound 039/049 factory and explicit current shared admission gap',()=>{buildLuaData();const r=runLua('experiments/characters/keqing-host/native-support-pair.test.lua',{timeout:30000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KQ_NATIVE_SUPPORT_PAIR_SOURCE_AND_GATE_PASS 4/);});
