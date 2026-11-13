@@ -2,14 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7,8,10,13,16].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([0,3,4,6,7,8,10,13,16,17].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
     if(i===2)assert.equal(r.state.jade,value);
@@ -239,4 +239,33 @@ test('antiarmor trades away naked-target damage and cannot undo lethal battle or
 test('antiarmor requires actual jade payment and gives up future protection at every boundary',()=>{
  for(let jade=0;jade<=20;jade++)for(const u of [false,true]){const s=initialState();s.jade=jade;s.enemy.block=12;const before=structuredClone(s);const r=run('zl17',s,u);assert.equal(r.ok,jade>=3);assert.deepEqual(s,before);if(r.ok)assert.equal(r.state.jade,jade-3);}
  const s=initialState();s.jade=3;const used=run('zl17',s).state;assert.equal(endTurn(used,[3]).hp,57);assert.equal(endTurn(s,[3]).hp,60);
+});
+
+test('jade payoff samples current jade, not block or a consumed payment; every base/upgrade boundary',()=>{
+ for(let jade=0;jade<=20;jade++)for(const u of [false,true])for(const vuln of [0,1]){
+  const s=initialState();s.jade=jade;s.block=99;s.enemy.block=3;s.enemy.vulnerable=vuln;const before=structuredClone(s);
+  const r=run('zl18',s,u);const raw=jade+(u?5:0),damage=vuln?Number(BigInt(raw)*3n/2n):raw;
+  assert.equal(r.ok,true);assert.equal(r.state.enemy.hp,40-Math.max(0,damage-3));assert.equal(r.state.enemy.block,Math.max(0,3-damage));assert.equal(r.state.jade,jade);assert.equal(r.state.block,99);assert.equal(r.state.energy,1);assert.deepEqual(s,before);
+ }
+});
+test('jade payoff observes prior spending and incoming depletion; no free energy or low-reserve damage',()=>{
+ const s=initialState();s.jade=12;const spent=run('zl04',s).state;const r=run('zl18',spent).state;assert.equal(r.enemy.hp,20);assert.equal(r.jade,6);assert.equal(r.energy,0);
+ const hit=endTurn(s,[7]);assert.equal(hit.jade,5);hit.hand=['next'];hit.instances.next={id:'zl18',upgraded:false};assert.equal(run('zl18',hit).state.enemy.hp,35);
+ const empty=run('zl18').state;assert.equal(empty.enemy.hp,40);assert.equal(empty.energy,1);
+ const cap=initialState();cap.jade=20;assert.equal(run('zl18',cap,true).state.enemy.hp,15);
+});
+test('jade payoff cancel, target, insufficient energy and unsafe effect reject before payment',()=>{
+ const s=initialState(['a']);s.instances.a={id:'zl18',upgraded:false};s.jade=20;
+ for(const opts of [{cancel:true},{target:'self'}]){const before=structuredClone(s);const r=play(s,{id:'zl18',instance:'a',target:'enemy',...opts});assert.equal(r.ok,false);assert.equal(r.state,s);assert.deepEqual(s,before);}
+ const low={...s,energy:1};assert.equal(play(low,{id:'zl18',instance:'a',target:'enemy'}).state,low);
+ const c=cards.find(c=>c.id==='zl18'),old=c.base;try{c.base=[['jadeDamage',Number.MAX_SAFE_INTEGER]];const before=structuredClone(s);assert.equal(play(s,{id:'zl18',instance:'a',target:'enemy'}).ok,false);assert.deepEqual(s,before);}finally{c.base=old;}
+});
+
+test('reserve payoff does not strictly dominate fixed threshold or sacrifice payoff',()=>{
+ const low=initialState();low.jade=6;
+ assert.equal(run('zl18',low).state.enemy.hp,34);assert.equal(run('zl11',low).state.enemy.hp,29);assert.equal(run('zl04',low).state.enemy.hp,26);
+ assert.equal(run('zl18',low).state.energy,1);assert.equal(run('zl11',low).state.energy,2);assert.equal(run('zl04',low).state.jade,0);
+ const high=initialState();high.jade=20;assert.equal(run('zl18',high).state.enemy.hp,20);assert.equal(run('zl11',high).state.enemy.hp,29);assert.equal(run('zl04',high).state.enemy.hp,26);assert.equal(run('zl18',high).state.jade,20);
+ high.energy=1;assert.equal(run('zl18',high).ok,false);assert.equal(run('zl11',high).ok,true);assert.equal(run('zl04',high).ok,true);
+ // One instance alternative, not a proof that full arbitrary hands favor any card.
 });
