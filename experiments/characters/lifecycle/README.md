@@ -388,3 +388,25 @@ fault rollback, Scry/resume balance recheck and automatic gates. Controlled nati
 life-loss injected after spend verifies terminal interruption without refund;
 this is not an invented natural reaction for shield/Weak cards. Jade incoming
 absorption and formal registration remain disabled.
+
+## Ganyu source-bound ordinary 22 candidates
+
+`abyss_ganyu_native_definitions.lua` is the exact generated definition file from
+reviewed b0c9ca7f (source hash/version retained). The explicit
+`abyss_ganyu_native_cards.definitions()` factory adds experimental markers only;
+it never mutates the global card/reward/class catalog. Both manual and automatic
+admission now receive the real instance and validate its canonical ID, upgraded
+face, exact effects/type/target/exhaust/selfRetain and Ganyu candidate state.
+Ordinary dynamic costs remain engine-owned. Preparation runs after real payment,
+checks limbo UID, and returns the native effect sequence unchanged to QueuedPlay.
+There is no bonus resource or after-return completion callback.
+
+Author native suites are adapted to the explicit factory and
+candidateLifecycle={kind='ganyu',relicEnabled=false}: 50 ordinary/retain cases,
+8 modifier/exhaust/NoDraw and 2 real failure/alias cases. Extra tests cover 44
+free automatic plays, 44 noncandidate refusals, malformed definitions, paid
+prepare rollback and terminal native outcomes. FNP/DE tests explicitly register
+native exhaust power order, not just untracked status fields. Printed costs in
+these source definitions are tested, without replacing dynamic-cost semantics.
+Terminal damage-then-block remains native; damage-then-draw may stop at victory.
+No natural rewards, UI selection, production registration or balance approval.

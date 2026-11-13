@@ -4,6 +4,7 @@ local Queued=require('abyss_ganyu_queued_card')
 local Storm=require('abyss_ganyu_storm_card')
 local Copy=require('abyss_copy').copy
 local Presence=require('abyss_actor_presence')
+local Native=require('abyss_ganyu_native_cards')
 local M={}
 local function same(a,b)
  if type(a)~='table'or type(b)~='table'then return a==b end
@@ -25,7 +26,8 @@ function M.supports(e)
  return pcall(R.plan,R.initial(),e.kind=='charge'and {op='charge',amount=e.amount}
   or {op='charged_shot',direct=e.direct,bloom=e.bloom})
 end
-function M.canUse(state,card,targetIndex)
+function M.canUse(state,card,targetIndex,instance)
+ if card.ganyuNativeCandidate~=nil or instance and Native.known(instance.cardId)then return Native.canUse(state,instance,card,targetIndex)end
  if card.ganyuCandidate==nil then
   for _,e in ipairs(card.effects)do if e.op=='ganyuCard'or e.op=='ganyuStorm'then return false,'unmarked_ganyu_card'end end
   return true
@@ -44,8 +46,13 @@ function M.prepare(combat,state,card,effects,target)
  if card.ganyuCandidate==nil then return effects end
  local context=assert(state.pendingPlay,'missing Ganyu pending use')
  local index;for i,enemy in ipairs(state.enemies)do if rawequal(enemy,target)then index=i end end
- local ok,why=M.canUse(state,card,index);assert(ok,why)
+ local ok,why=M.canUse(state,card,index,state.cardInUse);assert(ok,why)
  assert(context.ganyuPaid==nil,'duplicate Ganyu preparation')
+ if card.ganyuNativeCandidate then
+  assert(state.cardInUse and state.cardInUse.uid==context.uid,'invalid Ganyu native paid identity')
+  context.ganyuPaid={uid=context.uid,turn=state.turn,playId=#state.cardsPlayedThisCombat,native=true}
+  return effects
+ end
  local storm=effects[1].op=='ganyuStorm'
  if storm then assert(effects[1].amount==(state.cardInUse.upgraded and 6 or 4),'invalid storm face')end
  local e=storm and Storm.prepare(combat,state,effects[1],context.uid)or Queued.prepare(combat,state,effects[1],target,context.uid)

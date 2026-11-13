@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {buildLuaData} from '../../../scripts/build-lua-data.mjs';import {runLua} from '../../../scripts/test-lua.mjs';
+test('Ganyu ordinary22 source-bound candidate public play and lifecycle',()=>{buildLuaData();for(const [file,marker]of [['ganyu-native-usecard.test.lua','PASS 10 base/upgrade retained'],['ganyu-native-interactions.test.lua','PASS 2 real public-play'],['ganyu-native-gates.test.lua','GANYU_NATIVE_GATES_PASS']]){const r=runLua('experiments/characters/lifecycle/'+file,{timeout:60000});assert.equal(r.status,0,r.stdout+r.stderr);assert.ok(r.stdout.includes(marker),r.stdout+r.stderr);}});

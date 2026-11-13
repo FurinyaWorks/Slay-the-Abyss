@@ -752,7 +752,7 @@ local function playCardRequirements(state,instance,card,targetIndex)
     if not zhongliReady then return false,zhongliWhy end
     local xiaoReady,xiaoWhy=require('abyss_xiao_paid_cards').canUse(state,instance,card,targetIndex)
     if not xiaoReady then return false,xiaoWhy end
-    local ganyuReady,ganyuWhy=require('abyss_ganyu_paid_cards').canUse(state,card,targetIndex)
+    local ganyuReady,ganyuWhy=require('abyss_ganyu_paid_cards').canUse(state,card,targetIndex,instance)
     if not ganyuReady then return false,ganyuWhy end
     local ready,why=require('abyss_keqing_paid_cards').canUse(state,card)
     if not ready then return false,why end
@@ -1288,7 +1288,7 @@ function M.resolveQueuedCard(state,e)
     if not zhongliAllowed then rejected();return end
     local xiaoAllowed=require('abyss_xiao_paid_cards').canUse(state,c,d,e.targetIndex)
     if not xiaoAllowed then rejected();return end
-    local ganyuAllowed=require('abyss_ganyu_paid_cards').canUse(state,d,e.targetIndex)
+    local ganyuAllowed=require('abyss_ganyu_paid_cards').canUse(state,d,e.targetIndex,c)
     if not ganyuAllowed then rejected();return end
     local candidateAllowed=require('abyss_keqing_paid_cards').canUse(state,d)
     if not candidateAllowed then rejected();return end
