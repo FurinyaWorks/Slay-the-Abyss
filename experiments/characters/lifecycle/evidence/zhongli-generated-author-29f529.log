@@ -1,0 +1,7 @@
+AUTHOR_GENERATED_SEED 1 card=zl73 upgraded=false used=true actions=8/1 hp=45
+AUTHOR_GENERATED_SEED 2 card=zl19 upgraded=false used=true actions=11/4 hp=33
+AUTHOR_GENERATED_SEED 3 card=zl57 upgraded=false used=true actions=11/6 hp=33
+AUTHOR_GENERATED_SEED 4 card=zl19 upgraded=false used=true actions=11/6 hp=50.0
+AUTHOR_GENERATED_SEED 5 card=zl16 upgraded=false used=true actions=9/3 hp=45
+AUTHOR_GENERATED_SEED 6 card=zl20 upgraded=false used=true actions=10/3 hp=50.0
+AUTHOR_ZL_GENERATED_DRAW_CHAIN_PASS seeds=1..6 firstWins=6 acquiredPlayed=6 losses=0 bounded=0; no offer/HP/energy/jade/hand rewrite, fixed cultist rooms not map or balance proof

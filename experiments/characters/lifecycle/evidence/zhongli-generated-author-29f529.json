@@ -1,0 +1,29 @@
+{
+  "kind": "observed-author-natural-draw-chain",
+  "testedLocalCommit": "29f529e38044fbce5d046159c8026234736e5eb0",
+  "testedRemoteCommit": "61f40622fb1081e13148ed05f66203148fbdc77a",
+  "testedTree": "39ad1dcbbbb550ab2dacae95f3adcd24d8a271c5",
+  "method": "exact archive, sole 256MB serial Fengari process, source starter, public Run commands",
+  "seedRange": [1, 6],
+  "encounter": "cultist_solo",
+  "firstFightWins": 6,
+  "acquiredThenPlayedNextFight": 6,
+  "firstFightLosses": 0,
+  "boundedIncomplete": 0,
+  "uniqueAcquiredIds": ["zl73", "zl19", "zl57", "zl16", "zl20"],
+  "rows": [
+    {"seed":1,"card":"zl73","upgraded":false,"used":true,"firstActions":8,"secondActionsUntilAcquiredPlayed":1,"persistentRunHp":45},
+    {"seed":2,"card":"zl19","upgraded":false,"used":true,"firstActions":11,"secondActionsUntilAcquiredPlayed":4,"persistentRunHp":33},
+    {"seed":3,"card":"zl57","upgraded":false,"used":true,"firstActions":11,"secondActionsUntilAcquiredPlayed":6,"persistentRunHp":33},
+    {"seed":4,"card":"zl19","upgraded":false,"used":true,"firstActions":11,"secondActionsUntilAcquiredPlayed":6,"persistentRunHp":50},
+    {"seed":5,"card":"zl16","upgraded":false,"used":true,"firstActions":9,"secondActionsUntilAcquiredPlayed":3,"persistentRunHp":45},
+    {"seed":6,"card":"zl20","upgraded":false,"used":true,"firstActions":10,"secondActionsUntilAcquiredPlayed":3,"persistentRunHp":50}
+  ],
+  "mutationsNotUsed": ["HP", "deck order", "hand position", "energy", "jade", "reward offers"],
+  "stopRule": "Each second fight stops immediately after the acquired deckUid is played, not after victory.",
+  "hpField": "Logged hp is run.hp persistent value, not second-fight instantaneous combat.player.hp.",
+  "limits": ["fixed Cultist rooms, not natural map traversal", "five unique basic versions only, not all fourteen or upgraded coverage", "fixed visible-state policy, not optimal play", "no full second-fight survival claim", "no balance approval", "no multi-enemy or jade absorption approval"],
+  "testExitCode": 0,
+  "passMarker": "AUTHOR_ZL_GENERATED_DRAW_CHAIN_PASS",
+  "provenance": "Observed output transcribed without rerunning; the sibling .log retains the actual output. This evidence-only commit does not change runtime."
+}
