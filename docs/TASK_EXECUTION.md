@@ -12,8 +12,10 @@
 
 ## 里程碑与历史
 
-M7/m-7 仍表示工程架构与性能，M8/m-8 表示产品体验与核心特色，M9/m-9 表示内容建设与扩充。编号与验收范围保留，但不是领取先后闸门。`currentMilestoneIds` 仅供 Backlog 完整性检查，不参与 `task:pick` 的决定。
+M7/m-7 仍表示工程架构与性能，M8/m-8 表示产品体验与核心特色，M9/m-9 表示内容建设与扩充。编号与验收范围保留，但不是领取先后闸门。近期版本发布仅依赖当前候选既有产品、官方和设备门禁；不因整个M7、未来20名角色或未参与的新赛事阻塞。M9中TASK-97的显式依赖TASK-105另行严格核对，NO-GO不得批量生产。`currentMilestoneIds` 仅供 Backlog 完整性检查，不参与 `task:pick` 的决定。
 
 历史 m-5 余项保留原 milestone、owner、状态、依赖、AC 和成果；合法 `To Do` 任务不会仅因 m-5 或其他 milestone 名称被 `task:pick` 判为 HOLD。旧 m-5→M8 接续表仍保存在 [Sprint 历史记录](SPRINT_EXECUTION.md#历史-m-5-余项的接续)，用于追溯工作分类，不再要求刷新为 M8 窗口。原任务的具体审批和验收要求照常。
 
-[旧 Sprint 说明](SPRINT_EXECUTION.md)、Backlog 文档中的旧 Sprint 说明、既有计划中的周日期、阶段顺序和例外名单均只作历史，不再作为认领依据。具体授权、禁止重复认领、已完成成果、未完成 AC、原 PR/Tag/发布记录及其他独立质量要求不变；取消 Sprint 不表示它们已经通过。
+[旧 Sprint 说明](SPRINT_EXECUTION.md)、Backlog 文档中的旧 Sprint 说明、既有计划中的周日期、阶段顺序和例外名单均只作历史，不再作为认领依据。具体授权、禁止重复认领、已完成成果、未完成 AC、原 PR/Tag/发布记录及其他独立质量要求不变；取消 Sprint 不表示它们已经通过。新角色容量判定与延期内容分别按对应AC验收，不凭离线Lua/GIL大小推断官方容量。
+
+2026-11-13对账：PR #634已将#621/#623/#629等独立切片整合进develop，原独立PR关闭未合不等于工作失效。后续根据真实合并commit同步实现进度，设备/平台未验仍保留；详见[容量与Backlog对账](backlog-details/M7-CAPACITY-RECONCILIATION-20261113.md)。

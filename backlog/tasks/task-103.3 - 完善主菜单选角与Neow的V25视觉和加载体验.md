@@ -5,8 +5,9 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-11 08:07'
-updated_date: '2026-11-13 07:59'
-labels: []
+updated_date: '2026-11-14 00:31'
+labels:
+  - 待验
 milestone: m-8
 dependencies: []
 parent_task_id: TASK-103
@@ -65,4 +66,6 @@ R7最终复验：SDK28项、实际浏览器HP21+Lament9项通过，20次暖选�
 最终单字clean候选e13bdaa2/source8c882428：实际GIL20762a79…ced37，sourceDirty:false。SDK31项通过，实际荧居中且旧头像不存在，20次暖返回控件14187稳定、0fault、销毁根0。本轮quality345模块5919测量、Lua无新诊断14历史警告通过。来源54完整Git记录+4新增字节独立核验PASS；51校准和225负控归档。实际自然分支与最后性能证据收口后送正常准入，官方及手机不冒充已验。
 
 用户2026-11-13再次指出选祝福选项按钮反复返工且退步，要求严格初代杀戮尖塔实物风格。启动小样本精确Neow对照：固定原版普通/hover已知状态、保留证据与未知项，分解文字/行距/括号/底板/反馈；当前先审计参照与失真源，不用旧二次稿或属性绿灯当完成。
+
+2026-11-14集成对账：保留已合634的源码与既有全部证据；正式候选官方、PC和手机体验仍待验，原AC保持未勾。
 <!-- SECTION:NOTES:END -->

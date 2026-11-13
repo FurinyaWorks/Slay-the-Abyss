@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - Furinya
 created_date: '2026-11-01 02:05'
-updated_date: '2026-11-07 03:48'
+updated_date: '2026-11-13 09:23'
 labels:
   - release-qa-20261101
   - 待验
@@ -15,7 +15,7 @@ references:
   - docs/backlog-details/MOBILE-RELEASE-QA-20261101.md
   - src/lua/abyss_game_ui_menu_view.lua
 parent_task_id: TASK-38
-priority: high
+priority: medium
 type: bug
 ordinal: 135000
 ---
@@ -44,6 +44,7 @@ ordinal: 135000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
+2026-11-13优先级对账：PR #442修复已合，AC1/2已勾，当前仅AC3同候选实体手机证据未完成；High调为Medium释放容量验证High名额，不等于AC3通过或跳过设备门禁。
 PR #442 已合入结算用时修复及定向回归；投稿已完成，后续保留同候选设备复验，不再作为投稿前阻塞。
 
 2026-11-03 基于远端568da4e4独立复验PR442：计时安全JS1/1、真实GameUI16例及退出两片15例通过。官方入口强制暂不可用，不拿模拟计数证明官方准确时间；正常/非法值、胜败退出及新局边界已验。AC1/2据本轮离线证据勾选，AC3同候选实体手机NOT_RUN，整体仍In Progress。详见docs/backlog-details/TASK-38.3-REVERIFY-20261103.md。

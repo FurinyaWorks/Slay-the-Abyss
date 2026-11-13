@@ -15,7 +15,7 @@ export function readTaskHeader(source) {
     return [...(block?.[1] ?? '').matchAll(/^[ \t]+-[ \t]+(.+)$/gm)].map(m => m[1].trim().replace(/^['"]|['"]$/g, ''));
   };
   return { id: scalar('id'), status: scalar('status'), priority: scalar('priority'), milestone: scalar('milestone'),
-    parentTaskId: scalar('parent_task_id'), assignees: list('assignee'), labels: list('labels'), documentation: list('documentation') };
+    parentTaskId: scalar('parent_task_id'), assignees: list('assignee'), labels: list('labels'), documentation: list('documentation'), dependencies: list('dependencies') };
 }
 
 // Priority describes the current queue, not whether a launch requirement matters.
@@ -143,6 +143,21 @@ export function auditRoadmap(tasks, roadmap, milestones, completed = []) {
   return errors;
 }
 
+// Explicit capacity-proof dependency for mass character rollouts, independent of M7 stage completion.
+export function auditRoleCapacityGate(tasks, completed = []) {
+  const byId = new Map([...completed, ...tasks].map(task => [task.id, task]));
+  const rollout = byId.get('TASK-97');
+  if (!rollout) return [];
+  const capacity = byId.get('TASK-105');
+  const errors = [];
+  if (!capacity) errors.push('TASK-97: 缺少角色容量前置TASK-105');
+  if (!rollout.dependencies?.includes('TASK-105'))
+    errors.push('TASK-97: 必须显式依赖TASK-105，禁止绕过容量量产准入');
+  if (['In Progress','Done'].includes(rollout.status) && capacity?.status !== 'Done')
+    errors.push('TASK-97: 容量TASK-105未取得GO，不得启动或完成角色批量量产');
+  return errors;
+}
+
 export function auditOrderedStageIds(records, requireCurrentStages = false) {
   const active=records.filter(x=>/^M[789](?:[\s｜|:：]|$)/.test(x.title));
   if(active.length===0&&!requireCurrentStages)return [];
@@ -176,7 +191,7 @@ export function verifyBacklogRoadmap(root = '.') {
     return [id, stage];
   }).filter(([id, stage]) => id && stage));
   return [...new Set([...auditRoadmap(tasks, readFileSync(join(root, 'docs/MILESTONES.md'), 'utf8'), milestones, completed),
-    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditOrderedStageIds(milestoneRecords, requiresCurrent), ...auditOutcomeTasks(tasks,root)])];
+    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditRoleCapacityGate(tasks,completed), ...auditOrderedStageIds(milestoneRecords, requiresCurrent), ...auditOutcomeTasks(tasks,root)])];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const errors = [...verifyBacklogRoadmap(), ...verifyMilestoneScope()];
