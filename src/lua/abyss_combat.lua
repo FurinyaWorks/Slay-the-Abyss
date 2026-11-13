@@ -748,7 +748,7 @@ local function playCardRequirements(state,instance,card,targetIndex)
         local usable,refusal=require('abyss_original_v4').preflight(state,card,targetIndex)
         if not usable then return false,refusal end
     end
-    local zhongliReady,zhongliWhy=require('abyss_zhongli_paid_cards').canUse(state,instance,card)
+    local zhongliReady,zhongliWhy=require('abyss_zhongli_paid_cards').canUse(state,instance,card,targetIndex)
     if not zhongliReady then return false,zhongliWhy end
     local xiaoReady,xiaoWhy=require('abyss_xiao_paid_cards').canUse(state,instance,card,targetIndex)
     if not xiaoReady then return false,xiaoWhy end
@@ -1284,7 +1284,7 @@ function M.resolveQueuedCard(state,e)
             CardActions.exhaust(M,state,c)
         elseif d.type~='power' then state.discard[#state.discard+1]=c end
     end
-    local zhongliAllowed=require('abyss_zhongli_paid_cards').canUse(state,c,d)
+    local zhongliAllowed=require('abyss_zhongli_paid_cards').canUse(state,c,d,e.targetIndex)
     if not zhongliAllowed then rejected();return end
     local xiaoAllowed=require('abyss_xiao_paid_cards').canUse(state,c,d,e.targetIndex)
     if not xiaoAllowed then rejected();return end

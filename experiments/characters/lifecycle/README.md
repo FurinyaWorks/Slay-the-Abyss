@@ -277,3 +277,22 @@ choice and block. Use-time block capture follows the host contract; it is not a
 claim of equivalence with the research engine if intervening reactions change
 Dexterity/Frail. That interaction remains a design HOLD. No formal registration
 or full-CI result is claimed.
+
+### Zhongli 03/04 paid resource candidates
+
+Explicit single-enemy Zhongli now admits canonical zl03 (2-cost jade gain12/16)
+and zl04 (1-cost spend6, then ordinary damage14/18). The actual original 3 energy
+is sufficient for the pair; the author spec does not refill between them. The
+host checks resource sufficiency before energy payment and the copied reviewed
+jade reducer checks again at effect execution. The native attack retains original
+use-time modifier capture, Block, reactions and terminal disposition. Storage at
+cap remains a paid no-op. Incoming jade absorption is still not hooked.
+
+The shared adapter does not call the role's hand-only preparation from an already
+paid context. It binds real pending/cardInUse UID, turn and use ordinal and compares
+a detached saved resource effect before dispatch. Tests include gain/spend and
+after-native-damage faults, public graph aliases, automatic admission, actual
+Thorns death without resource refund, and a controlled real-entity Scry window
+between payment and spending. A failed resumed spend restores the revealed pause;
+a deliberately changed insufficient balance is rejected again before consumption.
+No formal registration, multi-enemy support or incoming mitigation policy is added.
