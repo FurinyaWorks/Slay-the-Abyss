@@ -33,14 +33,14 @@ test('post-shortening fault and final-strike invalid target reject atomically',(
 });
 test('timing and rotation cards can be acquired after real win and drawn/played next battle',async()=>{
  const {newCampaign,campaignAction}=await import('./campaign.mjs');const {observe,choose}=await import('./research.mjs');
- for(const id of ['x27','x28','x29','x30','x31','x32','x33','x34','x35','x36','x37','x38','x39','x40','x41','x42','x43','x44','x45','x46','x47','x48','x49','x50','x51','x52','x53','x54','x55','x56','x57','x58','x59','x60','x61','x62','x63','x64','x65','x66']){
+ for(const id of ['x27','x28','x29','x30','x31','x32','x33','x34','x35','x36','x37','x38','x39','x40','x41','x42','x43','x44','x45','x46','x47','x48','x49','x50','x51','x52','x53','x54','x55','x56','x57','x58','x59','x60','x61','x62','x63','x64','x65','x66','x67','x68']){
   let c;
-  for(let seed=1;seed<=128;seed++){
+  for(let seed=1;seed<=512;seed++){
    let candidate=newCampaign(seed);
    for(let i=0;i<200&&candidate.phase==='battle';i++){const a=choose(observe(candidate.battle),'guard');candidate=campaignAction(candidate,a?{type:'play',...a}:{type:'end'}).state;}
    if(candidate.phase==='reward'&&candidate.offer.includes(id)){c=candidate;break;}
   }
-  assert.ok(c,'bounded deterministic offer search');c=campaignAction(c,{type:'reward',card:id}).state;
+  assert.ok(c,'bounded deterministic offer search '+id);c=campaignAction(c,{type:'reward',card:id}).state;
   let played=false;
   for(let i=0;i<200&&c.phase==='battle';i++){
    const index=c.battle.hand.indexOf(id),card=catalog.cards.find(x=>x.id===id);
