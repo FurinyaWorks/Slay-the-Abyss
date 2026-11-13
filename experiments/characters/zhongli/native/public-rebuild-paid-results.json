@@ -1,0 +1,12 @@
+{
+  "status": "LIMITED_PUBLIC_ACCEPTANCE_PASS",
+  "integrationCommit": "822fcb930e9d057da7a8a5edb561a3545e6b509f",
+  "method": "Independent exact workspace archive and rebuilt Lua data; original author spec and frozen shared host test run via Fengari",
+  "authorCases": 24,
+  "caseCountExplanation": "2 cards x 2 versions x 3 jade values x 2 hand sizes = 24. Host reruns the same matrix; this is not 48 distinct scenarios.",
+  "outputs": ["AUTHOR_PUBLIC_ZL_REBUILD_PAID_PASS 24 zero/residual/full jade, base/upgrade, hand limit, draw/exhaust UID and paid no-op", "ZHONGLI_REBUILD_TRANSACTION_PASS"],
+  "scope": ["real C.play payment including residual/full-jade no-op", "zero-only rebuild at actual execution", "native draw, hand limit, original UID exhaust/discard and no resolving-card redraw", "empty draw/discard still pays and exhausts", "post-native-draw exception restores full command RNG/piles/resource and aliases", "actual Scry pause/resume failure restores revealed boundary"],
+  "controlledFixtures": ["existing native UIDs rearranged for hand-size and draw-pile scenarios", "empty draw/discard fixture", "injected failures after real native effects"],
+  "excluded": ["incoming jade absorption", "modifier order selection", "full natural run balance", "production registry", "full CI", "device gameplay"],
+  "tracebacks": false
+}

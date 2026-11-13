@@ -1,4 +1,5 @@
--- Pending shared admission of 20/62; no simulated payment or draw implementation.
+-- Author verified against shared 822fcb93; see public-rebuild-paid-results.json.
+-- No simulated payment or draw implementation.
 package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local H=dofile('tests/helpers/act2_event_relics.lua');local C,D,eq,same=H.C,H.Data,H.eq,H.same
 local function fresh(id,up,jade,full)
