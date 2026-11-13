@@ -21,3 +21,21 @@ assert(not pcall(R.plan,{charge=0},{op='storm',amount=2,turns=0}))
 assert(not pcall(R.plan,{charge=0},{op='charged_shot',direct=7,bloom=6,extra=true}))
 assert(not pcall(R.ownerEnd,{charge=0},1,2,'true'))
 print('PASS isolated resource plans, native damage/kill, field refresh, bank/tick and invalid inputs')
+
+for _,n in ipairs({0,1,2})do
+ eq(R.plan({charge=n},{op='charge',amount=2147483647}).after.charge,2)
+ eq(R.ownerEnd({charge=n},1,2147483647,true).after.charge,2)
+ eq(R.ownerEnd({charge=n},1,2147483647,false).after.charge,n)
+end
+assert(not pcall(R.plan,{charge=0,storm=false},{op='charge',amount=1}))
+assert(not pcall(R.ownerEnd,{charge=0,storm=false},1,0,true))
+print('PASS saturating MAX increments and false storm rejection')
+
+local staged={charge=0,storm={amount=4,turns=2}}
+local bank=R.bankBeforeDiscard(staged,1,2,true)
+eq(bank.after.charge,2);eq(bank.after.storm.turns,2);eq(bank.after.lastOwnerEnd,nil)
+assert(not pcall(R.bankBeforeDiscard,bank.after,1,2,true))
+assert(not pcall(R.stormAfterDiscard,staged,1))
+local tick=R.stormAfterDiscard(bank.after,1);eq(tick.after.storm.turns,1)
+assert(not pcall(R.stormAfterDiscard,tick.after,1));eq(bank.after.storm.turns,2)
+print('PASS independent bank/discard/tick boundaries and exact-once stages')
