@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy'or effect.kind=='recoverExit'or effect.kind=='topdeckAttack'or effect.kind=='discardAttacksDraw'or effect.kind=='burnSkillsBlock'or effect.kind=='calmDraw'or effect.kind=='maskedAttackDraw'or effect.kind=='sequenceDamage'or effect.kind=='beforeAttackBlock'or effect.kind=='killDraw'or effect.kind=='reserveEnergy'or effect.kind=='damageGuard'or effect.kind=='damageGuardCommit'or effect.kind=='burnTopDraw'or effect.kind=='refillHand'or effect.kind=='emptyHandDamage'or effect.kind=='missingHpDamage'or effect.kind=='entryGuard'or effect.kind=='extendMask','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy'or effect.kind=='recoverExit'or effect.kind=='topdeckAttack'or effect.kind=='discardAttacksDraw'or effect.kind=='burnSkillsBlock'or effect.kind=='calmDraw'or effect.kind=='maskedAttackDraw'or effect.kind=='sequenceDamage'or effect.kind=='beforeAttackBlock'or effect.kind=='killDraw'or effect.kind=='reserveEnergy'or effect.kind=='damageGuard'or effect.kind=='damageGuardCommit'or effect.kind=='burnTopDraw'or effect.kind=='refillHand'or effect.kind=='emptyHandDamage'or effect.kind=='missingHpDamage'or effect.kind=='entryGuard'or effect.kind=='extendMask'or effect.kind=='maskBurstAll','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -22,6 +22,7 @@ function M.dispatch(combat,state,effect,queue)
  local r=resource(state);integer(effect.value,effect.kind=='maskCommit'and 3 or 2147483647)
  if r.hp==0 then return true end
  local value=effect.value
+ if effect.kind=='maskBurstAll'then value=Plan.scaledCount(r.mask,value)end
  if effect.kind=='extendMask'then
   -- Existing window only: no entry/exit hooks or schedule reinsertion.
   if r.mask>0 then state.player.statuses.xiao_mask=r.mask+math.min(value,3-r.mask)end
@@ -192,7 +193,7 @@ function M.dispatch(combat,state,effect,queue)
   for i=#patch.effects,1,-1 do queue.pushTop(state,{kind='effect',effect=patch.effects[i]})end
   return true
  end
- local all=effect.kind=='damageAll'or effect.kind=='plunge'and r.mask>0
+ local all=effect.kind=='maskBurstAll'or effect.kind=='damageAll'or effect.kind=='plunge'and r.mask>0
  local target
  if not all then
   for _,enemy in ipairs(state.enemies)do if enemy.id==paid.targetId then target=enemy;break end end

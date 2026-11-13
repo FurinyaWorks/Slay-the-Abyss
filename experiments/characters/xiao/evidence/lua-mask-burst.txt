@@ -1,0 +1,3 @@
+PASS x57 base upgrade all durations scale before native armor then exit without unrelated target
+PASS native group hit excludes prior dead enemy; isolated queued exit still follows last-enemy kill
+PASS burst multiplication overflow rejects before queue and host Snapshot restores group damage plus exit

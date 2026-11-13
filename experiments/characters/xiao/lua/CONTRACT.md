@@ -337,3 +337,13 @@ runs real native draw and owner-end payment, but constructs paid context: no pub
 x56 payment/UseCard/phase validation is claimed. Whole-command Snapshot is required.
 Projection includes x55 only for data continuity; suppressAll is deliberately NOT
 supported or mapped without a trusted current-intent integration contract.
+
+## x57 window-funded group burst
+`maskBurstAll` samples current duration, multiplies the frozen base/up 8/10,
+then adds normal mask bonus and delegates native group damage. The ordered plan
+subsequently exits. Checked multiplication rejects overflow before queue mutation.
+`mask_burst_test.lua` covers 0..3 duration, both versions, separate enemy armor,
+prior dead targets, final kill followed by isolated queued exit and host Snapshot.
+That final-kill case is NOT public terminal/UseCard certification. At mask zero,
+base native damage 0 can still receive Strength or other host modifiers: literal
+JS zero-damage parity is not claimed. Public payment, terminal gate and balance HOLD.
