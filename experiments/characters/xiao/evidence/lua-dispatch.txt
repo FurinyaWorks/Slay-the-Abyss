@@ -1,0 +1,4 @@
+PASS actual host damage uses stable paid target mask bonus and armor
+PASS actual host plunge distinguishes all-enemy mask and single-target calm
+PASS queue pause resumes real payment then first entry schedule and actual exit removal
+PASS death grants no entry and invalid paid context rejects before mutation

@@ -59,3 +59,9 @@ x25依据目标当前攻击威胁>0加基础额外伤害；x26仅全活敌当前
 当前40卡80基升；x41以后拒绝。x33能力只影响后续回合正常抽牌后的无面具额外抽；x36能力仅按出牌前面具判断，每张攻击一次（两击不是两次），能力生效之前攻击不消费其资格，真实回合/新战清理必须宿主处理。x34预付费用后真退出才返能，纯exitEnergy不付款且不改资源，也不绕过退出钩子。x35每击独立护甲和面具增伤，目标稳定ID不变，死人不转移。x37读当前盾，封顶基础伤害，不消耗盾。x38耗尽全部盾包括不足5的余数与超出抽上限的部分，再真实抽/洗；纯spendBlockDraw只提议结果。x39把公开弃牌首攻击实体保UID放抽堆顶部，不是新增副本，下一次真实抽才入手，之后给盾。x40 cap=3限制活敌数而不是最终盾，enemyCountBlock明确区分其他cap语义并拒绝乘积越界。
 
 13条纯计划/reducer探针通过，不是公共执行。共享owner现已给paid pendingPlay稳定targetId/uid合同；不继续扩未可执行投影，后续优先首8专属dispatch隔离实引擎探针，由owner统一gate/schema，仍不并发改共享。
+
+## 首8专属dispatch隔离纵切
+
+abyss_xiao_dispatch.dispatch(combat,state,effect,queue)只执行damage/plunge/maskCommit。effect.uid必须等于pendingPlay.uid和cardInUse.uid；显式targetId必须等于paid targetId，查稳定enemy.id不保存索引。单体活目标验证，面具plunge排入原生damageAll；伤害基础加面具4后交宿主真实伤害/护甲/反应。maskCommit在真实付款后读HP，死不入场、不领遗物；真入场标准Actors.applyPower与Schedule登记，主动退出删除登记，首次遗物draw排在当前动作之后且下个卡效果之前。刷新不重领。现只覆盖首8、不支持后续退出/入场能力钩子，不应与全75并用。
+
+4条隔离真实C.new/Combat.applyEffects/ActionQueue探针通过，含双敌单体/群体护甲、前置pause后付款与真实抽1、刷新不重抽、退出Schedule删除、UID/target坏值拒绝。测试人为构造已付款pendingPlay及inUse，不证明公共C.play的begin/useCard完成或自动扣能移牌；原生效果handler仅测试夹具，不冒充共享正式handler。全部动作必须宿主整命令Snapshot，适配器不是本地原子事务，不负责反复手工调用幂等；共享owner统一schema/gate注册后再跑公开命令验收。Intangible差异保持HOLD。
