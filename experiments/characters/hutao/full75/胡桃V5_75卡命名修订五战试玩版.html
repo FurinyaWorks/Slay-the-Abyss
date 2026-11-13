@@ -411,7 +411,7 @@ document.addEventListener('click',e=>{
  if(btn.id==='againBtn'){reset();return;}
 });
 document.addEventListener('input',e=>{if(e.target.id==='libSearch'){const n=el('libResults');if(n)n.innerHTML=libraryList(e.target.value);}if(e.target.id==='practiceSearch'){const n=el('practiceResults');if(n)n.innerHTML=practiceList(e.target.value);}});
-document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea')||e.ctrlKey||e.metaKey||e.altKey)return;if(e.key==='Escape'&&dialog){closeModal();return;}if(dialog||g.phase!=='combat')return;if(e.code==='Space'){e.preventDefault();g.endTurn();render();return;}if(/^[1-9]$/.test(e.key)){const c=g.hand[Number(e.key)-1];if(c){const r=g.play(c.uid);if(!r.ok)toast(r.reason);render();}}});
+document.addEventListener('keydown',e=>{if(e.defaultPrevented||e.isComposing||e.ctrlKey||e.metaKey||e.altKey)return;if(e.key==='Escape'&&dialog){closeModal();return;}if(e.repeat||e.target.isContentEditable||e.target.closest('input,textarea,select,button,a[href],[role="button"]')||dialog||g.phase!=='combat')return;if(e.code==='Space'){e.preventDefault();g.endTurn();render();return;}if(/^[1-9]$/.test(e.key)){const c=g.hand[Number(e.key)-1];if(c){const r=g.play(c.uid);if(!r.ok)toast(r.reason);render();}}});
 // Read-only diagnostics allow browser-level proof without exposing mutation buttons or test cheats.
 Object.defineProperty(window,'__hutaoReadOnly',{value:Object.freeze({state:()=>g.snapshot(),phase:()=>g.phase}),configurable:false});
 render();
