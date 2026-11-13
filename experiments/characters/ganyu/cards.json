@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.13.0",
+  "version": "ganyu-sample-0.14.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -1301,6 +1301,109 @@
         "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       },
       "exhaust": true
+    },
+    {
+      "id": "ganyu-38",
+      "name": "待命名·ganyu-38",
+      "candidate_name": null,
+      "role": "一次性零费以满蓄换应急格挡",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 2,
+            "bonus": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 4,
+            "bonus": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-38",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-39",
+      "name": "待命名·ganyu-39",
+      "candidate_name": null,
+      "role": "一次性调度抽牌堆首张雨场来源",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "storm"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "storm"
+          }
+        ]
+      },
+      "source_ref": "ganyu-39",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-40",
+      "name": "待命名·ganyu-40",
+      "candidate_name": null,
+      "role": "保留至满蓄后投入整回合的群体兑现",
+      "rarity": "rare",
+      "target": "self",
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 6,
+            "bonus": 12
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 8,
+            "bonus": 16
+          }
+        ]
+      },
+      "source_ref": "ganyu-40",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
     }
   ],
   "environment": {
