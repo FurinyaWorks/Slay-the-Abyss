@@ -100,6 +100,7 @@ function M.install(Run, shared)
         combatData.rules.player.energyPerTurn = combatData.rules.player.energyPerTurn + 0.0 + bonus
         if combatData.rules.player.energyPerTurn > 2147483647 then return false, "invalid_relic_energy" end
         local enemies, nextMiscRng = encounterEnemies(run, encounter, sourceRoom)
+        if candidate and candidate.kind=='zhongli'and #enemies~=1 then return false,'unsupported_zhongli_encounter'end
         local battle
         local options={cardRandomSeed=RunSeed.forFloor(run.runSeed,run.floor),shuffleSeed=RunSeed.forFloor(run.runSeed,run.floor),seed=run.seed,hp=run.hp,maxHp=run.maxHp,gold=run.gold,deck=run.deck,enemies=enemies,
             masterDeck=run.deck,nextMasterDeckUid=run.nextDeckUid,miscRng=nextMiscRng or run.miscRng,cardRng=run.cardRng,

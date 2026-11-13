@@ -429,3 +429,16 @@ Failure after real finishCombat restores the original Run/combat/config/deck and
 resource references. Start creation failure also restores original aliases.
 No new save format, production character selector, natural reward registration,
 or blanket approval of all 75 cards is implied.
+
+## Zhongli explicit single-enemy Run
+
+The same private opt-in context now also admits kind='zhongli' with
+relicEnabled=false only. Encounter creation rejects multi-enemy fights before
+battle publication, preserving the existing limited paid/lifecycle boundary.
+No jade absorption or starter relic is enabled. Real Run commands pay for
+03/21/31 over consecutive turns, then a fixed upgraded 04 reward keeps its master
+deck UID through two further battles. Every new battle resets jade, pillar and
+repair Power state. Run.play failure after actual reward publication restores
+the original entire Run/combat/config/deck/resource graph, and startup failures
+restore the original context. This is explicit fixed-deck/reward validation,
+not automatic production class or natural-pool registration.
