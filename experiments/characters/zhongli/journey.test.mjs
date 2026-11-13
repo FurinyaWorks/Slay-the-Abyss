@@ -107,3 +107,15 @@ test('v11 Power reward carries the card but resets installed effect between room
  assert.equal(n.deck.at(-1),'zl21');assert.equal(n.battle.pillar,0);assert.deepEqual(n.battle.powers,[]);
  for(const v of ['v1','v2','v3','v4','v5','v6','v7','v8','v9','v10'])assert.equal(offers(seed,1,v).includes('zl21'),false);
 });
+
+test('v12 pulse is obtainable but does not silently grant its prerequisite Power',()=>{
+ let seed=1;while(!offers(seed,1,'v12').includes('zl22'))seed++;
+ const s=journeyStart(seed,{poolVersion:'v12'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'pulse'));
+ assert.equal(n.deck.at(-1),'zl22');assert.equal(n.deck.includes('zl21'),false);assert.equal(n.battle.pillar,0);
+ for(const v of ['v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11'])assert.equal(offers(seed,1,v).includes('zl22'),false);
+});
+test('resonance reward policy uses only visible acquired prerequisites, not future offers',()=>{
+ const v={hp:60,deck:['zl01'],offer:['zl22','zl21','zl03']};Object.defineProperty(v,'future',{get(){throw new Error('future');}});
+ assert.equal(selectReward(v,'resonance'),2);assert.equal(selectReward({...v,deck:['zl21']},'resonance'),1);assert.equal(selectReward({...v,deck:['zl21','zl22']},'resonance'),0);
+ assert.equal(selectReward({hp:60,deck:[],offer:['zl22','zl03','zl04']},'resonance'),0);
+});

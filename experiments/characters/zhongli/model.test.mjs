@@ -2,14 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7,8,10,13,16,17].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([0,3,4,6,7,8,10,13,16,17,21].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
     if(i===20)assert.equal(r.state.pillar,value);
@@ -313,4 +313,27 @@ test('Power cancellation and invalid intensity reject before spending; invalid t
  const s=initialState(['a']);s.instances.a={id:'zl21',upgraded:false};const before=structuredClone(s);assert.equal(play(s,{id:'zl21',instance:'a',cancel:true}).state,s);assert.deepEqual(s,before);
  const c=cards.find(c=>c.id==='zl21'),old=c.base;try{for(const n of [NaN,-1,Number.MAX_SAFE_INTEGER+1]){c.base=[['pillar',n]];assert.equal(play(s,{id:'zl21',instance:'a'}).state,s);assert.deepEqual(s,before);}}finally{c.base=old;}
  const placed=run('zl21',s).state,copy=structuredClone(placed);assert.throws(()=>endTurn(placed,[NaN]));assert.deepEqual(placed,copy);
+});
+
+test('pulse repeats fixed current pillar independently of vulnerability and keeps installed intensity',()=>{
+ for(const pillar of [0,3,4])for(const u of [false,true])for(const armor of [0,5,12,20])for(const vuln of [0,5]){
+  const s=initialState();s.pillar=pillar;s.enemy.block=armor;s.enemy.vulnerable=vuln;const before=structuredClone(s);const r=run('zl22',s,u);const total=pillar*(u?4:3);
+  assert.equal(r.ok,true);assert.equal(r.state.enemy.hp,40-Math.max(0,total-armor));assert.equal(r.state.enemy.block,Math.max(0,armor-total));assert.equal(r.state.pillar,pillar);assert.equal(r.state.energy,2);assert.deepEqual(s,before);
+ }
+});
+test('pulse empty setup costs a full action; established pulse lethal stops and still has owner-end role',()=>{
+ const empty=run('zl22').state;assert.equal(empty.enemy.hp,40);assert.equal(empty.energy,2);
+ const setup=run('zl21').state;const burst=run('zl22',setup).state;assert.equal(burst.enemy.hp,31);assert.equal(burst.energy,0);assert.equal(endTurn(burst,[]).enemy.hp,28);
+ const lethal=initialState();lethal.enemy.hp=5;lethal.pillar=3;const done=run('zl22',lethal).state;assert.equal(done.enemy.hp,0);assert.equal(endTurn(done,[99]).hp,60);
+});
+test('pulse bounded count and cumulative damage overflow reject atomically, including cancelled or bad target',()=>{
+ const s=initialState(['a']);s.instances.a={id:'zl22',upgraded:false};s.pillar=3;const before=structuredClone(s);
+ for(const opts of [{cancel:true},{target:'self'}]){assert.equal(play(s,{id:'zl22',instance:'a',target:'enemy',...opts}).state,s);assert.deepEqual(s,before);}
+ const huge={...s,pillar:Number.MAX_SAFE_INTEGER};const h=structuredClone(huge);assert.equal(play(huge,{id:'zl22',instance:'a',target:'enemy'}).state,huge);assert.deepEqual(huge,h);
+ const c=cards.find(c=>c.id==='zl22'),old=c.base;try{for(const n of [0,5,NaN,Number.MAX_SAFE_INTEGER]){c.base=[['pulse',n]];assert.equal(play(s,{id:'zl22',instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,before);}}finally{c.base=old;}
+ const poor={...s,energy:0};assert.equal(play(poor,{id:'zl22',instance:'a',target:'enemy'}).state,poor);
+});
+test('pulse mixed-effect lists are unsupported and reject before earlier effects mutate state',()=>{
+ const c=cards.find(c=>c.id==='zl22'),old=c.base,s=initialState(['a']);s.instances.a={id:'zl22',upgraded:false};s.pillar=3;const before=structuredClone(s);
+ try{for(const effects of [[['pulse',3],['pulse',3]],[['pillar',Number.MAX_SAFE_INTEGER],['pulse',3]],[['damage',1],['pulse',3]]]){c.base=effects;assert.equal(play(s,{id:'zl22',instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,before);}}finally{c.base=old;}
 });

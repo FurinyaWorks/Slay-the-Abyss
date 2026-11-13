@@ -109,3 +109,8 @@ test('Power boundary rejects duplicate or nonpower installed cards and invalid p
  for(const change of [{powers:[key]},{powers:[other]},{pillar:NaN}]){const bad={...s,...change},before=structuredClone(bad);assert.throws(()=>playInstance(bad,key));assert.deepEqual(bad,before);}
  s.energy=1;const saved=structuredClone(s);assert.equal(playInstance(s,key).ok,false);assert.deepEqual(s,saved);
 });
+test('pillar then accelerator consumes all three energy and keeps Power outside future reshuffles',()=>{
+ let s=battleStart({deck:['zl21','zl22','zl02']});const idKey=id=>Object.keys(s.instances).find(k=>s.instances[k].id===id);s=playInstance(s,idKey('zl21')).state;s=playInstance(s,idKey('zl22')).state;
+ assert.equal(s.energy,0);assert.equal(s.enemy.hp,31);assert.deepEqual(s.powers,[idKey('zl21')]);assert.ok(s.discard.includes(idKey('zl22')));
+ s=nextTurn(s,[]);assert.equal(s.enemy.hp,28);assert.equal(s.pillar,3);assert.equal(s.hand.includes(idKey('zl21')),false);assert.ok(s.hand.includes(idKey('zl22')));
+});
