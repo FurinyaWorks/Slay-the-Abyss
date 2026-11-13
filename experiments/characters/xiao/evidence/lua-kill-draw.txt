@@ -1,0 +1,3 @@
+PASS x43 actual stable target kill draws two once; armor survival does not draw
+PASS no prior living-target damage witness rejects; masked damage remains compatible
+PASS real host snapshot restores victim draw and consumed witness for command retry

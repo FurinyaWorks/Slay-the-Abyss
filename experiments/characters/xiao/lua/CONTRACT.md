@@ -236,3 +236,16 @@ card uses. Host must call capture/finish exactly once per real card, including
 unmasked/no-Power attacks, and retain command rollback. Shared hook and public
 x41/x42 gate remain unimplemented; enemy intent-dependent cards remain blocked
 on a certified visible-current-intent contract, not guessed future move arrays.
+
+### x43 kill draw with per-paid-target witness
+Projection extends to frozen x43 (43 total). A valid living single-target
+`damage` dispatch records paid UID/current turn/stable target ID before queuing
+native damage. `killDraw` requires that unconsumed witness and checks the same
+target's post-resolution HP; it consumes the witness once and queues native draw
+only on zero HP. Tests run both versions with killing and shield-survival cases,
+no-witness rejection and actual damage/draw Snapshot restoration; first-eight
+10-test regression remains passing. This observes death by the later effect,
+not exclusive attribution against all possible intervening reactive damage.
+Public x43 cost/exhaust/UseCard, last-enemy victory and complex reaction pauses
+remain unverified. Host canonical plan and paid UID context still govern which
+effects may be dispatched; this module is not a standalone untrusted-command API.
