@@ -1,0 +1,9 @@
+# KQ044 bounded-window contract preparation (not public integration)
+
+Candidate source: skill cost1 SELF, exhaust; inspect top up to3/base or4/upgraded, select exactly one to hand, others remain in original draw order. No reshuffle; empty pile, draw lock or hand10 skips. JS candidate top is index0, native Lua top is final array element. This private UID-only planner returns top-first visible window and a selected-removal delta preserving remaining bottom-to-top array order. It does not draw, trigger on-draw powers or mutate source instances.
+
+Actual pure Lua test: 33 selections across pile sizes0..6 × limits3/4 preserve every unchosen UID/order; full-hand/lock skip and malformed, duplicate, hole, out-of-window/stale-window cases reject. This is executable pure contract evidence, not real C.play/payment/choice integration.
+
+Host MUST retain immutable offered window privately and bind token, source UID, turn/generation, consumed cursor, graph/pile instances and current legality. take() is not authorization: an arbitrary caller can forge a shortened offered list; matching top UIDs alone does not prove it was the paid original window. It deliberately does not authenticate payment, prevent repeated resume, recheck hand capacity/lock, or validate changing hidden remainder. Host must do those checks and atomically move the original instance, never trust a client-supplied window or expose full draw UIDs to UI. Empty offered result means native queue continues source disposition, not refund or cancellation.
+
+Proposed dedicated stage op must be distinct from full-pile Seek and discard Scry. Existing pile-choice transaction may be reused only with a bounded, ordered view and no future-pile leaks. Do not simulate this by cancelling and replaying a revealed callback. No source/naming/human/balance approval or formal character registration implied. Shared owner implements public flow; no shared files changed here.
