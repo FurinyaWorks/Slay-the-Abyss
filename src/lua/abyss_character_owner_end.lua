@@ -7,6 +7,15 @@ function M.init(state,option)
  if option==nil then return end
  assert(type(option)=='table'and getmetatable(option)==nil,'invalid candidate lifecycle option')
  for key in pairs(option)do assert(key=='kind'or key=='relicEnabled','unknown candidate lifecycle option')end
+ if option.kind=='zhongli'then
+  assert(option.relicEnabled==false and not state.originalV4,'Zhongli relic/lifecycle not enabled')
+  state.experimentalMechanics=true;state.characterCandidate='zhongli'
+  state.zhongliCandidate={battleId='paid-candidate',jade=0,lastOwnerEnd=0}
+  for _,id in ipairs({'zl_candidate_pillar','zl_candidate_repair'})do
+   state.catalog.statuses[id]={id=id,priority=5,stack='intensity',decay='none',kind='buff'}
+  end
+  return
+ end
  if option.kind=='xiao'then
   assert(type(option.relicEnabled)=='boolean'and not state.originalV4,'invalid Xiao candidate option')
   state.experimentalMechanics=true;state.characterCandidate='xiao'

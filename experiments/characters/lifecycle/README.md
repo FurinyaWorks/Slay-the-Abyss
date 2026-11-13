@@ -141,3 +141,27 @@ Synthetic pause/invalidation actions are test-only, not authored character skill
 are not wired by this batch. Intangible uses the native loseHp reduction (2 to
 1), differing from the JS proposal. These remain explicit design/integration
 HOLDs; this is not a complete playable character or lifecycle approval.
+
+## Zhongli zl21/zl31 paid-install vertical slice
+
+Explicit kind `zhongli`, `relicEnabled=false` initializes an isolated candidate
+record (`jade=0,lastOwnerEnd=0`) and private pillar/repair status definitions.
+The host accepts only these two canonical Power effects, from actual instance
+UID/upgrade identity, in an active single-enemy battle. The reviewed 28dc5f81
+`dispatch` endpoint is extracted unchanged apart from its lifecycle require
+path; its hand-only planner/preflight wrapper is not used as payment authority.
+The corresponding lifecycle module is copied unchanged. Shared admission owns
+dynamic costs, manual/automatic gates, and complete-command snapshots.
+
+Real C.play spends two energy, installs through the actual Power Schedule,
+and uses the existing Power disposal boundary (does not put the instance into
+discard/exhaust). Strongest-wins refresh preserves one schedule slot. Tests
+cover base/upgraded faces, actual second-UID paid reuse, unpaid/invalid UID
+rejection, automatic free play and native/unmarked rejection, strict metadata,
+post-install failure and Scry continuation rollback retaining external aliases.
+The controlled energy refill in a repeat-install test is fixture setup, not a
+claim of natural card acquisition.
+
+Owner-end pillar→repair execution, Jade interception and starter relic are
+NOT wired by this batch. `relicEnabled=true` is rejected. No ready catalog,
+formal character registration or full lifecycle approval is implied.

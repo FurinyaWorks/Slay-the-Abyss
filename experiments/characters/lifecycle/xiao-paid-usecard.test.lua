@@ -1,4 +1,4 @@
--- ACCEPTANCE SPEC: requires shared Xiao opt-in gate/dispatch. Not yet executed.
+-- Executed public acceptance suite for the explicit Xiao paid candidate.
 -- Do not replace public C.play with a fixture when the shared gate is absent.
 package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local H=dofile('tests/helpers/act2_event_relics.lua')
