@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {buildLuaData} from '../../../scripts/build-lua-data.mjs';import {runLua} from '../../../scripts/test-lua.mjs';
+test('043 public eight-face independent paid choice matrix',()=>{buildLuaData();const r=runLua('experiments/characters/keqing-host/discard-independent.test.lua',{timeout:30000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KQ043_INDEPENDENT_8_PASS/);});
