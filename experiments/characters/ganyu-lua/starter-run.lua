@@ -13,7 +13,7 @@ function M.new(data,seed,source)
  local wanted={};for _,id in ipairs(source.deck)do wanted[id]=true end
  local defs=Native.definitions().cards
  for _,c in ipairs(source.paidCards)do defs[#defs+1]=Copy(c)end
- local added={};for _,c in ipairs(defs)do if wanted[c.id]then assert(not known[c.id]and not added[c.id],'starter definition collision');d.cards.cards[#d.cards.cards+1]=Copy(c);added[c.id]=true end end
+ local added={};for _,c in ipairs(defs)do if wanted[c.id]then assert(not known[c.id]and not added[c.id],'starter definition collision');local candidate=Copy(c);candidate.color='ganyu_candidate';candidate.sourceId='ganyu-'..c.id:sub(-2);candidate.ganyuSourceSHA256=source.sourceSHA256;candidate.reviewStatus='HOLD';d.cards.cards[#d.cards.cards+1]=candidate;added[c.id]=true end end
  for id in pairs(wanted)do assert(added[id],'missing starter definition')end
  d.cards.starter_deck.cards=Copy(source.deck)
  d.rules.player.maxHp=source.maxHp;d.rules.player.energyPerTurn=source.energyPerTurn;d.rules.player.drawPerTurn=source.drawPerTurn;d.rules.player.maxHand=source.handLimit
