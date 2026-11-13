@@ -100,3 +100,56 @@ test('generated text follows both structured versions and keeps unapproved names
   assert.match(describe('KQ004',true), /5伤害，共2段/);
   assert.match(describe('KQ003',false), /5伤害.*8伤害.*附魔2次/);
 });
+
+test('fixture hand capacity and identity reject impossible samples', () => {
+  assert.equal(initial(hand(...Array(10).fill('KQ001')), [enemy()]).hand.length, 10);
+  assert.throws(() => initial(hand(...Array(11).fill('KQ001')), [enemy()]), /hand/);
+  const duplicate = hand('KQ001','KQ001'); duplicate[1].instance = duplicate[0].instance;
+  assert.throws(() => initial(duplicate, [enemy()]), /hand/);
+  assert.throws(() => initial(hand('KQ001'), [enemy(-1)]), /enemies/);
+});
+test('output discard instances do not alias caller hand', () => {
+  const state = initial(hand('KQ001'), [enemy()]);
+  const result = play(state, 'i0', 0);
+  result.discard[0].upgraded = true;
+  assert.equal(state.hand[0].upgraded, false);
+});
+test('invalid upgrade flags rejected at construction and play', () => {
+  const invalid = [{instance:'a',id:'KQ001',upgraded:'false'}];
+  assert.throws(() => initial(invalid,[enemy()]), /card/);
+  const state = initial(hand('KQ001'),[enemy()]);
+  state.hand[0].upgraded = 'false';
+  assert.throws(() => play(state,'i0',0), /upgrade/);
+  assert.equal(state.energy,3);
+});
+test('group attacks spend one infusion, skill spends none, recast refreshes after old bonus', () => {
+  let state = initial(hand('KQ002','KQ005'),[enemy(),enemy()]);
+  state.infusion = 2;
+  state = play(state,'i0',0);
+  assert.equal(state.infusion,2);
+  state = play(state,'i1',0);
+  assert.deepEqual(state.enemies.map(e=>e.hp),[83,83]);
+  assert.equal(state.infusion,1);
+  state = initial(hand('KQ003'),[enemy()]);
+  state.infusion=1; state.wedgeUntil=2;
+  state=play(state,'i0',0);
+  assert.equal(state.enemies[0].hp,90);
+  assert.equal(state.infusion,2);
+});
+test('terminal rejection and upgraded cancellation/expiry preserve semantics', () => {
+  const state=initial([{instance:'a',id:'KQ003',upgraded:true}],[enemy()]);
+  assert.deepEqual(play(state,'a',0,{cancel:true}),state);
+  assert.throws(()=>play(state,'a',9), /target/);
+  assert.equal(state.energy,3);
+  const result=endTurn(nextTurn(endTurn(play(state,'a',0))));
+  assert.equal(result.wedgeUntil,null);
+  assert.throws(()=>play(initial(hand('KQ005'),[enemy(0)]),'i0',0),/ended/);
+});
+test('visible state rules describe bonus, spend unit, expiration and refresh', () => {
+  const text=describe('KQ003');
+  assert.match(text,/每段伤害\+2/);
+  assert.match(text,/每张攻击牌结算后扣1次/);
+  assert.match(text,/本回合结束清除/);
+  assert.match(text,/下一己方回合结束清除/);
+  assert.match(text,/刷新不叠加/);
+});
