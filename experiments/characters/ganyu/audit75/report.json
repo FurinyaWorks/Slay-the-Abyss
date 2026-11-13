@@ -1,0 +1,4509 @@
+{
+  "status": "RESEARCH_NOT_APPROVAL",
+  "scope": "75-candidate finite-state dominance screen and default-ten-card multi-room acquisition research",
+  "inputs": {
+    "audit75/plan.json": "e896539b1618ced487377be7ec673b4761b5936d1a4292e1e491309856221b48",
+    "audit75/run.mjs": "a3de110013a637fc2b6eea04dad081ee09236c2d277dbd96ef524a71c2513239",
+    "cards.json": "2412ea17b3ff3b190cf30bea9ba7f5f84d01f6aec3eb684f5fb4685f043e5f9d",
+    "sources.json": "d6be97b871f011698b767e208fa2a6624c1a3846b1603fdf94ba2997bb78d23b",
+    "relic.json": "b29f62a33296851f77631ec88a9e279b008868f7d0487727d989af61d008a9e3",
+    "engine.mjs": "931e7cb54ae5652fe1a3bdfaf06b0fa8c7deefc45a86f565a68aa005d816e4fe",
+    "battle.mjs": "6ce15f3c8135171ce5fca7d60b22a1b9c870eb2a4965ea5aad0c5ceb99a2c7cf",
+    "deck.mjs": "75fcd21733d8994e3a7ebcfaececc992de0afdfa56dd56ec30f4d6bff77270f7",
+    "acquisition.mjs": "71651650ac2a5e819f195cd70a08e970ad5bbbf305d52810d2882517f3112093"
+  },
+  "screen": {
+    "pairs": [
+      {
+        "stronger": "ganyu-04",
+        "weaker": "ganyu-44",
+        "strictStates": 20,
+        "comparedStates": 24,
+        "examples": [
+          {
+            "upgraded": false,
+            "charge": 0,
+            "enemyBlock": 0,
+            "field": null,
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                3,
+                3
+              ]
+            },
+            "weaker": {
+              "guard": 3,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": false,
+            "charge": 0,
+            "enemyBlock": 0,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                3,
+                3
+              ]
+            },
+            "weaker": {
+              "guard": 3,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": false,
+            "charge": 0,
+            "enemyBlock": 8,
+            "field": null,
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                0,
+                0
+              ]
+            },
+            "weaker": {
+              "guard": 3,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": false,
+            "charge": 0,
+            "enemyBlock": 8,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                0,
+                0
+              ]
+            },
+            "weaker": {
+              "guard": 3,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": false,
+            "charge": 1,
+            "enemyBlock": 0,
+            "field": null,
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                3,
+                3
+              ]
+            },
+            "weaker": {
+              "guard": 3,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": false,
+            "charge": 1,
+            "enemyBlock": 0,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                3,
+                3
+              ]
+            },
+            "weaker": {
+              "guard": 3,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": false,
+            "charge": 1,
+            "enemyBlock": 8,
+            "field": null,
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                0,
+                0
+              ]
+            },
+            "weaker": {
+              "guard": 3,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": false,
+            "charge": 1,
+            "enemyBlock": 8,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                0,
+                0
+              ]
+            },
+            "weaker": {
+              "guard": 3,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": false,
+            "charge": 2,
+            "enemyBlock": 0,
+            "field": null,
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                3,
+                3
+              ]
+            },
+            "weaker": {
+              "guard": 6,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": false,
+            "charge": 2,
+            "enemyBlock": 0,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 6,
+              "damage": [
+                3,
+                3
+              ]
+            },
+            "weaker": {
+              "guard": 6,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 0,
+            "enemyBlock": 0,
+            "field": null,
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                4,
+                4
+              ]
+            },
+            "weaker": {
+              "guard": 4,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 0,
+            "enemyBlock": 0,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                4,
+                4
+              ]
+            },
+            "weaker": {
+              "guard": 4,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 0,
+            "enemyBlock": 8,
+            "field": null,
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                0,
+                0
+              ]
+            },
+            "weaker": {
+              "guard": 4,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 0,
+            "enemyBlock": 8,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                0,
+                0
+              ]
+            },
+            "weaker": {
+              "guard": 4,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 1,
+            "enemyBlock": 0,
+            "field": null,
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                4,
+                4
+              ]
+            },
+            "weaker": {
+              "guard": 4,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 1,
+            "enemyBlock": 0,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                4,
+                4
+              ]
+            },
+            "weaker": {
+              "guard": 4,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 1,
+            "enemyBlock": 8,
+            "field": null,
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                0,
+                0
+              ]
+            },
+            "weaker": {
+              "guard": 4,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 1,
+            "enemyBlock": 8,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                0,
+                0
+              ]
+            },
+            "weaker": {
+              "guard": 4,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 2,
+            "enemyBlock": 0,
+            "field": null,
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                4,
+                4
+              ]
+            },
+            "weaker": {
+              "guard": 8,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "upgraded": true,
+            "charge": 2,
+            "enemyBlock": 0,
+            "field": {
+              "amount": 4,
+              "turns": 2
+            },
+            "stronger": {
+              "guard": 8,
+              "damage": [
+                4,
+                4
+              ]
+            },
+            "weaker": {
+              "guard": 8,
+              "damage": [
+                0,
+                0
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "statesPerPair": 24,
+    "notUniversalProof": true
+  },
+  "campaign": {
+    "summary": {
+      "skip_all": {
+        "runs": 30,
+        "complete": 30,
+        "lost": 0,
+        "truncated": 0,
+        "meanFinalHp": 38.2,
+        "claimed": 0,
+        "drawn": 0,
+        "played": 0
+      },
+      "take_first_offer": {
+        "runs": 30,
+        "complete": 30,
+        "lost": 0,
+        "truncated": 0,
+        "meanFinalHp": 41.8,
+        "claimed": 90,
+        "drawn": 90,
+        "played": 67
+      }
+    },
+    "rows": [
+      {
+        "seed": 3001,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 39,
+        "deckSize": 10,
+        "actions": 57,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 53,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 39,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3001,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 41,
+        "deckSize": 13,
+        "actions": 65,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 52,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 52,
+            "hpEnd": 41,
+            "turns": 7
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-74",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-74",
+              "ganyu-33",
+              "ganyu-46"
+            ],
+            "drawn": true,
+            "played": 1
+          },
+          {
+            "id": "ganyu-65",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-65",
+              "ganyu-41",
+              "ganyu-11"
+            ],
+            "drawn": true,
+            "played": 4
+          },
+          {
+            "id": "ganyu-28",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-28",
+              "ganyu-53",
+              "ganyu-30"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3002,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 36,
+        "deckSize": 10,
+        "actions": 56,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 50,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 50,
+            "hpEnd": 36,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3002,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 33,
+        "deckSize": 13,
+        "actions": 69,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 53,
+            "turns": 5
+          },
+          {
+            "room": 3,
+            "hpStart": 53,
+            "hpEnd": 46,
+            "turns": 6
+          },
+          {
+            "room": 4,
+            "hpStart": 46,
+            "hpEnd": 33,
+            "turns": 7
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-66",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-66",
+              "ganyu-45",
+              "ganyu-14"
+            ],
+            "drawn": true,
+            "played": 8
+          },
+          {
+            "id": "ganyu-10",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-10",
+              "ganyu-26",
+              "ganyu-70"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-11",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-11",
+              "ganyu-07",
+              "ganyu-42"
+            ],
+            "drawn": true,
+            "played": 3
+          }
+        ]
+      },
+      {
+        "seed": 3003,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 34,
+        "deckSize": 10,
+        "actions": 60,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 48,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 48,
+            "hpEnd": 34,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3003,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 35,
+        "deckSize": 13,
+        "actions": 58,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 51,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 51,
+            "hpEnd": 35,
+            "turns": 5
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-45",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-45",
+              "ganyu-56",
+              "ganyu-63"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-05",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-05",
+              "ganyu-21",
+              "ganyu-06"
+            ],
+            "drawn": true,
+            "played": 1
+          },
+          {
+            "id": "ganyu-08",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-08",
+              "ganyu-61",
+              "ganyu-24"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3004,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 41,
+        "deckSize": 10,
+        "actions": 61,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 52,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 52,
+            "hpEnd": 41,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3004,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 35,
+        "deckSize": 13,
+        "actions": 61,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 48,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 48,
+            "hpEnd": 35,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-37",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-37",
+              "ganyu-36",
+              "ganyu-13"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-58",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-58",
+              "ganyu-04",
+              "ganyu-17"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-38",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-38",
+              "ganyu-53",
+              "ganyu-33"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3005,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 35,
+        "deckSize": 10,
+        "actions": 60,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 49,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 49,
+            "hpEnd": 35,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3005,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 37,
+        "deckSize": 13,
+        "actions": 65,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 51,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 51,
+            "hpEnd": 37,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-30",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-30",
+              "ganyu-70",
+              "ganyu-47"
+            ],
+            "drawn": true,
+            "played": 3
+          },
+          {
+            "id": "ganyu-30",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-30",
+              "ganyu-04",
+              "ganyu-06"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-25",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-25",
+              "ganyu-70",
+              "ganyu-52"
+            ],
+            "drawn": true,
+            "played": 0
+          }
+        ]
+      },
+      {
+        "seed": 3006,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 39,
+        "deckSize": 10,
+        "actions": 63,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 5
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 39,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3006,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 46,
+        "deckSize": 13,
+        "actions": 66,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 46,
+            "turns": 7
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-08",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-08",
+              "ganyu-40",
+              "ganyu-46"
+            ],
+            "drawn": true,
+            "played": 5
+          },
+          {
+            "id": "ganyu-58",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-58",
+              "ganyu-62",
+              "ganyu-75"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-10",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-10",
+              "ganyu-43",
+              "ganyu-25"
+            ],
+            "drawn": true,
+            "played": 0
+          }
+        ]
+      },
+      {
+        "seed": 3007,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 40,
+        "deckSize": 10,
+        "actions": 59,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 54,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 40,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3007,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 29,
+        "deckSize": 13,
+        "actions": 46,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 52,
+            "turns": 3
+          },
+          {
+            "room": 3,
+            "hpStart": 52,
+            "hpEnd": 50,
+            "turns": 3
+          },
+          {
+            "room": 4,
+            "hpStart": 50,
+            "hpEnd": 29,
+            "turns": 5
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-28",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-28",
+              "ganyu-15",
+              "ganyu-27"
+            ],
+            "drawn": true,
+            "played": 3
+          },
+          {
+            "id": "ganyu-44",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-44",
+              "ganyu-43",
+              "ganyu-69"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-30",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-30",
+              "ganyu-47",
+              "ganyu-13"
+            ],
+            "drawn": true,
+            "played": 0
+          }
+        ]
+      },
+      {
+        "seed": 3008,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 40,
+        "deckSize": 10,
+        "actions": 62,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 56,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 56,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 40,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3008,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 35,
+        "deckSize": 13,
+        "actions": 59,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 35,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-35",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-35",
+              "ganyu-50",
+              "ganyu-75"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-62",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-62",
+              "ganyu-72",
+              "ganyu-73"
+            ],
+            "drawn": true,
+            "played": 4
+          },
+          {
+            "id": "ganyu-72",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-72",
+              "ganyu-11",
+              "ganyu-22"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3009,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 35,
+        "deckSize": 10,
+        "actions": 61,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 60,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 60,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 49,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 49,
+            "hpEnd": 35,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3009,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 48,
+        "deckSize": 13,
+        "actions": 61,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 60,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 60,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 55,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 55,
+            "hpEnd": 48,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-67",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-67",
+              "ganyu-18",
+              "ganyu-71"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-13",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-13",
+              "ganyu-39",
+              "ganyu-40"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-75",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-75",
+              "ganyu-56",
+              "ganyu-09"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3010,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 35,
+        "deckSize": 10,
+        "actions": 58,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 49,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 49,
+            "hpEnd": 35,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3010,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 47,
+        "deckSize": 13,
+        "actions": 62,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 56,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 56,
+            "hpEnd": 55,
+            "turns": 3
+          },
+          {
+            "room": 4,
+            "hpStart": 55,
+            "hpEnd": 47,
+            "turns": 8
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-63",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-63",
+              "ganyu-66",
+              "ganyu-60"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-31",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-31",
+              "ganyu-21",
+              "ganyu-39"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-52",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-52",
+              "ganyu-57",
+              "ganyu-14"
+            ],
+            "drawn": true,
+            "played": 3
+          }
+        ]
+      },
+      {
+        "seed": 3011,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 38,
+        "deckSize": 10,
+        "actions": 57,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 52,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 52,
+            "hpEnd": 38,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3011,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 48,
+        "deckSize": 13,
+        "actions": 60,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 48,
+            "turns": 7
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-12",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-12",
+              "ganyu-51",
+              "ganyu-50"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-09",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-09",
+              "ganyu-18",
+              "ganyu-14"
+            ],
+            "drawn": true,
+            "played": 5
+          },
+          {
+            "id": "ganyu-09",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-09",
+              "ganyu-32",
+              "ganyu-52"
+            ],
+            "drawn": true,
+            "played": 3
+          }
+        ]
+      },
+      {
+        "seed": 3012,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 39,
+        "deckSize": 10,
+        "actions": 58,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 39,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3012,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 42,
+        "deckSize": 13,
+        "actions": 68,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 54,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 42,
+            "turns": 8
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-63",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-63",
+              "ganyu-52",
+              "ganyu-15"
+            ],
+            "drawn": true,
+            "played": 3
+          },
+          {
+            "id": "ganyu-52",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-52",
+              "ganyu-59",
+              "ganyu-48"
+            ],
+            "drawn": true,
+            "played": 4
+          },
+          {
+            "id": "ganyu-50",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-50",
+              "ganyu-28",
+              "ganyu-38"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3013,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 36,
+        "deckSize": 10,
+        "actions": 57,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 50,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 50,
+            "hpEnd": 36,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3013,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 46,
+        "deckSize": 13,
+        "actions": 61,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 57,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 57,
+            "hpEnd": 56,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 56,
+            "hpEnd": 46,
+            "turns": 7
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-46",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-46",
+              "ganyu-66",
+              "ganyu-03"
+            ],
+            "drawn": true,
+            "played": 5
+          },
+          {
+            "id": "ganyu-06",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-06",
+              "ganyu-47",
+              "ganyu-62"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-64",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-64",
+              "ganyu-05",
+              "ganyu-62"
+            ],
+            "drawn": true,
+            "played": 2
+          }
+        ]
+      },
+      {
+        "seed": 3014,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 41,
+        "deckSize": 10,
+        "actions": 62,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 52,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 52,
+            "hpEnd": 41,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3014,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 43,
+        "deckSize": 13,
+        "actions": 63,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 54,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 43,
+            "turns": 8
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-46",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-46",
+              "ganyu-54",
+              "ganyu-37"
+            ],
+            "drawn": true,
+            "played": 8
+          },
+          {
+            "id": "ganyu-25",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-25",
+              "ganyu-72",
+              "ganyu-66"
+            ],
+            "drawn": true,
+            "played": 1
+          },
+          {
+            "id": "ganyu-68",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-68",
+              "ganyu-59",
+              "ganyu-19"
+            ],
+            "drawn": true,
+            "played": 2
+          }
+        ]
+      },
+      {
+        "seed": 3015,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 35,
+        "deckSize": 10,
+        "actions": 59,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 49,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 49,
+            "hpEnd": 35,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3015,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 38,
+        "deckSize": 13,
+        "actions": 60,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 44,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 44,
+            "hpEnd": 38,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-37",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-37",
+              "ganyu-70",
+              "ganyu-60"
+            ],
+            "drawn": true,
+            "played": 1
+          },
+          {
+            "id": "ganyu-23",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-23",
+              "ganyu-45",
+              "ganyu-56"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-19",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-19",
+              "ganyu-14",
+              "ganyu-55"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3016,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 35,
+        "deckSize": 10,
+        "actions": 58,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 49,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 49,
+            "hpEnd": 35,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3016,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 46,
+        "deckSize": 13,
+        "actions": 62,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 52,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 52,
+            "hpEnd": 46,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-30",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-30",
+              "ganyu-16",
+              "ganyu-39"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-12",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-12",
+              "ganyu-37",
+              "ganyu-33"
+            ],
+            "drawn": true,
+            "played": 6
+          },
+          {
+            "id": "ganyu-12",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-12",
+              "ganyu-64",
+              "ganyu-50"
+            ],
+            "drawn": true,
+            "played": 5
+          }
+        ]
+      },
+      {
+        "seed": 3017,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 35,
+        "deckSize": 10,
+        "actions": 57,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 49,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 49,
+            "hpEnd": 35,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3017,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 41,
+        "deckSize": 13,
+        "actions": 59,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 56,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 56,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 55,
+            "hpEnd": 41,
+            "turns": 5
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-23",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-23",
+              "ganyu-29",
+              "ganyu-49"
+            ],
+            "drawn": true,
+            "played": 3
+          },
+          {
+            "id": "ganyu-60",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-60",
+              "ganyu-73",
+              "ganyu-41"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-07",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-07",
+              "ganyu-50",
+              "ganyu-26"
+            ],
+            "drawn": true,
+            "played": 0
+          }
+        ]
+      },
+      {
+        "seed": 3018,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 39,
+        "deckSize": 10,
+        "actions": 58,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 53,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 39,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3018,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 42,
+        "deckSize": 13,
+        "actions": 63,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 42,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-70",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-70",
+              "ganyu-29",
+              "ganyu-38"
+            ],
+            "drawn": true,
+            "played": 1
+          },
+          {
+            "id": "ganyu-38",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-38",
+              "ganyu-75",
+              "ganyu-70"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-34",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-34",
+              "ganyu-66",
+              "ganyu-67"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3019,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 42,
+        "deckSize": 10,
+        "actions": 62,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 42,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3019,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 42,
+        "deckSize": 13,
+        "actions": 69,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 5
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 42,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-29",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-29",
+              "ganyu-19",
+              "ganyu-59"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-08",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-08",
+              "ganyu-69",
+              "ganyu-49"
+            ],
+            "drawn": true,
+            "played": 4
+          },
+          {
+            "id": "ganyu-48",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-48",
+              "ganyu-62",
+              "ganyu-42"
+            ],
+            "drawn": true,
+            "played": 0
+          }
+        ]
+      },
+      {
+        "seed": 3020,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 34,
+        "deckSize": 10,
+        "actions": 60,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 48,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 48,
+            "hpEnd": 34,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3020,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 42,
+        "deckSize": 13,
+        "actions": 70,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 42,
+            "turns": 8
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-64",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-64",
+              "ganyu-73",
+              "ganyu-44"
+            ],
+            "drawn": true,
+            "played": 5
+          },
+          {
+            "id": "ganyu-06",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-06",
+              "ganyu-47",
+              "ganyu-17"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-52",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-52",
+              "ganyu-26",
+              "ganyu-28"
+            ],
+            "drawn": true,
+            "played": 2
+          }
+        ]
+      },
+      {
+        "seed": 3021,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 40,
+        "deckSize": 10,
+        "actions": 64,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 5
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 40,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3021,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 42,
+        "deckSize": 13,
+        "actions": 70,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 5
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 53,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 42,
+            "turns": 8
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-10",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-10",
+              "ganyu-39",
+              "ganyu-37"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-52",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-52",
+              "ganyu-23",
+              "ganyu-57"
+            ],
+            "drawn": true,
+            "played": 3
+          },
+          {
+            "id": "ganyu-47",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-47",
+              "ganyu-34",
+              "ganyu-42"
+            ],
+            "drawn": true,
+            "played": 0
+          }
+        ]
+      },
+      {
+        "seed": 3022,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 40,
+        "deckSize": 10,
+        "actions": 57,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 40,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3022,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 44,
+        "deckSize": 13,
+        "actions": 61,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 44,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-60",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-60",
+              "ganyu-12",
+              "ganyu-35"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-04",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-04",
+              "ganyu-27",
+              "ganyu-12"
+            ],
+            "drawn": true,
+            "played": 10
+          },
+          {
+            "id": "ganyu-73",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-73",
+              "ganyu-59",
+              "ganyu-16"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3023,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 41,
+        "deckSize": 10,
+        "actions": 61,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 57,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 57,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 55,
+            "hpEnd": 41,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3023,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 42,
+        "deckSize": 13,
+        "actions": 70,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 5
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 6
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 42,
+            "turns": 7
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-32",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-32",
+              "ganyu-09",
+              "ganyu-12"
+            ],
+            "drawn": true,
+            "played": 1
+          },
+          {
+            "id": "ganyu-32",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-32",
+              "ganyu-47",
+              "ganyu-29"
+            ],
+            "drawn": true,
+            "played": 1
+          },
+          {
+            "id": "ganyu-46",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-46",
+              "ganyu-58",
+              "ganyu-38"
+            ],
+            "drawn": true,
+            "played": 2
+          }
+        ]
+      },
+      {
+        "seed": 3024,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 41,
+        "deckSize": 10,
+        "actions": 60,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 60,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 60,
+            "hpEnd": 56,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 56,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 55,
+            "hpEnd": 41,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3024,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 45,
+        "deckSize": 13,
+        "actions": 62,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 60,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 60,
+            "hpEnd": 56,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 56,
+            "hpEnd": 55,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 55,
+            "hpEnd": 45,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-63",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-63",
+              "ganyu-55",
+              "ganyu-14"
+            ],
+            "drawn": true,
+            "played": 3
+          },
+          {
+            "id": "ganyu-07",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-07",
+              "ganyu-25",
+              "ganyu-18"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-51",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-51",
+              "ganyu-33",
+              "ganyu-36"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3025,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 44,
+        "deckSize": 10,
+        "actions": 63,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 57,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 57,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 55,
+            "hpEnd": 44,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3025,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 42,
+        "deckSize": 13,
+        "actions": 62,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 5
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 42,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-43",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-43",
+              "ganyu-72",
+              "ganyu-10"
+            ],
+            "drawn": true,
+            "played": 1
+          },
+          {
+            "id": "ganyu-46",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-46",
+              "ganyu-35",
+              "ganyu-13"
+            ],
+            "drawn": true,
+            "played": 5
+          },
+          {
+            "id": "ganyu-39",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-39",
+              "ganyu-71",
+              "ganyu-61"
+            ],
+            "drawn": true,
+            "played": 0
+          }
+        ]
+      },
+      {
+        "seed": 3026,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 39,
+        "deckSize": 10,
+        "actions": 61,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 60,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 60,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 53,
+            "turns": 5
+          },
+          {
+            "room": 4,
+            "hpStart": 53,
+            "hpEnd": 39,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3026,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 48,
+        "deckSize": 13,
+        "actions": 78,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 60,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 60,
+            "hpEnd": 55,
+            "turns": 5
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 55,
+            "turns": 6
+          },
+          {
+            "room": 4,
+            "hpStart": 55,
+            "hpEnd": 48,
+            "turns": 10
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-52",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-52",
+              "ganyu-20",
+              "ganyu-18"
+            ],
+            "drawn": true,
+            "played": 5
+          },
+          {
+            "id": "ganyu-70",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-70",
+              "ganyu-71",
+              "ganyu-55"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-68",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-68",
+              "ganyu-40",
+              "ganyu-03"
+            ],
+            "drawn": true,
+            "played": 2
+          }
+        ]
+      },
+      {
+        "seed": 3027,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 40,
+        "deckSize": 10,
+        "actions": 60,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 40,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3027,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 40,
+        "deckSize": 13,
+        "actions": 49,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 56,
+            "turns": 3
+          },
+          {
+            "room": 3,
+            "hpStart": 56,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 40,
+            "turns": 5
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-15",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-15",
+              "ganyu-43",
+              "ganyu-63"
+            ],
+            "drawn": true,
+            "played": 5
+          },
+          {
+            "id": "ganyu-43",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-43",
+              "ganyu-58",
+              "ganyu-55"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-53",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-53",
+              "ganyu-74",
+              "ganyu-38"
+            ],
+            "drawn": true,
+            "played": 0
+          }
+        ]
+      },
+      {
+        "seed": 3028,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 34,
+        "deckSize": 10,
+        "actions": 60,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 48,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 48,
+            "hpEnd": 34,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3028,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 49,
+        "deckSize": 13,
+        "actions": 63,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 49,
+            "turns": 7
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-73",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-73",
+              "ganyu-39",
+              "ganyu-06"
+            ],
+            "drawn": true,
+            "played": 3
+          },
+          {
+            "id": "ganyu-37",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-37",
+              "ganyu-64",
+              "ganyu-13"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-12",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-12",
+              "ganyu-48",
+              "ganyu-19"
+            ],
+            "drawn": true,
+            "played": 3
+          }
+        ]
+      },
+      {
+        "seed": 3029,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 38,
+        "deckSize": 10,
+        "actions": 60,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 54,
+            "hpEnd": 52,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 52,
+            "hpEnd": 38,
+            "turns": 6
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3029,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 40,
+        "deckSize": 13,
+        "actions": 63,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 55,
+            "hpEnd": 54,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 54,
+            "hpEnd": 40,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-69",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-69",
+              "ganyu-67",
+              "ganyu-66"
+            ],
+            "drawn": true,
+            "played": 3
+          },
+          {
+            "id": "ganyu-45",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-45",
+              "ganyu-59",
+              "ganyu-38"
+            ],
+            "drawn": true,
+            "played": 0
+          },
+          {
+            "id": "ganyu-33",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-33",
+              "ganyu-39",
+              "ganyu-21"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      },
+      {
+        "seed": 3030,
+        "mode": "skip_all",
+        "outcome": "complete",
+        "hp": 41,
+        "deckSize": 10,
+        "actions": 59,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 56,
+            "turns": 4
+          },
+          {
+            "room": 3,
+            "hpStart": 56,
+            "hpEnd": 55,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 55,
+            "hpEnd": 41,
+            "turns": 5
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "seed": 3030,
+        "mode": "take_first_offer",
+        "outcome": "complete",
+        "hp": 46,
+        "deckSize": 13,
+        "actions": 59,
+        "rooms": [
+          {
+            "room": 1,
+            "hpStart": 60,
+            "hpEnd": 59,
+            "turns": 3
+          },
+          {
+            "room": 2,
+            "hpStart": 59,
+            "hpEnd": 52,
+            "turns": 5
+          },
+          {
+            "room": 3,
+            "hpStart": 52,
+            "hpEnd": 52,
+            "turns": 4
+          },
+          {
+            "room": 4,
+            "hpStart": 52,
+            "hpEnd": 46,
+            "turns": 6
+          }
+        ],
+        "rewards": [
+          {
+            "id": "ganyu-75",
+            "roomClaimed": 1,
+            "offer": [
+              "ganyu-75",
+              "ganyu-54",
+              "ganyu-12"
+            ],
+            "drawn": true,
+            "played": 3
+          },
+          {
+            "id": "ganyu-36",
+            "roomClaimed": 2,
+            "offer": [
+              "ganyu-36",
+              "ganyu-14",
+              "ganyu-04"
+            ],
+            "drawn": true,
+            "played": 2
+          },
+          {
+            "id": "ganyu-32",
+            "roomClaimed": 3,
+            "offer": [
+              "ganyu-32",
+              "ganyu-69",
+              "ganyu-26"
+            ],
+            "drawn": true,
+            "played": 1
+          }
+        ]
+      }
+    ],
+    "policyNotOptimal": true,
+    "productionRewards": false
+  },
+  "sourceRows": [
+    {
+      "id": "ganyu-01",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-02",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-03",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-04",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-05",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-06",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-07",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-08",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-09",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-10",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "unverified-transcription-index",
+      "locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-11",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-06.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-12",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-06.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-13",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-06.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-14",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-06.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-15",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-07.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-16",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-07.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-17",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-07.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-18",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-07.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-19",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-08.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-20",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-08.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-21",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-08.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-22",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-08.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-23",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-09.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-24",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-09.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-25",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-09.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-26",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-10.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-27",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-10.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-28",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-10.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-29",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-11.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-30",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-11.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-31",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-11.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-32",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-12.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-33",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-12.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-34",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-12.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-35",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-13.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-36",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-13.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-37",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-13.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-38",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-14.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-39",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-14.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-40",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-14.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-41",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-15.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-42",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-15.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-43",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-15.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-44",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-16.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-45",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-16.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-46",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-16.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-47",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-17.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-48",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-17.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-49",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-17.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-50",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-18.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-51",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-18.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-52",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-18.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-53",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-19.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-54",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-19.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-55",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-19.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-56",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-20.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-57",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-20.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-58",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-20.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-59",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-21.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-60",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-21.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-61",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-21.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-62",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-22.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-63",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-22.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-64",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-22.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-65",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-23.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-66",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-23.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-67",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-23.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-68",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-24.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-69",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-24.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-70",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-24.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-71",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-25.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-72",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-25.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-73",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-25.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-74",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-26.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    },
+    {
+      "id": "ganyu-75",
+      "sourceVerified": false,
+      "humanApproved": false,
+      "kind": "mechanical-adaptation-pending-primary",
+      "locator": "batch-26.md",
+      "missing": [
+        "independently verified per-card primary text",
+        "two verified STS1 comparable originals",
+        "human naming/character fit approval"
+      ]
+    }
+  ]
+}
