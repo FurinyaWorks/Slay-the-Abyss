@@ -62,3 +62,9 @@ test('v4 retained role is obtainable, old pools remain unchanged',()=>{
  const s=journeyStart(seed,{poolVersion:'v4'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'wait'));
  assert.equal(n.deck.at(-1),'zl14');assert.equal(n.deck.length,11);for(const v of ['v1','v2','v3'])assert.equal(offers(seed,1,v).includes('zl14'),false);
 });
+test('v5 counter role can be acquired and simultaneous death never creates a reward',()=>{
+ let seed=1;while(!offers(seed,1,'v5').includes('zl15'))seed++;
+ const s=journeyStart(seed,{poolVersion:'v5'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'counter'));
+ assert.equal(n.deck.at(-1),'zl15');assert.equal(n.battle.counter,0);
+ const dead=journeyStart();dead.battle.hp=0;dead.battle.enemy.hp=0;const ended=fightRoom(dead);assert.equal(ended.phase,'death');assert.throws(()=>takeReward(ended,0));
+});

@@ -1,15 +1,16 @@
 /** Reproducible starter-only pressure study, not natural reward construction. */
 import {battleStart,playInstance,nextTurn,visibleState} from './battle.mjs';
-import {play,incomingAttack} from './model.mjs';
+import {play,previewEnemyAction} from './model.mjs';
 import {pathToFileURL} from 'node:url';
 const families={low:()=>[4],growing:turn=>[3+turn*2],large:()=>[18],multi:()=>[3,3,3]};
 // Enumerate full legal sequences from ONLY visible state. No future hand/intent access.
 export function choose(view,policy){
-  const state={hp:view.hp,enemy:view.enemy,energy:view.energy,block:view.block,jade:view.jade,turn:view.turn,
+  const state={hp:view.hp,enemy:view.enemy,energy:view.energy,block:view.block,jade:view.jade,counter:view.counter ?? 0,turn:view.turn,
     hand:view.hand.map(c=>c.instance),discard:[],instances:Object.fromEntries(view.hand.map(c=>[c.instance,{id:c.id,upgraded:c.upgraded}]))};
-  const damage=s=>view.enemy.hp-s.enemy.hp;
-  const loss=s=>s.enemy.hp===0?0:Math.min(s.hp,Math.max(0,view.intent.reduce((a,b)=>a+incomingAttack(b,s.enemy.weak ?? 0),0)-s.block-s.jade));
-  const score=s=>policy==='defense'?[-loss(s),damage(s),s.jade]:[s.enemy.hp===0?1:0,damage(s),-loss(s),s.jade];
+  const projected=s=>previewEnemyAction(s,view.intent);
+  const damage=s=>view.enemy.hp-projected(s).enemy.hp;
+  const loss=s=>s.hp-projected(s).hp;
+  const score=s=>policy==='defense'?[-loss(s),damage(s),s.jade]:[projected(s).enemy.hp===0&&projected(s).hp>0?1:0,damage(s),-loss(s),s.jade];
   const better=(a,b)=>{for(let i=0;i<a.length;i++){if(a[i]!==b[i])return a[i]>b[i];}return false;};
   let best={score:score(state),path:[]};
   function walk(s,path){const value=score(s);if(better(value,best.score))best={score:value,path};
@@ -32,7 +33,7 @@ export function trial(seed,family,policy,relic,withTrace=false,deck){const trace
     s=turnResult.state;if(turnResult.actions.some(a=>a.id==='zl04')&&firstPayoff===null)firstPayoff=turns+1;
     s=nextTurn(s,hits);if(withTrace)trace.push({...record,after:{hp:s.hp,enemyHp:s.enemy.hp,jade:s.jade}});
   }
-  return {seed,outcome:s.enemy.hp===0?'win':s.hp===0?'death':'truncated',loss:60-s.hp,turns,deadPayoffDraws,unpayableAtStart,firstPayoff,...(withTrace?{trace}:{})};
+  return {seed,outcome:s.hp===0?'death':s.enemy.hp===0?'win':'truncated',loss:60-s.hp,turns,deadPayoffDraws,unpayableAtStart,firstPayoff,...(withTrace?{trace}:{})};
 }
 if (process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {
 const groups=[];

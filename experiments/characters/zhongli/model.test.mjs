@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3)s.jade=6;
@@ -10,11 +10,12 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
     if([0,3,4,6,7,8,10,13].includes(i))assert.equal(r.state.enemy.hp,40-value);
-    if([1,5,9,11].includes(i))assert.equal(r.state.block,value);
+    if([1,5,9,11,14].includes(i))assert.equal(r.state.block,value);
     if(i===2)assert.equal(r.state.jade,value);
     if(i===3)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
+    if(i===14)assert.equal(r.state.counter,upgrade?4:3);
     if(i===12)assert.equal(r.state.enemy.vulnerable,upgrade?3:2);
     if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
@@ -173,4 +174,22 @@ test('last-energy setup forces retained attack to wait and never stops enemy act
  let s=initialState(['a','b']);s.instances={a:{id:'zl14',upgraded:false},b:{id:'zl13',upgraded:false}};s.energy=1;
  s=play(s,{id:'zl13',instance:'b',target:'enemy'}).state;s=endTurn(s,[8]);assert.equal(s.hp,52);assert.deepEqual(s.hand,['a']);assert.equal(s.enemy.vulnerable,1);
  const r=play(s,{id:'zl14',instance:'a',target:'enemy'});assert.equal(r.state.enemy.hp,21);assert.equal(r.state.energy,1);
+});
+test('counter triggers on zero/fully blocked hits and is fixed despite enemy vulnerability',()=>{
+ const s=initialState();s.enemy.vulnerable=2;s.enemy.block=4;const r=run('zl15',s).state;
+ const multi=endTurn(r,[3,3,3]);assert.equal(multi.hp,59);assert.equal(multi.enemy.hp,35);assert.equal(multi.enemy.block,0);assert.equal(multi.counter,0);
+ const zero=endTurn(run('zl15').state,[0]);assert.equal(zero.enemy.hp,37);assert.equal(zero.hp,60);
+ const idle=endTurn(run('zl15').state,[]);assert.equal(idle.enemy.hp,40);assert.equal(idle.counter,0);
+});
+test('counter lethal interrupts remaining hits; lethal incoming still retaliates and both-dead remains terminal',()=>{
+ const s=initialState();s.enemy.hp=3;const r=endTurn(run('zl15',s).state,[3,99]);assert.equal(r.hp,60);assert.equal(r.enemy.hp,0);
+ const simultaneous=initialState();simultaneous.hp=1;simultaneous.enemy.hp=3;simultaneous.counter=3;
+ const dead=endTurn(simultaneous,[99,99]);assert.equal(dead.hp,0);assert.equal(dead.enemy.hp,0);assert.deepEqual(endTurn(dead,[99]),dead);
+ const lethal=initialState();lethal.hp=1;lethal.counter=3;const retaliated=endTurn(lethal,[99,99]);assert.equal(retaliated.enemy.hp,37);assert.equal(retaliated.hp,0);
+});
+test('counter intensity adds without recursion, overflow and cancellation reject atomically',()=>{
+ const s=initialState();s.counter=2;const r=run('zl15',s,true).state;assert.equal(r.counter,6);assert.equal(endTurn(r,[0,0]).enemy.hp,28);
+ const max=initialState();max.counter=Number.MAX_SAFE_INTEGER;const before=structuredClone(max);assert.equal(run('zl15',max).ok,false);assert.deepEqual(max,before);
+ const cancel=initialState();cancel.instances.a={id:'zl15',upgraded:false};const saved=structuredClone(cancel);assert.equal(play(cancel,{id:'zl15',instance:'a',cancel:true}).state,cancel);assert.deepEqual(cancel,saved);
+ cancel.energy=1;assert.equal(play(cancel,{id:'zl15',instance:'a'}).ok,false);assert.equal(cancel.counter,0);
 });

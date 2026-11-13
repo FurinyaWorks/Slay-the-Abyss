@@ -318,3 +318,38 @@ retention-study.mjs:40 fresh-seed7001..7010 runs, large/multi x skip/accept14. L
 9deaths/1truncate, accept14 actually obtains1/10; multi both10complete lossP90=4, obtains6/10.
 No demonstrated survival advantage; myopic policy does not optimize future retention value.
 Full75 remains61 short. Human/source/full-rarity/balance/integration gates remain HOLD.
+
+### Fifteenth research role: temporary attack retaliation (0.9, HOLD)
+14-card local60c54bd / remotebcd763b independently checked under
+character-rules-zhongli-60c54bd-retain-20261113:83/83,90 mixed retention/draw/exhaust turns,
+40run and20000offer report reconstruction. Not approval of this new role.
+
+zl15 common cost2, block8 then counter3; upgrade block11 then counter4. Prior14 unchanged.
+This answers repeated attacks, not persistent defense or burst prevention. It is a proposed
+project adaptation, not an official Zhongli reflective shield, petrification or name.
+
+Pinned903bf2a statuses flame_barrier/intensity/next-turn removal; Actor.queueAttackedPowers
+explicitly triggers zero-damage, fully blocked and lethal ordinary hits. Actor.retaliate
+consumes attacker block but applies no ordinary modifiers and cannot recursively retaliate.
+Candidate models a single enemy, immediate reaction after each plain incoming hit; target
+Vulnerable does not amplify fixed retaliation. Each hit first consumes block/jade/HP, then
+counter triggers even if player died. If enemy dies, later hits stop. If both die, result
+is death, never victory/reward. Counter intensity adds; safe-integer overflow rejects before
+payment. Empty hit-list means no attack, so no retaliation; list[0] means one zero attack.
+Stable endTurn boundary clears counter for next turn; this is not full engine queue parity,
+area batching, Intangible, trigger relics, fixed incoming damage, or after-death UI handling.
+
+Shared pure previewEnemyAction drives immediate policy projection and resolution, so a
+counter kill can avert later hits without looking ahead. Policy still does not inspect
+future encounters/draws. Tests include block/vulnerability independence, zero vs idle,
+lethal trigger, two deaths, mid-multihit kill, additive intensity, cancel/pay/overflow and
+newbattle reset. 90 local tests pass. Original320 report remains byte-identical.
+B-GATE exact references for Flame Barrier/Flame Barrier+ and Caltrops still need independent
+source verification; current numbers are candidate hypotheses, not approved tuning.
+
+v5 restricted ordinary pool adds15 (11 commons), retaining v1–v4; ideal uniform inclusion
+3/11 with real20000-offer counts saved (not exact-uniform RNG assertion).40 fresh-seed
+8001..8010 three-room runs compare skip/accept15: large both10deaths, actual acquisition2/10;
+multi both10complete lossP90=4, actual acquisition4/10. No survival benefit demonstrated.
+Full75 remains60 short; rare5/uncommon10 still lack journey access. Source/identity/naming,
+complete-rarity, balance, human play and production integration remain HOLD.
