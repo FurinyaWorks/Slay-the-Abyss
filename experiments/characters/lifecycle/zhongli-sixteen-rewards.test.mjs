@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Zhongli sixteen source provider isolation',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/zhongli-sixteen-rewards.test.lua',{timeout:180000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/ZHONGLI_SIXTEEN_PROVIDER_PASS/);assert.match(r.stdout,/ZHONGLI_SIXTEEN_ISOLATION_PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);});

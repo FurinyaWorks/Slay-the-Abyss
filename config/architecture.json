@@ -1,5 +1,8 @@
 {
   "layers": {
+    "abyss_zhongli_sixteen_catalog": "core",
+    "abyss_zhongli_sixteen_rewards": "core",
+    "abyss_zhongli_sixteen_run": "core",
     "abyss_ganyu_shield_charge_reward_run": "core",
     "abyss_ganyu_shield_charge_definitions": "core",
     "abyss_keqing_setup_cards": "core",
