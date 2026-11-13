@@ -9,10 +9,14 @@ local function same(a,b)
 end
 local function fresh(id,up,charge)
  local d=C.copy(D)
+ if GANYU_PAID_DEFINITIONS then
+  for _,definition in ipairs(dofile(GANYU_PAID_DEFINITIONS).cards)do d.cards.cards[#d.cards.cards+1]=definition end
+ else
  d.cards.cards[#d.cards.cards+1]={id='ganyu_lab_03',name='charged shot candidate',type='attack',target='ENEMY',cost=1,rarity='special',experimental=true,ganyuCandidate=true,
  effects={{op='ganyuCard',kind='chargedShot',direct=7,bloom=6}},upgrade={effects={{op='ganyuCard',kind='chargedShot',direct=9,bloom=8}}}}
  d.cards.cards[#d.cards.cards+1]={id='ganyu_lab_06',name='charge candidate',type='skill',target='SELF',cost=1,rarity='special',experimental=true,ganyuCandidate=true,
  effects={{op='ganyuCard',kind='charge',amount=1}},upgrade={effects={{op='ganyuCard',kind='charge',amount=2}}}}
+ end
  local s=C.new(d,{deck={id,id,id,id,id,id,id},enemies={'jaw_worm','jaw_worm'},seed=42,candidateLifecycle={kind='ganyu',relicEnabled=false}})
  assert(s.ganyuResource,'Ganyu host initialization unavailable; this contract has NOT passed')
  s.ganyuResource.charge=charge;s.hand[1].upgraded=up
