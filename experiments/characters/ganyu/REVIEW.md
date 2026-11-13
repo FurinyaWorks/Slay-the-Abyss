@@ -64,3 +64,5 @@ review_xiao固定01ae745，42/42通过，旧14卡/environment对象比对不变�
 0.18独审character_rules，reviewId character-rules-ganyu-7f85f20-v18-20261113，固定7f85f20888fda5aa0ac0a1bee91fcebcb7a27211：119/119+120独立组合oracle，旧49卡定义不变、50/50报告字节重放一致，无技术阻断。51短战同费强上位及来源/双STS/人审HOLD保持。发现source_locator使用与实际标题不一致的锚点；作者统一去除batch文档的错误片段定位，保留真实存在的文件定位并补文件存在测试。这是本作证据索引，不提升为官方原文已核。
 
 0.19独审character_rules，review character-rules-ganyu-f22e812-v19-20261113，固定f22e812a383513d1a9df44e78ef9c8672a367be9：126/126及168组合探针、旧52卡不变，53/53报告字节复现。来源文件定位修复成立但不是官方原文认证；53满蓄激励、54占槽、55压缩和同职责风险HOLD。0.20另待技术独审。
+
+0.20独审character_rules，review character-rules-ganyu-701d3da-v20-20261113，固定701d3da：133/133+108组合、旧55卡一致、56/56报告重建，无增量技术阻断。04>44仍是实际设计阻断；44有效设计数不能用候选实现数量替代。下一批以及44隔离新值对照另待审/批准。

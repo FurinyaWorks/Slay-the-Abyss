@@ -67,7 +67,7 @@ test('opposite reachable choices: lethal now vs preserve charge economy',()=>{
  assert.equal(play(startTurn(endTurn(play(setup,0,0))),0,0).enemies[1].hp,20);
 });
 test('display generated from same structured variants, no false approval',()=>{
- assert.equal(catalogue.cards.length,58);assert.equal(catalogue.production_enabled,false);
+ assert.equal(catalogue.cards.length,61);assert.equal(catalogue.production_enabled,false);
  for(const c of catalogue.cards){assert.equal(c.review.human_approved,false);assert.match(c.name,/^待命名·/);for(const up of [false,true]) assert.match(cardText(c.id,up),/能量/);}
  assert.match(cardText('ganyu-03',true),/9点伤害.*8点伤害/);
 });

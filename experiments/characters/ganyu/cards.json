@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.20.0",
+  "version": "ganyu-sample-0.21.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -2084,6 +2084,122 @@
         "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       },
       "exhaust": true
+    },
+    {
+      "id": "ganyu-59",
+      "name": "待命名·ganyu-59",
+      "candidate_name": null,
+      "role": "保留雨场来源等待窗口",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-59",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-60",
+      "name": "待命名·ganyu-60",
+      "candidate_name": null,
+      "role": "一次供蓄兼轮转",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 1
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-60",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-61",
+      "name": "待命名·ganyu-61",
+      "candidate_name": null,
+      "role": "重费即时群攻防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 12
+          },
+          {
+            "op": "aoe",
+            "amount": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 16
+          },
+          {
+            "op": "aoe",
+            "amount": 11
+          }
+        ]
+      },
+      "source_ref": "ganyu-61",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
     }
   ],
   "environment": {

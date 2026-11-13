@@ -1,0 +1,10 @@
+{
+  "card_id": "ganyu-44",
+  "status": "PROPOSAL_NOT_APPROVED",
+  "production_enabled": false,
+  "old": {"base": {"amount": 3, "bonus": 3}, "upgrade": {"amount": 4, "bonus": 4}},
+  "candidate": {"base": {"amount": 3, "bonus": 6}, "upgrade": {"amount": 4, "bonus": 8}},
+  "comparators": ["ganyu-04", "ganyu-19"],
+  "plan": "For base/up and charge 0/1/2 compare immediate shield, damage, resource, energy, next core payoff and damage suffered versus intent 12. Use HP 100, no armor. Both sides always have core03 next in hand. Do not update catalogue. This is fixed deterministic local comparison, not statistical balance or natural construction.",
+  "human_approved": false
+}
