@@ -2,17 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
-    const s=initialState(); if(i===3)s.jade=6;
+    const s=initialState(); if(i===3||i===15)s.jade=6;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
     if([0,3,4,6,7,8,10,13].includes(i))assert.equal(r.state.enemy.hp,40-value);
-    if([1,5,9,11,14].includes(i))assert.equal(r.state.block,value);
+    if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===2)assert.equal(r.state.jade,value);
-    if(i===3)assert.equal(r.state.jade,0);
+    if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
     if(i===14)assert.equal(r.state.counter,upgrade?4:3);
@@ -192,4 +192,30 @@ test('counter intensity adds without recursion, overflow and cancellation reject
  const max=initialState();max.counter=Number.MAX_SAFE_INTEGER;const before=structuredClone(max);assert.equal(run('zl15',max).ok,false);assert.deepEqual(max,before);
  const cancel=initialState();cancel.instances.a={id:'zl15',upgraded:false};const saved=structuredClone(cancel);assert.equal(play(cancel,{id:'zl15',instance:'a',cancel:true}).state,cancel);assert.deepEqual(cancel,saved);
  cancel.energy=1;assert.equal(play(cancel,{id:'zl15',instance:'a'}).ok,false);assert.equal(cancel.counter,0);
+});
+
+test('shield conversion pays before defending: all jade levels, base/upgrade, and no free block',()=>{
+ for(let jade=0;jade<=20;jade++)for(const u of [false,true]){
+  const s=initialState();s.jade=jade;const before=structuredClone(s);const r=run('zl16',s,u);
+  assert.equal(r.ok,jade>=6);assert.deepEqual(s,before);
+  if(r.ok){assert.equal(r.state.jade,jade-6);assert.equal(r.state.block,u?21:16);assert.equal(r.state.energy,2);assert.deepEqual(r.state.discard,['a']);assert.deepEqual(r.state.exhaust,[]);}
+  else assert.equal(r.state.jade,jade);
+ }
+});
+test('shield conversion is not free persistent protection: constrained full action and idle opportunity cost',()=>{
+ for(const u of [false,true]){
+  const s=initialState(['a']);s.instances.a={id:'zl16',upgraded:u};s.jade=6;s.energy=1;
+  const used=play(s,{id:'zl16',instance:'a',upgraded:u}).state;
+  // Only one action and one energy: no omitted affordable follow-up.
+  assert.equal(endTurn(used,[18]).hp,u?60:58);assert.equal(endTurn(s,[18]).hp,48);
+  assert.equal(endTurn(used,[6,6,6]).hp,u?60:58);
+  const idle=endTurn(used,[]),saved=endTurn(s,[]);assert.equal(idle.jade,0);assert.equal(saved.jade,6);
+  assert.equal(endTurn(idle,[6]).hp,54);assert.equal(endTurn(saved,[6]).hp,60);
+  assert.equal(endTurn(used,[3]).jade,0);assert.equal(endTurn(s,[3]).jade,3);
+ }
+});
+test('shield conversion cancellation, no energy, dead battle and invalid effect preserve input',()=>{
+ const s=initialState(['a']);s.instances.a={id:'zl16',upgraded:false};s.jade=6;
+ for(const change of [{},{energy:0},{hp:0}]){const state={...s,...change};const before=structuredClone(state);const r=play(state,{id:'zl16',instance:'a',cancel:!Object.keys(change).length});assert.equal(r.ok,false);assert.equal(r.state,state);assert.deepEqual(state,before);}
+ const c=cards.find(c=>c.id==='zl16'),old=c.base;try{c.base=[['spendJade',6],['block',NaN]];const before=structuredClone(s);const r=play(s,{id:'zl16',instance:'a'});assert.equal(r.state,s);assert.equal(r.ok,false);assert.deepEqual(s,before);}finally{c.base=old;}
 });

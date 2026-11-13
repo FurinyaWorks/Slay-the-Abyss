@@ -353,3 +353,20 @@ v5 restricted ordinary pool adds15 (11 commons), retaining v1–v4; ideal unifor
 multi both10complete lossP90=4, actual acquisition4/10. No survival benefit demonstrated.
 Full75 remains60 short; rare5/uncommon10 still lack journey access. Source/identity/naming,
 complete-rarity, balance, human play and production integration remain HOLD.
+
+## 第15卡精确独审绑定
+
+`b04a2eb1051eee1c3ef52c5b74dd1ad6796ec209` / remote `dc5ebfcb1f01e9854833070cb4d80a8acc2ae616`：
+reviewId `character-rules-zhongli-b04a2eb-counter-20261113`，独立 90/90 与 1728 组合 oracle、40run/20koffer 全对象重放、旧320字节相同。范围仅立即反击与合成奖励，不代表正式队列、官方技能、平衡或人审。
+
+## 0.10 第16卡：跨回合储备换紧急当回合防御（候选 HOLD）
+
+zl16，普通，1 能量，先消耗 6 玉璋，再获得 16 / 21 格挡。沿用支付、逐段受伤及轮末格挡清零，不增加新资源/状态；非消耗牌。这是本作改编，官方护盾定位不能证明原作具有“消盾换盾”技能。人物合同/命名/数值仍 HOLD。与 zl04（消盾进攻）、zl03（建立持久防线）、zl10（无玉璋前置但一次性大防御）职责不同。
+
+**机会成本按净值核算**：初始 6 玉璋并不会凭空失效，因此此牌不是净增加 16/21 防御。相对不出牌，本轮总容量仅增加 10/15，仍花 1 能量和一张牌。以只有此牌且剩 1 能量的可审局面比较完整动作：18 单段或 6×3 多段，基础损 2 HP / 升级零损，不出损 12 HP；若敌人空过，出牌后玉璋归零且格挡清空，下一轮 6 伤损 6 HP，不出可全挡；若本轮仅 3 伤，不出仍余 3 玉璋，出牌无储备。不得把当前收益当跨回合无条件更优。6 玉璋门槛意味着初始遗物 3 点不足独自启用，可能卡手。
+
+定向测试覆盖基升独立数值、0..20 玉璋可付性、取消/不足能量/死亡/非法效果原子拒绝、实际弃牌而非消耗、单段/多段/低伤/空过机会成本；无调旧值。B-GATE 参考候选为 Entrench（当前格挡放大）与 Impervious（一次性大防御），机制和数值不等价，未独立核原文，不能作为平衡已通过证据。
+
+v6 普通研究池加入 zl16，共 12 普通；v1–v5 原样保存。理想均匀入选参考 3/12，实际 20000 次 offer 计数保存在 conversion-results.json，不承诺 LCG 精确均匀。取得链由战斗胜利→三选一→追加一张验证，不能战前领取或重复领取。rare zl05 / uncommon zl10 仍无自然取得通道。
+
+`node conversion-study.mjs`：9001..9010 新种子，v6 skip/convert × large/multi，共40局三战。large 双方10死，convert实际取得4/10；multi 双方10完成，P90失血 skip1 / convert2，取得5/10。没有证据支持此牌提升自然存活，不删除失败或据此擅改数字。政策简单且只看当前可见信息；这不是正式随机稀有度/75卡构筑/真人试玩。全池目标尚差59卡；当前16卡含新卡待独审，所有产品门禁仍如实 HOLD。

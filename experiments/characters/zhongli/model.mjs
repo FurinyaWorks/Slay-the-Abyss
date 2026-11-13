@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.9.0';
+export const VERSION = 'zhongli-mechanics-0.10.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -20,6 +20,7 @@ export const cards = [
   card('zl13', '放弃当前伤害来建立后续输出窗口', 'common', 1, [['vulnerable', 2]], [['vulnerable', 3]], 'enemy'),
   {...card('zl14', '保留攻击直到有利输出窗口而非立即兑现', 'common', 2, [['damage', 13]], [['damage', 18]], 'enemy'), selfRetain: true},
   card('zl15', '迎击本轮多段攻击而非建立永久防线', 'common', 2, [['block', 8], ['counter', 3]], [['block', 11], ['counter', 4]]),
+  card('zl16', '将跨回合玉璋转为本轮应急格挡，承担空过损失', 'common', 1, [['spendJade', 6], ['block', 16]], [['spendJade', 6], ['block', 21]]),
 ];
 export const JADE_CAP = 20;
 export const GUARD_THRESHOLD = 6;
