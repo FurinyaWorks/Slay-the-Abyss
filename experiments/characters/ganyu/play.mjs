@@ -3,9 +3,11 @@ import { stdin, stdout } from 'node:process';
 import { catalogue, cardText, endTurn, play, relicText } from './engine.mjs';
 import { createBattle, nextBattleTurn } from './battle.mjs';
 const seed=Number(process.argv[2] ?? 37);
-let state=createBattle([{hp:35,block:0,intent:6},{hp:22,block:0,intent:4}],seed);
+const candidateAll=process.argv.includes('--candidate-all');
+let state=createBattle([{hp:35,block:0,intent:6},{hp:22,block:0,intent:4}],seed,candidateAll?catalogue.cards.map(c=>({id:c.id})):undefined);
 const io=createInterface({input:stdin,output:stdout});
-console.log('甘雨0.2隔离机械试玩。名字/数值未批准，无奖励/地图，非正式游戏。');
+console.log(`甘雨${catalogue.version}隔离机械试玩。名字/数值未批准，无奖励/地图，非正式游戏。`);
+console.log(candidateAll?'人工测试牌组：每个候选各一张，不是自然获取/批准初始牌组。':'默认10张初始牌组：新增候选不经奖励获得；可用 --candidate-all 人工检查全候选。');
 console.log(`${relicText()}\n抽牌种子 ${seed}；每敌意图恒定，仅用于比较选择。`);
 try {
  while(state.phase==='player') {

@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.8.0",
+  "version": "ganyu-sample-0.9.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -784,6 +784,111 @@
         "human_approved": false,
         "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       }
+    },
+    {
+      "id": "ganyu-23",
+      "name": "待命名·ganyu-23",
+      "candidate_name": null,
+      "role": "一次性免费满蓄启动但不能每轮重复",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          },
+          {
+            "op": "block",
+            "amount": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-23",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-24",
+      "name": "待命名·ganyu-24",
+      "candidate_name": null,
+      "role": "一次性支付费用换较大手牌选择",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-24",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-25",
+      "name": "待命名·ganyu-25",
+      "candidate_name": null,
+      "role": "一次性弃牌堆核心回收而非抽牌堆检索",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03",
+            "zone": "discard"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03",
+            "zone": "discard"
+          }
+        ]
+      },
+      "source_ref": "ganyu-25",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
     }
   ],
   "environment": {
