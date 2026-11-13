@@ -1,5 +1,5 @@
 // Manual orchestration only. Card, enemy-hit, draw and reward rules stay in pinned models.
-export function zhongliRun({battle,journey,model},{poolVersion='v29'}={}){
+export function zhongliRun({battle,journey,model},{poolVersion='v37'}={}){
  if(!Object.hasOwn(journey.POOLS,poolVersion))throw Error('missing reviewed reward pool');
  const hits=()=>[3,3,3]; // Explicit fixed synthetic family from original journey; not production AI.
  const outcome=s=>s.phase==='death'?'defeat':s.phase==='complete'?'victory':s.phase==='reward'?'reward':'playing';

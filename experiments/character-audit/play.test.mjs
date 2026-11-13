@@ -138,10 +138,10 @@ test('latest Keqing 75-card adapter forwards only explicit visible choices and b
  assert.deepEqual(parseCommand('j {"type":"play","revision":0,"slot":1,"target":1,"options":{"retain":["starter-1"]}}').options,{retain:['starter-1']});
  for(const x of ['j null','j []','j {"type":"end"}','j {"type":"play","unexpected":1}'])assert.throws(()=>parseCommand(x));
 });
-test('Zhongli reviewed 49-card snapshot exposes current public resources but no hidden draw state',{skip:!process.env.ZHONGLI_LATEST_ROOT},async()=>{
+test('Zhongli frozen 75-candidate snapshot exposes current public resources but no hidden draw state',{skip:!process.env.ZHONGLI_LATEST_ROOT},async()=>{
  const root=process.env.ZHONGLI_LATEST_ROOT,a=await loadAdapter(root,'zhongli',process.env.ZHONGLI_LATEST_HEAD);
  const {pathToFileURL}=await import('node:url');const b=await import(pathToFileURL(join(root,'experiments/characters/zhongli/battle.mjs')).href);
- assert.equal(a.catalog.length,49);
+ assert.equal(a.catalog.length,75);
  for(const mode of ['starter','all']){
   const s=a.start(37,mode),before=structuredClone(s),v=a.view(s);
   assert.deepEqual(v.hand.map(c=>c.text),b.visibleState(s,[8]).hand.map(c=>c.text));
@@ -154,6 +154,7 @@ test('Zhongli manual journey uses actual battle actions, earned rewards and carr
  const {pathToFileURL}=await import('node:url'),root=process.env.ZHONGLI_LATEST_ROOT;
  const mod=f=>import(pathToFileURL(join(root,'experiments/characters/zhongli',f)).href);
  const battle=await mod('battle.mjs'),journey=await mod('journey.mjs'),model=await mod('model.mjs'),policy=await mod('pressure.mjs');
+ assert.equal(journey.POOLS.v37.length,71);assert.equal(new Set(journey.POOLS.v37).size,71);for(const id of ['zl01','zl02','zl05','zl10'])assert.ok(!journey.POOLS.v37.includes(id));
  const {zhongliRun}=await import('./zhongli-run.mjs');const bridge=zhongliRun({battle,journey,model});
  let raw=bridge.start(37);const session=createSession({...bridge,catalog:[],assertCurrent:()=>{}},{mode:'run'});let view=session.view(),actions=0;
  while(view.outcome==='playing'&&actions++<150){
@@ -162,7 +163,7 @@ test('Zhongli manual journey uses actual battle actions, earned rewards and carr
   raw=index>=0?bridge.play(raw,index):bridge.end(raw);assert.deepEqual(raw.battle,direct);assert.deepEqual(input,before);
   const r=session.dispatch(index>=0?{type:'play',revision:view.revision,slot:index+1,target:1}:{type:'end',revision:view.revision});assert.equal(r.ok,true);view=r.view;assert.equal(view.hp,raw.battle.hp);
  }
- assert.equal(view.outcome,'reward');assert.deepEqual(raw.offer,journey.offers(37,1,'v29'));const hp=view.hp,n=view.persistentDeckSize,rev=view.revision;
+ assert.equal(view.outcome,'reward');assert.deepEqual(raw.offer,journey.offers(37,1,'v37'));const hp=view.hp,n=view.persistentDeckSize,rev=view.revision;
  const claimed=session.dispatch({type:'claim',revision:rev,choice:1});assert.equal(claimed.ok,true);assert.equal(claimed.view.room,2);assert.equal(claimed.view.hp,hp);assert.equal(claimed.view.persistentDeckSize,n+1);assert.equal(claimed.view.zones.powers,0);assert.equal(claimed.view.jade,battle.RELIC.effect.jade);
  assert.equal(session.dispatch({type:'claim',revision:rev,choice:1}).ok,false);
  const skipped=bridge.reward(raw,'proceed');assert.equal(skipped.deck.length,n);assert.equal(skipped.battle.hp,hp);
