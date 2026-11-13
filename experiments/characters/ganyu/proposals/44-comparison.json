@@ -1,0 +1,255 @@
+{
+  "status": "PROPOSAL_NOT_APPROVED",
+  "planCommit": "5030a6bdbf3c041d52a77f70ddd47ae9e2d723da",
+  "inputs": {
+    "proposals/44-guard.json": "d105121d856c4b29e3b4f628ef5bc6951226ddaae1f3e6e7dcb146628a72218d",
+    "proposals/44-compare.mjs": "42a363202e52932cb8e4e1dfbcd32c1908cc411756ea4e64c8df6c9f3e2eccef",
+    "cards.json": "81c9dca9d8286968df3d894daae25eb542a9686d74f43e227990ec4916d300be",
+    "engine.mjs": "931e7cb54ae5652fe1a3bdfaf06b0fa8c7deefc45a86f565a68aa005d816e4fe",
+    "relic.json": "6d30fc5a5d09f71af3126e1f896fc162e3181f09282f119acdcc1b0cd21e7e8b",
+    "deck.mjs": "75fcd21733d8994e3a7ebcfaececc992de0afdfa56dd56ec30f4d6bff77270f7"
+  },
+  "rows": [
+    {
+      "19": {
+        "shield": 5,
+        "immediateDamage": 0,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 7,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 53
+      },
+      "upgraded": false,
+      "charge": 0,
+      "04": {
+        "shield": 6,
+        "immediateDamage": 3,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 10,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 54
+      },
+      "44-old": {
+        "shield": 3,
+        "immediateDamage": 0,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 7,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 51
+      },
+      "44-candidate": {
+        "shield": 3,
+        "immediateDamage": 0,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 7,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 51
+      }
+    },
+    {
+      "19": {
+        "shield": 5,
+        "immediateDamage": 0,
+        "charge": 1,
+        "energy": 2,
+        "withCoreDamage": 7,
+        "withCoreCharge": 1,
+        "hpAfterEnemy": 53
+      },
+      "upgraded": false,
+      "charge": 1,
+      "04": {
+        "shield": 6,
+        "immediateDamage": 3,
+        "charge": 1,
+        "energy": 2,
+        "withCoreDamage": 10,
+        "withCoreCharge": 1,
+        "hpAfterEnemy": 54
+      },
+      "44-old": {
+        "shield": 3,
+        "immediateDamage": 0,
+        "charge": 1,
+        "energy": 2,
+        "withCoreDamage": 7,
+        "withCoreCharge": 1,
+        "hpAfterEnemy": 51
+      },
+      "44-candidate": {
+        "shield": 3,
+        "immediateDamage": 0,
+        "charge": 1,
+        "energy": 2,
+        "withCoreDamage": 7,
+        "withCoreCharge": 1,
+        "hpAfterEnemy": 51
+      }
+    },
+    {
+      "19": {
+        "shield": 13,
+        "immediateDamage": 0,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 7,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 60
+      },
+      "upgraded": false,
+      "charge": 2,
+      "04": {
+        "shield": 6,
+        "immediateDamage": 3,
+        "charge": 2,
+        "energy": 2,
+        "withCoreDamage": 16,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 54
+      },
+      "44-old": {
+        "shield": 6,
+        "immediateDamage": 0,
+        "charge": 2,
+        "energy": 2,
+        "withCoreDamage": 13,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 54
+      },
+      "44-candidate": {
+        "shield": 9,
+        "immediateDamage": 0,
+        "charge": 2,
+        "energy": 2,
+        "withCoreDamage": 13,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 57
+      }
+    },
+    {
+      "19": {
+        "shield": 7,
+        "immediateDamage": 0,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 9,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 55
+      },
+      "upgraded": true,
+      "charge": 0,
+      "04": {
+        "shield": 8,
+        "immediateDamage": 4,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 13,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 56
+      },
+      "44-old": {
+        "shield": 4,
+        "immediateDamage": 0,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 9,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 52
+      },
+      "44-candidate": {
+        "shield": 4,
+        "immediateDamage": 0,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 9,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 52
+      }
+    },
+    {
+      "19": {
+        "shield": 7,
+        "immediateDamage": 0,
+        "charge": 1,
+        "energy": 2,
+        "withCoreDamage": 9,
+        "withCoreCharge": 1,
+        "hpAfterEnemy": 55
+      },
+      "upgraded": true,
+      "charge": 1,
+      "04": {
+        "shield": 8,
+        "immediateDamage": 4,
+        "charge": 1,
+        "energy": 2,
+        "withCoreDamage": 13,
+        "withCoreCharge": 1,
+        "hpAfterEnemy": 56
+      },
+      "44-old": {
+        "shield": 4,
+        "immediateDamage": 0,
+        "charge": 1,
+        "energy": 2,
+        "withCoreDamage": 9,
+        "withCoreCharge": 1,
+        "hpAfterEnemy": 52
+      },
+      "44-candidate": {
+        "shield": 4,
+        "immediateDamage": 0,
+        "charge": 1,
+        "energy": 2,
+        "withCoreDamage": 9,
+        "withCoreCharge": 1,
+        "hpAfterEnemy": 52
+      }
+    },
+    {
+      "19": {
+        "shield": 17,
+        "immediateDamage": 0,
+        "charge": 0,
+        "energy": 2,
+        "withCoreDamage": 9,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 60
+      },
+      "upgraded": true,
+      "charge": 2,
+      "04": {
+        "shield": 8,
+        "immediateDamage": 4,
+        "charge": 2,
+        "energy": 2,
+        "withCoreDamage": 21,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 56
+      },
+      "44-old": {
+        "shield": 8,
+        "immediateDamage": 0,
+        "charge": 2,
+        "energy": 2,
+        "withCoreDamage": 17,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 56
+      },
+      "44-candidate": {
+        "shield": 12,
+        "immediateDamage": 0,
+        "charge": 2,
+        "energy": 2,
+        "withCoreDamage": 17,
+        "withCoreCharge": 0,
+        "hpAfterEnemy": 60
+      }
+    }
+  ],
+  "catalogueUnchanged": true
+}
