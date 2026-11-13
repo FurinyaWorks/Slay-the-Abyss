@@ -18,6 +18,8 @@ end
 for _,up in ipairs({false,true})do
  for mask=0,3 do
   local s=fresh();s.player.statuses.xiao_mask=mask>0 and mask or nil
+  local projected=P.plan({hp=s.player.hp,mask=mask,relicUsed=false,startingRelic=true},{id='x56',upgraded=up})
+  eq(projected.expectedResourceAfterIfAlive.mask,mask>0 and math.min(3,mask+1)or 0)
   local hand=#s.hand;local hp=s.player.hp;run(s,'x56',up)
   eq(s.player.statuses.xiao_mask or 0,mask>0 and math.min(3,mask+1)or 0)
   eq(#s.hand,hand+(up and 2 or 1));eq(s.player.hp,hp);eq(s.xiao.relicUsed,false);eq(s.player.block,0)

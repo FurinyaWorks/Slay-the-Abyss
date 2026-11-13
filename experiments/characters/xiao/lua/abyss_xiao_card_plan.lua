@@ -1,4 +1,4 @@
--- Pure first-fifty-four-card proposal. Host owns cost, target, snapshots and effects.
+-- Pure candidate-card proposal. Host owns cost, target, snapshots and effects.
 local Data=require('abyss_xiao_core_data')
 local M={supported={}}
 local cards={};for _,c in ipairs(Data.cards)do cards[c.id]=c;M.supported[c.id]=true end
@@ -20,6 +20,8 @@ function M.plan(resource,payload)
    effects[#effects+1]={op='xiaoCard',kind='maskCommit',value=e.value,requiresAlive=true}
    local entered=after.mask==0 and e.value>0;after.mask=e.value==0 and 0 or math.max(after.mask,e.value)
    if entered and resource.startingRelic and not after.relicUsed then after.relicUsed=true end
+  elseif e.op=='extendMask'then
+   effects[#effects+1]={op='xiaoCard',kind=e.op,value=e.value};if after.mask>0 then after.mask=math.min(Data.maskRules.maxDuration,after.mask+e.value)end
   elseif e.op=='shortenMask'then
    effects[#effects+1]={op='xiaoCard',kind=e.op,value=e.value};after.mask=math.max(0,after.mask-e.value)
   elseif e.op=='block'or e.op=='draw'or e.op=='loseHp'or e.op=='energy'then effects[#effects+1]=copy(e)
