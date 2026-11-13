@@ -67,7 +67,7 @@ test('opposite reachable choices: lethal now vs preserve charge economy',()=>{
  assert.equal(play(startTurn(endTurn(play(setup,0,0))),0,0).enemies[1].hp,20);
 });
 test('display generated from same structured variants, no false approval',()=>{
- assert.equal(catalogue.cards.length,6);assert.equal(catalogue.production_enabled,false);
+ assert.equal(catalogue.cards.length,7);assert.equal(catalogue.production_enabled,false);
  for(const c of catalogue.cards){assert.equal(c.review.human_approved,false);assert.match(c.name,/^待命名·/);for(const up of [false,true]) assert.match(cardText(c.id,up),/能量/);}
  assert.match(cardText('ganyu-03',true),/9点伤害.*8点伤害/);
 });
@@ -105,4 +105,17 @@ test('starter relic explicitly owns bank hook; removal, cap and active alternati
  assert.equal(endTurn(s).charge,1);assert.equal(endTurn(s).energy,0);
  s.hand=[{id:'ganyu-06'}];assert.equal(play(s,0).charge,2);
  s.relics=['ganyu-starter-01','ganyu-starter-01'];assert.throws(()=>endTurn(s),/invalid relics/);
+});
+
+test('draw card uses base/upgraded counts, pays first, cannot shuffle itself back',()=>{
+ for(const up of [false,true]) {
+  const s=hand(initial(),'ganyu-07',up);s.draw=Array.from({length:4},()=>({id:'ganyu-01'}));
+  const r=play(s,0);assert.equal(r.hand.length,up?3:2);assert.equal(r.energy,2);assert.equal(r.discard.length,1);
+ }
+ const s=hand(initial(),'ganyu-07');s.discard=[{id:'ganyu-02'}];const r=play(s,0);
+ assert.deepEqual(r.hand,[{id:'ganyu-02'}]);assert.deepEqual(r.discard,[{id:'ganyu-07',upgraded:false}]);
+});
+test('draw stops at hand limit without losing cards or spending extra RNG',()=>{
+ const s=initial();s.hand=[{id:'ganyu-07'},...Array(9).fill({id:'ganyu-01'})];s.draw=Array(5).fill({id:'ganyu-02'});
+ const r=play(s,0);assert.equal(r.hand.length,10);assert.equal(r.draw.length,4);assert.equal(r.drawSeed,s.drawSeed);
 });

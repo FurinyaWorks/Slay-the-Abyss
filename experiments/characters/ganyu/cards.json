@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.2.0",
+  "version": "ganyu-sample-0.3.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -207,6 +207,38 @@
         "status": "HOLD",
         "human_approved": false,
         "reason": "来源逐条官方核验与人审未完成；候选名不作为玩家显示名"
+      }
+    },
+    {
+      "id": "ganyu-07",
+      "name": "待命名·ganyu-07",
+      "candidate_name": null,
+      "role": "以能量与抽牌机会换即时过牌，改善找箭但不保证直接获取",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-07",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "先效后名的过牌候选；待来源/审美/实际成本评审，不自动加入初始10张"
       }
     }
   ],

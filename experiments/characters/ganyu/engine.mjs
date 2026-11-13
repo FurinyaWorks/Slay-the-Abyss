@@ -1,4 +1,5 @@
 // Isolated candidate model. No production loader or frozen V4 dependency.
+import { drawCards, validateDrawSeed } from './deck.mjs';
 import { readFileSync } from 'node:fs';
 export const catalogue = JSON.parse(readFileSync(new URL('./cards.json', import.meta.url)));
 export const rules = catalogue.environment;
@@ -10,6 +11,7 @@ function natural(value, label, min = 0) {
 }
 export function validateState(s) {
   if (!s || !['player','between','won','lost'].includes(s.phase)) throw new Error('invalid phase');
+  validateDrawSeed(s.drawSeed);
   for (const key of ['hp','block','energy','charge','turn']) natural(s[key], key, key === 'turn' ? 1 : 0);
   if (s.charge > rules.maxCharge) throw new Error('invalid charge');
   if (['player','between'].includes(s.phase) && s.hp === 0) throw new Error('invalid living player');
@@ -38,7 +40,7 @@ export function validateState(s) {
 
 export function initial(enemies = [{ hp: 30, block: 0, intent: 8 }]) {
   const s = { phase: 'player', hp: rules.initialHp, block: 0, energy: rules.energyPerTurn, charge: 0, storm: null,
-    enemies: clone(enemies), hand: [], draw: [], discard: [], exhausted: [], relics: [starterRelic.id], turn: 1 };
+    enemies: clone(enemies), hand: [], draw: [], discard: [], exhausted: [], drawSeed: 37, relics: [starterRelic.id], turn: 1 };
   validateState(s); return s;
 }
 function hit(enemy, damage) {
@@ -69,6 +71,7 @@ export function play(input, handIndex, target = null, cancel = false) {
   s.hand.splice(handIndex, 1);
   for (const effect of spec.effects) {
     switch (effect.op) {
+      case 'draw': drawCards(s, effect.amount, rules.handLimit); break;
       case 'damage': hit(s.enemies[target], effect.amount); break;
       case 'block': s.block += effect.amount; break;
       case 'aoe': all(s, effect.amount); break;
@@ -129,7 +132,7 @@ export function startTurn(input) {
 export function cardText(id, upgraded = false) {
   const card = variants.get(id); if (!card) throw new Error('unknown card');
   const v = upgraded ? card.upgrade : card.base;
-  const effects = v.effects.map(e => ({damage:`对目标造成${e.amount}点伤害。`,block:`获得${e.amount}点格挡。`,aoe:`对所有存活敌人造成${e.amount}点伤害。`,charge:`获得${e.amount}层蓄力（上限${rules.maxCharge}）。`,storm:`建立冰雨：从本回合起连续${e.turns}个回合结束时，对所有存活敌人造成${e.amount}点伤害；重复施放取较高伤害与剩余次数，不叠加。`,charged_shot:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，随后对所有存活敌人造成${e.bloom}点伤害。`})[e.op]);
+  const effects = v.effects.map(e => ({draw:`抽${e.amount}张牌（手牌上限${rules.handLimit}）。`,damage:`对目标造成${e.amount}点伤害。`,block:`获得${e.amount}点格挡。`,aoe:`对所有存活敌人造成${e.amount}点伤害。`,charge:`获得${e.amount}层蓄力（上限${rules.maxCharge}）。`,storm:`建立冰雨：从本回合起连续${e.turns}个回合结束时，对所有存活敌人造成${e.amount}点伤害；重复施放取较高伤害与剩余次数，不叠加。`,charged_shot:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，随后对所有存活敌人造成${e.bloom}点伤害。`})[e.op]);
   return `${card.name}${upgraded ? '+' : ''}｜${v.cost}能量｜${effects.join('')}`;
 }
 

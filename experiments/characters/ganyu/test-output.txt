@@ -1,29 +1,31 @@
-✔ initial draw, deterministic shuffle and card conservation across reshuffles (5.260319ms)
-✔ ordered core at bottom drawn on second turn, saturation waiting visible (1.176781ms)
-✔ reshuffle cannot redraw in-hand played cards, cancel cannot consume RNG (0.649265ms)
-✔ malformed seed/deck/phase never mutates caller (0.726018ms)
-✔ 40-card bottom core is unavailable until turn8 even with full charge (1.183201ms)
-✔ independent base/upgrade oracles, charge 0/1/2 (3.397359ms)
-✔ primary lethal still blooms; armor consumed separately, exact lethal (0.342964ms)
-✔ invalid target/payment/index and cancel cannot mint resources or move cards (1.058978ms)
-✔ all other base/upgrade effect contracts (0.614574ms)
-✔ bank unused energy at end, saturation, no passive per-card grant (4.098119ms)
-✔ storm two ticks, refresh max not sum, dead enemies cannot attack (0.614213ms)
-✔ storm cannot be funded by future banking, and no enemy turn after victory (0.441579ms)
-✔ block persists across enemy multihits then clears next turn; death stops turn (0.592502ms)
-✔ no retain/shuffle implied, draw has hand cap and actual availability (0.512574ms)
-✔ opposite reachable choices: lethal now vs preserve charge economy (0.766799ms)
-✔ display generated from same structured variants, no false approval (0.860797ms)
-✔ upgrade flag must be boolean; string false never grants upgrade (0.317147ms)
-✔ storm independent base/upgraded costs, every tick and expiry (0.546654ms)
-✔ unknown effect after payment rolls back caller; text follows duration data (0.501298ms)
-✔ reject malformed numeric/terminal inputs atomically at every boundary (3.935591ms)
-✔ starter relic explicitly owns bank hook; removal, cap and active alternative (0.327091ms)
-ℹ tests 21
+✔ initial draw, deterministic shuffle and card conservation across reshuffles (4.877947ms)
+✔ ordered core at bottom drawn on second turn, saturation waiting visible (1.251831ms)
+✔ reshuffle cannot redraw in-hand played cards, cancel cannot consume RNG (0.561846ms)
+✔ malformed seed/deck/phase never mutates caller (0.640162ms)
+✔ 40-card bottom core is unavailable until turn8 even with full charge (1.279162ms)
+✔ independent base/upgrade oracles, charge 0/1/2 (3.175552ms)
+✔ primary lethal still blooms; armor consumed separately, exact lethal (0.310266ms)
+✔ invalid target/payment/index and cancel cannot mint resources or move cards (0.883429ms)
+✔ all other base/upgrade effect contracts (0.793358ms)
+✔ bank unused energy at end, saturation, no passive per-card grant (4.06421ms)
+✔ storm two ticks, refresh max not sum, dead enemies cannot attack (0.548327ms)
+✔ storm cannot be funded by future banking, and no enemy turn after victory (0.384947ms)
+✔ block persists across enemy multihits then clears next turn; death stops turn (0.46214ms)
+✔ no retain/shuffle implied, draw has hand cap and actual availability (0.430163ms)
+✔ opposite reachable choices: lethal now vs preserve charge economy (0.677347ms)
+✔ display generated from same structured variants, no false approval (0.776352ms)
+✔ upgrade flag must be boolean; string false never grants upgrade (0.26521ms)
+✔ storm independent base/upgraded costs, every tick and expiry (1.594136ms)
+✔ unknown effect after payment rolls back caller; text follows duration data (0.443883ms)
+✔ reject malformed numeric/terminal inputs atomically at every boundary (3.892757ms)
+✔ starter relic explicitly owns bank hook; removal, cap and active alternative (0.388411ms)
+✔ draw card uses base/upgraded counts, pays first, cannot shuffle itself back (0.691908ms)
+✔ draw stops at hand limit without losing cards or spending extra RNG (0.171883ms)
+ℹ tests 23
 ℹ suites 0
-ℹ pass 21
+ℹ pass 23
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 141.156596
+ℹ duration_ms 137.445197
