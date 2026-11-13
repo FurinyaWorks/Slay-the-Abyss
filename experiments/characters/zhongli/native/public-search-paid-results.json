@@ -1,0 +1,23 @@
+{
+  "sharedCommit": "025b06bbae93809e92f31dd99fe25335374690bb",
+  "method": "Independent exact workspace git archive; rebuild Lua data; execute original author spec and frozen shared transaction suite",
+  "markers": [
+    "AUTHOR_PUBLIC_ZL_SEARCH_PAID_PASS 24 resource/version/hand scenarios plus4 empty-pile cases",
+    "ZHONGLI_SEARCH_TRANSACTION_PASS"
+  ],
+  "uniqueAuthorCases": 28,
+  "repeatedAuthorMatrixNotCountedTwice": true,
+  "verified": [
+    "native paid gain/spend then draw and exhaust",
+    "NoDraw preserves payment/resource/exhaust",
+    "Feel No Pain and Dark Embrace native exhaustion triggers",
+    "fault after Dark Embrace draw restores full graph including aliases and RNG",
+    "Scry continuation failure restores revealed boundary; retry only once",
+    "automatic exact-definition gates and zero energy rejection"
+  ],
+  "limitations": [
+    "Controlled existing-UID hand/pile fixtures",
+    "Injected continuation and faults are transaction fixtures, not natural encounter observations",
+    "No incoming jade absorption, source/human/balance approval or full 75-card admission"
+  ]
+}
