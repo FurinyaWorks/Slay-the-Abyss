@@ -7,7 +7,6 @@ assignee:
 created_date: 2026-11-06 03:15
 updated_date: '2026-11-10T08:20:00Z'
 labels: []
-milestone: m-7
 dependencies: []
 documentation:
   - docs/backlog-details/M7-EVENT-SELECTOR-RECORD-20261110.md

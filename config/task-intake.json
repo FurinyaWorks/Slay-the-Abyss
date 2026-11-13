@@ -1,7 +1,6 @@
 {
   "schemaVersion": 1,
   "currentMilestoneIds": [
-    "m-7",
     "m-8",
     "m-9"
   ],
@@ -12,5 +11,5 @@
     "TASK-62",
     "TASK-64"
   ],
-  "note": "Read-only preliminary check for new claims. No calendar or milestone lane gates. Current milestone IDs preserve Backlog identity only, not execution order. ALLOW does not grant approval or claim ownership."
+  "note": "Read-only preliminary check for new claims. M7 archived; only M8/M9 are active product milestones. No calendar or milestone lane gates. ALLOW does not grant approval or claim ownership."
 }

@@ -237,17 +237,14 @@ test('M3 and M4 enforce the confirmed Traveler-only two-act competition scope', 
   }
 });
 
-test('archived stages keep the frozen M3/M4 contract while the active board owns M7-M9', () => {
-  const active = ['M7｜工程架构与性能强化', 'M8｜产品体验与核心特色', 'M9｜内容建设与扩充'];
-  const archived = [...competitionTitles, 'M6｜前两幕作品人工投稿与版本归档'];
-  assert.deepEqual(auditMilestoneScope(active, archived), []);
-  // A finished stage that disappears from both the board and the archive is still a scope regression.
-  assert.match(auditMilestoneScope(active, [competitionTitles[1]]).join('\n'), /M3.*范围/);
-  assert.match(auditMilestoneScope(active, [competitionTitles[0]]).join('\n'), /M4.*范围/);
-  // Archived M7 titles cannot stand in for the active chronological contract.
-  assert.match(auditMilestoneScope(active.slice(1), ['M7｜工程架构与性能强化']).join('\n'), /M7/);
-  // The same stage in both places is ambiguous rather than accepted.
-  assert.match(auditMilestoneScope([...active, competitionTitles[0]], [competitionTitles[0]]).join('\n'), /M3.*范围/);
+test('archived M7 and frozen M3/M4 remain auditable while only M8/M9 are active', () => {
+  const active=['M8｜产品体验与核心特色','M9｜内容建设与扩充'];
+  const archived=[...competitionTitles,'M6｜前两幕作品人工投稿与版本归档','M7｜工程架构与性能强化'];
+  assert.deepEqual(auditMilestoneScope(active,archived),[]);
+  assert.match(auditMilestoneScope(active,archived.filter(x=>!x.startsWith('M7'))).join('\n'),/M7.*归档/);
+  assert.match(auditMilestoneScope([...active,'M7｜工程架构与性能强化'],archived).join('\n'),/M7.*活动/);
+  assert.match(auditMilestoneScope(active,[competitionTitles[1],...archived.slice(2)]).join('\n'),/M3.*范围/);
+  assert.match(auditMilestoneScope(active,[competitionTitles[0],...archived.slice(2)]).join('\n'),/M4.*范围/);
 });
 
 test('the public milestone is bound only to Traveler and preserves superseded history separately', () => {
@@ -309,28 +306,26 @@ test('archived milestones still resolve for carry-over tasks and keep the frozen
     'without the milestone record a carry-over task has no valid milestone');
 });
 
-test('archiving every current stage cannot make the active-stage contract disappear', t => {
-  const stages = ['M7｜工程架构与性能强化', 'M8｜产品体验与核心特色', 'M9｜内容建设与扩充'];
-  const root = backlogFixture(t, [], '### M7\n### M8\n### M9\n');
-  const archive = join(root, 'backlog/archive/milestones');
-  mkdirSync(archive, { recursive: true });
-  for (const [i, title] of stages.entries()) {
-    writeFileSync(join(archive, `m-${i + 7}.md`), `---\nid: m-${i + 7}\ntitle: ${title}\n---\n`);
-  }
-  for (const i of [4, 5]) renameSync(join(root, `backlog/milestones/m-${i}.md`), join(archive, `m-${i}.md`));
-  for (const verify of [verifyBacklogRoadmap, verifyMilestoneScope]) {
-    const errors = verify(root).join('\n');
-    for (const stage of ['M7', 'M8', 'M9']) assert.match(errors, new RegExp(stage));
+test('archiving both current product stages cannot disable the active-stage contract', t => {
+  const root=backlogFixture(t,[],'### M8\n### M9\n');
+  const archive=join(root,'backlog/archive/milestones');
+  mkdirSync(archive,{recursive:true});
+  for(const [i,title] of ['M7｜工程架构与性能强化','M8｜产品体验与核心特色','M9｜内容建设与扩充'].entries())
+    writeFileSync(join(archive,'m-'+(i+7)+'.md'),'---\nid: m-'+(i+7)+'\ntitle: '+title+'\n---\n');
+  for(const i of [4,5])renameSync(join(root,'backlog/milestones/m-'+i+'.md'),join(archive,'m-'+i+'.md'));
+  for(const verify of [verifyBacklogRoadmap,verifyMilestoneScope]){
+    const errors=verify(root).join('\n');
+    for(const stage of ['M8','M9'])assert.match(errors,new RegExp(stage));
   }
 });
 
-test('the configured current stages stay required even if all their records are deleted', t => {
-  const root = backlogFixture(t, []);
-  mkdirSync(join(root, 'config'));
-  writeFileSync(join(root, 'config/task-intake.json'), JSON.stringify({ currentMilestoneIds: ['m-7', 'm-8', 'm-9'] }));
-  for (const verify of [verifyBacklogRoadmap, verifyMilestoneScope]) {
-    const errors = verify(root).join('\n');
-    for (const stage of ['M7', 'M8', 'M9']) assert.match(errors, new RegExp(stage));
+test('configured active M8/M9 cannot disappear after archiving M7', t => {
+  const root=backlogFixture(t,[]);
+  mkdirSync(join(root,'config'));
+  writeFileSync(join(root,'config/task-intake.json'),JSON.stringify({currentMilestoneIds:['m-8','m-9']}));
+  for(const verify of [verifyBacklogRoadmap,verifyMilestoneScope]){
+    const errors=verify(root).join('\n');
+    for(const stage of ['M8','M9'])assert.match(errors,new RegExp(stage));
   }
 });
 
@@ -343,31 +338,45 @@ test('unfinished optional work needs an owner; historical Done records do not', 
   assert.deepEqual(auditQueueOwners([task('TASK-26', { milestone: null }), task('TASK-2', { status: 'Done', assignees: [] })]), []);
 });
 
-test('chronological M7 engineering / M8 experience / M9 content scope is enforced',()=>{
-  const good=[...competitionTitles,'M7｜工程架构与性能强化','M8｜产品体验与核心特色','M9｜内容建设与扩充'];
-  assert.deepEqual(auditMilestoneScope(good),[]);
-  const obsolete=[...competitionTitles,'M7｜产品体验与核心特色','M8｜内容建设与扩充','M9｜工程架构与性能强化'];
-  assert.match(auditMilestoneScope(obsolete).join('\n'),/M7/);
-  assert.match(auditMilestoneScope(good.slice(0,-1)).join('\n'),/M9/);
-  assert.match(auditMilestoneScope([...good,'M7｜工程架构与性能强化']).join('\n'),/M7/);
+test('M7 retirement and M8/M9 product scope are enforced',()=>{
+  const active=[...competitionTitles,'M8｜产品体验与核心特色','M9｜内容建设与扩充'];
+  const archive=['M7｜工程架构与性能强化'];
+  assert.deepEqual(auditMilestoneScope(active,archive),[]);
+  assert.match(auditMilestoneScope([...active,'M7｜工程架构与性能强化'],archive).join('\n'),/M7.*活动/);
+  assert.match(auditMilestoneScope(active.slice(0,-1),archive).join('\n'),/M9/);
+  assert.match(auditMilestoneScope(active,[]).join('\n'),/M7.*归档/);
+  assert.match(auditMilestoneScope(active,['M7｜工程架构与其他']).join('\n'),/M7.*归档/);
 });
-test('M7 and M8 and M9 active task mapping follows native milestone IDs',()=>{
-  const phases={...milestone,'m-7':'M7','m-8':'M8','m-9':'M9'};
-  const tasks=[task('TASK-74',{milestone:'m-7'}),task('TASK-85',{milestone:'m-8'}),task('TASK-97',{milestone:'m-9'})];
-  const plan='### M7\n- TASK-74：工程\n### M8\n- TASK-85：角色\n### M9\n- TASK-97：内容\n';
+
+test('historical Done M7 records remain while active product work uses M8/M9',()=>{
+  const phases={...milestone,'m-8':'M8','m-9':'M9'};
+  const tasks=[task('TASK-74',{status:'Done',milestone:'m-7'}),task('TASK-85',{milestone:'m-8'}),task('TASK-97',{milestone:'m-9'})];
+  const plan='### M8\n- TASK-85：角色\n### M9\n- TASK-97：内容\n';
   assert.deepEqual(auditRoadmap(tasks,plan,phases),[]);
-  assert.ok(auditRoadmap(tasks,'### M7\n- TASK-85：提前越级\n',phases).length);
+  assert.ok(auditRoadmap([task('TASK-74',{status:'In Progress',milestone:'m-7'})],plan,phases).length);
 });
-test('active native ID must match logical stage number',async()=>{
+
+test('active native IDs are M8/M9 and cannot reactivate M7',async()=>{
   const {auditOrderedStageIds}=await import('../scripts/verify-backlog-roadmap.mjs');
-  const good=[{id:'m-7',title:'M7｜工程架构与性能强化'},{id:'m-8',title:'M8｜产品体验与核心特色'},{id:'m-9',title:'M9｜内容建设与扩充'}];
+  const good=[{id:'m-8',title:'M8｜产品体验与核心特色'},{id:'m-9',title:'M9｜内容建设与扩充'}];
   assert.deepEqual(auditOrderedStageIds(good),[]);
-  assert.ok(auditOrderedStageIds([{...good[0],id:'m-9'},good[1],good[2]]).length);
+  assert.ok(auditOrderedStageIds([{...good[0],id:'m-9'},good[1]]).length);
+  assert.match(auditOrderedStageIds([{id:'m-7',title:'M7｜工程架构与性能强化'},...good]).join('\n'),/M7.*归档/);
 });
-test('engineering parent and UI display child keep distinct milestone ownership',()=>{
-  const phases={'m-7':'M7','m-8':'M8'};
-  const tasks=[task('TASK-74',{milestone:'m-7'}),task('TASK-74.1',{milestone:'m-8',parentTaskId:'TASK-74'})];
-  assert.deepEqual(auditRoadmap(tasks,'### M7\n- TASK-74：工程\n### M8\n- TASK-74.1：展示证据\n',phases),[]);
+
+test('engineering maintenance parent remains unmilestoned while its product child is M8',()=>{
+  const phases={'m-8':'M8'};
+  const tasks=[task('TASK-74',{milestone:null}),task('TASK-74.1',{milestone:'m-8',parentTaskId:'TASK-74'})];
+  assert.deepEqual(auditRoadmap(tasks,'### M8\n- TASK-74.1：展示证据\n',phases),[]);
+});
+
+
+test('unfinished tasks cannot keep retired M7 while Done history keeps its identity', t=>{
+  const legacy='milestone: m-7\nassignee: ["@Codex"]\n';
+  const root=backlogFixture(t,[['backlog/tasks/task-100.md','TASK-100','In Progress',legacy]]);
+  assert.match(verifyBacklogRoadmap(root).join('\n'),/TASK-100.*M7/);
+  const done=backlogFixture(t,[['backlog/tasks/task-74.md','TASK-74','Done',legacy]]);
+  assert.deepEqual(verifyBacklogRoadmap(done),[]);
 });
 
 const role=(status='To Do',dependencies=['TASK-105'])=>({id:'TASK-97',status,dependencies});

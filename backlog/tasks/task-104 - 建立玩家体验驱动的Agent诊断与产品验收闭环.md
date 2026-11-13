@@ -8,7 +8,7 @@ created_date: '2026-11-09 11:11'
 updated_date: '2026-11-10 14:29'
 labels:
   - product-diagnosis
-milestone: m-7
+milestone: m-8
 dependencies: []
 references:
   - 'https://github.com/FurinyaWorks/Slay-the-Abyss/pull/565'

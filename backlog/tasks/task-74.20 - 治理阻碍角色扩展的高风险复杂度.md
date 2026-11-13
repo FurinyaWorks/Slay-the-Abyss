@@ -10,7 +10,7 @@ created_date: '2026-11-06 01:46'
 updated_date: '2026-11-11 01:13'
 updated_date: '2026-11-11T01:30:00Z'
 labels: []
-milestone: m-7
+milestone: m-9
 dependencies: []
 documentation:
   - docs/backlog-details/M7-CORE-LIFECYCLE-20261106.md

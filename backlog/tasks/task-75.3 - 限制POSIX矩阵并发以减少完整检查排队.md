@@ -7,7 +7,6 @@ assignee:
 created_date: '2026-11-04 22:58'
 updated_date: '2026-11-06 03:55'
 labels: []
-milestone: m-7
 dependencies: []
 references:
   - docs/SPRINT_EXECUTION.md

@@ -5,11 +5,11 @@ status: To Do
 assignee:
   - Furinya
 created_date: '2026-11-13 09:23'
-updated_date: '2026-11-13 09:23'
+updated_date: '2026-11-14 00:32'
 labels:
   - capacity
   - scalability
-milestone: m-7
+milestone: m-9
 dependencies: []
 references:
   - docs/PLATFORM_LOAD.md

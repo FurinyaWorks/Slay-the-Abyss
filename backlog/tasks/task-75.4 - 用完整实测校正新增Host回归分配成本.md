@@ -7,7 +7,6 @@ assignee:
 created_date: '2026-11-05 03:18'
 updated_date: '2026-11-05 03:54'
 labels: []
-milestone: m-7
 dependencies: []
 documentation:
   - docs/backlog-details/M7-HOST-BATCH-20261105.md
