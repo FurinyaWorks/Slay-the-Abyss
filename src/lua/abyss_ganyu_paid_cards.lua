@@ -19,7 +19,10 @@ local StormFamilyDefinitions=require('abyss_ganyu_storm_family_definitions')
 local stormFamilyById={};for _,d in ipairs(StormFamilyDefinitions.cards)do stormFamilyById[d.id]=d end
 local DefensiveStormDefinitions=require('abyss_ganyu_defensive_storm_definitions')
 local defensiveStormById={};for _,d in ipairs(DefensiveStormDefinitions.cards)do defensiveStormById[d.id]=d end
+local ShieldChargeDefinitions=require('abyss_ganyu_shield_charge_definitions')
+local shieldChargeById={};for _,d in ipairs(ShieldChargeDefinitions.cards)do shieldChargeById[d.id]=d end
 local M={}
+function M.shieldChargeDefinitions()return Copy(ShieldChargeDefinitions)end
 function M.defensiveStormDefinitions()return Copy(DefensiveStormDefinitions)end
 function M.stormFamilyDefinitions()return Copy(StormFamilyDefinitions)end
 function M.retrievalDefinitions()return Copy(RetrievalDefinitions)end
@@ -88,6 +91,33 @@ local function defensiveStormUse(state,instance,card)
   or not same(card.effects,instance.upgraded and d.upgrade.effects or d.effects)then return false,'ganyu_defensive_storm_unavailable'end
  return true
 end
+local function shieldChargeUse(state,instance,card)
+ local d=instance and shieldChargeById[instance.cardId]
+ if not d or instance.upgraded~=nil and type(instance.upgraded)~='boolean'
+  or state.characterCandidate~='ganyu'or state.experimentalMechanics~=true or state.originalV4
+  or card.experimental~=true or card.ganyuCandidate~=true or card.ganyuNativeCandidate~=nil
+  or card.runNativeABI or card.originalV4 or card.silentFinalCard or card.costMode
+  or card.keqingCandidate~=nil or card.xiaoCandidate~=nil or card.zhongliCandidate~=nil
+  or card.selfRetain~=d.selfRetain or card.exhaust~=d.exhaust or card.type~=d.type or card.target~=d.target
+  or getmetatable(card.effects)
+  or not same(card.effects,instance.upgraded and d.upgrade.effects or d.effects)then return false,'ganyu_shield_charge_unavailable'end
+ -- Compare every frozen source field, allowing only inert catalog identity metadata.
+ -- Runtime cost stays engine-owned (Corruption and per-instance cost can change it).
+ local source=state.catalog.cards[instance.cardId]
+ if type(source)~='table'or getmetatable(source)then return false,'ganyu_shield_charge_source'end
+ local function exact(a,b)
+  if type(a)~='table'or type(b)~='table'then return a==b end
+  if getmetatable(a)or getmetatable(b)then return false end
+  for k,v in pairs(a)do if not exact(v,b[k])then return false end end
+  for k in pairs(b)do if a[k]==nil then return false end end
+  return true
+ end
+ for key,value in pairs(d)do if not exact(source[key],value)then return false,'ganyu_shield_charge_source'end end
+ for key in pairs(source)do
+  if d[key]==nil and key~='sourceId'and key~='color'and key~='ganyuSourceSHA256' then return false,'ganyu_shield_charge_source'end
+ end
+ return true
+end
 function M.supportsStormFamily(e)
  if type(e)~='table'or getmetatable(e)then return false end
  for _,d in pairs(stormFamilyById)do if same(e,d.effects[1])or same(e,d.upgrade.effects[1])then return true end end
@@ -133,6 +163,7 @@ function M.supports(e)
   or {op='charged_shot',direct=e.direct,bloom=e.bloom})
 end
 function M.canUse(state,card,targetIndex,instance)
+ if instance and shieldChargeById[instance.cardId]then return shieldChargeUse(state,instance,card)end
  if instance and defensiveStormById[instance.cardId]then return defensiveStormUse(state,instance,card)end
  if instance and stormFamilyById[instance.cardId]or card.effects[1]and card.effects[1].op=='ganyuStorm'and not M.supportsStorm(card.effects[1])then return stormFamilyUse(state,instance,card)end
  if instance and retrievalById[instance.cardId]or card.effects[1]and card.effects[1].op=='ganyuRetrieve'then return retrievalUse(state,instance,card)end
@@ -163,6 +194,12 @@ function M.prepare(combat,state,card,effects,target)
   assert(state.cardInUse and state.cardInUse.uid==context.uid,'invalid Ganyu native paid identity')
   context.ganyuPaid={uid=context.uid,turn=state.turn,playId=#state.cardsPlayedThisCombat,native=true}
   return effects
+ end
+ if shieldChargeById[state.cardInUse.cardId]then
+  local payload=Queued.prepare(combat,state,effects[2],target,context.uid)
+  local playId=#assert(state.cardsPlayedThisCombat,'missing Ganyu accepted use history')
+  context.ganyuPaid={uid=context.uid,turn=state.turn,playId=playId,payload=Copy(payload)}
+  return {Copy(effects[1]),{op='ganyuPaidStage',payload=payload,uid=context.uid,turn=state.turn,playId=playId}}
  end
  if defensiveStormById[state.cardInUse.cardId]then
   local payload=Storm.prepare(combat,state,effects[2],context.uid)
