@@ -8,6 +8,8 @@ local M={}
 local starterNative={}
 for _,d in ipairs(require('abyss_zhongli_starter_source').definitions())do if d.id=='zl01'or d.id=='zl02'then starterNative[d.id]=d end end
 local specs={zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
+ zl39={kind='spendJade',base=3,upgraded=3,type='attack',target='ENEMY',damage=6,upDamage=8,retain=false,exactExhaust=true},
+ zl73={kind='spendJade',base=3,upgraded=3,type='skill',target='ENEMY',weak=1,upWeak=2,retain=false,exactExhaust=true},
  zl26={kind='gainJade',base=10,upgraded=14,type='skill',target='SELF',retain=true,exactExhaust=false},
  zl38={kind='gainJade',base=2,upgraded=3,type='skill',target='SELF',retain=false,exactExhaust=true},
  zl03={kind='gainJade',base=12,upgraded=16,type='skill',target='SELF'},

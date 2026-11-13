@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Zhongli 39/73 real zero-cost paid and source Run acquisition',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/zhongli-zero-usecard.test.lua',{timeout:120000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/ZHONGLI_ZERO_PAID_PASS/);assert.match(r.stdout,/AUTHOR_ZL_ZERO_RUN_PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);});
