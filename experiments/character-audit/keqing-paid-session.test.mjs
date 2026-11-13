@@ -16,3 +16,12 @@ test('real paid UI exposes only committed bounded choices and rejects repeat/ref
   r=session.dispatch(c);assert.equal(r.ok,true);assert.equal(r.view.pending,null);assert.equal(session.dispatch(c).ok,false);
  }
 });
+test('real public nonempty discard supports KQ045 explicit selection',{skip:!root},async()=>{
+ const b=await import(pathToFileURL(root+'/experiments/characters/keqing/battle.mjs')),m=await import(pathToFileURL(root+'/experiments/characters/keqing/mechanics.mjs'));
+ const deckIds=['KQ045',...b.starterIds],initial=b.createBattle({deckIds,order:deckIds.map((_,i)=>i)});initial.discard.push(...initial.hand.splice(1,1));
+ const session=paidSession({start:()=>initial,catalog:[]},b,m.describe,{seed:37,mode:'starter'}),v=session.view();
+ assert.equal(v.discardChoices.length,1);assert.ok(v.discardChoices[0].text);const key=v.discardChoices[0].instance;
+ v.discardChoices[0].id='bad';assert.equal(session.view().discardChoices[0].id,'KQ001');
+ const r=session.dispatch({type:'play',revision:0,slot:1,options:{move:key}});assert.equal(r.ok,true);assert.equal(r.view.discardChoices.some(c=>c.instance===key),false);assert.equal(r.view.block,3);
+ assert.equal('draw' in r.view,false);assert.equal('rng' in r.view,false);
+});

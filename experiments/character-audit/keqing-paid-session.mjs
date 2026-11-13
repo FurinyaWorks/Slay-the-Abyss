@@ -4,6 +4,7 @@ export function paidSession(adapter,battle,text,{seed,mode}){
  const guard=()=>adapter.assertCurrent?.();
  function view(){guard();const v=model.view();return {...v,mode,seed,
   outcome:v.phase==='won'?'victory':v.phase==='lost'?'defeat':v.phase==='choice'?'choice':v.phase==='faulted'?'faulted':'playing',
+  discardChoices:v.discardChoices.map(c=>({...c,text:text(c.id,c.upgraded)})),
   hand:v.hand.map((c,i)=>({...c,slot:i+1,text:text(c.id,c.upgraded)})),
   enemies:v.enemies.map((e,i)=>({...e,target:i+1})),
   pending:v.pending?{...v.pending,options:v.pending.options.map(c=>({...c,text:text(c.id,c.upgraded)}))}:null};}
