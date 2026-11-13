@@ -4,6 +4,8 @@
     "abyss_xiao_turn_start": "core",
     "abyss_xiao_lifecycle_host": "core",
     "abyss_ganyu_storm_card": "core",
+    "abyss_ganyu_storm_family_definitions": "core",
+    "abyss_ganyu_storm_family_reward_run": "core",
     "abyss_zhongli_jade_resource": "core",
     "abyss_zhongli_owner_end": "core",
     "abyss_keqing_paid_cards": "core",

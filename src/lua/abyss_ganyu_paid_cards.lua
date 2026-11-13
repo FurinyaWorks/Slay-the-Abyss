@@ -15,7 +15,10 @@ local drawById={};for _,d in ipairs(DrawDefinitions.cards)do drawById[d.id]=d en
 local Retrieval=require('abyss_ganyu_retrieval_card')
 local RetrievalDefinitions=require('abyss_ganyu_retrieval_definitions')
 local retrievalById={};for _,d in ipairs(RetrievalDefinitions.cards)do retrievalById[d.id]=d end
+local StormFamilyDefinitions=require('abyss_ganyu_storm_family_definitions')
+local stormFamilyById={};for _,d in ipairs(StormFamilyDefinitions.cards)do stormFamilyById[d.id]=d end
 local M={}
+function M.stormFamilyDefinitions()return Copy(StormFamilyDefinitions)end
 function M.retrievalDefinitions()return Copy(RetrievalDefinitions)end
 function M.drawDefinitions()return Copy(DrawDefinitions)end
 function M.conditionalDefinitions()return Copy(ConditionalDefinitions)end
@@ -65,6 +68,23 @@ local function retrievalUse(state,instance,card)
   or not same(card.effects,instance.upgraded and d.upgrade.effects or d.effects)then return false,'ganyu_retrieval_unavailable'end
  return true
 end
+function M.supportsStormFamily(e)
+ if type(e)~='table'or getmetatable(e)then return false end
+ for _,d in pairs(stormFamilyById)do if same(e,d.effects[1])or same(e,d.upgrade.effects[1])then return true end end
+ return false
+end
+local function stormFamilyUse(state,instance,card)
+ local d=instance and stormFamilyById[instance.cardId]
+ if not d or instance.upgraded~=nil and type(instance.upgraded)~='boolean'
+  or state.characterCandidate~='ganyu'or state.experimentalMechanics~=true or state.originalV4
+  or card.experimental~=true or card.ganyuCandidate~=true or card.ganyuNativeCandidate~=nil
+  or card.runNativeABI or card.originalV4 or card.silentFinalCard or card.costMode
+  or card.keqingCandidate~=nil or card.xiaoCandidate~=nil or card.zhongliCandidate~=nil
+  or card.selfRetain~=d.selfRetain or card.exhaust~=d.exhaust or card.type~=d.type or card.target~=d.target
+  or getmetatable(card.effects)or not M.supportsStormFamily(card.effects[1])
+  or not same(card.effects,instance.upgraded and d.upgrade.effects or d.effects)then return false,'ganyu_storm_family_unavailable'end
+ return true
+end
 local function conditionalUse(state,instance,card,targetIndex)
  local d=instance and conditionalById[instance.cardId]
  if not d or instance.upgraded~=nil and type(instance.upgraded)~='boolean' or state.characterCandidate~='ganyu'or state.experimentalMechanics~=true or state.originalV4
@@ -83,7 +103,7 @@ function M.supportsStorm(e)
  return true
 end
 function M.supports(e)
- if M.supportsRetrieval(e)or M.supportsDraw(e)or M.supportsStorm(e)or M.supportsConditional(e)then return true end
+ if M.supportsStormFamily(e)or M.supportsRetrieval(e)or M.supportsDraw(e)or M.supportsStorm(e)or M.supportsConditional(e)then return true end
  if type(e)~='table' or getmetatable(e) or e.op~='ganyuCard'then return false end
  local allowed=e.kind=='charge'and {op=true,kind=true,amount=true}
   or e.kind=='chargedShot'and {op=true,kind=true,direct=true,bloom=true}
@@ -93,6 +113,7 @@ function M.supports(e)
   or {op='charged_shot',direct=e.direct,bloom=e.bloom})
 end
 function M.canUse(state,card,targetIndex,instance)
+ if instance and stormFamilyById[instance.cardId]or card.effects[1]and card.effects[1].op=='ganyuStorm'and not M.supportsStorm(card.effects[1])then return stormFamilyUse(state,instance,card)end
  if instance and retrievalById[instance.cardId]or card.effects[1]and card.effects[1].op=='ganyuRetrieve'then return retrievalUse(state,instance,card)end
  if instance and drawById[instance.cardId]or card.effects[1]and card.effects[1].op=='ganyuDraw'then return drawUse(state,instance,card)end
  if instance and conditionalById[instance.cardId] or card.effects[1]and card.effects[1].op=='ganyuConditional'then return conditionalUse(state,instance,card,targetIndex)end
@@ -126,7 +147,7 @@ function M.prepare(combat,state,card,effects,target)
  local draw=effects[1].op=='ganyuDraw'
  local conditional=effects[1].op=='ganyuConditional'
  local storm=effects[1].op=='ganyuStorm'
- if storm then assert(effects[1].amount==(state.cardInUse.upgraded and 6 or 4),'invalid storm face')end
+ if storm and not stormFamilyById[state.cardInUse.cardId]then assert(effects[1].amount==(state.cardInUse.upgraded and 6 or 4),'invalid storm face')end
  local e=retrieval and Retrieval.prepare(combat,state,effects[1],context.uid)or draw and Draw.prepare(combat,state,effects[1],context.uid)or conditional and Conditional.prepare(combat,state,effects[1],target,context.uid)or storm and Storm.prepare(combat,state,effects[1],context.uid)or Queued.prepare(combat,state,effects[1],target,context.uid)
  local playId=#assert(state.cardsPlayedThisCombat,'missing Ganyu accepted use history')
  context.ganyuPaid={uid=context.uid,turn=state.turn,playId=playId,payload=Copy(e),storm=storm,conditional=conditional,draw=draw,retrieval=retrieval}

@@ -769,3 +769,39 @@ controlled-victory actual generated-offer claim-to-next-Run.play chains. Generat
 cases use hand placement and energy fixtures after claiming, and do not establish
 all-thirteen natural acquisition or balance. Formal menus, pools and device
 acceptance remain unchanged/HOLD.
+
+## Ganyu storm family 18/31/59, explicit 42/40 research domain
+
+`abyss_ganyu_storm_family_reward_run.new(Data,seed)` adds the reviewed source
+family to a new `ganyu-reviewed-42-v1` domain: 42 definitions, 40 eligible rewards
+(common 10, uncommon 28, rare 2, plus two starter-only basic cards). Old 32/35/39
+launchers keep their original domain. Rare boss offers can still be shorter than
+requested; source rarities are unchanged and Prismatic remains explicitly refused.
+The source definitions match reviewed fb49814f SHA256
+`561c773173d921d72a368cd94b681ca7c37dd91dfe1046951eea406877d32a25`.
+Existing shared storm setup ABI and owner-end are reused without modification.
+
+18 costs 1 and creates amount 2/3 for three ticks; 31 costs 2 and creates 6/8 for
+three ticks, exhausting normally; 59 costs 2 and creates 3/4 for two ticks, with
+native self-retain while unplayed. Each face has narrow ID/marker/exact-effect and
+retain/exhaust validation. A newly permitted numerical storm shape does not grant
+an arbitrary card identity admission. The original 05 two-tick face gate remains.
+Setup does not immediately damage, does not spend charge, and retains the existing
+max-strength/max-duration refresh policy. Extending an older stronger field with
+a weaker card is source behavior under review, not an approved balance result.
+
+The paid host owns original UID/turn/play ordinal, detached source payload, full
+command Snapshot, native UseCard disposal and actual exhaust hooks. Targeted tests
+cover six full-duration public lifecycle cases, twelve refresh/NoDraw/FNP-DE cases,
+six fixed-offer Run UID cases, six real installation failures and Scry resumed
+refresh failures with alias restoration, thirty-six automatic gates, and post-native
+exhaust draw faults. The 42-domain generated twelve-seed chain uses unchanged real
+offers but controlled victory/hand placement and must not be described as natural
+map play or all-forty acquisition coverage. Formal shop/reward color pools, menu
+registration and device acceptance are unchanged; all source/refresh balance HOLDs
+remain explicit.
+
+Storm-family transaction fixture initially set exhaust-hook statuses without native
+Power history, so the expected Dark Embrace fault was not reached. The fixture
+was corrected to call Exhaust.rememberPower for both powers, preserving the real
+hook and reached-marker assertions; this was not a runtime card defect.

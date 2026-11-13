@@ -9,7 +9,8 @@ local function same(a,b)
  return true
 end
 function M.prepare(run,api)
- local includeRetrieval=run.candidateRewardPool=='ganyu-reviewed-39-v1'
+ local includeStormFamily=run.candidateRewardPool=='ganyu-reviewed-42-v1'
+ local includeRetrieval=run.candidateRewardPool=='ganyu-reviewed-39-v1'or includeStormFamily
  local includeDraw=run.candidateRewardPool=='ganyu-reviewed-35-v1'or includeRetrieval
  assert(run.candidateRewardPool=='ganyu-reviewed-32-v1'or includeDraw,'unknown candidate reward domain')
  local context=require('abyss_run_candidate').forCombat(run)
@@ -17,7 +18,7 @@ function M.prepare(run,api)
  assert(not require('abyss_relic_queries').hooks.owns(run,'prismatic_shard'),'experimental_candidate_prismatic_unsupported')
  local pools={common={},uncommon={},rare={}}
  local actual={};for _,c in ipairs(run.data.cards.cards)do actual[c.id]=c end
- for _,source in ipairs(require('abyss_ganyu_reward_catalog').definitions(includeDraw,includeRetrieval))do
+ for _,source in ipairs(require('abyss_ganyu_reward_catalog').definitions(includeDraw,includeRetrieval,includeStormFamily))do
   local c=assert(actual[source.id],'candidate reward definition missing')
   -- Closed generated definitions: no arbitrary extra execution/display fields.
   assert(same(c,source),'candidate reward definition drift')

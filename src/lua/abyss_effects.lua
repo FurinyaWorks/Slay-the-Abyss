@@ -187,7 +187,7 @@ local function supportedEffectOp(effect)
     if op=='ganyuRetrieve'and not require('abyss_ganyu_paid_cards').supportsRetrieval(effect)then return nil,'invalid_ganyu_retrieval'end
     if op=='ganyuDraw'and not require('abyss_ganyu_paid_cards').supportsDraw(effect)then return nil,'invalid_ganyu_draw'end
     if op=='ganyuConditional'and not require('abyss_ganyu_paid_cards').supportsConditional(effect)then return nil,'invalid_ganyu_conditional'end
-    if op=='ganyuStorm'and not require('abyss_ganyu_paid_cards').supportsStorm(effect)then return nil,'invalid_ganyu_storm'end
+    if op=='ganyuStorm'and not require('abyss_ganyu_paid_cards').supportsStorm(effect)and not require('abyss_ganyu_paid_cards').supportsStormFamily(effect)then return nil,'invalid_ganyu_storm'end
     if op=='ganyuCard' and not require('abyss_ganyu_paid_cards').supports(effect)then return nil,'invalid_ganyu_card'end
     if op=='defectFinal' and not require('abyss_defect_final_cards').supports(effect) then return nil,'invalid_defect_final' end
     return op
