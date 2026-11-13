@@ -455,3 +455,23 @@ original whole graph. A controlled fixed starter/hand fixture also executes
 paid 04 entry, actual Run.endTurn mask payment, and paid/free06 exit/exhaust.
 Native Intangible blood-cost and native shield differences remain design HOLD;
 this change does not introduce natural reward pools or formal class registration.
+
+## Ganyu seven conditional paid cards (explicit experiment)
+
+Adds source-bound 17/19/35/32/41/42/45 through
+`abyss_ganyu_paid_cards.conditionalDefinitions()`. The source definitions are copied
+unchanged from the reviewed conditional compiler (SHA256
+`e884c631205f9685e71347bf1a12f6d15e2b0a27e9d09e0cdf38c194a6dd71b4`).
+The reviewed role adapter captures NORMAL damage/block at accepted use time,
+selects the branch from execution-time resources, and runs native queued effects.
+The host binds canonical live card ID/base-upgrade face, paid UID/turn/ordinal and
+detached capture payload, with the existing full command Snapshot. It does not
+recompute modifiers after a choice or move resource consumption outside the queue.
+
+Targeted actual tests: 84 public C.play combinations, 14 fixed-reward Run.play
+chains, native-damage failure full-graph rollback, real Scry continuation with
+live-resource/frozen-modifier checks, aliases/retry/replay, and automatic admission.
+This extends Combat support to 32 Ganyu cards, not 75 or a registered character.
+Fixed rewards are not natural reward-pool evidence; source starter/catalog work is
+separate. Proposed types, balance, ordinary terminal semantics and formal release
+remain HOLD. No full suite or production registration is claimed.
