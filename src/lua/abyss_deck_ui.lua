@@ -369,7 +369,9 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         local generation=self.generation
         local cards,catalog=self.cards,self.catalog
         self.controllerPage=1
-        self.indexBase=indexBases[grid]
+        -- Only the shared official browser publishes a complete same-page list.
+        -- Legacy/choice grids retain their calibration-then-update transaction.
+        self.indexBase=self.browserShell and indexBases[grid] or nil
         self.pending,self.calibrating=false,false
         grid.scrollProgress=0
         if #cards==0 then
