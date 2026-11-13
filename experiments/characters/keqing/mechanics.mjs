@@ -14,6 +14,10 @@ export const cards = Object.freeze({
     effects: versions([{ op: 'wedge', setup: 5, release: 8, attacks: 2 }], [{ op: 'wedge', setup: 7, release: 11, attacks: 2 }]) },
   KQ004: { rarity: 'pending', channel: 'starter_candidate', candidateName: '重击（雷暴连斩分支）', role: '双段单体或雷楔群体兑现', type: 'attack', cost: 1,
     effects: versions([attack(4, 2), { op: 'detonate', damage: 4 }], [attack(5, 2), { op: 'detonate', damage: 6 }]) },
+  KQ006: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '消费雷楔换取当前防守，放弃再施放或引爆', type: 'skill', cost: 1,
+    effects: versions([{ op: 'block', amount: 5 }, { op: 'resourceBlock', resource: 'wedge', amount: 5 }], [{ op: 'block', amount: 8 }, { op: 'resourceBlock', resource: 'wedge', amount: 5 }]) },
+  KQ007: { rarity: 'pending', channel: 'reward_candidate', candidateName: null, role: '消费一次当前附魔换取防守，减少后续攻击兑现', type: 'skill', cost: 1,
+    effects: versions([{ op: 'block', amount: 5 }, { op: 'resourceBlock', resource: 'infusion', amount: 4 }], [{ op: 'block', amount: 8 }, { op: 'resourceBlock', resource: 'infusion', amount: 4 }]) },
   KQ005: { rarity: 'pending', channel: 'reward_candidate', candidateName: '天街巡游', role: '无雷楔前置的群体多段', type: 'attack', cost: 2,
     effects: versions([attack(3, 2, 'all'), attack(5, 1, 'all')], [attack(4, 2, 'all'), attack(7, 1, 'all')]) },
 });
@@ -23,12 +27,13 @@ export function describe(id, upgraded = false) {
   return [`待命名·${id}`, `${card.cost}能量`, ...card.effects[upgraded ? 'upgraded' : 'base'].map(effect => {
     switch (effect.op) {
       case 'damage': return `对${effect.target === 'all' ? '所有存活敌人' : '目标'}造成${effect.damage}伤害，共${effect.hits}段`;
+      case 'resourceBlock': return `若有${effect.resource === 'wedge' ? '雷楔，消费雷楔' : '附魔，消费1次附魔'}，额外获得${effect.amount}格挡`;
       case 'block': return `获得${effect.amount}格挡`;
       case 'wedge': return `无雷楔：对目标造成${effect.setup}伤害，设置1枚雷楔；有雷楔：消费雷楔，对目标造成${effect.release}伤害，随后获得附魔${effect.attacks}次`;
       case 'detonate': return `若有雷楔，消费它并对所有存活敌人造成${effect.damage}伤害`;
       default: throw new Error('unknown effect');
     }
-  }), ...(card.effects[upgraded ? 'upgraded' : 'base'].some(e => e.op === 'wedge' || e.op === 'detonate') ? [describeStatus('wedge')] : []), ...(card.type === 'attack' ? [describeStatus('infusion')] : [])].join('；');
+  }), ...(card.effects[upgraded ? 'upgraded' : 'base'].some(e => e.op === 'wedge' || e.op === 'detonate' || (e.op === 'resourceBlock' && e.resource === 'wedge')) ? [describeStatus('wedge')] : []), ...((card.type === 'attack' || card.effects[upgraded ? 'upgraded' : 'base'].some(e => e.resource === 'infusion')) ? [describeStatus('infusion')] : [])].join('；');
 }
 export function describeStatus(id) {
   if (id === 'wedge') return `雷楔：上限${statusRules.wedge.capacity}枚，${statusRules.wedge.expires}清除，${statusRules.wedge.stacking}`;
@@ -72,6 +77,10 @@ export function play(input, instance, target, { cancel = false } = {}) {
   for (const effect of effects) {
     switch (effect.op) {
       case 'damage': hit(effect.damage, effect.target === 'all' ? all : [target], effect.hits); break;
+      case 'resourceBlock':
+        if (effect.resource === 'wedge' && state.wedgeUntil !== null) { state.wedgeUntil = null; state.block += effect.amount; }
+        if (effect.resource === 'infusion' && state.infusion > 0) { state.infusion--; state.block += effect.amount; }
+        break;
       case 'block': state.block += effect.amount; break;
       case 'wedge':
         if (state.wedgeUntil !== null) {

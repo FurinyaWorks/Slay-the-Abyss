@@ -185,6 +185,46 @@
       "old_name": null,
       "change_reason": "new_candidate_no_approved_name",
       "status": "HOLD"
+    },
+    {
+      "card_id": "KQ006",
+      "decision_role": "消费雷楔换取当前防守",
+      "effect_ref": "mechanics.mjs#cards.KQ006",
+      "name": "待命名·KQ006",
+      "candidate_name": null,
+      "source_tier": null,
+      "source_text": null,
+      "source_verified": false,
+      "source_version": "unverified",
+      "source_context": "本作原创机制试验，未声称官方技能或完成来源降级",
+      "p1_checked": "pending_exact_primary_research",
+      "p2_checked": "pending",
+      "p3_status": "not_used",
+      "higher_priority_rejections": [],
+      "human_review": {
+        "approved": false
+      },
+      "status": "HOLD"
+    },
+    {
+      "card_id": "KQ007",
+      "decision_role": "消费一次当前附魔换取当前防守",
+      "effect_ref": "mechanics.mjs#cards.KQ007",
+      "name": "待命名·KQ007",
+      "candidate_name": null,
+      "source_tier": null,
+      "source_text": null,
+      "source_verified": false,
+      "source_version": "unverified",
+      "source_context": "本作原创机制试验，未声称官方技能或完成来源降级",
+      "p1_checked": "pending_exact_primary_research",
+      "p2_checked": "pending",
+      "p3_status": "not_used",
+      "higher_priority_rejections": [],
+      "human_review": {
+        "approved": false
+      },
+      "status": "HOLD"
     }
   ],
   "character_evidence": [
