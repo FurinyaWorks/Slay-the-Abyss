@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-31 10:47'
-updated_date: '2026-11-13 16:02'
+updated_date: '2026-11-13 16:20'
 labels:
   - art
   - technical-spike
@@ -68,4 +68,6 @@ Owner最新要求：离线画面、速度、资源成本先打磨到位，不请
 Draft PR https://github.com/FurinyaWorks/Slay-the-Abyss/pull/647 已建立，源码/证据独审r6通过，产品保持NO-GO。原生实验GIL/25冷50热证据冻结903bf2a31基线；develop收尾前移e805a87d，Draft当前有合并冲突，未把未测的新组合追认为通过，不自动重基/合并/发布。Git常规大包两次连接重置后，经GitHub API逐项验证54个blob与完整source tree并保留原提交fd5e161b上传成功。
 
 2026-11-14 Owner明确认可已查看的1600图元画质，认为3200已属奢侈。画质门槛改为GO（仅绑定当前be81ce01…f541/1600），1600固定为主候选，3200只留历史对照，不再追加美术拟合或强压图元。剩余集中于完整加载/热切换性能与官方客户端验证；本条不代表性能通过，不授予键鼠窗口、官方导入、合并或发布。独立确认记录experiments/lumine-native-fit/owner-acceptance.json。
+
+2026-11-14 Owner追加授权：若无问题，将既有PR647完成准入后挂正常自动合并。此授权针对隔离实验与工具的源码合入，不启用正式背景、不批准发布或官方客户端输入。已将最新develop e805a87d纳入分支，唯一素材清单冲突按保留最新清单+本实验11项记录解决；旧GIL/性能数据仍绑定原903bf2a31实验，当前合并组合另行独审及CI。
 <!-- SECTION:NOTES:END -->

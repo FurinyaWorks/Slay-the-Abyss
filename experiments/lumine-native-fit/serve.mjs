@@ -5,6 +5,8 @@ import {patchRendererTicker} from '../noncombat-review/renderer-ticker-patch.mjs
 const [candidateArg,previewArg,sdkArg,webArg,outArg]=process.argv.slice(2);assert(candidateArg&&previewArg&&sdkArg&&webArg&&outArg);
 const read=p=>JSON.parse(fs.readFileSync(p)),sha=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const candidate=read(candidateArg),adapter=read(previewArg),save=read(adapter.save);
+const acceptanceFile=new URL('./owner-acceptance.json',import.meta.url),acceptance=fs.existsSync(acceptanceFile)?read(acceptanceFile):null;
+const visualAccepted=acceptance?.acceptedBudget===1600&&acceptance.candidateSha256===candidate.candidate.sha256&&acceptance.saveSha256===adapter.saveSha256;
 assert.equal(sha(candidate.candidate.path),candidate.candidate.sha256);assert.equal(sha(adapter.save),adapter.saveSha256);
 assert.equal(adapter.candidateSha256,candidate.candidate.sha256);assert.equal(adapter.inverseReadback.faults.length,0);
 const out=path.resolve(outArg),web=path.resolve(webArg);assert(!fs.existsSync(out),'New service directory required');fs.mkdirSync(out,{recursive:true});
@@ -40,7 +42,7 @@ const front=http.createServer((req,res)=>{
  if(req.headers.host!==new URL(url).host||req.headers.origin&&req.headers.origin!==url){res.writeHead(403);res.end();return;}
  const route=new URL(req.url,url).pathname;
  if(route==='/'){
-  res.writeHead(200,{'content-type':'text/html; charset=utf-8'});res.end(`<!doctype html><html lang="zh"><meta charset="utf-8"><title>岩荧原生背景实验</title><style>body{background:#172534;color:#f5ead7;max-width:850px;margin:60px auto;font:18px/1.8 system-ui;padding:24px}a{color:#f7cc7b}li{margin:12px 0}</style><h1>岩荧 · 原生背景首版</h1><p>同一GIL和Lua，只切换实验参数。点击“开始冒险”进入选角；返回可验证缓存复用。</p><ul>${[0,400,800,1600,3200].map(n=>`<li><a href="/editor/play#lumine-${n}">${n===0?'原背景基线':n+'图元预算'}</a></li>`).join('')}</ul><p>当前画质未验收。Simulator与官方GPU/设备性能分别记录；本页不代表发布许可。</p><a href="/candidate.gil">下载实验GIL（实验默认${candidate.experiment.defaultBudget??0}，参数0为原背景）</a> · <a href="/identity">构建身份</a></html>`);return;
+  res.writeHead(200,{'content-type':'text/html; charset=utf-8'});res.end(`<!doctype html><html lang="zh"><meta charset="utf-8"><title>岩荧原生背景实验</title><style>body{background:#172534;color:#f5ead7;max-width:850px;margin:60px auto;font:18px/1.8 system-ui;padding:24px}a{color:#f7cc7b}li{margin:12px 0}</style><h1>岩荧 · 原生背景首版</h1><p>同一GIL和Lua，只切换实验参数。点击“开始冒险”进入选角；返回可验证缓存复用。</p><ul>${[0,400,800,1600,3200].map(n=>`<li><a href="/editor/play#lumine-${n}">${n===0?'原背景基线':n+'图元预算'}</a></li>`).join('')}</ul><p>${visualAccepted?'当前1600画质已获Owner认可。':'当前画质未验收。'}Simulator与官方GPU/设备性能分别记录；本页不代表发布许可。</p><a href="/candidate.gil">下载实验GIL（实验默认${candidate.experiment.defaultBudget??0}，参数0为原背景）</a> · <a href="/identity">构建身份</a></html>`);return;
  }
  if(route==='/identity'){json(res,200,{buildId:candidate.buildId,gil:candidate.candidate,saveSha256:adapter.saveSha256,parameter:'lumineFitBudget',officialImport:'not_run'});return;}
  if(route==='/candidate.gil'){res.writeHead(200,{'content-type':'application/octet-stream','content-disposition':'attachment; filename="lumine-fit-experiment.gil"'});fs.createReadStream(candidate.candidate.path).pipe(res);return;}
