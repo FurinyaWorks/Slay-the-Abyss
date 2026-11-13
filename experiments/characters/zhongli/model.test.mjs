@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23)s.jade=3;
@@ -15,7 +15,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if(i===20)assert.equal(r.state.pillar,value);
     if(i===23){assert.equal(r.state.jade,0);assert.equal(r.state.pendingDraw,value);assert.equal(r.state.inUse,'a');}
     if(i===22){assert.equal(r.state.jade,value);assert.equal(r.state.pillar,0);}
-    if(i===2||i===18||i===19||i===25)assert.equal(r.state.jade,value);
+    if(i===2||i===18||i===19||i===25||i===27)assert.equal(r.state.jade,value);
     if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
@@ -418,4 +418,37 @@ test('collapse same-turn setup matches costly finisher damage at two cards and f
   assert.equal(collapsed.enemy.hp,direct.enemy.hp);assert.equal(collapsed.energy,0);assert.equal(collapsed.pillar,0);assert.equal(collapsed.powers.length,1);assert.equal(collapsed.exhaust.length,1);
   assert.equal(endTurn(collapsed,[]).enemy.hp,collapsed.enemy.hp);
  }
+});
+
+test('suppression reserve independently gives capped jade and additive base/upgrade Weak without damage',()=>{
+ for(const u of [false,true])for(const jade of [0,19,20])for(const weak of [0,3]){
+  const s=initialState();s.jade=jade;s.enemy.weak=weak;const before=structuredClone(s),r=run('zl28',s,u);
+  assert.equal(r.ok,true);assert.equal(r.state.jade,Math.min(20,jade+(u?7:5)));assert.equal(r.state.enemy.weak,weak+(u?3:2));assert.equal(r.state.enemy.hp,40);assert.equal(r.state.energy,1);assert.deepEqual(s,before);
+ }
+});
+test('suppression reserve weakens each hit and decays once, idle still spends duration and persistent shield remains',()=>{
+ for(const u of [false,true])for(const hits of [[],[0],[10],[3,3,3],[30]]){
+  let s=run('zl28',initialState(),u).state;const weak=u?3:2,jade=u?7:5,total=hits.reduce((n,h)=>n+Math.floor(h*.75),0);
+  s=endTurn(s,hits);assert.equal(s.hp,60-Math.max(0,total-jade));assert.equal(s.jade,Math.max(0,jade-total));assert.equal(s.enemy.weak,weak-1);
+ }
+});
+test('suppression reserve rejects overflow or bad target before granting any jade',()=>{
+ const s=initialState(['a']);s.instances.a={id:'zl28',upgraded:false};s.enemy.weak=Number.MAX_SAFE_INTEGER;const before=structuredClone(s);
+ const r=play(s,{id:'zl28',instance:'a',target:'enemy'});assert.equal(r.ok,false);assert.equal(r.state,s);assert.deepEqual(s,before);
+ s.enemy.weak=0;const clean=structuredClone(s);for(const opts of [{target:'self'},{cancel:true}]){assert.equal(play(s,{id:'zl28',instance:'a',target:'enemy',...opts}).state,s);assert.deepEqual(s,clean);}
+ const c=cards.find(c=>c.id==='zl28'),old=c.base;try{c.base=[['jade',5],['weak',NaN]];assert.equal(play(s,{id:'zl28',instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,clean);}finally{c.base=old;}
+});
+test('suppression reserve differs from equal-cost hybrid plus suppression sequence rather than dominating it',()=>{
+ const s=initialState(),combo=run('zl09',run('zl06',s).state).state,combined=run('zl28',s).state;
+ assert.equal(combo.energy,combined.energy);assert.equal(combo.enemy.hp,35);assert.equal(combined.enemy.hp,40);
+ assert.equal(combo.block,4);assert.equal(combined.block,0);assert.equal(combo.jade,3);assert.equal(combined.jade,5);assert.equal(combo.enemy.weak,1);assert.equal(combined.enemy.weak,2);
+ assert.equal(endTurn(combo,[10]).hp,60);assert.equal(endTurn(combined,[10]).hp,58);
+ assert.equal(endTurn(combo,[]).enemy.weak,0);assert.equal(endTurn(combined,[]).enemy.weak,1);
+});
+
+test('suppression reserve longer window can favor next-turn defense but not instant pressure; terminal and energy reject',()=>{
+ const a=endTurn(run('zl09',run('zl06').state).state,[]),b=endTurn(run('zl28').state,[]);
+ assert.equal(endTurn(a,[20]).hp,43);assert.equal(endTurn(b,[20]).hp,50);
+ const s=initialState(['a']);s.instances.a={id:'zl28',upgraded:false};
+ for(const change of [{hp:0},{enemy:{...s.enemy,hp:0}},{energy:1}]){const t={...s,...change},before=structuredClone(t);assert.equal(play(t,{id:'zl28',instance:'a',target:'enemy'}).state,t);assert.deepEqual(t,before);}
 });
