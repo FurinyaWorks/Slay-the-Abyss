@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Zhongli 28/66 paid guards and native counter in source Run',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/zhongli-guard-usecard.test.lua',{timeout:180000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/ZHONGLI_GUARD_PAID_PASS/);assert.match(r.stdout,/AUTHOR_ZL_GUARD_RUN_PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);});

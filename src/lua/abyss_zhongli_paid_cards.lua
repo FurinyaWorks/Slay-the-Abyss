@@ -8,6 +8,8 @@ local M={}
 local starterNative={}
 for _,d in ipairs(require('abyss_zhongli_starter_source').definitions())do if d.id=='zl01'or d.id=='zl02'then starterNative[d.id]=d end end
 local specs={zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
+ zl28={kind='gainJade',base=5,upgraded=7,type='skill',target='ENEMY',weak=2,upWeak=3,retain=false,exactExhaust=false},
+ zl66={kind='gainJade',base=5,upgraded=7,type='skill',target='SELF',counter=3,upCounter=4,retain=false,exactExhaust=false},
  zl39={kind='spendJade',base=3,upgraded=3,type='attack',target='ENEMY',damage=6,upDamage=8,retain=false,exactExhaust=true},
  zl73={kind='spendJade',base=3,upgraded=3,type='skill',target='ENEMY',weak=1,upWeak=2,retain=false,exactExhaust=true},
  zl26={kind='gainJade',base=10,upgraded=14,type='skill',target='SELF',retain=true,exactExhaust=false},
@@ -56,7 +58,7 @@ function M.canUse(state,instance,card,targetIndex)
  if card.zhongliCandidate~=true or not spec or state.characterCandidate~='zhongli' or state.experimentalMechanics~=true
   or state.originalV4 or card.experimental~=true or card.originalV4 or card.runNativeABI or card.silentFinalCard
   or card.costMode or card.keqingCandidate~=nil or card.ganyuCandidate~=nil or card.xiaoCandidate~=nil
-  or card.type~=spec.type or card.target~=spec.target or #card.effects~=((spec.damage or spec.draw or spec.block or spec.weak)and 2 or 1)
+  or card.type~=spec.type or card.target~=spec.target or #card.effects~=((spec.damage or spec.draw or spec.block or spec.weak or spec.counter)and 2 or 1)
   or spec.retain~=nil and (spec.retain and card.selfRetain~=true or not spec.retain and card.selfRetain~=nil and card.selfRetain~=false)
   or spec.exactExhaust~=nil and (spec.exactExhaust and card.exhaust~=true or not spec.exactExhaust and card.exhaust~=nil and card.exhaust~=false)
   or spec.exhaust and card.exhaust~=true
@@ -67,6 +69,7 @@ function M.canUse(state,instance,card,targetIndex)
  if spec.draw and not same(card.effects[2],{op='draw',value=instance.upgraded and spec.upDraw or spec.draw})then return false,'zhongli_draw_unavailable'end
  if spec.block and not same(card.effects[2],{op='block',value=instance.upgraded and spec.upBlock or spec.block})then return false,'zhongli_block_unavailable'end
  if spec.weak and not same(card.effects[2],{op='applyStatus',status='weak',value=instance.upgraded and spec.upWeak or spec.weak})then return false,'zhongli_status_unavailable'end
+ if spec.counter and not same(card.effects[2],{op='gainStatus',status='flame_barrier',value=instance.upgraded and spec.upCounter or spec.counter})then return false,'zhongli_counter_unavailable'end
  if spec.target=='ENEMY'and(targetIndex~=1 or not Presence.isActive(state.enemies[targetIndex]))then return false,'invalid_target'end
  if #state.enemies~=1 or not Presence.isActive(state.player)or not Presence.isActive(state.enemies[1])then return false,'inactive_zhongli_battle'end
  local ok=pcall(Lifecycle.validate,state);if not ok then return false,'invalid_zhongli_resource'end
