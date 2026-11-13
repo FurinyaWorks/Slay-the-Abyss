@@ -1,0 +1,1220 @@
+{
+  "version": "xiao-source-audit-0.1",
+  "checkedAt": "2026-11-13",
+  "status": "HOLD",
+  "officialRead": {
+    "url": "https://www.hoyolab.com/article/162350",
+    "locator": "73-82; author Genshin Impact Official at391",
+    "result": "re-read readable; no new per-card mechanism approval"
+  },
+  "failedRead": {
+    "url": "https://wiki.hoyolab.com/pc/genshin/entry/51",
+    "result": "0 readable lines despite search snippets; not verified"
+  },
+  "stsSourceBoundary": {
+    "repository": "aeubanks/sts",
+    "commit": "319009d5df0a82d9fb0f23cc22322286c6a87ec0",
+    "url": "https://codeload.github.com/aeubanks/sts/zip/319009d5df0a82d9fb0f23cc22322286c6a87ec0",
+    "archiveSha256": "3f42bd7dde08126a9a8a02fc8eed8856c7b8b0dda551f50c62ced838e41ed458",
+    "CardLibrarySha256": "ac123d5376862fb1d1d382284e14a9dc0e955395f415265ae29f9aa8a2b6237a",
+    "declaredVersion": "[V2.3.4] (12-18-2022)",
+    "versionBoundary": "Version string from fixed decompiled source; not authentication of the original PC binary.",
+    "extractorSha256": "0ce9bf2b81a694a4ea941d9305495a3b1e5192cf47e6405fb2dbcae58d61940b",
+    "note": "Derived factual metadata only; archive and source bodies never written."
+  },
+  "stsMetadataOnly": [
+    {
+      "id": "Burning Pact",
+      "class": "BurningPact",
+      "cost": 1,
+      "type": "SKILL",
+      "color": "RED",
+      "rarity": "UNCOMMON",
+      "sourcePath": "cards/red/BurningPact.java",
+      "sha256": "f8fe5ea1415f7767d85f6e197bcd296b97ed071d717b70f373f75e87f68d7612"
+    },
+    {
+      "id": "True Grit",
+      "class": "TrueGrit",
+      "cost": 1,
+      "type": "SKILL",
+      "color": "RED",
+      "rarity": "COMMON",
+      "sourcePath": "cards/red/TrueGrit.java",
+      "sha256": "d9870c916ea4369e7c44bee7016850bc539baa62e02c7dec6f70b2eff80ffd0c"
+    },
+    {
+      "id": "Backflip",
+      "class": "Backflip",
+      "cost": 1,
+      "type": "SKILL",
+      "color": "GREEN",
+      "rarity": "COMMON",
+      "sourcePath": "cards/green/Backflip.java",
+      "sha256": "0b6f508623fef35612ff2b4788429750f16d14153837392e4ed39d4e2037d8ff"
+    },
+    {
+      "id": "Shrug It Off",
+      "class": "ShrugItOff",
+      "cost": 1,
+      "type": "SKILL",
+      "color": "RED",
+      "rarity": "COMMON",
+      "sourcePath": "cards/red/ShrugItOff.java",
+      "sha256": "171155aaf7f41b02237cabafe9ca75de7efd11e5c96e4463561b8f97280de273"
+    },
+    {
+      "id": "Entrench",
+      "class": "Entrench",
+      "cost": 2,
+      "type": "SKILL",
+      "color": "RED",
+      "rarity": "UNCOMMON",
+      "sourcePath": "cards/red/Entrench.java",
+      "sha256": "ed5d9518e44f2538f3d899a8beecde7a3c7e24eaa971f3ecd76a825a5d5edd6d"
+    },
+    {
+      "id": "Impervious",
+      "class": "Impervious",
+      "cost": 2,
+      "type": "SKILL",
+      "color": "RED",
+      "rarity": "RARE",
+      "sourcePath": "cards/red/Impervious.java",
+      "sha256": "f2cfabe529afb63089116a31d836c616f0fc14062d765118f0d16dcc4404b74f"
+    },
+    {
+      "id": "Iron Wave",
+      "class": "IronWave",
+      "cost": 1,
+      "type": "ATTACK",
+      "color": "RED",
+      "rarity": "COMMON",
+      "sourcePath": "cards/red/IronWave.java",
+      "sha256": "f7b5e76f1cbb76c1f8a907881223773f46fe89c0cae579564467f5518377a327"
+    },
+    {
+      "id": "Headbutt",
+      "class": "Headbutt",
+      "cost": 1,
+      "type": "ATTACK",
+      "color": "RED",
+      "rarity": "COMMON",
+      "sourcePath": "cards/red/Headbutt.java",
+      "sha256": "7b4cee9978e86478796f12c468faedb136251df15aa0bb1d5883cad58af99dc6"
+    },
+    {
+      "id": "Pommel Strike",
+      "class": "PommelStrike",
+      "cost": 1,
+      "type": "ATTACK",
+      "color": "RED",
+      "rarity": "COMMON",
+      "sourcePath": "cards/red/PommelStrike.java",
+      "sha256": "5317b772701a863ae0a6c263e49543be3cf2878d0e9ab71de4cfb5bce3024292"
+    },
+    {
+      "id": "EmptyMind",
+      "class": "EmptyMind",
+      "cost": 1,
+      "type": "SKILL",
+      "color": "PURPLE",
+      "rarity": "UNCOMMON",
+      "sourcePath": "cards/purple/EmptyMind.java",
+      "sha256": "d1e13846796e6186debb1f9e5be8f7e8944348c60971521d4015b463bf71f295"
+    },
+    {
+      "id": "EmptyBody",
+      "class": "EmptyBody",
+      "cost": 1,
+      "type": "SKILL",
+      "color": "PURPLE",
+      "rarity": "COMMON",
+      "sourcePath": "cards/purple/EmptyBody.java",
+      "sha256": "07c8bd36d99af514b2c0c1e6161576139583a521479e3359ed9695e2c317f9ec"
+    }
+  ],
+  "cards": [
+    {
+      "id": "x01",
+      "role": "基础单体攻击",
+      "ops": [
+        "damage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x02",
+      "role": "基础格挡",
+      "ops": [
+        "block"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x03",
+      "role": "立即单体伤害，不要求状态",
+      "ops": [
+        "damage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x04",
+      "role": "用生命与本回合行动换两回合攻击强化",
+      "ops": [
+        "loseHp",
+        "mask"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x05",
+      "role": "常态单体，戴面具时扩大攻击范围",
+      "ops": [
+        "plunge"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x06",
+      "role": "提前离开强化以避免回合末失血",
+      "ops": [
+        "mask",
+        "block"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x07",
+      "role": "常态攻守兼顾，不靠回血抵销代价",
+      "ops": [
+        "damage",
+        "block"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x08",
+      "role": "支付能量换手牌调度，不自产能量",
+      "ops": [
+        "draw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x09",
+      "role": "持续退出并整手：用能量换安全退场和后续选择",
+      "ops": [
+        "mask",
+        "draw"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x10",
+      "role": "短窗口防守入场：付生命换一回合面具与格挡",
+      "ops": [
+        "loseHp",
+        "mask",
+        "block"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x11",
+      "role": "终结窗口：先借面具攻击再主动退场",
+      "ops": [
+        "damage",
+        "mask"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x12",
+      "role": "无需入场的群体清杂；面具增强但非必需",
+      "ops": [
+        "damageAll"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x13",
+      "role": "面具承受：状态内防守、退出后仍能提供较弱防守",
+      "ops": [
+        "maskBlock"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x14",
+      "role": "长战投入：面具回合结束取得格挡，不抵消生命成本",
+      "ops": [
+        "maskGuard"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x15",
+      "role": "破甲处置：低裸伤交换对当前护甲的剥离",
+      "ops": [
+        "breakBlock",
+        "damage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x16",
+      "role": "已见出口再调度：从弃牌找回退出牌并防守",
+      "ops": [
+        "recoverExit",
+        "block"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x17",
+      "role": "一次性生命换行动：保留致死风险的爆发资源",
+      "ops": [
+        "loseHp",
+        "energy"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x18",
+      "role": "高费窗口收束：群体攻击后退出并消耗",
+      "ops": [
+        "damageAll",
+        "mask"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x19",
+      "role": "牺牲当前技能换应急防守并压缩牌堆",
+      "ops": [
+        "burnSkillsBlock"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x20",
+      "role": "无面具空窗整手：有限免费过牌而非窗口内续爆",
+      "ops": [
+        "unmaskedDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x21",
+      "role": "消耗构筑进攻回本：按已消耗张数兑现有上限单体伤害",
+      "ops": [
+        "exhaustDamage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x22",
+      "role": "消耗构筑防御回本：不用继续烧牌的后续防守",
+      "ops": [
+        "exhaustBlock"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x23",
+      "role": "余能防守：放弃所有剩余行动换当回合盾",
+      "ops": [
+        "spendEnergyBlock"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x24",
+      "role": "攻击卡手整手：放弃当前攻击重新寻找防守或出口",
+      "ops": [
+        "discardAttacksDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x25",
+      "role": "当前攻击意图处置：压低眼前威胁而非偷读未来",
+      "ops": [
+        "threatDamage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x26",
+      "role": "敌方整备空档过牌：有攻击意图时完全失效",
+      "ops": [
+        "quietDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x27",
+      "role": "缩短窗口而非立即全退：减一回合面具并格挡",
+      "ops": [
+        "shortenMask",
+        "block"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x28",
+      "role": "尾窗重击：只在面具最后一回合获得额外单体回报",
+      "ops": [
+        "lastMaskDamage"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x29",
+      "role": "主动退场防线：提前投入后，卡牌退出时获得格挡",
+      "ops": [
+        "exitGuard"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x30",
+      "role": "常态攻击轮转：无面具才在攻击后补一张牌",
+      "ops": [
+        "damage",
+        "unmaskedDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x31",
+      "role": "单体当前回合压制：小伤换敌方本次伤害降低",
+      "ops": [
+        "damage",
+        "suppress"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x32",
+      "role": "覆盖敌攻后的安全轮转：先防守，再检查是否可补牌",
+      "ops": [
+        "block",
+        "coveredDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x33",
+      "role": "常态长线手牌：投入能力后只在无面具回合开始额外抽牌",
+      "ops": [
+        "calmDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x34",
+      "role": "一次退场行动调度：实际退出后返能而非回血",
+      "ops": [
+        "exitEnergy"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x35",
+      "role": "面具多击兑现：同一目标两次命中各自享受强化",
+      "ops": [
+        "damageHits"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x36",
+      "role": "面具攻击手牌续航：每回合首次符合条件攻击补牌",
+      "ops": [
+        "maskedAttackDraw"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x37",
+      "role": "防守兑现：按当前格挡造成有上限伤害，不移除格挡",
+      "ops": [
+        "blockDamage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x38",
+      "role": "弃守换手：移除全部格挡，每满5点抽牌，有上限且消耗",
+      "ops": [
+        "spendBlockDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x39",
+      "role": "预备攻击：公开弃牌首张攻击置顶，不立即抽",
+      "ops": [
+        "topdeckAttack",
+        "block"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x40",
+      "role": "多敌防御：按存活敌人数获得格挡，上限3名",
+      "ops": [
+        "enemyCountBlock"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x41",
+      "role": "连攻终结：按本回合此前打出的攻击张数加伤，至多3张",
+      "ops": [
+        "sequenceDamage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x42",
+      "role": "先守后攻：尚未打出攻击时追加防御",
+      "ops": [
+        "beforeAttackBlock"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x43",
+      "role": "终结补牌：击杀选中敌人才抽牌，有限副本",
+      "ops": [
+        "damage",
+        "killDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x44",
+      "role": "余盾延续：保留有限回合剩余盾，不凭空产盾",
+      "ops": [
+        "carryBlock"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "HIGH",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x45",
+      "role": "延迟行动储备：付费本回合，下回合一次能量",
+      "ops": [
+        "reserveEnergy"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x46",
+      "role": "破防护身：按实际削减目标生命获得有限格挡",
+      "ops": [
+        "damageGuard"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x47",
+      "role": "消耗护身：每实际消耗一张牌获得有限即时盾",
+      "ops": [
+        "exhaustGuard"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "HIGH",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x48",
+      "role": "盲燃过牌：消耗抽堆顶一张作为真实代价后抽牌",
+      "ops": [
+        "burnTopDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "HIGH",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x49",
+      "role": "残局补手：补至手牌阈值，不按固定张数抽",
+      "ops": [
+        "refillHand"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x50",
+      "role": "空手收势：没有其他手牌时的单次攻击兑现",
+      "ops": [
+        "emptyHandDamage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x51",
+      "role": "应急血盾：不可抵销的生命换本回合防御",
+      "ops": [
+        "loseHp",
+        "block"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x52",
+      "role": "消耗生命后的持续压力：按已损生命有限加伤",
+      "ops": [
+        "missingHpDamage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x53",
+      "role": "入场护持：仅真实重新进入面具时获盾",
+      "ops": [
+        "entryGuard"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x54",
+      "role": "进势突击：支付生命进入短面具再攻击",
+      "ops": [
+        "loseHp",
+        "mask",
+        "damage"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x55",
+      "role": "群敌退场掩护：退出面具后压低各敌本回合意图",
+      "ops": [
+        "mask",
+        "suppressAll"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x56",
+      "role": "维持窗口：只延长已有面具一回合并抽牌",
+      "ops": [
+        "extendMask",
+        "draw"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x57",
+      "role": "窗口献祭：按剩余面具时长群伤后退出",
+      "ops": [
+        "maskBurstAll",
+        "mask"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x58",
+      "role": "预置防线：本回合投入下回合一次格挡",
+      "ops": [
+        "reserveBlock"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x59",
+      "role": "群体收割补手：实际击杀数量有限抽牌",
+      "ops": [
+        "harvestAll"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x60",
+      "role": "常态攻守转换：出牌时未戴面具的攻击结算后获盾",
+      "ops": [
+        "calmAttackGuard"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x61",
+      "role": "越盾精刺：绕过而不消除目标护甲",
+      "ops": [
+        "pierceDamage"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "HIGH",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x62",
+      "role": "夺取敌盾：有限实际转移后补一张",
+      "ops": [
+        "stealBlock",
+        "draw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "HIGH",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x63",
+      "role": "削短窗口的突击：先享强化伤害再减少一回合",
+      "ops": [
+        "damage",
+        "shortenMask"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x64",
+      "role": "双态调息：面具内补手，常态建立防御",
+      "ops": [
+        "stanceSupply"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x65",
+      "role": "寻入场：从抽堆取首张入场牌而非任意抽",
+      "ops": [
+        "seekEntry",
+        "block"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x66",
+      "role": "窗口压制：攻击后按剩余面具时长减压",
+      "ops": [
+        "damage",
+        "maskSuppress"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x67",
+      "role": "自然落幕储能：存活支付最后一次面具生命后预备下一回合",
+      "ops": [
+        "expiryEnergy"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x68",
+      "role": "弃防抢攻：牺牲全部现有格挡换一次行动能量",
+      "ops": [
+        "spendBlockEnergy"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x69",
+      "role": "反复入场补手：每次真实进入窗口抽牌",
+      "ops": [
+        "entryDraw"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x70",
+      "role": "退出整备再入场：回收公开弃牌中的入场牌",
+      "ops": [
+        "mask",
+        "recoverEntry"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x71",
+      "role": "主动退场补手：只在卡牌真正解除面具后抽牌",
+      "ops": [
+        "exitDraw"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x72",
+      "role": "前突留势：攻击并预置下一回合少量防御",
+      "ops": [
+        "damage",
+        "reserveBlock"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x73",
+      "role": "以现有防守加固主动退场",
+      "ops": [
+        "fortifyBlock",
+        "mask"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "HIGH",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x74",
+      "role": "牺牲公开手牌技能重整手牌",
+      "ops": [
+        "burnFirstSkillDraw"
+      ],
+      "officialAnchor": null,
+      "supportScope": "现有官方锚点未提供本牌具体机制证据",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "HIGH",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    },
+    {
+      "id": "x75",
+      "role": "提前结束窗口换下回合防守",
+      "ops": [
+        "bankMaskBlock",
+        "mask"
+      ],
+      "officialAnchor": "official-v1.3-character",
+      "supportScope": "仅面具强化/生命压力主题；本牌资源与时序均需改编审查",
+      "specificMechanicVerified": false,
+      "nameVerified": false,
+      "humanApproved": false,
+      "reviewPriority": "OPEN",
+      "nextEvidence": "原版中文具体技能/命座/语音/故事逐条原文；若无匹配须具体否决再降级，不可凭通用主题命名"
+    }
+  ]
+}
