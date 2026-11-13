@@ -64,3 +64,32 @@ for(const [character,head] of Object.entries(pins))test('pinned battle adapter '
  }
  await assert.rejects(loadAdapter(root,character,head),/restart process/);
 });
+test('reward revision protocol prevents double claim, validates choice and commits rendering atomically',()=>{
+ const a=fake();a.start=()=>({hp:10,hand:[],enemies:[],reward:true,claimed:false});a.outcome=s=>s.reward?'reward':'playing';
+ a.reward=(s,type,choice)=>{if(type==='claim'){s.claimed=true;s.choice=choice;}else if(type==='proceed')s.reward=false;return s;};
+ const session=createSession(a,{mode:'run'}),before=session.view();
+ assert.equal(session.dispatch({type:'claim',revision:0,choice:0}).ok,false);assert.deepEqual(session.view(),before);
+ assert.equal(session.dispatch({type:'claim',revision:0,choice:2}).view.choice,1);
+ assert.equal(session.dispatch({type:'claim',revision:0,choice:1}).ok,false);
+ assert.equal(session.dispatch({type:'proceed',revision:1}).ok,true);
+ assert.equal(session.dispatch({type:'open',revision:2}).ok,false);
+ assert.deepEqual(parseCommand('k 3 2'),{type:'claim',revision:3,choice:2});
+ for(const line of ['k 0','k 0 1 2','o 0 1','n -1','s nope'])assert.throws(()=>parseCommand(line));
+});
+test('real current Ganyu four-room adapter reaches and carries reward without duplicating rules',{skip:!process.env.GANYU_RUN_ROOT},async()=>{
+ const a=await loadAdapter(process.env.GANYU_RUN_ROOT,'ganyu',process.env.GANYU_RUN_HEAD,{run:true});
+ const session=createSession(a,{mode:'run'});let v=session.view();
+ for(let steps=0;steps<200&&v.outcome==='playing';steps++){
+  let played=false;
+  for(const c of v.hand){const result=session.dispatch({type:'play',revision:v.revision,slot:c.slot,target:v.enemies.find(e=>e.hp>0)?.target});if(result.ok){v=result.view;played=true;break;}}
+  if(!played)v=session.dispatch({type:'end',revision:v.revision}).view;
+ }
+ assert.equal(v.outcome,'reward');const hp=v.hp;const n=v.persistentDeckSize;
+ v=session.dispatch({type:'open',revision:v.revision}).view;assert.equal(v.reward.cards.length,3);
+ const first=v.reward.cards.map(c=>c.id);v=session.dispatch({type:'skip',revision:v.revision}).view;assert.deepEqual(v.reward.cards,[]);
+ v=session.dispatch({type:'open',revision:v.revision}).view;assert.deepEqual(v.reward.cards.map(c=>c.id),first);
+ v=session.dispatch({type:'claim',revision:v.revision,choice:1}).view;assert.equal(v.persistentDeckSize,n+1);
+ assert.equal(session.dispatch({type:'claim',revision:v.revision,choice:1}).ok,false);
+ v=session.dispatch({type:'proceed',revision:v.revision}).view;assert.equal(v.room,2);assert.equal(v.hp,hp);assert.equal(v.reward,null);assert.equal(v.persistentDeckSize,n+1);
+ for(const key of ['draw','drawSeed','rewardSeed','battleSeed'])assert.equal(Object.hasOwn(v,key),false);
+});

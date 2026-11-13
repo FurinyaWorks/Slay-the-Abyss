@@ -7,7 +7,8 @@ const pick=(s,keys)=>Object.fromEntries(keys.filter(k=>s[k]!==undefined).map(k=>
 const zones=s=>({draw:s.draw.length,discard:s.discard.length,exhaust:(s.exhaust??s.exhausted??[]).length,powers:(s.powers??[]).length});
 const row=(id,text,role)=>({id,name:'待命名·'+id,base:text(false),upgraded:text(true),role,source:'HOLD',naming:'HOLD',balance:'HOLD'});
 const accept=r=>{if(!r.ok)throw Error(r.reason||'model rejected');return r.state;};
-export async function loadAdapter(root,character,expectedHead){
+export async function loadAdapter(root,character,expectedHead,{run=false}={}){
+ if(run&&character!=='ganyu')throw Error('run mode currently available only for Ganyu');
  if(!['ganyu','xiao','zhongli','keqing'].includes(character)||!/^[a-f0-9]{40}$/.test(expectedHead))throw Error('character and exact expected HEAD required');
  root=realpathSync(resolve(root));const dir=join(root,'experiments','characters',character);
  const before=identity(root,dir);
@@ -54,6 +55,16 @@ export async function loadAdapter(root,character,expectedHead){
     relic:{id:b.starterRelic.id,text:b.describeRelic(),equipped:s.relicEnabled,used:s.relicUsed},
     enemies:s.enemies.map((e,i)=>({target:i+1,hp:e.hp,block:e.block,intent:e.hp?e.intent:0})),
     hand:s.hand.map((c,i)=>({slot:i+1,id:c.id,text:m.describe(c.id,c.upgraded===true)}))})};
+ }
+ if(run){
+  const acquisition=await mod('acquisition.mjs'),consoleModel=await mod('run-console.mjs'),m=await mod('engine.mjs');
+  const battleView=a.view;
+  const outcome=r=>r.phase==='complete'?'victory':r.phase==='lost'?'defeat':r.phase==='reward'?'reward':'playing';
+  a={...a,start:seed=>acquisition.createResearchRun(consoleModel.mildRoute,{battleSeed:seed,rewardSeed:seed}),
+   play:(r,i,t)=>acquisition.act(r,{type:'play',index:i,target:t??null}),end:r=>acquisition.act(r,{type:'end'}),outcome,
+   reward:(r,action,choice)=>action==='open'?acquisition.openReward(r):action==='skip'?acquisition.skipReward(r,acquisition.selectionToken(r)):action==='claim'?acquisition.claimReward(r,acquisition.selectionToken(r),choice):action==='proceed'?acquisition.proceed(r):(()=>{throw Error('unknown reward action');})(),
+   view:r=>({...battleView(r.battle),outcome:outcome(r),room:r.index+1,rooms:r.encounters.length,persistentDeckSize:r.deck.length,
+    reward:r.offer?{open:r.offer.open,claimed:r.offer.claimed,cards:r.offer.open?r.offer.cards.map((id,i)=>({choice:i+1,id,text:m.cardText(id)})):[]}:null})};
  }
  const assertCurrent=()=>{if(JSON.stringify(before)!==JSON.stringify(identity(root,dir)))throw Error('model snapshot changed; quit and reopen a clean pinned version');};
  assertCurrent();return {...a,assertCurrent,identity:{character,root,...before}};
