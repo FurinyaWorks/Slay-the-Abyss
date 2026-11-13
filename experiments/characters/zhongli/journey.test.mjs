@@ -195,3 +195,11 @@ test('held weak v24 has real reward acquisition with earlier pool exclusion',()=
  let s=journeyStart(seed,{poolVersion:'v24'});s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const choice=selectReward(rewardView(s),'heldWeak');assert.equal(s.offer[choice-1],'zl34');s=takeReward(s,choice);assert.ok(s.deck.includes('zl34'));
  for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v23').includes('zl34'));
 });
+
+test('batch three v25 offers all new candidates and preserves v24 exclusions',()=>{
+ for(const [id,policy] of [['zl35','breachGuard'],['zl36','pillarSearch'],['zl37','heavyAccess']]){
+  let seed=1;while(seed<=10000&&!(policy==='pillarSearch'?offers(seed,1,'v25').includes('zl21')&&offers(seed,2,'v25').includes(id):offers(seed,1,'v25').includes(id)))seed++;assert.ok(seed<=10000);
+  let s=journeyStart(seed,{poolVersion:'v25'});const rooms=policy==='pillarSearch'?2:1;for(let room=1;room<=rooms;room++){s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const c=selectReward(rewardView(s),policy);s=takeReward(s,c);}assert.ok(s.deck.includes(id));
+  for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v24').includes(id));
+ }
+});

@@ -214,3 +214,29 @@ test('ten held weak cards block fresh draw and never grant a passive debuff',()=
  s.hand=keys.filter(k=>s.instances[k].id==='zl34');s.draw=keys.filter(k=>s.instances[k].id!=='zl34');s.discard=[];
  for(let i=0;i<3;i++){s=nextTurn(s,[]);assert.equal(s.hand.length,10);assert.equal(s.draw.length,5);assert.equal(s.enemy.weak,0);}
 });
+
+test('pillar search keeps original Power out, exhausts after draw and cannot recycle itself',()=>{
+ for(const upgraded of [false,true]){
+  let s=battleStart({deck:['zl21','zl36']});const p=s.hand.find(k=>s.instances[k].id==='zl21'),d=s.hand.find(k=>s.instances[k].id==='zl36');s.instances[d].upgraded=upgraded;
+  s=playInstance(s,p).state;s=playInstance(s,d).state;assert.equal(s.pillar,0);assert.deepEqual(s.powers,[p]);assert.deepEqual(s.exhaust,[d]);assert.equal(s.hand.length,0);assert.equal(s.energy,0);assert.equal(s.inUse,null);
+  s=nextTurn(s,[]);assert.equal(s.enemy.hp,40);assert.equal(s.hand.length,0);
+ }
+});
+test('pillar search and heavy access independent draw counts, full-hand loss and instance conservation',()=>{
+ for(const id of ['zl36','zl37'])for(const upgraded of [false,true])for(const full of [false,true]){
+  let s=battleStart({deck:[id,...Array(12).fill('zl02')]});const key=Object.keys(s.instances).find(k=>s.instances[k].id===id),all=Object.keys(s.instances);
+  s.hand=[key,...all.filter(k=>k!==key).slice(0,full?9:2)];s.draw=all.filter(k=>!s.hand.includes(k));s.discard=[];s.instances[key].upgraded=upgraded;s.pillar=3;
+  const before=structuredClone(s),r=playInstance(s,key);assert.equal(r.ok,true);const n=r.state,wanted=id==='zl36'?(upgraded?5:4):(upgraded?2:1);
+  assert.equal(n.hand.length,full?10:2+wanted);assert.equal(n.energy,id==='zl36'?2:1);assert.equal(n.pillar,id==='zl36'?0:3);assert.equal(n.block,id==='zl37'?(upgraded?14:10):0);assert.deepEqual(s,before);
+  assert.ok((id==='zl36'?n.exhaust:n.discard).includes(key));const zones=[...n.hand,...n.draw,...n.discard,...n.exhaust,...n.powers];assert.equal(zones.length,13);assert.equal(new Set(zones).size,13);
+ }
+});
+test('heavy access singleton cannot draw itself but is discarded, not exhausted, and reappears next turn',()=>{
+ let s=battleStart({deck:['zl37']});const key=s.hand[0];s=playInstance(s,key).state;assert.equal(s.hand.length,0);assert.deepEqual(s.discard,[key]);assert.equal(s.block,10);s=nextTurn(s,[]);assert.deepEqual(s.hand,[key]);assert.equal(s.block,0);
+});
+
+test('heavy access spends extra energy versus12 and gives less immediate guard than one-shot10',()=>{
+ const results=Object.fromEntries(['zl12','zl37','zl10'].map(id=>{let s=battleStart({deck:[id],relic:false});s=playInstance(s,s.hand[0]).state;return[id,{energy:s.energy,after:nextTurn(s,[12]),block:s.block}];}));
+ assert.equal(results.zl12.energy,2);assert.equal(results.zl37.energy,1);assert.equal(results.zl12.after.hp,51);assert.equal(results.zl37.after.hp,58);assert.equal(results.zl10.after.hp,60);
+ assert.equal(results.zl37.after.hand.length,1);assert.equal(results.zl10.after.hand.length,0);
+});
