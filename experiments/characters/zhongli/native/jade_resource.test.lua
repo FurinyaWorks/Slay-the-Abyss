@@ -20,3 +20,16 @@ local s=L.start(C.new(D,{seed=42,deck={'strike'},enemies={'cultist'}}),'resource
 local z=s.zhongliCandidate;local restore=Snapshot.capture(s);R.apply(s,'gainJade',12);R.apply(s,'spendJade',6)
 assert(z.jade==6 and s.energy==3);assert(not pcall(R.apply,s,'spendJade',7));restore();assert(s.zhongliCandidate==z and z.jade==0)
 print('jade storage '..count..' scalar matrix cases + actual Combat/Snapshot, stale preflight and excluded terminal states passed; no absorption/payment integration')
+
+for jade=0,20 do for value=0,20 do
+ local s=fixture(jade);local z=s.zhongliCandidate
+ assert(R.canApply(s,'emptyJade',value));assert(z.jade==jade)
+ R.apply(s,'emptyJade',value);assert(z.jade==(jade==0 and value or jade))
+ local after=z.jade;R.apply(s,'emptyJade',value);assert(z.jade==after)
+ assert(s.energy==2 and s.player.block==7 and s.player.hp==30)
+end end
+for _,value in ipairs({-1,21,1.5,math.huge,0/0,false,'3'})do local s=fixture(0);assert(not pcall(R.apply,s,'emptyJade',value)and s.zhongliCandidate.jade==0)end
+-- Recheck the live empty condition, not a preflight-captured boolean.
+local s=fixture(0);assert(R.canApply(s,'emptyJade',9));R.apply(s,'gainJade',1);R.apply(s,'emptyJade',9);assert(s.zhongliCandidate.jade==1)
+R.apply(s,'spendJade',1);R.apply(s,'emptyJade',12);assert(s.zhongliCandidate.jade==12)
+print('441 empty-only rebuild cases, repeated no gain, live state recheck and malformed amount rejection passed')

@@ -5,7 +5,7 @@ local M={}
 local function check(state,kind,value)
  local z=L.validate(state)
  assert(Actors.isActive(state.player)and Actors.isActive(state.enemies[1]),'inactive jade transaction')
- assert(kind=='gainJade'or kind=='spendJade','unknown jade operation')
+ assert(kind=='gainJade'or kind=='spendJade'or kind=='emptyJade','unknown jade operation')
  assert(type(value)=='number'and value==value and value%1==0 and value>=0 and value<=20,'invalid jade quantity')
  if kind=='spendJade'then assert(z.jade>=value,'insufficient jade')end
  return z
@@ -18,7 +18,9 @@ function M.canApply(state,kind,value)
 end
 function M.apply(state,kind,value)
  local z=check(state,kind,value)
- if kind=='gainJade'then z.jade=math.min(20,z.jade+value)else z.jade=z.jade-value end
+ if kind=='gainJade'then z.jade=math.min(20,z.jade+value)
+ elseif kind=='emptyJade'then if z.jade==0 then z.jade=value end
+ else z.jade=z.jade-value end
  return z.jade
 end
 return M
