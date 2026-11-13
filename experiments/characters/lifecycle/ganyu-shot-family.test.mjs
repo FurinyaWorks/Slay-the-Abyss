@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Ganyu retained and exhausting shots use real paid Run lifecycle',()=>{buildLuaData();for(const file of ['ganyu-shot-family.test.lua','ganyu-shot-family-run.test.lua']){const r=runLua('experiments/characters/lifecycle/'+file,{timeout:120000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/PASS/);console.log(r.stdout.trim());}});
