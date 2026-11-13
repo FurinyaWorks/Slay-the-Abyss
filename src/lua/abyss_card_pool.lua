@@ -42,6 +42,7 @@ function M.rarity(roll,offset,tier,relics)
     return adjusted<rare and 'rare' or adjusted<uncommon and 'uncommon' or 'common'
 end
 function M.prepareRewards(run)
+    if run.candidateRewardPool=='xiao-reviewed-nonbasic-fifteen-v1'then return require('abyss_xiao_exhaust_card_rewards').prepare(run,M)end
     if run.candidateRewardPool=='xiao-reviewed-nonbasic-twelve-v1'then return require('abyss_xiao_card_rewards').prepare(run,M)end
     if run.candidateRewardPool=='zhongli-reviewed-common-sixteen-v1'then return require('abyss_zhongli_sixteen_rewards').prepare(run,M)end
     if run.candidateRewardPool=='zhongli-reviewed-common-fourteen-v1'then return require('abyss_zhongli_card_rewards').prepare(run,M)end
