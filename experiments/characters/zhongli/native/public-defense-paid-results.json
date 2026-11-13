@@ -1,0 +1,23 @@
+{
+  "sharedCommit": "a2d9ed317963570d2874593459d5506be3a75c82",
+  "method": "Exact workspace archive and Lua data rebuild; unchanged author spec plus frozen host transaction test",
+  "markers": [
+    "AUTHOR_PUBLIC_ZL_DEFENSE_PAID_PASS 84 reserve/version cases plus4 zero-energy and2 invalid-target cases",
+    "ZHONGLI_DEFENSE_TRANSACTION_PASS"
+  ],
+  "uniqueAuthorCases": 90,
+  "repeatedMatrixNotCountedTwice": true,
+  "verified": [
+    "native paid spend then ordinary Block/Weak; original UID discard",
+    "Dexterity/Frail and Artifact native effect semantics",
+    "post-native-effect fault restores full command graph aliases",
+    "Scry balance recheck and failed continuation restoration; retry once",
+    "automatic exact-definition gates",
+    "controlled native loseHp after spend ends combat without ad-hoc refund"
+  ],
+  "limitations": [
+    "life loss was controlled injection, not natural shield retaliation",
+    "No incoming jade absorption",
+    "No all-relic/encounter coverage or source/human/balance approval"
+  ]
+}
