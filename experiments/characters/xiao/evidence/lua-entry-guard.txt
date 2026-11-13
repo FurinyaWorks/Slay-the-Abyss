@@ -1,0 +1,3 @@
+PASS x53/x54 real life entry guard relic draw attack order; refresh cannot re-trigger entry benefits
+PASS stacked entry Power one schedule slot; actual exit permits fresh entry shield but no second relic draw
+PASS host Snapshot restores life entry shield relic draw damage; false Power rejects before entry mutation

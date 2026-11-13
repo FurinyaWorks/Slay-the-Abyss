@@ -4,11 +4,11 @@ local function eq(a,b)assert(a==b,tostring(a)..' ~= '..tostring(b))end
 for _,up in ipairs({false,true})do for _,c in ipairs(D.cards)do
  local r={hp=70,mask=0,relicUsed=false,startingRelic=true};local p=P.plan(r,{id=c.id,upgraded=up});eq(p.cost,c.cost);eq(p.exhaust,c.exhaust);eq(#p.orderedEffects,#(up and c.upgrade or c.base));eq(r.mask,0);eq(r.relicUsed,false)
 end end
-print('PASS all fifty-two base/upgraded plans preserve costs effects and inputs')
+print('PASS all fifty-four base/upgraded plans preserve costs effects and inputs')
 local r={hp=70,mask=0,relicUsed=false,startingRelic=true};local p=P.plan(r,{id='x04',upgraded=true});eq(p.orderedEffects[1].op,'loseHp');eq(p.orderedEffects[2].op,'xiaoCard');eq(p.orderedEffects[2].kind,'maskCommit');eq(p.expectedResourceAfterIfAlive.mask,3);eq(r.relicUsed,false)
 print('PASS life payment precedes guarded mask commit; planning never spends relic')
 for _,hp in ipairs({0,1,2})do assert(not pcall(P.plan,{hp=hp,mask=0,relicUsed=false,startingRelic=true},{id='x04',upgraded=false}))end
-assert(not pcall(P.plan,r,{id='x53',upgraded=false}));assert(not pcall(P.plan,r,{id='x01',upgraded=1}))
+assert(not pcall(P.plan,r,{id='x55',upgraded=false}));assert(not pcall(P.plan,r,{id='x01',upgraded=1}))
 print('PASS life prerequisite unknown cards and nonboolean upgrade reject')
 local n=P.maskCommit(r,2);eq(n.mask,2);eq(n.relicUsed,true);eq(n.effects[1].op,'draw');eq(n.effects[1].value,1)
 r={hp=70,mask=2,relicUsed=true,startingRelic=true};n=P.maskCommit(r,1);eq(n.mask,2);eq(#n.effects,0);r.mask=0;n=P.maskCommit(r,1);eq(#n.effects,0)

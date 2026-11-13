@@ -315,3 +315,15 @@ Actual maxHp can change in production whereas the JS lab uses fixed catalog70:
 that broader rule is not approved by this adapter. Tests use maxHp70 explicitly.
 Public payment/self-exhaust/UseCard and real multi-card legality remain untested;
 this is composed effects under a paid-context fixture and host full snapshot.
+
+### x53/x54 real guarded entry
+Projection extends to 54 frozen candidates. entryGuard now applies a real
+stacking Power with a single schedule slot. A true zero→positive mask commit
+inserts native block BEFORE initial-relic draw; refresh neither grants entry
+block nor reuses the relic. x54 frozen loseHp→mask→damage is actually executed
+in that order, with native queued entry shield/draw before the masked attack.
+Three tests cover base/up, observed native action order, refresh, exit/reentry,
+Power stacking, false validation and whole-sequence host Snapshot. First-eight
+10-test adapter regression passes. These remain explicit paid-context effect
+sequences, not public x53/x54 two-card payment/UseCard. Positive block uses native
+modifiers and Intangible still alters life cost; those known HOLDs remain.
