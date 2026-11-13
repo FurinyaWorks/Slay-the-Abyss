@@ -1,0 +1,1265 @@
+{
+  "schema_version": "1.0",
+  "status": "PLANNING_HOLD",
+  "owner": "Furinya",
+  "date": "2026-11-13",
+  "target_per_character": 75,
+  "count_unit": "unique_card_design; upgrades and starter duplicates do not count",
+  "rules_ref": "c53e3511dcc4af631f541f71e21afc66797c4dd2",
+  "base_develop": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+  "production_enabled": false,
+  "human_approved": false,
+  "balance_approved": false,
+  "scope": "非执行卡位预算；引用原实现，不建立第二张运行数值表。预算不是已设计、已命名或可玩卡数。",
+  "constraints": [
+    "已有费用、效果、稀有度不由本规划改动；新增费用/稀有度仅研究范围",
+    "组间互斥计数；每张现有ID只映射一组，跨流派标签不增加数量",
+    "未定储备保持null费用/稀有度，不为凑75生成机制或名称",
+    "所有新增数值为null，逐卡仍须G0–G9；AI复审不等于人类审批",
+    "P1/P2先查，P3/P4降级留证；官方主题不等于本作机制来源",
+    "初始遗物不占75卡名额，引用既有候选，去除/替换/重复触发需验证"
+  ],
+  "stages": {
+    "S0": "核冻结快照与已有ID；所有已有候选仍保留自身HOLD，不改变其审批",
+    "S1": "先补当前小样缺口：G0/G1及G2取舍、真实抽洗/连续战、同类对标；一次只设计有反例支持的少量卡",
+    "S2": "在前批正确性及自然选牌证据支持后研究常用构筑与替代职责；每张独立走来源/命名/数值",
+    "S3": "需真实敌人族群与循环合同后研究高费、控制、引擎和交叉构筑；不得只靠理想成型",
+    "HOLD": "无可区分职责证据的储备；保持缺口，不能生成占位成品"
+  },
+  "cross_character_review": [
+    {
+      "character": "ganyu",
+      "choice": "花能量即时生存或留能量等待蓄力兑现",
+      "avoid": "不要用自动赠蓄力/必定检索抹平等待；不是雷电固定产愿"
+    },
+    {
+      "character": "xiao",
+      "choice": "生命与行动换限时爆发，决定进入/退出",
+      "avoid": "不要用固定回血抵销代价；不得变成胡桃低血收益复刻"
+    },
+    {
+      "character": "zhongli",
+      "choice": "留存防线或付出防线换即时击杀",
+      "avoid": "不能让普通防守同时拥有高即效、高留存和高输出；耗盾攻击标改编"
+    },
+    {
+      "character": "keqing",
+      "choice": "雷楔群体兑现或切入后续攻击强化",
+      "avoid": "来源密度与附魔多段成长必须联算；不要把每段增伤称原作雷附魔"
+    }
+  ],
+  "g8_expansion_approved": false,
+  "g9_approved": false,
+  "stage_policy": "S0–S3仅研究优先顺序，不等同G关口通过；任何新增候选/扩容仍按#635 G0–G9逐项准入。费用为闭区间候选，稀有度为可选集合而非配额。",
+  "sources": [
+    {
+      "id": "official-13",
+      "url": "https://www.hoyolab.com/article/162350",
+      "authority": "HoYoverse官方作者",
+      "readability": "原文可读",
+      "version": "1.3（2021-02）",
+      "supports": "魈面具强化伴随生命流失；刻晴玉衡与质疑传统；钟离玉璋、岩脊与调整",
+      "limits": "不能证明回合制资源、逐卡中文名或遗物"
+    },
+    {
+      "id": "zhongli-position",
+      "url": "https://www.hoyolab.com/article/100444",
+      "authority": "HoYoverse官方作者",
+      "readability": "原文可读",
+      "version": "1.1（2020-12）",
+      "supports": "钟离保护与群体控制定位",
+      "limits": "不证明主动消耗自己的护盾换伤"
+    },
+    {
+      "id": "zhongli-beta",
+      "url": "https://www.hoyolab.com/article/118698",
+      "authority": "HoYoverse官方作者",
+      "readability": "原文可读",
+      "version": "1.3测试调整（非最终版）",
+      "supports": "调整讨论的历史背景",
+      "limits": "不能作为最终上线数值"
+    },
+    {
+      "id": "zhongli-intro",
+      "url": "https://blog.playstation.com/2020/11/10/new-characters-and-events-arrive-in-genshin-impacts-first-version-update-out-today/",
+      "authority": "HoYoverse署名作者发表于PlayStation",
+      "readability": "原文可读",
+      "version": "1.1（2020-11）",
+      "supports": "往生堂顾问、沉稳博学；岩构造物、陨星与石化",
+      "limits": "不证明本作护盾消耗或控制回合数"
+    },
+    {
+      "id": "xiao-design",
+      "url": "https://genshin.hoyoverse.com/zh-tw/news/detail/103849",
+      "authority": "HoYoverse官方域名",
+      "readability": "仅检索索引可读；直开零正文",
+      "version": "2021-02设计访谈",
+      "supports": "守护责任、痛苦与温柔、仪式面具的待核线索",
+      "limits": "须恢复原文才可作逐卡精确引文"
+    },
+    {
+      "id": "ganyu-intro",
+      "url": "https://genshin.hoyoverse.com/en/news/detail/103816",
+      "authority": "HoYoverse官方域名",
+      "readability": "仅检索索引可读；直开零正文",
+      "version": "1.2（2021-01）",
+      "supports": "秘书、信息处理的性格线索",
+      "limits": "不能据此批准抽牌机制或中文名称"
+    },
+    {
+      "id": "update-12",
+      "url": "https://genshin.hoyoverse.com/en/news/detail/103809",
+      "authority": "HoYoverse官方域名",
+      "readability": "仅检索索引可读；直开零正文",
+      "version": "1.2（2020-12）",
+      "supports": "甘雨冰莲与冰雨、刻晴再施后附魔线索",
+      "limits": "附魔不是本作每段加伤；中文逐字仍未核"
+    },
+    {
+      "id": "ganyu-tcg",
+      "url": "https://ys.mihoyo.com/main/news/detail/118222",
+      "authority": "miHoYo官方域名",
+      "readability": "仅检索索引；直开失败",
+      "version": "3.7七圣召唤",
+      "supports": "霜华相关命名检索线索",
+      "limits": "不得混作1.2动作游戏技能全文"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "TwinStrike",
+      "url": "https://raw.githubusercontent.com/purewhitelove/ButterflyGame/fc379c875c11e008e9c10548ac8e394c301c532f/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94%E5%8E%9F%E7%A0%81/cards/red/TwinStrike.java",
+      "observed": "1费普通攻击，5伤×2；升级7伤×2",
+      "comparison": "刻晴多段需按每段增益、护甲/反伤和过量伤害核算；不能将总伤视为单段等价",
+      "authority": "第三方Jad反编译镜像；非Mega Crit官方源码",
+      "readability": "原文可读，固定commit",
+      "version": "镜像commit固定；原版发行build未认证",
+      "limits": "仅作为可复核原版行为线索，正式平衡基准需核授权本地游戏版本；不是统一价格公式"
+    },
+    {
+      "id": "Cleave",
+      "url": "https://raw.githubusercontent.com/purewhitelove/ButterflyGame/fc379c875c11e008e9c10548ac8e394c301c532f/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94%E5%8E%9F%E7%A0%81/cards/red/Cleave.java",
+      "observed": "1费普通全体攻击，8伤；升级11伤",
+      "comparison": "四角群伤按敌人数、前置资源与机会成本比较，不能只比较单目标伤害",
+      "authority": "第三方Jad反编译镜像；非Mega Crit官方源码",
+      "readability": "原文可读，固定commit",
+      "version": "镜像commit固定；原版发行build未认证",
+      "limits": "仅作为可复核原版行为线索，正式平衡基准需核授权本地游戏版本；不是统一价格公式"
+    }
+  ],
+  "characters": [
+    {
+      "character": "ganyu",
+      "snapshot": {
+        "ref": "08dfa35304d2fcdd0fc20eed9189b3485a40ec08",
+        "path": "experiments/characters/ganyu/cards.json",
+        "blob": "7bea7cad99803142ebf10e8b30cba2e55182dca1",
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/08dfa35304d2fcdd0fc20eed9189b3485a40ec08/experiments/characters/ganyu/cards.json"
+      },
+      "groups": [
+        {
+          "id": "foundation",
+          "budget": 2,
+          "existing_ids": [
+            "ganyu-01",
+            "ganyu-02"
+          ],
+          "reserved": 0,
+          "cost_range": [
+            1,
+            1
+          ],
+          "rarities": [
+            "basic"
+          ],
+          "role": "基础攻防",
+          "upgrade": "保留现有升级",
+          "dedup": "初始副本不增种类",
+          "source_gap": "SYS准入待确认",
+          "stage": "S0",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "immediate",
+          "budget": 10,
+          "existing_ids": [],
+          "reserved": 10,
+          "cost_range": [
+            0,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "无满蓄前置的即时单体处置",
+          "upgrade": "按击杀阈值与行动预算评估",
+          "dedup": "不得用伤害/费用梯度复制箭矢",
+          "source_gap": "逐卡官方中文、语境和版本未核；P1/P2优先，缺合格名保持待命名，不把技法原词当卡名",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "payoff",
+          "budget": 9,
+          "existing_ids": [
+            "ganyu-03"
+          ],
+          "reserved": 8,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "蓄力兑现与单群选择",
+          "upgrade": "联算存能、抽牌、兑现时点",
+          "dedup": "不得复制03仅改阈值",
+          "source_gap": "霜华矢二段蓄力/绽发官方中文待核",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "defense",
+          "budget": 10,
+          "existing_ids": [
+            "ganyu-04"
+          ],
+          "reserved": 9,
+          "cost_range": [
+            0,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "即时防守兼收尾",
+          "upgrade": "测群敌、多段、大伤及击杀减伤",
+          "dedup": "与防守轮转按主职责排重",
+          "source_gap": "冰莲嘲讽改格挡为本作改编",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "supply",
+          "budget": 9,
+          "existing_ids": [
+            "ganyu-06"
+          ],
+          "reserved": 8,
+          "cost_range": [
+            0,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "主动产蓄与遗物末回合存能竞争",
+          "upgrade": "测零中满蓄与净资源流",
+          "dedup": "不得兼得免费防守和资源；未提交09不收录",
+          "source_gap": "逐卡官方中文、语境和版本未核；P1/P2优先，缺合格名保持待命名，不把技法原词当卡名",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "access",
+          "budget": 8,
+          "existing_ids": [
+            "ganyu-07"
+          ],
+          "reserved": 7,
+          "cost_range": [
+            0,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "过牌调度改善核心可及性",
+          "upgrade": "审空目标、满手和零费循环",
+          "dedup": "过牌/检索/保留分别证明缺口；未提交10不收录",
+          "source_gap": "纯调度不得贴弓术原词",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "rotation",
+          "budget": 7,
+          "existing_ids": [
+            "ganyu-08"
+          ],
+          "reserved": 6,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "低压轮转与防守预算",
+          "upgrade": "不同时免费提高过牌与防守",
+          "dedup": "区别07及纯盾，不做08严格上位",
+          "source_gap": "逐卡官方中文、语境和版本未核；P1/P2优先，缺合格名保持待命名，不把技法原词当卡名",
+          "stage": "S2",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "persistent",
+          "budget": 6,
+          "existing_ids": [
+            "ganyu-05"
+          ],
+          "reserved": 5,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "uncommon",
+            "rare"
+          ],
+          "role": "持续群伤与即时绽发竞争",
+          "upgrade": "测刷新饱和、提前结束、回本",
+          "dedup": "不得复制冰雨换强度/时长",
+          "source_gap": "降众天华主题索引有据；逐卡效果改编",
+          "stage": "S2",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "reserve",
+          "budget": 14,
+          "existing_ids": [],
+          "reserved": 14,
+          "cost_range": null,
+          "rarities": null,
+          "role": "尚无论证的职责缺口",
+          "upgrade": "职责明确后再定",
+          "dedup": "不得因目标75而填数",
+          "source_gap": "未分配，无来源声明",
+          "stage": "HOLD",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        }
+      ],
+      "relic": {
+        "id": "ganyu-starter-01",
+        "path": "experiments/characters/ganyu/relic.json",
+        "status": "EXISTING_CANDIDATE_HOLD",
+        "new_values": null,
+        "role": "将余能转蓄力；仅引用已有遗物合同",
+        "risks": [
+          "钩子重复归属",
+          "满蓄无箭",
+          "低费产蓄/检索消除等待代价",
+          "替换后来源不足"
+        ],
+        "experiments": [
+          "相同牌序有无遗物比较",
+          "取消/重复结束/终局",
+          "满蓄/溢出/替换",
+          "连续战失血与兑现时间"
+        ],
+        "source_gap": "官方蓄力主题不证明回合余能转换或遗物名称",
+        "snapshot": {
+          "ref": "08dfa35304d2fcdd0fc20eed9189b3485a40ec08",
+          "path": "experiments/characters/ganyu/relic.json",
+          "blob": "93d9a84157597b83693e7c8781198fe5274f924f"
+        }
+      },
+      "human_approved": false,
+      "balance_approved": false,
+      "g8_expansion_approved": false,
+      "g9_approved": false
+    },
+    {
+      "character": "xiao",
+      "snapshot": {
+        "ref": "0cc6d58e828caa9c340a033c939fe92f5ccb142a",
+        "path": "experiments/characters/xiao/cards.json",
+        "blob": "73ed320435c6a391493b4f6e95561141d18cd36f",
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/0cc6d58e828caa9c340a033c939fe92f5ccb142a/experiments/characters/xiao/cards.json"
+      },
+      "groups": [
+        {
+          "id": "foundation",
+          "budget": 4,
+          "existing_ids": [
+            "x01",
+            "x02",
+            "x04",
+            "x05"
+          ],
+          "reserved": 0,
+          "cost_range": [
+            1,
+            1
+          ],
+          "rarities": [
+            "basic"
+          ],
+          "role": "基础攻防、面具入口与范围兑现",
+          "upgrade": "保留现值；x04升级致死负例不可删",
+          "dedup": "不复制入口/下落攻击凑数",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S0",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "immediate",
+          "budget": 8,
+          "existing_ids": [
+            "x03"
+          ],
+          "reserved": 7,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "常态单体可靠击杀",
+          "upgrade": "按击杀阈值",
+          "dedup": "相对x03需拿与不拿情境",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "defense",
+          "budget": 9,
+          "existing_ids": [],
+          "reserved": 9,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "大伤/多段下等待窗口",
+          "upgrade": "有效减伤而非格挡总数",
+          "dedup": "不得用九种盾量替代职责",
+          "source_gap": "守护者不证明原作护盾",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "payoff",
+          "budget": 8,
+          "existing_ids": [],
+          "reserved": 8,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "面具窗口单群兑现",
+          "upgrade": "常态/面具/护甲/多段分别核",
+          "dedup": "不得用多段严格支配x05",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "timing",
+          "budget": 5,
+          "existing_ids": [
+            "x06"
+          ],
+          "reserved": 4,
+          "cost_range": [
+            0,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "退出及窗口调度",
+          "upgrade": "改善退出后行动，不默认延时",
+          "dedup": "禁止免费反复进出套利",
+          "source_gap": "主动退出卡为本作改编",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "access",
+          "budget": 7,
+          "existing_ids": [
+            "x08"
+          ],
+          "reserved": 6,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "入口/出口可及性及启动后手牌",
+          "upgrade": "抽量费用选择质量分审",
+          "dedup": "过牌保留检索不混同",
+          "source_gap": "纯调度不得贴枪术",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "hybrid",
+          "budget": 6,
+          "existing_ids": [
+            "x07"
+          ],
+          "reserved": 5,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "常态与面具攻守桥梁",
+          "upgrade": "核伤害防守先后",
+          "dedup": "不得仅调伤盾比例",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S2",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "intent",
+          "budget": 6,
+          "existing_ids": [],
+          "reserved": 6,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "当前可见意图条件行动",
+          "upgrade": "保留不适用局面",
+          "dedup": "不读未来意图，区别纯盾",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S2",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "disruption",
+          "budget": 5,
+          "existing_ids": [],
+          "reserved": 5,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "uncommon",
+            "rare"
+          ],
+          "role": "有限负面/塞牌应对",
+          "upgrade": "先有真实负面来源",
+          "dedup": "不得凭空造反制对象",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S3",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "longfight",
+          "budget": 4,
+          "existing_ids": [],
+          "reserved": 4,
+          "cost_range": [
+            2,
+            3
+          ],
+          "rarities": [
+            "uncommon",
+            "rare"
+          ],
+          "role": "长战有限回本",
+          "upgrade": "联算生命支出及战斗长度",
+          "dedup": "无Boss证据不新建永久计数",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S3",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "rare_choices",
+          "budget": 5,
+          "existing_ids": [],
+          "reserved": 5,
+          "cost_range": [
+            2,
+            3
+          ],
+          "rarities": [
+            "rare"
+          ],
+          "role": "稀有构筑缺口研究",
+          "upgrade": "不预批返能治疗大伤",
+          "dedup": "不能垄断基础入口/出口",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S3",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "reserve",
+          "budget": 8,
+          "existing_ids": [],
+          "reserved": 8,
+          "cost_range": null,
+          "rarities": null,
+          "role": "无论证储备",
+          "upgrade": "未定义",
+          "dedup": "不能为75造卡",
+          "source_gap": "未分配",
+          "stage": "HOLD",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        }
+      ],
+      "relic": {
+        "id": "xiao_relic_01",
+        "path": "experiments/characters/xiao/cards.json#startingRelic",
+        "status": "EXISTING_CANDIDATE_HOLD",
+        "new_values": null,
+        "role": "首次成功进入面具后的抽牌；引用已有候选",
+        "risks": [
+          "强制开面具",
+          "满手空牌堆",
+          "重复刷新领取",
+          "不能解决没抽到入口及付不起血"
+        ],
+        "experiments": [
+          "有无遗物同牌组对照",
+          "入口见到/支付/有效抽牌率分报",
+          "失败取消死亡跨战重置",
+          "不奖励低血也不返还所付生命"
+        ],
+        "source_gap": "面具主题有据，遗物名称和抽牌是本作改编",
+        "snapshot": {
+          "ref": "0cc6d58e828caa9c340a033c939fe92f5ccb142a",
+          "path": "experiments/characters/xiao/cards.json",
+          "blob": "73ed320435c6a391493b4f6e95561141d18cd36f"
+        }
+      },
+      "human_approved": false,
+      "balance_approved": false,
+      "g8_expansion_approved": false,
+      "g9_approved": false
+    },
+    {
+      "character": "zhongli",
+      "snapshot": {
+        "ref": "54e97ae705b4fa55d8a97ce6ebeb5aee3fd64534",
+        "path": "experiments/characters/zhongli/model.mjs",
+        "blob": "86fbde34eb0bb412792b5301f7743ed9ccb4a630",
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/54e97ae705b4fa55d8a97ce6ebeb5aee3fd64534/experiments/characters/zhongli/model.mjs"
+      },
+      "groups": [
+        {
+          "id": "foundation",
+          "budget": 2,
+          "existing_ids": [
+            "zl01",
+            "zl02"
+          ],
+          "reserved": 0,
+          "cost_range": [
+            1,
+            1
+          ],
+          "rarities": [
+            "basic"
+          ],
+          "role": "基础无前置攻防",
+          "upgrade": "保留现值",
+          "dedup": "不增加换皮基础牌",
+          "source_gap": "SYS边界待核",
+          "stage": "S0",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "persistent",
+          "budget": 8,
+          "existing_ids": [
+            "zl03"
+          ],
+          "reserved": 7,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "跨回合防线来源",
+          "upgrade": "先测溢出/低伤，不加上限补洞",
+          "dedup": "零满盾/当前未来大伤须分化",
+          "source_gap": "护盾有据，资源留存叠加为改编",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "hybrid",
+          "budget": 8,
+          "existing_ids": [
+            "zl06",
+            "zl07",
+            "zl08"
+          ],
+          "reserved": 5,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "当回合防御/留防/击杀预算",
+          "upgrade": "不同时增强伤盾抽牌",
+          "dedup": "比较整回合非孤立单牌",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "conversion",
+          "budget": 8,
+          "existing_ids": [
+            "zl04"
+          ],
+          "reserved": 7,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "牺牲防线即时兑现",
+          "upgrade": "零盾死抽与长期成本",
+          "dedup": "不能按耗盾比例复制卡",
+          "source_gap": "主动耗盾伤害无官方机制证据；G0不接受则重分配",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "independent",
+          "budget": 8,
+          "existing_ids": [
+            "zl05"
+          ],
+          "reserved": 7,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "无玉璋击杀推进",
+          "upgrade": "击杀阈值/预算，不默认返能",
+          "dedup": "不能复制zl01/05调稀有度",
+          "source_gap": "石枪岩伤陨星主题有据，逐卡待核",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "area",
+          "budget": 6,
+          "existing_ids": [],
+          "reserved": 6,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "多敌威胁削减",
+          "upgrade": "目标数与段数分核",
+          "dedup": "不得单体牌直接群化凑数",
+          "source_gap": "岩范围伤害有据；目标时序未实现先定合同",
+          "stage": "S2",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "control",
+          "budget": 6,
+          "existing_ids": [],
+          "reserved": 6,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "uncommon",
+            "rare"
+          ],
+          "role": "控敌争取行动窗口",
+          "upgrade": "持续强度费用分审，防无限锁",
+          "dedup": "Boss/成长/多段须有限制",
+          "source_gap": "石化有据，减伤/延后/跳回合各为不同改编",
+          "stage": "S3",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "access",
+          "budget": 6,
+          "existing_ids": [],
+          "reserved": 6,
+          "cost_range": [
+            0,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "组件可及性",
+          "upgrade": "净牌差/费用/回滚",
+          "dedup": "保留不能替代未抽到",
+          "source_gap": "过牌不是枪术",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "sequence",
+          "budget": 5,
+          "existing_ids": [],
+          "reserved": 5,
+          "cost_range": [
+            0,
+            2
+          ],
+          "rarities": [
+            "uncommon"
+          ],
+          "role": "当前与下回合行动安排",
+          "upgrade": "避免返还复制正资源环",
+          "dedup": "须证明区别access",
+          "source_gap": "无具体效果或名，待论证",
+          "stage": "S3",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "matchup",
+          "budget": 4,
+          "existing_ids": [],
+          "reserved": 4,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "负面塞牌特殊压力",
+          "upgrade": "不升级成万能解",
+          "dedup": "无真实威胁不生产",
+          "source_gap": "逐卡中文来源/语境/版本及人审未齐；P1/P2先查，缺名HOLD",
+          "stage": "S3",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "longfight",
+          "budget": 4,
+          "existing_ids": [],
+          "reserved": 4,
+          "cost_range": [
+            2,
+            3
+          ],
+          "rarities": [
+            "uncommon",
+            "rare"
+          ],
+          "role": "长战启动与回本",
+          "upgrade": "资源饱和/操作次数",
+          "dedup": "不可重复自带留盾规则",
+          "source_gap": "岩脊共鸣仅研究主题，不批准新系统",
+          "stage": "S3",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "reserve",
+          "budget": 10,
+          "existing_ids": [],
+          "reserved": 10,
+          "cost_range": null,
+          "rarities": null,
+          "role": "未分配职责缺口",
+          "upgrade": "未定义",
+          "dedup": "只能由自然构筑/真人缺口解锁",
+          "source_gap": "未分配",
+          "stage": "HOLD",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        }
+      ],
+      "relic": {
+        "id": "zl-relic01",
+        "path": "experiments/characters/zhongli/battle.mjs",
+        "status": "EXISTING_CANDIDATE_HOLD",
+        "new_values": null,
+        "role": "开场有限防线，保留后续建立费用；引用已有候选",
+        "risks": [
+          "掩盖来源牌底",
+          "低伤敌失去压力",
+          "跨战累计优势",
+          "防守贪心停滞"
+        ],
+        "experiments": [
+          "有无遗物相同牌序",
+          "每战仅一次/取消重放不重复",
+          "首次兑现及失血",
+          "不得跨战积盾"
+        ],
+        "source_gap": "保护定位有据，开场赠玉璋与遗物名称为本作改编",
+        "snapshot": {
+          "ref": "54e97ae705b4fa55d8a97ce6ebeb5aee3fd64534",
+          "path": "experiments/characters/zhongli/battle.mjs",
+          "blob": "9d6a53e292570cd8cd19fffa0f6e5dc3994f87ae"
+        }
+      },
+      "human_approved": false,
+      "balance_approved": false,
+      "g8_expansion_approved": false,
+      "g9_approved": false
+    },
+    {
+      "character": "keqing",
+      "snapshot": {
+        "ref": "1735ad356467a468f62c8868dbcf133c72714285",
+        "path": "experiments/characters/keqing/mechanics.mjs",
+        "blob": "7f0059f581f545c7609b9e1ddad065b6c743afaa",
+        "url": "https://github.com/FurinyaWorks/Slay-the-Abyss/blob/1735ad356467a468f62c8868dbcf133c72714285/experiments/characters/keqing/mechanics.mjs"
+      },
+      "groups": [
+        {
+          "id": "existing",
+          "budget": 5,
+          "existing_ids": [
+            "KQ001",
+            "KQ002",
+            "KQ003",
+            "KQ004",
+            "KQ005"
+          ],
+          "reserved": 0,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "pending"
+          ],
+          "role": "既有核心五卡",
+          "upgrade": "全部保留当前值",
+          "dedup": "不得更名复制既有职责",
+          "source_gap": "逐卡官方中文、语境和版本未核；P1/P2优先，缺合格名保持待命名，不把技法原词当卡名",
+          "stage": "S0",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "supply",
+          "budget": 8,
+          "existing_ids": [],
+          "reserved": 8,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "雷楔来源与启动选择",
+          "upgrade": "一次只改善一种机会成本",
+          "dedup": "不能把星斗归位拆成八个同义名",
+          "source_gap": "逐卡官方中文、语境和版本未核；P1/P2优先，缺合格名保持待命名，不把技法原词当卡名",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "infusion",
+          "budget": 8,
+          "existing_ids": [],
+          "reserved": 8,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "再施与后续攻击",
+          "upgrade": "按牌段目标分别核成长",
+          "dedup": "需护甲反伤和过量伤害反例",
+          "source_gap": "原作附魔不等于每段加伤",
+          "stage": "S2",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "detonate",
+          "budget": 8,
+          "existing_ids": [],
+          "reserved": 8,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon",
+            "rare"
+          ],
+          "role": "雷楔引爆群敌",
+          "upgrade": "核主次目标及先死顺序",
+          "dedup": "区别KQ004/005前置与收益",
+          "source_gap": "逐卡官方中文、语境和版本未核；P1/P2优先，缺合格名保持待命名，不把技法原词当卡名",
+          "stage": "S2",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "defense",
+          "budget": 10,
+          "existing_ids": [],
+          "reserved": 10,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "空资源/强化后/高压生存",
+          "upgrade": "不因死亡统一加盾回血",
+          "dedup": "不得与KQ002/遗物补偿机械叠满",
+          "source_gap": "位移主题不等于原作护盾",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "access",
+          "budget": 8,
+          "existing_ids": [],
+          "reserved": 8,
+          "cost_range": [
+            1,
+            2
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "牌底、早抽、厚牌组和满手调度",
+          "upgrade": "先定牌区和回滚再定升级",
+          "dedup": "过牌保留检索不能视作等价",
+          "source_gap": "纯调度不贴剑术词",
+          "stage": "S2",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "sword",
+          "budget": 8,
+          "existing_ids": [],
+          "reserved": 8,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "common",
+            "uncommon"
+          ],
+          "role": "无前置可靠剑术",
+          "upgrade": "击杀阈值与预算",
+          "dedup": "排重KQ001/004/005；纯伤允许但需不拿情境",
+          "source_gap": "逐卡官方中文、语境和版本未核；P1/P2优先，缺合格名保持待命名，不把技法原词当卡名",
+          "stage": "S1",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "matchup",
+          "budget": 6,
+          "existing_ids": [],
+          "reserved": 6,
+          "cost_range": [
+            1,
+            3
+          ],
+          "rarities": [
+            "uncommon",
+            "rare"
+          ],
+          "role": "特定遭遇及路线衔接",
+          "upgrade": "不能将专解升级成万能解",
+          "dedup": "需真实敌人与失败样本",
+          "source_gap": "逐卡官方中文、语境和版本未核；P1/P2优先，缺合格名保持待命名，不把技法原词当卡名",
+          "stage": "S3",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        },
+        {
+          "id": "reserve",
+          "budget": 14,
+          "existing_ids": [],
+          "reserved": 14,
+          "cost_range": null,
+          "rarities": null,
+          "role": "尚无论证的弹性缺口",
+          "upgrade": "待职责明确",
+          "dedup": "不预设新资源/新流派",
+          "source_gap": "未分配",
+          "stage": "HOLD",
+          "status": "HOLD",
+          "new_values": null,
+          "mechanic_origin": "本作回合制改编；官方锚点只支持主题/动作，逐卡待核"
+        }
+      ],
+      "relic": {
+        "id": "KQR001",
+        "path": "experiments/characters/keqing/battle.mjs",
+        "status": "EXISTING_CANDIDATE_HOLD",
+        "new_values": null,
+        "role": "首次成功设楔的有限防守补偿；沿用当前候选",
+        "risks": [
+          "首战技变必选",
+          "放大早抽优势",
+          "掩盖连续战经济",
+          "取消/再施重复领奖"
+        ],
+        "experiments": [
+          "有无遗物相同牌序",
+          "来源首手/牌底",
+          "启动未兑现",
+          "取消/再施/跨战斗重置"
+        ],
+        "source_gap": "位移主题不证明原作遗物或格挡机制",
+        "snapshot": {
+          "ref": "1735ad356467a468f62c8868dbcf133c72714285",
+          "path": "experiments/characters/keqing/battle.mjs",
+          "blob": "a85e78219385aa98aabb982ec988bb01452d2e17"
+        }
+      },
+      "human_approved": false,
+      "balance_approved": false,
+      "g8_expansion_approved": false,
+      "g9_approved": false
+    }
+  ]
+}
