@@ -43,6 +43,7 @@ export function validateNamingManifest(m,denialRegistry={}){
  let approvedCount=0;
  for(const c of m.cards){
    const id=NONEMPTY(c?.id)?c.id:'unknown';
+   if(!NONEMPTY(c?.id))add(id,'missing stable card id');
    if(seenIds.has(id))add(id,'duplicate id');seenIds.add(id);
    if(!NONEMPTY(c?.name)||seenNames.has(c.name))add(id,'empty/duplicate name');seenNames.add(c.name);
    if(knownDenied.has(c.name))add(id,'known rejected name used without approved registry change');
@@ -57,9 +58,9 @@ export function validateNamingManifest(m,denialRegistry={}){
    if(c?.review?.history?.some(h=>h.decision==='rejected'&&h.name===c.name))reasons.push('previously rejected name reused');
    for(const n of ['N2','N3','N4','N5','N6'])if(c.review?.checks?.[n]!=='pass')reasons.push(n+' not independently approved');
    const human=c.review?.human||{};
-   if(!human.approved||!NONEMPTY(human.reviewer)||!NONEMPTY(human.date)||!NONEMPTY(human.evidence))reasons.push('missing human reviewer/date/evidence');
+   if(human.approved!==true||!NONEMPTY(human.reviewer)||!NONEMPTY(human.date)||!NONEMPTY(human.evidence))reasons.push('missing human reviewer/date/evidence');
    sourceReady(c,reasons);lowerTierReady(c,reasons);
-   if(t!=='SYS'&&(!m.official_inventory?.P1?.complete||!m.official_inventory?.P2?.complete))reasons.push('P1/P2 official inventory incomplete');
+   if(t!=='SYS'&&(m.official_inventory?.P1?.complete!==true||m.official_inventory?.P2?.complete!==true))reasons.push('P1/P2 official inventory incomplete');
    for(const issue of reasons)add(id,issue);
  }
  if(m.expected_cards!==undefined&&m.expected_cards!==m.cards.length)add('', 'expected_cards count differs from actual');

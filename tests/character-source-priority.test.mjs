@@ -124,3 +124,22 @@ test('all committed full75 HTML candidates require a manifest and hold if unappr
   }
  }
 });
+
+test('approval and inventory completion require literal true, not truthy values',()=>{
+ for(const value of ['false','true',1,{},[]]){
+  const human=baseApproved();human.cards[0].review.human.approved=value;
+  assert.equal(validateNamingManifest(human).ready,false,'human approval '+JSON.stringify(value));
+  for(const tier of ['P1','P2']){
+   const inventory=baseApproved();inventory.official_inventory[tier].complete=value;
+   assert.equal(validateNamingManifest(inventory).ready,false,tier+' completion '+JSON.stringify(value));
+  }
+ }
+});
+test('missing or whitespace card IDs cannot pass an otherwise approved manifest',()=>{
+ for(const id of [undefined,null,'','   ',42]){
+  const m=baseApproved();m.cards[0].id=id;
+  const result=validateNamingManifest(m);
+  assert.equal(result.ready,false,'id '+JSON.stringify(id));
+  assert.match(result.errors.join(';'),/missing stable card id/);
+ }
+});
