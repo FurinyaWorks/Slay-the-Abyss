@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>璃月四角色 · 待机候选对照</title>
+<style>
+:root{color-scheme:dark;font:15px/1.6 system-ui,sans-serif;background:#121925;color:#edf1f7}body{max-width:1120px;margin:auto;padding:24px}h1{font-size:26px;margin-bottom:4px}p{color:#b9c7d8}button,select,input{font:inherit}button,select{padding:7px 12px;border:1px solid #64748b;border-radius:6px;background:#253349;color:inherit;cursor:pointer}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #ffd588}a{color:#acd7ff}.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:14px 0;position:sticky;top:0;background:#121925;z-index:1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:20px}article{border:1px solid #43516a;border-radius:10px;padding:16px;min-width:0}h2{margin:0}h3{font-size:14px;font-weight:500;margin:12px 0 6px}.pair{display:flex;gap:12px;width:max-content;padding:10px;background:#202c3c;border-radius:6px}.viewport{overflow-x:auto}.pair.light{background:#eef0f3}.pair.checker{background:repeating-conic-gradient(#ddd 0% 25%,#aaa 0% 50%) 0/20px 20px}.figure{display:flex;flex-direction:column;align-items:center;gap:3px}.caption{font-size:12px;background:#182130;color:#fff;padding:1px 6px;border-radius:3px}canvas{display:block;max-width:none}.links{display:flex;gap:12px;flex-wrap:wrap;font-size:13px;margin-top:12px}.error{color:#ffb2ac}.note{font-size:13px}output{min-width:100px}
+</style>
+<h1>璃月四角色 · 待机候选对照</h1>
+<p>甘雨 / 魈 / 钟离 / 刻晴 · 20帧 × 110ms · 2.2秒循环<br>未获人工审美批准；原生转换、官方导入和PC/手机验证均未完成。</p>
+<div class="controls">
+<button id="play" disabled>播放</button><button id="static" disabled>静态首帧</button>
+<label>背景 <select id="background"><option value="dark">深色</option><option value="light">浅色</option><option value="checker">透明棋盘</option></select></label>
+<label>帧 <input id="frame" type="range" min="0" max="19" value="0" disabled></label><output id="position">0 / 19</output>
+</div>
+<p id="status" role="status">加载帧表…</p>
+<p class="note">左右分别为固定第0帧与当前动画帧。每行按标注宽度以 CSS 像素原尺寸显示，不随卡片放大；浏览器缩放请设为100%。133px使用既有小尺寸帧表，210px从完整帧表缩放。这是浏览器源媒体对照，不是原生图元效果；静态首帧不等于未变形母图。窄屏可横向滚动。</p>
+<main class="grid" id="gallery"></main>
+<p><a href="README.md">来源与边界</a> · <a href="asset_manifest.json">文件哈希清单</a> · <a href="source-records/INDEPENDENT_BATCH_REVIEW.md">历史独立审查</a></p>
+<noscript>请启用 JavaScript，或打开各角色目录中的 preview/*_idle_compare.gif。</noscript>
+<script>
+'use strict';
+const characters=[['ganyu','甘雨'],['xiao','魈'],['zhongli','钟离'],['keqing','刻晴']];
+const gallery=document.querySelector('#gallery'), play=document.querySelector('#play'), still=document.querySelector('#static'), slider=document.querySelector('#frame'), position=document.querySelector('#position'), status=document.querySelector('#status');
+const views=[];let running=false, frame=0, anchor=0;
+function load(url,w,h){return new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>image.naturalWidth===w&&image.naturalHeight===h?resolve(image):reject(new Error(url+' 尺寸错误'));image.onerror=()=>reject(new Error(url+' 无法解码（检查LFS是否已拉取）'));image.src=url;});}
+const pending=characters.map(async([id,name])=>{
+ const article=document.createElement('article');article.dataset.character=id;const heading=document.createElement('h2');heading.textContent=name;article.append(heading);gallery.append(article);
+ const local=[];
+ for(const width of [133,210]){
+  const height=width===133?122:192, title=document.createElement('h3');title.textContent=`${width}px 宽 × ${height}px 高`;article.append(title);
+  const viewport=document.createElement('div');viewport.className='viewport';const pair=document.createElement('div');pair.className='pair';viewport.append(pair);article.append(viewport);
+  const canvases=['静态 · 第0帧','动画 · 当前帧'].map((label,index)=>{const box=document.createElement('div');box.className='figure';const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;canvas.dataset.width=width;canvas.dataset.kind=index?'motion':'static';canvas.setAttribute('aria-label',`${name} ${width}px ${label}`);const caption=document.createElement('span');caption.className='caption';caption.textContent=label;box.append(canvas,caption);pair.append(box);return canvas;});
+  const url=`${id}/preview/${id}_idle_${width===133?'133px_':''}spritesheet.png`;
+  local.push(load(url,width===133?665:3200,width===133?488:2340).then(image=>views.push({image,canvases,cellWidth:width===133?133:640,cellHeight:width===133?122:585})));
+ }
+ const links=document.createElement('div');links.className='links';for(const [label,url] of [['母图',`${id}/${id}_static_candidate.png`],['GIF对照',`${id}/preview/${id}_idle_compare.gif`],['生成脚本',`${id}/create_${id}_idle.py`]]){const a=document.createElement('a');a.textContent=label;a.href=url;links.append(a);}article.append(links);await Promise.all(local);
+});
+function draw(value){frame=value;slider.value=value;position.value=`${value} / 19`;for(const v of views)v.canvases.forEach((canvas,index)=>{const k=index?value:0,c=canvas.getContext('2d');c.clearRect(0,0,canvas.width,canvas.height);c.drawImage(v.image,(k%5)*v.cellWidth,Math.floor(k/5)*v.cellHeight,v.cellWidth,v.cellHeight,0,0,canvas.width,canvas.height);});}
+function pause(){running=false;play.textContent='播放';play.setAttribute('aria-pressed','false');}
+play.onclick=()=>{if(running){pause();return;}anchor=performance.now()-frame*110;running=true;play.textContent='暂停';play.setAttribute('aria-pressed','true');};
+still.onclick=()=>{pause();draw(0);};slider.oninput=()=>{pause();draw(Number(slider.value));};
+document.querySelector('#background').onchange=e=>document.querySelectorAll('.pair').forEach(p=>p.className='pair '+e.target.value);
+function tick(now){if(running){const next=Math.floor((now-anchor)/110)%20;if(next!==frame)draw(next);}requestAnimationFrame(tick);}requestAnimationFrame(tick);
+Promise.all(pending).then(()=>{draw(0);play.disabled=still.disabled=slider.disabled=false;status.textContent='四角色帧表已加载。点击播放开始同步对照。';document.documentElement.dataset.ready='true';}).catch(error=>{status.className='error';status.textContent=error.message+'。请按 README 执行 git lfs pull 后重新打开。';document.documentElement.dataset.ready='error';});
+</script>
+</html>

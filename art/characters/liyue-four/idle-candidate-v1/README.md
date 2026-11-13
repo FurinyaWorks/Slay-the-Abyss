@@ -26,3 +26,13 @@ Library ID：`libfile_fde3_f-47e80cb707c88191a29e041ff5259681_d35602de215c8191b8
 ## 干净检出
 
 本批是新增LFS媒体，不加入冻结的历史 `config/ci-media-lfs.json`，也不放宽旧CI门禁。检出本分支后先运行 `git lfs pull --include="art/characters/liyue-four/idle-candidate-v1/**" --exclude=""`，再按清单验证实际媒体。现有CI的历史媒体下载入口不会自动拉取本批；没有此步骤的冷缓存许可审核可能失败。本分支只保存待审资产，不声称完整CI通过或可合并。
+
+## 统一尺寸预览
+
+完成上述 LFS 拉取后，从仓库根运行 `python3 -m http.server 8000 --bind 127.0.0.1`，打开 <http://127.0.0.1:8000/art/characters/liyue-four/idle-candidate-v1/preview.html>。无需ZIP或额外生成素材。本环境浏览器策略禁止file://访问，请使用上述HTTP入口。
+
+四角色同时展示133×122与210×192 CSS像素的静态第0帧/同步动画对照，支持播放、暂停、静态首帧、逐帧检查和深浅/棋盘背景。133px直接用现有小尺寸帧表；210px由640×585单帧缩放。宽度对应项目源媒体审阅尺度，不承诺角色可见包围盒或原生实际显示完全一致；保持浏览器100%缩放。
+
+原Library输入包中的单角色 review.html 只提供GIF；本入口复用既有5×4帧表，未引入重复二进制。已有 `src/lua/abyss_lumine_idle.lua` 校验批准荧的source SHA及133/210宽度；`art/characters/traveler-geo/portraits/adapter/export_portrait.py`依赖固定上游编辑器缓存。两者不能直接认证这四角色。未转换原生图元、不改正式加载器。
+
+定向验证：`python3 tests/liyue-idle-preview.py`（Python Playwright及Chromium；可设CHROMIUM为浏览器路径）。检查来源清单、实际资源链接、画布尺寸、帧变化、静态参照、暂停/首帧、窄屏滚动以及未拉取LFS指针时的错误提示；不代替审美或原生/设备验收，不运行Full。

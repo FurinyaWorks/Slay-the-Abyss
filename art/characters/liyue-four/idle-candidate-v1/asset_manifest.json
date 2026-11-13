@@ -7,8 +7,8 @@
   "library_version": 1,
   "files": {
     "README.md": {
-      "bytes": 2757,
-      "sha256": "b142a278da8c12b626afe690bfc83952c685f700cd74aee046da09cd91599938"
+      "bytes": 4186,
+      "sha256": "2bf090a07901c14253429ab9ed8d4f8e0bf61d5518afd19dd1553e2e840b1d36"
     },
     "ganyu/create_ganyu_idle.py": {
       "bytes": 7826,
@@ -137,6 +137,10 @@
     "zhongli/zhongli_static_candidate.png": {
       "bytes": 542171,
       "sha256": "796eb3bccce32f757af63cd7b1488f89b16f16c702bf9f14524441e3607ff356"
+    },
+    "preview.html": {
+      "bytes": 6915,
+      "sha256": "9c67a3627f3cc33bfe6d366d387f69a63edb5fd5736118261f7724706c9dcb04"
     }
   }
 }
