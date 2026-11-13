@@ -42,3 +42,12 @@ test('end-turn aggregate block overflow rejects atomically',()=>{
  const s=state();s.mask=1;s.block=Number.MAX_SAFE_INTEGER;s.maskGuard=3;
  assert.deepEqual(endTurn(s),s);
 });
+test('overflow rejects complete battle and campaign end paths before enemy action',async()=>{
+ const {newCampaign,campaignAction}=await import('./campaign.mjs');
+ const s=newBattle();s.mask=1;s.block=Number.MAX_SAFE_INTEGER;s.maskGuard=3;assert.deepEqual(advance(s),s);
+ const c=newCampaign();c.battle=s;assert.deepEqual(campaignAction(c,{type:'end'}).state,c);
+});
+test('pure area attack needs no live selected target and ignores target input',()=>{
+ const s=state({hand:['x12'],enemies:[{hp:0,block:0},{hp:20,block:0}]});
+ for(const target of [undefined,-1,99]){const r=play(s,{index:0,target});assert.equal(r.ok,true);assert.equal(r.state.enemies[1].hp,14);}
+});

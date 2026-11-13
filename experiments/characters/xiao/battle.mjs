@@ -30,6 +30,7 @@ export function advance(input) {
   if (!validBattleState(input)) return structuredClone(input);
   if (input.phase !== 'player' || outcome(input) !== 'playing') return structuredClone(input);
   let s = endTurn(input);
+  if(s.phase !== 'enemy') return structuredClone(input);
   if (outcome(s) !== 'playing') return s;
   for (const enemy of s.enemies) {
     if (enemy.hp <= 0) continue;

@@ -152,3 +152,5 @@ x14离开抽弃牌池进入powers区，不写为消耗，不触发消耗逻辑�
 STS1原文核验仍未通过：本轮检索找到社区卡表的 Cleave / Iron Wave / Feel No Pain 以及卡牌索引（https://compendium.spire.moe/ ，https://slay-the-spire.fandom.com/wiki/Ironclad_Cards），不当作官方原文。待核同类参照：x12 Cleave / Dagger Spray；x13 Defend / Shrug It Off；x14 Metallicize / Feel No Pain。不能用桌游版规则书代替电子游戏数值。这里未据搜索摘录宣布成本或强度校准通过。
 
 奖励实验池现10候选，仍统一抽3、不含正式稀有度权重；x14标rare不代表符合自然稀有奖励曲线。此差距明确保留，不借简单随机池宣称G6。旧1152研究仅验证旧固定卡组；新能力需要更长战/重复奖励/自然构筑与真人测量。策略仅会在已戴面具且HP>2时考虑能力，非最优长战规划。人审/数值/来源/实际浏览器与正式接入仍HOLD。
+
+第三批独审修复：聚合格挡溢出时，battle.advance发现回合未成功进入敌方阶段即返回完整原态，避免“未付生命却仍扣敌攻盾”的半结算；battle与campaign路径均有回归。纯全体效果不要求单体目标，首位敌人死亡也可出牌；混合/单体伤害仍校验活目标。
