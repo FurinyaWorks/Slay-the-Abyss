@@ -1519,6 +1519,7 @@ function M.startPlayerTurn(state, beforeOpeningDraw)
     state.energy=state.energy+state.rules.player.energyPerTurn
     RelicHooks.atTurnStart(state)
     for _,action in ipairs(turns.onEnergyRecharge(state)) do actions[#actions+1]=action end
+    for _,action in ipairs(require('abyss_xiao_lifecycle_host').startActions(state))do actions[#actions+1]=action end
     if state.turn==1 and ShopRelicsQueries.owns(state,'toolbox')then actions[#actions+1]={kind='effect',effect={op='shopRelic',kind='toolbox'}}end
     actions[#actions+1]={kind='effect',effect={op='draw',value=TimeEater.drawCount(state,require('abyss_defect_final_cards').drawCount(state,state.rules.player.drawPerTurn))}}
     RelicHooks.enqueuePostDraw(state)
@@ -2128,7 +2129,7 @@ end
 -- Candidate lifecycle must share the whole command preimage, including relics
 -- that run before ordinaryOwnerEnd. Legacy commands retain their existing path.
 function M.endTurn(state,rollbackOwner)
-    if not require('abyss_character_owner_end').active(state)and not require('abyss_ganyu_owner_end').active(state)and not require('abyss_zhongli_owner_end').active(state)then return endTurnRequest(state,rollbackOwner)end
+    if not require('abyss_character_owner_end').active(state)and not require('abyss_ganyu_owner_end').active(state)and not require('abyss_zhongli_owner_end').active(state)and not require('abyss_xiao_lifecycle_host').active(state)then return endTurnRequest(state,rollbackOwner)end
     local restore=endTurnRestore(state,rollbackOwner)
     local called,ok,reason=pcall(endTurnRequest,state)
     if not called then restore();error(ok,0)end

@@ -44,6 +44,7 @@ function M.active(state)
  return true
 end
 function M.extension(state)
+ if require('abyss_xiao_lifecycle_host').active(state)then return require('abyss_xiao_lifecycle_host')end
  if require('abyss_zhongli_owner_end').active(state)then return require('abyss_zhongli_owner_end')end
  return M.active(state)and M or Act3
 end

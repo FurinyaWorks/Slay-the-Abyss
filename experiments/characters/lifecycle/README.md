@@ -314,3 +314,25 @@ public alias restoration, and free automatic admission/rejection. The 03/06 paid
 payload now uses the same detached equality guard; existing paid/lifecycle tests
 remain required. These are opt-in definitions, not formal class/catalog release;
 prior balance and dynamic reaction HOLDs are unchanged.
+
+### Xiao public mask end and reserved-energy start
+
+The explicit Xiao candidate now delegates actual ordinary owner-end mask actions
+to the reviewed `70ac4c35` adapter, preserving Act3 planning. The host includes
+this candidate in its full end-turn Snapshot boundary. Real HP loss occurs before
+surviving guard, duration decrement and natural-expiry storage; lethal payment
+never grants those rewards. The exact `eaae00b0` start adapter (energy only, not
+later CalmDraw) runs after base recharge/onEnergyRecharge actions and before the
+normal draw. Reserved energy is cleared and turn-stamped once through the real
+queue. No new mask abilities or Calm cards become available.
+
+Actual public x04→three end-turn tests distinguish base expiry survival from the
+upgraded extra lethal turn at starting HP8. Additional tests explicitly seed
+expiry/guard with test-only status definitions (not acquired production cards),
+then observe real before-enemy guard and next-turn energy-before-draw. They cover
+Codex reveal/resume failure, next-turn failure, post-HP-payment reward overflow,
+start-energy overflow, duplicate start rejection and lethal/no-reward boundaries.
+Whole-command rollback preserves HP, resource and public aliases. Native
+Intangible still changes the nominal 2 HP loss to 1; this research-parity/balance
+HOLD is intentionally retained, not bypassed. Formal character registration and
+full CI remain outside this slice.

@@ -1,5 +1,8 @@
 {
   "layers": {
+    "abyss_xiao_owner_end": "core",
+    "abyss_xiao_turn_start": "core",
+    "abyss_xiao_lifecycle_host": "core",
     "abyss_ganyu_storm_card": "core",
     "abyss_zhongli_jade_resource": "core",
     "abyss_zhongli_owner_end": "core",

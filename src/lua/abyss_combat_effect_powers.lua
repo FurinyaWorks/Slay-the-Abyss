@@ -3,6 +3,12 @@ local Actors=require('abyss_actor')
 local Events=require('abyss_events')
 local EnemyAI=require('abyss_enemy_ai')
 local Handlers={}
+function Handlers.xiaoOwnerEndMask(c)
+    return require('abyss_xiao_lifecycle_host').ownerEnd(c.combat,c.state,c.effect,c.queue)
+end
+function Handlers.xiaoStartEnergy(c)
+    return require('abyss_xiao_lifecycle_host').startEnergy(c.combat,c.state,c.effect)
+end
 function Handlers.zhongliOwnerEnd(c)
     return require('abyss_zhongli_owner_end').apply(c.combat,c.state,c.effect,c.queue)
 end
