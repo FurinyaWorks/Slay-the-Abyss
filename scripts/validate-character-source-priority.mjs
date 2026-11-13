@@ -6,6 +6,33 @@ const SOURCE_KINDS={
 };
 const NONEMPTY=x=>typeof x==='string'&&x.trim().length>0;
 const detail=x=>NONEMPTY(x)&&x.trim().length>=12;
+const normalizeTitle=x=>NONEMPTY(x)?x.normalize('NFKC').replace(/[\p{P}\p{S}\s]/gu,''):'';
+const hasLiteralException=r=>{
+ const x=r?.literal_exception||{};
+ // An independent, concrete player-facing justification; provenance cannot substitute for it.
+ return detail(x.why_literal_name)&&detail(x.character_signature)&&detail(x.pool_distinction)&&NONEMPTY(x.reviewer)&&NONEMPTY(x.date)&&NONEMPTY(x.evidence);
+};
+function culturalDisplayReady(c,add){
+ const src=c.source||{},method=src.name_method,term=src.cultural?.original_term||src.exact_text;
+ const literal=normalizeTitle(c.name)===normalizeTitle(term);
+ if(!['reference_only','cultural_adaptation','literal_exception'].includes(method)){
+   add('P3 requires explicit name_method separate from technical provenance');return;
+ }
+ if(method==='reference_only'){
+   if(c.review?.status==='APPROVED'||c.name!==('待命名·'+c.id)){
+     add('P3 reference-only technique cannot be player-facing');
+   }
+   return;
+ }
+ if(literal&&method!=='literal_exception')add('raw martial term requires independent literal exception');
+ if(method==='literal_exception'&&!hasLiteralException(c.review))add('P3 literal-title exception lacks independent evidence');
+ if(method==='cultural_adaptation'&&c.review?.status==='APPROVED'){
+   if(!detail(src.cultural?.display_derivation)||!detail(c.review?.character_signature)){
+     add('P3 adaptation requires character-fit derivation and distinctiveness review');
+   }
+ }
+}
+
 const officialChecked=x=>x&&x.completed===true&&Array.isArray(x.categories)&&x.categories.length>0&&Array.isArray(x.lookups)&&x.lookups.length>0&&x.lookups.every(y=>NONEMPTY(y.query)&&NONEMPTY(y.locator)&&NONEMPTY(y.url)&&/^https:\/\//.test(y.url)&&NONEMPTY(y.entry));
 const documentedReject=x=>Array.isArray(x.rejected_candidates)&&x.rejected_candidates.length>0&&x.rejected_candidates.every(z=>NONEMPTY(z.text)&&NONEMPTY(z.source_url)&&NONEMPTY(z.source_entry)&&detail(z.rejection_reason));
 const decisionEvidence=x=>officialChecked(x)&&detail(x.reason)&&((x.result==='no_suitable'&&documentedReject(x))||(x.result==='no_match'&&detail(x.no_match_scope)));
@@ -65,6 +92,7 @@ export function validateNamingManifest(m,denialRegistry={}){
    const t=c?.source?.tier,k=c?.source?.kind;
    if(!TIERS.includes(t)||!SOURCE_KINDS[t]?.includes(k))add(id,'invalid tier or source kind');
    if(t==='SYS'&&!['normal','guard','heavy'].includes(id))add(id,'SYS only allowed for agreed generic basic card IDs');
+   if(t==='P3')culturalDisplayReady(c,message=>add(id,message));
    if(!['PENDING','BLOCKED','APPROVED'].includes(c?.review?.status))add(id,'missing review state');
    if(c?.review?.status!=='APPROVED'){blocked.push({id,reason:c?.review?.reason||'not approved'});continue}
    approvedCount++;
