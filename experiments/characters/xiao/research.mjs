@@ -4,7 +4,7 @@ import { catalog } from './model.mjs';
 import { newBattle, battlePlay, advance, outcome, intent } from './battle.mjs';
 export function observe(s) {
   return { hp:s.hp, energy:s.energy, block:s.block, mask:s.mask,
-    hand:[...s.hand], enemies:s.enemies.map(e=>({hp:e.hp,block:e.block,intent:intent(s,e)})) };
+    hand:[...s.hand], exitInDiscard:s.discard.some(id=>catalog.cards.find(c=>c.id===id)?.base.some(e=>e.op==='mask'&&e.value===0)), enemies:s.enemies.map(e=>({hp:e.hp,block:e.block,intent:intent(s,e)})) };
 }
 export function choose(view, policy) {
   if (!['burst','guard','never-mask'].includes(policy)) throw Error('policy');
@@ -22,6 +22,7 @@ export function choose(view, policy) {
       const damage=card.base.find(e=>e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
       const victims=(id==='x12'||id==='x05'&&view.mask)?alive:[target];
       score=victims.reduce((n,e)=>n+Math.min(e.hp,Math.max(0,damage-e.block))+Math.min(e.block,damage)*0.8+(damage>=e.hp+e.block?e.intent*3:0),0);
+      if(id==='x15')score=Math.min(target.hp,damage)+target.block*0.8+(damage>=target.hp?target.intent*3:0);
       if(id==='x07')score+=Math.min(5,Math.max(0,incoming-view.block))*(policy==='guard'?2:1);
     }
     if(id==='x02')score=Math.min(5,Math.max(0,incoming-view.block))*(policy==='guard'?3:1);
@@ -33,6 +34,7 @@ export function choose(view, policy) {
     if(id==='x13')score=Math.min(view.mask?8:4,Math.max(0,incoming-view.block))*(policy==='guard'?3:1);
     // Fixed greedy proxy values a power only while already masked and not dying to its tick.
     if(id==='x14'&&view.mask>0&&view.hp>2&&policy!=='burst')score=7;
+    if(id==='x16')score=Math.min(3,Math.max(0,incoming-view.block))*(policy==='guard'?3:1)+(view.exitInDiscard&&view.mask>0&&view.energy>=2?15:0);
     if(score>0)choices.push({index,target:target.index,score});
   });
   return choices.sort((a,b)=>b.score-a.score||a.index-b.index)[0]??null;

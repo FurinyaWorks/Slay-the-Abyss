@@ -36,6 +36,14 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'breakBlock') s.enemies[target].block = 0;
+  else if (op === 'recoverExit') {
+    for(let n=0;n<value && s.hand.length<10;n++){
+      const i=s.discard.findIndex(id=>byId.get(id)?.base.some(e=>e.op==='mask'&&e.value===0));
+      if(i<0)break;
+      s.hand.push(s.discard.splice(i,1)[0]);
+    }
+  }
   else if (op === 'maskGuard') s.maskGuard += value;
   else if (op === 'maskBlock') s.block += s.mask > 0 ? value : value / 2;
   else if (op === 'block') s.block += value;
@@ -61,7 +69,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -94,6 +102,8 @@ export function startTurn(input) {
 }
 export function cardText(card, upgraded = false) {
   const text = ({op, value}) => ({
+    breakBlock: '移除目标所有格挡。',
+    recoverExit: `从弃牌堆按顺序取回至多${value}张含退出面具效果的牌；手牌上限10，没有则不取。`,
     damageAll: `对所有敌人造成${value}点伤害（面具期间+${catalog.maskRules.attackBonus}）。`,
     maskBlock: `获得${value / 2}点格挡；面具期间改为${value}点。`,
     maskGuard: `本场战斗每个面具回合末，先支付生命；若存活，获得${value}点格挡。可叠加。`,
