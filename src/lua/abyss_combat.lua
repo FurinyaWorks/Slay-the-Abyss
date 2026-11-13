@@ -1666,7 +1666,7 @@ local function advancedTurnCleanup(state)
     return false
 end
 local function ordinaryOwnerEnd(state)
-    local actions=require('abyss_end_turn_powers').prepare(state,M,require('abyss_act3_powers'))
+    local actions=require('abyss_end_turn_powers').prepare(state,M,require('abyss_character_owner_end').extension(state))
     if #actions==0 then return true end
     local queue=require('abyss_action_queue');queue.start(state,actions)
     local result=queue.run(state,queuedHandlers)
@@ -2066,7 +2066,7 @@ end
 local function endTurnNeedsTransaction(state)
     return state.originalV4 or advancedTurnCleanup(state)or require('abyss_act3_powers').active(state)
         or Darklings.active(state) or Awakened.active(state) or require('abyss_giant_head').active(state)
-        or require('abyss_end_turn_powers').needed(state,require('abyss_act3_powers'))
+        or require('abyss_end_turn_powers').needed(state,require('abyss_character_owner_end').extension(state))
 end
 local function endTurnRestore(state,rollbackOwner)
     return rollbackOwner and require('abyss_snapshot').ownedRestore(rollbackOwner,state)or require('abyss_snapshot').capture(state)
@@ -2076,7 +2076,7 @@ local function invokeEndTurnResolver(state,resolver,restore)
     if not called then restore();error(ok,0)end
     return ok,reason
 end
-function M.endTurn(state,rollbackOwner)
+local function endTurnRequest(state,rollbackOwner)
     if state.pendingPotionChoice then return false,'potion_choice_pending'end
     local relicResult,relicReason=beginRelicEndTurn(state)
     if relicResult=='pause'or relicResult=='terminal'then return true end
@@ -2093,6 +2093,18 @@ function M.endTurn(state,rollbackOwner)
     if not advancedTurnCleanup(state) then return endExperimentalTurn(state) end
     local restore=endTurnRestore(state,rollbackOwner)
     return invokeEndTurnResolver(state,endExperimentalTurn,restore)
+end
+
+
+-- Candidate lifecycle must share the whole command preimage, including relics
+-- that run before ordinaryOwnerEnd. Legacy commands retain their existing path.
+function M.endTurn(state,rollbackOwner)
+    if not require('abyss_character_owner_end').active(state)then return endTurnRequest(state,rollbackOwner)end
+    local restore=endTurnRestore(state,rollbackOwner)
+    local called,ok,reason=pcall(endTurnRequest,state)
+    if not called then restore();error(ok,0)end
+    if ok==false then restore()end
+    return ok,reason
 end
 
 local function constructorOptions(data,options)

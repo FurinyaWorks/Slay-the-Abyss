@@ -3,6 +3,9 @@ local Actors=require('abyss_actor')
 local Events=require('abyss_events')
 local EnemyAI=require('abyss_enemy_ai')
 local Handlers={}
+function Handlers.keqingOwnerEnd(c)
+    return require('abyss_character_owner_end').apply(c.state,c.effect)
+end
 function Handlers.darklingAction(c)
     require('abyss_darklings').resolve(c.state,c.effect);return true
 end

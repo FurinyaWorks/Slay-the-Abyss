@@ -33,3 +33,17 @@ node --test experiments/characters/lifecycle/keqing-owner-end.test.mjs
 | 魈 | 作者正制作独立 Lua planner | 面具实际 owner-end 扣 HP→存活才 guard→减时长→自然到期储能；自然到期不得触发主动退出钩子。需真实 loseHp 规则与 Schedule 移除，不以直接改 HP 冒充引擎完成。 |
 
 共享层由统一集成 owner 独占，各作者仅修改角色模块。付款前拒绝不得变更资源，暂停不可重复付款/资源扣除，异常须还原同一图的原引用。正式职业注册、正式候选和设备/用户集中实测仍遵循原门禁。
+
+## 真实公开命令接线候选（后续切片）
+
+`src/lua/abyss_character_owner_end.lua` 仅接受显式 `characterOwnerEnd='keqing'`、`experimentalMechanics=true` 且非 originalV4 的实验状态，要求明确 owner-end marker；没有构造器、职业选择、卡池或正式资源注册。无该字段时返回原 Act3 extension。`abyss_keqing_resources.lua` 是上面冻结 reducer 的相同源码，供共享层调用；fixture 保留原始快照身份。
+
+`ordinaryOwnerEnd` 与事务准入复用该 extension；动作沿原 effect dispatch 执行。公开 `Combat.endTurn` 只对候选状态在遗物阶段之前捕获完整 snapshot，避免已执行遗物/重置卡费与后续资源错误产生半提交。暂停是合法成功，保留原队列；真实 `chooseCard` 的既有 snapshot 保护后续调用。此切片不安装付费牌、角色资源初始化或 UI 入口。
+
+```sh
+node --test experiments/characters/lifecycle/keqing-public-end-turn.test.mjs
+```
+
+公开命令测试覆盖两回合实际结算、真实 Codex 暂停/重复 EndTurn 拒绝/错误 token 拒绝/失败后恢复原 pending 和队列图/成功续接、遗物先执行后的异常完整还原、资源已提交后敌阶段异常还原、Constricted 先致死及 Omega 先胜利不耗资源。Constricted 测例显式将候选 marker priority 设为 106，让已定义 priority105 的 Constricted 在前；这不是批准正式角色的 Power priority。
+
+旧角色差分使用精确 develop 原 Combat 与 effect dispatch，在同一其余源码上比较 3 类遗物×2回合的完整有序事件及 actor/pile 图（不是只比较哈希或最终 HP）。不是全量 CI、官方导入或所有角色验收。付款完成 hook、正式角色资源的保存初始化、其他三角色正式接线仍未完成。

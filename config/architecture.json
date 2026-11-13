@@ -1,5 +1,7 @@
 {
   "layers": {
+    "abyss_character_owner_end": "core",
+    "abyss_keqing_resources": "core",
     "abyss_component_pages": "ui",
     "abyss_v25_texture_runtime": "platform",
     "abyss_v25_turn_notice": "ui",
