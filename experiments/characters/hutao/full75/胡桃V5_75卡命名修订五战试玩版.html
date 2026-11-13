@@ -611,7 +611,32 @@ function asideHtml(){const incoming=g.phase==='combat'?g.live().reduce((sum,e)=>
  <section class="panel"><div class="panelhead"><h2>关于这个试玩版</h2></div><div class="caption">75张卡可实际打出并查看升级。角色命名与数值尚属独立实验，不是原神官方技能效果，也不会改动正式游戏。规则见「玩法说明」。</div></section>`;
 }
 function render(){renderProgress();el('main').innerHTML=({combat:combatScreen,reward:rewardScreen,camp:campScreen,win:endScreen,lose:endScreen}[g.phase]||combatScreen)();el('aside').innerHTML=asideHtml();renderDialog();}
-function openModal(name){dialog=name;renderDialog();}
+// Keep keyboard interaction inside the active modal, including nested card details.
+let modalReturnFocus=null;
+let modalBackgroundInert=false;
+function openModal(name){
+ if(!dialog){modalReturnFocus=document.activeElement;modalBackgroundInert=document.querySelector('.shell').inert;}
+ dialog=name;renderDialog();
+}
+function restoreModalFocus(){
+ const target=modalReturnFocus;
+ modalReturnFocus=null;
+ if(target?.isConnected)target.focus();
+ else if(target)(el(target.id)||el('guideBtn'))?.focus();
+}
+function handleModalKeys(e){
+ if(!dialog||e.isComposing||e.ctrlKey||e.metaKey||e.altKey)return;
+ if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeModal();return;}
+ if(e.key!=='Tab')return;
+ const items=[...el('overlayRoot').querySelectorAll('button,a[href],input,select,textarea,summary,[tabindex]')]
+  .filter(x=>!x.disabled&&x.tabIndex>=0&&x.getClientRects().length);
+ const first=items[0],last=items.at(-1);
+ if(!first)return;
+ if(!el('overlayRoot').contains(document.activeElement)||(e.shiftKey&&document.activeElement===first)||(!e.shiftKey&&document.activeElement===last)){
+  e.preventDefault();(e.shiftKey?last:first).focus();
+ }
+}
+document.addEventListener('keydown',handleModalKeys,true);
 function closeModal(){dialog=null;renderDialog();}
 function deckList(){const counts=new Map();for(const c of g.deck){const k=c.id+(c.upgraded?'+':'');counts.set(k,(counts.get(k)||0)+1);}
  return [...counts].map(([key,count])=>{const up=key.endsWith('+'),id=up?key.slice(0,-1):key,d=CARDS[id];return `<div class="item readable-item"><div><strong>${html(d.name)}${up?' +':''} ×${count}</strong><div class="readable-lines">${showCardSummary({id,upgraded:up})}</div></div><button class="btn small ghost" data-inspect-card="${html(id)}">详情</button></div>`;}).join('');
@@ -640,9 +665,11 @@ case 'library':return `<div class="caption">完整75张候选卡牌。点击一�
 case 'upgrade':return `<div class="caption">选择一张未升级的牌。升级会永久改变这张牌的效果。</div><div class="upgrades">${g.deck.filter(c=>!c.upgraded).map(c=>`<button class="upgrade" data-upgrade="${c.uid}"><strong>${html(CARDS[c.id].name)} +</strong><div class="readable-lines">${showCardSummary({id:c.id,upgraded:true})}</div></button>`).join('')||'<p class="empty">牌组已全部升级</p>'}</div>`;
 default:return '';
 }}
-function renderDialog(){const root=el('overlayRoot');if(!dialog){root.innerHTML='';return;}
+function renderDialog(){const root=el('overlayRoot');const shell=document.querySelector('.shell');if(!dialog){root.innerHTML='';if(modalReturnFocus){shell.inert=modalBackgroundInert;restoreModalFocus();}return;}
+ shell.inert=true;
  const isInspect=dialog.startsWith('inspect:');const name=isInspect?(CARDS[dialog.slice(8)]?.name||'卡牌详情'):({guide:'玩法说明',terms:'术语速查',deck:'当前牌组',library:'完整75张卡牌',upgrade:'选择升级卡牌',practice:'自由试牌台'})[dialog]||'详情';
  root.innerHTML=`<div class="overlay" role="dialog" aria-modal="true" aria-label="${html(name)}"><div class="modal"><div class="modal-head"><div><div class="kicker">HU TAO · ${isInspect?'卡牌详情':'试玩说明'}</div><h2>${html(name)}</h2></div><button class="btn small" id="closeDialog">关闭 ✕</button></div>${dialogContents()}</div></div>`;
+ el('closeDialog').focus();
 }
 function reset(){g=new HutaoGame(2);dialog=null;render();gotoTop();}
 async function copyReport(){const lines=[`胡桃 V5 五战战报 · 种子2 · ${g.phase}`,`进度${g.wins}/5 · 当前生命${g.hp}/${g.maxHp}`,`牌组：${g.deck.map(c=>CARDS[c.id].name+(c.upgraded?'+':'')).join('、')}`,...g.logs.slice().reverse().map(l=>`[战${l.floor}/回${l.turn}] ${l.msg}`)];const txt=lines.join('\n');try{await navigator.clipboard.writeText(txt);toast('战报已复制，可以粘贴给 AI 分析。')}catch(err){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.left='-99999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('已使用本地方式复制战报。')}catch(e){toast('浏览器限制了剪贴板，请改用手动复制。')}ta.remove();}}
