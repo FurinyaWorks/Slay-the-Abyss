@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.29.0';
+export const VERSION = 'zhongli-mechanics-0.30.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -42,6 +42,9 @@ export const cards = [
   card('zl35', '牺牲少量持久盾拆敌格挡，同时获得当轮掩护而非输出', 'common', 1, [['spendJade', 3], ['removeBlock', 1], ['block', 5]], [['spendJade', 3], ['removeBlock', 1], ['block', 8]], 'enemy'),
   {...card('zl36', '拆除长期岩脊换深度检索，承担本战失去持续输出', 'common', 1, [['spendPillar', 1], ['draw', 4]], [['spendPillar', 1], ['draw', 5]]), exhaust: true},
   card('zl37', '投入较高能量稳住本轮并寻找后续牌，而非持久储备', 'common', 2, [['block', 10], ['draw', 1]], [['block', 14], ['draw', 2]]),
+  {...card('zl38', '零能量一次修补少量防线，满盾浪费且不能循环', 'common', 0, [['jade', 2]], [['jade', 3]]), exhaust: true},
+  {...card('zl39', '零能量支出储备穿插一次攻击，失去防守且不可循环', 'common', 0, [['spendJade', 3], ['damage', 6]], [['spendJade', 3], ['damage', 8]], 'enemy'), exhaust: true},
+  {...card('zl40', '保留一次应急转盾，付储备换临时格挡后消耗', 'common', 1, [['spendJade', 3], ['block', 12]], [['spendJade', 3], ['block', 16]]), exhaust: true, selfRetain: true},
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;

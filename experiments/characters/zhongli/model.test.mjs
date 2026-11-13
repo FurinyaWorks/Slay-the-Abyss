@@ -2,21 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0],[2,3],[6,8],[4,5],[1,2],[5,8],[4,5],[10,14]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0],[2,3],[6,8],[4,5],[1,2],[5,8],[4,5],[10,14],[2,3],[6,8],[12,16]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
-    const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23||i===31)s.jade=3; if(i===32){s.jade=6;s.pillar=3;} if(i===34)s.jade=3; if(i===35)s.pillar=3;
+    const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23||i===31)s.jade=3; if(i===32){s.jade=6;s.pillar=3;} if(i===34||i===38||i===39)s.jade=3; if(i===35)s.pillar=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7,8,10,13,16,17,21,26,28,29].includes(i))assert.equal(r.state.enemy.hp,40-value);
-    if([1,5,9,11,14,15,34,36].includes(i))assert.equal(r.state.block,value);
+    if([0,3,4,6,7,8,10,13,16,17,21,26,28,29,38].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([1,5,9,11,14,15,34,36,39].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
     if(i===20||i===32)assert.equal(r.state.pillar,value);if(i===30){assert.equal(r.state.repair,value);assert.equal(r.state.jade,0);}
     if(i===35){assert.equal(r.state.pillar,0);assert.equal(r.state.pendingDraw,value);assert.equal(r.state.inUse,'a');}if(i===36){assert.equal(r.state.pendingDraw,upgrade?2:1);assert.equal(r.state.inUse,'a');}
     if(i===23){assert.equal(r.state.jade,0);assert.equal(r.state.pendingDraw,value);assert.equal(r.state.inUse,'a');}
     if(i===22){assert.equal(r.state.jade,value);assert.equal(r.state.pillar,0);}
-    if(i===2||i===18||i===19||i===25||i===27)assert.equal(r.state.jade,value);
+    if(i===2||i===18||i===19||i===25||i===27||i===37)assert.equal(r.state.jade,value);
     if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
@@ -25,7 +25,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if(i===12)assert.equal(r.state.enemy.vulnerable,upgrade?3:2);
     if(i===8||i===33)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
-    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18,20,23,26,29,30,32,35,36].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9||i===26||i===29||i===32)assert.deepEqual(r.state.exhaust,['a']); if(i===20||i===30)assert.deepEqual(r.state.powers,['a']);
+    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18,20,23,26,29,30,32,35,36,37,38,39].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9||i===26||i===29||i===32||i===37||i===38||i===39)assert.deepEqual(r.state.exhaust,['a']); if(i===20||i===30)assert.deepEqual(r.state.powers,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
   });
 }
@@ -74,7 +74,7 @@ test('source then payoff affordable at 3 energy; reverse order illegal with zero
 test('played instance cannot be replayed; no zero-cost refund loop',()=>{
   const s=initialState(); const r=run('zl01',s).state;
   assert.equal(play(r,{id:'zl01',instance:'a',target:'enemy'}).ok,false);
-  assert.ok(cards.every(c=>c.cost>0));assert.ok(cards.every(c=>[...c.base,...c.upgraded].every(([op])=>!['energy','recover'].includes(op))));
+  assert.ok(cards.every(c=>Number.isSafeInteger(c.cost)&&c.cost>=0));assert.ok(cards.filter(c=>c.cost===0).every(c=>c.exhaust&&[...c.base,...c.upgraded].every(([op])=>op!=='draw')));assert.ok(cards.every(c=>[...c.base,...c.upgraded].every(([op])=>!['energy','recover'].includes(op))));
 });
 test('text shares effects, explicit expected upgrade card text',()=>{
   assert.equal(textFor('zl04',true),'1能量；消耗6点玉璋；造成18点伤害。');
@@ -634,4 +634,27 @@ test('breach guard only earns its resource cost against armor, while naked-targe
  const s={...initialState(),jade:3};s.enemy.block=20;
  assert.equal(run('zl01',run('zl35',s).state).state.enemy.hp,34);assert.equal(run('zl01',run('zl02',s).state).state.enemy.hp,40);
  s.enemy.block=0;const a=run('zl35',s).state,b=run('zl02',s).state;assert.equal(a.block,b.block);assert.equal(a.jade,0);assert.equal(b.jade,3);
+});
+
+test('quick reserve and strike work at zero energy without generating energy; strike pays three jade',()=>{
+ for(const u of [false,true])for(const jade of [0,2,3,20]){
+  const s={...initialState(),jade,energy:0},before=structuredClone(s),shield=run('zl38',s,u);
+  assert.equal(shield.ok,true);assert.equal(shield.state.energy,0);assert.equal(shield.state.jade,Math.min(20,jade+(u?3:2)));assert.equal(shield.state.exhaust.length,1);
+  const strike=run('zl39',s,u);assert.equal(strike.ok,jade>=3);if(strike.ok){assert.equal(strike.state.energy,0);assert.equal(strike.state.jade,jade-3);assert.equal(strike.state.enemy.hp,u?32:34);assert.equal(strike.state.exhaust.length,1);}assert.deepEqual(s,before);
+ }
+});
+test('held emergency pays half16 reserve but gives less block and cannot serve long-term protection',()=>{
+ for(const u of [false,true]){
+  const s={...initialState(),jade:6},a=run('zl16',s,u).state,b=run('zl40',s,u).state;
+  assert.equal(a.block,u?21:16);assert.equal(b.block,u?16:12);assert.equal(a.jade,0);assert.equal(b.jade,3);assert.equal(a.energy,b.energy);
+  const idle=endTurn(b,[]);assert.equal(idle.block,0);assert.equal(idle.jade,3);
+ }
+});
+test('zero-energy batch cancellation and illegal effects never spend reserves, zero costs do not allow dead actions',()=>{
+ for(const id of ['zl38','zl39','zl40']){
+  const s=initialState(['a']);s.instances.a={id,upgraded:false};s.jade=3;const before=structuredClone(s);
+  assert.equal(play(s,{id,instance:'a',target:'enemy',cancel:true}).state,s);assert.deepEqual(s,before);
+  for(const patch of [{hp:0},{enemy:{...s.enemy,hp:0}}]){const t={...s,...patch};assert.equal(play(t,{id,instance:'a',target:'enemy'}).state,t);}
+  const c=cards.find(c=>c.id===id),old=c.base;try{c.base=[...old.slice(0,-1),[old.at(-1)[0],NaN]];assert.equal(play(s,{id,instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,before);}finally{c.base=old;}
+ }
 });

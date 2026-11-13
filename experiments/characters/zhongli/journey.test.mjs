@@ -203,3 +203,11 @@ test('batch three v25 offers all new candidates and preserves v24 exclusions',()
   for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v24').includes(id));
  }
 });
+
+test('batch four v26 reward paths add zero-cost and emergency candidates without modifying earlier offers',()=>{
+ for(const [id,policy] of [['zl38','quickReserve'],['zl39','quickStrike'],['zl40','heldEmergency']]){
+  let seed=1;while(seed<=10000&&!offers(seed,1,'v26').includes(id))seed++;assert.ok(seed<=10000);
+  let s=journeyStart(seed,{poolVersion:'v26'});s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const c=selectReward(rewardView(s),policy);assert.equal(s.offer[c-1],id);s=takeReward(s,c);assert.ok(s.deck.includes(id));
+  for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v25').includes(id));
+ }
+});

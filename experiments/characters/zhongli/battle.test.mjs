@@ -240,3 +240,21 @@ test('heavy access spends extra energy versus12 and gives less immediate guard t
  assert.equal(results.zl12.energy,2);assert.equal(results.zl37.energy,1);assert.equal(results.zl12.after.hp,51);assert.equal(results.zl37.after.hp,58);assert.equal(results.zl10.after.hp,60);
  assert.equal(results.zl37.after.hand.length,1);assert.equal(results.zl10.after.hand.length,0);
 });
+
+test('zero-cost cards terminate at exhaust, conserve cards, and cannot repeat through empty-deck cycling',()=>{
+ let s=battleStart({deck:['zl38','zl39'],relic:false});s.energy=0;
+ const gain=s.hand.find(k=>s.instances[k].id==='zl38'),hit=s.hand.find(k=>s.instances[k].id==='zl39');
+ s.instances[gain].upgraded=true;s=playInstance(s,gain).state;assert.equal(s.jade,3);s=playInstance(s,hit).state;
+ assert.equal(s.jade,0);assert.equal(s.energy,0);assert.equal(s.enemy.hp,34);assert.equal(s.exhaust.length,2);assert.equal(playInstance(s,gain).ok,false);
+ for(let i=0;i<20;i++){s=nextTurn(s,[]);assert.equal(s.hand.length,0);assert.equal(s.exhaust.length,2);}
+});
+test('basic quick reserve alone cannot enable three-jade payment from zero, and full jade gain wastes opportunity',()=>{
+ let s=battleStart({deck:['zl38','zl39'],relic:false});s.energy=0;
+ const gain=s.hand.find(k=>s.instances[k].id==='zl38'),hit=s.hand.find(k=>s.instances[k].id==='zl39');s=playInstance(s,gain).state;assert.equal(s.jade,2);
+ const before=structuredClone(s);assert.equal(playInstance(s,hit).ok,false);assert.deepEqual(s,before);
+ let capped=battleStart({deck:['zl38']});capped.jade=20;capped=playInstance(capped,capped.hand[0]).state;assert.equal(capped.jade,20);assert.equal(capped.exhaust.length,1);
+});
+test('held emergency retains before use, exhausts after use and never returns through next-turn draw',()=>{
+ let s=battleStart({deck:['zl40',...Array(5).fill('zl02')]});const key=Object.keys(s.instances).find(k=>s.instances[k].id==='zl40');s.hand=[key];s.draw=Object.keys(s.instances).filter(k=>k!==key);s.discard=[];
+ s=nextTurn(s,[]);assert.ok(s.hand.includes(key));s=playInstance(s,key).state;assert.equal(s.jade,0);assert.equal(s.block,12);assert.deepEqual(s.exhaust,[key]);s=nextTurn(s,[12]);assert.equal(s.hp,60);assert.ok(!s.hand.includes(key));assert.deepEqual(s.exhaust,[key]);
+});
