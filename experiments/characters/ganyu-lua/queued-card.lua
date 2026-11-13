@@ -26,6 +26,7 @@ function M.prepare(combat,state,e,target,uid)
  return out
 end
 function M.dispatch(combat,state,e,queue)
+ assert(type(e)=='table'and e.uid~=nil,'missing Ganyu paid uid')
  assert(state.pendingPlay and state.cardInUse and state.pendingPlay.uid==e.uid and state.cardInUse.uid==e.uid,'Ganyu card context mismatch')
  assert(Presence.isActive(state.player),'inactive Ganyu source')
  local plan

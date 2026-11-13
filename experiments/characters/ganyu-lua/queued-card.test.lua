@@ -68,3 +68,14 @@ do
  end
 end
 print('PASS state-owned ActorPresence and actual paid UID guards')
+
+-- nil==nil is not proof of a paid card identity.
+for _,missing in ipairs({'all','effect','pending','card'})do
+ local s=fresh(0);local e=M.prepare(C,s,{op='ganyuCard',kind='charge',amount=2},nil,s.cardInUse.uid)
+ if missing=='all'or missing=='effect'then e.uid=nil end
+ if missing=='all'or missing=='pending'then s.pendingPlay.uid=nil end
+ if missing=='all'or missing=='card'then s.cardInUse.uid=nil end
+ Q.start(s,{})
+ assert(not pcall(M.dispatch,C,s,e,Q));eq(s.ganyuResource.charge,0);eq(#s.actionQueue.actions,0)
+end
+print('PASS absent paid UID cannot match through nil equality')
