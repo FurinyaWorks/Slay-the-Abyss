@@ -17,7 +17,16 @@
         "tcg",
         "combat_voice"
       ],
-      "notes": "No complete official source index with exact item/scene verification committed."
+      "notes": "No complete official source index with exact item/scene verification committed.",
+      "checked_specific": [
+        "本体战斗技能/天赋/命座",
+        "七圣召唤胡桃角色及天赋牌"
+      ],
+      "sources": [
+        "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+        "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83"
+      ],
+      "missing": "尚未完整覆盖官方全部剧情及战斗语音的逐卡适配度，不冒称已完成"
     },
     "P2": {
       "complete": false,
@@ -27,7 +36,14 @@
         "quest",
         "official_promo"
       ],
-      "notes": "No complete official character source index with exact item/scene verification committed."
+      "notes": "No complete official character source index with exact item/scene verification committed.",
+      "checked_specific": [
+        "胡桃非战斗语音、人物职责、打开宝箱语音"
+      ],
+      "sources": [
+        "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3"
+      ],
+      "missing": "未完成故事/任务/宣传逐句完整候选索引"
     }
   },
   "cards": [
@@ -702,11 +718,11 @@
       "source": {
         "tier": "P1",
         "kind": "talent",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null
+        "verified": true,
+        "exact_text": "血之灶火",
+        "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+        "section": "固有天赋·血之灶火",
+        "version": "2026-11-13 官方文本与角色语音交叉核实"
       },
       "search": {
         "P1": {
@@ -728,7 +744,7 @@
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "来源及角色实际表述可定位，战术改编合理但未获人物/全池终审。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -951,43 +967,113 @@
     },
     {
       "id": "c01",
-      "name": "待命名·c01",
+      "name": "拦拿扎枪",
       "decision_role": "攻守一体",
       "effect_ref": "HTML:CARD:c01",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P3",
+        "kind": "martial",
+        "verified": true,
+        "exact_text": "拦、拿、扎枪",
+        "url": "https://www.iwuf.org/wp-content/uploads/2021/09/CN-%E5%9B%BD%E9%99%85%E6%AD%A6%E8%81%94%E6%AD%A6%E6%9C%AF%E5%A5%97%E8%B7%AF%E7%AB%9E%E8%B5%9B%E8%A7%84%E5%88%99%E4%B8%8E%E8%A3%81%E5%88%A4%E6%B3%95%EF%BC%88%E8%8A%82%E9%80%89%EF%BC%892019.pdf",
+        "section": "2019 第三十条枪术拦拿扎组合",
+        "version": "2019",
+        "cultural": {
+          "original_term": "拦、拿、扎枪",
+          "source_url": "https://www.iwuf.org/wp-content/uploads/2021/09/CN-%E5%9B%BD%E9%99%85%E6%AD%A6%E8%81%94%E6%AD%A6%E6%9C%AF%E5%A5%97%E8%B7%AF%E7%AB%9E%E8%B5%9B%E8%A7%84%E5%88%99%E4%B8%8E%E8%A3%81%E5%88%A4%E6%B3%95%EF%BC%88%E8%8A%82%E9%80%89%EF%BC%892019.pdf",
+          "source_entry": "第三十条·拦、拿、扎枪",
+          "real_action_meaning": "攻击兼格挡：拦挡、拿拨后突刺的动作组合",
+          "mechanic_mapping": "实际卡牌职责：攻守一体；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
+        }
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "胡桃角色/日常语音",
+            "胡桃人物职责"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 关于我们 帮手 夜晚 战斗",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "关于我们·帮手/夜晚/战斗",
+              "entry": "该我出马了、晚上可得小心点、受人之托"
+            },
+            {
+              "query": "胡桃 角色语音 送别",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "元素爆发/关于胡桃自己",
+              "entry": "再会啦、蝶火燎原、火蝴蝶"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "晚上可得小心点",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·夜晚",
+              "rejection_reason": "已用于r08以表现持续防御；当前枪术牌强调具体武器动作，复用该口语会牺牲辨识度"
+            },
+            {
+              "text": "我来啦！",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·帮手",
+              "rejection_reason": "已经用于c08支援抽牌/防御，这里不再重复一条语音截取"
+            }
+          ],
+          "reason": "已查该角色官方人物口吻，合适的短语已承担相应卡位或不对应这张牌的具体枪术动作，因此才考虑P3现实技法",
+          "result": "no_suitable"
         },
         "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "status": "searched",
+          "source_url": "https://www.iwuf.org/wp-content/uploads/2021/09/CN-%E5%9B%BD%E9%99%85%E6%AD%A6%E8%81%94%E6%AD%A6%E6%9C%AF%E5%A5%97%E8%B7%AF%E7%AB%9E%E8%B5%9B%E8%A7%84%E5%88%99%E4%B8%8E%E8%A3%81%E5%88%A4%E6%B3%95%EF%BC%88%E8%8A%82%E9%80%89%EF%BC%892019.pdf",
+          "entry": "2019 第三十条枪术拦拿扎组合",
+          "reason": "真实武术技法动作已核实，独立审美与全池区分尚未获人审"
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "用户指出不自然；没有验证过的枪术原词，也没有官方P1/P2检索和拒绝证据，旧审查只给原创情境。",
+        "status": "PENDING",
+        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；攻击兼格挡：拦挡、拿拨后突刺的动作组合",
         "checks": {
-          "N2": "fail",
-          "N3": "fail",
+          "N2": "pending",
+          "N3": "pending",
           "N4": "pending",
           "N5": "pending",
           "N6": "pending"
@@ -1003,6 +1089,12 @@
             "name": "掩袖回枪",
             "decision": "rejected",
             "reason": "用户指出不自然；没有验证过的枪术原词，也没有官方P1/P2检索和拒绝证据，旧审查只给原创情境。"
+          },
+          {
+            "name": "待命名·c01",
+            "decision": "superseded_by_candidate",
+            "reason": "攻击兼格挡：拦挡、拿拨后突刺的动作组合",
+            "date": "2026-11-13"
           }
         ]
       }
@@ -1428,40 +1520,110 @@
     },
     {
       "id": "c10",
-      "name": "出枪探路",
+      "name": "扎枪",
       "decision_role": "低血过牌",
       "effect_ref": "HTML:CARD:c10",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P3",
+        "kind": "martial",
+        "verified": true,
+        "exact_text": "扎枪",
+        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
+        "version": "2005-11",
+        "cultural": {
+          "original_term": "扎枪",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "source_entry": "枪术主要动作技术要求",
+          "real_action_meaning": "一次直刺对应单体伤害；半血抽牌是另加的回合制效果",
+          "mechanic_mapping": "实际卡牌职责：低血过牌；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
+        }
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "胡桃角色/日常语音",
+            "胡桃人物职责"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 关于我们 帮手 夜晚 战斗",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "关于我们·帮手/夜晚/战斗",
+              "entry": "该我出马了、晚上可得小心点、受人之托"
+            },
+            {
+              "query": "胡桃 角色语音 送别",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "元素爆发/关于胡桃自己",
+              "entry": "再会啦、蝶火燎原、火蝴蝶"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "晚上可得小心点",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·夜晚",
+              "rejection_reason": "已用于r08以表现持续防御；当前枪术牌强调具体武器动作，复用该口语会牺牲辨识度"
+            },
+            {
+              "text": "我来啦！",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·帮手",
+              "rejection_reason": "已经用于c08支援抽牌/防御，这里不再重复一条语音截取"
+            }
+          ],
+          "reason": "已查该角色官方人物口吻，合适的短语已承担相应卡位或不对应这张牌的具体枪术动作，因此才考虑P3现实技法",
+          "result": "no_suitable"
         },
         "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "status": "searched",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "entry": "2005 副则·枪术主要动作技术要求 PDF页33",
+          "reason": "真实武术技法动作已核实，独立审美与全池区分尚未获人审"
         }
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；一次直刺对应单体伤害；半血抽牌是另加的回合制效果",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -1475,45 +1637,122 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "出枪探路",
+            "decision": "superseded_by_candidate",
+            "reason": "一次直刺对应单体伤害；半血抽牌是另加的回合制效果",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
       "id": "c11",
-      "name": "转身避锋",
+      "name": "拦枪",
       "decision_role": "蝶舞下回合防守",
       "effect_ref": "HTML:CARD:c11",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P3",
+        "kind": "martial",
+        "verified": true,
+        "exact_text": "拦枪",
+        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
+        "version": "2005-11",
+        "cultural": {
+          "original_term": "拦枪",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "source_entry": "枪术主要动作技术要求",
+          "real_action_meaning": "向外划弧拦挡，对应当前防御及蝶舞后的续防",
+          "mechanic_mapping": "实际卡牌职责：蝶舞下回合防守；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
+        }
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "胡桃角色/日常语音",
+            "胡桃人物职责"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 关于我们 帮手 夜晚 战斗",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "关于我们·帮手/夜晚/战斗",
+              "entry": "该我出马了、晚上可得小心点、受人之托"
+            },
+            {
+              "query": "胡桃 角色语音 送别",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "元素爆发/关于胡桃自己",
+              "entry": "再会啦、蝶火燎原、火蝴蝶"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "晚上可得小心点",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·夜晚",
+              "rejection_reason": "已用于r08以表现持续防御；当前枪术牌强调具体武器动作，复用该口语会牺牲辨识度"
+            },
+            {
+              "text": "我来啦！",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·帮手",
+              "rejection_reason": "已经用于c08支援抽牌/防御，这里不再重复一条语音截取"
+            }
+          ],
+          "reason": "已查该角色官方人物口吻，合适的短语已承担相应卡位或不对应这张牌的具体枪术动作，因此才考虑P3现实技法",
+          "result": "no_suitable"
         },
         "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "status": "searched",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "entry": "2005 副则·枪术主要动作技术要求 PDF页33",
+          "reason": "真实武术技法动作已核实，独立审美与全池区分尚未获人审"
         }
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；向外划弧拦挡，对应当前防御及蝶舞后的续防",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -1527,7 +1766,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "转身避锋",
+            "decision": "superseded_by_candidate",
+            "reason": "向外划弧拦挡，对应当前防御及蝶舞后的续防",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -1892,43 +2138,79 @@
     },
     {
       "id": "c19",
-      "name": "待命名·c19",
+      "name": "让我看看",
       "decision_role": "延迟抽牌",
       "effect_ref": "HTML:CARD:c19",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": true,
+        "exact_text": "让我看看，都有什么好东西。",
+        "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+        "section": "打开宝箱·其二",
+        "version": "中文角色语音·2026-11-13查核"
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
-        },
-        "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "completed": true,
+          "categories": [
+            "胡桃角色语音"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 让我看看，都有什么好东西。",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "打开宝箱·其二",
+              "entry": "让我看看，都有什么好东西。"
+            }
+          ],
+          "result": "selected",
+          "reason": "本句来自实际角色语音，贴合卡牌的未来抽牌/连续防守职责"
         }
       },
       "review": {
-        "status": "BLOCKED",
-        "reason": "用户指出不自然且作用不贴；仅以夜间备灯说明下回合抽牌，缺少真实动作/语义对应与官方检索。",
+        "status": "PENDING",
+        "reason": "P2实际人物语音找到原句，中文风格/全池辨识度仍待独立审核；来自打开宝箱·其二，借查看行动表达到下一回合过牌",
         "checks": {
-          "N2": "fail",
-          "N3": "fail",
+          "N2": "pending",
+          "N3": "pending",
           "N4": "pending",
           "N5": "pending",
           "N6": "pending"
@@ -1944,6 +2226,12 @@
             "name": "夜路照明",
             "decision": "rejected",
             "reason": "用户指出不自然且作用不贴；仅以夜间备灯说明下回合抽牌，缺少真实动作/语义对应与官方检索。"
+          },
+          {
+            "name": "待命名·c19",
+            "decision": "superseded_by_candidate",
+            "reason": "来自打开宝箱·其二，借查看行动表达到下一回合过牌",
+            "date": "2026-11-13"
           }
         ]
       }
@@ -2002,40 +2290,110 @@
     },
     {
       "id": "u02",
-      "name": "半生烟火",
+      "name": "崩枪",
       "decision_role": "低血单体爆发",
       "effect_ref": "HTML:CARD:u02",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P3",
+        "kind": "martial",
+        "verified": true,
+        "exact_text": "崩枪",
+        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
+        "version": "2005-11",
+        "cultural": {
+          "original_term": "崩枪",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "source_entry": "枪术主要动作技术要求",
+          "real_action_meaning": "枪尖短促弹抖发力，对应单体爆发，低血增伤另见效果",
+          "mechanic_mapping": "实际卡牌职责：低血单体爆发；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
+        }
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "胡桃角色/日常语音",
+            "胡桃人物职责"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 关于我们 帮手 夜晚 战斗",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "关于我们·帮手/夜晚/战斗",
+              "entry": "该我出马了、晚上可得小心点、受人之托"
+            },
+            {
+              "query": "胡桃 角色语音 送别",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "元素爆发/关于胡桃自己",
+              "entry": "再会啦、蝶火燎原、火蝴蝶"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "晚上可得小心点",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·夜晚",
+              "rejection_reason": "已用于r08以表现持续防御；当前枪术牌强调具体武器动作，复用该口语会牺牲辨识度"
+            },
+            {
+              "text": "我来啦！",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·帮手",
+              "rejection_reason": "已经用于c08支援抽牌/防御，这里不再重复一条语音截取"
+            }
+          ],
+          "reason": "已查该角色官方人物口吻，合适的短语已承担相应卡位或不对应这张牌的具体枪术动作，因此才考虑P3现实技法",
+          "result": "no_suitable"
         },
         "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "status": "searched",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "entry": "2005 副则·枪术主要动作技术要求 PDF页33",
+          "reason": "真实武术技法动作已核实，独立审美与全池区分尚未获人审"
         }
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；枪尖短促弹抖发力，对应单体爆发，低血增伤另见效果",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2049,7 +2407,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "半生烟火",
+            "decision": "superseded_by_candidate",
+            "reason": "枪尖短促弹抖发力，对应单体爆发，低血增伤另见效果",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2573,7 +2938,7 @@
     },
     {
       "id": "u13",
-      "name": "花影连刺",
+      "name": "待命名·u13",
       "decision_role": "三段攻击/挂梅",
       "effect_ref": "HTML:CARD:u13",
       "source": {
@@ -2601,18 +2966,18 @@
         },
         "P3": {
           "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "reason": "未找到能够准确对应本卡独特状态结算/三段强化的枪术技法，待专项审"
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "status": "BLOCKED",
+        "reason": "三段攻击与蝶舞挂梅的职责和u21三段攻击相撞；当前未完成适用P3复核",
         "checks": {
-          "N2": "pending",
+          "N2": "fail",
           "N3": "pending",
           "N4": "pending",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -2620,12 +2985,19 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "花影连刺",
+            "decision": "rejected_for_current_version",
+            "reason": "三段攻击+蝶舞挂梅，与u21名字和战术过于相似，需先审独立职责",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
       "id": "u14",
-      "name": "余火未消",
+      "name": "待命名·u14",
       "decision_role": "先挂梅再攻；快照条件",
       "effect_ref": "HTML:CARD:u14",
       "source": {
@@ -2653,18 +3025,18 @@
         },
         "P3": {
           "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "reason": "未找到能够准确对应本卡独特状态结算/三段强化的枪术技法，待专项审"
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "status": "BLOCKED",
+        "reason": "旧名“余火未消”与余香未尽雷同，挂梅+追击不能用拼词解释",
         "checks": {
-          "N2": "pending",
+          "N2": "fail",
           "N3": "pending",
           "N4": "pending",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -2672,7 +3044,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "余火未消",
+            "decision": "rejected_for_current_version",
+            "reason": "余火未消与余香未尽撞意象，不能把刷新梅香当新名已经通过",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2728,40 +3107,110 @@
     },
     {
       "id": "u16",
-      "name": "守礼如初",
+      "name": "拿枪",
       "decision_role": "格挡/削弱",
       "effect_ref": "HTML:CARD:u16",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P3",
+        "kind": "martial",
+        "verified": true,
+        "exact_text": "拿枪",
+        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
+        "version": "2005-11",
+        "cultural": {
+          "original_term": "拿枪",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "source_entry": "枪术主要动作技术要求",
+          "real_action_meaning": "向内划弧的拿拨动作，对应格挡与降低下一攻击",
+          "mechanic_mapping": "实际卡牌职责：格挡/削弱；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
+        }
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "胡桃角色/日常语音",
+            "胡桃人物职责"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 关于我们 帮手 夜晚 战斗",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "关于我们·帮手/夜晚/战斗",
+              "entry": "该我出马了、晚上可得小心点、受人之托"
+            },
+            {
+              "query": "胡桃 角色语音 送别",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "元素爆发/关于胡桃自己",
+              "entry": "再会啦、蝶火燎原、火蝴蝶"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "晚上可得小心点",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·夜晚",
+              "rejection_reason": "已用于r08以表现持续防御；当前枪术牌强调具体武器动作，复用该口语会牺牲辨识度"
+            },
+            {
+              "text": "我来啦！",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·帮手",
+              "rejection_reason": "已经用于c08支援抽牌/防御，这里不再重复一条语音截取"
+            }
+          ],
+          "reason": "已查该角色官方人物口吻，合适的短语已承担相应卡位或不对应这张牌的具体枪术动作，因此才考虑P3现实技法",
+          "result": "no_suitable"
         },
         "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "status": "searched",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "entry": "2005 副则·枪术主要动作技术要求 PDF页33",
+          "reason": "真实武术技法动作已核实，独立审美与全池区分尚未获人审"
         }
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；向内划弧的拿拨动作，对应格挡与降低下一攻击",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2775,45 +3224,88 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "守礼如初",
+            "decision": "superseded_by_candidate",
+            "reason": "向内划弧的拿拨动作，对应格挡与降低下一攻击",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
       "id": "u17",
-      "name": "归途有光",
+      "name": "受人之托",
       "decision_role": "本回合与下一回合格挡",
       "effect_ref": "HTML:CARD:u17",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P2",
+        "kind": "daily_voice",
+        "verified": true,
+        "exact_text": "受人之托，忠人之事。",
+        "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+        "section": "有什么想要分享",
+        "version": "中文角色语音·2026-11-13查核"
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
-        },
-        "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "completed": true,
+          "categories": [
+            "胡桃角色语音"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 受人之托，忠人之事。",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "有什么想要分享",
+              "entry": "受人之托，忠人之事。"
+            }
+          ],
+          "result": "selected",
+          "reason": "本句来自实际角色语音，贴合卡牌的未来抽牌/连续防守职责"
         }
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "P2实际人物语音找到原句，中文风格/全池辨识度仍待独立审核；来自有什么想要分享，承担责任对应连续两回合防守",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2827,7 +3319,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "归途有光",
+            "decision": "superseded_by_candidate",
+            "reason": "来自有什么想要分享，承担责任对应连续两回合防守",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -2884,40 +3383,110 @@
     },
     {
       "id": "u19",
-      "name": "焰尾横扫",
+      "name": "舞花枪",
       "decision_role": "群体伤害+低血格挡",
       "effect_ref": "HTML:CARD:u19",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P3",
+        "kind": "martial",
+        "verified": true,
+        "exact_text": "舞花枪",
+        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
+        "version": "2005-11",
+        "cultural": {
+          "original_term": "舞花枪",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "source_entry": "枪术主要动作技术要求",
+          "real_action_meaning": "贴近身体连续快速立圆绕行，对应群体攻击与回防",
+          "mechanic_mapping": "实际卡牌职责：群体伤害+低血格挡；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
+        }
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "胡桃角色/日常语音",
+            "胡桃人物职责"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 关于我们 帮手 夜晚 战斗",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "关于我们·帮手/夜晚/战斗",
+              "entry": "该我出马了、晚上可得小心点、受人之托"
+            },
+            {
+              "query": "胡桃 角色语音 送别",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "元素爆发/关于胡桃自己",
+              "entry": "再会啦、蝶火燎原、火蝴蝶"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "晚上可得小心点",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·夜晚",
+              "rejection_reason": "已用于r08以表现持续防御；当前枪术牌强调具体武器动作，复用该口语会牺牲辨识度"
+            },
+            {
+              "text": "我来啦！",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·帮手",
+              "rejection_reason": "已经用于c08支援抽牌/防御，这里不再重复一条语音截取"
+            }
+          ],
+          "reason": "已查该角色官方人物口吻，合适的短语已承担相应卡位或不对应这张牌的具体枪术动作，因此才考虑P3现实技法",
+          "result": "no_suitable"
         },
         "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "status": "searched",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "entry": "2005 副则·枪术主要动作技术要求 PDF页33",
+          "reason": "真实武术技法动作已核实，独立审美与全池区分尚未获人审"
         }
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；贴近身体连续快速立圆绕行，对应群体攻击与回防",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2931,45 +3500,122 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "焰尾横扫",
+            "decision": "superseded_by_candidate",
+            "reason": "贴近身体连续快速立圆绕行，对应群体攻击与回防",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
       "id": "u20",
-      "name": "花落知时",
+      "name": "点枪",
       "decision_role": "目标旧梅提前兑现",
       "effect_ref": "HTML:CARD:u20",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P3",
+        "kind": "martial",
+        "verified": true,
+        "exact_text": "点枪",
+        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
+        "version": "2005-11",
+        "cultural": {
+          "original_term": "点枪",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "source_entry": "枪术主要动作技术要求",
+          "real_action_meaning": "短促点击目标，梅香提前结算是本作附加的特殊收益",
+          "mechanic_mapping": "实际卡牌职责：目标旧梅提前兑现；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
+        }
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "胡桃角色/日常语音",
+            "胡桃人物职责"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 关于我们 帮手 夜晚 战斗",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "关于我们·帮手/夜晚/战斗",
+              "entry": "该我出马了、晚上可得小心点、受人之托"
+            },
+            {
+              "query": "胡桃 角色语音 送别",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "元素爆发/关于胡桃自己",
+              "entry": "再会啦、蝶火燎原、火蝴蝶"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "晚上可得小心点",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·夜晚",
+              "rejection_reason": "已用于r08以表现持续防御；当前枪术牌强调具体武器动作，复用该口语会牺牲辨识度"
+            },
+            {
+              "text": "我来啦！",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·帮手",
+              "rejection_reason": "已经用于c08支援抽牌/防御，这里不再重复一条语音截取"
+            }
+          ],
+          "reason": "已查该角色官方人物口吻，合适的短语已承担相应卡位或不对应这张牌的具体枪术动作，因此才考虑P3现实技法",
+          "result": "no_suitable"
         },
         "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "status": "searched",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "entry": "2005 副则·枪术主要动作技术要求 PDF页33",
+          "reason": "真实武术技法动作已核实，独立审美与全池区分尚未获人审"
         }
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；短促点击目标，梅香提前结算是本作附加的特殊收益",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -2983,12 +3629,19 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "花落知时",
+            "decision": "superseded_by_candidate",
+            "reason": "短促点击目标，梅香提前结算是本作附加的特殊收益",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
       "id": "u21",
-      "name": "枪影连环",
+      "name": "待命名·u21",
       "decision_role": "三段攻击+格挡",
       "effect_ref": "HTML:CARD:u21",
       "source": {
@@ -3016,18 +3669,18 @@
         },
         "P3": {
           "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "reason": "未找到能够准确对应本卡独特状态结算/三段强化的枪术技法，待专项审"
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "status": "BLOCKED",
+        "reason": "三段攻击与u13近似，必须先证明不同构筑地位，再命名",
         "checks": {
-          "N2": "pending",
+          "N2": "fail",
           "N3": "pending",
           "N4": "pending",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -3035,7 +3688,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "枪影连环",
+            "decision": "rejected_for_current_version",
+            "reason": "三段攻击+蝶舞格挡与u13重复构筑位，不能仅用枪影词根区分",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -3706,40 +4366,110 @@
     },
     {
       "id": "r14",
-      "name": "日暮回枪",
+      "name": "挑把",
       "decision_role": "低血攻守",
       "effect_ref": "HTML:CARD:r14",
       "source": {
-        "tier": "P4",
-        "kind": "original",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null,
-        "name_original": true
+        "tier": "P3",
+        "kind": "martial",
+        "verified": true,
+        "exact_text": "挑把",
+        "url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+        "section": "2005 副则·枪术主要动作技术要求 PDF页33",
+        "version": "2005-11",
+        "cultural": {
+          "original_term": "挑把",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "source_entry": "枪术主要动作技术要求",
+          "real_action_meaning": "枪把由下向上挑击，低血格挡是本作额外收益",
+          "mechanic_mapping": "实际卡牌职责：低血攻守；枪术原词只表动作，不代表原术存在低血增伤/抽牌/血梅香等游戏规则。"
+        }
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "胡桃角色/日常语音",
+            "胡桃人物职责"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 关于我们 帮手 夜晚 战斗",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "关于我们·帮手/夜晚/战斗",
+              "entry": "该我出马了、晚上可得小心点、受人之托"
+            },
+            {
+              "query": "胡桃 角色语音 送别",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "元素爆发/关于胡桃自己",
+              "entry": "再会啦、蝶火燎原、火蝴蝶"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "晚上可得小心点",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·夜晚",
+              "rejection_reason": "已用于r08以表现持续防御；当前枪术牌强调具体武器动作，复用该口语会牺牲辨识度"
+            },
+            {
+              "text": "我来啦！",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "source_entry": "关于我们·帮手",
+              "rejection_reason": "已经用于c08支援抽牌/防御，这里不再重复一条语音截取"
+            }
+          ],
+          "reason": "已查该角色官方人物口吻，合适的短语已承担相应卡位或不对应这张牌的具体枪术动作，因此才考虑P3现实技法",
+          "result": "no_suitable"
         },
         "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "status": "searched",
+          "source_url": "https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf",
+          "entry": "2005 副则·枪术主要动作技术要求 PDF页33",
+          "reason": "真实武术技法动作已核实，独立审美与全池区分尚未获人审"
         }
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "P3真实枪术名称已复核来源，仍待人物气质及与效果适配的人审；枪把由下向上挑击，低血格挡是本作额外收益",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -3753,7 +4483,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "日暮回枪",
+            "decision": "superseded_by_candidate",
+            "reason": "枪把由下向上挑击，低血格挡是本作额外收益",
+            "date": "2026-11-13"
+          }
+        ]
       }
     },
     {
@@ -3764,33 +4501,69 @@
       "source": {
         "tier": "P2",
         "kind": "daily_voice",
-        "verified": false,
-        "exact_text": null,
-        "url": null,
-        "section": null,
-        "version": null
+        "verified": true,
+        "exact_text": "不如去我那儿喝杯茶？",
+        "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+        "section": "闲聊·往生堂",
+        "version": "2026-11-13 官方文本与角色语音交叉核实"
       },
       "search": {
         "P1": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
+          "completed": true,
+          "categories": [
+            "本体技能/天赋/命座",
+            "七圣召唤胡桃"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 往生秘传枪法 蝶引来生 安神秘法 血之灶火",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "locator": "原神·胡桃·战斗天赋与命座",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法"
+            },
+            {
+              "query": "七圣召唤 胡桃 技能 天赋牌",
+              "url": "https://wiki.biligame.com/ys/%E5%8D%A1%E7%89%8C%EF%BC%9A%E8%83%A1%E6%A1%83",
+              "locator": "七圣召唤·胡桃角色牌",
+              "entry": "往生秘传枪法、蝶引来生、安神秘法、血之灶火"
+            }
+          ],
+          "rejected_candidates": [
+            {
+              "text": "往生秘传枪法",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "普通攻击·往生秘传枪法",
+              "rejection_reason": "完整原名在spear卡已占据旗舰基础枪法位置，本卡是单一或复合分化动作，不能重复名"
+            },
+            {
+              "text": "蝶引来生",
+              "source_url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83",
+              "source_entry": "元素战技·蝶引来生",
+              "rejection_reason": "已用于独立的付血启动卡e，不能把普通动作/纯防守卡误认为开启元素战技"
+            }
+          ],
+          "reason": "经本体与七圣召唤的明确技能名称比对，已存在的原名承担更直接职责，未找到适合且不会同池撞名的现成P1名称；这只是本卡专题检索，不冒称全量官方来源已覆盖",
+          "result": "no_suitable"
         },
         "P2": {
-          "completed": false,
-          "categories": [],
-          "lookups": [],
-          "result": "unchecked"
-        },
-        "P3": {
-          "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "completed": true,
+          "categories": [
+            "胡桃人物语音"
+          ],
+          "lookups": [
+            {
+              "query": "胡桃 喝杯茶",
+              "url": "https://wiki.biligame.com/ys/%E8%83%A1%E6%A1%83%E8%AF%AD%E9%9F%B3",
+              "locator": "闲聊·往生堂",
+              "entry": "不如去我那儿喝杯茶？"
+            }
+          ],
+          "result": "selected"
         }
       },
       "review": {
         "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "reason": "来源及角色实际表述可定位，战术改编合理但未获人物/全池终审。",
         "checks": {
           "N2": "pending",
           "N3": "pending",
@@ -3861,7 +4634,7 @@
     },
     {
       "id": "r17",
-      "name": "此行珍重",
+      "name": "待命名·r17",
       "decision_role": "梅香引爆+下回合防御",
       "effect_ref": "HTML:CARD:r17",
       "source": {
@@ -3889,18 +4662,18 @@
         },
         "P3": {
           "status": "unchecked",
-          "reason": "P3 only when official names cannot fit; no culture source approved"
+          "reason": "未找到能够准确对应本卡独特状态结算/三段强化的枪术技法，待专项审"
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "缺少逐条源出处和官方优先级检索/否决证据，尚未人工终审。",
+        "status": "BLOCKED",
+        "reason": "送别+引爆语义已在再会啦/一路走好使用，旧名此行珍重无法形成足够区分",
         "checks": {
-          "N2": "pending",
+          "N2": "fail",
           "N3": "pending",
           "N4": "pending",
           "N5": "pending",
-          "N6": "pending"
+          "N6": "fail"
         },
         "human": {
           "approved": false,
@@ -3908,7 +4681,14 @@
           "date": null,
           "evidence": null
         },
-        "history": []
+        "history": [
+          {
+            "name": "此行珍重",
+            "decision": "rejected_for_current_version",
+            "reason": "此行珍重与一路走好/再会啦均为送别引爆牌，辨识度不足",
+            "date": "2026-11-13"
+          }
+        ]
       }
     }
   ],
@@ -3922,6 +4702,16 @@
       "card_id": "r06",
       "gate": "G2/C",
       "reason": "稀有牌免付血开启蝶舞，可能绕过核心风险；要重新机制评审"
+    }
+  ],
+  "review_rounds": [
+    {
+      "date": "2026-11-13",
+      "scope": "针对用户复审16卡、已发现的原名与修订后P3/P2候选",
+      "renamed": 14,
+      "source_hierarchy": "P1 > P2 > P3 > P4",
+      "mechanics_unchanged": true,
+      "owner_approval": "PENDING"
     }
   ]
 }

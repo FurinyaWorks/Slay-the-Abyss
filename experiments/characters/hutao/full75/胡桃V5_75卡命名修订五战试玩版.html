@@ -52,17 +52,17 @@ const EXHAUST={exhaust:true};
 // sourceKind = original | skill | talent | constellation | voice | quote | status.
 const defs=[
 // 19 NEW commons: plus 7 existing commons = 26.
- ['c01','待命名·c01','普通','攻击',1,[D(5),B(4)],[D(7),B(6)],'original','胡桃持枪进退之动作；旧设计意象经重审','攻守一体，非单纯白值'],
+ ['c01','拦拿扎枪','普通','攻击',1,[D(5),B(4)],[D(7),B(6)],'martial','国际武联2019《枪术自选套路》：连续拦、拿、扎枪；按格挡后扎击的复合动作改编','攻守一体，非单纯白值'],
  ['c02','火蝴蝶','普通','攻击',1,[D(7,{markIfButterfly:true})],[D(10,{markIfButterfly:true})],'voice','关于胡桃自己·拿手好戏：火蝴蝶！','蝶舞中替代重击的挂梅入口'],
  ['c03','整衣待行','普通','技能',1,[B(7),NB(2)],[B(9),NB(3)],'original','出行前整理衣装与后续防护的往生堂动作联想；本作原创','现在防守与下一回合过渡'],
  ['c04','起身啦！','普通','技能',1,[T(2)],[T(3)],'voice','打雷的时候：打雷啦，起身啦。','过牌，但占当回合能量'],
  ['c05','暂且止步','普通','技能',1,[B(4),WEAK(1)],[B(7),WEAK(1)],'original','本作原创：挡住下一次攻势，压制敌人的攻击','减轻敌人下一次攻击并格挡'],
- ['c06','待命名·c06','普通','技能',1,[M(),B(3)],[M(),B(6)],'original','一边回防，一边给敌人留下血梅香；本作原创动作','血梅香来源兼低保防守'],
+ ['c06','待命名·c06','普通','技能',1,[M(),B(3)],[M(),B(6)],'original','已否决原名“顺势点梅”，缺P1/P2和真实枪术动作映射，暂未命名','血梅香来源兼低保防守'],
  ['c07','枪尖回转','普通','攻击',1,[D(4,{hits:2}),B(2,{if:'butterfly'})],[D(5,{hits:2}),B(4,{if:'butterfly'})],'original','长枪二连与回枪动作为原型','二段连击、蝶舞时回防'],
  ['c08','我来啦！','普通','技能',1,[T(2),B(2,{if:'butterfly'})],[T(2),B(5,{if:'butterfly'})],'voice','关于我们·帮手：我来啦！','抽牌并在蝶舞时补防'],
  ['c09','缓一缓','普通','技能',1,[B(9),NB(3,{if:'low'})],[B(12),NB(4,{if:'low'})],'original','本作原创：半血以下把防守延续到下一回合','高安全格挡，低血未来收益'],
- ['c10','出枪探路','普通','攻击',1,[D(6),T(1,{if:'low'})],[D(9),T(1,{if:'low'})],'original','以探路枪击换取下一次行动信息的本作原创动作','低血补牌的普攻攻击'],
- ['c11','转身避锋','普通','技能',1,[B(6),NB(4,{if:'butterfly'})],[B(9),NB(5,{if:'butterfly'})],'original','重击后调整身位避免受击','蝶舞防守与后续缓冲'],
+ ['c10','扎枪','普通','攻击',1,[D(6),T(1,{if:'low'})],[D(9),T(1,{if:'low'})],'martial','国际武联2005《枪术主要动作技术要求》：扎枪直线扎出；半血抽牌为本作附加','低血补牌的普攻攻击'],
+ ['c11','拦枪','普通','技能',1,[B(6),NB(4,{if:'butterfly'})],[B(9),NB(5,{if:'butterfly'})],'martial','国际武联2005《枪术主要动作技术要求》：拦枪枪尖向外划弧；蝶舞额外次回合防御为本作附加','蝶舞防守与后续缓冲'],
  ['c12','又见梅开','普通','攻击',1,[D(5,{bonusIfMarked:4})],[D(7,{bonusIfMarked:5})],'original','命中已有血梅香的目标','状态收益与目标选择'],
  ['c13','该我出马了？','普通','攻击',1,[D(9),B(3,{if:'low'})],[D(12),B(4,{if:'low'})],'voice','加入队伍·其一：哦？该我出马了？','中速纯伤与低血防守'],
  ['c14','瞧好了哦','普通','技能',1,[PREP(3),B(2)],[PREP(5),B(3)],'voice','关于胡桃自己·拿手好戏：瞧好了哦','强化下一次攻击首击'],
@@ -70,11 +70,11 @@ const defs=[
  ['c16','顺风顺水','普通','技能',0,[B(4),T(1,{if:'butterfly'})],[B(6),T(1,{if:'butterfly'})],'voice','打开风之翼·其一：顺风顺水~（官方语音，修正错误条目号）','零费防御及蝶舞时过牌',{exhaust:true}],
  ['c17','吃饱喝饱','普通','技能',1,[HEAL(2),B(3)],[HEAL(3),B(4)],'voice','元素爆发·其一：吃饱喝饱，一路走好！（前半句）','珍贵治疗额度与防守权衡',{exhaust:true}],
  ['c18','蝶影一闪','普通','攻击',1,[D(7,{markIfButterfly:true}),B(2,{if:'low'})],[D(10,{markIfButterfly:true}),B(3,{if:'low'})],'original','蝶舞枪法与闪避结合','低血蝶舞中能攻能守'],
- ['c19','待命名·c19','普通','技能',1,[B(5),ND(1)],[B(8),ND(1)],'original','夜行前备灯是往生堂职业情境','当回合换下回合过牌'],
+ ['c19','让我看看','普通','技能',1,[B(5),ND(1)],[B(8),ND(1)],'voice','打开宝箱·其二：让我看看，都有什么好东西。；由查看行动改编为下回合过牌','当回合换下回合过牌'],
 
 // 21 NEW uncommons: plus 4 existing uncommons = 25.
  ['u01','催绽','罕见','技能',1,[D(3),X(3)],[D(5),X(4)],'original','血梅香提前结算：明确动作名','小伤触发梅香提前兑现'],
- ['u02','半生烟火','罕见','攻击',2,[D(13,{bonusIfLow:5})],[D(18,{bonusIfLow:6})],'original','以半血火势为契机的原创短语','低血精确斩杀'],
+ ['u02','崩枪','罕见','攻击',2,[D(13,{bonusIfLow:5})],[D(18,{bonusIfLow:6})],'martial','国际武联2005《枪术主要动作技术要求》：崩枪短促向上或向侧方弹抖；低血伤害倍率属本作','低血精确斩杀'],
  ['u03','蝶舞回身','罕见','攻击',1,[D(7),B(6,{if:'butterfly'})],[D(10),B(8,{if:'butterfly'})],'original','蝶舞状态中的回身枪式','开E后的攻守连接'],
  ['u04','梅开彼岸','罕见','技能',2,[A(6),M({all:true})],[A(9),M({all:true})],'original','血梅香与彼岸蝶舞结合的本作改编','群体减速/标记来源'],
  ['u05','无妄夜行','罕见','技能',1,[B(6),WEAK(1,{all:true})],[B(9),WEAK(1,{all:true})],'original','无妄坡夜行而趋避锋芒','群体削弱下一攻击动作'],
@@ -85,15 +85,15 @@ const defs=[
  ['u10','伴君眠花房','罕见','能力',2,[KILLBLOCK(5)],[KILLBLOCK(8)],'constellation','命之座第4层：伴君眠花房；原作用途为队友暴击率，不等价改编','本战击败有血梅香的敌人触发防御',{exhaust:true}],
  ['u11','踏火而行','罕见','攻击',1,[P(2),D(15)],[P(2),D(19)],'original','蝶引来生付血枪法的原创动作','燃血单体强攻'],
  ['u12','好戏开场','罕见','技能',1,[P(2),BUT(1),B(4)],[P(2),BUT(1),B(7)],'original','胡桃拿手好戏语境但不是官方原句','弱版蝶引 + 防守'],
- ['u13','花影连刺','罕见','攻击',2,[D(4,{hits:3}),M({if:'butterfly'})],[D(5,{hits:3}),M({if:'butterfly'})],'original','连续枪势中的花影','三段重击，开E后挂梅'],
- ['u14','余火未消','罕见','技能',1,[M(),D(3,{bonusIfMarked:4})],[M(),D(5,{bonusIfMarked:5})],'original','对已有血梅香目标延长持续','先刷新再小额伤害'],
+ ['u13','待命名·u13','罕见','攻击',2,[D(4,{hits:3}),M({if:'butterfly'})],[D(5,{hits:3}),M({if:'butterfly'})],'original','三段攻击加蝶舞挂梅，与u21结构近似，缺合格出处和独立职责审查','三段重击，开E后挂梅'],
+ ['u14','待命名·u14','罕见','技能',1,[M(),D(3,{bonusIfMarked:4})],[M(),D(5,{bonusIfMarked:5})],'original','原名与余香未尽接近；刷新梅香后附伤，缺独立来源与全池区分证据','先刷新再小额伤害'],
  ['u15','作诗一首','罕见','技能',1,[T(2),PREP(2)],[T(2),PREP(4)],'voice','胡桃的爱好：正适合作诗一首','抽牌+下一攻击强化',{exhaust:true}],
- ['u16','守礼如初','罕见','技能',1,[B(9),WEAK(1)],[B(12),WEAK(1)],'original','往生堂礼仪中先敬后守的反应','格挡+单体削弱'],
- ['u17','归途有光','罕见','技能',2,[B(15),NB(6)],[B(18),NB(8)],'original','帮助他人平安归途，非官方原句','高费现在和明回合防御'],
+ ['u16','拿枪','罕见','技能',1,[B(9),WEAK(1)],[B(12),WEAK(1)],'martial','国际武联2005《枪术主要动作技术要求》：拿枪枪尖向内划弧；格挡/弱化下次攻击为回合制防御改编','格挡+单体削弱'],
+ ['u17','受人之托','罕见','技能',2,[B(15),NB(6)],[B(18),NB(8)],'voice','有什么想要分享：受人之托，忠人之事；对应连续两回合尽责防护','高费现在和明回合防御'],
  ['u18','适可而止','罕见','技能',1,[B(8),PAUSE(),HEAL(3,{if:'butterfly'})],[B(11),PAUSE(),HEAL(4,{if:'butterfly'})],'original','本作原创：结束彼岸蝶舞换取防御与恢复','主动关E换缓冲回血',{exhaust:true}],
- ['u19','焰尾横扫','罕见','攻击',2,[A(8),B(4,{if:'low'})],[A(11),B(6,{if:'low'})],'original','火蝶横扫多个目标的战斗意象','多目标攻击兼低血防守'],
- ['u20','花落知时','罕见','攻击',1,[D(9),X(3,{if:'marked'})],[D(12),X(4,{if:'marked'})],'original','掌握血梅香成熟时机的枪法','追击已挂梅目标后提前收束'],
- ['u21','枪影连环','罕见','攻击',2,[D(5,{hits:3}),B(4,{if:'butterfly'})],[D(6,{hits:3}),B(6,{if:'butterfly'})],'original','往生秘传枪法的连续三段招式意象','三段攻击、蝶舞回防'],
+ ['u19','舞花枪','罕见','攻击',2,[A(8),B(4,{if:'low'})],[A(11),B(6,{if:'low'})],'martial','国际武联2005《枪术主要动作技术要求》：舞花枪枪身近身快速立圆绕行；本作体现群体攻击和低血回防','多目标攻击兼低血防守'],
+ ['u20','点枪','罕见','攻击',1,[D(9),X(3,{if:'marked'})],[D(12),X(4,{if:'marked'})],'martial','国际武联2005《枪术主要动作技术要求》：点枪短促向前/下击出；附带血梅香结算为本作改编','追击已挂梅目标后提前收束'],
+ ['u21','待命名·u21','罕见','攻击',2,[D(5,{hits:3}),B(4,{if:'butterfly'})],[D(6,{hits:3}),B(6,{if:'butterfly'})],'original','三段攻击加蝶舞格挡，与u13容易混淆，待明确战术独立性再命名','三段攻击、蝶舞回防'],
 
 // 17 NEW rares: plus existing C6 = 18.
  ['r01','最不安神晴又复雨','稀有','技能',2,[A(9),M({all:true})],[A(13),M({all:true})],'constellation','命之座第2层：最不安神晴又复雨；原作Q命中挂梅','以Q联动为灵感的群体挂梅',{exhaust:true}],
@@ -109,10 +109,10 @@ const defs=[
  ['r11','花影成双','稀有','攻击',2,[D(8,{hits:2,markOnHit:true})],[D(11,{hits:2,markOnHit:true})],'original','双段枪影接续挂梅','强单体双段且施加血梅香'],
  ['r12','全力以赴','稀有','技能',1,[B(6),NE(1),ND(1)],[B(9),NE(1),ND(1)],'voice','关于我们·帮手：定当全力以赴','延期资源与格挡',{exhaust:true}],
  ['r13','梅香遍野','稀有','技能',2,[M({all:true}),MP(1),B(5)],[M({all:true}),MP(2),B(7)],'original','血梅香在复数目标间持续发挥作用','群体标记与战内标记伤害成长',{exhaust:true}],
- ['r14','日暮回枪','稀有','攻击',2,[D(13),B(12,{if:'low'})],[D(18),B(14,{if:'low'})],'original','日落时收枪顾及身后','半血时攻守转换'],
+ ['r14','挑把','稀有','攻击',2,[D(13),B(12,{if:'low'})],[D(18),B(14,{if:'low'})],'martial','国际武联2005《枪术主要动作技术要求》：挑把枪把由下向上挑，半血防护属本作改编','半血时攻守转换'],
  ['r15','喝杯茶','稀有','技能',2,[B(13),HEAL(5)],[B(17),HEAL(7)],'voice','闲聊·往生堂：不如去我那儿喝杯茶？','高费防守及战内治疗额度',{exhaust:true}],
  ['r16','压轴好戏','稀有','攻击',3,[D(28,{bonusIfLow:9})],[D(37,{bonusIfLow:12})],'original','胡桃表演绝招压轴时机的表现','高费单体斩杀',{exhaust:true}],
- ['r17','此行珍重','稀有','攻击',2,[D(16),X(4),NB(6)],[D(21),X(5),NB(8)],'original','往生堂送别时的自然祝语；战斗表现为结束与转守','标记结算并为下回合防守',{exhaust:true}]
+ ['r17','待命名·r17','稀有','攻击',2,[D(16),X(4),NB(6)],[D(21),X(5),NB(8)],'original','与再会啦/一路走好均在梅香引爆后送别，缺独立姓名辨识度','标记结算并为下回合防守',{exhaust:true}]
 ];
 
 const conditionText={low:'半血及以下时',high:'高于半血时',butterfly:'彼岸蝶舞期间',marked:'目标有血梅香时',unmarked:'目标没有血梅香时',enemy_half:'目标生命不高于半血时',multi:'至少2名敌人存活时'};
@@ -141,7 +141,7 @@ function effectText(e){let s='';switch(e.op){
  return (e.if?(conditionText[e.if]||`若${e.if}`)+'，':'')+s;
 }
 function describeEffects(effects){return effects.map(effectText).join('；')+'。';}
-const origin=(kind,anchor)=>({category:kind,locator:anchor,url:kind==='original'?null:(kind==='voice'?'https://wiki.biligame.com/ys/胡桃语音':'https://wiki.biligame.com/ys/胡桃'),approval:'pending_human_review',mechanics:'round_based_adaptation'});
+const origin=(kind,anchor)=>({category:kind,locator:anchor,url:kind==='original'?null:(kind==='martial'?'https://iwuf.org/wp-content/uploads/2018/12/Rules_of_Taolu-Chinese.pdf':(kind==='voice'?'https://wiki.biligame.com/ys/胡桃语音':'https://wiki.biligame.com/ys/胡桃')),approval:'pending_human_review',mechanics:'round_based_adaptation'});
 const EXTRA_CARDS=Object.fromEntries(defs.map(([id,name,rarity,type,cost,base,upgrade,source,anchor,role,options={ }])=>[id,Object.freeze({
  id,name,rarity,type,cost,description:describeEffects(base)+(options.exhaust?' 本战消耗。':''),upgradeDescription:describeEffects(upgrade)+(options.exhaust?' 本战消耗。':''),source,role,effects:Object.freeze(base),upgradeEffects:Object.freeze(upgrade),exhaust:!!options.exhaust
 })]));
