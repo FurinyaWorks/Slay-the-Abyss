@@ -6,8 +6,9 @@ const SOURCE_KINDS={
 };
 const NONEMPTY=x=>typeof x==='string'&&x.trim().length>0;
 const detail=x=>NONEMPTY(x)&&x.trim().length>=12;
-const officialChecked=x=>x&&x.completed===true&&Array.isArray(x.categories)&&x.categories.length>0&&Array.isArray(x.lookups)&&x.lookups.length>0&&x.lookups.every(y=>NONEMPTY(y.query)&&NONEMPTY(y.locator));
-const decisionEvidence=x=>officialChecked(x)&&detail(x.reason)&&x.result==='no_suitable';
+const officialChecked=x=>x&&x.completed===true&&Array.isArray(x.categories)&&x.categories.length>0&&Array.isArray(x.lookups)&&x.lookups.length>0&&x.lookups.every(y=>NONEMPTY(y.query)&&NONEMPTY(y.locator)&&NONEMPTY(y.url)&&/^https:\/\//.test(y.url)&&NONEMPTY(y.entry));
+const documentedReject=x=>Array.isArray(x.rejected_candidates)&&x.rejected_candidates.length>0&&x.rejected_candidates.every(z=>NONEMPTY(z.text)&&NONEMPTY(z.source_url)&&NONEMPTY(z.source_entry)&&detail(z.rejection_reason));
+const decisionEvidence=x=>officialChecked(x)&&detail(x.reason)&&((x.result==='no_suitable'&&documentedReject(x))||(x.result==='no_match'&&detail(x.no_match_scope)));
 function sourceReady(card,why){
  const kind=card.source?.kind,tier=card.source?.tier;
  if(card.source?.verified!==true){why.push('source not verified');return}
