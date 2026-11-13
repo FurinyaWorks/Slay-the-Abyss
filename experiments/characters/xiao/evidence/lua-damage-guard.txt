@@ -1,0 +1,3 @@
+PASS x46 actual HP loss excludes armor and overkill, caps block and never heals
+PASS masked attack increases real damage but not shield cap; zero loss queues no block even with Dex
+PASS dead target rejected before effects and whole host Snapshot restores damage plus shield

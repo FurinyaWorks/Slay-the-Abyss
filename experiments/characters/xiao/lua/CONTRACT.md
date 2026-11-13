@@ -262,3 +262,18 @@ These tests do NOT pay x45's energy cost or exhaust it through UseCard. The host
 must enforce that a player-phase card cannot invoke the start hook immediately;
 shared phase admission and public lifecycle are not added by this role module.
 No approved numeric values changed. x04 upgrade survival counterexample remains.
+
+### x46 actual damage then bounded defense
+Projection extends to 46 frozen candidates. damageGuard validates its live paid
+stable target and queues native damage before a data-only damageGuardCommit.
+The continuation checks the same target and UID, computes actual HP decrease
+(excluding armor and overkill), caps base block and queues native block only for
+positive HP loss. Three targeted tests span base/upgrade, low/high HP, three armor
+values, mask bonus, dead-target rejection and host Snapshot rollback. Zero loss
+does not queue block(0), hence cannot gain Dexterity block. Positive block still
+uses native Dexterity/Frail modifiers, so the cap bounds the pre-modifier amount,
+not final block; this remains a JS/native semantic HOLD. The continuation is a
+trusted queue action, not an externally callable command: queue continuation
+identity/one execution and whole rollback belong to the host. Intervening reactive
+HP changes, target removal, last-enemy terminal timing and public cost/UseCard
+remain unverified. No shared gate or numeric card change is made here.

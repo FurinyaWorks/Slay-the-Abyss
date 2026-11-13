@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy'or effect.kind=='recoverExit'or effect.kind=='topdeckAttack'or effect.kind=='discardAttacksDraw'or effect.kind=='burnSkillsBlock'or effect.kind=='calmDraw'or effect.kind=='maskedAttackDraw'or effect.kind=='sequenceDamage'or effect.kind=='beforeAttackBlock'or effect.kind=='killDraw'or effect.kind=='reserveEnergy','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy'or effect.kind=='recoverExit'or effect.kind=='topdeckAttack'or effect.kind=='discardAttacksDraw'or effect.kind=='burnSkillsBlock'or effect.kind=='calmDraw'or effect.kind=='maskedAttackDraw'or effect.kind=='sequenceDamage'or effect.kind=='beforeAttackBlock'or effect.kind=='killDraw'or effect.kind=='reserveEnergy'or effect.kind=='damageGuard'or effect.kind=='damageGuardCommit','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -22,6 +22,14 @@ function M.dispatch(combat,state,effect,queue)
  local r=resource(state);integer(effect.value,effect.kind=='maskCommit'and 3 or 2147483647)
  if r.hp==0 then return true end
  local value=effect.value
+ if effect.kind=='damageGuardCommit'then
+  integer(effect.hpBefore);integer(effect.cap)
+  local target;for _,e in ipairs(state.enemies)do if e.id==paid.targetId then target=e;break end end
+  assert(target,'missing Xiao guard target');integer(target.hp)
+  local block=math.min(effect.cap,math.max(0,effect.hpBefore-target.hp))
+  if block>0 then queue.pushTop(state,{kind='effect',effect={op='block',value=block}})end
+  return true
+ end
  if effect.kind=='reserveEnergy'then
   local before=state.xiao.reservedEnergy;if before==nil then before=0 end;integer(before)
   assert(value<=2147483647-before,'Xiao reserve energy overflow')
@@ -160,6 +168,10 @@ function M.dispatch(combat,state,effect,queue)
  if effect.kind=='breakBlock'then target.block=0;return true end
  local bonus=r.mask>0 and Data.maskRules.attackBonus or 0
  assert(value<=2147483647-bonus,'Xiao attack overflow')
+ if effect.kind=='damageGuard'then
+  integer(effect.cap);integer(target.hp)
+  queue.pushTop(state,{kind='effect',effect={op='xiaoCard',kind='damageGuardCommit',value=0,cap=effect.cap,hpBefore=target.hp,uid=paid.uid,targetId=target.id}})
+ end
  -- Delegate actual damage, modifiers and reactions to the host queue.
  local native={op=all and 'damageAll'or 'damage',value=value+bonus}
  if effect.kind=='damageHits'then integer(effect.hits,2);assert(effect.hits>=1,'empty hit count');native.times=effect.hits end
