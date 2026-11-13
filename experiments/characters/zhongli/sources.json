@@ -102,7 +102,11 @@
     "zl61",
     "zl62",
     "zl63",
-    "zl64"
+    "zl64",
+    "zl65",
+    "zl66",
+    "zl67",
+    "zl68"
   ],
   "degradation": "No P2/P3/P4 name adopted; higher priority evidence incomplete. Display names stay unique pending placeholders.",
   "next": "Complete Chinese P1/P2 index, validate proposed shield-consumption identity, obtain naming and balance review; no human approval inferred.",
@@ -190,6 +194,10 @@
     "zl61": "One-shot cover and fixed retaliation is project tempo defense, not official reflective shield. Source/identity/naming/rarity/balance HOLD.",
     "zl62": "Zero-jade rebuilding with draw trades shielding strength for search; no official shield-break refund. Source/identity/naming/rarity/balance HOLD.",
     "zl63": "Temporary cover with jade-threshold attack is a project reserve-maintenance payoff, not official scaling. Source/identity/naming/rarity/balance HOLD.",
-    "zl64": "Sacrificing pillar for long Vulnerable is project investment conversion, not official petrification or resistance aura. Source/identity/naming/rarity/balance HOLD."
+    "zl64": "Sacrificing pillar for long Vulnerable is project investment conversion, not official petrification or resistance aura. Source/identity/naming/rarity/balance HOLD.",
+    "zl65": "Retained jade-paid armor removal is project timing utility, not official elemental shield breaking. Source/identity/naming/rarity/balance HOLD.",
+    "zl66": "Jade plus attacked retaliation trades immediate cover for persistent reserve; no official reflective shield. Source/identity/naming/rarity/balance HOLD.",
+    "zl67": "Pillar installation and ordinary spear damage compress investment; no official combo timing or multipillar claim. Source/identity/naming/rarity/balance HOLD.",
+    "zl68": "Jade-gated Vulnerable and draw is project access payoff, not official resistance aura. Source/identity/naming/rarity/balance HOLD."
   }
 }

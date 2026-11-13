@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.38.0';
+export const VERSION = 'zhongli-mechanics-0.39.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -69,6 +69,10 @@ export const cards = [
   {...card('zl62', '防线归零时边重建边找牌，残盾时只剩一次检索', 'common', 1, [['emptyJade', 6], ['draw', 1]], [['emptyJade', 8], ['draw', 2]]), exhaust: true},
   card('zl63', '维持防线时掩护并进攻，缺少储备时高费低效', 'common', 2, [['block', 6], ['guardedDamage', 10]], [['block', 9], ['guardedDamage', 14]], 'enemy'),
   {...card('zl64', '拆除持续岩脊建立长输出窗口，放弃本轮直接伤害', 'common', 1, [['spendPillar', 1], ['vulnerable', 4]], [['spendPillar', 1], ['vulnerable', 5]], 'enemy'), exhaust: true},
+  {...card('zl65', '保留拆甲工具等敌人立盾，支出储备且放弃直接伤害', 'common', 1, [['spendJade', 3], ['removeBlock', 1]], [['spendJade', 2], ['removeBlock', 1]], 'enemy'), selfRetain: true},
+  card('zl66', '补持久储备并迎击本轮攻击，当前大伤覆盖较弱', 'common', 2, [['jade', 5], ['counter', 3]], [['jade', 7], ['counter', 4]]),
+  {...card('zl67', '高费建立岩脊并推进击杀，无法拆开投入且无当前防守', 'common', 3, [['pillar', 3], ['damage', 4]], [['pillar', 4], ['damage', 6]], 'enemy'), power: true},
+  {...card('zl68', '保住防线时暴露敌人并找跟进，储备低时只有一次浅检索', 'common', 1, [['guardedVulnerable', 1], ['draw', 1]], [['guardedVulnerable', 2], ['draw', 2]], 'enemy'), exhaust: true},
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;

@@ -741,3 +741,16 @@ v33 appends59–61,57 provisional commons.80 normal-HP synthetic journeys seeds3
 No new op/old values. Six batch tests + both-version independent expected values:364/364 isolated suite. Covered jade0/1/20 andfullhand draw, threshold0..20/vulnerability, removal before exposure/Power ownership, errors/cost/death/cancel/overflow. Original320 pressure bytes unchanged. Source IDs1–64 allHOLD.
 
 v34 appends62–64 only,60provisionalcommons.80normal-HP synthetic journeys seed37001–37010: large allgroupsdie,62acquired1,63/64zero; multi allcomplete/P90loss1,62acquired1,63/64zero (pillar acquired1). Cannot assess63/64 strength, no aggregate improvement. Biased witnesses62seed24complete60HP,63seed38complete60HP,64seed350complete60HP excludedfrom80.20,000offer counts saved,ideal3/60 notexactRNG. RewardHP1fixtures lifecycleonly. Names/identity/source/twoverifiedSTS/human/fullnaturalbalance/formalintegration remainHOLD. 59–61 remains pending independent review at this snapshot; do not infer passage from later production. Backup before review.
+
+## 0.39 research batch thirteen: 65–68 (HOLD)
+
+59–61 review `character-rules-zhongli-20db19e-batch-eleven-20261113`: six selections+756 independent checks and report replay, not352full.62–64 review `character-rules-zhongli-11bd3b4-batch-twelve-20261113`: six selections+504checks/reportreplay, not364full. Both limited technical passes, no human/balance approval.
+
+65:1energy retained pay3/2jade→removeBlock. Versus17 sacrifices4/6damage to retain untilarmor appears; upgrade reduces resourcepayment rather than repeating remove marker. Noarmor still pays. Project timing tool, not elementalshieldbreak.
+66:2energy jade5/7+counter3/4. Versus15 samecounter but replaces8/11temporaryBlock with5/7persistentjade. Base jade6 against18hit leaves53HP versus15's56HP; empty enemy turn keeps11jade versus6, so real opposite choices. Saturation reducesbenefit. No officialreflect.
+67:3energy Power pillar3/4→damage4/6. Versus21+01 at3energy savesonecard but loses2/3damage and cannot splitinvestment. Alreadyhigherpillar still costlyattack. It can kill immediately, unlike21'sowner-endonly; no extratick oninstall. Source does not establish this exactcombo.
+68:1energy guardedVulnerable1/2→draw1/2, exhaust. Versus49 keeps3jade but losesonedraw and requiresjade6 forstatus; belowthreshold only shallowdraw. Versus29 losesdirectattack and reuse forsearch. Notofficialaura.
+
+No newops oroldvalues. Sevenbatchtests plusbase/upgrade:379/379isolated; pay3/2, jade0..20, cap/counter, Powerordering/reset, thresholddraw/inUse/exhaust, rejection/cancellation/overflow andactualcomparison. Original320reportbyteidentical, sources1–68HOLD.
+
+v35 addsfour,64provisionalcommons.100normal-HP three-room runs seeds38001–38010 withskip+fourpolicies×twofamilies: largeall10pergroupdie;65one/68oneacquisition,66/67zero. Multi allcomplete/P90loss4:65one,68two,66/67zero. No aggregateimprovement and no strengthassessment66/67. Biasedwitnesses65seed23complete59HP,66seed77complete60HP,67seed32complete58HP,68seed6complete59HP excludedfrom100.20koffers/ideal3/64saved, finiteRNG caveat. HP1lifecyclefixture is not natural acquisition evidence. Identity/source/verifiedSTS/names/human/fullnaturalbalance/formalqueue remainHOLD. Backup beforeindependentreview.
