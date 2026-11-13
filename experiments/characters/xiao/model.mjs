@@ -44,6 +44,9 @@ function apply(s, effect, target) {
     }
     if(entered)drawCards(s,s.entryDraw);
   }
+  else if (op === 'fortifyBlock') s.block+=Math.min(value,s.block);
+  else if (op === 'bankMaskBlock') s.reservedBlock+=s.mask*value;
+  else if (op === 'burnFirstSkillDraw') { const i=s.hand.findIndex(id=>byId.get(id)?.kind==='skill');if(i>=0){exhaustCards(s,s.hand.splice(i,1));drawCards(s,value);} }
   else if (op === 'exitDraw') s.exitDraw+=value;
   else if (op === 'entryDraw') s.entryDraw+=value;
   else if (op === 'recoverEntry') {
@@ -184,6 +187,9 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits, step, block}) => ({
+    fortifyBlock: `获得等于当前格挡的额外格挡，额外最多${value}；不移除已有格挡，零盾不获盾。`,
+    bankMaskBlock: `按当前剩余面具回合数，每回合向下个玩家回合储备${value}点格挡；当前不获盾，无面具不储备。`,
+    burnFirstSkillDraw: `按手牌顺序消耗首张其他技能牌，然后抽${value}张；没有技能不抽，仍消耗本牌。手限10，不可选择其他位置。`,
     exitDraw: `本场卡牌使面具从有变无时，在退出护盾后抽${value}张，手限10，可叠加；自然到期/部分缩短/空退出不触发。`,
     entryDraw: `本场每次实际从无面具进入面具抽${value}张，手限10；刷新不算，可叠加。首次入场遗物先抽，再此能力。`,
     recoverEntry: `从弃牌堆按顺序取回首张含进入面具效果的牌，不碰消耗区；无则略过，手限10。`,

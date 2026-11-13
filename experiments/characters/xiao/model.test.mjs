@@ -70,7 +70,7 @@ test('turn guards prevent duplicate start, draws are not fabricated without deck
   assert.deepEqual(startTurn(s),s);
 });
 test('versioned cards all have both forms and HOLD names, texts derive each form',()=>{
-  assert.equal(new Set(catalog.cards.map(c=>c.id)).size,72);
+  assert.equal(new Set(catalog.cards.map(c=>c.id)).size,75);
   for(const c of catalog.cards){assert.equal(c.name,`待命名·${c.id}`);assert.equal(c.naming.humanApproved,false);assert.ok(c.base.length&&c.upgrade.length);for(const up of [false,true])assert.ok(cardText(c,up).startsWith(`${c.cost}费。`));}
   assert.match(cardText(catalog.cards[4],true),/所有敌人造成13点/);
 });

@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.32",
+  "version": "xiao-g2-lab-0.33",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -2221,6 +2221,103 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x73",
+      "name": "待命名·x73",
+      "role": "以现有防守加固主动退场",
+      "kind": "skill",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "fortifyBlock",
+          "value": 20
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "fortifyBlock",
+          "value": 30
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x74",
+      "name": "待命名·x74",
+      "role": "牺牲公开手牌技能重整手牌",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "burnFirstSkillDraw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "burnFirstSkillDraw",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x75",
+      "name": "待命名·x75",
+      "role": "提前结束窗口换下回合防守",
+      "kind": "skill",
+      "rarity": "rare",
+      "cost": 1,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "bankMaskBlock",
+          "value": 4
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "bankMaskBlock",
+          "value": 6
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -2303,7 +2400,10 @@
     "x69",
     "x70",
     "x71",
-    "x72"
+    "x72",
+    "x73",
+    "x74",
+    "x75"
   ],
   "maskRules": {
     "attackBonus": 4,

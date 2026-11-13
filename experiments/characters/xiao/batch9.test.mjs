@@ -33,7 +33,7 @@ test('real alternating encounter supports both windows without changing old rout
 test('bounded real reward search acquires x25 and plays it next battle',async()=>{
  const {newCampaign,campaignAction}=await import('./campaign.mjs');const {observe,choose}=await import('./research.mjs');
  let c;
- for(let seed=1;seed<=128;seed++){
+ for(let seed=1;seed<=512;seed++){
   let candidate=newCampaign(seed);
   for(let i=0;i<200&&candidate.phase==='battle';i++){const a=choose(observe(candidate.battle),'guard');candidate=campaignAction(candidate,a?{type:'play',...a}:{type:'end'}).state;}
   if(candidate.phase==='reward'&&candidate.offer.includes('x25')){c=candidate;break;}
