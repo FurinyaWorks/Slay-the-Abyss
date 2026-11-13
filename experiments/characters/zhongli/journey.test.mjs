@@ -183,3 +183,9 @@ test('sacrifice counter v22 has reward acquisition and older pool exclusion',()=
  let s=journeyStart(seed,{poolVersion:'v22'});s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const choice=selectReward(rewardView(s),'sacrificeCounter');assert.equal(s.offer[choice-1],'zl32');s=takeReward(s,choice);assert.ok(s.deck.includes('zl32'));
  for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v21').includes('zl32'));
 });
+
+test('pillar growth v23 requires real two-stage reward acquisition',()=>{
+ let seed=1;while(seed<=10000&&!(offers(seed,1,'v23').includes('zl21')&&offers(seed,2,'v23').includes('zl33')))seed++;assert.ok(seed<=10000);
+ let s=journeyStart(seed,{poolVersion:'v23'});for(let room=1;room<=2;room++){s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const c=selectReward(rewardView(s),'growPillar');assert.equal(s.offer[c-1],room===1?'zl21':'zl33');s=takeReward(s,c);}
+ assert.ok(s.deck.includes('zl33'));for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v22').includes('zl33'));
+});

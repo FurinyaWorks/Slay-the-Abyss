@@ -192,3 +192,10 @@ test('repair Power leaves circulation and resets per battle, visible preview is 
  const fresh=battleStart({deck:['zl31','zl02']});assert.equal(fresh.repair,0);assert.equal(fresh.powers.length,0);
  for(const repair of [4,-1,NaN]){const t={...fresh,repair};assert.throws(()=>nextTurn(t,[]));assert.throws(()=>draw(t,1));}
 });
+
+test('pillar growth exhausts while original Power remains out, no new construct, resets next battle',()=>{
+ let s=battleStart({deck:['zl21','zl33']});s.jade=6;const p=s.hand.find(k=>s.instances[k].id==='zl21'),g=s.hand.find(k=>s.instances[k].id==='zl33');
+ s=playInstance(s,p).state;s=playInstance(s,g).state;assert.equal(s.pillar,4);assert.equal(s.energy,0);assert.deepEqual(s.powers,[p]);assert.deepEqual(s.exhaust,[g]);
+ s=nextTurn(s,[]);assert.equal(s.enemy.hp,36);assert.equal(s.hand.length,0);assert.equal(s.powers.length+s.exhaust.length,2);
+ assert.equal(battleStart({deck:['zl21','zl33']}).pillar,0);
+});
