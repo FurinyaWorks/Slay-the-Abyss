@@ -23,3 +23,13 @@ test('native retain is explicit boolean, combined exhaust retained and resource 
  const bad=structuredClone(cards.find(c=>c.id==='ganyu-26'));bad.retain='true';assert.throws(()=>compileCard(bad));
  assert.throws(()=>compileCard(cards.find(c=>c.id==='ganyu-27')));
 });
+
+test('ordinary compiler rejects hidden/accessor/prototype fields and sparse or empty effect arrays',()=>{
+ for(const id of ['ganyu-01','ganyu-04'])for(const pick of [c=>c,c=>c.base,c=>c.upgrade,c=>c.base.effects[0],c=>c.upgrade.effects[0],c=>c.base.effects,c=>c.upgrade.effects]){
+  for(const mutate of [o=>o[Symbol('extra')]=true,o=>Object.defineProperty(o,'firstOnly',{value:true}),o=>Object.setPrototypeOf(o,{extra:true}),o=>Object.defineProperty(o,Array.isArray(o)?'0':Object.keys(o)[0],{get(){throw Error('getter evaluated');},configurable:true})]){
+   const c=structuredClone(cards.find(x=>x.id===id));mutate(pick(c));assert.throws(()=>compileCard(c),/unsupported paid schema|invalid effect array|unsupported effect array field/);
+  }
+ }
+ for(const level of ['base','upgrade'])for(const mode of ['empty','sparse']){const c=structuredClone(cards[0]);if(mode==='empty')c[level].effects=[];else delete c[level].effects[0];assert.throws(()=>compileCard(c),/effect array/);}
+});
+test('ordinary compiler keeps the committed 22-card Lua bytes unchanged',()=>{const url=new URL('./definitions.lua',import.meta.url);const before=readFileSync(url,'utf8');build();assert.equal(readFileSync(url,'utf8'),before);});

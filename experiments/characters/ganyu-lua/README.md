@@ -238,8 +238,22 @@ native Effects ticks to expiry, native 31 exhaust movement and native unplayed
 59 end-turn retention with original UID. Paid context is manually established;
 non-exhaust card disposal is not claimed here.
 
-A public family contract was also tried on exact shared host 13938b92 and correctly
-rejected at admission (`unsupported_effect:invalid_ganyu_storm`). Its narrow 05
-whitelist was NOT expanded or bypassed. `public-storm-family.test.lua` is therefore
+The public family contract first stopped at 18 base admission rejection on exact
+shared host 13938b92. Independent review then checked all six faces: 18 base/up,
+31 base/up and 59 base return false with `unsupported_effect:invalid_ganyu_storm`;
+59 upgraded (4×2, matching 05 base effect shape) reaches prepare and throws
+`invalid storm face`, restoring energy/hand/field. Thus all six are unsupported,
+but their rejection stages and error forms differ. The narrow 05 whitelist was
+NOT expanded or bypassed. `public-storm-family.test.lua` is therefore
 pending, not six passing public tests. Future shared admission is a separate task;
 all source/human/balance holds and stronger-field-refresh risks remain.
+
+### Ordinary 22-card compiler strict-object parity
+
+The ordinary compiler now reuses strict plain-object field validation and checks
+its multi-effect arrays for dense indices, no extra/symbol keys and no accessors.
+Both variants are validated before card text or target inference reads effects.
+Six Node tests include 112 hidden-field/prototype/accessor mutations plus four
+empty/sparse array cases. The generated 22-card Lua remains byte-identical;
+50 native C.play/retain cases and 8 interaction +2 failure rollback cases pass.
+This does not add mapped cards or change registration, values or approval gates.
