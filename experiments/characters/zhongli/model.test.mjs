@@ -2,21 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0],[2,3],[6,8],[4,5],[1,2],[5,8],[4,5],[10,14],[2,3],[6,8],[12,16]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32],[5,7],[4,6],[0,0],[2,3],[6,8],[4,5],[1,2],[5,8],[4,5],[10,14],[2,3],[6,8],[12,16],[4,6],[3,4],[4,6]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23||i===31)s.jade=3; if(i===32){s.jade=6;s.pillar=3;} if(i===34||i===38||i===39)s.jade=3; if(i===35)s.pillar=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7,8,10,13,16,17,21,26,28,29,38].includes(i))assert.equal(r.state.enemy.hp,40-value);
-    if([1,5,9,11,14,15,34,36,39].includes(i))assert.equal(r.state.block,value);
+    if([0,3,4,6,7,8,10,13,16,17,21,26,28,29,38,40].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([1,5,9,11,14,15,34,36,39,42].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
     if(i===20||i===32)assert.equal(r.state.pillar,value);if(i===30){assert.equal(r.state.repair,value);assert.equal(r.state.jade,0);}
     if(i===35){assert.equal(r.state.pillar,0);assert.equal(r.state.pendingDraw,value);assert.equal(r.state.inUse,'a');}if(i===36){assert.equal(r.state.pendingDraw,upgrade?2:1);assert.equal(r.state.inUse,'a');}
     if(i===23){assert.equal(r.state.jade,0);assert.equal(r.state.pendingDraw,value);assert.equal(r.state.inUse,'a');}
     if(i===22){assert.equal(r.state.jade,value);assert.equal(r.state.pillar,0);}
-    if(i===2||i===18||i===19||i===25||i===27||i===37)assert.equal(r.state.jade,value);
+    if(i===2||i===18||i===19||i===25||i===27||i===37||i===41)assert.equal(r.state.jade,value);
     if(i===3||i===15)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
@@ -656,5 +656,32 @@ test('zero-energy batch cancellation and illegal effects never spend reserves, z
   assert.equal(play(s,{id,instance:'a',target:'enemy',cancel:true}).state,s);assert.deepEqual(s,before);
   for(const patch of [{hp:0},{enemy:{...s.enemy,hp:0}}]){const t={...s,...patch};assert.equal(play(t,{id,instance:'a',target:'enemy'}).state,t);}
   const c=cards.find(c=>c.id===id),old=c.base;try{c.base=[...old.slice(0,-1),[old.at(-1)[0],NaN]];assert.equal(play(s,{id,instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,before);}finally{c.base=old;}
+ }
+});
+
+test('suppressed payoff base/upgrade has two independently rounded ordinary hits only when Weak exists',()=>{
+ for(const u of [false,true])for(const weak of [0,1,5])for(const vulnerable of [0,2])for(const block of [0,5,20]){
+  const s=initialState();s.enemy.weak=weak;s.enemy.vulnerable=vulnerable;s.enemy.block=block;const before=structuredClone(s),r=run('zl41',s,u).state;
+  const a=u?6:4,b=u?9:7,total=(vulnerable?Math.floor(a*1.5):a)+(weak?(vulnerable?Math.floor(b*1.5):b):0);
+  assert.equal(r.enemy.hp,40-Math.max(0,total-block));assert.equal(r.enemy.block,Math.max(0,block-total));assert.equal(r.enemy.weak,weak);assert.equal(r.energy,2);assert.deepEqual(s,before);
+ }
+ const dead=initialState();dead.enemy.hp=4;dead.enemy.weak=1;assert.equal(run('zl41',dead).state.enemy.hp,0);
+});
+test('exposed reserve samples debuff at play time, caps jade and does not attack or extend Vulnerable',()=>{
+ for(const u of [false,true])for(const vulnerable of [0,1,4])for(const jade of [0,19,20]){
+  const s={...initialState(),jade};s.enemy.vulnerable=vulnerable;const before=structuredClone(s),r=run('zl42',s,u).state;
+  assert.equal(r.jade,Math.min(20,jade+(u?4:3)+(vulnerable?(u?5:4):0)));assert.equal(r.enemy.hp,40);assert.equal(r.enemy.vulnerable,vulnerable);assert.equal(r.energy,2);assert.deepEqual(s,before);
+ }
+});
+test('batch five state gates create opportunity costs rather than free additional baseline power',()=>{
+ const s=initialState(),plain=run('zl01',s).state,conditional=run('zl41',s).state;assert.equal(plain.enemy.hp,34);assert.equal(conditional.enemy.hp,36);
+ const gated=run('zl42',s).state,hybrid=run('zl06',s).state;assert.equal(gated.jade,3);assert.equal(hybrid.jade,3);assert.equal(gated.block,0);assert.equal(hybrid.block,4);
+ s.enemy.vulnerable=2;assert.equal(run('zl42',s).state.jade,7);
+});
+test('batch five invalid conditional effects reject before preceding damage/block or jade changes',()=>{
+ for(const [id,op,n] of [['zl41','suppressedDamage',Number.MAX_SAFE_INTEGER],['zl42','exposedJade',21],['zl43','pillarDraw',11]]){
+  const s=initialState(['a']);s.instances.a={id,upgraded:false};s.pillar=3;s.enemy.weak=1;s.enemy.vulnerable=1;const before=structuredClone(s),c=cards.find(c=>c.id===id),old=c.base;
+  try{c.base=[old[0],[op,n]];assert.equal(play(s,{id,instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,before);c.base=[old[0],[op,NaN]];assert.equal(play(s,{id,instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,before);}finally{c.base=old;}
+  assert.equal(play(s,{id,instance:'a',target:'enemy',cancel:true}).state,s);assert.deepEqual(s,before);
  }
 });

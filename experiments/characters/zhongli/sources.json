@@ -78,7 +78,10 @@
     "zl37",
     "zl38",
     "zl39",
-    "zl40"
+    "zl40",
+    "zl41",
+    "zl42",
+    "zl43"
   ],
   "degradation": "No P2/P3/P4 name adopted; higher priority evidence incomplete. Display names stay unique pending placeholders.",
   "next": "Complete Chinese P1/P2 index, validate proposed shield-consumption identity, obtain naming and balance review; no human approval inferred.",
@@ -142,6 +145,9 @@
     "zl37": "Larger temporary Block plus paid draw is a project defense/access package, not official card draw. No jade or permanent defense created; source/identity/naming/rarity/balance HOLD.",
     "zl38": "Zero-energy small jade repair with exhaust is a project emergency reserve option, not an official free shield skill. No energy gain, no recycling. Source/identity/naming/rarity/balance HOLD.",
     "zl39": "Zero-energy jade-funded one-shot attack is a project tempo trade; official Zhongli has no verified equivalent shield-payment attack. Source/identity/naming/rarity/balance HOLD.",
-    "zl40": "Retained one-shot jade-to-temporary-Block conversion is a project emergency timing role. It is not official invulnerability, shield refresh or reflect. Source/identity/naming/rarity/balance HOLD."
+    "zl40": "Retained one-shot jade-to-temporary-Block conversion is a project emergency timing role. It is not official invulnerability, shield refresh or reflect. Source/identity/naming/rarity/balance HOLD.",
+    "zl41": "Bonus ordinary hit on a Weak target is a project control-window payoff, not official petrification bonus. Source/identity/naming/rarity/balance HOLD.",
+    "zl42": "Additional jade while enemy Vulnerable is a project offense-to-defense timing trade, not official resistance aura healing/shield effect. Source/identity/naming/rarity/balance HOLD.",
+    "zl43": "Installed pillar gates paid card access with temporary cover; this is project construct-support utility, not an official Stone Stele ability. Source/identity/naming/rarity/balance HOLD."
   }
 }

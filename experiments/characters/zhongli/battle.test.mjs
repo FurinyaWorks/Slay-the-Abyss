@@ -258,3 +258,20 @@ test('held emergency retains before use, exhausts after use and never returns th
  let s=battleStart({deck:['zl40',...Array(5).fill('zl02')]});const key=Object.keys(s.instances).find(k=>s.instances[k].id==='zl40');s.hand=[key];s.draw=Object.keys(s.instances).filter(k=>k!==key);s.discard=[];
  s=nextTurn(s,[]);assert.ok(s.hand.includes(key));s=playInstance(s,key).state;assert.equal(s.jade,0);assert.equal(s.block,12);assert.deepEqual(s.exhaust,[key]);s=nextTurn(s,[12]);assert.equal(s.hp,60);assert.ok(!s.hand.includes(key));assert.deepEqual(s.exhaust,[key]);
 });
+
+test('pillar access draws only with installed strength, respects hand cap and keeps itself out of shuffle',()=>{
+ for(const upgraded of [false,true])for(const pillar of [0,3,6])for(const full of [false,true]){
+  let s=battleStart({deck:['zl43',...Array(12).fill('zl02')]});const key=Object.keys(s.instances).find(k=>s.instances[k].id==='zl43'),all=Object.keys(s.instances);
+  s.hand=[key,...all.filter(k=>k!==key).slice(0,full?9:2)];s.draw=all.filter(k=>!s.hand.includes(k));s.discard=[];s.pillar=pillar;s.instances[key].upgraded=upgraded;
+  const before=structuredClone(s),r=playInstance(s,key);assert.equal(r.ok,true);const n=r.state,count=pillar?(upgraded?3:2):0;
+  assert.equal(n.hand.length,Math.min(10,(full?9:2)+count));assert.equal(n.block,upgraded?6:4);assert.equal(n.pillar,pillar);assert.equal(n.energy,2);assert.ok(n.discard.includes(key));assert.equal(n.pendingDraw,0);assert.equal(n.inUse,null);assert.deepEqual(s,before);
+  assert.equal(new Set([...n.hand,...n.draw,...n.discard,...n.exhaust,...n.powers]).size,13);
+ }
+ let one=battleStart({deck:['zl43']});one.pillar=3;one=playInstance(one,one.hand[0]).state;assert.equal(one.hand.length,0);assert.equal(one.discard.length,1);
+});
+test('conditional access actual sequence needs setup; plain access12 works without pillar',()=>{
+ const make=id=>{let s=battleStart({deck:[id,'zl02']});const key=Object.keys(s.instances).find(k=>s.instances[k].id===id),other=Object.keys(s.instances).find(k=>k!==key);s.hand=[key];s.draw=[other];s.discard=[];return playInstance(s,key).state;};
+ assert.equal(make('zl43').hand.length,0);assert.equal(make('zl12').hand.length,1);
+ let s=battleStart({deck:['zl21','zl43','zl02']});const p=Object.keys(s.instances).find(k=>s.instances[k].id==='zl21'),a=Object.keys(s.instances).find(k=>s.instances[k].id==='zl43'),d=Object.keys(s.instances).find(k=>s.instances[k].id==='zl02');s.hand=[p,a];s.draw=[d];s.discard=[];
+ s=playInstance(s,p).state;s=playInstance(s,a).state;assert.equal(s.energy,0);assert.deepEqual(s.hand,[d]);assert.deepEqual(s.powers,[p]);assert.equal(s.block,4);
+});

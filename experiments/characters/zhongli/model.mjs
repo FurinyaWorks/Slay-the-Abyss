@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.30.0';
+export const VERSION = 'zhongli-mechanics-0.31.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -45,6 +45,9 @@ export const cards = [
   {...card('zl38', '零能量一次修补少量防线，满盾浪费且不能循环', 'common', 0, [['jade', 2]], [['jade', 3]]), exhaust: true},
   {...card('zl39', '零能量支出储备穿插一次攻击，失去防守且不可循环', 'common', 0, [['spendJade', 3], ['damage', 6]], [['spendJade', 3], ['damage', 8]], 'enemy'), exhaust: true},
   {...card('zl40', '保留一次应急转盾，付储备换临时格挡后消耗', 'common', 1, [['spendJade', 3], ['block', 12]], [['spendJade', 3], ['block', 16]]), exhaust: true, selfRetain: true},
+  card('zl41', '在敌已虚弱的窗口兑现追加攻击，无减压时伤害低', 'common', 1, [['damage', 4], ['suppressedDamage', 7]], [['damage', 6], ['suppressedDamage', 9]], 'enemy'),
+  card('zl42', '利用敌已易伤窗口补防线，放弃当轮攻击收益', 'common', 1, [['jade', 3], ['exposedJade', 4]], [['jade', 4], ['exposedJade', 5]]),
+  card('zl43', '已有岩脊时掩护并检索，缺柱只有弱临时格挡', 'common', 1, [['block', 4], ['pillarDraw', 2]], [['block', 6], ['pillarDraw', 3]]),
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
@@ -57,7 +60,7 @@ export function incomingAttack(hit, weak = 0) { return weak > 0 ? Math.floor(hit
 export function textFor(id, upgraded = false) {
   const c = cards.find(c => c.id === id);
   if (!c) throw new Error('unknown card');
-  const terms = { growPillar: n => `需已有岩脊；强度增加${n}（强化上限${PILLAR_GROWTH_CAP}，满值仍付费，不立即触发）`, repair: n => `本战每轮玩家结束时补${n}玉璋（岩脊之后、敌行动之前；上限${JADE_CAP}；取较高强度不叠加；战斗已结束不补）`, jadeBurst: n => `清空当前全部玉璋，造成支付前玉璋×${n}点普通伤害（0玉璋仍付费）`, guardedVulnerable: n => `若当前玉璋至少${GUARD_THRESHOLD}，先施加${n}回合易伤（普通伤害${VULNERABLE_PERCENT}%，时长相加，不消耗玉璋）`, pillarBlock: n => `获得当前岩脊强度×${n}点格挡（无柱则0，不消耗岩脊）`, spendPillar: () => `需已有岩脊；拆除全部岩脊强度（不回收能力牌，本战后续脉冲停止）`, pulse: n => `触发当前岩脊${n}次固定伤害（未建立则0；逐次扣敌格挡，击杀停止，不消耗岩脊）`, pillar: n => `建立每轮玩家结束时造成${n}点固定伤害的岩脊（先扣敌格挡；取较高强度，不叠加；本战持续）`, emptyJade: n => `若结算时玉璋为0，获得${n}点玉璋（上限${JADE_CAP}；否则无收益，费用不退）`, jadeDamage: n => `造成等同结算时当前玉璋${n?`+${n}`:''}的单次普通伤害（不消耗玉璋）`, removeBlock: () => `先移除目标全部格挡（不是伤害）`, counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
+  const terms = { suppressedDamage: n => `若目标当前有虚弱，追加${n}点普通伤害（独立一击）`, exposedJade: n => `若目标当前有易伤，额外获得${n}玉璋（上限${JADE_CAP}）`, pillarDraw: n => `若当前有岩脊，抽${n}张（手限10，本牌不参与洗牌）`, growPillar: n => `需已有岩脊；强度增加${n}（强化上限${PILLAR_GROWTH_CAP}，满值仍付费，不立即触发）`, repair: n => `本战每轮玩家结束时补${n}玉璋（岩脊之后、敌行动之前；上限${JADE_CAP}；取较高强度不叠加；战斗已结束不补）`, jadeBurst: n => `清空当前全部玉璋，造成支付前玉璋×${n}点普通伤害（0玉璋仍付费）`, guardedVulnerable: n => `若当前玉璋至少${GUARD_THRESHOLD}，先施加${n}回合易伤（普通伤害${VULNERABLE_PERCENT}%，时长相加，不消耗玉璋）`, pillarBlock: n => `获得当前岩脊强度×${n}点格挡（无柱则0，不消耗岩脊）`, spendPillar: () => `需已有岩脊；拆除全部岩脊强度（不回收能力牌，本战后续脉冲停止）`, pulse: n => `触发当前岩脊${n}次固定伤害（未建立则0；逐次扣敌格挡，击杀停止，不消耗岩脊）`, pillar: n => `建立每轮玩家结束时造成${n}点固定伤害的岩脊（先扣敌格挡；取较高强度，不叠加；本战持续）`, emptyJade: n => `若结算时玉璋为0，获得${n}点玉璋（上限${JADE_CAP}；否则无收益，费用不退）`, jadeDamage: n => `造成等同结算时当前玉璋${n?`+${n}`:''}的单次普通伤害（不消耗玉璋）`, removeBlock: () => `先移除目标全部格挡（不是伤害）`, counter: n => `本轮每次受普通攻击后固定反击${n}（包括零伤、格挡与致死攻击；下回合开始清除）`, vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
   return `${c.cost}能量；${(upgraded ? c.upgraded : c.base).map(([op, n]) => terms[op](n)).join('；')}${c.exhaust ? '；消耗（本战不再抽到）' : ''}${c.power ? '；能力（打出后离开抽弃消耗循环）' : ''}${c.selfRetain ? '；保留（未打出则留在手中，占用手牌槽）' : ''}。`;
 }
 export function initialState(hand = ['a','b','c','d','e','f']) {
@@ -82,15 +85,15 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if (c.target === 'enemy' && target !== 'enemy') return { ok: false, reason: 'invalid target', state };
   if (typeof upgraded !== 'boolean' || upgraded !== state.instances[instance].upgraded) return { ok: false, reason: 'invalid upgrade', state };
   const effects = upgraded ? c.upgraded : c.base;
-  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter','removeBlock','jadeDamage','emptyJade','pillar','pulse','spendPillar','pillarBlock','guardedVulnerable','jadeBurst','repair','growPillar'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
+  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak','guardedDamage','draw','vulnerable','counter','removeBlock','jadeDamage','emptyJade','pillar','pulse','spendPillar','pillarBlock','guardedVulnerable','jadeBurst','repair','growPillar','suppressedDamage','exposedJade','pillarDraw'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
   if(effects.some(([op,n])=>['removeBlock','spendPillar'].includes(op)&&n!==1))return {ok:false,reason:'invalid effect',state};
-  if(effects.some(([op],i)=>op==='draw'&&i!==effects.length-1))return {ok:false,reason:'invalid effect',state};
-  const draws=effects.filter(([op])=>op==='draw').reduce((n,[,v])=>n+v,0);
+  if(effects.some(([op],i)=>['draw','pillarDraw'].includes(op)&&i!==effects.length-1))return {ok:false,reason:'invalid effect',state};
+  const draws=effects.filter(([op])=>['draw','pillarDraw'].includes(op)).reduce((n,[,v])=>n+v,0);
   if(draws>10)return {ok:false,reason:'invalid effect',state};
   const retaliation=effects.filter(([op])=>op==='counter').reduce((n,[,v])=>n+v,state.counter ?? 0);
   if(!Number.isSafeInteger(retaliation))return {ok:false,reason:'invalid effect',state};
   const vulnerability=effects.filter(([op])=>op==='vulnerable'||op==='guardedVulnerable').reduce((n,[,v])=>n+v,state.enemy.vulnerable ?? 0);
-  if(!Number.isSafeInteger(vulnerability)||effects.some(([op,n])=>['damage','guardedDamage'].includes(op)&&!Number.isSafeInteger(outgoingAttack(n,vulnerability))))return {ok:false,reason:'invalid effect',state};
+  if(!Number.isSafeInteger(vulnerability)||effects.some(([op,n])=>['damage','guardedDamage','suppressedDamage'].includes(op)&&!Number.isSafeInteger(outgoingAttack(n,vulnerability))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='jadeDamage'&&(!Number.isSafeInteger(JADE_CAP+n)||!Number.isSafeInteger(outgoingAttack(JADE_CAP+n,vulnerability)))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='pulse'&&(n<1||n>PULSE_LIMIT||!Number.isSafeInteger((state.pillar ?? 0)*n))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op])=>op==='pulse')&&effects.length!==1)return {ok:false,reason:'invalid effect',state};
@@ -98,6 +101,7 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if(effects.some(([op,n])=>op==='jadeBurst'&&(effects.length!==1||n<1||n>3||!Number.isSafeInteger(outgoingAttack(JADE_CAP*n,vulnerability)))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='repair'&&(n<1||n>3)))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='growPillar'&&(effects.length!==2||effects[0][0]!=='spendJade'||effects[0][1]!==6||effects[1][0]!=='growPillar'||n<1||n>2||!(state.pillar>0)||state.pillar>PILLAR_GROWTH_CAP||effects.filter(([x])=>x==='growPillar').length!==1)))return {ok:false,reason:'invalid effect',state};
+  if(effects.some(([op,n])=>op==='exposedJade'&&n>JADE_CAP))return {ok:false,reason:'invalid effect',state};
   const weakAdded = effects.filter(([op])=>op==='weak').reduce((n,[,v])=>n+v,0);
   if(!Number.isSafeInteger((state.enemy.weak ?? 0)+weakAdded))return {ok:false,reason:'invalid effect',state};
   const required = effects.filter(([op]) => op === 'spendJade').reduce((n, [,v]) => n + v, 0);
@@ -115,6 +119,8 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
     if(op==='pillar')next.pillar=Math.max(next.pillar ?? 0,n);
     if(op==='repair')next.repair=Math.max(next.repair ?? 0,n);
     if(op==='growPillar')next.pillar=Math.min(PILLAR_GROWTH_CAP,next.pillar+n);
+    if(op==='pillarDraw'&&next.pillar>0)next.pendingDraw=(next.pendingDraw ?? 0)+n;
+    if(op==='exposedJade'&&next.enemy.vulnerable>0)next.jade=Math.min(JADE_CAP,next.jade+n);
     if (op === 'draw')next.pendingDraw=(next.pendingDraw ?? 0)+n;
     if(op==='counter')next.counter=(next.counter ?? 0)+n;
     if(op==='guardedVulnerable'&&next.enemy.hp>0&&next.jade>=GUARD_THRESHOLD)next.enemy.vulnerable=(next.enemy.vulnerable ?? 0)+n;
@@ -124,7 +130,7 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
     if(op==='emptyJade'&&next.jade===0)next.jade=Math.min(JADE_CAP,n);
     if (op === 'jade') next.jade = Math.min(JADE_CAP, next.jade + n);
     if (op === 'spendJade') next.jade -= n;
-    if (op === 'damage' || op === 'jadeDamage' || op === 'guardedDamage' && next.jade >= GUARD_THRESHOLD) {
+    if (op === 'damage' || op === 'jadeDamage' || op === 'suppressedDamage' && next.enemy.hp>0 && next.enemy.weak>0 || op === 'guardedDamage' && next.jade >= GUARD_THRESHOLD) {
       const damage=outgoingAttack(op==='jadeDamage'?next.jade+n:n,next.enemy.vulnerable ?? 0);
       const absorbed = Math.min(next.enemy.block, damage);
       next.enemy.block -= absorbed;

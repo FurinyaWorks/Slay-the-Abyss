@@ -211,3 +211,11 @@ test('batch four v26 reward paths add zero-cost and emergency candidates without
   for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v25').includes(id));
  }
 });
+
+test('batch five v27 two-stage prerequisite acquisition is explicit and old pools remain unchanged',()=>{
+ for(const [id,policy,setup] of [['zl41','suppressedPayoff','zl09'],['zl42','exposedReserve','zl13'],['zl43','pillarAccess','zl21']]){
+  let seed=1;while(seed<=10000&&!(offers(seed,1,'v27').includes(setup)&&offers(seed,2,'v27').includes(id)))seed++;assert.ok(seed<=10000);
+  let s=journeyStart(seed,{poolVersion:'v27'});for(let room=1;room<=2;room++){s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const c=selectReward(rewardView(s),policy);assert.equal(s.offer[c-1],room===1?setup:id);s=takeReward(s,c);}assert.ok(s.deck.includes(id));
+  for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v26').includes(id));
+ }
+});
