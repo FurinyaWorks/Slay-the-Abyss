@@ -488,3 +488,23 @@ Native split metadata and known summon effect operations are rejected as well.
 This is a safety restriction, NOT multi-enemy completion or a complete ordinary
 map: pillar target semantics and dynamic multi-enemy lifecycle remain unresolved.
 Ganyu and ordinary Run behavior are not subject to this Zhongli-only restriction.
+
+## Explicit Ganyu starter launcher
+
+`require('abyss_ganyu_starter_run').new(data, seed)` constructs the experimental
+Run from a private generated starter source, not caller-supplied metadata. It
+uses HP60, energy3/draw5/maxHand10 and the source ten cards (01×4,02×4,03,04).
+Definitions enter the existing catalogue legally with `ganyu_candidate` color and
+real `ganyu-XX` source IDs. No STS source identity is fabricated and all four
+formal 75-card provider contracts are unchanged. No post-constructor card
+injection is used by the launcher.
+
+The inherited Burning Blood is removed. The bank-unused-energy starter effect
+is represented by the existing explicit `relicEnabled=true` experiment option
+and provenance metadata; it is NOT an inventory relic with removal/replacement
+support. No menu character, natural reward pool or formal registration is added.
+Actual constructor/start/end/play tests cover all four starting card kinds,
+bank-funded shot, no inherited victory heal, cross-battle resource reset and HP/
+deckUID carryover, private input isolation, formal catalog counts and an exception
+after actual Run construction. Card hand placement remains an explicit test
+fixture, not a natural draw guarantee. Source types and balance remain HOLD.

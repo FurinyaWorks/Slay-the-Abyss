@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Ganyu explicit source-bound starter launcher preserves formal catalog and real Run lifecycle',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/ganyu-starter-run.test.lua',{timeout:60000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/STARTER_PLAY_PASS 4/);assert.match(r.stdout,/GANYU_STARTER_LAUNCHER_PASS/)});
