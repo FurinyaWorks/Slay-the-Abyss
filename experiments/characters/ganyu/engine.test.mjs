@@ -67,7 +67,7 @@ test('opposite reachable choices: lethal now vs preserve charge economy',()=>{
  assert.equal(play(startTurn(endTurn(play(setup,0,0))),0,0).enemies[1].hp,20);
 });
 test('display generated from same structured variants, no false approval',()=>{
- assert.equal(catalogue.cards.length,7);assert.equal(catalogue.production_enabled,false);
+ assert.equal(catalogue.cards.length,8);assert.equal(catalogue.production_enabled,false);
  for(const c of catalogue.cards){assert.equal(c.review.human_approved,false);assert.match(c.name,/^待命名·/);for(const up of [false,true]) assert.match(cardText(c.id,up),/能量/);}
  assert.match(cardText('ganyu-03',true),/9点伤害.*8点伤害/);
 });
@@ -118,4 +118,9 @@ test('draw card uses base/upgraded counts, pays first, cannot shuffle itself bac
 test('draw stops at hand limit without losing cards or spending extra RNG',()=>{
  const s=initial();s.hand=[{id:'ganyu-07'},...Array(9).fill({id:'ganyu-01'})];s.draw=Array(5).fill({id:'ganyu-02'});
  const r=play(s,0);assert.equal(r.hand.length,10);assert.equal(r.draw.length,4);assert.equal(r.drawSeed,s.drawSeed);
+});
+
+test('defensive draw settles block then exact draw without refund or starting-deck change',()=>{
+ for(const up of [false,true]){const s=hand(initial(),'ganyu-08',up);s.draw=[{id:'ganyu-03'}];const r=play(s,0);assert.equal(r.block,up?8:5);assert.equal(r.energy,2);assert.deepEqual(r.hand,[{id:'ganyu-03'}]);assert.equal(r.discard[0].id,'ganyu-08');}
+ assert.equal(catalogue.starting_deck.includes('ganyu-08'),false);
 });

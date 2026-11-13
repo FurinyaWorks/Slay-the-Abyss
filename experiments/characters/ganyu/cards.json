@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.3.0",
+  "version": "ganyu-sample-0.4.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -239,6 +239,46 @@
         "status": "HOLD",
         "human_approved": false,
         "reason": "先效后名的过牌候选；待来源/审美/实际成本评审，不自动加入初始10张"
+      }
+    },
+    {
+      "id": "ganyu-08",
+      "name": "待命名·ganyu-08",
+      "candidate_name": null,
+      "role": "防守兼慢速轮转，以低格挡换过牌，避免纯过牌耗尽防御预算",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-08",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "防守轮转候选；待来源/审美/STS1对照核验，不改已有数值或初始卡组"
       }
     }
   ],

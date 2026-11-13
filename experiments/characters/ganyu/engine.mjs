@@ -130,6 +130,7 @@ export function startTurn(input) {
   return s;
 }
 export function cardText(id, upgraded = false) {
+  if (typeof upgraded !== 'boolean') throw new Error('invalid upgrade');
   const card = variants.get(id); if (!card) throw new Error('unknown card');
   const v = upgraded ? card.upgrade : card.base;
   const effects = v.effects.map(e => ({draw:`抽${e.amount}张牌（手牌上限${rules.handLimit}）。`,damage:`对目标造成${e.amount}点伤害。`,block:`获得${e.amount}点格挡。`,aoe:`对所有存活敌人造成${e.amount}点伤害。`,charge:`获得${e.amount}层蓄力（上限${rules.maxCharge}）。`,storm:`建立冰雨：从本回合起连续${e.turns}个回合结束时，对所有存活敌人造成${e.amount}点伤害；重复施放取较高伤害与剩余次数，不叠加。`,charged_shot:`对目标造成${e.direct}点伤害。若结算前蓄力为${rules.maxCharge}，消耗全部蓄力，随后对所有存活敌人造成${e.bloom}点伤害。`})[e.op]);

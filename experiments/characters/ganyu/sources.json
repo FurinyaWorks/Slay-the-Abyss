@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.3.0",
+  "version": "ganyu-sample-0.4.0",
   "status": "HOLD",
   "records": [
     {
@@ -187,6 +187,36 @@
       "decision_role": "以能量换即时过牌，改善找箭但不保证获取",
       "effect_ref": "cards.json#ganyu-07",
       "name": "待命名·ganyu-07",
+      "proposed_name": null,
+      "source_tier": "unassigned",
+      "source_kind": "unverified-transcription-index",
+      "source_text": null,
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "source_verified": false,
+      "p1_checked": "search performed; primary verification incomplete",
+      "p2_checked": "search performed; primary verification incomplete",
+      "p3_status": "not_entered",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "HOLD",
+        "N3": "HOLD",
+        "N4": "HOLD",
+        "N5": "HOLD",
+        "N6": "HOLD"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "card_id": "ganyu-08",
+      "decision_role": "防守兼慢速轮转，改善生命与找箭的共同成本",
+      "effect_ref": "cards.json#ganyu-08",
+      "name": "待命名·ganyu-08",
       "proposed_name": null,
       "source_tier": "unassigned",
       "source_kind": "unverified-transcription-index",
