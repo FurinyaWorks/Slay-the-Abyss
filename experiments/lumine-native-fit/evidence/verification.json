@@ -1,0 +1,29 @@
+{
+  "status": "pass",
+  "candidateSha256": "be81ce01136d9405d973f6f9d0c9d1334c7a686ce0822872e55e72bd4860f541",
+  "saveSha256": "daa2b3b521c2367652b05ac3f59fdd97c1df42618f10fb9d2bc120c1624646dd",
+  "images": {
+    "400": 400,
+    "800": 798,
+    "1600": 1600,
+    "3200": 3200
+  },
+  "checkedNativeTemplateNodes": 71,
+  "preservedModules": 359,
+  "changedModules": [
+    "abyss_game_ui_view",
+    "abyss_ui"
+  ],
+  "addedModules": [
+    "abyss_lumine_fit",
+    "abyss_lumine_fit_binding",
+    "abyss_lumine_fit_rows1600",
+    "abyss_lumine_fit_rows3200",
+    "abyss_lumine_fit_rows400",
+    "abyss_lumine_fit_rows800"
+  ],
+  "noRasterTexture": true,
+  "officialImport": "not_run",
+  "gpuFrameTime": "UNVERIFIED",
+  "officialCapacity": "UNVERIFIED"
+}

@@ -1,0 +1,13 @@
+{
+  "url": "http://127.0.0.1:49386",
+  "pid": 27916,
+  "buildId": "5da3a2d7-fbb5-460d-b4b1-fb17c0fc7dab",
+  "candidateSha256": "be81ce01136d9405d973f6f9d0c9d1334c7a686ce0822872e55e72bd4860f541",
+  "saveSha256": "daa2b3b521c2367652b05ac3f59fdd97c1df42618f10fb9d2bc120c1624646dd",
+  "sdkSha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+  "renderer": "existing ticker patch",
+  "rendererSha256": "9e89976ce304a896d8c5e57ce40545f795b8668a4a5460c8459adceb9a52d15a",
+  "tickerPatchSha256": "fb13b490e220f527660c1646ecdf7d843bcba3507c53d32f5a5fcf8c12f182e8",
+  "serveSha256": "94527c2a1b9ca778e52c7cca6c1b8700bb1979198791085305455ddd5d4a6a09",
+  "mode": "same GIL, per-session public experiment parameter"
+}

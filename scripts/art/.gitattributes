@@ -1,0 +1,3 @@
+# These fitter identities are recorded in the generated native geometry.
+segment-lowpoly.py text eol=lf
+native-triangle-placement.py text eol=lf

@@ -1,0 +1,46 @@
+{
+  "kind": "independent-agent-source-review",
+  "reviewer": "/root/lumine_review",
+  "reviews": [
+    {
+      "reviewId": "lumine-hybrid-batch-v9-review-20261113-r3",
+      "conclusion": "needs_changes",
+      "finding": "P2 finalizer could bind edited inputs to an old GIL"
+    },
+    {
+      "reviewId": "lumine-overlay-identity-v9-review-20261113-r4",
+      "conclusion": "pass",
+      "unresolved": [],
+      "validation": "Six read-only VM changed-input negative cases refused before writes; unchanged case matched payload digest"
+    },
+    {
+      "reviewId": "lumine-native-fill-review-20261113-r5",
+      "conclusion": "pass",
+      "unresolved": [],
+      "validation": "Actual SDK fill flag semantics and native prefab/default-unused correction checked; runtime half counts subsequently matched candidate costs for all 25 samples"
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "scripts/art/native-triangle-placement.py",
+      "sha256": "213ca42805a67623b58a4cebb5e27f75142374ca84bc1798534a22b157cb0002"
+    },
+    {
+      "path": "scripts/art/segment-lowpoly.py",
+      "sha256": "3e8ef3d9ac4977832f48a877b9bf07f2bb5966721bf1cd556f8a4783eb6f6293"
+    },
+    {
+      "path": "experiments/lumine-native-fit/build.mjs",
+      "sha256": "1481fa5adc92451117c8ebe31241f8d2760d979796f9de84355d1bae5d08ed8a"
+    },
+    {
+      "path": "experiments/lumine-native-fit/runtime.lua",
+      "sha256": "8ee89d299002b9f879750768ca668c38deb92ddc77b647d77ca7f5915c8294dd"
+    },
+    {
+      "path": "experiments/lumine-native-fit/finalize-identity.mjs",
+      "sha256": "d5d84bfedb5360da668f7b45820edfc5f4a866cb1fa0f4a572d01b55c8e25943"
+    }
+  ],
+  "boundary": "Source review only. Product quality/latency NO-GO. Official client/phone/capacity UNVERIFIED. Exact commit review receipt is attached separately to Draft PR."
+}

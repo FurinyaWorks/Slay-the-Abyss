@@ -162,6 +162,10 @@
     "menu-user-reference": {
       "status": "User-supplied visual reference retained for the requested TASK-103.4 composition comparison. Original authorship and third-party rights remain with their owners; no redistribution sublicense or commercial clearance inferred. Reference-only, not a runtime asset.",
       "evidence": "docs/evidence/menu-native-2d-20261112/README.md and menu_reference.png; PR633 records the unique user attachment and the permitted abstract reconstruction. Existing repository noncommercial scope remains unchanged."
+    },
+    "lumine-native-fit-20261113": {
+      "status": "User-provided Lumine reference images and project native-geometry experiment captures. Genshin character/platform imagery remains game IP; no IP sublicense or commercial clearance. Runtime uses only native official shape IDs, no reference PNG texture.",
+      "evidence": "experiments/lumine-native-fit/README.md; input source hashes, fit-hybrid-final parameters, actual GIL identity and Simulator evidence/RESULTS.md. User requested dual-reference native fitting and Draft PR on 2026-11-13. No official client/mobile/capacity acceptance."
     }
   },
   "files": {
@@ -8686,6 +8690,50 @@
       "lfs": true,
       "storage": "ci-media-lfs-v1",
       "bytes": 1955476
+    },
+    "experiments/lumine-native-fit/input/source.png": {
+      "sha256": "84cc7161fe5312e0f72223d50e8ac6aaa65c4be7d45d558b810a2443db5c1faa",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/input/structure-reference.png": {
+      "sha256": "29c47e50581951d1f3cf509eb39b1a73bf8d6ae4934a5b0606a3c76f9857c050",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/evidence/browser-0.png": {
+      "sha256": "6f8e013de8262b079b5fbb3066c0e6dead0920ea5bf8f36d99925284b2b216e7",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/evidence/browser-1600.png": {
+      "sha256": "53928890614bb4848da24227762b021b3c3afc23d847bcb18a5bfebc939aa088",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/evidence/browser-3200.png": {
+      "sha256": "b47df9ec5005de3f76080161b56fac6461bfce11dab9a8b16a7906b54f4fd905",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/evidence/browser-800.png": {
+      "sha256": "a1078e69d8be00ac6fb2debd078df386eaced3bb604c89c197b86aaed8452e41",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/evidence/comparison.png": {
+      "sha256": "4f0eff73f1562f80462b91268a076280ee5a0528f576afc99bedf1899deaafea",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/evidence/native-1600.png": {
+      "sha256": "2f2d50a99657807c41930f7a6611478fcfe3602c244ef9bd420b289e4b92f782",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/evidence/native-3200.png": {
+      "sha256": "9883066f34bfa74d9b468018f839cc8c1e7d1cf0f639b0509def59fccbf52d78",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/evidence/native-400.png": {
+      "sha256": "d17fa9dbe5f8af3ec8dc50051da369ddda1343c4b7e94a02be227817803971bc",
+      "category": "lumine-native-fit-20261113"
+    },
+    "experiments/lumine-native-fit/evidence/native-800.png": {
+      "sha256": "a315f0d7032c35ec46db687e37d66e858f99afe6c64bfd5208753311e1b2b534",
+      "category": "lumine-native-fit-20261113"
     }
   }
 }

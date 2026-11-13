@@ -1,0 +1,323 @@
+{
+  "candidateSha256": "be81ce01136d9405d973f6f9d0c9d1334c7a686ce0822872e55e72bd4860f541",
+  "saveSha256": "daa2b3b521c2367652b05ac3f59fdd97c1df42618f10fb9d2bc120c1624646dd",
+  "buildId": "5da3a2d7-fbb5-460d-b4b1-fb17c0fc7dab",
+  "baseSource": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+  "hardware": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700H",
+    "logicalCpus": 20,
+    "systemMemoryGiB": 15.675647735595703
+  },
+  "gilBytes": 19263083,
+  "baseGilBytes": 18722876,
+  "gilIncrementBytes": 540207,
+  "sharedTemplateBytes": 57642,
+  "rows": [
+    {
+      "budget": 0,
+      "images": null,
+      "containers": null,
+      "masks": null,
+      "coldP50": 16435.285300000047,
+      "coldP95": 16771.333500000008,
+      "warmP95": 902.5175999999992,
+      "warmTriggerToModelP95": 140.80259999999907,
+      "warmDriverGeometryP95": 109.89030000000275,
+      "sourceReadP50": 1200.5589000000036,
+      "initializeP50": 4985.3777,
+      "fitReadP50": null,
+      "fitCreateP50": null,
+      "fitRevealP50": null,
+      "softwarePngP50": 356.0884000000078,
+      "snapshotP50": 408.9010999999591,
+      "resident": [
+        23635,
+        23635,
+        23635,
+        23635,
+        23635
+      ],
+      "visibleImages": [
+        4653,
+        4653,
+        4653,
+        4653,
+        4653
+      ],
+      "nodeRssMiB": [
+        811.48046875,
+        1548.23046875,
+        1099.71484375,
+        1409.57421875,
+        1737.08984375
+      ],
+      "nodeHeapUsedMiB": [
+        572.2861709594727,
+        826.5494232177734,
+        1259.2159118652344,
+        1478.1745986938477,
+        1707.422378540039
+      ],
+      "sdkVisibleStepP95": 28.60950000002049,
+      "longSdkSteps100ms": 0,
+      "runtimeDataBytes": 0
+    },
+    {
+      "budget": 400,
+      "images": 400,
+      "containers": 12,
+      "masks": 90,
+      "coldP50": 9702.060499999992,
+      "coldP95": 15094.93359999999,
+      "warmP95": 1050.274099999995,
+      "warmTriggerToModelP95": 172.2323000000033,
+      "warmDriverGeometryP95": 118.13639999999577,
+      "sourceReadP50": 3314.4465999999957,
+      "initializeP50": 4486.541599999997,
+      "fitReadP50": 34.83050000000367,
+      "fitCreateP50": 101.15059999999357,
+      "fitRevealP50": 0.49890000000596046,
+      "softwarePngP50": 589.755999999994,
+      "snapshotP50": 210.46869999999763,
+      "resident": [
+        19658,
+        19658,
+        19658,
+        19658,
+        19658
+      ],
+      "visibleImages": [
+        738,
+        738,
+        738,
+        738,
+        738
+      ],
+      "nodeRssMiB": [
+        1098.69921875,
+        1549.96875,
+        1350.6796875,
+        1426.6953125,
+        1505.421875
+      ],
+      "nodeHeapUsedMiB": [
+        316.53333282470703,
+        655.9958343505859,
+        887.7330322265625,
+        1119.1790771484375,
+        1353.482795715332
+      ],
+      "sdkVisibleStepP95": 34.99610000004759,
+      "longSdkSteps100ms": 0,
+      "runtimeDataBytes": 31719
+    },
+    {
+      "budget": 800,
+      "images": 798,
+      "containers": 24,
+      "masks": 172,
+      "coldP50": 9349.138400000025,
+      "coldP95": 20484.767099999997,
+      "warmP95": 1850.4391999999934,
+      "warmTriggerToModelP95": 210.86829999998736,
+      "warmDriverGeometryP95": 214.93859999999404,
+      "sourceReadP50": 1203.0415999999968,
+      "initializeP50": 4713.930699999997,
+      "fitReadP50": 86.37770000001183,
+      "fitCreateP50": 229.55059999998775,
+      "fitRevealP50": 0.9661999999952968,
+      "softwarePngP50": 1742.8686999999918,
+      "snapshotP50": 275.80710000000545,
+      "resident": [
+        20068,
+        20068,
+        20068,
+        20068,
+        20068
+      ],
+      "visibleImages": [
+        1136,
+        1136,
+        1136,
+        1136,
+        1136
+      ],
+      "nodeRssMiB": [
+        1048.8671875,
+        1686.6328125,
+        1394.53515625,
+        1292.08203125,
+        1502.23046875
+      ],
+      "nodeHeapUsedMiB": [
+        353.9788131713867,
+        555.7304916381836,
+        780.7379684448242,
+        1014.9858551025391,
+        1236.554786682129
+      ],
+      "sdkVisibleStepP95": 28.020799999998417,
+      "longSdkSteps100ms": 0,
+      "runtimeDataBytes": 63131
+    },
+    {
+      "budget": 1600,
+      "images": 1600,
+      "containers": 32,
+      "masks": 224,
+      "coldP50": 9520.868099999963,
+      "coldP95": 10815.472500000033,
+      "warmP95": 1696.8686999999918,
+      "warmTriggerToModelP95": 148.48730000000796,
+      "warmDriverGeometryP95": 136.91809999999532,
+      "sourceReadP50": 1318.8629000000074,
+      "initializeP50": 5086.864500000025,
+      "fitReadP50": 173.54629999998724,
+      "fitCreateP50": 396.1161999999895,
+      "fitRevealP50": 1.7543999999761581,
+      "softwarePngP50": 886.3098999999929,
+      "snapshotP50": 343.8033000000287,
+      "resident": [
+        20878,
+        20878,
+        20878,
+        20878,
+        20878
+      ],
+      "visibleImages": [
+        1938,
+        1938,
+        1938,
+        1938,
+        1938
+      ],
+      "nodeRssMiB": [
+        1265.2109375,
+        1637.44140625,
+        1304.03125,
+        1551.2265625,
+        1675.34765625
+      ],
+      "nodeHeapUsedMiB": [
+        385.2356491088867,
+        941.0665130615234,
+        1179.7062149047852,
+        1410.1363677978516,
+        1627.7145767211914
+      ],
+      "sdkVisibleStepP95": 28.753200000006473,
+      "longSdkSteps100ms": 0,
+      "runtimeDataBytes": 126779
+    },
+    {
+      "budget": 3200,
+      "images": 3200,
+      "containers": 57,
+      "masks": 496,
+      "coldP50": 10632.329499999993,
+      "coldP95": 20398.728100000008,
+      "warmP95": 2131.09090000001,
+      "warmTriggerToModelP95": 152.5209999999788,
+      "warmDriverGeometryP95": 178.84930000000168,
+      "sourceReadP50": 3040.1787000000186,
+      "initializeP50": 4245.554899999988,
+      "fitReadP50": 244.99149999994552,
+      "fitCreateP50": 741.5811000000103,
+      "fitRevealP50": 5.896600000007311,
+      "softwarePngP50": 926.8783000000403,
+      "snapshotP50": 373.25990000000456,
+      "resident": [
+        22503,
+        22503,
+        22503,
+        22503,
+        22503
+      ],
+      "visibleImages": [
+        3538,
+        3538,
+        3538,
+        3538,
+        3538
+      ],
+      "nodeRssMiB": [
+        1346.734375,
+        1084.54296875,
+        1379.5859375,
+        1588.72265625,
+        1322.33984375
+      ],
+      "nodeHeapUsedMiB": [
+        411.45379638671875,
+        828.2253952026367,
+        1055.6296463012695,
+        1278.2000198364258,
+        1502.6139678955078
+      ],
+      "sdkVisibleStepP95": 32.07380000001285,
+      "longSdkSteps100ms": 0,
+      "runtimeDataBytes": 251117
+    }
+  ],
+  "gpu": [
+    {
+      "budget": 0,
+      "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "gpuSamples": 45,
+      "gpuP95": 1.252968,
+      "cpuDrawP95": 3,
+      "drawIntervalP95": 32.90000000037253,
+      "rafP95": 7.200000000004366,
+      "drawIntervalsOver33ms": 2,
+      "drawIntervalsOver100ms": 0,
+      "drawIntervals": 45
+    },
+    {
+      "budget": 800,
+      "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "gpuSamples": 53,
+      "gpuP95": 1.77828,
+      "cpuDrawP95": 2.799999998882413,
+      "drawIntervalP95": 26.5,
+      "rafP95": 7.200000000000728,
+      "drawIntervalsOver33ms": 0,
+      "drawIntervalsOver100ms": 0,
+      "drawIntervals": 52
+    },
+    {
+      "budget": 1600,
+      "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "gpuSamples": 50,
+      "gpuP95": 2.460729,
+      "cpuDrawP95": 4.400000000372529,
+      "drawIntervalP95": 28.399999998509884,
+      "rafP95": 7.200000000000728,
+      "drawIntervalsOver33ms": 0,
+      "drawIntervalsOver100ms": 0,
+      "drawIntervals": 49
+    },
+    {
+      "budget": 3200,
+      "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "gpuSamples": 115,
+      "gpuP95": 2.815051,
+      "cpuDrawP95": 8.599999999627471,
+      "drawIntervalP95": 30.90000000037253,
+      "rafP95": 34.70000000000073,
+      "drawIntervalsOver33ms": 2,
+      "drawIntervalsOver100ms": 0,
+      "drawIntervals": 115
+    }
+  ],
+  "verdict": {
+    "nativeFeasibility": "GO: actual native GIL, real Simulator rendering and bounded cache demonstrated",
+    "productRelease": "NO-GO: complete display latency targets not achieved in measured Simulator path; quality not owner-approved",
+    "officialImport": "UNVERIFIED",
+    "officialCapacity": "UNVERIFIED",
+    "mobile": "UNVERIFIED",
+    "nativeClientGpu": "UNVERIFIED",
+    "quality": "NO-GO: 1600 facial edges/nose/mouth remain fragmented; 3200 improves contours but does not match reference detail",
+    "multiCharacterSwitch": "UNVERIFIED: other roles stay locked; warm samples are page reentries",
+    "memoryRelease": "UNVERIFIED: SDK controls destroy to zero; no official heap/GPU memory proof"
+  }
+}
