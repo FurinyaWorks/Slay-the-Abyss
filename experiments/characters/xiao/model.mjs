@@ -43,6 +43,7 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'stanceSupply') { if(s.mask>0)drawCards(s,value);else s.block+=effect.block; }
   else if (op === 'pierceDamage') { const enemy=s.enemies[target];enemy.hp=Math.max(0,enemy.hp-value-(s.mask>0?catalog.maskRules.attackBonus:0)); }
   else if (op === 'stealBlock') { const enemy=s.enemies[target],taken=Math.min(value,enemy.block);enemy.block-=taken;s.block+=taken; }
   else if (op === 'calmAttackGuard') s.calmAttackGuard+=value;
@@ -170,7 +171,8 @@ export function startTurn(input) {
 }
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
-  const text = ({op, value, cap, bonus, hits, step}) => ({
+  const text = ({op, value, cap, bonus, hits, step, block}) => ({
+    stanceSupply: `若当前戴面具，抽${value}张（手牌上限10）；否则获得${block}点格挡。两者只结算一种。`,
     pierceDamage: `造成${value}点无视目标格挡的伤害（面具另加${catalog.maskRules.attackBonus}）；不移除格挡，仍算攻击，不是支付生命。`,
     stealBlock: `将目标至多${value}点现有格挡转为自己的格挡，无格挡则获得0；不造成伤害。`,
     calmAttackGuard: `本场每张出牌时未戴面具的攻击结算后获得${value}点格挡，按卡非命中，可叠加；进场攻击按出牌前状态，零伤成功攻击也算。`,

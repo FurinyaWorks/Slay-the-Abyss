@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.27",
+  "version": "xiao-g2-lab-0.28",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1905,6 +1905,70 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x63",
+      "name": "待命名·x63",
+      "role": "削短窗口的突击：先享强化伤害再减少一回合",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 8
+        },
+        {
+          "op": "shortenMask",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 11
+        },
+        {
+          "op": "shortenMask",
+          "value": 1
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x64",
+      "name": "待命名·x64",
+      "role": "双态调息：面具内补手，常态建立防御",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "stanceSupply",
+          "value": 2,
+          "block": 6
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "stanceSupply",
+          "value": 3,
+          "block": 9
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1977,7 +2041,9 @@
     "x59",
     "x60",
     "x61",
-    "x62"
+    "x62",
+    "x63",
+    "x64"
   ],
   "maskRules": {
     "attackBonus": 4,
