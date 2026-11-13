@@ -77,3 +77,5 @@ test('malformed states/hits fail before mutation',()=>{
 test('card identity cannot be substituted by command',()=>{const s=initialState();assert.equal(play(s,{id:'zl05',instance:'a',target:'enemy'}).ok,false);});
 
 test('upgrade comes from instance, invalid flags rollback',()=>{for(const upgraded of [true,'false',1,null]){const s=initialState();const r=play(s,{id:'zl01',instance:'a',target:'enemy',upgraded});assert.equal(r.ok,false);assert.equal(r.state,s);assert.equal(s.energy,3);assert.equal(s.enemy.hp,40);}});
+
+test('unknown or invalid effect after valid damage rolls back entire transaction',()=>{for(const effect of [['unknown',1],['jade',-1],['block',NaN]]){const s=initialState();const before=structuredClone(s);cards[0].base.push(effect);try{const r=play(s,{id:'zl01',instance:'a',target:'enemy'});assert.equal(r.ok,false);assert.equal(r.reason,'invalid effect');assert.equal(r.state,s);assert.deepEqual(s,before);}finally{cards[0].base.pop();}}});

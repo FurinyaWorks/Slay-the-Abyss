@@ -16,7 +16,7 @@ export const JADE_CAP = 20;
 export function textFor(id, upgraded = false) {
   const c = cards.find(c => c.id === id);
   if (!c) throw new Error('unknown card');
-  const terms = { damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限20）`, spendJade: n => `消耗${n}点玉璋` };
+  const terms = { damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
   return `${c.cost}能量；${(upgraded ? c.upgraded : c.base).map(([op, n]) => terms[op](n)).join('；')}。`;
 }
 export function initialState(hand = ['a','b','c','d','e','f']) {
@@ -38,6 +38,7 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if (c.target === 'enemy' && target !== 'enemy') return { ok: false, reason: 'invalid target', state };
   if (typeof upgraded !== 'boolean' || upgraded !== state.instances[instance].upgraded) return { ok: false, reason: 'invalid upgrade', state };
   const effects = upgraded ? c.upgraded : c.base;
+  if (effects.some(([op,n]) => !['block','jade','spendJade','damage'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
   const required = effects.filter(([op]) => op === 'spendJade').reduce((n, [,v]) => n + v, 0);
   if (state.energy < c.cost || state.jade < required) return { ok: false, reason: 'cannot pay', state };
   const next = structuredClone(state);

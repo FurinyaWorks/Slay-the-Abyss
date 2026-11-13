@@ -1,7 +1,7 @@
 /** Deck/turn harness for the isolated candidate. No production integration. */
-import {initialState, play, endTurn, cards, textFor} from './model.mjs';
+import {initialState, play, endTurn, cards, textFor, JADE_CAP} from './model.mjs';
 export const STARTER = ['zl01','zl01','zl01','zl01','zl02','zl02','zl02','zl02','zl03','zl04'];
-export const RELIC = Object.freeze({id:'zl-relic01',name:'待命名·zl-relic01',status:'HOLD',effect:{event:'battleStart',jade:3},description:'每场战斗开始时获得3点玉璋。每场仅触发一次。'});
+export const RELIC = Object.freeze({id:'zl-relic01',name:'待命名·zl-relic01',status:'HOLD',effect:Object.freeze({event:'battleStart',jade:3}),get description(){return `每场战斗开始时获得${this.effect.jade}点玉璋。每场仅触发一次。`;}});
 function random(s) { s.rng=(Math.imul(s.rng,1664525)+1013904223)>>>0; return s.rng/4294967296; }
 function shuffle(s, xs) { const out=[...xs]; for(let i=out.length-1;i>0;i--){const j=Math.floor(random(s)*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out; }
 export function draw(state,count=5){
@@ -24,7 +24,7 @@ export function battleStart({seed=1,deck=STARTER,hp=60,enemyHp=40,relic=true}={}
 export function applyRelic(state,enabled=true){
   if(typeof enabled!=='boolean')throw new Error('invalid relic option');
   if(state.relicApplied)return structuredClone(state);
-  const s=structuredClone(state);s.relicApplied=true;if(enabled)s.jade=Math.min(20,s.jade+RELIC.effect.jade);return s;
+  const s=structuredClone(state);s.relicApplied=true;if(enabled)s.jade=Math.min(JADE_CAP,s.jade+RELIC.effect.jade);return s;
 }
 export function playInstance(state,instance){
   const c=state.instances[instance];if(!c)return {ok:false,reason:'missing instance',state};
