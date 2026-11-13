@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.35.0';
+export const VERSION = 'zhongli-mechanics-0.36.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -60,6 +60,9 @@ export const cards = [
   card('zl53', '维持防线压制敌人并以阈值获得攻击，残盾时无伤害', 'common', 2, [['weak', 2], ['guardedDamage', 10]], [['weak', 3], ['guardedDamage', 14]], 'enemy'),
   {...card('zl54', '支出玉璋拆敌格挡并找后续攻击，自己不造成伤害', 'common', 1, [['spendJade', 3], ['removeBlock', 1], ['draw', 1]], [['spendJade', 3], ['removeBlock', 1], ['draw', 2]], 'enemy'), exhaust: true},
   {...card('zl55', '一张牌建立低强度柱与修补，节省投入但降低长期速率', 'common', 3, [['pillar', 1], ['repair', 1]], [['pillar', 2], ['repair', 2]]), power: true},
+  {...card('zl56', '保留攻守接替的防线包，等待大伤但占手牌和较高能量', 'common', 2, [['block', 9], ['jade', 3]], [['block', 12], ['jade', 4]]), selfRetain: true},
+  card('zl57', '主动支出防线延长减压，面对空过或致命首击承担损失', 'common', 1, [['spendJade', 3], ['weak', 3]], [['spendJade', 3], ['weak', 4]], 'enemy'),
+  card('zl58', '激发岩脊同时掩护当前回合，用输出效率换一张牌', 'common', 2, [['pulse', 2], ['block', 5]], [['pulse', 3], ['block', 8]], 'enemy'),
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
@@ -108,7 +111,7 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if(!Number.isSafeInteger(vulnerability)||effects.some(([op,n])=>['damage','guardedDamage','suppressedDamage'].includes(op)&&!Number.isSafeInteger(outgoingAttack(n,vulnerability))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='jadeDamage'&&(!Number.isSafeInteger(JADE_CAP+n)||!Number.isSafeInteger(outgoingAttack(JADE_CAP+n,vulnerability)))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='pulse'&&(n<1||n>PULSE_LIMIT||!Number.isSafeInteger((state.pillar ?? 0)*n))))return {ok:false,reason:'invalid effect',state};
-  if(effects.some(([op])=>op==='pulse')&&effects.length!==1)return {ok:false,reason:'invalid effect',state};
+  if(effects.some(([op])=>op==='pulse')&&effects.length!==1&&!(effects.length===2&&effects[0][0]==='pulse'&&effects[1][0]==='block'&&Number.isSafeInteger(state.block+effects[1][1])))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='pillarBlock'&&(effects.length!==1||n<1||n>5||!Number.isSafeInteger((state.pillar ?? 0)*n)||!Number.isSafeInteger(state.block+(state.pillar ?? 0)*n))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='jadeBurst'&&(effects.length!==1||n<1||n>3||!Number.isSafeInteger(outgoingAttack(JADE_CAP*n,vulnerability)))))return {ok:false,reason:'invalid effect',state};
   if(effects.some(([op,n])=>op==='repair'&&(n<1||n>3)))return {ok:false,reason:'invalid effect',state};
