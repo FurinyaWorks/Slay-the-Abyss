@@ -508,3 +508,19 @@ bank-funded shot, no inherited victory heal, cross-battle resource reset and HP/
 deckUID carryover, private input isolation, formal catalog counts and an exception
 after actual Run construction. Card hand placement remains an explicit test
 fixture, not a natural draw guarantee. Source types and balance remain HOLD.
+
+## Xiao x05 source starter paid slice
+
+The canonical paid gate now includes x05 (base6/up9 normal single-target damage;
+while masked, base+4 group damage). It reuses the existing reviewed first-eight
+bridge/dispatch, not a new execution wrapper. A target that becomes inactive
+before an unmasked stage is skipped without refund or retargeting. The source
+starter factory in the acceptance fixture uses HP70, ten source cards and the
+existing virtual starter relic; no formal character selector is registered.
+
+Actual source-starter Run tests cover base/up × real paid x04 entry/no mask,
+public x05 payment and original UID disposal, invalid/unmarked refusal and
+whole-Run exception recovery. Host tests add 16 automatic-admission combinations
+and a real Scry continuation whose native group damage failure restores the paid
+revealed graph/aliases and retries once. This raises the admitted Xiao set to
+01/02/04/05/06, not all75; native HP/Intangible differences and balance remain HOLD.

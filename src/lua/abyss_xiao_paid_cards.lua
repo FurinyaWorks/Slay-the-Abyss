@@ -1,11 +1,11 @@
--- Paid-only x01/x02/x04/x06 candidate boundary. No owner-end or turn-start activation.
+-- Paid-only x01/x02/x04/x05/x06 candidate boundary. No owner-end or turn-start activation.
 local Bridge=require('abyss_xiao_play_bridge')
 local Dispatch=require('abyss_xiao_dispatch')
 local Presence=require('abyss_actor_presence')
 local M={}
 local canonical={}
 for _,d in ipairs(Bridge.definitions())do
- if d.id=='xiao_candidate_x01'or d.id=='xiao_candidate_x02'or d.id=='xiao_candidate_x04'or d.id=='xiao_candidate_x06'then canonical[d.id]=d end
+ if d.id=='xiao_candidate_x01'or d.id=='xiao_candidate_x02'or d.id=='xiao_candidate_x04'or d.id=='xiao_candidate_x05'or d.id=='xiao_candidate_x06'then canonical[d.id]=d end
 end
 local function same(a,b)
  if type(a)~='table'or type(b)~='table'then return a==b end
@@ -15,7 +15,7 @@ local function same(a,b)
 end
 function M.supports(e)
  if type(e)~='table'or getmetatable(e)or e.op~='xiaoCard'
-  or e.kind~='damage'and e.kind~='maskCommit'then return false end
+  or e.kind~='damage'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
  for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
  return type(e.value)=='number'and e.value%1==0 and e.value>=0 and e.value<=2147483647
 end
@@ -66,7 +66,7 @@ function M.dispatch(combat,state,e,queue)
  assert(type(e.payload)=='table'and e.payload.op=='xiaoCard'and e.payload.uid==paid.uid
   and(e.payload.targetId==nil or e.payload.targetId==context.targetId),'wrong Xiao stage payload')
  local skip=false
- if e.payload.kind=='damage'then
+ if e.payload.kind=='damage'or e.payload.kind=='plunge'and(state.player.statuses.xiao_mask or 0)==0 then
   local target;for _,enemy in ipairs(state.enemies)do if enemy.id==context.targetId then target=enemy end end
   skip=not Presence.isActive(target)
  end
