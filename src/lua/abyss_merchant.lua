@@ -1,4 +1,4 @@
--- Shop merchant portrait and RPG dialogue box. Presentation only: every line is the
+-- Shop merchant figure and head-relative speech bubble. Presentation only: every line is the
 -- approved Lore v2 merchant copy, said in reaction to a transaction the node UI has
 -- already completed or refused. It never blocks, delays or replaces shop input.
 local Theme = require("abyss_theme")
@@ -20,6 +20,7 @@ function M.new(box, options)
     options = options or {}
     local merchant = { visible = false, queue = {}, met = setmetatable({}, { __mode = "k" }) }
     local portrait, line = box:GetChild("portrait"), box:GetChild("line")
+    local bubble = L.bubble and box:GetChild("bubble")
     local function colour(c, alpha)
         return options.color(c.r, c.g, c.b, math.floor((c.a or 255) * clamp(alpha or 1) + 0.5))
     end
@@ -54,9 +55,11 @@ function M.new(box, options)
     function merchant:tap()
         local current = self.current
         if not self.visible or not current then return false end
-        if current.shown < pageEnd(current) then current.shown = pageEnd(current)
+        if current.dismissed then current.page, current.shown, current.hold, current.dismissed = 1, 0, 0, false
+        elseif current.shown < pageEnd(current) then current.shown = pageEnd(current)
         elseif pageEnd(current)<#current.chars then current.page=current.page+1;current.hold=0
         elseif #self.queue > 0 then begin(table.remove(self.queue, 1))
+        elseif bubble then current.dismissed = true
         else return false end
         self:pose()
         return true
@@ -67,20 +70,23 @@ function M.new(box, options)
         if self.visible then self:pose() end
     end
 
+    local function paintSpeech(current)
+        local count = math.min(pageEnd(current), math.floor(current.shown))
+        line.text = table.concat(current.chars, "", (current.page-1)*L.pageCharacters+1, count)
+        local speaking = not current.dismissed
+        if bubble then bubble:SetVisible(speaking); line:SetVisible(speaking) end
+        ink(line, bubble and L.bubble.ink or (current.narration and C.textDim or C.text))
+        box:GetChild("name"):SetVisible(not bubble and not current.narration)
+        box:GetChild("namePlate"):SetVisible(not bubble and not current.narration)
+        local more = speaking and count >= pageEnd(current) and (pageEnd(current)<#current.chars or #merchant.queue > 0)
+        local marker = box:GetChild("next")
+        marker:SetVisible(more)
+        return marker,more
+    end
     function merchant:pose()
         local current = self.current
         if not self.visible or not current then return end
-        local count = math.min(pageEnd(current), math.floor(current.shown))
-        line.text = table.concat(current.chars, "", (current.page-1)*L.pageCharacters+1, count)
-        ink(line, current.narration and C.textDim or C.text)
-        box:GetChild("name"):SetVisible(not current.narration)
-        box:GetChild("namePlate"):SetVisible(not current.narration)
-        local more = count >= pageEnd(current) and (pageEnd(current)<#current.chars or #self.queue > 0)
-        local marker = box:GetChild("next")
-        marker:SetVisible(more)
-        if more then
-            marker:SetAnchoredPosition(L.next[1] - L.frame[1], L.next[2] - L.frame[2] + 3 * math.sin((self.clock or 0) * 6))
-        end
+        local marker,more=paintSpeech(current)
         -- Nod on a sale, a short head shake when the purse is short; both settle back to rest.
         -- Theme frames are node-panel units; the portrait moves inside the merchant frame.
         local x, y = L.portrait[1] - L.frame[1], L.portrait[2] - L.frame[2]
@@ -90,24 +96,39 @@ function M.new(box, options)
             x = x + L.shakeAmplitude * math.sin(p * math.pi * 4) * (1 - p)
         end
         portrait:SetAnchoredPosition(x, y)
+        local dx, dy = x - (L.portrait[1] - L.frame[1]), y - (L.portrait[2] - L.frame[2])
+        if bubble then
+            bubble:SetAnchoredPosition(L.box[1] - L.frame[1] + dx, L.box[2] - L.frame[2] + dy)
+            line:SetAnchoredPosition(L.line[1] - L.frame[1] + dx, L.line[2] - L.frame[2] + dy)
+        end
+        if more then
+            marker:SetAnchoredPosition(L.next[1] - L.frame[1] + dx, L.next[2] - L.frame[2] + dy + 3 * math.sin((self.clock or 0) * 6))
+        end
         local flicker = 0.4 + 0.08 * math.sin((self.clock or 0) * 7) + 0.05 * math.sin((self.clock or 0) * 13)
         tint(portrait:GetChild("lanternGlow"), C.merchant.lantern, flicker)
     end
 
+    local function advanceSpeech(current,dt)
+        if not current.dismissed then
+            if current.shown < pageEnd(current) then
+                current.shown = math.min(pageEnd(current), current.shown + dt * L.typeRate)
+            else
+                current.hold = current.hold + dt
+                if current.hold>=L.hold and pageEnd(current)<#current.chars then current.page=current.page+1;current.hold=0
+                elseif #merchant.queue > 0 and current.hold >= L.hold then begin(table.remove(merchant.queue, 1))
+                elseif bubble and current.hold >= L.hold then current.dismissed = true end
+            end
+        end
+    end
     function merchant:update(dt)
         if not self.visible or not self.current then return end
         self.clock = (self.clock or 0) + dt
         local current = self.current
-        if current.shown < pageEnd(current) then
-            current.shown = math.min(pageEnd(current), current.shown + dt * L.typeRate)
-        else
-            current.hold = current.hold + dt
-            if current.hold>=L.hold and pageEnd(current)<#current.chars then current.page=current.page+1;current.hold=0
-            elseif #self.queue > 0 and current.hold >= L.hold then begin(table.remove(self.queue, 1)) end
-        end
+        advanceSpeech(current,dt)
         -- One unprompted remark if the player lingers; never repeated, never a new button.
         self.idle = (self.idle or 0) + dt
-        if not self.idleUsed and #self.queue == 0 and self.idle >= L.idle and current.kind ~= "leave" then
+        if not self.idleUsed and #self.queue == 0 and self.idle >= L.idle and current.kind ~= "leave"
+            and (not bubble or current.dismissed) then
             self.idleUsed = true
             begin("idle")
         end

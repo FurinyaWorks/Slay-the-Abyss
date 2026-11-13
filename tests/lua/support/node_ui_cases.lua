@@ -319,6 +319,7 @@ end)
 test("merchant opens with the scene narration once per run, then greets, and stays out of the way", function()
     local ui, get, click, shown = setup("shop", nil, function(run) run.gold = 10000 end)
     local m = Narrative.merchant
+    local bubble = get('merchant'):GetChild('bubble')
     assert(shown("merchant") and shown("merchant/portrait") and not shown("merchant/namePlate"))
     assert(get("merchant/line").text == "" and ui.merchant.current.kind == "encounter")
     ui:update(0.5)
@@ -331,7 +332,8 @@ test("merchant opens with the scene narration once per run, then greets, and sta
         local last=math.min(#current.chars,current.page*Theme.layout.merchant.pageCharacters)
         if current.shown<last then assert(get('merchant/talk/hit').click()) end
         pages[#pages+1]=get('merchant/line').text
-        assert(utf8.len(pages[#pages])<=Theme.layout.merchant.pageCharacters and is(get('merchant/line').fontColor,C.textDim))
+        assert(utf8.len(pages[#pages])<=Theme.layout.merchant.pageCharacters
+            and is(get('merchant/line').fontColor,bubble and Theme.layout.merchant.bubble.ink or C.textDim))
         if last==#current.chars then break end
         assert(get('merchant/talk/hit').click())
     end
@@ -339,9 +341,12 @@ test("merchant opens with the scene narration once per run, then greets, and sta
     assert(shown("merchant/next"))
     assert(get("merchant/talk/hit").click() and ui.merchant.current.kind == "greet")
     ui:update(5)
-    assert(readMerchantLine(ui,get) == "「" .. m.greet .. "」" and shown("merchant/namePlate"))
+    assert(readMerchantLine(ui,get) == "「" .. m.greet .. "」")
+    assert(shown('merchant/namePlate') == (bubble == nil), 'bubble must not restore the old name bar')
     assert(get("merchant/name").text == "旧路商人" and not shown("merchant/next"))
-    assert(not get("merchant/talk/hit").click(), "nothing left to advance")
+    if bubble then
+        assert(get('merchant/talk/hit').click() and not shown('merchant/line') and shown('merchant/portrait'),'final tap folds only the bubble')
+    else assert(not get("merchant/talk/hit").click(), "nothing left to advance") end
     -- Repeated purchases react instantly and never wait for the previous line.
     assert(click("shopView/card1") and click("confirm") and ui.merchant.current.kind == "buy" and ui.merchant.nod ~= nil)
     assert(click("shopView/card2") and click("confirm") and ui.merchant.current.kind == "buy")

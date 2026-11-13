@@ -1,12 +1,98 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,readdirSync,mkdtempSync,mkdirSync,writeFileSync,existsSync,linkSync,unlinkSync} from 'node:fs';
+import {readFileSync,readdirSync,mkdtempSync,mkdirSync,writeFileSync,existsSync,linkSync,unlinkSync,rmSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {join,dirname} from 'node:path';
 import {tmpdir} from 'node:os';
 const sandbox=process.cwd();
 const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
 const proof=sourceEpoch.proof,raw=p=>proof.current[p]?.source??null;
+const shopDeckPaths=['src/lua/abyss_deck_ui.lua','src/lua/abyss_merchant.lua','src/lua/abyss_game_ui_input.lua','src/lua/abyss_node_ui_feedback.lua','src/lua/abyss_potion_discard_ui.lua'];
+test('shop/deck continuation retains the complete closeout predecessor and every original target',async()=>{
+ const {closeoutPriorEpoch}=await import('./helpers/closeout-source-epoch.mjs');
+ assert.ok(proof.targets.shopDeckPrior,'explicit complete predecessor view');
+ assert.equal(proof.targets.shopDeckPrior.commit,'903bf2a31e91f10fb24763ab4cea23d586d0bb83');
+ assert.deepEqual(proof.targets.shopDeckPrior.files,closeoutPriorEpoch.proof.current);
+ const {shopDeckFourSourcePrior}=await import('./helpers/closeout-source-epoch.mjs');
+ assert.deepEqual(Object.keys(shopDeckFourSourcePrior.current),shopDeckPaths.slice(0,4),'PR639 four-source predecessor remains independently intact');
+ for(const [path,binding]of Object.entries(shopDeckFourSourcePrior.current))assert.deepEqual(proof.targets.shopDeckFourPrior.files[path],binding);
+ const {shopDeckBeforeCiRepairPrior}=await import('./helpers/closeout-source-epoch.mjs');
+ assert.deepEqual(Object.keys(shopDeckBeforeCiRepairPrior.current),shopDeckPaths,'complete five-source predecessor remains independently intact');
+ for(const [path,binding]of Object.entries(shopDeckBeforeCiRepairPrior.current))assert.deepEqual(proof.targets.shopDeckBeforeCiRepairPrior.files[path],binding);
+ for(const [name,target]of Object.entries(closeoutPriorEpoch.proof.targets))assert.deepEqual(proof.targets[name],target,name);
+ assert.deepEqual(Object.keys(proof.current),Object.keys(closeoutPriorEpoch.proof.current));
+ assert.equal(proof.currentTreeCommitted,false,'working source hashes do not invent a committed corpus');
+ for(const path of Object.keys(proof.current))if(!shopDeckPaths.includes(path))assert.deepEqual(proof.current[path],closeoutPriorEpoch.proof.current[path],path);
+ for(const path of shopDeckPaths){
+  assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),raw(path),path);
+  for(const input of [raw(path),raw(path).replaceAll('\n','\r\n')])for(const target of Object.keys(proof.targets)){
+   const before=proof.targets[target].files[path];
+   const expected=before&&before.sha256!==proof.current[path].sha256?before.source:input;
+   assert.equal(sourceEpoch.preCombinedSource(path,input,{target,readSource:raw}),expected,path+':'+target);
+  }
+ }
+});
+test('shop/deck source slices reject unknown drift without I/O and freshly reject every missing or changed owner',async()=>{
+ const {sourceSlice}=await import('./helpers/closeout-source-epoch.mjs');
+ const path=shopDeckPaths[0],source=raw(path),target='shopDeckPrior';
+ assert.ok(proof.targets[target],'explicit continuation target');
+ const before=proof.targets[target].files[path].source;
+ assert.notEqual(source,before,'the regression uses the new complete deck source');
+ for(const input of [source+'\n',source.slice(1),'\ufeff'+source,null,undefined,{},17]){
+  let reads=0;assert.equal(sourceSlice(path,input,target,()=>{reads++;throw Error('unexpected');}),input);assert.equal(reads,0);
+ }
+ for(const other of ['foreign','__proto__','constructor',...shopDeckPaths.slice(1)]){
+  let reads=0;assert.equal(sourceSlice(other,source,target,()=>{reads++;throw Error('unexpected');}),source);assert.equal(reads,0);
+ }
+ for(const owner of proof.owners){
+  let bad=false,reads=0;
+  const reader=p=>{reads++;return bad&&p===owner?raw(p)+'\n':raw(p);};
+  assert.equal(sourceSlice(path,source,target,reader),before);assert.equal(reads,proof.owners.length);bad=true;
+  assert.throws(()=>sourceSlice(path,source,target,reader),/linked owner identity/,owner);
+  for(const missing of [null,undefined,17])assert.throws(()=>sourceSlice(path,source,target,p=>p===owner?missing:raw(p)),/linked owner identity/,owner);
+  assert.throws(()=>sourceSlice(path,source,target,p=>{if(p===owner)throw Error('removed');return raw(p);}),/linked owner missing/,owner);
+ }
+ assert(proof.owners.includes(shopDeckPaths[1]),'new merchant owner participates in the inherited fresh closure');
+ const inherited='config/architecture.json';
+ assert.notEqual(raw(inherited),proof.targets.develop.files[inherited].source);
+ assert.throws(()=>sourceEpoch.preCombinedSource(inherited,raw(inherited),{target:'develop',readSource:p=>p===shopDeckPaths[1]?null:raw(p)}),/linked owner identity/);
+});
+test('shop/deck archive collection rejects unlisted drift, missing sources and changes during collection',async()=>{
+ const {collectShopDeckSourceEpoch}=await import('./helpers/generate-shop-deck-source-epoch.mjs');
+ const {gunzipSync}=await import('node:zlib');
+ const collected=collectShopDeckSourceEpoch({readSource:raw});
+ assert.deepEqual(Object.keys(collected.current),shopDeckPaths);
+ for(const path of shopDeckPaths)assert.deepEqual(collected.current[path],proof.current[path]);
+ assert.deepEqual(gunzipSync(readFileSync('tests/helpers/shop-deck-source-epoch.json.gz')),Buffer.from(JSON.stringify(collected)),'registered complete source content is reproducible without Git or source edits');
+ const unlisted='src/lua/abyss_actor.lua';
+ assert.throws(()=>collectShopDeckSourceEpoch({readSource:p=>p===unlisted?raw(p)+'\n':raw(p)}),/unlisted current source drift/);
+ for(const path of shopDeckPaths){
+  for(const missing of [null,undefined,17])assert.throws(()=>collectShopDeckSourceEpoch({readSource:p=>p===path?missing:raw(p)}),/current source required/);
+  assert.throws(()=>collectShopDeckSourceEpoch({readSource:p=>{if(p===path)throw Error('source removed');return raw(p);}}),/source removed/);
+ }
+ let reads=0;
+ assert.throws(()=>collectShopDeckSourceEpoch({readSource:p=>p===shopDeckPaths[0]&&++reads>1?raw(p)+'\n':raw(p)}),/source changed during collection/);
+});
+test('detached shop/deck source slices use fresh local owners and cannot replace missing sources with archived text',async t=>{
+ const {copyCurrentSourceFixture}=await import('./helpers/isolated-current-source.mjs');
+ for(const crlf of [false,true]){
+  const directory=mkdtempSync(join(tmpdir(),'shop-deck-epoch-'));
+  t.after(()=>rmSync(directory,{recursive:true,force:true}));copyCurrentSourceFixture(directory,{crlf});
+  const script=`import assert from 'node:assert/strict';
+   import {readFileSync,writeFileSync,unlinkSync} from 'node:fs';
+   import {sourceSlice,sourceEpoch} from './tests/helpers/closeout-source-epoch.mjs';
+   const path='src/lua/abyss_deck_ui.lua',owner='src/lua/abyss_merchant.lua';
+   const input=readFileSync(path,'utf8'),expected=sourceEpoch.proof.targets.shopDeckPrior.files[path].source;
+   const project=()=>sourceSlice(path,input,'shopDeckPrior');
+   assert.equal(project(),expected);
+   const source=readFileSync(owner,'utf8');writeFileSync(owner,source+'\\n');
+   assert.throws(project,/linked owner identity/);
+   writeFileSync(owner,source);assert.equal(project(),expected);
+   unlinkSync(owner);assert.throws(project,/linked owner missing/);`;
+  execFileSync(process.execPath,['--input-type=module','-e',script],{cwd:directory,encoding:'utf8',timeout:30000,windowsHide:true});
+ }
+});
 test('fresh authorization covers the complete changed-owner union without caching',()=>{
  const required=Object.keys(proof.current).filter(path=>Object.values(proof.targets).some(target=>target.files[path]?.sha256!==proof.current[path]?.sha256));
  assert.deepEqual([...proof.owners].sort(),required.sort());

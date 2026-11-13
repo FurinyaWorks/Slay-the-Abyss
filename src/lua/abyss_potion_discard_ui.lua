@@ -15,6 +15,12 @@ local function entryFace(variant,official,mapSlots)
 end
 -- Read-only shared entry paint. Keep the existing management button and its
 -- binding; a slot silhouette never consumes a potion or changes selection.
+local function refreshBottle(bottle,id,platform)
+    bottle:SetVisible(id~=nil);if not id then return end
+    bottle:SetImage(platform.imageSource,Theme.icon.potion[id] or Theme.icon.intent.unknown)
+    local colour=(Theme.icon.potionTint or {})[id] or (id=='fire_potion' and Theme.color.potionShell.fire or Theme.color.potionShell.normal).ink
+    bottle.imageColor=platform.color(colour.r,colour.g,colour.b,colour.a)
+end
 function M.refreshEntry(hit,run,platform,mapSlots)
     local capacity=run and Run.potionCapacity(run) or 0
     for _,state in ipairs({'normal','hover','pressed','disabled'})do
@@ -34,13 +40,7 @@ function M.refreshEntry(hit,run,platform,mapSlots)
             slot:GetChild('filledShell'):SetVisible(id~=nil and id~='fire_potion')
             slot:GetChild('fireShell'):SetVisible(id=='fire_potion')
             slot:GetChild('selectedShell'):SetVisible(false)
-            local bottle=slot:GetChild('bottle')
-            bottle:SetVisible(id~=nil)
-            if id then
-                bottle:SetImage(platform.imageSource,Theme.icon.potion[id] or Theme.icon.intent.unknown)
-                local colour=(id=='fire_potion' and Theme.color.potionShell.fire or Theme.color.potionShell.normal).ink
-                bottle.imageColor=platform.color(colour.r,colour.g,colour.b,colour.a)
-            end
+            refreshBottle(slot:GetChild('bottle'),id,platform)
         end
     end
 end

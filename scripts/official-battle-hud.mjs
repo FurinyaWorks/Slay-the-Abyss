@@ -1,4 +1,6 @@
 // Approved 1280x720 HUD composition, using native controls and live owners.
+import {prepareOfficialRunHud,finishOfficialRunBar,mountOfficialResourceHints,
+ officialRunHudComponent,mountOfficialResource,mountOfficialPotionEntry} from './official-run-hud-components.mjs';
 const child=(n,name)=>(n?.children??n?.controls??[]).find(c=>c.name===name);
 const text=(name,position,size,content,fontSize,colour)=>({name,kind:'text',position,size,text:{content,fontSize,minFontSize:fontSize,autoSize:true,align:'centre',valign:'middle',colour}});
 function energyFinish(root,theme){
@@ -34,73 +36,44 @@ export function officialBattleUtilityFaces(stage,theme){
 export function officialRunChrome(tree,theme){
  const stage=child(tree,'stage')??tree,battle=child(stage,'battlePanel');
  const source=child(battle,'topBar');if(!source)return;
- const hud=theme.officialAssets.battleHud;
+ const component=officialRunHudComponent(battle),hud=theme.officialAssets.battleHud;
  const potions=child(child(stage,'potionEntry'),'open');
- if(potions){
-  const frame=theme.layout.nativeNode.topBar.potions;
-  potions.position=frame.slice(0,2);child(potions,'hit').size=frame.slice(2);
-  for(const variant of child(potions,'hit').children)for(const name of ['label','entryFace','officialButtonBacking']){
-   const old=child(variant,name);if(old)old.visible=false;
-  }
- }
+ if(potions)mountOfficialPotionEntry(potions,component,theme);
  for(const name of ['mapPanel','nodePanel']){
   const page=child(stage,name);if(!page)continue;
   const resources=child(page,'resources')??page;
-  const bar=structuredClone(source);bar.name='officialRunBar';
-  bar.children=bar.children.filter(part=>part.name!=='battleRoute');
+  const bar=structuredClone(component.bar);
   // The map's opaque paper and the node backdrop must paint before the bar.
   // Keep live titles in their existing owners (MapUI resolves mapGroup/title).
-  const titleOwner=page.children.findIndex(part=>name==='mapPanel'?/^mapGroup\d+$/.test(part.name):part.name==='title');
-  page.children.splice(titleOwner<0?page.children.length:titleOwner,0,bar);
+   const titleOwner=page.children.findIndex(part=>name==='mapPanel'?/^mapGroup\d+$/.test(part.name):part.name==='title');
+   page.children.splice(titleOwner<0?page.children.length:titleOwner,0,bar);
+   if(name==='nodePanel'){
+    // A live action belongs to the node page, never to a decorative bar clone.
+    // Reuse the battle shortcut face and let GameUI own its context and input.
+    const route=structuredClone(child(source,'battleRoute'));
+    route.name='runRoute';route.position=[hud.route[0],hud.route[1]];
+    page.children.push(route);
+   }
   const visit=node=>{
    for(const key of ['headerShade','headerDivider','titleLineLeft','titleLineRight','headerFace','headerDepth','headerRule']){
     const old=child(node,key);if(old)old.visible=false;
    }
    if(child(node,'headerShade')||node===page){
-    const title=child(node,'title'),reference=child(battle,'title');
-    if(title&&reference){title.position=[...reference.position];title.size=[...reference.size];title.text={...reference.text,content:title.text.content};}
+    const title=child(node,'title');
+    if(title)mountOfficialResource(title,component.title);
    }
    for(const part of node.children??[])visit(part);
   };
   visit(page);
-  for(const [name,key]of [['hpIcon','hpIcon'],['hp','hp'],['goldIcon','goldIcon'],['gold','gold']]){
-   const node=child(resources,name);if(!node)continue;
-   node.position=hud[key].slice(0,2);node.size=hud[key].slice(2);
-   const reference=child(battle,name==='hp'?'player':name==='gold'?'piles':name);
-   if(node.text)node.text={...reference.text,content:node.text.content};
-   else {node.image=reference.image;node.colour=reference.colour;}
-  }
-  const hints=child(page,'resourceHints');
-  if(hints)for(const kind of ['hp','gold']){
-   const icon=hud[kind+'Icon'],value=hud[kind],host=child(hints,kind),hit=child(host,'hit');
-   const left=Math.min(icon[0]-icon[2]/2,value[0]-value[2]/2);
-   const right=Math.min(Math.max(icon[0]+icon[2]/2,value[0]+value[2]/2),kind==='gold'?hud.potionX-26:Infinity);
-   host.position=[(left+right)/2,hud.y];host.size=[Math.max(44,right-left),44];
-   hit.position=[0,0];hit.size=[...host.size];
-  }
+  for(const [name,reference]of Object.entries(component.resources))mountOfficialResource(child(resources,name),reference);
+  mountOfficialResourceHints(page,theme);
  }
 }
 export function officialBattleHud(root,theme){
  const hud=theme.officialAssets.battleHud,bar=child(root,'topBar');if(!bar)return;
+ prepareOfficialRunHud(root,theme);
  energyFinish(root,theme);
- bar.position=[0,hud.y];bar.size[1]=hud.height;
- const steel=child(bar,'steel');steel.size[1]=hud.height;steel.colour=hud.barColour;
- for(const name of ['edge','leftRule','rightRule'])child(bar,name).visible=false;
- const rgb=hex=>[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)),top=rgb(hud.barTopColour),bottom=rgb(hud.barColour);
- bar.children.splice(bar.children.indexOf(steel)+1,0,
-  {name:'topLight',kind:'container',size:[1280,hud.height],children:Array.from({length:8},(_,i)=>({name:'shade'+i,kind:'image',position:[0,hud.height/2-(i+.5)*hud.height/8],size:[1280,hud.height/8+.05],image:100001,colour:'#'+top.map((v,c)=>Math.round(v+(bottom[c]-v)*i/7).toString(16).padStart(2,'0')).join('')}))},
-  {name:'barShadow',kind:'image',position:[0,-hud.height/2-1.5],size:[1280,3],image:100001,colour:'#000000',opacity:.25});
- const heading=child(bar,'officialHeroHeading');if(heading)heading.text.colour=hud.headingColour;
- // Resource hints are separate input owners created before the opt-in layout.
- // Move their hits with the visible values; otherwise gold covers potion one.
- const hints=child(root,'resourceHints');
- if(hints)for(const kind of ['hp','gold']){
-  const icon=hud[kind+'Icon'],value=hud[kind],host=child(hints,kind),hit=child(host,'hit');
-  const left=Math.min(icon[0]-icon[2]/2,value[0]-value[2]/2);
-  const right=Math.min(Math.max(icon[0]+icon[2]/2,value[0]+value[2]/2),kind==='gold'?hud.potionX-26:Infinity);
-  host.position=[(left+right)/2,hud.y];host.size=[Math.max(44,right-left),44];
-  hit.position=[0,0];hit.size=[...host.size];
- }
+ finishOfficialRunBar(root,theme);
  const ex=hud.exhaustPile,exhaust=child(root,'exhaustIcon'),count=child(root,'exhaust');
  exhaust.position=[...ex.position];exhaust.size=[ex.diameter,ex.diameter];
  const exImage=child(exhaust,'image');exImage.image=ex.image;exImage.size=[ex.diameter,ex.diameter];exImage.colour=ex.imageColour;exImage.opacity=ex.imageOpacity;
@@ -121,24 +94,10 @@ export function officialBattleHud(root,theme){
     {name:'stem',kind:'image',position:[0,-10],size:[10,20],image:100001,colour:aimStyle.idle}];
   }
  }
- const title=child(root,'title');title.visible=true;title.position=hud.location.slice(0,2);title.size=hud.location.slice(2);title.text.fontSize=14;title.text.minFontSize=14;title.text.colour='#B1ACA5';
  bar.children.push({name:'battleRoute',kind:'container',position:[hud.route[0],hud.route[1]-hud.y],size:hud.route.slice(2),children:[
   text('label',[0,0],hud.route.slice(2),'地图',18,'#D6CBA5'),
-  {name:'hit',kind:'cursorArea',size:hud.route.slice(2),focusable:true},
+   {name:'hit',kind:'cursorArea',position:[0,-.5],size:hud.route.slice(2).map(value=>Math.max(44,value)),focusable:true},
  ]});
- for(let index=1;index<=5;index++)for(const button of [child(root,'potion'+index)??child(child(root,'potionHelp'),'potion'+index),child(child(root,'potionHelp'),'potionHelp'+index)]){
-  if(!button)continue;
-  for(const variant of button.children??[]){
-   const empty=child(variant,'emptyShell');if(!empty)continue;
-   child(empty,'face').visible=false;
-   const dashes=child(empty,'dashes'),r=21;
-   dashes.children=Array.from({length:12},(_,i)=>{const angle=i*Math.PI/6;return {name:'dash'+i,kind:'image',image:100001,size:[7,2],position:[r*Math.sin(angle),r*Math.cos(angle)],rotation:-i*30,colour:'#9C8C70',opacity:.8};});
-  }
- }
- for(let index=1;index<=5;index++){
-  const caption=child(child(root,'potionHelp'),'potionCaption'+index);
-  if(caption){caption.visible=false;caption.active=false;caption.text.content='';}
- }
  for(const kind of ['draw','discard']){
   const pile=child(root,kind+'Icon'),draw=kind==='draw';
   child(pile,'glyph').visible=false;

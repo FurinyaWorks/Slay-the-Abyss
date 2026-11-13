@@ -1,0 +1,232 @@
+{
+  "status": "verified-offline-evidence",
+  "verifiedAt": "2026-11-12T16:22:59.236Z",
+  "simulatorVersion": "0.5.2",
+  "toolFiles": {
+    "F:/New folder/.artifacts/simulator-runtime/web/dist/server.js": "e38f4c7bce2ca7eb36249e69f8c26a95c77e1d68b6c1d6944df63ea0d8dab9b9",
+    "F:/New folder/.artifacts/simulator-runtime/web/dist/worker.js": "b6db2c1cc00bfa0309aa85d63011f2f664d53580ae4748383e50b40201d111c6",
+    "F:/New folder/.artifacts/simulator-runtime/web/dist/snapshot-bridge.mjs": "8f3948cf4bff005a0e47f6ef965b001cdb4bb22af50172a2cc6cc74ee7e24274",
+    "F:/New folder/.artifacts/simulator-runtime/web/dist/snapshot-hook.mjs": "ace28eca23f4a7221125625f383106c92a1b78489e8e958418dec8ce772318fc",
+    "F:/New folder/.artifacts/simulator-runtime/sdk/actual-session.mjs": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+    "F:/New folder/.artifacts/simulator-runtime/web/dist/public/play.js": "c23e51046854a3518408de0a470eedb45a042274db90f1f71c78e9a9712dd557"
+  },
+  "sourceFiles": 652,
+  "sourceClosureSha256": "fe9c9210795a618770ff119fa20e447cf9b6b3b6de40ab94145f422d22232e80",
+  "sourceDrift": [],
+  "shots": [
+    {
+      "name": "01-shop-bubble",
+      "sha256": "ea96634ca03613852a1cec340b451a511dc0f377ad75c5ba2499cd6698584909"
+    },
+    {
+      "name": "02-leave-hover",
+      "sha256": "c955dab7bc5a9f085f7a8ec67a0d035482db79a52ecac7e4021dd93e2b8dabf7"
+    },
+    {
+      "name": "03-leave-pressed",
+      "sha256": "b11f1a72c9be0f823c2aed8e4cec9e18771dcd22179467cbfe0c9e70b1c2d38b"
+    },
+    {
+      "name": "04-map-preview",
+      "sha256": "8af5606aeeb93207ba45e3429f8ba307fbf8ba94a40a6c21f62a0836be30b21a"
+    },
+    {
+      "name": "05-shop-map-return",
+      "sha256": "343b18d4e18ec132d21de5d43cdae896503b01067ea0352338b2193545b520bf"
+    },
+    {
+      "name": "06-deck17-top",
+      "sha256": "ab7a3084491bbaeb54d9f4bdc3d411087777ecdf85db1dbc47e3fa7abf9bbac4"
+    },
+    {
+      "name": "07-deck17-bottom",
+      "sha256": "53668e808001a64352010b72012fe03623aefa9e9bbb17912e930e5acafb9144"
+    },
+    {
+      "name": "08-deck-card-detail",
+      "sha256": "c205f2efddec9f00d676b786a0a54a17fe603e2a9f3a6871c46b7688ff0f7846"
+    },
+    {
+      "name": "09-deck-return-list",
+      "sha256": "ab7a3084491bbaeb54d9f4bdc3d411087777ecdf85db1dbc47e3fa7abf9bbac4"
+    },
+    {
+      "name": "10-shop-deck-return",
+      "sha256": "b23daac8325990eefe80b20535532ce1e789097d9b7b12740dd866ae900a5502"
+    }
+  ],
+  "bubbleBoundsCanvas1600x900": {
+    "left": 62.5,
+    "right": 212.5,
+    "bottom": 437.5,
+    "top": 537.5
+  },
+  "offerBounds": [
+    {
+      "name": "potion3",
+      "bounds": {
+        "left": 1120,
+        "right": 1305,
+        "bottom": 180,
+        "top": 250
+      }
+    },
+    {
+      "name": "potion2",
+      "bounds": {
+        "left": 882.5,
+        "right": 1067.5,
+        "bottom": 180,
+        "top": 250
+      }
+    },
+    {
+      "name": "potion1",
+      "bounds": {
+        "left": 645,
+        "right": 830,
+        "bottom": 180,
+        "top": 250
+      }
+    },
+    {
+      "name": "relic3",
+      "bounds": {
+        "left": 1120,
+        "right": 1305,
+        "bottom": 310,
+        "top": 380
+      }
+    },
+    {
+      "name": "relic2",
+      "bounds": {
+        "left": 882.5,
+        "right": 1067.5,
+        "bottom": 310,
+        "top": 380
+      }
+    },
+    {
+      "name": "relic1",
+      "bounds": {
+        "left": 645,
+        "right": 830,
+        "bottom": 310,
+        "top": 380
+      }
+    },
+    {
+      "name": "card7",
+      "bounds": {
+        "left": 475,
+        "right": 662.5,
+        "bottom": 118.75,
+        "top": 381.25
+      }
+    },
+    {
+      "name": "card6",
+      "bounds": {
+        "left": 240,
+        "right": 427.5,
+        "bottom": 118.75,
+        "top": 381.25
+      }
+    },
+    {
+      "name": "card5",
+      "bounds": {
+        "left": 1210,
+        "right": 1397.5,
+        "bottom": 463.75,
+        "top": 726.25
+      }
+    },
+    {
+      "name": "card4",
+      "bounds": {
+        "left": 967.5,
+        "right": 1155,
+        "bottom": 463.75,
+        "top": 726.25
+      }
+    },
+    {
+      "name": "card3",
+      "bounds": {
+        "left": 725,
+        "right": 912.5,
+        "bottom": 463.75,
+        "top": 726.25
+      }
+    },
+    {
+      "name": "card2",
+      "bounds": {
+        "left": 482.5,
+        "right": 670,
+        "bottom": 463.75,
+        "top": 726.25
+      }
+    },
+    {
+      "name": "card1",
+      "bounds": {
+        "left": 240,
+        "right": 427.5,
+        "bottom": 463.75,
+        "top": 726.25
+      }
+    }
+  ],
+  "bubbleOfferOverlaps": [],
+  "leaveLabels": [
+    {
+      "name": "label",
+      "fontColor": "#fffff8e7",
+      "visible": true
+    }
+  ],
+  "permanentDeck": {
+    "count": 17,
+    "columns": 5,
+    "topScroll": 0,
+    "bottomScroll": 1,
+    "renderedControlsTop": 17,
+    "renderedControlsBottom": 17,
+    "detailReturnPngExact": true
+  },
+  "mapPreviewOpenedAndReturned": true,
+  "logsLuaErrors": 0,
+  "resourceErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "resourceResponses": [
+    {
+      "status": 400,
+      "path": "/editor/api/play",
+      "queryKeys": []
+    }
+  ],
+  "stop": false,
+  "localArtifacts": {
+    "sourceClosure": {
+      "path": ".artifacts/shop-deck-parity-20261112/current-final/source-closure.json.gz",
+      "sha256": "6dd8f36d6080bd74b9c6af6815c8cdab9671481060fe5dafe09f4322fad0d5e8"
+    },
+    "fixtureSave": {
+      "path": ".artifacts/shop-deck-parity-20261112/current-final/fixture-save.json.gz",
+      "sha256": "d20e8db27a93c5744413351d6cdd3c38c86703e3c6eacc9f1362a8c611e11675"
+    },
+    "generatedDirectory": ".artifacts/shop-deck-parity-20261112/current-final/generated",
+    "publicDistribution": "raw closure, fixture save and generated adapter stay in .artifacts; publish only hashes, current PNG and reviewed runtime snapshots"
+  },
+  "boundaries": {
+    "officialImport": false,
+    "gilReadback": false,
+    "officialReady": false,
+    "deviceEvidence": false,
+    "gpuEvidence": false
+  }
+}

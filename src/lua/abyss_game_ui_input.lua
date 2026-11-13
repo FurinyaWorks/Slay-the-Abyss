@@ -4,6 +4,7 @@ local Controller = require("abyss_controller")
 local Theme = require('abyss_theme')
 local V25View=require('abyss_v25_menu_view')
 local M = {}
+local routeModes={battleRoute='battle',runRoute='node'}
 
 local function mapReturnCovered(self)
     return self.characterOpen or self.easterEggOpen or self.controlsOpen
@@ -53,8 +54,8 @@ local function bindV25Hover(box,hit,cursor,available)
     hit:AddCursorEventListener(cursor.CursorEnter,function()V25View.pointer(box,'enter',available())end)
 end
 
-local function battleRouteAvailable(self,enabled)
-    if self.mode~='battle' or self.exitOpen or self.deckUI.visible or self.potionUI.visible
+local function battleRouteAvailable(self,enabled,mode)
+    if self.mode~=mode or self.exitOpen or self.deckUI.visible or self.potionUI.visible
         or self.characterOpen or self.controlsOpen or self.easterEggOpen then return false end
     if self.choiceUI and self.choiceUI.visible then return false end
     return enabled()
@@ -69,7 +70,8 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
             local characterAction = kind:match("^character_")~=nil
             local resourceAction = kind:match('^resource_')~=nil
             local mapReturn = kind=='mapReturn'
-            local mapContext = mapReturn or kind=='battleRoute'
+            local routeMode = routeModes[kind]
+            local mapContext = mapReturn or routeMode
             local cursor = platform.cursorEvents or {}
             local runMenuAction = kind:sub(1, 4) == 'run_'
             local function eggAvailable()
@@ -117,7 +119,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
             end
             local function available()
                 if self.disabled or self.settlementRequested or self.settlementBusy then return false end
-                if kind=='battleRoute' then return battleRouteAvailable(self,enabled)end
+                if routeMode then return battleRouteAvailable(self,enabled,routeMode)end
                 if resourceAction then return not self.potionUI.visible and canManagePotions(self.run) and (not enabled or enabled()) end
                 if self.easterEggOpen or kind=='egg_open' or kind=='egg_close' then return eggAvailable()end
                 return modalAvailable()
@@ -249,11 +251,14 @@ end
 
 function M.installGuide(self,exitPanel,clickEvent,bindCommand,dismissFromOutside,runMenu,canViewRoute,child,owner)
     local bar=Theme.presentationProfile=='official-assets-first' and child('battlePanel'):GetChild('topBar')
-    local shortcut=bar and bar:GetChild('battleRoute')
-    if shortcut then bindCommand(shortcut,'battleRoute',function()
+    local function openRoute()
         if not self:openMenu()then return false end
         self.routeOpen=true;self:refresh();return true
-    end,canViewRoute)end
+    end
+    local shortcut=bar and bar:GetChild('battleRoute')
+    if shortcut then bindCommand(shortcut,'battleRoute',openRoute,canViewRoute)end
+    local nodeShortcut=Theme.presentationProfile=='official-assets-first' and child('nodePanel'):GetChild('runRoute')
+    if nodeShortcut then bindCommand(nodeShortcut,'runRoute',openRoute,canViewRoute)end
     local guide = exitPanel:GetChild('guide')
     if guide then
         bindCommand(exitPanel:GetChild('help'), 'help', function()

@@ -3,7 +3,7 @@
 import {applyOfficialNoncombatLayout} from './noncombat-v25-layout.mjs';
 import {applyOfficialNeowLayout} from './noncombat-neow-layout.mjs';
 import {applyV25MapLayout} from './v25-map-layout.mjs';
-import {applyV25RewardLayout} from './v25-node-layout.mjs';
+import {applyV25RewardLayout,styleMerchant} from './v25-node-layout.mjs';
 import {officialRunChrome} from './official-battle-hud.mjs';
 
 const parts=node=>node?.children??node?.controls??[];
@@ -62,6 +62,13 @@ export function composeOfficialRun(tree,theme){
  if(kind==='run'){
   applyOfficialNoncombatLayout(tree,theme);
   applyOfficialNeowLayout(tree,theme);
+  const node=child(stage(tree),'nodePanel'),shop=child(node,'shopView');
+  const merchant=required(node,'merchant');
+  styleMerchant(merchant,theme);
+  theme.layout.nativeNode.shop.columns.forEach((x,i)=>{
+   required(shop,'card'+(i+1)).position[0]=x;
+   required(shop,'price'+(i+1)).position[0]=x;
+  });
   applyV25MapLayout(tree,theme);
  }
  if(kind!=='template')applyV25RewardLayout(tree,theme);

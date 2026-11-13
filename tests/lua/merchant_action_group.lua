@@ -38,6 +38,15 @@ for _,mobile in ipairs({false,true})do
  assert(click('shopView/card1') and click('confirm'))
  assert(ui.run.gold==gold-offer.price and #ui.run.deck==deck+1 and ui.run.nodeFlow.cards[1].sold)
  assert(ui.nodeUI.merchant.current.kind=='buy' and merchant.visible)
+ local reaction=ui.nodeUI.merchant.current
+ ui:update(.1);local shown,hold=reaction.shown,reaction.hold
+ assert(F.click(root,'exitEntry','open') and F.click(root,'runMenu','map'))
+ assert(ui.routeOpen and not ui.nodeUI.visible,'map preview must hide the shop owner')
+ ui:update(10)
+ assert(reaction.shown==shown and reaction.hold==hold,'map preview consumed merchant dialogue time')
+ assert(not merchant:GetChild('talk'):GetChild('hit').click(),'covered shop accepted a stale dialogue click')
+ assert(root:GetChild('mapPanel'):GetChild('previewBack'):GetChild('hit').click() and not ui.routeOpen and ui.nodeUI.visible)
+ assert(ui.nodeUI.merchant.current==reaction and merchant:GetChild('bubble').visible,'return from map must resume the current reaction')
  assert(not click('shopView/card1'),'sold offer cannot purchase twice')
  assert(click('confirm') and ui.nodeUI:holding())
  assert(ui.nodeUI.merchant.current.kind=='leave' and not node:GetChild('shopView').visible)

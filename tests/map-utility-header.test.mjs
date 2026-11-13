@@ -75,6 +75,21 @@ test('real potion header repaint preserves physical capacity and sparse inventor
   assert.equal(result.status,0,result.stdout+result.stderr);assert.match(result.stdout,/MAP_UTILITY_HEADER_PASS/);
 });
 
+test('the real header regression rejects repainting strength potion with the old generic shell ink',()=>{
+  buildLuaData();buildUI();
+  const source=readFileSync('src/lua/abyss_potion_discard_ui.lua','utf8');
+  const current="local colour=(Theme.icon.potionTint or {})[id] or (id=='fire_potion' and Theme.color.potionShell.fire or Theme.color.potionShell.normal).ink";
+  assert.equal(source.split(current).length,2,'one exact current potion writer');
+  const mutant=source.replace(current,"local colour=id=='strength_potion' and Theme.color.potionShell.normal.ink or "+current.slice('local colour='.length));
+  const require=createRequire(import.meta.url);
+  const body=`package.path='build/lua/?.lua;src/lua/?.lua;'..package.path
+package.preload.abyss_potion_discard_ui=assert(load(${luaString(mutant)},'wrong-potion-tint'))
+dofile('tests/lua/map_utility_header.lua')`;
+  const result=spawnSync(process.execPath,[require.resolve('fengari-node-cli/src/lua-cli.js'),'-e',body],{encoding:'utf8',timeout:30000});
+  assert.notEqual(result.status,0,'wrong potion tint must fail the original inventory/paint regression');
+  assert.match(result.stdout+result.stderr,/shared current potion tint strength_potion/);
+});
+
 test('V25 node and Neow reuse the map physical-slot header and its existing inventory manager',t=>{
   const parent=resolve('.artifacts/test-tmp');mkdirSync(parent,{recursive:true});
   const directory=mkdtempSync(join(parent,'v25-node-potions-'));t.after(()=>rmSync(directory,{recursive:true,force:true}));

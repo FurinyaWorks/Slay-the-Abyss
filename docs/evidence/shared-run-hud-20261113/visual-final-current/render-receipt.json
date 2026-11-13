@@ -1,0 +1,289 @@
+{
+  "kind": "headless-current-source-shared-run-hud",
+  "createdAt": "2026-11-13T08:01:28.755Z",
+  "sourceClosureSha256": "8e8ab557d4f4935e88c543ffc04fd5f650cdd55f5115f9e5bf97c7ad32cd1dec",
+  "scenarios": {
+    "blessing": {
+      "file": "current-blessing.save.json",
+      "sha256": "75cebce4fffb9594d89e883ca3e05e0861ac4c50b05b04216a5759370fa0f7db",
+      "startupSha256": "d23a5ffe526fe26072bd029c02252bba30246357d9b6f337500092c3c2ed127e"
+    },
+    "map": {
+      "file": "current-map.save.json",
+      "sha256": "8d4ad163d81892baa5da00c234b3e1dc800ccdc954dd9d4bd7a4158bb0b7f1d0",
+      "startupSha256": "916762d84bfa17a74b3773c7fb4164b0268f106c971ba9494442992532504d30"
+    },
+    "battle": {
+      "file": "current-battle.save.json",
+      "sha256": "e1678a4a2968bf281883b59ada05fe4f4729273de063b8a7fb293991d916ba1c",
+      "startupSha256": "b4b49572503ea2dc3cc9b2c17468ad0d03b3c516d21bf63211a685ce9fa0a394"
+    }
+  },
+  "rendererSha256": "3b34e80b712c56ba2bb8042446257c57b52b3d027e20446596ce7dc27afb2fb2",
+  "browserPath": "C:/Users/Administrator/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe",
+  "rendering": "headless Chromium SwiftShader software WebGL; offline SDK fixture; not official import/ready/GPU/device evidence",
+  "shots": [
+    {
+      "name": "blessing-hud",
+      "scenario": "blessing",
+      "checks": "same identity, hp, gold, potion faces, resource bar and utility style",
+      "sha256": "5b241da80de6da5c25391993d1c63c9f377ef4d9022d375ae8dfe0279126dfb7",
+      "time": 1.2493999999985097,
+      "frame": 7,
+      "frontendRenderPasses": {
+        "before": 17,
+        "after": 22
+      }
+    },
+    {
+      "name": "blessing-choice-hud",
+      "scenario": "blessing",
+      "checks": "actual blessing options expanded by headless pointer; canonical HUD persists",
+      "sha256": "4c1b3fd69f2765344b412bddd75c8709eb42d242ea8b6190d049c8f1a8e30e22",
+      "time": 6.000800000000744,
+      "frame": 40,
+      "frontendRenderPasses": {
+        "before": 50,
+        "after": 54
+      }
+    },
+    {
+      "name": "map-hud",
+      "scenario": "map",
+      "checks": "same identity, hp, gold, potion faces, resource bar and utility style",
+      "sha256": "9b8f0ce22927c28e315a4cdfef5e0598502defc261ae1bf0cd8f13de6684c4e7",
+      "time": 1.0830999999977649,
+      "frame": 6,
+      "frontendRenderPasses": {
+        "before": 24,
+        "after": 27
+      }
+    },
+    {
+      "name": "map-permanent-deck",
+      "scenario": "map",
+      "checks": "17-card permanent deck; common pile browser",
+      "sha256": "2a6685759c34098a8cc52cc37394d6f6902d30e8a39a82ce44411f585763efc8",
+      "time": 4.43589999999851,
+      "frame": 29,
+      "frontendRenderPasses": {
+        "before": 52,
+        "after": 55
+      }
+    },
+    {
+      "name": "battle-hud",
+      "scenario": "battle",
+      "checks": "same identity, hp, gold, potion faces, resource bar and utility style",
+      "sha256": "6e15ebf95fe58f5cae135a9b1fb74c7c38cb1742a7e919eacf4190b6c0412d73",
+      "time": 1,
+      "frame": 4,
+      "frontendRenderPasses": {
+        "before": 21,
+        "after": 24
+      }
+    },
+    {
+      "name": "battle-permanent-deck",
+      "scenario": "battle",
+      "checks": "17-card permanent deck; common pile browser",
+      "sha256": "ca2ff6a0a874048bb624eec323f3e9a12748ec3d2c7aa11941e393e0f0af72bf",
+      "time": 4.684800000000745,
+      "frame": 23,
+      "frontendRenderPasses": {
+        "before": 41,
+        "after": 44
+      }
+    },
+    {
+      "name": "battle-draw-pile",
+      "scenario": "battle",
+      "checks": "combat draw pile through the same pile browser",
+      "sha256": "13769f46ba85f546e49d0d12f0be8de8bc29408c9233c577d6673a88412dcc53",
+      "time": 10.246,
+      "frame": 47,
+      "frontendRenderPasses": {
+        "before": 69,
+        "after": 73
+      }
+    },
+    {
+      "name": "battle-discard-pile",
+      "scenario": "battle",
+      "checks": "combat discard pile through the same pile browser",
+      "sha256": "88b26e5173254cb82784090f5ee782adf0670d326f4ecbb28b52ccff8cf67247",
+      "time": 15.75459999999404,
+      "frame": 74,
+      "frontendRenderPasses": {
+        "before": 100,
+        "after": 103
+      }
+    }
+  ],
+  "errors": [],
+  "resourceResponses": [],
+  "requests": [
+    {
+      "scenario": "blessing",
+      "control": "option1",
+      "id": 9147,
+      "point": {
+        "x": 473,
+        "y": 811
+      }
+    },
+    {
+      "scenario": "map",
+      "control": "hit",
+      "id": 8497,
+      "point": {
+        "x": 1220.078125,
+        "y": 172.5
+      }
+    },
+    {
+      "scenario": "map",
+      "control": "hit",
+      "id": 8268,
+      "point": {
+        "x": 150,
+        "y": 748
+      }
+    },
+    {
+      "scenario": "battle",
+      "control": "hit",
+      "id": 8497,
+      "point": {
+        "x": 1220.078125,
+        "y": 172.5
+      }
+    },
+    {
+      "scenario": "battle",
+      "control": "hit",
+      "id": 8268,
+      "point": {
+        "x": 150,
+        "y": 748
+      }
+    },
+    {
+      "scenario": "battle",
+      "control": "hit",
+      "id": 22209,
+      "point": {
+        "x": 114.5,
+        "y": 822.5
+      }
+    },
+    {
+      "scenario": "battle",
+      "control": "hit",
+      "id": 8268,
+      "point": {
+        "x": 150,
+        "y": 748
+      }
+    },
+    {
+      "scenario": "battle",
+      "control": "hit",
+      "id": 22153,
+      "point": {
+        "x": 1285.5,
+        "y": 822.5
+      }
+    },
+    {
+      "scenario": "battle",
+      "control": "hit",
+      "id": 8268,
+      "point": {
+        "x": 150,
+        "y": 748
+      }
+    }
+  ],
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_RUN seed=42 source=explicit",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=map nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_SHARED_HUD_FIXTURE scenario=battle seed=42 sparsePotions=1,3 permanentDeck=17",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    }
+  ],
+  "status": "captured-awaiting-image-review"
+}
