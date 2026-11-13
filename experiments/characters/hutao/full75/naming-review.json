@@ -1040,11 +1040,11 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "此前机制或命名含义阻塞，尚待独立评审",
+        "status": "BLOCKED",
+        "reason": "已记录的机制/语义阻塞，不能以官方标签或名称已出现就豁免：此前机制或命名含义阻塞，尚待独立评审",
         "checks": {
           "N2": "pending",
-          "N3": "pending",
+          "N3": "fail",
           "N4": "pending",
           "N5": "pending",
           "N6": "pending"
@@ -2449,11 +2449,11 @@
         }
       },
       "review": {
-        "status": "PENDING",
-        "reason": "此前机制或命名含义阻塞，尚待独立评审",
+        "status": "BLOCKED",
+        "reason": "已记录的机制/语义阻塞，不能以官方标签或名称已出现就豁免：此前机制或命名含义阻塞，尚待独立评审",
         "checks": {
           "N2": "pending",
-          "N3": "pending",
+          "N3": "fail",
           "N4": "pending",
           "N5": "pending",
           "N6": "pending"
@@ -3910,6 +3910,18 @@
         },
         "history": []
       }
+    }
+  ],
+  "other_gate_blockers": [
+    {
+      "card_id": "u11",
+      "gate": "B/C",
+      "reason": "同代价被同档卡严格数值支配，需独立数值评审"
+    },
+    {
+      "card_id": "r06",
+      "gate": "G2/C",
+      "reason": "稀有牌免付血开启蝶舞，可能绕过核心风险；要重新机制评审"
     }
   ]
 }
