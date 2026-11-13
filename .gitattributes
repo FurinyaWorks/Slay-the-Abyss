@@ -1342,3 +1342,25 @@ experiments/art-tech-lab/played.png filter=lfs -diff merge=lfs -text ci-immutabl
 experiments/art-tech-lab/sample.png filter=lfs -diff merge=lfs -text ci-immutable-media
 experiments/art-tech-lab/selected.png filter=lfs -diff merge=lfs -text ci-immutable-media
 config/ci-media-lfs.json text eol=lf
+
+# Liyue idle candidates: new source media, unapproved; exact paths only.
+art/characters/liyue-four/idle-candidate-v1/ganyu/ganyu_static_candidate.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/ganyu/preview/ganyu_idle_133px_spritesheet.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/ganyu/preview/ganyu_idle_compare.gif filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/ganyu/preview/ganyu_idle_review.gif filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/ganyu/preview/ganyu_idle_spritesheet.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/keqing/keqing_static_candidate.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/keqing/preview/keqing_idle_133px_spritesheet.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/keqing/preview/keqing_idle_compare.gif filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/keqing/preview/keqing_idle_review.gif filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/keqing/preview/keqing_idle_spritesheet.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/xiao/preview/xiao_idle_133px_spritesheet.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/xiao/preview/xiao_idle_compare.gif filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/xiao/preview/xiao_idle_review.gif filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/xiao/preview/xiao_idle_spritesheet.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/xiao/xiao_static_candidate.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/zhongli/preview/zhongli_idle_133px_spritesheet.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/zhongli/preview/zhongli_idle_compare.gif filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/zhongli/preview/zhongli_idle_review.gif filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/zhongli/preview/zhongli_idle_spritesheet.png filter=lfs diff=lfs merge=lfs -text
+art/characters/liyue-four/idle-candidate-v1/zhongli/zhongli_static_candidate.png filter=lfs diff=lfs merge=lfs -text

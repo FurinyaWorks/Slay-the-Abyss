@@ -1,0 +1,142 @@
+{
+  "status": "DRAFT_PENDING_OWNER_MOTION_REVIEW",
+  "owner_approval": false,
+  "native": "UNVERIFIED",
+  "devices": "UNVERIFIED",
+  "library_file_id": "libfile_fde3_f-47e80cb707c88191a29e041ff5259681_d35602de215c8191b81d3887ab79a82b",
+  "library_version": 1,
+  "files": {
+    "README.md": {
+      "bytes": 2757,
+      "sha256": "b142a278da8c12b626afe690bfc83952c685f700cd74aee046da09cd91599938"
+    },
+    "ganyu/create_ganyu_idle.py": {
+      "bytes": 7826,
+      "sha256": "e1c8b7cbe306ae75bceb1d6335c86b76bb4e591c89d4d5c4d9d13a2c74ef65b4"
+    },
+    "ganyu/ganyu_static_candidate.png": {
+      "bytes": 755900,
+      "sha256": "3ecbff4d5092a0b35d1beaad6a7e4b8c733cde11ccf8213ef6a7bbc21fabf14b"
+    },
+    "ganyu/preview/ganyu_idle_133px_spritesheet.png": {
+      "bytes": 236234,
+      "sha256": "900de711c2de005803391e041a2ee349cf6e4cab60e7181b398bbc8e7df60123"
+    },
+    "ganyu/preview/ganyu_idle_compare.gif": {
+      "bytes": 954418,
+      "sha256": "e58130c9aae99a88abd5bc31d10bd26d2b6bc5bcff5431fa7f30c1f5551780bf"
+    },
+    "ganyu/preview/ganyu_idle_review.gif": {
+      "bytes": 1214794,
+      "sha256": "7e48e6addc2402a8269941f80896803f455cd05a949749c9b036fb39451672a3"
+    },
+    "ganyu/preview/ganyu_idle_spritesheet.png": {
+      "bytes": 3402080,
+      "sha256": "9890998ecc93dfca336c48f58ff83d0b1cf4d519ea441ad989146a48c3b41afc"
+    },
+    "ganyu/prompt.txt": {
+      "bytes": 1559,
+      "sha256": "0bb3345c7f07e632bbe1ef5e391089d4380c917f57d3a16d1d6471122d4b033c"
+    },
+    "keqing/create_keqing_idle.py": {
+      "bytes": 7810,
+      "sha256": "e708ecca3459e20a2317702e6cd7b3965106838549a12a10c2433ea190b42e92"
+    },
+    "keqing/keqing_static_candidate.png": {
+      "bytes": 664423,
+      "sha256": "6014b2e568be1939813d3e315acd5bb5a987a80ac7ce1927c88a865325b4ed69"
+    },
+    "keqing/preview/keqing_idle_133px_spritesheet.png": {
+      "bytes": 222794,
+      "sha256": "9471798864c650e88a02893514345effa31f9769c2b057e328d5cd785563d251"
+    },
+    "keqing/preview/keqing_idle_compare.gif": {
+      "bytes": 880344,
+      "sha256": "7af0e25617445523f6f9ad5b8bb235091ffdd5190c8b3cba3543104b6a459612"
+    },
+    "keqing/preview/keqing_idle_review.gif": {
+      "bytes": 1085667,
+      "sha256": "58b5613e71f203588ef158caa181717ddac54a64df19ad9e50dc5e00c4f9afe0"
+    },
+    "keqing/preview/keqing_idle_spritesheet.png": {
+      "bytes": 3160418,
+      "sha256": "8c8b0236cb57a6e9fc9b0bd6c6d6add3d629733298476ba571608fd7175946d9"
+    },
+    "keqing/prompt.txt": {
+      "bytes": 1460,
+      "sha256": "2b121d339ece2b0c9b28753fc73030d712ca6f3fe270b1548c0fecd7f22e83a5"
+    },
+    "source-records/ALPHA_ASSESSMENT_CORRECTION.md": {
+      "bytes": 1568,
+      "sha256": "d6dd51cc3a83cf62325117a2a4ca330033786dc1f9abfe0d6965839f1f088245"
+    },
+    "source-records/INDEPENDENT_BATCH_REVIEW.md": {
+      "bytes": 4402,
+      "sha256": "b7830b4b1e80ac6bb32a62473a01b43541743653a3ce054f5aadb055a8200705"
+    },
+    "source-records/MOTION_QA.json": {
+      "bytes": 3750,
+      "sha256": "adc09c0f4e821c5db94fa252e1367353135d16daf2ae9b4381e24deccaa150d5"
+    },
+    "source-records/REBUILD_ENVIRONMENT.json": {
+      "bytes": 171,
+      "sha256": "b3b94694564830edc13cf895757a5e4a479f545b001b3f4401ac4e79cea01f1d"
+    },
+    "xiao/create_xiao_idle.py": {
+      "bytes": 7829,
+      "sha256": "ff045366870bfc124ece59ccf13e32600bc40104ea3500171ca6b094b84bf495"
+    },
+    "xiao/preview/xiao_idle_133px_spritesheet.png": {
+      "bytes": 205938,
+      "sha256": "2d70a2dac195217b24f9a36e918341faea59d56bd0df705ab135ed79e671c288"
+    },
+    "xiao/preview/xiao_idle_compare.gif": {
+      "bytes": 840811,
+      "sha256": "6aa7645a0fdddd59649fbe78b385ae6e521d488514740ba5b2ff5ccad8c898a6"
+    },
+    "xiao/preview/xiao_idle_review.gif": {
+      "bytes": 1046248,
+      "sha256": "6d00848acec42c3382179da4b1c6dba28b27f6d2cbcd193e480ebb2411270663"
+    },
+    "xiao/preview/xiao_idle_spritesheet.png": {
+      "bytes": 2907577,
+      "sha256": "917759fbcd469344fe112cbd574847e07475cdb5bb93f80ed1ed31db4b89d4a2"
+    },
+    "xiao/prompt.txt": {
+      "bytes": 1909,
+      "sha256": "37d4e353cf2850daeab03f7d740e4bb8de6974b9310f40ba99f993b25fa0e4f5"
+    },
+    "xiao/xiao_static_candidate.png": {
+      "bytes": 650625,
+      "sha256": "a818e04653a986f1d0d2ea09dc34751cc13d493a9dc60ea55859e7447180f75f"
+    },
+    "zhongli/create_zhongli_idle.py": {
+      "bytes": 7823,
+      "sha256": "b0d76da0f4bd9694ba095e98424253808730c47241db7c861e3f85311af106a3"
+    },
+    "zhongli/preview/zhongli_idle_133px_spritesheet.png": {
+      "bytes": 170972,
+      "sha256": "7e4a7e1af2481db9f11604be06e33a28d9d3e011107796f0bf111467e002fa1c"
+    },
+    "zhongli/preview/zhongli_idle_compare.gif": {
+      "bytes": 837820,
+      "sha256": "e9f7d2ee947e474e387240ab3633510f3f5d19f397bded6bd2e1808103dd3ddb"
+    },
+    "zhongli/preview/zhongli_idle_review.gif": {
+      "bytes": 1067010,
+      "sha256": "ba21e9de0236b7abd95530495354427c0dfc931157f3a880e0a9d5eca9d4dc75"
+    },
+    "zhongli/preview/zhongli_idle_spritesheet.png": {
+      "bytes": 2369755,
+      "sha256": "d5e440efb22b1c35598e7fd4b6aba0fc2295713ba2dfc3f93b2978edc74a9074"
+    },
+    "zhongli/prompt.txt": {
+      "bytes": 1611,
+      "sha256": "30f25b25ff6513e418d87696726630c2b7f7e15bb0d9281d68abdf3981b49b12"
+    },
+    "zhongli/zhongli_static_candidate.png": {
+      "bytes": 542171,
+      "sha256": "796eb3bccce32f757af63cd7b1488f89b16f16c702bf9f14524441e3607ff356"
+    }
+  }
+}
