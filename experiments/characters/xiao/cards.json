@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.24",
+  "version": "xiao-g2-lab-0.25",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1725,6 +1725,68 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x57",
+      "name": "待命名·x57",
+      "role": "窗口献祭：按剩余面具时长群伤后退出",
+      "kind": "attack",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "maskBurstAll",
+          "value": 8
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "maskBurstAll",
+          "value": 10
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x58",
+      "name": "待命名·x58",
+      "role": "预置防线：本回合投入下回合一次格挡",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "reserveBlock",
+          "value": 10
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "reserveBlock",
+          "value": 14
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1791,7 +1853,9 @@
     "x53",
     "x54",
     "x55",
-    "x56"
+    "x56",
+    "x57",
+    "x58"
   ],
   "maskRules": {
     "attackBonus": 4,

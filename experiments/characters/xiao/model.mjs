@@ -5,12 +5,12 @@ import { drawCards, takeTop } from './deck.mjs';
 export { catalog };
 const byId = new Map(catalog.cards.map(card => [card.id, card]));
 export function state({ hp = catalog.maxHp, energy = catalog.energyPerTurn, enemies = [{ hp: 30, block: 0 }], hand = [], draw = [], startingRelic = false } = {}) {
-  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, entryGuard: 0, exhaustGuard: 0, reservedEnergy: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
+  return { hp, energy, enemies: structuredClone(enemies), hand: [...hand], draw: [...draw], discard: [], exhaust: [], block: 0, mask: 0, reservedBlock: 0, entryGuard: 0, exhaustGuard: 0, reservedEnergy: 0, carryBlock: 0, attacksPlayed: 0, maskGuard: 0, exitGuard: 0, calmDraw: 0, maskedAttackDraw: 0, maskedDrawUsed: false, powers: [], turn: 1, phase: 'player', deckMode: 'fixed', startingRelic, relicUsed: false };
 }
 const nonnegative = value => Number.isSafeInteger(value) && value >= 0;
 export function validState(s) {
   if (!s || typeof s !== 'object') return false;
-  if (![s.entryGuard, s.exhaustGuard, s.reservedEnergy, s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
+  if (![s.reservedBlock, s.entryGuard, s.exhaustGuard, s.reservedEnergy, s.carryBlock, s.attacksPlayed, s.hp, s.energy, s.block, s.mask, s.maskGuard, s.exitGuard, s.calmDraw, s.maskedAttackDraw].every(nonnegative)) return false;
   if (!['fixed', 'shuffle'].includes(s.deckMode)) return false;
   if (s.deckMode === 'shuffle' && (!Number.isInteger(s.rng) || s.rng < 0 || s.rng > 0xffffffff)) return false;
   if (s.hp > catalog.maxHp || s.mask > catalog.maskRules.maxDuration) return false;
@@ -43,6 +43,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'reserveBlock') s.reservedBlock+=value;
+  else if (op === 'maskBurstAll') { const amount=s.mask*value+(s.mask>0?catalog.maskRules.attackBonus:0);for(const enemy of s.enemies)damage(enemy,amount); }
   else if (op === 'suppressAll') { for(const enemy of s.enemies.filter(e=>e.hp>0)){currentIntent(s,enemy);enemy.suppression=(enemy.suppression??0)+value;} }
   else if (op === 'extendMask') { if(s.mask>0)s.mask=Math.min(catalog.maskRules.maxDuration,s.mask+value); }
   else if (op === 'entryGuard') s.entryGuard+=value;
@@ -157,7 +159,7 @@ export function startTurn(input) {
   if (!validState(input)) return s;
   if (s.phase !== 'enemy' || s.hp <= 0 || !s.enemies.some(e => e.hp > 0)) return s;
   s.phase = 'player';
-  s.turn++;s.attacksPlayed=0;s.maskedDrawUsed=false; for(const e of s.enemies) if(e.suppression!==undefined)e.suppression=0; s.block = Math.min(s.block,s.carryBlock); s.energy = catalog.energyPerTurn+s.reservedEnergy;s.reservedEnergy=0;
+  s.turn++;s.attacksPlayed=0;s.maskedDrawUsed=false; for(const e of s.enemies) if(e.suppression!==undefined)e.suppression=0; s.block = Math.min(s.block,s.carryBlock)+s.reservedBlock;s.reservedBlock=0; s.energy = catalog.energyPerTurn+s.reservedEnergy;s.reservedEnergy=0;
   apply(s, { op: 'draw', value: catalog.drawPerTurn });
   if(s.mask===0)drawCards(s,s.calmDraw);
   return validState(s)?s:structuredClone(input);
@@ -165,6 +167,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus, hits, step}) => ({
+    reserveBlock: `下个玩家回合开始一次获得${value}点格挡，随后清除储备；本回合不获盾，可叠加，不跨战。`,
+    maskBurstAll: `对所有敌人造成当前剩余面具回合数×${value}点伤害；有面具另加${catalog.maskRules.attackBonus}点，无面具零伤。`,
     suppressAll: `所有存活敌人本回合意图伤害降低${value}（最低0，可叠加）；下个玩家回合清除。`,
     extendMask: `已有面具延长${value}回合，最多${catalog.maskRules.maxDuration}；无面具不进入、不触发入场。延长后仍须支付每回合生命，可能致死。`,
     entryGuard: `本场每次从无面具实际进入面具获得${value}点格挡；刷新不算，不追溯，可叠加。`,

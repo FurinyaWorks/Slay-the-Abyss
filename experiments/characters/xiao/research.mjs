@@ -20,8 +20,9 @@ export function choose(view, policy) {
     let score=-Infinity;
     if(id==='x06'&&view.mask>0)score=view.hp<=2?1000:(policy==='guard'&&incoming>view.block?30:-10);
     if(card.kind==='attack'){
-      let damage=card.base.find(e=>e.op==='missingHpDamage'||e.op==='emptyHandDamage'||e.op==='damageGuard'||e.op==='sequenceDamage'||e.op==='blockDamage'||e.op==='damageHits'||e.op==='lastMaskDamage'||e.op==='threatDamage'||e.op==='exhaustDamage'||e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
+      let damage=card.base.find(e=>e.op==='maskBurstAll'||e.op==='missingHpDamage'||e.op==='emptyHandDamage'||e.op==='damageGuard'||e.op==='sequenceDamage'||e.op==='blockDamage'||e.op==='damageHits'||e.op==='lastMaskDamage'||e.op==='threatDamage'||e.op==='exhaustDamage'||e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
       if(id==='x35')damage*=2;
+      if(id==='x57')damage=view.mask*8+(view.mask?catalog.maskRules.attackBonus:0);
       if(id==='x54'&&!view.mask)damage+=catalog.maskRules.attackBonus;
       if(id==='x52')damage+=Math.min(10,Math.floor((catalog.maxHp-view.hp)/10)*2);
       if(id==='x50'&&view.hand.length===1)damage+=9;
@@ -30,7 +31,7 @@ export function choose(view, policy) {
       if(id==='x28'&&view.mask===1)damage+=10;
       if(id==='x25'&&target.intent>0)damage+=4;
       if(id==='x21')damage=Math.min(18,view.exhaustedCount*3)+(view.mask?catalog.maskRules.attackBonus:0);
-      const victims=(id==='x12'||id==='x18'||id==='x05'&&view.mask)?alive:[target];
+      const victims=(id==='x57'||id==='x12'||id==='x18'||id==='x05'&&view.mask)?alive:[target];
       score=victims.reduce((n,e)=>n+Math.min(e.hp,Math.max(0,damage-e.block))+Math.min(e.block,damage)*0.8+(damage>=e.hp+e.block?e.intent*3:0),0);
       if(id==='x15')score=Math.min(target.hp,damage)+target.block*0.8+(damage>=target.hp?target.intent*3:0);
       if(id==='x07')score+=Math.min(5,Math.max(0,incoming-view.block))*(policy==='guard'?2:1);
