@@ -74,3 +74,20 @@ for _,up in ipairs({false,true})do
  assert(not ok and reached);restore();assert(same(s,before));eq(s.hand,hand);eq(s.draw,draw);eq(s.player,player);eq(s.hand[1],originalCard);eq(s.pendingPlay,nil);eq(s.actionQueue,nil)
 end
 print('PASS real host Snapshot restores whole graph and object identity after payment entry draw and fault')
+local Bridge=require('abyss_xiao_play_bridge')
+local defs=Bridge.definitions();eq(#defs,8);eq(defs[4].effects[1].op,'loseHp');eq(defs[4].upgrade.effects[2].value,3);eq(defs[6].exhaust,true)
+for _,c in ipairs(defs)do eq(c.experimental,true);eq(c.xiaoCandidate,true)end
+defs[1].effects[1].value=999;eq(Bridge.definitions()[1].effects[1].value,6)
+s=fresh(0);local hp=s.player.hp
+for _,up in ipairs({false,true})do
+ local c={id='xiao_candidate_x04',uid=910,upgraded=up};s.player.hp=2;eq(Bridge.canUse(s,c,1),false);s.player.hp=3;eq(Bridge.canUse(s,c,1),true)
+end
+s.player.hp=hp;s.enemies[2].hp=0;eq(Bridge.canUse(s,{id='xiao_candidate_x01'},2),false)
+eq(Bridge.canUse(s,{id='xiao_candidate_x05'},2),false);s.player.statuses.xiao_mask=1;eq(Bridge.canUse(s,{id='xiao_candidate_x05'},2),true)
+eq(Bridge.canUse(s,{id='xiao_candidate_x09'},1),false);eq(Bridge.canUse(s,{id='xiao_candidate_x01',upgraded='true'},1),false)
+s.xiao=false;eq(Bridge.canUse(s,{id='xiao_candidate_x04'},1),false)
+print('PASS isolated factory canonical copies and prepayment life target upgrade resource rejection')
+s=fresh(0);s.cardInUse.id='xiao_candidate_x01';local effect={op='xiaoCard',kind='damage',value=6}
+local bound=Bridge.prepare(s,effect);eq(bound.uid,910);eq(bound.targetId,s.enemies[2].id);eq(effect.uid,nil)
+run(s,bound);eq(s.enemies[2].hp,44);s.cardInUse.uid=911;assert(not pcall(Bridge.prepare,s,effect))
+print('PASS isolated post-payment binder preserves canonical effect and dispatch paid target')

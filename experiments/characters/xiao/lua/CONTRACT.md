@@ -69,3 +69,9 @@ abyss_xiao_dispatch.dispatch(combat,state,effect,queue)只执行damage/plunge/ma
 ### 纵切补强：稳定目标与宿主快照（7探针）
 
 新增暂停后敌列表换序仍命中paid targetId；死目标、缺pendingPlay、cardInUse UID不符和false UID在队列写入之前拒绝。新增基础/升级两条完整Snapshot.capture回归：先快照，付款夹具扣1能/移走真实card对象，再执行原生loseHp、mask入场/登记、真实遗物抽牌，最后故意异常；捕获后调用真实restore，深比较整个state并确认hand/draw/player/card原引用恢复。这个测试确证采用该宿主快照可恢复多阶段副作用，不表示当前公共C.play已经为魈接了快照或付款；shared owner确认目前没有魈公开入口，未猴补共享代码。
+
+## 共享接线用角色bridge（仍未注册）
+
+abyss_xiao_play_bridge提供definitions()首8独立副本，ID为xiao_candidate_x01..x08，experimental=true且xiaoCandidate=true。target=NONE不是免检：共享owner必须在任何付款前调用canUse(state,instance,targetIndex)，单体damage及无面具plunge检查真实活目标，面具群攻不要求无关单体；x04生命>2与严格升级/资源前验。未知ID拒绝。费用仍共享begin负责。prepare(state,effect)仅在已有paid pendingPlay/inUse后给特殊effect绑定稳定UID/target，不扣能、不移牌、也不替代schema合法性验证。
+
+共享接线缺一不可：候选gate限制首8；Effects.supported/schema允许经验证的xiaoCard；canUse在付款前；prepare在消费后的pending上下文；special dispatch；完成边界useCard仍原宿主。未接完整链时不可把这些definition注册为可玩。9隔离探针证明factory复制、预验及binder→真实damage，依然没有公共C.play测试，不把辅助接口数量当正式交付。
