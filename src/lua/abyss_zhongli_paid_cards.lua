@@ -7,7 +7,9 @@ local Copy=require('abyss_copy').copy
 local M={}
 local starterNative={}
 for _,d in ipairs(require('abyss_zhongli_starter_source').definitions())do if d.id=='zl01'or d.id=='zl02'then starterNative[d.id]=d end end
-local specs={zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
+local specs={zl32={kind='spendJade',base=3,upgraded=3,type='skill',target='SELF',counter=6,upCounter=8,retain=false,exactExhaust=false},
+ zl40={kind='spendJade',base=3,upgraded=3,type='skill',target='SELF',block=12,upBlock=16,retain=true,exactExhaust=true},
+ zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
  zl28={kind='gainJade',base=5,upgraded=7,type='skill',target='ENEMY',weak=2,upWeak=3,retain=false,exactExhaust=false},
  zl66={kind='gainJade',base=5,upgraded=7,type='skill',target='SELF',counter=3,upCounter=4,retain=false,exactExhaust=false},
  zl39={kind='spendJade',base=3,upgraded=3,type='attack',target='ENEMY',damage=6,upDamage=8,retain=false,exactExhaust=true},
