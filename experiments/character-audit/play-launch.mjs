@@ -4,7 +4,7 @@ export const pins=Object.freeze({
  ganyu:{cards:75,tree:'139addcb69e097f80f4314ebe3f6c9a5a4811370',modes:['starter','all','run'],note:'四房研究旅程；44仍旧值；非正式地图'},
  xiao:{cards:75,tree:'9d184954fd1160ef6f4ee6728362b2dc1919d665',modes:['starter','all','run'],note:'三房研究旅程；领取/跳过立即下一房'},
  keqing:{cards:75,tree:'02315c986a255c8044901ace53e562f39e29c94b',modes:['starter','all'],note:'本地冻结模型备份另行处理；043/044同步揭示受阻；无连续战'},
- zhongli:{cards:75,tree:'26b3be14663ae59d7803f0bdbafdcd81dc750bc8',modes:['starter','all','run'],note:'75候选/v37池三房；末批技术独审待确认，所有正式门禁HOLD'},
+ zhongli:{cards:75,tree:'43cf97c15c1d130cfc9cf9ff2e68fbe12e40cf06',modes:['starter','all','run'],note:'75候选/v37池三房；validator 修订定向复核待确认，所有正式门禁HOLD'},
 });
 export function select(character,tree,mode='starter',seed='37'){
  if(!Object.hasOwn(pins,character))throw Error('unknown character');const pin=pins[character];
