@@ -1,12 +1,13 @@
 {
   "date": "2026-11-13",
   "validation": {
-    "focusedTests": 8,
-    "passed": 8,
+    "focusedTests": 9,
+    "passed": 9,
     "method": "Exact source/test bodies executed as Node module stdin, no local file writes",
     "full": "NOT_RUN",
     "browser": "NOT_RUN",
-    "native": "NOT_RUN"
+    "native": "NOT_RUN",
+    "note": "Adapter observations precede path canonicalization/parser hardening; 9 focused tests run after those fixes."
   },
   "observations": [
     {

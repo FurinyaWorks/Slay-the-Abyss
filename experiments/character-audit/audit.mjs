@@ -1,5 +1,5 @@
 // Read-only diagnostics for trusted, local candidate modules. No production approval.
-import {readFileSync,readdirSync} from 'node:fs';
+import {readFileSync,readdirSync,realpathSync} from 'node:fs';
 import {resolve,join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
@@ -30,13 +30,16 @@ export function textReport(ids,render) {
 // Narrow adapter contract: do not evaluate source code to extract a private pool.
 // Any change away from a plain quoted-ID list fails closed and requires adapter review.
 export function literalPool(source,name) {
-  const escaped=name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-  const match=source.match(new RegExp('(?:export\\s+)?const\\s+'+escaped+'\\s*=\\s*Object\\.freeze\\(\\[([^\\]]*)\\]\\)'));
-  if(!match)throw Error('unsupported pool declaration '+name);
-  const body=match[1].trim();
+  if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name))throw Error('invalid pool name');
+  const pattern='^\\s*(?:export\\s+)?const\\s+'+name+'\\s*=\\s*Object\\.freeze\\(\\[([^\\]]*)\\]\\)';
+  const matches=[...source.matchAll(new RegExp(pattern,'gm'))];
+  const stripped=source.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g,'');
+  const clean=[...stripped.matchAll(new RegExp(pattern,'gm'))];
+  if(matches.length!==1||clean.length!==1||matches[0][1]!==clean[0][1])throw Error('unsupported or ambiguous pool declaration '+name);
+  const body=matches[0][1].trim();
   if(!body)return [];
-  if(!/^(['"][A-Za-z0-9_-]+['"])(\s*,\s*['"][A-Za-z0-9_-]+['"])*\s*,?$/.test(body))throw Error('unsupported pool literals');
-  return [...body.matchAll(/['"]([A-Za-z0-9_-]+)['"]/g)].map(m=>m[1]);
+  const tokens=body.split(',').map(t=>t.trim());if(tokens.at(-1)==='')tokens.pop();
+  return tokens.map(t=>{const m=t.match(/^(['"])([A-Za-z0-9_-]+)\1$/);if(!m)throw Error('unsupported pool literals');return m[2];});
 }
 function snapshot(root,dir){
  const files=readdirSync(dir).filter(f=>f.endsWith('.mjs')||['cards.json','relic.json','sources.json'].includes(f)).sort();
@@ -76,7 +79,7 @@ async function adapter(character,dir) {
 }
 export async function audit(root,character){
  if(!['ganyu','xiao','zhongli','keqing'].includes(character))throw Error('unsupported character');
- root=resolve(root);const dir=join(root,'experiments','characters',character);
+ root=realpathSync(resolve(root));const dir=join(root,'experiments','characters',character);
  const before=snapshot(root,dir);
  const base={schemaVersion:1,scope_complete:false,character,root,source:before,naming:'HOLD',balance:'HOLD',production:'HOLD',browser:'NOT_RUN',native:'NOT_RUN',
   limitations:['Imports reviewed local modules: trusted checkouts only; not an OS sandbox.','Access checks concern declared local channels, not win rate or earned rewards.','Text probe tests renderability and input types, not natural-language semantic equivalence.','Relic activation, duplicates, cancellation, upgrades acquisition and cross-battle reset need existing owner tests.']};

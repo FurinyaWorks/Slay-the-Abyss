@@ -36,3 +36,9 @@ test('diagnostics do not mutate caller arrays',()=>{
  const ids=Object.freeze(['a','b']),starter=Object.freeze(['a']),reward=Object.freeze(['b']);
  assert.deepEqual(accessReport(ids,starter,reward).uncovered,[]);
 });
+
+test('pool parser rejects mismatched quotes and commented duplicate declarations',()=>{
+ assert.throws(()=>literalPool("const POOL=Object.freeze(['a\"]);",'POOL'));
+ assert.throws(()=>literalPool("/*\nconst POOL=Object.freeze(['old']);\n*/\nconst POOL=Object.freeze(['new']);",'POOL'));
+ assert.throws(()=>literalPool("/*\nconst POOL=Object.freeze(['old']);\n*/",'POOL'));
+});
