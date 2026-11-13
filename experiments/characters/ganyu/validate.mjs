@@ -18,13 +18,13 @@ export function validateCandidate(data,relic,sources) {
   for(const level of ['base','upgrade']) {
    const v=c[level];if(!v || !nat(v.cost)||!Array.isArray(v.effects)||!v.effects.length){errors.push(`invalid variant ${c.id}`);continue;}
    for(const e of v.effects) {
-    const fields={damage:['amount'],aoe:['amount'],block:['amount'],charge:['amount'],draw:['amount'],seek_effect:[],seek_card:[],storm:['amount','turns'],charged_aoe:['amount','bonus'],storm_focus:['amount'],storm_block:['amount','bonus'],storm_draw:['amount','bonus'],storm_release:[],charged_draw:['amount','bonus'],charged_block:['amount','bonus'],charged_direct:['direct','bonus'],charged_shot:['direct','bloom']}[e.op];
+    const fields={damage:['amount'],aoe:['amount'],block:['amount'],charge:['amount'],draw:['amount'],seek_effect:[],seek_card:[],storm:['amount','turns'],spend_one_damage:['amount','bonus'],spend_one_block:['amount','bonus'],spend_one_draw:['amount','bonus'],charged_aoe:['amount','bonus'],storm_focus:['amount'],storm_block:['amount','bonus'],storm_draw:['amount','bonus'],storm_release:[],charged_draw:['amount','bonus'],charged_block:['amount','bonus'],charged_direct:['direct','bonus'],charged_shot:['direct','bloom']}[e.op];
     if(e.op==='seek_effect' && e.effect_op!=='storm')errors.push(`invalid seek effect ${c.id}`);
     if(e.op==='seek_card' && e.zone!==undefined && !['draw','discard'].includes(e.zone))errors.push(`invalid seek zone ${c.id}`);
     if(e.op==='seek_card' && !data.cards.some(c=>c.id===e.card_id))errors.push(`unknown seek target ${c.id}`);
     if(!fields){errors.push(`unknown effect ${c.id}`);continue;}
     for(const k of fields)if(!nat(e[k],k==='turns'?1:0))errors.push(`invalid ${e.op}.${k} ${c.id}`);
-    if(['damage','charged_direct','charged_shot','storm_focus'].includes(e.op)&&c.target!=='enemy')errors.push(`target mismatch ${c.id}`);
+    if(['damage','charged_direct','charged_shot','storm_focus','spend_one_damage'].includes(e.op)&&c.target!=='enemy')errors.push(`target mismatch ${c.id}`);
    }
   }
  }

@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.14.0",
+  "version": "ganyu-sample-0.15.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -1404,6 +1404,109 @@
         "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       },
       "retain": true
+    },
+    {
+      "id": "ganyu-41",
+      "name": "待命名·ganyu-41",
+      "candidate_name": null,
+      "role": "消耗一层蓄力的小额单体兑现",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_damage",
+            "amount": 3,
+            "bonus": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_damage",
+            "amount": 4,
+            "bonus": 7
+          }
+        ]
+      },
+      "source_ref": "ganyu-41",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-42",
+      "name": "待命名·ganyu-42",
+      "candidate_name": null,
+      "role": "消耗一层蓄力的小额当前防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 3,
+            "bonus": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 4,
+            "bonus": 8
+          }
+        ]
+      },
+      "source_ref": "ganyu-42",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-43",
+      "name": "待命名·ganyu-43",
+      "candidate_name": null,
+      "role": "一次性零费单层蓄力换过牌",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "spend_one_draw",
+            "amount": 0,
+            "bonus": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "spend_one_draw",
+            "amount": 0,
+            "bonus": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-43",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
     }
   ],
   "environment": {
