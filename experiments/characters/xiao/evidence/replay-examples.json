@@ -1,0 +1,602 @@
+[
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "burst",
+    "exit": false,
+    "upgradeMask": false,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 48,
+        "lost": 22,
+        "outcome": "victory",
+        "turn": 3,
+        "plays": 7,
+        "firstMask": 2,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 48,
+        "remainingHp": 32,
+        "lost": 16,
+        "outcome": "victory",
+        "turn": 3,
+        "plays": 9,
+        "firstMask": 2,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 32,
+        "remainingHp": 0,
+        "lost": 32,
+        "outcome": "defeat",
+        "turn": 4,
+        "plays": 11,
+        "firstMask": 1,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": false,
+    "remainingHp": 0
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "burst",
+    "exit": false,
+    "upgradeMask": true,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 48,
+        "lost": 22,
+        "outcome": "victory",
+        "turn": 3,
+        "plays": 7,
+        "firstMask": 2,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 48,
+        "remainingHp": 32,
+        "lost": 16,
+        "outcome": "victory",
+        "turn": 3,
+        "plays": 9,
+        "firstMask": 2,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 32,
+        "remainingHp": 0,
+        "lost": 32,
+        "outcome": "defeat",
+        "turn": 4,
+        "plays": 12,
+        "firstMask": 1,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": false,
+    "remainingHp": 0
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "burst",
+    "exit": true,
+    "upgradeMask": false,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 58,
+        "lost": 12,
+        "outcome": "victory",
+        "turn": 2,
+        "plays": 6,
+        "firstMask": 1,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 58,
+        "remainingHp": 47,
+        "lost": 11,
+        "outcome": "victory",
+        "turn": 3,
+        "plays": 8,
+        "firstMask": 2,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 47,
+        "remainingHp": 22,
+        "lost": 25,
+        "outcome": "victory",
+        "turn": 4,
+        "plays": 12,
+        "firstMask": 1,
+        "firstExitSeen": 4,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 22
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "burst",
+    "exit": true,
+    "upgradeMask": true,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 58,
+        "lost": 12,
+        "outcome": "victory",
+        "turn": 2,
+        "plays": 6,
+        "firstMask": 1,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 58,
+        "remainingHp": 47,
+        "lost": 11,
+        "outcome": "victory",
+        "turn": 3,
+        "plays": 8,
+        "firstMask": 2,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 47,
+        "remainingHp": 20,
+        "lost": 27,
+        "outcome": "victory",
+        "turn": 4,
+        "plays": 12,
+        "firstMask": 1,
+        "firstExitSeen": 4,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 20
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "guard",
+    "exit": false,
+    "upgradeMask": false,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 57,
+        "lost": 13,
+        "outcome": "victory",
+        "turn": 7,
+        "plays": 19,
+        "firstMask": 4,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 57,
+        "remainingHp": 42,
+        "lost": 15,
+        "outcome": "victory",
+        "turn": 5,
+        "plays": 13,
+        "firstMask": 2,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 42,
+        "remainingHp": 13,
+        "lost": 29,
+        "outcome": "victory",
+        "turn": 7,
+        "plays": 20,
+        "firstMask": 4,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 13
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "guard",
+    "exit": false,
+    "upgradeMask": true,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 59,
+        "lost": 11,
+        "outcome": "victory",
+        "turn": 6,
+        "plays": 16,
+        "firstMask": 4,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 59,
+        "remainingHp": 44,
+        "lost": 15,
+        "outcome": "victory",
+        "turn": 4,
+        "plays": 12,
+        "firstMask": 2,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 44,
+        "remainingHp": 17,
+        "lost": 27,
+        "outcome": "victory",
+        "turn": 7,
+        "plays": 18,
+        "firstMask": 4,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 17
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "guard",
+    "exit": true,
+    "upgradeMask": false,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 54,
+        "lost": 16,
+        "outcome": "victory",
+        "turn": 8,
+        "plays": 22,
+        "firstMask": 5,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 54,
+        "remainingHp": 41,
+        "lost": 13,
+        "outcome": "victory",
+        "turn": 6,
+        "plays": 17,
+        "firstMask": 2,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 41,
+        "remainingHp": 14,
+        "lost": 27,
+        "outcome": "victory",
+        "turn": 7,
+        "plays": 19,
+        "firstMask": 4,
+        "firstExitSeen": 2,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 14
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "guard",
+    "exit": true,
+    "upgradeMask": true,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 54,
+        "lost": 16,
+        "outcome": "victory",
+        "turn": 8,
+        "plays": 22,
+        "firstMask": 5,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 54,
+        "remainingHp": 41,
+        "lost": 13,
+        "outcome": "victory",
+        "turn": 6,
+        "plays": 17,
+        "firstMask": 2,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 41,
+        "remainingHp": 15,
+        "lost": 26,
+        "outcome": "victory",
+        "turn": 7,
+        "plays": 20,
+        "firstMask": 4,
+        "firstExitSeen": 2,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 15
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "never-mask",
+    "exit": false,
+    "upgradeMask": false,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 57,
+        "lost": 13,
+        "outcome": "victory",
+        "turn": 3,
+        "plays": 9,
+        "firstMask": null,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 57,
+        "remainingHp": 40,
+        "lost": 17,
+        "outcome": "victory",
+        "turn": 5,
+        "plays": 13,
+        "firstMask": null,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 40,
+        "remainingHp": 8,
+        "lost": 32,
+        "outcome": "victory",
+        "turn": 6,
+        "plays": 15,
+        "firstMask": null,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 8
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "never-mask",
+    "exit": false,
+    "upgradeMask": true,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 57,
+        "lost": 13,
+        "outcome": "victory",
+        "turn": 3,
+        "plays": 9,
+        "firstMask": null,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 57,
+        "remainingHp": 40,
+        "lost": 17,
+        "outcome": "victory",
+        "turn": 5,
+        "plays": 13,
+        "firstMask": null,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 40,
+        "remainingHp": 8,
+        "lost": 32,
+        "outcome": "victory",
+        "turn": 6,
+        "plays": 15,
+        "firstMask": null,
+        "firstExitSeen": null,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 8
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "never-mask",
+    "exit": true,
+    "upgradeMask": false,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 53,
+        "lost": 17,
+        "outcome": "victory",
+        "turn": 4,
+        "plays": 11,
+        "firstMask": null,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 53,
+        "remainingHp": 37,
+        "lost": 16,
+        "outcome": "victory",
+        "turn": 5,
+        "plays": 14,
+        "firstMask": null,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 37,
+        "remainingHp": 5,
+        "lost": 32,
+        "outcome": "victory",
+        "turn": 6,
+        "plays": 15,
+        "firstMask": null,
+        "firstExitSeen": 2,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 5
+  },
+  {
+    "group": "held-out",
+    "seed": 5001,
+    "policy": "never-mask",
+    "exit": true,
+    "upgradeMask": true,
+    "fights": [
+      {
+        "encounter": "duel",
+        "initialHp": 70,
+        "remainingHp": 53,
+        "lost": 17,
+        "outcome": "victory",
+        "turn": 4,
+        "plays": 11,
+        "firstMask": null,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "swarm",
+        "initialHp": 53,
+        "remainingHp": 37,
+        "lost": 16,
+        "outcome": "victory",
+        "turn": 5,
+        "plays": 14,
+        "firstMask": null,
+        "firstExitSeen": 1,
+        "failedActions": 0,
+        "truncated": false
+      },
+      {
+        "encounter": "armor",
+        "initialHp": 37,
+        "remainingHp": 5,
+        "lost": 32,
+        "outcome": "victory",
+        "turn": 6,
+        "plays": 15,
+        "firstMask": null,
+        "firstExitSeen": 2,
+        "failedActions": 0,
+        "truncated": false
+      }
+    ],
+    "cleared": true,
+    "remainingHp": 5
+  }
+]

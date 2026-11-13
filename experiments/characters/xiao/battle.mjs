@@ -30,11 +30,12 @@ function draw(s, count) {
     s.hand.push(s.draw.shift());
   }
 }
-export function newBattle({ seed = 1, encounter = 'duel', relic = true } = {}) {
+export function newBattle({ seed = 1, encounter = 'duel', relic = true, hp = catalog.maxHp, deck = catalog.starter } = {}) {
   if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff || !encounters[encounter] || typeof relic !== 'boolean') throw Error('invalid battle setup');
-  const s = state({ enemies: encounters[encounter].enemies, startingRelic: relic });
+  if (!Number.isInteger(hp) || hp < 1 || hp > catalog.maxHp || !Array.isArray(deck) || !deck.length || deck.length > 100 || deck.some(id => !catalog.cards.some(c => c.id === id) || id === 'x08')) throw Error('invalid deck or life');
+  const s = state({ hp, enemies: encounters[encounter].enemies, startingRelic: relic });
   s.rng = seed; s.encounter = encounter;
-  s.draw = shuffle(s, catalog.starter); draw(s, catalog.drawPerTurn);
+  s.draw = shuffle(s, deck); draw(s, catalog.drawPerTurn);
   return s;
 }
 export function intent(s, enemy) { return enemy.intent[(s.turn - 1) % enemy.intent.length]; }
