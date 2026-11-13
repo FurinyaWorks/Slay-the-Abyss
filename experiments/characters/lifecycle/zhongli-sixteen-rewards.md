@@ -1,0 +1,9 @@
+# Sixteen-card Zhongli research domain — AUTHOR TESTED; INDEPENDENT REVIEW PENDING
+
+Baseline d23e4813. Original source ea5887d8 marks both 32 and 40 common. Existing fourteen complete definitions are reused unchanged; the new isolated catalog appends only 32/40. No change to the original fourteen domain, shared dispatcher, architecture or global pools.
+
+32: 1 energy, 3 jade, native flame_barrier 6/8, no retain/exhaust. 40: 1 energy, 3 jade, native block12/16, retain AND exhaust. All remain source common/HOLD, not approved formal rarity weights.
+
+Closed abyss_zhongli_sixteen_run.new calls Starter.new exactly once, adding only fourteen non-starter definitions before that call. Domain zhongli-reviewed-common-sixteen-v1 clones cardRng and samples equal-weight without replacement, short offers on scarcity, zero count rejects. Prismatic, source drift, collisions and opposite domain reject. Source14 remains a separate launcher.
+
+Author new provider wrapper 1/1 PASS 8.40 seconds, both source/isolation markers. Original fourteen provider plus real Run regression wrapper 1/1 PASS 44.58 seconds serially. The initial old-wrapper run failed because sparse checkout omitted its second Lua fixture; restored that exact same-HEAD file and reran the full wrapper. No runtime or test behavior was altered. No other tests ran, and independent review remains pending. Shared CardPool has no new-domain route, so no actual automatic generation/claim/paid claim here. Integration author acceptance must use actual victory→generated offer→claim→next battle public paid and check 40 retain/exhaust. Do not overwrite offers to call that natural coverage. Native lethal damage does not trigger32 counter, unlike historical JS. Jade absorption, multi/dynamic encounters and production/human/balance remain HOLD.
