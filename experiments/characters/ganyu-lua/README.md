@@ -181,3 +181,17 @@ The previous 48-case conditional suite and capture rejection regressions pass.
 This is isolated queue execution, not shared C.play registration. The extension
 does not change source card values, approve the single-layer/held-full playstyle,
 or implement 44's disputed redesign; that design blocker remains unresolved.
+
+### Frozen source → seven conditional definitions → native execution
+
+`compile-conditional.mjs` emits a separate unregistered definition file for
+17/19/35/32/41/42/45 only. The strict source projection preserves base/up cost,
+resource condition and amounts, with card text derived from those same fields.
+Two Node tests check independent literal expectations and 42 malformed variants
+plus unsupported 44. `conditional-generated.test.lua` loads generated definitions
+into real `C.new`, obtains real upgraded `C.cardDefinition`, then executes the
+isolated paid-context ActionQueue adapter in 84 base/up × charge × rain cases.
+Strength/Dexterity changes after preparation do not alter native captured values.
+The test seeds paid context manually: it does not prove public payment or card
+finalization. Shared host acceptance remains NOT_YET_VERIFIED, type choices are
+proposals, and no 44 redesign or source/human/balance approval is introduced.
