@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {compileCard,build} from './compile.mjs';
 const cards=JSON.parse(readFileSync(new URL('./source-candidates.json',import.meta.url))).cards;
-test('eight staged definitions preserve independent base/up values and 67 remain unmapped',()=>{
- const r=build();assert.equal(r.cards.length,8);assert.equal(r.unmapped.length,67);assert.equal(r.productionEnabled,false);
+test('seventeen staged definitions preserve independent base/up values and 58 remain unmapped',()=>{
+ const r=build();assert.equal(r.cards.length,17);assert.equal(r.unmapped.length,58);assert.equal(r.productionEnabled,false);
  assert.deepEqual(r.cards.filter(c=>["ganyu_lab_01","ganyu_lab_02","ganyu_lab_22","ganyu_lab_24"].includes(c.id)).map(c=>[c.cost,c.effects.map(e=>e.value),c.upgrade.cost,c.upgrade.effects.map(e=>e.value)]),[[1,[6],1,[9]],[1,[5],1,[8]],[1,[4,1],1,[6,1]],[1,[3],1,[4]]]);
  assert.equal(r.cards.find(c=>c.id==="ganyu_lab_24").exhaust,true);assert.ok(r.cards.every(c=>c.reviewStatus==='HOLD'&&!c.productionEnabled));
 });

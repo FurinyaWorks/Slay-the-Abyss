@@ -28,7 +28,7 @@ for _,up in ipairs({false,true})do
  s,u=state('ganyu_lab_22',up);s.enemies[1].hp=1;assert(Combat.play(s,u,1));eq(#s.hand,0)
 end
 for _,c in ipairs(data.cards.cards)do assert(not c.id:match('ganyu_lab'))end
-eq(#defs.cards,8);eq(#defs.unmapped,67)
+eq(#defs.cards,17);eq(#defs.unmapped,58)
 print('PASS 14 base/upgrade native-queue cases; original registration untouched')
 
 for _,up in ipairs({false,true})do
@@ -39,3 +39,18 @@ for _,up in ipairs({false,true})do
  s,u=state('ganyu_lab_55',up);s.energy=0;assert(Combat.play(s,u));eq(s.player.block,up and 3 or 1);eq(#s.hand,1);eq(#s.exhaust,1);eq(s.energy,0)
 end
 print('PASS 8 additional base/upgrade AOE/defense-draw/free-exhaust native cases')
+
+-- Independent literal expectations: id, cost, base/up damage, block, draw, exhaust.
+local cases={
+ {'07',1,0,0,0,0,2,3,false},{'11',0,0,0,3,5,0,0,false},
+ {'12',1,4,6,3,4,0,0,false},{'13',2,0,0,14,18,0,0,false},
+ {'15',2,14,18,0,0,0,0,false},{'57',2,6,9,0,0,1,1,false},
+ {'61',3,8,11,12,16,0,0,false},{'63',2,0,0,8,11,2,2,true},
+ {'73',1,4,6,0,0,2,2,true},
+}
+for _,c in ipairs(cases)do for _,up in ipairs({false,true})do
+ local s,u=state('ganyu_lab_'..c[1],up);assert(Combat.play(s,u,1))
+ eq(s.energy,3-c[2]);eq(s.enemies[1].hp,100-c[up and 4 or 3]);eq(s.player.block,c[up and 6 or 5]);eq(#s.hand,c[up and 8 or 7]);eq(#s.exhaust,c[9]and 1 or 0);eq(#s.discard,c[9]and 0 or 1)
+ eq(#s.hand+#s.draw+#s.discard+#s.exhaust,10)
+end end
+print('PASS 18 further base/upgrade normal effect, energy and pile-conservation cases')

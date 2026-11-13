@@ -1,6 +1,6 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {createHash} from 'node:crypto';import {pathToFileURL} from 'node:url';
 import {toLua} from '../../../scripts/build-lua-data.mjs';
-const types={'ganyu-01':'attack','ganyu-02':'skill','ganyu-22':'attack','ganyu-24':'skill','ganyu-04':'attack','ganyu-08':'skill','ganyu-21':'attack','ganyu-55':'skill'};
+const types={'ganyu-01':'attack','ganyu-02':'skill','ganyu-22':'attack','ganyu-24':'skill','ganyu-04':'attack','ganyu-08':'skill','ganyu-21':'attack','ganyu-55':'skill','ganyu-07':'skill','ganyu-11':'skill','ganyu-12':'attack','ganyu-13':'skill','ganyu-15':'attack','ganyu-57':'attack','ganyu-61':'attack','ganyu-63':'skill','ganyu-73':'attack'};
 export function compileCard(card){
  const keys=['id','name','candidate_name','role','rarity','target','base','upgrade','source_ref','review','exhaust','retain','production_enabled'];
  if(!card||Object.keys(card).some(k=>!keys.includes(k)))throw Error('unsupported card field');
