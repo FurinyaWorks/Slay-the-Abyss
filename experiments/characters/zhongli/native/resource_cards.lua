@@ -1,4 +1,4 @@
--- Role-only 03/04 contract. Host owns dynamic energy cost, UID movement and transaction.
+-- Role-only 03/04/20/62 contract. Host owns dynamic energy cost, UID movement and transaction.
 local R=require('experiments.characters.zhongli.native.jade_resource')
 local L=require('experiments.characters.zhongli.native.lifecycle')
 local Copy=require('abyss_copy').copy
@@ -6,7 +6,10 @@ local Actors=require('abyss_actor')
 local M={}
 local definitions={
  {id='zl03',name='待命名·zl03',type='skill',cost=2,target='SELF',rarity='common',color='zhongli_candidate',experimental=true,zhongliCandidate=true,approval='HOLD',effects={{op='zhongliCard',kind='gainJade',value=12}},upgrade={effects={{op='zhongliCard',kind='gainJade',value=16}}}},
- {id='zl04',name='待命名·zl04',type='attack',cost=1,target='ENEMY',rarity='common',color='zhongli_candidate',experimental=true,zhongliCandidate=true,approval='HOLD',effects={{op='zhongliCard',kind='spendJade',value=6},{op='damage',value=14}},upgrade={effects={{op='zhongliCard',kind='spendJade',value=6},{op='damage',value=18}}}}
+ {id='zl04',name='待命名·zl04',type='attack',cost=1,target='ENEMY',rarity='common',color='zhongli_candidate',experimental=true,zhongliCandidate=true,approval='HOLD',effects={{op='zhongliCard',kind='spendJade',value=6},{op='damage',value=14}},upgrade={effects={{op='zhongliCard',kind='spendJade',value=6},{op='damage',value=18}}}},
+ {id='zl20',name='待命名·zl20',type='skill',cost=1,target='SELF',rarity='common',color='zhongli_candidate',experimental=true,zhongliCandidate=true,approval='HOLD',effects={{op='zhongliCard',kind='emptyJade',value=9}},upgrade={effects={{op='zhongliCard',kind='emptyJade',value=12}}}},
+ {id='zl62',name='待命名·zl62',type='skill',cost=1,target='SELF',rarity='common',color='zhongli_candidate',experimental=true,zhongliCandidate=true,approval='HOLD',exhaust=true,effects={{op='zhongliCard',kind='emptyJade',value=6},{op='draw',value=1}},upgrade={effects={{op='zhongliCard',kind='emptyJade',value=8},{op='draw',value=2}}}}
+
 }
 function M.definitions()return Copy(definitions)end
 function M.prepare(state,uid,targetIndex)
@@ -28,7 +31,7 @@ end
 function M.dispatch(_combat,state,effect,_queue)
  assert(type(effect)=='table'and getmetatable(effect)==nil,'invalid resource effect')
  for k in pairs(effect)do assert(k=='op'or k=='kind'or k=='value','unknown resource semantics')end
- assert(effect.op=='zhongliCard'and(effect.kind=='gainJade'or effect.kind=='spendJade'),'unsupported resource effect')
+ assert(effect.op=='zhongliCard'and(effect.kind=='gainJade'or effect.kind=='spendJade'or effect.kind=='emptyJade'),'unsupported resource effect')
  R.apply(state,effect.kind,effect.value);return true
 end
 return M
