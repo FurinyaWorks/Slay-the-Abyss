@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('044 independent bounded native selection and paid identity boundaries',()=>{buildLuaData();const r=runLua('experiments/characters/keqing-host/inspect-independent.test.lua',{timeout:30000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KQ044_INDEPENDENT_33_PLUS8_PASS/);});
