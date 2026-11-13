@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.9",
+  "version": "xiao-g2-lab-0.10",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -801,6 +801,70 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x27",
+      "name": "待命名·x27",
+      "role": "缩短窗口而非立即全退：减一回合面具并格挡",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "shortenMask",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 7
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "shortenMask",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 10
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x28",
+      "name": "待命名·x28",
+      "role": "尾窗重击：只在面具最后一回合获得额外单体回报",
+      "kind": "attack",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "lastMaskDamage",
+          "value": 10,
+          "bonus": 10
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "lastMaskDamage",
+          "value": 14,
+          "bonus": 12
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -837,7 +901,9 @@
     "x23",
     "x24",
     "x25",
-    "x26"
+    "x26",
+    "x27",
+    "x28"
   ],
   "maskRules": {
     "attackBonus": 4,

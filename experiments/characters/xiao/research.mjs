@@ -19,7 +19,8 @@ export function choose(view, policy) {
     let score=-Infinity;
     if(id==='x06'&&view.mask>0)score=view.hp<=2?1000:(policy==='guard'&&incoming>view.block?30:-10);
     if(card.kind==='attack'){
-      let damage=card.base.find(e=>e.op==='threatDamage'||e.op==='exhaustDamage'||e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
+      let damage=card.base.find(e=>e.op==='lastMaskDamage'||e.op==='threatDamage'||e.op==='exhaustDamage'||e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
+      if(id==='x28'&&view.mask===1)damage+=10;
       if(id==='x25'&&target.intent>0)damage+=4;
       if(id==='x21')damage=Math.min(18,view.exhaustedCount*3)+(view.mask?catalog.maskRules.attackBonus:0);
       const victims=(id==='x12'||id==='x18'||id==='x05'&&view.mask)?alive:[target];
@@ -47,6 +48,7 @@ export function choose(view, policy) {
     if(id==='x23')score=Math.min(view.energy*5,Math.max(0,incoming-view.block))*(policy==='guard'?2:1)-view.energy*2;
     if(id==='x24'&&attacks>0&&view.energy>=2&&incoming>view.block)score=policy==='guard'?9:1;
     if(id==='x26'&&alive.every(e=>e.intent===0)&&view.hand.length<10)score=8;
+    if(id==='x27')score=view.mask===1&&view.hp<=2?1000:Math.min(7,Math.max(0,incoming-view.block))*(policy==='guard'?3:1);
     if(score>0)choices.push({index,target:target.index,score});
   });
   return choices.sort((a,b)=>b.score-a.score||a.index-b.index)[0]??null;

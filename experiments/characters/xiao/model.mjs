@@ -37,6 +37,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'shortenMask') s.mask=Math.max(0,s.mask-value);
+  else if (op === 'lastMaskDamage') damage(s.enemies[target],value+(s.mask===1?effect.bonus:0)+(s.mask>0?catalog.maskRules.attackBonus:0));
   else if (op === 'threatDamage') damage(s.enemies[target],value+(currentIntent(s,s.enemies[target])>0?effect.bonus:0)+(s.mask>0?catalog.maskRules.attackBonus:0));
   else if (op === 'quietDraw') { if(s.enemies.filter(e=>e.hp>0).map(e=>currentIntent(s,e)).every(n=>n===0))drawCards(s,value); }
   else if (op === 'spendEnergyBlock') { s.block+=s.energy*value;s.energy=0; }
@@ -87,7 +89,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'lastMaskDamage' || e.op === 'threatDamage' || e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -121,6 +123,8 @@ export function startTurn(input) {
 export function cardText(card, upgraded = false) {
   if(typeof upgraded !== 'boolean') throw new TypeError('upgrade must be boolean');
   const text = ({op, value, cap, bonus}) => ({
+    shortenMask: `面具剩余回合减少${value}（最低0）；不是保证退出。`,
+    lastMaskDamage: `造成${value}点伤害；若面具恰剩1回合，额外${bonus}点；面具期间另加${catalog.maskRules.attackBonus}点。不改变面具时长。`,
     threatDamage: `造成${value}点伤害；若目标当前意图为攻击，额外${bonus}点；面具期间另加${catalog.maskRules.attackBonus}点。`,
     quietDraw: `若所有存活敌人当前意图均不造成伤害，抽${value}张牌（手牌上限10）；否则不抽。`,
     spendEnergyBlock: `消耗所有剩余能量，每点获得${value}点格挡（0能量可打出但不获盾）。`,
