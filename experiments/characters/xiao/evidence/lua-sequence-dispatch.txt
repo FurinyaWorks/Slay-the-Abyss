@@ -1,0 +1,3 @@
+PASS x41 base/up uses earlier completed attack count capped three excluding itself, then increments once
+PASS repeated pre-attack defense gets bonus; completed attack removes bonus and new turn resets count
+PASS count overflow and false reject; host snapshot restores enemy damage capture and attack history

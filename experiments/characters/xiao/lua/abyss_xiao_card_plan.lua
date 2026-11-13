@@ -1,4 +1,4 @@
--- Pure first-forty-card proposal. Host owns cost, target, snapshots and effects.
+-- Pure first-forty-two-card proposal. Host owns cost, target, snapshots and effects.
 local Data=require('abyss_xiao_core_data')
 local M={supported={}}
 local cards={};for _,c in ipairs(Data.cards)do cards[c.id]=c;M.supported[c.id]=true end
@@ -24,7 +24,7 @@ function M.plan(resource,payload)
    effects[#effects+1]={op='xiaoCard',kind=e.op,value=e.value};after.mask=math.max(0,after.mask-e.value)
   elseif e.op=='block'or e.op=='draw'or e.op=='loseHp'or e.op=='energy'then effects[#effects+1]=copy(e)
   else
-   assert(({damage=true,plunge=true,damageAll=true,maskBlock=true,maskGuard=true,breakBlock=true,recoverExit=true,burnSkillsBlock=true,unmaskedDraw=true,exhaustDamage=true,exhaustBlock=true,spendEnergyBlock=true,discardAttacksDraw=true,threatDamage=true,quietDraw=true,shortenMask=true,lastMaskDamage=true,exitGuard=true,suppress=true,coveredDraw=true,calmDraw=true,exitEnergy=true,damageHits=true,maskedAttackDraw=true,blockDamage=true,spendBlockDraw=true,topdeckAttack=true,enemyCountBlock=true})[e.op],'unsupported Xiao effect')
+   assert(({damage=true,plunge=true,damageAll=true,maskBlock=true,maskGuard=true,breakBlock=true,recoverExit=true,burnSkillsBlock=true,unmaskedDraw=true,exhaustDamage=true,exhaustBlock=true,spendEnergyBlock=true,discardAttacksDraw=true,threatDamage=true,quietDraw=true,shortenMask=true,lastMaskDamage=true,exitGuard=true,suppress=true,coveredDraw=true,calmDraw=true,exitEnergy=true,damageHits=true,maskedAttackDraw=true,blockDamage=true,spendBlockDraw=true,topdeckAttack=true,enemyCountBlock=true,sequenceDamage=true,beforeAttackBlock=true})[e.op],'unsupported Xiao effect')
    local effect=copy(e);effect.op='xiaoCard';effect.kind=e.op;effects[#effects+1]=effect
   end
  end

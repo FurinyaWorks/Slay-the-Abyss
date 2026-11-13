@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy'or effect.kind=='recoverExit'or effect.kind=='topdeckAttack'or effect.kind=='discardAttacksDraw'or effect.kind=='burnSkillsBlock'or effect.kind=='calmDraw'or effect.kind=='maskedAttackDraw','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy'or effect.kind=='recoverExit'or effect.kind=='topdeckAttack'or effect.kind=='discardAttacksDraw'or effect.kind=='burnSkillsBlock'or effect.kind=='calmDraw'or effect.kind=='maskedAttackDraw'or effect.kind=='sequenceDamage'or effect.kind=='beforeAttackBlock','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -65,6 +65,14 @@ function M.dispatch(combat,state,effect,queue)
    end
   end
   return true
+ end
+ if effect.kind=='sequenceDamage'or effect.kind=='beforeAttackBlock'then
+  local count=require('abyss_xiao_attack_finish').attackCount(state);integer(effect.bonus)
+  local extra
+  if effect.kind=='sequenceDamage'then integer(effect.cap);extra=Plan.scaledCount(math.min(count,effect.cap),effect.bonus)
+  else extra=count==0 and effect.bonus or 0 end
+  assert(value<=2147483647-extra,'Xiao sequence output overflow');value=value+extra
+  if effect.kind=='beforeAttackBlock'then queue.pushTop(state,{kind='effect',effect={op='block',value=value}});return true end
  end
  if effect.kind=='lastMaskDamage'then value=Plan.lastMaskDamage(r.mask,value,effect.bonus)end
  if effect.kind=='blockDamage'then

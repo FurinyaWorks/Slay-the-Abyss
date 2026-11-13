@@ -11,15 +11,24 @@ local function context(state)
  if x.maskedDrawTurn~=nil then integer(x.maskedDrawTurn)end
  return x,c,n
 end
+function M.attackCount(state)
+ integer(state.turn);local x=assert(state.xiao,'missing Xiao state')
+ local n=x.attacksPlayed;if n==nil then n=0 end;integer(n)
+ if x.attacksTurn~=nil then integer(x.attacksTurn)end
+ return x.attacksTurn==state.turn and n or 0
+end
 function M.capture(combat,state)
  local x,c=context(state);assert(x.attackCapture==nil,'unconsumed Xiao capture')
  local mask=state.player.statuses.xiao_mask;if mask==nil then mask=0 end;integer(mask);assert(mask<=3,'invalid mask')
- x.attackCapture={uid=c.uid,turn=state.turn,maskedAttack=combat.cardDefinition(state,c).type=='attack'and mask>0}
+ x.attackCapture={uid=c.uid,turn=state.turn,attack=combat.cardDefinition(state,c).type=='attack',maskedAttack=combat.cardDefinition(state,c).type=='attack'and mask>0}
 end
 function M.finish(combat,state)
  local x,c,n=context(state);local capture=x.attackCapture
- assert(type(capture)=='table'and capture.uid==c.uid and capture.turn==state.turn and type(capture.maskedAttack)=='boolean','stale Xiao capture')
+ assert(type(capture)=='table'and capture.uid==c.uid and capture.turn==state.turn and type(capture.maskedAttack)=='boolean'and type(capture.attack)=='boolean','stale Xiao capture')
+ local count=M.attackCount(state)
+ if capture.attack then assert(count<2147483647,'Xiao attack count overflow')end
  x.attackCapture=nil
+ if capture.attack then x.attacksTurn=state.turn;x.attacksPlayed=count+1 end
  if state.player.hp>0 and capture.maskedAttack and n>0 and x.maskedDrawTurn~=state.turn then
   x.maskedDrawTurn=state.turn
   combat.applyEffects(state,{{op='draw',value=n}},state.player,state.player,c)

@@ -220,3 +220,19 @@ This is an explicitly invoked boundary API, NOT a new shared UseCard hook or
 proof of actual two-card payment. Attack reactions/terminal victory pause order
 must still be certified when integrating with the owner. Turn-start module
 comments now distinguish energy-before-draw from calm-after-draw as reviewed.
+
+### x41/x42 completed-attack history slice
+The single-source Lua projection now includes 42 candidates (not 75), adding
+frozen x41/x42 without changing catalog values. The isolated attack-finish API
+counts every completed attack once, including those before x36 exists, and
+reads history as zero on a new turn. x41 uses the pre-completion count capped at
+three, then native damage; x42 gives its bonus whenever there have been no
+completed attacks, so repeated opening defensive cards can both benefit.
+Three actual-effect tests cover base/upgrade counts zero through five, excluded
+self, exact defense ordering, new turn, malformed/overflow history and Snapshot
+restoration. Old attack-finish 4 tests and all 42-plan 13 tests pass. The tests
+explicitly reuse a constructed paid context; they do not prove multiple legal
+card uses. Host must call capture/finish exactly once per real card, including
+unmasked/no-Power attacks, and retain command rollback. Shared hook and public
+x41/x42 gate remain unimplemented; enemy intent-dependent cards remain blocked
+on a certified visible-current-intent contract, not guessed future move arrays.
