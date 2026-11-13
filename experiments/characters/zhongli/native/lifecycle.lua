@@ -6,13 +6,17 @@ local M={}
 local ids={pillar='zl_candidate_pillar',repair='zl_candidate_repair'}
 local function integer(n,lo,hi)return type(n)=='number'and n==n and n%1==0 and n>=lo and n<=hi end
 local function alive(s)return Actors.isActive(s.player)and #s.enemies==1 and Actors.isActive(s.enemies[1])end
-local function validate(s)
+local function validateStorage(s)
  assert(type(s)=='table'and type(s.zhongliCandidate)=='table','missing candidate lifecycle')
  local z=s.zhongliCandidate
  assert(integer(z.jade,0,20)and integer(z.lastOwnerEnd,0,2147483646),'invalid lifecycle state')
- assert(#s.enemies==1,'single-enemy prototype only')
  for kind,id in pairs(ids)do local value=s.player.statuses[id];if value==nil then value=0 end;assert(integer(value,0,kind=='pillar'and 6 or 3),'invalid candidate Power')end
  return z
+end
+-- Storage shape is independent of enemy count; old lifecycle remains single-enemy.
+M.validateStorage=validateStorage
+local function validate(s)
+ local z=validateStorage(s);assert(#s.enemies==1,'single-enemy prototype only');return z
 end
 function M.start(state,battleId,withRelic)
  assert(type(battleId)=='string'and #battleId>0 and type(withRelic)=='boolean','invalid lifecycle options')
