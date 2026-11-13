@@ -90,3 +90,28 @@ infusion × setup/recast combinations, fixed/repeat relic, controlled same-UID r
 use ordinal (not a natural acquisition test), terminal boundaries, damage-reaction death, complete paid rollback, and
 synthetic real Scry pause/resume/failure rollback at a staged boundary. The
 synthetic interruption is test-only and is not an extra ability on KQ003.
+
+## Ganyu 03/06 paid-only vertical slice
+
+Explicit `candidateLifecycle={kind='ganyu',relicEnabled=false}` initializes
+`ganyuResource` without touching the existing owner-end route. A true relic
+option is rejected: bank-before-discard and storm-after-discard are NOT wired
+by this slice. Only candidate chargedShot/charge definitions marked
+`ganyuCandidate=true, experimental=true` are accepted; there is no class,
+reward pool, starter relic or ready-catalog registration. Source role modules
+are copied from reviewed `57e5707f` (resource require path alone adapted).
+
+Both public C.play and automatic card resolution apply the same candidate
+eligibility and active-target gate. Real payment and limbo UID happen before
+preparation. A turn/UID/accepted-use-bound `ganyuPaidStage` invokes the role
+adapter under the existing complete-command Snapshot; source damage/bloom
+remain actual native queued effects with use-time normal damage capture.
+The consumed charge is not silently refunded when later reactions kill the
+player, but an actual exception restores the complete original graph.
+
+`ganyu-paid-usecard.test.mjs` runs the author's 14 public C.play cases plus
+native damage failure, actual Scry continuation and resumed failure rollback,
+free automatic use and native/unmarked rejection, target lifetime validation,
+extra-metadata rejection, real thorns stopping queued bloom, and no-candidate
+constructor compatibility. Synthetic pause insertion is test-only, not an
+additional Ganyu skill. No bank/storm, relic or complete-character claim.

@@ -748,6 +748,8 @@ local function playCardRequirements(state,instance,card,targetIndex)
         local usable,refusal=require('abyss_original_v4').preflight(state,card,targetIndex)
         if not usable then return false,refusal end
     end
+    local ganyuReady,ganyuWhy=require('abyss_ganyu_paid_cards').canUse(state,card,targetIndex)
+    if not ganyuReady then return false,ganyuWhy end
     local ready,why=require('abyss_keqing_paid_cards').canUse(state,card)
     if not ready then return false,why end
     local usable,refusal=require('abyss_watcher_attack_cards').canUse(state,instance,card)
@@ -1277,6 +1279,8 @@ function M.resolveQueuedCard(state,e)
             CardActions.exhaust(M,state,c)
         elseif d.type~='power' then state.discard[#state.discard+1]=c end
     end
+    local ganyuAllowed=require('abyss_ganyu_paid_cards').canUse(state,d,e.targetIndex)
+    if not ganyuAllowed then rejected();return end
     local candidateAllowed=require('abyss_keqing_paid_cards').canUse(state,d)
     if not candidateAllowed then rejected();return end
     -- A queued targeted card whose original target died is removed from limbo;
@@ -1294,7 +1298,7 @@ function M.resolveQueuedCard(state,e)
         rejected()
         return
     end
-    if d.keqingCandidate==true or not nativeDefinition(state,d) or Effects.requiresQueue(d.effects) then
+    if d.ganyuCandidate==true or d.keqingCandidate==true or not nativeDefinition(state,d) or Effects.requiresQueue(d.effects) then
         beginQueuedPlay(state,c.uid,e.targetIndex,c,nil,d,{purge=e.purge,exhaustCards=forceExhaust,
             energyOnUse=e.energyOnUse})
     else queueNativePlay(state,c.uid,e.targetIndex,c,d,true,forceExhaust,e.purge,true,e.energyOnUse) end

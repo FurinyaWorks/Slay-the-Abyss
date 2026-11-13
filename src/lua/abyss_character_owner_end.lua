@@ -7,6 +7,12 @@ function M.init(state,option)
  if option==nil then return end
  assert(type(option)=='table'and getmetatable(option)==nil,'invalid candidate lifecycle option')
  for key in pairs(option)do assert(key=='kind'or key=='relicEnabled','unknown candidate lifecycle option')end
+ if option.kind=='ganyu'then
+  assert(option.relicEnabled==false and not state.originalV4,'Ganyu relic/lifecycle not enabled')
+  state.experimentalMechanics=true;state.characterCandidate='ganyu'
+  state.ganyuResource=require('abyss_ganyu_resources').initial()
+  return
+ end
  assert(option.kind=='keqing'and type(option.relicEnabled)=='boolean'and not state.originalV4,'unsupported candidate lifecycle option')
  state.experimentalMechanics=true;state.characterOwnerEnd='keqing'
  state.keqingResource=Resource.new(option.relicEnabled,{bonusPerHit=2,relicBlock=4})

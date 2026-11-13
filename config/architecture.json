@@ -1,6 +1,9 @@
 {
   "layers": {
     "abyss_keqing_paid_cards": "core",
+    "abyss_ganyu_resources": "core",
+    "abyss_ganyu_queued_card": "core",
+    "abyss_ganyu_paid_cards": "core",
     "abyss_keqing_staged_plan": "core",
     "abyss_character_owner_end": "core",
     "abyss_keqing_resources": "core",
