@@ -8,12 +8,23 @@ for _,up in ipairs({false,true})do
  for i=1,4 do assert(R.obtainCard(r,'KQ039',{upgraded=up}));assert(R.obtainCard(r,'KQ049',{upgraded=up}))end
  eq(#r.deck,8);local durable={};for _,c in ipairs(r.deck)do assert(not durable[c.uid]);durable[c.uid]={cardId=c.cardId,upgraded=c.upgraded}end
  assert(R.startCombat(r,'cultist_solo'));assert(r.combat.experimentalMechanics)
+ local function verifyIdentity()
+ local seen,master,n={},{},0
+ for _,name in ipairs({'hand','draw','discard','exhaust'})do for _,c in ipairs(r.combat[name])do
+  assert(not seen[c.uid]);seen[c.uid]=true;n=n+1
+  local d=assert(durable[c.deckUid],'combat instance missing durable owner')
+  assert(not master[c.deckUid]);master[c.deckUid]=true
+  eq(c.cardId,d.cardId);eq(c.upgraded,d.upgraded)
+ end end
+ eq(n,8);for uid in pairs(durable)do assert(master[uid])end
+end
+ verifyIdentity()
  r.combat.player.hp=999;r.combat.player.maxHp=999;r.combat.enemies[1].hp=999;r.combat.enemies[1].maxHp=999
  local used={};for turn=1,3 do
   local actions=0;while r.combat.energy>0 and #r.combat.hand>0 do
-   local c=r.combat.hand[1];local id=c.cardId;assert(R.play(r,c.uid,1));used[id]=(used[id]or 0)+1;actions=actions+1;assert(actions<=3)
+   local c=r.combat.hand[1];local id=c.cardId;assert(R.play(r,c.uid,1));verifyIdentity();used[id]=(used[id]or 0)+1;actions=actions+1;assert(actions<=3)
   end
-  assert(R.endTurn(r));eq(r.combat.turn,turn+1)
+  assert(R.endTurn(r));eq(r.combat.turn,turn+1);verifyIdentity()
  end
  assert(used.KQ039 and used.KQ049);eq(#r.deck,8)
  for _,c in ipairs(r.deck)do local d=assert(durable[c.uid]);eq(c.cardId,d.cardId);eq(c.upgraded,d.upgraded)end
