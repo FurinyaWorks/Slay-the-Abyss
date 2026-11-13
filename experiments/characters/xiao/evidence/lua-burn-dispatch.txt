@@ -1,0 +1,4 @@
+PASS x19 base/up exhaust only other real skill entities and gain native block
+PASS actual Feel No Pain exhaust reaction remains active alongside Xiao block
+PASS post-exhaust snapshot restores original entities and output overflow rejects before fuel
+PASS zero fuel native zero block still receives Dexterity; explicit JS parity HOLD

@@ -142,3 +142,15 @@ overflow and post-shuffle host Snapshot restoration. Local malformed queue-start
 state is not an effect-atomicity claim: host owns the entire command snapshot.
 This remains an isolated paid-context effect adapter, not x24 public registration,
 payment/UseCard or a claim that all discard-reaction combinations are verified.
+
+### Lua x19 actual skill fuel
+`burnSkillsBlock` snapshots other skill instances in hand, prevalidates total
+block, then calls native CardActions.exhaust for each exact instance. Attack and
+power cards are not fuel. Native exhaust events/relic/Power hooks remain enabled;
+base/upgrade block is a native block action, with host Snapshot required for the
+whole paid command. Tests exercise real Feel No Pain plus host card-action drain,
+not replacement fake reactions. This is effect-level only, not public x19 play.
+Zero fuel still produces native block(0), so Dexterity 2 yields 2 block, unlike
+JS's literal zero: explicit semantic HOLD, not a claimed no-fuel no-benefit rule.
+Full mixed exhaust-reactive pauses, character exhaustGuard, and public UseCard
+remain unverified/unimplemented; the host owns queue lifecycle and unique piles.
