@@ -84,7 +84,10 @@
     "zl43",
     "zl44",
     "zl45",
-    "zl46"
+    "zl46",
+    "zl47",
+    "zl48",
+    "zl49"
   ],
   "degradation": "No P2/P3/P4 name adopted; higher priority evidence incomplete. Display names stay unique pending placeholders.",
   "next": "Complete Chinese P1/P2 index, validate proposed shield-consumption identity, obtain naming and balance review; no human approval inferred.",
@@ -154,6 +157,9 @@
     "zl43": "Installed pillar gates paid card access with temporary cover; this is project construct-support utility, not an official Stone Stele ability. Source/identity/naming/rarity/balance HOLD.",
     "zl44": "Two ordinary hits funded by jade are a project spear-combat resource trade; no official move name or shield-consumption combo asserted. Source/identity/naming/rarity/balance HOLD.",
     "zl45": "Combined Weak/Vulnerable/Block is a project card-efficiency compromise, not official petrification plus resistance reduction. Source/identity/naming/rarity/balance HOLD.",
-    "zl46": "Sacrificing pillar for one-shot temporary Block is a project emergency trade, not official pillar shielding or construct refund. Source/identity/naming/rarity/balance HOLD."
+    "zl46": "Sacrificing pillar for one-shot temporary Block is a project emergency trade, not official pillar shielding or construct refund. Source/identity/naming/rarity/balance HOLD.",
+    "zl47": "Retained spear attack with jade trades immediate attack for timing, not official retention or shielding on spear hits. Source/identity/naming/rarity/balance HOLD.",
+    "zl48": "Combined pillar installation and Weak is project card efficiency, not official petrification or construct suppression. Source/identity/naming/rarity/balance HOLD.",
+    "zl49": "Spending jade for targeted Vulnerable and draw is project setup/access, not official resistance reduction or shield consumption. Source/identity/naming/rarity/balance HOLD."
   }
 }

@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.32.0';
+export const VERSION = 'zhongli-mechanics-0.33.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -51,6 +51,9 @@ export const cards = [
   card('zl44', '付少量防线连续双击，保留更大储备而降低终结强度', 'common', 1, [['spendJade', 3], ['damage', 4], ['damage', 4]], [['spendJade', 3], ['damage', 6], ['damage', 6]], 'enemy'),
   card('zl45', '一张牌同时短暂压制与暴露敌人，牺牲更强的单项控制', 'common', 2, [['weak', 1], ['vulnerable', 1], ['block', 3]], [['weak', 2], ['vulnerable', 2], ['block', 5]], 'enemy'),
   {...card('zl46', '拆除岩脊一次挡住大伤，失去后续持续输出和持久盾', 'common', 1, [['spendPillar', 1], ['block', 24]], [['spendPillar', 1], ['block', 30]]), exhaust: true},
+  {...card('zl47', '保留短枪储备直到安全回合，牺牲即时伤害并占手牌', 'common', 1, [['damage', 2], ['jade', 3]], [['damage', 4], ['jade', 4]], 'enemy'), selfRetain: true},
+  {...card('zl48', '整回合建立岩脊并减压，压缩牌数但失去独立控制输出', 'common', 3, [['pillar', 3], ['weak', 1]], [['pillar', 4], ['weak', 2]], 'enemy'), power: true},
+  {...card('zl49', '支付防线开启易伤并寻找跟进，满手和缺输出时浪费', 'common', 1, [['spendJade', 3], ['vulnerable', 1], ['draw', 2]], [['spendJade', 3], ['vulnerable', 2], ['draw', 3]], 'enemy'), exhaust: true},
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
