@@ -1,0 +1,190 @@
+{
+  "version": "KQ-0.1",
+  "read_at": "2026-11-13",
+  "status": "HOLD",
+  "note": "Unverified source index; null fields intentionally block approval, not a passed naming validator. CandidateName is research-only, not displayed.",
+  "cards": [
+    {
+      "card_id": "KQ001",
+      "decision_role": "无前置单体伤害",
+      "effect_ref": "mechanics.mjs#cards.KQ001",
+      "name": "待命名·KQ001",
+      "candidate_name": "云来剑法",
+      "source_tier": "P1",
+      "source_kind": "community_transcription_lead",
+      "source_text": null,
+      "source_locator": {
+        "url": "https://genshin-impact.fandom.com/zh/wiki/%E5%88%BB%E6%99%B4?variant=zh-hans",
+        "section": "普通攻击·云来剑法"
+      },
+      "source_version": "unverified",
+      "source_context": "无前置单体伤害",
+      "source_verified": false,
+      "p1_checked": "search_performed_primary_evidence_missing",
+      "p2_checked": "precise_original_missing",
+      "p3_status": "not_used",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "PENDING",
+        "N3": "PENDING",
+        "N4": "PENDING",
+        "N5": "PENDING",
+        "N6": "PENDING"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      },
+      "old_name": null,
+      "change_reason": "new_candidate_no_approved_name",
+      "status": "HOLD"
+    },
+    {
+      "card_id": "KQ002",
+      "decision_role": "基础防守",
+      "effect_ref": "mechanics.mjs#cards.KQ002",
+      "name": "待命名·KQ002",
+      "candidate_name": null,
+      "source_tier": null,
+      "source_kind": "unassigned",
+      "source_text": null,
+      "source_locator": null,
+      "source_version": "unverified",
+      "source_context": "基础防守",
+      "source_verified": false,
+      "p1_checked": "search_performed_primary_evidence_missing",
+      "p2_checked": "precise_original_missing",
+      "p3_status": "not_used",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "PENDING",
+        "N3": "PENDING",
+        "N4": "PENDING",
+        "N5": "PENDING",
+        "N6": "PENDING"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      },
+      "old_name": null,
+      "change_reason": "new_candidate_no_approved_name",
+      "status": "HOLD"
+    },
+    {
+      "card_id": "KQ003",
+      "decision_role": "雷楔来源或换位兑现",
+      "effect_ref": "mechanics.mjs#cards.KQ003",
+      "name": "待命名·KQ003",
+      "candidate_name": "星斗归位",
+      "source_tier": "P1",
+      "source_kind": "community_transcription_lead",
+      "source_text": null,
+      "source_locator": {
+        "url": "https://genshin-impact.fandom.com/zh/wiki/%E5%88%BB%E6%99%B4?variant=zh-hans",
+        "section": "星斗归位/雷楔/再次施放分支"
+      },
+      "source_version": "unverified",
+      "source_context": "雷楔来源或换位兑现",
+      "source_verified": false,
+      "p1_checked": "search_performed_primary_evidence_missing",
+      "p2_checked": "precise_original_missing",
+      "p3_status": "not_used",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "PENDING",
+        "N3": "PENDING",
+        "N4": "PENDING",
+        "N5": "PENDING",
+        "N6": "PENDING"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      },
+      "old_name": null,
+      "change_reason": "new_candidate_no_approved_name",
+      "status": "HOLD"
+    },
+    {
+      "card_id": "KQ004",
+      "decision_role": "双段单体或雷楔群体兑现",
+      "effect_ref": "mechanics.mjs#cards.KQ004",
+      "name": "待命名·KQ004",
+      "candidate_name": "重击（雷暴连斩分支）",
+      "source_tier": "P1",
+      "source_kind": "community_transcription_lead",
+      "source_text": null,
+      "source_locator": {
+        "url": "https://genshin-impact.fandom.com/zh/wiki/%E5%88%BB%E6%99%B4?variant=zh-hans",
+        "section": "普通攻击/重击；星斗归位/雷楔/重击分支"
+      },
+      "source_version": "unverified",
+      "source_context": "双段单体或雷楔群体兑现",
+      "source_verified": false,
+      "p1_checked": "search_performed_primary_evidence_missing",
+      "p2_checked": "precise_original_missing",
+      "p3_status": "not_used",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "PENDING",
+        "N3": "PENDING",
+        "N4": "PENDING",
+        "N5": "PENDING",
+        "N6": "PENDING"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      },
+      "old_name": null,
+      "change_reason": "new_candidate_no_approved_name",
+      "status": "HOLD"
+    },
+    {
+      "card_id": "KQ005",
+      "decision_role": "无前置群体多段",
+      "effect_ref": "mechanics.mjs#cards.KQ005",
+      "name": "待命名·KQ005",
+      "candidate_name": "天街巡游",
+      "source_tier": "P1",
+      "source_kind": "community_transcription_lead",
+      "source_text": null,
+      "source_locator": {
+        "url": "https://genshin-impact.fandom.com/zh/wiki/%E5%88%BB%E6%99%B4?variant=zh-hans",
+        "section": "天街巡游"
+      },
+      "source_version": "unverified",
+      "source_context": "无前置群体多段",
+      "source_verified": false,
+      "p1_checked": "search_performed_primary_evidence_missing",
+      "p2_checked": "precise_original_missing",
+      "p3_status": "not_used",
+      "higher_priority_rejections": [],
+      "n_gate": {
+        "N2": "PENDING",
+        "N3": "PENDING",
+        "N4": "PENDING",
+        "N5": "PENDING",
+        "N6": "PENDING"
+      },
+      "human_review": {
+        "approved": false,
+        "reviewer": null,
+        "date": null,
+        "evidence": null
+      },
+      "old_name": null,
+      "change_reason": "new_candidate_no_approved_name",
+      "status": "HOLD"
+    }
+  ]
+}
