@@ -1,0 +1,5 @@
+# KQ049 additional actual boundaries
+
+One targeted test passed six additional base/upgrade public C.play cases on the same native mapping as 518bbc5e, without changing exporter or host. Actual C.draw fills hand10, source play opens slot and draws back to10, eligible skill grants4/7 and source disposes once. Actual draw-pile exhaustion then reshuffle is followed by an injected throw; pre-pay graph values and hand/draw/discard/RNG/source instance identities are restored, retry spends exactly1 and grants shield once.
+
+For draw-reaction death, the fixture wraps actual C.draw and then applies real loseHp. The host spends1 and reveals draw, player dies, follow-up shield is0, pendingPlay clears while cardInUse retains source under existing dead-source completion policy. Further play refuses without mutation. This synthetic trigger validates death gating, not a new real enemy power or complete Power/event-bus coverage. No gameplay policy approval, fairness rollback of already observed information, or formal registration is inferred. These six cases supplement, not replace, the sixteen ordinary cases. No shared code changes or full test suite.
