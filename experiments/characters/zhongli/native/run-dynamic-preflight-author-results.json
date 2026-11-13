@@ -1,0 +1,38 @@
+{
+  "sharedCommit": "1d5413a76eb6bfd769a558c34563b4128e9885fc",
+  "method": "Independent exact workspace archive and data rebuild; author preflight suite plus frozen host suite actually executed",
+  "markers": [
+    "AUTHOR_ZL_DYNAMIC_PREFLIGHT_PASS 11 actual/catalog-variant rejects before Combat.new plus2 safe encounter controls",
+    "ZHONGLI_DYNAMIC_ENCOUNTER_GUARD_PASS"
+  ],
+  "authorRejections": {
+    "existingEncounters": [
+      "large_acid",
+      "large_spike",
+      "louse_pair",
+      "small_slimes"
+    ],
+    "renamedDefinitionsWithLateMoves": [
+      "enemyRally",
+      "enemyTorchSpawn",
+      "enemyTorchRevive",
+      "enemyBronzeSpawn",
+      "reptomancerSummon"
+    ],
+    "splitMetadata": [
+      "splitEnemy",
+      "splitEnemies"
+    ]
+  },
+  "hostAdditional": [
+    "exact dynamic error for acid/spike",
+    "Ganyu dynamic encounters remain admitted",
+    "constructor replacement fallback rejects before first turn and restores Run"
+  ],
+  "limitations": [
+    "Safe rejection, not implemented multi-enemy Zhongli",
+    "Artificial renamed definitions and constructor override are adversarial fixtures",
+    "No map filtering or replacement fight; ordinary controls explicit",
+    "No absorption or pillar AoE choice"
+  ]
+}
