@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.15.0",
+  "version": "ganyu-sample-0.16.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -1507,6 +1507,116 @@
         "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
       },
       "exhaust": true
+    },
+    {
+      "id": "ganyu-44",
+      "name": "待命名·ganyu-44",
+      "candidate_name": null,
+      "role": "保持满蓄时的小额防守而不消费资源",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 3,
+            "bonus": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 4,
+            "bonus": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-44",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-45",
+      "name": "待命名·ganyu-45",
+      "candidate_name": null,
+      "role": "保持满蓄的小额伤害为之后核心让路",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_damage",
+            "amount": 4,
+            "bonus": 4
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_damage",
+            "amount": 6,
+            "bonus": 5
+          }
+        ]
+      },
+      "source_ref": "ganyu-45",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-46",
+      "name": "待命名·ganyu-46",
+      "candidate_name": null,
+      "role": "支付两费防守兼满蓄绽放",
+      "rarity": "uncommon",
+      "target": "enemy",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 7
+          },
+          {
+            "op": "charged_shot",
+            "direct": 5,
+            "bloom": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 10
+          },
+          {
+            "op": "charged_shot",
+            "direct": 7,
+            "bloom": 6
+          }
+        ]
+      },
+      "source_ref": "ganyu-46",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
     }
   ],
   "environment": {
