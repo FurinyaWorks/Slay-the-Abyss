@@ -277,3 +277,16 @@ trusted queue action, not an externally callable command: queue continuation
 identity/one execution and whole rollback belong to the host. Intervening reactive
 HP changes, target removal, last-enemy terminal timing and public cost/UseCard
 remain unverified. No shared gate or numeric card change is made here.
+
+### x48 native top-card sacrifice then draw
+Projection extends to 48 candidates; x47 exhaustGuard remains only a proposal,
+not a registered/executed native exhaust hook. x48 uses the existing host
+shuffleDiscardIntoDraw when necessary, removes the real top instance directly
+(without pretending it was drawn), calls native CardActions.exhaust, and queues
+native base/up draw. A full hand still pays the top-card sacrifice but draw obeys
+the hand cap. Empty piles burn nothing. Three tests cover identity, actual
+reshuffle and Snapshot/RNG restoration, both draw values, full/empty piles and
+native Feel No Pain after host drain. Public payment/UseCard/self-exhaust and
+all shuffle/exhaust-reactive ordering or pauses remain unverified. Host owns
+unique/valid card zones and entire-command rollback, including a bad resolving
+UID encountered after reshuffle. No shared gate or frozen numeric values change.

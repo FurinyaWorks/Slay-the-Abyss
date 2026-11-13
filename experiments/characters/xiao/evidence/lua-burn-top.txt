@@ -1,0 +1,3 @@
+PASS x48 burns actual top before base/up native draw; full hand still burns but cannot draw
+PASS native reshuffle feeds top exhaust; host Snapshot restores piles/RNG; empty library has no fuel
+PASS native exhaust reactions retained without pretending the burned card was drawn
