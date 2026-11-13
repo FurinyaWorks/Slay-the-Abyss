@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.7.0",
+  "version": "ganyu-sample-0.8.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -633,6 +633,152 @@
         ]
       },
       "source_ref": "ganyu-18",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-19",
+      "name": "待命名·ganyu-19",
+      "candidate_name": null,
+      "role": "牺牲满蓄进攻机会换当前防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 5,
+            "bonus": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 7,
+            "bonus": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-19",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-20",
+      "name": "待命名·ganyu-20",
+      "candidate_name": null,
+      "role": "支付双费过牌兼单层主动蓄力",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 2
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-20",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-21",
+      "name": "待命名·ganyu-21",
+      "candidate_name": null,
+      "role": "无蓄力前置的即时群体处置",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 10
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 14
+          }
+        ]
+      },
+      "source_ref": "ganyu-21",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-22",
+      "name": "待命名·ganyu-22",
+      "candidate_name": null,
+      "role": "牺牲部分即时伤害换下一张选择",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "source_ref": "ganyu-22",
       "review": {
         "status": "HOLD",
         "human_approved": false,
