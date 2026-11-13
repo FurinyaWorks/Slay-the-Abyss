@@ -225,6 +225,46 @@
         "approved": false
       },
       "status": "HOLD"
+    },
+    {
+      "card_id": "KQ008",
+      "decision_role": "保持雷楔的单体进攻，不提前消费兑现窗口",
+      "effect_ref": "mechanics.mjs#cards.KQ008",
+      "name": "待命名·KQ008",
+      "candidate_name": null,
+      "source_tier": null,
+      "source_text": null,
+      "source_verified": false,
+      "source_version": "unverified",
+      "source_context": "原创机制候选，未完成官方来源逐句核验或降级论证",
+      "p1_checked": "pending_exact_primary_research",
+      "p2_checked": "pending",
+      "p3_status": "not_used",
+      "higher_priority_rejections": [],
+      "human_review": {
+        "approved": false
+      },
+      "status": "HOLD"
+    },
+    {
+      "card_id": "KQ009",
+      "decision_role": "低伤单段攻防，保留雷楔但攻击仍消费一次附魔",
+      "effect_ref": "mechanics.mjs#cards.KQ009",
+      "name": "待命名·KQ009",
+      "candidate_name": null,
+      "source_tier": null,
+      "source_text": null,
+      "source_verified": false,
+      "source_version": "unverified",
+      "source_context": "原创机制候选，未完成官方来源逐句核验或降级论证",
+      "p1_checked": "pending_exact_primary_research",
+      "p2_checked": "pending",
+      "p3_status": "not_used",
+      "higher_priority_rejections": [],
+      "human_review": {
+        "approved": false
+      },
+      "status": "HOLD"
     }
   ],
   "character_evidence": [
@@ -267,5 +307,20 @@
         "evidence": null
       }
     }
-  ]
+  ],
+  "official_video_index": {
+    "title": "Collected Miscellany - \"Keqing: Starward Sword\" | Genshin Impact",
+    "url": "https://www.youtube.com/watch?v=lf_b7_5oAZk",
+    "publisher": "Genshin Impact",
+    "publisher_verified": "search result marks Verified; direct page unavailable",
+    "published": "2020-10-27",
+    "checked_at": "2026-11-13",
+    "evidence_level": "search-index metadata only",
+    "direct_open": "fetch failed",
+    "transcript": null,
+    "timestamps": null,
+    "skill_text_verified": false,
+    "naming_gate": "HOLD",
+    "note": "Do not convert metadata identity to verified combat transcript or approval."
+  }
 }
