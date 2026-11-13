@@ -375,3 +375,16 @@ empty-pile cases, NoDraw, real FNP/DE exhaustion, a post-DE fault restoring the
 whole pre-payment graph and aliases, Scry resume failures and automatic gates.
 Explicit test power injection and pile fixtures are not claims of natural power
 acquisition. Formal registration and incoming-jade interception remain closed.
+
+## Zhongli 16/57 paid native defense candidates
+
+16 spends jade 6 then uses native block 16/21; 57 spends jade 3 then native
+Weak 3/4 on the validated living enemy. Both source costs are 1 (ordinary dynamic
+cost remains authoritative). The sole target condition is now keyed to canonical
+ENEMY targeting, covering Weak as well as the earlier attack. Exact native tail
+shape is required. Tests execute 84 jade/face scenarios, zero-energy and target
+rejections, Dexterity/Frail, Artifact consuming Weak without refund, post-native
+fault rollback, Scry/resume balance recheck and automatic gates. Controlled native
+life-loss injected after spend verifies terminal interruption without refund;
+this is not an invented natural reaction for shield/Weak cards. Jade incoming
+absorption and formal registration remain disabled.
