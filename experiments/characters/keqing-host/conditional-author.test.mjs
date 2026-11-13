@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('conditional source literals and real generated acquisition through public Run',()=>{buildLuaData();const r=runLua('experiments/characters/keqing-host/conditional-author.test.lua',{timeout:150000});console.log(r.stdout);assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KQ_CONDITIONAL_AUTHOR_PASS/);});
