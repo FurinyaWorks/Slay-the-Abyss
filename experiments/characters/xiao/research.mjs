@@ -36,6 +36,11 @@ export function choose(view, policy) {
     if(id==='x14'&&view.mask>0&&view.hp>2&&policy!=='burst')score=7;
     if(id==='x16')score=Math.min(3,Math.max(0,incoming-view.block))*(policy==='guard'?3:1)+(view.exitInDiscard&&view.mask>0&&view.energy>=2?15:0);
     if(id==='x17'&&view.hp>3&&view.energy===0&&attacks>0)score=policy==='burst'?20:(view.hp>incoming+5?10:-10);
+    if(id==='x20'&&view.mask===0&&view.hand.length<10)score=8;
+    if(id==='x19'){
+      const fuel=view.hand.filter((other,i)=>i!==index&&catalog.cards.find(c=>c.id===other)?.kind==='skill').length;
+      score=Math.min(fuel*4,Math.max(0,incoming-view.block))*(policy==='guard'?2:1)-fuel*2;
+    }
     if(score>0)choices.push({index,target:target.index,score});
   });
   return choices.sort((a,b)=>b.score-a.score||a.index-b.index)[0]??null;

@@ -36,6 +36,12 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'unmaskedDraw') { if(s.mask === 0) drawCards(s,value); }
+  else if (op === 'burnSkillsBlock') {
+    const removed=s.hand.filter(id=>byId.get(id)?.kind==='skill');
+    s.hand=s.hand.filter(id=>byId.get(id)?.kind!=='skill');
+    s.exhaust.push(...removed);s.block+=removed.length*value;
+  }
   else if (op === 'energy') s.energy += value;
   else if (op === 'breakBlock') s.enemies[target].block = 0;
   else if (op === 'recoverExit') {
@@ -103,6 +109,8 @@ export function startTurn(input) {
 }
 export function cardText(card, upgraded = false) {
   const text = ({op, value}) => ({
+    unmaskedDraw: `若当前没有面具，抽${value}张牌（手牌上限10）；有面具则不抽。`,
+    burnSkillsBlock: `消耗手中所有其他技能牌，每张获得${value}点格挡；没有则不获格挡。`,
     energy: `获得${value}点能量（仅本回合）。`,
     breakBlock: '移除目标所有格挡。',
     recoverExit: `从弃牌堆按顺序取回至多${value}张含退出面具效果的牌；手牌上限10，没有则不取。`,

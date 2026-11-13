@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.5",
+  "version": "xiao-g2-lab-0.6",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -579,6 +579,60 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x19",
+      "name": "待命名·x19",
+      "role": "牺牲当前技能换应急防守并压缩牌堆",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "burnSkillsBlock",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "burnSkillsBlock",
+          "value": 6
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x20",
+      "name": "待命名·x20",
+      "role": "无面具空窗整手：有限免费过牌而非窗口内续爆",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 0,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "unmaskedDraw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "unmaskedDraw",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -607,7 +661,9 @@
     "x15",
     "x16",
     "x17",
-    "x18"
+    "x18",
+    "x19",
+    "x20"
   ],
   "maskRules": {
     "attackBonus": 4,
