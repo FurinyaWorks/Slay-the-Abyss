@@ -1,0 +1,5 @@
+# KQ027 isolated actual-Lua probe (HOLD)
+
+Strict export of candidate KQ027: cost2 attack, damageAll7/up10 then consume existing wedge for normal block6. Two tests actually run: exporter rejects unsupported shape/unknown keys/hole/symbol/invalid values; 24 base/upgrade × wedge × infusion0/1/2 × normal or Dex10/Frail matrices run actual Combat. Infusion adds2 to each enemy hit and spends once per card. Wedge adds normal block6, modified12; no wedge gives no block. Canonical empty definitions are restored and generic wrapper refuses dedicated marker; input is unmodified, insufficient cost rejects.
+
+Four terminal controls record current isolated behavior: both enemy kills retain normal block6; thorns-player-death prevents block but post-return wrapper still removes wedge and spends infusion. This known difference from production paid dispatcher is explicitly NOT a formal integration contract. Entry resource snapshot and post-return consumption cannot implement mid-card reaction changes, queue pauses, or stage-time resource gates. Do not copy this wrapper into shared dispatcher. No shared files changed; source/name/human/balance/registration gates remain HOLD.

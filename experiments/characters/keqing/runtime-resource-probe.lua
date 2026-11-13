@@ -58,6 +58,7 @@ function M.play(input,uid,target)
  if original.keqingUnblocked then return nil,'dedicated_unblocked_adapter_required' end
  if original.keqingWedgeDraw then return nil,'dedicated_wedge_draw_adapter_required' end
  if original.keqingSetup then return nil,'dedicated_setup_adapter_required' end
+ if original.keqingAoeDefense then return nil,'dedicated_aoe_defense_adapter_required'end
  if original.keqingDetonation then return nil,'dedicated_detonation_adapter_required' end
  if original.keqingInfusion then return nil,'dedicated_infusion_adapter_required' end
  if original.keqingConditional then return nil,'dedicated_conditional_adapter_required' end
