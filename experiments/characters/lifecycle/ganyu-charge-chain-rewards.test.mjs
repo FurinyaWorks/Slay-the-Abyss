@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Ganyu fifty-two source domain real generated rewards',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/ganyu-charge-chain-generated-rewards.test.lua',{timeout:120000});console.log(r.stdout);assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);});
