@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Xiao source spend chain actual paid lifecycle',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/xiao-spend-paid.test.lua',{timeout:120000});console.log(r.stdout);assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/XIAO_SPEND_PAID_PASS/);});

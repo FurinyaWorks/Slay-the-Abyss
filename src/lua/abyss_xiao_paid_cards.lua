@@ -8,17 +8,19 @@ for _,d in ipairs(Bridge.definitions())do
  if d.id=='xiao_candidate_x01'or d.id=='xiao_candidate_x02'or d.id=='xiao_candidate_x04'or d.id=='xiao_candidate_x05'or d.id=='xiao_candidate_x06'or d.id=='xiao_candidate_x03'or d.id=='xiao_candidate_x07'or d.id=='xiao_candidate_x08'then canonical[d.id]=d end
 end
 for _,d in ipairs(Bridge.additionalDefinitions())do canonical[d.id]=d end
+for _,d in ipairs(Bridge.spendDefinitions())do canonical[d.id]=d end
 local function same(a,b)
  if type(a)~='table'or type(b)~='table'then return a==b end
+ if getmetatable(a)or getmetatable(b)then return false end
  for k,v in pairs(a)do if not same(v,b[k])then return false end end
  for k in pairs(b)do if a[k]==nil then return false end end
  return true
 end
 function M.supports(e)
  if type(e)~='table'or getmetatable(e)or e.op~='xiaoCard'
-  or e.kind~='unmaskedDraw'and e.kind~='exhaustDamage'and e.kind~='exhaustBlock'and e.kind~='maskBlock'and e.kind~='breakBlock'and e.kind~='damage'and e.kind~='damageAll'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
- for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='cap'and(e.kind=='exhaustDamage'or e.kind=='exhaustBlock'))and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
- if e.kind=='exhaustDamage'or e.kind=='exhaustBlock'then if type(e.cap)~='number'or e.cap%1~=0 or e.cap<0 or e.cap>2147483647 then return false end end
+  or e.kind~='spendEnergyBlock'and e.kind~='spendBlockDraw'and e.kind~='unmaskedDraw'and e.kind~='exhaustDamage'and e.kind~='exhaustBlock'and e.kind~='maskBlock'and e.kind~='breakBlock'and e.kind~='damage'and e.kind~='damageAll'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
+ for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='cap'and(e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'))and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
+ if e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'then if type(e.cap)~='number'or e.cap%1~=0 or e.cap<0 or e.cap>2147483647 then return false end end
  return type(e.value)=='number'and e.value%1==0 and e.value>=0 and e.value<=2147483647
 end
 function M.canUse(state,instance,card,targetIndex)
@@ -28,6 +30,15 @@ function M.canUse(state,instance,card,targetIndex)
   return true
  end
  local c=canonical[instance.cardId]
+ if instance.cardId=='xiao_candidate_x23'or instance.cardId=='xiao_candidate_x38'then
+  if instance.upgraded~=nil and type(instance.upgraded)~='boolean'then return false,'invalid_xiao_upgrade'end
+  local source=state.catalog.cards[instance.cardId]
+  if type(source)~='table'or getmetatable(source)then return false,'xiao_spend_source'end
+  for k,v in pairs(c)do if not same(source[k],v)then return false,'xiao_spend_source'end end
+  for k in pairs(source)do if c[k]==nil and k~='color'and k~='rarity'and k~='sourceId'then return false,'xiao_spend_source'end end
+  if card.zhongliCandidate~=nil or card.selfRetain then return false,'xiao_spend_source'end
+ end
+
  if card.xiaoCandidate~=true or not c or state.characterCandidate~='xiao' or state.experimentalMechanics~=true
   or state.originalV4 or card.experimental~=true or card.originalV4 or card.runNativeABI or card.silentFinalCard
   or card.costMode or card.keqingCandidate~=nil or card.ganyuCandidate~=nil
