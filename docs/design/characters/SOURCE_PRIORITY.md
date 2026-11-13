@@ -30,6 +30,7 @@ P3 术语库独立于官方锚点库；须明确现实技术/文化来源与动�
 - p1_checked / p2_checked / p3_status (searched、not_applicable、unknown)
 - higher_priority_rejections：每条指向更高层级真实检索候选，说明不适合的 N2/N3/N4/N6 原因；P2 须有 P1 的检索/不适合记录，P3 须 P1 与 P2，P4 须 P1/P2 并说明 P3 的状态和理由
 - P3 附加 original_term / cultural_source / real_action_meaning / mechanic_mapping
+- **P4 进一步强制**：每张必须先填动作语境（武器攻击／武器防守／武器连击／纯过牌／非武器防御／治疗／状态术法／叙事能力）。若本牌确有枪、刀等实际武器动作，P3不能简单写 `not_applicable`：必须检索至少一个有出处的真实技法候选，记录原词、专业来源、真实动作意义和逐项否决理由；只有确实没有对应的真实术语才允许走P4。若是抽牌、回血等无武器动作的牌，P3可记录 `not_applicable` 以及具体不适用原因，**不能用枪法给非动作牌贴皮**。程序门禁只检信息完整、不能替代独立人审
 - n_gate（N2/N3/N4/N5/N6），human_review（reviewer/日期/evidence/批准状态），old_name/source/change_reason 审计；对同池名称重复、词根堆叠及相同职责卡并行复查
 
 审核者必须能沿稳定ID追到：**高优先级官方检索 → 不适合的具体候选和原因 → 当前候选的出处与语境 → 卡牌效果对应 → 独立审核**。不能只填「官方名字已经找过」「这是原创名字」「人物主页URL」。
