@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.30",
+  "version": "xiao-g2-lab-0.31",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -2093,6 +2093,72 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x69",
+      "name": "待命名·x69",
+      "role": "反复入场补手：每次真实进入窗口抽牌",
+      "kind": "power",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "entryDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "entryDraw",
+          "value": 2
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x70",
+      "name": "待命名·x70",
+      "role": "退出整备再入场：回收公开弃牌中的入场牌",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "recoverEntry",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "recoverEntry",
+          "value": 1
+        },
+        {
+          "op": "draw",
+          "value": 1
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -2171,7 +2237,9 @@
     "x65",
     "x66",
     "x67",
-    "x68"
+    "x68",
+    "x69",
+    "x70"
   ],
   "maskRules": {
     "attackBonus": 4,
