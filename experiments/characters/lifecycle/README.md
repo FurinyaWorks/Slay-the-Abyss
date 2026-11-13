@@ -224,3 +224,22 @@ bank phase marker without modifying energy. Native Ice Cream therefore retains
 The enabled candidate consumes all remaining energy even at charge cap (3 next
 turn), matching the source candidate's documented overflow discard. This is a
 candidate compatibility assertion, not final balance approval for the combination.
+
+### Zhongli public owner-end candidate
+
+The explicit single-enemy, relic-disabled Zhongli candidate now executes the
+installed pillar/repair pair through ordinary owner-end extension scheduling.
+First installation records the legacy owner-end acquisition list as well as the
+strict Power schedule. The pair anchors to pillar when present and always queues
+pillar before repair, independent of acquisition order. Existing Act3 callbacks
+are delegated unchanged. Only a correctly bound pending repair cleanup can run
+after termination; it never gains jade unless both actors remain active.
+
+Public tests cover 24 paid-install/base/upgrade/order/HP/Block combinations,
+real Codex pause and failed resume, faults after actual pillar damage and in the
+following start turn, and full public-object alias restoration. A controlled
+native HP-loss injection between pillar and repair tests dead-source cleanup;
+it is not a claim that fixed pillar triggers Thorns. The separate actual Thorns
+test confirms native fixed-damage non-attack behavior. No jade damage interception,
+starter relic, multi-enemy expansion, catalog registration or final balance
+approval is added. Full CI has not been run.

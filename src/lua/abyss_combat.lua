@@ -915,6 +915,7 @@ end
 -- continuations. Ordinary immediate cards keep their smaller transaction.
 local queuedHandlers = {}
 queuedHandlers.allow = function(state, action)
+    if action.kind=='effect'and require('abyss_zhongli_owner_end').cleanupAllowed(state,action.effect)then return true end
     if state.player.hp <= 0 then return false end
     if M.outcome(state) then
         if action.kind=='effect'and (require('abyss_end_turn_powers').retained(action.effect)or action.effect.op=='combustDamage')then return true end
@@ -2127,7 +2128,7 @@ end
 -- Candidate lifecycle must share the whole command preimage, including relics
 -- that run before ordinaryOwnerEnd. Legacy commands retain their existing path.
 function M.endTurn(state,rollbackOwner)
-    if not require('abyss_character_owner_end').active(state)and not require('abyss_ganyu_owner_end').active(state)then return endTurnRequest(state,rollbackOwner)end
+    if not require('abyss_character_owner_end').active(state)and not require('abyss_ganyu_owner_end').active(state)and not require('abyss_zhongli_owner_end').active(state)then return endTurnRequest(state,rollbackOwner)end
     local restore=endTurnRestore(state,rollbackOwner)
     local called,ok,reason=pcall(endTurnRequest,state)
     if not called then restore();error(ok,0)end

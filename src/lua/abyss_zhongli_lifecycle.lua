@@ -31,8 +31,15 @@ function M.applyInstall(s,kind,strength)
  local id=assert(ids[kind],'unknown candidate Power')
  assert(integer(strength,1,kind=='pillar'and 6 or 3),'invalid Power strength')
  local before=s.player.statuses[id]
+ if before==nil then
+  for _,existing in ipairs(s.player.powerOrder or {})do assert(existing~=id,'stale owner-end Power history')end
+ end
  s.player.statuses[id]=math.max(before or 0,strength)
  Schedule.recordApplied(s,s.player,id,before)
+ if before==nil then
+  s.player.powerOrder=s.player.powerOrder or {}
+  s.player.powerOrder[#s.player.powerOrder+1]=id
+ end
  validate(s)
 end
 function M.install(state,kind,strength)
@@ -43,6 +50,8 @@ function M.removePillar(state)
  validate(state);assert(alive(state),'inactive battle')
  assert((state.player.statuses[ids.pillar]or 0)>0,'missing pillar')
  local s=Copy.copy(state);Schedule.remove(s,s.player,ids.pillar);s.player.statuses[ids.pillar]=nil
+ local order={};for _,id in ipairs(s.player.powerOrder or {})do if id~=ids.pillar then order[#order+1]=id end end
+ s.player.powerOrder=order
  validate(s);return s
 end
 function M.ownerEnd(state,sequence)
