@@ -9,7 +9,11 @@ local Conditional=require('abyss_ganyu_conditional_card')
 local ConditionalDefinitions=require('abyss_ganyu_conditional_definitions')
 local conditionalById={}
 for _,definition in ipairs(ConditionalDefinitions.cards)do conditionalById[definition.id]=definition end
+local Draw=require('abyss_ganyu_draw_card')
+local DrawDefinitions=require('abyss_ganyu_draw_definitions')
+local drawById={};for _,d in ipairs(DrawDefinitions.cards)do drawById[d.id]=d end
 local M={}
+function M.drawDefinitions()return Copy(DrawDefinitions)end
 function M.conditionalDefinitions()return Copy(ConditionalDefinitions)end
 local function same(a,b)
  if type(a)~='table'or type(b)~='table'then return a==b end
@@ -22,6 +26,23 @@ function M.supportsConditional(e)
   if same(e,d.effects[1])or same(e,d.upgrade.effects[1])then return true end
  end
  return false
+end
+function M.supportsDraw(e)
+ if type(e)~='table'or getmetatable(e)then return false end
+ for _,d in pairs(drawById)do if same(e,d.effects[1])or same(e,d.upgrade.effects[1])then return true end end
+ return false
+end
+local function drawUse(state,instance,card)
+ local d=instance and drawById[instance.cardId]
+ if not d or instance.upgraded~=nil and type(instance.upgraded)~='boolean'
+  or state.characterCandidate~='ganyu'or state.experimentalMechanics~=true or state.originalV4
+  or card.experimental~=true or card.ganyuCandidate~=true or card.ganyuNativeCandidate~=nil
+  or card.runNativeABI or card.originalV4 or card.silentFinalCard or card.costMode
+  or card.keqingCandidate~=nil or card.xiaoCandidate~=nil or card.zhongliCandidate~=nil
+  or card.selfRetain or card.exhaust~=d.exhaust or card.type~=d.type or card.target~=d.target
+  or getmetatable(card.effects)or not M.supportsDraw(card.effects[1])
+  or not same(card.effects,instance.upgraded and d.upgrade.effects or d.effects)then return false,'ganyu_draw_unavailable'end
+ return true
 end
 local function conditionalUse(state,instance,card,targetIndex)
  local d=instance and conditionalById[instance.cardId]
@@ -41,7 +62,7 @@ function M.supportsStorm(e)
  return true
 end
 function M.supports(e)
- if M.supportsStorm(e)or M.supportsConditional(e)then return true end
+ if M.supportsDraw(e)or M.supportsStorm(e)or M.supportsConditional(e)then return true end
  if type(e)~='table' or getmetatable(e) or e.op~='ganyuCard'then return false end
  local allowed=e.kind=='charge'and {op=true,kind=true,amount=true}
   or e.kind=='chargedShot'and {op=true,kind=true,direct=true,bloom=true}
@@ -51,6 +72,7 @@ function M.supports(e)
   or {op='charged_shot',direct=e.direct,bloom=e.bloom})
 end
 function M.canUse(state,card,targetIndex,instance)
+ if instance and drawById[instance.cardId]or card.effects[1]and card.effects[1].op=='ganyuDraw'then return drawUse(state,instance,card)end
  if instance and conditionalById[instance.cardId] or card.effects[1]and card.effects[1].op=='ganyuConditional'then return conditionalUse(state,instance,card,targetIndex)end
  if card.ganyuNativeCandidate~=nil or instance and Native.known(instance.cardId)then return Native.canUse(state,instance,card,targetIndex)end
  if card.ganyuCandidate==nil then
@@ -78,12 +100,13 @@ function M.prepare(combat,state,card,effects,target)
   context.ganyuPaid={uid=context.uid,turn=state.turn,playId=#state.cardsPlayedThisCombat,native=true}
   return effects
  end
+ local draw=effects[1].op=='ganyuDraw'
  local conditional=effects[1].op=='ganyuConditional'
  local storm=effects[1].op=='ganyuStorm'
  if storm then assert(effects[1].amount==(state.cardInUse.upgraded and 6 or 4),'invalid storm face')end
- local e=conditional and Conditional.prepare(combat,state,effects[1],target,context.uid)or storm and Storm.prepare(combat,state,effects[1],context.uid)or Queued.prepare(combat,state,effects[1],target,context.uid)
+ local e=draw and Draw.prepare(combat,state,effects[1],context.uid)or conditional and Conditional.prepare(combat,state,effects[1],target,context.uid)or storm and Storm.prepare(combat,state,effects[1],context.uid)or Queued.prepare(combat,state,effects[1],target,context.uid)
  local playId=#assert(state.cardsPlayedThisCombat,'missing Ganyu accepted use history')
- context.ganyuPaid={uid=context.uid,turn=state.turn,playId=playId,payload=Copy(e),storm=storm,conditional=conditional}
+ context.ganyuPaid={uid=context.uid,turn=state.turn,playId=playId,payload=Copy(e),storm=storm,conditional=conditional,draw=draw}
  return {{op='ganyuPaidStage',payload=e,uid=context.uid,turn=state.turn,playId=playId}}
 end
 function M.dispatch(combat,state,e,queue)
@@ -93,7 +116,7 @@ function M.dispatch(combat,state,e,queue)
   and e.uid==paid.uid and e.turn==paid.turn and e.turn==state.turn and e.playId==paid.playId
   and not paid.completed,'stale Ganyu stage')
  assert(same(e.payload,paid.payload),'mutated Ganyu paid effect')
- if paid.conditional then Conditional.dispatch(combat,state,e.payload,queue)elseif paid.storm then Storm.dispatch(combat,state,e.payload,queue)else Queued.dispatch(combat,state,e.payload,queue)end
+ if paid.draw then Draw.dispatch(combat,state,e.payload,queue)elseif paid.conditional then Conditional.dispatch(combat,state,e.payload,queue)elseif paid.storm then Storm.dispatch(combat,state,e.payload,queue)else Queued.dispatch(combat,state,e.payload,queue)end
  paid.completed=true
  return true
 end

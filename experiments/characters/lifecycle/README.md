@@ -615,3 +615,26 @@ permanent UID and next Run.play (controlled victory/hand placement), full-source
 flag rejection, bounded exhaustion, zero/Prismatic failure, post-sampling whole
 Run/RNG/alias restoration, repeatability and formal pool preservation. This is
 not official rarity, natural map balance or a complete 75-card release.
+
+### Ganyu resource draw30/33/43 paid continuation and explicit35 domain
+
+These three reviewed uncommon definitions use the same paid UID/turn/play ordinal
+and detached-payload binding as the prior Ganyu slices. Resource conditions are
+read at actual custom-stage execution: 30 consumes full charge, 43 consumes one,
+33 observes but does not consume the storm. Resource consumption precedes native
+draw; NoDraw, hand capacity and empty piles do not refund resource. Native queue,
+reshuffle RNG, 33/43 exhaust and FNP/Dark Embrace remain engine-owned.
+
+`abyss_ganyu_draw_reward_run.new(data,seed)` is a new closed experimental launcher
+with35 reviewed definitions and33 source-rarity-eligible rewards. The existing
+32-domain launcher is unchanged. The finite same-rarity/short-offer/zero failure
+and Prismatic-refusal policy is reused, not a formal pool/rarity change.
+
+Targeted checks include144 actual public C.play resource/face/draw-limit cases,
+6 fixed-offer permanent UID→next Run.play cases, six genuine reshuffle failures,
+revealed Scry continuation and live-resource decisions with full alias rollback,
+36 auto/strict-gate cases, and controlled pre-stage death. Generated acquisition
+uses12 fixed seeds without replacing offers; encountered IDs are reported, not
+claimed to cover every new card. Source derivation is reviewed dfaba927 draw ABI
+and8b0bf853 generated definitions. Fixed offers/hand placement/death injection are
+explicit fixtures, not ordinary gameplay balance certification.
