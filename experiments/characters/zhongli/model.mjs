@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.1.0';
+export const VERSION = 'zhongli-mechanics-0.3.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -11,6 +11,8 @@ export const cards = [
   card('zl04', '牺牲跨回合防线换取即时击杀', 'common', 1, [['spendJade', 6], ['damage', 14]], [['spendJade', 6], ['damage', 18]], 'enemy'),
   card('zl05', '不依赖护盾资源的高费终结', 'rare', 3, [['damage', 24]], [['damage', 32]], 'enemy'),
   card('zl06', '小额当前防守并为下回合留下余量', 'common', 1, [['block', 4], ['jade', 3]], [['block', 6], ['jade', 4]]),
+  card('zl07', '高压回合仍推进击杀的攻守兼顾', 'common', 1, [['damage', 5], ['block', 5]], [['damage', 7], ['block', 7]], 'enemy'),
+  card('zl08', '低压回合输出并蓄小额跨回合防线', 'common', 1, [['damage', 4], ['jade', 3]], [['damage', 6], ['jade', 4]], 'enemy'),
 ];
 export const JADE_CAP = 20;
 export function textFor(id, upgraded = false) {

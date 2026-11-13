@@ -1,0 +1,1044 @@
+[
+  {
+    "seed": 1006,
+    "outcome": "death",
+    "loss": 60,
+    "turns": 20,
+    "deadPayoffDraws": 10,
+    "unpayableAtStart": 10,
+    "firstPayoff": null,
+    "trace": [
+      {
+        "turn": 1,
+        "hp": 60,
+        "enemyHp": 40,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl02",
+          "zl04",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 57,
+          "enemyHp": 40,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 2,
+        "hp": 57,
+        "enemyHp": 40,
+        "jade": 0,
+        "hand": [
+          "zl03",
+          "zl01",
+          "zl01",
+          "zl01",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl03",
+          "zl01"
+        ],
+        "after": {
+          "hp": 51,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 3,
+        "hp": 51,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl04",
+          "zl02",
+          "zl03",
+          "zl01",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 50,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 4,
+        "hp": 50,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl02",
+          "zl01",
+          "zl02",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 47,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 5,
+        "hp": 47,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl01",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 44,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 6,
+        "hp": 44,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl03",
+          "zl02",
+          "zl04",
+          "zl01",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl03",
+          "zl02"
+        ],
+        "after": {
+          "hp": 43,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 7,
+        "hp": 43,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl01",
+          "zl01",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 40,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 8,
+        "hp": 40,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl04",
+          "zl01",
+          "zl02",
+          "zl03"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 39,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 9,
+        "hp": 39,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl02",
+          "zl03",
+          "zl01",
+          "zl04"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 38,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 10,
+        "hp": 38,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl01",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 35,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 11,
+        "hp": 35,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl04",
+          "zl02",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl01",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 27,
+          "enemyHp": 28,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 12,
+        "hp": 27,
+        "enemyHp": 28,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl02",
+          "zl03",
+          "zl01",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 26,
+          "enemyHp": 28,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 13,
+        "hp": 26,
+        "enemyHp": 28,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl04",
+          "zl01",
+          "zl03"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 25,
+          "enemyHp": 28,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 14,
+        "hp": 25,
+        "enemyHp": 28,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl01",
+          "zl01",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl01",
+          "zl02"
+        ],
+        "after": {
+          "hp": 17,
+          "enemyHp": 22,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 15,
+        "hp": 17,
+        "enemyHp": 22,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl04",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 14,
+          "enemyHp": 22,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 16,
+        "hp": 14,
+        "enemyHp": 22,
+        "jade": 0,
+        "hand": [
+          "zl03",
+          "zl02",
+          "zl01",
+          "zl01",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl03",
+          "zl02"
+        ],
+        "after": {
+          "hp": 13,
+          "enemyHp": 22,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 17,
+        "hp": 13,
+        "enemyHp": 22,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl03",
+          "zl02",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl03",
+          "zl02"
+        ],
+        "after": {
+          "hp": 12,
+          "enemyHp": 22,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 18,
+        "hp": 12,
+        "enemyHp": 22,
+        "jade": 0,
+        "hand": [
+          "zl04",
+          "zl01",
+          "zl02",
+          "zl01",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl01",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 4,
+          "enemyHp": 16,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 19,
+        "hp": 4,
+        "enemyHp": 16,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl04",
+          "zl02",
+          "zl03",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 3,
+          "enemyHp": 16,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 20,
+        "hp": 3,
+        "enemyHp": 16,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl01",
+          "zl01",
+          "zl02",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl01",
+          "zl01"
+        ],
+        "after": {
+          "hp": 0,
+          "enemyHp": 4,
+          "jade": 0
+        }
+      }
+    ]
+  },
+  {
+    "seed": 1006,
+    "outcome": "truncated",
+    "loss": 57,
+    "turns": 20,
+    "deadPayoffDraws": 10,
+    "unpayableAtStart": 10,
+    "firstPayoff": null,
+    "trace": [
+      {
+        "turn": 1,
+        "hp": 60,
+        "enemyHp": 40,
+        "jade": 3,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl02",
+          "zl04",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 60,
+          "enemyHp": 40,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 2,
+        "hp": 60,
+        "enemyHp": 40,
+        "jade": 0,
+        "hand": [
+          "zl03",
+          "zl01",
+          "zl01",
+          "zl01",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl03",
+          "zl01"
+        ],
+        "after": {
+          "hp": 54,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 3,
+        "hp": 54,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl04",
+          "zl02",
+          "zl03",
+          "zl01",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 53,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 4,
+        "hp": 53,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl02",
+          "zl01",
+          "zl02",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 50,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 5,
+        "hp": 50,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl01",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 47,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 6,
+        "hp": 47,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl03",
+          "zl02",
+          "zl04",
+          "zl01",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl03",
+          "zl02"
+        ],
+        "after": {
+          "hp": 46,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 7,
+        "hp": 46,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl01",
+          "zl01",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 43,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 8,
+        "hp": 43,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl04",
+          "zl01",
+          "zl02",
+          "zl03"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 42,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 9,
+        "hp": 42,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl02",
+          "zl03",
+          "zl01",
+          "zl04"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 41,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 10,
+        "hp": 41,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl01",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 38,
+          "enemyHp": 34,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 11,
+        "hp": 38,
+        "enemyHp": 34,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl04",
+          "zl02",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl01",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 30,
+          "enemyHp": 28,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 12,
+        "hp": 30,
+        "enemyHp": 28,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl02",
+          "zl03",
+          "zl01",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 29,
+          "enemyHp": 28,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 13,
+        "hp": 29,
+        "enemyHp": 28,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl04",
+          "zl01",
+          "zl03"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 28,
+          "enemyHp": 28,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 14,
+        "hp": 28,
+        "enemyHp": 28,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl01",
+          "zl01",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl01",
+          "zl02"
+        ],
+        "after": {
+          "hp": 20,
+          "enemyHp": 22,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 15,
+        "hp": 20,
+        "enemyHp": 22,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl02",
+          "zl04",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 17,
+          "enemyHp": 22,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 16,
+        "hp": 17,
+        "enemyHp": 22,
+        "jade": 0,
+        "hand": [
+          "zl03",
+          "zl02",
+          "zl01",
+          "zl01",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl03",
+          "zl02"
+        ],
+        "after": {
+          "hp": 16,
+          "enemyHp": 22,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 17,
+        "hp": 16,
+        "enemyHp": 22,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl03",
+          "zl02",
+          "zl02",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl03",
+          "zl02"
+        ],
+        "after": {
+          "hp": 15,
+          "enemyHp": 22,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 18,
+        "hp": 15,
+        "enemyHp": 22,
+        "jade": 0,
+        "hand": [
+          "zl04",
+          "zl01",
+          "zl02",
+          "zl01",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl01",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 7,
+          "enemyHp": 16,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 19,
+        "hp": 7,
+        "enemyHp": 16,
+        "jade": 0,
+        "hand": [
+          "zl01",
+          "zl04",
+          "zl02",
+          "zl03",
+          "zl01"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl03"
+        ],
+        "after": {
+          "hp": 6,
+          "enemyHp": 16,
+          "jade": 0
+        }
+      },
+      {
+        "turn": 20,
+        "hp": 6,
+        "enemyHp": 16,
+        "jade": 0,
+        "hand": [
+          "zl02",
+          "zl01",
+          "zl01",
+          "zl02",
+          "zl02"
+        ],
+        "intent": [
+          18
+        ],
+        "chosen": [
+          "zl02",
+          "zl02",
+          "zl02"
+        ],
+        "after": {
+          "hp": 3,
+          "enemyHp": 16,
+          "jade": 0
+        }
+      }
+    ]
+  }
+]

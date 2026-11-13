@@ -2,18 +2,20 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3)s.jade=6;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([0,3,4,6,7].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5].includes(i))assert.equal(r.state.block,value);
     if(i===2)assert.equal(r.state.jade,value);
     if(i===3)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
+    if(i===6)assert.equal(r.state.block,upgrade?7:5);
+    if(i===7)assert.equal(r.state.jade,upgrade?4:3);
     assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
   });
@@ -79,3 +81,5 @@ test('card identity cannot be substituted by command',()=>{const s=initialState(
 test('upgrade comes from instance, invalid flags rollback',()=>{for(const upgraded of [true,'false',1,null]){const s=initialState();const r=play(s,{id:'zl01',instance:'a',target:'enemy',upgraded});assert.equal(r.ok,false);assert.equal(r.state,s);assert.equal(s.energy,3);assert.equal(s.enemy.hp,40);}});
 
 test('unknown or invalid effect after valid damage rolls back entire transaction',()=>{for(const effect of [['unknown',1],['jade',-1],['block',NaN]]){const s=initialState();const before=structuredClone(s);cards[0].base.push(effect);try{const r=play(s,{id:'zl01',instance:'a',target:'enemy'});assert.equal(r.ok,false);assert.equal(r.reason,'invalid effect');assert.equal(r.state,s);assert.deepEqual(s,before);}finally{cards[0].base.pop();}}});
+
+test('new role split: immediate protection vs low-pressure retained defense',()=>{const s=initialState();const immediate=endTurn(run('zl07',s).state,[5]);const persistent=endTurn(run('zl08',s).state,[5]);assert.equal(immediate.hp,60);assert.equal(persistent.hp,58);const quietA=endTurn(run('zl07',s).state,[]);const quietB=endTurn(run('zl08',s).state,[]);assert.equal(quietA.jade,0);assert.equal(quietB.jade,3);assert.equal(quietA.enemy.hp,35);assert.equal(quietB.enemy.hp,36);});

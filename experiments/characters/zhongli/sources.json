@@ -44,7 +44,9 @@
     "zl03",
     "zl04",
     "zl05",
-    "zl06"
+    "zl06",
+    "zl07",
+    "zl08"
   ],
   "degradation": "No P2/P3/P4 name adopted; higher priority evidence incomplete. Display names stay unique pending placeholders.",
   "next": "Complete Chinese P1/P2 index, validate proposed shield-consumption identity, obtain naming and balance review; no human approval inferred.",
@@ -74,6 +76,8 @@
   ],
   "adaptationBoundary": {
     "zl04": "Spending own jade for damage is this project's proposed turn-based adaptation, not an official Zhongli skill. Needs identity/product review before adoption.",
-    "zl-relic01": "Battle-start three jade is a new unapproved starter relic effect. No official relic claimed."
+    "zl-relic01": "Battle-start three jade is a new unapproved starter relic effect. No official relic claimed.",
+    "zl07": "Hybrid damage/block research slot; Chinese name and P1 mapping pending.",
+    "zl08": "Damage plus persistent jade research slot; no official named skill asserted."
   }
 }
