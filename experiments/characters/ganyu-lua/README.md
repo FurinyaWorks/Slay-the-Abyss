@@ -257,3 +257,10 @@ Six Node tests include 112 hidden-field/prototype/accessor mutations plus four
 empty/sparse array cases. The generated 22-card Lua remains byte-identical;
 50 native C.play/retain cases and 8 interaction +2 failure rollback cases pass.
 This does not add mapped cards or change registration, values or approval gates.
+
+## 47/68 compound defensive retrieval (isolated, not public admission)
+`compile-defensive-retrieval.mjs` binds frozen 47 (1→0 energy, 2 block then first direct-block card in draw, exhaust) and 68 (2 energy, 4→7 block then first03 in draw, retain). Definitions preserve order and lifecycle; no shared whitelist changes or new resource ABI. Strict two-element own-data arrays reject reordered/missing/hidden effects. Type=skill remains an integration proposal; values, naming and human approval unchanged.
+
+Validation: 2 Node tests (24 malformed variants) and actual Lua12 base/up×normal/missing/full cases, all with NoDraw and Dexterity2. Native block precedes retrieval; full hand/no match retains the shield, retrieval moves the original upgraded UID without RNG. Native47 exhaustion triggers FNP once. Six post-retrieval/exhaust failures restore entire Snapshot, original hand/draw/card references and allow one retry. Two real unplayed68 `C.endTurn` cases preserve its original UID without granting block or retrieving a card.
+
+This is an isolated ActionQueue/Effects/Exhaust harness with manually established paid/use context, not public `C.play`;68 played-card discard finalization is not covered. Shield modifiers in this harness are evaluated by native Effects at execution time; it does not prove host use-time capture across a pause. NoDraw does not forbid retrieval. The nonmatching/full cases do not imply a fallback draw or energy refund. Source, rarity/type approval, balance, natural reward pool and production remain HOLD.
