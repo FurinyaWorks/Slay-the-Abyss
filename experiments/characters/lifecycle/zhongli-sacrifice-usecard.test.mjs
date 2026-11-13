@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Zhongli 32/40 paid sacrifice and fixed reward Run',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/zhongli-sacrifice-usecard.test.lua',{timeout:180000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/ZHONGLI_SACRIFICE_PAID_PASS/);assert.match(r.stdout,/AUTHOR_ZL_SACRIFICE_RUN_PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);});
