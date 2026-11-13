@@ -1,0 +1,2080 @@
+{
+  "character": "xiao",
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "commit": "6f05453ef1b3ed2a7406a2b4f95a93448fa27d3a",
+  "path": "experiments/characters/xiao",
+  "coverage": {
+    "implemented": 42,
+    "audited": 42,
+    "target": 75,
+    "missing": 33
+  },
+  "method": "固定SHA读取cards.json、sources.json、model.mjs、README.md；静态推演，未执行测试或Full。该审计文件不更改owner树或数值。根审另行执行结果应单独记录。",
+  "approval": {
+    "naming": "HOLD",
+    "balance": "HOLD",
+    "human": "NOT_APPROVED",
+    "production_acceptance": false
+  },
+  "source_codes": {
+    "O": {
+      "url": "https://www.hoyolab.com/article/162350",
+      "publisher": "HoYoverse官方",
+      "version": "1.3更新公告2021-02-03",
+      "locator": "I. New Character，根审本轮73–82行",
+      "read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "supports": [
+        "夜叉身份",
+        "突进",
+        "面具强化攻击与跳跃",
+        "期间流失生命"
+      ],
+      "does_not_support": [
+        "中文逐卡名称",
+        "启动2HP",
+        "每回合2HP且致死",
+        "固定加4",
+        "抽牌格挡能量消耗机制"
+      ]
+    },
+    "C": {
+      "url": "https://wiki.biligame.com/ys/%E9%AD%88",
+      "publisher": "社区转录，非官方",
+      "read_status": "recorded-not-reopened",
+      "precision": "待核中文索引；不能升级官方或人审状态"
+    },
+    "N": {
+      "read_status": "no-card-specific-official-record",
+      "precision": "无支持具体效果的逐卡官方出处"
+    },
+    "U": {
+      "urls": [
+        "https://wiki.hoyolab.com/pc/genshin/entry/51",
+        "https://genshin.hoyoverse.com/zh-tw/news/detail/103849"
+      ],
+      "read_status": "wiki-recorded-not-reopened; news-root-reopened-zero-readable-lines"
+    }
+  },
+  "source_manifest_snapshot": {
+    "version": "xiao-sources-0.2",
+    "checkedAt": "2026-11-13",
+    "status": "PARTIAL_HOLD",
+    "anchors": [
+      {
+        "id": "official-v1.3-character",
+        "tier": "P1",
+        "url": "https://www.hoyolab.com/article/162350",
+        "sourceVersion": "Version 1.3 Update Notice, 2021-02-03",
+        "locator": "I. New Character, Xiao; extracted lines 73-82",
+        "language": "en",
+        "verified": true,
+        "supports": [
+          "护法夜叉守护璃月，使用长柄武器",
+          "战技为突进攻击，可在空中使用",
+          "爆发戴面具强化攻击与跳跃，同时流失生命"
+        ],
+        "doesNotSupport": [
+          "本作启动2HP费用",
+          "本作每回合结束扣2HP和可致死规则",
+          "本作固定+4伤害及回合数",
+          "初始遗物抽1张",
+          "所有中文卡面名的精确拼写或审美批准"
+        ],
+        "nameTokens": [
+          "Vigilant Yaksha",
+          "Lemniscatic Wing Cycling",
+          "Bane of All Evil"
+        ],
+        "notes": "保留该公告战技英文Wing原字，不自行修成其他版本拼写；中文逐条技能/语音/命座/TCG待核。",
+        "humanApproved": false
+      }
+    ],
+    "pendingCategories": [
+      "中文技能",
+      "天赋",
+      "命座",
+      "TCG",
+      "战斗语音",
+      "日常语音",
+      "官方故事逐条定位",
+      "逐卡来源与独立人审"
+    ],
+    "unreadableOfficialPages": [
+      "https://wiki.hoyolab.com/pc/genshin/entry/51",
+      "https://genshin.hoyoverse.com/zh-tw/news/detail/103849"
+    ],
+    "secondaryResearch": [
+      {
+        "id": "bwiki-xiao-talents-20261113",
+        "url": "https://wiki.biligame.com/ys/%E9%AD%88",
+        "publisherClass": "community transcription, not official publication",
+        "checkedAt": "2026-11-13",
+        "locator": "Talents lines 795-804,823-829,848-859; Constellations lines 776-782",
+        "readable": true,
+        "officialPrimaryVerified": false,
+        "nameTokens": [
+          "卷积微尘",
+          "风轮两立",
+          "靖妖傩舞",
+          "神通·诸苦灭尽"
+        ],
+        "paraphrase": "社区转录描述普攻连枪、空中突进、下坠范围攻击、戴面具强化同时失血，以及低生命防御增强。",
+        "designDifferences": [
+          "本作x05常态单体、面具群体是特意改编；社区原作下落攻击条目本来就是范围，不能冒称一比一复刻。",
+          "x07当前无低血条件，不能把低生命防御命座当其已核对应命名。"
+        ],
+        "use": "只作待核P1词条索引与角色机制反例研究，不提升G1或人审状态"
+      }
+    ],
+    "blockedFetches": [
+      {
+        "url": "https://www.bilibili.com/video/BV1Th411C7ex/",
+        "result": "HTTP 412; title indexed but video/transcript not read",
+        "checkedAt": "2026-11-13"
+      }
+    ]
+  },
+  "cards": [
+    {
+      "id": "x01",
+      "role": "基础单体攻击",
+      "cost": 1,
+      "rarity": "basic",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 6
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 9
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "基础牌可被奖励替换；面具额外4。",
+      "dominance": {
+        "assessment": "被x03/x15效果支配、被x05弱支配；基础牌关系不是平衡失败。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x02",
+      "role": "基础格挡",
+      "cost": 1,
+      "rarity": "basic",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "block",
+          "value": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "block",
+          "value": 8
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "盾不抵面具耗血。",
+      "dominance": {
+        "assessment": "x42攻击前9/12胜5/8，攻击后4/6较差。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x03",
+      "role": "立即单体伤害，不要求状态",
+      "cost": 1,
+      "rarity": "common",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 9
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 12
+        }
+      ],
+      "source_codes": [
+        "O",
+        "C"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": "风轮两立",
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "风轮两立只是候选，中文名未官方核定。",
+      "dominance": {
+        "assessment": "升级x35常态同12、面具20胜16；不同稀有度，正式反伤未建模。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x04",
+      "role": "用生命与本回合行动换两回合攻击强化",
+      "cost": 1,
+      "rarity": "basic",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 3
+        }
+      ],
+      "source_codes": [
+        "O",
+        "C"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": "靖妖傩舞",
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "延长一回合增加潜在2HP；8HP无其他动作时升级死亡、基础存活。",
+      "dominance": {
+        "assessment": "更长输出窗口与额外失血互换。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P1_GATE",
+      "recommendation": "保留负升级反例并评审生命预算；不是自动改值授权。"
+    },
+    {
+      "id": "x05",
+      "role": "常态单体，戴面具时扩大攻击范围",
+      "cost": 1,
+      "rarity": "basic",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "plunge",
+          "value": 6
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "plunge",
+          "value": 9
+        }
+      ],
+      "source_codes": [
+        "O",
+        "C"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "常态单体是本作改编；社区原作下落攻击本来有范围。",
+      "dominance": {
+        "assessment": "x12弱支配效果；多敌常态严格胜出，但本卡基础、x12非常见。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x06",
+      "role": "提前离开强化以避免回合末失血",
+      "cost": 0,
+      "rarity": "common",
+      "kind": "skill",
+      "exhaust": true,
+      "base": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "block",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "block",
+          "value": 6
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "退出丧失后续攻击强化；消耗后x16不能回收。",
+      "dominance": {
+        "assessment": "与x34比较需计预付费、返能、盾。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x07",
+      "role": "常态攻守兼顾，不靠回血抵销代价",
+      "cost": 1,
+      "rarity": "common",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 5
+        },
+        {
+          "op": "block",
+          "value": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 7
+        },
+        {
+          "op": "block",
+          "value": 7
+        }
+      ],
+      "source_codes": [
+        "N",
+        "C"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "无低血条件，不可直接借低血防御命座命名；先伤后盾。",
+      "dominance": {
+        "assessment": "x31单敌当前减伤与多敌共享盾不同。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x08",
+      "role": "支付能量换手牌调度，不自产能量",
+      "cost": 1,
+      "rarity": "common",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "draw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "draw",
+          "value": 3
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "手限、抽空、余能限制兑现。",
+      "dominance": {
+        "assessment": "x09常态同效，需要保留面具时更差，需要退出时更好。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x09",
+      "role": "持续退出并整手：用能量换安全退场和后续选择",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "draw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "draw",
+          "value": 3
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "强制退出，并非可选保留面具的x08上位。",
+      "dominance": {
+        "assessment": "与x08取决于退出意愿。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x10",
+      "role": "短窗口防守入场：付生命换一回合面具与格挡",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 8
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 11
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "3HP支付至1仍可末回合死；已有长面具不会缩为1。",
+      "dominance": {
+        "assessment": "即时防守强于x04，窗口更短；刷新不重复遗物。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x11",
+      "role": "终结窗口：先借面具攻击再主动退场",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 10
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 14
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "先吃面具伤害后退出，过早使用会损后续攻击。",
+      "dominance": {
+        "assessment": "常态比x03高1/2伤；保留面具局不支配。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x12",
+      "role": "无需入场的群体清杂；面具增强但非必需",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damageAll",
+          "value": 6
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damageAll",
+          "value": 9
+        }
+      ],
+      "source_codes": [
+        "O",
+        "C",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "面具内与x05同伤同范围，常态才体现群攻职责。",
+      "dominance": {
+        "assessment": "效果弱支配x05；需保留基础/奖励差异。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x13",
+      "role": "面具承受：状态内防守、退出后仍能提供较弱防守",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "maskBlock",
+          "value": 8
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "maskBlock",
+          "value": 12
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "官方面具不直接支持格挡；不抵生命费。",
+      "dominance": {
+        "assessment": "x42攻击前9/12对8/12，攻击后4/6较弱。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x14",
+      "role": "长战投入：面具回合结束取得格挡，不抵消生命成本",
+      "cost": 1,
+      "rarity": "rare",
+      "kind": "power",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "maskGuard",
+          "value": 3
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "maskGuard",
+          "value": 4
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "先失血存活才得盾；可叠加，需长战副本验证。",
+      "dominance": {
+        "assessment": "与x29分别奖励承受耗血/主动退出。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x15",
+      "role": "破甲处置：低裸伤交换对当前护甲的剥离",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "breakBlock",
+          "value": 0
+        },
+        {
+          "op": "damage",
+          "value": 6
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "breakBlock",
+          "value": 0
+        },
+        {
+          "op": "damage",
+          "value": 9
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "无限额破盾取决于敌盾分布，非官方魈公式。",
+      "dominance": {
+        "assessment": "弱支配基础x01；裸伤低于x03，敌盾高时胜出。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x16",
+      "role": "已见出口再调度：从弃牌找回退出牌并防守",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": true,
+      "base": [
+        {
+          "op": "recoverExit",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 3
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "recoverExit",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 6
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "只检索弃牌base含mask=0或exitEnergy；不含x27，不取消耗区。",
+      "dominance": {
+        "assessment": "确定取回出口不同于x08盲抽，但需已有出口和后续付费。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "明确x27不属检索对象；检查检索谓词和卡文。"
+    },
+    {
+      "id": "x17",
+      "role": "一次性生命换行动：保留致死风险的爆发资源",
+      "cost": 0,
+      "rarity": "rare",
+      "kind": "skill",
+      "exhaust": true,
+      "base": [
+        {
+          "op": "loseHp",
+          "value": 3
+        },
+        {
+          "op": "energy",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "loseHp",
+          "value": 3
+        },
+        {
+          "op": "energy",
+          "value": 3
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "HP<=3拒绝支付，4HP可付至1后死于面具；支付当场不致死。",
+      "dominance": {
+        "assessment": "与x34产能比较须计生命、面具及预付门槛。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x18",
+      "role": "高费窗口收束：群体攻击后退出并消耗",
+      "cost": 2,
+      "rarity": "rare",
+      "kind": "attack",
+      "exhaust": true,
+      "base": [
+        {
+          "op": "damageAll",
+          "value": 18
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damageAll",
+          "value": 24
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "高爆发/退出/消耗压缩叠同卡；不能凭理想清场放行。",
+      "dominance": {
+        "assessment": "与x12有2费、消耗、强制退出差异。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x19",
+      "role": "牺牲当前技能换应急防守并压缩牌堆",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "burnSkillsBlock",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "burnSkillsBlock",
+          "value": 6
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "烧所有其他技能含出口；无技能零盾；为x21/x22供燃料。",
+      "dominance": {
+        "assessment": "高盾可能牺牲关键出口，不支配固定盾。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x20",
+      "role": "无面具空窗整手：有限免费过牌而非窗口内续爆",
+      "cost": 0,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": true,
+      "base": [
+        {
+          "op": "unmaskedDraw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "unmaskedDraw",
+          "value": 3
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "面具内空放也消耗。",
+      "dominance": {
+        "assessment": "与x26分别依赖玩家状态/敌意图。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x21",
+      "role": "消耗构筑进攻回本：按已消耗张数兑现有上限单体伤害",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "exhaustDamage",
+          "value": 3,
+          "cap": 18
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exhaustDamage",
+          "value": 3,
+          "cap": 24
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "消耗数<=6升级无收益；零燃料常态0伤，面具4。",
+      "dominance": {
+        "assessment": "与x37依赖不同燃料，不能按封顶值排序。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x22",
+      "role": "消耗构筑防御回本：不用继续烧牌的后续防守",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "exhaustBlock",
+          "value": 2,
+          "cap": 10
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exhaustBlock",
+          "value": 2,
+          "cap": 14
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "消耗数<=5升级无收益；前置燃料成本真实。",
+      "dominance": {
+        "assessment": "有燃料高盾，无燃料零盾。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x23",
+      "role": "余能防守：放弃所有剩余行动换当回合盾",
+      "cost": 0,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "spendEnergyBlock",
+          "value": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "spendEnergyBlock",
+          "value": 7
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "0基础费实际吞全部余能；完整X费/复制/遗物未建模。",
+      "dominance": {
+        "assessment": "不得按显示0费与固定1费盾比效率。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x24",
+      "role": "攻击卡手整手：放弃当前攻击重新寻找防守或出口",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "discardAttacksDraw",
+          "value": 0
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "discardAttacksDraw",
+          "value": 1
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "可能洗回刚弃攻击；无攻击升级也不抽。",
+      "dominance": {
+        "assessment": "大量攻击时抽量高但牺牲当前攻击，不支配x08。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x25",
+      "role": "当前攻击意图处置：压低眼前威胁而非偷读未来",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "threatDamage",
+          "value": 8,
+          "bonus": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "threatDamage",
+          "value": 11,
+          "bonus": 4
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "使用压制后当前意图；x31可令加伤条件消失。",
+      "dominance": {
+        "assessment": "攻击意图12/15胜x03的9/12，整备8/11较差。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x26",
+      "role": "敌方整备空档过牌：有攻击意图时完全失效",
+      "cost": 0,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": true,
+      "base": [
+        {
+          "op": "quietDraw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "quietDraw",
+          "value": 3
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "任一活敌攻击则空放；x31压到0可开启。",
+      "dominance": {
+        "assessment": "与x20互有失效局。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x27",
+      "role": "缩短窗口而非立即全退：减一回合面具并格挡",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "shortenMask",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 7
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "shortenMask",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 10
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "3->2或2->1仍付末回合生命；1->0才真正退出。",
+      "dominance": {
+        "assessment": "常态比x02多2盾，有面具时缩窗可能损输出。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x28",
+      "role": "尾窗重击：只在面具最后一回合获得额外单体回报",
+      "cost": 2,
+      "rarity": "rare",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "lastMaskDamage",
+          "value": 10,
+          "bonus": 10
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "lastMaskDamage",
+          "value": 14,
+          "bonus": 12
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "末回合24/30伤但不退出；未击杀仍付血。",
+      "dominance": {
+        "assessment": "与低费退出攻击不同，须计第二点能量。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x29",
+      "role": "主动退场防线：提前投入后，卡牌退出时获得格挡",
+      "cost": 1,
+      "rarity": "rare",
+      "kind": "power",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "exitGuard",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exitGuard",
+          "value": 6
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "自然到期不触发，可叠加；再次入场仍付血。",
+      "dominance": {
+        "assessment": "与x14触发和生命代价不同。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x30",
+      "role": "常态攻击轮转：无面具才在攻击后补一张牌",
+      "cost": 1,
+      "rarity": "common",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 5
+        },
+        {
+          "op": "unmaskedDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 8
+        },
+        {
+          "op": "unmaskedDraw",
+          "value": 1
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "面具内不抽；击杀后仍完成本卡抽牌。",
+      "dominance": {
+        "assessment": "常态轮转与x03纯伤、x07攻防不同。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x31",
+      "role": "单体当前回合压制：小伤换敌方本次伤害降低",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 6
+        },
+        {
+          "op": "suppress",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 8
+        },
+        {
+          "op": "suppress",
+          "value": 6
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "仅当前单个数字意图；正式多段/反伤/免疫未知。",
+      "dominance": {
+        "assessment": "整备无减伤，多敌共享盾与单敌压制不同。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x32",
+      "role": "覆盖敌攻后的安全轮转：先防守，再检查是否可补牌",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "block",
+          "value": 4
+        },
+        {
+          "op": "coveredDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "block",
+          "value": 7
+        },
+        {
+          "op": "coveredDraw",
+          "value": 1
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "覆盖敌伤不等于覆盖生命费用，仍会死于面具。",
+      "dominance": {
+        "assessment": "低敌伤可轮转，高敌伤不如纯盾；x31改变条件。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x33",
+      "role": "常态长线手牌：投入能力后只在无面具回合开始额外抽牌",
+      "cost": 2,
+      "rarity": "rare",
+      "kind": "power",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "calmDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "calmDraw",
+          "value": 2
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "持续抽量升级翻倍且叠加；打出不立即抽，有手限。",
+      "dominance": {
+        "assessment": "与x36常态/面具攻击不同。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x34",
+      "role": "一次退场行动调度：实际退出后返能而非回血",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": true,
+      "base": [
+        {
+          "op": "exitEnergy",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exitEnergy",
+          "value": 2
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "基础净0、升级净+1；0能量不能启动，无面具无返能。",
+      "dominance": {
+        "assessment": "与x06预付费/盾不同。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x35",
+      "role": "面具多击兑现：同一目标两次命中各自享受强化",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damageHits",
+          "value": 4,
+          "hits": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damageHits",
+          "value": 6,
+          "hits": 2
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "升级常态与x03同伤，面具多4；反伤命中系统未实现。",
+      "dominance": {
+        "assessment": "基础8<9、面具16>13；升级弱支配x03升级效果，非获取价值全局支配。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x36",
+      "role": "面具攻击手牌续航：每回合首次符合条件攻击补牌",
+      "cost": 2,
+      "rarity": "rare",
+      "kind": "power",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "maskedAttackDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "maskedAttackDraw",
+          "value": 2
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "退出攻击也触发；两击只触发一次；叠抽量，升级翻倍。",
+      "dominance": {
+        "assessment": "与x33比较需计状态和攻击可用性。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x37",
+      "role": "防守兑现：按当前格挡造成有上限伤害，不移除格挡",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "blockDamage",
+          "value": 1,
+          "cap": 14
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "blockDamage",
+          "value": 1,
+          "cap": 20
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "盾<=14升级无收益，同一盾可多卡重复兑现。",
+      "dominance": {
+        "assessment": "高盾高伤，零盾常态0伤，不支配固定攻击。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x38",
+      "role": "弃守换手：移除全部格挡，每满5点抽牌，有上限且消耗",
+      "cost": 0,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": true,
+      "base": [
+        {
+          "op": "spendBlockDraw",
+          "value": 5,
+          "cap": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "spendBlockDraw",
+          "value": 5,
+          "cap": 3
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "4盾全失且不抽；升级15盾起可多抽，超过上限也全失。",
+      "dominance": {
+        "assessment": "支付盾与x20/x26条件抽牌互有限制。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x39",
+      "role": "预备攻击：公开弃牌首张攻击置顶，不立即抽",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "topdeckAttack",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "topdeckAttack",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 7
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "取首张而非自选，不立即抽；可能恶化下一抽。",
+      "dominance": {
+        "assessment": "与x32同盾，置顶不是无条件额外收益。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x40",
+      "role": "多敌防御：按存活敌人数获得格挡，上限3名",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "enemyCountBlock",
+          "value": 4,
+          "cap": 3
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "enemyCountBlock",
+          "value": 6,
+          "cap": 3
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "单敌4/6、双敌8/12、三敌12/18；先击杀会降盾。",
+      "dominance": {
+        "assessment": "单敌低于x02，多敌高于x02。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x41",
+      "role": "连攻终结：按本回合此前打出的攻击张数加伤，至多3张",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "attack",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "sequenceDamage",
+          "value": 3,
+          "bonus": 3,
+          "cap": 3
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "sequenceDamage",
+          "value": 5,
+          "bonus": 4,
+          "cap": 3
+        }
+      ],
+      "source_codes": [
+        "O",
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "root-reopened-readable; child-recorded-not-reopened",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "上限需前序攻击和能量；x35两击只算1张，升级提升底伤与斜率。",
+      "dominance": {
+        "assessment": "0前序3/5低于x03；3前序12/17高于x03，须计投入。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    },
+    {
+      "id": "x42",
+      "role": "先守后攻：尚未打出攻击时追加防御",
+      "cost": 1,
+      "rarity": "uncommon",
+      "kind": "skill",
+      "exhaust": false,
+      "base": [
+        {
+          "op": "beforeAttackBlock",
+          "value": 4,
+          "bonus": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "beforeAttackBlock",
+          "value": 6,
+          "bonus": 6
+        }
+      ],
+      "source_codes": [
+        "N"
+      ],
+      "official_record_precision": "机制总锚点或无直接出处；没有逐卡中文名精确认证",
+      "source_read_status": "recorded-not-reopened-or-no-card-specific-record",
+      "adaptation": true,
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      },
+      "risk": "多张攻击前都享加成，不是每回合一次。",
+      "dominance": {
+        "assessment": "攻击前9/12胜x02，攻击后4/6较差；与x13面具态重叠。",
+        "scope": "固定模型效果层；条件与基础/奖励/稀有度差异须保留"
+      },
+      "severity": "P2_RESEARCH",
+      "recommendation": "保留候选；补逐卡来源、职责对照、联合构筑与人审证据。"
+    }
+  ],
+  "reproducible_cases": [
+    {
+      "id": "R1",
+      "severity": "P1_GATE",
+      "cards": [
+        "x04"
+      ],
+      "execution_status": "NOT_RUN_STATIC_DERIVATION",
+      "procedure": "state({hp:8,hand:['x04'],enemies:[{hp:100,block:0}]})；分别play(index:0,upgraded:false/true)，随后endTurn/startTurn/endTurn/startTurn/endTurn，不打其他牌。model层不执行敌攻。",
+      "expected": {
+        "base_hp": 2,
+        "upgraded_hp": 0
+      },
+      "meaning": "合法付费与阶段转换的升级更差反例；不是自然出现率或自动改值授权。"
+    },
+    {
+      "id": "R2",
+      "severity": "P2",
+      "cards": [
+        "x03",
+        "x35"
+      ],
+      "execution_status": "NOT_RUN_STATIC_DERIVATION",
+      "procedure": "敌100HP/0盾/能量1，各自单独打升级x03/x35；常态和合法进入面具后比较。",
+      "expected": {
+        "unmasked_damage": {
+          "x03": 12,
+          "x35": 12
+        },
+        "masked_damage": {
+          "x03": 16,
+          "x35": 20
+        }
+      },
+      "meaning": "当前模型效果弱支配；不同稀有度、正式反伤未知，不外推全局价值。"
+    },
+    {
+      "id": "R3",
+      "severity": "P2",
+      "cards": [
+        "x05",
+        "x12"
+      ],
+      "execution_status": "NOT_RUN_STATIC_DERIVATION",
+      "procedure": "两敌20HP/0盾，各自打基础x05或x12，比较常态和面具。",
+      "expected": {
+        "unmasked_damage": {
+          "x05": [
+            6,
+            0
+          ],
+          "x12": [
+            6,
+            6
+          ]
+        },
+        "masked_damage": {
+          "x05": [
+            10,
+            10
+          ],
+          "x12": [
+            10,
+            10
+          ]
+        }
+      },
+      "meaning": "基础/奖励差异可解释，不能隐去面具态同效。"
+    },
+    {
+      "id": "R4",
+      "severity": "P2",
+      "cards": [
+        "x10",
+        "x27"
+      ],
+      "execution_status": "NOT_RUN_STATIC_DERIVATION",
+      "procedure": "x10:3HP常态打出后endTurn；x27:合法面具2回合/2HP打出后endTurn。",
+      "expected": {
+        "x10": "支付后1HP，8/11盾，末回合死亡",
+        "x27": "缩至1回合，7/10盾，末回合死亡"
+      },
+      "meaning": "防守入场/缩窗不是保证安全出口。"
+    },
+    {
+      "id": "R5",
+      "severity": "P2_TEXT",
+      "cards": [
+        "x16",
+        "x27"
+      ],
+      "execution_status": "NOT_RUN_STATIC_DERIVATION",
+      "procedure": "面具1回合、弃牌仅x27、手牌x16，合法支付打x16。",
+      "expected": "x27不回手；x16只得3/6盾并消耗。",
+      "meaning": "recoverExit仅识别base的mask=0/exitEnergy；需明确检索类别。"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "P1_GATE",
+      "item": "42不是75；缺33卡不能用未经论证命名或填数补齐。"
+    },
+    {
+      "severity": "P1_GATE",
+      "item": "逐卡中文名、来源、人审尚未通过。"
+    },
+    {
+      "severity": "P1_GATE",
+      "item": "x04存在升级额外失血致死反例。"
+    },
+    {
+      "severity": "P1_GATE",
+      "item": "奖励均匀实验三选一、旧1152序列来自旧固定组，不能作为新池平衡。"
+    },
+    {
+      "severity": "P2",
+      "item": "持续抽量翻倍、能力叠加、重复兑现格挡须联合构筑测试。"
+    },
+    {
+      "severity": "P2",
+      "item": "正式UI、升级持久化、敌多段、反伤与命中触发未验收。"
+    }
+  ],
+  "best_next_read_only_check": "按固定SHA建立每张奖励卡的策略识别、真实获取到出牌、升级持久化覆盖矩阵；区分手动优先目标卡可达与代理理解。README承认x38/x39/x40未定制评价。",
+  "remaining_limits": [
+    "此子审未重开原始网页；采用根审明确交接官方正文可读核验。",
+    "反例仅静态推导，未运行。",
+    "未改值、推分支、合并或冒称人类批准。"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "ganyu/cards.json": {
+    "sha": "a2ad806e6cb2fab7e14ccfab4b5ca4d4a71c8232",
+    "blob": "1b36fc0a22aacb675bcb43dfa89955aa4db3b237"
+  },
+  "ganyu/sources.json": {
+    "sha": "a2ad806e6cb2fab7e14ccfab4b5ca4d4a71c8232",
+    "blob": "7202e8169d74ffd36138c3c3cb9af0e2e88e0e27"
+  },
+  "ganyu/relic.json": {
+    "sha": "a2ad806e6cb2fab7e14ccfab4b5ca4d4a71c8232",
+    "blob": "1f39bb9ead359b693a7d57fb1a8d9149fe9eebc5"
+  },
+  "ganyu/engine.mjs": {
+    "sha": "a2ad806e6cb2fab7e14ccfab4b5ca4d4a71c8232",
+    "blob": "fc2c01edee585a1a407122f34514ec5e5816df1e"
+  },
+  "ganyu/deck.mjs": {
+    "sha": "a2ad806e6cb2fab7e14ccfab4b5ca4d4a71c8232",
+    "blob": "f0381aec0a530093ed2e8401804aaacb47ade16f"
+  },
+  "xiao/cards.json": {
+    "sha": "6f05453ef1b3ed2a7406a2b4f95a93448fa27d3a",
+    "blob": "458ed61e629fdc5b74661471ab66615c3f41912b"
+  },
+  "xiao/sources.json": {
+    "sha": "6f05453ef1b3ed2a7406a2b4f95a93448fa27d3a",
+    "blob": "3b5fcfb41d4b940700a3783282f3755cb4153e64"
+  },
+  "xiao/model.mjs": {
+    "sha": "6f05453ef1b3ed2a7406a2b4f95a93448fa27d3a",
+    "blob": "5712774bc4a8a69ce0e9c58772659ce664602700"
+  },
+  "xiao/deck.mjs": {
+    "sha": "6f05453ef1b3ed2a7406a2b4f95a93448fa27d3a",
+    "blob": "32b607be47efad39caba96b972e249d85a13d9e9"
+  },
+  "xiao/intent.mjs": {
+    "sha": "6f05453ef1b3ed2a7406a2b4f95a93448fa27d3a",
+    "blob": "7a49cd4d612f5c167d3b152133447c6898feb3fa"
+  },
+  "keqing/mechanics.mjs": {
+    "sha": "8cab47dc1e3d3316d56c64428924af07360c9a7d",
+    "blob": "87ca3c7aec571f15bec036df03717af68f03b1ac"
+  },
+  "keqing/sources.json": {
+    "sha": "8cab47dc1e3d3316d56c64428924af07360c9a7d",
+    "blob": "23e9342e8d3acd39061c65b3120c46bb74a60ef6"
+  },
+  "zhongli/model.mjs": {
+    "sha": "29508d5757b49fa20f96679612374d9219466a66",
+    "blob": "b50eeb40486bde2ab9859cf2b854d994766bc28c"
+  },
+  "zhongli/sources.json": {
+    "sha": "29508d5757b49fa20f96679612374d9219466a66",
+    "blob": "c757d67b2eb74c8d798ac9d297f26c5d50134a77"
+  }
+}

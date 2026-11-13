@@ -1,0 +1,821 @@
+{
+  "schema": "source-role-audit/0.1",
+  "character": "zhongli",
+  "reviewed_commit": "29508d5757b49fa20f96679612374d9219466a66",
+  "read_method": "GitHub connector fixed-SHA fetch",
+  "files": {
+    "model.mjs": "b50eeb40486bde2ab9859cf2b854d994766bc28c",
+    "sources.json": "c757d67b2eb74c8d798ac9d297f26c5d50134a77",
+    "battle.mjs": "17a2b0d49f738cd81518a58ebd6a3a4ddbcec690",
+    "README.md": "46e9c8e2912c05d97ca5d3cca6b5bcd0bf441da8"
+  },
+  "implemented_cards": 17,
+  "target_cards": 75,
+  "remaining_cards": 58,
+  "starter_relic_count": 1,
+  "status": "HOLD",
+  "human_naming_approved": false,
+  "balance_approved": false,
+  "source_refs": {
+    "S1": {
+      "url": "https://www.hoyolab.com/article/162350",
+      "author": "Genshin Impact Official",
+      "version": "1.3 / 2021-02-03",
+      "locator": "VII > Characters > Adjustments to Zhongli, lines 222-261",
+      "readability": "official_body_read_in_prior_source_audit",
+      "supports": "生命相关护盾、岩脊、范围伤害、非叠加减抗与生命相关伤害",
+      "does_not_support": "本作资源上限、回合时序、费用、主动耗盾及候选数值"
+    },
+    "S2": {
+      "url": "https://www.hoyolab.com/article/100444",
+      "author": "Genshin Impact Official",
+      "version": "2020-12 / 1.1",
+      "locator": "lines 39-49; author line79",
+      "readability": "official_body_read_in_prior_source_audit",
+      "supports": "护盾、控敌与稳定保护定位",
+      "does_not_support": "具体候选招式、中文命名、反伤、过牌、主动耗盾"
+    },
+    "S3": {
+      "url": "https://wiki.hoyolab.com/pc/genshin/entry/46?lang=zh-cn",
+      "version": "unfixed",
+      "readability": "index_only",
+      "official_authorship_verified": false,
+      "supports": "仅作继续定位中文词条",
+      "does_not_support": "逐卡官方已核或人审批准"
+    }
+  },
+  "global_source_rule": "official_exact=false表示整张牌的名称与具体效果没有精确官方依据，不否认S1/S2主题已核。所有显示名仍待命名。",
+  "cards": [
+    {
+      "id": "zl01",
+      "cost": 1,
+      "rarity": "basic",
+      "official_exact": false,
+      "source_readability": "unverified_per_card",
+      "source_refs": [],
+      "source_manifest_listed": true,
+      "adaptation": "基础攻击；SYS身份未核",
+      "base": [
+        [
+          "damage",
+          6
+        ]
+      ],
+      "upgrade": [
+        [
+          "damage",
+          9
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "基础替代和击杀阈值；不因奖励牌强而改基础值",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "zl11玉璋>=6时更高，低于门槛时zl01更高"
+        ]
+      },
+      "next": "核SYS准入，作为无前置基线",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl02",
+      "cost": 1,
+      "rarity": "basic",
+      "official_exact": false,
+      "source_readability": "unverified_per_card",
+      "source_refs": [
+        "S2"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "本作当回合格挡",
+      "base": [
+        [
+          "block",
+          5
+        ]
+      ],
+      "upgrade": [
+        [
+          "block",
+          8
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "升级后格挡8高于zl07的7",
+      "dominance": {
+        "strict": [
+          "当前无攻击惩罚模型内，基础zl07同费同格挡另有伤害；基础被奖励替代不构成Bug"
+        ],
+        "conditional": [
+          "zl06低玉璋优势，满玉璋时zl02保留更多资源"
+        ]
+      },
+      "next": "不混淆基础可替代与同稀有奖励支配",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl03",
+      "cost": 2,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "official_body_theme_only",
+      "source_refs": [
+        "S1",
+        "S2"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "护盾主题有据；跨回合/相加/上限均本作改编",
+      "base": [
+        [
+          "jade",
+          12
+        ]
+      ],
+      "upgrade": [
+        [
+          "jade",
+          16
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "满资源溢出可能令升级收益零",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "两张zl06同费即时防御高但多占抽牌、留存量低，非严格支配"
+        ]
+      },
+      "next": "测大伤/空过/长战/牌底和精确STS参照",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl04",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "no_official_mechanism_evidence",
+      "source_refs": [
+        "S2"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "主动耗自身护盾换伤害未经人物合同批准，非官方机制",
+      "base": [
+        [
+          "spendJade",
+          6
+        ],
+        [
+          "damage",
+          14
+        ]
+      ],
+      "upgrade": [
+        [
+          "spendJade",
+          6
+        ],
+        [
+          "damage",
+          18
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "伤害提高不取消6玉璋生存代价",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "比zl11多伤但失防线；击杀与非击杀分开"
+        ]
+      },
+      "next": "先审人物表达；保留剩1能量反例",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl05",
+      "cost": 3,
+      "rarity": "rare",
+      "official_exact": false,
+      "source_readability": "official_body_theme_only_and_name_index_unverified",
+      "source_refs": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "高费单体终结；拟天星缺群体/控制映射",
+      "base": [
+        [
+          "damage",
+          24
+        ]
+      ],
+      "upgrade": [
+        [
+          "damage",
+          32
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "占满3能量，稀有价值与替代组合待核",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "低费组合更灵活但多占抽牌"
+        ]
+      },
+      "next": "核天星原文、同名预期及稀有可及性",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl06",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "official_body_theme_only",
+      "source_refs": [
+        "S1",
+        "S2"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "即时格挡与持久资源混合",
+      "base": [
+        [
+          "block",
+          4
+        ],
+        [
+          "jade",
+          3
+        ]
+      ],
+      "upgrade": [
+        [
+          "block",
+          6
+        ],
+        [
+          "jade",
+          4
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "双轴提升及上限截断待核",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "对zl02仅低资源优势，满玉璋可更差，见P-01"
+        ]
+      },
+      "next": "不能总防御相加作统一价格",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl07",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "unverified_per_card",
+      "source_refs": [
+        "S1",
+        "S2"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "伤害先于格挡的混合研究",
+      "base": [
+        [
+          "damage",
+          5
+        ],
+        [
+          "block",
+          5
+        ]
+      ],
+      "upgrade": [
+        [
+          "damage",
+          7
+        ],
+        [
+          "block",
+          7
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "双轴提升，未覆盖完整反伤/攻击惩罚",
+      "dominance": {
+        "strict": [
+          "仅基础版在当前简化模型对基础zl02非劣并额外伤害；非同稀有奖励支配"
+        ],
+        "conditional": [
+          "与zl08高压/空过各有取舍"
+        ]
+      },
+      "next": "核Iron Wave与第二对照、效果顺序",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl08",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "official_body_theme_only",
+      "source_refs": [
+        "S1"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "攻击同时生成持久玉璋",
+      "base": [
+        [
+          "damage",
+          4
+        ],
+        [
+          "jade",
+          3
+        ]
+      ],
+      "upgrade": [
+        [
+          "damage",
+          6
+        ],
+        [
+          "jade",
+          4
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "满资源只得伤害提升，须计加厚",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "与zl07当前防御/未来留存取舍"
+        ]
+      },
+      "next": "保留成长场景失血恶化证据",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl09",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "official_body_theme_only",
+      "source_refs": [
+        "S2"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "Weak压制普通攻击，不是石化或官方减抗",
+      "base": [
+        [
+          "damage",
+          5
+        ],
+        [
+          "weak",
+          1
+        ]
+      ],
+      "upgrade": [
+        [
+          "damage",
+          7
+        ],
+        [
+          "weak",
+          2
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "时长相加、逐段取整、空过到期待核",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "大伤下可胜zl07；空过/已有长虚弱时边际较低"
+        ]
+      },
+      "next": "核Clothesline/Sucker Punch原文",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl10",
+      "cost": 2,
+      "rarity": "uncommon",
+      "official_exact": false,
+      "source_readability": "official_body_theme_only",
+      "source_refs": [
+        "S2"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "一次性大格挡并消耗",
+      "base": [
+        [
+          "block",
+          20
+        ]
+      ],
+      "upgrade": [
+        [
+          "block",
+          26
+        ]
+      ],
+      "exhaust": true,
+      "self_retain": false,
+      "upgrade_risk": "过量浪费与本战不再抽到共同计价",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "比zl03即时高但不留存且消耗；比zl16无需玉璋但多能量"
+        ]
+      },
+      "next": "补罕见自然渠道及连续战",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl11",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "no_official_formula_evidence",
+      "source_refs": [
+        "S1",
+        "S2"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "玉璋门槛伤害回报，不是官方护盾转伤公式",
+      "base": [
+        [
+          "damage",
+          5
+        ],
+        [
+          "guardedDamage",
+          6
+        ]
+      ],
+      "upgrade": [
+        [
+          "damage",
+          7
+        ],
+        [
+          "guardedDamage",
+          8
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "两伤害效果逐段易伤/格挡，门槛回报增大",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "jade6基础11>6；jade0基础5<6，见P-02"
+        ]
+      },
+      "next": "验证维持门槛自然可及，不能当免费11/15伤",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl12",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "unverified_per_card",
+      "source_refs": [],
+      "source_manifest_listed": true,
+      "adaptation": "付费格挡抽牌，非官方武器动作",
+      "base": [
+        [
+          "block",
+          3
+        ],
+        [
+          "draw",
+          1
+        ]
+      ],
+      "upgrade": [
+        [
+          "block",
+          4
+        ],
+        [
+          "draw",
+          2
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "抽1到2改变净牌差，满手和洗牌边界影响价值",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "比zl02少挡换调度；满手抽牌收益消失"
+        ]
+      },
+      "next": "查适合非武器职责P1/P2，不用枪术贴皮",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl13",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "official_body_theme_only",
+      "source_refs": [
+        "S1"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "目标限时易伤非原作非叠加减抗光环",
+      "base": [
+        [
+          "vulnerable",
+          2
+        ]
+      ],
+      "upgrade": [
+        [
+          "vulnerable",
+          3
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "多一回合能否兑现、持续饱和",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "后续攻击多有价值；最后能量需立即击杀时劣"
+        ]
+      },
+      "next": "核Bash/Trip来源与自然跟进",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl14",
+      "cost": 2,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "unverified_per_card",
+      "source_refs": [],
+      "source_manifest_listed": true,
+      "adaptation": "保留中费攻击是本作规则",
+      "base": [
+        [
+          "damage",
+          13
+        ]
+      ],
+      "upgrade": [
+        [
+          "damage",
+          18
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": true,
+      "upgrade_risk": "保留占手不降费，不能解决未抽到",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "比两zl01基础13>12且省抽牌，但费用不可拆；升级18=两升级zl01"
+        ]
+      },
+      "next": "不能把被迫等待当主动延迟更优",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl15",
+      "cost": 2,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "no_official_retaliation_evidence",
+      "source_refs": [
+        "S2"
+      ],
+      "source_manifest_listed": true,
+      "adaptation": "固定受击反击，非钟离官方反射盾",
+      "base": [
+        [
+          "block",
+          8
+        ],
+        [
+          "counter",
+          3
+        ]
+      ],
+      "upgrade": [
+        [
+          "block",
+          11
+        ],
+        [
+          "counter",
+          4
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "多段收益、反杀终止后续段，双方死亡仍失败",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "多段有价值、空意图无反击，非稳定伤害"
+        ]
+      },
+      "next": "核Flame Barrier/Caltrops及伤害类型边界",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl16",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "no_official_conversion_evidence",
+      "source_refs": [
+        "S2"
+      ],
+      "source_manifest_listed": false,
+      "adaptation": "耗持久防线换临时格挡，未经人物批准",
+      "base": [
+        [
+          "spendJade",
+          6
+        ],
+        [
+          "block",
+          16
+        ]
+      ],
+      "upgrade": [
+        [
+          "spendJade",
+          6
+        ],
+        [
+          "block",
+          21
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "净本轮容量+10/+15，空过后失去原6玉璋",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "重压有益，空过/低伤之后更差；开场遗物3不足启动"
+        ]
+      },
+      "next": "修来源清单，按净资源成本核算",
+      "human_naming_approved": false,
+      "balance_approved": false
+    },
+    {
+      "id": "zl17",
+      "cost": 1,
+      "rarity": "common",
+      "official_exact": false,
+      "source_readability": "no_official_block_removal_evidence",
+      "source_refs": [],
+      "source_manifest_listed": false,
+      "adaptation": "花玉璋移除Block，不是元素盾破除或官方减抗",
+      "base": [
+        [
+          "spendJade",
+          3
+        ],
+        [
+          "removeBlock",
+          1
+        ],
+        [
+          "damage",
+          4
+        ]
+      ],
+      "upgrade": [
+        [
+          "spendJade",
+          3
+        ],
+        [
+          "removeBlock",
+          1
+        ],
+        [
+          "damage",
+          6
+        ]
+      ],
+      "exhaust": false,
+      "self_retain": false,
+      "upgrade_risk": "仅攻击提高，拆甲不变；裸敌额外耗防线",
+      "dominance": {
+        "strict": [],
+        "conditional": [
+          "高甲可能优于基础攻击；裸敌更弱；Melter异职业异稀有不能算同池严格支配"
+        ]
+      },
+      "next": "修清单；Hand of Greed经济职责不足以独自充当第二同类对照",
+      "human_naming_approved": false,
+      "balance_approved": false
+    }
+  ],
+  "relic": {
+    "id": "zl-relic01",
+    "effect": "每战开始一次获得3玉璋",
+    "official_exact": false,
+    "source_readability": "official_body_theme_only",
+    "source_refs": [
+      "S2"
+    ],
+    "adaptation": true,
+    "human_naming_approved": false,
+    "balance_approved": false,
+    "risk": "开场3玉璋可直接启用zl17但不能单独启用zl04/zl16；新增牌改变遗物机会成本，须同版本重审"
+  },
+  "findings": [
+    {
+      "id": "ZL-SOURCE-01",
+      "severity": "P2",
+      "kind": "confirmed_manifest_drift",
+      "file": "experiments/characters/zhongli/sources.json",
+      "locator": "cardIds",
+      "actual": "cardIds只列zl01-zl15；model有zl01-zl17，adaptationBoundary已含16/17",
+      "reproduction": "model.cards.map(c=>c.id).filter(id=>!sources.cardIds.includes(id))",
+      "expected_difference": [
+        "zl16",
+        "zl17"
+      ],
+      "recommendation": "补清单及ID集合相等校验，不提升verified/humanReview"
+    },
+    {
+      "id": "ZL-GATE-01",
+      "severity": "GATE_HOLD",
+      "kind": "acknowledged_evidence_gap_not_runtime_bug",
+      "actual": "17张缺完整逐卡官方名称/具体机制映射；主动耗盾、Weak、Vulnerable、反击、过牌、保留、拆Block均本作改编",
+      "recommendation": "保留改编/待命名，人物来源人审及B-GATE未过不得称正式75卡"
+    },
+    {
+      "id": "ZL-GATE-02",
+      "severity": "GATE_HOLD",
+      "kind": "acknowledged_acquisition_gap",
+      "actual": "README明确rare zl05和uncommon zl10无自然渠道，研究奖励仅普通",
+      "recommendation": "不得外推为全稀有度自然构筑"
+    }
+  ],
+  "independent_probes": [
+    {
+      "id": "P-01",
+      "method": "内存载入固定SHA model.mjs原逻辑，仅移除ES export声明以调用；合法整数状态",
+      "setup": "hp60,enemyHP40,enemyBlock0,默认3能量,一张基础待测牌,来伤[5]",
+      "caseA": "jade0: zl06结束hp60/jade2; zl02结束hp60/jade0",
+      "caseB": "jade20: zl06结束hp60/jade19; zl02结束hp60/jade20",
+      "conclusion": "zl06仅条件优势，非无条件支配"
+    },
+    {
+      "id": "P-02",
+      "method": "同P-01",
+      "setup": "enemyHP40/block0,无易伤,单张基础牌",
+      "caseA": "jade6: zl11敌29HP; zl01敌34HP",
+      "caseB": "jade0: zl11敌35HP; zl01敌34HP",
+      "conclusion": "zl11依赖维持防线，不能按无前置11伤计价"
+    }
+  ],
+  "verification_boundary": {
+    "all_implemented_card_ids_covered": true,
+    "full_run": false,
+    "owner_tree_modified": false,
+    "values_changed": false,
+    "official_sources_reopened_this_turn": false,
+    "note": "子审固定SHA读源码/来源/README；根审本轮另重开162350/100444确认正文，使用全局ledger补充，不冒称本子审重开。"
+  }
+}

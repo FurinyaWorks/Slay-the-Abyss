@@ -1,0 +1,1947 @@
+{
+  "character": "ganyu",
+  "commit": "a2ad806e6cb2fab7e14ccfab4b5ca4d4a71c8232",
+  "version": "ganyu-sample-0.16.0",
+  "coverage": "46/46",
+  "blobs": {
+    "cards": "1b36fc0a22aacb675bcb43dfa89955aa4db3b237",
+    "sources": "7202e8169d74ffd36138c3c3cb9af0e2e88e0e27",
+    "engine": "fc2c01edee585a1a407122f34514ec5e5816df1e"
+  },
+  "scope": {
+    "read_via": "GitHub固定SHA",
+    "readme": "README.md返回404；改读同SHA docs/design/characters/GANYU.md",
+    "official_links_opened_this_review": false,
+    "official_primary_verified_this_review": false,
+    "files_modified": "仅独立审计ganyu.json；不改owner",
+    "full_run": false,
+    "human_approval": false,
+    "historical_numeric_diff_audited": false
+  },
+  "source_ledger_note": "本轮原始外链未重开；全局ledger由root补。root报告103816/103809直接打开0可读行；魈/刻晴/钟离官方正文不能支持甘雨逐牌。所有记录source_verified=false，不能把本地索引视作本轮官方全文核验。",
+  "findings": [
+    {
+      "id": "D1",
+      "severity": "P1_DESIGN_HOLD",
+      "cards": [
+        "ganyu-44",
+        "ganyu-04"
+      ],
+      "classification": "strict_current_frozen_model_same_cost_rarity",
+      "evidence": "均1费uncommon/self且不耗蓄、不消耗、不保留。04基础6盾+3群伤、升级8盾+4群伤；44基础3或6盾、升级4或8盾。0/1/2蓄、基础/升级6组中04盾>=且多群伤。",
+      "scope": "限定该SHA当前engine支持效果；没有反伤、攻击惩罚或伤害负触发。若未来加此类机制必须重审，不推广全游戏。",
+      "reproduction": "固定远端engine/cards/deck/relic仅以内存data模块加载；敌100HP/0盾/0意图，6组断言通过；未写源文件。",
+      "action": "44先保留HOLD，负责人给独立可达取舍或设计变更提案；不擅改值"
+    },
+    {
+      "id": "D2",
+      "severity": "P2_DESIGN_REVIEW",
+      "cards": [
+        "ganyu-06",
+        "ganyu-16",
+        "ganyu-36"
+      ],
+      "classification": "base_only_dominance_and_cross_rarity",
+      "evidence": "06与16基础同1费common产1蓄；16多4伤。当前有效活敌目标存在下06基础缺胜出职责。升级06产2蓄而16仍1蓄，不能称全等级严格支配。36同费1蓄另4盾但uncommon，分开计。",
+      "action": "证明基础06可达选牌价值，不用升级差异为基础免责"
+    },
+    {
+      "id": "D3",
+      "severity": "P2_BALANCE_RISK",
+      "cards": [
+        "ganyu-05",
+        "ganyu-18",
+        "ganyu-31",
+        "ganyu-29",
+        "ganyu-37"
+      ],
+      "classification": "conditional_combination_not_free_infinite_loop",
+      "evidence": "storm分别取最大强度与剩余次数；31基础6×3一次回合末后用18基础刷新，实际仍6×3。内存真实engine复现。18仍支付1费及手牌。",
+      "action": "联算长期群伤、防守预算、提前兑现和单体收束；消耗不代表全战仅三跳"
+    },
+    {
+      "id": "S1",
+      "severity": "P1_SOURCE_GATE",
+      "cards": "all46",
+      "evidence": "46/46未核官方原文、人审false；03–05仅P1候选，大量source_text=null。HOLD披露诚实但不构成完成。",
+      "action": "逐卡补官方条目、精确版本、语境、改编映射；共享冰莲索引不能证明纯过牌/单层消费/雨收束"
+    }
+  ],
+  "rows": [
+    {
+      "id": "ganyu-01",
+      "official_record_exact": false,
+      "source_tier": "SYS-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "普通攻击",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "SYS准入未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "角色文档说明回合制改编；逐卡语境仍缺",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 9
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "基础牌被奖励替代合理",
+      "dominance": "跨稀有度比较，03通常态基础伤害更高",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-02",
+      "official_record_exact": false,
+      "source_tier": "SYS-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "防御",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "SYS准入未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "角色文档说明回合制改编；逐卡语境仍缺",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "基础防守密度须纳入连续战",
+      "dominance": "跨稀有度08同盾另抽1，非基础牌缺陷",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-03",
+      "official_record_exact": false,
+      "source_tier": "P1-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "霜华矢",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "名称及共享索引；官方原文未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "角色文档说明回合制改编；逐卡语境仍缺",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 7,
+            "bloom": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 9,
+            "bloom": 8
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "满蓄强制全耗；主目标先死仍绽发",
+      "dominance": "与17/35/46单群/费用/防守有区别",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-04",
+      "official_record_exact": false,
+      "source_tier": "P1-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "山泽麟迹",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "名称及共享索引；官方原文未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "角色文档说明回合制改编；逐卡语境仍缺",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 6
+          },
+          {
+            "op": "aoe",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "aoe",
+            "amount": 4
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "冰莲嘲讽改即时盾与群伤需标改编",
+      "dominance": "D1：当前冻结模型严格支配44",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-05",
+      "official_record_exact": false,
+      "source_tier": "P1-candidate",
+      "source_kind": "unverified-transcription-index",
+      "source_text": "降众天华",
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "名称及共享索引；官方原文未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "角色文档说明回合制改编；逐卡语境仍缺",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 6,
+            "turns": 2
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "强度可被18续期",
+      "dominance": "31单次强但消耗，非全战严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-06",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "unverified-transcription-index",
+      "source_text": null,
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "机械候选；source_kind仍称转录索引，逐卡改编身份需澄清",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "基础职责被复合来源挤压",
+      "dominance": "D2：基础被16支配；升级产2蓄不成立",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-07",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "unverified-transcription-index",
+      "source_text": null,
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "机械候选；source_kind仍称转录索引，逐卡改编身份需澄清",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "过牌可能耗尽防守预算；满手截断",
+      "dominance": "08防守、24消耗存在机会成本区别",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-08",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "unverified-transcription-index",
+      "source_text": null,
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "机械候选；source_kind仍称转录索引，逐卡改编身份需澄清",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "防守轮转仍需有效抽牌及生存验证",
+      "dominance": "与07无严格关系；替代02跨稀有",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-09",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "unverified-transcription-index",
+      "source_text": null,
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "机械候选；source_kind仍称转录索引，逐卡改编身份需澄清",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 11
+          },
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "09+10+03基础费4，不能冒称3能量连招",
+      "dominance": "与13盾量、36费用和产量不同",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-10",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "unverified-transcription-index",
+      "source_text": null,
+      "source_locator": "docs/design/characters/GANYU.md#G1：来源索引与真实缺口",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "机械候选；source_kind仍称转录索引，逐卡改编身份需澄清",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03"
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "仅抽牌堆取03，空取不退款",
+      "dominance": "与25牌区/消耗、39目标集合不同",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-11",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-06.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "0费仍占抽牌，可能弱化存能代价",
+      "dominance": "与13/26/38费用保留消耗不同",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-12",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-06.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "block",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "block",
+            "amount": 4
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "先伤后盾；未来反伤须保持时序",
+      "dominance": "04跨稀有盾高但单伤低，非严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-13",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-06.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 14
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 18
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "占两能量，挤压进攻与存能",
+      "dominance": "与09以产蓄换盾量，非严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-14",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-06.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 11
+          },
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "全回合启动；已有强雨时须联算",
+      "dominance": "与05+盾须计两张手牌，非单卡严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-15",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-07.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 14
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 18
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "需证明纯伤具体击杀阈值",
+      "dominance": "17未满蓄弱、满蓄强，条件区别",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-16",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-07.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "先伤后产蓄不追溯本牌",
+      "dominance": "D2：基础支配06；升级06多产1蓄",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-17",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-07.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 8,
+            "bonus": 14
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 11,
+            "bonus": 17
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "2费集中全耗蓄，无群伤",
+      "dominance": "与15按蓄力条件互有优势",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-18",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-07.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 2,
+            "turns": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 3
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "D3：低价续高强雨",
+      "dominance": "单卡低强长雨不同；组合削弱重复强雨价值",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-19",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-08.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 5,
+            "bonus": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 7,
+            "bonus": 10
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "耗满蓄可能阻断03",
+      "dominance": "比42满蓄盾高但多耗1蓄，非严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-20",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-08.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 2
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "余1能量，基础需已有1蓄才即时满蓄",
+      "dominance": "与07+06需计两张手牌和牌序",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-21",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-08.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 10
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 14
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "稳定无前置群伤可能挤压特色兑现",
+      "dominance": "28当次更强但消耗保留，非全战严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-22",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-08.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "draw",
+            "amount": 1
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "抽到仍可能付不起",
+      "dominance": "与12/16分别换盾/蓄，职责有区别",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-23",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-09.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charge",
+            "amount": 2
+          },
+          {
+            "op": "block",
+            "amount": 3
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "免费满蓄绕过等待，需自然可得性",
+      "dominance": "短战优于06；消耗使全战严格不成立",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-24",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-09.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "draw",
+            "amount": 4
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "满手或空堆削弱升级",
+      "dominance": "当次过牌高于07；消耗换收益",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-25",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-09.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03",
+            "zone": "discard"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_card",
+            "card_id": "ganyu-03",
+            "zone": "discard"
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "仅弃牌取03，无目标仍支付消耗",
+      "dominance": "与10牌区不同",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-26",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-10.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 9
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": true,
+      "risk": "保留占手可能阻塞轮转",
+      "dominance": "相对02跨稀有；与04有保留成本，非严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-27",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-10.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 7,
+            "bloom": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "charged_shot",
+            "direct": 10,
+            "bloom": 8
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": true,
+      "risk": "保留不解决未抽到，2费预算更紧",
+      "dominance": "比03多1费换保留，非全状态严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-28",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-10.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 16
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "aoe",
+            "amount": 20
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": true,
+      "risk": "集中爆发与保留降低操作风险，需获取成本",
+      "dominance": "当次高于21，消耗令全战严格不成立",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-29",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-11.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "storm_release"
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "耗未来雨跳，无雨不退款",
+      "dominance": "D3：与18续期联算，不按孤立0费群伤定价",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-30",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-11.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_draw",
+            "amount": 1,
+            "bonus": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_draw",
+            "amount": 1,
+            "bonus": 3
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "耗满蓄抽牌可能抽到03却无蓄",
+      "dominance": "无蓄劣于07；满蓄多抽但耗资源",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-31",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-11.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 6,
+            "turns": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "storm",
+            "amount": 8,
+            "turns": 3
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "D3：消耗不限制被18续高强雨",
+      "dominance": "单次强于05，不能忽略消耗及刷新",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-32",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-12.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 3,
+            "bonus": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_block",
+            "amount": 4,
+            "bonus": 8
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "长期雨同时供无耗条件盾，须联算",
+      "dominance": "有雨高于26盾但无保留，无雨弱",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-33",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-12.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "storm_draw",
+            "amount": 1,
+            "bonus": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "storm_draw",
+            "amount": 1,
+            "bonus": 2
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "无雨免费换牌，有雨压缩成本",
+      "dominance": "有雨优于43资源效率；无雨有蓄43抽更多",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-34",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-12.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 2,
+            "bonus": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_direct",
+            "direct": 3,
+            "bonus": 9
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "0费仍全耗蓄，可能破坏后续爆发",
+      "dominance": "与41/45费用消耗不同",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-35",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-13.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 2,
+            "bonus": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 3,
+            "bonus": 7
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "与03争夺满蓄",
+      "dominance": "对非主目标更高、主目标更低，非严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-36",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-13.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 4
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 7
+          },
+          {
+            "op": "charge",
+            "amount": 1
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "防守兼产蓄弱化等待代价待审",
+      "dominance": "基础跨稀有度优于06；与09费用产量不同",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-37",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-13.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_focus",
+            "amount": 4
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "storm_focus",
+            "amount": 7
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "主动收束雨无已核官方依据",
+      "dominance": "单敌提前清算强，多敌失去后续群伤",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-38",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-14.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 2,
+            "bonus": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "charged_block",
+            "amount": 4,
+            "bonus": 10
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "0费应急仍全耗蓄",
+      "dominance": "与19费用总盾消耗不同",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-39",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-14.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "storm"
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "seek_effect",
+            "effect_op": "storm"
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "首个storm不选最强，空取不退款",
+      "dominance": "与10目标集合消耗不同",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-40",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-14.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 6,
+            "bonus": 12
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "charged_aoe",
+            "amount": 8,
+            "bonus": 16
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": true,
+      "risk": "3费全回合全耗蓄，保留占手",
+      "dominance": "比28满蓄高且可重复，但多费耗蓄",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-41",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-15.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_damage",
+            "amount": 3,
+            "bonus": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_damage",
+            "amount": 4,
+            "bonus": 7
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "单层分支削弱满蓄等待主题待审",
+      "dominance": "满蓄45同伤不耗蓄更优；1蓄41更高，条件",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-42",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-15.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 3,
+            "bonus": 6
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 4,
+            "bonus": 8
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "1蓄兑现与19全耗竞争",
+      "dominance": "有雨32同盾不耗蓄更优；无雨有蓄42更优",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-43",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-15.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "spend_one_draw",
+            "amount": 0,
+            "bonus": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "spend_one_draw",
+            "amount": 0,
+            "bonus": 3
+          }
+        ]
+      },
+      "exhaust": true,
+      "retain": false,
+      "risk": "无蓄空打也消耗；满手仍可能损蓄",
+      "dominance": "有雨33同抽不耗蓄；无雨有蓄43更多",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-44",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-16.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 3,
+            "bonus": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_block",
+            "amount": 4,
+            "bonus": 4
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "D1：缺独立值得拿情境",
+      "dominance": "当前冻结模型同费同稀有被04严格支配",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-45",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-16.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_damage",
+            "amount": 4,
+            "bonus": 4
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "full_charge_damage",
+            "amount": 6,
+            "bonus": 5
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "可能鼓励长时间不兑现",
+      "dominance": "满蓄优于41资源效率；1蓄41伤高，条件",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    },
+    {
+      "id": "ganyu-46",
+      "official_record_exact": false,
+      "source_tier": "unassigned",
+      "source_kind": "mechanical-adaptation-pending-primary",
+      "source_text": null,
+      "source_locator": "batch-16.md#来源与命名边界",
+      "source_version": "unknown; research 2026-11-13",
+      "primary_read_status": "无逐卡原文；未核",
+      "official_link_opened_this_review": false,
+      "adaptation": "明确mechanical-adaptation-pending-primary；人物适配未批准",
+      "base_upgrade_changed": true,
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 7
+          },
+          {
+            "op": "charged_shot",
+            "direct": 5,
+            "bloom": 5
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 10
+          },
+          {
+            "op": "charged_shot",
+            "direct": 7,
+            "bloom": 6
+          }
+        ]
+      },
+      "exhaust": false,
+      "retain": false,
+      "risk": "先盾后箭满蓄全耗，复合效果需审",
+      "dominance": "与03+盾须计两张手牌，无已证严格",
+      "source_gate": "HOLD",
+      "human_gate": "HOLD",
+      "balance_gate": "HOLD"
+    }
+  ],
+  "recommendation": "D1/D2职责论证优先，D3用同版本自然获取、多遭遇、连续战验证；不自动改数值或审批。"
+}

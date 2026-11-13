@@ -1,0 +1,2391 @@
+{
+  "schemaVersion": 1,
+  "status": "REVIEW_EVIDENCE_ONLY",
+  "inventory": {
+    "ganyu": {
+      "commit": "a2ad806e6cb2fab7e14ccfab4b5ca4d4a71c8232",
+      "implemented": 46,
+      "sourceRecordSchema": "per-card records",
+      "missingFromExplicitRecordsOrIndex": [],
+      "extraSourceIds": [],
+      "rows": [
+        {
+          "id": "ganyu-01",
+          "cost": 1,
+          "rarity": "basic",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-02",
+          "cost": 1,
+          "rarity": "basic",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 5,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-03",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.direct",
+              "before": 7,
+              "after": 9
+            },
+            {
+              "path": "$.effects.0.bloom",
+              "before": 6,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-04",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 6,
+              "after": 8
+            },
+            {
+              "path": "$.effects.1.amount",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-05",
+          "cost": 2,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-06",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-07",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-08",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 5,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-09",
+          "cost": 2,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 8,
+              "after": 11
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-10",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.cost",
+              "before": 1,
+              "after": 0
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-11",
+          "cost": 0,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 3,
+              "after": 5
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-12",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 4,
+              "after": 6
+            },
+            {
+              "path": "$.effects.1.amount",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-13",
+          "cost": 2,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 14,
+              "after": 18
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-14",
+          "cost": 3,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 8,
+              "after": 11
+            },
+            {
+              "path": "$.effects.1.amount",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-15",
+          "cost": 2,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 14,
+              "after": 18
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-16",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-17",
+          "cost": 2,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.direct",
+              "before": 8,
+              "after": 11
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 14,
+              "after": 17
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-18",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-19",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 5,
+              "after": 7
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 8,
+              "after": 10
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-20",
+          "cost": 2,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-21",
+          "cost": 2,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 10,
+              "after": 14
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-22",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-23",
+          "cost": 0,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.1",
+              "before": null,
+              "after": {
+                "op": "block",
+                "amount": 3
+              }
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-24",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-25",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.cost",
+              "before": 1,
+              "after": 0
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-26",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-27",
+          "cost": 2,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.direct",
+              "before": 7,
+              "after": 10
+            },
+            {
+              "path": "$.effects.0.bloom",
+              "before": 6,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-28",
+          "cost": 2,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 16,
+              "after": 20
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-29",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.cost",
+              "before": 1,
+              "after": 0
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-30",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.bonus",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-31",
+          "cost": 2,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 6,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-32",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 3,
+              "after": 4
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 6,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-33",
+          "cost": 0,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.bonus",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-34",
+          "cost": 0,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.direct",
+              "before": 2,
+              "after": 3
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-35",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 2,
+              "after": 3
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 5,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-36",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 4,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-37",
+          "cost": 1,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 4,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-38",
+          "cost": 0,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 2,
+              "after": 4
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 8,
+              "after": 10
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-39",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.cost",
+              "before": 1,
+              "after": 0
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-40",
+          "cost": 3,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 6,
+              "after": 8
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 12,
+              "after": 16
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-41",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 3,
+              "after": 4
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 5,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-42",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 3,
+              "after": 4
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 6,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-43",
+          "cost": 0,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.bonus",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-44",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 3,
+              "after": 4
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-45",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 4,
+              "after": 6
+            },
+            {
+              "path": "$.effects.0.bonus",
+              "before": 4,
+              "after": 5
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "ganyu-46",
+          "cost": 2,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.effects.0.amount",
+              "before": 7,
+              "after": 10
+            },
+            {
+              "path": "$.effects.1.direct",
+              "before": 5,
+              "after": 7
+            },
+            {
+              "path": "$.effects.1.bloom",
+              "before": 5,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        }
+      ]
+    },
+    "xiao": {
+      "commit": "6f05453ef1b3ed2a7406a2b4f95a93448fa27d3a",
+      "implemented": 42,
+      "sourceRecordSchema": "shared anchors only",
+      "missingFromExplicitRecordsOrIndex": null,
+      "extraSourceIds": null,
+      "rows": [
+        {
+          "id": "x01",
+          "cost": 1,
+          "rarity": "basic",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x02",
+          "cost": 1,
+          "rarity": "basic",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 5,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x03",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 9,
+              "after": 12
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x04",
+          "cost": 1,
+          "rarity": "basic",
+          "upgradeChanges": [
+            {
+              "path": "$.1.value",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x05",
+          "cost": 1,
+          "rarity": "basic",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x06",
+          "cost": 0,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.1.value",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x07",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 5,
+              "after": 7
+            },
+            {
+              "path": "$.1.value",
+              "before": 5,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x08",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x09",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.1.value",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x10",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.2.value",
+              "before": 8,
+              "after": 11
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x11",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 10,
+              "after": 14
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x12",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x13",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 8,
+              "after": 12
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x14",
+          "cost": 1,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x15",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.1.value",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x16",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.1.value",
+              "before": 3,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x17",
+          "cost": 0,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.1.value",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x18",
+          "cost": 2,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 18,
+              "after": 24
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x19",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x20",
+          "cost": 0,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x21",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.cap",
+              "before": 18,
+              "after": 24
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x22",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.cap",
+              "before": 10,
+              "after": 14
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x23",
+          "cost": 0,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 5,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x24",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 0,
+              "after": 1
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x25",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 8,
+              "after": 11
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x26",
+          "cost": 0,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x27",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.1.value",
+              "before": 7,
+              "after": 10
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x28",
+          "cost": 2,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 10,
+              "after": 14
+            },
+            {
+              "path": "$.0.bonus",
+              "before": 10,
+              "after": 12
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x29",
+          "cost": 1,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x30",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 5,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x31",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 6,
+              "after": 8
+            },
+            {
+              "path": "$.1.value",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x32",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 4,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x33",
+          "cost": 2,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x34",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x35",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x36",
+          "cost": 2,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x37",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.cap",
+              "before": 14,
+              "after": 20
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x38",
+          "cost": 0,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.cap",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x39",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.1.value",
+              "before": 4,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x40",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x41",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 3,
+              "after": 5
+            },
+            {
+              "path": "$.0.bonus",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "x42",
+          "cost": 1,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.value",
+              "before": 4,
+              "after": 6
+            },
+            {
+              "path": "$.0.bonus",
+              "before": 5,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        }
+      ]
+    },
+    "keqing": {
+      "commit": "8cab47dc1e3d3316d56c64428924af07360c9a7d",
+      "implemented": 17,
+      "sourceRecordSchema": "per-card records",
+      "missingFromExplicitRecordsOrIndex": [
+        "KQ010",
+        "KQ034",
+        "KQ035",
+        "KQ036",
+        "KQ067",
+        "KQ052",
+        "KQ053",
+        "KQ054"
+      ],
+      "extraSourceIds": [],
+      "rows": [
+        {
+          "id": "KQ001",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.damage",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ002",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.amount",
+              "before": 5,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ003",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.setup",
+              "before": 5,
+              "after": 7
+            },
+            {
+              "path": "$.0.release",
+              "before": 8,
+              "after": 11
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ004",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.damage",
+              "before": 4,
+              "after": 5
+            },
+            {
+              "path": "$.1.damage",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ006",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.amount",
+              "before": 5,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ007",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.amount",
+              "before": 5,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ008",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.absent",
+              "before": 5,
+              "after": 8
+            },
+            {
+              "path": "$.0.present",
+              "before": 8,
+              "after": 11
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ009",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.damage",
+              "before": 3,
+              "after": 5
+            },
+            {
+              "path": "$.1.amount",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ010",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.amount",
+              "before": 4,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ034",
+          "cost": 2,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.amount",
+              "before": 13,
+              "after": 17
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ035",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.amount",
+              "before": 4,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ036",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.amount",
+              "before": 5,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ067",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.amount",
+              "before": 4,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ052",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.damage",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ053",
+          "cost": 2,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.damage",
+              "before": 16,
+              "after": 20
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ054",
+          "cost": 1,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.damage",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "KQ005",
+          "cost": 2,
+          "rarity": "pending",
+          "upgradeChanges": [
+            {
+              "path": "$.0.damage",
+              "before": 3,
+              "after": 4
+            },
+            {
+              "path": "$.1.damage",
+              "before": 5,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": true,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        }
+      ]
+    },
+    "zhongli": {
+      "commit": "29508d5757b49fa20f96679612374d9219466a66",
+      "implemented": 17,
+      "sourceRecordSchema": "cardIds index only",
+      "missingFromExplicitRecordsOrIndex": [
+        "zl16",
+        "zl17"
+      ],
+      "extraSourceIds": [],
+      "rows": [
+        {
+          "id": "zl01",
+          "cost": 1,
+          "rarity": "basic",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 6,
+              "after": 9
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl02",
+          "cost": 1,
+          "rarity": "basic",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 5,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl03",
+          "cost": 2,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 12,
+              "after": 16
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl04",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.1.1",
+              "before": 14,
+              "after": 18
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl05",
+          "cost": 3,
+          "rarity": "rare",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 24,
+              "after": 32
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl06",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 4,
+              "after": 6
+            },
+            {
+              "path": "$.1.1",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl07",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 5,
+              "after": 7
+            },
+            {
+              "path": "$.1.1",
+              "before": 5,
+              "after": 7
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl08",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 4,
+              "after": 6
+            },
+            {
+              "path": "$.1.1",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl09",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 5,
+              "after": 7
+            },
+            {
+              "path": "$.1.1",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl10",
+          "cost": 2,
+          "rarity": "uncommon",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 20,
+              "after": 26
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl11",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 5,
+              "after": 7
+            },
+            {
+              "path": "$.1.1",
+              "before": 6,
+              "after": 8
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl12",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 3,
+              "after": 4
+            },
+            {
+              "path": "$.1.1",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl13",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 2,
+              "after": 3
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl14",
+          "cost": 2,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 13,
+              "after": 18
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl15",
+          "cost": 2,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.0.1",
+              "before": 8,
+              "after": 11
+            },
+            {
+              "path": "$.1.1",
+              "before": 3,
+              "after": 4
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl16",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.1.1",
+              "before": 16,
+              "after": 21
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        },
+        {
+          "id": "zl17",
+          "cost": 1,
+          "rarity": "common",
+          "upgradeChanges": [
+            {
+              "path": "$.2.1",
+              "before": 4,
+              "after": 6
+            }
+          ],
+          "upgradeMeaningfulness": "REQUIRES_CONTEXT_REVIEW",
+          "exactOfficialVerified": false,
+          "explicitSourceRecord": false,
+          "note": "Different structure does not prove beneficial upgrade; source boolean is only a recorded claim."
+        }
+      ]
+    }
+  },
+  "probes": {
+    "ganyuDefense": [
+      {
+        "upgraded": false,
+        "charge": 0,
+        "a04": {
+          "block": 6,
+          "enemyHp": 97
+        },
+        "b44": {
+          "block": 3,
+          "enemyHp": 100
+        }
+      },
+      {
+        "upgraded": false,
+        "charge": 1,
+        "a04": {
+          "block": 6,
+          "enemyHp": 97
+        },
+        "b44": {
+          "block": 3,
+          "enemyHp": 100
+        }
+      },
+      {
+        "upgraded": false,
+        "charge": 2,
+        "a04": {
+          "block": 6,
+          "enemyHp": 97
+        },
+        "b44": {
+          "block": 6,
+          "enemyHp": 100
+        }
+      },
+      {
+        "upgraded": true,
+        "charge": 0,
+        "a04": {
+          "block": 8,
+          "enemyHp": 96
+        },
+        "b44": {
+          "block": 4,
+          "enemyHp": 100
+        }
+      },
+      {
+        "upgraded": true,
+        "charge": 1,
+        "a04": {
+          "block": 8,
+          "enemyHp": 96
+        },
+        "b44": {
+          "block": 4,
+          "enemyHp": 100
+        }
+      },
+      {
+        "upgraded": true,
+        "charge": 2,
+        "a04": {
+          "block": 8,
+          "enemyHp": 96
+        },
+        "b44": {
+          "block": 8,
+          "enemyHp": 100
+        }
+      }
+    ],
+    "ganyuSupply": [
+      {
+        "upgraded": false,
+        "a06": {
+          "charge": 1,
+          "enemyHp": 100
+        },
+        "b16": {
+          "charge": 1,
+          "enemyHp": 96
+        }
+      },
+      {
+        "upgraded": true,
+        "a06": {
+          "charge": 2,
+          "enemyHp": 100
+        },
+        "b16": {
+          "charge": 1,
+          "enemyHp": 94
+        }
+      }
+    ],
+    "ganyuRainRefresh": {
+      "amount": 6,
+      "turns": 3
+    },
+    "xiaoDuration": [
+      {
+        "upgraded": false,
+        "hp": 2,
+        "mask": 0
+      },
+      {
+        "upgraded": true,
+        "hp": 0,
+        "mask": 0
+      }
+    ],
+    "xiaoRecoverExit": {
+      "hand": [],
+      "discard": [
+        "x27"
+      ],
+      "block": 3
+    },
+    "zhongliCappedDefense": [
+      {
+        "jade": 0,
+        "a06": 2,
+        "b02": 0
+      },
+      {
+        "jade": 20,
+        "a06": 19,
+        "b02": 20
+      }
+    ],
+    "keqingAttack": [
+      {
+        "infusion": 0,
+        "id": "KQ001",
+        "damage": [
+          6,
+          0
+        ]
+      },
+      {
+        "infusion": 0,
+        "id": "KQ004",
+        "damage": [
+          8,
+          0
+        ]
+      },
+      {
+        "infusion": 0,
+        "id": "KQ052",
+        "damage": [
+          6,
+          6
+        ]
+      },
+      {
+        "infusion": 0,
+        "id": "KQ054",
+        "damage": [
+          6,
+          0
+        ]
+      },
+      {
+        "infusion": 1,
+        "id": "KQ001",
+        "damage": [
+          8,
+          0
+        ]
+      },
+      {
+        "infusion": 1,
+        "id": "KQ004",
+        "damage": [
+          12,
+          0
+        ]
+      },
+      {
+        "infusion": 1,
+        "id": "KQ052",
+        "damage": [
+          8,
+          8
+        ]
+      },
+      {
+        "infusion": 1,
+        "id": "KQ054",
+        "damage": [
+          12,
+          0
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Constructed local states, not natural acquisition frequencies.",
+    "No full-state dominance solver; every strict statement is restricted to the current modeled effect contract.",
+    "Source boolean claims are not independent official verification.",
+    "No Full, browser, native, human naming or balance approval."
+  ]
+}

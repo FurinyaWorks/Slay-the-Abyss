@@ -1,0 +1,322 @@
+{
+  "character": "keqing",
+  "sha": "8cab47dc1e3d3316d56c64428924af07360c9a7d",
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "reviewed_files": [
+    "mechanics.mjs",
+    "sources.json",
+    "README.md"
+  ],
+  "scope": {
+    "planned_slots": 75,
+    "implemented_cards": 17,
+    "unimplemented_slots": 58,
+    "source_records": 9,
+    "official_exact_card_records_verified": 0,
+    "full_run": false,
+    "owner_files_modified": false,
+    "human_approval": false
+  },
+  "source_classification": {
+    "community_lead": "仓库社区链接和章节线索；source_text=null、source_verified=false，本轮未读取外部正文",
+    "unverified": "无精确官方原文，人物证据不能代替技能核验",
+    "missing_record": "sources.json无对应记录",
+    "character_only": "仓库记录HoYoLAB 162350身份原文；本审未重新读取，根审另附共享ledger",
+    "video_index_only": "候选视频只有索引，无已读字幕或时间码"
+  },
+  "cards": [
+    {
+      "id": "KQ001",
+      "line": 9,
+      "exact_official_record": false,
+      "source": "community_lead",
+      "adaptation": "候选云来剑法；数值为改编",
+      "base_upgrade": "1费单体6→9",
+      "risk": "当前模型拆段/群攻无代价",
+      "strict_dominance": null,
+      "conditional_dominance": "相同获取条件下被KQ052/KQ054弱支配；starter/reward不同"
+    },
+    {
+      "id": "KQ002",
+      "line": 11,
+      "exact_official_record": false,
+      "source": "unverified",
+      "adaptation": "基础防守未获SYS批准",
+      "base_upgrade": "1费格挡5→8",
+      "risk": "奖励防守覆盖基础牌",
+      "strict_dominance": null,
+      "conditional_dominance": "被KQ035/KQ036模型内弱支配；获取渠道不同"
+    },
+    {
+      "id": "KQ003",
+      "line": 13,
+      "exact_official_record": false,
+      "source": "community_lead",
+      "adaptation": "战场雷楔、回合有效期及两次每段+2为改编",
+      "base_upgrade": "1费设置5→7，兑现8→11，附魔2次不变",
+      "risk": "两次打出升级合计+5",
+      "strict_dominance": null,
+      "conditional_dominance": "与KQ004依敌血、数量、后续攻击反转"
+    },
+    {
+      "id": "KQ004",
+      "line": 15,
+      "exact_official_record": false,
+      "source": "community_lead",
+      "adaptation": "重击/引爆线索未核；数值为改编",
+      "base_upgrade": "1费4×2→5×2，有楔全体4→6并消费",
+      "risk": "附魔亦加引爆；升级群攻收益随敌数增加",
+      "strict_dominance": null,
+      "conditional_dominance": "对KQ054基础无楔无附魔8>6，附魔12=12；升级附魔14<15"
+    },
+    {
+      "id": "KQ005",
+      "line": 41,
+      "exact_official_record": false,
+      "source": "community_lead",
+      "adaptation": "候选天街巡游；固定两费三段群攻为改编",
+      "base_upgrade": "2费每敌3×2+5→4×2+7，即11→15",
+      "risk": "附魔每敌+6",
+      "strict_dominance": null,
+      "conditional_dominance": "KQ052便宜但单卡低伤；两张需额外手牌并可能多耗附魔"
+    },
+    {
+      "id": "KQ006",
+      "line": 17,
+      "exact_official_record": false,
+      "source": "unverified",
+      "adaptation": "sources明示原创消费雷楔换防守",
+      "base_upgrade": "1费格挡5→8；有楔额外5不变",
+      "risk": "自动消费楔放弃攻击兑现",
+      "strict_dominance": null,
+      "conditional_dominance": "即时防守优于KQ002，资源损失阻止全状态支配"
+    },
+    {
+      "id": "KQ007",
+      "line": 19,
+      "exact_official_record": false,
+      "source": "unverified",
+      "adaptation": "sources明示原创消费附魔换防守",
+      "base_upgrade": "1费格挡5→8；消费一次附魔额外4",
+      "risk": "多段多敌攻击机会成本可能超过4伤",
+      "strict_dominance": null,
+      "conditional_dominance": "不再攻击且附魔将过期时优于KQ002"
+    },
+    {
+      "id": "KQ008",
+      "line": 21,
+      "exact_official_record": false,
+      "source": "unverified",
+      "adaptation": "sources明示原创保楔进攻",
+      "base_upgrade": "1费无楔5→8，有楔8→11",
+      "risk": "保楔后续收益缺自然拿牌证明",
+      "strict_dominance": null,
+      "conditional_dominance": "无楔弱于KQ001/KQ052，有楔单体优于两者"
+    },
+    {
+      "id": "KQ009",
+      "line": 23,
+      "exact_official_record": false,
+      "source": "unverified",
+      "adaptation": "sources明示原创攻防",
+      "base_upgrade": "1费伤害3→5，格挡4→6",
+      "risk": "升级同时攻防；低伤攻击耗一次附魔",
+      "strict_dominance": null,
+      "conditional_dominance": "攻防预算不同，未发现全状态支配"
+    },
+    {
+      "id": "KQ010",
+      "line": 25,
+      "exact_official_record": false,
+      "source": "missing_record",
+      "adaptation": "缺逐卡改编记录；防守设置楔不可标官方",
+      "base_upgrade": "1费格挡4→7；无楔设置，有楔不刷新",
+      "risk": "需单列首次设置遗物交互",
+      "strict_dominance": null,
+      "conditional_dominance": "已有楔时比KQ002少1格挡；无楔获得启动功能"
+    },
+    {
+      "id": "KQ034",
+      "line": 27,
+      "exact_official_record": false,
+      "source": "missing_record",
+      "adaptation": "缺逐卡改编记录",
+      "base_upgrade": "2费格挡13→17",
+      "risk": "高费挤占兑现预算",
+      "strict_dominance": null,
+      "conditional_dominance": "两张无资源KQ036合计16/22但多耗手牌，非直接支配"
+    },
+    {
+      "id": "KQ035",
+      "line": 29,
+      "exact_official_record": false,
+      "source": "missing_record",
+      "adaptation": "缺逐卡改编记录",
+      "base_upgrade": "1费格挡4→7，每活敌+1，上限3",
+      "risk": "合法战斗始终至少一活敌，故≥KQ002",
+      "strict_dominance": null,
+      "conditional_dominance": "单敌5/8<KQ067的7/10；多敌6–7/9–10>KQ067的4/7"
+    },
+    {
+      "id": "KQ036",
+      "line": 31,
+      "exact_official_record": false,
+      "source": "missing_record",
+      "adaptation": "缺逐卡改编记录",
+      "base_upgrade": "1费格挡5→8；无楔且无附魔额外3",
+      "risk": "无资源8/11覆盖其他低费防守",
+      "strict_dominance": null,
+      "conditional_dominance": "无资源超过KQ035；有资源且多敌则低于KQ035"
+    },
+    {
+      "id": "KQ052",
+      "line": 35,
+      "exact_official_record": false,
+      "source": "missing_record",
+      "adaptation": "缺逐卡改编记录",
+      "base_upgrade": "1费全体单段6→9",
+      "risk": "当前模型群攻没有额外惩罚",
+      "strict_dominance": null,
+      "conditional_dominance": "同获取条件下弱支配KQ001；starter/reward不同"
+    },
+    {
+      "id": "KQ053",
+      "line": 37,
+      "exact_official_record": false,
+      "source": "missing_record",
+      "adaptation": "缺逐卡改编记录",
+      "base_upgrade": "2费单体16→20",
+      "risk": "附魔仅+2；集中击杀及高费可靠性待证",
+      "strict_dominance": null,
+      "conditional_dominance": "单敌高于KQ005；群敌总伤/附魔效率可反转"
+    },
+    {
+      "id": "KQ054",
+      "line": 39,
+      "exact_official_record": false,
+      "source": "missing_record",
+      "adaptation": "缺逐卡改编记录",
+      "base_upgrade": "1费单体2×3→3×3",
+      "risk": "当前无逐段反击/减伤，拆段无代价",
+      "strict_dominance": null,
+      "conditional_dominance": "同获取条件下弱支配KQ001；与KQ004基础无附魔弱、附魔平、升级附魔强"
+    },
+    {
+      "id": "KQ067",
+      "line": 33,
+      "exact_official_record": false,
+      "source": "missing_record",
+      "adaptation": "缺逐卡改编记录",
+      "base_upgrade": "1费格挡4→7；仅一活敌额外3",
+      "risk": "单敌7/10、多敌4/7；需证明单敌窗口",
+      "strict_dominance": null,
+      "conditional_dominance": "单敌优于KQ035，多敌劣于KQ035；无资源时低于KQ036，有资源单敌时高于KQ036"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "P1_GATE",
+      "file": "sources.json",
+      "line": 250,
+      "issue": "17实现仅9来源记录，缺8卡",
+      "ids": [
+        "KQ010",
+        "KQ034",
+        "KQ035",
+        "KQ036",
+        "KQ052",
+        "KQ053",
+        "KQ054",
+        "KQ067"
+      ],
+      "action": "补齐来源/HOLD/改编/人审字段及ID集合一致性验证；不能据此宣布生产放行",
+      "blocks_readonly_backup": false
+    },
+    {
+      "severity": "P2",
+      "file": "README.md",
+      "line": 59,
+      "issue": "仍写5职责和70未设计槽，第71行重复；实际17实现",
+      "action": "标明17实现、58未实现；实现不等于已批准职责"
+    },
+    {
+      "severity": "P2_REVIEW",
+      "file": "mechanics.mjs",
+      "line": 35,
+      "issue": "攻击和防守候选对基础牌有当前模型内弱支配",
+      "action": "待稀有度及自然奖励规则后整回合整场比较；保留基础牌被奖励牌替代的合法解释，不自动调数"
+    },
+    {
+      "severity": "P1_GATE",
+      "file": "README.md",
+      "line": 51,
+      "issue": "STS精确版本、官方战斗原文、自然构筑、人审仍HOLD",
+      "action": "维持门禁；本审非命名、平衡、扩容批准"
+    }
+  ],
+  "reproduction": {
+    "method": "固定SHA mechanics原文Node stdin执行，不落盘、不跑Full",
+    "fixture": "initial单张基础牌，敌hp100/block0，infusion0或1，再play目标0；局部探针非自然开局可达证明",
+    "observed_attack_damage_two_enemies": {
+      "infusion_0": {
+        "KQ001": [
+          6,
+          0
+        ],
+        "KQ004": [
+          8,
+          0
+        ],
+        "KQ052": [
+          6,
+          6
+        ],
+        "KQ054": [
+          6,
+          0
+        ]
+      },
+      "infusion_1": {
+        "KQ001": [
+          8,
+          0
+        ],
+        "KQ004": [
+          12,
+          0
+        ],
+        "KQ052": [
+          8,
+          8
+        ],
+        "KQ054": [
+          12,
+          0
+        ]
+      }
+    },
+    "observed_block_no_resources_by_enemy_count_1_2_3": {
+      "KQ002": [
+        5,
+        5,
+        5
+      ],
+      "KQ035": [
+        5,
+        6,
+        7
+      ],
+      "KQ036": [
+        8,
+        8,
+        8
+      ],
+      "KQ067": [
+        7,
+        4,
+        4
+      ]
+    },
+    "exit_code": 0
+  }
+}
