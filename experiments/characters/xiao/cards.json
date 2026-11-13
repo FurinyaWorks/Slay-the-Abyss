@@ -1,0 +1,273 @@
+{
+  "version": "xiao-g2-lab-0.1",
+  "status": "EXPERIMENTAL_HOLD",
+  "character": "xiao",
+  "maxHp": 70,
+  "energyPerTurn": 3,
+  "drawPerTurn": 5,
+  "cards": [
+    {
+      "id": "x01",
+      "name": "待命名·x01",
+      "role": "基础单体攻击",
+      "kind": "attack",
+      "rarity": "basic",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 6
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 9
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x02",
+      "name": "待命名·x02",
+      "role": "基础格挡",
+      "kind": "skill",
+      "rarity": "basic",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "block",
+          "value": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "block",
+          "value": 8
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x03",
+      "name": "待命名·x03",
+      "role": "立即单体伤害，不要求状态",
+      "kind": "attack",
+      "rarity": "common",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 9
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 12
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": "风轮两立",
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x04",
+      "name": "待命名·x04",
+      "role": "用生命与本回合行动换两回合攻击强化",
+      "kind": "skill",
+      "rarity": "basic",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": "靖妖傩舞",
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x05",
+      "name": "待命名·x05",
+      "role": "常态单体，戴面具时扩大攻击范围",
+      "kind": "attack",
+      "rarity": "basic",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "plunge",
+          "value": 6
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "plunge",
+          "value": 9
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x06",
+      "name": "待命名·x06",
+      "role": "提前离开强化以避免回合末失血",
+      "kind": "skill",
+      "rarity": "common",
+      "cost": 0,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "block",
+          "value": 4
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "block",
+          "value": 6
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x07",
+      "name": "待命名·x07",
+      "role": "常态攻守兼顾，不靠回血抵销代价",
+      "kind": "attack",
+      "rarity": "common",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 5
+        },
+        {
+          "op": "block",
+          "value": 5
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 7
+        },
+        {
+          "op": "block",
+          "value": 7
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x08",
+      "name": "待命名·x08",
+      "role": "支付能量换手牌调度，不自产能量",
+      "kind": "skill",
+      "rarity": "common",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "draw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "draw",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    }
+  ],
+  "starter": [
+    "x01",
+    "x01",
+    "x01",
+    "x01",
+    "x02",
+    "x02",
+    "x02",
+    "x02",
+    "x04",
+    "x05"
+  ],
+  "rewardCandidates": [
+    "x03",
+    "x06",
+    "x07",
+    "x08"
+  ],
+  "maskRules": {
+    "attackBonus": 4,
+    "endTurnHpLoss": 2,
+    "maxDuration": 3
+  }
+}

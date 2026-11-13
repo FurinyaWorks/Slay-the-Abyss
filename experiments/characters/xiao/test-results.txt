@@ -1,0 +1,26 @@
+✔ basic cost, damage, block and zones upgraded=false (2.350759ms)
+✔ mask and plunge independent expected values upgraded=false (0.363384ms)
+✔ draw cap, exhaust and exit upgraded=false (0.378517ms)
+✔ basic cost, damage, block and zones upgraded=true (0.248666ms)
+✔ mask and plunge independent expected values upgraded=true (0.243719ms)
+✔ draw cap, exhaust and exit upgraded=true (0.232882ms)
+✔ all rejection paths preserve exact input and clone result (0.949437ms)
+✔ end turn is idempotent, costs bypass block and can kill (0.38715ms)
+✔ duration and refresh are bounded, victory costs no further life (2.149002ms)
+✔ card order is meaningful without retroactive bonus (0.382723ms)
+✔ low-life choice differs from burst choice (0.32642ms)
+✔ one-turn resource loop is finite: no energy generation, each card leaves hand (3.646335ms)
+✔ turn guards prevent duplicate start, draws are not fabricated without deck (0.314243ms)
+✔ versioned cards all have both forms and HOLD names, texts derive each form (0.643487ms)
+✔ post-payment unknown effect rolls back all prior effects (0.288224ms)
+✔ duration one expires; weaker refresh never shortens; lethal thresholds exact (0.272611ms)
+✔ upgrade extra duration is documented negative life outcome, not free benefit (0.343335ms)
+✔ card text states structured mask bonus and life loss for each form (0.212914ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.405511
