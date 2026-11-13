@@ -1,0 +1,5 @@
+PASS all eight base/upgraded plans preserve costs effects and inputs
+PASS life payment precedes guarded mask commit; planning never spends relic
+PASS life prerequisite unknown cards and nonboolean upgrade reject
+PASS actual entry relic once, refresh/reentry/death do not redraw
+PASS deferred turn-start proposal does not itself pay or clear stored energy
