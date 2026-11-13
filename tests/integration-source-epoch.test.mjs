@@ -8,12 +8,15 @@ import {tmpdir} from 'node:os';
 const sandbox=process.cwd();
 const {sourceEpoch}=await import('./helpers/combined-epoch/source-epoch.mjs');
 const proof=sourceEpoch.proof,raw=p=>proof.current[p]?.source??null;
-const shopDeckPaths=['src/lua/abyss_deck_ui.lua','src/lua/abyss_merchant.lua','src/lua/abyss_game_ui_input.lua','src/lua/abyss_node_ui_feedback.lua'];
+const shopDeckPaths=['src/lua/abyss_deck_ui.lua','src/lua/abyss_merchant.lua','src/lua/abyss_game_ui_input.lua','src/lua/abyss_node_ui_feedback.lua','src/lua/abyss_potion_discard_ui.lua'];
 test('shop/deck continuation retains the complete closeout predecessor and every original target',async()=>{
  const {closeoutPriorEpoch}=await import('./helpers/closeout-source-epoch.mjs');
  assert.ok(proof.targets.shopDeckPrior,'explicit complete predecessor view');
  assert.equal(proof.targets.shopDeckPrior.commit,'903bf2a31e91f10fb24763ab4cea23d586d0bb83');
  assert.deepEqual(proof.targets.shopDeckPrior.files,closeoutPriorEpoch.proof.current);
+ const {shopDeckFourSourcePrior}=await import('./helpers/closeout-source-epoch.mjs');
+ assert.deepEqual(Object.keys(shopDeckFourSourcePrior.current),shopDeckPaths.slice(0,4),'PR639 four-source predecessor remains independently intact');
+ for(const [path,binding]of Object.entries(shopDeckFourSourcePrior.current))assert.deepEqual(proof.targets.shopDeckFourPrior.files[path],binding);
  for(const [name,target]of Object.entries(closeoutPriorEpoch.proof.targets))assert.deepEqual(proof.targets[name],target,name);
  assert.deepEqual(Object.keys(proof.current),Object.keys(closeoutPriorEpoch.proof.current));
  assert.equal(proof.currentTreeCommitted,false,'working source hashes do not invent a committed corpus');

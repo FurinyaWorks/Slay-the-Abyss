@@ -8,6 +8,7 @@ import {applyOfficialAssets,officialAssetsTheme} from '../scripts/official-asset
 import {assertOfficialRunContracts} from '../scripts/official-run-layout.mjs';
 import {deckCardTemplate,battlePileCardTemplate} from '../scripts/deck-ui-layout.mjs';
 import {toLua,luaString} from '../scripts/build-lua-data.mjs';
+import {colourToLua} from '../scripts/build-ui-theme.mjs';
 
 const child=(node,name)=>(node?.children??node?.controls??[]).find(part=>part.name===name);
 const all=node=>[node,...(node.children??node.controls??[]).flatMap(all)];
@@ -181,6 +182,9 @@ test('official potion slots survive battle rewards, map, node and return-to-comb
  const sources=Object.fromEntries(modules.map(name=>[name,readFileSync('src/lua/'+name+'.lua','utf8')]));
  const deps=new Set(Object.values(sources).flatMap(source=>[...source.matchAll(/require\(['"]([^'"]+)['"]\)/g)].map(match=>match[1])));
  const selected={presentationProfile:theme.presentationProfile,officialAssets:theme.officialAssets,layout:theme.layout,icon:theme.icon,color:theme.color};
+ selected.icon=structuredClone(selected.icon);selected.color=structuredClone(selected.color);
+ for(const [id,hex]of Object.entries(selected.icon.potionTint))selected.icon.potionTint[id]=colourToLua(hex);
+ for(const key of ['normal','fire'])selected.color.potionShell[key].ink=colourToLua(selected.color.potionShell[key].ink);
  const script=`
 local theme=${toLua(selected)}
 package.preload.abyss_theme=function()return theme end
@@ -195,7 +199,7 @@ local function node()
  function n:SetAnchoredPosition(x,y)self.x,self.y=x,y end
  function n:SetSizeDelta(w,h)self.width,self.height=w,h end
  function n:SetAsLastSibling()end
- function n:SetImage()end
+ function n:SetImage(source,id)self.image=id end
  return n
 end
 local root=node();local function child(name)return root:GetChild(name)end
@@ -208,8 +212,9 @@ local refreshDeck=View.refreshDeckEntry(child,self)
 local refresh=View.refreshUtilities(child,self,inCombat,refreshPotion,refreshDeck)
 local scenarios={{'battle','combat',false},{'battle','reward',true},{'map','map',true},{'node','node',true},{'battle','combat',false},{'battle','reward',true}}
 for _,capacity in ipairs({3,5})do
+ for _,inventory in ipairs({{}, {[1]='fire_potion',[3]='strength_potion'}, {[2]='energy_potion'}})do
  for _,case in ipairs(scenarios)do
-  self.mode=case[1];self.run={phase=case[2],capacity=capacity,potions={},deck={},relics={}}
+  self.mode=case[1];self.run={phase=case[2],capacity=capacity,potions=inventory,deck={},relics={}}
   refresh(self.run,false,false,false,false,false,false)
   local entry=child('potionEntry');assert(entry.visible==case[3],'potion action availability '..case[1]..'/'..case[2])
   if entry.visible then
@@ -221,9 +226,20 @@ for _,capacity in ipairs({3,5})do
      local slot=variant:GetChild('slot'..i)
      assert(slot.visible==(i<=capacity),'physical capacity')
      if i<=capacity then assert(math.abs(open.x+slot.x-(hud.potionX+(i-1)*hud.potionStep))<.0001,'shared slot position')end
+     local id=i<=capacity and inventory[i] or nil
+     assert(slot:GetChild('emptyShell').visible==(id==nil),'empty slot paint')
+     assert(slot:GetChild('filledShell').visible==(id~=nil and id~='fire_potion'),'normal filled paint')
+     assert(slot:GetChild('fireShell').visible==(id=='fire_potion'),'fire slot paint')
+     assert(slot:GetChild('bottle').visible==(id~=nil),'sparse inventory bottle paint')
+     if id then
+      local bottle=slot:GetChild('bottle');assert(bottle.image==theme.icon.potion[id],'current bottle image')
+      local expected=theme.icon.potionTint[id]
+      for _,channel in ipairs({'r','g','b','a'})do assert(bottle.imageColor[channel]==expected[channel],'shared current potion tint '..id..'/'..channel)end
+     end
     end
    end
   end
+ end
  end
 end
 `;

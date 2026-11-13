@@ -10,7 +10,7 @@ import {resolve,dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
 const base='903bf2a31e91f10fb24763ab4cea23d586d0bb83';
-const paths=['src/lua/abyss_deck_ui.lua','src/lua/abyss_merchant.lua','src/lua/abyss_game_ui_input.lua','src/lua/abyss_node_ui_feedback.lua'];
+const paths=['src/lua/abyss_deck_ui.lua','src/lua/abyss_merchant.lua','src/lua/abyss_game_ui_input.lua','src/lua/abyss_node_ui_feedback.lua','src/lua/abyss_potion_discard_ui.lua'];
 const normalize=s=>s.replaceAll('\r\n','\n'),hash=b=>createHash('sha256').update(b).digest('hex');
 const blob=source=>createHash('sha1').update(`blob ${Buffer.byteLength(source)}\0`).update(source).digest('hex');
 const binding=source=>({source,sha256:hash(source),gitBlob:blob(source)});
@@ -69,6 +69,9 @@ export function shopDeckRebind({root=defaultRoot,writeArchive=false}={}){
  const closure=read(closurePath),files=JSON.parse(closure);
  const registeredEpoch=files[epochPath];
  files[epochPath]=hash(nextEpoch);files[archivePath]=hash(archive);
+ const frozenPath='tests/helpers/shop-deck-four-source-epoch.json.gz';
+ assert.equal(hash(readFileSync(join(root,frozenPath))),'51034e9da34cbe0ab153f00ab66a16918db1097ef7173932ab326cc6c2076f2b','immutable PR639 four-source predecessor');
+ files[frozenPath]='51034e9da34cbe0ab153f00ab66a16918db1097ef7173932ab326cc6c2076f2b';
  const nextClosure=JSON.stringify(Object.fromEntries(Object.entries(files).sort(([a],[b])=>a<b?-1:a>b?1:0)),null,2)+'\n';
  const copy=read(copyPath),oldClosureHash=hash(Buffer.from(closure));
  assert(copy.includes(oldClosureHash),'authenticated current closure guard');

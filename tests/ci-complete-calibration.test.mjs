@@ -1,4 +1,5 @@
 import {closeoutRead,closeoutInventory,preCloseoutCiSource,closeoutCiProof} from './helpers/closeout-ci-source.mjs';
+import {runHudPriorRead,runHudPriorInventory,preRunHudCiSource,runHudCiProof} from './helpers/run-hud-ci-source.mjs';
 import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
 import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helpers/curses-ci-planning.mjs';
 import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource,preRatchetInventory,ratchetInventoryFile} from './helpers/joint-ui-ci-source-inverse.mjs';
@@ -61,7 +62,9 @@ const diskReadFileSync=closeoutRead('pr620',liveDiskReadFileSync);
 const actualCurrentTimings=JSON.parse(diskReadFileSync('scripts/ci-test-timings.json','utf8'));
 const currentJsPlanningWeights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(actualCurrentTimings.js[platform][file]??actualCurrentTimings.unknownJsMs,actualCurrentTimings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
 const currentJsShard=(files,value,platform)=>partition(files,value,currentJsPlanningWeights(files,platform),actualCurrentTimings.unknownJsMs,Array.from({length:Number(value.split('/')[1])},(_,i)=>i===0?actualCurrentTimings.initialMs[platform][0]:0));
-const nativeCloseoutRead=liveDiskReadFileSync,nativeCloseoutDiscover=liveDiscoverJs,nativeCloseoutJointInventory=jointCiInventoryAt;
+// This named predecessor keeps the original 854-file closeout assertions exact.
+// The appended HUD contract separately validates raw current discovery and bytes.
+const nativeCloseoutRead=runHudPriorRead(liveDiskReadFileSync),nativeCloseoutDiscover=()=>runHudPriorInventory(liveDiscoverJs()),nativeCloseoutJointInventory=jointCiInventoryAt;
 function sliceTools(view){
  const read=closeoutRead(view,nativeCloseoutRead),timings=JSON.parse(read('scripts/ci-test-timings.json','utf8'));
  const weights=(files,platform)=>Object.fromEntries(files.map(file=>[file,Math.max(timings.js[platform][file]??timings.unknownJsMs,timings.jsPlanning.localLowerBounds[file]?.durationMs??0)]));
@@ -1923,6 +1926,31 @@ test('noncombat immutable added inventory keeps its full source and unknown-cost
   for(const platform of ['win32','linux']){
    assert.equal(actualCurrentTimings.js[platform][f],undefined,'new test is unmeasured');
    assert.equal(currentJsPlanningWeights([f],platform)[f],actualCurrentTimings.unknownJsMs);
+  }
+ }
+});
+
+test('run HUD continuation authenticates complete current sources and raw Full inventory without rewriting historical receipts',()=>{
+ const p=runHudCiProof,files=liveDiscoverJs();
+ assert.deepEqual(files,p.afterInventory,'complete current Full discovery');
+ assert.equal(new Set(files).size,files.length);
+ assert.deepEqual(runHudPriorInventory(files),closeoutCiProof.inventory,'exact original closeout inventory retained');
+ for(const [path,row]of Object.entries(p.files)){
+  const raw=liveDiskReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(hash(raw),row.after.sha256,'complete current HUD source: '+path);
+  assert.equal(preRunHudCiSource(path,raw),row.before?.source??raw);
+  for(const foreign of [raw+'\n',raw.slice(1),null,{},17])assert.equal(preRunHudCiSource(path,foreign),foreign);
+  assert.equal(preRunHudCiSource('foreign/'+path,raw),raw);
+  if(row.before)assert.equal(row.before.sha256,closeoutCiProof.current[path]??closeoutCiProof.luaHashes[path]??p.baseHashes[path],path+' exact predecessor');
+ }
+ for(const path of p.addedTests){
+  assert(files.includes(path));
+  assert.throws(()=>runHudPriorInventory([...files,path]),/inventory/);
+  assert.throws(()=>runHudPriorInventory([...files,'tests/foreign.test.mjs']),/inventory/);
+  assert.throws(()=>runHudPriorInventory(files,(p,e)=>liveDiskReadFileSync(p,e)+(p===path?'\n':'')),/added inventory source/);
+  for(const platform of ['win32','linux']){
+   assert.equal(rawCurrentTimings.js[platform][path],undefined,'new regression has no historical hosted timing');
+   assert(rawCurrentJsPlanningWeights([path],platform)[path]>=rawCurrentTimings.unknownJsMs);
   }
  }
 });

@@ -166,6 +166,10 @@
     "shop-deck-parity-simulator-evidence": {
       "status": "Project Simulator screenshots of project-authored UI and existing referenced game artwork. Evidence only; rights remain with their respective owners. No commercial clearance, official import, ready, or device acceptance.",
       "evidence": "docs/evidence/shop-deck-parity-20261112/README.md; source-manifest.json; verification.json; headless beyond-simulator rendering."
+    },
+    "shared-run-hud-simulator-evidence": {
+      "status": "Project-authored UI verification screenshots rendered with the existing offline Simulator SDK and official platform picture IDs. Screenshots contain game IP; no IP sublicense or commercial clearance. Not official import, ready, device or performance acceptance.",
+      "evidence": "docs/evidence/shared-run-hud-20261113/README.md; visual-final-current/render-receipt.json; visual-final-current/verification.json"
     }
   },
   "files": {
@@ -8730,6 +8734,38 @@
     "docs/evidence/shop-deck-parity-20261112/visual-current/08-deck-card-detail.png": {
       "sha256": "c205f2efddec9f00d676b786a0a54a17fe603e2a9f3a6871c46b7688ff0f7846",
       "category": "shop-deck-parity-simulator-evidence"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-discard-pile.png": {
+      "sha256": "88b26e5173254cb82784090f5ee782adf0670d326f4ecbb28b52ccff8cf67247",
+      "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-draw-pile.png": {
+      "sha256": "13769f46ba85f546e49d0d12f0be8de8bc29408c9233c577d6673a88412dcc53",
+      "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-hud.png": {
+      "sha256": "6e15ebf95fe58f5cae135a9b1fb74c7c38cb1742a7e919eacf4190b6c0412d73",
+      "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-permanent-deck.png": {
+      "sha256": "ca2ff6a0a874048bb624eec323f3e9a12748ec3d2c7aa11941e393e0f0af72bf",
+      "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/blessing-choice-hud.png": {
+      "sha256": "4c1b3fd69f2765344b412bddd75c8709eb42d242ea8b6190d049c8f1a8e30e22",
+      "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/blessing-hud.png": {
+      "sha256": "5b241da80de6da5c25391993d1c63c9f377ef4d9022d375ae8dfe0279126dfb7",
+      "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/map-hud.png": {
+      "sha256": "9b8f0ce22927c28e315a4cdfef5e0598502defc261ae1bf0cd8f13de6684c4e7",
+      "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/map-permanent-deck.png": {
+      "sha256": "2a6685759c34098a8cc52cc37394d6f6902d30e8a39a82ce44411f585763efc8",
+      "category": "shared-run-hud-simulator-evidence"
     }
   }
 }

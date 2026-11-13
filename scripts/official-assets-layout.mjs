@@ -128,32 +128,6 @@ function battleSurfaces(root,theme){
    node.children=[{name:'nativeRing',kind:'image',size:[...node.size],image:theme.image.ring,colour:theme.color.goldDim,opacity:.55}];
   }
  });
- const bar=child(root,'topBar');
- if(!bar)return;
- const hud=theme.officialAssets.battleHud;
- bar.position=[0,hud.y];
- for(const name of ['leftRule','rightRule'])required(bar,name).visible=false;
- required(bar,'steel').colour=hud.barColour;
- const place=(name,position,size,font)=>{
-  const node=required(root,name);node.position=position;if(size)node.size=size;
-  if(font&&node.text){node.text.fontSize=font;node.text.minFontSize=14;node.text.align='left';}
- };
- for(const [name,key,font]of [['hpIcon','hpIcon'],['player','hp',hud.numberSize],['goldIcon','goldIcon'],['piles','gold',hud.numberSize]])place(name,hud[key].slice(0,2),hud[key].slice(2),font);
- for(const name of ['title','floorIcon','floor'])required(root,name).visible=false;
- const heading=structuredClone(required(root,'player'));heading.name='officialHeroHeading';heading.position=hud.heading.slice(0,2);heading.size=hud.heading.slice(2);heading.text.content=hud.headingText;heading.text.fontSize=hud.headingSize;heading.text.colour=theme.color.gold;
- heading.position[1]-=hud.y;bar.children.push(heading);
- for(let index=1;index<=5;index++){
-  const x=hud.potionX+(index-1)*hud.potionStep;
-  const bottle=child(root,'potion'+index)??child(child(root,'potionHelp'),'potion'+index);
-  if(!bottle)throw Error('Missing battle potion '+index);
-  for(const node of [bottle,child(child(root,'potionHelp'),'potionHelp'+index)]){
-   if(node){
-    node.position=[x,hud.y];
-    for(const face of children(node))if(['normal','hover','pressed','disabled'].includes(face.name))face.scale=(face.scale??[1,1]).map((value,axis)=>value*(Array.isArray(hud.potionScale)?hud.potionScale[axis]:hud.potionScale));
-   }
-  }
-  const caption=child(child(root,'potionHelp'),'potionCaption'+index);if(caption)caption.position=[x,hud.potionCaptionY];
- }
 }
 function buttonFaces(node,theme){
  if(node.name==='endTurn'&&child(child(node,'normal'),'v25Chrome'))return;

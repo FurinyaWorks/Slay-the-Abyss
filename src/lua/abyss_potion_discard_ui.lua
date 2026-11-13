@@ -38,7 +38,7 @@ function M.refreshEntry(hit,run,platform,mapSlots)
             bottle:SetVisible(id~=nil)
             if id then
                 bottle:SetImage(platform.imageSource,Theme.icon.potion[id] or Theme.icon.intent.unknown)
-                local colour=(id=='fire_potion' and Theme.color.potionShell.fire or Theme.color.potionShell.normal).ink
+                local colour=(Theme.icon.potionTint or {})[id] or (id=='fire_potion' and Theme.color.potionShell.fire or Theme.color.potionShell.normal).ink
                 bottle.imageColor=platform.color(colour.r,colour.g,colour.b,colour.a)
             end
         end

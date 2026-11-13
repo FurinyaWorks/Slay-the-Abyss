@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "scope": "offline actual SDK / headless software rendering",
+  "sourceClosureSha256": "8e8ab557d4f4935e88c543ffc04fd5f650cdd55f5115f9e5bf97c7ad32cd1dec",
+  "files": {
+    "blessing-hud": {
+      "pngSha256": "5b241da80de6da5c25391993d1c63c9f377ef4d9022d375ae8dfe0279126dfb7",
+      "stateSha256": "d7101c6cba7e5a91b6fc1b8345304f5a153a2c335e1e150404ebae8c9a5952c7"
+    },
+    "blessing-choice-hud": {
+      "pngSha256": "4c1b3fd69f2765344b412bddd75c8709eb42d242ea8b6190d049c8f1a8e30e22",
+      "stateSha256": "51c75106470ea9474baee6b54e753054affb9bfe566dee5fc0fca80c7515d464"
+    },
+    "map-hud": {
+      "pngSha256": "9b8f0ce22927c28e315a4cdfef5e0598502defc261ae1bf0cd8f13de6684c4e7",
+      "stateSha256": "cf218a36c130ad960c8e82f1847283ad102a34806396eabe1b78ee37e08d10e4"
+    },
+    "map-permanent-deck": {
+      "pngSha256": "2a6685759c34098a8cc52cc37394d6f6902d30e8a39a82ce44411f585763efc8",
+      "stateSha256": "e5243b496b20c9ff6164d461a9199645a08c3d5102684c8a2629c60aa9583a2b"
+    },
+    "battle-hud": {
+      "pngSha256": "6e15ebf95fe58f5cae135a9b1fb74c7c38cb1742a7e919eacf4190b6c0412d73",
+      "stateSha256": "1c3f63847e6af5ef072e924d0bd1156a0139c5b0cc82f102fcfe385d1316ca58"
+    },
+    "battle-permanent-deck": {
+      "pngSha256": "ca2ff6a0a874048bb624eec323f3e9a12748ec3d2c7aa11941e393e0f0af72bf",
+      "stateSha256": "a7a1021d66d57f1f323917e1e98a81f4d45251fbbb103749903d978ad8bf90ff"
+    },
+    "battle-draw-pile": {
+      "pngSha256": "13769f46ba85f546e49d0d12f0be8de8bc29408c9233c577d6673a88412dcc53",
+      "stateSha256": "c0a716fa19f7238dc4c2e1b1de7dd7f3d1a6e0d92eccf805ce99a2a7d98949f9"
+    },
+    "battle-discard-pile": {
+      "pngSha256": "88b26e5173254cb82784090f5ee782adf0670d326f4ecbb28b52ccff8cf67247",
+      "stateSha256": "29431af80c79584abd24661e1502ae02b8ef01b31f4424be57c64319875c4526"
+    }
+  },
+  "potionParity": [
+    {
+      "name": "blessing-choice-hud",
+      "slot": 1,
+      "imageId": 111046,
+      "imageColor": 4294946970
+    },
+    {
+      "name": "map-hud",
+      "slot": 1,
+      "imageId": 111046,
+      "imageColor": 4294946970
+    },
+    {
+      "name": "blessing-choice-hud",
+      "slot": 3,
+      "imageId": 111046,
+      "imageColor": 4294967295
+    },
+    {
+      "name": "map-hud",
+      "slot": 3,
+      "imageId": 111046,
+      "imageColor": 4294967295
+    }
+  ],
+  "rawReturnRegion": {
+    "rect": [
+      0,
+      570,
+      180,
+      55
+    ],
+    "sha256": {
+      "battle-permanent-deck": "bfdd114a8677792d37281cc8c8a2a45661756ccd30ec47b5374a818a8615c35e",
+      "battle-draw-pile": "bfdd114a8677792d37281cc8c8a2a45661756ccd30ec47b5374a818a8615c35e",
+      "battle-discard-pile": "bfdd114a8677792d37281cc8c8a2a45661756ccd30ec47b5374a818a8615c35e"
+    }
+  },
+  "officialImport": false,
+  "officialReady": false,
+  "deviceEvidence": false
+}
