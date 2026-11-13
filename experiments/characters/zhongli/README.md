@@ -92,3 +92,55 @@ zl07与zl08：受5点攻击时，前者免伤、后者失2 HP；空意图时前�
 大伤防守组：原组9胜1截断，失血P50/P90=40/45；加zl07为10胜，21/24；加zl08为10胜，37/44。成长进攻加zl08的P90从原组5到7，揭示少量防线/加厚不保证改善。n=10每格仍很小，无统计推广或正式平衡结论。所有负面结果保留在`batch-one-results.json`，本批没有根据结果调值。
 
 总量现在8种研究卡位+1候选初始遗物，离75仍缺67张。G1中文来源、G3命名、G5数值、G6自然奖励、G7真人均未通过；这两个卡位用于验证缺口，并不把未过G7的研究写成G8已获扩75许可。下一批须先验证真实敌人/自然获取及人物表达，尤其主动消盾是否符合本作钟离合同，再补职责，不先造67张名称。
+
+### Boundary repair after 0.3 review
+The reviewer reproduced dead-state draws, invalid RNG acceptance and duplicate instances
+spanning draw/hand. battle.mjs now validates all public battle entry points, complete
+card zones, instance identities and numeric state. Terminal draws/relic calls do not
+change state. Targeted tests passed 42/42 before journey work. The prior 40-test suite
+missed these boundaries. Preserved snapshot: 54e97ae; successor repair: 2ab3daf.
+New journey work is not covered by prior review approval.
+
+### Three-room acquisition slice: RESEARCH ONLY
+Production rules read at baseline 903bf2a31e91f10fb24763ab4cea23d586d0bb83:
+- data/rules.json:63: three choices.
+- src/lua/abyss_card_pool.lua prepareRewards: rarity first, unique offered identities,
+  rarity offset and act upgrade RNG. Incomplete pools must not be silently filtered.
+- src/lua/abyss_run.lua:355-374: phase ownership, validated index, transactional append,
+  once-only resolution. Choice 0 explicitly abandons; UI Skip merely closes picker.
+- src/lua/abyss_relic_card_rewards.lua: multiple groups/Singing Bowl excluded here.
+
+journey.mjs does NOT port production rarity or upgrades: only five candidate common
+identities and no uncommon pool exist. It uses explicitly restricted three-distinct-common
+seeded offers after wins one and two. Acquisition adds one permanent deck instance; next
+battle shuffles the full deck. HP persists; jade clears; relic applies once per new battle.
+No free heals, removal, upgrades, shops or guaranteed combo offers. Three encounters repeat
+the same synthetic family with 40 HP enemy, not real map integration.
+Reward policies see only HP, current deck and offer: abandon all, accept at most one zl07,
+or accept at most one zl08. Action policy uses visible-state full-turn defense enumeration.
+
+Replay: node experiments/characters/zhongli/journey-study.mjs
+120 runs on unseen seeds 3001..3010 (4 families x 3 reward policies x 10), up to three
+battles each. journey-results.json includes per-room HP, turns, choices, deck sizes and
+dead payoff draws. Same encounter/offer seed schedules; changed deck size changes shuffle
+mapping, so this is not matched card-draw causality. No numbers tuned from these seeds.
+Low/growing: all policies 10/10 completion, loss P50/P90 0/0. Multi: all 10/10, loss0/4.
+Large: all policies 0/10, all die. These endpoints DO NOT establish acquisition superiority:
+easy fixtures have a floor effect; repeated large hits overwhelm HP-carry runs. Do not tune
+to erase failures. Next requires actual encounters and per-room opportunity-cost analysis.
+Not G6/G7 approval, natural 75-card construction, population balance or fun evidence.
+
+### Missing responsibilities before 75
+Eight research roles are not 75 complete cards. Do not create 67 numeric variants.
+- Control identity missing: one capped refresh/not-stack contract and boss immunity
+  timing must precede control cards.
+- Rock construct/resonance missing: inspect existing summon limits/timing before adding
+  parallel counters solely for theme.
+- Selection/draw/setup retention costs missing: establish hand/deck ownership, exhaust,
+  retain timing and infinite-cycle tests before access tools.
+- Multi-target encounters/target selection absent; more single-target variants cannot fix it.
+- Shield sacrifice is a proposed adaptation, not official evidence. Identity acceptance
+  may change this branch; do not mass-produce dependent payoffs first.
+- Uncommon roles, rarity curve and expensive payoff viability need actual distributions,
+  two checked STS1 comparisons each, and human evidence.
+These are unresolved production responsibilities, not approved effects or a card quota.
