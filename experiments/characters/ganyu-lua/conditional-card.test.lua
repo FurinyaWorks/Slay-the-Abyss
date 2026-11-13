@@ -44,3 +44,19 @@ for _,v in ipairs(cases)do
  eq(s.ganyuResource.charge,v[1]=='stormBlock'and 2 or 0)
 end
 print('PASS4 execution-time resource branches with use-time modifier snapshots')
+local corruptions={
+ {'chargedDirect',function(e,s)e.captures['22'].targetId=s.enemies[2].id end},
+ {'chargedDirect',function(e)e.captures['22'].normalAmount=nil end},
+ {'chargedDirect',function(e)e.captures['22'].value=23 end},
+ {'chargedAoe',function(e)e.captures['7'].normalAmounts={}end},
+ {'chargedAoe',function(e)e.captures['7'].normalAmounts.extra=1 end},
+ {'chargedBlock',function(e)e.captures['13'].fixed=nil end},
+ {'chargedBlock',function(e)e.captures['13'].blockCallbackAmount=0/0 end},
+}
+for _,row in ipairs(corruptions)do
+ local s=fresh(2,true);local v
+ for _,case in ipairs(cases)do if case[1]==row[1]then v=case end end
+ local e=M.prepare(C,s,{op='ganyuConditional',kind=v[1],amount=v[2],bonus=v[3]},s.enemies[1],s.cardInUse.uid)
+ row[2](e,s);Q.start(s,{});assert(not pcall(M.dispatch,C,s,e,Q));eq(s.ganyuResource.charge,2);eq(#s.actionQueue.actions,0);eq(s.enemies[1].hp,100);eq(s.enemies[2].hp,100)
+end
+print('PASS7 malformed native captures reject before queue/resource commit')

@@ -23,12 +23,32 @@ function M.prepare(combat,state,e,target,uid)
  end
  return out
 end
+local function finite(n)
+ assert(type(n)=='number'and n==n and n>=0 and n<=2147483647,'invalid conditional capture number')
+end
+local function validateNative(state,e,native,expected)
+ assert(type(native)=='table'and getmetatable(native)==nil and native.op==expected.op,'mismatched conditional capture')
+ local allowed=expected.op=='damage'and {op=true,value=true,targetId=true,normalAmount=true}
+  or expected.op=='damageAll'and {op=true,value=true,normalAmounts=true}
+  or {op=true,value=true,fixed=true,blockCallbackAmount=true}
+ for k in pairs(native)do assert(allowed[k],'unknown native capture field')end
+ finite(native.value)
+ if expected.op=='damage'then
+  assert(native.value==expected.value and native.targetId==e.targetId,'conditional captured target/value mismatch');finite(native.normalAmount)
+ elseif expected.op=='damageAll'then
+  assert(native.value==expected.value and type(native.normalAmounts)=='table'and getmetatable(native.normalAmounts)==nil,'invalid conditional area capture')
+  local ids={};for _,enemy in ipairs(state.enemies)do ids[enemy.id]=true;finite(native.normalAmounts[enemy.id])end
+  for id in pairs(native.normalAmounts)do assert(ids[id],'unknown captured enemy')end
+ else
+  assert(native.fixed==true,'missing fixed block capture');finite(native.blockCallbackAmount)
+ end
+end
 function M.dispatch(combat,state,e,queue)
  check(e,true);assert(e.uid~=nil,'missing conditional uid')
  Paid.prepare(combat,state,{op='ganyuCard',kind='charge',amount=0},nil,e.uid)
  if e.kind=='chargedDirect'then assert(e.targetId~=nil and e.targetId==state.pendingPlay.targetId,'conditional target mismatch')end
  local plan=R.plan(state.ganyuResource,raw(e));local native=assert(e.captures and e.captures[tostring(plan.effects[1].value)],'missing conditional capture')
- assert(native.op==plan.effects[1].op,'mismatched conditional capture')
+ validateNative(state,e,native,plan.effects[1])
  queue.pushTop(state,{kind='effect',effect=copy(native)});state.ganyuResource=plan.after;return true
 end
 return M
