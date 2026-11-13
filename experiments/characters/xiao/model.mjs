@@ -36,6 +36,8 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'exhaustDamage') damage(s.enemies[target],Math.min(effect.cap,s.exhaust.length*value)+(s.mask>0?catalog.maskRules.attackBonus:0));
+  else if (op === 'exhaustBlock') s.block+=Math.min(effect.cap,s.exhaust.length*value);
   else if (op === 'unmaskedDraw') { if(s.mask === 0) drawCards(s,value); }
   else if (op === 'burnSkillsBlock') {
     const removed=s.hand.filter(id=>byId.get(id)?.kind==='skill');
@@ -76,7 +78,7 @@ export function play(input, { index, target = 0, upgraded = false, cancel = fals
   const effects = upgraded ? card.upgrade : card.base;
   const lifeCost = effects.filter(e => e.op === 'loseHp').reduce((n, e) => n + e.value, 0);
   if (input.hp <= lifeCost) return reject('life');
-  const needsTarget = effects.some(e => e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
+  const needsTarget = effects.some(e => e.op === 'exhaustDamage' || e.op === 'breakBlock' || e.op === 'damage' || e.op === 'plunge' && input.mask === 0);
   if (needsTarget && (!Number.isInteger(target) || !input.enemies[target] || input.enemies[target].hp <= 0)) return reject('target');
   const s = structuredClone(input);
   s.energy -= card.cost;
@@ -108,7 +110,9 @@ export function startTurn(input) {
   return s;
 }
 export function cardText(card, upgraded = false) {
-  const text = ({op, value}) => ({
+  const text = ({op, value, cap}) => ({
+    exhaustDamage: `每张已消耗牌造成${value}点伤害，最多${cap}点；面具期间另加${catalog.maskRules.attackBonus}点。`,
+    exhaustBlock: `每张已消耗牌获得${value}点格挡，最多${cap}点。`,
     unmaskedDraw: `若当前没有面具，抽${value}张牌（手牌上限10）；有面具则不抽。`,
     burnSkillsBlock: `消耗手中所有其他技能牌，每张获得${value}点格挡；没有则不获格挡。`,
     energy: `获得${value}点能量（仅本回合）。`,

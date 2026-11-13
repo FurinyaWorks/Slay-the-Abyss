@@ -4,7 +4,7 @@ import { catalog } from './model.mjs';
 import { newBattle, battlePlay, advance, outcome, intent } from './battle.mjs';
 export function observe(s) {
   return { hp:s.hp, energy:s.energy, block:s.block, mask:s.mask,
-    hand:[...s.hand], exitInDiscard:s.discard.some(id=>catalog.cards.find(c=>c.id===id)?.base.some(e=>e.op==='mask'&&e.value===0)), enemies:s.enemies.map(e=>({hp:e.hp,block:e.block,intent:intent(s,e)})) };
+    hand:[...s.hand], exhaustedCount:s.exhaust.length, exitInDiscard:s.discard.some(id=>catalog.cards.find(c=>c.id===id)?.base.some(e=>e.op==='mask'&&e.value===0)), enemies:s.enemies.map(e=>({hp:e.hp,block:e.block,intent:intent(s,e)})) };
 }
 export function choose(view, policy) {
   if (!['burst','guard','never-mask'].includes(policy)) throw Error('policy');
@@ -19,7 +19,8 @@ export function choose(view, policy) {
     let score=-Infinity;
     if(id==='x06'&&view.mask>0)score=view.hp<=2?1000:(policy==='guard'&&incoming>view.block?30:-10);
     if(card.kind==='attack'){
-      const damage=card.base.find(e=>e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
+      let damage=card.base.find(e=>e.op==='exhaustDamage'||e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
+      if(id==='x21')damage=Math.min(18,view.exhaustedCount*3)+(view.mask?catalog.maskRules.attackBonus:0);
       const victims=(id==='x12'||id==='x18'||id==='x05'&&view.mask)?alive:[target];
       score=victims.reduce((n,e)=>n+Math.min(e.hp,Math.max(0,damage-e.block))+Math.min(e.block,damage)*0.8+(damage>=e.hp+e.block?e.intent*3:0),0);
       if(id==='x15')score=Math.min(target.hp,damage)+target.block*0.8+(damage>=target.hp?target.intent*3:0);
@@ -41,6 +42,7 @@ export function choose(view, policy) {
       const fuel=view.hand.filter((other,i)=>i!==index&&catalog.cards.find(c=>c.id===other)?.kind==='skill').length;
       score=Math.min(fuel*4,Math.max(0,incoming-view.block))*(policy==='guard'?2:1)-fuel*2;
     }
+    if(id==='x22')score=Math.min(10,view.exhaustedCount*2,Math.max(0,incoming-view.block))*(policy==='guard'?3:1);
     if(score>0)choices.push({index,target:target.index,score});
   });
   return choices.sort((a,b)=>b.score-a.score||a.index-b.index)[0]??null;

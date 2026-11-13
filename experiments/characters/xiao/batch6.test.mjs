@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {catalog,state,play,endTurn,cardText} from './model.mjs';
+import {catalog,state,play,endTurn,startTurn,cardText} from './model.mjs';
 import {newBattle,battlePlay} from './battle.mjs';
 for(const upgraded of [false,true]){
  test(`x19 burns skill copies only, excludes self, upgraded=${upgraded}`,()=>{
@@ -28,5 +28,5 @@ test('x20 true shuffle excludes resolving card and respects full hand',()=>{
 });
 test('burned exit cannot subsequently be recovered by x16',()=>{
  let s=state({hand:['x19','x09'],draw:['x16']});s=play(s,{index:0}).state;
- s.hand=['x16'];s=play(s,{index:0}).state;assert.deepEqual(s.hand,[]);assert.deepEqual(s.exhaust,['x09','x16']);assert.deepEqual(s.discard,['x19']);
+ s=startTurn(endTurn(s));s=play(s,{index:0}).state;assert.deepEqual(s.hand,[]);assert.deepEqual(s.exhaust,['x09','x16']);assert.deepEqual(s.discard,['x19']);
 });

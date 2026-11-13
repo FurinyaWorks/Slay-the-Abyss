@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.6",
+  "version": "xiao-g2-lab-0.7",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -633,6 +633,64 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x21",
+      "name": "待命名·x21",
+      "role": "消耗构筑进攻回本：按已消耗张数兑现有上限单体伤害",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "exhaustDamage",
+          "value": 3,
+          "cap": 18
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exhaustDamage",
+          "value": 3,
+          "cap": 24
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x22",
+      "name": "待命名·x22",
+      "role": "消耗构筑防御回本：不用继续烧牌的后续防守",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "exhaustBlock",
+          "value": 2,
+          "cap": 10
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "exhaustBlock",
+          "value": 2,
+          "cap": 14
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -663,7 +721,9 @@
     "x17",
     "x18",
     "x19",
-    "x20"
+    "x20",
+    "x21",
+    "x22"
   ],
   "maskRules": {
     "attackBonus": 4,
