@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard'or effect.kind=='damageAll'or effect.kind=='breakBlock'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='shortenMask'or effect.kind=='exitGuard'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='damageHits'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='lastMaskDamage'or effect.kind=='exitEnergy'or effect.kind=='recoverExit'or effect.kind=='topdeckAttack','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -22,6 +22,25 @@ function M.dispatch(combat,state,effect,queue)
  local r=resource(state);integer(effect.value,effect.kind=='maskCommit'and 3 or 2147483647)
  if r.hp==0 then return true end
  local value=effect.value
+ if effect.kind=='recoverExit'or effect.kind=='topdeckAttack'then
+  assert(value==1,'unsupported recovery count')
+  if effect.kind=='recoverExit'and #state.hand>=state.rules.player.maxHand then return true end
+  for i,instance in ipairs(state.discard)do
+   local definition=combat.cardDefinition(state,instance);local matches=effect.kind=='topdeckAttack'and definition.type=='attack'
+   if effect.kind=='recoverExit'then
+    for _,e in ipairs(definition.effects)do if e.op=='xiaoCard'and e.kind=='maskCommit'and e.value==0 then matches=true;break end end
+   end
+   if matches and instance.uid~=paid.uid then
+    table.remove(state.discard,i)
+    if effect.kind=='recoverExit'then
+     require('abyss_card_actions').toHand(state,instance)
+     require('abyss_events').emit(state,'recover',{uid=instance.uid,cardId=instance.cardId})
+    else state.draw[#state.draw+1]=instance end
+    break
+   end
+  end
+  return true
+ end
  if effect.kind=='lastMaskDamage'then value=Plan.lastMaskDamage(r.mask,value,effect.bonus)end
  if effect.kind=='blockDamage'then
   integer(state.player.block);integer(effect.cap);value=Plan.scaledCount(state.player.block,value,effect.cap)

@@ -123,3 +123,9 @@ blockDamage以当前block取基础封顶，不花盾，之后加面具伤害再�
 lastMaskDamage在执行时读取mask，只有1才加结构化bonus，其后正常面具4点及宿主护甲；不会自动退出，前一动作缩短可以改变当前资格。exitEnergy只在真正→0时先退出盾、再原生energy，空退出不返，重复不能再领；未来host付款仍须先支付基础费用，本效果不回退费用。能量安全和加法上界在变面具前校验，所有效果仍须宿主命令Snapshot。
 
 window_dispatch_test三探针覆盖基升mask0..3、先缩短、实际返能、重复空退、退出盾组合、溢出预拒与恢复；首8十条及退出三条定向回归通过。只effect执行，x34正式消耗/支付/UseCard尚未注册，不能把该测试算免费循环或自然构筑验收。
+
+## 独立可执行扩展：x16公开弃牌出口回收与x39攻击置顶
+
+recoverExit按当前弃牌顺序，经真实cardDefinition展开该实例升级后效果，选首个maskCommit=0，排除正在结算UID；手满不移牌，仅用toHand保原实体/uid/upgraded/费用，不套宿主discardToHand自带免费化。topdeckAttack选首攻击实体放draw尾（宿主下一次从尾抽），不复制。两者不读exhaust、不泄漏隐藏抽牌顺序。后续所有75新结构出口是否归入检索需按正式合同再扩，不把目前maskCommit结构匹配冒称全池语义识别。
+
+recover_dispatch_test三探针验证真实C.new基升实例、首出口/攻击置顶后真实C.draw、手满/消耗区不碰、整命令快照原引用恢复。实例取得来自构造器但移弃牌是效果场景夹具，不代表自然奖励或公开x16/x39 C.play；首8十回归通过，gate未扩。

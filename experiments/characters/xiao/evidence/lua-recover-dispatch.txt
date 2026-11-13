@@ -1,0 +1,3 @@
+PASS x16 visible discard first exit preserves UID upgrade and cost; x39 topdeck actual next draw
+PASS recovery never reads exhaust and full hand does not move discard or charge free cost
+PASS actual host snapshot restores same recovered entity and original pile references
