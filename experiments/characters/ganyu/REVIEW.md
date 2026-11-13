@@ -82,3 +82,5 @@ Pressure75独审review_xiao绑定1b346913/tree39f5e408（作者核远端27baeaaa
 44-expanded独审character_rules，review character-rules-ganyu-835ccd9-44-expanded-20261113，绑定835ccd9：171回归、288×8完整结果、7输入hash、gzip重放字节一致，ea17f7a祖先先有计划。目录旧值未改，候选内存finally恢复；固定核心/空堆/保留限制明确，无本证据技术阻断，不代表批准修改或解决设计门禁。
 
 决策包独审character_rules，review character-rules-ganyu-d052041-review-pack-20261113，绑定d052041：171测试、economy75逐字重放及5输入摘要通过；75/17同序家族/25消耗/11保留/20免费变体及4可复用免费计数正确。有限库存单回合界仅在无外部造牌回能、费用非负整数前提成立，不扩展至跨回合或生产。44未批准、主轴风险和来源HOLD准确；后续新增费用断言及人物来源正文记录不在此旧SHA评审范围。
+
+四房CLI独审review_xiao固定07c4348/tree2110253，173/173及q烟测通过，另测57HP跨房、直接Proceed失效、complete/lost拒绝和原态保持。仅当前手牌/意图可见，无引擎或卡值变更，技术范围无阻断；非真人完成试玩/正式地图/平衡。后续将这些额外案例固化，旧review不自动覆盖新增文档。
