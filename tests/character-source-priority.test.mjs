@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync,existsSync} from 'node:fs';
+const denied=JSON.parse(readFileSync(new URL('./fixtures/character-name-denials.json',import.meta.url),'utf8'));
 import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateNamingManifest,validateArtifactParity,extractEmbeddedCardNames} from '../scripts/validate-character-source-priority.mjs';
@@ -22,8 +23,16 @@ const baseApproved=()=>{
  review:{status:'APPROVED',checks:{N2:'pass',N3:'pass',N4:'pass',N5:'pass',N6:'pass'},human:{approved:true,reviewer:'editor',date:'2026-11-13',evidence:'review/e'}}};
  return m;
 };
+test('historically and user-rejected names cannot be silently restored',()=>{
+ const m=make();
+ for(const name of ['灯还亮着','夜路照明','掩袖回枪','顺势点梅']){
+  m.cards[0].name=name;
+  assert.match(validateNamingManifest(m,denied).errors.join(';'),/known rejected name/);
+ }
+});
 test('pending and rejected names remain valid drafts, never naming-ready',()=>{
- const report=validateNamingManifest(make());
+ const draft=make(); draft.cards[0].name='待命名·c19';
+ const report=validateNamingManifest(draft,denied);
  assert.deepEqual(report.errors,[]);
  assert.equal(report.ready,false);
  assert.equal(report.blockers.length,1);
@@ -87,7 +96,7 @@ test('all committed full75 HTML candidates require a manifest and hold if unappr
   if(!htmlFiles.length)continue;
   assert.ok(list.includes('naming-review.json'),dir+' missing mandatory naming-review.json');
   const m=JSON.parse(readFileSync(join(dir,'naming-review.json'),'utf8'));
-  const r=validateNamingManifest(m);
+  const r=validateNamingManifest(m,denied);
   assert.deepEqual(r.errors,[],dir+': '+r.errors.join(' / '));
   for(const html of htmlFiles){
     const parity=validateArtifactParity(m,readFileSync(join(dir,html),'utf8'));

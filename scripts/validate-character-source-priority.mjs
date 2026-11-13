@@ -32,8 +32,9 @@ function lowerTierReady(card,why){
  const p3=s.P3;
  if(!p3||!['searched','not_applicable'].includes(p3.status)||!detail(p3.reason))why.push('P4 needs explicit P3 lower-priority applicability decision');
 }
-export function validateNamingManifest(m){
+export function validateNamingManifest(m,denialRegistry={}){
  const errors=[],blocked=[],seenIds=new Set(),seenNames=new Set();
+ const knownDenied=new Set(denialRegistry[m?.role]||[]);
  const add=(id,msg)=>errors.push((id||'manifest')+': '+msg);
  if(!m||!Array.isArray(m.cards)||!m.cards.length)return {errors:['manifest: missing card records'],blockers:[],ready:false};
  if(!NONEMPTY(m.role)||!NONEMPTY(m.artifact)||!['HOLD','APPROVED'].includes(m.status))add('', 'missing role/artifact/status');
@@ -43,6 +44,7 @@ export function validateNamingManifest(m){
    const id=NONEMPTY(c?.id)?c.id:'unknown';
    if(seenIds.has(id))add(id,'duplicate id');seenIds.add(id);
    if(!NONEMPTY(c?.name)||seenNames.has(c.name))add(id,'empty/duplicate name');seenNames.add(c.name);
+   if(knownDenied.has(c.name))add(id,'known rejected name used without approved registry change');
    if(!NONEMPTY(c?.decision_role)||!NONEMPTY(c?.effect_ref))add(id,'missing decision role or effect reference');
    const t=c?.source?.tier,k=c?.source?.kind;
    if(!TIERS.includes(t)||!SOURCE_KINDS[t]?.includes(k))add(id,'invalid tier or source kind');
