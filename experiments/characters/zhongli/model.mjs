@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.31.0';
+export const VERSION = 'zhongli-mechanics-0.32.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -48,6 +48,9 @@ export const cards = [
   card('zl41', '在敌已虚弱的窗口兑现追加攻击，无减压时伤害低', 'common', 1, [['damage', 4], ['suppressedDamage', 7]], [['damage', 6], ['suppressedDamage', 9]], 'enemy'),
   card('zl42', '利用敌已易伤窗口补防线，放弃当轮攻击收益', 'common', 1, [['jade', 3], ['exposedJade', 4]], [['jade', 4], ['exposedJade', 5]]),
   card('zl43', '已有岩脊时掩护并检索，缺柱只有弱临时格挡', 'common', 1, [['block', 4], ['pillarDraw', 2]], [['block', 6], ['pillarDraw', 3]]),
+  card('zl44', '付少量防线连续双击，保留更大储备而降低终结强度', 'common', 1, [['spendJade', 3], ['damage', 4], ['damage', 4]], [['spendJade', 3], ['damage', 6], ['damage', 6]], 'enemy'),
+  card('zl45', '一张牌同时短暂压制与暴露敌人，牺牲更强的单项控制', 'common', 2, [['weak', 1], ['vulnerable', 1], ['block', 3]], [['weak', 2], ['vulnerable', 2], ['block', 5]], 'enemy'),
+  {...card('zl46', '拆除岩脊一次挡住大伤，失去后续持续输出和持久盾', 'common', 1, [['spendPillar', 1], ['block', 24]], [['spendPillar', 1], ['block', 30]]), exhaust: true},
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;
