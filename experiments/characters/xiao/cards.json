@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.1",
+  "version": "xiao-g2-lab-0.2",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -245,6 +245,119 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x09",
+      "name": "待命名·x09",
+      "role": "持续退出并整手：用能量换安全退场和后续选择",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "draw",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "mask",
+          "value": 0
+        },
+        {
+          "op": "draw",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x10",
+      "name": "待命名·x10",
+      "role": "短窗口防守入场：付生命换一回合面具与格挡",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 8
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "loseHp",
+          "value": 2
+        },
+        {
+          "op": "mask",
+          "value": 1
+        },
+        {
+          "op": "block",
+          "value": 11
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x11",
+      "name": "待命名·x11",
+      "role": "终结窗口：先借面具攻击再主动退场",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damage",
+          "value": 10
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damage",
+          "value": 14
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -263,7 +376,10 @@
     "x03",
     "x06",
     "x07",
-    "x08"
+    "x08",
+    "x09",
+    "x10",
+    "x11"
   ],
   "maskRules": {
     "attackBonus": 4,

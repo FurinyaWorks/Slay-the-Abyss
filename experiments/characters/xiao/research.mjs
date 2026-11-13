@@ -28,6 +28,8 @@ export function choose(view, policy) {
     if(id==='x04'&&!view.mask&&policy!=='never-mask'&&view.hp>2&&view.energy>=2&&attacks>0){
       const safe=view.hp>incoming+6;score=policy==='burst'?18:(safe&&attacks>=2?14:-10);
     }
+    if(id==='x09')score=view.mask>0&&view.hp<=2?1000:(view.energy>=2&&view.hand.length<5?6:-10);
+    if(id==='x10'&&!view.mask&&policy!=='never-mask'&&view.hp>incoming+4&&view.energy>=2&&attacks>0)score=Math.min(8,Math.max(0,incoming-view.block))*2+4;
     if(score>0)choices.push({index,target:target.index,score});
   });
   return choices.sort((a,b)=>b.score-a.score||a.index-b.index)[0]??null;
