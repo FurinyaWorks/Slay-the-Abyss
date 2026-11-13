@@ -1,0 +1,2697 @@
+{
+  "status": "BLOCKED_NOT_AN_EXPORT",
+  "baseline": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+  "productionFiles": {
+    "src/lua/abyss_character_profiles.lua": "65a255630ead2887a58b34c37f3de1e25a636d3c02412774055e5294401b2a10",
+    "src/lua/abyss_combat_effect_dispatch.lua": "5bf02c9a8800e10abed38f7718f62f77c150ff6739132bf57a4127846d1d0ca7",
+    "src/lua/abyss_combat_effect_damage.lua": "b8ff07660d5d8e4b2348082678a3e83dd17d70994ef78652435c19dcbb5ff044",
+    "src/lua/abyss_combat_effect_cards.lua": "ad516e63bfa3528104d42a49bb7e8b5c446c2d0d6e4c855b984bcc524f2733e5",
+    "src/lua/abyss_retained_cards.lua": "62f43f6c006b6a5400dcb401e08edb9701404b885012fa30df38426e2da3ffe0",
+    "data/cards.json": "9f71d4f84795dbbd364b6ea4f82e8e0265ace3020b0b07815b33c5e316d6a47b"
+  },
+  "candidateSha256": "2412ea17b3ff3b190cf30bea9ba7f5f84d01f6aec3eb684f5fb4685f043e5f9d",
+  "cards": [
+    {
+      "id": "ganyu-01",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-02",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-03",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-04",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-05",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-06",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-07",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-08",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-09",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-10",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "seek_card",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "seek_card",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-11",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-12",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-13",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-14",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 3,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 3,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-15",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-16",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-17",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "charged_direct",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "charged_direct",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-18",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-19",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-20",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-21",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-22",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-23",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-24",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-25",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "seek_card",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "seek_card",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-26",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-27",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-28",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-29",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm_release",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "storm_release",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-30",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_draw",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_draw",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-31",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-32",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-33",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "storm_draw",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "storm_draw",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-34",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "charged_direct",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "charged_direct",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-35",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_aoe",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_aoe",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-36",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-37",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm_focus",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm_focus",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-38",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "charged_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "charged_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-39",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "seek_effect",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "seek_effect",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-40",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 3,
+          "effects": [
+            {
+              "op": "charged_aoe",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 3,
+          "effects": [
+            {
+              "op": "charged_aoe",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-41",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "spend_one_damage",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "spend_one_damage",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-42",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "spend_one_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "spend_one_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-43",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "spend_one_draw",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "spend_one_draw",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-44",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "full_charge_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "full_charge_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-45",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "full_charge_damage",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "full_charge_damage",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-46",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-47",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "seek_effect",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "seek_effect",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-48",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "seek_effect",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "seek_effect",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-49",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-50",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-51",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charged_shot",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-52",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "storm_release",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "storm_release",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-53",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "full_charge_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "full_charge_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-54",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-55",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 0,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-56",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-57",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-58",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm_release",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm_release",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-59",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-60",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-61",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 3,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 3,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-62",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-63",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-64",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "storm_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-65",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-66",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "charged_direct",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "charged_direct",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-67",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-68",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "seek_card",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "seek_card",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-69",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "aoe",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage to all active enemies; queued target semantics require adapter",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-70",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "spend_one_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "spend_one_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-71",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "charge",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-72",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "charged_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 2,
+          "effects": [
+            {
+              "op": "charged_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-73",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "damage/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "draw",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "draw/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-74",
+      "productionReady": false,
+      "retain": true,
+      "exhaust": false,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "spend_one_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "spend_one_block",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganyu-75",
+      "productionReady": false,
+      "retain": false,
+      "exhaust": true,
+      "variants": [
+        {
+          "level": "base",
+          "cost": 3,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        },
+        {
+          "level": "upgrade",
+          "cost": 3,
+          "effects": [
+            {
+              "op": "block",
+              "status": "ANALOGUE_NOT_PARITY",
+              "analogue": "block/value",
+              "blocker": "amount/value schema and production powers/reactions/queue/UID behaviour require parity tests"
+            },
+            {
+              "op": "storm",
+              "status": "GANYU_CONTRACT_NOT_INTEGRATED",
+              "blocker": "needs explicit resource/field/selection lifecycle and queued production adapter"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
