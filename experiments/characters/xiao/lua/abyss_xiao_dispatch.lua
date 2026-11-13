@@ -1,4 +1,4 @@
--- Isolated first-eight execution adapter; not registered in shared dispatch.
+-- Isolated first-eight plus x13/x14 effect adapter; not registered in shared dispatch.
 local Plan=require('abyss_xiao_card_plan')
 local Data=require('abyss_xiao_core_data')
 local Actors=require('abyss_actor')
@@ -14,13 +14,25 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit','unsupported Xiao executable kind')
+ assert(effect.kind=='damage'or effect.kind=='plunge'or effect.kind=='maskCommit'or effect.kind=='maskBlock'or effect.kind=='maskGuard','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
  assert(effect.targetId==nil or effect.targetId==paid.targetId,'Xiao target context mismatch')
  local r=resource(state);integer(effect.value,effect.kind=='maskCommit'and 3 or 2147483647)
  if r.hp==0 then return true end
+ if effect.kind=='maskBlock'then
+  queue.pushTop(state,{kind='effect',effect={op='block',value=Plan.maskBlock(r.mask,effect.value)}})
+  return true
+ end
+ if effect.kind=='maskGuard'then
+  local previous=state.player.statuses.xiao_mask_guard
+  local before=previous;if before==nil then before=0 end
+  Plan.addMaskGuard(before,effect.value) -- reject unsafe accumulation before mutation
+  Actors.applyPower(state,state.player,'xiao_mask_guard',effect.value,state.player)
+  Schedule.recordApplied(state,state.player,'xiao_mask_guard',previous)
+  return true
+ end
  if effect.kind=='maskCommit'then
   local patch=Plan.maskCommit(r,effect.value)
   if patch.mask==0 then

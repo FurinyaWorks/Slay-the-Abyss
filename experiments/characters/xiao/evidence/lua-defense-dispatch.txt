@@ -1,0 +1,4 @@
+PASS x13 actual queued host block uses current mask and native Dexterity
+PASS x14 actual Power stacks without duplicate acquisition then owner end pays before defense
+PASS mask HP death prevents defense and new battle has no leaked ability
+PASS unsafe and false ability accumulation rejects with host snapshot restoration
