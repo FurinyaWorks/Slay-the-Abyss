@@ -1,0 +1,28 @@
+{
+  "reviewer": "/root/neow_reference_audit",
+  "conclusion": "pass",
+  "unresolved": [],
+  "scope": "PR639 Full repair only; dirty tree",
+  "files": {
+    "scripts/official-run-layout.mjs": "b05969d871f5bd25a4e74ef565ba5ffed572cc47cca0c9956e8350405eb58974",
+    "scripts/v25-node-layout.mjs": "80129a9e04e13324301c09bd508c2667ab5162cbffe0000ae2ce41bffa56bdef",
+    "src/lua/abyss_deck_ui.lua": "4dfaaad184af0301de1b910955d05e5e37ce35edd79c3b176c9fecd6505b18ca",
+    "src/lua/abyss_merchant.lua": "2d3d8d51bfc0633b8431d5319bcfe0b3d352e4a9fba57e61c34913efad51cf47",
+    "src/lua/abyss_potion_discard_ui.lua": "4fb94fb8ce4326cabb2bfec9129796099739745b4f44752466b89e2c45fc2669",
+    "tests/map-utility-header.test.mjs": "62dc5a4a44a841751d5087f25713077aad93abdf0bdc67c13d30a1e665406707",
+    "tests/lua/map_utility_header.lua": "214ffa25853a655bddca01974e5943250561f2c5db3f652205836ed94213fa61",
+    "tests/official-assets.test.mjs": "be9f699b784e69b2c07d922b59e74f299b94a71f3483946d0fc3aa1820dbce2b",
+    "tests/ci-complete-calibration.test.mjs": "2476ca0ebf4ba0e22af989b2109b933028bdd9765068366e60453d7684405820",
+    "tests/helpers/closeout-source-closure.json": "af4dcf741cfd5afa9fbeba832f9c78961b202dba0373ccd9813f8b6f7a4833e9",
+    "tests/helpers/closeout-source-epoch.mjs": "37bc0b8fc9e7d66be47d252e70ae7925fd4b5b3e657ecef8d5f2086210736e54",
+    "tests/helpers/copy-integration-source-closure.mjs": "644db9291d3fe86fda7098527a05fbd4ba2aa96924a640bcec406cecede3bf8f",
+    "tests/helpers/generate-run-hud-ci-source.mjs": "2a41634facaa5cd13a5e542d6140b0f29984de6f7ef33cd78a4884d8053fa44f",
+    "tests/helpers/generate-shop-deck-source-epoch.mjs": "a4280b922671c312df9702adc8c8ef31360fa6b85f672e2762d011bad560f4a5",
+    "tests/helpers/run-hud-ci-source.mjs": "3642c89043a55893098ff4f47d31ac4ec6133298fa1624d6ccb3906da5c1e65c",
+    "tests/helpers/run-hud-ci-source.json.gz": "685bddcc6bed77545eadc456f82ed4de10a75402cfcf597533190eb1732cbe3b",
+    "tests/helpers/shop-deck-source-epoch.json.gz": "f5546b3bd0264af9e4fff867637fe217e4e7c32482e72104d7d3c1f3cc43a03b",
+    "tests/helpers/run-hud-before-ci-repair-ci-source.json.gz": "fa385b20797f37ca5a8c0a406d6ecdad6b4c0539c27a825e751b7eadeb4f5408",
+    "tests/helpers/shop-deck-before-ci-repair-source-epoch.json.gz": "94d6f85a83a1593bbbaf34ae13986ddfbca97312e183b4e7f6b08ca58b8d911b",
+    "tests/integration-source-epoch.test.mjs": "c8dafbe19d388cc6ac61154cd30378df94289814e7acd8e6fb63a2d458c61b1e"
+  }
+}

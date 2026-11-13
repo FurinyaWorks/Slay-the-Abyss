@@ -17,6 +17,9 @@ test('shop/deck continuation retains the complete closeout predecessor and every
  const {shopDeckFourSourcePrior}=await import('./helpers/closeout-source-epoch.mjs');
  assert.deepEqual(Object.keys(shopDeckFourSourcePrior.current),shopDeckPaths.slice(0,4),'PR639 four-source predecessor remains independently intact');
  for(const [path,binding]of Object.entries(shopDeckFourSourcePrior.current))assert.deepEqual(proof.targets.shopDeckFourPrior.files[path],binding);
+ const {shopDeckBeforeCiRepairPrior}=await import('./helpers/closeout-source-epoch.mjs');
+ assert.deepEqual(Object.keys(shopDeckBeforeCiRepairPrior.current),shopDeckPaths,'complete five-source predecessor remains independently intact');
+ for(const [path,binding]of Object.entries(shopDeckBeforeCiRepairPrior.current))assert.deepEqual(proof.targets.shopDeckBeforeCiRepairPrior.files[path],binding);
  for(const [name,target]of Object.entries(closeoutPriorEpoch.proof.targets))assert.deepEqual(proof.targets[name],target,name);
  assert.deepEqual(Object.keys(proof.current),Object.keys(closeoutPriorEpoch.proof.current));
  assert.equal(proof.currentTreeCommitted,false,'working source hashes do not invent a committed corpus');

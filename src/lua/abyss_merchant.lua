@@ -70,9 +70,7 @@ function M.new(box, options)
         if self.visible then self:pose() end
     end
 
-    function merchant:pose()
-        local current = self.current
-        if not self.visible or not current then return end
+    local function paintSpeech(current)
         local count = math.min(pageEnd(current), math.floor(current.shown))
         line.text = table.concat(current.chars, "", (current.page-1)*L.pageCharacters+1, count)
         local speaking = not current.dismissed
@@ -80,9 +78,15 @@ function M.new(box, options)
         ink(line, bubble and L.bubble.ink or (current.narration and C.textDim or C.text))
         box:GetChild("name"):SetVisible(not bubble and not current.narration)
         box:GetChild("namePlate"):SetVisible(not bubble and not current.narration)
-        local more = speaking and count >= pageEnd(current) and (pageEnd(current)<#current.chars or #self.queue > 0)
+        local more = speaking and count >= pageEnd(current) and (pageEnd(current)<#current.chars or #merchant.queue > 0)
         local marker = box:GetChild("next")
         marker:SetVisible(more)
+        return marker,more
+    end
+    function merchant:pose()
+        local current = self.current
+        if not self.visible or not current then return end
+        local marker,more=paintSpeech(current)
         -- Nod on a sale, a short head shake when the purse is short; both settle back to rest.
         -- Theme frames are node-panel units; the portrait moves inside the merchant frame.
         local x, y = L.portrait[1] - L.frame[1], L.portrait[2] - L.frame[2]
@@ -104,20 +108,23 @@ function M.new(box, options)
         tint(portrait:GetChild("lanternGlow"), C.merchant.lantern, flicker)
     end
 
-    function merchant:update(dt)
-        if not self.visible or not self.current then return end
-        self.clock = (self.clock or 0) + dt
-        local current = self.current
+    local function advanceSpeech(current,dt)
         if not current.dismissed then
             if current.shown < pageEnd(current) then
                 current.shown = math.min(pageEnd(current), current.shown + dt * L.typeRate)
             else
                 current.hold = current.hold + dt
                 if current.hold>=L.hold and pageEnd(current)<#current.chars then current.page=current.page+1;current.hold=0
-                elseif #self.queue > 0 and current.hold >= L.hold then begin(table.remove(self.queue, 1))
+                elseif #merchant.queue > 0 and current.hold >= L.hold then begin(table.remove(merchant.queue, 1))
                 elseif bubble and current.hold >= L.hold then current.dismissed = true end
             end
         end
+    end
+    function merchant:update(dt)
+        if not self.visible or not self.current then return end
+        self.clock = (self.clock or 0) + dt
+        local current = self.current
+        advanceSpeech(current,dt)
         -- One unprompted remark if the player lingers; never repeated, never a new button.
         self.idle = (self.idle or 0) + dt
         if not self.idleUsed and #self.queue == 0 and self.idle >= L.idle and current.kind ~= "leave"

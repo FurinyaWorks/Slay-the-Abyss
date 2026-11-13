@@ -19,6 +19,7 @@ const reviewedPaths=[
  'tests/official-run-chrome.test.mjs','tests/official-run-hud-reuse.test.mjs',
  'tests/lua/merchant_action_group.lua','tests/lua/merchant_dialogue_lifecycle.lua',
  'tests/lua/support/node_ui_cases.lua','tests/merchant-action-group.test.mjs','tests/node-ui-layout.test.mjs',
+ 'tests/lua/map_utility_header.lua','tests/map-utility-header.test.mjs','tests/official-assets.test.mjs',
 ];
 export function collectRunHudCiSource(){
  const oldBytes=readFileSync('tests/helpers/closeout-ci-source.json.gz');

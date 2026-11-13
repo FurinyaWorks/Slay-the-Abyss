@@ -405,14 +405,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             exhaustMany='选择任意张手牌消耗（可不选）',discardRedraw='选择任意张手牌丢弃并重抽',discardToHand='选择弃牌回手，本回合费用为0',
             handToDraw="选择放回抽牌堆顶的手牌",upgradeHand="选择要升级的牌",dualWield="选择要复制的攻击或能力牌"}
     end
-    function self.open(_, run, choice, onPick, pileKind)
-        if self.visible then return false end
-        self.generation = self.generation + 1
-        -- A copied permanent instance never acquires temporary hand cost/growth/status.
-        local cards, catalog = Combat.copy(run.deck), {cards={}}
-        for _, card in ipairs(run.data.cards.cards) do catalog.cards[card.id] = card end
-        self.choiceToken,self.onPick,self.battle=choice and choice.token,onPick,(choice or pileKind) and run.combat
-        self.pileKind=pileKind
+    local function openBrowserShell(choice,pileKind)
         self.pileView=Theme.presentationProfile=='official-assets-first' and pileNames[pileKind]~=nil
         -- Visual shell selection never determines the snapshot, combat context or
         -- card surface owner. Permanent browsing still projects only run.deck.
@@ -427,6 +420,16 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             root:GetChild('veil'):SetVisible(not self.browserShell)
         end
         root:GetChild('header'):SetVisible(not self.browserShell)
+    end
+    function self.open(_, run, choice, onPick, pileKind)
+        if self.visible then return false end
+        self.generation = self.generation + 1
+        -- A copied permanent instance never acquires temporary hand cost/growth/status.
+        local cards, catalog = Combat.copy(run.deck), {cards={}}
+        for _, card in ipairs(run.data.cards.cards) do catalog.cards[card.id] = card end
+        self.choiceToken,self.onPick,self.battle=choice and choice.token,onPick,(choice or pileKind) and run.combat
+        self.pileKind=pileKind
+        openBrowserShell(choice,pileKind)
         if pileKind then cards,catalog=pileCards(run,pileKind,presentation),run.combat.catalog end
         if Theme.presentationProfile=='official-assets-first' then root:GetChild('pileChrome'):GetChild('empty'):SetVisible(self.browserShell and #cards==0)end
         self.multiple,self.choiceSelected=choice and choice.multiple,choice and choice.selected
@@ -611,7 +614,8 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         return swallow or result
     end)
     Controller.bind(platform.controller,close,'deck',function()return self:back()end,nil,100)
-    if Theme.presentationProfile=='official-assets-first' then
+    local function bindOfficialBrowser()
+        if Theme.presentationProfile~='official-assets-first' then return end
         for _,mode in ipairs({'original','type','cost','name'})do
             local hit=root:GetChild('pileTools'):GetChild(mode):GetChild('hit')
             local action=function()
@@ -652,6 +656,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         end)
         Controller.bind(platform.controller,hit,'deck',function()return self:back()end,available,100)
     end
+    bindOfficialBrowser()
     for _,name in ipairs({'previous','next'})do
         local box=root:GetChild(name)
         if box then

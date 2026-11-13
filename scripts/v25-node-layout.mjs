@@ -223,7 +223,7 @@ function styleTreasure(panel,theme){
  for(const n of parts(panel))if(parts(n).some(c=>c.name==='normal'))framedSkin(n);
 }
 
-function styleMerchant(panel,theme){
+export function styleMerchant(panel,theme){
  if(theme.layout.merchant.bubble){
   // Project the complete component, retaining existing objects and live text.
   // Build starts from the unprojected theme; partial old-bar positioning would

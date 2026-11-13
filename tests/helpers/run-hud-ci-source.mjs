@@ -6,8 +6,11 @@ import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const normalize=s=>s.replaceAll('\r\n','\n');
+const beforeRepairBytes=readFileSync(new URL('./run-hud-before-ci-repair-ci-source.json.gz',import.meta.url));
+assert.equal(hash(beforeRepairBytes),'fa385b20797f37ca5a8c0a406d6ecdad6b4c0539c27a825e751b7eadeb4f5408','immutable run HUD CI predecessor before Full repair');
+export const runHudBeforeCiRepairProof=JSON.parse(gunzipSync(beforeRepairBytes));
 const bytes=readFileSync(new URL('./run-hud-ci-source.json.gz',import.meta.url));
-assert.equal(hash(bytes),'fa385b20797f37ca5a8c0a406d6ecdad6b4c0539c27a825e751b7eadeb4f5408','complete run HUD CI continuation');
+assert.equal(hash(bytes),'685bddcc6bed77545eadc456f82ed4de10a75402cfcf597533190eb1732cbe3b','complete run HUD CI continuation');
 export const runHudCiProof=JSON.parse(gunzipSync(bytes));
 assert.equal(runHudCiProof.schemaVersion,1);
 assert.equal(runHudCiProof.normalization,'LF');
@@ -20,6 +23,7 @@ for(const [path,row]of Object.entries(runHudCiProof.files))for(const side of ['b
 }
 const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
 freeze(runHudCiProof);
+freeze(runHudBeforeCiRepairProof);
 export function preRunHudCiSource(path,source){
  const row=Object.hasOwn(runHudCiProof.files,path)?runHudCiProof.files[path]:null;
  if(!row||!row.before||typeof source!=='string'||hash(normalize(source))!==row.after.sha256)return source;

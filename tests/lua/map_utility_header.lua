@@ -38,9 +38,9 @@ local function check(capacity,count)
             local face=slot:GetChild('emptyShell'):GetChild('face')
             assert(face.spec.opacity==128/255 and face.spec.colour=='#1A1312','real empty tree preserves alpha and source colour')
             if shown then
-                local want=(shown=='fire_potion' and Theme.color.potionShell.fire or Theme.color.potionShell.normal).ink
+                local want=(Theme.icon.potionTint or {})[shown] or (shown=='fire_potion' and Theme.color.potionShell.fire or Theme.color.potionShell.normal).ink
                 local actual=slot:GetChild('bottle').imageColor
-                assert(actual.r==want.r and actual.g==want.g and actual.b==want.b)
+                assert(actual.r==want.r and actual.g==want.g and actual.b==want.b and actual.a==want.a,'shared current potion tint '..shown)
             end
             if i<=capacity and id then assert(slot:GetChild('bottle').image==Theme.icon.potion[id],'reuse official ID')end
             assert(run.potions[i]==before[i],'painting must not consume or compact inventory')

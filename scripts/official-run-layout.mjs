@@ -3,9 +3,8 @@
 import {applyOfficialNoncombatLayout} from './noncombat-v25-layout.mjs';
 import {applyOfficialNeowLayout} from './noncombat-neow-layout.mjs';
 import {applyV25MapLayout} from './v25-map-layout.mjs';
-import {applyV25RewardLayout} from './v25-node-layout.mjs';
+import {applyV25RewardLayout,styleMerchant} from './v25-node-layout.mjs';
 import {officialRunChrome} from './official-battle-hud.mjs';
-import {merchantControl} from './cinematic-ui-layout.mjs';
 
 const parts=node=>node?.children??node?.controls??[];
 const child=(node,name)=>parts(node).find(part=>part.name===name);
@@ -65,7 +64,7 @@ export function composeOfficialRun(tree,theme){
   applyOfficialNeowLayout(tree,theme);
   const node=child(stage(tree),'nodePanel'),shop=child(node,'shopView');
   const merchant=required(node,'merchant');
-  node.children[node.children.indexOf(merchant)]=merchantControl(theme);
+  styleMerchant(merchant,theme);
   theme.layout.nativeNode.shop.columns.forEach((x,i)=>{
    required(shop,'card'+(i+1)).position[0]=x;
    required(shop,'price'+(i+1)).position[0]=x;

@@ -72,6 +72,12 @@ export function shopDeckRebind({root=defaultRoot,writeArchive=false}={}){
  const frozenPath='tests/helpers/shop-deck-four-source-epoch.json.gz';
  assert.equal(hash(readFileSync(join(root,frozenPath))),'51034e9da34cbe0ab153f00ab66a16918db1097ef7173932ab326cc6c2076f2b','immutable PR639 four-source predecessor');
  files[frozenPath]='51034e9da34cbe0ab153f00ab66a16918db1097ef7173932ab326cc6c2076f2b';
+ const beforeRepairPath='tests/helpers/shop-deck-before-ci-repair-source-epoch.json.gz';
+ assert.equal(hash(readFileSync(join(root,beforeRepairPath))),'94d6f85a83a1593bbbaf34ae13986ddfbca97312e183b4e7f6b08ca58b8d911b','immutable PR639 five-source predecessor');
+ files[beforeRepairPath]='94d6f85a83a1593bbbaf34ae13986ddfbca97312e183b4e7f6b08ca58b8d911b';
+ const beforeRepairCi='tests/helpers/run-hud-before-ci-repair-ci-source.json.gz';
+ assert.equal(hash(readFileSync(join(root,beforeRepairCi))),'fa385b20797f37ca5a8c0a406d6ecdad6b4c0539c27a825e751b7eadeb4f5408','immutable PR639 CI predecessor');
+ files[beforeRepairCi]='fa385b20797f37ca5a8c0a406d6ecdad6b4c0539c27a825e751b7eadeb4f5408';
  const nextClosure=JSON.stringify(Object.fromEntries(Object.entries(files).sort(([a],[b])=>a<b?-1:a>b?1:0)),null,2)+'\n';
  const copy=read(copyPath),oldClosureHash=hash(Buffer.from(closure));
  assert(copy.includes(oldClosureHash),'authenticated current closure guard');

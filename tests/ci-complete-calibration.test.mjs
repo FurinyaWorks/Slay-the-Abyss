@@ -1,5 +1,5 @@
 import {closeoutRead,closeoutInventory,preCloseoutCiSource,closeoutCiProof} from './helpers/closeout-ci-source.mjs';
-import {runHudPriorRead,runHudPriorInventory,preRunHudCiSource,runHudCiProof} from './helpers/run-hud-ci-source.mjs';
+import {runHudPriorRead,runHudPriorInventory,preRunHudCiSource,runHudCiProof,runHudBeforeCiRepairProof} from './helpers/run-hud-ci-source.mjs';
 import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
 import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helpers/curses-ci-planning.mjs';
 import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource,preRatchetInventory,ratchetInventoryFile} from './helpers/joint-ui-ci-source-inverse.mjs';
@@ -1932,6 +1932,8 @@ test('noncombat immutable added inventory keeps its full source and unknown-cost
 
 test('run HUD continuation authenticates complete current sources and raw Full inventory without rewriting historical receipts',()=>{
  const p=runHudCiProof,files=liveDiscoverJs();
+ assert.deepEqual(runHudBeforeCiRepairProof.afterInventory,p.afterInventory,'Full repair retains the complete preceding inventory');
+ for(const [path,row]of Object.entries(runHudBeforeCiRepairProof.files))assert.deepEqual(p.files[path].before,row.before,'original receipt predecessor retained: '+path);
  assert.deepEqual(files,p.afterInventory,'complete current Full discovery');
  assert.equal(new Set(files).size,files.length);
  assert.deepEqual(runHudPriorInventory(files),closeoutCiProof.inventory,'exact original closeout inventory retained');
