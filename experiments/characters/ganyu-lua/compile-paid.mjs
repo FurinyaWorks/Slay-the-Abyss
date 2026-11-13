@@ -2,14 +2,16 @@
 import {readFileSync,writeFileSync} from 'node:fs';import {createHash} from 'node:crypto';
 import {toLua} from '../../../scripts/build-lua-data.mjs';
 const top=['id','name','candidate_name','role','rarity','target','base','upgrade','source_ref','review','exhaust','retain','production_enabled'];
-const keys=(o,allowed)=>{if(!o||Array.isArray(o)||typeof o!=='object'||Object.keys(o).some(k=>!allowed.includes(k)))throw Error('unsupported paid schema');};
+const ownData=(o,allowed)=>{for(const k of Reflect.ownKeys(o)){const d=Object.getOwnPropertyDescriptor(o,k);if(typeof k!=='string'||!allowed.includes(k)||!('value' in d))throw Error('unsupported paid schema');}};
+const keys=(o,allowed)=>{if(!o||Array.isArray(o)||typeof o!=='object'||Object.getPrototypeOf(o)!==Object.prototype)throw Error('unsupported paid schema');ownData(o,allowed);};
+const effectsArray=a=>{if(!Array.isArray(a)||Object.getPrototypeOf(a)!==Array.prototype)throw Error('single effect required');ownData(a,['0','length']);if(a.length!==1||!Object.hasOwn(a,'0'))throw Error('single effect required');};
 const integer=n=>{if(!Number.isSafeInteger(n)||n<0||n>2147483647)throw Error('invalid paid integer');return n;};
 export function compilePaid(c){
  keys(c,top);if(!['ganyu-03','ganyu-06'].includes(c.id))throw Error('unsupported paid candidate');
  if(c.production_enabled||c.review?.human_approved)throw Error('unapproved integration status');
  for(const flag of ['exhaust','retain'])if(c[flag]!==undefined&&c[flag]!==false)throw Error('unmapped paid flag');
  const shot=c.id==='ganyu-03';if(c.target!==(shot?'enemy':'self'))throw Error('paid target mismatch');
- const variant=v=>{keys(v,['cost','effects']);integer(v.cost);if(!Array.isArray(v.effects)||v.effects.length!==1)throw Error('single effect required');const e=v.effects[0];
+ const variant=v=>{keys(v,['cost','effects']);integer(v.cost);effectsArray(v.effects);const e=v.effects[0];
   keys(e,shot?['op','direct','bloom']:['op','amount']);if(e.op!==(shot?'charged_shot':'charge'))throw Error('paid effect mismatch');
   return {cost:v.cost,effects:[shot?{op:'ganyuCard',kind:'chargedShot',direct:integer(e.direct),bloom:integer(e.bloom)}:{op:'ganyuCard',kind:'charge',amount:integer(e.amount)}]};};
  const base=variant(c.base),upgrade=variant(c.upgrade);

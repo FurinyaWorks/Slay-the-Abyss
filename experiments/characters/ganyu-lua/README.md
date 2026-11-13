@@ -110,3 +110,12 @@ compile-paid.mjs now projects the pinned candidate03/06 base/up effects and card
 ## Public owner-end acceptance contract: currently BLOCKED
 
 public-owner-end.test.lua defines5 real API scenarios for the forthcoming shared bank/tick integration: bank before Dazed exhaustion/Dark Embrace draw, storm after discard before enemy lethal action, false-relic no banking, native storm failure restoring the whole initial command, and genuine Codex pause/invalid choice/resume failure preserving offer/queue/resource/RNG identities. It does not assume bank must precede Codex, only that the field must not tick while paused. All field seeding and low enemy HP are explicit fixtures. Running against exact d55b0c32 currently fails at its intentional `Ganyu relic/lifecycle not enabled` initialization guard; these5 contracts have NOT passed and require the next host slice. No substitute hand-written endTurn driver is used. The03/06 generated-definition chain34cbd435 independently passed its2Node and14+4 real-host scope.
+
+### Paid compiler in-memory schema hardening
+
+The paid 03/06 compiler now rejects symbol/non-enumerable extra keys, accessor
+properties, inherited/custom-prototype records/arrays, and sparse effect arrays.
+This closes a JavaScript-call surface not representable in the frozen JSON.
+Three Node tests include 56 malformed object/array mutations and two sparse
+arrays; generated paid definitions remain byte-identical. This does not enable
+owner-end banking/storm stages, change card values, or expand production access.
