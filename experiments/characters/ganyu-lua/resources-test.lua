@@ -114,3 +114,39 @@ assert(not pcall(R.plan,{charge=0,storm={amount=2147483647,turns=2147483647}},{o
 assert(not pcall(R.plan,{charge=0},{op='storm_release',amount=1}))
 assert(not pcall(R.plan,{charge=0},{op='storm_focus',amount=-1}))
 print('PASS storm release/focus native damage, expiry, zero field and overflow boundaries')
+
+-- Candidate41/42/44/45 literals: single-charge payment vs holding full charge.
+local tiers={
+ {op='spend_one_damage',a=3,b=5,ua=4,ub=7,damage=true,spend=true},
+ {op='spend_one_block',a=3,b=6,ua=4,ub=8,damage=false,spend=true},
+ {op='full_charge_block',a=3,b=3,ua=4,ub=4,damage=false,spend=false},
+ {op='full_charge_damage',a=4,b=4,ua=6,ub=5,damage=true,spend=false},
+}
+local tierCount=0
+for _,v in ipairs(tiers)do for _,up in ipairs({false,true})do for charge=0,2 do
+ local input={charge=charge,storm={amount=3,turns=2}}
+ local active=(v.spend and charge>=1)or(not v.spend and charge==2)
+ local amount=(up and v.ua or v.a)+(active and(up and v.ub or v.b)or 0)
+ local p=R.plan(input,{op=v.op,amount=up and v.ua or v.a,bonus=up and v.ub or v.b})
+ eq(p.effects[1].value,amount);eq(p.after.charge,v.spend and active and charge-1 or charge)
+ eq(input.charge,charge);eq(input.storm.turns,2);eq(p.after.storm.turns,2);assert(input.storm~=p.after.storm)
+ local s=C.new(data,{deck={'strike'},enemies={'jaw_worm','jaw_worm'},seed=42})
+ s.enemies[1].hp=100;s.enemies[1].block=2;s.enemies[2].hp=100;s.player.block=0
+ E.apply(C,s,p.effects,s.player,s.enemies[1]);eq(s.enemies[1].hp,v.damage and 100-math.max(0,amount-2)or 100)
+ eq(s.enemies[2].hp,100);eq(s.player.block,v.damage and 0 or amount);tierCount=tierCount+1
+end end end
+-- Resolution ordering: spend reduces full bonus; full bonus alone preserves bloom.
+local held=R.plan({charge=2},{op='full_charge_block',amount=3,bonus=3})
+eq(#R.plan(held.after,{op='charged_shot',direct=7,bloom=6}).effects,2)
+local spent=R.plan({charge=2},{op='spend_one_block',amount=3,bonus=6})
+eq(R.plan(spent.after,{op='full_charge_block',amount=3,bonus=3}).effects[1].value,3)
+eq(#R.plan(spent.after,{op='charged_shot',direct=7,bloom=6}).effects,1)
+for _,v in ipairs(tiers)do
+ local input={charge=2}
+ eq(R.plan(input,{op=v.op,amount=2147483646,bonus=1}).effects[1].value,2147483647)
+ assert(not pcall(R.plan,input,{op=v.op,amount=2147483647,bonus=1}));eq(input.charge,2)
+ eq(R.plan({charge=0},{op=v.op,amount=2147483647,bonus=2147483647}).effects[1].value,2147483647)
+ for _,bad in ipairs({-1,false,0/0,2147483648})do assert(not pcall(R.plan,input,{op=v.op,amount=1,bonus=bad}));eq(input.charge,2)end
+ assert(not pcall(R.plan,input,{op=v.op,amount=1,bonus=1,extra=true}))
+end
+print('PASS '..tierCount..' tier-payment native effect cases, resolution order and bounds')

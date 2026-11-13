@@ -32,6 +32,16 @@ function M.plan(r,e)
    if e.op~='storm_block'then after.charge=0 end
   end
   effects[1]={op=direct and 'damage'or(e.op=='charged_aoe'and 'damageAll'or 'block'),value=value}
+ elseif e.op=='spend_one_damage'or e.op=='spend_one_block'or e.op=='full_charge_damage'or e.op=='full_charge_block'then
+  keys(e,{op=true,amount=true,bonus=true});local base,bonus=int(e.amount),int(e.bonus)
+  local spend=e.op=='spend_one_damage'or e.op=='spend_one_block'
+  local active=(spend and after.charge>=1)or(not spend and after.charge==2)
+  local value=base
+  if active then
+   assert(bonus<=MAX-base,'Ganyu conditional effect overflow');value=base+bonus
+   if spend then after.charge=after.charge-1 end
+  end
+  effects[1]={op=(e.op=='spend_one_damage'or e.op=='full_charge_damage')and 'damage'or 'block',value=value}
  elseif e.op=='storm_release'then
   keys(e,{op=true})
   if after.storm then
