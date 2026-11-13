@@ -40,3 +40,9 @@ for value=4,6 do
  end
 end
 print('repair4..6 invalid-state rejection through every existing-state entry passed')
+
+for _,id in ipairs({'zl_candidate_pillar','zl_candidate_repair'})do for _,value in ipairs({false,'2'})do
+ local bad=L.install(L.start(fresh(),'badtype',true),'pillar',3);bad.player.statuses[id]=value;local before=C.copy(bad)
+ for _,fn in ipairs({function()L.ownerEnd(bad,1)end,function()L.install(bad,'pillar',4)end,function()L.removePillar(bad)end})do assert(not pcall(fn));same(bad,before)end
+end end
+print('false/string Power states rejected at all lifecycle boundaries')

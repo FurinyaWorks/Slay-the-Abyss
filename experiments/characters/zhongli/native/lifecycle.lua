@@ -11,7 +11,7 @@ local function validate(s)
  local z=s.zhongliCandidate
  assert(integer(z.jade,0,20)and integer(z.lastOwnerEnd,0,2147483646),'invalid lifecycle state')
  assert(#s.enemies==1,'single-enemy prototype only')
- for kind,id in pairs(ids)do assert(integer(s.player.statuses[id]or 0,0,kind=='pillar'and 6 or 3),'invalid candidate Power')end
+ for kind,id in pairs(ids)do local value=s.player.statuses[id];if value==nil then value=0 end;assert(integer(value,0,kind=='pillar'and 6 or 3),'invalid candidate Power')end
  return z
 end
 function M.start(state,battleId,withRelic)
@@ -25,15 +25,20 @@ function M.start(state,battleId,withRelic)
  s.zhongliCandidate={battleId=battleId,jade=withRelic and 3 or 0,lastOwnerEnd=0}
  validate(s);return s
 end
-function M.install(state,kind,strength)
- validate(state);assert(alive(state),'inactive battle')
+-- Host must provide whole-command snapshot rollback for this in-place effect.
+function M.applyInstall(s,kind,strength)
+ validate(s);assert(alive(s),'inactive battle')
  local id=assert(ids[kind],'unknown candidate Power')
  assert(integer(strength,1,kind=='pillar'and 6 or 3),'invalid Power strength')
- local s=Copy.copy(state);local before=s.player.statuses[id]
+ local before=s.player.statuses[id]
  s.player.statuses[id]=math.max(before or 0,strength)
  Schedule.recordApplied(s,s.player,id,before)
- validate(s);return s
+ validate(s)
 end
+function M.install(state,kind,strength)
+ local s=Copy.copy(state);M.applyInstall(s,kind,strength);return s
+end
+M.validate=validate
 function M.removePillar(state)
  validate(state);assert(alive(state),'inactive battle')
  assert((state.player.statuses[ids.pillar]or 0)>0,'missing pillar')
