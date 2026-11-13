@@ -2,19 +2,20 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3)s.jade=6;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([0,3,4,6,7,8].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5].includes(i))assert.equal(r.state.block,value);
     if(i===2)assert.equal(r.state.jade,value);
     if(i===3)assert.equal(r.state.jade,0);
     if(i===5)assert.equal(r.state.jade,upgrade?4:3);
     if(i===6)assert.equal(r.state.block,upgrade?7:5);
+    if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
     assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
@@ -83,3 +84,25 @@ test('upgrade comes from instance, invalid flags rollback',()=>{for(const upgrad
 test('unknown or invalid effect after valid damage rolls back entire transaction',()=>{for(const effect of [['unknown',1],['jade',-1],['block',NaN]]){const s=initialState();const before=structuredClone(s);cards[0].base.push(effect);try{const r=play(s,{id:'zl01',instance:'a',target:'enemy'});assert.equal(r.ok,false);assert.equal(r.reason,'invalid effect');assert.equal(r.state,s);assert.deepEqual(s,before);}finally{cards[0].base.pop();}}});
 
 test('new role split: immediate protection vs low-pressure retained defense',()=>{const s=initialState();const immediate=endTurn(run('zl07',s).state,[5]);const persistent=endTurn(run('zl08',s).state,[5]);assert.equal(immediate.hp,60);assert.equal(persistent.hp,58);const quietA=endTurn(run('zl07',s).state,[]);const quietB=endTurn(run('zl08',s).state,[]);assert.equal(quietA.jade,0);assert.equal(quietB.jade,3);assert.equal(quietA.enemy.hp,35);assert.equal(quietB.enemy.hp,36);});
+test('weak duration adds, does not compound strength, and decays after every enemy action',()=>{
+ let s=run('zl09',initialState(),true).state;assert.equal(s.enemy.weak,2);
+ s=endTurn(s,[3,3,3]);assert.equal(s.hp,54);assert.equal(s.enemy.weak,1);
+ s=endTurn(s,[18]);assert.equal(s.hp,41);assert.equal(s.enemy.weak,0);
+ s=endTurn(s,[4]);assert.equal(s.hp,37);
+ const stacked=initialState();stacked.enemy.weak=2;const r=run('zl09',stacked).state;
+ assert.equal(r.enemy.weak,3);assert.equal(endTurn(r,[8]).hp,54);
+ assert.equal(endTurn(r,[]).enemy.weak,2);
+});
+test('weak suppression reduces heavy-hit HP loss but quiet turn favors direct attack',()=>{
+ const s=initialState();s.jade=6;
+ const suppressed=endTurn(run('zl09',s).state,[18]);assert.equal(suppressed.hp,53);assert.equal(suppressed.jade,0);
+ const plain=endTurn(run('zl01',s).state,[18]);assert.equal(plain.hp,48);
+ const quiet=endTurn(run('zl09',s).state,[]);assert.equal(quiet.enemy.hp,35);assert.equal(quiet.enemy.weak,0);
+ assert.equal(endTurn(run('zl01',s).state,[]).enemy.hp,34);
+});
+test('weak invalid target, payment, cancel, overflow rollback and lethal does not debuff corpse',()=>{
+ for(const options of [{target:'wrong'},{cancel:true}]){const s=initialState();s.instances.a={id:'zl09',upgraded:false};const before=structuredClone(s);const r=play(s,{id:'zl09',instance:'a',target:'enemy',...options});assert.equal(r.ok,false);assert.equal(r.state,s);assert.deepEqual(s,before);}
+ const poor=initialState();poor.energy=0;assert.equal(run('zl09',poor).ok,false);
+ const overflow=initialState();overflow.enemy.weak=Number.MAX_SAFE_INTEGER;const before=structuredClone(overflow);assert.equal(run('zl09',overflow).ok,false);assert.deepEqual(overflow,before);
+ const dying=initialState();dying.enemy.hp=5;const killed=run('zl09',dying).state;assert.equal(killed.enemy.hp,0);assert.equal(killed.enemy.weak,0);assert.equal(endTurn(killed,[99]).hp,60);
+});

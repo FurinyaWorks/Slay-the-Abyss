@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.3.0';
+export const VERSION = 'zhongli-mechanics-0.4.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -13,19 +13,22 @@ export const cards = [
   card('zl06', '小额当前防守并为下回合留下余量', 'common', 1, [['block', 4], ['jade', 3]], [['block', 6], ['jade', 4]]),
   card('zl07', '高压回合仍推进击杀的攻守兼顾', 'common', 1, [['damage', 5], ['block', 5]], [['damage', 7], ['block', 7]], 'enemy'),
   card('zl08', '低压回合输出并蓄小额跨回合防线', 'common', 1, [['damage', 4], ['jade', 3]], [['damage', 6], ['jade', 4]], 'enemy'),
+  card('zl09', '压制普通攻击以保存跨回合防线', 'common', 1, [['damage', 5], ['weak', 1]], [['damage', 7], ['weak', 2]], 'enemy'),
 ];
 export const JADE_CAP = 20;
+export const WEAK_PERCENT = 75;
+export function incomingAttack(hit, weak = 0) { return weak > 0 ? Math.floor(hit / 100) * WEAK_PERCENT + Math.floor((hit % 100) * WEAK_PERCENT / 100) : hit; }
 export function textFor(id, upgraded = false) {
   const c = cards.find(c => c.id === id);
   if (!c) throw new Error('unknown card');
-  const terms = { damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
+  const terms = { weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
   return `${c.cost}能量；${(upgraded ? c.upgraded : c.base).map(([op, n]) => terms[op](n)).join('；')}。`;
 }
 export function initialState(hand = ['a','b','c','d','e','f']) {
-  return { hp: 60, energy: 3, block: 0, jade: 0, enemy: { hp: 40, block: 0 }, hand: [...hand], discard: [], instances: Object.fromEntries(hand.map((key, i) => [key, {id: cards[i % cards.length].id, upgraded: false}])), turn: 1 };
+  return { hp: 60, energy: 3, block: 0, jade: 0, enemy: { hp: 40, block: 0, weak: 0 }, hand: [...hand], discard: [], instances: Object.fromEntries(hand.map((key, i) => [key, {id: cards[i % cards.length].id, upgraded: false}])), turn: 1 };
 }
 function validate(s) {
-  for (const n of [s.hp, s.energy, s.block, s.jade, s.enemy.hp, s.enemy.block, s.turn])
+  for (const n of [s.hp, s.energy, s.block, s.jade, s.enemy.hp, s.enemy.block, s.enemy.weak ?? 0, s.turn])
     if (!Number.isSafeInteger(n) || n < 0) throw new Error('invalid state');
   if (s.jade > JADE_CAP || !Array.isArray(s.hand) || !Array.isArray(s.discard) || new Set([...s.hand, ...s.discard]).size !== s.hand.length + s.discard.length)
     throw new Error('invalid state');
@@ -40,13 +43,16 @@ export function play(state, { id, instance, upgraded = false, target, cancel = f
   if (c.target === 'enemy' && target !== 'enemy') return { ok: false, reason: 'invalid target', state };
   if (typeof upgraded !== 'boolean' || upgraded !== state.instances[instance].upgraded) return { ok: false, reason: 'invalid upgrade', state };
   const effects = upgraded ? c.upgraded : c.base;
-  if (effects.some(([op,n]) => !['block','jade','spendJade','damage'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
+  if (effects.some(([op,n]) => !['block','jade','spendJade','damage','weak'].includes(op) || !Number.isSafeInteger(n) || n < 0)) return { ok: false, reason: 'invalid effect', state };
+  const weakAdded = effects.filter(([op])=>op==='weak').reduce((n,[,v])=>n+v,0);
+  if(!Number.isSafeInteger((state.enemy.weak ?? 0)+weakAdded))return {ok:false,reason:'invalid effect',state};
   const required = effects.filter(([op]) => op === 'spendJade').reduce((n, [,v]) => n + v, 0);
   if (state.energy < c.cost || state.jade < required) return { ok: false, reason: 'cannot pay', state };
   const next = structuredClone(state);
   next.energy -= c.cost;
   next.hand.splice(next.hand.indexOf(instance), 1);
   for (const [op, n] of effects) {
+    if (op === 'weak' && next.enemy.hp > 0) next.enemy.weak = (next.enemy.weak ?? 0) + n;
     if (op === 'block') next.block += n;
     if (op === 'jade') next.jade = Math.min(JADE_CAP, next.jade + n);
     if (op === 'spendJade') next.jade -= n;
@@ -68,13 +74,14 @@ export function endTurn(state, hits) {
   const next = structuredClone(state);
   for (const hit of hits) {
     if (!next.hp) break;
-    let remaining = hit;
+    let remaining = incomingAttack(hit,next.enemy.weak ?? 0);
     for (const pool of ['block','jade','hp']) {
       const n = Math.min(next[pool], remaining);
       next[pool] -= n;
       remaining -= n;
     }
   }
+  next.enemy.weak = Math.max(0,(next.enemy.weak ?? 0)-1);
   next.discard.push(...next.hand);
   next.hand = [];
   next.block = 0;

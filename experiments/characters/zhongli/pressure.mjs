@@ -1,6 +1,6 @@
 /** Reproducible starter-only pressure study, not natural reward construction. */
 import {battleStart,playInstance,nextTurn,visibleState} from './battle.mjs';
-import {play} from './model.mjs';
+import {play,incomingAttack} from './model.mjs';
 import {pathToFileURL} from 'node:url';
 const families={low:()=>[4],growing:turn=>[3+turn*2],large:()=>[18],multi:()=>[3,3,3]};
 // Enumerate full legal sequences from ONLY visible state. No future hand/intent access.
@@ -8,7 +8,7 @@ export function choose(view,policy){
   const state={hp:view.hp,enemy:view.enemy,energy:view.energy,block:view.block,jade:view.jade,turn:view.turn,
     hand:view.hand.map(c=>c.instance),discard:[],instances:Object.fromEntries(view.hand.map(c=>[c.instance,{id:c.id,upgraded:c.upgraded}]))};
   const damage=s=>view.enemy.hp-s.enemy.hp;
-  const loss=s=>s.enemy.hp===0?0:Math.min(s.hp,Math.max(0,view.intent.reduce((a,b)=>a+b,0)-s.block-s.jade));
+  const loss=s=>s.enemy.hp===0?0:Math.min(s.hp,Math.max(0,view.intent.reduce((a,b)=>a+incomingAttack(b,s.enemy.weak ?? 0),0)-s.block-s.jade));
   const score=s=>policy==='defense'?[-loss(s),damage(s),s.jade]:[s.enemy.hp===0?1:0,damage(s),-loss(s),s.jade];
   const better=(a,b)=>{for(let i=0;i<a.length;i++){if(a[i]!==b[i])return a[i]>b[i];}return false;};
   let best={score:score(state),path:[]};

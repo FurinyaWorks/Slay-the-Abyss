@@ -144,3 +144,32 @@ Eight research roles are not 75 complete cards. Do not create 67 numeric variant
 - Uncommon roles, rarity curve and expensive payoff viability need actual distributions,
   two checked STS1 comparisons each, and human evidence.
 These are unresolved production responsibilities, not approved effects or a card quota.
+
+### Ninth research role: suppression (0.4 candidate, HOLD)
+zl09 costs 1, base 5 damage then 1 Weak; upgrade 7 damage then 2 Weak. Previous card
+values unchanged. Name remains pending. This is a **project adaptation**, NOT Zhongli's
+original petrification, resistance shred, nor a newly approved official ability.
+Role: invest damage tempo into reducing coming ordinary attacks, protecting HP/jade;
+quiet turns make a basic strike's extra damage preferable. This is not G8 mass expansion.
+
+Pinned project contracts (903bf2a): data/rules.json weakPercent=75; data/statuses.json
+weak stacks duration and decays round_end_minus_1; abyss_actor.status/addStatus/tick:
+player-applied enemy Weak does not receive the monster-source JustApplied grace, unlike
+some enemy-applied status cases. attackFloat reduces ordinary attack then floors.
+The candidate models only player-applied enemy Weak and plain incoming attack hits.
+It does not claim support for poison/fixed damage, Artifact, strength/vulnerable ordering,
+monster-origin debuffs or actual engine integration. No use of enemy-AI stunned.
+
+Duration adds, magnitude stays 25% reduction, enemy action completes then duration loses
+one, including a nonattacking action. Safe-integer overflow rejects before payment.
+No game-design cap is invented; safe integer is an implementation boundary. Damage resolves
+before Weak; a killed enemy gets no new debuff and cannot act. Each hit floors separately
+before block/jade/HP; one action with multiple hits decrements duration once. Dead battles
+retain frozen state. UI text derives duration and percentage from the same effect/config.
+Action enumeration now evaluates the resulting Weak state, not original intent damage.
+
+53 local tests cover both versions independently, stacking vs multiplier, multi-hit floors,
+2→1→0 decay, idle enemy action expiry, cancellation/invalid target/payment/overflow rollback
+and lethal handling. Source and balance review remain HOLD. STS1 comparison candidates are
+Clothesline (attack plus Weak) and Sucker Punch (attack plus Weak); their exact pinned source
+values have NOT been verified here, so they do not yet count as B-GATE references.
