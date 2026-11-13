@@ -1,6 +1,6 @@
--- ACCEPTANCE SPEC: requires shared Xiao opt-in gate/dispatch. Not yet executed.
+-- ACCEPTANCE SPEC: passed on shared 5cb61b0f; requires its Xiao opt-in gate/dispatch.
 -- Do not replace public C.play with a fixture when the shared gate is absent.
-package.path='experiments/characters/xiao/lua/?.lua;src/lua/?.lua;build/lua/?.lua;'..package.path
+package.path='src/lua/?.lua;build/lua/?.lua;'..package.path
 local H=dofile('tests/helpers/act2_event_relics.lua')
 local C,D,eq,same=H.C,H.Data,H.eq,H.same
 local Bridge=require('abyss_xiao_play_bridge')

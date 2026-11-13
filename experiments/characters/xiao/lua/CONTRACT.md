@@ -113,3 +113,7 @@ spendEnergyBlock读取真正当前energy，安全乘积前验后清0并排原生
 ## 独立可执行扩展：x35原生两击
 
 damageHits将每击面具基础加成及times=2传给原生damage，不复制卡完成事件、不改paid UID/稳定目标；两击各自护甲处理，首击击杀不转移到其他敌人。hits_dispatch_test三探针验证基升/面具/序贯护甲、首击死亡不换目标、非法hits与真实Snapshot还原两击事件。只覆盖效果解释器内两击，正式shared队列逐击暂停/反击/UseCard和按卡一次能力触发尚未宣称验收；原首8十探针回归通过。未扩大公共gate。
+
+## 独立effect增量：x37当前盾伤害与x40活敌盾
+
+blockDamage以当前block取基础封顶，不花盾，之后加面具伤害再走原生damage；enemyCountBlock读取实际Actors.isActive敌人数，人数cap3后乘值，再原生block。state_attack_dispatch_test三探针通过基升边界/超额/面具、活敌0..4及Dexterity、false前验和Snapshot恢复。此增量尚待独审且未加入共享01/04 gate。

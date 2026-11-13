@@ -1,0 +1,3 @@
+PASS x37 current block base/up capped damage preserves shield and applies mask after cap
+PASS x40 actual live enemy count capped at three then host block modifiers
+PASS invalid shield pre-reject and real host snapshot restores chained state-based effects
