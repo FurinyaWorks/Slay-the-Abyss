@@ -1,0 +1,7 @@
+# Paid wedge-to-draw exchange (HOLD)
+
+KQ031 has a strict exporter and an isolated actual Lua adapter. It chooses the base one-card draw or wedge-assisted two/three-card draw, consuming the wedge before the actual draw effect on a private copy. Because consumption precedes draw, No Draw does not refund the wedge. The skill does not spend infusion and uses the real exhaust zone. Original state is validated before the resource change; failed payment cannot consume the original wedge. Generic entry rejects this marker.
+
+Two targeted tests pass. The actual Lua matrix covers base/upgrade × wedge present/absent × No Draw on/off × normal/full hand (16 cases). A real eleven-card deck contains the complete starter plus KQ031; a fixed seed search finds an opening containing the new card without reordering or injecting cards. The full-hand branch deliberately uses actual `Combat.draw(5)` as a boundary fixture and No Draw uses the real effect application. These are not natural reward/policy probabilities. Assertions cover exact hand/draw counts, hand cap, energy, unchanged infusion, wedge consumption even when draw is locked, real exhausted UID, eleven-instance count, rejected repeat play and insufficient-payment original-state invariance.
+
+Formal action-time resource-consumption events, source-specific draw/exhaust Power interactions, actual reward choice, save/status UI and human/source/balance remain HOLD. The generic wrapper's validated clone is a research transaction, not formal queue dispatch. No shared lifecycle or Combat/Actor file is changed.

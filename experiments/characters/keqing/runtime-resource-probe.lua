@@ -53,6 +53,7 @@ function M.play(input,uid,target)
  if not instance then return nil,'card_not_in_hand' end
  local original=s.catalog.cards[instance.cardId]
  if not original or not original.keqingProbe then return nil,'outside_probe_scope' end
+ if original.keqingWedgeDraw then return nil,'dedicated_wedge_draw_adapter_required' end
  if original.keqingSetup then return nil,'dedicated_setup_adapter_required' end
  if original.keqingDetonation then return nil,'dedicated_detonation_adapter_required' end
  if original.keqingInfusion then return nil,'dedicated_infusion_adapter_required' end
