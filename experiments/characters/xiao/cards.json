@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.4",
+  "version": "xiao-g2-lab-0.5",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -509,6 +509,76 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x17",
+      "name": "待命名·x17",
+      "role": "一次性生命换行动：保留致死风险的爆发资源",
+      "kind": "skill",
+      "rarity": "rare",
+      "cost": 0,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "loseHp",
+          "value": 3
+        },
+        {
+          "op": "energy",
+          "value": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "loseHp",
+          "value": 3
+        },
+        {
+          "op": "energy",
+          "value": 3
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x18",
+      "name": "待命名·x18",
+      "role": "高费窗口收束：群体攻击后退出并消耗",
+      "kind": "attack",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": true,
+      "base": [
+        {
+          "op": "damageAll",
+          "value": 18
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damageAll",
+          "value": 24
+        },
+        {
+          "op": "mask",
+          "value": 0
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -535,7 +605,9 @@
     "x13",
     "x14",
     "x15",
-    "x16"
+    "x16",
+    "x17",
+    "x18"
   ],
   "maskRules": {
     "attackBonus": 4,

@@ -36,6 +36,7 @@ function apply(s, effect, target) {
       for (const bonus of catalog.startingRelic.effects) apply(s, bonus, target);
     }
   }
+  else if (op === 'energy') s.energy += value;
   else if (op === 'breakBlock') s.enemies[target].block = 0;
   else if (op === 'recoverExit') {
     for(let n=0;n<value && s.hand.length<10;n++){
@@ -102,6 +103,7 @@ export function startTurn(input) {
 }
 export function cardText(card, upgraded = false) {
   const text = ({op, value}) => ({
+    energy: `获得${value}点能量（仅本回合）。`,
     breakBlock: '移除目标所有格挡。',
     recoverExit: `从弃牌堆按顺序取回至多${value}张含退出面具效果的牌；手牌上限10，没有则不取。`,
     damageAll: `对所有敌人造成${value}点伤害（面具期间+${catalog.maskRules.attackBonus}）。`,

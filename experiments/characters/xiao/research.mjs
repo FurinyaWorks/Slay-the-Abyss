@@ -20,7 +20,7 @@ export function choose(view, policy) {
     if(id==='x06'&&view.mask>0)score=view.hp<=2?1000:(policy==='guard'&&incoming>view.block?30:-10);
     if(card.kind==='attack'){
       const damage=card.base.find(e=>e.op==='damage'||e.op==='plunge'||e.op==='damageAll').value+(view.mask?catalog.maskRules.attackBonus:0);
-      const victims=(id==='x12'||id==='x05'&&view.mask)?alive:[target];
+      const victims=(id==='x12'||id==='x18'||id==='x05'&&view.mask)?alive:[target];
       score=victims.reduce((n,e)=>n+Math.min(e.hp,Math.max(0,damage-e.block))+Math.min(e.block,damage)*0.8+(damage>=e.hp+e.block?e.intent*3:0),0);
       if(id==='x15')score=Math.min(target.hp,damage)+target.block*0.8+(damage>=target.hp?target.intent*3:0);
       if(id==='x07')score+=Math.min(5,Math.max(0,incoming-view.block))*(policy==='guard'?2:1);
@@ -35,6 +35,7 @@ export function choose(view, policy) {
     // Fixed greedy proxy values a power only while already masked and not dying to its tick.
     if(id==='x14'&&view.mask>0&&view.hp>2&&policy!=='burst')score=7;
     if(id==='x16')score=Math.min(3,Math.max(0,incoming-view.block))*(policy==='guard'?3:1)+(view.exitInDiscard&&view.mask>0&&view.energy>=2?15:0);
+    if(id==='x17'&&view.hp>3&&view.energy===0&&attacks>0)score=policy==='burst'?20:(view.hp>incoming+5?10:-10);
     if(score>0)choices.push({index,target:target.index,score});
   });
   return choices.sort((a,b)=>b.score-a.score||a.index-b.index)[0]??null;
