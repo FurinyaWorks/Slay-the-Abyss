@@ -2,14 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18],[8,11],[16,21],[4,6],[0,5],[6,8],[9,12],[3,4],[0,0],[12,16],[3,4],[0,0],[10,14],[24,32]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
-    const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22)s.pillar=3; if(i===23)s.jade=3;
+    const s=initialState(); if(i===3||i===15)s.jade=6; if(i===16)s.jade=3; if(i===22||i===26)s.pillar=3; if(i===23)s.jade=3;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7,8,10,13,16,17,21].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([0,3,4,6,7,8,10,13,16,17,21,26].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11,14,15].includes(i))assert.equal(r.state.block,value);
     if(i===16)assert.equal(r.state.jade,0);
     if(i===20)assert.equal(r.state.pillar,value);
@@ -23,7 +23,7 @@ for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
     if(i===12)assert.equal(r.state.enemy.vulnerable,upgrade?3:2);
     if(i===8)assert.equal(r.state.enemy.weak,upgrade?2:1);
     if(i===7)assert.equal(r.state.jade,upgrade?4:3);
-    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18,20,23].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9)assert.deepEqual(r.state.exhaust,['a']); if(i===20)assert.deepEqual(r.state.powers,['a']);
+    assert.equal(r.state.hand.length,5); assert.deepEqual(r.state.discard,[9,11,18,20,23,26].includes(i)?[]:['a']); if(i===11||i===18){assert.equal(r.state.pendingDraw,i===18?(upgrade?3:2):(upgrade?2:1));assert.equal(r.state.inUse,'a');} if(i===9||i===26)assert.deepEqual(r.state.exhaust,['a']); if(i===20)assert.deepEqual(r.state.powers,['a']);
     assert.equal(s.energy,3); assert.equal(s.enemy.hp,40);
   });
 }
@@ -397,5 +397,25 @@ test('held reserve is weaker immediate protection than standard reserve but work
  for(const u of [false,true]){
   const s=initialState();assert.equal(run('zl03',s,u).state.jade-run('zl26',s,u).state.jade,2);
   s.jade=1;assert.equal(run('zl20',s,u).state.jade,1);assert.equal(run('zl26',s,u).state.jade,u?15:11);
+ }
+});
+
+test('collapse base/upgrade pays pillar before ordinary attack, unlike fixed pulse vulnerable changes damage',()=>{
+ for(const u of [false,true])for(const pillar of [3,4])for(const armor of [0,7,99])for(const vulnerable of [0,2]){
+  const s=initialState();s.pillar=pillar;s.enemy.hp=100;s.enemy.block=armor;s.enemy.vulnerable=vulnerable;const before=structuredClone(s),r=run('zl27',s,u);
+  const damage=(u?32:24)*(vulnerable?1.5:1);assert.equal(r.ok,true);assert.equal(r.state.enemy.hp,100-Math.max(0,damage-armor));assert.equal(r.state.enemy.block,Math.max(0,armor-damage));assert.equal(r.state.pillar,0);assert.equal(r.state.energy,2);assert.equal(r.state.exhaust.length,1);assert.deepEqual(s,before);
+ }
+});
+test('collapse missing pillar or illegal target/cancel refuses all costs and lethal cannot cause another pulse',()=>{
+ assert.equal(run('zl27').ok,false);const s=initialState(['a']);s.instances.a={id:'zl27',upgraded:false};s.pillar=3;const before=structuredClone(s);
+ for(const options of [{cancel:true},{target:'self'}]){assert.equal(play(s,{id:'zl27',instance:'a',target:'enemy',...options}).state,s);assert.deepEqual(s,before);}
+ s.enemy.hp=24;const r=play(s,{id:'zl27',instance:'a',target:'enemy'}).state;assert.equal(r.enemy.hp,0);assert.equal(r.pillar,0);assert.equal(endTurn(r,[99]).hp,60);
+ const c=cards.find(c=>c.id==='zl27'),old=c.base,copy=structuredClone(s);try{c.base=[['spendPillar',1],['damage',NaN]];assert.equal(play(s,{id:'zl27',instance:'a',target:'enemy'}).state,s);assert.deepEqual(s,copy);}finally{c.base=old;}
+});
+test('collapse same-turn setup matches costly finisher damage at two cards and forfeits future pillar',()=>{
+ for(const u of [false,true]){
+  const s=initialState();s.energy=3;const direct=run('zl05',s,u).state;const placed=run('zl21',s).state;const collapsed=run('zl27',placed,u).state;
+  assert.equal(collapsed.enemy.hp,direct.enemy.hp);assert.equal(collapsed.energy,0);assert.equal(collapsed.pillar,0);assert.equal(collapsed.powers.length,1);assert.equal(collapsed.exhaust.length,1);
+  assert.equal(endTurn(collapsed,[]).enemy.hp,collapsed.enemy.hp);
  }
 });

@@ -146,3 +146,10 @@ test('held reserve is obtained through v16 reward and not injected into earlier 
  const choice=selectReward(rewardView(s),'heldReserve');assert.equal(s.offer[choice-1],'zl26');s=takeReward(s,choice);assert.ok(s.deck.includes('zl26'));
  for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v15').includes('zl26'));
 });
+
+test('collapse requires actual two-stage acquisition under v17 and prior v16 cannot offer it',()=>{
+ let seed=1;while(seed<=10000&&!(offers(seed,1,'v17').includes('zl21')&&offers(seed,2,'v17').includes('zl27')))seed++;assert.ok(seed<=10000);
+ let s=journeyStart(seed,{poolVersion:'v17'});
+ for(let room=1;room<=2;room++){s.battle.enemy.hp=1;s=fightRoom(s,'offense','low');const choice=selectReward(rewardView(s),'collapse');assert.equal(s.offer[choice-1],room===1?'zl21':'zl27');s=takeReward(s,choice);}
+ assert.ok(s.deck.includes('zl27'));for(let i=1;i<=100;i++)assert.ok(!offers(i,1,'v16').includes('zl27'));
+});

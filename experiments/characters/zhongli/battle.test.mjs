@@ -162,3 +162,10 @@ test('paired visible reserve window: standard gains two more now, held reserve a
  assert.ok(states[1].next.hand.includes(states[1].key));assert.equal(playInstance(states[1].next,states[1].key).state.jade,20);
  // Deliberately controlled piles establish a timing counterexample, not a natural-run frequency.
 });
+
+test('collapse does not return Power to circulation, exhausts once and new battle resets both cards',()=>{
+ let s=battleStart({deck:['zl21','zl27']});const pillar=s.hand.find(k=>s.instances[k].id==='zl21'),finisher=s.hand.find(k=>s.instances[k].id==='zl27');
+ s=playInstance(s,pillar).state;s=playInstance(s,finisher).state;assert.deepEqual(s.powers,[pillar]);assert.deepEqual(s.exhaust,[finisher]);assert.equal(s.pillar,0);assert.equal(s.enemy.hp,16);
+ for(let i=0;i<10;i++){s=nextTurn(s,[]);assert.equal(s.hand.length,0);assert.equal(s.enemy.hp,16);}
+ const reset=battleStart({deck:['zl21','zl27']});assert.equal(reset.hand.length,2);assert.equal(reset.pillar,0);assert.equal(reset.exhaust.length,0);assert.equal(reset.powers.length,0);
+});
