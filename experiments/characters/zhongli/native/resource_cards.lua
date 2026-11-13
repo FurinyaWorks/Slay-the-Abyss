@@ -18,6 +18,9 @@ local definitions={
 ,
  {id='zl26',name='待命名·zl26',type='skill',cost=2,target='SELF',rarity='common',color='zhongli_candidate',experimental=true,zhongliCandidate=true,approval='HOLD',selfRetain=true,effects={{op='zhongliCard',kind='gainJade',value=10}},upgrade={effects={{op='zhongliCard',kind='gainJade',value=14}}}},
  {id='zl38',name='待命名·zl38',type='skill',cost=0,target='SELF',rarity='common',color='zhongli_candidate',experimental=true,zhongliCandidate=true,approval='HOLD',exhaust=true,effects={{op='zhongliCard',kind='gainJade',value=2}},upgrade={effects={{op='zhongliCard',kind='gainJade',value=3}}}}
+,
+ {id='zl28',name='待命名·zl28',type='skill',cost=2,target='ENEMY',rarity='common',color='zhongli_candidate',experimental=true,zhongliCandidate=true,approval='HOLD',effects={{op='zhongliCard',kind='gainJade',value=5},{op='applyStatus',status='weak',value=2}},upgrade={effects={{op='zhongliCard',kind='gainJade',value=7},{op='applyStatus',status='weak',value=3}}}},
+ {id='zl66',name='待命名·zl66',type='skill',cost=2,target='SELF',rarity='common',color='zhongli_candidate',experimental=true,zhongliCandidate=true,approval='HOLD',effects={{op='zhongliCard',kind='gainJade',value=5},{op='gainStatus',status='flame_barrier',value=3}},upgrade={effects={{op='zhongliCard',kind='gainJade',value=7},{op='gainStatus',status='flame_barrier',value=4}}}}
 
 }
 function M.definitions()return Copy(definitions)end
