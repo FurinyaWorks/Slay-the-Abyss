@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.2",
+  "version": "xiao-g2-lab-0.3",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -358,6 +358,87 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x12",
+      "name": "待命名·x12",
+      "role": "无需入场的群体清杂；面具增强但非必需",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damageAll",
+          "value": 6
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damageAll",
+          "value": 9
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x13",
+      "name": "待命名·x13",
+      "role": "面具承受：状态内防守、退出后仍能提供较弱防守",
+      "kind": "skill",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "maskBlock",
+          "value": 8
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "maskBlock",
+          "value": 12
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x14",
+      "name": "待命名·x14",
+      "role": "长战投入：面具回合结束取得格挡，不抵消生命成本",
+      "kind": "power",
+      "rarity": "rare",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "maskGuard",
+          "value": 3
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "maskGuard",
+          "value": 4
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -379,7 +460,10 @@
     "x08",
     "x09",
     "x10",
-    "x11"
+    "x11",
+    "x12",
+    "x13",
+    "x14"
   ],
   "maskRules": {
     "attackBonus": 4,
