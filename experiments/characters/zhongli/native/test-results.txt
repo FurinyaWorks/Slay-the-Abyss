@@ -1,0 +1,2 @@
+native admitted 16 cards, base+upgrade real Combat.new/canPlay/play, blocked 59, source unchanged
+native retention4, insufficient-energy16, invalid-target and collision rejection verified

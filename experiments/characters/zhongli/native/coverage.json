@@ -1,0 +1,394 @@
+{
+  "baseline": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+  "candidateCount": 75,
+  "engineSupported": [
+    "zl01",
+    "zl02",
+    "zl05",
+    "zl07",
+    "zl09",
+    "zl10",
+    "zl12",
+    "zl13",
+    "zl14",
+    "zl15",
+    "zl34",
+    "zl37",
+    "zl45",
+    "zl59",
+    "zl61",
+    "zl69"
+  ],
+  "blocked": [
+    {
+      "id": "zl03",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl04",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl06",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl08",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl11",
+      "missingOps": [
+        "guardedDamage"
+      ]
+    },
+    {
+      "id": "zl16",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl17",
+      "missingOps": [
+        "spendJade",
+        "removeBlock"
+      ]
+    },
+    {
+      "id": "zl18",
+      "missingOps": [
+        "jadeDamage"
+      ]
+    },
+    {
+      "id": "zl19",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl20",
+      "missingOps": [
+        "emptyJade"
+      ]
+    },
+    {
+      "id": "zl21",
+      "missingOps": [
+        "pillar"
+      ]
+    },
+    {
+      "id": "zl22",
+      "missingOps": [
+        "pulse"
+      ]
+    },
+    {
+      "id": "zl23",
+      "missingOps": [
+        "spendPillar",
+        "jade"
+      ]
+    },
+    {
+      "id": "zl24",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl25",
+      "missingOps": [
+        "pillarBlock"
+      ]
+    },
+    {
+      "id": "zl26",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl27",
+      "missingOps": [
+        "spendPillar"
+      ]
+    },
+    {
+      "id": "zl28",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl29",
+      "missingOps": [
+        "guardedVulnerable"
+      ]
+    },
+    {
+      "id": "zl30",
+      "missingOps": [
+        "jadeBurst"
+      ]
+    },
+    {
+      "id": "zl31",
+      "missingOps": [
+        "repair"
+      ]
+    },
+    {
+      "id": "zl32",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl33",
+      "missingOps": [
+        "spendJade",
+        "growPillar"
+      ]
+    },
+    {
+      "id": "zl35",
+      "missingOps": [
+        "spendJade",
+        "removeBlock"
+      ]
+    },
+    {
+      "id": "zl36",
+      "missingOps": [
+        "spendPillar"
+      ]
+    },
+    {
+      "id": "zl38",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl39",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl40",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl41",
+      "missingOps": [
+        "suppressedDamage"
+      ]
+    },
+    {
+      "id": "zl42",
+      "missingOps": [
+        "jade",
+        "exposedJade"
+      ]
+    },
+    {
+      "id": "zl43",
+      "missingOps": [
+        "pillarDraw"
+      ]
+    },
+    {
+      "id": "zl44",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl46",
+      "missingOps": [
+        "spendPillar"
+      ]
+    },
+    {
+      "id": "zl47",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl48",
+      "missingOps": [
+        "pillar"
+      ]
+    },
+    {
+      "id": "zl49",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl50",
+      "missingOps": [
+        "pulse"
+      ]
+    },
+    {
+      "id": "zl51",
+      "missingOps": [
+        "repair"
+      ]
+    },
+    {
+      "id": "zl52",
+      "missingOps": [
+        "spendPillar"
+      ]
+    },
+    {
+      "id": "zl53",
+      "missingOps": [
+        "guardedDamage"
+      ]
+    },
+    {
+      "id": "zl54",
+      "missingOps": [
+        "spendJade",
+        "removeBlock"
+      ]
+    },
+    {
+      "id": "zl55",
+      "missingOps": [
+        "pillar",
+        "repair"
+      ]
+    },
+    {
+      "id": "zl56",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl57",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl58",
+      "missingOps": [
+        "pulse"
+      ]
+    },
+    {
+      "id": "zl60",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl62",
+      "missingOps": [
+        "emptyJade"
+      ]
+    },
+    {
+      "id": "zl63",
+      "missingOps": [
+        "guardedDamage"
+      ]
+    },
+    {
+      "id": "zl64",
+      "missingOps": [
+        "spendPillar"
+      ]
+    },
+    {
+      "id": "zl65",
+      "missingOps": [
+        "spendJade",
+        "removeBlock"
+      ]
+    },
+    {
+      "id": "zl66",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl67",
+      "missingOps": [
+        "pillar"
+      ]
+    },
+    {
+      "id": "zl68",
+      "missingOps": [
+        "guardedVulnerable"
+      ]
+    },
+    {
+      "id": "zl70",
+      "missingOps": [
+        "jade"
+      ]
+    },
+    {
+      "id": "zl71",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl72",
+      "missingOps": [
+        "pillarBlock",
+        "jade"
+      ]
+    },
+    {
+      "id": "zl73",
+      "missingOps": [
+        "spendJade"
+      ]
+    },
+    {
+      "id": "zl74",
+      "missingOps": [
+        "jadeDamage"
+      ]
+    },
+    {
+      "id": "zl75",
+      "missingOps": [
+        "spendPillar"
+      ]
+    }
+  ],
+  "relic": {
+    "id": "zl-relic01",
+    "ready": false,
+    "missing": "jade actor absorption and battle-start hook"
+  },
+  "characterRegistered": false,
+  "formalAdmission": "HOLD"
+}

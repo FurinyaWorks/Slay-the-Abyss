@@ -1,0 +1,16 @@
+{
+  "baseline": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+  "engineHashes": {
+    "src/lua/abyss_combat.lua": "609e75ba6e83da7b2311629adfdc2fd101c8167d3d17dbb1cdc0748baa9b1d1c",
+    "src/lua/abyss_actor.lua": "0435754ce97e731da0abaa1aafdbbd035988c09b411c47c192bb3e6ab0133c7a",
+    "src/lua/abyss_effects.lua": "0856df7af9ce8c7c43e35a84301c2359b672887e6ca4ca4640578e4c9e562228",
+    "src/lua/abyss_effects_damage.lua": "ae24c9ddd57d7ac2bac8c65d8f1f1768fad750ada74262501b9bad074d03ca41",
+    "src/lua/abyss_effects_powers.lua": "323319953426476692bd7388526a249537651c46beb6b01c6e1877ceb4e70e36",
+    "src/lua/abyss_combat_catalog.lua": "875a7d22de4c868c584389c2c66bc98bc6e25c82720157d71c164bbb3fa5d7dd"
+  },
+  "status": 0,
+  "signal": null,
+  "stdout": "native admitted 16 cards, base+upgrade real Combat.new/canPlay/play, blocked 59, source unchanged\nnative retention4, insufficient-energy16, invalid-target and collision rejection verified\n",
+  "stderr": "",
+  "scope": "16 opt-in native definitions / 32 base-upgrade executions, real Combat API; not character registration, all75 integration, full CI or device verification"
+}
