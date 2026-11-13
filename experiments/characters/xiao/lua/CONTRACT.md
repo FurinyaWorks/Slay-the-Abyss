@@ -358,3 +358,10 @@ placement, native output bounds and full-command Snapshot on downstream errors.
 death, false/overflow rejection and actual Snapshot restoration. Explicit paid and
 turn fixtures are not public x58/Run/automatic enemy-turn certification. Shared
 only has the separately frozen earlier energy executor; this file is not installed.
+
+### Observed x57 zero-window modifier counterexample
+Both versions with mask=0, Strength=2 and enemy block=0 deal exactly 2 native
+HP damage per enemy, versus JS literal zero. This is now a reproduced regression,
+not just a hypothetical caution; no card value or engine modifier is altered.
+The burst fixture now removes its resolving card from hand (no duplicate membership),
+but still does not claim actual payment/UseCard/Run reachability.

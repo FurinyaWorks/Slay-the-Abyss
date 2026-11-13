@@ -4,7 +4,7 @@ local X=require('abyss_xiao_dispatch');local H=dofile('tests/helpers/act2_event_
 local function fresh(mask)
  local s=C.new(D,{deck={'strike'},enemies={'cultist','cultist'},seed=42})
  s.xiao={relicUsed=true,startingRelic=true};s.player.statuses.xiao_mask=mask>0 and mask or nil
- local card=s.hand[1];s.pendingPlay={uid=card.uid,targetId=s.enemies[2].id};s.cardInUse=card
+ local card=table.remove(s.hand,1);s.pendingPlay={uid=card.uid,targetId=s.enemies[2].id};s.cardInUse=card
  for _,e in ipairs(s.enemies)do e.hp=50;e.block=5 end
  return s
 end
@@ -38,3 +38,12 @@ local s=fresh(3);local before=C.copy(s);local restore=require('abyss_snapshot').
 assert(not pcall(function()burst(s,true);error('after burst exit')end));restore();same(s,before)
 assert(not pcall(X.dispatch,C,s,{op='xiaoCard',kind='maskBurstAll',value=2147483647,uid=s.pendingPlay.uid},Q));same(s,before)
 print('PASS burst multiplication overflow rejects before queue and host Snapshot restores group damage plus exit')
+
+for _,up in ipairs({false,true})do
+ local s=fresh(0);s.player.statuses.strength=2
+ for _,enemy in ipairs(s.enemies)do enemy.block=0 end
+ burst(s,up)
+ for _,enemy in ipairs(s.enemies)do eq(enemy.hp,48)end
+ eq(#s.hand,0);eq(s.cardInUse.uid,s.pendingPlay.uid)
+end
+print('PASS native Strength makes zero-window burst deal two; explicit parity negative not a balance approval')
