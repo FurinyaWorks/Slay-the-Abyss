@@ -1,0 +1,7 @@
+# Non-consuming wedge sources (HOLD)
+
+KQ010/011/013 now have strict exports and an isolated actual Lua adapter: block-first setup, high-cost target attack setup, and low-damage AoE setup. A wedge is created only if absent; an existing current-turn or next-turn wedge is neither consumed nor refreshed. Attack cards spend one existing infusion charge; KQ010 is a skill and does not. The adapter returns a third boolean fact (`fresh`) for whether this successful play newly set a wedge. It does not execute a relic grant, register a callback, or provide exactly-once event dispatch.
+
+Two tests pass with 36 actual Lua combinations (three cards × two faces × absent/current/next-turn expiry × infusion 0/1), independently asserted damage/block/payment/resource/expiry and generic-entry rejection. Invalid single-target selection and insufficient energy cannot set a wedge or emit a successful fresh fact. A two-card genuine setup sequence produces true then false and keeps the first expiry. Definitions are restored after success; input remains unchanged.
+
+The isolated adapter sets the resource after the real leading damage/block action succeeds. Formal queued setup must instead occur at the appropriate effect boundary and integrate the relic transaction, mid-card reactions, terminal policy and resume rules. Those are intentionally delegated to the shared integration owner. No shared Combat/Actor/lifecycle API is modified, and no source naming/human/balance or production-registry gate is passed. Current HOLD boundaries remain.
