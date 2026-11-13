@@ -26,3 +26,9 @@ node node_modules/fengari-node-cli/src/lua-cli.js -e "dofile('experiments/charac
 ```
 
 本环境复用已有锁定依赖目录；Backlog CLI不存在，未伪造任务认领。未启动全量测试，独审/CI/正式导入/真人验收未完成。本目录为未注册集成切片，不是可选正式角色。
+
+## 隔离角色资源/生命周期提案
+
+resources.lua 是无共享注册的纯数据计划器，尚未接入正式回合生命周期。实现蓄力0–2、主动产蓄、满蓄两段箭、单雨场取max刷新、回合末剩余能量入蓄（遗物真实合同不是战斗开始赠蓄）、消耗tick与重复owner-end拒绝。输出仅标准damage/damageAll动作及待提交资源，不直接改Actor，也不自建伤害引擎。resources-test.lua 实际调用正式Effects.apply验证主目标死亡仍对第二敌人绽放、雨伤击杀结果；资源输入不变和异常断言通过。
+
+挂接约束：正式Combat.endTurn事务须在弃牌前提交bank，弃牌后/敌行动前排tick；资源与能量必须同一事务回滚。lastOwnerEnd需随战斗重建，不是跨战永久资源。当前仅计划器加真实伤害执行测试，不证明上述自动挂钩已完成。共享待协调点为abyss_flow_actions、abyss_end_turn_powers和正式资源可见视图；本分支均未改。类型、伤害修正与遗物来源适配仍需批准及审查。

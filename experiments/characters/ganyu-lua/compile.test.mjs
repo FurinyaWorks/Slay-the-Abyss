@@ -7,6 +7,6 @@ test('four staged definitions preserve independent base/up values and 71 remain 
 });
 test('unsupported resources, retention, malformed effects and target fail closed',()=>{
  assert.throws(()=>compileCard(cards.find(c=>c.id==='ganyu-03')));
- for(const mutate of [c=>c.retain=true,c=>c.base.effects[0].op='charge',c=>c.base.effects[0].amount=NaN,c=>c.base.effects[0].extra=1,c=>c.target='all',c=>c.upgrade.cost=-1,c=>c.review.human_approved=true]){
+ for(const mutate of [c=>c.retain=true,c=>c.condition="only_attacks_in_hand",c=>c.costMode="all_energy",c=>c.ethereal=true,c=>c.exhaust="true",c=>c.base.retain=true,c=>c.upgrade.extra=1,c=>c.base.effects[0].op='charge',c=>c.base.effects[0].amount=NaN,c=>c.base.effects[0].extra=1,c=>c.target='all',c=>c.upgrade.cost=-1,c=>c.review.human_approved=true]){
  const c=structuredClone(cards[0]);mutate(c);assert.throws(()=>compileCard(c));}
 });
