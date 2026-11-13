@@ -192,3 +192,16 @@ marker and original resource reference. The sequence calls isolated adapters
 explicitly and models host refill; public endTurn/startPlayerTurn is NOT hooked
 or certified. Other start-turn Powers/relic ordering remains the shared owner's
 responsibility. No card value, shared registration or official gate changed.
+
+### x33 calm extra draw (isolated Power and post-normal-draw hook)
+Actual `calmDraw` dispatch applies xiao_calm_draw through Actors/PowerSchedule,
+with strict accumulation precheck and no instant draw. `xiaoStartCalmDraw` is a
+separate hook to be called AFTER the normal turn-start draw, not at the earlier
+reserved-energy hook. It checks current mask at execution, marks the turn once,
+and uses native draw only if calm and alive. Masked invocation still consumes
+that turn's eligibility; later same-turn exit is not another start. Tests cover
+base/upgrade, all mask durations, accumulation/single schedule slot, real hand
+cap, actual shuffle Snapshot restoration, false and overflow rejection. Existing
+energy-hook tests remain passing. These are explicitly called isolated hooks;
+no shared turn-start order, real x33 payment/UseCard, persistent-save lifecycle or
+formal registration is claimed. Host owns turn identity and whole-command rollback.

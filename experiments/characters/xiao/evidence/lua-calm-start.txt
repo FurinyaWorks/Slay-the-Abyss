@@ -1,0 +1,3 @@
+PASS x33 actual Power install never draws immediately; post-draw hook only in calm and once per turn
+PASS accumulated calm draw preserves one Power slot and real hand cap
+PASS actual shuffle snapshot restores hook marker and strict false/Power overflow reject before mutation
