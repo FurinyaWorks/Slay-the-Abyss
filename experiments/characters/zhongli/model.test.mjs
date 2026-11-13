@@ -51,8 +51,9 @@ test('opposite reachable choices: conversion kills now, preserving shield surviv
   const s=initialState();s.jade=6;s.enemy.hp=14;
   assert.equal(endTurn(run('zl04',s).state,[15]).hp,60);
   assert.equal(endTurn(run('zl01',s).state,[15]).hp,51);
-  s.hp=5;s.enemy.hp=40;
-  assert.equal(endTurn(run('zl04',s).state,[10]).hp,0);
+  s.hp=5;s.enemy.hp=40;s.energy=1; // Last remaining action: defensive follow-up is unaffordable.
+  const spent=run('zl04',s).state;assert.equal(run('zl02',spent).ok,false);assert.equal(run('zl06',spent).ok,false);
+  assert.equal(endTurn(spent,[10]).hp,0);
   assert.equal(endTurn(run('zl01',s).state,[10]).hp,1);
 });
 test('source then payoff affordable at 3 energy; reverse order illegal with zero jade',()=>{
