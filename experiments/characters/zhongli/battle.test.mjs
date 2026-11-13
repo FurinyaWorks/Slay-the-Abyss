@@ -60,3 +60,20 @@ test('draw full hand respects ten after in-use removal, and invalid RNG pays not
  assert.equal(next.hand.length,10);assert.equal(next.draw.length,1);assert.equal(next.discard.length,1);
  const bad=structuredClone(s);bad.rng=NaN;const before=structuredClone(bad);assert.throws(()=>playInstance(bad,key));assert.deepEqual(bad,before);
 });
+test('self-retained attack survives normal end turn and pays full cost when finally played',()=>{
+ let s=battleStart({deck:['zl14','zl02']});const key=s.hand.find(k=>s.instances[k].id==='zl14');
+ const before=structuredClone(s);s=nextTurn(s,[0]);assert.equal(s.hand.filter(k=>k===key).length,1);assert.equal(s.energy,3);assert.deepEqual(before,battleStart({deck:['zl14','zl02']}));
+ s=playInstance(s,key).state;assert.equal(s.energy,1);assert.equal(s.enemy.hp,27);assert.ok(s.discard.includes(key));assert.equal(s.hand.includes(key),false);
+});
+test('ten retained cards impose real hand-slot cost and full-hand draw does not remove deck',()=>{
+ let s=battleStart({deck:[...Array(10).fill('zl14'),'zl01','zl02']});const retain=Object.keys(s.instances).filter(k=>s.instances[k].id==='zl14'),rest=Object.keys(s.instances).filter(k=>s.instances[k].id!=='zl14');
+ s.hand=retain;s.draw=rest;s.discard=[];
+ for(let i=0;i<4;i++){s=nextTurn(s,[]);assert.deepEqual(s.hand,retain);assert.deepEqual(s.draw,rest);assert.equal(s.energy,3);}
+ const played=playInstance(s,retain[0]).state;const next=nextTurn(played,[]);assert.equal(next.hand.length,10);assert.equal(next.draw.length,1);assert.equal(new Set([...next.hand,...next.draw,...next.discard]).size,12);
+});
+test('retained terminal states do not revive, draw or discount; duplicate zones reject before cost',()=>{
+ const s=battleStart({deck:['zl14','zl01']});const key=s.hand.find(k=>s.instances[k].id==='zl14');
+ const invalid=structuredClone(s);invalid.discard.push(key);const before=structuredClone(invalid);assert.throws(()=>playInstance(invalid,key),/invalid battle/);assert.deepEqual(invalid,before);
+ for(const dead of ['player','enemy']){const t=structuredClone(s);if(dead==='player')t.hp=0;else t.enemy.hp=0;const saved=structuredClone(t);assert.equal(playInstance(t,key).ok,false);assert.deepEqual(nextTurn(t,[99]),saved);}
+ const doomed=structuredClone(s);doomed.hp=1;doomed.jade=0;const ended=nextTurn(doomed,[99]);assert.equal(ended.hp,0);assert.equal(ended.hand.length,0);assert.ok(ended.discard.includes(key));
+});

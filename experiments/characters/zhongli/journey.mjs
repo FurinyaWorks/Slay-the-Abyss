@@ -1,7 +1,7 @@
 /** Three-room synthetic acquisition experiment. NOT the production rarity generator. */
 import {STARTER,battleStart,validateBattle,playInstance,nextTurn,visibleState} from './battle.mjs';
 import {visibleTurn} from './pressure.mjs';
-export const POOLS=Object.freeze({v1:Object.freeze(['zl03','zl04','zl06','zl07','zl08']),v2:Object.freeze(['zl03','zl04','zl06','zl07','zl08','zl09','zl11','zl12']),v3:Object.freeze(['zl03','zl04','zl06','zl07','zl08','zl09','zl11','zl12','zl13'])});
+export const POOLS=Object.freeze({v1:Object.freeze(['zl03','zl04','zl06','zl07','zl08']),v2:Object.freeze(['zl03','zl04','zl06','zl07','zl08','zl09','zl11','zl12']),v3:Object.freeze(['zl03','zl04','zl06','zl07','zl08','zl09','zl11','zl12','zl13']),v4:Object.freeze(['zl03','zl04','zl06','zl07','zl08','zl09','zl11','zl12','zl13','zl14'])});
 export function offers(seed,room,poolVersion='v1'){
   if(!Object.hasOwn(POOLS,poolVersion))throw new Error('invalid pool version');
   if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff||!Number.isInteger(room)||room<1||room>3)throw new Error('invalid offer setup');
@@ -59,7 +59,7 @@ export function rewardView(s){validate(s);return {hp:s.battle.hp,deck:[...s.deck
 export function selectReward(view,policy){
   if(policy==='skip')return 0;
   // Known deck composition only, no future enemies, offers, draws or outcomes.
-  const preferred=policy==='hybrid'?'zl07':policy==='reserve'?'zl08':policy==='suppress'?'zl09':policy==='guarded'?'zl11':policy==='access'?'zl12':policy==='expose'?'zl13':null;
+  const preferred=policy==='hybrid'?'zl07':policy==='reserve'?'zl08':policy==='suppress'?'zl09':policy==='guarded'?'zl11':policy==='access'?'zl12':policy==='expose'?'zl13':policy==='wait'?'zl14':null;
   if(!preferred)throw new Error('invalid reward policy');
   return view.deck.filter(id=>id===preferred).length>=1?0:view.offer.indexOf(preferred)+1;
 }

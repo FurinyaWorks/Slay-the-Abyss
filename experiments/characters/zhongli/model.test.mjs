@@ -2,14 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cards,initialState,play,endTurn,textFor} from './model.mjs';
 const run = (id,s=initialState(),upgraded=false) => play({...s, instances:{...s.instances,[s.hand[0]]:{id,upgraded}}},{id,instance:s.hand[0],upgraded,target:'enemy'});
-const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3]];
+const expected = [[6,9],[5,8],[12,16],[14,18],[24,32],[4,6],[5,7],[4,6],[5,7],[20,26],[5,7],[3,4],[2,3],[13,18]];
 for (const [i,c] of cards.entries()) for (const upgrade of [false,true]) {
   test(`${c.id} ${upgrade?'upgrade':'base'} independent effect and payment`,()=>{
     const s=initialState(); if(i===3)s.jade=6;
     const r=run(c.id,s,upgrade); assert.equal(r.ok,true);
     assert.equal(r.state.energy,3-c.cost);
     const value=expected[i][Number(upgrade)];
-    if([0,3,4,6,7,8,10].includes(i))assert.equal(r.state.enemy.hp,40-value);
+    if([0,3,4,6,7,8,10,13].includes(i))assert.equal(r.state.enemy.hp,40-value);
     if([1,5,9,11].includes(i))assert.equal(r.state.block,value);
     if(i===2)assert.equal(r.state.jade,value);
     if(i===3)assert.equal(r.state.jade,0);
@@ -161,4 +161,16 @@ test('setup loses the last-energy lethal race; control cancel/target/overflow re
  for(const o of [{cancel:true},{target:'self'}]){const state=initialState();state.instances.a={id:'zl13',upgraded:false};const before=structuredClone(state);assert.equal(play(state,{id:'zl13',instance:'a',target:'enemy',...o}).ok,false);assert.deepEqual(state,before);}
  const max=initialState();max.enemy.vulnerable=Number.MAX_SAFE_INTEGER;const before=structuredClone(max);assert.equal(run('zl13',max).ok,false);assert.deepEqual(max,before);
  const none=initialState();none.energy=0;assert.equal(run('zl13',none).ok,false);
+});
+test('retained attack never discounts, duplicates or grants free resources; upgrade independently persists',()=>{
+ for(const u of [false,true]){
+  let s=initialState(['a']);s.instances.a={id:'zl14',upgraded:u};s=endTurn(s,[]);assert.deepEqual(s.hand,['a']);assert.equal(s.jade,0);assert.equal(s.block,0);assert.equal(s.energy,3);
+  const before=structuredClone(s);assert.equal(play(s,{id:'zl14',instance:'a',upgraded:u,target:'enemy',cancel:true}).state,s);assert.deepEqual(s,before);
+  s.energy=1;assert.equal(play(s,{id:'zl14',instance:'a',upgraded:u,target:'enemy'}).ok,false);assert.deepEqual(s.hand,['a']);
+ }
+});
+test('last-energy setup forces retained attack to wait and never stops enemy action',()=>{
+ let s=initialState(['a','b']);s.instances={a:{id:'zl14',upgraded:false},b:{id:'zl13',upgraded:false}};s.energy=1;
+ s=play(s,{id:'zl13',instance:'b',target:'enemy'}).state;s=endTurn(s,[8]);assert.equal(s.hp,52);assert.deepEqual(s.hand,['a']);assert.equal(s.enemy.vulnerable,1);
+ const r=play(s,{id:'zl14',instance:'a',target:'enemy'});assert.equal(r.state.enemy.hp,21);assert.equal(r.state.energy,1);
 });

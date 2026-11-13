@@ -57,3 +57,8 @@ test('v3 adds exposure candidate without rewriting older offers and can acquire 
  assert.equal(n.deck.at(-1),'zl13');assert.equal(n.deck.length,11);assert.equal(n.battle.enemy.vulnerable,0);
  assert.equal(offers(seed,1,'v1').includes('zl13'),false);assert.equal(offers(seed,1,'v2').includes('zl13'),false);
 });
+test('v4 retained role is obtainable, old pools remain unchanged',()=>{
+ let seed=1;while(!offers(seed,1,'v4').includes('zl14'))seed++;
+ const s=journeyStart(seed,{poolVersion:'v4'});s.battle.enemy.hp=1;const reward=fightRoom(s,'offense','low');const n=takeReward(reward,selectReward(rewardView(reward),'wait'));
+ assert.equal(n.deck.at(-1),'zl14');assert.equal(n.deck.length,11);for(const v of ['v1','v2','v3'])assert.equal(offers(seed,1,v).includes('zl14'),false);
+});

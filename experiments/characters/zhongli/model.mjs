@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.7.0';
+export const VERSION = 'zhongli-mechanics-0.8.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -18,6 +18,7 @@ export const cards = [
   card('zl11', '保住防线后获得攻击回报而非消耗防线', 'common', 1, [['damage', 5], ['guardedDamage', 6]], [['damage', 7], ['guardedDamage', 8]], 'enemy'),
   card('zl12', '付费寻找防线或收益牌而非凭空增加能量', 'common', 1, [['block', 3], ['draw', 1]], [['block', 4], ['draw', 2]]),
   card('zl13', '放弃当前伤害来建立后续输出窗口', 'common', 1, [['vulnerable', 2]], [['vulnerable', 3]], 'enemy'),
+  {...card('zl14', '保留攻击直到有利输出窗口而非立即兑现', 'common', 2, [['damage', 13]], [['damage', 18]], 'enemy'), selfRetain: true},
 ];
 export const JADE_CAP = 20;
 export const GUARD_THRESHOLD = 6;
@@ -29,7 +30,7 @@ export function textFor(id, upgraded = false) {
   const c = cards.find(c => c.id === id);
   if (!c) throw new Error('unknown card');
   const terms = { vulnerable: n => `施加${n}回合易伤（所受普通攻击伤害为${VULNERABLE_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, draw: n => `抽${n}张牌（手牌上限10，结算中的本牌不参与洗牌）`, guardedDamage: n => `若当前玉璋至少${GUARD_THRESHOLD}，额外造成${n}点伤害（不消耗玉璋）`, weak: n => `施加${n}回合虚弱（普通攻击伤害为${WEAK_PERCENT}%，逐段向下取整；持续回合相加，轮末减1）`, damage: n => `造成${n}点伤害`, block: n => `获得${n}点格挡`, jade: n => `获得${n}点玉璋（上限${JADE_CAP}）`, spendJade: n => `消耗${n}点玉璋` };
-  return `${c.cost}能量；${(upgraded ? c.upgraded : c.base).map(([op, n]) => terms[op](n)).join('；')}${c.exhaust ? '；消耗（本战不再抽到）' : ''}。`;
+  return `${c.cost}能量；${(upgraded ? c.upgraded : c.base).map(([op, n]) => terms[op](n)).join('；')}${c.exhaust ? '；消耗（本战不再抽到）' : ''}${c.selfRetain ? '；保留（未打出则留在手中，占用手牌槽）' : ''}。`;
 }
 export function initialState(hand = ['a','b','c','d','e','f']) {
   return { hp: 60, energy: 3, block: 0, jade: 0, enemy: { hp: 40, block: 0, weak: 0, vulnerable: 0 }, hand: [...hand], discard: [], exhaust: [], pendingDraw: 0, inUse: null, instances: Object.fromEntries(hand.map((key, i) => [key, {id: cards[i % cards.length].id, upgraded: false}])), turn: 1 };
@@ -101,8 +102,11 @@ export function endTurn(state, hits) {
   }
   next.enemy.vulnerable=Math.max(0,(next.enemy.vulnerable ?? 0)-1);
   next.enemy.weak = Math.max(0,(next.enemy.weak ?? 0)-1);
-  next.discard.push(...next.hand);
-  next.hand = [];
+  const retained=[];
+  for(const key of next.hand){const id=next.instances?.[key]?.id;
+    if(next.hp>0&&cards.find(c=>c.id===id)?.selfRetain)retained.push(key);else next.discard.push(key);
+  }
+  next.hand = retained;
   next.block = 0;
   if (next.hp) { next.energy = 3; next.turn += 1; }
   return next;

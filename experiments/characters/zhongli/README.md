@@ -284,3 +284,37 @@ skip/expose. Only v3/expose acquires zl13 (5/10); one reaches room3 vs0 for all 
 All40 still die. This is reachability evidence, NOT survival balance or successful natural
 full-pool construction. Current rare5/uncommon10 still lack journey acquisition channels.
 Full75 remains62 short; source/naming/character-contract/balance/human/integration HOLD.
+
+### Fourteenth research role: retained attack window (0.8, HOLD)
+Previous13-card local1b8b58c / remoted135d6d independently reviewed by
+character-rules-zhongli-1b8b58c-vulnerable-20261113:75/75,1002 rounding oracle cases,
+40journeys and20000offer count reconstruction. No approval is implied for this new batch.
+
+zl14: common cost2 damage13, upgrade18, selfRetain. Untouched original13 values.
+Role is waiting for a viable output window instead of losing the card at end turn. It
+still costs2 and occupies a hand slot while unplayed; retention gives no discount or stats.
+The one-energy setup test must wait for next turn; it is NOT evidence that an otherwise
+payable same-turn combo should be delayed. Source/name/identity are unapproved adaptation.
+
+Pinned903bf2a abyss_combat.lua:1685-1693 partitions selfRetain/selected/instance.retain,
+excluding ethereal; retained cards later reunite with hand. Candidate implements only
+intrinsic selfRetain at stable turn boundaries, not selected retention, ethereal conflicts,
+Establishment/Equilibrium/Well-Laid Plans or other retain triggers. It does not model their
+intermediate staging queues. Unplayed14 remains in hand, ordinary cards discard, then normal
+five-card draw respects cap10. Played14 enters discard normally and may later reshuffle.
+On incoming lethal, this model ends battle and discards remaining hand without drawing;
+preexisting terminal states remain unchanged. This cleanup is not asserted engine parity.
+
+83 local tests cover separate base/upgrade damage and payment, full hand preventing draw,
+ten retained instances consuming real slots, release-one-slot draw, zone uniqueness,
+invalid duplicate rollback, death/victory freeze, new-battle reset via fresh instances,
+cancel and insufficient payment, one-energy setup into next-turn attack. Reference candidates
+for future source checks: Windmill Strike and Sands of Time for hold opportunity-cost design,
+not asserted exact equivalent values or completed B-GATE comparisons.
+
+v4 restricted pool adds14 to ten commons, leaving v1/v2/v3 unchanged. Ideal-uniform inclusion
+3/10, actual20000-offer generator counts recorded. Rare/uncommon channels still absent.
+retention-study.mjs:40 fresh-seed7001..7010 runs, large/multi x skip/accept14. Large both
+9deaths/1truncate, accept14 actually obtains1/10; multi both10complete lossP90=4, obtains6/10.
+No demonstrated survival advantage; myopic policy does not optimize future retention value.
+Full75 remains61 short. Human/source/full-rarity/balance/integration gates remain HOLD.
