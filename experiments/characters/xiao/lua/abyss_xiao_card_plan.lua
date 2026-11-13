@@ -1,4 +1,4 @@
--- Pure first-thirty-two-card proposal. Host owns cost, target, snapshots and effects.
+-- Pure first-forty-card proposal. Host owns cost, target, snapshots and effects.
 local Data=require('abyss_xiao_core_data')
 local M={supported={}}
 local cards={};for _,c in ipairs(Data.cards)do cards[c.id]=c;M.supported[c.id]=true end
@@ -24,7 +24,7 @@ function M.plan(resource,payload)
    effects[#effects+1]={op='xiaoCard',kind=e.op,value=e.value};after.mask=math.max(0,after.mask-e.value)
   elseif e.op=='block'or e.op=='draw'or e.op=='loseHp'or e.op=='energy'then effects[#effects+1]=copy(e)
   else
-   assert(({damage=true,plunge=true,damageAll=true,maskBlock=true,maskGuard=true,breakBlock=true,recoverExit=true,burnSkillsBlock=true,unmaskedDraw=true,exhaustDamage=true,exhaustBlock=true,spendEnergyBlock=true,discardAttacksDraw=true,threatDamage=true,quietDraw=true,shortenMask=true,lastMaskDamage=true,exitGuard=true,suppress=true,coveredDraw=true})[e.op],'unsupported Xiao effect')
+   assert(({damage=true,plunge=true,damageAll=true,maskBlock=true,maskGuard=true,breakBlock=true,recoverExit=true,burnSkillsBlock=true,unmaskedDraw=true,exhaustDamage=true,exhaustBlock=true,spendEnergyBlock=true,discardAttacksDraw=true,threatDamage=true,quietDraw=true,shortenMask=true,lastMaskDamage=true,exitGuard=true,suppress=true,coveredDraw=true,calmDraw=true,exitEnergy=true,damageHits=true,maskedAttackDraw=true,blockDamage=true,spendBlockDraw=true,topdeckAttack=true,enemyCountBlock=true})[e.op],'unsupported Xiao effect')
    local effect=copy(e);effect.op='xiaoCard';effect.kind=e.op;effects[#effects+1]=effect
   end
  end
@@ -88,5 +88,20 @@ function M.shortenMask(mask,value)
  int(mask,Data.maskRules.maxDuration);int(value,Data.maskRules.maxDuration)
  local after=math.max(0,mask-value)
  return {mask=after,exited=mask>0 and after==0}
+end
+-- All current block is spent, including unused remainder above draw cap.
+function M.spendBlockDraw(block,divisor,cap)
+ int(block,2147483647);int(divisor,2147483647);int(cap,2147483647)
+ assert(divisor>0,'zero divisor')
+ return {block=0,draw=math.min(math.floor(block/divisor),cap)}
+end
+-- Here cap bounds enemy count, unlike exhaustDamage whose cap bounds output.
+function M.enemyCountBlock(live,value,cap)
+ int(live,2147483647);int(value,2147483647);int(cap,2147483647)
+ return M.scaledCount(math.min(live,cap),value)
+end
+function M.exitEnergy(mask,value)
+ int(mask,Data.maskRules.maxDuration);int(value,2147483647)
+ return {mask=0,energy=mask>0 and value or 0,exited=mask>0}
 end
 return M

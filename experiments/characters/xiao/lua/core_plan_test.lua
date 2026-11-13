@@ -4,11 +4,11 @@ local function eq(a,b)assert(a==b,tostring(a)..' ~= '..tostring(b))end
 for _,up in ipairs({false,true})do for _,c in ipairs(D.cards)do
  local r={hp=70,mask=0,relicUsed=false,startingRelic=true};local p=P.plan(r,{id=c.id,upgraded=up});eq(p.cost,c.cost);eq(p.exhaust,c.exhaust);eq(#p.orderedEffects,#(up and c.upgrade or c.base));eq(r.mask,0);eq(r.relicUsed,false)
 end end
-print('PASS all thirty-two base/upgraded plans preserve costs effects and inputs')
+print('PASS all forty base/upgraded plans preserve costs effects and inputs')
 local r={hp=70,mask=0,relicUsed=false,startingRelic=true};local p=P.plan(r,{id='x04',upgraded=true});eq(p.orderedEffects[1].op,'loseHp');eq(p.orderedEffects[2].op,'xiaoCard');eq(p.orderedEffects[2].kind,'maskCommit');eq(p.expectedResourceAfterIfAlive.mask,3);eq(r.relicUsed,false)
 print('PASS life payment precedes guarded mask commit; planning never spends relic')
 for _,hp in ipairs({0,1,2})do assert(not pcall(P.plan,{hp=hp,mask=0,relicUsed=false,startingRelic=true},{id='x04',upgraded=false}))end
-assert(not pcall(P.plan,r,{id='x33',upgraded=false}));assert(not pcall(P.plan,r,{id='x01',upgraded=1}))
+assert(not pcall(P.plan,r,{id='x41',upgraded=false}));assert(not pcall(P.plan,r,{id='x01',upgraded=1}))
 print('PASS life prerequisite unknown cards and nonboolean upgrade reject')
 local n=P.maskCommit(r,2);eq(n.mask,2);eq(n.relicUsed,true);eq(n.effects[1].op,'draw');eq(n.effects[1].value,1)
 r={hp=70,mask=2,relicUsed=true,startingRelic=true};n=P.maskCommit(r,1);eq(n.mask,2);eq(#n.effects,0);r.mask=0;n=P.maskCommit(r,1);eq(#n.effects,0)
@@ -64,3 +64,20 @@ eq(P.threatDamage(0,8,4),8);eq(P.threatDamage(1,8,4),12);eq(P.coveredDraw(7,8,1)
 eq(P.threatDamage(1,2147483643,4),2147483647);assert(not pcall(P.threatDamage,1,2147483644,4));assert(not pcall(P.lastMaskDamage,1,2147483647,1))
 for _,v in ipairs({false,-1,0/0,1.5,{}})do assert(not pcall(P.threatDamage,v,8,4));assert(not pcall(P.coveredDraw,8,v,1))end
 print('PASS certified threat and shortened mask reducers boundaries reject unknown intent')
+
+for _,up in ipairs({false,true})do
+ local r={hp=70,mask=2,relicUsed=true,startingRelic=true}
+ local kinds={x33='calmDraw',x34='exitEnergy',x35='damageHits',x36='maskedAttackDraw',x37='blockDamage',x38='spendBlockDraw',x39='topdeckAttack',x40='enemyCountBlock'}
+ for id,kind in pairs(kinds)do local p=P.plan(r,{id=id,upgraded=up});eq(p.orderedEffects[1].kind,kind)end
+ local p=P.plan(r,{id='x35',upgraded=up});eq(p.orderedEffects[1].hits,2);eq(p.orderedEffects[1].value,up and 6 or 4)
+ p=P.plan(r,{id='x37',upgraded=up});eq(p.orderedEffects[1].cap,up and 20 or 14)
+ p=P.plan(r,{id='x38',upgraded=up});eq(p.orderedEffects[1].cap,up and 3 or 2);eq(p.exhaust,true)
+ p=P.plan(r,{id='x39',upgraded=up});eq(p.orderedEffects[2].op,'block');eq(p.orderedEffects[2].value,up and 7 or 4)
+end
+print('PASS x33-x40 retain per-hit count cap meaning and topdeck-before-block order')
+for _,cap in ipairs({2,3})do for _,block in ipairs({0,4,5,9,10,15,21,2147483647})do local p=P.spendBlockDraw(block,5,cap);eq(p.block,0);eq(p.draw,math.min(math.floor(block/5),cap))end end
+for _,value in ipairs({4,6})do for n=0,5 do eq(P.enemyCountBlock(n,value,3),math.min(n,3)*value)end end
+for mask=0,3 do local p=P.exitEnergy(mask,2);eq(p.mask,0);eq(p.energy,mask>0 and 2 or 0);eq(p.exited,mask>0)end
+assert(not pcall(P.spendBlockDraw,10,0,2));eq(P.enemyCountBlock(1,2147483647,3),2147483647);assert(not pcall(P.enemyCountBlock,2,2147483647,3))
+for _,v in ipairs({false,-1,0/0,1.5})do assert(not pcall(P.spendBlockDraw,v,5,2));assert(not pcall(P.enemyCountBlock,v,4,3));assert(not pcall(P.exitEnergy,v,2))end
+print('PASS whole-block spend count cap and exit refund reducers enforce boundaries')
