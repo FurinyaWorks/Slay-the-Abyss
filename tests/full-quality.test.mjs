@@ -5,6 +5,7 @@ import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {fullGateErrors,publishFullQuality,beginFullQuality,main} from '../scripts/publish-full-quality.mjs';
 import {currentFullQualityJobs,qualityWorkflowPath} from '../scripts/verify-delivery.mjs';
+import {main as prMain} from '../scripts/publish-pr-quality.mjs';
 import {qualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {beforeAutoMergeWorkflow,beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
 import {beforeDraftQualityWorkflow} from './helpers/draft-quality-workflow.mjs';
@@ -253,4 +254,181 @@ test('all thirty-three actual shard identities are mandatory for current Full ad
   else job.conclusion=mutation;
   assert.ok(fullGateErrors(e).length,`${name}/${mutation} cannot certify Full`);
  }
+});
+
+// Exercise real publishers; only the GitHub transport and artifact loader are substituted.
+function receiptPublication(change,{entry=main,load,finalRun,initialTarget}={}){
+ let result;
+ mainFixture(change,(f,env)=>{
+  const before=JSON.stringify(f),writes=[];let loads=0,runReads=0,targetReads=0,error;
+  const query=(...args)=>{
+   const endpoint=args.at(-1);
+   if(args.includes('POST')){
+    const state=args.find(a=>a.startsWith('state=')).slice(6),context=args.find(a=>a.startsWith('context=')).slice(8);
+    writes.push({state,context});return JSON.stringify({state,context});
+   }
+   if(endpoint.endsWith('/actions/runs/7'))return JSON.stringify(++runReads===2&&finalRun?finalRun(f):f.run);
+   if(endpoint.includes('/jobs?'))return JSON.stringify([{jobs:f.jobs}]);
+   if(endpoint.includes('/actions/workflows/'))return JSON.stringify([{workflow_runs:[f.run]}]);
+   if(endpoint.endsWith('/pulls/510'))return JSON.stringify(f.pr);
+   if(endpoint.endsWith('/git/ref/heads/develop'))return JSON.stringify({object:{sha:++targetReads===1&&initialTarget?initialTarget:f.target}});
+   if(endpoint.endsWith('/commits/'+f.tested))return JSON.stringify(f.commit);
+   throw Error('Unexpected API query '+endpoint);
+  };
+  try{entry(env,query,{loadCheckout:()=>{loads++;return load?load(f):{checkout:f.checkout,checkoutArtifact:f.checkoutArtifact};}});}
+  catch(caught){error=caught;}
+  assert.equal(JSON.stringify(f),before,'publisher must not mutate source evidence');
+  result={writes,loads,error,runReads,targetReads};
+ });
+ return result;
+}
+test('failed Full metadata publishes failure without diagnosing an intentionally uncollected receipt',()=>{
+ const changes=[
+  f=>f.needs.rules.result='failure',f=>delete f.needs.rules,
+  f=>f.jobs=f.jobs.filter(j=>j.name!=='rules (18/18)'),
+  ...['failure','cancelled','skipped'].map(conclusion=>f=>f.jobs.find(j=>j.name==='rules (18/18)').conclusion=conclusion),
+ ];
+ for(const [entry,context]of [[main,'full-quality'],[prMain,'pr-quality']])for(const change of changes){
+  const r=receiptPublication(change,{entry,load:()=>{throw Error('must not collect');}});
+  assert.equal(r.loads,0);assert.deepEqual(r.writes,[{state:'failure',context}]);
+  assert.match(r.error.message,/Full dependency is not successful|Incomplete or failed Full job/);
+  assert.doesNotMatch(r.error.message,/receipt|artifact|checkout/i);
+  assert.equal(r.runReads,2);assert.equal(r.targetReads,2);
+ }
+});
+test('clean Full metadata still rejects absent, corrupt, expired and uncollectable receipts',()=>{
+ const changes=[
+  f=>delete f.checkout,f=>delete f.checkoutArtifact,
+  ...['runId','head','base','tested','prNumber','event','attempt','schemaVersion','parents'].flatMap(key=>[
+   f=>delete f.checkout[key],f=>f.checkout[key]=key==='parents'?[f.head,f.base]:'wrong',
+  ]),
+  f=>f.checkoutArtifact.expired=true,f=>f.checkoutArtifact.name='quality-8-1-check',
+  f=>f.checkoutArtifact.workflow_run.id=8,f=>f.checkoutArtifact.workflow_run.head_sha=sha('f'),
+ ];
+ for(const change of changes){
+  const r=receiptPublication(change);
+  assert.equal(r.loads,1);assert.deepEqual(r.writes,[{state:'failure',context:'full-quality'}]);
+  assert.match(r.error.message,/receipt|artifact|checkout/i);
+ }
+ const r=receiptPublication(()=>{},{load:()=>{throw Error('download unavailable');}});
+ assert.equal(r.loads,1);assert.deepEqual(r.writes,[{state:'failure',context:'full-quality'}]);
+ assert.match(r.error.message,/Checkout receipt collection failed: download unavailable/);
+});
+test('Full final metadata recovery cannot certify a receipt skipped by the initial precheck',()=>{
+ const r=receiptPublication(()=>{},{initialTarget:sha('f')});
+ assert.equal(r.loads,0);assert.equal(r.targetReads,2);
+ assert.deepEqual(r.writes,[{state:'failure',context:'full-quality'}]);
+ assert.match(r.error.message,/receipt|artifact|checkout/i);
+});
+test('Full final reread rejects stale identity and superseded attempts after collection',()=>{
+ for(const [finalRun,state]of [
+  [f=>({...f.run,status:'completed'}),'failure'],
+  [f=>({...f.run,run_attempt:2}),'superseded'],
+ ]){
+  const r=receiptPublication(()=>{},{finalRun});assert.equal(r.loads,1);assert.equal(r.runReads,2);
+  if(state==='superseded'){assert.deepEqual(r.writes,[]);assert.equal(r.error,undefined);}
+  else{assert.deepEqual(r.writes,[{state,context:'full-quality'}]);assert.match(r.error.message,/Stale or invalid Full run/);}
+ }
+});
+test('metadata failure retains diagnostics for supplied receipts and collection errors',()=>{
+ for(const supply of [f=>f.checkout={},f=>f.checkoutArtifact={},f=>f.receiptError='download unavailable']){
+  const f=fixture();f.needs.rules.result='failure';delete f.checkout;delete f.checkoutArtifact;supply(f);
+  const before=JSON.stringify(f),r=publishFullQuality(f,()=>JSON.stringify({state:'failure',context:'full-quality'}));
+  assert.equal(r.state,'failure');assert(r.errors.some(e=>/receipt|artifact|checkout/i.test(e)));
+  assert.equal(JSON.stringify(f),before);
+ }
+});
+
+test('permanent current BASE drift remains failure without loading or fabricating receipt evidence',()=>{
+ for(const [entry,context]of [[main,'full-quality'],[prMain,'pr-quality']]){
+  const r=receiptPublication(f=>{f.target=sha('f');},{entry,load:()=>{throw Error('BASE drift must not collect a receipt');}});
+  assert.equal(r.loads,0,'metadata rejection happens before collection');
+  assert.deepEqual(r.writes,[{state:'failure',context}]);
+  assert.ok(r.error instanceof Error,'the real publisher must reject the stale BASE');
+  assert.equal(r.error.message,'Full tested merge differs from current HEAD/BASE');
+  assert.equal(r.runReads,2,'final run identity is still reread');
+  assert.equal(r.targetReads,2,'both target observations retain the new BASE');
+ }
+});
+
+// Receipt provenance is deliberately separate from the raw publisher behavior.
+// These contracts do not embed this file's final hash or the proof's hash.
+async function publisherReceiptContext(){
+ const [{closeoutRead,preCloseoutCiSource,closeoutCiProof},{publisherReceiptProof,prePublisherReceiptSource}]=await Promise.all([
+  import('./helpers/closeout-ci-source.mjs'),import('./helpers/combined-epoch/publisher-receipt-source.mjs')]);
+ return {closeoutRead,preCloseoutCiSource,closeoutCiProof,publisherReceiptProof,prePublisherReceiptSource};
+}
+test('publisher receipt source: exact complete LF sources reach pr620 predecessors',async()=>{
+ const {closeoutRead,publisherReceiptProof}=await publisherReceiptContext();
+ const read=closeoutRead('pr620');
+ for(const [path,row]of Object.entries(publisherReceiptProof.files)){
+  assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),row.after.source);
+  assert.equal(read(path,'utf8'),row.before.source);
+  assert.equal(row.before.sha256,path.startsWith('scripts/')?'2aaeba6e5a41a9f33ce5d00dc015405f92a72efc6bb71b9e8171640a3d07f2d5':'6ee168adc5046825a035955c7c4993db49eaba89180bf5d7ffde795cf2f15c1a');
+ }
+});
+test('publisher receipt source: raw Buffer and CRLF text reads preserve return types',async()=>{
+ const {closeoutRead,publisherReceiptProof}=await publisherReceiptContext();
+ for(const [path,row]of Object.entries(publisherReceiptProof.files)){
+  const raw=readFileSync(path);const text=row.after.source.replaceAll('\n','\r\n');
+  const bytes=closeoutRead('pr620',()=>raw)(path);assert(Buffer.isBuffer(bytes));assert.equal(bytes.toString('utf8'),row.before.source);
+  assert.equal(closeoutRead('pr620',()=>text)(path,'utf8'),row.before.source);
+ }
+});
+test('publisher receipt source: other named views and unknown views keep original guards',async()=>{
+ const {preCloseoutCiSource,closeoutCiProof,publisherReceiptProof}=await publisherReceiptContext();
+ for(const [path,row]of Object.entries(publisherReceiptProof.files)){
+  for(const view of Object.keys(closeoutCiProof.targets).filter(view=>view!=='pr620'))assert.equal(preCloseoutCiSource(path,row.after.source,view),row.after.source,view);
+  assert.throws(()=>preCloseoutCiSource(path,row.after.source,'publisher-unknown-view'),/known closeout CI view/);
+ }
+});
+test('publisher receipt source: wrong paths and partial or foreign source cannot project',async()=>{
+ const {preCloseoutCiSource,prePublisherReceiptSource,publisherReceiptProof}=await publisherReceiptContext();
+ for(const [path,row]of Object.entries(publisherReceiptProof.files)){
+  for(const source of [row.after.source+'\n',row.after.source.slice(1),row.before.source,'foreign source',null,undefined,Buffer.from(row.after.source)]){
+   assert.strictEqual(prePublisherReceiptSource(path,source,'pr620'),source);
+   assert.strictEqual(preCloseoutCiSource(path,source,'pr620'),source);
+  }
+  for(const other of ['unknown.mjs','src/lua/abyss_main.lua','config/architecture.json','.github/workflows/quality.yml']){
+   assert.equal(prePublisherReceiptSource(other,row.after.source,'pr620'),row.after.source);
+   assert.equal(preCloseoutCiSource(other,row.after.source,'pr620'),row.after.source);
+  }
+  assert.equal(prePublisherReceiptSource(path,row.after.source,'other'),row.after.source);
+ }
+});
+test('publisher receipt source: warmed reader authenticates each fresh supplied reader value',async()=>{
+ const {closeoutRead,publisherReceiptProof}=await publisherReceiptContext();
+ for(const [path,row]of Object.entries(publisherReceiptProof.files)){
+  let value=row.after.source,calls=0;const read=closeoutRead('pr620',()=>{calls++;return value;});
+  assert.equal(read(path,'utf8'),row.before.source);
+  value+='\n// drift';assert.equal(read(path,'utf8'),value);
+  value=row.after.source;assert.equal(read(path,'utf8'),row.before.source);assert.equal(calls,3);
+ }
+});
+test('publisher receipt source: proof schema is exact and deeply immutable',async()=>{
+ const {publisherReceiptProof}=await publisherReceiptContext();
+ assert.deepEqual(Object.keys(publisherReceiptProof).sort(),['files','schemaVersion']);assert.equal(publisherReceiptProof.schemaVersion,1);
+ assert.deepEqual(Object.keys(publisherReceiptProof.files).sort(),['scripts/publish-full-quality.mjs','tests/full-quality.test.mjs']);
+ assert(Object.isFrozen(publisherReceiptProof)&&Object.isFrozen(publisherReceiptProof.files));
+ for(const row of Object.values(publisherReceiptProof.files)){
+  assert(Object.isFrozen(row)&&Object.isFrozen(row.before)&&Object.isFrozen(row.after));
+  assert.throws(()=>{row.after.source='replacement';},TypeError);
+ }
+});
+test('publisher receipt source: raw current reads remain current and previous bytes pass through',async()=>{
+ const {closeoutRead,publisherReceiptProof}=await publisherReceiptContext();
+ for(const [path,row]of Object.entries(publisherReceiptProof.files)){
+  assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),row.after.source);
+  const old=Buffer.from(row.before.source);assert.strictEqual(closeoutRead('pr620',()=>old)(path),old);
+  assert.equal(closeoutRead('pr620',()=>row.before.source)(path,'utf8'),row.before.source);
+ }
+});
+test('publisher receipt source: source projection leaves historical inventory metadata untouched',async()=>{
+ const {preCloseoutCiSource,closeoutCiProof,publisherReceiptProof}=await publisherReceiptContext();
+ const inventory=JSON.stringify(closeoutCiProof.inventory),targets=JSON.stringify(closeoutCiProof.targets);
+ for(const [path,row]of Object.entries(publisherReceiptProof.files)){
+  assert(!Object.hasOwn(closeoutCiProof.current,path));
+  assert.equal(preCloseoutCiSource(path,row.after.source,'pr620'),row.before.source);
+ }
+ assert.equal(JSON.stringify(closeoutCiProof.inventory),inventory);assert.equal(JSON.stringify(closeoutCiProof.targets),targets);
 });

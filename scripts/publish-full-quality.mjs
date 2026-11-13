@@ -55,7 +55,11 @@ export function publishFullQuality(e,query,context=fullQualityContext){
  // A superseded writer must not overwrite the new run's pending/success status
  // with an old failure, even when its always() aggregate finishes last.
  if(!currentRun(e))return {state:'superseded',errors:[]};
- const errors=fullGateErrors(e),state=errors.length?'failure':'success';
+ // Failed metadata prevents collection. Do not diagnose evidence never collected,
+ // but require the complete receipt whenever the final metadata is valid.
+ const metadataErrors=fullGateErrors(e,{metadataOnly:true});
+ const uncollected=e.checkout===undefined&&e.checkoutArtifact===undefined&&e.receiptError===undefined;
+ const errors=metadataErrors.length&&uncollected?metadataErrors:fullGateErrors(e),state=errors.length?'failure':'success';
  publishStatus(e,state,errors.length?'Full unavailable: '+errors[0].slice(0,115):`Exact Full run ${e.runId}, attempt ${e.attempt}`,query,context);
  return {state,errors};
 }
