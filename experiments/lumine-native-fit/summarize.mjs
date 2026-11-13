@@ -26,7 +26,11 @@ for(const budget of [400,800,1600,3200])copy(performanceDir+'/budget-'+budget+'-
 for(const budget of [0,800,1600,3200])copy(browserDir+'/browser-'+budget+'.png','browser-'+budget+'.png');
 const summary={candidateSha256:c.candidate.sha256,saveSha256:a.saveSha256,buildId:c.buildId,baseSource:c.sourceCommit,hardware:{cpu:os.cpus()[0].model,logicalCpus:os.cpus().length,systemMemoryGiB:os.totalmem()/1073741824},gilBytes:c.candidate.bytes,baseGilBytes:c.experiment.baseGil.bytes,gilIncrementBytes:c.candidate.bytes-c.experiment.baseGil.bytes,sharedTemplateBytes:c.experiment.sharedTemplateBytes,rows,gpu,
  verdict:{nativeFeasibility:'GO: actual native GIL, real Simulator rendering and bounded cache demonstrated',productRelease:'NO-GO: complete display latency targets not achieved in measured Simulator path; quality not owner-approved',officialImport:'UNVERIFIED',officialCapacity:'UNVERIFIED',mobile:'UNVERIFIED',nativeClientGpu:'UNVERIFIED'}};
-summary.verdict.quality='NO-GO: 1600 facial edges/nose/mouth remain fragmented; 3200 improves contours but does not match reference detail';
+const acceptancePath=new URL('./owner-acceptance.json',import.meta.url);
+const acceptance=fs.existsSync(acceptancePath)?read(acceptancePath):null;
+const ownerAccepted=acceptance?.acceptedBudget===1600&&acceptance.candidateSha256===c.candidate.sha256&&acceptance.saveSha256===a.saveSha256;
+summary.verdict.quality=ownerAccepted?'GO: Owner accepted the current 1600-primitive appearance on '+acceptance.acceptedAt:'NO-GO: 1600 facial edges/nose/mouth remain fragmented; 3200 improves contours but does not match reference detail';
+if(ownerAccepted){summary.selectedBudget=1600;summary.ownerAcceptance=acceptance;summary.verdict.productRelease='NO-GO: complete display latency targets not achieved in measured Simulator path; official performance UNVERIFIED';}
 summary.verdict.multiCharacterSwitch='UNVERIFIED: other roles stay locked; warm samples are page reentries';
 summary.verdict.memoryRelease='UNVERIFIED: SDK controls destroy to zero; no official heap/GPU memory proof';
 fs.writeFileSync(path.join(out,'summary.json'),JSON.stringify(summary,null,2));
@@ -38,4 +42,10 @@ text+='\n全部样本可见120步零新建、隐藏120步零重建，10次重入
 for(const r of gpu)text+=`|${r.budget||'原背景'}|${r.gpuSamples}|${ms(r.gpuP95)}|${ms(r.cpuDrawP95)}|${ms(r.drawIntervalP95)}|${ms(r.rafP95)}|${r.drawIntervalsOver33ms}/${r.drawIntervals}|${r.drawIntervalsOver100ms}|\n`;
 text+='\n## 看图与复现\n\n[原参考图](../input/source.png)、[结构参考图](../input/structure-reference.png)、[实际原生1600图](native-1600.png)、[实际原生3200图](native-3200.png)、[1600完整浏览器页面](browser-1600.png)、[3200完整浏览器页面](browser-3200.png)。native-*是实际SDK场景树的软件渲染，只隐藏其他UI作对照；browser-*是真实浏览器canvas截图，均不是离线拟合预览。\n\n参数、命令与历史失败见[实验说明](../README.md)。保存完整原始矩阵、浏览器查询、合同、候选及adapter身份，复现不依赖口头统计。本轮未取得官方导入/ready、设备或容量证据；不合并、不发布，不冒充正式RC。\n';
 text+='\n## 画质及测量限制\n\n[原图与实际场景对照](comparison.png)。1600眉眼、鼻嘴和脸部仍有碎块；3200改善轮廓，仍未达参考图精细度。没有画质与延迟同时通过的产品候选，不把等待Owner批准当作画质判断。\n\n这是共享Windows环境、同Node进程的新VM矩阵，未强制GC。5次冷测的最近秩P95为最大值，不能当稳定总体估计；不筛除GC/调度慢样本。其他角色仍锁定，重入不是多角色/多背景切换证明。控件销毁归零不证明堆/RSS/GPU显存即时归还；不授予内存很好结论。\n';
+if(ownerAccepted){
+ text=text.replace('**产品交付 NO-GO；原生表达/缓存可行性 GO；官方客户端、手机与官方容量 UNVERIFIED。**','**1600画质 GO（Owner已确认）；原生表达/缓存可行性 GO；完整显示性能仍未达标，产品交付暂为 NO-GO；官方客户端、手机与官方容量 UNVERIFIED。**');
+ text=text.replace('1600仍是首版拟合，不宣称达到原画精细度或Owner画质验收。','Owner于'+acceptance.acceptedAt+'确认当前1600图元画质已经可以，1600固定为主候选，3200仅保留对照。');
+ text=text.replace('1600眉眼、鼻嘴和脸部仍有碎块；3200改善轮廓，仍未达参考图精细度。没有画质与延迟同时通过的产品候选，不把等待Owner批准当作画质判断。','初轮诊断记录了眉眼、鼻嘴和脸部色块差异；Owner已查看并接受当前1600版本，这些差异不再作为画质阻塞。剩余门槛为完整显示/切换性能和官方设备验证，不再增加美术预算或强压图元。');
+ text+='\nOwner确认绑定本轮GIL/save及1600预算，详见[确认记录](../owner-acceptance.json)。这不是性能、官方导入、设备、合并或发布许可。\n';
+}
 fs.writeFileSync(path.join(out,'RESULTS.md'),text);console.log(JSON.stringify({status:'pass',out,summary}));

@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-31 10:47'
-updated_date: '2026-11-13 15:45'
+updated_date: '2026-11-13 16:02'
 labels:
   - art
   - technical-spike
@@ -66,4 +66,6 @@ Owner最新要求：离线画面、速度、资源成本先打磨到位，不请
 最终v11：同GIL/save完成25冷+50热，1600冷P50 9520.9ms/热完整软件显示P95 1696.9ms，3200热P95 2131.1ms，未达1s/100ms。实际Chromium/Iris Xe有效GPU query：1600 P95 2.460729ms（50样本）、3200 2.815051ms（115样本），不等于官方GPU或切换总延迟。1600整页可见图片1938/常驻20878，对照4653/23635；25次销毁0控件残留，但Node内存较大，不授官方内存/显存释放结论。真实GIL增量540207字节（四档合包），非官方容量。原生可行性GO；画质细节与完整延迟产品NO-GO；官方/手机/多角色切换UNVERIFIED。证据experiments/lumine-native-fit/evidence，父级AC保持未勾，不合并发布。
 
 Draft PR https://github.com/FurinyaWorks/Slay-the-Abyss/pull/647 已建立，源码/证据独审r6通过，产品保持NO-GO。原生实验GIL/25冷50热证据冻结903bf2a31基线；develop收尾前移e805a87d，Draft当前有合并冲突，未把未测的新组合追认为通过，不自动重基/合并/发布。Git常规大包两次连接重置后，经GitHub API逐项验证54个blob与完整source tree并保留原提交fd5e161b上传成功。
+
+2026-11-14 Owner明确认可已查看的1600图元画质，认为3200已属奢侈。画质门槛改为GO（仅绑定当前be81ce01…f541/1600），1600固定为主候选，3200只留历史对照，不再追加美术拟合或强压图元。剩余集中于完整加载/热切换性能与官方客户端验证；本条不代表性能通过，不授予键鼠窗口、官方导入、合并或发布。独立确认记录experiments/lumine-native-fit/owner-acceptance.json。
 <!-- SECTION:NOTES:END -->
