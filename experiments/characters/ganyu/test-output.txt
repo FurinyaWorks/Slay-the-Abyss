@@ -1,32 +1,34 @@
-✔ initial draw, deterministic shuffle and card conservation across reshuffles (4.515553ms)
-✔ ordered core at bottom drawn on second turn, saturation waiting visible (0.968194ms)
-✔ reshuffle cannot redraw in-hand played cards, cancel cannot consume RNG (0.438645ms)
-✔ malformed seed/deck/phase never mutates caller (0.666221ms)
-✔ 40-card bottom core is unavailable until turn8 even with full charge (1.567166ms)
-✔ independent base/upgrade oracles, charge 0/1/2 (3.322088ms)
-✔ primary lethal still blooms; armor consumed separately, exact lethal (0.31977ms)
-✔ invalid target/payment/index and cancel cannot mint resources or move cards (0.830582ms)
-✔ all other base/upgrade effect contracts (0.541347ms)
-✔ bank unused energy at end, saturation, no passive per-card grant (4.17319ms)
-✔ storm two ticks, refresh max not sum, dead enemies cannot attack (0.88304ms)
-✔ storm cannot be funded by future banking, and no enemy turn after victory (0.412898ms)
-✔ block persists across enemy multihits then clears next turn; death stops turn (0.786637ms)
-✔ no retain/shuffle implied, draw has hand cap and actual availability (0.823091ms)
-✔ opposite reachable choices: lethal now vs preserve charge economy (0.892784ms)
-✔ display generated from same structured variants, no false approval (0.844182ms)
-✔ upgrade flag must be boolean; string false never grants upgrade (0.325169ms)
-✔ storm independent base/upgraded costs, every tick and expiry (0.636386ms)
-✔ unknown effect after payment rolls back caller; text follows duration data (0.335283ms)
-✔ reject malformed numeric/terminal inputs atomically at every boundary (3.283061ms)
-✔ starter relic explicitly owns bank hook; removal, cap and active alternative (0.409963ms)
-✔ draw card uses base/upgraded counts, pays first, cannot shuffle itself back (0.405156ms)
-✔ draw stops at hand limit without losing cards or spending extra RNG (0.127248ms)
-✔ defensive draw settles block then exact draw without refund or starting-deck change (0.188447ms)
-ℹ tests 24
+✔ initial draw, deterministic shuffle and card conservation across reshuffles (5.439534ms)
+✔ ordered core at bottom drawn on second turn, saturation waiting visible (1.162251ms)
+✔ reshuffle cannot redraw in-hand played cards, cancel cannot consume RNG (0.473857ms)
+✔ malformed seed/deck/phase never mutates caller (0.691777ms)
+✔ 40-card bottom core is unavailable until turn8 even with full charge (1.838685ms)
+✔ independent base/upgrade oracles, charge 0/1/2 (2.88172ms)
+✔ primary lethal still blooms; armor consumed separately, exact lethal (0.328454ms)
+✔ invalid target/payment/index and cancel cannot mint resources or move cards (0.734811ms)
+✔ all other base/upgrade effect contracts (0.623758ms)
+✔ bank unused energy at end, saturation, no passive per-card grant (4.015168ms)
+✔ storm two ticks, refresh max not sum, dead enemies cannot attack (0.5575ms)
+✔ storm cannot be funded by future banking, and no enemy turn after victory (0.347611ms)
+✔ block persists across enemy multihits then clears next turn; death stops turn (0.491874ms)
+✔ no retain/shuffle implied, draw has hand cap and actual availability (0.395692ms)
+✔ opposite reachable choices: lethal now vs preserve charge economy (0.801259ms)
+✔ display generated from same structured variants, no false approval (0.722663ms)
+✔ upgrade flag must be boolean; string false never grants upgrade (0.239963ms)
+✔ storm independent base/upgraded costs, every tick and expiry (0.50274ms)
+✔ unknown effect after payment rolls back caller; text follows duration data (0.377145ms)
+✔ reject malformed numeric/terminal inputs atomically at every boundary (3.47931ms)
+✔ starter relic explicitly owns bank hook; removal, cap and active alternative (0.375463ms)
+✔ draw card uses base/upgraded counts, pays first, cannot shuffle itself back (0.368072ms)
+✔ draw stops at hand limit without losing cards or spending extra RNG (0.131884ms)
+✔ defensive draw settles block then exact draw without refund or starting-deck change (0.181817ms)
+✔ complete candidate schema accepted without granting production approval (2.407793ms)
+✔ reject representative bad effect/source/approval/upgrade/relic variants (5.007088ms)
+ℹ tests 26
 ℹ suites 0
-ℹ pass 24
+ℹ pass 26
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 148.639202
+ℹ duration_ms 174.741115
