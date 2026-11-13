@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.25.0",
+  "version": "ganyu-sample-0.26.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -2680,6 +2680,84 @@
         ]
       },
       "source_ref": "ganyu-73",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "exhaust": true
+    },
+    {
+      "id": "ganyu-74",
+      "name": "待命名·ganyu-74",
+      "candidate_name": null,
+      "role": "保留单层防守兑付等待意图",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 2,
+            "bonus": 8
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "spend_one_block",
+            "amount": 3,
+            "bonus": 10
+          }
+        ]
+      },
+      "source_ref": "ganyu-74",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      },
+      "retain": true
+    },
+    {
+      "id": "ganyu-75",
+      "name": "待命名·ganyu-75",
+      "candidate_name": null,
+      "role": "一次重费防守铺设长雨",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 10
+          },
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 14
+          },
+          {
+            "op": "storm",
+            "amount": 6,
+            "turns": 3
+          }
+        ]
+      },
+      "source_ref": "ganyu-75",
       "review": {
         "status": "HOLD",
         "human_approved": false,
