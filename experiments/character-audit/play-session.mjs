@@ -2,6 +2,7 @@
 export function createSession(adapter,{seed=37,mode='starter'}={}) {
  if(!Number.isInteger(seed)||seed<1||seed>0xffffffff)throw Error('seed must be 1..4294967295');
  if(!['starter','all','run'].includes(mode))throw Error('unsupported deck mode');
+ if(adapter.paidFactory)return adapter.paidFactory(adapter,{seed,mode});
  let state=adapter.start(seed,mode),revision=0;
  const guard=()=>adapter.assertCurrent?.();
  function view(){guard();return structuredClone({revision,mode,seed,...adapter.view(structuredClone(state))});}
@@ -35,7 +36,7 @@ export function createSession(adapter,{seed=37,mode='starter'}={}) {
  return {view,dispatch,catalog:()=>{guard();return structuredClone(adapter.catalog);}};
 }
 export function parseCommand(line){
- if(line.trim().startsWith('j ')){const c=JSON.parse(line.trim().slice(2));if(!c||Array.isArray(c)||c.type!=='play'||Object.keys(c).some(k=>!['type','revision','slot','target','options'].includes(k)))throw Error('invalid JSON play command');return c;}
+ if(line.trim().startsWith('j ')){const c=JSON.parse(line.trim().slice(2));if(!c||Array.isArray(c)||!['play','choose'].includes(c.type)||Object.keys(c).some(k=>!(c.type==='choose'?['type','revision','token','instance']:['type','revision','slot','target','options']).includes(k)))throw Error('invalid JSON play command');return c;}
  const words=line.trim().split(/\s+/);const op=words[0];
  if(['show','catalog','q'].includes(op)&&words.length===1)return {type:op};
  const types={p:'play',e:'end',c:'cancel',r:'reset',o:'open',s:'skip',k:'claim',n:'proceed'};

@@ -1,6 +1,7 @@
 import {realpathSync} from 'node:fs';
 import {resolve,join} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {paidSession} from './keqing-paid-session.mjs';
 import {zhongliRun} from './zhongli-run.mjs';
 import {snapshot as identity} from './audit.mjs';
 const used=new Set();
@@ -64,6 +65,7 @@ export async function loadAdapter(root,character,expectedHead,{run=false}={}){
     selectionLimits:'Visible retain/move/purge only; synchronous inspect/chooseDiscard blocked, no fair pause/resume UI',
     discardChoices:s.discard.map(c=>({instance:c.instance,id:c.id,text:text(c.id,c.upgraded===true)})),
     hand:s.hand.map((c,i)=>({slot:i+1,instance:c.instance,id:c.id,text:text(c.id,c.upgraded===true)}))})};
+  if(typeof b.createChoiceSession==='function')a.paidFactory=(adapter,config)=>paidSession(adapter,b,text,config);
  }
  if(run&&character==='ganyu'){
   const acquisition=await mod('acquisition.mjs'),consoleModel=await mod('run-console.mjs'),m=await mod('engine.mjs');
