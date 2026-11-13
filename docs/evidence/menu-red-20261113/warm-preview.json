@@ -1,0 +1,70 @@
+{
+  "ms": 1902.9155,
+  "errors": [],
+  "resources": [
+    {
+      "name": "http://127.0.0.1:61030/editor/api/play",
+      "duration": 326.3999999985099,
+      "bytes": 1399705,
+      "start": 778.7000000011176
+    },
+    {
+      "name": "http://127.0.0.1:61030/favicon.ico",
+      "duration": 200.40000000037253,
+      "bytes": 332,
+      "start": 909.0999999996275
+    },
+    {
+      "name": "http://127.0.0.1:61030/qxqy-assets/sprite-v1/107271.png",
+      "duration": 94.40000000037253,
+      "bytes": 215748,
+      "start": 1701.4000000003725
+    },
+    {
+      "name": "http://127.0.0.1:61030/editor/api/play",
+      "duration": 68.40000000037253,
+      "bytes": 2486,
+      "start": 1788.5999999996275
+    },
+    {
+      "name": "http://127.0.0.1:61030/editor/api/play",
+      "duration": 68,
+      "bytes": 2484,
+      "start": 1715.4000000003725
+    },
+    {
+      "name": "http://127.0.0.1:61030/qxqy-font/manifest",
+      "duration": 60.59999999962747,
+      "bytes": 325,
+      "start": 502.2000000011176
+    },
+    {
+      "name": "http://127.0.0.1:61030/editor/play.js",
+      "duration": 39.59999999962747,
+      "bytes": 19427,
+      "start": 78.20000000111759
+    },
+    {
+      "name": "http://127.0.0.1:61030/editor/play-renderer.js",
+      "duration": 39,
+      "bytes": 796544,
+      "start": 124
+    },
+    {
+      "name": "http://127.0.0.1:61030/editor/play.css",
+      "duration": 28.199999999254942,
+      "bytes": 6890,
+      "start": 76.80000000074506
+    },
+    {
+      "name": "http://127.0.0.1:61030/qxqy-assets/sprite-v1/107271.json",
+      "duration": 20.300000000745058,
+      "bytes": 382,
+      "start": 1513.5
+    }
+  ],
+  "serviceSha256": "2368684e777fffb3b1584530517acde2485a833825f5f60adf0c946863ac0586",
+  "candidateSha256": "70995f18c6527998dde4889453c6b56658045a635199304a9149fe0f0d3c083a",
+  "preloadMs": 5813.759999999999,
+  "coldLoadAccepted": false
+}

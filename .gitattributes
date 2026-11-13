@@ -1342,3 +1342,6 @@ experiments/art-tech-lab/played.png filter=lfs -diff merge=lfs -text ci-immutabl
 experiments/art-tech-lab/sample.png filter=lfs -diff merge=lfs -text ci-immutable-media
 experiments/art-tech-lab/selected.png filter=lfs -diff merge=lfs -text ci-immutable-media
 config/ci-media-lfs.json text eol=lf
+# This trial's evidence manifest hashes the original files byte-for-byte.
+docs/evidence/menu-red-20261113/** -text
+experiments/menu-red-fit/*.py text eol=lf

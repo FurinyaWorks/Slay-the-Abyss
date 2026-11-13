@@ -370,6 +370,9 @@ end
 
 function M.exitEntryVisible(self)
     return function()
+            local minimal=(Theme.presentationProfile=='official-assets-first' or Theme.presentationProfile=='v25-reference')
+                and Theme.menuPresentation and Theme.menuPresentation.minimal
+            if minimal and self.mode=='menu' and not self.characterOpen then return false end
             return not self.easterEggOpen and not self.exitOpen and not self.settlementRequested and not self.settlementBusy
         end
 end

@@ -22,6 +22,10 @@ export function v25Theme(source){
    theme.layout.nativeNode.shop.columns=[...shelfColumns];
   }
  theme.layout.v25Menu=structuredClone(v25MenuRuntimeLayout);
+ if(source.menuPresentation?.minimal){
+  theme.layout.v25Menu.start=[...source.menuPresentation.start];
+  theme.layout.v25Menu.quit=[...source.menuPresentation.quit];
+ }
  theme.layout.v25Result=structuredClone(v25ResultRuntimeLayout);
  return theme;
 }

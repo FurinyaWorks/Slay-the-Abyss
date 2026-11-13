@@ -1,4 +1,18 @@
 {
+  "menuPresentation": {
+    "minimal": true,
+    "fontSize": 28,
+    "labelX": 12,
+    "hoverSeconds": 0.16,
+    "leaveSeconds": 0.10,
+    "pressOffset": 1,
+    "lineRestAlpha": 130,
+    "ink": "#F5E7DF",
+    "muted": "#B9A7A5",
+    "accent": "#FF7867",
+    "start": [-450,-170,280,56],
+    "quit": [-450,-234,280,56]
+  },
   "officialAssets": {
     "profile": "official-assets-first-v1",
     "note": "PR #588 opt-in candidate. Existing 2026-10-13 catalog thumbnails inspected; current-client visual acceptance is UNVERIFIED. Preserve all semantic icon IDs and actual Traveler portraits; no MCP catalog update.",
