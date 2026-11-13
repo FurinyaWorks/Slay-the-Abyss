@@ -663,3 +663,36 @@ drawn/paid across recharge/reshuffle without moving cards or granting energy;
 that is an execution/identity proof, not survival balance. An actual11th instance
 proves native hand10 truncation. The former relictrue refusal test is intentionally
 replaced by malformed-type refusal; existing false-mode regression remains.
+
+## KQ039/049 native support and reviewed-ten research rewards
+
+`abyss_keqing_support_reward_run.new(Data, seed)` is a separate closed experimental
+launcher. It retains the source starter and adds KQ039/049 to the reviewed-eight
+catalog and equal-weight research offer domain, marked `keqing-reviewed-ten-v1`.
+The old reviewed-eight entry and formal reward/shop pools remain unchanged.
+Both new cards preserve source `special`/HOLD metadata, not invented formal rarity.
+The ten-card domain samples identities without replacement, caps oversized offers,
+rejects zero offers and Prismatic, and checks full source definitions before issuing
+rewards. Boss offers are research offers, not an approved rare-card distribution.
+
+The paid gate admits only canonical KQ039/049 base/upgraded native effects, real
+boolean face and candidate markers. It does not generally permit nextBlock or
+escapePlan on other Keqing candidate cards. Costs still use the native dynamic
+cost path. KQ039 uses ordinary block now and native captured next-turn block;
+KQ049 uses native drawWithFollowup, granting the captured normal block only if
+its actual draw is a skill. NoDraw and an empty pool grant no such shield.
+Skill play does not consume attack infusion or wedge. No new global turn flag
+or effect handler is installed. Source projection is the reviewed 3c3547ef module
+from candidate 89d898c; modifier timing is host native behavior, not new balance
+approval.
+
+Targeted test entry: `keqing-support-usecard.test.mjs`. It covers native modifiers,
+one-time delayed shield, post-native shield/install rollback with original aliases,
+strict manual/automatic gates, four actual obtain-to-natural-draw paid acquisitions,
+and eight controlled-victory generated-offer claim-to-next-Run.play paths. The
+latter place the claimed card in hand and grant energy solely to test settlement;
+they are not natural-map or all-ten acquisition coverage. The initial test fixture
+incorrectly removed the source card from the end of hand when arranging a draw;
+it was corrected to select a non-source UID, without weakening the assertion.
+Formal registration, UI selection, natural full-run balance and device acceptance
+remain HOLD.

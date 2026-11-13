@@ -11,6 +11,9 @@ local function same(a,b)
  return true
 end
 local M={}
+local supportById={}
+for _,d in ipairs(require('abyss_keqing_native_support').definitions().cards)do supportById[d.id]=d end
+function M.supportDefinitions()return require('abyss_keqing_native_support').definitions()end
 local allowed={damage=true,damageAll=true,block=true,scry=true,keqingDiscard=true,keqingInspect=true,keqingDefense=true}
 local defenseSpec={KQ006={kind='wedge',value=5},KQ007={kind='infusion',value=4}}
 function M.defenseDefinitions()
@@ -47,7 +50,20 @@ function M.supportsInspect(e)
  for key in pairs(e)do if key~='op'and key~='value'then return false end end
  return true
 end
+local function supportUse(state,card,instance)
+ local d=instance and supportById[instance.cardId]
+ if not d or instance.upgraded~=nil and type(instance.upgraded)~='boolean'or not Lifecycle.active(state)
+  or card.experimental~=true or card.keqingCandidate~=true or card.keqingStage~=nil
+  or card.type~=d.type or card.target~=d.target or card.exhaust or card.selfRetain
+  or card.runNativeABI or card.originalV4 or card.silentFinalCard or card.costMode
+  or card.ganyuCandidate~=nil or card.xiaoCandidate~=nil or card.zhongliCandidate~=nil
+  or getmetatable(card.effects)or not same(card.effects,instance.upgraded and d.upgrade.effects or d.effects)
+  then return false,'keqing_support_unavailable'end
+ for _,e in ipairs(card.effects)do if getmetatable(e)then return false,'keqing_support_unavailable'end end
+ return true
+end
 function M.canUse(state,card,instance)
+ if instance and supportById[instance.cardId]then return supportUse(state,card,instance)end
  local defense=instance and defenseSpec[instance.cardId]or card.keqingStage=='006'or card.keqingStage=='007'
  for _,e in ipairs(card.effects)do if e.op=='keqingDefense'then defense=true end end
  if defense then return defenseUse(state,card,instance)end

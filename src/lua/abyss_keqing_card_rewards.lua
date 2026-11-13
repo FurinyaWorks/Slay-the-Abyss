@@ -9,18 +9,21 @@ local function same(a,b)
  return true
 end
 function M.prepare(run,api)
- assert(run.candidateRewardPool=='keqing-reviewed-eight-v1','unknown candidate reward domain')
+ local support=run.candidateRewardPool=='keqing-reviewed-ten-v1'
+ assert(run.candidateRewardPool=='keqing-reviewed-eight-v1'or support,'unknown candidate reward domain')
  local context=require('abyss_run_candidate').forCombat(run)
  assert(context and context.kind=='keqing','candidate reward context unavailable')
  assert(not require('abyss_relic_queries').hooks.owns(run,'prismatic_shard'),'experimental_candidate_prismatic_unsupported')
  local actual={};for _,c in ipairs(run.data.cards.cards)do assert(not actual[c.id],'duplicate candidate catalog identity');actual[c.id]=c end
  local pool={};local seen={}
- for _,source in ipairs(require('abyss_keqing_native_eight').definitions().cards)do
+ local sources=require('abyss_keqing_native_eight').definitions().cards
+ if support then for _,c in ipairs(require('abyss_keqing_native_support').definitions().cards)do sources[#sources+1]=c end end
+ for _,source in ipairs(sources)do
   assert(source.rarity=='special'and not seen[source.id],'invalid candidate source')
   assert(same(actual[source.id],source),'candidate reward definition drift')
   seen[source.id]=true;pool[#pool+1]=source.id
  end
- assert(#pool==8,'invalid reviewed eight catalog')
+ assert(#pool==(support and 10 or 8),'invalid reviewed candidate catalog')
  local rng=R.cloneState(run.cardRng);local count=api.rewardCount(run)
  assert(type(count)=='number'and count>=0 and count%1==0 and count<=100,'invalid candidate reward count')
  local ids={}
