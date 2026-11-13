@@ -3,6 +3,9 @@ local Actors=require('abyss_actor')
 local Events=require('abyss_events')
 local EnemyAI=require('abyss_enemy_ai')
 local Handlers={}
+function Handlers.ganyuOwnerEnd(c)
+    return require('abyss_ganyu_owner_end').apply(c.combat,c.state,c.effect,c.queue)
+end
 function Handlers.zhongliPaidStage(c)
     return require('abyss_zhongli_paid_cards').dispatch(c.combat,c.state,c.effect,c.queue)
 end

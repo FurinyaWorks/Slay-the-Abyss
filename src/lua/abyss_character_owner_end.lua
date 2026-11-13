@@ -24,8 +24,8 @@ function M.init(state,option)
   return
  end
  if option.kind=='ganyu'then
-  assert(option.relicEnabled==false and not state.originalV4,'Ganyu relic/lifecycle not enabled')
-  state.experimentalMechanics=true;state.characterCandidate='ganyu'
+  assert(type(option.relicEnabled)=='boolean'and not state.originalV4,'invalid Ganyu lifecycle option')
+  state.experimentalMechanics=true;state.characterCandidate='ganyu';state.ganyuRelicEnabled=option.relicEnabled
   state.ganyuResource=require('abyss_ganyu_resources').initial()
   return
  end

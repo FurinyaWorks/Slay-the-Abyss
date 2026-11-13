@@ -1835,6 +1835,14 @@ local function finishExperimentalRound(state)
     M.startPlayerTurn(state)
 end
 
+local function ganyuOwnerEndPhase(state,phase)
+    local actions=require('abyss_ganyu_owner_end').actions(state,phase)
+    if #actions==0 then return end
+    local queue=require('abyss_action_queue');queue.start(state,actions)
+    assert(queue.run(state,queuedHandlers)==true,'unexpected Ganyu end-turn selection')
+    drainNative(state)
+end
+
 local function endExperimentalTurn(state)
     if state.pendingChoice or state.cardActions then return false,'card_choice_pending' end
     if state.pendingPlay or state.pendingScry or state.pendingHandChoice or state.actionQueue then return false, "selection_pending" end
@@ -1842,7 +1850,10 @@ local function endExperimentalTurn(state)
     if state.phase ~= "player" then return false, "not_player_turn" end
     if prepareExperimentalPlayerEnd(state)then return true end
     state.silentRetainResume=nil
+    ganyuOwnerEndPhase(state,'bank')
     discardOwnerEnd(state)
+    if finish(state) then return true end
+    ganyuOwnerEndPhase(state,'storm')
     if finish(state) then return true end
     if state.skipMonsterTurn then
         state.skipMonsterTurn=nil
@@ -2116,7 +2127,7 @@ end
 -- Candidate lifecycle must share the whole command preimage, including relics
 -- that run before ordinaryOwnerEnd. Legacy commands retain their existing path.
 function M.endTurn(state,rollbackOwner)
-    if not require('abyss_character_owner_end').active(state)then return endTurnRequest(state,rollbackOwner)end
+    if not require('abyss_character_owner_end').active(state)and not require('abyss_ganyu_owner_end').active(state)then return endTurnRequest(state,rollbackOwner)end
     local restore=endTurnRestore(state,rollbackOwner)
     local called,ok,reason=pcall(endTurnRequest,state)
     if not called then restore();error(ok,0)end

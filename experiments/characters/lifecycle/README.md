@@ -93,10 +93,9 @@ synthetic interruption is test-only and is not an extra ability on KQ003.
 
 ## Ganyu 03/06 paid-only vertical slice
 
-Explicit `candidateLifecycle={kind='ganyu',relicEnabled=false}` initializes
-`ganyuResource` without touching the existing owner-end route. A true relic
-option is rejected: bank-before-discard and storm-after-discard are NOT wired
-by this slice. Only candidate chargedShot/charge definitions marked
+The initial paid-only slice used explicit
+`candidateLifecycle={kind='ganyu',relicEnabled=false}` and did not wire banking
+or storm ticks. The later lifecycle section below supersedes that limitation. Only candidate chargedShot/charge definitions marked
 `ganyuCandidate=true, experimental=true` are accepted; there is no class,
 reward pool, starter relic or ready-catalog registration. Source role modules
 are copied from reviewed `57e5707f` (resource require path alone adapted).
@@ -189,3 +188,39 @@ skips the resource gate and retains the wedge; retained UseCard still consumes
 old infusion. If the gate executes and a later burst reaction kills the player,
 the wedge stays consumed but UseCard consumption is skipped. These observed
 host policies are not declared equivalent to the isolated JS post-play model.
+
+
+## Ganyu actual end-turn lifecycle
+
+The explicit Ganyu candidate now accepts either boolean relic option. Its
+whole public C.endTurn command uses the same complete Snapshot boundary as
+Keqing, including relics before the normal resolver; actual Codex pauses keep
+the existing continuation. Other actors/Act3 retain their original routes and
+order. No new global/formal character registration is introduced.
+
+After existing player-end powers/cards finish, a queued bank action snapshots
+unused energy into charge (only with its starter relic), clears energy, and
+records that turn. Native ethereal exhaust/discard and their actual hooks run
+next. Only if combat survives does a separate queued storm action decrement
+the field once and enqueue native AoE, before enemy actions. Death or victory
+before a phase prevents that phase, rather than retroactively awarding it.
+The existing pure resource guards enforce bank/tick sequencing and duplicates.
+
+Tests include the author's five actual public commands, an exhaust-draw witness
+requiring n=1 on the original turn with the original dazed instance already in
+exhaust, bank/exhaust and late next-turn failures restoring full aliases,
+pre-bank death, discard-trigger victory skipping tick, storm-reaction death,
+and a wider parent-owned Snapshot capability consumed exactly once. The shared
+03/06 role capture ABI is also updated from independently reviewed 66ee41b3:
+integers only, complete known-enemy map, no metatable or unexpected enemy IDs;
+real C.play corruption probes restore the initial graph.
+
+This wires lifecycle for explicit experimental state; it does not populate the
+full 75-card pool or approve final character balance/terminal design choices.
+
+Ganyu Ice Cream compatibility correction: a disabled starter relic advances the
+bank phase marker without modifying energy. Native Ice Cream therefore retains
+2 unspent energy into the next turn (5 total), exactly as the unmarked baseline.
+The enabled candidate consumes all remaining energy even at charge cap (3 next
+turn), matching the source candidate's documented overflow discard. This is a
+candidate compatibility assertion, not final balance approval for the combination.

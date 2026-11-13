@@ -102,3 +102,19 @@ do
  eq(normal.ganyuResource,nil);eq(normal.characterCandidate,nil)
 end
 print('GANYU_PAID_TRANSACTION_PASS')
+-- Hardened role capture ABI also fails inside a real paid command before any
+-- resource consumption; the shared Snapshot restores the whole initial graph.
+for _,bad in ipairs({'fractional','missing','extra','metatable'})do
+ local s,c=fresh('ganyu_lab_03',false,2);local resource=s.ganyuResource;local before=C.copy(s)
+ local dispatch=Stage.dispatch
+ Stage.dispatch=function(combat,state,e,queue)
+  if bad=='fractional'then e.payload.normalAmount=1.5
+  elseif bad=='missing'then e.payload.normalAmounts[state.enemies[1].id]=nil
+  elseif bad=='extra'then e.payload.normalAmounts.unknown=1
+  else setmetatable(e.payload.normalAmounts,{})end
+  return dispatch(combat,state,e,queue)
+ end
+ eq(pcall(C.play,s,c.uid,1),false);Stage.dispatch=dispatch
+ same(s,before);eq(s.ganyuResource,resource);eq(s.hand[1],c)
+end
+print('GANYU_CAPTURE_ABI_PASS')

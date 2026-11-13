@@ -3,7 +3,7 @@ local R=require('abyss_ganyu_resources')
 local copy=require('abyss_copy').copy
 local Presence=require('abyss_actor_presence')
 local M={}
-local function number(n)assert(type(n)=='number'and n==n and n>=0 and n<=2147483647,'invalid captured Ganyu amount');return n end
+local function number(n)assert(type(n)=='number'and n==n and n>=0 and n<=2147483647 and n%1==0,'invalid captured Ganyu amount');return n end
 local function keys(t,allowed)assert(type(t)=='table'and getmetatable(t)==nil,'invalid Ganyu effect');for k in pairs(t)do assert(allowed[k],'unknown Ganyu effect field')end end
 function M.prepare(combat,state,e,target,uid)
  keys(e,{op=true,kind=true,amount=true,direct=true,bloom=true})
@@ -37,8 +37,9 @@ function M.dispatch(combat,state,e,queue)
   keys(e,{op=true,kind=true,direct=true,bloom=true,uid=true,targetId=true,normalAmount=true,normalAmounts=true});assert(e.op=='ganyuCard','invalid namespace')
   assert(state.pendingPlay.targetId==e.targetId,'Ganyu target context mismatch')
   local found=false;for _,enemy in ipairs(state.enemies)do if enemy.id==e.targetId then found=true end end;assert(found,'Ganyu target absent')
-  number(e.normalAmount);assert(type(e.normalAmounts)=='table','missing Ganyu area capture')
-  for _,enemy in ipairs(state.enemies)do number(e.normalAmounts[enemy.id])end
+  number(e.normalAmount);assert(type(e.normalAmounts)=='table'and getmetatable(e.normalAmounts)==nil,'missing Ganyu area capture')
+  local ids={};for _,enemy in ipairs(state.enemies)do ids[enemy.id]=true;number(e.normalAmounts[enemy.id])end
+  for id in pairs(e.normalAmounts)do assert(ids[id],'unknown Ganyu area capture target')end
   plan=R.plan(state.ganyuResource,{op='charged_shot',direct=e.direct,bloom=e.bloom})
   plan.effects[1].targetId=e.targetId;plan.effects[1].normalAmount=e.normalAmount
   if plan.effects[2]then plan.effects[2].normalAmounts=copy(e.normalAmounts)end
