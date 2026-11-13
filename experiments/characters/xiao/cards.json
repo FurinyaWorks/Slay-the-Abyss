@@ -1,5 +1,5 @@
 {
-  "version": "xiao-g2-lab-0.13",
+  "version": "xiao-g2-lab-0.14",
   "status": "EXPERIMENTAL_HOLD",
   "character": "xiao",
   "maxHp": 70,
@@ -1051,6 +1051,62 @@
         "sourceVerified": false,
         "humanApproved": false
       }
+    },
+    {
+      "id": "x35",
+      "name": "待命名·x35",
+      "role": "面具多击兑现：同一目标两次命中各自享受强化",
+      "kind": "attack",
+      "rarity": "uncommon",
+      "cost": 1,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "damageHits",
+          "value": 4,
+          "hits": 2
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "damageHits",
+          "value": 6,
+          "hits": 2
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
+    },
+    {
+      "id": "x36",
+      "name": "待命名·x36",
+      "role": "面具攻击手牌续航：每回合首次符合条件攻击补牌",
+      "kind": "power",
+      "rarity": "rare",
+      "cost": 2,
+      "exhaust": false,
+      "base": [
+        {
+          "op": "maskedAttackDraw",
+          "value": 1
+        }
+      ],
+      "upgrade": [
+        {
+          "op": "maskedAttackDraw",
+          "value": 2
+        }
+      ],
+      "naming": {
+        "status": "HOLD",
+        "candidate": null,
+        "sourceVerified": false,
+        "humanApproved": false
+      }
     }
   ],
   "starter": [
@@ -1095,7 +1151,9 @@
     "x31",
     "x32",
     "x33",
-    "x34"
+    "x34",
+    "x35",
+    "x36"
   ],
   "maskRules": {
     "attackBonus": 4,
