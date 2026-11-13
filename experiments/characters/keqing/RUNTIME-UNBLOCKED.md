@@ -1,0 +1,5 @@
+# KQ056 pre-card target block slice (HOLD)
+
+Strict single-source exporter plus isolated actual Combat wrapper. Both faces are attack cost2. Snapshot the selected living target's block before payment/effects: exactly zero adds a second same-target hit; breaking a positive block with the first hit does not qualify. Infusion adds2 per segment and consumes one per attack; no wedge consumption. Invalid/unknown definitions fail closed, generic wrapper refuses the marker. Canonical catalog restored on output and input never mutated.
+
+Two targeted tests: JS negative schema; actual Lua18 base/upgraded × entry block0/1/30 × infusion0/1/2 combinations, two first-hit lethal cases without retarget, invalid-target/insufficient-cost rollback, and nonfinite target block rejection. No changed shared lifecycle or production registration. Entry-state conditional timing is implemented; card-internal complex reactions, the full candidate Power system, natural acquisition/route balance, source and human gates are not claimed. This retains the research wrapper's post-return infusion update limitation and must not be copied as the formal queued dispatcher.
