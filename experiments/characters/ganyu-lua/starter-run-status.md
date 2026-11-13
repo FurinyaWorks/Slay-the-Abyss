@@ -1,0 +1,7 @@
+# Initial candidate Run configuration: blocked at catalog, not playable yet
+
+Isolated pure-data factory `starter-run.lua` and generated `starter-spec.lua` map the frozen candidate starter:01×4,02×4,03,04;HP60,3 energy,5 draw,10 hand limit. Native definitions come from the already-reviewed shared factory;03 comes from the already-reviewed source compiler. Source starter-relic JSON is preserved and hashed. Default Burning Blood is removed. `relicEnabled=true` is explicitly virtual research equipment, not a formal inventory relic/removal/replacement integration.
+
+Actual exact host663a294a35ebadf31616a91e19b016055db61cee execution of factory→Run.new throws `missing source card metadata` in abyss_run_card_catalog.lua:234(registerCardFact), called by mergeProviderCard/prepareCatalog. The formal catalog cannot currently accept pre-injected candidate definitions. The test never reached startCombat. This is an actual player-launch blocker and has been handed to the shared owner. Do not patch around it with post-constructor card insertion or fabricated official metadata.
+
+`starter-run.test.lua` is prospective positive acceptance, **PENDING**. Source generation and Lua parsing alone are not runtime success. No shared files were modified; no formal selection, natural reward pool, naming/human/balance approval or new save protocol is introduced. The factory is work-in-progress until a reviewed shared candidate catalog hook can admit this constructor path.

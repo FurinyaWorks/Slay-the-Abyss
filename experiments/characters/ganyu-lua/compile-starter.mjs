@@ -1,0 +1,8 @@
+import{readFileSync,writeFileSync}from'node:fs';import{createHash}from'node:crypto';import{toLua}from'../../../scripts/build-lua-data.mjs';import{compilePaid}from'./compile-paid.mjs';
+const relicRaw=readFileSync(new URL('./source-starter-relic.json',import.meta.url));const relic=JSON.parse(relicRaw);
+if(relic.id!=='ganyu-starter-01'||relic.human_approved!==false||relic.effect.op!=='bank_unused_energy'||relic.effect.energy_per_charge!==1||relic.effect.overflow!=='discard'||relic.effect.requires_equipped!==true)throw Error('starter relic source changed');
+const raw=readFileSync(new URL('./source-candidates.json',import.meta.url));const s=JSON.parse(raw);
+const expected=['ganyu-01','ganyu-01','ganyu-01','ganyu-01','ganyu-02','ganyu-02','ganyu-02','ganyu-02','ganyu-03','ganyu-04'];
+if(JSON.stringify(s.starting_deck)!==JSON.stringify(expected)||JSON.stringify(s.environment)!==JSON.stringify({maxCharge:2,energyPerTurn:3,initialHp:60,drawPerTurn:5,handLimit:10}))throw Error('starter source changed; review required');
+const out={relicId:relic.id,relicSourceSHA256:createHash('sha256').update(relicRaw).digest('hex'),deck:s.starting_deck.map(id=>'ganyu_lab_'+id.slice(-2)),maxHp:s.environment.initialHp,energyPerTurn:s.environment.energyPerTurn,drawPerTurn:s.environment.drawPerTurn,handLimit:s.environment.handLimit,paidCards:[compilePaid(s.cards.find(c=>c.id==='ganyu-03'))],sourceSHA256:createHash('sha256').update(raw).digest('hex'),productionEnabled:false};
+writeFileSync(new URL('./starter-spec.lua',import.meta.url),'-- Generated from frozen candidate starter; no official registration.\nreturn '+toLua(out)+'\n');
