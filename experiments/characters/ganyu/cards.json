@@ -1,5 +1,5 @@
 {
-  "version": "ganyu-sample-0.5.0",
+  "version": "ganyu-sample-0.6.0",
   "status": "CANDIDATE",
   "character_id": "ganyu",
   "production_enabled": false,
@@ -347,6 +347,152 @@
         ]
       },
       "source_ref": "ganyu-10",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-11",
+      "name": "待命名·ganyu-11",
+      "candidate_name": null,
+      "role": "保留能量的小防守",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 0,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 5
+          }
+        ]
+      },
+      "source_ref": "ganyu-11",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-12",
+      "name": "待命名·ganyu-12",
+      "candidate_name": null,
+      "role": "击杀压力下的攻防过渡",
+      "rarity": "common",
+      "target": "enemy",
+      "base": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 4
+          },
+          {
+            "op": "block",
+            "amount": 3
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "amount": 6
+          },
+          {
+            "op": "block",
+            "amount": 4
+          }
+        ]
+      },
+      "source_ref": "ganyu-12",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-13",
+      "name": "待命名·ganyu-13",
+      "candidate_name": null,
+      "role": "花双能量覆盖当前爆发",
+      "rarity": "common",
+      "target": "self",
+      "base": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 14
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 2,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 18
+          }
+        ]
+      },
+      "source_ref": "ganyu-13",
+      "review": {
+        "status": "HOLD",
+        "human_approved": false,
+        "reason": "可及性第二批局部候选，不进入初始10卡；待来源审美与机会成本/自然获取评审"
+      }
+    },
+    {
+      "id": "ganyu-14",
+      "name": "待命名·ganyu-14",
+      "candidate_name": null,
+      "role": "全回合能量换冰雨建立期防守",
+      "rarity": "uncommon",
+      "target": "self",
+      "base": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 8
+          },
+          {
+            "op": "storm",
+            "amount": 3,
+            "turns": 2
+          }
+        ]
+      },
+      "upgrade": {
+        "cost": 3,
+        "effects": [
+          {
+            "op": "block",
+            "amount": 11
+          },
+          {
+            "op": "storm",
+            "amount": 4,
+            "turns": 2
+          }
+        ]
+      },
+      "source_ref": "ganyu-14",
       "review": {
         "status": "HOLD",
         "human_approved": false,
