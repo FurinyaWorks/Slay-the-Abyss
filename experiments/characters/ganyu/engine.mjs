@@ -111,6 +111,8 @@ export function play(input, handIndex, target = null, cancel = false) {
   }
   s.discard.push(resolved);
   victory(s);
+  // Commit only a valid aggregate result; cloned transaction rejects overflow atomically.
+  validateState(s);
   return s;
 }
 export function endTurn(input) {
