@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('006/007 independent real public defense and Run ownership',()=>{buildLuaData();const r=runLua('experiments/characters/keqing-host/defense-independent.test.lua',{timeout:60000});assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/KQ_DEFENSE_INDEPENDENT_48_4_4_4_PASS/);});
