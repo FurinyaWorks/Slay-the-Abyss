@@ -1,5 +1,5 @@
 /** Isolated Zhongli G2/G4 candidate. Not a production loader. */
-export const VERSION = 'zhongli-mechanics-0.40.0';
+export const VERSION = 'zhongli-mechanics-0.41.0';
 const card = (id, role, rarity, cost, base, upgraded, target = 'self') => ({
   id, name: `待命名·${id}`, role, rarity, cost, target, base, upgraded,
   approval: 'HOLD', sourceVerified: false,
@@ -77,6 +77,9 @@ export const cards = [
   {...card('zl70', '一次集中攻击并建立储备，较高能量与消耗换单牌效率', 'common', 2, [['damage', 8], ['jade', 7]], [['damage', 11], ['jade', 9]], 'enemy'), exhaust: true},
   {...card('zl71', '支付少量防线推进攻击并检索后续，失去储备与重复利用', 'common', 1, [['spendJade', 3], ['damage', 5], ['draw', 1]], [['spendJade', 3], ['damage', 7], ['draw', 2]], 'enemy'), exhaust: true},
   card('zl72', '借岩脊掩护同时补持久储备，以临时防御效率换后续防线', 'common', 2, [['pillarBlock', 3], ['jade', 3]], [['pillarBlock', 4], ['jade', 4]]),
+  {...card('zl73', '零能量支出储备一次减压，短时效且不可循环', 'common', 0, [['spendJade', 3], ['weak', 1]], [['spendJade', 3], ['weak', 2]], 'enemy'), exhaust: true},
+  {...card('zl74', '保住防线兑现一次攻击并掩护，失去重复利用且低储备卡手', 'common', 2, [['jadeDamage', 0], ['block', 3]], [['jadeDamage', 3], ['block', 5]], 'enemy'), exhaust: true},
+  {...card('zl75', '拆除岩脊换一次强反击，怕单次致命且失去持续输出', 'common', 1, [['spendPillar', 1], ['counter', 9]], [['spendPillar', 1], ['counter', 12]]), exhaust: true},
 ];
 export const JADE_CAP = 20;
 export const PULSE_LIMIT = 4;

@@ -1,4 +1,8 @@
-# 钟离：护盾保留与即时兑现（候选 0.1）
+# 钟离：75 张候选与初始遗物（研究快照 0.41）
+
+当前母表包含 zl01–zl75 的基础/升级版本，以及初始遗物 zl-relic01。数量齐备不是 G8/G9 放行：全部候选 HOLD，正式引擎未接入，官方命名/人物合同/平衡/真人试玩尚未通过。下方按时间保存早期小样与逐批证据，早期卡数仅代表当时快照。最新受限奖励池为 v37（71 张临时 common，另2basic与rare05/uncommon10不在奖励池），不是完整稀有度系统。最终73–75待独审，已审范围见逐批记录。
+
+## 历史起点：候选 0.1
 
 2026-11-13。负责人 Furinya；本轮用户指定生产钟离技能。独立实验，不接入正式职业、冻结 V4、Lua 加载器或比赛范围。
 
@@ -766,3 +770,15 @@ v35 addsfour,64provisionalcommons.100normal-HP three-room runs seeds38001–3801
 Eight batch tests + base/upgrade:395/395. Includes retainedno-passive, saturation, counterexpiry, kill-before-draw/exhaust, safeproduct/cumulativeoverflow andschema rejection, sourceinventory. Old320reportbyteidentical; old68valuesunchanged. Allnewadaptations/sourcesHOLD.
 
 v36adds69–72,68researchcommons.100normal-HPsyntheticjourneys seed39001–39010: largeallgroupsdie;69one,71two,70/72zero; pillar21one. Multi allcompleteP90loss1;69one,71two,70/72zero,pillar21one. No measured aggregategain, cannotjudge70/72. Biased witnesses69seed64complete59HP,70seed26complete60HP,71seed6complete59HP,72seed75complete50HP excludedfrom100.20koffers andideal3/68withRNGcaveat saved. HP1fixtures lifecycleonly. Naming/identity/source/twoSTS/human/naturalbalance/formalintegrationHOLD, backupbeforereview.
+
+## 0.41 final count batch: 73–75 (HOLD, not release freeze)
+
+73:0energy pay3jade Weak1/2 exhaust. Versus57 saves1energy but loses2duration and reuse; consumes real defense, cannot replay/recycle within existing model. Allzero-cost cards remain finiteexhaust, no energygeneration ordraw, no proof foroutside relics.
+74:2energy currentjade(+0/3)ordinaryattack thenBlock3/5 exhaust. Versus18 gains temporarycover but losesreuse; upgraded damage is2less. Atjade0 base giveszeroattack yetstillcost2 andexhaust, a badcovercard. Keepsjade; notofficialHPscaling.
+75:1energy dismantle pillar then counter9/12 exhaust. Versus32 keeps3jade and increasescounter by3/4 but sacrifices entire pillar and reuse. Zeroattacks wastecounter andfuturepillar, whileonelethalattack canstillkill before revenge. Multihitretaliation canstopremaininghits onenemydeath; no directattack orBlock, notofficialGeoexplosion/reflection.
+
+Sixbatchtests plusbase/upgrade:407/407 isolatedsuite. Coverszeroenergy/payment/replay/20turnno-return, jade0..20×baseupgrade×armor×Vulnerable, counterempty/zero/multi/lethal/killstop, cost/terminal/invalid/overflow atomicity, lifecycle andoldpoolexclusion. All75uniqueIDs andunchangedstarterrelic{battleStart,jade3} asserted. No newopcode oroldvalues. Original320pressurebytesidentical. SourcesIDs1–75allHOLD. This completes candidate production count, not G1/G5–G9.
+
+v37 adds73–75 only,71provisionalcommons.80normal-HPsyntheticjourneys seeds40001–40010: eachlargegroup9death1truncate;73one/74one/75zero acquired. Multi allcompleteP90loss6:73three/74one/75zero(pillarone). No aggregateimprovement and75notstrengthtested. Biasedfirstoffers73seed2complete60HP,74seed4complete60HP,75seed180complete60HP excludedfrom80.20,000offer counts saved,ideal3/71withfiniteRNGcaveat. None of these per-card exploratory batches is a full75pool balancedrun or winningbuild proof. Officialsource/names/identity/twoSTS/human/fullrarity/naturalbalance/productionloader remainHOLD.
+
+Handoff: pin this commit rather than a moving working tree. Shared play may import `model.mjs` and `battle.mjs`; manual journey adapter is independently owned in shared tools and must preserve reward/terminal/HP rules. `journey.mjs` auto `fightRoom` is not manual gameplay. Keep all historical failures and lower-stage limitations visible. Do not merge or label official75 until outstanding gates are met.

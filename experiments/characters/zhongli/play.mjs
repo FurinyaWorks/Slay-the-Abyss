@@ -3,7 +3,7 @@ import {stdin,stdout} from 'node:process';
 import {battleStart,playInstance,nextTurn,visibleState,RELIC} from './battle.mjs';
 const terminal=createInterface({input:stdin,output:stdout});
 let state=battleStart({seed:42});
-console.log('钟离机制小样0.2：全部名称/数值待审；非正式75卡。\n'+RELIC.name+'：'+RELIC.description);
+console.log('钟离研究候选75卡母表：此入口仅初始牌组单战；名称/数值待审，非正式75卡放行。\n'+RELIC.name+'：'+RELIC.description);
 try{
   while(state.hp>0&&state.enemy.hp>0){
     const hits=[state.turn%3===0?14:8];
