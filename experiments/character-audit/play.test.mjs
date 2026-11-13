@@ -150,3 +150,25 @@ test('Zhongli reviewed 49-card snapshot exposes current public resources but no 
   assert.deepEqual(a.end(s),b.nextTurn(s,[8]));assert.deepEqual(s,before);
  }
 });
+test('Zhongli manual journey uses actual battle actions, earned rewards and carried HP',{skip:!process.env.ZHONGLI_LATEST_ROOT},async()=>{
+ const {pathToFileURL}=await import('node:url'),root=process.env.ZHONGLI_LATEST_ROOT;
+ const mod=f=>import(pathToFileURL(join(root,'experiments/characters/zhongli',f)).href);
+ const battle=await mod('battle.mjs'),journey=await mod('journey.mjs'),model=await mod('model.mjs'),policy=await mod('pressure.mjs');
+ const {zhongliRun}=await import('./zhongli-run.mjs');const bridge=zhongliRun({battle,journey,model});
+ let raw=bridge.start(37);const session=createSession({...bridge,catalog:[],assertCurrent:()=>{}},{mode:'run'});let view=session.view(),actions=0;
+ while(view.outcome==='playing'&&actions++<150){
+  const path=policy.choose(battle.visibleState(raw.battle,[3,3,3]),'defense');const index=path.length?raw.battle.hand.indexOf(path[0]):-1;
+  const input=raw,before=structuredClone(raw),direct=index>=0?battle.playInstance(raw.battle,raw.battle.hand[index]).state:battle.nextTurn(raw.battle,[3,3,3]);
+  raw=index>=0?bridge.play(raw,index):bridge.end(raw);assert.deepEqual(raw.battle,direct);assert.deepEqual(input,before);
+  const r=session.dispatch(index>=0?{type:'play',revision:view.revision,slot:index+1,target:1}:{type:'end',revision:view.revision});assert.equal(r.ok,true);view=r.view;assert.equal(view.hp,raw.battle.hp);
+ }
+ assert.equal(view.outcome,'reward');assert.deepEqual(raw.offer,journey.offers(37,1,'v29'));const hp=view.hp,n=view.persistentDeckSize,rev=view.revision;
+ const claimed=session.dispatch({type:'claim',revision:rev,choice:1});assert.equal(claimed.ok,true);assert.equal(claimed.view.room,2);assert.equal(claimed.view.hp,hp);assert.equal(claimed.view.persistentDeckSize,n+1);assert.equal(claimed.view.zones.powers,0);assert.equal(claimed.view.jade,battle.RELIC.effect.jade);
+ assert.equal(session.dispatch({type:'claim',revision:rev,choice:1}).ok,false);
+ const skipped=bridge.reward(raw,'proceed');assert.equal(skipped.deck.length,n);assert.equal(skipped.battle.hp,hp);
+ assert.throws(()=>bridge.reward(raw,'open'));assert.throws(()=>bridge.reward(raw,'claim',3));
+ const death=bridge.start(1);death.battle.hp=1;death.battle.jade=0;const loss=bridge.end(death);assert.equal(loss.phase,'death');assert.deepEqual(loss.offer,[]);assert.throws(()=>bridge.end(loss));
+ for(const key of ['rng','draw','instances'])assert.equal(Object.hasOwn(view,key),false);
+ const final=bridge.start(2);final.room=3;final.battle.enemy.hp=1;const slot=final.battle.hand.findIndex(k=>final.battle.instances[k].id==='zl01');assert.ok(slot>=0);const win=bridge.play(final,slot);assert.equal(win.phase,'complete');assert.deepEqual(win.offer,[]);assert.throws(()=>bridge.reward(win,'proceed'));
+ const tied=bridge.start(1);const mock=zhongliRun({battle:{...battle,nextTurn:s=>({...structuredClone(s),hp:0,enemy:{...s.enemy,hp:0}})},journey,model});assert.equal(mock.end(tied).phase,'death');
+});

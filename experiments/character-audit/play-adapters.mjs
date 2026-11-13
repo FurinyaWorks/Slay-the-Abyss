@@ -1,6 +1,7 @@
 import {realpathSync} from 'node:fs';
 import {resolve,join} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {zhongliRun} from './zhongli-run.mjs';
 import {snapshot as identity} from './audit.mjs';
 const used=new Set();
 const pick=(s,keys)=>Object.fromEntries(keys.filter(k=>s[k]!==undefined).map(k=>[k,s[k]]));
@@ -8,7 +9,7 @@ const zones=s=>({draw:s.draw.length,discard:s.discard.length,exhaust:(s.exhaust?
 const row=(id,text,role)=>({id,name:'待命名·'+id,base:text(false),upgraded:text(true),role,source:'HOLD',naming:'HOLD',balance:'HOLD'});
 const accept=r=>{if(!r.ok)throw Error(r.reason||'model rejected');return r.state;};
 export async function loadAdapter(root,character,expectedHead,{run=false}={}){
- if(run&&!['ganyu','xiao'].includes(character))throw Error('run mode currently available only for Ganyu and Xiao');
+ if(run&&!['ganyu','xiao','zhongli'].includes(character))throw Error('run mode currently available only for Ganyu, Xiao and Zhongli');
  if(!['ganyu','xiao','zhongli','keqing'].includes(character)||!/^[a-f0-9]{40}$/.test(expectedHead))throw Error('character and exact expected HEAD required');
  root=realpathSync(resolve(root));const dir=join(root,'experiments','characters',character);
  const before=identity(root,dir);
@@ -87,6 +88,7 @@ export async function loadAdapter(root,character,expectedHead,{run=false}={}){
    view:r=>({...battleView(r.battle),outcome:outcome(r),room:r.stage+1,rooms:3,persistentDeckSize:r.deck.length,
     reward:r.phase==='reward'?{open:true,claimed:false,immediateNextRoom:true,cards:r.offer.map((id,i)=>({choice:i+1,id,text:m.cardText(m.catalog.cards.find(c=>c.id===id),false)}))}:null})};
  }
+ if(run&&character==='zhongli')a={...a,...zhongliRun({battle:await mod('battle.mjs'),journey:await mod('journey.mjs'),model:await mod('model.mjs')})};
  const assertCurrent=()=>{if(JSON.stringify(before)!==JSON.stringify(identity(root,dir)))throw Error('model snapshot changed; quit and reopen a clean pinned version');};
  assertCurrent();return {...a,assertCurrent,identity:{character,root,...before}};
 }
