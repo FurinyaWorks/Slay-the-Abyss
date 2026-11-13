@@ -66,6 +66,26 @@ test('P4 original cannot bypass official-first search even if aesthetic checks p
  assert.match(validateNamingManifest(m).errors.join(' / '),/missing actual P2 searches/);
  assert.match(validateNamingManifest(m).errors.join(' / '),/P4 needs explicit P3/);
 });
+test('a generic homepage link without rejected official candidates cannot approve a P4 name',()=>{
+ const m=baseApproved(),c=m.cards[0];
+ c.source={tier:'P4',kind:'original',verified:true,name_original:true};
+ c.search={P1:{completed:true,categories:['skills'],lookups:[{query:'胡桃技能',locator:'角色主页'}],reason:'No suitable combat skill for a generic protective action',result:'no_suitable'},
+ P2:{completed:true,categories:['story'],lookups:[{query:'胡桃人物故事',locator:'角色主页'}],reason:'No appropriate independent phrase for this card',result:'no_suitable'},
+ P3:{status:'not_applicable',reason:'No real martial technique maps to this non-weapon effect'}};
+ const errors=validateNamingManifest(m).errors.join(' / ');
+ assert.match(errors,/missing actual P1 searches/);
+ assert.match(errors,/missing actual P2 searches/);
+});
+test('documented high-priority rejections and N-GATE evidence allow a genuine P4 exception',()=>{
+ const m=baseApproved(),c=m.cards[0];
+ c.source={tier:'P4',kind:'original',verified:true,name_original:true};
+ const rejected=(group)=>({completed:true,categories:[group],
+ lookups:[{query:'胡桃 '+group,locator:'官方具体角色条目',url:'https://example.org/entry',entry:'技能与语音具体章节'}],
+ rejected_candidates:[{text:'具体官方短语',source_url:'https://example.org/entry',source_entry:'该短语具体条目',rejection_reason:'This expression does not describe a supportive draw ability'}],
+ reason:'Official sources have no phrase that fits this defensive draw role',result:'no_suitable'});
+ c.search={P1:rejected('skills'),P2:rejected('story'),P3:{status:'not_applicable',reason:'No real weapon or ritual technique fits a general draw action'}};
+ assert.equal(validateNamingManifest(m).ready,true);
+});
 test('source kind cannot masquerade as higher official priority',()=>{
  const m=baseApproved();m.cards[0].source.kind='original';
  assert.match(validateNamingManifest(m).errors.join(' / '),/invalid tier or source kind/);
