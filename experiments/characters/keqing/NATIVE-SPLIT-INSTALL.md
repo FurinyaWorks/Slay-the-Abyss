@@ -1,0 +1,7 @@
+# Explicit dataset preparation and corrected KQ039 cause
+
+Actual targeted test establishes four controls on the same host: status present + mechanics flag absent gives next-turn block0; status present + flag true gives4; status absent fails unknown status on play and rolls back regardless of flag. This corrects the previous mistaken claim that bare dataset lacked the status. The prior full-catalog control activated mechanics indirectly via target-less native cards. No failed result is hidden or relabeled.
+
+install(data, exportedDefinition) accepts the trusted KQ039 exporter result, clones input, adds only that card, sets explicit experimentalKeqingNative=true, and adds next_turn_block only if absent. A present status must match native buff/intensity/none gameplay fields; localized descriptions need not match. Duplicates or conflicting gameplay fields reject. The helper is not arbitrary Lua/JS object security validation or a formal loader. Copied definitions remain caller-independent. Changing mechanics mode is explicit and may activate other native hooks; it is not silently applied to a user run or production dataset.
+
+Executed tests: bare/add-status/flag combinations; native-compatible reuse, missing-status supply, conflicting kind/decay/stack and candidate-collision refusal; input/output alias isolation; base/upgrade actual C.play and next C.endTurn with only the minimal installation. No full suite or GUI. Formal integration owner must decide the character's constructor mode and test the full mixed pool before release.
